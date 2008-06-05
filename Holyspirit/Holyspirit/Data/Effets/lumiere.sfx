@@ -1,0 +1,12 @@
+texture framebuffer
+vec3 color
+vec2 position
+
+effect
+{
+	vec4 pixel = framebuffer(_in);
+	
+	float len = distance(_in, position)*2;
+
+	_out = vec4(color, 1.0)*len * pixel;
+}

@@ -1,0 +1,41 @@
+AFFICHAGE
+resolution: 800 600
+syncronisation_verticale: 0
+mode: fenetre
+ombres: 1
+lumieres: 1
+lumiere_fondu: 0
+amelioration_des_lampes: 1
+herbes: 1
+
+MUSIQUES
+volume: 100
+
+INTERFACE
+minimap: 1
+console: 0
+
+VERSION
+version: 0.0.87
+
+CHEMINS
+maps: Data/Maps/map
+evenements: Data/Maps/evenement
+curseur: Data/Menus/Curseurs/
+menus: Data/Menus/
+fonts: Data/Fonts/Cup and Talon.ttf
+fx: Data/Effets/
+
+curseur_base: curseurMenu.png
+
+fxNoir: EffetNoir.sfx
+fxBlur: blur.sfx
+fxColorize: colorize.sfx
+
+menu_hud: Hud.png
+menu_minimap: minimap.png
+
+AUTRE
+videos: 0
+chemin_video_developpeurs: Data/Videos/Naiponcin logo/
+nom_video_developpeurs: Naiponcin logo
