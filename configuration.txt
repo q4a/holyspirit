@@ -9,11 +9,11 @@ amelioration_des_lampes: 1
 herbes: 1
 
 MUSIQUES
-volume: 100
+volume: 0
 
 INTERFACE
 minimap: 1
-console: 0
+console: 1
 
 VERSION
 version: 0.0.87
