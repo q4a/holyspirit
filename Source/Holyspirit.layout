@@ -2,10 +2,10 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="All" />
 	<File name="Decor.cpp" open="1" top="0" tabpos="7">
-		<Cursor position="493" topLine="8" />
+		<Cursor position="493" topLine="3" />
 	</File>
 	<File name="Decor.h" open="1" top="0" tabpos="5">
-		<Cursor position="363" topLine="10" />
+		<Cursor position="363" topLine="6" />
 	</File>
 	<File name="Evenement.cpp" open="0" top="0" tabpos="14">
 		<Cursor position="116" topLine="25" />
@@ -26,7 +26,7 @@
 		<Cursor position="6667" topLine="207" />
 	</File>
 	<File name="Map.h" open="1" top="0" tabpos="2">
-		<Cursor position="1510" topLine="32" />
+		<Cursor position="1510" topLine="28" />
 	</File>
 	<File name="Monstre.cpp" open="0" top="0" tabpos="17">
 		<Cursor position="3626" topLine="0" />
