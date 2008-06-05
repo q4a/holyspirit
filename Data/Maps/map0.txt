@@ -1,0 +1,20 @@
+Nom
+*Chargement
+$
+Musique
+$
+Lumiere de base
+*0 0 0 0 0
+$
+Liste des tilesets
+$
+Liste des tilesets de l'herbe
+$
+Liste des tilesets des monstres
+$
+Liste des entites monstres
+$
+* s-1 t-1 e0|
+$
+* s-1 t-1 |
+$
