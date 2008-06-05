@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Holyspirit" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="default">
+				<Option output="..\Holyspirit\Holyspirit" prefix_auto="0" extension_auto="1" />
+				<Option working_dir="..\Holyspirit" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectResourceIncludeDirsRelation="1" />
+			</Target>
+		</Build>
+		<VirtualTargets>
+			<Add alias="All" targets="default;" />
+		</VirtualTargets>
+		<Linker>
+			<Add library="C:\Program Files\CodeBlocks\MinGW\lib\mingw\static\libsfml-audio.a" />
+			<Add library="C:\Program Files\CodeBlocks\MinGW\lib\mingw\static\libsfml-graphics.a" />
+			<Add library="C:\Program Files\CodeBlocks\MinGW\lib\mingw\static\libsfml-window.a" />
+			<Add library="C:\Program Files\CodeBlocks\MinGW\lib\mingw\static\libsfml-system.a" />
+		</Linker>
+		<Unit filename="Decor.cpp" />
+		<Unit filename="Decor.h" />
+		<Unit filename="Evenement.cpp" />
+		<Unit filename="Evenement.h" />
+		<Unit filename="Globale.h" />
+		<Unit filename="Hero.cpp" />
+		<Unit filename="Hero.h" />
+		<Unit filename="Map.cpp" />
+		<Unit filename="Map.h" />
+		<Unit filename="Monstre.cpp">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="Monstre.h" />
+		<Unit filename="Personnage.cpp" />
+		<Unit filename="Personnage.h" />
+		<Unit filename="Pose.cpp" />
+		<Unit filename="Pose.h" />
+		<Unit filename="Tile.cpp" />
+		<Unit filename="Tile.h" />
+		<Unit filename="Tileset.cpp" />
+		<Unit filename="Tileset.h" />
+		<Unit filename="case.cpp" />
+		<Unit filename="case.h" />
+		<Unit filename="console.H" />
+		<Unit filename="console.cpp" />
+		<Unit filename="constantes.h" />
+		<Unit filename="eventManager.cpp" />
+		<Unit filename="eventManager.h" />
+		<Unit filename="jeu.cpp">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="jeu.h" />
+		<Unit filename="liste_case.cpp" />
+		<Unit filename="liste_case.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="main.h" />
+		<Unit filename="menu.cpp" />
+		<Unit filename="menu.h" />
+		<Unit filename="prototypes.h" />
+		<Unit filename="ressource.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="video.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

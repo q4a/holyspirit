@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="All" />
+	<File name="Decor.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="201" topLine="0" />
+	</File>
+	<File name="Decor.h" open="0" top="0" tabpos="11">
+		<Cursor position="373" topLine="1" />
+	</File>
+	<File name="Evenement.cpp" open="1" top="0" tabpos="12">
+		<Cursor position="475" topLine="25" />
+	</File>
+	<File name="Evenement.h" open="0" top="0" tabpos="8">
+		<Cursor position="743" topLine="0" />
+	</File>
+	<File name="Hero.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="594" topLine="6" />
+	</File>
+	<File name="Hero.h" open="0" top="0" tabpos="13">
+		<Cursor position="315" topLine="0" />
+	</File>
+	<File name="Map.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="63549" topLine="1291" />
+	</File>
+	<File name="Map.h" open="1" top="0" tabpos="1">
+		<Cursor position="748" topLine="12" />
+	</File>
+	<File name="Monstre.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="3372" topLine="91" />
+	</File>
+	<File name="Monstre.h" open="1" top="0" tabpos="3">
+		<Cursor position="259" topLine="0" />
+	</File>
+	<File name="Personnage.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="6377" topLine="136" />
+	</File>
+	<File name="Personnage.h" open="1" top="0" tabpos="9">
+		<Cursor position="1965" topLine="45" />
+	</File>
+	<File name="Pose.cpp" open="0" top="0" tabpos="9">
+		<Cursor position="784" topLine="17" />
+	</File>
+	<File name="Pose.h" open="0" top="0" tabpos="15">
+		<Cursor position="516" topLine="0" />
+	</File>
+	<File name="Tile.cpp" open="0" top="0" tabpos="10">
+		<Cursor position="1025" topLine="42" />
+	</File>
+	<File name="Tile.h" open="0" top="0" tabpos="16">
+		<Cursor position="611" topLine="8" />
+	</File>
+	<File name="Tileset.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="1810" topLine="85" />
+	</File>
+	<File name="Tileset.h" open="0" top="0" tabpos="10">
+		<Cursor position="1047" topLine="17" />
+	</File>
+	<File name="case.cpp" open="0" top="0" tabpos="12">
+		<Cursor position="450" topLine="0" />
+	</File>
+	<File name="case.h" open="0" top="0" tabpos="17">
+		<Cursor position="518" topLine="0" />
+	</File>
+	<File name="constantes.h" open="0" top="0" tabpos="7">
+		<Cursor position="311" topLine="0" />
+	</File>
+	<File name="eventManager.cpp" open="1" top="0" tabpos="10">
+		<Cursor position="4184" topLine="8" />
+	</File>
+	<File name="eventManager.h" open="1" top="0" tabpos="11">
+		<Cursor position="647" topLine="0" />
+	</File>
+	<File name="jeu.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="5233" topLine="124" />
+	</File>
+	<File name="jeu.h" open="0" top="0" tabpos="19">
+		<Cursor position="350" topLine="0" />
+	</File>
+	<File name="liste_case.cpp" open="0" top="0" tabpos="25">
+		<Cursor position="867" topLine="15" />
+	</File>
+	<File name="liste_case.h" open="0" top="0" tabpos="20">
+		<Cursor position="671" topLine="1" />
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="13">
+		<Cursor position="1063" topLine="24" />
+	</File>
+	<File name="main.h" open="0" top="0" tabpos="21">
+		<Cursor position="379" topLine="0" />
+	</File>
+	<File name="menu.cpp" open="0" top="0" tabpos="15">
+		<Cursor position="1288" topLine="21" />
+	</File>
+	<File name="menu.h" open="0" top="0" tabpos="22">
+		<Cursor position="411" topLine="0" />
+	</File>
+	<File name="prototypes.h" open="0" top="0" tabpos="23">
+		<Cursor position="271" topLine="0" />
+	</File>
+	<File name="video.cpp" open="0" top="0" tabpos="16">
+		<Cursor position="1773" topLine="60" />
+	</File>
+</CodeBlocks_layout_file>
