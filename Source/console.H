@@ -18,12 +18,14 @@ class Console
 	void Afficher(sf::RenderWindow* ecran);
 	void Ajouter(std::string texte,bool erreur=0);
 	void AjouterNombre(int nombre,bool erreur=0);
-
+    int getTaille();
+    void defiler(bool direction);
 
 
 	private:
 	std::vector <std::string> m_textes;
 	std::vector <bool> m_erreur;
+	int m_defilement;
 };
 
 

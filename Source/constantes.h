@@ -42,7 +42,8 @@ struct Configuration
 {
     coordonnee Resolution;
     bool Ombre,Lumiere,Minimap,FonduLumiere,amelioration_lampes,console,Herbes;
-    float effetMort,volume;
+    float effetMort,volume,minute;
+    int heure;
     std::string version,chemin_maps,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetBlur,nom_effetColorize,nom_hud,nom_minimap;
 };
 
@@ -59,13 +60,15 @@ class Lumiere
     int rouge;
     int vert;
     int bleu;
+    float hauteur;
 };
 
 struct Ombre
 {
-    int angle;
+    float angle;
     int intensite;
     int intensiteBasique;
+    float taille;
 };
 
 class LumiereOmbrage : public Lumiere
@@ -76,72 +79,28 @@ class LumiereOmbrage : public Lumiere
     }
     void detruire()
     {
-        /*if(nombreOmbre>0)
-            delete[] m_ombre;*/
         m_ombre.clear();
     }
-    void AjouterOmbre(int intensite, int angle)
+    void AjouterOmbre(int intensite, float angle, float hauteur_lumiere)
     {
-       /* Ombre *ombreTemp;
-        if(nombreOmbre>0)
-        {
-            ombreTemp=new Ombre[nombreOmbre];
-            for(int i=0;i<nombreOmbre;i++)
-                ombreTemp[i]=m_ombre[i];
-            delete[] m_ombre;
-        }
-        m_ombre= new Ombre[nombreOmbre+1];
-        if(nombreOmbre>0)
-        {
-            for(int i=0;i<nombreOmbre;i++)
-                m_ombre[i]=ombreTemp[i];
-            delete[] ombreTemp;
-        }*/
-
-       /*if(nombreOmbre<5)
-        {
-        m_ombre[nombreOmbre].intensite=intensite;
-        m_ombre[nombreOmbre].intensiteBasique=intensite;
-        m_ombre[nombreOmbre].angle=angle;
-
-
-        for(int i=0;i<nombreOmbre;i++)
-        {
-            int angle;
-            angle=valeurAbsolue(m_ombre[nombreOmbre].angle-m_ombre[i].angle);
-            if(angle>180)
-                angle=360-angle;
-
-            m_ombre[nombreOmbre].intensite-=m_ombre[i].intensiteBasique*angle/180;
-            m_ombre[i].intensite-=m_ombre[nombreOmbre].intensiteBasique*angle/180;
-
-            if(m_ombre[nombreOmbre].intensite<0)
-                m_ombre[nombreOmbre].intensite=0;
-            if(m_ombre[i].intensite<0)
-                m_ombre[i].intensite=0;
-        }
-
-         nombreOmbre++;
-        }*/
-
-
         Ombre ombreTemp;
         m_ombre.push_back(ombreTemp);
 
         m_ombre[m_ombre.size()-1].intensite=intensite;
         m_ombre[m_ombre.size()-1].intensiteBasique=intensite;
         m_ombre[m_ombre.size()-1].angle=angle;
+        m_ombre[m_ombre.size()-1].taille=(100-(float)hauteur_lumiere)/50;
 
 
         for(int i=0;i<m_ombre.size()-1;i++)
         {
-            int angle;
+            float angle;
             angle=valeurAbsolue(m_ombre[m_ombre.size()-1].angle-m_ombre[i].angle);
             if(angle>180)
                 angle=360-angle;
 
-            m_ombre[m_ombre.size()-1].intensite-=m_ombre[i].intensiteBasique*angle/180;
-            m_ombre[i].intensite-=m_ombre[m_ombre.size()-1].intensiteBasique*angle/180;
+            m_ombre[m_ombre.size()-1].intensite-=(int)((float)m_ombre[i].intensiteBasique*angle/180);
+            m_ombre[i].intensite-=(int)((float)m_ombre[m_ombre.size()-1].intensiteBasique*angle/180);
 
             if(m_ombre[m_ombre.size()-1].intensite<0)
                 m_ombre[m_ombre.size()-1].intensite=0;
@@ -156,6 +115,7 @@ class LumiereOmbrage : public Lumiere
         rouge = lumiere.rouge;
         vert = lumiere.vert;
         bleu = lumiere.bleu;
+        hauteur = lumiere.hauteur;
 
         return *this;
     }
@@ -166,6 +126,7 @@ class LumiereOmbrage : public Lumiere
         rouge = lumiere.rouge;
         vert = lumiere.vert;
         bleu = lumiere.bleu;
+        hauteur = lumiere.hauteur;
 
         Ombre temp;
         m_ombre.resize(lumiere.m_ombre.size(),temp);

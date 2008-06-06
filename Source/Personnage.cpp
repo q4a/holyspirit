@@ -178,12 +178,16 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View camera,coordonnee pos
         {
             Sprite.SetColor(sf::Color(0,0,0,lumiere->m_ombre[o].intensite));
 
-            Sprite.SetLeft(((m_positionPixel.x-m_positionPixel.y)*64/sqrt(64*64+32*32)+dimensionsMap.y*64)-64+(64-Sprite.GetWidth()/2)+64-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2);
-            Sprite.SetTop(((m_positionPixel.x+m_positionPixel.y)*64/sqrt(64*64+32*32))/2+(64-Sprite.GetHeight()*1));
+             Sprite.SetScale(1, lumiere->m_ombre[o].taille);
 
-            Sprite.SetScale(1, 1);
-            Sprite.SetRotationCenter(128/2,128*1-32);
+            Sprite.SetRotationCenter(128/2,(128)*lumiere->m_ombre[o].taille-32);
             Sprite.SetRotation(lumiere->m_ombre[o].angle);
+
+
+
+            Sprite.SetLeft(((m_positionPixel.x-m_positionPixel.y)*64/sqrt(64*64+32*32)+dimensionsMap.y*64)-64+(64-Sprite.GetWidth()/2)+64-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2);
+            Sprite.SetTop(((m_positionPixel.x+m_positionPixel.y)*64/sqrt(64*64+32*32))/2+(64-Sprite.GetHeight()));
+
             ecran->Draw(Sprite);
             Sprite.SetScale(1, 1);
             Sprite.SetRotation(0);

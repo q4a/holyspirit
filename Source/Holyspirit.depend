@@ -13,7 +13,7 @@
 
 1211992895 s.h"
 
-1212326513 d:\backup disque e\c++\le chemin de la dam'nation advance\source\constantes.h
+1212606947 d:\backup disque e\c++\le chemin de la dam'nation advance\source\constantes.h
 	<cmath>
 	<utility>
 	<iostream>
@@ -29,7 +29,7 @@
 1210592600 d:\backup disque e\c++\le chemin de la dam'nation advance\source\evenement.h
 	"constantes.h"
 
-1212254969 source:d:\backup disque e\c++\le chemin de la dam'nation advance\source\hero.cpp
+1212509846 source:d:\backup disque e\c++\le chemin de la dam'nation advance\source\hero.cpp
 	"Hero.h"
 	"Globale.h"
 	<iostream>
@@ -68,7 +68,7 @@
 	<SFML/Graphics.hpp>
 	"constantes.h"
 
-1212429802 source:d:\backup disque e\c++\le chemin de la dam'nation advance\source\map.cpp
+1212606931 source:d:\backup disque e\c++\le chemin de la dam'nation advance\source\map.cpp
 	"Map.h"
 	<iostream>
 	<fstream>
@@ -77,7 +77,7 @@
 	<SFML/Audio.hpp>
 	"Globale.h"
 
-1212326454 d:\backup disque e\c++\le chemin de la dam'nation advance\source\map.h
+1212515978 d:\backup disque e\c++\le chemin de la dam'nation advance\source\map.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -97,7 +97,7 @@
 	"tile.h"
 	"Hero.h"
 
-1202298302 d:\backup disque e\c++\le chemin de la dam'nation advance\source\tile.h
+1212503597 d:\backup disque e\c++\le chemin de la dam'nation advance\source\tile.h
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
@@ -120,7 +120,7 @@
 	"Constantes.h"
 	"Globale.h"
 
-1212429517 source:d:\backup disque e\c++\le chemin de la dam'nation advance\source\personnage.cpp
+1212513404 source:d:\backup disque e\c++\le chemin de la dam'nation advance\source\personnage.cpp
 	"Personnage.h"
 	"Globale.h"
 	<iostream>
@@ -145,7 +145,7 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1212329641 source:d:\backup disque e\c++\le chemin de la dam'nation advance\source\tileset.cpp
+1212504296 source:d:\backup disque e\c++\le chemin de la dam'nation advance\source\tileset.cpp
 	"Tileset.h"
 	"Globale.h"
 	<iostream>
@@ -158,7 +158,7 @@
 	"case.h"
 	<iostream>
 
-1212247089 source:d:\backup disque e\c++\le chemin de la dam'nation advance\source\eventmanager.cpp
+1212605989 source:d:\backup disque e\c++\le chemin de la dam'nation advance\source\eventmanager.cpp
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<math.h>
@@ -178,7 +178,7 @@
 	<SFML/Graphics.hpp>
 	"constantes.h"
 
-1212077196 source:d:\backup disque e\c++\le chemin de la dam'nation advance\source\jeu.cpp
+1212515322 source:d:\backup disque e\c++\le chemin de la dam'nation advance\source\jeu.cpp
 	"jeu.h"
 	"Globale.h"
 
@@ -195,7 +195,7 @@
 	"liste_case.h"
 	<iostream>
 
-1212329641 source:d:\backup disque e\c++\le chemin de la dam'nation advance\source\main.cpp
+1212509846 source:d:\backup disque e\c++\le chemin de la dam'nation advance\source\main.cpp
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<iostream>
@@ -229,15 +229,17 @@
 	"constantes.h"
 	"Globale.h"
 
-1212166419 d:\backup disque e\c++\le chemin de la dam'nation advance\source\console.h
+1212503375 d:\backup disque e\c++\le chemin de la dam'nation advance\source\console.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
 1212077962 o.hpp>
 
-1212166471 source:d:\backup disque e\c++\le chemin de la dam'nation advance\source\console.cpp
+1212512810 source:d:\backup disque e\c++\le chemin de la dam'nation advance\source\console.cpp
 	"console.h"
+	"constantes.h"
+	"Globale.h"
 
 1212073336 d:\backup disque e\c++\le chemin de la dam'nation advance\source\globale.h
 

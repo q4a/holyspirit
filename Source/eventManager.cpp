@@ -82,6 +82,33 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
 
     }
 
+    if(m_EventTableau[Key::Up])
+    {
+        console.defiler(0);
+        m_EventTableau[Key::Up]=false;
+    }
+    if(m_EventTableau[Key::Down])
+    {
+         console.defiler(1);
+         m_EventTableau[Key::Down]=false;
+    }
+
+    if(m_EventTableau[Key::Space])
+    {
+        configuration.minute+=5;
+        m_EventTableau[Key::Space]=false;
+    }
+
+    if(m_EventTableau[Key::Tab])
+    {
+        if(configuration.console)
+            configuration.console=false;
+        else
+            configuration.console=true;
+        m_EventTableau[Key::Tab]=false;
+    }
+
+
     // Je règle mon niveau de zoom en fonction de la résolution
 	if(camera->Zoom<0.75+((float)configuration.Resolution.x/800-1)/2)
 		camera->Zoom=0.75+((float)configuration.Resolution.x/800-1)/2;

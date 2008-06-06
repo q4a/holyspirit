@@ -30,6 +30,7 @@ Hero::Hero()
 	lumiere.rouge=236;
 	lumiere.vert=136;
 	lumiere.bleu=36;
+	lumiere.hauteur=20;
 
 	m_modelePersonnage.setPorteeLumineuse(lumiere);
 }

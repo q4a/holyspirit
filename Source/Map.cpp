@@ -17,7 +17,7 @@ Map::Map()
 {
     lumiereMask.LoadFromFile("Data/Menus/lumiereMask.png");
     EffectBlur.LoadFromFile("Data/Effets/blur.sfx");
-    carreBrun.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(128, 64, 0)),carreBleu.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(32, 0, 128)),carreRouge.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(128, 0, 0));
+    carreBrun.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(128, 64, 0)),carreBleu.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(32, 0, 128)),carreRouge.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(128, 0, 0)),carreVert.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(0, 128, 0));
 }
 
 Map::~Map()
@@ -35,10 +35,10 @@ bool Map::Charger(int numeroMap)
 	console.Ajouter("",0);
 	console.Ajouter("Chargement de la map : "+chemin,0);
 
-	m_lumiere.intensite=0;
-	m_lumiere.rouge=0;
-	m_lumiere.vert=0;
-	m_lumiere.bleu=0;
+	m_lumiere[0].intensite=0;
+	m_lumiere[0].rouge=0;
+	m_lumiere[0].vert=0;
+	m_lumiere[0].bleu=0;
 
 	ifstream fichier;
     fichier.open(chemin.c_str(), ios::in);
@@ -73,18 +73,34 @@ bool Map::Charger(int numeroMap)
                 m_musique.SetVolume(0);
     		}
     	}while(caractere!='$');
+        int heureEnCours=0;
     	do
     	{
+
     	    //Chargement de la lumière ambiante
     		fichier.get(caractere);
     		if(caractere=='*')
     		{
-    			fichier>>m_lumiere.rouge;
-    			fichier>>m_lumiere.vert;
-    			fichier>>m_lumiere.bleu;
-    			fichier>>m_lumiere.intensite;
+    			fichier>>m_lumiere[heureEnCours].rouge;
+    			fichier>>m_lumiere[heureEnCours].vert;
+    			fichier>>m_lumiere[heureEnCours].bleu;
+    			fichier>>m_lumiere[heureEnCours].intensite;
+    			fichier>>m_lumiere[heureEnCours].hauteur;
+    			heureEnCours++;
     		}
     	}while(caractere!='$');
+
+    	while(heureEnCours<24)
+    	{
+    	    m_lumiere[heureEnCours].rouge=m_lumiere[0].rouge;
+            m_lumiere[heureEnCours].vert=m_lumiere[0].vert;
+            m_lumiere[heureEnCours].bleu=m_lumiere[0].bleu;
+            m_lumiere[heureEnCours].intensite=m_lumiere[0].intensite;
+            m_lumiere[heureEnCours].hauteur=m_lumiere[0].hauteur;
+            heureEnCours++;
+    	}
+
+
     	Tileset tilesetTemp;
     	do
     	{
@@ -212,11 +228,17 @@ bool Map::Charger(int numeroMap)
                         if(monstre>=0&&monstre<m_monstre.size())
                         m_monstre[monstre].setCoordonnee(position);
 
-                        tileFinal = (rand() % (tile.size() -1 - 0 + 1)) + 0;
+                        if(tile.size()>0)
+                        {
+                            int random = (rand() % (tile.size() -1 - 0 + 1)) + 0;
+                            if(random>=0&&random<tile.size())
+                                tileFinal = tile[random];
+                        }
+
 
                         m_decor[couche][position.y].push_back(decorTemp);
                         m_decor[couche][position.y][position.x].setDecor(tileset,tileFinal,evenement,monstre,herbe);
-                        tileset=-1,tile.clear(),evenement=-1,monstre=-1,herbe=-1;
+                        tileset=-1,tile.clear(),tileFinal=-1,evenement=-1,monstre=-1,herbe=-1;
                         position.x++;
                         fichier.get(caractere);
                     }while(caractere!='\n');
@@ -287,8 +309,9 @@ bool Map::Charger(int numeroMap)
     }
     fichier.close();
 
-    if(m_lumiere.intensite<0)
-        m_lumiere.intensite=0;
+    for(int i=0;i<24;i++)
+    if(m_lumiere[i].intensite<0)
+        m_lumiere[i].intensite=0;
     for(int couche=0;couche<2;couche++)
         for(int i=0;i<m_decor[0].size();i++)
             for(int j=0;j<m_decor[0][0].size();j++)
@@ -333,7 +356,8 @@ void Map::detruireOmbresEtLumieres(Hero *hero)
 void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero)
 {
     //La, ça se complique, je vais essayer d'être clair, mais il ne faut pas hésiter à me redemander des explications ^^
-    Lumiere lumiere,lumiereTile;
+    Lumiere lumiere,lumiereTile,lumiereMap;
+    float angleOmbreMap;
 
     coordonnee vueMin,vueMax,lampesMin,lampesMax,distanceActuelle,position;
 
@@ -363,19 +387,40 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero)
     if(vueMin.y<0) { vueMin.y=0; }
     if(vueMax.x>m_decor[0][0].size()) { vueMax.x=m_decor[0][0].size(); }
     if(vueMax.y>m_decor[0].size()) { vueMax.y=m_decor[0].size(); }
+    if(configuration.heure+1<24)
+    {
+        lumiereMap.intensite=(int)((float)m_lumiere[configuration.heure].intensite*(60-configuration.minute)+((float)m_lumiere[configuration.heure+1].intensite*configuration.minute))/60;
+        lumiereMap.rouge=(int)((float)m_lumiere[configuration.heure].rouge*(60-configuration.minute)+((float)m_lumiere[configuration.heure+1].rouge*configuration.minute))/60;
+        lumiereMap.vert=(int)((float)m_lumiere[configuration.heure].vert*(60-configuration.minute)+((float)m_lumiere[configuration.heure+1].vert*configuration.minute))/60;
+        lumiereMap.bleu=(int)((float)m_lumiere[configuration.heure].bleu*(60-configuration.minute)+((float)m_lumiere[configuration.heure+1].bleu*configuration.minute))/60;
+        lumiereMap.hauteur=((float)m_lumiere[configuration.heure].hauteur*(60-configuration.minute)+((float)m_lumiere[configuration.heure+1].hauteur*configuration.minute))/60;
+    }
+    else
+    {
+        lumiereMap.intensite=(int)((float)m_lumiere[configuration.heure].intensite*(60-configuration.minute)+((float)m_lumiere[0].intensite*configuration.minute))/60;
+        lumiereMap.rouge=(int)((float)m_lumiere[configuration.heure].rouge*(60-configuration.minute)+((float)m_lumiere[0].rouge*configuration.minute))/60;
+        lumiereMap.vert=(int)((float)m_lumiere[configuration.heure].vert*(60-configuration.minute)+((float)m_lumiere[0].vert*configuration.minute))/60;
+        lumiereMap.bleu=(int)((float)m_lumiere[configuration.heure].bleu*(60-configuration.minute)+((float)m_lumiere[0].bleu*configuration.minute))/60;
+        lumiereMap.hauteur=((float)m_lumiere[configuration.heure].hauteur*(60-configuration.minute)+((float)m_lumiere[0].hauteur*configuration.minute))/60;
+    }
 
-    m_lumiereHero=m_lumiere;
+  //  if((configuration.heure*60+configuration.minute-360)<=720)
+        angleOmbreMap=((float)configuration.heure*60+configuration.minute)*180/720;
+    //else
+      //_   angleOmbreMap=(configuration.heure*60+configuration.minute-720)*180/720;
+
+    m_lumiereHero=lumiereMap;
     if(configuration.Ombre)
-        m_lumiereHero.AjouterOmbre(m_lumiere.intensite/4,45);
+        m_lumiereHero.AjouterOmbre(lumiereMap.intensite/4,angleOmbreMap,lumiereMap.hauteur);
 
 
         // Je fonctionne comme pour en haut, juste que je prend le héro comme source de lumière, pour la portée lumineuse
     for(int i=0;i<vueMax.y-vueMin.y;i++)
         for(int j=0;j<vueMax.x-vueMin.x;j++)
         {
-             m_tableauDesLampes[i][j]=m_lumiere;
+             m_tableauDesLampes[i][j]=lumiereMap;
             if(configuration.Ombre)
-                m_tableauDesLampes[i][j].AjouterOmbre(m_lumiere.intensite/4,45);
+                m_tableauDesLampes[i][j].AjouterOmbre(lumiereMap.intensite/4,angleOmbreMap,lumiereMap.hauteur);
 
             lumiereTemp=0;
             lumiereTemp=(float)hero->m_modelePersonnage.getPorteeLumineuse().intensite-((((float)sqrt((hero->m_personnage.getCoordonneePixel().x-(j+vueMin.x)*COTE_TILE)*(hero->m_personnage.getCoordonneePixel().x-(j+vueMin.x)*COTE_TILE)+(hero->m_personnage.getCoordonneePixel().y-(i+vueMin.y)*COTE_TILE)*(hero->m_personnage.getCoordonneePixel().y-(i+vueMin.y)*COTE_TILE))))/COTE_TILE)*30;
@@ -533,7 +578,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero)
                 else if(coord2.y<coord1.y&&coord2.x<coord1.x)
                     angle=-angle;
 
-                m_tableauDesLampes[i][j].AjouterOmbre(lumiere.intensite/2,(int)angle);
+                m_tableauDesLampes[i][j].AjouterOmbre(lumiere.intensite/2,(int)angle,lumiere.hauteur);
             }
         }
 
@@ -619,6 +664,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero)
                         lumiereTile.rouge=0;
                         lumiereTile.vert=0;
                         lumiereTile.bleu=0;
+                        lumiereTile.hauteur=50;
 
                         if(m_decor[couche][j][k].getTileset()>=0&&m_decor[couche][j][k].getTileset()<m_tileset.size())
                             if(m_tileset[m_decor[couche][j][k].getTileset()].getLumiereDuTile(m_decor[couche][j][k].getTile()).intensite>0)
@@ -629,6 +675,8 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero)
                             lumiereTile.rouge=(lumiereTile.rouge*lumiereTile.intensite+m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().rouge*m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+lumiereTile.intensite);
                             lumiereTile.vert=(lumiereTile.vert*lumiereTile.intensite+m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().vert*m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+lumiereTile.intensite);
                             lumiereTile.bleu=(lumiereTile.bleu*lumiereTile.intensite+m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().bleu*m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+lumiereTile.intensite);
+
+                            lumiereTile.hauteur=(lumiereTile.hauteur*lumiereTile.intensite+m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().hauteur*m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().hauteur+lumiereTile.hauteur);
 
                             lumiereTile.intensite+=m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite;
                             if(lumiereTile.intensite>255)
@@ -652,6 +700,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero)
                                     lumiereTemp=0;
                                     // Je réduit la quantité de lumière reçue, en fonction de la distance, qui est calculée avec un simple pythagore ^^
                                     lumiereTemp=(float)lumiereTile.intensite-(float)(sqrt((k*COTE_TILE-m*COTE_TILE)*(k*COTE_TILE-m*COTE_TILE)+(j*COTE_TILE-l*COTE_TILE)*(j*COTE_TILE-l*COTE_TILE)))/5;
+                                    lumiere.hauteur=lumiereTile.hauteur;
 
                                     if(lumiereTemp>0)
                                     lumiere.intensite=(int)lumiereTemp;
@@ -767,7 +816,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero)
                                                 angle=-angle;
 
                                             // Et j'ajoute cette ombre
-                                            m_tableauDesLampes[l-vueMin.y][m-vueMin.x].AjouterOmbre(lumiere.intensite,(int)angle);
+                                            m_tableauDesLampes[l-vueMin.y][m-vueMin.x].AjouterOmbre(lumiere.intensite,(int)angle,lumiere.hauteur);
                                         }
 
                                         // J'applique la même chose au héro
@@ -806,7 +855,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero)
                                                 lumiereTemp=lumiere.intensite/2;
                                                 if(lumiereTemp<0)
                                                     lumiereTemp=0;
-                                               m_lumiereHero.AjouterOmbre((int)lumiereTemp,(int)angle);
+                                               m_lumiereHero.AjouterOmbre((int)lumiereTemp,(int)angle,lumiere.hauteur);
                                             }
 
                                             if(lumiere.intensite>0)
@@ -899,8 +948,6 @@ void Map::Afficher(RenderWindow* ecran,View camera,int type,Hero *hero)
                             if(configuration.Herbes)
                                 if(m_decor[0][j][k].getHerbe()>=0&&m_decor[0][j][k].getHerbe()<m_herbe.size())
                                 {
-                                    position.x=(k-j-1+m_decor[0].size())*64;
-                                    position.y=(k+j)*32;
                                     positionPartieDecor=m_herbe[m_decor[0][j][k].getHerbe()].getPositionDuTile(m_decor[0][j][k].getNumeroHerbe());
 
                                     position.y-=32;
@@ -954,10 +1001,19 @@ void Map::Afficher(RenderWindow* ecran,View camera,int type,Hero *hero)
                                         for(int o=0;o<m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre.size();o++)
                                         {
                                             Sprite.SetColor(sf::Color(0,0,0,m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].intensite));
+                                           /* if(m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle<90&&m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle)
+                                                Sprite.SetLeft(position.x+64-positionPartieDecor.w/2-(Sprite.GetWidth()*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle/2/90)*1.5*(m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].taille/2));
+                                            if(m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle>=90)
+                                                Sprite.SetLeft(position.x+64-positionPartieDecor.w/2-(Sprite.GetWidth()*(180-m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle)/2/90)*1.5*(m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].taille/2));
+                                            if(m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle<180&&m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle>=0)
+                                                Sprite.SetTop(position.y-positionPartieDecor.h*1.5+64+(Sprite.GetHeight()*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle/2/90)*(m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].taille/2));
+                                            if(m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle<0)
+                                                Sprite.SetTop(position.y-positionPartieDecor.h*1.5+64+(Sprite.GetHeight()*(-m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle)/2/90)*(m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].taille/2));*/
+
                                             Sprite.SetLeft(position.x+64-positionPartieDecor.w/2);
-                                            Sprite.SetTop(position.y-positionPartieDecor.h*1.5+64);
-                                            Sprite.SetScale(1, 1.5f);
-                                            Sprite.SetRotationCenter(positionPartieDecor.w/2,positionPartieDecor.h*1.5-32);
+                                            Sprite.SetTop(position.y-positionPartieDecor.h*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].taille+64);
+                                            Sprite.SetScale(1, m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].taille);
+                                            Sprite.SetRotationCenter(positionPartieDecor.w/2,positionPartieDecor.h*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].taille-32);
                                             Sprite.SetRotation(m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle);
                                             ecran->Draw(Sprite);
                                             Sprite.SetScale(1, 1);
@@ -1187,6 +1243,20 @@ void Map::Afficher(RenderWindow* ecran,View camera,int type,Hero *hero)
                         }
                     }
 
+                    if(getTypeCase(k,j)==3)
+                    {
+
+                        if(position.x+465*configuration.Resolution.x/800>600*configuration.Resolution.x/800&&position.x+465*configuration.Resolution.x/800<800*configuration.Resolution.x/800&&position.y-140*configuration.Resolution.y/600>0&&position.y-140*configuration.Resolution.y/600<195*configuration.Resolution.y/600)
+                        {
+                            Sprite.SetImage(carreVert);
+                            Sprite.SetRotationCenter(4*configuration.Resolution.x/800,4*configuration.Resolution.y/600);
+                            Sprite.SetRotation(45);
+                            Sprite.SetLeft(position.x+465*configuration.Resolution.x/800);
+                            Sprite.SetTop(position.y-140*configuration.Resolution.y/600);
+                            ecran->Draw(Sprite);
+                        }
+                    }
+
                     if(hero->m_personnage.getCoordonnee().x==k&&hero->m_personnage.getCoordonnee().y==j)
                     {
                             Sprite.SetImage(carreBleu);
@@ -1251,6 +1321,10 @@ int Map::getTypeCase(int positionX,int positionY)
 
             if(m_decor[i][positionY][positionX].getMonstre()>-1)
                 return 2;
+
+            if(m_decor[i][positionY][positionX].getEvenement()>=0&&m_decor[i][positionY][positionX].getEvenement()<m_evenement.size())
+                if(m_evenement[m_decor[i][positionY][positionX].getEvenement()].getType()==CHANGEMENT_DE_MAP)
+                    return 3;
 	    }
 	    else
 	    return 1;

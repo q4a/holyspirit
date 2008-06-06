@@ -14,6 +14,9 @@ bool Jeu(RenderWindow *ecran)
 	View miniMap(FloatRect(0, 0, configuration.Resolution.x, configuration.Resolution.y), 0.125);
 	float tempsActuel=0,tempsPrecedent=0,tempsDepuisDerniereAnimation=0,tempsEcoule=0,tempsEcouleDepuisDernierDeplacement=0,tempsEcouleDepuisDernierAffichage=0,tempsEcouleDepuisFPS=0,tempsEffetMort=0;
 
+	configuration.heure=(rand() % (24));
+	configuration.minute=0;
+
 	sf::Listener::SetGlobalVolume((float)configuration.volume);
 
 	sf::String FPS;
@@ -27,6 +30,14 @@ bool Jeu(RenderWindow *ecran)
     sprintf(chaine,"v %s",configuration.version.c_str());
     Version.SetText(chaine);
     Version.SetTop(20);
+
+    sf::String Temps;
+    Temps.SetText("Temps : ");
+    Temps.SetSize(16.f);
+
+    sprintf(chaine,"Temps : %ld h %ld ",configuration.heure,(int)configuration.minute);
+    Temps.SetText(chaine);
+    Temps.SetTop(40);
 
     Menu menu; // Chargement des menus
     EventManager eventManager;
@@ -83,6 +94,11 @@ bool Jeu(RenderWindow *ecran)
 		    tempsEcouleDepuisDernierDeplacement+=tempsEcoule;
 		    tempsDepuisDerniereAnimation+=tempsEcoule;
 		    tempsEcouleDepuisDernierAffichage+=tempsEcoule;
+		    configuration.minute+=tempsEcoule;
+		    if(configuration.minute>=60)
+		    configuration.minute=0,configuration.heure++;
+		    if(configuration.heure>23)
+            configuration.heure=0;
 		    if(augmenter)
 		    tempsEffetMort+=tempsEcoule*10;
 		    else
@@ -192,6 +208,7 @@ bool Jeu(RenderWindow *ecran)
                 {
                     ecran->Draw(FPS); // On affiche le texte des FPS
                     ecran->Draw(Version);
+                    ecran->Draw(Temps);
 
                     console.Afficher(ecran);
                 }
@@ -209,6 +226,9 @@ bool Jeu(RenderWindow *ecran)
                     sprintf(chaine,"%ld FPS",(int)( 1.f / ecran->GetFrameTime()));
                     FPS.SetText(chaine);
                     tempsEcouleDepuisFPS=0;
+
+                    sprintf(chaine,"Temps : %ld h %ld ",configuration.heure,(int)configuration.minute);
+                    Temps.SetText(chaine);
                 }
 
 	}

@@ -1,16 +1,19 @@
 #include "console.h"
+#include "constantes.h"
+#include "Globale.h"
+
 
 void Console::Afficher(sf::RenderWindow* ecran)
 {
-    int min=m_textes.size()-27;
+    int min=m_textes.size()-27+m_defilement;
     if(min<0)
     min=0;
-    for(int i=min;i<m_textes.size();i++)
+    for(int i=min;i<m_textes.size()+m_defilement;i++)
     {
         sf::String texte;
         texte.SetText(m_textes[i].c_str());
         texte.SetSize(12.f);
-        texte.SetTop((i-m_textes.size()+27)*15+40);
+        texte.SetTop((i-m_textes.size()+27-m_defilement)*15+60);
 
         if(m_erreur[i])
             texte.SetColor(sf::Color(255,0,0,255));
@@ -33,4 +36,25 @@ void Console::AjouterNombre(int nombre,bool erreur)
     m_erreur.push_back(erreur);
 }
 
+int Console::getTaille()
+{
+    return m_textes.size();
+}
+
+
+void Console::defiler(bool direction)
+{
+    if(direction==0)
+    {
+        m_defilement--;
+        if(m_defilement<-m_textes.size())
+            m_defilement=-m_textes.size()+1;
+    }
+    if(direction==1)
+    {
+        m_defilement++;
+        if(m_defilement>0)
+            m_defilement=0;
+    }
+}
 

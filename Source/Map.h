@@ -36,7 +36,7 @@ class Map
 	coordonnee getDimensions();
 
 	private:
-	Lumiere m_lumiere;
+	Lumiere m_lumiere[24];
 	std::vector <Tileset> m_tileset;
 	std::vector <Tileset> m_herbe;
 	std::vector < std::vector< std::vector < Decor > > > m_decor/*(2,std::vector< std::vector< Decor > >(0,std::vector < Decor > (0,-1,-1,-1,-1)))*/;
@@ -51,7 +51,7 @@ class Map
 	std::vector <Modele_Monstre> m_ModeleMonstre;
 	std::vector <Monstre> m_monstre;
 
-	sf::Image carreBrun,carreBleu,carreRouge;
+	sf::Image carreBrun,carreBleu,carreRouge,carreVert;
 
 	LumiereOmbrage m_tableauDesLampes[30][30],m_lumiereHero; // Tableau de lumière et ombres, 30X30 car c'est le nbr max de tiles affichables à l'écran
 };

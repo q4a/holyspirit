@@ -118,6 +118,8 @@ bool Tileset::Charger(std::string chemin)
                                     fichier>>lumiere.bleu;
                                 if(caractere=='i')
                                     fichier>>lumiere.intensite;
+                                if(caractere=='h')
+                                    fichier>>lumiere.hauteur;
     					break;
     					case 'r': fichier>>orientation; break;
     				}
@@ -195,6 +197,7 @@ Lumiere Tileset::getLumiereDuTile(int tile)
     temp.rouge=0;
     temp.vert=0;
     temp.bleu=0;
+    temp.hauteur=0;
 
     return temp;
 }
