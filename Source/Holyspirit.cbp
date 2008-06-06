@@ -29,7 +29,9 @@
 		<Unit filename="Globale.h" />
 		<Unit filename="Hero.cpp" />
 		<Unit filename="Hero.h" />
-		<Unit filename="Map.cpp" />
+		<Unit filename="Map.cpp">
+			<Option weight="100" />
+		</Unit>
 		<Unit filename="Map.h" />
 		<Unit filename="Monstre.cpp">
 			<Option weight="0" />

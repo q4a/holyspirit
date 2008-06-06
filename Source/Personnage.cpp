@@ -166,7 +166,7 @@ bool Modele_Personnage::Charger(string chemin)
     return 1;
 }
 
-void Personnage::Afficher(sf::RenderWindow* ecran,sf::View camera,coordonnee position,coordonnee dimensionsMap,LumiereOmbrage *lumiere,Modele_Personnage *modele)
+void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap,LumiereOmbrage *lumiere,Modele_Personnage *modele)
 {
 	Sprite Sprite;
 	Sprite.SetImage(modele->m_image[modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()]);
@@ -200,10 +200,10 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View camera,coordonnee pos
 	if(configuration.Lumiere)
         Sprite.SetColor(sf::Color((lumiere->intensite*lumiere->rouge)/255,(lumiere->intensite*lumiere->vert)/255,(lumiere->intensite*lumiere->bleu)/255, 255));
 
-	if(position.x-camera.Rect.Left+Sprite.GetWidth()>0-32*camera.Zoom*10)
-	if(position.x-camera.Rect.Left<800+32*camera.Zoom*10)
-	if(position.y-camera.Rect.Top+Sprite.GetHeight()>0-32*camera.Zoom*10)
-	if(position.y-camera.Rect.Top<500+32*camera.Zoom*10)
+	if(position.x-camera->Rect.Left+Sprite.GetWidth()>0-32*camera->Zoom*10)
+	if(position.x-camera->Rect.Left<800+32*camera->Zoom*10)
+	if(position.y-camera->Rect.Top+Sprite.GetHeight()>0-32*camera->Zoom*10)
+	if(position.y-camera->Rect.Top<500+32*camera->Zoom*10)
 	ecran->Draw(Sprite);
 }
 

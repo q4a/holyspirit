@@ -353,7 +353,7 @@ void Map::detruireOmbresEtLumieres(Hero *hero)
     m_lumiereHero.detruire();
 }
 
-void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero)
+void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *camera)
 {
     //La, ça se complique, je vais essayer d'être clair, mais il ne faut pas hésiter à me redemander des explications ^^
     Lumiere lumiere,lumiereTile,lumiereMap;
@@ -364,10 +364,10 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero)
      double lumiereTemp,Xtemp,Ytemp,angle=0;
 
      //Calcul des sources de lumière qui peuvent se trouver les plus loin du perso, tout en influant sur des tiles dans le champs de vision
-    lampesMin.x=hero->m_personnage.getCoordonnee().x-15;
-    lampesMin.y=hero->m_personnage.getCoordonnee().y-15;
-    lampesMax.x=hero->m_personnage.getCoordonnee().x+15;
-    lampesMax.y=hero->m_personnage.getCoordonnee().y+15;
+    lampesMin.x=(int)((float)hero->m_personnage.getCoordonnee().x-20);
+    lampesMin.y=(int)((float)hero->m_personnage.getCoordonnee().y-20);
+    lampesMax.x=(int)((float)hero->m_personnage.getCoordonnee().x+20);
+    lampesMax.y=(int)((float)hero->m_personnage.getCoordonnee().y+20);
 
     //Vérification que ces tiles soit bien dans la map
     if(lampesMin.x<0) { lampesMin.x=0; }
@@ -404,17 +404,14 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero)
         lumiereMap.hauteur=((float)m_lumiere[configuration.heure].hauteur*(60-configuration.minute)+((float)m_lumiere[0].hauteur*configuration.minute))/60;
     }
 
-  //  if((configuration.heure*60+configuration.minute-360)<=720)
-        angleOmbreMap=((float)configuration.heure*60+configuration.minute)*180/720;
-    //else
-      //_   angleOmbreMap=(configuration.heure*60+configuration.minute-720)*180/720;
+    angleOmbreMap=((float)configuration.heure*60+configuration.minute)*180/720;
 
     m_lumiereHero=lumiereMap;
     if(configuration.Ombre)
         m_lumiereHero.AjouterOmbre(lumiereMap.intensite/4,angleOmbreMap,lumiereMap.hauteur);
 
 
-        // Je fonctionne comme pour en haut, juste que je prend le héro comme source de lumière, pour la portée lumineuse
+        // Je fonctionne comme pour en bas, juste que je prend le héro comme source de lumière, pour la portée lumineuse
     for(int i=0;i<vueMax.y-vueMin.y;i++)
         for(int j=0;j<vueMax.x-vueMin.x;j++)
         {
@@ -423,7 +420,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero)
                 m_tableauDesLampes[i][j].AjouterOmbre(lumiereMap.intensite/4,angleOmbreMap,lumiereMap.hauteur);
 
             lumiereTemp=0;
-            lumiereTemp=(float)hero->m_modelePersonnage.getPorteeLumineuse().intensite-((((float)sqrt((hero->m_personnage.getCoordonneePixel().x-(j+vueMin.x)*COTE_TILE)*(hero->m_personnage.getCoordonneePixel().x-(j+vueMin.x)*COTE_TILE)+(hero->m_personnage.getCoordonneePixel().y-(i+vueMin.y)*COTE_TILE)*(hero->m_personnage.getCoordonneePixel().y-(i+vueMin.y)*COTE_TILE))))/COTE_TILE)*30;
+            lumiereTemp=(float)hero->m_modelePersonnage.getPorteeLumineuse().intensite-((((float)gpl::sqrt((hero->m_personnage.getCoordonneePixel().x-(j+vueMin.x)*COTE_TILE)*(hero->m_personnage.getCoordonneePixel().x-(j+vueMin.x)*COTE_TILE)+(hero->m_personnage.getCoordonneePixel().y-(i+vueMin.y)*COTE_TILE)*(hero->m_personnage.getCoordonneePixel().y-(i+vueMin.y)*COTE_TILE))))/COTE_TILE)*30;
 
             lumiere=hero->m_modelePersonnage.getPorteeLumineuse();
 
@@ -585,66 +582,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero)
 
 
 
-         if(configuration.amelioration_lampes)
-        for(int z=0;z<2;z++)
-            for(int i=0;i<vueMax.y-vueMin.y;i++)
-            for(int j=0;j<vueMax.x-vueMin.x;j++)
-            {
-                /*int nombrePourtour=0;
-                Lumiere pourtour;
-                pourtour.intensite=0;
-                pourtour.rouge=0;
-                pourtour.vert=0;
-                pourtour.bleu=0;*/
-                for(int y=-1;y<=1;y++)
-                    for(int w=-1;w<=1;w++)
-                        if(!((y==0&&w==0)))
-                        {
-                            if(i+y>0&&i+y+vueMin.y<m_decor[0].size()&&j+w>0&&j+w+vueMin.x<m_decor[0][0].size())
-                            if(i+y>0&&i+y<30&&j+w>0&&j+w<30)
-                            {
-                                if((double)m_tableauDesLampes[i+y][j+w].intensite<(double)m_tableauDesLampes[i][j].intensite/1.5)
-                                {
-                                    if(m_decor[1][i+vueMin.y][j+vueMin.x].getTileset()!= -1)
-                                    {
-                                    }
-                                    else
-                                    {
-                                        bool erreur=false;
-                                        /*if(!((w==1&&m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()== 1)||(y==1&&m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()== 1)))
-                                        {*/
-                                        if(m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()>-1&&m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()<m_tileset.size())
-                                        {
-                                            if(m_tileset[m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()].getOrientationDuTile(m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTile())=='y'||m_tileset[m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()].getOrientationDuTile(m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTile())=='d')
-                                                if(w>0)
-                                                    erreur=true;
-                                            if(m_tileset[m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()].getOrientationDuTile(m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTile())=='x'||m_tileset[m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()].getOrientationDuTile(m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTile())=='g')
-                                                if(y>0)
-                                                    erreur=true;
-                                            if(m_tileset[m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()].getOrientationDuTile(m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTile())=='h')
-                                                if(y>0||w>0)
-                                                    erreur=true;
-                                            if(m_tileset[m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()].getOrientationDuTile(m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTile())=='b')
-                                                if(y>0||w>0)
-                                                    erreur=true;
-                                        }
 
-                                        if(!erreur)
-                                        {
-                                        double m=(double)m_tableauDesLampes[i][j].intensite/4;
-                                        m_tableauDesLampes[i+y][j+w].intensite=(int)(m_tableauDesLampes[i][j].intensite/1.5);
-                                        m_tableauDesLampes[i+y][j+w].rouge=m_tableauDesLampes[i][j].rouge;
-                                        m_tableauDesLampes[i+y][j+w].vert=m_tableauDesLampes[i][j].vert;
-                                        m_tableauDesLampes[i+y][j+w].bleu=m_tableauDesLampes[i][j].bleu;
-                                        if(m_tableauDesLampes[i+y][j+w].intensite>255)
-                                            m_tableauDesLampes[i+y][j+w].intensite=255;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-        }
 
         for(int couche=1;couche==1;couche++)
         {
@@ -653,8 +591,16 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero)
                 for(int k=lampesMin.x;k<lampesMax.x;k++)
                 {
                     bool ok=false;
-                    if(m_decor[couche][j][k].getMonstre()>=0&&m_decor[couche][j][k].getMonstre()<m_monstre.size())// Je vérifie que le tile est initialisé ^^
-                    ok=true;
+                    if(m_decor[0][j][k].getMonstre()>=0&&m_decor[couche][j][k].getMonstre()<m_monstre.size())// Je vérifie que le tile est initialisé ^^
+                        ok=true;
+                    if(m_decor[0][j][k].getEvenement()>=0&&m_decor[couche][j][k].getEvenement()<m_evenement.size())// Je vérifie que le tile est initialisé ^^
+                        if(m_evenement[m_decor[0][j][k].getEvenement()].getType()==LUMIERE)
+                            ok=true;
+                    if(m_decor[1][j][k].getMonstre()>=0&&m_decor[couche][j][k].getMonstre()<m_monstre.size())// Je vérifie que le tile est initialisé ^^
+                        ok=true;
+                    if(m_decor[1][j][k].getEvenement()>=0&&m_decor[couche][j][k].getEvenement()<m_evenement.size())// Je vérifie que le tile est initialisé ^^
+                        if(m_evenement[m_decor[1][j][k].getEvenement()].getType()==LUMIERE)
+                            ok=true;
                     if(m_decor[couche][j][k].getTileset()>=0&&m_decor[couche][j][k].getTileset()<m_tileset.size())
                         if(m_tileset[m_decor[couche][j][k].getTileset()].getLumiereDuTile(m_decor[couche][j][k].getTile()).intensite>0)// Je ragarde si le tile est une source de lumière
                             ok=true;
@@ -670,20 +616,67 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero)
                             if(m_tileset[m_decor[couche][j][k].getTileset()].getLumiereDuTile(m_decor[couche][j][k].getTile()).intensite>0)
                                 lumiereTile=m_tileset[m_decor[couche][j][k].getTileset()].getLumiereDuTile(m_decor[couche][j][k].getTile());// Je dis que lumièreTiles à la valeur de la lumière de la source de lumière
 
-                        if(m_decor[couche][j][k].getMonstre()>=0&&m_decor[couche][j][k].getMonstre()<m_monstre.size())
+                        if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
                         {
-                            lumiereTile.rouge=(lumiereTile.rouge*lumiereTile.intensite+m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().rouge*m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+lumiereTile.intensite);
-                            lumiereTile.vert=(lumiereTile.vert*lumiereTile.intensite+m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().vert*m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+lumiereTile.intensite);
-                            lumiereTile.bleu=(lumiereTile.bleu*lumiereTile.intensite+m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().bleu*m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+lumiereTile.intensite);
+                            lumiereTile.rouge=(lumiereTile.rouge*lumiereTile.intensite+m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().rouge*m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+lumiereTile.intensite);
+                            lumiereTile.vert=(lumiereTile.vert*lumiereTile.intensite+m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().vert*m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+lumiereTile.intensite);
+                            lumiereTile.bleu=(lumiereTile.bleu*lumiereTile.intensite+m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().bleu*m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+lumiereTile.intensite);
 
-                            lumiereTile.hauteur=(lumiereTile.hauteur*lumiereTile.intensite+m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().hauteur*m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().hauteur+lumiereTile.hauteur);
+                            lumiereTile.hauteur=(lumiereTile.hauteur*lumiereTile.intensite+m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().hauteur*m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+lumiereTile.intensite);
 
-                            lumiereTile.intensite+=m_ModeleMonstre[m_monstre[m_decor[couche][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite;
+                            lumiereTile.intensite+=m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite;
                             if(lumiereTile.intensite>255)
                             lumiereTile.intensite=255;
                             if(lumiereTile.intensite<0)
                             lumiereTile.intensite=0;
                         }
+
+                        if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
+                        {
+                            lumiereTile.rouge=(lumiereTile.rouge*lumiereTile.intensite+m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().rouge*m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+lumiereTile.intensite);
+                            lumiereTile.vert=(lumiereTile.vert*lumiereTile.intensite+m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().vert*m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+lumiereTile.intensite);
+                            lumiereTile.bleu=(lumiereTile.bleu*lumiereTile.intensite+m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().bleu*m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+lumiereTile.intensite);
+
+                            lumiereTile.hauteur=(lumiereTile.hauteur*lumiereTile.intensite+m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().hauteur*m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+lumiereTile.intensite);
+
+                            lumiereTile.intensite+=m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite;
+                            if(lumiereTile.intensite>255)
+                            lumiereTile.intensite=255;
+                            if(lumiereTile.intensite<0)
+                            lumiereTile.intensite=0;
+                        }
+
+                        if(m_decor[0][j][k].getEvenement()>=0&&m_decor[0][j][k].getEvenement()<m_evenement.size())// Je vérifie que le tile est initialisé ^^
+                            if(m_evenement[m_decor[0][j][k].getEvenement()].getType()==LUMIERE)
+                            {
+                                lumiereTile.rouge=(lumiereTile.rouge*lumiereTile.intensite+m_evenement[m_decor[0][j][k].getEvenement()].getInformation(0)*m_evenement[m_decor[0][j][k].getEvenement()].getInformation(3))/(m_evenement[m_decor[0][j][k].getEvenement()].getInformation(3)+lumiereTile.intensite);
+                                lumiereTile.vert=(lumiereTile.vert*lumiereTile.intensite+m_evenement[m_decor[0][j][k].getEvenement()].getInformation(1)*m_evenement[m_decor[0][j][k].getEvenement()].getInformation(3))/(m_evenement[m_decor[0][j][k].getEvenement()].getInformation(3)+lumiereTile.intensite);
+                                lumiereTile.bleu=(lumiereTile.bleu*lumiereTile.intensite+m_evenement[m_decor[0][j][k].getEvenement()].getInformation(2)*m_evenement[m_decor[0][j][k].getEvenement()].getInformation(3))/(m_evenement[m_decor[0][j][k].getEvenement()].getInformation(3)+lumiereTile.intensite);
+
+                                lumiereTile.hauteur=(lumiereTile.hauteur*lumiereTile.intensite+m_evenement[m_decor[0][j][k].getEvenement()].getInformation(4)*m_evenement[m_decor[0][j][k].getEvenement()].getInformation(3))/(m_evenement[m_decor[0][j][k].getEvenement()].getInformation(3)+lumiereTile.intensite);
+
+                                lumiereTile.intensite+=m_evenement[m_decor[0][j][k].getEvenement()].getInformation(3);
+                                if(lumiereTile.intensite>255)
+                                    lumiereTile.intensite=255;
+                                if(lumiereTile.intensite<0)
+                                    lumiereTile.intensite=0;
+                            }
+                        if(m_decor[1][j][k].getEvenement()>=0&&m_decor[1][j][k].getEvenement()<m_evenement.size())// Je vérifie que le tile est initialisé ^^
+                            if(m_evenement[m_decor[1][j][k].getEvenement()].getType()==LUMIERE)
+                            {
+                                lumiereTile.rouge=(lumiereTile.rouge*lumiereTile.intensite+m_evenement[m_decor[1][j][k].getEvenement()].getInformation(0)*m_evenement[m_decor[1][j][k].getEvenement()].getInformation(3))/(m_evenement[m_decor[1][j][k].getEvenement()].getInformation(3)+lumiereTile.intensite);
+                                lumiereTile.vert=(lumiereTile.vert*lumiereTile.intensite+m_evenement[m_decor[1][j][k].getEvenement()].getInformation(1)*m_evenement[m_decor[1][j][k].getEvenement()].getInformation(3))/(m_evenement[m_decor[1][j][k].getEvenement()].getInformation(3)+lumiereTile.intensite);
+                                lumiereTile.bleu=(lumiereTile.bleu*lumiereTile.intensite+m_evenement[m_decor[1][j][k].getEvenement()].getInformation(2)*m_evenement[m_decor[1][j][k].getEvenement()].getInformation(3))/(m_evenement[m_decor[1][j][k].getEvenement()].getInformation(3)+lumiereTile.intensite);
+
+                                lumiereTile.hauteur=(lumiereTile.hauteur*lumiereTile.intensite+m_evenement[m_decor[1][j][k].getEvenement()].getInformation(4)*m_evenement[m_decor[1][j][k].getEvenement()].getInformation(3))/(m_evenement[m_decor[1][j][k].getEvenement()].getInformation(3)+lumiereTile.intensite);
+
+                                lumiereTile.intensite+=m_evenement[m_decor[1][j][k].getEvenement()].getInformation(3);
+                                if(lumiereTile.intensite>255)
+                                    lumiereTile.intensite=255;
+                                if(lumiereTile.intensite<0)
+                                    lumiereTile.intensite=0;
+                            }
+
 
                         //Maintenant, je vais calculer la lumière à ajouter à tout les tiles affiché à l'écran
                         for(int l=vueMin.y;l<vueMax.y;l++)
@@ -693,13 +686,13 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero)
                                     position.y=(m+l)*32; // Conversion des coord iso en cartésienne
                                     const sf::FloatRect& ViewRect = ecran->GetViewRect();
                                     if(position.x>=ViewRect.Left-384&&position.x<ViewRect.Right+384&&position.y>=ViewRect.Top-384&&position.y<ViewRect.Bottom+384)// Je test si le tile va êtrz affiché à l'écran ou pas
-                                     {
+                                    {
 
                                     //lumiere=m_lumiere;
                                     lumiere.intensite=0;
                                     lumiereTemp=0;
                                     // Je réduit la quantité de lumière reçue, en fonction de la distance, qui est calculée avec un simple pythagore ^^
-                                    lumiereTemp=(float)lumiereTile.intensite-(float)(sqrt((k*COTE_TILE-m*COTE_TILE)*(k*COTE_TILE-m*COTE_TILE)+(j*COTE_TILE-l*COTE_TILE)*(j*COTE_TILE-l*COTE_TILE)))/5;
+                                    lumiereTemp=(float)lumiereTile.intensite-(float)(gpl::sqrt((k*COTE_TILE-m*COTE_TILE)*(k*COTE_TILE-m*COTE_TILE)+(j*COTE_TILE-l*COTE_TILE)*(j*COTE_TILE-l*COTE_TILE)))/5;
                                     lumiere.hauteur=lumiereTile.hauteur;
 
                                     if(lumiereTemp>0)
@@ -710,10 +703,10 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero)
                                     //Je vais tester s'il y a un obstacle entre la source de lumière et le tile
                                     if(!(l==j&&m==k))
                                     if(lumiere.intensite>0)
-                                    for(int o=1;o<15;o++)
+                                    for(int o=1;o<10;o++)
                                     {
-                                        Xtemp=((double)(k-m)/15)*(double)o;
-                                        Ytemp=((double)(j-l)/15)*(double)o;
+                                        Xtemp=((double)(k-m)/10)*(double)o;
+                                        Ytemp=((double)(j-l)/10)*(double)o;
 
                                         distanceActuelle.x=m+(int)Xtemp;
                                         distanceActuelle.y=l+(int)Ytemp;
@@ -869,11 +862,72 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero)
                                             }
                                         }
                                     }
-                                     }
+                                    }
                                 }
                     }
                 }
             }
+        }
+
+        if(configuration.amelioration_lampes)
+        for(int z=0;z<2;z++)
+            for(int i=0;i<vueMax.y-vueMin.y;i++)
+            for(int j=0;j<vueMax.x-vueMin.x;j++)
+            {
+                /*int nombrePourtour=0;
+                Lumiere pourtour;
+                pourtour.intensite=0;
+                pourtour.rouge=0;
+                pourtour.vert=0;
+                pourtour.bleu=0;*/
+                for(int y=-1;y<=1;y++)
+                    for(int w=-1;w<=1;w++)
+                        if(!((y==0&&w==0)))
+                        {
+                            if(i+y>0&&i+y+vueMin.y<m_decor[0].size()&&j+w>0&&j+w+vueMin.x<m_decor[0][0].size())
+                            if(i+y>0&&i+y<30&&j+w>0&&j+w<30)
+                            {
+                                if((double)m_tableauDesLampes[i+y][j+w].intensite<(double)m_tableauDesLampes[i][j].intensite/1.5)
+                                {
+                                    if(m_decor[1][i+vueMin.y][j+vueMin.x].getTileset()!= -1)
+                                    {
+                                    }
+                                    else
+                                    {
+                                        bool erreur=false;
+                                        /*if(!((w==1&&m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()== 1)||(y==1&&m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()== 1)))
+                                        {*/
+                                        if(m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()>-1&&m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()<m_tileset.size())
+                                        {
+                                            if(m_tileset[m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()].getOrientationDuTile(m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTile())=='y'||m_tileset[m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()].getOrientationDuTile(m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTile())=='d')
+                                                if(w>0)
+                                                    erreur=true;
+                                            if(m_tileset[m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()].getOrientationDuTile(m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTile())=='x'||m_tileset[m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()].getOrientationDuTile(m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTile())=='g')
+                                                if(y>0)
+                                                    erreur=true;
+                                            if(m_tileset[m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()].getOrientationDuTile(m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTile())=='h')
+                                                if(y>0||w>0)
+                                                    erreur=true;
+                                            if(m_tileset[m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()].getOrientationDuTile(m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTile())=='b')
+                                                if(y>0||w>0)
+                                                    erreur=true;
+                                        }
+
+                                        if(!erreur)
+                                        {
+                                        double m=(double)m_tableauDesLampes[i][j].intensite/4;
+                                        m_tableauDesLampes[i+y][j+w].intensite=(int)(m_tableauDesLampes[i][j].intensite/1.5);
+                                        m_tableauDesLampes[i+y][j+w].rouge=m_tableauDesLampes[i][j].rouge;
+                                        m_tableauDesLampes[i+y][j+w].vert=m_tableauDesLampes[i][j].vert;
+                                        m_tableauDesLampes[i+y][j+w].bleu=m_tableauDesLampes[i][j].bleu;
+                                        if(m_tableauDesLampes[i+y][j+w].intensite>255)
+                                            m_tableauDesLampes[i+y][j+w].intensite=255;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
         }
 
 
@@ -882,7 +936,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero)
 
 }
 
-void Map::Afficher(RenderWindow* ecran,View camera,int type,Hero *hero)
+void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero)
 {
 	coordonnee position,positionPartieDecor,vueMin,vueMax;
 
@@ -986,11 +1040,10 @@ void Map::Afficher(RenderWindow* ecran,View camera,int type,Hero *hero)
 
                         if(m_decor[couche][j][k].getTileset()>=0&&m_decor[couche][j][k].getTileset()<m_tileset.size())
                         {
-                            if(position.x+positionPartieDecor.w+positionPartieDecor.h>=ViewRect.Left&&position.x-positionPartieDecor.h-positionPartieDecor.w<ViewRect.Right&&position.y+positionPartieDecor.h+positionPartieDecor.w>=ViewRect.Top&&position.y-positionPartieDecor.h<ViewRect.Bottom+100&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()&&configuration.Ombre)
+                            positionPartieDecor=m_tileset[m_decor[couche][j][k].getTileset()].getPositionDuTile(m_decor[couche][j][k].getTile());
+                            if(position.x+positionPartieDecor.h*2+positionPartieDecor.w>=ViewRect.Left&&position.x-positionPartieDecor.h*2<ViewRect.Right&&position.y+positionPartieDecor.h+positionPartieDecor.w>=ViewRect.Top&&position.y-positionPartieDecor.h<ViewRect.Bottom+100&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()&&configuration.Ombre&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()))
                             ||position.x+positionPartieDecor.w>=ViewRect.Left&&position.x<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y<ViewRect.Bottom)
                             {
-                                positionPartieDecor=m_tileset[m_decor[couche][j][k].getTileset()].getPositionDuTile(m_decor[couche][j][k].getTile());
-
                                 Sprite.SetImage(*m_tileset[m_decor[couche][j][k].getTileset()].getImage());
                                 Sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
 
@@ -1072,7 +1125,7 @@ void Map::Afficher(RenderWindow* ecran,View camera,int type,Hero *hero)
 
                                 if(m_tileset[m_decor[couche][j][k].getTileset()].getSonTile(m_decor[couche][j][k].getTile())>=0)
                                     m_tileset[m_decor[couche][j][k].getTileset()].jouerSon(m_tileset[m_decor[couche][j][k].getTileset()].getSonTile(m_decor[couche][j][k].getTile()),
-                                    sqrt((hero->m_personnage.getCoordonnee().x-k)*(hero->m_personnage.getCoordonnee().x-k)+(hero->m_personnage.getCoordonnee().y-j)*(hero->m_personnage.getCoordonnee().y-j)),position,positionHero);
+                                    gpl::sqrt((hero->m_personnage.getCoordonnee().x-k)*(hero->m_personnage.getCoordonnee().x-k)+(hero->m_personnage.getCoordonnee().y-j)*(hero->m_personnage.getCoordonnee().y-j)),position,positionHero);
                         }
                     }
                     else
@@ -1376,7 +1429,7 @@ void Map::animer(Hero *hero)
 
 }
 
-bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View camera,Menu* menu)
+bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu* menu)
 {
     for(int i=0;i<2;i++)
     if(m_decor[i][hero->m_personnage.getCoordonnee().y][hero->m_personnage.getCoordonnee().x].getEvenement()>=0)
@@ -1408,7 +1461,7 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View camera,Menu*
                 Effect.SetParameter("color", 1.f, 1.f, 1.f);
             }
 
-            ecran->SetView(&camera);
+            ecran->SetView(camera);
 
             for(int z=50;z>=0;z-=2)
             {
@@ -1424,11 +1477,11 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View camera,Menu*
                 if(configuration.Lumiere)
 				{
                     detruireOmbresEtLumieres(hero);
-                    calculerOmbresEtLumieres(ecran,hero);
+                    calculerOmbresEtLumieres(ecran,hero,camera);
 				}
 
 
-				ecran->SetView(&camera);
+				ecran->SetView(camera);
                 Afficher(ecran,camera,1,hero);
                 ecran->SetView(NULL);
                 menu->Afficher(ecran,1);
@@ -1445,6 +1498,7 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View camera,Menu*
 
 
             m_tileset.clear();
+            m_herbe.clear();
 
             for(int i=0;i<2;i++)
             {
@@ -1456,8 +1510,11 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View camera,Menu*
             }
             m_decor.clear();
 
+            m_ModeleMonstre.clear();
+            m_monstre.clear();
+
             for(int i=0;i<m_evenement.size();i++)
-            m_evenement[i].deleteInformations();
+           m_evenement[i].deleteInformations();
             m_evenement.clear();
 
             m_musique.Stop();
@@ -1465,7 +1522,7 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View camera,Menu*
             if(!Charger(numeroMap))
                 return 0;
 
-            hero->placerCamera(&camera,getDimensions());
+            hero->placerCamera(camera,getDimensions());
 
 
 
@@ -1491,10 +1548,10 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View camera,Menu*
                 if(configuration.Lumiere)
 				{
                     detruireOmbresEtLumieres(hero);
-                    calculerOmbresEtLumieres(ecran,hero);
+                    calculerOmbresEtLumieres(ecran,hero,camera);
 				}
 
-				ecran->SetView(&camera);
+				ecran->SetView(camera);
                 Afficher(ecran,camera,1,hero);
                 ecran->SetView(NULL);
                 menu->Afficher(ecran,1);

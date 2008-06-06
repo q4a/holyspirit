@@ -83,7 +83,7 @@ bool Jeu(RenderWindow *ecran)
 	if(configuration.Lumiere)
     {
         map.detruireOmbresEtLumieres(&hero);
-        map.calculerOmbresEtLumieres(ecran,&hero);
+        map.calculerOmbresEtLumieres(ecran,&hero,&camera);
         lumiere=false;
     }
 
@@ -118,7 +118,7 @@ bool Jeu(RenderWindow *ecran)
 				if(hero.m_personnage.seDeplacer(tempsEcouleDepuisDernierDeplacement*100))
 					hero.m_personnage.pathfinding(map.getAlentourDuPersonnage(hero.m_personnage.getCoordonnee())); // Recherche du chemin
 				tempsEcouleDepuisDernierDeplacement=0;
-				if(!map.testEvenement(ecran,&hero,camera,&menu)) // On test les événement pour voir s'il on doit changer de map, faire des dégats au perso, le régénérer, etc
+				if(!map.testEvenement(ecran,&hero,&camera,&menu)) // On test les événement pour voir s'il on doit changer de map, faire des dégats au perso, le régénérer, etc
                     return 0;
 
 				hero.placerCamera(&camera,map.getDimensions()); // On place la camera suivant ou se trouve le perso
@@ -129,7 +129,7 @@ bool Jeu(RenderWindow *ecran)
 				if(configuration.Lumiere&&lumiere)
 				{
                     map.detruireOmbresEtLumieres(&hero);
-                    map.calculerOmbresEtLumieres(ecran,&hero);
+                    map.calculerOmbresEtLumieres(ecran,&hero,&camera);
                     lumiere=false;
 				}
 
@@ -167,7 +167,7 @@ bool Jeu(RenderWindow *ecran)
 			{
                 ecran->SetView(&camera);
 
-                map.Afficher(ecran,camera,1,&hero);//Affichage de la map
+                map.Afficher(ecran,&camera,1,&hero);//Affichage de la map
 
                 ecran->SetView(NULL);
 
@@ -182,8 +182,8 @@ bool Jeu(RenderWindow *ecran)
                     menu.Afficher(ecran,1);//On affiche le fond noir de la mini-map
 
                     //ecran->SetView(&miniMap);
+                    map.Afficher(ecran,&miniMap,2,&hero); // On affiche la mini-map
 
-                    map.Afficher(ecran,miniMap,2,&hero); // On affiche la mini-map
 
                     //ecran->SetView(NULL);
 

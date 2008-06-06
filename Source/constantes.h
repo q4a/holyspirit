@@ -20,7 +20,32 @@
 
 
 enum{ARRET,COURSE,FRAPPE,MORT};
-enum{CHANGEMENT_DE_MAP};
+enum{CHANGEMENT_DE_MAP,LUMIERE};
+
+namespace gpl
+{
+/**
+\brief Racine carre
+
+\param number : X
+
+\return racine carre de X
+*/
+inline float sqrt(float number) {
+    long i;
+    float x, y;
+    const float f = 1.5F;
+
+    x = number * 0.5F;
+    y  = number;
+    i  = * ( long * ) &y;
+    i  = 0x5f3759df - ( i >> 1 );
+    y  = * ( float * ) &i;
+    y  = y * ( f - ( x * y * y ) );
+    y  = y * ( f - ( x * y * y ) ); // si on veut plus de précision
+    return number * y;
+}
+} // namespace gpl
 
 template <typename T>
 inline T valeurAbsolue(T valeur)
@@ -99,8 +124,8 @@ class LumiereOmbrage : public Lumiere
             if(angle>180)
                 angle=360-angle;
 
-            m_ombre[m_ombre.size()-1].intensite-=(int)((float)m_ombre[i].intensiteBasique*angle/180);
-            m_ombre[i].intensite-=(int)((float)m_ombre[m_ombre.size()-1].intensiteBasique*angle/180);
+            m_ombre[m_ombre.size()-1].intensite-=(int)((float)m_ombre[i].intensiteBasique*angle/270);
+            m_ombre[i].intensite-=(int)((float)m_ombre[m_ombre.size()-1].intensiteBasique*angle/270);
 
             if(m_ombre[m_ombre.size()-1].intensite<0)
                 m_ombre[m_ombre.size()-1].intensite=0;

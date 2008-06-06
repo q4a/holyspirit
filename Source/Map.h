@@ -18,7 +18,7 @@ class Map
 	Map();
 	~Map();
 	bool Charger(int numeroMap);
-	void Afficher(sf::RenderWindow* ecran,sf::View camera,int type,Hero *hero);
+	void Afficher(sf::RenderWindow* ecran,sf::View *camera,int type,Hero *hero);
 	void AfficherNomEvenement(sf::RenderWindow* ecran,coordonnee casePointee,coordonnee positionSouris);
 
 	bool getCollision(int positionX,int positionY); // Retourne 1 s'il y a une collision avec le décors se trouvant à la position X et Y
@@ -27,8 +27,8 @@ class Map
 	std::vector<std::vector<bool> > getAlentourDuPersonnage(coordonnee positionPersonnage); // Retourne un tableau de bool contenant toutes les collitions dans les alentour du héro, pour le pathfinding
 
 	void animer(Hero *hero); // Animation des tiles
-	bool testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View camera,Menu* menu);
-	void calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero);
+	bool testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu* menu);
+	void calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *camera);
 	void detruireOmbresEtLumieres(Hero *hero);
 
 	void musiquePlay(coordonnee position);
