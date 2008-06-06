@@ -23,7 +23,7 @@ Liste des entites monstres
 $
 * s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
-* s-1   | s0 t3 | s0 t0 | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
+* s-1   | s0 t3 | s0 t0 e1 | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |

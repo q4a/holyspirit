@@ -1,5 +1,5 @@
 Nom
-*Le royaume enchanté de jour
+*Le royaume enchanté version 1
 $
 Musique
 *Data/Musiques/Test.ogg
