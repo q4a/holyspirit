@@ -1011,9 +1011,9 @@ void Map::Afficher(RenderWindow* ecran,View camera,int type,Hero *hero)
                                                 Sprite.SetTop(position.y-positionPartieDecor.h*1.5+64+(Sprite.GetHeight()*(-m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle)/2/90)*(m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].taille/2));*/
 
                                             Sprite.SetLeft(position.x+64-positionPartieDecor.w/2);
-                                            Sprite.SetTop(position.y-positionPartieDecor.h*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].taille+64);
+                                            Sprite.SetTop(position.y-positionPartieDecor.h*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].taille+32+32*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].taille);
                                             Sprite.SetScale(1, m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].taille);
-                                            Sprite.SetRotationCenter(positionPartieDecor.w/2,positionPartieDecor.h*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].taille-32);
+                                            Sprite.SetRotationCenter(positionPartieDecor.w/2,positionPartieDecor.h*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].taille-32*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].taille);
                                             Sprite.SetRotation(m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle);
                                             ecran->Draw(Sprite);
                                             Sprite.SetScale(1, 1);
