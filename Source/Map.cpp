@@ -1449,7 +1449,7 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu
 
             sf::Clock Clock;
              Clock.Reset();
-            float Time = 0;
+            float Time = 0,temps_ecoule=0;
 
             sf::PostFX Effect;
             if(!Effect.LoadFromFile(configuration.chemin_fx+configuration.nom_effetNoir))
@@ -1463,9 +1463,13 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu
 
             ecran->SetView(camera);
 
-            for(int z=50;z>=0;z-=2)
+            for(float z=50;z>=-1;z-=temps_ecoule*500)
             {
                 m_musique.SetVolume(z);
+
+                temps_ecoule=0;
+                temps_ecoule=Clock.GetElapsedTime();
+
 
                 while(Time<0.01)
                 {
@@ -1524,11 +1528,17 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu
 
             hero->placerCamera(camera,getDimensions());
 
+            Clock.Reset();
 
 
-            for(int z=0;z<=50;z+=2)
+            for(float z=0;z<=50;z+=temps_ecoule*500)
             {
                 m_musique.SetVolume(z);
+
+                temps_ecoule=0;
+                temps_ecoule=Clock.GetElapsedTime();
+
+                Clock.Reset();
 
                 coordonnee position;
 				position.x=(hero->m_personnage.getCoordonnee().x-hero->m_personnage.getCoordonnee().y-1+getDimensions().y)/5;
