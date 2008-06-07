@@ -1449,7 +1449,7 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu
 
             sf::Clock Clock;
              Clock.Reset();
-            float Time = 0,temps_ecoule=0;
+            float Time = 0,temps_ecoule=0,tempsEcouleDepuisDernierAffichage=0;
 
             sf::PostFX Effect;
             if(!Effect.LoadFromFile(configuration.chemin_fx+configuration.nom_effetNoir))
@@ -1463,40 +1463,48 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu
 
             ecran->SetView(camera);
 
-            for(float z=50;z>=-1;z-=temps_ecoule*500)
+            if(configuration.Lumiere)
             {
-                m_musique.SetVolume(z);
+                detruireOmbresEtLumieres(hero);
+                calculerOmbresEtLumieres(ecran,hero,camera);
+            }
+
+            Clock.Reset();
+
+            for(float z=50;z>=0;z-=temps_ecoule*200)
+            {
+                m_musique.SetVolume(z*(float)configuration.volume/50);
 
                 temps_ecoule=0;
                 temps_ecoule=Clock.GetElapsedTime();
+                tempsEcouleDepuisDernierAffichage+=temps_ecoule;
+                Clock.Reset();
 
-
-                while(Time<0.01)
+                if(tempsEcouleDepuisDernierAffichage>0.01)
                 {
-                    Time += Clock.GetElapsedTime();
-                    Clock.Reset();
+                    ecran->SetView(camera);
+                    Afficher(ecran,camera,1,hero);
+                    ecran->SetView(NULL);
+                    if(configuration.Minimap)
+                    {
+                        menu->Afficher(ecran,1);
+                        menu->Afficher(ecran,2);
+                    }
+
+                    menu->Afficher(ecran,3);
+
+                    if (sf::PostFX::CanUsePostFX() == true)
+                    {
+                        Effect.SetParameter("color", ((float)z)/50, ((float)z)/50, ((float)z)/50);
+                        ecran->Draw(Effect);
+                    }
+
+                    ecran->Display();
+                    tempsEcouleDepuisDernierAffichage=0;
                 }
-                Time=0;
-
-                if(configuration.Lumiere)
-				{
-                    detruireOmbresEtLumieres(hero);
-                    calculerOmbresEtLumieres(ecran,hero,camera);
-				}
-
-
-				ecran->SetView(camera);
-                Afficher(ecran,camera,1,hero);
-                ecran->SetView(NULL);
-                menu->Afficher(ecran,1);
-                menu->Afficher(ecran,2);
-
-                Effect.SetParameter("color", ((float)z)/50, ((float)z)/50, ((float)z)/50);
-
-                ecran->Draw(Effect);
-
-                ecran->Display();
             }
+
+             ecran->Display();
 
             hero->m_personnage.setCoordonnee(coordonneePerso);
 
@@ -1528,50 +1536,56 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu
 
             hero->placerCamera(camera,getDimensions());
 
+            coordonnee position;
+            position.x=(hero->m_personnage.getCoordonnee().x-hero->m_personnage.getCoordonnee().y-1+getDimensions().y)/5;
+            position.y=(hero->m_personnage.getCoordonnee().x+hero->m_personnage.getCoordonnee().y)/5;
+            Listener::SetGlobalVolume((float)configuration.volume);
+            Listener::SetPosition(-position.x, 0, position.y);
+            Listener::SetTarget(0, 0, 1);
+            musiquePlay(position);
+
+
+
+            if(configuration.Lumiere)
+            {
+                detruireOmbresEtLumieres(hero);
+                calculerOmbresEtLumieres(ecran,hero,camera);
+            }
+
             Clock.Reset();
 
-
-            for(float z=0;z<=50;z+=temps_ecoule*500)
+            for(float z=0;z<50;z+=temps_ecoule*200)
             {
-                m_musique.SetVolume(z);
+                m_musique.SetVolume(z*(float)configuration.volume/50);
 
                 temps_ecoule=0;
                 temps_ecoule=Clock.GetElapsedTime();
+                tempsEcouleDepuisDernierAffichage+=temps_ecoule;
 
                 Clock.Reset();
 
-                coordonnee position;
-				position.x=(hero->m_personnage.getCoordonnee().x-hero->m_personnage.getCoordonnee().y-1+getDimensions().y)/5;
-                position.y=(hero->m_personnage.getCoordonnee().x+hero->m_personnage.getCoordonnee().y)/5;
-                Listener::SetGlobalVolume((float)configuration.volume);
-				Listener::SetPosition(-position.x, 0, position.y);
-				Listener::SetTarget(0, 0, 1);
-                musiquePlay(position);
-
-                while(Time<0.01)
+				if(tempsEcouleDepuisDernierAffichage>0.01)
                 {
-                    Time += Clock.GetElapsedTime();
-                    Clock.Reset();
+                    ecran->SetView(camera);
+                    Afficher(ecran,camera,1,hero);
+                    ecran->SetView(NULL);
+                    if(configuration.Minimap)
+                    {
+                        menu->Afficher(ecran,1);
+                        menu->Afficher(ecran,2);
+                    }
+
+                    menu->Afficher(ecran,3);
+
+                    if (sf::PostFX::CanUsePostFX() == true)
+                    {
+                        Effect.SetParameter("color", ((float)z)/50, ((float)z)/50, ((float)z)/50);
+                        ecran->Draw(Effect);
+                    }
+
+                    ecran->Display();
+                    tempsEcouleDepuisDernierAffichage=0;
                 }
-                Time=0;
-
-                if(configuration.Lumiere)
-				{
-                    detruireOmbresEtLumieres(hero);
-                    calculerOmbresEtLumieres(ecran,hero,camera);
-				}
-
-				ecran->SetView(camera);
-                Afficher(ecran,camera,1,hero);
-                ecran->SetView(NULL);
-                menu->Afficher(ecran,1);
-                menu->Afficher(ecran,2);
-
-                Effect.SetParameter("color", ((float)z)/50, ((float)z)/50, ((float)z)/50);
-
-                ecran->Draw(Effect);
-
-                ecran->Display();
             }
 
         }
