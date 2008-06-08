@@ -22,8 +22,8 @@
 	<File name="Hero.h" open="0" top="0" tabpos="15">
 		<Cursor position="317" topLine="0" />
 	</File>
-	<File name="Map.cpp" open="1" top="1" tabpos="6">
-		<Cursor position="92347" topLine="0" />
+	<File name="Map.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="90382" topLine="1468" />
 	</File>
 	<File name="Map.h" open="1" top="0" tabpos="10">
 		<Cursor position="1024" topLine="0" />
@@ -37,8 +37,8 @@
 	<File name="Personnage.cpp" open="1" top="0" tabpos="8">
 		<Cursor position="7103" topLine="187" />
 	</File>
-	<File name="Personnage.h" open="1" top="0" tabpos="14">
-		<Cursor position="1276" topLine="45" />
+	<File name="Personnage.h" open="1" top="1" tabpos="14">
+		<Cursor position="1609" topLine="30" />
 	</File>
 	<File name="Pose.cpp" open="0" top="0" tabpos="9">
 		<Cursor position="784" topLine="17" />
@@ -80,7 +80,7 @@
 		<Cursor position="308" topLine="0" />
 	</File>
 	<File name="jeu.cpp" open="1" top="0" tabpos="7">
-		<Cursor position="6267" topLine="167" />
+		<Cursor position="3074" topLine="80" />
 	</File>
 	<File name="jeu.h" open="0" top="0" tabpos="7">
 		<Cursor position="350" topLine="0" />
