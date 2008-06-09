@@ -12,7 +12,7 @@ MUSIQUES
 volume: 100
 
 INTERFACE
-minimap: 1
+minimap: 0
 console: 0
 
 VERSION
