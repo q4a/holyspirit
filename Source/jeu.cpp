@@ -74,9 +74,6 @@ bool Jeu(RenderWindow *ecran)
         return 0;
 
 	ecran->ShowMouseCursor(false);
-
-	Clock.Reset();
-
 	//if(configuration.Lumiere)
 	//map.calculerOmbresEtLumieres(ecran,&hero,&configuration);
 
@@ -86,6 +83,8 @@ bool Jeu(RenderWindow *ecran)
         map.calculerOmbresEtLumieres(ecran,&hero,&camera);
         lumiere=false;
     }
+
+    Clock.Reset();
 
 	while(continuer)
 	{
@@ -117,7 +116,7 @@ bool Jeu(RenderWindow *ecran)
 			{
 				if(hero.m_personnage.seDeplacer(tempsEcouleDepuisDernierDeplacement*100))
 					hero.m_personnage.pathfinding(map.getAlentourDuPersonnage(hero.m_personnage.getCoordonnee())); // Recherche du chemin
-				tempsEcouleDepuisDernierDeplacement=0;
+
 				if(!map.testEvenement(ecran,&hero,&camera,&menu)) // On test les événement pour voir s'il on doit changer de map, faire des dégats au perso, le régénérer, etc
                     return 0;
 
@@ -145,6 +144,8 @@ bool Jeu(RenderWindow *ecran)
 				Listener::SetPosition(-position.x, 0, position.y);
 				Listener::SetTarget(0, 0, 1);
 				map.musiquePlay(position);
+
+				tempsEcouleDepuisDernierDeplacement=0;
 			}
 
 		    /// On gère les événements, appui sur une touche, déplacement de la souris
@@ -173,20 +174,8 @@ bool Jeu(RenderWindow *ecran)
 
                 if(configuration.Minimap)
                 {
-                     // Placement de la camera pour l'affichage de la mini-map
-                    //View miniMap(FloatRect(camera.Rect.Left-configuration.Resolution.x, camera.Rect.Top-configuration.Resolution.y, configuration.Resolution.x, configuration.Resolution.y), 0.25);
-
-                    //miniMap.Rect.Right=camera.Rect.Left+configuration.Resolution.x*2;
-                    //miniMap.Rect.Bottom=camera.Rect.Top+configuration.Resolution.y*2;
-
                     menu.Afficher(ecran,1);//On affiche le fond noir de la mini-map
-
-                    //ecran->SetView(&miniMap);
                     map.Afficher(ecran,&miniMap,2,&hero); // On affiche la mini-map
-
-
-                    //ecran->SetView(NULL);
-
                     menu.Afficher(ecran,2); // On affiche le cadran de la mini-map
                 }
 

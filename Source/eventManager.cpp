@@ -74,12 +74,20 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
     if(m_EventTableau[Key::Subtract])
 		configuration.volume-=temps*50;
 
-    if(m_EventTableau[Key::M])
+    if(m_EventTableau[Key::P])
     {
 		configuration.effetMort+=temps*50;
 		if(configuration.effetMort>200)
 		configuration.effetMort=0;
+    }
 
+    if(m_EventTableau[Key::M])
+    {
+        if(!configuration.Minimap)
+            configuration.Minimap=true;
+        else
+            configuration.Minimap=false;
+        m_EventTableau[Key::M]=false;
     }
 
     if(m_EventTableau[Key::Up])

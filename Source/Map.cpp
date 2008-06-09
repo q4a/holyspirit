@@ -18,6 +18,10 @@ Map::Map()
     lumiereMask.LoadFromFile("Data/Menus/lumiereMask.png");
     EffectBlur.LoadFromFile("Data/Effets/blur.sfx");
     carreBrun.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(128, 64, 0)),carreBleu.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(32, 0, 128)),carreRouge.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(128, 0, 0)),carreVert.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(0, 128, 0));
+    carreBrun.SetSmooth(false);
+    carreBleu.SetSmooth(false);
+    carreRouge.SetSmooth(false);
+    carreVert.SetSmooth(false);
 }
 
 Map::~Map()
@@ -1271,7 +1275,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero)
 
                     if(getTypeCase(k,j)==1)
                     {
-                        if(position.x+465*configuration.Resolution.x/800>600*configuration.Resolution.x/800&&position.x+465*configuration.Resolution.x/800<800*configuration.Resolution.x/800&&position.y-140*configuration.Resolution.y/600>0&&position.y-140*configuration.Resolution.y/600<195*configuration.Resolution.y/600)
+                        if(position.x+465*configuration.Resolution.x/800>600*configuration.Resolution.x/800&&position.x+465*configuration.Resolution.x/800<800*configuration.Resolution.x/800&&position.y*configuration.Resolution.y/600>0&&position.y-140*configuration.Resolution.y/600<195*configuration.Resolution.y/600)
                         {
                             Sprite.SetImage(carreBrun);
                             Sprite.SetRotationCenter(4*configuration.Resolution.x/800,4*configuration.Resolution.y/600);
@@ -1504,6 +1508,8 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu
                 }
             }
 
+
+
              ecran->Display();
 
             hero->m_personnage.setCoordonnee(coordonneePerso);
@@ -1587,6 +1593,8 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu
                     tempsEcouleDepuisDernierAffichage=0;
                 }
             }
+
+            m_musique.SetVolume((float)configuration.volume);
 
         }
     }

@@ -74,8 +74,8 @@ struct Configuration
 
 struct coordonneeDecimal
 {
-    double x;
-	double y;
+    float x;
+	float y;
 };
 
 class Lumiere
