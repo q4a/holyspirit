@@ -21,6 +21,10 @@ $
 Liste des entites monstres
 * m0 $
 $
+Liste des événements
+* e0 $ * i2 i57 i31 $
+* e1 $ * i255 i255 i255 i64 i70 $ 
+$
 * s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s0 t3 | s0 t0 e1 | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
