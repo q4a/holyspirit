@@ -187,6 +187,42 @@ bool Map::Charger(int numeroMap)
     	}while(caractere!='$');
 
 
+    	m_evenement.clear();
+
+    	do
+    	{
+    		fichier.get(caractere);
+    		if(caractere=='*')
+    		{
+    		    int numeroEvenement;
+    			do
+    			{
+    				fichier.get(caractere);
+    				switch (caractere)
+    				{
+    					case 'e': fichier>>numeroEvenement; break;
+    				}
+    			}while(caractere!='$');
+    			m_evenement.push_back(numeroEvenement);
+
+    			//AjouterEvenement(numeroEvenement);
+
+    			int information;
+    			do
+    			{
+    				fichier.get(caractere);
+    				if(caractere=='i')
+    				{
+                        fichier>>information;
+    				    m_evenement[m_evenement.size()-1].AjouterInformation(information);
+    				}
+    			}while(caractere!='$');
+
+    			fichier.get(caractere);
+    		}
+    	}while(caractere!='$');
+
+
     	Decor decorTemp(-1,-1,-1,-1,-1);
 
     	m_decor.resize(2,vector<vector<Decor> >(0,vector<Decor>(0,decorTemp)));
@@ -261,9 +297,8 @@ bool Map::Charger(int numeroMap)
     }
     fichier.close();
 
-    m_evenement.clear();
 
-	chemin = configuration.chemin_evenements;
+	/*chemin = configuration.chemin_evenements;
 
 	sprintf(numero,"%ld.txt",numeroMap);
 	chemin += numero;
@@ -311,7 +346,7 @@ bool Map::Charger(int numeroMap)
         cout << "Impossible d'ouvrir le fichier : " << chemin <<endl;
         return 0;
     }
-    fichier.close();
+    fichier.close();*/
 
     for(int i=0;i<24;i++)
     if(m_lumiere[i].intensite<0)

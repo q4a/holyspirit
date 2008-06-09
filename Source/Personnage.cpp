@@ -180,10 +180,11 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
 
              Sprite.SetScale(1, lumiere->m_ombre[o].taille);
 
-            Sprite.SetRotationCenter(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2,(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h-32)*lumiere->m_ombre[o].taille);
+            Sprite.SetRotationCenter((modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2),(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h-32)*lumiere->m_ombre[o].taille);
             Sprite.SetRotation(lumiere->m_ombre[o].angle);
 
-
+            if(lumiere->m_ombre[o].angle>90&&lumiere->m_ombre[o].angle<270)
+                Sprite.FlipX(true);
 
             Sprite.SetLeft(((m_positionPixel.x-m_positionPixel.y)*64/sqrt(64*64+32*32)+dimensionsMap.y*64)-64+(64-Sprite.GetWidth()/2)+64-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2);
             Sprite.SetTop(((m_positionPixel.x+m_positionPixel.y)*64/sqrt(64*64+32*32))/2+(64-Sprite.GetHeight())+32*lumiere->m_ombre[o].taille-32);
@@ -193,6 +194,8 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
             Sprite.SetRotation(0);
         }
     }
+
+    Sprite.FlipX(false);
 
 	Sprite.SetLeft(((m_positionPixel.x-m_positionPixel.y)*64/sqrt(64*64+32*32)+dimensionsMap.y*64)-64+(64-Sprite.GetWidth()/2)+64-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2);
 	Sprite.SetTop(((m_positionPixel.x+m_positionPixel.y)*64/sqrt(64*64+32*32))/2+(64-Sprite.GetHeight()));
@@ -273,7 +276,7 @@ int Personnage::pathfinding(vector<vector<bool> > map)
 	{
 		casesVisitee.incrementerDistanceEnCours();
 		casesVisitee.ajouterCasesAdjacentes(map);
-		if(casesVisitee.getDistance()>20)
+		if(casesVisitee.getDistance()>50)
 			erreur=true;
 	}
 
