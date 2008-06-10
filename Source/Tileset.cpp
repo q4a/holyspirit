@@ -13,6 +13,8 @@ using namespace sf;
 
 Tileset::Tileset()
 {
+
+m_image.SetSmooth(false);
 }
 Tileset::Tileset(string chemin)
 {
@@ -47,6 +49,8 @@ bool Tileset::Charger(std::string chemin)
 
 	int nombreTiles=0;
 	cheminFinal=chemin+".txt";
+
+	m_image.SetSmooth(false);
 
 	ifstream fichier;
     fichier.open(cheminFinal.c_str(), ios::in);

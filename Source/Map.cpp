@@ -139,7 +139,7 @@ bool Map::Charger(int numeroMap)
     	}while(caractere!='$');
 
     	if(numeroMap==0)
-            for(int i=0;i<3;i++)
+            for(int i=0;i<5;i++)
                 m_tileset.push_back(tilesetTemp);
 
     	Modele_Monstre monstreModeleTemp;
@@ -977,7 +977,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
 
 void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero)
 {
-	coordonnee position,positionPartieDecor,vueMin,vueMax;
+	coordonnee position,positionPartieDecor,vueMin,vueMax,positionHero;
 
 	Sprite Sprite, spriteLumiereMask;
 
@@ -1114,10 +1114,29 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero)
                                     }
                                 }
 
+                                positionHero.y=(int)(hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y)/COTE_TILE*32;
+
                                 if(position.x+positionPartieDecor.w>=ViewRect.Left&&position.x<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y-positionPartieDecor.h+64<ViewRect.Bottom)
                                 {
                                     Sprite.SetLeft(position.x+64-positionPartieDecor.w/2);
                                     Sprite.SetTop(position.y-positionPartieDecor.h+64);
+
+                                    int alpha=255;
+
+                                    if(couche==1&&positionPartieDecor.h>256)
+                                    {
+                                        alpha=(int)fabs(position.y-(positionHero.y+32))*2-128;
+                                        if(position.y>positionHero.y+32)
+                                            alpha=(int)((positionHero.y+32)-position.y)*2-128;
+                                    }
+
+
+                                    if(alpha<96)
+                                        alpha=96;
+                                    if(alpha>255)
+                                        alpha=255;
+
+
 
                                     if(configuration.Lumiere&&configuration.FonduLumiere)
                                     {
@@ -1132,7 +1151,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero)
                                             (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].rouge),
                                             (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].vert),
                                             (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].bleu),
-                                            255));
+                                            alpha));
                                     }
                                     else if(configuration.Lumiere)
                                     {
@@ -1140,7 +1159,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero)
                                             (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].intensite*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].rouge)/255,
                                             (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].intensite*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].vert)/255,
                                             (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].intensite*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].bleu)/255,
-                                            255));
+                                            alpha));
                                     }
                                     else
                                     {
@@ -1148,14 +1167,13 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero)
                                             255,
                                             255,
                                             255,
-                                            255));
+                                            alpha));
                                     }
 
                                      ecran->Draw(Sprite);
                                 }
                             }
 
-                            coordonnee positionHero;
                             positionHero.x=(hero->m_personnage.getCoordonnee().x-hero->m_personnage.getCoordonnee().y-1+m_decor[0].size())/5;
                             positionHero.y=(hero->m_personnage.getCoordonnee().x+hero->m_personnage.getCoordonnee().y)/5;
 
