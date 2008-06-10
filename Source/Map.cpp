@@ -15,8 +15,20 @@ using namespace sf;
 
 Map::Map()
 {
-    lumiereMask.LoadFromFile("Data/Menus/lumiereMask.png");
-    EffectBlur.LoadFromFile("Data/Effets/blur.sfx");
+    if (sf::PostFX::CanUsePostFX() == true)
+    {
+        lumiereMask.LoadFromFile("Data/Menus/lumiereMask.png");
+    }
+
+    if(!EffectNoir.LoadFromFile(configuration.chemin_fx+configuration.nom_effetNoir))
+        console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetNoir,1);
+    else
+    {
+        console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetNoir,0);
+        EffectNoir.SetTexture("framebuffer", NULL);
+        EffectNoir.SetParameter("color", 1.f, 1.f, 1.f);
+    }
+
     carreBrun.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(128, 64, 0)),carreBleu.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(32, 0, 128)),carreRouge.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(128, 0, 0)),carreVert.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(0, 128, 0));
     carreBrun.SetSmooth(false);
     carreBleu.SetSmooth(false);
@@ -1029,7 +1041,6 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero)
                             {
                                 //EffectBlur.SetParameter("offset", 0.01);
                                 spriteLumiereMask.SetColor(sf::Color(255,255,255,intensite));
-                                ecran->Draw(EffectBlur);
                                 ecran->Draw(spriteLumiereMask);
                             }
 
@@ -1511,16 +1522,6 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu
              Clock.Reset();
             float Time = 0,temps_ecoule=0,tempsEcouleDepuisDernierAffichage=0;
 
-            sf::PostFX Effect;
-            if(!Effect.LoadFromFile(configuration.chemin_fx+configuration.nom_effetNoir))
-                console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetNoir,1);
-            else
-            {
-                console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetNoir,0);
-                Effect.SetTexture("framebuffer", NULL);
-                Effect.SetParameter("color", 1.f, 1.f, 1.f);
-            }
-
             ecran->SetView(camera);
 
             if(configuration.Lumiere)
@@ -1528,7 +1529,6 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu
                 detruireOmbresEtLumieres(hero);
                 calculerOmbresEtLumieres(ecran,hero,camera);
             }
-
             Clock.Reset();
 
             for(float z=50;z>=0;z-=temps_ecoule*200)
@@ -1555,8 +1555,8 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu
 
                     if (sf::PostFX::CanUsePostFX() == true)
                     {
-                        Effect.SetParameter("color", ((float)z)/50, ((float)z)/50, ((float)z)/50);
-                        ecran->Draw(Effect);
+                        EffectNoir.SetParameter("color", ((float)z)/50, ((float)z)/50, ((float)z)/50);
+                        ecran->Draw(EffectNoir);
                     }
 
                     ecran->Display();
@@ -1641,8 +1641,8 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu
 
                     if (sf::PostFX::CanUsePostFX() == true)
                     {
-                        Effect.SetParameter("color", ((float)z)/50, ((float)z)/50, ((float)z)/50);
-                        ecran->Draw(Effect);
+                        EffectNoir.SetParameter("color", ((float)z)/50, ((float)z)/50, ((float)z)/50);
+                        ecran->Draw(EffectNoir);
                     }
 
                     ecran->Display();

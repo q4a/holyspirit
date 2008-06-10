@@ -46,7 +46,7 @@ class Map
 
 	sf::Image lumiereMask;
 
-	sf::PostFX EffectBlur;
+	sf::PostFX EffectNoir;
 
 	std::vector <Modele_Monstre> m_ModeleMonstre;
 	std::vector <Monstre> m_monstre;

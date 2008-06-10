@@ -45,21 +45,26 @@ bool Jeu(RenderWindow *ecran)
     console.Ajouter("",0);
     console.Ajouter("Chargement des effets :",0);
 
-    sf::PostFX EffectBlur,EffectColorize;
-    if(!EffectBlur.LoadFromFile(configuration.chemin_fx+configuration.nom_effetBlur))
-                console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetBlur,1);
-    else
-        console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetBlur,0);
-    if(!EffectColorize.LoadFromFile(configuration.chemin_fx+configuration.nom_effetColorize))
-                console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetColorize,1);
-    else
-        console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetColorize,0);
-    configuration.effetMort=0;
+     sf::PostFX EffectBlur,EffectColorize;
 
-    EffectBlur.SetParameter("offset", 0);
+    if (sf::PostFX::CanUsePostFX() == true)
+    {
+        if(!EffectBlur.LoadFromFile(configuration.chemin_fx+configuration.nom_effetBlur))
+                    console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetBlur,1);
+        else
+            console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetBlur,0);
+        if(!EffectColorize.LoadFromFile(configuration.chemin_fx+configuration.nom_effetColorize))
+                    console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetColorize,1);
+        else
+            console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetColorize,0);
 
-    EffectColorize.SetTexture("framebuffer", NULL);
-    EffectColorize.SetParameter("color",1, 1, 1);
+        configuration.effetMort=0;
+
+        EffectBlur.SetParameter("offset", 0);
+
+        EffectColorize.SetTexture("framebuffer", NULL);
+        EffectColorize.SetParameter("color",1, 1, 1);
+    }
 
 	Hero hero;
 	if(!hero.m_modelePersonnage.Charger("Data/Personnages/Hero/GuerrierHache.txt")) // Chargement du héro
@@ -185,7 +190,7 @@ bool Jeu(RenderWindow *ecran)
                 if(map.getEvenement(eventManager.getCasePointee())>=0)
                     map.AfficherNomEvenement(ecran,eventManager.getCasePointee(),eventManager.getPositionSouris());
 
-                if(configuration.effetMort)
+                if(configuration.effetMort&&sf::PostFX::CanUsePostFX() == true)
                 {
                     EffectBlur.SetParameter("offset", 0.01*configuration.effetMort/100*(0.6+tempsEffetMort/10));
                     EffectColorize.SetParameter("color",1+1*configuration.effetMort/100*tempsEffetMort, 1-0.5*configuration.effetMort/100*tempsEffetMort, 1-0.5*configuration.effetMort/100*tempsEffetMort);
