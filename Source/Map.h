@@ -18,7 +18,7 @@ class Map
 	Map();
 	~Map();
 	bool Charger(int numeroMap);
-	void Afficher(sf::RenderWindow* ecran,sf::View *camera,int type,Hero *hero);
+	void Afficher(sf::RenderWindow* ecran,sf::View *camera,int type,Hero *hero,coordonnee positionSouris);
 	void AfficherNomEvenement(sf::RenderWindow* ecran,coordonnee casePointee,coordonnee positionSouris);
 
 	bool getCollision(int positionX,int positionY); // Retourne 1 s'il y a une collision avec le décors se trouvant à la position X et Y

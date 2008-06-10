@@ -173,14 +173,14 @@ bool Jeu(RenderWindow *ecran)
 			{
                 ecran->SetView(&camera);
 
-                map.Afficher(ecran,&camera,1,&hero);//Affichage de la map
+                map.Afficher(ecran,&camera,1,&hero,eventManager.getPositionSouris());//Affichage de la map
 
                 ecran->SetView(NULL);
 
                 if(configuration.Minimap)
                 {
                     menu.Afficher(ecran,1);//On affiche le fond noir de la mini-map
-                    map.Afficher(ecran,&miniMap,2,&hero); // On affiche la mini-map
+                    map.Afficher(ecran,&camera,2,&hero,eventManager.getPositionSouris()); // On affiche la mini-map
                     menu.Afficher(ecran,2); // On affiche le cadran de la mini-map
                 }
 

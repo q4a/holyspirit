@@ -15,6 +15,12 @@ using namespace sf;
 
 Map::Map()
 {
+    carreBrun.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(128, 64, 0)),carreBleu.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(32, 0, 128)),carreRouge.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(128, 0, 0)),carreVert.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(0, 128, 0));
+    carreBrun.SetSmooth(false);
+    carreBleu.SetSmooth(false);
+    carreRouge.SetSmooth(false);
+    carreVert.SetSmooth(false);
+
     if (sf::PostFX::CanUsePostFX() == true)
     {
         lumiereMask.LoadFromFile("Data/Menus/lumiereMask.png");
@@ -28,12 +34,6 @@ Map::Map()
         EffectNoir.SetTexture("framebuffer", NULL);
         EffectNoir.SetParameter("color", 1.f, 1.f, 1.f);
     }
-
-    carreBrun.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(128, 64, 0)),carreBleu.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(32, 0, 128)),carreRouge.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(128, 0, 0)),carreVert.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(0, 128, 0));
-    carreBrun.SetSmooth(false);
-    carreBleu.SetSmooth(false);
-    carreRouge.SetSmooth(false);
-    carreVert.SetSmooth(false);
 }
 
 Map::~Map()
@@ -440,24 +440,33 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
     if(vueMax.y>m_decor[0].size()) { vueMax.y=m_decor[0].size(); }
     if(configuration.heure+1<24)
     {
-        lumiereMap.intensite=(int)((float)m_lumiere[configuration.heure].intensite*(60-configuration.minute)+((float)m_lumiere[configuration.heure+1].intensite*configuration.minute))/60;
-        lumiereMap.rouge=(int)((float)m_lumiere[configuration.heure].rouge*(60-configuration.minute)+((float)m_lumiere[configuration.heure+1].rouge*configuration.minute))/60;
-        lumiereMap.vert=(int)((float)m_lumiere[configuration.heure].vert*(60-configuration.minute)+((float)m_lumiere[configuration.heure+1].vert*configuration.minute))/60;
-        lumiereMap.bleu=(int)((float)m_lumiere[configuration.heure].bleu*(60-configuration.minute)+((float)m_lumiere[configuration.heure+1].bleu*configuration.minute))/60;
-        lumiereMap.hauteur=((float)m_lumiere[configuration.heure].hauteur*(60-configuration.minute)+((float)m_lumiere[configuration.heure+1].hauteur*configuration.minute))/60;
+        lumiereMap.intensite=(int)(((float)m_lumiere[configuration.heure].intensite*(60-configuration.minute)+((float)m_lumiere[configuration.heure+1].intensite*configuration.minute))*0.016666666666666666666666666666667);
+        lumiereMap.rouge=(int)(((float)m_lumiere[configuration.heure].rouge*(60-configuration.minute)+((float)m_lumiere[configuration.heure+1].rouge*configuration.minute))*0.016666666666666666666666666666667);
+        lumiereMap.vert=(int)(((float)m_lumiere[configuration.heure].vert*(60-configuration.minute)+((float)m_lumiere[configuration.heure+1].vert*configuration.minute))*0.016666666666666666666666666666667);
+        lumiereMap.bleu=(int)(((float)m_lumiere[configuration.heure].bleu*(60-configuration.minute)+((float)m_lumiere[configuration.heure+1].bleu*configuration.minute))*0.016666666666666666666666666666667);
+        lumiereMap.hauteur=((float)m_lumiere[configuration.heure].hauteur*(60-configuration.minute)+((float)m_lumiere[configuration.heure+1].hauteur*configuration.minute))*0.016666666666666666666666666666667;
     }
     else
     {
-        lumiereMap.intensite=(int)((float)m_lumiere[configuration.heure].intensite*(60-configuration.minute)+((float)m_lumiere[0].intensite*configuration.minute))/60;
-        lumiereMap.rouge=(int)((float)m_lumiere[configuration.heure].rouge*(60-configuration.minute)+((float)m_lumiere[0].rouge*configuration.minute))/60;
-        lumiereMap.vert=(int)((float)m_lumiere[configuration.heure].vert*(60-configuration.minute)+((float)m_lumiere[0].vert*configuration.minute))/60;
-        lumiereMap.bleu=(int)((float)m_lumiere[configuration.heure].bleu*(60-configuration.minute)+((float)m_lumiere[0].bleu*configuration.minute))/60;
-        lumiereMap.hauteur=((float)m_lumiere[configuration.heure].hauteur*(60-configuration.minute)+((float)m_lumiere[0].hauteur*configuration.minute))/60;
+        lumiereMap.intensite=(int)(((float)m_lumiere[configuration.heure].intensite*(60-configuration.minute)+((float)m_lumiere[0].intensite*configuration.minute))*0.016666666666666666666666666666667);
+        lumiereMap.rouge=(int)(((float)m_lumiere[configuration.heure].rouge*(60-configuration.minute)+((float)m_lumiere[0].rouge*configuration.minute))*0.016666666666666666666666666666667);
+        lumiereMap.vert=(int)(((float)m_lumiere[configuration.heure].vert*(60-configuration.minute)+((float)m_lumiere[0].vert*configuration.minute))*0.016666666666666666666666666666667);
+        lumiereMap.bleu=(int)(((float)m_lumiere[configuration.heure].bleu*(60-configuration.minute)+((float)m_lumiere[0].bleu*configuration.minute))*0.016666666666666666666666666666667);
+        lumiereMap.hauteur=((float)m_lumiere[configuration.heure].hauteur*(60-configuration.minute)+((float)m_lumiere[0].hauteur*configuration.minute))*0.016666666666666666666666666666667;
     }
 
     angleOmbreMap=((float)configuration.heure*60+configuration.minute)*180/720;
 
-    m_lumiereHero=lumiereMap;
+    m_lumiereHero=hero->m_modelePersonnage.getPorteeLumineuse();
+
+    m_lumiereHero.rouge=(lumiereMap.rouge*lumiereMap.intensite+m_lumiereHero.rouge*m_lumiereHero.intensite)/(m_lumiereHero.intensite+lumiereMap.intensite);
+    m_lumiereHero.vert=(lumiereMap.vert*lumiereMap.intensite+m_lumiereHero.vert*m_lumiereHero.intensite)/(m_lumiereHero.intensite+lumiereMap.intensite);
+    m_lumiereHero.bleu=(lumiereMap.bleu*lumiereMap.intensite+m_lumiereHero.bleu*m_lumiereHero.intensite)/(m_lumiereHero.intensite+lumiereMap.intensite);
+
+    m_lumiereHero.intensite+=lumiereMap.intensite;
+    if(m_lumiereHero.intensite>255) m_lumiereHero.intensite=255;
+    if(m_lumiereHero.intensite<0) m_lumiereHero.intensite=0;
+
     if(configuration.Ombre)
         m_lumiereHero.AjouterOmbre(lumiereMap.intensite/4,angleOmbreMap,lumiereMap.hauteur);
 
@@ -468,10 +477,10 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
         {
              m_tableauDesLampes[i][j]=lumiereMap;
             if(configuration.Ombre)
-                m_tableauDesLampes[i][j].AjouterOmbre(lumiereMap.intensite/4,angleOmbreMap,lumiereMap.hauteur);
+                m_tableauDesLampes[i][j].AjouterOmbre((int)((float)lumiereMap.intensite*0.25),angleOmbreMap,lumiereMap.hauteur);
 
             lumiereTemp=0;
-            lumiereTemp=(float)hero->m_modelePersonnage.getPorteeLumineuse().intensite-((((float)gpl::sqrt((hero->m_personnage.getCoordonneePixel().x-(j+vueMin.x)*COTE_TILE)*(hero->m_personnage.getCoordonneePixel().x-(j+vueMin.x)*COTE_TILE)+(hero->m_personnage.getCoordonneePixel().y-(i+vueMin.y)*COTE_TILE)*(hero->m_personnage.getCoordonneePixel().y-(i+vueMin.y)*COTE_TILE))))/COTE_TILE)*30;
+            lumiereTemp=(float)hero->m_modelePersonnage.getPorteeLumineuse().intensite-((((float)gpl::sqrt((hero->m_personnage.getCoordonneePixel().x-(j+vueMin.x)*COTE_TILE)*(hero->m_personnage.getCoordonneePixel().x-(j+vueMin.x)*COTE_TILE)+(hero->m_personnage.getCoordonneePixel().y-(i+vueMin.y)*COTE_TILE)*(hero->m_personnage.getCoordonneePixel().y-(i+vueMin.y)*COTE_TILE))))*DIVISEUR_COTE_TILE)*30;
 
             lumiere=hero->m_modelePersonnage.getPorteeLumineuse();
 
@@ -488,11 +497,11 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                 {
                     coordonneeDecimal positionHero;
 
-                    positionHero.x=(hero->m_personnage.getCoordonneePixel().x+1)/COTE_TILE;
-                    positionHero.y=(hero->m_personnage.getCoordonneePixel().y+1)/COTE_TILE;
+                    positionHero.x=(hero->m_personnage.getCoordonneePixel().x+1)*DIVISEUR_COTE_TILE;
+                    positionHero.y=(hero->m_personnage.getCoordonneePixel().y+1)*DIVISEUR_COTE_TILE;
 
-                    Xtemp=((float)((hero->m_personnage.getCoordonneePixel().x+(hero->m_personnage.getProchaineCase().x-hero->m_personnage.getCoordonnee().x)*8)/COTE_TILE-(j+vueMin.x))/10)*(float)o;
-                    Ytemp=((float)((hero->m_personnage.getCoordonneePixel().y-(hero->m_personnage.getProchaineCase().y-hero->m_personnage.getCoordonnee().y)*8)/COTE_TILE-(i+vueMin.y))/10)*(float)o;
+                    Xtemp=((float)((hero->m_personnage.getCoordonneePixel().x+(hero->m_personnage.getProchaineCase().x-hero->m_personnage.getCoordonnee().x)*8)*DIVISEUR_COTE_TILE-(j+vueMin.x))*0.1)*(float)o;
+                    Ytemp=((float)((hero->m_personnage.getCoordonneePixel().y-(hero->m_personnage.getProchaineCase().y-hero->m_personnage.getCoordonnee().y)*8)*DIVISEUR_COTE_TILE-(i+vueMin.y))*0.1)*(float)o;
 
                     if(Xtemp-(int)Xtemp>0.5)
                         Xtemp=(int)Xtemp+1;
@@ -756,8 +765,8 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                     if(lumiere.intensite>0)
                                     for(int o=1;o<10;o++)
                                     {
-                                        Xtemp=((double)(k-m)/10)*(double)o;
-                                        Ytemp=((double)(j-l)/10)*(double)o;
+                                        Xtemp=((double)(k-m)*0.1)*(double)o;
+                                        Ytemp=((double)(j-l)*0.1)*(double)o;
 
                                         distanceActuelle.x=m+(int)Xtemp;
                                         distanceActuelle.y=l+(int)Ytemp;
@@ -866,9 +875,9 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                         // J'applique la même chose au héro
                                         if(l==hero->m_personnage.getCoordonnee().y&&m==hero->m_personnage.getCoordonnee().x)
                                         {
-                                           m_lumiereHero.rouge=(lumiere.rouge*lumiere.intensite/(m_lumiereHero.intensite+lumiere.intensite)+m_lumiereHero.rouge*m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite/(m_lumiereHero.intensite+lumiere.intensite));
-                                           m_lumiereHero.vert=(lumiere.vert*lumiere.intensite/(m_lumiereHero.intensite+lumiere.intensite)+m_lumiereHero.vert*m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite/(m_lumiereHero.intensite+lumiere.intensite));
-                                           m_lumiereHero.bleu=(lumiere.bleu*lumiere.intensite/(m_lumiereHero.intensite+lumiere.intensite)+m_lumiereHero.bleu*m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite/(m_lumiereHero.intensite+lumiere.intensite));
+                                           m_lumiereHero.rouge=(lumiere.rouge*lumiere.intensite+m_lumiereHero.rouge*m_lumiereHero.intensite)/(m_lumiereHero.intensite+lumiere.intensite);
+                                           m_lumiereHero.vert=(lumiere.vert*lumiere.intensite+m_lumiereHero.vert*m_lumiereHero.intensite)/(m_lumiereHero.intensite+lumiere.intensite);
+                                           m_lumiereHero.bleu=(lumiere.bleu*lumiere.intensite+m_lumiereHero.bleu*m_lumiereHero.intensite)/(m_lumiereHero.intensite+lumiere.intensite);
 
                                             if(m_lumiereHero.rouge>255)
                                                m_lumiereHero.rouge=255;
@@ -921,16 +930,10 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
         }
 
         if(configuration.amelioration_lampes)
-        for(int z=0;z<2;z++)
+        for(int z=0;z<1;z++)
             for(int i=0;i<vueMax.y-vueMin.y;i++)
             for(int j=0;j<vueMax.x-vueMin.x;j++)
             {
-                /*int nombrePourtour=0;
-                Lumiere pourtour;
-                pourtour.intensite=0;
-                pourtour.rouge=0;
-                pourtour.vert=0;
-                pourtour.bleu=0;*/
                 for(int y=-1;y<=1;y++)
                     for(int w=-1;w<=1;w++)
                         if(!((y==0&&w==0)))
@@ -987,7 +990,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
 
 }
 
-void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero)
+void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonnee positionSouris)
 {
 	coordonnee position,positionPartieDecor,vueMin,vueMax,positionHero;
 
@@ -1125,7 +1128,8 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero)
                                     }
                                 }
 
-                                positionHero.y=(int)((hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y)/COTE_TILE*32);
+                                positionHero.y=(int)((hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y)*DIVISEUR_COTE_TILE*32);
+                                positionHero.x=(int)(((hero->m_personnage.getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().y)*DIVISEUR_COTE_TILE-1+m_decor[0].size())*64);
 
                                 if(position.x+positionPartieDecor.w>=ViewRect.Left&&position.x<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y-positionPartieDecor.h+64<ViewRect.Bottom)
                                 {
@@ -1136,16 +1140,25 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero)
 
                                     if(couche==1&&positionPartieDecor.h>256)
                                     {
-                                        alpha=(int)fabs(position.y-(positionHero.y+32))*2-128;
+                                        alpha=(int)fabs(position.y-(positionHero.y+32));
                                         if(position.y>positionHero.y+32)
-                                            alpha=(int)((positionHero.y+32)-position.y)*2-128;
+                                            alpha=96;
+
+                                        if(alpha<96)
+                                            alpha=96;
+                                        if(alpha>255)
+                                            alpha=255;
+
+
+                                        float nombre=gpl::sqrt(fabs(positionSouris.x/camera->Zoom-position.x+ViewRect.Left)*fabs(positionSouris.x/camera->Zoom-position.x+ViewRect.Left)+fabs(positionSouris.y/camera->Zoom-position.y+ViewRect.Top)*fabs(positionSouris.y/camera->Zoom-position.y+ViewRect.Top))*0.5;                                      if(nombre<alpha)
+                                        if(nombre<alpha)
+                                            alpha=(int)nombre;
                                     }
 
 
-                                    if(alpha<96)
-                                        alpha=96;
-                                    if(alpha>255)
-                                        alpha=255;
+
+                                    if(alpha<64)
+                                        alpha=64;
 
 
 
@@ -1323,11 +1336,13 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero)
 
 	if(type==2)
 	{
-
         vueMin.x=hero->m_personnage.getCoordonnee().x-20;
         vueMin.y=hero->m_personnage.getCoordonnee().y-20;
         vueMax.x=hero->m_personnage.getCoordonnee().x+20;
         vueMax.y=hero->m_personnage.getCoordonnee().y+20;
+
+        Sprite.SetRotationCenter(4*configuration.Resolution.x/800,4*configuration.Resolution.y/600);
+        Sprite.SetRotation(45);
 
         /*if(vueMin.x<0) { vueMin.x=0; }
         if(vueMin.y<0) { vueMin.y=0; }
@@ -1339,56 +1354,40 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero)
                 {
                     position.x=((k-vueMin.x)-(j-vueMin.y)-1+40)*6*configuration.Resolution.x/800;
                     position.y=((k-vueMin.x)+(j-vueMin.y))*6*configuration.Resolution.y/600;
-
-                    if(getTypeCase(k,j)==1)
+                    if(position.x+465*configuration.Resolution.x/800>600*configuration.Resolution.x/800&&position.x+465*configuration.Resolution.x/800<800*configuration.Resolution.x/800&&position.y*configuration.Resolution.y/600>0&&position.y-140*configuration.Resolution.y/600<195*configuration.Resolution.y/600)
                     {
-                        if(position.x+465*configuration.Resolution.x/800>600*configuration.Resolution.x/800&&position.x+465*configuration.Resolution.x/800<800*configuration.Resolution.x/800&&position.y*configuration.Resolution.y/600>0&&position.y-140*configuration.Resolution.y/600<195*configuration.Resolution.y/600)
+                        if(getTypeCase(k,j)==1)
                         {
                             Sprite.SetImage(carreBrun);
-                            Sprite.SetRotationCenter(4*configuration.Resolution.x/800,4*configuration.Resolution.y/600);
-                            Sprite.SetRotation(45);
                             Sprite.SetLeft(position.x+465*configuration.Resolution.x/800);
                             Sprite.SetTop(position.y-140*configuration.Resolution.y/600);
                             ecran->Draw(Sprite);
                         }
-                    }
 
-                    if(getTypeCase(k,j)==2)
-                    {
-
-                        if(position.x+465*configuration.Resolution.x/800>600*configuration.Resolution.x/800&&position.x+465*configuration.Resolution.x/800<800*configuration.Resolution.x/800&&position.y-140*configuration.Resolution.y/600>0&&position.y-140*configuration.Resolution.y/600<195*configuration.Resolution.y/600)
+                        if(getTypeCase(k,j)==2)
                         {
                             Sprite.SetImage(carreRouge);
-                            Sprite.SetRotationCenter(4*configuration.Resolution.x/800,4*configuration.Resolution.y/600);
-                            Sprite.SetRotation(45);
+
                             Sprite.SetLeft(position.x+465*configuration.Resolution.x/800);
                             Sprite.SetTop(position.y-140*configuration.Resolution.y/600);
                             ecran->Draw(Sprite);
                         }
-                    }
 
-                    if(getTypeCase(k,j)==3)
-                    {
-
-                        if(position.x+465*configuration.Resolution.x/800>600*configuration.Resolution.x/800&&position.x+465*configuration.Resolution.x/800<800*configuration.Resolution.x/800&&position.y-140*configuration.Resolution.y/600>0&&position.y-140*configuration.Resolution.y/600<195*configuration.Resolution.y/600)
+                        if(getTypeCase(k,j)==3)
                         {
-                            Sprite.SetImage(carreVert);
-                            Sprite.SetRotationCenter(4*configuration.Resolution.x/800,4*configuration.Resolution.y/600);
-                            Sprite.SetRotation(45);
-                            Sprite.SetLeft(position.x+465*configuration.Resolution.x/800);
-                            Sprite.SetTop(position.y-140*configuration.Resolution.y/600);
-                            ecran->Draw(Sprite);
+                                Sprite.SetImage(carreVert);
+                                Sprite.SetLeft(position.x+465*configuration.Resolution.x/800);
+                                Sprite.SetTop(position.y-140*configuration.Resolution.y/600);
+                                ecran->Draw(Sprite);
                         }
-                    }
 
-                    if(hero->m_personnage.getCoordonnee().x==k&&hero->m_personnage.getCoordonnee().y==j)
-                    {
-                            Sprite.SetImage(carreBleu);
-                            Sprite.SetRotationCenter(4*configuration.Resolution.x/800,4*configuration.Resolution.y/600);
-                            Sprite.SetRotation(45);
-                            Sprite.SetLeft(position.x+465*configuration.Resolution.x/800);
-                            Sprite.SetTop(position.y-140*configuration.Resolution.y/600);
-                            ecran->Draw(Sprite);
+                        if(hero->m_personnage.getCoordonnee().x==k&&hero->m_personnage.getCoordonnee().y==j)
+                        {
+                                Sprite.SetImage(carreBleu);
+                                Sprite.SetLeft(position.x+465*configuration.Resolution.x/800);
+                                Sprite.SetTop(position.y-140*configuration.Resolution.y/600);
+                                ecran->Draw(Sprite);
+                        }
                     }
                 }
             }
@@ -1543,7 +1542,8 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu
                 if(tempsEcouleDepuisDernierAffichage>0.01)
                 {
                     ecran->SetView(camera);
-                    Afficher(ecran,camera,1,hero);
+                    coordonnee temp;
+                    Afficher(ecran,camera,1,hero,temp);
                     ecran->SetView(NULL);
                     if(configuration.Minimap)
                     {
@@ -1629,7 +1629,8 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu
 				if(tempsEcouleDepuisDernierAffichage>0.01)
                 {
                     ecran->SetView(camera);
-                    Afficher(ecran,camera,1,hero);
+                    coordonnee temp;
+                    Afficher(ecran,camera,1,hero,temp);
                     ecran->SetView(NULL);
                     if(configuration.Minimap)
                     {
