@@ -1080,7 +1080,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero)
                         if(m_decor[couche][j][k].getTileset()>=0&&m_decor[couche][j][k].getTileset()<m_tileset.size())
                         {
                             positionPartieDecor=m_tileset[m_decor[couche][j][k].getTileset()].getPositionDuTile(m_decor[couche][j][k].getTile());
-                            if(position.x+positionPartieDecor.h*2+positionPartieDecor.w>=ViewRect.Left&&position.x-positionPartieDecor.h*2<ViewRect.Right&&position.y+positionPartieDecor.h+positionPartieDecor.w>=ViewRect.Top&&position.y-positionPartieDecor.h<ViewRect.Bottom+100&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()&&configuration.Ombre&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()))
+                            if(position.x+positionPartieDecor.h*2+positionPartieDecor.w>=ViewRect.Left&&position.x-positionPartieDecor.h*2-positionPartieDecor.w-64<ViewRect.Right&&position.y+positionPartieDecor.h+positionPartieDecor.w>=ViewRect.Top&&position.y-positionPartieDecor.h-32<ViewRect.Bottom+100&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()&&configuration.Ombre&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()))
                             ||position.x+positionPartieDecor.w>=ViewRect.Left&&position.x<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y<ViewRect.Bottom)
                             {
                                 Sprite.SetImage(*m_tileset[m_decor[couche][j][k].getTileset()].getImage());
@@ -1114,7 +1114,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero)
                                     }
                                 }
 
-                                positionHero.y=(int)(hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y)/COTE_TILE*32;
+                                positionHero.y=(int)((hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y)/COTE_TILE*32);
 
                                 if(position.x+positionPartieDecor.w>=ViewRect.Left&&position.x<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y-positionPartieDecor.h+64<ViewRect.Bottom)
                                 {
@@ -1200,32 +1200,35 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero)
 
                         if(m_decor[couche][w][z].getTileset()>=0&&m_decor[couche][w][z].getTileset()<m_tileset.size())
                         {
-
-                            positionPartieDecor=m_tileset[m_decor[couche][w][z].getTileset()].getPositionDuTile(m_decor[couche][w][z].getTile());
-                            //positionPartieDecor.h/=2;
-                            if(position.x+positionPartieDecor.w>=ViewRect.Left&&position.x<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y-positionPartieDecor.h+64<ViewRect.Bottom)
+                            if(couche==0||couche==1&&!((float)j/2==(int)j/2&&(float)k/2==(int)k/2))
                             {
-                                if(configuration.Lumiere)
+
+                                positionPartieDecor=m_tileset[m_decor[couche][w][z].getTileset()].getPositionDuTile(m_decor[couche][w][z].getTile());
+                                //positionPartieDecor.h/=2;
+                                if(position.x+positionPartieDecor.w>=ViewRect.Left&&position.x<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y-positionPartieDecor.h+64<ViewRect.Bottom)
                                 {
-                                    Sprite.SetColor(sf::Color(
-                                            (int)(((double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].intensite*(double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].rouge)*0.85/255),
-                                            (int)(((double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].intensite*(double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].vert)*0.85/255),
-                                            (int)(((double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].intensite*(double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].bleu)*0.85/255),
-                                            255));
+                                    if(configuration.Lumiere)
+                                    {
+                                        Sprite.SetColor(sf::Color(
+                                                (int)(((double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].intensite*(double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].rouge)*0.85/255),
+                                                (int)(((double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].intensite*(double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].vert)*0.85/255),
+                                                (int)(((double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].intensite*(double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].bleu)*0.85/255),
+                                                255));
+                                    }
+                                    else
+                                    {
+                                        Sprite.SetColor(sf::Color(
+                                                216,
+                                                216,
+                                                216,
+                                                255));
+                                    }
+                                    Sprite.SetImage(*m_tileset[m_decor[couche][w][z].getTileset()].getImage());
+                                    Sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
+                                    Sprite.SetLeft(position.x+64-positionPartieDecor.w/2);
+                                    Sprite.SetTop(position.y-positionPartieDecor.h+64);
+                                    ecran->Draw(Sprite);
                                 }
-                                else
-                                {
-                                    Sprite.SetColor(sf::Color(
-                                            216,
-                                            216,
-                                            216,
-                                            255));
-                                }
-                                Sprite.SetImage(*m_tileset[m_decor[couche][w][z].getTileset()].getImage());
-                                Sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
-                                Sprite.SetLeft(position.x+64-positionPartieDecor.w/2);
-                                Sprite.SetTop(position.y-positionPartieDecor.h+64);
-                                ecran->Draw(Sprite);
                             }
                         }
                     }
