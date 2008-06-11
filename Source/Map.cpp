@@ -1140,7 +1140,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                                     if(couche==1&&positionPartieDecor.h>256)
                                     {
-                                        alpha=(int)fabs(position.y-(positionHero.y+32));
+                                        alpha=(int)fabs(position.y-(positionHero.y+32))+64;
                                         if(position.y>positionHero.y+32)
                                             alpha=96;
 
@@ -1150,7 +1150,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                             alpha=255;
 
 
-                                        float nombre=gpl::sqrt(fabs(positionSouris.x/camera->Zoom-position.x+ViewRect.Left)*fabs(positionSouris.x/camera->Zoom-position.x+ViewRect.Left)+fabs(positionSouris.y/camera->Zoom-position.y+ViewRect.Top)*fabs(positionSouris.y/camera->Zoom-position.y+ViewRect.Top))*0.5;                                      if(nombre<alpha)
+                                        float nombre=gpl::sqrt(fabs(positionSouris.x/camera->Zoom-position.x+ViewRect.Left)*fabs(positionSouris.x/camera->Zoom-position.x+ViewRect.Left)+fabs(positionSouris.y/camera->Zoom-position.y+ViewRect.Top+positionPartieDecor.h/2)*fabs(positionSouris.y/camera->Zoom-position.y+ViewRect.Top+positionPartieDecor.h/2))*0.5;
                                         if(nombre<alpha)
                                             alpha=(int)nombre;
                                     }
