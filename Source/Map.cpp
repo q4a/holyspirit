@@ -1088,7 +1088,75 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                              ecran->Draw(Sprite);
                                         }
                                 }
+
+                        if(hero->m_personnage.getCoordonnee().x==hero->m_personnage.getProchaineCase().x&&hero->m_personnage.getCoordonnee().y==hero->m_personnage.getProchaineCase().y)
+                        {
+                            if(hero->m_personnage.getCoordonnee().x==k&&hero->m_personnage.getCoordonnee().y==j)
+                                hero->m_personnage.Afficher(ecran,camera,position,getDimensions(),&m_lumiereHero,&hero->m_modelePersonnage);
                         }
+                        else
+                        {
+                            if(hero->m_personnage.getCoordonnee().x>hero->m_personnage.getProchaineCase().x&&hero->m_personnage.getCoordonnee().y>hero->m_personnage.getProchaineCase().y)
+                            {
+                                if(hero->m_personnage.getProchaineCase().x+1==k&&hero->m_personnage.getProchaineCase().y+1==j)
+                                    hero->m_personnage.Afficher(ecran,camera,position,getDimensions(),&m_lumiereHero,&hero->m_modelePersonnage);
+                            }
+                            else
+                                if(hero->m_personnage.getProchaineCase().x==k&&hero->m_personnage.getProchaineCase().y==j)
+                                    hero->m_personnage.Afficher(ecran,camera,position,getDimensions(),&m_lumiereHero,&hero->m_modelePersonnage);
+                        }
+
+                        if(j>=0&&j<m_decor[0].size()&&k>=0&&k<m_decor[0][0].size())
+                        {
+                            if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
+                                m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_tableauDesLampes[j-vueMin.y][k-vueMin.x],&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
+                            if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
+                                m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_tableauDesLampes[j-vueMin.y][k-vueMin.x],&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
+                        }
+
+
+
+
+                        if(j>=0&&j<m_decor[0].size()&&k>=0&&k<m_decor[0][0].size())
+                            if(configuration.Herbes)
+                                if(m_decor[1][j][k].getHerbe()>=0&&m_decor[1][j][k].getHerbe()<m_herbe.size())
+                                {
+                                    position.x=(k-j-1+m_decor[1].size())*64;
+                                    position.y=(k+j)*32;
+                                    positionPartieDecor=m_herbe[m_decor[1][j][k].getHerbe()].getPositionDuTile(m_decor[1][j][k].getNumeroHerbe());
+
+                                    position.y-=32;
+                                    position.y+=positionPartieDecor.h/2;
+
+                                    Sprite.SetImage(*m_herbe[m_decor[1][j][k].getHerbe()].getImage());
+                                    Sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
+
+                                    if(position.x+positionPartieDecor.w>=ViewRect.Left&&position.x<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y-positionPartieDecor.h+64<ViewRect.Bottom)
+                                        {
+                                            Sprite.SetLeft(position.x+64-positionPartieDecor.w/2);
+                                            Sprite.SetTop(position.y-positionPartieDecor.h+64);
+
+                                            if(configuration.Lumiere)
+                                            {
+                                                Sprite.SetColor(sf::Color(
+                                                    (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].intensite*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].rouge)/255,
+                                                    (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].intensite*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].vert)/255,
+                                                    (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].intensite*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].bleu)/255,
+                                                    255));
+                                            }
+                                            else
+                                            {
+                                                Sprite.SetColor(sf::Color(
+                                                    255,
+                                                    255,
+                                                    255,
+                                                    255));
+                                            }
+
+                                             ecran->Draw(Sprite);
+                                        }
+                                }
+                    }
 
 
                         if(m_decor[couche][j][k].getTileset()>=0&&m_decor[couche][j][k].getTileset()<m_tileset.size())
@@ -1257,77 +1325,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                         }
                     }
 
-                    if(couche==1)
-                    {
 
-                        if(hero->m_personnage.getCoordonnee().x==hero->m_personnage.getProchaineCase().x&&hero->m_personnage.getCoordonnee().y==hero->m_personnage.getProchaineCase().y)
-                        {
-                            if(hero->m_personnage.getCoordonnee().x==k&&hero->m_personnage.getCoordonnee().y==j)
-                                hero->m_personnage.Afficher(ecran,camera,position,getDimensions(),&m_lumiereHero,&hero->m_modelePersonnage);
-                        }
-                        else
-                        {
-                            if(hero->m_personnage.getCoordonnee().x>hero->m_personnage.getProchaineCase().x&&hero->m_personnage.getCoordonnee().y>hero->m_personnage.getProchaineCase().y)
-                            {
-                                if(hero->m_personnage.getProchaineCase().x+1==k&&hero->m_personnage.getProchaineCase().y+1==j)
-                                    hero->m_personnage.Afficher(ecran,camera,position,getDimensions(),&m_lumiereHero,&hero->m_modelePersonnage);
-                            }
-                            else
-                                if(hero->m_personnage.getProchaineCase().x==k&&hero->m_personnage.getProchaineCase().y==j)
-                                    hero->m_personnage.Afficher(ecran,camera,position,getDimensions(),&m_lumiereHero,&hero->m_modelePersonnage);
-                        }
-
-                        if(j>=0&&j<m_decor[0].size()&&k>=0&&k<m_decor[0][0].size())
-                        {
-                            if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
-                                m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_tableauDesLampes[j-vueMin.y][k-vueMin.x],&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
-                            if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
-                                m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_tableauDesLampes[j-vueMin.y][k-vueMin.x],&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
-                        }
-
-
-
-
-                        if(j>=0&&j<m_decor[0].size()&&k>=0&&k<m_decor[0][0].size())
-                            if(configuration.Herbes)
-                                if(m_decor[1][j][k].getHerbe()>=0&&m_decor[1][j][k].getHerbe()<m_herbe.size())
-                                {
-                                    position.x=(k-j-1+m_decor[1].size())*64;
-                                    position.y=(k+j)*32;
-                                    positionPartieDecor=m_herbe[m_decor[1][j][k].getHerbe()].getPositionDuTile(m_decor[1][j][k].getNumeroHerbe());
-
-                                    position.y-=32;
-                                    position.y+=positionPartieDecor.h/2;
-
-                                    Sprite.SetImage(*m_herbe[m_decor[1][j][k].getHerbe()].getImage());
-                                    Sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
-
-                                    if(position.x+positionPartieDecor.w>=ViewRect.Left&&position.x<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y-positionPartieDecor.h+64<ViewRect.Bottom)
-                                        {
-                                            Sprite.SetLeft(position.x+64-positionPartieDecor.w/2);
-                                            Sprite.SetTop(position.y-positionPartieDecor.h+64);
-
-                                            if(configuration.Lumiere)
-                                            {
-                                                Sprite.SetColor(sf::Color(
-                                                    (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].intensite*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].rouge)/255,
-                                                    (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].intensite*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].vert)/255,
-                                                    (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].intensite*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].bleu)/255,
-                                                    255));
-                                            }
-                                            else
-                                            {
-                                                Sprite.SetColor(sf::Color(
-                                                    255,
-                                                    255,
-                                                    255,
-                                                    255));
-                                            }
-
-                                             ecran->Draw(Sprite);
-                                        }
-                                }
-                    }
                 }
             }
         }
