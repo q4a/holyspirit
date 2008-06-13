@@ -7,6 +7,7 @@ lumieres: 1
 lumiere_fondu: 0
 amelioration_des_lampes: 1
 herbes: 1
+postFX: 1
 
 MUSIQUES
 volume: 100
