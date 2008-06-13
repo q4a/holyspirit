@@ -1,4 +1,5 @@
 #include "liste_case.h"
+#include "globale.h"
 
 #include <iostream>
 
@@ -37,7 +38,7 @@ bool liste_case::testerCasesEnCours(coordonnee caseCherchee)
 	return 0;
 }
 
-void liste_case::ajouterCasesAdjacentes(std::vector<std::vector<bool> > grille)
+bool liste_case::ajouterCasesAdjacentes(std::vector<std::vector<bool> > grille,coordonnee *arrivee)
 {
 	coordonnee enCours;
 
@@ -49,49 +50,105 @@ void liste_case::ajouterCasesAdjacentes(std::vector<std::vector<bool> > grille)
 			enCours.y=m_liste[i].getPosition().y;
 			if(enCours.x>=0&&enCours.y>=0&&enCours.x<20&&enCours.y<20)
 				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x])
+				{
 					ajouterCase(enCours);
+				}
+                else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x])
+                {
+                    arrivee->x=m_liste[i].getPosition().x,arrivee->y=m_liste[i].getPosition().y;
+                    return 0;
+                }
 
 			enCours.x=m_liste[i].getPosition().x-1;
 			enCours.y=m_liste[i].getPosition().y;
 			if(enCours.x>=0&&enCours.y>=0&&enCours.x<20&&enCours.y<20)
 				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x])
+				{
 					ajouterCase(enCours);
+				}
+                else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x])
+                {
+                    arrivee->x=m_liste[i].getPosition().x,arrivee->y=m_liste[i].getPosition().y;
+                    return 0;
+                }
 
 			enCours.x=m_liste[i].getPosition().x;
 			enCours.y=m_liste[i].getPosition().y+1;
 			if(enCours.x>=0&&enCours.y>=0&&enCours.x<20&&enCours.y<20)
 				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x])
+				{
 					ajouterCase(enCours);
+				}
+                else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x])
+                {
+                    arrivee->x=m_liste[i].getPosition().x,arrivee->y=m_liste[i].getPosition().y;
+                    return 0;
+                }
 
 			enCours.x=m_liste[i].getPosition().x;
 			enCours.y=m_liste[i].getPosition().y-1;
 			if(enCours.x>=0&&enCours.y>=0&&enCours.x<20&&enCours.y<20)
 				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x])
+				{
 					ajouterCase(enCours);
+				}
+                else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x])
+                {
+                    arrivee->x=m_liste[i].getPosition().x,arrivee->y=m_liste[i].getPosition().y;
+                    return 0;
+                }
 
 			enCours.x=m_liste[i].getPosition().x+1;
 			enCours.y=m_liste[i].getPosition().y+1;
 			if(enCours.x>=0&&enCours.y>=0&&enCours.x<20&&enCours.y<20)
 				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x])
+				{
 					ajouterCase(enCours);
+				}
+                else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x])
+                {
+                    arrivee->x=m_liste[i].getPosition().x,arrivee->y=m_liste[i].getPosition().y;
+                    return 0;
+                }
 
 			enCours.x=m_liste[i].getPosition().x-1;
 			enCours.y=m_liste[i].getPosition().y-1;
 			if(enCours.x>=0&&enCours.y>=0&&enCours.x<20&&enCours.y<20)
 				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x])
+				{
 					ajouterCase(enCours);
+				}
+                else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x])
+                {
+                    arrivee->x=m_liste[i].getPosition().x,arrivee->y=m_liste[i].getPosition().y;
+                    return 0;
+                }
 
 			enCours.x=m_liste[i].getPosition().x-1;
 			enCours.y=m_liste[i].getPosition().y+1;
 			if(enCours.x>=0&&enCours.y>=0&&enCours.x<20&&enCours.y<20)
 				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x])
+				{
 					ajouterCase(enCours);
+				}
+                else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x])
+                {
+                    arrivee->x=m_liste[i].getPosition().x,arrivee->y=m_liste[i].getPosition().y;
+                    return 0;
+                }
 
 			enCours.x=m_liste[i].getPosition().x+1;
 			enCours.y=m_liste[i].getPosition().y-1;
 			if(enCours.x>=0&&enCours.y>=0&&enCours.x<20&&enCours.y<20)
 				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x])
+				{
 					ajouterCase(enCours);
+				}
+                else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x])
+                {
+                    arrivee->x=m_liste[i].getPosition().x,arrivee->y=m_liste[i].getPosition().y;
+                    return 0;
+                }
 		}
 }
 
@@ -161,6 +218,12 @@ coordonnee liste_case::trouverLeChemin(coordonnee caseEnCours)
 
 			enCours.y=m_liste[i].getPosition().y-1;
 			enCours.x=m_liste[i].getPosition().x-1;
+			for(int j=0;j<m_liste.size();j++)
+				if(m_liste[j].getDistance()==m_distanceEnCours-1&&m_liste[j].getPosition().x==enCours.x&&m_liste[j].getPosition().y==enCours.y)
+					return m_liste[j].getPosition();
+
+            enCours.y=m_liste[i].getPosition().y;
+			enCours.x=m_liste[i].getPosition().x;
 			for(int j=0;j<m_liste.size();j++)
 				if(m_liste[j].getDistance()==m_distanceEnCours-1&&m_liste[j].getPosition().x==enCours.x&&m_liste[j].getPosition().y==enCours.y)
 					return m_liste[j].getPosition();

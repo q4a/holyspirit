@@ -69,7 +69,7 @@ struct Configuration
 {
     coordonnee Resolution;
     bool Ombre,Lumiere,Minimap,FonduLumiere,amelioration_lampes,console,Herbes;
-    float effetMort,volume,minute;
+    float effetMort,volume,minute,postFX;
     int heure;
     std::string version,chemin_maps,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetBlur,nom_effetColorize,nom_hud,nom_minimap;
 };
@@ -136,17 +136,6 @@ class LumiereOmbrage : public Lumiere
         }
 
     }
-    LumiereOmbrage LumiereOmbrage::operator=(const Lumiere &lumiere)
-    {
-        intensite = lumiere.intensite;
-        rouge = lumiere.rouge;
-        vert = lumiere.vert;
-        bleu = lumiere.bleu;
-        hauteur = lumiere.hauteur;
-
-        return *this;
-    }
-
     LumiereOmbrage LumiereOmbrage::operator=(const LumiereOmbrage &lumiere)
     {
         intensite = lumiere.intensite;
@@ -163,10 +152,23 @@ class LumiereOmbrage : public Lumiere
             m_ombre[i].intensite=lumiere.m_ombre[i].intensite;
             m_ombre[i].intensiteBasique=lumiere.m_ombre[i].intensiteBasique;
             m_ombre[i].angle=lumiere.m_ombre[i].angle;
+            m_ombre[i].taille=lumiere.m_ombre[i].taille;
         }
 
         return *this;
     }
+    LumiereOmbrage LumiereOmbrage::operator=(const Lumiere &lumiere)
+    {
+        intensite = lumiere.intensite;
+        rouge = lumiere.rouge;
+        vert = lumiere.vert;
+        bleu = lumiere.bleu;
+        hauteur = lumiere.hauteur;
+
+        return *this;
+    }
+
+
 
     /*LumiereOmbrage LumiereOmbrage::operator=(const LumiereOmbrage &lumiere)
     {

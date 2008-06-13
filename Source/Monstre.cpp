@@ -12,6 +12,7 @@ Monstre::Monstre()
 {
     m_vu=0;
     m_modele=-1;
+    m_vitesse=0.7;
 }
 
 void Monstre::Charger(int numero,Modele_Monstre modele)
@@ -21,8 +22,15 @@ void Monstre::Charger(int numero,Modele_Monstre modele)
 
 int Monstre::getModele(){ return m_modele; }
 
+void Monstre::testerVision(coordonnee positionHero)
+{
+    if(fabs(positionHero.x-m_positionCase.x)<5&&fabs(positionHero.y-m_positionCase.y)<5)
+        m_vu=1;
+    if(fabs(positionHero.x-m_positionCase.x)>20||fabs(positionHero.y-m_positionCase.y)>20)
+        m_vu=0,m_etat=0;
+}
 
-
+bool Monstre::getVu(){return m_vu;}
 
 bool Modele_Monstre::Charger(string chemin)
 {
@@ -52,6 +60,7 @@ bool Modele_Monstre::Charger(string chemin)
     		}
     	}while(caractere!='$');
 
+    	m_buffer.clear();
     	do
     	{
     		fichier.get(caractere);

@@ -1,3 +1,5 @@
+#ifndef MONSTREH
+#define MONSTREH
 
 #include "Personnage.h"
 #include "Constantes.h"
@@ -14,7 +16,10 @@ class Monstre : public Personnage
     public:
     Monstre();
     void Charger(int numero,Modele_Monstre modele);
+    void testerVision(coordonnee positionHero);
     int getModele();
+
+    bool getVu();
 
     private:
     bool m_vu;
@@ -22,4 +27,4 @@ class Monstre : public Personnage
 };
 
 
-
+#endif

@@ -8,11 +8,11 @@ using namespace sf;
 bool Jeu(RenderWindow *ecran)
 {
 	Clock Clock;
-	bool continuer=true,lumiere=false,augmenter=true;
+	bool continuer=true,lumiere=false,augmenter=false;
 	char chaine[10];
 	View camera(FloatRect(0, 0, configuration.Resolution.x,configuration.Resolution.y), 1.f);
 	View miniMap(FloatRect(0, 0, configuration.Resolution.x, configuration.Resolution.y), 0.125);
-	float tempsActuel=0,tempsPrecedent=0,tempsDepuisDerniereAnimation=0,tempsEcoule=0,tempsEcouleDepuisDernierDeplacement=0,tempsEcouleDepuisDernierAffichage=0,tempsEcouleDepuisFPS=0,tempsEffetMort=0;
+	float tempsActuel=0,tempsPrecedent=0,tempsDepuisDerniereAnimation=0,tempsEcoule=0,tempsEcouleDepuisDernierDeplacement=0,tempsEcouleDepuisDernierAffichage=0,tempsEcouleDepuisFPS=0,tempsEffetMort=1;
 
 	configuration.heure=(rand() % (24));
 	configuration.minute=0;
@@ -47,7 +47,7 @@ bool Jeu(RenderWindow *ecran)
 
      sf::PostFX EffectBlur,EffectColorize;
 
-    if (sf::PostFX::CanUsePostFX() == true)
+    if (sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
     {
         if(!EffectBlur.LoadFromFile(configuration.chemin_fx+configuration.nom_effetBlur))
                     console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetBlur,1);
@@ -121,11 +121,15 @@ bool Jeu(RenderWindow *ecran)
 			{
 				if(hero.m_personnage.seDeplacer(tempsEcouleDepuisDernierDeplacement*100))
 					hero.m_personnage.pathfinding(map.getAlentourDuPersonnage(hero.m_personnage.getCoordonnee())); // Recherche du chemin
+				if(hero.getEnemiVise()>-1)
+                    hero.testMontreVise(map.getEntiteMonstre(hero.getEnemiVise()),map.getDimensions().y);
 
 				if(!map.testEvenement(ecran,&hero,&camera,&menu)) // On test les événement pour voir s'il on doit changer de map, faire des dégats au perso, le régénérer, etc
                     return 0;
 
 				hero.placerCamera(&camera,map.getDimensions()); // On place la camera suivant ou se trouve le perso
+
+				map.gererMonstres(&hero,tempsEcouleDepuisDernierDeplacement);
 
 				ecran->SetView(&camera);
 
@@ -160,16 +164,16 @@ bool Jeu(RenderWindow *ecran)
 
 			///Animation
 
-			if(tempsDepuisDerniereAnimation>0.075)
+			if(tempsDepuisDerniereAnimation>0.05)
 			{
-			    hero.m_personnage.animer(&hero.m_modelePersonnage,map.getDimensions().y); //Animation du héro
-                map.animer(&hero); // Animation des tiles de la map
+			    hero.m_personnage.animer(&hero.m_modelePersonnage,map.getDimensions().y,tempsDepuisDerniereAnimation); //Animation du héro
+                map.animer(&hero,tempsDepuisDerniereAnimation); // Animation des tiles de la map
                 tempsDepuisDerniereAnimation=0;
 			}
 
 			///Affichage
 
-			if(tempsEcouleDepuisDernierAffichage>0.01)
+			if(tempsEcouleDepuisDernierAffichage>0)
 			{
                 ecran->SetView(&camera);
 
@@ -190,7 +194,7 @@ bool Jeu(RenderWindow *ecran)
                 if(map.getEvenement(eventManager.getCasePointee())>=0)
                     map.AfficherNomEvenement(ecran,eventManager.getCasePointee(),eventManager.getPositionSouris());
 
-                if(configuration.effetMort&&sf::PostFX::CanUsePostFX() == true)
+                if(configuration.effetMort&&sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
                 {
                     EffectBlur.SetParameter("offset", 0.01*configuration.effetMort/100*(0.6+tempsEffetMort/10));
                     EffectColorize.SetParameter("color",1+1*configuration.effetMort/100*tempsEffetMort, 1-0.5*configuration.effetMort/100*tempsEffetMort, 1-0.5*configuration.effetMort/100*tempsEffetMort);

@@ -20,6 +20,12 @@ class Decor
 	Decor(int tileset,int tile,int evenement,int monstre,int herbe);
 	void setDecor(int tileset,int tile,int evenement,int monstre,int herbe); //Définir une valeur au décor
 	void setNumeroHerbe(int numero);
+	void setMonstre(int monstre);
+
+	float getAnimation();
+
+	void decrementerAnimation();
+	void augmenterAnimation(float temps);
 
 	int getTile(); // Prendre le numéro du tile du décor
 	int getTileset(); // Prendre le numéro du tileset du décor
@@ -31,6 +37,7 @@ class Decor
 
 	private:
 	int m_tileset,m_tile,m_evenement,m_monstre,m_herbe,m_numeroHerbe;
+	float m_animation;
 	coordonnee m_position;
 };
 

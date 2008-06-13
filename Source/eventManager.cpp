@@ -149,9 +149,20 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
         m_casePointee.y=map->getDimensions().y;
 
 	if(m_Clic[Mouse::Left])
-			hero->m_personnage.setArrivee(m_casePointee);
+	{
+
+        hero->setMonstreVise(-1);
+        hero->setMonstreVise(map->getMonstre(hero,camera,ecran,m_positionSouris));
+        if(hero->getEnemiVise()==-1)
+         hero->m_personnage.setArrivee(m_casePointee);
+	}
 	if(m_Clic[Mouse::Right])
-        hero->m_personnage.frappe(m_positionSouris);
+	{
+	    coordonnee temp;
+	    temp.x=configuration.Resolution.x/2;
+	    temp.y=configuration.Resolution.y/2;
+        hero->m_personnage.frappe(m_positionSouris,temp);
+	}
 }
 
 void EventManager::AfficherCurseur(sf::RenderWindow *ecran)

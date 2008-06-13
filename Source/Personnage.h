@@ -48,7 +48,7 @@ class Personnage
 	coordonnee getCoordonnee();
 	coordonnee getCoordonneePixel();
 	coordonnee getProchaineCase();
-	void animer(Modele_Personnage *modele,int hauteur_map);
+	void animer(Modele_Personnage *modele,int hauteur_map,float temps);
 
 	bool seDeplacer(float);
 	void setCoordonnee(coordonnee nouvellesCoordonnees);
@@ -57,13 +57,19 @@ class Personnage
 
 	int pathfinding(std::vector<std::vector<bool> > map);
 
-	void frappe(coordonnee direction);
+	void frappe(coordonnee direction,coordonnee position);
 
 	void setArrivee(coordonnee arrivee);
 	void setEtat(int  etat);
+	void setVitesse(float vitesse);
+	void setCoordonneePixel(coordonnee position);
+	void setProchaineCase(coordonnee position);
+
+	int getEtat();
 
 	protected:
-	int m_etat,m_poseEnCours,m_angle,m_animation;
+	int m_etat,m_poseEnCours,m_angle;
+	float m_animation,m_vitesse;
 	coordonnee m_cheminFinal,m_arrivee,m_ancienneArrivee,m_mauvaiseArrivee, m_positionCase,m_positionAffichage,m_positionPixelPrecedente;
 	coordonneeDecimal m_positionPixel;
 };

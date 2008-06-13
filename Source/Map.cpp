@@ -21,7 +21,7 @@ Map::Map()
     carreRouge.SetSmooth(false);
     carreVert.SetSmooth(false);
 
-    if (sf::PostFX::CanUsePostFX() == true)
+    if (sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
     {
         lumiereMask.LoadFromFile("Data/Menus/lumiereMask.png");
     }
@@ -1108,10 +1108,33 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                         if(j>=0&&j<m_decor[0].size()&&k>=0&&k<m_decor[0][0].size())
                         {
-                            if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
-                                m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_tableauDesLampes[j-vueMin.y][k-vueMin.x],&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
-                            if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
-                                m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_tableauDesLampes[j-vueMin.y][k-vueMin.x],&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
+                            if(positionSouris.x/camera->Zoom+ViewRect.Left>position.x+16&&positionSouris.x/camera->Zoom+ViewRect.Left<position.x+96/camera->Zoom&&positionSouris.y/camera->Zoom+ViewRect.Top>position.y-48/camera->Zoom&&positionSouris.y/camera->Zoom+ViewRect.Top<position.y+64/camera->Zoom)
+                            {
+
+                                LumiereOmbrage temp;
+                                temp=m_tableauDesLampes[j-vueMin.y][k-vueMin.x];
+
+                                temp.rouge*=2;
+                                temp.vert/=2;
+                                temp.bleu/=2;
+
+                                if(temp.rouge>255)
+                                temp.rouge=255;
+
+                                if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
+                                    m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&temp,&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
+                                if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
+                                    m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&temp,&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
+
+                                temp.detruire();
+                            }
+                            else
+                            {
+                                if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
+                                    m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_tableauDesLampes[j-vueMin.y][k-vueMin.x],&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
+                                if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
+                                    m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_tableauDesLampes[j-vueMin.y][k-vueMin.x],&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
+                            }
                         }
 
 
@@ -1425,8 +1448,67 @@ bool Map::getCollision(int positionX,int positionY)
 
         if(m_decor[i][positionY][positionX].getMonstre()>-1)
             return 1;
-	}
 
+        coordonnee enCours;
+
+        enCours.x=positionX+1;
+        enCours.y=positionY+1;
+        if(enCours.x>0&&enCours.y>0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
+        if(m_decor[i][enCours.y][enCours.x].getMonstre()>-1)
+            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
+                    return 1;
+        enCours.x=positionX-1;
+        enCours.y=positionY-1;
+        if(enCours.x>0&&enCours.y>0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
+        if(m_decor[i][enCours.y][enCours.x].getMonstre()>-1)
+            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
+                    return 1;
+        enCours.x=positionX+1;
+        enCours.y=positionY-1;
+        if(enCours.x>0&&enCours.y>0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
+        if(m_decor[i][enCours.y][enCours.x].getMonstre()>-1)
+            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
+                    return 1;
+        enCours.x=positionX-1;
+        enCours.y=positionY+1;
+        if(enCours.x>0&&enCours.y>0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
+        if(m_decor[i][enCours.y][enCours.x].getMonstre()>-1)
+            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
+                    return 1;
+            enCours.x=positionX;
+        enCours.y=positionY+1;
+        if(enCours.x>0&&enCours.y>0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
+        if(m_decor[i][enCours.y][enCours.x].getMonstre()>-1)
+            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
+                    return 1;
+        enCours.x=positionX+1;
+        enCours.y=positionY;
+        if(enCours.x>0&&enCours.y>0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
+        if(m_decor[i][enCours.y][enCours.x].getMonstre()>-1)
+            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
+                    return 1;
+        enCours.x=positionX-1;
+        enCours.y=positionY;
+        if(enCours.x>0&&enCours.y>0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
+        if(m_decor[i][enCours.y][enCours.x].getMonstre()>-1)
+            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
+                    return 1;
+        enCours.x=positionX;
+        enCours.y=positionY-1;
+        if(enCours.x>0&&enCours.y>0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
+        if(m_decor[i][enCours.y][enCours.x].getMonstre()>-1)
+            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
+                    return 1;
+
+	}
 	return 0;
 }
 
@@ -1454,6 +1536,56 @@ int Map::getTypeCase(int positionX,int positionY)
 	return 0;
 }
 
+int Map::getMonstre(Hero *hero,View *camera,RenderWindow *ecran,coordonnee positionSouris)
+{
+    coordonnee vueMin,vueMax;
+
+     const sf::FloatRect& ViewRect = ecran->GetViewRect();
+
+    vueMin.x=hero->m_personnage.getCoordonnee().x-15;
+    vueMin.y=hero->m_personnage.getCoordonnee().y-15;
+    vueMax.x=hero->m_personnage.getCoordonnee().x+15;
+    vueMax.y=hero->m_personnage.getCoordonnee().y+15;
+
+    if(vueMin.x<0) { vueMin.x=0; }
+    if(vueMin.y<0) { vueMin.y=0; }
+    if(vueMax.x>m_decor[0][0].size()) { vueMax.x=m_decor[0][0].size(); }
+    if(vueMax.y>m_decor[0].size()) { vueMax.y=m_decor[0].size(); }
+
+	for(int i=0;i<2;i++)
+        for(int j=vueMin.y;j<vueMax.y;j++)
+            for(int k=vueMin.x;k<vueMax.x;k++)
+                    if(m_decor[i][j][k].getMonstre()>=0&&m_decor[i][j][k].getMonstre()<m_monstre.size())
+                    {
+                        coordonnee temp;
+                        temp.x=(k-j-1+m_decor[1].size())*64;
+                        temp.y=(k+j)*32;
+
+                        if(positionSouris.x/camera->Zoom+ViewRect.Left>temp.x-16/camera->Zoom&&positionSouris.x/camera->Zoom+ViewRect.Left<temp.x+128/camera->Zoom&&positionSouris.y/camera->Zoom+ViewRect.Top>temp.y-48/camera->Zoom&&positionSouris.y/camera->Zoom+ViewRect.Top<temp.y+64/camera->Zoom)
+                            return m_decor[i][j][k].getMonstre();
+                    }
+
+                    return -1;
+   /*f(casePointee.x>=0&&casePointee.x<m_decor[0][0].size()&&casePointee.y>=0&&casePointee.y<m_decor[0].size())
+    {
+        if(m_decor[0][casePointee.y][casePointee.x].getMonstre()>-1)
+            return m_decor[0][casePointee.y][casePointee.x].getMonstre();
+        if(m_decor[1][casePointee.y][casePointee.x].getMonstre()>-1)
+            return m_decor[1][casePointee.y][casePointee.x].getMonstre();
+    }*/
+}
+
+coordonnee Map::getPositionMonstre(int numeroMonstre)
+{
+    if(numeroMonstre>0&&numeroMonstre<m_monstre.size())
+        return m_monstre[numeroMonstre].getCoordonnee();
+}
+
+Monstre *Map::getEntiteMonstre(int numeroMonstre)
+{
+    if(numeroMonstre>=0&&numeroMonstre<m_monstre.size())
+        return &m_monstre[numeroMonstre];
+}
 
 vector<vector<bool> > Map::getAlentourDuPersonnage(coordonnee positionPersonnage)
 {
@@ -1470,7 +1602,7 @@ vector<vector<bool> > Map::getAlentourDuPersonnage(coordonnee positionPersonnage
 }
 
 
-void Map::animer(Hero *hero)
+void Map::animer(Hero *hero,float temps)
 {
     coordonnee vueMin,vueMax;
 
@@ -1488,11 +1620,17 @@ void Map::animer(Hero *hero)
         for(int j=vueMin.y;j<vueMax.y;j++)
             for(int k=vueMin.x;k<vueMax.x;k++)
             {
-                if(m_decor[i][j][k].getTileset()>=0&&m_decor[i][j][k].getTileset()<m_tileset.size())
-                    if(m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile())>=0)
-                        m_decor[i][j][k].setDecor(m_decor[i][j][k].getTileset(),m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile()),m_decor[i][j][k].getEvenement(),m_decor[i][j][k].getMonstre(),m_decor[i][j][k].getHerbe());
-                if(m_decor[i][j][k].getMonstre()>=0&&m_decor[i][j][k].getMonstre()<m_monstre.size())
-                    m_monstre[m_decor[i][j][k].getMonstre()].animer(&m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()],m_decor[0].size());
+                m_decor[i][j][k].augmenterAnimation(temps);
+                while(m_decor[i][j][k].getAnimation()>=0.075)
+                {
+                    if(m_decor[i][j][k].getTileset()>=0&&m_decor[i][j][k].getTileset()<m_tileset.size())
+                        if(m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile())>=0)
+                            m_decor[i][j][k].setDecor(m_decor[i][j][k].getTileset(),m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile()),m_decor[i][j][k].getEvenement(),m_decor[i][j][k].getMonstre(),m_decor[i][j][k].getHerbe());
+                    m_decor[i][j][k].decrementerAnimation();
+                }
+                    if(m_decor[i][j][k].getMonstre()>=0&&m_decor[i][j][k].getMonstre()<m_monstre.size())
+                        m_monstre[m_decor[i][j][k].getMonstre()].animer(&m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()],m_decor[0].size(),temps);
+
            }
 
 }
@@ -1528,43 +1666,55 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu
             }
             Clock.Reset();
 
-            for(float z=50;z>=0;z-=temps_ecoule*200)
+            if (sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
             {
-                m_musique.SetVolume(z*(float)configuration.volume/50);
 
-                temps_ecoule=0;
-                temps_ecoule=Clock.GetElapsedTime();
-                tempsEcouleDepuisDernierAffichage+=temps_ecoule;
-                Clock.Reset();
-
-                if(tempsEcouleDepuisDernierAffichage>0.01)
+                for(float z=50;z>=0;z-=temps_ecoule*200)
                 {
-                    ecran->SetView(camera);
-                    coordonnee temp;
-                    Afficher(ecran,camera,1,hero,temp);
-                    ecran->SetView(NULL);
-                    if(configuration.Minimap)
-                    {
-                        menu->Afficher(ecran,1);
-                        menu->Afficher(ecran,2);
-                    }
+                    m_musique.SetVolume(z*(float)configuration.volume/50);
 
-                    menu->Afficher(ecran,3);
+                    temps_ecoule=0;
+                    temps_ecoule=Clock.GetElapsedTime();
+                    tempsEcouleDepuisDernierAffichage+=temps_ecoule;
+                    Clock.Reset();
 
-                    if (sf::PostFX::CanUsePostFX() == true)
+                    if(tempsEcouleDepuisDernierAffichage>0.0)
                     {
+                        ecran->SetView(camera);
+                        coordonnee temp;
+                        Afficher(ecran,camera,1,hero,temp);
+                        ecran->SetView(NULL);
+                        if(configuration.Minimap)
+                        {
+                            menu->Afficher(ecran,1);
+                            menu->Afficher(ecran,2);
+                        }
+
+                        menu->Afficher(ecran,3);
+
+
                         EffectNoir.SetParameter("color", ((float)z)/50, ((float)z)/50, ((float)z)/50);
                         ecran->Draw(EffectNoir);
-                    }
 
-                    ecran->Display();
-                    tempsEcouleDepuisDernierAffichage=0;
+                        ecran->Display();
+                        tempsEcouleDepuisDernierAffichage=0;
+                    }
+                }
+
+                ecran->Display();
+            }
+            else
+            {
+                for(float z=50;z>0;z-=temps_ecoule*200)
+                {
+                    temps_ecoule=0;
+                    temps_ecoule=Clock.GetElapsedTime();
+
+                    Clock.Reset();
+
+                    m_musique.SetVolume(z*(float)configuration.volume/50);
                 }
             }
-
-
-
-             ecran->Display();
 
             hero->m_personnage.setCoordonnee(coordonneePerso);
 
@@ -1614,38 +1764,52 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu
 
             Clock.Reset();
 
-            for(float z=0;z<50;z+=temps_ecoule*200)
+            if (sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
             {
-                m_musique.SetVolume(z*(float)configuration.volume/50);
-
-                temps_ecoule=0;
-                temps_ecoule=Clock.GetElapsedTime();
-                tempsEcouleDepuisDernierAffichage+=temps_ecoule;
-
-                Clock.Reset();
-
-				if(tempsEcouleDepuisDernierAffichage>0.01)
+                for(float z=0;z<50;z+=temps_ecoule*200)
                 {
-                    ecran->SetView(camera);
-                    coordonnee temp;
-                    Afficher(ecran,camera,1,hero,temp);
-                    ecran->SetView(NULL);
-                    if(configuration.Minimap)
-                    {
-                        menu->Afficher(ecran,1);
-                        menu->Afficher(ecran,2);
-                    }
+                    m_musique.SetVolume(z*(float)configuration.volume/50);
 
-                    menu->Afficher(ecran,3);
+                    temps_ecoule=0;
+                    temps_ecoule=Clock.GetElapsedTime();
+                    tempsEcouleDepuisDernierAffichage+=temps_ecoule;
 
-                    if (sf::PostFX::CanUsePostFX() == true)
+                    Clock.Reset();
+
+                    if(tempsEcouleDepuisDernierAffichage>0.0)
                     {
+                        ecran->SetView(camera);
+                        coordonnee temp;
+                        Afficher(ecran,camera,1,hero,temp);
+                        ecran->SetView(NULL);
+                        if(configuration.Minimap)
+                        {
+                            menu->Afficher(ecran,1);
+                            menu->Afficher(ecran,2);
+                        }
+
+                        menu->Afficher(ecran,3);
+
+
                         EffectNoir.SetParameter("color", ((float)z)/50, ((float)z)/50, ((float)z)/50);
                         ecran->Draw(EffectNoir);
-                    }
 
-                    ecran->Display();
-                    tempsEcouleDepuisDernierAffichage=0;
+
+                        ecran->Display();
+                        tempsEcouleDepuisDernierAffichage=0;
+                    }
+                }
+            }
+            else
+            {
+                for(float z=0;z<50;z+=temps_ecoule*200)
+                {
+                    temps_ecoule=0;
+                    temps_ecoule=Clock.GetElapsedTime();
+
+                    Clock.Reset();
+
+                    m_musique.SetVolume(z*(float)configuration.volume/50);
                 }
             }
 
@@ -1715,3 +1879,124 @@ void Map::musiquePlay(coordonnee position)
 	m_musique.SetPosition(-position.x, 0, position.y);
 }
 
+
+
+void Map::gererMonstres(Hero *hero,float temps)
+{
+    coordonnee vueMin,vueMax;
+
+    vueMin.x=hero->m_personnage.getCoordonnee().x-15;
+    vueMin.y=hero->m_personnage.getCoordonnee().y-15;
+    vueMax.x=hero->m_personnage.getCoordonnee().x+15;
+    vueMax.y=hero->m_personnage.getCoordonnee().y+15;
+
+    if(vueMin.x<0) { vueMin.x=0; }
+    if(vueMin.y<0) { vueMin.y=0; }
+    if(vueMax.x>m_decor[0][0].size()) { vueMax.x=m_decor[0][0].size(); }
+    if(vueMax.y>m_decor[0].size()) { vueMax.y=m_decor[0].size(); }
+
+	for(int i=0;i<2;i++)
+        for(int j=vueMin.y;j<vueMax.y;j++)
+            for(int k=vueMin.x;k<vueMax.x;k++)
+                    if(m_decor[i][j][k].getMonstre()>=0&&m_decor[i][j][k].getMonstre()<m_monstre.size())
+                    {
+
+                        m_monstre[m_decor[i][j][k].getMonstre()].testerVision(hero->m_personnage.getCoordonnee());
+                        if(m_monstre[m_decor[i][j][k].getMonstre()].getVu())
+                        {
+                            if(fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)>1||fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)>1)
+                            {
+                                coordonnee arrivee,enCours;
+
+                                arrivee=hero->m_personnage.getCoordonnee();
+                                m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(arrivee);
+
+                                /*if(fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)!=0&&fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().y!=0))
+                                {
+                                    enCours.x=arrivee.x-(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)/fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x);
+                                    enCours.y=arrivee.y-(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)/fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y);
+                                    if(!getCollision(enCours.x,enCours.y))
+                                        m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(enCours);
+                                }
+
+                                if(fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)!=0)
+                                {
+                                    enCours.x=arrivee.x-(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)/fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x);
+                                    enCours.y=arrivee.y;
+                                    if(!getCollision(enCours.x,enCours.y))
+                                        m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(enCours);
+                                }
+
+                                if(fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().y!=0))
+                                {
+                                    enCours.x=arrivee.x;
+                                    enCours.y=arrivee.y-(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)/fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y);
+                                    if(!getCollision(enCours.x,enCours.y))
+                                        m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(enCours);
+                                }
+
+                                if(fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)!=0&&fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().y!=0))
+                                {
+                                    enCours.x=arrivee.x+(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)/fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x);
+                                    enCours.y=arrivee.y-(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)/fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y);
+                                    if(!getCollision(enCours.x,enCours.y))
+                                        m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(enCours);
+                                    enCours.x=arrivee.x-(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)/fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x);
+                                    enCours.y=arrivee.y+(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)/fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y);
+                                    if(!getCollision(enCours.x,enCours.y))
+                                        m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(enCours);
+                                }
+
+                                if(fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().y!=0))
+                                {
+                                    enCours.x=arrivee.x;
+                                    enCours.y=arrivee.y+(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)/fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y);
+                                    if(!getCollision(enCours.x,enCours.y))
+                                        m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(enCours);
+                                }
+
+                                if(fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)!=0)
+                                {
+                                    enCours.x=arrivee.x+(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)/fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x);
+                                    enCours.y=arrivee.y;
+                                    if(!getCollision(enCours.x,enCours.y))
+                                        m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(enCours);
+                                }
+
+                                if(fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)!=0&&fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().y!=0))
+                                {
+                                    enCours.x=arrivee.x+(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)/fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x);
+                                    enCours.y=arrivee.y+(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)/fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y);
+                                    if(!getCollision(enCours.x,enCours.y))
+                                        m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(enCours);
+                                }*/
+
+
+                                    if(m_monstre[m_decor[i][j][k].getMonstre()].seDeplacer(temps*100))
+                                    {
+                                        m_monstre[m_decor[i][j][k].getMonstre()].pathfinding(getAlentourDuPersonnage(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()));
+                                        if(!(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y==j&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x==k))
+                                        if(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x<m_decor[0][0].size()&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y<m_decor[0].size())
+                                        {
+                                            m_decor[i][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].setMonstre(m_decor[i][j][k].getMonstre());
+                                            //m_decor[i][m_monstre[m_decor[i][j][k].getMonstre()].getProchaineCase().y][m_monstre[m_decor[i][j][k].getMonstre()].getProchaineCase().x].setMonstre(m_decor[i][j][k].getMonstre());
+                                            m_decor[i][j][k].setMonstre(-1);
+                                        }
+                                    }
+                            }
+                            else
+                            {
+                                if(m_monstre[m_decor[i][j][k].getMonstre()].getEtat()!=2)
+                                m_monstre[m_decor[i][j][k].getMonstre()].setEtat(2);
+                                coordonnee temp,temp2;
+                                temp.x=(hero->m_personnage.getCoordonnee().x-hero->m_personnage.getCoordonnee().y-1+m_decor[1].size())*64;
+                                temp.y=(hero->m_personnage.getCoordonnee().x+hero->m_personnage.getCoordonnee().y)*32;
+                                temp2.x=(k-j-1+m_decor[1].size())*64;
+                                temp2.y=(k+j)*32;
+                                m_monstre[m_decor[i][j][k].getMonstre()].frappe(temp,temp2);
+                            }
+                        }
+
+                    }
+
+}

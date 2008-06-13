@@ -2,10 +2,10 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="All" />
 	<File name="Decor.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="429" topLine="1" />
+		<Cursor position="525" topLine="6" />
 	</File>
-	<File name="Decor.h" open="0" top="0" tabpos="5">
-		<Cursor position="363" topLine="10" />
+	<File name="Decor.h" open="1" top="0" tabpos="9">
+		<Cursor position="264" topLine="11" />
 	</File>
 	<File name="Evenement.cpp" open="0" top="0" tabpos="16">
 		<Cursor position="567" topLine="34" />
@@ -16,29 +16,29 @@
 	<File name="Globale.h" open="0" top="0" tabpos="15">
 		<Cursor position="68" topLine="0" />
 	</File>
-	<File name="Hero.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="561" topLine="20" />
+	<File name="Hero.cpp" open="1" top="0" tabpos="14">
+		<Cursor position="7694" topLine="120" />
 	</File>
-	<File name="Hero.h" open="0" top="0" tabpos="15">
-		<Cursor position="317" topLine="0" />
+	<File name="Hero.h" open="1" top="0" tabpos="15">
+		<Cursor position="457" topLine="2" />
 	</File>
 	<File name="Map.cpp" open="1" top="1" tabpos="4">
-		<Cursor position="68766" topLine="1108" />
+		<Cursor position="66555" topLine="1085" />
 	</File>
-	<File name="Map.h" open="1" top="0" tabpos="7">
-		<Cursor position="394" topLine="12" />
+	<File name="Map.h" open="1" top="0" tabpos="17">
+		<Cursor position="767" topLine="7" />
 	</File>
-	<File name="Monstre.cpp" open="0" top="0" tabpos="17">
-		<Cursor position="3626" topLine="0" />
+	<File name="Monstre.cpp" open="1" top="0" tabpos="12">
+		<Cursor position="215" topLine="3" />
 	</File>
-	<File name="Monstre.h" open="0" top="0" tabpos="14">
-		<Cursor position="215" topLine="0" />
+	<File name="Monstre.h" open="1" top="0" tabpos="13">
+		<Cursor position="34" topLine="0" />
 	</File>
 	<File name="Personnage.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="7164" topLine="173" />
+		<Cursor position="8466" topLine="249" />
 	</File>
-	<File name="Personnage.h" open="0" top="0" tabpos="14">
-		<Cursor position="957" topLine="30" />
+	<File name="Personnage.h" open="1" top="0" tabpos="10">
+		<Cursor position="1449" topLine="43" />
 	</File>
 	<File name="Pose.cpp" open="0" top="0" tabpos="9">
 		<Cursor position="784" topLine="17" />
@@ -70,29 +70,29 @@
 	<File name="console.cpp" open="0" top="0" tabpos="12">
 		<Cursor position="330" topLine="0" />
 	</File>
-	<File name="constantes.h" open="1" top="0" tabpos="9">
-		<Cursor position="279" topLine="0" />
+	<File name="constantes.h" open="1" top="0" tabpos="8">
+		<Cursor position="3335" topLine="129" />
 	</File>
-	<File name="eventManager.cpp" open="1" top="0" tabpos="8">
-		<Cursor position="2280" topLine="95" />
+	<File name="eventManager.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="4595" topLine="138" />
 	</File>
 	<File name="eventManager.h" open="0" top="0" tabpos="19">
 		<Cursor position="308" topLine="0" />
 	</File>
 	<File name="jeu.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="6140" topLine="169" />
+		<Cursor position="3997" topLine="106" />
 	</File>
-	<File name="jeu.h" open="0" top="0" tabpos="7">
+	<File name="jeu.h" open="1" top="0" tabpos="16">
 		<Cursor position="350" topLine="0" />
 	</File>
 	<File name="liste_case.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="1161" topLine="39" />
+		<Cursor position="5195" topLine="74" />
 	</File>
 	<File name="liste_case.h" open="1" top="0" tabpos="3">
 		<Cursor position="481" topLine="3" />
 	</File>
-	<File name="main.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="7726" topLine="136" />
+	<File name="main.cpp" open="1" top="0" tabpos="11">
+		<Cursor position="3531" topLine="18" />
 	</File>
 	<File name="main.h" open="0" top="0" tabpos="4">
 		<Cursor position="308" topLine="0" />

@@ -24,12 +24,17 @@ class Map
 	bool getCollision(int positionX,int positionY); // Retourne 1 s'il y a une collision avec le décors se trouvant à la position X et Y
 	int getTypeCase(int positionX,int positionY);
 	int getEvenement(coordonnee casePointee);
+	int getMonstre(Hero *hero,sf::View *camera,sf::RenderWindow *ecran,coordonnee positionSouris);
+	Monstre *getEntiteMonstre (int numeroMonstre);
+	coordonnee getPositionMonstre(int numeroMonstre);
 	std::vector<std::vector<bool> > getAlentourDuPersonnage(coordonnee positionPersonnage); // Retourne un tableau de bool contenant toutes les collitions dans les alentour du héro, pour le pathfinding
 
-	void animer(Hero *hero); // Animation des tiles
+	void animer(Hero *hero,float temps); // Animation des tiles
 	bool testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu* menu);
 	void calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *camera);
 	void detruireOmbresEtLumieres(Hero *hero);
+
+	void gererMonstres(Hero *hero,float temps);
 
 	void musiquePlay(coordonnee position);
 
