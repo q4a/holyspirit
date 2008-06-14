@@ -215,60 +215,11 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
         ecran->Draw(Sprite);
     }
 }
-
-coordonnee Personnage::getCoordonnee()
-{
-	return m_positionCase;
-}
-
 void Personnage::regenererVie(float vie)
 {
     m_caracteristique.vie+=vie;
     if(m_caracteristique.vie>m_caracteristique.maxVie)
         m_caracteristique.vie=m_caracteristique.maxVie;
-}
-
-void Personnage::setCoordonnee(coordonnee nouvellesCoordonnees)
-{
-	m_positionCase=nouvellesCoordonnees;
-    m_etat=ARRET;
-
-	m_positionPixel.x=(int)(m_positionCase.x*sqrt(64*64+32*32));
-	m_positionPixel.y=(int)(m_positionCase.y*sqrt(64*64+32*32));
-
-	m_arrivee.x=m_positionCase.x;
-	m_arrivee.y=m_positionCase.y;
-
-	m_cheminFinal.x=m_positionCase.x;
-	m_cheminFinal.y=m_positionCase.y;
-
-	m_angle=0;
-	m_poseEnCours=0;
-}
-void Personnage::setVitesse(float vitesse){m_caracteristique.vitesse=vitesse;}
-void Personnage::setEtat(int etat){m_etat=etat;}
-
-int Personnage::getEtat(){return m_etat;}
-
-coordonnee Personnage::getCoordonneePixel()
-{
-    coordonnee position;
-    position.x=(int)m_positionPixel.x;
-    position.y=(int)m_positionPixel.y;
-	return position;
-}
-
-coordonnee Personnage::getProchaineCase()
-{
-    if(m_cheminFinal.x!=m_positionCase.x||m_cheminFinal.y!=m_positionCase.y)
-	return m_cheminFinal;
-	else
-	return m_positionCase;
-}
-
-Lumiere Modele_Personnage::getPorteeLumineuse()
-{
-    return m_porteeLumineuse;
 }
 
 int Personnage::pathfinding(vector<vector<bool> > map)
@@ -325,12 +276,6 @@ int Personnage::pathfinding(vector<vector<bool> > map)
         if(m_positionCase.y>m_arrivee.y)
         m_arrivee.y=m_arrivee.y+1;
 
-
-
-       // m_arrivee.y=m_ancienneArrivee.y;
-        //if(!(m_positionCase.y==m_arrivee.y&&m_positionCase.x==m_arrivee.x))
-	    //pathfinding(map);
-
         m_arrivee.x=m_ancienneArrivee.x;
         m_arrivee.y=m_ancienneArrivee.y;
         m_etat=0;
@@ -341,8 +286,6 @@ int Personnage::pathfinding(vector<vector<bool> > map)
 	else
 	return 1;
 }
-
-
 
 
 bool Personnage::seDeplacer(float tempsEcoule)
@@ -412,43 +355,9 @@ bool Personnage::seDeplacer(float tempsEcoule)
 	return 0;
 }
 
-
-void Personnage::setArrivee(coordonnee arrivee)
-{
-    if(!(m_mauvaiseArrivee.x==arrivee.x&&m_mauvaiseArrivee.y==arrivee.y))
-    {
-        m_arrivee=arrivee;
-    }
-}
-
-void Personnage::setCoordonneePixel(coordonnee position)
-{
-    m_positionPixel.x=position.x*COTE_TILE;
-    m_positionPixel.y=position.y*COTE_TILE;
-}
-void Personnage::setProchaineCase(coordonnee position)
-{
-    m_cheminFinal=position;
-}
-
 void Personnage::infligerDegats(int degats)
 {
     m_caracteristique.vie-=degats;
-}
-
-Caracteristique Personnage::getCaracteristique()
-{
-    return m_caracteristique;
-}
-
-Caracteristique Modele_Personnage::getCaracteristique()
-{
-    return m_caracteristique;
-}
-
-void Personnage::setCaracteristique(Caracteristique caracteristique)
-{
-    m_caracteristique=caracteristique;
 }
 
 int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps)
@@ -522,6 +431,58 @@ void Modele_Personnage::jouerSon(int numeroSon,double distance,coordonnee positi
 }
 
 void Modele_Personnage::setPorteeLumineuse(Lumiere  lumiere){m_porteeLumineuse=lumiere;}
+void Personnage::setCaracteristique(Caracteristique caracteristique){m_caracteristique=caracteristique;}
+void Personnage::setProchaineCase(coordonnee position){m_cheminFinal=position;}
+void Personnage::setVitesse(float vitesse){m_caracteristique.vitesse=vitesse;}
+void Personnage::setEtat(int etat){m_etat=etat;}
+void Personnage::setCoordonnee(coordonnee nouvellesCoordonnees)
+{
+	m_positionCase=nouvellesCoordonnees;
+    m_etat=ARRET;
+
+	m_positionPixel.x=(int)(m_positionCase.x*sqrt(64*64+32*32));
+	m_positionPixel.y=(int)(m_positionCase.y*sqrt(64*64+32*32));
+
+	m_arrivee.x=m_positionCase.x;
+	m_arrivee.y=m_positionCase.y;
+
+	m_cheminFinal.x=m_positionCase.x;
+	m_cheminFinal.y=m_positionCase.y;
+
+	m_angle=0;
+	m_poseEnCours=0;
+}
+void Personnage::setArrivee(coordonnee arrivee)
+{
+    if(!(m_mauvaiseArrivee.x==arrivee.x&&m_mauvaiseArrivee.y==arrivee.y))
+    {
+        m_arrivee=arrivee;
+    }
+}
+void Personnage::setCoordonneePixel(coordonnee position)
+{
+    m_positionPixel.x=position.x*COTE_TILE;
+    m_positionPixel.y=position.y*COTE_TILE;
+}
 
 
 int Modele_Personnage::getNombreSons(){return m_buffer.size();}
+coordonnee Personnage::getCoordonnee(){return m_positionCase;}
+Caracteristique Personnage::getCaracteristique(){return m_caracteristique;}
+Caracteristique Modele_Personnage::getCaracteristique(){return m_caracteristique;}
+Lumiere Modele_Personnage::getPorteeLumineuse(){return m_porteeLumineuse;}
+int Personnage::getEtat(){return m_etat;}
+coordonnee Personnage::getCoordonneePixel()
+{
+    coordonnee position;
+    position.x=(int)m_positionPixel.x;
+    position.y=(int)m_positionPixel.y;
+	return position;
+}
+coordonnee Personnage::getProchaineCase()
+{
+    if(m_cheminFinal.x!=m_positionCase.x||m_cheminFinal.y!=m_positionCase.y)
+        return m_cheminFinal;
+	else
+        return m_positionCase;
+}

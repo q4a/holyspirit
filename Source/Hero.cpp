@@ -44,15 +44,6 @@ Hero::Hero()
 	m_personnage.setCaracteristique(temp);
 }
 
-/*void setArrivee(coordonnee casePointee,Map *map)
-{
-    if(map->getTypeCase(casePointee.x,casePointee.y)==2)
-        m_monstreVise=map->getMonstre(casePointee);
-    else
-        m_monstreVise=-1;
-    m_personnage.setArrivee(casePointee);
-}*/
-
 void Hero::placerCamera(sf::View *camera,coordonnee dimensionsMap)
 {
 	m_positionAffichage.y=(int)(((m_personnage.getCoordonneePixel().x+m_personnage.getCoordonneePixel().y)*64/COTE_TILE)/2);
@@ -71,7 +62,6 @@ void Hero::testMontreVise(Monstre *monstre,int hauteurMap)
 {
     if(m_enemiVise>-1)
     {
-
         if(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)>1||fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)>1)
             m_personnage.setArrivee(monstre->getCoordonnee());
         else

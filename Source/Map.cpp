@@ -309,57 +309,6 @@ bool Map::Charger(int numeroMap)
     }
     fichier.close();
 
-
-	/*chemin = configuration.chemin_evenements;
-
-	sprintf(numero,"%ld.txt",numeroMap);
-	chemin += numero;
-
-	//Chargement des événements
-    fichier.open(chemin.c_str(), ios::in);
-    if(fichier)
-    {
-        char caractere;
-    	do
-    	{
-    		fichier.get(caractere);
-    		if(caractere=='*')
-    		{
-    		    int numeroEvenement;
-    			do
-    			{
-    				fichier.get(caractere);
-    				switch (caractere)
-    				{
-    					case 'e': fichier>>numeroEvenement; break;
-    				}
-    			}while(caractere!='$');
-    			m_evenement.push_back(numeroEvenement);
-
-    			//AjouterEvenement(numeroEvenement);
-
-    			int information;
-    			do
-    			{
-    				fichier.get(caractere);
-    				if(caractere=='i')
-    				{
-                        fichier>>information;
-    				    m_evenement[m_evenement.size()-1].AjouterInformation(information);
-    				}
-    			}while(caractere!='$');
-
-    			fichier.get(caractere);
-    		}
-    	}while(caractere!='$');
-    }
-    else
-    {
-        cout << "Impossible d'ouvrir le fichier : " << chemin <<endl;
-        return 0;
-    }
-    fichier.close();*/
-
     for(int i=0;i<24;i++)
     if(m_lumiere[i].intensite<0)
         m_lumiere[i].intensite=0;
@@ -1423,246 +1372,50 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 	}
 }
 
-
-coordonnee Map::getDimensions()
-{
-	coordonnee dimensions;
-
-	dimensions.x=m_decor[0][0].size();
-	dimensions.y=m_decor[0].size();
-
-	return dimensions;
-}
-
-int Map::getEvenement(coordonnee casePointee)
-{
-    int temp=-1;
-    if(casePointee.y>=0&&casePointee.y<m_decor[0].size()&&casePointee.x>=0&&casePointee.x<m_decor[0][0].size())
-        for(int i=0;i<2;i++)
-            if(m_decor[i][casePointee.y][casePointee.x].getEvenement()>-1)
-                temp=m_decor[i][casePointee.y][casePointee.x].getEvenement();
-
-    return temp;
-}
-
-bool Map::getCollision(int positionX,int positionY)
+void Map::AfficherNomEvenement(sf::RenderWindow* ecran,coordonnee casePointee,coordonnee positionSouris)
 {
 
-	for(int i=0;i<2;i++)
-	{
-        if(m_decor[i][positionY][positionX].getTileset()>=0&&m_decor[i][positionY][positionX].getTileset()<m_tileset.size())
-            if(m_tileset[m_decor[i][positionY][positionX].getTileset()].getCollisionTile(m_decor[i][positionY][positionX].getTile()))
-                return 1;
+    int evenement=-1;
+    for(int i=0;i<2;i++)
+        if(m_decor[i][casePointee.y][casePointee.x].getEvenement()>-1)
+            evenement=m_decor[i][casePointee.y][casePointee.x].getEvenement();
 
-         if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().vie>0)
-                    return 1;
-
-        coordonnee enCours;
-
-        enCours.x=positionX+1;
-        enCours.y=positionY+1;
-        if(enCours.x>0&&enCours.y>0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
-         if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().vie>0)
-            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
-                    return 1;
-        enCours.x=positionX-1;
-        enCours.y=positionY-1;
-        if(enCours.x>0&&enCours.y>0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
-         if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().vie>0)
-            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
-                    return 1;
-        enCours.x=positionX+1;
-        enCours.y=positionY-1;
-        if(enCours.x>0&&enCours.y>0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
-         if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().vie>0)
-            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
-                    return 1;
-        enCours.x=positionX-1;
-        enCours.y=positionY+1;
-        if(enCours.x>0&&enCours.y>0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
-         if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().vie>0)
-            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
-                    return 1;
-            enCours.x=positionX;
-        enCours.y=positionY+1;
-        if(enCours.x>0&&enCours.y>0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
-         if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().vie>0)
-            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
-                    return 1;
-        enCours.x=positionX+1;
-        enCours.y=positionY;
-        if(enCours.x>0&&enCours.y>0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
-         if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().vie>0)
-            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
-                    return 1;
-        enCours.x=positionX-1;
-        enCours.y=positionY;
-        if(enCours.x>0&&enCours.y>0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
-         if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().vie>0)
-            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
-                    return 1;
-        enCours.x=positionX;
-        enCours.y=positionY-1;
-        if(enCours.x>0&&enCours.y>0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
-         if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().vie>0)
-            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
-                    return 1;
-
-	}
-	return 0;
-}
-
-int Map::getTypeCase(int positionX,int positionY)
-{
-	for(int i=0;i<2;i++)
-	{
-	    if(positionY>=0&&positionY<m_decor[0].size()&&positionX>=0&&positionX<m_decor[0][0].size())
-	    {
-            if(m_decor[i][positionY][positionX].getTileset()>=0&&m_decor[i][positionY][positionX].getTileset()<m_tileset.size())
-                if(m_tileset[m_decor[i][positionY][positionX].getTileset()].getCollisionTile(m_decor[i][positionY][positionX].getTile()))
-                    return 1;
-
-            if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().vie>0)
-                    return 2;
-
-            if(m_decor[i][positionY][positionX].getEvenement()>=0&&m_decor[i][positionY][positionX].getEvenement()<m_evenement.size())
-                if(m_evenement[m_decor[i][positionY][positionX].getEvenement()].getType()==CHANGEMENT_DE_MAP)
-                    return 3;
-	    }
-	    else
-	    return 1;
-	}
-
-	return 0;
-}
-
-int Map::getMonstre(Hero *hero,View *camera,RenderWindow *ecran,coordonnee positionSouris)
-{
-    coordonnee vueMin,vueMax;
-
-     const sf::FloatRect& ViewRect = ecran->GetViewRect();
-
-    vueMin.x=hero->m_personnage.getCoordonnee().x-15;
-    vueMin.y=hero->m_personnage.getCoordonnee().y-15;
-    vueMax.x=hero->m_personnage.getCoordonnee().x+15;
-    vueMax.y=hero->m_personnage.getCoordonnee().y+15;
-
-    if(vueMin.x<0) { vueMin.x=0; }
-    if(vueMin.y<0) { vueMin.y=0; }
-    if(vueMax.x>m_decor[0][0].size()) { vueMax.x=m_decor[0][0].size(); }
-    if(vueMax.y>m_decor[0].size()) { vueMax.y=m_decor[0].size(); }
-
-	for(int i=0;i<2;i++)
-        for(int j=vueMin.y;j<vueMax.y;j++)
-            for(int k=vueMin.x;k<vueMax.x;k++)
-                    if(m_decor[i][j][k].getMonstre()>=0&&m_decor[i][j][k].getMonstre()<m_monstre.size())
-                    if(m_monstre[m_decor[i][j][k].getMonstre()].getCaracteristique().vie>0)
-                    {
-                        coordonnee temp;
-                        temp.x=(k-j-1+m_decor[1].size())*64;
-                        temp.y=(k+j)*32;
-
-                        if(positionSouris.x/camera->Zoom+ViewRect.Left>temp.x-16/camera->Zoom&&positionSouris.x/camera->Zoom+ViewRect.Left<temp.x+128/camera->Zoom&&positionSouris.y/camera->Zoom+ViewRect.Top>temp.y-48/camera->Zoom&&positionSouris.y/camera->Zoom+ViewRect.Top<temp.y+64/camera->Zoom)
-                            return m_decor[i][j][k].getMonstre();
-                    }
-
-                    return -1;
-   /*f(casePointee.x>=0&&casePointee.x<m_decor[0][0].size()&&casePointee.y>=0&&casePointee.y<m_decor[0].size())
+    if(evenement>=0)
     {
-        if(m_decor[0][casePointee.y][casePointee.x].getMonstre()>-1)
-            return m_decor[0][casePointee.y][casePointee.x].getMonstre();
-        if(m_decor[1][casePointee.y][casePointee.x].getMonstre()>-1)
-            return m_decor[1][casePointee.y][casePointee.x].getMonstre();
-    }*/
-}
-
-bool Map::infligerDegats(int numeroMonstre, int degats)
-{
-    if(numeroMonstre>=0&&numeroMonstre<m_monstre.size())
-    {
-        m_monstre[numeroMonstre].infligerDegats(degats);
-        if(m_monstre[numeroMonstre].getCaracteristique().vie<=0)
-            return 1;
-    }
-    return 0;
-}
-
-coordonnee Map::getPositionMonstre(int numeroMonstre)
-{
-    if(numeroMonstre>=0&&numeroMonstre<m_monstre.size())
-        return m_monstre[numeroMonstre].getCoordonnee();
-}
-
-Monstre *Map::getEntiteMonstre(int numeroMonstre)
-{
-    if(numeroMonstre>=0&&numeroMonstre<m_monstre.size())
-        return &m_monstre[numeroMonstre];
-}
-
-vector<vector<bool> > Map::getAlentourDuPersonnage(coordonnee positionPersonnage)
-{
-	vector<vector<bool> > grille(20,vector<bool>(20,0));
-
-	for(int y=positionPersonnage.y-10;y<positionPersonnage.y+10;y++)
-		for(int x=positionPersonnage.x-10;x<positionPersonnage.x+10;x++)
-			if(y>=0&&x>=0&&x<m_decor[0][0].size()&&y<m_decor[0].size())
-				grille[y-positionPersonnage.y+10][x-positionPersonnage.x+10]=getCollision(x,y);
-			else
-				grille[y-positionPersonnage.y+10][x-positionPersonnage.x+10]=1;
-
-	return grille;
-}
+        if(m_evenement[evenement].getType()==CHANGEMENT_DE_MAP)
+        {
+            string nom;
+            char chemin[128];
+            sprintf(chemin,"Data/Maps/map%ld.txt",m_evenement[evenement].getInformation(0));
 
 
-void Map::animer(Hero *hero,float temps)
-{
-    coordonnee vueMin,vueMax;
-
-    vueMin.x=hero->m_personnage.getCoordonnee().x-15;
-    vueMin.y=hero->m_personnage.getCoordonnee().y-15;
-    vueMax.x=hero->m_personnage.getCoordonnee().x+15;
-    vueMax.y=hero->m_personnage.getCoordonnee().y+15;
-
-    if(vueMin.x<0) { vueMin.x=0; }
-    if(vueMin.y<0) { vueMin.y=0; }
-    if(vueMax.x>m_decor[0][0].size()) { vueMax.x=m_decor[0][0].size(); }
-    if(vueMax.y>m_decor[0].size()) { vueMax.y=m_decor[0].size(); }
-
-	for(int i=0;i<2;i++)
-        for(int j=vueMin.y;j<vueMax.y;j++)
-            for(int k=vueMin.x;k<vueMax.x;k++)
+            ifstream fichier;
+            fichier.open(chemin, ios::in);
+            if(fichier)
             {
-                m_decor[i][j][k].augmenterAnimation(temps);
-                while(m_decor[i][j][k].getAnimation()>=0.075)
+                char caractere;
+                do
                 {
-                    if(m_decor[i][j][k].getTileset()>=0&&m_decor[i][j][k].getTileset()<m_tileset.size())
-                        if(m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile())>=0)
-                            m_decor[i][j][k].setDecor(m_decor[i][j][k].getTileset(),m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile()),m_decor[i][j][k].getEvenement(),m_decor[i][j][k].getMonstre(),m_decor[i][j][k].getHerbe());
-                    m_decor[i][j][k].decrementerAnimation();
-                }
-                    if(m_decor[i][j][k].getMonstre()>=0&&m_decor[i][j][k].getMonstre()<m_monstre.size())
-                            hero->m_personnage.infligerDegats(m_monstre[m_decor[i][j][k].getMonstre()].animer(&m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()],m_decor[0].size(),temps));
+                    //Chargement du nom
+                    fichier.get(caractere);
+                    if(caractere=='*')
+                    {
+                        getline(fichier, nom);
+                    }
+                }while(caractere!='$');
+            }
+            fichier.close();
 
-           }
+            sprintf(chemin,"Vers %s",nom.c_str());
 
+            sf::String texte;
+            texte.SetText(chemin);
+            texte.SetSize(16.f);
+            texte.SetTop(positionSouris.y-16);
+            texte.SetLeft(positionSouris.x);
+            ecran->Draw(texte);
+        }
+    }
 }
 
 bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu* menu)
@@ -1850,50 +1603,38 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu
     return 1;
 }
 
-void Map::AfficherNomEvenement(sf::RenderWindow* ecran,coordonnee casePointee,coordonnee positionSouris)
+
+void Map::animer(Hero *hero,float temps)
 {
+    coordonnee vueMin,vueMax;
 
-    int evenement=-1;
-    for(int i=0;i<2;i++)
-        if(m_decor[i][casePointee.y][casePointee.x].getEvenement()>-1)
-            evenement=m_decor[i][casePointee.y][casePointee.x].getEvenement();
+    vueMin.x=hero->m_personnage.getCoordonnee().x-15;
+    vueMin.y=hero->m_personnage.getCoordonnee().y-15;
+    vueMax.x=hero->m_personnage.getCoordonnee().x+15;
+    vueMax.y=hero->m_personnage.getCoordonnee().y+15;
 
-    if(evenement>=0)
-    {
-        if(m_evenement[evenement].getType()==CHANGEMENT_DE_MAP)
-        {
-            string nom;
-            char chemin[128];
-            sprintf(chemin,"Data/Maps/map%ld.txt",m_evenement[evenement].getInformation(0));
+    if(vueMin.x<0) { vueMin.x=0; }
+    if(vueMin.y<0) { vueMin.y=0; }
+    if(vueMax.x>m_decor[0][0].size()) { vueMax.x=m_decor[0][0].size(); }
+    if(vueMax.y>m_decor[0].size()) { vueMax.y=m_decor[0].size(); }
 
-
-            ifstream fichier;
-            fichier.open(chemin, ios::in);
-            if(fichier)
+	for(int i=0;i<2;i++)
+        for(int j=vueMin.y;j<vueMax.y;j++)
+            for(int k=vueMin.x;k<vueMax.x;k++)
             {
-                char caractere;
-                do
+                m_decor[i][j][k].augmenterAnimation(temps);
+                while(m_decor[i][j][k].getAnimation()>=0.075)
                 {
-                    //Chargement du nom
-                    fichier.get(caractere);
-                    if(caractere=='*')
-                    {
-                        getline(fichier, nom);
-                    }
-                }while(caractere!='$');
-            }
-            fichier.close();
+                    if(m_decor[i][j][k].getTileset()>=0&&m_decor[i][j][k].getTileset()<m_tileset.size())
+                        if(m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile())>=0)
+                            m_decor[i][j][k].setDecor(m_decor[i][j][k].getTileset(),m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile()),m_decor[i][j][k].getEvenement(),m_decor[i][j][k].getMonstre(),m_decor[i][j][k].getHerbe());
+                    m_decor[i][j][k].decrementerAnimation();
+                }
+                    if(m_decor[i][j][k].getMonstre()>=0&&m_decor[i][j][k].getMonstre()<m_monstre.size())
+                            hero->m_personnage.infligerDegats(m_monstre[m_decor[i][j][k].getMonstre()].animer(&m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()],m_decor[0].size(),temps));
 
-            sprintf(chemin,"Vers %s",nom.c_str());
+           }
 
-            sf::String texte;
-            texte.SetText(chemin);
-            texte.SetSize(16.f);
-            texte.SetTop(positionSouris.y-16);
-            texte.SetLeft(positionSouris.x);
-            ecran->Draw(texte);
-        }
-    }
 }
 
 void Map::musiquePlay(coordonnee position)
@@ -1908,7 +1649,6 @@ void Map::musiquePlay(coordonnee position)
 
 	m_musique.SetPosition(-position.x, 0, position.y);
 }
-
 
 
 void Map::gererMonstres(Hero *hero,float temps)
@@ -1970,7 +1710,204 @@ void Map::gererMonstres(Hero *hero,float temps)
                             else
                             m_monstre[m_decor[i][j][k].getMonstre()].setEtat(3);
                         }
-
                     }
+}
 
+bool Map::infligerDegats(int numeroMonstre, int degats)
+{
+    if(numeroMonstre>=0&&numeroMonstre<m_monstre.size())
+    {
+        m_monstre[numeroMonstre].infligerDegats(degats);
+        if(m_monstre[numeroMonstre].getCaracteristique().vie<=0)
+            return 1;
+    }
+    return 0;
+}
+
+
+coordonnee Map::getPositionMonstre(int numeroMonstre)
+{
+    if(numeroMonstre>=0&&numeroMonstre<m_monstre.size())
+        return m_monstre[numeroMonstre].getCoordonnee();
+}
+
+Monstre *Map::getEntiteMonstre(int numeroMonstre)
+{
+    if(numeroMonstre>=0&&numeroMonstre<m_monstre.size())
+        return &m_monstre[numeroMonstre];
+}
+
+vector<vector<bool> > Map::getAlentourDuPersonnage(coordonnee positionPersonnage)
+{
+	vector<vector<bool> > grille(20,vector<bool>(20,0));
+
+	for(int y=positionPersonnage.y-10;y<positionPersonnage.y+10;y++)
+		for(int x=positionPersonnage.x-10;x<positionPersonnage.x+10;x++)
+			if(y>=0&&x>=0&&x<m_decor[0][0].size()&&y<m_decor[0].size())
+				grille[y-positionPersonnage.y+10][x-positionPersonnage.x+10]=getCollision(x,y);
+			else
+				grille[y-positionPersonnage.y+10][x-positionPersonnage.x+10]=1;
+
+	return grille;
+}
+
+coordonnee Map::getDimensions()
+{
+	coordonnee dimensions;
+
+	dimensions.x=m_decor[0][0].size();
+	dimensions.y=m_decor[0].size();
+
+	return dimensions;
+}
+
+int Map::getEvenement(coordonnee casePointee)
+{
+    int temp=-1;
+    if(casePointee.y>=0&&casePointee.y<m_decor[0].size()&&casePointee.x>=0&&casePointee.x<m_decor[0][0].size())
+        for(int i=0;i<2;i++)
+            if(m_decor[i][casePointee.y][casePointee.x].getEvenement()>-1)
+                temp=m_decor[i][casePointee.y][casePointee.x].getEvenement();
+
+    return temp;
+}
+
+bool Map::getCollision(int positionX,int positionY)
+{
+	for(int i=0;i<2;i++)
+	{
+        if(m_decor[i][positionY][positionX].getTileset()>=0&&m_decor[i][positionY][positionX].getTileset()<m_tileset.size())
+            if(m_tileset[m_decor[i][positionY][positionX].getTileset()].getCollisionTile(m_decor[i][positionY][positionX].getTile()))
+                return 1;
+
+         if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().vie>0)
+                    return 1;
+
+        coordonnee enCours;
+
+        enCours.x=positionX+1;
+        enCours.y=positionY+1;
+        if(enCours.x>0&&enCours.y>0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
+         if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().vie>0)
+            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
+                    return 1;
+        enCours.x=positionX-1;
+        enCours.y=positionY-1;
+        if(enCours.x>0&&enCours.y>0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
+         if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().vie>0)
+            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
+                    return 1;
+        enCours.x=positionX+1;
+        enCours.y=positionY-1;
+        if(enCours.x>0&&enCours.y>0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
+         if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().vie>0)
+            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
+                    return 1;
+        enCours.x=positionX-1;
+        enCours.y=positionY+1;
+        if(enCours.x>0&&enCours.y>0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
+         if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().vie>0)
+            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
+                    return 1;
+            enCours.x=positionX;
+        enCours.y=positionY+1;
+        if(enCours.x>0&&enCours.y>0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
+         if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().vie>0)
+            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
+                    return 1;
+        enCours.x=positionX+1;
+        enCours.y=positionY;
+        if(enCours.x>0&&enCours.y>0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
+         if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().vie>0)
+            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
+                    return 1;
+        enCours.x=positionX-1;
+        enCours.y=positionY;
+        if(enCours.x>0&&enCours.y>0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
+         if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().vie>0)
+            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
+                    return 1;
+        enCours.x=positionX;
+        enCours.y=positionY-1;
+        if(enCours.x>0&&enCours.y>0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
+         if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().vie>0)
+            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
+                    return 1;
+
+	}
+	return 0;
+}
+
+int Map::getTypeCase(int positionX,int positionY)
+{
+	for(int i=0;i<2;i++)
+	{
+	    if(positionY>=0&&positionY<m_decor[0].size()&&positionX>=0&&positionX<m_decor[0][0].size())
+	    {
+            if(m_decor[i][positionY][positionX].getTileset()>=0&&m_decor[i][positionY][positionX].getTileset()<m_tileset.size())
+                if(m_tileset[m_decor[i][positionY][positionX].getTileset()].getCollisionTile(m_decor[i][positionY][positionX].getTile()))
+                    return 1;
+
+            if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().vie>0)
+                    return 2;
+
+            if(m_decor[i][positionY][positionX].getEvenement()>=0&&m_decor[i][positionY][positionX].getEvenement()<m_evenement.size())
+                if(m_evenement[m_decor[i][positionY][positionX].getEvenement()].getType()==CHANGEMENT_DE_MAP)
+                    return 3;
+	    }
+	    else
+	    return 1;
+	}
+
+	return 0;
+}
+
+int Map::getMonstre(Hero *hero,View *camera,RenderWindow *ecran,coordonnee positionSouris)
+{
+    coordonnee vueMin,vueMax;
+
+     const sf::FloatRect& ViewRect = ecran->GetViewRect();
+
+    vueMin.x=hero->m_personnage.getCoordonnee().x-15;
+    vueMin.y=hero->m_personnage.getCoordonnee().y-15;
+    vueMax.x=hero->m_personnage.getCoordonnee().x+15;
+    vueMax.y=hero->m_personnage.getCoordonnee().y+15;
+
+    if(vueMin.x<0) { vueMin.x=0; }
+    if(vueMin.y<0) { vueMin.y=0; }
+    if(vueMax.x>m_decor[0][0].size()) { vueMax.x=m_decor[0][0].size(); }
+    if(vueMax.y>m_decor[0].size()) { vueMax.y=m_decor[0].size(); }
+
+	for(int i=0;i<2;i++)
+        for(int j=vueMin.y;j<vueMax.y;j++)
+            for(int k=vueMin.x;k<vueMax.x;k++)
+                    if(m_decor[i][j][k].getMonstre()>=0&&m_decor[i][j][k].getMonstre()<m_monstre.size())
+                    if(m_monstre[m_decor[i][j][k].getMonstre()].getCaracteristique().vie>0)
+                    {
+                        coordonnee temp;
+                        temp.x=(k-j-1+m_decor[1].size())*64;
+                        temp.y=(k+j)*32;
+
+                        if(positionSouris.x/camera->Zoom+ViewRect.Left>temp.x-16/camera->Zoom&&positionSouris.x/camera->Zoom+ViewRect.Left<temp.x+128/camera->Zoom&&positionSouris.y/camera->Zoom+ViewRect.Top>temp.y-48/camera->Zoom&&positionSouris.y/camera->Zoom+ViewRect.Top<temp.y+64/camera->Zoom)
+                            return m_decor[i][j][k].getMonstre();
+                    }
+                    return -1;
 }

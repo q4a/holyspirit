@@ -21,18 +21,6 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
     m_caracteristique=modele->getCaracteristique();
 }
 
-int Monstre::getModele(){ return m_modele; }
-
-void Monstre::testerVision(coordonnee positionHero)
-{
-    if(fabs(positionHero.x-m_positionCase.x)<5&&fabs(positionHero.y-m_positionCase.y)<5)
-        m_vu=1;
-    else if(fabs(positionHero.x-m_positionCase.x)>15||fabs(positionHero.y-m_positionCase.y)>15)
-        m_vu=0,m_etat=0;
-}
-
-bool Monstre::getVu(){return m_vu;}
-
 bool Modele_Monstre::Charger(string chemin)
 {
     console.Ajouter("",0);
@@ -172,3 +160,15 @@ bool Modele_Monstre::Charger(string chemin)
 
     return 1;
 }
+
+void Monstre::testerVision(coordonnee positionHero)
+{
+    if(fabs(positionHero.x-m_positionCase.x)<5&&fabs(positionHero.y-m_positionCase.y)<5)
+        m_vu=1;
+    else if(fabs(positionHero.x-m_positionCase.x)>15||fabs(positionHero.y-m_positionCase.y)>15)
+        m_vu=0,m_etat=0;
+}
+
+int Monstre::getModele(){ return m_modele; }
+
+bool Monstre::getVu(){return m_vu;}

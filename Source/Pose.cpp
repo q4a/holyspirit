@@ -26,29 +26,9 @@ void Pose::setPose(coordonnee positionDansLImage,int animation,int son,int image
 	m_attaque=attaque;
 }
 
-coordonnee Pose::getCoordonnee()
-{
-   // std::cout<<m_positionDansLImage.x<<std::endl;
-	return m_positionDansLImage;
-}
-
-int Pose::getAnimation()
-{
-	return m_animation;
-}
-
-int Pose::getSon()
-{
-	return m_son;
-}
-
-int Pose::getImage()
-{
-	return m_image;
-}
-
-int Pose::getAttaque()
-{
-	return m_attaque;
-}
+coordonnee Pose::getCoordonnee(){return m_positionDansLImage;}
+int Pose::getAnimation(){return m_animation;}
+int Pose::getSon(){return m_son;}
+int Pose::getImage(){return m_image;}
+int Pose::getAttaque(){return m_attaque;}
 

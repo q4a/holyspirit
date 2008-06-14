@@ -14,10 +14,7 @@ void Case::setCoordonnee(coordonnee nouvelleCoordonnee,int distance)
 	m_distance=distance;
 }
 
-int Case::getDistance()
-{
-	return m_distance;
-}
+int Case::getDistance(){return m_distance;}
 
 Case Case::operator=(const Case &caseCopiee)
 {

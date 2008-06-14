@@ -38,38 +38,11 @@ void Tile::setTile(coordonnee positionDansLImage,bool collision,int animation,in
 	m_orientation=orientation;
 }
 
-coordonnee Tile::getCoordonnee()
-{
-	return m_positionDansLImage;
-}
-
-bool Tile::getCollision()
-{
-	return m_collision;
-}
-
-int Tile::getAnimation()
-{
-	return m_animation;
-}
-
-int Tile::getSon()
-{
-	return m_son;
-}
-
-Lumiere Tile::getLumiere()
-{
-    return m_lumiere;
-}
-
-bool Tile::getOmbre()
-{
-    return m_ombre;
-}
-
-char Tile::getOrientation()
-{
-    return m_orientation;
-}
+coordonnee Tile::getCoordonnee(){return m_positionDansLImage;}
+bool Tile::getCollision(){return m_collision;}
+int Tile::getAnimation(){return m_animation;}
+int Tile::getSon(){return m_son;}
+Lumiere Tile::getLumiere(){return m_lumiere;}
+bool Tile::getOmbre(){return m_ombre;}
+char Tile::getOrientation(){return m_orientation;}
 

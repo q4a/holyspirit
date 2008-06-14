@@ -13,7 +13,7 @@ Evenement::Evenement(int numero)
 
 Evenement::~Evenement()
 {
-	//delete[] m_information;
+	m_information.clear();
 }
 
 void Evenement::deleteInformations()

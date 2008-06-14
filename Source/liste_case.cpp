@@ -11,10 +11,7 @@ void liste_case::setTailleListe(int taille)
 	m_liste.resize(taille,caseTemp);
 	m_distanceEnCours=0;
 }
-int liste_case::getTailleListe()
-{
-	return m_liste.size();
-}
+int liste_case::getTailleListe(){return m_liste.size();}
 
 void liste_case::ajouterCase(coordonnee coordonneeAjoutable)
 {
@@ -23,10 +20,7 @@ void liste_case::ajouterCase(coordonnee coordonneeAjoutable)
 	m_liste[m_liste.size()-1].setCoordonnee(coordonneeAjoutable,m_distanceEnCours);
 }
 
-void liste_case::supprimer()
-{
-    m_liste.clear();
-}
+void liste_case::supprimer(){m_liste.clear();}
 
 bool liste_case::testerCasesEnCours(coordonnee caseCherchee)
 {
@@ -152,20 +146,11 @@ bool liste_case::ajouterCasesAdjacentes(std::vector<std::vector<bool> > grille,c
 		}
 }
 
-void liste_case::incrementerDistanceEnCours()
-{
-	m_distanceEnCours++;
-}
+void liste_case::incrementerDistanceEnCours(){m_distanceEnCours++;}
 
-void liste_case::decrementerDistanceEnCours()
-{
-	m_distanceEnCours--;
-}
+void liste_case::decrementerDistanceEnCours(){m_distanceEnCours--;}
 
-int liste_case::getDistance()
-{
-	return m_distanceEnCours;
-}
+int liste_case::getDistance(){return m_distanceEnCours;}
 
 coordonnee liste_case::trouverLeChemin(coordonnee caseEnCours)
 {

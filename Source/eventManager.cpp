@@ -192,10 +192,7 @@ bool EventManager::getEvenement(int numeroEvenement,std::string evenement)
 coordonnee EventManager::getCasePointee(){return m_casePointee;}
 coordonnee EventManager::getPositionSouris(){return m_positionSouris;}
 
-void EventManager::arreterClique()
-{
-    m_Clic[Mouse::Left]=false;
-}
+void EventManager::arreterClique(){m_Clic[Mouse::Left]=false;}
 
 
 

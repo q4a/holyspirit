@@ -22,13 +22,7 @@ Tileset::Tileset(string chemin)
 }
 Tileset::~Tileset()
 {
-	//delete[] m_sonAZero;
-	//delete[] m_tile;
-	//delete[] m_buffer;
-	//delete[] m_sons;
 }
-
-
 
 Tileset Tileset::operator=(const Tileset &tileset)
 {
@@ -186,10 +180,7 @@ int Tileset::getSonTile(int tile)
     return 0;
 }
 
-int Tileset::getTaille()
-{
-    return m_tile.size();
-}
+int Tileset::getTaille(){return m_tile.size();}
 
 Lumiere Tileset::getLumiereDuTile(int tile)
 {
