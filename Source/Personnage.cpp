@@ -132,7 +132,7 @@ bool Modele_Personnage::Charger(string chemin)
                     if(caractere=='*')
                     {
                         coordonnee position;
-                        int animation,son,image;
+                        int animation,son,image,attaque=-1;
 
                         do
                         {
@@ -146,10 +146,11 @@ bool Modele_Personnage::Charger(string chemin)
                                 case 'a': fichier>>animation; break;
                                 case 's': fichier>>son; break;
                                 case 'i': fichier>>image; break;
+                                case 'd': fichier>>attaque; break;
                             }
                         }while(caractere!='$');
                         m_pose[i][j].push_back(poseTemp);
-                        m_pose[i][j][m_pose[i][j].size()-1].setPose(position,animation,son,image);
+                        m_pose[i][j][m_pose[i][j].size()-1].setPose(position,animation,son,image,attaque);
                         fichier.get(caractere);
                     }
                     fichier.get(caractere);
@@ -440,6 +441,10 @@ void Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps)
 
         modele->jouerSon(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getSon(),0,position);
         m_animation-=0.075;
+        if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==0)
+            configuration.effetMort+=3;
+        if(configuration.effetMort>200)
+        configuration.effetMort=200;
     }
 }
 
@@ -461,6 +466,8 @@ void Personnage::frappe(coordonnee direction,coordonnee position)
 		m_angle=0;
 		while(m_angle<0)
 		m_angle=360+m_angle;
+
+    m_arrivee=m_cheminFinal;
 }
 
 

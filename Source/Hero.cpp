@@ -135,8 +135,8 @@ void Hero::testMontreVise(Monstre *monstre,int hauteurMap)
                             }
                             else
                             {
-                                m_personnage.setArrivee(m_personnage.getCoordonnee());
-                                m_personnage.setProchaineCase(m_personnage.getCoordonnee());
+                                m_personnage.setArrivee(m_personnage.getProchaineCase());
+                               // m_personnage.setProchaineCase(m_personnage.getCoordonnee());
                                // m_personnage.setCoordonneePixel(m_personnage.getCoordonnee());
                                 coordonnee temp,temp2;
                                 temp.x=(m_personnage.getCoordonneePixel().x-m_personnage.getCoordonneePixel().y-1+hauteurMap)*64;

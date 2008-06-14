@@ -112,7 +112,7 @@ bool Modele_Monstre::Charger(string chemin)
                     if(caractere=='*')
                     {
                         coordonnee position;
-                        int animation,son,image;
+                        int animation,son,image,attaque=-1;
 
                         do
                         {
@@ -126,10 +126,11 @@ bool Modele_Monstre::Charger(string chemin)
                                 case 'a': fichier>>animation; break;
                                 case 's': fichier>>son; break;
                                 case 'i': fichier>>image; break;
+                                case 'd': fichier>>attaque; break;
                             }
                         }while(caractere!='$');
                         m_pose[i][j].push_back(poseTemp);
-                        m_pose[i][j][m_pose[i][j].size()-1].setPose(position,animation,son,image);
+                        m_pose[i][j][m_pose[i][j].size()-1].setPose(position,animation,son,image,attaque);
                         fichier.get(caractere);
                     }
                     fichier.get(caractere);
