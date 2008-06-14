@@ -34,7 +34,14 @@ Hero::Hero()
 
 	m_modelePersonnage.setPorteeLumineuse(lumiere);
 
-	m_personnage.setVitesse(1);
+	Caracteristique temp;
+
+	temp.vie=100;
+	temp.maxVie=100;
+	temp.degats=1;
+	temp.vitesse=1;
+
+	m_personnage.setCaracteristique(temp);
 }
 
 /*void setArrivee(coordonnee casePointee,Map *map)
@@ -65,86 +72,18 @@ void Hero::testMontreVise(Monstre *monstre,int hauteurMap)
     if(m_enemiVise>-1)
     {
 
-                            if(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)>1||fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)>1)
-                            {
-                                m_personnage.setArrivee(monstre->getCoordonnee());
-                                /*coordonnee arrivee,enCours;
-
-                                arrivee=m_personnage.getCoordonnee();
-
-                                if(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)!=0&&fabs(monstre->getCoordonnee().x-m_personnage.getCoordonnee().y!=0))
-                                {
-                                    enCours.x=arrivee.x-(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)/fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x);
-                                    enCours.y=arrivee.y-(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)/fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y);
-                                    //if(!getCollision(enCours.x,enCours.y))
-                                        m_personnage.setArrivee(enCours);
-                                }
-
-                                if(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)!=0)
-                                {
-                                    enCours.x=arrivee.x-(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)/fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x);
-                                    enCours.y=arrivee.y;
-                                   // if(!getCollision(enCours.x,enCours.y))
-                                        m_personnage.setArrivee(enCours);
-                                }
-
-                                if(fabs(monstre->getCoordonnee().x-m_personnage.getCoordonnee().y!=0))
-                                {
-                                    enCours.x=arrivee.x;
-                                    enCours.y=arrivee.y-(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)/fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y);
-                                    //if(!getCollision(enCours.x,enCours.y))
-                                        m_personnage.setArrivee(enCours);
-                                }
-
-                                if(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)!=0&&fabs(monstre->getCoordonnee().x-m_personnage.getCoordonnee().y!=0))
-                                {
-                                    enCours.x=arrivee.x+(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)/fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x);
-                                    enCours.y=arrivee.y-(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)/fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y);
-                                   // if(!getCollision(enCours.x,enCours.y))
-                                        m_personnage.setArrivee(enCours);
-                                    enCours.x=arrivee.x-(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)/fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x);
-                                    enCours.y=arrivee.y+(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)/fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y);
-                                   // if(!getCollision(enCours.x,enCours.y))
-                                        m_personnage.setArrivee(enCours);
-                                }
-
-                                if(fabs(monstre->getCoordonnee().x-m_personnage.getCoordonnee().y!=0))
-                                {
-                                    enCours.x=arrivee.x;
-                                    enCours.y=arrivee.y+(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)/fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y);
-                                   // if(!getCollision(enCours.x,enCours.y))
-                                        m_personnage.setArrivee(enCours);
-                                }
-
-                                if(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)!=0)
-                                {
-                                    enCours.x=arrivee.x+(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)/fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x);
-                                    enCours.y=arrivee.y;
-                                   // if(!getCollision(enCours.x,enCours.y))
-                                        m_personnage.setArrivee(enCours);
-                                }
-
-                                if(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)!=0&&fabs(monstre->getCoordonnee().x-m_personnage.getCoordonnee().y!=0))
-                                {
-                                    enCours.x=arrivee.x+(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)/fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x);
-                                    enCours.y=arrivee.y+(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)/fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y);
-                                   // if(!getCollision(enCours.x,enCours.y))
-                                        m_personnage.setArrivee(enCours);
-                                }*/
-
-                            }
-                            else
-                            {
-                                m_personnage.setArrivee(m_personnage.getProchaineCase());
-                               // m_personnage.setProchaineCase(m_personnage.getCoordonnee());
-                               // m_personnage.setCoordonneePixel(m_personnage.getCoordonnee());
-                                coordonnee temp,temp2;
-                                temp.x=(m_personnage.getCoordonneePixel().x-m_personnage.getCoordonneePixel().y-1+hauteurMap)*64;
-                                temp.y=(m_personnage.getCoordonneePixel().x+m_personnage.getCoordonneePixel().y)*32;
-                                temp2.x=(monstre->getCoordonneePixel().x-monstre->getCoordonneePixel().y-1+hauteurMap)*64;
-                                temp2.y=(monstre->getCoordonneePixel().x+monstre->getCoordonneePixel().y)*32;
-                                m_personnage.frappe(temp2,temp);
-                            }
+        if(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)>1||fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)>1)
+            m_personnage.setArrivee(monstre->getCoordonnee());
+        else
+        {
+            m_personnage.setArrivee(m_personnage.getProchaineCase());
+            coordonnee temp,temp2;
+            temp.x=(m_personnage.getCoordonneePixel().x-m_personnage.getCoordonneePixel().y-1+hauteurMap)*64;
+            temp.y=(m_personnage.getCoordonneePixel().x+m_personnage.getCoordonneePixel().y)*32;
+            temp2.x=(monstre->getCoordonneePixel().x-monstre->getCoordonneePixel().y-1+hauteurMap)*64;
+            temp2.y=(monstre->getCoordonneePixel().x+monstre->getCoordonneePixel().y)*32;
+            m_personnage.frappe(temp2,temp);
+        }
     }
 }
 

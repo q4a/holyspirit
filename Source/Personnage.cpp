@@ -53,6 +53,7 @@ Personnage::Personnage()
 {
     m_animation=0;
     m_angle=45;
+    m_monstre=false;
 }
 Modele_Personnage::Modele_Personnage()
 {
@@ -176,7 +177,7 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
         Sprite.SetImage(modele->m_image[modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()]);
         Sprite.SetSubRect(IntRect(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h));
 
-        if(configuration.Ombre)
+        if(configuration.Ombre&&m_caracteristique.vie>0)
         {
             for(int o=0;o<lumiere->m_ombre.size();o++)
             {
@@ -220,6 +221,13 @@ coordonnee Personnage::getCoordonnee()
 	return m_positionCase;
 }
 
+void Personnage::regenererVie(float vie)
+{
+    m_caracteristique.vie+=vie;
+    if(m_caracteristique.vie>m_caracteristique.maxVie)
+        m_caracteristique.vie=m_caracteristique.maxVie;
+}
+
 void Personnage::setCoordonnee(coordonnee nouvellesCoordonnees)
 {
 	m_positionCase=nouvellesCoordonnees;
@@ -237,7 +245,7 @@ void Personnage::setCoordonnee(coordonnee nouvellesCoordonnees)
 	m_angle=0;
 	m_poseEnCours=0;
 }
-void Personnage::setVitesse(float vitesse){m_vitesse=vitesse;}
+void Personnage::setVitesse(float vitesse){m_caracteristique.vitesse=vitesse;}
 void Personnage::setEtat(int etat){m_etat=etat;}
 
 int Personnage::getEtat(){return m_etat;}
@@ -348,30 +356,30 @@ bool Personnage::seDeplacer(float tempsEcoule)
 		if(m_positionCase.x<m_cheminFinal.x)
 		{
 			if(m_positionCase.y>m_cheminFinal.y)
-				m_positionPixel.x+=2*tempsEcoule*m_vitesse;
+				m_positionPixel.x+=2*tempsEcoule*m_caracteristique.vitesse;
 			else
-				m_positionPixel.x+=4*tempsEcoule*m_vitesse;
+				m_positionPixel.x+=4*tempsEcoule*m_caracteristique.vitesse;
 		}
 		if(m_positionCase.x>m_cheminFinal.x)
 		{
 			if(m_positionCase.y<m_cheminFinal.y)
-				m_positionPixel.x-=2*tempsEcoule*m_vitesse;
+				m_positionPixel.x-=2*tempsEcoule*m_caracteristique.vitesse;
 			else
-				m_positionPixel.x-=4*tempsEcoule*m_vitesse;
+				m_positionPixel.x-=4*tempsEcoule*m_caracteristique.vitesse;
 		}
 		if(m_positionCase.y<m_cheminFinal.y)
 		{
 			if(m_positionCase.x>m_cheminFinal.x)
-				m_positionPixel.y+=2*tempsEcoule*m_vitesse;
+				m_positionPixel.y+=2*tempsEcoule*m_caracteristique.vitesse;
 			else
-				m_positionPixel.y+=4*tempsEcoule*m_vitesse;
+				m_positionPixel.y+=4*tempsEcoule*m_caracteristique.vitesse;
 		}
 		if(m_positionCase.y>m_cheminFinal.y)
 		{
 			if(m_positionCase.x<m_cheminFinal.x)
-				m_positionPixel.y-=2*tempsEcoule*m_vitesse;
+				m_positionPixel.y-=2*tempsEcoule*m_caracteristique.vitesse;
 			else
-				m_positionPixel.y-=4*tempsEcoule*m_vitesse;
+				m_positionPixel.y-=4*tempsEcoule*m_caracteristique.vitesse;
 		}
 
 		//m_angle=atan((double)(m_positionCase.y-m_cheminFinal.y)/(double)(m_positionCase.x-m_cheminFinal.x))*360/(2*M_PI);
@@ -423,9 +431,30 @@ void Personnage::setProchaineCase(coordonnee position)
     m_cheminFinal=position;
 }
 
-
-void Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps)
+void Personnage::infligerDegats(int degats)
 {
+    m_caracteristique.vie-=degats;
+}
+
+Caracteristique Personnage::getCaracteristique()
+{
+    return m_caracteristique;
+}
+
+Caracteristique Modele_Personnage::getCaracteristique()
+{
+    return m_caracteristique;
+}
+
+void Personnage::setCaracteristique(Caracteristique caracteristique)
+{
+    m_caracteristique=caracteristique;
+}
+
+int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps)
+{
+    int retour=0;
+
     m_animation+=temps;
 
     while(m_animation>=0.075)
@@ -441,11 +470,19 @@ void Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps)
 
         modele->jouerSon(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getSon(),0,position);
         m_animation-=0.075;
-        if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==0)
-            configuration.effetMort+=3;
-        if(configuration.effetMort>200)
-        configuration.effetMort=200;
+        if(m_monstre)
+        {
+            if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==0)
+                retour+=m_caracteristique.degats;
+        }
+        else
+        {
+            if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==0)
+                retour=1;
+        }
     }
+
+    return retour;
 }
 
 void Personnage::frappe(coordonnee direction,coordonnee position)

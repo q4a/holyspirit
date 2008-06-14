@@ -12,12 +12,13 @@ Monstre::Monstre()
 {
     m_vu=0;
     m_modele=-1;
-    m_vitesse=0.7;
+    m_monstre=true;
 }
 
-void Monstre::Charger(int numero,Modele_Monstre modele)
+void Monstre::Charger(int numero,Modele_Monstre *modele)
 {
     m_modele=numero;
+    m_caracteristique=modele->getCaracteristique();
 }
 
 int Monstre::getModele(){ return m_modele; }
@@ -26,7 +27,7 @@ void Monstre::testerVision(coordonnee positionHero)
 {
     if(fabs(positionHero.x-m_positionCase.x)<5&&fabs(positionHero.y-m_positionCase.y)<5)
         m_vu=1;
-    if(fabs(positionHero.x-m_positionCase.x)>20||fabs(positionHero.y-m_positionCase.y)>20)
+    else if(fabs(positionHero.x-m_positionCase.x)>15||fabs(positionHero.y-m_positionCase.y)>15)
         m_vu=0,m_etat=0;
 }
 
@@ -36,6 +37,10 @@ bool Modele_Monstre::Charger(string chemin)
 {
     console.Ajouter("",0);
 	console.Ajouter("Chargement du monstre : "+chemin,0);
+
+    m_caracteristique.vitesse=0.7;
+    m_caracteristique.vie=5;
+    m_caracteristique.degats=3;
 
     ifstream fichier;
     fichier.open(chemin.c_str(), ios::in);
@@ -98,6 +103,28 @@ bool Modele_Monstre::Charger(string chemin)
     		}
 
     	}while(caractere!='$');
+
+    	do
+        {
+            if(caractere=='*')
+            {
+                do
+                {
+                    fichier.get(caractere);
+                    switch (caractere)
+                    {
+                        case 'v': fichier>>m_caracteristique.maxVie; break;
+                        case 'd': fichier>>m_caracteristique.degats; break;
+                        case 'm': fichier>>m_caracteristique.vitesse; break;
+                    }
+                }while(caractere!='$');
+
+                m_caracteristique.vie=m_caracteristique.maxVie;
+
+                fichier.get(caractere);
+            }
+            fichier.get(caractere);
+        }while(caractere!='$');
 
     	 Pose poseTemp;
     	 m_pose.resize(NOMBRE_ETAT,vector<vector<Pose> >(0,vector<Pose>(0,poseTemp)));

@@ -34,6 +34,8 @@ class Map
 	void calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *camera);
 	void detruireOmbresEtLumieres(Hero *hero);
 
+	bool infligerDegats(int numeroMontre, int degats);
+
 	void gererMonstres(Hero *hero,float temps);
 
 	void musiquePlay(coordonnee position);

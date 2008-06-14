@@ -15,7 +15,7 @@ class Monstre : public Personnage
 {
     public:
     Monstre();
-    void Charger(int numero,Modele_Monstre modele);
+    void Charger(int numero,Modele_Monstre *modele);
     void testerVision(coordonnee positionHero);
     int getModele();
 

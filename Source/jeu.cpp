@@ -113,7 +113,12 @@ bool Jeu(RenderWindow *ecran)
 		    augmenter=true;
 		    tempsEcouleDepuisFPS+=tempsEcoule;
 
+		    hero.m_personnage.regenererVie((float)hero.m_personnage.getCaracteristique().maxVie*tempsEcoule/100);
+
 		    Clock.Reset();
+
+
+		    configuration.effetMort=200-(hero.m_personnage.getCaracteristique().vie*200/hero.m_personnage.getCaracteristique().maxVie);
 
 		    ///Déplacements
 
@@ -166,7 +171,12 @@ bool Jeu(RenderWindow *ecran)
 
 			if(tempsDepuisDerniereAnimation>0.05)
 			{
-			    hero.m_personnage.animer(&hero.m_modelePersonnage,map.getDimensions().y,tempsDepuisDerniereAnimation); //Animation du héro
+			    if(hero.m_personnage.animer(&hero.m_modelePersonnage,map.getDimensions().y,tempsDepuisDerniereAnimation)==1) //Animation du héro
+			    {
+                    if(map.infligerDegats(hero.getEnemiVise(),hero.m_personnage.getCaracteristique().degats)) // Si l'enemi meut, renvoi true
+                        eventManager.arreterClique();
+                    hero.setMonstreVise(-1);
+			    }
                 map.animer(&hero,tempsDepuisDerniereAnimation); // Animation des tiles de la map
                 tempsDepuisDerniereAnimation=0;
 			}

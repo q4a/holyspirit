@@ -74,6 +74,14 @@ struct Configuration
     std::string version,chemin_maps,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetBlur,nom_effetColorize,nom_hud,nom_minimap;
 };
 
+struct Caracteristique
+{
+    float vitesse;
+    float vie;
+    int maxVie;
+    int degats;
+};
+
 struct coordonneeDecimal
 {
     float x;

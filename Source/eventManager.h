@@ -24,6 +24,8 @@ class EventManager
 	coordonnee getCasePointee();
 	coordonnee getPositionSouris();
 
+	void arreterClique();
+
 	private:
 	bool m_EventTableau[500],m_Clic[5],m_ClicAncien[5];
 	coordonnee m_positionSouris,m_casePointee;
