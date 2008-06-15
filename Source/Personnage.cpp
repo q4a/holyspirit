@@ -430,7 +430,7 @@ void Modele_Personnage::jouerSon(int numeroSon,double distance,coordonnee positi
         m_sons[numeroSon].SetPosition(-position.x,0,position.y);
         Sound::Status Status = m_sons[numeroSon].GetStatus();
 
-        if(Status==0)
+        m_sons[numeroSon].Stop();
         m_sons[numeroSon].Play();
     }
 }

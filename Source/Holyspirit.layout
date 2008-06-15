@@ -16,8 +16,8 @@
 	<File name="Globale.h" open="0" top="0" tabpos="15">
 		<Cursor position="68" topLine="0" />
 	</File>
-	<File name="Hero.cpp" open="1" top="1" tabpos="7">
-		<Cursor position="803" topLine="36" />
+	<File name="Hero.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="718" topLine="36" />
 	</File>
 	<File name="Hero.h" open="0" top="0" tabpos="15">
 		<Cursor position="457" topLine="2" />
@@ -34,8 +34,8 @@
 	<File name="Monstre.h" open="0" top="0" tabpos="13">
 		<Cursor position="313" topLine="0" />
 	</File>
-	<File name="Personnage.cpp" open="1" top="0" tabpos="10">
-		<Cursor position="8456" topLine="228" />
+	<File name="Personnage.cpp" open="1" top="1" tabpos="10">
+		<Cursor position="14400" topLine="411" />
 	</File>
 	<File name="Personnage.h" open="0" top="0" tabpos="10">
 		<Cursor position="758" topLine="17" />
