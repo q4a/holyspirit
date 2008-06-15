@@ -8,6 +8,8 @@ using namespace sf;
 bool Jeu(RenderWindow *ecran)
 {
 	Clock Clock;
+	SoundBuffer bufferSonMort;
+	Sound  sonMort;
 	bool continuer=true,lumiere=false,augmenter=false;
 	char chaine[10];
 	View camera(FloatRect(0, 0, configuration.Resolution.x,configuration.Resolution.y), 1.f);
@@ -66,6 +68,15 @@ bool Jeu(RenderWindow *ecran)
         EffectColorize.SetParameter("color",1, 1, 1);
     }
 
+    if(!bufferSonMort.LoadFromFile(configuration.chemin_son_mort))
+        console.Ajouter("Impossible de charger : "+configuration.chemin_son_mort,1);
+    else
+        console.Ajouter("Chargement de : "+configuration.chemin_son_mort,0);
+
+    sonMort.SetBuffer(bufferSonMort),sonMort.SetVolume(0);
+    sonMort.SetLoop(true);
+    sonMort.Play();
+
 	Hero hero;
 	if(!hero.m_modelePersonnage.Charger("Data/Personnages/Hero/GuerrierHache.txt")) // Chargement du héro
         return 0;
@@ -118,7 +129,7 @@ bool Jeu(RenderWindow *ecran)
 		    Clock.Reset();
 
 		    if(hero.m_personnage.getCaracteristique().vie/(float)hero.m_personnage.getCaracteristique().maxVie<0.5)
-                configuration.effetMort=200-(hero.m_personnage.getCaracteristique().vie*400/hero.m_personnage.getCaracteristique().maxVie);
+                configuration.effetMort=200-(hero.m_personnage.getCaracteristique().vie*400/hero.m_personnage.getCaracteristique().maxVie),sonMort.SetVolume(configuration.effetMort);
 
 		    ///Déplacements
 
@@ -161,6 +172,7 @@ bool Jeu(RenderWindow *ecran)
 				Listener::SetPosition(-position.x, 0, position.y);
 				Listener::SetTarget(0, 0, 1);
 				map.musiquePlay(position);
+				sonMort.SetPosition(position.x,0,position.y);
 
 				tempsEcouleDepuisDernierDeplacement=0;
 			}

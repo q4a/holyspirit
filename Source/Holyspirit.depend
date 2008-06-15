@@ -484,7 +484,7 @@
 	"liste_case.h"
 	"Pose.h"
 
-1213531123 d:\backup disque e\c++\holyspirit\source\constantes.h
+1213541334 d:\backup disque e\c++\holyspirit\source\constantes.h
 	<cmath>
 	<utility>
 	<iostream>
@@ -543,7 +543,7 @@
 1210592600 d:\backup disque e\c++\holyspirit\source\evenement.h
 	"constantes.h"
 
-1213536683 source:d:\backup disque e\c++\holyspirit\source\personnage.cpp
+1213541423 source:d:\backup disque e\c++\holyspirit\source\personnage.cpp
 	"Personnage.h"
 	"Globale.h"
 	<iostream>
@@ -642,7 +642,7 @@
 	"globale.h"
 	<iostream>
 
-1213523796 source:d:\backup disque e\c++\holyspirit\source\main.cpp
+1213541704 source:d:\backup disque e\c++\holyspirit\source\main.cpp
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<iostream>
@@ -681,7 +681,7 @@
 	<SFML/Audio.hpp>
 	"Globale.h"
 
-1213531296 source:d:\backup disque e\c++\holyspirit\source\jeu.cpp
+1213541977 source:d:\backup disque e\c++\holyspirit\source\jeu.cpp
 	"jeu.h"
 	"Globale.h"
 
