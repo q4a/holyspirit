@@ -257,7 +257,7 @@ Mort - E
 *x512 y0 w128 h128 a5 s-1 i3 $
 *x640 y0 w128 h128 a6 s-1 i3 $
 *x768 y0 w128 h128 a7 s-1 i3 $
-*x896 y0 w128 h128 a0 s-1 i3 $
+*x896 y0 w128 h128 a7 s-1 i3 $
 $
 Mort - NE
 *x0 y0 w128 h128 a1 s-1 i3 $
@@ -267,7 +267,7 @@ Mort - NE
 *x512 y0 w128 h128 a5 s-1 i3 $
 *x640 y0 w128 h128 a6 s-1 i3 $
 *x768 y0 w128 h128 a7 s-1 i3 $
-*x896 y0 w128 h128 a0 s-1 i3 $
+*x896 y0 w128 h128 a7 s-1 i3 $
 $
 Mort - N
 *x0 y0 w128 h128 a1 s-1 i3 $
@@ -277,7 +277,7 @@ Mort - N
 *x512 y0 w128 h128 a5 s-1 i3 $
 *x640 y0 w128 h128 a6 s-1 i3 $
 *x768 y0 w128 h128 a7 s-1 i3 $
-*x896 y0 w128 h128 a0 s-1 i3 $
+*x896 y0 w128 h128 a7 s-1 i3 $
 $
 Mort - NO
 *x0 y0 w128 h128 a1 s-1 i3 $
@@ -287,7 +287,7 @@ Mort - NO
 *x512 y0 w128 h128 a5 s-1 i3 $
 *x640 y0 w128 h128 a6 s-1 i3 $
 *x768 y0 w128 h128 a7 s-1 i3 $
-*x896 y0 w128 h128 a0 s-1 i3 $
+*x896 y0 w128 h128 a7 s-1 i3 $
 $
 Mort - O
 *x0 y0 w128 h128 a1 s-1 i3 $
@@ -297,7 +297,7 @@ Mort - O
 *x512 y0 w128 h128 a5 s-1 i3 $
 *x640 y0 w128 h128 a6 s-1 i3 $
 *x768 y0 w128 h128 a7 s-1 i3 $
-*x896 y0 w128 h128 a0 s-1 i3 $
+*x896 y0 w128 h128 a7 s-1 i3 $
 $
 Mort - SO
 *x0 y0 w128 h128 a1 s-1 i3 $
@@ -307,7 +307,7 @@ Mort - SO
 *x512 y0 w128 h128 a5 s-1 i3 $
 *x640 y0 w128 h128 a6 s-1 i3 $
 *x768 y0 w128 h128 a7 s-1 i3 $
-*x896 y0 w128 h128 a0 s-1 i3 $
+*x896 y0 w128 h128 a7 s-1 i3 $
 $
 Mort - S
 *x0 y0 w128 h128 a1 s-1 i3 $
@@ -317,7 +317,7 @@ Mort - S
 *x512 y0 w128 h128 a5 s-1 i3 $
 *x640 y0 w128 h128 a6 s-1 i3 $
 *x768 y0 w128 h128 a7 s-1 i3 $
-*x896 y0 w128 h128 a0 s-1 i3 $
+*x896 y0 w128 h128 a7 s-1 i3 $
 $
 Mort - SE
 *x0 y0 w128 h128 a1 s-1 i3 $
