@@ -243,7 +243,7 @@ int Personnage::pathfinding(vector<vector<bool> > map)
 	while(!casesVisitee.testerCasesEnCours(arrivee)&&!erreur)
 	{
 		casesVisitee.incrementerDistanceEnCours();
-		casesVisitee.ajouterCasesAdjacentes(map,&arrivee);
+		casesVisitee.ajouterCasesAdjacentes(map,&arrivee,depart);
 		if(casesVisitee.getDistance()>20)
 			erreur=true;
 	}
@@ -290,74 +290,79 @@ int Personnage::pathfinding(vector<vector<bool> > map)
 
 bool Personnage::seDeplacer(float tempsEcoule)
 {
-	if(m_positionCase.y!=m_cheminFinal.y||m_positionCase.x!=m_cheminFinal.x)
-	{
-	    m_etat=1;
-		m_positionPixelPrecedente.x=(int)m_positionPixel.x;
-		m_positionPixelPrecedente.y=(int)m_positionPixel.y;
+    if(m_caracteristique.vie>0)
+    {
+        if(m_positionCase.y!=m_cheminFinal.y||m_positionCase.x!=m_cheminFinal.x)
+        {
+            m_etat=1;
+            m_positionPixelPrecedente.x=(int)m_positionPixel.x;
+            m_positionPixelPrecedente.y=(int)m_positionPixel.y;
 
-		if(m_positionCase.x<m_cheminFinal.x)
-		{
-			if(m_positionCase.y>m_cheminFinal.y)
-				m_positionPixel.x+=2*tempsEcoule*m_caracteristique.vitesse;
-			else
-				m_positionPixel.x+=4*tempsEcoule*m_caracteristique.vitesse;
-		}
-		if(m_positionCase.x>m_cheminFinal.x)
-		{
-			if(m_positionCase.y<m_cheminFinal.y)
-				m_positionPixel.x-=2*tempsEcoule*m_caracteristique.vitesse;
-			else
-				m_positionPixel.x-=4*tempsEcoule*m_caracteristique.vitesse;
-		}
-		if(m_positionCase.y<m_cheminFinal.y)
-		{
-			if(m_positionCase.x>m_cheminFinal.x)
-				m_positionPixel.y+=2*tempsEcoule*m_caracteristique.vitesse;
-			else
-				m_positionPixel.y+=4*tempsEcoule*m_caracteristique.vitesse;
-		}
-		if(m_positionCase.y>m_cheminFinal.y)
-		{
-			if(m_positionCase.x<m_cheminFinal.x)
-				m_positionPixel.y-=2*tempsEcoule*m_caracteristique.vitesse;
-			else
-				m_positionPixel.y-=4*tempsEcoule*m_caracteristique.vitesse;
-		}
+            if(m_positionCase.x<m_cheminFinal.x)
+            {
+                if(m_positionCase.y>m_cheminFinal.y)
+                    m_positionPixel.x+=2*tempsEcoule*m_caracteristique.vitesse;
+                else
+                    m_positionPixel.x+=4*tempsEcoule*m_caracteristique.vitesse;
+            }
+            if(m_positionCase.x>m_cheminFinal.x)
+            {
+                if(m_positionCase.y<m_cheminFinal.y)
+                    m_positionPixel.x-=2*tempsEcoule*m_caracteristique.vitesse;
+                else
+                    m_positionPixel.x-=4*tempsEcoule*m_caracteristique.vitesse;
+            }
+            if(m_positionCase.y<m_cheminFinal.y)
+            {
+                if(m_positionCase.x>m_cheminFinal.x)
+                    m_positionPixel.y+=2*tempsEcoule*m_caracteristique.vitesse;
+                else
+                    m_positionPixel.y+=4*tempsEcoule*m_caracteristique.vitesse;
+            }
+            if(m_positionCase.y>m_cheminFinal.y)
+            {
+                if(m_positionCase.x<m_cheminFinal.x)
+                    m_positionPixel.y-=2*tempsEcoule*m_caracteristique.vitesse;
+                else
+                    m_positionPixel.y-=4*tempsEcoule*m_caracteristique.vitesse;
+            }
 
-		//m_angle=atan((double)(m_positionCase.y-m_cheminFinal.y)/(double)(m_positionCase.x-m_cheminFinal.x))*360/(2*M_PI);
+            //m_angle=atan((double)(m_positionCase.y-m_cheminFinal.y)/(double)(m_positionCase.x-m_cheminFinal.x))*360/(2*M_PI);
 
-	 	m_angle=calculerAngle(m_cheminFinal.x-m_positionCase.x,m_cheminFinal.y-m_positionCase.y);
+            m_angle=calculerAngle(m_cheminFinal.x-m_positionCase.x,m_cheminFinal.y-m_positionCase.y);
 
-		if((m_positionCase.x<m_cheminFinal.x&&m_positionPixel.x>=m_cheminFinal.x*COTE_TILE)
-		 ||(m_positionCase.x>m_cheminFinal.x&&m_positionPixel.x<=m_cheminFinal.x*COTE_TILE)
-		  ||m_positionCase.x==m_cheminFinal.x)
-		if((m_positionCase.y<m_cheminFinal.y&&m_positionPixel.y>=m_cheminFinal.y*COTE_TILE)
-		 ||(m_positionCase.y>m_cheminFinal.y&&m_positionPixel.y<=m_cheminFinal.y*COTE_TILE)
-		  ||m_positionCase.y==m_cheminFinal.y)
-			{
-				m_positionPixel.x=(m_cheminFinal.x*COTE_TILE);
-				m_positionPixel.y=(m_cheminFinal.y*COTE_TILE);
+            if((m_positionCase.x<m_cheminFinal.x&&m_positionPixel.x>=m_cheminFinal.x*COTE_TILE)
+             ||(m_positionCase.x>m_cheminFinal.x&&m_positionPixel.x<=m_cheminFinal.x*COTE_TILE)
+              ||m_positionCase.x==m_cheminFinal.x)
+            if((m_positionCase.y<m_cheminFinal.y&&m_positionPixel.y>=m_cheminFinal.y*COTE_TILE)
+             ||(m_positionCase.y>m_cheminFinal.y&&m_positionPixel.y<=m_cheminFinal.y*COTE_TILE)
+              ||m_positionCase.y==m_cheminFinal.y)
+                {
+                    m_positionPixel.x=(m_cheminFinal.x*COTE_TILE);
+                    m_positionPixel.y=(m_cheminFinal.y*COTE_TILE);
 
-				m_positionCase.y=m_cheminFinal.y;
-				m_positionCase.x=m_cheminFinal.x;
+                    m_positionCase.y=m_cheminFinal.y;
+                    m_positionCase.x=m_cheminFinal.x;
 
-				return 1;
-			}
+                    return 1;
+                }
 
 
-	}
-	else if(m_arrivee.x!=m_positionCase.x||m_arrivee.y!=m_positionCase.y)
-	return 1;
-	else if(m_etat!=2||m_etat==2&&m_poseEnCours==0)
-	m_etat=0;
+        }
+        else if(m_arrivee.x!=m_positionCase.x||m_arrivee.y!=m_positionCase.y)
+        return 1;
+        else if(m_etat!=2||m_etat==2&&m_poseEnCours==0)
+        m_etat=0;
 
-	return 0;
+        return 0;
+    }
 }
 
 void Personnage::infligerDegats(int degats)
 {
     m_caracteristique.vie-=degats;
+    if(m_caracteristique.vie<=0&&m_etat!=3)
+        m_poseEnCours=0,m_etat=3;
 }
 
 int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps)
@@ -382,7 +387,7 @@ int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps)
         if(m_monstre)
         {
             if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==0)
-                retour+=m_caracteristique.degats;
+                retour+=(rand()%(m_caracteristique.degatsMax-m_caracteristique.degatsMin+1)+m_caracteristique.degatsMin);
         }
         else
         {

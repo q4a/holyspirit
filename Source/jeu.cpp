@@ -117,8 +117,8 @@ bool Jeu(RenderWindow *ecran)
 
 		    Clock.Reset();
 
-
-		    configuration.effetMort=200-(hero.m_personnage.getCaracteristique().vie*200/hero.m_personnage.getCaracteristique().maxVie);
+		    if(hero.m_personnage.getCaracteristique().vie/(float)hero.m_personnage.getCaracteristique().maxVie<0.5)
+                configuration.effetMort=200-(hero.m_personnage.getCaracteristique().vie*400/hero.m_personnage.getCaracteristique().maxVie);
 
 		    ///Déplacements
 
@@ -131,6 +131,8 @@ bool Jeu(RenderWindow *ecran)
 
 				if(!map.testEvenement(ecran,&hero,&camera,&menu)) // On test les événement pour voir s'il on doit changer de map, faire des dégats au perso, le régénérer, etc
                     return 0;
+
+                Clock.Reset();
 
 				hero.placerCamera(&camera,map.getDimensions()); // On place la camera suivant ou se trouve le perso
 
@@ -173,7 +175,7 @@ bool Jeu(RenderWindow *ecran)
 			{
 			    if(hero.m_personnage.animer(&hero.m_modelePersonnage,map.getDimensions().y,tempsDepuisDerniereAnimation)==1) //Animation du héro
 			    {
-                    if(map.infligerDegats(hero.getEnemiVise(),hero.m_personnage.getCaracteristique().degats)) // Si l'enemi meut, renvoi true
+                    if(map.infligerDegats(hero.getEnemiVise(),(rand()%(hero.m_personnage.getCaracteristique().degatsMax - hero.m_personnage.getCaracteristique().degatsMin+1))+hero.m_personnage.getCaracteristique().degatsMin)) // Si l'enemi meut, renvoi true
                         eventManager.arreterClique();
                     hero.setMonstreVise(-1);
 			    }
@@ -199,6 +201,7 @@ bool Jeu(RenderWindow *ecran)
                 }
 
                 menu.Afficher(ecran,3); // On affiche le hud
+                menu.AfficherDynamique(ecran,hero.m_personnage.getCaracteristique());
                  eventManager.AfficherCurseur(ecran); // On affiche le curseur de la souris
 
                 if(map.getEvenement(eventManager.getCasePointee())>=0)

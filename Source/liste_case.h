@@ -18,7 +18,7 @@ class liste_case
 	void setTailleListe(int taille);
 	int getTailleListe();
 
-	bool ajouterCasesAdjacentes(std::vector<std::vector<bool> > grille,coordonnee *arrivee);
+	bool ajouterCasesAdjacentes(std::vector<std::vector<bool> > grille,coordonnee *arrivee,coordonnee depart);
 	bool testerCasesEnCours(coordonnee caseCherchee);
 	void incrementerDistanceEnCours();
 	void decrementerDistanceEnCours();

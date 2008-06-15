@@ -625,36 +625,6 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                             if(m_tileset[m_decor[couche][j][k].getTileset()].getLumiereDuTile(m_decor[couche][j][k].getTile()).intensite>0)
                                 lumiereTile=m_tileset[m_decor[couche][j][k].getTileset()].getLumiereDuTile(m_decor[couche][j][k].getTile());// Je dis que lumièreTiles à la valeur de la lumière de la source de lumière
 
-                        if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
-                        {
-                            lumiereTile.rouge=(lumiereTile.rouge*lumiereTile.intensite+m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().rouge*m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+lumiereTile.intensite);
-                            lumiereTile.vert=(lumiereTile.vert*lumiereTile.intensite+m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().vert*m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+lumiereTile.intensite);
-                            lumiereTile.bleu=(lumiereTile.bleu*lumiereTile.intensite+m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().bleu*m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+lumiereTile.intensite);
-
-                            lumiereTile.hauteur=(lumiereTile.hauteur*lumiereTile.intensite+m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().hauteur*m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+lumiereTile.intensite);
-
-                            lumiereTile.intensite+=m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite;
-                            if(lumiereTile.intensite>255)
-                            lumiereTile.intensite=255;
-                            if(lumiereTile.intensite<0)
-                            lumiereTile.intensite=0;
-                        }
-
-                        if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
-                        {
-                            lumiereTile.rouge=(lumiereTile.rouge*lumiereTile.intensite+m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().rouge*m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+lumiereTile.intensite);
-                            lumiereTile.vert=(lumiereTile.vert*lumiereTile.intensite+m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().vert*m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+lumiereTile.intensite);
-                            lumiereTile.bleu=(lumiereTile.bleu*lumiereTile.intensite+m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().bleu*m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+lumiereTile.intensite);
-
-                            lumiereTile.hauteur=(lumiereTile.hauteur*lumiereTile.intensite+m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().hauteur*m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+lumiereTile.intensite);
-
-                            lumiereTile.intensite+=m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite;
-                            if(lumiereTile.intensite>255)
-                            lumiereTile.intensite=255;
-                            if(lumiereTile.intensite<0)
-                            lumiereTile.intensite=0;
-                        }
-
                         if(m_decor[0][j][k].getEvenement()>=0&&m_decor[0][j][k].getEvenement()<m_evenement.size())// Je vérifie que le tile est initialisé ^^
                             if(m_evenement[m_decor[0][j][k].getEvenement()].getType()==LUMIERE)
                             {
@@ -777,9 +747,9 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                     if(lumiere.intensite>0)
                                     {
                                         // Je calcule la couleur de la lumière, par rapport à l'ancienne lumière et à la nouvelle, pour faire un fondu
-                                        m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=(lumiere.rouge*lumiere.intensite/(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+lumiere.intensite)+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge*m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite/(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+lumiere.intensite));
-                                        m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert=(lumiere.vert*lumiere.intensite/(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+lumiere.intensite)+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert*m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite/(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+lumiere.intensite));
-                                        m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu=(lumiere.bleu*lumiere.intensite/(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+lumiere.intensite)+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu*m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite/(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+lumiere.intensite));
+                                        m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=(lumiere.rouge*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge*m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite)/(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+lumiere.intensite);
+                                            m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert=(lumiere.vert*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert*m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite)/(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+lumiere.intensite);
+                                            m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu=(lumiere.bleu*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu*m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite)/(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+lumiere.intensite);
 
                                         if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge>255)
                                             m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=255;
@@ -871,6 +841,84 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                             }
                                         }
                                     }
+
+                                        if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
+                                        if(m_monstre[m_decor[0][j][k].getMonstre()].getCaracteristique().vie>0)
+                                        {
+                                            //lumiere=m_lumiere;
+                                            lumiere.intensite=0;
+                                            lumiereTemp=0;
+                                            // Je réduit la quantité de lumière reçue, en fonction de la distance, qui est calculée avec un simple pythagore ^^
+                                           // lumiereTemp=(float)lumiereTile.intensite-(float)(gpl::sqrt((k*COTE_TILE-m*COTE_TILE)*(k*COTE_TILE-m*COTE_TILE)+(j*COTE_TILE-l*COTE_TILE)*(j*COTE_TILE-l*COTE_TILE)))/5;
+                                            lumiereTemp=(float)m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite-((((float)gpl::sqrt((m_monstre[m_decor[0][j][k].getMonstre()].getCoordonneePixel().x-(m)*COTE_TILE)*(m_monstre[m_decor[0][j][k].getMonstre()].getCoordonneePixel().x-(m)*COTE_TILE)+(m_monstre[m_decor[0][j][k].getMonstre()].getCoordonneePixel().y-(l)*COTE_TILE)*(m_monstre[m_decor[0][j][k].getMonstre()].getCoordonneePixel().y-(l)*COTE_TILE))))*DIVISEUR_COTE_TILE)*15;
+                                            lumiere.hauteur=m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().hauteur;
+
+                                            if(lumiereTemp>0)
+                                            lumiere.intensite=(int)lumiereTemp;
+                                            else
+                                            lumiere.intensite=0;
+
+                                            lumiere.rouge=m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().rouge;
+                                            lumiere.vert=m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().vert;
+                                            lumiere.bleu=m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().bleu;
+                                                // Je calcule la couleur de la lumière, par rapport à l'ancienne lumière et à la nouvelle, pour faire un fondu
+                                            m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=(lumiere.rouge*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge*m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite)/(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+lumiere.intensite);
+                                            m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert=(lumiere.vert*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert*m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite)/(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+lumiere.intensite);
+                                            m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu=(lumiere.bleu*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu*m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite)/(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+lumiere.intensite);
+
+                                            if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge>255)
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=255;
+                                            if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert>255)
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert=255;
+                                            if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu>255)
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu=255;
+
+                                            m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+=lumiere.intensite;
+
+                                            if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite>255)
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite=255;
+                                            if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite<0)
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite=0;
+                                        }
+
+                                        if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
+                                        if(m_monstre[m_decor[1][j][k].getMonstre()].getCaracteristique().vie>0)
+                                        {
+                                            //lumiere=m_lumiere;
+                                            lumiere.intensite=0;
+                                            lumiereTemp=0;
+                                            // Je réduit la quantité de lumière reçue, en fonction de la distance, qui est calculée avec un simple pythagore ^^
+                                           // lumiereTemp=(float)lumiereTile.intensite-(float)(gpl::sqrt((k*COTE_TILE-m*COTE_TILE)*(k*COTE_TILE-m*COTE_TILE)+(j*COTE_TILE-l*COTE_TILE)*(j*COTE_TILE-l*COTE_TILE)))/5;
+                                            lumiereTemp=(float)m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite-((((float)gpl::sqrt((m_monstre[m_decor[1][j][k].getMonstre()].getCoordonneePixel().x-(m)*COTE_TILE)*(m_monstre[m_decor[1][j][k].getMonstre()].getCoordonneePixel().x-(m)*COTE_TILE)+(m_monstre[m_decor[1][j][k].getMonstre()].getCoordonneePixel().y-(l)*COTE_TILE)*(m_monstre[m_decor[1][j][k].getMonstre()].getCoordonneePixel().y-(l)*COTE_TILE))))*DIVISEUR_COTE_TILE)*15;
+                                            lumiere.hauteur=m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().hauteur;
+
+                                            if(lumiereTemp>0)
+                                            lumiere.intensite=(int)lumiereTemp;
+                                            else
+                                            lumiere.intensite=0;
+
+                                            lumiere.rouge=m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().rouge;
+                                            lumiere.vert=m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().vert;
+                                            lumiere.bleu=m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().bleu;
+                                                // Je calcule la couleur de la lumière, par rapport à l'ancienne lumière et à la nouvelle, pour faire un fondu
+                                            m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=(lumiere.rouge*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge*m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite)/(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+lumiere.intensite);
+                                            m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert=(lumiere.vert*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert*m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite)/(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+lumiere.intensite);
+                                            m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu=(lumiere.bleu*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu*m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite)/(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+lumiere.intensite);
+
+                                            if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge>255)
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=255;
+                                            if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert>255)
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert=255;
+                                            if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu>255)
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu=255;
+
+                                            m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+=lumiere.intensite;
+
+                                            if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite>255)
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite=255;
+                                            if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite<0)
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite=0;
+                                        }
                                     }
                                 }
                     }
@@ -1474,6 +1522,7 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu
                         }
 
                         menu->Afficher(ecran,3);
+                        menu->AfficherDynamique(ecran,hero->m_personnage.getCaracteristique());
 
 
                         EffectNoir.SetParameter("color", ((float)z)/50, ((float)z)/50, ((float)z)/50);
@@ -1572,6 +1621,7 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu
                         }
 
                         menu->Afficher(ecran,3);
+                        menu->AfficherDynamique(ecran,hero->m_personnage.getCaracteristique());
 
 
                         EffectNoir.SetParameter("color", ((float)z)/50, ((float)z)/50, ((float)z)/50);

@@ -26,9 +26,10 @@ bool Modele_Monstre::Charger(string chemin)
     console.Ajouter("",0);
 	console.Ajouter("Chargement du monstre : "+chemin,0);
 
-    m_caracteristique.vitesse=0.7;
-    m_caracteristique.vie=5;
-    m_caracteristique.degats=3;
+    m_caracteristique.vitesse=0;
+    m_caracteristique.vie=0;
+    m_caracteristique.degatsMin=0;
+    m_caracteristique.degatsMax=0;
 
     ifstream fichier;
     fichier.open(chemin.c_str(), ios::in);
@@ -102,7 +103,7 @@ bool Modele_Monstre::Charger(string chemin)
                     switch (caractere)
                     {
                         case 'v': fichier>>m_caracteristique.maxVie; break;
-                        case 'd': fichier>>m_caracteristique.degats; break;
+                        case 'd':  fichier.get(caractere); if(caractere=='i') fichier>>m_caracteristique.degatsMin; else fichier>>m_caracteristique.degatsMax ;  break;
                         case 'm': fichier>>m_caracteristique.vitesse; break;
                     }
                 }while(caractere!='$');

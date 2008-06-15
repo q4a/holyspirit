@@ -71,7 +71,7 @@ struct Configuration
     bool Ombre,Lumiere,Minimap,FonduLumiere,amelioration_lampes,console,Herbes;
     float effetMort,volume,minute,postFX;
     int heure;
-    std::string version,chemin_maps,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetBlur,nom_effetColorize,nom_hud,nom_minimap;
+    std::string version,chemin_maps,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetBlur,nom_effetColorize,nom_hud,nom_minimap,nom_bulle_vie;
 };
 
 struct Caracteristique
@@ -79,7 +79,7 @@ struct Caracteristique
     float vitesse;
     float vie;
     int maxVie;
-    int degats;
+    int degatsMin,degatsMax;
 };
 
 struct coordonneeDecimal

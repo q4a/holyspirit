@@ -19,9 +19,10 @@ class Menu
 	public:
 	Menu();
 	void Afficher(sf::RenderWindow* ecran,int type);
+	void AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracteristique);
 
 	private:
-	sf::Image m_imageMiniMap,m_fondMiniMap,m_imageHUD;
+	sf::Image m_imageMiniMap,m_fondMiniMap,m_imageHUD,m_imageBulleVie;
 };
 
 #endif
