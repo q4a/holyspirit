@@ -124,8 +124,9 @@ bool Jeu(RenderWindow *ecran)
 
 			if(tempsEcouleDepuisDernierDeplacement>=0.01)
 			{
+			    coordonnee temp={-1 ,-1 ,-1 ,-1};
 				if(hero.m_personnage.seDeplacer(tempsEcouleDepuisDernierDeplacement*100))
-					hero.m_personnage.pathfinding(map.getAlentourDuPersonnage(hero.m_personnage.getCoordonnee())); // Recherche du chemin
+					hero.m_personnage.pathfinding(map.getAlentourDuPersonnage(hero.m_personnage.getCoordonnee()),temp); // Recherche du chemin
 				if(hero.getEnemiVise()>-1)
                     hero.testMontreVise(map.getEntiteMonstre(hero.getEnemiVise()),map.getDimensions().y);
 

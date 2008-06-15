@@ -222,7 +222,7 @@ void Personnage::regenererVie(float vie)
         m_caracteristique.vie=m_caracteristique.maxVie;
 }
 
-int Personnage::pathfinding(vector<vector<bool> > map)
+int Personnage::pathfinding(vector<vector<bool> > map,coordonnee exception)
 {
 	bool erreur=false;
 	liste_case casesVisitee;
@@ -243,7 +243,7 @@ int Personnage::pathfinding(vector<vector<bool> > map)
 	while(!casesVisitee.testerCasesEnCours(arrivee)&&!erreur)
 	{
 		casesVisitee.incrementerDistanceEnCours();
-		casesVisitee.ajouterCasesAdjacentes(map,&arrivee,depart);
+		casesVisitee.ajouterCasesAdjacentes(map,&arrivee,depart,exception);
 		if(casesVisitee.getDistance()>15)
 			erreur=true;
 	}
@@ -405,7 +405,7 @@ void Personnage::frappe(coordonnee direction,coordonnee position)
     if(m_positionCase.x==m_cheminFinal.x&&m_positionCase.y==m_cheminFinal.y)
     {
         m_etat=2;
-        m_poseEnCours=1;
+        m_poseEnCours=0;
     }
 
         double m=atan(-((double)direction.y-position.y)/((double)direction.x-position.x));
