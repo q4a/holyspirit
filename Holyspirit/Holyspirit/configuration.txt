@@ -11,6 +11,7 @@ postFX: 1
 
 MUSIQUES
 volume: 100
+son_mort: Data/Sons/Coeur.wav
 
 INTERFACE
 minimap: 0
