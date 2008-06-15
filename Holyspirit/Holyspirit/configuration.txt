@@ -35,6 +35,7 @@ fxColorize: colorize.sfx
 
 menu_hud: Hud.png
 menu_minimap: minimap.png
+menu_bulle_vie: bulle_vie.png
 
 AUTRE
 videos: 0

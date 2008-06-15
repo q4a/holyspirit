@@ -2,6 +2,7 @@ Liste des chemins de toutes les images du personnage
 *Data/Personnages/Hero/GuerrierHache-Arret.png
 *Data/Personnages/Hero/GuerrierHache-Course.png
 *Data/Personnages/Hero/GuerrierHache-Frappe.png
+*Data/Personnages/Hero/GuerrierHache-Mort.png
 $
 Liste des chemins de tous les sons
 *Data/Sons/9906__Snoman__grass3.wav
@@ -259,72 +260,72 @@ Mort - E
 *x896 y0 w128 h128 a0 s-1 i3 $
 $
 Mort - NE
-*x0 y128 w128 h128 a1 s-1 i3 $
-*x128 y128 w128 h128 a2 s-1 i3 $
-*x256 y128 w128 h128 a3 s-1 i3 $
-*x384 y128 w128 h128 a4 s-1 i3 $
-*x512 y128 w128 h128 a5 s-1 i3 $
-*x640 y128 w128 h128 a6 s-1 i3 $
-*x768 y128 w128 h128 a7 s-1 i3 $
-*x896 y128 w128 h128 a0 s-1 i3 $
+*x0 y0 w128 h128 a1 s-1 i3 $
+*x128 y0 w128 h128 a2 s-1 i3 $
+*x256 y0 w128 h128 a3 s-1 i3 $
+*x384 y0 w128 h128 a4 s-1 i3 $
+*x512 y0 w128 h128 a5 s-1 i3 $
+*x640 y0 w128 h128 a6 s-1 i3 $
+*x768 y0 w128 h128 a7 s-1 i3 $
+*x896 y0 w128 h128 a0 s-1 i3 $
 $
 Mort - N
-*x0 y256 w128 h128 a1 s-1 i3 $
-*x128 y256 w128 h128 a2 s-1 i3 $
-*x256 y256 w128 h128 a3 s-1 i3 $
-*x384 y256 w128 h128 a4 s-1 i3 $
-*x512 y256 w128 h128 a5 s-1 i3 $
-*x640 y256 w128 h128 a6 s-1 i3 $
-*x768 y256 w128 h128 a7 s-1 i3 $
-*x896 y256 w128 h128 a0 s-1 i3 $
+*x0 y0 w128 h128 a1 s-1 i3 $
+*x128 y0 w128 h128 a2 s-1 i3 $
+*x256 y0 w128 h128 a3 s-1 i3 $
+*x384 y0 w128 h128 a4 s-1 i3 $
+*x512 y0 w128 h128 a5 s-1 i3 $
+*x640 y0 w128 h128 a6 s-1 i3 $
+*x768 y0 w128 h128 a7 s-1 i3 $
+*x896 y0 w128 h128 a0 s-1 i3 $
 $
 Mort - NO
-*x0 y384 w128 h128 a1 s-1 i3 $
-*x128 y384 w128 h128 a2 s-1 i3 $
-*x256 y384 w128 h128 a3 s-1 i3 $
-*x384 y384 w128 h128 a4 s-1 i3 $
-*x512 y384 w128 h128 a5 s-1 i3 $
-*x640 y384 w128 h128 a6 s-1 i3 $
-*x768 y384 w128 h128 a7 s-1 i3 $
-*x896 y384 w128 h128 a0 s-1 i3 $
+*x0 y0 w128 h128 a1 s-1 i3 $
+*x128 y0 w128 h128 a2 s-1 i3 $
+*x256 y0 w128 h128 a3 s-1 i3 $
+*x384 y0 w128 h128 a4 s-1 i3 $
+*x512 y0 w128 h128 a5 s-1 i3 $
+*x640 y0 w128 h128 a6 s-1 i3 $
+*x768 y0 w128 h128 a7 s-1 i3 $
+*x896 y0 w128 h128 a0 s-1 i3 $
 $
 Mort - O
-*x0 y512 w128 h128 a1 s-1 i3 $
-*x128 y512 w128 h128 a2 s-1 i3 $
-*x256 y512 w128 h128 a3 s-1 i3 $
-*x384 y512 w128 h128 a4 s-1 i3 $
-*x512 y512 w128 h128 a5 s-1 i3 $
-*x640 y512 w128 h128 a6 s-1 i3 $
-*x768 y512 w128 h128 a7 s-1 i3 $
-*x896 y512 w128 h128 a0 s-1 i3 $
+*x0 y0 w128 h128 a1 s-1 i3 $
+*x128 y0 w128 h128 a2 s-1 i3 $
+*x256 y0 w128 h128 a3 s-1 i3 $
+*x384 y0 w128 h128 a4 s-1 i3 $
+*x512 y0 w128 h128 a5 s-1 i3 $
+*x640 y0 w128 h128 a6 s-1 i3 $
+*x768 y0 w128 h128 a7 s-1 i3 $
+*x896 y0 w128 h128 a0 s-1 i3 $
 $
 Mort - SO
-*x0 y640 w128 h128 a1 s-1 i3 $
-*x128 y640 w128 h128 a2 s-1 i3 $
-*x256 y640 w128 h128 a3 s-1 i3 $
-*x384 y640 w128 h128 a4 s-1 i3 $
-*x512 y640 w128 h128 a5 s-1 i3 $
-*x640 y640 w128 h128 a6 s-1 i3 $
-*x768 y640 w128 h128 a7 s-1 i3 $
-*x896 y640 w128 h128 a0 s-1 i3 $
+*x0 y0 w128 h128 a1 s-1 i3 $
+*x128 y0 w128 h128 a2 s-1 i3 $
+*x256 y0 w128 h128 a3 s-1 i3 $
+*x384 y0 w128 h128 a4 s-1 i3 $
+*x512 y0 w128 h128 a5 s-1 i3 $
+*x640 y0 w128 h128 a6 s-1 i3 $
+*x768 y0 w128 h128 a7 s-1 i3 $
+*x896 y0 w128 h128 a0 s-1 i3 $
 $
 Mort - S
-*x0 y768 w128 h128 a1 s-1 i3 $
-*x128 y768 w128 h128 a2 s-1 i3 $
-*x256 y768 w128 h128 a3 s-1 i3 $
-*x384 y768 w128 h128 a4 s-1 i3 $
-*x512 y768 w128 h128 a5 s-1 i3 $
-*x640 y768 w128 h128 a6 s-1 i3 $
-*x768 y768 w128 h128 a7 s-1 i3 $
-*x896 y768 w128 h128 a0 s-1 i3 $
+*x0 y0 w128 h128 a1 s-1 i3 $
+*x128 y0 w128 h128 a2 s-1 i3 $
+*x256 y0 w128 h128 a3 s-1 i3 $
+*x384 y0 w128 h128 a4 s-1 i3 $
+*x512 y0 w128 h128 a5 s-1 i3 $
+*x640 y0 w128 h128 a6 s-1 i3 $
+*x768 y0 w128 h128 a7 s-1 i3 $
+*x896 y0 w128 h128 a0 s-1 i3 $
 $
 Mort - SE
-*x0 y896 w128 h128 a1 s-1 i3 $
-*x128 y896 w128 h128 a2 s-1 i3 $
-*x256 y896 w128 h128 a3 s-1 i3 $
-*x384 y896 w128 h128 a4 s-1 i3 $
-*x512 y896 w128 h128 a5 s-1 i3 $
-*x640 y896 w128 h128 a6 s-1 i3 $
-*x768 y896 w128 h128 a7 s-1 i3 $
-*x896 y896 w128 h128 a0 s-1 i3 $
+*x0 y0 w128 h128 a1 s-1 i3 $
+*x128 y0 w128 h128 a2 s-1 i3 $
+*x256 y0 w128 h128 a3 s-1 i3 $
+*x384 y0 w128 h128 a4 s-1 i3 $
+*x512 y0 w128 h128 a5 s-1 i3 $
+*x640 y0 w128 h128 a6 s-1 i3 $
+*x768 y0 w128 h128 a7 s-1 i3 $
+*x896 y0 w128 h128 a0 s-1 i3 $
 $
