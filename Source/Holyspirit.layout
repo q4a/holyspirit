@@ -16,26 +16,26 @@
 	<File name="Globale.h" open="0" top="0" tabpos="15">
 		<Cursor position="68" topLine="0" />
 	</File>
-	<File name="Hero.cpp" open="1" top="0" tabpos="7">
-		<Cursor position="760" topLine="42" />
+	<File name="Hero.cpp" open="1" top="1" tabpos="7">
+		<Cursor position="803" topLine="36" />
 	</File>
 	<File name="Hero.h" open="0" top="0" tabpos="15">
 		<Cursor position="457" topLine="2" />
 	</File>
 	<File name="Map.cpp" open="1" top="0" tabpos="11">
-		<Cursor position="99975" topLine="1598" />
+		<Cursor position="55592" topLine="889" />
 	</File>
 	<File name="Map.h" open="1" top="0" tabpos="12">
 		<Cursor position="1391" topLine="34" />
 	</File>
 	<File name="Monstre.cpp" open="1" top="0" tabpos="15">
-		<Cursor position="2801" topLine="86" />
+		<Cursor position="3639" topLine="127" />
 	</File>
 	<File name="Monstre.h" open="0" top="0" tabpos="13">
 		<Cursor position="313" topLine="0" />
 	</File>
 	<File name="Personnage.cpp" open="1" top="0" tabpos="10">
-		<Cursor position="12352" topLine="319" />
+		<Cursor position="8456" topLine="228" />
 	</File>
 	<File name="Personnage.h" open="0" top="0" tabpos="10">
 		<Cursor position="758" topLine="17" />
@@ -79,8 +79,8 @@
 	<File name="eventManager.h" open="0" top="0" tabpos="19">
 		<Cursor position="181" topLine="0" />
 	</File>
-	<File name="jeu.cpp" open="1" top="1" tabpos="2">
-		<Cursor position="3848" topLine="101" />
+	<File name="jeu.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="5089" topLine="125" />
 	</File>
 	<File name="jeu.h" open="0" top="0" tabpos="16">
 		<Cursor position="350" topLine="0" />

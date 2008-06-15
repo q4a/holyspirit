@@ -244,7 +244,7 @@ int Personnage::pathfinding(vector<vector<bool> > map)
 	{
 		casesVisitee.incrementerDistanceEnCours();
 		casesVisitee.ajouterCasesAdjacentes(map,&arrivee,depart);
-		if(casesVisitee.getDistance()>20)
+		if(casesVisitee.getDistance()>15)
 			erreur=true;
 	}
 
