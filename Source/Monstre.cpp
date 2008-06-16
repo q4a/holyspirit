@@ -170,7 +170,8 @@ void Monstre::testerVision(coordonnee positionHero)
         if(m_etat==0) m_poseEnCours=0;
     }
     else if(fabs(positionHero.x-m_positionCase.x)>10||fabs(positionHero.y-m_positionCase.y)>10)
-        m_vu=0,m_etat=0,m_poseEnCours=0;
+        if(m_caracteristique.vie>=0)
+            m_vu=0,m_etat=0,m_poseEnCours=0;
 }
 
 int Monstre::getModele(){ return m_modele; }

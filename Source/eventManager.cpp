@@ -148,11 +148,11 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
     if(m_casePointee.y>map->getDimensions().y)
         m_casePointee.y=map->getDimensions().y;
 
+    int monstreVise=map->getMonstre(hero,camera,ecran,m_positionSouris,m_casePointee);
+
 	if(m_Clic[Mouse::Left]&&!m_EventTableau[Key::Shift])
 	{
-
-        hero->setMonstreVise(-1);
-        hero->setMonstreVise(map->getMonstre(hero,camera,ecran,m_positionSouris));
+        hero->setMonstreVise(monstreVise);
         if(hero->getEnemiVise()==-1)
          hero->m_personnage.setArrivee(m_casePointee);
 	}
@@ -162,8 +162,7 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
 	    temp.x=configuration.Resolution.x/2;
 	    temp.y=configuration.Resolution.y/2;
         hero->m_personnage.frappe(m_positionSouris,temp);
-        hero->setMonstreVise(-1);
-        hero->setMonstreVise(map->getMonstre(hero,camera,ecran,m_positionSouris));
+        hero->setMonstreVise(monstreVise);
 	}
 }
 

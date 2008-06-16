@@ -71,6 +71,8 @@ class Personnage
 	void regenererVie(float vie);
 
 	int getEtat();
+	int getAngle();
+	int getPose();
 	Caracteristique getCaracteristique();
 
 	protected:

@@ -28,7 +28,7 @@ Menu::Menu()
     else
     console.Ajouter("Chargement de : "+configuration.chemin_menus+configuration.nom_bulle_vie,0);
 
-	m_fondMiniMap.Create(configuration.Resolution.x/4, configuration.Resolution.y/3, sf::Color(0, 0, 0));
+	m_fondMiniMap.Create(configuration.Resolution.x/4, configuration.Resolution.x/4, sf::Color(0, 0, 0));
 }
 
 void Menu::Afficher(sf::RenderWindow* ecran,int type)
@@ -39,7 +39,7 @@ void Menu::Afficher(sf::RenderWindow* ecran,int type)
     {
         //On affiche le fond noir de la mini-map
 		Sprite.SetImage(m_fondMiniMap);
-		Sprite.SetLeft(configuration.Resolution.x-configuration.Resolution.x/4);
+		Sprite.SetLeft(configuration.Resolution.x-configuration.Resolution.x*0.25);
 		Sprite.SetTop(0);
 		ecran->Draw(Sprite);
     }
@@ -50,7 +50,7 @@ void Menu::Afficher(sf::RenderWindow* ecran,int type)
 		Sprite.SetImage(m_imageMiniMap);
 		Sprite.SetLeft(configuration.Resolution.x-configuration.Resolution.x/4);
 		Sprite.SetTop(0);
-		Sprite.Resize(configuration.Resolution.x/4, configuration.Resolution.y/3);
+		Sprite.Resize(configuration.Resolution.x*0.25, configuration.Resolution.x*0.25);
 		ecran->Draw(Sprite);
     }
 

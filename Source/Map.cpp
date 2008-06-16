@@ -15,11 +15,12 @@ using namespace sf;
 
 Map::Map()
 {
-    carreBrun.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(128, 64, 0)),carreBleu.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(32, 0, 128)),carreRouge.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(128, 0, 0)),carreVert.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.y/600, Color(0, 128, 0));
-    carreBrun.SetSmooth(false);
-    carreBleu.SetSmooth(false);
-    carreRouge.SetSmooth(false);
-    carreVert.SetSmooth(false);
+    carreBrun.SetSmooth(true);
+    carreBleu.SetSmooth(true);
+    carreRouge.SetSmooth(true);
+    carreVert.SetSmooth(true);
+    carreBrun.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.x/800, Color(128, 64, 0)),carreBleu.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.x/800, Color(32, 0, 128)),carreRouge.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.x/800, Color(128, 0, 0)),carreVert.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.x/800, Color(0, 128, 0));
+
 
     if (sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
     {
@@ -991,7 +992,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
 
 void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonnee positionSouris)
 {
-	coordonnee position,positionPartieDecor,vueMin,vueMax,positionHero;
+	coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
 
 	Sprite Sprite, spriteLumiereMask;
 
@@ -1007,6 +1008,8 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
     if(type==1)
     {
+        coordonnee position;
+
         vueMin.x=hero->m_personnage.getCoordonnee().x-15;
         vueMin.y=hero->m_personnage.getCoordonnee().y-15;
         vueMax.x=hero->m_personnage.getCoordonnee().x+15;
@@ -1090,39 +1093,36 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                         if(j>=0&&j<m_decor[0].size()&&k>=0&&k<m_decor[0][0].size())
                         {
-                            if(positionSouris.x/camera->Zoom+ViewRect.Left>position.x+16&&positionSouris.x/camera->Zoom+ViewRect.Left<position.x+96/camera->Zoom&&positionSouris.y/camera->Zoom+ViewRect.Top>position.y-48/camera->Zoom&&positionSouris.y/camera->Zoom+ViewRect.Top<position.y+64/camera->Zoom)
-                            {
+                                if(m_monstreIllumine==m_decor[0][j][k].getMonstre()&&m_monstreIllumine!=-1||m_monstreIllumine==m_decor[1][j][k].getMonstre()&&m_monstreIllumine!=-1)
+                                {
 
-                                LumiereOmbrage temp;
-                                temp=m_tableauDesLampes[j-vueMin.y][k-vueMin.x];
+                                    LumiereOmbrage temp;
+                                    temp=m_tableauDesLampes[j-vueMin.y][k-vueMin.x];
 
-                                temp.rouge=255;
-                                temp.vert=128;
-                                temp.bleu=128;
+                                    temp.rouge=255;
+                                    temp.vert=96;
+                                    temp.bleu=96;
+                                    temp.intensite=255;
 
-                                if(temp.rouge>255)
-                                temp.rouge=255;
-
-
-                                if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
-                                    if(m_monstre[m_decor[0][j][k].getMonstre()].getCaracteristique().vie>0)
-                                        m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&temp,&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
-                                    else
+                                    if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
+                                        if(m_monstre[m_decor[0][j][k].getMonstre()].getCaracteristique().vie>0)
+                                            m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&temp,&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
+                                        else
+                                            m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_tableauDesLampes[j-vueMin.y][k-vueMin.x],&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
+                                    if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
+                                        if(m_monstre[m_decor[1][j][k].getMonstre()].getCaracteristique().vie>0)
+                                            m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&temp,&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
+                                        else
+                                            m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_tableauDesLampes[j-vueMin.y][k-vueMin.x],&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
+                                    temp.detruire();
+                                }
+                                else
+                                {
+                                    if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
                                         m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_tableauDesLampes[j-vueMin.y][k-vueMin.x],&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
-                                if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
-                                    if(m_monstre[m_decor[1][j][k].getMonstre()].getCaracteristique().vie>0)
-                                        m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&temp,&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
-                                    else
+                                    if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
                                         m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_tableauDesLampes[j-vueMin.y][k-vueMin.x],&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
-                                temp.detruire();
-                            }
-                            else
-                            {
-                                if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
-                                    m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_tableauDesLampes[j-vueMin.y][k-vueMin.x],&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
-                                if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
-                                    m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_tableauDesLampes[j-vueMin.y][k-vueMin.x],&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
-                            }
+                                }
                         }
 
                         if(hero->m_personnage.getCoordonnee().x==hero->m_personnage.getProchaineCase().x&&hero->m_personnage.getCoordonnee().y==hero->m_personnage.getProchaineCase().y)
@@ -1364,12 +1364,13 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
 	if(type==2)
 	{
+	    coordonneeDecimal position;
         vueMin.x=hero->m_personnage.getCoordonnee().x-20;
         vueMin.y=hero->m_personnage.getCoordonnee().y-20;
         vueMax.x=hero->m_personnage.getCoordonnee().x+20;
         vueMax.y=hero->m_personnage.getCoordonnee().y+20;
 
-        Sprite.SetRotationCenter(4*configuration.Resolution.x/800,4*configuration.Resolution.y/600);
+        Sprite.SetRotationCenter(4*configuration.Resolution.x/800,4*configuration.Resolution.x/800);
         Sprite.SetRotation(45);
 
         /*if(vueMin.x<0) { vueMin.x=0; }
@@ -1380,15 +1381,15 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
             {
                 for(int k=vueMin.x;k<vueMax.x;k++)
                 {
-                    position.x=((k-vueMin.x)-(j-vueMin.y)-1+40)*6*configuration.Resolution.x/800;
-                    position.y=((k-vueMin.x)+(j-vueMin.y))*6*configuration.Resolution.y/600;
-                    if(position.x+465*configuration.Resolution.x/800>600*configuration.Resolution.x/800&&position.x+465*configuration.Resolution.x/800<800*configuration.Resolution.x/800&&position.y*configuration.Resolution.y/600>0&&position.y-140*configuration.Resolution.y/600<195*configuration.Resolution.y/600)
+                    position.x=(float)(((k-vueMin.x)-(j-vueMin.y)-1+40)*6*(float)configuration.Resolution.x/800);
+                    position.y=(float)(((k-vueMin.x)+(j-vueMin.y))*6*(float)configuration.Resolution.x/800);
+                    if(position.x+465*configuration.Resolution.x/800>600*configuration.Resolution.x/800&&position.x+465*configuration.Resolution.x/800<800*configuration.Resolution.x/800&&position.y*configuration.Resolution.x/800>0&&position.y-140*configuration.Resolution.x/800<195*configuration.Resolution.x/800)
                     {
                         if(getTypeCase(k,j)==1)
                         {
                             Sprite.SetImage(carreBrun);
-                            Sprite.SetLeft(position.x+465*configuration.Resolution.x/800);
-                            Sprite.SetTop(position.y-140*configuration.Resolution.y/600);
+                            Sprite.SetLeft((float)(position.x+465*configuration.Resolution.x/800));
+                            Sprite.SetTop((float)(position.y-140*configuration.Resolution.x/800));
                             ecran->Draw(Sprite);
                         }
 
@@ -1397,7 +1398,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                             Sprite.SetImage(carreRouge);
 
                             Sprite.SetLeft(position.x+465*configuration.Resolution.x/800);
-                            Sprite.SetTop(position.y-140*configuration.Resolution.y/600);
+                            Sprite.SetTop(position.y-140*configuration.Resolution.x/800);
                             ecran->Draw(Sprite);
                         }
 
@@ -1405,15 +1406,15 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                         {
                                 Sprite.SetImage(carreVert);
                                 Sprite.SetLeft(position.x+465*configuration.Resolution.x/800);
-                                Sprite.SetTop(position.y-140*configuration.Resolution.y/600);
+                                Sprite.SetTop(position.y-140*configuration.Resolution.x/800);
                                 ecran->Draw(Sprite);
                         }
 
                         if(hero->m_personnage.getCoordonnee().x==k&&hero->m_personnage.getCoordonnee().y==j)
                         {
                                 Sprite.SetImage(carreBleu);
-                                Sprite.SetLeft(position.x+465*configuration.Resolution.x/800);
-                                Sprite.SetTop(position.y-140*configuration.Resolution.y/600);
+                                Sprite.SetLeft((float)(position.x+465*configuration.Resolution.x/800));
+                                Sprite.SetTop((float)(position.y-140*configuration.Resolution.x/800));
                                 ecran->Draw(Sprite);
                         }
                     }
@@ -1750,7 +1751,7 @@ void Map::gererMonstres(Hero *hero,float temps)
                                 else
                                 {
                                     if(m_monstre[m_decor[i][j][k].getMonstre()].getEtat()!=2)
-                                    m_monstre[m_decor[i][j][k].getMonstre()].setEtat(2);
+                                        m_monstre[m_decor[i][j][k].getMonstre()].setEtat(2);
                                     coordonnee temp,temp2;
                                     temp.x=(hero->m_personnage.getCoordonnee().x-hero->m_personnage.getCoordonnee().y-1+m_decor[1].size())*64;
                                     temp.y=(hero->m_personnage.getCoordonnee().x+hero->m_personnage.getCoordonnee().y)*32;
@@ -1759,7 +1760,7 @@ void Map::gererMonstres(Hero *hero,float temps)
                                     m_monstre[m_decor[i][j][k].getMonstre()].frappe(temp,temp2);
                                 }
                             }
-                            else
+                            else if(m_monstre[m_decor[i][j][k].getMonstre()].getEtat()!=3)
                             m_monstre[m_decor[i][j][k].getMonstre()].setEtat(3);
                         }
                     }
@@ -1932,16 +1933,18 @@ int Map::getTypeCase(int positionX,int positionY)
 	return 0;
 }
 
-int Map::getMonstre(Hero *hero,View *camera,RenderWindow *ecran,coordonnee positionSouris)
+int Map::getMonstre(Hero *hero,View *camera,RenderWindow *ecran,coordonnee positionSouris,coordonnee casePointee)
 {
+    float distance=100000;
+    int meilleur=-1;
     coordonnee vueMin,vueMax;
 
      const sf::FloatRect& ViewRect = ecran->GetViewRect();
 
-    vueMin.x=hero->m_personnage.getCoordonnee().x-15;
-    vueMin.y=hero->m_personnage.getCoordonnee().y-15;
-    vueMax.x=hero->m_personnage.getCoordonnee().x+15;
-    vueMax.y=hero->m_personnage.getCoordonnee().y+15;
+    vueMin.x=casePointee.x-5;
+    vueMin.y=casePointee.y-5;
+    vueMax.x=casePointee.x+5;
+    vueMax.y=casePointee.y+5;
 
     if(vueMin.x<0) { vueMin.x=0; }
     if(vueMin.y<0) { vueMin.y=0; }
@@ -1958,8 +1961,18 @@ int Map::getMonstre(Hero *hero,View *camera,RenderWindow *ecran,coordonnee posit
                         temp.x=(k-j-1+m_decor[1].size())*64;
                         temp.y=(k+j)*32;
 
-                        if(positionSouris.x/camera->Zoom+ViewRect.Left>temp.x-16/camera->Zoom&&positionSouris.x/camera->Zoom+ViewRect.Left<temp.x+128/camera->Zoom&&positionSouris.y/camera->Zoom+ViewRect.Top>temp.y-48/camera->Zoom&&positionSouris.y/camera->Zoom+ViewRect.Top<temp.y+64/camera->Zoom)
-                            return m_decor[i][j][k].getMonstre();
+                        if(positionSouris.x/camera->Zoom+ViewRect.Left>temp.x-m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().w*0/128/camera->Zoom
+                        &&positionSouris.x/camera->Zoom+ViewRect.Left<temp.x+m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().w*80/128/camera->Zoom
+                        &&positionSouris.y/camera->Zoom+ViewRect.Top>temp.y-m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().h*64/128/camera->Zoom
+                        &&positionSouris.y/camera->Zoom+ViewRect.Top<temp.y+48*m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().h/128/camera->Zoom)
+                        {
+                            float temp2=0;
+                            temp2=gpl::sqrt((temp.x+72-positionSouris.x-ViewRect.Left)*(temp.x+72-positionSouris.x-ViewRect.Left)+(temp.y-positionSouris.y-ViewRect.Top)*(temp.y-positionSouris.y-ViewRect.Top));
+                            if(distance>temp2)
+                                meilleur=m_decor[i][j][k].getMonstre(),distance=temp2;
+                        }
                     }
-                    return -1;
+
+                    m_monstreIllumine=meilleur;
+                    return meilleur;
 }

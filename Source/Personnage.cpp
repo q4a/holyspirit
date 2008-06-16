@@ -439,7 +439,7 @@ void Modele_Personnage::setPorteeLumineuse(Lumiere  lumiere){m_porteeLumineuse=l
 void Personnage::setCaracteristique(Caracteristique caracteristique){m_caracteristique=caracteristique;}
 void Personnage::setProchaineCase(coordonnee position){m_cheminFinal=position;}
 void Personnage::setVitesse(float vitesse){m_caracteristique.vitesse=vitesse;}
-void Personnage::setEtat(int etat){m_etat=etat;}
+void Personnage::setEtat(int etat){m_etat=etat,m_poseEnCours=0;}
 void Personnage::setCoordonnee(coordonnee nouvellesCoordonnees)
 {
 	m_positionCase=nouvellesCoordonnees;
@@ -477,6 +477,8 @@ Caracteristique Personnage::getCaracteristique(){return m_caracteristique;}
 Caracteristique Modele_Personnage::getCaracteristique(){return m_caracteristique;}
 Lumiere Modele_Personnage::getPorteeLumineuse(){return m_porteeLumineuse;}
 int Personnage::getEtat(){return m_etat;}
+int Personnage::getAngle(){return m_angle;}
+int Personnage::getPose(){return m_poseEnCours;}
 coordonnee Personnage::getCoordonneePixel()
 {
     coordonnee position;

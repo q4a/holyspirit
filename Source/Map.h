@@ -24,7 +24,7 @@ class Map
 	bool getCollision(int positionX,int positionY); // Retourne 1 s'il y a une collision avec le décors se trouvant à la position X et Y
 	int getTypeCase(int positionX,int positionY);
 	int getEvenement(coordonnee casePointee);
-	int getMonstre(Hero *hero,sf::View *camera,sf::RenderWindow *ecran,coordonnee positionSouris);
+	int getMonstre(Hero *hero,sf::View *camera,sf::RenderWindow *ecran,coordonnee positionSouris,coordonnee casePointee);
 	Monstre *getEntiteMonstre (int numeroMonstre);
 	coordonnee getPositionMonstre(int numeroMonstre);
 	std::vector<std::vector<bool> > getAlentourDuPersonnage(coordonnee positionPersonnage); // Retourne un tableau de bool contenant toutes les collitions dans les alentour du héro, pour le pathfinding
@@ -43,6 +43,7 @@ class Map
 	coordonnee getDimensions();
 
 	private:
+	int m_monstreIllumine;
 	Lumiere m_lumiere[24];
 	std::vector <Tileset> m_tileset;
 	std::vector <Tileset> m_herbe;
