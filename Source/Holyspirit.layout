@@ -16,29 +16,29 @@
 	<File name="Globale.h" open="0" top="0" tabpos="15">
 		<Cursor position="68" topLine="0" />
 	</File>
-	<File name="Hero.cpp" open="0" top="0" tabpos="10">
-		<Cursor position="1392" topLine="47" />
+	<File name="Hero.cpp" open="1" top="1" tabpos="11">
+		<Cursor position="2519" topLine="49" />
 	</File>
 	<File name="Hero.h" open="0" top="0" tabpos="15">
 		<Cursor position="457" topLine="2" />
 	</File>
-	<File name="Map.cpp" open="1" top="1" tabpos="6">
-		<Cursor position="91105" topLine="1375" />
+	<File name="Map.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="117849" topLine="1942" />
 	</File>
-	<File name="Map.h" open="0" top="0" tabpos="14">
-		<Cursor position="1391" topLine="34" />
+	<File name="Map.h" open="1" top="0" tabpos="10">
+		<Cursor position="1646" topLine="25" />
 	</File>
 	<File name="Monstre.cpp" open="1" top="0" tabpos="8">
-		<Cursor position="4818" topLine="145" />
+		<Cursor position="2402" topLine="101" />
 	</File>
 	<File name="Monstre.h" open="0" top="0" tabpos="13">
 		<Cursor position="313" topLine="0" />
 	</File>
 	<File name="Personnage.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="6431" topLine="165" />
+		<Cursor position="16372" topLine="453" />
 	</File>
 	<File name="Personnage.h" open="1" top="0" tabpos="3">
-		<Cursor position="936" topLine="20" />
+		<Cursor position="1984" topLine="47" />
 	</File>
 	<File name="Pose.cpp" open="0" top="0" tabpos="18">
 		<Cursor position="631" topLine="0" />
@@ -73,14 +73,14 @@
 	<File name="constantes.h" open="1" top="0" tabpos="4">
 		<Cursor position="1598" topLine="48" />
 	</File>
-	<File name="eventManager.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="4007" topLine="110" />
+	<File name="eventManager.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="5034" topLine="143" />
 	</File>
 	<File name="eventManager.h" open="0" top="0" tabpos="19">
 		<Cursor position="181" topLine="0" />
 	</File>
 	<File name="jeu.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="2708" topLine="41" />
+		<Cursor position="3446" topLine="77" />
 	</File>
 	<File name="jeu.h" open="0" top="0" tabpos="16">
 		<Cursor position="350" topLine="0" />
