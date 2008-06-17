@@ -328,34 +328,10 @@ bool Map::Charger(int numeroMap)
 }
 
 
-void Map::detruireOmbresEtLumieres(Hero *hero)
-{
-
-    coordonnee vueMin,vueMax;
-
-    //Calcul des tile qui peuvent se trouver les plus loin du perso, tout en restant dans le champs de vision
-    vueMin.x=hero->m_personnage.getCoordonnee().x-15;
-    vueMin.y=hero->m_personnage.getCoordonnee().y-15;
-    vueMax.x=hero->m_personnage.getCoordonnee().x+15;
-    vueMax.y=hero->m_personnage.getCoordonnee().y+15;
-
-
-    if(vueMin.x<0) { vueMin.x=0; }
-    if(vueMin.y<0) { vueMin.y=0; }
-    if(vueMax.x>m_decor[0][0].size()) { vueMax.x=m_decor[0][0].size(); }
-    if(vueMax.y>m_decor[0].size()) { vueMax.y=m_decor[0].size(); }
-    for(int i=0;i<vueMax.y-vueMin.y;i++)
-    {
-        if(configuration.Ombre)
-            for(int j=0;j<vueMax.x-vueMin.x;j++)
-                m_tableauDesLampes[i][j].detruire();
-    }
-
-    m_lumiereHero.detruire();
-}
-
 void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *camera)
 {
+    m_lumiereHero.detruire();
+
     //La, ça se complique, je vais essayer d'être clair, mais il ne faut pas hésiter à me redemander des explications ^^
     Lumiere lumiere,lumiereTile,lumiereMap;
     float angleOmbreMap;
@@ -425,6 +401,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
     for(int i=0;i<vueMax.y-vueMin.y;i++)
         for(int j=0;j<vueMax.x-vueMin.x;j++)
         {
+            m_tableauDesLampes[i][j].detruire();
              m_tableauDesLampes[i][j]=lumiereMap;
             if(configuration.Ombre)
                 m_tableauDesLampes[i][j].AjouterOmbre((int)((float)lumiereMap.intensite*0.25),angleOmbreMap,lumiereMap.hauteur);
@@ -1322,20 +1299,23 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                         if(m_decor[couche][w][z].getTileset()>=0&&m_decor[couche][w][z].getTileset()<m_tileset.size())
                         {
-                            if(couche==0||couche==1&&!((float)j/2==(int)j/2&&(float)k/2==(int)k/2))
+                            if(couche==0||couche==1&&((float)j/2==(int)j/2&&(float)k/2==(int)k/2))
                             {
 
                                 positionPartieDecor=m_tileset[m_decor[couche][w][z].getTileset()].getPositionDuTile(m_decor[couche][w][z].getTile());
                                 //positionPartieDecor.h/=2;
                                 if(position.x+positionPartieDecor.w>=ViewRect.Left&&position.x<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y-positionPartieDecor.h+64<ViewRect.Bottom)
                                 {
+                                    int alpha=255;
+                                    if(couche==1)
+                                    alpha=128;
                                     if(configuration.Lumiere)
                                     {
                                         Sprite.SetColor(sf::Color(
                                                 (int)(((double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].intensite*(double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].rouge)*0.85/255),
                                                 (int)(((double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].intensite*(double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].vert)*0.85/255),
                                                 (int)(((double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].intensite*(double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].bleu)*0.85/255),
-                                                255));
+                                                alpha));
                                     }
                                     else
                                     {
@@ -1494,10 +1474,7 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu
             ecran->SetView(camera);
 
             if(configuration.Lumiere)
-            {
-                detruireOmbresEtLumieres(hero);
                 calculerOmbresEtLumieres(ecran,hero,camera);
-            }
             Clock.Reset();
 
             if (sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
@@ -1592,10 +1569,7 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu
 
 
             if(configuration.Lumiere)
-            {
-                detruireOmbresEtLumieres(hero);
                 calculerOmbresEtLumieres(ecran,hero,camera);
-            }
 
             Clock.Reset();
 
@@ -1958,16 +1932,20 @@ int Map::getMonstre(Hero *hero,View *camera,RenderWindow *ecran,coordonnee posit
                     if(m_monstre[m_decor[i][j][k].getMonstre()].getCaracteristique().vie>0)
                     {
                         coordonnee temp;
-                        temp.x=(k-j-1+m_decor[1].size())*64;
-                        temp.y=(k+j)*32;
+                        temp.x=(int)((float)m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x*(float)DIVISEUR_COTE_TILE-(float)m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y*DIVISEUR_COTE_TILE-1+(float)m_decor[1].size())*64;
+                        temp.y=(int)(float)(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x*(float)DIVISEUR_COTE_TILE+(float)m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y*DIVISEUR_COTE_TILE)*32;
 
                         if(positionSouris.x/camera->Zoom+ViewRect.Left>temp.x-m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().w*0/128/camera->Zoom
-                        &&positionSouris.x/camera->Zoom+ViewRect.Left<temp.x+m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().w*80/128/camera->Zoom
-                        &&positionSouris.y/camera->Zoom+ViewRect.Top>temp.y-m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().h*64/128/camera->Zoom
-                        &&positionSouris.y/camera->Zoom+ViewRect.Top<temp.y+48*m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().h/128/camera->Zoom)
+                        &&positionSouris.x/camera->Zoom+ViewRect.Left<temp.x+m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().w*128/128/camera->Zoom
+                        &&positionSouris.y/camera->Zoom+ViewRect.Top>temp.y-m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().h*48/128/camera->Zoom
+                        &&positionSouris.y/camera->Zoom+ViewRect.Top<temp.y+64*m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().h/128/camera->Zoom)
                         {
                             float temp2=0;
-                            temp2=gpl::sqrt((temp.x+72-positionSouris.x-ViewRect.Left)*(temp.x+72-positionSouris.x-ViewRect.Left)+(temp.y-positionSouris.y-ViewRect.Top)*(temp.y-positionSouris.y-ViewRect.Top));
+                            temp2=gpl::sqrt((temp.x+m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().w/2/camera->Zoom-positionSouris.x/camera->Zoom-ViewRect.Left)
+                            *(temp.x+m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().w/2/camera->Zoom-positionSouris.x/camera->Zoom-ViewRect.Left)
+                            +(temp.y-(positionSouris.y-32)/camera->Zoom-ViewRect.Top)
+                            *(temp.y-(positionSouris.y-32)/camera->Zoom-ViewRect.Top));
+
                             if(distance>temp2)
                                 meilleur=m_decor[i][j][k].getMonstre(),distance=temp2;
                         }

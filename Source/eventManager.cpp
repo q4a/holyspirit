@@ -161,6 +161,7 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
 	    coordonnee temp;
 	    temp.x=configuration.Resolution.x/2;
 	    temp.y=configuration.Resolution.y/2;
+	    if(monstreVise==-1)
         hero->m_personnage.frappe(m_positionSouris,temp);
         hero->setMonstreVise(monstreVise);
 	}

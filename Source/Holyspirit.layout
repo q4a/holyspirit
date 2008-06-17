@@ -16,20 +16,20 @@
 	<File name="Globale.h" open="0" top="0" tabpos="15">
 		<Cursor position="68" topLine="0" />
 	</File>
-	<File name="Hero.cpp" open="1" top="1" tabpos="11">
-		<Cursor position="2519" topLine="49" />
+	<File name="Hero.cpp" open="1" top="0" tabpos="11">
+		<Cursor position="681" topLine="11" />
 	</File>
 	<File name="Hero.h" open="0" top="0" tabpos="15">
 		<Cursor position="457" topLine="2" />
 	</File>
-	<File name="Map.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="117849" topLine="1942" />
+	<File name="Map.cpp" open="1" top="1" tabpos="6">
+		<Cursor position="85950" topLine="1287" />
 	</File>
 	<File name="Map.h" open="1" top="0" tabpos="10">
-		<Cursor position="1646" topLine="25" />
+		<Cursor position="1019" topLine="22" />
 	</File>
 	<File name="Monstre.cpp" open="1" top="0" tabpos="8">
-		<Cursor position="2402" topLine="101" />
+		<Cursor position="4718" topLine="148" />
 	</File>
 	<File name="Monstre.h" open="0" top="0" tabpos="13">
 		<Cursor position="313" topLine="0" />
@@ -74,19 +74,19 @@
 		<Cursor position="1598" topLine="48" />
 	</File>
 	<File name="eventManager.cpp" open="1" top="0" tabpos="9">
-		<Cursor position="5034" topLine="143" />
+		<Cursor position="5059" topLine="140" />
 	</File>
 	<File name="eventManager.h" open="0" top="0" tabpos="19">
 		<Cursor position="181" topLine="0" />
 	</File>
 	<File name="jeu.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="3446" topLine="77" />
+		<Cursor position="4744" topLine="126" />
 	</File>
 	<File name="jeu.h" open="0" top="0" tabpos="16">
 		<Cursor position="350" topLine="0" />
 	</File>
-	<File name="liste_case.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="177" topLine="60" />
+	<File name="liste_case.cpp" open="1" top="0" tabpos="12">
+		<Cursor position="5484" topLine="111" />
 	</File>
 	<File name="liste_case.h" open="0" top="0" tabpos="12">
 		<Cursor position="602" topLine="4" />

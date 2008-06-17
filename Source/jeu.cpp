@@ -95,7 +95,6 @@ bool Jeu(RenderWindow *ecran)
 
 	if(configuration.Lumiere)
     {
-        map.detruireOmbresEtLumieres(&hero);
         map.calculerOmbresEtLumieres(ecran,&hero,&camera);
         lumiere=false;
     }
@@ -133,11 +132,16 @@ bool Jeu(RenderWindow *ecran)
 
 		    ///Déplacements
 
-			if(tempsEcouleDepuisDernierDeplacement>=0.01)
+			if(tempsEcouleDepuisDernierDeplacement>=0.0)
 			{
 			    coordonnee temp={-1 ,-1 ,-1 ,-1};
 				if(hero.m_personnage.seDeplacer(tempsEcouleDepuisDernierDeplacement*100))
+				{
 					hero.m_personnage.pathfinding(map.getAlentourDuPersonnage(hero.m_personnage.getCoordonnee()),temp); // Recherche du chemin
+					if(configuration.Lumiere)
+                        //map.calculerOmbresEtLumieres(ecran,&hero,&camera);
+                        lumiere=true;
+				}
 				if(hero.getEnemiVise()>-1)
                     hero.testMontreVise(map.getEntiteMonstre(hero.getEnemiVise()),map.getDimensions().y);
 
@@ -155,13 +159,13 @@ bool Jeu(RenderWindow *ecran)
 				/// On calcule les lumières et les ombres
 				if(configuration.Lumiere&&lumiere)
 				{
-                    map.detruireOmbresEtLumieres(&hero);
                     map.calculerOmbresEtLumieres(ecran,&hero,&camera);
                     lumiere=false;
 				}
-
-				if(!lumiere)
+				else
 				lumiere=true;
+
+
 
 				///Placer l'écouteur, à la position du héro
 				coordonnee position;
@@ -243,6 +247,10 @@ bool Jeu(RenderWindow *ecran)
 
                 tempsEcouleDepuisDernierAffichage=0;
 			}
+
+
+
+
 			if(configuration.console)
                 if(tempsEcouleDepuisFPS>0.2)
                 {

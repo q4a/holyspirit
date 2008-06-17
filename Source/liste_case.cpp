@@ -47,7 +47,7 @@ bool liste_case::ajouterCasesAdjacentes(std::vector<std::vector<bool> > grille,c
 				{
 					ajouterCase(enCours);
 				}
-                else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x]&&m_liste[i].getPosition().y!=depart.y&&m_liste[i].getPosition().x!=depart.x)
+                else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x]/*&&!(m_liste[i].getPosition().y==depart.y&&m_liste[i].getPosition().x==depart.x)*/)
                 {
                     arrivee->x=m_liste[i].getPosition().x,arrivee->y=m_liste[i].getPosition().y;
                     return 0;
@@ -60,7 +60,7 @@ bool liste_case::ajouterCasesAdjacentes(std::vector<std::vector<bool> > grille,c
 				{
 					ajouterCase(enCours);
 				}
-                else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x]&&m_liste[i].getPosition().y!=depart.y&&m_liste[i].getPosition().x!=depart.x)
+                else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x]/*&&!(m_liste[i].getPosition().y==depart.y&&m_liste[i].getPosition().x==depart.x)*/)
                 {
                     arrivee->x=m_liste[i].getPosition().x,arrivee->y=m_liste[i].getPosition().y;
                     return 0;
@@ -73,7 +73,7 @@ bool liste_case::ajouterCasesAdjacentes(std::vector<std::vector<bool> > grille,c
 				{
 					ajouterCase(enCours);
 				}
-                else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x]&&m_liste[i].getPosition().y!=depart.y&&m_liste[i].getPosition().x!=depart.x)
+                else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x]/*&&!(m_liste[i].getPosition().y==depart.y&&m_liste[i].getPosition().x==depart.x)*/)
                 {
                     arrivee->x=m_liste[i].getPosition().x,arrivee->y=m_liste[i].getPosition().y;
                     return 0;
@@ -86,7 +86,7 @@ bool liste_case::ajouterCasesAdjacentes(std::vector<std::vector<bool> > grille,c
 				{
 					ajouterCase(enCours);
 				}
-                else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x]&&m_liste[i].getPosition().y!=depart.y&&m_liste[i].getPosition().x!=depart.x)
+                else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x]/*&&!(m_liste[i].getPosition().y==depart.y&&m_liste[i].getPosition().x==depart.x)*/)
                 {
                     arrivee->x=m_liste[i].getPosition().x,arrivee->y=m_liste[i].getPosition().y;
                     return 0;
@@ -99,7 +99,7 @@ bool liste_case::ajouterCasesAdjacentes(std::vector<std::vector<bool> > grille,c
 				{
 					ajouterCase(enCours);
 				}
-                else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x]&&m_liste[i].getPosition().y!=depart.y&&m_liste[i].getPosition().x!=depart.x)
+                else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x]/*&&!(m_liste[i].getPosition().y==depart.y&&m_liste[i].getPosition().x==depart.x)*/)
                 {
                     arrivee->x=m_liste[i].getPosition().x,arrivee->y=m_liste[i].getPosition().y;
                     return 0;
@@ -112,7 +112,7 @@ bool liste_case::ajouterCasesAdjacentes(std::vector<std::vector<bool> > grille,c
 				{
 					ajouterCase(enCours);
 				}
-                else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x]&&m_liste[i].getPosition().y!=depart.y&&m_liste[i].getPosition().x!=depart.x)
+                else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x]/*&&!(m_liste[i].getPosition().y==depart.y&&m_liste[i].getPosition().x==depart.x)*/)
                 {
                     arrivee->x=m_liste[i].getPosition().x,arrivee->y=m_liste[i].getPosition().y;
                     return 0;
@@ -125,7 +125,7 @@ bool liste_case::ajouterCasesAdjacentes(std::vector<std::vector<bool> > grille,c
 				{
 					ajouterCase(enCours);
 				}
-                else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x]&&m_liste[i].getPosition().y!=depart.y&&m_liste[i].getPosition().x!=depart.x)
+                else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x]/*&&!(m_liste[i].getPosition().y==depart.y&&m_liste[i].getPosition().x==depart.x)*/)
                 {
                     arrivee->x=m_liste[i].getPosition().x,arrivee->y=m_liste[i].getPosition().y;
                     return 0;
@@ -138,7 +138,7 @@ bool liste_case::ajouterCasesAdjacentes(std::vector<std::vector<bool> > grille,c
 				{
 					ajouterCase(enCours);
 				}
-                else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x]&&m_liste[i].getPosition().y!=depart.y&&m_liste[i].getPosition().x!=depart.x)
+                else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x]/*&&!(m_liste[i].getPosition().y==depart.y&&m_liste[i].getPosition().x==depart.x)*/)
                 {
                     arrivee->x=m_liste[i].getPosition().x,arrivee->y=m_liste[i].getPosition().y;
                     return 0;

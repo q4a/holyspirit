@@ -164,14 +164,16 @@ bool Modele_Monstre::Charger(string chemin)
 
 void Monstre::testerVision(coordonnee positionHero)
 {
-    if(fabs(positionHero.x-m_positionCase.x)<5&&fabs(positionHero.y-m_positionCase.y)<5)
+    if(m_caracteristique.vie>0)
     {
-        m_vu=1;
-        if(m_etat==0) m_poseEnCours=0;
+        if(fabs(positionHero.x-m_positionCase.x)<5&&fabs(positionHero.y-m_positionCase.y)<5)
+        {
+            m_vu=1;
+            if(m_etat==0) m_poseEnCours=0;
+        }
+        if(fabs(positionHero.x-m_positionCase.x)>10||fabs(positionHero.y-m_positionCase.y)>10)
+        m_vu=0,m_etat=0,m_poseEnCours=0;
     }
-    else if(fabs(positionHero.x-m_positionCase.x)>10||fabs(positionHero.y-m_positionCase.y)>10)
-        if(m_caracteristique.vie>=0)
-            m_vu=0,m_etat=0,m_poseEnCours=0;
 }
 
 int Monstre::getModele(){ return m_modele; }

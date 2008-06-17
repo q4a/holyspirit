@@ -36,10 +36,10 @@ Hero::Hero()
 
 	Caracteristique temp;
 
-	temp.vie=100;
-	temp.maxVie=100;
+	temp.vie=1500;
+	temp.maxVie=1500;
 	temp.degatsMin=1;
-	temp.degatsMax=2;
+	temp.degatsMax=3;
 	temp.vitesse=1;
 
 	m_personnage.setCaracteristique(temp);
