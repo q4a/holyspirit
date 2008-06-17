@@ -36,8 +36,8 @@ Hero::Hero()
 
 	Caracteristique temp;
 
-	temp.vie=1500;
-	temp.maxVie=1500;
+	temp.vie=100;
+	temp.maxVie=100;
 	temp.degatsMin=1;
 	temp.degatsMax=3;
 	temp.vitesse=1;
