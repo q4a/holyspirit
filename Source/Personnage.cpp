@@ -95,6 +95,7 @@ bool Modele_Personnage::Charger(string chemin)
                 else
                 console.Ajouter("Chargement de : "+cheminImage,0);
     		}
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
     	}while(caractere!='$');
 
     	do
@@ -112,6 +113,7 @@ bool Modele_Personnage::Charger(string chemin)
                 else
                 console.Ajouter("Chargement de : "+cheminSon,0);
     		}
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
     	}while(caractere!='$');
 
     	sf::Sound temp;
@@ -155,13 +157,15 @@ bool Modele_Personnage::Charger(string chemin)
                         fichier.get(caractere);
                     }
                     fichier.get(caractere);
+                    if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
                 }while(caractere!='$');
     	    }
     	}
     }
     else
     {
-        cout<<"Impossible d'ouvrir : "<<chemin<<endl;
+        console.Ajouter("Impossible d'ouvrir : "+chemin,1);
+
         return 0;
     }
     fichier.close();
@@ -171,6 +175,7 @@ bool Modele_Personnage::Charger(string chemin)
 
 void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap,LumiereOmbrage *lumiere,Modele_Personnage *modele)
 {
+    if(modele->m_pose.size()>0)
     if((int)(m_angle/45)>=0&&(int)(m_angle/45)<8)
     {
         Sprite Sprite;
@@ -371,6 +376,7 @@ int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps)
 
     m_animation+=temps;
 
+    if(modele->m_pose.size()>0)
     while(m_animation>=0.075)
     {
         coordonnee position;

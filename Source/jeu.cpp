@@ -79,7 +79,10 @@ bool Jeu(RenderWindow *ecran)
 
 	Hero hero;
 	if(!hero.m_modelePersonnage.Charger("Data/Personnages/Hero/GuerrierHache.txt")) // Chargement du héro
+	{
+	    console.Rapport();
         return 0;
+	}
 
 
     camera.Rect.Left=0;
@@ -87,7 +90,10 @@ bool Jeu(RenderWindow *ecran)
 
 	Map map;
 	if(!map.Charger(0)==1) // Chargement de  map0.txt
+	{
+	    console.Rapport();
         return 0;
+	}
 
 	ecran->ShowMouseCursor(false);
 	//if(configuration.Lumiere)
@@ -146,7 +152,10 @@ bool Jeu(RenderWindow *ecran)
                     hero.testMontreVise(map.getEntiteMonstre(hero.getEnemiVise()),map.getDimensions().y);
 
 				if(!map.testEvenement(ecran,&hero,&camera,&menu)) // On test les événement pour voir s'il on doit changer de map, faire des dégats au perso, le régénérer, etc
+                {
+                    console.Rapport();
                     return 0;
+                }
 
                 Clock.Reset();
 
@@ -264,6 +273,8 @@ bool Jeu(RenderWindow *ecran)
                 }
 
 	}
+
+	console.Rapport();
 
 	return 1;
 }

@@ -15,16 +15,16 @@ Menu::Menu()
     console.Ajouter("",0);
     console.Ajouter("Chargement des menus :",0);
 	if(!m_imageMiniMap.LoadFromFile(configuration.chemin_menus+configuration.nom_minimap))
-	    console.Ajouter("Impossible de charger l'image :"+configuration.chemin_menus+configuration.nom_minimap,1);
+	    console.Ajouter("Impossible de charger : "+configuration.chemin_menus+configuration.nom_minimap,1);
     else
     console.Ajouter("Chargement de : "+configuration.chemin_menus+configuration.nom_minimap,0);
     if(!m_imageHUD.LoadFromFile(configuration.chemin_menus+configuration.nom_hud))
-	    console.Ajouter("Impossible de charger l'image :"+configuration.chemin_menus+configuration.nom_hud,1);
+	    console.Ajouter("Impossible de charger : "+configuration.chemin_menus+configuration.nom_hud,1);
     else
     console.Ajouter("Chargement de : "+configuration.chemin_menus+configuration.nom_hud,0);
 
     if(!m_imageBulleVie.LoadFromFile(configuration.chemin_menus+configuration.nom_bulle_vie))
-	    console.Ajouter("Impossible de charger l'image :"+configuration.chemin_menus+configuration.nom_bulle_vie,1);
+	    console.Ajouter("Impossible de charger : "+configuration.chemin_menus+configuration.nom_bulle_vie,1);
     else
     console.Ajouter("Chargement de : "+configuration.chemin_menus+configuration.nom_bulle_vie,0);
 

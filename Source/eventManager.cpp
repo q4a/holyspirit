@@ -25,7 +25,7 @@ EventManager::EventManager()
     console.Ajouter("Chargement des curseurs :",0);
 
 	if(!m_curseur.LoadFromFile(configuration.chemin_curseurs+configuration.nom_curseur_base))
-         console.Ajouter("Impossible de charger :"+configuration.chemin_curseurs+configuration.nom_curseur_base,1);
+         console.Ajouter("Impossible de charger : "+configuration.chemin_curseurs+configuration.nom_curseur_base,1);
     else
         console.Ajouter("Chargement de : "+configuration.chemin_curseurs+configuration.nom_curseur_base,0);
 

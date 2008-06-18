@@ -37,7 +37,7 @@ bool Tileset::Charger(std::string chemin)
 	string cheminFinal,temp;
 	cheminFinal=chemin+".png";
 	if(!m_image.LoadFromFile(cheminFinal.c_str()))
-        console.Ajouter("Impossible de charger l'image : "+cheminFinal,1);
+        console.Ajouter("Impossible de charger : "+cheminFinal,1);
     else
     console.Ajouter("Chargement de : "+cheminFinal,0);
 
@@ -68,11 +68,12 @@ bool Tileset::Charger(std::string chemin)
                 m_buffer.push_back(bufferTemp);
 
                 if(!m_buffer[m_buffer.size()-1].LoadFromFile(cheminDuSon.c_str()))
-                    console.Ajouter("Impossible de charger le son : "+cheminDuSon,1);
+                    console.Ajouter("Impossible de charger : "+cheminDuSon,1);
                 else
                 console.Ajouter("Chargement de : "+cheminDuSon,0);
 
     		}
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Tileset \" %s \" Invalide",cheminFinal.c_str());console.Ajouter(temp,1); caractere='$'; }
     	}while(caractere!='$');
 
     	sf::Sound sonTemp;
@@ -121,6 +122,7 @@ bool Tileset::Charger(std::string chemin)
     					break;
     					case 'r': fichier>>orientation; break;
     				}
+    				if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Tileset \" %s \" Invalide",cheminFinal.c_str());console.Ajouter(temp,1); caractere='$'; }
     			}while(caractere!='$');
     			//AjouterTile(position,collision,animation,son,lumiere,ombre,orientation);
     			Tile tileTemp;
@@ -129,10 +131,11 @@ bool Tileset::Charger(std::string chemin)
 
     			fichier.get(caractere);
     		}
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Tileset \" %s \" Invalide",cheminFinal.c_str());console.Ajouter(temp,1); caractere='$'; }
     	}while(caractere!='$');
     }
     else
-        console.Ajouter("Impossible d'ouvrir le fichier :"+cheminFinal,1);
+        console.Ajouter("Impossible d'ouvrir le fichier : "+cheminFinal,1);
 
     fichier.close();
     return 1;

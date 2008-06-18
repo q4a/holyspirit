@@ -20,6 +20,7 @@ class Console
 	void AjouterNombre(int nombre,bool erreur=0);
     int getTaille();
     void defiler(bool direction);
+    void Rapport();
 
 
 	private:

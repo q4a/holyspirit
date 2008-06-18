@@ -72,6 +72,8 @@ bool Map::Charger(int numeroMap)
                 getline(fichier, nom);
                 m_nom=nom;
     		}
+
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
     	}while(caractere!='$');
     	do
     	{
@@ -89,6 +91,7 @@ bool Map::Charger(int numeroMap)
                 m_musique.SetLoop(true);
                 m_musique.SetVolume(0);
     		}
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
     	}while(caractere!='$');
         int heureEnCours=0;
     	do
@@ -105,6 +108,7 @@ bool Map::Charger(int numeroMap)
     			fichier>>m_lumiere[heureEnCours].hauteur;
     			heureEnCours++;
     		}
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
     	}while(caractere!='$');
 
     	while(heureEnCours<24)
@@ -132,6 +136,7 @@ bool Map::Charger(int numeroMap)
                     return 0;
 
     		}
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
 
     	}while(caractere!='$');
 
@@ -148,6 +153,7 @@ bool Map::Charger(int numeroMap)
                     return 0;
 
     		}
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
 
     	}while(caractere!='$');
 
@@ -173,6 +179,7 @@ bool Map::Charger(int numeroMap)
                 console.Ajouter("Chargement de : "+cheminDuMonstre,0);
 
     		}
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
     	}while(caractere!='$');
 
 
@@ -196,6 +203,7 @@ bool Map::Charger(int numeroMap)
                 m_monstre[m_monstre.size()-1].Charger(numeroMonstre,&m_ModeleMonstre[numeroMonstre]);
                 fichier.get(caractere);
     		}
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
 
     	}while(caractere!='$');
 
@@ -215,6 +223,7 @@ bool Map::Charger(int numeroMap)
     				{
     					case 'e': fichier>>numeroEvenement; break;
     				}
+    				if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
     			}while(caractere!='$');
     			m_evenement.push_back(numeroEvenement);
 
@@ -229,10 +238,12 @@ bool Map::Charger(int numeroMap)
                         fichier>>information;
     				    m_evenement[m_evenement.size()-1].AjouterInformation(information);
     				}
+    				if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
     			}while(caractere!='$');
 
     			fichier.get(caractere);
     		}
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
     	}while(caractere!='$');
 
 
@@ -270,6 +281,7 @@ bool Map::Charger(int numeroMap)
                                 case 'm': fichier>>monstre; break;
                                 case 'h': fichier>>herbe; break;
                             }
+                            if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
                         }while(caractere!='|');
                         //AjouterDecor(tileset,tile,evenement,position,couche,monstre);
                         //decorTemp2.setDecor(tileset,tile,evenement,monstre);
@@ -288,6 +300,8 @@ bool Map::Charger(int numeroMap)
                                 tileFinal = tile[random];
                         }
 
+                        if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
+
 
                         m_decor[couche][position.y].push_back(decorTemp);
                         m_decor[couche][position.y][position.x].setDecor(tileset,tileFinal,evenement,monstre,herbe);
@@ -298,6 +312,7 @@ bool Map::Charger(int numeroMap)
                     position.x=0;
                     position.y++;
                 }
+                if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
 
             }while(caractere!='$');
 
@@ -305,7 +320,7 @@ bool Map::Charger(int numeroMap)
     }
     else
     {
-        cout << "Impossible d'ouvrir le fichier : " << chemin <<endl;
+        console.Ajouter("Impossible d'ouvrir le fichier : "+chemin,1);
         return 0;
     }
     fichier.close();
@@ -318,10 +333,11 @@ bool Map::Charger(int numeroMap)
             for(int j=0;j<m_decor[0][0].size();j++)
             {
                 if(m_decor[couche][i][j].getHerbe()>=0&&m_decor[couche][i][j].getHerbe()<m_herbe.size())
-                {
-                    int numeroHerbe = (rand() % (m_herbe[m_decor[couche][i][j].getHerbe()].getTaille() -1 - 0 + 1)) + 0;
-                    m_decor[couche][i][j].setNumeroHerbe(numeroHerbe);
-                }
+                    if(m_herbe[m_decor[couche][i][j].getHerbe()].getTaille()>0)
+                    {
+                        int numeroHerbe = (rand() % (m_herbe[m_decor[couche][i][j].getHerbe()].getTaille() -1 - 0 + 1)) + 0;
+                        m_decor[couche][i][j].setNumeroHerbe(numeroHerbe);
+                    }
             }
 
     return 1;

@@ -1,6 +1,10 @@
 #include "console.h"
 #include "constantes.h"
 #include "Globale.h"
+#include <iostream>
+#include <fstream>
+
+using namespace std;
 
 
 void Console::Afficher(sf::RenderWindow* ecran)
@@ -51,6 +55,18 @@ void Console::defiler(bool direction)
         m_defilement++;
         if(m_defilement>0)
             m_defilement=0;
+    }
+}
+
+void Console::Rapport()
+{
+    ofstream fichier("Log.txt", ios::out | ios::trunc);
+    if(fichier)  // si l'ouverture a réussi
+    {
+        for(int i=0;i<m_erreur.size();i++)
+            if(m_erreur[i]==1)
+                fichier<<m_textes[i]<<'\n';
+        fichier.close();
     }
 }
 
