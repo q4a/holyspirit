@@ -1,4 +1,4 @@
-AntiCrenelage
+*AntiCrenelage
 
 *Data/Sons/Feu.wav
 $
