@@ -51,7 +51,7 @@ bool Tileset::Charger(std::string chemin)
     if(fichier)
     {
         fichier>>temp;
-        if(temp=="NoAntiCrenelage")
+        if(temp=="*NoAntiCrenelage")
         m_image.SetSmooth(false);
 
     	char caractere;

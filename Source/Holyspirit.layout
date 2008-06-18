@@ -16,14 +16,14 @@
 	<File name="Globale.h" open="0" top="0" tabpos="15">
 		<Cursor position="68" topLine="0" />
 	</File>
-	<File name="Hero.cpp" open="1" top="1" tabpos="11">
-		<Cursor position="699" topLine="11" />
+	<File name="Hero.cpp" open="1" top="0" tabpos="11">
+		<Cursor position="244" topLine="11" />
 	</File>
 	<File name="Hero.h" open="0" top="0" tabpos="15">
 		<Cursor position="457" topLine="2" />
 	</File>
 	<File name="Map.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="85950" topLine="1287" />
+		<Cursor position="85735" topLine="0" />
 	</File>
 	<File name="Map.h" open="1" top="0" tabpos="10">
 		<Cursor position="1019" topLine="22" />
@@ -52,8 +52,8 @@
 	<File name="Tile.h" open="0" top="0" tabpos="16">
 		<Cursor position="671" topLine="17" />
 	</File>
-	<File name="Tileset.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="4526" topLine="231" />
+	<File name="Tileset.cpp" open="1" top="1" tabpos="13">
+		<Cursor position="959" topLine="39" />
 	</File>
 	<File name="Tileset.h" open="0" top="0" tabpos="11">
 		<Cursor position="619" topLine="7" />
