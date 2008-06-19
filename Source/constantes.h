@@ -127,7 +127,7 @@ class LumiereOmbrage : public Lumiere
         m_ombre[m_ombre.size()-1].taille=(100-(float)hauteur_lumiere)/50;
 
 
-        for(int i=0;i<m_ombre.size()-1;i++)
+        for(unsigned i=0;i<m_ombre.size()-1;i++)
         {
             float angle;
             angle=valeurAbsolue(m_ombre[m_ombre.size()-1].angle-m_ombre[i].angle);
@@ -155,7 +155,7 @@ class LumiereOmbrage : public Lumiere
         Ombre temp;
         m_ombre.resize(lumiere.m_ombre.size(),temp);
 
-        for(int i=0;i<lumiere.m_ombre.size();i++)
+        for(signed i=0;i<lumiere.m_ombre.size();i++)
         {
             m_ombre[i].intensite=lumiere.m_ombre[i].intensite;
             m_ombre[i].intensiteBasique=lumiere.m_ombre[i].intensiteBasique;
