@@ -1,5 +1,5 @@
 AFFICHAGE
-resolution: 800 600
+resolution: 800 600		
 syncronisation_verticale: 0
 mode: fenetre
 ombres: 1
