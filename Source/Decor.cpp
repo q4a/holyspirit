@@ -34,7 +34,7 @@ int Decor::getHerbe(){return m_herbe;}
 int Decor::getNumeroHerbe(){return m_numeroHerbe;}
 float Decor::getAnimation(){return m_animation;}
 
-void Decor::decrementerAnimation(){m_animation-=0.075;}
+void Decor::decrementerAnimation(){m_animation-=(float)0.075;}
 void Decor::augmenterAnimation(float temps){m_animation+=temps;}
 
 

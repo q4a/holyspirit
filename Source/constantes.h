@@ -155,7 +155,7 @@ class LumiereOmbrage : public Lumiere
         Ombre temp;
         m_ombre.resize(lumiere.m_ombre.size(),temp);
 
-        for(signed i=0;i<lumiere.m_ombre.size();i++)
+        for(unsigned i=0;i<lumiere.m_ombre.size();i++)
         {
             m_ombre[i].intensite=lumiere.m_ombre[i].intensite;
             m_ombre[i].intensiteBasique=lumiere.m_ombre[i].intensiteBasique;
