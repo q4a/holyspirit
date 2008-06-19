@@ -65,9 +65,12 @@ void Hero::testMontreVise(Monstre *monstre,int hauteurMap)
 {
     if(m_enemiVise>-1&&m_personnage.getCaracteristique().vie>0)
     {
-        if(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)>1||fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)>1)
+        if(fabs((float)m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)>1 
+		|| fabs((float)m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)>1)
+		{
             m_personnage.setArrivee(monstre->getProchaineCase());
-        else
+		}
+		else
         {
             m_personnage.setArrivee(m_personnage.getProchaineCase());
             coordonnee temp,temp2;

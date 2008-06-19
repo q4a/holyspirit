@@ -1231,7 +1231,8 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                                     if(couche==1&&positionPartieDecor.h>256)
                                     {
-                                        alpha=(int)fabs(position.y-(positionHero.y+32))+64;
+										alpha  = (int)(fabs((double)position.y-(positionHero.y+32)));
+										alpha += 64;
                                         if(position.y>positionHero.y+32)
                                             alpha=96;
 
@@ -1719,7 +1720,8 @@ void Map::gererMonstres(Hero *hero,float temps)
                         {
                             if(m_monstre[m_decor[i][j][k].getMonstre()].getCaracteristique().vie>0)
                             {
-                                if(fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)>1||fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)>1)
+                                if(fabs((double)m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)>1
+								 ||fabs((double)m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)>1)
                                 {
                                     coordonnee arrivee,enCours;
 
