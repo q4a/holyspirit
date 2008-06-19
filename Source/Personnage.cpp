@@ -451,8 +451,8 @@ void Personnage::setCoordonnee(coordonnee nouvellesCoordonnees)
 	m_positionCase=nouvellesCoordonnees;
     m_etat=ARRET;
 
-	m_positionPixel.x=(int)(m_positionCase.x*sqrt(64*64+32*32));
-	m_positionPixel.y=(int)(m_positionCase.y*sqrt(64*64+32*32));
+	m_positionPixel.x=(int)(m_positionCase.x * 71/*,554175279993270285093557399401*/ /*sqrt(64*64+32*32)*/);	//décimales inutiles vu
+	m_positionPixel.y=(int)(m_positionCase.y * 71/*,554175279993270285093557399401*/ /*sqrt(64*64+32*32)*/);	//qu'on traite des entiers
 
 	m_arrivee.x=m_positionCase.x;
 	m_arrivee.y=m_positionCase.y;
