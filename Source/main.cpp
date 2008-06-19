@@ -8,6 +8,7 @@
 #include <iostream>
 #include <fstream>
 #include <dirent.h>
+#include <time.h>
 
 #include "main.h"
 #include "configuration.h"
@@ -186,4 +187,5 @@ int main ( int argc, char** argv )
         return EXIT_FAILURE;
 
     return EXIT_SUCCESS;
-}
+}
+
