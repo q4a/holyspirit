@@ -38,6 +38,7 @@ menu_hud: Hud.png
 menu_minimap: minimap.png
 menu_bulle_vie: bulle_vie.png
 menu_ame: Ame.png
+menu_barre_ame: Barre_ame.png
 menu_sang: sang.png
 
 AUTRE

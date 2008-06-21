@@ -20,8 +20,8 @@ Portee lumineuse
 * r255 v255 b255 i0 $
 $
 Caracteristiques
-Vie/DegatsMin/DegatsMax/Vitesse
-* v15 di5 da10 m0.2 o0 $
+Vie/DegatsMin/DegatsMax/Vitesse/Ombre/PointAme
+* v15 di5 da10 m0.2 o0 a3 $
 $
 Arret - E
 *x0 y0 w128 h128 a1 s-1 i0 $
