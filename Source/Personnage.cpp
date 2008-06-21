@@ -241,6 +241,8 @@ int Personnage::pathfinding(vector<vector<bool> > map,coordonnee exception)
 	depart.y=m_positionCase.y-decalage.y;
 	arrivee.x=m_arrivee.x-decalage.x;
 	arrivee.y=m_arrivee.y-decalage.y;
+	exception.x=exception.x-decalage.x;
+	exception.y=exception.y-decalage.y;
 
 	casesVisitee.setTailleListe(0);
 
@@ -250,7 +252,7 @@ int Personnage::pathfinding(vector<vector<bool> > map,coordonnee exception)
 	{
 		casesVisitee.incrementerDistanceEnCours();
 		casesVisitee.ajouterCasesAdjacentes(map,&arrivee,depart,exception);
-		if(casesVisitee.getDistance()>15)
+		if(casesVisitee.getDistance()>10)
 			erreur=true;
 	}
 

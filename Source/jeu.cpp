@@ -11,6 +11,8 @@ void Jeu::Demarrer()
     //this-> m_ecran = new sf::RenderWindow(sf::VideoMode(configuration.Resolution.x, configuration.Resolution.y, 32),"EDF casse brique");
 
     ecran.Create(sf::VideoMode(configuration.Resolution.x, configuration.Resolution.y, 32),"HolySpirit : Act of Faith");
+    ecran.UseVerticalSync(configuration.syncronisation_verticale);
+    ecran.OptimizeForNonOpenGL(true);
 
     this->m_jeu = new c_Jeu(this);
 
@@ -20,7 +22,7 @@ void Jeu::Demarrer()
     while (this->m_run)
 	{
 		this->m_contexte->Utiliser(this);
-		this->ecran.Display();
+		//this->ecran.Display();
 	}
 
 	console.Rapport();

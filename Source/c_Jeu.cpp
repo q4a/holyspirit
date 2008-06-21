@@ -12,7 +12,6 @@ using namespace sf;
 
 c_Jeu::c_Jeu(Jeu *jeu)
 {
-
         continuer=true,lumiere=false,augmenter=false;
         chaine[10];
         tempsActuel=0,tempsPrecedent=0,tempsDepuisDerniereAnimation=0,tempsEcoule=0,tempsEcouleDepuisDernierDeplacement=0,tempsEcouleDepuisDernierAffichage=0,tempsEcouleDepuisFPS=0,tempsEffetMort=1;
@@ -21,8 +20,6 @@ c_Jeu::c_Jeu(Jeu *jeu)
         configuration.minute=0;
 
         sf::Listener::SetGlobalVolume((float)configuration.volume);
-
-
 
 
         // Texte pour l'affichage des FPS
@@ -38,8 +35,7 @@ c_Jeu::c_Jeu(Jeu *jeu)
         Temps.SetText(chaine);
         Temps.SetTop(40);
 
-        // Chargement des jeu->menus
-
+        // Chargement des menus
 
         console.Ajouter("",0);
         console.Ajouter("Chargement des effets :",0);
@@ -102,174 +98,180 @@ c_Jeu::c_Jeu(Jeu *jeu)
 
 void c_Jeu::Utiliser(Jeu *jeu)
 {
-    std::cout<<"Test";
-	//while(continuer)
+	//while(jeu->m_run)
 	//{
             //Gestion du temps
             tempsEcoule = jeu->Clock.GetElapsedTime();
-		    tempsEcouleDepuisDernierDeplacement+=tempsEcoule;
-		    tempsDepuisDerniereAnimation+=tempsEcoule;
-		    tempsEcouleDepuisDernierAffichage+=tempsEcoule;
-		    configuration.minute+=tempsEcoule;
-		    if(configuration.minute>=60)
-		    configuration.minute=0,configuration.heure++;
-		    if(configuration.heure>23)
-            configuration.heure=0;
-		    if(augmenter)
-		    tempsEffetMort+=tempsEcoule*10;
-		    else
-		    tempsEffetMort-=tempsEcoule;
-		    if(tempsEffetMort>1)
-		    augmenter=false;
-		    if(tempsEffetMort<0)
-		    augmenter=true;
-		    tempsEcouleDepuisFPS+=tempsEcoule;
 
-		    jeu->hero.m_personnage.regenererVie((float)jeu->hero.m_personnage.getCaracteristique().maxVie*tempsEcoule/100);
+            if(tempsEcoule>0.001)
+            {
+                tempsEcouleDepuisDernierDeplacement+=tempsEcoule;
+                tempsDepuisDerniereAnimation+=tempsEcoule;
+                tempsEcouleDepuisDernierAffichage+=tempsEcoule;
+                configuration.minute+=tempsEcoule;
+                if(configuration.minute>=60)
+                configuration.minute=0,configuration.heure++;
+                if(configuration.heure>23)
+                configuration.heure=0;
+                if(augmenter)
+                tempsEffetMort+=tempsEcoule*10;
+                else
+                tempsEffetMort-=tempsEcoule;
+                if(tempsEffetMort>1)
+                augmenter=false;
+                if(tempsEffetMort<0)
+                augmenter=true;
+                tempsEcouleDepuisFPS+=tempsEcoule;
 
-		    jeu->Clock.Reset();
-
-		    if(jeu->hero.m_personnage.getCaracteristique().vie/(float)jeu->hero.m_personnage.getCaracteristique().maxVie<0.5)
-                configuration.effetMort=200-(jeu->hero.m_personnage.getCaracteristique().vie*400/jeu->hero.m_personnage.getCaracteristique().maxVie),jeu->sonMort.SetVolume(configuration.effetMort);
-
-		    ///Déplacements
-
-			if(tempsEcouleDepuisDernierDeplacement>=0.0)
-			{
-			    coordonnee temp={-1 ,-1 ,-1 ,-1};
-				if(jeu->hero.m_personnage.seDeplacer(tempsEcouleDepuisDernierDeplacement*100))
-				{
-					jeu->hero.m_personnage.pathfinding(jeu->map.getAlentourDuPersonnage(jeu->hero.m_personnage.getCoordonnee()),temp); // Recherche du chemin
-					if(configuration.Lumiere)
-                        //jeu->map.calculerOmbresEtLumieres(ecran,&jeu->hero,&camera);
-                        lumiere=true;
-				}
-				if(jeu->hero.getMonstreVise()>-1)
-                    jeu->hero.testMontreVise(jeu->map.getEntiteMonstre(jeu->hero.getMonstreVise()),jeu->map.getDimensions().y);
-
-				if(!jeu->map.testEvenement(&jeu->ecran,&jeu->hero,&camera,&jeu->menu)) // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
-                {
-                    console.Rapport();
-                    throw ("CRITICAL ERROR");
-                }
+                jeu->hero.m_personnage.regenererVie((float)jeu->hero.m_personnage.getCaracteristique().maxVie*tempsEcoule/100);
 
                 jeu->Clock.Reset();
 
-				jeu->hero.placerCamera(&camera,jeu->map.getDimensions()); // On place la camera suivant ou se trouve le perso
+                if(jeu->hero.m_personnage.getCaracteristique().vie/(float)jeu->hero.m_personnage.getCaracteristique().maxVie<0.5)
+                    configuration.effetMort=200-(jeu->hero.m_personnage.getCaracteristique().vie*400/jeu->hero.m_personnage.getCaracteristique().maxVie),jeu->sonMort.SetVolume(configuration.effetMort);
 
-				jeu->map.gererMonstres(&jeu->hero,tempsEcouleDepuisDernierDeplacement);
+                ///Déplacements
 
-				jeu->ecran.SetView(&camera);
-
-				/// On calcule les lumières et les ombres
-				if(configuration.Lumiere&&lumiere)
-				{
-                    jeu->map.calculerOmbresEtLumieres(&jeu->ecran,&jeu->hero,&camera);
-                    lumiere=false;
-				}
-				else
-				lumiere=true;
-
-
-
-				///Placer l'écouteur, à la position du héro
-				coordonnee position;
-				position.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1+jeu->map.getDimensions().y)/5;
-                position.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
-
-                Listener::SetGlobalVolume((float)configuration.volume);
-				Listener::SetPosition(-position.x, 0, position.y);
-				Listener::SetTarget(0, 0, 1);
-				jeu->map.musiquePlay(position);
-				jeu->sonMort.SetPosition(position.x,0,position.y);
-
-				jeu->hero.m_personnage.AjouterPointAme(jeu->menu.GererDynamique(tempsEcoule));
-
-				tempsEcouleDepuisDernierDeplacement=0;
-			}
-
-		    /// On gère les événements, appui sur une touche, déplacement de la souris
-			jeu->eventManager.GererLesEvenements(&jeu->ecran,&camera,&jeu->m_run,tempsEcoule,&jeu->hero,&jeu->map);
-
-
-			///Animation
-
-			if(tempsDepuisDerniereAnimation>0.05)
-			{
-			    if(jeu->hero.m_personnage.animer(&jeu->hero.m_modelePersonnage,jeu->map.getDimensions().y,tempsDepuisDerniereAnimation)==1) //Animation du héro
-			    {
-                    if(jeu->map.infligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&camera)) // Si l'enemi meut, renvoi true
-                        jeu->eventManager.arreterClique();
-                    jeu->hero.setMonstreVise(-1);
-			    }
-                jeu->map.animer(&jeu->hero,tempsDepuisDerniereAnimation,&jeu->menu); // Animation des tiles de la jeu->map
-                tempsDepuisDerniereAnimation=0;
-			}
-
-			///Affichage
-
-			if(tempsEcouleDepuisDernierAffichage>0.1&&configuration.syncronisation_verticale||!configuration.syncronisation_verticale)
-			{
-                jeu->ecran.SetView(&camera);
-
-                jeu->map.Afficher(&jeu->ecran,&camera,1,&jeu->hero,jeu->eventManager.getPositionSouris());//Affichage de la jeu->map
-
-                jeu->ecran.SetView(NULL);
-
-                if(configuration.Minimap)
+                if(tempsEcouleDepuisDernierDeplacement>=0.001)
                 {
-                    jeu->menu.Afficher(&jeu->ecran,1);//On affiche le fond noir de la mini-jeu->map
-                    jeu->map.Afficher(&jeu->ecran,&camera,2,&jeu->hero,jeu->eventManager.getPositionSouris()); // On affiche la mini-jeu->map
-                    jeu->menu.Afficher(&jeu->ecran,2); // On affiche le cadran de la mini-jeu->map
+                    coordonnee temp={-1 ,-1 ,-1 ,-1};
+                    if(jeu->hero.getMonstreVise()==-1)
+                        temp.x=jeu->hero.m_personnage.getCoordonnee().x,temp.y=jeu->hero.m_personnage.getCoordonnee().y;
+
+                    if(jeu->hero.m_personnage.seDeplacer(tempsEcouleDepuisDernierDeplacement*100))
+                    {
+                        jeu->hero.m_personnage.pathfinding(jeu->map.getAlentourDuPersonnage(jeu->hero.m_personnage.getCoordonnee()),temp); // Recherche du chemin
+                        if(configuration.Lumiere)
+                            //jeu->map.calculerOmbresEtLumieres(ecran,&jeu->hero,&camera);
+                            lumiere=true;
+                    }
+                    if(jeu->hero.getMonstreVise()>-1)
+                        jeu->hero.testMontreVise(jeu->map.getEntiteMonstre(jeu->hero.getMonstreVise()),jeu->map.getDimensions().y);
+
+                    if(!jeu->map.testEvenement(&jeu->ecran,&jeu->hero,&camera,&jeu->menu)) // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
+                    {
+                        console.Rapport();
+                        throw ("CRITICAL ERROR");
+                    }
+
+                    jeu->Clock.Reset();
+
+                    jeu->hero.placerCamera(&camera,jeu->map.getDimensions()); // On place la camera suivant ou se trouve le perso
+
+                    jeu->map.gererMonstres(&jeu->hero,tempsEcouleDepuisDernierDeplacement);
+
+                    jeu->ecran.SetView(&camera);
+
+                    /// On calcule les lumières et les ombres
+                    if(configuration.Lumiere&&lumiere)
+                    {
+                        jeu->map.calculerOmbresEtLumieres(&jeu->ecran,&jeu->hero,&camera);
+                        lumiere=false;
+                    }
+                    else
+                    lumiere=true;
+
+
+
+                    ///Placer l'écouteur, à la position du héro
+                    coordonnee position;
+                    position.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1+jeu->map.getDimensions().y)/5;
+                    position.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
+
+                    Listener::SetGlobalVolume((float)configuration.volume);
+                    Listener::SetPosition(-position.x, 0, position.y);
+                    Listener::SetTarget(0, 0, 1);
+                    jeu->map.musiquePlay(position);
+                    jeu->sonMort.SetPosition(position.x,0,position.y);
+
+                    jeu->hero.m_personnage.AjouterPointAme(jeu->menu.GererDynamique(tempsEcoule));
+
+                    tempsEcouleDepuisDernierDeplacement=0;
                 }
 
-                jeu->menu.Afficher(&jeu->ecran,3); // On affiche le hud
-                jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique());
-                 jeu->eventManager.AfficherCurseur(&jeu->ecran); // On affiche le curseur de la souris
+                /// On gère les événements, appui sur une touche, déplacement de la souris
+                jeu->eventManager.GererLesEvenements(&jeu->ecran,&camera,&jeu->m_run,tempsEcoule,&jeu->hero,&jeu->map);
 
-                if(jeu->map.getEvenement(jeu->eventManager.getCasePointee())>=0)
-                    jeu->map.AfficherNomEvenement(&jeu->ecran,jeu->eventManager.getCasePointee(),jeu->eventManager.getPositionSouris());
 
-                if(configuration.effetMort&&sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
+                ///Animation
+
+                if(tempsDepuisDerniereAnimation>0.05)
                 {
-                    EffectBlur.SetParameter("offset", 0.01*configuration.effetMort/100*(0.6+tempsEffetMort/10));
-                    EffectColorize.SetParameter("color",1+1*configuration.effetMort/100*tempsEffetMort, 1-0.5*configuration.effetMort/100*tempsEffetMort, 1-0.5*configuration.effetMort/100*tempsEffetMort);
-                    jeu->ecran.Draw(EffectBlur);
-                    jeu->ecran.Draw(EffectColorize);
+                    if(jeu->hero.m_personnage.animer(&jeu->hero.m_modelePersonnage,jeu->map.getDimensions().y,tempsDepuisDerniereAnimation)==1) //Animation du héro
+                    {
+                        if(jeu->map.infligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&camera)) // Si l'enemi meut, renvoi true
+                            jeu->eventManager.arreterClique();
+                        jeu->hero.setMonstreVise(-1);
+                    }
+                    jeu->map.animer(&jeu->hero,tempsDepuisDerniereAnimation,&jeu->menu); // Animation des tiles de la jeu->map
+                    tempsDepuisDerniereAnimation=0;
                 }
+
+                ///Affichage
+
+                if(tempsEcouleDepuisDernierAffichage>0.015&&configuration.syncronisation_verticale||!configuration.syncronisation_verticale)
+                {
+                    jeu->ecran.SetView(&camera);
+
+                    jeu->map.Afficher(&jeu->ecran,&camera,1,&jeu->hero,jeu->eventManager.getPositionSouris());//Affichage de la jeu->map
+
+                    jeu->ecran.SetView(NULL);
+
+                    if(configuration.Minimap)
+                    {
+                        jeu->menu.Afficher(&jeu->ecran,1);//On affiche le fond noir de la mini-jeu->map
+                        jeu->map.Afficher(&jeu->ecran,&camera,2,&jeu->hero,jeu->eventManager.getPositionSouris()); // On affiche la mini-jeu->map
+                        jeu->menu.Afficher(&jeu->ecran,2); // On affiche le cadran de la mini-jeu->map
+                    }
+
+                    jeu->menu.Afficher(&jeu->ecran,3); // On affiche le hud
+                    jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique());
+                    jeu->eventManager.AfficherCurseur(&jeu->ecran); // On affiche le curseur de la souris
+
+                    if(jeu->map.getEvenement(jeu->eventManager.getCasePointee())>=0)
+                        jeu->map.AfficherNomEvenement(&jeu->ecran,jeu->eventManager.getCasePointee(),jeu->eventManager.getPositionSouris());
+
+                    if(configuration.effetMort&&sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
+                    {
+                        EffectBlur.SetParameter("offset", 0.01*configuration.effetMort/100*(0.6+tempsEffetMort/10));
+                        EffectColorize.SetParameter("color",1+1*configuration.effetMort/100*tempsEffetMort, 1-0.5*configuration.effetMort/100*tempsEffetMort, 1-0.5*configuration.effetMort/100*tempsEffetMort);
+                        jeu->ecran.Draw(EffectBlur);
+                        jeu->ecran.Draw(EffectColorize);
+                    }
+
+                    if(configuration.console)
+                    {
+                        jeu->ecran.Draw(fps); // On affiche le texte des FPS
+                        jeu->ecran.Draw(Version);
+                        jeu->ecran.Draw(Temps);
+
+                        console.Afficher(&jeu->ecran);
+                    }
+
+
+
+                    jeu->ecran.Display(); // On affiche le tout à l'écran
+
+                    tempsEcouleDepuisDernierAffichage=0;
+                }
+
+
+
 
                 if(configuration.console)
-                {
-                    jeu->ecran.Draw(fps); // On affiche le texte des FPS
-                    jeu->ecran.Draw(Version);
-                    jeu->ecran.Draw(Temps);
-
-                    console.Afficher(&jeu->ecran);
-                }
+                    if(tempsEcouleDepuisFPS>0.1)
+                    {
+                        //  Calcule du nombre de FPS
+                       sprintf(chaine,"%ld FPS",(int)( 1.f / jeu->ecran.GetFrameTime()));
+                        fps.SetText(chaine);
 
 
+                        sprintf(chaine,"Temps : %ld h %ld ",configuration.heure,(int)configuration.minute);
+                        Temps.SetText(chaine);
 
-                //ecran->Display(); // On affiche le tout à l'écran
-
-                tempsEcouleDepuisDernierAffichage=0;
-			}
-
-
-
-
-			if(configuration.console)
-                if(tempsEcouleDepuisFPS>0.1)
-                {
-                    //  Calcule du nombre de FPS
-                   sprintf(chaine,"%ld FPS",(int)( 1.f / jeu->ecran.GetFrameTime()));
-                    fps.SetText(chaine);
-
-
-                    sprintf(chaine,"Temps : %ld h %ld ",configuration.heure,(int)configuration.minute);
-                    Temps.SetText(chaine);
-
-                    tempsEcouleDepuisFPS=0;
-                }
+                        tempsEcouleDepuisFPS=0;
+                    }
+            }
 
 	//}
 }

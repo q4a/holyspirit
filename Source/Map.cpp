@@ -375,15 +375,15 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
     Lumiere lumiere,lumiereTile,lumiereMap;
     float angleOmbreMap;
 
-    coordonnee vueMin,vueMax,lampesMin,lampesMax,distanceActuelle,position;
+    coordonnee vueMin,vueMax,lampesMin,lampesMax,distanceActuelle,position,positionPartieDecor;
 
      double lumiereTemp,Xtemp,Ytemp,angle=0;
 
      //Calcul des sources de lumière qui peuvent se trouver les plus loin du perso, tout en influant sur des tiles dans le champs de vision
-    lampesMin.x=(int)((float)hero->m_personnage.getCoordonnee().x-20);
-    lampesMin.y=(int)((float)hero->m_personnage.getCoordonnee().y-20);
-    lampesMax.x=(int)((float)hero->m_personnage.getCoordonnee().x+20);
-    lampesMax.y=(int)((float)hero->m_personnage.getCoordonnee().y+20);
+    lampesMin.x=(int)((float)hero->m_personnage.getCoordonnee().x-15);
+    lampesMin.y=(int)((float)hero->m_personnage.getCoordonnee().y-15);
+    lampesMax.x=(int)((float)hero->m_personnage.getCoordonnee().x+15);
+    lampesMax.y=(int)((float)hero->m_personnage.getCoordonnee().y+15);
 
     //Vérification que ces tiles soit bien dans la map
     if(lampesMin.x<0) { lampesMin.x=0; }
@@ -678,10 +678,22 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                         for(int l=vueMin.y;l<vueMax.y;l++)
                             for(int m=vueMin.x;m<vueMax.x;m++)
                                 {
+                                    bool ombre=false;
                                     position.x=(m-l-1+m_decor[0].size())*64;
                                     position.y=(m+l)*32; // Conversion des coord iso en cartésienne
                                     const sf::FloatRect& ViewRect = ecran->GetViewRect();
-                                    if(position.x>=ViewRect.Left-384&&position.x<ViewRect.Right+384&&position.y>=ViewRect.Top-384&&position.y<ViewRect.Bottom+384)// Je test si le tile va êtrz affiché à l'écran ou pas
+                                    if(m_decor[0][l][m].getTileset()>-1)
+                                        positionPartieDecor=m_tileset[m_decor[0][l][m].getTileset()].getPositionDuTile(m_decor[0][l][m].getTile());
+                                    if(m_decor[1][l][m].getTileset()>-1)
+                                    {
+                                        positionPartieDecor=m_tileset[m_decor[1][l][m].getTileset()].getPositionDuTile(m_decor[1][l][m].getTile());
+                                        if(m_tileset[m_decor[1][l][m].getTileset()].getOmbreDuTile(m_decor[1][l][m].getTile())&&configuration.Ombre)
+                                            ombre=true;
+                                    }
+
+                                    if(position.x+positionPartieDecor.h*2+positionPartieDecor.w>=ViewRect.Left&&position.x-positionPartieDecor.h*2-positionPartieDecor.w-64<ViewRect.Right&&position.y+positionPartieDecor.h+positionPartieDecor.w>=ViewRect.Top&&position.y-positionPartieDecor.h-32<ViewRect.Bottom+100&&ombre
+                                    ||position.x+positionPartieDecor.w>=ViewRect.Left&&position.x<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y-positionPartieDecor.h+64<ViewRect.Bottom)
+                                  //  if(position.x>=ViewRect.Left-384&&position.x<ViewRect.Right+384&&position.y>=ViewRect.Top-384&&position.y<ViewRect.Bottom+384)// Je test si le tile va êtrz affiché à l'écran ou pas
                                     {
 
                                     //lumiere=m_lumiere;
@@ -1081,7 +1093,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     Sprite.SetImage(*m_herbe[m_decor[0][j][k].getHerbe()].getImage());
                                     Sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
 
-                                    if(position.x+positionPartieDecor.w>=ViewRect.Left&&position.x<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y-positionPartieDecor.h+64<ViewRect.Bottom)
+                                    if(position.x+positionPartieDecor.w>=ViewRect.Left&&position.x<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y-positionPartieDecor.h<ViewRect.Bottom)
                                         {
                                             Sprite.SetLeft(position.x+64-positionPartieDecor.w/2);
                                             Sprite.SetTop(position.y-positionPartieDecor.h+64);
@@ -1209,7 +1221,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                         {
                             positionPartieDecor=m_tileset[m_decor[couche][j][k].getTileset()].getPositionDuTile(m_decor[couche][j][k].getTile());
                             if(position.x+positionPartieDecor.h*2+positionPartieDecor.w>=ViewRect.Left&&position.x-positionPartieDecor.h*2-positionPartieDecor.w-64<ViewRect.Right&&position.y+positionPartieDecor.h+positionPartieDecor.w>=ViewRect.Top&&position.y-positionPartieDecor.h-32<ViewRect.Bottom+100&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()&&configuration.Ombre&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()))
-                            ||position.x+positionPartieDecor.w>=ViewRect.Left&&position.x<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y<ViewRect.Bottom)
+                            ||position.x+positionPartieDecor.w>=ViewRect.Left&&position.x<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y-positionPartieDecor.h+64<ViewRect.Bottom)
                             {
                                 Sprite.SetImage(*m_tileset[m_decor[couche][j][k].getTileset()].getImage());
                                 Sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
@@ -1338,7 +1350,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                         if(m_decor[couche][w][z].getTileset()>=0&&m_decor[couche][w][z].getTileset()<m_tileset.size())
                         {
-                            if(couche==0||couche==1&&((float)j/2==(int)j/2&&(float)k/2==(int)k/2))
+                            if(couche==0)
                             {
 
                                 positionPartieDecor=m_tileset[m_decor[couche][w][z].getTileset()].getPositionDuTile(m_decor[couche][w][z].getTile());
@@ -1384,10 +1396,10 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 	if(type==2)
 	{
 	    coordonneeDecimal position;
-        vueMin.x=hero->m_personnage.getCoordonnee().x-20;
-        vueMin.y=hero->m_personnage.getCoordonnee().y-20;
-        vueMax.x=hero->m_personnage.getCoordonnee().x+20;
-        vueMax.y=hero->m_personnage.getCoordonnee().y+20;
+        vueMin.x=hero->m_personnage.getCoordonnee().x-15;
+        vueMin.y=hero->m_personnage.getCoordonnee().y-15;
+        vueMax.x=hero->m_personnage.getCoordonnee().x+15;
+        vueMax.y=hero->m_personnage.getCoordonnee().y+15;
 
         Sprite.SetRotationCenter(4*configuration.Resolution.x/800,4*configuration.Resolution.x/800);
         Sprite.SetRotation(45);
@@ -1402,13 +1414,13 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                 {
                     position.x=(float)(((k-vueMin.x)-(j-vueMin.y)-1+40)*6*(float)configuration.Resolution.x/800);
                     position.y=(float)(((k-vueMin.x)+(j-vueMin.y))*6*(float)configuration.Resolution.x/800);
-                    if(position.x+465*configuration.Resolution.x/800>600*configuration.Resolution.x/800&&position.x+465*configuration.Resolution.x/800<800*configuration.Resolution.x/800&&position.y*configuration.Resolution.x/800>0&&position.y-140*configuration.Resolution.x/800<195*configuration.Resolution.x/800)
+                    if(position.x+465*configuration.Resolution.x/800>600*configuration.Resolution.x/800&&position.x+465*configuration.Resolution.x/800<800*configuration.Resolution.x/800&&position.y*configuration.Resolution.x/800>0&&position.y-80*configuration.Resolution.x/800<195*configuration.Resolution.x/800)
                     {
                         if(getTypeCase(k,j)==1)
                         {
                             Sprite.SetImage(carreBrun);
                             Sprite.SetLeft((float)(position.x+465*configuration.Resolution.x/800));
-                            Sprite.SetTop((float)(position.y-140*configuration.Resolution.x/800));
+                            Sprite.SetTop((float)(position.y-80*configuration.Resolution.x/800));
                             ecran->Draw(Sprite);
                         }
 
@@ -1417,7 +1429,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                             Sprite.SetImage(carreRouge);
 
                             Sprite.SetLeft(position.x+465*configuration.Resolution.x/800);
-                            Sprite.SetTop(position.y-140*configuration.Resolution.x/800);
+                            Sprite.SetTop(position.y-80*configuration.Resolution.x/800);
                             ecran->Draw(Sprite);
                         }
 
@@ -1425,7 +1437,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                         {
                                 Sprite.SetImage(carreVert);
                                 Sprite.SetLeft(position.x+465*configuration.Resolution.x/800);
-                                Sprite.SetTop(position.y-140*configuration.Resolution.x/800);
+                                Sprite.SetTop(position.y-80*configuration.Resolution.x/800);
                                 ecran->Draw(Sprite);
                         }
 
@@ -1433,7 +1445,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                         {
                                 Sprite.SetImage(carreBleu);
                                 Sprite.SetLeft((float)(position.x+465*configuration.Resolution.x/800));
-                                Sprite.SetTop((float)(position.y-140*configuration.Resolution.x/800));
+                                Sprite.SetTop((float)(position.y-80*configuration.Resolution.x/800));
                                 ecran->Draw(Sprite);
                         }
                     }
@@ -1674,10 +1686,10 @@ void Map::animer(Hero *hero,float temps,Menu *menu)
 {
     coordonnee vueMin,vueMax;
 
-    vueMin.x=hero->m_personnage.getCoordonnee().x-15;
-    vueMin.y=hero->m_personnage.getCoordonnee().y-15;
-    vueMax.x=hero->m_personnage.getCoordonnee().x+15;
-    vueMax.y=hero->m_personnage.getCoordonnee().y+15;
+    vueMin.x=hero->m_personnage.getCoordonnee().x-10;
+    vueMin.y=hero->m_personnage.getCoordonnee().y-10;
+    vueMax.x=hero->m_personnage.getCoordonnee().x+10;
+    vueMax.y=hero->m_personnage.getCoordonnee().y+10;
 
     if(vueMin.x<0) { vueMin.x=0; }
     if(vueMin.y<0) { vueMin.y=0; }
@@ -1751,6 +1763,7 @@ void Map::gererMonstres(Hero *hero,float temps)
 
                                         if(m_monstre[m_decor[i][j][k].getMonstre()].seDeplacer(temps*100))
                                         {
+                                            coordonnee tempCoord={-1,-1,-1,-1};
                                             m_monstre[m_decor[i][j][k].getMonstre()].pathfinding(getAlentourDuPersonnage(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()),hero->m_personnage.getProchaineCase());
                                             if(!(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y==j&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x==k))
                                             if(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x<m_decor[0][0].size()&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y<m_decor[0].size())

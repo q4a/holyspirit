@@ -47,7 +47,6 @@
 		<Unit filename="Tile.h" />
 		<Unit filename="Tileset.cpp" />
 		<Unit filename="Tileset.h" />
-		<Unit filename="_Jeu" />
 		<Unit filename="c_Jeu.cpp" />
 		<Unit filename="c_Jeu.h">
 			<Option weight="0" />
