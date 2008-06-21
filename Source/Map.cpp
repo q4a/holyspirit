@@ -437,171 +437,175 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
 
 
         // Je fonctionne comme pour en bas, juste que je prend le héro comme source de lumière, pour la portée lumineuse
-    for(int i=0;i<vueMax.y-vueMin.y;i++)
-        for(int j=0;j<vueMax.x-vueMin.x;j++)
+    for(int i=0;i<30;i++)
+        for(int j=0;j<30;j++)
         {
             m_tableauDesLampes[i][j].detruire();
              m_tableauDesLampes[i][j]=lumiereMap;
             if(configuration.Ombre)
                 m_tableauDesLampes[i][j].AjouterOmbre((int)((float)lumiereMap.intensite*0.25),angleOmbreMap,lumiereMap.hauteur);
 
-            lumiereTemp=0;
-            lumiereTemp=(float)hero->m_modelePersonnage.getPorteeLumineuse().intensite-((((float)gpl::sqrt((hero->m_personnage.getCoordonneePixel().x-(j+vueMin.x)*COTE_TILE)*(hero->m_personnage.getCoordonneePixel().x-(j+vueMin.x)*COTE_TILE)+(hero->m_personnage.getCoordonneePixel().y-(i+vueMin.y)*COTE_TILE)*(hero->m_personnage.getCoordonneePixel().y-(i+vueMin.y)*COTE_TILE))))*DIVISEUR_COTE_TILE)*30;
+            if(i>=0&&i<vueMax.y-vueMin.y&&j>=0&&j<vueMax.x-vueMin.x)
+            {
 
-            lumiere=hero->m_modelePersonnage.getPorteeLumineuse();
+                lumiereTemp=0;
+                lumiereTemp=(float)hero->m_modelePersonnage.getPorteeLumineuse().intensite-((((float)gpl::sqrt((hero->m_personnage.getCoordonneePixel().x-(j+vueMin.x)*COTE_TILE)*(hero->m_personnage.getCoordonneePixel().x-(j+vueMin.x)*COTE_TILE)+(hero->m_personnage.getCoordonneePixel().y-(i+vueMin.y)*COTE_TILE)*(hero->m_personnage.getCoordonneePixel().y-(i+vueMin.y)*COTE_TILE))))*DIVISEUR_COTE_TILE)*30;
 
-            lumiere.intensite=(int)lumiereTemp;
+                lumiere=hero->m_modelePersonnage.getPorteeLumineuse();
 
-            float lumiereTemp2=0;
+                lumiere.intensite=(int)lumiereTemp;
 
-             bool aMoitieSombre=true;
+                float lumiereTemp2=0;
 
-            lumiereTemp=0;
-            lumiereTemp2=0;
-            if(lumiere.intensite>0)
-                for(int o=1;o<10;o++)
-                {
-                    coordonneeDecimal positionHero;
+                 bool aMoitieSombre=true;
 
-                    positionHero.x=(hero->m_personnage.getCoordonneePixel().x+1)*DIVISEUR_COTE_TILE;
-                    positionHero.y=(hero->m_personnage.getCoordonneePixel().y+1)*DIVISEUR_COTE_TILE;
+                lumiereTemp=0;
+                lumiereTemp2=0;
+                if(lumiere.intensite>0)
+                    for(int o=1;o<10;o++)
+                    {
+                        coordonneeDecimal positionHero;
 
-                    Xtemp=((float)((hero->m_personnage.getCoordonneePixel().x+(hero->m_personnage.getProchaineCase().x-hero->m_personnage.getCoordonnee().x)*8)*DIVISEUR_COTE_TILE-(j+vueMin.x))*0.1)*(float)o;
-                    Ytemp=((float)((hero->m_personnage.getCoordonneePixel().y-(hero->m_personnage.getProchaineCase().y-hero->m_personnage.getCoordonnee().y)*8)*DIVISEUR_COTE_TILE-(i+vueMin.y))*0.1)*(float)o;
+                        positionHero.x=(hero->m_personnage.getCoordonneePixel().x+1)*DIVISEUR_COTE_TILE;
+                        positionHero.y=(hero->m_personnage.getCoordonneePixel().y+1)*DIVISEUR_COTE_TILE;
 
-                    if(Xtemp-(int)Xtemp>0.5)
-                        Xtemp=(int)Xtemp+1;
+                        Xtemp=((float)((hero->m_personnage.getCoordonneePixel().x+(hero->m_personnage.getProchaineCase().x-hero->m_personnage.getCoordonnee().x)*8)*DIVISEUR_COTE_TILE-(j+vueMin.x))*0.1)*(float)o;
+                        Ytemp=((float)((hero->m_personnage.getCoordonneePixel().y-(hero->m_personnage.getProchaineCase().y-hero->m_personnage.getCoordonnee().y)*8)*DIVISEUR_COTE_TILE-(i+vueMin.y))*0.1)*(float)o;
 
-                    if(Ytemp-(int)Ytemp>0.5)
-                        Ytemp=(int)Ytemp+1;
+                        if(Xtemp-(int)Xtemp>0.5)
+                            Xtemp=(int)Xtemp+1;
 
-
-                    distanceActuelle.x=(j+vueMin.x)+(int)Xtemp;
-                    distanceActuelle.y=(i+vueMin.y)+(int)Ytemp;
-
-                    if(distanceActuelle.x>0&&distanceActuelle.x<m_decor[0][0].size()&&distanceActuelle.y>0&&distanceActuelle.y<m_decor[0].size())
-                            if(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()>=0&&m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()<m_tileset.size())
-                               if(m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getLumiereDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile()).intensite<0&&m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getLumiereDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile()).intensite<lumiereTemp)
-                                {
+                        if(Ytemp-(int)Ytemp>0.5)
+                            Ytemp=(int)Ytemp+1;
 
 
-                                    bool erreur=false;
-                                    if(m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='y'||m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='d'||m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='b')
-                                        if((j+vueMin.x)==distanceActuelle.x&&(j+vueMin.x)<positionHero.x)
-                                            erreur=true;
+                        distanceActuelle.x=(j+vueMin.x)+(int)Xtemp;
+                        distanceActuelle.y=(i+vueMin.y)+(int)Ytemp;
 
-                                    if(m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='x'||m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='g'||m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='b')
-                                        if((i+vueMin.y)==distanceActuelle.y&&(i+vueMin.y)<=positionHero.y)
-                                            erreur=true;
-
-                                    if(!erreur)
-                                    if(!((i+vueMin.y)==distanceActuelle.y&&(j+vueMin.x)==distanceActuelle.x))
-                                        lumiereTemp=m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getLumiereDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile()).intensite,aMoitieSombre=true;
-                                    else
+                        if(distanceActuelle.x>0&&distanceActuelle.x<m_decor[0][0].size()&&distanceActuelle.y>0&&distanceActuelle.y<m_decor[0].size())
+                                if(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()>=0&&m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()<m_tileset.size())
+                                   if(m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getLumiereDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile()).intensite<0&&m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getLumiereDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile()).intensite<lumiereTemp)
                                     {
 
-                                        if(distanceActuelle.x>positionHero.x&&distanceActuelle.y>positionHero.y)
-                                            lumiereTemp=m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getLumiereDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile()).intensite,aMoitieSombre=true;
 
-                                        if(distanceActuelle.x>positionHero.x&&distanceActuelle.y<=positionHero.y)
+                                        bool erreur=false;
+                                        if(m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='y'||m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='d'||m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='b')
+                                            if((j+vueMin.x)==distanceActuelle.x&&(j+vueMin.x)<positionHero.x)
+                                                erreur=true;
+
+                                        if(m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='x'||m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='g'||m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='b')
+                                            if((i+vueMin.y)==distanceActuelle.y&&(i+vueMin.y)<=positionHero.y)
+                                                erreur=true;
+
+                                        if(!erreur)
+                                        if(!((i+vueMin.y)==distanceActuelle.y&&(j+vueMin.x)==distanceActuelle.x))
+                                            lumiereTemp=m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getLumiereDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile()).intensite,aMoitieSombre=true;
+                                        else
                                         {
-                                            if(m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='y'||m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='d'||m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='h')
+
+                                            if(distanceActuelle.x>positionHero.x&&distanceActuelle.y>positionHero.y)
                                                 lumiereTemp=m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getLumiereDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile()).intensite,aMoitieSombre=true;
-                                        }
-                                        if(distanceActuelle.x<=positionHero.x&&distanceActuelle.y>positionHero.y)
-                                        {
-                                            if(m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='x'||m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='g'||m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='h')
-                                                lumiereTemp=m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getLumiereDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile()).intensite,aMoitieSombre=true;
+
+                                            if(distanceActuelle.x>positionHero.x&&distanceActuelle.y<=positionHero.y)
+                                            {
+                                                if(m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='y'||m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='d'||m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='h')
+                                                    lumiereTemp=m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getLumiereDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile()).intensite,aMoitieSombre=true;
+                                            }
+                                            if(distanceActuelle.x<=positionHero.x&&distanceActuelle.y>positionHero.y)
+                                            {
+                                                if(m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='x'||m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='g'||m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='h')
+                                                    lumiereTemp=m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getLumiereDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile()).intensite,aMoitieSombre=true;
+                                            }
+
                                         }
 
                                     }
+                    }
 
-                                }
+
+                if((int)lumiereTemp<0||lumiereTemp2<0)
+                {
+                    lumiere.intensite+=(int)(lumiereTemp);
                 }
 
+                if(lumiere.intensite>255)
+                    lumiere.intensite=255;
+                if(lumiere.intensite<0)
+                    lumiere.intensite=0;
 
-            if((int)lumiereTemp<0||lumiereTemp2<0)
-            {
-                lumiere.intensite+=(int)(lumiereTemp);
-            }
-
-            if(lumiere.intensite>255)
-                lumiere.intensite=255;
-            if(lumiere.intensite<0)
-                lumiere.intensite=0;
-
-
-            if(lumiere.intensite>0)
-            {
-                m_tableauDesLampes[i][j].intensite+=lumiere.intensite;
-
-               // if(!m_decor[1][i+vueMin.y][j+vueMin.x].getTileset()>0)
-                //if(m_tileset[m_decor[1][i+vueMin.y][j+vueMin.x].getTileset()].getLumiereDuTile(m_decor[1][i+vueMin.y][j+vueMin.x].getTile()).intensite==0)
-            }
-
-            if(lumiere.intensite>0)
-            {
-                m_tableauDesLampes[i][j].rouge=(lumiere.rouge*lumiere.intensite/(m_tableauDesLampes[i][j].intensite+lumiere.intensite)+m_tableauDesLampes[i][j].rouge*m_tableauDesLampes[i][j].intensite/(m_tableauDesLampes[i][j].intensite+lumiere.intensite));
-                m_tableauDesLampes[i][j].vert=(lumiere.vert*lumiere.intensite/(m_tableauDesLampes[i][j].intensite+lumiere.intensite)+m_tableauDesLampes[i][j].vert*m_tableauDesLampes[i][j].intensite/(m_tableauDesLampes[i][j].intensite+lumiere.intensite));
-                m_tableauDesLampes[i][j].bleu=(lumiere.bleu*lumiere.intensite/(m_tableauDesLampes[i][j].intensite+lumiere.intensite)+m_tableauDesLampes[i][j].bleu*m_tableauDesLampes[i][j].intensite/(m_tableauDesLampes[i][j].intensite+lumiere.intensite));
-
-            }
-
-            if(m_tableauDesLampes[i][j].intensite>255)
-                m_tableauDesLampes[i][j].intensite=255;
-            if(m_tableauDesLampes[i][j].intensite<0)
-                m_tableauDesLampes[i][j].intensite=0;
-            if(m_tableauDesLampes[i][j].rouge>255)
-                m_tableauDesLampes[i][j].rouge=255;
-            if(m_tableauDesLampes[i][j].vert>255)
-                m_tableauDesLampes[i][j].vert=255;
-            if(m_tableauDesLampes[i][j].bleu>255)
-                m_tableauDesLampes[i][j].bleu=255;
-
-            if(i==hero->m_personnage.getCoordonnee().y&&j==hero->m_personnage.getCoordonnee().x)
-            {
-                if(lumiere.intensite>0)
-                    m_lumiereHero.intensite+=lumiere.intensite;
 
                 if(lumiere.intensite>0)
                 {
-                    m_lumiereHero.rouge=(lumiere.rouge*lumiere.intensite/(m_lumiereHero.intensite+lumiere.intensite)+m_lumiereHero.rouge*m_lumiereHero.intensite/(m_lumiereHero.intensite+lumiere.intensite));
-                    m_lumiereHero.vert=(lumiere.vert*lumiere.intensite/(m_lumiereHero.intensite+lumiere.intensite)+m_lumiereHero.vert*m_lumiereHero.intensite/(m_lumiereHero.intensite+lumiere.intensite));
-                    m_lumiereHero.bleu=(lumiere.bleu*lumiere.intensite/(m_lumiereHero.intensite+lumiere.intensite)+m_lumiereHero.bleu*m_lumiereHero.intensite/(m_lumiereHero.intensite+lumiere.intensite));
+                    m_tableauDesLampes[i][j].intensite+=lumiere.intensite;
+
+                   // if(!m_decor[1][i+vueMin.y][j+vueMin.x].getTileset()>0)
+                    //if(m_tileset[m_decor[1][i+vueMin.y][j+vueMin.x].getTileset()].getLumiereDuTile(m_decor[1][i+vueMin.y][j+vueMin.x].getTile()).intensite==0)
+                }
+
+                if(lumiere.intensite>0)
+                {
+                    m_tableauDesLampes[i][j].rouge=(lumiere.rouge*lumiere.intensite/(m_tableauDesLampes[i][j].intensite+lumiere.intensite)+m_tableauDesLampes[i][j].rouge*m_tableauDesLampes[i][j].intensite/(m_tableauDesLampes[i][j].intensite+lumiere.intensite));
+                    m_tableauDesLampes[i][j].vert=(lumiere.vert*lumiere.intensite/(m_tableauDesLampes[i][j].intensite+lumiere.intensite)+m_tableauDesLampes[i][j].vert*m_tableauDesLampes[i][j].intensite/(m_tableauDesLampes[i][j].intensite+lumiere.intensite));
+                    m_tableauDesLampes[i][j].bleu=(lumiere.bleu*lumiere.intensite/(m_tableauDesLampes[i][j].intensite+lumiere.intensite)+m_tableauDesLampes[i][j].bleu*m_tableauDesLampes[i][j].intensite/(m_tableauDesLampes[i][j].intensite+lumiere.intensite));
 
                 }
 
-                if(m_lumiereHero.intensite>255)
-                    m_lumiereHero.intensite=255;
-                if(m_lumiereHero.intensite<0)
-                    m_lumiereHero.intensite=0;
-                if(m_lumiereHero.rouge>255)
-                    m_lumiereHero.rouge=255;
-                if(m_lumiereHero.vert>255)
-                    m_lumiereHero.vert=255;
-                if(m_lumiereHero.bleu>255)
-                    m_lumiereHero.bleu=255;
-            }
+                if(m_tableauDesLampes[i][j].intensite>255)
+                    m_tableauDesLampes[i][j].intensite=255;
+                if(m_tableauDesLampes[i][j].intensite<0)
+                    m_tableauDesLampes[i][j].intensite=0;
+                if(m_tableauDesLampes[i][j].rouge>255)
+                    m_tableauDesLampes[i][j].rouge=255;
+                if(m_tableauDesLampes[i][j].vert>255)
+                    m_tableauDesLampes[i][j].vert=255;
+                if(m_tableauDesLampes[i][j].bleu>255)
+                    m_tableauDesLampes[i][j].bleu=255;
 
-            if(configuration.Ombre)
-            {
-                coordonnee coord1,coord2;
+                if(i==hero->m_personnage.getCoordonnee().y&&j==hero->m_personnage.getCoordonnee().x)
+                {
+                    if(lumiere.intensite>0)
+                        m_lumiereHero.intensite+=lumiere.intensite;
 
-                coord1.x=(int)(hero->m_personnage.getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().y-1*COTE_TILE+m_decor[0].size()*COTE_TILE)*2;
-                coord1.y=(int)(hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y);
-                coord2.x=(int)((j+vueMin.x)*COTE_TILE-(i+vueMin.y)*COTE_TILE-1*COTE_TILE+m_decor[0].size()*COTE_TILE)*2;
-                coord2.y=(int)((j+vueMin.x)*COTE_TILE+(i+vueMin.y)*COTE_TILE);
+                    if(lumiere.intensite>0)
+                    {
+                        m_lumiereHero.rouge=(lumiere.rouge*lumiere.intensite/(m_lumiereHero.intensite+lumiere.intensite)+m_lumiereHero.rouge*m_lumiereHero.intensite/(m_lumiereHero.intensite+lumiere.intensite));
+                        m_lumiereHero.vert=(lumiere.vert*lumiere.intensite/(m_lumiereHero.intensite+lumiere.intensite)+m_lumiereHero.vert*m_lumiereHero.intensite/(m_lumiereHero.intensite+lumiere.intensite));
+                        m_lumiereHero.bleu=(lumiere.bleu*lumiere.intensite/(m_lumiereHero.intensite+lumiere.intensite)+m_lumiereHero.bleu*m_lumiereHero.intensite/(m_lumiereHero.intensite+lumiere.intensite));
 
-                angle=atan(valeurAbsolue((float)coord2.y-(float)coord1.y)/valeurAbsolue((float)coord2.x-(float)coord1.x))*360/(2*M_PI)-90;
+                    }
 
-                if(coord2.y>=coord1.y&&coord2.x>=coord1.x)
-                    angle=180-angle;
-                else if(coord2.y>=coord1.y&&coord2.x<coord1.x)
-                    angle+=180;
-                else if(coord2.y<coord1.y&&coord2.x<coord1.x)
-                    angle=-angle;
+                    if(m_lumiereHero.intensite>255)
+                        m_lumiereHero.intensite=255;
+                    if(m_lumiereHero.intensite<0)
+                        m_lumiereHero.intensite=0;
+                    if(m_lumiereHero.rouge>255)
+                        m_lumiereHero.rouge=255;
+                    if(m_lumiereHero.vert>255)
+                        m_lumiereHero.vert=255;
+                    if(m_lumiereHero.bleu>255)
+                        m_lumiereHero.bleu=255;
+                }
 
-                m_tableauDesLampes[i][j].AjouterOmbre(lumiere.intensite/2,(int)angle,lumiere.hauteur);
+                if(configuration.Ombre)
+                {
+                    coordonnee coord1,coord2;
+
+                    coord1.x=(int)(hero->m_personnage.getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().y-1*COTE_TILE+m_decor[0].size()*COTE_TILE)*2;
+                    coord1.y=(int)(hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y);
+                    coord2.x=(int)((j+vueMin.x)*COTE_TILE-(i+vueMin.y)*COTE_TILE-1*COTE_TILE+m_decor[0].size()*COTE_TILE)*2;
+                    coord2.y=(int)((j+vueMin.x)*COTE_TILE+(i+vueMin.y)*COTE_TILE);
+
+                    angle=atan(valeurAbsolue((float)coord2.y-(float)coord1.y)/valeurAbsolue((float)coord2.x-(float)coord1.x))*360/(2*M_PI)-90;
+
+                    if(coord2.y>=coord1.y&&coord2.x>=coord1.x)
+                        angle=180-angle;
+                    else if(coord2.y>=coord1.y&&coord2.x<coord1.x)
+                        angle+=180;
+                    else if(coord2.y<coord1.y&&coord2.x<coord1.x)
+                        angle=-angle;
+
+                    m_tableauDesLampes[i][j].AjouterOmbre(lumiere.intensite/2,(int)angle,lumiere.hauteur);
+                }
             }
         }
 
@@ -1266,25 +1270,20 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                                     if(couche==1&&positionPartieDecor.h>256)
                                     {
-                                        alpha=(int)fabs(position.y-(positionHero.y+32))+64;
-                                        if(position.y>positionHero.y+32)
-                                            alpha=96;
+                                        alpha=(int)((positionHero.y+32)-position.y)+64;
+                                        //if(position.y>positionHero.y+96)
+                                          //  alpha=32;
 
-                                        if(alpha<32)
-                                            alpha=32;
+                                        if(alpha<64)
+                                            alpha=64;
                                         if(alpha>255)
                                             alpha=255;
 
 
-                                        float nombre=gpl::sqrt(fabs(positionSouris.x/camera->Zoom-position.x+ViewRect.Left)*fabs(positionSouris.x/camera->Zoom-position.x+ViewRect.Left)+fabs(positionSouris.y/camera->Zoom-position.y+ViewRect.Top+positionPartieDecor.h/2)*fabs(positionSouris.y/camera->Zoom-position.y+ViewRect.Top+positionPartieDecor.h/2))*0.5;
+                                        /*float nombre=gpl::sqrt(fabs(positionSouris.x/camera->Zoom-position.x+ViewRect.Left)*fabs(positionSouris.x/camera->Zoom-position.x+ViewRect.Left)+fabs(positionSouris.y/camera->Zoom-position.y+ViewRect.Top+positionPartieDecor.h/2)*fabs(positionSouris.y/camera->Zoom-position.y+ViewRect.Top+positionPartieDecor.h/2))*0.5;
                                         if(nombre<alpha)
-                                            alpha=(int)nombre;
+                                            alpha=(int)nombre;*/
                                     }
-
-
-
-                                    if(alpha<32)
-                                        alpha=32;
 
 
 
@@ -1363,17 +1362,17 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     if(configuration.Lumiere)
                                     {
                                         Sprite.SetColor(sf::Color(
-                                                (int)(((double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].intensite*(double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].rouge)*0.85/255),
-                                                (int)(((double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].intensite*(double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].vert)*0.85/255),
-                                                (int)(((double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].intensite*(double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].bleu)*0.85/255),
+                                                (int)(((double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].intensite*(double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].rouge)*0.7/255),
+                                                (int)(((double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].intensite*(double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].vert)*0.7/255),
+                                                (int)(((double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].intensite*(double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].bleu)*0.7/255),
                                                 alpha));
                                     }
                                     else
                                     {
                                         Sprite.SetColor(sf::Color(
-                                                216,
-                                                216,
-                                                216,
+                                                128,
+                                                128,
+                                                128,
                                                 255));
                                     }
                                     Sprite.SetImage(*m_tileset[m_decor[couche][w][z].getTileset()].getImage());
