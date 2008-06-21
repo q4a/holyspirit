@@ -31,7 +31,7 @@ Lumiere de base
 *128 128 255 128 45
 $
 Liste des tilesets
-*Data/Terrain/Herbes plaines/Herbes plaines
+*Data/Terrain/Sol foret/Sol foret
 *Data/Decors/Feu de camp/Feu de camp
 *Data/Decors/Arbres/Tronc
 $
