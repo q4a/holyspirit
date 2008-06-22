@@ -17,7 +17,7 @@ void Console::Afficher(sf::RenderWindow* ecran)
         sf::String texte;
         texte.SetText(m_textes[i].c_str());
         texte.SetSize(12.f);
-        texte.SetTop((i-m_textes.size()+27-m_defilement)*15+60);
+        texte.SetY((i-m_textes.size()+27-m_defilement)*15+60);
 
         if(m_erreur[i])
             texte.SetColor(sf::Color(255,0,0,255));

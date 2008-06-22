@@ -28,12 +28,12 @@ c_Jeu::c_Jeu(Jeu *jeu)
         Version.SetSize(16.f);
         sprintf(chaine,"v %s",configuration.version.c_str());
         Version.SetText(chaine);
-        Version.SetTop(20);
+        Version.SetY(20);
 
         Temps.SetSize(16.f);
         sprintf(chaine,"Temps : %ld h %ld ",configuration.heure,(int)configuration.minute);
         Temps.SetText(chaine);
-        Temps.SetTop(40);
+        Temps.SetY(40);
 
         // Chargement des menus
 
@@ -75,9 +75,6 @@ c_Jeu::c_Jeu(Jeu *jeu)
         if(!jeu->hero.m_modelePersonnage.Charger("Data/Personnages/hero/GuerrierHache.txt")) // Chargement du héro
             throw("CRITICAL ERROR");
 
-
-        camera.Rect.Left=0;
-        camera.Rect.Top=0;
 
         if(!jeu->map.Charger(0)==1) // Chargement de  jeu->map0.txt
             throw("CRITICAL ERROR");
@@ -160,7 +157,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                     jeu->map.gererMonstres(&jeu->hero,tempsEcouleDepuisDernierDeplacement);
 
-                    jeu->ecran.SetView(&camera);
+                    jeu->ecran.SetView(camera);
 
                     /// On calcule les lumières et les ombres
                     if(configuration.Lumiere&&lumiere)
@@ -209,13 +206,13 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 ///Affichage
 
-                if(tempsEcouleDepuisDernierAffichage>0.015&&configuration.syncronisation_verticale||!configuration.syncronisation_verticale)
+                if(tempsEcouleDepuisDernierAffichage>0.01&&configuration.syncronisation_verticale||!configuration.syncronisation_verticale)
                 {
-                    jeu->ecran.SetView(&camera);
+                    jeu->ecran.SetView(camera);
 
                     jeu->map.Afficher(&jeu->ecran,&camera,1,&jeu->hero,jeu->eventManager.getPositionSouris());//Affichage de la jeu->map
 
-                    jeu->ecran.SetView(NULL);
+                    jeu->ecran.SetView(jeu->ecran.GetDefaultView());
 
                     if(configuration.Minimap)
                     {

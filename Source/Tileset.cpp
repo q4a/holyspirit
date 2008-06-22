@@ -237,7 +237,9 @@ void Tileset::jouerSon(int numeroSon,double distance,coordonnee position,coordon
         {
             m_sons[numeroSon].SetVolume(100);
             float x,y,z;
-            m_sons[numeroSon].GetPosition(x,z,y);
+            x=m_sons[numeroSon].GetPosition().x;
+            y=m_sons[numeroSon].GetPosition().y;
+            z=m_sons[numeroSon].GetPosition().z;
             // Je test voir si le nouveau son du même type est plus près du perso que l'ancien, si oui, je mets la position du nouveau à la place de l'ancien
             if((double)(gpl::sqrt((positionHero.x+x)*(positionHero.x+x)+(positionHero.y-y)*(positionHero.y-y)))>(double)(gpl::sqrt((positionHero.x-position.x)*(positionHero.x-position.x)+(positionHero.y-position.y)*(positionHero.y-position.y))))
                 m_sons[numeroSon].SetPosition(-position.x,0,position.y);

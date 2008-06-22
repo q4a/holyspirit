@@ -65,9 +65,9 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
     if(m_EventTableau[Key::Escape])
 		*continuer=false;
 	if(m_EventTableau[Key::PageUp])
-		camera->Zoom *=1+(0.5*temps);
+		camera->Zoom(1+(0.5*temps));
 	if(m_EventTableau[Key::PageDown])
-		camera->Zoom *=1-(0.5*temps);
+		camera->Zoom((1-(0.5*temps)));
 
     if(m_EventTableau[Key::Add])
 		configuration.volume+=temps*50;
@@ -118,17 +118,17 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
 
 
     // Je règle mon niveau de zoom en fonction de la résolution
-	if(camera->Zoom<0.75+((float)configuration.Resolution.x/800-1)/2)
+	/*if(camera->Zoom<0.75+((float)configuration.Resolution.x/800-1)/2)
 		camera->Zoom=0.75+((float)configuration.Resolution.x/800-1)/2;
 	if(camera->Zoom>1.5+((float)configuration.Resolution.x/800-1))
-		camera->Zoom=1.5+((float)configuration.Resolution.x/800-1);
+		camera->Zoom=1.5+((float)configuration.Resolution.x/800-1);*/
 
-	ecran->SetView(camera);
-	FloatRect ViewRect = ecran->GetViewRect();
+	ecran->SetView(*camera);
+	FloatRect ViewRect = camera->GetRect();
 
 	coordonnee positionSourisTotale;
-	positionSourisTotale.x=(int)(ViewRect.Left+m_positionSouris.x/camera->Zoom);
-	positionSourisTotale.y=(int)(ViewRect.Top+m_positionSouris.y/camera->Zoom);
+	positionSourisTotale.x=(int)ecran->ConvertCoords(ecran->GetInput().GetMouseX(),ecran->GetInput().GetMouseY()).x;
+    positionSourisTotale.y=(int)ecran->ConvertCoords(ecran->GetInput().GetMouseX(), ecran->GetInput().GetMouseY()).y;
 
 
     //Conversion des coord cartésienne en coord iso
@@ -150,13 +150,13 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
 
     int monstreVise=map->getMonstre(hero,camera,ecran,m_positionSouris,m_casePointee);
 
-	if(m_Clic[Mouse::Left]&&!m_EventTableau[Key::Shift])
+	if(m_Clic[Mouse::Left]&&!m_EventTableau[Key::LShift])
 	{
         hero->setMonstreVise(monstreVise);
         if(hero->getMonstreVise()==-1)
          hero->m_personnage.setArrivee(m_casePointee);
 	}
-	if(m_Clic[Mouse::Right]||m_Clic[Mouse::Left]&&m_EventTableau[Key::Shift])
+	if(m_Clic[Mouse::Right]||m_Clic[Mouse::Left]&&m_EventTableau[Key::LShift])
 	{
 	    coordonnee temp;
 	    temp.x=configuration.Resolution.x/2;
@@ -171,8 +171,8 @@ void EventManager::AfficherCurseur(sf::RenderWindow *ecran)
 {
 	Sprite Sprite;
 	Sprite.SetImage(m_curseur);
-	Sprite.SetLeft(m_positionSouris.x);
-	Sprite.SetTop(m_positionSouris.y);
+	Sprite.SetX(m_positionSouris.x);
+	Sprite.SetY(m_positionSouris.y);
 	ecran->Draw(Sprite);
 }
 

@@ -55,8 +55,8 @@ void Menu::Afficher(sf::RenderWindow* ecran,int type)
     {
         //On affiche le fond noir de la mini-map
 		Sprite.SetImage(m_fondMiniMap);
-		Sprite.SetLeft(configuration.Resolution.x-configuration.Resolution.x*0.25);
-		Sprite.SetTop(0);
+		Sprite.SetX(configuration.Resolution.x-configuration.Resolution.x*0.25);
+		Sprite.SetY(0);
 		ecran->Draw(Sprite);
     }
 
@@ -64,8 +64,8 @@ void Menu::Afficher(sf::RenderWindow* ecran,int type)
     {
         //On affiche le cadran de la mini map
 		Sprite.SetImage(m_imageMiniMap);
-		Sprite.SetLeft(configuration.Resolution.x-configuration.Resolution.x/4);
-		Sprite.SetTop(0);
+		Sprite.SetX(configuration.Resolution.x-configuration.Resolution.x/4);
+		Sprite.SetY(0);
 		Sprite.Resize(configuration.Resolution.x*0.25, configuration.Resolution.x*0.25);
 		ecran->Draw(Sprite);
     }
@@ -74,8 +74,8 @@ void Menu::Afficher(sf::RenderWindow* ecran,int type)
     {
         //On affiche l'HUD
 		Sprite2.SetImage(m_imageHUD);
-		Sprite2.SetLeft(0);
-		Sprite2.SetTop(configuration.Resolution.y-128*configuration.Resolution.y/600);
+		Sprite2.SetX(0);
+		Sprite2.SetY(configuration.Resolution.y-128*configuration.Resolution.y/600);
 		Sprite2.Resize(configuration.Resolution.x, 128*configuration.Resolution.y/600);
 		ecran->Draw(Sprite2);
     }
@@ -91,8 +91,8 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
         Sprite.SetImage(m_imageBulleVie);
         Sprite.Resize(74*configuration.Resolution.x/800, 107*configuration.Resolution.y/600);
         Sprite.SetSubRect(sf::IntRect(0, (int)(107-caracteristique.vie*107/caracteristique.maxVie), 74, 107));
-        Sprite.SetLeft(10*configuration.Resolution.x/800);
-        Sprite.SetTop(configuration.Resolution.y-(128-10)*configuration.Resolution.y/600+(caracteristique.maxVie-caracteristique.vie)/caracteristique.maxVie*107*configuration.Resolution.y/600);
+        Sprite.SetX(10*configuration.Resolution.x/800);
+        Sprite.SetY(configuration.Resolution.y-(128-10)*configuration.Resolution.y/600+(caracteristique.maxVie-caracteristique.vie)/caracteristique.maxVie*107*configuration.Resolution.y/600);
 
 
         ecran->Draw(Sprite);
@@ -103,9 +103,9 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
         Sprite Sprite;
 
         Sprite.SetImage(m_barrePointAme);
-        Sprite.SetSubRect(sf::IntRect(0, 0, (float)caracteristique.pointAme/20*(float)configuration.Resolution.x/4, 16*(float)configuration.Resolution.y/600));
-        Sprite.SetLeft(configuration.Resolution.x*1.5/4+4);
-        Sprite.SetTop(configuration.Resolution.y-20*configuration.Resolution.y/600);
+        Sprite.SetSubRect(sf::IntRect(0, 0, (int)((float)caracteristique.pointAme/20*(float)configuration.Resolution.x/4), (int)(16*(float)configuration.Resolution.y/600)));
+        Sprite.SetX(configuration.Resolution.x*1.5/4+4);
+        Sprite.SetY(configuration.Resolution.y-20*configuration.Resolution.y/600);
 
         ecran->Draw(Sprite);
     }
@@ -117,13 +117,12 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
             Sprite Sprite;
 
             Sprite.SetImage(m_imageAme);
-            Sprite.SetRotationCenter(16*configuration.Resolution.x/800*m_ame[i].m_taille,16*m_ame[i].m_taille*configuration.Resolution.y/600);
-            Sprite.SetRotation(m_ame[i].m_rotation);
             Sprite.Resize(32*configuration.Resolution.x/800*m_ame[i].m_taille, 32*configuration.Resolution.y/600*m_ame[i].m_taille);
-            Sprite.SetLeft((m_ame[i].m_position.x-(16*m_ame[i].m_taille-16))*configuration.Resolution.x/800);
-            Sprite.SetTop((m_ame[i].m_position.y-(16*m_ame[i].m_taille-16))*configuration.Resolution.y/600);
+            Sprite.SetX((m_ame[i].m_position.x+16)*configuration.Resolution.x/800);
+            Sprite.SetY((m_ame[i].m_position.y+16)*configuration.Resolution.y/600);
 
-
+            Sprite.SetCenter(Sprite.GetSize().x/m_ame[i].m_taille/2,Sprite.GetSize().y/m_ame[i].m_taille/2);
+            Sprite.SetRotation(m_ame[i].m_rotation);
             ecran->Draw(Sprite);
         }
     }
@@ -133,12 +132,13 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
         Sprite Sprite;
 
         Sprite.SetImage(m_imageSang);
-        Sprite.SetRotationCenter(200*m_sang[i].m_taille,200*m_sang[i].m_taille);
+        Sprite.SetCenter(200*m_sang[i].m_taille,200*m_sang[i].m_taille);
         Sprite.SetRotation(m_sang[i].m_rotation);
+         Sprite.SetCenter(0,0);
         Sprite.Resize(200*configuration.Resolution.x/800*m_sang[i].m_taille, 200*configuration.Resolution.y/600*m_sang[i].m_taille);
         Sprite.SetColor(sf::Color(255,255,255,(int)m_alphaSang));
-        Sprite.SetLeft(m_sang[i].m_position.x*configuration.Resolution.x/800);
-        Sprite.SetTop(m_sang[i].m_position.y*configuration.Resolution.y/600);
+        Sprite.SetX(m_sang[i].m_position.x*configuration.Resolution.x/800);
+        Sprite.SetY(m_sang[i].m_position.y*configuration.Resolution.y/600);
 
         ecran->Draw(Sprite);
     }

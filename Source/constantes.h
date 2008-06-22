@@ -69,7 +69,7 @@ struct Configuration
 {
     coordonnee Resolution;
     bool Ombre,Lumiere,Minimap,FonduLumiere,amelioration_lampes,console,Herbes,syncronisation_verticale,plein_ecran;
-    float effetMort,volume,minute,postFX;
+    float effetMort,volume,minute,postFX,zoom;
     int heure;
     std::string version,chemin_maps,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetBlur,nom_effetColorize,nom_hud,nom_minimap,nom_bulle_vie,nom_ame,nom_barre_ame,nom_sang,chemin_son_mort;
 };
