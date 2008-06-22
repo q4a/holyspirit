@@ -102,6 +102,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
             if(tempsEcoule>0.001)
             {
+                jeu->m_display=false;
                 tempsEcouleDepuisDernierDeplacement+=tempsEcoule;
                 tempsDepuisDerniereAnimation+=tempsEcoule;
                 tempsEcouleDepuisDernierAffichage+=tempsEcoule;
@@ -245,9 +246,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
                         console.Afficher(&jeu->ecran);
                     }
 
-
-
-                    jeu->ecran.Display(); // On affiche le tout à l'écran
+                    jeu->m_display=true;
+                    //jeu->ecran.Display(); // On affiche le tout à l'écran
 
                     tempsEcouleDepuisDernierAffichage=0;
                 }

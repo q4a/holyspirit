@@ -65,7 +65,7 @@
 		<Cursor position="216" topLine="0" />
 	</File>
 	<File name="c_Jeu.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="10999" topLine="242" />
+		<Cursor position="3485" topLine="88" />
 	</File>
 	<File name="c_Jeu.h" open="1" top="0" tabpos="2">
 		<Cursor position="316" topLine="0" />
@@ -91,11 +91,11 @@
 	<File name="eventManager.h" open="0" top="0" tabpos="19">
 		<Cursor position="181" topLine="0" />
 	</File>
-	<File name="jeu.cpp" open="1" top="1" tabpos="4">
-		<Cursor position="927" topLine="3" />
+	<File name="jeu.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="900" topLine="6" />
 	</File>
-	<File name="jeu.h" open="1" top="0" tabpos="1">
-		<Cursor position="562" topLine="13" />
+	<File name="jeu.h" open="1" top="1" tabpos="1">
+		<Cursor position="586" topLine="10" />
 	</File>
 	<File name="liste_case.cpp" open="1" top="0" tabpos="13">
 		<Cursor position="779" topLine="23" />

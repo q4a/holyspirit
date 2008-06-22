@@ -34,7 +34,7 @@ class Jeu
     sf::SoundBuffer bufferSonMort;
 	sf::Sound  sonMort;
 
-	bool m_run;
+	bool m_run,m_display;
 
     c_Jeu *m_jeu;
     Contexte *m_contexte;

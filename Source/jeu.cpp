@@ -25,7 +25,8 @@ void Jeu::Demarrer()
     while (this->m_run)
 	{
 		this->m_contexte->Utiliser(this);
-		//this->ecran.Display();
+		if(this->m_display)
+            this->ecran.Display();
 	}
 
     delete this->m_jeu;
