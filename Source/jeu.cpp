@@ -28,6 +28,8 @@ void Jeu::Demarrer()
 		//this->ecran.Display();
 	}
 
+    delete this->m_jeu;
+
 	console.Rapport();
 }
 

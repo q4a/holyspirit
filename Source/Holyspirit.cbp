@@ -17,10 +17,10 @@
 			<Add alias="All" targets="default;" />
 		</VirtualTargets>
 		<Linker>
-			<Add library="C:\Program Files\CodeBlocks\MinGW\lib\mingw\static\libsfml-audio.a" />
-			<Add library="C:\Program Files\CodeBlocks\MinGW\lib\mingw\static\libsfml-graphics.a" />
-			<Add library="C:\Program Files\CodeBlocks\MinGW\lib\mingw\static\libsfml-window.a" />
-			<Add library="C:\Program Files\CodeBlocks\MinGW\lib\mingw\static\libsfml-system.a" />
+			<Add library="libsfml-audio.a" />
+			<Add library="libsfml-graphics.a" />
+			<Add library="libsfml-window.a" />
+			<Add library="libsfml-system.a" />
 		</Linker>
 		<Unit filename="Contexte.cpp" />
 		<Unit filename="Contexte.h" />
