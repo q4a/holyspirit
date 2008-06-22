@@ -1,6 +1,6 @@
 AFFICHAGE
 resolution: 800 600		
-syncronisation_verticale: 1
+syncronisation_verticale: 0
 mode: fenetre
 ombres: 1
 lumieres: 1
@@ -18,7 +18,7 @@ minimap: 0
 console: 0
 
 VERSION
-version: 0.0.89
+version: 0.0.90
 
 CHEMINS
 maps: Data/Maps/map
