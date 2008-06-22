@@ -77,6 +77,7 @@ struct Configuration
 struct Caracteristique
 {
     int pointAme;
+    float ancienPointAme,positionAncienAme;
     float vitesse;
     float vie;
     int maxVie;

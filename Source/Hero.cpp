@@ -42,6 +42,8 @@ Hero::Hero()
 	temp.degatsMax=3;
 	temp.vitesse=1;
 	temp.pointAme=0;
+	temp.ancienPointAme=0;
+	temp.positionAncienAme=0;
 
 	m_personnage.setCaracteristique(temp);
 
@@ -70,7 +72,7 @@ void Hero::testMontreVise(Monstre *monstre,int hauteurMap)
 {
     if(m_monstreVise>-1&&m_personnage.getCaracteristique().vie>0)
     {
-        if(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)>1||fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)>1)
+        if(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)>1||fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)>1)
             m_personnage.setArrivee(monstre->getProchaineCase());
         else
         {
@@ -83,6 +85,18 @@ void Hero::testMontreVise(Monstre *monstre,int hauteurMap)
             m_personnage.frappe(temp2,temp);
         }
     }
+}
+
+void Hero::augmenterAme(float temps)
+{
+    Caracteristique temp = m_personnage.getCaracteristique();
+
+    temp.ancienPointAme+=(temp.pointAme-temp.positionAncienAme)*temps*0.7;
+
+    if(temp.ancienPointAme>=temp.pointAme)
+        temp.ancienPointAme=temp.pointAme,temp.positionAncienAme=temp.ancienPointAme;
+
+    m_personnage.setCaracteristique(temp);
 }
 
 void Hero::setMonstreVise(int monstre){m_monstreVise=monstre;}

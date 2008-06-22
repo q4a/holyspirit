@@ -65,9 +65,16 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
     if(m_EventTableau[Key::Escape])
 		*continuer=false;
 	if(m_EventTableau[Key::PageUp])
-		camera->Zoom(1+(0.5*temps));
+		configuration.zoom*=(1+(0.5*temps));
 	if(m_EventTableau[Key::PageDown])
-		camera->Zoom((1-(0.5*temps)));
+		configuration.zoom*=((1-(0.5*temps)));
+
+    if(configuration.zoom<0.75+((float)configuration.Resolution.x/800-1)/2)
+		configuration.zoom=0.75+((float)configuration.Resolution.x/800-1)/2;
+	if(configuration.zoom>1.5+((float)configuration.Resolution.x/800-1))
+		configuration.zoom=1.5+((float)configuration.Resolution.x/800-1);
+
+    camera->Zoom(configuration.zoom);
 
     if(m_EventTableau[Key::Add])
 		configuration.volume+=temps*50;
@@ -115,6 +122,7 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
             configuration.console=true;
         m_EventTableau[Key::Tab]=false;
     }
+
 
 
     // Je règle mon niveau de zoom en fonction de la résolution

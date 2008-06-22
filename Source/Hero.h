@@ -21,6 +21,8 @@ class Hero
 
 	void testMontreVise(Monstre *monstre,int hauteurMap);
 
+	void augmenterAme(float temps);
+
 	void setMonstreVise(int monstre);
 
 	int getMonstreVise();

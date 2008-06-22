@@ -44,7 +44,6 @@ bool Tileset::Charger(std::string chemin)
 	int nombreTiles=0;
 	cheminFinal=chemin+".txt";
 
-	m_image.SetSmooth(false);
 
 	ifstream fichier;
     fichier.open(cheminFinal.c_str(), ios::in);
@@ -52,7 +51,9 @@ bool Tileset::Charger(std::string chemin)
     {
         fichier>>temp;
         if(temp=="*NoAntiCrenelage")
-        m_image.SetSmooth(false);
+            m_image.SetSmooth(false);
+        else
+            m_image.SetSmooth(true);
 
     	char caractere;
     	do

@@ -103,7 +103,7 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
         Sprite Sprite;
 
         Sprite.SetImage(m_barrePointAme);
-        Sprite.SetSubRect(sf::IntRect(0, 0, (int)((float)caracteristique.pointAme/20*(float)configuration.Resolution.x/4), (int)(16*(float)configuration.Resolution.y/600)));
+        Sprite.SetSubRect(sf::IntRect(0, 0, (int)((float)caracteristique.ancienPointAme/20*(float)configuration.Resolution.x/4), (int)(16*(float)configuration.Resolution.y/600)));
         Sprite.SetX(configuration.Resolution.x*1.5/4+4);
         Sprite.SetY(configuration.Resolution.y-20*configuration.Resolution.y/600);
 
@@ -118,6 +118,7 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
 
             Sprite.SetImage(m_imageAme);
             Sprite.Resize(32*configuration.Resolution.x/800*m_ame[i].m_taille, 32*configuration.Resolution.y/600*m_ame[i].m_taille);
+            Sprite.SetColor(sf::Color(255,255,255,(int)m_ame[i].m_alpha));
             Sprite.SetX((m_ame[i].m_position.x+16)*configuration.Resolution.x/800);
             Sprite.SetY((m_ame[i].m_position.y+16)*configuration.Resolution.y/600);
 
@@ -163,17 +164,28 @@ int Menu::GererDynamique(float temps)
     {
         if(Iter->m_mode==0)
         {
-            if(Iter->m_depart.x<=400&&Iter->m_position.x>=384&&Iter->m_position.y>=520||Iter->m_depart.x>400&&Iter->m_position.x<=384&&Iter->m_position.y>=520)
+            if(Iter->m_depart.x<=400&&Iter->m_position.x>=383&&Iter->m_position.y>=520||Iter->m_depart.x>400&&Iter->m_position.x<=384&&Iter->m_position.y>=520)
             {
                 Iter->m_position.x=384;
                 Iter->m_position.y=520;
-                Iter->m_mode=1;
+                Iter->m_mode=1,retour+=Iter->m_pointAme;
             }
             else
             {
                 Iter->m_rotation-=200*temps;
-                Iter->m_position.x+=(384-Iter->m_depart.x)*temps;
-                Iter->m_position.y+=(520-Iter->m_depart.y)*temps;
+                Iter->m_position.x+=(384-Iter->m_depart.x)*temps*0.5;
+                Iter->m_position.y+=(520-Iter->m_depart.y)*temps*0.5;
+
+                if(Iter->m_taille>1.5)
+                    Iter->augmenter=false;
+                 if(Iter->m_taille<0.75)
+                    Iter->augmenter=true;
+
+                if(Iter->augmenter)
+                    Iter->m_taille+=3*temps;
+                else
+                    Iter->m_taille-=3*temps;
+
             }
         }
         if(Iter->m_mode==1)
@@ -181,6 +193,7 @@ int Menu::GererDynamique(float temps)
             if(Iter->m_taille<2)
             {
                 Iter->m_taille+=2*temps;
+                Iter->m_alpha+=200*temps;
                 Iter->m_rotation-=300*temps;
             }
             else
@@ -191,10 +204,11 @@ int Menu::GererDynamique(float temps)
             if(Iter->m_taille>0.1)
             {
                 Iter->m_taille-=1*temps*2;
+                Iter->m_alpha-=200*temps;
                 Iter->m_rotation-=500*temps;
             }
             else
-                Iter->m_mode=3,retour+=Iter->m_pointAme;
+                Iter->m_mode=3;
         }
         if(Iter->m_mode==3)
             nombre_ame_absorbee++;

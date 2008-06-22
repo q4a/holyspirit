@@ -25,10 +25,13 @@ class Ame
         m_mode=0;
         m_rotation=0;
         m_pointAme=pointAme;
+        m_alpha=128;
+        augmenter=true;
     }
     coordonneeDecimal m_position,m_depart;
-    float m_taille,m_rotation;
+    float m_taille,m_rotation,m_alpha;
     int m_mode,m_pointAme;
+    bool augmenter;
 };
 
 class Sang

@@ -143,6 +143,8 @@ int main ( int argc, char** argv )
     configuration.Resolution.x=resolution.x;
     configuration.Resolution.y=resolution.y;
 
+    configuration.zoom=1;
+
     if(!configuration.Lumiere)
         configuration.Ombre=0;
 

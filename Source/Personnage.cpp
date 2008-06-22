@@ -210,10 +210,10 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
         if(configuration.Lumiere)
             Sprite.SetColor(sf::Color((lumiere->intensite*lumiere->rouge)/255,(lumiere->intensite*lumiere->vert)/255,(lumiere->intensite*lumiere->bleu)/255, 255));
 
-        if(position.x-camera->GetRect().Left+Sprite.GetSize().x>0-32)
-        if(position.x-camera->GetRect().Left<800+32)
-        if(position.y-camera->GetRect().Top+Sprite.GetSize().y>0-32)
-        if(position.y-camera->GetRect().Top<500+32)
+        if(position.x+Sprite.GetSize().x>camera->GetRect().Left)
+        if(position.x<camera->GetRect().Right)
+        if(position.y+Sprite.GetSize().y>camera->GetRect().Top)
+        if(position.y<camera->GetRect().Bottom)
         ecran->Draw(Sprite);
     }
 }

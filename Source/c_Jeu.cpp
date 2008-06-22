@@ -122,6 +122,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                 tempsEcouleDepuisFPS+=tempsEcoule;
 
                 jeu->hero.m_personnage.regenererVie((float)jeu->hero.m_personnage.getCaracteristique().maxVie*tempsEcoule/100);
+                jeu->hero.augmenterAme(tempsEcoule);
 
                 jeu->Clock.Reset();
 
