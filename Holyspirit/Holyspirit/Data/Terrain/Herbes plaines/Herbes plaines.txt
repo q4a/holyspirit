@@ -3,22 +3,22 @@
 $
 Herbe
 *x0 y0 w180 h96 $
-*x0 y0 w160 h96 $
+*x0 y0 w180 h96 $
 
-*x256 y0 w128 h64 $
+*x0 y0 w180 h96 $
 
 Terre
 *x330 y0 w180 h96 $
 
 Coté herbe/terre
-*x0 y0 w160 h96 $
-*x0 y0 w160 h96 $
-*x0 y0 w160 h96 $
-*x0 y0 w160 h96 $
+*x0 y0 w180 h96 $
+*x0 y0 w180 h96 $
+*x0 y0 w180 h96 $
+*x0 y0 w180 h96 $
 
 Colin herbe/terre
-*x0 y0 w160 h96 $
-*x0 y0 w160 h96 $
-*x0 y0 w160 h96 $
-*x0 y0 w160 h96 $
+*x0 y0 w180 h96 $
+*x0 y0 w180 h96 $
+*x0 y0 w180 h96 $
+*x0 y0 w180 h96 $
 $
