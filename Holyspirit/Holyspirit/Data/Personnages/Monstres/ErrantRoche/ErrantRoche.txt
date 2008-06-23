@@ -19,6 +19,8 @@ $
 Portee lumineuse
 * r255 v255 b255 i0 $
 $
+* Errant des Roches
+$
 Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse/Ombre/PointAme
 * v15 di5 da10 m0.2 o0 a5 n2 $

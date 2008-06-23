@@ -17,6 +17,8 @@ $
 Portee lumineuse
 * r255 v255 b255 i32 $
 $
+* Pantin Morbide
+$
 Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse
 *v4 di2 da3 m0.5 o1 a1 n1 $
