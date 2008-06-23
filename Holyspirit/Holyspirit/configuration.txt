@@ -1,5 +1,5 @@
 AFFICHAGE
-resolution: 800 600		
+resolution: 800 600
 syncronisation_verticale: 1
 mode_fenetre: 1
 ombres: 1
@@ -31,8 +31,7 @@ fx: Data/Effets/
 curseur_base: curseurMenu.png
 
 fxNoir: EffetNoir.sfx
-fxBlur: blur.sfx
-fxColorize: colorize.sfx
+fxMort: EffetMort.sfx
 
 menu_hud: Hud.png
 menu_minimap: minimap.png

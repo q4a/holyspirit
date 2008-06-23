@@ -1,5 +1,6 @@
 texture framebuffer
 float offset
+vec3 color
 
 effect
 {
@@ -11,6 +12,6 @@ effect
 	vec4 c2 = framebuffer(_in + offy);
 	vec4 c3 = framebuffer(_in - offx);
 	vec4 c4 = framebuffer(_in + offx);
-
-	_out = c0 * 0.2 + c1 * 0.2 + c2 * 0.2 + c3 * 0.2 + c4 * 0.2;
+	
+	_out = vec4(color, 1.0) * c0 * 0.2 + vec4(color, 1.0) *c1 * 0.2 + vec4(color, 1.0) *c2 * 0.2 + vec4(color, 1.0) *c3 * 0.2 + vec4(color, 1.0) *c4 * 0.2;
 }
