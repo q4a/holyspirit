@@ -12,6 +12,7 @@
 #define DIVISEUR_COTE_TILE 0.013975420031249039189872851628556
 
 #define NOMBRE_ETAT 4
+#define CALCUL_PA_PROCHAIN_NIVEAU temp.niveau*temp.niveau*10
 
 #include <cmath>
 #include <utility>
@@ -82,7 +83,7 @@ struct Caracteristique
     float vie;
     int maxVie;
     int degatsMin,degatsMax;
-
+    int niveau;
 };
 
 struct coordonneeDecimal

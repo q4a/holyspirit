@@ -44,6 +44,7 @@ Hero::Hero()
 	temp.pointAme=0;
 	temp.ancienPointAme=0;
 	temp.positionAncienAme=0;
+	temp.niveau=1;
 
 	m_personnage.setCaracteristique(temp);
 
@@ -95,6 +96,15 @@ void Hero::augmenterAme(float temps)
 
     if(temp.ancienPointAme>=temp.pointAme)
         temp.ancienPointAme=temp.pointAme,temp.positionAncienAme=temp.ancienPointAme;
+
+    if(temp.ancienPointAme>=CALCUL_PA_PROCHAIN_NIVEAU)
+    {
+        temp.niveau++;
+        temp.maxVie+=25;
+        temp.vie=temp.maxVie;
+        temp.degatsMax++;
+        temp.degatsMin++;
+    }
 
     m_personnage.setCaracteristique(temp);
 }

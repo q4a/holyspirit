@@ -29,14 +29,16 @@ c_Chargement::c_Chargement(Jeu *jeu)
     augmenterNoir = true;
 }
 
-void c_Chargement::setC_Chargement(int numeroMap,coordonnee coordonneePerso)
+void c_Chargement::setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool debut)
 {
     m_coordonneePerso.x=coordonneePerso.x;
     m_coordonneePerso.y=coordonneePerso.y;
     numeroProchaineMap=numeroMap;
     z=50;
     augmenterNoir = true;
-    console.Rapport();
+
+    if(debut)
+        z=0;
 }
 
 void c_Chargement::Utiliser(Jeu *jeu)

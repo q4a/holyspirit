@@ -12,7 +12,7 @@ class c_Chargement : public Contexte
     public:
     c_Chargement(Jeu *jeu);
     void Utiliser(Jeu *jeu);
-    void setC_Chargement(int numeroMap,coordonnee coordonneePerso);
+    void setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool debut=false);
 
     sf::View camera;
 

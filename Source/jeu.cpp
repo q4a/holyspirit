@@ -20,7 +20,10 @@ void Jeu::Demarrer()
     this->m_jeu = new c_Jeu(this);
     this->m_chargement = new c_Chargement(this);
 
-    this->m_contexte = this->m_jeu;
+    coordonnee temp={1,1,-1,-1};
+    this->m_chargement->setC_Chargement(1,temp,1);
+
+    this->m_contexte = this->m_chargement;
 
     this->m_run = true;
     while (this->m_run)

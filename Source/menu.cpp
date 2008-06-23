@@ -45,6 +45,9 @@ Menu::Menu()
     console.Ajouter("Chargement de : "+configuration.chemin_menus+configuration.nom_barre_ame,0);
 
 	m_fondMiniMap.Create(configuration.Resolution.x/4, configuration.Resolution.x/4, sf::Color(0, 0, 0));
+
+	texte.SetSize(16.f);
+	texte.SetY(configuration.Resolution.y-40*configuration.Resolution.y/600);
 }
 
 void Menu::Afficher(sf::RenderWindow* ecran,int type)
@@ -103,12 +106,21 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
         Sprite Sprite;
 
         Sprite.SetImage(m_barrePointAme);
-        Sprite.SetSubRect(sf::IntRect(0, 0, (int)((float)caracteristique.ancienPointAme/20*(float)configuration.Resolution.x/4), (int)(16*(float)configuration.Resolution.y/600)));
+        Sprite.SetSubRect(sf::IntRect(0, 0, (int)((float)(caracteristique.ancienPointAme-((caracteristique.niveau-1)*(caracteristique.niveau-1)*10))/(((caracteristique.niveau)*(caracteristique.niveau)*10)-((caracteristique.niveau-1)*(caracteristique.niveau-1)*10))*(float)configuration.Resolution.x/4), (int)(16*(float)configuration.Resolution.y/600)));
         Sprite.SetX(configuration.Resolution.x*1.5/4+4);
         Sprite.SetY(configuration.Resolution.y-20*configuration.Resolution.y/600);
 
         ecran->Draw(Sprite);
     }
+
+        char chaine[3];
+
+        sprintf(chaine,"%ld",caracteristique.niveau);
+        texte.SetText(chaine);
+
+        texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
+
+        ecran->Draw(texte);
 
     for(int i=0;i<m_ame.size();i++)
     {

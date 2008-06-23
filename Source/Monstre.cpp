@@ -120,6 +120,7 @@ bool Modele_Monstre::Charger(string chemin)
                         case 'm': fichier>>m_caracteristique.vitesse; break;
                         case 'o': fichier>>m_ombre; break;
                         case 'a': fichier>>m_caracteristique.pointAme; break;
+                        case 'n': fichier>>m_caracteristique.niveau; break;
                     }
                      if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
                 }while(caractere!='$');

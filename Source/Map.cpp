@@ -891,7 +891,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                             lumiereTemp=0;
                                             // Je réduit la quantité de lumière reçue, en fonction de la distance, qui est calculée avec un simple pythagore ^^
                                            // lumiereTemp=(float)lumiereTile.intensite-(float)(gpl::sqrt((k*COTE_TILE-m*COTE_TILE)*(k*COTE_TILE-m*COTE_TILE)+(j*COTE_TILE-l*COTE_TILE)*(j*COTE_TILE-l*COTE_TILE)))/5;
-                                            lumiereTemp=(float)m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite-((((float)gpl::sqrt((m_monstre[m_decor[0][j][k].getMonstre()].getCoordonneePixel().x-(m)*COTE_TILE)*(m_monstre[m_decor[0][j][k].getMonstre()].getCoordonneePixel().x-(m)*COTE_TILE)+(m_monstre[m_decor[0][j][k].getMonstre()].getCoordonneePixel().y-(l)*COTE_TILE)*(m_monstre[m_decor[0][j][k].getMonstre()].getCoordonneePixel().y-(l)*COTE_TILE))))*DIVISEUR_COTE_TILE)*15;
+                                            lumiereTemp=(float)m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite-((((float)gpl::sqrt((m_monstre[m_decor[0][j][k].getMonstre()].getCoordonneePixel().x-(m)*COTE_TILE)*(m_monstre[m_decor[0][j][k].getMonstre()].getCoordonneePixel().x-(m)*COTE_TILE)+(m_monstre[m_decor[0][j][k].getMonstre()].getCoordonneePixel().y-(l)*COTE_TILE)*(m_monstre[m_decor[0][j][k].getMonstre()].getCoordonneePixel().y-(l)*COTE_TILE))))*DIVISEUR_COTE_TILE)*768;
                                             lumiere.hauteur=m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().hauteur;
 
                                             if(lumiereTemp>0)
@@ -922,14 +922,14 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                                 m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite=0;
                                         }
 
-                                        if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
+                                        /*if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
                                         if(m_monstre[m_decor[1][j][k].getMonstre()].getCaracteristique().vie>0)
                                         {
                                             //lumiere=m_lumiere;
                                             lumiere.intensite=0;
                                             lumiereTemp=0;
                                             // Je réduit la quantité de lumière reçue, en fonction de la distance, qui est calculée avec un simple pythagore ^^
-                                            lumiereTemp=(float)m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite-((((float)gpl::sqrt((m_monstre[m_decor[1][j][k].getMonstre()].getCoordonneePixel().x-(m)*COTE_TILE)*(m_monstre[m_decor[1][j][k].getMonstre()].getCoordonneePixel().x-(m)*COTE_TILE)+(m_monstre[m_decor[1][j][k].getMonstre()].getCoordonneePixel().y-(l)*COTE_TILE)*(m_monstre[m_decor[1][j][k].getMonstre()].getCoordonneePixel().y-(l)*COTE_TILE))))*DIVISEUR_COTE_TILE)*15;
+                                            lumiereTemp=(float)m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite-((((float)gpl::sqrt((m_monstre[m_decor[1][j][k].getMonstre()].getCoordonneePixel().x-(m)*COTE_TILE)*(m_monstre[m_decor[1][j][k].getMonstre()].getCoordonneePixel().x-(m)*COTE_TILE)+(m_monstre[m_decor[1][j][k].getMonstre()].getCoordonneePixel().y-(l)*COTE_TILE)*(m_monstre[m_decor[1][j][k].getMonstre()].getCoordonneePixel().y-(l)*COTE_TILE))))*DIVISEUR_COTE_TILE)*768;
                                             lumiere.hauteur=m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().hauteur;
 
                                             if(lumiereTemp>0)
@@ -961,7 +961,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                                 if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite<0)
                                                     m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite=0;
                                             }
-                                        }
+                                        }*/
                                     }
                                 }
                     }
@@ -1158,10 +1158,49 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                 }
                                 else
                                 {
+                                    LumiereOmbrage temp;
+                                    temp=m_tableauDesLampes[j-vueMin.y][k-vueMin.x];
+
+
+
                                     if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
-                                        m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_tableauDesLampes[j-vueMin.y][k-vueMin.x],&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
+                                    {
+                                        temp.rouge=(temp.rouge*temp.intensite+m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().rouge*m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+temp.intensite);
+                                        temp.vert=(temp.vert*temp.intensite+m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().vert*m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+temp.intensite);
+                                        temp.bleu=(temp.bleu*temp.intensite+m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().bleu*m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+temp.intensite);
+
+                                        temp.intensite+=m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite;
+                                        if(temp.intensite>255)
+                                            temp.intensite=255;
+                                        if(temp.intensite<0)
+                                            temp.intensite=0;
+                                        if(temp.rouge>255)
+                                            temp.rouge=255;
+                                        if(temp.vert<0)
+                                            temp.vert=0;
+                                        if(temp.bleu>255)
+                                            temp.bleu=255;
+                                        m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&temp,&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
+                                    }
                                     if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
-                                        m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_tableauDesLampes[j-vueMin.y][k-vueMin.x],&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
+                                    {
+                                        temp.rouge=(temp.rouge*temp.intensite+m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().rouge*m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+temp.intensite);
+                                        temp.vert=(temp.vert*temp.intensite+m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().vert*m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+temp.intensite);
+                                        temp.bleu=(temp.bleu*temp.intensite+m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().bleu*m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+temp.intensite);
+
+                                        temp.intensite+=m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite;
+                                        if(temp.intensite>255)
+                                            temp.intensite=255;
+                                        if(temp.intensite<0)
+                                            temp.intensite=0;
+                                        if(temp.rouge>255)
+                                            temp.rouge=255;
+                                        if(temp.vert<0)
+                                            temp.vert=0;
+                                        if(temp.bleu>255)
+                                            temp.bleu=255;
+                                        m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&temp,&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
+                                    }
                                 }
                         }
 
@@ -1422,7 +1461,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 	    coordonneeDecimal position;
         vueMin.x=hero->m_personnage.getCoordonnee().x-15;
         vueMin.y=hero->m_personnage.getCoordonnee().y-15;
-        vueMax.x=hero->m_personnage.getCoordonnee().x+15;
+        vueMax.x=hero->m_personnage.getCoordonnee().x+16;
         vueMax.y=hero->m_personnage.getCoordonnee().y+15;
 
         Sprite.SetCenter(4*configuration.Resolution.x/800,4*configuration.Resolution.x/800);
@@ -1438,7 +1477,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                 {
                     position.x=(float)(((k-vueMin.x)-(j-vueMin.y)-1+40)*6*(float)configuration.Resolution.x/800);
                     position.y=(float)(((k-vueMin.x)+(j-vueMin.y))*6*(float)configuration.Resolution.x/800);
-                    if(position.x+465*configuration.Resolution.x/800>600*configuration.Resolution.x/800&&position.x+465*configuration.Resolution.x/800<800*configuration.Resolution.x/800&&position.y*configuration.Resolution.x/800>0&&position.y-80*configuration.Resolution.x/800<195*configuration.Resolution.x/800)
+                    if(position.x+465*configuration.Resolution.x/800>605*configuration.Resolution.x/800&&position.x+465*configuration.Resolution.x/800<800*configuration.Resolution.x/800&&position.y*configuration.Resolution.x/800>0&&position.y-80*configuration.Resolution.x/800<195*configuration.Resolution.x/800)
                     {
                         if(getTypeCase(k,j)==1)
                         {

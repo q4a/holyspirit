@@ -61,6 +61,7 @@ class Menu
 
 	private:
 	sf::Image m_imageMiniMap,m_fondMiniMap,m_imageHUD,m_imageBulleVie,m_imageAme,m_imageSang,m_barrePointAme;
+	sf::String texte;
 
 	float m_alphaSang;
 
