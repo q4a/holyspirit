@@ -45,6 +45,7 @@ Hero::Hero()
 	temp.ancienPointAme=0;
 	temp.positionAncienAme=0;
 	temp.niveau=1;
+	temp.nom="Héro";
 
 	m_personnage.setCaracteristique(temp);
 

@@ -128,7 +128,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 if(jeu->hero.m_personnage.getCaracteristique().vie/(float)jeu->hero.m_personnage.getCaracteristique().maxVie<0.5)
                     configuration.effetMort=200-(jeu->hero.m_personnage.getCaracteristique().vie*400/jeu->hero.m_personnage.getCaracteristique().maxVie),jeu->sonMort.SetVolume(configuration.effetMort);
-
+                else
+                    configuration.effetMort=0;
                 ///Déplacements
 
                 if(tempsEcouleDepuisDernierDeplacement>=0.001)
@@ -240,7 +241,10 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     }
 
                     jeu->menu.Afficher(&jeu->ecran,3); // On affiche le hud
-                    jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique());
+                    if(jeu->map.getEntiteMonstre(jeu->map.getMonstreIllumine())!=NULL)
+                        jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),jeu->map.getMonstreIllumine(),jeu->map.getEntiteMonstre(jeu->map.getMonstreIllumine())->getCaracteristique());
+                    else
+                        jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),jeu->map.getMonstreIllumine(),jeu->hero.m_personnage.getCaracteristique());
                     jeu->eventManager.AfficherCurseur(&jeu->ecran); // On affiche le curseur de la souris
 
                     if(jeu->map.getEvenement(jeu->eventManager.getCasePointee())>=0)

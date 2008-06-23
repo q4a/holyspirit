@@ -44,10 +44,21 @@ Menu::Menu()
     else
     console.Ajouter("Chargement de : "+configuration.chemin_menus+configuration.nom_barre_ame,0);
 
+    if(!m_barreVie.LoadFromFile(configuration.chemin_menus+configuration.nom_barre_vie))
+	    console.Ajouter("Impossible de charger : "+configuration.chemin_menus+configuration.nom_barre_vie,1);
+    else
+    console.Ajouter("Chargement de : "+configuration.chemin_menus+configuration.nom_barre_vie,0);
+
+    if(!m_barreVieVide.LoadFromFile(configuration.chemin_menus+configuration.nom_barre_vie_vide))
+	    console.Ajouter("Impossible de charger : "+configuration.chemin_menus+configuration.nom_barre_vie_vide,1);
+    else
+    console.Ajouter("Chargement de : "+configuration.chemin_menus+configuration.nom_barre_vie_vide,0);
+
+
+
 	m_fondMiniMap.Create(configuration.Resolution.x/4, configuration.Resolution.x/4, sf::Color(0, 0, 0));
 
 	texte.SetSize(16.f);
-	texte.SetY(configuration.Resolution.y-40*configuration.Resolution.y/600);
 }
 
 void Menu::Afficher(sf::RenderWindow* ecran,int type)
@@ -85,7 +96,7 @@ void Menu::Afficher(sf::RenderWindow* ecran,int type)
 }
 
 
-void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracteristique)
+void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracteristique,int monstreVise,Caracteristique caracteristiqueMonstre)
 {
     if(caracteristique.vie>0)
     {
@@ -118,7 +129,10 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
         sprintf(chaine,"%ld",caracteristique.niveau);
         texte.SetText(chaine);
 
+        texte.SetSize(16.f);
+
         texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
+        texte.SetY(configuration.Resolution.y-40*configuration.Resolution.y/600);
 
         ecran->Draw(texte);
 
@@ -154,6 +168,44 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
         Sprite.SetY(m_sang[i].m_position.y*configuration.Resolution.y/600);
 
         ecran->Draw(Sprite);
+    }
+
+    if(monstreVise>-1)
+    {
+        Sprite Sprite,Sprite2;
+
+        Sprite.SetImage(m_barreVieVide);
+        //Sprite.SetSubRect(sf::IntRect(0, 0, (int)((float)(caracteristique.ancienPointAme-((caracteristique.niveau-1)*(caracteristique.niveau-1)*10))/(((caracteristique.niveau)*(caracteristique.niveau)*10)-((caracteristique.niveau-1)*(caracteristique.niveau-1)*10))*(float)configuration.Resolution.x/4), (int)(16*(float)configuration.Resolution.y/600)));
+        Sprite.SetX(configuration.Resolution.x/2-Sprite.GetSize().x/2);
+        Sprite.SetY(8);
+
+        ecran->Draw(Sprite);
+
+        Sprite2.SetImage(m_barreVie);
+        Sprite2.SetSubRect(sf::IntRect(0, 0, (int)(caracteristiqueMonstre.vie/caracteristiqueMonstre.maxVie*400), 32));
+        Sprite2.SetX(configuration.Resolution.x/2-Sprite.GetSize().x/2);
+        Sprite2.SetY(8);
+
+        ecran->Draw(Sprite2);
+
+        char chaine[255];
+
+         texte.SetSize(18.f);
+
+        sprintf(chaine,"%s (%ld)",caracteristiqueMonstre.nom.c_str(),caracteristiqueMonstre.niveau);
+        texte.SetText(chaine);
+
+        texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2+2);
+        texte.SetY(14);
+        texte.SetColor(Color(0,0,0,255));
+        ecran->Draw(texte);
+        texte.SetColor(Color(255,255,255,255));
+
+        texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
+        texte.SetY(12);
+        ecran->Draw(texte);
+
+
     }
 }
 

@@ -107,6 +107,18 @@ bool Modele_Monstre::Charger(string chemin)
     	}while(caractere!='$');
 
     	do
+    	{
+    	    //Chargement de la lumière ambiante
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
+                getline(fichier, m_caracteristique.nom);
+            }
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
+
+    	do
         {
             if(caractere=='*')
             {

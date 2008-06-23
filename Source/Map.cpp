@@ -1675,7 +1675,7 @@ void Map::gererMonstres(Hero *hero,float temps)
                                         if(m_monstre[m_decor[i][j][k].getMonstre()].seDeplacer(temps*100))
                                         {
                                             coordonnee tempCoord={-1,-1,-1,-1};
-                                            m_monstre[m_decor[i][j][k].getMonstre()].pathfinding(getAlentourDuPersonnage(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()),tempCoord);
+                                            m_monstre[m_decor[i][j][k].getMonstre()].pathfinding(getAlentourDuPersonnage(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()),hero->m_personnage.getProchaineCase());
                                             if(!(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y==j&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x==k))
                                             if(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x<m_decor[0][0].size()&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y<m_decor[0].size())
                                             {
@@ -1742,6 +1742,10 @@ Monstre *Map::getEntiteMonstre(int numeroMonstre)
 {
     if(numeroMonstre>=0&&numeroMonstre<m_monstre.size())
         return &m_monstre[numeroMonstre];
+    else
+    {
+        return NULL;
+    }
 }
 
 vector<vector<bool> > Map::getAlentourDuPersonnage(coordonnee positionPersonnage)
@@ -1757,6 +1761,8 @@ vector<vector<bool> > Map::getAlentourDuPersonnage(coordonnee positionPersonnage
 
 	return grille;
 }
+
+int Map::getMonstreIllumine(){return m_monstreIllumine;}
 
 coordonnee Map::getDimensions()
 {
