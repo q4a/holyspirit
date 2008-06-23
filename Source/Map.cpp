@@ -26,40 +26,48 @@ Map::Map()
     {
         lumiereMask.LoadFromFile("Data/Menus/lumiereMask.png");
     }
-
-    if(!EffectNoir.LoadFromFile(configuration.chemin_fx+configuration.nom_effetNoir))
-        console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetNoir,1);
-    else
-    {
-        console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetNoir,0);
-        EffectNoir.SetTexture("framebuffer", NULL);
-        EffectNoir.SetParameter("color", 1.f, 1.f, 1.f);
-    }
 }
 
 Map::~Map()
 {
-     m_tileset.clear();
-            m_herbe.clear();
+    m_tileset.clear();
+    m_herbe.clear();
+    for(int i=0;i<m_decor.size();i++)
+    {
+        for(int j=0;j<m_decor[0].size();j++)
+        {
+            m_decor[i][j].clear();
+        }
+        m_decor[i].clear();
+    }
+    m_decor.clear();
+    m_ModeleMonstre.clear();
+    m_monstre.clear();
+    for(int i=0;i<m_evenement.size();i++)
+        m_evenement[i].deleteInformations();
+    m_evenement.clear();
+    m_musique.Stop();
+}
 
-            for(int i=0;i<m_decor.size();i++)
-            {
-                for(int j=0;j<m_decor[0].size();j++)
-                {
-                    m_decor[i][j].clear();
-                }
-                m_decor[i].clear();
-            }
-            m_decor.clear();
-
-            m_ModeleMonstre.clear();
-            m_monstre.clear();
-
-            for(int i=0;i<m_evenement.size();i++)
-           m_evenement[i].deleteInformations();
-            m_evenement.clear();
-
-            m_musique.Stop();
+void Map::Detruire()
+{
+    m_tileset.clear();
+    m_herbe.clear();
+    for(int i=0;i<m_decor.size();i++)
+    {
+        for(int j=0;j<m_decor[0].size();j++)
+        {
+            m_decor[i][j].clear();
+        }
+        m_decor[i].clear();
+    }
+    m_decor.clear();
+    m_ModeleMonstre.clear();
+    m_monstre.clear();
+    for(int i=0;i<m_evenement.size();i++)
+        m_evenement[i].deleteInformations();
+    m_evenement.clear();
+    m_musique.Stop();
 }
 
 bool Map::Charger(int numeroMap)
@@ -1516,7 +1524,7 @@ void Map::AfficherNomEvenement(sf::RenderWindow* ecran,coordonnee casePointee,co
     }
 }
 
-bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu* menu)
+bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu* menu,Contexte **ctx,c_Chargement **chargement)
 {
     for(int i=0;i<2;i++)
     if(m_decor[i][hero->m_personnage.getCoordonnee().y][hero->m_personnage.getCoordonnee().x].getEvenement()>=0)
@@ -1538,160 +1546,8 @@ bool Map::testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu
              Clock.Reset();
             float Time = 0,temps_ecoule=0,tempsEcouleDepuisDernierAffichage=0;
 
-            ecran->SetView(*camera);
-
-            if(configuration.Lumiere)
-                calculerOmbresEtLumieres(ecran,hero,camera);
-            Clock.Reset();
-
-            if (sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
-            {
-
-                for(float z=50;z>=0;z-=temps_ecoule*200)
-                {
-                    m_musique.SetVolume(z*(float)configuration.volume/50);
-
-                    temps_ecoule=0;
-                    temps_ecoule=Clock.GetElapsedTime();
-                    tempsEcouleDepuisDernierAffichage+=temps_ecoule;
-                    Clock.Reset();
-
-                    if(tempsEcouleDepuisDernierAffichage>0.0)
-                    {
-                        ecran->SetView(*camera);
-                        coordonnee temp;
-                        Afficher(ecran,camera,1,hero,temp);
-                        ecran->SetView(ecran->GetDefaultView());
-                        if(configuration.Minimap)
-                        {
-                            menu->Afficher(ecran,1);
-                            menu->Afficher(ecran,2);
-                        }
-
-                        menu->Afficher(ecran,3);
-                        menu->AfficherDynamique(ecran,hero->m_personnage.getCaracteristique());
-
-
-                        EffectNoir.SetParameter("color", ((float)z)/50, ((float)z)/50, ((float)z)/50);
-                        ecran->Draw(EffectNoir);
-
-                        ecran->Display();
-                        tempsEcouleDepuisDernierAffichage=0;
-                    }
-                }
-
-                ecran->Display();
-            }
-            else
-            {
-                for(float z=50;z>0;z-=temps_ecoule*200)
-                {
-                    temps_ecoule=0;
-                    temps_ecoule=Clock.GetElapsedTime();
-
-                    Clock.Reset();
-
-                    m_musique.SetVolume(z*(float)configuration.volume/50);
-                }
-            }
-
-            hero->m_personnage.setCoordonnee(coordonneePerso);
-
-
-            m_tileset.clear();
-            m_herbe.clear();
-
-            for(int i=0;i<2;i++)
-            {
-                for(int j=0;j<m_decor[0].size();j++)
-                {
-                    m_decor[i][j].clear();
-                }
-                m_decor[i].clear();
-            }
-            m_decor.clear();
-
-            m_ModeleMonstre.clear();
-            m_monstre.clear();
-
-            for(int i=0;i<m_evenement.size();i++)
-           m_evenement[i].deleteInformations();
-            m_evenement.clear();
-
-            m_musique.Stop();
-
-            if(!Charger(numeroMap))
-                return 0;
-
-            hero->placerCamera(camera,getDimensions());
-
-            coordonnee position;
-            position.x=(hero->m_personnage.getCoordonnee().x-hero->m_personnage.getCoordonnee().y-1+getDimensions().y)/5;
-            position.y=(hero->m_personnage.getCoordonnee().x+hero->m_personnage.getCoordonnee().y)/5;
-            Listener::SetGlobalVolume((float)configuration.volume);
-            Listener::SetPosition(-position.x, 0, position.y);
-            Listener::SetTarget(0, 0, 1);
-            musiquePlay(position);
-
-
-
-            if(configuration.Lumiere)
-                calculerOmbresEtLumieres(ecran,hero,camera);
-
-            Clock.Reset();
-
-            if (sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
-            {
-                for(float z=0;z<50;z+=temps_ecoule*200)
-                {
-                    m_musique.SetVolume(z*(float)configuration.volume/50);
-
-                    temps_ecoule=0;
-                    temps_ecoule=Clock.GetElapsedTime();
-                    tempsEcouleDepuisDernierAffichage+=temps_ecoule;
-
-                    Clock.Reset();
-
-                    if(tempsEcouleDepuisDernierAffichage>0.0)
-                    {
-                        ecran->SetView(*camera);
-                        coordonnee temp;
-                        Afficher(ecran,camera,1,hero,temp);
-                        ecran->SetView(ecran->GetDefaultView());
-                        if(configuration.Minimap)
-                        {
-                            menu->Afficher(ecran,1);
-                            menu->Afficher(ecran,2);
-                        }
-
-                        menu->Afficher(ecran,3);
-                        menu->AfficherDynamique(ecran,hero->m_personnage.getCaracteristique());
-
-
-                        EffectNoir.SetParameter("color", ((float)z)/50, ((float)z)/50, ((float)z)/50);
-                        ecran->Draw(EffectNoir);
-
-
-                        ecran->Display();
-                        tempsEcouleDepuisDernierAffichage=0;
-                    }
-                }
-            }
-            else
-            {
-                for(float z=0;z<50;z+=temps_ecoule*200)
-                {
-                    temps_ecoule=0;
-                    temps_ecoule=Clock.GetElapsedTime();
-
-                    Clock.Reset();
-
-                    m_musique.SetVolume(z*(float)configuration.volume/50);
-                }
-            }
-
-            m_musique.SetVolume((float)configuration.volume);
-
+            (*chargement)->setC_Chargement(numeroMap,coordonneePerso);
+            *ctx = *chargement;
         }
     }
     return 1;
@@ -1815,7 +1671,7 @@ bool Map::infligerDegats(int numeroMonstre, int degats,Menu *menu,sf::View *came
         if(rand()%(100)>25)
         {
             coordonnee position;
-            position.x=rand()%(500);
+            position.x=rand()%(800);
             position.y=rand()%(300);
 
             menu->AjouterSang(position);
@@ -1833,6 +1689,8 @@ bool Map::infligerDegats(int numeroMonstre, int degats,Menu *menu,sf::View *came
     }
     return 0;
 }
+
+void Map::setVolumeMusique(int volume){m_musique.SetVolume(volume);}
 
 
 coordonnee Map::getPositionMonstre(int numeroMonstre)

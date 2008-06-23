@@ -10,7 +10,7 @@
 #include "Menu.h"
 #include "Monstre.h"
 #include "Evenement.h"
-
+#include "c_changementMap.h"
 
 class Map
 {
@@ -30,15 +30,17 @@ class Map
 	std::vector<std::vector<bool> > getAlentourDuPersonnage(coordonnee positionPersonnage); // Retourne un tableau de bool contenant toutes les collitions dans les alentour du héro, pour le pathfinding
 
 	void animer(Hero *hero,float temps,Menu *menu); // Animation des tiles
-	bool testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu* menu);
+	bool testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu* menu,Contexte **ctx,c_Chargement **chargement);
 	void calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *camera);
-	void detruireOmbresEtLumieres(Hero *hero);
+	void Detruire();
 
 	bool infligerDegats(int numeroMontre, int degats,Menu *menu,sf::View *camera);
 
 	void gererMonstres(Hero *hero,float temps);
 
 	void musiquePlay(coordonnee position);
+
+	void setVolumeMusique(int volume);
 
 	coordonnee getDimensions();
 
@@ -53,8 +55,6 @@ class Map
 	std::string m_nom;
 
 	sf::Image lumiereMask;
-
-	sf::PostFX EffectNoir;
 
 	std::vector <Modele_Monstre> m_ModeleMonstre;
 	std::vector <Monstre> m_monstre;

@@ -31,7 +31,7 @@ EventManager::EventManager()
 
 }
 
-void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *continuer,float temps,Hero *hero,Map *map)
+void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *continuer,float temps,coordonnee tailleMap)
 {
 	Event Event;
 	while(ecran->GetEvent(Event))
@@ -81,13 +81,6 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
     if(m_EventTableau[Key::Subtract])
 		configuration.volume-=temps*50;
 
-    if(m_EventTableau[Key::P])
-    {
-		configuration.effetMort+=temps*50;
-		if(configuration.effetMort>200)
-		configuration.effetMort=0;
-    }
-
     if(m_EventTableau[Key::M])
     {
         if(!configuration.Minimap)
@@ -123,14 +116,6 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
         m_EventTableau[Key::Tab]=false;
     }
 
-
-
-    // Je règle mon niveau de zoom en fonction de la résolution
-	/*if(camera->Zoom<0.75+((float)configuration.Resolution.x/800-1)/2)
-		camera->Zoom=0.75+((float)configuration.Resolution.x/800-1)/2;
-	if(camera->Zoom>1.5+((float)configuration.Resolution.x/800-1))
-		camera->Zoom=1.5+((float)configuration.Resolution.x/800-1);*/
-
 	ecran->SetView(*camera);
 	FloatRect ViewRect = camera->GetRect();
 
@@ -140,39 +125,21 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
 
 
     //Conversion des coord cartésienne en coord iso
-    if((float)((positionSourisTotale.y*2-positionSourisTotale.x)/2)/64+map->getDimensions().y/2<(float)map->getDimensions().y/2)
-        m_casePointee.y=((positionSourisTotale.y*2-positionSourisTotale.x)/2)/64+map->getDimensions().y/2-1;
+    if((float)((positionSourisTotale.y*2-positionSourisTotale.x)/2)/64+tailleMap.y/2<(float)tailleMap.y/2)
+        m_casePointee.y=((positionSourisTotale.y*2-positionSourisTotale.x)/2)/64+tailleMap.y/2-1;
     else
-        m_casePointee.y=((positionSourisTotale.y*2-positionSourisTotale.x)/2)/64+map->getDimensions().y/2;
+        m_casePointee.y=((positionSourisTotale.y*2-positionSourisTotale.x)/2)/64+tailleMap.y/2;
 
-    m_casePointee.x=(positionSourisTotale.x+((positionSourisTotale.y*2-positionSourisTotale.x)/2))/64-map->getDimensions().y/2;
+    m_casePointee.x=(positionSourisTotale.x+((positionSourisTotale.y*2-positionSourisTotale.x)/2))/64-tailleMap.y/2;
 
     if(m_casePointee.x<0)
         m_casePointee.x=0;
     if(m_casePointee.y<0)
         m_casePointee.y=0;
-    if(m_casePointee.x>map->getDimensions().x)
-        m_casePointee.x=map->getDimensions().x;
-    if(m_casePointee.y>map->getDimensions().y)
-        m_casePointee.y=map->getDimensions().y;
-
-    int monstreVise=map->getMonstre(hero,camera,ecran,m_positionSouris,m_casePointee);
-
-	if(m_Clic[Mouse::Left]&&!m_EventTableau[Key::LShift])
-	{
-        hero->setMonstreVise(monstreVise);
-        if(hero->getMonstreVise()==-1)
-         hero->m_personnage.setArrivee(m_casePointee);
-	}
-	if(m_Clic[Mouse::Right]||m_Clic[Mouse::Left]&&m_EventTableau[Key::LShift])
-	{
-	    coordonnee temp;
-	    temp.x=configuration.Resolution.x/2;
-	    temp.y=configuration.Resolution.y/2;
-	    if(monstreVise==-1)
-        hero->m_personnage.frappe(m_positionSouris,temp);
-        hero->setMonstreVise(monstreVise);
-	}
+    if(m_casePointee.x>tailleMap.x)
+        m_casePointee.x=tailleMap.x;
+    if(m_casePointee.y>tailleMap.y)
+        m_casePointee.y=tailleMap.y;
 }
 
 void EventManager::AfficherCurseur(sf::RenderWindow *ecran)
@@ -186,15 +153,15 @@ void EventManager::AfficherCurseur(sf::RenderWindow *ecran)
 
 bool EventManager::getEvenement(int numeroEvenement,std::string evenement)
 {
-	if(evenement=="EventTableau")
+	if(evenement=="ET")
 	    if(numeroEvenement>=0&&numeroEvenement<500)
 	        return m_EventTableau[numeroEvenement];
 
-	if(evenement=="Clic")
+	if(evenement=="C")
 	    if(numeroEvenement>=0&&numeroEvenement<=5)
 	        return m_Clic[numeroEvenement];
 
-	if(evenement=="ClicAncien")
+	if(evenement=="CA")
 	    if(numeroEvenement>=0&&numeroEvenement<=5)
 	        return m_ClicAncien[numeroEvenement];
 }

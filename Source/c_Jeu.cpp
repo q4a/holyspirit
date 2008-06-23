@@ -100,7 +100,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
             //Gestion du temps
             tempsEcoule = jeu->Clock.GetElapsedTime();
 
-            if(tempsEcoule>0.001)
+            if(tempsEcoule>0.00)
             {
                 jeu->m_display=false;
                 tempsEcouleDepuisDernierDeplacement+=tempsEcoule;
@@ -147,10 +147,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     if(jeu->hero.getMonstreVise()>-1)
                         jeu->hero.testMontreVise(jeu->map.getEntiteMonstre(jeu->hero.getMonstreVise()),jeu->map.getDimensions().y);
 
-                    if(!jeu->map.testEvenement(&jeu->ecran,&jeu->hero,&camera,&jeu->menu)) // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
+                    if(jeu->map.testEvenement(&jeu->ecran,&jeu->hero,&camera,&jeu->menu,&jeu->m_contexte,&jeu->m_chargement)>-1) // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
                     {
-                        console.Rapport();
-                        throw ("CRITICAL ERROR");
                     }
 
                     jeu->Clock.Reset();
@@ -189,7 +187,25 @@ void c_Jeu::Utiliser(Jeu *jeu)
                 }
 
                 /// On gère les événements, appui sur une touche, déplacement de la souris
-                jeu->eventManager.GererLesEvenements(&jeu->ecran,&camera,&jeu->m_run,tempsEcoule,&jeu->hero,&jeu->map);
+                jeu->eventManager.GererLesEvenements(&jeu->ecran,&camera,&jeu->m_run,tempsEcoule,jeu->map.getDimensions());
+
+    int monstreVise=jeu->map.getMonstre(&jeu->hero,&camera,&jeu->ecran,jeu->eventManager.getPositionSouris(),jeu->eventManager.getCasePointee());
+
+	if(jeu->eventManager.getEvenement(Mouse::Left,"C")&&!jeu->eventManager.getEvenement(Key::LShift,"ET"))
+	{
+        jeu->hero.setMonstreVise(monstreVise);
+        if(jeu->hero.getMonstreVise()==-1)
+         jeu->hero.m_personnage.setArrivee(jeu->eventManager.getCasePointee());
+	}
+	if(jeu->eventManager.getEvenement(Mouse::Right,"C")||jeu->eventManager.getEvenement(Mouse::Left,"C")&&jeu->eventManager.getEvenement(Key::LShift,"ET"))
+	{
+	    coordonnee temp;
+	    temp.x=configuration.Resolution.x/2;
+	    temp.y=configuration.Resolution.y/2;
+	    if(monstreVise==-1)
+        jeu->hero.m_personnage.frappe(jeu->eventManager.getPositionSouris(),temp);
+        jeu->hero.setMonstreVise(monstreVise);
+	}
 
 
                 ///Animation

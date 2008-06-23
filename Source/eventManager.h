@@ -11,13 +11,12 @@
 #include <iostream>
 #include "prototypes.h"
 #include "hero.h"
-#include "map.h"
 
 class EventManager
 {
 	public:
 	EventManager();
-	void GererLesEvenements(sf::RenderWindow *ecran,sf::View *camera,bool *continuer,float temps,Hero *hero,Map *map);
+	void GererLesEvenements(sf::RenderWindow *ecran,sf::View *camera,bool *continuer,float temps,coordonnee tailleMap);
 	void AfficherCurseur(sf::RenderWindow *ecran);
 
 	bool getEvenement(int numeroEvenement,std::string evenement);

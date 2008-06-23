@@ -18,6 +18,7 @@
 #include "personnage.h"
 
 #include "c_Jeu.h"
+#include "c_changementMap.h"
 
 class Jeu
 {
@@ -37,6 +38,7 @@ class Jeu
 	bool m_run,m_display;
 
     c_Jeu *m_jeu;
+    c_Chargement *m_chargement;
     Contexte *m_contexte;
 };
 

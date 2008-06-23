@@ -226,69 +226,72 @@ void Personnage::regenererVie(float vie)
 
 int Personnage::pathfinding(vector<vector<bool> > map,coordonnee exception)
 {
-	bool erreur=false;
-	liste_case casesVisitee;
-	coordonnee depart,arrivee,decalage;
+    if(!(m_arrivee.x==m_positionCase.x&&m_arrivee.y==m_positionCase.y))
+    {
+        bool erreur=false;
+        liste_case casesVisitee;
+        coordonnee depart,arrivee,decalage;
 
-	decalage.x=m_positionCase.x-10;
-	decalage.y=m_positionCase.y-10;
+        decalage.x=m_positionCase.x-10;
+        decalage.y=m_positionCase.y-10;
 
-	depart.x=m_positionCase.x-decalage.x;
-	depart.y=m_positionCase.y-decalage.y;
-	arrivee.x=m_arrivee.x-decalage.x;
-	arrivee.y=m_arrivee.y-decalage.y;
-	exception.x=exception.x-decalage.x;
-	exception.y=exception.y-decalage.y;
+        depart.x=m_positionCase.x-decalage.x;
+        depart.y=m_positionCase.y-decalage.y;
+        arrivee.x=m_arrivee.x-decalage.x;
+        arrivee.y=m_arrivee.y-decalage.y;
+        exception.x=exception.x-decalage.x;
+        exception.y=exception.y-decalage.y;
 
-	casesVisitee.setTailleListe(0);
+        casesVisitee.setTailleListe(0);
 
-	casesVisitee.ajouterCase(depart);
+        casesVisitee.ajouterCase(depart);
 
-	while(!casesVisitee.testerCasesEnCours(arrivee)&&!erreur)
-	{
-		casesVisitee.incrementerDistanceEnCours();
-		casesVisitee.ajouterCasesAdjacentes(map,&arrivee,depart,exception);
-		if(casesVisitee.getDistance()>10)
-			erreur=true;
-	}
+        while(!casesVisitee.testerCasesEnCours(arrivee)&&!erreur)
+        {
+            casesVisitee.incrementerDistanceEnCours();
+            casesVisitee.ajouterCasesAdjacentes(map,&arrivee,depart,exception);
+            if(casesVisitee.getDistance()>10)
+                erreur=true;
+        }
 
-	if(!erreur)
-	{
-		m_cheminFinal=arrivee;
+        if(!erreur)
+        {
+            m_cheminFinal=arrivee;
 
-		while(casesVisitee.getDistance()>1)
-		{
-			m_cheminFinal=casesVisitee.trouverLeChemin(m_cheminFinal);
-			casesVisitee.decrementerDistanceEnCours();
-		}
+            while(casesVisitee.getDistance()>1)
+            {
+                m_cheminFinal=casesVisitee.trouverLeChemin(m_cheminFinal);
+                casesVisitee.decrementerDistanceEnCours();
+            }
 
-		m_arrivee.x=arrivee.x+decalage.x;
-		m_arrivee.y=arrivee.y+decalage.y;
+            m_arrivee.x=arrivee.x+decalage.x;
+            m_arrivee.y=arrivee.y+decalage.y;
 
-		m_cheminFinal.x+=decalage.x,m_cheminFinal.y+=decalage.y;
-		m_ancienneArrivee=m_arrivee;
-	}
-	else
-	{
-	     m_mauvaiseArrivee=m_arrivee;
-        if(m_positionCase.x<m_arrivee.x)
-        m_arrivee.x=m_arrivee.x-1;
-        if(m_positionCase.x>m_arrivee.x)
-        m_arrivee.x=m_arrivee.x+1;
-        if(m_positionCase.y<m_arrivee.y)
-        m_arrivee.y=m_arrivee.y-1;
-        if(m_positionCase.y>m_arrivee.y)
-        m_arrivee.y=m_arrivee.y+1;
+            m_cheminFinal.x+=decalage.x,m_cheminFinal.y+=decalage.y;
+            m_ancienneArrivee=m_arrivee;
+        }
+        else
+        {
+             m_mauvaiseArrivee=m_arrivee;
+            if(m_positionCase.x<m_arrivee.x)
+            m_arrivee.x=m_arrivee.x-1;
+            if(m_positionCase.x>m_arrivee.x)
+            m_arrivee.x=m_arrivee.x+1;
+            if(m_positionCase.y<m_arrivee.y)
+            m_arrivee.y=m_arrivee.y-1;
+            if(m_positionCase.y>m_arrivee.y)
+            m_arrivee.y=m_arrivee.y+1;
 
-        m_arrivee.x=m_ancienneArrivee.x;
-        m_arrivee.y=m_ancienneArrivee.y;
-        m_etat=0;
+            m_arrivee.x=m_ancienneArrivee.x;
+            m_arrivee.y=m_ancienneArrivee.y;
+            m_etat=0;
+        }
+
+        if(m_etat==0)
+        return 0;
+        else
+        return 1;
     }
-
-	if(m_etat==0)
-	return 0;
-	else
-	return 1;
 }
 
 

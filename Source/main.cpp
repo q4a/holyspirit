@@ -39,7 +39,7 @@ int main ( int argc, char** argv )
     	{
 
     			if(chaine=="resolution:") { fichier>>resolution.x>>resolution.y; }
-    			if(chaine== "mode:") { fichier>>chaine; if(chaine=="fenetre") { configuration.plein_ecran=false; } }
+    			if(chaine== "mode_fenetre:") { fichier>>configuration.mode_fenetre; }
     			if(chaine== "videos:") { fichier>>video; }
     			if(chaine== "postFX:") { fichier>>configuration.postFX; }
     			if(chaine== "ombres:") { fichier>>configuration.Ombre; }
@@ -83,7 +83,7 @@ int main ( int argc, char** argv )
     {
 
         fstream fichier2("configuration.txt", ios::in | ios::out | ios::trunc) ;
-        fichier2<<"AFFICHAGE\nresolution: 800 600\nsyncronisation_verticale: 0\nmode: fenetre\nombres: 1\nlumieres: 1\nlumiere_fondu: 0\namelioration_des_lampes: 1\nherbes: 1\npostFX: 1\n\nMUSIQUES\nvolume: 100\nsons_mort: Data/Sons/Coeur.wav\n\nINTERFACE\nminimap: 1\nconsole: 0\n\nVERSION\nversion: 0.0.86\n\nCHEMINS\nmaps: Data/Maps/map\nevenements: Data/Maps/evenement\ncurseur: Data/Menus/Curseurs/\nmenus: Data/Menus/\nfonts: Data/Fonts/Cup and Talon.ttf\nfx: Data/Effets/\n\ncurseur_base: curseurMenu.png\n\nfxNoir: EffetNoir.sfx\nfxBlur: blur.sfx\nfxColorize: colorize.sfx\n\nmenu_hud: Hud.png\nmenu_minimap: minimap.png\nmenu_bulle_vie: bulle_vie.png\nmenu_ame: Ame.png\nmenu_barre_ame: Barre_ame.png\nmenu_sang: sang.png\n\nAUTRE\nvideos: 1\nchemin_video_developpeurs: Data/Videos/Naiponcin logo/\nnom_video_developpeurs: Naiponcin logo\n";
+        fichier2<<"AFFICHAGE\nresolution: 800 600\nsyncronisation_verticale: 0\nmode_fenetre: 1\nombres: 1\nlumieres: 1\nlumiere_fondu: 0\namelioration_des_lampes: 1\nherbes: 1\npostFX: 1\n\nMUSIQUES\nvolume: 100\nsons_mort: Data/Sons/Coeur.wav\n\nINTERFACE\nminimap: 1\nconsole: 0\n\nVERSION\nversion: 0.0.86\n\nCHEMINS\nmaps: Data/Maps/map\nevenements: Data/Maps/evenement\ncurseur: Data/Menus/Curseurs/\nmenus: Data/Menus/\nfonts: Data/Fonts/Cup and Talon.ttf\nfx: Data/Effets/\n\ncurseur_base: curseurMenu.png\n\nfxNoir: EffetNoir.sfx\nfxBlur: blur.sfx\nfxColorize: colorize.sfx\n\nmenu_hud: Hud.png\nmenu_minimap: minimap.png\nmenu_bulle_vie: bulle_vie.png\nmenu_ame: Ame.png\nmenu_barre_ame: Barre_ame.png\nmenu_sang: sang.png\n\nAUTRE\nvideos: 1\nchemin_video_developpeurs: Data/Videos/Naiponcin logo/\nnom_video_developpeurs: Naiponcin logo\n";
         fichier2.seekg(0, ios::beg);
 
         //fichier.open("configuration.txt", ios::in);
@@ -94,7 +94,7 @@ int main ( int argc, char** argv )
             while(fichier2>>chaine)
             {
                     if(chaine=="resolution:") { fichier2>>resolution.x>>resolution.y; }
-                    if(chaine== "mode:") { fichier2>>chaine; if(chaine=="fenetre") { configuration.plein_ecran=false; } }
+                    if(chaine== "mode_fenetre:") { fichier2>>configuration.mode_fenetre; }
                     if(chaine== "videos:") { fichier2>>video; }
                     if(chaine== "postFX:") { fichier2>>configuration.postFX; }
                     if(chaine== "ombres:") { fichier2>>configuration.Ombre; }
