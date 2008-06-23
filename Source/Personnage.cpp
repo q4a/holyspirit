@@ -287,6 +287,10 @@ int Personnage::pathfinding(vector<vector<bool> > map,coordonnee exception)
             m_etat=0;
         }
 
+        for(int i=0;i<map.size();i++)
+            map[i].clear();
+        map.clear();
+
         if(m_etat==0)
         return 0;
         else

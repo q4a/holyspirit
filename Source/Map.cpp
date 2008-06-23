@@ -1483,6 +1483,8 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
         Sprite.SetCenter(4*configuration.Resolution.x/800,4*configuration.Resolution.x/800);
         Sprite.SetRotation(45);
 
+        Sprite.SetColor(sf::Color(255,255,255,64));
+
         /*if(vueMin.x<0) { vueMin.x=0; }
         if(vueMin.y<0) { vueMin.y=0; }
         if(vueMax.x>m_decor[0][0].size()) { vueMax.x=m_decor[0][0].size(); }
@@ -1723,7 +1725,7 @@ bool Map::infligerDegats(int numeroMonstre, int degats,Menu *menu,sf::View *came
 {
     if(numeroMonstre>=0&&numeroMonstre<m_monstre.size())
     {
-        if(rand()%(100)>25)
+        if(rand()%(100)>75)
         {
             coordonnee position;
             position.x=rand()%(800);
@@ -1736,8 +1738,8 @@ bool Map::infligerDegats(int numeroMonstre, int degats,Menu *menu,sf::View *came
         if(m_monstre[numeroMonstre].getCaracteristique().vie<=0)
         {
             coordonneeDecimal position;
-            position.x=(((m_monstre[numeroMonstre].getCoordonnee().x-m_monstre[numeroMonstre].getCoordonnee().y-1+m_decor[0].size())*64)-camera->GetRect().Left+48-(configuration.Resolution.x/2-400))*configuration.zoom;
-            position.y=(((m_monstre[numeroMonstre].getCoordonnee().x+m_monstre[numeroMonstre].getCoordonnee().y)*32)-camera->GetRect().Top-96)*configuration.zoom;
+            position.x=(((m_monstre[numeroMonstre].getCoordonnee().x-m_monstre[numeroMonstre].getCoordonnee().y-1+m_decor[0].size())*64)-camera->GetRect().Left+48-(configuration.Resolution.x/2-400));
+            position.y=(((m_monstre[numeroMonstre].getCoordonnee().x+m_monstre[numeroMonstre].getCoordonnee().y)*32)-camera->GetRect().Top-96);
             menu->AjouterAme(position,m_monstre[numeroMonstre].getCaracteristique().pointAme);
             return 1;
         }
@@ -1933,20 +1935,24 @@ int Map::getMonstre(Hero *hero,View *camera,RenderWindow *ecran,coordonnee posit
                     if(m_decor[i][j][k].getMonstre()>=0&&m_decor[i][j][k].getMonstre()<m_monstre.size())
                     if(m_monstre[m_decor[i][j][k].getMonstre()].getCaracteristique().vie>0)
                     {
-                        coordonnee temp;
-                        temp.x=(int)((float)m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x*(float)DIVISEUR_COTE_TILE-(float)m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y*DIVISEUR_COTE_TILE-1+(float)m_decor[1].size())*64;
-                        temp.y=(int)(float)(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x*(float)DIVISEUR_COTE_TILE+(float)m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y*DIVISEUR_COTE_TILE)*32;
+                        coordonneeDecimal temp;
+                        temp.x=((float)m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x*(float)DIVISEUR_COTE_TILE-(float)m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y*DIVISEUR_COTE_TILE-1+(float)m_decor[1].size())*64;
+                        temp.y=(float)(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x*(float)DIVISEUR_COTE_TILE+(float)m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y*DIVISEUR_COTE_TILE)*32;
+                        coordonnee positionSourisTotale;
+                        positionSourisTotale.x=(int)ecran->ConvertCoords(ecran->GetInput().GetMouseX(),ecran->GetInput().GetMouseY()).x;
+                        positionSourisTotale.y=(int)ecran->ConvertCoords(ecran->GetInput().GetMouseX(), ecran->GetInput().GetMouseY()).y;
+                        //if(positionSourisTotale.x>
 
-                        if(positionSouris.x/configuration.zoom+ViewRect.Left>temp.x-m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().w*0/128/configuration.zoom
-                        &&positionSouris.x/configuration.zoom+ViewRect.Left<temp.x+m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().w*128/128/configuration.zoom
-                        &&positionSouris.y/configuration.zoom+ViewRect.Top>temp.y-m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().h*48/128/configuration.zoom
-                        &&positionSouris.y/configuration.zoom+ViewRect.Top<temp.y+64*m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().h/128/configuration.zoom)
+                        if(positionSourisTotale.x>temp.x-m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().w*0/128
+                        &&positionSourisTotale.x<temp.x+m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().w*128/128
+                        &&positionSourisTotale.y>temp.y-m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().h*48/128
+                        &&positionSourisTotale.y<temp.y+64*m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().h/128)
                         {
                             float temp2=0;
-                            temp2=gpl::sqrt((temp.x+m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().w/2/configuration.zoom-positionSouris.x/configuration.zoom-ViewRect.Left)
-                            *(temp.x+m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().w/2/configuration.zoom-positionSouris.x/configuration.zoom-ViewRect.Left)
-                            +(temp.y-(positionSouris.y-32)/configuration.zoom-ViewRect.Top)
-                            *(temp.y-(positionSouris.y-32)/configuration.zoom-ViewRect.Top));
+                            temp2=gpl::sqrt((temp.x+m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().w/2-positionSourisTotale.x)
+                            *(temp.x+m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().w/2-positionSourisTotale.x)
+                            +(temp.y-(positionSourisTotale.y-32))
+                            *(temp.y-(positionSourisTotale.y-32)));
 
                             if(distance>temp2)
                                 meilleur=m_decor[i][j][k].getMonstre(),distance=temp2;

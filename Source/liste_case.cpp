@@ -3,7 +3,10 @@
 
 #include <iostream>
 
-
+liste_case::~liste_case()
+{
+    m_liste.clear();
+}
 
 void liste_case::setTailleListe(int taille)
 {

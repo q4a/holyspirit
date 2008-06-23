@@ -14,6 +14,7 @@
 class liste_case
 {
 	public:
+	~liste_case();
 	void liste_case::ajouterCase(coordonnee coordonneeAjoutable);
 	void setTailleListe(int taille);
 	int getTailleListe();

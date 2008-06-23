@@ -53,9 +53,6 @@ Menu::Menu()
 	    console.Ajouter("Impossible de charger : "+configuration.chemin_menus+configuration.nom_barre_vie_vide,1);
     else
     console.Ajouter("Chargement de : "+configuration.chemin_menus+configuration.nom_barre_vie_vide,0);
-
-
-
 	m_fondMiniMap.Create(configuration.Resolution.x/4, configuration.Resolution.x/4, sf::Color(0, 0, 0));
 
 	texte.SetSize(16.f);
@@ -71,6 +68,7 @@ void Menu::Afficher(sf::RenderWindow* ecran,int type)
 		Sprite.SetImage(m_fondMiniMap);
 		Sprite.SetX(configuration.Resolution.x-configuration.Resolution.x*0.25);
 		Sprite.SetY(0);
+		Sprite.SetColor(sf::Color(255,255,255,64));
 		ecran->Draw(Sprite);
     }
 
@@ -108,7 +106,6 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
         Sprite.SetX(10*configuration.Resolution.x/800);
         Sprite.SetY(configuration.Resolution.y-(128-10)*configuration.Resolution.y/600+(caracteristique.maxVie-caracteristique.vie)/caracteristique.maxVie*107*configuration.Resolution.y/600);
 
-
         ecran->Draw(Sprite);
     }
 
@@ -117,7 +114,9 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
         Sprite Sprite;
 
         Sprite.SetImage(m_barrePointAme);
-        Sprite.SetSubRect(sf::IntRect(0, 0, (int)((float)(caracteristique.ancienPointAme-((caracteristique.niveau-1)*(caracteristique.niveau-1)*10))/(((caracteristique.niveau)*(caracteristique.niveau)*10)-((caracteristique.niveau-1)*(caracteristique.niveau-1)*10))*(float)configuration.Resolution.x/4), (int)(16*(float)configuration.Resolution.y/600)));
+        Sprite.Resize(configuration.Resolution.x/4, 16*configuration.Resolution.x/800);
+        Sprite.SetSubRect(sf::IntRect(0, 0, (int)((float)(caracteristique.ancienPointAme-(float)((caracteristique.niveau-1)*(caracteristique.niveau-1)*10))/(float)(((caracteristique.niveau)*(caracteristique.niveau)*10)-(float)((caracteristique.niveau-1)*(caracteristique.niveau-1)*10))*200), (int)(16)));
+
         Sprite.SetX(configuration.Resolution.x*1.5/4+4);
         Sprite.SetY(configuration.Resolution.y-20*configuration.Resolution.y/600);
 
@@ -129,7 +128,7 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
         sprintf(chaine,"%ld",caracteristique.niveau);
         texte.SetText(chaine);
 
-        texte.SetSize(16.f);
+        texte.SetSize(16.f*configuration.Resolution.y/600);
 
         texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
         texte.SetY(configuration.Resolution.y-40*configuration.Resolution.y/600);
@@ -143,12 +142,13 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
             Sprite Sprite;
 
             Sprite.SetImage(m_imageAme);
+             Sprite.SetCenter(16,16);
             Sprite.Resize(32*configuration.Resolution.x/800*m_ame[i].m_taille, 32*configuration.Resolution.x/800*m_ame[i].m_taille);
             Sprite.SetColor(sf::Color(255,255,255,(int)m_ame[i].m_alpha));
             Sprite.SetX((m_ame[i].m_position.x+16)*configuration.Resolution.x/800);
             Sprite.SetY((m_ame[i].m_position.y+16)*configuration.Resolution.y/600);
 
-            Sprite.SetCenter(Sprite.GetSize().x/m_ame[i].m_taille/2,Sprite.GetSize().y/m_ame[i].m_taille/2);
+
             Sprite.SetRotation(m_ame[i].m_rotation);
             ecran->Draw(Sprite);
         }
@@ -175,34 +175,36 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
         Sprite Sprite,Sprite2;
 
         Sprite.SetImage(m_barreVieVide);
-        //Sprite.SetSubRect(sf::IntRect(0, 0, (int)((float)(caracteristique.ancienPointAme-((caracteristique.niveau-1)*(caracteristique.niveau-1)*10))/(((caracteristique.niveau)*(caracteristique.niveau)*10)-((caracteristique.niveau-1)*(caracteristique.niveau-1)*10))*(float)configuration.Resolution.x/4), (int)(16*(float)configuration.Resolution.y/600)));
-        Sprite.SetX(configuration.Resolution.x/2-Sprite.GetSize().x/2);
+         Sprite.Resize(configuration.Resolution.x/2, 32*configuration.Resolution.x/800);
+         Sprite.SetX(configuration.Resolution.x/2-Sprite.GetSize().x/2);
         Sprite.SetY(8);
 
         ecran->Draw(Sprite);
 
         Sprite2.SetImage(m_barreVie);
+        Sprite2.Resize(configuration.Resolution.x/2, 32*configuration.Resolution.x/800);
         Sprite2.SetSubRect(sf::IntRect(0, 0, (int)(caracteristiqueMonstre.vie/caracteristiqueMonstre.maxVie*400), 32));
         Sprite2.SetX(configuration.Resolution.x/2-Sprite.GetSize().x/2);
         Sprite2.SetY(8);
+
 
         ecran->Draw(Sprite2);
 
         char chaine[255];
 
-         texte.SetSize(18.f);
+         texte.SetSize(18.f*configuration.Resolution.y/600);
 
         sprintf(chaine,"%s (%ld)",caracteristiqueMonstre.nom.c_str(),caracteristiqueMonstre.niveau);
         texte.SetText(chaine);
 
         texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2+2);
-        texte.SetY(14);
+        texte.SetY(14*configuration.Resolution.y/600);
         texte.SetColor(Color(0,0,0,255));
         ecran->Draw(texte);
         texte.SetColor(Color(255,255,255,255));
 
         texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
-        texte.SetY(12);
+        texte.SetY(12*configuration.Resolution.y/600);
         ecran->Draw(texte);
 
 
