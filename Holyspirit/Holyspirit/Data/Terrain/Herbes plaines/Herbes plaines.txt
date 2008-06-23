@@ -1,24 +1,24 @@
-*NoAntiCrenelage
+*AntiCrenelage
 
 $
 Herbe
-*x0 y0 w128 h64 $
-*x128 y0 w128 h64 $
+*x0 y0 w180 h96 $
+*x0 y0 w160 h96 $
 
 *x256 y0 w128 h64 $
 
 Terre
-*x384 y0 w128 h64 $
+*x330 y0 w180 h96 $
 
 Coté herbe/terre
-*x0 y64 w128 h64 $
-*x128 y64 w128 h64 $
-*x256 y64 w128 h64 $
-*x384 y64 w128 h64 $
+*x0 y0 w160 h96 $
+*x0 y0 w160 h96 $
+*x0 y0 w160 h96 $
+*x0 y0 w160 h96 $
 
 Colin herbe/terre
-*x0 y128 w128 h64 $
-*x128 y128 w128 h64 $
-*x256 y128 w128 h64 $
-*x384 y128 w128 h64 $
+*x0 y0 w160 h96 $
+*x0 y0 w160 h96 $
+*x0 y0 w160 h96 $
+*x0 y0 w160 h96 $
 $
