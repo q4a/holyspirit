@@ -472,6 +472,8 @@ void Personnage::setArrivee(coordonnee arrivee)
         m_arrivee=arrivee;
     }
 }
+void Personnage::setMauvaiseArrivee(coordonnee arrivee){m_mauvaiseArrivee=arrivee;}
+
 void Personnage::setCoordonneePixel(coordonnee position)
 {
     m_positionPixel.x=position.x*COTE_TILE;

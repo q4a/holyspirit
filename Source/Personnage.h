@@ -65,6 +65,7 @@ class Personnage
 	void infligerDegats(int degats);
 
 	void setArrivee(coordonnee arrivee);
+	void setMauvaiseArrivee(coordonnee arrivee);
 	void setEtat(int  etat);
 	void setVitesse(float vitesse);
 	void setCoordonneePixel(coordonnee position);

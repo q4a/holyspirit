@@ -74,8 +74,6 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
 	if(configuration.zoom>1.5+((float)configuration.Resolution.x/800-1))
 		configuration.zoom=1.5+((float)configuration.Resolution.x/800-1);
 
-    camera->Zoom(configuration.zoom);
-
     if(m_EventTableau[Key::Add])
 		configuration.volume+=temps*50;
     if(m_EventTableau[Key::Subtract])
