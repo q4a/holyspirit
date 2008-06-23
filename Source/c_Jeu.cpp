@@ -44,21 +44,15 @@ c_Jeu::c_Jeu(Jeu *jeu)
 
         if (sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
         {
-            if(!EffectBlur.LoadFromFile(configuration.chemin_fx+configuration.nom_effetBlur))
-                        console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetBlur,1);
+            if(!EffectMort.LoadFromFile(configuration.chemin_fx+configuration.nom_effetMort))
+                        console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetMort,1);
             else
-                console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetBlur,0);
-            if(!EffectColorize.LoadFromFile(configuration.chemin_fx+configuration.nom_effetColorize))
-                        console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetColorize,1);
-            else
-                console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetColorize,0);
-
+                console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetMort,0);
             configuration.effetMort=0;
 
-            EffectBlur.SetParameter("offset", 0);
-
-            EffectColorize.SetTexture("framebuffer", NULL);
-            EffectColorize.SetParameter("color",1, 1, 1);
+            EffectMort.SetParameter("offset", 0);
+            EffectMort.SetTexture("framebuffer", NULL);
+            EffectMort.SetParameter("color",1, 1, 1);
         }
 
         if(!jeu->bufferSonMort.LoadFromFile(configuration.chemin_son_mort))
@@ -129,7 +123,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                 if(jeu->hero.m_personnage.getCaracteristique().vie/(float)jeu->hero.m_personnage.getCaracteristique().maxVie<0.5)
                     configuration.effetMort=200-(jeu->hero.m_personnage.getCaracteristique().vie*400/jeu->hero.m_personnage.getCaracteristique().maxVie),jeu->sonMort.SetVolume(configuration.effetMort);
                 else
-                    configuration.effetMort=0;
+                    configuration.effetMort=0,jeu->sonMort.SetVolume(0);
                 ///Déplacements
 
                 if(tempsEcouleDepuisDernierDeplacement>=0.001)
@@ -252,10 +246,9 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                     if(configuration.effetMort&&sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
                     {
-                        EffectBlur.SetParameter("offset", 0.01*configuration.effetMort/100*(0.6+tempsEffetMort/10));
-                        EffectColorize.SetParameter("color",1+1*configuration.effetMort/100*tempsEffetMort, 1-0.5*configuration.effetMort/100*tempsEffetMort, 1-0.5*configuration.effetMort/100*tempsEffetMort);
-                        jeu->ecran.Draw(EffectBlur);
-                        jeu->ecran.Draw(EffectColorize);
+                        EffectMort.SetParameter("offset", 0.01*configuration.effetMort/100*(0.6+tempsEffetMort/10));
+                        EffectMort.SetParameter("color",1+1*configuration.effetMort/100*tempsEffetMort, 1-0.5*configuration.effetMort/100*tempsEffetMort, 1-0.5*configuration.effetMort/100*tempsEffetMort);
+                        jeu->ecran.Draw(EffectMort);
                     }
 
                     if(configuration.console)

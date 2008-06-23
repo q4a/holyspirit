@@ -20,7 +20,7 @@ class c_Jeu : public Contexte
 	bool continuer,lumiere,augmenter;
 	char chaine[10];
 	sf::String variableQuiNeSerARien,Version,Temps,fps;
-	sf::PostFX EffectBlur,EffectColorize;
+	sf::PostFX EffectMort;
 
 	float tempsActuel,tempsPrecedent,tempsDepuisDerniereAnimation,tempsEcoule,tempsEcouleDepuisDernierDeplacement,tempsEcouleDepuisDernierAffichage,tempsEcouleDepuisFPS,tempsEffetMort;
 

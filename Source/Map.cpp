@@ -1669,13 +1669,13 @@ void Map::gererMonstres(Hero *hero,float temps)
                                 {
                                     coordonnee arrivee,enCours;
 
-                                    arrivee=hero->m_personnage.getCoordonnee();
+                                    arrivee=hero->m_personnage.getProchaineCase();
                                     m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(arrivee);
 
                                         if(m_monstre[m_decor[i][j][k].getMonstre()].seDeplacer(temps*100))
                                         {
                                             coordonnee tempCoord={-1,-1,-1,-1};
-                                            m_monstre[m_decor[i][j][k].getMonstre()].pathfinding(getAlentourDuPersonnage(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()),hero->m_personnage.getProchaineCase());
+                                            m_monstre[m_decor[i][j][k].getMonstre()].pathfinding(getAlentourDuPersonnage(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()),tempCoord);
                                             if(!(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y==j&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x==k))
                                             if(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x<m_decor[0][0].size()&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y<m_decor[0].size())
                                             {

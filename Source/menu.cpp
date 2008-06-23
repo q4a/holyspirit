@@ -143,7 +143,7 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
             Sprite Sprite;
 
             Sprite.SetImage(m_imageAme);
-            Sprite.Resize(32*configuration.Resolution.x/800*m_ame[i].m_taille, 32*configuration.Resolution.y/600*m_ame[i].m_taille);
+            Sprite.Resize(32*configuration.Resolution.x/800*m_ame[i].m_taille, 32*configuration.Resolution.x/800*m_ame[i].m_taille);
             Sprite.SetColor(sf::Color(255,255,255,(int)m_ame[i].m_alpha));
             Sprite.SetX((m_ame[i].m_position.x+16)*configuration.Resolution.x/800);
             Sprite.SetY((m_ame[i].m_position.y+16)*configuration.Resolution.y/600);
