@@ -40,6 +40,7 @@ Liste des tilesets de l'herbe
 $
 Liste des tilesets des monstres
 *Data/Personnages/Monstres/MonstreTest.txt
+*Data/Personnages/Monstres/ErrantRoche/ErrantRocheChef.txt
 $
 Liste des entites monstres
 * m0 $
@@ -52,6 +53,7 @@ Liste des entites monstres
 * m0 $
 * m0 $
 * m0 $
+* m1 $
 $
 Liste des événements
 * e0 $ * i2 i62 i78 $
@@ -146,7 +148,7 @@ $
 *       |          |          |          |          |          |          |          |          |          |          |          |          |          |       m5 |          |          |          |          |          |
 *       |          |          |          | s2 t0    |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |
 *       | s2 t0    |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |
-*       |          |          |          |          |          |          |          |          |          |          |          | s2 t0    |          |          |          |          |          |          |          |
+*       |          |          |          |          |          |          |          |     m10  |          |          |          | s2 t0    |          |          |          |          |          |          |          |
 *       |          |          |          |          |          | s2 t0    |          |          |          |          |          |          | s2 t0    |          |          |          |          |          |          |
 *       |          | s2 t0    |          |          |          |          |          |          |          |          |          |          |          |          | s2 t0    |          |          |          |          |
 *       |          |          |   m9     |          |          |          |          |          |          | s2 t0    |          |          |          |          |          |          |          |          |          |

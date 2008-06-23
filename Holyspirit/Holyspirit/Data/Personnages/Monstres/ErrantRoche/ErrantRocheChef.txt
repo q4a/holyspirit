@@ -17,11 +17,11 @@ Liste des chemins de tous les sons
 *Data/Sons/30009__thanvannispen__stone_on_stone_impact_loud2.aiff
 $
 Portee lumineuse
-* r255 v255 b255 i0 $
+* r255 v0 b0 i768 $
 $
 Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse/Ombre/PointAme
-* v15 di5 da10 m0.2 o0 a5 n2 $
+* v30 di10 da15 m0.2 o0 a20 n3 $
 $
 Arret - E
 *x0 y0 w128 h128 a1 s-1 i0 $
