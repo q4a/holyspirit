@@ -18,7 +18,7 @@ minimap: 0
 console: 0
 
 VERSION
-version: 0.0.90
+version: 0.0.91
 
 CHEMINS
 maps: Data/Maps/map
