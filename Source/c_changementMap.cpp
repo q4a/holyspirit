@@ -4,11 +4,15 @@
 
 #include "Globale.h"
 
+#include <iostream>
+#include <fstream>
+
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
 using namespace sf;
+using namespace std;
 
 c_Chargement::c_Chargement(Jeu *jeu)
 {
@@ -21,7 +25,7 @@ c_Chargement::c_Chargement(Jeu *jeu)
         {
             console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetNoir,0);
             EffectNoir.SetTexture("framebuffer", NULL);
-            EffectNoir.SetParameter("color", 1.f, 1.f, 1.f);
+            EffectNoir.SetParameter("color", 0.f, 0.f, 0.f);
         }
     }
 
@@ -37,12 +41,33 @@ void c_Chargement::setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool
     z=50;
     augmenterNoir = true;
 
-    if(debut)
-        z=0;
+    m_debut=debut;
+
+    char chemin[128];
+    sprintf(chemin,"Data/Maps/map%ld.txt",numeroProchaineMap);
+
+
+    ifstream fichier;
+    fichier.open(chemin, ios::in);
+    if(fichier)
+    {
+        char caractere;
+        do
+        {
+            //Chargement du nom
+            fichier.get(caractere);
+            if(caractere=='*')
+            {
+                getline(fichier, nomMap);
+            }
+        }while(caractere!='$');
+    }
+    fichier.close();
 }
 
 void c_Chargement::Utiliser(Jeu *jeu)
 {
+    jeu->m_display=false;
     jeu->hero.placerCamera(&camera,jeu->map.getDimensions());
     jeu->ecran.SetView(camera);
 
@@ -53,45 +78,6 @@ void c_Chargement::Utiliser(Jeu *jeu)
     temps_ecoule=jeu->Clock.GetElapsedTime();
     tempsEcouleDepuisDernierAffichage+=temps_ecoule;
     jeu->Clock.Reset();
-
-    if(augmenterNoir)
-        z-=temps_ecoule*200;
-    else
-        z+=temps_ecoule*200;
-
-    if(z>50)
-        z=50;
-    if(z<0)
-        z=0;
-
-    if (sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
-    {
-        jeu->map.setVolumeMusique((int)(z*(float)configuration.volume/50));
-
-        if(tempsEcouleDepuisDernierAffichage>0.0)
-        {
-            jeu->ecran.SetView(camera);
-            coordonnee temp;
-            jeu->map.Afficher(&jeu->ecran,&camera,1,&jeu->hero,temp);
-            jeu->ecran.SetView(jeu->ecran.GetDefaultView());
-            if(configuration.Minimap)
-            {
-                jeu->menu.Afficher(&jeu->ecran,1);
-                jeu->menu.Afficher(&jeu->ecran,2);
-            }
-
-            jeu->menu.Afficher(&jeu->ecran,3);
-            jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),jeu->hero.getMonstreVise(),jeu->hero.m_personnage.getCaracteristique());
-            EffectNoir.SetParameter("color", ((float)z)/50, ((float)z)/50, ((float)z)/50);
-            jeu->ecran.Draw(EffectNoir);
-
-                //ecran->Display();
-            tempsEcouleDepuisDernierAffichage=0;
-        }
-        //ecran->Display();
-    }
-    else
-        jeu->map.setVolumeMusique((int)(z*(float)configuration.volume/50));
 
     if(z<=0&&augmenterNoir)
     {
@@ -120,7 +106,70 @@ void c_Chargement::Utiliser(Jeu *jeu)
         augmenterNoir=false;
     }
 
-    if(z>=50&&!augmenterNoir)
+     if(augmenterNoir)
+        z-=temps_ecoule*200;
+    else
+        z+=temps_ecoule*200;
+
+    if(z>50)
+        z=50;
+    if(z<0)
+        z=0;
+
+
+    if (sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
+    {
+        camera.Zoom(configuration.zoom);
+        jeu->map.setVolumeMusique((int)(z*(float)configuration.volume/50));
+        jeu->ecran.SetView(jeu->ecran.GetDefaultView());
+        if(!m_debut&&augmenterNoir||!augmenterNoir)
+        {
+            jeu->ecran.SetView(camera);
+            coordonnee temp;
+            jeu->map.Afficher(&jeu->ecran,&camera,1,&jeu->hero,temp);
+            jeu->ecran.SetView(jeu->ecran.GetDefaultView());
+
+            if(configuration.Minimap)
+            {
+                jeu->menu.Afficher(&jeu->ecran,1);
+                jeu->menu.Afficher(&jeu->ecran,2);
+            }
+            jeu->menu.Afficher(&jeu->ecran,3);
+            jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),jeu->hero.getMonstreVise(),jeu->hero.m_personnage.getCaracteristique());
+        }
+        EffectNoir.SetParameter("color", ((float)z)/50, ((float)z)/50, ((float)z)/50);
+        jeu->ecran.Draw(EffectNoir);
+
+        jeu->menu.AfficherChargement(&jeu->ecran,(int)z,nomMap);
+
+        jeu->m_display=true;
+    }
+    else
+    {
+        jeu->map.setVolumeMusique((int)(z*(float)configuration.volume/50));
+        jeu->ecran.SetView(jeu->ecran.GetDefaultView());
+        if(!m_debut&&augmenterNoir||!augmenterNoir)
+        {
+            jeu->ecran.SetView(camera);
+            coordonnee temp;
+            jeu->map.Afficher(&jeu->ecran,&camera,1,&jeu->hero,temp);
+            jeu->ecran.SetView(jeu->ecran.GetDefaultView());
+
+            if(configuration.Minimap)
+            {
+                jeu->menu.Afficher(&jeu->ecran,1);
+                jeu->menu.Afficher(&jeu->ecran,2);
+            }
+            jeu->menu.Afficher(&jeu->ecran,3);
+            jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),jeu->hero.getMonstreVise(),jeu->hero.m_personnage.getCaracteristique());
+        }
+
+        jeu->menu.AfficherChargement(&jeu->ecran,z,nomMap);
+
+        jeu->m_display=true;
+    }
+
+    if(z>=49&&!augmenterNoir)
     {
         jeu->m_contexte = jeu->m_jeu;
     }

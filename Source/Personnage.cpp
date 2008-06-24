@@ -250,7 +250,7 @@ int Personnage::pathfinding(vector<vector<bool> > map,coordonnee exception)
         {
             casesVisitee.incrementerDistanceEnCours();
             casesVisitee.ajouterCasesAdjacentes(map,&arrivee,depart,exception);
-            if(casesVisitee.getDistance()>10)
+            if(casesVisitee.getDistance()>15)
                 erreur=true;
         }
 

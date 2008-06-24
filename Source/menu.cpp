@@ -192,7 +192,7 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
 
         char chaine[255];
 
-         texte.SetSize(18.f*configuration.Resolution.y/600);
+        texte.SetSize(18.f*configuration.Resolution.y/600);
 
         sprintf(chaine,"%s (%ld)",caracteristiqueMonstre.nom.c_str(),caracteristiqueMonstre.niveau);
         texte.SetText(chaine);
@@ -209,6 +209,25 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
 
 
     }
+}
+
+void Menu::AfficherChargement(sf::RenderWindow* ecran,int z,string nom)
+{
+    texte.SetSize(60.f*configuration.Resolution.y/600);
+    texte.SetText("Chargement");
+    texte.SetColor(Color(64,0,128,255-(z*255/50)));
+    texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
+    texte.SetY(configuration.Resolution.y/2-(texte.GetRect().Bottom-texte.GetRect().Top)/2-texte.GetSize());
+    ecran->Draw(texte);
+
+    texte.SetSize(30.f*configuration.Resolution.y/600);
+    char chaine[255];
+    sprintf(chaine,"%s",nom.c_str());
+    texte.SetText(chaine);
+    texte.SetColor(Color(64,0,128,255-(z*255/50)));
+    texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
+    texte.SetY(configuration.Resolution.y/2-(texte.GetRect().Bottom-texte.GetRect().Top)/2);
+    ecran->Draw(texte);
 }
 
 void Menu::AjouterSang(coordonnee position)

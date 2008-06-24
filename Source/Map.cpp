@@ -1140,8 +1140,8 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     temp=m_tableauDesLampes[j-vueMin.y][k-vueMin.x];
 
                                     temp.rouge=255;
-                                    temp.vert=96;
-                                    temp.bleu=96;
+                                    temp.vert=32;
+                                    temp.bleu=32;
                                     temp.intensite=255;
 
                                     if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
@@ -1483,7 +1483,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
         Sprite.SetCenter(4*configuration.Resolution.x/800,4*configuration.Resolution.x/800);
         Sprite.SetRotation(45);
 
-        Sprite.SetColor(sf::Color(255,255,255,64));
+        Sprite.SetColor(sf::Color(255,255,255,128));
 
         /*if(vueMin.x<0) { vueMin.x=0; }
         if(vueMin.y<0) { vueMin.y=0; }

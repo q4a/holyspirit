@@ -19,10 +19,11 @@ class c_Chargement : public Contexte
     private:
 
 	sf::PostFX EffectNoir;
+	std::string nomMap;
 
 	float tempsActuel,tempsPrecedent,temps_ecoule,tempsEcouleDepuisDernierAffichage;
 	float z;
-	bool augmenterNoir;
+	bool augmenterNoir,m_debut;
 	coordonnee m_coordonneePerso;
 	int numeroProchaineMap;
 

@@ -53,6 +53,7 @@ class Menu
 	Menu();
 	void Afficher(sf::RenderWindow* ecran,int type);
 	void AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracteristique,int monstreVise,Caracteristique caracteristiqueMonstre);
+	void AfficherChargement(sf::RenderWindow* ecran,int z,std::string nom);
 
 	void AjouterSang(coordonnee position);
 

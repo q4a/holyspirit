@@ -20,8 +20,8 @@ Hero::Hero()
 	m_personnage.setEtat(ARRET);
 
 	coordonnee position;
-	position.x=0;
-	position.y=0;
+	position.x=-10000;
+	position.y=-10000;
 
 	m_personnage.setCoordonnee(position);
 
