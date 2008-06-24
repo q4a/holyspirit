@@ -164,7 +164,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
             jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),jeu->hero.getMonstreVise(),jeu->hero.m_personnage.getCaracteristique());
         }
 
-        jeu->menu.AfficherChargement(&jeu->ecran,z,nomMap);
+        jeu->menu.AfficherChargement(&jeu->ecran,(int)z,nomMap);
 
         jeu->m_display=true;
     }

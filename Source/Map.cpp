@@ -1673,10 +1673,10 @@ void Map::gererMonstres(Hero *hero,float temps)
 {
     coordonnee vueMin,vueMax;
 
-    vueMin.x=hero->m_personnage.getCoordonnee().x-15;
-    vueMin.y=hero->m_personnage.getCoordonnee().y-15;
-    vueMax.x=hero->m_personnage.getCoordonnee().x+15;
-    vueMax.y=hero->m_personnage.getCoordonnee().y+15;
+    vueMin.x=hero->m_personnage.getCoordonnee().x-10;
+    vueMin.y=hero->m_personnage.getCoordonnee().y-10;
+    vueMax.x=hero->m_personnage.getCoordonnee().x+10;
+    vueMax.y=hero->m_personnage.getCoordonnee().y+10;
 
     if(vueMin.x<0) { vueMin.x=0; }
     if(vueMin.y<0) { vueMin.y=0; }
@@ -1956,10 +1956,10 @@ int Map::getMonstre(Hero *hero,View *camera,RenderWindow *ecran,coordonnee posit
 
      const sf::FloatRect& ViewRect = camera->GetRect();
 
-    vueMin.x=casePointee.x-5;
-    vueMin.y=casePointee.y-5;
-    vueMax.x=casePointee.x+5;
-    vueMax.y=casePointee.y+5;
+    vueMin.x=casePointee.x-3;
+    vueMin.y=casePointee.y-3;
+    vueMax.x=casePointee.x+3;
+    vueMax.y=casePointee.y+3;
 
     if(vueMin.x<0) { vueMin.x=0; }
     if(vueMin.y<0) { vueMin.y=0; }
