@@ -81,7 +81,7 @@ bool Map::Charger(int numeroMap)
 	console.Ajouter("",0);
 	console.Ajouter("Chargement de la map : "+chemin,0);
 
-	m_lumiere[0].intensite=0;
+	m_lumiere[0].intensite=1;
 	m_lumiere[0].rouge=0;
 	m_lumiere[0].vert=0;
 	m_lumiere[0].bleu=0;
@@ -149,6 +149,10 @@ bool Map::Charger(int numeroMap)
             m_lumiere[heureEnCours].hauteur=m_lumiere[0].hauteur;
             heureEnCours++;
     	}
+
+    	for(int i=0;i<24;i++)
+            if(m_lumiere[i].intensite<1)
+                m_lumiere[i].intensite=1;
 
 
     	Tileset tilesetTemp;
@@ -320,7 +324,7 @@ bool Map::Charger(int numeroMap)
                                 herbe=m_decor[0][position.y][position.x].getHerbe();
 
                         if(monstre>=0&&monstre<m_monstre.size())
-                        m_monstre[monstre].setCoordonnee(position);
+                        m_monstre[monstre].setCoordonnee(position),m_monstre[monstre].setDepart();
 
                         if(tile.size()>0)
                         {
@@ -1135,9 +1139,9 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                         {
                                 if(m_monstreIllumine==m_decor[0][j][k].getMonstre()&&m_monstreIllumine!=-1||m_monstreIllumine==m_decor[1][j][k].getMonstre()&&m_monstreIllumine!=-1)
                                 {
-
                                     LumiereOmbrage temp;
-                                    temp=m_tableauDesLampes[j-vueMin.y][k-vueMin.x];
+                                    if(configuration.Lumiere)
+                                        temp=m_tableauDesLampes[j-vueMin.y][k-vueMin.x];
 
                                     temp.rouge=255;
                                     temp.vert=32;
@@ -1159,46 +1163,53 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                 else
                                 {
                                     LumiereOmbrage temp;
-                                    temp=m_tableauDesLampes[j-vueMin.y][k-vueMin.x];
+                                    if(configuration.Lumiere)
+                                        temp=m_tableauDesLampes[j-vueMin.y][k-vueMin.x];
 
 
 
                                     if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
                                     {
-                                        temp.rouge=(temp.rouge*temp.intensite+m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().rouge*m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+temp.intensite);
-                                        temp.vert=(temp.vert*temp.intensite+m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().vert*m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+temp.intensite);
-                                        temp.bleu=(temp.bleu*temp.intensite+m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().bleu*m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+temp.intensite);
+                                        if(configuration.Lumiere)
+                                        {
+                                            temp.rouge=(temp.rouge*temp.intensite+m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().rouge*m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+temp.intensite);
+                                            temp.vert=(temp.vert*temp.intensite+m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().vert*m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+temp.intensite);
+                                            temp.bleu=(temp.bleu*temp.intensite+m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().bleu*m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+temp.intensite);
 
-                                        temp.intensite+=m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite;
-                                        if(temp.intensite>255)
-                                            temp.intensite=255;
-                                        if(temp.intensite<0)
-                                            temp.intensite=0;
-                                        if(temp.rouge>255)
-                                            temp.rouge=255;
-                                        if(temp.vert<0)
-                                            temp.vert=0;
-                                        if(temp.bleu>255)
-                                            temp.bleu=255;
+                                            temp.intensite+=m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite;
+                                            if(temp.intensite>255)
+                                                temp.intensite=255;
+                                            if(temp.intensite<0)
+                                                temp.intensite=0;
+                                            if(temp.rouge>255)
+                                                temp.rouge=255;
+                                            if(temp.vert<0)
+                                                temp.vert=0;
+                                            if(temp.bleu>255)
+                                                temp.bleu=255;
+                                        }
                                         m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&temp,&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
                                     }
                                     if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
                                     {
-                                        temp.rouge=(temp.rouge*temp.intensite+m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().rouge*m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+temp.intensite);
-                                        temp.vert=(temp.vert*temp.intensite+m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().vert*m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+temp.intensite);
-                                        temp.bleu=(temp.bleu*temp.intensite+m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().bleu*m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+temp.intensite);
+                                        if(configuration.Lumiere)
+                                        {
+                                            temp.rouge=(temp.rouge*temp.intensite+m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().rouge*m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+temp.intensite);
+                                            temp.vert=(temp.vert*temp.intensite+m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().vert*m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+temp.intensite);
+                                            temp.bleu=(temp.bleu*temp.intensite+m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().bleu*m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+temp.intensite);
 
-                                        temp.intensite+=m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite;
-                                        if(temp.intensite>255)
-                                            temp.intensite=255;
-                                        if(temp.intensite<0)
-                                            temp.intensite=0;
-                                        if(temp.rouge>255)
-                                            temp.rouge=255;
-                                        if(temp.vert<0)
-                                            temp.vert=0;
-                                        if(temp.bleu>255)
-                                            temp.bleu=255;
+                                            temp.intensite+=m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite;
+                                            if(temp.intensite>255)
+                                                temp.intensite=255;
+                                            if(temp.intensite<0)
+                                                temp.intensite=0;
+                                            if(temp.rouge>255)
+                                                temp.rouge=255;
+                                            if(temp.vert<0)
+                                                temp.vert=0;
+                                            if(temp.bleu>255)
+                                                temp.bleu=255;
+                                        }
                                         m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&temp,&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
                                     }
                                 }
@@ -1718,6 +1729,32 @@ void Map::gererMonstres(Hero *hero,float temps)
                             else if(m_monstre[m_decor[i][j][k].getMonstre()].getEtat()!=3)
                             m_monstre[m_decor[i][j][k].getMonstre()].setEtat(3);
                         }
+                        else
+                        {
+                            if(m_monstre[m_decor[i][j][k].getMonstre()].getArrivee().x==m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x&&m_monstre[m_decor[i][j][k].getMonstre()].getArrivee().y==m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y)
+                            {
+                                coordonnee arrivee;
+                                arrivee=m_monstre[m_decor[i][j][k].getMonstre()].getDepart();
+                                arrivee.x+=(rand()%(3 + 3) - 3);
+                                arrivee.y+=(rand()%(3 + 3) - 3);
+                                m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(arrivee);
+                            }
+                            else
+                            {
+                                if(m_monstre[m_decor[i][j][k].getMonstre()].seDeplacer(temps*100))
+                                        {
+                                            coordonnee tempCoord={-1,-1,-1,-1};
+                                            m_monstre[m_decor[i][j][k].getMonstre()].pathfinding(getAlentourDuPersonnage(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()),tempCoord);
+                                            if(!(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y==j&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x==k))
+                                            if(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x<m_decor[0][0].size()&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y<m_decor[0].size())
+                                            {
+                                                m_decor[i][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].setMonstre(m_decor[i][j][k].getMonstre());
+                                                //m_decor[i][m_monstre[m_decor[i][j][k].getMonstre()].getProchaineCase().y][m_monstre[m_decor[i][j][k].getMonstre()].getProchaineCase().x].setMonstre(m_decor[i][j][k].getMonstre());
+                                                m_decor[i][j][k].setMonstre(-1);
+                                            }
+                                        }
+                            }
+                        }
                     }
 }
 
@@ -1949,8 +1986,8 @@ int Map::getMonstre(Hero *hero,View *camera,RenderWindow *ecran,coordonnee posit
                         &&positionSourisTotale.y<temp.y+64*m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().h/128)
                         {
                             float temp2=0;
-                            temp2=gpl::sqrt((temp.x+m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().w/2-positionSourisTotale.x)
-                            *(temp.x+m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().w/2-positionSourisTotale.x)
+                            temp2=gpl::sqrt((temp.x-positionSourisTotale.x)
+                            *(temp.x-positionSourisTotale.x)
                             +(temp.y-(positionSourisTotale.y-32))
                             *(temp.y-(positionSourisTotale.y-32)));
 

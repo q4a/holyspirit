@@ -215,6 +215,12 @@ void Menu::AfficherChargement(sf::RenderWindow* ecran,int z,string nom)
 {
     texte.SetSize(60.f*configuration.Resolution.y/600);
     texte.SetText("Chargement");
+
+    texte.SetColor(Color(0,0,0,255-(z*255/50)));
+    texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2+4);
+    texte.SetY(configuration.Resolution.y/2-(texte.GetRect().Bottom-texte.GetRect().Top)/2-texte.GetSize()+4);
+    ecran->Draw(texte);
+
     texte.SetColor(Color(64,0,128,255-(z*255/50)));
     texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
     texte.SetY(configuration.Resolution.y/2-(texte.GetRect().Bottom-texte.GetRect().Top)/2-texte.GetSize());
@@ -224,9 +230,15 @@ void Menu::AfficherChargement(sf::RenderWindow* ecran,int z,string nom)
     char chaine[255];
     sprintf(chaine,"%s",nom.c_str());
     texte.SetText(chaine);
-    texte.SetColor(Color(64,0,128,255-(z*255/50)));
+
+    texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2+2);
+    texte.SetY(configuration.Resolution.y/2-(texte.GetRect().Bottom-texte.GetRect().Top)/2+2);
+    texte.SetColor(Color(0,0,0,255-(z*255/50)));
+    ecran->Draw(texte);
+
     texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
     texte.SetY(configuration.Resolution.y/2-(texte.GetRect().Bottom-texte.GetRect().Top)/2);
+    texte.SetColor(Color(64,0,128,255-(z*255/50)));
     ecran->Draw(texte);
 }
 

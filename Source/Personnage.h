@@ -50,6 +50,7 @@ class Personnage
 	public:
 	Personnage();
 	coordonnee getCoordonnee();
+	coordonnee getArrivee();
 	coordonnee getCoordonneePixel();
 	coordonnee getProchaineCase();
 	int animer(Modele_Personnage *modele,int hauteur_map,float temps);

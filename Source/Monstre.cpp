@@ -212,6 +212,14 @@ void Monstre::testerVision(coordonnee positionHero)
     }
 }
 
+coordonnee Monstre::getDepart(){return m_depart;}
+
 int Monstre::getModele(){ return m_modele; }
 
 bool Monstre::getVu(){return m_vu;}
+
+
+void Monstre::setDepart()
+{
+    m_depart=m_positionCase;
+}

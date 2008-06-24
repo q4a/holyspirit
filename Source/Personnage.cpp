@@ -488,6 +488,8 @@ void Personnage::AjouterPointAme(int pointAme) { m_caracteristique.pointAme+=poi
 
 int Modele_Personnage::getNombreSons(){return m_buffer.size();}
 coordonnee Personnage::getCoordonnee(){return m_positionCase;}
+coordonnee Personnage::getArrivee(){return m_arrivee;}
+
 Caracteristique Personnage::getCaracteristique(){return m_caracteristique;}
 Caracteristique Modele_Personnage::getCaracteristique(){return m_caracteristique;}
 Lumiere Modele_Personnage::getPorteeLumineuse(){return m_porteeLumineuse;}
