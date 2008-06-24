@@ -1,6 +1,6 @@
 AFFICHAGE
 resolution: 800 600
-syncronisation_verticale: 1
+syncronisation_verticale: 0
 mode_fenetre: 1
 ombres: 1
 lumieres: 1
@@ -15,7 +15,7 @@ son_mort: Data/Sons/Coeur.wav
 
 INTERFACE
 minimap: 0
-console: 1
+console: 0
 
 VERSION
 version: 0.0.91
