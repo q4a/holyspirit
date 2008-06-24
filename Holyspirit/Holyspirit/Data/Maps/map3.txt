@@ -5,7 +5,7 @@ Liste des musiques
 *Data/Musiques/Maxtor81-Arcaduis.ogg
 $
 Lumiere de base
-*255 255 255 0 0
+*255 255 255 1 0
 $
 Liste des tilesets
 *Data/Terrain/Herbes plaines/Herbes plaines
@@ -31,7 +31,7 @@ Liste des événements
 $
 * s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
-* s-1   | s0 t3 | s0 t0 e1 | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
+* s-1   | s0 t3 | s0 t0 e1| s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
@@ -63,7 +63,6 @@ $
 * s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
-
 $  
 * s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s1 t5 | s1 t1 | s1 t1 | s1 t1 | s1 t6 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
