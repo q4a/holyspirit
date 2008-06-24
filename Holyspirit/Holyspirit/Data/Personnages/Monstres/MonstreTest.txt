@@ -15,7 +15,7 @@ Liste des chemins de tous les sons
 *Data/Sons/35213__Abyssmal__slashkut.wav
 $
 Portee lumineuse
-* r255 v255 b255 i32 $
+* r255 v255 b255 i0 $
 $
 * Pantin Morbide
 $

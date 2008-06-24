@@ -4,7 +4,7 @@ $
 Mur de pierres
 *x0 y0 w128 h128 c1 lr0 lv0 lb0 li-255 ry $
 *x128 y0 w128 h128 c1 lr0 lv0 lb0 li-255 rx $
-*x256 y0 w128 h128 c1 lr0 lv0 lb0 li-255 $
+*x256 y0 w128 h128 c1 lr0 lv0 lb0 li-255 rh $
 
 *x0 y128 w128 h128 c1 lr0 lv0 lb0 li-255 rb $
 *x128 y128 w128 h128 c1 lr0 lv0 lb0 li-255 rg $

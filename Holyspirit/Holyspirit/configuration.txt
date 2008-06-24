@@ -1,7 +1,7 @@
 AFFICHAGE
-resolution: 800 600
+resolution: 1440 900
 syncronisation_verticale: 1
-mode_fenetre: 1
+mode_fenetre: 0
 ombres: 1
 lumieres: 1
 lumiere_fondu: 0
