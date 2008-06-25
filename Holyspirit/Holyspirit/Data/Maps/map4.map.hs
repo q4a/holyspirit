@@ -39,8 +39,8 @@ Liste des tilesets de l'herbe
 *Data/Decors/Herbes/Herbe1
 $
 Liste des tilesets des monstres
-*Data/Personnages/Monstres/MonstreTest.txt
-*Data/Personnages/Monstres/ErrantRoche/ErrantRocheChef.txt
+*Data/Personnages/Monstres/MonstreTest.char.hs
+*Data/Personnages/Monstres/ErrantRoche/ErrantRocheChef.char.hs
 $
 Liste des entites monstres
 * m0 $
