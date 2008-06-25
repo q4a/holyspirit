@@ -41,6 +41,7 @@ menu_barre_ame: Barre_ame.png
 menu_barre_vie: barre_vie.png
 menu_barre_vie_vide: barre_vie_vide.png
 menu_sang: sang.png
+menu_inventaire: inventaire.png
 
 AUTRE
 videos: 0
