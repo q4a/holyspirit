@@ -34,7 +34,7 @@ EventManager::EventManager()
 void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *continuer,float temps,coordonnee tailleMap)
 {
 	Event Event;
-	if(ecran->GetEvent(Event))
+	while(ecran->GetEvent(Event))
 	{
 		switch(Event.Type)
    		{
@@ -99,10 +99,7 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
     }
 
     if(m_EventTableau[Key::Space])
-    {
-        configuration.minute+=5;
-        m_EventTableau[Key::Space]=false;
-    }
+        configuration.minute+=200*temps;
 
     if(m_EventTableau[Key::Tab])
     {
@@ -162,6 +159,23 @@ bool EventManager::getEvenement(int numeroEvenement,std::string evenement)
 	    if(numeroEvenement>=0&&numeroEvenement<=5)
 	        return m_ClicAncien[numeroEvenement];
 }
+
+void EventManager::StopEvenement(int numeroEvenement,std::string evenement)
+{
+	if(evenement=="ET")
+	    if(numeroEvenement>=0&&numeroEvenement<500)
+	        m_EventTableau[numeroEvenement]=0;
+
+	if(evenement=="C")
+	    if(numeroEvenement>=0&&numeroEvenement<=5)
+	        m_Clic[numeroEvenement]=0;
+
+	if(evenement=="CA")
+	    if(numeroEvenement>=0&&numeroEvenement<=5)
+	        m_ClicAncien[numeroEvenement]=0;
+}
+
+
 
 coordonnee EventManager::getCasePointee(){return m_casePointee;}
 coordonnee EventManager::getPositionSouris(){return m_positionSouris;}

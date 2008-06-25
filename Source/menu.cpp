@@ -55,7 +55,12 @@ Menu::Menu()
     console.Ajouter("Chargement de : "+configuration.chemin_menus+configuration.nom_barre_vie_vide,0);
 	m_fondMiniMap.Create(configuration.Resolution.x/4, configuration.Resolution.x/4, sf::Color(0, 0, 0));
 
-	texte.SetSize(16.f);
+	if(!m_inventaire.LoadFromFile(configuration.chemin_menus+configuration.nom_inventaire))
+	    console.Ajouter("Impossible de charger : "+configuration.chemin_menus+configuration.nom_inventaire,1);
+    else
+    console.Ajouter("Chargement de : "+configuration.chemin_menus+configuration.nom_inventaire,0);
+
+	m_fondMiniMap.Create(configuration.Resolution.x/4, configuration.Resolution.x/4, sf::Color(0, 0, 0));
 }
 
 void Menu::Afficher(sf::RenderWindow* ecran,int type)
@@ -240,6 +245,16 @@ void Menu::AfficherChargement(sf::RenderWindow* ecran,int z,string nom)
     texte.SetY(configuration.Resolution.y/2-(texte.GetRect().Bottom-texte.GetRect().Top)/2);
     texte.SetColor(Color(64,0,128,255-(z*255/50)));
     ecran->Draw(texte);
+}
+
+void Menu::AfficherInventaire(sf::RenderWindow* ecran)
+{
+    Sprite Sprite;
+
+    Sprite.SetImage(m_inventaire);
+    Sprite.Resize(configuration.Resolution.x, configuration.Resolution.y);
+
+    ecran->Draw(Sprite);
 }
 
 void Menu::AjouterSang(coordonnee position)

@@ -19,6 +19,8 @@ class EventManager
 	void GererLesEvenements(sf::RenderWindow *ecran,sf::View *camera,bool *continuer,float temps,coordonnee tailleMap);
 	void AfficherCurseur(sf::RenderWindow *ecran);
 
+	void StopEvenement(int numeroEvenement,std::string evenement);
+
 	bool getEvenement(int numeroEvenement,std::string evenement);
 	coordonnee getCasePointee();
 	coordonnee getPositionSouris();

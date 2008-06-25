@@ -75,7 +75,7 @@ bool Map::Charger(int numeroMap)
 	char numero[7];
 	string chemin = configuration.chemin_maps;
 
-	sprintf(numero,"%ld.txt",numeroMap);
+	sprintf(numero,"%ld.map.hs",numeroMap);
 	chemin += numero;
 
 	console.Ajouter("",0);
@@ -102,7 +102,7 @@ bool Map::Charger(int numeroMap)
                 m_nom=nom;
     		}
 
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
     	}while(caractere!='$');
     	do
     	{
@@ -137,7 +137,7 @@ bool Map::Charger(int numeroMap)
     			fichier>>m_lumiere[heureEnCours].hauteur;
     			heureEnCours++;
     		}
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
     	}while(caractere!='$');
 
     	while(heureEnCours<24)
@@ -169,7 +169,7 @@ bool Map::Charger(int numeroMap)
                     return 0;
 
     		}
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
 
     	}while(caractere!='$');
 
@@ -186,7 +186,7 @@ bool Map::Charger(int numeroMap)
                     return 0;
 
     		}
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
 
     	}while(caractere!='$');
 
@@ -212,7 +212,7 @@ bool Map::Charger(int numeroMap)
                 console.Ajouter("Chargement de : "+cheminDuMonstre,0);
 
     		}
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
     	}while(caractere!='$');
 
 
@@ -236,7 +236,7 @@ bool Map::Charger(int numeroMap)
                 m_monstre[m_monstre.size()-1].Charger(numeroMonstre,&m_ModeleMonstre[numeroMonstre]);
                 fichier.get(caractere);
     		}
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
 
     	}while(caractere!='$');
 
@@ -256,7 +256,7 @@ bool Map::Charger(int numeroMap)
     				{
     					case 'e': fichier>>numeroEvenement; break;
     				}
-    				if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
+    				if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
     			}while(caractere!='$');
     			m_evenement.push_back(numeroEvenement);
 
@@ -271,12 +271,12 @@ bool Map::Charger(int numeroMap)
                         fichier>>information;
     				    m_evenement[m_evenement.size()-1].AjouterInformation(information);
     				}
-    				if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
+    				if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
     			}while(caractere!='$');
 
     			fichier.get(caractere);
     		}
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
     	}while(caractere!='$');
 
 
@@ -314,7 +314,7 @@ bool Map::Charger(int numeroMap)
                                 case 'm': fichier>>monstre; break;
                                 case 'h': fichier>>herbe; break;
                             }
-                            if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
+                            if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
                         }while(caractere!='|');
                         //AjouterDecor(tileset,tile,evenement,position,couche,monstre);
                         //decorTemp2.setDecor(tileset,tile,evenement,monstre);
@@ -335,7 +335,7 @@ bool Map::Charger(int numeroMap)
                             tile.clear();
                         }
 
-                        if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
+                        if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
 
 
                         m_decor[couche][position.y].push_back(decorTemp);
@@ -347,7 +347,7 @@ bool Map::Charger(int numeroMap)
                     position.x=0;
                     position.y++;
                 }
-                if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); return 0; }
+                if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
 
             }while(caractere!='$');
 
@@ -356,7 +356,7 @@ bool Map::Charger(int numeroMap)
     else
     {
         console.Ajouter("Impossible d'ouvrir le fichier : "+chemin,1);
-        return 0;
+        throw "";
     }
     fichier.close();
 
@@ -891,11 +891,15 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                         if(m_monstre[m_decor[0][j][k].getMonstre()].getCaracteristique().vie>0)
                                         {
                                             //lumiere=m_lumiere;
-                                            lumiere.intensite=0;
+                                            lumiere.intensite=m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite;
                                             lumiereTemp=0;
+
+                                            if(lumiere.intensite>255)
+                                                lumiere.intensite=255;
+
                                             // Je réduit la quantité de lumière reçue, en fonction de la distance, qui est calculée avec un simple pythagore ^^
                                            // lumiereTemp=(float)lumiereTile.intensite-(float)(gpl::sqrt((k*COTE_TILE-m*COTE_TILE)*(k*COTE_TILE-m*COTE_TILE)+(j*COTE_TILE-l*COTE_TILE)*(j*COTE_TILE-l*COTE_TILE)))/5;
-                                            lumiereTemp=(float)m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite-((((float)gpl::sqrt((m_monstre[m_decor[0][j][k].getMonstre()].getCoordonneePixel().x-(m)*COTE_TILE)*(m_monstre[m_decor[0][j][k].getMonstre()].getCoordonneePixel().x-(m)*COTE_TILE)+(m_monstre[m_decor[0][j][k].getMonstre()].getCoordonneePixel().y-(l)*COTE_TILE)*(m_monstre[m_decor[0][j][k].getMonstre()].getCoordonneePixel().y-(l)*COTE_TILE))))*DIVISEUR_COTE_TILE)*768;
+                                            lumiereTemp=(float)lumiere.intensite-((((float)gpl::sqrt((m_monstre[m_decor[0][j][k].getMonstre()].getCoordonneePixel().x-((float)m)*COTE_TILE)*(m_monstre[m_decor[0][j][k].getMonstre()].getCoordonneePixel().x-((float)m)*COTE_TILE)+(m_monstre[m_decor[0][j][k].getMonstre()].getCoordonneePixel().y-((float)l)*COTE_TILE)*(m_monstre[m_decor[0][j][k].getMonstre()].getCoordonneePixel().y-((float)l)*COTE_TILE))))*DIVISEUR_COTE_TILE)*60;
                                             lumiere.hauteur=m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().hauteur;
 
                                             if(lumiereTemp>0)
@@ -906,10 +910,16 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                             lumiere.rouge=m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().rouge;
                                             lumiere.vert=m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().vert;
                                             lumiere.bleu=m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().bleu;
+
+                                            lumiereTemp=m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite;
+
+                                            if(lumiereTemp>255)
+                                                lumiereTemp=255;
+
                                                 // Je calcule la couleur de la lumière, par rapport à l'ancienne lumière et à la nouvelle, pour faire un fondu
-                                            m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=(lumiere.rouge*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge*m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite)/(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+lumiere.intensite);
-                                            m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert=(lumiere.vert*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert*m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite)/(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+lumiere.intensite);
-                                            m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu=(lumiere.bleu*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu*m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite)/(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+lumiere.intensite);
+                                            m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=(lumiere.rouge*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge*lumiereTemp)/(lumiereTemp+lumiere.intensite);
+                                            m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert=(lumiere.vert*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert*lumiereTemp)/(lumiereTemp+lumiere.intensite);
+                                            m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu=(lumiere.bleu*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu*lumiereTemp)/(lumiereTemp+lumiere.intensite);
 
                                             if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge>255)
                                                 m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=255;
@@ -926,14 +936,16 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                                 m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite=0;
                                         }
 
-                                        /*if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
+                                        if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
                                         if(m_monstre[m_decor[1][j][k].getMonstre()].getCaracteristique().vie>0)
                                         {
                                             //lumiere=m_lumiere;
-                                            lumiere.intensite=0;
+                                            lumiere.intensite=m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite;
+                                            if(lumiere.intensite>255)
+                                                lumiere.intensite=255;
                                             lumiereTemp=0;
                                             // Je réduit la quantité de lumière reçue, en fonction de la distance, qui est calculée avec un simple pythagore ^^
-                                            lumiereTemp=(float)m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite-((((float)gpl::sqrt((m_monstre[m_decor[1][j][k].getMonstre()].getCoordonneePixel().x-(m)*COTE_TILE)*(m_monstre[m_decor[1][j][k].getMonstre()].getCoordonneePixel().x-(m)*COTE_TILE)+(m_monstre[m_decor[1][j][k].getMonstre()].getCoordonneePixel().y-(l)*COTE_TILE)*(m_monstre[m_decor[1][j][k].getMonstre()].getCoordonneePixel().y-(l)*COTE_TILE))))*DIVISEUR_COTE_TILE)*768;
+                                            lumiereTemp=lumiere.intensite-((((float)gpl::sqrt((m_monstre[m_decor[1][j][k].getMonstre()].getCoordonneePixel().x-(m)*COTE_TILE)*(m_monstre[m_decor[1][j][k].getMonstre()].getCoordonneePixel().x-(m)*COTE_TILE)+(m_monstre[m_decor[1][j][k].getMonstre()].getCoordonneePixel().y-(l)*COTE_TILE)*(m_monstre[m_decor[1][j][k].getMonstre()].getCoordonneePixel().y-(l)*COTE_TILE))))*DIVISEUR_COTE_TILE)*60;
                                             lumiere.hauteur=m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().hauteur;
 
                                             if(lumiereTemp>0)
@@ -947,9 +959,16 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                                 lumiere.vert=m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().vert;
                                                 lumiere.bleu=m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().bleu;
                                                     // Je calcule la couleur de la lumière, par rapport à l'ancienne lumière et à la nouvelle, pour faire un fondu
-                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=(lumiere.rouge*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge*m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite)/(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+lumiere.intensite);
-                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert=(lumiere.vert*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert*m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite)/(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+lumiere.intensite);
-                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu=(lumiere.bleu*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu*m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite)/(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+lumiere.intensite);
+                                                lumiereTemp=m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite;
+
+                                                if(lumiereTemp>255)
+                                                    lumiereTemp=255;
+
+                                                    // Je calcule la couleur de la lumière, par rapport à l'ancienne lumière et à la nouvelle, pour faire un fondu
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=(lumiere.rouge*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge*lumiereTemp)/(lumiereTemp+lumiere.intensite);
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert=(lumiere.vert*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert*lumiereTemp)/(lumiereTemp+lumiere.intensite);
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu=(lumiere.bleu*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu*lumiereTemp)/(lumiereTemp+lumiere.intensite);
+
 
                                                 if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge>255)
                                                     m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=255;
@@ -965,7 +984,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                                 if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite<0)
                                                     m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite=0;
                                             }
-                                        }*/
+                                        }
                                     }
                                 }
                     }
@@ -1560,7 +1579,7 @@ void Map::AfficherNomEvenement(sf::RenderWindow* ecran,coordonnee casePointee,co
         {
             string nom;
             char chemin[128];
-            sprintf(chemin,"Data/Maps/map%ld.txt",m_evenement[evenement].getInformation(0));
+            sprintf(chemin,"Data/Maps/map%ld.map.hs",m_evenement[evenement].getInformation(0));
 
 
             ifstream fichier;

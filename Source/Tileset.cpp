@@ -42,7 +42,7 @@ bool Tileset::Charger(std::string chemin)
     console.Ajouter("Chargement de : "+cheminFinal,0);
 
 	int nombreTiles=0;
-	cheminFinal=chemin+".txt";
+	cheminFinal=chemin+".ts.hs";
 
 
 	ifstream fichier;

@@ -19,6 +19,7 @@ void Jeu::Demarrer()
 
     this->m_jeu = new c_Jeu(this);
     this->m_chargement = new c_Chargement(this);
+    this->m_inventaire = new c_Inventaire(this);
 
     coordonnee temp={1,1,-1,-1};
     this->m_chargement->setC_Chargement(1,temp,1);
@@ -35,6 +36,7 @@ void Jeu::Demarrer()
 
     delete this->m_jeu;
     delete this->m_chargement;
+    delete this->m_inventaire;
 
 	console.Rapport();
 }

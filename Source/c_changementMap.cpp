@@ -44,7 +44,7 @@ void c_Chargement::setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool
     m_debut=debut;
 
     char chemin[128];
-    sprintf(chemin,"Data/Maps/map%ld.txt",numeroProchaineMap);
+    sprintf(chemin,"Data/Maps/map%ld.map.hs",numeroProchaineMap);
 
 
     ifstream fichier;

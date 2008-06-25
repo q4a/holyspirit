@@ -66,7 +66,7 @@ c_Jeu::c_Jeu(Jeu *jeu)
         jeu->sonMort.Play();
 
 
-        if(!jeu->hero.m_modelePersonnage.Charger("Data/Personnages/hero/GuerrierHache.txt")) // Chargement du héro
+        if(!jeu->hero.m_modelePersonnage.Charger("Data/Personnages/hero/GuerrierHache.char.hs")) // Chargement du héro
             throw("CRITICAL ERROR");
 
 
@@ -202,25 +202,28 @@ void c_Jeu::Utiliser(Jeu *jeu)
                 if(tempsEcouleDepuisDernierAffichage>0.01&&configuration.syncronisation_verticale||!configuration.syncronisation_verticale)
                 {
                     /// On gère les événements, appui sur une touche, déplacement de la souris
-                jeu->eventManager.GererLesEvenements(&jeu->ecran,&camera,&jeu->m_run,tempsEcoule,jeu->map.getDimensions());
+                    jeu->eventManager.GererLesEvenements(&jeu->ecran,&camera,&jeu->m_run,tempsEcoule,jeu->map.getDimensions());
 
-    int monstreVise=jeu->map.getMonstre(&jeu->hero,&camera,&jeu->ecran,jeu->eventManager.getPositionSouris(),jeu->eventManager.getCasePointee());
+                    int monstreVise=jeu->map.getMonstre(&jeu->hero,&camera,&jeu->ecran,jeu->eventManager.getPositionSouris(),jeu->eventManager.getCasePointee());
 
-	if(jeu->eventManager.getEvenement(Mouse::Left,"C")&&!jeu->eventManager.getEvenement(Key::LShift,"ET"))
-	{
-        jeu->hero.setMonstreVise(monstreVise);
-        if(jeu->hero.getMonstreVise()==-1)
-         jeu->hero.m_personnage.setArrivee(jeu->eventManager.getCasePointee());
-	}
-	if(jeu->eventManager.getEvenement(Mouse::Right,"C")||jeu->eventManager.getEvenement(Mouse::Left,"C")&&jeu->eventManager.getEvenement(Key::LShift,"ET"))
-	{
-	    coordonnee temp;
-	    temp.x=configuration.Resolution.x/2;
-	    temp.y=configuration.Resolution.y/2;
-	    if(monstreVise==-1)
-        jeu->hero.m_personnage.frappe(jeu->eventManager.getPositionSouris(),temp);
-        jeu->hero.setMonstreVise(monstreVise);
-	}
+                    if(jeu->eventManager.getEvenement(Mouse::Left,"C")&&!jeu->eventManager.getEvenement(Key::LShift,"ET"))
+                    {
+                        jeu->hero.setMonstreVise(monstreVise);
+                        if(jeu->hero.getMonstreVise()==-1)
+                         jeu->hero.m_personnage.setArrivee(jeu->eventManager.getCasePointee());
+                    }
+                    if(jeu->eventManager.getEvenement(Mouse::Right,"C")||jeu->eventManager.getEvenement(Mouse::Left,"C")&&jeu->eventManager.getEvenement(Key::LShift,"ET"))
+                    {
+                        coordonnee temp;
+                        temp.x=configuration.Resolution.x/2;
+                        temp.y=configuration.Resolution.y/2;
+                        if(monstreVise==-1)
+                        jeu->hero.m_personnage.frappe(jeu->eventManager.getPositionSouris(),temp);
+                        jeu->hero.setMonstreVise(monstreVise);
+                    }
+
+                    if(jeu->eventManager.getEvenement(Key::I,"ET"))
+                        jeu->m_contexte=jeu->m_inventaire,jeu->eventManager.StopEvenement(Key::I,"ET");
 
                     camera.Zoom(configuration.zoom);
                     jeu->ecran.SetView(camera);

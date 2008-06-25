@@ -30,7 +30,7 @@ int main ( int argc, char** argv )
     ///Chargement de la configuration
 
     ifstream fichier;
-    fichier.open("configuration.txt", ios::in);
+    fichier.open("configuration.conf", ios::in);
     if(fichier)
     {
     	char caractere;
@@ -72,6 +72,8 @@ int main ( int argc, char** argv )
                 if(chaine== "menu_barre_ame:") { fichier>>configuration.nom_barre_ame; }
                 if(chaine== "menu_barre_vie:") { fichier>>configuration.nom_barre_vie; }
                 if(chaine== "menu_barre_vie_vide:") { fichier>>configuration.nom_barre_vie_vide; }
+                if(chaine== "menu_inventaire:") { fichier>>configuration.nom_inventaire; }
+
 
                 if(chaine== "menu_sang:") { fichier>>configuration.nom_sang; }
                 if(chaine== "nom_video_developpeurs: ") { fichier>>nom_video_developpeur; }
@@ -84,8 +86,8 @@ int main ( int argc, char** argv )
     else
     {
 
-        fstream fichier2("configuration.txt", ios::in | ios::out | ios::trunc) ;
-        fichier2<<"AFFICHAGE\nresolution: 800 600\nsyncronisation_verticale: 0\nmode_fenetre: 1\nombres: 1\nlumieres: 1\nlumiere_fondu: 0\namelioration_des_lampes: 1\nherbes: 1\npostFX: 1\n\nMUSIQUES\nvolume: 100\nsons_mort: Data/Sons/Coeur.wav\n\nINTERFACE\nminimap: 1\nconsole: 0\n\nVERSION\nversion: 0.0.86\n\nCHEMINS\nmaps: Data/Maps/map\nevenements: Data/Maps/evenement\ncurseur: Data/Menus/Curseurs/\nmenus: Data/Menus/\nfonts: Data/Fonts/Cup and Talon.ttf\nfx: Data/Effets/\n\ncurseur_base: curseurMenu.png\n\nfxNoir: EffetNoir.sfx\nfxMort: EffetMort.sfx\n\nmenu_hud: Hud.png\nmenu_minimap: minimap.png\nmenu_bulle_vie: bulle_vie.png\nmenu_ame: Ame.png\nmenu_barre_ame: Barre_ame.png\nmenu_barre_vie: barre_vie.png\nmenu_barre_vie_vide: barre_vie_vide.png\nmenu_sang: sang.png\n\nAUTRE\nvideos: 1\nchemin_video_developpeurs: Data/Videos/Naiponcin logo/\nnom_video_developpeurs: Naiponcin logo\n";
+        fstream fichier2("configuration.conf", ios::in | ios::out | ios::trunc) ;
+        fichier2<<"AFFICHAGE\nresolution: 800 600\nsyncronisation_verticale: 0\nmode_fenetre: 1\nombres: 1\nlumieres: 1\nlumiere_fondu: 0\namelioration_des_lampes: 1\nherbes: 1\npostFX: 1\n\nMUSIQUES\nvolume: 100\nsons_mort: Data/Sons/Coeur.wav\n\nINTERFACE\nminimap: 1\nconsole: 0\n\nVERSION\nversion: 0.0.86\n\nCHEMINS\nmaps: Data/Maps/map\nevenements: Data/Maps/evenement\ncurseur: Data/Menus/Curseurs/\nmenus: Data/Menus/\nfonts: Data/Fonts/Cup and Talon.ttf\nfx: Data/Effets/\n\ncurseur_base: curseurMenu.png\n\nfxNoir: EffetNoir.sfx\nfxMort: EffetMort.sfx\n\nmenu_hud: Hud.png\nmenu_minimap: minimap.png\nmenu_bulle_vie: bulle_vie.png\nmenu_ame: Ame.png\nmenu_barre_ame: Barre_ame.png\nmenu_barre_vie: barre_vie.png\nmenu_barre_vie_vide: barre_vie_vide.png\nmenu_sang: sang.png\nmenu_inventaire: inventaire.png\n\nAUTRE\nvideos: 1\nchemin_video_developpeurs: Data/Videos/Naiponcin logo/\nnom_video_developpeurs: Naiponcin logo\n";
         fichier2.seekg(0, ios::beg);
 
         //fichier.open("configuration.txt", ios::in);
@@ -130,6 +132,7 @@ int main ( int argc, char** argv )
                     if(chaine== "menu_barre_vie_vide:") { fichier2>>configuration.nom_barre_vie_vide; }
                     if(chaine== "menu_sang:") { fichier2>>configuration.nom_sang; }
                     if(chaine== "menu_bulle_vie:") { fichier2>>configuration.nom_bulle_vie; }
+                    if(chaine== "menu_inventaire:") { fichier2>>configuration.nom_inventaire; }
 
                     if(chaine== "son_mort: ") { fichier2>>configuration.chemin_son_mort; }
 
@@ -201,7 +204,8 @@ int main ( int argc, char** argv )
 	}
 	catch (char *str)
 	{
-		console.Ajouter(str);
+	    console.Ajouter("FATAL ERROR : ",1);
+		console.Ajouter(str,1);
 		console.Rapport();
 
 		return EXIT_FAILURE;

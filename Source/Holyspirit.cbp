@@ -51,6 +51,8 @@
 		</Unit>
 		<Unit filename="c_changementMap.cpp" />
 		<Unit filename="c_changementMap.h" />
+		<Unit filename="c_inventaire.cpp" />
+		<Unit filename="c_inventaire.h" />
 		<Unit filename="case.cpp" />
 		<Unit filename="case.h" />
 		<Unit filename="console.H" />

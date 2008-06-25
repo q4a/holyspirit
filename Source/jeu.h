@@ -19,6 +19,7 @@
 
 #include "c_Jeu.h"
 #include "c_changementMap.h"
+#include "c_inventaire.h"
 
 class Jeu
 {
@@ -39,6 +40,7 @@ class Jeu
 
     c_Jeu *m_jeu;
     c_Chargement *m_chargement;
+    c_Inventaire *m_inventaire;
     Contexte *m_contexte;
 };
 
