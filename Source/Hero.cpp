@@ -26,10 +26,10 @@ Hero::Hero()
 	m_personnage.setCoordonnee(position);
 
 	Lumiere lumiere;
-	lumiere.intensite=128;
-	lumiere.rouge=236;
-	lumiere.vert=136;
-	lumiere.bleu=36;
+	lumiere.intensite=160;
+	lumiere.rouge=255;
+	lumiere.vert=255;
+	lumiere.bleu=255;
 	lumiere.hauteur=20;
 
 	m_modelePersonnage.setPorteeLumineuse(lumiere);

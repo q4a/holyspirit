@@ -241,9 +241,9 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                     jeu->menu.Afficher(&jeu->ecran,3); // On affiche le hud
                     if(jeu->map.getEntiteMonstre(jeu->map.getMonstreIllumine())!=NULL)
-                        jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),jeu->map.getMonstreIllumine(),jeu->map.getEntiteMonstre(jeu->map.getMonstreIllumine())->getCaracteristique());
+                        jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),1,jeu->map.getEntiteMonstre(jeu->map.getMonstreIllumine())->getCaracteristique());
                     else
-                        jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),jeu->map.getMonstreIllumine(),jeu->hero.m_personnage.getCaracteristique());
+                        jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),0,jeu->hero.m_personnage.getCaracteristique());
                     jeu->eventManager.AfficherCurseur(&jeu->ecran); // On affiche le curseur de la souris
 
                     if(jeu->map.getEvenement(jeu->eventManager.getCasePointee())>=0)

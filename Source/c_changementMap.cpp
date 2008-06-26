@@ -135,7 +135,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
                 jeu->menu.Afficher(&jeu->ecran,2);
             }
             jeu->menu.Afficher(&jeu->ecran,3);
-            jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),jeu->hero.getMonstreVise(),jeu->hero.m_personnage.getCaracteristique());
+            jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),-1,jeu->hero.m_personnage.getCaracteristique());
         }
         EffectNoir.SetParameter("color", ((float)z)/50, ((float)z)/50, ((float)z)/50);
         jeu->ecran.Draw(EffectNoir);
@@ -161,7 +161,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
                 jeu->menu.Afficher(&jeu->ecran,2);
             }
             jeu->menu.Afficher(&jeu->ecran,3);
-            jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),jeu->hero.getMonstreVise(),jeu->hero.m_personnage.getCaracteristique());
+            jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),-1,jeu->hero.m_personnage.getCaracteristique());
         }
 
         jeu->menu.AfficherChargement(&jeu->ecran,(int)z,nomMap);

@@ -917,9 +917,9 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                                 lumiereTemp=255;
 
                                                 // Je calcule la couleur de la lumière, par rapport à l'ancienne lumière et à la nouvelle, pour faire un fondu
-                                            m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=(lumiere.rouge*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge*lumiereTemp)/(lumiereTemp+lumiere.intensite);
-                                            m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert=(lumiere.vert*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert*lumiereTemp)/(lumiereTemp+lumiere.intensite);
-                                            m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu=(lumiere.bleu*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu*lumiereTemp)/(lumiereTemp+lumiere.intensite);
+                                            m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=(int)(lumiere.rouge*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge*lumiereTemp)/(lumiereTemp+lumiere.intensite);
+                                            m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert=(int)(lumiere.vert*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert*lumiereTemp)/(lumiereTemp+lumiere.intensite);
+                                            m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu=(int)(lumiere.bleu*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu*lumiereTemp)/(lumiereTemp+lumiere.intensite);
 
                                             if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge>255)
                                                 m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=255;
@@ -965,9 +965,9 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                                     lumiereTemp=255;
 
                                                     // Je calcule la couleur de la lumière, par rapport à l'ancienne lumière et à la nouvelle, pour faire un fondu
-                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=(lumiere.rouge*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge*lumiereTemp)/(lumiereTemp+lumiere.intensite);
-                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert=(lumiere.vert*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert*lumiereTemp)/(lumiereTemp+lumiere.intensite);
-                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu=(lumiere.bleu*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu*lumiereTemp)/(lumiereTemp+lumiere.intensite);
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=(int)(lumiere.rouge*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge*lumiereTemp)/(lumiereTemp+lumiere.intensite);
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert=(int)(lumiere.vert*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert*lumiereTemp)/(lumiereTemp+lumiere.intensite);
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu=(int)(lumiere.bleu*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu*lumiereTemp)/(lumiereTemp+lumiere.intensite);
 
 
                                                 if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge>255)
@@ -993,7 +993,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
         }
 
         if(configuration.amelioration_lampes)
-        for(int z=0;z<1;z++)
+        for(int z=0;z<2;z++)
             for(int i=0;i<vueMax.y-vueMin.y;i++)
             for(int j=0;j<vueMax.x-vueMin.x;j++)
             {
@@ -1004,7 +1004,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                             if(i+y>0&&i+y+vueMin.y<m_decor[0].size()&&j+w>0&&j+w+vueMin.x<m_decor[0][0].size())
                             if(i+y>0&&i+y<30&&j+w>0&&j+w<30)
                             {
-                                if((double)m_tableauDesLampes[i+y][j+w].intensite<(double)m_tableauDesLampes[i][j].intensite/1.5)
+                                if((double)m_tableauDesLampes[i+y][j+w].intensite<(double)m_tableauDesLampes[i][j].intensite/2)
                                 {
                                     if(m_decor[1][i+vueMin.y][j+vueMin.x].getTileset()!= -1)
                                     {
@@ -1754,8 +1754,8 @@ void Map::gererMonstres(Hero *hero,float temps)
                             {
                                 coordonnee arrivee;
                                 arrivee=m_monstre[m_decor[i][j][k].getMonstre()].getDepart();
-                                arrivee.x+=(rand()%(3 + 3) - 3);
-                                arrivee.y+=(rand()%(3 + 3) - 3);
+                                arrivee.x+=(rand()%(5 + 5) - 5);
+                                arrivee.y+=(rand()%(5 + 5) - 5);
                                 m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(arrivee);
                             }
                             else
@@ -1781,11 +1781,12 @@ bool Map::infligerDegats(int numeroMonstre, int degats,Menu *menu,sf::View *came
 {
     if(numeroMonstre>=0&&numeroMonstre<m_monstre.size())
     {
-        if(rand()%(100)>75)
+        for(int i=0;i<5;i++)
+        if(rand()%(100)>50)
         {
-            coordonnee position;
-            position.x=rand()%(800);
-            position.y=rand()%(300);
+            coordonneeDecimal position;
+            position.x=rand()%(600 - 100) + 100;
+            position.y=rand()%(400 - 100 ) + 100;
 
             menu->AjouterSang(position);
         }

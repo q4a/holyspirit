@@ -30,6 +30,9 @@ void c_Inventaire::Utiliser(Jeu *jeu)
 
     jeu->menu.AfficherInventaire(&jeu->ecran);
 
+    jeu->menu.Afficher(&jeu->ecran,3);
+    jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),jeu->map.getMonstreIllumine(),jeu->hero.m_personnage.getCaracteristique());
+
     jeu->eventManager.AfficherCurseur(&jeu->ecran);
 
     jeu->m_display=true;

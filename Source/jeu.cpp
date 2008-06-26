@@ -13,7 +13,11 @@ void Jeu::Demarrer()
         ecran.Create(sf::VideoMode(configuration.Resolution.x, configuration.Resolution.y, 32),"HolySpirit : Act of Faith",sf::Style::Fullscreen);
     else
         ecran.Create(sf::VideoMode(configuration.Resolution.x, configuration.Resolution.y, 32),"HolySpirit : Act of Faith");
-    ecran.UseVerticalSync(true);
+    if(configuration.syncronisation_verticale)
+    {
+        ecran.UseVerticalSync(true);
+        ecran.SetFramerateLimit(60);
+    }
     //ecran.PreserveOpenGLStates(true);
     //ecran.OptimizeForNonOpenGL(true);
 

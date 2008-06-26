@@ -14,6 +14,8 @@
 #define NOMBRE_ETAT 4
 #define CALCUL_PA_PROCHAIN_NIVEAU temp.niveau*temp.niveau*10
 
+#define NOMBRE_SANG 3
+
 #include <cmath>
 #include <utility>
 #include <iostream>

@@ -99,7 +99,7 @@ void Menu::Afficher(sf::RenderWindow* ecran,int type)
 }
 
 
-void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracteristique,int monstreVise,Caracteristique caracteristiqueMonstre)
+void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracteristique,bool monstreVise,Caracteristique caracteristiqueMonstre)
 {
     if(caracteristique.vie>0)
     {
@@ -128,17 +128,19 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
         ecran->Draw(Sprite);
     }
 
-        char chaine[3];
+    texte.SetSize(16.f*configuration.Resolution.y/600);
 
-        sprintf(chaine,"%ld",caracteristique.niveau);
-        texte.SetText(chaine);
+    char chaine[255];
 
-        texte.SetSize(16.f*configuration.Resolution.y/600);
+    texte.SetColor(Color(255,255,255,255));
 
-        texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
-        texte.SetY(configuration.Resolution.y-40*configuration.Resolution.y/600);
+    sprintf(chaine,"%ld",caracteristique.niveau);
+    texte.SetText(chaine);
 
-        ecran->Draw(texte);
+    texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
+    texte.SetY(configuration.Resolution.y-40*configuration.Resolution.y/600);
+
+    ecran->Draw(texte);
 
     for(int i=0;i<m_ame.size();i++)
     {
@@ -166,16 +168,17 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
         Sprite.SetImage(m_imageSang);
         Sprite.SetCenter(200*m_sang[i].m_taille,200*m_sang[i].m_taille);
         Sprite.SetRotation(m_sang[i].m_rotation);
-         Sprite.SetCenter(0,0);
+        Sprite.SetCenter(0,0);
+        Sprite.SetSubRect(sf::IntRect(200*m_sang[i].m_numero, 0,200+200*m_sang[i].m_numero, 200));
         Sprite.Resize(200*configuration.Resolution.x/800*m_sang[i].m_taille, 200*configuration.Resolution.y/600*m_sang[i].m_taille);
-        Sprite.SetColor(sf::Color(255,255,255,(int)m_alphaSang));
+        Sprite.SetColor(sf::Color(255,255,255,(int)m_sang[i].m_alpha));
         Sprite.SetX(m_sang[i].m_position.x*configuration.Resolution.x/800);
         Sprite.SetY(m_sang[i].m_position.y*configuration.Resolution.y/600);
 
         ecran->Draw(Sprite);
     }
 
-    if(monstreVise>-1)
+    if(monstreVise)
     {
         Sprite Sprite,Sprite2;
 
@@ -195,7 +198,7 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
 
         ecran->Draw(Sprite2);
 
-        char chaine[255];
+        //char chaine[255];
 
         texte.SetSize(18.f*configuration.Resolution.y/600);
 
@@ -211,8 +214,6 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
         texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
         texte.SetY(12*configuration.Resolution.y/600);
         ecran->Draw(texte);
-
-
     }
 }
 
@@ -252,17 +253,17 @@ void Menu::AfficherInventaire(sf::RenderWindow* ecran)
     Sprite Sprite;
 
     Sprite.SetImage(m_inventaire);
-    Sprite.Resize(configuration.Resolution.x, configuration.Resolution.y);
+    Sprite.Resize(configuration.Resolution.x, configuration.Resolution.y*550/600);
 
     ecran->Draw(Sprite);
 }
 
-void Menu::AjouterSang(coordonnee position)
+void Menu::AjouterSang(coordonneeDecimal position)
 {
     m_sang.push_back(position);
-    m_alphaSang+=64;
+    /*m_alphaSang+=64;
     if(m_alphaSang>255)
-        m_alphaSang=255;
+        m_alphaSang=255;*/
 }
 void Menu::AjouterAme(coordonneeDecimal position,int pointAme)
 {
@@ -271,7 +272,7 @@ void Menu::AjouterAme(coordonneeDecimal position,int pointAme)
 }
 int Menu::GererDynamique(float temps)
 {
-    int nombre_ame_absorbee=0, retour=0;
+    int nombre_ame_absorbee=0, nombre_sang_disparu=0, retour=0;
      for (Iter = m_ame.begin(); Iter != m_ame.end(); Iter++ )
     {
         if(Iter->m_mode==0)
@@ -329,10 +330,31 @@ int Menu::GererDynamique(float temps)
     if(nombre_ame_absorbee>=m_ame.size())
         m_ame.clear();
 
-    m_alphaSang-=temps*200;
 
-    if(m_alphaSang<0)
-        m_alphaSang=255,m_sang.clear();
+
+
+
+    for (IterSang = m_sang.begin(); IterSang != m_sang.end(); IterSang++ )
+    {
+        IterSang->m_alpha-=temps*300;
+
+        if(IterSang->m_alpha<0)
+            IterSang->m_alpha=0;
+        if(IterSang->m_alpha==0)
+            nombre_sang_disparu++;
+    }
+
+    if(nombre_ame_absorbee>=m_ame.size())
+        m_ame.clear();
+    if(nombre_sang_disparu>=m_sang.size())
+        m_sang.clear();
+
+    //m_alphaSang-=temps*200;
+
+   /* if(m_alphaSang<0)
+        m_alphaSang=255,m_sang.clear();*/
+
+
 
     return retour;
 }

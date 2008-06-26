@@ -37,14 +37,17 @@ class Ame
 class Sang
 {
     public:
-    Sang (coordonnee position)
+    Sang (coordonneeDecimal position)
     {
         m_position=position;
         m_taille=(float)(rand()%(100-25) + 25)/100;
         m_rotation=(float)(rand()%360);
+        m_alpha=255;
+        m_numero=(rand()%(NOMBRE_SANG));
     }
-    coordonnee m_position;
-    float m_taille,m_rotation;
+    coordonneeDecimal m_position;
+    float m_taille,m_rotation,m_alpha;
+    int m_numero;
 };
 
 class Menu
@@ -52,11 +55,11 @@ class Menu
 	public:
 	Menu();
 	void Afficher(sf::RenderWindow* ecran,int type);
-	void AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracteristique,int monstreVise,Caracteristique caracteristiqueMonstre);
+	void AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracteristique,bool monstreVise,Caracteristique caracteristiqueMonstre);
 	void AfficherChargement(sf::RenderWindow* ecran,int z,std::string nom);
 	void AfficherInventaire(sf::RenderWindow* ecran);
 
-	void AjouterSang(coordonnee position);
+	void AjouterSang(coordonneeDecimal position);
 
 	void AjouterAme(coordonneeDecimal position,int pointAme);
 	int GererDynamique(float temps);
@@ -68,6 +71,7 @@ class Menu
 	float m_alphaSang;
 
 	std::vector <Sang> m_sang;
+	std::vector <Sang>::iterator IterSang;
 
 	std::vector <Ame> m_ame;
 	std::vector<Ame>::iterator Iter;
