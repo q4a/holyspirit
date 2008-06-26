@@ -48,7 +48,11 @@ void Jeu::Demarrer()
 	{
 		this->m_contexte->Utiliser(this);
 		if(this->m_display)
+		{
+		    this->EffectNoir.SetParameter("color", (float)configuration.luminosite/50,(float)configuration.luminosite/50, (float)configuration.luminosite/50);
+            this->ecran.Draw(this->EffectNoir);
             this->ecran.Display();
+		}
 	}
 
     delete this->m_jeu;

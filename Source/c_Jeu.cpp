@@ -230,9 +230,6 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                     jeu->map.Afficher(&jeu->ecran,&camera,1,&jeu->hero,jeu->eventManager.getPositionSouris());//Affichage de la jeu->map
 
-                    jeu->EffectNoir.SetParameter("color", (float)configuration.luminosite/50,(float)configuration.luminosite/50, (float)configuration.luminosite/50);
-                    jeu->ecran.Draw(jeu->EffectNoir);
-
                     jeu->ecran.SetView(jeu->ecran.GetDefaultView());
 
                     if(configuration.Minimap)
@@ -269,6 +266,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     }
 
                     jeu->m_display=true;
+
                     //jeu->ecran.Display(); // On affiche le tout à l'écran
 
                     tempsEcouleDepuisDernierAffichage=0;
