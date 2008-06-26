@@ -71,9 +71,9 @@ struct coordonnee
 struct Configuration
 {
     coordonnee Resolution;
-    bool Ombre,Lumiere,Minimap,FonduLumiere,amelioration_lampes,console,Herbes,syncronisation_verticale,mode_fenetre;
-    float effetMort,volume,minute,postFX,zoom;
-    int heure;
+    bool Ombre,Lumiere,Minimap,FonduLumiere,amelioration_lampes,console,Herbes,syncronisation_verticale,mode_fenetre,postFX,sang;
+    float effetMort,volume,minute,zoom;
+    int heure,luminosite;
     std::string version,chemin_maps,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetMort,nom_hud,nom_minimap,nom_bulle_vie,nom_ame,nom_barre_ame,nom_barre_vie,nom_barre_vie_vide,nom_sang,nom_inventaire,chemin_son_mort;
 };
 

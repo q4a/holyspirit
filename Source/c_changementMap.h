@@ -18,7 +18,6 @@ class c_Chargement : public Contexte
 
     private:
 
-	sf::PostFX EffectNoir;
 	std::string nomMap;
 
 	float tempsActuel,tempsPrecedent,temps_ecoule,tempsEcouleDepuisDernierAffichage;

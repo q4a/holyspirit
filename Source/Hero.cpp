@@ -26,7 +26,7 @@ Hero::Hero()
 	m_personnage.setCoordonnee(position);
 
 	Lumiere lumiere;
-	lumiere.intensite=160;
+	lumiere.intensite=128;
 	lumiere.rouge=255;
 	lumiere.vert=255;
 	lumiere.bleu=255;

@@ -25,6 +25,7 @@ class Jeu
 {
     public:
 
+    Jeu();
     void Demarrer();
 
     sf::RenderWindow ecran;
@@ -35,6 +36,8 @@ class Jeu
     sf::Clock Clock;
     sf::SoundBuffer bufferSonMort;
 	sf::Sound  sonMort;
+
+	sf::PostFX EffectNoir;
 
 	bool m_run,m_display;
 

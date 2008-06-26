@@ -16,19 +16,6 @@ using namespace std;
 
 c_Chargement::c_Chargement(Jeu *jeu)
 {
-    if (sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
-    {
-
-        if(!EffectNoir.LoadFromFile(configuration.chemin_fx+configuration.nom_effetNoir))
-            console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetNoir,1);
-        else
-        {
-            console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetNoir,0);
-            EffectNoir.SetTexture("framebuffer", NULL);
-            EffectNoir.SetParameter("color", 0.f, 0.f, 0.f);
-        }
-    }
-
     z=0;
     augmenterNoir = true;
 }
@@ -135,10 +122,10 @@ void c_Chargement::Utiliser(Jeu *jeu)
                 jeu->menu.Afficher(&jeu->ecran,2);
             }
             jeu->menu.Afficher(&jeu->ecran,3);
-            jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),-1,jeu->hero.m_personnage.getCaracteristique());
+            jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),0,jeu->hero.m_personnage.getCaracteristique());
         }
-        EffectNoir.SetParameter("color", ((float)z)/50, ((float)z)/50, ((float)z)/50);
-        jeu->ecran.Draw(EffectNoir);
+        jeu->EffectNoir.SetParameter("color", ((float)z)/50, ((float)z)/50, ((float)z)/50);
+        jeu->ecran.Draw(jeu->EffectNoir);
 
         jeu->menu.AfficherChargement(&jeu->ecran,(int)z,nomMap);
 
@@ -161,7 +148,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
                 jeu->menu.Afficher(&jeu->ecran,2);
             }
             jeu->menu.Afficher(&jeu->ecran,3);
-            jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),-1,jeu->hero.m_personnage.getCaracteristique());
+            jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),0,jeu->hero.m_personnage.getCaracteristique());
         }
 
         jeu->menu.AfficherChargement(&jeu->ecran,(int)z,nomMap);

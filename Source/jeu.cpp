@@ -5,6 +5,21 @@
 
 using namespace sf;
 
+Jeu::Jeu()
+{
+    if (sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
+    {
+
+        if(!EffectNoir.LoadFromFile(configuration.chemin_fx+configuration.nom_effetNoir))
+            console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetNoir,1);
+        else
+        {
+            console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetNoir,0);
+            EffectNoir.SetTexture("framebuffer", NULL);
+            EffectNoir.SetParameter("color", 0.f, 0.f, 0.f);
+        }
+    }
+}
 
 void Jeu::Demarrer()
 {
@@ -18,8 +33,6 @@ void Jeu::Demarrer()
         ecran.UseVerticalSync(true);
         ecran.SetFramerateLimit(60);
     }
-    //ecran.PreserveOpenGLStates(true);
-    //ecran.OptimizeForNonOpenGL(true);
 
     this->m_jeu = new c_Jeu(this);
     this->m_chargement = new c_Chargement(this);
