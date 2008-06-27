@@ -370,7 +370,7 @@ bool Map::Charger(int numeroMap)
                 if(m_decor[couche][i][j].getHerbe()>=0&&m_decor[couche][i][j].getHerbe()<m_herbe.size())
                     if(m_herbe[m_decor[couche][i][j].getHerbe()].getTaille()>0)
                     {
-                        int numeroHerbe = (rand() % (m_herbe[m_decor[couche][i][j].getHerbe()].getTaille() -1 - 0 + 1)) + 0;
+                        int numeroHerbe = (rand() % (m_herbe[m_decor[couche][i][j].getHerbe()].getTaille()));
                         m_decor[couche][i][j].setNumeroHerbe(numeroHerbe);
                     }
             }
@@ -1004,7 +1004,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                             if(i+y>0&&i+y+vueMin.y<m_decor[0].size()&&j+w>0&&j+w+vueMin.x<m_decor[0][0].size())
                             if(i+y>0&&i+y<30&&j+w>0&&j+w<30)
                             {
-                                if((double)m_tableauDesLampes[i+y][j+w].intensite<(double)m_tableauDesLampes[i][j].intensite/2)
+                                if((double)m_tableauDesLampes[i+y][j+w].intensite<(double)m_tableauDesLampes[i][j].intensite/1.5)
                                 if(m_tableauDesLampes[i+y][j+w].intensite<32&&m_tableauDesLampes[i+y][j+w].intensite>=1)
                                 {
                                     if(m_decor[1][i+vueMin.y][j+vueMin.x].getTileset()!= -1)
@@ -1033,7 +1033,6 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
 
                                         if(!erreur)
                                         {
-                                        double m=(double)m_tableauDesLampes[i][j].intensite/4;
                                         m_tableauDesLampes[i+y][j+w].intensite=(int)(m_tableauDesLampes[i][j].intensite/1.5);
                                         m_tableauDesLampes[i+y][j+w].rouge=m_tableauDesLampes[i][j].rouge;
                                         m_tableauDesLampes[i+y][j+w].vert=m_tableauDesLampes[i][j].vert;

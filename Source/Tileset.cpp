@@ -89,7 +89,7 @@ bool Tileset::Charger(std::string chemin)
     		fichier.get(caractere);
     		if(caractere=='*')
     		{
-    			coordonnee position;
+    			coordonnee position={-1,-1,-1,-1};
     			int animation=-1,son=-1;
     			Lumiere lumiere;
     			lumiere.intensite=0;

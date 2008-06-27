@@ -23,7 +23,6 @@ Jeu::Jeu()
 
 void Jeu::Demarrer()
 {
-    //this-> m_ecran = new sf::RenderWindow(sf::VideoMode(configuration.Resolution.x, configuration.Resolution.y, 32),"EDF casse brique");
     if(!configuration.mode_fenetre)
         ecran.Create(sf::VideoMode(configuration.Resolution.x, configuration.Resolution.y, 32),"HolySpirit : Act of Faith",sf::Style::Fullscreen);
     else
