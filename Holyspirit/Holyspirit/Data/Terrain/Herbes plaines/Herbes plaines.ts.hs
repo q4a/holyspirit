@@ -8,7 +8,7 @@ Herbe
 *x0 y0 w180 h96 $
 
 Terre
-*x320 y0 w192 h128 $
+*x320 y0 w256 h140 $
 
 Coté herbe/terre
 *x0 y0 w180 h96 $

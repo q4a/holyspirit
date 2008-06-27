@@ -11,9 +11,10 @@ Liste des tilesets
 *Data/Terrain/Herbes plaines/Herbes plaines
 *Data/Decors/Mur de pierres/Mur de pierres
 *Data/Decors/Feu de camp/Feu de camp
+*Data/Decors/Effets de Lumières/LightEffect
 $
 Liste des tilesets de l'herbe
-*Data/Decors/Herbes/Herbe1
+*Data/Decors/Herbes/Champignon1
 $
 Liste des tilesets des monstres
 *Data/Personnages/Monstres/MonstreTest.char.hs
@@ -27,27 +28,26 @@ Liste des entites monstres
 $
 Liste des événements
 * e0 $ * i2 i57 i31 $
-* e1 $ * i255 i255 i255 i64 i70 $ 
 $
 * s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
-* s-1   | s0 t3 | s0 t0 e1| s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
+* s-1   | s0 t3 | s0 t0 | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
-* s-1   | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
+* s-1   | s-1   | s-1   | s0 t3 | s0 t3  | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   |
-* s-1   | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   |
+* s-1   | s0 t3 | s0 t3 h0 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 h0 | s0 t3 | s-1   | s-1   | s-1   | s-1   | s-1   |
+* s-1   | s0 t3 | s0 t3 h0 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s-1   |
+* s-1   | s0 t3 | s0 t3 h0 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s-1   |
+* s-1   | s0 t3 | s0 t3 h0 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 h0 | s0 t3 | s0 t3 | s0 t3 | s-1   |
 * s-1   | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s-1   |
-* s-1   | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s-1   |
-* s-1   | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s-1   |
-* s-1   | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s0 t3 | s-1   |
 * s-1   | s-1   | s-1   | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   |
 * s-1   | s-1   | s-1   | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   |
 * s-1   | s-1   | s-1   | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   |
+* s-1   | s-1   | s-1   | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 h0 | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   |
 * s-1   | s-1   | s-1   | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   |
-* s-1   | s-1   | s-1   | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   |
-* s-1   | s-1   | s-1   | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   |
+* s-1   | s-1   | s-1   | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1 h0  | s0 t3 | s0 t3 | s0 t3 | s-1   |
 * s-1   | s-1   | s-1   | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   |
 * s-1   | s-1   | s-1   | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   |
 * s-1   | s-1   | s-1   | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   |
@@ -66,7 +66,7 @@ $
 $  
 * s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s1 t5 | s1 t1 | s1 t1 | s1 t1 | s1 t6 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
-* s-1   | s1 t0 | s-1 e0| s-1   | s-1   | s1 t0 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
+* s-1   | s1 t0 | s3 t0 e0| s-1   | s-1   | s1 t0 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s1 t0 | s-1   | s-1   | s-1   | s1 t0 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s1 t4 | s1 t1 | s1 t6 | s-1   | s1 t0 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s-1   | s-1   | s1 t0 | s-1   | s1 t0 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
