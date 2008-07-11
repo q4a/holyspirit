@@ -19,6 +19,9 @@ Portee lumineuse
 $
 * Pantin Morbide
 $
+Rang du monstre
+* 0
+$
 Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse
 *v4 di2 da3 m0.5 o1 a1 n1 $

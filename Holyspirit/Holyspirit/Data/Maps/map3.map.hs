@@ -1,6 +1,8 @@
 Nom de la map
 *La caverne oubliée
 $
+*Data/Ecran chargement/Grotte.png
+$
 Liste des musiques
 *Data/Musiques/Maxtor81-Arcaduis.ogg
 $

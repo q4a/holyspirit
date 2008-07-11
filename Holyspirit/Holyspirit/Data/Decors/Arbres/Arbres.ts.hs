@@ -1,5 +1,3 @@
-*AntiCrenelage
-
 $
 Arbres
 *x0 y0 w256 h256 c1 o1 $

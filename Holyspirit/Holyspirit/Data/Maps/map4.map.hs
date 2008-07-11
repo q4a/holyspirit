@@ -1,5 +1,7 @@
 Nom
-*La foret noire ( on y trouve de très bons jambons )
+*La foret de Malemort
+$
+*Data/Ecran chargement/Foret.png
 $
 Musique
 *Data/Musiques/Battle_CDN.ogg

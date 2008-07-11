@@ -1,4 +1,3 @@
-*AntiCrenelage
 
 $
 Mur de pierres

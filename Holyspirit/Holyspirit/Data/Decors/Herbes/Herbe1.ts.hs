@@ -1,4 +1,3 @@
-*AntiCrenelage
 
 $
 Herbe1
