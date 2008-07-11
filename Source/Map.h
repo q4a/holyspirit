@@ -12,12 +12,15 @@
 #include "Evenement.h"
 #include "c_changementMap.h"
 
+class Jeu;
+
 class Map
 {
 	public:
 	Map();
 	~Map();
 	bool Charger(int numeroMap);
+	void Sauvegarder();
 	void Afficher(sf::RenderWindow* ecran,sf::View *camera,int type,Hero *hero,coordonnee positionSouris);
 	void AfficherNomEvenement(sf::RenderWindow* ecran,coordonnee casePointee,coordonnee positionSouris);
 
@@ -31,7 +34,7 @@ class Map
 	std::vector<std::vector<bool> > getAlentourDuPersonnage(coordonnee positionPersonnage); // Retourne un tableau de bool contenant toutes les collitions dans les alentour du héro, pour le pathfinding
 
 	void animer(Hero *hero,float temps,Menu *menu); // Animation des tiles
-	bool testEvenement(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Menu* menu,Contexte **ctx,c_Chargement **chargement);
+	bool testEvenement(sf::View *camera, Jeu *jeu);
 	void calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *camera);
 	void Detruire();
 
@@ -46,14 +49,14 @@ class Map
 	coordonnee getDimensions();
 
 	private:
-	int m_monstreIllumine;
+	int m_monstreIllumine,m_numero;
 	Lumiere m_lumiere[24];
 	std::vector <Tileset> m_tileset;
 	std::vector <Tileset> m_herbe;
-	std::vector < std::vector< std::vector < Decor > > > m_decor/*(2,std::vector< std::vector< Decor > >(0,std::vector < Decor > (0,-1,-1,-1,-1)))*/;
+	std::vector < std::vector< std::vector < Decor > > > m_decor;
 	std::vector <Evenement> m_evenement;
 	sf::Music m_musique;
-	std::string m_nom;
+	std::string m_nom,m_fond,m_cheminMusique;
 
 	sf::Image lumiereMask;
 
@@ -62,7 +65,7 @@ class Map
 
 	sf::Image carreBrun,carreBleu,carreRouge,carreVert;
 
-	LumiereOmbrage m_tableauDesLampes[30][30],m_lumiereHero; // Tableau de lumière et ombres, 30X30 car c'est le nbr max de tiles affichables à l'écran
+	LumiereOmbrage m_tableauDesLampes[30][30],m_tableauDesLampesBasique[30][30],m_lumiereHero; // Tableau de lumière et ombres, 30X30 car c'est le nbr max de tiles affichables à l'écran
 };
 
 #endif

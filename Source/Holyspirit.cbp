@@ -22,6 +22,7 @@
 			<Add library="libsfml-window.a" />
 			<Add library="libsfml-system.a" />
 		</Linker>
+		<Unit filename="Commande.h" />
 		<Unit filename="Contexte.cpp" />
 		<Unit filename="Contexte.h" />
 		<Unit filename="Decor.cpp" />
@@ -37,6 +38,8 @@
 			<Option weight="0" />
 		</Unit>
 		<Unit filename="Monstre.h" />
+		<Unit filename="MoteurGraphique.cpp" />
+		<Unit filename="MoteurGraphique.h" />
 		<Unit filename="Personnage.cpp" />
 		<Unit filename="Personnage.h" />
 		<Unit filename="Pose.cpp" />

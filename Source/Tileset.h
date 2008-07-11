@@ -24,7 +24,7 @@ class Tileset
 	~Tileset();
 	Tileset operator=(const Tileset &tileset);
 	bool Charger(std::string chemin);
-	sf::Image* getImage();
+	int getImage();
 	coordonnee getPositionDuTile(int tile);
 	bool getCollisionTile(int tile);
 	int getAnimationTile(int tile);
@@ -32,6 +32,7 @@ class Tileset
 	Lumiere Tileset::getLumiereDuTile(int tile);
 	bool getOmbreDuTile(int tile);
 	char getOrientationDuTile(int tile);
+	std::string getChemin(){return m_chemin;}
 
 	int getTaille();
 
@@ -42,10 +43,11 @@ class Tileset
 
 	private:
 	std::vector <bool> m_sonAZero;
-	sf::Image m_image;
+	int m_image;
 	std::vector <Tile> m_tile;
 	std::vector <sf::SoundBuffer> m_buffer;
 	std::vector <sf::Sound> m_sons;
+	std::string m_chemin;
 };
 
 #endif

@@ -12,7 +12,7 @@
 #define DIVISEUR_COTE_TILE 0.013975420031249039189872851628556
 
 #define NOMBRE_ETAT 4
-#define CALCUL_PA_PROCHAIN_NIVEAU temp.niveau*temp.niveau*10
+#define CALCUL_PA_PROCHAIN_NIVEAU temp.niveau*temp.niveau*temp.niveau*10
 
 #define NOMBRE_SANG 3
 
@@ -74,7 +74,7 @@ struct Configuration
     bool Ombre,Lumiere,Minimap,FonduLumiere,amelioration_lampes,console,Herbes,syncronisation_verticale,mode_fenetre,postFX,sang;
     float effetMort,volume,minute,zoom;
     int heure,luminosite;
-    std::string version,chemin_maps,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetMort,nom_hud,nom_minimap,nom_bulle_vie,nom_ame,nom_barre_ame,nom_barre_vie,nom_barre_vie_vide,nom_sang,nom_inventaire,chemin_son_mort;
+    std::string version,chemin_maps,chemin_temps,chemin_saves,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetMort,nom_effetLuminosite,nom_hud,nom_minimap,nom_bulle_vie,nom_ame,nom_barre_ame,nom_barre_vie,nom_barre_vie_vide,nom_sang,nom_inventaire,chemin_son_mort;
 };
 
 struct Caracteristique
@@ -86,6 +86,7 @@ struct Caracteristique
     int maxVie;
     int degatsMin,degatsMax;
     int niveau;
+    int rang;
 
     std::string nom;
 };
@@ -183,23 +184,6 @@ class LumiereOmbrage : public Lumiere
 
         return *this;
     }
-
-
-
-    /*LumiereOmbrage LumiereOmbrage::operator=(const LumiereOmbrage &lumiere)
-    {
-        intensite = lumiere.intensite;
-        rouge = lumiere.rouge;
-        vert = lumiere.vert;
-        bleu = lumiere.bleu;
-
-        //lumiere.m_ombre.resize(m_ombre.size());
-
-        //for(int i=0;i<m_ombre.size();i++)
-        //m_ombre[i] = lumiere.m_ombre[i];
-
-        return *this;
-    }*/
 
     std::vector <Ombre> m_ombre;
 

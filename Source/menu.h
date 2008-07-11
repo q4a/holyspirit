@@ -55,8 +55,8 @@ class Menu
 	public:
 	Menu();
 	void Afficher(sf::RenderWindow* ecran,int type);
-	void AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracteristique,bool monstreVise,Caracteristique caracteristiqueMonstre);
-	void AfficherChargement(sf::RenderWindow* ecran,int z,std::string nom);
+	void AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracteristique,int type,Caracteristique caracteristiqueMonstre);
+	void AfficherChargement(sf::RenderWindow* ecran,std::string nom,int fond,int z);
 	void AfficherInventaire(sf::RenderWindow* ecran);
 
 	void AjouterSang(coordonneeDecimal position);
@@ -65,7 +65,7 @@ class Menu
 	int GererDynamique(float temps);
 
 	private:
-	sf::Image m_imageMiniMap,m_fondMiniMap,m_imageHUD,m_imageBulleVie,m_imageAme,m_imageSang,m_barrePointAme,m_barreVie,m_barreVieVide,m_inventaire;
+	int m_imageMiniMap,m_fondMiniMap,m_imageHUD,m_imageBulleVie,m_imageAme,m_imageSang,m_barrePointAme,m_barreVie,m_barreVieVide,m_inventaire;
 	sf::String texte;
 
 	float m_alphaSang;

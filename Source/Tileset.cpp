@@ -13,8 +13,6 @@ using namespace sf;
 
 Tileset::Tileset()
 {
-
-m_image.SetSmooth(false);
 }
 Tileset::Tileset(string chemin)
 {
@@ -35,11 +33,13 @@ Tileset Tileset::operator=(const Tileset &tileset)
 bool Tileset::Charger(std::string chemin)
 {
 	string cheminFinal,temp;
+	m_chemin=chemin;
 	cheminFinal=chemin+".png";
-	if(!m_image.LoadFromFile(cheminFinal.c_str()))
+	/*if(!m_image.LoadFromFile(cheminFinal.c_str()))
         console.Ajouter("Impossible de charger : "+cheminFinal,1);
     else
-    console.Ajouter("Chargement de : "+cheminFinal,0);
+    console.Ajouter("Chargement de : "+cheminFinal,0);*/
+    m_image=moteurGraphique.AjouterImage(cheminFinal);
 
 	int nombreTiles=0;
 	cheminFinal=chemin+".ts.hs";
@@ -49,11 +49,11 @@ bool Tileset::Charger(std::string chemin)
     fichier.open(cheminFinal.c_str(), ios::in);
     if(fichier)
     {
-        fichier>>temp;
+        /*fichier>>temp;
         if(temp=="*NoAntiCrenelage")
             m_image.SetSmooth(false);
         else
-            m_image.SetSmooth(true);
+            m_image.SetSmooth(true);*/
 
     	char caractere;
     	do
@@ -142,9 +142,9 @@ bool Tileset::Charger(std::string chemin)
     return 1;
 }
 
-Image *Tileset::getImage()
+int Tileset::getImage()
 {
-	return &m_image;
+	return m_image;
 }
 
 coordonnee Tileset::getPositionDuTile(int tile)

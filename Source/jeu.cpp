@@ -10,6 +10,15 @@ Jeu::Jeu()
     if (sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
     {
 
+        if(!EffectLuminosite.LoadFromFile(configuration.chemin_fx+configuration.nom_effetLuminosite))
+            console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetLuminosite,1);
+        else
+        {
+            console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetLuminosite,0);
+            EffectLuminosite.SetTexture("framebuffer", NULL);
+            EffectLuminosite.SetParameter("color", 0.f, 0.f, 0.f);
+        }
+
         if(!EffectNoir.LoadFromFile(configuration.chemin_fx+configuration.nom_effetNoir))
             console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetNoir,1);
         else
@@ -18,6 +27,16 @@ Jeu::Jeu()
             EffectNoir.SetTexture("framebuffer", NULL);
             EffectNoir.SetParameter("color", 0.f, 0.f, 0.f);
         }
+
+        if(!EffectMort.LoadFromFile(configuration.chemin_fx+configuration.nom_effetMort))
+            console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetMort,1);
+        else
+            console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetMort,0);
+        configuration.effetMort=0;
+
+        EffectMort.SetParameter("offset", 0);
+        EffectMort.SetTexture("framebuffer", NULL);
+        EffectMort.SetParameter("color",1, 1, 1);
     }
 }
 
@@ -38,9 +57,13 @@ void Jeu::Demarrer()
     this->m_inventaire = new c_Inventaire(this);
 
     coordonnee temp={1,1,-1,-1};
+    this->m_contexte->CopierCamera(this->m_chargement->camera);
     this->m_chargement->setC_Chargement(1,temp,1);
 
     this->m_contexte = this->m_chargement;
+    m_chargement->CopierCamera(this->m_jeu->camera);
+
+    this->hero.Charger();
 
     this->m_run = true;
     while (this->m_run)
@@ -48,11 +71,19 @@ void Jeu::Demarrer()
 		this->m_contexte->Utiliser(this);
 		if(this->m_display)
 		{
-		    this->EffectNoir.SetParameter("color", (float)configuration.luminosite/50,(float)configuration.luminosite/50, (float)configuration.luminosite/50);
+		    moteurGraphique.Afficher(&this->ecran,this->m_contexte->camera);
+		    this->EffectLuminosite.SetParameter("color", (float)configuration.luminosite/50,(float)configuration.luminosite/50, (float)configuration.luminosite/50);
             this->ecran.Draw(this->EffectNoir);
+            if(configuration.effetMort>0)
+                this->ecran.Draw(EffectMort);
+            this->ecran.Draw(this->EffectLuminosite);
             this->ecran.Display();
+            moteurGraphique.Vider();
 		}
 	}
+
+	this->hero.Sauvergarder();
+	this->map.Sauvegarder();
 
     delete this->m_jeu;
     delete this->m_chargement;
@@ -60,6 +91,7 @@ void Jeu::Demarrer()
 
 	console.Rapport();
 }
+
 
 
 

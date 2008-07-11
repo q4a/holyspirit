@@ -2,8 +2,6 @@
 ||| Dernière modification : Le 06/02/08 par Gregouar |||
 ///**************************************************///
 
-
-
 #ifndef JEUH
 #define JEUH
 
@@ -24,6 +22,7 @@
 class Jeu
 {
     public:
+    sf::PostFX EffectMort;
 
     Jeu();
     void Demarrer();
@@ -37,17 +36,18 @@ class Jeu
     sf::SoundBuffer bufferSonMort;
 	sf::Sound  sonMort;
 
-	sf::PostFX EffectNoir;
-
 	bool m_run,m_display;
 
     c_Jeu *m_jeu;
     c_Chargement *m_chargement;
     c_Inventaire *m_inventaire;
     Contexte *m_contexte;
+
+    sf::PostFX EffectLuminosite,EffectNoir;
+    private:
+
 };
 
-
-
 #endif
+
 

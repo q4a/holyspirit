@@ -89,12 +89,13 @@ bool Modele_Personnage::Charger(string chemin)
     			string cheminImage;
                 getline(fichier, cheminImage);
                 //AjouterImage(cheminImage);
-                sf::Image temp;
+               /* sf::Image temp;
                 m_image.push_back(temp);
                 if(!m_image[m_image.size()-1].LoadFromFile(cheminImage.c_str()))
                     console.Ajouter("Impossible de charger : "+cheminImage,1);
                 else
-                console.Ajouter("Chargement de : "+cheminImage,0);
+                console.Ajouter("Chargement de : "+cheminImage,0);*/
+                m_image.push_back(moteurGraphique.AjouterImage(cheminImage));
     		}
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Personnage \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
     	}while(caractere!='$');
@@ -179,42 +180,45 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
     if(modele->m_pose.size()>0)
     if((int)(m_angle/45)>=0&&(int)(m_angle/45)<8)
     {
-        Sprite Sprite;
-        Sprite.SetImage(modele->m_image[modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()]);
-        Sprite.SetSubRect(IntRect(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h));
+        Sprite sprite;
+        sprite.SetImage(*moteurGraphique.getImage(modele->m_image[modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()]));
+       // Sprite.SetImage(modele->m_image[modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()]);
+        sprite.SetSubRect(IntRect(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h));
 
         if(configuration.Ombre&&m_caracteristique.vie>0&&modele->m_ombre)
         {
             for(int o=0;o<lumiere->m_ombre.size();o++)
             {
-                Sprite.SetColor(sf::Color(0,0,0,lumiere->m_ombre[o].intensite));
-                Sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64)-64+(64-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2)+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2);
-                Sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+(64-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h)+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h-32);
-                Sprite.SetCenter((modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2),(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h-32));
-                Sprite.SetScale(1, lumiere->m_ombre[o].taille);
-                Sprite.SetRotation(lumiere->m_ombre[o].angle);
+                sprite.SetColor(sf::Color(0,0,0,lumiere->m_ombre[o].intensite));
+                sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64)-64+(64-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2)+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2);
+                sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+(64-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h)+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h-32);
+                sprite.SetCenter((modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2),(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h-32));
+                sprite.SetScale(1, lumiere->m_ombre[o].taille);
+                sprite.SetRotation(lumiere->m_ombre[o].angle);
                  if(lumiere->m_ombre[o].angle>90&&lumiere->m_ombre[o].angle<270)
-                    Sprite.FlipX(true);
-                ecran->Draw(Sprite);
-                Sprite.SetCenter(0,0);
-                Sprite.SetScale(1, 1);
-                Sprite.SetRotation(0);
+                    sprite.FlipX(true);
+                moteurGraphique.AjouterCommande(&sprite,1);
+                //ecran->Draw(Sprite);
+                sprite.SetCenter(0,0);
+                sprite.SetScale(1, 1);
+                sprite.SetRotation(0);
             }
         }
 
-        Sprite.FlipX(false);
+        sprite.FlipX(false);
 
-        Sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64)-64+(64-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2));
-        Sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+(64-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h));
+        sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64)-64+(64-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2));
+        sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+(64-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h));
 
         if(configuration.Lumiere)
-            Sprite.SetColor(sf::Color((lumiere->intensite*lumiere->rouge)/255,(lumiere->intensite*lumiere->vert)/255,(lumiere->intensite*lumiere->bleu)/255, 255));
+            sprite.SetColor(sf::Color((lumiere->intensite*lumiere->rouge)/255,(lumiere->intensite*lumiere->vert)/255,(lumiere->intensite*lumiere->bleu)/255, 255));
 
-        if(position.x+Sprite.GetSize().x>camera->GetRect().Left)
+        if(position.x+sprite.GetSize().x>camera->GetRect().Left)
         if(position.x<camera->GetRect().Right)
-        if(position.y+Sprite.GetSize().y>camera->GetRect().Top)
+        if(position.y+sprite.GetSize().y>camera->GetRect().Top)
         if(position.y<camera->GetRect().Bottom)
-        ecran->Draw(Sprite);
+        moteurGraphique.AjouterCommande(&sprite,1);
+       // ecran->Draw(Sprite);
     }
 }
 void Personnage::regenererVie(float vie)
@@ -226,9 +230,10 @@ void Personnage::regenererVie(float vie)
 
 int Personnage::pathfinding(vector<vector<bool> > map,coordonnee exception)
 {
+    //if(!(m_arrivee.x==m_mauvaiseArrivee.x&&m_arrivee.y==m_mauvaiseArrivee.y))
     if(!(m_arrivee.x==m_positionCase.x&&m_arrivee.y==m_positionCase.y))
     {
-        bool erreur=false;
+        m_erreurPathfinding=false;
         liste_case casesVisitee;
         coordonnee depart,arrivee,decalage;
 
@@ -246,15 +251,16 @@ int Personnage::pathfinding(vector<vector<bool> > map,coordonnee exception)
 
         casesVisitee.ajouterCase(depart);
 
-        while(!casesVisitee.testerCasesEnCours(arrivee)&&!erreur)
+
+        while(!casesVisitee.testerCasesEnCours(arrivee)&&!m_erreurPathfinding)
         {
             casesVisitee.incrementerDistanceEnCours();
             casesVisitee.ajouterCasesAdjacentes(map,&arrivee,depart,exception);
-            if(casesVisitee.getDistance()>15)
-                erreur=true;
+            if(casesVisitee.getDistance()>10)
+                m_erreurPathfinding=true;
         }
 
-        if(!erreur)
+        if(!m_erreurPathfinding)
         {
             m_cheminFinal=arrivee;
 
@@ -272,18 +278,19 @@ int Personnage::pathfinding(vector<vector<bool> > map,coordonnee exception)
         }
         else
         {
-             m_mauvaiseArrivee=m_arrivee;
-            if(m_positionCase.x<m_arrivee.x)
+             //m_mauvaiseArrivee=m_arrivee;
+            /*if(m_positionCase.x<m_arrivee.x)
             m_arrivee.x=m_arrivee.x-1;
             if(m_positionCase.x>m_arrivee.x)
             m_arrivee.x=m_arrivee.x+1;
             if(m_positionCase.y<m_arrivee.y)
             m_arrivee.y=m_arrivee.y-1;
             if(m_positionCase.y>m_arrivee.y)
-            m_arrivee.y=m_arrivee.y+1;
+            m_arrivee.y=m_arrivee.y+1;*/
 
-            m_arrivee.x=m_ancienneArrivee.x;
-            m_arrivee.y=m_ancienneArrivee.y;
+            //m_arrivee.x=m_ancienneArrivee.x;
+            //m_arrivee.y=m_ancienneArrivee.y;
+            m_arrivee=m_positionCase;
             m_etat=0;
         }
 
@@ -430,7 +437,9 @@ void Personnage::frappe(coordonnee direction,coordonnee position)
 		while(m_angle<0)
 		m_angle=360+m_angle;
 
+    m_cheminFinal=m_positionCase;
     m_arrivee=m_cheminFinal;
+
 }
 
 
@@ -493,9 +502,11 @@ coordonnee Personnage::getArrivee(){return m_arrivee;}
 Caracteristique Personnage::getCaracteristique(){return m_caracteristique;}
 Caracteristique Modele_Personnage::getCaracteristique(){return m_caracteristique;}
 Lumiere Modele_Personnage::getPorteeLumineuse(){return m_porteeLumineuse;}
+Lumiere Personnage::getPorteeLumineuse(){return m_porteeLumineuse;}
 int Personnage::getEtat(){return m_etat;}
 int Personnage::getAngle(){return m_angle;}
 int Personnage::getPose(){return m_poseEnCours;}
+bool Personnage::getErreurPathfinding(){return m_erreurPathfinding;}
 coordonnee Personnage::getCoordonneePixel()
 {
     coordonnee position;

@@ -8,6 +8,7 @@ class Modele_Monstre : public Modele_Personnage
 {
     public:
     bool Charger(std::string chemin);
+    std::string m_chemin;
 };
 
 

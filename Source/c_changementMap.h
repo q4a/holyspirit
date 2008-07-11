@@ -11,21 +11,26 @@ class c_Chargement : public Contexte
 {
     public:
     c_Chargement(Jeu *jeu);
+    ~c_Chargement(){delete camera;}
     void Utiliser(Jeu *jeu);
     void setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool debut=false);
 
-    sf::View camera;
+    sf::View *camera;
 
     private:
 
 	std::string nomMap;
 
+
 	float tempsActuel,tempsPrecedent,temps_ecoule,tempsEcouleDepuisDernierAffichage;
 	float z;
-	bool augmenterNoir,m_debut;
+	bool augmenterNoir,allerVersImageChargement,m_debut;
 	coordonnee m_coordonneePerso;
-	int numeroProchaineMap;
+	int numeroProchaineMap,m_fond;
+	float m_tempsChargement;
 
 };
 
 #endif
+
+

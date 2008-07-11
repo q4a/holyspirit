@@ -14,10 +14,9 @@ class c_Inventaire : public Contexte
     c_Inventaire(Jeu *jeu);
     void Utiliser(Jeu *jeu);
 
-    private:
-
     sf::View camera;
 
+    private:
 	float tempsActuel,tempsPrecedent,temps_ecoule,tempsEcouleDepuisDernierAffichage;
 };
 

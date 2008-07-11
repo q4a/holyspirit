@@ -24,17 +24,18 @@ EventManager::EventManager()
 	console.Ajouter("",0);
     console.Ajouter("Chargement des curseurs :",0);
 
-	if(!m_curseur.LoadFromFile(configuration.chemin_curseurs+configuration.nom_curseur_base))
+/*	if(!m_curseur.LoadFromFile(configuration.chemin_curseurs+configuration.nom_curseur_base))
          console.Ajouter("Impossible de charger : "+configuration.chemin_curseurs+configuration.nom_curseur_base,1);
     else
-        console.Ajouter("Chargement de : "+configuration.chemin_curseurs+configuration.nom_curseur_base,0);
+        console.Ajouter("Chargement de : "+configuration.chemin_curseurs+configuration.nom_curseur_base,0);*/
+    idcurseur=moteurGraphique.AjouterImage(configuration.chemin_curseurs+configuration.nom_curseur_base);
 
 }
 
 void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *continuer,float temps,coordonnee tailleMap)
 {
 	Event Event;
-	if(ecran->GetEvent(Event))
+	while(ecran->GetEvent(Event))
 	{
 		switch(Event.Type)
    		{
@@ -139,10 +140,11 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
 void EventManager::AfficherCurseur(sf::RenderWindow *ecran)
 {
 	Sprite Sprite;
-	Sprite.SetImage(m_curseur);
+	Sprite.SetImage(*moteurGraphique.getImage(idcurseur));
 	Sprite.SetX(m_positionSouris.x);
 	Sprite.SetY(m_positionSouris.y);
-	ecran->Draw(Sprite);
+	moteurGraphique.AjouterCommande(&Sprite,0);
+	//ecran->Draw(Sprite);
 }
 
 bool EventManager::getEvenement(int numeroEvenement,std::string evenement)

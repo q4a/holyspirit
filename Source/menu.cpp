@@ -15,7 +15,16 @@ Menu::Menu()
     m_alphaSang=0;
     console.Ajouter("",0);
     console.Ajouter("Chargement des menus :",0);
-	if(!m_imageMiniMap.LoadFromFile(configuration.chemin_menus+configuration.nom_minimap))
+    m_imageMiniMap=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_minimap);
+    m_imageHUD=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_hud);
+    m_imageBulleVie=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_bulle_vie);
+    m_imageAme=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_ame);
+    m_imageSang=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_sang);
+    m_barrePointAme=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_barre_ame);
+    m_barreVie=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_barre_vie);
+    m_barreVieVide=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_barre_vie_vide);
+    m_inventaire=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_inventaire);
+	/*if(!m_imageMiniMap.LoadFromFile(configuration.chemin_menus+configuration.nom_minimap))
 	    console.Ajouter("Impossible de charger : "+configuration.chemin_menus+configuration.nom_minimap,1);
     else
     console.Ajouter("Chargement de : "+configuration.chemin_menus+configuration.nom_minimap,0);
@@ -60,77 +69,78 @@ Menu::Menu()
     else
     console.Ajouter("Chargement de : "+configuration.chemin_menus+configuration.nom_inventaire,0);
 
-	m_fondMiniMap.Create(configuration.Resolution.x/4, configuration.Resolution.x/4, sf::Color(0, 0, 0));
+	m_fondMiniMap.Create(configuration.Resolution.x/4, configuration.Resolution.x/4, sf::Color(0, 0, 0));*/
 }
 
 void Menu::Afficher(sf::RenderWindow* ecran,int type)
 {
-	Sprite Sprite,Sprite2;
+	Sprite sprite,sprite2;
 
 	if(type==1)
     {
         //On affiche le fond noir de la mini-map
-		Sprite.SetImage(m_fondMiniMap);
-		Sprite.SetX(configuration.Resolution.x-configuration.Resolution.x*0.25);
-		Sprite.SetY(0);
-		Sprite.SetColor(sf::Color(255,255,255,64));
-		ecran->Draw(Sprite);
+		/*sprite.SetImage(*moteurGraphique.getImage(m_fondMiniMap));
+		sprite.SetX(configuration.Resolution.x-configuration.Resolution.x*0.25);
+		sprite.SetY(0);
+		sprite.SetColor(sf::Color(255,255,255,64));
+		moteurGraphique.AjouterCommande(&sprite,0);*/
+		//ecran->Draw(sprite);
     }
 
     if(type==2)
     {
         //On affiche le cadran de la mini map
-		Sprite.SetImage(m_imageMiniMap);
-		Sprite.SetX(configuration.Resolution.x-configuration.Resolution.x/4);
-		Sprite.SetY(0);
-		Sprite.Resize(configuration.Resolution.x*0.25, configuration.Resolution.x*0.25);
-		ecran->Draw(Sprite);
+		sprite.SetImage(*moteurGraphique.getImage(m_imageMiniMap));
+		sprite.SetX(configuration.Resolution.x-configuration.Resolution.x/4);
+		sprite.SetY(0);
+		sprite.Resize(configuration.Resolution.x*0.25, configuration.Resolution.x*0.25);
+		moteurGraphique.AjouterCommande(&sprite,0);
     }
 
     if(type==3)
     {
         //On affiche l'HUD
-		Sprite2.SetImage(m_imageHUD);
-		Sprite2.SetX(0);
-		Sprite2.SetY(configuration.Resolution.y-128*configuration.Resolution.y/600);
-		Sprite2.Resize(configuration.Resolution.x, 128*configuration.Resolution.y/600);
-		ecran->Draw(Sprite2);
+		sprite2.SetImage(*moteurGraphique.getImage(m_imageHUD));
+		sprite2.SetX(0);
+		sprite2.SetY(configuration.Resolution.y-128*configuration.Resolution.y/600);
+		sprite2.Resize(configuration.Resolution.x, 128*configuration.Resolution.y/600);
+		moteurGraphique.AjouterCommande(&sprite2,0);
     }
 }
 
 
-void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracteristique,bool monstreVise,Caracteristique caracteristiqueMonstre)
+void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracteristique,int type,Caracteristique caracteristiqueMonstre)
 {
+
     if(caracteristique.vie>0)
     {
-        Sprite Sprite;
+        Sprite sprite;
+        sprite.SetImage(*moteurGraphique.getImage(m_imageBulleVie));
+        sprite.Resize(74*configuration.Resolution.x/800, 107*configuration.Resolution.y/600);
+        sprite.SetSubRect(sf::IntRect(0, (int)(107-caracteristique.vie*107/caracteristique.maxVie), 74, 107));
+        sprite.SetX(10*configuration.Resolution.x/800);
+        sprite.SetY(configuration.Resolution.y-(128-10)*configuration.Resolution.y/600+(caracteristique.maxVie-caracteristique.vie)/caracteristique.maxVie*107*configuration.Resolution.y/600);
 
-        Sprite.SetImage(m_imageBulleVie);
-        Sprite.Resize(74*configuration.Resolution.x/800, 107*configuration.Resolution.y/600);
-        Sprite.SetSubRect(sf::IntRect(0, (int)(107-caracteristique.vie*107/caracteristique.maxVie), 74, 107));
-        Sprite.SetX(10*configuration.Resolution.x/800);
-        Sprite.SetY(configuration.Resolution.y-(128-10)*configuration.Resolution.y/600+(caracteristique.maxVie-caracteristique.vie)/caracteristique.maxVie*107*configuration.Resolution.y/600);
-
-        ecran->Draw(Sprite);
+        moteurGraphique.AjouterCommande(&sprite,0);
     }
 
     if(caracteristique.pointAme>0)
     {
-        Sprite Sprite;
+        Sprite sprite;
 
-        Sprite.SetImage(m_barrePointAme);
-        Sprite.Resize(configuration.Resolution.x/4, 16*configuration.Resolution.x/800);
-        Sprite.SetSubRect(sf::IntRect(0, 0, (int)((float)(caracteristique.ancienPointAme-(float)((caracteristique.niveau-1)*(caracteristique.niveau-1)*10))/(float)(((caracteristique.niveau)*(caracteristique.niveau)*10)-(float)((caracteristique.niveau-1)*(caracteristique.niveau-1)*10))*200), (int)(16)));
+        sprite.SetImage(*moteurGraphique.getImage(m_barrePointAme));
+        sprite.Resize(configuration.Resolution.x/4, 16*configuration.Resolution.x/800);
+        sprite.SetSubRect(sf::IntRect(0, 0, (int)((float)(caracteristique.ancienPointAme-(float)((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10))/(float)(((caracteristique.niveau)*(caracteristique.niveau)*(caracteristique.niveau)*10)-(float)((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10))*200), (int)(16)));
 
-        Sprite.SetX(configuration.Resolution.x*1.5/4+4);
-        Sprite.SetY(configuration.Resolution.y-20*configuration.Resolution.y/600);
+        sprite.SetX(configuration.Resolution.x*1.5/4+4);
+        sprite.SetY(configuration.Resolution.y-20*configuration.Resolution.y/600);
 
-        ecran->Draw(Sprite);
+        moteurGraphique.AjouterCommande(&sprite,0);
     }
 
     texte.SetSize(16.f*configuration.Resolution.y/600);
 
-    char chaine[255];
+    char chaine[255],chaine2[255];
 
     texte.SetColor(Color(255,255,255,255));
 
@@ -140,122 +150,160 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
     texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
     texte.SetY(configuration.Resolution.y-40*configuration.Resolution.y/600);
 
-    ecran->Draw(texte);
+    moteurGraphique.AjouterTexte(&texte);
+    //ecran->Draw(texte);
 
-    for(int i=0;i<m_ame.size();i++)
+    if(type!=-1)
     {
-        if(m_ame[i].m_mode<3)
+        for(int i=0;i<m_ame.size();i++)
         {
-            Sprite Sprite;
+            if(m_ame[i].m_mode<3)
+            {
+                Sprite sprite;
 
-            Sprite.SetImage(m_imageAme);
-             Sprite.SetCenter(16,16);
-            Sprite.Resize(32*configuration.Resolution.x/800*m_ame[i].m_taille, 32*configuration.Resolution.x/800*m_ame[i].m_taille);
-            Sprite.SetColor(sf::Color(255,255,255,(int)m_ame[i].m_alpha));
-            Sprite.SetX((m_ame[i].m_position.x+16)*configuration.Resolution.x/800);
-            Sprite.SetY((m_ame[i].m_position.y+16)*configuration.Resolution.y/600);
+                sprite.SetImage(*moteurGraphique.getImage(m_imageAme));
+                sprite.SetCenter(16,16);
+                sprite.Resize(32*configuration.Resolution.x/800*m_ame[i].m_taille, 32*configuration.Resolution.x/800*m_ame[i].m_taille);
+                sprite.SetColor(sf::Color(255,255,255,(int)m_ame[i].m_alpha));
+                sprite.SetX((m_ame[i].m_position.x+16)*configuration.Resolution.x/800);
+                sprite.SetY((m_ame[i].m_position.y+16)*configuration.Resolution.y/600);
 
 
-            Sprite.SetRotation(m_ame[i].m_rotation);
-            ecran->Draw(Sprite);
+                sprite.SetRotation(m_ame[i].m_rotation);
+                moteurGraphique.AjouterCommande(&sprite,0);
+            }
+        }
+
+        for(int i=0;i<m_sang.size();i++)
+        {
+            Sprite sprite;
+
+            sprite.SetImage(*moteurGraphique.getImage(m_imageSang));
+            sprite.SetCenter(200*m_sang[i].m_taille,200*m_sang[i].m_taille);
+            sprite.SetRotation(m_sang[i].m_rotation);
+            sprite.SetCenter(0,0);
+            sprite.SetSubRect(sf::IntRect(200*m_sang[i].m_numero, 0,200+200*m_sang[i].m_numero, 200));
+            sprite.Resize(200*configuration.Resolution.x/800*m_sang[i].m_taille, 200*configuration.Resolution.y/600*m_sang[i].m_taille);
+            sprite.SetColor(sf::Color(255,255,255,(int)m_sang[i].m_alpha));
+            sprite.SetX(m_sang[i].m_position.x*configuration.Resolution.x/800);
+            sprite.SetY(m_sang[i].m_position.y*configuration.Resolution.y/600);
+
+            moteurGraphique.AjouterCommande(&sprite,0);
         }
     }
 
-    for(int i=0;i<m_sang.size();i++)
+    if(type==1)
     {
-        Sprite Sprite;
+        Sprite sprite,sprite2;
 
-        Sprite.SetImage(m_imageSang);
-        Sprite.SetCenter(200*m_sang[i].m_taille,200*m_sang[i].m_taille);
-        Sprite.SetRotation(m_sang[i].m_rotation);
-        Sprite.SetCenter(0,0);
-        Sprite.SetSubRect(sf::IntRect(200*m_sang[i].m_numero, 0,200+200*m_sang[i].m_numero, 200));
-        Sprite.Resize(200*configuration.Resolution.x/800*m_sang[i].m_taille, 200*configuration.Resolution.y/600*m_sang[i].m_taille);
-        Sprite.SetColor(sf::Color(255,255,255,(int)m_sang[i].m_alpha));
-        Sprite.SetX(m_sang[i].m_position.x*configuration.Resolution.x/800);
-        Sprite.SetY(m_sang[i].m_position.y*configuration.Resolution.y/600);
+        sprite.SetImage(*moteurGraphique.getImage(m_barreVieVide));
+         sprite.Resize(configuration.Resolution.x/2, 32*configuration.Resolution.x/800);
+         sprite.SetX(configuration.Resolution.x/2-sprite.GetSize().x/2);
+        sprite.SetY(8);
 
-        ecran->Draw(Sprite);
-    }
+        moteurGraphique.AjouterCommande(&sprite,0);
 
-    if(monstreVise)
-    {
-        Sprite Sprite,Sprite2;
-
-        Sprite.SetImage(m_barreVieVide);
-         Sprite.Resize(configuration.Resolution.x/2, 32*configuration.Resolution.x/800);
-         Sprite.SetX(configuration.Resolution.x/2-Sprite.GetSize().x/2);
-        Sprite.SetY(8);
-
-        ecran->Draw(Sprite);
-
-        Sprite2.SetImage(m_barreVie);
-        Sprite2.Resize(configuration.Resolution.x/2, 32*configuration.Resolution.x/800);
-        Sprite2.SetSubRect(sf::IntRect(0, 0, (int)(caracteristiqueMonstre.vie/caracteristiqueMonstre.maxVie*400), 32));
-        Sprite2.SetX(configuration.Resolution.x/2-Sprite.GetSize().x/2);
-        Sprite2.SetY(8);
+        sprite2.SetImage(*moteurGraphique.getImage(m_barreVie));
+        if(caracteristiqueMonstre.rang==1){sprite2.SetColor(Color(128,64,255,255));}
+        if(caracteristiqueMonstre.rang==2){sprite2.SetColor(Color(32,32,255,255));}
+        sprite2.Resize(configuration.Resolution.x/2, 32*configuration.Resolution.x/800);
+        sprite2.SetSubRect(sf::IntRect(0, 0, (int)(caracteristiqueMonstre.vie/caracteristiqueMonstre.maxVie*400), 32));
+        sprite2.SetX(configuration.Resolution.x/2-sprite.GetSize().x/2);
+        sprite2.SetY(8);
 
 
-        ecran->Draw(Sprite2);
+        moteurGraphique.AjouterCommande(&sprite2,0);
 
         //char chaine[255];
 
-        texte.SetSize(18.f*configuration.Resolution.y/600);
+        texte.SetSize(20.f*configuration.Resolution.y/600);
+         texte.SetStyle(1);
 
         sprintf(chaine,"%s (%ld)",caracteristiqueMonstre.nom.c_str(),caracteristiqueMonstre.niveau);
-        texte.SetText(chaine);
+        sprintf(chaine2,"%s",chaine);
+        if(caracteristiqueMonstre.rang==1){sprintf(chaine2,"Champion : %s",chaine);}
+        if(caracteristiqueMonstre.rang==2){sprintf(chaine2,"Chef : %s",chaine);}
+        texte.SetText(chaine2);
+
 
         texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2+2);
-        texte.SetY(14*configuration.Resolution.y/600);
+        texte.SetY(12*configuration.Resolution.y/600+2);
         texte.SetColor(Color(0,0,0,255));
-        ecran->Draw(texte);
-        texte.SetColor(Color(255,255,255,255));
+
+        moteurGraphique.AjouterTexte(&texte);
+        //ecran->Draw(texte);
+        texte.SetColor(Color(224,224,224,255));
+        if(caracteristiqueMonstre.rang==1){texte.SetColor(Color(100,50,200,255));}
+        if(caracteristiqueMonstre.rang==2){texte.SetColor(Color(32,32,128,255));}
 
         texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
         texte.SetY(12*configuration.Resolution.y/600);
-        ecran->Draw(texte);
+        moteurGraphique.AjouterTexte(&texte);
+        //ecran->Draw(texte);
+
+         texte.SetStyle(0);
     }
 }
 
-void Menu::AfficherChargement(sf::RenderWindow* ecran,int z,string nom)
+void Menu::AfficherChargement(sf::RenderWindow* ecran,string nom,int fond,int z=50)
 {
-    texte.SetSize(60.f*configuration.Resolution.y/600);
+    Sprite sprite;
+
+    sprite.SetImage(*moteurGraphique.getImage(fond));
+    sprite.SetColor(Color(255,255,255,z*255/50));
+    sprite.SetX(0);
+    sprite.SetY(0);
+    sprite.Resize(configuration.Resolution.x,configuration.Resolution.y*5/6);
+    moteurGraphique.AjouterCommande(&sprite,0);
+
+    /*texte.SetSize(60.f*configuration.Resolution.y/600);
     texte.SetText("Chargement");
 
-    texte.SetColor(Color(0,0,0,255-(z*255/50)));
+    texte.SetColor(Color(0,0,0,z*255/50));
     texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2+4);
     texte.SetY(configuration.Resolution.y/2-(texte.GetRect().Bottom-texte.GetRect().Top)/2-texte.GetSize()+4);
-    ecran->Draw(texte);
+    moteurGraphique.AjouterTexte(&texte);
+    //ecran->Draw(texte);
 
-    texte.SetColor(Color(64,0,128,255-(z*255/50)));
+    texte.SetColor(Color(64,0,128,z*255/50));
     texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
     texte.SetY(configuration.Resolution.y/2-(texte.GetRect().Bottom-texte.GetRect().Top)/2-texte.GetSize());
-    ecran->Draw(texte);
+    moteurGraphique.AjouterTexte(&texte);
+    //ecran->Draw(texte);*/
 
-    texte.SetSize(30.f*configuration.Resolution.y/600);
+    texte.SetSize(50.f*configuration.Resolution.y/600);
     char chaine[255];
     sprintf(chaine,"%s",nom.c_str());
     texte.SetText(chaine);
 
+    texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2-1);
+    texte.SetY(configuration.Resolution.y-(texte.GetRect().Bottom-texte.GetRect().Top)/2-1-60*configuration.Resolution.y/600);
+    texte.SetColor(Color(200,130,70,z*255/50));
+    moteurGraphique.AjouterTexte(&texte);
+
     texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2+2);
-    texte.SetY(configuration.Resolution.y/2-(texte.GetRect().Bottom-texte.GetRect().Top)/2+2);
-    texte.SetColor(Color(0,0,0,255-(z*255/50)));
-    ecran->Draw(texte);
+    texte.SetY(configuration.Resolution.y-(texte.GetRect().Bottom-texte.GetRect().Top)/2+2-60*configuration.Resolution.y/600);
+    texte.SetColor(Color(30,20,10,z*255/50));
+    moteurGraphique.AjouterTexte(&texte);
+    //ecran->Draw(texte);
 
     texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
-    texte.SetY(configuration.Resolution.y/2-(texte.GetRect().Bottom-texte.GetRect().Top)/2);
-    texte.SetColor(Color(64,0,128,255-(z*255/50)));
-    ecran->Draw(texte);
+    texte.SetY(configuration.Resolution.y-(texte.GetRect().Bottom-texte.GetRect().Top)/2-60*configuration.Resolution.y/600);
+    texte.SetColor(Color(150,100,50,z*255/50));
+    moteurGraphique.AjouterTexte(&texte);
+    //ecran->Draw(texte);
 }
 
 void Menu::AfficherInventaire(sf::RenderWindow* ecran)
 {
-    Sprite Sprite;
+    Sprite sprite;
 
-    Sprite.SetImage(m_inventaire);
-    Sprite.Resize(configuration.Resolution.x, configuration.Resolution.y*550/600);
+    sprite.SetImage(*moteurGraphique.getImage(m_inventaire));
+    sprite.Resize(configuration.Resolution.x, configuration.Resolution.y*550/600);
 
-    ecran->Draw(Sprite);
+    moteurGraphique.AjouterCommande(&sprite,0);
+
+   // ecran->Draw(sprite);
 }
 
 void Menu::AjouterSang(coordonneeDecimal position)
@@ -327,13 +375,6 @@ int Menu::GererDynamique(float temps)
             nombre_ame_absorbee++;
     }
 
-    if(nombre_ame_absorbee>=m_ame.size())
-        m_ame.clear();
-
-
-
-
-
     for (IterSang = m_sang.begin(); IterSang != m_sang.end(); IterSang++ )
     {
         IterSang->m_alpha-=temps*300;
@@ -344,9 +385,9 @@ int Menu::GererDynamique(float temps)
             nombre_sang_disparu++;
     }
 
-    if(nombre_ame_absorbee>=m_ame.size())
+    if(nombre_ame_absorbee>=m_ame.size()&&m_ame.size()>0)
         m_ame.clear();
-    if(nombre_sang_disparu>=m_sang.size())
+    if(nombre_sang_disparu>=m_sang.size()&&m_sang.size()>0)
         m_sang.clear();
 
     //m_alphaSang-=temps*200;

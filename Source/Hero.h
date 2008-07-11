@@ -17,6 +17,10 @@ class Hero
 {
 	public:
 	Hero();
+
+	void Sauvergarder();
+	void Charger();
+
 	void placerCamera(sf::View *camera,coordonnee dimensionsMap);
 
 	void testMontreVise(Monstre *monstre,int hauteurMap);

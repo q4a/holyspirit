@@ -20,6 +20,7 @@ class Evenement
 	void AjouterInformation(int information); // Ajouter une information à l'événement ( ex : pour un changement de map, le numéro de la prochaine map, la position du héro, etc... )
 	int getType();
 	int getInformation(int numeroInfo);
+	int getNombreInformation(){return m_information.size();}
 	void deleteInformations();
 
 	Evenement operator=(const Evenement &evenement);

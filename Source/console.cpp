@@ -22,7 +22,8 @@ void Console::Afficher(sf::RenderWindow* ecran)
         if(m_erreur[i])
             texte.SetColor(sf::Color(255,0,0,255));
 
-        ecran->Draw(texte);
+        //ecran->Draw(texte);
+        moteurGraphique.AjouterTexte(&texte);
 
     }
 }

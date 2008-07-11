@@ -18,6 +18,9 @@ c_Chargement::c_Chargement(Jeu *jeu)
 {
     z=0;
     augmenterNoir = true;
+    camera=new sf::View();
+    CopierCamera(jeu->m_jeu->camera);
+    jeu->m_contexte->CopierCamera(jeu->m_chargement->camera);
 }
 
 void c_Chargement::setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool debut)
@@ -48,34 +51,54 @@ void c_Chargement::setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool
                 getline(fichier, nomMap);
             }
         }while(caractere!='$');
+
+        do
+        {
+            //Chargement du nom
+            fichier.get(caractere);
+            if(caractere=='*')
+            {
+                string chemin;
+                getline(fichier, chemin);
+                m_fond=moteurGraphique.AjouterImage(chemin);
+            }
+        }while(caractere!='$');
     }
     fichier.close();
+
+    allerVersImageChargement=true;
+    m_tempsChargement=0;
 }
 
 void c_Chargement::Utiliser(Jeu *jeu)
 {
-    jeu->m_display=false;
-    jeu->hero.placerCamera(&camera,jeu->map.getDimensions());
-    jeu->ecran.SetView(camera);
+    jeu->m_display=true;
+    jeu->hero.placerCamera(camera,jeu->map.getDimensions());
+    jeu->ecran.SetView(*camera);
 
     if(configuration.Lumiere)
-        jeu->map.calculerOmbresEtLumieres(&jeu->ecran,&jeu->hero,&camera);
+        jeu->map.calculerOmbresEtLumieres(&jeu->ecran,&jeu->hero,camera);
 
     temps_ecoule=0;
     temps_ecoule=jeu->Clock.GetElapsedTime();
     tempsEcouleDepuisDernierAffichage+=temps_ecoule;
     jeu->Clock.Reset();
 
-    if(z<=0&&augmenterNoir)
+    if(z>=49&&!augmenterNoir&&allerVersImageChargement)
     {
+        jeu->Clock.Reset();
         jeu->hero.m_personnage.setCoordonnee(m_coordonneePerso);
+
+        if(!m_debut)
+            jeu->map.Sauvegarder();
 
         jeu->map.Detruire();
 
         if(!jeu->map.Charger(numeroProchaineMap))
             throw "CRITICAL ERROR";
 
-        jeu->hero.placerCamera(&camera,jeu->map.getDimensions());
+        jeu->hero.placerCamera(jeu->m_jeu->camera,jeu->map.getDimensions());
+        jeu->m_contexte->camera->Zoom(configuration.zoom);
 
         coordonnee position;
         position.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1+jeu->map.getDimensions().y)/5;
@@ -86,17 +109,23 @@ void c_Chargement::Utiliser(Jeu *jeu)
         jeu->map.musiquePlay(position);
 
         if(configuration.Lumiere)
-            jeu->map.calculerOmbresEtLumieres(&jeu->ecran,&jeu->hero,&camera);
+            jeu->map.calculerOmbresEtLumieres(&jeu->ecran,&jeu->hero,camera);
 
-        jeu->Clock.Reset();
-
-        augmenterNoir=false;
+        while(jeu->Clock.GetElapsedTime()<1){}
+        allerVersImageChargement=false;
     }
 
-     if(augmenterNoir)
+
+     if(z<=1&&augmenterNoir)
+        augmenterNoir=false,z=1;
+    if(z>=49&&!augmenterNoir)
+        augmenterNoir=true,z=49;
+
+    if(augmenterNoir)
         z-=temps_ecoule*200;
     else
         z+=temps_ecoule*200;
+
 
     if(z>50)
         z=50;
@@ -106,58 +135,55 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
     if (sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
     {
-        camera.Zoom(configuration.zoom);
-        jeu->map.setVolumeMusique((int)(z*(float)configuration.volume/50));
-        jeu->ecran.SetView(jeu->ecran.GetDefaultView());
-        if(!m_debut&&augmenterNoir||!augmenterNoir)
+        if(allerVersImageChargement&&z<49&&augmenterNoir||!allerVersImageChargement&&z>0&&!augmenterNoir)
         {
-            jeu->ecran.SetView(camera);
-            coordonnee temp;
-            jeu->map.Afficher(&jeu->ecran,&camera,1,&jeu->hero,temp);
-            jeu->ecran.SetView(jeu->ecran.GetDefaultView());
-
-            if(configuration.Minimap)
+            camera->Zoom(configuration.zoom);
+            jeu->map.setVolumeMusique((int)(z*(float)configuration.volume/50));
+            if(!m_debut&&augmenterNoir||!augmenterNoir)
             {
-                jeu->menu.Afficher(&jeu->ecran,1);
-                jeu->menu.Afficher(&jeu->ecran,2);
+                coordonnee temp;
+                jeu->map.Afficher(&jeu->ecran,camera,1,&jeu->hero,temp);
+
+                if(configuration.Minimap)
+                {
+                    jeu->menu.Afficher(&jeu->ecran,1);
+                    jeu->menu.Afficher(&jeu->ecran,2);
+                }
+                jeu->menu.Afficher(&jeu->ecran,3);
+                jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),0,jeu->hero.m_personnage.getCaracteristique());
             }
-            jeu->menu.Afficher(&jeu->ecran,3);
-            jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),0,jeu->hero.m_personnage.getCaracteristique());
         }
+        else
+        jeu->menu.AfficherChargement(&jeu->ecran,nomMap,m_fond,50);
+
         jeu->EffectNoir.SetParameter("color", ((float)z)/50, ((float)z)/50, ((float)z)/50);
-        jeu->ecran.Draw(jeu->EffectNoir);
 
-        jeu->menu.AfficherChargement(&jeu->ecran,(int)z,nomMap);
-
-        jeu->m_display=true;
     }
     else
     {
-        jeu->map.setVolumeMusique((int)(z*(float)configuration.volume/50));
-        jeu->ecran.SetView(jeu->ecran.GetDefaultView());
-        if(!m_debut&&augmenterNoir||!augmenterNoir)
+        if(allerVersImageChargement&&z<49&&augmenterNoir||!allerVersImageChargement&&z>0&&!augmenterNoir)
         {
-            jeu->ecran.SetView(camera);
-            coordonnee temp;
-            jeu->map.Afficher(&jeu->ecran,&camera,1,&jeu->hero,temp);
-            jeu->ecran.SetView(jeu->ecran.GetDefaultView());
-
-            if(configuration.Minimap)
+            jeu->map.setVolumeMusique((int)(z*(float)configuration.volume/50));
+            if(!m_debut&&augmenterNoir||!augmenterNoir)
             {
-                jeu->menu.Afficher(&jeu->ecran,1);
-                jeu->menu.Afficher(&jeu->ecran,2);
+                coordonnee temp;
+                jeu->map.Afficher(&jeu->ecran,camera,1,&jeu->hero,temp);
+                if(configuration.Minimap)
+                {
+                    jeu->menu.Afficher(&jeu->ecran,1);
+                    jeu->menu.Afficher(&jeu->ecran,2);
+                }
+                jeu->menu.Afficher(&jeu->ecran,3);
+                jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),0,jeu->hero.m_personnage.getCaracteristique());
             }
-            jeu->menu.Afficher(&jeu->ecran,3);
-            jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),0,jeu->hero.m_personnage.getCaracteristique());
         }
-
-        jeu->menu.AfficherChargement(&jeu->ecran,(int)z,nomMap);
-
-        jeu->m_display=true;
+        else
+            jeu->menu.AfficherChargement(&jeu->ecran,nomMap,m_fond,(int)z);
     }
 
-    if(z>=49&&!augmenterNoir)
+    if(z>=49&&!augmenterNoir&&!allerVersImageChargement)
     {
         jeu->m_contexte = jeu->m_jeu;
+        jeu->m_contexte->CopierCamera(jeu->m_jeu->camera);
     }
 }

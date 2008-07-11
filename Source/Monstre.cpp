@@ -19,6 +19,41 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
 {
     m_modele=numero;
     m_caracteristique=modele->getCaracteristique();
+    m_porteeLumineuse=modele->getPorteeLumineuse();
+    if(m_caracteristique.rang==0)
+    {
+        int temp=rand()%(1000);
+        if(temp<50)
+            m_caracteristique.rang=1;
+        if(temp<15)
+            m_caracteristique.rang=2;
+
+        if(m_caracteristique.rang==1)
+        {
+            m_porteeLumineuse.intensite=512;
+            m_caracteristique.maxVie*=3;
+            m_caracteristique.vie*=3;
+            m_caracteristique.degatsMin*=1;
+            m_caracteristique.degatsMax*=1;
+            m_caracteristique.pointAme*=2;
+        }
+        if(m_caracteristique.rang==2)
+        {
+            m_porteeLumineuse.intensite=768;
+            m_caracteristique.maxVie*=5;
+            m_caracteristique.vie*=5;
+            m_caracteristique.degatsMin*=2;
+            m_caracteristique.degatsMax*=2;
+            m_caracteristique.pointAme*=4;
+        }
+
+        if(m_caracteristique.rang>0)
+        {
+            m_porteeLumineuse.rouge=rand()%255;
+            m_porteeLumineuse.vert=rand()%255;
+            m_porteeLumineuse.bleu=rand()%255;
+        }
+    }
 }
 
 bool Modele_Monstre::Charger(string chemin)
@@ -30,6 +65,8 @@ bool Modele_Monstre::Charger(string chemin)
     m_caracteristique.vie=0;
     m_caracteristique.degatsMin=0;
     m_caracteristique.degatsMax=0;
+
+    m_chemin=chemin;
 
     ifstream fichier;
     fichier.open(chemin.c_str(), ios::in);
@@ -45,12 +82,13 @@ bool Modele_Monstre::Charger(string chemin)
     			string cheminImage;
                 getline(fichier, cheminImage);
                 //AjouterImage(cheminImage);
-                sf::Image temp;
+                /*sf::Image temp;
                 m_image.push_back(temp);
                 if(!m_image[m_image.size()-1].LoadFromFile(cheminImage.c_str()))
                     console.Ajouter("Impossible de charger : "+cheminImage,1);
                 else
-                console.Ajouter("Chargement de : "+cheminImage,0);
+                console.Ajouter("Chargement de : "+cheminImage,0);*/
+                m_image.push_back(moteurGraphique.AjouterImage(cheminImage));
     		}
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0; }
     	}while(caractere!='$');
@@ -113,6 +151,18 @@ bool Modele_Monstre::Charger(string chemin)
     		if(caractere=='*')
             {
                 getline(fichier, m_caracteristique.nom);
+            }
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
+
+    	do
+    	{
+    	    //Chargement de la lumière ambiante
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
+                fichier>>m_caracteristique.rang;
             }
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
 
@@ -209,6 +259,9 @@ void Monstre::testerVision(coordonnee positionHero)
         }
         if(fabs(positionHero.x-m_positionCase.x)>10||fabs(positionHero.y-m_positionCase.y)>10)
         m_vu=0,m_etat=0,m_poseEnCours=0;
+
+        //if(m_erreurPathfinding)
+         //   m_vu=0;
     }
 }
 

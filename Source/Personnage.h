@@ -34,7 +34,7 @@ class Modele_Personnage
 	Caracteristique getCaracteristique();
 
 	std::vector <std::vector<std::vector<Pose> > > m_pose;
-	std::vector <sf::Image> m_image;
+	std::vector <int> m_image;
 
 	bool m_ombre;
 
@@ -53,6 +53,7 @@ class Personnage
 	coordonnee getArrivee();
 	coordonnee getCoordonneePixel();
 	coordonnee getProchaineCase();
+	bool getErreurPathfinding();
 	int animer(Modele_Personnage *modele,int hauteur_map,float temps);
 
 	bool seDeplacer(float);
@@ -79,15 +80,17 @@ class Personnage
 	int getEtat();
 	int getAngle();
 	int getPose();
+	Lumiere getPorteeLumineuse();
 	Caracteristique getCaracteristique();
 
 	protected:
 	int m_etat,m_poseEnCours,m_angle;
 	float m_animation;
-	bool m_monstre;
+	bool m_monstre,m_erreurPathfinding;
 	Caracteristique m_caracteristique;
 	coordonnee m_cheminFinal,m_arrivee,m_ancienneArrivee,m_mauvaiseArrivee, m_positionCase,m_positionAffichage,m_positionPixelPrecedente;
 	coordonneeDecimal m_positionPixel;
+	Lumiere m_porteeLumineuse;
 };
 
 

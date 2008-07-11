@@ -40,7 +40,7 @@ bool liste_case::ajouterCasesAdjacentes(std::vector<std::vector<bool> > grille,c
 	coordonnee enCours;
 
 	//J'ajoute toutes les cases adjacentes à celle que j'ai déjà dans ma liste
-	for(int i=0;i<m_liste.size();i++)
+	for(int i=m_liste.size()-1;i>=0;i--)
 		if(m_liste[i].getDistance()==m_distanceEnCours-1)
 		{
 			enCours.x=m_liste[i].getPosition().x+1;
@@ -147,6 +147,8 @@ bool liste_case::ajouterCasesAdjacentes(std::vector<std::vector<bool> > grille,c
                     return 0;
                 }
 		}
+		else
+            return 0;
 }
 
 void liste_case::incrementerDistanceEnCours(){m_distanceEnCours++;}

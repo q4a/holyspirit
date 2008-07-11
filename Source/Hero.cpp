@@ -10,6 +10,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <math.h>
+#include <dirent.h>
 
 using namespace std;
 using namespace sf;
@@ -46,10 +47,71 @@ Hero::Hero()
 	temp.positionAncienAme=0;
 	temp.niveau=1;
 	temp.nom="Héro";
+//	temp.rang=0;
 
 	m_personnage.setCaracteristique(temp);
 
 	m_monstreVise=-1;
+}
+
+void Hero::Sauvergarder()
+{
+    ofstream fichier;
+    fichier.open((configuration.chemin_saves+"hero.sav.hs").c_str(), ios::out);
+    if(fichier)
+    {
+        fichier<<"*nom: "<<m_personnage.getCaracteristique().nom<<"\n";
+        fichier<<"*maxVie: "<<m_personnage.getCaracteristique().maxVie<<"\n";
+        fichier<<"*dgtsMin: "<<m_personnage.getCaracteristique().degatsMin<<"\n";
+        fichier<<"*dgtsMax: "<<m_personnage.getCaracteristique().degatsMax<<"\n";
+        fichier<<"*vitesse: "<<m_personnage.getCaracteristique().vitesse<<"\n";
+        fichier<<"*ptAme: "<<m_personnage.getCaracteristique().pointAme<<"\n";
+        fichier<<"*niveau: "<<m_personnage.getCaracteristique().niveau<<"\n";
+        fichier.close();
+    }
+}
+void Hero::Charger()
+{
+
+    struct dirent *lecture;
+
+	DIR *repertoire;
+    repertoire = opendir(configuration.chemin_saves.c_str());
+    while ((lecture = readdir(repertoire)))
+    {
+        string temp="hero.sav.hs";
+        if(lecture->d_name==temp)
+        {
+            ifstream fichier;
+            fichier.open((configuration.chemin_saves+"hero.sav.hs").c_str(), ios::in);
+            if(fichier)
+            {
+                char caractere;
+                Caracteristique charTemp;
+                charTemp=m_personnage.getCaracteristique();
+                do
+                {
+                    fichier.get(caractere);
+                    if(caractere=='*')
+                    {
+                        string temp;
+                        fichier>>temp;
+                            if(temp == "nom:")  fichier>>charTemp.nom;
+                            if(temp == "maxVie:")  fichier>>charTemp.maxVie,charTemp.vie=charTemp.maxVie;
+                            if(temp == "dgtsMin:")  fichier>>charTemp.degatsMin;
+                            if(temp == "dgtsMax:")  fichier>>charTemp.degatsMax;
+                            if(temp == "vitesse:")  fichier>>charTemp.vitesse;
+                            if(temp == "ptAme:")  fichier>>charTemp.pointAme,charTemp.ancienPointAme=charTemp.pointAme,charTemp.positionAncienAme=charTemp.pointAme;
+                            if(temp == "niveau:")  fichier>>charTemp.niveau;
+                    }
+                }while(!fichier.eof());
+                m_personnage.setCaracteristique(charTemp);
+                fichier.close();
+            }
+        }
+    }
+    closedir(repertoire);
+
 }
 
 void Hero::placerCamera(sf::View *camera,coordonnee dimensionsMap)
