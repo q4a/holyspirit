@@ -82,7 +82,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
             //Gestion du temps
             tempsEcoule = jeu->Clock.GetElapsedTime();
 
-            if(tempsEcoule>0.01)
+            if(tempsEcoule>0.001)
             {
                 jeu->m_display=false;
                 tempsEcouleDepuisDernierDeplacement+=tempsEcoule;
@@ -114,7 +114,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     configuration.effetMort=0,jeu->sonMort.SetVolume(0);
                 ///Déplacements
 
-                if(tempsEcouleDepuisDernierDeplacement>=0.015)
+                if(tempsEcouleDepuisDernierDeplacement>=0.01)
                 {
                     coordonnee temp={-1 ,-1 ,-1 ,-1};
                     if(jeu->hero.getMonstreVise()==-1)
@@ -171,7 +171,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 ///Animation
 
-                if(tempsDepuisDerniereAnimation>0.05)
+                if(tempsDepuisDerniereAnimation>0.055)
                 {
                     lumiere=true;
                     if(jeu->hero.m_personnage.animer(&jeu->hero.m_modelePersonnage,jeu->map.getDimensions().y,tempsDepuisDerniereAnimation)==1) //Animation du héro
