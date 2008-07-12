@@ -88,6 +88,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
                 tempsEcouleDepuisDernierDeplacement+=tempsEcoule;
                 tempsDepuisDerniereAnimation+=tempsEcoule;
                 tempsEcouleDepuisDernierAffichage+=tempsEcoule;
+                tempsEcouleDepuisDernierIA+=tempsEcoule;
+                tempsEcouleDepuisDernierCalculLumiere+=tempsEcoule;
                 configuration.minute+=tempsEcoule;
                 if(configuration.minute>=60)
                 configuration.minute=0,configuration.heure++;
@@ -112,9 +114,18 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     configuration.effetMort=200-(jeu->hero.m_personnage.getCaracteristique().vie*400/jeu->hero.m_personnage.getCaracteristique().maxVie),jeu->sonMort.SetVolume(configuration.effetMort);
                 else
                     configuration.effetMort=0,jeu->sonMort.SetVolume(0);
+
+                ///IA
+
+                if(tempsEcouleDepuisDernierIA>=0.016)
+                {
+                    jeu->map.gererMonstres(&jeu->hero,tempsEcouleDepuisDernierIA);
+                    tempsEcouleDepuisDernierIA=0;
+                }
+
                 ///Déplacements
 
-                if(tempsEcouleDepuisDernierDeplacement>=0.01)
+                if(tempsEcouleDepuisDernierDeplacement>=0.011)
                 {
                     coordonnee temp={-1 ,-1 ,-1 ,-1};
                     if(jeu->hero.getMonstreVise()==-1)
@@ -135,15 +146,6 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     }
 
                     //jeu->Clock.Reset();
-
-                    jeu->map.gererMonstres(&jeu->hero,tempsEcouleDepuisDernierDeplacement);
-
-                    /// On calcule les lumières et les ombres
-                    if(configuration.Lumiere&&lumiere)
-                    {
-                        jeu->map.calculerOmbresEtLumieres(&jeu->ecran,&jeu->hero,camera);
-                        lumiere=false;
-                    }
                     //else
                     //jeu->map.calculerOmbresEtLumieresDuHero(&jeu->ecran,&jeu->hero,camera);
                     //else
@@ -168,12 +170,25 @@ void c_Jeu::Utiliser(Jeu *jeu)
                 }
 
 
+                /// On calcule les lumières et les ombre
+
+                if(tempsEcouleDepuisDernierCalculLumiere>0.027)
+                {
+                    lumiere=true;
+                    tempsEcouleDepuisDernierCalculLumiere=0;
+                }
+                if(configuration.Lumiere&&lumiere)
+                {
+                        jeu->map.calculerOmbresEtLumieres(&jeu->ecran,&jeu->hero,camera);
+                        lumiere=false;
+                }
+
 
                 ///Animation
 
-                if(tempsDepuisDerniereAnimation>0.055)
+                if(tempsDepuisDerniereAnimation>0.053)
                 {
-                    lumiere=true;
+
                     if(jeu->hero.m_personnage.animer(&jeu->hero.m_modelePersonnage,jeu->map.getDimensions().y,tempsDepuisDerniereAnimation)==1) //Animation du héro
                     {
                         if(jeu->map.infligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,camera)) // Si l'enemi meut, renvoi true
@@ -186,7 +201,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 ///Affichage
 
-                if(tempsEcouleDepuisDernierAffichage>0.01&&configuration.syncronisation_verticale||!configuration.syncronisation_verticale)
+                if(tempsEcouleDepuisDernierAffichage>0.012&&configuration.syncronisation_verticale||!configuration.syncronisation_verticale)
                 {
                     jeu->hero.placerCamera(camera,jeu->map.getDimensions()); // On place la camera suivant ou se trouve le perso
                     camera->Zoom(configuration.zoom);

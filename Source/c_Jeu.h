@@ -23,7 +23,7 @@ class c_Jeu : public Contexte
 	char chaine[10];
 	sf::String variableQuiNeSerARien,Version,Temps,fps;
 
-	float tempsActuel,tempsPrecedent,tempsDepuisDerniereAnimation,tempsEcoule,tempsEcouleDepuisDernierDeplacement,tempsEcouleDepuisDernierAffichage,tempsEcouleDepuisFPS,tempsEffetMort;
+	float tempsActuel,tempsPrecedent,tempsDepuisDerniereAnimation,tempsEcoule,tempsEcouleDepuisDernierCalculLumiere,tempsEcouleDepuisDernierDeplacement,tempsEcouleDepuisDernierIA,tempsEcouleDepuisDernierAffichage,tempsEcouleDepuisFPS,tempsEffetMort;
 
 };
 
