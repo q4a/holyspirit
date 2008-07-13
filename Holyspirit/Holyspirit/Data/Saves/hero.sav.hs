@@ -3,5 +3,5 @@
 *dgtsMin: 3
 *dgtsMax: 5
 *vitesse: 1
-*ptAme: 217
+*ptAme: 263
 *niveau: 3
