@@ -12,6 +12,7 @@ using namespace sf;
 
 c_Jeu::c_Jeu(Jeu *jeu)
 {
+        m_action=0;
         continuer=true,lumiere=false,augmenter=false;
         chaine[10];
         tempsActuel=0,tempsPrecedent=0,tempsDepuisDerniereAnimation=0,tempsEcoule=0,tempsEcouleDepuisDernierDeplacement=0,tempsEcouleDepuisDernierAffichage=0,tempsEcouleDepuisFPS=0,tempsEffetMort=1;
@@ -82,7 +83,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
             //Gestion du temps
             tempsEcoule = jeu->Clock.GetElapsedTime();
 
-            if(tempsEcoule>0.001)
+            if(tempsEcoule>0.01)
             {
                 jeu->m_display=false;
                 tempsEcouleDepuisDernierDeplacement+=tempsEcoule;
@@ -90,6 +91,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                 tempsEcouleDepuisDernierAffichage+=tempsEcoule;
                 tempsEcouleDepuisDernierIA+=tempsEcoule;
                 tempsEcouleDepuisDernierCalculLumiere+=tempsEcoule;
+                actionPrecedente+=tempsEcoule;
                 configuration.minute+=tempsEcoule;
                 if(configuration.minute>=60)
                 configuration.minute=0,configuration.heure++;
@@ -115,17 +117,25 @@ void c_Jeu::Utiliser(Jeu *jeu)
                 else
                     configuration.effetMort=0,jeu->sonMort.SetVolume(0);
 
-                ///IA
+                ///Action
 
-                if(tempsEcouleDepuisDernierIA>=0.016)
+                if(actionPrecedente>=0.005)
+                {
+                    m_action++;
+                    actionPrecedente=0;
+                    if(m_action>3)
+                        m_action=0;
+
+                    ///IA
+
+                if(m_action==0)
                 {
                     jeu->map.gererMonstres(&jeu->hero,tempsEcouleDepuisDernierIA);
                     tempsEcouleDepuisDernierIA=0;
                 }
 
                 ///Déplacements
-
-                if(tempsEcouleDepuisDernierDeplacement>=0.011)
+                if(m_action==1)
                 {
                     coordonnee temp={-1 ,-1 ,-1 ,-1};
                     if(jeu->hero.getMonstreVise()==-1)
@@ -135,7 +145,6 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     {
                         jeu->hero.m_personnage.pathfinding(jeu->map.getAlentourDuPersonnage(jeu->hero.m_personnage.getCoordonnee()),temp); // Recherche du chemin
                         if(configuration.Lumiere)
-                            //jeu->map.calculerOmbresEtLumieres(ecran,&jeu->hero,&camera);
                             lumiere=true;
                     }
                     if(jeu->hero.getMonstreVise()>-1)
@@ -144,14 +153,6 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     if(jeu->map.testEvenement(camera,jeu)>-1) // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
                     {
                     }
-
-                    //jeu->Clock.Reset();
-                    //else
-                    //jeu->map.calculerOmbresEtLumieresDuHero(&jeu->ecran,&jeu->hero,camera);
-                    //else
-                    //lumiere=true;
-
-
 
                     ///Placer l'écouteur, à la position du héro
                     coordonnee position;
@@ -172,7 +173,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 /// On calcule les lumières et les ombre
 
-                if(tempsEcouleDepuisDernierCalculLumiere>0.027)
+                if(m_action==2)
                 {
                     lumiere=true;
                     tempsEcouleDepuisDernierCalculLumiere=0;
@@ -186,7 +187,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 ///Animation
 
-                if(tempsDepuisDerniereAnimation>0.053)
+                if(m_action==3)
                 {
 
                     if(jeu->hero.m_personnage.animer(&jeu->hero.m_modelePersonnage,jeu->map.getDimensions().y,tempsDepuisDerniereAnimation)==1) //Animation du héro
@@ -199,9 +200,12 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     tempsDepuisDerniereAnimation=0;
                 }
 
+                }
+
+
                 ///Affichage
 
-                if(tempsEcouleDepuisDernierAffichage>0.012&&configuration.syncronisation_verticale||!configuration.syncronisation_verticale)
+                if(tempsEcouleDepuisDernierAffichage>0.013&&configuration.syncronisation_verticale||!configuration.syncronisation_verticale)
                 {
                     jeu->hero.placerCamera(camera,jeu->map.getDimensions()); // On place la camera suivant ou se trouve le perso
                     camera->Zoom(configuration.zoom);
@@ -275,11 +279,13 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     tempsEcouleDepuisDernierAffichage=0;
                 }
 
+                sprintf(chaine,"%ld FPS",(int)( 1.f / jeu->ecran.GetFrameTime()));
+
                 if(configuration.console)
                     if(tempsEcouleDepuisFPS>0.1)
                     {
                         //  Calcule du nombre de FPS
-                       sprintf(chaine,"%ld FPS",(int)( 1.f / jeu->ecran.GetFrameTime()));
+
                         fps.SetText(chaine);
 
 

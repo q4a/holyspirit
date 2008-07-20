@@ -1550,9 +1550,9 @@ coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
                         if(m_decor[couche][j][k].getTileset()>=0&&m_decor[couche][j][k].getTileset()<m_tileset.size())
                         {
                             positionPartieDecor=m_tileset[m_decor[couche][j][k].getTileset()].getPositionDuTile(m_decor[couche][j][k].getTile());
-                            if(position.x+positionPartieDecor.h*2+positionPartieDecor.w>=ViewRect.Left&&position.x-positionPartieDecor.h*2-positionPartieDecor.w-64<ViewRect.Right&&position.y+positionPartieDecor.h+positionPartieDecor.w>=ViewRect.Top&&position.y-positionPartieDecor.h-32<ViewRect.Bottom+100&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()&&configuration.Ombre&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()))
+                           /* if(position.x+positionPartieDecor.h*2+positionPartieDecor.w>=ViewRect.Left&&position.x-positionPartieDecor.h*2-positionPartieDecor.w-64<ViewRect.Right&&position.y+positionPartieDecor.h+positionPartieDecor.w>=ViewRect.Top&&position.y-positionPartieDecor.h-32<ViewRect.Bottom+100&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()&&configuration.Ombre&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()))
                             ||position.x+positionPartieDecor.w>=ViewRect.Left&&position.x<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y-positionPartieDecor.h+64<ViewRect.Bottom)
-                            {
+                            {*/
                                 Sprite.SetImage(*moteurGraphique.getImage(m_tileset[m_decor[couche][j][k].getTileset()].getImage()));
                                 Sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
 
@@ -1574,6 +1574,10 @@ coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
                                             Sprite.SetRotation(m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle);
                                              if(m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle>90&&m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle<270)
                                                 Sprite.FlipX(true);
+                                            if(Sprite.GetPosition().x+Sprite.GetSize().x>=camera->GetRect().Left)
+                                            if(Sprite.GetPosition().x<camera->GetRect().Right)
+                                            if(Sprite.GetPosition().y+Sprite.GetSize().y>=camera->GetRect().Top)
+                                            if(Sprite.GetPosition().y<camera->GetRect().Bottom)
                                             moteurGraphique.AjouterCommande(&Sprite,1);
                                             //ecran->Draw(Sprite);
                                             Sprite.SetCenter(0,0);
@@ -1647,10 +1651,14 @@ coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
                                             255,
                                             alpha));
                                     }
+                                    if(Sprite.GetPosition().x+Sprite.GetSize().x>=camera->GetRect().Left)
+                                    if(Sprite.GetPosition().x<camera->GetRect().Right)
+                                    if(Sprite.GetPosition().y+Sprite.GetSize().y>=camera->GetRect().Top)
+                                    if(Sprite.GetPosition().y<camera->GetRect().Bottom)
                                     moteurGraphique.AjouterCommande(&Sprite,1);
                                      //ecran->Draw(Sprite);
                                 }
-                            }
+                            //}
 
                             positionHero.x=(hero->m_personnage.getCoordonnee().x-hero->m_personnage.getCoordonnee().y-1+m_decor[0].size())/5;
                             positionHero.y=(hero->m_personnage.getCoordonnee().x+hero->m_personnage.getCoordonnee().y)/5;
@@ -1909,11 +1917,10 @@ void Map::musiquePlay(coordonnee position)
     Sound::Status Status = m_musique.GetStatus();
 
 	if(Status==0)
-	m_musique.Play();
+        m_musique.Play();
 
-	if(m_musique.GetVolume()<50)
-	m_musique.SetVolume(m_musique.GetVolume()+1);
-
+	//if(m_musique.GetVolume()<50)
+	//m_musique.SetVolume(m_musique.GetVolume()+1);
 	m_musique.SetPosition(-position.x, 0, position.y);
 }
 

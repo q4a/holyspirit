@@ -185,7 +185,7 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
        // Sprite.SetImage(modele->m_image[modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()]);
         sprite.SetSubRect(IntRect(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h));
 
-        if(configuration.Ombre&&m_caracteristique.vie>0&&modele->m_ombre)
+        if(configuration.Ombre&&/*m_caracteristique.vie>0&&*/modele->m_ombre)
         {
             for(int o=0;o<lumiere->m_ombre.size();o++)
             {
@@ -197,6 +197,10 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
                 sprite.SetRotation(lumiere->m_ombre[o].angle);
                  if(lumiere->m_ombre[o].angle>90&&lumiere->m_ombre[o].angle<270)
                     sprite.FlipX(true);
+                if(sprite.GetPosition().x+sprite.GetSize().x>=camera->GetRect().Left)
+                if(sprite.GetPosition().x<camera->GetRect().Right)
+                if(sprite.GetPosition().y+sprite.GetSize().y>=camera->GetRect().Top)
+                if(sprite.GetPosition().y<camera->GetRect().Bottom)
                 moteurGraphique.AjouterCommande(&sprite,1);
                 //ecran->Draw(Sprite);
                 sprite.SetCenter(0,0);
@@ -213,10 +217,10 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
         if(configuration.Lumiere)
             sprite.SetColor(sf::Color((lumiere->intensite*lumiere->rouge)/255,(lumiere->intensite*lumiere->vert)/255,(lumiere->intensite*lumiere->bleu)/255, 255));
 
-        if(position.x+sprite.GetSize().x>camera->GetRect().Left)
-        if(position.x<camera->GetRect().Right)
-        if(position.y+sprite.GetSize().y>camera->GetRect().Top)
-        if(position.y<camera->GetRect().Bottom)
+        if(sprite.GetPosition().x+sprite.GetSize().x>=camera->GetRect().Left)
+        if(sprite.GetPosition().x<camera->GetRect().Right)
+        if(sprite.GetPosition().y+sprite.GetSize().y>=camera->GetRect().Top)
+        if(sprite.GetPosition().y<camera->GetRect().Bottom)
         moteurGraphique.AjouterCommande(&sprite,1);
        // ecran->Draw(Sprite);
     }

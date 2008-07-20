@@ -19,8 +19,8 @@ c_Chargement::c_Chargement(Jeu *jeu)
     z=0;
     augmenterNoir = true;
     camera=new sf::View();
-    CopierCamera(jeu->m_jeu->camera);
-    jeu->m_contexte->CopierCamera(jeu->m_chargement->camera);
+    //CopierCamera(jeu->m_jeu->camera);
+    //jeu->m_contexte->CopierCamera(jeu->m_chargement->camera);
 }
 
 void c_Chargement::setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool debut)

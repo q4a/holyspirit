@@ -19,7 +19,7 @@ class Contexte
 
     Contexte operator=(const c_Jeu &c_jeu);
 
-    void CopierCamera(sf::View *cameraACopier){camera=cameraACopier;}
+    void CopierCamera(sf::View *cameraACopier){camera=cameraACopier; }
 };
 
 #endif
