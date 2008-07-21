@@ -1,12 +1,12 @@
 Liste des chemins de toutes les images du personnage
-*Data/Personnages/Monstres/PanMorHache-Arret.png
-*Data/Personnages/Monstres/PantMorbCourse1.png
-*Data/Personnages/Monstres/PantMorbCourse2.png
-*Data/Personnages/Monstres/PantMorbFrappe1.png
-*Data/Personnages/Monstres/PantMorbFrappe2.png
-*Data/Personnages/Monstres/PantMorbFrappe3.png
-*Data/Personnages/Monstres/PantMorbFrappe4.png
-*Data/Personnages/Monstres/PantMorbMort.png
+*Data/Personnages/Monstres/PantinMorbide/PanMorHache-Arret.png
+*Data/Personnages/Monstres/PantinMorbide/PantMorbCourse1.png
+*Data/Personnages/Monstres/PantinMorbide/PantMorbCourse2.png
+*Data/Personnages/Monstres/PantinMorbide/PantMorbFrappe1.png
+*Data/Personnages/Monstres/PantinMorbide/PantMorbFrappe2.png
+*Data/Personnages/Monstres/PantinMorbide/PantMorbFrappe3.png
+*Data/Personnages/Monstres/PantinMorbide/PantMorbFrappe4.png
+*Data/Personnages/Monstres/PantinMorbide/PantMorbMort.png
 
 $
 Liste des chemins de tous les sons
@@ -24,7 +24,7 @@ Rang du monstre
 $
 Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse
-*v4 di2 da3 m0.5 o1 a1 n1 $
+*v4 di2 da3 m0.35 o1 a1 n1 $
 $
 Arret - E
 *x0 y0 w128 h128 a1 s-1 i0 $

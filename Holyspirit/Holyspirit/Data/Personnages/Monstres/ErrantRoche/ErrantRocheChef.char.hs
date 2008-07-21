@@ -10,7 +10,10 @@ Liste des chemins de toutes les images du personnage
 *Data/Personnages/Monstres/ErrantRoche/ErrantRocheFrappe6.png
 *Data/Personnages/Monstres/ErrantRoche/ErrantRocheFrappe7.png
 *Data/Personnages/Monstres/ErrantRoche/ErrantRocheFrappe8.png
-*Data/Personnages/Monstres/ErrantRoche/ErrantRocheMort.png
+*Data/Personnages/Monstres/ErrantRoche/ErrantRocheMort1.png
+*Data/Personnages/Monstres/ErrantRoche/ErrantRocheMort2.png
+*Data/Personnages/Monstres/ErrantRoche/ErrantRocheMort3.png
+*Data/Personnages/Monstres/ErrantRoche/ErrantRocheMort4.png
 $
 Liste des chemins de tous les sons
 *Data/Sons/15569__tigersound__walking_on_stone.wav
