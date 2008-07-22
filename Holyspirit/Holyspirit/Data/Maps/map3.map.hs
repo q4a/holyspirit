@@ -19,7 +19,7 @@ Liste des tilesets de l'herbe
 *Data/Decors/Herbes/Champignon1
 $
 Liste des tilesets des monstres
-*Data/Personnages/Monstres/MonstreTest.char.hs
+*Data/Personnages/Monstres/GolemQuartz/GolemQuartz.char.hs
 $
 Liste des entites monstres
 * m0 $
