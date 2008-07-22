@@ -49,6 +49,8 @@ Hero::Hero()
 	temp.nom="Héro";
 //	temp.rang=0;
 
+    temp.modificateurTaille=1;
+
 	m_personnage.setCaracteristique(temp);
 
 	m_monstreVise=-1;

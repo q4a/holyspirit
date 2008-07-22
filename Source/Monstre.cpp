@@ -36,6 +36,8 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
             m_caracteristique.degatsMin*=1;
             m_caracteristique.degatsMax*=1;
             m_caracteristique.pointAme*=2;
+
+            m_caracteristique.modificateurTaille*=1.1;
         }
         if(m_caracteristique.rang==2)
         {
@@ -45,6 +47,8 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
             m_caracteristique.degatsMin*=2;
             m_caracteristique.degatsMax*=2;
             m_caracteristique.pointAme*=4;
+
+            m_caracteristique.modificateurTaille*=1.2;
         }
 
         if(m_caracteristique.rang>0)
@@ -172,6 +176,7 @@ bool Modele_Monstre::Charger(string chemin)
         {
             if(caractere=='*')
             {
+                m_caracteristique.modificateurTaille=1;
                 do
                 {
                     fichier.get(caractere);
@@ -183,6 +188,8 @@ bool Modele_Monstre::Charger(string chemin)
                         case 'o': fichier>>m_ombre; break;
                         case 'a': fichier>>m_caracteristique.pointAme; break;
                         case 'n': fichier>>m_caracteristique.niveau; break;
+
+                        case 't': fichier>>m_caracteristique.modificateurTaille; break;
                     }
                      if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
                 }while(caractere!='$');

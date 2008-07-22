@@ -23,9 +23,6 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera)
         else
             ecran->SetView(ecran->GetDefaultView());
 
-        //if(m_commandes[i].m_IDimage>=0&&m_commandes[i].m_IDimage<m_images.size())
-            //sprite.SetImage(m_images[m_commandes[i].m_IDimage]);
-
         sprite=m_commandes[i].m_sprite;
 
         ecran->Draw(sprite);

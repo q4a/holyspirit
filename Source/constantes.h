@@ -88,6 +88,8 @@ struct Caracteristique
     int niveau;
     int rang;
 
+    float modificateurTaille;
+
     std::string nom;
 };
 

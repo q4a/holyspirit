@@ -12,7 +12,6 @@ using namespace sf;
 
 c_Jeu::c_Jeu(Jeu *jeu)
 {
-        m_action=0;
         continuer=true,lumiere=false,augmenter=false;
         chaine[10];
         tempsActuel=0,tempsPrecedent=0,tempsDepuisDerniereAnimation=0,tempsEcoule=0,tempsEcouleDepuisDernierDeplacement=0,tempsEcouleDepuisDernierAffichage=0,tempsEcouleDepuisFPS=0,tempsEffetMort=1;
@@ -81,30 +80,29 @@ void c_Jeu::Utiliser(Jeu *jeu)
 	//while(jeu->m_run)
 	//{
             //Gestion du temps
+            jeu->m_display=false;
             tempsEcoule = jeu->Clock.GetElapsedTime();
 
-            if(tempsEcoule>0.01)
+            if(tempsEcoule>0.001)
             {
-                jeu->m_display=false;
                 tempsEcouleDepuisDernierDeplacement+=tempsEcoule;
                 tempsDepuisDerniereAnimation+=tempsEcoule;
                 tempsEcouleDepuisDernierAffichage+=tempsEcoule;
                 tempsEcouleDepuisDernierIA+=tempsEcoule;
                 tempsEcouleDepuisDernierCalculLumiere+=tempsEcoule;
-                actionPrecedente+=tempsEcoule;
                 configuration.minute+=tempsEcoule;
                 if(configuration.minute>=60)
-                configuration.minute=0,configuration.heure++;
+                    configuration.minute=0,configuration.heure++;
                 if(configuration.heure>23)
-                configuration.heure=0;
+                    configuration.heure=0;
                 if(augmenter)
-                tempsEffetMort+=tempsEcoule*10;
+                    tempsEffetMort+=tempsEcoule*10;
                 else
-                tempsEffetMort-=tempsEcoule;
+                    tempsEffetMort-=tempsEcoule;
                 if(tempsEffetMort>1)
-                augmenter=false;
+                    augmenter=false;
                 if(tempsEffetMort<0)
-                augmenter=true;
+                    augmenter=true;
                 tempsEcouleDepuisFPS+=tempsEcoule;
 
                 jeu->hero.m_personnage.regenererVie((float)jeu->hero.m_personnage.getCaracteristique().maxVie*tempsEcoule/100);
@@ -117,25 +115,16 @@ void c_Jeu::Utiliser(Jeu *jeu)
                 else
                     configuration.effetMort=0,jeu->sonMort.SetVolume(0);
 
-                ///Action
+                ///IA
 
-                if(actionPrecedente>=0.005)
-                {
-                    m_action++;
-                    actionPrecedente=0;
-                    if(m_action>3)
-                        m_action=0;
-
-                    ///IA
-
-                if(m_action==0)
+                if(tempsEcouleDepuisDernierIA>=0.027)
                 {
                     jeu->map.gererMonstres(&jeu->hero,tempsEcouleDepuisDernierIA);
                     tempsEcouleDepuisDernierIA=0;
                 }
 
                 ///Déplacements
-                if(m_action==1)
+                if(tempsEcouleDepuisDernierDeplacement>=0.011)
                 {
                     coordonnee temp={-1 ,-1 ,-1 ,-1};
                     if(jeu->hero.getMonstreVise()==-1)
@@ -146,13 +135,11 @@ void c_Jeu::Utiliser(Jeu *jeu)
                         jeu->hero.m_personnage.pathfinding(jeu->map.getAlentourDuPersonnage(jeu->hero.m_personnage.getCoordonnee()),temp); // Recherche du chemin
                         if(configuration.Lumiere)
                             lumiere=true;
+
+                        jeu->map.testEvenement(camera,jeu); // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
                     }
                     if(jeu->hero.getMonstreVise()>-1)
                         jeu->hero.testMontreVise(jeu->map.getEntiteMonstre(jeu->hero.getMonstreVise()),jeu->map.getDimensions().y);
-
-                    if(jeu->map.testEvenement(camera,jeu)>-1) // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
-                    {
-                    }
 
                     ///Placer l'écouteur, à la position du héro
                     coordonnee position;
@@ -173,7 +160,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 /// On calcule les lumières et les ombre
 
-                if(m_action==2)
+                if(tempsEcouleDepuisDernierCalculLumiere>0.054)
                 {
                     lumiere=true;
                     tempsEcouleDepuisDernierCalculLumiere=0;
@@ -187,7 +174,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 ///Animation
 
-                if(m_action==3)
+                if(tempsDepuisDerniereAnimation>0.043)
                 {
 
                     if(jeu->hero.m_personnage.animer(&jeu->hero.m_modelePersonnage,jeu->map.getDimensions().y,tempsDepuisDerniereAnimation)==1) //Animation du héro
@@ -199,9 +186,6 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     jeu->map.animer(&jeu->hero,tempsDepuisDerniereAnimation,&jeu->menu); // Animation des tiles de la jeu->map
                     tempsDepuisDerniereAnimation=0;
                 }
-
-                }
-
 
                 ///Affichage
 
@@ -279,7 +263,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     tempsEcouleDepuisDernierAffichage=0;
                 }
 
-                sprintf(chaine,"%ld FPS",(int)( 1.f / jeu->ecran.GetFrameTime()));
+                if(configuration.console)
+                    sprintf(chaine,"%ld FPS",(int)( 1.f / jeu->ecran.GetFrameTime()));
 
                 if(configuration.console)
                     if(tempsEcouleDepuisFPS>0.1)

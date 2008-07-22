@@ -321,7 +321,7 @@ void Menu::AjouterAme(coordonneeDecimal position,int pointAme)
 int Menu::GererDynamique(float temps)
 {
     int nombre_ame_absorbee=0, nombre_sang_disparu=0, retour=0;
-     for (Iter = m_ame.begin(); Iter != m_ame.end(); Iter++ )
+    for (Iter = m_ame.begin(); Iter != m_ame.end(); Iter++ )
     {
         if(Iter->m_mode==0)
         {
