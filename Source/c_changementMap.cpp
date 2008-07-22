@@ -18,7 +18,7 @@ c_Chargement::c_Chargement(Jeu *jeu)
 {
     z=0;
     augmenterNoir = true;
-    camera=new sf::View();
+    //camera=new sf::View();
     //CopierCamera(jeu->m_jeu->camera);
     //jeu->m_contexte->CopierCamera(jeu->m_chargement->camera);
 }
@@ -73,11 +73,11 @@ void c_Chargement::setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool
 void c_Chargement::Utiliser(Jeu *jeu)
 {
     jeu->m_display=true;
-    jeu->hero.placerCamera(camera,jeu->map.getDimensions());
-    jeu->ecran.SetView(*camera);
+    jeu->hero.placerCamera(&jeu->camera,jeu->map.getDimensions());
+    jeu->ecran.SetView(jeu->camera);
 
     if(configuration.Lumiere)
-        jeu->map.calculerOmbresEtLumieres(&jeu->ecran,&jeu->hero,camera);
+        jeu->map.calculerOmbresEtLumieres(&jeu->ecran,&jeu->hero,&jeu->camera);
 
     temps_ecoule=0;
     temps_ecoule=jeu->Clock.GetElapsedTime();
@@ -97,8 +97,8 @@ void c_Chargement::Utiliser(Jeu *jeu)
         if(!jeu->map.Charger(numeroProchaineMap))
             throw "CRITICAL ERROR";
 
-        jeu->hero.placerCamera(jeu->m_jeu->camera,jeu->map.getDimensions());
-        jeu->m_contexte->camera->Zoom(configuration.zoom);
+        jeu->hero.placerCamera(&jeu->camera,jeu->map.getDimensions());
+        jeu->camera.Zoom(configuration.zoom);
 
         coordonnee position;
         position.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1+jeu->map.getDimensions().y)/5;
@@ -109,7 +109,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         jeu->map.musiquePlay(position);
 
         if(configuration.Lumiere)
-            jeu->map.calculerOmbresEtLumieres(&jeu->ecran,&jeu->hero,camera);
+            jeu->map.calculerOmbresEtLumieres(&jeu->ecran,&jeu->hero,&jeu->camera);
 
         while(jeu->Clock.GetElapsedTime()<1){}
         allerVersImageChargement=false;
@@ -137,12 +137,12 @@ void c_Chargement::Utiliser(Jeu *jeu)
     {
         if(allerVersImageChargement&&z<49&&augmenterNoir||!allerVersImageChargement&&z>0&&!augmenterNoir)
         {
-            camera->Zoom(configuration.zoom);
+            jeu->camera.Zoom(configuration.zoom);
             jeu->map.setVolumeMusique((int)(z*(float)configuration.volume/50));
             if(!m_debut&&augmenterNoir||!augmenterNoir)
             {
                 coordonnee temp;
-                jeu->map.Afficher(&jeu->ecran,camera,1,&jeu->hero,temp);
+                jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,temp);
 
                 if(configuration.Minimap)
                 {
@@ -167,7 +167,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
             if(!m_debut&&augmenterNoir||!augmenterNoir)
             {
                 coordonnee temp;
-                jeu->map.Afficher(&jeu->ecran,camera,1,&jeu->hero,temp);
+                jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,temp);
                 if(configuration.Minimap)
                 {
                     jeu->menu.Afficher(&jeu->ecran,1);
@@ -184,6 +184,6 @@ void c_Chargement::Utiliser(Jeu *jeu)
     if(z>=49&&!augmenterNoir&&!allerVersImageChargement)
     {
         jeu->m_contexte = jeu->m_jeu;
-        jeu->m_contexte->CopierCamera(jeu->m_jeu->camera);
+       // jeu->m_contexte->CopierCamera(jeu->m_jeu->camera);
     }
 }

@@ -57,11 +57,12 @@ void Jeu::Demarrer()
     this->m_inventaire = new c_Inventaire(this);
 
     coordonnee temp={1,1,-1,-1};
-    this->m_contexte->CopierCamera(this->m_chargement->camera);
+//    this->m_contexte->CopierCamera(this->m_chargement->camera);
+    //this->m_contexte->camera=this->m_chargement->camera;
     this->m_chargement->setC_Chargement(1,temp,1);
 
     this->m_contexte = this->m_chargement;
-    m_chargement->CopierCamera(this->m_jeu->camera);
+//:    m_chargement->CopierCamera(this->m_jeu->camera);
 
     this->hero.Charger();
 
@@ -71,7 +72,7 @@ void Jeu::Demarrer()
 		this->m_contexte->Utiliser(this);
 		if(this->m_display)
 		{
-		    moteurGraphique.Afficher(&this->ecran,this->m_contexte->camera);
+		    moteurGraphique.Afficher(&this->ecran,&this->camera);
 		    this->EffectLuminosite.SetParameter("color", (float)configuration.luminosite/50,(float)configuration.luminosite/50, (float)configuration.luminosite/50);
             this->ecran.Draw(this->EffectNoir);
             if(configuration.effetMort>0)

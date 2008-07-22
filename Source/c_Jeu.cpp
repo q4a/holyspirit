@@ -21,7 +21,7 @@ c_Jeu::c_Jeu(Jeu *jeu)
 
         sf::Listener::SetGlobalVolume((float)configuration.volume);
 
-        camera=new sf::View();
+       // camera=new sf::View();
 
 
         // Texte pour l'affichage des FPS
@@ -67,7 +67,7 @@ c_Jeu::c_Jeu(Jeu *jeu)
 
         if(configuration.Lumiere)
         {
-            jeu->map.calculerOmbresEtLumieres(&jeu->ecran,&jeu->hero,camera);
+            jeu->map.calculerOmbresEtLumieres(&jeu->ecran,&jeu->hero,&jeu->camera);
             lumiere=false;
         }
 
@@ -136,7 +136,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                         if(configuration.Lumiere)
                             lumiere=true;
 
-                        jeu->map.testEvenement(camera,jeu); // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
+                        jeu->map.testEvenement(&jeu->camera,jeu); // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
                     }
                     if(jeu->hero.getMonstreVise()>-1)
                         jeu->hero.testMontreVise(jeu->map.getEntiteMonstre(jeu->hero.getMonstreVise()),jeu->map.getDimensions().y);
@@ -167,7 +167,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                 }
                 if(configuration.Lumiere&&lumiere)
                 {
-                        jeu->map.calculerOmbresEtLumieres(&jeu->ecran,&jeu->hero,camera);
+                        jeu->map.calculerOmbresEtLumieres(&jeu->ecran,&jeu->hero,&jeu->camera);
                         lumiere=false;
                 }
 
@@ -179,7 +179,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                     if(jeu->hero.m_personnage.animer(&jeu->hero.m_modelePersonnage,jeu->map.getDimensions().y,tempsDepuisDerniereAnimation)==1) //Animation du héro
                     {
-                        if(jeu->map.infligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,camera)) // Si l'enemi meut, renvoi true
+                        if(jeu->map.infligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&jeu->camera)) // Si l'enemi meut, renvoi true
                             jeu->hero.m_personnage.setMauvaiseArrivee(jeu->eventManager.getCasePointee());
                         jeu->hero.setMonstreVise(-1);
                     }
@@ -191,12 +191,12 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 if(tempsEcouleDepuisDernierAffichage>0.013&&configuration.syncronisation_verticale||!configuration.syncronisation_verticale)
                 {
-                    jeu->hero.placerCamera(camera,jeu->map.getDimensions()); // On place la camera suivant ou se trouve le perso
-                    camera->Zoom(configuration.zoom);
+                    jeu->hero.placerCamera(&jeu->camera,jeu->map.getDimensions()); // On place la camera suivant ou se trouve le perso
+                    jeu->camera.Zoom(configuration.zoom);
                     /// On gère les événements, appui sur une touche, déplacement de la souris
-                    jeu->eventManager.GererLesEvenements(&jeu->ecran,camera,&jeu->m_run,tempsEcoule,jeu->map.getDimensions());
+                    jeu->eventManager.GererLesEvenements(&jeu->ecran,&jeu->camera,&jeu->m_run,tempsEcoule,jeu->map.getDimensions());
 
-                    int monstreVise=jeu->map.getMonstre(&jeu->hero,camera,&jeu->ecran,jeu->eventManager.getPositionSouris(),jeu->eventManager.getCasePointee());
+                    int monstreVise=jeu->map.getMonstre(&jeu->hero,&jeu->camera,&jeu->ecran,jeu->eventManager.getPositionSouris(),jeu->eventManager.getCasePointee());
 
                     if(jeu->eventManager.getEvenement(Mouse::Left,"C")&&!jeu->eventManager.getEvenement(Key::LShift,"ET"))
                     {
@@ -219,12 +219,12 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
 
 
-                    jeu->map.Afficher(&jeu->ecran,camera,1,&jeu->hero,jeu->eventManager.getPositionSouris());//Affichage de la jeu->map
+                    jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,jeu->eventManager.getPositionSouris());//Affichage de la jeu->map
 
                     if(configuration.Minimap)
                     {
                         jeu->menu.Afficher(&jeu->ecran,1);//On affiche le fond noir de la mini-jeu->map
-                        jeu->map.Afficher(&jeu->ecran,camera,2,&jeu->hero,jeu->eventManager.getPositionSouris()); // On affiche la mini-jeu->map
+                        jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,jeu->eventManager.getPositionSouris()); // On affiche la mini-jeu->map
                         jeu->menu.Afficher(&jeu->ecran,2); // On affiche le cadran de la mini-jeu->map
                     }
 

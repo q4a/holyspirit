@@ -28,6 +28,7 @@ class Jeu
     void Demarrer();
 
     sf::RenderWindow ecran;
+    sf::View camera;
     Menu menu;
     EventManager eventManager;
     Hero hero;
