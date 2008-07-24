@@ -42,7 +42,7 @@ Liste des tilesets de l'herbe
 *Data/Decors/Herbes/Herbe1
 $
 Liste des tilesets des monstres
-*Data/Personnages/Monstres/PantinMorbide/PantinMorbide.char.hs
+*Data/Entites/Monstres/PantinMorbide/PantinMorbide.char.hs
 $
 Liste des entites monstres
 * m0 $

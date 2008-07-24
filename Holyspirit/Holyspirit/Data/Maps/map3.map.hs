@@ -19,14 +19,18 @@ Liste des tilesets de l'herbe
 *Data/Decors/Herbes/Champignon1
 $
 Liste des tilesets des monstres
-*Data/Personnages/Monstres/GolemQuartz/GolemQuartz.char.hs
+*Data/Entites/Monstres/GolemQuartz/GolemQuartz.char.hs
+*Data/Entites/Destructibles/Tonneau/Tonneau.char.hs
 $
 Liste des entites monstres
 * m0 $
 * m0 $
 * m0 $
 * m0 $
-* m0 $
+* m1 $
+* m1 $
+* m1 $
+* m1 $
 $
 Liste des événements
 * e0 $ * i2 i57 i31 $
@@ -49,7 +53,7 @@ $
 * s-1   | s-1   | s-1   | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   |
 * s-1   | s-1   | s-1   | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 h0 | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   |
 * s-1   | s-1   | s-1   | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   |
-* s-1   | s-1   | s-1   | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1 h0  | s0 t3 | s0 t3 | s0 t3 | s-1   |
+* s-1   | s-1   | s-1   | s-1   | s-1   | s0 t3 | s0 t3  | s0 t3 | s-1   | s-1 h0  | s0 t3 | s0 t3 | s0 t3 | s-1   |
 * s-1   | s-1   | s-1   | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   |
 * s-1   | s-1   | s-1   | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   |
 * s-1   | s-1   | s-1   | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   | s-1   | s0 t3 | s0 t3 | s0 t3 | s-1   |
@@ -74,10 +78,10 @@ $
 * s-1   | s-1   | s-1   | s1 t0 | s-1   | s1 t0 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s-1   | s-1   | s1 t0 | s-1   | s1 t0 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s1 t5 | s1 t1 | s1 t3 | s-1   | s1 t4 | s1 t1 | s1 t1 | s1 t6 | s-1   | s-1   | s-1   | s-1   | s-1   |
-* s-1   | s1 t0 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s1 t0 | s-1   | s-1   | s-1   | s-1   | s-1   |
+* s-1   | s1 t0 | s-1 m5   | s-1   | s-1   | s-1   | s-1   | s-1   | s1 t0 | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s1 t0 | s-1 m4  | s-1   | s-1   | s-1 m2   | s-1   | s-1   | s1 t4 | s1 t1 | s1 t1 | s1 t1 | s1 t6 | s-1   |
-* s-1   | s1 t0 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1 m3   | s-1   | s-1   | s-1   | s-1   | s1 t0 | s-1   |
-* s-1   | s1 t0 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s1 t0 | s-1   | s-1   | s-1   | s1 t0 | s-1   |
+* s-1   | s1 t0 | s-1 m6  | s-1   | s-1   | s-1   | s-1   | s-1 m3   | s-1   | s-1   | s-1   | s-1   | s1 t0 | s-1   |
+* s-1   | s1 t0 | s-1 m7  | s-1   | s-1   | s-1   | s-1   | s-1   | s1 t0 | s-1   | s-1   | s-1   | s1 t0 | s-1   |
 * s-1   | s1 t4 | s1 t1 | s1 t1 | s1 t1 | s1 t6 | s-1   | s1 t5 | s1 t9 | s1 t1 | s1 t6 | s-1   | s1 t0 | s-1   |
 * s-1   | s-1   | s-1   | s-1   | s-1   | s1 t0 | s-1   | s1 t0 | s-1   | s-1   | s1 t0 | s-1   | s1 t0 | s-1   |
 * s-1   | s-1   | s-1   | s-1   | s-1   | s1 t0 | s-1   | s1 t0 | s-1   | s-1   | s1 t0 | s-1   | s1 t0 | s-1   |
