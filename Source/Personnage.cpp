@@ -187,7 +187,7 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
 
         sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
 
-        if(configuration.Ombre&&/*m_caracteristique.vie>0&&*/modele->m_ombre)
+        if(configuration.Ombre&&m_caracteristique.vie>0&&modele->m_ombre)
         {
             for(int o=0;o<lumiere->m_ombre.size();o++)
             {
@@ -324,7 +324,7 @@ int Personnage::pathfinding(vector<vector<bool> > map,coordonnee exception)
 
 bool Personnage::seDeplacer(float tempsEcoule)
 {
-    if(m_caracteristique.vie>0)
+    if(m_caracteristique.vie>0&&m_caracteristique.vitesse>0)
     {
         if(m_positionCase.y!=m_cheminFinal.y||m_positionCase.x!=m_cheminFinal.x)
         {

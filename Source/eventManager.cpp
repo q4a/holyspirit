@@ -35,7 +35,7 @@ EventManager::EventManager()
 void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *continuer,float temps,coordonnee tailleMap)
 {
 	Event Event;
-	if(ecran->GetEvent(Event))
+	while(ecran->GetEvent(Event))
 	{
 		switch(Event.Type)
    		{

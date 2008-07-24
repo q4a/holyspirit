@@ -66,6 +66,8 @@ void Jeu::Demarrer()
 
     this->hero.Charger();
 
+    this->EffectLuminosite.SetParameter("color", (float)configuration.luminosite/50,(float)configuration.luminosite/50, (float)configuration.luminosite/50);
+
     this->m_run = true;
     while (this->m_run)
 	{
@@ -73,7 +75,6 @@ void Jeu::Demarrer()
 		if(this->m_display)
 		{
 		    moteurGraphique.Afficher(&this->ecran,&this->camera);
-		    this->EffectLuminosite.SetParameter("color", (float)configuration.luminosite/50,(float)configuration.luminosite/50, (float)configuration.luminosite/50);
             this->ecran.Draw(this->EffectNoir);
             if(configuration.effetMort>0)
                 this->ecran.Draw(EffectMort);

@@ -761,12 +761,16 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                 {
                     bool ok=false;
                     if(m_decor[0][j][k].getMonstre()>=0&&m_decor[couche][j][k].getMonstre()<m_monstre.size())// Je vérifie que le tile est initialisé ^^
-                        ok=true;
+                        if(m_monstre[m_decor[0][j][k].getMonstre()].getCaracteristique().vie>0)
+                            if(m_monstre[m_decor[0][j][k].getMonstre()].getPorteeLumineuse().intensite>0)
+                                ok=true;
                     if(m_decor[0][j][k].getEvenement()>=0&&m_decor[couche][j][k].getEvenement()<m_evenement.size())// Je vérifie que le tile est initialisé ^^
                         if(m_evenement[m_decor[0][j][k].getEvenement()].getType()==LUMIERE)
                             ok=true;
                     if(m_decor[1][j][k].getMonstre()>=0&&m_decor[couche][j][k].getMonstre()<m_monstre.size())// Je vérifie que le tile est initialisé ^^
-                        ok=true;
+                        if(m_monstre[m_decor[1][j][k].getMonstre()].getCaracteristique().vie>0)
+                            if(m_monstre[m_decor[1][j][k].getMonstre()].getPorteeLumineuse().intensite>0)
+                                ok=true;
                     if(m_decor[1][j][k].getEvenement()>=0&&m_decor[couche][j][k].getEvenement()<m_evenement.size())// Je vérifie que le tile est initialisé ^^
                         if(m_evenement[m_decor[1][j][k].getEvenement()].getType()==LUMIERE)
                             ok=true;
@@ -1013,6 +1017,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                             }
                                         }
                                     }
+
 
                                         if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
                                         if(m_monstre[m_decor[0][j][k].getMonstre()].getCaracteristique().vie>0)
