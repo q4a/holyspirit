@@ -72,7 +72,7 @@ struct Configuration
 {
     coordonnee Resolution;
     bool Ombre,Lumiere,Minimap,FonduLumiere,amelioration_lampes,console,Herbes,syncronisation_verticale,mode_fenetre,postFX,sang;
-    float effetMort,volume,minute,zoom;
+    float effetMort,volume,minute,zoom,frequence_sauvegarde;
     int heure,luminosite;
     std::string version,chemin_maps,chemin_temps,chemin_saves,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetMort,nom_effetLuminosite,nom_hud,nom_minimap,nom_bulle_vie,nom_ame,nom_barre_ame,nom_barre_vie,nom_barre_vie_vide,nom_sang,nom_inventaire,chemin_son_mort;
 };
@@ -89,6 +89,8 @@ struct Caracteristique
     int rang;
 
     float modificateurTaille;
+
+    bool sang;
 
     std::string nom;
 };

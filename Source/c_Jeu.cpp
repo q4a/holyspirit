@@ -14,7 +14,8 @@ c_Jeu::c_Jeu(Jeu *jeu)
 {
         continuer=true,lumiere=false,augmenter=false;
         chaine[10];
-        tempsActuel=0,tempsPrecedent=0,tempsDepuisDerniereAnimation=0,tempsEcoule=0,tempsEcouleDepuisDernierDeplacement=0,tempsEcouleDepuisDernierAffichage=0,tempsEcouleDepuisFPS=0,tempsEffetMort=1;
+        tempsActuel=0,tempsPrecedent=0,tempsDepuisDerniereAnimation=0,tempsSauvergarde=0,tempsEcoule=0,tempsEcouleDepuisDernierDeplacement=0,tempsEcouleDepuisDernierAffichage=0,tempsEcouleDepuisFPS=0,tempsEffetMort=1,tempsNbrTourBoucle=0;
+        nbrTourBoucle=0;
 
         configuration.heure=(rand() % (24));
         configuration.minute=0;
@@ -36,6 +37,9 @@ c_Jeu::c_Jeu(Jeu *jeu)
         sprintf(chaine,"Temps : %ld h %ld ",configuration.heure,(int)configuration.minute);
         Temps.SetText(chaine);
         Temps.SetY(40);
+
+        TourBoucle.SetX(100);
+        TourBoucle.SetSize(16.f);
 
         // Chargement des menus
 
@@ -83,14 +87,16 @@ void c_Jeu::Utiliser(Jeu *jeu)
             jeu->m_display=false;
             tempsEcoule = jeu->Clock.GetElapsedTime();
 
-            if(tempsEcoule>0.001)
+            if(tempsEcoule>0.005)
             {
                 tempsEcouleDepuisDernierDeplacement+=tempsEcoule;
                 tempsDepuisDerniereAnimation+=tempsEcoule;
                 tempsEcouleDepuisDernierAffichage+=tempsEcoule;
                 tempsEcouleDepuisDernierIA+=tempsEcoule;
                 tempsEcouleDepuisDernierCalculLumiere+=tempsEcoule;
+                tempsSauvergarde+=tempsEcoule;
                 configuration.minute+=tempsEcoule;
+                tempsNbrTourBoucle+=tempsEcoule;
                 if(configuration.minute>=60)
                     configuration.minute=0,configuration.heure++;
                 if(configuration.heure>23)
@@ -114,6 +120,15 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     configuration.effetMort=200-(jeu->hero.m_personnage.getCaracteristique().vie*400/jeu->hero.m_personnage.getCaracteristique().maxVie),jeu->sonMort.SetVolume(configuration.effetMort);
                 else
                     configuration.effetMort=0,jeu->sonMort.SetVolume(0);
+
+                ///Sauvegarde automatique
+
+                /*if(tempsSauvergarde>=configuration.frequence_sauvegarde)
+                {
+                    //jeu->hero.Sauvegarder();
+                    //jeu->map.Sauvegarder();
+                    tempsSauvergarde=0;
+                }*/
 
                 ///IA
 
@@ -250,6 +265,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                         moteurGraphique.AjouterTexte(&fps);
                         moteurGraphique.AjouterTexte(&Version);
                         moteurGraphique.AjouterTexte(&Temps);
+                        moteurGraphique.AjouterTexte(&TourBoucle);
 
                         console.Afficher(&jeu->ecran);
                     }
@@ -259,6 +275,18 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     //jeu->ecran.Display(); // On affiche le tout à l'écran
 
                     tempsEcouleDepuisDernierAffichage=0;
+                }
+
+                nbrTourBoucle++;
+
+
+                if(tempsNbrTourBoucle>1)
+                {
+                    sprintf(chaine,"Nbr Tour de boucle : %ld",nbrTourBoucle);
+                    TourBoucle.SetText(chaine);
+                    nbrTourBoucle=0;
+
+                    tempsNbrTourBoucle=0;
                 }
 
                 if(configuration.console)

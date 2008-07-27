@@ -83,8 +83,7 @@ void Jeu::Demarrer()
             moteurGraphique.Vider();
 		}
 	}
-
-	this->hero.Sauvergarder();
+	this->hero.Sauvegarder();
 	this->map.Sauvegarder();
 
     delete this->m_jeu;

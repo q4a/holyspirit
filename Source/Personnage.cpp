@@ -247,6 +247,7 @@ void Personnage::regenererVie(float vie)
 int Personnage::pathfinding(vector<vector<bool> > map,coordonnee exception)
 {
     //if(!(m_arrivee.x==m_mauvaiseArrivee.x&&m_arrivee.y==m_mauvaiseArrivee.y))
+    if(m_caracteristique.vitesse>0)
     if(!(m_arrivee.x==m_positionCase.x&&m_arrivee.y==m_positionCase.y))
     {
         m_erreurPathfinding=false;

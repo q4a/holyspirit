@@ -20,7 +20,7 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
     m_modele=numero;
     m_caracteristique=modele->getCaracteristique();
     m_porteeLumineuse=modele->getPorteeLumineuse();
-    if(m_caracteristique.rang==0)
+    if(m_caracteristique.rang==0&&m_caracteristique.pointAme>0)
     {
         int temp=rand()%(1000);
         if(temp<50)
@@ -177,6 +177,7 @@ bool Modele_Monstre::Charger(string chemin)
             if(caractere=='*')
             {
                 m_caracteristique.modificateurTaille=1;
+                m_caracteristique.sang=0;
                 do
                 {
                     fichier.get(caractere);
@@ -188,6 +189,8 @@ bool Modele_Monstre::Charger(string chemin)
                         case 'o': fichier>>m_ombre; break;
                         case 'a': fichier>>m_caracteristique.pointAme; break;
                         case 'n': fichier>>m_caracteristique.niveau; break;
+
+                        case 's': fichier>>m_caracteristique.sang; break;
 
                         case 't': fichier>>m_caracteristique.modificateurTaille; break;
                     }

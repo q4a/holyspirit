@@ -56,21 +56,22 @@ Hero::Hero()
 	m_monstreVise=-1;
 }
 
-void Hero::Sauvergarder()
+void Hero::Sauvegarder()
 {
     ofstream fichier;
     fichier.open((configuration.chemin_saves+"hero.sav.hs").c_str(), ios::out);
     if(fichier)
     {
-        fichier<<"*nom: "<<m_personnage.getCaracteristique().nom<<"\n";
-        fichier<<"*maxVie: "<<m_personnage.getCaracteristique().maxVie<<"\n";
-        fichier<<"*dgtsMin: "<<m_personnage.getCaracteristique().degatsMin<<"\n";
-        fichier<<"*dgtsMax: "<<m_personnage.getCaracteristique().degatsMax<<"\n";
-        fichier<<"*vitesse: "<<m_personnage.getCaracteristique().vitesse<<"\n";
-        fichier<<"*ptAme: "<<m_personnage.getCaracteristique().pointAme<<"\n";
-        fichier<<"*niveau: "<<m_personnage.getCaracteristique().niveau<<"\n";
-        fichier.close();
+        fichier<<"* nom: "<<m_personnage.getCaracteristique().nom<<"\n";
+        fichier<<"* maxVie: "<<m_personnage.getCaracteristique().maxVie<<"\n";
+        fichier<<"* dgtsMin: "<<m_personnage.getCaracteristique().degatsMin<<"\n";
+        fichier<<"* dgtsMax: "<<m_personnage.getCaracteristique().degatsMax<<"\n";
+        fichier<<"* vitesse: "<<m_personnage.getCaracteristique().vitesse<<"\n";
+        fichier<<"* ptAme: "<<m_personnage.getCaracteristique().pointAme<<"\n";
+        fichier<<"* niveau: "<<m_personnage.getCaracteristique().niveau<<"\n";
+
     }
+    fichier.close();
 }
 void Hero::Charger()
 {
@@ -108,8 +109,8 @@ void Hero::Charger()
                     }
                 }while(!fichier.eof());
                 m_personnage.setCaracteristique(charTemp);
-                fichier.close();
             }
+            fichier.close();
         }
     }
     closedir(repertoire);

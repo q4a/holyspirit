@@ -22,7 +22,6 @@
 class Jeu
 {
     public:
-    sf::PostFX EffectMort;
 
     Jeu();
     void Demarrer();
@@ -44,7 +43,7 @@ class Jeu
     c_Inventaire *m_inventaire;
     Contexte *m_contexte;
 
-    sf::PostFX EffectLuminosite,EffectNoir;
+    sf::PostFX EffectLuminosite,EffectNoir,EffectMort;
     private:
 
 };

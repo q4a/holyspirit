@@ -20,10 +20,11 @@ class c_Jeu : public Contexte
     private:
 
 	bool continuer,lumiere,augmenter;
+	int nbrTourBoucle;
 	char chaine[10];
-	sf::String variableQuiNeSerARien,Version,Temps,fps;
+	sf::String variableQuiNeSerARien,Version,Temps,fps,TourBoucle;
 
-	float tempsActuel,tempsPrecedent,tempsDepuisDerniereAnimation,tempsEcoule,tempsEcouleDepuisDernierCalculLumiere,tempsEcouleDepuisDernierDeplacement,tempsEcouleDepuisDernierIA,tempsEcouleDepuisDernierAffichage,tempsEcouleDepuisFPS,tempsEffetMort;
+	float tempsActuel,tempsPrecedent,tempsDepuisDerniereAnimation,tempsEcoule,tempsNbrTourBoucle,tempsEcouleDepuisDernierCalculLumiere,tempsEcouleDepuisDernierDeplacement,tempsEcouleDepuisDernierIA,tempsEcouleDepuisDernierAffichage,tempsEcouleDepuisFPS,tempsEffetMort,tempsSauvergarde;
 
 };
 

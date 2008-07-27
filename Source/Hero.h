@@ -18,7 +18,7 @@ class Hero
 	public:
 	Hero();
 
-	void Sauvergarder();
+	void Sauvegarder();
 	void Charger();
 
 	void placerCamera(sf::View *camera,coordonnee dimensionsMap);

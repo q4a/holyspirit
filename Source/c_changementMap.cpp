@@ -92,6 +92,8 @@ void c_Chargement::Utiliser(Jeu *jeu)
         if(!m_debut)
             jeu->map.Sauvegarder();
 
+        jeu->hero.Sauvegarder();
+
         jeu->map.Detruire();
 
         if(!jeu->map.Charger(numeroProchaineMap))

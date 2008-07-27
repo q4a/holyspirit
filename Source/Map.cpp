@@ -252,7 +252,7 @@ bool Map::Charger(int numeroMap)
 
 
     	Monstre monstreTemp;
-    	do
+    	/*do
     	{
     	    //Chargement des tileset
     		fichier.get(caractere);
@@ -273,7 +273,7 @@ bool Map::Charger(int numeroMap)
     		}
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
 
-    	}while(caractere!='$');
+    	}while(caractere!='$');*/
 
 
     	m_evenement.clear();
@@ -336,17 +336,20 @@ bool Map::Charger(int numeroMap)
                         m_decor[couche].push_back(vector<Decor> (0,decorTemp));
                     do
                     {
-                        int tileset=-1,tileFinal=-1,evenement=-1,monstre=-1,herbe=-1;
+                        int tileset=-1,tileFinal=-1,evenement=-1,herbe=-1,monstreFinal=-1;
+                        int temp;
                         vector <int>tile;
+                        vector <int>monstre;
                         do
                         {
+
                             fichier.get(caractere);
                             switch (caractere)
                             {
                                 case 's': fichier>>tileset; break;
-                                case 't': int temp; fichier>>temp; tile.push_back(temp); break;
+                                case 't': fichier>>temp; tile.push_back(temp); break;
                                 case 'e': fichier>>evenement; break;
-                                case 'm': fichier>>monstre; break;
+                                case 'm': fichier>>temp; monstre.push_back(temp); break;
                                 case 'h': fichier>>herbe; break;
                             }
                             if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
@@ -358,8 +361,24 @@ bool Map::Charger(int numeroMap)
                             if(m_decor[0][position.y][position.x].getHerbe()>=0&&herbe<0)
                                 herbe=m_decor[0][position.y][position.x].getHerbe();
 
-                        if(monstre>=0&&monstre<m_monstre.size())
-                        m_monstre[monstre].setCoordonnee(position),m_monstre[monstre].setDepart();
+                        if(monstre.size()>0)
+                        {
+                            int random = (rand() % (monstre.size() -1 - 0 + 1)) + 0;
+                            if(random>=0&&random<monstre.size())
+                                monstreFinal = monstre[random];
+
+                            monstre.clear();
+                        }
+
+                        if(monstreFinal>=0&&monstreFinal<m_ModeleMonstre.size())
+                        {
+                            m_monstre.push_back(monstreTemp);
+                            m_monstre[m_monstre.size()-1].Charger(monstreFinal,&m_ModeleMonstre[monstreFinal]);
+                            m_monstre[m_monstre.size()-1].setCoordonnee(position),m_monstre[m_monstre.size()-1].setDepart();
+                            monstreFinal=m_monstre.size()-1;
+                        }
+                        else
+                        monstreFinal=-1;
 
                         if(tile.size()>0)
                         {
@@ -374,8 +393,8 @@ bool Map::Charger(int numeroMap)
 
 
                         m_decor[couche][position.y].push_back(decorTemp);
-                        m_decor[couche][position.y][position.x].setDecor(tileset,tileFinal,evenement,monstre,herbe);
-                        tileset=-1,tile.clear(),tileFinal=-1,evenement=-1,monstre=-1,herbe=-1;
+                        m_decor[couche][position.y][position.x].setDecor(tileset,tileFinal,evenement,monstreFinal,herbe);
+                        tileset=-1,tile.clear(),tileFinal=-1,evenement=-1,monstreFinal=-1,herbe=-1;
                         position.x++;
                         fichier.get(caractere);
                     }while(caractere!='\n');
@@ -455,10 +474,10 @@ void Map::Sauvegarder()
         for(int i=0;i<m_ModeleMonstre.size();i++)
             fichier<<"*"<<m_ModeleMonstre[i].m_chemin<<"\n";
 
-        fichier<<"$\n";
+       /* fichier<<"$\n";
 
         for(int i=0;i<m_monstre.size();i++)
-            fichier<<"* m"<<m_monstre[i].getModele()<<" $\n";
+            fichier<<"* m"<<m_monstre[i].getModele()<<" $\n";*/
 
         fichier<<"$\n";
 
@@ -484,7 +503,7 @@ void Map::Sauvegarder()
                     fichier<<"e"<<m_decor[couche][i][j].getEvenement()<<" ";
                     if(m_decor[couche][i][j].getMonstre()>=0&&m_decor[couche][i][j].getMonstre()<m_monstre.size())
                         if(m_monstre[m_decor[couche][i][j].getMonstre()].getCaracteristique().vie>0)
-                            fichier<<"m"<<m_decor[couche][i][j].getMonstre()<<" ";
+                            fichier<<"m"<<m_monstre[m_decor[couche][i][j].getMonstre()].getModele()<<" ";
                     fichier<<"h"<<m_decor[couche][i][j].getHerbe()<<" ";
 
                     fichier<<"|";
@@ -2053,7 +2072,7 @@ bool Map::infligerDegats(int numeroMonstre, int degats,Menu *menu,sf::View *came
     {
         if(configuration.sang)
             for(int i=0;i<5;i++)
-                if(rand()%(100)>50)
+                if(rand()%(100)>50&&m_monstre[numeroMonstre].getCaracteristique().sang)
                 {
                     coordonneeDecimal position;
                     position.x=rand()%(600 - 100) + 100;
@@ -2063,7 +2082,7 @@ bool Map::infligerDegats(int numeroMonstre, int degats,Menu *menu,sf::View *came
                 }
 
         m_monstre[numeroMonstre].infligerDegats(degats);
-        if(m_monstre[numeroMonstre].getCaracteristique().vie<=0)
+        if(m_monstre[numeroMonstre].getCaracteristique().vie<=0&&m_monstre[numeroMonstre].getCaracteristique().pointAme>0)
         {
             coordonneeDecimal position;
             position.x=(((m_monstre[numeroMonstre].getCoordonnee().x-m_monstre[numeroMonstre].getCoordonnee().y-1+m_decor[0].size())*64)-camera->GetRect().Left+48-(configuration.Resolution.x/2-400));
