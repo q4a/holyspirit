@@ -21,6 +21,7 @@ $
 Liste des tilesets des monstres
 *Data/Entites/Monstres/GolemQuartz/GolemQuartz.char.hs
 *Data/Entites/Destructibles/Tonneau/Tonneau.char.hs
+*Data/Entites/Destructibles/Tonneau/TonneauExp.char.hs
 $
 Liste des événements
 * e0 $ * i2 i57 i31 $
@@ -68,10 +69,10 @@ $
 * s-1   | s-1   | s-1   | s1 t0 | s-1   | s1 t0 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s-1   | s-1   | s1 t0 | s-1   | s1 t0 | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s1 t5 | s1 t1 | s1 t3 | s-1   | s1 t4 | s1 t1 | s1 t1 | s1 t6 | s-1   | s-1   | s-1   | s-1   | s-1   |
-* s-1   | s1 t0 | s-1 m1   | s-1   | s-1   | s-1   | s-1   | s-1   | s1 t0 | s-1   | s-1   | s-1   | s-1   | s-1   |
-* s-1   | s1 t0 | s-1 m1  | s-1   | s-1   | s-1 m0   | s-1   | s-1   | s1 t4 | s1 t1 | s1 t1 | s1 t1 | s1 t6 | s-1   |
-* s-1   | s1 t0 | s-1 m1  | s-1   | s-1   | s-1   | s-1   | s-1 m0   | s-1   | s-1   | s-1   | s-1   | s1 t0 | s-1   |
-* s-1   | s1 t0 | s-1 m1  | s-1   | s-1   | s-1   | s-1   | s-1   | s1 t0 | s-1   | s-1   | s-1   | s1 t0 | s-1   |
+* s-1   | s1 t0 | s-1 m1 m2| s-1   | s-1   | s-1   | s-1   | s-1   | s1 t0 | s-1   | s-1   | s-1   | s-1   | s-1   |
+* s-1   | s1 t0 | s-1 m1 m2| s-1   | s-1   | s-1 m0   | s-1   | s-1   | s1 t4 | s1 t1 | s1 t1 | s1 t1 | s1 t6 | s-1   |
+* s-1   | s1 t0 | s-1 m1 m2| s-1   | s-1   | s-1   | s-1   | s-1 m0   | s-1   | s-1   | s-1   | s-1   | s1 t0 | s-1   |
+* s-1   | s1 t0 | s-1 m1 m2| s-1   | s-1   | s-1   | s-1   | s-1   | s1 t0 | s-1   | s-1   | s-1   | s1 t0 | s-1   |
 * s-1   | s1 t4 | s1 t1 | s1 t1 | s1 t1 | s1 t6 | s-1   | s1 t5 | s1 t9 | s1 t1 | s1 t6 | s-1   | s1 t0 | s-1   |
 * s-1   | s-1   | s-1   | s-1   | s-1   | s1 t0 | s-1   | s1 t0 | s-1   | s-1   | s1 t0 | s-1   | s1 t0 | s-1   |
 * s-1   | s-1   | s-1   | s-1   | s-1   | s1 t0 | s-1   | s1 t0 | s-1   | s-1   | s1 t0 | s-1   | s1 t0 | s-1   |
