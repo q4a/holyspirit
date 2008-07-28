@@ -247,85 +247,87 @@ void Personnage::regenererVie(float vie)
 int Personnage::pathfinding(vector<vector<bool> > map,coordonnee exception)
 {
     //if(!(m_arrivee.x==m_mauvaiseArrivee.x&&m_arrivee.y==m_mauvaiseArrivee.y))
-    if(m_caracteristique.vitesse>0)
-    if(!(m_arrivee.x==m_positionCase.x&&m_arrivee.y==m_positionCase.y))
+    if(1)
     {
-        m_erreurPathfinding=false;
-        liste_case casesVisitee;
-        coordonnee depart,arrivee,decalage;
-
-        decalage.x=m_positionCase.x-10;
-        decalage.y=m_positionCase.y-10;
-
-        depart.x=m_positionCase.x-decalage.x;
-        depart.y=m_positionCase.y-decalage.y;
-        arrivee.x=m_arrivee.x-decalage.x;
-        arrivee.y=m_arrivee.y-decalage.y;
-        exception.x=exception.x-decalage.x;
-        exception.y=exception.y-decalage.y;
-
-        casesVisitee.setTailleListe(0);
-
-        casesVisitee.ajouterCase(depart);
-
-
-        while(!casesVisitee.testerCasesEnCours(arrivee)&&!m_erreurPathfinding)
+        if(!(m_arrivee.x==m_positionCase.x&&m_arrivee.y==m_positionCase.y))
         {
-            casesVisitee.incrementerDistanceEnCours();
-            casesVisitee.ajouterCasesAdjacentes(map,&arrivee,depart,exception);
-            if(casesVisitee.getDistance()>10)
-                m_erreurPathfinding=true;
-        }
+            m_erreurPathfinding=false;
+            liste_case casesVisitee;
+            coordonnee depart,arrivee,decalage;
 
-        if(!m_erreurPathfinding)
-        {
-            m_cheminFinal=arrivee;
+            decalage.x=m_positionCase.x-10;
+            decalage.y=m_positionCase.y-10;
 
-            while(casesVisitee.getDistance()>1)
+            depart.x=m_positionCase.x-decalage.x;
+            depart.y=m_positionCase.y-decalage.y;
+            arrivee.x=m_arrivee.x-decalage.x;
+            arrivee.y=m_arrivee.y-decalage.y;
+            exception.x=exception.x-decalage.x;
+            exception.y=exception.y-decalage.y;
+
+            casesVisitee.setTailleListe(0);
+
+            casesVisitee.ajouterCase(depart);
+
+
+            while(!casesVisitee.testerCasesEnCours(arrivee)&&!m_erreurPathfinding)
             {
-                m_cheminFinal=casesVisitee.trouverLeChemin(m_cheminFinal);
-                casesVisitee.decrementerDistanceEnCours();
+                casesVisitee.incrementerDistanceEnCours();
+                casesVisitee.ajouterCasesAdjacentes(map,&arrivee,depart,exception);
+                if(casesVisitee.getDistance()>10)
+                    m_erreurPathfinding=true;
             }
 
-            m_arrivee.x=arrivee.x+decalage.x;
-            m_arrivee.y=arrivee.y+decalage.y;
+            if(!m_erreurPathfinding)
+            {
+                m_cheminFinal=arrivee;
 
-            m_cheminFinal.x+=decalage.x,m_cheminFinal.y+=decalage.y;
-            m_ancienneArrivee=m_arrivee;
+                while(casesVisitee.getDistance()>1)
+                {
+                    m_cheminFinal=casesVisitee.trouverLeChemin(m_cheminFinal);
+                    casesVisitee.decrementerDistanceEnCours();
+                }
+
+                m_arrivee.x=arrivee.x+decalage.x;
+                m_arrivee.y=arrivee.y+decalage.y;
+
+                m_cheminFinal.x+=decalage.x,m_cheminFinal.y+=decalage.y;
+                m_ancienneArrivee=m_arrivee;
+            }
+            else
+            {
+                 //m_mauvaiseArrivee=m_arrivee;
+                /*if(m_positionCase.x<m_arrivee.x)
+                m_arrivee.x=m_arrivee.x-1;
+                if(m_positionCase.x>m_arrivee.x)
+                m_arrivee.x=m_arrivee.x+1;
+                if(m_positionCase.y<m_arrivee.y)
+                m_arrivee.y=m_arrivee.y-1;
+                if(m_positionCase.y>m_arrivee.y)
+                m_arrivee.y=m_arrivee.y+1;*/
+
+                //m_arrivee.x=m_ancienneArrivee.x;
+                //m_arrivee.y=m_ancienneArrivee.y;
+                m_arrivee=m_positionCase;
+                m_etat=0;
+            }
+
+            for(int i=0;i<map.size();i++)
+                map[i].clear();
+            map.clear();
+
+            if(m_etat==0)
+            return 0;
+            else
+            return 1;
         }
-        else
-        {
-             //m_mauvaiseArrivee=m_arrivee;
-            /*if(m_positionCase.x<m_arrivee.x)
-            m_arrivee.x=m_arrivee.x-1;
-            if(m_positionCase.x>m_arrivee.x)
-            m_arrivee.x=m_arrivee.x+1;
-            if(m_positionCase.y<m_arrivee.y)
-            m_arrivee.y=m_arrivee.y-1;
-            if(m_positionCase.y>m_arrivee.y)
-            m_arrivee.y=m_arrivee.y+1;*/
-
-            //m_arrivee.x=m_ancienneArrivee.x;
-            //m_arrivee.y=m_ancienneArrivee.y;
-            m_arrivee=m_positionCase;
-            m_etat=0;
-        }
-
-        for(int i=0;i<map.size();i++)
-            map[i].clear();
-        map.clear();
-
-        if(m_etat==0)
-        return 0;
-        else
-        return 1;
     }
 }
 
 
 bool Personnage::seDeplacer(float tempsEcoule)
 {
-    if(m_caracteristique.vie>0&&m_caracteristique.vitesse>0)
+    if(m_caracteristique.vie>0)
     {
         if(m_positionCase.y!=m_cheminFinal.y||m_positionCase.x!=m_cheminFinal.x)
         {

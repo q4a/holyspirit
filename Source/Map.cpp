@@ -2167,67 +2167,67 @@ bool Map::getCollision(int positionX,int positionY)
         enCours.x=positionX+1;
         enCours.y=positionY+1;
         if(enCours.x>=0&&enCours.y>=0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
-         if(m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vie>0)
-            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
-                    return 1;
+            if(m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vie>0&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
+                    if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                        if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
+                            return 1;
         enCours.x=positionX-1;
         enCours.y=positionY-1;
         if(enCours.x>=0&&enCours.y>=0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
-         if(m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vie>0)
-            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
-                    return 1;
+            if(m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vie>0&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
+                    if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                        if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
+                            return 1;
         enCours.x=positionX+1;
         enCours.y=positionY-1;
         if(enCours.x>=0&&enCours.y>=0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
-         if(m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vie>0)
-            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
-                    return 1;
+            if(m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vie>0&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
+                    if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                        if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
+                            return 1;
         enCours.x=positionX-1;
         enCours.y=positionY+1;
         if(enCours.x>=0&&enCours.y>=0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
-         if(m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vie>0)
-            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
-                    return 1;
+            if(m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vie>0&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
+                    if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                        if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
+                            return 1;
             enCours.x=positionX;
         enCours.y=positionY+1;
         if(enCours.x>=0&&enCours.y>=0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
-         if(m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vie>0)
-            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
-                    return 1;
+            if(m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vie>0&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
+                    if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                        if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
+                            return 1;
         enCours.x=positionX+1;
         enCours.y=positionY;
         if(enCours.x>=0&&enCours.y>=0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
-         if(m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vie>0)
-            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
-                    return 1;
+            if(m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vie>0&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
+                    if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                        if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
+                            return 1;
         enCours.x=positionX-1;
         enCours.y=positionY;
         if(enCours.x>=0&&enCours.y>=0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
-         if(m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vie>0)
-            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
-                    return 1;
+            if(m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vie>0&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
+                    if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                        if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
+                            return 1;
         enCours.x=positionX;
         enCours.y=positionY-1;
         if(enCours.x>=0&&enCours.y>=0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
-         if(m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vie>0)
-            if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
-                    return 1;
+            if(m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vie>0&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
+                    if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
+                        if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
+                            return 1;
 
 	}
 	return 0;

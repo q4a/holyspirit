@@ -195,7 +195,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     if(jeu->hero.m_personnage.animer(&jeu->hero.m_modelePersonnage,jeu->map.getDimensions().y,tempsDepuisDerniereAnimation)==1) //Animation du héro
                     {
                         if(jeu->map.infligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&jeu->camera)) // Si l'enemi meut, renvoi true
-                            jeu->hero.m_personnage.setMauvaiseArrivee(jeu->eventManager.getCasePointee());
+                           {}// jeu->hero.m_personnage.setMauvaiseArrivee(jeu->eventManager.getCasePointee());
                         jeu->hero.setMonstreVise(-1);
                     }
                     jeu->map.animer(&jeu->hero,tempsDepuisDerniereAnimation,&jeu->menu); // Animation des tiles de la jeu->map
