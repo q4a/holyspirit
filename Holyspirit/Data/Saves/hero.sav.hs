@@ -1,7 +1,7 @@
 * nom: Héro
-* maxVie: 150
-* dgtsMin: 3
-* dgtsMax: 5
+* maxVie: 175
+* dgtsMin: 4
+* dgtsMax: 6
 * vitesse: 1
-* ptAme: 104
-* niveau: 3
+* ptAme: 403
+* niveau: 4
