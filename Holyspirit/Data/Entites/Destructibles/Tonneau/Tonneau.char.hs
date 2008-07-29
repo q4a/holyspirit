@@ -3,6 +3,9 @@ Liste des chemins de toutes les images du personnage
 
 $
 Liste des chemins de tous les sons
+*Data/Sons/31622__Srehpog__light_crate_smash1.wav
+*Data/Sons/31623__Srehpog__light_crate_smash2.wav
+*Data/Sons/31624__Srehpog__light_crate_smash3.wav
 $
 Portee lumineuse
 * r255 v255 b255 i0 $
@@ -90,7 +93,7 @@ Frappe - SE
 $
 Mort - E
 *x0 y0 w128 h128 a1 s-1 i0 $
-*x128 y0 w128 h128 a2 s-1 i0 $
+*x128 y0 w128 h128 a2 s-1 i0 s0 $
 *x256 y0 w128 h128 a3 s-1 i0 $
 *x384 y0 w128 h128 a4 s-1 i0 $
 *x512 y0 w128 h128 a5 s-1 i0 $
@@ -100,7 +103,7 @@ Mort - E
 $
 Mort - NE
 *x0 y128 w128 h128 a1 s-1 i0 $
-*x128 y128 w128 h128 a2 s-1 i0 $
+*x128 y128 w128 h128 a2 s-1 i0 s1 $
 *x256 y128 w128 h128 a3 s-1 i0 $
 *x384 y128 w128 h128 a4 s-1 i0 $
 *x512 y128 w128 h128 a5 s-1 i0 $
@@ -110,7 +113,7 @@ Mort - NE
 $
 Mort - N
 *x0 y256 w128 h128 a1 s-1 i0 $
-*x128 y256 w128 h128 a2 s-1 i0 $
+*x128 y256 w128 h128 a2 s-1 i0 s2 $
 *x256 y256 w128 h128 a3 s-1 i0 $
 *x384 y256 w128 h128 a4 s-1 i0 $
 *x512 y256 w128 h128 a5 s-1 i0 $
@@ -120,7 +123,7 @@ Mort - N
 $
 Mort - NO
 *x0 y384 w128 h128 a1 s-1 i0 $
-*x128 y384 w128 h128 a2 s-1 i0 $
+*x128 y384 w128 h128 a2 s-1 i0 s0 $
 *x256 y384 w128 h128 a3 s-1 i0 $
 *x384 y384 w128 h128 a4 s-1 i0 $
 *x512 y384 w128 h128 a5 s-1 i0 $
@@ -130,7 +133,7 @@ Mort - NO
 $
 Mort - O
 *x0 y512 w128 h128 a1 s-1 i0 $
-*x128 y512 w128 h128 a2 s-1 i0 $
+*x128 y512 w128 h128 a2 s-1 i0 s1 $
 *x256 y512 w128 h128 a3 s-1 i0 $
 *x384 y512 w128 h128 a4 s-1 i0 $
 *x512 y512 w128 h128 a5 s-1 i0 $
@@ -140,7 +143,7 @@ Mort - O
 $
 Mort - SO
 *x0 y640 w128 h128 a1 s-1 i0 $
-*x128 y640 w128 h128 a2 s-1 i0 $
+*x128 y640 w128 h128 a2 s-1 i0 s2 $
 *x256 y640 w128 h128 a3 s-1 i0 $
 *x384 y640 w128 h128 a4 s-1 i0 $
 *x512 y640 w128 h128 a5 s-1 i0 $
@@ -150,7 +153,7 @@ Mort - SO
 $
 Mort - S
 *x0 y768 w128 h128 a1 s-1 i0 $
-*x128 y768 w128 h128 a2 s-1 i0 $
+*x128 y768 w128 h128 a2 s-1 i0 s0 $
 *x256 y768 w128 h128 a3 s-1 i0 $
 *x384 y768 w128 h128 a4 s-1 i0 $
 *x512 y768 w128 h128 a5 s-1 i0 $
@@ -160,7 +163,7 @@ Mort - S
 $
 Mort - SE
 *x0 y896 w128 h128 a1 s-1 i0 $
-*x128 y896 w128 h128 a2 s-1 i0 $
+*x128 y896 w128 h128 a2 s-1 i0 s1 $
 *x256 y896 w128 h128 a3 s-1 i0 $
 *x384 y896 w128 h128 a4 s-1 i0 $
 *x512 y896 w128 h128 a5 s-1 i0 $
