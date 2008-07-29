@@ -123,12 +123,12 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 ///Sauvegarde automatique
 
-                /*if(tempsSauvergarde>=configuration.frequence_sauvegarde)
+                if(tempsSauvergarde>=configuration.frequence_sauvegarde)
                 {
-                    //jeu->hero.Sauvegarder();
-                    //jeu->map.Sauvegarder();
+                    jeu->hero.Sauvegarder();
+                    jeu->map.Sauvegarder();
                     tempsSauvergarde=0;
-                }*/
+                }
 
                 ///IA
 

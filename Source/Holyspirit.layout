@@ -25,14 +25,14 @@
 	<File name="Globale.h" open="0" top="0" tabpos="23">
 		<Cursor position="69" topLine="0" />
 	</File>
-	<File name="Hero.cpp" open="1" top="1" tabpos="11">
-		<Cursor position="5175" topLine="121" />
+	<File name="Hero.cpp" open="1" top="0" tabpos="11">
+		<Cursor position="404" topLine="10" />
 	</File>
 	<File name="Hero.h" open="1" top="0" tabpos="17">
 		<Cursor position="358" topLine="6" />
 	</File>
 	<File name="Map.cpp" open="1" top="0" tabpos="13">
-		<Cursor position="130371" topLine="2060" />
+		<Cursor position="23554" topLine="2020" />
 	</File>
 	<File name="Map.h" open="0" top="0" tabpos="12">
 		<Cursor position="1455" topLine="24" />
@@ -73,8 +73,8 @@
 	<File name="Tileset.h" open="0" top="0" tabpos="14">
 		<Cursor position="1006" topLine="19" />
 	</File>
-	<File name="c_Jeu.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="13463" topLine="257" />
+	<File name="c_Jeu.cpp" open="1" top="1" tabpos="5">
+		<Cursor position="4536" topLine="114" />
 	</File>
 	<File name="c_Jeu.h" open="1" top="0" tabpos="6">
 		<Cursor position="373" topLine="0" />
@@ -113,7 +113,7 @@
 		<Cursor position="728" topLine="3" />
 	</File>
 	<File name="jeu.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="3104" topLine="36" />
+		<Cursor position="3104" topLine="51" />
 	</File>
 	<File name="jeu.h" open="1" top="0" tabpos="8">
 		<Cursor position="484" topLine="17" />
