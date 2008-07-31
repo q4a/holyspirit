@@ -36,7 +36,7 @@ class Modele_Personnage
 	std::vector <std::vector<std::vector<Pose> > > m_pose;
 	std::vector <int> m_image;
 
-	bool m_ombre;
+	bool m_ombre,m_explosif;
 
 	protected:
 	Caracteristique m_caracteristique;
@@ -54,7 +54,7 @@ class Personnage
 	coordonnee getCoordonneePixel();
 	coordonnee getProchaineCase();
 	bool getErreurPathfinding();
-	int animer(Modele_Personnage *modele,int hauteur_map,float temps);
+	int animer(Modele_Personnage *modele,int hauteur_map,float temps,bool *explosif);
 
 	bool seDeplacer(float);
 	void setCoordonnee(coordonnee nouvellesCoordonnees);

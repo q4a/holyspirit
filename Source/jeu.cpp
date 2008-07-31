@@ -10,14 +10,14 @@ Jeu::Jeu()
     if (sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
     {
 
-        if(!EffectLuminosite.LoadFromFile(configuration.chemin_fx+configuration.nom_effetLuminosite))
+        /*if(!EffectLuminosite.LoadFromFile(configuration.chemin_fx+configuration.nom_effetLuminosite))
             console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetLuminosite,1);
         else
         {
             console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetLuminosite,0);
             EffectLuminosite.SetTexture("framebuffer", NULL);
             EffectLuminosite.SetParameter("color", 0.f, 0.f, 0.f);
-        }
+        }*/
 
         if(!EffectNoir.LoadFromFile(configuration.chemin_fx+configuration.nom_effetNoir))
             console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetNoir,1);
@@ -38,10 +38,18 @@ Jeu::Jeu()
         EffectMort.SetTexture("framebuffer", NULL);
         EffectMort.SetParameter("color",1, 1, 1);
     }
+
+
+    Luminosite.Create(configuration.Resolution.x, configuration.Resolution.y, sf::Color(configuration.luminosite, configuration.luminosite, configuration.luminosite));
+
 }
 
 void Jeu::Demarrer()
 {
+    sf::Sprite Sprite;
+    Sprite.SetImage(Luminosite);
+    Sprite.SetBlendMode(sf::Blend::Add);
+
     if(!configuration.mode_fenetre)
         ecran.Create(sf::VideoMode(configuration.Resolution.x, configuration.Resolution.y, 32),"HolySpirit : Act of Faith",sf::Style::Fullscreen);
     else
@@ -66,7 +74,7 @@ void Jeu::Demarrer()
 
     this->hero.Charger();
 
-    this->EffectLuminosite.SetParameter("color", (float)configuration.luminosite/50,(float)configuration.luminosite/50, (float)configuration.luminosite/50);
+//    this->EffectLuminosite.SetParameter("color", (float)configuration.luminosite/50,(float)configuration.luminosite/50, (float)configuration.luminosite/50);
 
     this->m_run = true;
     while (this->m_run)
@@ -78,7 +86,8 @@ void Jeu::Demarrer()
             this->ecran.Draw(this->EffectNoir);
             if(configuration.effetMort>0)
                 this->ecran.Draw(EffectMort);
-            this->ecran.Draw(this->EffectLuminosite);
+            //this->ecran.Draw(this->EffectLuminosite);
+            this->ecran.Draw(Sprite);
             this->ecran.Display();
             moteurGraphique.Vider();
 		}

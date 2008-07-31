@@ -137,7 +137,7 @@ bool Modele_Personnage::Charger(string chemin)
                     if(caractere=='*')
                     {
                         coordonnee position;
-                        int animation,son,image,attaque=-1;
+                        int animation,son,image,attaque=-1,lumiere=m_porteeLumineuse.intensite;
 
                         do
                         {
@@ -152,10 +152,13 @@ bool Modele_Personnage::Charger(string chemin)
                                 case 's': fichier>>son; break;
                                 case 'i': fichier>>image; break;
                                 case 'd': fichier>>attaque; break;
+                                case 'l': fichier>>lumiere; break;
                             }
+                            if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
                         }while(caractere!='$');
+
                         m_pose[i][j].push_back(poseTemp);
-                        m_pose[i][j][m_pose[i][j].size()-1].setPose(position,animation,son,image,attaque);
+                        m_pose[i][j][m_pose[i][j].size()-1].setPose(position,animation,son,image,attaque,lumiere);
                         fichier.get(caractere);
                     }
                     fichier.get(caractere);
@@ -402,7 +405,7 @@ void Personnage::infligerDegats(int degats)
         m_poseEnCours=0,m_etat=3;
 }
 
-int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps)
+int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,bool *explosif)
 {
     int retour=0;
 
@@ -432,6 +435,10 @@ int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps)
             if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==0)
                 retour=1;
         }
+
+        *explosif=modele->m_explosif;
+
+        m_porteeLumineuse.intensite=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite();
     }
 
     return retour;

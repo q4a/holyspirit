@@ -607,7 +607,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
             {
 
                 lumiereTemp=0;
-                lumiereTemp=(float)hero->m_modelePersonnage.getPorteeLumineuse().intensite-((((float)gpl::sqrt((hero->m_personnage.getCoordonneePixel().x-(j+vueMin.x)*COTE_TILE)*(hero->m_personnage.getCoordonneePixel().x-(j+vueMin.x)*COTE_TILE)+(hero->m_personnage.getCoordonneePixel().y-(i+vueMin.y)*COTE_TILE)*(hero->m_personnage.getCoordonneePixel().y-(i+vueMin.y)*COTE_TILE))))*DIVISEUR_COTE_TILE)*30;
+                lumiereTemp=(float)hero->m_modelePersonnage.getPorteeLumineuse().intensite-((((float)gpl::sqrt((hero->m_personnage.getCoordonneePixel().x-(j+vueMin.x)*COTE_TILE)*(hero->m_personnage.getCoordonneePixel().x-(j+vueMin.x)*COTE_TILE)+(hero->m_personnage.getCoordonneePixel().y-(i+vueMin.y)*COTE_TILE)*(hero->m_personnage.getCoordonneePixel().y-(i+vueMin.y)*COTE_TILE))))*DIVISEUR_COTE_TILE)*50;
 
                 lumiere=hero->m_modelePersonnage.getPorteeLumineuse();
 
@@ -780,14 +780,12 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                 {
                     bool ok=false;
                     if(m_decor[0][j][k].getMonstre()>=0&&m_decor[couche][j][k].getMonstre()<m_monstre.size())// Je vérifie que le tile est initialisé ^^
-                        if(m_monstre[m_decor[0][j][k].getMonstre()].getCaracteristique().vie>0)
                             if(m_monstre[m_decor[0][j][k].getMonstre()].getPorteeLumineuse().intensite>0)
                                 ok=true;
                     if(m_decor[0][j][k].getEvenement()>=0&&m_decor[couche][j][k].getEvenement()<m_evenement.size())// Je vérifie que le tile est initialisé ^^
                         if(m_evenement[m_decor[0][j][k].getEvenement()].getType()==LUMIERE)
                             ok=true;
                     if(m_decor[1][j][k].getMonstre()>=0&&m_decor[couche][j][k].getMonstre()<m_monstre.size())// Je vérifie que le tile est initialisé ^^
-                        if(m_monstre[m_decor[1][j][k].getMonstre()].getCaracteristique().vie>0)
                             if(m_monstre[m_decor[1][j][k].getMonstre()].getPorteeLumineuse().intensite>0)
                                 ok=true;
                     if(m_decor[1][j][k].getEvenement()>=0&&m_decor[couche][j][k].getEvenement()<m_evenement.size())// Je vérifie que le tile est initialisé ^^
@@ -1039,7 +1037,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
 
 
                                         if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
-                                        if(m_monstre[m_decor[0][j][k].getMonstre()].getCaracteristique().vie>0)
+                                        //if(m_monstre[m_decor[0][j][k].getMonstre()].getCaracteristique().vie>0)
                                         if(m_monstre[m_decor[0][j][k].getMonstre()].getPorteeLumineuse().intensite>0)
                                         {
                                             //lumiere=m_lumiere;
@@ -1151,7 +1149,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                         }
 
                                         if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
-                                        if(m_monstre[m_decor[1][j][k].getMonstre()].getCaracteristique().vie>0)
+                                       // if(m_monstre[m_decor[1][j][k].getMonstre()].getCaracteristique().vie>0)
                                         if(m_monstre[m_decor[1][j][k].getMonstre()].getPorteeLumineuse().intensite>0)
                                         {
                                             //lumiere=m_lumiere;
@@ -1398,6 +1396,32 @@ coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
 
 
                                     Sprite.SetImage(*moteurGraphique.getImage(m_herbe[m_decor[0][j][k].getHerbe()].getImage()));
+                                    if((position.x+64-positionPartieDecor.w/2)-ViewRect.Left<0)
+                                    {
+                                        int temp=(int)((position.x+64-positionPartieDecor.w/2)-ViewRect.Left);
+                                        position.x+=temp/2;
+                                        positionPartieDecor.x+=temp;
+                                        positionPartieDecor.w-=temp;
+                                    }
+                                    if((position.x+64-positionPartieDecor.w/2)+positionPartieDecor.w>ViewRect.Right)
+                                    {
+                                        int temp=(int)((ViewRect.Right-((position.x+64-positionPartieDecor.w/2)+positionPartieDecor.w)));
+                                        position.x-=temp/2;
+                                        positionPartieDecor.w-=temp;
+                                    }
+                                    if((position.y-positionPartieDecor.h+64)-ViewRect.Top<0)
+                                    {
+                                        int temp=(int)(((position.y-positionPartieDecor.h+64)-ViewRect.Top));
+                                        positionPartieDecor.y+=temp;
+                                        positionPartieDecor.h-=temp;
+                                    }
+                                    if((position.y-positionPartieDecor.h+64)+positionPartieDecor.h>ViewRect.Bottom)
+                                    {
+                                        int temp=(int)((ViewRect.Bottom-(position.y-positionPartieDecor.h+64+positionPartieDecor.h)));
+                                        position.y-=temp;
+                                        positionPartieDecor.h-=temp;
+                                    }
+
                                     Sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
 
                                     if(position.x+positionPartieDecor.w>=ViewRect.Left&&position.x<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y-positionPartieDecor.h<ViewRect.Bottom)
@@ -1540,6 +1564,31 @@ coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
                                     position.y+=positionPartieDecor.h/2;
 
                                     Sprite.SetImage(*moteurGraphique.getImage(m_herbe[m_decor[1][j][k].getHerbe()].getImage()));
+                                    if((position.x+64-positionPartieDecor.w/2)-ViewRect.Left<0)
+                                    {
+                                        int temp=(int)((position.x+64-positionPartieDecor.w/2)-ViewRect.Left);
+                                        position.x+=temp/2;
+                                        positionPartieDecor.x+=temp;
+                                        positionPartieDecor.w-=temp;
+                                    }
+                                    if((position.x+64-positionPartieDecor.w/2)+positionPartieDecor.w>ViewRect.Right)
+                                    {
+                                        int temp=(int)((ViewRect.Right-((position.x+64-positionPartieDecor.w/2)+positionPartieDecor.w)));
+                                        position.x-=temp/2;
+                                        positionPartieDecor.w-=temp;
+                                    }
+                                    if((position.y-positionPartieDecor.h+64)-ViewRect.Top<0)
+                                    {
+                                        int temp=(int)(((position.y-positionPartieDecor.h+64)-ViewRect.Top));
+                                        positionPartieDecor.y+=temp;
+                                        positionPartieDecor.h-=temp;
+                                    }
+                                    if((position.y-positionPartieDecor.h+64)+positionPartieDecor.h>ViewRect.Bottom)
+                                    {
+                                        int temp=(int)((ViewRect.Bottom-(position.y-positionPartieDecor.h+64+positionPartieDecor.h)));
+                                        position.y-=temp;
+                                        positionPartieDecor.h-=temp;
+                                    }
                                     Sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
 
                                     if(position.x+positionPartieDecor.w>=ViewRect.Left&&position.x<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y-positionPartieDecor.h+64<ViewRect.Bottom)
@@ -1930,7 +1979,20 @@ void Map::animer(Hero *hero,float temps,Menu *menu)
                     m_decor[i][j][k].decrementerAnimation();
                 }
                     if(m_decor[i][j][k].getMonstre()>=0&&m_decor[i][j][k].getMonstre()<m_monstre.size())
-                        hero->m_personnage.infligerDegats(m_monstre[m_decor[i][j][k].getMonstre()].animer(&m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()],m_decor[0].size(),temps));
+                    {
+                        bool explosif=false;
+                        int degats = m_monstre[m_decor[i][j][k].getMonstre()].animer(&m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()],m_decor[0].size(),temps,&explosif);
+                        hero->m_personnage.infligerDegats(degats);
+                        if(explosif&&degats>0)
+                        {
+                            for(int couche=0;couche<2;couche++)
+                                for(int y=j-1;y<=j+1;y++)
+                                    for(int x=k-1;x<=k+1;x++)
+                                        if(y>0&&x>0&&y<m_decor[0].size()&&x<m_decor[0][0].size())
+                                            if(m_decor[couche][y][x].getMonstre()>=0&&m_decor[couche][y][x].getMonstre()<m_monstre.size())
+                                                m_monstre[m_decor[couche][y][x].getMonstre()].infligerDegats(degats);
+                        }
+                   }
 
            }
 

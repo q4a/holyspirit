@@ -87,7 +87,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
             jeu->m_display=false;
             tempsEcoule = jeu->Clock.GetElapsedTime();
 
-            if(tempsEcoule>0.005)
+            if(tempsEcoule>0.00)
             {
                 tempsEcouleDepuisDernierDeplacement+=tempsEcoule;
                 tempsDepuisDerniereAnimation+=tempsEcoule;
@@ -123,12 +123,12 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 ///Sauvegarde automatique
 
-                if(tempsSauvergarde>=configuration.frequence_sauvegarde)
+                /*if(tempsSauvergarde>=configuration.frequence_sauvegarde)
                 {
                     jeu->hero.Sauvegarder();
                     jeu->map.Sauvegarder();
                     tempsSauvergarde=0;
-                }
+                }*/
 
                 ///IA
 
@@ -174,8 +174,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
 
                 /// On calcule les lumières et les ombre
-
-                if(tempsEcouleDepuisDernierCalculLumiere>0.054)
+                if(tempsEcouleDepuisDernierCalculLumiere>configuration.frequence_lumiere)
                 {
                     lumiere=true;
                     tempsEcouleDepuisDernierCalculLumiere=0;
@@ -191,8 +190,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 if(tempsDepuisDerniereAnimation>0.043)
                 {
-
-                    if(jeu->hero.m_personnage.animer(&jeu->hero.m_modelePersonnage,jeu->map.getDimensions().y,tempsDepuisDerniereAnimation)==1) //Animation du héro
+                    bool a; // Variable qui ne sert pas ici, mais qui remplace le explosif des monstres
+                    if(jeu->hero.m_personnage.animer(&jeu->hero.m_modelePersonnage,jeu->map.getDimensions().y,tempsDepuisDerniereAnimation,&a)==1) //Animation du héro
                     {
                         if(jeu->map.infligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&jeu->camera)) // Si l'enemi meut, renvoi true
                            {}// jeu->hero.m_personnage.setMauvaiseArrivee(jeu->eventManager.getCasePointee());

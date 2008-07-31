@@ -33,11 +33,10 @@ class MoteurGraphique
 	private:
 
 	std::vector <sf::Image> m_images;
-	std::vector <std::string> m_cheminsImages;
+	std::vector <std::string> m_cheminsImages;//Permet de s'assurer d'avoir des singletons
 	std::vector <sf::String> m_textes;
-	//Permet de s'assurer d'avoir des singletons
 
-	LumiereOmbrage m_tableauDesLampes[30][30],m_lumiereHero; // Tableau de lumière et ombres, 30X30 car c'est le nbr max de tiles affichables à l'écran
+
 };
 
 #endif
