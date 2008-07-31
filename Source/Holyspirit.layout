@@ -25,20 +25,20 @@
 	<File name="Globale.h" open="0" top="0" tabpos="23">
 		<Cursor position="69" topLine="0" />
 	</File>
-	<File name="Hero.cpp" open="1" top="1" tabpos="11">
-		<Cursor position="509" topLine="11" />
+	<File name="Hero.cpp" open="1" top="0" tabpos="11">
+		<Cursor position="533" topLine="20" />
 	</File>
 	<File name="Hero.h" open="1" top="0" tabpos="17">
 		<Cursor position="358" topLine="6" />
 	</File>
 	<File name="Map.cpp" open="1" top="0" tabpos="13">
-		<Cursor position="71970" topLine="1036" />
+		<Cursor position="128226" topLine="1964" />
 	</File>
 	<File name="Map.h" open="0" top="0" tabpos="12">
 		<Cursor position="1455" topLine="24" />
 	</File>
 	<File name="Monstre.cpp" open="1" top="0" tabpos="14">
-		<Cursor position="9347" topLine="0" />
+		<Cursor position="279" topLine="3" />
 	</File>
 	<File name="Monstre.h" open="1" top="0" tabpos="26">
 		<Cursor position="373" topLine="1" />
@@ -50,10 +50,10 @@
 		<Cursor position="424" topLine="9" />
 	</File>
 	<File name="Personnage.cpp" open="1" top="0" tabpos="12">
-		<Cursor position="17231" topLine="413" />
+		<Cursor position="17095" topLine="398" />
 	</File>
-	<File name="Personnage.h" open="1" top="0" tabpos="21">
-		<Cursor position="2173" topLine="64" />
+	<File name="Personnage.h" open="1" top="1" tabpos="21">
+		<Cursor position="2254" topLine="25" />
 	</File>
 	<File name="Pose.cpp" open="1" top="0" tabpos="24">
 		<Cursor position="959" topLine="3" />
@@ -74,7 +74,7 @@
 		<Cursor position="1006" topLine="19" />
 	</File>
 	<File name="c_Jeu.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="8403" topLine="179" />
+		<Cursor position="7775" topLine="174" />
 	</File>
 	<File name="c_Jeu.h" open="1" top="0" tabpos="6">
 		<Cursor position="750" topLine="0" />
@@ -113,10 +113,10 @@
 		<Cursor position="728" topLine="3" />
 	</File>
 	<File name="jeu.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="1665" topLine="33" />
+		<Cursor position="2467" topLine="43" />
 	</File>
 	<File name="jeu.h" open="1" top="0" tabpos="8">
-		<Cursor position="484" topLine="17" />
+		<Cursor position="938" topLine="17" />
 	</File>
 	<File name="liste_case.cpp" open="1" top="0" tabpos="20">
 		<Cursor position="2172" topLine="33" />
