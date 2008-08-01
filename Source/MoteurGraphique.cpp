@@ -12,6 +12,7 @@ MoteurGraphique::~MoteurGraphique()
     m_commandes.clear();
     m_cheminsImages.clear();
     m_images.clear();
+    m_textes.clear();
 }
 void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera)
 {

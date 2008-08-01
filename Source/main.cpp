@@ -235,5 +235,9 @@ int main ( int argc, char** argv )
     //if(!Jeu(&ecran))
       //  return EXIT_FAILURE;
 
+    console.Ajouter("");
+    console.Ajouter("EXIT_SUCCESS");
+    console.Rapport();
+
     return EXIT_SUCCESS;
 }

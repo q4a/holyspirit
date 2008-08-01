@@ -54,6 +54,7 @@ class Menu
 {
 	public:
 	Menu();
+	~Menu();
 	void Afficher(sf::RenderWindow* ecran,int type);
 	void AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracteristique,int type,Caracteristique caracteristiqueMonstre);
 	void AfficherChargement(sf::RenderWindow* ecran,std::string nom,int fond,int z);

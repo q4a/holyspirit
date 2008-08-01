@@ -10,6 +10,12 @@
 using namespace std;
 using namespace sf;
 
+Menu::~Menu()
+{
+    m_sang.clear();
+    m_ame.clear();
+}
+
 Menu::Menu()
 {
     m_alphaSang=0;

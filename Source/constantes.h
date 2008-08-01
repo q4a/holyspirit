@@ -125,6 +125,10 @@ class LumiereOmbrage : public Lumiere
     LumiereOmbrage()
     {
     }
+    ~LumiereOmbrage()
+    {
+        m_ombre.clear();
+    }
     void detruire()
     {
         m_ombre.clear();

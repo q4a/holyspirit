@@ -15,6 +15,7 @@
 class Console
 {
 	public:
+	~Console();
 	void Afficher(sf::RenderWindow* ecran);
 	void Ajouter(std::string texte,bool erreur=0);
 	void AjouterNombre(int nombre,bool erreur=0);

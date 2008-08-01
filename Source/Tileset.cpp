@@ -20,6 +20,10 @@ Tileset::Tileset(string chemin)
 }
 Tileset::~Tileset()
 {
+    m_sonAZero.clear();
+    m_tile.clear();
+    m_buffer.clear();
+    m_sons.clear();
 }
 
 Tileset Tileset::operator=(const Tileset &tileset)

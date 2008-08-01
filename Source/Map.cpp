@@ -42,7 +42,6 @@ Map::~Map()
     for(int i=0;i<m_evenement.size();i++)
         m_evenement[i].deleteInformations();
     m_evenement.clear();
-    m_musique.Stop();
 }
 
 void Map::Detruire()
@@ -68,6 +67,8 @@ void Map::Detruire()
 
 bool Map::Charger(int numeroMap)
 {
+    bool entite_map_existante=false;
+
     m_numero=numeroMap;
 	char numero[7];
 	string chemin = configuration.chemin_maps,chemin2 = configuration.chemin_temps+"map";
@@ -84,11 +85,10 @@ bool Map::Charger(int numeroMap)
 	m_lumiere[0].vert=0;
 	m_lumiere[0].bleu=0;
 
-	ifstream fichier;
+	ifstream fichier,fichier2;
     fichier.open(chemin.c_str(), ios::in);
 
     struct dirent *lecture;
-	int tailleVideo=-2;
 
 	DIR *repertoire;
     repertoire = opendir(configuration.chemin_temps.c_str());
@@ -100,11 +100,21 @@ bool Map::Charger(int numeroMap)
         temp=temp2;
         if(lecture->d_name==temp)
             fichier.close(),fichier.open(chemin2.c_str(), ios::in);
+
+
+        sprintf(temp2,"entites_map%ld.emap.hs",numeroMap);
+        temp=temp2;
+        if(lecture->d_name==temp)
+        {
+            string cheminEntites = configuration.chemin_temps + temp;
+            entite_map_existante=true,fichier2.open(cheminEntites.c_str(), ios::in);
+        }
     }
     closedir(repertoire);
 
     console.Rapport();
 
+    Monstre monstreTemp;
 
     if(fichier)
     {
@@ -250,31 +260,72 @@ bool Map::Charger(int numeroMap)
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
     	}while(caractere!='$');
 
+    	if(entite_map_existante)
+        {
+            if(fichier2)
+            {
+                char caractere;
+                do
+                {
+                    //Chargement du nom
+                    fichier2.get(caractere);
+                    if(caractere=='*')
+                    {
+                        Lumiere lumiere;
+                        int numeroModele=-1,vieMin=0,vieMax=1,degatsMin=0,degatsMax=0,rang=0,ame=0;
+                        float taille=1;
+                        m_monstre.push_back(monstreTemp);
 
-    	Monstre monstreTemp;
-    	/*do
-    	{
-    	    //Chargement des tileset
-    		fichier.get(caractere);
-    		if(caractere=='*')
-    		{
-    		    int numeroMonstre=0;
-    		    do
-    			{
-    				fichier.get(caractere);
-    				switch (caractere)
-    				{
-    					case 'm': fichier>>numeroMonstre; break;
-    				}
-    			}while(caractere!='$');
-                m_monstre.push_back(monstreTemp);
-                m_monstre[m_monstre.size()-1].Charger(numeroMonstre,&m_ModeleMonstre[numeroMonstre]);
-                fichier.get(caractere);
-    		}
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
+                        char caractere;
+                        do
+                        {
+                            //Chargement du nom
+                            fichier2.get(caractere);
+                            switch(caractere)
+                            {
+                                case 'm': fichier2>>numeroModele; break;
+                                case 'v': fichier2.get(caractere); if(caractere=='i') { fichier2>>vieMin; } else if(caractere=='a') { fichier2>>vieMax; } break;
+                                case 'd': fichier2.get(caractere); if(caractere=='i') { fichier2>>degatsMin; } else if(caractere=='a') { fichier2>>degatsMax; } break;
+                                case 'r': fichier2>>rang; break;
+                                case 'a': fichier2>>ame; break;
+                                case 't': fichier2>>taille; break;
 
-    	}while(caractere!='$');*/
+                                case 'l':
+                                    fichier2.get(caractere);
+                                    switch(caractere)
+                                    {
+                                        case 'r': fichier2>>lumiere.rouge; break;
+                                        case 'v': fichier2>>lumiere.vert; break;
+                                        case 'b': fichier2>>lumiere.bleu; break;
+                                        case 'i': fichier2>>lumiere.intensite; break;
+                                    }
+                                break;
+                            }
 
+                            if(fichier2.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
+                        }while(caractere!='$');
+
+
+
+                        m_monstre[m_monstre.size()-1].Charger(numeroModele,&m_ModeleMonstre[numeroModele]);
+                        Caracteristique caracteristique = m_monstre[m_monstre.size()-1].getCaracteristique();
+                        caracteristique.vie=vieMin;
+                        caracteristique.maxVie=vieMax;
+                        caracteristique.degatsMin=degatsMin;
+                        caracteristique.degatsMax=degatsMax;
+                        caracteristique.rang=rang;
+                        caracteristique.pointAme=ame;
+                        caracteristique.modificateurTaille=taille;
+                        m_monstre[m_monstre.size()-1].setCaracteristique(caracteristique);
+                        m_monstre[m_monstre.size()-1].setPorteeLumineuse(lumiere);
+
+                    }
+
+                    if(fichier2.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
+                }while(caractere!='$');
+            }
+            fichier2.close();
+        }
 
     	m_evenement.clear();
 
@@ -349,7 +400,7 @@ bool Map::Charger(int numeroMap)
                                 case 's': fichier>>tileset; break;
                                 case 't': fichier>>temp; tile.push_back(temp); break;
                                 case 'e': fichier>>evenement; break;
-                                case 'm': fichier>>temp; monstre.push_back(temp); break;
+                                 case 'm': if(!entite_map_existante) { fichier>>temp; monstre.push_back(temp);  } else {  fichier>>monstreFinal; } break;
                                 case 'h': fichier>>herbe; break;
                             }
                             if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
@@ -361,24 +412,35 @@ bool Map::Charger(int numeroMap)
                             if(m_decor[0][position.y][position.x].getHerbe()>=0&&herbe<0)
                                 herbe=m_decor[0][position.y][position.x].getHerbe();
 
-                        if(monstre.size()>0)
+                        if(!entite_map_existante)
                         {
-                            int random = (rand() % (monstre.size() -1 - 0 + 1)) + 0;
-                            if(random>=0&&random<monstre.size())
-                                monstreFinal = monstre[random];
+                            if(monstre.size()>0)
+                            {
+                                int random = (rand() % (monstre.size() -1 - 0 + 1)) + 0;
+                                if(random>=0&&random<monstre.size())
+                                    monstreFinal = monstre[random];
 
-                            monstre.clear();
-                        }
+                                monstre.clear();
+                            }
 
-                        if(monstreFinal>=0&&monstreFinal<m_ModeleMonstre.size())
-                        {
-                            m_monstre.push_back(monstreTemp);
-                            m_monstre[m_monstre.size()-1].Charger(monstreFinal,&m_ModeleMonstre[monstreFinal]);
-                            m_monstre[m_monstre.size()-1].setCoordonnee(position),m_monstre[m_monstre.size()-1].setDepart();
-                            monstreFinal=m_monstre.size()-1;
+                            if(monstreFinal>=0&&monstreFinal<m_ModeleMonstre.size())
+                            {
+                                m_monstre.push_back(monstreTemp);
+                                m_monstre[m_monstre.size()-1].Charger(monstreFinal,&m_ModeleMonstre[monstreFinal]);
+                                m_monstre[m_monstre.size()-1].setCoordonnee(position),m_monstre[m_monstre.size()-1].setDepart();
+                                monstreFinal=m_monstre.size()-1;
+                            }
+                            else
+                            monstreFinal=-1;
                         }
                         else
-                        monstreFinal=-1;
+                        {
+                            if(monstreFinal>=0&&monstreFinal<m_monstre.size())
+                            {
+                                m_monstre[monstreFinal].setCoordonnee(position);
+                                m_monstre[monstreFinal].setDepart();
+                            }
+                        }
 
                         if(tile.size()>0)
                         {
@@ -502,8 +564,8 @@ void Map::Sauvegarder()
                     fichier<<"t"<<m_decor[couche][i][j].getTile()<<" ";
                     fichier<<"e"<<m_decor[couche][i][j].getEvenement()<<" ";
                     if(m_decor[couche][i][j].getMonstre()>=0&&m_decor[couche][i][j].getMonstre()<m_monstre.size())
-                        if(m_monstre[m_decor[couche][i][j].getMonstre()].getCaracteristique().vie>0)
-                            fichier<<"m"<<m_monstre[m_decor[couche][i][j].getMonstre()].getModele()<<" ";
+                        fichier<<"m"<<m_decor[couche][i][j].getMonstre()<<" ";
+                            //fichier<<"m"<<m_monstre[m_decor[couche][i][j].getMonstre()].getModele()<<" ";
                     fichier<<"h"<<m_decor[couche][i][j].getHerbe()<<" ";
 
                     fichier<<"|";
@@ -517,6 +579,25 @@ void Map::Sauvegarder()
     {
         console.Ajouter("Impossible d'ouvrir le fichier : "+chemin,1);
         throw "";
+    }
+    fichier.close();
+
+
+
+
+
+    chemin = configuration.chemin_temps;
+    sprintf(numero,"entites_map%ld.emap.hs",m_numero);
+	chemin += numero;
+    fichier.open(chemin.c_str(), ios::out);
+    if(fichier)
+    {
+        for(int i=0;i<m_monstre.size();i++)
+        {
+            fichier<<"* m"<<m_monstre[i].getModele()<<" vi"<<m_monstre[i].getCaracteristique().vie<<" va"<<m_monstre[i].getCaracteristique().maxVie<<" di"<<m_monstre[i].getCaracteristique().degatsMin<<" da"<<m_monstre[i].getCaracteristique().degatsMax<<" r"<<m_monstre[i].getCaracteristique().rang<<" a"<<m_monstre[i].getCaracteristique().pointAme<<" t"<<m_monstre[i].getCaracteristique().modificateurTaille
+            <<" lr"<<m_monstre[i].getPorteeLumineuse().rouge<<" lv"<<m_monstre[i].getPorteeLumineuse().vert<<" lb"<<m_monstre[i].getPorteeLumineuse().bleu<<" li"<<m_monstre[i].getPorteeLumineuse().intensite<<" $\n";
+        }
+        fichier<<"\n$";
     }
     fichier.close();
 }
@@ -1982,16 +2063,21 @@ void Map::animer(Hero *hero,float temps,Menu *menu)
                     {
                         bool explosif=false;
                         int degats = m_monstre[m_decor[i][j][k].getMonstre()].animer(&m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()],m_decor[0].size(),temps,&explosif);
-                        hero->m_personnage.infligerDegats(degats);
                         if(explosif&&degats>0)
                         {
                             for(int couche=0;couche<2;couche++)
                                 for(int y=j-1;y<=j+1;y++)
                                     for(int x=k-1;x<=k+1;x++)
                                         if(y>0&&x>0&&y<m_decor[0].size()&&x<m_decor[0][0].size())
+                                        {
                                             if(m_decor[couche][y][x].getMonstre()>=0&&m_decor[couche][y][x].getMonstre()<m_monstre.size())
                                                 m_monstre[m_decor[couche][y][x].getMonstre()].infligerDegats(degats);
+                                            if(y==hero->m_personnage.getCoordonnee().y&&x==hero->m_personnage.getCoordonnee().x)
+                                                hero->m_personnage.infligerDegats(degats);
+                                        }
                         }
+                        else
+                        hero->m_personnage.infligerDegats(degats);
                    }
 
            }
@@ -2032,7 +2118,7 @@ void Map::gererMonstres(Hero *hero,float temps)
                     {
 
                         m_monstre[m_decor[i][j][k].getMonstre()].testerVision(hero->m_personnage.getCoordonnee());
-                        if(m_monstre[m_decor[i][j][k].getMonstre()].getVu()&&!m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding())
+                        if(m_monstre[m_decor[i][j][k].getMonstre()].getVu()&&!m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding()||m_monstre[m_decor[i][j][k].getMonstre()].getCaracteristique().vie<=0)
                         {
                             if(m_monstre[m_decor[i][j][k].getMonstre()].getCaracteristique().vie>0)
                             {

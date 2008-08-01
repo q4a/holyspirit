@@ -73,6 +73,7 @@ class Personnage
 	void setCoordonneePixel(coordonnee position);
 	void setProchaineCase(coordonnee position);
 	void setCaracteristique(Caracteristique caracteristique);
+	void setPorteeLumineuse(Lumiere  lumiere);
 	void regenererVie(float vie);
 
 	void AjouterPointAme(int pointAme);

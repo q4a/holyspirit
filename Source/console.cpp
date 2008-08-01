@@ -6,6 +6,11 @@
 
 using namespace std;
 
+Console::~Console()
+{
+    m_textes.clear();
+    m_erreur.clear();
+}
 
 void Console::Afficher(sf::RenderWindow* ecran)
 {
@@ -65,7 +70,6 @@ void Console::Rapport()
     if(fichier)  // si l'ouverture a réussi
     {
         for(int i=0;i<m_erreur.size();i++)
-            if(m_erreur[i]==1)
                 fichier<<m_textes[i]<<'\n';
         fichier.close();
     }

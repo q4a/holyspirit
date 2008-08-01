@@ -272,7 +272,12 @@ void Monstre::testerVision(coordonnee positionHero)
             if(m_etat==0) m_poseEnCours=0;
         }
         if(fabs(positionHero.x-m_positionCase.x)>10||fabs(positionHero.y-m_positionCase.y)>10)
-        m_vu=0,m_etat=0,m_poseEnCours=0;
+        {
+            if(m_vu)
+                setDepart();
+            m_vu=0,m_etat=0,m_poseEnCours=0;
+
+        }
 
         //if(m_erreurPathfinding)
          //   m_vu=0;

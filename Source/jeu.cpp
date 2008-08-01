@@ -87,7 +87,8 @@ void Jeu::Demarrer()
             if(configuration.effetMort>0)
                 this->ecran.Draw(EffectMort);
             //this->ecran.Draw(this->EffectLuminosite);
-            this->ecran.Draw(Sprite);
+            if(configuration.luminosite>0)
+                this->ecran.Draw(Sprite);
             this->ecran.Display();
             moteurGraphique.Vider();
 		}
@@ -99,6 +100,8 @@ void Jeu::Demarrer()
     delete this->m_chargement;
     delete this->m_inventaire;
 
+    console.Ajouter("");
+    console.Ajouter("Fermeture des contextes effectuée avec succès.");
 	console.Rapport();
 }
 

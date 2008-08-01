@@ -68,6 +68,10 @@ Modele_Personnage::~Modele_Personnage()
          m_pose[i].clear();
     }
     m_pose.clear();
+
+    m_image.clear();
+    m_buffer.clear();
+    m_sons.clear();
 }
 
 bool Modele_Personnage::Charger(string chemin)
@@ -438,7 +442,8 @@ int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,boo
 
         *explosif=modele->m_explosif;
 
-        m_porteeLumineuse.intensite=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite();
+        if(m_caracteristique.rang==0)
+            m_porteeLumineuse.intensite=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite();
     }
 
     return retour;
@@ -483,6 +488,7 @@ void Modele_Personnage::jouerSon(int numeroSon,double distance,coordonnee positi
 }
 
 void Modele_Personnage::setPorteeLumineuse(Lumiere  lumiere){m_porteeLumineuse=lumiere;}
+void Personnage::setPorteeLumineuse(Lumiere  lumiere){m_porteeLumineuse=lumiere;}
 void Personnage::setCaracteristique(Caracteristique caracteristique){m_caracteristique=caracteristique;}
 void Personnage::setProchaineCase(coordonnee position){m_cheminFinal=position;}
 void Personnage::setVitesse(float vitesse){m_caracteristique.vitesse=vitesse;}
