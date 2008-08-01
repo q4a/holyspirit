@@ -91,9 +91,9 @@ Frappe - SE
 $
 Mort - E
 *x0 y0 w256 h256 a1 s-1 i0 $
-*x256 y0 w256 h256 a2 s-1 i0 d0 s0 l512 $
+*x256 y0 w256 h256 a2 s-1 i0 s0 l512 $
 *x512 y0 w256 h256 a3 s-1 i0 l384 $
-*x768 y0 w256 h256 a4 s-1 i0 l256 $
+*x768 y0 w256 h256 a4 s-1 i0 d0 l256 $
 *x0 y256 w256 h256 a5 s-1 i0 l128 $
 *x256 y256 w256 h256 a6 s-1 i0 $
 *x512 y256 w256 h256 a7 s-1 i0 $
@@ -101,9 +101,9 @@ Mort - E
 $
 Mort - NE
 *x0 y0 w256 h256 a1 s-1 i0 $
-*x256 y0 w256 h256 a2 s-1 i0 d0 s0 l512 $
+*x256 y0 w256 h256 a2 s-1 i0 s0 l512 $
 *x512 y0 w256 h256 a3 s-1 i0 l384 $
-*x768 y0 w256 h256 a4 s-1 i0 l256 $
+*x768 y0 w256 h256 a4 s-1 i0 d0 l256 $
 *x0 y256 w256 h256 a5 s-1 i0 l128 $
 *x256 y256 w256 h256 a6 s-1 i0 $
 *x512 y256 w256 h256 a7 s-1 i0 $
@@ -111,9 +111,9 @@ Mort - NE
 $
 Mort - N
 *x0 y0 w256 h256 a1 s-1 i0 $
-*x256 y0 w256 h256 a2 s-1 i0 d0 s0 l512 $
+*x256 y0 w256 h256 a2 s-1 i0 s0 l512 $
 *x512 y0 w256 h256 a3 s-1 i0 l384 $
-*x768 y0 w256 h256 a4 s-1 i0 l256 $
+*x768 y0 w256 h256 a4 s-1 i0 d0 l256 $
 *x0 y256 w256 h256 a5 s-1 i0 l128 $
 *x256 y256 w256 h256 a6 s-1 i0 $
 *x512 y256 w256 h256 a7 s-1 i0 $
@@ -121,9 +121,9 @@ Mort - N
 $
 Mort - NO
 *x0 y0 w256 h256 a1 s-1 i0 $
-*x256 y0 w256 h256 a2 s-1 i0 d0 s0 l512 $
+*x256 y0 w256 h256 a2 s-1 i0 s0 l512 $
 *x512 y0 w256 h256 a3 s-1 i0 l384 $
-*x768 y0 w256 h256 a4 s-1 i0 l256 $
+*x768 y0 w256 h256 a4 s-1 i0 d0 l256 $
 *x0 y256 w256 h256 a5 s-1 i0 l128 $
 *x256 y256 w256 h256 a6 s-1 i0 $
 *x512 y256 w256 h256 a7 s-1 i0 $
@@ -131,9 +131,9 @@ Mort - NO
 $
 Mort - O
 *x0 y0 w256 h256 a1 s-1 i0 $
-*x256 y0 w256 h256 a2 s-1 i0 d0 s0 l512 $
+*x256 y0 w256 h256 a2 s-1 i0 s0 l512 $
 *x512 y0 w256 h256 a3 s-1 i0 l384 $
-*x768 y0 w256 h256 a4 s-1 i0 l256 $
+*x768 y0 w256 h256 a4 s-1 i0 d0 l256 $
 *x0 y256 w256 h256 a5 s-1 i0 l128 $
 *x256 y256 w256 h256 a6 s-1 i0 $
 *x512 y256 w256 h256 a7 s-1 i0 $
@@ -141,9 +141,9 @@ Mort - O
 $
 Mort - SO
 *x0 y0 w256 h256 a1 s-1 i0 $
-*x256 y0 w256 h256 a2 s-1 i0 d0 s0 l512 $
+*x256 y0 w256 h256 a2 s-1 i0 s0 l512 $
 *x512 y0 w256 h256 a3 s-1 i0 l384 $
-*x768 y0 w256 h256 a4 s-1 i0 l256 $
+*x768 y0 w256 h256 a4 s-1 i0 d0 l256 $
 *x0 y256 w256 h256 a5 s-1 i0 l128 $
 *x256 y256 w256 h256 a6 s-1 i0 $
 *x512 y256 w256 h256 a7 s-1 i0 $
@@ -151,9 +151,9 @@ Mort - SO
 $
 Mort - S
 *x0 y0 w256 h256 a1 s-1 i0 $
-*x256 y0 w256 h256 a2 s-1 i0 d0 s0 l512 $
+*x256 y0 w256 h256 a2 s-1 i0 s0 l512 $
 *x512 y0 w256 h256 a3 s-1 i0 l384 $
-*x768 y0 w256 h256 a4 s-1 i0 l256 $
+*x768 y0 w256 h256 a4 s-1 i0 d0 l256 $
 *x0 y256 w256 h256 a5 s-1 i0 l128 $
 *x256 y256 w256 h256 a6 s-1 i0 $
 *x512 y256 w256 h256 a7 s-1 i0 $
@@ -161,9 +161,9 @@ Mort - S
 $
 Mort - SE
 *x0 y0 w256 h256 a1 s-1 i0 $
-*x256 y0 w256 h256 a2 s-1 i0 d0 s0 l512 $
+*x256 y0 w256 h256 a2 s-1 i0 s0 l512 $
 *x512 y0 w256 h256 a3 s-1 i0 l384 $
-*x768 y0 w256 h256 a4 s-1 i0 l256 $
+*x768 y0 w256 h256 a4 s-1 i0 d0 l256 $
 *x0 y256 w256 h256 a5 s-1 i0 l128 $
 *x256 y256 w256 h256 a6 s-1 i0 $
 *x512 y256 w256 h256 a7 s-1 i0 $

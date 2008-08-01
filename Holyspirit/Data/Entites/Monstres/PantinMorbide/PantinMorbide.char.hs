@@ -24,7 +24,7 @@ Rang du monstre
 $
 Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse
-*v4 di2 da3 m0.35 o1 a1 n1 $
+*v8 di2 da3 m0.35 o1 a1 n1 $
 $
 Arret - E
 *x0 y0 w128 h128 a1 s-1 i0 $
