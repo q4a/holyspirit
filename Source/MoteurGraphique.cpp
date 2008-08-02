@@ -6,6 +6,8 @@
 
 MoteurGraphique::MoteurGraphique()
 {
+    sf::Image temp;
+    m_images.push_back(temp);
 }
 MoteurGraphique::~MoteurGraphique()
 {
