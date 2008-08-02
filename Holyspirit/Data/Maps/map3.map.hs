@@ -71,7 +71,7 @@ $
 * s-1   | s1 t5 | s1 t1 | s1 t3 | s-1   | s1 t4 | s1 t1 | s1 t1 | s1 t6 | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s1 t0 | s-1 m1 m2| s-1   | s-1   | s-1   | s-1   | s-1   | s1 t0 | s-1   | s-1   | s-1   | s-1   | s-1   |
 * s-1   | s1 t0 | s-1 m1 m2| s-1   | s-1   | s-1 | s-1   | s-1   | s1 t4 | s1 t1 | s1 t1 | s1 t1 | s1 t6 | s-1   |
-* s-1   | s1 t0 | s-1 m1 m2| s-1   | s-1   | s-1 m1   | s-1   | s-1 | s-1 m1| s-1   | s-1   | s-1   | s1 t0 | s-1   |
+* s-1   | s1 t0 | s-1 m1 m2| s-1 m1 m2| s-1   | s-1 m1   | s-1   | s-1 | s-1 m1| s-1   | s-1   | s-1   | s1 t0 | s-1   |
 * s-1   | s1 t0 | s-1 m1 m2| s-1   | s-1   | s-1   | s-1   | s-1   | s1 t0 | s-1   | s-1   | s-1   | s1 t0 | s-1   |
 * s-1   | s1 t4 | s1 t1 | s1 t1 | s1 t1 | s1 t6 | s-1   | s1 t5 | s1 t9 | s1 t1 | s1 t6 | s-1   | s1 t0 | s-1   |
 * s-1   | s-1   | s-1   | s-1   | s-1   | s1 t0 | s-1   | s1 t0 | s-1   | s-1   | s1 t0 | s-1   | s1 t0 | s-1   |
