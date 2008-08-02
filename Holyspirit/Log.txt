@@ -1,7 +1,7 @@
 
 Chargement des menus :
 Chargement de : Data/Menus/minimap.png
-Chargement de : Data/Menus/Hud.png
+Impossible de charger : Data/Menus/Hud00.png
 Chargement de : Data/Menus/bulle_vie.png
 Chargement de : Data/Menus/Ame.png
 Chargement de : Data/Menus/sang.png
