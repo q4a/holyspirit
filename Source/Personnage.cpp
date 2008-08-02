@@ -493,6 +493,8 @@ void Personnage::setCaracteristique(Caracteristique caracteristique){m_caracteri
 void Personnage::setProchaineCase(coordonnee position){m_cheminFinal=position;}
 void Personnage::setVitesse(float vitesse){m_caracteristique.vitesse=vitesse;}
 void Personnage::setEtat(int etat){m_etat=etat,m_poseEnCours=0;}
+void Personnage::setPose(int pose){m_poseEnCours=pose;}
+void Personnage::setAngle(int angle){m_angle=angle;}
 void Personnage::setCoordonnee(coordonnee nouvellesCoordonnees)
 {
 	m_positionCase=nouvellesCoordonnees;

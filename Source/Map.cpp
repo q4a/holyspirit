@@ -272,7 +272,7 @@ bool Map::Charger(int numeroMap)
                     if(caractere=='*')
                     {
                         Lumiere lumiere;
-                        int numeroModele=-1,vieMin=0,vieMax=1,degatsMin=0,degatsMax=0,rang=0,ame=0;
+                        int numeroModele=-1,vieMin=0,vieMax=1,degatsMin=0,degatsMax=0,rang=0,ame=0,pose=0,etat=0,angle=0;
                         float taille=1;
                         m_monstre.push_back(monstreTemp);
 
@@ -289,6 +289,10 @@ bool Map::Charger(int numeroMap)
                                 case 'r': fichier2>>rang; break;
                                 case 'a': fichier2>>ame; break;
                                 case 't': fichier2>>taille; break;
+
+                                case 'p': fichier2>>pose; break;
+                                case 'e': fichier2>>etat; break;
+                                case 'g': fichier2>>angle; break;
 
                                 case 'l':
                                     fichier2.get(caractere);
@@ -318,7 +322,9 @@ bool Map::Charger(int numeroMap)
                         caracteristique.modificateurTaille=taille;
                         m_monstre[m_monstre.size()-1].setCaracteristique(caracteristique);
                         m_monstre[m_monstre.size()-1].setPorteeLumineuse(lumiere);
-
+                        m_monstre[m_monstre.size()-1].setEtat(etat);
+                        m_monstre[m_monstre.size()-1].setPose(pose);
+                        m_monstre[m_monstre.size()-1].setAngle(angle);
                     }
 
                     if(fichier2.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
@@ -437,8 +443,15 @@ bool Map::Charger(int numeroMap)
                         {
                             if(monstreFinal>=0&&monstreFinal<m_monstre.size())
                             {
+                                int etat,pose,angle;
+                                etat=m_monstre[monstreFinal].getEtat();
+                                pose=m_monstre[monstreFinal].getPose();
+                                angle=m_monstre[monstreFinal].getAngle();
                                 m_monstre[monstreFinal].setCoordonnee(position);
                                 m_monstre[monstreFinal].setDepart();
+                                m_monstre[monstreFinal].setEtat(etat);
+                                m_monstre[monstreFinal].setPose(pose);
+                                m_monstre[monstreFinal].setAngle(angle);
                             }
                         }
 
@@ -595,6 +608,7 @@ void Map::Sauvegarder()
         for(int i=0;i<m_monstre.size();i++)
         {
             fichier<<"* m"<<m_monstre[i].getModele()<<" vi"<<m_monstre[i].getCaracteristique().vie<<" va"<<m_monstre[i].getCaracteristique().maxVie<<" di"<<m_monstre[i].getCaracteristique().degatsMin<<" da"<<m_monstre[i].getCaracteristique().degatsMax<<" r"<<m_monstre[i].getCaracteristique().rang<<" a"<<m_monstre[i].getCaracteristique().pointAme<<" t"<<m_monstre[i].getCaracteristique().modificateurTaille
+            <<" p"<<m_monstre[i].getPose()<<" e"<<m_monstre[i].getEtat()<<" g"<<m_monstre[i].getAngle()
             <<" lr"<<m_monstre[i].getPorteeLumineuse().rouge<<" lv"<<m_monstre[i].getPorteeLumineuse().vert<<" lb"<<m_monstre[i].getPorteeLumineuse().bleu<<" li"<<m_monstre[i].getPorteeLumineuse().intensite<<" $\n";
         }
         fichier<<"\n$";
@@ -1703,6 +1717,8 @@ coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
 
                         if(m_decor[couche][j][k].getTileset()>=0&&m_decor[couche][j][k].getTileset()<m_tileset.size())
                         {
+                            position.x=(k-j-1+m_decor[1].size())*64;
+                            position.y=(k+j)*32;
                             positionPartieDecor=m_tileset[m_decor[couche][j][k].getTileset()].getPositionDuTile(m_decor[couche][j][k].getTile());
                            /* if(position.x+positionPartieDecor.h*2+positionPartieDecor.w>=ViewRect.Left&&position.x-positionPartieDecor.h*2-positionPartieDecor.w-64<ViewRect.Right&&position.y+positionPartieDecor.h+positionPartieDecor.w>=ViewRect.Top&&position.y-positionPartieDecor.h-32<ViewRect.Bottom+100&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()&&configuration.Ombre&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()))
                             ||position.x+positionPartieDecor.w>=ViewRect.Left&&position.x<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y-positionPartieDecor.h+64<ViewRect.Bottom)
@@ -2186,6 +2202,7 @@ void Map::gererMonstres(Hero *hero,float temps)
                                 m_monstre[m_decor[i][j][k].getMonstre()].setEtat(3);
                         }
                         if(!m_monstre[m_decor[i][j][k].getMonstre()].getVu()||m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding())
+                        if(m_monstre[m_decor[i][j][k].getMonstre()].getCaracteristique().vie>0)
                         {
                             if(m_monstre[m_decor[i][j][k].getMonstre()].getArrivee().x==m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x&&m_monstre[m_decor[i][j][k].getMonstre()].getArrivee().y==m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y)
                             {
@@ -2414,8 +2431,8 @@ int Map::getMonstre(Hero *hero,View *camera,RenderWindow *ecran,coordonnee posit
 
      const sf::FloatRect& ViewRect = camera->GetRect();
 
-    vueMin.x=casePointee.x-1;
-    vueMin.y=casePointee.y-1;
+    vueMin.x=casePointee.x-3;
+    vueMin.y=casePointee.y-3;
     vueMax.x=casePointee.x+3;
     vueMax.y=casePointee.y+3;
 
@@ -2444,10 +2461,10 @@ int Map::getMonstre(Hero *hero,View *camera,RenderWindow *ecran,coordonnee posit
                         &&positionSourisTotale.y<temp.y+64*m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().h/128)
                         {
                             float temp2=0;
-                            temp2=gpl::sqrt((temp.x-positionSourisTotale.x)
-                            *(temp.x-positionSourisTotale.x)
-                            +(temp.y-(positionSourisTotale.y-32))
-                            *(temp.y-(positionSourisTotale.y-32)));
+                            temp2=gpl::sqrt((temp.x-(positionSourisTotale.x-64))
+                            *(temp.x-(positionSourisTotale.x-64))
+                            +(temp.y-(positionSourisTotale.y))
+                            *(temp.y-(positionSourisTotale.y)));
 
                             if(distance>temp2)
                                 meilleur=m_decor[i][j][k].getMonstre(),distance=temp2;

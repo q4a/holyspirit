@@ -93,6 +93,7 @@ void Jeu::Demarrer()
             moteurGraphique.Vider();
 		}
 	}
+	console.Rapport();
 	this->hero.Sauvegarder();
 	this->map.Sauvegarder();
 

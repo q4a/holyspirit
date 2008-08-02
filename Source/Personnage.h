@@ -69,6 +69,8 @@ class Personnage
 	void setArrivee(coordonnee arrivee);
 	void setMauvaiseArrivee(coordonnee arrivee);
 	void setEtat(int  etat);
+	void setPose(int  pose);
+	void setAngle(int  angle);
 	void setVitesse(float vitesse);
 	void setCoordonneePixel(coordonnee position);
 	void setProchaineCase(coordonnee position);
