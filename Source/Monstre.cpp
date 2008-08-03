@@ -278,9 +278,6 @@ void Monstre::testerVision(coordonnee positionHero)
             m_vu=0,m_etat=0,m_poseEnCours=0;
 
         }
-
-        //if(m_erreurPathfinding)
-         //   m_vu=0;
     }
 }
 

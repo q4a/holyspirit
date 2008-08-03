@@ -194,7 +194,7 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
 
         sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
 
-        if(configuration.Ombre&&m_caracteristique.vie>0&&modele->m_ombre)
+        if(configuration.Ombre&&modele->m_ombre)
         {
             for(int o=0;o<lumiere->m_ombre.size();o++)
             {
@@ -254,8 +254,6 @@ void Personnage::regenererVie(float vie)
 int Personnage::pathfinding(vector<vector<bool> > map,coordonnee exception)
 {
     //if(!(m_arrivee.x==m_mauvaiseArrivee.x&&m_arrivee.y==m_mauvaiseArrivee.y))
-    if(1)
-    {
         if(!(m_arrivee.x==m_positionCase.x&&m_arrivee.y==m_positionCase.y))
         {
             m_erreurPathfinding=false;
@@ -328,7 +326,6 @@ int Personnage::pathfinding(vector<vector<bool> > map,coordonnee exception)
             else
             return 1;
         }
-    }
 }
 
 
@@ -398,7 +395,11 @@ bool Personnage::seDeplacer(float tempsEcoule)
         else if(m_arrivee.x!=m_positionCase.x||m_arrivee.y!=m_positionCase.y)
         return 1;
         else if(m_etat!=2||m_etat==2&&m_poseEnCours==0)
-        m_etat=0,m_poseEnCours=0;
+        {
+            if(m_etat!=0)
+                m_poseEnCours=0;
+            m_etat=0;
+        }
 
         return 0;
     }
@@ -429,7 +430,8 @@ int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,boo
         if(m_poseEnCours>modele->m_pose[m_etat][(int)(m_angle/45)].size())
         m_poseEnCours=0;
 
-        modele->jouerSon(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getSon(),0,position);
+        if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getSon()>=0)
+            modele->jouerSon(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getSon(),position);
         m_animation-=0.075;
         if(m_monstre)
         {
@@ -460,15 +462,18 @@ void Personnage::frappe(coordonnee direction,coordonnee position)
         m_poseEnCours=0;
     }
 
-        double m=atan(-((double)direction.y-position.y)/((double)direction.x-position.x));
+    if((double)((double)direction.x-(double)position.x)!=0)
+    {
+        double m=atan(-(double)((double)direction.y-(double)position.y)/(double)((double)direction.x-(double)position.x));
 		if(direction.x-position.x<0)
-		m-=M_PI;
+            m-=M_PI;
 		m+=M_PI/8;
 		m_angle=(int)(0+(m*360)/(2*M_PI));
 		if(m_angle>=360)
-		m_angle=0;
+            m_angle=0;
 		while(m_angle<0)
-		m_angle=360+m_angle;
+            m_angle=360+m_angle;
+    }
 
     m_cheminFinal=m_positionCase;
     m_arrivee=m_cheminFinal;
@@ -476,15 +481,16 @@ void Personnage::frappe(coordonnee direction,coordonnee position)
 }
 
 
-void Modele_Personnage::jouerSon(int numeroSon,double distance,coordonnee position)
+void Modele_Personnage::jouerSon(int numeroSon,coordonnee position)
 {
     if(numeroSon>=0&&numeroSon<m_sons.size())
     {
-        m_sons[numeroSon].SetVolume(1000);
+        //m_sons[numeroSon].SetVolume(100);
         m_sons[numeroSon].SetPosition(-position.x,0,position.y);
-        Sound::Status Status = m_sons[numeroSon].GetStatus();
+        //Sound::Status Status = m_sons[numeroSon].GetStatus();
 
-        m_sons[numeroSon].Stop();
+        /*if(Status==2)*/
+            m_sons[numeroSon].Stop();
         m_sons[numeroSon].Play();
     }
 }

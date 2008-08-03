@@ -839,7 +839,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                         m_lumiereHero.bleu=255;
                 }
 
-                if(configuration.Ombre)
+                if(configuration.Ombre&&!((i+vueMin.y)==hero->m_personnage.getCoordonnee().y&&(j+vueMin.x)==hero->m_personnage.getCoordonnee().x))
                 {
                     coordonnee coord1,coord2;
 
@@ -1745,9 +1745,9 @@ coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
                                              if(m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle>90&&m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle<270)
                                                 Sprite.FlipX(true);
                                             if(Sprite.GetPosition().x+Sprite.GetSize().x>=camera->GetRect().Left)
-                                            if(Sprite.GetPosition().x<camera->GetRect().Right)
+                                            if(Sprite.GetPosition().x-Sprite.GetSize().y<camera->GetRect().Right)
                                             if(Sprite.GetPosition().y+Sprite.GetSize().y>=camera->GetRect().Top)
-                                            if(Sprite.GetPosition().y<camera->GetRect().Bottom)
+                                            if(Sprite.GetPosition().y-Sprite.GetSize().x<camera->GetRect().Bottom)
                                             moteurGraphique.AjouterCommande(&Sprite,1);
                                             //ecran->Draw(Sprite);
                                             Sprite.SetCenter(0,0);
@@ -2431,10 +2431,10 @@ int Map::getMonstre(Hero *hero,View *camera,RenderWindow *ecran,coordonnee posit
 
      const sf::FloatRect& ViewRect = camera->GetRect();
 
-    vueMin.x=casePointee.x-3;
-    vueMin.y=casePointee.y-3;
-    vueMax.x=casePointee.x+3;
-    vueMax.y=casePointee.y+3;
+    vueMin.x=casePointee.x-2;
+    vueMin.y=casePointee.y-2;
+    vueMax.x=casePointee.x+2;
+    vueMax.y=casePointee.y+2;
 
     if(vueMin.x<0) { vueMin.x=0; }
     if(vueMin.y<0) { vueMin.y=0; }

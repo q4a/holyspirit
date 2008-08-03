@@ -144,7 +144,7 @@ void Hero::testMontreVise(Monstre *monstre,int hauteurMap)
         {
                 m_personnage.setArrivee(monstre->getProchaineCase());
         }
-        else if(m_personnage.getArrivee().x==m_personnage.getCoordonnee().x&&m_personnage.getArrivee().y==m_personnage.getCoordonnee().y)
+        else if(m_personnage.getArrivee().x==m_personnage.getCoordonnee().x&&m_personnage.getArrivee().x==m_personnage.getCoordonnee().x)
         {
             m_personnage.setArrivee(m_personnage.getProchaineCase());
             coordonnee temp,temp2;

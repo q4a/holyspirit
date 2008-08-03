@@ -25,7 +25,7 @@ class Modele_Personnage
 	~Modele_Personnage();
 	bool Charger(std::string chemin);
 
-	void jouerSon(int numeroSon,double distance,coordonnee position);
+	void jouerSon(int numeroSon,coordonnee position);
 
 	void setPorteeLumineuse(Lumiere  lumiere);
 
