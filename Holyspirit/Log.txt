@@ -1,7 +1,7 @@
 
 Chargement des menus :
 Chargement de : Data/Menus/minimap.png
-Impossible de charger : Data/Menus/Hud00.png
+ERREUR : Impossible de charger : Data/Menus/Hud00.png
 Chargement de : Data/Menus/bulle_vie.png
 Chargement de : Data/Menus/Ame.png
 Chargement de : Data/Menus/sang.png
@@ -65,7 +65,46 @@ Chargement de : Data/Entites/Destructibles/Tonneau/TonneauExp.png
 Chargement de : Data/Sons/47252__nthompson__rocketexpl.wav
 Chargement de : Data/Entites/Destructibles/Tonneau/TonneauExp.char.hs
 
+---------------------------------------------------------------------------------
+EVENEMENT : Changement de map
+---------------------------------------------------------------------------------
+Chargement de : Data/Ecran chargement/Grotte.png
+
 Sauvegarde de la map : Data/Temp/map1.map.hs
+
+Chargement de la map : Data/Maps/map3.map.hs
+Chargement de : Data/Musiques/Maxtor81-Arcaduis.ogg
+Chargement de : Data/Sons/Feu.wav
+Chargement de : Data/Decors/Effets de Lumières/LightEffect.png
+Chargement de : Data/Decors/Herbes/Champignon1.png
+
+Chargement du monstre : Data/Entites/Monstres/GolemQuartz/GolemQuartz.char.hs
+Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaArret.png
+Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaCour.png
+Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaAt1.png
+Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaAt2.png
+Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaAt3.png
+Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaAt4.png
+Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaAt5.png
+Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaAt6.png
+Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaAt7.png
+Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaAt8.png
+Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaMor.png
+Chargement de : Data/Sons/15569__tigersound__walking_on_stone.wav
+Chargement de : Data/Sons/30009__thanvannispen__stone_on_stone_impact_loud2.aiff
+Chargement de : Data/Entites/Monstres/GolemQuartz/GolemQuartz.char.hs
+
+Chargement du monstre : Data/Entites/Destructibles/Tonneau/Tonneau.char.hs
+Chargement de : Data/Sons/31622__Srehpog__light_crate_smash1.wav
+Chargement de : Data/Sons/31623__Srehpog__light_crate_smash2.wav
+Chargement de : Data/Sons/31624__Srehpog__light_crate_smash3.wav
+Chargement de : Data/Entites/Destructibles/Tonneau/Tonneau.char.hs
+
+Chargement du monstre : Data/Entites/Destructibles/Tonneau/TonneauExp.char.hs
+Chargement de : Data/Sons/47252__nthompson__rocketexpl.wav
+Chargement de : Data/Entites/Destructibles/Tonneau/TonneauExp.char.hs
+
+Sauvegarde de la map : Data/Temp/map3.map.hs
 
 Fermeture des contextes effectuée avec succès.
 
