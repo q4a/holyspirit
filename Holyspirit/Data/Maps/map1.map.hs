@@ -42,9 +42,11 @@ Liste des tilesets de l'herbe
 *Data/Decors/Herbes/Herbe1
 $
 Liste des tilesets des monstres
+
 *Data/Entites/Monstres/PantinMorbide/PantinMorbide.char.hs
 *Data/Entites/Destructibles/Tonneau/Tonneau.char.hs
 *Data/Entites/Destructibles/Tonneau/TonneauExp.char.hs
+
 $
 Liste des événements
 * e0 $ * i3 i3 i3 $
