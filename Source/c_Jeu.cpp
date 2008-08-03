@@ -262,7 +262,9 @@ void c_Jeu::Utiliser(Jeu *jeu)
                         //jeu->ecran.Draw(Version);
                         //jeu->ecran.Draw(Temps);
                         moteurGraphique.AjouterTexte(&fps);
+                        Version.SetY(20);
                         moteurGraphique.AjouterTexte(&Version);
+                        Temps.SetY(40);
                         moteurGraphique.AjouterTexte(&Temps);
                         moteurGraphique.AjouterTexte(&TourBoucle);
 

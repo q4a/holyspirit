@@ -8,6 +8,8 @@ MoteurGraphique::MoteurGraphique()
 {
     sf::Image temp;
     m_images.push_back(temp);
+    std::string temp2="";
+    m_cheminsImages.push_back(temp2);
 }
 MoteurGraphique::~MoteurGraphique()
 {

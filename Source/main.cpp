@@ -215,6 +215,8 @@ int main ( int argc, char** argv )
 
     ///On démarre le jeu
 
+    console.Rapport();
+
     try
 	{
 		Jeu m_jeu;

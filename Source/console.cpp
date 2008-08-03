@@ -70,7 +70,11 @@ void Console::Rapport()
     if(fichier)  // si l'ouverture a réussi
     {
         for(int i=0;i<m_erreur.size();i++)
-                fichier<<m_textes[i]<<'\n';
+        {
+            if(m_erreur[i])
+                fichier<<"ERREUR : ";
+            fichier<<m_textes[i]<<'\n';
+        }
         fichier.close();
     }
 }

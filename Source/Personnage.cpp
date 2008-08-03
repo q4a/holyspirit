@@ -338,7 +338,9 @@ bool Personnage::seDeplacer(float tempsEcoule)
     {
         if(m_positionCase.y!=m_cheminFinal.y||m_positionCase.x!=m_cheminFinal.x)
         {
-            m_etat=1;
+            if(m_etat!=1)
+                m_etat=1,m_poseEnCours=0;
+
             m_positionPixelPrecedente.x=(int)m_positionPixel.x;
             m_positionPixelPrecedente.y=(int)m_positionPixel.y;
 
@@ -396,7 +398,7 @@ bool Personnage::seDeplacer(float tempsEcoule)
         else if(m_arrivee.x!=m_positionCase.x||m_arrivee.y!=m_positionCase.y)
         return 1;
         else if(m_etat!=2||m_etat==2&&m_poseEnCours==0)
-        m_etat=0;
+        m_etat=0,m_poseEnCours=0;
 
         return 0;
     }
