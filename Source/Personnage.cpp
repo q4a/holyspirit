@@ -462,8 +462,8 @@ void Personnage::frappe(coordonnee direction,coordonnee position)
         m_poseEnCours=0;
     }
 
-    if((double)((double)direction.x-(double)position.x)!=0)
-    {
+    /*if((double)((double)direction.x-(double)position.x)!=0)
+    {*/
         double m=atan(-(double)((double)direction.y-(double)position.y)/(double)((double)direction.x-(double)position.x));
 		if(direction.x-position.x<0)
             m-=M_PI;
@@ -473,7 +473,7 @@ void Personnage::frappe(coordonnee direction,coordonnee position)
             m_angle=0;
 		while(m_angle<0)
             m_angle=360+m_angle;
-    }
+    //}
 
     m_cheminFinal=m_positionCase;
     m_arrivee=m_cheminFinal;
@@ -536,6 +536,8 @@ void Personnage::setCoordonneePixel(coordonnee position)
 }
 
 void Personnage::AjouterPointAme(int pointAme) { m_caracteristique.pointAme+=pointAme; }
+
+bool Personnage::enVie() { if(m_caracteristique.vie>0) return 1; else return 0; }
 
 int Modele_Personnage::getNombreSons(){return m_buffer.size();}
 coordonnee Personnage::getCoordonnee(){return m_positionCase;}

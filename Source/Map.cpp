@@ -42,6 +42,7 @@ Map::~Map()
     for(int i=0;i<m_evenement.size();i++)
         m_evenement[i].deleteInformations();
     m_evenement.clear();
+    m_musique.Stop();
 }
 
 void Map::Detruire()
@@ -1559,12 +1560,12 @@ coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
                                     temp.intensite=255;
 
                                     if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
-                                        if(m_monstre[m_decor[0][j][k].getMonstre()].getCaracteristique().vie>0)
+                                        if(m_monstre[m_decor[0][j][k].getMonstre()].enVie())
                                             m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&temp,&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
                                         else
                                             m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_tableauDesLampes[j-vueMin.y][k-vueMin.x],&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
                                     if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
-                                        if(m_monstre[m_decor[1][j][k].getMonstre()].getCaracteristique().vie>0)
+                                        if(m_monstre[m_decor[1][j][k].getMonstre()].enVie())
                                             m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&temp,&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
                                         else
                                             m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_tableauDesLampes[j-vueMin.y][k-vueMin.x],&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
@@ -2124,8 +2125,8 @@ void Map::gererMonstres(Hero *hero,float temps)
 
     if(vueMin.x<0) { vueMin.x=0; }
     if(vueMin.y<0) { vueMin.y=0; }
-    if(vueMax.x>m_decor[0][0].size()) { vueMax.x=m_decor[0][0].size(); }
-    if(vueMax.y>m_decor[0].size()) { vueMax.y=m_decor[0].size(); }
+    if(vueMax.x>=m_decor[0][0].size()) { vueMax.x=m_decor[0][0].size()-1; }
+    if(vueMax.y>=m_decor[0].size()) { vueMax.y=m_decor[0].size()-1; }
 
 	for(int i=0;i<2;i++)
         for(int j=vueMin.y;j<vueMax.y;j++)
@@ -2134,9 +2135,9 @@ void Map::gererMonstres(Hero *hero,float temps)
                     {
 
                         m_monstre[m_decor[i][j][k].getMonstre()].testerVision(hero->m_personnage.getCoordonnee());
-                        if(m_monstre[m_decor[i][j][k].getMonstre()].getVu()&&!m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding()||m_monstre[m_decor[i][j][k].getMonstre()].getCaracteristique().vie<=0)
+                        if(m_monstre[m_decor[i][j][k].getMonstre()].getVu()&&!m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding()||!m_monstre[m_decor[i][j][k].getMonstre()].enVie())
                         {
-                            if(m_monstre[m_decor[i][j][k].getMonstre()].getCaracteristique().vie>0)
+                            if(m_monstre[m_decor[i][j][k].getMonstre()].enVie())
                             {
                                 if(fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getProchaineCase().x)>1||fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getProchaineCase().y)>1)
                                 {
@@ -2170,14 +2171,14 @@ void Map::gererMonstres(Hero *hero,float temps)
                                             if(!(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y==j&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x==k))
                                             if(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x<m_decor[0][0].size()&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y<m_decor[0].size())
                                             {
-                                                if(m_decor[i][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()<0)
+                                                if(m_decor[0][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()<0&&m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()<0)
                                                     m_decor[i][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].setMonstre(m_decor[i][j][k].getMonstre());
                                                 else
                                                 {
-                                                    if(i==0)
-                                                        m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].setMonstre(m_decor[i][j][k].getMonstre());
-                                                    else
-                                                        m_decor[0][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].setMonstre(m_decor[i][j][k].getMonstre());
+                                                    int temp=m_decor[i][j][k].getMonstre();
+                                                    if(m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()>=0)
+                                                        m_decor[0][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].setMonstre(m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre());
+                                                    m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].setMonstre(temp);
                                                 }
                                                 //m_decor[i][m_monstre[m_decor[i][j][k].getMonstre()].getProchaineCase().y][m_monstre[m_decor[i][j][k].getMonstre()].getProchaineCase().x].setMonstre(m_decor[i][j][k].getMonstre());
                                                 m_decor[i][j][k].setMonstre(-1);
@@ -2202,7 +2203,7 @@ void Map::gererMonstres(Hero *hero,float temps)
                                 m_monstre[m_decor[i][j][k].getMonstre()].setEtat(3);
                         }
                         if(!m_monstre[m_decor[i][j][k].getMonstre()].getVu()||m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding())
-                        if(m_monstre[m_decor[i][j][k].getMonstre()].getCaracteristique().vie>0)
+                        if(m_monstre[m_decor[i][j][k].getMonstre()].enVie())
                         {
                             if(m_monstre[m_decor[i][j][k].getMonstre()].getArrivee().x==m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x&&m_monstre[m_decor[i][j][k].getMonstre()].getArrivee().y==m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y)
                             {
@@ -2247,7 +2248,7 @@ bool Map::infligerDegats(int numeroMonstre, int degats,Menu *menu,sf::View *came
                 }
 
         m_monstre[numeroMonstre].infligerDegats(degats);
-        if(m_monstre[numeroMonstre].getCaracteristique().vie<=0&&m_monstre[numeroMonstre].getCaracteristique().pointAme>0)
+        if(!m_monstre[numeroMonstre].enVie()&&m_monstre[numeroMonstre].getCaracteristique().pointAme>0)
         {
             coordonneeDecimal position;
             position.x=(((m_monstre[numeroMonstre].getCoordonnee().x-m_monstre[numeroMonstre].getCoordonnee().y-1+m_decor[0].size())*64)-camera->GetRect().Left+48-(configuration.Resolution.x/2-400));
@@ -2324,7 +2325,7 @@ bool Map::getCollision(int positionX,int positionY)
                 return 1;
 
          if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().vie>0)
+                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].enVie())
                     return 1;
 
         coordonnee enCours;
@@ -2333,7 +2334,7 @@ bool Map::getCollision(int positionX,int positionY)
         enCours.y=positionY+1;
         if(enCours.x>=0&&enCours.y>=0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
             if(m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vie>0&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
+                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].enVie()&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
                     if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
                         if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
                             return 1;
@@ -2341,7 +2342,7 @@ bool Map::getCollision(int positionX,int positionY)
         enCours.y=positionY-1;
         if(enCours.x>=0&&enCours.y>=0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
             if(m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vie>0&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
+                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].enVie()&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
                     if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
                         if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
                             return 1;
@@ -2349,7 +2350,7 @@ bool Map::getCollision(int positionX,int positionY)
         enCours.y=positionY-1;
         if(enCours.x>=0&&enCours.y>=0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
             if(m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vie>0&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
+                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].enVie()&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
                     if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
                         if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
                             return 1;
@@ -2357,7 +2358,7 @@ bool Map::getCollision(int positionX,int positionY)
         enCours.y=positionY+1;
         if(enCours.x>=0&&enCours.y>=0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
             if(m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vie>0&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
+                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].enVie()&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
                     if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
                         if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
                             return 1;
@@ -2365,7 +2366,7 @@ bool Map::getCollision(int positionX,int positionY)
         enCours.y=positionY+1;
         if(enCours.x>=0&&enCours.y>=0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
             if(m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vie>0&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
+                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].enVie()&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
                     if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
                         if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
                             return 1;
@@ -2373,7 +2374,7 @@ bool Map::getCollision(int positionX,int positionY)
         enCours.y=positionY;
         if(enCours.x>=0&&enCours.y>=0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
             if(m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vie>0&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
+                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].enVie()&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
                     if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
                         if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
                             return 1;
@@ -2381,7 +2382,7 @@ bool Map::getCollision(int positionX,int positionY)
         enCours.y=positionY;
         if(enCours.x>=0&&enCours.y>=0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
             if(m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vie>0&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
+                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].enVie()&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
                     if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
                         if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
                             return 1;
@@ -2389,7 +2390,7 @@ bool Map::getCollision(int positionX,int positionY)
         enCours.y=positionY-1;
         if(enCours.x>=0&&enCours.y>=0&&enCours.x<m_decor[0][0].size()&&enCours.y<m_decor[0].size())
             if(m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vie>0&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
+                if(m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].enVie()&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
                     if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
                         if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
                             return 1;
@@ -2409,7 +2410,7 @@ int Map::getTypeCase(int positionX,int positionY)
                     return 1;
 
             if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<m_monstre.size())
-                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().vie>0)
+                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].enVie())
                     return 2;
 
             if(m_decor[i][positionY][positionX].getEvenement()>=0&&m_decor[i][positionY][positionX].getEvenement()<m_evenement.size())
@@ -2445,7 +2446,7 @@ int Map::getMonstre(Hero *hero,View *camera,RenderWindow *ecran,coordonnee posit
         for(int j=vueMin.y;j<vueMax.y;j++)
             for(int k=vueMin.x;k<vueMax.x;k++)
                     if(m_decor[i][j][k].getMonstre()>=0&&m_decor[i][j][k].getMonstre()<m_monstre.size())
-                    if(m_monstre[m_decor[i][j][k].getMonstre()].getCaracteristique().vie>0)
+                    if(m_monstre[m_decor[i][j][k].getMonstre()].enVie())
                     {
                         coordonneeDecimal temp;
                         temp.x=((float)m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x*(float)DIVISEUR_COTE_TILE-(float)m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y*DIVISEUR_COTE_TILE-1+(float)m_decor[1].size())*64;

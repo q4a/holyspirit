@@ -54,6 +54,7 @@ class Personnage
 	coordonnee getCoordonneePixel();
 	coordonnee getProchaineCase();
 	bool getErreurPathfinding();
+	bool enVie();
 	int animer(Modele_Personnage *modele,int hauteur_map,float temps,bool *explosif);
 
 	bool seDeplacer(float);

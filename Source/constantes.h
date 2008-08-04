@@ -79,6 +79,8 @@ struct Configuration
 
 struct Caracteristique
 {
+    std::string nom;
+
     int pointAme;
     float ancienPointAme,positionAncienAme;
     float vitesse;
@@ -91,8 +93,6 @@ struct Caracteristique
     float modificateurTaille;
 
     bool sang;
-
-    std::string nom;
 };
 
 struct coordonneeDecimal

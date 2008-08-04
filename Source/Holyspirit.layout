@@ -26,19 +26,19 @@
 		<Cursor position="69" topLine="0" />
 	</File>
 	<File name="Hero.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="5150" topLine="124" />
+		<Cursor position="1241" topLine="49" />
 	</File>
 	<File name="Hero.h" open="0" top="0" tabpos="6">
 		<Cursor position="605" topLine="10" />
 	</File>
-	<File name="Map.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="143108" topLine="2201" />
+	<File name="Map.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="138969" topLine="2158" />
 	</File>
 	<File name="Map.h" open="0" top="0" tabpos="7">
 		<Cursor position="1369" topLine="36" />
 	</File>
 	<File name="Monstre.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="10733" topLine="255" />
+		<Cursor position="5233" topLine="140" />
 	</File>
 	<File name="Monstre.h" open="0" top="0" tabpos="8">
 		<Cursor position="373" topLine="1" />
@@ -50,10 +50,10 @@
 		<Cursor position="182" topLine="11" />
 	</File>
 	<File name="Personnage.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="18183" topLine="421" />
+		<Cursor position="18337" topLine="447" />
 	</File>
 	<File name="Personnage.h" open="1" top="0" tabpos="3">
-		<Cursor position="874" topLine="31" />
+		<Cursor position="1107" topLine="52" />
 	</File>
 	<File name="Pose.cpp" open="0" top="0" tabpos="24">
 		<Cursor position="959" topLine="3" />
@@ -76,8 +76,8 @@
 	<File name="c_Jeu.cpp" open="1" top="0" tabpos="11">
 		<Cursor position="4744" topLine="117" />
 	</File>
-	<File name="c_Jeu.h" open="1" top="1" tabpos="10">
-		<Cursor position="301" topLine="0" />
+	<File name="c_Jeu.h" open="1" top="0" tabpos="10">
+		<Cursor position="242" topLine="0" />
 	</File>
 	<File name="c_changementMap.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="3231" topLine="0" />
@@ -103,8 +103,8 @@
 	<File name="console.cpp" open="1" top="0" tabpos="9">
 		<Cursor position="1629" topLine="44" />
 	</File>
-	<File name="constantes.h" open="0" top="0" tabpos="19">
-		<Cursor position="2633" topLine="171" />
+	<File name="constantes.h" open="1" top="0" tabpos="12">
+		<Cursor position="2287" topLine="93" />
 	</File>
 	<File name="eventManager.cpp" open="0" top="0" tabpos="29">
 		<Cursor position="716" topLine="6" />
