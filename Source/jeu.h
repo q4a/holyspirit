@@ -43,7 +43,7 @@ class Jeu
     c_Inventaire *m_inventaire;
     Contexte *m_contexte;
 
-    sf::PostFX EffectNoir,EffectMort;
+    sf::PostFX EffectNoir,EffectMort,EffectContrastes;
     sf::Image Luminosite;
     private:
 

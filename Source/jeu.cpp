@@ -10,14 +10,14 @@ Jeu::Jeu()
     if (sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
     {
 
-        /*if(!EffectLuminosite.LoadFromFile(configuration.chemin_fx+configuration.nom_effetLuminosite))
-            console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetLuminosite,1);
+        if(!EffectContrastes.LoadFromFile(configuration.chemin_fx+configuration.nom_effetContrastes))
+            console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetContrastes,1);
         else
         {
-            console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetLuminosite,0);
-            EffectLuminosite.SetTexture("framebuffer", NULL);
-            EffectLuminosite.SetParameter("color", 0.f, 0.f, 0.f);
-        }*/
+            console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetContrastes,0);
+            EffectContrastes.SetTexture("framebuffer", NULL);
+            EffectContrastes.SetParameter("color", 0.f, 0.f, 0.f);
+        }
 
         if(!EffectNoir.LoadFromFile(configuration.chemin_fx+configuration.nom_effetNoir))
             console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetNoir,1);
@@ -82,11 +82,14 @@ void Jeu::Demarrer()
 		this->m_contexte->Utiliser(this);
 		if(this->m_display)
 		{
+		    EffectContrastes.SetParameter("color", configuration.contrastes, configuration.contrastes, configuration.contrastes);
+
 		    moteurGraphique.Afficher(&this->ecran,&this->camera);
             this->ecran.Draw(this->EffectNoir);
             if(configuration.effetMort>0)
                 this->ecran.Draw(EffectMort);
-            //this->ecran.Draw(this->EffectLuminosite);
+            if(configuration.contrastes>0&&sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
+                this->ecran.Draw(this->EffectContrastes);
             if(configuration.luminosite>0)
                 this->ecran.Draw(Sprite);
             this->ecran.Display();

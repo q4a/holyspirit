@@ -301,20 +301,9 @@ int Personnage::pathfinding(vector<vector<bool> > map,coordonnee exception)
             }
             else
             {
-                 //m_mauvaiseArrivee=m_arrivee;
-                /*if(m_positionCase.x<m_arrivee.x)
-                m_arrivee.x=m_arrivee.x-1;
-                if(m_positionCase.x>m_arrivee.x)
-                m_arrivee.x=m_arrivee.x+1;
-                if(m_positionCase.y<m_arrivee.y)
-                m_arrivee.y=m_arrivee.y-1;
-                if(m_positionCase.y>m_arrivee.y)
-                m_arrivee.y=m_arrivee.y+1;*/
-
-                //m_arrivee.x=m_ancienneArrivee.x;
-                //m_arrivee.y=m_ancienneArrivee.y;
                 m_arrivee=m_positionCase;
-                m_etat=0;
+                if(m_etat!=0)
+                    m_etat=0,m_poseEnCours=0;
             }
 
             for(int i=0;i<map.size();i++)
@@ -456,11 +445,11 @@ int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,boo
 void Personnage::frappe(coordonnee direction,coordonnee position)
 {
     if(m_etat!=2)
-    if(m_positionCase.x==m_cheminFinal.x&&m_positionCase.y==m_cheminFinal.y)
-    {
-        m_etat=2;
-        m_poseEnCours=0;
-    }
+        if(m_positionCase.x==m_cheminFinal.x&&m_positionCase.y==m_cheminFinal.y)
+        {
+            m_etat=2;
+            m_poseEnCours=0;
+        }
 
     /*if((double)((double)direction.x-(double)position.x)!=0)
     {*/

@@ -26,13 +26,13 @@
 		<Cursor position="69" topLine="0" />
 	</File>
 	<File name="Hero.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="1241" topLine="49" />
+		<Cursor position="5165" topLine="127" />
 	</File>
 	<File name="Hero.h" open="0" top="0" tabpos="6">
 		<Cursor position="605" topLine="10" />
 	</File>
-	<File name="Map.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="138969" topLine="2158" />
+	<File name="Map.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="24550" topLine="645" />
 	</File>
 	<File name="Map.h" open="0" top="0" tabpos="7">
 		<Cursor position="1369" topLine="36" />
@@ -50,7 +50,7 @@
 		<Cursor position="182" topLine="11" />
 	</File>
 	<File name="Personnage.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="18337" topLine="447" />
+		<Cursor position="8307" topLine="205" />
 	</File>
 	<File name="Personnage.h" open="1" top="0" tabpos="3">
 		<Cursor position="1107" topLine="52" />
@@ -74,7 +74,7 @@
 		<Cursor position="1166" topLine="19" />
 	</File>
 	<File name="c_Jeu.cpp" open="1" top="0" tabpos="11">
-		<Cursor position="4744" topLine="117" />
+		<Cursor position="4851" topLine="204" />
 	</File>
 	<File name="c_Jeu.h" open="1" top="0" tabpos="10">
 		<Cursor position="242" topLine="0" />
@@ -104,19 +104,19 @@
 		<Cursor position="1629" topLine="44" />
 	</File>
 	<File name="constantes.h" open="1" top="0" tabpos="12">
-		<Cursor position="2287" topLine="93" />
+		<Cursor position="1569" topLine="54" />
 	</File>
-	<File name="eventManager.cpp" open="0" top="0" tabpos="29">
-		<Cursor position="716" topLine="6" />
+	<File name="eventManager.cpp" open="1" top="1" tabpos="14">
+		<Cursor position="3048" topLine="68" />
 	</File>
 	<File name="eventManager.h" open="0" top="0" tabpos="20">
 		<Cursor position="775" topLine="6" />
 	</File>
 	<File name="jeu.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="3431" topLine="64" />
+		<Cursor position="632" topLine="24" />
 	</File>
-	<File name="jeu.h" open="0" top="0" tabpos="21">
-		<Cursor position="651" topLine="21" />
+	<File name="jeu.h" open="1" top="0" tabpos="13">
+		<Cursor position="928" topLine="21" />
 	</File>
 	<File name="liste_case.cpp" open="0" top="0" tabpos="23">
 		<Cursor position="1861" topLine="0" />
@@ -125,7 +125,7 @@
 		<Cursor position="909" topLine="2" />
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="8">
-		<Cursor position="11407" topLine="208" />
+		<Cursor position="4561" topLine="85" />
 	</File>
 	<File name="main.h" open="0" top="0" tabpos="24">
 		<Cursor position="282" topLine="0" />

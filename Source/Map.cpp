@@ -2251,7 +2251,7 @@ bool Map::infligerDegats(int numeroMonstre, int degats,Menu *menu,sf::View *came
         if(!m_monstre[numeroMonstre].enVie()&&m_monstre[numeroMonstre].getCaracteristique().pointAme>0)
         {
             coordonneeDecimal position;
-            position.x=(((m_monstre[numeroMonstre].getCoordonnee().x-m_monstre[numeroMonstre].getCoordonnee().y-1+m_decor[0].size())*64)-camera->GetRect().Left+48-(configuration.Resolution.x/2-400));
+            position.x=(((m_monstre[numeroMonstre].getCoordonnee().x-m_monstre[numeroMonstre].getCoordonnee().y-1+m_decor[0].size())*64)-camera->GetRect().Left+48-(configuration.Resolution.x/configuration.zoom/2-400));
             position.y=(((m_monstre[numeroMonstre].getCoordonnee().x+m_monstre[numeroMonstre].getCoordonnee().y)*32)-camera->GetRect().Top-96);
             menu->AjouterAme(position,m_monstre[numeroMonstre].getCaracteristique().pointAme);
             return 1;
