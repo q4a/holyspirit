@@ -12,6 +12,7 @@ Chargement de : Data/Menus/inventaire.png
 
 Chargement des curseurs :
 Chargement de : Data/Menus/Curseurs/curseurMenu.png
+Chargement de : Data/Effets/EffetContrastes.sfx
 Chargement de : Data/Effets/EffetNoir.sfx
 Chargement de : Data/Effets/EffetMort.sfx
 
@@ -53,15 +54,9 @@ Chargement de : Data/Sons/9906__Snoman__grass3.wav
 Chargement de : Data/Sons/35213__Abyssmal__slashkut.wav
 Chargement de : Data/Entites/Monstres/PantinMorbide/PantinMorbide.char.hs
 
-Chargement du monstre : Data/Entites/Destructibles/Tonneau/Tonneau.char.hs
-Chargement de : Data/Entites/Destructibles/Tonneau/Tonneau.png
-Chargement de : Data/Sons/31622__Srehpog__light_crate_smash1.wav
-Chargement de : Data/Sons/31623__Srehpog__light_crate_smash2.wav
-Chargement de : Data/Sons/31624__Srehpog__light_crate_smash3.wav
-Chargement de : Data/Entites/Destructibles/Tonneau/Tonneau.char.hs
-
 Chargement du monstre : Data/Entites/Destructibles/Tonneau/TonneauExp.char.hs
 Chargement de : Data/Entites/Destructibles/Tonneau/TonneauExp.png
+Chargement de : Data/Entites/Destructibles/Tonneau/Tonneau.png
 Chargement de : Data/Sons/47252__nthompson__rocketexpl.wav
 Chargement de : Data/Entites/Destructibles/Tonneau/TonneauExp.char.hs
 
