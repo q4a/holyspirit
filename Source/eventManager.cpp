@@ -93,6 +93,16 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
             configuration.contrastes-=temps*2;
     }
 
+    if(configuration.contrastes<1)
+        configuration.contrastes=1;
+    if(configuration.contrastes>5)
+        configuration.contrastes=5;
+
+    if(configuration.luminosite<0)
+        configuration.luminosite=0;
+    if(configuration.luminosite>64)
+        configuration.luminosite=64;
+
     if(m_EventTableau[Key::M])
     {
         if(!configuration.Minimap)

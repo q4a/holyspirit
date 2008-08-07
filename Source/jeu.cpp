@@ -40,7 +40,7 @@ Jeu::Jeu()
     }
 
 
-    Luminosite.Create(configuration.Resolution.x, configuration.Resolution.y, sf::Color(configuration.luminosite, configuration.luminosite, configuration.luminosite));
+    Luminosite.Create(configuration.Resolution.x, configuration.Resolution.y, sf::Color(255,255,255));
 
 }
 
@@ -82,13 +82,14 @@ void Jeu::Demarrer()
 		this->m_contexte->Utiliser(this);
 		if(this->m_display)
 		{
+		    Sprite.SetColor(sf::Color(configuration.luminosite,configuration.luminosite,configuration.luminosite,255));
 		    EffectContrastes.SetParameter("color", configuration.contrastes, configuration.contrastes, configuration.contrastes);
 
 		    moteurGraphique.Afficher(&this->ecran,&this->camera);
             this->ecran.Draw(this->EffectNoir);
             if(configuration.effetMort>0)
                 this->ecran.Draw(EffectMort);
-            if(configuration.contrastes>0&&sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
+            if(configuration.contrastes>1&&sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
                 this->ecran.Draw(this->EffectContrastes);
             if(configuration.luminosite>0)
                 this->ecran.Draw(Sprite);
