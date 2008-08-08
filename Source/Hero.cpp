@@ -129,10 +129,6 @@ void Hero::placerCamera(sf::View *camera,coordonnee dimensionsMap)
 	positionCamera.x=m_positionAffichage.x-((400*configuration.Resolution.x/800))+64;
 
 	camera->SetFromRect(sf::FloatRect(positionCamera.x,positionCamera.y,positionCamera.x+configuration.Resolution.x,positionCamera.y+configuration.Resolution.y));
-	/*camera->GetRect().Top=positionCamera.y;
-	camera->GetRect().Left=positionCamera.x;
-	camera->GetRect().Bottom=positionCamera.y+configuration.Resolution.y;
-	camera->GetRect().Right=positionCamera.x+configuration.Resolution.x;*/
 }
 
 void Hero::testMontreVise(Monstre *monstre,int hauteurMap)

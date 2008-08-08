@@ -506,6 +506,8 @@ bool Map::Charger(int numeroMap)
                     }
             }
 
+    console.Rapport();
+
     return 1;
 }
 

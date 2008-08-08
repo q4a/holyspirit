@@ -25,8 +25,8 @@
 	<File name="Globale.h" open="0" top="0" tabpos="5">
 		<Cursor position="69" topLine="0" />
 	</File>
-	<File name="Hero.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="5165" topLine="127" />
+	<File name="Hero.cpp" open="1" top="1" tabpos="5">
+		<Cursor position="4221" topLine="118" />
 	</File>
 	<File name="Hero.h" open="0" top="0" tabpos="6">
 		<Cursor position="605" topLine="10" />
@@ -106,14 +106,14 @@
 	<File name="constantes.h" open="1" top="0" tabpos="12">
 		<Cursor position="1569" topLine="54" />
 	</File>
-	<File name="eventManager.cpp" open="1" top="1" tabpos="14">
-		<Cursor position="3048" topLine="68" />
+	<File name="eventManager.cpp" open="1" top="0" tabpos="14">
+		<Cursor position="3305" topLine="74" />
 	</File>
 	<File name="eventManager.h" open="0" top="0" tabpos="20">
 		<Cursor position="775" topLine="6" />
 	</File>
 	<File name="jeu.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="632" topLine="24" />
+		<Cursor position="4199" topLine="45" />
 	</File>
 	<File name="jeu.h" open="1" top="0" tabpos="13">
 		<Cursor position="928" topLine="21" />

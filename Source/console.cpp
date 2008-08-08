@@ -73,6 +73,8 @@ void Console::Rapport()
         {
             if(m_erreur[i])
                 fichier<<"ERREUR : ";
+            else
+                fichier<<"         ";
             fichier<<m_textes[i]<<'\n';
         }
         fichier.close();
