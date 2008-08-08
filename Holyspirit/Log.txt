@@ -1,106 +1,67 @@
-
-Chargement des menus :
-Chargement de : Data/Menus/minimap.png
+         
+         Chargement des menus :
+         Chargement de : Data/Menus/minimap.png
 ERREUR : Impossible de charger : Data/Menus/Hud00.png
-Chargement de : Data/Menus/bulle_vie.png
-Chargement de : Data/Menus/Ame.png
-Chargement de : Data/Menus/sang.png
-Chargement de : Data/Menus/Barre_ame.png
-Chargement de : Data/Menus/barre_vie.png
-Chargement de : Data/Menus/barre_vie_vide.png
-Chargement de : Data/Menus/inventaire.png
-
-Chargement des curseurs :
-Chargement de : Data/Menus/Curseurs/curseurMenu.png
-Chargement de : Data/Effets/EffetContrastes.sfx
-Chargement de : Data/Effets/EffetNoir.sfx
-Chargement de : Data/Effets/EffetMort.sfx
-
-Chargement des effets :
-Chargement de : Data/Sons/Coeur.wav
-
-Chargement du personnage : Data/Entites/hero/GuerrierHache.char.hs
-Chargement de : Data/Entites/Hero/GuerrierHache-Arret.png
-Chargement de : Data/Entites/Hero/GuerrierHache-Course.png
-Chargement de : Data/Entites/Hero/GuerrierHache-Frappe.png
-Chargement de : Data/Entites/Hero/GuerrierHache-Mort.png
-Chargement de : Data/Sons/9906__Snoman__grass3.wav
-Chargement de : Data/Sons/9906__Snoman__grass3.wav
-Chargement de : Data/Sons/epee.wav
-
-Chargement de la map : Data/Maps/map0.map.hs
-Chargement de : Data/Ecran chargement/Plaines2.png
-
-Chargement de la map : Data/Maps/map1.map.hs
-Chargement de : Data/Musiques/Test.ogg
-Chargement de : Data/Terrain/Herbes plaines/Herbes plaines.png
-Chargement de : Data/Decors/Arbres/Arbres.png
-Chargement de : Data/Decors/Mur de pierres/Mur de pierres.png
-Chargement de : Data/Decors/Feu de camp/Feu de camp.png
-Chargement de : Data/Sons/Feu.wav
-Chargement de : Data/Decors/Herbes/Herbe1.png
-
-Chargement du monstre : Data/Entites/Monstres/PantinMorbide/PantinMorbide.char.hs
-Chargement de : Data/Entites/Monstres/PantinMorbide/PanMorHache-Arret.png
-Chargement de : Data/Entites/Monstres/PantinMorbide/PantMorbCourse1.png
-Chargement de : Data/Entites/Monstres/PantinMorbide/PantMorbCourse2.png
-Chargement de : Data/Entites/Monstres/PantinMorbide/PantMorbFrappe1.png
-Chargement de : Data/Entites/Monstres/PantinMorbide/PantMorbFrappe2.png
-Chargement de : Data/Entites/Monstres/PantinMorbide/PantMorbFrappe3.png
-Chargement de : Data/Entites/Monstres/PantinMorbide/PantMorbFrappe4.png
-Chargement de : Data/Entites/Monstres/PantinMorbide/PantMorbMort.png
-Chargement de : Data/Sons/9906__Snoman__grass3.wav
-Chargement de : Data/Sons/9906__Snoman__grass3.wav
-Chargement de : Data/Sons/35213__Abyssmal__slashkut.wav
-Chargement de : Data/Entites/Monstres/PantinMorbide/PantinMorbide.char.hs
-
-Chargement du monstre : Data/Entites/Destructibles/Tonneau/TonneauExp.char.hs
-Chargement de : Data/Entites/Destructibles/Tonneau/TonneauExp.png
-Chargement de : Data/Entites/Destructibles/Tonneau/Tonneau.png
-Chargement de : Data/Sons/47252__nthompson__rocketexpl.wav
-Chargement de : Data/Entites/Destructibles/Tonneau/TonneauExp.char.hs
-
----------------------------------------------------------------------------------
-EVENEMENT : Changement de map
----------------------------------------------------------------------------------
-Chargement de : Data/Ecran chargement/Grotte.png
-
-Sauvegarde de la map : Data/Temp/map1.map.hs
-
-Chargement de la map : Data/Maps/map3.map.hs
-Chargement de : Data/Musiques/Maxtor81-Arcaduis.ogg
-Chargement de : Data/Sons/Feu.wav
-Chargement de : Data/Decors/Effets de Lumières/LightEffect.png
-Chargement de : Data/Decors/Herbes/Champignon1.png
-
-Chargement du monstre : Data/Entites/Monstres/GolemQuartz/GolemQuartz.char.hs
-Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaArret.png
-Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaCour.png
-Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaAt1.png
-Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaAt2.png
-Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaAt3.png
-Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaAt4.png
-Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaAt5.png
-Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaAt6.png
-Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaAt7.png
-Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaAt8.png
-Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaMor.png
-Chargement de : Data/Sons/15569__tigersound__walking_on_stone.wav
-Chargement de : Data/Sons/30009__thanvannispen__stone_on_stone_impact_loud2.aiff
-Chargement de : Data/Entites/Monstres/GolemQuartz/GolemQuartz.char.hs
-
-Chargement du monstre : Data/Entites/Destructibles/Tonneau/Tonneau.char.hs
-Chargement de : Data/Sons/31622__Srehpog__light_crate_smash1.wav
-Chargement de : Data/Sons/31623__Srehpog__light_crate_smash2.wav
-Chargement de : Data/Sons/31624__Srehpog__light_crate_smash3.wav
-Chargement de : Data/Entites/Destructibles/Tonneau/Tonneau.char.hs
-
-Chargement du monstre : Data/Entites/Destructibles/Tonneau/TonneauExp.char.hs
-Chargement de : Data/Sons/47252__nthompson__rocketexpl.wav
-Chargement de : Data/Entites/Destructibles/Tonneau/TonneauExp.char.hs
-
-Sauvegarde de la map : Data/Temp/map3.map.hs
-
-Fermeture des contextes effectuée avec succès.
-
-EXIT_SUCCESS
+         Chargement de : Data/Menus/bulle_vie.png
+         Chargement de : Data/Menus/Ame.png
+         Chargement de : Data/Menus/sang.png
+         Chargement de : Data/Menus/Barre_ame.png
+         Chargement de : Data/Menus/barre_vie.png
+         Chargement de : Data/Menus/barre_vie_vide.png
+         Chargement de : Data/Menus/inventaire.png
+         
+         Chargement des curseurs :
+         Chargement de : Data/Menus/Curseurs/curseurMenu.png
+         Chargement de : Data/Effets/EffetContrastes.sfx
+         Chargement de : Data/Effets/EffetNoir.sfx
+         Chargement de : Data/Effets/EffetMort.sfx
+         
+         Chargement des effets :
+         Chargement de : Data/Sons/Coeur.wav
+         
+         Chargement du personnage : Data/Entites/hero/GuerrierHache.char.hs
+         Chargement de : Data/Entites/Hero/GuerrierHache-Arret.png
+         Chargement de : Data/Entites/Hero/GuerrierHache-Course.png
+         Chargement de : Data/Entites/Hero/GuerrierHache-Frappe.png
+         Chargement de : Data/Entites/Hero/GuerrierHache-Mort.png
+         Chargement de : Data/Sons/9906__Snoman__grass3.wav
+         Chargement de : Data/Sons/9906__Snoman__grass3.wav
+         Chargement de : Data/Sons/epee.wav
+         
+         Chargement de la map : Data/Maps/map0.map.hs
+         Chargement de : Data/Ecran chargement/Plaines2.png
+         
+         Chargement de la map : Data/Maps/map1.map.hs
+         Chargement de : Data/Musiques/Test.ogg
+         Chargement de : Data/Terrain/Herbes plaines/Herbes plaines.png
+         Chargement de : Data/Decors/Arbres/Arbres.png
+         Chargement de : Data/Decors/Mur de pierres/Mur de pierres.png
+         Chargement de : Data/Decors/Feu de camp/Feu de camp.png
+         Chargement de : Data/Sons/Feu.wav
+         Chargement de : Data/Decors/Herbes/Herbe1.png
+         
+         Chargement du monstre : Data/Entites/Monstres/PantinMorbide/PantinMorbide.char.hs
+         Chargement de : Data/Entites/Monstres/PantinMorbide/PanMorHache-Arret.png
+         Chargement de : Data/Entites/Monstres/PantinMorbide/PantMorbCourse1.png
+         Chargement de : Data/Entites/Monstres/PantinMorbide/PantMorbCourse2.png
+         Chargement de : Data/Entites/Monstres/PantinMorbide/PantMorbFrappe1.png
+         Chargement de : Data/Entites/Monstres/PantinMorbide/PantMorbFrappe2.png
+         Chargement de : Data/Entites/Monstres/PantinMorbide/PantMorbFrappe3.png
+         Chargement de : Data/Entites/Monstres/PantinMorbide/PantMorbFrappe4.png
+         Chargement de : Data/Entites/Monstres/PantinMorbide/PantMorbMort.png
+         Chargement de : Data/Sons/9906__Snoman__grass3.wav
+         Chargement de : Data/Sons/9906__Snoman__grass3.wav
+         Chargement de : Data/Sons/35213__Abyssmal__slashkut.wav
+         Chargement de : Data/Entites/Monstres/PantinMorbide/PantinMorbide.char.hs
+         
+         Chargement du monstre : Data/Entites/Destructibles/Tonneau/TonneauExp.char.hs
+         Chargement de : Data/Entites/Destructibles/Tonneau/TonneauExp.png
+         Chargement de : Data/Entites/Destructibles/Tonneau/Tonneau.png
+         Chargement de : Data/Sons/47252__nthompson__rocketexpl.wav
+         Chargement de : Data/Entites/Destructibles/Tonneau/TonneauExp.char.hs
+         
+         Sauvegarde de la map : Data/Temp/map1.map.hs
+         
+         Fermeture des contextes effectuée avec succès.
+         
+         EXIT_SUCCESS
