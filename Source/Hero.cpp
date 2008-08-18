@@ -118,12 +118,10 @@ void Hero::Charger()
 
 void Hero::placerCamera(sf::View *camera,coordonnee dimensionsMap)
 {
-	m_positionAffichage.y=(int)(((m_personnage.getCoordonneePixel().x+m_personnage.getCoordonneePixel().y)*64/COTE_TILE)/2);
-	m_positionAffichage.x=(int)(((m_personnage.getCoordonneePixel().x-m_personnage.getCoordonneePixel().y)*64/COTE_TILE+dimensionsMap.y*64)-64);
+	m_positionAffichage.y=(((m_personnage.getCoordonneePixel().x+m_personnage.getCoordonneePixel().y)*64/COTE_TILE)/2);
+	m_positionAffichage.x=(((m_personnage.getCoordonneePixel().x-m_personnage.getCoordonneePixel().y)*64/COTE_TILE+dimensionsMap.y*64)-64);
 
-	//camera->SetCenter(m_positionAffichage.x,m_positionAffichage.y);
-
-	coordonnee positionCamera;
+	coordonneeDecimal positionCamera;
 	positionCamera.y=m_positionAffichage.y-250*configuration.Resolution.y/600;
 	positionCamera.x=m_positionAffichage.x-((400*configuration.Resolution.x/800))+64;
 

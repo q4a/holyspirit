@@ -122,12 +122,12 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 ///Sauvegarde automatique
 
-                /*if(tempsSauvergarde>=configuration.frequence_sauvegarde)
+                if(tempsSauvergarde>=configuration.frequence_sauvegarde)
                 {
                     jeu->hero.Sauvegarder();
                     jeu->map.Sauvegarder();
                     tempsSauvergarde=0;
-                }*/
+                }
 
                 ///IA
 
@@ -187,7 +187,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 ///Animation
 
-                if(tempsDepuisDerniereAnimation>0.043)
+               if(tempsDepuisDerniereAnimation>0.043)
                 {
                     bool a; // Variable qui ne sert pas ici, mais qui remplace le explosif des monstres
                     if(jeu->hero.m_personnage.animer(&jeu->hero.m_modelePersonnage,jeu->map.getDimensions().y,tempsDepuisDerniereAnimation,&a)==1) //Animation du héro
@@ -257,9 +257,6 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                     if(configuration.console)
                     {
-                        //jeu->ecran.Draw(fps); // On affiche le texte des FPS
-                        //jeu->ecran.Draw(Version);
-                        //jeu->ecran.Draw(Temps);
                         moteurGraphique.AjouterTexte(&fps);
                         Version.SetY(20);
                         moteurGraphique.AjouterTexte(&Version);
@@ -271,8 +268,6 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     }
 
                     jeu->m_display=true;
-
-                    //jeu->ecran.Display(); // On affiche le tout à l'écran
 
                     tempsEcouleDepuisDernierAffichage=0;
                 }

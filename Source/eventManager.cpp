@@ -164,8 +164,8 @@ void EventManager::AfficherCurseur(sf::RenderWindow *ecran)
 {
 	Sprite Sprite;
 	Sprite.SetImage(*moteurGraphique.getImage(idcurseur));
-	Sprite.SetX(m_positionSouris.x);
-	Sprite.SetY(m_positionSouris.y);
+	Sprite.SetX(m_positionSouris.x*configuration.Resolution.w/configuration.Resolution.x);
+	Sprite.SetY(m_positionSouris.y*configuration.Resolution.h/configuration.Resolution.y);
 	moteurGraphique.AjouterCommande(&Sprite,0);
 	//ecran->Draw(Sprite);
 }

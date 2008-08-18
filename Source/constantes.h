@@ -19,6 +19,7 @@
 #include <cmath>
 #include <utility>
 #include <iostream>
+#include <fstream>
 #include <vector>
 
 #include "console.h"
@@ -70,10 +71,113 @@ struct coordonnee
 
 struct Configuration
 {
+    void Charger()
+    {
+            coordonnee resolution;
+            bool video;
+            std::string chemin_video_developpeur,nom_video_developpeur;
+
+            ///Chargement de la configuration
+
+            std::ifstream fichier,fichier3;
+            fichier3.open("configuration.conf", std::ios::in);
+            if(!fichier3)
+            {
+                fichier3.close();
+                std::fstream fichier2("configuration.conf", std::ios::in | std::ios::out | std::ios::trunc) ;
+
+                fichier2<<"AFFICHAGE\nresolution: 800 600\nluminosite: 0\ncontrastes: 1\nsyncronisation_verticale: 1\nmode_fenetre: 1\nombres: 1\nlumieres: 1\namelioration_des_lampes: 0\nfrequence_lumiere: 0.054\nherbes: 1\npostFX: 1\nsang: 1\n\nMUSIQUES\nvolume: 100\nson_mort: Data/Sons/Coeur.wav\n\nINTERFACE\nminimap: 1\nconsole: 0\n\nVERSION\nversion: 0.0.98\n\nCHEMINS\nmaps: Data/Maps/map\ntemps: Data/Temp/\nsaves: Data/Saves/\nevenements: Data/Maps/evenement\ncurseur: Data/Menus/Curseurs/\nmenus: Data/Menus/\nfonts: Data/Fonts/Cup and Talon.ttf\nfx: Data/Effets/\n\ncurseur_base: curseurMenu.png\n\nfxNoir: EffetNoir.sfx\nfxContrastes: EffetContrastes.sfx\nfxMort: EffetMort.sfx\n\nmenu_hud: Hudoo.png\nmenu_minimap: minimap.png\nmenu_bulle_vie: bulle_vie.png\nmenu_ame: Ame.png\nmenu_barre_ame: Barre_ame.png\nmenu_barre_vie: barre_vie.png\nmenu_barre_vie_vide: barre_vie_vide.png\nmenu_sang: sang.png\nmenu_inventaire: inventaire.png\n\nAUTRE\nvideos: 0\nchemin_video_developpeurs: Data/Videos/Naiponcin logo/\nnom_video_developpeurs: Naiponcin logo\n\ncache: 200\n\nfrequence_sauvegarde: 10\n";
+
+                fichier2.close();
+
+                //fichier.seekg(0, std::ios::beg);
+            }
+            fichier.close();
+
+            fichier.open("configuration.conf", std::ios::in);
+            if(fichier)
+            {
+                char caractere;
+                std::string chaine;
+                while(fichier>>chaine)
+                {
+                        if(chaine=="resolution:") { fichier>>resolution.x>>resolution.y; }
+                        if(chaine=="luminosite:") { fichier>>luminosite; }
+                        if(chaine=="contrastes:") { fichier>>contrastes; }
+                        if(chaine== "mode_fenetre:") { fichier>>mode_fenetre; }
+                        if(chaine== "videos:") { fichier>>video; }
+                        if(chaine== "postFX:") { fichier>>postFX; }
+                        if(chaine== "sang:") { fichier>>sang; }
+                        if(chaine== "ombres:") { fichier>>Ombre; }
+                        if(chaine== "lumieres:") { fichier>>Lumiere; }
+                        if(chaine== "herbes:") { fichier>>Herbes; }
+                        if(chaine== "syncronisation_verticale:") { fichier>>syncronisation_verticale; }
+                        if(chaine== "volume:") { fichier>>volume; }
+                        if(chaine== "minimap:") { fichier>>Minimap; }
+                        if(chaine== "amelioration_des_lampes:") { fichier>>amelioration_lampes; }
+                        if(chaine== "frequence_lumiere:") { fichier>>frequence_lumiere; }
+                        if(chaine== "console:") { fichier>>console; }
+                        if(chaine== "version:") { fichier>>version; }
+
+                        if(chaine== "maps:") { fichier>>chemin_maps; }
+                        if(chaine== "temps:") { fichier>>chemin_temps; }
+                        if(chaine== "saves:") { fichier>>chemin_saves; }
+                        if(chaine== "evenements:") { fichier>>chemin_evenements; }
+                        if(chaine== "curseur:") { fichier>>chemin_curseurs; }
+                        if(chaine== "menus:") { fichier>>chemin_menus; }
+                        if(chaine== "fonts:") { fichier>>chemin_fonts; }
+                        if(chaine== "fx:") { fichier>>chemin_fx; }
+                        if(chaine== "chemin_video_developpeurs:") { fichier>>chemin_video_developpeur; }
+                        if(chaine== "nom_video_developpeurs:") { fichier>>nom_video_developpeur; }
+
+                        if(chaine== "curseur_base:") { fichier>>nom_curseur_base; }
+                        if(chaine== "fxNoir:") { fichier>>nom_effetNoir; }
+                        if(chaine== "fxMort:") { fichier>>nom_effetMort; }
+                        if(chaine== "fxContrastes:") { fichier>>nom_effetContrastes; }
+
+                        if(chaine== "menu_hud:") { fichier>>nom_hud; }
+                        if(chaine== "menu_minimap:") { fichier>>nom_minimap; }
+                        if(chaine== "menu_bulle_vie:") { fichier>>nom_bulle_vie; }
+                        if(chaine== "menu_ame:") { fichier>>nom_ame; }
+                        if(chaine== "menu_barre_ame:") { fichier>>nom_barre_ame; }
+                        if(chaine== "menu_barre_vie:") { fichier>>nom_barre_vie; }
+                        if(chaine== "menu_barre_vie_vide:") { fichier>>nom_barre_vie_vide; }
+                        if(chaine== "menu_inventaire:") { fichier>>nom_inventaire; }
+
+
+                        if(chaine== "menu_sang:") { fichier>>nom_sang; }
+                        if(chaine== "nom_video_developpeurs: ") { fichier>>nom_video_developpeur; }
+
+                        if(chaine== "cache: ") { fichier>>cache; }
+
+                        if(chaine== "frequence_sauvegarde:") { fichier>>frequence_sauvegarde; }
+
+                        if(chaine== "son_mort:") { fichier>>chemin_son_mort; }
+
+                }
+                 fichier.close();
+            }
+            else
+                throw "Impossible de charger la configuration";
+
+            ///Application de la configuration
+
+            Resolution.x=resolution.x;
+            Resolution.y=resolution.y;
+            Resolution.w=resolution.x;
+            Resolution.h=resolution.y;
+
+            zoom=1;
+
+            if(!Lumiere)
+                Ombre=0;
+
+    }
+
     coordonnee Resolution;
-    bool Ombre,Lumiere,Minimap,FonduLumiere,amelioration_lampes,console,Herbes,syncronisation_verticale,mode_fenetre,postFX,sang;
+    bool Ombre,Lumiere,Minimap,amelioration_lampes,console,Herbes,syncronisation_verticale,mode_fenetre,postFX,sang;
     float effetMort,volume,minute,zoom,frequence_sauvegarde,frequence_lumiere,luminosite,contrastes;
-    int heure;
+    int heure,cache;
     std::string version,chemin_maps,chemin_temps,chemin_saves,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetMort,nom_effetContrastes,nom_hud,nom_minimap,nom_bulle_vie,nom_ame,nom_barre_ame,nom_barre_vie,nom_barre_vie_vide,nom_sang,nom_inventaire,chemin_son_mort;
 };
 

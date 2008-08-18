@@ -20,6 +20,7 @@ Map::Map()
     carreRouge.SetSmooth(true);
     carreVert.SetSmooth(true);
     carreBrun.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.x/800, Color(128, 64, 0)),carreBleu.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.x/800, Color(32, 0, 128)),carreRouge.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.x/800, Color(128, 0, 0)),carreVert.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.x/800, Color(0, 128, 0));
+
 }
 
 Map::~Map()
@@ -1421,11 +1422,9 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
 
 void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonnee positionSouris)
 {
-coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
+    coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
 
-	Sprite Sprite, spriteLumiereMask;
-
-	 spriteLumiereMask.SetImage(lumiereMask);
+	Sprite Sprite;
 
 	positionPartieDecor.x=0;
 	positionPartieDecor.y=0;
@@ -1444,11 +1443,12 @@ coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
         vueMax.x=hero->m_personnage.getCoordonnee().x+15;
         vueMax.y=hero->m_personnage.getCoordonnee().y+15;
 
+        const sf::FloatRect& ViewRect = camera->GetRect();
 
         if(vueMin.x<0) { vueMin.x=0; }
         if(vueMin.y<0) { vueMin.y=0; }
-        if(vueMax.x>m_decor[0][0].size()) { vueMax.x=m_decor[0][0].size(); }
-        if(vueMax.y>m_decor[0].size()) { vueMax.y=m_decor[0].size(); }
+        if(vueMax.x>=m_decor[0][0].size()) { vueMax.x=m_decor[0][0].size()-1; }
+        if(vueMax.y>=m_decor[0].size()) { vueMax.y=m_decor[0].size()-1; }
 
         for(int couche=0;couche<2;couche++)
         {
@@ -1458,28 +1458,9 @@ coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
                 {
                     position.x=(k-j-1+m_decor[0].size())*64;
                     position.y=(k+j)*32;
-                    const sf::FloatRect& ViewRect = camera->GetRect();
 
                     if(j>=0&&j<m_decor[0].size()&&k>=0&&k<m_decor[0][0].size())
                     {
-                        if(couche==1&&position.x+288>ViewRect.Left&&position.x<ViewRect.Right&&position.y+160>ViewRect.Top&&position.y<ViewRect.Bottom&&configuration.FonduLumiere)
-                        {
-                            spriteLumiereMask.SetX(position.x-128);
-                            spriteLumiereMask.SetY(position.y-64);
-                            int intensite=255-m_tableauDesLampes[j-vueMin.y][k-vueMin.x].intensite;
-                            if(intensite>255)
-                                intensite=255;
-                            if(intensite<0)
-                                intensite=0;
-                            if(intensite>0)
-                            {
-                                //EffectBlur.SetParameter("offset", 0.01);
-                                spriteLumiereMask.SetColor(sf::Color(255,255,255,intensite));
-                                ecran->Draw(spriteLumiereMask);
-                            }
-
-                        }
-
                         if(couche==1)
                         {
                             if(j>=0&&j<m_decor[0].size()&&k>=0&&k<m_decor[0][0].size())
@@ -1489,7 +1470,6 @@ coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
                                     positionPartieDecor=m_herbe[m_decor[0][j][k].getHerbe()].getPositionDuTile(m_decor[0][j][k].getNumeroHerbe());
 
                                     position.y-=32;
-
 
                                     Sprite.SetImage(*moteurGraphique.getImage(m_herbe[m_decor[0][j][k].getHerbe()].getImage()));
                                     if((position.x+64-positionPartieDecor.w/2)-ViewRect.Left<0)
@@ -1623,6 +1603,7 @@ coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
                                         }
                                         m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&temp,&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
                                     }
+                                    temp.detruire();
                                 }
                         }
 
@@ -1721,9 +1702,9 @@ coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
                             position.x=(k-j-1+m_decor[1].size())*64;
                             position.y=(k+j)*32;
                             positionPartieDecor=m_tileset[m_decor[couche][j][k].getTileset()].getPositionDuTile(m_decor[couche][j][k].getTile());
-                           /* if(position.x+positionPartieDecor.h*2+positionPartieDecor.w>=ViewRect.Left&&position.x-positionPartieDecor.h*2-positionPartieDecor.w-64<ViewRect.Right&&position.y+positionPartieDecor.h+positionPartieDecor.w>=ViewRect.Top&&position.y-positionPartieDecor.h-32<ViewRect.Bottom+100&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()&&configuration.Ombre&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()))
+                            if(position.x+positionPartieDecor.h*2+positionPartieDecor.w>=ViewRect.Left&&position.x-positionPartieDecor.h*2-positionPartieDecor.w-64<ViewRect.Right&&position.y+positionPartieDecor.h+positionPartieDecor.w>=ViewRect.Top&&position.y-positionPartieDecor.h-32<ViewRect.Bottom+100&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()&&configuration.Ombre&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()))
                             ||position.x+positionPartieDecor.w>=ViewRect.Left&&position.x<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y-positionPartieDecor.h+64<ViewRect.Bottom)
-                            {*/
+                            {
                                 Sprite.SetImage(*moteurGraphique.getImage(m_tileset[m_decor[couche][j][k].getTileset()].getImage()));
                                 Sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
 
@@ -1791,22 +1772,7 @@ coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
 
 
 
-                                    if(configuration.Lumiere&&configuration.FonduLumiere)
-                                    {
-                                        if(couche==1)
-                                            Sprite.SetColor(sf::Color(
-                                            (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].intensite*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].rouge)/255,
-                                            (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].intensite*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].vert)/255,
-                                            (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].intensite*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].bleu)/255,
-                                            255));
-                                        else
-                                            Sprite.SetColor(sf::Color(
-                                            (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].rouge),
-                                            (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].vert),
-                                            (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].bleu),
-                                            alpha));
-                                    }
-                                    else if(configuration.Lumiere)
+                                    if(configuration.Lumiere)
                                     {
                                         Sprite.SetColor(sf::Color(
                                             (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].intensite*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].rouge)/255,
@@ -1829,7 +1795,7 @@ coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
                                     moteurGraphique.AjouterCommande(&Sprite,1);
                                      //ecran->Draw(Sprite);
                                 }
-                            //}
+                            }
 
                             positionHero.x=(hero->m_personnage.getCoordonnee().x-hero->m_personnage.getCoordonnee().y-1+m_decor[0].size())/5;
                             positionHero.y=(hero->m_personnage.getCoordonnee().x+hero->m_personnage.getCoordonnee().y)/5;
@@ -1917,7 +1883,7 @@ coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
         vueMax.x=hero->m_personnage.getCoordonnee().x+16;
         vueMax.y=hero->m_personnage.getCoordonnee().y+15;
 
-        Sprite.SetCenter(4*configuration.Resolution.x/800,4*configuration.Resolution.x/800);
+        Sprite.SetCenter(4*configuration.Resolution.w/800,4*configuration.Resolution.w/800);
         Sprite.SetRotation(45);
 
         Sprite.SetColor(sf::Color(255,255,255,128));
@@ -1926,15 +1892,15 @@ coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
             {
                 for(int k=vueMin.x;k<vueMax.x;k++)
                 {
-                    position.x=(float)(((k-vueMin.x)-(j-vueMin.y)-1+40)*6*(float)configuration.Resolution.x/800);
-                    position.y=(float)(((k-vueMin.x)+(j-vueMin.y))*6*(float)configuration.Resolution.x/800);
-                    if(position.x+465*configuration.Resolution.x/800>605*configuration.Resolution.x/800&&position.x+465*configuration.Resolution.x/800<800*configuration.Resolution.x/800&&position.y*configuration.Resolution.x/800>0&&position.y-80*configuration.Resolution.x/800<195*configuration.Resolution.x/800)
+                    position.x=(float)(((k-vueMin.x)-(j-vueMin.y)-1+40)*6*(float)configuration.Resolution.w/800);
+                    position.y=(float)(((k-vueMin.x)+(j-vueMin.y))*6*(float)configuration.Resolution.w/800);
+                    if(position.x+465*configuration.Resolution.w/800>605*configuration.Resolution.w/800&&position.x+465*configuration.Resolution.w/800<800*configuration.Resolution.w/800&&position.y*configuration.Resolution.y/600>0&&position.y-80*configuration.Resolution.w/800<195*configuration.Resolution.h/600)
                     {
                         if(getTypeCase(k,j)==1)
                         {
                             Sprite.SetImage(carreBrun);
-                            Sprite.SetX((float)(position.x+465*configuration.Resolution.x/800));
-                            Sprite.SetY((float)(position.y-80*configuration.Resolution.x/800));
+                            Sprite.SetX((float)(position.x+465*configuration.Resolution.w/800));
+                            Sprite.SetY((float)(position.y-80*configuration.Resolution.w/800));
                             moteurGraphique.AjouterCommande(&Sprite,0);
                             //ecran->Draw(Sprite);
                         }
@@ -1943,8 +1909,8 @@ coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
                         {
                             Sprite.SetImage(carreRouge);
 
-                            Sprite.SetX(position.x+465*configuration.Resolution.x/800);
-                            Sprite.SetY(position.y-80*configuration.Resolution.x/800);
+                            Sprite.SetX((float)(position.x+465*configuration.Resolution.w/800));
+                            Sprite.SetY((float)(position.y-80*configuration.Resolution.w/800));
                             moteurGraphique.AjouterCommande(&Sprite,0);
                             //ecran->Draw(Sprite);
                         }
@@ -1952,8 +1918,8 @@ coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
                         if(getTypeCase(k,j)==3)
                         {
                                 Sprite.SetImage(carreVert);
-                                Sprite.SetX(position.x+465*configuration.Resolution.x/800);
-                                Sprite.SetY(position.y-80*configuration.Resolution.x/800);
+                                Sprite.SetX((float)(position.x+465*configuration.Resolution.w/800));
+                                Sprite.SetY((float)(position.y-80*configuration.Resolution.w/800));
                                 moteurGraphique.AjouterCommande(&Sprite,0);
                                 //ecran->Draw(Sprite);
                         }
@@ -1961,8 +1927,8 @@ coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
                         if(hero->m_personnage.getCoordonnee().x==k&&hero->m_personnage.getCoordonnee().y==j)
                         {
                                 Sprite.SetImage(carreBleu);
-                                Sprite.SetX((float)(position.x+465*configuration.Resolution.x/800));
-                                Sprite.SetY((float)(position.y-80*configuration.Resolution.x/800));
+                                Sprite.SetX((float)(position.x+465*configuration.Resolution.w/800));
+                                Sprite.SetY((float)(position.y-80*configuration.Resolution.w/800));
                                 moteurGraphique.AjouterCommande(&Sprite,0);
                                 //ecran->Draw(Sprite);
                         }
@@ -2011,8 +1977,8 @@ void Map::AfficherNomEvenement(sf::RenderWindow* ecran,coordonnee casePointee,co
             sf::String texte;
             texte.SetText(chemin);
             texte.SetSize(16.f);
-            texte.SetY(positionSouris.y-16);
-            texte.SetX(positionSouris.x);
+            texte.SetY((positionSouris.y-16)*configuration.Resolution.h/configuration.Resolution.y);
+            texte.SetX(positionSouris.x*configuration.Resolution.w/configuration.Resolution.x);
             moteurGraphique.AjouterTexte(&texte);
             //ecran->Draw(texte);
         }

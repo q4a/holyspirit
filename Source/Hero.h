@@ -35,7 +35,7 @@ class Hero
 	Modele_Personnage m_modelePersonnage;
 
 	private:
-	coordonnee m_positionAffichage;
+	coordonneeDecimal m_positionAffichage;
 	int m_monstreVise;
 };
 
