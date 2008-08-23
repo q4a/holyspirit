@@ -25,21 +25,21 @@ int main ( int argc, char** argv )
 {
     srand(time(NULL));
 
-    ///Chargement de la configuration
-
-    configuration.Charger();
-
-    ///On démarre le jeu
-
     console.Rapport();
+
 
     try
 	{
+	    ///Chargement de la configuration
+
+        configuration.Charger();
+
+        ///On démarre le jeu
 		Jeu m_jeu;
 
 		m_jeu.Demarrer();
 	}
-	catch (char *str)
+	catch (const string& str)
 	{
 	    console.Ajouter("FATAL ERROR : ",1);
 		console.Ajouter(str,1);
@@ -52,6 +52,8 @@ int main ( int argc, char** argv )
 
     //if(!Jeu(&ecran))
       //  return EXIT_FAILURE;
+
+    configuration.Sauvegarder();
 
     console.Ajouter("");
     console.Ajouter("EXIT_SUCCESS");

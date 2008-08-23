@@ -74,13 +74,10 @@ struct Configuration
     void Charger()
     {
             coordonnee resolution;
-            bool video;
-            std::string chemin_video_developpeur,nom_video_developpeur;
-
             ///Chargement de la configuration
 
-            std::ifstream fichier,fichier3;
-            fichier3.open("configuration.conf", std::ios::in);
+            std::ifstream fichier;
+           /* fichier3.open("configuration.conf", std::ios::in);
             if(!fichier3)
             {
                 fichier3.close();
@@ -92,7 +89,7 @@ struct Configuration
 
                 //fichier.seekg(0, std::ios::beg);
             }
-            fichier.close();
+            fichier.close();*/
 
             fichier.open("configuration.conf", std::ios::in);
             if(fichier)
@@ -158,7 +155,10 @@ struct Configuration
                  fichier.close();
             }
             else
-                throw "Impossible de charger la configuration";
+            {
+                std::cerr<<"Test";
+                throw std::string("Impossible de charger la configuration");
+            }
 
             ///Application de la configuration
 
@@ -171,14 +171,92 @@ struct Configuration
 
             if(!Lumiere)
                 Ombre=0;
-
     }
 
+    void Sauvegarder()
+    {
+            ///Chargement de la configuration
+
+            std::fstream fichier("configuration.conf", std::ios::in | std::ios::out | std::ios::trunc) ;
+
+            if(fichier)
+            {
+                        fichier<<"AFFICHAGE"<<std::endl;
+                        fichier<<"resolution: " <<Resolution.w<<" "<<Resolution.h<<std::endl;
+                        fichier<<"luminosite: " <<luminosite<<std::endl;
+                        fichier<<"contrastes: " <<contrastes<<std::endl;
+                        fichier<< "mode_fenetre: " <<mode_fenetre<<std::endl;
+                        fichier<< "syncronisation_verticale: " <<syncronisation_verticale<<std::endl;
+                        fichier<<std::endl;
+                        fichier<< "lumieres: " <<Lumiere<<std::endl;
+                        fichier<< "amelioration_des_lampes: " <<amelioration_lampes<<std::endl;
+                        fichier<< "frequence_lumiere: " <<frequence_lumiere<<std::endl;
+                        fichier<< "ombres: " <<Ombre<<std::endl;
+                        fichier<< "videos: " <<video<<std::endl;
+                        fichier<< "postFX: " <<postFX<<std::endl;
+                        fichier<< "sang: " <<sang<<std::endl;
+                        fichier<< "herbes: " <<Herbes<<std::endl;
+                        fichier<<std::endl;
+                        fichier<<std::endl;
+                        fichier<<"MUSIQUES"<<std::endl;
+                        fichier<< "volume: " <<volume<<std::endl;
+                        fichier<<std::endl;
+                        fichier<<std::endl;
+                        fichier<<"INTERFACE"<<std::endl;
+                        fichier<< "minimap: " <<Minimap<<std::endl;
+                        fichier<< "console: " <<console<<std::endl;
+                        fichier<<std::endl;
+                        fichier<<std::endl;
+                        fichier<<"CHEMINS"<<std::endl;
+
+                        fichier<< "maps: " <<chemin_maps<<std::endl;
+                        fichier<< "temps: " <<chemin_temps<<std::endl;
+                        fichier<< "saves: " <<chemin_saves<<std::endl;
+                        fichier<< "evenements: " <<chemin_evenements<<std::endl;
+                        fichier<< "curseur: " <<chemin_curseurs<<std::endl;
+                        fichier<< "menus: " <<chemin_menus<<std::endl;
+                        fichier<< "fonts: " <<chemin_fonts<<std::endl;
+                        fichier<< "fx: " <<chemin_fx<<std::endl;
+                        fichier<< "chemin_video_developpeurs: " <<chemin_video_developpeur<<std::endl;
+                        fichier<< "nom_video_developpeurs: " <<nom_video_developpeur<<std::endl;
+                        fichier<< "son_mort: " <<chemin_son_mort<<std::endl;
+                        fichier<<std::endl;
+                        fichier<< "curseur_base: " <<nom_curseur_base<<std::endl;
+                        fichier<< "fxNoir: " <<nom_effetNoir<<std::endl;
+                        fichier<< "fxMort: " <<nom_effetMort<<std::endl;
+                        fichier<< "fxContrastes: " <<nom_effetContrastes<<std::endl;
+                        fichier<< "menu_hud: " <<nom_hud<<std::endl;
+                        fichier<< "menu_minimap: " <<nom_minimap<<std::endl;
+                        fichier<< "menu_bulle_vie: " <<nom_bulle_vie<<std::endl;
+                        fichier<< "menu_ame: " <<nom_ame<<std::endl;
+                        fichier<< "menu_barre_ame: " <<nom_barre_ame<<std::endl;
+                        fichier<< "menu_barre_vie: " <<nom_barre_vie<<std::endl;
+                        fichier<< "menu_barre_vie_vide: " <<nom_barre_vie_vide<<std::endl;
+                        fichier<< "menu_inventaire: " <<nom_inventaire<<std::endl;
+                        fichier<< "menu_sang: " <<nom_sang<<std::endl;
+                        fichier<<std::endl;
+                        fichier<<std::endl;
+                        fichier<<"AUTRES"<<std::endl;
+                        fichier<< "version: " <<version<<std::endl;
+
+                        fichier<< "nom_video_developpeurs: " <<nom_video_developpeur<<std::endl;
+                        fichier<< "cache: " <<cache<<std::endl;
+                        fichier<< "frequence_sauvegarde: " <<frequence_sauvegarde<<std::endl;
+
+
+                 fichier.close();
+            }
+            else
+                throw "Impossible de sauvegarder la configuration";
+    }
+
+
     coordonnee Resolution;
-    bool Ombre,Lumiere,Minimap,amelioration_lampes,console,Herbes,syncronisation_verticale,mode_fenetre,postFX,sang;
+    bool Ombre,Lumiere,Minimap,amelioration_lampes,console,Herbes,syncronisation_verticale,mode_fenetre,postFX,sang,video;
     float effetMort,volume,minute,zoom,frequence_sauvegarde,frequence_lumiere,luminosite,contrastes;
     int heure,cache;
     std::string version,chemin_maps,chemin_temps,chemin_saves,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetMort,nom_effetContrastes,nom_hud,nom_minimap,nom_bulle_vie,nom_ame,nom_barre_ame,nom_barre_vie,nom_barre_vie_vide,nom_sang,nom_inventaire,chemin_son_mort;
+    std::string chemin_video_developpeur,nom_video_developpeur;
 };
 
 struct Caracteristique
