@@ -62,8 +62,6 @@ ERREUR : Impossible de charger : Data/Menus/Hudoo.png
          
          Sauvegarde de la map : Data/Temp/map1.map.hs
          
-         Sauvegarde de la map : Data/Temp/map1.map.hs
-         
          Fermeture des contextes effectuée avec succès.
          
          EXIT_SUCCESS
