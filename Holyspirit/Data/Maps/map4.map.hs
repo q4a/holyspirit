@@ -1,7 +1,7 @@
 Nom
 *La foret de Malemort
 $
-*Data/Ecran chargement/Foret.png
+*Data/Ecran_chargement/Foret.png
 $
 Musique
 *Data/Musiques/Battle_CDN.ogg
@@ -33,8 +33,8 @@ Lumiere de base
 *128 128 255 32 45
 $
 Liste des tilesets
-*Data/Terrain/Sol foret/Sol foret
-*Data/Decors/Feu de camp/Feu de camp
+*Data/Terrain/Sol_foret/Sol_foret
+*Data/Decors/Feu_de_camp/Feu_de_camp
 *Data/Decors/Arbres/Tronc
 $
 Liste des tilesets de l'herbe

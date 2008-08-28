@@ -1,7 +1,7 @@
 Nom de la map
 *La caverne oubliée
 $
-*Data/Ecran chargement/Grotte.png
+*Data/Ecran_chargement/Grotte.png
 $
 Liste des musiques
 *Data/Musiques/Maxtor81-Arcaduis.ogg
@@ -10,10 +10,10 @@ Lumiere de base
 *255 255 255 1 0
 $
 Liste des tilesets
-*Data/Terrain/Herbes plaines/Herbes plaines
-*Data/Decors/Mur de pierres/Mur de pierres
-*Data/Decors/Feu de camp/Feu de camp
-*Data/Decors/Effets de Lumières/LightEffect
+*Data/Terrain/Herbes_plaines/Herbes_plaines
+*Data/Decors/Mur_de_pierres/Mur_de_pierres
+*Data/Decors/Feu_de_camp/Feu_de_camp
+*Data/Decors/Effets_de_Lumières/LightEffect
 $
 Liste des tilesets de l'herbe
 *Data/Decors/Herbes/Champignon1

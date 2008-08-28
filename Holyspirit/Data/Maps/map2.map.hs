@@ -1,7 +1,7 @@
 Nom
 *Les terres agraires
 $
-*Data/Ecran chargement/Plaines3.png
+*Data/Ecran_chargement/Plaines3.png
 $
 Musique
 *Data/Musiques/Battle_CDN.ogg
@@ -33,10 +33,10 @@ Lumiere de base
 *128 128 255 32 45
 $
 Liste des tilesets
-*Data/Terrain/Herbes plaines/Herbes plaines
+*Data/Terrain/Herbes_plaines/Herbes_plaines
 *Data/Decors/Sapin/Sapin
-*Data/Decors/Mur de pierres/Mur de pierres
-*Data/Decors/Feu de camp/Feu de camp
+*Data/Decors/Mur_de_pierres/Mur_de_pierres
+*Data/Decors/Feu_de_camp/Feu_de_camp
 *Data/Decors/Arbres/Tronc
 $
 Liste des tilesets de l'herbe

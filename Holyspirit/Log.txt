@@ -33,10 +33,10 @@ ERREUR : Impossible de charger : Data/Menus/Hudoo.png
          
          Chargement de la map : Data/Maps/map1.map.hs
          Chargement de : Data/Musiques/Test.ogg
-         Chargement de : Data/Terrain/Herbes plaines/Herbes plaines.png
+         Chargement de : Data/Terrain/Herbes_plaines/Herbes_plaines.png
          Chargement de : Data/Decors/Arbres/Arbres.png
-         Chargement de : Data/Decors/Mur de pierres/Mur de pierres.png
-         Chargement de : Data/Decors/Feu de camp/Feu de camp.png
+         Chargement de : Data/Decors/Mur_de_pierres/Mur_de_pierres.png
+         Chargement de : Data/Decors/Feu_de_camp/Feu_de_camp.png
          Chargement de : Data/Sons/Feu.wav
          Chargement de : Data/Decors/Herbes/Herbe1.png
          
