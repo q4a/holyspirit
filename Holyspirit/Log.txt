@@ -29,7 +29,7 @@ ERREUR : Impossible de charger : Data/Menus/Hudoo.png
          Chargement de : Data/Sons/epee.wav
          
          Chargement de la map : Data/Maps/map0.map.hs
-ERREUR : Impossible de charger : Data/Ecran_chargement/Plaines2.png
+         Chargement de : Data/Ecran_chargement/Plaines2.png
          
          Chargement de la map : Data/Maps/map1.map.hs
          Chargement de : Data/Musiques/Test.ogg
@@ -37,6 +37,8 @@ ERREUR : Impossible de charger : Data/Ecran_chargement/Plaines2.png
          Chargement de : Data/Decors/Arbres/Arbres.png
          Chargement de : Data/Decors/Mur_de_pierres/Mur_de_pierres.png
          Chargement de : Data/Decors/Feu_de_camp/Feu_de_camp.png
+         Chargement de : Data/Sons/Feu.wav
+         Chargement de : Data/Decors/Feu/Feu.png
          Chargement de : Data/Sons/Feu.wav
          Chargement de : Data/Decors/Herbes/Herbe1.png
          
@@ -59,6 +61,14 @@ ERREUR : Impossible de charger : Data/Ecran_chargement/Plaines2.png
          Chargement de : Data/Entites/Destructibles/Tonneau/Tonneau.png
          Chargement de : Data/Sons/47252__nthompson__rocketexpl.wav
          Chargement de : Data/Entites/Destructibles/Tonneau/TonneauExp.char.hs
+         
+         Sauvegarde de la map : Data/Temp/map1.map.hs
+         
+         Sauvegarde de la map : Data/Temp/map1.map.hs
+         
+         Sauvegarde de la map : Data/Temp/map1.map.hs
+         
+         Sauvegarde de la map : Data/Temp/map1.map.hs
          
          Sauvegarde de la map : Data/Temp/map1.map.hs
          
