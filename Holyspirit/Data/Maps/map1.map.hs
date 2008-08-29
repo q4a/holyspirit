@@ -49,6 +49,7 @@ $
 Liste des événements
 * e0 $ * i3 i3 i3 $
 * e0 $ * i2 i1 i1 $
+* e2 $ * i1 $
 $
 * s0 t0 e1 | s0 t0 e1 | s0 t0 e1 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 |
 * s0 t0 e1 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 | s0 t0 |
