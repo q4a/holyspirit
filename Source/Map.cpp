@@ -79,6 +79,7 @@ bool Map::Charger(int numeroMap)
 
 	console.Ajouter("",0);
 	console.Ajouter("Chargement de la map : "+chemin);
+	console.Rapport();
 
 	m_lumiere[0].intensite=1;
 	m_lumiere[0].rouge=0;
@@ -526,6 +527,7 @@ void Map::Sauvegarder()
 
 	console.Ajouter("",0);
 	console.Ajouter("Sauvegarde de la map : "+chemin,0);
+
 
 	ofstream fichier;
     fichier.open(chemin.c_str(), ios::out);
@@ -1095,7 +1097,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                             if(m_lumiereHero.bleu>255)
                                                m_lumiereHero.bleu=255;
 
-                                            if(configuration.Ombre)
+                                            if(configuration.Ombre&&j!=l&&k!=m)
                                             {
                                                 coordonnee coord1,coord2;
 
@@ -1985,7 +1987,7 @@ void Map::AfficherNomEvenement(sf::RenderWindow* ecran,coordonnee casePointee,co
     }
 }
 
-bool Map::testEvenement(sf::View *camera, Jeu *jeu)
+bool Map::testEvenement(sf::View *camera, Jeu *jeu,float temps)
 {
     for(int i=0;i<2;i++)
     if(m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()>=0)
@@ -2010,6 +2012,11 @@ bool Map::testEvenement(sf::View *camera, Jeu *jeu)
             jeu->m_chargement->setC_Chargement(numeroMap,coordonneePerso);
             jeu->m_contexte = jeu->m_chargement;
           //  jeu->m_contexte->CopierCamera(jeu->m_chargement->camera);
+        }
+
+        if(m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()].getType()==INFLIGER_DEGATS)
+        {
+            jeu->hero.m_personnage.infligerDegats(m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()].getInformation(0)*temps*10);
         }
     }
     return 1;
@@ -2048,6 +2055,8 @@ void Map::animer(Hero *hero,float temps,Menu *menu)
                         int degats = m_monstre[m_decor[i][j][k].getMonstre()].animer(&m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()],m_decor[0].size(),temps,&explosif);
                         if(explosif&&degats>0)
                         {
+                            verifierDeclencheursDegats(j,k);
+
                             for(int couche=0;couche<2;couche++)
                                 for(int y=j-1;y<=j+1;y++)
                                     for(int x=k-1;x<=k+1;x++)
@@ -2057,6 +2066,8 @@ void Map::animer(Hero *hero,float temps,Menu *menu)
                                                 m_monstre[m_decor[couche][y][x].getMonstre()].infligerDegats(degats);
                                             if(y==hero->m_personnage.getCoordonnee().y&&x==hero->m_personnage.getCoordonnee().x)
                                                 hero->m_personnage.infligerDegats(degats);
+
+
                                         }
                         }
                         else
@@ -2065,6 +2076,32 @@ void Map::animer(Hero *hero,float temps,Menu *menu)
 
            }
 
+}
+
+void Map::verifierDeclencheursDegats(int i, int j)
+{
+    for(int o=0;o<2;o++)
+        for(int y=i-1;y<=i+1;y++)
+            for(int x=j-1;x<=j+1;x++)
+                if(y>0&&x>0&&y<m_decor[0].size()&&x<m_decor[0][0].size())
+                {
+                    if(m_decor[o][y][x].getEvenement()>=0&&m_decor[o][y][x].getEvenement()<m_evenement.size())
+                        if(m_evenement[m_decor[o][y][x].getEvenement()].getType()==DECLENCHEUR_DEGAT_TO_EVENEMENT)
+                        {
+                            m_decor[o][y][x].setEvenement(m_evenement[m_decor[o][y][x].getEvenement()].getInformation(0));
+
+                            if(m_decor[o][y][x].getEvenement()>=0&&m_decor[o][y][x].getEvenement()<m_evenement.size())
+                                if(m_evenement[m_decor[o][y][x].getEvenement()].getType()==INFLIGER_DEGATS)
+                                    verifierDeclencheursDegats(y,x);
+
+                        }
+                    if(m_decor[o][y][x].getEvenement()>=0&&m_decor[o][y][x].getEvenement()<m_evenement.size())
+                        if(m_evenement[m_decor[o][y][x].getEvenement()].getType()==DECLENCHEUR_DEGAT_TO_DECORS)
+                        {
+                            m_decor[o][y][x].setTileset(m_evenement[m_decor[o][y][x].getEvenement()].getInformation(0));
+                            m_decor[o][y][x].setTile(m_evenement[m_decor[o][y][x].getEvenement()].getInformation(1));
+                        }
+                }
 }
 
 void Map::musiquePlay(coordonnee position)
@@ -2195,6 +2232,18 @@ void Map::gererMonstres(Hero *hero,float temps)
                                         }
                             }
                         }
+
+
+
+                        ///GESTION DES EVENEMENTS SUR LES MONSTRES
+                        for(int l=0;l<2;l++)
+                            if(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y>=0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y<m_decor[0].size()
+                             &&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x>=0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x<m_decor[0][0].size())
+                             if(m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()>=0&&m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()<m_evenement.size())
+                                if(m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()].getType()==INFLIGER_DEGATS)
+                                {
+                                    m_monstre[m_decor[i][j][k].getMonstre()].infligerDegats(m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()].getInformation(0)*temps*10);
+                                }
                     }
 }
 

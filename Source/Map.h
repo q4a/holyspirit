@@ -34,7 +34,7 @@ class Map
 	std::vector<std::vector<bool> > getAlentourDuPersonnage(coordonnee positionPersonnage); // Retourne un tableau de bool contenant toutes les collitions dans les alentour du héro, pour le pathfinding
 
 	void animer(Hero *hero,float temps,Menu *menu); // Animation des tiles
-	bool testEvenement(sf::View *camera, Jeu *jeu);
+	bool testEvenement(sf::View *camera, Jeu *jeu,float temps);
 	void calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *camera);
 	void Detruire();
 
@@ -45,6 +45,8 @@ class Map
 	void musiquePlay(coordonnee position);
 
 	void setVolumeMusique(int volume);
+
+	void verifierDeclencheursDegats(int i, int j);
 
 	coordonnee getDimensions();
 

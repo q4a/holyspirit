@@ -36,6 +36,7 @@ void Console::Ajouter(std::string texte,bool erreur)
 {
     m_textes.push_back(texte);
     m_erreur.push_back(erreur);
+    Rapport();
 }
 
 void Console::AjouterNombre(int nombre,bool erreur)

@@ -149,9 +149,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
                         jeu->hero.m_personnage.pathfinding(jeu->map.getAlentourDuPersonnage(jeu->hero.m_personnage.getCoordonnee()),temp); // Recherche du chemin
                         if(configuration.Lumiere)
                             lumiere=true;
-
-                        jeu->map.testEvenement(&jeu->camera,jeu); // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
                     }
+                    jeu->map.testEvenement(&jeu->camera,jeu,tempsEcoule); // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
                     if(jeu->hero.getMonstreVise()>-1)
                         jeu->hero.testMontreVise(jeu->map.getEntiteMonstre(jeu->hero.getMonstreVise()),jeu->map.getDimensions().y);
 

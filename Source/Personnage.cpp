@@ -392,7 +392,7 @@ bool Personnage::seDeplacer(float tempsEcoule)
     }
 }
 
-void Personnage::infligerDegats(int degats)
+void Personnage::infligerDegats(float degats)
 {
     m_caracteristique.vie-=degats;
     if(m_caracteristique.vie<=0&&m_etat!=3)

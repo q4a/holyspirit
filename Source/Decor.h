@@ -35,6 +35,10 @@ class Decor
 	int getHerbe(); // Retourne le numero de l'herbe du décor
 	int getNumeroHerbe();
 
+	void setEvenement(int evenement);
+	void setTileset( int tileset);
+	void setTile(int tile);
+
 	private:
 	int m_tileset,m_tile,m_evenement,m_monstre,m_herbe,m_numeroHerbe;
 	float m_animation;

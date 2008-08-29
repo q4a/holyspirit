@@ -23,6 +23,10 @@ void Decor::setDecor(int tileset,int tile,int evenement,int monstre,int herbe)
 
 void Decor::setNumeroHerbe(int numero){m_numeroHerbe=numero;}
 void Decor::setMonstre(int monstre){m_monstre=monstre;}
+void Decor::setEvenement(int evenement){m_evenement=evenement;}
+void Decor::setTileset( int tileset){m_tileset=tileset;}
+void Decor:: setTile(int tile){m_tile=tile;}
+
 
 int Decor::getTile(){return m_tile;}
 int Decor::getTileset(){return m_tileset;}

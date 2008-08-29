@@ -65,7 +65,7 @@ class Personnage
 
 	void frappe(coordonnee direction,coordonnee position);
 
-	void infligerDegats(int degats);
+	void infligerDegats(float degats);
 
 	void setArrivee(coordonnee arrivee);
 	void setMauvaiseArrivee(coordonnee arrivee);
