@@ -13,7 +13,7 @@ Liste des tilesets
 *Data/Terrain/Herbes_plaines/Herbes_plaines
 *Data/Decors/Mur_de_pierres/Mur_de_pierres
 *Data/Decors/Feu_de_camp/Feu_de_camp
-*Data/Decors/Effets_de_Lumières/LightEffect
+*Data/Decors/Effets_de_Lumieres/LightEffect
 $
 Liste des tilesets de l'herbe
 *Data/Decors/Herbes/Champignon1
