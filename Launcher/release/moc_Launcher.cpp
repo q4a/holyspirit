@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'Launcher.h'
 **
-** Created: Fri 29. Aug 12:10:20 2008
+** Created: Sat 30. Aug 15:21:45 2008
 **      by: The Qt Meta Object Compiler version 59 (Qt 4.4.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_Launcher[] = {
        1,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   10, // methods
+       8,   10, // methods
        0,    0, // properties
        0,    0, // enums/sets
 
@@ -33,8 +33,9 @@ static const uint qt_meta_data_Launcher[] = {
       43,    9,    9,    9, 0x0a,
       55,    9,    9,    9, 0x0a,
       83,   65,    9,    9, 0x0a,
-     119,  108,    9,    9, 0x0a,
-     143,    9,    9,    9, 0x0a,
+     108,   65,    9,    9, 0x0a,
+     151,  140,    9,    9, 0x0a,
+     175,    9,    9,    9, 0x0a,
 
        0        // eod
 };
@@ -42,8 +43,9 @@ static const uint qt_meta_data_Launcher[] = {
 static const char qt_meta_stringdata_Launcher[] = {
     "Launcher\0\0downloadFile()\0downloadAll(bool)\0"
     "LancerJeu()\0Options()\0progressions,temp\0"
-    "miseAJourBarre2(int,int)\0fait,total\0"
-    "miseAJourBarre(int,int)\0"
+    "miseAJourBarre2(int,int)\0"
+    "miseAJourBarreTotale(float,int)\0"
+    "fait,total\0miseAJourBarre(int,int)\0"
     "telechargerFichier(bool)\0"
 };
 
@@ -77,10 +79,11 @@ int Launcher::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 2: LancerJeu(); break;
         case 3: Options(); break;
         case 4: miseAJourBarre2((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 5: miseAJourBarre((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 6: telechargerFichier((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 5: miseAJourBarreTotale((*reinterpret_cast< float(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 6: miseAJourBarre((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 7: telechargerFichier((*reinterpret_cast< bool(*)>(_a[1]))); break;
         }
-        _id -= 7;
+        _id -= 8;
     }
     return _id;
 }

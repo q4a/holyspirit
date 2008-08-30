@@ -6,6 +6,7 @@
 #include <QSplashScreen>
 #include <QPixmap>
 #include <dirent.h>
+#include <QDir>
 
 #define WINDOWS
 
@@ -28,8 +29,10 @@ class Launcher : public QWidget // On hérite de QWidget (IMPORTANT)
         delete m_boutonMettreAJour;
         delete m_fond;
         delete m_miseAJour;
+        delete m_miseAJourTotale;
         delete m_boutonOptions;
 
+        delete m_pixmap;
 
         liste_a_telecharger_nom.clear();
         liste_a_telecharger_rep.clear();
@@ -52,6 +55,7 @@ class Launcher : public QWidget // On hérite de QWidget (IMPORTANT)
     void Options();
 
     void miseAJourBarre2(int progressions, int temp);
+    void miseAJourBarreTotale(float progressions, int temp);
     void miseAJourBarre(int fait, int total);
 
     void telechargerFichier(bool);
@@ -59,7 +63,8 @@ class Launcher : public QWidget // On hérite de QWidget (IMPORTANT)
     private:
     QPushButton *m_boutonDemarrer,*m_boutonQuitter,*m_boutonMettreAJour,*m_boutonOptions;
     QLabel *m_fond;
-    QProgressBar *m_miseAJour;
+    QPixmap *m_pixmap;
+    QProgressBar *m_miseAJour,*m_miseAJourTotale;
 
     QFile *fichier;
     QHttp *http;
@@ -73,7 +78,8 @@ class Launcher : public QWidget // On hérite de QWidget (IMPORTANT)
 
     //QNetworkAccessManager manager;
 
-    int httpGetId;
+    int httpGetId,fait,aFaire;
+    float fait2;
 
     bool telechargementFini;
 

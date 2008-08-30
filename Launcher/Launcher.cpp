@@ -5,10 +5,16 @@
 Launcher::Launcher() : QWidget()
 {
     enCoursDeTelechargement=-2;
+
+    QDesktopWidget bureau;
+
     setFixedSize(384, 512);
+    setGeometry ( bureau.screenGeometry().width()/2-192,  bureau.screenGeometry().height()/2-256, 384, 512 );
 
     m_fond = new QLabel(this);
-    m_fond->setPixmap(QPixmap("Data/Menus/Launcher/Fond.png"));
+    m_pixmap = new QPixmap("Data/Menus/Launcher/Fond.png");
+    m_fond->setPixmap(*m_pixmap);
+    this->setMask(m_pixmap->mask());
 
     // Création du bouton, ayant pour parent la "fenetre"
     m_boutonDemarrer = new QPushButton("Lancer le jeu !", this);
@@ -27,7 +33,16 @@ Launcher::Launcher() : QWidget()
     m_miseAJour = new QProgressBar(this);
     m_miseAJour->setValue(0);
     m_miseAJour->hide();
-    m_miseAJour->setGeometry(64,256,256,32);
+    m_miseAJour->setTextVisible(0);
+    m_miseAJour->setGeometry(64,256,256,16);
+
+    m_miseAJourTotale = new QProgressBar(this);
+    m_miseAJourTotale->setValue(0);
+    m_miseAJourTotale->hide();
+    m_miseAJourTotale->setTextVisible(0);
+    m_miseAJourTotale->setGeometry(64,280,256,16);
+
+
 
     QObject::connect(m_boutonQuitter, SIGNAL(clicked()), qApp, SLOT(quit()));
 
@@ -45,12 +60,10 @@ Launcher::Launcher() : QWidget()
 
  void Launcher::downloadAll(bool demarrer)
  {
-
-
-
-
      if(!demarrer)
      {
+         fait=-1;
+         aFaire=0;
 
         std::ifstream bdd_txt;
         bdd_txt.open("maj.conf", std::ios::in);
@@ -132,6 +145,14 @@ Launcher::Launcher() : QWidget()
                 liste_a_telecharger_rep.push_back(rep_fichier_nv[i]);
             }
          }
+         for(int i=0;i<(int)liste_a_telecharger_rep.size();i++)
+         {
+            QDir dir;
+            dir.mkdir(liste_a_telecharger_rep[i].c_str());
+         }
+
+         aFaire=(int)liste_a_telecharger_nom.size();
+
 
         enCoursDeTelechargement=-1;
         telechargerFichier(0);
@@ -142,53 +163,7 @@ Launcher::Launcher() : QWidget()
 
 
 
-    for(int i=0;i<(int)liste_a_telecharger_rep.size();i++)
-    {
-        std::string cmd;
-        int cutAt;
-        bool ok=true;
 
-        for(int k=i+1;k<(int)liste_a_telecharger_rep.size();k++)
-        {
-            if(liste_a_telecharger_rep[k]==liste_a_telecharger_rep[i])
-                ok=false;
-        }
-
-        if(opendir(liste_a_telecharger_rep[i].c_str()))
-            ok=false;
-
-        if(ok)
-        while( (cutAt = liste_a_telecharger_rep[i].find_first_of("/")) != liste_a_telecharger_rep[i].npos )
-        {
-            if(cutAt > 0)
-            {
-
-                listeRepertoire.push_back(liste_a_telecharger_rep[i].substr(0,cutAt));
-            }
-            liste_a_telecharger_rep[i] = liste_a_telecharger_rep[i].substr(cutAt+1);
-        }
-        if(liste_a_telecharger_rep[i].length() > 0)
-        {
-            //listeRepertoire.push_back(liste_a_telecharger_rep[i]);
-        }
-
-        for(int i=0;i<(int)listeRepertoire.size();i++)
-        {
-            cmd="mkdir "+listeRepertoire[0];
-            for(int j=1;j<=i;j++)
-            {
-                cmd=cmd+"\\"+listeRepertoire[j];
-            }
-            system(cmd.c_str());
-            //cmd="mkdir "+liste_a_telecharger_rep[i].substr(0,cutAt);
-            //system(cmd.c_str());
-
-        }
-        listeRepertoire.clear();
-
-        /*for(int i=0;i<(int)listeRepertoire.size();i++)
-            system("cd ..");*/
-    }
 
    /* for(int i=0;i<(int)liste_a_telecharger_rep.size();i++)
     {
@@ -221,6 +196,9 @@ Launcher::Launcher() : QWidget()
          }
          else
          {
+             fait++;
+             fait2=fait;
+             miseAJourBarreTotale(fait2,aFaire);
 
 
             // http->abort();
@@ -257,6 +235,9 @@ Launcher::Launcher() : QWidget()
      }
      else
      {
+         fait ++;
+         fait2=fait;
+         miseAJourBarreTotale(fait2,aFaire);
          std::fstream bdd_txt_maj("maj.conf", std::ios::in | std::ios::out | std::ios::trunc);
          if(bdd_txt_maj)
          {
@@ -286,6 +267,7 @@ Launcher::Launcher() : QWidget()
       http = new QHttp;
 
       m_miseAJour->show();
+      m_miseAJourTotale->show();
 
 
      fichier -> setFileName("maj.txt");
@@ -311,17 +293,25 @@ Launcher::Launcher() : QWidget()
 
  }
 
-void Launcher::miseAJourBarre(int fait, int total)
+void Launcher::miseAJourBarre(int progression, int total)
 {
-    m_miseAJour->setValue(fait*100/total);
+    m_miseAJour->setValue(progression*100/total);
+    fait2=(float)fait+(float)progression/(float)total;
+    miseAJourBarreTotale(fait2,aFaire);
 }
 
-  void Launcher::miseAJourBarre2(int fait, int total)
- {
+void Launcher::miseAJourBarreTotale(float progression, int total)
+{
+    float temp=(float)progression*100/(float)total;
+    m_miseAJourTotale->setValue((int)(temp));
+}
 
-    m_miseAJour->setValue(fait*100/total);
+void Launcher::miseAJourBarre2(int progression, int total)
+{
 
-     if(fait*100/total<100)
+    m_miseAJour->setValue(progression*100/total);
+
+     if(progression*100/total<100)
      {
 
      }
