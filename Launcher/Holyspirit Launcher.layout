@@ -2,10 +2,10 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
 	<File name="Launcher.cpp" open="1" top="1" tabpos="3">
-		<Cursor position="8883" topLine="285" />
+		<Cursor position="4495" topLine="138" />
 	</File>
 	<File name="Launcher.h" open="1" top="0" tabpos="2">
-		<Cursor position="1353" topLine="49" />
+		<Cursor position="1036" topLine="7" />
 	</File>
 	<File name="configuration.cpp" open="1" top="0" tabpos="5">
 		<Cursor position="533" topLine="232" />

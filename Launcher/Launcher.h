@@ -34,6 +34,8 @@ class Launcher : public QWidget // On hérite de QWidget (IMPORTANT)
 
         delete m_pixmap;
 
+        delete dir;
+
         liste_a_telecharger_nom.clear();
         liste_a_telecharger_rep.clear();
         listeRepertoire.clear();
@@ -68,6 +70,7 @@ class Launcher : public QWidget // On hérite de QWidget (IMPORTANT)
 
     QFile *fichier;
     QHttp *http;
+    QDir *dir;
 
     std::vector <std::string> liste_a_telecharger_nom,;
     std::vector <std::string>  liste_a_telecharger_rep;

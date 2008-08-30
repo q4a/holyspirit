@@ -145,10 +145,19 @@ Launcher::Launcher() : QWidget()
                 liste_a_telecharger_rep.push_back(rep_fichier_nv[i]);
             }
          }
+         dir=new QDir();
          for(int i=0;i<(int)liste_a_telecharger_rep.size();i++)
          {
-            QDir dir;
-            dir.mkdir(liste_a_telecharger_rep[i].c_str());
+             std::string temp;
+                  std::string::size_type stTemp = liste_a_telecharger_rep[i].find('/');
+
+                 while(stTemp !=  std::string::npos)
+                 {
+                     temp+=liste_a_telecharger_rep[i].substr(0, stTemp)+"/";
+                     dir->mkdir(temp.c_str());
+                     liste_a_telecharger_rep[i] = liste_a_telecharger_rep[i].substr(stTemp + 1);
+                     stTemp = liste_a_telecharger_rep[i].find('/');
+                 }
          }
 
          aFaire=(int)liste_a_telecharger_nom.size();
