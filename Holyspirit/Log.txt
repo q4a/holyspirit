@@ -40,6 +40,8 @@ ERREUR : Impossible de charger : Data/Menus/Hudoo.png
          Chargement de : Data/Sons/Feu.wav
          Chargement de : Data/Decors/Feu/Feu.png
          Chargement de : Data/Sons/Feu.wav
+         Chargement de : Data/Decors/Feu/FeuSsLum.png
+         Chargement de : Data/Sons/Feu.wav
          Chargement de : Data/Decors/Herbes/Herbe1.png
          
          Chargement du monstre : Data/Entites/Monstres/PantinMorbide/PantinMorbide.char.hs
@@ -62,46 +64,13 @@ ERREUR : Impossible de charger : Data/Menus/Hudoo.png
          Chargement de : Data/Sons/47252__nthompson__rocketexpl.wav
          Chargement de : Data/Entites/Destructibles/Tonneau/TonneauExp.char.hs
          
-         ---------------------------------------------------------------------------------
-         EVENEMENT : Changement de map
-         ---------------------------------------------------------------------------------
-         Chargement de : Data/Ecran_chargement/Plaines3.png
+         Sauvegarde de la map : Data/Temp/map1.map.hs
          
          Sauvegarde de la map : Data/Temp/map1.map.hs
          
-         Chargement de la map : Data/Maps/map2.map.hs
-         Chargement de : Data/Musiques/Battle_CDN.ogg
-         Chargement de : Data/Decors/Sapin/Sapin.png
-         Chargement de : Data/Sons/Feu.wav
-         Chargement de : Data/Decors/Arbres/Tronc.png
+         Sauvegarde de la map : Data/Temp/map1.map.hs
          
-         Chargement du monstre : Data/Entites/Monstres/PantinMorbide/PantinMorbide.char.hs
-         Chargement de : Data/Sons/9906__Snoman__grass3.wav
-         Chargement de : Data/Sons/9906__Snoman__grass3.wav
-         Chargement de : Data/Sons/35213__Abyssmal__slashkut.wav
-         Chargement de : Data/Entites/Monstres/PantinMorbide/PantinMorbide.char.hs
-         
-         Chargement du monstre : Data/Entites/Monstres/ErrantRoche/ErrantRoche.char.hs
-         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheArret.png
-         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheMarche1.png
-         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheMarche2.png
-         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheFrappe1.png
-         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheFrappe2.png
-         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheFrappe3.png
-         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheFrappe4.png
-         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheFrappe5.png
-         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheFrappe6.png
-         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheFrappe7.png
-         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheFrappe8.png
-         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheMort1.png
-         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheMort2.png
-         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheMort3.png
-         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheMort4.png
-         Chargement de : Data/Sons/15569__tigersound__walking_on_stone.wav
-         Chargement de : Data/Sons/30009__thanvannispen__stone_on_stone_impact_loud2.aiff
-         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRoche.char.hs
-         
-         Sauvegarde de la map : Data/Temp/map2.map.hs
+         Sauvegarde de la map : Data/Temp/map1.map.hs
          
          Fermeture des contextes effectuée avec succès.
          
