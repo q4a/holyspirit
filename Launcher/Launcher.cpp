@@ -16,9 +16,11 @@ Launcher::Launcher() : QWidget()
     m_fond->setPixmap(*m_pixmap);
     this->setMask(m_pixmap->mask());
 
-    // Création du bouton, ayant pour parent la "fenetre"
     m_boutonDemarrer = new QPushButton("Lancer le jeu !", this);
     m_boutonDemarrer->setGeometry(64,128,256,32);
+
+    // Création du bouton, ayant pour parent la "fenetre"
+
 
     m_boutonQuitter = new QPushButton("Quitter", this);
     m_boutonQuitter->setGeometry(128,384,128,32);
@@ -29,6 +31,20 @@ Launcher::Launcher() : QWidget()
     m_boutonOptions = new QPushButton("Options", this);
     m_boutonOptions->setGeometry(64,320,256,32);
 
+    std::ifstream test;
+        test.open("maj.txt", std::ios::in);
+
+        if(!test)
+        {
+            m_installer=true;
+
+        }
+        else
+            m_installer=false;
+
+        test.close();
+
+    dir=new QDir();
 
     m_miseAJour = new QProgressBar(this);
     m_miseAJour->setValue(0);
@@ -44,9 +60,11 @@ Launcher::Launcher() : QWidget()
 
 
 
+
+
     QObject::connect(m_boutonQuitter, SIGNAL(clicked()), qApp, SLOT(quit()));
 
-    QObject::connect(m_boutonMettreAJour, SIGNAL(clicked()), this, SLOT(downloadFile()));
+    QObject::connect(m_boutonMettreAJour, SIGNAL(clicked()), this, SLOT(telechargerFichier()));
 
     QObject::connect(m_boutonOptions, SIGNAL(clicked()), this, SLOT(Options()));
 
@@ -55,6 +73,8 @@ Launcher::Launcher() : QWidget()
 
     QObject::connect(m_boutonDemarrer, SIGNAL(clicked()), qApp, SLOT(quit()));
     QObject::connect(m_boutonDemarrer, SIGNAL(clicked()), this, SLOT(LancerJeu()));
+
+    downloadFile();
 
 }
 
@@ -145,7 +165,7 @@ Launcher::Launcher() : QWidget()
                 liste_a_telecharger_rep.push_back(rep_fichier_nv[i]);
             }
          }
-         dir=new QDir();
+
          for(int i=0;i<(int)liste_a_telecharger_rep.size();i++)
          {
              std::string temp;
@@ -164,13 +184,31 @@ Launcher::Launcher() : QWidget()
 
 
         enCoursDeTelechargement=-1;
-        telechargerFichier(0);
+        m_boutonDemarrer->setEnabled(true);
+        if(liste_a_telecharger_nom.size()>0)
+        {
+            m_boutonMettreAJour->setEnabled(true);
+            m_boutonMettreAJour->setText("Une nouvelle mise à jour est disponible.");
+        }
+        else
+            m_boutonMettreAJour->setText("Aucune mise à jour trouvée");
+
+        if(m_installer)
+        {
+            m_boutonDemarrer->setEnabled(false);
+            m_boutonMettreAJour->setText("Télécharger et installer le jeu");
+        }
+
+
+       // telechargerFichier(0);
      }
      else
-        QMessageBox::information(0, "Erreur", "Mise à jour impossible.");
-
-
-
+     {
+        //QMessageBox::information(0, "Erreur", "Mise à jour impossible.");
+        m_boutonDemarrer->setEnabled(true);
+        m_boutonMettreAJour->setText("Mise à jour impossible");
+        //m_boutonMettreAJour->setText("Mise à jour impossible");
+     }
 
 
 
@@ -187,6 +225,7 @@ Launcher::Launcher() : QWidget()
 
  void Launcher::telechargerFichier(bool erreur)
  {
+     m_boutonMettreAJour->setEnabled(false);
      enCoursDeTelechargement++;
 
      delete http;
@@ -257,8 +296,13 @@ Launcher::Launcher() : QWidget()
                 bdd_txt_maj<<"$";
          }
 
-        m_boutonMettreAJour->setText("Mise à jour terminées.");
+        m_boutonDemarrer->setText("Lancer le jeu !");
+        if(liste_a_telecharger_nom.size()>0)
+            m_boutonMettreAJour->setText("Mise à jour terminée.");
+        else
+            m_boutonMettreAJour->setText("Aucune mise à jour.");
         m_boutonDemarrer->setEnabled(true);
+
 
         //delete http;
         //delete fichier;

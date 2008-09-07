@@ -45,7 +45,7 @@ class Launcher : public QWidget // On hérite de QWidget (IMPORTANT)
         ver_fichier.clear();
         ver_fichier_nv.clear();
 
-       // delete http;
+        //delete http;
     }
 
 
@@ -60,7 +60,7 @@ class Launcher : public QWidget // On hérite de QWidget (IMPORTANT)
     void miseAJourBarreTotale(float progressions, int temp);
     void miseAJourBarre(int fait, int total);
 
-    void telechargerFichier(bool);
+    void telechargerFichier(bool erreur=false);
 
     private:
     QPushButton *m_boutonDemarrer,*m_boutonQuitter,*m_boutonMettreAJour,*m_boutonOptions;
@@ -84,7 +84,7 @@ class Launcher : public QWidget // On hérite de QWidget (IMPORTANT)
     int httpGetId,fait,aFaire;
     float fait2;
 
-    bool telechargementFini;
+    bool telechargementFini,m_installer;
 
     OptionsJeu optionsJeu;
 
