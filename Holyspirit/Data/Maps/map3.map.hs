@@ -1,5 +1,5 @@
 Nom de la map
-*La caverne oubliée
+*La caverne oubliee
 $
 *Data/Ecran_chargement/Grotte.png
 $
