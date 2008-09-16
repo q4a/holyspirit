@@ -1,6 +1,7 @@
 #include "Decor.h"
+#include "Globale.h"
 
-Decor::Decor(int tileset,int tile,int evenement,int monstre,int herbe)
+Decor::Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe)
 {
     m_tileset=tileset;
 	m_tile=tile;
@@ -11,7 +12,7 @@ Decor::Decor(int tileset,int tile,int evenement,int monstre,int herbe)
 	m_animation=0;
 }
 
-void Decor::setDecor(int tileset,int tile,int evenement,int monstre,int herbe)
+void Decor::setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe)
 {
 	m_tileset=tileset;
 	m_tile=tile;
@@ -23,14 +24,22 @@ void Decor::setDecor(int tileset,int tile,int evenement,int monstre,int herbe)
 
 void Decor::setNumeroHerbe(int numero){m_numeroHerbe=numero;}
 void Decor::setMonstre(int monstre){m_monstre=monstre;}
-void Decor::setEvenement(int evenement){m_evenement=evenement;}
+void Decor::setEvenement(int evenement, int numero)
+{
+    if(numero>=0&&numero<m_evenement.size())
+        m_evenement[numero]=evenement;
+}
+void Decor::ajouterEvenement(int evenement)
+{
+    m_evenement.push_back(evenement);
+}
 void Decor::setTileset( int tileset){m_tileset=tileset;}
 void Decor:: setTile(int tile){m_tile=tile;}
 
 
 int Decor::getTile(){return m_tile;}
 int Decor::getTileset(){return m_tileset;}
-int Decor::getEvenement(){return m_evenement;}
+std::vector<int> Decor::getEvenement(){return m_evenement;}
 int Decor::getMonstre(){return m_monstre;}
 int Decor::getHerbe(){return m_herbe;}
 int Decor::getNumeroHerbe(){return m_numeroHerbe;}

@@ -124,8 +124,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 if(tempsSauvergarde>=configuration.frequence_sauvegarde)
                 {
-                    jeu->hero.Sauvegarder();
-                    jeu->map.Sauvegarder();
+                    //jeu->hero.Sauvegarder();
+                    //jeu->map.Sauvegarder();
                     tempsSauvergarde=0;
                 }
 
@@ -133,7 +133,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 if(tempsEcouleDepuisDernierIA>=0.027)
                 {
-                    jeu->map.gererMonstres(&jeu->hero,tempsEcouleDepuisDernierIA);
+                    jeu->map.gererMonstres(&jeu->hero,tempsEcouleDepuisDernierIA,&jeu->camera,&jeu->menu);
                     tempsEcouleDepuisDernierIA=0;
                 }
 
@@ -191,8 +191,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     bool a; // Variable qui ne sert pas ici, mais qui remplace le explosif des monstres
                     if(jeu->hero.m_personnage.animer(&jeu->hero.m_modelePersonnage,jeu->map.getDimensions().y,tempsDepuisDerniereAnimation,&a)==1) //Animation du héro
                     {
-                        if(jeu->map.infligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&jeu->camera)) // Si l'enemi meut, renvoi true
-                           {}// jeu->hero.m_personnage.setMauvaiseArrivee(jeu->eventManager.getCasePointee());
+                        jeu->map.infligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&jeu->camera);
                         jeu->hero.setMonstreVise(-1);
                     }
                     jeu->map.animer(&jeu->hero,tempsDepuisDerniereAnimation,&jeu->menu); // Animation des tiles de la jeu->map
@@ -229,6 +228,9 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     if(jeu->eventManager.getEvenement(Key::I,"ET"))
                         jeu->m_contexte=jeu->m_inventaire,jeu->eventManager.StopEvenement(Key::I,"ET");
 
+                    if(jeu->eventManager.getEvenement(Key::Escape,"ET"))
+                        jeu->m_contexte=jeu->m_menuInGame,jeu->eventManager.StopEvenement(Key::Escape,"ET");
+
                     jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,jeu->eventManager.getPositionSouris());//Affichage de la jeu->map
 
                     if(configuration.Minimap)
@@ -250,8 +252,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                     if(configuration.effetMort&&sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
                     {
-                        jeu->EffectMort.SetParameter("offset", 0.01*configuration.effetMort/100*(0.6+tempsEffetMort/10));
-                        jeu->EffectMort.SetParameter("color",1+1*configuration.effetMort/100*tempsEffetMort, 1-0.5*configuration.effetMort/100*tempsEffetMort, 1-0.5*configuration.effetMort/100*tempsEffetMort);
+                        moteurGraphique.EffectMort.SetParameter("offset", 0.01*configuration.effetMort/100*(0.6+tempsEffetMort/10));
+                        moteurGraphique.EffectMort.SetParameter("color",1+1*configuration.effetMort/100*tempsEffetMort, 1-0.5*configuration.effetMort/100*tempsEffetMort, 1-0.5*configuration.effetMort/100*tempsEffetMort);
                     }
 
                     if(configuration.console)

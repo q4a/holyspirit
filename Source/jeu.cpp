@@ -1,12 +1,15 @@
 #include "constantes.h"
 #include "Globale.h"
 #include "jeu.h"
+#include <dirent.h>
 
 
 using namespace sf;
 
+
 Jeu::Jeu()
 {
+    m_reset=false;
     if (sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
     {
 
@@ -28,15 +31,10 @@ Jeu::Jeu()
             EffectNoir.SetParameter("color", 0.f, 0.f, 0.f);
         }
 
-        if(!EffectMort.LoadFromFile(configuration.chemin_fx+configuration.nom_effetMort))
-            console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetMort,1);
-        else
-            console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetMort,0);
+
         configuration.effetMort=0;
 
-        EffectMort.SetParameter("offset", 0);
-        EffectMort.SetTexture("framebuffer", NULL);
-        EffectMort.SetParameter("color",1, 1, 1);
+
     }
 
 
@@ -63,6 +61,7 @@ void Jeu::Demarrer()
     this->m_jeu = new c_Jeu(this);
     this->m_chargement = new c_Chargement(this);
     this->m_inventaire = new c_Inventaire(this);
+    this->m_menuInGame = new c_MenuInGame(this);
 
     coordonnee temp={1,1,-1,-1};
 //    this->m_contexte->CopierCamera(this->m_chargement->camera);
@@ -85,12 +84,11 @@ void Jeu::Demarrer()
 		{
 		    moteurGraphique.Afficher(&this->ecran,&this->camera);
             this->ecran.Draw(this->EffectNoir);
-            if(configuration.effetMort>0)
-                this->ecran.Draw(EffectMort);
+
             if(configuration.contrastes>1&&sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
             {
-                EffectContrastes.SetParameter("color", configuration.contrastes, configuration.contrastes, configuration.contrastes);
                 this->ecran.Draw(this->EffectContrastes);
+                EffectContrastes.SetParameter("color", configuration.contrastes, configuration.contrastes, configuration.contrastes);
             }
             if(configuration.luminosite>0)
             {
@@ -101,21 +99,36 @@ void Jeu::Demarrer()
             moteurGraphique.Vider();
 		}
 	}
-	console.Rapport();
 	this->hero.Sauvegarder();
 	this->map.Sauvegarder();
+
+	if(m_reset)
+        Reset();
 
     delete this->m_jeu;
     delete this->m_chargement;
     delete this->m_inventaire;
+    delete this->m_menuInGame;
 
     console.Ajouter("");
     console.Ajouter("Fermeture des contextes effectuée avec succès.");
-	console.Rapport();
 }
 
 
+void Jeu::Reset()
+{
+    struct dirent *lecture;
 
+	DIR *repertoire;
+    repertoire = opendir(configuration.chemin_temps.c_str());
+    while ((lecture = readdir(repertoire)))
+    {
+        std::string temp=configuration.chemin_temps+lecture->d_name;
+        remove(temp.c_str());
+    }
+    closedir(repertoire);
+
+}
 
 
 

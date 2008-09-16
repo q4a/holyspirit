@@ -79,7 +79,6 @@ bool Map::Charger(int numeroMap)
 
 	console.Ajouter("",0);
 	console.Ajouter("Chargement de la map : "+chemin);
-	console.Rapport();
 
 	m_lumiere[0].intensite=1;
 	m_lumiere[0].rouge=0;
@@ -112,8 +111,6 @@ bool Map::Charger(int numeroMap)
         }
     }
     closedir(repertoire);
-
-    console.Rapport();
 
     Monstre monstreTemp;
 
@@ -373,7 +370,8 @@ bool Map::Charger(int numeroMap)
     	}while(caractere!='$');
 
 
-    	Decor decorTemp(-1,-1,-1,-1,-1);
+    	std::vector<int> evenementTemp;
+    	Decor decorTemp(-1,-1,evenementTemp,-1,-1);
 
     	m_decor.resize(2,vector<vector<Decor> >(0,vector<Decor>(0,decorTemp)));
 
@@ -394,7 +392,8 @@ bool Map::Charger(int numeroMap)
                         m_decor[couche].push_back(vector<Decor> (0,decorTemp));
                     do
                     {
-                        int tileset=-1,tileFinal=-1,evenement=-1,herbe=-1,monstreFinal=-1;
+                        std::vector<int> evenement;
+                        int tileset=-1,tileFinal=-1,herbe=-1,monstreFinal=-1;
                         int temp;
                         vector <int>tile;
                         vector <int>monstre;
@@ -406,7 +405,7 @@ bool Map::Charger(int numeroMap)
                             {
                                 case 's': fichier>>tileset; break;
                                 case 't': fichier>>temp; tile.push_back(temp); break;
-                                case 'e': fichier>>evenement; break;
+                                case 'e': int temp2; fichier>>temp2; evenement.push_back(temp2); break;
                                  case 'm': if(!entite_map_existante) { fichier>>temp; monstre.push_back(temp);  } else {  fichier>>monstreFinal; } break;
                                 case 'h': fichier>>herbe; break;
                             }
@@ -470,14 +469,14 @@ bool Map::Charger(int numeroMap)
 
                         m_decor[couche][position.y].push_back(decorTemp);
                         m_decor[couche][position.y][position.x].setDecor(tileset,tileFinal,evenement,monstreFinal,herbe);
-                        tileset=-1,tile.clear(),tileFinal=-1,evenement=-1,monstreFinal=-1,herbe=-1;
+                        tileset=-1,tile.clear(),tileFinal=-1,evenement.clear(),monstreFinal=-1,herbe=-1;
                         position.x++;
                         fichier.get(caractere);
                     }while(caractere!='\n');
                     position.x=0;
                     position.y++;
                 }
-                if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); console.Rapport(); throw (&temp); }
+                if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1);  throw (&temp); }
 
             }while(caractere!='$');
 
@@ -486,7 +485,6 @@ bool Map::Charger(int numeroMap)
     else
     {
         console.Ajouter("Impossible d'ouvrir le fichier : "+chemin,1);
-        console.Rapport();
         throw "";
     }
     fichier.close();
@@ -505,9 +503,6 @@ bool Map::Charger(int numeroMap)
                         m_decor[couche][i][j].setNumeroHerbe(numeroHerbe);
                     }
             }
-
-    console.Rapport();
-
     return 1;
 }
 
@@ -579,7 +574,8 @@ void Map::Sauvegarder()
                 {
                     fichier<<" s"<<m_decor[couche][i][j].getTileset()<<" ";
                     fichier<<"t"<<m_decor[couche][i][j].getTile()<<" ";
-                    fichier<<"e"<<m_decor[couche][i][j].getEvenement()<<" ";
+                    for(int k=0;k<m_decor[couche][i][j].getEvenement().size();k++)
+                        fichier<<"e"<<m_decor[couche][i][j].getEvenement()[k]<<" ";
                     if(m_decor[couche][i][j].getMonstre()>=0&&m_decor[couche][i][j].getMonstre()<m_monstre.size())
                         fichier<<"m"<<m_decor[couche][i][j].getMonstre()<<" ";
                             //fichier<<"m"<<m_monstre[m_decor[couche][i][j].getMonstre()].getModele()<<" ";
@@ -878,18 +874,22 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                 for(int k=lampesMin.x;k<lampesMax.x;k++)
                 {
                     bool ok=false;
-                    if(m_decor[0][j][k].getMonstre()>=0&&m_decor[couche][j][k].getMonstre()<m_monstre.size())// Je vérifie que le tile est initialisé ^^
+                    if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())// Je vérifie que le tile est initialisé ^^
                             if(m_monstre[m_decor[0][j][k].getMonstre()].getPorteeLumineuse().intensite>0)
                                 ok=true;
-                    if(m_decor[0][j][k].getEvenement()>=0&&m_decor[couche][j][k].getEvenement()<m_evenement.size())// Je vérifie que le tile est initialisé ^^
-                        if(m_evenement[m_decor[0][j][k].getEvenement()].getType()==LUMIERE)
-                            ok=true;
-                    if(m_decor[1][j][k].getMonstre()>=0&&m_decor[couche][j][k].getMonstre()<m_monstre.size())// Je vérifie que le tile est initialisé ^^
+                    if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())// Je vérifie que le tile est initialisé ^^
                             if(m_monstre[m_decor[1][j][k].getMonstre()].getPorteeLumineuse().intensite>0)
                                 ok=true;
-                    if(m_decor[1][j][k].getEvenement()>=0&&m_decor[couche][j][k].getEvenement()<m_evenement.size())// Je vérifie que le tile est initialisé ^^
-                        if(m_evenement[m_decor[1][j][k].getEvenement()].getType()==LUMIERE)
-                            ok=true;
+
+                     for(int z=0;z<m_decor[1][j][k].getEvenement().size();z++)
+                        if(m_decor[1][j][k].getEvenement()[z]>=0&&m_decor[1][j][k].getEvenement()[z]<m_evenement.size())// Je vérifie que le tile est initialisé ^^
+                            if(m_evenement[m_decor[1][j][k].getEvenement()[z]].getType()==LUMIERE)
+                                ok=true;
+                    for(int z=0;z<m_decor[0][j][k].getEvenement().size();z++)
+                        if(m_decor[0][j][k].getEvenement()[z]>=0&&m_decor[0][j][k].getEvenement()[z]<m_evenement.size())// Je vérifie que le tile est initialisé ^^
+                            if(m_evenement[m_decor[0][j][k].getEvenement()[z]].getType()==LUMIERE)
+                                ok=true;
+
                     if(m_decor[couche][j][k].getTileset()>=0&&m_decor[couche][j][k].getTileset()<m_tileset.size())
                         if(m_tileset[m_decor[couche][j][k].getTileset()].getLumiereDuTile(m_decor[couche][j][k].getTile()).intensite>0)// Je ragarde si le tile est une source de lumière
                             ok=true;
@@ -905,36 +905,39 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                             if(m_tileset[m_decor[couche][j][k].getTileset()].getLumiereDuTile(m_decor[couche][j][k].getTile()).intensite>0)
                                 lumiereTile=m_tileset[m_decor[couche][j][k].getTileset()].getLumiereDuTile(m_decor[couche][j][k].getTile());// Je dis que lumièreTiles à la valeur de la lumière de la source de lumière
 
-                        if(m_decor[0][j][k].getEvenement()>=0&&m_decor[0][j][k].getEvenement()<m_evenement.size())// Je vérifie que le tile est initialisé ^^
-                            if(m_evenement[m_decor[0][j][k].getEvenement()].getType()==LUMIERE)
-                            {
-                                lumiereTile.rouge=(lumiereTile.rouge*lumiereTile.intensite+m_evenement[m_decor[0][j][k].getEvenement()].getInformation(0)*m_evenement[m_decor[0][j][k].getEvenement()].getInformation(3))/(m_evenement[m_decor[0][j][k].getEvenement()].getInformation(3)+lumiereTile.intensite);
-                                lumiereTile.vert=(lumiereTile.vert*lumiereTile.intensite+m_evenement[m_decor[0][j][k].getEvenement()].getInformation(1)*m_evenement[m_decor[0][j][k].getEvenement()].getInformation(3))/(m_evenement[m_decor[0][j][k].getEvenement()].getInformation(3)+lumiereTile.intensite);
-                                lumiereTile.bleu=(lumiereTile.bleu*lumiereTile.intensite+m_evenement[m_decor[0][j][k].getEvenement()].getInformation(2)*m_evenement[m_decor[0][j][k].getEvenement()].getInformation(3))/(m_evenement[m_decor[0][j][k].getEvenement()].getInformation(3)+lumiereTile.intensite);
 
-                                lumiereTile.hauteur=(lumiereTile.hauteur*lumiereTile.intensite+m_evenement[m_decor[0][j][k].getEvenement()].getInformation(4)*m_evenement[m_decor[0][j][k].getEvenement()].getInformation(3))/(m_evenement[m_decor[0][j][k].getEvenement()].getInformation(3)+lumiereTile.intensite);
+                        for(int z=0;z<m_decor[0][j][k].getEvenement().size();z++)
+                            if(m_decor[0][j][k].getEvenement()[z]>=0&&m_decor[0][j][k].getEvenement()[z]<m_evenement.size())// Je vérifie que le tile est initialisé ^^
+                                if(m_evenement[m_decor[0][j][k].getEvenement()[z]].getType()==LUMIERE)
+                                {
+                                    lumiereTile.rouge=(lumiereTile.rouge*lumiereTile.intensite+m_evenement[m_decor[0][j][k].getEvenement()[z]].getInformation(0)*m_evenement[m_decor[0][j][k].getEvenement()[z]].getInformation(3))/(m_evenement[m_decor[0][j][k].getEvenement()[z]].getInformation(3)+lumiereTile.intensite);
+                                    lumiereTile.vert=(lumiereTile.vert*lumiereTile.intensite+m_evenement[m_decor[0][j][k].getEvenement()[z]].getInformation(1)*m_evenement[m_decor[0][j][k].getEvenement()[z]].getInformation(3))/(m_evenement[m_decor[0][j][k].getEvenement()[z]].getInformation(3)+lumiereTile.intensite);
+                                    lumiereTile.bleu=(lumiereTile.bleu*lumiereTile.intensite+m_evenement[m_decor[0][j][k].getEvenement()[z]].getInformation(2)*m_evenement[m_decor[0][j][k].getEvenement()[z]].getInformation(3))/(m_evenement[m_decor[0][j][k].getEvenement()[z]].getInformation(3)+lumiereTile.intensite);
 
-                                lumiereTile.intensite+=m_evenement[m_decor[0][j][k].getEvenement()].getInformation(3);
-                                if(lumiereTile.intensite>255)
-                                    lumiereTile.intensite=255;
-                                if(lumiereTile.intensite<0)
-                                    lumiereTile.intensite=0;
-                            }
-                        if(m_decor[1][j][k].getEvenement()>=0&&m_decor[1][j][k].getEvenement()<m_evenement.size())// Je vérifie que le tile est initialisé ^^
-                            if(m_evenement[m_decor[1][j][k].getEvenement()].getType()==LUMIERE)
-                            {
-                                lumiereTile.rouge=(lumiereTile.rouge*lumiereTile.intensite+m_evenement[m_decor[1][j][k].getEvenement()].getInformation(0)*m_evenement[m_decor[1][j][k].getEvenement()].getInformation(3))/(m_evenement[m_decor[1][j][k].getEvenement()].getInformation(3)+lumiereTile.intensite);
-                                lumiereTile.vert=(lumiereTile.vert*lumiereTile.intensite+m_evenement[m_decor[1][j][k].getEvenement()].getInformation(1)*m_evenement[m_decor[1][j][k].getEvenement()].getInformation(3))/(m_evenement[m_decor[1][j][k].getEvenement()].getInformation(3)+lumiereTile.intensite);
-                                lumiereTile.bleu=(lumiereTile.bleu*lumiereTile.intensite+m_evenement[m_decor[1][j][k].getEvenement()].getInformation(2)*m_evenement[m_decor[1][j][k].getEvenement()].getInformation(3))/(m_evenement[m_decor[1][j][k].getEvenement()].getInformation(3)+lumiereTile.intensite);
+                                    lumiereTile.hauteur=(lumiereTile.hauteur*lumiereTile.intensite+m_evenement[m_decor[0][j][k].getEvenement()[z]].getInformation(4)*m_evenement[m_decor[0][j][k].getEvenement()[z]].getInformation(3))/(m_evenement[m_decor[0][j][k].getEvenement()[z]].getInformation(3)+lumiereTile.intensite);
 
-                                lumiereTile.hauteur=(lumiereTile.hauteur*lumiereTile.intensite+m_evenement[m_decor[1][j][k].getEvenement()].getInformation(4)*m_evenement[m_decor[1][j][k].getEvenement()].getInformation(3))/(m_evenement[m_decor[1][j][k].getEvenement()].getInformation(3)+lumiereTile.intensite);
+                                    lumiereTile.intensite+=m_evenement[m_decor[0][j][k].getEvenement()[z]].getInformation(3);
+                                    if(lumiereTile.intensite>255)
+                                        lumiereTile.intensite=255;
+                                    if(lumiereTile.intensite<0)
+                                        lumiereTile.intensite=0;
+                                }
+                        for(int z=0;z<m_decor[1][j][k].getEvenement().size();z++)
+                            if(m_decor[1][j][k].getEvenement()[z]>=0&&m_decor[1][j][k].getEvenement()[z]<m_evenement.size())// Je vérifie que le tile est initialisé ^^
+                                if(m_evenement[m_decor[1][j][k].getEvenement()[z]].getType()==LUMIERE)
+                                {
+                                    lumiereTile.rouge=(lumiereTile.rouge*lumiereTile.intensite+m_evenement[m_decor[1][j][k].getEvenement()[z]].getInformation(0)*m_evenement[m_decor[1][j][k].getEvenement()[z]].getInformation(3))/(m_evenement[m_decor[1][j][k].getEvenement()[z]].getInformation(3)+lumiereTile.intensite);
+                                    lumiereTile.vert=(lumiereTile.vert*lumiereTile.intensite+m_evenement[m_decor[1][j][k].getEvenement()[z]].getInformation(1)*m_evenement[m_decor[1][j][k].getEvenement()[z]].getInformation(3))/(m_evenement[m_decor[1][j][k].getEvenement()[z]].getInformation(3)+lumiereTile.intensite);
+                                    lumiereTile.bleu=(lumiereTile.bleu*lumiereTile.intensite+m_evenement[m_decor[1][j][k].getEvenement()[z]].getInformation(2)*m_evenement[m_decor[1][j][k].getEvenement()[z]].getInformation(3))/(m_evenement[m_decor[1][j][k].getEvenement()[z]].getInformation(3)+lumiereTile.intensite);
 
-                                lumiereTile.intensite+=m_evenement[m_decor[1][j][k].getEvenement()].getInformation(3);
-                                if(lumiereTile.intensite>255)
-                                    lumiereTile.intensite=255;
-                                if(lumiereTile.intensite<0)
-                                    lumiereTile.intensite=0;
-                            }
+                                    lumiereTile.hauteur=(lumiereTile.hauteur*lumiereTile.intensite+m_evenement[m_decor[1][j][k].getEvenement()[z]].getInformation(4)*m_evenement[m_decor[1][j][k].getEvenement()[z]].getInformation(3))/(m_evenement[m_decor[1][j][k].getEvenement()[z]].getInformation(3)+lumiereTile.intensite);
+
+                                    lumiereTile.intensite+=m_evenement[m_decor[1][j][k].getEvenement()[z]].getInformation(3);
+                                    if(lumiereTile.intensite>255)
+                                        lumiereTile.intensite=255;
+                                    if(lumiereTile.intensite<0)
+                                        lumiereTile.intensite=0;
+                                }
 
 
                         //Maintenant, je vais calculer la lumière à ajouter à tout les tiles affiché à l'écran
@@ -1097,7 +1100,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                             if(m_lumiereHero.bleu>255)
                                                m_lumiereHero.bleu=255;
 
-                                            if(configuration.Ombre&&j!=l&&k!=m)
+                                            if(configuration.Ombre&&!(j==l&&k==m))
                                             {
                                                 coordonnee coord1,coord2;
 
@@ -1945,56 +1948,60 @@ void Map::AfficherNomEvenement(sf::RenderWindow* ecran,coordonnee casePointee,co
 
     int evenement=-1;
     for(int i=0;i<2;i++)
-        if(m_decor[i][casePointee.y][casePointee.x].getEvenement()>-1)
-            evenement=m_decor[i][casePointee.y][casePointee.x].getEvenement();
-
-    if(evenement>=0)
-    {
-        if(m_evenement[evenement].getType()==CHANGEMENT_DE_MAP)
-        {
-            string nom;
-            char chemin[128];
-            sprintf(chemin,"Data/Maps/map%ld.map.hs",m_evenement[evenement].getInformation(0));
-
-
-            ifstream fichier;
-            fichier.open(chemin, ios::in);
-            if(fichier)
+        for(int z=0;z<m_decor[i][casePointee.y][casePointee.x].getEvenement().size();z++)
+            if(m_decor[i][casePointee.y][casePointee.x].getEvenement()[z]>-1)
             {
-                char caractere;
-                do
+                evenement=m_decor[i][casePointee.y][casePointee.x].getEvenement()[z];
+
+                if(evenement>=0)
                 {
-                    //Chargement du nom
-                    fichier.get(caractere);
-                    if(caractere=='*')
+                    if(m_evenement[evenement].getType()==CHANGEMENT_DE_MAP)
                     {
-                        getline(fichier, nom);
+                        string nom;
+                        char chemin[128];
+                        sprintf(chemin,"Data/Maps/map%ld.map.hs",m_evenement[evenement].getInformation(0));
+
+
+                        ifstream fichier;
+                        fichier.open(chemin, ios::in);
+                        if(fichier)
+                        {
+                            char caractere;
+                            do
+                            {
+                                //Chargement du nom
+                                fichier.get(caractere);
+                                if(caractere=='*')
+                                {
+                                    getline(fichier, nom);
+                                }
+                            }while(caractere!='$');
+                        }
+                        fichier.close();
+
+                        sprintf(chemin,"Vers %s",nom.c_str());
+
+                        sf::String texte;
+                        texte.SetText(chemin);
+                        texte.SetSize(16.f);
+                        texte.SetY((positionSouris.y-16)*configuration.Resolution.h/configuration.Resolution.y);
+                        texte.SetX(positionSouris.x*configuration.Resolution.w/configuration.Resolution.x);
+                        moteurGraphique.AjouterTexte(&texte);
+                        //ecran->Draw(texte);
                     }
-                }while(caractere!='$');
+                }
             }
-            fichier.close();
-
-            sprintf(chemin,"Vers %s",nom.c_str());
-
-            sf::String texte;
-            texte.SetText(chemin);
-            texte.SetSize(16.f);
-            texte.SetY((positionSouris.y-16)*configuration.Resolution.h/configuration.Resolution.y);
-            texte.SetX(positionSouris.x*configuration.Resolution.w/configuration.Resolution.x);
-            moteurGraphique.AjouterTexte(&texte);
-            //ecran->Draw(texte);
-        }
-    }
 }
 
 bool Map::testEvenement(sf::View *camera, Jeu *jeu,float temps)
 {
     for(int i=0;i<2;i++)
-    if(m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()>=0)
+    for(int z=0;z<m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement().size();z++)
+    if(m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]>=0)
     {
-        if(m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()].getType()==CHANGEMENT_DE_MAP)
+        if(m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getType()==CHANGEMENT_DE_MAP)
         {
-            int numeroMap=m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()].getInformation(0);
+            int numeroMap=m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(0);
 
             console.Ajouter("",0);
             console.Ajouter("---------------------------------------------------------------------------------",0);
@@ -2002,8 +2009,8 @@ bool Map::testEvenement(sf::View *camera, Jeu *jeu,float temps)
             console.Ajouter("---------------------------------------------------------------------------------",0);
 
             coordonnee coordonneePerso;
-            coordonneePerso.x=m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()].getInformation(1);
-            coordonneePerso.y=m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()].getInformation(2);
+            coordonneePerso.x=m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(1);
+            coordonneePerso.y=m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(2);
 
             sf::Clock Clock;
              Clock.Reset();
@@ -2014,9 +2021,9 @@ bool Map::testEvenement(sf::View *camera, Jeu *jeu,float temps)
           //  jeu->m_contexte->CopierCamera(jeu->m_chargement->camera);
         }
 
-        if(m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()].getType()==INFLIGER_DEGATS)
+        if(m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getType()==INFLIGER_DEGATS)
         {
-            jeu->hero.m_personnage.infligerDegats(m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()].getInformation(0)*temps*10);
+            jeu->hero.m_personnage.infligerDegats(m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(0)*temps*10);
         }
     }
     return 1;
@@ -2041,6 +2048,20 @@ void Map::animer(Hero *hero,float temps,Menu *menu)
         for(int j=vueMin.y;j<vueMax.y;j++)
             for(int k=vueMin.x;k<vueMax.x;k++)
             {
+                for(int z=0;z<m_decor[i][j][k].getEvenement().size();z++)
+                    if(m_decor[i][j][k].getEvenement()[z]>=0&&m_decor[i][j][k].getEvenement()[z]<m_evenement.size())
+                        if(m_evenement[m_decor[i][j][k].getEvenement()[z]].getType()==TIMER)
+                        {
+                            m_evenement[m_decor[i][j][k].getEvenement()[z]].setInformation((int)((float)m_evenement[m_decor[i][j][k].getEvenement()[z]].getInformation(1)+(float)temps*1000),1);
+
+                            if(m_evenement[m_decor[i][j][k].getEvenement()[z]].getInformation(1)>=m_evenement[m_decor[i][j][k].getEvenement()[z]].getInformation(0))
+                            {
+                                m_decor[i][j][k].setEvenement(m_evenement[m_decor[i][j][k].getEvenement()[z]].getInformation(2),z);
+                                gererEvenements(m_decor[i][j][k].getEvenement()[z],z,i,k,j);
+                            }
+                        }
+
+
                 m_decor[i][j][k].augmenterAnimation(temps);
                 while(m_decor[i][j][k].getAnimation()>=0.075)
                 {
@@ -2078,6 +2099,23 @@ void Map::animer(Hero *hero,float temps,Menu *menu)
 
 }
 
+void Map::gererEvenements(int evenement,int z,int couche,int x,int y)
+{
+    if(evenement>=0&&evenement<m_evenement.size())
+    {
+        if(m_evenement[m_decor[couche][y][x].getEvenement()[z]].getType()==CHANGER_DECOR)
+        {
+            m_decor[couche][y][x].setTileset(m_evenement[evenement].getInformation(0));
+            m_decor[couche][y][x].setTile(m_evenement[evenement].getInformation(1));
+        }
+        if(m_evenement[evenement].getType()==EXPLOSION)
+        {
+            m_decor[couche][y][x].setEvenement(-1,z);
+            verifierDeclencheursDegats(y,x);
+        }
+    }
+}
+
 void Map::verifierDeclencheursDegats(int i, int j)
 {
     for(int o=0;o<2;o++)
@@ -2085,22 +2123,15 @@ void Map::verifierDeclencheursDegats(int i, int j)
             for(int x=j-1;x<=j+1;x++)
                 if(y>0&&x>0&&y<m_decor[0].size()&&x<m_decor[0][0].size())
                 {
-                    if(m_decor[o][y][x].getEvenement()>=0&&m_decor[o][y][x].getEvenement()<m_evenement.size())
-                        if(m_evenement[m_decor[o][y][x].getEvenement()].getType()==DECLENCHEUR_DEGAT_TO_EVENEMENT)
-                        {
-                            m_decor[o][y][x].setEvenement(m_evenement[m_decor[o][y][x].getEvenement()].getInformation(0));
-
-                            if(m_decor[o][y][x].getEvenement()>=0&&m_decor[o][y][x].getEvenement()<m_evenement.size())
-                                if(m_evenement[m_decor[o][y][x].getEvenement()].getType()==INFLIGER_DEGATS)
-                                    verifierDeclencheursDegats(y,x);
-
-                        }
-                    if(m_decor[o][y][x].getEvenement()>=0&&m_decor[o][y][x].getEvenement()<m_evenement.size())
-                        if(m_evenement[m_decor[o][y][x].getEvenement()].getType()==DECLENCHEUR_DEGAT_TO_DECORS)
-                        {
-                            m_decor[o][y][x].setTileset(m_evenement[m_decor[o][y][x].getEvenement()].getInformation(0));
-                            m_decor[o][y][x].setTile(m_evenement[m_decor[o][y][x].getEvenement()].getInformation(1));
-                        }
+                    for(int z=0;z<m_decor[o][y][x].getEvenement().size();z++)
+                    {
+                        if(m_decor[o][y][x].getEvenement()[z]>=0&&m_decor[o][y][x].getEvenement()[z]<m_evenement.size())
+                            if(m_evenement[m_decor[o][y][x].getEvenement()[z]].getType()==DECLENCHEUR_DEGAT_TO_EVENEMENT)
+                            {
+                                m_decor[o][y][x].setEvenement(m_evenement[m_decor[o][y][x].getEvenement()[z]].getInformation(0),z);
+                                gererEvenements(m_decor[o][y][x].getEvenement()[z],z,o,x,y);
+                            }
+                    }
                 }
 }
 
@@ -2117,7 +2148,7 @@ void Map::musiquePlay(coordonnee position)
 }
 
 
-void Map::gererMonstres(Hero *hero,float temps)
+void Map::gererMonstres(Hero *hero,float temps,sf::View *camera,Menu *menu)
 {
     coordonnee vueMin,vueMax;
 
@@ -2239,15 +2270,17 @@ void Map::gererMonstres(Hero *hero,float temps)
                         for(int l=0;l<2;l++)
                             if(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y>=0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y<m_decor[0].size()
                              &&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x>=0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x<m_decor[0][0].size())
-                             if(m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()>=0&&m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()<m_evenement.size())
-                                if(m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()].getType()==INFLIGER_DEGATS)
+                             for(int z=0;z<m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement().size();z++)
+                             if(m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]>=0&&m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]<m_evenement.size())
+                                if(m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]].getType()==INFLIGER_DEGATS)
                                 {
-                                    m_monstre[m_decor[i][j][k].getMonstre()].infligerDegats(m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()].getInformation(0)*temps*10);
+                                    //m_monstre[m_decor[i][j][k].getMonstre()].infligerDegats(m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()].getInformation(0)*temps*10);
+                                    infligerDegats(m_decor[i][j][k].getMonstre(),m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]].getInformation(0)*temps*10,menu,camera);
                                 }
                     }
 }
 
-bool Map::infligerDegats(int numeroMonstre, int degats,Menu *menu,sf::View *camera)
+bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *camera)
 {
     if(numeroMonstre>=0&&numeroMonstre<m_monstre.size())
     {
@@ -2262,8 +2295,10 @@ bool Map::infligerDegats(int numeroMonstre, int degats,Menu *menu,sf::View *came
                     menu->AjouterSang(position);
                 }
 
+        float viePrecedente=m_monstre[numeroMonstre].getCaracteristique().vie;
+
         m_monstre[numeroMonstre].infligerDegats(degats);
-        if(!m_monstre[numeroMonstre].enVie()&&m_monstre[numeroMonstre].getCaracteristique().pointAme>0)
+        if(!m_monstre[numeroMonstre].enVie()&&m_monstre[numeroMonstre].getCaracteristique().pointAme>0&&viePrecedente>0)
         {
             coordonneeDecimal position;
             position.x=(((m_monstre[numeroMonstre].getCoordonnee().x-m_monstre[numeroMonstre].getCoordonnee().y-1+m_decor[0].size())*64)-camera->GetRect().Left+48-(configuration.Resolution.x/configuration.zoom/2-400));
@@ -2325,8 +2360,9 @@ int Map::getEvenement(coordonnee casePointee)
     int temp=-1;
     if(casePointee.y>=0&&casePointee.y<m_decor[0].size()&&casePointee.x>=0&&casePointee.x<m_decor[0][0].size())
         for(int i=0;i<2;i++)
-            if(m_decor[i][casePointee.y][casePointee.x].getEvenement()>-1)
-                temp=m_decor[i][casePointee.y][casePointee.x].getEvenement();
+            if(m_decor[i][casePointee.y][casePointee.x].getEvenement().size()>0)
+                if(m_decor[i][casePointee.y][casePointee.x].getEvenement()[0]>-1)
+                    temp=m_decor[i][casePointee.y][casePointee.x].getEvenement()[0];
 
     return temp;
 }
@@ -2428,9 +2464,10 @@ int Map::getTypeCase(int positionX,int positionY)
                 if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].enVie())
                     return 2;
 
-            if(m_decor[i][positionY][positionX].getEvenement()>=0&&m_decor[i][positionY][positionX].getEvenement()<m_evenement.size())
-                if(m_evenement[m_decor[i][positionY][positionX].getEvenement()].getType()==CHANGEMENT_DE_MAP)
-                    return 3;
+            for(int z=0;z<m_decor[i][positionY][positionX].getEvenement().size();z++)
+                if(m_decor[i][positionY][positionX].getEvenement()[z]>=0&&m_decor[i][positionY][positionX].getEvenement()[z]<m_evenement.size())
+                    if(m_evenement[m_decor[i][positionY][positionX].getEvenement()[z]].getType()==CHANGEMENT_DE_MAP)
+                        return 3;
 	    }
 	    else
 	    return 1;

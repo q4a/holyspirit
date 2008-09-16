@@ -282,22 +282,10 @@ void Menu::AfficherChargement(sf::RenderWindow* ecran,string nom,int fond,int z=
     sprintf(chaine,"%s",nom.c_str());
     texte.SetText(chaine);
 
-    texte.SetX(configuration.Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2-1);
-    texte.SetY(configuration.Resolution.h-(texte.GetRect().Bottom-texte.GetRect().Top)/2-1-60*configuration.Resolution.h/600);
-    texte.SetColor(Color(200,130,70,z*255/50));
-    moteurGraphique.AjouterTexte(&texte);
-
-    texte.SetX(configuration.Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2+2);
-    texte.SetY(configuration.Resolution.h-(texte.GetRect().Bottom-texte.GetRect().Top)/2+2-60*configuration.Resolution.h/600);
-    texte.SetColor(Color(30,20,10,z*255/50));
-    moteurGraphique.AjouterTexte(&texte);
-    //ecran->Draw(texte);
-
     texte.SetX(configuration.Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
     texte.SetY(configuration.Resolution.h-(texte.GetRect().Bottom-texte.GetRect().Top)/2-60*configuration.Resolution.h/600);
     texte.SetColor(Color(150,100,50,z*255/50));
-    moteurGraphique.AjouterTexte(&texte);
-    //ecran->Draw(texte);
+    moteurGraphique.AjouterTexte(&texte,1);
 }
 
 void Menu::AfficherInventaire(sf::RenderWindow* ecran)

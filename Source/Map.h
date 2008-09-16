@@ -38,9 +38,11 @@ class Map
 	void calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *camera);
 	void Detruire();
 
-	bool infligerDegats(int numeroMontre, int degats,Menu *menu,sf::View *camera);
+	bool infligerDegats(int numeroMontre, float degats,Menu *menu,sf::View *camera);
 
-	void gererMonstres(Hero *hero,float temps);
+	void gererMonstres(Hero *hero,float temps,sf::View *camera,Menu *menu);
+
+	void gererEvenements(int evenement,int z,int couche,int x,int y);
 
 	void musiquePlay(coordonnee position);
 
@@ -57,6 +59,7 @@ class Map
 	std::vector <Tileset> m_herbe;
 	std::vector < std::vector< std::vector < Decor > > > m_decor;
 	std::vector <Evenement> m_evenement;
+
 	sf::Music m_musique;
 	std::string m_nom,m_fond,m_cheminMusique;
 

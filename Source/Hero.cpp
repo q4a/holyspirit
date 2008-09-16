@@ -15,6 +15,10 @@
 using namespace std;
 using namespace sf;
 
+int crypter(int);
+int decrypter(int);
+
+
 Hero::Hero()
 {
    ///Je donnes des valeur à mes variables juste pour les tests
@@ -62,12 +66,12 @@ void Hero::Sauvegarder()
     if(fichier)
     {
         fichier<<"* nom: "<<m_personnage.getCaracteristique().nom<<"\n";
-        fichier<<"* maxVie: "<<m_personnage.getCaracteristique().maxVie<<"\n";
-        fichier<<"* dgtsMin: "<<m_personnage.getCaracteristique().degatsMin<<"\n";
-        fichier<<"* dgtsMax: "<<m_personnage.getCaracteristique().degatsMax<<"\n";
-        fichier<<"* vitesse: "<<m_personnage.getCaracteristique().vitesse<<"\n";
-        fichier<<"* ptAme: "<<m_personnage.getCaracteristique().pointAme<<"\n";
-        fichier<<"* niveau: "<<m_personnage.getCaracteristique().niveau<<"\n";
+        fichier<<"* maxVie: "<<crypter(m_personnage.getCaracteristique().maxVie)<<"\n";
+        fichier<<"* dgtsMin: "<<crypter(m_personnage.getCaracteristique().degatsMin)<<"\n";
+        fichier<<"* dgtsMax: "<<crypter(m_personnage.getCaracteristique().degatsMax)<<"\n";
+        fichier<<"* vitesse: "<<crypter(m_personnage.getCaracteristique().vitesse)<<"\n";
+        fichier<<"* ptAme: "<<crypter(m_personnage.getCaracteristique().pointAme)<<"\n";
+        fichier<<"* niveau: "<<crypter(m_personnage.getCaracteristique().niveau)<<"\n";
 
     }
     fichier.close();
@@ -96,15 +100,16 @@ void Hero::Charger()
                     fichier.get(caractere);
                     if(caractere=='*')
                     {
+                        int temp2;
                         string temp;
                         fichier>>temp;
                             if(temp == "nom:")  fichier>>charTemp.nom;
-                            if(temp == "maxVie:")  fichier>>charTemp.maxVie,charTemp.vie=charTemp.maxVie;
-                            if(temp == "dgtsMin:")  fichier>>charTemp.degatsMin;
-                            if(temp == "dgtsMax:")  fichier>>charTemp.degatsMax;
-                            if(temp == "vitesse:")  fichier>>charTemp.vitesse;
-                            if(temp == "ptAme:")  fichier>>charTemp.pointAme,charTemp.ancienPointAme=charTemp.pointAme,charTemp.positionAncienAme=charTemp.pointAme;
-                            if(temp == "niveau:")  fichier>>charTemp.niveau;
+                            if(temp == "maxVie:")  fichier>>temp2,charTemp.maxVie=decrypter(temp2),charTemp.vie=charTemp.maxVie;
+                            if(temp == "dgtsMin:")  fichier>>temp2,charTemp.degatsMin=decrypter(temp2);
+                            if(temp == "dgtsMax:")  fichier>>temp2,charTemp.degatsMax=decrypter(temp2);
+                            if(temp == "vitesse:")  fichier>>temp2,charTemp.vitesse=decrypter(temp2);
+                            if(temp == "ptAme:")  fichier>>temp2,charTemp.pointAme=decrypter(temp2),charTemp.ancienPointAme=charTemp.pointAme,charTemp.positionAncienAme=charTemp.pointAme;
+                            if(temp == "niveau:")  fichier>>temp2,charTemp.niveau=decrypter(temp2);
                     }
                 }while(!fichier.eof());
                 m_personnage.setCaracteristique(charTemp);

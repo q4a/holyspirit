@@ -17,8 +17,9 @@
 class Decor
 {
 	public:
-	Decor(int tileset,int tile,int evenement,int monstre,int herbe);
-	void setDecor(int tileset,int tile,int evenement,int monstre,int herbe); //Définir une valeur au décor
+	Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe);
+	~Decor(){m_evenement.clear();}
+	void setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe); //Définir une valeur au décor
 	void setNumeroHerbe(int numero);
 	void setMonstre(int monstre);
 
@@ -30,17 +31,19 @@ class Decor
 	int getTile(); // Prendre le numéro du tile du décor
 	int getTileset(); // Prendre le numéro du tileset du décor
 	int getPosition(char type); // Prendre la position du décor
-	int getEvenement(); // Prendre le numéro de l'événement du décor
+	std::vector<int> getEvenement(); // Prendre le numéro de l'événement du décor
 	int getMonstre(); // Retourne l'ID du monstre sur la case
 	int getHerbe(); // Retourne le numero de l'herbe du décor
 	int getNumeroHerbe();
 
-	void setEvenement(int evenement);
+	void setEvenement(int evenement,int numero);
+	void ajouterEvenement(int evenement);
 	void setTileset( int tileset);
 	void setTile(int tile);
 
 	private:
-	int m_tileset,m_tile,m_evenement,m_monstre,m_herbe,m_numeroHerbe;
+	int m_tileset,m_tile,m_monstre,m_herbe,m_numeroHerbe;
+	std::vector<int> m_evenement;
 	float m_animation;
 	coordonnee m_position;
 };

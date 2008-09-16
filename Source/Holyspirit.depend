@@ -484,7 +484,7 @@
 	"liste_case.h"
 	"Pose.h"
 
-1220010752 d:\backup disque e\c++\holyspirit\source\constantes.h
+1221320349 d:\backup disque e\c++\holyspirit\source\constantes.h
 	<cmath>
 	<utility>
 	<iostream>
@@ -497,7 +497,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1220010923 d:\backup disque e\c++\holyspirit\source\decor.h
+1220694647 d:\backup disque e\c++\holyspirit\source\decor.h
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
@@ -523,7 +523,7 @@
 
 1202297272 source:d:\backup disque e\c++\holyspirit\source\ressource.rc
 
-1218359511 source:d:\backup disque e\c++\holyspirit\source\hero.cpp
+1221391167 source:d:\backup disque e\c++\holyspirit\source\hero.cpp
 	"Hero.h"
 	"Globale.h"
 	<iostream>
@@ -539,14 +539,14 @@
 	"Personnage.h"
 	"Monstre.h"
 
-1218271439 source:d:\backup disque e\c++\holyspirit\source\evenement.cpp
+1220696806 source:d:\backup disque e\c++\holyspirit\source\evenement.cpp
 	"Evenement.h"
 	<iostream>
 
-1218271439 d:\backup disque e\c++\holyspirit\source\evenement.h
+1220697370 d:\backup disque e\c++\holyspirit\source\evenement.h
 	"constantes.h"
 
-1220009644 source:d:\backup disque e\c++\holyspirit\source\personnage.cpp
+1220789412 source:d:\backup disque e\c++\holyspirit\source\personnage.cpp
 	"Personnage.h"
 	"Globale.h"
 	<iostream>
@@ -596,14 +596,14 @@
 	"case.h"
 	<iostream>
 
-1218271440 source:d:\backup disque e\c++\holyspirit\source\console.cpp
+1221319645 source:d:\backup disque e\c++\holyspirit\source\console.cpp
 	"console.h"
 	"constantes.h"
 	"Globale.h"
 	<iostream>
 	<fstream>
 
-1219073847 source:d:\backup disque e\c++\holyspirit\source\eventmanager.cpp
+1220780096 source:d:\backup disque e\c++\holyspirit\source\eventmanager.cpp
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<math.h>
@@ -622,7 +622,7 @@
 	<SFML/Graphics.hpp>
 	"constantes.h"
 
-1220012104 d:\backup disque e\c++\holyspirit\source\map.h
+1221385446 d:\backup disque e\c++\holyspirit\source\map.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -639,15 +639,16 @@
 	<SFML/Audio.hpp>
 	"constantes.h"
 
-1220010996 source:d:\backup disque e\c++\holyspirit\source\decor.cpp
+1220696616 source:d:\backup disque e\c++\holyspirit\source\decor.cpp
 	"Decor.h"
+	"Globale.h"
 
 1218271441 source:d:\backup disque e\c++\holyspirit\source\liste_case.cpp
 	"liste_case.h"
 	"globale.h"
 	<iostream>
 
-1219496310 source:d:\backup disque e\c++\holyspirit\source\main.cpp
+1221319517 source:d:\backup disque e\c++\holyspirit\source\main.cpp
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<iostream>
@@ -662,7 +663,7 @@
 
 1202297251 d:\backup disque e\c++\holyspirit\source\configuration.h
 
-1219073255 source:d:\backup disque e\c++\holyspirit\source\menu.cpp
+1220779458 source:d:\backup disque e\c++\holyspirit\source\menu.cpp
 	"menu.h"
 	"Globale.h"
 	<iostream>
@@ -678,7 +679,7 @@
 	"constantes.h"
 	"Globale.h"
 
-1220014888 source:d:\backup disque e\c++\holyspirit\source\map.cpp
+1221384774 source:d:\backup disque e\c++\holyspirit\source\map.cpp
 	"Map.h"
 	<iostream>
 	<fstream>
@@ -689,12 +690,13 @@
 	"Globale.h"
 	"Jeu.h"
 
-1219072171 source:d:\backup disque e\c++\holyspirit\source\jeu.cpp
+1221391068 source:d:\backup disque e\c++\holyspirit\source\jeu.cpp
 	"constantes.h"
 	"Globale.h"
 	"jeu.h"
+	<dirent.h>
 
-1218271440 d:\backup disque e\c++\holyspirit\source\jeu.h
+1220789114 d:\backup disque e\c++\holyspirit\source\jeu.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"constantes.h"
@@ -705,6 +707,7 @@
 	"c_Jeu.h"
 	"c_changementMap.h"
 	"c_inventaire.h"
+	"c_menuInGame.h"
 
 1218271440 d:\backup disque e\c++\holyspirit\source\c_jeu.h
 	<SFML/System.hpp>
@@ -717,7 +720,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1220010750 source:d:\backup disque e\c++\holyspirit\source\c_jeu.cpp
+1220789204 source:d:\backup disque e\c++\holyspirit\source\c_jeu.cpp
 	"c_jeu.h"
 	"jeu.h"
 	"Globale.h"
@@ -983,7 +986,7 @@
 	<SFML/Graphics.hpp>
 	"Contexte.h"
 
-1218310570 source:d:\backup disque e\c++\holyspirit\source\c_changementmap.cpp
+1221310231 source:d:\backup disque e\c++\holyspirit\source\c_changementmap.cpp
 	"c_jeu.h"
 	"jeu.h"
 	"Globale.h"
@@ -1008,7 +1011,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1218271440 d:\backup disque e\c++\holyspirit\source\moteurgraphique.h
+1221320422 d:\backup disque e\c++\holyspirit\source\moteurgraphique.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -1020,8 +1023,27 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1218360379 source:d:\backup disque e\c++\holyspirit\source\moteurgraphique.cpp
+1221320819 source:d:\backup disque e\c++\holyspirit\source\moteurgraphique.cpp
 	"MoteurGraphique.h"
 	"Globale.h"
 	<iostream>
+
+1221310070 d:\backup disque e\c++\holyspirit\source\c_menuingame.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"Contexte.h"
+
+1221320920 source:d:\backup disque e\c++\holyspirit\source\c_menuingame.cpp
+	"c_jeu.h"
+	"jeu.h"
+	"Globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1221583322 source:d:\backup disque e\c++\holyspirit\source\crypter.cpp
+	<iostream>
+	<list>
 

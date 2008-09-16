@@ -146,6 +146,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
                 if(configuration.Minimap)
                 {
                     jeu->menu.Afficher(&jeu->ecran,1);
+                    jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp);
                     jeu->menu.Afficher(&jeu->ecran,2);
                 }
                 jeu->menu.Afficher(&jeu->ecran,3);
@@ -170,6 +171,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
                 if(configuration.Minimap)
                 {
                     jeu->menu.Afficher(&jeu->ecran,1);
+                    jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp);
                     jeu->menu.Afficher(&jeu->ecran,2);
                 }
                 jeu->menu.Afficher(&jeu->ecran,3);

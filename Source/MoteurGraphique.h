@@ -16,8 +16,10 @@ class MoteurGraphique
 	void Afficher(sf::RenderWindow *, sf::View *);
 
 	int AjouterImage(std::string);
-	void AjouterCommande(sf::Sprite*, bool);
-	void AjouterTexte(sf::String*);
+	void AjouterCommande(sf::Sprite*, bool, bool auDessusTexte=false);
+	void AjouterTexte(sf::String*,bool titre=false);
+
+	void Charger();
 
 	void Vider();
 
@@ -28,7 +30,13 @@ class MoteurGraphique
 
 	std::string getCheminImage(int IDimage);
 
-	std::vector <Commande> m_commandes;
+	std::vector <Commande> m_commandes,m_commandesAuDessusTexte;
+
+	sf::PostFX EffectBlur,EffectMort;
+
+	sf::Font m_font_titre;
+
+	float m_blur;
 
 	private:
 

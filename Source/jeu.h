@@ -18,6 +18,7 @@
 #include "c_Jeu.h"
 #include "c_changementMap.h"
 #include "c_inventaire.h"
+#include "c_menuInGame.h"
 
 class Jeu
 {
@@ -25,6 +26,7 @@ class Jeu
 
     Jeu();
     void Demarrer();
+    void Reset();
 
     sf::RenderWindow ecran;
     sf::View camera;
@@ -36,14 +38,15 @@ class Jeu
     sf::SoundBuffer bufferSonMort;
 	sf::Sound  sonMort;
 
-	bool m_run,m_display;
+	bool m_run,m_display,m_reset;
 
     c_Jeu *m_jeu;
     c_Chargement *m_chargement;
     c_Inventaire *m_inventaire;
+    c_MenuInGame *m_menuInGame;
     Contexte *m_contexte;
 
-    sf::PostFX EffectNoir,EffectMort,EffectContrastes;
+    sf::PostFX EffectNoir,EffectContrastes;
     sf::Image Luminosite;
     private:
 

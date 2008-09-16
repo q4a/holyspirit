@@ -45,6 +45,7 @@ void Console::AjouterNombre(int nombre,bool erreur)
     sprintf(temp,"%ld",nombre);
     m_textes.push_back(temp);
     m_erreur.push_back(erreur);
+    Rapport();
 }
 
 int Console::getTaille(){return m_textes.size();}

@@ -50,6 +50,11 @@ int Evenement::getInformation(int numeroInfo)
         return 0;
 }
 
+void Evenement::setInformation(int information,int numero)
+{
+    if(numero>=0&&numero<m_information.size())
+        m_information[numero]=information;
+}
 
 void Evenement::AjouterInformation(int information)
 {

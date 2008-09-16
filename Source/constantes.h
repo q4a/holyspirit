@@ -26,7 +26,7 @@
 
 
 enum{ARRET,COURSE,FRAPPE,MORT};
-enum{CHANGEMENT_DE_MAP,LUMIERE,INFLIGER_DEGATS,DECLENCHEUR_DEGAT_TO_EVENEMENT,DECLENCHEUR_DEGAT_TO_DECORS};
+enum{CHANGEMENT_DE_MAP,LUMIERE,INFLIGER_DEGATS,DECLENCHEUR_DEGAT_TO_EVENEMENT,CHANGER_DECOR,TIMER,EXPLOSION};
 
 namespace gpl
 {
@@ -76,20 +76,7 @@ struct Configuration
             coordonnee resolution;
             ///Chargement de la configuration
 
-            std::ifstream fichier;
-           /* fichier3.open("configuration.conf", std::ios::in);
-            if(!fichier3)
-            {
-                fichier3.close();
-                std::fstream fichier2("configuration.conf", std::ios::in | std::ios::out | std::ios::trunc) ;
-
-                fichier2<<"AFFICHAGE\nresolution: 800 600\nluminosite: 0\ncontrastes: 1\nsyncronisation_verticale: 1\nmode_fenetre: 1\nombres: 1\nlumieres: 1\namelioration_des_lampes: 0\nfrequence_lumiere: 0.054\nherbes: 1\npostFX: 1\nsang: 1\n\nMUSIQUES\nvolume: 100\nson_mort: Data/Sons/Coeur.wav\n\nINTERFACE\nminimap: 1\nconsole: 0\n\nVERSION\nversion: 0.0.98\n\nCHEMINS\nmaps: Data/Maps/map\ntemps: Data/Temp/\nsaves: Data/Saves/\nevenements: Data/Maps/evenement\ncurseur: Data/Menus/Curseurs/\nmenus: Data/Menus/\nfonts: Data/Fonts/Cup and Talon.ttf\nfx: Data/Effets/\n\ncurseur_base: curseurMenu.png\n\nfxNoir: EffetNoir.sfx\nfxContrastes: EffetContrastes.sfx\nfxMort: EffetMort.sfx\n\nmenu_hud: Hudoo.png\nmenu_minimap: minimap.png\nmenu_bulle_vie: bulle_vie.png\nmenu_ame: Ame.png\nmenu_barre_ame: Barre_ame.png\nmenu_barre_vie: barre_vie.png\nmenu_barre_vie_vide: barre_vie_vide.png\nmenu_sang: sang.png\nmenu_inventaire: inventaire.png\n\nAUTRE\nvideos: 0\nchemin_video_developpeurs: Data/Videos/Naiponcin logo/\nnom_video_developpeurs: Naiponcin logo\n\ncache: 200\n\nfrequence_sauvegarde: 10\n";
-
-                fichier2.close();
-
-                //fichier.seekg(0, std::ios::beg);
-            }
-            fichier.close();*/
+            std::ifstream fichier,fichier2;
 
             fichier.open("configuration.conf", std::ios::in);
             if(fichier)
@@ -114,50 +101,68 @@ struct Configuration
                         if(chaine== "amelioration_des_lampes:") { fichier>>amelioration_lampes; }
                         if(chaine== "frequence_lumiere:") { fichier>>frequence_lumiere; }
                         if(chaine== "console:") { fichier>>console; }
-                        if(chaine== "version:") { fichier>>version; }
-
-                        if(chaine== "maps:") { fichier>>chemin_maps; }
-                        if(chaine== "temps:") { fichier>>chemin_temps; }
-                        if(chaine== "saves:") { fichier>>chemin_saves; }
-                        if(chaine== "evenements:") { fichier>>chemin_evenements; }
-                        if(chaine== "curseur:") { fichier>>chemin_curseurs; }
-                        if(chaine== "menus:") { fichier>>chemin_menus; }
-                        if(chaine== "fonts:") { fichier>>chemin_fonts; }
-                        if(chaine== "fx:") { fichier>>chemin_fx; }
-                        if(chaine== "chemin_video_developpeurs:") { fichier>>chemin_video_developpeur; }
-                        if(chaine== "nom_video_developpeurs:") { fichier>>nom_video_developpeur; }
-
-                        if(chaine== "curseur_base:") { fichier>>nom_curseur_base; }
-                        if(chaine== "fxNoir:") { fichier>>nom_effetNoir; }
-                        if(chaine== "fxMort:") { fichier>>nom_effetMort; }
-                        if(chaine== "fxContrastes:") { fichier>>nom_effetContrastes; }
-
-                        if(chaine== "menu_hud:") { fichier>>nom_hud; }
-                        if(chaine== "menu_minimap:") { fichier>>nom_minimap; }
-                        if(chaine== "menu_bulle_vie:") { fichier>>nom_bulle_vie; }
-                        if(chaine== "menu_ame:") { fichier>>nom_ame; }
-                        if(chaine== "menu_barre_ame:") { fichier>>nom_barre_ame; }
-                        if(chaine== "menu_barre_vie:") { fichier>>nom_barre_vie; }
-                        if(chaine== "menu_barre_vie_vide:") { fichier>>nom_barre_vie_vide; }
-                        if(chaine== "menu_inventaire:") { fichier>>nom_inventaire; }
-
-
-                        if(chaine== "menu_sang:") { fichier>>nom_sang; }
-                        if(chaine== "nom_video_developpeurs: ") { fichier>>nom_video_developpeur; }
-
-                        if(chaine== "cache: ") { fichier>>cache; }
 
                         if(chaine== "frequence_sauvegarde:") { fichier>>frequence_sauvegarde; }
-
-                        if(chaine== "son_mort:") { fichier>>chemin_son_mort; }
 
                 }
                  fichier.close();
             }
             else
             {
-                std::cerr<<"Test";
-                throw std::string("Impossible de charger la configuration");
+                throw std::string("Impossible de charger la configuration : configuration.conf");
+            }
+
+
+            fichier2.open("holyspirit.ini", std::ios::in);
+            if(fichier2)
+            {
+                char caractere;
+                std::string chaine;
+                while(fichier2>>chaine)
+                {
+                        if(chaine== "version:") { fichier2>>version; }
+
+                        if(chaine== "maps:") { fichier2>>chemin_maps; }
+                        if(chaine== "temps:") { fichier2>>chemin_temps; }
+                        if(chaine== "saves:") { fichier2>>chemin_saves; }
+                        if(chaine== "evenements:") { fichier2>>chemin_evenements; }
+                        if(chaine== "curseur:") { fichier2>>chemin_curseurs; }
+                        if(chaine== "menus:") { fichier2>>chemin_menus; }
+                        if(chaine== "fonts:") { fichier2>>chemin_fonts; }
+                        if(chaine== "fx:") { fichier2>>chemin_fx; }
+                        if(chaine== "chemin_video_developpeurs:") { fichier2>>chemin_video_developpeur; }
+                        if(chaine== "nom_video_developpeurs:") { fichier2>>nom_video_developpeur; }
+
+                        if(chaine== "curseur_base:") { fichier2>>nom_curseur_base; }
+                        if(chaine== "fxNoir:") { fichier2>>nom_effetNoir; }
+                        if(chaine== "fxMort:") { fichier2>>nom_effetMort; }
+                        if(chaine== "fxContrastes:") { fichier2>>nom_effetContrastes; }
+                        if(chaine== "fxBlur:") { fichier2>>nom_effetBlur; }
+
+                        if(chaine== "menu_hud:") { fichier2>>nom_hud; }
+                        if(chaine== "menu_minimap:") { fichier2>>nom_minimap; }
+                        if(chaine== "menu_bulle_vie:") { fichier2>>nom_bulle_vie; }
+                        if(chaine== "menu_ame:") { fichier2>>nom_ame; }
+                        if(chaine== "menu_barre_ame:") { fichier2>>nom_barre_ame; }
+                        if(chaine== "menu_barre_vie:") { fichier2>>nom_barre_vie; }
+                        if(chaine== "menu_barre_vie_vide:") { fichier2>>nom_barre_vie_vide; }
+                        if(chaine== "menu_inventaire:") { fichier2>>nom_inventaire; }
+
+                        if(chaine== "font_titre:") { fichier2>>font_titre; }
+
+                        if(chaine== "menu_sang:") { fichier2>>nom_sang; }
+                        if(chaine== "nom_video_developpeurs: ") { fichier2>>nom_video_developpeur; }
+
+                        if(chaine== "cache: ") { fichier2>>cache; }
+
+                        if(chaine== "son_mort:") { fichier2>>chemin_son_mort; }
+
+                }
+                 fichier2.close();
+            }
+            else
+            {
+                throw std::string("Impossible de charger la configuration : holyspirit.ini");
             }
 
             ///Application de la configuration
@@ -207,40 +212,8 @@ struct Configuration
                         fichier<< "console: " <<console<<std::endl;
                         fichier<<std::endl;
                         fichier<<std::endl;
-                        fichier<<"CHEMINS"<<std::endl;
 
-                        fichier<< "maps: " <<chemin_maps<<std::endl;
-                        fichier<< "temps: " <<chemin_temps<<std::endl;
-                        fichier<< "saves: " <<chemin_saves<<std::endl;
-                        fichier<< "evenements: " <<chemin_evenements<<std::endl;
-                        fichier<< "curseur: " <<chemin_curseurs<<std::endl;
-                        fichier<< "menus: " <<chemin_menus<<std::endl;
-                        fichier<< "fonts: " <<chemin_fonts<<std::endl;
-                        fichier<< "fx: " <<chemin_fx<<std::endl;
-                        fichier<< "chemin_video_developpeurs: " <<chemin_video_developpeur<<std::endl;
-                        fichier<< "nom_video_developpeurs: " <<nom_video_developpeur<<std::endl;
-                        fichier<< "son_mort: " <<chemin_son_mort<<std::endl;
-                        fichier<<std::endl;
-                        fichier<< "curseur_base: " <<nom_curseur_base<<std::endl;
-                        fichier<< "fxNoir: " <<nom_effetNoir<<std::endl;
-                        fichier<< "fxMort: " <<nom_effetMort<<std::endl;
-                        fichier<< "fxContrastes: " <<nom_effetContrastes<<std::endl;
-                        fichier<< "menu_hud: " <<nom_hud<<std::endl;
-                        fichier<< "menu_minimap: " <<nom_minimap<<std::endl;
-                        fichier<< "menu_bulle_vie: " <<nom_bulle_vie<<std::endl;
-                        fichier<< "menu_ame: " <<nom_ame<<std::endl;
-                        fichier<< "menu_barre_ame: " <<nom_barre_ame<<std::endl;
-                        fichier<< "menu_barre_vie: " <<nom_barre_vie<<std::endl;
-                        fichier<< "menu_barre_vie_vide: " <<nom_barre_vie_vide<<std::endl;
-                        fichier<< "menu_inventaire: " <<nom_inventaire<<std::endl;
-                        fichier<< "menu_sang: " <<nom_sang<<std::endl;
-                        fichier<<std::endl;
-                        fichier<<std::endl;
                         fichier<<"AUTRES"<<std::endl;
-                        fichier<< "version: " <<version<<std::endl;
-
-                        fichier<< "nom_video_developpeurs: " <<nom_video_developpeur<<std::endl;
-                        fichier<< "cache: " <<cache<<std::endl;
                         fichier<< "frequence_sauvegarde: " <<frequence_sauvegarde<<std::endl;
 
 
@@ -255,8 +228,8 @@ struct Configuration
     bool Ombre,Lumiere,Minimap,amelioration_lampes,console,Herbes,syncronisation_verticale,mode_fenetre,postFX,sang,video;
     float effetMort,volume,minute,zoom,frequence_sauvegarde,frequence_lumiere,luminosite,contrastes;
     int heure,cache;
-    std::string version,chemin_maps,chemin_temps,chemin_saves,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetMort,nom_effetContrastes,nom_hud,nom_minimap,nom_bulle_vie,nom_ame,nom_barre_ame,nom_barre_vie,nom_barre_vie_vide,nom_sang,nom_inventaire,chemin_son_mort;
-    std::string chemin_video_developpeur,nom_video_developpeur;
+    std::string version,chemin_maps,chemin_temps,chemin_saves,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetMort,nom_effetContrastes,nom_effetBlur,nom_hud,nom_minimap,nom_bulle_vie,nom_ame,nom_barre_ame,nom_barre_vie,nom_barre_vie_vide,nom_sang,nom_inventaire,chemin_son_mort;
+    std::string font_titre,chemin_video_developpeur,nom_video_developpeur;
 };
 
 struct Caracteristique

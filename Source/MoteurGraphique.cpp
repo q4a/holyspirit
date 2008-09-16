@@ -14,10 +14,36 @@ MoteurGraphique::MoteurGraphique()
 MoteurGraphique::~MoteurGraphique()
 {
     m_commandes.clear();
+    m_commandesAuDessusTexte.clear();
     m_cheminsImages.clear();
     m_images.clear();
     m_textes.clear();
 }
+
+void MoteurGraphique::Charger()
+{
+    if(!EffectBlur.LoadFromFile(configuration.chemin_fx+configuration.nom_effetBlur))
+        console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetBlur,1);
+    else
+        console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetBlur,0);
+    EffectBlur.SetTexture("framebuffer", NULL);
+
+    if(!EffectMort.LoadFromFile(configuration.chemin_fx+configuration.nom_effetMort))
+        console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetMort,1);
+    else
+        console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetMort,0);
+
+    EffectMort.SetParameter("offset", 0);
+    EffectMort.SetTexture("framebuffer", NULL);
+    EffectMort.SetParameter("color",1, 1, 1);
+
+    if(!m_font_titre.LoadFromFile(configuration.chemin_fonts+configuration.font_titre))
+        console.Ajouter("Impossible de charger : "+configuration.chemin_fonts+configuration.font_titre,1);
+    else
+        console.Ajouter("Chargement de : "+configuration.chemin_fonts+configuration.font_titre,0);
+
+}
+
 void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera)
 {
     sf::Sprite sprite;
@@ -33,10 +59,31 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera)
         ecran->Draw(sprite);
     }
 
+    if(m_blur>0)
+    {
+        EffectBlur.SetParameter("offset",m_blur);
+        ecran->Draw(EffectBlur);
+    }
+
+    if(configuration.effetMort>0)
+        ecran->Draw(EffectMort);
+
     for(int i=0;i<m_textes.size();i++)
     {
         ecran->SetView(ecran->GetDefaultView());
         ecran->Draw(m_textes[i]);
+    }
+
+    for(int i=0;i<m_commandesAuDessusTexte.size();i++)
+    {
+        if(m_commandesAuDessusTexte[i].m_utiliserCamera)
+            ecran->SetView(*camera);
+        else
+            ecran->SetView(ecran->GetDefaultView());
+
+        sprite=m_commandesAuDessusTexte[i].m_sprite;
+
+        ecran->Draw(sprite);
     }
 }
 
@@ -60,21 +107,47 @@ int MoteurGraphique::AjouterImage(std::string chemin)
     return m_images.size()-1;
 }
 
-void MoteurGraphique::AjouterCommande(sf::Sprite *sprite, bool camera)
+void MoteurGraphique::AjouterCommande(sf::Sprite *sprite, bool camera, bool auDessusTexte)
 {
     Commande temp(sprite,camera);
-    m_commandes.push_back(temp);
+    if(!auDessusTexte)
+        m_commandes.push_back(temp);
+    else
+        m_commandesAuDessusTexte.push_back(temp);
 }
 
-void MoteurGraphique::AjouterTexte(sf::String* string)
+void MoteurGraphique::AjouterTexte(sf::String* string,bool titre)
 {
     sf::String temp(*string);
+
+    if(titre)
+    {
+        temp.SetFont(m_font_titre);
+
+        /*temp.Move(10,10);
+        temp.SetColor(sf::Color((int)(string->GetColor().r*0.1),(int)(string->GetColor().g*0.1),(int)(string->GetColor().b*0.1),string->GetColor().a));
+        m_textes.push_back(temp);
+
+
+        temp.Move(-10,-10);*/
+        temp.SetStyle(sf::String::Bold);
+        temp.SetColor(string->GetColor());
+        m_textes.push_back(temp);
+
+        temp.SetColor(sf::Color((int)(string->GetColor().r*0.15),(int)(string->GetColor().g*0.15),(int)(string->GetColor().b*0.15),string->GetColor().a));
+        temp.SetStyle(sf::String::Regular);
+        m_textes.push_back(temp);
+
+
+    }
+
     m_textes.push_back(temp);
 }
 
 
 void MoteurGraphique::Vider()
 {
+    m_commandesAuDessusTexte.clear();
     m_commandes.clear();
     m_textes.clear();
 }

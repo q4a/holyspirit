@@ -34,6 +34,8 @@ int main ( int argc, char** argv )
 
         configuration.Charger();
 
+        moteurGraphique.Charger();
+
         ///On démarre le jeu
 		Jeu m_jeu;
 
@@ -43,7 +45,6 @@ int main ( int argc, char** argv )
 	{
 	    console.Ajouter("FATAL ERROR : ",1);
 		console.Ajouter(str,1);
-		console.Rapport();
 
 		return EXIT_FAILURE;
 	}
@@ -57,7 +58,6 @@ int main ( int argc, char** argv )
 
     console.Ajouter("");
     console.Ajouter("EXIT_SUCCESS");
-    console.Rapport();
 
     return EXIT_SUCCESS;
 }

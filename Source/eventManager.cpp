@@ -62,8 +62,8 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
         *continuer = false;
 	}
 
-    if(m_EventTableau[Key::Escape])
-		*continuer=false;
+    /*if(m_EventTableau[Key::Escape])
+		*continuer=false;*/
 	if(m_EventTableau[Key::PageUp])
 		configuration.zoom*=(1+(0.5*temps));
 	if(m_EventTableau[Key::PageDown])
@@ -164,9 +164,11 @@ void EventManager::AfficherCurseur(sf::RenderWindow *ecran)
 {
 	Sprite Sprite;
 	Sprite.SetImage(*moteurGraphique.getImage(idcurseur));
-	Sprite.SetX(m_positionSouris.x*configuration.Resolution.w/configuration.Resolution.x);
-	Sprite.SetY(m_positionSouris.y*configuration.Resolution.h/configuration.Resolution.y);
-	moteurGraphique.AjouterCommande(&Sprite,0);
+	if(configuration.Resolution.x>0)
+        Sprite.SetX(m_positionSouris.x*configuration.Resolution.w/configuration.Resolution.x);
+    if(configuration.Resolution.y>0)
+        Sprite.SetY(m_positionSouris.y*configuration.Resolution.h/configuration.Resolution.y);
+	moteurGraphique.AjouterCommande(&Sprite,0,1);
 	//ecran->Draw(Sprite);
 }
 
