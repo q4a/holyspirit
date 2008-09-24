@@ -35,7 +35,7 @@ ERREUR : Impossible de charger : Data/Menus/Hudoo.png
          Chargement de : Data/Ecran_chargement/Plaines2.png
          
          Chargement de la map : Data/Maps/map1.map.hs
-         Chargement de : Data/Musiques/Test.ogg
+ERREUR : Impossible de charger : 
          Chargement de : Data/Terrain/Herbes_plaines/Herbes_plaines.png
          Chargement de : Data/Decors/Arbres/Arbres.png
          Chargement de : Data/Decors/Mur_de_pierres/Mur_de_pierres.png
@@ -67,7 +67,107 @@ ERREUR : Impossible de charger : Data/Menus/Hudoo.png
          Chargement de : Data/Sons/47252__nthompson__rocketexpl.wav
          Chargement de : Data/Entites/Destructibles/Tonneau/TonneauExp.char.hs
          
+         ---------------------------------------------------------------------------------
+         EVENEMENT : Changement de map
+         ---------------------------------------------------------------------------------
+         Chargement de : Data/Ecran_chargement/Grotte.png
+         
          Sauvegarde de la map : Data/Temp/map1.map.hs
+         
+         Chargement de la map : Data/Maps/map3.map.hs
+         Chargement de : Data/Musiques/Maxtor81-Arcaduis.ogg
+         Chargement de : Data/Sons/Feu.wav
+         Chargement de : Data/Decors/Effets_de_Lumieres/LightEffect.png
+         Chargement de : Data/Decors/Herbes/Champignon1.png
+         
+         Chargement du monstre : Data/Entites/Monstres/GolemQuartz/GolemQuartz.char.hs
+         Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaArret.png
+         Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaCour.png
+         Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaAt1.png
+         Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaAt2.png
+         Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaAt3.png
+         Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaAt4.png
+         Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaAt5.png
+         Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaAt6.png
+         Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaAt7.png
+         Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaAt8.png
+         Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaMor.png
+         Chargement de : Data/Sons/15569__tigersound__walking_on_stone.wav
+         Chargement de : Data/Sons/30009__thanvannispen__stone_on_stone_impact_loud2.aiff
+         Chargement de : Data/Entites/Monstres/GolemQuartz/GolemQuartz.char.hs
+         
+         Chargement du monstre : Data/Entites/Destructibles/Tonneau/Tonneau.char.hs
+         Chargement de : Data/Sons/31622__Srehpog__light_crate_smash1.wav
+         Chargement de : Data/Sons/31623__Srehpog__light_crate_smash2.wav
+         Chargement de : Data/Sons/31624__Srehpog__light_crate_smash3.wav
+         Chargement de : Data/Entites/Destructibles/Tonneau/Tonneau.char.hs
+         
+         Chargement du monstre : Data/Entites/Destructibles/Tonneau/TonneauExp.char.hs
+         Chargement de : Data/Sons/47252__nthompson__rocketexpl.wav
+         Chargement de : Data/Entites/Destructibles/Tonneau/TonneauExp.char.hs
+         
+         ---------------------------------------------------------------------------------
+         EVENEMENT : Changement de map
+         ---------------------------------------------------------------------------------
+         Chargement de : Data/Ecran_chargement/Plaines3.png
+         
+         Sauvegarde de la map : Data/Temp/map3.map.hs
+         
+         Chargement de la map : Data/Maps/map2.map.hs
+         Chargement de : Data/Decors/Sapin/Sapin.png
+         Chargement de : Data/Sons/Feu.wav
+         Chargement de : Data/Decors/Arbres/Tronc.png
+         
+         Chargement du monstre : Data/Entites/Monstres/PantinMorbide/PantinMorbide.char.hs
+         Chargement de : Data/Sons/9906__Snoman__grass3.wav
+         Chargement de : Data/Sons/9906__Snoman__grass3.wav
+         Chargement de : Data/Sons/35213__Abyssmal__slashkut.wav
+         Chargement de : Data/Entites/Monstres/PantinMorbide/PantinMorbide.char.hs
+         
+         Chargement du monstre : Data/Entites/Monstres/ErrantRoche/ErrantRoche.char.hs
+         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheArret.png
+         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheMarche1.png
+         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheMarche2.png
+         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheFrappe1.png
+         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheFrappe2.png
+         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheFrappe3.png
+         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheFrappe4.png
+         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheFrappe5.png
+         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheFrappe6.png
+         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheFrappe7.png
+         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheFrappe8.png
+         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheMort1.png
+         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheMort2.png
+         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheMort3.png
+         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheMort4.png
+         Chargement de : Data/Sons/15569__tigersound__walking_on_stone.wav
+         Chargement de : Data/Sons/30009__thanvannispen__stone_on_stone_impact_loud2.aiff
+         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRoche.char.hs
+         
+         ---------------------------------------------------------------------------------
+         EVENEMENT : Changement de map
+         ---------------------------------------------------------------------------------
+         Chargement de : Data/Ecran_chargement/Foret.png
+         
+         Sauvegarde de la map : Data/Temp/map2.map.hs
+         
+         Chargement de la map : Data/Maps/map4.map.hs
+         Chargement de : Data/Musiques/Battle_CDN.ogg
+         Chargement de : Data/Terrain/Sol_foret/Sol_foret.png
+         Chargement de : Data/Sons/Feu.wav
+         
+         Chargement du monstre : Data/Entites/Monstres/PantinMorbide/PantinMorbide.char.hs
+         Chargement de : Data/Sons/9906__Snoman__grass3.wav
+         Chargement de : Data/Sons/9906__Snoman__grass3.wav
+         Chargement de : Data/Sons/35213__Abyssmal__slashkut.wav
+         Chargement de : Data/Entites/Monstres/PantinMorbide/PantinMorbide.char.hs
+         
+         Chargement du monstre : Data/Entites/Monstres/ErrantRoche/ErrantRocheChef.char.hs
+         Chargement de : Data/Sons/15569__tigersound__walking_on_stone.wav
+         Chargement de : Data/Sons/30009__thanvannispen__stone_on_stone_impact_loud2.aiff
+         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheChef.char.hs
+         
+         Sauvegarde de la map : Data/Temp/map4.map.hs
          
          Fermeture des contextes effectuée avec succès.
          
