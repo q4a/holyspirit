@@ -4,7 +4,7 @@ $
 *Data/Ecran_chargement/Plaines2.png
 $
 Musique
-*Data/Musiques/Test.ogg
+
 $
 Lumiere de base
 *128 128 255 32 50

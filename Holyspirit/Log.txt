@@ -15,6 +15,7 @@ ERREUR : Impossible de charger : Data/Menus/Hudoo.png
          
          Chargement des curseurs :
          Chargement de : Data/Menus/Curseurs/curseurMenu.png
+         Chargement de : Data/Menus/sac.png
          Chargement de : Data/Effets/EffetContrastes.sfx
          Chargement de : Data/Effets/EffetNoir.sfx
          

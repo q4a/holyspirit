@@ -4,7 +4,7 @@ $
 *Data/Ecran_chargement/Plaines3.png
 $
 Musique
-*Data/Musiques/Battle_CDN.ogg
+
 $
 Lumiere de base
 *128 128 255 32 50
