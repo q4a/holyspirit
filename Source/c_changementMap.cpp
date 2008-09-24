@@ -141,12 +141,12 @@ void c_Chargement::Utiliser(Jeu *jeu)
             if(!m_debut&&augmenterNoir||!augmenterNoir)
             {
                 coordonnee temp;
-                jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,temp);
+                jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,temp,0);
 
                 if(configuration.Minimap)
                 {
                     jeu->menu.Afficher(&jeu->ecran,1);
-                    jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp);
+                    jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,0);
                     jeu->menu.Afficher(&jeu->ecran,2);
                 }
                 jeu->menu.Afficher(&jeu->ecran,3);
@@ -167,11 +167,11 @@ void c_Chargement::Utiliser(Jeu *jeu)
             if(!m_debut&&augmenterNoir||!augmenterNoir)
             {
                 coordonnee temp;
-                jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,temp);
+                jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,temp,0);
                 if(configuration.Minimap)
                 {
                     jeu->menu.Afficher(&jeu->ecran,1);
-                    jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp);
+                    jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,0);
                     jeu->menu.Afficher(&jeu->ecran,2);
                 }
                 jeu->menu.Afficher(&jeu->ecran,3);

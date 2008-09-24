@@ -69,7 +69,7 @@ void Hero::Sauvegarder()
         fichier<<"* maxVie: "<<crypter(m_personnage.getCaracteristique().maxVie)<<"\n";
         fichier<<"* dgtsMin: "<<crypter(m_personnage.getCaracteristique().degatsMin)<<"\n";
         fichier<<"* dgtsMax: "<<crypter(m_personnage.getCaracteristique().degatsMax)<<"\n";
-        fichier<<"* vitesse: "<<crypter(m_personnage.getCaracteristique().vitesse)<<"\n";
+        fichier<<"* vitesse: "<<crypter((int)m_personnage.getCaracteristique().vitesse*1000)<<"\n";
         fichier<<"* ptAme: "<<crypter(m_personnage.getCaracteristique().pointAme)<<"\n";
         fichier<<"* niveau: "<<crypter(m_personnage.getCaracteristique().niveau)<<"\n";
 
@@ -107,7 +107,7 @@ void Hero::Charger()
                             if(temp == "maxVie:")  fichier>>temp2,charTemp.maxVie=decrypter(temp2),charTemp.vie=charTemp.maxVie;
                             if(temp == "dgtsMin:")  fichier>>temp2,charTemp.degatsMin=decrypter(temp2);
                             if(temp == "dgtsMax:")  fichier>>temp2,charTemp.degatsMax=decrypter(temp2);
-                            if(temp == "vitesse:")  fichier>>temp2,charTemp.vitesse=decrypter(temp2);
+                            if(temp == "vitesse:")  fichier>>temp2,charTemp.vitesse=decrypter(temp2)/1000;
                             if(temp == "ptAme:")  fichier>>temp2,charTemp.pointAme=decrypter(temp2),charTemp.ancienPointAme=charTemp.pointAme,charTemp.positionAncienAme=charTemp.pointAme;
                             if(temp == "niveau:")  fichier>>temp2,charTemp.niveau=decrypter(temp2);
                     }

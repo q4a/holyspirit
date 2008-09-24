@@ -69,11 +69,11 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
 
     coordonnee temp;
 
-    jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,temp);
+    jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,temp,0);
     if(configuration.Minimap)
     {
         jeu->menu.Afficher(&jeu->ecran,1);
-        jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp);
+        jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,0);
         jeu->menu.Afficher(&jeu->ecran,2);
     }
     jeu->menu.Afficher(&jeu->ecran,3);

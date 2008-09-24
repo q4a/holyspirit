@@ -34,7 +34,11 @@ void Decor::ajouterEvenement(int evenement)
     m_evenement.push_back(evenement);
 }
 void Decor::setTileset( int tileset){m_tileset=tileset;}
-void Decor:: setTile(int tile){m_tile=tile;}
+void Decor::setTile(int tile){m_tile=tile;}
+void Decor::ajouterObjet(Objet objet){m_objets.push_back(objet);}
+
+
+
 
 
 int Decor::getTile(){return m_tile;}
@@ -44,6 +48,9 @@ int Decor::getMonstre(){return m_monstre;}
 int Decor::getHerbe(){return m_herbe;}
 int Decor::getNumeroHerbe(){return m_numeroHerbe;}
 float Decor::getAnimation(){return m_animation;}
+Objet Decor::getObjet(int numero){ if(numero>=0&&numero<m_objets.size()) return m_objets[numero];}
+std::vector<Objet> Decor::getObjets(){return m_objets;}
+int Decor::getNombreObjets(){return m_objets.size();}
 
 void Decor::decrementerAnimation(){m_animation-=0.075;}
 void Decor::augmenterAnimation(float temps){m_animation+=temps;}

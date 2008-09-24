@@ -21,7 +21,7 @@ class Map
 	~Map();
 	bool Charger(int numeroMap);
 	void Sauvegarder();
-	void Afficher(sf::RenderWindow* ecran,sf::View *camera,int type,Hero *hero,coordonnee positionSouris);
+	void Afficher(sf::RenderWindow* ecran,sf::View *camera,int type,Hero *hero,coordonnee positionSouris,bool alt);
 	void AfficherNomEvenement(sf::RenderWindow* ecran,coordonnee casePointee,coordonnee positionSouris);
 
 	int getMonstreIllumine();
@@ -53,7 +53,7 @@ class Map
 	coordonnee getDimensions();
 
 	private:
-	int m_monstreIllumine,m_numero;
+	int m_monstreIllumine,m_numero,IDImageSac;
 	Lumiere m_lumiere[24];
 	std::vector <Tileset> m_tileset;
 	std::vector <Tileset> m_herbe;

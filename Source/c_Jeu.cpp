@@ -231,12 +231,12 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     if(jeu->eventManager.getEvenement(Key::Escape,"ET"))
                         jeu->m_contexte=jeu->m_menuInGame,jeu->eventManager.StopEvenement(Key::Escape,"ET");
 
-                    jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,jeu->eventManager.getPositionSouris());//Affichage de la jeu->map
+                    jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,jeu->eventManager.getPositionSouris(),jeu->eventManager.getEvenement(Key::LAlt,"ET"));//Affichage de la jeu->map
 
                     if(configuration.Minimap)
                     {
                         jeu->menu.Afficher(&jeu->ecran,1);//On affiche le fond noir de la mini-jeu->map
-                        jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,jeu->eventManager.getPositionSouris()); // On affiche la mini-jeu->map
+                        jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,jeu->eventManager.getPositionSouris(),0); // On affiche la mini-jeu->map
                         jeu->menu.Afficher(&jeu->ecran,2); // On affiche le cadran de la mini-jeu->map
                     }
 

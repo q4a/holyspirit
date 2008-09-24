@@ -27,6 +27,7 @@
 
 enum{ARRET,COURSE,FRAPPE,MORT};
 enum{CHANGEMENT_DE_MAP,LUMIERE,INFLIGER_DEGATS,DECLENCHEUR_DEGAT_TO_EVENEMENT,CHANGER_DECOR,TIMER,EXPLOSION};
+enum{NORMAL,BONNEFACTURE,BENI,SACRE,SANCTIFIE,DIVIN,INFERNAL};
 
 namespace gpl
 {
@@ -147,6 +148,8 @@ struct Configuration
                         if(chaine== "menu_barre_vie:") { fichier2>>nom_barre_vie; }
                         if(chaine== "menu_barre_vie_vide:") { fichier2>>nom_barre_vie_vide; }
                         if(chaine== "menu_inventaire:") { fichier2>>nom_inventaire; }
+                        if(chaine== "menu_sac:") { fichier2>>nom_sac; }
+
 
                         if(chaine== "font_titre:") { fichier2>>font_titre; }
 
@@ -229,7 +232,7 @@ struct Configuration
     float effetMort,volume,minute,zoom,frequence_sauvegarde,frequence_lumiere,luminosite,contrastes;
     int heure,cache;
     std::string version,chemin_maps,chemin_temps,chemin_saves,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetMort,nom_effetContrastes,nom_effetBlur,nom_hud,nom_minimap,nom_bulle_vie,nom_ame,nom_barre_ame,nom_barre_vie,nom_barre_vie_vide,nom_sang,nom_inventaire,chemin_son_mort;
-    std::string font_titre,chemin_video_developpeur,nom_video_developpeur;
+    std::string font_titre,chemin_video_developpeur,nom_video_developpeur,nom_sac;
 };
 
 struct Caracteristique

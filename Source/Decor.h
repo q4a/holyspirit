@@ -14,6 +14,8 @@
 #include <SFML/Audio.hpp>
 #include "constantes.h"
 
+#include "Objet.h"
+
 class Decor
 {
 	public:
@@ -35,6 +37,12 @@ class Decor
 	int getMonstre(); // Retourne l'ID du monstre sur la case
 	int getHerbe(); // Retourne le numero de l'herbe du décor
 	int getNumeroHerbe();
+	Objet getObjet(int numero);
+	std::vector<Objet> getObjets();
+	int getNombreObjets();
+
+	void ajouterObjet(Objet);
+
 
 	void setEvenement(int evenement,int numero);
 	void ajouterEvenement(int evenement);
@@ -46,6 +54,8 @@ class Decor
 	std::vector<int> m_evenement;
 	float m_animation;
 	coordonnee m_position;
+
+	std::vector<Objet> m_objets;
 };
 
 #endif

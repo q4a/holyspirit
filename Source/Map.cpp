@@ -20,7 +20,7 @@ Map::Map()
     carreRouge.SetSmooth(true);
     carreVert.SetSmooth(true);
     carreBrun.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.x/800, Color(128, 64, 0)),carreBleu.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.x/800, Color(32, 0, 128)),carreRouge.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.x/800, Color(128, 0, 0)),carreVert.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.x/800, Color(0, 128, 0));
-
+    IDImageSac=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_sac);
 }
 
 Map::~Map()
@@ -1425,11 +1425,12 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
 
 }
 
-void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonnee positionSouris)
+void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonnee positionSouris,bool alt)
 {
     coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
 
 	Sprite Sprite;
+	String texte;
 
 	positionPartieDecor.x=0;
 	positionPartieDecor.y=0;
@@ -1466,6 +1467,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                     if(j>=0&&j<m_decor[0].size()&&k>=0&&k<m_decor[0][0].size())
                     {
+
                         if(couche==1)
                         {
                             if(j>=0&&j<m_decor[0].size()&&k>=0&&k<m_decor[0][0].size())
@@ -1633,7 +1635,6 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
 
 
-
                         if(j>=0&&j<m_decor[0].size()&&k>=0&&k<m_decor[0][0].size())
                             if(configuration.Herbes)
                                 if(m_decor[1][j][k].getHerbe()>=0&&m_decor[1][j][k].getHerbe()<m_herbe.size())
@@ -1700,6 +1701,65 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                         }
                                 }
                     }
+
+                        if(m_decor[1][j][k].getNombreObjets()>0&&couche==1)
+                        {
+                            position.x=(k-j-1+m_decor[1].size())*64+48;
+                            position.y=(k+j)*32+32;
+
+                            Sprite.SetImage(*moteurGraphique.getImage(IDImageSac));
+                            Sprite.SetSubRect(IntRect(0,0,32,32));
+                            Sprite.SetX(position.x);
+                            Sprite.SetY(position.y);
+
+                            if(configuration.Lumiere)
+                            {
+                                Sprite.SetColor(sf::Color(
+                                (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].intensite*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].rouge)/255,
+                                (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].intensite*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].vert)/255,
+                                (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].intensite*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].bleu)/255,
+                                255));
+                            }
+                            else
+                            {
+                                Sprite.SetColor(sf::Color(
+                                    255,
+                                    255,
+                                    255,
+                                    255));
+                            }
+
+                            moteurGraphique.AjouterCommande(&Sprite,1);
+
+                            if(positionSouris.x>position.x-ViewRect.Left&&positionSouris.x<position.x-ViewRect.Left+32&&positionSouris.y>position.y-ViewRect.Top&&positionSouris.y<position.y-ViewRect.Top+32||alt)
+                            {
+                                for(int z=0;z<m_decor[1][j][k].getNombreObjets();z++)
+                                {
+                                    int rarete=m_decor[1][j][k].getObjet(z).getRarete();
+                                    if(rarete==NORMAL)
+                                        texte.SetColor(sf::Color(224,224,224));
+                                    if(rarete==BONNEFACTURE)
+                                        texte.SetColor(sf::Color(128,0,128));
+                                    if(rarete==BENI)
+                                        texte.SetColor(sf::Color(0,64,128));
+                                    if(rarete==SACRE)
+                                        texte.SetColor(sf::Color(255,255,128));
+                                    if(rarete==SANCTIFIE)
+                                        texte.SetColor(sf::Color(128,255,255));
+                                    if(rarete==DIVIN)
+                                        texte.SetColor(sf::Color(255,164,32));
+                                    if(rarete==INFERNAL)
+                                        texte.SetColor(sf::Color(224,0,0));
+                                    texte.SetText(m_decor[1][j][k].getObjet(z).getNom());
+                                    texte.SetSize(16*configuration.Resolution.w/800);
+                                    texte.SetX(position.x-ViewRect.Left);
+                                    texte.SetY(position.y-ViewRect.Top-20*(z+1));
+                                    moteurGraphique.AjouterTexte(&texte);
+                                }
+                            }
+                        }
+
+
 
 
                         if(m_decor[couche][j][k].getTileset()>=0&&m_decor[couche][j][k].getTileset()<m_tileset.size())
@@ -1812,6 +1872,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     m_tileset[m_decor[couche][j][k].getTileset()].jouerSon(m_tileset[m_decor[couche][j][k].getTileset()].getSonTile(m_decor[couche][j][k].getTile()),
                                     gpl::sqrt((hero->m_personnage.getCoordonnee().x-k)*(hero->m_personnage.getCoordonnee().x-k)+(hero->m_personnage.getCoordonnee().y-j)*(hero->m_personnage.getCoordonnee().y-j)),position,positionHero);
                         }
+
                     }
                     else
                     {
@@ -1872,6 +1933,8 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                             }
                         }
                     }
+
+
 
 
                 }
@@ -2304,6 +2367,33 @@ bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *ca
             position.x=(((m_monstre[numeroMonstre].getCoordonnee().x-m_monstre[numeroMonstre].getCoordonnee().y-1+m_decor[0].size())*64)-camera->GetRect().Left+48-(configuration.Resolution.x/configuration.zoom/2-400));
             position.y=(((m_monstre[numeroMonstre].getCoordonnee().x+m_monstre[numeroMonstre].getCoordonnee().y)*32)-camera->GetRect().Top-96);
             menu->AjouterAme(position,m_monstre[numeroMonstre].getCaracteristique().pointAme);
+
+            if(m_monstre[numeroMonstre].getCoordonnee().x>=0&&m_monstre[numeroMonstre].getCoordonnee().x<m_decor[0][0].size()&&m_monstre[numeroMonstre].getCoordonnee().y>=0&&m_monstre[numeroMonstre].getCoordonnee().y<m_decor[0].size())
+            {
+                for(int i=0;i<(m_monstre[numeroMonstre].getCaracteristique().rang+1)*3;i++)
+                    if(rand()%1000<500)
+                    {
+                        int rarete=NORMAL;
+                        int random=rand()%10000;
+                        if(random<=2811)
+                            rarete=BONNEFACTURE;
+                        if(random<=811)
+                            rarete=BENI;
+                        if(random<=311)
+                            rarete=SACRE;
+                        if(random<111)
+                            rarete=SANCTIFIE;
+                        if(random<11)
+                            rarete=DIVIN;
+                        if(random==1)
+                            rarete=INFERNAL;
+
+
+                        Objet temp("Un Objet Merveilleux",rarete);
+                        m_decor[1][m_monstre[numeroMonstre].getCoordonnee().y][m_monstre[numeroMonstre].getCoordonnee().x].ajouterObjet(temp);
+                    }
+            }
+
             return 1;
         }
     }

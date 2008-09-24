@@ -40,6 +40,8 @@
 		<Unit filename="Monstre.h" />
 		<Unit filename="MoteurGraphique.cpp" />
 		<Unit filename="MoteurGraphique.h" />
+		<Unit filename="Objet.cpp" />
+		<Unit filename="Objet.h" />
 		<Unit filename="Personnage.cpp" />
 		<Unit filename="Personnage.h" />
 		<Unit filename="Pose.cpp" />
