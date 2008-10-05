@@ -714,6 +714,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
 
                 lumiereTemp=0;
                 lumiereTemp2=0;
+                if(configuration.Lumiere==2)
                 if(lumiere.intensite>0)
                     for(int o=1;o<10;o++)
                     {
@@ -975,6 +976,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                     lumiere.intensite=0;
 
                                     //Je vais tester s'il y a un obstacle entre la source de lumière et le tile
+                                    if(configuration.Lumiere==2)
                                     if(!(l==j&&m==k))
                                     if(lumiere.intensite>0)
                                     for(int o=1;o<10;o++)
@@ -1161,6 +1163,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
 
 
                                             //Je vais tester s'il y a un obstacle entre la source de lumière et le tile
+                                            if(configuration.Lumiere==2)
                                             if(!(l==j&&m==k))
                                             if(lumiere.intensite>0)
                                             for(int o=1;o<10;o++)
@@ -1271,6 +1274,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
 
 
                                             //Je vais tester s'il y a un obstacle entre la source de lumière et le tile
+                                            if(configuration.Lumiere==2)
                                             if(!(l==j&&m==k))
                                             if(lumiere.intensite>0)
                                             for(int o=1;o<10;o++)
@@ -1731,7 +1735,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                             moteurGraphique.AjouterCommande(&Sprite,1);
 
-                            if(positionSouris.x>position.x-ViewRect.Left&&positionSouris.x<position.x-ViewRect.Left+32&&positionSouris.y>position.y-ViewRect.Top&&positionSouris.y<position.y-ViewRect.Top+32||alt)
+                            if(positionSouris.x>position.x-ViewRect.Left&&positionSouris.x<position.x-ViewRect.Left+32*configuration.Resolution.w/800&&positionSouris.y>position.y-ViewRect.Top&&positionSouris.y<position.y-ViewRect.Top+32*configuration.Resolution.w/800||alt)
                             {
                                 for(int z=0;z<m_decor[1][j][k].getNombreObjets();z++)
                                 {
@@ -1752,8 +1756,8 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                         texte.SetColor(sf::Color(224,0,0));
                                     texte.SetText(m_decor[1][j][k].getObjet(z).getNom());
                                     texte.SetSize(16*configuration.Resolution.w/800);
+                                    texte.SetY(position.y-ViewRect.Top-20*configuration.Resolution.w/800*(z+1));
                                     texte.SetX(position.x-ViewRect.Left);
-                                    texte.SetY(position.y-ViewRect.Top-20*(z+1));
                                     moteurGraphique.AjouterTexte(&texte);
                                 }
                             }

@@ -63,6 +63,10 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera)
     {
         EffectBlur.SetParameter("offset",m_blur);
         ecran->Draw(EffectBlur);
+        ecran->Draw(EffectBlur);
+        ecran->Draw(EffectBlur);
+        ecran->Draw(EffectBlur);
+        ecran->Draw(EffectBlur);
     }
 
     if(configuration.effetMort>0)

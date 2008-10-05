@@ -31,8 +31,8 @@
 	<File name="Hero.h" open="0" top="0" tabpos="9">
 		<Cursor position="705" topLine="10" />
 	</File>
-	<File name="Map.cpp" open="1" top="1" tabpos="3">
-		<Cursor position="113900" topLine="1717" />
+	<File name="Map.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="117992" topLine="1767" />
 	</File>
 	<File name="Map.h" open="1" top="0" tabpos="5">
 		<Cursor position="459" topLine="13" />
@@ -44,7 +44,7 @@
 		<Cursor position="589" topLine="2" />
 	</File>
 	<File name="MoteurGraphique.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="5629" topLine="109" />
+		<Cursor position="2210" topLine="48" />
 	</File>
 	<File name="MoteurGraphique.h" open="0" top="0" tabpos="12">
 		<Cursor position="850" topLine="0" />
@@ -98,7 +98,7 @@
 		<Cursor position="387" topLine="0" />
 	</File>
 	<File name="c_menuInGame.cpp" open="1" top="0" tabpos="8">
-		<Cursor position="2348" topLine="52" />
+		<Cursor position="359" topLine="25" />
 	</File>
 	<File name="c_menuInGame.h" open="0" top="0" tabpos="2">
 		<Cursor position="172" topLine="0" />
@@ -116,7 +116,7 @@
 		<Cursor position="1166" topLine="52" />
 	</File>
 	<File name="constantes.h" open="1" top="0" tabpos="11">
-		<Cursor position="772" topLine="15" />
+		<Cursor position="7375" topLine="189" />
 	</File>
 	<File name="crypter.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="301" topLine="50" />
