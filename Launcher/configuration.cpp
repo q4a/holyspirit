@@ -68,9 +68,13 @@ OptionsJeu::OptionsJeu() : QDialog()
     text3->setText(texte);
     text3->move(128,104);
 
-
     text4 = new QLabel("Résolution :",this);
-    text4->move(128,128);
+    text4->move(128,160);
+
+    text5 = new QLabel(this);
+    sprintf(texte,"Qualité des lumières : %i",(int)config.Lumiere);
+    text5->setText(texte);
+    text5->move(128,136);
 
     barreTauxContrastes=new QSlider(Qt::Horizontal,this);
     barreTauxContrastes->setGeometry(256,32,128,32);
@@ -88,19 +92,29 @@ OptionsJeu::OptionsJeu() : QDialog()
     barreVolume->setValue((int)config.volume);
     barreVolume->setRange(0,100);
 
+    barreTauxLuminosite=new QSlider(Qt::Horizontal,this);
+    barreTauxLuminosite->setGeometry(256,64,128,32);
+    barreTauxLuminosite->setValue((int)config.luminosite);
+    barreTauxLuminosite->setRange(0,64);
+
+    barreLumiere=new QSlider(Qt::Horizontal,this);
+    barreLumiere->setGeometry(256,128,128,32);
+    barreLumiere->setValue((int)config.Lumiere);
+    barreLumiere->setRange(0,2);
+
 
 
     modeFenetre= new QCheckBox("Mode fenêtré", this);
-    modeFenetre->move(128,160);
+    modeFenetre->move(128,176);
     modeFenetre->setChecked(config.mode_fenetre);
 
     syncro= new QCheckBox("Syncronisation verticale", this);
-    syncro->move(128,176);
+    syncro->move(128,192);
     syncro->setChecked(config.syncronisation_verticale);
 
-    lumieres= new QCheckBox("Afficher les lumières", this);
+    /*lumieres= new QCheckBox("Afficher les lumières", this);
     lumieres->move(128,192);
-    lumieres->setChecked(config.Lumiere);
+    lumieres->setChecked(config.Lumiere);*/
 
     ombres= new QCheckBox("Afficher les ombres", this);
     ombres->move(128,208);
@@ -155,7 +169,7 @@ OptionsJeu::OptionsJeu() : QDialog()
         listeResolution->setCurrentIndex(resolutions.size()-1);
     }
 
-    listeResolution->move(256, 128);
+    listeResolution->move(256, 160);
 
 
     m_boutonRetour = new QPushButton("Sauvegarder et quitter", this);
@@ -165,6 +179,7 @@ OptionsJeu::OptionsJeu() : QDialog()
     QObject::connect(barreTauxLuminosite, SIGNAL(valueChanged(int)), this, SLOT(ChangerLuminosite(int)));
     QObject::connect(barreTauxContrastes, SIGNAL(valueChanged(int)), this, SLOT(ChangerContraste(int)));
     QObject::connect(barreVolume, SIGNAL(valueChanged(int)), this, SLOT(ChangerVolume(int)));
+    QObject::connect(barreLumiere, SIGNAL(valueChanged(int)), this, SLOT(ChangerLumiere(int)));
 
 
     QObject::connect(m_boutonRetour, SIGNAL(clicked()), this, SLOT(Quitter()));
@@ -185,13 +200,6 @@ void OptionsJeu::Quitter()
         config.syncronisation_verticale=1;
     else
         config.syncronisation_verticale=0;
-
-
-    if(lumieres->isChecked())
-        config.Lumiere=1;
-    else
-        config.Lumiere=0;
-
 
     if(ombres->isChecked())
         config.Ombre=1;
@@ -228,7 +236,6 @@ void OptionsJeu::ChangerContraste(int contraste)
     config.contrastes=((float)contraste/10)+1;
 
     char texte[32];
-
     if((int)((config.contrastes-1)*100/9)<10)
         sprintf(texte,"Taux de contrastes : 00%i",(int)((config.contrastes-1)*100/9));
     else if((int)((config.contrastes-1)*100/9)<100)
@@ -249,6 +256,14 @@ void OptionsJeu::ChangerLuminosite(int luminosite)
     else
         sprintf(texte,"Taux de luminosité : %i",(int)config.luminosite*100/64);
     text2->setText(texte);
+}
+void OptionsJeu::ChangerLumiere(int lumiere)
+{
+    config.Lumiere=lumiere;
+    char texte[32];
+
+    sprintf(texte,"Qualité des lumières : %i",(int)config.Lumiere);
+    text5->setText(texte);
 }
 void OptionsJeu::ChangerVolume(int volume)
 {

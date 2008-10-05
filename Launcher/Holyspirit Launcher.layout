@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="Launcher.cpp" open="1" top="1" tabpos="3">
-		<Cursor position="1225" topLine="21" />
+	<File name="Launcher.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="1225" topLine="30" />
 	</File>
 	<File name="Launcher.h" open="1" top="0" tabpos="2">
 		<Cursor position="1210" topLine="24" />
 	</File>
 	<File name="configuration.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="7404" topLine="230" />
+		<Cursor position="6148" topLine="195" />
 	</File>
-	<File name="configuration.h" open="1" top="0" tabpos="4">
-		<Cursor position="610" topLine="111" />
+	<File name="configuration.h" open="1" top="1" tabpos="4">
+		<Cursor position="8617" topLine="188" />
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="1">
 		<Cursor position="295" topLine="0" />

@@ -165,7 +165,8 @@ struct Configuration
     }
 
     coordonnee Resolution;
-    bool Ombre,Lumiere,Minimap,amelioration_lampes,console,Herbes,syncronisation_verticale,mode_fenetre,postFX,sang,video;
+    int Lumiere;
+    bool Ombre,Minimap,amelioration_lampes,console,Herbes,syncronisation_verticale,mode_fenetre,postFX,sang,video;
     float effetMort,volume,minute,zoom,frequence_sauvegarde,frequence_lumiere,luminosite,contrastes;
     int heure,cache;
     std::string version,chemin_maps,chemin_temps,chemin_saves,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetMort,nom_effetContrastes,nom_effetBlur,nom_hud,nom_minimap,nom_bulle_vie,nom_ame,nom_barre_ame,nom_barre_vie,nom_barre_vie_vide,nom_sang,nom_inventaire,chemin_son_mort;
@@ -188,14 +189,15 @@ class OptionsJeu : public QDialog // On hérite de QWidget (IMPORTANT)
         delete text2;
         delete text3;
         delete text4;
+        delete text5;
 
         delete barreTauxContrastes;
         delete barreTauxLuminosite;
         delete barreVolume;
+        delete barreLumiere;
 
         delete modeFenetre;
         delete syncro;
-        delete lumieres;
         delete ombres;
         delete fx;
         delete sang;
@@ -208,14 +210,15 @@ class OptionsJeu : public QDialog // On hérite de QWidget (IMPORTANT)
     void ChangerContraste(int );
     void ChangerLuminosite(int );
     void ChangerVolume(int );
+    void ChangerLumiere(int );
 
     void Quitter();
 
     private:
     QPushButton *m_boutonRetour;
-    QLabel *text,*text2,*text3,*text4;
-    QSlider *barreTauxContrastes,*barreTauxLuminosite,*barreVolume;
-    QCheckBox *modeFenetre,*syncro,*lumieres,*ombres,*fx,*sang,*herbes;
+    QLabel *text,*text2,*text3,*text4,*text5;
+    QSlider *barreTauxContrastes,*barreTauxLuminosite,*barreVolume,*barreLumiere;
+    QCheckBox *modeFenetre,*syncro,*ombres,*fx,*sang,*herbes;
     QComboBox *listeResolution;
 
     std::vector <coordonnee> resolutions;
