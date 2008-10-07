@@ -26,6 +26,14 @@ Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse
 *v8 di2 da3 m0.35 o1 a1 n1 $
 $
+Objets du monstre
+
+*
+*Data/Objets/p_hache.item.hs
+r100
+$
+
+$
 Arret - E
 *x0 y0 w128 h128 a1 s-1 i0 $
 *x128 y0 w128 h128 a2 s-1 i0 $

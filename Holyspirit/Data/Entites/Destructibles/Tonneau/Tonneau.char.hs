@@ -19,6 +19,11 @@ Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse
 *v5 di0 da0 m0 o1 a0 n0 $
 $
+*
+*Data/Objets/p_hache.item.hs
+r250
+$
+$
 Arret - E
 *x0 y0 w128 h128 a0 s-1 i0 $
 $

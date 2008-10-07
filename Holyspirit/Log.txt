@@ -59,6 +59,8 @@ ERREUR : Impossible de charger :
          Chargement de : Data/Sons/9906__Snoman__grass3.wav
          Chargement de : Data/Sons/9906__Snoman__grass3.wav
          Chargement de : Data/Sons/35213__Abyssmal__slashkut.wav
+         
+         Chargement de l'objet : Data/Objets/p_hache.item.hs
          Chargement de : Data/Entites/Monstres/PantinMorbide/PantinMorbide.char.hs
          
          Chargement du monstre : Data/Entites/Destructibles/Tonneau/TonneauExp.char.hs
@@ -94,12 +96,16 @@ ERREUR : Impossible de charger :
          Chargement de : Data/Entites/Monstres/GolemQuartz/GolQuaMor.png
          Chargement de : Data/Sons/15569__tigersound__walking_on_stone.wav
          Chargement de : Data/Sons/30009__thanvannispen__stone_on_stone_impact_loud2.aiff
+         
+         Chargement de l'objet : Data/Objets/Minerai.item.hs
          Chargement de : Data/Entites/Monstres/GolemQuartz/GolemQuartz.char.hs
          
          Chargement du monstre : Data/Entites/Destructibles/Tonneau/Tonneau.char.hs
          Chargement de : Data/Sons/31622__Srehpog__light_crate_smash1.wav
          Chargement de : Data/Sons/31623__Srehpog__light_crate_smash2.wav
          Chargement de : Data/Sons/31624__Srehpog__light_crate_smash3.wav
+         
+         Chargement de l'objet : Data/Objets/p_hache.item.hs
          Chargement de : Data/Entites/Destructibles/Tonneau/Tonneau.char.hs
          
          Chargement du monstre : Data/Entites/Destructibles/Tonneau/TonneauExp.char.hs
@@ -122,6 +128,8 @@ ERREUR : Impossible de charger :
          Chargement de : Data/Sons/9906__Snoman__grass3.wav
          Chargement de : Data/Sons/9906__Snoman__grass3.wav
          Chargement de : Data/Sons/35213__Abyssmal__slashkut.wav
+         
+         Chargement de l'objet : Data/Objets/p_hache.item.hs
          Chargement de : Data/Entites/Monstres/PantinMorbide/PantinMorbide.char.hs
          
          Chargement du monstre : Data/Entites/Monstres/ErrantRoche/ErrantRoche.char.hs
@@ -142,6 +150,8 @@ ERREUR : Impossible de charger :
          Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheMort4.png
          Chargement de : Data/Sons/15569__tigersound__walking_on_stone.wav
          Chargement de : Data/Sons/30009__thanvannispen__stone_on_stone_impact_loud2.aiff
+         
+         Chargement de l'objet : Data/Objets/Minerai.item.hs
          Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRoche.char.hs
          
          ---------------------------------------------------------------------------------
@@ -160,15 +170,10 @@ ERREUR : Impossible de charger :
          Chargement de : Data/Sons/9906__Snoman__grass3.wav
          Chargement de : Data/Sons/9906__Snoman__grass3.wav
          Chargement de : Data/Sons/35213__Abyssmal__slashkut.wav
+         
+         Chargement de l'objet : Data/Objets/p_hache.item.hs
          Chargement de : Data/Entites/Monstres/PantinMorbide/PantinMorbide.char.hs
          
          Chargement du monstre : Data/Entites/Monstres/ErrantRoche/ErrantRocheChef.char.hs
          Chargement de : Data/Sons/15569__tigersound__walking_on_stone.wav
          Chargement de : Data/Sons/30009__thanvannispen__stone_on_stone_impact_loud2.aiff
-         Chargement de : Data/Entites/Monstres/ErrantRoche/ErrantRocheChef.char.hs
-         
-         Sauvegarde de la map : Data/Temp/map4.map.hs
-         
-         Fermeture des contextes effectuée avec succès.
-         
-         EXIT_SUCCESS

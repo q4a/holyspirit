@@ -31,6 +31,11 @@ Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse/Ombre/PointAme
 * v15 di5 da10 m0.2 o0 a2 n2 $
 $
+*
+*Data/Objets/Minerai.item.hs
+r100
+$
+$
 Arret - E
 *x0 y0 w128 h128 a1 s-1 i0 $
 *x128 y0 w128 h128 a2 s-1 i0 $
