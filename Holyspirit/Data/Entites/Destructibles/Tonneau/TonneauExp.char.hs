@@ -18,7 +18,10 @@ Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse
 *v5 di5 da30 m0 o1 a0 n0 e1 $
 $
-
+*
+*Data/Objets/Charbon.item.hs
+r100
+$
 $
 Arret - E
 *x0 y0 w128 h128 a0 s-1 i1 $
