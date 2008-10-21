@@ -21,7 +21,7 @@ class Map
 	~Map();
 	bool Charger(int numeroMap);
 	void Sauvegarder();
-	void Afficher(sf::RenderWindow* ecran,sf::View *camera,int type,Hero *hero,coordonnee positionSouris,bool alt);
+	void Afficher(sf::RenderWindow* ecran,sf::View *camera,int type,Hero *hero,coordonnee positionSouris,bool alt,float alpha=255);
 	void AfficherNomEvenement(sf::RenderWindow* ecran,coordonnee casePointee,coordonnee positionSouris);
 
 	int getMonstreIllumine();
@@ -29,11 +29,14 @@ class Map
 	int getTypeCase(int positionX,int positionY);
 	int getEvenement(coordonnee casePointee);
 	int getMonstre(Hero *hero,sf::View *camera,sf::RenderWindow *ecran,coordonnee positionSouris,coordonnee casePointee);
+	coordonnee getSacPointe();
+	int getObjetPointe();
+	int getNombreObjets(coordonnee position);
 	Monstre *getEntiteMonstre (int numeroMonstre);
 	coordonnee getPositionMonstre(int numeroMonstre);
 	std::vector<std::vector<bool> > getAlentourDuPersonnage(coordonnee positionPersonnage); // Retourne un tableau de bool contenant toutes les collitions dans les alentour du héro, pour le pathfinding
 
-	void animer(Hero *hero,float temps,Menu *menu); // Animation des tiles
+	void animer(Hero *hero,float temps,Menu *menu,sf::View *camera); // Animation des tiles
 	bool testEvenement(sf::View *camera, Jeu *jeu,float temps);
 	void calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *camera);
 	void Detruire();
@@ -50,10 +53,13 @@ class Map
 
 	void verifierDeclencheursDegats(int i, int j);
 
+	void ramasserObjet(Hero *hero);
+
 	coordonnee getDimensions();
 
 	private:
-	int m_monstreIllumine,m_numero,IDImageSac;
+	int m_monstreIllumine,m_numero,IDImageSac,m_objetPointe;
+	coordonnee m_sacPointe;
 	Lumiere m_lumiere[24];
 	std::vector <Tileset> m_tileset;
 	std::vector <Tileset> m_herbe;
@@ -68,7 +74,7 @@ class Map
 	std::vector <Modele_Monstre> m_ModeleMonstre;
 	std::vector <Monstre> m_monstre;
 
-	sf::Image carreBrun,carreBleu,carreRouge,carreVert;
+	sf::Image carreBrun,carreBleu,carreRouge,carreVert,carreJaune;
 
 	LumiereOmbrage m_tableauDesLampes[30][30],m_tableauDesLampesBasique[30][30],m_lumiereHero; // Tableau de lumière et ombres, 30X30 car c'est le nbr max de tiles affichables à l'écran
 };

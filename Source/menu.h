@@ -55,7 +55,7 @@ class Menu
 	public:
 	Menu();
 	~Menu();
-	void Afficher(sf::RenderWindow* ecran,int type);
+	void Afficher(sf::RenderWindow* ecran,int type,float alpha=255);
 	void AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracteristique,int type,Caracteristique caracteristiqueMonstre);
 	void AfficherChargement(sf::RenderWindow* ecran,std::string nom,int fond,int z);
 	void AfficherInventaire(sf::RenderWindow* ecran);

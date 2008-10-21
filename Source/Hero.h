@@ -27,9 +27,13 @@ class Hero
 
 	void augmenterAme(float temps);
 
+	void ajouterObjet(Objet objet);
+
 	void setMonstreVise(int monstre);
+	void setChercherSac(coordonnee);
 
 	int getMonstreVise();
+	coordonnee getChercherSac();
 
 	Personnage m_personnage;
 	Modele_Personnage m_modelePersonnage;
@@ -37,6 +41,10 @@ class Hero
 	private:
 	coordonneeDecimal m_positionAffichage;
 	int m_monstreVise;
+	coordonnee m_chercherSac;
+
+	std::vector<Objet> m_inventaire;
+	bool m_caseInventaire[5][8];
 };
 
 #endif

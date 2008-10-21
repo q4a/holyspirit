@@ -209,6 +209,40 @@ bool Modele_Monstre::Charger(string chemin)
             if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }
         }while(caractere!='$');
 
+
+        do
+    	{
+    	    //Chargement de la lumière ambiante
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
+                ModeleObjet tempModeleObjet;
+                do
+                {
+                    fichier.get(caractere);
+                    if(caractere=='r')
+                    {
+                        int temp2;
+                        fichier>>temp2;
+                        tempModeleObjet.setChanceTrouver(temp2);
+                    }
+
+                    if(caractere=='*')
+                    {
+                        string temp2;
+                        getline(fichier, temp2);
+                        tempModeleObjet.Charger(temp2);
+                    }
+
+                    if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+                }while(caractere!='$');
+                m_objets.push_back(tempModeleObjet);
+                fichier.get(caractere);
+            }
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
+
         Pose poseTemp;
     	 m_pose.resize(NOMBRE_ETAT,vector<vector<Pose> >(0,vector<Pose>(0,poseTemp)));
 
@@ -260,6 +294,8 @@ bool Modele_Monstre::Charger(string chemin)
 
     return 1;
 }
+
+std::vector<ModeleObjet> Modele_Monstre::getObjets(){return m_objets;}
 
 void Monstre::testerVision(coordonnee positionHero)
 {

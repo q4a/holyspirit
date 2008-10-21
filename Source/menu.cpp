@@ -78,18 +78,19 @@ Menu::Menu()
 	m_fondMiniMap.Create(configuration.Resolution.x/4, configuration.Resolution.x/4, sf::Color(0, 0, 0));*/
 }
 
-void Menu::Afficher(sf::RenderWindow* ecran,int type)
+void Menu::Afficher(sf::RenderWindow* ecran,int type,float alpha)
 {
 	Sprite sprite,sprite2;
 
 	if(type==1)
     {
         //On affiche le fond noir de la mini-map
-		/*sprite.SetImage(*moteurGraphique.getImage(m_fondMiniMap));
-		sprite.SetX(configuration.Resolution.x-configuration.Resolution.x*0.25);
+		sprite.SetImage(*moteurGraphique.getImage(0));
+		sprite.SetX(configuration.Resolution.w-configuration.Resolution.w*0.25);
 		sprite.SetY(0);
-		sprite.SetColor(sf::Color(255,255,255,64));
-		moteurGraphique.AjouterCommande(&sprite,0);*/
+		sprite.SetColor(sf::Color(0,0,0,224*(int)alpha/255));
+		sprite.Resize(configuration.Resolution.w*0.25, configuration.Resolution.w*0.25);
+		moteurGraphique.AjouterCommande(&sprite,0);
 		//ecran->Draw(sprite);
     }
 
@@ -100,6 +101,7 @@ void Menu::Afficher(sf::RenderWindow* ecran,int type)
 		sprite.SetX(configuration.Resolution.w-configuration.Resolution.w*0.25);
 		sprite.SetY(0);
 		sprite.Resize(configuration.Resolution.w*0.25, configuration.Resolution.w*0.25);
+		sprite.SetColor(sf::Color(255,255,255,(int)alpha));
 		moteurGraphique.AjouterCommande(&sprite,0);
     }
 
@@ -110,7 +112,31 @@ void Menu::Afficher(sf::RenderWindow* ecran,int type)
 		sprite2.SetX(0);
 		sprite2.SetY(configuration.Resolution.h-128*configuration.Resolution.h/600);
 		sprite2.Resize(configuration.Resolution.w, 128*configuration.Resolution.h/600);
+		sprite.SetColor(sf::Color(255,255,255,(int)alpha));
 		moteurGraphique.AjouterCommande(&sprite2,0);
+    }
+
+    if(type==4)
+    {
+        //On affiche le fond noir du menu du sac
+		sprite.SetImage(*moteurGraphique.getImage(0));
+		sprite.SetX(configuration.Resolution.w-configuration.Resolution.w*0.25);
+		sprite.SetY(configuration.Resolution.w*0.25);
+		sprite.SetColor(sf::Color(0,0,0,224*(int)alpha/255));
+		sprite.Resize(configuration.Resolution.w*0.25, configuration.Resolution.w*0.34);
+		moteurGraphique.AjouterCommande(&sprite,0);
+		//ecran->Draw(sprite);
+    }
+
+    if(type==5)
+    {
+        //On affiche le cadran du menu du sac
+		sprite.SetImage(*moteurGraphique.getImage(m_imageMiniMap));
+		sprite.SetX(configuration.Resolution.w-configuration.Resolution.w*0.25);
+		sprite.SetY(configuration.Resolution.w*0.25);
+		sprite.Resize(configuration.Resolution.w*0.25, configuration.Resolution.w*0.34);
+		sprite.SetColor(sf::Color(255,255,255,(int)alpha));
+		moteurGraphique.AjouterCommande(&sprite,0);
     }
 }
 

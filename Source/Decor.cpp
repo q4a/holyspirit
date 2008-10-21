@@ -38,7 +38,13 @@ void Decor::setTile(int tile){m_tile=tile;}
 void Decor::ajouterObjet(Objet objet){m_objets.push_back(objet);}
 
 
-
+void Decor::supprimerObjet(int numero)
+{
+    if(numero>=0&&numero<m_objets.size())
+    {
+        m_objets.erase(m_objets.begin()+numero);
+    }
+}
 
 
 int Decor::getTile(){return m_tile;}

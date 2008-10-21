@@ -38,6 +38,7 @@ class Decor
 	int getHerbe(); // Retourne le numero de l'herbe du décor
 	int getNumeroHerbe();
 	Objet getObjet(int numero);
+	void supprimerObjet(int numero);
 	std::vector<Objet> getObjets();
 	int getNombreObjets();
 

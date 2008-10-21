@@ -37,3 +37,12 @@ void c_Inventaire::Utiliser(Jeu *jeu)
     jeu->m_display=true;
 }
 
+
+void c_Inventaire::afficherInventaire()
+{
+    for(int i=0;i<5;i++)
+        for(int j=0;j<8;j++)
+        {
+        }
+}
+

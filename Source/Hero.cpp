@@ -24,6 +24,9 @@ Hero::Hero()
    ///Je donnes des valeur à mes variables juste pour les tests
 	m_personnage.setEtat(ARRET);
 
+	m_chercherSac.x=-1;
+	m_chercherSac.y=-1;
+
 	coordonnee position;
 	position.x=-10000;
 	position.y=-10000;
@@ -57,6 +60,10 @@ Hero::Hero()
 	m_personnage.setCaracteristique(temp);
 
 	m_monstreVise=-1;
+
+	for(int i=0;i<5;i++)
+        for(int j=0;j<8;j++)
+            m_caseInventaire[i][j]=0;
 }
 
 void Hero::Sauvegarder()
@@ -176,7 +183,25 @@ void Hero::augmenterAme(float temps)
     m_personnage.setCaracteristique(temp);
 }
 
-void Hero::setMonstreVise(int monstre){m_monstreVise=monstre;}
+void Hero::ajouterObjet(Objet objet)
+{
+    for(int i=0;i<5;i++)
+        for(int j=0;j<8;j++)
+        {
+            if(!m_caseInventaire[i][j])
+            {
+                objet.setPosition(i,j);
+                m_inventaire.push_back(objet);
 
+                i=5,j=8;
+            }
+        }
+
+}
+
+void Hero::setMonstreVise(int monstre){m_monstreVise=monstre;}
+void Hero::setChercherSac(coordonnee a){m_chercherSac=a;}
+
+coordonnee Hero::getChercherSac(){return m_chercherSac;};
 int Hero::getMonstreVise(){return m_monstreVise;}
 #endif

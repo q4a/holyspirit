@@ -464,14 +464,14 @@
 	"constantes.h"
 	"Globale.h"
 
-1218271440 source:d:\backup disque e\c++\holyspirit\source\monstre.cpp
+1223395495 source:d:\backup disque e\c++\holyspirit\source\monstre.cpp
 	<iostream>
 	<fstream>
 	"Monstre.h"
 	"Constantes.h"
 	"Globale.h"
 
-1218271440 d:\backup disque e\c++\holyspirit\source\monstre.h
+1223395442 d:\backup disque e\c++\holyspirit\source\monstre.h
 	"Personnage.h"
 	"Constantes.h"
 
@@ -497,7 +497,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1222262676 d:\backup disque e\c++\holyspirit\source\decor.h
+1224411397 d:\backup disque e\c++\holyspirit\source\decor.h
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
@@ -519,12 +519,12 @@
 	<SFML/Graphics.hpp>
 	"constantes.h"
 
-1218271440 d:\backup disque e\c++\holyspirit\source\globale.h
+1223394778 d:\backup disque e\c++\holyspirit\source\globale.h
 	"MoteurGraphique.h"
 
 1202297272 source:d:\backup disque e\c++\holyspirit\source\ressource.rc
 
-1222261906 source:d:\backup disque e\c++\holyspirit\source\hero.cpp
+1224603440 source:d:\backup disque e\c++\holyspirit\source\hero.cpp
 	"Hero.h"
 	"Globale.h"
 	<iostream>
@@ -534,7 +534,7 @@
 	<math.h>
 	<dirent.h>
 
-1218359398 d:\backup disque e\c++\holyspirit\source\hero.h
+1224603670 d:\backup disque e\c++\holyspirit\source\hero.h
 	<iostream>
 	<string>
 	"Personnage.h"
@@ -623,7 +623,7 @@
 	<SFML/Graphics.hpp>
 	"constantes.h"
 
-1222264348 d:\backup disque e\c++\holyspirit\source\map.h
+1224412405 d:\backup disque e\c++\holyspirit\source\map.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -634,13 +634,13 @@
 	"Evenement.h"
 	"c_changementMap.h"
 
-1218271441 d:\backup disque e\c++\holyspirit\source\menu.h
+1224409859 d:\backup disque e\c++\holyspirit\source\menu.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"constantes.h"
 
-1222262676 source:d:\backup disque e\c++\holyspirit\source\decor.cpp
+1224411613 source:d:\backup disque e\c++\holyspirit\source\decor.cpp
 	"Decor.h"
 	"Globale.h"
 
@@ -664,7 +664,7 @@
 
 1202297251 d:\backup disque e\c++\holyspirit\source\configuration.h
 
-1220779458 source:d:\backup disque e\c++\holyspirit\source\menu.cpp
+1224410652 source:d:\backup disque e\c++\holyspirit\source\menu.cpp
 	"menu.h"
 	"Globale.h"
 	<iostream>
@@ -680,7 +680,7 @@
 	"constantes.h"
 	"Globale.h"
 
-1222962008 source:d:\backup disque e\c++\holyspirit\source\map.cpp
+1224412641 source:d:\backup disque e\c++\holyspirit\source\map.cpp
 	"Map.h"
 	<iostream>
 	<fstream>
@@ -691,7 +691,7 @@
 	"Globale.h"
 	"Jeu.h"
 
-1221391068 source:d:\backup disque e\c++\holyspirit\source\jeu.cpp
+1224323709 source:d:\backup disque e\c++\holyspirit\source\jeu.cpp
 	"constantes.h"
 	"Globale.h"
 	"jeu.h"
@@ -710,7 +710,7 @@
 	"c_inventaire.h"
 	"c_menuInGame.h"
 
-1218271440 d:\backup disque e\c++\holyspirit\source\c_jeu.h
+1224409622 d:\backup disque e\c++\holyspirit\source\c_jeu.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"Contexte.h"
@@ -721,7 +721,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1222264438 source:d:\backup disque e\c++\holyspirit\source\c_jeu.cpp
+1224412035 source:d:\backup disque e\c++\holyspirit\source\c_jeu.cpp
 	"c_jeu.h"
 	"jeu.h"
 	"Globale.h"
@@ -997,7 +997,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1218271440 d:\backup disque e\c++\holyspirit\source\c_inventaire.h
+1224605937 d:\backup disque e\c++\holyspirit\source\c_inventaire.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"Contexte.h"
@@ -1024,7 +1024,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1222796086 source:d:\backup disque e\c++\holyspirit\source\moteurgraphique.cpp
+1223740125 source:d:\backup disque e\c++\holyspirit\source\moteurgraphique.cpp
 	"MoteurGraphique.h"
 	"Globale.h"
 	<iostream>
@@ -1048,9 +1048,12 @@
 	<iostream>
 	<list>
 
-1222266567 d:\backup disque e\c++\holyspirit\source\objet.h
+1224605937 d:\backup disque e\c++\holyspirit\source\objet.h
 	<iostream>
+	"constantes.h"
 
-1222266596 source:d:\backup disque e\c++\holyspirit\source\objet.cpp
+1223396112 source:d:\backup disque e\c++\holyspirit\source\objet.cpp
 	"Objet.h"
+	"Globale.h"
+	<fstream>
 

@@ -6,7 +6,7 @@
 
 MoteurGraphique::MoteurGraphique()
 {
-    sf::Image temp;
+    sf::Image temp(1, 1, sf::Color(255, 255, 255));
     m_images.push_back(temp);
     std::string temp2="";
     m_cheminsImages.push_back(temp2);
