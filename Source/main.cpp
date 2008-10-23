@@ -27,7 +27,6 @@ int main ( int argc, char** argv )
 
     console.Rapport();
 
-
     try
 	{
 	    ///Chargement de la configuration
@@ -48,11 +47,6 @@ int main ( int argc, char** argv )
 
 		return EXIT_FAILURE;
 	}
-
-
-
-    //if(!Jeu(&ecran))
-      //  return EXIT_FAILURE;
 
     configuration.Sauvegarder();
 

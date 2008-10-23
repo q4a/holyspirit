@@ -600,8 +600,6 @@ void Map::Sauvegarder()
 
 
 
-
-
     chemin = configuration.chemin_temps;
     sprintf(numero,"entites_map%ld.emap.hs",m_numero);
 	chemin += numero;
@@ -659,6 +657,8 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
     if(vueMin.y<0) { vueMin.y=0; }
     if(vueMax.x>getDimensions().x) { vueMax.x=getDimensions().x; }
     if(vueMax.y>getDimensions().y) { vueMax.y=getDimensions().y; }
+
+
     if(configuration.heure+1<24)
     {
         lumiereMap.intensite=(int)(((float)m_lumiere[configuration.heure].intensite*(60-configuration.minute)+((float)m_lumiere[configuration.heure+1].intensite*configuration.minute))*0.016666666666666666666666666666667);
@@ -945,8 +945,9 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
 
 
                         //Maintenant, je vais calculer la lumière à ajouter à tout les tiles affiché à l'écran
-                        for(int l=vueMin.y;l<vueMax.y;l++)
-                            for(int m=vueMin.x;m<vueMax.x;m++)
+                        for(int l=j-7;l<j+7;l++)
+                            for(int m=k-7;m<k+7;m++)
+                            if(l>=vueMin.y&&l<vueMax.y&&m>=vueMin.x&&m<vueMax.x)
                                 {
                                     bool ombre=false;
                                     position.x=(m-l-1+m_decor[0].size())*64;
@@ -1767,6 +1768,8 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                         texte.SetColor(sf::Color(255,164,32));
                                     if(rarete==INFERNAL)
                                         texte.SetColor(sf::Color(224,0,0));
+                                    if(rarete==CRAFT)
+                                        texte.SetColor(sf::Color(128,64,0));
 
                                     texte.SetText(m_decor[1][j][k].getObjet(z).getNom());
                                     texte.SetSize(16*configuration.Resolution.w/800);
@@ -2081,6 +2084,8 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                     texte.SetColor(sf::Color(255,164,32,(int)alpha));
                 if(rarete==INFERNAL)
                     texte.SetColor(sf::Color(224,0,0,(int)alpha));
+                if(rarete==CRAFT)
+                    texte.SetColor(sf::Color(128,64,0,(int)alpha));
 
                 texte.SetText(m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getObjet(z).getNom());
                 texte.SetSize(16*configuration.Resolution.w/800);
@@ -2494,20 +2499,24 @@ bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *ca
                 for(int i=0;i<m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets().size();i++)
                     if(rand()%1000<m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets()[i].getChanceTrouver())
                     {
-                        int rarete=NORMAL;
-                        int random=rand()%10000;
-                        if(random<=3000)
-                            rarete=BONNEFACTURE;
-                        if(random<=300)
-                            rarete=BENI;
-                        if(random<=50)
-                            rarete=SACRE;
-                        if(random<20)
-                            rarete=SANCTIFIE;
-                        if(random<3)
-                            rarete=DIVIN;
-                        if(random==1)
-                            rarete=INFERNAL;
+                        int rarete=m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets()[i].getRarete();
+
+                        if(rarete==0)
+                        {
+                            int random=rand()%10000;
+                            if(random<=3000)
+                                rarete=BONNEFACTURE;
+                            if(random<=300)
+                                rarete=BENI;
+                            if(random<=50)
+                                rarete=SACRE;
+                            if(random<20)
+                                rarete=SANCTIFIE;
+                            if(random<3)
+                                rarete=DIVIN;
+                            if(random==1)
+                                rarete=INFERNAL;
+                        }
 
                         Objet temp;
                         temp=m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets()[i];
@@ -2528,8 +2537,8 @@ void Map::ramasserObjet(Hero *hero)
     &&hero->getChercherSac().y>=0&&hero->getChercherSac().y<m_decor[1].size())
 	    if(m_objetPointe>=0&&m_objetPointe<m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getNombreObjets())
         {
-            hero->ajouterObjet(m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getObjet(m_objetPointe));
-            m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].supprimerObjet(m_objetPointe);
+            if(hero->ajouterObjet(m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getObjet(m_objetPointe)))
+                m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].supprimerObjet(m_objetPointe);
         }
 }
 

@@ -14,8 +14,6 @@ class c_Inventaire : public Contexte
     c_Inventaire(Jeu *jeu);
     void Utiliser(Jeu *jeu);
 
-    void afficherInventaire();
-
     sf::View camera;
 
     private:

@@ -115,6 +115,28 @@ void ModeleObjet::Charger(std::string chemin)
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
 
     	}while(caractere!='$');
+
+    	do
+    	{
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
+                do
+                {
+                    fichier.get(caractere);
+                    switch (caractere)
+                    {
+                        case 'r' : fichier>>m_rarete; break;
+                    }
+
+                    if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+                }while(caractere!='$');
+                fichier.get(caractere);
+            }
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
     }
     else
     console.Ajouter("Impossible d'ouvrir : "+chemin,1);

@@ -25,9 +25,19 @@ void c_Inventaire::Utiliser(Jeu *jeu)
     if(jeu->eventManager.getEvenement(Key::I,"ET"))
             jeu->m_contexte=jeu->m_jeu,jeu->eventManager.StopEvenement(Key::I,"ET");
 
+
+    if(jeu->eventManager.getEvenement(Mouse::Left,"C"))
+    {
+        jeu->hero.prendreEnMain(jeu->eventManager.getPositionSouris());
+        jeu->eventManager.StopEvenement(Mouse::Left,"C");
+    }
+
+
     jeu->ecran.SetView(jeu->ecran.GetDefaultView());
 
     jeu->menu.AfficherInventaire(&jeu->ecran);
+
+    jeu->hero.afficherInventaire(&jeu->ecran,jeu->eventManager.getPositionSouris());
 
     jeu->menu.Afficher(&jeu->ecran,3);
     jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),-1,jeu->hero.m_personnage.getCaracteristique());
@@ -37,12 +47,4 @@ void c_Inventaire::Utiliser(Jeu *jeu)
     jeu->m_display=true;
 }
 
-
-void c_Inventaire::afficherInventaire()
-{
-    for(int i=0;i<5;i++)
-        for(int j=0;j<8;j++)
-        {
-        }
-}
 

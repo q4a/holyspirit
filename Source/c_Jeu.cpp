@@ -208,8 +208,13 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     tempsDepuisDerniereAnimation=0;
                 }
 
+
+
+
                 if(tempsEcouleDepuisDernierAffichage>0.013&&configuration.syncronisation_verticale||!configuration.syncronisation_verticale)
                 {
+
+
                     jeu->hero.placerCamera(&jeu->camera,jeu->map.getDimensions()); // On place la camera suivant ou se trouve le perso
                     jeu->camera.Zoom(configuration.zoom);
 
@@ -224,7 +229,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     {
                         if(!(jeu->eventManager.getPositionSouris().x>configuration.Resolution.w-configuration.Resolution.w*0.25
                           &&jeu->eventManager.getPositionSouris().y>configuration.Resolution.w*0.25&&jeu->eventManager.getPositionSouris().y<configuration.Resolution.w*0.25+configuration.Resolution.w*0.34
-                          &&jeu->hero.getChercherSac().x!=-1)||jeu->hero.getChercherSac().x==-1)
+                          &&alpha_sac>=128)||alpha_sac<=128)
                         {
                             jeu->hero.setMonstreVise(monstreVise);
 

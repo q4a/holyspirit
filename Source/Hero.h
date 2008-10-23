@@ -21,13 +21,17 @@ class Hero
 	void Sauvegarder();
 	void Charger();
 
+	void afficherInventaire(sf::RenderWindow *,coordonnee);
+
 	void placerCamera(sf::View *camera,coordonnee dimensionsMap);
 
 	void testMontreVise(Monstre *monstre,int hauteurMap);
 
 	void augmenterAme(float temps);
 
-	void ajouterObjet(Objet objet);
+	bool ajouterObjet(Objet objet);
+
+	void prendreEnMain(coordonnee positionSouris);
 
 	void setMonstreVise(int monstre);
 	void setChercherSac(coordonnee);
@@ -40,7 +44,7 @@ class Hero
 
 	private:
 	coordonneeDecimal m_positionAffichage;
-	int m_monstreVise;
+	int m_monstreVise,m_objetEnMain;
 	coordonnee m_chercherSac;
 
 	std::vector<Objet> m_inventaire;

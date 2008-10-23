@@ -64,6 +64,8 @@ Hero::Hero()
 	for(int i=0;i<5;i++)
         for(int j=0;j<8;j++)
             m_caseInventaire[i][j]=0;
+
+    m_objetEnMain=-1;
 }
 
 void Hero::Sauvegarder()
@@ -128,6 +130,62 @@ void Hero::Charger()
 
 }
 
+void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris)
+{
+
+    for(int i=0;i<m_inventaire.size();i++)
+    {
+         sf::Sprite sprite;
+
+        sprite.SetImage(*moteurGraphique.getImage(0));
+        if(m_inventaire[i].getRarete()==NORMAL)
+            sprite.SetColor(sf::Color(224,224,224,128));
+        if(m_inventaire[i].getRarete()==BONNEFACTURE)
+            sprite.SetColor(sf::Color(128,0,128,128));
+        if(m_inventaire[i].getRarete()==BENI)
+            sprite.SetColor(sf::Color(0,64,128,128));
+        if(m_inventaire[i].getRarete()==SACRE)
+            sprite.SetColor(sf::Color(255,255,128,128));
+        if(m_inventaire[i].getRarete()==SANCTIFIE)
+            sprite.SetColor(sf::Color(128,255,255,128));
+        if(m_inventaire[i].getRarete()==DIVIN)
+            sprite.SetColor(sf::Color(255,164,32,128));
+        if(m_inventaire[i].getRarete()==INFERNAL)
+            sprite.SetColor(sf::Color(224,0,0,128));
+        if(m_inventaire[i].getRarete()==CRAFT)
+            sprite.SetColor(sf::Color(128,64,0,128));
+
+        sprite.Resize(m_inventaire[i].getTaille().x*32*configuration.Resolution.x/800,m_inventaire[i].getTaille().y*32*configuration.Resolution.y/600);
+        sprite.SetX((m_inventaire[i].getPosition().x*32+477)*configuration.Resolution.x/800);
+        sprite.SetY(((m_inventaire[i].getPosition().y-1)*32+399)*configuration.Resolution.y/600);
+
+        moteurGraphique.AjouterCommande(&sprite,0);
+
+        sprite.SetColor(sf::Color(255,255,255,255));
+
+        sprite.SetImage(*moteurGraphique.getImage(m_inventaire[i].getImage()));
+        sprite.SetSubRect(IntRect(m_inventaire[i].getPositionImage().x, m_inventaire[i].getPositionImage().y, m_inventaire[i].getPositionImage().x+m_inventaire[i].getPositionImage().w, m_inventaire[i].getPositionImage().y+m_inventaire[i].getPositionImage().h));
+        sprite.Resize(m_inventaire[i].getTaille().x*32*configuration.Resolution.x/800,m_inventaire[i].getTaille().y*32*configuration.Resolution.y/600);
+        sprite.SetX((m_inventaire[i].getPosition().x*32+477)*configuration.Resolution.x/800);
+        sprite.SetY(((m_inventaire[i].getPosition().y-1)*32+399)*configuration.Resolution.y/600);
+
+        moteurGraphique.AjouterCommande(&sprite,0);
+    }
+
+    if(m_objetEnMain>=0&&m_objetEnMain<m_inventaire.size())
+    {
+        sf::Sprite sprite;
+        sprite.SetImage(*moteurGraphique.getImage(m_inventaire[m_objetEnMain].getImage()));
+        sprite.SetSubRect(IntRect(m_inventaire[m_objetEnMain].getPositionImage().x, m_inventaire[m_objetEnMain].getPositionImage().y, m_inventaire[m_objetEnMain].getPositionImage().x+m_inventaire[m_objetEnMain].getPositionImage().w, m_inventaire[m_objetEnMain].getPositionImage().y+m_inventaire[m_objetEnMain].getPositionImage().h));
+        sprite.Resize(m_inventaire[m_objetEnMain].getTaille().x*32*configuration.Resolution.x/800,m_inventaire[m_objetEnMain].getTaille().y*32*configuration.Resolution.y/600);
+        sprite.SetX(positionSouris.x);
+        sprite.SetY(positionSouris.y);
+
+        moteurGraphique.AjouterCommande(&sprite,0);
+    }
+
+}
+
 void Hero::placerCamera(sf::View *camera,coordonnee dimensionsMap)
 {
 	m_positionAffichage.y=(((m_personnage.getCoordonneePixel().x+m_personnage.getCoordonneePixel().y)*64/COTE_TILE)/2);
@@ -183,19 +241,66 @@ void Hero::augmenterAme(float temps)
     m_personnage.setCaracteristique(temp);
 }
 
-void Hero::ajouterObjet(Objet objet)
+bool Hero::ajouterObjet(Objet objet)
 {
+    bool ramasser=false;
     for(int i=0;i<5;i++)
         for(int j=0;j<8;j++)
         {
             if(!m_caseInventaire[i][j])
             {
-                objet.setPosition(i,j);
-                m_inventaire.push_back(objet);
+                bool ok=true;
+                for(int x=j;x<j+objet.getTaille().x;x++)
+                    for(int y=i;y<i+objet.getTaille().y;y++)
+                        if(x<8&&y<5)
+                        {
+                            if(m_caseInventaire[y][x])
+                                ok=false;
+                        }
+                        else
+                        {
+                            ok=false;
+                        }
 
-                i=5,j=8;
+                if(ok)
+                {
+                    objet.setPosition(j,i);
+                    m_inventaire.push_back(objet);
+
+                    for(int x=j;x<j+objet.getTaille().x;x++)
+                        for(int y=i;y<i+objet.getTaille().y;y++)
+                            m_caseInventaire[y][x]=1;
+
+                    ramasser=true;
+
+                    i=5,j=8;
+                }
             }
         }
+
+    return ramasser;
+}
+
+void Hero::prendreEnMain(coordonnee positionSouris)
+{
+
+    if(positionSouris.x>477&&positionSouris.x<477+32*8&&positionSouris.y>367&&positionSouris.y<399+32*5)
+    {
+        m_objetEnMain=-1;
+        for(int i=0;i<m_inventaire.size();i++)
+            if(positionSouris.x>m_inventaire[i].getPosition().x*32+477&&positionSouris.x<m_inventaire[i].getPosition().x*32+477+m_inventaire[i].getTaille().x*32
+             &&positionSouris.y>m_inventaire[i].getPosition().y*32+367&&positionSouris.y<m_inventaire[i].getPosition().y*32+367+m_inventaire[i].getTaille().y*32)
+                m_objetEnMain=i;
+    }
+    else if(m_objetEnMain>=0&&m_objetEnMain<m_inventaire.size())
+    {
+        for(int x=0;x<m_inventaire[m_objetEnMain].getTaille().x;x++)
+            for(int y=0;y<m_inventaire[m_objetEnMain].getTaille().y;y++)
+                m_caseInventaire[y+m_inventaire[m_objetEnMain].getPosition().y][x+m_inventaire[m_objetEnMain].getPosition().x]=0;
+        m_inventaire.erase(m_inventaire.begin()+m_objetEnMain);
+
+        m_objetEnMain=-1;
+    }
 
 }
 
