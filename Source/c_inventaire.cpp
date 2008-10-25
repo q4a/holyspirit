@@ -20,6 +20,8 @@ c_Inventaire::c_Inventaire(Jeu *jeu)
 
 void c_Inventaire::Utiliser(Jeu *jeu)
 {
+    jeu->Clock.Reset();
+
     jeu->eventManager.GererLesEvenements(&jeu->ecran,&camera,&jeu->m_run,0,jeu->map.getDimensions());
 
     if(jeu->eventManager.getEvenement(Key::I,"ET"))
@@ -28,7 +30,7 @@ void c_Inventaire::Utiliser(Jeu *jeu)
 
     if(jeu->eventManager.getEvenement(Mouse::Left,"C"))
     {
-        jeu->hero.prendreEnMain(jeu->eventManager.getPositionSouris());
+        jeu->map.AjouterObjet(jeu->hero.prendreEnMain(jeu->eventManager.getPositionSouris()));
         jeu->eventManager.StopEvenement(Mouse::Left,"C");
     }
 

@@ -2541,6 +2541,13 @@ void Map::ramasserObjet(Hero *hero)
                 m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].supprimerObjet(m_objetPointe);
         }
 }
+void Map::AjouterObjet(Objet objet)
+{
+    if(objet.getPosition().x>=0&&objet.getPosition().x<m_decor[0][0].size()&&objet.getPosition().y>=0&&objet.getPosition().y<m_decor[0].size())
+    {
+        m_decor[1][objet.getPosition().y][objet.getPosition().x].ajouterObjet(objet);
+    }
+}
 
 void Map::setVolumeMusique(int volume){m_musique.SetVolume(volume);}
 

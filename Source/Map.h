@@ -54,6 +54,7 @@ class Map
 	void verifierDeclencheursDegats(int i, int j);
 
 	void ramasserObjet(Hero *hero);
+	void AjouterObjet(Objet objet);
 
 	coordonnee getDimensions();
 

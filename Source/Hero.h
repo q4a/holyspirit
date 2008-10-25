@@ -31,7 +31,8 @@ class Hero
 
 	bool ajouterObjet(Objet objet);
 
-	void prendreEnMain(coordonnee positionSouris);
+	Objet prendreEnMain(coordonnee positionSouris);
+	void AttribuerPositionObjet(coordonnee position,int numero);
 
 	void setMonstreVise(int monstre);
 	void setChercherSac(coordonnee);
