@@ -14,7 +14,7 @@ c_Jeu::c_Jeu(Jeu *jeu)
 {
         continuer=true,lumiere=false,augmenter=false;
         chaine[10];
-        tempsActuel=0,tempsPrecedent=0,tempsDepuisDerniereAnimation=0,tempsSauvergarde=0,tempsEcoule=0,tempsEcouleDepuisDernierDeplacement=0,tempsEcouleDepuisDernierAffichage=0,tempsEcouleDepuisFPS=0,tempsEffetMort=1,tempsNbrTourBoucle=0;
+        tempsActuel=0,tempsPrecedent=0,tempsDepuisDerniereAnimation=0,tempsEcoule=0,tempsNbrTourBoucle=0,tempsEcouleDepuisDernierCalculLumiere=0,tempsEcouleDepuisDernierDeplacement=0,tempsEcouleDepuisDernierIA=0,tempsEcouleDepuisDernierAffichage=0,tempsEcouleDepuisFPS=0,tempsEffetMort=0,tempsSauvergarde=0;
         nbrTourBoucle=0;
 
         configuration.heure=(rand() % (24));
@@ -183,6 +183,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 if(tempsEcouleDepuisDernierCalculLumiere>configuration.frequence_lumiere)
                 {
+
                     lumiere=true;
                     tempsEcouleDepuisDernierCalculLumiere=0;
                 }

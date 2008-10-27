@@ -1747,7 +1747,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                             positionSourisTotale.x=(int)ecran->ConvertCoords(ecran->GetInput().GetMouseX(),ecran->GetInput().GetMouseY()).x;
                             positionSourisTotale.y=(int)ecran->ConvertCoords(ecran->GetInput().GetMouseX(), ecran->GetInput().GetMouseY()).y;
 
-                            if(positionSourisTotale.x>position.x&&positionSourisTotale.x<position.x+32*configuration.Resolution.w/800&&positionSourisTotale.y>position.y&&positionSourisTotale.y<position.y+32*configuration.Resolution.w/800||alt)
+                            if(positionSourisTotale.x>position.x-16*configuration.Resolution.w/800&&positionSourisTotale.x<position.x+48*configuration.Resolution.w/800&&positionSourisTotale.y>position.y-16*configuration.Resolution.w/800&&positionSourisTotale.y<position.y+48*configuration.Resolution.w/800||alt)
                             {
                                 m_sacPointe.x=k;
                                 m_sacPointe.y=j;
