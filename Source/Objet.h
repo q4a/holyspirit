@@ -1,6 +1,7 @@
 
 #include<iostream>
 #include "constantes.h"
+#include <fstream>
 
 #ifndef OBJETH
 #define OBJETH
@@ -10,6 +11,8 @@ class Objet
     public:
     Objet();
     Objet(std::string nom,int rarete);
+
+    void Sauvegarder(std::ofstream *fichier);
 
     std::string getNom();
     int getRarete();
@@ -22,7 +25,7 @@ class Objet
     void setPosition(int, int);
 
     protected:
-    std::string m_nom;
+    std::string m_nom,m_chemin;
     int m_rarete,m_image;
     coordonnee m_positionImage,m_taille,m_position;
 };
@@ -37,7 +40,6 @@ class ModeleObjet : public Objet
 
     private:
     int m_chanceTrouver;
-    std::string m_chemin;
 };
 
 #endif

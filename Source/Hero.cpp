@@ -82,6 +82,23 @@ void Hero::Sauvegarder()
         fichier<<"* ptAme: "<<crypter(m_personnage.getCaracteristique().pointAme)<<"\n";
         fichier<<"* niveau: "<<crypter(m_personnage.getCaracteristique().niveau)<<"\n";
 
+        fichier<<"$"<<endl;
+        for(int i=0;i<5;i++)
+        {
+            fichier<<"* ";
+            for(int j=0;j<8;j++)
+                fichier<<m_caseInventaire[i][j]<<" ";
+            fichier<<" $"<<endl;
+        }
+        fichier<<"$"<<endl;
+
+        for(int i=0;i<m_inventaire.size();i++)
+        {
+            m_inventaire[i].Sauvegarder(&fichier);
+        }
+
+        fichier<<" $"<<endl;
+
     }
     fichier.close();
 }
@@ -104,14 +121,15 @@ void Hero::Charger()
                 char caractere;
                 Caracteristique charTemp;
                 charTemp=m_personnage.getCaracteristique();
-                do
-                {
-                    fichier.get(caractere);
-                    if(caractere=='*')
+
+                    do
                     {
-                        int temp2;
-                        string temp;
-                        fichier>>temp;
+                        fichier.get(caractere);
+                        if(caractere=='*')
+                        {
+                            int temp2;
+                            string temp;
+                            fichier>>temp;
                             if(temp == "nom:")  fichier>>charTemp.nom;
                             if(temp == "maxVie:")  fichier>>temp2,charTemp.maxVie=decrypter(temp2),charTemp.vie=charTemp.maxVie;
                             if(temp == "dgtsMin:")  fichier>>temp2,charTemp.degatsMin=decrypter(temp2);
@@ -119,8 +137,92 @@ void Hero::Charger()
                             if(temp == "vitesse:")  fichier>>temp2,charTemp.vitesse=decrypter(temp2)/1000;
                             if(temp == "ptAme:")  fichier>>temp2,charTemp.pointAme=decrypter(temp2),charTemp.ancienPointAme=charTemp.pointAme,charTemp.positionAncienAme=charTemp.pointAme;
                             if(temp == "niveau:")  fichier>>temp2,charTemp.niveau=decrypter(temp2);
-                    }
-                }while(!fichier.eof());
+                        }
+                        if(fichier.eof()){throw "Impossible de charger la sauvegarde";}
+                     }while(caractere!='$');
+
+                    coordonnee position={0,0,0,0};
+
+                    do
+                    {
+
+                        fichier.get(caractere);
+                        if(caractere=='*')
+                        {
+                            for(int i=0;i<8;i++)
+                            {
+                                int temp;
+                                fichier>>temp;
+                                m_caseInventaire[position.y][position.x]=temp,position.x++;
+                            }
+
+                            do
+                            {
+                                fichier.get(caractere);
+                                 if(fichier.eof()){throw "Impossible de charger la sauvegarde";}
+                            }while(caractere!='$');
+
+                            fichier.get(caractere);
+
+                            position.y++;
+                            position.x=0;
+
+                            if(position.y>=5)
+                                position.y=4;
+                        }
+                        if(fichier.eof()){throw "Impossible de charger la sauvegarde";}
+
+
+                     }while(caractere!='$');
+
+                    do
+                    {
+                        fichier.get(caractere);
+                        if(caractere=='*')
+                        {
+                            int rarete=0;
+                            position.x=0;
+                            position.y=0;
+
+                            do
+                            {
+                                fichier.get(caractere);
+                                if(caractere=='r')
+                                    fichier>>rarete;
+
+                                if(caractere=='x')
+                                    fichier>>position.x;
+                                if(caractere=='y')
+                                    fichier>>position.y;
+
+                                if(caractere=='m')
+                                {
+                                    string chemin;
+                                    fichier>>chemin;
+                                    ModeleObjet temp;
+                                    temp.Charger(chemin);
+
+                                    m_inventaire.push_back(temp);
+
+                                }
+
+                                if(fichier.eof()){throw "Impossible de charger la sauvegarde";}
+                            }while(caractere!='$');
+
+                            if(m_inventaire.size()>0)
+                            {
+                                m_inventaire[m_inventaire.size()-1].setRarete(rarete);
+                                m_inventaire[m_inventaire.size()-1].setPosition(position.x,position.y);
+                            }
+
+                            fichier.get(caractere);
+                        }
+                        if(fichier.eof()){throw "Impossible de charger la sauvegarde";}
+
+                    }while(caractere!='$');
+
+
+
                 m_personnage.setCaracteristique(charTemp);
             }
             fichier.close();

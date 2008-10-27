@@ -260,6 +260,15 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     if(jeu->eventManager.getEvenement(Key::Escape,"ET"))
                         jeu->m_contexte=jeu->m_menuInGame,jeu->eventManager.StopEvenement(Key::Escape,"ET");
 
+                    if(alpha_sac>128)
+                    {
+                        if(jeu->eventManager.getEvenement(Mouse::Left,"C")&&jeu->eventManager.getPositionSouris().x>configuration.Resolution.w-configuration.Resolution.w*0.25&&jeu->eventManager.getPositionSouris().y>configuration.Resolution.w*0.265+12*20*configuration.Resolution.w/800+20*configuration.Resolution.w/800-10&&jeu->eventManager.getPositionSouris().y<configuration.Resolution.w*0.265+12*20*configuration.Resolution.w/800+20*configuration.Resolution.w/800)
+                            jeu->map.m_defilerObjets++,jeu->eventManager.StopEvenement(Mouse::Left,"C");
+
+                        if(jeu->eventManager.getEvenement(Mouse::Left,"C")&&jeu->eventManager.getPositionSouris().x>configuration.Resolution.w-configuration.Resolution.w*0.25&&jeu->eventManager.getPositionSouris().y>configuration.Resolution.w*0.265-10&&jeu->eventManager.getPositionSouris().y<configuration.Resolution.w*0.265)
+                            jeu->map.m_defilerObjets--,jeu->eventManager.StopEvenement(Mouse::Left,"C");
+                    }
+
                     ///**********************************************************///
                     ///Affichage
                     ///**********************************************************///

@@ -1739,18 +1739,30 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     255));
                             }
 
-                            moteurGraphique.AjouterCommande(&Sprite,1);
-
-
-
                             coordonnee positionSourisTotale;
                             positionSourisTotale.x=(int)ecran->ConvertCoords(ecran->GetInput().GetMouseX(),ecran->GetInput().GetMouseY()).x;
                             positionSourisTotale.y=(int)ecran->ConvertCoords(ecran->GetInput().GetMouseX(), ecran->GetInput().GetMouseY()).y;
 
+                            if(positionSourisTotale.x>position.x-16*configuration.Resolution.w/800&&positionSourisTotale.x<position.x+48*configuration.Resolution.w/800&&positionSourisTotale.y>position.y-16*configuration.Resolution.w/800&&positionSourisTotale.y<position.y+48*configuration.Resolution.w/800)
+                                Sprite.SetColor(sf::Color(
+                                    255,
+                                    128,
+                                    128,
+                                    255));
+
+                            moteurGraphique.AjouterCommande(&Sprite,1);
+
+
+
+
+
                             if(positionSourisTotale.x>position.x-16*configuration.Resolution.w/800&&positionSourisTotale.x<position.x+48*configuration.Resolution.w/800&&positionSourisTotale.y>position.y-16*configuration.Resolution.w/800&&positionSourisTotale.y<position.y+48*configuration.Resolution.w/800||alt)
                             {
-                                m_sacPointe.x=k;
-                                m_sacPointe.y=j;
+                                if(positionSourisTotale.x>position.x-16*configuration.Resolution.w/800&&positionSourisTotale.x<position.x+48*configuration.Resolution.w/800&&positionSourisTotale.y>position.y-16*configuration.Resolution.w/800&&positionSourisTotale.y<position.y+48*configuration.Resolution.w/800)
+                                {
+                                    m_sacPointe.x=k;
+                                    m_sacPointe.y=j;
+                                }
                                 for(int z=0;z<m_decor[1][j][k].getNombreObjets();z++)
                                 {
                                     int rarete=m_decor[1][j][k].getObjet(z).getRarete();
@@ -1775,11 +1787,6 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     texte.SetSize(16*configuration.Resolution.w/800);
                                     texte.SetY((position.y-ViewRect.Top)*configuration.zoom-20*configuration.Resolution.w/800*(z+1));
                                     texte.SetX((position.x-ViewRect.Left)*configuration.zoom);
-
-                                    if(positionSouris.x>(position.x-ViewRect.Left)&&positionSouris.x-(texte.GetRect().Right-texte.GetRect().Left)<(position.x-ViewRect.Left)
-                                     &&positionSouris.y>(position.y-ViewRect.Top)-20*(z+1)&&positionSouris.y-20<(position.y-ViewRect.Top)-20*(z+1))
-                                        texte.SetColor(sf::Color(0,0,0));
-
 
                                     moteurGraphique.AjouterTexte(&texte);
 
@@ -2044,6 +2051,8 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
 	if(type==3)
 	{
+
+
 	    m_objetPointe=-1;
 	    coordonnee position;
 
@@ -2051,18 +2060,23 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 	     &&hero->getChercherSac().y>=0&&hero->getChercherSac().y<m_decor[1].size())
 	    if(m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getNombreObjets()>0)
         {
-            for(int z=0;z<m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getNombreObjets();z++)
+            if(m_defilerObjets>m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getNombreObjets()-12)
+                m_defilerObjets=m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getNombreObjets()-12;
+            if(m_defilerObjets<0)
+                m_defilerObjets=0;
+
+            for(int z=m_defilerObjets;z<m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getNombreObjets()&&z<12+m_defilerObjets;z++)
             {
 
                 if(positionSouris.x>configuration.Resolution.w-configuration.Resolution.w*0.25
-                 &&positionSouris.y>configuration.Resolution.w*0.265+z*20*configuration.Resolution.w/800
-                 &&positionSouris.y<configuration.Resolution.w*0.265+z*20*configuration.Resolution.w/800+20*configuration.Resolution.w/800)
+                 &&positionSouris.y>configuration.Resolution.w*0.265+(z-m_defilerObjets)*20*configuration.Resolution.w/800
+                 &&positionSouris.y<configuration.Resolution.w*0.265+(z-m_defilerObjets)*20*configuration.Resolution.w/800+20*configuration.Resolution.w/800)
                  {
                      Sprite.SetImage(*moteurGraphique.getImage(0));
                      Sprite.SetColor(sf::Color(255,255,255,128));
                      Sprite.Resize(configuration.Resolution.w*0.24,20*configuration.Resolution.w/800);
                      Sprite.SetX(configuration.Resolution.w-configuration.Resolution.w*0.24);
-                     Sprite.SetY(configuration.Resolution.w*0.265+z*20*configuration.Resolution.w/800);
+                     Sprite.SetY(configuration.Resolution.w*0.265+(z-m_defilerObjets)*20*configuration.Resolution.w/800);
                      moteurGraphique.AjouterCommande(&Sprite,0);
 
                      m_objetPointe=z;
@@ -2091,7 +2105,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                 texte.SetSize(16*configuration.Resolution.w/800);
 
                 position.x=(int)((configuration.Resolution.w-configuration.Resolution.w*0.25)+(configuration.Resolution.w*0.25)/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
-                position.y=(int)(configuration.Resolution.w*0.265+z*20*configuration.Resolution.w/800);
+                position.y=(int)(configuration.Resolution.w*0.265+(z-m_defilerObjets)*20*configuration.Resolution.w/800);
 
                 texte.SetY(position.y);
                 texte.SetX(position.x);

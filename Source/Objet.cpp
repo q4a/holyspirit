@@ -17,6 +17,7 @@ Objet::Objet(std::string nom, int rarete)
     m_nom=nom;
     m_rarete=rarete;
     m_image=0;
+    m_chemin="";
 }
 
 std::string Objet::getNom(){return m_nom;}
@@ -29,6 +30,19 @@ coordonnee Objet::getPositionImage(){return m_positionImage;};
 void Objet::setRarete(int chance){ m_rarete=chance; }
 void Objet::setPosition(int x, int y){m_position.x=x,m_position.y=y;}
 
+
+
+void Objet::Sauvegarder(std::ofstream *fichier)
+{
+    *fichier<<"* ";
+    *fichier<<"r"<<m_rarete<<" ";
+
+    *fichier<<"x"<<m_position.x<<" ";
+    *fichier<<"y"<<m_position.y<<" ";
+
+    *fichier<<"m"<<m_chemin<<" ";
+    *fichier<<"$"<<endl;
+}
 
 
 void ModeleObjet::Charger(std::string chemin)

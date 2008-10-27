@@ -58,6 +58,11 @@ class Map
 
 	coordonnee getDimensions();
 
+
+
+
+	int m_defilerObjets;
+
 	private:
 	int m_monstreIllumine,m_numero,IDImageSac,m_objetPointe;
 	coordonnee m_sacPointe;

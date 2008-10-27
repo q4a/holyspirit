@@ -22,6 +22,8 @@ c_Chargement::c_Chargement(Jeu *jeu)
 
 void c_Chargement::setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool debut)
 {
+    tempsActuel=0,tempsPrecedent=0,temps_ecoule=0,tempsEcouleDepuisDernierAffichage=0;
+
     m_coordonneePerso.x=coordonneePerso.x;
     m_coordonneePerso.y=coordonneePerso.y;
     numeroProchaineMap=numeroMap;
