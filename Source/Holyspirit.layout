@@ -25,14 +25,14 @@
 	<File name="Globale.h" open="0" top="0" tabpos="31">
 		<Cursor position="28" topLine="0" />
 	</File>
-	<File name="Hero.cpp" open="1" top="1" tabpos="3">
-		<Cursor position="5084" topLine="145" />
+	<File name="Hero.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="4557" topLine="79" />
 	</File>
 	<File name="Hero.h" open="0" top="0" tabpos="8">
 		<Cursor position="690" topLine="17" />
 	</File>
-	<File name="Map.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="134433" topLine="2051" />
+	<File name="Map.cpp" open="1" top="1" tabpos="2">
+		<Cursor position="136329" topLine="2058" />
 	</File>
 	<File name="Map.h" open="1" top="0" tabpos="8">
 		<Cursor position="2121" topLine="43" />
@@ -80,13 +80,13 @@
 		<Cursor position="1204" topLine="20" />
 	</File>
 	<File name="c_Jeu.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="12288" topLine="243" />
+		<Cursor position="12955" topLine="243" />
 	</File>
 	<File name="c_Jeu.h" open="1" top="0" tabpos="6">
 		<Cursor position="744" topLine="1" />
 	</File>
 	<File name="c_changementMap.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="520" topLine="15" />
+		<Cursor position="712" topLine="9" />
 	</File>
 	<File name="c_changementMap.h" open="1" top="0" tabpos="7">
 		<Cursor position="398" topLine="4" />

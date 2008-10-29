@@ -2060,8 +2060,8 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 	     &&hero->getChercherSac().y>=0&&hero->getChercherSac().y<m_decor[1].size())
 	    if(m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getNombreObjets()>0)
         {
-            if(m_defilerObjets>m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getNombreObjets()-12)
-                m_defilerObjets=m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getNombreObjets()-12;
+            if(m_defilerObjets>m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getNombreObjets()-11)
+                m_defilerObjets=m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getNombreObjets()-11;
             if(m_defilerObjets<0)
                 m_defilerObjets=0;
 
@@ -2079,7 +2079,8 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                      Sprite.SetY(configuration.Resolution.w*0.265+(z-m_defilerObjets)*20*configuration.Resolution.w/800);
                      moteurGraphique.AjouterCommande(&Sprite,0);
 
-                     m_objetPointe=z;
+                    if(!(z-m_defilerObjets==0&&m_defilerObjets>0)&&!((z-m_defilerObjets==11&&z+m_defilerObjets<=m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getNombreObjets()+1)))
+                        m_objetPointe=z;
                  }
 
 
@@ -2101,7 +2102,12 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                 if(rarete==CRAFT)
                     texte.SetColor(sf::Color(128,64,0,(int)alpha));
 
-                texte.SetText(m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getObjet(z).getNom());
+                if(z-m_defilerObjets==0&&m_defilerObjets>0)
+                    texte.SetText("...");
+                else if((z-m_defilerObjets==11&&z+m_defilerObjets<=m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getNombreObjets()+1))
+                    texte.SetText("...");
+                else
+                    texte.SetText(m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getObjet(z).getNom());
                 texte.SetSize(16*configuration.Resolution.w/800);
 
                 position.x=(int)((configuration.Resolution.w-configuration.Resolution.w*0.25)+(configuration.Resolution.w*0.25)/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
@@ -2111,8 +2117,9 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                 texte.SetX(position.x);
 
                 moteurGraphique.AjouterTexte(&texte);
-
             }
+
+
         }
 	}
 }

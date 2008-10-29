@@ -262,10 +262,10 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                     if(alpha_sac>128)
                     {
-                        if(jeu->eventManager.getEvenement(Mouse::Left,"C")&&jeu->eventManager.getPositionSouris().x>configuration.Resolution.w-configuration.Resolution.w*0.25&&jeu->eventManager.getPositionSouris().y>configuration.Resolution.w*0.265+12*20*configuration.Resolution.w/800+20*configuration.Resolution.w/800-10&&jeu->eventManager.getPositionSouris().y<configuration.Resolution.w*0.265+12*20*configuration.Resolution.w/800+20*configuration.Resolution.w/800)
+                        if(jeu->eventManager.getEvenement(Mouse::Left,"C")&&jeu->eventManager.getPositionSouris().x>configuration.Resolution.w-configuration.Resolution.w*0.25&&jeu->eventManager.getPositionSouris().y>configuration.Resolution.w*0.265+10*20*configuration.Resolution.w/800+20*configuration.Resolution.w/800&&jeu->eventManager.getPositionSouris().y<configuration.Resolution.w*0.265+11*20*configuration.Resolution.w/800+20*configuration.Resolution.w/800)
                             jeu->map.m_defilerObjets++,jeu->eventManager.StopEvenement(Mouse::Left,"C");
 
-                        if(jeu->eventManager.getEvenement(Mouse::Left,"C")&&jeu->eventManager.getPositionSouris().x>configuration.Resolution.w-configuration.Resolution.w*0.25&&jeu->eventManager.getPositionSouris().y>configuration.Resolution.w*0.265-10&&jeu->eventManager.getPositionSouris().y<configuration.Resolution.w*0.265)
+                        if(jeu->eventManager.getEvenement(Mouse::Left,"C")&&jeu->eventManager.getPositionSouris().x>configuration.Resolution.w-configuration.Resolution.w*0.25&&jeu->eventManager.getPositionSouris().y>configuration.Resolution.w*0.265&&jeu->eventManager.getPositionSouris().y<configuration.Resolution.w*0.265+20*configuration.Resolution.w/800)
                             jeu->map.m_defilerObjets--,jeu->eventManager.StopEvenement(Mouse::Left,"C");
                     }
 
