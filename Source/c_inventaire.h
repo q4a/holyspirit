@@ -17,7 +17,8 @@ class c_Inventaire : public Contexte
     sf::View camera;
 
     private:
-	float tempsActuel,tempsPrecedent,temps_ecoule,tempsEcouleDepuisDernierAffichage;
+	float tempsActuel,tempsPrecedent,temps_ecoule,tempsEcouleDepuisDernierAffichage,m_decalage;
+	bool m_afficher;
 };
 
 #endif

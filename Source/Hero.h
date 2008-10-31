@@ -21,7 +21,7 @@ class Hero
 	void Sauvegarder();
 	void Charger();
 
-	void afficherInventaire(sf::RenderWindow *,coordonnee);
+	void afficherInventaire(sf::RenderWindow *,coordonnee,float);
 
 	void placerCamera(sf::View *camera,coordonnee dimensionsMap);
 

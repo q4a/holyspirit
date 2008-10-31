@@ -2075,7 +2075,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                      Sprite.SetImage(*moteurGraphique.getImage(0));
                      Sprite.SetColor(sf::Color(255,255,255,128));
                      Sprite.Resize(configuration.Resolution.w*0.24,20*configuration.Resolution.w/800);
-                     Sprite.SetX(configuration.Resolution.w-configuration.Resolution.w*0.24);
+                     Sprite.SetX(configuration.Resolution.w-configuration.Resolution.w*0.24*alpha/255);
                      Sprite.SetY(configuration.Resolution.w*0.265+(z-m_defilerObjets)*20*configuration.Resolution.w/800);
                      moteurGraphique.AjouterCommande(&Sprite,0);
 
@@ -2086,21 +2086,21 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                 int rarete=m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getObjet(z).getRarete();
                 if(rarete==NORMAL)
-                    texte.SetColor(sf::Color(224,224,224,(int)alpha));
+                    texte.SetColor(sf::Color(224,224,224,255));
                 if(rarete==BONNEFACTURE)
-                    texte.SetColor(sf::Color(128,0,128,(int)alpha));
+                    texte.SetColor(sf::Color(128,0,128,255));
                 if(rarete==BENI)
-                    texte.SetColor(sf::Color(0,64,128,(int)alpha));
+                    texte.SetColor(sf::Color(0,64,128,255));
                 if(rarete==SACRE)
-                    texte.SetColor(sf::Color(255,255,128,(int)alpha));
+                    texte.SetColor(sf::Color(255,255,128,255));
                 if(rarete==SANCTIFIE)
-                    texte.SetColor(sf::Color(128,255,255,(int)alpha));
+                    texte.SetColor(sf::Color(128,255,255,255));
                 if(rarete==DIVIN)
-                    texte.SetColor(sf::Color(255,164,32,(int)alpha));
+                    texte.SetColor(sf::Color(255,164,32,255));
                 if(rarete==INFERNAL)
-                    texte.SetColor(sf::Color(224,0,0,(int)alpha));
+                    texte.SetColor(sf::Color(224,0,0,255));
                 if(rarete==CRAFT)
-                    texte.SetColor(sf::Color(128,64,0,(int)alpha));
+                    texte.SetColor(sf::Color(128,64,0,255));
 
                 if(z-m_defilerObjets==0&&m_defilerObjets>0)
                     texte.SetText("...");
@@ -2110,7 +2110,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                     texte.SetText(m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getObjet(z).getNom());
                 texte.SetSize(16*configuration.Resolution.w/800);
 
-                position.x=(int)((configuration.Resolution.w-configuration.Resolution.w*0.25)+(configuration.Resolution.w*0.25)/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
+                position.x=(int)((configuration.Resolution.w-configuration.Resolution.w*0.25*alpha/255)+(configuration.Resolution.w*0.25)/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
                 position.y=(int)(configuration.Resolution.w*0.265+(z-m_defilerObjets)*20*configuration.Resolution.w/800);
 
                 texte.SetY(position.y);

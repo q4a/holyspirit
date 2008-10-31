@@ -30,52 +30,6 @@ Menu::Menu()
     m_barreVie=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_barre_vie);
     m_barreVieVide=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_barre_vie_vide);
     m_inventaire=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_inventaire);
-	/*if(!m_imageMiniMap.LoadFromFile(configuration.chemin_menus+configuration.nom_minimap))
-	    console.Ajouter("Impossible de charger : "+configuration.chemin_menus+configuration.nom_minimap,1);
-    else
-    console.Ajouter("Chargement de : "+configuration.chemin_menus+configuration.nom_minimap,0);
-    if(!m_imageHUD.LoadFromFile(configuration.chemin_menus+configuration.nom_hud))
-	    console.Ajouter("Impossible de charger : "+configuration.chemin_menus+configuration.nom_hud,1);
-    else
-    console.Ajouter("Chargement de : "+configuration.chemin_menus+configuration.nom_hud,0);
-
-    if(!m_imageBulleVie.LoadFromFile(configuration.chemin_menus+configuration.nom_bulle_vie))
-	    console.Ajouter("Impossible de charger : "+configuration.chemin_menus+configuration.nom_bulle_vie,1);
-    else
-    console.Ajouter("Chargement de : "+configuration.chemin_menus+configuration.nom_bulle_vie,0);
-
-    if(!m_imageAme.LoadFromFile(configuration.chemin_menus+configuration.nom_ame))
-	    console.Ajouter("Impossible de charger : "+configuration.chemin_menus+configuration.nom_ame,1);
-    else
-    console.Ajouter("Chargement de : "+configuration.chemin_menus+configuration.nom_ame,0);
-
-     if(!m_imageSang.LoadFromFile(configuration.chemin_menus+configuration.nom_sang))
-	    console.Ajouter("Impossible de charger : "+configuration.chemin_menus+configuration.nom_sang,1);
-    else
-    console.Ajouter("Chargement de : "+configuration.chemin_menus+configuration.nom_sang,0);
-
-    if(!m_barrePointAme.LoadFromFile(configuration.chemin_menus+configuration.nom_barre_ame))
-	    console.Ajouter("Impossible de charger : "+configuration.chemin_menus+configuration.nom_barre_ame,1);
-    else
-    console.Ajouter("Chargement de : "+configuration.chemin_menus+configuration.nom_barre_ame,0);
-
-    if(!m_barreVie.LoadFromFile(configuration.chemin_menus+configuration.nom_barre_vie))
-	    console.Ajouter("Impossible de charger : "+configuration.chemin_menus+configuration.nom_barre_vie,1);
-    else
-    console.Ajouter("Chargement de : "+configuration.chemin_menus+configuration.nom_barre_vie,0);
-
-    if(!m_barreVieVide.LoadFromFile(configuration.chemin_menus+configuration.nom_barre_vie_vide))
-	    console.Ajouter("Impossible de charger : "+configuration.chemin_menus+configuration.nom_barre_vie_vide,1);
-    else
-    console.Ajouter("Chargement de : "+configuration.chemin_menus+configuration.nom_barre_vie_vide,0);
-	m_fondMiniMap.Create(configuration.Resolution.x/4, configuration.Resolution.x/4, sf::Color(0, 0, 0));
-
-	if(!m_inventaire.LoadFromFile(configuration.chemin_menus+configuration.nom_inventaire))
-	    console.Ajouter("Impossible de charger : "+configuration.chemin_menus+configuration.nom_inventaire,1);
-    else
-    console.Ajouter("Chargement de : "+configuration.chemin_menus+configuration.nom_inventaire,0);
-
-	m_fondMiniMap.Create(configuration.Resolution.x/4, configuration.Resolution.x/4, sf::Color(0, 0, 0));*/
 }
 
 void Menu::Afficher(sf::RenderWindow* ecran,int type,float alpha)
@@ -120,7 +74,7 @@ void Menu::Afficher(sf::RenderWindow* ecran,int type,float alpha)
     {
         //On affiche le fond noir du menu du sac
 		sprite.SetImage(*moteurGraphique.getImage(0));
-		sprite.SetX(configuration.Resolution.w-configuration.Resolution.w*0.25);
+		sprite.SetX(configuration.Resolution.w-configuration.Resolution.w*0.25*alpha/255);
 		sprite.SetY(configuration.Resolution.w*0.25);
 		sprite.SetColor(sf::Color(0,0,0,224*(int)alpha/255));
 		sprite.Resize(configuration.Resolution.w*0.25, configuration.Resolution.w*0.34);
@@ -132,10 +86,10 @@ void Menu::Afficher(sf::RenderWindow* ecran,int type,float alpha)
     {
         //On affiche le cadran du menu du sac
 		sprite.SetImage(*moteurGraphique.getImage(m_imageMiniMap));
-		sprite.SetX(configuration.Resolution.w-configuration.Resolution.w*0.25);
+		sprite.SetX(configuration.Resolution.w-configuration.Resolution.w*0.25*alpha/255);
 		sprite.SetY(configuration.Resolution.w*0.25);
 		sprite.Resize(configuration.Resolution.w*0.25, configuration.Resolution.w*0.34);
-		sprite.SetColor(sf::Color(255,255,255,(int)alpha));
+		sprite.SetColor(sf::Color(255,255,255));
 		moteurGraphique.AjouterCommande(&sprite,0);
     }
 }
@@ -314,12 +268,13 @@ void Menu::AfficherChargement(sf::RenderWindow* ecran,string nom,int fond,int z=
     moteurGraphique.AjouterTexte(&texte,1);
 }
 
-void Menu::AfficherInventaire(sf::RenderWindow* ecran)
+void Menu::AfficherInventaire(sf::RenderWindow* ecran,float decalage)
 {
     Sprite sprite;
 
     sprite.SetImage(*moteurGraphique.getImage(m_inventaire));
     sprite.Resize(configuration.Resolution.w, configuration.Resolution.h*550/600);
+    sprite.SetY(-decalage*configuration.Resolution.h/600);
 
     moteurGraphique.AjouterCommande(&sprite,0);
 

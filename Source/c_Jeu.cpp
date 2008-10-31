@@ -298,13 +298,13 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                     if(jeu->hero.getChercherSac().x!=-1&&jeu->map.getNombreObjets(jeu->hero.getChercherSac())>0)
                     {
-                        alpha_sac+=tempsEcoule*500;
+                        alpha_sac+=tempsEcoule*1000;
                         if(alpha_sac>255)
                             alpha_sac=255;
                     }
                     else
                     {
-                        alpha_sac-=tempsEcoule*500;
+                        alpha_sac-=tempsEcoule*1000;
                         if(alpha_sac<0)
                             alpha_sac=0;
                     }
