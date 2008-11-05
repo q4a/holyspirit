@@ -29,6 +29,7 @@ class Monstre : public Personnage
     void setDepart();
 
     bool getVu();
+    void setVu(bool);
 
     private:
     bool m_vu;

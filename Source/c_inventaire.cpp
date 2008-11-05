@@ -40,7 +40,7 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         jeu->eventManager.StopEvenement(Mouse::Left,"C");
     }
 
-
+            jeu->hero.placerCamera(&jeu->camera,jeu->map.getDimensions()); // On place la camera suivant ou se trouve le perso
             jeu->camera.Zoom(configuration.zoom);
 
                 coordonnee temp;

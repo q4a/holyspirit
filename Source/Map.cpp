@@ -2348,8 +2348,8 @@ void Map::gererMonstres(Hero *hero,float temps,sf::View *camera,Menu *menu)
             for(int k=vueMin.x;k<vueMax.x;k++)
                     if(m_decor[i][j][k].getMonstre()>=0&&m_decor[i][j][k].getMonstre()<m_monstre.size())
                     {
-
-                        m_monstre[m_decor[i][j][k].getMonstre()].testerVision(hero->m_personnage.getCoordonnee());
+                        if(hero->m_personnage.enVie())
+                            m_monstre[m_decor[i][j][k].getMonstre()].testerVision(hero->m_personnage.getCoordonnee());
                         if(m_monstre[m_decor[i][j][k].getMonstre()].getVu()&&!m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding()||!m_monstre[m_decor[i][j][k].getMonstre()].enVie())
                         {
                             if(m_monstre[m_decor[i][j][k].getMonstre()].enVie())
@@ -2402,6 +2402,9 @@ void Map::gererMonstres(Hero *hero,float temps,sf::View *camera,Menu *menu)
                                 }
                                 else
                                 {
+                                    if(hero->m_personnage.enVie()<=0)
+                                        m_monstre[m_decor[i][j][k].getMonstre()].setVu(0);
+
                                     if(m_monstre[m_decor[i][j][k].getMonstre()].getEtat()!=2)
                                         m_monstre[m_decor[i][j][k].getMonstre()].setEtat(2);
                                     coordonnee temp,temp2;

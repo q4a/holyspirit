@@ -22,8 +22,6 @@ c_Jeu::c_Jeu(Jeu *jeu)
 
         sf::Listener::SetGlobalVolume((float)configuration.volume);
 
-       // camera=new sf::View();
-
         // Texte pour l'affichage des FPS
         fps.SetSize(16.f);
 
@@ -65,8 +63,6 @@ c_Jeu::c_Jeu(Jeu *jeu)
             throw("CRITICAL ERROR");
 
         jeu->ecran.ShowMouseCursor(false);
-        //if(configuration.Lumiere)
-        //jeu->map.calculerOmbresEtLumieres(ecran,&jeu->hero,&configuration);
 
         if(configuration.Lumiere)
         {
@@ -347,6 +343,10 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                     tempsEcouleDepuisDernierAffichage=0;
                 }
+
+                ///**********************************************************///
+                ///Gestion des FPS
+                ///**********************************************************///
 
                 nbrTourBoucle++;
 

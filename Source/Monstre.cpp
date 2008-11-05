@@ -321,7 +321,7 @@ coordonnee Monstre::getDepart(){return m_depart;}
 int Monstre::getModele(){ return m_modele; }
 
 bool Monstre::getVu(){return m_vu;}
-
+void Monstre::setVu(bool vu){m_vu=vu;}
 
 void Monstre::setDepart()
 {
