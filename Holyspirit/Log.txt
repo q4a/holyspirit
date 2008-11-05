@@ -34,12 +34,20 @@
          Chargement de la map : Data/Maps/map0.map.hs
          Chargement de : Data/Ecran_chargement/Plaines2.png
          
-         Chargement de l'objet : Data/Objets/Charbon.item.hs
-         Chargement de : Data/Objets/Images/craft01.png
-         
          Chargement de l'objet : Data/Objets/p_hache.item.hs
          Chargement de : Data/Objets/Images/axes01.png
          
+         Chargement de l'objet : Data/Objets/p_hache.item.hs
+         
+         Chargement de l'objet : Data/Objets/p_hache.item.hs
+         
+         Chargement de l'objet : Data/Objets/p_hache.item.hs
+         
+         Chargement de l'objet : Data/Objets/Charbon.item.hs
+         Chargement de : Data/Objets/Images/craft01.png
+         
+         Chargement de l'objet : Data/Objets/Charbon.item.hs
+         
          Chargement de l'objet : Data/Objets/Charbon.item.hs
          
          Chargement de l'objet : Data/Objets/p_hache.item.hs
@@ -48,20 +56,6 @@
          
          Chargement de l'objet : Data/Objets/p_hache.item.hs
          
-         Chargement de l'objet : Data/Objets/p_hache.item.hs
-         
-         Chargement de l'objet : Data/Objets/p_hache.item.hs
-         
-         Chargement de l'objet : Data/Objets/Charbon.item.hs
-         
-         Chargement de l'objet : Data/Objets/Charbon.item.hs
-         
-         Chargement de l'objet : Data/Objets/Charbon.item.hs
-         
-         Chargement de l'objet : Data/Objets/Charbon.item.hs
-         
-         Chargement de l'objet : Data/Objets/Charbon.item.hs
-         
          Chargement de l'objet : Data/Objets/Charbon.item.hs
          
          Chargement de l'objet : Data/Objets/Charbon.item.hs
@@ -71,6 +65,24 @@
          Chargement de l'objet : Data/Objets/Charbon.item.hs
          
          Chargement de l'objet : Data/Objets/p_hache.item.hs
+         
+         Chargement de l'objet : Data/Objets/p_hache.item.hs
+         
+         Chargement de l'objet : Data/Objets/p_hache.item.hs
+         
+         Chargement de l'objet : Data/Objets/Charbon.item.hs
+         
+         Chargement de l'objet : Data/Objets/Minerai.item.hs
+         
+         Chargement de l'objet : Data/Objets/Charbon.item.hs
+         
+         Chargement de l'objet : Data/Objets/p_hache.item.hs
+         
+         Chargement de l'objet : Data/Objets/p_hache.item.hs
+         
+         Chargement de l'objet : Data/Objets/Charbon.item.hs
+         
+         Chargement de l'objet : Data/Objets/Charbon.item.hs
          
          Chargement de l'objet : Data/Objets/Charbon.item.hs
          
@@ -108,6 +120,8 @@
          
          Chargement de l'objet : Data/Objets/Charbon.item.hs
          Chargement de : Data/Entites/Destructibles/Tonneau/TonneauExp.char.hs
+         
+         Sauvegarde de la map : Data/Temp/map1.map.hs
          
          Sauvegarde de la map : Data/Temp/map1.map.hs
          

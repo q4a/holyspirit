@@ -1,0 +1,3 @@
+-Ajout du fichier "patch.txt" qui contient toutes les nouveautés depuis la dernière mise à jour.
+-Correction du bug : Quand on affiche l'inventaire, il y a un dezoom ou un zoom.
+-Correction du bug : Les enemis continuent à attaquer après notre mort.
