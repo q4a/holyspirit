@@ -64,7 +64,7 @@ class Map
 	int m_defilerObjets;
 
 	private:
-	int m_monstreIllumine,m_numero,IDImageSac,m_objetPointe;
+	int m_monstreIllumine,m_numero,IDImageSac,m_objetPointe,m_calculLumiere;
 	coordonnee m_sacPointe;
 	Lumiere m_lumiere[24];
 	std::vector <Tileset> m_tileset;
@@ -82,7 +82,7 @@ class Map
 
 	sf::Image carreBrun,carreBleu,carreRouge,carreVert,carreJaune;
 
-	LumiereOmbrage m_tableauDesLampes[30][30],m_tableauDesLampesBasique[30][30],m_lumiereHero; // Tableau de lumière et ombres, 30X30 car c'est le nbr max de tiles affichables à l'écran
+	LumiereOmbrage m_tableauDesLampes[30][30],m_tableauDesLampesBasique[30][30]; // Tableau de lumière et ombres, 30X30 car c'est le nbr max de tiles affichables à l'écran
 };
 
 

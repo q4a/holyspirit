@@ -180,66 +180,89 @@ bool Modele_Personnage::Charger(string chemin)
     return true;
 }
 
-void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap,LumiereOmbrage *lumiere,Modele_Personnage *modele)
+void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap,Modele_Personnage *modele)
 {
     if(modele->m_pose.size()>0)
     if((int)(m_angle/45)>=0&&(int)(m_angle/45)<8)
     {
         Sprite sprite;
-        sprite.SetImage(*moteurGraphique.getImage(modele->m_image[modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()]));
-       // Sprite.SetImage(modele->m_image[modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()]);
-        sprite.SetSubRect(IntRect(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h));
 
-        sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
 
         if(configuration.Ombre&&modele->m_ombre)
         {
-            for(int o=0;o<lumiere->m_ombre.size();o++)
+            for(int o=0;o<m_lumiere.m_ombre.size();o++)
             {
-                sprite.SetColor(sf::Color(0,0,0,lumiere->m_ombre[o].intensite));
-                /*sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64)-64+(64-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2)+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2);
-                sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+(64-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h)+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h-32);
-                sprite.SetCenter((modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2),(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h-32));*/
+                int angleOmbre=(m_angle-m_lumiere.m_ombre[o].angle)+45-22.5;
 
-                sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64)-64+(64-sprite.GetSize().x/2)+sprite.GetSize().x/2);
-                sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+(64-sprite.GetSize().y)+sprite.GetSize().y-32);
-                sprite.SetCenter((sprite.GetSize().x/2),(sprite.GetSize().y-32));
+                while(angleOmbre<0)
+                    angleOmbre=360+angleOmbre;
+                while(angleOmbre>=360)
+                    angleOmbre=angleOmbre-360;
 
-                sprite.SetScale(m_caracteristique.modificateurTaille, m_caracteristique.modificateurTaille*lumiere->m_ombre[o].taille);
-                sprite.SetRotation(lumiere->m_ombre[o].angle);
-                 if(lumiere->m_ombre[o].angle>90&&lumiere->m_ombre[o].angle<270)
-                    sprite.FlipX(true);
+                if((int)(angleOmbre/45)>=0&&(int)(angleOmbre/45)<modele->m_pose[m_etat].size())
+                    if(m_poseEnCours>=0&&m_poseEnCours<modele->m_pose[m_etat][(int)(angleOmbre/45)].size())
+                    {
+
+
+                        sprite.SetImage(*moteurGraphique.getImage(modele->m_image[modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getImage()]));
+                       // Sprite.SetImage(modele->m_image[modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()]);
+                        sprite.SetSubRect(IntRect(modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().x, modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().y, modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().x+modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().w, modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().y+modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().h));
+
+                        sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
+
+                        sprite.SetColor(sf::Color(0,0,0,m_lumiere.m_ombre[o].intensite));
+                        /*sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64)-64+(64-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2)+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2);
+                        sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+(64-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h)+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h-32);
+                        sprite.SetCenter((modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2),(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h-32));*/
+
+                        sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64)-64+(64-sprite.GetSize().x/2)+sprite.GetSize().x/2);
+                        sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+(64-sprite.GetSize().y)+sprite.GetSize().y-32);
+                        sprite.SetCenter((sprite.GetSize().x/2),(sprite.GetSize().y-32));
+
+                        sprite.SetScale(m_caracteristique.modificateurTaille, m_caracteristique.modificateurTaille*m_lumiere.m_ombre[o].taille);
+                        sprite.SetRotation(m_lumiere.m_ombre[o].angle);
+                        // if(m_lumiere.m_ombre[o].angle>90&&m_lumiere.m_ombre[o].angle<270)
+                        //sprite.FlipX(true);
+                        if(sprite.GetPosition().x+sprite.GetSize().x>=camera->GetRect().Left)
+                        if(sprite.GetPosition().x<camera->GetRect().Right)
+                        if(sprite.GetPosition().y+sprite.GetSize().y>=camera->GetRect().Top)
+                        if(sprite.GetPosition().y<camera->GetRect().Bottom)
+                        moteurGraphique.AjouterCommande(&sprite,1);
+                        //ecran->Draw(Sprite);
+                        sprite.SetCenter(0,0);
+                        sprite.SetScale(1, 1);
+                        sprite.SetRotation(0);
+                    }
+            }
+        }
+
+        if((int)(m_angle/45)>=0&&(int)(m_angle/45)<modele->m_pose[m_etat].size())
+            if(m_poseEnCours>=0&&m_poseEnCours<modele->m_pose[m_etat][(int)(m_angle/45)].size())
+            {
+                sprite.SetImage(*moteurGraphique.getImage(modele->m_image[modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()]));
+               // Sprite.SetImage(modele->m_image[modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()]);
+                sprite.SetSubRect(IntRect(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h));
+
+                sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
+
+                sprite.FlipX(false);
+
+               /* sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64)-64+(64-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2));
+                sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+(64-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h));*/
+
+                sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64)-64+(64-sprite.GetSize().x/2));
+                sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+(64-sprite.GetSize().y));
+
+                if(configuration.Lumiere)
+                    sprite.SetColor(sf::Color((m_lumiere.intensite*m_lumiere.rouge)/255,(m_lumiere.intensite*m_lumiere.vert)/255,(m_lumiere.intensite*m_lumiere.bleu)/255, 255));
+
                 if(sprite.GetPosition().x+sprite.GetSize().x>=camera->GetRect().Left)
                 if(sprite.GetPosition().x<camera->GetRect().Right)
                 if(sprite.GetPosition().y+sprite.GetSize().y>=camera->GetRect().Top)
                 if(sprite.GetPosition().y<camera->GetRect().Bottom)
                 moteurGraphique.AjouterCommande(&sprite,1);
-                //ecran->Draw(Sprite);
-                sprite.SetCenter(0,0);
-                sprite.SetScale(1, 1);
-                sprite.SetRotation(0);
+               // ecran->Draw(Sprite);
             }
-        }
-
-        sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
-
-        sprite.FlipX(false);
-
-       /* sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64)-64+(64-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2));
-        sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+(64-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h));*/
-
-        sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64)-64+(64-sprite.GetSize().x/2));
-        sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+(64-sprite.GetSize().y));
-
-        if(configuration.Lumiere)
-            sprite.SetColor(sf::Color((lumiere->intensite*lumiere->rouge)/255,(lumiere->intensite*lumiere->vert)/255,(lumiere->intensite*lumiere->bleu)/255, 255));
-
-        if(sprite.GetPosition().x+sprite.GetSize().x>=camera->GetRect().Left)
-        if(sprite.GetPosition().x<camera->GetRect().Right)
-        if(sprite.GetPosition().y+sprite.GetSize().y>=camera->GetRect().Top)
-        if(sprite.GetPosition().y<camera->GetRect().Bottom)
-        moteurGraphique.AjouterCommande(&sprite,1);
-       // ecran->Draw(Sprite);
     }
 }
 void Personnage::regenererVie(float vie)

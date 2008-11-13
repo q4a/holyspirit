@@ -11,6 +11,7 @@ class Objet
     public:
     Objet();
     Objet(std::string nom,int rarete);
+    ~Objet();
 
     void Sauvegarder(std::ofstream *fichier);
 

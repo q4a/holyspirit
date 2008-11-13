@@ -40,7 +40,7 @@ int main ( int argc, char** argv )
 
 		m_jeu.Demarrer();
 	}
-	catch (const string& str)
+	catch (const std::string& str)
 	{
 	    console.Ajouter("FATAL ERROR : ",1);
 		console.Ajouter(str,1);

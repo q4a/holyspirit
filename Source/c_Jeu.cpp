@@ -100,21 +100,31 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     tempsEffetMort+=tempsEcoule*10;
                 else
                     tempsEffetMort-=tempsEcoule;
+
+                if(!jeu->hero.m_personnage.enVie())
+                    tempsEffetMort=1;
+
                 if(tempsEffetMort>1)
                     augmenter=false;
                 if(tempsEffetMort<0)
                     augmenter=true;
                 tempsEcouleDepuisFPS+=tempsEcoule;
 
-                jeu->hero.m_personnage.regenererVie((float)jeu->hero.m_personnage.getCaracteristique().maxVie*tempsEcoule/100);
+                if(jeu->hero.m_personnage.enVie())
+                    jeu->hero.m_personnage.regenererVie((float)jeu->hero.m_personnage.getCaracteristique().maxVie*tempsEcoule/100);
                 jeu->hero.augmenterAme(tempsEcoule);
 
                 jeu->Clock.Reset();
 
-                if(jeu->hero.m_personnage.getCaracteristique().vie/(float)jeu->hero.m_personnage.getCaracteristique().maxVie<0.5)
-                    configuration.effetMort=200-(jeu->hero.m_personnage.getCaracteristique().vie*400/jeu->hero.m_personnage.getCaracteristique().maxVie),jeu->sonMort.SetVolume(configuration.effetMort);
+                if(jeu->hero.m_personnage.enVie())
+                {
+                    if(jeu->hero.m_personnage.getCaracteristique().vie/(float)jeu->hero.m_personnage.getCaracteristique().maxVie<0.5)
+                        configuration.effetMort=150-(jeu->hero.m_personnage.getCaracteristique().vie*300/jeu->hero.m_personnage.getCaracteristique().maxVie),jeu->sonMort.SetVolume(configuration.effetMort);
+                    else
+                        configuration.effetMort=0,jeu->sonMort.SetVolume(0);
+                }
                 else
-                    configuration.effetMort=0,jeu->sonMort.SetVolume(0);
+                    configuration.effetMort=150;
 
                 ///**********************************************************///
                 ///Sauvegarde automatique

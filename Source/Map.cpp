@@ -51,21 +51,23 @@ void Map::Detruire()
 {
     m_tileset.clear();
     m_herbe.clear();
+
     for(int i=0;i<m_decor.size();i++)
     {
-        for(int j=0;j<m_decor[0].size();j++)
-        {
-            m_decor[i][j].clear();
-        }
+            for(int j=0;j<m_decor[0].size();j++)
+                m_decor[i][j].clear();
         m_decor[i].clear();
     }
     m_decor.clear();
+
     m_ModeleMonstre.clear();
     m_monstre.clear();
     for(int i=0;i<m_evenement.size();i++)
         m_evenement[i].deleteInformations();
     m_evenement.clear();
     m_musique.Stop();
+
+
 }
 
 bool Map::Charger(int numeroMap)
@@ -253,9 +255,7 @@ bool Map::Charger(int numeroMap)
                 if(!m_ModeleMonstre[m_ModeleMonstre.size()-1].Charger(cheminDuMonstre))
                     return 0;
                 else
-                console.Ajouter("Chargement de : "+cheminDuMonstre,0);
-
-
+                console.Ajouter("Chargement de : "+cheminDuMonstre+" terminé",0);
 
     		}
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
@@ -310,22 +310,24 @@ bool Map::Charger(int numeroMap)
                             if(fichier2.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
                         }while(caractere!='$');
 
-
-
-                        m_monstre[m_monstre.size()-1].Charger(numeroModele,&m_ModeleMonstre[numeroModele]);
-                        Caracteristique caracteristique = m_monstre[m_monstre.size()-1].getCaracteristique();
-                        caracteristique.vie=vieMin;
-                        caracteristique.maxVie=vieMax;
-                        caracteristique.degatsMin=degatsMin;
-                        caracteristique.degatsMax=degatsMax;
-                        caracteristique.rang=rang;
-                        caracteristique.pointAme=ame;
-                        caracteristique.modificateurTaille=taille;
-                        m_monstre[m_monstre.size()-1].setCaracteristique(caracteristique);
-                        m_monstre[m_monstre.size()-1].setPorteeLumineuse(lumiere);
-                        m_monstre[m_monstre.size()-1].setEtat(etat);
-                        m_monstre[m_monstre.size()-1].setPose(pose);
-                        m_monstre[m_monstre.size()-1].setAngle(angle);
+                        if(m_monstre.size()>0)
+                        {
+                            if(numeroModele>=0&&numeroModele<m_ModeleMonstre.size())
+                                m_monstre[m_monstre.size()-1].Charger(numeroModele,&m_ModeleMonstre[numeroModele]);
+                            Caracteristique caracteristique = m_monstre[m_monstre.size()-1].getCaracteristique();
+                            caracteristique.vie=vieMin;
+                            caracteristique.maxVie=vieMax;
+                            caracteristique.degatsMin=degatsMin;
+                            caracteristique.degatsMax=degatsMax;
+                            caracteristique.rang=rang;
+                            caracteristique.pointAme=ame;
+                            caracteristique.modificateurTaille=taille;
+                            m_monstre[m_monstre.size()-1].setCaracteristique(caracteristique);
+                            m_monstre[m_monstre.size()-1].setPorteeLumineuse(lumiere);
+                            m_monstre[m_monstre.size()-1].setEtat(etat);
+                            m_monstre[m_monstre.size()-1].setPose(pose);
+                            m_monstre[m_monstre.size()-1].setAngle(angle);
+                        }
                     }
 
                     if(fichier2.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
@@ -623,7 +625,7 @@ void Map::Sauvegarder()
 
 void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *camera)
 {
-    m_lumiereHero.detruire();
+    hero->m_personnage.m_lumiere.detruire();
 
     //La, ça se complique, je vais essayer d'être clair, mais il ne faut pas hésiter à me redemander des explications ^^
     Lumiere lumiere,lumiereTile,lumiereMap;
@@ -678,18 +680,18 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
 
     angleOmbreMap=((float)configuration.heure*60+configuration.minute)*180/720;
 
-    m_lumiereHero=hero->m_modelePersonnage.getPorteeLumineuse();
+    hero->m_personnage.m_lumiere=hero->m_modelePersonnage.getPorteeLumineuse();
 
-    m_lumiereHero.rouge=(lumiereMap.rouge*lumiereMap.intensite+m_lumiereHero.rouge*m_lumiereHero.intensite)/(m_lumiereHero.intensite+lumiereMap.intensite);
-    m_lumiereHero.vert=(lumiereMap.vert*lumiereMap.intensite+m_lumiereHero.vert*m_lumiereHero.intensite)/(m_lumiereHero.intensite+lumiereMap.intensite);
-    m_lumiereHero.bleu=(lumiereMap.bleu*lumiereMap.intensite+m_lumiereHero.bleu*m_lumiereHero.intensite)/(m_lumiereHero.intensite+lumiereMap.intensite);
+    hero->m_personnage.m_lumiere.rouge=(lumiereMap.rouge*lumiereMap.intensite+hero->m_personnage.m_lumiere.rouge*hero->m_personnage.m_lumiere.intensite)/(hero->m_personnage.m_lumiere.intensite+lumiereMap.intensite);
+    hero->m_personnage.m_lumiere.vert=(lumiereMap.vert*lumiereMap.intensite+hero->m_personnage.m_lumiere.vert*hero->m_personnage.m_lumiere.intensite)/(hero->m_personnage.m_lumiere.intensite+lumiereMap.intensite);
+    hero->m_personnage.m_lumiere.bleu=(lumiereMap.bleu*lumiereMap.intensite+hero->m_personnage.m_lumiere.bleu*hero->m_personnage.m_lumiere.intensite)/(hero->m_personnage.m_lumiere.intensite+lumiereMap.intensite);
 
-    m_lumiereHero.intensite+=lumiereMap.intensite;
-    if(m_lumiereHero.intensite>255) m_lumiereHero.intensite=255;
-    if(m_lumiereHero.intensite<0) m_lumiereHero.intensite=0;
+    hero->m_personnage.m_lumiere.intensite+=lumiereMap.intensite;
+    if(hero->m_personnage.m_lumiere.intensite>255) hero->m_personnage.m_lumiere.intensite=255;
+    if(hero->m_personnage.m_lumiere.intensite<0) hero->m_personnage.m_lumiere.intensite=0;
 
     if(configuration.Ombre)
-        m_lumiereHero.AjouterOmbre(lumiereMap.intensite/4,angleOmbreMap,lumiereMap.hauteur);
+        hero->m_personnage.m_lumiere.AjouterOmbre(lumiereMap.intensite/4,angleOmbreMap,lumiereMap.hauteur);
 
 
         // Je fonctionne comme pour en bas, juste que je prend le héro comme source de lumière, pour la portée lumineuse
@@ -697,6 +699,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
         for(int j=0;j<30;j++)
         {
             m_tableauDesLampes[i][j].detruire();
+
              m_tableauDesLampes[i][j]=lumiereMap;
             if(configuration.Ombre)
                 m_tableauDesLampes[i][j].AjouterOmbre((int)((float)lumiereMap.intensite*0.25),angleOmbreMap,lumiereMap.hauteur);
@@ -794,9 +797,6 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                 if(lumiere.intensite>0)
                 {
                     m_tableauDesLampes[i][j].intensite+=lumiere.intensite;
-
-                   // if(!m_decor[1][i+vueMin.y][j+vueMin.x].getTileset()>0)
-                    //if(m_tileset[m_decor[1][i+vueMin.y][j+vueMin.x].getTileset()].getLumiereDuTile(m_decor[1][i+vueMin.y][j+vueMin.x].getTile()).intensite==0)
                 }
 
                 if(lumiere.intensite>0)
@@ -821,26 +821,53 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                 if(i==hero->m_personnage.getCoordonnee().y&&j==hero->m_personnage.getCoordonnee().x)
                 {
                     if(lumiere.intensite>0)
-                        m_lumiereHero.intensite+=lumiere.intensite;
+                        hero->m_personnage.m_lumiere.intensite+=lumiere.intensite;
 
                     if(lumiere.intensite>0)
                     {
-                        m_lumiereHero.rouge=(lumiere.rouge*lumiere.intensite/(m_lumiereHero.intensite+lumiere.intensite)+m_lumiereHero.rouge*m_lumiereHero.intensite/(m_lumiereHero.intensite+lumiere.intensite));
-                        m_lumiereHero.vert=(lumiere.vert*lumiere.intensite/(m_lumiereHero.intensite+lumiere.intensite)+m_lumiereHero.vert*m_lumiereHero.intensite/(m_lumiereHero.intensite+lumiere.intensite));
-                        m_lumiereHero.bleu=(lumiere.bleu*lumiere.intensite/(m_lumiereHero.intensite+lumiere.intensite)+m_lumiereHero.bleu*m_lumiereHero.intensite/(m_lumiereHero.intensite+lumiere.intensite));
+                        hero->m_personnage.m_lumiere.rouge=(lumiere.rouge*lumiere.intensite/(hero->m_personnage.m_lumiere.intensite+lumiere.intensite)+hero->m_personnage.m_lumiere.rouge*hero->m_personnage.m_lumiere.intensite/(hero->m_personnage.m_lumiere.intensite+lumiere.intensite));
+                        hero->m_personnage.m_lumiere.vert=(lumiere.vert*lumiere.intensite/(hero->m_personnage.m_lumiere.intensite+lumiere.intensite)+hero->m_personnage.m_lumiere.vert*hero->m_personnage.m_lumiere.intensite/(hero->m_personnage.m_lumiere.intensite+lumiere.intensite));
+                        hero->m_personnage.m_lumiere.bleu=(lumiere.bleu*lumiere.intensite/(hero->m_personnage.m_lumiere.intensite+lumiere.intensite)+hero->m_personnage.m_lumiere.bleu*hero->m_personnage.m_lumiere.intensite/(hero->m_personnage.m_lumiere.intensite+lumiere.intensite));
 
                     }
 
-                    if(m_lumiereHero.intensite>255)
-                        m_lumiereHero.intensite=255;
-                    if(m_lumiereHero.intensite<0)
-                        m_lumiereHero.intensite=0;
-                    if(m_lumiereHero.rouge>255)
-                        m_lumiereHero.rouge=255;
-                    if(m_lumiereHero.vert>255)
-                        m_lumiereHero.vert=255;
-                    if(m_lumiereHero.bleu>255)
-                        m_lumiereHero.bleu=255;
+                    if(hero->m_personnage.m_lumiere.intensite>255)
+                        hero->m_personnage.m_lumiere.intensite=255;
+                    if(hero->m_personnage.m_lumiere.intensite<0)
+                        hero->m_personnage.m_lumiere.intensite=0;
+                    if(hero->m_personnage.m_lumiere.rouge>255)
+                        hero->m_personnage.m_lumiere.rouge=255;
+                    if(hero->m_personnage.m_lumiere.vert>255)
+                        hero->m_personnage.m_lumiere.vert=255;
+                    if(hero->m_personnage.m_lumiere.bleu>255)
+                        hero->m_personnage.m_lumiere.bleu=255;
+                }
+
+                if(m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()>=0&&m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()<m_monstre.size())
+                {
+                    m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.detruire();
+
+                    m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.intensite=m_tableauDesLampes[i][j].intensite;
+                    m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.rouge=m_tableauDesLampes[i][j].rouge;
+                    m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.vert=m_tableauDesLampes[i][j].vert;
+                    m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.bleu=m_tableauDesLampes[i][j].bleu;
+                    m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.hauteur=m_tableauDesLampes[i][j].hauteur;
+
+                    if(configuration.Ombre)
+                        m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.AjouterOmbre(lumiereMap.intensite/4,angleOmbreMap,lumiereMap.hauteur);
+                }
+                if(m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()>=0&&m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()<m_monstre.size())
+                {
+                    m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.detruire();
+
+                    m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.intensite=m_tableauDesLampes[i][j].intensite;
+                    m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.rouge=m_tableauDesLampes[i][j].rouge;
+                    m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.vert=m_tableauDesLampes[i][j].vert;
+                    m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.bleu=m_tableauDesLampes[i][j].bleu;
+                    m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.hauteur=m_tableauDesLampes[i][j].hauteur;
+
+                    if(configuration.Ombre)
+                        m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.AjouterOmbre(lumiereMap.intensite/4,angleOmbreMap,lumiereMap.hauteur);
                 }
 
                 if(configuration.Ombre&&!((i+vueMin.y)==hero->m_personnage.getCoordonnee().y&&(j+vueMin.x)==hero->m_personnage.getCoordonnee().x))
@@ -862,7 +889,49 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                         angle=-angle;
 
                     m_tableauDesLampes[i][j].AjouterOmbre(lumiere.intensite/2,(int)angle,lumiere.hauteur);
+
+
+
+                    /*if(m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()>=0&&m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()<m_monstre.size())
+                    {
+                        coord1.x=(int)(hero->m_personnage.getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().y-1*COTE_TILE+m_decor[0].size()*COTE_TILE)*2;
+                        coord1.y=(int)(hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y);
+                        coord1.x=(int)(m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].getCoordonneePixel().x-m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].getCoordonneePixel().y-1*COTE_TILE+m_decor[0].size()*COTE_TILE)*2;
+                        coord1.y=(int)(m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].getCoordonneePixel().x+m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].getCoordonneePixel().y);
+
+                        angle=atan(valeurAbsolue((float)coord2.y-(float)coord1.y)/valeurAbsolue((float)coord2.x-(float)coord1.x))*360/(2*M_PI)-90;
+
+                        if(coord2.y>=coord1.y&&coord2.x>=coord1.x)
+                            angle=180-angle;
+                        else if(coord2.y>=coord1.y&&coord2.x<coord1.x)
+                            angle+=180;
+                        else if(coord2.y<coord1.y&&coord2.x<coord1.x)
+                            angle=-angle;
+
+                        m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.AjouterOmbre(lumiere.intensite/2,(int)angle,lumiere.hauteur);
+                    }
+
+                    if(m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()>=0&&m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()<m_monstre.size())
+                    {
+                        coord1.x=(int)(hero->m_personnage.getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().y-1*COTE_TILE+m_decor[0].size()*COTE_TILE)*2;
+                        coord1.y=(int)(hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y);
+                        coord1.x=(int)(m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].getCoordonneePixel().x-m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].getCoordonneePixel().y-1*COTE_TILE+m_decor[0].size()*COTE_TILE)*2;
+                        coord1.y=(int)(m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].getCoordonneePixel().x+m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].getCoordonneePixel().y);
+
+                        angle=atan(valeurAbsolue((float)coord2.y-(float)coord1.y)/valeurAbsolue((float)coord2.x-(float)coord1.x))*360/(2*M_PI)-90;
+
+                        if(coord2.y>=coord1.y&&coord2.x>=coord1.x)
+                            angle=180-angle;
+                        else if(coord2.y>=coord1.y&&coord2.x<coord1.x)
+                            angle+=180;
+                        else if(coord2.y<coord1.y&&coord2.x<coord1.x)
+                            angle=-angle;
+
+                        //m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.AjouterOmbre(lumiere.intensite/2,(int)angle,lumiere.hauteur);
+                    }*/
                 }
+
+
             }
         }
 
@@ -1090,21 +1159,85 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
 
                                             // Et j'ajoute cette ombre
                                             m_tableauDesLampes[l-vueMin.y][m-vueMin.x].AjouterOmbre(lumiere.intensite,(int)angle,lumiere.hauteur);
+
+                                            if(m_decor[0][l][m].getMonstre()>=0&&m_decor[0][l][m].getMonstre()<m_monstre.size())
+                                            {
+                                                coord1.x=(int)(k*COTE_TILE-j*COTE_TILE-1+m_decor[0].size())*64;
+                                                coord1.y=(int)(k*COTE_TILE+j*COTE_TILE)*32;
+
+                                                coord2.x=((int)m_monstre[m_decor[0][l][m].getMonstre()].getCoordonneePixel().x-(int)m_monstre[m_decor[0][l][m].getMonstre()].getCoordonneePixel().y-1+m_decor[0].size())*64;
+                                                coord2.y=((int)m_monstre[m_decor[0][l][m].getMonstre()].getCoordonneePixel().x+(int)m_monstre[m_decor[0][l][m].getMonstre()].getCoordonneePixel().y)*32;
+
+                                                angle=atan(valeurAbsolue((float)coord2.y-(float)coord1.y)/valeurAbsolue((float)coord2.x-(float)coord1.x))*360/(2*M_PI)-90;
+
+                                                if(coord2.y>=coord1.y&&coord2.x>=coord1.x)
+                                                    angle=180-angle;
+                                                else if(coord2.y>=coord1.y&&coord2.x<coord1.x)
+                                                    angle+=180;
+                                                else if(coord2.y<coord1.y&&coord2.x<coord1.x)
+                                                    angle=-angle;
+
+                                                lumiereTemp=lumiere.intensite/2;
+                                                if(lumiereTemp<0)
+                                                    lumiereTemp=0;
+                                               m_monstre[m_decor[0][l][m].getMonstre()].m_lumiere.AjouterOmbre((int)lumiereTemp,(int)angle,lumiere.hauteur);
+                                            }
+                                            if(m_decor[1][l][m].getMonstre()>=0&&m_decor[1][l][m].getMonstre()<m_monstre.size())
+                                            {
+                                                coord1.x=(int)(k*COTE_TILE-j*COTE_TILE-1+m_decor[0].size())*64;
+                                                coord1.y=(int)(k*COTE_TILE+j*COTE_TILE)*32;
+
+                                                coord2.x=((int)m_monstre[m_decor[1][l][m].getMonstre()].getCoordonneePixel().x-(int)m_monstre[m_decor[1][l][m].getMonstre()].getCoordonneePixel().y-1+m_decor[0].size())*64;
+                                                coord2.y=((int)m_monstre[m_decor[1][l][m].getMonstre()].getCoordonneePixel().x+(int)m_monstre[m_decor[1][l][m].getMonstre()].getCoordonneePixel().y)*32;
+
+                                                angle=atan(valeurAbsolue((float)coord2.y-(float)coord1.y)/valeurAbsolue((float)coord2.x-(float)coord1.x))*360/(2*M_PI)-90;
+
+                                                if(coord2.y>=coord1.y&&coord2.x>=coord1.x)
+                                                    angle=180-angle;
+                                                else if(coord2.y>=coord1.y&&coord2.x<coord1.x)
+                                                    angle+=180;
+                                                else if(coord2.y<coord1.y&&coord2.x<coord1.x)
+                                                    angle=-angle;
+
+                                                lumiereTemp=lumiere.intensite/2;
+                                                if(lumiereTemp<0)
+                                                    lumiereTemp=0;
+                                               m_monstre[m_decor[1][l][m].getMonstre()].m_lumiere.AjouterOmbre((int)lumiereTemp,(int)angle,lumiere.hauteur);
+                                            }
                                         }
+
+                                        if(m_decor[0][l][m].getMonstre()>=0&&m_decor[0][l][m].getMonstre()<m_monstre.size())
+                                        {
+                                            m_monstre[m_decor[0][l][m].getMonstre()].m_lumiere.intensite=m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite;
+                                            m_monstre[m_decor[0][l][m].getMonstre()].m_lumiere.rouge=m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge;
+                                            m_monstre[m_decor[0][l][m].getMonstre()].m_lumiere.vert=m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert;
+                                            m_monstre[m_decor[0][l][m].getMonstre()].m_lumiere.bleu=m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu;
+                                            m_monstre[m_decor[0][l][m].getMonstre()].m_lumiere.hauteur=m_tableauDesLampes[l-vueMin.y][m-vueMin.x].hauteur;
+                                        }
+
+                                        if(m_decor[1][l][m].getMonstre()>=0&&m_decor[1][l][m].getMonstre()<m_monstre.size())
+                                        {
+                                            m_monstre[m_decor[1][l][m].getMonstre()].m_lumiere.intensite=m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite;
+                                            m_monstre[m_decor[1][l][m].getMonstre()].m_lumiere.rouge=m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge;
+                                            m_monstre[m_decor[1][l][m].getMonstre()].m_lumiere.vert=m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert;
+                                            m_monstre[m_decor[1][l][m].getMonstre()].m_lumiere.bleu=m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu;
+                                            m_monstre[m_decor[1][l][m].getMonstre()].m_lumiere.hauteur=m_tableauDesLampes[l-vueMin.y][m-vueMin.x].hauteur;
+                                        }
+
 
                                         // J'applique la même chose au héro
                                         if(l==hero->m_personnage.getCoordonnee().y&&m==hero->m_personnage.getCoordonnee().x)
                                         {
-                                           m_lumiereHero.rouge=(lumiere.rouge*lumiere.intensite+m_lumiereHero.rouge*m_lumiereHero.intensite)/(m_lumiereHero.intensite+lumiere.intensite);
-                                           m_lumiereHero.vert=(lumiere.vert*lumiere.intensite+m_lumiereHero.vert*m_lumiereHero.intensite)/(m_lumiereHero.intensite+lumiere.intensite);
-                                           m_lumiereHero.bleu=(lumiere.bleu*lumiere.intensite+m_lumiereHero.bleu*m_lumiereHero.intensite)/(m_lumiereHero.intensite+lumiere.intensite);
+                                           hero->m_personnage.m_lumiere.rouge=(lumiere.rouge*lumiere.intensite+hero->m_personnage.m_lumiere.rouge*hero->m_personnage.m_lumiere.intensite)/(hero->m_personnage.m_lumiere.intensite+lumiere.intensite);
+                                           hero->m_personnage.m_lumiere.vert=(lumiere.vert*lumiere.intensite+hero->m_personnage.m_lumiere.vert*hero->m_personnage.m_lumiere.intensite)/(hero->m_personnage.m_lumiere.intensite+lumiere.intensite);
+                                           hero->m_personnage.m_lumiere.bleu=(lumiere.bleu*lumiere.intensite+hero->m_personnage.m_lumiere.bleu*hero->m_personnage.m_lumiere.intensite)/(hero->m_personnage.m_lumiere.intensite+lumiere.intensite);
 
-                                            if(m_lumiereHero.rouge>255)
-                                               m_lumiereHero.rouge=255;
-                                            if(m_lumiereHero.vert>255)
-                                               m_lumiereHero.vert=255;
-                                            if(m_lumiereHero.bleu>255)
-                                               m_lumiereHero.bleu=255;
+                                            if(hero->m_personnage.m_lumiere.rouge>255)
+                                               hero->m_personnage.m_lumiere.rouge=255;
+                                            if(hero->m_personnage.m_lumiere.vert>255)
+                                               hero->m_personnage.m_lumiere.vert=255;
+                                            if(hero->m_personnage.m_lumiere.bleu>255)
+                                               hero->m_personnage.m_lumiere.bleu=255;
 
                                             if(configuration.Ombre&&!(j==l&&k==m))
                                             {
@@ -1128,17 +1261,17 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                                 lumiereTemp=lumiere.intensite/2;
                                                 if(lumiereTemp<0)
                                                     lumiereTemp=0;
-                                               m_lumiereHero.AjouterOmbre((int)lumiereTemp,(int)angle,lumiere.hauteur);
+                                               hero->m_personnage.m_lumiere.AjouterOmbre((int)lumiereTemp,(int)angle,lumiere.hauteur);
                                             }
 
                                             if(lumiere.intensite>0)
                                             {
-                                                m_lumiereHero.intensite+=lumiere.intensite;
+                                                hero->m_personnage.m_lumiere.intensite+=lumiere.intensite;
 
-                                                if(m_lumiereHero.intensite>255)
-                                                   m_lumiereHero.intensite=255;
-                                                if(m_lumiereHero.intensite<0)
-                                                   m_lumiereHero.intensite=0;
+                                                if(hero->m_personnage.m_lumiere.intensite>255)
+                                                   hero->m_personnage.m_lumiere.intensite=255;
+                                                if(hero->m_personnage.m_lumiere.intensite<0)
+                                                   hero->m_personnage.m_lumiere.intensite=0;
                                             }
                                         }
                                     }
@@ -1547,98 +1680,55 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                         {
                                 if(m_monstreIllumine==m_decor[0][j][k].getMonstre()&&m_monstreIllumine!=-1||m_monstreIllumine==m_decor[1][j][k].getMonstre()&&m_monstreIllumine!=-1)
                                 {
-                                    LumiereOmbrage temp;
-                                    if(configuration.Lumiere)
-                                        temp=m_tableauDesLampes[j-vueMin.y][k-vueMin.x];
-
-                                    temp.rouge=255;
-                                    temp.vert=32;
-                                    temp.bleu=32;
-                                    temp.intensite=255;
-
                                     if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
+                                    {
                                         if(m_monstre[m_decor[0][j][k].getMonstre()].enVie())
-                                            m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&temp,&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
-                                        else
-                                            m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_tableauDesLampes[j-vueMin.y][k-vueMin.x],&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
+                                        {
+                                            m_monstre[m_decor[0][j][k].getMonstre()].m_lumiere.rouge=255;
+                                            m_monstre[m_decor[0][j][k].getMonstre()].m_lumiere.vert=32;
+                                            m_monstre[m_decor[0][j][k].getMonstre()].m_lumiere.bleu=32;
+                                            m_monstre[m_decor[0][j][k].getMonstre()].m_lumiere.intensite=255;
+                                        }
+
+                                        m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
+                                    }
+
                                     if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
+                                    {
                                         if(m_monstre[m_decor[1][j][k].getMonstre()].enVie())
-                                            m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&temp,&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
-                                        else
-                                            m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_tableauDesLampes[j-vueMin.y][k-vueMin.x],&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
-                                    temp.detruire();
+                                        {
+                                            m_monstre[m_decor[1][j][k].getMonstre()].m_lumiere.rouge=255;
+                                            m_monstre[m_decor[1][j][k].getMonstre()].m_lumiere.vert=32;
+                                            m_monstre[m_decor[1][j][k].getMonstre()].m_lumiere.bleu=32;
+                                            m_monstre[m_decor[1][j][k].getMonstre()].m_lumiere.intensite=255;
+                                        }
+                                        m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
+                                    }
                                 }
                                 else
                                 {
-                                    LumiereOmbrage temp;
-                                    if(configuration.Lumiere)
-                                        temp=m_tableauDesLampes[j-vueMin.y][k-vueMin.x];
-
-
-
                                     if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
-                                    {
-                                        if(configuration.Lumiere)
-                                        {
-                                            temp.rouge=(temp.rouge*temp.intensite+m_monstre[m_decor[0][j][k].getMonstre()].getPorteeLumineuse().rouge*m_monstre[m_decor[0][j][k].getMonstre()].getPorteeLumineuse().intensite)/(m_monstre[m_decor[0][j][k].getMonstre()].getPorteeLumineuse().intensite+temp.intensite);
-                                            temp.vert=(temp.vert*temp.intensite+m_monstre[m_decor[0][j][k].getMonstre()].getPorteeLumineuse().vert*m_monstre[m_decor[0][j][k].getMonstre()].getPorteeLumineuse().intensite)/(m_monstre[m_decor[0][j][k].getMonstre()].getPorteeLumineuse().intensite+temp.intensite);
-                                            temp.bleu=(temp.bleu*temp.intensite+m_monstre[m_decor[0][j][k].getMonstre()].getPorteeLumineuse().bleu*m_monstre[m_decor[0][j][k].getMonstre()].getPorteeLumineuse().intensite)/(m_monstre[m_decor[0][j][k].getMonstre()].getPorteeLumineuse().intensite+temp.intensite);
-
-                                            temp.intensite+=m_monstre[m_decor[0][j][k].getMonstre()].getPorteeLumineuse().intensite;
-                                            if(temp.intensite>255)
-                                                temp.intensite=255;
-                                            if(temp.intensite<0)
-                                                temp.intensite=0;
-                                            if(temp.rouge>255)
-                                                temp.rouge=255;
-                                            if(temp.vert<0)
-                                                temp.vert=0;
-                                            if(temp.bleu>255)
-                                                temp.bleu=255;
-                                        }
-                                        m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&temp,&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
-                                    }
+                                        m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
                                     if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
-                                    {
-                                        if(configuration.Lumiere)
-                                        {
-                                            temp.rouge=(temp.rouge*temp.intensite+m_monstre[m_decor[1][j][k].getMonstre()].getPorteeLumineuse().rouge*m_monstre[m_decor[1][j][k].getMonstre()].getPorteeLumineuse().intensite)/(m_monstre[m_decor[1][j][k].getMonstre()].getPorteeLumineuse().intensite+temp.intensite);
-                                            temp.vert=(temp.vert*temp.intensite+m_monstre[m_decor[1][j][k].getMonstre()].getPorteeLumineuse().vert*m_monstre[m_decor[1][j][k].getMonstre()].getPorteeLumineuse().intensite)/(m_monstre[m_decor[1][j][k].getMonstre()].getPorteeLumineuse().intensite+temp.intensite);
-                                            temp.bleu=(temp.bleu*temp.intensite+m_monstre[m_decor[1][j][k].getMonstre()].getPorteeLumineuse().bleu*m_monstre[m_decor[1][j][k].getMonstre()].getPorteeLumineuse().intensite)/(m_monstre[m_decor[1][j][k].getMonstre()].getPorteeLumineuse().intensite+temp.intensite);
-
-                                            temp.intensite+=m_monstre[m_decor[1][j][k].getMonstre()].getPorteeLumineuse().intensite;
-                                            if(temp.intensite>255)
-                                                temp.intensite=255;
-                                            if(temp.intensite<0)
-                                                temp.intensite=0;
-                                            if(temp.rouge>255)
-                                                temp.rouge=255;
-                                            if(temp.vert<0)
-                                                temp.vert=0;
-                                            if(temp.bleu>255)
-                                                temp.bleu=255;
-                                        }
-                                        m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&temp,&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
-                                    }
-                                    temp.detruire();
+                                        m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
                                 }
                         }
 
                         if(hero->m_personnage.getCoordonnee().x==hero->m_personnage.getProchaineCase().x&&hero->m_personnage.getCoordonnee().y==hero->m_personnage.getProchaineCase().y)
                         {
                             if(hero->m_personnage.getCoordonnee().x==k&&hero->m_personnage.getCoordonnee().y==j)
-                                hero->m_personnage.Afficher(ecran,camera,position,getDimensions(),&m_lumiereHero,&hero->m_modelePersonnage);
+                                hero->m_personnage.Afficher(ecran,camera,position,getDimensions(),&hero->m_modelePersonnage);
                         }
                         else
                         {
                             if(hero->m_personnage.getCoordonnee().x>hero->m_personnage.getProchaineCase().x&&hero->m_personnage.getCoordonnee().y>hero->m_personnage.getProchaineCase().y)
                             {
                                 if(hero->m_personnage.getProchaineCase().x+1==k&&hero->m_personnage.getProchaineCase().y+1==j)
-                                    hero->m_personnage.Afficher(ecran,camera,position,getDimensions(),&m_lumiereHero,&hero->m_modelePersonnage);
+                                    hero->m_personnage.Afficher(ecran,camera,position,getDimensions(),&hero->m_modelePersonnage);
                             }
                             else
                                 if(hero->m_personnage.getProchaineCase().x==k&&hero->m_personnage.getProchaineCase().y==j)
-                                    hero->m_personnage.Afficher(ecran,camera,position,getDimensions(),&m_lumiereHero,&hero->m_modelePersonnage);
+                                    hero->m_personnage.Afficher(ecran,camera,position,getDimensions(),&hero->m_modelePersonnage);
                         }
 
 

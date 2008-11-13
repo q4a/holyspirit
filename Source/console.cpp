@@ -71,7 +71,7 @@ void Console::Rapport()
     ofstream fichier("Log.txt", ios::out | ios::trunc);
     if(fichier)  // si l'ouverture a réussi
     {
-        for(int i=0;i<m_erreur.size();i++)
+        for(int i=0;i<m_textes.size();i++)
         {
             if(m_erreur[i])
                 fichier<<"ERREUR : ";

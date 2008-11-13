@@ -105,10 +105,11 @@ bool Modele_Monstre::Charger(string chemin)
 
     			string cheminSon;
                 getline(fichier, cheminSon);
-                 sf::SoundBuffer temp;
+                sf::SoundBuffer temp;
                 m_buffer.push_back(temp);
-                if(!m_buffer[m_buffer.size()-1].LoadFromFile(cheminSon.c_str()))
-                    console.Ajouter("Impossible de charger : "+cheminSon,1);
+                if(m_buffer.size()>0)
+                    if(!m_buffer[m_buffer.size()-1].LoadFromFile(cheminSon.c_str()))
+                        console.Ajouter("Impossible de charger : "+cheminSon,1);
                 else
                 console.Ajouter("Chargement de : "+cheminSon,0);
     		}

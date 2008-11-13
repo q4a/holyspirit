@@ -112,7 +112,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         if(configuration.Lumiere)
             jeu->map.calculerOmbresEtLumieres(&jeu->ecran,&jeu->hero,&jeu->camera);
 
-        while(jeu->Clock.GetElapsedTime()<1){}
+       // while(jeu->Clock.GetElapsedTime()<1){}
         allerVersImageChargement=false;
     }
 

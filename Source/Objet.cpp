@@ -9,6 +9,7 @@ using namespace std;
 Objet::Objet()
 {
     m_nom="Un objet merveilleux";
+    m_chemin="";
     m_rarete=0;
 }
 
@@ -18,6 +19,12 @@ Objet::Objet(std::string nom, int rarete)
     m_rarete=rarete;
     m_image=0;
     m_chemin="";
+}
+
+Objet::~Objet()
+{
+    m_chemin.erase();
+    m_nom.erase();
 }
 
 std::string Objet::getNom(){return m_nom;}

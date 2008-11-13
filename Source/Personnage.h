@@ -59,7 +59,7 @@ class Personnage
 
 	bool seDeplacer(float);
 	void setCoordonnee(coordonnee nouvellesCoordonnees);
-	void Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap,LumiereOmbrage *lumiere,Modele_Personnage *modele);
+	void Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap,Modele_Personnage *modele);
 
 	int pathfinding(std::vector<std::vector<bool> > map,coordonnee exception);
 
@@ -86,6 +86,8 @@ class Personnage
 	int getPose();
 	Lumiere getPorteeLumineuse();
 	Caracteristique getCaracteristique();
+
+	LumiereOmbrage m_lumiere;
 
 	protected:
 	int m_etat,m_poseEnCours,m_angle;
