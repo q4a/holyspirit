@@ -29,13 +29,13 @@ Rang du monstre
 $
 Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse/Ombre/PointAme
-* v50 di10 da15 m0.2 o0 a10 n3 
-t1.25
+*v50 di10 da15 m0.2 o0 a10 n3 t1.25 $
 $
 *
 *Data/Objets/Minerai.item.hs
 r100
 $
+
 $
 Arret - E
 *x0 y0 w128 h128 a1 s-1 i0 $

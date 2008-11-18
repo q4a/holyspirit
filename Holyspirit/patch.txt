@@ -1,3 +1,23 @@
+
+Amélirotion :
+
+-Effacement de déchets sur le errant des roches
+
+Correction :
+
+-Réglage du bug lors du chargement de la map de foret
+
+//////////////////////////////////////////////////////////////////////////////
+
+Corrections :
+
 -Ajout du fichier "patch.txt" qui contient toutes les nouveautés depuis la dernière mise à jour.
 -Correction du bug : Quand on affiche l'inventaire, il y a un dezoom ou un zoom.
 -Correction du bug : Les enemis continuent à attaquer après notre mort.
+-Correction du plantage lors du chargement de certains monstres ?
+-Amélioration des ombres en utilisant les rendus des différents côtés des entités.
+-Amélioration des lumières sur les monstres.
+
+BUG's Connus :
+
+-Problème au niveau de la gestion des cases dans l'inventaire qui sont parfois décochées.
