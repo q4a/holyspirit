@@ -253,13 +253,18 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
                 sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64)-64+(64-sprite.GetSize().x/2));
                 sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+(64-sprite.GetSize().y));
 
-                if(configuration.Lumiere)
-                    sprite.SetColor(sf::Color((m_lumiere.intensite*m_lumiere.rouge)/255,(m_lumiere.intensite*m_lumiere.vert)/255,(m_lumiere.intensite*m_lumiere.bleu)/255, 255));
 
-                if(sprite.GetPosition().x+sprite.GetSize().x>=camera->GetRect().Left)
-                if(sprite.GetPosition().x<camera->GetRect().Right)
-                if(sprite.GetPosition().y+sprite.GetSize().y>=camera->GetRect().Top)
-                if(sprite.GetPosition().y<camera->GetRect().Bottom)
+                if(configuration.Lumiere)
+                {
+                    sprite.SetColor(sf::Color((m_lumiere.intensite*m_lumiere.rouge)/255,(m_lumiere.intensite*m_lumiere.vert)/255,(m_lumiere.intensite*m_lumiere.bleu)/255, 255));
+                    if(m_porteeLumineuse.intensite>m_lumiere.intensite)
+                        sprite.SetColor(sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu, 255));
+                }
+
+                if(sprite.GetPosition().x+sprite.GetSize().x>=camera->GetRect().Left
+                &&sprite.GetPosition().x<camera->GetRect().Right
+                &&sprite.GetPosition().y+sprite.GetSize().y>=camera->GetRect().Top
+                &&sprite.GetPosition().y<camera->GetRect().Bottom)
                 moteurGraphique.AjouterCommande(&sprite,1);
                // ecran->Draw(Sprite);
             }

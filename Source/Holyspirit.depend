@@ -484,7 +484,7 @@
 	"liste_case.h"
 	"Pose.h"
 
-1224666521 d:\backup disque e\c++\holyspirit\source\constantes.h
+1227108795 d:\backup disque e\c++\holyspirit\source\constantes.h
 	<cmath>
 	<utility>
 	<iostream>
@@ -524,7 +524,7 @@
 
 1202293672 source:d:\backup disque e\c++\holyspirit\source\ressource.rc
 
-1225364313 source:d:\backup disque e\c++\holyspirit\source\hero.cpp
+1227103877 source:d:\backup disque e\c++\holyspirit\source\hero.cpp
 	"Hero.h"
 	"Globale.h"
 	<iostream>
@@ -547,7 +547,7 @@
 1220693770 d:\backup disque e\c++\holyspirit\source\evenement.h
 	"constantes.h"
 
-1226338932 source:d:\backup disque e\c++\holyspirit\source\personnage.cpp
+1227104321 source:d:\backup disque e\c++\holyspirit\source\personnage.cpp
 	"Personnage.h"
 	"Globale.h"
 	<iostream>
@@ -680,7 +680,7 @@
 	"constantes.h"
 	"Globale.h"
 
-1226596755 source:d:\backup disque e\c++\holyspirit\source\map.cpp
+1227106060 source:d:\backup disque e\c++\holyspirit\source\map.cpp
 	"Map.h"
 	<iostream>
 	<fstream>
@@ -691,13 +691,13 @@
 	"Globale.h"
 	"Jeu.h"
 
-1224320109 source:d:\backup disque e\c++\holyspirit\source\jeu.cpp
+1227109688 source:d:\backup disque e\c++\holyspirit\source\jeu.cpp
 	"constantes.h"
 	"Globale.h"
 	"jeu.h"
 	<dirent.h>
 
-1220785514 d:\backup disque e\c++\holyspirit\source\jeu.h
+1227109303 d:\backup disque e\c++\holyspirit\source\jeu.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"constantes.h"
@@ -709,6 +709,7 @@
 	"c_changementMap.h"
 	"c_inventaire.h"
 	"c_menuInGame.h"
+	"c_demarrage.h"
 
 1224406022 d:\backup disque e\c++\holyspirit\source\c_jeu.h
 	<SFML/System.hpp>
@@ -721,7 +722,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1226428090 source:d:\backup disque e\c++\holyspirit\source\c_jeu.cpp
+1227109784 source:d:\backup disque e\c++\holyspirit\source\c_jeu.cpp
 	"c_jeu.h"
 	"jeu.h"
 	"Globale.h"
@@ -1057,4 +1058,19 @@
 	"Objet.h"
 	"Globale.h"
 	<fstream>
+
+1227109365 d:\backup disque e\c++\holyspirit\source\c_demarrage.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"Contexte.h"
+
+1227109929 source:d:\backup disque e\c++\holyspirit\source\c_demarrage.cpp
+	"c_jeu.h"
+	"jeu.h"
+	"Globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
 

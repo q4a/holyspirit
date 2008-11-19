@@ -19,6 +19,7 @@
 #include "c_changementMap.h"
 #include "c_inventaire.h"
 #include "c_menuInGame.h"
+#include "c_demarrage.h"
 
 class Jeu
 {
@@ -40,6 +41,7 @@ class Jeu
 
 	bool m_run,m_display,m_reset;
 
+	c_Demarrage *m_demarrage;
     c_Jeu *m_jeu;
     c_Chargement *m_chargement;
     c_Inventaire *m_inventaire;

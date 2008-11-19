@@ -695,8 +695,8 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
 
 
         // Je fonctionne comme pour en bas, juste que je prend le héro comme source de lumière, pour la portée lumineuse
-    for(int i=0;i<30;i++)
-        for(int j=0;j<30;j++)
+    for(int i=0;i<30;++i)
+        for(int j=0;j<30;++j)
         {
             m_tableauDesLampes[i][j].detruire();
 
@@ -722,7 +722,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                 lumiereTemp2=0;
                 if(configuration.Lumiere==2)
                 if(lumiere.intensite>0)
-                    for(int o=1;o<10;o++)
+                    for(int o=1;o<10;++o)
                     {
                         coordonneeDecimal positionHero;
 
@@ -942,9 +942,9 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
 
         for(int couche=1;couche==1;couche++)
         {
-            for(int j=lampesMin.y;j<lampesMax.y;j++)
+            for(int j=lampesMin.y;j<lampesMax.y;++j)
             {
-                for(int k=lampesMin.x;k<lampesMax.x;k++)
+                for(int k=lampesMin.x;k<lampesMax.x;++k)
                 {
                     bool ok=false;
                     if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())// Je vérifie que le tile est initialisé ^^
@@ -1014,8 +1014,8 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
 
 
                         //Maintenant, je vais calculer la lumière à ajouter à tout les tiles affiché à l'écran
-                        for(int l=j-7;l<j+7;l++)
-                            for(int m=k-7;m<k+7;m++)
+                        for(int l=j-7;l<j+7;++l)
+                            for(int m=k-7;m<k+7;++m)
                             if(l>=vueMin.y&&l<vueMax.y&&m>=vueMin.x&&m<vueMax.x)
                                 {
                                     bool ombre=false;
@@ -1303,7 +1303,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                             if(configuration.Lumiere==2)
                                             if(!(l==j&&m==k))
                                             if(lumiere.intensite>0)
-                                            for(int o=1;o<10;o++)
+                                            for(int o=1;o<10;++o)
                                             {
                                                 Xtemp=((double)(k-m)*0.1)*(double)o;
                                                 Ytemp=((double)(j-l)*0.1)*(double)o;
@@ -1414,7 +1414,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                             if(configuration.Lumiere==2)
                                             if(!(l==j&&m==k))
                                             if(lumiere.intensite>0)
-                                            for(int o=1;o<10;o++)
+                                            for(int o=1;o<10;++o)
                                             {
                                                 Xtemp=((double)(k-m)*0.1)*(double)o;
                                                 Ytemp=((double)(j-l)*0.1)*(double)o;
@@ -1509,13 +1509,13 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
 
         if(configuration.amelioration_lampes)
         if(m_lumiere[configuration.heure].intensite==1)
-        for(int z=0;z<1;z++)
-            for(int i=0;i<vueMax.y-vueMin.y;i++)
-            for(int j=0;j<vueMax.x-vueMin.x;j++)
+        for(int z=0;z<1;++z)
+            for(int i=0;i<vueMax.y-vueMin.y;++i)
+            for(int j=0;j<vueMax.x-vueMin.x;++j)
             {
                 m_tableauDesLampesBasique[i][j]=m_tableauDesLampes[i][j];
-                for(int y=-1;y<=1;y++)
-                    for(int w=-1;w<=1;w++)
+                for(int y=-1;y<=1;++y)
+                    for(int w=-1;w<=1;++w)
                         if(!((y==0&&w==0)))
                         {
                             if(i+y>0&&i+y+vueMin.y<m_decor[0].size()&&j+w>0&&j+w+vueMin.x<m_decor[0][0].size())
@@ -1601,9 +1601,9 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
         for(int couche=0;couche<2;couche++)
         {
-            for(int j=hero->m_personnage.getCoordonnee().y-15;j<hero->m_personnage.getCoordonnee().y+15;j++)
+            for(int j=hero->m_personnage.getCoordonnee().y-15;j<hero->m_personnage.getCoordonnee().y+15;++j)
             {
-                for(int k=hero->m_personnage.getCoordonnee().x-15;k<hero->m_personnage.getCoordonnee().x+15;k++)
+                for(int k=hero->m_personnage.getCoordonnee().x-15;k<hero->m_personnage.getCoordonnee().x+15;++k)
                 {
                     position.x=(k-j-1+m_decor[0].size())*64;
                     position.y=(k+j)*32;
@@ -1950,7 +1950,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                                     if(couche==1&&positionPartieDecor.h>256)
                                     {
-                                        alpha=(int)((positionHero.y+32)-position.y)+64;
+                                        alpha=(int)((positionHero.y)-position.y)+160;
                                         //if(position.y>positionHero.y+96)
                                           //  alpha=32;
 

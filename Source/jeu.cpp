@@ -30,16 +30,9 @@ Jeu::Jeu()
             EffectNoir.SetTexture("framebuffer", NULL);
             EffectNoir.SetParameter("color", 0.f, 0.f, 0.f);
         }
-
-
         configuration.effetMort=0;
-
-
     }
-
-
     Luminosite.Create(configuration.Resolution.x, configuration.Resolution.y, sf::Color(255,255,255));
-
 }
 
 void Jeu::Demarrer()
@@ -59,17 +52,15 @@ void Jeu::Demarrer()
     }
 
     this->m_jeu = new c_Jeu(this);
+    this->m_demarrage = new c_Demarrage(this);
     this->m_chargement = new c_Chargement(this);
     this->m_inventaire = new c_Inventaire(this);
     this->m_menuInGame = new c_MenuInGame(this);
 
     coordonnee temp={1,1,-1,-1};
-//    this->m_contexte->CopierCamera(this->m_chargement->camera);
-    //this->m_contexte->camera=this->m_chargement->camera;
     this->m_chargement->setC_Chargement(1,temp,1);
 
-    this->m_contexte = this->m_chargement;
-//:    m_chargement->CopierCamera(this->m_jeu->camera);
+    this->m_contexte = this->m_demarrage;
 
     this->hero.Charger();
 
@@ -105,6 +96,7 @@ void Jeu::Demarrer()
 	if(m_reset)
         Reset();
 
+    delete this->m_demarrage;
     delete this->m_jeu;
     delete this->m_chargement;
     delete this->m_inventaire;
@@ -127,7 +119,6 @@ void Jeu::Reset()
         remove(temp.c_str());
     }
     closedir(repertoire);
-
 }
 
 

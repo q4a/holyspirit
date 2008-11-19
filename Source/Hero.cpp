@@ -61,8 +61,8 @@ Hero::Hero()
 
 	m_monstreVise=-1;
 
-	for(int i=0;i<5;i++)
-        for(int j=0;j<8;j++)
+	for(int i=0;i<5;++i)
+        for(int j=0;j<8;++j)
             m_caseInventaire[i][j]=0;
 
     m_objetEnMain=-1;
@@ -83,16 +83,16 @@ void Hero::Sauvegarder()
         fichier<<"* niveau: "<<crypter(m_personnage.getCaracteristique().niveau)<<"\n";
 
         fichier<<"$"<<endl;
-        for(int i=0;i<5;i++)
+        for(int i=0;i<5;++i)
         {
             fichier<<"* ";
-            for(int j=0;j<8;j++)
+            for(int j=0;j<8;++j)
                 fichier<<m_caseInventaire[i][j]<<" ";
             fichier<<" $"<<endl;
         }
         fichier<<"$"<<endl;
 
-        for(int i=0;i<m_inventaire.size();i++)
+        for(int i=0;i<m_inventaire.size();++i)
         {
             m_inventaire[i].Sauvegarder(&fichier);
         }

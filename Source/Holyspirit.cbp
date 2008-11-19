@@ -56,6 +56,8 @@
 		</Unit>
 		<Unit filename="c_changementMap.cpp" />
 		<Unit filename="c_changementMap.h" />
+		<Unit filename="c_demarrage.cpp" />
+		<Unit filename="c_demarrage.h" />
 		<Unit filename="c_inventaire.cpp" />
 		<Unit filename="c_inventaire.h" />
 		<Unit filename="c_menuInGame.cpp" />

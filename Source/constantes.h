@@ -133,6 +133,7 @@ struct Configuration
                         if(chaine== "fx:") { fichier2>>chemin_fx; }
                         if(chaine== "chemin_video_developpeurs:") { fichier2>>chemin_video_developpeur; }
                         if(chaine== "nom_video_developpeurs:") { fichier2>>nom_video_developpeur; }
+                        if(chaine== "alpha_arts:") { fichier2>>chemin_aa; }
 
                         if(chaine== "curseur_base:") { fichier2>>nom_curseur_base; }
                         if(chaine== "fxNoir:") { fichier2>>nom_effetNoir; }
@@ -233,7 +234,7 @@ struct Configuration
     float effetMort,volume,minute,zoom,frequence_sauvegarde,frequence_lumiere,luminosite,contrastes;
     int heure,cache;
     std::string version,chemin_maps,chemin_temps,chemin_saves,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetMort,nom_effetContrastes,nom_effetBlur,nom_hud,nom_minimap,nom_bulle_vie,nom_ame,nom_barre_ame,nom_barre_vie,nom_barre_vie_vide,nom_sang,nom_inventaire,chemin_son_mort;
-    std::string font_titre,chemin_video_developpeur,nom_video_developpeur,nom_sac;
+    std::string font_titre,chemin_video_developpeur,nom_video_developpeur,nom_sac,chemin_aa;
 };
 
 struct Caracteristique
