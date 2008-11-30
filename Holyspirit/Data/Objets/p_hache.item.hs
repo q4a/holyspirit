@@ -1,3 +1,5 @@
+* t1 $
+$
 *Petite hache en cuivre
 $
 *Data/Objets/Images/axes01.png
@@ -6,5 +8,7 @@ $
 $
 *x1 y2 $
 $
-*r0 $
+*r0  $
+$
+*di3 da7 $ 
 $

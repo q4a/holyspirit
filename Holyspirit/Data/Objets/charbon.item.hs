@@ -1,3 +1,5 @@
+* t0 $
+$
 *Charbon
 $
 *Data/Objets/Images/craft01.png

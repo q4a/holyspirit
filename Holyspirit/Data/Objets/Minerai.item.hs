@@ -1,3 +1,5 @@
+* t0 $
+$
 *Minerai
 $
 *Data/Objets/Images/craft01.png
