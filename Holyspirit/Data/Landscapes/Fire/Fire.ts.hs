@@ -1,4 +1,4 @@
-Data/Landscapes/Fire/Fire.png
+*Data/Landscapes/Fire/Fire.png
 $
 *Data/Sounds/Feu.wav
 $
