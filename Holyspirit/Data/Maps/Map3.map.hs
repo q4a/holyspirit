@@ -5,18 +5,20 @@ $
 $
 Liste des musiques
 *Data/Music/Maxtor81-Arcaduis.ogg
+*Data/Music/Battle_CDN.ogg
+
 $
 Lumiere de base
 *255 255 255 1 0
 $
 Liste des tilesets
-*Data/Grounds/Plain_grass/Plain_grass
-*Data/Landscapes/Stone_wall/Stone_wall
-*Data/Landscapes/Campfire/Campfire
-*Data/Landscapes/Light_effect/Light_effect
+*Data/Grounds/Plain_grass/Plain_grass.ts.hs
+*Data/Landscapes/Stone_wall/Stone_wall.ts.hs
+*Data/Landscapes/Campfire/Campfire.ts.hs
+*Data/Landscapes/Light_effect/Light_effect.ts.hs
 $
 Liste des tilesets de l'herbe
-*Data/Landscapes/Grass/Mushroom
+*Data/Landscapes/Grass/Mushroom.ts.hs
 $
 Liste des tilesets des monstres
 *Data/Entities/Monsters/GolemQuartz/GolemQuartz.char.hs

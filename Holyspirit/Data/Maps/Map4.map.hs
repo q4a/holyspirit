@@ -33,12 +33,12 @@ Lumiere de base
 *128 128 255 32 45
 $
 Liste des tilesets
-*Data/Grounds/Forest_ground/Forest_ground
-*Data/Landscapes/Campfire/Campfire
-*Data/Landscapes/Trees/Trunk
+*Data/Grounds/Forest_ground/Forest_ground.ts.hs
+*Data/Landscapes/Campfire/Campfire.ts.hs
+*Data/Landscapes/Trees/Trunk.ts.hs
 $
 Liste des tilesets de l'herbe
-*Data/Landscapes/Grass/Grass1
+*Data/Landscapes/Grass/Grass1.ts.hs
 $
 Liste des tilesets des monstres
 *Data/Entities/Monsters/PantinMorbide/PantinMorbide.char.hs

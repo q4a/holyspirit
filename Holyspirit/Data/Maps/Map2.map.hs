@@ -1,6 +1,7 @@
 Nom
 *Les terres agraires
 $
+*Data/Loading_screens/Plaines2.png
 *Data/Loading_screens/Plaines3.png
 $
 Musique
@@ -33,15 +34,15 @@ Lumiere de base
 *128 128 255 32 45
 $
 Liste des tilesets
-*Data/Grounds/Plain_grass/Plain_grass
-*Data/Landscapes/Conifers/Conifer
-*Data/Landscapes/Stone_wall/Stone_wall
-*Data/Landscapes/Campfire/Campfire
-*Data/Landscapes/Trees/Trunk
-*Data/Landscapes/Inn/Inn
+*Data/Grounds/Plain_grass/Plain_grass.ts.hs
+*Data/Landscapes/Conifers/Conifer.ts.hs
+*Data/Landscapes/Stone_wall/Stone_wall.ts.hs
+*Data/Landscapes/Campfire/Campfire.ts.hs
+*Data/Landscapes/Trees/Trunk.ts.hs
+*Data/Landscapes/Inn/Inn.ts.hs
 $
 Liste des tilesets de l'herbe
-*Data/Landscapes/Grass/Grass1
+*Data/Landscapes/Grass/Grass1.ts.hs
 $
 Liste des tilesets des monstres
 *Data/Entities/Monsters/PantinMorbide/PantinMorbide.char.hs
