@@ -52,18 +52,50 @@ void Objet::Sauvegarder(std::ofstream *fichier)
 }
 
 
-void ModeleObjet::Charger(std::string chemin)
+void Objet::Charger(std::string chemin)
 {
     console.Ajouter("",0);
 	console.Ajouter("Chargement de l'objet : "+chemin,0);
 
-	m_chemin=chemin;
 
 	ifstream fichier;
     fichier.open(chemin.c_str(), ios::in);
     if(fichier)
     {
+        int type=0;
         char caractere;
+
+        do
+    	{
+
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
+                do
+                {
+                    fichier.get(caractere);
+                    switch (caractere)
+                    {
+                        case 't' : fichier>>type; break;
+                    }
+
+                    if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+                }while(caractere!='$');
+                fichier.get(caractere);
+            }
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
+
+        if(type==1)
+    	{
+            Arme temp;
+    	    *this = temp;
+    	}
+
+    	m_chemin=chemin;
+
     	do
     	{
     		fichier.get(caractere);
@@ -137,8 +169,10 @@ void ModeleObjet::Charger(std::string chemin)
 
     	}while(caractere!='$');
 
+
     	do
     	{
+
     		fichier.get(caractere);
     		if(caractere=='*')
             {
@@ -158,15 +192,96 @@ void ModeleObjet::Charger(std::string chemin)
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
 
     	}while(caractere!='$');
+
+    	ChargerCaracteristiques(&fichier);
     }
     else
     console.Ajouter("Impossible d'ouvrir : "+chemin,1);
+
 
     m_position.x=0;
     m_position.y=0;
 }
 
+void Objet::ChargerCaracteristiques(std::ifstream *fichier){}
 
-void ModeleObjet::setChanceTrouver(int chance){ m_chanceTrouver=chance; }
+void Arme::ChargerCaracteristiques(std::ifstream *fichier)
+{
+    char caractere;
+    do
+    {
+        fichier->get(caractere);
+        if(caractere=='*')
+        {
+            do
+            {
+                fichier->get(caractere);
+                switch (caractere)
+                {
+                    case 'd' : fichier->get(caractere); if(caractere=='i') *fichier>>m_degatsMin; else if(caractere=='a') *fichier>>m_degatsMax;  break;
+                }
 
-int ModeleObjet::getChanceTrouver(){return m_chanceTrouver;}
+                if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",m_chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+            }while(caractere!='$');
+            fichier->get(caractere);
+        }
+        if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",m_chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+    }while(caractere!='$');
+}
+
+
+void Objet::AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position)
+{
+    char chaine[255];
+
+    sf::Sprite sprite;
+    sf::String string;
+
+    coordonnee tailleCadran={0,0,0,0},decalage={0,0,0,0};
+
+    string.SetSize(16.f);
+    sprintf(chaine,"%s",m_nom.c_str());
+    string.SetText(chaine);
+    string.SetY(position.y+decalage.y+10);
+    string.SetX(position.x+decalage.x+10);
+
+    decalage.y+=(int)string.GetRect().Bottom-(int)string.GetRect().Top+10;
+
+    moteurGraphique.AjouterTexte(&string);
+}
+
+void Arme::AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position)
+{
+    Objet::AfficherCaracteristiques(ecran,position);
+
+    char chaine[255];
+
+    sf::Sprite sprite;
+    sf::String string;
+
+    coordonnee tailleCadran={0,0,0,0},decalage={0,32,0,0};
+
+    string.SetSize(16.f);
+
+   // decalage.y+=string.GetRect().Bottom-string.GetRect().Top+10;
+
+    moteurGraphique.AjouterTexte(&string);
+
+    sprintf(chaine,"Dégats : %i - %i",m_degatsMin,m_degatsMax);
+    string.SetText(chaine);
+    string.SetY(position.y+decalage.y+10);
+    string.SetX(position.x+decalage.x+10);
+
+    decalage.y+=(int)string.GetRect().Bottom-(int)string.GetRect().Top+10;
+
+    moteurGraphique.AjouterTexte(&string);
+}
+
+
+
+
+void Objet::setChanceTrouver(int chance){ m_chanceTrouver=chance; }
+
+int Objet::getChanceTrouver(){return m_chanceTrouver;}

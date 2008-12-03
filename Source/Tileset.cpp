@@ -96,7 +96,7 @@ bool Tileset::Charger(std::string chemin)
     			int animation=-1,son=-1;
     			Lumiere lumiere;
     			lumiere.intensite=0;
-    			bool collision=0,ombre=0;
+    			bool collision=0,ombre=0,transparent=0;
     			char orientation=' ';
     			do
     			{
@@ -111,6 +111,8 @@ bool Tileset::Charger(std::string chemin)
     					case 'a': fichier>>animation; break;
     					case 's': fichier>>son; break;
     					case 'o': fichier>>ombre; break;
+    					case 't': fichier>>transparent; break;
+
     					case 'l':
                                 fichier.get(caractere);
                                 if(caractere=='r')
@@ -131,7 +133,7 @@ bool Tileset::Charger(std::string chemin)
     			//AjouterTile(position,collision,animation,son,lumiere,ombre,orientation);
     			Tile tileTemp;
     			m_tile.push_back(tileTemp);
-    			m_tile[m_tile.size()-1].setTile(position,collision,animation,son,lumiere,ombre,orientation);
+    			m_tile[m_tile.size()-1].setTile(position,collision,animation,son,lumiere,ombre,orientation,transparent);
 
     			fichier.get(caractere);
     		}
@@ -211,7 +213,17 @@ bool Tileset::getOmbreDuTile(int tile)
 
     return 0;
 }
-#include "Globale.h"
+
+bool Tileset::getTransparentDuTile(int tile)
+{
+    if(tile>=0&&tile<m_tile.size())
+        return m_tile[tile].getTransparent();
+
+    return 0;
+}
+
+
+
 
 char Tileset::getOrientationDuTile(int tile)
 {

@@ -22,8 +22,6 @@ c_MenuInGame::c_MenuInGame(Jeu *jeu)
 
 void c_MenuInGame::Utiliser(Jeu *jeu)
 {
-
-
     moteurGraphique.m_blur=0.0025*m_alpha/255;
 
     jeu->m_display=true;
@@ -53,12 +51,16 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
             m_alpha=255;
     }
 
+
+
     jeu->eventManager.GererLesEvenements(&jeu->ecran,&jeu->camera,&jeu->m_run,temps_ecoule,jeu->map.getDimensions());
 
-    if(jeu->eventManager.getEvenement(Key::Escape,"ET"))
-        retour=1;
+    if(jeu->eventManager.getEvenement(Key::Escape,"ET")&&m_alpha==255)
+        jeu->eventManager.StopEvenement(Key::I,"ET"),retour=1;
     if(jeu->eventManager.getEvenement(Key::Space,"ET"))
         jeu->m_run=false;
+
+
    /* if(jeu->eventManager.getEvenement(Mouse::Left,"C"))
     {
         if(jeu->eventManager.getPositionSouris().y<configuration.Resolution.h/2)

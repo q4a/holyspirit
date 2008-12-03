@@ -31,6 +31,7 @@ class Tileset
 	int getSonTile(int tile);
 	Lumiere Tileset::getLumiereDuTile(int tile);
 	bool getOmbreDuTile(int tile);
+	bool getTransparentDuTile(int tile);
 	char getOrientationDuTile(int tile);
 	std::string getChemin(){return m_chemin;}
 

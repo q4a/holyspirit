@@ -1948,14 +1948,14 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                                     int alpha=255;
 
-                                    if(couche==1&&positionPartieDecor.h>256)
+                                    if(m_tileset[m_decor[couche][j][k].getTileset()].getTransparentDuTile(m_decor[couche][j][k].getTile()))
                                     {
                                         alpha=(int)((positionHero.y)-position.y)+160;
                                         //if(position.y>positionHero.y+96)
                                           //  alpha=32;
 
-                                        if(alpha<64)
-                                            alpha=64;
+                                        if(alpha<configuration.alpha)
+                                            alpha=configuration.alpha;
                                         if(alpha>255)
                                             alpha=255;
                                     }
@@ -2255,8 +2255,10 @@ void Map::AfficherNomEvenement(sf::RenderWindow* ecran,coordonnee casePointee,co
                         sf::String texte;
                         texte.SetText(chemin);
                         texte.SetSize(16.f);
-                        texte.SetY((positionSouris.y-16)*configuration.Resolution.h/configuration.Resolution.y);
-                        texte.SetX(positionSouris.x*configuration.Resolution.w/configuration.Resolution.x);
+                        if(configuration.Resolution.y>0)
+                            texte.SetY((positionSouris.y-16)*configuration.Resolution.h/configuration.Resolution.y);
+                        if(configuration.Resolution.x>0)
+                            texte.SetX(positionSouris.x*configuration.Resolution.w/configuration.Resolution.x);
                         moteurGraphique.AjouterTexte(&texte);
                         //ecran->Draw(texte);
                     }
@@ -2558,9 +2560,9 @@ bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *ca
 {
     if(numeroMonstre>=0&&numeroMonstre<m_monstre.size())
     {
-        if(configuration.sang)
+        if(configuration.sang&&m_monstre[numeroMonstre].enVie())
             for(int i=0;i<5;i++)
-                if(rand()%(100)>50&&m_monstre[numeroMonstre].getCaracteristique().sang)
+                if(rand()%(100)>25&&m_monstre[numeroMonstre].getCaracteristique().sang)
                 {
                     coordonneeDecimal position;
                     position.x=rand()%(600 - 100) + 100;

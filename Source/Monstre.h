@@ -8,13 +8,13 @@ class Modele_Monstre : public Modele_Personnage
 {
     public:
     bool Charger(std::string chemin);
-    std::vector<ModeleObjet> getObjets();
+    std::vector<Objet> getObjets();
 
     std::string m_chemin;
 
 
     private:
-    std::vector<ModeleObjet> m_objets;
+    std::vector<Objet> m_objets;
 };
 
 

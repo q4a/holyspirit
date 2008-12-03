@@ -124,18 +124,25 @@ void MoteurGraphique::AjouterTexte(sf::String* string,bool titre)
 {
     sf::String temp(*string);
 
+    if(temp.GetRect().Right>configuration.Resolution.x)
+        temp.SetX(configuration.Resolution.x-(temp.GetRect().Right-temp.GetRect().Left));
+
+    if(temp.GetRect().Left<0)
+        temp.SetX(0);
+
+    if(temp.GetRect().Top<0)
+        temp.SetY(0);
+
+    if(temp.GetRect().Bottom>configuration.Resolution.y)
+        temp.SetY(configuration.Resolution.y-(temp.GetRect().Bottom-temp.GetRect().Top));
+
     if(titre)
     {
         temp.SetFont(m_font_titre);
 
-        /*temp.Move(10,10);
-        temp.SetColor(sf::Color((int)(string->GetColor().r*0.1),(int)(string->GetColor().g*0.1),(int)(string->GetColor().b*0.1),string->GetColor().a));
-        m_textes.push_back(temp);
-
-
-        temp.Move(-10,-10);*/
         temp.SetStyle(sf::String::Bold);
         temp.SetColor(string->GetColor());
+
         m_textes.push_back(temp);
 
         temp.SetColor(sf::Color((int)(string->GetColor().r*0.15),(int)(string->GetColor().g*0.15),(int)(string->GetColor().b*0.15),string->GetColor().a));

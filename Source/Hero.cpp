@@ -199,7 +199,7 @@ void Hero::Charger()
                                 {
                                     string chemin;
                                     fichier>>chemin;
-                                    ModeleObjet temp;
+                                    Objet temp;
                                     temp.Charger(chemin);
 
                                     m_inventaire.push_back(temp);
@@ -273,6 +273,7 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
             sprite.SetY(((m_inventaire[i].getPosition().y-1)*32+399)*configuration.Resolution.y/600-decalage*configuration.Resolution.h/600);
 
             moteurGraphique.AjouterCommande(&sprite,0);
+
         }
 
     if(m_objetEnMain>=0&&m_objetEnMain<m_inventaire.size())
@@ -300,6 +301,20 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
         sprite.SetY((positionSouris.y-367)/32*32+367);
 
         moteurGraphique.AjouterCommande(&sprite,0);
+    }
+    else if(positionSouris.x>477&&positionSouris.x<477+32*8&&positionSouris.y>367&&positionSouris.y<399+32*5)
+    {
+        coordonnee caseVisee;
+        caseVisee.x=(positionSouris.x-477)/32;
+        caseVisee.y=(positionSouris.y-367)/32;
+
+        for(int i=0;i<m_inventaire.size();i++)
+            if(caseVisee.x>=m_inventaire[i].getPosition().x&&caseVisee.x<=m_inventaire[i].getPosition().x+m_inventaire[i].getTaille().x-1
+             &&caseVisee.y>=m_inventaire[i].getPosition().y&&caseVisee.y<=m_inventaire[i].getPosition().y+m_inventaire[i].getTaille().y-1)
+             {
+                positionSouris.y-=32;
+                m_inventaire[i].AfficherCaracteristiques(ecran,positionSouris);
+             }
     }
 
 }

@@ -192,7 +192,7 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
         {
             for(int o=0;o<m_lumiere.m_ombre.size();o++)
             {
-                int angleOmbre=(m_angle-m_lumiere.m_ombre[o].angle)+45-22.5;
+                int angleOmbre=(int)((m_angle-m_lumiere.m_ombre[o].angle)+45-22.5);
 
                 while(angleOmbre<0)
                     angleOmbre=360+angleOmbre;

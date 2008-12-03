@@ -55,7 +55,7 @@ c_Jeu::c_Jeu(Jeu *jeu)
         jeu->sonMort.Play();
 
 
-        if(!jeu->hero.m_modelePersonnage.Charger("Data/Entites/hero/GuerrierHache.char.hs")) // Chargement du héro
+        if(!jeu->hero.m_modelePersonnage.Charger("Data/Entities/hero/GuerrierHache.char.hs")) // Chargement du héro
             throw("CRITICAL ERROR");
 
 
@@ -261,10 +261,10 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     }
 
                     if(jeu->eventManager.getEvenement(Key::I,"ET"))
-                        jeu->m_contexte=jeu->m_inventaire,jeu->eventManager.StopEvenement(Key::I,"ET");
+                        jeu->eventManager.StopEvenement(Key::I,"ET"),jeu->m_contexte=jeu->m_inventaire;
 
                     if(jeu->eventManager.getEvenement(Key::Escape,"ET"))
-                        jeu->m_contexte=jeu->m_menuInGame,jeu->eventManager.StopEvenement(Key::Escape,"ET");
+                        jeu->eventManager.StopEvenement(Key::Escape,"ET"),jeu->m_contexte=jeu->m_menuInGame;
 
                     if(alpha_sac>128)
                     {

@@ -217,7 +217,7 @@ bool Modele_Monstre::Charger(string chemin)
     		fichier.get(caractere);
     		if(caractere=='*')
             {
-                ModeleObjet tempModeleObjet;
+                Objet tempModeleObjet;
                 do
                 {
                     fichier.get(caractere);
@@ -296,7 +296,7 @@ bool Modele_Monstre::Charger(string chemin)
     return 1;
 }
 
-std::vector<ModeleObjet> Modele_Monstre::getObjets(){return m_objets;}
+std::vector<Objet> Modele_Monstre::getObjets(){return m_objets;}
 
 void Monstre::testerVision(coordonnee positionHero)
 {

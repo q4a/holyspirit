@@ -34,7 +34,7 @@ void c_Demarrage::Utiliser(Jeu *jeu)
     jeu->EffectNoir.SetParameter("color", 1, 1, 1);
 
     if(m_alpha<255)
-        sprite.SetColor(Color(255,255,255,m_alpha));
+        sprite.SetColor(Color(255,255,255,(int)m_alpha));
     else
         sprite.SetColor(Color(255,255,255,255));
     sprite.Resize(configuration.Resolution.w,configuration.Resolution.h);

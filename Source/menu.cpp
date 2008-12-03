@@ -27,8 +27,6 @@ Menu::Menu()
     m_imageAme=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_ame);
     m_imageSang=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_sang);
     m_barrePointAme=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_barre_ame);
-    m_barreVie=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_barre_vie);
-    m_barreVieVide=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_barre_vie_vide);
     m_inventaire=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_inventaire);
 }
 
@@ -168,8 +166,8 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
             sprite.SetCenter(200*m_sang[i].m_taille,200*m_sang[i].m_taille);
             sprite.SetRotation(m_sang[i].m_rotation);
             sprite.SetCenter(0,0);
-            sprite.SetSubRect(sf::IntRect(200*m_sang[i].m_numero, 0,200+200*m_sang[i].m_numero, 200));
-            sprite.Resize(200*configuration.Resolution.x/800*m_sang[i].m_taille, 200*configuration.Resolution.y/600*m_sang[i].m_taille);
+            sprite.SetSubRect(sf::IntRect(200*m_sang[i].m_numero, 0,300+300*m_sang[i].m_numero, 200));
+            sprite.Resize(300*configuration.Resolution.x/800*m_sang[i].m_taille, 200*configuration.Resolution.y/600*m_sang[i].m_taille);
             sprite.SetColor(sf::Color(255,255,255,(int)m_sang[i].m_alpha));
             sprite.SetX(m_sang[i].m_position.x*configuration.Resolution.x/800);
             sprite.SetY(m_sang[i].m_position.y*configuration.Resolution.y/600);
