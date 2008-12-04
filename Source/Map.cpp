@@ -28,7 +28,7 @@ Map::Map()
 
 Map::~Map()
 {
-    m_tileset.clear();
+    /*m_tileset.clear();
     m_herbe.clear();
     for(int i=0;i<m_decor.size();i++)
     {
@@ -44,7 +44,8 @@ Map::~Map()
     for(int i=0;i<m_evenement.size();i++)
         m_evenement[i].deleteInformations();
     m_evenement.clear();
-    m_musique.Stop();
+    m_musique.Stop();*/
+    Detruire();
 }
 
 void Map::Detruire()
@@ -65,9 +66,12 @@ void Map::Detruire()
     for(int i=0;i<m_evenement.size();i++)
         m_evenement[i].deleteInformations();
     m_evenement.clear();
-    m_musique.Stop();
 
+    for(int i=0;i<MAX_MUSIQUE;i++)
+        m_musique[i].Stop();
 
+    m_fond.clear();
+    m_cheminMusique.clear();
 }
 
 bool Map::Charger(int numeroMap)
@@ -89,6 +93,8 @@ bool Map::Charger(int numeroMap)
 	m_lumiere[0].rouge=0;
 	m_lumiere[0].vert=0;
 	m_lumiere[0].bleu=0;
+
+    m_musiqueEnCours=0;
 
 	ifstream fichier,fichier2;
     fichier.open(chemin.c_str(), ios::in);
@@ -144,7 +150,7 @@ bool Map::Charger(int numeroMap)
     		{
     			string nom;
                 getline(fichier, nom);
-                m_fond=nom;
+                m_fond.push_back(nom);
     		}
 
             if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
@@ -154,19 +160,29 @@ bool Map::Charger(int numeroMap)
     	{
     	    //Chargement des musiques
     		fichier.get(caractere);
-    		if(caractere=='*')
+    		if(caractere=='*'&&m_musiqueEnCours<MAX_MUSIQUE)
     		{
-                getline(fichier, m_cheminMusique);
-                if(!m_musique.OpenFromFile(m_cheminMusique.c_str()))
-                    console.Ajouter("Impossible de charger : "+m_cheminMusique,1);
-                else
-                console.Ajouter("Chargement de : "+m_cheminMusique,0);
+    		    std::string temp2;
 
-                m_musique.SetLoop(true);
-                m_musique.SetVolume(0);
+                getline(fichier, temp2);
+
+                if(!m_musique[m_musiqueEnCours].OpenFromFile(temp2.c_str()))
+                    console.Ajouter("Impossible de charger : "+temp2,1);
+                else
+                console.Ajouter("Chargement de : "+temp2,0);
+
+                m_cheminMusique.push_back(temp2);
+
+                m_musique[m_musiqueEnCours].SetLoop(false);
+                m_musique[m_musiqueEnCours].SetVolume(0);
+
+                m_musiqueEnCours++;
     		}
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str()); throw (&temp); }
     	}while(caractere!='$');
+
+    	m_musiqueEnCours=0;
+
         int heureEnCours=0;
     	do
     	{
@@ -533,7 +549,13 @@ void Map::Sauvegarder()
     fichier.open(chemin.c_str(), ios::out);
     if(fichier)
     {
-        fichier<<"*"<<m_nom<<"\n$\n*"<<m_fond<<"\n$\n*"<<m_cheminMusique<<"\n$\n";
+        fichier<<"*"<<m_nom<<"\n$\n";
+        for(int i=0;i<m_fond.size();i++)
+            fichier<<"*"<<m_fond[i]<<"\n";
+        fichier<<"$\n";
+        for(int i=0;i<m_cheminMusique.size();i++)
+            fichier<<"*"<<m_cheminMusique[i]<<"\n";
+        fichier<<"$\n";
 
         for(int i=0;i<24;i++)
             fichier<<"*"<<m_lumiere[i].rouge<<" "<<m_lumiere[i].vert<<" "<<m_lumiere[i].bleu<<" "<<m_lumiere[i].intensite<<" "<<m_lumiere[i].hauteur<<"\n";
@@ -1621,7 +1643,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                                     position.y-=32;
 
-                                    Sprite.SetImage(*moteurGraphique.getImage(m_herbe[m_decor[0][j][k].getHerbe()].getImage()));
+                                    Sprite.SetImage(*moteurGraphique.getImage(m_herbe[m_decor[0][j][k].getHerbe()].getImage(m_decor[0][j][k].getNumeroHerbe())));
                                     if((position.x+64-positionPartieDecor.w/2)-ViewRect.Left<0)
                                     {
                                         int temp=(int)((position.x+64-positionPartieDecor.w/2)-ViewRect.Left);
@@ -1746,7 +1768,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     position.y-=32;
                                     position.y+=positionPartieDecor.h/2;
 
-                                    Sprite.SetImage(*moteurGraphique.getImage(m_herbe[m_decor[1][j][k].getHerbe()].getImage()));
+                                    Sprite.SetImage(*moteurGraphique.getImage(m_herbe[m_decor[1][j][k].getHerbe()].getImage(m_decor[1][j][k].getNumeroHerbe())));
                                     if((position.x+64-positionPartieDecor.w/2)-ViewRect.Left<0)
                                     {
                                         int temp=(int)((position.x+64-positionPartieDecor.w/2)-ViewRect.Left);
@@ -1895,7 +1917,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                             if(position.x+positionPartieDecor.h*2+positionPartieDecor.w>=ViewRect.Left&&position.x-positionPartieDecor.h*2-positionPartieDecor.w-64<ViewRect.Right&&position.y+positionPartieDecor.h+positionPartieDecor.w>=ViewRect.Top&&position.y-positionPartieDecor.h-32<ViewRect.Bottom+100&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()&&configuration.Ombre&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()))
                             ||position.x+positionPartieDecor.w>=ViewRect.Left&&position.x<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y-positionPartieDecor.h+64<ViewRect.Bottom)
                             {
-                                Sprite.SetImage(*moteurGraphique.getImage(m_tileset[m_decor[couche][j][k].getTileset()].getImage()));
+                                Sprite.SetImage(*moteurGraphique.getImage(m_tileset[m_decor[couche][j][k].getTileset()].getImage(m_decor[couche][j][k].getTile())));
                                 Sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
 
                                 if(configuration.Ombre)
@@ -2040,7 +2062,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                                 128,
                                                 255));
                                     }
-                                    Sprite.SetImage(*moteurGraphique.getImage(m_tileset[m_decor[couche][w][z].getTileset()].getImage()));
+                                    Sprite.SetImage(*moteurGraphique.getImage(m_tileset[m_decor[couche][w][z].getTileset()].getImage(m_decor[couche][w][z].getTile())));
                                     Sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
                                     if(couche==1)
                                     {
@@ -2410,14 +2432,24 @@ void Map::verifierDeclencheursDegats(int i, int j)
 
 void Map::musiquePlay(coordonnee position)
 {
-    Sound::Status Status = m_musique.GetStatus();
+    if(m_musiqueEnCours>=0&&m_musiqueEnCours<MAX_MUSIQUE)
+    {
+      //  if(m_musique[m_musiqueEnCours].GetPlayingOffset)
 
-	if(Status==0)
-        m_musique.Play();
+        Sound::Status Status = m_musique[m_musiqueEnCours].GetStatus();
 
-	//if(m_musique.GetVolume()<50)
-	//m_musique.SetVolume(m_musique.GetVolume()+1);
-	m_musique.SetPosition(-position.x, 0, position.y);
+        if(Status==0)
+        {
+            m_musiqueEnCours++;
+            if(m_musiqueEnCours>=0&&m_musiqueEnCours<MAX_MUSIQUE)
+                m_musique[m_musiqueEnCours].Play();
+         }
+
+        if(m_musiqueEnCours>=0&&m_musiqueEnCours<MAX_MUSIQUE)
+            m_musique[m_musiqueEnCours].SetPosition(-position.x, 0, position.y);
+    }
+    else
+    m_musiqueEnCours=0;
 }
 
 
@@ -2665,7 +2697,11 @@ void Map::AjouterObjet(Objet objet)
     }
 }
 
-void Map::setVolumeMusique(int volume){m_musique.SetVolume(volume);}
+void Map::setVolumeMusique(int volume)
+{
+    if(m_musiqueEnCours>=0&&m_musiqueEnCours<MAX_MUSIQUE)
+        m_musique[m_musiqueEnCours].SetVolume(volume);
+}
 
 coordonnee Map::getSacPointe(){return m_sacPointe;}
 int Map::getObjetPointe(){return m_objetPointe;}

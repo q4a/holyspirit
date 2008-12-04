@@ -16,6 +16,8 @@
 
 #define NOMBRE_SANG 7
 
+#define MAX_MUSIQUE 5
+
 #include <cmath>
 #include <utility>
 #include <iostream>

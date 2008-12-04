@@ -27,6 +27,8 @@ Tileset::~Tileset()
         m_sons.clear();
 	}
     m_tile.clear();
+
+    m_image.clear();
 }
 
 Tileset Tileset::operator=(const Tileset &tileset)
@@ -41,15 +43,15 @@ bool Tileset::Charger(std::string chemin)
 {
 	string cheminFinal,temp;
 	m_chemin=chemin;
-	cheminFinal=chemin+".png";
-    m_image=moteurGraphique.AjouterImage(cheminFinal);
+	/*cheminFinal=chemin+".png";
+    m_image=moteurGraphique.AjouterImage(cheminFinal);*/
 
-	int nombreTiles=0;
-	cheminFinal=chemin+".ts.hs";
+	/*int nombreTiles=0;
+	cheminFinal=chemin+".ts.hs";*/
 
 
 	ifstream fichier;
-    fichier.open(cheminFinal.c_str(), ios::in);
+    fichier.open(m_chemin.c_str(), ios::in);
     if(fichier)
     {
         /*fichier>>temp;
@@ -59,6 +61,19 @@ bool Tileset::Charger(std::string chemin)
             m_image.SetSmooth(true);*/
 
     	char caractere;
+
+    	do
+    	{
+    		fichier.get(caractere);
+    		if(caractere=='*')
+    		{
+    			string cheminImage;
+                getline(fichier, cheminImage);
+                m_image.push_back(moteurGraphique.AjouterImage(cheminImage));
+    		}
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Tileset \" %s \" Invalide",cheminFinal.c_str());console.Ajouter(temp,1); caractere='$'; }
+    	}while(caractere!='$');
+
     	do
     	{
     		fichier.get(caractere);
@@ -93,7 +108,7 @@ bool Tileset::Charger(std::string chemin)
     		if(caractere=='*')
     		{
     			coordonnee position={-1,-1,-1,-1};
-    			int animation=-1,son=-1;
+    			int animation=-1,son=-1,image=0;
     			Lumiere lumiere;
     			lumiere.intensite=0;
     			bool collision=0,ombre=0,transparent=0;
@@ -107,6 +122,7 @@ bool Tileset::Charger(std::string chemin)
     					case 'y': fichier>>position.y; break;
     					case 'w': fichier>>position.w; break;
     					case 'h': fichier>>position.h; break;
+    					case 'i': fichier>>image; break;
     					case 'c': fichier>>collision; break;
     					case 'a': fichier>>animation; break;
     					case 's': fichier>>son; break;
@@ -133,7 +149,7 @@ bool Tileset::Charger(std::string chemin)
     			//AjouterTile(position,collision,animation,son,lumiere,ombre,orientation);
     			Tile tileTemp;
     			m_tile.push_back(tileTemp);
-    			m_tile[m_tile.size()-1].setTile(position,collision,animation,son,lumiere,ombre,orientation,transparent);
+    			m_tile[m_tile.size()-1].setTile(position,image,collision,animation,son,lumiere,ombre,orientation,transparent);
 
     			fichier.get(caractere);
     		}
@@ -147,9 +163,13 @@ bool Tileset::Charger(std::string chemin)
     return 1;
 }
 
-int Tileset::getImage()
+int Tileset::getImage(int tile)
 {
-	return m_image;
+    if(tile>=0&&tile<m_tile.size())
+        if(m_tile[tile].getImage()>=0&&m_tile[tile].getImage()<m_image.size())
+            return m_image[m_tile[tile].getImage()];
+    else
+        return 0;
 }
 
 coordonnee Tileset::getPositionDuTile(int tile)

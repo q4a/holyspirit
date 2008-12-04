@@ -64,7 +64,7 @@ class Map
 	int m_defilerObjets;
 
 	private:
-	int m_monstreIllumine,m_numero,IDImageSac,m_objetPointe,m_calculLumiere;
+	int m_monstreIllumine,m_numero,IDImageSac,m_objetPointe,m_calculLumiere,m_musiqueEnCours;
 	coordonnee m_sacPointe;
 	Lumiere m_lumiere[24];
 	std::vector <Tileset> m_tileset;
@@ -72,8 +72,10 @@ class Map
 	std::vector < std::vector< std::vector < Decor > > > m_decor;
 	std::vector <Evenement> m_evenement;
 
-	sf::Music m_musique;
-	std::string m_nom,m_fond,m_cheminMusique;
+	sf::Music m_musique[MAX_MUSIQUE];
+	std::string m_nom;
+
+	std::vector <std::string> m_fond,m_cheminMusique;
 
 	sf::Image lumiereMask;
 

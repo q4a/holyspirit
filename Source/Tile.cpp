@@ -18,6 +18,7 @@ Tile::~Tile()
 Tile Tile::operator=(const Tile &tile)
 {
 	m_positionDansLImage=tile.m_positionDansLImage;
+	m_image=tile.m_image;
 	m_collision=tile.m_collision;
 	m_animation=tile.m_animation;
 	m_son=tile.m_son;
@@ -28,9 +29,10 @@ Tile Tile::operator=(const Tile &tile)
     return *this;
 }
 
-void Tile::setTile(coordonnee positionDansLImage,bool collision,int animation,int son,Lumiere lumiere,bool ombre,char orientation,bool transparent)
+void Tile::setTile(coordonnee positionDansLImage,int image,bool collision,int animation,int son,Lumiere lumiere,bool ombre,char orientation,bool transparent)
 {
 	m_positionDansLImage=positionDansLImage;
+	m_image=image;
 	m_collision=collision;
 	m_animation=animation;
 	m_son=son;
@@ -41,6 +43,7 @@ void Tile::setTile(coordonnee positionDansLImage,bool collision,int animation,in
 }
 
 coordonnee Tile::getCoordonnee(){return m_positionDansLImage;}
+int Tile::getImage(){return m_image;}
 bool Tile::getCollision(){return m_collision;}
 int Tile::getAnimation(){return m_animation;}
 int Tile::getSon(){return m_son;}

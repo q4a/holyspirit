@@ -33,6 +33,7 @@ void c_Chargement::setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool
     m_debut=debut;
 
     char chemin[128];
+    vector <string> cheminFond;
     sprintf(chemin,"Data/Maps/map%ld.map.hs",numeroProchaineMap);
 
 
@@ -57,13 +58,17 @@ void c_Chargement::setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool
             fichier.get(caractere);
             if(caractere=='*')
             {
-                string chemin;
-                getline(fichier, chemin);
-                m_fond=moteurGraphique.AjouterImage(chemin);
+                cheminFond.push_back("");
+                getline(fichier, cheminFond[cheminFond.size()-1]);
+
             }
         }while(caractere!='$');
     }
     fichier.close();
+
+    m_fond=moteurGraphique.AjouterImage(cheminFond[rand()%cheminFond.size()]);
+
+    cheminFond.clear();
 
     allerVersImageChargement=true;
     m_tempsChargement=0;

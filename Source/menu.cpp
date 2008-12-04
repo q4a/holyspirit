@@ -28,6 +28,9 @@ Menu::Menu()
     m_imageSang=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_sang);
     m_barrePointAme=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_barre_ame);
     m_inventaire=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_inventaire);
+
+    m_barreVie=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_barre_vie);
+    m_barreVieVide=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_barre_vie_vide);
 }
 
 void Menu::Afficher(sf::RenderWindow* ecran,int type,float alpha)
