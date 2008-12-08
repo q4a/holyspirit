@@ -88,6 +88,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
     tempsEcouleDepuisDernierAffichage+=temps_ecoule;
     jeu->Clock.Reset();
 
+
     if(z>=49&&!augmenterNoir&&allerVersImageChargement)
     {
         jeu->Clock.Reset();
@@ -152,11 +153,15 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
                 if(configuration.Minimap)
                 {
-                    jeu->menu.Afficher(&jeu->ecran,1);
-                    jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,0);
                     jeu->menu.Afficher(&jeu->ecran,2);
+                    jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,0);
                 }
-                jeu->menu.Afficher(&jeu->ecran,3);
+                if(jeu->hero.getChercherSac().x!=-1&&jeu->map.getNombreObjets(jeu->hero.getChercherSac())>0)
+                {
+                    jeu->menu.Afficher(&jeu->ecran,3);
+                    jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,0);
+                }
+                jeu->menu.Afficher(&jeu->ecran,1);
                 jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),0,jeu->hero.m_personnage.getCaracteristique());
             }
         }

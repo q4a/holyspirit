@@ -227,7 +227,7 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
                         if(sprite.GetPosition().x<camera->GetRect().Right)
                         if(sprite.GetPosition().y+sprite.GetSize().y>=camera->GetRect().Top)
                         if(sprite.GetPosition().y<camera->GetRect().Bottom)
-                        moteurGraphique.AjouterCommande(&sprite,1);
+                        moteurGraphique.AjouterCommande(&sprite,9,1);
                         //ecran->Draw(Sprite);
                         sprite.SetCenter(0,0);
                         sprite.SetScale(1, 1);
@@ -265,7 +265,7 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
                 &&sprite.GetPosition().x<camera->GetRect().Right
                 &&sprite.GetPosition().y+sprite.GetSize().y>=camera->GetRect().Top
                 &&sprite.GetPosition().y<camera->GetRect().Bottom)
-                moteurGraphique.AjouterCommande(&sprite,1);
+                moteurGraphique.AjouterCommande(&sprite,10,1);
                // ecran->Draw(Sprite);
             }
     }

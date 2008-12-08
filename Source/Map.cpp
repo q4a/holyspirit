@@ -28,23 +28,6 @@ Map::Map()
 
 Map::~Map()
 {
-    /*m_tileset.clear();
-    m_herbe.clear();
-    for(int i=0;i<m_decor.size();i++)
-    {
-        for(int j=0;j<m_decor[0].size();j++)
-        {
-            m_decor[i][j].clear();
-        }
-        m_decor[i].clear();
-    }
-    m_decor.clear();
-    m_ModeleMonstre.clear();
-    m_monstre.clear();
-    for(int i=0;i<m_evenement.size();i++)
-        m_evenement[i].deleteInformations();
-    m_evenement.clear();
-    m_musique.Stop();*/
     Detruire();
 }
 
@@ -156,6 +139,9 @@ bool Map::Charger(int numeroMap)
             if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
         }while(caractere!='$');
 
+        for(int i=0;i<MAX_MUSIQUE;i++)
+                m_musique[i].Stop();
+
     	do
     	{
     	    //Chargement des musiques
@@ -180,6 +166,8 @@ bool Map::Charger(int numeroMap)
     		}
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str()); throw (&temp); }
     	}while(caractere!='$');
+
+    	m_musique[0].Play();
 
     	m_musiqueEnCours=0;
 
@@ -265,8 +253,6 @@ bool Map::Charger(int numeroMap)
     		{
     			string cheminDuMonstre;
                 getline(fichier, cheminDuMonstre);
-                //AjouterTileSet(cheminDuTileset);
-                //tilesetTemp.Charger(cheminDuTileset);
                 m_ModeleMonstre.push_back(monstreModeleTemp);
                 if(!m_ModeleMonstre[m_ModeleMonstre.size()-1].Charger(cheminDuMonstre))
                     return 0;
@@ -1529,60 +1515,6 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
             }
         }
 
-        if(configuration.amelioration_lampes)
-        if(m_lumiere[configuration.heure].intensite==1)
-        for(int z=0;z<1;++z)
-            for(int i=0;i<vueMax.y-vueMin.y;++i)
-            for(int j=0;j<vueMax.x-vueMin.x;++j)
-            {
-                m_tableauDesLampesBasique[i][j]=m_tableauDesLampes[i][j];
-                for(int y=-1;y<=1;++y)
-                    for(int w=-1;w<=1;++w)
-                        if(!((y==0&&w==0)))
-                        {
-                            if(i+y>0&&i+y+vueMin.y<m_decor[0].size()&&j+w>0&&j+w+vueMin.x<m_decor[0][0].size())
-                            if(i+y>0&&i+y<30&&j+w>0&&j+w<30)
-                            {
-                                if((double)m_tableauDesLampes[i+y][j+w].intensite<(double)m_tableauDesLampes[i][j].intensite/1.5)
-                                if(m_tableauDesLampes[i+y][j+w].intensite<32&&m_tableauDesLampes[i+y][j+w].intensite>=1)
-                                {
-                                    if(m_decor[1][i+vueMin.y][j+vueMin.x].getTileset()!= -1)
-                                    {
-                                    }
-                                    else
-                                    {
-                                        bool erreur=false;
-                                        if(m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()>-1&&m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()<m_tileset.size())
-                                        {
-                                            if(m_tileset[m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()].getOrientationDuTile(m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTile())=='y'||m_tileset[m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()].getOrientationDuTile(m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTile())=='d')
-                                                if(w>0)
-                                                    erreur=true;
-                                            if(m_tileset[m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()].getOrientationDuTile(m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTile())=='x'||m_tileset[m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()].getOrientationDuTile(m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTile())=='g')
-                                                if(y>0)
-                                                    erreur=true;
-                                            if(m_tileset[m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()].getOrientationDuTile(m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTile())=='h')
-                                                if(y>0||w>0)
-                                                    erreur=true;
-                                            if(m_tileset[m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTileset()].getOrientationDuTile(m_decor[1][i+vueMin.y+y][j+vueMin.x+w].getTile())=='b')
-                                                if(y>0||w>0)
-                                                    erreur=true;
-                                        }
-
-                                        if(!erreur)
-                                        {
-                                        m_tableauDesLampes[i+y][j+w].intensite=(int)(m_tableauDesLampes[i][j].intensite/1.5);
-                                        m_tableauDesLampes[i+y][j+w].rouge=m_tableauDesLampes[i][j].rouge;
-                                        m_tableauDesLampes[i+y][j+w].vert=m_tableauDesLampes[i][j].vert;
-                                        m_tableauDesLampes[i+y][j+w].bleu=m_tableauDesLampes[i][j].bleu;
-                                        if(m_tableauDesLampes[i+y][j+w].intensite>255)
-                                            m_tableauDesLampes[i+y][j+w].intensite=255;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-        }
         // Bah voilà, j'espère que j'ai été clair ^^'
         //for(int z=0;z<configuration.anticrenelage_lumieres;z++)
 
@@ -1693,7 +1625,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                                     255,
                                                     255));
                                             }
-                                            moteurGraphique.AjouterCommande(&Sprite,1);
+                                            moteurGraphique.AjouterCommande(&Sprite,8,1);
                                              //ecran->Draw(Sprite);
                                         }
                                 }
@@ -1818,7 +1750,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                                     255));
                                             }
 
-                                            moteurGraphique.AjouterCommande(&Sprite,1);
+                                            moteurGraphique.AjouterCommande(&Sprite,10,1);
                                              //ecran->Draw(Sprite);
                                         }
                                 }
@@ -1862,7 +1794,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     128,
                                     255));
 
-                            moteurGraphique.AjouterCommande(&Sprite,1);
+                            moteurGraphique.AjouterCommande(&Sprite,8,1);
 
 
 
@@ -1900,7 +1832,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     texte.SetY((position.y-ViewRect.Top)*configuration.zoom-20*configuration.Resolution.w/800*(z+1));
                                     texte.SetX((position.x-ViewRect.Left)*configuration.zoom);
 
-                                    moteurGraphique.AjouterTexte(&texte);
+                                    moteurGraphique.AjouterTexte(&texte,18);
 
                                 }
                             }
@@ -1942,7 +1874,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                             if(Sprite.GetPosition().x-Sprite.GetSize().y<camera->GetRect().Right)
                                             if(Sprite.GetPosition().y+Sprite.GetSize().y>=camera->GetRect().Top)
                                             if(Sprite.GetPosition().y-Sprite.GetSize().x<camera->GetRect().Bottom)
-                                            moteurGraphique.AjouterCommande(&Sprite,1);
+                                            moteurGraphique.AjouterCommande(&Sprite,9,1);
                                             //ecran->Draw(Sprite);
                                             Sprite.SetCenter(0,0);
                                             Sprite.SetScale(1, 1);
@@ -2004,7 +1936,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     if(Sprite.GetPosition().x<camera->GetRect().Right)
                                     if(Sprite.GetPosition().y+Sprite.GetSize().y>=camera->GetRect().Top)
                                     if(Sprite.GetPosition().y<camera->GetRect().Bottom)
-                                    moteurGraphique.AjouterCommande(&Sprite,1);
+                                    moteurGraphique.AjouterCommande(&Sprite,7+couche*3,1);
                                      //ecran->Draw(Sprite);
                                 }
                             }
@@ -2074,7 +2006,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                         Sprite.SetX(position.x+64-positionPartieDecor.w/2);
                                         Sprite.SetY(position.y-positionPartieDecor.h/2+64);
                                     }
-                                    moteurGraphique.AjouterCommande(&Sprite,1);
+                                    moteurGraphique.AjouterCommande(&Sprite,7+couche*3,1);
                                     //ecran->Draw(Sprite);
                                 }
                             }
@@ -2116,7 +2048,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                             Sprite.SetImage(carreBrun);
                             Sprite.SetX((float)(position.x+465*configuration.Resolution.w/800));
                             Sprite.SetY((float)(position.y-80*configuration.Resolution.w/800));
-                            moteurGraphique.AjouterCommande(&Sprite,0);
+                            moteurGraphique.AjouterCommande(&Sprite,14,0);
                             //ecran->Draw(Sprite);
                         }
 
@@ -2126,7 +2058,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                             Sprite.SetX((float)(position.x+465*configuration.Resolution.w/800));
                             Sprite.SetY((float)(position.y-80*configuration.Resolution.w/800));
-                            moteurGraphique.AjouterCommande(&Sprite,0);
+                            moteurGraphique.AjouterCommande(&Sprite,14,0);
                             //ecran->Draw(Sprite);
                         }
 
@@ -2135,7 +2067,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                 Sprite.SetImage(carreVert);
                                 Sprite.SetX((float)(position.x+465*configuration.Resolution.w/800));
                                 Sprite.SetY((float)(position.y-80*configuration.Resolution.w/800));
-                                moteurGraphique.AjouterCommande(&Sprite,0);
+                                moteurGraphique.AjouterCommande(&Sprite,14,0);
                                 //ecran->Draw(Sprite);
                         }
 
@@ -2144,7 +2076,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                 Sprite.SetImage(carreJaune);
                                 Sprite.SetX((float)(position.x+465*configuration.Resolution.w/800));
                                 Sprite.SetY((float)(position.y-80*configuration.Resolution.w/800));
-                                moteurGraphique.AjouterCommande(&Sprite,0);
+                                moteurGraphique.AjouterCommande(&Sprite,14,0);
                                 //ecran->Draw(Sprite);
                         }
 
@@ -2153,7 +2085,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                 Sprite.SetImage(carreBleu);
                                 Sprite.SetX((float)(position.x+465*configuration.Resolution.w/800));
                                 Sprite.SetY((float)(position.y-80*configuration.Resolution.w/800));
-                                moteurGraphique.AjouterCommande(&Sprite,0);
+                                moteurGraphique.AjouterCommande(&Sprite,14,0);
                                 //ecran->Draw(Sprite);
                         }
                     }
@@ -2189,7 +2121,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                      Sprite.Resize(configuration.Resolution.w*0.24,20*configuration.Resolution.w/800);
                      Sprite.SetX(configuration.Resolution.w-configuration.Resolution.w*0.24*alpha/255);
                      Sprite.SetY(configuration.Resolution.w*0.265+(z-m_defilerObjets)*20*configuration.Resolution.w/800);
-                     moteurGraphique.AjouterCommande(&Sprite,0);
+                     moteurGraphique.AjouterCommande(&Sprite,14,0);
 
                     if(!(z-m_defilerObjets==0&&m_defilerObjets>0)&&!((z-m_defilerObjets==11&&z+m_defilerObjets<=m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getNombreObjets()+1)))
                         m_objetPointe=z;
@@ -2228,7 +2160,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                 texte.SetY(position.y);
                 texte.SetX(position.x);
 
-                moteurGraphique.AjouterTexte(&texte);
+                moteurGraphique.AjouterTexte(&texte,14);
             }
 
 
@@ -2281,7 +2213,7 @@ void Map::AfficherNomEvenement(sf::RenderWindow* ecran,coordonnee casePointee,co
                             texte.SetY((positionSouris.y-16)*configuration.Resolution.h/configuration.Resolution.y);
                         if(configuration.Resolution.x>0)
                             texte.SetX(positionSouris.x*configuration.Resolution.w/configuration.Resolution.x);
-                        moteurGraphique.AjouterTexte(&texte);
+                        moteurGraphique.AjouterTexte(&texte,15);
                         //ecran->Draw(texte);
                     }
                 }
@@ -2699,8 +2631,10 @@ void Map::AjouterObjet(Objet objet)
 
 void Map::setVolumeMusique(int volume)
 {
-    if(m_musiqueEnCours>=0&&m_musiqueEnCours<MAX_MUSIQUE)
-        m_musique[m_musiqueEnCours].SetVolume(volume);
+    for(int i=0;i<MAX_MUSIQUE;++i)
+        m_musique[i].SetVolume(volume);
+    /*if(m_musiqueEnCours>=0&&m_musiqueEnCours<MAX_MUSIQUE)
+        m_musique[m_musiqueEnCours].SetVolume(volume);*/
 }
 
 coordonnee Map::getSacPointe(){return m_sacPointe;}

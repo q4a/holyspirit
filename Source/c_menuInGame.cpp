@@ -74,11 +74,15 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,temp,0);
     if(configuration.Minimap)
     {
-        jeu->menu.Afficher(&jeu->ecran,1);
-        jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,0);
         jeu->menu.Afficher(&jeu->ecran,2);
+        jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,255);
     }
-    jeu->menu.Afficher(&jeu->ecran,3);
+    if(jeu->hero.getChercherSac().x!=-1&&jeu->map.getNombreObjets(jeu->hero.getChercherSac())>0)
+    {
+        jeu->menu.Afficher(&jeu->ecran,3);
+        jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,255);
+    }
+    jeu->menu.Afficher(&jeu->ecran,1);
     jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),0,jeu->hero.m_personnage.getCaracteristique());
 
 
@@ -96,7 +100,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     }
     else
         texte.SetColor(Color(150,100,50,(int)m_alpha));
-    moteurGraphique.AjouterTexte(&texte,1);
+    moteurGraphique.AjouterTexte(&texte,18,1);
 
     texte.SetText("Sauvegarder et quitter");
 
@@ -110,7 +114,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     }
     else
         texte.SetColor(Color(150,100,50,(int)m_alpha));
-    moteurGraphique.AjouterTexte(&texte,1);
+    moteurGraphique.AjouterTexte(&texte,18,1);
 
     texte.SetText("Reinitialiser la partie et quitter");
 
@@ -124,7 +128,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     }
     else
         texte.SetColor(Color(150,100,50,(int)m_alpha));
-    moteurGraphique.AjouterTexte(&texte,1);
+    moteurGraphique.AjouterTexte(&texte,18,1);
 
     jeu->eventManager.AfficherCurseur(&jeu->ecran);
 

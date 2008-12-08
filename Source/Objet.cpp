@@ -249,7 +249,7 @@ void Objet::AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position
 
     decalage.y+=(int)string.GetRect().Bottom-(int)string.GetRect().Top+10;
 
-    moteurGraphique.AjouterTexte(&string);
+    moteurGraphique.AjouterTexte(&string,17);
 }
 
 void Arme::AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position)

@@ -13,11 +13,9 @@ MoteurGraphique::MoteurGraphique()
 }
 MoteurGraphique::~MoteurGraphique()
 {
-    m_commandes.clear();
-    m_commandesAuDessusTexte.clear();
+    Vider();
     m_cheminsImages.clear();
     m_images.clear();
-    m_textes.clear();
 }
 
 void MoteurGraphique::Charger()
@@ -47,47 +45,38 @@ void MoteurGraphique::Charger()
 void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera)
 {
     sf::Sprite sprite;
-    for(int i=0;i<m_commandes.size();i++)
+
+    for(int k=0;k<20;k++)
     {
-        if(m_commandes[i].m_utiliserCamera)
-            ecran->SetView(*camera);
-        else
+        for(int i=0;i<m_commandes[k].size();i++)
+        {
+            if(m_commandes[k][i].m_utiliserCamera)
+                ecran->SetView(*camera);
+            else
+                ecran->SetView(ecran->GetDefaultView());
+
+            sprite=m_commandes[k][i].m_sprite;
+            ecran->Draw(sprite);
+        }
+
+        if(configuration.effetMort>0)
+            ecran->Draw(EffectMort);
+
+        for(int i=0;i<m_textes[k].size();i++)
+        {
             ecran->SetView(ecran->GetDefaultView());
+            ecran->Draw(m_textes[k][i]);
+        }
 
-        sprite=m_commandes[i].m_sprite;
-
-        ecran->Draw(sprite);
-    }
-
-    if(m_blur>0)
-    {
-        EffectBlur.SetParameter("offset",m_blur);
-        ecran->Draw(EffectBlur);
-        ecran->Draw(EffectBlur);
-        ecran->Draw(EffectBlur);
-        ecran->Draw(EffectBlur);
-        ecran->Draw(EffectBlur);
-    }
-
-    if(configuration.effetMort>0)
-        ecran->Draw(EffectMort);
-
-    for(int i=0;i<m_textes.size();i++)
-    {
-        ecran->SetView(ecran->GetDefaultView());
-        ecran->Draw(m_textes[i]);
-    }
-
-    for(int i=0;i<m_commandesAuDessusTexte.size();i++)
-    {
-        if(m_commandesAuDessusTexte[i].m_utiliserCamera)
-            ecran->SetView(*camera);
-        else
-            ecran->SetView(ecran->GetDefaultView());
-
-        sprite=m_commandesAuDessusTexte[i].m_sprite;
-
-        ecran->Draw(sprite);
+        if(m_blur>0&&k==17)
+        {
+            EffectBlur.SetParameter("offset",m_blur);
+            ecran->Draw(EffectBlur);
+            ecran->Draw(EffectBlur);
+            ecran->Draw(EffectBlur);
+            ecran->Draw(EffectBlur);
+            ecran->Draw(EffectBlur);
+        }
     }
 }
 
@@ -111,56 +100,59 @@ int MoteurGraphique::AjouterImage(std::string chemin)
     return m_images.size()-1;
 }
 
-void MoteurGraphique::AjouterCommande(sf::Sprite *sprite, bool camera, bool auDessusTexte)
+void MoteurGraphique::AjouterCommande(sf::Sprite *sprite, int couche, bool camera)
 {
-    Commande temp(sprite,camera);
-    if(!auDessusTexte)
-        m_commandes.push_back(temp);
-    else
-        m_commandesAuDessusTexte.push_back(temp);
+    if(couche>=0&&couche<20)
+        m_commandes[couche].push_back(Commande (sprite,camera));
 }
 
-void MoteurGraphique::AjouterTexte(sf::String* string,bool titre)
+void MoteurGraphique::AjouterTexte(sf::String* string, int couche,bool titre)
 {
     sf::String temp(*string);
-
-    if(temp.GetRect().Right>configuration.Resolution.x)
-        temp.SetX(configuration.Resolution.x-(temp.GetRect().Right-temp.GetRect().Left));
-
-    if(temp.GetRect().Left<0)
-        temp.SetX(0);
-
-    if(temp.GetRect().Top<0)
-        temp.SetY(0);
-
-    if(temp.GetRect().Bottom>configuration.Resolution.y)
-        temp.SetY(configuration.Resolution.y-(temp.GetRect().Bottom-temp.GetRect().Top));
-
-    if(titre)
+    if(couche>=0&&couche<20)
     {
-        temp.SetFont(m_font_titre);
+        /*while(m_textes.size()<=couche)
+            m_textes.push_back(std::vector <sf::String> ());*/
 
-        temp.SetStyle(sf::String::Bold);
-        temp.SetColor(string->GetColor());
+        if(temp.GetRect().Right>configuration.Resolution.x)
+            temp.SetX(configuration.Resolution.x-(temp.GetRect().Right-temp.GetRect().Left));
 
-        m_textes.push_back(temp);
+        if(temp.GetRect().Left<0)
+            temp.SetX(0);
 
-        temp.SetColor(sf::Color((int)(string->GetColor().r*0.15),(int)(string->GetColor().g*0.15),(int)(string->GetColor().b*0.15),string->GetColor().a));
-        temp.SetStyle(sf::String::Regular);
-        m_textes.push_back(temp);
+        if(temp.GetRect().Top<0)
+            temp.SetY(0);
+
+        if(temp.GetRect().Bottom>configuration.Resolution.y)
+            temp.SetY(configuration.Resolution.y-(temp.GetRect().Bottom-temp.GetRect().Top));
+
+        if(titre)
+        {
+            temp.SetFont(m_font_titre);
+
+            temp.SetStyle(sf::String::Bold);
+            temp.SetColor(string->GetColor());
+
+            m_textes[couche].push_back(temp);
+
+            temp.SetColor(sf::Color((int)(string->GetColor().r*0.15),(int)(string->GetColor().g*0.15),(int)(string->GetColor().b*0.15),string->GetColor().a));
+            temp.SetStyle(sf::String::Regular);
+            m_textes[couche].push_back(temp);
 
 
+        }
+
+        m_textes[couche].push_back(temp);
     }
-
-    m_textes.push_back(temp);
 }
 
 
 void MoteurGraphique::Vider()
 {
-    m_commandesAuDessusTexte.clear();
-    m_commandes.clear();
-    m_textes.clear();
+    for(int i=0;i<20;i++)
+        m_commandes[i].clear();
+    for(int i=0;i<20;i++)
+        m_textes[i].clear();
 }
 
 sf::Image* MoteurGraphique::getImage(int IDimage)

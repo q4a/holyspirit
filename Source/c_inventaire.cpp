@@ -48,11 +48,14 @@ void c_Inventaire::Utiliser(Jeu *jeu)
 
                 if(configuration.Minimap)
                 {
-                    jeu->menu.Afficher(&jeu->ecran,1);
-                    jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,0);
                     jeu->menu.Afficher(&jeu->ecran,2);
+                    jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,255);
                 }
-                jeu->menu.Afficher(&jeu->ecran,3);
+                if(jeu->hero.getChercherSac().x!=-1&&jeu->map.getNombreObjets(jeu->hero.getChercherSac())>0)
+                {
+                    jeu->menu.Afficher(&jeu->ecran,3);
+                    jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,255);
+                }
                 jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),0,jeu->hero.m_personnage.getCaracteristique());
 
     if(m_afficher)
@@ -72,7 +75,7 @@ void c_Inventaire::Utiliser(Jeu *jeu)
 
     jeu->hero.afficherInventaire(&jeu->ecran,jeu->eventManager.getPositionSouris(),m_decalage);
 
-    jeu->menu.Afficher(&jeu->ecran,3);
+    jeu->menu.Afficher(&jeu->ecran,1);
     jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),-1,jeu->hero.m_personnage.getCaracteristique());
 
     jeu->eventManager.AfficherCurseur(&jeu->ecran);

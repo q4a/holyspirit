@@ -18,7 +18,7 @@ class Console
 	~Console();
 	void Afficher(sf::RenderWindow* ecran);
 	void Ajouter(std::string texte,bool erreur=0);
-	void AjouterNombre(int nombre,bool erreur=0);
+	void Ajouter(int texte,bool erreur=0);
     int getTaille();
     void defiler(bool direction);
     void Rapport();

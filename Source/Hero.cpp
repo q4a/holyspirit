@@ -262,7 +262,7 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
             sprite.SetX((m_inventaire[i].getPosition().x*32+477)*configuration.Resolution.x/800);
             sprite.SetY(((m_inventaire[i].getPosition().y-1)*32+399)*configuration.Resolution.y/600-decalage*configuration.Resolution.h/600);
 
-            moteurGraphique.AjouterCommande(&sprite,0);
+            moteurGraphique.AjouterCommande(&sprite,16,0);
 
             sprite.SetColor(sf::Color(255,255,255,255));
 
@@ -272,7 +272,7 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
             sprite.SetX((m_inventaire[i].getPosition().x*32+477)*configuration.Resolution.x/800);
             sprite.SetY(((m_inventaire[i].getPosition().y-1)*32+399)*configuration.Resolution.y/600-decalage*configuration.Resolution.h/600);
 
-            moteurGraphique.AjouterCommande(&sprite,0);
+            moteurGraphique.AjouterCommande(&sprite,17,0);
 
         }
 
@@ -291,7 +291,7 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
             sprite.SetY((positionSouris.y-367)/32*32+367);
 
 
-            moteurGraphique.AjouterCommande(&sprite,0);
+            moteurGraphique.AjouterCommande(&sprite,18,0);
         }
 
         sprite.SetImage(*moteurGraphique.getImage(m_inventaire[m_objetEnMain].getImage()));
@@ -300,7 +300,7 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
         sprite.SetX((positionSouris.x-477)/32*32+477);
         sprite.SetY((positionSouris.y-367)/32*32+367);
 
-        moteurGraphique.AjouterCommande(&sprite,0);
+        moteurGraphique.AjouterCommande(&sprite,19,0);
     }
     else if(positionSouris.x>477&&positionSouris.x<477+32*8&&positionSouris.y>367&&positionSouris.y<399+32*5)
     {

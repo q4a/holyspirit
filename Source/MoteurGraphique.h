@@ -16,8 +16,8 @@ class MoteurGraphique
 	void Afficher(sf::RenderWindow *, sf::View *);
 
 	int AjouterImage(std::string);
-	void AjouterCommande(sf::Sprite*, bool, bool auDessusTexte=false);
-	void AjouterTexte(sf::String*,bool titre=false);
+	void AjouterCommande(sf::Sprite*,int=0, bool=0);
+	void AjouterTexte(sf::String*, int couche=0,bool titre=false);
 
 	void Charger();
 
@@ -30,7 +30,7 @@ class MoteurGraphique
 
 	std::string getCheminImage(int IDimage);
 
-	std::vector <Commande> m_commandes,m_commandesAuDessusTexte;
+
 
 	sf::PostFX EffectBlur,EffectMort;
 
@@ -42,7 +42,8 @@ class MoteurGraphique
 
 	std::vector <sf::Image> m_images;
 	std::vector <std::string> m_cheminsImages;//Permet de s'assurer d'avoir des singletons
-	std::vector <sf::String> m_textes;
+	std::vector <sf::String> m_textes[20];
+	std::vector <Commande>m_commandes[20];
 
 
 };

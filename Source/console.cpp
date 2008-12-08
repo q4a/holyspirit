@@ -28,7 +28,7 @@ void Console::Afficher(sf::RenderWindow* ecran)
             texte.SetColor(sf::Color(255,0,0,255));
 
         //ecran->Draw(texte);
-        moteurGraphique.AjouterTexte(&texte);
+        moteurGraphique.AjouterTexte(&texte,19);
 
     }
 }
@@ -39,7 +39,7 @@ void Console::Ajouter(std::string texte,bool erreur)
     Rapport();
 }
 
-void Console::AjouterNombre(int nombre,bool erreur)
+void Console::Ajouter(int nombre,bool erreur)
 {
     char temp[10];
     sprintf(temp,"%ld",nombre);

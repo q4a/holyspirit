@@ -39,39 +39,36 @@ void Menu::Afficher(sf::RenderWindow* ecran,int type,float alpha)
 
 	if(type==1)
     {
+	    //On affiche l'HUD
+		sprite2.SetImage(*moteurGraphique.getImage(m_imageHUD));
+		sprite2.SetX(0);
+		sprite2.SetY(configuration.Resolution.h-128*configuration.Resolution.h/600);
+		sprite2.Resize(configuration.Resolution.w, 128*configuration.Resolution.h/600);
+		sprite.SetColor(sf::Color(255,255,255,(int)alpha));
+		moteurGraphique.AjouterCommande(&sprite2,17,0);
+    }
+
+	if(type==2)
+    {
         //On affiche le fond noir de la mini-map
 		sprite.SetImage(*moteurGraphique.getImage(0));
 		sprite.SetX(configuration.Resolution.w-configuration.Resolution.w*0.25);
 		sprite.SetY(0);
 		sprite.SetColor(sf::Color(0,0,0,224*(int)alpha/255));
 		sprite.Resize(configuration.Resolution.w*0.25, configuration.Resolution.w*0.25);
-		moteurGraphique.AjouterCommande(&sprite,0);
-		//ecran->Draw(sprite);
+		moteurGraphique.AjouterCommande(&sprite,13,0);
+
+		//On affiche le cadran de la mini map
+		sprite2.SetImage(*moteurGraphique.getImage(m_imageMiniMap));
+		sprite2.SetX(configuration.Resolution.w-configuration.Resolution.w*0.25);
+		sprite2.SetY(0);
+		sprite2.Resize(configuration.Resolution.w*0.25, configuration.Resolution.w*0.25);
+		sprite2.SetColor(sf::Color(255,255,255,(int)alpha));
+		moteurGraphique.AjouterCommande(&sprite2,15,0);
     }
 
-    if(type==2)
-    {
-        //On affiche le cadran de la mini map
-		sprite.SetImage(*moteurGraphique.getImage(m_imageMiniMap));
-		sprite.SetX(configuration.Resolution.w-configuration.Resolution.w*0.25);
-		sprite.SetY(0);
-		sprite.Resize(configuration.Resolution.w*0.25, configuration.Resolution.w*0.25);
-		sprite.SetColor(sf::Color(255,255,255,(int)alpha));
-		moteurGraphique.AjouterCommande(&sprite,0);
-    }
 
     if(type==3)
-    {
-        //On affiche l'HUD
-		sprite2.SetImage(*moteurGraphique.getImage(m_imageHUD));
-		sprite2.SetX(0);
-		sprite2.SetY(configuration.Resolution.h-128*configuration.Resolution.h/600);
-		sprite2.Resize(configuration.Resolution.w, 128*configuration.Resolution.h/600);
-		sprite.SetColor(sf::Color(255,255,255,(int)alpha));
-		moteurGraphique.AjouterCommande(&sprite2,0);
-    }
-
-    if(type==4)
     {
         //On affiche le fond noir du menu du sac
 		sprite.SetImage(*moteurGraphique.getImage(0));
@@ -79,19 +76,15 @@ void Menu::Afficher(sf::RenderWindow* ecran,int type,float alpha)
 		sprite.SetY(configuration.Resolution.w*0.25);
 		sprite.SetColor(sf::Color(0,0,0,224*(int)alpha/255));
 		sprite.Resize(configuration.Resolution.w*0.25, configuration.Resolution.w*0.34);
-		moteurGraphique.AjouterCommande(&sprite,0);
-		//ecran->Draw(sprite);
-    }
+		moteurGraphique.AjouterCommande(&sprite,13,0);
 
-    if(type==5)
-    {
         //On affiche le cadran du menu du sac
-		sprite.SetImage(*moteurGraphique.getImage(m_imageMiniMap));
-		sprite.SetX(configuration.Resolution.w-configuration.Resolution.w*0.25*alpha/255);
-		sprite.SetY(configuration.Resolution.w*0.25);
-		sprite.Resize(configuration.Resolution.w*0.25, configuration.Resolution.w*0.34);
-		sprite.SetColor(sf::Color(255,255,255));
-		moteurGraphique.AjouterCommande(&sprite,0);
+		sprite2.SetImage(*moteurGraphique.getImage(m_imageMiniMap));
+		sprite2.SetX(configuration.Resolution.w-configuration.Resolution.w*0.25*alpha/255);
+		sprite2.SetY(configuration.Resolution.w*0.25);
+		sprite2.Resize(configuration.Resolution.w*0.25, configuration.Resolution.w*0.34);
+		sprite2.SetColor(sf::Color(255,255,255));
+		moteurGraphique.AjouterCommande(&sprite2,15,0);
     }
 }
 
@@ -108,7 +101,7 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
         sprite.SetX(10*configuration.Resolution.w/800);
         sprite.SetY(configuration.Resolution.h-(128-10)*configuration.Resolution.h/600+(caracteristique.maxVie-caracteristique.vie)/caracteristique.maxVie*107*configuration.Resolution.h/600);
 
-        moteurGraphique.AjouterCommande(&sprite,0);
+        moteurGraphique.AjouterCommande(&sprite,17,0);
     }
 
     if(caracteristique.pointAme>0)
@@ -122,7 +115,7 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
         sprite.SetX(configuration.Resolution.w*1.5/4+4);
         sprite.SetY(configuration.Resolution.h-20*configuration.Resolution.h/600);
 
-        moteurGraphique.AjouterCommande(&sprite,0);
+        moteurGraphique.AjouterCommande(&sprite,17,0);
     }
 
     texte.SetSize(16.f*configuration.Resolution.y/600);
@@ -137,7 +130,7 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
     texte.SetX(configuration.Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
     texte.SetY(configuration.Resolution.h-40*configuration.Resolution.h/600);
 
-    moteurGraphique.AjouterTexte(&texte);
+    moteurGraphique.AjouterTexte(&texte,17);
     //ecran->Draw(texte);
 
     if(type!=-1)
@@ -157,7 +150,7 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
 
 
                 sprite.SetRotation(m_ame[i].m_rotation);
-                moteurGraphique.AjouterCommande(&sprite,0);
+                moteurGraphique.AjouterCommande(&sprite,17,0);
             }
         }
 
@@ -175,7 +168,7 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
             sprite.SetX(m_sang[i].m_position.x*configuration.Resolution.x/800);
             sprite.SetY(m_sang[i].m_position.y*configuration.Resolution.y/600);
 
-            moteurGraphique.AjouterCommande(&sprite,0);
+            moteurGraphique.AjouterCommande(&sprite,17,0);
         }
     }
 
@@ -188,7 +181,7 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
          sprite.SetX(configuration.Resolution.w/2-sprite.GetSize().x/2);
         sprite.SetY(8);
 
-        moteurGraphique.AjouterCommande(&sprite,0);
+        moteurGraphique.AjouterCommande(&sprite,16,0);
 
         sprite2.SetImage(*moteurGraphique.getImage(m_barreVie));
         if(caracteristiqueMonstre.rang==1){sprite2.SetColor(Color(128,64,255,255));}
@@ -199,7 +192,7 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
         sprite2.SetY(8);
 
 
-        moteurGraphique.AjouterCommande(&sprite2,0);
+        moteurGraphique.AjouterCommande(&sprite2,17,0);
 
         //char chaine[255];
 
@@ -217,7 +210,7 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
         texte.SetY(12*configuration.Resolution.h/600+2);
         texte.SetColor(Color(0,0,0,255));
 
-        moteurGraphique.AjouterTexte(&texte);
+        moteurGraphique.AjouterTexte(&texte,18);
         //ecran->Draw(texte);
         texte.SetColor(Color(224,224,224,255));
         if(caracteristiqueMonstre.rang==1){texte.SetColor(Color(100,50,200,255));}
@@ -225,7 +218,7 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
 
         texte.SetX(configuration.Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
         texte.SetY(12*configuration.Resolution.h/600);
-        moteurGraphique.AjouterTexte(&texte);
+        moteurGraphique.AjouterTexte(&texte,18);
         //ecran->Draw(texte);
 
          texte.SetStyle(0);
@@ -243,21 +236,6 @@ void Menu::AfficherChargement(sf::RenderWindow* ecran,string nom,int fond,int z=
     sprite.Resize(configuration.Resolution.w,configuration.Resolution.h*5/6);
     moteurGraphique.AjouterCommande(&sprite,0);
 
-    /*texte.SetSize(60.f*configuration.Resolution.y/600);
-    texte.SetText("Chargement");
-
-    texte.SetColor(Color(0,0,0,z*255/50));
-    texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2+4);
-    texte.SetY(configuration.Resolution.y/2-(texte.GetRect().Bottom-texte.GetRect().Top)/2-texte.GetSize()+4);
-    moteurGraphique.AjouterTexte(&texte);
-    //ecran->Draw(texte);
-
-    texte.SetColor(Color(64,0,128,z*255/50));
-    texte.SetX(configuration.Resolution.x/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
-    texte.SetY(configuration.Resolution.y/2-(texte.GetRect().Bottom-texte.GetRect().Top)/2-texte.GetSize());
-    moteurGraphique.AjouterTexte(&texte);
-    //ecran->Draw(texte);*/
-
     texte.SetSize(50.f*configuration.Resolution.h/600);
     char chaine[255];
     sprintf(chaine,"%s",nom.c_str());
@@ -266,7 +244,7 @@ void Menu::AfficherChargement(sf::RenderWindow* ecran,string nom,int fond,int z=
     texte.SetX(configuration.Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
     texte.SetY(configuration.Resolution.h-(texte.GetRect().Bottom-texte.GetRect().Top)/2-60*configuration.Resolution.h/600);
     texte.SetColor(Color(150,100,50,z*255/50));
-    moteurGraphique.AjouterTexte(&texte,1);
+    moteurGraphique.AjouterTexte(&texte,0,1);
 }
 
 void Menu::AfficherInventaire(sf::RenderWindow* ecran,float decalage)
@@ -277,7 +255,7 @@ void Menu::AfficherInventaire(sf::RenderWindow* ecran,float decalage)
     sprite.Resize(configuration.Resolution.w, configuration.Resolution.h*550/600);
     sprite.SetY(-decalage*configuration.Resolution.h/600);
 
-    moteurGraphique.AjouterCommande(&sprite,0);
+    moteurGraphique.AjouterCommande(&sprite,15,0);
 
    // ecran->Draw(sprite);
 }

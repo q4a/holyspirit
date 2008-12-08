@@ -59,7 +59,6 @@ void Jeu::Demarrer()
 
     coordonnee temp={1,1,-1,-1};
     this->m_chargement->setC_Chargement(1,temp,1);
-
     this->m_contexte = this->m_demarrage;
 
     this->hero.Charger();

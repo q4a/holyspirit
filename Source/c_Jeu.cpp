@@ -58,7 +58,6 @@ c_Jeu::c_Jeu(Jeu *jeu)
         if(!jeu->hero.m_modelePersonnage.Charger("Data/Entities/hero/GuerrierHache.char.hs")) // Chargement du héro
             throw("CRITICAL ERROR");
 
-
         if(!jeu->map.Charger(0)==1) // Chargement de  jeu->map0.txt
             throw("CRITICAL ERROR");
 
@@ -295,11 +294,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     }
                     if(alpha_map>0)
                     {
-                        jeu->menu.Afficher(&jeu->ecran,1,alpha_map);//On affiche le fond noir de la mini-jeu->map
-                        jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,jeu->eventManager.getPositionSouris(),0,alpha_map); // On affiche la mini-jeu->map
-                        jeu->menu.Afficher(&jeu->ecran,2,alpha_map); // On affiche le cadran de la mini-jeu->map
-
-
+                        jeu->menu.Afficher(&jeu->ecran,2,alpha_map);//On affiche la mini-map
+                        jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,jeu->eventManager.getPositionSouris(),0,alpha_map); // On affiche la mini-map
                     }
 
                     if(jeu->hero.getChercherSac().x!=-1&&jeu->map.getNombreObjets(jeu->hero.getChercherSac())>0)
@@ -316,12 +312,11 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     }
                     if(alpha_sac>0)
                     {
-                        jeu->menu.Afficher(&jeu->ecran,4,alpha_sac);
+                        jeu->menu.Afficher(&jeu->ecran,3,alpha_sac);
                         jeu->map.Afficher(&jeu->ecran,&jeu->camera,3,&jeu->hero,jeu->eventManager.getPositionSouris(),0,alpha_sac);
-                        jeu->menu.Afficher(&jeu->ecran,5,alpha_sac);
                     }
 
-                    jeu->menu.Afficher(&jeu->ecran,3); // On affiche le hud
+                    jeu->menu.Afficher(&jeu->ecran,1); // On affiche le hud
                     if(jeu->map.getEntiteMonstre(jeu->map.getMonstreIllumine())!=NULL)
                         jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),1,jeu->map.getEntiteMonstre(jeu->map.getMonstreIllumine())->getCaracteristique());
                     else
@@ -339,12 +334,12 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                     if(configuration.console)
                     {
-                        moteurGraphique.AjouterTexte(&fps);
+                        moteurGraphique.AjouterTexte(&fps,17);
                         Version.SetY(20);
-                        moteurGraphique.AjouterTexte(&Version);
+                        moteurGraphique.AjouterTexte(&Version,17);
                         Temps.SetY(40);
-                        moteurGraphique.AjouterTexte(&Temps);
-                        moteurGraphique.AjouterTexte(&TourBoucle);
+                        moteurGraphique.AjouterTexte(&Temps,17);
+                        moteurGraphique.AjouterTexte(&TourBoucle,17);
 
                         console.Afficher(&jeu->ecran);
                     }
