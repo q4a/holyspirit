@@ -18,6 +18,8 @@ Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse
 *v5 di5 da30 m0 o1 a0 n0 e1 $
 $
+*Data/Scripts/AI/inert.script.hs
+$
 *
 *Data/Items/Coal.item.hs
 r100

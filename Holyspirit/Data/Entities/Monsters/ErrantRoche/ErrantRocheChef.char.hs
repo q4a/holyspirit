@@ -31,6 +31,8 @@ Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse/Ombre/PointAme
 *v50 di10 da15 m0.2 o0 a10 n3 t1.25 $
 $
+*Data/Scripts/AI/standard.script.hs
+$
 *
 *Data/Items/Ore.item.hs
 r100

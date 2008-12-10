@@ -26,6 +26,8 @@ Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse
 *v8 di2 da3 m0.35 o1 a1 n1 $
 $
+*Data/Scripts/AI/standard.script.hs
+$
 Objets du monstre
 
 *
@@ -435,22 +437,22 @@ Arret - SE
 *x0 y512 w128 h128 a0 s-1 i0 $
 $
 Course - E
-*x0 y0 w128 h128 a2 s0 i1 $
-*x128 y0 w128 h128 a2 s-1 i1 $
-*x256 y0 w128 h128 a4 s-1 i1 $
-*x384 y0 w128 h128 a4 s-1 i1 $
-*x512 y0 w128 h128 a6 s-1 i1 $
-*x640 y0 w128 h128 a6 s-1 i1 $
-*x768 y0 w128 h128 a8 s1 i1 $
-*x896 y0 w128 h128 a8 s-1 i1 $
-*x0 y128 w128 h128 a10 s-1 i1 $
-*x128 y128 w128 h128 a10 s-1 i1 $
-*x256 y128 w128 h128 a12 s-1 i1 $
-*x384 y128 w128 h128 a12 s-1 i1 $
-*x512 y128 w128 h128 a14 s-1 i1 $
-*x640 y128 w128 h128 a14 s-1 i1 $
-*x768 y128 w128 h128 a0 s1 i1 $
-*x896 y128 w128 h128 a0 s-1 i1 $
+*x0 y0 w128 h128 cy100 a2 s0 i1 $
+*x128 y0 w128 h128 cy100  a2 s-1 i1 $
+*x256 y0 w128 h128  cy100 a4 s-1 i1 $
+*x384 y0 w128 h128 cy100 a4 s-1 i1 $
+*x512 y0 w128 h128 cy100  a6 s-1 i1 $
+*x640 y0 w128 h128 cy100 a6 s-1 i1 $
+*x768 y0 w128 h128 cy100  a8 s1 i1 $
+*x896 y0 w128 h128 cy100  a8 s-1 i1 $
+*x0 y128 w128 h128 cy100  a10 s-1 i1 $
+*x128 y128 w128 h128 cy100 a10 s-1 i1 $
+*x256 y128 w128 h128 cy100 a12 s-1 i1 $
+*x384 y128 w128 h128 cy100 a12 s-1 i1 $
+*x512 y128 w128 h128 cy100 a14 s-1 i1 $
+*x640 y128 w128 h128 cy100 a14 s-1 i1 $
+*x768 y128 w128 h128 cy100 a0 s1 i1 $
+*x896 y128 w128 h128 cy100 a0 s-1 i1 $
 $
 Course - NE
 *x0 y256 w128 h128 a2 s0 i1 $
