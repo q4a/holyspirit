@@ -3,6 +3,7 @@
 
 #include "Personnage.h"
 #include "Constantes.h"
+#include "Script.h"
 
 class Modele_Monstre : public Modele_Personnage
 {
@@ -12,6 +13,7 @@ class Modele_Monstre : public Modele_Personnage
 
     std::string m_chemin;
 
+    Script m_scriptAI;
 
     private:
     std::vector<Objet> m_objets;
@@ -30,6 +32,9 @@ class Monstre : public Personnage
 
     bool getVu();
     void setVu(bool);
+
+
+    float m_attente;
 
     private:
     bool m_vu;

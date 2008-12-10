@@ -60,6 +60,8 @@ class Map
 
 
 
+	void gererConditions(Script script,int noInstruction,int i, int j, int k,Hero *hero,float temps,sf::View *camera,Menu *menu);
+
 
 	int m_defilerObjets;
 

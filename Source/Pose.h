@@ -17,8 +17,9 @@ class Pose
 {
 	public:
 	Pose operator=(const Pose &Pose);
-	void Pose::setPose(coordonnee positionDansLImage,int animation,int son,int image,int attaque,int lum_intensite);
+	void Pose::setPose(coordonnee positionDansLImage,coordonnee centre,int animation,int son,int image,int attaque,int lum_intensite);
 	coordonnee getCoordonnee();
+	coordonnee getCentre();
 	int getAnimation();
 	int getSon();
 	int getImage();
@@ -26,7 +27,7 @@ class Pose
 	int getLumiereIntensite();
 
 	private:
-	coordonnee m_positionDansLImage; // Position du tile dans le tileset
+	coordonnee m_positionDansLImage,m_centre; // Position du tile dans le tileset
 	int m_son,m_animation,m_image,m_attaque,m_lumiere_intensite;
 };
 

@@ -59,8 +59,7 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera)
             ecran->Draw(sprite);
         }
 
-        if(configuration.effetMort>0)
-            ecran->Draw(EffectMort);
+
 
         for(int i=0;i<m_textes[k].size();i++)
         {
@@ -68,14 +67,21 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera)
             ecran->Draw(m_textes[k][i]);
         }
 
-        if(m_blur>0&&k==17)
+        if(k==17)
         {
-            EffectBlur.SetParameter("offset",m_blur);
-            ecran->Draw(EffectBlur);
-            ecran->Draw(EffectBlur);
-            ecran->Draw(EffectBlur);
-            ecran->Draw(EffectBlur);
-            ecran->Draw(EffectBlur);
+            if(m_blur>0)
+            {
+                EffectBlur.SetParameter("offset",m_blur);
+                ecran->Draw(EffectBlur);
+                ecran->Draw(EffectBlur);
+                ecran->Draw(EffectBlur);
+                ecran->Draw(EffectBlur);
+                ecran->Draw(EffectBlur);
+
+
+            }
+            if(configuration.effetMort>0)
+                ecran->Draw(EffectMort);
         }
     }
 }
