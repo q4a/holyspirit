@@ -4,6 +4,8 @@
 
 Ajouts :
 -Ajout du système de modules aléatoires.
+-Ajout du système de caractéristiques des objets ( dégats pour les armes et description )
+avec l'affichage dans l'inventaire.
 
 //////////////////////////////////////////////////////////////////////////////
 12/12/2008
