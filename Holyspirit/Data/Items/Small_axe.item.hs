@@ -1,6 +1,8 @@
 * t1 $
 $
-*Petite hache en cuivre
+*Petite hache en cuivre.
+$
+*"Une petite hache rouillée."
 $
 *Data/Items/Images/axes01.png
 $
