@@ -25,7 +25,10 @@ int main ( int argc, char** argv )
 {
     srand(time(NULL));
 
-    console.Rapport();
+    console.Ajouter("---------------------------------------------------------------------------------");
+    console.Ajouter("Demarrage du jeu",0);
+    console.Ajouter("---------------------------------------------------------------------------------");
+    console.Ajouter("");
 
     try
 	{

@@ -168,8 +168,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         else
         jeu->menu.AfficherChargement(&jeu->ecran,nomMap,m_fond,50);
 
-        jeu->EffectNoir.SetParameter("color", ((float)z)/50, ((float)z)/50, ((float)z)/50);
-
+        configuration.effetNoir=((float)z)/50;
     }
     else
     {

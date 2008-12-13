@@ -104,18 +104,4 @@ void Script::Charger(std::string chemin)
 
     sprintf(chaine,"Chargement du script : \"%s\"",chemin.c_str());
     console.Ajouter(chaine);
-
-
-    for(int i=0;i<m_instructions.size();i++)
-    {
-        char temp[255];
-
-        sprintf(temp,"%s : ",m_instructions[i].nom.c_str());
-
-        for(int j=0;j<m_instructions[i].valeurs.size();j++)
-            sprintf(temp,"%s %i",temp,m_instructions[i].valeurs[j]);
-
-        console.Ajouter(temp);
-    }
-
 }

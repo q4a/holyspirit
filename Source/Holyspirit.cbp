@@ -82,6 +82,8 @@
 		<Unit filename="ressource.rc">
 			<Option compilerVar="WINDRES" />
 		</Unit>
+		<Unit filename="script.cpp" />
+		<Unit filename="script.h" />
 		<Unit filename="video.cpp" />
 		<Extensions>
 			<code_completion />

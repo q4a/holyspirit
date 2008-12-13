@@ -41,7 +41,7 @@ c_Jeu::c_Jeu(Jeu *jeu)
         // Chargement des menus
 
         console.Ajouter("",0);
-        console.Ajouter("Chargement des effets :",0);
+        console.Ajouter("Chargement des sons :",0);
 
 
         if(!jeu->bufferSonMort.LoadFromFile(configuration.chemin_son_mort))

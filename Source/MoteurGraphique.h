@@ -32,7 +32,7 @@ class MoteurGraphique
 
 
 
-	sf::PostFX EffectBlur,EffectMort;
+	sf::PostFX EffectBlur,EffectMort,EffectNoir,EffectContrastes;
 
 	sf::Font m_font_titre;
 

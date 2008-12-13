@@ -21,10 +21,12 @@ class Console
 	void Ajouter(int texte,bool erreur=0);
     int getTaille();
     void defiler(bool direction);
-    void Rapport();
 
 
 	private:
+
+	void Rapport();
+
 	std::vector <std::string> m_textes;
 	std::vector <bool> m_erreur;
 	int m_defilement;

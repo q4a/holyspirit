@@ -24,14 +24,14 @@ c_Demarrage::c_Demarrage(Jeu *jeu)
 
 void c_Demarrage::Utiliser(Jeu *jeu)
 {
-    temps_ecoule=jeu->Clock.GetElapsedTime();
+   /* temps_ecoule=jeu->Clock.GetElapsedTime();
     jeu->Clock.Reset();
 
     Sprite sprite;
 
     sprite.SetImage(*moteurGraphique.getImage(m_image));
 
-    jeu->EffectNoir.SetParameter("color", 1, 1, 1);
+    configuration.effetNoir=1;
 
     if(m_alpha<255)
         sprite.SetColor(Color(255,255,255,(int)m_alpha));
@@ -47,9 +47,9 @@ void c_Demarrage::Utiliser(Jeu *jeu)
         m_alpha-=temps_ecoule*200;
 
     if(m_alpha>384)
-        m_augmenter=false;
+        m_augmenter=false;*/
 
-    if(m_alpha<0)
+    //if(m_alpha<0)
         jeu->m_contexte=jeu->m_chargement;
 
 }

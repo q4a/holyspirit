@@ -10,36 +10,10 @@ using namespace sf;
 Jeu::Jeu()
 {
     m_reset=false;
-    if (sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
-    {
-
-        if(!EffectContrastes.LoadFromFile(configuration.chemin_fx+configuration.nom_effetContrastes))
-            console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetContrastes,1);
-        else
-        {
-            console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetContrastes,0);
-            EffectContrastes.SetTexture("framebuffer", NULL);
-            EffectContrastes.SetParameter("color", 0.f, 0.f, 0.f);
-        }
-
-        if(!EffectNoir.LoadFromFile(configuration.chemin_fx+configuration.nom_effetNoir))
-            console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetNoir,1);
-        else
-        {
-            console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetNoir,0);
-            EffectNoir.SetTexture("framebuffer", NULL);
-            EffectNoir.SetParameter("color", 0.f, 0.f, 0.f);
-        }
-        configuration.effetMort=0;
-    }
-    Luminosite.Create(configuration.Resolution.x, configuration.Resolution.y, sf::Color(255,255,255));
 }
 
 void Jeu::Demarrer()
 {
-    sf::Sprite Sprite;
-    Sprite.SetImage(Luminosite);
-    Sprite.SetBlendMode(sf::Blend::Add);
 
     if(!configuration.mode_fenetre)
         ecran.Create(sf::VideoMode(configuration.Resolution.x, configuration.Resolution.y, 32),"HolySpirit : Act of Faith",sf::Style::Fullscreen);
@@ -73,18 +47,6 @@ void Jeu::Demarrer()
 		if(this->m_display)
 		{
 		    moteurGraphique.Afficher(&this->ecran,&this->camera);
-            this->ecran.Draw(this->EffectNoir);
-
-            if(configuration.contrastes>1&&sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
-            {
-                this->ecran.Draw(this->EffectContrastes);
-                EffectContrastes.SetParameter("color", configuration.contrastes, configuration.contrastes, configuration.contrastes);
-            }
-            if(configuration.luminosite>0)
-            {
-                Sprite.SetColor(sf::Color((int)configuration.luminosite,(int)configuration.luminosite,(int)configuration.luminosite,255));
-                this->ecran.Draw(Sprite);
-            }
             this->ecran.Display();
             moteurGraphique.Vider();
 		}

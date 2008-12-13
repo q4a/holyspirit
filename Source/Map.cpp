@@ -23,6 +23,9 @@ Map::Map()
     carreBrun.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.x/800, Color(128, 64, 0)),carreBleu.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.x/800, Color(32, 0, 128));
     carreRouge.Create(8*configuration.Resolution.x/800,8*configuration.Resolution.x/800, Color(128, 0, 0)),carreVert.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.x/800, Color(0, 128, 0));
     carreJaune.Create(8*configuration.Resolution.x/800, 8*configuration.Resolution.x/800, Color(255, 255, 64));
+
+    console.Ajouter("");
+    console.Ajouter("Chargements d'images diverses :");
     IDImageSac=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_sac);
 }
 
@@ -59,6 +62,8 @@ void Map::Detruire()
 
 bool Map::Charger(int numeroMap)
 {
+    int numeroModuleAleatoire=rand()%10;
+
     bool entite_map_existante=false;
 
     m_numero=numeroMap;
@@ -413,8 +418,41 @@ bool Map::Charger(int numeroMap)
                                 case 's': fichier>>tileset; break;
                                 case 't': fichier>>temp; tile.push_back(temp); break;
                                 case 'e': int temp2; fichier>>temp2; evenement.push_back(temp2); break;
-                                 case 'm': if(!entite_map_existante) { fichier>>temp; monstre.push_back(temp);  } else {  fichier>>monstreFinal; } break;
+                                case 'm': if(!entite_map_existante) { fichier>>temp; monstre.push_back(temp);  } else {  fichier>>monstreFinal; } break;
                                 case 'h': fichier>>herbe; break;
+
+                                case 'r':
+                                    int noModuleCaseMin=-1,noModuleCaseMax=-1;
+                                    do
+                                    {
+                                        fichier.get(caractere);
+
+                                        if(caractere=='i')
+                                            fichier>>noModuleCaseMin;
+                                        else if(caractere=='a')
+                                            fichier>>noModuleCaseMax;
+
+                                        else if(caractere=='*')
+                                            if(numeroModuleAleatoire>=noModuleCaseMin&&numeroModuleAleatoire<=noModuleCaseMax)
+                                                do
+                                                {
+                                                    fichier.get(caractere);
+                                                    switch (caractere)
+                                                    {
+                                                        case 's': fichier>>tileset; break;
+                                                        case 't': fichier>>temp; tile.push_back(temp); break;
+                                                        case 'e': int temp2; fichier>>temp2; evenement.push_back(temp2); break;
+                                                        case 'm': if(!entite_map_existante) { fichier>>temp; monstre.push_back(temp);  } else {  fichier>>monstreFinal; } break;
+                                                        case 'h': fichier>>herbe; break;
+                                                    }
+
+                                                    if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
+                                                }while(caractere!='$');
+
+                                        if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
+                                    }while(caractere!='$');
+
+                                break;
                             }
                             if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
                         }while(caractere!='|');

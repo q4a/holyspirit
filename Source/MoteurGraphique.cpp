@@ -20,26 +20,55 @@ MoteurGraphique::~MoteurGraphique()
 
 void MoteurGraphique::Charger()
 {
-    if(!EffectBlur.LoadFromFile(configuration.chemin_fx+configuration.nom_effetBlur))
-        console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetBlur,1);
-    else
-        console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetBlur,0);
-    EffectBlur.SetTexture("framebuffer", NULL);
+    if (sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
+    {
+        console.Ajouter("");
+        console.Ajouter("Chargement des postFX :");
 
-    if(!EffectMort.LoadFromFile(configuration.chemin_fx+configuration.nom_effetMort))
-        console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetMort,1);
-    else
-        console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetMort,0);
+        if(!EffectBlur.LoadFromFile(configuration.chemin_fx+configuration.nom_effetBlur))
+            console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetBlur,1);
+        else
+            console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetBlur,0);
+        EffectBlur.SetTexture("framebuffer", NULL);
 
-    EffectMort.SetParameter("offset", 0);
-    EffectMort.SetTexture("framebuffer", NULL);
-    EffectMort.SetParameter("color",1, 1, 1);
+        if(!EffectMort.LoadFromFile(configuration.chemin_fx+configuration.nom_effetMort))
+            console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetMort,1);
+        else
+            console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetMort,0);
+
+        EffectMort.SetParameter("offset", 0);
+        EffectMort.SetTexture("framebuffer", NULL);
+        EffectMort.SetParameter("color",1, 1, 1);
+
+        if(!EffectContrastes.LoadFromFile(configuration.chemin_fx+configuration.nom_effetContrastes))
+            console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetContrastes,1);
+        else
+        {
+            console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetContrastes,0);
+            EffectContrastes.SetTexture("framebuffer", NULL);
+            EffectContrastes.SetParameter("color", 0.f, 0.f, 0.f);
+        }
+
+        if(!EffectNoir.LoadFromFile(configuration.chemin_fx+configuration.nom_effetNoir))
+            console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetNoir,1);
+        else
+        {
+            console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetNoir,0);
+            EffectNoir.SetTexture("framebuffer", NULL);
+            EffectNoir.SetParameter("color", 0.f, 0.f, 0.f);
+        }
+        configuration.effetMort=0;
+    }
+
+    console.Ajouter("");
+    console.Ajouter("Chargement des polices d'écriture :");
 
     if(!m_font_titre.LoadFromFile(configuration.chemin_fonts+configuration.font_titre))
         console.Ajouter("Impossible de charger : "+configuration.chemin_fonts+configuration.font_titre,1);
     else
         console.Ajouter("Chargement de : "+configuration.chemin_fonts+configuration.font_titre,0);
 
+    //Luminosite.Create(configuration.Resolution.x, configuration.Resolution.y, sf::Color(255,255,255));
 }
 
 void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera)
@@ -83,6 +112,25 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera)
             if(configuration.effetMort>0)
                 ecran->Draw(EffectMort);
         }
+    }
+
+    EffectNoir.SetParameter("color", configuration.effetNoir, configuration.effetNoir, configuration.effetNoir);
+
+    ecran->Draw(EffectNoir);
+
+    if(configuration.contrastes>1&&sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
+    {
+        ecran->Draw(EffectContrastes);
+        EffectContrastes.SetParameter("color", configuration.contrastes, configuration.contrastes, configuration.contrastes);
+    }
+    if(configuration.luminosite>0)
+    {
+        sf::Sprite sprite2;
+        sprite2.SetImage(*getImage(0));
+        sprite2.Resize(configuration.Resolution.w,configuration.Resolution.h);
+        sprite2.SetColor(sf::Color((int)configuration.luminosite,(int)configuration.luminosite,(int)configuration.luminosite,255));
+        sprite2.SetBlendMode(sf::Blend::Add);
+        ecran->Draw(sprite2);
     }
 }
 

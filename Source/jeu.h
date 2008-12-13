@@ -48,8 +48,6 @@ class Jeu
     c_MenuInGame *m_menuInGame;
     Contexte *m_contexte;
 
-    sf::PostFX EffectNoir,EffectContrastes;
-    sf::Image Luminosite;
     private:
 
 };
