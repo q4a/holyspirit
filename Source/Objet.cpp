@@ -62,7 +62,6 @@ void Objet::Charger(std::string chemin)
     fichier.open(chemin.c_str(), ios::in);
     if(fichier)
     {
-        int type=0;
         char caractere;
 
         do
@@ -76,23 +75,18 @@ void Objet::Charger(std::string chemin)
                     fichier.get(caractere);
                     switch (caractere)
                     {
-                        case 't' : fichier>>type; break;
+                        case 't' : fichier>>m_type; break;
                     }
 
-                    if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
 
                 }while(caractere!='$');
                 fichier.get(caractere);
             }
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
 
     	}while(caractere!='$');
 
-        if(type==1)
-    	{
-            Arme temp;
-    	    *this = temp;
-    	}
 
     	m_chemin=chemin;
 
@@ -103,9 +97,33 @@ void Objet::Charger(std::string chemin)
             {
                 getline(fichier, m_nom);
             }
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
 
     	}while(caractere!='$');
+
+    	std::string description;
+
+    	do
+    	{
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
+                getline(fichier, description);
+            }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
+
+        std::string::size_type stTemp = description.find('\\');
+
+        while(stTemp !=  std::string::npos)
+        {
+            m_description.push_back(description.substr(0, stTemp)+'\n');
+            description = description.substr(stTemp + 1);
+            stTemp = description.find('\\');;
+        }
+        m_description.push_back(description.substr(0, stTemp)+'\n');
+
 
     	do
     	{
@@ -117,7 +135,7 @@ void Objet::Charger(std::string chemin)
 
                 m_image=moteurGraphique.AjouterImage(temp);
             }
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
 
     	}while(caractere!='$');
 
@@ -137,12 +155,12 @@ void Objet::Charger(std::string chemin)
                         case 'h' : fichier>>m_positionImage.h; break;
                     }
 
-                    if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
 
                 }while(caractere!='$');
                 fichier.get(caractere);
             }
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
 
     	}while(caractere!='$');
 
@@ -160,12 +178,12 @@ void Objet::Charger(std::string chemin)
                         case 'y' : fichier>>m_taille.y; break;
                     }
 
-                    if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
 
                 }while(caractere!='$');
                 fichier.get(caractere);
             }
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
 
     	}while(caractere!='$');
 
@@ -184,16 +202,16 @@ void Objet::Charger(std::string chemin)
                         case 'r' : fichier>>m_rarete; break;
                     }
 
-                    if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
 
                 }while(caractere!='$');
                 fichier.get(caractere);
             }
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
 
     	}while(caractere!='$');
 
-    	ChargerCaracteristiques(&fichier);
+        this->ChargerCaracteristiques(&fichier);
     }
     else
     console.Ajouter("Impossible d'ouvrir : "+chemin,1);
@@ -203,81 +221,123 @@ void Objet::Charger(std::string chemin)
     m_position.y=0;
 }
 
-void Objet::ChargerCaracteristiques(std::ifstream *fichier){}
-
-void Arme::ChargerCaracteristiques(std::ifstream *fichier)
+void Objet::ChargerCaracteristiques(std::ifstream *fichier)
 {
-    char caractere;
-    do
+    if(m_type==1)
     {
-        fichier->get(caractere);
-        if(caractere=='*')
+        char caractere;
+        do
         {
-            do
-            {
-                fichier->get(caractere);
-                switch (caractere)
-                {
-                    case 'd' : fichier->get(caractere); if(caractere=='i') *fichier>>m_degatsMin; else if(caractere=='a') *fichier>>m_degatsMax;  break;
-                }
-
-                if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",m_chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
-
-            }while(caractere!='$');
             fichier->get(caractere);
-        }
-        if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",m_chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+            if(caractere=='*')
+            {
+                do
+                {
+                    fichier->get(caractere);
+                    switch (caractere)
+                    {
+                        case 'd' : fichier->get(caractere); if(caractere=='i') *fichier>>m_degatsMin; else if(caractere=='a') *fichier>>m_degatsMax;  break;
+                    }
 
-    }while(caractere!='$');
+                    if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",m_chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+                }while(caractere!='$');
+                fichier->get(caractere);
+            }
+            if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",m_chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+        }while(caractere!='$');
+    }
+}
+
+
+sf::String Objet::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, char *chaine)
+{
+    sf::String string;
+
+    string.SetSize(14.f);
+    string.SetText(chaine);
+    string.SetY(position.y+decalage->y+10);
+    string.SetX(position.x+decalage->x+10-((int)string.GetRect().Right-(int)string.GetRect().Left));
+
+    if(tailleCadran->x<((int)string.GetRect().Right-(int)string.GetRect().Left))
+        tailleCadran->x=((int)string.GetRect().Right-(int)string.GetRect().Left);
+
+    decalage->y+=(int)string.GetRect().Bottom-(int)string.GetRect().Top+5;
+
+    return string;
 }
 
 
 void Objet::AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position)
 {
+    std::vector <sf::String> temp;
+
     char chaine[255];
 
     sf::Sprite sprite;
     sf::String string;
 
-    coordonnee tailleCadran={0,0,0,0},decalage={0,0,0,0};
+    coordonnee tailleCadran={0,0,0,0},decalage={-10,0,0,0};
 
-    string.SetSize(16.f);
+
     sprintf(chaine,"%s",m_nom.c_str());
-    string.SetText(chaine);
-    string.SetY(position.y+decalage.y+10);
-    string.SetX(position.x+decalage.x+10);
+    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
 
-    decalage.y+=(int)string.GetRect().Bottom-(int)string.GetRect().Top+10;
+    if(m_rarete==NORMAL)
+        temp[0].SetColor(sf::Color(224,224,224));
+    if(m_rarete==BONNEFACTURE)
+        temp[0].SetColor(sf::Color(128,0,128));
+    if(m_rarete==BENI)
+        temp[0].SetColor(sf::Color(0,64,128));
+    if(m_rarete==SACRE)
+        temp[0].SetColor(sf::Color(255,255,128));
+    if(m_rarete==SANCTIFIE)
+        temp[0].SetColor(sf::Color(128,255,255));
+    if(m_rarete==DIVIN)
+        temp[0].SetColor(sf::Color(255,164,32));
+    if(m_rarete==INFERNAL)
+        temp[0].SetColor(sf::Color(224,0,0));
+    if(m_rarete==CRAFT)
+        temp[0].SetColor(sf::Color(128,64,0));
 
-    moteurGraphique.AjouterTexte(&string,17);
+    for(int i=0;i<m_description.size();i++)
+    {
+        sprintf(chaine,"%s",m_description[i].c_str());
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
+    }
+
+    sprintf(chaine,"");
+    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
+
+    if(m_type==1)
+    {
+        sprintf(chaine,"Dégats : %i - %i",m_degatsMin,m_degatsMax);
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
+    }
+
+
+    for(int i=0;i<temp.size();i++)
+    {
+        temp[i].SetX(position.x+(tailleCadran.x/2-((int)temp[i].GetRect().Right-(int)temp[i].GetRect().Left)/2)-tailleCadran.x);
+        moteurGraphique.AjouterTexte(&temp[i],18);
+    }
+
+    tailleCadran.y=decalage.y;
+
+    tailleCadran.y+=20;
+    tailleCadran.x+=20;
+
+    sprite.SetImage(*moteurGraphique.getImage(0));
+    sprite.SetColor(sf::Color(0,0,0,224));
+    sprite.SetY(position.y);
+    sprite.SetX(position.x-tailleCadran.x+10);
+    sprite.Resize(tailleCadran.x,tailleCadran.y);
+    moteurGraphique.AjouterCommande(&sprite,17,0);
+
 }
 
-void Arme::AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position)
-{
-    Objet::AfficherCaracteristiques(ecran,position);
 
-    char chaine[255];
-
-    sf::Sprite sprite;
-    sf::String string;
-
-    coordonnee tailleCadran={0,0,0,0},decalage={0,32,0,0};
-
-    string.SetSize(16.f);
-
-   // decalage.y+=string.GetRect().Bottom-string.GetRect().Top+10;
-
-    moteurGraphique.AjouterTexte(&string);
-
-    sprintf(chaine,"Dégats : %i - %i",m_degatsMin,m_degatsMax);
-    string.SetText(chaine);
-    string.SetY(position.y+decalage.y+10);
-    string.SetX(position.x+decalage.x+10);
-
-    decalage.y+=(int)string.GetRect().Bottom-(int)string.GetRect().Top+10;
-
-    moteurGraphique.AjouterTexte(&string);
-}
 
 
 

@@ -30,22 +30,19 @@ class Objet
     void setRarete(int);
     void setPosition(int, int);
 
-    protected:
-    std::string m_nom,m_chemin;
-    int m_rarete,m_image,m_chanceTrouver;
-    coordonnee m_positionImage,m_taille,m_position;
-};
-
-
-class Arme : public Objet
-{
-    public:
-    void AfficherCaracteristiques(sf::RenderWindow *,coordonnee);
-    void ChargerCaracteristiques(std::ifstream *fichier);
-
+    int m_type;
 
     private:
-    int m_degatsMin, m_degatsMax;
+
+    sf::String AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, char *chaine);
+
+    std::string m_nom,m_chemin;
+    std::vector <std::string> m_description;
+    int m_rarete,m_image,m_chanceTrouver;
+    coordonnee m_positionImage,m_taille,m_position;
+
+     int m_degatsMin, m_degatsMax;
+
 };
 
 #endif

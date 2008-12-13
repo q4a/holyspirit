@@ -197,13 +197,11 @@ void Hero::Charger()
 
                                 if(caractere=='m')
                                 {
+                                    int type=0;
                                     string chemin;
                                     fichier>>chemin;
-                                    Objet temp;
-                                    temp.Charger(chemin);
-
-                                    m_inventaire.push_back(temp);
-
+                                    m_inventaire.push_back(Objet ());
+                                    m_inventaire[m_inventaire.size()-1].Charger(chemin);
                                 }
 
                                 if(fichier.eof()){throw "Impossible de charger la sauvegarde";}

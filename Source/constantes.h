@@ -18,6 +18,8 @@
 
 #define MAX_MUSIQUE 5
 
+#define NOMBRE_TYPE_OBJET 2
+
 #include <cmath>
 #include <utility>
 #include <iostream>
