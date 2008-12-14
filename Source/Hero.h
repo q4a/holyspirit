@@ -33,6 +33,7 @@ class Hero
 
 	Objet prendreEnMain(coordonnee positionSouris);
 	void AttribuerPositionObjet(coordonnee position,int numero);
+	void LibererCases(int numero);
 
 	void setMonstreVise(int monstre);
 	void setChercherSac(coordonnee);

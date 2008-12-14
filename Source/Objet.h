@@ -41,7 +41,7 @@ class Objet
     int m_rarete,m_image,m_chanceTrouver;
     coordonnee m_positionImage,m_taille,m_position;
 
-     int m_degatsMin, m_degatsMax;
+     int m_degatsMin, m_degatsMax,m_armure;
 
 };
 

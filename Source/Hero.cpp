@@ -285,9 +285,8 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
             sprite.SetColor(sf::Color(128,0,0,128));
 
             sprite.Resize(m_inventaire[m_objetEnMain].getTaille().x*32*configuration.Resolution.x/800,m_inventaire[m_objetEnMain].getTaille().y*32*configuration.Resolution.y/600);
-            sprite.SetX((positionSouris.x-477*configuration.Resolution.x/800)/(32*configuration.Resolution.x/800)*(32*configuration.Resolution.x/800)+477*configuration.Resolution.x/800);
-            sprite.SetY((positionSouris.y-367*configuration.Resolution.y/600)/(32*configuration.Resolution.y/600)*(32*configuration.Resolution.y/600)+367*configuration.Resolution.y/600);
-
+            sprite.SetX(positionSouris.x);
+            sprite.SetY(positionSouris.y);
 
             moteurGraphique.AjouterCommande(&sprite,18,0);
         }
@@ -295,8 +294,14 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
         sprite.SetImage(*moteurGraphique.getImage(m_inventaire[m_objetEnMain].getImage()));
         sprite.SetSubRect(IntRect(m_inventaire[m_objetEnMain].getPositionImage().x, m_inventaire[m_objetEnMain].getPositionImage().y, m_inventaire[m_objetEnMain].getPositionImage().x+m_inventaire[m_objetEnMain].getPositionImage().w, m_inventaire[m_objetEnMain].getPositionImage().y+m_inventaire[m_objetEnMain].getPositionImage().h));
         sprite.Resize(m_inventaire[m_objetEnMain].getTaille().x*32*configuration.Resolution.x/800,m_inventaire[m_objetEnMain].getTaille().y*32*configuration.Resolution.y/600);
-        sprite.SetX((positionSouris.x-477*configuration.Resolution.x/800)/(32*configuration.Resolution.x/800)*(32*configuration.Resolution.x/800)+477*configuration.Resolution.x/800);
-        sprite.SetY((positionSouris.y-367*configuration.Resolution.y/600)/(32*configuration.Resolution.y/600)*(32*configuration.Resolution.y/600)+367*configuration.Resolution.y/600);
+        sprite.SetX(((positionSouris.x)-477*configuration.Resolution.x/800)/(32*configuration.Resolution.x/800)*(32*configuration.Resolution.x/800)+477*configuration.Resolution.x/800);
+        sprite.SetY(((positionSouris.y)-367*configuration.Resolution.y/600)/(32*configuration.Resolution.y/600)*(32*configuration.Resolution.y/600)+367*configuration.Resolution.y/600);
+
+        if(positionSouris.x<477*configuration.Resolution.x/800||positionSouris.x>477*configuration.Resolution.x/800+32*8*configuration.Resolution.x/800||positionSouris.y<367*configuration.Resolution.y/600||positionSouris.y>399*configuration.Resolution.y/600+32*5*configuration.Resolution.y/600)
+        {
+            sprite.SetX(positionSouris.x);
+            sprite.SetY(positionSouris.y);
+        }
 
         moteurGraphique.AjouterCommande(&sprite,19,0);
     }
@@ -412,14 +417,20 @@ bool Hero::ajouterObjet(Objet objet)
     return ramasser;
 }
 
-void Hero::AttribuerPositionObjet(coordonnee position,int numero)
+void Hero::LibererCases(int numero)
 {
     if(numero>=0&&numero<m_inventaire.size())
     {
         for(int x=0;x<m_inventaire[numero].getTaille().x;x++)
             for(int y=0;y<m_inventaire[numero].getTaille().y;y++)
                 m_caseInventaire[y+m_inventaire[numero].getPosition().y][x+m_inventaire[numero].getPosition().x]=0;
+    }
+}
 
+void Hero::AttribuerPositionObjet(coordonnee position,int numero)
+{
+    if(numero>=0&&numero<m_inventaire.size())
+    {
         m_inventaire[numero].setPosition(position.x,position.y);
 
         for(int x=position.x;x<position.x+m_inventaire[numero].getTaille().x;x++)
@@ -433,8 +444,8 @@ Objet Hero::prendreEnMain(coordonnee positionSouris)
     if(positionSouris.x>477*configuration.Resolution.x/800&&positionSouris.x<477*configuration.Resolution.x/800+32*8*configuration.Resolution.x/800&&positionSouris.y>367*configuration.Resolution.y/600&&positionSouris.y<399*configuration.Resolution.y/600+32*5*configuration.Resolution.y/600)
     {
         coordonnee caseVisee;
-        caseVisee.x=(positionSouris.x-477*configuration.Resolution.x/800)/(32*configuration.Resolution.x/800);
-        caseVisee.y=(positionSouris.y-367*configuration.Resolution.y/600)/(32*configuration.Resolution.y/600);
+        caseVisee.x=((positionSouris.x)-477*configuration.Resolution.x/800)/(32*configuration.Resolution.x/800);
+        caseVisee.y=((positionSouris.y)-367*configuration.Resolution.y/600)/(32*configuration.Resolution.y/600);
 
         if(m_objetEnMain>=0&&m_objetEnMain<m_inventaire.size())
         {
@@ -462,6 +473,8 @@ Objet Hero::prendreEnMain(coordonnee positionSouris)
 
             if(ok)
             {
+                if(temp!=-1)
+                    LibererCases(temp);
 
                 AttribuerPositionObjet(caseVisee,m_objetEnMain);
 
@@ -476,16 +489,16 @@ Objet Hero::prendreEnMain(coordonnee positionSouris)
             for(int z=0;z<m_inventaire.size();z++)
                 if(caseVisee.x>=m_inventaire[z].getPosition().x&&caseVisee.x<m_inventaire[z].getPosition().x+m_inventaire[z].getTaille().x
                  &&caseVisee.y>=m_inventaire[z].getPosition().y&&caseVisee.y<m_inventaire[z].getPosition().y+m_inventaire[z].getTaille().y)
-                    m_objetEnMain=z;
+                    m_objetEnMain=z,LibererCases(m_objetEnMain);
         }
 
     }
     else if(m_objetEnMain>=0&&m_objetEnMain<m_inventaire.size())
     {
+        LibererCases(m_objetEnMain);
+
         Objet temp=m_inventaire[m_objetEnMain];
-        for(int x=0;x<m_inventaire[m_objetEnMain].getTaille().x;x++)
-            for(int y=0;y<m_inventaire[m_objetEnMain].getTaille().y;y++)
-                m_caseInventaire[y+m_inventaire[m_objetEnMain].getPosition().y][x+m_inventaire[m_objetEnMain].getPosition().x]=0;
+
         m_inventaire.erase(m_inventaire.begin()+m_objetEnMain);
 
         m_objetEnMain=-1;
@@ -495,6 +508,8 @@ Objet Hero::prendreEnMain(coordonnee positionSouris)
         return temp;
     }
 
+    Objet temp2;
+    return temp2;
 }
 
 void Hero::setMonstreVise(int monstre){m_monstreVise=monstre;}

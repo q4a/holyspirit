@@ -2585,8 +2585,14 @@ void Map::gererMonstres(Hero *hero,float temps,sf::View *camera,Menu *menu)
                         else
                             m_monstre[m_decor[i][j][k].getMonstre()].m_attente-=temps;
 
-                       if(m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding())
-                            m_monstre[m_decor[i][j][k].getMonstre()].m_attente=0.1;
+                        if(m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding())
+                            m_monstre[m_decor[i][j][k].getMonstre()].m_compteur++;
+                        else
+                            m_monstre[m_decor[i][j][k].getMonstre()].m_compteur=0;
+
+                        if(m_monstre[m_decor[i][j][k].getMonstre()].m_compteur>10)
+                            m_monstre[m_decor[i][j][k].getMonstre()].m_attente=0.25,m_monstre[m_decor[i][j][k].getMonstre()].m_compteur=0;
+                         //   m_monstre[m_decor[i][j][k].getMonstre()].m_attente=0.1;
 
                         if(!m_monstre[m_decor[i][j][k].getMonstre()].enVie()&&m_monstre[m_decor[i][j][k].getMonstre()].getEtat()!=3)
                                     m_monstre[m_decor[i][j][k].getMonstre()].setEtat(3);

@@ -248,6 +248,32 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
 
         }while(caractere!='$');
     }
+
+    if(m_type==2)
+    {
+        char caractere;
+        do
+        {
+            fichier->get(caractere);
+            if(caractere=='*')
+            {
+                do
+                {
+                    fichier->get(caractere);
+                    switch (caractere)
+                    {
+                        case 'a' : *fichier>>m_armure;  break;
+                    }
+
+                    if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",m_chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+                }while(caractere!='$');
+                fichier->get(caractere);
+            }
+            if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",m_chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+        }while(caractere!='$');
+    }
 }
 
 
@@ -310,10 +336,16 @@ void Objet::AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position
     sprintf(chaine,"");
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
 
-    if(m_type==1)
+    switch(m_type)
     {
-        sprintf(chaine,"Dégats : %i - %i",m_degatsMin,m_degatsMax);
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
+        case 1:
+            sprintf(chaine,"Dégats : %i - %i",m_degatsMin,m_degatsMax);
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
+        break;
+        case 2:
+            sprintf(chaine,"Armure : %i",m_armure);
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
+        break;
     }
 
 

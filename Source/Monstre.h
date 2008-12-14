@@ -35,6 +35,7 @@ class Monstre : public Personnage
 
 
     float m_attente;
+    int m_compteur;
 
     private:
     bool m_vu;

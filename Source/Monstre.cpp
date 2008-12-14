@@ -14,6 +14,7 @@ Monstre::Monstre()
     m_monstre=true;
 
     m_attente=0;
+    m_compteur=0;
 }
 
 void Monstre::Charger(int numero,Modele_Monstre *modele)
