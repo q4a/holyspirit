@@ -2,6 +2,18 @@
 13/12/2008
 //////////////////////////////////////////////////////////////////////////////
 
+Corrections :
+-Correction du bug dans l'inventaire qui fesait qu'il y avait parfois moyen de superposer les objets.
+-Correction du bug de l'IA qui faisait que certaines entités restaient immobiles en milieu confiné.
+
+Ajouts :
+-Ajout d'une armure pour les tests.
+
+
+//////////////////////////////////////////////////////////////////////////////
+13/12/2008
+//////////////////////////////////////////////////////////////////////////////
+
 Ajouts :
 -Ajout du système de modules aléatoires.
 -Ajout du système de caractéristiques des objets ( dégats pour les armes et description )

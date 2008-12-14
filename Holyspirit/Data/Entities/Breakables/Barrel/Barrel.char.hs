@@ -2,29 +2,34 @@ Liste des chemins de toutes les images du personnage
 *Data/Entities/Breakables/Barrel/Barrel.png
 
 $
-Liste des chemins de tous les sons
-*Data/Sounds/31622__Srehpog__light_crate_smash1.wav
-*Data/Sounds/31623__Srehpog__light_crate_smash2.wav
-*Data/Sounds/31624__Srehpog__light_crate_smash3.wav
+	Liste des chemins de tous les sons
+	*Data/Sounds/31622__Srehpog__light_crate_smash1.wav
+	*Data/Sounds/31623__Srehpog__light_crate_smash2.wav
+	*Data/Sounds/31624__Srehpog__light_crate_smash3.wav
 $
-Portee lumineuse
-* r255 v255 b255 i0 $
+	Portee lumineuse
+	* r255 v255 b255 i0 $
 $
-* Tonneau
+	* Tonneau
 $
-Rang du monstre
-* 0
+	Rang du monstre
+	* 0
 $
-Caracteristiques
-Vie/DegatsMin/DegatsMax/Vitesse
-*v5 di0 da0 m0 o1 a0 n0 $
+	Caracteristiques
+	Vie/DegatsMin/DegatsMax/Vitesse
+	*v5 di0 da0 m0 o1 a0 n0 $
 $
-*Data/Scripts/AI/inert.script.hs
+	*Data/Scripts/AI/inert.script.hs
 $
-*
-*Data/Items/Small_axe.item.hs
-r250
-$
+	*
+		*Data/Items/Small_axe.item.hs
+		r250
+	$
+
+	*
+		*Data/Items/Armor.item.hs
+		r250
+	$
 $
 Arret - E
 *x0 y0 w128 h128 a0 s-1 i0 $
