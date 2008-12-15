@@ -22,16 +22,19 @@ class Hero
 	void Charger();
 
 	void afficherInventaire(sf::RenderWindow *,coordonnee,float);
+	void afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionSouris,float decalage);
 
 	void placerCamera(sf::View *camera,coordonnee dimensionsMap);
 
 	void testMontreVise(Monstre *monstre,int hauteurMap);
 
 	void augmenterAme(float temps);
+	void recalculerCaracteristiques();
 
 	bool ajouterObjet(Objet objet);
 
 	Objet prendreEnMain(coordonnee positionSouris);
+	bool equiper(int numero, int emplacement);
 	void AttribuerPositionObjet(coordonnee position,int numero);
 	void LibererCases(int numero);
 

@@ -32,6 +32,8 @@
 enum{ARRET,COURSE,FRAPPE,MORT};
 enum{CHANGEMENT_DE_MAP,LUMIERE,INFLIGER_DEGATS,DECLENCHEUR_DEGAT_TO_EVENEMENT,CHANGER_DECOR,TIMER,EXPLOSION};
 enum{NORMAL,BONNEFACTURE,BENI,SACRE,SANCTIFIE,DIVIN,INFERNAL,CRAFT};
+enum{AUCUN_EMPLACEMENT,ARME_PRINCIPAL,ARME_SECONDAIRE,ARMURE_CORPS};
+enum{AUCUN,ARME,ARMURE};
 
 namespace gpl
 {
@@ -247,9 +249,17 @@ struct Caracteristique
     float vitesse;
     float vie;
     int maxVie;
-    int degatsMin,degatsMax;
+    float foi;
+    int maxFoi;
+    int degatsMin,degatsMax,armure;
     int niveau;
     int rang;
+
+    int force;
+    int dexterite;
+    int vitalite;
+    int piete;
+    int charisme;
 
     float modificateurTaille;
 

@@ -11,6 +11,11 @@ Objet::Objet()
     m_nom="Un objet merveilleux";
     m_chemin="";
     m_rarete=0;
+    m_equipe=0;
+
+    m_armure=0;
+    m_degatsMin=0;
+    m_degatsMax=0;
 }
 
 Objet::Objet(std::string nom, int rarete)
@@ -19,12 +24,14 @@ Objet::Objet(std::string nom, int rarete)
     m_rarete=rarete;
     m_image=0;
     m_chemin="";
+    m_equipe=0;
 }
 
 Objet::~Objet()
 {
     m_chemin.erase();
     m_nom.erase();
+    m_description.clear();
 }
 
 std::string Objet::getNom(){return m_nom;}
@@ -42,10 +49,16 @@ void Objet::setPosition(int x, int y){m_position.x=x,m_position.y=y;}
 void Objet::Sauvegarder(std::ofstream *fichier)
 {
     *fichier<<"* ";
+    *fichier<<"e"<<m_equipe<<" ";
+
     *fichier<<"r"<<m_rarete<<" ";
 
     *fichier<<"x"<<m_position.x<<" ";
     *fichier<<"y"<<m_position.y<<" ";
+
+    *fichier<<"di"<<m_degatsMin<<" ";
+    *fichier<<"da"<<m_degatsMax<<" ";
+    *fichier<<"a"<<m_armure<<" ";
 
     *fichier<<"m"<<m_chemin<<" ";
     *fichier<<"$"<<endl;
@@ -66,7 +79,6 @@ void Objet::Charger(std::string chemin)
 
         do
     	{
-
     		fichier.get(caractere);
     		if(caractere=='*')
             {
@@ -76,6 +88,7 @@ void Objet::Charger(std::string chemin)
                     switch (caractere)
                     {
                         case 't' : fichier>>m_type; break;
+                        case 'e' : int temp; fichier>>temp; m_emplacement.push_back(temp); break;
                     }
 
                     if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
@@ -223,7 +236,7 @@ void Objet::Charger(std::string chemin)
 
 void Objet::ChargerCaracteristiques(std::ifstream *fichier)
 {
-    if(m_type==1)
+    if(m_type==ARME)
     {
         char caractere;
         do
@@ -231,25 +244,48 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
             fichier->get(caractere);
             if(caractere=='*')
             {
+                int dii=0,dia=0,dai=0,daa=0;
                 do
                 {
                     fichier->get(caractere);
                     switch (caractere)
                     {
-                        case 'd' : fichier->get(caractere); if(caractere=='i') *fichier>>m_degatsMin; else if(caractere=='a') *fichier>>m_degatsMax;  break;
+                        case 'd' :
+                            fichier->get(caractere);
+                            if(caractere=='i')
+                            {
+                                fichier->get(caractere);
+                                if(caractere=='i')
+                                    *fichier>>dii;
+                                if(caractere=='a')
+                                    *fichier>>dia;
+                            }
+                            else if(caractere=='a')
+                            {
+                                fichier->get(caractere);
+                                if(caractere=='i')
+                                    *fichier>>dai;
+                                if(caractere=='a')
+                                    *fichier>>daa;
+                            }
+                        break;
                     }
 
                     if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",m_chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
 
                 }while(caractere!='$');
                 fichier->get(caractere);
+
+
+                m_degatsMin=(rand() % (dia - dii + 1)) + dii;
+                m_degatsMax=(rand() % (daa - dai + 1)) + dai;
             }
             if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",m_chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
 
         }while(caractere!='$');
     }
 
-    if(m_type==2)
+    if(m_type==ARMURE)
     {
         char caractere;
         do
@@ -257,22 +293,36 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
             fichier->get(caractere);
             if(caractere=='*')
             {
+                int ai=0,aa=0;
                 do
                 {
                     fichier->get(caractere);
                     switch (caractere)
                     {
-                        case 'a' : *fichier>>m_armure;  break;
+                        case 'a' :
+
+                            fichier->get(caractere);
+                            if(caractere=='i')
+                                *fichier>>ai;
+                            if(caractere=='a')
+                                *fichier>>aa;
+
+                          break;
                     }
 
                     if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",m_chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
 
                 }while(caractere!='$');
+
+                 m_armure=(rand() % (aa - ai + 1)) + ai;
+
                 fichier->get(caractere);
             }
             if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",m_chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
 
         }while(caractere!='$');
+
+
     }
 }
 
@@ -338,11 +388,11 @@ void Objet::AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position
 
     switch(m_type)
     {
-        case 1:
+        case ARME:
             sprintf(chaine,"Dégats : %i - %i",m_degatsMin,m_degatsMax);
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
         break;
-        case 2:
+        case ARMURE:
             sprintf(chaine,"Armure : %i",m_armure);
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
         break;
@@ -352,7 +402,7 @@ void Objet::AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position
     for(int i=0;i<temp.size();i++)
     {
         temp[i].SetX(position.x+(tailleCadran.x/2-((int)temp[i].GetRect().Right-(int)temp[i].GetRect().Left)/2)-tailleCadran.x);
-        moteurGraphique.AjouterTexte(&temp[i],18);
+        moteurGraphique.AjouterTexte(&temp[i],19);
     }
 
     tailleCadran.y=decalage.y;
@@ -365,7 +415,7 @@ void Objet::AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position
     sprite.SetY(position.y);
     sprite.SetX(position.x-tailleCadran.x+10);
     sprite.Resize(tailleCadran.x,tailleCadran.y);
-    moteurGraphique.AjouterCommande(&sprite,17,0);
+    moteurGraphique.AjouterCommande(&sprite,18,0);
 
 }
 

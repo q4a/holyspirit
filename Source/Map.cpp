@@ -2642,61 +2642,65 @@ bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *ca
             }
 
             if(m_monstre[numeroMonstre].getCoordonnee().x>=0&&m_monstre[numeroMonstre].getCoordonnee().x<m_decor[0][0].size()&&m_monstre[numeroMonstre].getCoordonnee().y>=0&&m_monstre[numeroMonstre].getCoordonnee().y<m_decor[0].size())
-            {
-                /*for(int i=0;i<(m_monstre[numeroMonstre].getCaracteristique().rang+1)*3;i++)
-                {
-                    if(rand()%1000<500)
-                    {
-                        int rarete=NORMAL;
-                        int random=rand()%10000;
-                        if(random<=2811)
-                            rarete=BONNEFACTURE;
-                        if(random<=811)
-                            rarete=BENI;
-                        if(random<=311)
-                            rarete=SACRE;
-                        if(random<111)
-                            rarete=SANCTIFIE;
-                        if(random<11)
-                            rarete=DIVIN;
-                        if(random==1)
-                            rarete=INFERNAL;
-
-
-                        Objet temp("Un Objet Merveilleux",rarete);
-                        m_decor[1][m_monstre[numeroMonstre].getCoordonnee().y][m_monstre[numeroMonstre].getCoordonnee().x].ajouterObjet(temp);
-                    }
-                }*/
                 if(m_monstre[numeroMonstre].getModele()>=0&&m_monstre[numeroMonstre].getModele()<m_ModeleMonstre.size())
-                for(int j=0;j<(m_monstre[numeroMonstre].getCaracteristique().rang+1)*3;j++)
-                for(int i=0;i<m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets().size();i++)
-                    if(rand()%1000<m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets()[i].getChanceTrouver())
-                    {
-                        int rarete=m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets()[i].getRarete();
+                    for(int j=0;j<(m_monstre[numeroMonstre].getCaracteristique().rang+1)*3;j++)
+                        for(int i=0;i<m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets().size();i++)
+                            if(rand()%1000<m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets()[i].getChanceTrouver())
+                            {
+                                int rarete=m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets()[i].getRarete();
 
-                        if(rarete==0)
-                        {
-                            int random=rand()%10000;
-                            if(random<=3000)
-                                rarete=BONNEFACTURE;
-                            if(random<=300)
-                                rarete=BENI;
-                            if(random<=50)
-                                rarete=SACRE;
-                            if(random<20)
-                                rarete=SANCTIFIE;
-                            if(random<3)
-                                rarete=DIVIN;
-                            if(random==1)
-                                rarete=INFERNAL;
-                        }
+                                Objet temp;
+                                temp=m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets()[i];
 
-                        Objet temp;
-                        temp=m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets()[i];
-                        temp.setRarete(rarete);
-                        m_decor[1][m_monstre[numeroMonstre].getCoordonnee().y][m_monstre[numeroMonstre].getCoordonnee().x].ajouterObjet(temp);
-                    }
-            }
+                                if(rarete==0)
+                                {
+                                    int random=rand()%10000;
+                                    if(random<=3000)
+                                    {
+                                        rarete=BONNEFACTURE;
+                                        temp.m_armure*=1.25;
+                                        temp.m_degatsMin*=1.25;
+                                        temp.m_degatsMax*=1.25;
+                                    }
+                                    if(random<=300)
+                                    {
+                                        rarete=BENI;
+                                        temp.m_armure*=1.5;
+                                        temp.m_degatsMin*=1.5;
+                                        temp.m_degatsMax*=1.5;
+                                    }
+                                    if(random<=50)
+                                    {
+                                        rarete=SACRE;
+                                        temp.m_armure*=2;
+                                        temp.m_degatsMin*=2;
+                                        temp.m_degatsMax*=2;
+                                    }
+                                    if(random<20)
+                                    {
+                                        rarete=SANCTIFIE;
+                                        temp.m_armure*=5;
+                                        temp.m_degatsMin*=5;
+                                        temp.m_degatsMax*=5;
+                                    }
+                                    if(random<3)
+                                    {
+                                        rarete=DIVIN;
+                                        temp.m_armure*=10;
+                                        temp.m_degatsMin*=10;
+                                        temp.m_degatsMax*=10;
+                                    }
+                                    if(random==1)
+                                    {
+                                        rarete=INFERNAL;
+                                        temp.m_armure*=20;
+                                        temp.m_degatsMin*=20;
+                                        temp.m_degatsMax*=20;
+                                    }
+                                }
+                                temp.setRarete(rarete);
+                                m_decor[1][m_monstre[numeroMonstre].getCoordonnee().y][m_monstre[numeroMonstre].getCoordonnee().x].ajouterObjet(temp);
+                            }
 
             return 1;
         }

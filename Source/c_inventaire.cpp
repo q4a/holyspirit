@@ -29,7 +29,7 @@ void c_Inventaire::Utiliser(Jeu *jeu)
 
     jeu->eventManager.GererLesEvenements(&jeu->ecran,&camera,&jeu->m_run,0,jeu->map.getDimensions());
 
-    if(jeu->eventManager.getEvenement(Key::I,"ET"))
+    if(jeu->eventManager.getEvenement(Key::I,"ET")||jeu->eventManager.getEvenement(Key::Escape,"ET"))
         m_afficher=0;
 
 
@@ -40,23 +40,23 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         jeu->eventManager.StopEvenement(Mouse::Left,"C");
     }
 
-            jeu->hero.placerCamera(&jeu->camera,jeu->map.getDimensions()); // On place la camera suivant ou se trouve le perso
-            jeu->camera.Zoom(configuration.zoom);
+    jeu->hero.placerCamera(&jeu->camera,jeu->map.getDimensions()); // On place la camera suivant ou se trouve le perso
+    jeu->camera.Zoom(configuration.zoom);
 
-                coordonnee temp;
-                jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,temp,0);
+    coordonnee temp;
+    jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,temp,0);
 
-                if(configuration.Minimap)
-                {
-                    jeu->menu.Afficher(&jeu->ecran,2);
-                    jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,255);
-                }
-                if(jeu->hero.getChercherSac().x!=-1&&jeu->map.getNombreObjets(jeu->hero.getChercherSac())>0)
-                {
-                    jeu->menu.Afficher(&jeu->ecran,3);
-                    jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,255);
-                }
-                jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),0,jeu->hero.m_personnage.getCaracteristique());
+    if(configuration.Minimap)
+    {
+        jeu->menu.Afficher(&jeu->ecran,2);
+        jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,255);
+    }
+    if(jeu->hero.getChercherSac().x!=-1&&jeu->map.getNombreObjets(jeu->hero.getChercherSac())>0)
+    {
+        jeu->menu.Afficher(&jeu->ecran,3);
+        jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,255);
+    }
+    jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),0,jeu->hero.m_personnage.getCaracteristique());
 
     if(m_afficher)
         m_decalage+=temps_ecoule*2000;

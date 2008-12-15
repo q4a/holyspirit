@@ -26,22 +26,22 @@
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="Hero.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="6548" topLine="196" />
+		<Cursor position="20855" topLine="485" />
 	</File>
-	<File name="Hero.h" open="0" top="0" tabpos="18">
-		<Cursor position="938" topLine="24" />
+	<File name="Hero.h" open="1" top="0" tabpos="7">
+		<Cursor position="789" topLine="18" />
 	</File>
-	<File name="Map.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="123684" topLine="1835" />
+	<File name="Map.cpp" open="1" top="1" tabpos="4">
+		<Cursor position="155072" topLine="2399" />
 	</File>
 	<File name="Map.h" open="0" top="0" tabpos="12">
 		<Cursor position="1428" topLine="58" />
 	</File>
-	<File name="Monstre.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="7177" topLine="311" />
+	<File name="Monstre.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="250" topLine="24" />
 	</File>
-	<File name="Monstre.h" open="0" top="0" tabpos="2">
-		<Cursor position="86" topLine="0" />
+	<File name="Monstre.h" open="1" top="0" tabpos="8">
+		<Cursor position="697" topLine="14" />
 	</File>
 	<File name="MoteurGraphique.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="5055" topLine="124" />
@@ -49,11 +49,11 @@
 	<File name="MoteurGraphique.h" open="0" top="0" tabpos="20">
 		<Cursor position="786" topLine="12" />
 	</File>
-	<File name="Objet.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="9624" topLine="297" />
+	<File name="Objet.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="10669" topLine="299" />
 	</File>
 	<File name="Objet.h" open="1" top="0" tabpos="2">
-		<Cursor position="918" topLine="11" />
+		<Cursor position="1107" topLine="15" />
 	</File>
 	<File name="Personnage.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="6800" topLine="187" />
@@ -97,8 +97,8 @@
 	<File name="c_demarrage.h" open="0" top="0" tabpos="5">
 		<Cursor position="355" topLine="0" />
 	</File>
-	<File name="c_inventaire.cpp" open="0" top="0" tabpos="15">
-		<Cursor position="1684" topLine="32" />
+	<File name="c_inventaire.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="889" topLine="11" />
 	</File>
 	<File name="c_inventaire.h" open="0" top="0" tabpos="42">
 		<Cursor position="270" topLine="0" />
@@ -160,8 +160,8 @@
 	<File name="prototypes.h" open="0" top="0" tabpos="52">
 		<Cursor position="308" topLine="0" />
 	</File>
-	<File name="script.cpp" open="0" top="0" tabpos="11">
-		<Cursor position="448" topLine="9" />
+	<File name="script.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="180" topLine="3" />
 	</File>
 	<File name="script.h" open="0" top="0" tabpos="10">
 		<Cursor position="284" topLine="0" />

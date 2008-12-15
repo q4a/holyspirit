@@ -30,19 +30,18 @@ class Objet
     void setRarete(int);
     void setPosition(int, int);
 
-    int m_type;
+    int m_type,m_equipe;
+    std::vector <int> m_emplacement;
+
+    int m_degatsMin, m_degatsMax,m_armure;
 
     private:
-
     sf::String AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, char *chaine);
 
     std::string m_nom,m_chemin;
     std::vector <std::string> m_description;
     int m_rarete,m_image,m_chanceTrouver;
     coordonnee m_positionImage,m_taille,m_position;
-
-     int m_degatsMin, m_degatsMax,m_armure;
-
 };
 
 #endif
