@@ -1,4 +1,4 @@
-* t1 $
+* t1 e1 e2 $
 $
 *Petite hache en cuivre.
 $
@@ -12,5 +12,5 @@ $
 $
 *r0  $
 $
-*di3 da7 $ 
+*dii1 dii4 dai5 daa10 $ 
 $
