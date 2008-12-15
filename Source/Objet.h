@@ -19,6 +19,8 @@ class Objet
     void setChanceTrouver(int);
     void Sauvegarder(std::ofstream *fichier);
 
+    void Generer();
+
     std::string getNom();
     int getRarete();
     int getImage();
@@ -42,6 +44,8 @@ class Objet
     std::vector <std::string> m_description;
     int m_rarete,m_image,m_chanceTrouver;
     coordonnee m_positionImage,m_taille,m_position;
+
+    int ai,aa,dii,dia,dai,daa;
 };
 
 #endif

@@ -16,6 +16,8 @@ Objet::Objet()
     m_armure=0;
     m_degatsMin=0;
     m_degatsMax=0;
+
+    ai=0,aa=0,dii=0,dia=0,dai=0,daa=0;
 }
 
 Objet::Objet(std::string nom, int rarete)
@@ -234,6 +236,60 @@ void Objet::Charger(std::string chemin)
     m_position.y=0;
 }
 
+void Objet::Generer()
+{
+    m_armure=(rand() % (aa - ai + 1)) + ai;
+    m_degatsMin=(rand() % (dia - dii + 1)) + dii;
+    m_degatsMax=(rand() % (daa - dai + 1)) + dai;
+
+    if(m_rarete==0)
+    {
+        int random=rand()%10000;
+        if(random<=3000)
+        {
+            m_rarete=BONNEFACTURE;
+            m_armure*=1.25;
+            m_degatsMin*=1.25;
+            m_degatsMax*=1.25;
+        }
+        if(random<=300)
+        {
+            m_rarete=BENI;
+            m_armure*=1.5;
+            m_degatsMin*=1.5;
+            m_degatsMax*=1.5;
+        }
+        if(random<=50)
+        {
+            m_rarete=SACRE;
+            m_armure*=2;
+            m_degatsMin*=2;
+            m_degatsMax*=2;
+        }
+        if(random<20)
+        {
+            m_rarete=SANCTIFIE;
+            m_armure*=5;
+            m_degatsMin*=5;
+            m_degatsMax*=5;
+        }
+        if(random<3)
+        {
+            m_rarete=DIVIN;
+            m_armure*=10;
+            m_degatsMin*=10;
+            m_degatsMax*=10;
+        }
+        if(random==1)
+        {
+            m_rarete=INFERNAL;
+            m_armure*=20;
+            m_degatsMin*=20;
+            m_degatsMax*=20;
+        }
+    }
+}
+
 void Objet::ChargerCaracteristiques(std::ifstream *fichier)
 {
     if(m_type==ARME)
@@ -244,7 +300,6 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
             fichier->get(caractere);
             if(caractere=='*')
             {
-                int dii=0,dia=0,dai=0,daa=0;
                 do
                 {
                     fichier->get(caractere);
@@ -277,8 +332,7 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
                 fichier->get(caractere);
 
 
-                m_degatsMin=(rand() % (dia - dii + 1)) + dii;
-                m_degatsMax=(rand() % (daa - dai + 1)) + dai;
+
             }
             if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",m_chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
 
@@ -293,7 +347,6 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
             fichier->get(caractere);
             if(caractere=='*')
             {
-                int ai=0,aa=0;
                 do
                 {
                     fichier->get(caractere);
@@ -314,7 +367,7 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
 
                 }while(caractere!='$');
 
-                 m_armure=(rand() % (aa - ai + 1)) + ai;
+
 
                 fichier->get(caractere);
             }

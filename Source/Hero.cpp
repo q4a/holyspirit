@@ -393,9 +393,6 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
             sprite.SetImage(*moteurGraphique.getImage(m_inventaire[i].getImage()));
             sprite.SetSubRect(IntRect(m_inventaire[i].getPositionImage().x, m_inventaire[i].getPositionImage().y, m_inventaire[i].getPositionImage().x+m_inventaire[i].getPositionImage().w, m_inventaire[i].getPositionImage().y+m_inventaire[i].getPositionImage().h));
             sprite.Resize(m_inventaire[i].getTaille().x*32*configuration.Resolution.x/800,m_inventaire[i].getTaille().y*32*configuration.Resolution.y/600);
-            //sprite.SetX((m_inventaire[i].getPosition().x*32+477)*configuration.Resolution.x/800);
-            //sprite.SetY(((m_inventaire[i].getPosition().y-1)*32+399)*configuration.Resolution.y/600-decalage*configuration.Resolution.h/600);
-
             moteurGraphique.AjouterCommande(&sprite,17,0);
 
         }

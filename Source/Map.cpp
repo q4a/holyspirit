@@ -2647,58 +2647,11 @@ bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *ca
                         for(int i=0;i<m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets().size();i++)
                             if(rand()%1000<m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets()[i].getChanceTrouver())
                             {
-                                int rarete=m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets()[i].getRarete();
+                                //int rarete=m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets()[i].getRarete();
 
                                 Objet temp;
                                 temp=m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets()[i];
-
-                                if(rarete==0)
-                                {
-                                    int random=rand()%10000;
-                                    if(random<=3000)
-                                    {
-                                        rarete=BONNEFACTURE;
-                                        temp.m_armure*=1.25;
-                                        temp.m_degatsMin*=1.25;
-                                        temp.m_degatsMax*=1.25;
-                                    }
-                                    if(random<=300)
-                                    {
-                                        rarete=BENI;
-                                        temp.m_armure*=1.5;
-                                        temp.m_degatsMin*=1.5;
-                                        temp.m_degatsMax*=1.5;
-                                    }
-                                    if(random<=50)
-                                    {
-                                        rarete=SACRE;
-                                        temp.m_armure*=2;
-                                        temp.m_degatsMin*=2;
-                                        temp.m_degatsMax*=2;
-                                    }
-                                    if(random<20)
-                                    {
-                                        rarete=SANCTIFIE;
-                                        temp.m_armure*=5;
-                                        temp.m_degatsMin*=5;
-                                        temp.m_degatsMax*=5;
-                                    }
-                                    if(random<3)
-                                    {
-                                        rarete=DIVIN;
-                                        temp.m_armure*=10;
-                                        temp.m_degatsMin*=10;
-                                        temp.m_degatsMax*=10;
-                                    }
-                                    if(random==1)
-                                    {
-                                        rarete=INFERNAL;
-                                        temp.m_armure*=20;
-                                        temp.m_degatsMin*=20;
-                                        temp.m_degatsMax*=20;
-                                    }
-                                }
-                                temp.setRarete(rarete);
+                                temp.Generer();
                                 m_decor[1][m_monstre[numeroMonstre].getCoordonnee().y][m_monstre[numeroMonstre].getCoordonnee().x].ajouterObjet(temp);
                             }
 
