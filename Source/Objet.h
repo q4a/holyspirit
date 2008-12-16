@@ -6,6 +6,13 @@
 #ifndef OBJETH
 #define OBJETH
 
+struct benediction
+{
+    int type;
+    int info1;
+    int info2;
+};
+
 class Objet
 {
     public:
@@ -36,6 +43,9 @@ class Objet
     std::vector <int> m_emplacement;
 
     int m_degatsMin, m_degatsMax,m_armure;
+    int m_capaciteBenediction;
+
+    std::vector <benediction> m_benedictions;
 
     private:
     sf::String AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, char *chaine);
@@ -44,7 +54,6 @@ class Objet
     std::vector <std::string> m_description;
     int m_rarete,m_image,m_chanceTrouver;
     coordonnee m_positionImage,m_taille,m_position;
-
     int ai,aa,dii,dia,dai,daa;
 };
 

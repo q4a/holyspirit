@@ -110,15 +110,15 @@ void c_Jeu::Utiliser(Jeu *jeu)
                 tempsEcouleDepuisFPS+=tempsEcoule;
 
                 if(jeu->hero.m_personnage.enVie())
-                    jeu->hero.m_personnage.regenererVie((float)jeu->hero.m_personnage.getCaracteristique().maxVie*tempsEcoule/100);
+                    jeu->hero.regenererVie((float)jeu->hero.m_caracteristiques.maxVie*tempsEcoule/100);
                 jeu->hero.augmenterAme(tempsEcoule);
 
                 jeu->Clock.Reset();
 
                 if(jeu->hero.m_personnage.enVie())
                 {
-                    if(jeu->hero.m_personnage.getCaracteristique().vie/(float)jeu->hero.m_personnage.getCaracteristique().maxVie<0.5)
-                        configuration.effetMort=150-(jeu->hero.m_personnage.getCaracteristique().vie*300/jeu->hero.m_personnage.getCaracteristique().maxVie),jeu->sonMort.SetVolume(configuration.effetMort);
+                    if(jeu->hero.m_caracteristiques.vie/(float)jeu->hero.m_caracteristiques.maxVie<0.5)
+                        configuration.effetMort=150-(jeu->hero.m_caracteristiques.vie*300/jeu->hero.m_caracteristiques.maxVie),jeu->sonMort.SetVolume(configuration.effetMort);
                     else
                         configuration.effetMort=0,jeu->sonMort.SetVolume(0);
                 }
@@ -318,9 +318,9 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                     jeu->menu.Afficher(&jeu->ecran,1); // On affiche le hud
                     if(jeu->map.getEntiteMonstre(jeu->map.getMonstreIllumine())!=NULL)
-                        jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),1,jeu->map.getEntiteMonstre(jeu->map.getMonstreIllumine())->getCaracteristique());
+                        jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,1,jeu->map.getEntiteMonstre(jeu->map.getMonstreIllumine())->getCaracteristique());
                     else
-                        jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),0,jeu->hero.m_personnage.getCaracteristique());
+                        jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,0,jeu->hero.m_caracteristiques);
                     jeu->eventManager.AfficherCurseur(&jeu->ecran); // On affiche le curseur de la souris
 
                     if(jeu->map.getEvenement(jeu->eventManager.getCasePointee())>=0)

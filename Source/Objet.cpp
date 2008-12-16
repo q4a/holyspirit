@@ -27,6 +27,7 @@ Objet::Objet(std::string nom, int rarete)
     m_image=0;
     m_chemin="";
     m_equipe=0;
+    m_capaciteBenediction=0;
 }
 
 Objet::~Objet()
@@ -34,6 +35,7 @@ Objet::~Objet()
     m_chemin.erase();
     m_nom.erase();
     m_description.clear();
+    m_benedictions.clear();
 }
 
 std::string Objet::getNom(){return m_nom;}
@@ -63,6 +65,15 @@ void Objet::Sauvegarder(std::ofstream *fichier)
     *fichier<<"a"<<m_armure<<" ";
 
     *fichier<<"m"<<m_chemin<<" ";
+
+    for(int i=0;i<m_benedictions.size();i++)
+    {
+        *fichier<<"b"<<m_benedictions[i].type<<" ";
+        *fichier<<"i1"<<m_benedictions[i].info1<<" ";
+        *fichier<<"i2"<<m_benedictions[i].info2<<" ";
+        *fichier<<"$ ";
+    }
+
     *fichier<<"$"<<endl;
 }
 
@@ -215,6 +226,7 @@ void Objet::Charger(std::string chemin)
                     switch (caractere)
                     {
                         case 'r' : fichier>>m_rarete; break;
+                        case 'b' : fichier>>m_capaciteBenediction; break;
                     }
 
                     if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
@@ -244,49 +256,90 @@ void Objet::Generer()
 
     if(m_rarete==0)
     {
+         int nbrBene=0;
         int random=rand()%10000;
         if(random<=3000)
         {
             m_rarete=BONNEFACTURE;
-            m_armure*=1.25;
-            m_degatsMin*=1.25;
-            m_degatsMax*=1.25;
+            m_armure*=1;
+            m_degatsMin*=1;
+            m_degatsMax*=1;
+            nbrBene=1;
         }
         if(random<=300)
         {
             m_rarete=BENI;
-            m_armure*=1.5;
-            m_degatsMin*=1.5;
-            m_degatsMax*=1.5;
+            m_armure*=1;
+            m_degatsMin*=1;
+            m_degatsMax*=1;
+            nbrBene=rand()%(5-2)+2;
         }
         if(random<=50)
         {
             m_rarete=SACRE;
-            m_armure*=2;
-            m_degatsMin*=2;
-            m_degatsMax*=2;
+            m_armure*=1;
+            m_degatsMin*=1;
+            m_degatsMax*=1;
+            nbrBene=rand()%(10-5)+5;
         }
         if(random<20)
         {
             m_rarete=SANCTIFIE;
-            m_armure*=5;
-            m_degatsMin*=5;
-            m_degatsMax*=5;
+            m_armure*=1;
+            m_degatsMin*=1;
+            m_degatsMax*=1;
+            nbrBene=rand()%(15-10)+10;
         }
         if(random<3)
         {
             m_rarete=DIVIN;
-            m_armure*=10;
-            m_degatsMin*=10;
-            m_degatsMax*=10;
+            m_armure*=1;
+            m_degatsMin*=1;
+            m_degatsMax*=1;
+            nbrBene=rand()%(30-15)+15;
         }
         if(random==1)
         {
             m_rarete=INFERNAL;
-            m_armure*=20;
-            m_degatsMin*=20;
-            m_degatsMax*=20;
+            m_armure*=1;
+            m_degatsMin*=1;
+            m_degatsMax*=1;
+            nbrBene=rand()%(50-30)+30;
         }
+
+        for(int i=0;i<nbrBene;i++)
+        {
+            bool ajouter=true;
+
+            benediction temp;
+            temp.type=rand()%NOMBRE_BENEDICTION;
+
+            if(temp.type==VIE_SUPP||temp.type==FOI_SUPP)
+                temp.info1=rand()%(m_capaciteBenediction*20 - (int)(m_capaciteBenediction*5))+m_capaciteBenediction*5;
+            else if(temp.type==EFFICACITE_ACCRUE)
+                temp.info1=rand()%(m_capaciteBenediction*10 - (int)(m_capaciteBenediction*2.5))+m_capaciteBenediction*2.5;
+            else
+                temp.info1=rand()%(m_capaciteBenediction*2 - (int)(m_capaciteBenediction*0.5))+m_capaciteBenediction*0.5;
+
+            for(int j=0;j<m_benedictions.size();j++)
+                if(m_benedictions[j].type==temp.type)
+                    m_benedictions[j].info1+=temp.info1,ajouter=false;
+
+            if(ajouter)
+            {
+                m_benedictions.push_back(benediction ());
+                m_benedictions[m_benedictions.size()-1]=temp;
+                m_benedictions[m_benedictions.size()-1].info2=0;
+            }
+        }
+
+        for(int i=0;i<m_benedictions.size();i++)
+            if(m_benedictions[i].type==EFFICACITE_ACCRUE)
+            {
+                m_armure+=m_armure*m_benedictions[i].info1*0.01;
+                m_degatsMin+=m_degatsMin*m_benedictions[i].info1*0.01;
+                m_degatsMax+=m_degatsMax*m_benedictions[i].info1*0.01;
+            }
     }
 }
 
@@ -451,6 +504,14 @@ void Objet::AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position
         break;
     }
 
+    sprintf(chaine,"");
+    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
+
+    for(int i=0;i<m_benedictions.size();i++)
+    {
+        sprintf(chaine,"%s %i",configuration.text_benedictions[m_benedictions[i].type].c_str(),m_benedictions[i].info1);
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
+    }
 
     for(int i=0;i<temp.size();i++)
     {

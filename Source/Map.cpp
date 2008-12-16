@@ -2288,7 +2288,7 @@ bool Map::testEvenement(sf::View *camera, Jeu *jeu,float temps)
 
         if(m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getType()==INFLIGER_DEGATS)
         {
-            jeu->hero.m_personnage.infligerDegats(m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(0)*temps*10);
+            jeu->hero.infligerDegats(m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(0)*temps*10);
         }
     }
     return 1;
@@ -2351,13 +2351,13 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                                             infligerDegats(m_decor[couche][y][x].getMonstre(), degats,menu,camera);
 
                                             if(y==hero->m_personnage.getCoordonnee().y&&x==hero->m_personnage.getCoordonnee().x)
-                                                hero->m_personnage.infligerDegats(degats);
+                                                hero->infligerDegats(degats);
 
 
                                         }
                         }
                         else
-                        hero->m_personnage.infligerDegats(degats);
+                        hero->infligerDegats(degats);
                    }
 
            }

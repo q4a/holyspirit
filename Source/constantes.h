@@ -20,6 +20,8 @@
 
 #define NOMBRE_TYPE_OBJET 2
 
+#define NOMBRE_BENEDICTION 8
+
 #include <cmath>
 #include <utility>
 #include <iostream>
@@ -34,6 +36,8 @@ enum{CHANGEMENT_DE_MAP,LUMIERE,INFLIGER_DEGATS,DECLENCHEUR_DEGAT_TO_EVENEMENT,CH
 enum{NORMAL,BONNEFACTURE,BENI,SACRE,SANCTIFIE,DIVIN,INFERNAL,CRAFT};
 enum{AUCUN_EMPLACEMENT,ARME_PRINCIPAL,ARME_SECONDAIRE,ARMURE_CORPS};
 enum{AUCUN,ARME,ARMURE};
+
+enum{EFFICACITE_ACCRUE,FO_SUPP,DEX_SUPP,VIT_SUPP,PI_SUPP,CH_SUPP,VIE_SUPP,FOI_SUPP};
 
 namespace gpl
 {
@@ -155,6 +159,9 @@ struct Configuration
                         if(chaine== "menu_inventory:") { fichier2>>nom_inventaire; }
                         if(chaine== "menu_bag:") { fichier2>>nom_sac; }
 
+                        if(chaine== "text_benedictions:") { fichier2>>chemin_text_benedictions; }
+
+
 
                         if(chaine== "font_title:") { fichier2>>font_titre; }
 
@@ -183,6 +190,19 @@ struct Configuration
 
             if(!Lumiere)
                 Ombre=0;
+
+
+            text_benedictions=new std::string [NOMBRE_BENEDICTION];
+
+            std::ifstream fichier3;
+            fichier3.open(chemin_text_benedictions.c_str(), std::ios::in);
+            if(fichier3)
+            {
+                std::string chaine;
+                for(int i=0;i<NOMBRE_BENEDICTION;i++)
+                    getline(fichier3,text_benedictions[i]);
+                fichier3.close();
+            }
     }
 
     void Sauvegarder()
@@ -238,6 +258,10 @@ struct Configuration
     int heure,cache,alpha;
     std::string version,chemin_maps,chemin_temps,chemin_saves,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetMort,nom_effetContrastes,nom_effetBlur,nom_hud,nom_minimap,nom_bulle_vie,nom_ame,nom_barre_ame,nom_barre_vie,nom_barre_vie_vide,nom_sang,nom_inventaire,chemin_son_mort;
     std::string font_titre,chemin_video_developpeur,nom_video_developpeur,nom_sac,chemin_aa;
+
+    std::string chemin_text_benedictions;
+
+    std::string *text_benedictions;
 };
 
 struct Caracteristique

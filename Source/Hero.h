@@ -31,6 +31,9 @@ class Hero
 	void augmenterAme(float temps);
 	void recalculerCaracteristiques();
 
+	void infligerDegats(float degats);
+	void regenererVie(float vie);
+
 	bool ajouterObjet(Objet objet);
 
 	Objet prendreEnMain(coordonnee positionSouris);
@@ -47,10 +50,13 @@ class Hero
 	Personnage m_personnage;
 	Modele_Personnage m_modelePersonnage;
 
+    Caracteristique m_caracteristiques;
+
 	private:
 	coordonneeDecimal m_positionAffichage;
 	int m_monstreVise,m_objetEnMain;
 	coordonnee m_chercherSac;
+
 
 	std::vector<Objet> m_inventaire;
 	bool m_caseInventaire[5][8];

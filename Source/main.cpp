@@ -53,6 +53,8 @@ int main ( int argc, char** argv )
 
     configuration.Sauvegarder();
 
+    delete configuration.text_benedictions;
+
     console.Ajouter("");
     console.Ajouter("EXIT_SUCCESS");
 

@@ -162,7 +162,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
                     jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,0);
                 }
                 jeu->menu.Afficher(&jeu->ecran,1);
-                jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),0,jeu->hero.m_personnage.getCaracteristique());
+                jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,0,jeu->hero.m_personnage.getCaracteristique());
             }
         }
         else
@@ -186,7 +186,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
                     jeu->menu.Afficher(&jeu->ecran,2);
                 }
                 jeu->menu.Afficher(&jeu->ecran,3);
-                jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),0,jeu->hero.m_personnage.getCaracteristique());
+                jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,0,jeu->hero.m_personnage.getCaracteristique());
             }
         }
         else
