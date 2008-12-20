@@ -623,10 +623,6 @@ void Hero::recalculerCaracteristiques()
     m_caracteristiques.maxVie+=m_caracteristiques.vitalite*25;
     m_caracteristiques.maxFoi+=m_caracteristiques.piete*25;
 
-    temp.degatsMin=m_caracteristiques.degatsMin;
-    temp.degatsMax=m_caracteristiques.degatsMax;
-    temp.armure=m_caracteristiques.armure;
-
     for(int i=0;i<m_inventaire.size();i++)
     {
         if(m_inventaire[i].m_equipe==ARME_PRINCIPAL)
@@ -637,9 +633,9 @@ void Hero::recalculerCaracteristiques()
 
             temp.degatsMin=m_caracteristiques.degatsMin;
             temp.degatsMax=m_caracteristiques.degatsMax;
-            for(int j=0;j<m_inventaire[i].m_benedictions.size();j++)
+            /*for(int j=0;j<m_inventaire[i].m_benedictions.size();j++)
                 if(m_inventaire[i].m_benedictions[j].type==EFFICACITE_ACCRUE)
-                    temp.degatsMin=0,temp.degatsMax=0;
+                    temp.degatsMin=0,temp.degatsMax=0;*/
         }
 
         if(m_inventaire[i].m_equipe==ARMURE_CORPS)
@@ -647,12 +643,16 @@ void Hero::recalculerCaracteristiques()
             m_caracteristiques.armure+=m_inventaire[i].m_armure;
 
             temp.armure=m_caracteristiques.armure;
-            for(int j=0;j<m_inventaire[i].m_benedictions.size();j++)
+            /*for(int j=0;j<m_inventaire[i].m_benedictions.size();j++)
                 if(m_inventaire[i].m_benedictions[j].type==EFFICACITE_ACCRUE)
-                    temp.armure=0;
+                    temp.armure=0;*/
 
         }
     }
+
+    temp.degatsMin=m_caracteristiques.degatsMin;
+    temp.degatsMax=m_caracteristiques.degatsMax;
+    temp.armure=m_caracteristiques.armure;
 
     m_personnage.setCaracteristique(temp);
 

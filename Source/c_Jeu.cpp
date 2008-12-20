@@ -71,6 +71,8 @@ c_Jeu::c_Jeu(Jeu *jeu)
 
         jeu->Clock.Reset();
 
+        alpha_map=0;
+        alpha_sac=0;
 }
 
 void c_Jeu::Utiliser(Jeu *jeu)

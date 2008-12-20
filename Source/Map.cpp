@@ -2453,7 +2453,7 @@ void Map::musiquePlay(coordonnee position)
                                 {   \
                                     if(m_monstre[m_decor[i][j][k].getMonstre()].enVie())   \
                                     {   \
-                                        if(fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getProchaineCase().x)>1||fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getProchaineCase().y)>1)   \
+                                        if(fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)>1||fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)>1)   \
                                         {   \
                                                 coordonnee arrivee,enCours;   \
                                                 if(m_monstre[m_decor[i][j][k].getMonstre()].getArrivee().x==m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x&&m_monstre[m_decor[i][j][k].getMonstre()].getArrivee().y==m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y)   \
@@ -2830,7 +2830,6 @@ bool Map::getCollision(int positionX,int positionY)
                     if(m_decor[i][enCours.y][enCours.x].getMonstre()<m_monstre.size())
                         if(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)
                             return 1;
-
 	}
 	return 0;
 }
