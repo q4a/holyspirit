@@ -28,25 +28,24 @@ struct Configuration
                 std::string chaine;
                 while(fichier>>chaine)
                 {
-                        if(chaine=="resolution:") { fichier>>resolution.x>>resolution.y; }
-                        if(chaine=="luminosite:") { fichier>>luminosite; }
-                        if(chaine=="contrastes:") { fichier>>contrastes; }
-                        if(chaine== "mode_fenetre:") { fichier>>mode_fenetre; }
+                        if(chaine== "resolution:") { fichier>>resolution.x>>resolution.y; }
+                        if(chaine== "brightness:") { fichier>>luminosite; }
+                        if(chaine== "contrast:") { fichier>>contrastes; }
+                        if(chaine== "alpha_opacity:") { fichier>>alpha; }
+                        if(chaine== "window:") { fichier>>mode_fenetre; }
                         if(chaine== "videos:") { fichier>>video; }
                         if(chaine== "postFX:") { fichier>>postFX; }
-                        if(chaine== "sang:") { fichier>>sang; }
-                        if(chaine== "ombres:") { fichier>>Ombre; }
-                        if(chaine== "lumieres:") { fichier>>Lumiere; }
-                        if(chaine== "herbes:") { fichier>>Herbes; }
-                        if(chaine== "syncronisation_verticale:") { fichier>>syncronisation_verticale; }
+                        if(chaine== "blood:") { fichier>>sang; }
+                        if(chaine== "shadows:") { fichier>>Ombre; }
+                        if(chaine== "light_quality:") { fichier>>Lumiere; }
+                        if(chaine== "grass:") { fichier>>Herbes; }
+                        if(chaine== "vsync:") { fichier>>syncronisation_verticale; }
                         if(chaine== "volume:") { fichier>>volume; }
                         if(chaine== "minimap:") { fichier>>Minimap; }
-                        if(chaine== "amelioration_des_lampes:") { fichier>>amelioration_lampes; }
-                        if(chaine== "frequence_lumiere:") { fichier>>frequence_lumiere; }
+                        if(chaine== "light_refresh_rate:") { fichier>>frequence_lumiere; }
                         if(chaine== "console:") { fichier>>console; }
 
-                        if(chaine== "frequence_sauvegarde:") { fichier>>frequence_sauvegarde; }
-
+                        if(chaine== "saving_frequency:") { fichier>>frequence_sauvegarde; }
                 }
                  fichier.close();
             }
@@ -127,24 +126,24 @@ struct Configuration
 
             if(fichier)
             {
-                        fichier<<"AFFICHAGE"<<std::endl;
-                        fichier<<"resolution: " <<Resolution.w<<" "<<Resolution.h<<std::endl;
-                        fichier<<"luminosite: " <<luminosite<<std::endl;
-                        fichier<<"contrastes: " <<contrastes<<std::endl;
-                        fichier<< "mode_fenetre: " <<mode_fenetre<<std::endl;
-                        fichier<< "syncronisation_verticale: " <<syncronisation_verticale<<std::endl;
+                        fichier<< "DISPLAY"<<std::endl;
+                        fichier<< "resolution: " <<Resolution.w<<" "<<Resolution.h<<std::endl;
+                        fichier<< "brightness: " <<luminosite<<std::endl;
+                        fichier<< "contrast: " <<contrastes<<std::endl;
+                        fichier<< "window: " <<mode_fenetre<<std::endl;
+                        fichier<< "vsync: " <<syncronisation_verticale<<std::endl;
                         fichier<<std::endl;
-                        fichier<< "lumieres: " <<Lumiere<<std::endl;
-                        fichier<< "amelioration_des_lampes: " <<amelioration_lampes<<std::endl;
-                        fichier<< "frequence_lumiere: " <<frequence_lumiere<<std::endl;
-                        fichier<< "ombres: " <<Ombre<<std::endl;
+                        fichier<< "light_quality: " <<Lumiere<<std::endl;
+                        fichier<< "light_refresh_rate: " <<frequence_lumiere<<std::endl;
+                        fichier<< "shadows: " <<Ombre<<std::endl;
                         fichier<< "videos: " <<video<<std::endl;
                         fichier<< "postFX: " <<postFX<<std::endl;
-                        fichier<< "sang: " <<sang<<std::endl;
-                        fichier<< "herbes: " <<Herbes<<std::endl;
+                        fichier<< "alpha_opacity: "<<alpha<<std::endl;
+                        fichier<< "blood: " <<sang<<std::endl;
+                        fichier<< "grass: " <<Herbes<<std::endl;
                         fichier<<std::endl;
                         fichier<<std::endl;
-                        fichier<<"MUSIQUES"<<std::endl;
+                        fichier<<"SOUNDS"<<std::endl;
                         fichier<< "volume: " <<volume<<std::endl;
                         fichier<<std::endl;
                         fichier<<std::endl;
@@ -154,8 +153,8 @@ struct Configuration
                         fichier<<std::endl;
                         fichier<<std::endl;
 
-                        fichier<<"AUTRES"<<std::endl;
-                        fichier<< "frequence_sauvegarde: " <<frequence_sauvegarde<<std::endl;
+                        fichier<<"OTHERS"<<std::endl;
+                        fichier<< "saving_frequency: " <<frequence_sauvegarde<<std::endl;
 
 
                  fichier.close();
@@ -168,7 +167,7 @@ struct Configuration
     int Lumiere;
     bool Ombre,Minimap,amelioration_lampes,console,Herbes,syncronisation_verticale,mode_fenetre,postFX,sang,video;
     float effetMort,volume,minute,zoom,frequence_sauvegarde,frequence_lumiere,luminosite,contrastes;
-    int heure,cache;
+    int heure,cache,alpha;
     std::string version,chemin_maps,chemin_temps,chemin_saves,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetMort,nom_effetContrastes,nom_effetBlur,nom_hud,nom_minimap,nom_bulle_vie,nom_ame,nom_barre_ame,nom_barre_vie,nom_barre_vie_vide,nom_sang,nom_inventaire,chemin_son_mort;
     std::string chemin_video_developpeur,nom_video_developpeur;
 };
@@ -190,11 +189,13 @@ class OptionsJeu : public QDialog // On hérite de QWidget (IMPORTANT)
         delete text3;
         delete text4;
         delete text5;
+        delete text6;
 
         delete barreTauxContrastes;
         delete barreTauxLuminosite;
         delete barreVolume;
         delete barreLumiere;
+        delete barreAlpha;
 
         delete modeFenetre;
         delete syncro;
@@ -211,13 +212,14 @@ class OptionsJeu : public QDialog // On hérite de QWidget (IMPORTANT)
     void ChangerLuminosite(int );
     void ChangerVolume(int );
     void ChangerLumiere(int );
+    void ChangerAlpha(int );
 
     void Quitter();
 
     private:
     QPushButton *m_boutonRetour;
-    QLabel *text,*text2,*text3,*text4,*text5;
-    QSlider *barreTauxContrastes,*barreTauxLuminosite,*barreVolume,*barreLumiere;
+    QLabel *text,*text2,*text3,*text4,*text5,*text6;
+    QSlider *barreTauxContrastes,*barreTauxLuminosite,*barreVolume,*barreLumiere,*barreAlpha;
     QCheckBox *modeFenetre,*syncro,*ombres,*fx,*sang,*herbes;
     QComboBox *listeResolution;
 

@@ -76,6 +76,17 @@ OptionsJeu::OptionsJeu() : QDialog()
     text5->setText(texte);
     text5->move(128,136);
 
+    text6 = new QLabel(this);
+    if((int)config.alpha<10)
+        sprintf(texte,"Opacité alpha : 00%i",(int)config.alpha);
+    else if((int)config.alpha<100)
+        sprintf(texte,"Opacité alpha : 0%i",(int)config.alpha);
+    else
+        sprintf(texte,"Opacité alpha : %i",(int)config.alpha);
+    text6->setText(texte);
+    text6->setText(texte);
+    text6->move(128,284);
+
     barreTauxContrastes=new QSlider(Qt::Horizontal,this);
     barreTauxContrastes->setGeometry(256,32,128,32);
     barreTauxContrastes->setValue((int)((config.contrastes-1)*10));
@@ -101,6 +112,11 @@ OptionsJeu::OptionsJeu() : QDialog()
     barreLumiere->setGeometry(256,128,128,32);
     barreLumiere->setValue((int)config.Lumiere);
     barreLumiere->setRange(0,2);
+
+    barreAlpha=new QSlider(Qt::Horizontal,this);
+    barreAlpha->setGeometry(256,276,128,32);
+    barreAlpha->setValue((int)config.alpha);
+    barreAlpha->setRange(64,255);
 
 
 
@@ -180,6 +196,7 @@ OptionsJeu::OptionsJeu() : QDialog()
     QObject::connect(barreTauxContrastes, SIGNAL(valueChanged(int)), this, SLOT(ChangerContraste(int)));
     QObject::connect(barreVolume, SIGNAL(valueChanged(int)), this, SLOT(ChangerVolume(int)));
     QObject::connect(barreLumiere, SIGNAL(valueChanged(int)), this, SLOT(ChangerLumiere(int)));
+    QObject::connect(barreAlpha, SIGNAL(valueChanged(int)), this, SLOT(ChangerAlpha(int)));
 
 
     QObject::connect(m_boutonRetour, SIGNAL(clicked()), this, SLOT(Quitter()));
@@ -264,6 +281,19 @@ void OptionsJeu::ChangerLumiere(int lumiere)
 
     sprintf(texte,"Qualité des lumières : %i",(int)config.Lumiere);
     text5->setText(texte);
+}
+void OptionsJeu::ChangerAlpha(int alpha)
+{
+    config.alpha=alpha;
+    char texte[32];
+
+    if((int)config.alpha<10)
+        sprintf(texte,"Opacité alpha : 00%i",(int)config.alpha);
+    else if((int)config.alpha<100)
+        sprintf(texte,"Opacité alpha : 0%i",(int)config.alpha);
+    else
+        sprintf(texte,"Opacité alpha : %i",(int)config.alpha);
+    text6->setText(texte);
 }
 void OptionsJeu::ChangerVolume(int volume)
 {

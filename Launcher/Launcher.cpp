@@ -180,8 +180,8 @@ Launcher::Launcher() : QWidget()
                  }
          }
 
-         aFaire=(int)liste_a_telecharger_nom.size();
 
+aFaire=(int)liste_a_telecharger_nom.size();
 
         enCoursDeTelechargement=-1;
         m_boutonDemarrer->setEnabled(true);
@@ -264,7 +264,7 @@ Launcher::Launcher() : QWidget()
 
              m_boutonMettreAJour->setText(liste_a_telecharger_nom[enCoursDeTelechargement].c_str());
 
-            std::string chemin = "http://www.holyspirit.fr.nf/Fichiers_jeu/Holyspirit/"+liste_a_telecharger_nom[enCoursDeTelechargement];
+            std::string chemin = "http://holyspirit.alpha-arts.net/Fichiers_jeu/Holyspirit/"+liste_a_telecharger_nom[enCoursDeTelechargement];
 
             QUrl url(chemin.c_str());
 
@@ -330,7 +330,7 @@ Launcher::Launcher() : QWidget()
             telechargementFini=false;
              m_boutonMettreAJour->setText("Téléchargement de la base de données...");
 
-            QUrl url("http://www.holyspirit.fr.nf/Fichiers_jeu/maj.txt");
+            QUrl url("http://holyspirit.alpha-arts.net/Fichiers_jeu/maj.txt");
             QHttp::ConnectionMode mode = url.scheme().toLower() == "https" ? QHttp::ConnectionModeHttps : QHttp::ConnectionModeHttp;
             http->setHost(url.host(), mode, url.port() == -1 ? 0 : url.port());
             QByteArray path = QUrl::toPercentEncoding(url.path(), "!$&'()*+,;=:@/");

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'configuration.h'
 **
-** Created: Thu 2. Oct 18:04:19 2008
+** Created: Tue 2. Dec 17:38:34 2008
 **      by: The Qt Meta Object Compiler version 59 (Qt 4.4.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_OptionsJeu[] = {
        1,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   10, // methods
+       6,   10, // methods
        0,    0, // properties
        0,    0, // enums/sets
 
@@ -33,6 +33,7 @@ static const uint qt_meta_data_OptionsJeu[] = {
       57,   11,   11,   11, 0x0a,
       76,   11,   11,   11, 0x0a,
       96,   11,   11,   11, 0x0a,
+     114,   11,   11,   11, 0x0a,
 
        0        // eod
 };
@@ -40,7 +41,8 @@ static const uint qt_meta_data_OptionsJeu[] = {
 static const char qt_meta_stringdata_OptionsJeu[] = {
     "OptionsJeu\0\0ChangerContraste(int)\0"
     "ChangerLuminosite(int)\0ChangerVolume(int)\0"
-    "ChangerLumiere(int)\0Quitter()\0"
+    "ChangerLumiere(int)\0ChangerAlpha(int)\0"
+    "Quitter()\0"
 };
 
 const QMetaObject OptionsJeu::staticMetaObject = {
@@ -72,9 +74,10 @@ int OptionsJeu::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 1: ChangerLuminosite((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 2: ChangerVolume((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 3: ChangerLumiere((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 4: Quitter(); break;
+        case 4: ChangerAlpha((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 5: Quitter(); break;
         }
-        _id -= 5;
+        _id -= 6;
     }
     return _id;
 }

@@ -37,6 +37,9 @@
 		<Unit filename="configuration.cpp" />
 		<Unit filename="configuration.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="ressource.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<debugger />
