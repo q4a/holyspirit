@@ -272,7 +272,7 @@ struct Caracteristique
     float ancienPointAme,positionAncienAme;
     float vitesse;
     float vie;
-    int maxVie;
+    float maxVie;
     float foi;
     int maxFoi;
     int degatsMin,degatsMax,armure;

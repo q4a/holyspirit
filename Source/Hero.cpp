@@ -525,14 +525,11 @@ void Hero::testMontreVise(Monstre *monstre,int hauteurMap)
 {
     if(m_monstreVise>-1&&m_caracteristiques.vie>0)
     {
-        if(monstre->getCaracteristique().vitesse>0&&fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)>1||monstre->getCaracteristique().vitesse>0&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)>1
-        ||monstre->getCaracteristique().vitesse<=0&&fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)>1||monstre->getCaracteristique().vitesse<=0&&fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)>1)
-        {
+        if(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)>1||fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)>1)
                 m_personnage.setArrivee(monstre->getProchaineCase());
-        }
         else if(m_personnage.getArrivee().x==m_personnage.getCoordonnee().x&&m_personnage.getArrivee().x==m_personnage.getCoordonnee().x)
         {
-            m_personnage.setArrivee(m_personnage.getProchaineCase());
+            m_personnage.setArrivee(m_personnage.getCoordonnee());
             coordonnee temp,temp2;
             temp.x=(m_personnage.getCoordonneePixel().x-m_personnage.getCoordonneePixel().y-1+hauteurMap)*64;
             temp.y=(m_personnage.getCoordonneePixel().x+m_personnage.getCoordonneePixel().y)*32;
@@ -575,7 +572,7 @@ void Hero::augmenterAme(float temps)
 
     m_personnage.setCaracteristique(temp);
 
-    recalculerCaracteristiques();
+    //recalculerCaracteristiques();
 }
 
 void Hero::recalculerCaracteristiques()
@@ -870,6 +867,10 @@ void Hero::regenererVie(float vie)
     m_caracteristiques.vie+=vie;
     if(m_caracteristiques.vie>m_caracteristiques.maxVie)
         m_caracteristiques.vie=m_caracteristiques.maxVie;
+
+    Caracteristique temp=m_personnage.getCaracteristique();
+    temp.vie=m_caracteristiques.vie;
+    m_personnage.setCaracteristique(temp);
 }
 
 void Hero::setMonstreVise(int monstre){m_monstreVise=monstre;}

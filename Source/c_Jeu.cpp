@@ -14,7 +14,8 @@ c_Jeu::c_Jeu(Jeu *jeu)
 {
         continuer=true,lumiere=false,augmenter=false;
         chaine[10];
-        tempsActuel=0,tempsPrecedent=0,tempsDepuisDerniereAnimation=0,tempsEcoule=0,tempsNbrTourBoucle=0,tempsEcouleDepuisDernierCalculLumiere=0,tempsEcouleDepuisDernierDeplacement=0,tempsEcouleDepuisDernierIA=0,tempsEcouleDepuisDernierAffichage=0,tempsEcouleDepuisFPS=0,tempsEffetMort=0,tempsSauvergarde=0;
+        tempsActuel=0,tempsPrecedent=0,tempsDepuisDerniereAnimation=0,tempsEcoule=0,tempsNbrTourBoucle=0,tempsEcouleDepuisDernierCalculLumiere=0,tempsEcouleDepuisDernierDeplacement=0,tempsEcouleDepuisDernierIA=0,tempsEcouleDepuisDernierAffichage=0,tempsEcouleDepuisFPS,tempsEffetMort=0,tempsSauvergarde=0;
+        //tempsActuel=0,tempsPrecedent=0,tempsDepuisDerniereAnimation=0,tempsEcoule=0,tempsNbrTourBoucle=0,tempsEcouleDepuisDernierCalculLumiere=0,tempsEcouleDepuisDernierDeplacement=0,tempsEcouleDepuisDernierIA=0,tempsEcouleDepuisDernierAffichage=0,tempsEcouleDepuisFPS=0,tempsEffetMort=0,tempsSauvergarde=0;
         nbrTourBoucle=0;
 
         configuration.heure=(rand() % (24));
@@ -111,9 +112,10 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     augmenter=true;
                 tempsEcouleDepuisFPS+=tempsEcoule;
 
-                if(jeu->hero.m_personnage.enVie())
-                    jeu->hero.regenererVie((float)jeu->hero.m_caracteristiques.maxVie*tempsEcoule/100);
+
                 jeu->hero.augmenterAme(tempsEcoule);
+                if(jeu->hero.m_personnage.enVie())
+                    jeu->hero.regenererVie((float)jeu->hero.m_caracteristiques.maxVie*(float)tempsEcoule/100);
 
                 jeu->Clock.Reset();
 
