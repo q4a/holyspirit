@@ -577,7 +577,7 @@ void Hero::augmenterAme(float temps)
 
 void Hero::recalculerCaracteristiques()
 {
-    int vie=m_caracteristiques.vie,foi=m_caracteristiques.foi;
+    int vie=(int)m_caracteristiques.vie,foi=(int)m_caracteristiques.foi;
 
     Caracteristique temp=m_personnage.getCaracteristique();
     temp.maxVie=temp.vitalite*25;

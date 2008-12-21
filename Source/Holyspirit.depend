@@ -523,9 +523,9 @@
 1229437542 d:\backup disque e\c++\holyspirit\source\globale.h
 	"MoteurGraphique.h"
 
-1229437542 source:d:\backup disque e\c++\holyspirit\source\ressource.rc
+1229863605 source:d:\backup disque e\c++\holyspirit\source\ressource.rc
 
-1229858588 source:d:\backup disque e\c++\holyspirit\source\hero.cpp
+1229863736 source:d:\backup disque e\c++\holyspirit\source\hero.cpp
 	"Hero.h"
 	"Globale.h"
 	<iostream>
@@ -1054,7 +1054,7 @@
 	"constantes.h"
 	<fstream>
 
-1229437070 source:d:\backup disque e\c++\holyspirit\source\objet.cpp
+1229863736 source:d:\backup disque e\c++\holyspirit\source\objet.cpp
 	"Objet.h"
 	"Globale.h"
 	<fstream>
