@@ -56,7 +56,7 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         jeu->menu.Afficher(&jeu->ecran,3);
         jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,255);
     }
-    jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),0,jeu->hero.m_personnage.getCaracteristique());
+    //jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),0,jeu->hero.m_personnage.getCaracteristique());
 
     if(m_afficher)
         m_decalage+=temps_ecoule*2000;

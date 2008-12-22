@@ -24,7 +24,7 @@ c_Demarrage::c_Demarrage(Jeu *jeu)
 
 void c_Demarrage::Utiliser(Jeu *jeu)
 {
-   /* temps_ecoule=jeu->Clock.GetElapsedTime();
+    temps_ecoule=jeu->Clock.GetElapsedTime();
     jeu->Clock.Reset();
 
     Sprite sprite;
@@ -47,9 +47,9 @@ void c_Demarrage::Utiliser(Jeu *jeu)
         m_alpha-=temps_ecoule*200;
 
     if(m_alpha>384)
-        m_augmenter=false;*/
+        m_augmenter=false;
 
-    //if(m_alpha<0)
+    if(m_alpha<0)
         jeu->m_contexte=jeu->m_chargement;
 
 }
