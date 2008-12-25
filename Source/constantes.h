@@ -80,6 +80,14 @@ struct coordonnee
 	int w;
 };
 
+struct coordonnee3D
+{
+	float x;
+	float y;
+	float z;
+};
+
+
 struct Configuration
 {
     void Charger()
@@ -107,6 +115,7 @@ struct Configuration
                         if(chaine== "shadows:") { fichier>>Ombre; }
                         if(chaine== "light_quality:") { fichier>>Lumiere; }
                         if(chaine== "grass:") { fichier>>Herbes; }
+                        if(chaine== "particules:") { fichier>>particules; }
                         if(chaine== "vsync:") { fichier>>syncronisation_verticale; }
                         if(chaine== "volume:") { fichier>>volume; }
                         if(chaine== "minimap:") { fichier>>Minimap; }
@@ -228,6 +237,7 @@ struct Configuration
                         fichier<< "alpha_opacity: "<<alpha<<std::endl;
                         fichier<< "blood: " <<sang<<std::endl;
                         fichier<< "grass: " <<Herbes<<std::endl;
+                        fichier<< "particules: " <<particules<<std::endl;
                         fichier<<std::endl;
                         fichier<<std::endl;
                         fichier<<"SOUNDS"<<std::endl;
@@ -252,7 +262,7 @@ struct Configuration
 
 
     coordonnee Resolution;
-    bool Ombre,Minimap,amelioration_lampes,console,Herbes,syncronisation_verticale,mode_fenetre,postFX,sang,video;
+    bool Ombre,Minimap,amelioration_lampes,console,Herbes,syncronisation_verticale,mode_fenetre,postFX,sang,video,particules;
     int Lumiere;
     float effetMort,effetNoir,volume,minute,zoom,frequence_sauvegarde,frequence_lumiere,luminosite,contrastes;
     int heure,cache,alpha;

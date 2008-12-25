@@ -25,7 +25,6 @@
 		<Unit filename="Commande.h" />
 		<Unit filename="Contexte.cpp" />
 		<Unit filename="Contexte.h" />
-		<Unit filename="Decor.cpp" />
 		<Unit filename="Decor.h" />
 		<Unit filename="Evenement.cpp" />
 		<Unit filename="Evenement.h" />
@@ -34,6 +33,8 @@
 		<Unit filename="Hero.h" />
 		<Unit filename="Map.cpp" />
 		<Unit filename="Map.h" />
+		<Unit filename="ModeleMoteurParticule.cpp" />
+		<Unit filename="ModeleMoteurParticule.h" />
 		<Unit filename="Monstre.cpp">
 			<Option weight="0" />
 		</Unit>
@@ -68,6 +69,7 @@
 		<Unit filename="console.cpp" />
 		<Unit filename="constantes.h" />
 		<Unit filename="crypter.cpp" />
+		<Unit filename="decor.cpp" />
 		<Unit filename="eventManager.cpp" />
 		<Unit filename="eventManager.h" />
 		<Unit filename="jeu.cpp" />
@@ -78,6 +80,8 @@
 		<Unit filename="main.h" />
 		<Unit filename="menu.cpp" />
 		<Unit filename="menu.h" />
+		<Unit filename="moteurParticule.cpp" />
+		<Unit filename="moteurParticule.h" />
 		<Unit filename="prototypes.h" />
 		<Unit filename="ressource.rc">
 			<Option compilerVar="WINDRES" />

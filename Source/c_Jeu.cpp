@@ -190,6 +190,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
                 /// On calcule les lumières et les ombre
                 ///**********************************************************///
 
+                jeu->ecran.SetView(jeu->camera);
+
                 if(tempsEcouleDepuisDernierCalculLumiere>configuration.frequence_lumiere)
                 {
 
@@ -281,6 +283,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     ///**********************************************************///
                     ///Affichage
                     ///**********************************************************///
+
+                    moteurGraphique.Gerer(&jeu->ecran,tempsEcouleDepuisDernierAffichage);
 
                     jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,jeu->eventManager.getPositionSouris(),jeu->eventManager.getEvenement(Key::LAlt,"ET"));//Affichage de la jeu->map
 

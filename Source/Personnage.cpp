@@ -312,65 +312,71 @@ int Personnage::pathfinding(vector<vector<bool> > map,coordonnee exception)
 
             casesVisitee.ajouterCase(depart);
 
-            if(map[arrivee.y][arrivee.x])
-            {
-                coordonnee temp={-10,-10,-1,-1},enCours;
+            if(arrivee.y>=0&&arrivee.x>=0&&arrivee.y<20&&arrivee.x<20)
+                if(map[arrivee.y][arrivee.x])
+                {
+                    coordonnee temp={-10,-10,-1,-1},enCours;
 
-                enCours.y=arrivee.y-1;
-                enCours.x=arrivee.x-1;
-                if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
-                    if(!map[enCours.y][enCours.x])
-                        if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
-                            temp.y=enCours.y,temp.x=enCours.x;
-                enCours.y=arrivee.y;
-                enCours.x=arrivee.x-1;
-                if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
-                    if(!map[enCours.y][enCours.x])
-                        if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
-                            temp.y=enCours.y,temp.x=enCours.x;
-                enCours.y=arrivee.y-1;
-                enCours.x=arrivee.x;
-                if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
-                    if(!map[enCours.y][enCours.x])
-                        if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
-                            temp.y=enCours.y,temp.x=enCours.x;
+                    enCours.y=arrivee.y-1;
+                    enCours.x=arrivee.x-1;
+                    if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
+                        if(!map[enCours.y][enCours.x])
+                            if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
+                                temp.y=enCours.y,temp.x=enCours.x;
+                    enCours.y=arrivee.y;
+                    enCours.x=arrivee.x-1;
+                    if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
+                        if(!map[enCours.y][enCours.x])
+                            if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
+                                temp.y=enCours.y,temp.x=enCours.x;
+                    enCours.y=arrivee.y-1;
+                    enCours.x=arrivee.x;
+                    if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
+                        if(!map[enCours.y][enCours.x])
+                            if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
+                                temp.y=enCours.y,temp.x=enCours.x;
 
-                enCours.y=arrivee.y+1;
-                enCours.x=arrivee.x+1;
-                if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
-                    if(!map[enCours.y][enCours.x])
-                        if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
-                            temp.y=enCours.y,temp.x=enCours.x;
-                enCours.y=arrivee.y+1;
-                enCours.x=arrivee.x;
-                if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
-                    if(!map[enCours.y][enCours.x])
-                        if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
-                            temp.y=enCours.y,temp.x=enCours.x;
-                enCours.y=arrivee.y;
-                enCours.x=arrivee.x+1;
-                if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
-                    if(!map[enCours.y][enCours.x])
-                        if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
-                            temp.y=enCours.y,temp.x=enCours.x;
+                    enCours.y=arrivee.y+1;
+                    enCours.x=arrivee.x+1;
+                    if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
+                        if(!map[enCours.y][enCours.x])
+                            if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
+                                temp.y=enCours.y,temp.x=enCours.x;
+                    enCours.y=arrivee.y+1;
+                    enCours.x=arrivee.x;
+                    if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
+                        if(!map[enCours.y][enCours.x])
+                            if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
+                                temp.y=enCours.y,temp.x=enCours.x;
+                    enCours.y=arrivee.y;
+                    enCours.x=arrivee.x+1;
+                    if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
+                        if(!map[enCours.y][enCours.x])
+                            if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
+                                temp.y=enCours.y,temp.x=enCours.x;
 
 
-                enCours.y=arrivee.y+1;
-                enCours.x=arrivee.x-1;
-                if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
-                    if(!map[enCours.y][enCours.x])
-                        if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
-                            temp.y=enCours.y,temp.x=enCours.x;
-                enCours.y=arrivee.y-1;
-                enCours.x=arrivee.x+1;
-                if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
-                    if(!map[enCours.y][enCours.x])
-                        if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
-                            temp.y=enCours.y,temp.x=enCours.x;
+                    enCours.y=arrivee.y+1;
+                    enCours.x=arrivee.x-1;
+                    if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
+                        if(!map[enCours.y][enCours.x])
+                            if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
+                                temp.y=enCours.y,temp.x=enCours.x;
+                    enCours.y=arrivee.y-1;
+                    enCours.x=arrivee.x+1;
+                    if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
+                        if(!map[enCours.y][enCours.x])
+                            if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
+                                temp.y=enCours.y,temp.x=enCours.x;
 
-                if(temp.y!=-10&&temp.x!=-10)
-                    arrivee=temp;
-            }
+                    if(temp.y!=-10&&temp.x!=-10)
+                        arrivee=temp;
+                    else
+                    {
+                        m_erreurPathfinding=true;
+                        return 0;
+                    }
+                }
 
             while(!casesVisitee.testerCasesEnCours(arrivee)&&!m_erreurPathfinding)
             {

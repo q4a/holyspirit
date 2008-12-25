@@ -73,6 +73,7 @@ bool Modele_Monstre::Charger(string chemin)
     m_caracteristique.degatsMax=0;
 
     m_chemin=chemin;
+    m_particules=-1;
 
     ifstream fichier;
     fichier.open(chemin.c_str(), ios::in);
@@ -257,6 +258,21 @@ bool Modele_Monstre::Charger(string chemin)
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
 
     	}while(caractere!='$');
+
+    	do
+    	{
+    	    fichier.get(caractere);
+    	    if(caractere=='*')
+            {
+                string temp;
+                getline(fichier, temp);
+                m_particules=moteurGraphique.AjouterModeleSystemeParticules(temp);
+            }
+
+    	    if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }
+        }while(caractere!='$');
+
+
 
         Pose poseTemp;
         m_pose.resize(NOMBRE_ETAT,vector<vector<Pose> >(0,vector<Pose>(0,poseTemp)));

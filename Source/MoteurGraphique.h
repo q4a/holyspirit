@@ -7,6 +7,7 @@
 
 #include "map.h"
 #include "commande.h"
+#include "moteurParticule.h"
 
 class MoteurGraphique
 {
@@ -15,7 +16,13 @@ class MoteurGraphique
 	~MoteurGraphique();
 	void Afficher(sf::RenderWindow *, sf::View *);
 
+	void Gerer(sf::RenderWindow *,float);
+	void CalculerLumiereParticules(LumiereOmbrage tableauDesLampes[30][30],coordonnee ,sf::RenderWindow *,int tailleMapY);
+
 	int AjouterImage(std::string);
+	int AjouterModeleSystemeParticules(std::string);
+
+	void AjouterSystemeParticules(int ID,coordonnee position,sf::Color color,float force);
 	void AjouterCommande(sf::Sprite*,int=0, bool=0);
 	void AjouterTexte(sf::String*, int couche=0,bool titre=false);
 
@@ -27,6 +34,7 @@ class MoteurGraphique
 	void AjouterCommandesMap(Map *map);
 
 	sf::Image* getImage(int IDimage);
+	ModeleParticuleSysteme* getModeleMoteurParticules(int ID);
 
 	std::string getCheminImage(int IDimage);
 
@@ -42,8 +50,14 @@ class MoteurGraphique
 
 	std::vector <sf::Image> m_images;
 	std::vector <std::string> m_cheminsImages;//Permet de s'assurer d'avoir des singletons
+
+	std::vector <ModeleParticuleSysteme> m_modeleSystemeParticules;
+	//std::vector <std::string> m_cheminsImages;//Permet de s'assurer d'avoir des singletons
+
+
 	std::vector <sf::String> m_textes[20];
 	std::vector <Commande>m_commandes[20];
+	std::vector <ParticuleSysteme> m_systemeParticules;
 
 
 };

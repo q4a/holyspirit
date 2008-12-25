@@ -14,6 +14,7 @@ class Modele_Monstre : public Modele_Personnage
     std::string m_chemin;
 
     Script m_scriptAI;
+    int m_particules;
 
     private:
     std::vector<Objet> m_objets;

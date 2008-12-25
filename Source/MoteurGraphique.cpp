@@ -71,6 +71,40 @@ void MoteurGraphique::Charger()
     //Luminosite.Create(configuration.Resolution.x, configuration.Resolution.y, sf::Color(255,255,255));
 }
 
+void MoteurGraphique::Gerer(sf::RenderWindow *ecran,float temps)
+{
+    for(int i=0;i<m_systemeParticules.size();i++)
+        if(m_systemeParticules[i].m_modele>=0&&m_systemeParticules[i].m_modele<m_modeleSystemeParticules.size())
+        {
+            if(!m_systemeParticules[i].Gerer(temps))
+                m_systemeParticules.erase (m_systemeParticules.begin()+i);
+
+            m_systemeParticules[i].Afficher(ecran,&m_modeleSystemeParticules[m_systemeParticules[i].m_modele]);
+        }
+}
+
+void MoteurGraphique::CalculerLumiereParticules(LumiereOmbrage tableauDesLampes[30][30],coordonnee vueMin,sf::RenderWindow *ecran, int tailleMapY)
+{
+    coordonnee positionCase;
+    for(int i=0;i<m_systemeParticules.size();i++)
+        for(int j=0;j<m_systemeParticules[i].m_particules.size();j++)
+        {
+            if((float)((m_systemeParticules[i].m_particules[j].position.y*2-m_systemeParticules[i].m_particules[j].position.x)/2)/64+tailleMapY/2<(float)tailleMapY/2)
+                positionCase.y=(int)((m_systemeParticules[i].m_particules[j].position.y*2-m_systemeParticules[i].m_particules[j].position.x)/2)/64+tailleMapY/2-1;
+            else
+                positionCase.y=(int)((m_systemeParticules[i].m_particules[j].position.y*2-m_systemeParticules[i].m_particules[j].position.x)/2)/64+tailleMapY/2;
+
+            positionCase.x=(int)(m_systemeParticules[i].m_particules[j].position.x+((m_systemeParticules[i].m_particules[j].position.y*2-m_systemeParticules[i].m_particules[j].position.x)/2))/64-tailleMapY/2;
+
+            if(positionCase.x-vueMin.x>=0&&positionCase.x-vueMin.x<30&&positionCase.y-vueMin.y>=0&&positionCase.y-vueMin.y<30)
+            {
+                m_systemeParticules[i].m_particules[j].color.r=tableauDesLampes[positionCase.y-vueMin.y][positionCase.x-vueMin.x].rouge*tableauDesLampes[positionCase.y-vueMin.y][positionCase.x-vueMin.x].intensite/255;
+                m_systemeParticules[i].m_particules[j].color.g=tableauDesLampes[positionCase.y-vueMin.y][positionCase.x-vueMin.x].vert*tableauDesLampes[positionCase.y-vueMin.y][positionCase.x-vueMin.x].intensite/255;
+                m_systemeParticules[i].m_particules[j].color.b=tableauDesLampes[positionCase.y-vueMin.y][positionCase.x-vueMin.x].bleu*tableauDesLampes[positionCase.y-vueMin.y][positionCase.x-vueMin.x].intensite/255;
+            }
+        }
+}
+
 void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera)
 {
     sf::Sprite sprite;
@@ -106,8 +140,6 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera)
                 ecran->Draw(EffectBlur);
                 ecran->Draw(EffectBlur);
                 ecran->Draw(EffectBlur);
-
-
             }
             if(configuration.effetMort>0)
                 ecran->Draw(EffectMort);
@@ -140,8 +172,9 @@ int MoteurGraphique::AjouterImage(std::string chemin)
         if(m_cheminsImages[i]==chemin)
             return i;
 
-    sf::Image temp;
-    if(!temp.LoadFromFile(chemin.c_str()))
+    m_images.push_back(sf::Image ());
+
+    if(!m_images[m_images.size()-1].LoadFromFile(chemin.c_str()))
     {
         console.Ajouter("Impossible de charger : "+chemin,1);
         return -1;
@@ -149,9 +182,28 @@ int MoteurGraphique::AjouterImage(std::string chemin)
     else
         console.Ajouter("Chargement de : "+chemin,0);
 
-    m_images.push_back(temp);
     m_cheminsImages.push_back(chemin);
     return m_images.size()-1;
+}
+
+int MoteurGraphique::AjouterModeleSystemeParticules(std::string chemin)
+{
+    for(int i=0;i<m_modeleSystemeParticules.size();i++)
+        if(m_modeleSystemeParticules[i].m_chemin==chemin)
+            return i;
+
+    m_modeleSystemeParticules.push_back(ModeleParticuleSysteme (chemin));
+
+    return m_modeleSystemeParticules.size()-1;
+}
+
+
+void MoteurGraphique::AjouterSystemeParticules(int ID,coordonnee position,sf::Color color,float force)
+{
+    if(ID>=0&&ID<m_modeleSystemeParticules.size())
+    {
+        m_systemeParticules.push_back(ParticuleSysteme (ID,&m_modeleSystemeParticules[ID],position,color,force));
+    }
 }
 
 void MoteurGraphique::AjouterCommande(sf::Sprite *sprite, int couche, bool camera)
@@ -200,7 +252,6 @@ void MoteurGraphique::AjouterTexte(sf::String* string, int couche,bool titre)
     }
 }
 
-
 void MoteurGraphique::Vider()
 {
     for(int i=0;i<20;i++)
@@ -215,6 +266,14 @@ sf::Image* MoteurGraphique::getImage(int IDimage)
         return &m_images[IDimage];
     else
         return &m_images[0];
+}
+
+ModeleParticuleSysteme* MoteurGraphique::getModeleMoteurParticules(int ID)
+{
+    if(ID>=0&&ID<m_modeleSystemeParticules.size())
+        return &m_modeleSystemeParticules[ID];
+    else
+        return &m_modeleSystemeParticules[0];
 }
 
 std::string MoteurGraphique::getCheminImage(int IDimage)

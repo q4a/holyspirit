@@ -1553,6 +1553,9 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
             }
         }
 
+        if(configuration.particules)
+            moteurGraphique.CalculerLumiereParticules(m_tableauDesLampes,vueMin,ecran,m_decor[0].size());
+
         // Bah voilà, j'espère que j'ai été clair ^^'
         //for(int z=0;z<configuration.anticrenelage_lumieres;z++)
 
@@ -1901,8 +1904,6 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                             Sprite.SetColor(sf::Color(0,0,0,m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].intensite));
                                             Sprite.SetX(position.x+64-positionPartieDecor.w/2+positionPartieDecor.w/2);
                                             Sprite.SetY(position.y-positionPartieDecor.h+64+positionPartieDecor.h-32);
-                                           // Sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64)-64+(64-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2)+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2);
-                                            //Sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+(64-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h)+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h-32);
                                             Sprite.SetCenter((positionPartieDecor.w/2),(positionPartieDecor.h-32));
                                             Sprite.SetScale(1, m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].taille);
                                             Sprite.SetRotation(m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle);
@@ -1913,7 +1914,6 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                             if(Sprite.GetPosition().y+Sprite.GetSize().y>=camera->GetRect().Top)
                                             if(Sprite.GetPosition().y-Sprite.GetSize().x<camera->GetRect().Bottom)
                                             moteurGraphique.AjouterCommande(&Sprite,9,1);
-                                            //ecran->Draw(Sprite);
                                             Sprite.SetCenter(0,0);
                                             Sprite.SetScale(1, 1);
                                             Sprite.FlipX(false);
@@ -2594,8 +2594,9 @@ void Map::gererMonstres(Hero *hero,float temps,sf::View *camera,Menu *menu)
                             m_monstre[m_decor[i][j][k].getMonstre()].m_attente=0.25,m_monstre[m_decor[i][j][k].getMonstre()].m_compteur=0;
                          //   m_monstre[m_decor[i][j][k].getMonstre()].m_attente=0.1;
 
+
                         if(!m_monstre[m_decor[i][j][k].getMonstre()].enVie()&&m_monstre[m_decor[i][j][k].getMonstre()].getEtat()!=3)
-                                    m_monstre[m_decor[i][j][k].getMonstre()].setEtat(3);
+                            m_monstre[m_decor[i][j][k].getMonstre()].setEtat(3);
 
 
 
@@ -2640,6 +2641,25 @@ bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *ca
                 position.y=(((m_monstre[numeroMonstre].getCoordonnee().x+m_monstre[numeroMonstre].getCoordonnee().y)*32)-camera->GetRect().Top-96);
                 menu->AjouterAme(position,m_monstre[numeroMonstre].getCaracteristique().pointAme);
             }
+            if(configuration.particules&&m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].m_particules>=0)
+            {
+                coordonnee position2;
+                position2.x=(int)(((m_monstre[numeroMonstre].getCoordonneePixel().x-m_monstre[numeroMonstre].getCoordonneePixel().y)*64/COTE_TILE+m_decor[0].size()*64)/*+(64-m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().w/2)*/);
+                position2.y=(int)(((m_monstre[numeroMonstre].getCoordonneePixel().x+m_monstre[numeroMonstre].getCoordonneePixel().y)*64/COTE_TILE)/2/*+(64-m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().h)*/);
+
+                float force=((-m_monstre[numeroMonstre].getCaracteristique().vie*2)/m_monstre[numeroMonstre].getCaracteristique().maxVie)*5;
+
+                if(force<10)
+                    force=10;
+                if(force>20)
+                    force=20;
+
+                sf::Color buffer;
+                buffer.r=m_monstre[numeroMonstre].getPorteeLumineuse().rouge;
+                buffer.g=m_monstre[numeroMonstre].getPorteeLumineuse().vert;
+                buffer.b=m_monstre[numeroMonstre].getPorteeLumineuse().bleu;
+                moteurGraphique.AjouterSystemeParticules(m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].m_particules,position2,buffer,force);
+            }
 
             if(m_monstre[numeroMonstre].getCoordonnee().x>=0&&m_monstre[numeroMonstre].getCoordonnee().x<m_decor[0][0].size()&&m_monstre[numeroMonstre].getCoordonnee().y>=0&&m_monstre[numeroMonstre].getCoordonnee().y<m_decor[0].size())
                 if(m_monstre[numeroMonstre].getModele()>=0&&m_monstre[numeroMonstre].getModele()<m_ModeleMonstre.size())
@@ -2647,8 +2667,6 @@ bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *ca
                         for(int i=0;i<m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets().size();i++)
                             if(rand()%1000<m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets()[i].getChanceTrouver())
                             {
-                                //int rarete=m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets()[i].getRarete();
-
                                 Objet temp;
                                 temp=m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets()[i];
                                 temp.Generer();
@@ -2683,8 +2701,6 @@ void Map::setVolumeMusique(int volume)
 {
     for(int i=0;i<MAX_MUSIQUE;++i)
         m_musique[i].SetVolume(volume);
-    /*if(m_musiqueEnCours>=0&&m_musiqueEnCours<MAX_MUSIQUE)
-        m_musique[m_musiqueEnCours].SetVolume(volume);*/
 }
 
 coordonnee Map::getSacPointe(){return m_sacPointe;}

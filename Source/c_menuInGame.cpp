@@ -86,12 +86,12 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,0,jeu->hero.m_caracteristiques);
 
 
-    texte.SetSize(56.f*configuration.Resolution.y/600);
+    texte.SetSize(56.f*configuration.Resolution.h/600);
     texte.SetText("Retour");
 
     texte.SetY(configuration.Resolution.h/2-texte.GetRect().GetHeight());
     texte.SetX(configuration.Resolution.w/2-texte.GetRect().GetWidth()/2);
-    if(jeu->eventManager.getPositionSouris().y>configuration.Resolution.h/2-texte.GetRect().GetHeight()&&jeu->eventManager.getPositionSouris().y<configuration.Resolution.h/2)
+    if(jeu->eventManager.getPositionSouris().y>configuration.Resolution.y/2-texte.GetRect().GetHeight()&&jeu->eventManager.getPositionSouris().y<configuration.Resolution.y/2)
     {
         texte.SetColor(Color(100,50,0,(int)m_alpha));
         if(jeu->eventManager.getEvenement(Mouse::Left,"C"))
@@ -106,7 +106,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
 
     texte.SetY(configuration.Resolution.h/2);
     texte.SetX(configuration.Resolution.w/2-texte.GetRect().GetWidth()/2);
-    if(jeu->eventManager.getPositionSouris().y>configuration.Resolution.h/2&&jeu->eventManager.getPositionSouris().y<configuration.Resolution.h/2+texte.GetRect().GetHeight())
+    if(jeu->eventManager.getPositionSouris().y>configuration.Resolution.y/2&&jeu->eventManager.getPositionSouris().y<configuration.Resolution.y/2+texte.GetRect().GetHeight())
     {
         texte.SetColor(Color(100,50,0,(int)m_alpha));
         if(jeu->eventManager.getEvenement(Mouse::Left,"C"))
@@ -120,7 +120,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
 
     texte.SetY(configuration.Resolution.h/2+texte.GetRect().GetHeight());
     texte.SetX(configuration.Resolution.w/2-texte.GetRect().GetWidth()/2);
-    if(jeu->eventManager.getPositionSouris().y>configuration.Resolution.h/2+texte.GetRect().GetHeight()&&jeu->eventManager.getPositionSouris().y<configuration.Resolution.h/2+texte.GetRect().GetHeight()*2)
+    if(jeu->eventManager.getPositionSouris().y>configuration.Resolution.y/2+texte.GetRect().GetHeight()&&jeu->eventManager.getPositionSouris().y<configuration.Resolution.y/2+texte.GetRect().GetHeight()*2)
     {
         texte.SetColor(Color(100,50,0,(int)m_alpha));
         if(jeu->eventManager.getEvenement(Mouse::Left,"C"))
