@@ -23,35 +23,20 @@
 			<Add library="libsfml-system.a" />
 		</Linker>
 		<Unit filename="Commande.h" />
-		<Unit filename="Contexte.cpp" />
 		<Unit filename="Contexte.h" />
 		<Unit filename="Decor.h" />
-		<Unit filename="Evenement.cpp" />
 		<Unit filename="Evenement.h" />
 		<Unit filename="Globale.h" />
-		<Unit filename="Hero.cpp" />
 		<Unit filename="Hero.h" />
-		<Unit filename="Map.cpp" />
 		<Unit filename="Map.h" />
-		<Unit filename="ModeleMoteurParticule.cpp" />
 		<Unit filename="ModeleMoteurParticule.h" />
-		<Unit filename="Monstre.cpp">
-			<Option weight="0" />
-		</Unit>
 		<Unit filename="Monstre.h" />
-		<Unit filename="MoteurGraphique.cpp" />
 		<Unit filename="MoteurGraphique.h" />
-		<Unit filename="Objet.cpp" />
 		<Unit filename="Objet.h" />
-		<Unit filename="Personnage.cpp" />
 		<Unit filename="Personnage.h" />
-		<Unit filename="Pose.cpp" />
 		<Unit filename="Pose.h" />
-		<Unit filename="Tile.cpp" />
 		<Unit filename="Tile.h" />
-		<Unit filename="Tileset.cpp" />
 		<Unit filename="Tileset.h" />
-		<Unit filename="c_Jeu.cpp" />
 		<Unit filename="c_Jeu.h">
 			<Option weight="0" />
 		</Unit>
@@ -61,6 +46,7 @@
 		<Unit filename="c_demarrage.h" />
 		<Unit filename="c_inventaire.cpp" />
 		<Unit filename="c_inventaire.h" />
+		<Unit filename="c_jeu.cpp" />
 		<Unit filename="c_menuInGame.cpp" />
 		<Unit filename="c_menuInGame.h" />
 		<Unit filename="case.cpp" />
@@ -68,26 +54,38 @@
 		<Unit filename="console.H" />
 		<Unit filename="console.cpp" />
 		<Unit filename="constantes.h" />
+		<Unit filename="contexte.cpp" />
 		<Unit filename="crypter.cpp" />
 		<Unit filename="decor.cpp" />
+		<Unit filename="evenement.cpp" />
 		<Unit filename="eventManager.cpp" />
 		<Unit filename="eventManager.h" />
+		<Unit filename="hero.cpp" />
 		<Unit filename="jeu.cpp" />
 		<Unit filename="jeu.h" />
 		<Unit filename="liste_case.cpp" />
 		<Unit filename="liste_case.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="main.h" />
+		<Unit filename="map.cpp" />
 		<Unit filename="menu.cpp" />
 		<Unit filename="menu.h" />
+		<Unit filename="modeleMoteurParticule.cpp" />
+		<Unit filename="monstre.cpp" />
+		<Unit filename="moteurGraphique.cpp" />
 		<Unit filename="moteurParticule.cpp" />
 		<Unit filename="moteurParticule.h" />
+		<Unit filename="objet.cpp" />
+		<Unit filename="personnage.cpp" />
+		<Unit filename="pose.cpp" />
 		<Unit filename="prototypes.h" />
 		<Unit filename="ressource.rc">
 			<Option compilerVar="WINDRES" />
 		</Unit>
 		<Unit filename="script.cpp" />
 		<Unit filename="script.h" />
+		<Unit filename="tile.cpp" />
+		<Unit filename="tileset.cpp" />
 		<Unit filename="video.cpp" />
 		<Extensions>
 			<code_completion />

@@ -41,7 +41,7 @@ void ParticuleSysteme::Afficher(sf::RenderWindow *ecran, ModeleParticuleSysteme 
 
             sprite.SetRotation(m_particules[i].rotation);
 
-            float scale=m_particules[i].position.z/50+1;
+            float scale=m_particules[i].position.z/100+1;
 
             sprite.SetScale(scale,scale);
 
@@ -50,7 +50,10 @@ void ParticuleSysteme::Afficher(sf::RenderWindow *ecran, ModeleParticuleSysteme 
 
             sprite.SetColor(sf::Color(m_particules[i].color.r,m_particules[i].color.g,m_particules[i].color.b,(int)m_particules[i].alpha));
 
-            moteurGraphique.AjouterCommande(&sprite,10,1);
+            if(m_particules[i].position.z>32)
+                moteurGraphique.AjouterCommande(&sprite,12,1);
+            else
+                moteurGraphique.AjouterCommande(&sprite,10,1);
         }
     }
 }
@@ -72,12 +75,12 @@ void ParticuleSysteme::Generer(float force, ModeleParticuleSysteme *modele,coord
             m_particules[m_particules.size()-1].vecteur.x=cos(angle*M_PI/180);
             m_particules[m_particules.size()-1].vecteur.y=sin(angle*M_PI/180)/2;
 
-            m_particules[m_particules.size()-1].vecteur.z=2;
+            m_particules[m_particules.size()-1].vecteur.z=force/2;
 
             m_particules[m_particules.size()-1].vitesse=(rand() % (int)(force*1.25 - force*0.75 + 1)) + force*0.75;
-            m_particules[m_particules.size()-1].vitesse_rotation=((rand() % (int)(force*1.25 - force*0.75 + 1)) + force*0.75)*5;
-            if(m_particules[m_particules.size()-1].vitesse_rotation>25)
-                m_particules[m_particules.size()-1].vitesse_rotation=25;
+            m_particules[m_particules.size()-1].vitesse_rotation=((rand() % (int)(force*1 - force*0.5 + 1)) + force*0.5)*5;
+            if(m_particules[m_particules.size()-1].vitesse_rotation>100)
+                m_particules[m_particules.size()-1].vitesse_rotation=100;
 
             m_particules[m_particules.size()-1].rotation=rand() % 360;
             m_particules[m_particules.size()-1].alpha=255;
