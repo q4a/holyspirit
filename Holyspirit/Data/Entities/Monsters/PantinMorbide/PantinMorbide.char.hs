@@ -24,7 +24,7 @@ Rang du monstre
 $
 Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse
-*v8 di2 da3 m0.35 o1 a1 n1 $
+*v5 di2 da3 m0.35 o1 a1 n1 $
 $
 *Data/Scripts/AI/standard.script.hs
 $
@@ -35,6 +35,8 @@ Objets du monstre
 r100
 $
 
+$
+*Data/Particule_system/human_bones.ps.hs
 $
 Arret - E
 *x0 y0 w128 h128 a1 s-1 i0 $

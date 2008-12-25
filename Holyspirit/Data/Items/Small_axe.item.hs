@@ -12,5 +12,5 @@ $
 $
 *r0 b3 $
 $
-*dii1 dii4 dai5 daa10 $ 
+*dii1 dii2 dai2 daa13 $ 
 $
