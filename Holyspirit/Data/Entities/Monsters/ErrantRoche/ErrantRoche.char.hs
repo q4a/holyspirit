@@ -123,7 +123,7 @@ $
 Course - E
 *x0 y0 w128 h128 a2 s0 i1 $
 *x128 y0 w128 h128 a2 s-1 i1 $
-*x256 y0 w128 h128 a4 s-1 i1 $
+*x256 y0 w128 h128 a4 s0 i1 $
 *x384 y0 w128 h128 a4 s-1 i1 $
 *x512 y0 w128 h128 a6 s-1 i1 $
 *x640 y0 w128 h128 a6 s-1 i1 $
