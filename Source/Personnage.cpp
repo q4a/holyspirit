@@ -317,38 +317,38 @@ int Personnage::pathfinding(vector<vector<bool> > map,coordonnee exception)
                     enCours.y=arrivee.y-1;
                     enCours.x=arrivee.x-1;
                     if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
-                        if(!map[enCours.y][enCours.x])
+                        if(!map[enCours.y][enCours.x]&&!(enCours.x==depart.x&&enCours.y==depart.y))
                             if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                                 temp.y=enCours.y,temp.x=enCours.x;
                     enCours.y=arrivee.y;
                     enCours.x=arrivee.x-1;
                     if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
-                        if(!map[enCours.y][enCours.x])
+                        if(!map[enCours.y][enCours.x]&&!(enCours.x==depart.x&&enCours.y==depart.y))
                             if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                                 temp.y=enCours.y,temp.x=enCours.x;
                     enCours.y=arrivee.y-1;
                     enCours.x=arrivee.x;
                     if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
-                        if(!map[enCours.y][enCours.x])
+                        if(!map[enCours.y][enCours.x]&&!(enCours.x==depart.x&&enCours.y==depart.y))
                             if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                                 temp.y=enCours.y,temp.x=enCours.x;
 
                     enCours.y=arrivee.y+1;
                     enCours.x=arrivee.x+1;
                     if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
-                        if(!map[enCours.y][enCours.x])
+                        if(!map[enCours.y][enCours.x]&&!(enCours.x==depart.x&&enCours.y==depart.y))
                             if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                                 temp.y=enCours.y,temp.x=enCours.x;
                     enCours.y=arrivee.y+1;
                     enCours.x=arrivee.x;
                     if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
-                        if(!map[enCours.y][enCours.x])
+                        if(!map[enCours.y][enCours.x]&&!(enCours.x==depart.x&&enCours.y==depart.y))
                             if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                                 temp.y=enCours.y,temp.x=enCours.x;
                     enCours.y=arrivee.y;
                     enCours.x=arrivee.x+1;
                     if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
-                        if(!map[enCours.y][enCours.x])
+                        if(!map[enCours.y][enCours.x]&&!(enCours.x==depart.x&&enCours.y==depart.y))
                             if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                                 temp.y=enCours.y,temp.x=enCours.x;
 
@@ -356,13 +356,13 @@ int Personnage::pathfinding(vector<vector<bool> > map,coordonnee exception)
                     enCours.y=arrivee.y+1;
                     enCours.x=arrivee.x-1;
                     if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
-                        if(!map[enCours.y][enCours.x])
+                        if(!map[enCours.y][enCours.x]&&!(enCours.x==depart.x&&enCours.y==depart.y))
                             if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                                 temp.y=enCours.y,temp.x=enCours.x;
                     enCours.y=arrivee.y-1;
                     enCours.x=arrivee.x+1;
                     if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
-                        if(!map[enCours.y][enCours.x])
+                        if(!map[enCours.y][enCours.x]&&!(enCours.x==depart.x&&enCours.y==depart.y))
                             if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                                 temp.y=enCours.y,temp.x=enCours.x;
 
