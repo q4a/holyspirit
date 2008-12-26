@@ -4,6 +4,10 @@
 
 Ajouts :
 -Refonte du système sonore avec un moteur de sons.
+-Ajout d'un son aux particules
+
+Amélirations :
+-Amélioration du pathfinding
 
 //////////////////////////////////////////////////////////////////////////////
 25/12/2008

@@ -1,5 +1,7 @@
 	*Data/Particule_system/Images/human_bones.png
 $
+	*Data/Sounds/bone.wav
+$
 	* x0 y0 w32 h32 i3 a6 $
 	* x32 y0 w32 h32 i1 a1 $
 	* x64 y0 w32 h32 i1 a1 $
