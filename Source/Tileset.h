@@ -37,17 +37,18 @@ class Tileset
 
 	int getTaille();
 
-	void jouerSon(int numeroSon,double distance,coordonnee position,coordonnee positionHero);
-	void remiseAZeroDesSons();
+	void jouerSon(int numeroSon,coordonnee position,coordonnee positionHero);
+	//void remiseAZeroDesSons();
 
 	void deleteTiles();
 
 	private:
-	std::vector <bool> m_sonAZero;
+	//std::vector <bool> m_sonAZero;
 	std::vector <int> m_image;
 	std::vector <Tile> m_tile;
-	std::vector <sf::SoundBuffer> m_buffer;
-	std::vector <sf::Sound> m_sons;
+	std::vector <int> m_sons;
+	//std::vector <int> m_sons;
+	//std::vector <sf::Sound> m_sons;
 	std::string m_chemin;
 };
 

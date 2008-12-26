@@ -464,7 +464,7 @@
 	"constantes.h"
 	"Globale.h"
 
-1230125421 source:d:\backup disque e\c++\holyspirit\source\monstre.cpp
+1230297695 source:d:\backup disque e\c++\holyspirit\source\monstre.cpp
 	<iostream>
 	<fstream>
 	"Monstre.h"
@@ -476,7 +476,7 @@
 	"Constantes.h"
 	"Script.h"
 
-1229437542 d:\backup disque e\c++\holyspirit\source\personnage.h
+1230297755 d:\backup disque e\c++\holyspirit\source\personnage.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -485,7 +485,7 @@
 	"liste_case.h"
 	"Pose.h"
 
-1230207315 d:\backup disque e\c++\holyspirit\source\constantes.h
+1230298338 d:\backup disque e\c++\holyspirit\source\constantes.h
 	<cmath>
 	<utility>
 	<iostream>
@@ -520,12 +520,13 @@
 	<SFML/Graphics.hpp>
 	"constantes.h"
 
-1229437542 d:\backup disque e\c++\holyspirit\source\globale.h
+1230289343 d:\backup disque e\c++\holyspirit\source\globale.h
 	"MoteurGraphique.h"
+	"MoteurSons.h"
 
 1229864540 source:d:\backup disque e\c++\holyspirit\source\ressource.rc
 
-1230209846 source:d:\backup disque e\c++\holyspirit\source\hero.cpp
+1230294761 source:d:\backup disque e\c++\holyspirit\source\hero.cpp
 	"Hero.h"
 	"Globale.h"
 	<iostream>
@@ -548,7 +549,7 @@
 1229437542 d:\backup disque e\c++\holyspirit\source\evenement.h
 	"constantes.h"
 
-1230127544 source:d:\backup disque e\c++\holyspirit\source\personnage.cpp
+1230297828 source:d:\backup disque e\c++\holyspirit\source\personnage.cpp
 	"Personnage.h"
 	"Globale.h"
 	<iostream>
@@ -577,7 +578,7 @@
 	<SFML/Graphics.hpp>
 	"constantes.h"
 
-1229437542 source:d:\backup disque e\c++\holyspirit\source\tileset.cpp
+1230298050 source:d:\backup disque e\c++\holyspirit\source\tileset.cpp
 	"Tileset.h"
 	"Globale.h"
 	<iostream>
@@ -585,7 +586,7 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1229437542 d:\backup disque e\c++\holyspirit\source\tileset.h
+1230297600 d:\backup disque e\c++\holyspirit\source\tileset.h
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
@@ -649,7 +650,7 @@
 	"globale.h"
 	<iostream>
 
-1229433828 source:d:\backup disque e\c++\holyspirit\source\main.cpp
+1230289343 source:d:\backup disque e\c++\holyspirit\source\main.cpp
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<iostream>
@@ -657,6 +658,7 @@
 	<dirent.h>
 	"main.h"
 	"MoteurGraphique.h"
+	"MoteurSons.h"
 
 1229437542 d:\backup disque e\c++\holyspirit\source\main.h
 	"Jeu.h"
@@ -680,7 +682,7 @@
 	"constantes.h"
 	"Globale.h"
 
-1230211240 source:d:\backup disque e\c++\holyspirit\source\map.cpp
+1230292704 source:d:\backup disque e\c++\holyspirit\source\map.cpp
 	"Map.h"
 	<iostream>
 	<fstream>
@@ -691,7 +693,7 @@
 	"Globale.h"
 	"Jeu.h"
 
-1230127235 source:d:\backup disque e\c++\holyspirit\source\jeu.cpp
+1230291580 source:d:\backup disque e\c++\holyspirit\source\jeu.cpp
 	"constantes.h"
 	"Globale.h"
 	"jeu.h"
@@ -722,7 +724,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1230208493 source:d:\backup disque e\c++\holyspirit\source\c_jeu.cpp
+1230296414 source:d:\backup disque e\c++\holyspirit\source\c_jeu.cpp
 	"c_jeu.h"
 	"jeu.h"
 	"Globale.h"
@@ -1026,7 +1028,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1230211240 source:d:\backup disque e\c++\holyspirit\source\moteurgraphique.cpp
+1230288142 source:d:\backup disque e\c++\holyspirit\source\moteurgraphique.cpp
 	"MoteurGraphique.h"
 	"Globale.h"
 	<iostream>
@@ -1084,12 +1086,12 @@
 	<iostream>
 	"constantes.h"
 
-1230212540 source:d:\backup disque e\c++\holyspirit\source\moteurparticule.cpp
+1230291780 source:d:\backup disque e\c++\holyspirit\source\moteurparticule.cpp
 	"moteurParticule.h"
 	"globale.h"
 	<fstream>
 
-1230209253 d:\backup disque e\c++\holyspirit\source\moteurparticule.h
+1230288396 d:\backup disque e\c++\holyspirit\source\moteurparticule.h
 	"constantes.h"
 	"modelemoteurparticule.h"
 
@@ -1100,4 +1102,15 @@
 	"modeleMoteurParticule.h"
 	"globale.h"
 	<fstream>
+
+1230298338 d:\backup disque e\c++\holyspirit\source\moteursons.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"constantes.h"
+
+1230298394 source:d:\backup disque e\c++\holyspirit\source\moteursons.cpp
+	"MoteurSons.h"
+	"Globale.h"
+	<iostream>
 

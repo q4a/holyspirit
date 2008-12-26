@@ -25,13 +25,14 @@ class Modele_Personnage
 	~Modele_Personnage();
 	bool Charger(std::string chemin);
 
-	void jouerSon(int numeroSon,coordonnee position);
-
 	void setPorteeLumineuse(Lumiere  lumiere);
 
 	Lumiere getPorteeLumineuse();
 	int getNombreSons();
+	//int getBuffer(int ID);
 	Caracteristique getCaracteristique();
+
+	void jouerSon(int numeroSon,coordonnee position,coordonnee positionHero);
 
 	std::vector <std::vector<std::vector<Pose> > > m_pose;
 	std::vector <int> m_image;
@@ -41,21 +42,24 @@ class Modele_Personnage
 	protected:
 	Caracteristique m_caracteristique;
 	Lumiere m_porteeLumineuse;
-	std::vector <sf::SoundBuffer> m_buffer;
-	std::vector <sf::Sound>  m_sons;
+	std::vector <int> m_sons;
+	//std::vector <sf::Sound>  m_sons;
 };
 
 class Personnage
 {
 	public:
 	Personnage();
+
+	void Charger(Modele_Personnage *modele);
+
 	coordonnee getCoordonnee();
 	coordonnee getArrivee();
 	coordonnee getCoordonneePixel();
 	coordonnee getProchaineCase();
 	bool getErreurPathfinding();
 	bool enVie();
-	int animer(Modele_Personnage *modele,int hauteur_map,float temps,bool *explosif);
+	int animer(Modele_Personnage *modele,int hauteur_map,float temps,bool *explosif,coordonnee positionHero);
 
 	bool seDeplacer(float);
 	void setCoordonnee(coordonnee nouvellesCoordonnees);
@@ -64,6 +68,8 @@ class Personnage
 	int pathfinding(std::vector<std::vector<bool> > map,coordonnee exception);
 
 	void frappe(coordonnee direction,coordonnee position);
+
+
 
 	void infligerDegats(float degats);
 
@@ -97,6 +103,8 @@ class Personnage
 	coordonnee m_cheminFinal,m_arrivee,m_ancienneArrivee,m_mauvaiseArrivee, m_positionCase,m_positionAffichage,m_positionPixelPrecedente;
 	coordonneeDecimal m_positionPixel;
 	Lumiere m_porteeLumineuse;
+
+	//std::vector <int>  m_sons;
 };
 
 

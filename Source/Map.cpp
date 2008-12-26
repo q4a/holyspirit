@@ -1573,8 +1573,8 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 	positionPartieDecor.w=128;
 	positionPartieDecor.h=64;
 
-	for(int i=0;i<m_tileset.size();i++)
-		m_tileset[i].remiseAZeroDesSons();
+	//for(int i=0;i<m_tileset.size();i++)
+		//m_tileset[i].remiseAZeroDesSons();
 
     if(type==1)
     {
@@ -1978,16 +1978,6 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                      //ecran->Draw(Sprite);
                                 }
                             }
-
-                            positionHero.x=(hero->m_personnage.getCoordonnee().x-hero->m_personnage.getCoordonnee().y-1+m_decor[0].size())/5;
-                            positionHero.y=(hero->m_personnage.getCoordonnee().x+hero->m_personnage.getCoordonnee().y)/5;
-
-                            position.x=(k-j-1+m_decor[0].size())/5;
-                            position.y=(k+j)/5;
-
-                                if(m_tileset[m_decor[couche][j][k].getTileset()].getSonTile(m_decor[couche][j][k].getTile())>=0)
-                                    m_tileset[m_decor[couche][j][k].getTileset()].jouerSon(m_tileset[m_decor[couche][j][k].getTileset()].getSonTile(m_decor[couche][j][k].getTile()),
-                                    gpl::sqrt((hero->m_personnage.getCoordonnee().x-k)*(hero->m_personnage.getCoordonnee().x-k)+(hero->m_personnage.getCoordonnee().y-j)*(hero->m_personnage.getCoordonnee().y-j)),position,positionHero);
                         }
 
                     }
@@ -2208,7 +2198,6 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
 void Map::AfficherNomEvenement(sf::RenderWindow* ecran,coordonnee casePointee,coordonnee positionSouris)
 {
-
     int evenement=-1;
     for(int i=0;i<2;i++)
         for(int z=0;z<m_decor[i][casePointee.y][casePointee.x].getEvenement().size();z++)
@@ -2297,6 +2286,10 @@ bool Map::testEvenement(sf::View *camera, Jeu *jeu,float temps)
 
 void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
 {
+    coordonnee positionHero;
+    positionHero.x=(hero->m_personnage.getCoordonnee().x-hero->m_personnage.getCoordonnee().y-1+m_decor[0].size())/5;
+    positionHero.y=(hero->m_personnage.getCoordonnee().x+hero->m_personnage.getCoordonnee().y)/5;
+
     coordonnee vueMin,vueMax;
 
     vueMin.x=hero->m_personnage.getCoordonnee().x-10;
@@ -2331,14 +2324,25 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                 while(m_decor[i][j][k].getAnimation()>=0.075)
                 {
                     if(m_decor[i][j][k].getTileset()>=0&&m_decor[i][j][k].getTileset()<m_tileset.size())
+                    {
                         if(m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile())>=0)
                             m_decor[i][j][k].setDecor(m_decor[i][j][k].getTileset(),m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile()),m_decor[i][j][k].getEvenement(),m_decor[i][j][k].getMonstre(),m_decor[i][j][k].getHerbe());
+
+                        if(m_tileset[m_decor[i][j][k].getTileset()].getSonTile(m_decor[i][j][k].getTile())>=0)
+                        {
+                            coordonnee position;
+                            position.x=(k-j-1+m_decor[0].size())/5;
+                            position.y=(k+j)/5;
+
+                            m_tileset[m_decor[i][j][k].getTileset()].jouerSon(m_tileset[m_decor[i][j][k].getTileset()].getSonTile(m_decor[i][j][k].getTile()),position,positionHero);
+                        }
+                    }
                     m_decor[i][j][k].decrementerAnimation();
                 }
                     if(m_decor[i][j][k].getMonstre()>=0&&m_decor[i][j][k].getMonstre()<m_monstre.size())
                     {
                         bool explosif=false;
-                        int degats = m_monstre[m_decor[i][j][k].getMonstre()].animer(&m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()],m_decor[0].size(),temps,&explosif);
+                        int degats = m_monstre[m_decor[i][j][k].getMonstre()].animer(&m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()],m_decor[0].size(),temps,&explosif,positionHero);
                         if(explosif&&degats>0)
                         {
                             verifierDeclencheursDegats(j,k);

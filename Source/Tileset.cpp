@@ -20,12 +20,14 @@ Tileset::Tileset(string chemin)
 }
 Tileset::~Tileset()
 {
-    if(m_sonAZero.size()>0)
+   /* if(m_sonAZero.size()>0)
 	{
 	    m_sonAZero.clear();
         m_buffer.clear();
-        m_sons.clear();
-	}
+        //m_sons.clear();
+	}*/
+	m_sons.clear();
+	m_sons.clear();
     m_tile.clear();
 
     m_image.clear();
@@ -82,25 +84,11 @@ bool Tileset::Charger(std::string chemin)
     			string cheminDuSon;
                 getline(fichier, cheminDuSon);
 
-                sf::SoundBuffer bufferTemp;
-
-                m_buffer.push_back(bufferTemp);
-
-                if(!m_buffer[m_buffer.size()-1].LoadFromFile(cheminDuSon.c_str()))
-                    console.Ajouter("Impossible de charger : "+cheminDuSon,1);
-                else
-                console.Ajouter("Chargement de : "+cheminDuSon,0);
-
+                m_sons.push_back(moteurSons.AjouterBuffer(cheminDuSon));
+                //m_sons.push_back( moteurSons.AjouterSon(m_buffer[m_buffer.size()-1]) );
     		}
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Tileset \" %s \" Invalide",cheminFinal.c_str());console.Ajouter(temp,1); caractere='$'; }
     	}while(caractere!='$');
-
-    	sf::Sound sonTemp;
-
-    	m_sonAZero.resize(m_buffer.size(),0);
-		m_sons.resize(m_buffer.size(),sonTemp);
-		for(int i=0;i<m_buffer.size();i++)
-			m_sons[i].SetBuffer(m_buffer[i]),m_sons[i].SetVolume(0);
 
     	do
     	{
@@ -252,53 +240,31 @@ char Tileset::getOrientationDuTile(int tile)
     return 0;
 }
 
-void Tileset::remiseAZeroDesSons()
+/*void Tileset::remiseAZeroDesSons()
 {
 	for(int i=0;i<m_sonAZero.size();i++)
 		m_sonAZero[i]=true;
-}
+}*/
 
 
-void Tileset::jouerSon(int numeroSon,double distance,coordonnee position,coordonnee positionHero)
+void Tileset::jouerSon(int numeroSon,coordonnee position,coordonnee positionHero)
 {
     if(numeroSon>=0&&numeroSon<m_sons.size())
     {
-        if(m_sonAZero[numeroSon])
-        {
-            m_sons[numeroSon].SetVolume(100);
-            m_sonAZero[numeroSon]=false;
-            m_sons[numeroSon].SetPosition(-position.x,0,position.y);
-        }
-        else
-        {
-            m_sons[numeroSon].SetVolume(100);
-            float x,y,z;
-            x=m_sons[numeroSon].GetPosition().x;
-            y=m_sons[numeroSon].GetPosition().y;
-            z=m_sons[numeroSon].GetPosition().z;
-            // Je test voir si le nouveau son du même type est plus près du perso que l'ancien, si oui, je mets la position du nouveau à la place de l'ancien
-            if((double)(gpl::sqrt((positionHero.x+x)*(positionHero.x+x)+(positionHero.y-y)*(positionHero.y-y)))>(double)(gpl::sqrt((positionHero.x-position.x)*(positionHero.x-position.x)+(positionHero.y-position.y)*(positionHero.y-position.y))))
-                m_sons[numeroSon].SetPosition(-position.x,0,position.y);
-        }
+        coordonnee pos;
+        pos.x=-position.x;
+        pos.y=position.y;
 
-        Sound::Status Status = m_sons[numeroSon].GetStatus();
-
-        if(Status==0)
-        m_sons[numeroSon].Play();
+        moteurSons.JouerSon(m_sons[numeroSon],pos,positionHero,1);
+        //console.Ajouter(m_sons[numeroSon]);
     }
 }
 
 void Tileset::deleteTiles()
 {
     m_tile.clear();
-	//for(int i=0;i<m_nombreSons;i++)
-	//m_sons[i].Stop();
-	if(m_sonAZero.size()>0)
-	{
-        m_sonAZero.clear();
-        m_buffer.clear();
-        m_sons.clear();
-    }
+    //m_buffer.clear();
+    m_sons.clear();
 }
 
 

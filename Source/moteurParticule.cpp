@@ -69,9 +69,11 @@ void ParticuleSysteme::Generer(float force, ModeleParticuleSysteme *modele,coord
 
             m_particules.push_back(Particule ());
 
+            m_particules[m_particules.size()-1].vie=100;
+
             m_particules[m_particules.size()-1].position.x=position.x;
             m_particules[m_particules.size()-1].position.y=position.y;
-            m_particules[m_particules.size()-1].position.z=32;
+            m_particules[m_particules.size()-1].position.z=(rand() % (48 - 24 + 1)) + 24;
             m_particules[m_particules.size()-1].vecteur.x=cos(angle*M_PI/180);
             m_particules[m_particules.size()-1].vecteur.y=sin(angle*M_PI/180)/2;
 
@@ -109,7 +111,9 @@ bool ParticuleSysteme::Gerer(float temps)
             m_particules[i].vitesse_rotation=0;
 
         if(m_particules[i].vitesse<0)
-             m_particules[i].vitesse=0,m_particules[i].alpha-=temps*100;
+            m_particules[i].vitesse=0,m_particules[i].vie-=temps*10;
+        if(m_particules[i].vie<0)
+             m_particules[i].alpha-=temps*100;
         if(m_particules[i].alpha<0)
             m_particules[i].alpha=0,efface++;
 

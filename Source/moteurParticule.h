@@ -14,6 +14,7 @@ struct Particule
     float vitesse_rotation;
     float rotation;
     float alpha;
+    float vie;
     sf::Color color;
 
     int numero;

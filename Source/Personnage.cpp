@@ -70,9 +70,15 @@ Modele_Personnage::~Modele_Personnage()
     m_pose.clear();
 
     m_image.clear();
-    m_buffer.clear();
     m_sons.clear();
+   // m_sons.clear();
 }
+
+/*int Modele_Personnage::getBuffer(int ID)
+{
+    if(ID>=0&&ID<m_buffer.size())
+        return m_buffer[ID];
+}*/
 
 bool Modele_Personnage::Charger(string chemin)
 {
@@ -92,41 +98,23 @@ bool Modele_Personnage::Charger(string chemin)
 
     			string cheminImage;
                 getline(fichier, cheminImage);
-                //AjouterImage(cheminImage);
-               /* sf::Image temp;
-                m_image.push_back(temp);
-                if(!m_image[m_image.size()-1].LoadFromFile(cheminImage.c_str()))
-                    console.Ajouter("Impossible de charger : "+cheminImage,1);
-                else
-                console.Ajouter("Chargement de : "+cheminImage,0);*/
                 m_image.push_back(moteurGraphique.AjouterImage(cheminImage));
     		}
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Personnage \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
     	}while(caractere!='$');
 
+    	m_sons.clear();
     	do
     	{
     		fichier.get(caractere);
     		if(caractere=='*')
     		{
-
     			string cheminSon;
                 getline(fichier, cheminSon);
-                 sf::SoundBuffer temp;
-                m_buffer.push_back(temp);
-                if(!m_buffer[m_buffer.size()-1].LoadFromFile(cheminSon.c_str()))
-                    console.Ajouter("Impossible de charger : "+cheminSon,1);
-                else
-                console.Ajouter("Chargement de : "+cheminSon,0);
+                m_sons.push_back(moteurSons.AjouterBuffer(cheminSon));
     		}
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Personnage \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
     	}while(caractere!='$');
-
-    	sf::Sound temp;
-    	m_sons.resize(m_buffer.size(),temp);
-
-    	for(int i=0;i<m_buffer.size();i++)
-			m_sons[i].SetBuffer(m_buffer[i]),m_sons[i].SetVolume(100);
 
     	 Pose poseTemp;
     	 m_pose.resize(NOMBRE_ETAT,vector<vector<Pose> >(0,vector<Pose>(0,poseTemp)));
@@ -188,6 +176,15 @@ bool Modele_Personnage::Charger(string chemin)
     fichier.close();
 
     return true;
+}
+
+void Personnage::Charger(Modele_Personnage *modele)
+{
+    /*m_sons.resize(modele->getNombreSons());
+    for(int i=0;i<modele->getNombreSons();i++)
+    {
+        m_sons[i]=moteurSons.AjouterSon(modele->getBuffer(i));
+    }*/
 }
 
 void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap,Modele_Personnage *modele)
@@ -504,7 +501,7 @@ void Personnage::infligerDegats(float degats)
         m_poseEnCours=0,m_etat=3;
 }
 
-int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,bool *explosif)
+int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,bool *explosif,coordonnee positionHero)
 {
     int retour=0;
 
@@ -522,8 +519,9 @@ int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,boo
         if(m_poseEnCours>modele->m_pose[m_etat][(int)(m_angle/45)].size())
         m_poseEnCours=0;
 
-        if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getSon()>=0)
-            modele->jouerSon(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getSon(),position);
+        //if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getSon()>=0)
+        modele->jouerSon(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getSon(),position,positionHero);
+
         m_animation-=0.075;
         if(m_monstre)
         {
@@ -573,17 +571,14 @@ void Personnage::frappe(coordonnee direction,coordonnee position)
 }
 
 
-void Modele_Personnage::jouerSon(int numeroSon,coordonnee position)
+void Modele_Personnage::jouerSon(int numeroSon,coordonnee position,coordonnee positionHero)
 {
     if(numeroSon>=0&&numeroSon<m_sons.size())
     {
-        //m_sons[numeroSon].SetVolume(100);
-        m_sons[numeroSon].SetPosition(-position.x,0,position.y);
-        //Sound::Status Status = m_sons[numeroSon].GetStatus();
-
-        /*if(Status==2)*/
-            m_sons[numeroSon].Stop();
-        m_sons[numeroSon].Play();
+        coordonnee pos;
+        pos.x=-position.x;
+        pos.y=position.y;
+        moteurSons.JouerSon(m_sons[numeroSon],pos,positionHero);
     }
 }
 
@@ -631,7 +626,7 @@ void Personnage::AjouterPointAme(int pointAme) { m_caracteristique.pointAme+=poi
 
 bool Personnage::enVie() { if(m_caracteristique.vie>0) return 1; else return 0; }
 
-int Modele_Personnage::getNombreSons(){return m_buffer.size();}
+int Modele_Personnage::getNombreSons(){return m_sons.size();}
 coordonnee Personnage::getCoordonnee(){return m_positionCase;}
 coordonnee Personnage::getArrivee(){return m_arrivee;}
 

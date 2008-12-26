@@ -173,6 +173,7 @@ int MoteurGraphique::AjouterImage(std::string chemin)
             return i;
 
     m_images.push_back(sf::Image ());
+    m_cheminsImages.push_back(chemin);
 
     if(!m_images[m_images.size()-1].LoadFromFile(chemin.c_str()))
     {
@@ -182,7 +183,7 @@ int MoteurGraphique::AjouterImage(std::string chemin)
     else
         console.Ajouter("Chargement de : "+chemin,0);
 
-    m_cheminsImages.push_back(chemin);
+
     return m_images.size()-1;
 }
 

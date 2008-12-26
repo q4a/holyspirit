@@ -59,6 +59,8 @@ c_Jeu::c_Jeu(Jeu *jeu)
         if(!jeu->hero.m_modelePersonnage.Charger("Data/Entities/hero/GuerrierHache.char.hs")) // Chargement du héro
             throw("CRITICAL ERROR");
 
+        jeu->hero.m_personnage.Charger(&jeu->hero.m_modelePersonnage);
+
         if(!jeu->map.Charger(0)==1) // Chargement de  jeu->map0.txt
             throw("CRITICAL ERROR");
 
@@ -210,8 +212,12 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                if(tempsDepuisDerniereAnimation>0.043)
                 {
+                    coordonnee positionHero;
+                    positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1+jeu->map.getDimensions().y)/5;
+                    positionHero.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
+
                     bool a; // Variable qui ne sert pas ici, mais qui remplace le explosif des monstres
-                    if(jeu->hero.m_personnage.animer(&jeu->hero.m_modelePersonnage,jeu->map.getDimensions().y,tempsDepuisDerniereAnimation,&a)==1) //Animation du héro
+                    if(jeu->hero.m_personnage.animer(&jeu->hero.m_modelePersonnage,jeu->map.getDimensions().y,tempsDepuisDerniereAnimation,&a,positionHero)==1) //Animation du héro
                     {
                         jeu->map.infligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&jeu->camera);
                         jeu->hero.setMonstreVise(-1);

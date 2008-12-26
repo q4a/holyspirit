@@ -19,6 +19,8 @@ Monstre::Monstre()
 
 void Monstre::Charger(int numero,Modele_Monstre *modele)
 {
+    Personnage::Charger(modele);
+
     m_modele=numero;
     m_caracteristique=modele->getCaracteristique();
     m_porteeLumineuse=modele->getPorteeLumineuse();
@@ -62,6 +64,7 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
     }
 }
 
+
 bool Modele_Monstre::Charger(string chemin)
 {
     console.Ajouter("",0);
@@ -88,44 +91,24 @@ bool Modele_Monstre::Charger(string chemin)
 
     			string cheminImage;
                 getline(fichier, cheminImage);
-                //AjouterImage(cheminImage);
-                /*sf::Image temp;
-                m_image.push_back(temp);
-                if(!m_image[m_image.size()-1].LoadFromFile(cheminImage.c_str()))
-                    console.Ajouter("Impossible de charger : "+cheminImage,1);
-                else
-                console.Ajouter("Chargement de : "+cheminImage,0);*/
                 m_image.push_back(moteurGraphique.AjouterImage(cheminImage));
     		}
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0; }
     	}while(caractere!='$');
 
-    	m_buffer.clear();
+    	//m_buffer.clear();
     	do
     	{
     		fichier.get(caractere);
     		if(caractere=='*')
     		{
-
     			string cheminSon;
                 getline(fichier, cheminSon);
-                sf::SoundBuffer temp;
-                m_buffer.push_back(temp);
-                if(m_buffer.size()>0)
-                    if(!m_buffer[m_buffer.size()-1].LoadFromFile(cheminSon.c_str()))
-                        console.Ajouter("Impossible de charger : "+cheminSon,1);
-                else
-                console.Ajouter("Chargement de : "+cheminSon,0);
+
+                m_sons.push_back(moteurSons.AjouterBuffer(cheminSon));
     		}
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
     	}while(caractere!='$');
-
-    	sf::Sound temp;
-    	m_sons.resize(m_buffer.size(),temp);
-
-    	for(int i=0;i<m_buffer.size();i++)
-			m_sons[i].SetBuffer(m_buffer[i]),m_sons[i].SetVolume(100);
-
 
         do
     	{

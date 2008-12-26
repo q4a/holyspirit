@@ -11,6 +11,7 @@
 
 #include "main.h"
 #include "MoteurGraphique.h"
+#include "MoteurSons.h"
 
 using namespace std;
 //using namespace sf;
@@ -18,7 +19,7 @@ using namespace std;
 Console console;
 Configuration configuration;
 MoteurGraphique moteurGraphique;
-
+MoteurSons moteurSons;
 
 
 int main ( int argc, char** argv )
