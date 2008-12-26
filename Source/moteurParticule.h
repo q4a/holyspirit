@@ -18,6 +18,7 @@ struct Particule
     sf::Color color;
 
     int numero;
+    int sons;
 };
 
 class ParticuleSysteme
@@ -29,13 +30,14 @@ class ParticuleSysteme
     ~ParticuleSysteme();
     void Afficher(sf::RenderWindow *ecran, ModeleParticuleSysteme *modele);
     void Generer(float force, ModeleParticuleSysteme *modele,coordonnee position);
-    bool Gerer(float temps);
+    bool Gerer(float temps,int tailleMapY);
 
     int m_modele;
     std::vector <Particule> m_particules;
 
     private:
     sf::Color m_color;
+    int m_son;
 };
 
 #endif

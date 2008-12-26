@@ -290,7 +290,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     ///Affichage
                     ///**********************************************************///
 
-                    moteurGraphique.Gerer(&jeu->ecran,tempsEcouleDepuisDernierAffichage);
+                    moteurGraphique.Gerer(&jeu->ecran,tempsEcouleDepuisDernierAffichage,jeu->map.getDimensions().y);
 
                     jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,jeu->eventManager.getPositionSouris(),jeu->eventManager.getEvenement(Key::LAlt,"ET"));//Affichage de la jeu->map
 

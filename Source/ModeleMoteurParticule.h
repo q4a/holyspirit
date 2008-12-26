@@ -21,7 +21,7 @@ class ModeleParticuleSysteme
     void Charger(std::string chemin);
 
     //private:
-    int m_image;
+    int m_image,m_son;
     std::string m_chemin;
     std::vector <ModeleParticule> m_particules;
 };

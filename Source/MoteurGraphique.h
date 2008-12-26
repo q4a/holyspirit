@@ -16,7 +16,7 @@ class MoteurGraphique
 	~MoteurGraphique();
 	void Afficher(sf::RenderWindow *, sf::View *);
 
-	void Gerer(sf::RenderWindow *,float);
+	void Gerer(sf::RenderWindow *,float,int);
 	void CalculerLumiereParticules(LumiereOmbrage tableauDesLampes[30][30],coordonnee ,sf::RenderWindow *,int tailleMapY);
 
 	int AjouterImage(std::string);

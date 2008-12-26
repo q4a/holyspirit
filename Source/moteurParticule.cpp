@@ -19,6 +19,7 @@ ParticuleSysteme::ParticuleSysteme(int modeleInt, ModeleParticuleSysteme *modele
      m_modele=modeleInt;
      Generer(force,modele,position);
      m_color=color;
+     m_son=modele->m_son;
 }
 
 ParticuleSysteme::~ParticuleSysteme()
@@ -70,10 +71,11 @@ void ParticuleSysteme::Generer(float force, ModeleParticuleSysteme *modele,coord
             m_particules.push_back(Particule ());
 
             m_particules[m_particules.size()-1].vie=100;
+            m_particules[m_particules.size()-1].sons=1;
 
             m_particules[m_particules.size()-1].position.x=position.x;
             m_particules[m_particules.size()-1].position.y=position.y;
-            m_particules[m_particules.size()-1].position.z=(rand() % (48 - 24 + 1)) + 24;
+            m_particules[m_particules.size()-1].position.z=/*(rand() % (48 - 24 + 1)) + 24*/32;
             m_particules[m_particules.size()-1].vecteur.x=cos(angle*M_PI/180);
             m_particules[m_particules.size()-1].vecteur.y=sin(angle*M_PI/180)/2;
 
@@ -90,7 +92,7 @@ void ParticuleSysteme::Generer(float force, ModeleParticuleSysteme *modele,coord
         }
     }
 }
-bool ParticuleSysteme::Gerer(float temps)
+bool ParticuleSysteme::Gerer(float temps,int tailleMapY)
 {
     int efface=0;
     for(int i=0;i<m_particules.size();i++)
@@ -101,8 +103,33 @@ bool ParticuleSysteme::Gerer(float temps)
 
         m_particules[i].vecteur.z-=temps*25;
 
+        if(m_particules[i].position.z<=10&&m_particules[i].vie==100&&!m_particules[i].sons&&i==0)
+        {
+            coordonnee positionHero={0,0,0,0},position,positionCase;
+
+            if((float)((m_particules[i].position.y*2-m_particules[i].position.x)/2)/64+tailleMapY/2<(float)tailleMapY/2)
+                positionCase.y=(int)((m_particules[i].position.y*2-m_particules[i].position.x)/2)/64+tailleMapY/2-1;
+            else
+                positionCase.y=(int)((m_particules[i].position.y*2-m_particules[i].position.x)/2)/64+tailleMapY/2;
+
+            positionCase.x=(int)(m_particules[i].position.x+((m_particules[i].position.y*2-m_particules[i].position.x)/2))/64-tailleMapY/2;
+
+            position.x=-(positionCase.x-positionCase.y-1+tailleMapY)/5;
+            position.y=(positionCase.x+positionCase.y)/5;
+
+            moteurSons.JouerSon(m_son,position,positionHero,0,(int)(m_particules[i].vecteur.z*100));
+
+            m_particules[i].sons=1;
+        }
+
         if(m_particules[i].position.z<0)
+        {
             m_particules[i].position.z=0,m_particules[i].vecteur.z=fabs(m_particules[i].vecteur.z)/4;
+            //if(m_particules[i].vecteur.z>0.5)
+                m_particules[i].sons=0;
+        }
+
+
 
 
         m_particules[i].vitesse-=temps*10;

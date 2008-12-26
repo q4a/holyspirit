@@ -40,6 +40,20 @@ void ModeleParticuleSysteme::Charger(std::string chemin)
 
     	}while(caractere!='$');
 
+    	do
+    	{
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
+                std::string m_cheminSon;
+                getline(fichier, m_cheminSon);
+                m_son=moteurSons.AjouterBuffer(m_cheminSon);
+            }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Système de particules \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
+
+
     	m_chemin=chemin;
 
     	do

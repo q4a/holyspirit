@@ -71,12 +71,12 @@ void MoteurGraphique::Charger()
     //Luminosite.Create(configuration.Resolution.x, configuration.Resolution.y, sf::Color(255,255,255));
 }
 
-void MoteurGraphique::Gerer(sf::RenderWindow *ecran,float temps)
+void MoteurGraphique::Gerer(sf::RenderWindow *ecran,float temps,int tailleMapY)
 {
     for(int i=0;i<m_systemeParticules.size();i++)
         if(m_systemeParticules[i].m_modele>=0&&m_systemeParticules[i].m_modele<m_modeleSystemeParticules.size())
         {
-            if(!m_systemeParticules[i].Gerer(temps))
+            if(!m_systemeParticules[i].Gerer(temps,tailleMapY))
                 m_systemeParticules.erase (m_systemeParticules.begin()+i);
 
             m_systemeParticules[i].Afficher(ecran,&m_modeleSystemeParticules[m_systemeParticules[i].m_modele]);

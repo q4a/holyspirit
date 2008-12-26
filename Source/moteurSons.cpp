@@ -14,9 +14,6 @@ MoteurSons::MoteurSons()
 }
 MoteurSons::~MoteurSons()
 {
-    //m_sons.clear();
-	//m_sonAZero.clear();
-	//m_sonIDBuffer.clear();
 	m_buffers.clear();
 	m_cheminsSons.clear();
 }
@@ -27,36 +24,9 @@ void MoteurSons::Gerer()
 
 void MoteurSons::Vider()
 {
-//    for(int i=0;i<m_sonAZero.size();i++)
- //       m_sonAZero[i]=1;
+
 }
 
-/*int MoteurSons::AjouterSon(int ID)
-{
-    if(ID>=0&&ID<m_buffers.size())
-    {
-        int nbrSonsIdentiques=0,num=-1;
-
-        for(int i=0;i<m_sonIDBuffer.size();i++)
-            if(m_sonIDBuffer[i]==ID)
-                nbrSonsIdentiques++,num=i;
-
-        if(nbrSonsIdentiques<5)
-        {
-            m_sons.push_back(sf::Sound ());
-            m_sonAZero.push_back(1);
-
-            m_sons[m_sons.size()-1].SetBuffer(m_buffers[ID]);
-            m_sons[m_sons.size()-1].SetVolume(100);
-        }
-        else
-            return num;
-
-        return m_sons.size()-1;
-    }
-    else
-        return 0;
-}*/
 
 int MoteurSons::AjouterBuffer(std::string chemin)
 {
@@ -78,34 +48,12 @@ int MoteurSons::AjouterBuffer(std::string chemin)
     return m_buffers.size()-1;
 }
 
-void MoteurSons::JouerSon(int ID,coordonnee position,coordonnee positionHero,bool unique)
+void MoteurSons::JouerSon(int ID,coordonnee position,coordonnee positionHero,bool unique,int volume)
 {
-   /* if(ID>=0&&ID<m_sons.size())
-    {
-        if(m_sonAZero[ID])
-        {
-            m_sons[ID].SetVolume(100);
-            m_sonAZero[ID]=false;
-            m_sons[ID].SetPosition(position.x,0,position.y);
-        }
-        else
-        {
-            m_sons[ID].SetVolume(100);
-            float x,y,z;
-            x=m_sons[ID].GetPosition().x;
-            y=m_sons[ID].GetPosition().y;
-            z=m_sons[ID].GetPosition().z;
-            // Je test voir si le nouveau son du même type est plus près du perso que l'ancien, si oui, je mets la position du nouveau à la place de l'ancien
-            if((double)(gpl::sqrt((positionHero.x+x)*(positionHero.x+x)+(positionHero.y-y)*(positionHero.y-y)))>(double)(gpl::sqrt((positionHero.x-position.x)*(positionHero.x-position.x)+(positionHero.y-position.y)*(positionHero.y-position.y))))
-                m_sons[ID].SetPosition(position.x,0,position.y);
-        }
-
-        sf::Sound::Status Status = m_sons[ID].GetStatus();
-
-        if(Status==0)
-            m_sons[ID].Play();
-    }*/
-
+    if(volume>100)
+        volume=100;
+    if(volume<0)
+        volume=0;
     if(ID>=0&&ID<m_buffers.size())
     {
         bool creerNouveauSon=true;
@@ -114,7 +62,7 @@ void MoteurSons::JouerSon(int ID,coordonnee position,coordonnee positionHero,boo
             for(int i=0;i<NOMBRE_SONS;i++)
                 if(m_IDSons[i]==ID)
                 {
-                    m_sons[i].SetVolume(100);
+                    m_sons[i].SetVolume(volume);
                     float x,y,z;
                     x=m_sons[i].GetPosition().x;
                     y=m_sons[i].GetPosition().y;
@@ -133,6 +81,7 @@ void MoteurSons::JouerSon(int ID,coordonnee position,coordonnee positionHero,boo
 
         if(creerNouveauSon)
         {
+            m_sons[sonEnCours].SetVolume(volume);
             m_IDSons[sonEnCours]=ID;
             m_sons[sonEnCours].SetBuffer(m_buffers[ID]);
 
