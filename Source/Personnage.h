@@ -61,6 +61,8 @@ class Personnage
 	bool enVie();
 	int animer(Modele_Personnage *modele,int hauteur_map,float temps,bool *explosif,coordonnee positionHero);
 
+	void Pousser(coordonnee vecteur);
+
 	bool seDeplacer(float);
 	void setCoordonnee(coordonnee nouvellesCoordonnees);
 	void Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap,Modele_Personnage *modele);

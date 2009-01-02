@@ -41,8 +41,8 @@ class Map
 	void calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *camera);
 	void Detruire();
 
-	bool infligerDegats(int numeroMontre, float degats,Menu *menu,sf::View *camera);
-
+	bool infligerDegats(int numeroMontre, float degats,Menu *menu,sf::View *camera, Hero *hero);
+	void PousserMonstre(int numeroMonstre, coordonnee vecteur);
 	void gererMonstres(Hero *hero,float temps,sf::View *camera,Menu *menu);
 
 	void gererEvenements(int evenement,int z,int couche,int x,int y);
@@ -70,7 +70,7 @@ class Map
 	coordonnee m_sacPointe;
 	Lumiere m_lumiere[24];
 	std::vector <Tileset> m_tileset;
-	std::vector <Tileset> m_herbe;
+	std::vector <Herbe> m_herbe;
 	std::vector < std::vector< std::vector < Decor > > > m_decor;
 	std::vector <Evenement> m_evenement;
 

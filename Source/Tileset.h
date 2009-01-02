@@ -52,6 +52,12 @@ class Tileset
 	std::string m_chemin;
 };
 
+class Herbe : public Tileset
+{
+    private:
+
+};
+
 #endif
 
 

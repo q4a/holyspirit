@@ -423,7 +423,7 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
             if(m_inventaire[i].getRarete()==CRAFT)
                 sprite.SetColor(sf::Color(128,64,0,128));
 
-            sprite.Resize(m_inventaire[i].getTaille().w*32*configuration.Resolution.h/800,m_inventaire[i].getTaille().h*32*configuration.Resolution.h/600);
+            sprite.Resize(m_inventaire[i].getTaille().x*32*configuration.Resolution.w/800,m_inventaire[i].getTaille().y*32*configuration.Resolution.h/600);
 
             if(m_inventaire[i].m_equipe==AUCUN)
             {
@@ -442,7 +442,7 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
 
                 if(m_inventaire[i].m_equipe==ARMURE_CORPS)
                 {
-                    sprite.SetX(636*configuration.Resolution.w/800);
+                    sprite.SetX(638*configuration.Resolution.w/800);
                     sprite.SetY(110*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
                     if(positionSouris.x>636*configuration.Resolution.x/800&&positionSouris.x<(636+64)*configuration.Resolution.x/800&&positionSouris.y>110*configuration.Resolution.y/600&&positionSouris.y<(110+96)*configuration.Resolution.y/600)
                         m_inventaire[i].AfficherCaracteristiques(ecran,positionSouris);
@@ -450,6 +450,14 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
             }
 
             moteurGraphique.AjouterCommande(&sprite,16,0);
+
+            //sprite.SetCenter(m_inventaire[i].getTaille().x/2,m_inventaire[i].getTaille().y/2);
+            sprite.Resize(m_inventaire[i].getTaille().x*32*configuration.Resolution.w/800-4*configuration.Resolution.w/800,m_inventaire[i].getTaille().y*32*configuration.Resolution.h/600-4*configuration.Resolution.h/600);
+            sprite.Move(2*configuration.Resolution.w/800,2*configuration.Resolution.h/600);
+
+            moteurGraphique.AjouterCommande(&sprite,16,0);
+
+            sprite.Move(-2*configuration.Resolution.w/800,-2*configuration.Resolution.h/600);
 
             sprite.SetColor(sf::Color(255,255,255,255));
 
@@ -464,19 +472,44 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
     {
         sf::Sprite sprite;
 
+        sprite.SetImage(*moteurGraphique.getImage(0));
+
+        sprite.Resize(m_inventaire[m_objetEnMain].getTaille().x*32*configuration.Resolution.w/800,m_inventaire[m_objetEnMain].getTaille().y*32*configuration.Resolution.h/600);
+
+        sprite.SetX(positionSouris.x);
+        sprite.SetY(positionSouris.y);
+
+        if(m_inventaire[m_objetEnMain].getRarete()==NORMAL)
+            sprite.SetColor(sf::Color(224,224,224,128));
+        if(m_inventaire[m_objetEnMain].getRarete()==BONNEFACTURE)
+            sprite.SetColor(sf::Color(128,0,128,128));
+        if(m_inventaire[m_objetEnMain].getRarete()==BENI)
+            sprite.SetColor(sf::Color(0,64,128,128));
+        if(m_inventaire[m_objetEnMain].getRarete()==SACRE)
+            sprite.SetColor(sf::Color(255,255,128,128));
+        if(m_inventaire[m_objetEnMain].getRarete()==SANCTIFIE)
+            sprite.SetColor(sf::Color(128,255,255,128));
+        if(m_inventaire[m_objetEnMain].getRarete()==DIVIN)
+            sprite.SetColor(sf::Color(255,164,32,128));
+        if(m_inventaire[m_objetEnMain].getRarete()==INFERNAL)
+            sprite.SetColor(sf::Color(224,0,0,128));
+        if(m_inventaire[m_objetEnMain].getRarete()==CRAFT)
+            sprite.SetColor(sf::Color(128,64,0,128));
+
         if(positionSouris.x<477*configuration.Resolution.w/800||positionSouris.x>477*configuration.Resolution.w/800+32*8*configuration.Resolution.w/800||positionSouris.y<367*configuration.Resolution.h/600||positionSouris.y>399*configuration.Resolution.h/600+32*5*configuration.Resolution.h/600)
+        {
             if(positionSouris.x<400*configuration.Resolution.w/800)
-            {
-                sprite.SetImage(*moteurGraphique.getImage(0));
-
                 sprite.SetColor(sf::Color(128,0,0,128));
+        }
+        else
+        {
+            sprite.SetX(((positionSouris.x)-477*configuration.Resolution.w/800)/(32*configuration.Resolution.w/800)*(32*configuration.Resolution.w/800)+477*configuration.Resolution.w/800);
+            sprite.SetY(((positionSouris.y)-367*configuration.Resolution.h/600)/(32*configuration.Resolution.h/600)*(32*configuration.Resolution.h/600)+367*configuration.Resolution.h/600);
+        }
 
-                sprite.Resize(m_inventaire[m_objetEnMain].getTaille().x*32*configuration.Resolution.w/800,m_inventaire[m_objetEnMain].getTaille().y*32*configuration.Resolution.h/600);
-                sprite.SetX(positionSouris.x);
-                sprite.SetY(positionSouris.y);
+        moteurGraphique.AjouterCommande(&sprite,18,0);
 
-                moteurGraphique.AjouterCommande(&sprite,18,0);
-            }
+        sprite.SetColor(sf::Color(255,255,255,255));
 
         sprite.SetImage(*moteurGraphique.getImage(m_inventaire[m_objetEnMain].getImage()));
         sprite.SetSubRect(IntRect(m_inventaire[m_objetEnMain].getPositionImage().x, m_inventaire[m_objetEnMain].getPositionImage().y, m_inventaire[m_objetEnMain].getPositionImage().x+m_inventaire[m_objetEnMain].getPositionImage().w, m_inventaire[m_objetEnMain].getPositionImage().y+m_inventaire[m_objetEnMain].getPositionImage().h));

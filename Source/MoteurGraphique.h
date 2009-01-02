@@ -22,13 +22,14 @@ class MoteurGraphique
 	int AjouterImage(std::string);
 	int AjouterModeleSystemeParticules(std::string);
 
-	void AjouterSystemeParticules(int ID,coordonnee position,sf::Color color,float force);
+	void AjouterSystemeParticules(int ID,coordonnee position,sf::Color color,float force,float angle);
 	void AjouterCommande(sf::Sprite*,int=0, bool=0);
 	void AjouterTexte(sf::String*, int couche=0,bool titre=false);
 
 	void Charger();
 
 	void Vider();
+	void ViderParticules();
 
 	void calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Map *map);
 	void AjouterCommandesMap(Map *map);

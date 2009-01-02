@@ -22,7 +22,7 @@
 
 #define NOMBRE_BENEDICTION 8
 
-#define NOMBRE_SONS 50
+#define NOMBRE_SONS 100
 
 #include <cmath>
 #include <utility>

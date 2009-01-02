@@ -18,18 +18,16 @@ struct Particule
     sf::Color color;
 
     int numero;
-    int sons;
 };
 
 class ParticuleSysteme
 {
     public:
     ParticuleSysteme();
-    ParticuleSysteme(int modele);
-    ParticuleSysteme(int , ModeleParticuleSysteme *, coordonnee , sf::Color,float );
+    ParticuleSysteme(int , ModeleParticuleSysteme *, coordonnee , sf::Color,float ,float);
     ~ParticuleSysteme();
     void Afficher(sf::RenderWindow *ecran, ModeleParticuleSysteme *modele);
-    void Generer(float force, ModeleParticuleSysteme *modele,coordonnee position);
+    void Generer(float force, ModeleParticuleSysteme *modele,coordonnee position,float);
     bool Gerer(float temps,int tailleMapY);
 
     int m_modele;

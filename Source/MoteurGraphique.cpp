@@ -199,11 +199,11 @@ int MoteurGraphique::AjouterModeleSystemeParticules(std::string chemin)
 }
 
 
-void MoteurGraphique::AjouterSystemeParticules(int ID,coordonnee position,sf::Color color,float force)
+void MoteurGraphique::AjouterSystemeParticules(int ID,coordonnee position,sf::Color color,float force,float angle)
 {
     if(ID>=0&&ID<m_modeleSystemeParticules.size())
     {
-        m_systemeParticules.push_back(ParticuleSysteme (ID,&m_modeleSystemeParticules[ID],position,color,force));
+        m_systemeParticules.push_back(ParticuleSysteme (ID,&m_modeleSystemeParticules[ID],position,color,force,angle));
     }
 }
 
@@ -260,6 +260,11 @@ void MoteurGraphique::Vider()
     for(int i=0;i<20;i++)
         m_textes[i].clear();
 }
+void MoteurGraphique::ViderParticules()
+{
+    m_systemeParticules.clear();
+}
+
 
 sf::Image* MoteurGraphique::getImage(int IDimage)
 {

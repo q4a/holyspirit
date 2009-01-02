@@ -470,8 +470,8 @@ bool Personnage::seDeplacer(float tempsEcoule)
              ||(m_positionCase.y>m_cheminFinal.y&&m_positionPixel.y<=m_cheminFinal.y*COTE_TILE)
               ||m_positionCase.y==m_cheminFinal.y)
                 {
-                    m_positionPixel.x=(m_cheminFinal.x*COTE_TILE);
-                    m_positionPixel.y=(m_cheminFinal.y*COTE_TILE);
+                   // m_positionPixel.x=(m_cheminFinal.x*COTE_TILE);
+                   // m_positionPixel.y=(m_cheminFinal.y*COTE_TILE);
 
                     m_positionCase.y=m_cheminFinal.y;
                     m_positionCase.x=m_cheminFinal.x;
@@ -620,6 +620,21 @@ void Personnage::setCoordonneePixel(coordonnee position)
 {
     m_positionPixel.x=position.x*COTE_TILE;
     m_positionPixel.y=position.y*COTE_TILE;
+}
+
+void Personnage::Pousser(coordonnee vecteur)
+{
+    m_positionPixel.x+=vecteur.x;
+    m_positionPixel.y+=vecteur.y;
+
+    m_positionCase.x=m_positionPixel.x/COTE_TILE;
+    m_positionCase.y=m_positionPixel.y/COTE_TILE;
+
+    m_arrivee.x=m_positionCase.x;
+	m_arrivee.y=m_positionCase.y;
+
+	m_cheminFinal.x=m_positionCase.x;
+	m_cheminFinal.y=m_positionCase.y;
 }
 
 void Personnage::AjouterPointAme(int pointAme) { m_caracteristique.pointAme+=pointAme; }

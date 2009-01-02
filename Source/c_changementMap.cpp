@@ -94,6 +94,8 @@ void c_Chargement::Utiliser(Jeu *jeu)
         jeu->Clock.Reset();
         jeu->hero.m_personnage.setCoordonnee(m_coordonneePerso);
 
+        moteurGraphique.ViderParticules();
+
         if(!m_debut)
             jeu->map.Sauvegarder();
 
