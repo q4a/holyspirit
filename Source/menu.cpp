@@ -129,9 +129,6 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
         //(int)((float)((float)((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10)-caracteristique.ancienPointAme)/(float)(((caracteristique.niveau)*(caracteristique.niveau)*(caracteristique.niveau)*10)-(float)((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10))*90)
 
         int temp= (int) ( (caracteristique.ancienPointAme-((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10)) * 88 / ((caracteristique.niveau)*(caracteristique.niveau)*(caracteristique.niveau)*10) - ((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10));
-
-        console.Ajouter(temp);
-
         sprite.SetSubRect(sf::IntRect(0,88-temp, 90, 88));
 
         sprite.SetX(configuration.Resolution.w/2-46*configuration.Resolution.w/800);
