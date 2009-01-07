@@ -35,7 +35,7 @@ bool liste_case::testerCasesEnCours(coordonnee caseCherchee)
 	return 0;
 }
 
-bool liste_case::ajouterCasesAdjacentes(std::vector<std::vector<bool> > grille,coordonnee *arrivee,coordonnee depart,coordonnee exception)
+bool liste_case::ajouterCasesAdjacentes(bool **grille,coordonnee *arrivee,coordonnee depart,coordonnee exception)
 {
 	coordonnee enCours;
 

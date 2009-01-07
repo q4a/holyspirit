@@ -24,10 +24,6 @@ EventManager::EventManager()
 	console.Ajouter("",0);
     console.Ajouter("Chargement des curseurs :",0);
 
-/*	if(!m_curseur.LoadFromFile(configuration.chemin_curseurs+configuration.nom_curseur_base))
-         console.Ajouter("Impossible de charger : "+configuration.chemin_curseurs+configuration.nom_curseur_base,1);
-    else
-        console.Ajouter("Chargement de : "+configuration.chemin_curseurs+configuration.nom_curseur_base,0);*/
     idcurseur=moteurGraphique.AjouterImage(configuration.chemin_curseurs+configuration.nom_curseur_base);
 
 }

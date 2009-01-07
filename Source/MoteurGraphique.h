@@ -57,7 +57,7 @@ class MoteurGraphique
 
 
 	std::vector <sf::String> m_textes[20];
-	std::vector <Commande>m_commandes[20];
+	std::vector <Commande> m_commandes[20];
 	std::vector <ParticuleSysteme> m_systemeParticules;
 
 

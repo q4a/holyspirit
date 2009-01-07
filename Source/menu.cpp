@@ -24,6 +24,8 @@ Menu::Menu()
     m_imageMiniMap=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_minimap);
     m_imageHUD=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_hud);
     m_imageBulleVie=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_bulle_vie);
+    m_imageBulleFoi=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_bulle_foi);
+
     m_imageAme=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_ame);
     m_imageSang=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_sang);
     m_barrePointAme=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_barre_ame);
@@ -96,10 +98,22 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
     {
         Sprite sprite;
         sprite.SetImage(*moteurGraphique.getImage(m_imageBulleVie));
-        sprite.Resize(74*configuration.Resolution.w/800, 107*configuration.Resolution.h/600);
-        sprite.SetSubRect(sf::IntRect(0, (int)(107-caracteristique.vie*107/caracteristique.maxVie), 74, 107));
-        sprite.SetX(10*configuration.Resolution.w/800);
-        sprite.SetY(configuration.Resolution.h-(128-10)*configuration.Resolution.h/600+(caracteristique.maxVie-caracteristique.vie)/caracteristique.maxVie*107*configuration.Resolution.h/600);
+        sprite.Resize(96*configuration.Resolution.w/800, 66*configuration.Resolution.h/600);
+        sprite.SetSubRect(sf::IntRect(0, (int)(66-caracteristique.vie*66/caracteristique.maxVie), 96, 66));
+        sprite.SetX(116*configuration.Resolution.w/800);
+        sprite.SetY((int)(configuration.Resolution.h-(128-12)*configuration.Resolution.h/600+(caracteristique.maxVie-caracteristique.vie)/caracteristique.maxVie*66*configuration.Resolution.h/600));
+
+        moteurGraphique.AjouterCommande(&sprite,17,0);
+    }
+
+    if(caracteristique.foi>0)
+    {
+        Sprite sprite;
+        sprite.SetImage(*moteurGraphique.getImage(m_imageBulleFoi));
+        sprite.Resize(96*configuration.Resolution.w/800, 66*configuration.Resolution.h/600);
+        sprite.SetSubRect(sf::IntRect(0, (int)(66-caracteristique.foi*66/caracteristique.maxFoi), 96, 66));
+        sprite.SetX(588*configuration.Resolution.w/800);
+        sprite.SetY(configuration.Resolution.h-(128-12)*configuration.Resolution.h/600+(caracteristique.maxFoi-caracteristique.foi)/caracteristique.maxFoi*66*configuration.Resolution.h/600);
 
         moteurGraphique.AjouterCommande(&sprite,17,0);
     }
@@ -109,11 +123,19 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
         Sprite sprite;
 
         sprite.SetImage(*moteurGraphique.getImage(m_barrePointAme));
-        sprite.Resize(configuration.Resolution.w/4, 16*configuration.Resolution.w/800);
-        sprite.SetSubRect(sf::IntRect(0, 0, (int)((float)(caracteristique.ancienPointAme-(float)((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10))/(float)(((caracteristique.niveau)*(caracteristique.niveau)*(caracteristique.niveau)*10)-(float)((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10))*200), (int)(16)));
+        sprite.Resize(90*configuration.Resolution.w/800, 88*configuration.Resolution.w/800);
 
-        sprite.SetX(configuration.Resolution.w*1.5/4+4);
-        sprite.SetY(configuration.Resolution.h-20*configuration.Resolution.h/600);
+
+        //(int)((float)((float)((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10)-caracteristique.ancienPointAme)/(float)(((caracteristique.niveau)*(caracteristique.niveau)*(caracteristique.niveau)*10)-(float)((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10))*90)
+
+        int temp= (int) ( (caracteristique.ancienPointAme-((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10)) * 88 / ((caracteristique.niveau)*(caracteristique.niveau)*(caracteristique.niveau)*10) - ((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10));
+
+        console.Ajouter(temp);
+
+        sprite.SetSubRect(sf::IntRect(0,88-temp, 90, 88));
+
+        sprite.SetX(configuration.Resolution.w/2-46*configuration.Resolution.w/800);
+        sprite.SetY(configuration.Resolution.h-(temp)*configuration.Resolution.h/600);
 
         moteurGraphique.AjouterCommande(&sprite,17,0);
     }
@@ -128,7 +150,7 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
     texte.SetText(chaine);
 
     texte.SetX(configuration.Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
-    texte.SetY(configuration.Resolution.h-40*configuration.Resolution.h/600);
+    texte.SetY(configuration.Resolution.h-52*configuration.Resolution.h/600);
 
     moteurGraphique.AjouterTexte(&texte,17);
     //ecran->Draw(texte);
@@ -277,19 +299,38 @@ int Menu::GererDynamique(float temps)
     int nombre_ame_absorbee=0, nombre_sang_disparu=0, retour=0;
     for (Iter = m_ame.begin(); Iter != m_ame.end(); Iter++ )
     {
+        if(Iter->m_mode==-1)
+        {
+            Iter->m_taille+=5*temps;
+            Iter->m_alpha+=500*temps;
+
+            if(Iter->m_alpha>=128)
+                Iter->m_alpha=128;
+
+            if(Iter->m_taille>=1.5)
+                Iter->m_taille=1.5;
+
+            if(Iter->m_alpha>=128&&Iter->m_taille>=1)
+            {
+                Iter->m_alpha=128;
+                Iter->m_taille=1;
+                Iter->m_mode=0;
+
+            }
+        }
         if(Iter->m_mode==0)
         {
-            if(Iter->m_depart.x<=400&&Iter->m_position.x>=383&&Iter->m_position.y>=520||Iter->m_depart.x>400&&Iter->m_position.x<=384&&Iter->m_position.y>=520)
+            if(Iter->m_depart.x<=400&&Iter->m_position.x>=383&&Iter->m_position.y>=540||Iter->m_depart.x>400&&Iter->m_position.x<=384&&Iter->m_position.y>=540)
             {
                 Iter->m_position.x=384;
-                Iter->m_position.y=520;
+                Iter->m_position.y=540;
                 Iter->m_mode=1,retour+=Iter->m_pointAme;
             }
             else
             {
                 Iter->m_rotation-=200*temps;
                 Iter->m_position.x+=(384-Iter->m_depart.x)*temps*0.5;
-                Iter->m_position.y+=(520-Iter->m_depart.y)*temps*0.5;
+                Iter->m_position.y+=(540-Iter->m_depart.y)*temps*0.5;
 
                 if(Iter->m_taille>1.5)
                     Iter->augmenter=false;

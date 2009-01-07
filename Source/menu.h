@@ -21,11 +21,11 @@ class Ame
     {
         m_position=position;
         m_depart=position;
-        m_taille=1;
-        m_mode=0;
+        m_taille=0;
+        m_mode=-1;
         m_rotation=0;
         m_pointAme=pointAme;
-        m_alpha=128;
+        m_alpha=0;
         augmenter=true;
     }
     coordonneeDecimal m_position,m_depart;
@@ -65,11 +65,15 @@ class Menu
 	void AjouterAme(coordonneeDecimal position,int pointAme);
 	int GererDynamique(float temps);
 
+
 	private:
-	int m_imageMiniMap,m_fondMiniMap,m_imageHUD,m_imageBulleVie,m_imageAme,m_imageSang,m_barrePointAme,m_barreVie,m_barreVieVide,m_inventaire;
+	int m_fondMiniMap,m_imageHUD,m_imageBulleVie,m_imageBulleFoi,m_imageAme,m_imageSang,m_barrePointAme,m_barreVie,m_barreVieVide,m_inventaire;
+
 	sf::String texte;
 
 	float m_alphaSang;
+
+	int m_imageMiniMap,;
 
 	std::vector <Sang> m_sang;
 	std::vector <Sang>::iterator IterSang;

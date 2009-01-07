@@ -284,7 +284,7 @@ void Personnage::regenererVie(float vie)
         m_caracteristique.vie=m_caracteristique.maxVie;
 }
 
-int Personnage::pathfinding(vector<vector<bool> > map,coordonnee exception)
+int Personnage::pathfinding(bool** map,coordonnee exception)
 {
 
 
@@ -370,6 +370,9 @@ int Personnage::pathfinding(vector<vector<bool> > map,coordonnee exception)
                         arrivee=temp;
                     else
                     {
+                        for(int i=0;i<20;i++)
+                            delete[] map[i];
+                        delete[] map;
                         m_erreurPathfinding=true;
                         return 0;
                     }
@@ -406,9 +409,11 @@ int Personnage::pathfinding(vector<vector<bool> > map,coordonnee exception)
                     m_etat=0,m_poseEnCours=0;
             }
 
-            for(int i=0;i<map.size();i++)
-                map[i].clear();
-            map.clear();
+            for(int i=0;i<20;i++)
+                delete[] map[i];
+            delete[] map;
+
+
 
             if(m_etat==0)
             return 0;
@@ -627,8 +632,8 @@ void Personnage::Pousser(coordonnee vecteur)
     m_positionPixel.x+=vecteur.x;
     m_positionPixel.y+=vecteur.y;
 
-    m_positionCase.x=m_positionPixel.x/COTE_TILE;
-    m_positionCase.y=m_positionPixel.y/COTE_TILE;
+    m_positionCase.x=(int)(m_positionPixel.x/COTE_TILE);
+    m_positionCase.y=(int)(m_positionPixel.y/COTE_TILE);
 
     m_arrivee.x=m_positionCase.x;
 	m_arrivee.y=m_positionCase.y;

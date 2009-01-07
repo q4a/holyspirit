@@ -22,7 +22,7 @@
 
 #define NOMBRE_BENEDICTION 8
 
-#define NOMBRE_SONS 100
+#define NOMBRE_SONS 200
 
 #include <cmath>
 #include <utility>
@@ -163,6 +163,8 @@ struct Configuration
                         if(chaine== "menu_hud:") { fichier2>>nom_hud; }
                         if(chaine== "menu_minimap:") { fichier2>>nom_minimap; }
                         if(chaine== "menu_life_orb:") { fichier2>>nom_bulle_vie; }
+                        if(chaine== "menu_faith_orb:") { fichier2>>nom_bulle_foi; }
+
                         if(chaine== "menu_soul:") { fichier2>>nom_ame; }
                         if(chaine== "menu_soul_orb:") { fichier2>>nom_barre_ame; }
                         if(chaine== "menu_life_monster:") { fichier2>>nom_barre_vie; }
@@ -268,7 +270,7 @@ struct Configuration
     int Lumiere;
     float effetMort,effetNoir,volume,minute,zoom,frequence_sauvegarde,frequence_lumiere,luminosite,contrastes;
     int heure,cache,alpha;
-    std::string version,chemin_maps,chemin_temps,chemin_saves,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetMort,nom_effetContrastes,nom_effetBlur,nom_hud,nom_minimap,nom_bulle_vie,nom_ame,nom_barre_ame,nom_barre_vie,nom_barre_vie_vide,nom_sang,nom_inventaire,chemin_son_mort;
+    std::string version,chemin_maps,chemin_temps,chemin_saves,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetMort,nom_effetContrastes,nom_effetBlur,nom_hud,nom_minimap,nom_bulle_vie,nom_bulle_foi,nom_ame,nom_barre_ame,nom_barre_vie,nom_barre_vie_vide,nom_sang,nom_inventaire,chemin_son_mort;
     std::string font_titre,chemin_video_developpeur,nom_video_developpeur,nom_sac,chemin_aa;
 
     std::string chemin_text_benedictions;

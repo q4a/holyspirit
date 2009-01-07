@@ -32,7 +32,7 @@ void Decor::setDecor(int tileset,int tile,std::vector<int> evenement,int monstre
 void Decor::setNumeroHerbe(int numero)
 {
     m_numeroHerbe=numero;
-    m_herbe_taille = (rand()% (125 - 50 )) + 50;
+    m_herbe_taille = (rand()% (125 - 75 )) + 75;
 	m_herbe_decalage.x = 48 - (rand()%96);
 	m_herbe_decalage.y = 16 - (rand()%32);
 }

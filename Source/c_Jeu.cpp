@@ -118,6 +118,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
 
                 jeu->hero.augmenterAme(tempsEcoule);
+                jeu->hero.recalculerCaracteristiques();
                 if(jeu->hero.m_personnage.enVie())
                     jeu->hero.regenererVie((float)jeu->hero.m_caracteristiques.maxVie*(float)tempsEcoule/100);
 

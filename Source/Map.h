@@ -34,7 +34,7 @@ class Map
 	int getNombreObjets(coordonnee position);
 	Monstre *getEntiteMonstre (int numeroMonstre);
 	coordonnee getPositionMonstre(int numeroMonstre);
-	std::vector<std::vector<bool> > getAlentourDuPersonnage(coordonnee positionPersonnage); // Retourne un tableau de bool contenant toutes les collitions dans les alentour du héro, pour le pathfinding
+	bool ** getAlentourDuPersonnage(coordonnee positionPersonnage); // Retourne un tableau de bool contenant toutes les collitions dans les alentour du héro, pour le pathfinding
 
 	void animer(Hero *hero,float temps,Menu *menu,sf::View *camera); // Animation des tiles
 	bool testEvenement(sf::View *camera, Jeu *jeu,float temps);

@@ -586,7 +586,7 @@ void Hero::augmenterAme(float temps)
     if(temp.ancienPointAme>=temp.pointAme)
         temp.ancienPointAme=temp.pointAme,temp.positionAncienAme=temp.ancienPointAme;
 
-    if(temp.ancienPointAme>=CALCUL_PA_PROCHAIN_NIVEAU)
+    if(temp.pointAme>=CALCUL_PA_PROCHAIN_NIVEAU)
     {
         temp.niveau++;
         temp.force++;
@@ -608,6 +608,8 @@ void Hero::augmenterAme(float temps)
     }
 
     m_personnage.setCaracteristique(temp);
+
+    m_caracteristiques.ancienPointAme=temp.ancienPointAme;
 
     //recalculerCaracteristiques();
 }

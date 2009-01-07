@@ -27,7 +27,6 @@ Tileset::~Tileset()
         //m_sons.clear();
 	}*/
 	m_sons.clear();
-	m_sons.clear();
     m_tile.clear();
 
     m_image.clear();

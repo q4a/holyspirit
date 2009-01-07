@@ -39,7 +39,7 @@ void c_Demarrage::Utiliser(Jeu *jeu)
         sprite.SetColor(Color(255,255,255,255));
     sprite.Resize(configuration.Resolution.w,configuration.Resolution.h);
 
-    moteurGraphique.AjouterCommande(&sprite,0);
+    moteurGraphique.AjouterCommande(&sprite,0,0);
 
     if(m_augmenter)
         m_alpha+=temps_ecoule*200;
@@ -51,5 +51,7 @@ void c_Demarrage::Utiliser(Jeu *jeu)
 
     if(m_alpha<0)
         jeu->m_contexte=jeu->m_chargement;
+
+    jeu->m_display=1;
 
 }
