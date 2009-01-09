@@ -120,7 +120,10 @@ void c_Jeu::Utiliser(Jeu *jeu)
                 jeu->hero.augmenterAme(tempsEcoule);
                 jeu->hero.recalculerCaracteristiques();
                 if(jeu->hero.m_personnage.enVie())
-                    jeu->hero.regenererVie((float)jeu->hero.m_caracteristiques.maxVie*(float)tempsEcoule/100);
+                {
+                    jeu->hero.regenererVie((float)jeu->hero.m_caracteristiques.maxVie*(float)(tempsEcoule/100));
+                    jeu->hero.regenererFoi((float)jeu->hero.m_caracteristiques.maxFoi*(float)(tempsEcoule/100));
+                }
 
                 jeu->Clock.Reset();
 
@@ -173,7 +176,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     }
                     jeu->map.testEvenement(&jeu->camera,jeu,tempsEcoule); // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
                     if(jeu->hero.getMonstreVise()>-1)
-                        jeu->hero.testMontreVise(jeu->map.getEntiteMonstre(jeu->hero.getMonstreVise()),jeu->map.getDimensions().y);
+                        jeu->hero.testMonstreVise(jeu->map.getEntiteMonstre(jeu->hero.getMonstreVise()),jeu->map.getDimensions().y);
 
                     ///Placer l'écouteur, à la position du héro
                     coordonnee position;
@@ -222,7 +225,14 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     bool a; // Variable qui ne sert pas ici, mais qui remplace le explosif des monstres
                     if(jeu->hero.m_personnage.animer(&jeu->hero.m_modelePersonnage,jeu->map.getDimensions().y,tempsDepuisDerniereAnimation,&a,positionHero)==1) //Animation du héro
                     {
-                        jeu->map.infligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&jeu->camera,&jeu->hero);
+                        if(jeu->hero.miracleEnCours==1)
+                             jeu->map.infligerDegatsMasse(jeu->hero.m_personnage.getCoordonnee(),1,rand()%(jeu->hero.m_caracteristiques.degatsMax - jeu->hero.m_caracteristiques.degatsMin) + jeu->hero.m_caracteristiques.degatsMin ,false,&jeu->hero,&jeu->menu,&jeu->camera);
+                        else
+                            jeu->map.infligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&jeu->camera,&jeu->hero,1);
+
+                        jeu->hero.miracleEnCours=0;
+                        jeu->hero.m_personnage.frappeEnCours=0;
+
                         jeu->hero.setMonstreVise(-1);
                     }
                     jeu->map.animer(&jeu->hero,tempsDepuisDerniereAnimation,&jeu->menu,&jeu->camera); // Animation des tiles de la jeu->map
@@ -244,7 +254,13 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     ///**********************************************************///
                     jeu->eventManager.GererLesEvenements(&jeu->ecran,&jeu->camera,&jeu->m_run,tempsEcoule,jeu->map.getDimensions());
 
-                    int monstreVise=jeu->map.getMonstre(&jeu->hero,&jeu->camera,&jeu->ecran,jeu->eventManager.getPositionSouris(),jeu->eventManager.getCasePointee());
+                    int monstreVise=-1;
+
+                    if(jeu->hero.getMonstreVise()==-1)
+                        monstreVise=jeu->map.getMonstre(&jeu->hero,&jeu->camera,&jeu->ecran,jeu->eventManager.getPositionSouris(),jeu->eventManager.getCasePointee());
+
+                    if(monstreVise==-1)
+                        monstreVise=jeu->hero.getMonstreVise();
 
                     if(jeu->eventManager.getEvenement(Mouse::Left,"C")&&!jeu->eventManager.getEvenement(Key::LShift,"ET"))
                     {
@@ -264,14 +280,12 @@ void c_Jeu::Utiliser(Jeu *jeu)
                         }
                     }
 
-                    if(jeu->eventManager.getEvenement(Mouse::Right,"C")||jeu->eventManager.getEvenement(Mouse::Left,"C")&&jeu->eventManager.getEvenement(Key::LShift,"ET"))
+                    if(jeu->eventManager.getEvenement(Mouse::Right,"C"))
                     {
-                        coordonnee temp;
-                        temp.x=configuration.Resolution.x/2;
-                        temp.y=configuration.Resolution.y/2;
-                        if(monstreVise==-1)
-                            jeu->hero.m_personnage.frappe(jeu->eventManager.getPositionSouris(),temp);
-                        jeu->hero.setMonstreVise(monstreVise);
+                        if(jeu->eventManager.getEvenement(Mouse::Left,"C"))
+                            jeu->eventManager.StopEvenement(Mouse::Left,"C");
+                        else
+                            jeu->hero.utiliserClicDroit(jeu->eventManager.getPositionSouris(),monstreVise);
                     }
 
                     if(jeu->eventManager.getEvenement(Key::I,"ET"))

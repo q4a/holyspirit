@@ -37,7 +37,7 @@ void c_Demarrage::Utiliser(Jeu *jeu)
         sprite.SetColor(Color(255,255,255,(int)m_alpha));
     else
         sprite.SetColor(Color(255,255,255,255));
-    sprite.Resize(configuration.Resolution.w,configuration.Resolution.h);
+    sprite.Resize(configuration.Resolution.x,configuration.Resolution.y);
 
     moteurGraphique.AjouterCommande(&sprite,0,0);
 

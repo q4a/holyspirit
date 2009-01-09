@@ -59,7 +59,7 @@ void ParticuleSysteme::Generer(float force, ModeleParticuleSysteme *modele,coord
             m_particules[m_particules.size()-1].position.z=(rand() % (64 - 0 + 1)) + 0;
             m_particules[m_particules.size()-1].vecteur.x=cos(angle*M_PI/180);
             m_particules[m_particules.size()-1].vecteur.y=sin(angle*M_PI/180)/2;
-            m_particules[m_particules.size()-1].vecteur.z=(rand() % (int)(force*0.4 - force*0.6 + 1)) + force*0.4;
+            m_particules[m_particules.size()-1].vecteur.z=(rand() % (int)(force*0.6 - force*0.4 + 1)) + force*0.4;
             m_particules[m_particules.size()-1].vitesse=(rand() % (int)(force*1.25 - force*0.75 + 1)) + force*0.75;
             m_particules[m_particules.size()-1].vitesse_rotation=((rand() % (int)(force*1 - force*0.5 + 1)) + force*0.5)*5;
             if(m_particules[m_particules.size()-1].vitesse_rotation>100)

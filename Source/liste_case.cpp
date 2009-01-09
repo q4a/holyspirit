@@ -35,7 +35,7 @@ bool liste_case::testerCasesEnCours(coordonnee caseCherchee)
 	return 0;
 }
 
-bool liste_case::ajouterCasesAdjacentes(bool **grille,coordonnee *arrivee,coordonnee depart,coordonnee exception)
+bool liste_case::ajouterCasesAdjacentes(bool **grille,coordonnee *arrivee,coordonnee depart)
 {
 	coordonnee enCours;
 
@@ -46,7 +46,7 @@ bool liste_case::ajouterCasesAdjacentes(bool **grille,coordonnee *arrivee,coordo
 			enCours.x=m_liste[i].getPosition().x+1;
 			enCours.y=m_liste[i].getPosition().y;
 			if(enCours.x>=0&&enCours.y>=0&&enCours.x<20&&enCours.y<20)
-				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x]&&!(exception.x==enCours.x&&exception.y==enCours.y))
+				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x])
 				{
 					ajouterCase(enCours);
 				}
@@ -59,7 +59,7 @@ bool liste_case::ajouterCasesAdjacentes(bool **grille,coordonnee *arrivee,coordo
 			enCours.x=m_liste[i].getPosition().x-1;
 			enCours.y=m_liste[i].getPosition().y;
 			if(enCours.x>=0&&enCours.y>=0&&enCours.x<20&&enCours.y<20)
-				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x]&&!(exception.x==enCours.x&&exception.y==enCours.y))
+				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x])
 				{
 					ajouterCase(enCours);
 				}
@@ -69,7 +69,7 @@ bool liste_case::ajouterCasesAdjacentes(bool **grille,coordonnee *arrivee,coordo
 			enCours.x=m_liste[i].getPosition().x;
 			enCours.y=m_liste[i].getPosition().y+1;
 			if(enCours.x>=0&&enCours.y>=0&&enCours.x<20&&enCours.y<20)
-				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x]&&!(exception.x==enCours.x&&exception.y==enCours.y))
+				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x])
 				{
 					ajouterCase(enCours);
 				}
@@ -78,7 +78,7 @@ bool liste_case::ajouterCasesAdjacentes(bool **grille,coordonnee *arrivee,coordo
 			enCours.x=m_liste[i].getPosition().x;
 			enCours.y=m_liste[i].getPosition().y-1;
 			if(enCours.x>=0&&enCours.y>=0&&enCours.x<20&&enCours.y<20)
-				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x]&&!(exception.x==enCours.x&&exception.y==enCours.y))
+				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x])
 				{
 					ajouterCase(enCours);
 				}
@@ -87,7 +87,7 @@ bool liste_case::ajouterCasesAdjacentes(bool **grille,coordonnee *arrivee,coordo
 			enCours.x=m_liste[i].getPosition().x+1;
 			enCours.y=m_liste[i].getPosition().y+1;
 			if(enCours.x>=0&&enCours.y>=0&&enCours.x<20&&enCours.y<20)
-				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x]&&!(exception.x==enCours.x&&exception.y==enCours.y))
+				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x])
 				{
 					ajouterCase(enCours);
 				}
@@ -97,7 +97,7 @@ bool liste_case::ajouterCasesAdjacentes(bool **grille,coordonnee *arrivee,coordo
 			enCours.x=m_liste[i].getPosition().x-1;
 			enCours.y=m_liste[i].getPosition().y-1;
 			if(enCours.x>=0&&enCours.y>=0&&enCours.x<20&&enCours.y<20)
-				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x]&&!(exception.x==enCours.x&&exception.y==enCours.y))
+				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x])
 				{
 					ajouterCase(enCours);
 				}
@@ -107,7 +107,7 @@ bool liste_case::ajouterCasesAdjacentes(bool **grille,coordonnee *arrivee,coordo
 			enCours.x=m_liste[i].getPosition().x-1;
 			enCours.y=m_liste[i].getPosition().y+1;
 			if(enCours.x>=0&&enCours.y>=0&&enCours.x<20&&enCours.y<20)
-				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x]&&!(exception.x==enCours.x&&exception.y==enCours.y))
+				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x])
 				{
 					ajouterCase(enCours);
 				}
@@ -117,7 +117,7 @@ bool liste_case::ajouterCasesAdjacentes(bool **grille,coordonnee *arrivee,coordo
 			enCours.x=m_liste[i].getPosition().x+1;
 			enCours.y=m_liste[i].getPosition().y-1;
 			if(enCours.x>=0&&enCours.y>=0&&enCours.x<20&&enCours.y<20)
-				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x]&&!(exception.x==enCours.x&&exception.y==enCours.y))
+				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x])
 				{
 					ajouterCase(enCours);
 				}

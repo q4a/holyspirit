@@ -41,8 +41,11 @@ class Map
 	void calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *camera);
 	void Detruire();
 
-	bool infligerDegats(int numeroMontre, float degats,Menu *menu,sf::View *camera, Hero *hero);
+	void infligerDegatsMasse(coordonnee position,int rayon,int degats,bool sourceConcernee, Hero *hero,Menu *menu,sf::View *camera);
+
+	bool infligerDegats(int numeroMontre, float degats,Menu *menu,sf::View *camera, Hero *hero,bool pousser);
 	void PousserMonstre(int numeroMonstre, coordonnee vecteur);
+	void PousserMonstreCase(int numeroMonstre, coordonnee vecteur);
 	void gererMonstres(Hero *hero,float temps,sf::View *camera,Menu *menu);
 
 	void gererEvenements(int evenement,int z,int couche,int x,int y);

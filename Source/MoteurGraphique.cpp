@@ -107,6 +107,7 @@ void MoteurGraphique::CalculerLumiereParticules(LumiereOmbrage tableauDesLampes[
 
 void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera)
 {
+
     sf::Sprite sprite;
 
     for(int k=0;k<20;k++)
@@ -134,6 +135,7 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera)
         {
             if(m_blur>0)
             {
+                EffectBlur.SetTexture("framebuffer", NULL);
                 EffectBlur.SetParameter("offset",m_blur);
                 ecran->Draw(EffectBlur);
                 ecran->Draw(EffectBlur);
@@ -142,16 +144,20 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera)
                 ecran->Draw(EffectBlur);
             }
             if(configuration.effetMort>0)
+            {
+                EffectMort.SetTexture("framebuffer", NULL);
                 ecran->Draw(EffectMort);
+            }
         }
     }
 
+    EffectNoir.SetTexture("framebuffer", NULL);
     EffectNoir.SetParameter("color", configuration.effetNoir, configuration.effetNoir, configuration.effetNoir);
-
     ecran->Draw(EffectNoir);
 
     if(configuration.contrastes>1&&sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
     {
+        EffectContrastes.SetTexture("framebuffer", NULL);
         ecran->Draw(EffectContrastes);
         EffectContrastes.SetParameter("color", configuration.contrastes, configuration.contrastes, configuration.contrastes);
     }

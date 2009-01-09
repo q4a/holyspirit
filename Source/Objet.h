@@ -47,6 +47,8 @@ class Objet
 
     std::vector <benediction> m_benedictions;
 
+    sf::Color m_color;
+
     private:
     sf::String AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, char *chaine);
 
@@ -55,6 +57,8 @@ class Objet
     int m_rarete,m_image,m_chanceTrouver;
     coordonnee m_positionImage,m_taille,m_position;
     int ai,aa,dii,dia,dai,daa;
+
+
 };
 
 #endif

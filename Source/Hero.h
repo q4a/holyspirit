@@ -30,13 +30,16 @@ class Hero
 
 	void placerCamera(sf::View *camera,coordonnee dimensionsMap);
 
-	void testMontreVise(Monstre *monstre,int hauteurMap);
+	void testMonstreVise(Monstre *monstre,int hauteurMap);
 
 	void augmenterAme(float temps);
 	void recalculerCaracteristiques();
 
 	void infligerDegats(float degats);
 	void regenererVie(float vie);
+	void regenererFoi(float foi);
+
+	int utiliserClicDroit(coordonnee positionSouris, int monstreVise);
 
 	bool ajouterObjet(Objet objet);
 
@@ -55,6 +58,8 @@ class Hero
 	Modele_Personnage m_modelePersonnage;
 
     Caracteristique m_caracteristiques;
+
+    int miracleEnCours,frappeEnCours;
 
 	private:
 	coordonneeDecimal m_positionAffichage;

@@ -305,6 +305,9 @@ int Personnage::pathfinding(bool** map,coordonnee exception)
             exception.x=exception.x-decalage.x;
             exception.y=exception.y-decalage.y;
 
+            if(exception.x>=0&&exception.x<20&&exception.y>=0&&exception.y<20)
+                map[exception.y][exception.x]=1;
+
             casesVisitee.setTailleListe(0);
 
             casesVisitee.ajouterCase(depart);
@@ -312,7 +315,7 @@ int Personnage::pathfinding(bool** map,coordonnee exception)
             if(arrivee.y>=0&&arrivee.x>=0&&arrivee.y<20&&arrivee.x<20)
                 if(map[arrivee.y][arrivee.x])
                 {
-                    coordonnee temp={-10,-10,-1,-1},enCours;
+                    coordonnee temp={-100,-100,-1,-1},enCours;
 
                     enCours.y=arrivee.y-1;
                     enCours.x=arrivee.x-1;
@@ -366,7 +369,7 @@ int Personnage::pathfinding(bool** map,coordonnee exception)
                             if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                                 temp.y=enCours.y,temp.x=enCours.x;
 
-                    if(temp.y!=-10&&temp.x!=-10)
+                    if(temp.y!=-100&&temp.x!=-100)
                         arrivee=temp;
                     else
                     {
@@ -381,7 +384,7 @@ int Personnage::pathfinding(bool** map,coordonnee exception)
             while(!casesVisitee.testerCasesEnCours(arrivee)&&!m_erreurPathfinding)
             {
                 casesVisitee.incrementerDistanceEnCours();
-                casesVisitee.ajouterCasesAdjacentes(map,&arrivee,depart,exception);
+                casesVisitee.ajouterCasesAdjacentes(map,&arrivee,depart);
                 if(casesVisitee.getDistance()>10)
                     m_erreurPathfinding=true;
             }
@@ -475,8 +478,8 @@ bool Personnage::seDeplacer(float tempsEcoule)
              ||(m_positionCase.y>m_cheminFinal.y&&m_positionPixel.y<=m_cheminFinal.y*COTE_TILE)
               ||m_positionCase.y==m_cheminFinal.y)
                 {
-                   // m_positionPixel.x=(m_cheminFinal.x*COTE_TILE);
-                   // m_positionPixel.y=(m_cheminFinal.y*COTE_TILE);
+                    m_positionPixel.x=(m_cheminFinal.x*COTE_TILE);
+                    m_positionPixel.y=(m_cheminFinal.y*COTE_TILE);
 
                     m_positionCase.y=m_cheminFinal.y;
                     m_positionCase.x=m_cheminFinal.x;
@@ -488,7 +491,7 @@ bool Personnage::seDeplacer(float tempsEcoule)
         }
         else if(m_arrivee.x!=m_positionCase.x||m_arrivee.y!=m_positionCase.y)
         return 1;
-        else if(m_etat!=2||m_etat==2&&m_poseEnCours==0)
+        else if((m_etat!=2||m_etat==2&&m_poseEnCours==0)&&!frappeEnCours)
         {
             if(m_etat!=0)
                 m_poseEnCours=0;
@@ -553,6 +556,7 @@ void Personnage::frappe(coordonnee direction,coordonnee position)
     if(m_etat!=2)
         if(m_positionCase.x==m_cheminFinal.x&&m_positionCase.y==m_cheminFinal.y)
         {
+            frappeEnCours=1;
             m_etat=2;
             m_poseEnCours=0;
         }
@@ -627,13 +631,28 @@ void Personnage::setCoordonneePixel(coordonnee position)
     m_positionPixel.y=position.y*COTE_TILE;
 }
 
+void Personnage::PousserCase(coordonnee vecteur)
+{
+    m_positionCase.x+=vecteur.x;
+    m_positionCase.y+=vecteur.y;
+
+    m_positionPixel.x=(int)(m_positionCase.x*sqrt(64*64+32*32));
+    m_positionPixel.y=(int)(m_positionCase.y*sqrt(64*64+32*32));
+
+    m_arrivee.x=m_positionCase.x;
+	m_arrivee.y=m_positionCase.y;
+
+	m_cheminFinal.x=m_positionCase.x;
+	m_cheminFinal.y=m_positionCase.y;
+}
+
 void Personnage::Pousser(coordonnee vecteur)
 {
     m_positionPixel.x+=vecteur.x;
     m_positionPixel.y+=vecteur.y;
 
-    m_positionCase.x=(int)(m_positionPixel.x/COTE_TILE);
-    m_positionCase.y=(int)(m_positionPixel.y/COTE_TILE);
+    m_positionCase.x=(int)(m_positionPixel.x/sqrt(64*64+32*32));
+    m_positionCase.y=(int)(m_positionPixel.y/sqrt(64*64+32*32));
 
     m_arrivee.x=m_positionCase.x;
 	m_arrivee.y=m_positionCase.y;

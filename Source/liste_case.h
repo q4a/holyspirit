@@ -19,7 +19,7 @@ class liste_case
 	void setTailleListe(int taille);
 	int getTailleListe();
 
-	bool ajouterCasesAdjacentes(bool ** grille,coordonnee *arrivee,coordonnee depart,coordonnee exception);
+	bool ajouterCasesAdjacentes(bool ** grille,coordonnee *arrivee,coordonnee depart);
 	bool testerCasesEnCours(coordonnee caseCherchee);
 	void incrementerDistanceEnCours();
 	void decrementerDistanceEnCours();

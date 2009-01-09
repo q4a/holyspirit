@@ -62,6 +62,7 @@ class Personnage
 	int animer(Modele_Personnage *modele,int hauteur_map,float temps,bool *explosif,coordonnee positionHero);
 
 	void Pousser(coordonnee vecteur);
+	void PousserCase(coordonnee vecteur);
 
 	bool seDeplacer(float);
 	void setCoordonnee(coordonnee nouvellesCoordonnees);
@@ -96,6 +97,7 @@ class Personnage
 	Caracteristique getCaracteristique();
 
 	LumiereOmbrage m_lumiere;
+	bool frappeEnCours;
 
 	protected:
 	int m_etat,m_poseEnCours,m_angle;
@@ -105,6 +107,7 @@ class Personnage
 	coordonnee m_cheminFinal,m_arrivee,m_ancienneArrivee,m_mauvaiseArrivee, m_positionCase,m_positionAffichage,m_positionPixelPrecedente;
 	coordonneeDecimal m_positionPixel;
 	Lumiere m_porteeLumineuse;
+
 
 	//std::vector <int>  m_sons;
 };

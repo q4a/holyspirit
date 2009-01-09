@@ -64,6 +64,10 @@ void Objet::Sauvegarder(std::ofstream *fichier)
     *fichier<<"da"<<m_degatsMax<<" ";
     *fichier<<"a"<<m_armure<<" ";
 
+    *fichier<<"lr"<<m_color.r<<" ";
+    *fichier<<"lg"<<m_color.g<<" ";
+    *fichier<<"lb"<<m_color.b<<" ";
+
     *fichier<<"m"<<m_chemin<<" ";
 
     for(int i=0;i<m_benedictions.size();i++)
@@ -256,6 +260,11 @@ void Objet::Generer()
 
     if(m_rarete==0)
     {
+        m_color.r=255;
+        m_color.g=255;
+        m_color.b=255;
+        m_color.a=255;
+
          int nbrBene=0;
         int random=rand()%10000;
         if(random<=3000)
@@ -265,6 +274,10 @@ void Objet::Generer()
             m_degatsMin*=1;
             m_degatsMax*=1;
             nbrBene=1;
+
+            m_color.r=255-rand()%64;
+            m_color.g=255-rand()%64;
+            m_color.b=255-rand()%64;
         }
         if(random<=300)
         {
@@ -273,6 +286,10 @@ void Objet::Generer()
             m_degatsMin*=1;
             m_degatsMax*=1;
             nbrBene=rand()%(5-2)+2;
+
+            m_color.r=255-rand()%128;
+            m_color.g=255-rand()%128;
+            m_color.b=255-rand()%128;
         }
         if(random<=50)
         {
@@ -281,6 +298,10 @@ void Objet::Generer()
             m_degatsMin*=1;
             m_degatsMax*=1;
             nbrBene=rand()%(10-5)+5;
+
+            m_color.r=255-rand()%192;
+            m_color.g=255-rand()%192;
+            m_color.b=255-rand()%192;
         }
         if(random<20)
         {
@@ -289,6 +310,10 @@ void Objet::Generer()
             m_degatsMin*=1;
             m_degatsMax*=1;
             nbrBene=rand()%(15-10)+10;
+
+            m_color.r=255-rand()%255;
+            m_color.g=255-rand()%255;
+            m_color.b=255-rand()%255;
         }
         if(random<3)
         {
@@ -297,6 +322,10 @@ void Objet::Generer()
             m_degatsMin*=1;
             m_degatsMax*=1;
             nbrBene=rand()%(30-15)+15;
+
+            m_color.r=255-rand()%255;
+            m_color.g=255-rand()%255;
+            m_color.b=255-rand()%255;
         }
         if(random==1)
         {
@@ -305,6 +334,10 @@ void Objet::Generer()
             m_degatsMin*=1;
             m_degatsMax*=1;
             nbrBene=rand()%(50-30)+30;
+
+            m_color.r=255-rand()%255;
+            m_color.g=255-rand()%255;
+            m_color.b=255-rand()%255;
         }
 
         for(int i=0;i<nbrBene;i++)

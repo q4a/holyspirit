@@ -99,7 +99,7 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
         Sprite sprite;
         sprite.SetImage(*moteurGraphique.getImage(m_imageBulleVie));
         sprite.Resize(96*configuration.Resolution.w/800, 66*configuration.Resolution.h/600);
-        sprite.SetSubRect(sf::IntRect(0, (int)(66-caracteristique.vie*66/caracteristique.maxVie), 96, 66));
+        sprite.SetSubRect(sf::IntRect(0, (int)(66-caracteristique.vie*66/caracteristique.maxVie), 88, 66));
         sprite.SetX(116*configuration.Resolution.w/800);
         sprite.SetY((int)(configuration.Resolution.h-(128-12)*configuration.Resolution.h/600+(caracteristique.maxVie-caracteristique.vie)/caracteristique.maxVie*66*configuration.Resolution.h/600));
 
@@ -111,14 +111,14 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
         Sprite sprite;
         sprite.SetImage(*moteurGraphique.getImage(m_imageBulleFoi));
         sprite.Resize(96*configuration.Resolution.w/800, 66*configuration.Resolution.h/600);
-        sprite.SetSubRect(sf::IntRect(0, (int)(66-caracteristique.foi*66/caracteristique.maxFoi), 96, 66));
+        sprite.SetSubRect(sf::IntRect(0, (int)(66-caracteristique.foi*66/caracteristique.maxFoi), 88, 66));
         sprite.SetX(588*configuration.Resolution.w/800);
-        sprite.SetY(configuration.Resolution.h-(128-12)*configuration.Resolution.h/600+(caracteristique.maxFoi-caracteristique.foi)/caracteristique.maxFoi*66*configuration.Resolution.h/600);
+        sprite.SetY((int)(configuration.Resolution.h-(128-12)*configuration.Resolution.h/600+(caracteristique.maxFoi-caracteristique.foi)/caracteristique.maxFoi*66*configuration.Resolution.h/600));
 
         moteurGraphique.AjouterCommande(&sprite,17,0);
     }
 
-    if(caracteristique.pointAme>0)
+    if(caracteristique.ancienPointAme>0)
     {
         Sprite sprite;
 
@@ -128,7 +128,8 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
 
         //(int)((float)((float)((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10)-caracteristique.ancienPointAme)/(float)(((caracteristique.niveau)*(caracteristique.niveau)*(caracteristique.niveau)*10)-(float)((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10))*90)
 
-        int temp= (int) ( (caracteristique.ancienPointAme-((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10)) * 88 / ((caracteristique.niveau)*(caracteristique.niveau)*(caracteristique.niveau)*10) - ((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10));
+        int temp= (int) ( (caracteristique.ancienPointAme-((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10)) * 88 / (((caracteristique.niveau)*(caracteristique.niveau)*(caracteristique.niveau)*10) - ((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10)));
+
         sprite.SetSubRect(sf::IntRect(0,88-temp, 90, 88));
 
         sprite.SetX(configuration.Resolution.w/2-46*configuration.Resolution.w/800);

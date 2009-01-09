@@ -75,6 +75,8 @@ Hero::Hero()
     m_objetEnMain=-1;
 
     recalculerCaracteristiques();
+
+    miracleEnCours=0;
 }
 
 void Hero::Sauvegarder()
@@ -200,6 +202,7 @@ void Hero::Charger()
                             position.x=0;
                             position.y=0;
                             std::vector <benediction> bene;
+                            sf::Color color;
 
                             do
                             {
@@ -226,6 +229,17 @@ void Hero::Charger()
 
                                 else if(caractere=='a')
                                     fichier>>armure;
+
+                                else  if(caractere=='l')
+                                {
+                                    fichier.get(caractere);
+                                    if(caractere=='r')
+                                        fichier>>color.r;
+                                    if(caractere=='g')
+                                        fichier>>color.g;
+                                    if(caractere=='b')
+                                        fichier>>color.b;
+                                }
 
                                 else if(caractere=='m')
                                 {
@@ -273,6 +287,9 @@ void Hero::Charger()
                                 m_inventaire[m_inventaire.size()-1].m_armure=armure;
                                 m_inventaire[m_inventaire.size()-1].m_degatsMin=degMin;
                                 m_inventaire[m_inventaire.size()-1].m_degatsMax=degMax;
+
+                                m_inventaire[m_inventaire.size()-1].m_color=color;
+
 
                                 m_inventaire[m_inventaire.size()-1].m_benedictions=bene;
                             }
@@ -459,7 +476,7 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
 
             sprite.Move(-2*configuration.Resolution.w/800,-2*configuration.Resolution.h/600);
 
-            sprite.SetColor(sf::Color(255,255,255,255));
+            sprite.SetColor(m_inventaire[i].m_color);
 
             sprite.SetImage(*moteurGraphique.getImage(m_inventaire[i].getImage()));
             sprite.SetSubRect(IntRect(m_inventaire[i].getPositionImage().x, m_inventaire[i].getPositionImage().y, m_inventaire[i].getPositionImage().x+m_inventaire[i].getPositionImage().w, m_inventaire[i].getPositionImage().y+m_inventaire[i].getPositionImage().h));
@@ -558,7 +575,7 @@ void Hero::placerCamera(sf::View *camera,coordonnee dimensionsMap)
 	camera->SetFromRect(sf::FloatRect(positionCamera.x,positionCamera.y,positionCamera.x+configuration.Resolution.w,positionCamera.y+configuration.Resolution.h));
 }
 
-void Hero::testMontreVise(Monstre *monstre,int hauteurMap)
+void Hero::testMonstreVise(Monstre *monstre,int hauteurMap)
 {
     if(m_monstreVise>-1&&m_caracteristiques.vie>0)
     {
@@ -586,7 +603,7 @@ void Hero::augmenterAme(float temps)
     if(temp.ancienPointAme>=temp.pointAme)
         temp.ancienPointAme=temp.pointAme,temp.positionAncienAme=temp.ancienPointAme;
 
-    if(temp.pointAme>=CALCUL_PA_PROCHAIN_NIVEAU)
+    if(temp.ancienPointAme>=CALCUL_PA_PROCHAIN_NIVEAU)
     {
         temp.niveau++;
         temp.force++;
@@ -616,7 +633,7 @@ void Hero::augmenterAme(float temps)
 
 void Hero::recalculerCaracteristiques()
 {
-    int vie=(int)m_caracteristiques.vie,foi=(int)m_caracteristiques.foi;
+    float vie=m_caracteristiques.vie,foi=m_caracteristiques.foi;
 
     Caracteristique temp=m_personnage.getCaracteristique();
     temp.maxVie=temp.vitalite*25;
@@ -690,9 +707,37 @@ void Hero::recalculerCaracteristiques()
     temp.degatsMax=m_caracteristiques.degatsMax;
     temp.armure=m_caracteristiques.armure;
 
+    m_caracteristiques.niveau=temp.niveau;
+
     m_personnage.setCaracteristique(temp);
 
     m_caracteristiques.vie=vie,m_caracteristiques.foi=foi;
+}
+
+int Hero::utiliserClicDroit(coordonnee positionSouris, int monstreVise)
+{
+    if(!m_personnage.frappeEnCours)
+        if(m_caracteristiques.foi-(m_caracteristiques.degatsMin+m_caracteristiques.degatsMax)*1.5>0)
+        {
+            coordonnee temp;
+            temp.x=configuration.Resolution.x/2;
+            temp.y=configuration.Resolution.y/2;
+
+            m_monstreVise=-1;
+
+            if(m_monstreVise==-1)
+                m_personnage.frappe(positionSouris,temp);
+
+            m_personnage.setArrivee(m_personnage.getCoordonnee());
+
+            miracleEnCours=1;
+           // m_personnage.frappeEnCours=1;
+
+            m_caracteristiques.foi-=(m_caracteristiques.degatsMin+m_caracteristiques.degatsMax)*1.5;
+
+            return 1;
+        }
+    return 0;
 }
 
 bool Hero::ajouterObjet(Objet objet)
@@ -909,6 +954,16 @@ void Hero::regenererVie(float vie)
 
     Caracteristique temp=m_personnage.getCaracteristique();
     temp.vie=m_caracteristiques.vie;
+    m_personnage.setCaracteristique(temp);
+}
+void Hero::regenererFoi(float foi)
+{
+    m_caracteristiques.foi+=foi;
+    if(m_caracteristiques.foi>m_caracteristiques.maxFoi)
+        m_caracteristiques.foi=m_caracteristiques.maxFoi;
+
+    Caracteristique temp=m_personnage.getCaracteristique();
+    temp.foi=m_caracteristiques.foi;
     m_personnage.setCaracteristique(temp);
 }
 

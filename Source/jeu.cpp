@@ -46,6 +46,7 @@ void Jeu::Demarrer()
 		this->m_contexte->Utiliser(this);
 		if(this->m_display)
 		{
+		    ecran.Clear();
 		    moteurSons.Vider();
 		    moteurGraphique.Afficher(&this->ecran,&this->camera);
             this->ecran.Display();

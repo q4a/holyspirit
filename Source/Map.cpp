@@ -2372,20 +2372,24 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                         int degats = m_monstre[m_decor[i][j][k].getMonstre()].animer(&m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()],m_decor[0].size(),temps,&explosif,positionHero);
                         if(explosif&&degats>0)
                         {
+                            coordonnee temp={k,j,-1,-1};
+
                             verifierDeclencheursDegats(j,k);
 
-                            for(int couche=0;couche<2;couche++)
+                            infligerDegatsMasse(temp,1,degats,1,hero,menu,camera);
+
+                            /*for(int couche=0;couche<2;couche++)
                                 for(int y=j-1;y<=j+1;y++)
                                     for(int x=k-1;x<=k+1;x++)
                                         if(y>0&&x>0&&y<m_decor[0].size()&&x<m_decor[0][0].size())
                                         {
-                                            infligerDegats(m_decor[couche][y][x].getMonstre(), degats,menu,camera,hero);
+                                            infligerDegats(m_decor[couche][y][x].getMonstre(), degats,menu,camera,hero,0);
 
                                             if(y==hero->m_personnage.getCoordonnee().y&&x==hero->m_personnage.getCoordonnee().x)
                                                 hero->infligerDegats(degats);
 
 
-                                        }
+                                        }*/
                         }
                         else
                         hero->infligerDegats(degats);
@@ -2410,6 +2414,52 @@ void Map::gererEvenements(int evenement,int z,int couche,int x,int y)
             verifierDeclencheursDegats(y,x);
         }
     }
+}
+
+void Map::infligerDegatsMasse(coordonnee position,int rayon,int degats,bool sourceConcernee, Hero *hero,Menu *menu,sf::View *camera)
+{
+    for(int couche=0;couche<2;couche++)
+        for(int y=position.y-rayon;y<=position.y+rayon;y++)
+            for(int x=position.x-rayon;x<=position.x+rayon;x++)
+                if(y>0&&x>0&&y<m_decor[0].size()&&x<m_decor[0][0].size())
+                    if(sourceConcernee||!sourceConcernee&&!(y==position.y&&x==position.x))
+                    {
+                        infligerDegats(m_decor[couche][y][x].getMonstre(), degats,menu,camera,hero,0);
+
+                        if(m_monstre[m_decor[couche][y][x].getMonstre()].enVie())
+                        {
+                            /*double m=atan(((double)hero->m_personnage.getCoordonnee().y-(double)m_monstre[m_decor[couche][y][x].getMonstre()].getCoordonnee().y)/(double)((double)hero->m_personnage.getCoordonnee().x-(double)m_monstre[m_decor[couche][y][x].getMonstre()].getCoordonnee().x));
+                            if(hero->m_personnage.getCoordonnee().x-m_monstre[m_decor[couche][y][x].getMonstre()].getCoordonnee().x<0)
+                                m-=M_PI;
+
+                            int n=(int)(m*8/(2*M_PI));
+                            m=n*(2*M_PI)/8;
+                            console.Ajouter(n);*/
+
+
+
+                            coordonnee vecteur;
+
+                            if(hero->m_personnage.getCoordonnee().x-m_monstre[m_decor[couche][y][x].getMonstre()].getCoordonnee().x<0)
+                                vecteur.x=1;
+                            else if(hero->m_personnage.getCoordonnee().x-m_monstre[m_decor[couche][y][x].getMonstre()].getCoordonnee().x>0)
+                                vecteur.x=-1;
+                            else
+                                vecteur.x=0;
+
+                            if(hero->m_personnage.getCoordonnee().y-m_monstre[m_decor[couche][y][x].getMonstre()].getCoordonnee().y<0)
+                                vecteur.y=1;
+                            else if(hero->m_personnage.getCoordonnee().y-m_monstre[m_decor[couche][y][x].getMonstre()].getCoordonnee().y>0)
+                                vecteur.y=-1;
+                            else
+                                vecteur.y=0;
+
+                            PousserMonstreCase(m_decor[couche][y][x].getMonstre(),vecteur);
+                        }
+
+                        if(y==hero->m_personnage.getCoordonnee().y&&x==hero->m_personnage.getCoordonnee().x)
+                            hero->infligerDegats(degats);
+                    }
 }
 
 void Map::verifierDeclencheursDegats(int i, int j)
@@ -2468,7 +2518,7 @@ void Map::musiquePlay(coordonnee position)
                                     {   \
                                         if(m_monstre[m_decor[i][j][k].getMonstre()].seDeplacer(temps*100))   \
                                         {   \
-                                            coordonnee tempCoord={-1,-1,-1,-1};   \
+                                            coordonnee tempCoord={hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1};   \
                                             m_monstre[m_decor[i][j][k].getMonstre()].pathfinding(getAlentourDuPersonnage(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()),tempCoord);   \
                                             if(!(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y==j&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x==k))   \
                                                 if(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x<m_decor[0][0].size()&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y<m_decor[0].size())   \
@@ -2484,18 +2534,17 @@ void Map::musiquePlay(coordonnee position)
                                 {   \
                                     if(m_monstre[m_decor[i][j][k].getMonstre()].enVie())   \
                                     {   \
-                                        if(fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)>1||fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)>1)   \
+                                    \
+                                        coordonnee arrivee,enCours;   \
+                                        \
+                                        if(m_monstre[m_decor[i][j][k].getMonstre()].seDeplacer(temps*100))   \
                                         {   \
-                                                coordonnee arrivee,enCours;   \
-                                                if(m_monstre[m_decor[i][j][k].getMonstre()].getArrivee().x==m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x&&m_monstre[m_decor[i][j][k].getMonstre()].getArrivee().y==m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y)   \
-                                                {   \
-                                                    arrivee=hero->m_personnage.getProchaineCase();   \
-                                                    m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(arrivee);   \
-                                                }   \
-                                                if(m_monstre[m_decor[i][j][k].getMonstre()].seDeplacer(temps*100))   \
-                                                {   \
-                                                    coordonnee tempCoord={-1,-1,-1,-1};   \
-                                                    m_monstre[m_decor[i][j][k].getMonstre()].pathfinding(getAlentourDuPersonnage(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()),tempCoord);   \
+                                            arrivee=hero->m_personnage.getProchaineCase();   \
+                                            m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(arrivee);   \
+                                            \
+                                            coordonnee tempCoord={hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1};   \
+                                            m_monstre[m_decor[i][j][k].getMonstre()].pathfinding(getAlentourDuPersonnage(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()),tempCoord);   \
+                                                   \
                                                     if(m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding())   \
                                                     {   \
                                                         coordonnee arrivee;   \
@@ -2524,8 +2573,18 @@ void Map::musiquePlay(coordonnee position)
                                                         m_decor[i][j][k].setMonstre(-1);   \
                                                     }   \
                                                 }   \
+                                        \
+                                        if(fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)>1||fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)>1)   \
+                                        {   \
+                                                \
+                                                if(m_monstre[m_decor[i][j][k].getMonstre()].getArrivee().x==m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x&&m_monstre[m_decor[i][j][k].getMonstre()].getArrivee().y==m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y)   \
+                                                {   \
+                                                    arrivee=hero->m_personnage.getProchaineCase();   \
+                                                    m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(arrivee);   \
+                                                }   \
+                                                \
                                         }   \
-                                        else   \
+                                        else \
                                         {   \
                                             if(hero->m_personnage.enVie()<=0)   \
                                                 m_monstre[m_decor[i][j][k].getMonstre()].setVu(0);   \
@@ -2640,12 +2699,12 @@ void Map::gererMonstres(Hero *hero,float temps,sf::View *camera,Menu *menu)
                                 if(m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]].getType()==INFLIGER_DEGATS)
                                 {
                                     //m_monstre[m_decor[i][j][k].getMonstre()].infligerDegats(m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()].getInformation(0)*temps*10);
-                                    infligerDegats(m_decor[i][j][k].getMonstre(),m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]].getInformation(0)*temps*10,menu,camera,hero);
+                                    infligerDegats(m_decor[i][j][k].getMonstre(),m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]].getInformation(0)*temps*10,menu,camera,hero,0);
                                 }
                     }
 }
 
-bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *camera, Hero *hero)
+bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *camera, Hero *hero,bool pousser)
 {
     if(numeroMonstre>=0&&numeroMonstre<m_monstre.size())
     {
@@ -2662,7 +2721,7 @@ bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *ca
 
         float viePrecedente=m_monstre[numeroMonstre].getCaracteristique().vie;
 
-        if(m_monstre[numeroMonstre].enVie())
+        if(m_monstre[numeroMonstre].enVie()&&pousser)
         {
             double m=atan(((double)hero->m_personnage.getCoordonnee().y-(double)m_monstre[numeroMonstre].getCoordonnee().y)/(double)((double)hero->m_personnage.getCoordonnee().x-(double)m_monstre[numeroMonstre].getCoordonnee().x));
             if(hero->m_personnage.getCoordonnee().x-m_monstre[numeroMonstre].getCoordonnee().x<0)
@@ -2751,6 +2810,17 @@ void Map::PousserMonstre(int numeroMonstre, coordonnee vecteur)
         if(1!=getTypeCase((int)((m_monstre[numeroMonstre].getCoordonneePixel().x+(float)vecteur.x)/COTE_TILE),(int)((m_monstre[numeroMonstre].getCoordonneePixel().y+(float)vecteur.y)/COTE_TILE)))
         {
             m_monstre[numeroMonstre].Pousser(vecteur);
+        }
+    }
+}
+
+void Map::PousserMonstreCase(int numeroMonstre, coordonnee vecteur)
+{
+    if(numeroMonstre>=0&&numeroMonstre<m_monstre.size())
+    {
+        if(1!=getTypeCase((int)((m_monstre[numeroMonstre].getCoordonnee().x+vecteur.x)),(int)((m_monstre[numeroMonstre].getCoordonnee().y+vecteur.y))))
+        {
+            m_monstre[numeroMonstre].PousserCase(vecteur);
         }
     }
 }
