@@ -19,7 +19,7 @@ $
 	Vie/DegatsMin/DegatsMax/Vitesse
 	*v5 di0 da0 m0 o1 a0 n0 $
 $
-	*Data/Scripts/AI/inert.script.hs
+	*Data/Scripts/AI/breakable.script.hs
 $
 	*
 		*Data/Items/Small_axe.item.hs

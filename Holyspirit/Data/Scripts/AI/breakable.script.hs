@@ -1,0 +1,3 @@
+main
+	fight
+end
