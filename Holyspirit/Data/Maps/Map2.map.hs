@@ -45,7 +45,7 @@ Liste des tilesets de l'herbe
 *Data/Landscapes/Grass/Grass1.ts.hs
 $
 Liste des tilesets des monstres
-*Data/Entities/Monsters/PantinMorbide/PantinMorbide.char.hs
+*Data/Entities/Monsters/PantinMorbide/Axe/PantinMorbide.char.hs
 *Data/Entities/Monsters/ErrantRoche/ErrantRoche.char.hs
 $
 Liste des événements

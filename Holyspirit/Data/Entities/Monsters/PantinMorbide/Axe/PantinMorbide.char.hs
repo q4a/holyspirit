@@ -1,12 +1,12 @@
 Liste des chemins de toutes les images du personnage
-*Data/Entities/Monsters/PantinMorbide/PanMorHache-Arret.png
-*Data/Entities/Monsters/PantinMorbide/PantMorbCourse1.png
-*Data/Entities/Monsters/PantinMorbide/PantMorbCourse2.png
-*Data/Entities/Monsters/PantinMorbide/PantMorbFrappe1.png
-*Data/Entities/Monsters/PantinMorbide/PantMorbFrappe2.png
-*Data/Entities/Monsters/PantinMorbide/PantMorbFrappe3.png
-*Data/Entities/Monsters/PantinMorbide/PantMorbFrappe4.png
-*Data/Entities/Monsters/PantinMorbide/PantMorbMort.png
+*Data/Entities/Monsters/PantinMorbide/Axe/PanMorHache-Arret.png
+*Data/Entities/Monsters/PantinMorbide/Axe/PantMorbCourse1.png
+*Data/Entities/Monsters/PantinMorbide/Axe/PantMorbCourse2.png
+*Data/Entities/Monsters/PantinMorbide/Axe/PantMorbFrappe1.png
+*Data/Entities/Monsters/PantinMorbide/Axe/PantMorbFrappe2.png
+*Data/Entities/Monsters/PantinMorbide/Axe/PantMorbFrappe3.png
+*Data/Entities/Monsters/PantinMorbide/Axe/PantMorbFrappe4.png
+*Data/Entities/Monsters/PantinMorbide/Axe/PantMorbMort.png
 
 $
 Liste des chemins de tous les sons

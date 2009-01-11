@@ -1,12 +1,15 @@
 Liste des chemins de toutes les images du personnage
-*Data/Entities/Monsters/PantinMorbide/PanMorHache-Arret.png
-*Data/Entities/Monsters/PantinMorbide/PantMorbCourse1.png
-*Data/Entities/Monsters/PantinMorbide/PantMorbCourse2.png
-*Data/Entities/Monsters/PantinMorbide/PantMorbFrappe1.png
-*Data/Entities/Monsters/PantinMorbide/PantMorbFrappe2.png
-*Data/Entities/Monsters/PantinMorbide/PantMorbFrappe3.png
-*Data/Entities/Monsters/PantinMorbide/PantMorbFrappe4.png
-*Data/Entities/Monsters/PantinMorbide/PantMorbMort.png
+*Data/Entities/Monsters/PantinMorbide/Sword/PanMorHache-Arret.png
+*Data/Entities/Monsters/PantinMorbide/Sword/PantMorbCourse1.png
+*Data/Entities/Monsters/PantinMorbide/Sword/PantMorbCourse2.png
+*Data/Entities/Monsters/PantinMorbide/Sword/PantMorbFrappe1.png
+*Data/Entities/Monsters/PantinMorbide/Sword/PantMorbFrappe2.png
+*Data/Entities/Monsters/PantinMorbide/Sword/PantMorbFrappe3.png
+*Data/Entities/Monsters/PantinMorbide/Sword/PantMorbFrappe4.png
+*Data/Entities/Monsters/PantinMorbide/Sword/PantMorbFrappe5.png
+*Data/Entities/Monsters/PantinMorbide/Sword/PantMorbFrappe6.png
+*Data/Entities/Monsters/PantinMorbide/Sword/PantMorbFrappe7.png
+*Data/Entities/Monsters/PantinMorbide/Sword/PantMorbFrappe8.png
 
 $
 Liste des chemins de tous les sons
@@ -15,23 +18,23 @@ Liste des chemins de tous les sons
 *Data/Sounds/35213__Abyssmal__slashkut.wav
 $
 Portee lumineuse
-* r192 v0 b0 i512 $
+* r255 v255 b255 i0 $
 $
-* Servant de Arch'n'loud
+* Pantin Morbide
 $
 Rang du monstre
-* 1
+* 0
 $
 Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse
-*v25 di3 da5 m0.35 o1 a1 n1 $
+*v15 di1 da2 m0.35 o1 a1 n1 $
 $
 *Data/Scripts/AI/standard.script.hs
 $
 Objets du monstre
 
 *
-*Data/Items/Small_axe.item.hs
+*Data/Items/Small_sword.item.hs
 r100
 $
 
@@ -583,84 +586,148 @@ Course - SE
 *x896 y896 w128 h128 a0 s-1 i2  $
 $
 Frappe - E
-*x0 y0 w256 h256 a1 s-1 i3 $
-*x256 y0 w256 h256 a2 s-1 i3 $
-*x521 y0 w256 h256 a3 s-1 i3 $
-*x768 y0 w256 h256 a4 s-1 i3 $
-*x0 y256 w256 h256 a5 s2 i3 $
-*x256 y256 w256 h256 a6 s-1 i3 $
-*x512 y256 w256 h256 a7 s-1 i3 d0 $
-*x768 y256 w256 h256 a0 s-1 i3 $
+*x0 y0 w256 h256 a1 s-1 i3 cy238 t0.035 $
+*x256 y0 w256 h256 a2 s-1 i3 cy238 t0.035 $
+*x521 y0 w256 h256 a3 s-1 i3 cy238 t0.035 $
+*x768 y0 w256 h256 a4 s-1 i3 cy238 t0.035 $
+*x0 y256 w256 h256 a5 s-1 i3 cy238 t0.035 $
+*x256 y256 w256 h256 a6 s-1 i3 cy238 t0.035 $
+*x512 y256 w256 h256 a7 s-1 i3 cy238 t0.035 $
+*x768 y256 w256 h256 a8 s-1 i3 cy238 t0.035 $
+*x0 y512 w256 h256 a9 s-1 i3 cy238 t0.035 $
+*x256 y512 w256 h256 a10 s-1 i3 cy238 t0.035 $
+*x521 y512 w256 h256 a11 s2 i3 d0 cy238 t0.035 $
+*x768 y512 w256 h256 a12 s-1 i3 cy238 t0.035 $
+*x0 y768 w256 h256 a13 s-1 i3 cy238 t0.035 $
+*x256 y768 w256 h256 a14 s-1 i3 cy238 t0.035 $
+*x512 y768 w256 h256 a15 s-1 i3 cy238 t0.035 $
+*x768 y768 w256 h256 a0 s-1 i3 cy238 t0.035 $
 $
 Frappe - NE
-*x0 y512 w256 h256 a1 s-1 i3 $
-*x256 y512 w256 h256 a2 s-1 i3 $
-*x521 y521 w256 h256 a3 s-1 i3 $
-*x768 y512 w256 h256 a4 s-1 i3 $
-*x0 y768 w256 h256 a5 s2 i3 $
-*x256 y768 w256 h256 a6 s-1 i3 $
-*x512 y768 w256 h256 a7 s-1 i3 d0 $
-*x768 y768 w256 h256 a0 s-1 i3 $
+*x0 y0 w256 h256 a1 s-1 i4 cy238 t0.035 $
+*x256 y0 w256 h256 a2 s-1 i4 cy238 t0.035 $
+*x521 y0 w256 h256 a3 s-1 i4 cy238 t0.035 $
+*x768 y0 w256 h256 a4 s-1 i4 cy238 t0.035 $
+*x0 y256 w256 h256 a5 s-1 i4 cy238 t0.035 $
+*x256 y256 w256 h256 a6 s-1 i4 cy238 t0.035 $
+*x512 y256 w256 h256 a7 s-1 i4 cy238 t0.035 $
+*x768 y256 w256 h256 a8 s-1 i4 cy238 t0.035 $
+*x0 y512 w256 h256 a9 s-1 i4 cy238 t0.035 $
+*x256 y512 w256 h256 a10 s-1 i4 cy238 t0.035 $
+*x521 y512 w256 h256 a11 s2 i4 d0 cy238 t0.035 $
+*x768 y512 w256 h256 a12 s-1 i4 cy238 t0.035 $
+*x0 y768 w256 h256 a13 s-1 i4 cy238 t0.035 $
+*x256 y768 w256 h256 a14 s-1 i4 cy238 t0.035 $
+*x512 y768 w256 h256 a15 s-1 i4 cy238 t0.035 $
+*x768 y768 w256 h256 a0 s-1 i4 cy238 t0.035 $
 $
 Frappe - N
-*x0 y0 w256 h256 a1 s-1 i4 $
-*x256 y0 w256 h256 a2 s-1 i4 $
-*x521 y0 w256 h256 a3 s-1 i4 $
-*x768 y0 w256 h256 a4 s-1 i4 $
-*x0 y256 w256 h256 a5 s2 i4 $
-*x256 y256 w256 h256 a6 s-1 i4 $
-*x512 y256 w256 h256 a7 s-1 i4 d0 $
-*x768 y256 w256 h256 a0 s-1 i4 $
+*x0 y0 w256 h256 a1 s-1 i5 cy238 t0.035 $
+*x256 y0 w256 h256 a2 s-1 i5 cy238 t0.035 $
+*x521 y0 w256 h256 a3 s-1 i5 cy238 t0.035 $
+*x768 y0 w256 h256 a4 s-1 i5 cy238 t0.035 $
+*x0 y256 w256 h256 a5 s-1 i5 cy238 t0.035 $
+*x256 y256 w256 h256 a6 s-1 i5 cy238 t0.035 $
+*x512 y256 w256 h256 a7 s-1 i5 cy238 t0.035 $
+*x768 y256 w256 h256 a8 s-1 i5 cy238 t0.035 $
+*x0 y512 w256 h256 a9 s-1 i5 cy238 t0.035 $
+*x256 y512 w256 h256 a10 s-1 i5 cy238 t0.035 $
+*x521 y512 w256 h256 a11 s2 i5 d0 cy238 t0.035 $
+*x768 y512 w256 h256 a12 s-1 i5 cy238 t0.035 $
+*x0 y768 w256 h256 a13 s-1 i5 cy238 t0.035 $
+*x256 y768 w256 h256 a14 s-1 i5 cy238 t0.035 $
+*x512 y768 w256 h256 a15 s-1 i5 cy238 t0.035 $
+*x768 y768 w256 h256 a0 s-1 i5 cy238 t0.035 $
 $
 Frappe - NO
-*x0 y512 w256 h256 a1 s-1 i4 $
-*x256 y512 w256 h256 a2 s-1 i4 $
-*x521 y521 w256 h256 a3 s-1 i4 $
-*x768 y512 w256 h256 a4 s-1 i4 $
-*x0 y768 w256 h256 a5 s2 i4 $
-*x256 y768 w256 h256 a6 s-1 i4 $
-*x512 y768 w256 h256 a7 s-1 i4 d0 $
-*x768 y768 w256 h256 a0 s-1 i4 $
+*x0 y0 w256 h256 a1 s-1 i6 cy238 t0.035 $
+*x256 y0 w256 h256 a2 s-1 i6 cy238 t0.035 $
+*x521 y0 w256 h256 a3 s-1 i6 cy238 t0.035 $
+*x768 y0 w256 h256 a4 s-1 i6 cy238 t0.035 $
+*x0 y256 w256 h256 a5 s-1 i6 cy238 t0.035 $
+*x256 y256 w256 h256 a6 s-1 i6 cy238 t0.035 $
+*x512 y256 w256 h256 a7 s-1 i6 cy238 t0.035 $
+*x768 y256 w256 h256 a8 s-1 i6 cy238 t0.035 $
+*x0 y512 w256 h256 a9 s-1 i6 cy238 t0.035 $
+*x256 y512 w256 h256 a10 s-1 i6 cy238 t0.035 $
+*x521 y512 w256 h256 a11 s2 i6 d0 cy238 t0.035 $
+*x768 y512 w256 h256 a12 s-1 i6 cy238 t0.035 $
+*x0 y768 w256 h256 a13 s-1 i6 cy238 t0.035 $
+*x256 y768 w256 h256 a14 s-1 i6 cy238 t0.035 $
+*x512 y768 w256 h256 a15 s-1 i6 cy238 t0.035 $
+*x768 y768 w256 h256 a0 s-1 i6 cy238 t0.035 $
 $
 Frappe - O
-*x0 y0 w256 h256 a1 s-1 i5 $
-*x256 y0 w256 h256 a2 s-1 i5 $
-*x521 y0 w256 h256 a3 s-1 i5 $
-*x768 y0 w256 h256 a4 s-1 i5 $
-*x0 y256 w256 h256 a5 s2 i5 $
-*x256 y256 w256 h256 a6 s-1 i5 $
-*x512 y256 w256 h256 a7 s-1 i5 d0 $
-*x768 y256 w256 h256 a0 s-1 i5 $
+*x0 y0 w256 h256 a1 s-1 i7 cy238 t0.035 $
+*x256 y0 w256 h256 a2 s-1 i7 cy238 t0.035 $
+*x521 y0 w256 h256 a3 s-1 i7 cy238 t0.035 $
+*x768 y0 w256 h256 a4 s-1 i7 cy238 t0.035 $
+*x0 y256 w256 h256 a5 s-1 i7 cy238 t0.035 $
+*x256 y256 w256 h256 a6 s-1 i7 cy238 t0.035 $
+*x512 y256 w256 h256 a7 s-1 i7 cy238 t0.035 $
+*x768 y256 w256 h256 a8 s-1 i7 cy238 t0.035 $
+*x0 y512 w256 h256 a9 s-1 i7 cy238 t0.035 $
+*x256 y512 w256 h256 a10 s-1 i7 cy238 t0.035 $
+*x521 y512 w256 h256 a11 s2 i7 d0 cy238 t0.035 $
+*x768 y512 w256 h256 a12 s-1 i7 cy238 t0.035 $
+*x0 y768 w256 h256 a13 s-1 i7 cy238 t0.035 $
+*x256 y768 w256 h256 a14 s-1 i7 cy238 t0.035 $
+*x512 y768 w256 h256 a15 s-1 i7 cy238 t0.035 $
+*x768 y768 w256 h256 a0 s-1 i7 cy238 t0.035 $
 $
 Frappe - SO
-*x0 y512 w256 h256 a1 s-1 i5 $
-*x256 y512 w256 h256 a2 s-1 i5 $
-*x521 y521 w256 h256 a3 s-1 i5 $
-*x768 y512 w256 h256 a4 s-1 i5 $
-*x0 y768 w256 h256 a5 s2 i5 $
-*x256 y768 w256 h256 a6 s-1 i5 $
-*x512 y768 w256 h256 a7 s-1 i5 d0 $
-*x768 y768 w256 h256 a0 s-1 i5 $
+*x0 y0 w256 h256 a1 s-1 i8 cy238 t0.035 $
+*x256 y0 w256 h256 a2 s-1 i8 cy238 t0.035 $
+*x521 y0 w256 h256 a3 s-1 i8 cy238 t0.035 $
+*x768 y0 w256 h256 a4 s-1 i8 cy238 t0.035 $
+*x0 y256 w256 h256 a5 s-1 i8 cy238 t0.035 $
+*x256 y256 w256 h256 a6 s-1 i8 cy238 t0.035 $
+*x512 y256 w256 h256 a7 s-1 i8 cy238 t0.035 $
+*x768 y256 w256 h256 a8 s-1 i8 cy238 t0.035 $
+*x0 y512 w256 h256 a9 s-1 i8 cy238 t0.035 $
+*x256 y512 w256 h256 a10 s-1 i8 cy238 t0.035 $
+*x521 y512 w256 h256 a11 s2 i8 d0 cy238 t0.035 $
+*x768 y512 w256 h256 a12 s-1 i8 cy238 t0.035 $
+*x0 y768 w256 h256 a13 s-1 i8 cy238 t0.035 $
+*x256 y768 w256 h256 a14 s-1 i8 cy238 t0.035 $
+*x512 y768 w256 h256 a15 s-1 i8 cy238 t0.035 $
+*x768 y768 w256 h256 a0 s-1 i8 cy238 t0.035 $
 $
 Frappe - S
-*x0 y0 w256 h256 a1 s-1 i6 $
-*x256 y0 w256 h256 a2 s-1 i6 $
-*x521 y0 w256 h256 a3 s-1 i6 $
-*x768 y0 w256 h256 a4 s-1 i6 $
-*x0 y256 w256 h256 a5 s2 i6 $
-*x256 y256 w256 h256 a6 s-1 i6 $
-*x512 y256 w256 h256 a7 s-1 i6 d0 $
-*x768 y256 w256 h256 a0 s-1 i6 $
+*x0 y0 w256 h256 a1 s-1 i9 cy238 t0.035 $
+*x256 y0 w256 h256 a2 s-1 i9 cy238 t0.035 $
+*x521 y0 w256 h256 a3 s-1 i9 cy238 t0.035 $
+*x768 y0 w256 h256 a4 s-1 i9 cy238 t0.035 $
+*x0 y256 w256 h256 a5 s-1 i9 cy238 t0.035 $
+*x256 y256 w256 h256 a6 s-1 i9 cy238 t0.035 $
+*x512 y256 w256 h256 a7 s-1 i9 cy238 t0.035 $
+*x768 y256 w256 h256 a8 s-1 i9 cy238 t0.035 $
+*x0 y512 w256 h256 a9 s-1 i9 cy238 t0.035 $
+*x256 y512 w256 h256 a10 s-1 i9 cy238 t0.035 $
+*x521 y512 w256 h256 a11 s2 i9 d0 cy238 t0.035 $
+*x768 y512 w256 h256 a12 s-1 i9 cy238 t0.035 $
+*x0 y768 w256 h256 a13 s-1 i9 cy238 t0.035 $
+*x256 y768 w256 h256 a14 s-1 i9 cy238 t0.035 $
+*x512 y768 w256 h256 a15 s-1 i9 cy238 t0.035 $
+*x768 y768 w256 h256 a0 s-1 i9 cy238 t0.035 $
 $
 Frappe - SE
-*x0 y512 w256 h256 a1 s-1 i6 $
-*x256 y512 w256 h256 a2 s-1 i6 $
-*x521 y521 w256 h256 a3 s-1 i6 $
-*x768 y512 w256 h256 a4 s-1 i6 $
-*x0 y768 w256 h256 a5 s2 i6 $
-*x256 y768 w256 h256 a6 s-1 i6 $
-*x512 y768 w256 h256 a7 s-1 i6 d0 $
-*x768 y768 w256 h256 a0 s-1 i6 $
+*x0 y0 w256 h256 a1 s-1 i10 cy238 t0.035 $
+*x256 y0 w256 h256 a2 s-1 i10 cy238 t0.035 $
+*x521 y0 w256 h256 a3 s-1 i10 cy238 t0.035 $
+*x768 y0 w256 h256 a4 s-1 i10 cy238 t0.035 $
+*x0 y256 w256 h256 a5 s-1 i10 cy238 t0.035 $
+*x256 y256 w256 h256 a6 s-1 i10 cy238 t0.035 $
+*x512 y256 w256 h256 a7 s-1 i10 cy238 t0.035 $
+*x768 y256 w256 h256 a8 s-1 i10 cy238 t0.035 $
+*x0 y512 w256 h256 a9 s-1 i10 cy238 t0.035 $
+*x256 y512 w256 h256 a10 s-1 i10 cy238 t0.035 $
+*x521 y512 w256 h256 a11 s2 i10 d0 cy238 t0.035 $
+*x768 y512 w256 h256 a12 s-1 i10 cy238 t0.035 $
+*x0 y768 w256 h256 a13 s-1 i10 cy238 t0.035 $
+*x256 y768 w256 h256 a14 s-1 i10 cy238 t0.035 $
+*x512 y768 w256 h256 a15 s-1 i10 cy238 t0.035 $
+*x768 y768 w256 h256 a0 s-1 i10 cy238 t0.035 $
 $
 Mort - E
 * $
