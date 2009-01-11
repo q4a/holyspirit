@@ -658,6 +658,9 @@ void Hero::recalculerCaracteristiques()
                     case PI_SUPP:
                         m_caracteristiques.piete+=m_inventaire[i].m_benedictions[j].info1;
                     break;
+                    case DEX_SUPP:
+                        m_caracteristiques.dexterite+=m_inventaire[i].m_benedictions[j].info1;
+                    break;
                     case CH_SUPP:
                         m_caracteristiques.charisme+=m_inventaire[i].m_benedictions[j].info1;
                     break;

@@ -130,6 +130,7 @@ bool Modele_Personnage::Charger(string chemin)
                     {
                         coordonnee position,centre={-1,-1,-1,-1};
                         int animation,son,image,attaque=-1,lumiere=m_porteeLumineuse.intensite;
+                        float tempsAnimation=0.075;
 
                         do
                         {
@@ -141,6 +142,7 @@ bool Modele_Personnage::Charger(string chemin)
                                 case 'w': fichier>>position.w; break;
                                 case 'h': fichier>>position.h; break;
                                 case 'a': fichier>>animation; break;
+                                case 't': fichier>>tempsAnimation; break;
                                 case 's': fichier>>son; break;
                                 case 'i': fichier>>image; break;
                                 case 'd': fichier>>attaque; break;
@@ -157,7 +159,7 @@ bool Modele_Personnage::Charger(string chemin)
                             centre.y=position.h-32;
 
                         m_pose[i][j].push_back(poseTemp);
-                        m_pose[i][j][m_pose[i][j].size()-1].setPose(position,centre,animation,son,image,attaque,lumiere);
+                        m_pose[i][j][m_pose[i][j].size()-1].setPose(position,centre,animation,son,image,attaque,lumiere,tempsAnimation);
                         fichier.get(caractere);
                         if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }
                     }
@@ -515,8 +517,13 @@ int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,boo
 
     m_animation+=temps;
 
+    float tempsAnimation=0.075;
+
     if(modele->m_pose.size()>0)
-    while(m_animation>=0.075)
+        tempsAnimation = modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getTempsAnimation();
+
+    if(modele->m_pose.size()>0&&tempsAnimation>0)
+    while(m_animation>=tempsAnimation)
     {
         coordonnee position;
         position.x=(m_positionCase.x-m_positionCase.y-1+hauteur_map)/5;
@@ -530,7 +537,7 @@ int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,boo
         //if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getSon()>=0)
         modele->jouerSon(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getSon(),position,positionHero);
 
-        m_animation-=0.075;
+        m_animation-=tempsAnimation;
         if(m_monstre)
         {
             if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==0)

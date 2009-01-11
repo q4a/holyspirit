@@ -49,9 +49,11 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
                 break;
             case Event::MouseButtonPressed:
                 m_Clic[Event.MouseButton.Button]=1;
+                m_ClicAncien[Event.MouseButton.Button]=1;
                 break;
             case Event::MouseButtonReleased:
                 m_Clic[Event.MouseButton.Button]=0;
+                m_ClicAncien[Event.MouseButton.Button]=0;
                 break;
     	}
     	if (Event.Type == Event::Closed)

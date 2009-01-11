@@ -2721,7 +2721,7 @@ bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *ca
 
         float viePrecedente=m_monstre[numeroMonstre].getCaracteristique().vie;
 
-        if(m_monstre[numeroMonstre].enVie()&&pousser)
+        /*if(m_monstre[numeroMonstre].enVie()&&pousser)
         {
             double m=atan(((double)hero->m_personnage.getCoordonnee().y-(double)m_monstre[numeroMonstre].getCoordonnee().y)/(double)((double)hero->m_personnage.getCoordonnee().x-(double)m_monstre[numeroMonstre].getCoordonnee().x));
             if(hero->m_personnage.getCoordonnee().x-m_monstre[numeroMonstre].getCoordonnee().x<0)
@@ -2737,11 +2737,18 @@ bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *ca
                         if(x>=0&&y>=0&&x<m_decor[0][0].size()&&y<m_decor[0].size())
                             if(m_decor[o][y][x].getMonstre()>=0&&m_decor[o][y][x].getMonstre()<m_monstre.size())
                                 m_monstre[m_decor[o][y][x].getMonstre()].setVu(1);
-        }
+        }*/
+
 
         m_monstre[numeroMonstre].infligerDegats(degats);
+
+        if(!m_monstre[numeroMonstre].enVie())
+            if(m_monstreIllumine==numeroMonstre||hero->getMonstreVise()==numeroMonstre)
+                m_monstreIllumine=-1,hero->setMonstreVise(-1);
+
         if(!m_monstre[numeroMonstre].enVie()&&viePrecedente>0)
         {
+
             if(m_monstre[numeroMonstre].getCaracteristique().pointAme>0)
             {
                 coordonneeDecimal position;
