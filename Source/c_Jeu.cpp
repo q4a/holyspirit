@@ -235,8 +235,6 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                         if(!jeu->eventManager.getEvenement(Mouse::Left,"C"))
                             jeu->hero.setMonstreVise(-1);
-
-                        //_jeu->hero.setMonstreVise(-1);
                     }
                     jeu->map.animer(&jeu->hero,tempsDepuisDerniereAnimation,&jeu->menu,&jeu->camera); // Animation des tiles de la jeu->map
                     tempsDepuisDerniereAnimation=0;
@@ -260,18 +258,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     int monstreVise=-1;
 
                     if(!jeu->eventManager.getEvenement(Mouse::Left,"C"))
-                    {
-                        //if(jeu->hero.getMonstreVise()==-1)
                         jeu->map.getMonstre(&jeu->hero,&jeu->camera,&jeu->ecran,jeu->eventManager.getPositionSouris(),jeu->eventManager.getCasePointee());
-
-                        //if(jeu->hero.getMonstreVise()!=-1)
-                         //   monstreVise=jeu->hero.getMonstreVise();
-
-                       // if(!jeu->eventManager.getEvenement(Mouse::Left,"C"))
-                        //    jeu->hero.setMonstreVise(-1);
-                    }
-
-
 
 
                     if(jeu->eventManager.getEvenement(Mouse::Left,"CA")&&!jeu->eventManager.getEvenement(Key::LShift,"ET"))
@@ -286,7 +273,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                         else if(jeu->hero.getChercherSac().x!=-1&&jeu->map.getObjetPointe()!=-1)
                         {
                             jeu->map.ramasserObjet(&jeu->hero);
-                            jeu->eventManager.StopEvenement(Mouse::Left,"C");
+                            jeu->eventManager.StopEvenement(Mouse::Left,"CA");
                         }
                     }
 

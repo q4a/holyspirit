@@ -175,7 +175,7 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera)
 int MoteurGraphique::AjouterImage(std::string chemin)
 {
     for(int i=0;i<m_cheminsImages.size();i++)
-        if(m_cheminsImages[i]==chemin)
+        if(m_cheminsImages[i]==chemin.c_str())
             return i;
 
     m_images.push_back(sf::Image ());

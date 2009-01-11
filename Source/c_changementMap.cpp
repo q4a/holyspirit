@@ -66,7 +66,9 @@ void c_Chargement::setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool
     }
     fichier.close();
 
-    m_fond=moteurGraphique.AjouterImage(cheminFond[rand()%cheminFond.size()]);
+    int random=rand()%cheminFond.size();
+
+    m_fond=moteurGraphique.AjouterImage(cheminFond.at(random));
 
     cheminFond.clear();
 
@@ -99,12 +101,12 @@ void c_Chargement::Utiliser(Jeu *jeu)
         if(!m_debut)
             jeu->map.Sauvegarder();
 
-        jeu->hero.Sauvegarder();
-
         jeu->map.Detruire();
 
+        jeu->hero.Sauvegarder();
+
         if(!jeu->map.Charger(numeroProchaineMap))
-            throw "CRITICAL ERROR";
+            console.Ajouter("CRITICAL ERROR"), throw  "CRITICAL ERROR";
 
         jeu->hero.placerCamera(&jeu->camera,jeu->map.getDimensions());
         jeu->camera.Zoom(configuration.zoom);

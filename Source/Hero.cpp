@@ -34,7 +34,7 @@ Hero::Hero()
 	m_personnage.setCoordonnee(position);
 
 	Lumiere lumiere;
-	lumiere.intensite=160;
+	lumiere.intensite=192;
 	lumiere.rouge=255;
 	lumiere.vert=255;
 	lumiere.bleu=255;
@@ -715,6 +715,11 @@ void Hero::recalculerCaracteristiques()
     m_personnage.setCaracteristique(temp);
 
     m_caracteristiques.vie=vie,m_caracteristiques.foi=foi;
+
+    if(m_caracteristiques.vie>m_caracteristiques.maxVie)
+        m_caracteristiques.vie=m_caracteristiques.maxVie;
+    if(m_caracteristiques.foi>m_caracteristiques.maxFoi)
+        m_caracteristiques.foi=m_caracteristiques.maxFoi;
 }
 
 int Hero::utiliserClicDroit(coordonnee positionSouris, int monstreVise)

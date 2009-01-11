@@ -440,28 +440,28 @@ bool Personnage::seDeplacer(float tempsEcoule)
             m_positionPixelPrecedente.x=(int)m_positionPixel.x;
             m_positionPixelPrecedente.y=(int)m_positionPixel.y;
 
-            if(m_positionCase.x<m_cheminFinal.x)
+            if(m_positionCase.x<m_cheminFinal.x&&m_positionPixel.x<m_cheminFinal.x*COTE_TILE)
             {
                 if(m_positionCase.y>m_cheminFinal.y)
                     m_positionPixel.x+=2*tempsEcoule*m_caracteristique.vitesse;
                 else
                     m_positionPixel.x+=4*tempsEcoule*m_caracteristique.vitesse;
             }
-            if(m_positionCase.x>m_cheminFinal.x)
+            if(m_positionCase.x>m_cheminFinal.x&&m_positionPixel.x>m_cheminFinal.x*COTE_TILE)
             {
                 if(m_positionCase.y<m_cheminFinal.y)
                     m_positionPixel.x-=2*tempsEcoule*m_caracteristique.vitesse;
                 else
                     m_positionPixel.x-=4*tempsEcoule*m_caracteristique.vitesse;
             }
-            if(m_positionCase.y<m_cheminFinal.y)
+            if(m_positionCase.y<m_cheminFinal.y&&m_positionPixel.y<m_cheminFinal.y*COTE_TILE)
             {
                 if(m_positionCase.x>m_cheminFinal.x)
                     m_positionPixel.y+=2*tempsEcoule*m_caracteristique.vitesse;
                 else
                     m_positionPixel.y+=4*tempsEcoule*m_caracteristique.vitesse;
             }
-            if(m_positionCase.y>m_cheminFinal.y)
+            if(m_positionCase.y>m_cheminFinal.y&&m_positionPixel.y>m_cheminFinal.y*COTE_TILE)
             {
                 if(m_positionCase.x<m_cheminFinal.x)
                     m_positionPixel.y-=2*tempsEcoule*m_caracteristique.vitesse;

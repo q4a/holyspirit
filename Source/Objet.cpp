@@ -32,10 +32,9 @@ Objet::Objet(std::string nom, int rarete)
 
 Objet::~Objet()
 {
-    m_chemin.erase();
-    m_nom.erase();
     m_description.clear();
     m_benedictions.clear();
+    m_description.clear();
 }
 
 std::string Objet::getNom(){return m_nom;}
@@ -258,13 +257,13 @@ void Objet::Generer()
     m_degatsMin=(rand() % (dia - dii + 1)) + dii;
     m_degatsMax=(rand() % (daa - dai + 1)) + dai;
 
+    m_color.r=255;
+    m_color.g=255;
+    m_color.b=255;
+    m_color.a=255;
+
     if(m_rarete==0)
     {
-        m_color.r=255;
-        m_color.g=255;
-        m_color.b=255;
-        m_color.a=255;
-
          int nbrBene=0;
         int random=rand()%10000;
         if(random<=3000)
