@@ -1,3 +1,3 @@
 main
-	fight
+	
 end
