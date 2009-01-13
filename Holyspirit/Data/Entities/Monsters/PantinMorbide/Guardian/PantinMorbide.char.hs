@@ -29,7 +29,7 @@ Rang du monstre
 $
 Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse
-*v25 di7 da20 m0.35 o1 a1 n2 t1.25 $
+*v100 di7 da20 m0.35 o1 a1 n2 t1.25 $
 $
 *Data/Scripts/AI/standard.script.hs
 $
@@ -450,15 +450,15 @@ Course - E
 *x384 y0 w128 h256 cy238 a4 s-1 i1 t0.04 $
 *x512 y0 w128 h256 cy238 a5 s-1 i1 t0.04 $
 *x640 y0 w128 h256 cy238 a6 s-1 i1 t0.04 $
-*x768 y0 w128 h256 cy238 a7 s1 i1 t0.04 $
+*x768 y0 w128 h256 cy238 a7 s-1 i1 t0.04 $
 *x896 y0 w128 h256 cy238 a8 s-1 i1 t0.04 $
-*x0 y256 w128 h256 cy238 a9 s-1 i1 t0.04 $
+*x0 y256 w128 h256 cy238 a9 s1 i1 t0.04 $
 *x128 y256 w128 h256 cy238 a10 s-1 i1 t0.04 $
 *x256 y256 w128 h256 cy238 a11 s-1 i1 t0.04 $
 *x384 y256 w128 h256 cy238 a12 s-1 i1 t0.04 $
 *x512 y256 w128 h256 cy238 a13 s-1 i1 t0.04 $
 *x640 y256 w128 h256 cy238 a14 s-1 i1 t0.04 $
-*x768 y256 w128 h256 cy238 a15 s1 i1 t0.04 $
+*x768 y256 w128 h256 cy238 a15 s-1 i1 t0.04 $
 *x896 y256 w128 h256 cy238 a0 s-1 i1 t0.04 $
 $
 Course - NE
@@ -468,15 +468,15 @@ Course - NE
 *x384 y512 w128 h256 cy238 a4 s-1 i1 t0.04 $
 *x512 y512 w128 h256 cy238 a5 s-1 i1 t0.04 $
 *x640 y512 w128 h256 cy238 a6 s-1 i1 t0.04 $
-*x768 y512 w128 h256 cy238 a7 s1 i1 t0.04 $
+*x768 y512 w128 h256 cy238 a7 s-1 i1 t0.04 $
 *x896 y512 w128 h256 cy238 a8 s-1 i1 t0.04 $
-*x0 y768 w128 h256 cy238 a9 s-1 i1 t0.04 $
+*x0 y768 w128 h256 cy238 a9 s1 i1 t0.04 $
 *x128 y768 w128 h256 cy238 a10 s-1 i1 t0.04 $
 *x256 y768 w128 h256 cy238 a11 s-1 i1 t0.04 $
 *x384 y768 w128 h256 cy238 a12 s-1 i1 t0.04 $
 *x512 y768 w128 h256 cy238 a13 s-1 i1 t0.04 $
 *x640 y768 w128 h256 cy238 a14 s-1 i1 t0.04 $
-*x768 y768 w128 h256 cy238 a15 s1 i1 t0.04 $
+*x768 y768 w128 h256 cy238 a15 s-1 i1 t0.04 $
 *x896 y768 w128 h256 cy238 a0 s-1 i1 t0.04 $
 $
 Course - N
@@ -486,15 +486,15 @@ Course - N
 *x384 y0 w128 h256 cy238 a4 s-1 i2 t0.04 $
 *x512 y0 w128 h256 cy238 a5 s-1 i2 t0.04 $
 *x640 y0 w128 h256 cy238 a6 s-1 i2 t0.04 $
-*x768 y0 w128 h256 cy238 a7 s1 i2 t0.04 $
+*x768 y0 w128 h256 cy238 a7 s-1 i2 t0.04 $
 *x896 y0 w128 h256 cy238 a8 s-1 i2 t0.04 $
-*x0 y256 w128 h256 cy238 a9 s-1 i2 t0.04 $
+*x0 y256 w128 h256 cy238 a9 s1 i2 t0.04 $
 *x128 y256 w128 h256 cy238 a10 s-1 i2 t0.04 $
 *x256 y256 w128 h256 cy238 a11 s-1 i2 t0.04 $
 *x384 y256 w128 h256 cy238 a12 s-1 i2 t0.04 $
 *x512 y256 w128 h256 cy238 a13 s-1 i2 t0.04 $
 *x640 y256 w128 h256 cy238 a14 s-1 i2 t0.04 $
-*x768 y256 w128 h256 cy238 a15 s1 i2 t0.04 $
+*x768 y256 w128 h256 cy238 a15 s-1 i2 t0.04 $
 *x896 y256 w128 h256 cy238 a0 s-1 i2 t0.04 $
 $
 Course - NO
@@ -504,15 +504,15 @@ Course - NO
 *x384 y512 w128 h256 cy238 a4 s-1 i2 t0.04 $
 *x512 y512 w128 h256 cy238 a5 s-1 i2 t0.04 $
 *x640 y512 w128 h256 cy238 a6 s-1 i2 t0.04 $
-*x768 y512 w128 h256 cy238 a7 s1 i2 t0.04 $
+*x768 y512 w128 h256 cy238 a7 s-1 i2 t0.04 $
 *x896 y512 w128 h256 cy238 a8 s-1 i2 t0.04 $
-*x0 y768 w128 h256 cy238 a9 s-1 i2 t0.04 $
+*x0 y768 w128 h256 cy238 a9 s1 i2 t0.04 $
 *x128 y768 w128 h256 cy238 a10 s-1 i2 t0.04 $
 *x256 y768 w128 h256 cy238 a11 s-1 i2 t0.04 $
 *x384 y768 w128 h256 cy238 a12 s-1 i2 t0.04 $
 *x512 y768 w128 h256 cy238 a13 s-1 i2 t0.04 $
 *x640 y768 w128 h256 cy238 a14 s-1 i2 t0.04 $
-*x768 y768 w128 h256 cy238 a15 s1 i2 t0.04 $
+*x768 y768 w128 h256 cy238 a15 s-1 i2 t0.04 $
 *x896 y768 w128 h256 cy238 a0 s-1 i2 t0.04 $
 $
 Course - O
@@ -522,15 +522,15 @@ Course - O
 *x384 y0 w128 h256 cy238 a4 s-1 i3 t0.04 $
 *x512 y0 w128 h256 cy238 a5 s-1 i3 t0.04 $
 *x640 y0 w128 h256 cy238 a6 s-1 i3 t0.04 $
-*x768 y0 w128 h256 cy238 a7 s1 i3 t0.04 $
+*x768 y0 w128 h256 cy238 a7 s-1 i3 t0.04 $
 *x896 y0 w128 h256 cy238 a8 s-1 i3 t0.04 $
-*x0 y256 w128 h256 cy238 a9 s-1 i3 t0.04 $
+*x0 y256 w128 h256 cy238 a9 s1 i3 t0.04 $
 *x128 y256 w128 h256 cy238 a10 s-1 i3 t0.04 $
 *x256 y256 w128 h256 cy238 a11 s-1 i3 t0.04 $
 *x384 y256 w128 h256 cy238 a12 s-1 i3 t0.04 $
 *x512 y256 w128 h256 cy238 a13 s-1 i3 t0.04 $
 *x640 y256 w128 h256 cy238 a14 s-1 i3 t0.04 $
-*x768 y256 w128 h256 cy238 a15 s1 i3 t0.04 $
+*x768 y256 w128 h256 cy238 a15 s-1 i3 t0.04 $
 *x896 y256 w128 h256 cy238 a0 s-1 i3 t0.04 $
 $
 Course - SO
@@ -540,15 +540,15 @@ Course - SO
 *x384 y512 w128 h256 cy238 a4 s-1 i3 t0.04 $
 *x512 y512 w128 h256 cy238 a5 s-1 i3 t0.04 $
 *x640 y512 w128 h256 cy238 a6 s-1 i3 t0.04 $
-*x768 y512 w128 h256 cy238 a7 s1 i3 t0.04 $
+*x768 y512 w128 h256 cy238 a7 s-1 i3 t0.04 $
 *x896 y512 w128 h256 cy238 a8 s-1 i3 t0.04 $
-*x0 y768 w128 h256 cy238 a9 s-1 i3 t0.04 $
+*x0 y768 w128 h256 cy238 a9 s1 i3 t0.04 $
 *x128 y768 w128 h256 cy238 a10 s-1 i3 t0.04 $
 *x256 y768 w128 h256 cy238 a11 s-1 i3 t0.04 $
 *x384 y768 w128 h256 cy238 a12 s-1 i3 t0.04 $
 *x512 y768 w128 h256 cy238 a13 s-1 i3 t0.04 $
 *x640 y768 w128 h256 cy238 a14 s-1 i3 t0.04 $
-*x768 y768 w128 h256 cy238 a15 s1 i3 t0.04 $
+*x768 y768 w128 h256 cy238 a15 s-1 i3 t0.04 $
 *x896 y768 w128 h256 cy238 a0 s-1 i3 t0.04 $
 $
 Course - S
@@ -558,15 +558,15 @@ Course - S
 *x384 y0 w128 h256 cy238 a4 s-1 i4 t0.04 $
 *x512 y0 w128 h256 cy238 a5 s-1 i4 t0.04 $
 *x640 y0 w128 h256 cy238 a6 s-1 i4 t0.04 $
-*x768 y0 w128 h256 cy238 a7 s1 i4 t0.04 $
+*x768 y0 w128 h256 cy238 a7 s-1 i4 t0.04 $
 *x896 y0 w128 h256 cy238 a8 s-1 i4 t0.04 $
-*x0 y256 w128 h256 cy238 a9 s-1 i4 t0.04 $
+*x0 y256 w128 h256 cy238 a9 s1 i4 t0.04 $
 *x128 y256 w128 h256 cy238 a10 s-1 i4 t0.04 $
 *x256 y256 w128 h256 cy238 a11 s-1 i4 t0.04 $
 *x384 y256 w128 h256 cy238 a12 s-1 i4 t0.04 $
 *x512 y256 w128 h256 cy238 a13 s-1 i4 t0.04 $
 *x640 y256 w128 h256 cy238 a14 s-1 i4 t0.04 $
-*x768 y256 w128 h256 cy238 a15 s1 i4 t0.04 $
+*x768 y256 w128 h256 cy238 a15 s-1 i4 t0.04 $
 *x896 y256 w128 h256 cy238 a0 s-1 i4 t0.04 $
 $
 Course - SE
@@ -576,15 +576,15 @@ Course - SE
 *x384 y512 w128 h256 cy238 a4 s-1 i4 t0.04 $
 *x512 y512 w128 h256 cy238 a5 s-1 i4 t0.04 $
 *x640 y512 w128 h256 cy238 a6 s-1 i4 t0.04 $
-*x768 y512 w128 h256 cy238 a7 s1 i4 t0.04 $
+*x768 y512 w128 h256 cy238 a7 s-1 i4 t0.04 $
 *x896 y512 w128 h256 cy238 a8 s-1 i4 t0.04 $
-*x0 y768 w128 h256 cy238 a9 s-1 i4 t0.04 $
+*x0 y768 w128 h256 cy238 a9 s1 i4 t0.04 $
 *x128 y768 w128 h256 cy238 a10 s-1 i4 t0.04 $
 *x256 y768 w128 h256 cy238 a11 s-1 i4 t0.04 $
 *x384 y768 w128 h256 cy238 a12 s-1 i4 t0.04 $
 *x512 y768 w128 h256 cy238 a13 s-1 i4 t0.04 $
 *x640 y768 w128 h256 cy238 a14 s-1 i4 t0.04 $
-*x768 y768 w128 h256 cy238 a15 s1 i4 t0.04 $
+*x768 y768 w128 h256 cy238 a15 s-1 i4 t0.04 $
 *x896 y768 w128 h256 cy238 a0 s-1 i4 t0.04 $
 $
 Frappe - E
