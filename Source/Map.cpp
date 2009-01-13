@@ -2528,29 +2528,47 @@ void Map::musiquePlay(coordonnee position)
                                     {   \
                                     \
                                         coordonnee arrivee,enCours;   \
+                                        bool arriveSurCase=true; \
                                         \
                                         if(m_monstre[m_decor[i][j][k].getMonstre()].seDeplacer(temps*100))   \
                                         {   \
-                                            arrivee=hero->m_personnage.getProchaineCase();   \
-                                            m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(arrivee);   \
-                                            \
-                                            coordonnee tempCoord={hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1};   \
-                                            m_monstre[m_decor[i][j][k].getMonstre()].pathfinding(getAlentourDuPersonnage(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()),tempCoord);   \
-                                                   \
-                                                    if(m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding())   \
-                                                    {   \
-                                                        coordonnee arrivee;   \
-                                                        arrivee=m_monstre[m_decor[i][j][k].getMonstre()].getDepart();   \
-                                                        arrivee.x+=(rand()%(3 + 3) - 3);   \
-                                                        arrivee.y+=(rand()%(3 + 3) - 3);   \
-                                                        m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(arrivee);   \
-                                                    }   \
-                                                    else   \
-                                                    {   \
-                                                         arrivee=hero->m_personnage.getProchaineCase();   \
-                                                         m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(arrivee);   \
-                                                    }   \
-                                                    if(!(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y==j&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x==k))   \
+                                            if(fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)>1||fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)>1)   \
+                                            {   \
+                                                arrivee=hero->m_personnage.getProchaineCase();   \
+                                                m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(arrivee);   \
+                                                \
+                                                coordonnee tempCoord={hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1};   \
+                                                m_monstre[m_decor[i][j][k].getMonstre()].pathfinding(getAlentourDuPersonnage(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()),tempCoord);   \
+                                                \
+                                                if(m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding())   \
+                                                {   \
+                                                    coordonnee arrivee;   \
+                                                    arrivee=m_monstre[m_decor[i][j][k].getMonstre()].getDepart();   \
+                                                    arrivee.x+=(rand()%(3 + 3) - 3);   \
+                                                    arrivee.y+=(rand()%(3 + 3) - 3);   \
+                                                    m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(arrivee);   \
+                                                }   \
+                                                else   \
+                                                {   \
+                                                    arrivee=hero->m_personnage.getProchaineCase();   \
+                                                    m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(arrivee);   \
+                                                }   \
+                                            }   \
+                                            else  \
+                                            {   \
+                                                if(hero->m_personnage.enVie()<=0)   \
+                                                    m_monstre[m_decor[i][j][k].getMonstre()].setVu(0);   \
+                                                if(m_monstre[m_decor[i][j][k].getMonstre()].getEtat()!=2)   \
+                                                    m_monstre[m_decor[i][j][k].getMonstre()].setEtat(2);   \
+                                                coordonnee temp,temp2;   \
+                                                temp.x=(hero->m_personnage.getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().y-1+m_decor[1].size())*64;   \
+                                                temp.y=(hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y)*32;   \
+                                                temp2.x=(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x-m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y-1+m_decor[1].size())*64;   \
+                                                temp2.y=(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x+m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y)*32;   \
+                                                m_monstre[m_decor[i][j][k].getMonstre()].frappe(temp,temp2);   \
+                                                m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee());   \
+                                            }   \
+                                            if(!(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y==j&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x==k))   \
                                                     if(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x<m_decor[0][0].size()&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y<m_decor[0].size())   \
                                                     {   \
                                                         if(m_decor[0][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()<0&&m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()<0)   \
@@ -2564,7 +2582,9 @@ void Map::musiquePlay(coordonnee position)
                                                         }   \
                                                         m_decor[i][j][k].setMonstre(-1);   \
                                                     }   \
-                                                }   \
+                                        }   \
+                                        else\
+                                            arriveSurCase=false; \
                                         \
                                         if(fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)>1||fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)>1)   \
                                         {   \
@@ -2576,7 +2596,7 @@ void Map::musiquePlay(coordonnee position)
                                                 }   \
                                                 \
                                         }   \
-                                        else \
+                                        else if(arriveSurCase) \
                                         {   \
                                             if(hero->m_personnage.enVie()<=0)   \
                                                 m_monstre[m_decor[i][j][k].getMonstre()].setVu(0);   \

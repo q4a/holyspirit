@@ -52,6 +52,7 @@ Personnage::Personnage()
     m_animation=0;
     m_angle=45;
     m_monstre=false;
+    frappeEnCours=false;
 
     m_erreurPathfinding=false;
 }
@@ -269,6 +270,14 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
                     if(m_porteeLumineuse.intensite>m_lumiere.intensite)
                         sprite.SetColor(sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu, 255));
                 }
+                else
+                {
+                    if(m_porteeLumineuse.intensite>0)
+                        sprite.SetColor(sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu, 255));
+                    else
+                        sprite.SetColor(sf::Color(255,255,255, 255));
+
+                }
 
                 if(sprite.GetPosition().x+sprite.GetSize().x>=camera->GetRect().Left
                 &&sprite.GetPosition().x<camera->GetRect().Right
@@ -480,8 +489,8 @@ bool Personnage::seDeplacer(float tempsEcoule)
              ||(m_positionCase.y>m_cheminFinal.y&&m_positionPixel.y<=m_cheminFinal.y*COTE_TILE)
               ||m_positionCase.y==m_cheminFinal.y)
                 {
-                    //m_positionPixel.x=(m_cheminFinal.x*COTE_TILE);
-                  //  m_positionPixel.y=(m_cheminFinal.y*COTE_TILE);
+                    m_positionPixel.x=(m_cheminFinal.x*COTE_TILE);
+                    m_positionPixel.y=(m_cheminFinal.y*COTE_TILE);
 
                     m_positionCase.y=m_cheminFinal.y;
                     m_positionCase.x=m_cheminFinal.x;
@@ -499,6 +508,12 @@ bool Personnage::seDeplacer(float tempsEcoule)
                 m_poseEnCours=0;
             m_etat=0;
         }
+
+        if(m_etat==2)
+            return 1;
+
+        if(m_arrivee.x==m_positionCase.x&&m_arrivee.y==m_positionCase.y)
+            return 1;
 
         return 0;
     }
@@ -549,6 +564,9 @@ int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,boo
                 retour=1;
         }
 
+        if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==0)
+            frappeEnCours=false;
+
         *explosif=modele->m_explosif;
 
         if(m_caracteristique.rang==0)
@@ -560,6 +578,8 @@ int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,boo
 
 void Personnage::frappe(coordonnee direction,coordonnee position)
 {
+    frappeEnCours=true;
+
     if(m_etat!=2)
         if(m_positionCase.x==m_cheminFinal.x&&m_positionCase.y==m_cheminFinal.y)
         {

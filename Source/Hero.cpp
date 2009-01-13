@@ -575,7 +575,7 @@ void Hero::placerCamera(sf::View *camera,coordonnee dimensionsMap)
 	camera->SetFromRect(sf::FloatRect(positionCamera.x,positionCamera.y,positionCamera.x+configuration.Resolution.w,positionCamera.y+configuration.Resolution.h));
 }
 
-void Hero::testMonstreVise(Monstre *monstre,int hauteurMap)
+bool Hero::testMonstreVise(Monstre *monstre,int hauteurMap)
 {
     if(m_monstreVise>-1&&m_caracteristiques.vie>0)
     {
@@ -583,15 +583,18 @@ void Hero::testMonstreVise(Monstre *monstre,int hauteurMap)
                 m_personnage.setArrivee(monstre->getProchaineCase());
         else /*if(m_personnage.getArrivee().x==m_personnage.getCoordonnee().x&&m_personnage.getArrivee().x==m_personnage.getCoordonnee().x)*/
         {
-            m_personnage.setArrivee(m_personnage.getCoordonnee());
+           // m_personnage.setArrivee(m_personnage.getCoordonnee());
             coordonnee temp,temp2;
             temp.x=(m_personnage.getCoordonneePixel().x-m_personnage.getCoordonneePixel().y-1+hauteurMap)*64;
             temp.y=(m_personnage.getCoordonneePixel().x+m_personnage.getCoordonneePixel().y)*32;
             temp2.x=(monstre->getCoordonneePixel().x-monstre->getCoordonneePixel().y-1+hauteurMap)*64;
             temp2.y=(monstre->getCoordonneePixel().x+monstre->getCoordonneePixel().y)*32;
             m_personnage.frappe(temp2,temp);
+
+            return 1;
         }
     }
+    return 0;
 }
 
 void Hero::augmenterAme(float temps)

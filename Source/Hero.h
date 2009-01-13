@@ -30,7 +30,7 @@ class Hero
 
 	void placerCamera(sf::View *camera,coordonnee dimensionsMap);
 
-	void testMonstreVise(Monstre *monstre,int hauteurMap);
+	bool testMonstreVise(Monstre *monstre,int hauteurMap);
 
 	void augmenterAme(float temps);
 	void recalculerCaracteristiques();

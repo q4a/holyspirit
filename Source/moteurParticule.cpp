@@ -36,7 +36,10 @@ void ParticuleSysteme::Afficher(sf::RenderWindow *ecran, ModeleParticuleSysteme 
             sprite.SetScale(scale,scale);
             sprite.SetX(m_particules[i].position.x);
             sprite.SetY(m_particules[i].position.y-m_particules[i].position.z);
-            sprite.SetColor(sf::Color(m_particules[i].color.r,m_particules[i].color.g,m_particules[i].color.b,(int)m_particules[i].alpha));
+            if(configuration.Lumiere!=0)
+                sprite.SetColor(sf::Color(m_particules[i].color.r,m_particules[i].color.g,m_particules[i].color.b,(int)m_particules[i].alpha));
+            else
+                sprite.SetColor(sf::Color(255,255,255,(int)m_particules[i].alpha));
             if(m_particules[i].position.z>32)
                 moteurGraphique.AjouterCommande(&sprite,12,1);
             else

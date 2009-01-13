@@ -170,13 +170,20 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                     if(jeu->hero.m_personnage.seDeplacer(tempsEcouleDepuisDernierDeplacement*100))
                     {
-                        jeu->hero.m_personnage.pathfinding(jeu->map.getAlentourDuPersonnage(jeu->hero.m_personnage.getCoordonnee()),temp); // Recherche du chemin
+                        bool ok=true;
+                        if(jeu->hero.getMonstreVise()>-1)
+                            if(jeu->hero.testMonstreVise(jeu->map.getEntiteMonstre(jeu->hero.getMonstreVise()),jeu->map.getDimensions().y))
+                                ok=false;
+
+                        if(ok)
+                            jeu->hero.m_personnage.pathfinding(jeu->map.getAlentourDuPersonnage(jeu->hero.m_personnage.getCoordonnee()),temp); // Recherche du chemin
                         if(configuration.Lumiere)
                             lumiere=true;
+
+
                     }
                     jeu->map.testEvenement(&jeu->camera,jeu,tempsEcoule); // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
-                    if(jeu->hero.getMonstreVise()>-1)
-                        jeu->hero.testMonstreVise(jeu->map.getEntiteMonstre(jeu->hero.getMonstreVise()),jeu->map.getDimensions().y);
+
 
                     ///Placer l'écouteur, à la position du héro
                     coordonnee position;
