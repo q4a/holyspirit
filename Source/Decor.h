@@ -44,6 +44,7 @@ class Decor
 	int getHerbe(); // Retourne le numero de l'herbe du décor
 	int getNumeroHerbe();
 	int getTailleHerbe();
+	sf::Color getCouleurHerbe();
     coordonnee getDecalageHerbe();
 	Objet getObjet(int numero);
 	void supprimerObjet(int numero);
@@ -69,6 +70,7 @@ class Decor
 	int m_herbe,m_numeroHerbe;
 	int m_herbe_taille;
 	coordonnee m_herbe_decalage;
+	sf::Color m_herbe_couleur;
 };
 
 #endif

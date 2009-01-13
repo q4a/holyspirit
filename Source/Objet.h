@@ -26,7 +26,7 @@ class Objet
     void setChanceTrouver(int);
     void Sauvegarder(std::ofstream *fichier);
 
-    void Generer();
+    void Generer(int bonus);
 
     std::string getNom();
     int getRarete();

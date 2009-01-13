@@ -260,7 +260,6 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     if(!jeu->eventManager.getEvenement(Mouse::Left,"C"))
                         jeu->map.getMonstre(&jeu->hero,&jeu->camera,&jeu->ecran,jeu->eventManager.getPositionSouris(),jeu->eventManager.getCasePointee());
 
-
                     if(jeu->eventManager.getEvenement(Mouse::Left,"CA")&&!jeu->eventManager.getEvenement(Key::LShift,"ET"))
                     {
                         if(!(jeu->eventManager.getPositionSouris().x>configuration.Resolution.w-configuration.Resolution.w*0.25
@@ -268,7 +267,16 @@ void c_Jeu::Utiliser(Jeu *jeu)
                           &&alpha_sac>=128)||alpha_sac<=128)
                         {
                             if(jeu->hero.getMonstreVise()==-1)
-                                jeu->hero.m_personnage.setArrivee(jeu->eventManager.getCasePointee()),jeu->hero.setChercherSac(jeu->map.getSacPointe());
+                            {
+                                jeu->hero.m_personnage.setArrivee(jeu->eventManager.getCasePointee());
+
+                                coordonnee temp={-1,-1,-1,-1};
+                                jeu->hero.setSacVise(temp);
+                               //jeu->hero.setChercherSac(jeu->map.getSacPointe());
+
+                                //if(jeu->hero.getChercherSac().x!=-1)
+                                  //  jeu->eventManager.StopEvenement(Mouse::Left,"CA");
+                            }
                         }
                         else if(jeu->hero.getChercherSac().x!=-1&&jeu->map.getObjetPointe()!=-1)
                         {
@@ -284,7 +292,30 @@ void c_Jeu::Utiliser(Jeu *jeu)
                             jeu->eventManager.StopEvenement(Mouse::Left,"CA");
                             jeu->hero.setMonstreVise(jeu->map.getMonstreIllumine());
                         }
+                    }
+                    if(jeu->eventManager.getEvenement(Mouse::Left,"C")&&jeu->eventManager.getEvenement(Mouse::Left,"CA"))
+                    {
+                       // jeu->hero.m_personnage.setArrivee(jeu->eventManager.getCasePointee());
+                        jeu->hero.setSacVise(jeu->map.getSacPointe());
 
+                        if(jeu->map.getSacPointe().x!=-1)
+                            jeu->eventManager.StopEvenement(Mouse::Left,"CA");
+                    }
+
+                    if(jeu->hero.getSacVise().x!=-1)
+                    {
+                        if(jeu->hero.getSacVise().x==jeu->hero.m_personnage.getCoordonnee().x&&jeu->hero.getSacVise().y==jeu->hero.m_personnage.getCoordonnee().y)
+                            jeu->hero.setChercherSac(jeu->hero.getSacVise());
+                        else
+                        {
+                            coordonnee temp={-1,-1,-1,-1};
+                            jeu->hero.setChercherSac(temp);
+                        }
+                    }
+                    else
+                    {
+                        coordonnee temp={-1,-1,-1,-1};
+                        jeu->hero.setChercherSac(temp);
                     }
 
                     if(jeu->eventManager.getEvenement(Mouse::Right,"C"))

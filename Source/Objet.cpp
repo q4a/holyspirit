@@ -251,7 +251,7 @@ void Objet::Charger(std::string chemin)
     m_position.y=0;
 }
 
-void Objet::Generer()
+void Objet::Generer(int bonus)
 {
     m_armure=(rand() % (aa - ai + 1)) + ai;
     m_degatsMin=(rand() % (dia - dii + 1)) + dii;
@@ -265,7 +265,7 @@ void Objet::Generer()
     if(m_rarete==0)
     {
          int nbrBene=0;
-        int random=rand()%10000;
+        int random=rand()%10000 - bonus;
         if(random<=3000)
         {
             m_rarete=BONNEFACTURE;

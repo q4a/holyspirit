@@ -207,6 +207,8 @@ struct Configuration
 
             text_benedictions=new std::string [NOMBRE_BENEDICTION];
 
+            char temp[255];
+
             std::ifstream fichier3;
             fichier3.open(chemin_text_benedictions.c_str(), std::ios::in);
             if(fichier3)
@@ -216,6 +218,7 @@ struct Configuration
                     getline(fichier3,text_benedictions[i]);
                 fichier3.close();
             }
+
     }
 
     void Sauvegarder()

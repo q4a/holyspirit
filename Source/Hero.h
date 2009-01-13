@@ -50,9 +50,11 @@ class Hero
 
 	void setMonstreVise(int monstre);
 	void setChercherSac(coordonnee);
+	void setSacVise(coordonnee);
 
 	int getMonstreVise();
 	coordonnee getChercherSac();
+	coordonnee getSacVise();
 
 	Personnage m_personnage;
 	Modele_Personnage m_modelePersonnage;
@@ -64,7 +66,7 @@ class Hero
 	private:
 	coordonneeDecimal m_positionAffichage;
 	int m_monstreVise,m_objetEnMain;
-	coordonnee m_chercherSac;
+	coordonnee m_chercherSac,m_sacVise;
 
 
 	std::vector<Objet> m_inventaire;

@@ -581,7 +581,7 @@ void Hero::testMonstreVise(Monstre *monstre,int hauteurMap)
     {
         if(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)>1||fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)>1)
                 m_personnage.setArrivee(monstre->getProchaineCase());
-        else if(m_personnage.getArrivee().x==m_personnage.getCoordonnee().x&&m_personnage.getArrivee().x==m_personnage.getCoordonnee().x)
+        else /*if(m_personnage.getArrivee().x==m_personnage.getCoordonnee().x&&m_personnage.getArrivee().x==m_personnage.getCoordonnee().x)*/
         {
             m_personnage.setArrivee(m_personnage.getCoordonnee());
             coordonnee temp,temp2;
@@ -977,7 +977,9 @@ void Hero::regenererFoi(float foi)
 
 void Hero::setMonstreVise(int monstre){m_monstreVise=monstre;}
 void Hero::setChercherSac(coordonnee a){m_chercherSac=a;}
+void Hero::setSacVise(coordonnee a){m_sacVise=a;}
 
 coordonnee Hero::getChercherSac(){return m_chercherSac;};
+coordonnee Hero::getSacVise(){return m_sacVise;};
 int Hero::getMonstreVise(){return m_monstreVise;}
 #endif

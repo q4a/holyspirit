@@ -35,6 +35,13 @@ void Decor::setNumeroHerbe(int numero)
     m_herbe_taille = (rand()% (125 - 75 )) + 75;
 	m_herbe_decalage.x = 48 - (rand()%96);
 	m_herbe_decalage.y = 16 - (rand()%32);
+
+	int randomIntensite=rand() % ( 255 - 128 +1 ) + 128;
+	int rougatre=rand() % (64);
+
+	m_herbe_couleur.r=randomIntensite;
+	m_herbe_couleur.g=randomIntensite - rougatre;
+	m_herbe_couleur.b=randomIntensite - rougatre;
 }
 void Decor::setMonstre(int monstre){m_monstre=monstre;}
 void Decor::setEvenement(int evenement, int numero)
@@ -69,6 +76,7 @@ int Decor::getCouche(){return m_couche;}
 int Decor::getHerbe(){return m_herbe;}
 int Decor::getNumeroHerbe(){return m_numeroHerbe;}
 int Decor::getTailleHerbe(){return m_herbe_taille;}
+sf::Color Decor::getCouleurHerbe(){return m_herbe_couleur;}
 coordonnee Decor::getDecalageHerbe(){return m_herbe_decalage;}
 
 float Decor::getAnimation(){return m_animation;}
