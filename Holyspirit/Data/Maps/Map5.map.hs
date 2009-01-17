@@ -43,7 +43,7 @@ $
 *Data/Entities/Breakables/Barrel/ExplosiveBarrel.char.hs
 *Data/Entities/Monsters/ErrantRoche/ErrantRoche.char.hs
 
-*Data/Entities/Monsters/PantinMorbide/Axe/PantinMorbide_Chef1.char.hs
+*Data/Entities/Monsters/DemonicPriest/DemonicPriest.char.hs
 *Data/Entities/Monsters/PantinMorbide/Axe/PantinMorbide_Servant1.char.hs
 
 *Data/Entities/Monsters/PantinMorbide/Sword/PantinMorbide.char.hs

@@ -38,6 +38,7 @@ $
 $
 *Data/Particule_system/human_bones.ps.hs
 $
+$
 Arret - E
 *x0 y0 w128 h128 a1 s-1 i0 $
 *x128 y0 w128 h128 a2 s-1 i0 $
@@ -663,26 +664,26 @@ Frappe - SE
 *x768 y768 w256 h256 a0 s-1 i6 $
 $
 Mort - E
-* $
+* l0 $
 $
 Mort - NE
-* $
+* l0 $
 $
 Mort - N
-* $
+* l0 $
 $
 Mort - NO
-* $
+* l0 $
 $
 Mort - O
-* $
+* l0 $
 $
 Mort - SO
-* $
+* l0 $
 $
 Mort - S
-* $
+* l0 $
 $
 Mort - SE
-* $
+* l0 $
 $

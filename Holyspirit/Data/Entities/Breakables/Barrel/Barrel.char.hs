@@ -31,7 +31,8 @@ $
 		r250
 	$
 $
-*Data/Particule_system/wood_barrel.ps.hs
+	*Data/Particule_system/wood_barrel.ps.hs
+$
 $
 Arret - E
 *x0 y0 w128 h128 a0 s-1 i0 $
