@@ -94,12 +94,14 @@ bool Tileset::Charger(std::string chemin)
     		fichier.get(caractere);
     		if(caractere=='*')
     		{
-    			coordonnee position={-1,-1,-1,-1};
-    			int animation=-1,son=-1,image=0;
+    			coordonnee position={-1,-1,-1,-1},centre={-1,-1,-1,-1};
+    			int animation=m_tile.size(),son=-1,image=0;
     			Lumiere lumiere;
     			lumiere.intensite=0;
     			bool collision=0,ombre=0,transparent=0;
     			char orientation=' ';
+    			float tempsAnimation=0.075;
+
     			do
     			{
     				fichier.get(caractere);
@@ -115,6 +117,15 @@ bool Tileset::Charger(std::string chemin)
     					case 's': fichier>>son; break;
     					case 'o': fichier>>ombre; break;
     					case 't': fichier>>transparent; break;
+    					case 'n': fichier>>tempsAnimation; break;
+
+    					case 'e':
+                                fichier.get(caractere);
+                                if(caractere=='y')
+                                    fichier>>centre.y;
+                                if(caractere=='x')
+                                    fichier>>centre.x;
+    					break;
 
     					case 'l':
                                 fichier.get(caractere);
@@ -136,7 +147,7 @@ bool Tileset::Charger(std::string chemin)
     			//AjouterTile(position,collision,animation,son,lumiere,ombre,orientation);
     			Tile tileTemp;
     			m_tile.push_back(tileTemp);
-    			m_tile[m_tile.size()-1].setTile(position,image,collision,animation,son,lumiere,ombre,orientation,transparent);
+    			m_tile[m_tile.size()-1].setTile(position,image,collision,animation,son,lumiere,ombre,orientation,transparent,centre,tempsAnimation);
 
     			fichier.get(caractere);
     		}
@@ -228,7 +239,13 @@ bool Tileset::getTransparentDuTile(int tile)
 
     return 0;
 }
+float Tileset::getTempsDuTile(int tile)
+{
+    if(tile>=0&&tile<m_tile.size())
+        return m_tile[tile].getTemps();
 
+    return 0;
+}
 
 
 
@@ -237,6 +254,19 @@ char Tileset::getOrientationDuTile(int tile)
     if(tile>=0&&tile<m_tile.size())
         return m_tile[tile].getOrientation();
     return 0;
+}
+
+coordonnee Tileset::getCentreDuTile(int tile)
+{
+    if(tile>=0&&tile<m_tile.size())
+        return m_tile[tile].getCentre();
+    else
+    {
+        coordonnee position;
+        position.x=0;
+        position.y=0;
+        return position;
+    }
 }
 
 /*void Tileset::remiseAZeroDesSons()

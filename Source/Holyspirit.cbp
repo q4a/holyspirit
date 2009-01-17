@@ -80,6 +80,8 @@
 		<Unit filename="map.cpp" />
 		<Unit filename="menu.cpp" />
 		<Unit filename="menu.h" />
+		<Unit filename="miracle.cpp" />
+		<Unit filename="miracle.h" />
 		<Unit filename="modeleMoteurParticule.cpp" />
 		<Unit filename="monstre.cpp" />
 		<Unit filename="moteurGraphique.cpp" />

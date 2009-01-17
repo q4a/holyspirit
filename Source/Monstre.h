@@ -4,6 +4,8 @@
 #include "Personnage.h"
 #include "Constantes.h"
 #include "Script.h"
+#include "miracle.h"
+
 
 class Modele_Monstre : public Modele_Personnage
 {
@@ -15,6 +17,8 @@ class Modele_Monstre : public Modele_Personnage
 
     Script m_scriptAI;
     int m_particules;
+
+    std::vector <Miracle> m_miracles;
 
     private:
     std::vector<Objet> m_objets;
@@ -37,11 +41,17 @@ class Monstre : public Personnage
 
     float m_attente;
     int m_compteur;
+    int m_miracleALancer;
+
+
+    std::vector <EntiteMiracle> m_miracleEnCours;
 
     private:
     bool m_vu;
     int m_modele;
     coordonnee m_depart;
+
+
 };
 
 

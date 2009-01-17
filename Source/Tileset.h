@@ -33,7 +33,9 @@ class Tileset
 	bool getOmbreDuTile(int tile);
 	bool getTransparentDuTile(int tile);
 	char getOrientationDuTile(int tile);
+	coordonnee getCentreDuTile(int tile);
 	std::string getChemin(){return m_chemin;}
+	float getTempsDuTile(int tile);
 
 	int getTaille();
 

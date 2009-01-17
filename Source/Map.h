@@ -41,6 +41,8 @@ class Map
 	void calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *camera);
 	void Detruire();
 
+	int gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,bool monstre,coordonnee lanceur, coordonnee cible,int couche);
+
 	void infligerDegatsMasse(coordonnee position,int rayon,int degats,bool sourceConcernee, Hero *hero,Menu *menu,sf::View *camera);
 
 	bool infligerDegats(int numeroMontre, float degats,Menu *menu,sf::View *camera, Hero *hero,bool pousser);
@@ -86,6 +88,8 @@ class Map
 
 	std::vector <Modele_Monstre> m_ModeleMonstre;
 	std::vector <Monstre> m_monstre;
+	std::vector <Projectile> m_projectile;
+	std::vector <EffetGraphique> m_effets;
 
 	sf::Image carreBrun,carreBleu,carreRouge,carreVert,carreJaune;
 

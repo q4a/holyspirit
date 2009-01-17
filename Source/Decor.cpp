@@ -44,6 +44,8 @@ void Decor::setNumeroHerbe(int numero)
 	m_herbe_couleur.b=randomIntensite - rougatre;
 }
 void Decor::setMonstre(int monstre){m_monstre=monstre;}
+void Decor::setProjectile(int projectile){m_projectile=projectile;}
+void Decor::setEffetGraphique(int effet){m_effet=effet;}
 void Decor::setEvenement(int evenement, int numero)
 {
     if(numero>=0&&numero<m_evenement.size())
@@ -71,6 +73,8 @@ int Decor::getTile(){return m_tile;}
 int Decor::getTileset(){return m_tileset;}
 std::vector<int> Decor::getEvenement(){return m_evenement;}
 int Decor::getMonstre(){return m_monstre;}
+int Decor::getProjectile(){return m_projectile;}
+int Decor::getEffetGraphique(){return m_effet;}
 int Decor::getCouche(){return m_couche;}
 
 int Decor::getHerbe(){return m_herbe;}
@@ -84,7 +88,7 @@ Objet Decor::getObjet(int numero){ if(numero>=0&&numero<m_objets.size()) return 
 std::vector<Objet> Decor::getObjets(){return m_objets;}
 int Decor::getNombreObjets(){return m_objets.size();}
 
-void Decor::decrementerAnimation(){m_animation-=0.075;}
+void Decor::decrementerAnimation(float nombre){m_animation-=nombre;}
 void Decor::augmenterAnimation(float temps){m_animation+=temps;}
 
 

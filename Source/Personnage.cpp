@@ -267,8 +267,13 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
                 if(configuration.Lumiere)
                 {
                     sprite.SetColor(sf::Color((m_lumiere.intensite*m_lumiere.rouge)/255,(m_lumiere.intensite*m_lumiere.vert)/255,(m_lumiere.intensite*m_lumiere.bleu)/255, 255));
+
+                    int intensite=m_porteeLumineuse.intensite;
+                    if(intensite>255)
+                        intensite=255;
+
                     if(m_porteeLumineuse.intensite>m_lumiere.intensite)
-                        sprite.SetColor(sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu, 255));
+                        sprite.SetColor(sf::Color(m_porteeLumineuse.rouge*intensite/255,m_porteeLumineuse.vert*intensite/255,m_porteeLumineuse.bleu*intensite/255, 255));
                 }
                 else
                 {
@@ -569,7 +574,8 @@ int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,boo
 
         *explosif=modele->m_explosif;
 
-        if(m_caracteristique.rang==0)
+        //if(m_caracteristique.rang==0||modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite()!=0)
+        if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite()!=-1)
             m_porteeLumineuse.intensite=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite();
     }
 

@@ -15,6 +15,8 @@ Monstre::Monstre()
 
     m_attente=0;
     m_compteur=0;
+
+    m_miracleALancer=-1;
 }
 
 void Monstre::Charger(int numero,Modele_Monstre *modele)
@@ -256,6 +258,19 @@ bool Modele_Monstre::Charger(string chemin)
         }while(caractere!='$');
 
 
+        do
+    	{
+    	    fichier.get(caractere);
+    	    if(caractere=='*')
+            {
+                string temp;
+                getline(fichier, temp);
+                m_miracles.push_back(Miracle (temp));
+            }
+
+    	    if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }
+        }while(caractere!='$');
+
 
         Pose poseTemp;
         m_pose.resize(NOMBRE_ETAT,vector<vector<Pose> >(0,vector<Pose>(0,poseTemp)));
@@ -270,7 +285,7 @@ bool Modele_Monstre::Charger(string chemin)
                     if(caractere=='*')
                     {
                         coordonnee position,centre={-1,-1,-1,-1};
-                        int animation,son,image,attaque=-1,lumiere=m_porteeLumineuse.intensite;
+                        int animation,son,image,attaque=-1,lumiere=-1;
                         float tempsAnimation=0.075;
 
                         do

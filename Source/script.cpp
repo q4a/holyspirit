@@ -64,6 +64,22 @@ int Script::Lire(ifstream *fichier)
 
         m_instructions.push_back(instructionBuffer);
 
+        char caractere;
+        fichier->get(caractere);
+        if(caractere=='*')
+        {
+            int valeur;
+            *fichier>>valeur;
+            m_instructions[m_instructions.size()-1].valeurs.push_back(valeur);
+        }
+
+        fichier->get(caractere);
+        if(caractere=='*')
+        {
+            int valeur;
+            *fichier>>valeur;
+            m_instructions[m_instructions.size()-1].valeurs.push_back(valeur);
+        }
     }
 
     return retour;

@@ -59,6 +59,9 @@ void Map::Detruire()
     m_fond.clear();
     m_cheminMusique.clear();
 
+    m_projectile.clear();
+    m_effets.clear();
+
     console.Ajouter("Map détruite !");
 }
 
@@ -902,8 +905,8 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                     m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.bleu=m_tableauDesLampes[i][j].bleu;
                     m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.hauteur=m_tableauDesLampes[i][j].hauteur;
 
-                    if(configuration.Ombre)
-                        m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.AjouterOmbre(lumiereMap.intensite/4,angleOmbreMap,lumiereMap.hauteur);
+                   // if(configuration.Ombre)
+                    //    m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.AjouterOmbre(lumiereMap.intensite/4,angleOmbreMap,lumiereMap.hauteur);
                 }
                 if(m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()>=0&&m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()<m_monstre.size())
                 {
@@ -914,78 +917,9 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                     m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.vert=m_tableauDesLampes[i][j].vert;
                     m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.bleu=m_tableauDesLampes[i][j].bleu;
                     m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.hauteur=m_tableauDesLampes[i][j].hauteur;
-
-                    if(configuration.Ombre)
-                        m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.AjouterOmbre(lumiereMap.intensite/4,angleOmbreMap,lumiereMap.hauteur);
                 }
-
-                if(configuration.Ombre&&!((i+vueMin.y)==hero->m_personnage.getCoordonnee().y&&(j+vueMin.x)==hero->m_personnage.getCoordonnee().x))
-                {
-                    coordonnee coord1,coord2;
-
-                    coord1.x=(int)(hero->m_personnage.getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().y-1*COTE_TILE+m_decor[0].size()*COTE_TILE)*2;
-                    coord1.y=(int)(hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y);
-                    coord2.x=(int)((j+vueMin.x)*COTE_TILE-(i+vueMin.y)*COTE_TILE-1*COTE_TILE+m_decor[0].size()*COTE_TILE)*2;
-                    coord2.y=(int)((j+vueMin.x)*COTE_TILE+(i+vueMin.y)*COTE_TILE);
-
-                    angle=atan(valeurAbsolue((float)coord2.y-(float)coord1.y)/valeurAbsolue((float)coord2.x-(float)coord1.x))*360/(2*M_PI)-90;
-
-                    if(coord2.y>=coord1.y&&coord2.x>=coord1.x)
-                        angle=180-angle;
-                    else if(coord2.y>=coord1.y&&coord2.x<coord1.x)
-                        angle+=180;
-                    else if(coord2.y<coord1.y&&coord2.x<coord1.x)
-                        angle=-angle;
-
-                    m_tableauDesLampes[i][j].AjouterOmbre(lumiere.intensite/2,(int)angle,lumiere.hauteur);
-
-
-
-                    /*if(m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()>=0&&m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()<m_monstre.size())
-                    {
-                        coord1.x=(int)(hero->m_personnage.getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().y-1*COTE_TILE+m_decor[0].size()*COTE_TILE)*2;
-                        coord1.y=(int)(hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y);
-                        coord1.x=(int)(m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].getCoordonneePixel().x-m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].getCoordonneePixel().y-1*COTE_TILE+m_decor[0].size()*COTE_TILE)*2;
-                        coord1.y=(int)(m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].getCoordonneePixel().x+m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].getCoordonneePixel().y);
-
-                        angle=atan(valeurAbsolue((float)coord2.y-(float)coord1.y)/valeurAbsolue((float)coord2.x-(float)coord1.x))*360/(2*M_PI)-90;
-
-                        if(coord2.y>=coord1.y&&coord2.x>=coord1.x)
-                            angle=180-angle;
-                        else if(coord2.y>=coord1.y&&coord2.x<coord1.x)
-                            angle+=180;
-                        else if(coord2.y<coord1.y&&coord2.x<coord1.x)
-                            angle=-angle;
-
-                        m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.AjouterOmbre(lumiere.intensite/2,(int)angle,lumiere.hauteur);
-                    }
-
-                    if(m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()>=0&&m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()<m_monstre.size())
-                    {
-                        coord1.x=(int)(hero->m_personnage.getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().y-1*COTE_TILE+m_decor[0].size()*COTE_TILE)*2;
-                        coord1.y=(int)(hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y);
-                        coord1.x=(int)(m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].getCoordonneePixel().x-m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].getCoordonneePixel().y-1*COTE_TILE+m_decor[0].size()*COTE_TILE)*2;
-                        coord1.y=(int)(m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].getCoordonneePixel().x+m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].getCoordonneePixel().y);
-
-                        angle=atan(valeurAbsolue((float)coord2.y-(float)coord1.y)/valeurAbsolue((float)coord2.x-(float)coord1.x))*360/(2*M_PI)-90;
-
-                        if(coord2.y>=coord1.y&&coord2.x>=coord1.x)
-                            angle=180-angle;
-                        else if(coord2.y>=coord1.y&&coord2.x<coord1.x)
-                            angle+=180;
-                        else if(coord2.y<coord1.y&&coord2.x<coord1.x)
-                            angle=-angle;
-
-                        //m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.AjouterOmbre(lumiere.intensite/2,(int)angle,lumiere.hauteur);
-                    }*/
-                }
-
-
             }
         }
-
-
-
 
 
 
@@ -997,10 +931,24 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                 {
                     bool ok=false;
                     if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())// Je vérifie que le tile est initialisé ^^
-                            if(m_monstre[m_decor[0][j][k].getMonstre()].getPorteeLumineuse().intensite>0&&m_monstre[m_decor[0][j][k].getMonstre()].enVie())
+                            if(m_monstre[m_decor[0][j][k].getMonstre()].getPorteeLumineuse().intensite>0)
                                 ok=true;
                     if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())// Je vérifie que le tile est initialisé ^^
-                            if(m_monstre[m_decor[1][j][k].getMonstre()].getPorteeLumineuse().intensite>0&&m_monstre[m_decor[1][j][k].getMonstre()].enVie())
+                            if(m_monstre[m_decor[1][j][k].getMonstre()].getPorteeLumineuse().intensite>0)
+                                ok=true;
+
+                    if(m_decor[0][j][k].getProjectile()>=0&&m_decor[0][j][k].getProjectile()<m_projectile.size())// Je vérifie que le tile est initialisé ^^
+                            if(m_projectile[m_decor[0][j][k].getProjectile()].m_lumiere.intensite>0)
+                                ok=true;
+                    if(m_decor[1][j][k].getProjectile()>=0&&m_decor[1][j][k].getProjectile()<m_projectile.size())// Je vérifie que le tile est initialisé ^^
+                            if(m_projectile[m_decor[1][j][k].getProjectile()].m_lumiere.intensite>0)
+                                ok=true;
+
+                    if(m_decor[0][j][k].getEffetGraphique()>=0&&m_decor[0][j][k].getEffetGraphique()<m_effets.size())// Je vérifie que le tile est initialisé ^^
+                            if(m_effets[m_decor[0][j][k].getEffetGraphique()].m_lumiere.intensite>0)
+                                ok=true;
+                    if(m_decor[1][j][k].getEffetGraphique()>=0&&m_decor[1][j][k].getEffetGraphique()<m_effets.size())// Je vérifie que le tile est initialisé ^^
+                            if(m_effets[m_decor[1][j][k].getEffetGraphique()].m_lumiere.intensite>0)
                                 ok=true;
 
                      for(int z=0;z<m_decor[1][j][k].getEvenement().size();z++)
@@ -1327,9 +1275,215 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                         }
                                     }
 
+                                    if(m_decor[0][j][k].getEffetGraphique()>=0&&m_decor[0][j][k].getEffetGraphique()<m_effets.size())
+                                        if(m_effets[m_decor[0][j][k].getEffetGraphique()].m_lumiere.intensite>0)
+                                        {
+                                            //lumiere=m_lumiere;
+                                            lumiere.intensite=m_effets[m_decor[0][j][k].getEffetGraphique()].m_lumiere.intensite;
+                                            lumiereTemp=0;
 
-                                        if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
-                                        //if(m_monstre[m_decor[0][j][k].getMonstre()].getCaracteristique().vie>0)
+                                            if(lumiere.intensite>255)
+                                                lumiere.intensite=255;
+                                            // Je réduit la quantité de lumière reçue, en fonction de la distance, qui est calculée avec un simple pythagore ^^
+                                           // lumiereTemp=(float)lumiereTile.intensite-(float)(gpl::sqrt((k*COTE_TILE-m*COTE_TILE)*(k*COTE_TILE-m*COTE_TILE)+(j*COTE_TILE-l*COTE_TILE)*(j*COTE_TILE-l*COTE_TILE)))/5;
+                                            lumiereTemp=(float)lumiere.intensite-((((float)gpl::sqrt((m_effets[m_decor[0][j][k].getEffetGraphique()].m_position.x-((float)m)*COTE_TILE)*(m_effets[m_decor[0][j][k].getEffetGraphique()].m_position.x-((float)m)*COTE_TILE)+(m_effets[m_decor[0][j][k].getEffetGraphique()].m_position.y-((float)l)*COTE_TILE)*(m_effets[m_decor[0][j][k].getEffetGraphique()].m_position.y-((float)l)*COTE_TILE))))*DIVISEUR_COTE_TILE)*60;
+                                            lumiere.hauteur=5;
+
+                                            if(lumiereTemp>0)
+                                                lumiere.intensite=(int)lumiereTemp;
+                                            else
+                                                lumiere.intensite=0;
+
+
+                                            if(lumiere.intensite>0)
+                                            {
+                                                lumiere.rouge=m_effets[m_decor[0][j][k].getEffetGraphique()].m_lumiere.rouge;
+                                                lumiere.vert=m_effets[m_decor[0][j][k].getEffetGraphique()].m_lumiere.vert;
+                                                lumiere.bleu=m_effets[m_decor[0][j][k].getEffetGraphique()].m_lumiere.bleu;
+
+                                                lumiereTemp=m_effets[m_decor[0][j][k].getEffetGraphique()].m_lumiere.intensite;
+
+                                                if(lumiereTemp>255)
+                                                    lumiereTemp=255;
+
+                                                    // Je calcule la couleur de la lumière, par rapport à l'ancienne lumière et à la nouvelle, pour faire un fondu
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=(int)(lumiere.rouge*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge*(int)lumiereTemp)/((int)lumiereTemp+lumiere.intensite);
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert=(int)(lumiere.vert*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert*(int)lumiereTemp)/((int)lumiereTemp+lumiere.intensite);
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu=(int)(lumiere.bleu*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu*(int)lumiereTemp)/((int)lumiereTemp+lumiere.intensite);
+
+                                                if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge>255)
+                                                    m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=255;
+                                                if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert>255)
+                                                    m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert=255;
+                                                if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu>255)
+                                                    m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu=255;
+
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+=lumiere.intensite;
+
+                                                if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite>255)
+                                                    m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite=255;
+                                                if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite<0)
+                                                    m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite=0;
+                                            }
+                                        }
+
+                                    if(m_decor[1][j][k].getEffetGraphique()>=0&&m_decor[1][j][k].getEffetGraphique()<m_effets.size())
+                                        if(m_effets[m_decor[1][j][k].getEffetGraphique()].m_lumiere.intensite>0)
+                                        {
+                                            //lumiere=m_lumiere;
+                                            lumiere.intensite=m_effets[m_decor[1][j][k].getEffetGraphique()].m_lumiere.intensite;
+                                            lumiereTemp=0;
+
+                                            if(lumiere.intensite>255)
+                                                lumiere.intensite=255;
+                                            // Je réduit la quantité de lumière reçue, en fonction de la distance, qui est calculée avec un simple pythagore ^^
+                                           // lumiereTemp=(float)lumiereTile.intensite-(float)(gpl::sqrt((k*COTE_TILE-m*COTE_TILE)*(k*COTE_TILE-m*COTE_TILE)+(j*COTE_TILE-l*COTE_TILE)*(j*COTE_TILE-l*COTE_TILE)))/5;
+                                            lumiereTemp=(float)lumiere.intensite-((((float)gpl::sqrt((m_effets[m_decor[1][j][k].getEffetGraphique()].m_position.x-((float)m)*COTE_TILE)*(m_effets[m_decor[1][j][k].getEffetGraphique()].m_position.x-((float)m)*COTE_TILE)+(m_effets[m_decor[1][j][k].getEffetGraphique()].m_position.y-((float)l)*COTE_TILE)*(m_effets[m_decor[1][j][k].getEffetGraphique()].m_position.y-((float)l)*COTE_TILE))))*DIVISEUR_COTE_TILE)*60;
+                                            lumiere.hauteur=5;
+
+                                            if(lumiereTemp>0)
+                                                lumiere.intensite=(int)lumiereTemp;
+                                            else
+                                                lumiere.intensite=0;
+
+
+                                            if(lumiere.intensite>0)
+                                            {
+                                                lumiere.rouge=m_effets[m_decor[1][j][k].getEffetGraphique()].m_lumiere.rouge;
+                                                lumiere.vert=m_effets[m_decor[1][j][k].getEffetGraphique()].m_lumiere.vert;
+                                                lumiere.bleu=m_effets[m_decor[1][j][k].getEffetGraphique()].m_lumiere.bleu;
+
+                                                lumiereTemp=m_effets[m_decor[1][j][k].getEffetGraphique()].m_lumiere.intensite;
+
+                                                if(lumiereTemp>255)
+                                                    lumiereTemp=255;
+
+                                                    // Je calcule la couleur de la lumière, par rapport à l'ancienne lumière et à la nouvelle, pour faire un fondu
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=(int)(lumiere.rouge*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge*(int)lumiereTemp)/((int)lumiereTemp+lumiere.intensite);
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert=(int)(lumiere.vert*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert*(int)lumiereTemp)/((int)lumiereTemp+lumiere.intensite);
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu=(int)(lumiere.bleu*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu*(int)lumiereTemp)/((int)lumiereTemp+lumiere.intensite);
+
+                                                if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge>255)
+                                                    m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=255;
+                                                if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert>255)
+                                                    m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert=255;
+                                                if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu>255)
+                                                    m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu=255;
+
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+=lumiere.intensite;
+
+                                                if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite>255)
+                                                    m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite=255;
+                                                if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite<0)
+                                                    m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite=0;
+                                            }
+                                        }
+
+                                    if(m_decor[0][j][k].getProjectile()>=0&&m_decor[0][j][k].getProjectile()<m_projectile.size())
+                                        if(m_projectile[m_decor[0][j][k].getProjectile()].m_lumiere.intensite>0)
+                                        {
+                                            //lumiere=m_lumiere;
+                                            lumiere.intensite=m_projectile[m_decor[0][j][k].getProjectile()].m_lumiere.intensite;
+                                            lumiereTemp=0;
+
+                                            if(lumiere.intensite>255)
+                                                lumiere.intensite=255;
+                                            // Je réduit la quantité de lumière reçue, en fonction de la distance, qui est calculée avec un simple pythagore ^^
+                                           // lumiereTemp=(float)lumiereTile.intensite-(float)(gpl::sqrt((k*COTE_TILE-m*COTE_TILE)*(k*COTE_TILE-m*COTE_TILE)+(j*COTE_TILE-l*COTE_TILE)*(j*COTE_TILE-l*COTE_TILE)))/5;
+                                            lumiereTemp=(float)lumiere.intensite-((((float)gpl::sqrt((m_projectile[m_decor[0][j][k].getProjectile()].m_position.x-((float)m)*COTE_TILE)*(m_projectile[m_decor[0][j][k].getProjectile()].m_position.x-((float)m)*COTE_TILE)+(m_projectile[m_decor[0][j][k].getProjectile()].m_position.y-((float)l)*COTE_TILE)*(m_projectile[m_decor[0][j][k].getProjectile()].m_position.y-((float)l)*COTE_TILE))))*DIVISEUR_COTE_TILE)*60;
+                                            lumiere.hauteur=5;
+
+                                            if(lumiereTemp>0)
+                                                lumiere.intensite=(int)lumiereTemp;
+                                            else
+                                                lumiere.intensite=0;
+
+
+                                            if(lumiere.intensite>0)
+                                            {
+                                                lumiere.rouge=m_projectile[m_decor[0][j][k].getProjectile()].m_lumiere.rouge;
+                                                lumiere.vert=m_projectile[m_decor[0][j][k].getProjectile()].m_lumiere.vert;
+                                                lumiere.bleu=m_projectile[m_decor[0][j][k].getProjectile()].m_lumiere.bleu;
+
+                                                lumiereTemp=m_projectile[m_decor[0][j][k].getProjectile()].m_lumiere.intensite;
+
+                                                if(lumiereTemp>255)
+                                                    lumiereTemp=255;
+
+                                                    // Je calcule la couleur de la lumière, par rapport à l'ancienne lumière et à la nouvelle, pour faire un fondu
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=(int)(lumiere.rouge*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge*(int)lumiereTemp)/((int)lumiereTemp+lumiere.intensite);
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert=(int)(lumiere.vert*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert*(int)lumiereTemp)/((int)lumiereTemp+lumiere.intensite);
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu=(int)(lumiere.bleu*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu*(int)lumiereTemp)/((int)lumiereTemp+lumiere.intensite);
+
+                                                if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge>255)
+                                                    m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=255;
+                                                if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert>255)
+                                                    m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert=255;
+                                                if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu>255)
+                                                    m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu=255;
+
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+=lumiere.intensite;
+
+                                                if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite>255)
+                                                    m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite=255;
+                                                if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite<0)
+                                                    m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite=0;
+                                            }
+                                        }
+
+                                    if(m_decor[1][j][k].getProjectile()>=0&&m_decor[1][j][k].getProjectile()<m_projectile.size())
+                                        if(m_projectile[m_decor[1][j][k].getProjectile()].m_lumiere.intensite>0)
+                                        {
+                                            //lumiere=m_lumiere;
+                                            lumiere.intensite=m_projectile[m_decor[1][j][k].getProjectile()].m_lumiere.intensite;
+                                            lumiereTemp=0;
+
+                                            if(lumiere.intensite>255)
+                                                lumiere.intensite=255;
+                                            // Je réduit la quantité de lumière reçue, en fonction de la distance, qui est calculée avec un simple pythagore ^^
+                                           // lumiereTemp=(float)lumiereTile.intensite-(float)(gpl::sqrt((k*COTE_TILE-m*COTE_TILE)*(k*COTE_TILE-m*COTE_TILE)+(j*COTE_TILE-l*COTE_TILE)*(j*COTE_TILE-l*COTE_TILE)))/5;
+                                            lumiereTemp=(float)lumiere.intensite-((((float)gpl::sqrt((m_projectile[m_decor[1][j][k].getProjectile()].m_position.x-((float)m)*COTE_TILE)*(m_projectile[m_decor[1][j][k].getProjectile()].m_position.x-((float)m)*COTE_TILE)+(m_projectile[m_decor[1][j][k].getProjectile()].m_position.y-((float)l)*COTE_TILE)*(m_projectile[m_decor[1][j][k].getProjectile()].m_position.y-((float)l)*COTE_TILE))))*DIVISEUR_COTE_TILE)*60;
+                                            lumiere.hauteur=5;
+
+                                            if(lumiereTemp>0)
+                                                lumiere.intensite=(int)lumiereTemp;
+                                            else
+                                                lumiere.intensite=0;
+
+
+                                            if(lumiere.intensite>0)
+                                            {
+                                                lumiere.rouge=m_projectile[m_decor[1][j][k].getProjectile()].m_lumiere.rouge;
+                                                lumiere.vert=m_projectile[m_decor[1][j][k].getProjectile()].m_lumiere.vert;
+                                                lumiere.bleu=m_projectile[m_decor[1][j][k].getProjectile()].m_lumiere.bleu;
+
+                                                lumiereTemp=m_projectile[m_decor[1][j][k].getProjectile()].m_lumiere.intensite;
+
+                                                if(lumiereTemp>255)
+                                                    lumiereTemp=255;
+
+                                                    // Je calcule la couleur de la lumière, par rapport à l'ancienne lumière et à la nouvelle, pour faire un fondu
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=(int)(lumiere.rouge*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge*(int)lumiereTemp)/((int)lumiereTemp+lumiere.intensite);
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert=(int)(lumiere.vert*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert*(int)lumiereTemp)/((int)lumiereTemp+lumiere.intensite);
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu=(int)(lumiere.bleu*lumiere.intensite+m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu*(int)lumiereTemp)/((int)lumiereTemp+lumiere.intensite);
+
+                                                if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge>255)
+                                                    m_tableauDesLampes[l-vueMin.y][m-vueMin.x].rouge=255;
+                                                if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert>255)
+                                                    m_tableauDesLampes[l-vueMin.y][m-vueMin.x].vert=255;
+                                                if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu>255)
+                                                    m_tableauDesLampes[l-vueMin.y][m-vueMin.x].bleu=255;
+
+                                                m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite+=lumiere.intensite;
+
+                                                if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite>255)
+                                                    m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite=255;
+                                                if(m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite<0)
+                                                    m_tableauDesLampes[l-vueMin.y][m-vueMin.x].intensite=0;
+                                            }
+                                        }
+
+                                    if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
                                         if(m_monstre[m_decor[0][j][k].getMonstre()].getPorteeLumineuse().intensite>0)
                                         {
                                             //lumiere=m_lumiere;
@@ -1345,10 +1499,9 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                             lumiere.hauteur=m_monstre[m_decor[0][j][k].getMonstre()].getPorteeLumineuse().hauteur;
 
                                             if(lumiereTemp>0)
-                                            lumiere.intensite=(int)lumiereTemp;
+                                                lumiere.intensite=(int)lumiereTemp;
                                             else
-                                            lumiere.intensite=0;
-
+                                                lumiere.intensite=0;
 
                                             //Je vais tester s'il y a un obstacle entre la source de lumière et le tile
                                             if(configuration.Lumiere==2)
@@ -1401,7 +1554,6 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                                                     }
                                                                 }
                                                             }
-
                                             }
                                             // SI oui, je retire de la lumière au tile
                                             if((int)lumiereTemp<0)
@@ -1410,7 +1562,6 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
 
                                             if(lumiere.intensite>0)
                                             {
-
                                                 lumiere.rouge=m_monstre[m_decor[0][j][k].getMonstre()].getPorteeLumineuse().rouge;
                                                 lumiere.vert=m_monstre[m_decor[0][j][k].getMonstre()].getPorteeLumineuse().vert;
                                                 lumiere.bleu=m_monstre[m_decor[0][j][k].getMonstre()].getPorteeLumineuse().bleu;
@@ -1441,8 +1592,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                             }
                                         }
 
-                                        if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
-                                       // if(m_monstre[m_decor[1][j][k].getMonstre()].getCaracteristique().vie>0)
+                                    if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
                                         if(m_monstre[m_decor[1][j][k].getMonstre()].getPorteeLumineuse().intensite>0)
                                         {
                                             //lumiere=m_lumiere;
@@ -1455,9 +1605,9 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                             lumiere.hauteur=m_monstre[m_decor[1][j][k].getMonstre()].getPorteeLumineuse().hauteur;
 
                                             if(lumiereTemp>0)
-                                            lumiere.intensite=(int)lumiereTemp;
+                                                lumiere.intensite=(int)lumiereTemp;
                                             else
-                                            lumiere.intensite=0;
+                                                lumiere.intensite=0;
 
 
 
@@ -1621,34 +1771,8 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     position.y-=32;
 
                                     position.x+=m_decor[0][j][k].getDecalageHerbe().x;
-                                   // position.y+=m_decor[0][j][k].getDecalageHerbe().y;
 
                                     Sprite.SetImage(*moteurGraphique.getImage(m_herbe[m_decor[0][j][k].getHerbe()].getImage(m_decor[0][j][k].getNumeroHerbe())));
-                                    /*if((position.x+64-positionPartieDecor.w/2)-ViewRect.Left<0)
-                                    {
-                                        int temp=(int)((position.x+64-positionPartieDecor.w/2)-ViewRect.Left);
-                                        position.x+=temp/2;
-                                        positionPartieDecor.x+=temp;
-                                        positionPartieDecor.w-=temp;
-                                    }
-                                    if((position.x+64-positionPartieDecor.w/2)+positionPartieDecor.w>ViewRect.Right)
-                                    {
-                                        int temp=(int)((ViewRect.Right-((position.x+64-positionPartieDecor.w/2)+positionPartieDecor.w)));
-                                        position.x-=temp/2;
-                                        positionPartieDecor.w-=temp;
-                                    }
-                                    if((position.y-positionPartieDecor.h+64)-ViewRect.Top<0)
-                                    {
-                                        int temp=(int)(((position.y-positionPartieDecor.h+64)-ViewRect.Top));
-                                        positionPartieDecor.y+=temp;
-                                        positionPartieDecor.h-=temp;
-                                    }
-                                    if((position.y-positionPartieDecor.h+64)+positionPartieDecor.h>ViewRect.Bottom)
-                                    {
-                                        int temp=(int)((ViewRect.Bottom-(position.y-positionPartieDecor.h+64+positionPartieDecor.h)));
-                                        position.y-=temp;
-                                        positionPartieDecor.h-=temp;
-                                    }*/
 
                                     Sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
                                     Sprite.SetScale((float)m_decor[0][j][k].getTailleHerbe()/100,(float)m_decor[0][j][k].getTailleHerbe()/100);
@@ -1675,7 +1799,6 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                                     255));
                                             }
                                             moteurGraphique.AjouterCommande(&Sprite,8,1);
-                                             //ecran->Draw(Sprite);
                                         }
                                         Sprite.SetScale(1,1);
                                 }
@@ -1735,10 +1858,6 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     hero->m_personnage.Afficher(ecran,camera,position,getDimensions(),&hero->m_modelePersonnage);
                         }
 
-
-
-
-
                         if(j>=0&&j<m_decor[0].size()&&k>=0&&k<m_decor[0][0].size())
                             if(configuration.Herbes)
                                 if(m_decor[1][j][k].getHerbe()>=0&&m_decor[1][j][k].getHerbe()<m_herbe.size())
@@ -1751,31 +1870,6 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     position.y+=positionPartieDecor.h/2;
 
                                     Sprite.SetImage(*moteurGraphique.getImage(m_herbe[m_decor[1][j][k].getHerbe()].getImage(m_decor[1][j][k].getNumeroHerbe())));
-                                    /*if((position.x+64-positionPartieDecor.w/2)-ViewRect.Left<0)
-                                    {
-                                        int temp=(int)((position.x+64-positionPartieDecor.w/2)-ViewRect.Left);
-                                        position.x+=temp/2;
-                                        positionPartieDecor.x+=temp;
-                                        positionPartieDecor.w-=temp;
-                                    }
-                                    if((position.x+64-positionPartieDecor.w/2)+positionPartieDecor.w>ViewRect.Right)
-                                    {
-                                        int temp=(int)((ViewRect.Right-((position.x+64-positionPartieDecor.w/2)+positionPartieDecor.w)));
-                                        position.x-=temp/2;
-                                        positionPartieDecor.w-=temp;
-                                    }
-                                    if((position.y-positionPartieDecor.h+64)-ViewRect.Top<0)
-                                    {
-                                        int temp=(int)(((position.y-positionPartieDecor.h+64)-ViewRect.Top));
-                                        positionPartieDecor.y+=temp;
-                                        positionPartieDecor.h-=temp;
-                                    }
-                                    if((position.y-positionPartieDecor.h+64)+positionPartieDecor.h>ViewRect.Bottom)
-                                    {
-                                        int temp=(int)((ViewRect.Bottom-(position.y-positionPartieDecor.h+64+positionPartieDecor.h)));
-                                        position.y-=temp;
-                                        positionPartieDecor.h-=temp;
-                                    }*/
                                     Sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
                                     Sprite.SetScale((float)m_decor[1][j][k].getTailleHerbe()/100,(float)m_decor[1][j][k].getTailleHerbe()/100);
 
@@ -1806,6 +1900,19 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                                     Sprite.SetScale(1,1);
                                 }
+
+                        if(j>=0&&j<m_decor[0].size()&&k>=0&&k<m_decor[0][0].size())
+                        {
+                            if(m_decor[0][j][k].getProjectile()>=0&&m_decor[0][j][k].getProjectile()<m_projectile.size())
+                                m_projectile[m_decor[0][j][k].getProjectile()].Afficher(ecran,camera,position,getDimensions());
+                            if(m_decor[1][j][k].getProjectile()>=0&&m_decor[1][j][k].getProjectile()<m_projectile.size())
+                                m_projectile[m_decor[1][j][k].getProjectile()].Afficher(ecran,camera,position,getDimensions());
+
+                            if(m_decor[0][j][k].getEffetGraphique()>=0&&m_decor[0][j][k].getEffetGraphique()<m_effets.size())
+                                m_effets[m_decor[0][j][k].getEffetGraphique()].Afficher(ecran,camera,position,getDimensions());
+                            if(m_decor[1][j][k].getEffetGraphique()>=0&&m_decor[1][j][k].getEffetGraphique()<m_effets.size())
+                                m_effets[m_decor[1][j][k].getEffetGraphique()].Afficher(ecran,camera,position,getDimensions());
+                        }
                     }
 
                         if(m_decor[1][j][k].getNombreObjets()>0&&couche==1)
@@ -1906,8 +2013,8 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                                             Sprite.SetColor(sf::Color(0,0,0,m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].intensite));
                                             Sprite.SetX(position.x+64-positionPartieDecor.w/2+positionPartieDecor.w/2);
-                                            Sprite.SetY(position.y-positionPartieDecor.h+64+positionPartieDecor.h-32);
-                                            Sprite.SetCenter((positionPartieDecor.w/2),(positionPartieDecor.h-32));
+                                            Sprite.SetY(position.y-positionPartieDecor.h+64+positionPartieDecor.h-32+(32-(positionPartieDecor.h-m_tileset[m_decor[couche][j][k].getTileset()].getCentreDuTile(m_decor[couche][j][k].getTile()).y)));
+                                            Sprite.SetCenter(m_tileset[m_decor[couche][j][k].getTileset()].getCentreDuTile(m_decor[couche][j][k].getTile()).x,m_tileset[m_decor[couche][j][k].getTileset()].getCentreDuTile(m_decor[couche][j][k].getTile()).y);
                                             Sprite.SetScale(1, m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].taille);
                                             Sprite.SetRotation(m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle);
                                              if(m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle>90&&m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle<270)
@@ -1933,12 +2040,12 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     if(couche==1)
                                     {
                                         Sprite.SetX(position.x+64-positionPartieDecor.w/2);
-                                        Sprite.SetY(position.y-positionPartieDecor.h+64);
+                                        Sprite.SetY(position.y-positionPartieDecor.h+64+(32-(positionPartieDecor.h-m_tileset[m_decor[couche][j][k].getTileset()].getCentreDuTile(m_decor[couche][j][k].getTile()).y)));
                                     }
                                     else
                                     {
                                         Sprite.SetX(position.x+64-positionPartieDecor.w/2);
-                                        Sprite.SetY(position.y-positionPartieDecor.h/2+64);
+                                        Sprite.SetY(position.y-positionPartieDecor.h/2+64+(32-(positionPartieDecor.h-m_tileset[m_decor[couche][j][k].getTileset()].getCentreDuTile(m_decor[couche][j][k].getTile()).y)));
                                     }
 
                                     int alpha=255;
@@ -2302,6 +2409,100 @@ bool Map::testEvenement(sf::View *camera, Jeu *jeu,float temps)
     return 1;
 }
 
+int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,bool monstre,coordonnee lanceur, coordonnee cible,int couche=0)
+{
+    int retour=0;
+    if(entiteMiracle->m_effetEnCours>=0&&entiteMiracle->m_effetEnCours<modeleMiracle->m_effets.size())
+    {
+        if(modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_type==PROJECTILE)
+        {
+            m_projectile.push_back(Projectile ());
+            m_projectile[m_projectile.size()-1].m_position.x=entiteMiracle->m_position.x;
+            m_projectile[m_projectile.size()-1].m_position.y=entiteMiracle->m_position.y;
+
+            m_projectile[m_projectile.size()-1].m_degats=0;
+
+            if(modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_lien>=0&&modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_lien<modeleMiracle->m_effets.size())
+                if(modeleMiracle->m_effets[modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_lien].m_type==DEGATS)
+                    m_projectile[m_projectile.size()-1].m_degats=modeleMiracle->m_effets[modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_lien].m_informations[0];
+
+            m_projectile[m_projectile.size()-1].m_monstre=monstre;
+
+            m_projectile[m_projectile.size()-1].m_actif=true;
+
+            coordonneeDecimal position,position2,positionHero;
+            double m=atan(((double)lanceur.y-(double)cible.y)/(double)((double)lanceur.x-cible.x));
+            if(lanceur.x-cible.x<0)
+                m-=M_PI;
+            m+=M_PI;
+
+            position.x=cos(m)*modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_informations[0]/10;
+            position.y=sin(m)*modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_informations[0]/10;
+
+            m_projectile[m_projectile.size()-1].m_rotation=m;
+
+            m_projectile[m_projectile.size()-1].m_vecteur=position;
+
+            m_projectile[m_projectile.size()-1].m_lumiere.intensite=128;
+            m_projectile[m_projectile.size()-1].m_lumiere.rouge=255;
+            m_projectile[m_projectile.size()-1].m_lumiere.vert=128;
+            m_projectile[m_projectile.size()-1].m_lumiere.bleu=128;
+
+            if(modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_sequence][entiteMiracle->m_imageEnCours].getImage()>=0&&modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_sequence][entiteMiracle->m_imageEnCours].getImage()<modeleMiracle->m_image.size())
+                m_projectile[m_projectile.size()-1].m_image=modeleMiracle->m_image[modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_sequence][entiteMiracle->m_imageEnCours].getImage()];
+            m_projectile[m_projectile.size()-1].m_positionImage= modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_sequence][entiteMiracle->m_imageEnCours].getCoordonnee();
+
+            entiteMiracle->m_IDObjet=m_projectile.size()-1;
+
+            entiteMiracle->m_imageEnCours=0;
+
+            if(couche>=0&&couche<2)
+                if(lanceur.y>=0&&lanceur.y<m_decor[couche].size())
+                    if(lanceur.x>=0&&lanceur.x<m_decor[couche][lanceur.y].size())
+                        m_decor[couche][lanceur.y][lanceur.x].setProjectile(m_projectile.size()-1);
+        }
+
+
+        if(modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_type==EFFET_GRAPHIQUE)
+        {
+            m_effets.push_back(EffetGraphique ());
+            m_effets[m_effets.size()-1].m_position.x=entiteMiracle->m_position.x;
+            m_effets[m_effets.size()-1].m_position.y=entiteMiracle->m_position.y;
+
+            m_effets[m_effets.size()-1].m_compteur=modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_informations[0];
+
+            m_effets[m_effets.size()-1].m_actif=true;
+
+            m_effets[m_effets.size()-1].m_lumiere.intensite=128;
+            m_effets[m_effets.size()-1].m_lumiere.rouge=255;
+            m_effets[m_effets.size()-1].m_lumiere.vert=128;
+            m_effets[m_effets.size()-1].m_lumiere.bleu=128;
+
+            entiteMiracle->m_imageEnCours=0;
+
+            if(modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_sequence][entiteMiracle->m_imageEnCours].getImage()>=0&&modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_sequence][entiteMiracle->m_imageEnCours].getImage()<modeleMiracle->m_image.size())
+                m_effets[m_effets.size()-1].m_image=modeleMiracle->m_image[modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_sequence][entiteMiracle->m_imageEnCours].getImage()];
+            m_effets[m_effets.size()-1].m_positionImage= modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_sequence][entiteMiracle->m_imageEnCours].getCoordonnee();
+
+            entiteMiracle->m_IDObjet=m_effets.size()-1;
+
+            if(couche>=0&&couche<2)
+                if(lanceur.y>=0&&lanceur.y<m_decor[couche].size())
+                    if(lanceur.x>=0&&lanceur.x<m_decor[couche][lanceur.y].size())
+                        m_decor[couche][lanceur.y][lanceur.x].setEffetGraphique(m_effets.size()-1);
+        }
+
+
+        if(modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_type==DEGATS)
+        {
+            retour=modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_informations[0];
+            entiteMiracle->m_effetEnCours=modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_lien;
+            gererMiracle(entiteMiracle,modeleMiracle,monstre,lanceur,cible,couche);
+        }
+    }
+
+    return retour;
+}
 
 void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
 {
@@ -2337,31 +2538,42 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                                 gererEvenements(m_decor[i][j][k].getEvenement()[z],z,i,k,j);
                             }
                         }
+                    m_decor[i][j][k].augmenterAnimation(temps);
 
-
-                m_decor[i][j][k].augmenterAnimation(temps);
-                while(m_decor[i][j][k].getAnimation()>=0.075)
-                {
                     if(m_decor[i][j][k].getTileset()>=0&&m_decor[i][j][k].getTileset()<m_tileset.size())
                     {
-                        if(m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile())>=0)
-                            m_decor[i][j][k].setDecor(m_decor[i][j][k].getTileset(),m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile()),m_decor[i][j][k].getEvenement(),m_decor[i][j][k].getMonstre(),m_decor[i][j][k].getHerbe(),m_decor[i][j][k].getCouche());
-
-                        if(m_tileset[m_decor[i][j][k].getTileset()].getSonTile(m_decor[i][j][k].getTile())>=0)
+                        float tempsAnimation=m_tileset[m_decor[i][j][k].getTileset()].getTempsDuTile(m_decor[i][j][k].getTile());
+                        while(m_decor[i][j][k].getAnimation()>=tempsAnimation)
                         {
-                            coordonnee position;
-                            position.x=(k-j-1+m_decor[0].size())/5;
-                            position.y=(k+j)/5;
+                            if(m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile())>=0)
+                                m_decor[i][j][k].setDecor(m_decor[i][j][k].getTileset(),m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile()),m_decor[i][j][k].getEvenement(),m_decor[i][j][k].getMonstre(),m_decor[i][j][k].getHerbe(),m_decor[i][j][k].getCouche());
 
-                            m_tileset[m_decor[i][j][k].getTileset()].jouerSon(m_tileset[m_decor[i][j][k].getTileset()].getSonTile(m_decor[i][j][k].getTile()),position,positionHero);
+                            m_decor[i][j][k].decrementerAnimation(tempsAnimation);
                         }
                     }
-                    m_decor[i][j][k].decrementerAnimation();
-                }
-                    if(m_decor[i][j][k].getMonstre()>=0&&m_decor[i][j][k].getMonstre()<m_monstre.size())
+
+                    int monstre=m_decor[i][j][k].getMonstre();
+                    if(monstre>=0&&monstre<m_monstre.size())
                     {
                         bool explosif=false;
-                        int degats = m_monstre[m_decor[i][j][k].getMonstre()].animer(&m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()],m_decor[0].size(),temps,&explosif,positionHero);
+                        int degats = m_monstre[monstre].animer(&m_ModeleMonstre[m_monstre[monstre].getModele()],m_decor[0].size(),temps,&explosif,positionHero);
+                        if(degats>0&&!explosif)
+                        {
+                            if(m_monstre[monstre].m_miracleALancer==-1)
+                                hero->infligerDegats(degats);
+                            else
+                            {
+                                m_monstre[monstre].m_miracleEnCours.push_back(EntiteMiracle ());
+                                m_monstre[monstre].m_miracleEnCours[m_monstre[monstre].m_miracleEnCours.size()-1].m_modele=m_monstre[monstre].m_miracleALancer;
+
+                                m_monstre[monstre].m_miracleEnCours[m_monstre[monstre].m_miracleEnCours.size()-1].m_position.x=m_monstre[monstre].getCoordonneePixel().x;
+                                m_monstre[monstre].m_miracleEnCours[m_monstre[monstre].m_miracleEnCours.size()-1].m_position.y=m_monstre[monstre].getCoordonneePixel().y;
+
+                                if(m_monstre[monstre].m_miracleEnCours[m_monstre[monstre].m_miracleEnCours.size()-1].m_modele>=0&&m_monstre[monstre].m_miracleEnCours[m_monstre[monstre].m_miracleEnCours.size()-1].m_modele<m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles.size())
+                                    gererMiracle(&m_monstre[monstre].m_miracleEnCours[m_monstre[monstre].m_miracleEnCours.size()-1],&m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[m_monstre[monstre].m_miracleEnCours.size()-1].m_modele],1,m_monstre[monstre].getCoordonnee(),hero->m_personnage.getProchaineCase(),i);
+                            }
+                            m_monstre[monstre].m_miracleALancer=-1;
+                        }
                         if(explosif&&degats>0)
                         {
                             coordonnee temp={k,j,-1,-1};
@@ -2369,22 +2581,98 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                             verifierDeclencheursDegats(j,k);
 
                             infligerDegatsMasse(temp,1,degats,1,hero,menu,camera);
-
-                            /*for(int couche=0;couche<2;couche++)
-                                for(int y=j-1;y<=j+1;y++)
-                                    for(int x=k-1;x<=k+1;x++)
-                                        if(y>0&&x>0&&y<m_decor[0].size()&&x<m_decor[0][0].size())
-                                        {
-                                            infligerDegats(m_decor[couche][y][x].getMonstre(), degats,menu,camera,hero,0);
-
-                                            if(y==hero->m_personnage.getCoordonnee().y&&x==hero->m_personnage.getCoordonnee().x)
-                                                hero->infligerDegats(degats);
-
-
-                                        }*/
                         }
-                        else
-                        hero->infligerDegats(degats);
+
+                        for(int i=0;i<m_monstre[monstre].m_miracleEnCours.size();i++)
+                        {
+                            m_monstre[monstre].m_miracleEnCours[i].m_imageEnCours=m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_tile[m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours].m_sequence][m_monstre[monstre].m_miracleEnCours[i].m_imageEnCours].getAnimation();
+
+                            if(m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours].m_type==PROJECTILE)
+                            {
+                                float tempsAnimation = m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_tile[m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours].m_sequence][m_monstre[monstre].m_miracleEnCours[i].m_imageEnCours].getTemps();
+                                m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_animation+=temps;
+
+                                while(m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_animation>=tempsAnimation)
+                                {
+                                    if(m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_actif)
+                                    {
+                                        m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_image=m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_image[m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_tile[m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours].m_sequence][m_monstre[monstre].m_miracleEnCours[i].m_imageEnCours].getImage()];
+                                        m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_positionImage= m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_tile[m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours].m_sequence][m_monstre[monstre].m_miracleEnCours[i].m_imageEnCours].getCoordonnee();
+
+                                        m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_lumiere=m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_tile[m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours].m_sequence][m_monstre[monstre].m_miracleEnCours[i].m_imageEnCours].getLumiere();
+
+                                        m_monstre[monstre].m_miracleEnCours[i].m_position=m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_position;
+                                    }
+                                    else
+                                    {
+                                        m_projectile.erase (m_projectile.begin()+m_monstre[monstre].m_miracleEnCours[i].m_IDObjet);
+
+                                        for(int j=0;j<m_monstre[monstre].m_miracleEnCours.size();j++)
+                                        {
+                                            if(m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[j].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[j].m_effetEnCours].m_type==PROJECTILE)
+                                                if(m_monstre[monstre].m_miracleEnCours[j].m_IDObjet>m_monstre[monstre].m_miracleEnCours[i].m_IDObjet)
+                                                    m_monstre[monstre].m_miracleEnCours[j].m_IDObjet--;
+                                        }
+                                        m_monstre[monstre].m_miracleEnCours[i].m_IDObjet=-1;
+                                        m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours=m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours].m_lien;
+
+                                        gererMiracle(&m_monstre[monstre].m_miracleEnCours[m_monstre[monstre].m_miracleEnCours.size()-1],&m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[m_monstre[monstre].m_miracleEnCours.size()-1].m_modele],1,m_monstre[monstre].getCoordonnee(),hero->m_personnage.getProchaineCase(),i);
+                                    }
+
+                                    m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_animation-=tempsAnimation;
+                                }
+                            }
+
+                            if(m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours].m_type==EFFET_GRAPHIQUE)
+                            {
+                                float tempsAnimation = m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_tile[m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours].m_sequence][m_monstre[monstre].m_miracleEnCours[i].m_imageEnCours].getTemps();
+                                m_effets[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_animation+=temps;
+
+                                while(m_effets[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_animation>=tempsAnimation)
+                                {
+                                    if(m_effets[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_compteur>0)
+                                    {
+                                        m_effets[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_image=m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_image[m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_tile[m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours].m_sequence][m_monstre[monstre].m_miracleEnCours[i].m_imageEnCours].getImage()];
+                                        m_effets[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_positionImage= m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_tile[m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours].m_sequence][m_monstre[monstre].m_miracleEnCours[i].m_imageEnCours].getCoordonnee();
+                                        m_effets[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_compteur--;
+
+                                        m_effets[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_lumiere=m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_tile[m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours].m_sequence][m_monstre[monstre].m_miracleEnCours[i].m_imageEnCours].getLumiere();
+                                    }
+
+                                    if(m_effets[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_compteur<=0)
+                                    {
+                                        m_effets.erase (m_effets.begin()+m_monstre[monstre].m_miracleEnCours[i].m_IDObjet);
+
+                                        for(int j=0;j<m_monstre[monstre].m_miracleEnCours.size();j++)
+                                        {
+                                            if(m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[j].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[j].m_effetEnCours].m_type==EFFET_GRAPHIQUE)
+                                                if(m_monstre[monstre].m_miracleEnCours[j].m_IDObjet>m_monstre[monstre].m_miracleEnCours[i].m_IDObjet)
+                                                    m_monstre[monstre].m_miracleEnCours[j].m_IDObjet--;
+                                        }
+                                        m_monstre[monstre].m_miracleEnCours[i].m_IDObjet=-1;
+                                        m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours=m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours].m_lien;
+
+                                        gererMiracle(&m_monstre[monstre].m_miracleEnCours[m_monstre[monstre].m_miracleEnCours.size()-1],&m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[m_monstre[monstre].m_miracleEnCours.size()-1].m_modele],1,m_monstre[monstre].getCoordonnee(),hero->m_personnage.getProchaineCase(),i);
+                                    }
+                                    m_effets[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_animation-=tempsAnimation;
+                                }
+                            }
+
+                            if(m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours>=0)
+                                if(m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours].m_sequence)
+                                    if(m_monstre[monstre].m_miracleEnCours[i].m_imageEnCours>=0)
+                                        if(m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_tile[m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours].m_sequence][m_monstre[monstre].m_miracleEnCours[i].m_imageEnCours].getSon()>=0)
+                                        {
+                                            coordonnee position;
+                                            position.x=(k-j-1+m_decor[0].size())/5;
+                                            position.y=(k+j)/5;
+
+                                            m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].jouerSon(m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_tile[m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours].m_sequence][m_monstre[monstre].m_miracleEnCours[i].m_imageEnCours].getSon(),position,positionHero);
+                                        }
+
+                            if(m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours==-1)
+                                m_monstre[monstre].m_miracleEnCours.erase (m_monstre[monstre].m_miracleEnCours.begin()+i);
+                        }
                    }
 
            }
@@ -2522,13 +2810,75 @@ void Map::musiquePlay(coordonnee position)
                                     }   \
                                 }
 
+#define EVASION()               if(m_monstre[m_decor[i][j][k].getMonstre()].enVie())   \
+                                {   \
+                                    if(!m_monstre[m_decor[i][j][k].getMonstre()].frappeEnCours)\
+                                    {\
+                                        if(m_monstre[m_decor[i][j][k].getMonstre()].getArrivee().x==m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x&&m_monstre[m_decor[i][j][k].getMonstre()].getArrivee().y==m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y) \
+                                        {   \
+                                            coordonnee arrivee;   \
+                                            arrivee=m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee();   \
+                                            arrivee.x+=m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x;   \
+                                            arrivee.y+=m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y;   \
+                                            m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(arrivee);   \
+                                        }   \
+                                        else   \
+                                        {   \
+                                            if(m_monstre[m_decor[i][j][k].getMonstre()].seDeplacer(temps*100))   \
+                                            {   \
+                                                coordonnee tempCoord={hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1};   \
+                                                m_monstre[m_decor[i][j][k].getMonstre()].pathfinding(getAlentourDuPersonnage(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()),tempCoord);   \
+                                                if(!(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y==j&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x==k))   \
+                                                    if(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x<m_decor[0][0].size()&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y<m_decor[0].size())   \
+                                                    {   \
+                                                        m_decor[i][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].setMonstre(m_decor[i][j][k].getMonstre());   \
+                                                        m_decor[i][j][k].setMonstre(-1);   \
+                                                    }   \
+                                                }   \
+                                        }   \
+                                    }\
+                                }
+
+#define USEMIRACLE(numero)   m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(m_monstre[m_decor[i][j][k].getMonstre()].getProchaineCase()); \
+                            if(m_monstre[m_decor[i][j][k].getMonstre()].seDeplacer(temps*100))   \
+                            { \
+                                m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()); \
+                                \
+                                \
+                                m_monstre[m_decor[i][j][k].getMonstre()].m_miracleALancer=numero;\
+                                if(m_monstre[m_decor[i][j][k].getMonstre()].getEtat()!=2) \
+                                    m_monstre[m_decor[i][j][k].getMonstre()].setEtat(2); \
+                                coordonnee temp,temp2;   \
+                                                    temp.x=(hero->m_personnage.getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().y-1+m_decor[1].size())*64;   \
+                                                    temp.y=(hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y)*32;   \
+                                                    temp2.x=(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x-m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y-1+m_decor[1].size())*64;   \
+                                                    temp2.y=(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x+m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y)*32;   \
+                                                    m_monstre[m_decor[i][j][k].getMonstre()].frappe(temp,temp2);   \
+                                \
+                                \
+                                if(!(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y==j&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x==k))   \
+                                    if(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x<m_decor[0][0].size()&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y<m_decor[0].size())   \
+                                    {   \
+                                        if(m_decor[0][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()<0&&m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()<0)   \
+                                            m_decor[i][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].setMonstre(m_decor[i][j][k].getMonstre());   \
+                                        else   \
+                                        {   \
+                                            int temp=m_decor[i][j][k].getMonstre();   \
+                                            if(m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()>=0)   \
+                                                m_decor[0][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].setMonstre(m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre());   \
+                                            m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].setMonstre(temp);   \
+                                        }   \
+                                        m_decor[i][j][k].setMonstre(-1);   \
+                                    }   \
+                                    \
+                                    \
+                        }
+
 #define FIGHT() if(!m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding())   \
                                 {   \
                                     if(m_monstre[m_decor[i][j][k].getMonstre()].enVie())   \
                                     {   \
-                                    \
                                         coordonnee arrivee,enCours;   \
-                                        bool arriveSurCase=true; \
                                         \
                                         if(m_monstre[m_decor[i][j][k].getMonstre()].seDeplacer(temps*100))   \
                                         {   \
@@ -2583,8 +2933,6 @@ void Map::musiquePlay(coordonnee position)
                                                         m_decor[i][j][k].setMonstre(-1);   \
                                                     }   \
                                         }   \
-                                        else\
-                                            arriveSurCase=false; \
                                         \
                                         if(fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)>1||fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)>1)   \
                                         {   \
@@ -2596,20 +2944,6 @@ void Map::musiquePlay(coordonnee position)
                                                 }   \
                                                 \
                                         }   \
-                                        else if(arriveSurCase) \
-                                        {   \
-                                            if(hero->m_personnage.enVie()<=0)   \
-                                                m_monstre[m_decor[i][j][k].getMonstre()].setVu(0);   \
-                                            if(m_monstre[m_decor[i][j][k].getMonstre()].getEtat()!=2)   \
-                                                m_monstre[m_decor[i][j][k].getMonstre()].setEtat(2);   \
-                                            coordonnee temp,temp2;   \
-                                            temp.x=(hero->m_personnage.getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().y-1+m_decor[1].size())*64;   \
-                                            temp.y=(hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y)*32;   \
-                                            temp2.x=(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x-m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y-1+m_decor[1].size())*64;   \
-                                            temp2.y=(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x+m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y)*32;   \
-                                            m_monstre[m_decor[i][j][k].getMonstre()].frappe(temp,temp2);   \
-                                            m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee());   \
-                                        }   \
                                     }   \
                                 }
 
@@ -2619,13 +2953,31 @@ void Map::musiquePlay(coordonnee position)
 #define LISTE_INSTRUCTIONS(noInstruction) if(noInstruction>=0&&noInstruction<script.m_instructions.size()) \
                                              { \
                                                 if(script.m_instructions[noInstruction].nom=="fight") { FIGHT() } \
+                                                if(script.m_instructions[noInstruction].nom=="evasion") { EVASION() } \
+                                                if(script.m_instructions[noInstruction].nom=="useMiracle") { USEMIRACLE(script.m_instructions[noInstruction].valeurs.at(0)) } \
                                                 if(script.m_instructions[noInstruction].nom=="randomDisplace") { RANDOMDISPLACE() } \
                                                 if(script.m_instructions[noInstruction].nom=="if") { gererConditions(script,noInstruction,i,j,k,hero,temps,camera,menu); } \
                                              }
 
-#define LISTE_CONDITIONS(noInstruction) if(script.m_instructions[noInstruction].nom=="see") \
-                                                    if(!m_monstre[m_decor[i][j][k].getMonstre()].getVu()) \
-                                                        ok=false;
+#define LISTE_CONDITIONS(noInstruction) if(script.m_instructions[noInstruction].nom=="see")\
+                                        {\
+                                            if(!m_monstre[m_decor[i][j][k].getMonstre()].getVu()) \
+                                                ok=false;\
+                                        }\
+                                        else if(script.m_instructions[noInstruction].nom=="distance")\
+                                        {\
+                                            if(sqrt((m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)*(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x) + (m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)*(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)) < script.m_instructions[noInstruction].valeurs.at(0)) \
+                                                ok=true;\
+                                            else \
+                                                ok=false;\
+                                        }\
+                                        else if(script.m_instructions[noInstruction].nom=="rand")\
+                                        {\
+                                            if(rand() % 100 <= script.m_instructions[noInstruction].valeurs.at(0)) \
+                                                ok=true;\
+                                            else \
+                                                ok=false;\
+                                        }
 
 
 void Map::gererConditions(Script script,int noInstruction,int i, int j, int k,Hero *hero,float temps,sf::View *camera,Menu *menu)
@@ -2667,6 +3019,7 @@ void Map::gererMonstres(Hero *hero,float temps,sf::View *camera,Menu *menu)
 	for(int i=0;i<2;i++)
         for(int j=vueMin.y;j<vueMax.y;j++)
             for(int k=vueMin.x;k<vueMax.x;k++)
+            {
                     if(m_decor[i][j][k].getMonstre()>=0&&m_decor[i][j][k].getMonstre()<m_monstre.size())
                     {
                         if(hero->m_personnage.enVie())
@@ -2714,6 +3067,35 @@ void Map::gererMonstres(Hero *hero,float temps,sf::View *camera,Menu *menu)
                                     infligerDegats(m_decor[i][j][k].getMonstre(),m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]].getInformation(0)*temps*10,menu,camera,hero,0);
                                 }
                     }
+
+
+                    if(m_decor[i][j][k].getProjectile()>=0&&m_decor[i][j][k].getProjectile()<m_projectile.size())
+                        if(m_projectile[m_decor[i][j][k].getProjectile()].m_actif)
+                        {
+                            m_projectile[m_decor[i][j][k].getProjectile()].Deplacer(temps);
+
+                            int temp=m_decor[i][j][k].getProjectile();
+                            m_decor[i][j][k].setProjectile(-1);
+
+                            if(m_projectile[temp].m_position.y/COTE_TILE>vueMin.y+1&&m_projectile[temp].m_position.y/COTE_TILE<vueMax.y-1&&m_projectile[temp].m_position.x/COTE_TILE>vueMin.x+1&&m_projectile[temp].m_position.x/COTE_TILE<vueMax.x-1)
+                            {
+                                int typeCase=getTypeCase((int)(m_projectile[temp].m_position.x/COTE_TILE),(int)(m_projectile[temp].m_position.y/COTE_TILE));
+                                if(typeCase==2&&!m_projectile[temp].m_monstre)
+                                {}
+                                else if(hero->m_personnage.getCoordonnee().x==(int)((m_projectile[temp].m_position.x+32)/COTE_TILE)&&hero->m_personnage.getCoordonnee().y==(int)((m_projectile[temp].m_position.y+32)/COTE_TILE)&&m_projectile[temp].m_monstre)
+                                {
+                                    m_projectile[temp].m_actif=false;
+                                    hero->infligerDegats(m_projectile[temp].m_degats);
+                                }
+                                else if(typeCase==1)
+                                    m_projectile[temp].m_actif=false;
+                                else
+                                    m_decor[i][(int)(m_projectile[temp].m_position.y/COTE_TILE)][(int)(m_projectile[temp].m_position.x/COTE_TILE)].setProjectile(temp);
+                            }
+                            else
+                                m_projectile[temp].m_actif=false;
+                        }
+            }
 }
 
 bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *camera, Hero *hero,bool pousser)

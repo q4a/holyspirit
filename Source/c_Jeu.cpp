@@ -162,7 +162,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                 ///Déplacements
                 ///**********************************************************///
 
-                if(tempsEcouleDepuisDernierDeplacement>=0.011)
+                if(tempsEcouleDepuisDernierDeplacement>=0.0)
                 {
                     coordonnee temp={-1 ,-1 ,-1 ,-1};
                     if(jeu->hero.getMonstreVise()==-1)
@@ -179,8 +179,6 @@ void c_Jeu::Utiliser(Jeu *jeu)
                             jeu->hero.m_personnage.pathfinding(jeu->map.getAlentourDuPersonnage(jeu->hero.m_personnage.getCoordonnee()),temp); // Recherche du chemin
                         if(configuration.Lumiere)
                             lumiere=true;
-
-
                     }
                     jeu->map.testEvenement(&jeu->camera,jeu,tempsEcoule); // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
 
@@ -252,8 +250,6 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 if(tempsEcouleDepuisDernierAffichage>0.013&&configuration.syncronisation_verticale||!configuration.syncronisation_verticale)
                 {
-
-
                     jeu->hero.placerCamera(&jeu->camera,jeu->map.getDimensions()); // On place la camera suivant ou se trouve le perso
                     jeu->camera.Zoom(configuration.zoom);
 
@@ -279,10 +275,6 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                                 coordonnee temp={-1,-1,-1,-1};
                                 jeu->hero.setSacVise(temp);
-                               //jeu->hero.setChercherSac(jeu->map.getSacPointe());
-
-                                //if(jeu->hero.getChercherSac().x!=-1)
-                                  //  jeu->eventManager.StopEvenement(Mouse::Left,"CA");
                             }
                         }
                         else if(jeu->hero.getChercherSac().x!=-1&&jeu->map.getObjetPointe()!=-1)
@@ -299,6 +291,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
                             jeu->eventManager.StopEvenement(Mouse::Left,"CA");
                             jeu->hero.setMonstreVise(jeu->map.getMonstreIllumine());
                         }
+                        else
+                            jeu->hero.setMonstreVise(-1);
                     }
                     if(jeu->eventManager.getEvenement(Mouse::Left,"C")&&jeu->eventManager.getEvenement(Mouse::Left,"CA"))
                     {
@@ -430,7 +424,6 @@ void c_Jeu::Utiliser(Jeu *jeu)
                 ///**********************************************************///
 
                 nbrTourBoucle++;
-
 
                 if(tempsNbrTourBoucle>1)
                 {
