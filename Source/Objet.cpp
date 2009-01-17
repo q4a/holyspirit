@@ -529,14 +529,20 @@ void Objet::AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position
     sprintf(chaine,"");
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
 
+    float multiplieurEfficacite=100;
+
+    for(int i=0;i<m_benedictions.size();i++)
+        if(m_benedictions[i].type==EFFICACITE_ACCRUE)
+            multiplieurEfficacite+=m_benedictions[i].info1;
+
     switch(m_type)
     {
         case ARME:
-            sprintf(chaine,"Dégats : %i - %i",m_degatsMin,m_degatsMax);
+            sprintf(chaine,"Dégats : %i - %i",(int)(m_degatsMin*multiplieurEfficacite/100),(int)(m_degatsMax*multiplieurEfficacite/100));
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
         break;
         case ARMURE:
-            sprintf(chaine,"Armure : %i",m_armure);
+            sprintf(chaine,"Armure : %i",(int)(m_armure*multiplieurEfficacite/100));
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
         break;
     }
