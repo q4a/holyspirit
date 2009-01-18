@@ -2,7 +2,6 @@
 main 
 	if see
 	then
-
 		if distance * 3
 		then
 			evasion  
@@ -14,7 +13,6 @@ main
 				fight
 			end
 		end
-		
 	else
 		randomDisplace  
 	end
