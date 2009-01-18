@@ -35,31 +35,31 @@ $
 *Data/Entities/Monsters/DemonicPriest/DemonicSphere.miracle.hs
 $
 Arret - E
-*x0 y0 w128 h128 a0 s-1 i0 $
+*x0 y0 w128 h128 a0 s-1 i0  l0 $
 $
 Arret - NE
-*x0 y0 w128 h128 a0 s-1 i0 $
+*x0 y0 w128 h128 a0 s-1 i0  l0 $
 $
 Arret - N
-*x0 y0 w128 h128 a0 s-1 i0 $
+*x0 y0 w128 h128 a0 s-1 i0  l0 $
 $
 Arret - NO
-*x0 y0 w128 h128 a0 s-1 i0 $
+*x0 y0 w128 h128 a0 s-1 i0  l0 $
 $
 Arret - O
-*x0 y0 w128 h128 a0 s-1 i0 $
+*x0 y0 w128 h128 a0 s-1 i0  l0 $
 $
 Arret - SO
-*x0 y0 w128 h128 a0 s-1 i0 $
+*x0 y0 w128 h128 a0 s-1 i0  l0 $
 $
 Arret - S
-*x0 y0 w128 h128 a0 s-1 i0 $
+*x0 y0 w128 h128 a0 s-1 i0  l0 $
 $
 Arret - SE
-*x0 y0 w128 h128 a0 s-1 i0 $
+*x0 y0 w128 h128 a0 s-1 i0  l0 $
 $
 Course - E
-*x0 y0 w128 h128 cy100 a1 s0 i1 t0.04 $
+*x0 y0 w128 h128 cy100 a1 s0 i1 t0.04 l0 $
 *x128 y0 w128 h128 cy100  a2 s-1 i1 t0.04 $
 *x256 y0 w128 h128  cy100 a3 s-1 i1 t0.04 $
 *x384 y0 w128 h128 cy100 a4 s-1 i1 t0.04 $
@@ -77,7 +77,7 @@ Course - E
 *x896 y128 w128 h128 cy100 a0 s-1 i1 t0.04 $
 $
 Course - NE
-*x0 y256 w128 h128 a1 s0 i1 t0.04 $
+*x0 y256 w128 h128 a1 s0 i1 t0.04 l0 $
 *x128 y256 w128 h128 a2 s-1 i1 t0.04 $
 *x256 y256 w128 h128 a3 s-1 i1 t0.04 $
 *x384 y256 w128 h128 a4 s-1 i1 t0.04 $
@@ -95,7 +95,7 @@ Course - NE
 *x896 y384 w128 h128 a0 s-1 i1 t0.04 $
 $
 Course - N
-*x0 y512 w128 h128 a1 s0 i1 t0.04 $
+*x0 y512 w128 h128 a1 s0 i1 t0.04 l0 $
 *x128 y512 w128 h128 a2 s-1 i1 t0.04 $
 *x256 y512 w128 h128 a3 s-1 i1 t0.04 $
 *x384 y512 w128 h128 a4 s-1 i1 t0.04 $
@@ -113,7 +113,7 @@ Course - N
 *x896 y640 w128 h128 a0 s-1 i1 t0.04 $
 $
 Course - NO
-*x0 y768 w128 h128 a1 s0 i1 t0.04 $
+*x0 y768 w128 h128 a1 s0 i1 t0.04 l0 $
 *x128 y768 w128 h128 a2 s-1 i1 t0.04 $
 *x256 y768 w128 h128 a3 s-1 i1 t0.04 $
 *x384 y768 w128 h128 a4 s-1 i1 t0.04 $
@@ -131,7 +131,7 @@ Course - NO
 *x896 y896 w128 h128 a0 s-1 i1 t0.04 $
 $
 Course - O
-*x0 y0 w128 h128 a1 s0 i2 t0.04 $
+*x0 y0 w128 h128 a1 s0 i2 t0.04 l0 $
 *x128 y0 w128 h128 a2 s-1 i2 t0.04 $
 *x256 y0 w128 h128 a3 s-1 i2 t0.04 $
 *x384 y0 w128 h128 a4 s-1 i2 t0.04 $
@@ -149,7 +149,7 @@ Course - O
 *x896 y128 w128 h128 a0 s-1 i2 t0.04 $
 $
 Course - SO
-*x0 y256 w128 h128 a1 s0 i2 t0.04 $
+*x0 y256 w128 h128 a1 s0 i2 t0.04 l0 $
 *x128 y256 w128 h128 a2 s-1 i2 t0.04 $
 *x256 y256 w128 h128 a3 s-1 i2 t0.04 $
 *x384 y256 w128 h128 a4 s-1 i2 t0.04 $
@@ -167,7 +167,7 @@ Course - SO
 *x896 y384 w128 h128 a0 s-1 i2 t0.04 $
 $
 Course - S
-*x0 y512 w128 h128 a1 s0 i2 t0.04 $
+*x0 y512 w128 h128 a1 s0 i2 t0.04 l0 $
 *x128 y512 w128 h128 a2 s-1 i2 t0.04 $
 *x256 y512 w128 h128 a3 s-1 i2 t0.04 $
 *x384 y512 w128 h128 a4 s-1 i2 t0.04 $
@@ -185,7 +185,7 @@ Course - S
 *x896 y640 w128 h128 a0 s-1 i2 t0.04 $
 $
 Course - SE
-*x0 y768 w128 h128 a1 s0 i2 t0.04 $
+*x0 y768 w128 h128 a1 s0 i2 t0.04 l0 $
 *x128 y768 w128 h128 a2 s-1 i2 t0.04 $
 *x256 y768 w128 h128 a3 s-1 i2 t0.04 $
 *x384 y768 w128 h128 a4 s-1 i2 t0.04 $

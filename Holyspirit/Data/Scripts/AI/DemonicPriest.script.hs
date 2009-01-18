@@ -2,7 +2,6 @@
 main 
 	if see
 	then
-
 		if distance * 2
 		then
 			if rand * 75
@@ -24,7 +23,6 @@ main
 				end
 			end
 		end
-
 		
 	else
 		randomDisplace  
