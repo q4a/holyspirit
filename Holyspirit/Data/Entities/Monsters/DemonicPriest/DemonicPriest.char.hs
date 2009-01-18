@@ -19,7 +19,7 @@ Rang du monstre
 $
 Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse
-*v100 di10 da50 m0.3 o1 a1 n1 s1 $
+*v100 di10 da50 m0.3 o1 a100 n5 s1 $
 $
 *Data/Scripts/AI/DemonicPriest.script.hs
 $

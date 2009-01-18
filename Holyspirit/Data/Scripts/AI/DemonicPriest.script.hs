@@ -5,7 +5,7 @@ main
 
 		if distance * 2
 		then
-			if rand * 90
+			if rand * 75
 			then
 				evasion
 			else
