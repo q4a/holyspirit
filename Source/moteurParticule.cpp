@@ -86,7 +86,7 @@ bool ParticuleSysteme::Gerer(float temps,int tailleMapY)
 
             m_particules[i].vecteur.z-=temps*25;
 
-            if(m_particules[i].position.z<=1&&m_particules[i].vie==100&&i%3==0)
+            if(m_particules[i].position.z<=1&&m_particules[i].vie==100&&i%5==0)
             {
                 coordonnee positionHero={0,0,0,0},position,positionCase;
 

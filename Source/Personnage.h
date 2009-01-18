@@ -106,7 +106,7 @@ class Personnage
 	Caracteristique m_caracteristique;
 	coordonnee m_cheminFinal,m_arrivee,m_ancienneArrivee,m_mauvaiseArrivee, m_positionCase,m_positionAffichage,m_positionPixelPrecedente;
 	coordonneeDecimal m_positionPixel;
-	Lumiere m_porteeLumineuse;
+	Lumiere m_porteeLumineuse,m_porteeLumineuseBasique;
 
 
 	//std::vector <int>  m_sons;

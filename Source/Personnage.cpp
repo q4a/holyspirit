@@ -55,6 +55,11 @@ Personnage::Personnage()
     frappeEnCours=false;
 
     m_erreurPathfinding=false;
+
+    m_porteeLumineuseBasique.intensite=-1;
+    m_porteeLumineuseBasique.rouge=255;
+    m_porteeLumineuseBasique.vert=255;
+    m_porteeLumineuseBasique.bleu=255;
 }
 Modele_Personnage::Modele_Personnage()
 {
@@ -575,8 +580,10 @@ int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,boo
         *explosif=modele->m_explosif;
 
         //if(m_caracteristique.rang==0||modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite()!=0)
-        if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite()!=-1)
+        if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite()!=-1&&modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite()>m_porteeLumineuseBasique.intensite)
             m_porteeLumineuse.intensite=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite();
+        else
+            m_porteeLumineuse=m_porteeLumineuseBasique;
     }
 
     return retour;

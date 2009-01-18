@@ -11,6 +11,9 @@ Decor::Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int her
 	m_numeroHerbe=0;
 	m_animation=0;
 	m_couche=couche;
+
+	m_projectile=-1;
+	m_effet=-1;
 }
 
 void Decor::setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche)

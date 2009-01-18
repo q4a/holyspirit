@@ -26,6 +26,7 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
     m_modele=numero;
     m_caracteristique=modele->getCaracteristique();
     m_porteeLumineuse=modele->getPorteeLumineuse();
+    m_porteeLumineuseBasique=m_porteeLumineuse;
     if(m_caracteristique.rang==0&&m_caracteristique.pointAme>0)
     {
         int temp=rand()%(1000);
@@ -62,6 +63,8 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
             m_porteeLumineuse.rouge=rand()%255;
             m_porteeLumineuse.vert=rand()%255;
             m_porteeLumineuse.bleu=rand()%255;
+
+            m_porteeLumineuseBasique=m_porteeLumineuse;
         }
     }
 }

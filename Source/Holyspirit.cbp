@@ -39,6 +39,7 @@
 			<Add alias="All" targets="Release;" />
 		</VirtualTargets>
 		<Compiler>
+			<Add option="-fexpensive-optimizations" />
 			<Add option="-Os" />
 			<Add option="-O3" />
 			<Add option="-O2" />
@@ -46,6 +47,7 @@
 			<Add option="-O" />
 		</Compiler>
 		<Linker>
+			<Add option="-s" />
 			<Add library="libsfml-audio.a" />
 			<Add library="libsfml-graphics.a" />
 			<Add library="libsfml-window.a" />

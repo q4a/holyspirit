@@ -533,7 +533,7 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
 
         moteurGraphique.AjouterCommande(&sprite,18,0);
 
-        sprite.SetColor(sf::Color(255,255,255,255));
+        sprite.SetColor(m_inventaire[m_objetEnMain].m_color);
 
         sprite.SetImage(*moteurGraphique.getImage(m_inventaire[m_objetEnMain].getImage()));
         sprite.SetSubRect(IntRect(m_inventaire[m_objetEnMain].getPositionImage().x, m_inventaire[m_objetEnMain].getPositionImage().y, m_inventaire[m_objetEnMain].getPositionImage().x+m_inventaire[m_objetEnMain].getPositionImage().w, m_inventaire[m_objetEnMain].getPositionImage().y+m_inventaire[m_objetEnMain].getPositionImage().h));
