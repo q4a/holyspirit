@@ -36,6 +36,9 @@ Map::~Map()
 
 void Map::Detruire()
 {
+    console.Ajouter("");
+    console.Ajouter("Destruction de la map...");
+
     m_tileset.clear();
     m_herbe.clear();
 
@@ -639,13 +642,15 @@ void Map::Sauvegarder()
     	    }
     	    fichier<<"$\n";
     	}
+
+        fichier.close();
     }
     else
     {
         console.Ajouter("Impossible d'ouvrir le fichier : "+chemin,1);
         throw "";
     }
-    fichier.close();
+
 
 
 
@@ -665,8 +670,10 @@ void Map::Sauvegarder()
             <<" lr"<<m_monstre[i].getPorteeLumineuse().rouge<<" lv"<<m_monstre[i].getPorteeLumineuse().vert<<" lb"<<m_monstre[i].getPorteeLumineuse().bleu<<" li"<<m_monstre[i].getPorteeLumineuse().intensite<<" $\n";
         }
         fichier<<"\n$";
+
+        fichier.close();
     }
-    fichier.close();
+
 
     console.Ajouter("Sauvegarde terminée !");
 }
@@ -2035,7 +2042,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                 positionHero.y=(int)((hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y)*DIVISEUR_COTE_TILE*32);
                                 positionHero.x=(int)(((hero->m_personnage.getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().y)*DIVISEUR_COTE_TILE-1+m_decor[0].size())*64);
 
-                                if(position.x+positionPartieDecor.w>=ViewRect.Left&&position.x<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y-positionPartieDecor.h+64<ViewRect.Bottom)
+                                if(position.x+64-positionPartieDecor.w/2+positionPartieDecor.w>=ViewRect.Left&&position.x+64-positionPartieDecor.w/2<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y-positionPartieDecor.h+64<ViewRect.Bottom)
                                 {
                                     if(couche==1)
                                     {

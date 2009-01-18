@@ -3,6 +3,7 @@
 	<FileVersion major="1" minor="6" />
 	<Project>
 		<Option title="Holyspirit" />
+		<Option pch_mode="0" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Release">
@@ -26,6 +27,13 @@
 		<VirtualTargets>
 			<Add alias="All" targets="Release;" />
 		</VirtualTargets>
+		<Compiler>
+			<Add option="-Os" />
+			<Add option="-O3" />
+			<Add option="-O2" />
+			<Add option="-O1" />
+			<Add option="-O" />
+		</Compiler>
 		<Linker>
 			<Add library="libsfml-audio.a" />
 			<Add library="libsfml-graphics.a" />

@@ -52,9 +52,13 @@ int main ( int argc, char** argv )
 		return EXIT_FAILURE;
 	}
 
+
+	console.Ajouter("");
+	console.Ajouter("Sauvegarde de la configuration");
+
     configuration.Sauvegarder();
 
-    delete configuration.text_benedictions;
+    delete[] configuration.text_benedictions;
 
     console.Ajouter("");
     console.Ajouter("EXIT_SUCCESS");

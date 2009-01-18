@@ -81,6 +81,9 @@ Hero::Hero()
 
 void Hero::Sauvegarder()
 {
+    console.Ajouter("");
+    console.Ajouter("Sauvegarde du héro...");
+
     ofstream fichier;
     fichier.open((configuration.chemin_saves+"hero.sav.hs").c_str(), ios::out);
     if(fichier)
@@ -114,8 +117,12 @@ void Hero::Sauvegarder()
 
         fichier<<" $"<<endl;
 
+        fichier.close();
+
     }
-    fichier.close();
+
+
+    console.Ajouter("Sauvegarde du héro terminée !");
 }
 void Hero::Charger()
 {

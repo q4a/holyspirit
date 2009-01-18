@@ -63,9 +63,9 @@ void Objet::Sauvegarder(std::ofstream *fichier)
     *fichier<<"da"<<m_degatsMax<<" ";
     *fichier<<"a"<<m_armure<<" ";
 
-    *fichier<<"lr"<<m_color.r<<" ";
-    *fichier<<"lg"<<m_color.g<<" ";
-    *fichier<<"lb"<<m_color.b<<" ";
+    *fichier<<"lr"<<(int)m_color.r<<" ";
+    *fichier<<"lg"<<(int)m_color.g<<" ";
+    *fichier<<"lb"<<(int)m_color.b<<" ";
 
     *fichier<<"m"<<m_chemin<<" ";
 
@@ -493,12 +493,6 @@ void Objet::AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position
     sf::String string;
 
     coordonnee tailleCadran={0,0,0,0},decalage={-10,0,0,0};
-
-   // position.x*=configuration.Resolution.x/configuration.Resolution.w;
-    //position.y*=configuration.Resolution.y/configuration.Resolution.h;
-
-    //position.x=(int)ecran->ConvertCoords(ecran->GetInput().GetMouseX(),ecran->GetInput().GetMouseY()).x;
-    //position.y=(int)ecran->ConvertCoords(ecran->GetInput().GetMouseX(), ecran->GetInput().GetMouseY()).y;
 
     sprintf(chaine,"%s",m_nom.c_str());
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
