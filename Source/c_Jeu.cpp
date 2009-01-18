@@ -129,8 +129,9 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 if(jeu->hero.m_personnage.enVie())
                 {
-                    if(jeu->hero.m_caracteristiques.vie/(float)jeu->hero.m_caracteristiques.maxVie<0.5)
-                        configuration.effetMort=150-(jeu->hero.m_caracteristiques.vie*300/jeu->hero.m_caracteristiques.maxVie),jeu->sonMort.SetVolume(configuration.effetMort);
+                    if(jeu->hero.m_caracteristiques.maxVie!=0)
+                        if(jeu->hero.m_caracteristiques.vie/(float)jeu->hero.m_caracteristiques.maxVie<0.5)
+                            configuration.effetMort=150-(jeu->hero.m_caracteristiques.vie*300/jeu->hero.m_caracteristiques.maxVie),jeu->sonMort.SetVolume(configuration.effetMort);
                     else
                         configuration.effetMort=0,jeu->sonMort.SetVolume(0);
                 }
@@ -231,7 +232,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     if(jeu->hero.m_personnage.animer(&jeu->hero.m_modelePersonnage,jeu->map.getDimensions().y,tempsDepuisDerniereAnimation,&a,positionHero)==1) //Animation du héro
                     {
                         if(jeu->hero.miracleEnCours==1)
-                             jeu->map.infligerDegatsMasse(jeu->hero.m_personnage.getCoordonnee(),1,rand()%(jeu->hero.m_caracteristiques.degatsMax - jeu->hero.m_caracteristiques.degatsMin) + jeu->hero.m_caracteristiques.degatsMin ,false,&jeu->hero,&jeu->menu,&jeu->camera);
+                             jeu->map.infligerDegatsMasse(jeu->hero.m_personnage.getCoordonnee(),1,rand()%(jeu->hero.m_caracteristiques.degatsMax - jeu->hero.m_caracteristiques.degatsMin +1) + jeu->hero.m_caracteristiques.degatsMin ,false,&jeu->hero,&jeu->menu,&jeu->camera);
                         else
                             jeu->map.infligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&jeu->camera,&jeu->hero,1);
 
@@ -396,7 +397,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     if(jeu->map.getEvenement(jeu->eventManager.getCasePointee())>=0)
                         jeu->map.AfficherNomEvenement(&jeu->ecran,jeu->eventManager.getCasePointee(),jeu->eventManager.getPositionSouris());
 
-                    if(configuration.effetMort&&sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
+                    if(configuration.effetMort&&sf::PostFX::CanUsePostFX() == true&&configuration.postFX&&tempsEffetMort!=0)
                     {
                         moteurGraphique.EffectMort.SetParameter("offset", 0.005*configuration.effetMort/100*(0.6+tempsEffetMort/10));
                         moteurGraphique.EffectMort.SetParameter("color",1+1*configuration.effetMort/100*tempsEffetMort, 1-0.5*configuration.effetMort/100*tempsEffetMort, 1-0.5*configuration.effetMort/100*tempsEffetMort);
@@ -434,7 +435,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     tempsNbrTourBoucle=0;
                 }
 
-                if(configuration.console)
+                if(configuration.console&&jeu->ecran.GetFrameTime()!=0)
                     sprintf(chaine,"%ld FPS",(int)( 1.f / jeu->ecran.GetFrameTime()));
 
                 if(configuration.console)

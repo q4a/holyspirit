@@ -24,6 +24,9 @@ class Projectile
     Lumiere m_lumiere;
 
     float m_animation;
+    int m_couche;
+
+    bool m_dejaDeplace;
 };
 
 class EffetGraphique
@@ -41,6 +44,7 @@ class EffetGraphique
     Lumiere m_lumiere;
 
     float m_animation;
+    int m_couche;
 };
 
 struct Effet

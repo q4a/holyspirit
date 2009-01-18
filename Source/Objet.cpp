@@ -63,9 +63,9 @@ void Objet::Sauvegarder(std::ofstream *fichier)
     *fichier<<"da"<<m_degatsMax<<" ";
     *fichier<<"a"<<m_armure<<" ";
 
-    *fichier<<"lr"<<(int)m_color.r<<" ";
-    *fichier<<"lg"<<(int)m_color.g<<" ";
-    *fichier<<"lb"<<(int)m_color.b<<" ";
+    *fichier<<"lr"<<m_color.r<<" ";
+    *fichier<<"lg"<<m_color.g<<" ";
+    *fichier<<"lb"<<m_color.b<<" ";
 
     *fichier<<"m"<<m_chemin<<" ";
 

@@ -596,7 +596,9 @@ void Personnage::frappe(coordonnee direction,coordonnee position)
 
     /*if((double)((double)direction.x-(double)position.x)!=0)
     {*/
-        double m=atan(-(double)((double)direction.y-(double)position.y)/(double)((double)direction.x-(double)position.x));
+        double m=M_PI/2;
+        if((double)((double)direction.x-(double)position.x)!=0)
+            m=atan(-(double)((double)direction.y-(double)position.y)/(double)((double)direction.x-(double)position.x));
 		if(direction.x-position.x<0)
             m-=M_PI;
 		m+=M_PI/8;
