@@ -1,37 +1,33 @@
 Liste des chemins de toutes les images du personnage
-*Data/Entities/Monsters/PantinMorbide/Guardian/PanMorHache-Arret.png
-*Data/Entities/Monsters/PantinMorbide/Guardian/PantMorbCourse1.png
-*Data/Entities/Monsters/PantinMorbide/Guardian/PantMorbCourse2.png
-*Data/Entities/Monsters/PantinMorbide/Guardian/PantMorbCourse3.png
-*Data/Entities/Monsters/PantinMorbide/Guardian/PantMorbCourse4.png
-*Data/Entities/Monsters/PantinMorbide/Guardian/GuerSquelFrappe1.png
-*Data/Entities/Monsters/PantinMorbide/Guardian/GuerSquelFrappe2.png
-*Data/Entities/Monsters/PantinMorbide/Guardian/GuerSquelFrappe3.png
-*Data/Entities/Monsters/PantinMorbide/Guardian/GuerSquelFrappe4.png
-*Data/Entities/Monsters/PantinMorbide/Guardian/GuerSquelFrappe5.png
-*Data/Entities/Monsters/PantinMorbide/Guardian/GuerSquelFrappe6.png
-*Data/Entities/Monsters/PantinMorbide/Guardian/GuerSquelFrappe7.png
-*Data/Entities/Monsters/PantinMorbide/Guardian/GuerSquelFrappe8.png
+*Data/Entities/Monsters/PantinMorbide/Arquebuse/PanMorHache-Arret.png
+*Data/Entities/Monsters/PantinMorbide/Arquebuse/ArquebuseSqueletteMarche1.png
+*Data/Entities/Monsters/PantinMorbide/Arquebuse/ArquebuseSqueletteMarche2.png
+*Data/Entities/Monsters/PantinMorbide/Arquebuse/ArquebuseSqueletteMarche3.png
+*Data/Entities/Monsters/PantinMorbide/Arquebuse/ArquebuseSqueletteMarche4.png
+*Data/Entities/Monsters/PantinMorbide/Arquebuse/ArquebuseSqueletteTir1.png
+*Data/Entities/Monsters/PantinMorbide/Arquebuse/ArquebuseSqueletteTir2.png
+*Data/Entities/Monsters/PantinMorbide/Arquebuse/ArquebuseSqueletteTir3.png
+*Data/Entities/Monsters/PantinMorbide/Arquebuse/ArquebuseSqueletteTir4.png
 
 $
 Liste des chemins de tous les sons
 *Data/Sounds/9906__Snoman__grass3.wav
 *Data/Sounds/9906__Snoman__grass3.wav
-*Data/Sounds/35213__Abyssmal__slashkut.wav
+*Data/Sounds/Arquebuse.wav
 $
 Portee lumineuse
-* r255 v255 b255 i0 $
+* r255 v224 b0 i0 $
 $
-* Guardien squelette
+* Arquebusier squelette
 $
 Rang du monstre
-* 1
+* 0
 $
 Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse
-*v100 di7 da20 m0.35 o1 a25 n2 t1.25 $
+*v10 di5 da15 m0.35 o1 a3 n2 t1 $
 $
-*Data/Scripts/AI/standard.script.hs
+*Data/Scripts/AI/shooter.script.hs
 $
 Objets du monstre
 
@@ -445,292 +441,164 @@ Arret - SE
 *x0 y512 w128 h128 a0 s-1 i0 $
 $
 Course - E
-*x0 y0 w128 h256 cy238 a1 s0 i1 t0.04 $
-*x128 y0 w128 h256 cy238 a2 s-1 i1 t0.04 $
-*x256 y0 w128 h256 cy238 a3 s-1 i1 t0.04 $
-*x384 y0 w128 h256 cy238 a4 s-1 i1 t0.04 $
-*x512 y0 w128 h256 cy238 a5 s-1 i1 t0.04 $
-*x640 y0 w128 h256 cy238 a6 s-1 i1 t0.04 $
-*x768 y0 w128 h256 cy238 a7 s-1 i1 t0.04 $
-*x896 y0 w128 h256 cy238 a8 s-1 i1 t0.04 $
-*x0 y256 w128 h256 cy238 a9 s1 i1 t0.04 $
-*x128 y256 w128 h256 cy238 a10 s-1 i1 t0.04 $
-*x256 y256 w128 h256 cy238 a11 s-1 i1 t0.04 $
-*x384 y256 w128 h256 cy238 a12 s-1 i1 t0.04 $
-*x512 y256 w128 h256 cy238 a13 s-1 i1 t0.04 $
-*x640 y256 w128 h256 cy238 a14 s-1 i1 t0.04 $
-*x768 y256 w128 h256 cy238 a15 s-1 i1 t0.04 $
-*x896 y256 w128 h256 cy238 a0 s-1 i1 t0.04 $
+*x0 y0 w256 h256 cy238 a1 s0 i1 t0.08 $
+*x256 y0 w256 h256 cy238 a2 s-1 i1 t0.08 $
+*x512 y0 w256 h256 cy238 a3 s-1 i1 t0.08 $
+*x768 y0 w256 h256 cy238 a4 s-1 i1 t0.08 $
+*x0 y256 w256 h256 cy238 a5 s0 i1 t0.08 $
+*x256 y256 w256 h256 cy238 a6 s-1 i1 t0.08 $
+*x512 y256 w256 h256 cy238 a7 s-1 i1 t0.08 $
+*x768 y256 w256 h256 cy238 a0 s-1 i1 t0.08 $
 $
 Course - NE
-*x0 y512 w128 h256 cy238 a1 s0 i1 t0.04 $
-*x128 y512 w128 h256 cy238 a2 s-1 i1 t0.04 $
-*x256 y512 w128 h256 cy238 a3 s-1 i1 t0.04 $
-*x384 y512 w128 h256 cy238 a4 s-1 i1 t0.04 $
-*x512 y512 w128 h256 cy238 a5 s-1 i1 t0.04 $
-*x640 y512 w128 h256 cy238 a6 s-1 i1 t0.04 $
-*x768 y512 w128 h256 cy238 a7 s-1 i1 t0.04 $
-*x896 y512 w128 h256 cy238 a8 s-1 i1 t0.04 $
-*x0 y768 w128 h256 cy238 a9 s1 i1 t0.04 $
-*x128 y768 w128 h256 cy238 a10 s-1 i1 t0.04 $
-*x256 y768 w128 h256 cy238 a11 s-1 i1 t0.04 $
-*x384 y768 w128 h256 cy238 a12 s-1 i1 t0.04 $
-*x512 y768 w128 h256 cy238 a13 s-1 i1 t0.04 $
-*x640 y768 w128 h256 cy238 a14 s-1 i1 t0.04 $
-*x768 y768 w128 h256 cy238 a15 s-1 i1 t0.04 $
-*x896 y768 w128 h256 cy238 a0 s-1 i1 t0.04 $
+*x0 y512 w256 h256 cy238 a1 s0 i1 t0.08 $
+*x256 y512 w256 h256 cy238 a2 s-1 i1 t0.08 $
+*x512 y512 w256 h256 cy238 a3 s-1 i1 t0.08 $
+*x768 y512 w256 h256 cy238 a4 s-1 i1 t0.08 $
+*x0 y768 w256 h256 cy238 a5 s0 i1 t0.08 $
+*x256 y768 w256 h256 cy238 a6 s-1 i1 t0.08 $
+*x512 y768 w256 h256 cy238 a7 s-1 i1 t0.08 $
+*x768 y768 w256 h256 cy238 a0 s-1 i1 t0.08 $
 $
 Course - N
-*x0 y0 w128 h256 cy238 a1 s0 i2 t0.04 $
-*x128 y0 w128 h256 cy238 a2 s-1 i2 t0.04 $
-*x256 y0 w128 h256 cy238 a3 s-1 i2 t0.04 $
-*x384 y0 w128 h256 cy238 a4 s-1 i2 t0.04 $
-*x512 y0 w128 h256 cy238 a5 s-1 i2 t0.04 $
-*x640 y0 w128 h256 cy238 a6 s-1 i2 t0.04 $
-*x768 y0 w128 h256 cy238 a7 s-1 i2 t0.04 $
-*x896 y0 w128 h256 cy238 a8 s-1 i2 t0.04 $
-*x0 y256 w128 h256 cy238 a9 s1 i2 t0.04 $
-*x128 y256 w128 h256 cy238 a10 s-1 i2 t0.04 $
-*x256 y256 w128 h256 cy238 a11 s-1 i2 t0.04 $
-*x384 y256 w128 h256 cy238 a12 s-1 i2 t0.04 $
-*x512 y256 w128 h256 cy238 a13 s-1 i2 t0.04 $
-*x640 y256 w128 h256 cy238 a14 s-1 i2 t0.04 $
-*x768 y256 w128 h256 cy238 a15 s-1 i2 t0.04 $
-*x896 y256 w128 h256 cy238 a0 s-1 i2 t0.04 $
+*x0 y0 w256 h256 cy238 a1 s0 i2 t0.08 $
+*x256 y0 w256 h256 cy238 a2 s-1 i2 t0.08 $
+*x512 y0 w256 h256 cy238 a3 s-1 i2 t0.08 $
+*x768 y0 w256 h256 cy238 a4 s-1 i2 t0.08 $
+*x0 y256 w256 h256 cy238 a5 s0 i2 t0.08 $
+*x256 y256 w256 h256 cy238 a6 s-1 i2 t0.08 $
+*x512 y256 w256 h256 cy238 a7 s-1 i2 t0.08 $
+*x768 y256 w256 h256 cy238 a0 s-1 i2 t0.08 $
 $
 Course - NO
-*x0 y512 w128 h256 cy238 a1 s0 i2 t0.04 $
-*x128 y512 w128 h256 cy238 a2 s-1 i2 t0.04 $
-*x256 y512 w128 h256 cy238 a3 s-1 i2 t0.04 $
-*x384 y512 w128 h256 cy238 a4 s-1 i2 t0.04 $
-*x512 y512 w128 h256 cy238 a5 s-1 i2 t0.04 $
-*x640 y512 w128 h256 cy238 a6 s-1 i2 t0.04 $
-*x768 y512 w128 h256 cy238 a7 s-1 i2 t0.04 $
-*x896 y512 w128 h256 cy238 a8 s-1 i2 t0.04 $
-*x0 y768 w128 h256 cy238 a9 s1 i2 t0.04 $
-*x128 y768 w128 h256 cy238 a10 s-1 i2 t0.04 $
-*x256 y768 w128 h256 cy238 a11 s-1 i2 t0.04 $
-*x384 y768 w128 h256 cy238 a12 s-1 i2 t0.04 $
-*x512 y768 w128 h256 cy238 a13 s-1 i2 t0.04 $
-*x640 y768 w128 h256 cy238 a14 s-1 i2 t0.04 $
-*x768 y768 w128 h256 cy238 a15 s-1 i2 t0.04 $
-*x896 y768 w128 h256 cy238 a0 s-1 i2 t0.04 $
+*x0 y512 w256 h256 cy238 a1 s0 i2 t0.08 $
+*x256 y512 w256 h256 cy238 a2 s-1 i2 t0.08 $
+*x512 y512 w256 h256 cy238 a3 s-1 i2 t0.08 $
+*x768 y512 w256 h256 cy238 a4 s-1 i2 t0.08 $
+*x0 y768 w256 h256 cy238 a5 s0 i2 t0.08 $
+*x256 y768 w256 h256 cy238 a6 s-1 i2 t0.08 $
+*x512 y768 w256 h256 cy238 a7 s-1 i2 t0.08 $
+*x768 y768 w256 h256 cy238 a0 s-1 i2 t0.08 $
 $
 Course - O
-*x0 y0 w128 h256 cy238 a1 s0 i3 t0.04 $
-*x128 y0 w128 h256 cy238 a2 s-1 i3 t0.04 $
-*x256 y0 w128 h256 cy238 a3 s-1 i3 t0.04 $
-*x384 y0 w128 h256 cy238 a4 s-1 i3 t0.04 $
-*x512 y0 w128 h256 cy238 a5 s-1 i3 t0.04 $
-*x640 y0 w128 h256 cy238 a6 s-1 i3 t0.04 $
-*x768 y0 w128 h256 cy238 a7 s-1 i3 t0.04 $
-*x896 y0 w128 h256 cy238 a8 s-1 i3 t0.04 $
-*x0 y256 w128 h256 cy238 a9 s1 i3 t0.04 $
-*x128 y256 w128 h256 cy238 a10 s-1 i3 t0.04 $
-*x256 y256 w128 h256 cy238 a11 s-1 i3 t0.04 $
-*x384 y256 w128 h256 cy238 a12 s-1 i3 t0.04 $
-*x512 y256 w128 h256 cy238 a13 s-1 i3 t0.04 $
-*x640 y256 w128 h256 cy238 a14 s-1 i3 t0.04 $
-*x768 y256 w128 h256 cy238 a15 s-1 i3 t0.04 $
-*x896 y256 w128 h256 cy238 a0 s-1 i3 t0.04 $
+*x0 y0 w256 h256 cy238 a1 s0 i3 t0.08 $
+*x256 y0 w256 h256 cy238 a2 s-1 i3 t0.08 $
+*x512 y0 w256 h256 cy238 a3 s-1 i3 t0.08 $
+*x768 y0 w256 h256 cy238 a4 s-1 i3 t0.08 $
+*x0 y256 w256 h256 cy238 a5 s0 i3 t0.08 $
+*x256 y256 w256 h256 cy238 a6 s-1 i3 t0.08 $
+*x512 y256 w256 h256 cy238 a7 s-1 i3 t0.08 $
+*x768 y256 w256 h256 cy238 a0 s-1 i3 t0.08 $
 $
 Course - SO
-*x0 y512 w128 h256 cy238 a1 s0 i3 t0.04 $
-*x128 y512 w128 h256 cy238 a2 s-1 i3 t0.04 $
-*x256 y512 w128 h256 cy238 a3 s-1 i3 t0.04 $
-*x384 y512 w128 h256 cy238 a4 s-1 i3 t0.04 $
-*x512 y512 w128 h256 cy238 a5 s-1 i3 t0.04 $
-*x640 y512 w128 h256 cy238 a6 s-1 i3 t0.04 $
-*x768 y512 w128 h256 cy238 a7 s-1 i3 t0.04 $
-*x896 y512 w128 h256 cy238 a8 s-1 i3 t0.04 $
-*x0 y768 w128 h256 cy238 a9 s1 i3 t0.04 $
-*x128 y768 w128 h256 cy238 a10 s-1 i3 t0.04 $
-*x256 y768 w128 h256 cy238 a11 s-1 i3 t0.04 $
-*x384 y768 w128 h256 cy238 a12 s-1 i3 t0.04 $
-*x512 y768 w128 h256 cy238 a13 s-1 i3 t0.04 $
-*x640 y768 w128 h256 cy238 a14 s-1 i3 t0.04 $
-*x768 y768 w128 h256 cy238 a15 s-1 i3 t0.04 $
-*x896 y768 w128 h256 cy238 a0 s-1 i3 t0.04 $
+*x0 y512 w256 h256 cy238 a1 s0 i3 t0.08 $
+*x256 y512 w256 h256 cy238 a2 s-1 i3 t0.08 $
+*x512 y512 w256 h256 cy238 a3 s-1 i3 t0.08 $
+*x768 y512 w256 h256 cy238 a4 s-1 i3 t0.08 $
+*x0 y768 w256 h256 cy238 a5 s0 i3 t0.08 $
+*x256 y768 w256 h256 cy238 a6 s-1 i3 t0.08 $
+*x512 y768 w256 h256 cy238 a7 s-1 i3 t0.08 $
+*x768 y768 w256 h256 cy238 a0 s-1 i3 t0.08 $
 $
 Course - S
-*x0 y0 w128 h256 cy238 a1 s0 i4 t0.04 $
-*x128 y0 w128 h256 cy238 a2 s-1 i4 t0.04 $
-*x256 y0 w128 h256 cy238 a3 s-1 i4 t0.04 $
-*x384 y0 w128 h256 cy238 a4 s-1 i4 t0.04 $
-*x512 y0 w128 h256 cy238 a5 s-1 i4 t0.04 $
-*x640 y0 w128 h256 cy238 a6 s-1 i4 t0.04 $
-*x768 y0 w128 h256 cy238 a7 s-1 i4 t0.04 $
-*x896 y0 w128 h256 cy238 a8 s-1 i4 t0.04 $
-*x0 y256 w128 h256 cy238 a9 s1 i4 t0.04 $
-*x128 y256 w128 h256 cy238 a10 s-1 i4 t0.04 $
-*x256 y256 w128 h256 cy238 a11 s-1 i4 t0.04 $
-*x384 y256 w128 h256 cy238 a12 s-1 i4 t0.04 $
-*x512 y256 w128 h256 cy238 a13 s-1 i4 t0.04 $
-*x640 y256 w128 h256 cy238 a14 s-1 i4 t0.04 $
-*x768 y256 w128 h256 cy238 a15 s-1 i4 t0.04 $
-*x896 y256 w128 h256 cy238 a0 s-1 i4 t0.04 $
+*x0 y0 w256 h256 cy238 a1 s0 i4 t0.08 $
+*x256 y0 w256 h256 cy238 a2 s-1 i4 t0.08 $
+*x512 y0 w256 h256 cy238 a3 s-1 i4 t0.08 $
+*x768 y0 w256 h256 cy238 a4 s-1 i4 t0.08 $
+*x0 y256 w256 h256 cy238 a5 s0 i4 t0.08 $
+*x256 y256 w256 h256 cy238 a6 s-1 i4 t0.08 $
+*x512 y256 w256 h256 cy238 a7 s-1 i4 t0.08 $
+*x768 y256 w256 h256 cy238 a0 s-1 i4 t0.08 $
 $
 Course - SE
-*x0 y512 w128 h256 cy238 a1 s0 i4 t0.04 $
-*x128 y512 w128 h256 cy238 a2 s-1 i4 t0.04 $
-*x256 y512 w128 h256 cy238 a3 s-1 i4 t0.04 $
-*x384 y512 w128 h256 cy238 a4 s-1 i4 t0.04 $
-*x512 y512 w128 h256 cy238 a5 s-1 i4 t0.04 $
-*x640 y512 w128 h256 cy238 a6 s-1 i4 t0.04 $
-*x768 y512 w128 h256 cy238 a7 s-1 i4 t0.04 $
-*x896 y512 w128 h256 cy238 a8 s-1 i4 t0.04 $
-*x0 y768 w128 h256 cy238 a9 s1 i4 t0.04 $
-*x128 y768 w128 h256 cy238 a10 s-1 i4 t0.04 $
-*x256 y768 w128 h256 cy238 a11 s-1 i4 t0.04 $
-*x384 y768 w128 h256 cy238 a12 s-1 i4 t0.04 $
-*x512 y768 w128 h256 cy238 a13 s-1 i4 t0.04 $
-*x640 y768 w128 h256 cy238 a14 s-1 i4 t0.04 $
-*x768 y768 w128 h256 cy238 a15 s-1 i4 t0.04 $
-*x896 y768 w128 h256 cy238 a0 s-1 i4 t0.04 $
+*x0 y512 w256 h256 cy238 a1 s0 i4 t0.08 $
+*x256 y512 w256 h256 cy238 a2 s-1 i4 t0.08 $
+*x512 y512 w256 h256 cy238 a3 s-1 i4 t0.08 $
+*x768 y512 w256 h256 cy238 a4 s-1 i4 t0.08 $
+*x0 y768 w256 h256 cy238 a5 s0 i4 t0.08 $
+*x256 y768 w256 h256 cy238 a6 s-1 i4 t0.08 $
+*x512 y768 w256 h256 cy238 a7 s-1 i4 t0.08 $
+*x768 y768 w256 h256 cy238 a0 s-1 i4 t0.08 $
 $
 Frappe - E
-*x0 y0 w256 h256 a1 s-1 i5 cy238 t0.035 $
-*x256 y0 w256 h256 a2 s-1 i5 cy238 t0.035 $
-*x521 y0 w256 h256 a3 s-1 i5 cy238 t0.035 $
-*x768 y0 w256 h256 a4 s-1 i5 cy238 t0.035 $
-*x0 y256 w256 h256 a5 s-1 i5 cy238 t0.035 $
-*x256 y256 w256 h256 a6 s-1 i5 cy238 t0.035 $
-*x512 y256 w256 h256 a7 s-1 i5 cy238 t0.035 $
-*x768 y256 w256 h256 a8 s-1 i5 cy238 t0.035 $
-*x0 y512 w256 h256 a9 s-1 i5 cy238 t0.035 $
-*x256 y512 w256 h256 a10 s-1 i5 cy238 t0.035 $
-*x521 y512 w256 h256 a11 s2 i5 d0 cy238 t0.035 $
-*x768 y512 w256 h256 a12 s-1 i5 cy238 t0.035 $
-*x0 y768 w256 h256 a13 s-1 i5 cy238 t0.035 $
-*x256 y768 w256 h256 a14 s-1 i5 cy238 t0.035 $
-*x512 y768 w256 h256 a15 s-1 i5 cy238 t0.035 $
-*x768 y768 w256 h256 a0 s-1 i5 cy238 t1 $
+*x0 y0 w256 h256 cy238 a1 s-1 i5 t0.08 $
+*x256 y0 w256 h256 cy238 a2 s-1 i5 t0.08 $
+*x512 y0 w256 h256 cy238 a3 s-1 i5 t0.08 $
+*x768 y0 w256 h256 cy238 a4 s2 i5 t0.5 $
+*x0 y256 w256 h256 cy238 a5 s-1 i5 t0.08 d0 l128 $
+*x256 y256 w256 h256 cy238 a6 s-1 i5 t0.08 l64 $
+*x512 y256 w256 h256 cy238 a7 s-1 i5 t0.08 l0 $
+*x768 y256 w256 h256 cy238 a0 s-1 i5 t0.5 $
 $
 Frappe - NE
-*x0 y0 w256 h256 a1 s-1 i6 cy238 t0.035 $
-*x256 y0 w256 h256 a2 s-1 i6 cy238 t0.035 $
-*x521 y0 w256 h256 a3 s-1 i6 cy238 t0.035 $
-*x768 y0 w256 h256 a4 s-1 i6 cy238 t0.035 $
-*x0 y256 w256 h256 a5 s-1 i6 cy238 t0.035 $
-*x256 y256 w256 h256 a6 s-1 i6 cy238 t0.035 $
-*x512 y256 w256 h256 a7 s-1 i6 cy238 t0.035 $
-*x768 y256 w256 h256 a8 s-1 i6 cy238 t0.035 $
-*x0 y512 w256 h256 a9 s-1 i6 cy238 t0.035 $
-*x256 y512 w256 h256 a10 s-1 i6 cy238 t0.035 $
-*x521 y512 w256 h256 a11 s2 i6 d0 cy238 t0.035 $
-*x768 y512 w256 h256 a12 s-1 i6 cy238 t0.035 $
-*x0 y768 w256 h256 a13 s-1 i6 cy238 t0.035 $
-*x256 y768 w256 h256 a14 s-1 i6 cy238 t0.035 $
-*x512 y768 w256 h256 a15 s-1 i6 cy238 t0.035 $
-*x768 y768 w256 h256 a0 s-1 i6 cy238 t1 $
+*x0 y512 w256 h256 cy238 a1 s-1 i5 t0.08 $
+*x256 y512 w256 h256 cy238 a2 s-1 i5 t0.08 $
+*x512 y512 w256 h256 cy238 a3 s-1 i5 t0.08 $
+*x768 y512 w256 h256 cy238 a4 s2 i5 t0.5 $
+*x0 y768 w256 h256 cy238 a5 s-1 i5 t0.08 d0 l128 $
+*x256 y768 w256 h256 cy238 a6 s-1 i5 t0.08 l64 $
+*x512 y768 w256 h256 cy238 a7 s-1 i5 t0.08 l0 $
+*x768 y768 w256 h256 cy238 a0 s-1 i5 t0.5 $
 $
 Frappe - N
-*x0 y0 w256 h256 a1 s-1 i7 cy238 t0.035 $
-*x256 y0 w256 h256 a2 s-1 i7 cy238 t0.035 $
-*x521 y0 w256 h256 a3 s-1 i7 cy238 t0.035 $
-*x768 y0 w256 h256 a4 s-1 i7 cy238 t0.035 $
-*x0 y256 w256 h256 a5 s-1 i7 cy238 t0.035 $
-*x256 y256 w256 h256 a6 s-1 i7 cy238 t0.035 $
-*x512 y256 w256 h256 a7 s-1 i7 cy238 t0.035 $
-*x768 y256 w256 h256 a8 s-1 i7 cy238 t0.035 $
-*x0 y512 w256 h256 a9 s-1 i7 cy238 t0.035 $
-*x256 y512 w256 h256 a10 s-1 i7 cy238 t0.035 $
-*x521 y512 w256 h256 a11 s2 i7 d0 cy238 t0.035 $
-*x768 y512 w256 h256 a12 s-1 i7 cy238 t0.035 $
-*x0 y768 w256 h256 a13 s-1 i7 cy238 t0.035 $
-*x256 y768 w256 h256 a14 s-1 i7 cy238 t0.035 $
-*x512 y768 w256 h256 a15 s-1 i7 cy238 t0.035 $
-*x768 y768 w256 h256 a0 s-1 i7 cy238 t1 $
+*x0 y0 w256 h256 cy238 a1 s-1 i6 t0.08 $
+*x256 y0 w256 h256 cy238 a2 s-1 i6 t0.08 $
+*x512 y0 w256 h256 cy238 a3 s-1 i6 t0.08 $
+*x768 y0 w256 h256 cy238 a4 s2 i6 t0.5 $
+*x0 y256 w256 h256 cy238 a5 s-1 i6 t0.08 d0 l128 $
+*x256 y256 w256 h256 cy238 a6 s-1 i6 t0.08 l64 $
+*x512 y256 w256 h256 cy238 a7 s-1 i6 t0.08 l0 $
+*x768 y256 w256 h256 cy238 a0 s-1 i6 t0.5 $
 $
 Frappe - NO
-*x0 y0 w256 h256 a1 s-1 i8 cy238 t0.035 $
-*x256 y0 w256 h256 a2 s-1 i8 cy238 t0.035 $
-*x521 y0 w256 h256 a3 s-1 i8 cy238 t0.035 $
-*x768 y0 w256 h256 a4 s-1 i8 cy238 t0.035 $
-*x0 y256 w256 h256 a5 s-1 i8 cy238 t0.035 $
-*x256 y256 w256 h256 a6 s-1 i8 cy238 t0.035 $
-*x512 y256 w256 h256 a7 s-1 i8 cy238 t0.035 $
-*x768 y256 w256 h256 a8 s-1 i8 cy238 t0.035 $
-*x0 y512 w256 h256 a9 s-1 i8 cy238 t0.035 $
-*x256 y512 w256 h256 a10 s-1 i8 cy238 t0.035 $
-*x521 y512 w256 h256 a11 s2 i8 d0 cy238 t0.035 $
-*x768 y512 w256 h256 a12 s-1 i8 cy238 t0.035 $
-*x0 y768 w256 h256 a13 s-1 i8 cy238 t0.035 $
-*x256 y768 w256 h256 a14 s-1 i8 cy238 t0.035 $
-*x512 y768 w256 h256 a15 s-1 i8 cy238 t0.035 $
-*x768 y768 w256 h256 a0 s-1 i8 cy238 t1 $
+*x0 y512 w256 h256 cy238 a1 s-1 i6 t0.08 $
+*x256 y512 w256 h256 cy238 a2 s-1 i6 t0.08 $
+*x512 y512 w256 h256 cy238 a3 s-1 i6 t0.08 $
+*x768 y512 w256 h256 cy238 a4 s2 i6 t0.5 $
+*x0 y768 w256 h256 cy238 a5 s-1 i6 t0.08 d0 l128 $
+*x256 y768 w256 h256 cy238 a6 s-1 i6 t0.08 l64 $
+*x512 y768 w256 h256 cy238 a7 s-1 i6 t0.08 l0 $
+*x768 y768 w256 h256 cy238 a0 s-1 i6 t0.5 $
 $
 Frappe - O
-*x0 y0 w256 h256 a1 s-1 i9 cy238 t0.035 $
-*x256 y0 w256 h256 a2 s-1 i9 cy238 t0.035 $
-*x521 y0 w256 h256 a3 s-1 i9 cy238 t0.035 $
-*x768 y0 w256 h256 a4 s-1 i9 cy238 t0.035 $
-*x0 y256 w256 h256 a5 s-1 i9 cy238 t0.035 $
-*x256 y256 w256 h256 a6 s-1 i9 cy238 t0.035 $
-*x512 y256 w256 h256 a7 s-1 i9 cy238 t0.035 $
-*x768 y256 w256 h256 a8 s-1 i9 cy238 t0.035 $
-*x0 y512 w256 h256 a9 s-1 i9 cy238 t0.035 $
-*x256 y512 w256 h256 a10 s-1 i9 cy238 t0.035 $
-*x521 y512 w256 h256 a11 s2 i9 d0 cy238 t0.035 $
-*x768 y512 w256 h256 a12 s-1 i9 cy238 t0.035 $
-*x0 y768 w256 h256 a13 s-1 i9 cy238 t0.035 $
-*x256 y768 w256 h256 a14 s-1 i9 cy238 t0.035 $
-*x512 y768 w256 h256 a15 s-1 i9 cy238 t0.035 $
-*x768 y768 w256 h256 a0 s-1 i9 cy238 t1 $
+*x0 y0 w256 h256 cy238 a1 s-1 i7 t0.08 $
+*x256 y0 w256 h256 cy238 a2 s-1 i7 t0.08 $
+*x512 y0 w256 h256 cy238 a3 s-1 i7 t0.08 $
+*x768 y0 w256 h256 cy238 a4 s2 i7 t0.5 $
+*x0 y256 w256 h256 cy238 a5 s-1 i7 t0.08 d0 l128 $
+*x256 y256 w256 h256 cy238 a6 s-1 i7 t0.08 l64 $
+*x512 y256 w256 h256 cy238 a7 s-1 i7 t0.08 l0 $
+*x768 y256 w256 h256 cy238 a0 s-1 i7 t0.5 $
 $
 Frappe - SO
-*x0 y0 w256 h256 a1 s-1 i10 cy238 t0.035 $
-*x256 y0 w256 h256 a2 s-1 i10 cy238 t0.035 $
-*x521 y0 w256 h256 a3 s-1 i10 cy238 t0.035 $
-*x768 y0 w256 h256 a4 s-1 i10 cy238 t0.035 $
-*x0 y256 w256 h256 a5 s-1 i10 cy238 t0.035 $
-*x256 y256 w256 h256 a6 s-1 i10 cy238 t0.035 $
-*x512 y256 w256 h256 a7 s-1 i10 cy238 t0.035 $
-*x768 y256 w256 h256 a8 s-1 i10 cy238 t0.035 $
-*x0 y512 w256 h256 a9 s-1 i10 cy238 t0.035 $
-*x256 y512 w256 h256 a10 s-1 i10 cy238 t0.035 $
-*x521 y512 w256 h256 a11 s2 i10 d0 cy238 t0.035 $
-*x768 y512 w256 h256 a12 s-1 i10 cy238 t0.035 $
-*x0 y768 w256 h256 a13 s-1 i10 cy238 t0.035 $
-*x256 y768 w256 h256 a14 s-1 i10 cy238 t0.035 $
-*x512 y768 w256 h256 a15 s-1 i10 cy238 t0.035 $
-*x768 y768 w256 h256 a0 s-1 i10 cy238 t1 $
+*x0 y512 w256 h256 cy238 a1 s-1 i7 t0.08 $
+*x256 y512 w256 h256 cy238 a2 s-1 i7 t0.08 $
+*x512 y512 w256 h256 cy238 a3 s-1 i7 t0.08 $
+*x768 y512 w256 h256 cy238 a4 s2 i7 t0.5 $
+*x0 y768 w256 h256 cy238 a5 s-1 i7 t0.08 d0 l128 $
+*x256 y768 w256 h256 cy238 a6 s-1 i7 t0.08 l64 $
+*x512 y768 w256 h256 cy238 a7 s-1 i7 t0.08 l0 $
+*x768 y768 w256 h256 cy238 a0 s-1 i7 t0.5 $
 $
 Frappe - S
-*x0 y0 w256 h256 a1 s-1 i11 cy238 t0.035 $
-*x256 y0 w256 h256 a2 s-1 i11 cy238 t0.035 $
-*x521 y0 w256 h256 a3 s-1 i11 cy238 t0.035 $
-*x768 y0 w256 h256 a4 s-1 i11 cy238 t0.035 $
-*x0 y256 w256 h256 a5 s-1 i11 cy238 t0.035 $
-*x256 y256 w256 h256 a6 s-1 i11 cy238 t0.035 $
-*x512 y256 w256 h256 a7 s-1 i11 cy238 t0.035 $
-*x768 y256 w256 h256 a8 s-1 i11 cy238 t0.035 $
-*x0 y512 w256 h256 a9 s-1 i11 cy238 t0.035 $
-*x256 y512 w256 h256 a10 s-1 i11 cy238 t0.035 $
-*x521 y512 w256 h256 a11 s2 i11 d0 cy238 t0.035 $
-*x768 y512 w256 h256 a12 s-1 i11 cy238 t0.035 $
-*x0 y768 w256 h256 a13 s-1 i11 cy238 t0.035 $
-*x256 y768 w256 h256 a14 s-1 i11 cy238 t0.035 $
-*x512 y768 w256 h256 a15 s-1 i11 cy238 t0.035 $
-*x768 y768 w256 h256 a0 s-1 i11 cy238 t1 $
+*x0 y0 w256 h256 cy238 a1 s-1 i8 t0.08 $
+*x256 y0 w256 h256 cy238 a2 s-1 i8 t0.08 $
+*x512 y0 w256 h256 cy238 a3 s-1 i8 t0.08 $
+*x768 y0 w256 h256 cy238 a4 s2 i8 t0.08 $
+*x0 y256 w256 h256 cy238 a5 s-1 i8 t0.08 d0 l128 $
+*x256 y256 w256 h256 cy238 a6 s-1 i8 t0.08 l64 $
+*x512 y256 w256 h256 cy238 a7 s-1 i8 t0.08 l0 $
+*x768 y256 w256 h256 cy238 a0 s-1 i8 t0.5 $
 $
 Frappe - SE
-*x0 y0 w256 h256 a1 s-1 i12 cy238 t0.035 $
-*x256 y0 w256 h256 a2 s-1 i12 cy238 t0.035 $
-*x521 y0 w256 h256 a3 s-1 i12 cy238 t0.035 $
-*x768 y0 w256 h256 a4 s-1 i12 cy238 t0.035 $
-*x0 y256 w256 h256 a5 s-1 i12 cy238 t0.035 $
-*x256 y256 w256 h256 a6 s-1 i12 cy238 t0.035 $
-*x512 y256 w256 h256 a7 s-1 i12 cy238 t0.035 $
-*x768 y256 w256 h256 a8 s-1 i12 cy238 t0.035 $
-*x0 y512 w256 h256 a9 s-1 i12 cy238 t0.035 $
-*x256 y512 w256 h256 a10 s-1 i12 cy238 t0.035 $
-*x521 y512 w256 h256 a11 s2 i12 d0 cy238 t0.035 $
-*x768 y512 w256 h256 a12 s-1 i12 cy238 t0.035 $
-*x0 y768 w256 h256 a13 s-1 i12 cy238 t0.035 $
-*x256 y768 w256 h256 a14 s-1 i12 cy238 t0.035 $
-*x512 y768 w256 h256 a15 s-1 i12 cy238 t0.035 $
-*x768 y768 w256 h256 a0 s-1 i12 cy238 t1 $
+*x0 y512 w256 h256 cy238 a1 s0 i8 t0.08 $
+*x256 y512 w256 h256 cy238 a2 s-1 i8 t0.08 $
+*x512 y512 w256 h256 cy238 a3 s-1 i8 t0.08 $
+*x768 y512 w256 h256 cy238 a4 s-1 i8 t0.5 s2 $
+*x0 y768 w256 h256 cy238 a5 s0 i8 t0.08 d0 l128 $
+*x256 y768 w256 h256 cy238 a6 s-1 i8 t0.08 l64 $
+*x512 y768 w256 h256 cy238 a7 s-1 i8 t0.08 l0 $
+*x768 y768 w256 h256 cy238 a0 s-1 i8 t0.5 $
 $
 Mort - E
 * l0 $

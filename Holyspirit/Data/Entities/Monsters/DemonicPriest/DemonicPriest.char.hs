@@ -19,7 +19,7 @@ Rang du monstre
 $
 Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse
-*v100 di10 da50 m0.3 o1 a100 n5 s1 $
+*v100 di10 da50 m0.3 o1 a25 n5 s1 $
 $
 *Data/Scripts/AI/DemonicPriest.script.hs
 $
@@ -28,7 +28,11 @@ Objets du monstre
 *
 	*Data/Items/Small_sword.item.hs
 	r100
-	$
+$
+*
+	*Data/Items/Armor.item.hs
+	r100
+$
 $
 
 $
