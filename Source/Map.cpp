@@ -821,8 +821,6 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                                 if(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()>=0&&m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()<m_tileset.size())
                                    if(m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getLumiereDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile()).intensite<0&&m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getLumiereDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile()).intensite<lumiereTemp)
                                     {
-
-
                                         bool erreur=false;
                                         if(m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='y'||m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='d'||m_tileset[m_decor[1][distanceActuelle.y][distanceActuelle.x].getTileset()].getOrientationDuTile(m_decor[1][distanceActuelle.y][distanceActuelle.x].getTile())=='b')
                                             if((j+vueMin.x)==distanceActuelle.x&&(j+vueMin.x)<positionHero.x)
@@ -928,8 +926,8 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                     m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.bleu=m_tableauDesLampes[i][j].bleu;
                     m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.hauteur=m_tableauDesLampes[i][j].hauteur;
 
-                   // if(configuration.Ombre)
-                    //    m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.AjouterOmbre(lumiereMap.intensite/4,angleOmbreMap,lumiereMap.hauteur);
+                    if(configuration.Ombre)
+                        m_monstre[m_decor[0][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.AjouterOmbre(lumiereMap.intensite/4,angleOmbreMap,lumiereMap.hauteur);
                 }
                 if(m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()>=0&&m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()<m_monstre.size())
                 {
@@ -940,6 +938,9 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
                     m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.vert=m_tableauDesLampes[i][j].vert;
                     m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.bleu=m_tableauDesLampes[i][j].bleu;
                     m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.hauteur=m_tableauDesLampes[i][j].hauteur;
+
+                    if(configuration.Ombre)
+                        m_monstre[m_decor[1][i+vueMin.y][j+vueMin.x].getMonstre()].m_lumiere.AjouterOmbre(lumiereMap.intensite/4,angleOmbreMap,lumiereMap.hauteur);
                 }
             }
         }

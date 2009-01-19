@@ -124,14 +124,14 @@
 	<File name="liste_case.h" open="0" top="0" tabpos="11">
 		<Cursor position="574" topLine="6" />
 	</File>
-	<File name="main.cpp" open="1" top="1" tabpos="5">
-		<Cursor position="416" topLine="0" />
+	<File name="main.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="393" topLine="35" />
 	</File>
 	<File name="main.h" open="0" top="0" tabpos="14">
 		<Cursor position="309" topLine="0" />
 	</File>
-	<File name="map.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="123132" topLine="1756" />
+	<File name="map.cpp" open="1" top="1" tabpos="3">
+		<Cursor position="45397" topLine="915" />
 	</File>
 	<File name="menu.cpp" open="0" top="0" tabpos="15">
 		<Cursor position="3879" topLine="21" />
@@ -169,8 +169,8 @@
 	<File name="objet.cpp" open="0" top="0" tabpos="17">
 		<Cursor position="7218" topLine="243" />
 	</File>
-	<File name="personnage.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="26392" topLine="560" />
+	<File name="personnage.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="13382" topLine="247" />
 	</File>
 	<File name="pose.cpp" open="0" top="0" tabpos="12">
 		<Cursor position="1227" topLine="9" />
