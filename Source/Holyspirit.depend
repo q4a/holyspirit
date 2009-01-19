@@ -527,7 +527,7 @@
 
 1229864540 source:d:\backup disque e\c++\holyspirit\source\ressource.rc
 
-1232274057 source:d:\backup disque e\c++\holyspirit\source\hero.cpp
+1232297380 source:d:\backup disque e\c++\holyspirit\source\hero.cpp
 	"Hero.h"
 	"Globale.h"
 	<iostream>
@@ -550,7 +550,7 @@
 1229437542 d:\backup disque e\c++\holyspirit\source\evenement.h
 	"constantes.h"
 
-1232297211 source:d:\backup disque e\c++\holyspirit\source\personnage.cpp
+1232358522 source:d:\backup disque e\c++\holyspirit\source\personnage.cpp
 	"Personnage.h"
 	"Globale.h"
 	<iostream>

@@ -580,9 +580,9 @@ int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,boo
         *explosif=modele->m_explosif;
 
         //if(m_caracteristique.rang==0||modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite()!=0)
-        if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite()!=-1&&modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite()>m_porteeLumineuseBasique.intensite)
+        if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite()!=-1)
             m_porteeLumineuse.intensite=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite();
-        else
+        else if(m_porteeLumineuseBasique.intensite!=-1)
             m_porteeLumineuse=m_porteeLumineuseBasique;
     }
 

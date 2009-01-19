@@ -278,8 +278,11 @@ bool Map::Charger(int numeroMap)
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
     	}while(caractere!='$');
 
+    	console.Ajouter("");
+
     	if(entite_map_existante)
         {
+            console.Ajouter("Une map des entités est déjà existante.");
             if(fichier2)
             {
                 char caractere;
@@ -349,8 +352,9 @@ bool Map::Charger(int numeroMap)
 
                     if(fichier2.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
                 }while(caractere!='$');
+                fichier2.close();
             }
-            fichier2.close();
+
         }
 
     	m_evenement.clear();
@@ -390,6 +394,7 @@ bool Map::Charger(int numeroMap)
     		}
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
     	}while(caractere!='$');
+    	console.Ajouter("Chargement des événements terminé.");
 
 
     	std::vector<int> evenementTemp;
@@ -403,7 +408,6 @@ bool Map::Charger(int numeroMap)
             position.x=0;
             position.y=0;
 
-
             do
             {
                 //Chargement des "décors", des cases de la map
@@ -411,7 +415,7 @@ bool Map::Charger(int numeroMap)
                 if(caractere=='*')
                 {
                    // if(couche==0)
-                        m_decor[couche].push_back(vector<Decor> (0,decorTemp));
+                    m_decor[couche].push_back(vector<Decor> (0,decorTemp));
                     do
                     {
                         std::vector<int> evenement;
@@ -535,15 +539,17 @@ bool Map::Charger(int numeroMap)
                 if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1);  throw (&temp); }
 
             }while(caractere!='$');
-
     	}
+    	console.Ajouter("Chargement des cases terminé.");
+
+    	fichier.close();
     }
     else
     {
         console.Ajouter("Impossible d'ouvrir le fichier : "+chemin,1);
         throw "";
     }
-    fichier.close();
+
 
     for(int i=0;i<24;i++)
     if(m_lumiere[i].intensite<0)
@@ -555,10 +561,16 @@ bool Map::Charger(int numeroMap)
                 if(m_decor[couche][i][j].getHerbe()>=0&&m_decor[couche][i][j].getHerbe()<m_herbe.size())
                     if(m_herbe[m_decor[couche][i][j].getHerbe()].getTaille()>0)
                     {
-                        int numeroHerbe = (rand() % (m_herbe[m_decor[couche][i][j].getHerbe()].getTaille()));
+                        int numeroHerbe=0;
+                        if(m_herbe[m_decor[couche][i][j].getHerbe()].getTaille()>0)
+                            numeroHerbe = (rand() % (m_herbe[m_decor[couche][i][j].getHerbe()].getTaille()));
                         m_decor[couche][i][j].setNumeroHerbe(numeroHerbe);
                     }
             }
+
+    console.Ajouter("Chargement de la map terminé.");
+    console.Ajouter("");
+
     return 1;
 }
 
