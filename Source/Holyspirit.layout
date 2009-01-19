@@ -131,7 +131,7 @@
 		<Cursor position="309" topLine="0" />
 	</File>
 	<File name="map.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="166466" topLine="2480" />
+		<Cursor position="216944" topLine="2834" />
 	</File>
 	<File name="menu.cpp" open="0" top="0" tabpos="15">
 		<Cursor position="3879" topLine="21" />
@@ -139,8 +139,8 @@
 	<File name="menu.h" open="0" top="0" tabpos="13">
 		<Cursor position="1734" topLine="52" />
 	</File>
-	<File name="miracle.cpp" open="1" top="1" tabpos="9">
-		<Cursor position="650" topLine="6" />
+	<File name="miracle.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="220" topLine="6" />
 	</File>
 	<File name="miracle.h" open="1" top="0" tabpos="11">
 		<Cursor position="451" topLine="6" />
@@ -169,8 +169,8 @@
 	<File name="objet.cpp" open="0" top="0" tabpos="17">
 		<Cursor position="7218" topLine="243" />
 	</File>
-	<File name="personnage.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="11790" topLine="247" />
+	<File name="personnage.cpp" open="1" top="1" tabpos="6">
+		<Cursor position="11412" topLine="247" />
 	</File>
 	<File name="pose.cpp" open="0" top="0" tabpos="12">
 		<Cursor position="1227" topLine="9" />
@@ -181,8 +181,8 @@
 	<File name="ressource.rc" open="0" top="0" tabpos="2">
 		<Cursor position="201" topLine="0" />
 	</File>
-	<File name="script.cpp" open="0" top="0" tabpos="16">
-		<Cursor position="1402" topLine="44" />
+	<File name="script.cpp" open="1" top="0" tabpos="12">
+		<Cursor position="959" topLine="90" />
 	</File>
 	<File name="script.h" open="0" top="0" tabpos="9">
 		<Cursor position="162" topLine="0" />

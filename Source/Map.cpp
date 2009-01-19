@@ -1792,7 +1792,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                 {
                                     positionPartieDecor=m_herbe[m_decor[0][j][k].getHerbe()].getPositionDuTile(m_decor[0][j][k].getNumeroHerbe());
 
-                                    position.y-=32;
+                                    //position.y-=32;
 
                                     position.x+=m_decor[0][j][k].getDecalageHerbe().x;
 
@@ -1890,7 +1890,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     position.y=(k+j)*32;
                                     positionPartieDecor=m_herbe[m_decor[1][j][k].getHerbe()].getPositionDuTile(m_decor[1][j][k].getNumeroHerbe());
 
-                                    position.x+=m_decor[0][j][k].getDecalageHerbe().x;
+                                    position.x+=m_decor[1][j][k].getDecalageHerbe().x;
 
                                     //position.y-=32;
                                     position.y+=32;
@@ -2616,6 +2616,12 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                             if(m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile())>=0)
                                 m_decor[i][j][k].setDecor(m_decor[i][j][k].getTileset(),m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile()),m_decor[i][j][k].getEvenement(),m_decor[i][j][k].getMonstre(),m_decor[i][j][k].getHerbe(),m_decor[i][j][k].getCouche());
 
+                            coordonnee position;
+                            position.x=(k-j-1+m_decor[0].size())/5;
+                            position.y=(k+j)/5;
+
+                            m_tileset[m_decor[i][j][k].getTileset()].jouerSon(m_tileset[m_decor[i][j][k].getTileset()].getSonTile(m_decor[i][j][k].getTile()),position,positionHero);
+
                             m_decor[i][j][k].decrementerAnimation(tempsAnimation);
                         }
                     }
@@ -2709,20 +2715,11 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                                             if(m_effets[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_compteur<=0)
                                             {
                                                 m_effets[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_actif=false;
-                                                //m_decor[m_effets[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_couche][(int)(m_effets[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_position.y/COTE_TILE)][(int)(m_effets[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_position.x/COTE_TILE)].setProjectile(-1);
-                                                /*m_effets.erase (m_effets.begin()+m_monstre[monstre].m_miracleEnCours[i].m_IDObjet);
 
-                                                for(int j=0;j<m_monstre[monstre].m_miracleEnCours.size();j++)
-                                                {
-                                                    if(m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[j].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[j].m_effetEnCours].m_type==EFFET_GRAPHIQUE)
-                                                        if(m_monstre[monstre].m_miracleEnCours[j].m_IDObjet>m_monstre[monstre].m_miracleEnCours[i].m_IDObjet)
-                                                            m_monstre[monstre].m_miracleEnCours[j].m_IDObjet--;
-                                                }*/
                                                 m_monstre[monstre].m_miracleEnCours[i].m_IDObjet=-1;
                                                 m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours=m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours].m_lien;
 
                                                 gererMiracle(&m_monstre[monstre].m_miracleEnCours[i],&m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele],true,m_monstre[monstre].getCoordonnee(),hero->m_personnage.getProchaineCase(),i);
-                                                //break;
                                             }
 
                                         }

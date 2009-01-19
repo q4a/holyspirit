@@ -50,6 +50,7 @@ int MoteurSons::AjouterBuffer(std::string chemin)
 
 void MoteurSons::JouerSon(int ID,coordonnee position,coordonnee positionHero,bool unique,int volume)
 {
+
     if(volume>100)
         volume=100;
     if(volume<0)
