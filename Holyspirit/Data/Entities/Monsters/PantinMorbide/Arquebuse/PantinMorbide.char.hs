@@ -584,7 +584,7 @@ Frappe - S
 *x0 y0 w256 h256 cy238 a1 s-1 i8 t0.08 $
 *x256 y0 w256 h256 cy238 a2 s-1 i8 t0.08 $
 *x512 y0 w256 h256 cy238 a3 s-1 i8 t0.08 $
-*x768 y0 w256 h256 cy238 a4 s2 i8 t0.08 $
+*x768 y0 w256 h256 cy238 a4 s2 i8 t0.5 $
 *x0 y256 w256 h256 cy238 a5 s-1 i8 t0.08 d0 l128 $
 *x256 y256 w256 h256 cy238 a6 s-1 i8 t0.08 l64 $
 *x512 y256 w256 h256 cy238 a7 s-1 i8 t0.08 l0 $

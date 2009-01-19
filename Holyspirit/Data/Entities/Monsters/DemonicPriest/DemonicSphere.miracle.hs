@@ -12,22 +12,22 @@ $
 //Séquences
 	*
 	//Tiles de la séquence
-		* x0 y0 w128 h128 i0 a1 lr255 lv128 lb128 li128 $
-		* x128 y0 w128 h128 i0 a2 lr255 lv128 lb128 li128 $
-		* x256 y0 w128 h128 i0 a3 lr255 lv128 lb128 li128 $
-		* x384 y0 w128 h128 i0 a4 lr255 lv128 lb128 li128 $
-		* x512 y0 w128 h128 i0 a5 lr255 lv128 lb128 li128 $
-		* x640 y0 w128 h128 i0 a6 lr255 lv128 lb128 li128 $
-		* x768 y0 w128 h128 i0 a7 lr255 lv128 lb128 li128 $
-		* x896 y0 w128 h128 i0 a8 lr255 lv128 lb128 li128 $
-		* x0 y128 w128 h128 i0 a9 lr255 lv128 lb128 li128 $
-		* x128 y128 w128 h128 i0 a10 lr255 lv128 lb128 li128 $
-		* x256 y128 w128 h128 i0 a11 lr255 lv128 lb128 li128 $
-		* x384 y128 w128 h128 i0 a12 lr255 lv128 lb128 li128 $
-		* x512 y128 w128 h128 i0 a13 lr255 lv128 lb128 li128 $
-		* x640 y128 w128 h128 i0 a14 lr255 lv128 lb128 li128 $
-		* x768 y128 w128 h128 i0 a15 lr255 lv128 lb128 li128 $
-		* x896 y128 w128 h128 i0 a0 lr255 lv128 lb128 li128 $
+		* x0 y0 w128 h128 i0 a1 lr255 lv128 lb128 li128 ex92 ey57 $
+		* x128 y0 w128 h128 i0 a2 lr255 lv128 lb128 li128 ex92 ey57 $
+		* x256 y0 w128 h128 i0 a3 lr255 lv128 lb128 li128 ex92 ey57 $
+		* x384 y0 w128 h128 i0 a4 lr255 lv128 lb128 li128 ex92 ey57 $
+		* x512 y0 w128 h128 i0 a5 lr255 lv128 lb128 li128 ex92 ey57 $
+		* x640 y0 w128 h128 i0 a6 lr255 lv128 lb128 li128 ex92 ey57 $
+		* x768 y0 w128 h128 i0 a7 lr255 lv128 lb128 li128 ex92 ey57 $
+		* x896 y0 w128 h128 i0 a8 lr255 lv128 lb128 li128 ex92 ey57 $
+		* x0 y128 w128 h128 i0 a9 lr255 lv128 lb128 li128 ex92 ey57 $
+		* x128 y128 w128 h128 i0 a10 lr255 lv128 lb128 li128 ex92 ey57 $
+		* x256 y128 w128 h128 i0 a11 lr255 lv128 lb128 li128 ex92 ey57 $
+		* x384 y128 w128 h128 i0 a12 lr255 lv128 lb128 li128 ex92 ey57 $
+		* x512 y128 w128 h128 i0 a13 lr255 lv128 lb128 li128 ex92 ey57 $
+		* x640 y128 w128 h128 i0 a14 lr255 lv128 lb128 li128 ex92 ey57 $
+		* x768 y128 w128 h128 i0 a15 lr255 lv128 lb128 li128 ex92 ey57 $
+		* x896 y128 w128 h128 i0 a0 lr255 lv128 lb128 li128 ex92 ey57 $
 	$
 	*
 	//Tiles de la séquence
