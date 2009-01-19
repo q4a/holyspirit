@@ -1886,12 +1886,14 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                             if(configuration.Herbes)
                                 if(m_decor[1][j][k].getHerbe()>=0&&m_decor[1][j][k].getHerbe()<m_herbe.size())
                                 {
-                                    position.x=(k-j-1+m_decor[1].size())*64 +m_decor[1][j][k].getDecalageHerbe().x;
-                                    position.y=(k+j)*32 /*+m_decor[1][j][k].getDecalageHerbe().y*/;
+                                    position.x=(k-j-1+m_decor[0].size())*64;
+                                    position.y=(k+j)*32;
                                     positionPartieDecor=m_herbe[m_decor[1][j][k].getHerbe()].getPositionDuTile(m_decor[1][j][k].getNumeroHerbe());
 
-                                    position.y-=32;
-                                    position.y+=positionPartieDecor.h/2;
+                                    position.x+=m_decor[0][j][k].getDecalageHerbe().x;
+
+                                    //position.y-=32;
+                                    position.y+=32;
 
                                     Sprite.SetImage(*moteurGraphique.getImage(m_herbe[m_decor[1][j][k].getHerbe()].getImage(m_decor[1][j][k].getNumeroHerbe())));
                                     Sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
@@ -2465,23 +2467,52 @@ int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,bool m
 
             coordonneeDecimal position,position2,positionHero;
             double m=M_PI/2;
+
+            if(cible.y-lanceur.y<0)
+            m-=M_PI;
+
             if(((double)lanceur.x-cible.x)!=0)
                 m=atan(((double)lanceur.y-(double)cible.y)/(double)((double)lanceur.x-cible.x));
-            if(lanceur.x-cible.x<0)
+            if(lanceur.x-cible.x<=0)
                 m-=M_PI;
             m+=M_PI;
 
             position.x=cos(m)*modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_informations[0]/10;
             position.y=sin(m)*modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_informations[0]/10;
 
-            m_projectile[m_projectile.size()-1].m_rotation=m;
-
             m_projectile[m_projectile.size()-1].m_vecteur=position;
 
-            m_projectile[m_projectile.size()-1].m_lumiere.intensite=128;
-            m_projectile[m_projectile.size()-1].m_lumiere.rouge=255;
-            m_projectile[m_projectile.size()-1].m_lumiere.vert=128;
-            m_projectile[m_projectile.size()-1].m_lumiere.bleu=128;
+            m_projectile[m_projectile.size()-1].m_rotationReelle=m;
+
+
+
+            position,position2;
+
+            position.x=(lanceur.x-lanceur.y)+m_decor[0].size();
+            position.y=(lanceur.x+lanceur.y)/2;
+
+            position2.x=(cible.x-cible.y)+m_decor[0].size();
+            position2.y=(cible.x+cible.y)/2;
+
+            m=M_PI/2;
+
+            if(position2.y-position.y<0)
+            m-=M_PI;
+
+            if(((double)position.x-position2.x)!=0)
+                m=atan(((double)position.y-(double)position2.y)/(double)((double)position.x-position2.x));
+            if(position.x-position2.x<=0)
+                m-=M_PI;
+            m+=M_PI;
+
+            m_projectile[m_projectile.size()-1].m_rotation=m;
+
+
+            m_projectile[m_projectile.size()-1].m_positionImage= modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_sequence][entiteMiracle->m_imageEnCours].getCoordonnee();
+            m_projectile[m_projectile.size()-1].m_centre= modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_sequence][entiteMiracle->m_imageEnCours].getCentre();
+            m_projectile[m_projectile.size()-1].m_lumiere=modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_sequence][entiteMiracle->m_imageEnCours].getLumiere();
+
+
 
             if(modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_sequence][entiteMiracle->m_imageEnCours].getImage()>=0&&modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_sequence][entiteMiracle->m_imageEnCours].getImage()<modeleMiracle->m_image.size())
                 m_projectile[m_projectile.size()-1].m_image=modeleMiracle->m_image[modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_effetEnCours].m_sequence][entiteMiracle->m_imageEnCours].getImage()];
@@ -2640,6 +2671,7 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                                             {
                                                 m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_image=m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_image[m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_tile[m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours].m_sequence][m_monstre[monstre].m_miracleEnCours[i].m_imageEnCours].getImage()];
                                                 m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_positionImage= m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_tile[m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours].m_sequence][m_monstre[monstre].m_miracleEnCours[i].m_imageEnCours].getCoordonnee();
+                                                m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_centre= m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_tile[m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours].m_sequence][m_monstre[monstre].m_miracleEnCours[i].m_imageEnCours].getCentre();
 
                                                 m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_lumiere=m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_tile[m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours].m_sequence][m_monstre[monstre].m_miracleEnCours[i].m_imageEnCours].getLumiere();
 
@@ -2647,20 +2679,10 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                                             }
                                             else
                                             {
-                                                //m_decor[m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_couche][(int)(m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_position.y/COTE_TILE)][(int)(m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_IDObjet].m_position.x/COTE_TILE)].setProjectile(-1);
-                                                //m_projectile.erase (m_projectile.begin()+m_monstre[monstre].m_miracleEnCours[i].m_IDObjet);
-
-                                                /*for(int j=0;j<m_monstre[monstre].m_miracleEnCours.size();j++)
-                                                {
-                                                    if(m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[j].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[j].m_effetEnCours].m_type==PROJECTILE)
-                                                        if(m_monstre[monstre].m_miracleEnCours[j].m_IDObjet>m_monstre[monstre].m_miracleEnCours[i].m_IDObjet)
-                                                            m_monstre[monstre].m_miracleEnCours[j].m_IDObjet--;
-                                                }*/
                                                 m_monstre[monstre].m_miracleEnCours[i].m_IDObjet=-1;
                                                 m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours=m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_effetEnCours].m_lien;
 
                                                 gererMiracle(&m_monstre[monstre].m_miracleEnCours[i],&m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele],true,m_monstre[monstre].getCoordonnee(),hero->m_personnage.getProchaineCase(),i);
-                                                //break;
                                             }
 
                                         }
@@ -2890,12 +2912,7 @@ void Map::musiquePlay(coordonnee position)
                                 m_monstre[m_decor[i][j][k].getMonstre()].m_miracleALancer=numero;\
                                 if(m_monstre[m_decor[i][j][k].getMonstre()].getEtat()!=2) \
                                     m_monstre[m_decor[i][j][k].getMonstre()].setEtat(2); \
-                                coordonnee temp,temp2;   \
-                                                    temp.x=(hero->m_personnage.getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().y-1+m_decor[1].size())*64;   \
-                                                    temp.y=(hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y)*32;   \
-                                                    temp2.x=(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x-m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y-1+m_decor[1].size())*64;   \
-                                                    temp2.y=(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x+m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y)*32;   \
-                                                    m_monstre[m_decor[i][j][k].getMonstre()].frappe(temp,temp2);   \
+                                m_monstre[m_decor[i][j][k].getMonstre()].frappe(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee(),hero->m_personnage.getCoordonnee());   \
                                 \
                                 \
                                 if(!(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y==j&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x==k))   \
@@ -2923,12 +2940,7 @@ void Map::musiquePlay(coordonnee position)
                                 \
                                 \
                                 m_monstre[m_decor[i][j][k].getMonstre()].m_miracleALancer=-1;\
-                                coordonnee temp,temp2;   \
-                                temp.x=(hero->m_personnage.getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().y-1+m_decor[1].size())*64;   \
-                                temp.y=(hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y)*32;   \
-                                temp2.x=(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x-m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y-1+m_decor[1].size())*64;   \
-                                temp2.y=(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x+m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y)*32;   \
-                                m_monstre[m_decor[i][j][k].getMonstre()].frappe(temp,temp2);   \
+                                m_monstre[m_decor[i][j][k].getMonstre()].frappe(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee(),hero->m_personnage.getCoordonnee());   \
                                 \
                                 \
                                 if(!(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y==j&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x==k))   \
@@ -2985,12 +2997,7 @@ void Map::musiquePlay(coordonnee position)
                                                     m_monstre[m_decor[i][j][k].getMonstre()].setVu(0);   \
                                                 if(m_monstre[m_decor[i][j][k].getMonstre()].getEtat()!=2)   \
                                                     m_monstre[m_decor[i][j][k].getMonstre()].setEtat(2);   \
-                                                coordonnee temp,temp2;   \
-                                                temp.x=(hero->m_personnage.getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().y-1+m_decor[1].size())*64;   \
-                                                temp.y=(hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y)*32;   \
-                                                temp2.x=(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x-m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y-1+m_decor[1].size())*64;   \
-                                                temp2.y=(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x+m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y)*32;   \
-                                                m_monstre[m_decor[i][j][k].getMonstre()].frappe(temp,temp2);   \
+                                                m_monstre[m_decor[i][j][k].getMonstre()].frappe(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee(),hero->m_personnage.getCoordonnee());  \
                                                 m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee());   \
                                             }   \
                                             if(!(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y==j&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x==k))   \

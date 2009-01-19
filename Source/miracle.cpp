@@ -19,12 +19,12 @@ void Projectile::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
 
     sprite.FlipX(false);
 
-    sprite.SetX(((m_position.x-m_position.y)*64/COTE_TILE+dimensionsMap.y*64)/*-64+(64-sprite.GetSize().x/2)*/);
+    sprite.SetX(((m_position.x-m_position.y)*64/COTE_TILE+dimensionsMap.y*64) - (m_centre.x - m_positionImage.w/2) * cos(-m_rotationReelle-M_PI/4));
     sprite.SetY(((m_position.x+m_position.y)*64/COTE_TILE)/2+(64-sprite.GetSize().y)+16);
 
-    sprite.SetCenter(m_positionImage.w/2,m_positionImage.h/2);
+    sprite.SetCenter(m_centre.x,m_centre.y);
 
-    sprite.SetRotation((-(m_rotation)*180/M_PI)-45);
+    sprite.Rotate((-(m_rotation)*180/M_PI)/*-45*/);
 
     if(sprite.GetPosition().x+sprite.GetSize().x>=camera->GetRect().Left
     &&sprite.GetPosition().x<camera->GetRect().Right
@@ -191,6 +191,14 @@ void Miracle::Charger(std::string chemin)
                                 case 'o': fichier>>ombre; break;
                                 case 't': fichier>>transparent; break;
                                 case 'n': fichier>>tempsAnimation; break;
+
+                                case 'e':
+                                        fichier.get(caractere);
+                                        if(caractere=='y')
+                                            fichier>>centre.y;
+                                        if(caractere=='x')
+                                            fichier>>centre.x;
+                                break;
 
                                 case 'l':
                                         fichier.get(caractere);

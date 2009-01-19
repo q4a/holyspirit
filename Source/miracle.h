@@ -16,10 +16,11 @@ class Projectile
     bool m_monstre,m_actif;
     int m_degats;
     coordonneeDecimal m_position,m_vecteur;
-    float m_rotation;
+    float m_rotation,m_rotationReelle;
 
     int m_image;
     coordonnee m_positionImage;
+    coordonnee m_centre;
 
     Lumiere m_lumiere;
 

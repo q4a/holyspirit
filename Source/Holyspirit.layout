@@ -97,8 +97,8 @@
 	<File name="crypter.cpp" open="0" top="0" tabpos="24">
 		<Cursor position="529" topLine="7" />
 	</File>
-	<File name="decor.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="584" topLine="0" />
+	<File name="decor.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="829" topLine="18" />
 	</File>
 	<File name="evenement.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="780" topLine="0" />
@@ -109,8 +109,8 @@
 	<File name="eventManager.h" open="0" top="0" tabpos="10">
 		<Cursor position="774" topLine="4" />
 	</File>
-	<File name="hero.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="23136" topLine="494" />
+	<File name="hero.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="27744" topLine="576" />
 	</File>
 	<File name="jeu.cpp" open="0" top="0" tabpos="20">
 		<Cursor position="1812" topLine="49" />
@@ -130,8 +130,8 @@
 	<File name="main.h" open="0" top="0" tabpos="14">
 		<Cursor position="309" topLine="0" />
 	</File>
-	<File name="map.cpp" open="1" top="1" tabpos="3">
-		<Cursor position="45397" topLine="915" />
+	<File name="map.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="166466" topLine="2480" />
 	</File>
 	<File name="menu.cpp" open="0" top="0" tabpos="15">
 		<Cursor position="3879" topLine="21" />
@@ -139,11 +139,11 @@
 	<File name="menu.h" open="0" top="0" tabpos="13">
 		<Cursor position="1734" topLine="52" />
 	</File>
-	<File name="miracle.cpp" open="0" top="0" tabpos="7">
-		<Cursor position="8608" topLine="208" />
+	<File name="miracle.cpp" open="1" top="1" tabpos="9">
+		<Cursor position="650" topLine="6" />
 	</File>
-	<File name="miracle.h" open="0" top="0" tabpos="1">
-		<Cursor position="585" topLine="9" />
+	<File name="miracle.h" open="1" top="0" tabpos="11">
+		<Cursor position="451" topLine="6" />
 	</File>
 	<File name="modeleMoteurParticule.cpp" open="0" top="0" tabpos="13">
 		<Cursor position="3006" topLine="55" />
@@ -170,7 +170,7 @@
 		<Cursor position="7218" topLine="243" />
 	</File>
 	<File name="personnage.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="13382" topLine="247" />
+		<Cursor position="11790" topLine="247" />
 	</File>
 	<File name="pose.cpp" open="0" top="0" tabpos="12">
 		<Cursor position="1227" topLine="9" />
@@ -190,8 +190,8 @@
 	<File name="tile.cpp" open="0" top="0" tabpos="14">
 		<Cursor position="523" topLine="13" />
 	</File>
-	<File name="tileset.cpp" open="0" top="0" tabpos="11">
-		<Cursor position="7164" topLine="267" />
+	<File name="tileset.cpp" open="1" top="0" tabpos="10">
+		<Cursor position="2215" topLine="87" />
 	</File>
 	<File name="video.cpp" open="0" top="0" tabpos="25">
 		<Cursor position="1806" topLine="58" />

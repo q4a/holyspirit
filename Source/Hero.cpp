@@ -591,12 +591,8 @@ bool Hero::testMonstreVise(Monstre *monstre,int hauteurMap)
         else /*if(m_personnage.getArrivee().x==m_personnage.getCoordonnee().x&&m_personnage.getArrivee().x==m_personnage.getCoordonnee().x)*/
         {
            // m_personnage.setArrivee(m_personnage.getCoordonnee());
-            coordonnee temp,temp2;
-            temp.x=(m_personnage.getCoordonneePixel().x-m_personnage.getCoordonneePixel().y-1+hauteurMap)*64;
-            temp.y=(m_personnage.getCoordonneePixel().x+m_personnage.getCoordonneePixel().y)*32;
-            temp2.x=(monstre->getCoordonneePixel().x-monstre->getCoordonneePixel().y-1+hauteurMap)*64;
-            temp2.y=(monstre->getCoordonneePixel().x+monstre->getCoordonneePixel().y)*32;
-            m_personnage.frappe(temp2,temp);
+
+            m_personnage.frappe(m_personnage.getCoordonnee(),monstre->getCoordonnee());
 
             return 1;
         }
