@@ -1,6 +1,5 @@
 	*Data/Particule_system/Images/wood_barrel.png
 $
-	*Data/Sounds/bone.wav
 $
 	* x0 y0 w32 h32 i5 a10 $
 	* x32 y0 w32 h32 i5 a10 $
