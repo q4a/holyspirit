@@ -46,18 +46,18 @@ void Map::Detruire()
         console.Ajouter("Destruction des cases...");
     for(int i=0;i<m_decor.size();i++)
     {
-            for(int j=0;j<m_decor[i].size();j++)
+            for(int j=0;j<m_decor[i].size()-1;j++)
             {
                 if(configuration.debug)
                     console.Ajouter(j);
                 m_decor[i][j].clear();
             }
         if(configuration.debug)
-                console.Ajouter("");
+                console.Ajouter("-");
 
         m_decor[i].clear();
     }
-     m_decor.clear();
+    // m_decor.clear();
 
      if(configuration.debug)
         console.Ajouter("Cases détruites !");
@@ -3328,11 +3328,11 @@ bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *ca
             if(configuration.particules&&m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].m_particules>=0)
             {
                 coordonnee position2,positionHero;
-                position2.x=(int)(((m_monstre[numeroMonstre].getCoordonneePixel().x-m_monstre[numeroMonstre].getCoordonneePixel().y)*64/COTE_TILE+m_decor[0].size()*64)/*+(64-m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().w/2)*/);
-                position2.y=(int)(((m_monstre[numeroMonstre].getCoordonneePixel().x+m_monstre[numeroMonstre].getCoordonneePixel().y)*64/COTE_TILE)/2/*+(64-m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().h)*/);
+                position2.x=(int)(((m_monstre[numeroMonstre].getCoordonneePixel().x-m_monstre[numeroMonstre].getCoordonneePixel().y)*64/COTE_TILE+m_decor[0].size()*64));
+                position2.y=(int)(((m_monstre[numeroMonstre].getCoordonneePixel().x+m_monstre[numeroMonstre].getCoordonneePixel().y)*64/COTE_TILE)/2);
 
-                positionHero.x=(int)(((hero->m_personnage.getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().y)*64/COTE_TILE+m_decor[0].size()*64));
-                positionHero.y=(int)(((hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y)*64/COTE_TILE)/2);
+                //positionHero.x=(int)(((hero->m_personnage.getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().y)*64/COTE_TILE+m_decor[0].size()*64));
+                //positionHero.y=(int)(((hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y)*64/COTE_TILE)/2);
 
                 float force=((-m_monstre[numeroMonstre].getCaracteristique().vie*2)/m_monstre[numeroMonstre].getCaracteristique().maxVie)*5,angle;
 
@@ -3342,17 +3342,25 @@ bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *ca
                     force=20;
 
 
-                double m=atan(((double)positionHero.y-(double)position2.y)/(double)((double)positionHero.x-(double)position2.x));
-                if(positionHero.x-position2.x<0)
+
+                double m=M_PI/2;
+
+                if(m_monstre[numeroMonstre].getCoordonneePixel().y-hero->m_personnage.getCoordonneePixel().y<0)
                     m-=M_PI;
-                m+=M_PI/8;
+
+                if(((double)hero->m_personnage.getCoordonneePixel().x-(double)m_monstre[numeroMonstre].getCoordonneePixel().x)!=0)
+                    m=atan(((double)hero->m_personnage.getCoordonneePixel().y-(double)m_monstre[numeroMonstre].getCoordonneePixel().y)/(double)((double)hero->m_personnage.getCoordonneePixel().x-(double)m_monstre[numeroMonstre].getCoordonneePixel().x));
+                if(hero->m_personnage.getCoordonneePixel().x-m_monstre[numeroMonstre].getCoordonneePixel().x<=0)
+                    m-=M_PI;
+                m+=M_PI;
+
                 angle=(int)(0+(m*360)/(2*M_PI));
                 if(angle>=360)
                     angle=0;
                 while(angle<0)
                     angle=360+angle;
 
-                angle+=180;
+                angle+=45;
 
                 sf::Color buffer;
                 buffer.r=m_monstre[numeroMonstre].getPorteeLumineuse().rouge;
