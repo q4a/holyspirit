@@ -64,19 +64,38 @@ void Map::Detruire()
 
 
     m_ModeleMonstre.clear();
+
+    if(configuration.debug)
+        console.Ajouter("Modèles monstres détruits !");
+
     m_monstre.clear();
+
+    if(configuration.debug)
+        console.Ajouter("Monstres détruits !");
    // for(int i=0;i<m_evenement.size();i++)
      //   m_evenement[i].deleteInformations();
     m_evenement.clear();
+    if(configuration.debug)
+        console.Ajouter("Evénements détruits !");
 
     for(int i=0;i<MAX_MUSIQUE;i++)
         m_musique[i].Stop();
 
     m_fond.clear();
+    if(configuration.debug)
+        console.Ajouter("Fonds détruits !");
+
     m_cheminMusique.clear();
+    if(configuration.debug)
+        console.Ajouter("Chemins musiques détruits !");
 
     m_projectile.clear();
+    if(configuration.debug)
+        console.Ajouter("Projectiles détruits !");
+
     m_effets.clear();
+    if(configuration.debug)
+        console.Ajouter("Effets détruits !");
 
     console.Ajouter("Map détruite !");
 }
