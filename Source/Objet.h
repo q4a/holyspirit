@@ -41,6 +41,8 @@ class Objet
 
     int m_type,m_equipe;
     std::vector <int> m_emplacement;
+    std::vector <int> m_emplacementImpossible;
+
 
     int m_degatsMin, m_degatsMax,m_armure;
     int m_capaciteBenediction;

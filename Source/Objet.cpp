@@ -184,6 +184,8 @@ void Objet::Charger(std::string chemin)
                     {
                         case 't' : fichier>>m_type; break;
                         case 'e' : int temp; fichier>>temp; m_emplacement.push_back(temp); break;
+                        case 'i' :  fichier>>temp; m_emplacementImpossible.push_back(temp); break;
+
                     }
 
                     if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }

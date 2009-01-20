@@ -3314,12 +3314,7 @@ bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *ca
                             {
                                 Objet temp;
                                 temp=m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets()[i];
-                               /* if(m_monstre[numeroMonstre].getCaracteristique().rang==0)
-                                    temp.Generer((m_monstre[numeroMonstre].getCaracteristique().rang*5+1));
-                                if(m_monstre[numeroMonstre].getCaracteristique().rang==1)
-                                    temp.Generer((m_monstre[numeroMonstre].getCaracteristique().rang*5+1));
-                                if(m_monstre[numeroMonstre].getCaracteristique().rang==2)*/
-                                    temp.Generer((m_monstre[numeroMonstre].getCaracteristique().rang*5+1));
+                                temp.Generer((m_monstre[numeroMonstre].getCaracteristique().rang*5+1));
                                 m_decor[1][m_monstre[numeroMonstre].getCoordonnee().y][m_monstre[numeroMonstre].getCoordonnee().x].ajouterObjet(temp);
                             }
 
