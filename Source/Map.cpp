@@ -76,7 +76,7 @@ bool Map::Charger(int numeroMap)
 {
     int numeroModuleAleatoire=rand()%10;
 
-    bool entite_map_existante=false;
+    bool entite_map_existante=false,mapExistante=false;
 
     m_numero=numeroMap;
 	char numero[7];
@@ -97,7 +97,6 @@ bool Map::Charger(int numeroMap)
     m_musiqueEnCours=0;
 
 	ifstream fichier,fichier2;
-    fichier.open(chemin.c_str(), ios::in);
 
     struct dirent *lecture;
 
@@ -110,7 +109,7 @@ bool Map::Charger(int numeroMap)
         sprintf(temp2,"map%ld.map.hs",numeroMap);
         temp=temp2;
         if(lecture->d_name==temp)
-            fichier.close(),fichier.open(chemin2.c_str(), ios::in),chemin=chemin2;
+            mapExistante=true,fichier.open(chemin2.c_str(), ios::in),chemin=chemin2;
 
 
         sprintf(temp2,"entites_map%ld.emap.hs",numeroMap);
@@ -123,7 +122,8 @@ bool Map::Charger(int numeroMap)
     }
     closedir(repertoire);
 
-    Monstre monstreTemp;
+    if(!mapExistante)
+        fichier.open(chemin.c_str(), ios::in);
 
     if(fichier)
     {
@@ -202,6 +202,9 @@ bool Map::Charger(int numeroMap)
     			fichier>>m_lumiere[heureEnCours].intensite;
     			fichier>>m_lumiere[heureEnCours].hauteur;
     			heureEnCours++;
+
+    			if(heureEnCours>23)
+                    heureEnCours=23;
     		}
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
     	}while(caractere!='$');
@@ -260,7 +263,6 @@ bool Map::Charger(int numeroMap)
             for(int i=0;i<5;i++)
                 m_tileset.push_back(tilesetTemp);
 
-    	Modele_Monstre monstreModeleTemp;
     	do
     	{
 
@@ -270,7 +272,7 @@ bool Map::Charger(int numeroMap)
     		{
     			string cheminDuMonstre;
                 getline(fichier, cheminDuMonstre);
-                m_ModeleMonstre.push_back(monstreModeleTemp);
+                m_ModeleMonstre.push_back(Modele_Monstre ());
                 m_ModeleMonstre[m_ModeleMonstre.size()-1].Charger(cheminDuMonstre);
                 console.Ajouter("Chargement de : "+cheminDuMonstre+" terminé",0);
 
@@ -295,7 +297,7 @@ bool Map::Charger(int numeroMap)
                         Lumiere lumiere;
                         int numeroModele=-1,vieMin=0,vieMax=1,degatsMin=0,degatsMax=0,rang=0,ame=0,pose=0,etat=0,angle=0;
                         float taille=1;
-                        m_monstre.push_back(monstreTemp);
+                        m_monstre.push_back(Monstre ());
 
                         char caractere;
                         do
@@ -492,7 +494,7 @@ bool Map::Charger(int numeroMap)
 
                             if(monstreFinal>=0&&monstreFinal<m_ModeleMonstre.size())
                             {
-                                m_monstre.push_back(monstreTemp);
+                                m_monstre.push_back(Monstre ());
                                 m_monstre[m_monstre.size()-1].Charger(monstreFinal,&m_ModeleMonstre[monstreFinal]);
                                 m_monstre[m_monstre.size()-1].setCoordonnee(position),m_monstre[m_monstre.size()-1].setDepart();
                                 monstreFinal=m_monstre.size()-1;
@@ -592,8 +594,7 @@ void Map::Sauvegarder()
 	console.Ajouter("Sauvegarde de la map : "+chemin,0);
 
 
-	ofstream fichier;
-    fichier.open(chemin.c_str(), ios::out);
+	ofstream fichier(chemin.c_str(), ios::out | ios::trunc);
     if(fichier)
     {
         fichier<<"*"<<m_nom<<"\n$\n";
@@ -676,18 +677,18 @@ void Map::Sauvegarder()
 
 	console.Ajouter("Sauvegarde de la map_entite : "+chemin,0);
 
-    fichier.open(chemin.c_str(), ios::out);
-    if(fichier)
+    ofstream fichier2(chemin.c_str(), ios::out | ios::trunc);
+    if(fichier2)
     {
         for(int i=0;i<m_monstre.size();i++)
         {
-            fichier<<"* m"<<m_monstre[i].getModele()<<" vi"<<m_monstre[i].getCaracteristique().vie<<" va"<<m_monstre[i].getCaracteristique().maxVie<<" di"<<m_monstre[i].getCaracteristique().degatsMin<<" da"<<m_monstre[i].getCaracteristique().degatsMax<<" r"<<m_monstre[i].getCaracteristique().rang<<" a"<<m_monstre[i].getCaracteristique().pointAme<<" t"<<m_monstre[i].getCaracteristique().modificateurTaille
+            fichier2<<"* m"<<m_monstre[i].getModele()<<" vi"<<m_monstre[i].getCaracteristique().vie<<" va"<<m_monstre[i].getCaracteristique().maxVie<<" di"<<m_monstre[i].getCaracteristique().degatsMin<<" da"<<m_monstre[i].getCaracteristique().degatsMax<<" r"<<m_monstre[i].getCaracteristique().rang<<" a"<<m_monstre[i].getCaracteristique().pointAme<<" t"<<m_monstre[i].getCaracteristique().modificateurTaille
             <<" p"<<m_monstre[i].getPose()<<" e"<<m_monstre[i].getEtat()<<" g"<<m_monstre[i].getAngle()
             <<" lr"<<m_monstre[i].getPorteeLumineuse().rouge<<" lv"<<m_monstre[i].getPorteeLumineuse().vert<<" lb"<<m_monstre[i].getPorteeLumineuse().bleu<<" li"<<m_monstre[i].getPorteeLumineuse().intensite<<" $\n";
         }
-        fichier<<"\n$";
+        fichier2<<"\n$";
 
-        fichier.close();
+        fichier2.close();
     }
 
 

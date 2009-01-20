@@ -84,48 +84,83 @@ void Hero::Sauvegarder()
     console.Ajouter("");
     console.Ajouter("Sauvegarde du héro...");
 
-    ofstream fichier;
-    fichier.open((configuration.chemin_saves+"hero.sav.hs").c_str(), ios::out);
+    ofstream fichier((configuration.chemin_saves+"hero.sav.hs").c_str(), ios::out | ios::trunc | ios::binary);
     if(fichier)
     {
-        fichier<<"* nom: "<<m_personnage.getCaracteristique().nom<<"\n";
+        std::string temp;
+        char caractere,espace='_';
+        int tempInt;
+        float tempFloat;
 
-        fichier<<"* vitesse: "<<crypter((int)m_personnage.getCaracteristique().vitesse*1000)<<"\n";
-        fichier<<"* ptAme: "<<crypter(m_personnage.getCaracteristique().pointAme)<<"\n";
-        fichier<<"* niveau: "<<crypter(m_personnage.getCaracteristique().niveau)<<"\n";
 
-        fichier<<"* force: "<<crypter(m_personnage.getCaracteristique().force)<<"\n";
-        fichier<<"* dexterite: "<<crypter(m_personnage.getCaracteristique().dexterite)<<"\n";
-        fichier<<"* vitalite: "<<crypter(m_personnage.getCaracteristique().vitalite)<<"\n";
-        fichier<<"* piete: "<<crypter(m_personnage.getCaracteristique().piete)<<"\n";
-        fichier<<"* charisme: "<<crypter(m_personnage.getCaracteristique().charisme)<<"\n";
+        int n = m_personnage.getCaracteristique().nom.size();
+        fichier.write((char *)&n, sizeof(int));
+        fichier.write((char *)m_personnage.getCaracteristique().nom.c_str(), n);
 
-        fichier<<"$"<<endl;
+        //fichier.write((char*)&m_personnage.getCaracteristique().nom, sizeof(string));
+
+        fichier.write((char*)&m_personnage.getCaracteristique().vitesse, sizeof(float));
+
+        fichier.write((char*)&m_personnage.getCaracteristique().pointAme, sizeof(int));
+
+        fichier.write((char*)&m_personnage.getCaracteristique().niveau, sizeof(int));
+
+        fichier.write((char*)&m_personnage.getCaracteristique().force, sizeof(int));
+
+        fichier.write((char*)&m_personnage.getCaracteristique().dexterite, sizeof(int));
+
+        fichier.write((char*)&m_personnage.getCaracteristique().vitalite, sizeof(int));
+
+        fichier.write((char*)&m_personnage.getCaracteristique().piete, sizeof(int));
+
+        fichier.write((char*)&m_personnage.getCaracteristique().charisme, sizeof(int));
+
+
+       // caractere='$';
+        //fichier.write((char*)&caractere, sizeof(char));
+        //fichier.write((char*)&espace, sizeof(char));
+
         for(int i=0;i<5;++i)
         {
-            fichier<<"* ";
+            caractere='*';
+            fichier.write((char*)&caractere, sizeof(char));
+            //fichier.write((char*)&espace, sizeof(char));
+
             for(int j=0;j<8;++j)
-                fichier<<m_caseInventaire[i][j]<<" ";
-            fichier<<" $"<<endl;
+                fichier.write((char*)&m_caseInventaire[i][j], sizeof(bool));
+
+            caractere='$';
+            //fichier.write((char*)&espace, sizeof(char));
+            fichier.write((char*)&caractere, sizeof(char));
+            fichier.write((char*)&espace, sizeof(char));
         }
-        fichier<<"$"<<endl;
+        caractere='$';
+        //fichier.write((char*)&espace, sizeof(char));
+        fichier.write((char*)&caractere, sizeof(char));
 
         for(int i=0;i<m_inventaire.size();++i)
         {
             m_inventaire[i].Sauvegarder(&fichier);
         }
 
-        fichier<<" $"<<endl;
+       // fichier.write((char*)&espace, sizeof(char));
+        caractere='$';
+        fichier.write((char*)&caractere, sizeof(char));
 
         fichier.close();
 
+        console.Ajouter("Sauvegarde du héro terminée !");
+
     }
+    else
+        console.Ajouter("Impossible de sauvegarder le héro !",1);
 
 
-    console.Ajouter("Sauvegarde du héro terminée !");
+
 }
 void Hero::Charger()
 {
+    string chemin;
     struct dirent *lecture;
 
 	DIR *repertoire;
@@ -136,57 +171,82 @@ void Hero::Charger()
         if(lecture->d_name==temp)
         {
             ifstream fichier;
-            fichier.open((configuration.chemin_saves+"hero.sav.hs").c_str(), ios::in);
+            fichier.open((configuration.chemin_saves+"hero.sav.hs").c_str(), ios::in | ios::binary);
             if(fichier)
             {
                 char caractere;
                 Caracteristique charTemp;
                 charTemp=m_personnage.getCaracteristique();
 
-                    do
+
+                int n;
+
+                fichier.read((char *)&n, sizeof(int));
+                fichier.read((char *)&m_personnage.getCaracteristique().nom, n);
+
+
+                //fichier.read((char*)&charTemp.nom, sizeof(string));
+                fichier.read((char*)&charTemp.vitesse, sizeof(float));
+                fichier.read((char*)&charTemp.pointAme, sizeof(int)),charTemp.ancienPointAme=charTemp.pointAme,charTemp.positionAncienAme=charTemp.pointAme;
+                fichier.read((char*)&charTemp.niveau, sizeof(int));
+
+                fichier.read((char*)&charTemp.force, sizeof(int));
+                fichier.read((char*)&charTemp.dexterite, sizeof(int));
+                fichier.read((char*)&charTemp.vitalite, sizeof(int));
+                fichier.read((char*)&charTemp.piete, sizeof(int));
+                fichier.read((char*)&charTemp.charisme, sizeof(int));
+
+                    /*do
                     {
-                        fichier.get(caractere);
+                        fichier.read((char*)&caractere, sizeof(char));
+
+                        //fichier.get(caractere)
+
                         if(caractere=='*')
                         {
                             int temp2;
                             string temp;
-                            fichier>>temp;
-                            if(temp == "nom:")  fichier>>charTemp.nom;
-                            if(temp == "vitesse:")  fichier>>temp2,charTemp.vitesse=decrypter(temp2)/1000;
-                            if(temp == "ptAme:")  fichier>>temp2,charTemp.pointAme=decrypter(temp2),charTemp.ancienPointAme=charTemp.pointAme,charTemp.positionAncienAme=charTemp.pointAme;
-                            if(temp == "niveau:")  fichier>>temp2,charTemp.niveau=decrypter(temp2);
 
-                            if(temp == "force:")  fichier>>temp2,charTemp.force=decrypter(temp2);
-                            if(temp == "dexterite:")  fichier>>temp2,charTemp.dexterite=decrypter(temp2);
-                            if(temp == "vitalite:")  fichier>>temp2,charTemp.vitalite=decrypter(temp2);
-                            if(temp == "piete:")  fichier>>temp2,charTemp.piete=decrypter(temp2);
-                            if(temp == "charisme:")  fichier>>temp2,charTemp.charisme=decrypter(temp2);
+                            fichier.read((char*)&temp, sizeof(string));
+
+                            //fichier>>temp;
+                            if(temp == "name:")  fichier.read((char*)&charTemp.nom, sizeof(string));  //fichier>>charTemp.nom;
+                            if(temp == "speed:") fichier.read((char*)&charTemp.vitesse, sizeof(float));  //fichier>>temp2,charTemp.vitesse=decrypter(temp2)/1000;
+                            if(temp == "soul:") fichier.read((char*)&charTemp.pointAme, sizeof(int)),charTemp.ancienPointAme=charTemp.pointAme,charTemp.positionAncienAme=charTemp.pointAme;  //fichier>>temp2,charTemp.pointAme=decrypter(temp2),charTemp.ancienPointAme=charTemp.pointAme,charTemp.positionAncienAme=charTemp.pointAme;
+                            if(temp == "level:") fichier.read((char*)&charTemp.niveau, sizeof(int));  //fichier>>temp2,charTemp.niveau=decrypter(temp2);
+
+                            if(temp == "strength:") fichier.read((char*)&charTemp.force, sizeof(int));  //fichier>>temp2,charTemp.force=decrypter(temp2);
+                            if(temp == "dexterity:") fichier.read((char*)&charTemp.dexterite, sizeof(int)); // fichier>>temp2,charTemp.dexterite=decrypter(temp2);
+                            if(temp == "vitality:") fichier.read((char*)&charTemp.vitalite, sizeof(int));  //fichier>>temp2,charTemp.vitalite=decrypter(temp2);
+                            if(temp == "piety:")fichier.read((char*)&charTemp.piete, sizeof(int));  //fichier>>temp2,charTemp.piete=decrypter(temp2);
+                            if(temp == "charisma:") fichier.read((char*)&charTemp.charisme, sizeof(int));  //fichier>>temp2,charTemp.charisme=decrypter(temp2);
                         }
-                        if(fichier.eof()){throw "Impossible de charger la sauvegarde";}
-                     }while(caractere!='$');
+                        if(fichier.eof()){ throw "Impossible de charger la sauvegarde";}
+                     }while(caractere!='$');*/
 
                     coordonnee position={0,0,0,0};
 
                     do
                     {
-
-                        fichier.get(caractere);
+                        fichier.read((char*)&caractere, sizeof(char));
                         if(caractere=='*')
                         {
                             for(int i=0;i<8;i++)
                             {
-                                int temp;
-                                fichier>>temp;
+                                bool temp;
+                                //fichier>>temp;
+                                fichier.read((char*)&temp, sizeof(bool));
                                 m_caseInventaire[position.y][position.x]=temp,position.x++;
+
                             }
 
                             do
                             {
-                                fichier.get(caractere);
+                                fichier.read((char*)&caractere, sizeof(char));
                                  if(fichier.eof()){throw "Impossible de charger la sauvegarde";}
                             }while(caractere!='$');
 
-                            fichier.get(caractere);
+                            fichier.read((char*)&caractere, sizeof(char));
 
                             position.y++;
                             position.x=0;
@@ -196,82 +256,87 @@ void Hero::Charger()
                         }
                         if(fichier.eof()){throw "Impossible de charger la sauvegarde";}
 
-
                      }while(caractere!='$');
 
                     do
                     {
-                        fichier.get(caractere);
+                        fichier.read((char*)&caractere, sizeof(char));
                         if(caractere=='*')
                         {
                             int rarete=0,equipe=0;
                             int degMin=0,degMax=0,armure=0;
-                            position.x=0;
                             position.y=0;
+                            position.x=0;
                             std::vector <benediction> bene;
                             sf::Color color;
 
                             do
                             {
-                                fichier.get(caractere);
+                                fichier.read((char*)&caractere, sizeof(char));
                                 if(caractere=='e')
-                                    fichier>>equipe;
+                                    fichier.read((char*)&equipe, sizeof(int));//fichier>>equipe;
 
                                 else if(caractere=='r')
-                                    fichier>>rarete;
+                                    fichier.read((char*)&rarete, sizeof(int));//fichier>>rarete;
 
                                 else if(caractere=='x')
-                                    fichier>>position.x;
+                                    fichier.read((char*)&position.x, sizeof(int));//fichier>>position.x;
                                 else if(caractere=='y')
-                                    fichier>>position.y;
+                                    fichier.read((char*)&position.y, sizeof(int));//fichier>>position.y;
 
-                               else  if(caractere=='d')
+                                else  if(caractere=='d')
                                 {
-                                    fichier.get(caractere);
+                                    fichier.read((char*)&caractere, sizeof(char));
                                     if(caractere=='i')
-                                        fichier>>degMin;
+                                       fichier.read((char*)&degMin, sizeof(int)); //fichier>>degMin;
                                     else if(caractere=='a')
-                                        fichier>>degMax;
+                                       fichier.read((char*)&degMax, sizeof(int)); // fichier>>degMax;
                                 }
 
                                 else if(caractere=='a')
-                                    fichier>>armure;
+                                    fichier.read((char*)&armure, sizeof(int));//fichier>>armure;
 
                                 else  if(caractere=='l')
                                 {
-                                    fichier.get(caractere);
+                                    fichier.read((char*)&caractere, sizeof(char));
                                     if(caractere=='r')
-                                        fichier>>color.r;
-                                    if(caractere=='g')
-                                        fichier>>color.g;
-                                    if(caractere=='b')
-                                        fichier>>color.b;
+                                        fichier.read((char*)&color.r, sizeof(Uint8));//fichier>>color.r;
+                                    else if(caractere=='g')
+                                        fichier.read((char*)&color.g, sizeof(Uint8));//fichier>>color.g;
+                                    else if(caractere=='b')
+                                       fichier.read((char*)&color.b, sizeof(Uint8)); //fichier>>color.b;
                                 }
-
                                 else if(caractere=='m')
                                 {
-                                    int type=0;
-                                    string chemin;
-                                    fichier>>chemin;
+                                    int m;
+                                    char *buffer;
+
+                                    fichier.read((char*)&m, sizeof(int));
+                                    buffer=new char[m];
+                                    fichier.read(buffer,m);
+
+
                                     m_inventaire.push_back(Objet ());
-                                    m_inventaire[m_inventaire.size()-1].Charger(chemin);
+                                    m_inventaire[m_inventaire.size()-1].Charger(buffer);
+                                    delete[] buffer;
                                 }
                                 else if(caractere=='b')
                                 {
                                     int type=0,info1=0,info2=0;
 
-                                    fichier>>type;
+                                    //fichier>>type;
+                                    fichier.read((char*)&type, sizeof(int));
 
                                     do
                                     {
-                                        fichier.get(caractere);
+                                        fichier.read((char*)&caractere, sizeof(char));
                                         if(caractere=='i')
                                         {
-                                            fichier.get(caractere);
+                                            fichier.read((char*)&caractere, sizeof(char));
                                             if(caractere=='1')
-                                                fichier>>info1;
+                                                fichier.read((char*)&info1, sizeof(int));//fichier>>info1;
                                             if(caractere=='2')
-                                                fichier>>info2;
+                                                fichier.read((char*)&info2, sizeof(int));//fichier>>info2;
                                         }
                                     }while(caractere!='$');
 
@@ -279,7 +344,7 @@ void Hero::Charger()
                                     bene[bene.size()-1].type=type;
                                     bene[bene.size()-1].info1=info1;
                                     bene[bene.size()-1].info2=info2;
-                                    fichier.get(caractere);
+                                    fichier.read((char*)&caractere, sizeof(char));
                                 }
 
                                 if(fichier.eof()){throw "Impossible de charger la sauvegarde";}
@@ -287,6 +352,7 @@ void Hero::Charger()
 
                             if(m_inventaire.size()>0)
                             {
+
                                 m_inventaire[m_inventaire.size()-1].setRarete(rarete);
                                 m_inventaire[m_inventaire.size()-1].setPosition(position.x,position.y);
                                 m_inventaire[m_inventaire.size()-1].m_equipe=equipe;
@@ -301,7 +367,7 @@ void Hero::Charger()
                                 m_inventaire[m_inventaire.size()-1].m_benedictions=bene;
                             }
 
-                            fichier.get(caractere);
+                            fichier.read((char*)&caractere, sizeof(char));
                         }
                         if(fichier.eof()){throw "Impossible de charger la sauvegarde";}
 

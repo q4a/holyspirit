@@ -291,6 +291,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                         {
                             jeu->eventManager.StopEvenement(Mouse::Left,"CA");
                             jeu->hero.setMonstreVise(jeu->map.getMonstreIllumine());
+                            jeu->hero.m_personnage.frappeEnCours=false;
                         }
                         else
                             jeu->hero.setMonstreVise(-1);

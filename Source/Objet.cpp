@@ -5,6 +5,8 @@
 #include <fstream>
 
 using namespace std;
+using namespace sf;
+
 
 Objet::Objet()
 {
@@ -51,33 +53,110 @@ void Objet::setPosition(int x, int y){m_position.x=x,m_position.y=y;}
 
 void Objet::Sauvegarder(std::ofstream *fichier)
 {
-    *fichier<<"* ";
-    *fichier<<"e"<<m_equipe<<" ";
+    char caractere,espace='_';
+    caractere='*';
+    fichier->write((char*)&caractere, sizeof(char));
+    //fichier->write((char*)&espace, sizeof(char));
 
-    *fichier<<"r"<<m_rarete<<" ";
+    caractere='e';
+    fichier->write((char*)&caractere, sizeof(char));
+    fichier->write((char*)&m_equipe, sizeof(int));
+    //fichier->write((char*)&espace, sizeof(char));
 
-    *fichier<<"x"<<m_position.x<<" ";
-    *fichier<<"y"<<m_position.y<<" ";
 
-    *fichier<<"di"<<m_degatsMin<<" ";
-    *fichier<<"da"<<m_degatsMax<<" ";
-    *fichier<<"a"<<m_armure<<" ";
+    caractere='r';
+    fichier->write((char*)&caractere, sizeof(char));
+    fichier->write((char*)&m_rarete, sizeof(int));
+    //fichier->write((char*)&espace, sizeof(char));
 
-    *fichier<<"lr"<<m_color.r<<" ";
-    *fichier<<"lg"<<m_color.g<<" ";
-    *fichier<<"lb"<<m_color.b<<" ";
+    caractere='x';
+    fichier->write((char*)&caractere, sizeof(char));
+    fichier->write((char*)&m_position.x, sizeof(int));
+    //fichier->write((char*)&espace, sizeof(char));
+    caractere='y';
+    fichier->write((char*)&caractere, sizeof(char));
+    fichier->write((char*)&m_position.y, sizeof(int));
+    //fichier->write((char*)&espace, sizeof(char));
 
-    *fichier<<"m"<<m_chemin<<" ";
+    caractere='d';
+    fichier->write((char*)&caractere, sizeof(char));
+    caractere='i';
+    fichier->write((char*)&caractere, sizeof(char));
+    fichier->write((char*)&m_degatsMin, sizeof(int));
+   // fichier->write((char*)&espace, sizeof(char));
+
+    caractere='d';
+    fichier->write((char*)&caractere, sizeof(char));
+    caractere='a';
+    fichier->write((char*)&caractere, sizeof(char));
+    fichier->write((char*)&m_degatsMax, sizeof(int));
+    //fichier->write((char*)&espace, sizeof(char));
+
+    caractere='a';
+    fichier->write((char*)&caractere, sizeof(char));
+    fichier->write((char*)&m_armure, sizeof(int));
+    //fichier->write((char*)&espace, sizeof(char));
+
+
+    caractere='l';
+    fichier->write((char*)&caractere, sizeof(char));
+    caractere='r';
+    fichier->write((char*)&caractere, sizeof(char));
+    fichier->write((char*)&m_color.r, sizeof(Uint8));
+    //fichier->write((char*)&espace, sizeof(char));
+
+    caractere='l';
+    fichier->write((char*)&caractere, sizeof(char));
+    caractere='g';
+    fichier->write((char*)&caractere, sizeof(char));
+    fichier->write((char*)&m_color.g, sizeof(Uint8));
+    //fichier->write((char*)&espace, sizeof(char));
+
+    caractere='l';
+    fichier->write((char*)&caractere, sizeof(char));
+    caractere='b';
+    fichier->write((char*)&caractere, sizeof(char));
+    fichier->write((char*)&m_color.b, sizeof(Uint8));
+   // fichier->write((char*)&espace, sizeof(char));
+
+    caractere='m';
+    fichier->write((char*)&caractere, sizeof(char));
+    int n=m_chemin.size()+1;
+    fichier->write((char *)&n, sizeof(int));
+    fichier->write((char*)m_chemin.c_str(), n);
+   // fichier->write((char*)&espace, sizeof(char));
 
     for(int i=0;i<m_benedictions.size();i++)
     {
-        *fichier<<"b"<<m_benedictions[i].type<<" ";
-        *fichier<<"i1"<<m_benedictions[i].info1<<" ";
-        *fichier<<"i2"<<m_benedictions[i].info2<<" ";
-        *fichier<<"$ ";
+        caractere='b';
+        fichier->write((char*)&caractere, sizeof(char));
+        fichier->write((char*)&m_benedictions[i].type, sizeof(int));
+        //fichier->write((char*)&espace, sizeof(char));
+
+        caractere='i';
+        fichier->write((char*)&caractere, sizeof(char));
+        caractere='1';
+        fichier->write((char*)&caractere, sizeof(char));
+        fichier->write((char*)&m_benedictions[i].info1, sizeof(int));
+        //fichier->write((char*)&espace, sizeof(char));
+
+        caractere='i';
+        fichier->write((char*)&caractere, sizeof(char));
+        caractere='2';
+        fichier->write((char*)&caractere, sizeof(char));
+        fichier->write((char*)&m_benedictions[i].info2, sizeof(int));
+        //fichier->write((char*)&espace, sizeof(char));
+
+        caractere='$';
+         //fichier->write((char*)&espace, sizeof(char));
+        fichier->write((char*)&caractere, sizeof(char));
+        fichier->write((char*)&espace, sizeof(char));
     }
 
-    *fichier<<"$"<<endl;
+    caractere='$';
+   // fichier->write((char*)&espace, sizeof(char));
+    fichier->write((char*)&caractere, sizeof(char));
+    fichier->write((char*)&espace, sizeof(char));
 }
 
 
