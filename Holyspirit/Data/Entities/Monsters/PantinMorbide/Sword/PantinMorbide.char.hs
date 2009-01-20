@@ -38,6 +38,11 @@ Objets du monstre
 r100
 $
 
+*
+*Data/Items/Small_sword_divin.item.hs
+r1
+$
+
 $
 *Data/Particule_system/human_bones.ps.hs
 $
