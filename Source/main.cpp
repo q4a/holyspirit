@@ -31,9 +31,6 @@ int main ( int argc, char** argv )
     console.Ajouter("---------------------------------------------------------------------------------");
     console.Ajouter("");
 
-    for(int i=0;i<1000;i++)
-        console.Ajouter(rand()%1000);
-
     try
 	{
 	    ///Chargement de la configuration
