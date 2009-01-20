@@ -321,6 +321,47 @@ void Objet::Charger(std::string chemin)
     	}while(caractere!='$');
 
         this->ChargerCaracteristiques(&fichier);
+
+
+
+
+        do
+    	{
+
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
+                int b=-1,ia=-1,ib=-1;
+                do
+                {
+                    fichier.get(caractere);
+                    switch (caractere)
+                    {
+                        case 'b' : fichier>>b; break;
+                        case 'i' :
+                            fichier.get(caractere);
+                            if(caractere=='1')
+                                fichier>>ia;
+                            if(caractere=='2')
+                                fichier>>ib;
+                        break;
+                    }
+
+                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+                }while(caractere!='$');
+
+                m_benedictions.push_back(benediction ());
+                m_benedictions[m_benedictions.size()-1].type=b;
+                m_benedictions[m_benedictions.size()-1].info1=ia;
+                m_benedictions[m_benedictions.size()-1].info2=ib;
+
+                fichier.get(caractere);
+            }
+
+    		if(fichier.eof()){ caractere='$'; }
+
+    	}while(caractere!='$');
     }
     else
     console.Ajouter("Impossible d'ouvrir : "+chemin,1);
@@ -393,7 +434,7 @@ void Objet::Generer(int bonus)
             m_color.g=255-rand()%255;
             m_color.b=255-rand()%255;
         }
-        if(random<3)
+        /*if(random<3)
         {
             m_rarete=DIVIN;
             m_armure*=1;
@@ -416,7 +457,7 @@ void Objet::Generer(int bonus)
             m_color.r=255-rand()%255;
             m_color.g=255-rand()%255;
             m_color.b=255-rand()%255;
-        }
+        }*/
 
         for(int i=0;i<nbrBene;i++)
         {
