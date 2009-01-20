@@ -87,6 +87,10 @@ void Hero::Sauvegarder()
     ofstream fichier((configuration.chemin_saves+"hero.sav.hs").c_str(), ios::out | ios::trunc | ios::binary);
     if(fichier)
     {
+
+        if(configuration.debug)
+            console.Ajouter("Ouverture du fichier.");
+
         std::string temp;
         char caractere,espace='_';
         int tempInt;
@@ -115,6 +119,9 @@ void Hero::Sauvegarder()
 
         fichier.write((char*)&m_personnage.getCaracteristique().charisme, sizeof(int));
 
+        if(configuration.debug)
+            console.Ajouter("/Ecriture des caracterstiques.");
+
 
        // caractere='$';
         //fichier.write((char*)&caractere, sizeof(char));
@@ -138,10 +145,16 @@ void Hero::Sauvegarder()
         //fichier.write((char*)&espace, sizeof(char));
         fichier.write((char*)&caractere, sizeof(char));
 
+        if(configuration.debug)
+            console.Ajouter("/Ecriture des cases inventaires.");
+
         for(int i=0;i<m_inventaire.size();++i)
         {
             m_inventaire[i].Sauvegarder(&fichier);
         }
+
+        if(configuration.debug)
+            console.Ajouter("/Ecriture des objets.");
 
        // fichier.write((char*)&espace, sizeof(char));
         caractere='$';
@@ -195,6 +208,9 @@ void Hero::Charger()
                 fichier.read((char*)&charTemp.vitalite, sizeof(int));
                 fichier.read((char*)&charTemp.piete, sizeof(int));
                 fichier.read((char*)&charTemp.charisme, sizeof(int));
+
+                if(configuration.debug)
+                    console.Ajouter("/Lectures des caracteristiques.");
 
                     /*do
                     {
@@ -257,6 +273,9 @@ void Hero::Charger()
                         if(fichier.eof()){throw "Impossible de charger la sauvegarde";}
 
                      }while(caractere!='$');
+
+                     if(configuration.debug)
+                            console.Ajouter("/Lectures des cases de l'inventaire.");
 
                     do
                     {
@@ -372,6 +391,9 @@ void Hero::Charger()
                         if(fichier.eof()){throw "Impossible de charger la sauvegarde";}
 
                     }while(caractere!='$');
+
+                    if(configuration.debug)
+                        console.Ajouter("/Lectures des objets.");
 
 
 
@@ -1023,8 +1045,6 @@ bool Hero::equiper(int numero, int emplacement, std::vector <int> emplacementImp
     {
         m_objetEnMain=ancienEquipe;
 
-        //if(ancienEquipe>=0)
-            //m_inventaire[ancienEquipe].m_equipe=0;
     }
 
     recalculerCaracteristiques();
@@ -1032,7 +1052,7 @@ bool Hero::equiper(int numero, int emplacement, std::vector <int> emplacementImp
 
 void Hero::infligerDegats(float degats)
 {
-    degats-=m_caracteristiques.armure/25;
+    degats-=m_caracteristiques.armure/50;
     if(degats<0)
         degats=0;
 

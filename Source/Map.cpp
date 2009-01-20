@@ -42,16 +42,25 @@ void Map::Detruire()
     m_tileset.clear();
     m_herbe.clear();
 
-
-    console.Ajouter("Destruction des cases...");
-    /*for(int i=0;i<m_decor.size();i++)
+    if(configuration.debug)
+        console.Ajouter("Destruction des cases...");
+    for(int i=0;i<m_decor.size();i++)
     {
             for(int j=0;j<m_decor[i].size();j++)
+            {
+                if(configuration.debug)
+                    console.Ajouter(j);
                 m_decor[i][j].clear();
+            }
+        if(configuration.debug)
+                console.Ajouter("");
+
         m_decor[i].clear();
-    }*/
+    }
      m_decor.clear();
-    console.Ajouter("Cases détruites !");
+
+     if(configuration.debug)
+        console.Ajouter("Cases détruites !");
 
 
     m_ModeleMonstre.clear();
@@ -122,6 +131,9 @@ bool Map::Charger(int numeroMap)
     }
     closedir(repertoire);
 
+    if(configuration.debug)
+            console.Ajouter("/Test de l'existence des fichiers temps.");
+
     if(!mapExistante)
         fichier.open(chemin.c_str(), ios::in);
 
@@ -141,6 +153,8 @@ bool Map::Charger(int numeroMap)
 
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
     	}while(caractere!='$');
+    	if(configuration.debug)
+            console.Ajouter("/Lectures du nom.");
 
     	do
         {
@@ -155,6 +169,9 @@ bool Map::Charger(int numeroMap)
 
             if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
         }while(caractere!='$');
+
+        if(configuration.debug)
+            console.Ajouter("/Lectures des fonds.");
 
         for(int i=0;i<MAX_MUSIQUE;i++)
                 m_musique[i].Stop();
@@ -184,6 +201,9 @@ bool Map::Charger(int numeroMap)
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str()); throw (&temp); }
     	}while(caractere!='$');
 
+    	if(configuration.debug)
+            console.Ajouter("/Lectures des musiques.");
+
     	m_musique[0].Play();
 
     	m_musiqueEnCours=0;
@@ -208,6 +228,9 @@ bool Map::Charger(int numeroMap)
     		}
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
     	}while(caractere!='$');
+
+    	if(configuration.debug)
+            console.Ajouter("/Lectures des lumières.");
 
     	while(heureEnCours<24)
     	{
@@ -242,6 +265,9 @@ bool Map::Charger(int numeroMap)
 
     	}while(caractere!='$');
 
+    	if(configuration.debug)
+            console.Ajouter("/Lectures des tilesets.");
+
     	do
     	{
     	    //Chargement des tileset
@@ -258,6 +284,9 @@ bool Map::Charger(int numeroMap)
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
 
     	}while(caractere!='$');
+
+    	if(configuration.debug)
+            console.Ajouter("/Lectures des herbes.");
 
     	if(numeroMap==0)
             for(int i=0;i<5;i++)
@@ -279,6 +308,9 @@ bool Map::Charger(int numeroMap)
     		}
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
     	}while(caractere!='$');
+
+    	if(configuration.debug)
+            console.Ajouter("/Lectures des monstres.");
 
     	console.Ajouter("");
 
@@ -396,7 +428,9 @@ bool Map::Charger(int numeroMap)
     		}
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
     	}while(caractere!='$');
-    	console.Ajouter("Chargement des événements terminé.");
+
+    	if(configuration.debug)
+            console.Ajouter("/Lectures des événements.");
 
 
     	std::vector<int> evenementTemp;
@@ -542,7 +576,8 @@ bool Map::Charger(int numeroMap)
 
             }while(caractere!='$');
     	}
-    	console.Ajouter("Chargement des cases terminé.");
+    	if(configuration.debug)
+            console.Ajouter("/Lectures des cases.");
 
     	fichier.close();
     }

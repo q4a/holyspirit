@@ -16,6 +16,16 @@ Decor::Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int her
 	m_effet=-1;
 }
 
+Decor::~Decor()
+{
+    m_evenement.clear();
+    //if(configuration.debug)
+       //console.Ajouter("/Destruction des evenements");
+    m_objets.clear();
+  //  if(configuration.debug)
+       // console.Ajouter("/Destruction des objets");
+}
+
 void Decor::setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche)
 {
 	m_tileset=tileset;

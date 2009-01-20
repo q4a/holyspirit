@@ -125,7 +125,10 @@ struct Configuration
                         if(chaine== "light_refresh_rate:") { fichier>>frequence_lumiere; }
                         if(chaine== "console:") { fichier>>console; }
 
+
                         if(chaine== "saving_frequency:") { fichier>>frequence_sauvegarde; }
+                        if(chaine== "debug_mod:") { fichier>>debug; }
+                        if(chaine== "desactivate_console:") { fichier>>desactivate_console; }
 
                 }
                  fichier.close();
@@ -260,6 +263,9 @@ struct Configuration
 
                         fichier<<"OTHERS"<<std::endl;
                         fichier<< "saving_frequency: " <<frequence_sauvegarde<<std::endl;
+                        fichier<<"debug_mod: "<<debug<<std::endl;
+                        fichier<<"desactivate_console: "<<desactivate_console<<std::endl;
+
 
 
                  fichier.close();
@@ -270,7 +276,7 @@ struct Configuration
 
 
     coordonnee Resolution;
-    bool Ombre,Minimap,amelioration_lampes,console,Herbes,syncronisation_verticale,mode_fenetre,postFX,sang,video,particules;
+    bool Ombre,Minimap,amelioration_lampes,console,Herbes,syncronisation_verticale,mode_fenetre,postFX,sang,video,particules,debug,desactivate_console;
     int Lumiere;
     float effetMort,effetNoir,volume,minute,zoom,frequence_sauvegarde,frequence_lumiere,luminosite,contrastes;
     int heure,cache,alpha;

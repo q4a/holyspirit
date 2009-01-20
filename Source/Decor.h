@@ -21,11 +21,7 @@ class Decor
 	public:
 	Decor(){}
 	Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche);
-	~Decor()
-	{
-	    m_evenement.clear();
-	    m_objets.clear();
-    }
+	~Decor();
 	void setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe,int couche); //Définir une valeur au décor
 	void setNumeroHerbe(int numero);
 	void setMonstre(int monstre);

@@ -157,6 +157,9 @@ void Objet::Sauvegarder(std::ofstream *fichier)
    // fichier->write((char*)&espace, sizeof(char));
     fichier->write((char*)&caractere, sizeof(char));
     fichier->write((char*)&espace, sizeof(char));
+
+    if(configuration.debug)
+            console.Ajouter("/Sauvegarde de "+m_chemin);
 }
 
 
