@@ -39,6 +39,11 @@ r100
 $
 
 *
+*Data/Items/Small_shield.item.hs
+r100
+$
+
+*
 *Data/Items/Small_sword_divin.item.hs
 r1
 $

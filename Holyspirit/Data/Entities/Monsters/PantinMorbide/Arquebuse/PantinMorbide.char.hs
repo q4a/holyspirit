@@ -32,7 +32,7 @@ $
 Objets du monstre
 
 *
-*Data/Items/Small_sword.item.hs
+*Data/Items/Arquebuse.item.hs
 r100
 $
 

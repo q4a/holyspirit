@@ -36,7 +36,7 @@ $
 Objets du monstre
 
 *
-*Data/Items/Small_sword.item.hs
+*Data/Items/Two_hand_sword.item.hs
 r100
 $
 
