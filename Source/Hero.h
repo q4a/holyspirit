@@ -44,7 +44,7 @@ class Hero
 	bool ajouterObjet(Objet objet);
 
 	Objet prendreEnMain(coordonnee positionSouris);
-	bool equiper(int numero, int emplacement, std::vector <int> emplacementImpossible);
+	bool equiper(int numero, int emplacement);
 	void AttribuerPositionObjet(coordonnee position,int numero);
 	void LibererCases(int numero);
 

@@ -981,11 +981,11 @@ Objet Hero::prendreEnMain(coordonnee positionSouris)
         else
         {
             if(positionSouris.x>589*configuration.Resolution.w/800&&positionSouris.x<(589+32)*configuration.Resolution.w/800&&positionSouris.y>110*configuration.Resolution.h/600&&positionSouris.y<(110+64)*configuration.Resolution.h/600)
-                equiper(m_objetEnMain,ARME_PRINCIPAL,m_inventaire[m_objetEnMain].m_emplacementImpossible);
+                equiper(m_objetEnMain,ARME_PRINCIPAL);
             else if(positionSouris.x>636*configuration.Resolution.w/800&&positionSouris.x<(636+64)*configuration.Resolution.w/800&&positionSouris.y>110*configuration.Resolution.h/600&&positionSouris.y<(110+64)*configuration.Resolution.h/600)
-                equiper(m_objetEnMain,ARMURE_CORPS,m_inventaire[m_objetEnMain].m_emplacementImpossible);
+                equiper(m_objetEnMain,ARMURE_CORPS);
             else if(positionSouris.x>723*configuration.Resolution.w/800&&positionSouris.x<(723+64)*configuration.Resolution.w/800&&positionSouris.y>124*configuration.Resolution.h/600&&positionSouris.y<(124+64)*configuration.Resolution.h/600)
-                equiper(m_objetEnMain,BOUCLIER,m_inventaire[m_objetEnMain].m_emplacementImpossible);
+                equiper(m_objetEnMain,BOUCLIER);
 
             else if(m_objetEnMain>=0&&m_objetEnMain<m_inventaire.size())
                 if(m_inventaire[m_objetEnMain].m_equipe==AUCUN)
@@ -1005,7 +1005,7 @@ Objet Hero::prendreEnMain(coordonnee positionSouris)
     return temp2;
 }
 
-bool Hero::equiper(int numero, int emplacement, std::vector <int> emplacementImpossible)
+bool Hero::equiper(int numero, int emplacement)
 {
     int ancienEquipe=-1;
     bool ok=true;
@@ -1022,9 +1022,10 @@ bool Hero::equiper(int numero, int emplacement, std::vector <int> emplacementImp
                     if(m_inventaire[i].m_emplacementImpossible[j]==emplacement)
                         ok=false;
 
-        for(int j=0;j<emplacementImpossible.size();j++)
-            if(m_inventaire[i].m_equipe==emplacementImpossible[j])
-                ok=false;
+        if(m_objetEnMain>=0&&m_objetEnMain<m_inventaire.size())
+            for(int j=0;j<m_inventaire[m_objetEnMain].m_emplacementImpossible.size();j++)
+                if(m_inventaire[i].m_equipe==m_inventaire[m_objetEnMain].m_emplacementImpossible[j])
+                    ok=false;
     }
 
     if(ok)
