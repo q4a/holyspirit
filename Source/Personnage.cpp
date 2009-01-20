@@ -511,7 +511,7 @@ bool Personnage::seDeplacer(float tempsEcoule)
 
         }
         else if(m_arrivee.x!=m_positionCase.x||m_arrivee.y!=m_positionCase.y)
-        return 1;
+            return 1;
         else if((m_etat!=2||m_etat==2&&m_poseEnCours==0)&&!frappeEnCours)
         {
             if(m_etat!=0)

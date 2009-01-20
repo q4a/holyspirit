@@ -550,7 +550,7 @@
 1229437542 d:\backup disque e\c++\holyspirit\source\evenement.h
 	"constantes.h"
 
-1232366278 source:d:\backup disque e\c++\holyspirit\source\personnage.cpp
+1232475311 source:d:\backup disque e\c++\holyspirit\source\personnage.cpp
 	"Personnage.h"
 	"Globale.h"
 	<iostream>
@@ -725,7 +725,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1232459940 source:d:\backup disque e\c++\holyspirit\source\c_jeu.cpp
+1232475311 source:d:\backup disque e\c++\holyspirit\source\c_jeu.cpp
 	"c_jeu.h"
 	"jeu.h"
 	"Globale.h"
