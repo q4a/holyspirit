@@ -191,11 +191,14 @@ void Hero::Charger()
                 Caracteristique charTemp;
                 charTemp=m_personnage.getCaracteristique();
 
-
                 int n;
+                char *buffer;
 
                 fichier.read((char *)&n, sizeof(int));
-                fichier.read((char *)&m_personnage.getCaracteristique().nom, n);
+                buffer=new char[n];
+                fichier.read(buffer,n);
+                charTemp.nom=buffer;
+                delete[] buffer;
 
 
                 //fichier.read((char*)&charTemp.nom, sizeof(string));
