@@ -44,7 +44,8 @@ void Map::Detruire()
 
     if(configuration.debug)
         console.Ajouter("Destruction des cases...");
-    for(int i=0;i<NOMBRE_COUCHE_MAP;i++)
+
+       /* for(int i=0;i<NOMBRE_COUCHE_MAP;i++)
     {
             for(int j=0;j<m_decor[i].size()-1;j++)
             {
@@ -56,7 +57,10 @@ void Map::Detruire()
                 console.Ajouter("-");
 
         m_decor[i].clear();
-    }
+    }*/
+
+        delete[] m_decor;
+
     // m_decor.clear();
 
      if(configuration.debug)
@@ -102,6 +106,8 @@ void Map::Detruire()
 
 bool Map::Charger(int numeroMap)
 {
+    m_decor = new std::vector< std::vector < Decor > > [2];
+
     int numeroModuleAleatoire=rand()%10;
 
     bool entite_map_existante=false,mapExistante=false;
@@ -2106,7 +2112,10 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     128,
                                     255));
 
-                            moteurGraphique.AjouterCommande(&Sprite,10,1);
+                            if(m_sacPointe.x==k&&m_sacPointe.y==j)
+                                moteurGraphique.AjouterCommande(&Sprite,12,1);
+                            else
+                                moteurGraphique.AjouterCommande(&Sprite,10,1);
 
                             if(m_sacPointe.x==k&&m_sacPointe.y==j||alt)
                             {
@@ -2136,7 +2145,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     texte.SetY((position.y-ViewRect.Top)*configuration.zoom-20*configuration.Resolution.w/800*(z+1));
                                     texte.SetX((position.x-ViewRect.Left)*configuration.zoom);
 
-                                    moteurGraphique.AjouterTexte(&texte,18);
+                                    moteurGraphique.AjouterTexte(&texte,14);
 
                                 }
                             }

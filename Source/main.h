@@ -8,7 +8,7 @@
 #include "constantes.h"
 
 
-void lireVideo(sf::RenderWindow *ecran,std::string Chemin,int tailleVideo);
+
 
 
 

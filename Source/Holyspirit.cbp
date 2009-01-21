@@ -48,10 +48,15 @@
 		</Compiler>
 		<Linker>
 			<Add option="-s" />
-			<Add library="libsfml-audio.a" />
-			<Add library="libsfml-graphics.a" />
-			<Add library="libsfml-window.a" />
-			<Add library="libsfml-system.a" />
+			<Add option="-lsfml-audio" />
+			<Add option="-lsfml-graphics" />
+			<Add option="-lsfml-window" />
+			<Add option="-lsfml-system" />
+			<Add library="libavcodec.a" />
+			<Add library="libavdevice.a" />
+			<Add library="libavformat.a" />
+			<Add library="libavutil.a" />
+			<Add library="libswscale.a" />
 		</Linker>
 		<Unit filename="Commande.h" />
 		<Unit filename="Contexte.h" />

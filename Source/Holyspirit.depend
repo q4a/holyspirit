@@ -486,7 +486,7 @@
 	"liste_case.h"
 	"Pose.h"
 
-1232541259 d:\backup disque e\c++\holyspirit\source\constantes.h
+1232552625 d:\backup disque e\c++\holyspirit\source\constantes.h
 	<cmath>
 	<utility>
 	<iostream>
@@ -527,7 +527,7 @@
 
 1229864540 source:d:\backup disque e\c++\holyspirit\source\ressource.rc
 
-1232543107 source:d:\backup disque e\c++\holyspirit\source\hero.cpp
+1232556899 source:d:\backup disque e\c++\holyspirit\source\hero.cpp
 	"Hero.h"
 	"Globale.h"
 	<iostream>
@@ -606,7 +606,7 @@
 	<iostream>
 	<fstream>
 
-1231611233 source:d:\backup disque e\c++\holyspirit\source\eventmanager.cpp
+1232553788 source:d:\backup disque e\c++\holyspirit\source\eventmanager.cpp
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<math.h>
@@ -625,7 +625,7 @@
 	<SFML/Graphics.hpp>
 	"constantes.h"
 
-1232543514 d:\backup disque e\c++\holyspirit\source\map.h
+1232558011 d:\backup disque e\c++\holyspirit\source\map.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -661,7 +661,7 @@
 	"MoteurGraphique.h"
 	"MoteurSons.h"
 
-1229437542 d:\backup disque e\c++\holyspirit\source\main.h
+1232546626 d:\backup disque e\c++\holyspirit\source\main.h
 	"Jeu.h"
 	"constantes.h"
 
@@ -675,15 +675,17 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1229437542 source:d:\backup disque e\c++\holyspirit\source\video.cpp
+1232550989 source:d:\backup disque e\c++\holyspirit\source\video.cpp
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<iostream>
 	<fstream>
 	"constantes.h"
 	"Globale.h"
+	<libavformat/avformat.h>
+	<libavcodec/avcodec.h>
 
-1232543584 source:d:\backup disque e\c++\holyspirit\source\map.cpp
+1232558011 source:d:\backup disque e\c++\holyspirit\source\map.cpp
 	"Map.h"
 	<iostream>
 	<fstream>
@@ -694,7 +696,7 @@
 	"Globale.h"
 	"Jeu.h"
 
-1231446809 source:d:\backup disque e\c++\holyspirit\source\jeu.cpp
+1232546626 source:d:\backup disque e\c++\holyspirit\source\jeu.cpp
 	"constantes.h"
 	"Globale.h"
 	"jeu.h"
@@ -1006,7 +1008,7 @@
 	<SFML/Graphics.hpp>
 	"Contexte.h"
 
-1232543665 source:d:\backup disque e\c++\holyspirit\source\c_inventaire.cpp
+1232557217 source:d:\backup disque e\c++\holyspirit\source\c_inventaire.cpp
 	"c_jeu.h"
 	"jeu.h"
 	"Globale.h"
@@ -1058,7 +1060,7 @@
 	"constantes.h"
 	<fstream>
 
-1232476565 source:d:\backup disque e\c++\holyspirit\source\objet.cpp
+1232557217 source:d:\backup disque e\c++\holyspirit\source\objet.cpp
 	"Objet.h"
 	"Globale.h"
 	<fstream>

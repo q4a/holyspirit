@@ -79,7 +79,7 @@ class Map
 	Lumiere m_lumiere[24];
 	std::vector <Tileset> m_tileset;
 	std::vector <Herbe> m_herbe;
-	std::vector< std::vector < Decor > >  m_decor[2];
+	std::vector< std::vector < Decor > >  *m_decor;
 	std::vector <Evenement> m_evenement;
 
 	sf::Music m_musique[MAX_MUSIQUE];

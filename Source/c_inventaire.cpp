@@ -21,13 +21,18 @@ c_Inventaire::c_Inventaire(Jeu *jeu)
 
 void c_Inventaire::Utiliser(Jeu *jeu)
 {
+
     if(m_decalage<=-600)
         m_afficher=1;
 
-    temps_ecoule=jeu->Clock.GetElapsedTime();
-    jeu->Clock.Reset();
+
+        temps_ecoule=jeu->Clock.GetElapsedTime();
+        jeu->m_display=true;
+        jeu->Clock.Reset();
 
     jeu->eventManager.GererLesEvenements(&jeu->ecran,&camera,&jeu->m_run,0,jeu->map.getDimensions());
+
+    jeu->eventManager.AfficherCurseur(&jeu->ecran);
 
     if(jeu->eventManager.getEvenement(Key::I,"ET")||jeu->eventManager.getEvenement(Key::Escape,"ET"))
         m_afficher=0;
@@ -93,9 +98,6 @@ void c_Inventaire::Utiliser(Jeu *jeu)
     jeu->menu.Afficher(&jeu->ecran,1);
     jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,-1,jeu->hero.m_caracteristiques);
 
-    jeu->eventManager.AfficherCurseur(&jeu->ecran);
-
-    jeu->m_display=true;
 }
 
 

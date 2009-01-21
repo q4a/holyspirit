@@ -427,7 +427,7 @@ void Objet::Generer(int bonus)
             m_color.g=255-rand()%192;
             m_color.b=255-rand()%192;
         }
-        if(random<20)
+        if(random<10)
         {
             m_rarete=SANCTIFIE;
             m_armure*=1;
@@ -596,8 +596,14 @@ sf::String Objet::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee 
 
     string.SetSize(14.f*configuration.Resolution.h/600);
     string.SetText(chaine);
+
+    if(position.x<400)
+        string.SetX((position.x-10+((int)string.GetRect().Right-(int)string.GetRect().Left)));
+    else
+        string.SetX((position.x+decalage->x+10-((int)string.GetRect().Right-(int)string.GetRect().Left)));
+
+
     string.SetY((position.y+decalage->y+10));
-    string.SetX((position.x+decalage->x+10-((int)string.GetRect().Right-(int)string.GetRect().Left)));
 
     if(tailleCadran->x<((int)string.GetRect().Right-(int)string.GetRect().Left))
         tailleCadran->x=((int)string.GetRect().Right-(int)string.GetRect().Left);
@@ -677,7 +683,10 @@ void Objet::AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position
 
     for(int i=0;i<temp.size();i++)
     {
-        temp[i].SetX(position.x+(tailleCadran.x/2-((int)temp[i].GetRect().Right-(int)temp[i].GetRect().Left)/2)-tailleCadran.x);
+        if(position.x<400)
+            temp[i].SetX(position.x+(tailleCadran.x/2-((int)temp[i].GetRect().Right-(int)temp[i].GetRect().Left)/2));
+        else
+            temp[i].SetX(position.x+(tailleCadran.x/2-((int)temp[i].GetRect().Right-(int)temp[i].GetRect().Left)/2)-tailleCadran.x);
         moteurGraphique.AjouterTexte(&temp[i],19);
     }
 
@@ -689,10 +698,14 @@ void Objet::AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position
     sprite.SetImage(*moteurGraphique.getImage(0));
     sprite.SetColor(sf::Color(0,0,0,224));
     sprite.SetY(position.y);
-    sprite.SetX(position.x-tailleCadran.x+10);
+    if(position.x>400)
+        sprite.SetX(position.x-tailleCadran.x+10);
+    else
+        sprite.SetX(position.x-10);
     sprite.Resize(tailleCadran.x,tailleCadran.y);
     moteurGraphique.AjouterCommande(&sprite,18,0);
 
+    temp.clear();
 }
 
 

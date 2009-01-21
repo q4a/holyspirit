@@ -3,6 +3,8 @@
 #include "jeu.h"
 #include <dirent.h>
 
+void lireVideo(sf::RenderWindow *ecran,std::string Chemin);
+
 
 using namespace sf;
 
@@ -24,6 +26,8 @@ void Jeu::Demarrer()
         ecran.UseVerticalSync(true);
         ecran.SetFramerateLimit(60);
     }
+
+    lireVideo(&ecran,"Data/Menus/Videos/Cinematique test 1-2");
 
     this->m_jeu = new c_Jeu(this);
     this->m_demarrage = new c_Demarrage(this);

@@ -166,7 +166,7 @@ void EventManager::AfficherCurseur(sf::RenderWindow *ecran)
         Sprite.SetX(m_positionSouris.x*configuration.Resolution.w/configuration.Resolution.x);
     if(configuration.Resolution.y>0)
         Sprite.SetY(m_positionSouris.y*configuration.Resolution.h/configuration.Resolution.y);
-	moteurGraphique.AjouterCommande(&Sprite,19,0);
+	moteurGraphique.AjouterCommande(&Sprite,18,0);
 }
 
 bool EventManager::getEvenement(int numeroEvenement,std::string evenement)
