@@ -330,7 +330,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     }
 
                     if(jeu->eventManager.getEvenement(Key::I,"ET"))
-                        jeu->eventManager.StopEvenement(Key::I,"ET"),jeu->m_contexte=jeu->m_inventaire;
+                        jeu->eventManager.StopEvenement(Key::I,"ET"),jeu->map.m_defilerObjets=0,jeu->m_contexte=jeu->m_inventaire;
 
                     if(jeu->eventManager.getEvenement(Key::Escape,"ET"))
                         jeu->eventManager.StopEvenement(Key::Escape,"ET"),jeu->m_contexte=jeu->m_menuInGame;

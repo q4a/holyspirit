@@ -22,6 +22,9 @@ class Map
 	bool Charger(int numeroMap);
 	void Sauvegarder();
 	void Afficher(sf::RenderWindow* ecran,sf::View *camera,int type,Hero *hero,coordonnee positionSouris,bool alt,float alpha=255);
+
+	void AfficherSacInventaire(sf::RenderWindow* ecran,coordonnee positionSac,float decalage,coordonnee positionSouris);
+
 	void AfficherNomEvenement(sf::RenderWindow* ecran,coordonnee casePointee,coordonnee positionSouris);
 
 	int getMonstreIllumine();
@@ -58,7 +61,7 @@ class Map
 
 	void verifierDeclencheursDegats(int i, int j);
 
-	void ramasserObjet(Hero *hero);
+	bool ramasserObjet(Hero *hero,bool enMain = false);
 	void AjouterObjet(Objet objet);
 
 	coordonnee getDimensions();
@@ -76,7 +79,7 @@ class Map
 	Lumiere m_lumiere[24];
 	std::vector <Tileset> m_tileset;
 	std::vector <Herbe> m_herbe;
-	std::vector < std::vector< std::vector < Decor > > > m_decor;
+	std::vector< std::vector < Decor > >  m_decor[2];
 	std::vector <Evenement> m_evenement;
 
 	sf::Music m_musique[MAX_MUSIQUE];

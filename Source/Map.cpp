@@ -44,7 +44,7 @@ void Map::Detruire()
 
     if(configuration.debug)
         console.Ajouter("Destruction des cases...");
-    for(int i=0;i<m_decor.size();i++)
+    for(int i=0;i<NOMBRE_COUCHE_MAP;i++)
     {
             for(int j=0;j<m_decor[i].size()-1;j++)
             {
@@ -455,10 +455,10 @@ bool Map::Charger(int numeroMap)
     	std::vector<int> evenementTemp;
     	Decor decorTemp(-1,-1,evenementTemp,-1,-1,0);
 
-    	m_decor.resize(2,vector<vector<Decor> >(0,vector<Decor>(0,decorTemp)));
+    	//m_decor.resize(2,vector<vector<Decor> >(0,vector<Decor>(0,decorTemp)));
 
     	coordonnee position;
-    	for(int couche=0;couche<2;couche++)
+    	for(int couche=0;couche<NOMBRE_COUCHE_MAP;couche++)
     	{
             position.x=0;
             position.y=0;
@@ -1795,6 +1795,78 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
 
 }
 
+void Map::AfficherSacInventaire(RenderWindow* ecran,coordonnee positionSac,float decalage,coordonnee positionSouris)
+{
+    Sprite Sprite;
+	String texte;
+
+	    m_objetPointe=-1;
+	    coordonnee position;
+
+	    if(positionSac.x>=0&&positionSac.x<m_decor[1][0].size()
+	     &&positionSac.y>=0&&positionSac.y<m_decor[1].size())
+	    if(m_decor[1][positionSac.y][positionSac.x].getNombreObjets()>0)
+        {
+            if(m_defilerObjets>m_decor[1][positionSac.y][positionSac.x].getNombreObjets()-3)
+                m_defilerObjets=m_decor[1][positionSac.y][positionSac.x].getNombreObjets()-3;
+            if(m_defilerObjets<0)
+                m_defilerObjets=0;
+
+            for(int z=m_defilerObjets;z<m_decor[1][positionSac.y][positionSac.x].getNombreObjets()&&z<4+m_defilerObjets;z++)
+            {
+                if(positionSouris.x>436*configuration.Resolution.w/800&&positionSouris.x<756*configuration.Resolution.w/800
+                 &&positionSouris.y>30*configuration.Resolution.h/600+(z-m_defilerObjets)*20*configuration.Resolution.w/800
+                 &&positionSouris.y<30*configuration.Resolution.h/600+(z-m_defilerObjets)*20*configuration.Resolution.w/800+20*configuration.Resolution.w/800)
+                 {
+                     Sprite.SetImage(*moteurGraphique.getImage(0));
+                     Sprite.SetColor(sf::Color(255,255,255,128));
+                     Sprite.Resize(320,20*configuration.Resolution.w/800);
+                     Sprite.SetX(436*configuration.Resolution.w/800);
+                     Sprite.SetY(30*configuration.Resolution.h/600+(z-m_defilerObjets)*20*configuration.Resolution.w/800 - decalage*configuration.Resolution.h/600);
+                     moteurGraphique.AjouterCommande(&Sprite,16,0);
+
+                    if(!(z-m_defilerObjets==0&&m_defilerObjets>0)&&!((z-m_defilerObjets==3&&z+m_defilerObjets<=m_decor[1][positionSac.y][positionSac.x].getNombreObjets()+1)))
+                        m_objetPointe=z;
+                 }
+
+
+                int rarete=m_decor[1][positionSac.y][positionSac.x].getObjet(z).getRarete();
+                if(rarete==NORMAL)
+                    texte.SetColor(sf::Color(224,224,224,255));
+                if(rarete==BONNEFACTURE)
+                    texte.SetColor(sf::Color(128,0,128,255));
+                if(rarete==BENI)
+                    texte.SetColor(sf::Color(0,64,128,255));
+                if(rarete==SACRE)
+                    texte.SetColor(sf::Color(255,255,128,255));
+                if(rarete==SANCTIFIE)
+                    texte.SetColor(sf::Color(128,255,255,255));
+                if(rarete==DIVIN)
+                    texte.SetColor(sf::Color(255,164,32,255));
+                if(rarete==INFERNAL)
+                    texte.SetColor(sf::Color(224,0,0,255));
+                if(rarete==CRAFT)
+                    texte.SetColor(sf::Color(128,64,0,255));
+
+                if(z-m_defilerObjets==0&&m_defilerObjets>0)
+                    texte.SetText("...");
+                else if((z-m_defilerObjets==3&&z+m_defilerObjets<=m_decor[1][positionSac.y][positionSac.x].getNombreObjets()+1))
+                    texte.SetText("...");
+                else
+                    texte.SetText(m_decor[1][positionSac.y][positionSac.x].getObjet(z).getNom());
+                texte.SetSize(16*configuration.Resolution.w/800);
+
+                position.x=(int)((436*configuration.Resolution.w/800)+(160*configuration.Resolution.w/800)-(texte.GetRect().Right-texte.GetRect().Left)/2);
+                position.y=(int)(30*configuration.Resolution.h/600+(z-m_defilerObjets)*20*configuration.Resolution.w/800 - decalage*configuration.Resolution.h/600 );
+
+                texte.SetY(position.y);
+                texte.SetX(position.x);
+
+                moteurGraphique.AjouterTexte(&texte,16);
+            }
+        }
+}
+
 void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonnee positionSouris,bool alt,float alpha)
 {
     coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
@@ -1827,7 +1899,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
         if(vueMax.x>=m_decor[0][0].size()) { vueMax.x=m_decor[0][0].size()-1; }
         if(vueMax.y>=m_decor[0].size()) { vueMax.y=m_decor[0].size()-1; }
 
-        for(int couche=0;couche<2;couche++)
+        for(int couche=0;couche<NOMBRE_COUCHE_MAP;couche++)
         {
             for(int j=hero->m_personnage.getCoordonnee().y-15;j<hero->m_personnage.getCoordonnee().y+15;++j)
             {
@@ -2336,8 +2408,6 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
 	if(type==3)
 	{
-
-
 	    m_objetPointe=-1;
 	    coordonnee position;
 
@@ -2403,8 +2473,6 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                 moteurGraphique.AjouterTexte(&texte,14);
             }
-
-
         }
 	}
 }
@@ -3408,16 +3476,30 @@ void Map::PousserMonstreCase(int numeroMonstre, coordonnee vecteur)
     }
 }
 
-void Map::ramasserObjet(Hero *hero)
+bool Map::ramasserObjet(Hero *hero,bool enMain)
 {
-    if(hero->getChercherSac().x>=0&&hero->getChercherSac().x<m_decor[1][0].size()
-    &&hero->getChercherSac().y>=0&&hero->getChercherSac().y<m_decor[1].size())
-	    if(m_objetPointe>=0&&m_objetPointe<m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getNombreObjets())
+    coordonnee position;
+
+    if(enMain)
+        position=hero->m_personnage.getCoordonnee();
+    else
+        position=hero->getChercherSac();
+
+
+    if(position.x>=0&&position.x<m_decor[1][0].size()
+     &&position.y>=0&&position.y<m_decor[1].size())
+	    if(m_objetPointe>=0&&m_objetPointe<m_decor[1][position.y][position.x].getNombreObjets())
         {
-            if(hero->ajouterObjet(m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getObjet(m_objetPointe)))
-                m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].supprimerObjet(m_objetPointe);
+            if(hero->ajouterObjet(m_decor[1][position.y][position.x].getObjet(m_objetPointe),enMain))
+            {
+                m_decor[1][position.y][position.x].supprimerObjet(m_objetPointe);
+                return true;
+            }
         }
+    return false;
 }
+
+
 void Map::AjouterObjet(Objet objet)
 {
     if(objet.getPosition().x>=0&&objet.getPosition().x<m_decor[0][0].size()&&objet.getPosition().y>=0&&objet.getPosition().y<m_decor[0].size())

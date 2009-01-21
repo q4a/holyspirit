@@ -24,6 +24,8 @@
 
 #define NOMBRE_SONS 200
 
+#define NOMBRE_COUCHE_MAP 2
+
 #include <cmath>
 #include <utility>
 #include <iostream>
@@ -318,6 +320,8 @@ struct coordonneeDecimal
 {
     float x;
 	float y;
+	float h;
+	float w;
 };
 
 class Lumiere

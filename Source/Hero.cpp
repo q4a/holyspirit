@@ -68,8 +68,8 @@ Hero::Hero()
 
 	m_monstreVise=-1;
 
-	for(int i=0;i<5;++i)
-        for(int j=0;j<8;++j)
+	for(int i=0;i<10;++i)
+        for(int j=0;j<10;++j)
             m_caseInventaire[i][j]=0;
 
     m_objetEnMain=-1;
@@ -127,13 +127,13 @@ void Hero::Sauvegarder()
         //fichier.write((char*)&caractere, sizeof(char));
         //fichier.write((char*)&espace, sizeof(char));
 
-        for(int i=0;i<5;++i)
+        for(int i=0;i<10;++i)
         {
             caractere='*';
             fichier.write((char*)&caractere, sizeof(char));
             //fichier.write((char*)&espace, sizeof(char));
 
-            for(int j=0;j<8;++j)
+            for(int j=0;j<10;++j)
                 fichier.write((char*)&m_caseInventaire[i][j], sizeof(bool));
 
             caractere='$';
@@ -215,34 +215,6 @@ void Hero::Charger()
                 if(configuration.debug)
                     console.Ajouter("/Lectures des caracteristiques.");
 
-                    /*do
-                    {
-                        fichier.read((char*)&caractere, sizeof(char));
-
-                        //fichier.get(caractere)
-
-                        if(caractere=='*')
-                        {
-                            int temp2;
-                            string temp;
-
-                            fichier.read((char*)&temp, sizeof(string));
-
-                            //fichier>>temp;
-                            if(temp == "name:")  fichier.read((char*)&charTemp.nom, sizeof(string));  //fichier>>charTemp.nom;
-                            if(temp == "speed:") fichier.read((char*)&charTemp.vitesse, sizeof(float));  //fichier>>temp2,charTemp.vitesse=decrypter(temp2)/1000;
-                            if(temp == "soul:") fichier.read((char*)&charTemp.pointAme, sizeof(int)),charTemp.ancienPointAme=charTemp.pointAme,charTemp.positionAncienAme=charTemp.pointAme;  //fichier>>temp2,charTemp.pointAme=decrypter(temp2),charTemp.ancienPointAme=charTemp.pointAme,charTemp.positionAncienAme=charTemp.pointAme;
-                            if(temp == "level:") fichier.read((char*)&charTemp.niveau, sizeof(int));  //fichier>>temp2,charTemp.niveau=decrypter(temp2);
-
-                            if(temp == "strength:") fichier.read((char*)&charTemp.force, sizeof(int));  //fichier>>temp2,charTemp.force=decrypter(temp2);
-                            if(temp == "dexterity:") fichier.read((char*)&charTemp.dexterite, sizeof(int)); // fichier>>temp2,charTemp.dexterite=decrypter(temp2);
-                            if(temp == "vitality:") fichier.read((char*)&charTemp.vitalite, sizeof(int));  //fichier>>temp2,charTemp.vitalite=decrypter(temp2);
-                            if(temp == "piety:")fichier.read((char*)&charTemp.piete, sizeof(int));  //fichier>>temp2,charTemp.piete=decrypter(temp2);
-                            if(temp == "charisma:") fichier.read((char*)&charTemp.charisme, sizeof(int));  //fichier>>temp2,charTemp.charisme=decrypter(temp2);
-                        }
-                        if(fichier.eof()){ throw "Impossible de charger la sauvegarde";}
-                     }while(caractere!='$');*/
-
                     coordonnee position={0,0,0,0};
 
                     do
@@ -250,7 +222,7 @@ void Hero::Charger()
                         fichier.read((char*)&caractere, sizeof(char));
                         if(caractere=='*')
                         {
-                            for(int i=0;i<8;i++)
+                            for(int i=0;i<10;i++)
                             {
                                 bool temp;
                                 //fichier>>temp;
@@ -270,8 +242,8 @@ void Hero::Charger()
                             position.y++;
                             position.x=0;
 
-                            if(position.y>=5)
-                                position.y=4;
+                            if(position.y>=10)
+                                position.y=9;
                         }
                         if(fichier.eof()){throw "Impossible de charger la sauvegarde";}
 
@@ -420,8 +392,8 @@ void Hero::afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionS
 
     sprintf(chaine,"%i / %i",(int)m_caracteristiques.vie,(int)m_caracteristiques.maxVie);
     string.SetText(chaine);
-    string.SetX((456*configuration.Resolution.w/800)+42*configuration.Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
-    string.SetY(45*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
+    string.SetX((32*configuration.Resolution.w/800)+42*configuration.Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
+    string.SetY(260*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
     if(m_caracteristiques.maxVie!=m_personnage.getCaracteristique().maxVie)
         string.SetColor(sf::Color(0,128,255));
     else
@@ -430,8 +402,8 @@ void Hero::afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionS
 
     sprintf(chaine,"%i / %i",(int)m_caracteristiques.foi,(int)m_caracteristiques.maxFoi);
     string.SetText(chaine);
-    string.SetX((456*configuration.Resolution.w/800)+42*configuration.Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
-    string.SetY(78*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
+    string.SetX((32*configuration.Resolution.w/800)+42*configuration.Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
+    string.SetY(284*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
     if(m_caracteristiques.maxFoi!=m_personnage.getCaracteristique().maxFoi)
         string.SetColor(sf::Color(0,128,255));
     else
@@ -440,8 +412,8 @@ void Hero::afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionS
 
     sprintf(chaine,"%i",m_caracteristiques.force);
     string.SetText(chaine);
-    string.SetX((475*configuration.Resolution.w/800)+17*configuration.Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
-    string.SetY(115*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
+    string.SetX((64*configuration.Resolution.w/800)+17*configuration.Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
+    string.SetY(308*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
     if(m_caracteristiques.force!=m_personnage.getCaracteristique().force)
         string.SetColor(sf::Color(0,128,255));
     else
@@ -450,8 +422,8 @@ void Hero::afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionS
 
     sprintf(chaine,"%i",m_caracteristiques.dexterite);
     string.SetText(chaine);
-    string.SetX((475*configuration.Resolution.w/800)+17*configuration.Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
-    string.SetY(148*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
+    string.SetX((64*configuration.Resolution.w/800)+17*configuration.Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
+    string.SetY(332*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
     if(m_caracteristiques.dexterite!=m_personnage.getCaracteristique().dexterite)
         string.SetColor(sf::Color(0,128,255));
     else
@@ -460,8 +432,8 @@ void Hero::afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionS
 
     sprintf(chaine,"%i",m_caracteristiques.vitalite);
     string.SetText(chaine);
-    string.SetX((475*configuration.Resolution.w/800)+17*configuration.Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
-    string.SetY(181*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
+    string.SetX((64*configuration.Resolution.w/800)+17*configuration.Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
+    string.SetY(356*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
     if(m_caracteristiques.vitalite!=m_personnage.getCaracteristique().vitalite)
         string.SetColor(sf::Color(0,128,255));
     else
@@ -470,8 +442,8 @@ void Hero::afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionS
 
     sprintf(chaine,"%i",m_caracteristiques.piete);
     string.SetText(chaine);
-    string.SetX((475*configuration.Resolution.w/800)+17*configuration.Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
-    string.SetY(214*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
+    string.SetX((64*configuration.Resolution.w/800)+17*configuration.Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
+    string.SetY(380*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
     if(m_caracteristiques.piete!=m_personnage.getCaracteristique().piete)
         string.SetColor(sf::Color(0,128,255));
     else
@@ -480,8 +452,8 @@ void Hero::afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionS
 
     sprintf(chaine,"%i",m_caracteristiques.charisme);
     string.SetText(chaine);
-    string.SetX((475*configuration.Resolution.w/800)+17*configuration.Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
-    string.SetY(247*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
+    string.SetX((64*configuration.Resolution.w/800)+17*configuration.Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
+    string.SetY(404*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
     if(m_caracteristiques.charisme!=m_personnage.getCaracteristique().charisme)
         string.SetColor(sf::Color(0,128,255));
     else
@@ -490,8 +462,8 @@ void Hero::afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionS
 
     sprintf(chaine,"%i - %i",m_caracteristiques.degatsMin,m_caracteristiques.degatsMax);
     string.SetText(chaine);
-    string.SetX((456*configuration.Resolution.w/800)+42*configuration.Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
-    string.SetY(280*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
+    string.SetX((32*configuration.Resolution.w/800)+42*configuration.Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
+    string.SetY(428*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
     if(m_caracteristiques.degatsMin!=m_personnage.getCaracteristique().degatsMin||m_caracteristiques.degatsMax!=m_personnage.getCaracteristique().degatsMax)
         string.SetColor(sf::Color(0,128,255));
     else
@@ -500,8 +472,8 @@ void Hero::afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionS
 
     sprintf(chaine,"%i",m_caracteristiques.armure);
     string.SetText(chaine);
-    string.SetX((456*configuration.Resolution.w/800)+42*configuration.Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
-    string.SetY(313*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
+    string.SetX((32*configuration.Resolution.w/800)+42*configuration.Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
+    string.SetY(452*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
     if(m_caracteristiques.armure!=m_personnage.getCaracteristique().armure)
         string.SetColor(sf::Color(0,128,255));
     else
@@ -518,6 +490,7 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
     for(int i=0;i<m_inventaire.size();i++)
     if(i!=m_objetEnMain)
         {
+            coordonneeDecimal position;
              sf::Sprite sprite;
 
             sprite.SetImage(*moteurGraphique.getImage(0));
@@ -542,32 +515,63 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
 
             if(m_inventaire[i].m_equipe==AUCUN)
             {
-                sprite.SetX((m_inventaire[i].getPosition().x*32+477)*configuration.Resolution.w/800);
-                sprite.SetY(((m_inventaire[i].getPosition().y-1)*32+399)*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
+                sprite.SetX((m_inventaire[i].getPosition().x*32+436)*configuration.Resolution.w/800);
+                sprite.SetY(((m_inventaire[i].getPosition().y-1)*32+150+32)*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
+
+                position.x=(m_inventaire[i].getPosition().x*32+436)*configuration.Resolution.w/800;
+                position.y=((m_inventaire[i].getPosition().y-1)*32+150+32)*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600;
+
+                position.h=m_inventaire[i].getTaille().y*32;
+                position.w=m_inventaire[i].getTaille().x*32;
             }
             else
             {
+
                 if(m_inventaire[i].m_equipe==ARME_PRINCIPAL)
                 {
-                    sprite.SetX(589*configuration.Resolution.w/800);
-                    sprite.SetY(110*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
-                    if(positionSouris.x>589*configuration.Resolution.x/800&&positionSouris.x<(589+32)*configuration.Resolution.x/800&&positionSouris.y>110*configuration.Resolution.y/600&&positionSouris.y<(110+64)*configuration.Resolution.y/600)
+                    sprite.Resize(64,160);
+
+                    position.x=(20 + 32 - m_inventaire[i].getPositionImage().w/2 )*configuration.Resolution.w/800;
+                    position.y=(20 + 80 - m_inventaire[i].getPositionImage().h/2 )*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600;
+
+                    position.h=160;
+                    position.w=64;
+
+                    sprite.SetX((20)*configuration.Resolution.w/800);
+                    sprite.SetY((20)*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
+                    if(positionSouris.x>20*configuration.Resolution.w/800&&positionSouris.x<84*configuration.Resolution.w/800&&positionSouris.y>20*configuration.Resolution.h/600&&positionSouris.y<180*configuration.Resolution.h/600)
                         m_inventaire[i].AfficherCaracteristiques(ecran,positionSouris);
                 }
 
                 if(m_inventaire[i].m_equipe==BOUCLIER)
                 {
-                    sprite.SetX(723*configuration.Resolution.w/800);
-                    sprite.SetY(110*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
-                    if(positionSouris.x>723*configuration.Resolution.x/800&&positionSouris.x<(723+64)*configuration.Resolution.x/800&&positionSouris.y>110*configuration.Resolution.y/600&&positionSouris.y<(110+64)*configuration.Resolution.y/600)
+                    sprite.Resize(96,96);
+
+                    position.h=96;
+                    position.w=96;
+
+                    position.x=(94 + 48 - m_inventaire[i].getPositionImage().w/2 )*configuration.Resolution.w/800;
+                    position.y=(40 + 48 - m_inventaire[i].getPositionImage().h/2 )*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600;
+
+                    sprite.SetX((94)*configuration.Resolution.w/800);
+                    sprite.SetY((40)*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
+                    if(positionSouris.x>94*configuration.Resolution.w/800&&positionSouris.x<190*configuration.Resolution.w/800&&positionSouris.y>40*configuration.Resolution.h/600&&positionSouris.y<136*configuration.Resolution.h/600)
                         m_inventaire[i].AfficherCaracteristiques(ecran,positionSouris);
                 }
 
                 if(m_inventaire[i].m_equipe==ARMURE_CORPS)
                 {
-                    sprite.SetX(638*configuration.Resolution.w/800);
-                    sprite.SetY(110*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
-                    if(positionSouris.x>636*configuration.Resolution.x/800&&positionSouris.x<(636+64)*configuration.Resolution.x/800&&positionSouris.y>110*configuration.Resolution.y/600&&positionSouris.y<(110+96)*configuration.Resolution.y/600)
+                    sprite.Resize(64,96);
+
+                    position.h=96;
+                    position.w=64;
+
+                    position.x=(222 + 32 - m_inventaire[i].getPositionImage().w/2 )*configuration.Resolution.w/800;
+                    position.y=(83 + 48 - m_inventaire[i].getPositionImage().h/2 )*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600;
+
+                    sprite.SetX((222)*configuration.Resolution.w/800);
+                    sprite.SetY((83)*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
+                    if(positionSouris.x>222*configuration.Resolution.w/800&&positionSouris.x<284*configuration.Resolution.w/800&&positionSouris.y>83*configuration.Resolution.h/600&&positionSouris.y<178*configuration.Resolution.h/600)
                         m_inventaire[i].AfficherCaracteristiques(ecran,positionSouris);
                 }
             }
@@ -575,12 +579,13 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
             moteurGraphique.AjouterCommande(&sprite,16,0);
 
             //sprite.SetCenter(m_inventaire[i].getTaille().x/2,m_inventaire[i].getTaille().y/2);
-            sprite.Resize(m_inventaire[i].getTaille().x*32*configuration.Resolution.w/800-4*configuration.Resolution.w/800,m_inventaire[i].getTaille().y*32*configuration.Resolution.h/600-4*configuration.Resolution.h/600);
+            sprite.Resize(position.w-4*configuration.Resolution.w/800,position.h-4*configuration.Resolution.h/600);
             sprite.Move(2*configuration.Resolution.w/800,2*configuration.Resolution.h/600);
 
             moteurGraphique.AjouterCommande(&sprite,16,0);
 
-            sprite.Move(-2*configuration.Resolution.w/800,-2*configuration.Resolution.h/600);
+            sprite.SetX(position.x);
+            sprite.SetY(position.y);
 
             sprite.SetColor(m_inventaire[i].m_color);
 
@@ -619,15 +624,15 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
         if(m_inventaire[m_objetEnMain].getRarete()==CRAFT)
             sprite.SetColor(sf::Color(128,64,0,128));
 
-        if(positionSouris.x<477*configuration.Resolution.w/800||positionSouris.x>477*configuration.Resolution.w/800+32*8*configuration.Resolution.w/800||positionSouris.y<367*configuration.Resolution.h/600||positionSouris.y>399*configuration.Resolution.h/600+32*5*configuration.Resolution.h/600)
+        if(positionSouris.x<436*configuration.Resolution.w/800||positionSouris.x>436*configuration.Resolution.w/800+32*10*configuration.Resolution.w/800||positionSouris.y<150*configuration.Resolution.h/600||positionSouris.y>150*configuration.Resolution.h/600+32*10*configuration.Resolution.h/600)
         {
-            if(positionSouris.x<400*configuration.Resolution.w/800)
+            if(positionSouris.x>435*configuration.Resolution.w/800&&positionSouris.x<758*configuration.Resolution.w/800&&positionSouris.y>30*configuration.Resolution.h/600&&positionSouris.y<114*configuration.Resolution.h/600)
                 sprite.SetColor(sf::Color(128,0,0,128));
         }
         else
         {
-            sprite.SetX(((positionSouris.x)-477*configuration.Resolution.w/800)/(32*configuration.Resolution.w/800)*(32*configuration.Resolution.w/800)+477*configuration.Resolution.w/800);
-            sprite.SetY(((positionSouris.y)-367*configuration.Resolution.h/600)/(32*configuration.Resolution.h/600)*(32*configuration.Resolution.h/600)+367*configuration.Resolution.h/600);
+            sprite.SetX(((positionSouris.x)-436*configuration.Resolution.w/800)/(32*configuration.Resolution.w/800)*(32*configuration.Resolution.w/800)+436*configuration.Resolution.w/800);
+            sprite.SetY(((positionSouris.y)-150*configuration.Resolution.h/600)/(32*configuration.Resolution.h/600)*(32*configuration.Resolution.h/600)+150*configuration.Resolution.h/600);
         }
 
         moteurGraphique.AjouterCommande(&sprite,18,0);
@@ -637,10 +642,10 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
         sprite.SetImage(*moteurGraphique.getImage(m_inventaire[m_objetEnMain].getImage()));
         sprite.SetSubRect(IntRect(m_inventaire[m_objetEnMain].getPositionImage().x, m_inventaire[m_objetEnMain].getPositionImage().y, m_inventaire[m_objetEnMain].getPositionImage().x+m_inventaire[m_objetEnMain].getPositionImage().w, m_inventaire[m_objetEnMain].getPositionImage().y+m_inventaire[m_objetEnMain].getPositionImage().h));
         sprite.Resize(m_inventaire[m_objetEnMain].getTaille().x*32*configuration.Resolution.w/800,m_inventaire[m_objetEnMain].getTaille().y*32*configuration.Resolution.h/600);
-        sprite.SetX(((positionSouris.x)-477*configuration.Resolution.w/800)/(32*configuration.Resolution.w/800)*(32*configuration.Resolution.w/800)+477*configuration.Resolution.w/800);
-        sprite.SetY(((positionSouris.y)-367*configuration.Resolution.h/600)/(32*configuration.Resolution.h/600)*(32*configuration.Resolution.h/600)+367*configuration.Resolution.h/600);
+        sprite.SetX(((positionSouris.x)-436*configuration.Resolution.w/800)/(32*configuration.Resolution.w/800)*(32*configuration.Resolution.w/800)+436*configuration.Resolution.w/800);
+        sprite.SetY(((positionSouris.y)-150*configuration.Resolution.h/600)/(32*configuration.Resolution.h/600)*(32*configuration.Resolution.h/600)+150*configuration.Resolution.h/600);
 
-        if(positionSouris.x<477*configuration.Resolution.w/800||positionSouris.x>477*configuration.Resolution.w/800+32*8*configuration.Resolution.w/800||positionSouris.y<367*configuration.Resolution.h/600||positionSouris.y>399*configuration.Resolution.h/600+32*5*configuration.Resolution.h/600)
+        if(positionSouris.x<436*configuration.Resolution.w/800||positionSouris.x>436*configuration.Resolution.w/800+32*10*configuration.Resolution.w/800||positionSouris.y<150*configuration.Resolution.h/600||positionSouris.y>150*configuration.Resolution.h/600+32*10*configuration.Resolution.h/600)
         {
             sprite.SetX(positionSouris.x);
             sprite.SetY(positionSouris.y);
@@ -648,11 +653,11 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
 
         moteurGraphique.AjouterCommande(&sprite,19,0);
     }
-    else if(positionSouris.x>477*configuration.Resolution.w/800&&positionSouris.x<477*configuration.Resolution.w/800+32*8*configuration.Resolution.w/800&&positionSouris.y>367*configuration.Resolution.h/600&&positionSouris.y<399+32*5*configuration.Resolution.h/600)
+    else if(positionSouris.x>436*configuration.Resolution.w/800&&positionSouris.x<436*configuration.Resolution.w/800+32*10*configuration.Resolution.w/800&&positionSouris.y>150*configuration.Resolution.h/600&&positionSouris.y<150+32*10*configuration.Resolution.h/600)
     {
         coordonnee caseVisee;
-        caseVisee.x=(positionSouris.x-477*configuration.Resolution.x/800)/(32*configuration.Resolution.w/800);
-        caseVisee.y=(positionSouris.y-367*configuration.Resolution.y/600)/(32*configuration.Resolution.h/600);
+        caseVisee.x=(positionSouris.x-436*configuration.Resolution.x/800)/(32*configuration.Resolution.w/800);
+        caseVisee.y=(positionSouris.y-150*configuration.Resolution.y/600)/(32*configuration.Resolution.h/600);
 
         for(int i=0;i<m_inventaire.size();i++)
             if(caseVisee.x>=m_inventaire[i].getPosition().x&&caseVisee.x<=m_inventaire[i].getPosition().x+m_inventaire[i].getTaille().x-1
@@ -840,42 +845,54 @@ int Hero::utiliserClicDroit(coordonnee positionSouris, int monstreVise)
     return 0;
 }
 
-bool Hero::ajouterObjet(Objet objet)
+bool Hero::ajouterObjet(Objet objet,bool enMain)
 {
     bool ramasser=false;
-    for(int i=0;i<5;i++)
-        for(int j=0;j<8;j++)
-        {
-            if(!m_caseInventaire[i][j])
+
+    if(!enMain)
+    {
+        for(int i=0;i<10;i++)
+            for(int j=0;j<10;j++)
             {
-                bool ok=true;
-                for(int x=j;x<j+objet.getTaille().x;x++)
-                    for(int y=i;y<i+objet.getTaille().y;y++)
-                        if(x<8&&y<5)
-                        {
-                            if(m_caseInventaire[y][x])
-                                ok=false;
-                        }
-                        else
-                        {
-                            ok=false;
-                        }
-
-                if(ok)
+                if(!m_caseInventaire[i][j])
                 {
-                    objet.setPosition(j,i);
-                    m_inventaire.push_back(objet);
-
+                    bool ok=true;
                     for(int x=j;x<j+objet.getTaille().x;x++)
                         for(int y=i;y<i+objet.getTaille().y;y++)
-                            m_caseInventaire[y][x]=1;
+                            if(x<10&&y<10)
+                            {
+                                if(m_caseInventaire[y][x])
+                                    ok=false;
+                            }
+                            else
+                            {
+                                ok=false;
+                            }
 
-                    ramasser=true;
+                    if(ok)
+                    {
+                        objet.setPosition(j,i);
+                        m_inventaire.push_back(objet);
 
-                    i=5,j=8;
+                        for(int x=j;x<j+objet.getTaille().x;x++)
+                            for(int y=i;y<i+objet.getTaille().y;y++)
+                                m_caseInventaire[y][x]=1;
+
+                        ramasser=true;
+
+                        i=10,j=10;
+                    }
                 }
             }
-        }
+    }
+    else if(m_objetEnMain==-1)
+    {
+        m_inventaire.push_back(objet);
+
+        m_objetEnMain=m_inventaire.size()-1;
+
+        ramasser=true;
+    }
 
     return ramasser;
 }
@@ -906,11 +923,11 @@ void Hero::AttribuerPositionObjet(coordonnee position,int numero)
 
 Objet Hero::prendreEnMain(coordonnee positionSouris)
 {
-    if(positionSouris.x>477*configuration.Resolution.w/800&&positionSouris.x<477*configuration.Resolution.w/800+32*8*configuration.Resolution.w/800&&positionSouris.y>367*configuration.Resolution.h/600&&positionSouris.y<399*configuration.Resolution.h/600+32*5*configuration.Resolution.h/600)
+    if(positionSouris.x>436*configuration.Resolution.w/800&&positionSouris.x<436*configuration.Resolution.w/800+32*10*configuration.Resolution.w/800&&positionSouris.y>150*configuration.Resolution.h/600&&positionSouris.y<150*configuration.Resolution.h/600+32*10*configuration.Resolution.h/600)
     {
         coordonnee caseVisee;
-        caseVisee.x=((positionSouris.x)-477*configuration.Resolution.w/800)/(32*configuration.Resolution.w/800);
-        caseVisee.y=((positionSouris.y)-367*configuration.Resolution.h/600)/(32*configuration.Resolution.h/600);
+        caseVisee.x=((positionSouris.x)-436*configuration.Resolution.w/800)/(32*configuration.Resolution.w/800);
+        caseVisee.y=((positionSouris.y)-150*configuration.Resolution.h/600)/(32*configuration.Resolution.h/600);
 
         if(m_objetEnMain>=0&&m_objetEnMain<m_inventaire.size())
         {
@@ -919,7 +936,7 @@ Objet Hero::prendreEnMain(coordonnee positionSouris)
 
             for(int i=caseVisee.y;i<caseVisee.y+m_inventaire[m_objetEnMain].getTaille().y;i++)
                 for(int j=caseVisee.x;j<caseVisee.x+m_inventaire[m_objetEnMain].getTaille().x;j++)
-                    if(i<5&&j<8)
+                    if(i<10&&j<10)
                     {
                        // if(m_caseInventaire[i][j])
                             for(int z=0;z<m_inventaire.size();z++)
@@ -962,7 +979,7 @@ Objet Hero::prendreEnMain(coordonnee positionSouris)
     }
     else
     {
-        if(positionSouris.x*configuration.Resolution.w/800<400)
+        if(positionSouris.x>435*configuration.Resolution.w/800&&positionSouris.x<758*configuration.Resolution.w/800&&positionSouris.y>30*configuration.Resolution.h/600&&positionSouris.y<114*configuration.Resolution.h/600)
         {
             if(m_objetEnMain>=0&&m_objetEnMain<m_inventaire.size())
             {
@@ -983,18 +1000,49 @@ Objet Hero::prendreEnMain(coordonnee positionSouris)
         }
         else
         {
-            if(positionSouris.x>589*configuration.Resolution.w/800&&positionSouris.x<(589+32)*configuration.Resolution.w/800&&positionSouris.y>110*configuration.Resolution.h/600&&positionSouris.y<(110+64)*configuration.Resolution.h/600)
+            if(positionSouris.x>20*configuration.Resolution.w/800&&positionSouris.x<84*configuration.Resolution.w/800&&positionSouris.y>20*configuration.Resolution.h/600&&positionSouris.y<180*configuration.Resolution.h/600)
                 equiper(m_objetEnMain,ARME_PRINCIPAL);
-            else if(positionSouris.x>636*configuration.Resolution.w/800&&positionSouris.x<(636+64)*configuration.Resolution.w/800&&positionSouris.y>110*configuration.Resolution.h/600&&positionSouris.y<(110+64)*configuration.Resolution.h/600)
+            else if(positionSouris.x>222*configuration.Resolution.w/800&&positionSouris.x<284*configuration.Resolution.w/800&&positionSouris.y>83*configuration.Resolution.h/600&&positionSouris.y<178*configuration.Resolution.h/600)
                 equiper(m_objetEnMain,ARMURE_CORPS);
-            else if(positionSouris.x>723*configuration.Resolution.w/800&&positionSouris.x<(723+64)*configuration.Resolution.w/800&&positionSouris.y>124*configuration.Resolution.h/600&&positionSouris.y<(124+64)*configuration.Resolution.h/600)
+            else if(positionSouris.x>94*configuration.Resolution.w/800&&positionSouris.x<190*configuration.Resolution.w/800&&positionSouris.y>40*configuration.Resolution.h/600&&positionSouris.y<136*configuration.Resolution.h/600)
                 equiper(m_objetEnMain,BOUCLIER);
 
             else if(m_objetEnMain>=0&&m_objetEnMain<m_inventaire.size())
                 if(m_inventaire[m_objetEnMain].m_equipe==AUCUN)
                 {
-                    AttribuerPositionObjet(m_inventaire[m_objetEnMain].getPosition(),m_objetEnMain);
-                    m_objetEnMain=-1;
+                    for(int i=0;i<10;i++)
+                        for(int j=0;j<10;j++)
+                            if(!m_caseInventaire[i][j])
+                            {
+                                bool ok=true;
+                                for(int x=j;x<j+m_inventaire[m_objetEnMain].getTaille().x;x++)
+                                    for(int y=i;y<i+m_inventaire[m_objetEnMain].getTaille().y;y++)
+                                        if(x<10&&y<10)
+                                        {
+                                            if(m_caseInventaire[y][x])
+                                                ok=false;
+                                        }
+                                        else
+                                        {
+                                            ok=false;
+                                        }
+
+                                if(ok)
+                                {
+                                    coordonnee pos={j,i,-1,-1};
+                                    m_inventaire[m_objetEnMain].setPosition(j,i);
+
+                                    AttribuerPositionObjet(pos,m_objetEnMain);
+
+                                    for(int x=j;x<j+m_inventaire[m_objetEnMain].getTaille().x;x++)
+                                        for(int y=i;y<i+m_inventaire[m_objetEnMain].getTaille().y;y++)
+                                                m_caseInventaire[y][x]=1;
+
+                                    m_objetEnMain=-1;
+
+                                    i=10,j=10;
+                                }
+                            }
                 }
                 else
                 {

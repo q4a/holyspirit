@@ -32,7 +32,20 @@ void c_Inventaire::Utiliser(Jeu *jeu)
     if(jeu->eventManager.getEvenement(Key::I,"ET")||jeu->eventManager.getEvenement(Key::Escape,"ET"))
         m_afficher=0;
 
+    if(jeu->eventManager.getEvenement(Mouse::Left,"C"))
+    {
+        if(jeu->hero.m_objetEnMain==-1&&jeu->map.getObjetPointe()==-1&&jeu->eventManager.getPositionSouris().x>436*configuration.Resolution.w/800&&jeu->eventManager.getPositionSouris().x<756*configuration.Resolution.w/800&&jeu->eventManager.getPositionSouris().y>30*configuration.Resolution.h/600&&jeu->eventManager.getPositionSouris().y<30*configuration.Resolution.h/600+20*configuration.Resolution.w/800)
+            jeu->map.m_defilerObjets--,jeu->eventManager.StopEvenement(Mouse::Left,"C");
 
+        if(jeu->hero.m_objetEnMain==-1&&jeu->map.getObjetPointe()==-1&&jeu->eventManager.getPositionSouris().x>436*configuration.Resolution.w/800&&jeu->eventManager.getPositionSouris().x<756*configuration.Resolution.w/800&&jeu->eventManager.getPositionSouris().y>30*configuration.Resolution.h/600+3*20*configuration.Resolution.w/800&&jeu->eventManager.getPositionSouris().y<30*configuration.Resolution.h/600+4*20*configuration.Resolution.w/800)
+            jeu->map.m_defilerObjets++,jeu->eventManager.StopEvenement(Mouse::Left,"C");
+    }
+
+    if(jeu->eventManager.getEvenement(Mouse::Left,"C"))
+    {
+        if(jeu->map.ramasserObjet(&jeu->hero,1))
+            jeu->eventManager.StopEvenement(Mouse::Left,"C");
+    }
 
     if(jeu->eventManager.getEvenement(Mouse::Left,"C"))
     {
@@ -74,6 +87,8 @@ void c_Inventaire::Utiliser(Jeu *jeu)
     jeu->menu.AfficherInventaire(&jeu->ecran,m_decalage);
 
     jeu->hero.afficherInventaire(&jeu->ecran,jeu->eventManager.getPositionSouris(),m_decalage);
+
+    jeu->map.AfficherSacInventaire(&jeu->ecran,jeu->hero.m_personnage.getCoordonnee(),m_decalage,jeu->eventManager.getPositionSouris());
 
     jeu->menu.Afficher(&jeu->ecran,1);
     jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,-1,jeu->hero.m_caracteristiques);

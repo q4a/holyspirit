@@ -41,7 +41,7 @@ class Hero
 
 	int utiliserClicDroit(coordonnee positionSouris, int monstreVise);
 
-	bool ajouterObjet(Objet objet);
+	bool ajouterObjet(Objet objet,bool enMain=false);
 
 	Objet prendreEnMain(coordonnee positionSouris);
 	bool equiper(int numero, int emplacement);
@@ -61,16 +61,16 @@ class Hero
 
     Caracteristique m_caracteristiques;
 
-    int miracleEnCours,frappeEnCours;
+    int miracleEnCours,frappeEnCours,m_objetEnMain;
 
 	private:
 	coordonneeDecimal m_positionAffichage;
-	int m_monstreVise,m_objetEnMain;
+	int m_monstreVise;
 	coordonnee m_chercherSac,m_sacVise;
 
 
 	std::vector<Objet> m_inventaire;
-	bool m_caseInventaire[5][8];
+	bool m_caseInventaire[10][10];
 };
 
 #endif

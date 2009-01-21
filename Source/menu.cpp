@@ -272,7 +272,7 @@ void Menu::AfficherInventaire(sf::RenderWindow* ecran,float decalage)
     Sprite sprite;
 
     sprite.SetImage(*moteurGraphique.getImage(m_inventaire));
-    sprite.Resize(configuration.Resolution.w, configuration.Resolution.h*550/600);
+    sprite.Resize(configuration.Resolution.w, configuration.Resolution.h);
     sprite.SetY(-decalage*configuration.Resolution.h/600);
 
     moteurGraphique.AjouterCommande(&sprite,15,0);
