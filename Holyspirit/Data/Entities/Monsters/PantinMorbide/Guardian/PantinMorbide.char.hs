@@ -17,7 +17,7 @@ $
 Liste des chemins de tous les sons
 *Data/Sounds/9906__Snoman__grass3.wav
 *Data/Sounds/9906__Snoman__grass3.wav
-*Data/Sounds/35213__Abyssmal__slashkut.wav
+*Data/Sounds/contre3.wav
 $
 Portee lumineuse
 * r255 v255 b255 i0 $
@@ -603,8 +603,8 @@ Frappe - E
 *x512 y256 w256 h256 a7 s-1 i5 cy238 t0.035 $
 *x768 y256 w256 h256 a8 s-1 i5 cy238 t0.035 $
 *x0 y512 w256 h256 a9 s-1 i5 cy238 t0.035 $
-*x256 y512 w256 h256 a10 s-1 i5 cy238 t0.035 $
-*x521 y512 w256 h256 a11 s2 i5 d0 cy238 t0.035 $
+*x256 y512 w256 h256 a10 s2 i5 cy238 t0.035 $
+*x521 y512 w256 h256 a11 s-1 i5 d0 cy238 t0.035 $
 *x768 y512 w256 h256 a12 s-1 i5 cy238 t0.035 $
 *x0 y768 w256 h256 a13 s-1 i5 cy238 t0.035 $
 *x256 y768 w256 h256 a14 s-1 i5 cy238 t0.035 $
@@ -621,8 +621,8 @@ Frappe - NE
 *x512 y256 w256 h256 a7 s-1 i6 cy238 t0.035 $
 *x768 y256 w256 h256 a8 s-1 i6 cy238 t0.035 $
 *x0 y512 w256 h256 a9 s-1 i6 cy238 t0.035 $
-*x256 y512 w256 h256 a10 s-1 i6 cy238 t0.035 $
-*x521 y512 w256 h256 a11 s2 i6 d0 cy238 t0.035 $
+*x256 y512 w256 h256 a10 s2 i6 cy238 t0.035 $
+*x521 y512 w256 h256 a11 s-1 i6 d0 cy238 t0.035 $
 *x768 y512 w256 h256 a12 s-1 i6 cy238 t0.035 $
 *x0 y768 w256 h256 a13 s-1 i6 cy238 t0.035 $
 *x256 y768 w256 h256 a14 s-1 i6 cy238 t0.035 $
@@ -639,8 +639,8 @@ Frappe - N
 *x512 y256 w256 h256 a7 s-1 i7 cy238 t0.035 $
 *x768 y256 w256 h256 a8 s-1 i7 cy238 t0.035 $
 *x0 y512 w256 h256 a9 s-1 i7 cy238 t0.035 $
-*x256 y512 w256 h256 a10 s-1 i7 cy238 t0.035 $
-*x521 y512 w256 h256 a11 s2 i7 d0 cy238 t0.035 $
+*x256 y512 w256 h256 a10 s2 i7 cy238 t0.035 $
+*x521 y512 w256 h256 a11 s-1 i7 d0 cy238 t0.035 $
 *x768 y512 w256 h256 a12 s-1 i7 cy238 t0.035 $
 *x0 y768 w256 h256 a13 s-1 i7 cy238 t0.035 $
 *x256 y768 w256 h256 a14 s-1 i7 cy238 t0.035 $
@@ -657,8 +657,8 @@ Frappe - NO
 *x512 y256 w256 h256 a7 s-1 i8 cy238 t0.035 $
 *x768 y256 w256 h256 a8 s-1 i8 cy238 t0.035 $
 *x0 y512 w256 h256 a9 s-1 i8 cy238 t0.035 $
-*x256 y512 w256 h256 a10 s-1 i8 cy238 t0.035 $
-*x521 y512 w256 h256 a11 s2 i8 d0 cy238 t0.035 $
+*x256 y512 w256 h256 a10 s2 i8 cy238 t0.035 $
+*x521 y512 w256 h256 a11 s-1 i8 d0 cy238 t0.035 $
 *x768 y512 w256 h256 a12 s-1 i8 cy238 t0.035 $
 *x0 y768 w256 h256 a13 s-1 i8 cy238 t0.035 $
 *x256 y768 w256 h256 a14 s-1 i8 cy238 t0.035 $
@@ -675,8 +675,8 @@ Frappe - O
 *x512 y256 w256 h256 a7 s-1 i9 cy238 t0.035 $
 *x768 y256 w256 h256 a8 s-1 i9 cy238 t0.035 $
 *x0 y512 w256 h256 a9 s-1 i9 cy238 t0.035 $
-*x256 y512 w256 h256 a10 s-1 i9 cy238 t0.035 $
-*x521 y512 w256 h256 a11 s2 i9 d0 cy238 t0.035 $
+*x256 y512 w256 h256 a10 s2 i9 cy238 t0.035 $
+*x521 y512 w256 h256 a11 s-1 i9 d0 cy238 t0.035 $
 *x768 y512 w256 h256 a12 s-1 i9 cy238 t0.035 $
 *x0 y768 w256 h256 a13 s-1 i9 cy238 t0.035 $
 *x256 y768 w256 h256 a14 s-1 i9 cy238 t0.035 $
@@ -693,8 +693,8 @@ Frappe - SO
 *x512 y256 w256 h256 a7 s-1 i10 cy238 t0.035 $
 *x768 y256 w256 h256 a8 s-1 i10 cy238 t0.035 $
 *x0 y512 w256 h256 a9 s-1 i10 cy238 t0.035 $
-*x256 y512 w256 h256 a10 s-1 i10 cy238 t0.035 $
-*x521 y512 w256 h256 a11 s2 i10 d0 cy238 t0.035 $
+*x256 y512 w256 h256 a10 s2 i10 cy238 t0.035 $
+*x521 y512 w256 h256 a11 s-1 i10 d0 cy238 t0.035 $
 *x768 y512 w256 h256 a12 s-1 i10 cy238 t0.035 $
 *x0 y768 w256 h256 a13 s-1 i10 cy238 t0.035 $
 *x256 y768 w256 h256 a14 s-1 i10 cy238 t0.035 $
@@ -711,8 +711,8 @@ Frappe - S
 *x512 y256 w256 h256 a7 s-1 i11 cy238 t0.035 $
 *x768 y256 w256 h256 a8 s-1 i11 cy238 t0.035 $
 *x0 y512 w256 h256 a9 s-1 i11 cy238 t0.035 $
-*x256 y512 w256 h256 a10 s-1 i11 cy238 t0.035 $
-*x521 y512 w256 h256 a11 s2 i11 d0 cy238 t0.035 $
+*x256 y512 w256 h256 a10 s2 i11 cy238 t0.035 $
+*x521 y512 w256 h256 a11 s-1 i11 d0 cy238 t0.035 $
 *x768 y512 w256 h256 a12 s-1 i11 cy238 t0.035 $
 *x0 y768 w256 h256 a13 s-1 i11 cy238 t0.035 $
 *x256 y768 w256 h256 a14 s-1 i11 cy238 t0.035 $
@@ -729,8 +729,8 @@ Frappe - SE
 *x512 y256 w256 h256 a7 s-1 i12 cy238 t0.035 $
 *x768 y256 w256 h256 a8 s-1 i12 cy238 t0.035 $
 *x0 y512 w256 h256 a9 s-1 i12 cy238 t0.035 $
-*x256 y512 w256 h256 a10 s-1 i12 cy238 t0.035 $
-*x521 y512 w256 h256 a11 s2 i12 d0 cy238 t0.035 $
+*x256 y512 w256 h256 a10 s2 i12 cy238 t0.035 $
+*x521 y512 w256 h256 a11 s-1 i12 d0 cy238 t0.035 $
 *x768 y512 w256 h256 a12 s-1 i12 cy238 t0.035 $
 *x0 y768 w256 h256 a13 s-1 i12 cy238 t0.035 $
 *x256 y768 w256 h256 a14 s-1 i12 cy238 t0.035 $

@@ -12,7 +12,7 @@ $
 Liste des chemins de tous les sons
 *Data/Sounds/9906__Snoman__grass3.wav
 *Data/Sounds/9906__Snoman__grass3.wav
-*Data/Sounds/35213__Abyssmal__slashkut.wav
+*Data/Sounds/contre.wav
 $
 Portee lumineuse
 * r255 v0 b0 i768 $
