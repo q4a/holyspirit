@@ -26,13 +26,11 @@ $
 Objets du monstre
 
 *
-	*Data/Items/Small_sword.item.hs
+	*Data/Items/Gown.item.hs
 	r100
 $
-*
-	*Data/Items/Armor.item.hs
-	r100
-$
+
+
 $
 
 $

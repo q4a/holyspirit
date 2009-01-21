@@ -40,6 +40,11 @@ Objets du monstre
 r100
 $
 
+*
+*Data/Items/Helmet.item.hs
+r100
+$
+
 $
 *Data/Particule_system/human_bones.ps.hs
 $
