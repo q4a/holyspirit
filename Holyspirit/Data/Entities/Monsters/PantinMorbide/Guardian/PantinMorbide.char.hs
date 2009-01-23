@@ -37,12 +37,12 @@ Objets du monstre
 
 *
 *Data/Items/Two_hand_sword.item.hs
-r100
+r10000
 $
 
 *
 *Data/Items/Helmet.item.hs
-r100
+r10000
 $
 
 $
@@ -594,7 +594,7 @@ Course - SE
 *x896 y768 w128 h256 cy238 a0 s-1 i4 t0.04 $
 $
 Frappe - E
-*x0 y0 w256 h256 a1 s-1 i5 cy238 t0.035 $
+*x0 y0 w256 h256 a1 s-1 i5 cy238 t1 $
 *x256 y0 w256 h256 a2 s-1 i5 cy238 t0.035 $
 *x521 y0 w256 h256 a3 s-1 i5 cy238 t0.035 $
 *x768 y0 w256 h256 a4 s-1 i5 cy238 t0.035 $
@@ -609,10 +609,10 @@ Frappe - E
 *x0 y768 w256 h256 a13 s-1 i5 cy238 t0.035 $
 *x256 y768 w256 h256 a14 s-1 i5 cy238 t0.035 $
 *x512 y768 w256 h256 a15 s-1 i5 cy238 t0.035 $
-*x768 y768 w256 h256 a0 s-1 i5 cy238 t1 $
+*x768 y768 w256 h256 a0 s-1 i5 cy238 t0.0351 d1 $
 $
 Frappe - NE
-*x0 y0 w256 h256 a1 s-1 i6 cy238 t0.035 $
+*x0 y0 w256 h256 a1 s-1 i6 cy238 t1 $
 *x256 y0 w256 h256 a2 s-1 i6 cy238 t0.035 $
 *x521 y0 w256 h256 a3 s-1 i6 cy238 t0.035 $
 *x768 y0 w256 h256 a4 s-1 i6 cy238 t0.035 $
@@ -627,10 +627,10 @@ Frappe - NE
 *x0 y768 w256 h256 a13 s-1 i6 cy238 t0.035 $
 *x256 y768 w256 h256 a14 s-1 i6 cy238 t0.035 $
 *x512 y768 w256 h256 a15 s-1 i6 cy238 t0.035 $
-*x768 y768 w256 h256 a0 s-1 i6 cy238 t1 $
+*x768 y768 w256 h256 a0 s-1 i6 cy238 t0.035 d1 $
 $
 Frappe - N
-*x0 y0 w256 h256 a1 s-1 i7 cy238 t0.035 $
+*x0 y0 w256 h256 a1 s-1 i7 cy238 t1 $
 *x256 y0 w256 h256 a2 s-1 i7 cy238 t0.035 $
 *x521 y0 w256 h256 a3 s-1 i7 cy238 t0.035 $
 *x768 y0 w256 h256 a4 s-1 i7 cy238 t0.035 $
@@ -645,10 +645,10 @@ Frappe - N
 *x0 y768 w256 h256 a13 s-1 i7 cy238 t0.035 $
 *x256 y768 w256 h256 a14 s-1 i7 cy238 t0.035 $
 *x512 y768 w256 h256 a15 s-1 i7 cy238 t0.035 $
-*x768 y768 w256 h256 a0 s-1 i7 cy238 t1 $
+*x768 y768 w256 h256 a0 s-1 i7 cy238 t0.035 d1 $
 $
 Frappe - NO
-*x0 y0 w256 h256 a1 s-1 i8 cy238 t0.035 $
+*x0 y0 w256 h256 a1 s-1 i8 cy238 t1 $
 *x256 y0 w256 h256 a2 s-1 i8 cy238 t0.035 $
 *x521 y0 w256 h256 a3 s-1 i8 cy238 t0.035 $
 *x768 y0 w256 h256 a4 s-1 i8 cy238 t0.035 $
@@ -663,10 +663,10 @@ Frappe - NO
 *x0 y768 w256 h256 a13 s-1 i8 cy238 t0.035 $
 *x256 y768 w256 h256 a14 s-1 i8 cy238 t0.035 $
 *x512 y768 w256 h256 a15 s-1 i8 cy238 t0.035 $
-*x768 y768 w256 h256 a0 s-1 i8 cy238 t1 $
+*x768 y768 w256 h256 a0 s-1 i8 cy238 t0.035 d1 $
 $
 Frappe - O
-*x0 y0 w256 h256 a1 s-1 i9 cy238 t0.035 $
+*x0 y0 w256 h256 a1 s-1 i9 cy238 t1 $
 *x256 y0 w256 h256 a2 s-1 i9 cy238 t0.035 $
 *x521 y0 w256 h256 a3 s-1 i9 cy238 t0.035 $
 *x768 y0 w256 h256 a4 s-1 i9 cy238 t0.035 $
@@ -681,10 +681,10 @@ Frappe - O
 *x0 y768 w256 h256 a13 s-1 i9 cy238 t0.035 $
 *x256 y768 w256 h256 a14 s-1 i9 cy238 t0.035 $
 *x512 y768 w256 h256 a15 s-1 i9 cy238 t0.035 $
-*x768 y768 w256 h256 a0 s-1 i9 cy238 t1 $
+*x768 y768 w256 h256 a0 s-1 i9 cy238 t0.035 d1 $
 $
 Frappe - SO
-*x0 y0 w256 h256 a1 s-1 i10 cy238 t0.035 $
+*x0 y0 w256 h256 a1 s-1 i10 cy238 t1 $
 *x256 y0 w256 h256 a2 s-1 i10 cy238 t0.035 $
 *x521 y0 w256 h256 a3 s-1 i10 cy238 t0.035 $
 *x768 y0 w256 h256 a4 s-1 i10 cy238 t0.035 $
@@ -699,10 +699,10 @@ Frappe - SO
 *x0 y768 w256 h256 a13 s-1 i10 cy238 t0.035 $
 *x256 y768 w256 h256 a14 s-1 i10 cy238 t0.035 $
 *x512 y768 w256 h256 a15 s-1 i10 cy238 t0.035 $
-*x768 y768 w256 h256 a0 s-1 i10 cy238 t1 $
+*x768 y768 w256 h256 a0 s-1 i10 cy238 t0.035 d1 $
 $
 Frappe - S
-*x0 y0 w256 h256 a1 s-1 i11 cy238 t0.035 $
+*x0 y0 w256 h256 a1 s-1 i11 cy238 t1 $
 *x256 y0 w256 h256 a2 s-1 i11 cy238 t0.035 $
 *x521 y0 w256 h256 a3 s-1 i11 cy238 t0.035 $
 *x768 y0 w256 h256 a4 s-1 i11 cy238 t0.035 $
@@ -717,10 +717,10 @@ Frappe - S
 *x0 y768 w256 h256 a13 s-1 i11 cy238 t0.035 $
 *x256 y768 w256 h256 a14 s-1 i11 cy238 t0.035 $
 *x512 y768 w256 h256 a15 s-1 i11 cy238 t0.035 $
-*x768 y768 w256 h256 a0 s-1 i11 cy238 t1 $
+*x768 y768 w256 h256 a0 s-1 i11 cy238 t0.035 d1 $
 $
 Frappe - SE
-*x0 y0 w256 h256 a1 s-1 i12 cy238 t0.035 $
+*x0 y0 w256 h256 a1 s-1 i12 cy238 t1 $
 *x256 y0 w256 h256 a2 s-1 i12 cy238 t0.035 $
 *x521 y0 w256 h256 a3 s-1 i12 cy238 t0.035 $
 *x768 y0 w256 h256 a4 s-1 i12 cy238 t0.035 $
@@ -735,7 +735,7 @@ Frappe - SE
 *x0 y768 w256 h256 a13 s-1 i12 cy238 t0.035 $
 *x256 y768 w256 h256 a14 s-1 i12 cy238 t0.035 $
 *x512 y768 w256 h256 a15 s-1 i12 cy238 t0.035 $
-*x768 y768 w256 h256 a0 s-1 i12 cy238 t1 $
+*x768 y768 w256 h256 a0 s-1 i12 cy238 t0.035 d1 $
 $
 Mort - E
 * l0 $

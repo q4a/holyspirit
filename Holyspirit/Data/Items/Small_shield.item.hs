@@ -6,6 +6,8 @@ $
 $
 *Data/Items/Images/shield01.png
 $
+* e2 mData/Entities/Hero/Bouclier.char.hs $
+$
 *x0 y0 h96 w96 $
 $
 *x3 y3 $

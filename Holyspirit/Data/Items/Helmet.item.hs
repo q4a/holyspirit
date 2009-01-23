@@ -6,6 +6,7 @@ $
 $
 *Data/Items/Images/helmet01.png
 $
+$
 *x0 y0 h64 w64 $
 $
 *x2 y2 $

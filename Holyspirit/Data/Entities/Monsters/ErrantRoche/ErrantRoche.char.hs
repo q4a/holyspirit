@@ -281,7 +281,7 @@ Frappe - E
 *x0 y768 w256 h256 a13 s-1 i3 $
 *x256 y768 w256 h256 a14 s-1 i3 $
 *x512 y768 w256 h256 a15 s-1 i3 $
-*x768 y768 w256 h256 a0 s-1 i3 $
+*x768 y768 w256 h256 a0 s-1 i3 d1 $
 $
 Frappe - NE
 *x0 y0 w256 h256 a1 s-1 i4 $
@@ -299,7 +299,7 @@ Frappe - NE
 *x0 y768 w256 h256 a13 s-1 i4 $
 *x256 y768 w256 h256 a14 s-1 i4 $
 *x512 y768 w256 h256 a15 s-1 i4 $
-*x768 y768 w256 h256 a0 s-1 i4 $
+*x768 y768 w256 h256 a0 s-1 i4 d1 $
 $
 Frappe - N
 *x0 y0 w256 h256 a1 s-1 i5 $
@@ -317,7 +317,7 @@ Frappe - N
 *x0 y768 w256 h256 a13 s-1 i5 $
 *x256 y768 w256 h256 a14 s-1 i5 $
 *x512 y768 w256 h256 a15 s-1 i5 $
-*x768 y768 w256 h256 a0 s-1 i5 $
+*x768 y768 w256 h256 a0 s-1 i5 d1 $
 $
 Frappe - NO
 *x0 y0 w256 h256 a1 s-1 i6 $
@@ -335,7 +335,7 @@ Frappe - NO
 *x0 y768 w256 h256 a13 s-1 i6 $
 *x256 y768 w256 h256 a14 s-1 i6 $
 *x512 y768 w256 h256 a15 s-1 i6 $
-*x768 y768 w256 h256 a0 s-1 i6 $
+*x768 y768 w256 h256 a0 s-1 i6 d1 $
 $
 Frappe - O
 *x0 y0 w256 h256 a1 s-1 i7 $
@@ -353,7 +353,7 @@ Frappe - O
 *x0 y768 w256 h256 a13 s-1 i7 $
 *x256 y768 w256 h256 a14 s-1 i7 $
 *x512 y768 w256 h256 a15 s-1 i7 $
-*x768 y768 w256 h256 a0 s-1 i7 $
+*x768 y768 w256 h256 a0 s-1 i7 d1 $
 $
 Frappe - SO
 *x0 y0 w256 h256 a1 s-1 i8 $
@@ -371,7 +371,7 @@ Frappe - SO
 *x0 y768 w256 h256 a13 s-1 i8 $
 *x256 y768 w256 h256 a14 s-1 i8 $
 *x512 y768 w256 h256 a15 s-1 i8 $
-*x768 y768 w256 h256 a0 s-1 i8 $
+*x768 y768 w256 h256 a0 s-1 i8 d1 $
 $
 Frappe - S
 *x0 y0 w256 h256 a1 s-1 i9 $
@@ -389,7 +389,7 @@ Frappe - S
 *x0 y768 w256 h256 a13 s-1 i9 $
 *x256 y768 w256 h256 a14 s-1 i9 $
 *x512 y768 w256 h256 a15 s-1 i9 $
-*x768 y768 w256 h256 a0 s-1 i9 $
+*x768 y768 w256 h256 a0 s-1 i9 d1 $
 $
 Frappe - SE
 *x0 y0 w256 h256 a1 s-1 i10 $
@@ -407,7 +407,7 @@ Frappe - SE
 *x0 y768 w256 h256 a13 s-1 i10 $
 *x256 y768 w256 h256 a14 s-1 i10 $
 *x512 y768 w256 h256 a15 s-1 i10 $
-*x768 y768 w256 h256 a0 s-1 i10 $
+*x768 y768 w256 h256 a0 s-1 i10 d1 $
 $
 Mort - E
 *x0 y0 w256 h256 a1 s-1 i11 $

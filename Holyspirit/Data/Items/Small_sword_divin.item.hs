@@ -6,6 +6,8 @@ $
 $
 *Data/Items/Images/swords01.png
 $
+* e1 mData/Entities/Hero/EpeeTDD.char.hs e2 mData/Entities/Hero/EpeeTDG.char.hs $
+$
 *x32 y0 h96 w32 $
 $
 *x1 y3 $

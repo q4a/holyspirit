@@ -6,6 +6,7 @@ $
 $
 *Data/Items/Images/TwoHand01Sword.png
 $
+$
 *x0 y0 h160 w64 $
 $
 *x2 y5 $

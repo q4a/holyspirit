@@ -32,7 +32,7 @@ Objets du monstre
 
 *
 *Data/Items/Small_axe.item.hs
-r100
+r10000
 $
 
 $
@@ -591,7 +591,7 @@ Frappe - E
 *x0 y256 w256 h256 a5 s2 i3 $
 *x256 y256 w256 h256 a6 s-1 i3 $
 *x512 y256 w256 h256 a7 s-1 i3 d0 $
-*x768 y256 w256 h256 a0 s-1 i3 $
+*x768 y256 w256 h256 a0 s-1 i3 d1 $
 $
 Frappe - NE
 *x0 y512 w256 h256 a1 s-1 i3 $
@@ -601,7 +601,7 @@ Frappe - NE
 *x0 y768 w256 h256 a5 s2 i3 $
 *x256 y768 w256 h256 a6 s-1 i3 $
 *x512 y768 w256 h256 a7 s-1 i3 d0 $
-*x768 y768 w256 h256 a0 s-1 i3 $
+*x768 y768 w256 h256 a0 s-1 i3 d1 $
 $
 Frappe - N
 *x0 y0 w256 h256 a1 s-1 i4 $
@@ -611,7 +611,7 @@ Frappe - N
 *x0 y256 w256 h256 a5 s2 i4 $
 *x256 y256 w256 h256 a6 s-1 i4 $
 *x512 y256 w256 h256 a7 s-1 i4 d0 $
-*x768 y256 w256 h256 a0 s-1 i4 $
+*x768 y256 w256 h256 a0 s-1 i4 d1 $
 $
 Frappe - NO
 *x0 y512 w256 h256 a1 s-1 i4 $
@@ -621,7 +621,7 @@ Frappe - NO
 *x0 y768 w256 h256 a5 s2 i4 $
 *x256 y768 w256 h256 a6 s-1 i4 $
 *x512 y768 w256 h256 a7 s-1 i4 d0 $
-*x768 y768 w256 h256 a0 s-1 i4 $
+*x768 y768 w256 h256 a0 s-1 i4 d1 $
 $
 Frappe - O
 *x0 y0 w256 h256 a1 s-1 i5 $
@@ -631,7 +631,7 @@ Frappe - O
 *x0 y256 w256 h256 a5 s2 i5 $
 *x256 y256 w256 h256 a6 s-1 i5 $
 *x512 y256 w256 h256 a7 s-1 i5 d0 $
-*x768 y256 w256 h256 a0 s-1 i5 $
+*x768 y256 w256 h256 a0 s-1 i5 d1 $
 $
 Frappe - SO
 *x0 y512 w256 h256 a1 s-1 i5 $
@@ -641,7 +641,7 @@ Frappe - SO
 *x0 y768 w256 h256 a5 s2 i5 $
 *x256 y768 w256 h256 a6 s-1 i5 $
 *x512 y768 w256 h256 a7 s-1 i5 d0 $
-*x768 y768 w256 h256 a0 s-1 i5 $
+*x768 y768 w256 h256 a0 s-1 i5 d1 $
 $
 Frappe - S
 *x0 y0 w256 h256 a1 s-1 i6 $
@@ -651,7 +651,7 @@ Frappe - S
 *x0 y256 w256 h256 a5 s2 i6 $
 *x256 y256 w256 h256 a6 s-1 i6 $
 *x512 y256 w256 h256 a7 s-1 i6 d0 $
-*x768 y256 w256 h256 a0 s-1 i6 $
+*x768 y256 w256 h256 a0 s-1 i6 d1 $
 $
 Frappe - SE
 *x0 y512 w256 h256 a1 s-1 i6 $
@@ -661,7 +661,7 @@ Frappe - SE
 *x0 y768 w256 h256 a5 s2 i6 $
 *x256 y768 w256 h256 a6 s-1 i6 $
 *x512 y768 w256 h256 a7 s-1 i6 d0 $
-*x768 y768 w256 h256 a0 s-1 i6 $
+*x768 y768 w256 h256 a0 s-1 i6 d1 $
 $
 Mort - E
 * l0 $

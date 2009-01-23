@@ -6,6 +6,7 @@ $
 $
 *Data/Items/Images/axes01.png
 $
+$
 *x0 y0 h96 w32 $
 $
 *x1 y3 $

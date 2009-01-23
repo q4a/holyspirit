@@ -219,7 +219,7 @@ Frappe - E
 *x768 y576 w192 h192 a20 s-1 i2 $
 *x0 y768 w192 h192 a21 s-1 i2 $
 *x192 y768 w192 h192 a22 s1 i2 d0 $
-*x384 y768 w192 h192 a0 s-1 i2 $
+*x384 y768 w192 h192 a0 s-1 i2 d1 $
 $
 Frappe - NE
 *x0 y0 w192 h192 a1 s-1 i3 $
@@ -244,7 +244,7 @@ Frappe - NE
 *x768 y576 w192 h192 a20 s-1 i3 $
 *x0 y768 w192 h192 a21 s-1 i3 $
 *x192 y768 w192 h192 a22 s1 i3 d0 $
-*x384 y768 w192 h192 a0 s-1 i3 $
+*x384 y768 w192 h192 a0 s-1 i3 d1 $
 $
 Frappe - N
 *x0 y0 w192 h192 a1 s-1 i4 $
@@ -269,7 +269,7 @@ Frappe - N
 *x768 y576 w192 h192 a20 s-1 i4 $
 *x0 y768 w192 h192 a21 s-1 i4 $
 *x192 y768 w192 h192 a22 s1 i4 d0 $
-*x384 y768 w192 h192 a0 s-1 i4 $
+*x384 y768 w192 h192 a0 s-1 i4 d1 $
 $
 Frappe - NO
 *x0 y0 w192 h192 a1 s-1 i5 $
@@ -294,7 +294,7 @@ Frappe - NO
 *x768 y576 w192 h192 a20 s-1 i5 $
 *x0 y768 w192 h192 a21 s-1 i5 $
 *x192 y768 w192 h192 a22 s1 i5 d0 $
-*x384 y768 w192 h192 a0 s-1 i5 $
+*x384 y768 w192 h192 a0 s-1 i5 d1 $
 $
 Frappe - O
 *x0 y0 w192 h192 a1 s-1 i6 $
@@ -319,7 +319,7 @@ Frappe - O
 *x768 y576 w192 h192 a20 s-1 i6 $
 *x0 y768 w192 h192 a21 s-1 i6 $
 *x192 y768 w192 h192 a22 s1 i6 d0 $
-*x384 y768 w192 h192 a0 s-1 i6 $
+*x384 y768 w192 h192 a0 s-1 i6 d1 $
 $
 Frappe - SO
 *x0 y0 w192 h192 a1 s-1 i7 $
@@ -344,7 +344,7 @@ Frappe - SO
 *x768 y576 w192 h192 a20 s-1 i7 $
 *x0 y768 w192 h192 a21 s-1 i7 $
 *x192 y768 w192 h192 a22 s1 i7 d0 $
-*x384 y768 w192 h192 a0 s-1 i7 $
+*x384 y768 w192 h192 a0 s-1 i7 d1 $
 $
 Frappe - S
 *x0 y0 w192 h192 a1 s-1 i8 $
@@ -369,7 +369,7 @@ Frappe - S
 *x768 y576 w192 h192 a20 s-1 i8 $
 *x0 y768 w192 h192 a21 s-1 i8 $
 *x192 y768 w192 h192 a22 s1 i8 d0 $
-*x384 y768 w192 h192 a0 s-1 i8 $
+*x384 y768 w192 h192 a0 s-1 i8 d1 $
 $
 Frappe - SE
 *x0 y0 w192 h192 a1 s-1 i9 $
@@ -394,7 +394,7 @@ Frappe - SE
 *x768 y576 w192 h192 a20 s-1 i9 $
 *x0 y768 w192 h192 a21 s-1 i9 $
 *x192 y768 w192 h192 a22 s1 i9 d0 $
-*x384 y768 w192 h192 a0 s-1 i9 $
+*x384 y768 w192 h192 a0 s-1 i9 d1 $
 $
 MORT - E
 *x0 y0 w128 h128 a1 s0 i10 $

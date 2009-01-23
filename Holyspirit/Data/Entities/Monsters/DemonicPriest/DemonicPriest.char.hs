@@ -27,7 +27,7 @@ Objets du monstre
 
 *
 	*Data/Items/Gown.item.hs
-	r100
+	r10000
 $
 
 
@@ -220,7 +220,7 @@ Frappe- E
 *x512 y128 w128 h128 a13 s-1 i3 t0.08 l64$
 *x640 y128 w128 h128 a14 s-1 i3 t0.08 l32 $
 *x768 y128 w128 h128 a15 s1 i3 t0.08 l0 $
-*x896 y128 w128 h128 a0 s-1 i3 t0.5 $
+*x896 y128 w128 h128 a0 s-1 i3 t0.5 d1 $
 $
 Frappe - NE
 *x0 y256 w128 h128 a1 s0 i3 t0.08 l0 $
@@ -238,7 +238,7 @@ Frappe - NE
 *x512 y384 w128 h128 a13 s-1 i3 t0.08 l64$
 *x640 y384 w128 h128 a14 s-1 i3 t0.08 l32 $
 *x768 y384 w128 h128 a15 s1 i3 t0.08 l0 $
-*x896 y384 w128 h128 a0 s-1 i3 t0.5 $
+*x896 y384 w128 h128 a0 s-1 i3 t0.5 d1 $
 $
 Frappe - N
 *x0 y512 w128 h128 a1 s0 i3 t0.08 l0 $
@@ -256,7 +256,7 @@ Frappe - N
 *x512 y640 w128 h128 a13 s-1 i3 t0.08 l64$
 *x640 y640 w128 h128 a14 s-1 i3 t0.08 l32 $
 *x768 y640 w128 h128 a15 s1 i3 t0.08 l0 $
-*x896 y640 w128 h128 a0 s-1 i3 t0.5 $
+*x896 y640 w128 h128 a0 s-1 i3 t0.5 d1 $
 $
 Frappe - NO
 *x0 y768 w128 h128 a1 s0 i3 t0.08 l0 $
@@ -274,7 +274,7 @@ Frappe - NO
 *x512 y896 w128 h128 a13 s-1 i3 t0.08 l64$
 *x640 y896 w128 h128 a14 s-1 i3 t0.08 l32 $
 *x768 y896 w128 h128 a15 s1 i3 t0.08 l0 $
-*x896 y896 w128 h128 a0 s-1 i3 t0.5 $
+*x896 y896 w128 h128 a0 s-1 i3 t0.5 d1 $
 $
 Frappe- O
 *x0 y0 w128 h128 a1 s0 i4 t0.08 l0 $
@@ -292,7 +292,7 @@ Frappe- O
 *x512 y128 w128 h128 a13 s-1 i4 t0.08 l64$
 *x640 y128 w128 h128 a14 s-1 i4 t0.08 l32 $
 *x768 y128 w128 h128 a15 s1 i4 t0.08 l0 $
-*x896 y128 w128 h128 a0 s-1 i4 t0.5 $
+*x896 y128 w128 h128 a0 s-1 i4 t0.5 d1 $
 $
 Frappe - SO
 *x0 y256 w128 h128 a1 s0 i4 t0.08 l0 $
@@ -310,7 +310,7 @@ Frappe - SO
 *x512 y384 w128 h128 a13 s-1 i4 t0.08 l64$
 *x640 y384 w128 h128 a14 s-1 i4 t0.08 l32 $
 *x768 y384 w128 h128 a15 s1 i4 t0.08 l0 $
-*x896 y384 w128 h128 a0 s-1 i4 t0.5 $
+*x896 y384 w128 h128 a0 s-1 i4 t0.5 d1 $
 $
 Frappe - S
 *x0 y512 w128 h128 a1 s0 i4 t0.08 l0 $
@@ -328,7 +328,7 @@ Frappe - S
 *x512 y640 w128 h128 a13 s-1 i4 t0.08 l64$
 *x640 y640 w128 h128 a14 s-1 i4 t0.08 l32 $
 *x768 y640 w128 h128 a15 s1 i4 t0.08 l0 $
-*x896 y640 w128 h128 a0 s-1 i4 t0.5 $
+*x896 y640 w128 h128 a0 s-1 i4 t0.5 d1 $
 $
 Frappe - SE
 *x0 y768 w128 h128 a1 s0 i4 t0.08 l0 $
@@ -346,7 +346,7 @@ Frappe - SE
 *x512 y896 w128 h128 a13 s-1 i4 t0.08 l64$
 *x640 y896 w128 h128 a14 s-1 i4 t0.08 l32 $
 *x768 y896 w128 h128 a15 s1 i4 t0.08 l0 $
-*x896 y896 w128 h128 a0 s-1 i4 t0.5 $
+*x896 y896 w128 h128 a0 s-1 i4 t0.5 d1 $
 $
 Mort - E
 * l0 $

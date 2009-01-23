@@ -6,6 +6,7 @@ $
 $
 *Data/Items/Images/gown.png
 $
+$
 *x0 y0 h96 w64 $
 $
 *x2 y3 $

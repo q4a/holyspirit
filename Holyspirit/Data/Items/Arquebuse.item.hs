@@ -6,6 +6,7 @@ $
 $
 *Data/Items/Images/Arquebuse.png
 $
+$
 *x0 y0 h64 w160 $
 $
 *x5 y2 $
