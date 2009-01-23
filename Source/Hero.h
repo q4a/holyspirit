@@ -24,6 +24,9 @@ class Hero
 
 	void Sauvegarder();
 	void Charger();
+	void ChargerModele();
+
+	void Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap);
 
 	void afficherInventaire(sf::RenderWindow *,coordonnee,float);
 	void afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionSouris,float decalage);
@@ -56,8 +59,11 @@ class Hero
 	coordonnee getChercherSac();
 	coordonnee getSacVise();
 
+	Lumiere getPorteeLumineuse();
+
 	Personnage m_personnage;
-	Modele_Personnage m_modelePersonnage;
+	Modele_Personnage m_modelePersonnage[NOMBRE_MORCEAU_PERSONNAGE];
+	std::string m_cheminModele[NOMBRE_MORCEAU_PERSONNAGE];
 
     Caracteristique m_caracteristiques;
 
@@ -67,6 +73,10 @@ class Hero
 	coordonneeDecimal m_positionAffichage;
 	int m_monstreVise;
 	coordonnee m_chercherSac,m_sacVise;
+
+	int m_cas;
+
+	int ordreAffichage[NOMBRE_MORCEAU_PERSONNAGE];
 
 
 	std::vector<Objet> m_inventaire;

@@ -41,6 +41,8 @@ void Jeu::Demarrer()
 
     this->hero.Charger();
 
+    Clock.Reset();
+
     this->m_run = true;
     while (this->m_run)
 	{

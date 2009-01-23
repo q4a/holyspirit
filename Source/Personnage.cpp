@@ -56,7 +56,7 @@ Personnage::Personnage()
 
     m_erreurPathfinding=false;
 
-    m_porteeLumineuseBasique.intensite=-1;
+    m_porteeLumineuseBasique.intensite=0;
     m_porteeLumineuseBasique.rouge=255;
     m_porteeLumineuseBasique.vert=255;
     m_porteeLumineuseBasique.bleu=255;
@@ -65,6 +65,22 @@ Modele_Personnage::Modele_Personnage()
 {
     m_ombre=1;
 }
+
+
+void Modele_Personnage::Reinitialiser()
+{
+    for(int i=0;i<m_pose.size();i++)
+    {
+         for(int j=0;j<m_pose[i].size();j++)
+            m_pose[i][j].clear();
+         m_pose[i].clear();
+    }
+    m_pose.clear();
+
+    m_image.clear();
+    m_sons.clear();
+}
+
 Modele_Personnage::~Modele_Personnage()
 {
     for(int i=0;i<m_pose.size();i++)
@@ -88,6 +104,17 @@ Modele_Personnage::~Modele_Personnage()
 
 bool Modele_Personnage::Charger(string chemin)
 {
+    for(int i=0;i<m_pose.size();i++)
+    {
+         for(int j=0;j<m_pose[i].size();j++)
+            m_pose[i][j].clear();
+         m_pose[i].clear();
+    }
+    m_pose.clear();
+
+    m_image.clear();
+    m_sons.clear();
+
     console.Ajouter("",0);
 	console.Ajouter("Chargement du personnage : "+chemin,0);
 
@@ -101,7 +128,6 @@ bool Modele_Personnage::Charger(string chemin)
     		fichier.get(caractere);
     		if(caractere=='*')
     		{
-
     			string cheminImage;
                 getline(fichier, cheminImage);
                 m_image.push_back(moteurGraphique.AjouterImage(cheminImage));
@@ -122,6 +148,32 @@ bool Modele_Personnage::Charger(string chemin)
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Personnage \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
     	}while(caractere!='$');
 
+
+    	do
+    	{
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
+                do
+                {
+                    fichier.get(caractere);
+                    switch (caractere)
+                    {
+                        case 'r' : fichier>>m_porteeLumineuse.rouge; break;
+                        case 'v' : fichier>>m_porteeLumineuse.vert; break;
+                        case 'b' : fichier>>m_porteeLumineuse.bleu; break;
+                        case 'i' : fichier>>m_porteeLumineuse.intensite; break;
+                    }
+
+                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+                }while(caractere!='$');
+                fichier.get(caractere);
+            }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
+
     	 Pose poseTemp;
     	 m_pose.resize(NOMBRE_ETAT,vector<vector<Pose> >(0,vector<Pose>(0,poseTemp)));
 
@@ -135,7 +187,7 @@ bool Modele_Personnage::Charger(string chemin)
                     if(caractere=='*')
                     {
                         coordonnee position,centre={-1,-1,-1,-1};
-                        int animation,son,image,attaque=-1,lumiere=m_porteeLumineuse.intensite;
+                        int animation,son,image,attaque=-1,lumiere=m_porteeLumineuse.intensite,ordre=0;
                         float tempsAnimation=0.075;
 
                         do
@@ -154,6 +206,8 @@ bool Modele_Personnage::Charger(string chemin)
                                 case 'd': fichier>>attaque; break;
                                 case 'l': fichier>>lumiere; break;
 
+                                case 'o': fichier>>ordre; break;
+
                                 case 'c': fichier.get(caractere); if(caractere=='x') fichier>>centre.x; else fichier>>centre.y; break;
                             }
                             if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
@@ -165,7 +219,7 @@ bool Modele_Personnage::Charger(string chemin)
                             centre.y=position.h-32;
 
                         m_pose[i][j].push_back(poseTemp);
-                        m_pose[i][j][m_pose[i][j].size()-1].setPose(position,centre,animation,son,image,attaque,lumiere,tempsAnimation);
+                        m_pose[i][j][m_pose[i][j].size()-1].setPose(position,centre,animation,son,image,attaque,lumiere,tempsAnimation,ordre);
                         fichier.get(caractere);
                         if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }
                     }
@@ -186,13 +240,15 @@ bool Modele_Personnage::Charger(string chemin)
     return true;
 }
 
-void Personnage::Charger(Modele_Personnage *modele)
+int Personnage::getOrdre(Modele_Personnage *modele)
 {
-    /*m_sons.resize(modele->getNombreSons());
-    for(int i=0;i<modele->getNombreSons();i++)
-    {
-        m_sons[i]=moteurSons.AjouterSon(modele->getBuffer(i));
-    }*/
+    if(modele->m_pose.size()>0)
+        if(m_etat>=0&&m_etat<NOMBRE_ETAT)
+            if((int)(m_angle/45)>=0&&(int)(m_angle/45)<modele->m_pose[m_etat].size())
+                if(m_poseEnCours>=0&&m_poseEnCours<modele->m_pose[m_etat][(int)(m_angle/45)].size())
+                     return modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getOrdre();
+
+    return -10;
 }
 
 void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap,Modele_Personnage *modele)
@@ -255,18 +311,14 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
             if(m_poseEnCours>=0&&m_poseEnCours<modele->m_pose[m_etat][(int)(m_angle/45)].size())
             {
                 sprite.SetImage(*moteurGraphique.getImage(modele->m_image[modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()]));
-               // Sprite.SetImage(modele->m_image[modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()]);
                 sprite.SetSubRect(IntRect(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h));
 
                 sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
 
                 sprite.FlipX(false);
 
-               /* sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64)-64+(64-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w/2));
-                sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+(64-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h));*/
-
                 sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64)-64+(64-sprite.GetSize().x/2));
-                sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+(64-sprite.GetSize().y));
+                sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+(64-sprite.GetSize().y) +(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().y) -32 );
 
 
                 if(configuration.Lumiere)
@@ -451,72 +503,76 @@ bool Personnage::seDeplacer(float tempsEcoule)
 {
     if(m_caracteristique.vie>0)
     {
-        if(m_positionCase.y!=m_cheminFinal.y||m_positionCase.x!=m_cheminFinal.x)
+        if(!frappeEnCours)
         {
-            if(m_etat!=1)
-                m_etat=1,m_poseEnCours=0;
+            if(m_positionCase.y!=m_cheminFinal.y||m_positionCase.x!=m_cheminFinal.x)
+            {
+                if(m_etat!=1)
+                    m_etat=1,m_poseEnCours=0;
 
-            m_positionPixelPrecedente.x=(int)m_positionPixel.x;
-            m_positionPixelPrecedente.y=(int)m_positionPixel.y;
+                m_positionPixelPrecedente.x=(int)m_positionPixel.x;
+                m_positionPixelPrecedente.y=(int)m_positionPixel.y;
 
-            if(m_positionCase.x<m_cheminFinal.x)
-            {
-                if(m_positionCase.y>m_cheminFinal.y)
-                    m_positionPixel.x+=2*tempsEcoule*m_caracteristique.vitesse;
-                else
-                    m_positionPixel.x+=4*tempsEcoule*m_caracteristique.vitesse;
-            }
-            if(m_positionCase.x>m_cheminFinal.x)
-            {
-                if(m_positionCase.y<m_cheminFinal.y)
-                    m_positionPixel.x-=2*tempsEcoule*m_caracteristique.vitesse;
-                else
-                    m_positionPixel.x-=4*tempsEcoule*m_caracteristique.vitesse;
-            }
-            if(m_positionCase.y<m_cheminFinal.y)
-            {
-                if(m_positionCase.x>m_cheminFinal.x)
-                    m_positionPixel.y+=2*tempsEcoule*m_caracteristique.vitesse;
-                else
-                    m_positionPixel.y+=4*tempsEcoule*m_caracteristique.vitesse;
-            }
-            if(m_positionCase.y>m_cheminFinal.y)
-            {
                 if(m_positionCase.x<m_cheminFinal.x)
-                    m_positionPixel.y-=2*tempsEcoule*m_caracteristique.vitesse;
-                else
-                    m_positionPixel.y-=4*tempsEcoule*m_caracteristique.vitesse;
-            }
-
-            //m_angle=atan((double)(m_positionCase.y-m_cheminFinal.y)/(double)(m_positionCase.x-m_cheminFinal.x))*360/(2*M_PI);
-
-            m_angle=calculerAngle(m_cheminFinal.x-m_positionCase.x,m_cheminFinal.y-m_positionCase.y);
-
-            if((m_positionCase.x<m_cheminFinal.x&&m_positionPixel.x>=m_cheminFinal.x*COTE_TILE)
-             ||(m_positionCase.x>m_cheminFinal.x&&m_positionPixel.x<=m_cheminFinal.x*COTE_TILE)
-              ||m_positionCase.x==m_cheminFinal.x)
-            if((m_positionCase.y<m_cheminFinal.y&&m_positionPixel.y>=m_cheminFinal.y*COTE_TILE)
-             ||(m_positionCase.y>m_cheminFinal.y&&m_positionPixel.y<=m_cheminFinal.y*COTE_TILE)
-              ||m_positionCase.y==m_cheminFinal.y)
                 {
-                    m_positionPixel.x=(m_cheminFinal.x*COTE_TILE);
-                    m_positionPixel.y=(m_cheminFinal.y*COTE_TILE);
-
-                    m_positionCase.y=m_cheminFinal.y;
-                    m_positionCase.x=m_cheminFinal.x;
-
-                    return 1;
+                    if(m_positionCase.y>m_cheminFinal.y)
+                        m_positionPixel.x+=2*tempsEcoule*m_caracteristique.vitesse;
+                    else
+                        m_positionPixel.x+=4*tempsEcoule*m_caracteristique.vitesse;
+                }
+                if(m_positionCase.x>m_cheminFinal.x)
+                {
+                    if(m_positionCase.y<m_cheminFinal.y)
+                        m_positionPixel.x-=2*tempsEcoule*m_caracteristique.vitesse;
+                    else
+                        m_positionPixel.x-=4*tempsEcoule*m_caracteristique.vitesse;
+                }
+                if(m_positionCase.y<m_cheminFinal.y)
+                {
+                    if(m_positionCase.x>m_cheminFinal.x)
+                        m_positionPixel.y+=2*tempsEcoule*m_caracteristique.vitesse;
+                    else
+                        m_positionPixel.y+=4*tempsEcoule*m_caracteristique.vitesse;
+                }
+                if(m_positionCase.y>m_cheminFinal.y)
+                {
+                    if(m_positionCase.x<m_cheminFinal.x)
+                        m_positionPixel.y-=2*tempsEcoule*m_caracteristique.vitesse;
+                    else
+                        m_positionPixel.y-=4*tempsEcoule*m_caracteristique.vitesse;
                 }
 
+                //m_angle=atan((double)(m_positionCase.y-m_cheminFinal.y)/(double)(m_positionCase.x-m_cheminFinal.x))*360/(2*M_PI);
 
-        }
-        else if(m_arrivee.x!=m_positionCase.x||m_arrivee.y!=m_positionCase.y)
-            return 1;
-        else if((m_etat!=2||m_etat==2&&m_poseEnCours==0)&&!frappeEnCours)
-        {
-            if(m_etat!=0)
-                m_poseEnCours=0;
-            m_etat=0;
+                m_angle=calculerAngle(m_cheminFinal.x-m_positionCase.x,m_cheminFinal.y-m_positionCase.y);
+
+                if((m_positionCase.x<m_cheminFinal.x&&m_positionPixel.x>=m_cheminFinal.x*COTE_TILE)
+                 ||(m_positionCase.x>m_cheminFinal.x&&m_positionPixel.x<=m_cheminFinal.x*COTE_TILE)
+                  ||m_positionCase.x==m_cheminFinal.x)
+                if((m_positionCase.y<m_cheminFinal.y&&m_positionPixel.y>=m_cheminFinal.y*COTE_TILE)
+                 ||(m_positionCase.y>m_cheminFinal.y&&m_positionPixel.y<=m_cheminFinal.y*COTE_TILE)
+                  ||m_positionCase.y==m_cheminFinal.y)
+                    {
+                        m_positionPixel.x=(m_cheminFinal.x*COTE_TILE);
+                        m_positionPixel.y=(m_cheminFinal.y*COTE_TILE);
+
+                        m_positionCase.y=m_cheminFinal.y;
+                        m_positionCase.x=m_cheminFinal.x;
+
+                        return 1;
+                    }
+
+
+            }
+            else if(m_arrivee.x!=m_positionCase.x||m_arrivee.y!=m_positionCase.y)
+                return 1;
+            else
+            {
+                if(m_etat!=0)
+                    m_poseEnCours=0;
+
+                m_etat=0;
+            }
         }
 
         if(m_etat==2)
@@ -574,7 +630,7 @@ int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,boo
                 retour=1;
         }
 
-        if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==0)
+        if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==1)
             frappeEnCours=false;
 
         *explosif=modele->m_explosif;
@@ -591,15 +647,19 @@ int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,boo
 
 void Personnage::frappe(coordonnee direction,coordonnee position)
 {
-    frappeEnCours=true;
+    if(!frappeEnCours)
+    {
+        m_etat=2;
+        m_poseEnCours=0;
+    }
 
-    if(m_etat!=2)
-        if(m_positionCase.x==m_cheminFinal.x&&m_positionCase.y==m_cheminFinal.y)
-        {
-            frappeEnCours=1;
+    frappeEnCours=1;
+
+    /*if(m_etat!=2)
+    {
             m_etat=2;
             m_poseEnCours=0;
-        }
+    }*/
 
     /*if((double)((double)direction.x-(double)position.x)!=0)
     {*/
@@ -645,7 +705,7 @@ void Personnage::setPorteeLumineuse(Lumiere  lumiere){m_porteeLumineuse=lumiere;
 void Personnage::setCaracteristique(Caracteristique caracteristique){m_caracteristique=caracteristique;}
 void Personnage::setProchaineCase(coordonnee position){m_cheminFinal=position;}
 void Personnage::setVitesse(float vitesse){m_caracteristique.vitesse=vitesse;}
-void Personnage::setEtat(int etat){m_etat=etat,m_poseEnCours=0;}
+void Personnage::setEtat(int etat){m_etat=etat,m_poseEnCours=0,frappeEnCours=false;}
 void Personnage::setPose(int pose){m_poseEnCours=pose;}
 void Personnage::setAngle(int angle){m_angle=angle;}
 void Personnage::setCoordonnee(coordonnee nouvellesCoordonnees)

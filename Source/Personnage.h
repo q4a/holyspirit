@@ -24,6 +24,7 @@ class Modele_Personnage
 	Modele_Personnage();
 	~Modele_Personnage();
 	bool Charger(std::string chemin);
+	void Reinitialiser();
 
 	void setPorteeLumineuse(Lumiere  lumiere);
 
@@ -51,7 +52,7 @@ class Personnage
 	public:
 	Personnage();
 
-	void Charger(Modele_Personnage *modele);
+
 
 	coordonnee getCoordonnee();
 	coordonnee getArrivee();
@@ -95,6 +96,8 @@ class Personnage
 	int getPose();
 	Lumiere getPorteeLumineuse();
 	Caracteristique getCaracteristique();
+
+	int getOrdre(Modele_Personnage *modele);
 
 	LumiereOmbrage m_lumiere;
 	bool frappeEnCours;

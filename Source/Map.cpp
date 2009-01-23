@@ -45,9 +45,9 @@ void Map::Detruire()
     if(configuration.debug)
         console.Ajouter("Destruction des cases...");
 
-       /* for(int i=0;i<NOMBRE_COUCHE_MAP;i++)
+    for(int i=0;i<NOMBRE_COUCHE_MAP;i++)
     {
-            for(int j=0;j<m_decor[i].size()-1;j++)
+            for(int j=0;j<m_decor[i].size();j++)
             {
                 if(configuration.debug)
                     console.Ajouter(j);
@@ -57,9 +57,7 @@ void Map::Detruire()
                 console.Ajouter("-");
 
         m_decor[i].clear();
-    }*/
-
-        delete[] m_decor;
+    }
 
     // m_decor.clear();
 
@@ -106,7 +104,6 @@ void Map::Detruire()
 
 bool Map::Charger(int numeroMap)
 {
-    m_decor = new std::vector< std::vector < Decor > > [2];
 
     int numeroModuleAleatoire=rand()%10;
 
@@ -816,7 +813,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
 
     angleOmbreMap=((float)configuration.heure*60+configuration.minute)*180/720;
 
-    hero->m_personnage.m_lumiere=hero->m_modelePersonnage.getPorteeLumineuse();
+    hero->m_personnage.m_lumiere=hero->getPorteeLumineuse();
 
     hero->m_personnage.m_lumiere.rouge=(lumiereMap.rouge*lumiereMap.intensite+hero->m_personnage.m_lumiere.rouge*hero->m_personnage.m_lumiere.intensite)/(hero->m_personnage.m_lumiere.intensite+lumiereMap.intensite);
     hero->m_personnage.m_lumiere.vert=(lumiereMap.vert*lumiereMap.intensite+hero->m_personnage.m_lumiere.vert*hero->m_personnage.m_lumiere.intensite)/(hero->m_personnage.m_lumiere.intensite+lumiereMap.intensite);
@@ -844,9 +841,9 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
             {
 
                 lumiereTemp=0;
-                lumiereTemp=(float)hero->m_modelePersonnage.getPorteeLumineuse().intensite-((((float)gpl::sqrt((hero->m_personnage.getCoordonneePixel().x-(j+vueMin.x)*COTE_TILE)*(hero->m_personnage.getCoordonneePixel().x-(j+vueMin.x)*COTE_TILE)+(hero->m_personnage.getCoordonneePixel().y-(i+vueMin.y)*COTE_TILE)*(hero->m_personnage.getCoordonneePixel().y-(i+vueMin.y)*COTE_TILE))))*DIVISEUR_COTE_TILE)*50;
+                lumiereTemp=(float)hero->getPorteeLumineuse().intensite-((((float)gpl::sqrt((hero->m_personnage.getCoordonneePixel().x-(j+vueMin.x)*COTE_TILE)*(hero->m_personnage.getCoordonneePixel().x-(j+vueMin.x)*COTE_TILE)+(hero->m_personnage.getCoordonneePixel().y-(i+vueMin.y)*COTE_TILE)*(hero->m_personnage.getCoordonneePixel().y-(i+vueMin.y)*COTE_TILE))))*DIVISEUR_COTE_TILE)*50;
 
-                lumiere=hero->m_modelePersonnage.getPorteeLumineuse();
+                lumiere=hero->getPorteeLumineuse();
 
                 lumiere.intensite=(int)lumiereTemp;
 
@@ -1925,7 +1922,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                 {
                                     positionPartieDecor=m_herbe[m_decor[0][j][k].getHerbe()].getPositionDuTile(m_decor[0][j][k].getNumeroHerbe());
 
-                                    //position.y-=32;
+                                    position.y-=32;
 
                                     position.x+=m_decor[0][j][k].getDecalageHerbe().x;
 
@@ -2001,18 +1998,18 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                         if(hero->m_personnage.getCoordonnee().x==hero->m_personnage.getProchaineCase().x&&hero->m_personnage.getCoordonnee().y==hero->m_personnage.getProchaineCase().y)
                         {
                             if(hero->m_personnage.getCoordonnee().x==k&&hero->m_personnage.getCoordonnee().y==j)
-                                hero->m_personnage.Afficher(ecran,camera,position,getDimensions(),&hero->m_modelePersonnage);
+                                hero->Afficher(ecran,camera,position,getDimensions());
                         }
                         else
                         {
                             if(hero->m_personnage.getCoordonnee().x>hero->m_personnage.getProchaineCase().x&&hero->m_personnage.getCoordonnee().y>hero->m_personnage.getProchaineCase().y)
                             {
                                 if(hero->m_personnage.getProchaineCase().x+1==k&&hero->m_personnage.getProchaineCase().y+1==j)
-                                    hero->m_personnage.Afficher(ecran,camera,position,getDimensions(),&hero->m_modelePersonnage);
+                                    hero->Afficher(ecran,camera,position,getDimensions());
                             }
                             else
                                 if(hero->m_personnage.getProchaineCase().x==k&&hero->m_personnage.getProchaineCase().y==j)
-                                    hero->m_personnage.Afficher(ecran,camera,position,getDimensions(),&hero->m_modelePersonnage);
+                                    hero->Afficher(ecran,camera,position,getDimensions());
                         }
 
                         if(j>=0&&j<m_decor[0].size()&&k>=0&&k<m_decor[0][0].size())
@@ -2026,7 +2023,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     position.x+=m_decor[1][j][k].getDecalageHerbe().x;
 
                                     //position.y-=32;
-                                    position.y+=32;
+                                    position.y+=0;
 
                                     Sprite.SetImage(*moteurGraphique.getImage(m_herbe[m_decor[1][j][k].getHerbe()].getImage(m_decor[1][j][k].getNumeroHerbe())));
                                     Sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
@@ -2053,7 +2050,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                                     m_decor[1][j][k].getCouleurHerbe().b,
                                                     255));
                                             }
-                                            moteurGraphique.AjouterCommande(&Sprite,10,1);
+                                            moteurGraphique.AjouterCommande(&Sprite,8,1);
                                              //ecran->Draw(Sprite);
                                         }
 
@@ -2112,12 +2109,9 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     128,
                                     255));
 
-                            if(m_sacPointe.x==k&&m_sacPointe.y==j)
-                                moteurGraphique.AjouterCommande(&Sprite,12,1);
-                            else
-                                moteurGraphique.AjouterCommande(&Sprite,10,1);
+                            moteurGraphique.AjouterCommande(&Sprite,10,1);
 
-                            if(m_sacPointe.x==k&&m_sacPointe.y==j||alt)
+                            if(m_sacPointe.x==k&&m_sacPointe.y==j&&m_monstreIllumine<0||alt)
                             {
 
                                 for(int z=0;z<m_decor[1][j][k].getNombreObjets();z++)
@@ -3449,7 +3443,7 @@ bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *ca
             if(m_monstre[numeroMonstre].getCoordonnee().x>=0&&m_monstre[numeroMonstre].getCoordonnee().x<m_decor[0][0].size()&&m_monstre[numeroMonstre].getCoordonnee().y>=0&&m_monstre[numeroMonstre].getCoordonnee().y<m_decor[0].size())
                 if(m_monstre[numeroMonstre].getModele()>=0&&m_monstre[numeroMonstre].getModele()<m_ModeleMonstre.size())
                         for(int i=0;i<m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets().size();i++)
-                            if(rand()%1000/(m_monstre[numeroMonstre].getCaracteristique().rang*3+1)<=m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets()[i].getChanceTrouver())
+                            if(rand()%100000/(m_monstre[numeroMonstre].getCaracteristique().rang*3+1)<=m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets()[i].getChanceTrouver())
                             {
                                 Objet temp;
                                 temp=m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets()[i];

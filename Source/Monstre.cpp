@@ -21,7 +21,7 @@ Monstre::Monstre()
 
 void Monstre::Charger(int numero,Modele_Monstre *modele)
 {
-    Personnage::Charger(modele);
+   // Personnage::Charger(modele);
 
     m_modele=numero;
     m_caracteristique=modele->getCaracteristique();
@@ -318,7 +318,7 @@ bool Modele_Monstre::Charger(string chemin)
                             centre.y=position.h-32;
 
                         m_pose[i][j].push_back(poseTemp);
-                        m_pose[i][j][m_pose[i][j].size()-1].setPose(position,centre,animation,son,image,attaque,lumiere,tempsAnimation);
+                        m_pose[i][j][m_pose[i][j].size()-1].setPose(position,centre,animation,son,image,attaque,lumiere,tempsAnimation,0);
                         fichier.get(caractere);
                         if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }
                     }

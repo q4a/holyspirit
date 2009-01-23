@@ -32,7 +32,8 @@ void c_Inventaire::Utiliser(Jeu *jeu)
 
     jeu->eventManager.GererLesEvenements(&jeu->ecran,&camera,&jeu->m_run,0,jeu->map.getDimensions());
 
-    jeu->eventManager.AfficherCurseur(&jeu->ecran);
+    if(jeu->hero.m_objetEnMain==-1)
+        jeu->eventManager.AfficherCurseur(&jeu->ecran);
 
     if(jeu->eventManager.getEvenement(Key::I,"ET")||jeu->eventManager.getEvenement(Key::Escape,"ET"))
         m_afficher=0;

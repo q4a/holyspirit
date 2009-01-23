@@ -56,10 +56,10 @@ c_Jeu::c_Jeu(Jeu *jeu)
         jeu->sonMort.Play();
 
 
-        if(!jeu->hero.m_modelePersonnage.Charger("Data/Entities/hero/GuerrierHache.char.hs")) // Chargement du héro
-            throw("CRITICAL ERROR");
 
-        jeu->hero.m_personnage.Charger(&jeu->hero.m_modelePersonnage);
+        jeu->hero.ChargerModele(); // Chargement du héro
+
+        //jeu->hero.m_personnage.Charger(&jeu->hero.m_modelePersonnage);
 
         if(!jeu->map.Charger(0)==1) // Chargement de  jeu->map0.txt
             throw("CRITICAL ERROR");
@@ -88,7 +88,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
             if(tempsEcoule>0.1)
             tempsEcoule=0.1;
 
-            if(tempsEcoule>0.00)
+            if(tempsEcoule>0.0)
             {
                 tempsEcouleDepuisDernierDeplacement+=tempsEcoule;
                 tempsDepuisDerniereAnimation+=tempsEcoule;
@@ -229,7 +229,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     positionHero.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
 
                     bool a; // Variable qui ne sert pas ici, mais qui remplace le explosif des monstres
-                    if(jeu->hero.m_personnage.animer(&jeu->hero.m_modelePersonnage,jeu->map.getDimensions().y,tempsDepuisDerniereAnimation,&a,positionHero)==1) //Animation du héro
+                    if(jeu->hero.m_personnage.animer(&jeu->hero.m_modelePersonnage[0],jeu->map.getDimensions().y,tempsDepuisDerniereAnimation,&a,positionHero)==1) //Animation du héro
                     {
                         if(jeu->hero.miracleEnCours==1)
                              jeu->map.infligerDegatsMasse(jeu->hero.m_personnage.getCoordonnee(),1,rand()%(jeu->hero.m_caracteristiques.degatsMax - jeu->hero.m_caracteristiques.degatsMin +1) + jeu->hero.m_caracteristiques.degatsMin ,false,&jeu->hero,&jeu->menu,&jeu->camera);
@@ -237,7 +237,6 @@ void c_Jeu::Utiliser(Jeu *jeu)
                             jeu->map.infligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&jeu->camera,&jeu->hero,1);
 
                         jeu->hero.miracleEnCours=0;
-                        jeu->hero.m_personnage.frappeEnCours=0;
 
                         if(!jeu->eventManager.getEvenement(Mouse::Left,"C"))
                             jeu->hero.setMonstreVise(-1);
@@ -291,7 +290,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                         {
                             jeu->eventManager.StopEvenement(Mouse::Left,"CA");
                             jeu->hero.setMonstreVise(jeu->map.getMonstreIllumine());
-                            jeu->hero.m_personnage.frappeEnCours=false;
+                           //* jeu->hero.m_personnage.frappeEnCours=false;
                         }
                         else
                             jeu->hero.setMonstreVise(-1);

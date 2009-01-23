@@ -16,10 +16,11 @@ Pose Pose::operator=(const Pose &pose)
 	m_attaque=pose.m_attaque;
 	m_lumiere_intensite=pose.m_lumiere_intensite;
 	m_tempsAnimation=pose.m_tempsAnimation;
+	m_ordre=pose.m_ordre;
     return *this;
 }
 
-void Pose::setPose(coordonnee positionDansLImage,coordonnee centre,int animation,int son,int image,int attaque,int lum_intensite,float tempsAnimation)
+void Pose::setPose(coordonnee positionDansLImage,coordonnee centre,int animation,int son,int image,int attaque,int lum_intensite,float tempsAnimation,int ordre)
 {
 	m_positionDansLImage=positionDansLImage;
 	m_centre=centre;
@@ -30,6 +31,8 @@ void Pose::setPose(coordonnee positionDansLImage,coordonnee centre,int animation
 	m_lumiere_intensite=lum_intensite;
 
 	m_tempsAnimation=tempsAnimation;
+
+	m_ordre=ordre;
 }
 
 coordonnee Pose::getCoordonnee(){return m_positionDansLImage;}
@@ -40,4 +43,5 @@ int Pose::getImage(){return m_image;}
 int Pose::getAttaque(){return m_attaque;}
 int Pose::getLumiereIntensite(){return m_lumiere_intensite;}
 float Pose::getTempsAnimation(){return m_tempsAnimation;}
+int Pose::getOrdre() {return m_ordre;}
 

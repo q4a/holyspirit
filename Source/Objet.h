@@ -47,6 +47,9 @@ class Objet
     int m_degatsMin, m_degatsMax,m_armure;
     int m_capaciteBenediction;
 
+    std::vector <int> m_emplacementImageHero;
+    std::vector <std::string> m_cheminImageHero;
+
     std::vector <benediction> m_benedictions;
 
     sf::Color m_color;

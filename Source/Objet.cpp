@@ -36,7 +36,8 @@ Objet::~Objet()
 {
     m_description.clear();
     m_benedictions.clear();
-    m_description.clear();
+    m_emplacement.clear();
+    m_emplacementImpossible.clear();
 }
 
 std::string Objet::getNom(){return m_nom;}
@@ -123,7 +124,7 @@ void Objet::Sauvegarder(std::ofstream *fichier)
     fichier->write((char*)&caractere, sizeof(char));
     int n=m_chemin.size()+1;
     fichier->write((char *)&n, sizeof(int));
-    fichier->write((char*)m_chemin.c_str(), n);
+    fichier->write(m_chemin.c_str(), n);
    // fichier->write((char*)&espace, sizeof(char));
 
     for(int i=0;i<m_benedictions.size();i++)
@@ -252,6 +253,39 @@ void Objet::Charger(std::string chemin)
 
     	}while(caractere!='$');
 
+    	//m_cheminImageHero="";
+        //m_emplacementImageHero=-1;
+
+    	do
+    	{
+
+
+
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
+
+                do
+                {
+                    fichier.get(caractere);
+                    switch (caractere)
+                    {
+                        case 'e' : int temp; fichier>>temp; m_emplacementImageHero.push_back(temp); break;
+                        case 'm' : string temp2; fichier>>temp2; m_cheminImageHero.push_back(temp2); break;
+                    }
+
+                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+                }while(caractere!='$');
+                fichier.get(caractere);
+            }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
+
+
+
+
     	do
     	{
     		fichier.get(caractere);
@@ -370,6 +404,8 @@ void Objet::Charger(std::string chemin)
     }
     else
     console.Ajouter("Impossible d'ouvrir : "+chemin,1);
+
+
 
 
     m_position.x=0;

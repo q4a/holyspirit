@@ -26,6 +26,8 @@
 
 #define NOMBRE_COUCHE_MAP 2
 
+#define NOMBRE_MORCEAU_PERSONNAGE 5
+
 #include <cmath>
 #include <utility>
 #include <iostream>
