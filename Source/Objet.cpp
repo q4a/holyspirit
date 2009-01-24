@@ -626,9 +626,12 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
 }
 
 
-sf::String Objet::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, char *chaine)
+sf::String Objet::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, char *chaine,bool bleu)
 {
     sf::String string;
+
+    if(bleu)
+        string.SetColor(sf::Color(0,128,255));
 
     string.SetSize(14.f*configuration.Resolution.h/600);
     string.SetText(chaine);
@@ -700,11 +703,20 @@ void Objet::AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position
     {
         case ARME:
             sprintf(chaine,"Dégats : %i - %i",(int)(m_degatsMin*multiplieurEfficacite/100),(int)(m_degatsMax*multiplieurEfficacite/100));
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
+
+            if(multiplieurEfficacite!=100)
+                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine,1));
+            else
+                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
+
         break;
         case ARMURE:
             sprintf(chaine,"Armure : %i",(int)(m_armure*multiplieurEfficacite/100));
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
+
+            if(multiplieurEfficacite!=100)
+                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine,1));
+            else
+                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
         break;
     }
 

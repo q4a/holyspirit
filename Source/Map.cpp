@@ -3544,6 +3544,14 @@ Monstre *Map::getEntiteMonstre(int numeroMonstre)
     }
 }
 
+bool Map::getMonstreEnVie(int numeroMonstre)
+{
+    if(numeroMonstre>=0&&numeroMonstre<m_monstre.size())
+        return m_monstre[numeroMonstre].enVie();
+    else
+        return 0;
+}
+
 bool** Map::getAlentourDuPersonnage(coordonnee positionPersonnage)
 {
     bool **grille = new bool* [20];

@@ -39,6 +39,9 @@ class Map
 	coordonnee getPositionMonstre(int numeroMonstre);
 	bool ** getAlentourDuPersonnage(coordonnee positionPersonnage); // Retourne un tableau de bool contenant toutes les collitions dans les alentour du héro, pour le pathfinding
 
+	bool getMonstreEnVie(int numeroMonstre);
+
+
 	void animer(Hero *hero,float temps,Menu *menu,sf::View *camera); // Animation des tiles
 	bool testEvenement(sf::View *camera, Jeu *jeu,float temps);
 	void calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *camera);

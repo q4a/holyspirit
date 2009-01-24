@@ -40,7 +40,11 @@ Hero::Hero()
 	lumiere.bleu=255;
 	lumiere.hauteur=20;
 
-    for(int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;i++)
+	m_modelePersonnage[0].setPorteeLumineuse(lumiere);
+
+	lumiere.intensite=0;
+
+    for(int i=1;i<NOMBRE_MORCEAU_PERSONNAGE;i++)
         m_modelePersonnage[i].setPorteeLumineuse(lumiere);
 
 	Caracteristique temp;
@@ -575,17 +579,14 @@ void Hero::afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionS
     char chaine[255];
      string.SetSize(16*configuration.Resolution.h/600);
 
-
+     string.SetColor(sf::Color(255,255,255));
 
 
     sprintf(chaine,"%i",m_caracteristiques.niveau);
     string.SetText(chaine);
     string.SetX((129*configuration.Resolution.w/800)+22*configuration.Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
     string.SetY(263*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
-    if(m_caracteristiques.vitalite!=m_personnage.getCaracteristique().vitalite)
-        string.SetColor(sf::Color(0,128,255));
-    else
-        string.SetColor(sf::Color(255,255,255));
+    string.SetColor(sf::Color(255,255,255));
     moteurGraphique.AjouterTexte(&string,15);
 
 
@@ -593,10 +594,7 @@ void Hero::afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionS
     string.SetText(chaine);
     string.SetX((1*configuration.Resolution.w/800)+62*configuration.Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
     string.SetY(263*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
-    if(m_caracteristiques.vitalite!=m_personnage.getCaracteristique().vitalite)
-        string.SetColor(sf::Color(0,128,255));
-    else
-        string.SetColor(sf::Color(255,255,255));
+    string.SetColor(sf::Color(255,255,255));
     moteurGraphique.AjouterTexte(&string,15);
 
 
@@ -1038,6 +1036,10 @@ void Hero::recalculerCaracteristiques()
     m_caracteristiques.degatsMax=(int)(m_caracteristiques.force)/2;
     m_caracteristiques.armure=m_caracteristiques.dexterite;
 
+    temp.degatsMin=m_caracteristiques.force/3;
+    temp.degatsMax=(int)(m_caracteristiques.force)/2;
+    temp.armure=m_caracteristiques.dexterite;
+
     m_caracteristiques.maxVie+=m_caracteristiques.vitalite*25;
     m_caracteristiques.maxFoi+=m_caracteristiques.piete*25;
 
@@ -1053,14 +1055,17 @@ void Hero::recalculerCaracteristiques()
 
             m_caracteristiques.degatsMin+=m_inventaire[i].m_degatsMin*accru/100;
             m_caracteristiques.degatsMax+=m_inventaire[i].m_degatsMax*accru/100;
-
             m_caracteristiques.armure+=m_inventaire[i].m_armure*accru/100;
+
+            temp.degatsMin+=m_inventaire[i].m_degatsMin;
+            temp.degatsMax+=m_inventaire[i].m_degatsMax;
+            temp.armure+=m_inventaire[i].m_armure;
         }
     }
 
-    temp.degatsMin=m_caracteristiques.degatsMin;
+    /*temp.degatsMin=m_caracteristiques.degatsMin;
     temp.degatsMax=m_caracteristiques.degatsMax;
-    temp.armure=m_caracteristiques.armure;
+    temp.armure=m_caracteristiques.armure;*/
 
     m_caracteristiques.niveau=temp.niveau;
 
@@ -1424,9 +1429,9 @@ Lumiere Hero::getPorteeLumineuse()
     moyenne.rouge=255;
     moyenne.vert=255;
     moyenne.bleu=255;
-    moyenne.intensite=0;
+    moyenne.intensite=192;
 
-    for(int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;i++)
+    /*for(int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;i++)
     {
         moyenne.rouge=(moyenne.rouge*moyenne.intensite+m_modelePersonnage[i].getPorteeLumineuse().rouge*m_modelePersonnage[i].getPorteeLumineuse().intensite)/(m_modelePersonnage[i].getPorteeLumineuse().intensite+moyenne.intensite);
         moyenne.vert=(moyenne.vert*moyenne.intensite+m_modelePersonnage[i].getPorteeLumineuse().vert*m_modelePersonnage[i].getPorteeLumineuse().intensite)/(m_modelePersonnage[i].getPorteeLumineuse().intensite+moyenne.intensite);
@@ -1438,7 +1443,7 @@ Lumiere Hero::getPorteeLumineuse()
             moyenne.intensite=255;
         if(moyenne.intensite<0)
             moyenne.intensite=0;
-    }
+    }*/
 
     return moyenne;
 }

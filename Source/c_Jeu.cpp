@@ -244,12 +244,11 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     }
 
                     if(retour==2)
-                       if(!jeu->eventManager.getEvenement(Mouse::Left,"C"))
+                       if(!jeu->eventManager.getEvenement(Mouse::Left,"C") || !jeu->map.getMonstreEnVie(jeu->hero.getMonstreVise()) )
                             jeu->hero.setMonstreVise(-1),jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
 
                     if(retour==1)
-                       if(!jeu->eventManager.getEvenement(Mouse::Left,"C"))
-                            jeu->hero.setMonstreVise(-1),jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
+                        jeu->hero.setMonstreVise(-1),jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
 
 
                     jeu->map.animer(&jeu->hero,tempsDepuisDerniereAnimation,&jeu->menu,&jeu->camera); // Animation des tiles de la jeu->map

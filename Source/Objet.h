@@ -55,7 +55,7 @@ class Objet
     sf::Color m_color;
 
     private:
-    sf::String AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, char *chaine);
+    sf::String AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, char *chaine,bool bleu=false);
 
     std::string m_nom,m_chemin;
     std::vector <std::string> m_description;
