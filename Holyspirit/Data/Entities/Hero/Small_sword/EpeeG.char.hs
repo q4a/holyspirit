@@ -66,14 +66,14 @@ Arret - O
 *x896 y512 w128 h128 a0 s-1 i0 t0.16 cy112 o2 $
 $
 Arret - SO
-*x0 y640 w128 h128 a1 s-1 i0 t0.5 cy112 o-2 $
-*x128 y640 w128 h128 a2 s-1 i0 t0.16 cy112 o-2 $
-*x256 y640 w128 h128 a3 s-1 i0 t0.16 cy112 o-2 $
-*x384 y640 w128 h128 a4 s-1 i0 t0.16 cy112 o-2 $
-*x512 y640 w128 h128 a5 s-1 i0 t0.16 cy112 o-2 $
-*x640 y640 w128 h128 a6 s-1 i0 t0.16 cy112 o-2 $
-*x768 y640 w128 h128 a7 s-1 i0 t0.16 cy112 o-2 $
-*x896 y640 w128 h128 a0 s-1 i0 t0.16 cy112 o-2 $
+*x0 y640 w128 h128 a1 s-1 i0 t0.5 cy112 o2 $
+*x128 y640 w128 h128 a2 s-1 i0 t0.16 cy112 o2 $
+*x256 y640 w128 h128 a3 s-1 i0 t0.16 cy112 o2 $
+*x384 y640 w128 h128 a4 s-1 i0 t0.16 cy112 o2 $
+*x512 y640 w128 h128 a5 s-1 i0 t0.16 cy112 o2 $
+*x640 y640 w128 h128 a6 s-1 i0 t0.16 cy112 o2 $
+*x768 y640 w128 h128 a7 s-1 i0 t0.16 cy112 o2 $
+*x896 y640 w128 h128 a0 s-1 i0 t0.16 cy112 o2 $
 $
 Arret - S
 *x0 y768 w128 h128 a1 s-1 i0 t0.5 cy112 o-2 $
