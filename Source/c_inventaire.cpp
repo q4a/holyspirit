@@ -36,7 +36,12 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         jeu->eventManager.AfficherCurseur(&jeu->ecran);
 
     if(jeu->eventManager.getEvenement(Key::I,"ET")||jeu->eventManager.getEvenement(Key::Escape,"ET"))
+    {
+        jeu->hero.ChargerModele();
         m_afficher=0;
+        jeu->Clock.Reset();
+        jeu->eventManager.StopEvenement(Key::I,"ET");
+    }
 
     if(jeu->eventManager.getEvenement(Mouse::Left,"C"))
     {

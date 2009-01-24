@@ -422,11 +422,20 @@ void Hero::ChargerModele()
     int nombreArme=0;
 
     for(int i=0;i<m_inventaire.size();i++)
+    {
         if(m_inventaire[i].m_equipe==ARME_PRINCIPAL&&m_inventaire[i].m_type==ARME||m_inventaire[i].m_equipe==BOUCLIER&&m_inventaire[i].m_type==ARME)
             nombreArme++;
 
+        if(m_inventaire[i].m_equipe==ARME_PRINCIPAL&&m_inventaire[i].m_type==ARME)
+            for(int j=0;j<m_inventaire[i].m_emplacementImpossible.size();j++)
+                if(m_inventaire[i].m_emplacementImpossible[j]==BOUCLIER)
+                    m_cas=2;
+    }
+
     if(nombreArme==2)
         m_cas=1;
+
+
 
     bool pasEquipe[NOMBRE_MORCEAU_PERSONNAGE];
 
@@ -848,8 +857,8 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
 
         sprite.Resize(m_inventaire[m_objetEnMain].getTaille().x*32*configuration.Resolution.w/800,m_inventaire[m_objetEnMain].getTaille().y*32*configuration.Resolution.h/600);
 
-        sprite.SetX(positionSouris.x);
-        sprite.SetY(positionSouris.y);
+        sprite.SetX(positionSouris.x - m_inventaire[m_objetEnMain].getTaille().x*32*configuration.Resolution.w/1600);
+        sprite.SetY(positionSouris.y - m_inventaire[m_objetEnMain].getTaille().y*32*configuration.Resolution.h/1200);
 
         if(m_inventaire[m_objetEnMain].getRarete()==NORMAL)
             sprite.SetColor(sf::Color(224,224,224,128));
@@ -891,8 +900,8 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
 
         if(positionSouris.x<436*configuration.Resolution.w/800||positionSouris.x>436*configuration.Resolution.w/800+32*10*configuration.Resolution.w/800||positionSouris.y<150*configuration.Resolution.h/600||positionSouris.y>150*configuration.Resolution.h/600+32*10*configuration.Resolution.h/600)
         {
-            sprite.SetX(positionSouris.x);
-            sprite.SetY(positionSouris.y);
+            sprite.SetX(positionSouris.x- m_inventaire[m_objetEnMain].getTaille().x*32*configuration.Resolution.w/1600);
+            sprite.SetY(positionSouris.y- m_inventaire[m_objetEnMain].getTaille().y*32*configuration.Resolution.h/1200);
         }
 
         moteurGraphique.AjouterCommande(&sprite,19,0);
@@ -1037,14 +1046,15 @@ void Hero::recalculerCaracteristiques()
     {
         if(m_inventaire[i].m_equipe>0)
         {
-            m_caracteristiques.degatsMin+=m_inventaire[i].m_degatsMin;
-            m_caracteristiques.degatsMax+=m_inventaire[i].m_degatsMax;
+            int accru=100;
+            for(int j=0;j<m_inventaire[i].m_benedictions.size();++j)
+                if(m_inventaire[i].m_benedictions[j].type==EFFICACITE_ACCRUE)
+                    accru+=m_inventaire[i].m_benedictions[j].info1;
 
-            temp.degatsMin+=m_caracteristiques.degatsMin;
-            temp.degatsMax+=m_caracteristiques.degatsMax;
+            m_caracteristiques.degatsMin+=m_inventaire[i].m_degatsMin*accru/100;
+            m_caracteristiques.degatsMax+=m_inventaire[i].m_degatsMax*accru/100;
 
-            m_caracteristiques.armure+=m_inventaire[i].m_armure;
-            temp.armure+=m_caracteristiques.armure;
+            m_caracteristiques.armure+=m_inventaire[i].m_armure*accru/100;
         }
     }
 
@@ -1369,7 +1379,6 @@ bool Hero::equiper(int numero, int emplacement)
                 m_objetEnMain=i;
     }
 
-    ChargerModele();
     recalculerCaracteristiques();
 }
 
