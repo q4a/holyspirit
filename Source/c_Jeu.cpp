@@ -176,6 +176,9 @@ void c_Jeu::Utiliser(Jeu *jeu)
                             if(jeu->hero.testMonstreVise(jeu->map.getEntiteMonstre(jeu->hero.getMonstreVise()),jeu->map.getDimensions().y))
                                 ok=false;
 
+                        if(jeu->hero.m_personnage.getCoordonnee().x==jeu->hero.m_personnage.getArrivee().x && jeu->hero.m_personnage.getCoordonnee().y==jeu->hero.m_personnage.getArrivee().y)
+                            ok=false;
+
                         if(ok)
                             jeu->hero.m_personnage.pathfinding(jeu->map.getAlentourDuPersonnage(jeu->hero.m_personnage.getCoordonnee()),temp); // Recherche du chemin
                         if(configuration.Lumiere)
