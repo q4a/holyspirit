@@ -1,19 +1,21 @@
 Liste des chemins de toutes les images du personnage
-*Data/Entities/Hero/EpeeCourteAttenteGauche.png
-*Data/Entities/Hero/EpeeCourteMarche3.png
-*Data/Entities/Hero/EpeeCourteMarche4.png
-*Data/Entities/Hero/EpeeCourteGauche1.png
-*Data/Entities/Hero/EpeeCourteGauche2.png
-*Data/Entities/Hero/EpeeCourteGauche3.png
-*Data/Entities/Hero/EpeeCourteGauche4.png
-*Data/Entities/Hero/EpeeCourteGauche5.png
-*Data/Entities/Hero/EpeeCourteGauche6.png
-*Data/Entities/Hero/EpeeCourteGauche7.png
-*Data/Entities/Hero/EpeeCourteGauche8.png
+*Data/Entities/Hero/Small_sword/TueuseDivineAttenteGauche.png
+*Data/Entities/Hero/Small_sword/TueuseDivineMarche3.png
+*Data/Entities/Hero/Small_sword/TueuseDivineMarche4.png
+*Data/Entities/Hero/Small_sword/TueuseDivineGauche1.png
+*Data/Entities/Hero/Small_sword/TueuseDivineGauche2.png
+*Data/Entities/Hero/Small_sword/TueuseDivineGauche3.png
+*Data/Entities/Hero/Small_sword/TueuseDivineGauche4.png
+*Data/Entities/Hero/Small_sword/TueuseDivineGauche5.png
+*Data/Entities/Hero/Small_sword/TueuseDivineGauche6.png
+*Data/Entities/Hero/Small_sword/TueuseDivineGauche7.png
+*Data/Entities/Hero/Small_sword/TueuseDivineGauche8.png
 $
 Liste des chemins de tous les sons
 
+
 $
+* r0 v0 b128 i128 $
 $
 Arret - E
 *x0 y0 w128 h128 a1 s-1 i0 t0.5 cy112 o-2 $

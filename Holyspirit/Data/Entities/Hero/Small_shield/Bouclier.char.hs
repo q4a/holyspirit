@@ -1,15 +1,15 @@
 Liste des chemins de toutes les images du personnage
-*Data/Entities/Hero/PetitBouclierAttente.png
-*Data/Entities/Hero/PetitBouclierMarche1.png
-*Data/Entities/Hero/PetitBouclierMarche2.png
-*Data/Entities/Hero/PetitBouclierFrappe1.png
-*Data/Entities/Hero/PetitBouclierFrappe2.png
-*Data/Entities/Hero/PetitBouclierFrappe3.png
-*Data/Entities/Hero/PetitBouclierFrappe4.png
-*Data/Entities/Hero/PetitBouclierFrappe5.png
-*Data/Entities/Hero/PetitBouclierFrappe6.png
-*Data/Entities/Hero/PetitBouclierFrappe7.png
-*Data/Entities/Hero/PetitBouclierFrappe8.png
+*Data/Entities/Hero/Small_shield/PetitBouclierAttente.png
+*Data/Entities/Hero/Small_shield/PetitBouclierMarche1.png
+*Data/Entities/Hero/Small_shield/PetitBouclierMarche2.png
+*Data/Entities/Hero/Small_shield/PetitBouclierFrappe1.png
+*Data/Entities/Hero/Small_shield/PetitBouclierFrappe2.png
+*Data/Entities/Hero/Small_shield/PetitBouclierFrappe3.png
+*Data/Entities/Hero/Small_shield/PetitBouclierFrappe4.png
+*Data/Entities/Hero/Small_shield/PetitBouclierFrappe5.png
+*Data/Entities/Hero/Small_shield/PetitBouclierFrappe6.png
+*Data/Entities/Hero/Small_shield/PetitBouclierFrappe7.png
+*Data/Entities/Hero/Small_shield/PetitBouclierFrappe8.png
 $
 Liste des chemins de tous les sons
 

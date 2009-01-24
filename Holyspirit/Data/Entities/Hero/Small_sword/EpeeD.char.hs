@@ -1,15 +1,15 @@
 Liste des chemins de toutes les images du personnage
-*Data/Entities/Hero/EpeeCourteAttenteDroite.png
-*Data/Entities/Hero/EpeeCourteMarche1.png
-*Data/Entities/Hero/EpeeCourteMarche2.png
-*Data/Entities/Hero/EpeeCourte1.png
-*Data/Entities/Hero/EpeeCourte2.png
-*Data/Entities/Hero/EpeeCourte3.png
-*Data/Entities/Hero/EpeeCourte4.png
-*Data/Entities/Hero/EpeeCourte5.png
-*Data/Entities/Hero/EpeeCourte6.png
-*Data/Entities/Hero/EpeeCourte7.png
-*Data/Entities/Hero/EpeeCourte8.png
+*Data/Entities/Hero/Small_sword/EpeeCourteAttenteDroite.png
+*Data/Entities/Hero/Small_sword/EpeeCourteMarche1.png
+*Data/Entities/Hero/Small_sword/EpeeCourteMarche2.png
+*Data/Entities/Hero/Small_sword/EpeeCourte1.png
+*Data/Entities/Hero/Small_sword/EpeeCourte2.png
+*Data/Entities/Hero/Small_sword/EpeeCourte3.png
+*Data/Entities/Hero/Small_sword/EpeeCourte4.png
+*Data/Entities/Hero/Small_sword/EpeeCourte5.png
+*Data/Entities/Hero/Small_sword/EpeeCourte6.png
+*Data/Entities/Hero/Small_sword/EpeeCourte7.png
+*Data/Entities/Hero/Small_sword/EpeeCourte8.png
 $
 Liste des chemins de tous les sons
 
