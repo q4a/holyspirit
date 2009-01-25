@@ -6,7 +6,7 @@ $
 $
 *Data/Items/Images/TwoHand01Sword.png
 $
-* e1 mData/Entities/Hero/Two_hands_sword/Epee2M.char.hs $
+* e1 mData/Entities/Hero/Two_hands_sword/Two_hands_sword.rs.hs $
 $
 *x0 y0 h160 w64 $
 $

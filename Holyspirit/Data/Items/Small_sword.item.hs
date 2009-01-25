@@ -6,7 +6,7 @@ $
 $
 *Data/Items/Images/swords01.png
 $
-* e1 mData/Entities/Hero/Small_sword/EpeeD.char.hs e2 mData/Entities/Hero/Small_sword/EpeeG.char.hs $
+* e1 mData/Entities/Hero/Small_sword/Small_sword_r.rs.hs e2 mData/Entities/Hero/Small_sword/Small_sword_l.rs.hs $
 $
 *x0 y0 h96 w32 $
 $
