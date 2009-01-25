@@ -485,22 +485,22 @@ void Hero::ChargerModele()
     if(pasEquipe[0])
     {
         if(m_cas==0)
-            if(m_cheminModele[0]!="Data/Entities/hero/Nude/NudeOneHand.rs.hs")
+            if(m_cheminModele[0]!="Data/Entities/hero/Nude/OneHand.rs.hs")
             {
-                m_modelePersonnage[0].Charger("Data/Entities/hero/Nude/NudeOneHand.rs.hs");
-                m_cheminModele[0]="Data/Entities/hero/Nude/NudeOneHand.rs.hs";
+                m_modelePersonnage[0].Charger("Data/Entities/hero/Nude/OneHand.rs.hs");
+                m_cheminModele[0]="Data/Entities/hero/Nude/OneHand.rs.hs";
             }
         if(m_cas==1)
-            if(m_cheminModele[0]!="Data/Entities/hero/Nude/NudeTwoWeapons.rs.hs")
+            if(m_cheminModele[0]!="Data/Entities/hero/Nude/TwoWeapons.rs.hs")
             {
-                m_modelePersonnage[0].Charger("Data/Entities/hero/Nude/NudeTwoWeapons.rs.hs");
-                m_cheminModele[0]="Data/Entities/hero/Nude/NudeTwoWeapons.rs.hs";
+                m_modelePersonnage[0].Charger("Data/Entities/hero/Nude/TwoWeapons.rs.hs");
+                m_cheminModele[0]="Data/Entities/hero/Nude/TwoWeapons.rs.hs";
             }
         if(m_cas==2)
-            if(m_cheminModele[0]!="Data/Entities/hero/Nude/NudeTwoHand.rs.hs")
+            if(m_cheminModele[0]!="Data/Entities/hero/Nude/TwoHand.rs.hs")
             {
-                m_modelePersonnage[0].Charger("Data/Entities/hero/Nude/NudeTwoHand.rs.hs");
-                m_cheminModele[0]="Data/Entities/hero/Nude/NudeTwoHand.rs.hs";
+                m_modelePersonnage[0].Charger("Data/Entities/hero/Nude/TwoHand.rs.hs");
+                m_cheminModele[0]="Data/Entities/hero/Nude/TwoHand.rs.hs";
             }
     }
 
@@ -817,7 +817,55 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
 
                     sprite.SetX((262)*configuration.Resolution.w/800);
                     sprite.SetY((14)*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
-                    if(m_objetEnMain==-1&&positionSouris.x>262*configuration.Resolution.w/800&&positionSouris.x<<324*configuration.Resolution.w/800&&positionSouris.y>14*configuration.Resolution.h/600&&positionSouris.y<77*configuration.Resolution.h/600)
+                    if(m_objetEnMain==-1&&positionSouris.x>262*configuration.Resolution.w/800&&positionSouris.x<324*configuration.Resolution.w/800&&positionSouris.y>14*configuration.Resolution.h/600&&positionSouris.y<77*configuration.Resolution.h/600)
+                        m_inventaire[i].AfficherCaracteristiques(ecran,positionSouris);
+                }
+
+                if(m_inventaire[i].m_equipe==BOTTES)
+                {
+                    sprite.Resize(64*configuration.Resolution.w/800,64*configuration.Resolution.h/600);
+
+                    position.h=64*configuration.Resolution.h/600;
+                    position.w=64*configuration.Resolution.w/800;
+
+                    position.x=(300 + 32 - m_inventaire[i].getPositionImage().w/2 )*configuration.Resolution.w/800;
+                    position.y=(184 + 32 - m_inventaire[i].getPositionImage().h/2 )*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600;
+
+                    sprite.SetX((300)*configuration.Resolution.w/800);
+                    sprite.SetY((184)*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
+                    if(m_objetEnMain==-1&&positionSouris.x>300*configuration.Resolution.w/800&&positionSouris.x<364*configuration.Resolution.w/800&&positionSouris.y>184*configuration.Resolution.h/600&&positionSouris.y<248*configuration.Resolution.h/600)
+                        m_inventaire[i].AfficherCaracteristiques(ecran,positionSouris);
+                }
+
+                if(m_inventaire[i].m_equipe==ANNEAU1)
+                {
+                    sprite.Resize(32*configuration.Resolution.w/800,32*configuration.Resolution.h/600);
+
+                    position.h=32*configuration.Resolution.h/600;
+                    position.w=32*configuration.Resolution.w/800;
+
+                    position.x=(153 + 16 - m_inventaire[i].getPositionImage().w/2 )*configuration.Resolution.w/800;
+                    position.y=(148 + 16 - m_inventaire[i].getPositionImage().h/2 )*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600;
+
+                    sprite.SetX((153)*configuration.Resolution.w/800);
+                    sprite.SetY((148)*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
+                    if(m_objetEnMain==-1&&positionSouris.x>153*configuration.Resolution.w/800&&positionSouris.x<185*configuration.Resolution.w/800&&positionSouris.y>148*configuration.Resolution.h/600&&positionSouris.y<180*configuration.Resolution.h/600)
+                        m_inventaire[i].AfficherCaracteristiques(ecran,positionSouris);
+                }
+
+                if(m_inventaire[i].m_equipe==ANNEAU2)
+                {
+                    sprite.Resize(32*configuration.Resolution.w/800,32*configuration.Resolution.h/600);
+
+                    position.h=32*configuration.Resolution.h/600;
+                    position.w=32*configuration.Resolution.w/800;
+
+                    position.x=(104 + 16 - m_inventaire[i].getPositionImage().w/2 )*configuration.Resolution.w/800;
+                    position.y=(148 + 16 - m_inventaire[i].getPositionImage().h/2 )*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600;
+
+                    sprite.SetX((104)*configuration.Resolution.w/800);
+                    sprite.SetY((148)*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
+                    if(m_objetEnMain==-1&&positionSouris.x>104*configuration.Resolution.w/800&&positionSouris.x<136*configuration.Resolution.w/800&&positionSouris.y>148*configuration.Resolution.h/600&&positionSouris.y<180*configuration.Resolution.h/600)
                         m_inventaire[i].AfficherCaracteristiques(ecran,positionSouris);
                 }
             }
@@ -1269,6 +1317,12 @@ Objet Hero::prendreEnMain(coordonnee positionSouris)
                 equiper(m_objetEnMain,ARMURE_CORPS2);
             else if(positionSouris.x>262*configuration.Resolution.w/800&&positionSouris.x<324*configuration.Resolution.w/800&&positionSouris.y>14*configuration.Resolution.h/600&&positionSouris.y<77*configuration.Resolution.h/600)
                 equiper(m_objetEnMain,CASQUE);
+            else if(positionSouris.x>300*configuration.Resolution.w/800&&positionSouris.x<364*configuration.Resolution.w/800&&positionSouris.y>184*configuration.Resolution.h/600&&positionSouris.y<248*configuration.Resolution.h/600)
+                equiper(m_objetEnMain,BOTTES);
+            else if(positionSouris.x>153*configuration.Resolution.w/800&&positionSouris.x<185*configuration.Resolution.w/800&&positionSouris.y>148*configuration.Resolution.h/600&&positionSouris.y<180*configuration.Resolution.h/600)
+                equiper(m_objetEnMain,ANNEAU1);
+            else if(positionSouris.x>104*configuration.Resolution.w/800&&positionSouris.x<136*configuration.Resolution.w/800&&positionSouris.y>148*configuration.Resolution.h/600&&positionSouris.y<180*configuration.Resolution.h/600)
+                equiper(m_objetEnMain,ANNEAU2);
             else if(positionSouris.x>94*configuration.Resolution.w/800&&positionSouris.x<190*configuration.Resolution.w/800&&positionSouris.y>40*configuration.Resolution.h/600&&positionSouris.y<136*configuration.Resolution.h/600)
                 equiper(m_objetEnMain,BOUCLIER);
 

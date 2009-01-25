@@ -423,13 +423,29 @@ void Objet::Generer(int bonus)
     m_color.b=255;
     m_color.a=255;
 
-    if(m_rarete==0)
+    if(m_rarete<DIVIN)
     {
-         int nbrBene=0;
+        int nbrBene=0;
+        int rarete=NORMAL;
         int random=rand()%10000 / bonus;
         if(random<=3000)
+            rarete=BONNEFACTURE;
+
+        if(random<=300)
+            rarete=BENI;
+
+        if(random<=50)
+            rarete=SACRE;
+
+        if(random<10)
+            rarete=SANCTIFIE;
+
+        if(rarete<m_rarete)
+            rarete=m_rarete;
+        m_rarete=rarete;
+
+        if(m_rarete==BONNEFACTURE)
         {
-            m_rarete=BONNEFACTURE;
             m_armure*=1;
             m_degatsMin*=1;
             m_degatsMax*=1;
@@ -439,9 +455,9 @@ void Objet::Generer(int bonus)
             m_color.g=255-rand()%64;
             m_color.b=255-rand()%64;
         }
-        if(random<=300)
+
+        if(m_rarete==BENI)
         {
-            m_rarete=BENI;
             m_armure*=1;
             m_degatsMin*=1;
             m_degatsMax*=1;
@@ -451,9 +467,9 @@ void Objet::Generer(int bonus)
             m_color.g=255-rand()%128;
             m_color.b=255-rand()%128;
         }
-        if(random<=50)
+
+        if(m_rarete==SACRE)
         {
-            m_rarete=SACRE;
             m_armure*=1;
             m_degatsMin*=1;
             m_degatsMax*=1;
@@ -463,9 +479,9 @@ void Objet::Generer(int bonus)
             m_color.g=255-rand()%192;
             m_color.b=255-rand()%192;
         }
-        if(random<10)
+
+        if(m_rarete==SANCTIFIE)
         {
-            m_rarete=SANCTIFIE;
             m_armure*=1;
             m_degatsMin*=1;
             m_degatsMax*=1;
@@ -475,30 +491,6 @@ void Objet::Generer(int bonus)
             m_color.g=255-rand()%255;
             m_color.b=255-rand()%255;
         }
-        /*if(random<3)
-        {
-            m_rarete=DIVIN;
-            m_armure*=1;
-            m_degatsMin*=1;
-            m_degatsMax*=1;
-            nbrBene=rand()%(30-15)+15;
-
-            m_color.r=255-rand()%255;
-            m_color.g=255-rand()%255;
-            m_color.b=255-rand()%255;
-        }
-        if(random==1)
-        {
-            m_rarete=INFERNAL;
-            m_armure*=1;
-            m_degatsMin*=1;
-            m_degatsMax*=1;
-            nbrBene=rand()%(50-30)+30;
-
-            m_color.r=255-rand()%255;
-            m_color.g=255-rand()%255;
-            m_color.b=255-rand()%255;
-        }*/
 
         for(int i=0;i<nbrBene;i++)
         {

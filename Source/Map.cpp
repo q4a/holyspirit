@@ -299,7 +299,7 @@ bool Map::Charger(int numeroMap)
     			string cheminDuTileset;
                 getline(fichier, cheminDuTileset);
                 m_herbe.push_back(Herbe ());
-                if(!m_herbe[m_herbe.size()-1].Charger(cheminDuTileset))
+                if(!m_herbe.at(m_herbe.size()-1).Charger(cheminDuTileset))
                     return 0;
 
     		}
@@ -1961,37 +1961,15 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                         {
                                 if(m_monstreIllumine==m_decor[0][j][k].getMonstre()&&m_monstreIllumine!=-1||m_monstreIllumine==m_decor[1][j][k].getMonstre()&&m_monstreIllumine!=-1)
                                 {
-                                    if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
-                                    {
-                                        if(m_monstre[m_decor[0][j][k].getMonstre()].enVie())
-                                        {
-                                            m_monstre[m_decor[0][j][k].getMonstre()].m_lumiere.rouge=255;
-                                            m_monstre[m_decor[0][j][k].getMonstre()].m_lumiere.vert=32;
-                                            m_monstre[m_decor[0][j][k].getMonstre()].m_lumiere.bleu=32;
-                                            m_monstre[m_decor[0][j][k].getMonstre()].m_lumiere.intensite=255;
-                                        }
-
-                                        m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
-                                    }
-
-                                    if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
-                                    {
-                                        if(m_monstre[m_decor[1][j][k].getMonstre()].enVie())
-                                        {
-                                            m_monstre[m_decor[1][j][k].getMonstre()].m_lumiere.rouge=255;
-                                            m_monstre[m_decor[1][j][k].getMonstre()].m_lumiere.vert=32;
-                                            m_monstre[m_decor[1][j][k].getMonstre()].m_lumiere.bleu=32;
-                                            m_monstre[m_decor[1][j][k].getMonstre()].m_lumiere.intensite=255;
-                                        }
-                                        m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
-                                    }
                                 }
                                 else
                                 {
                                     if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
-                                        m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
+                                        //if(m_monstre[m_decor[0][j][k].getMonstre()].getCoordonnee().x<=m_monstre[m_decor[0][j][k].getMonstre()].getProchaineCase().x && m_monstre[m_decor[0][j][k].getMonstre()].getCoordonnee().y<=m_monstre[m_decor[0][j][k].getMonstre()].getProchaineCase().y)
+                                            m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
                                     if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
-                                        m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
+                                       // if(m_monstre[m_decor[0][j][k].getMonstre()].getCoordonnee().x<=m_monstre[m_decor[0][j][k].getMonstre()].getProchaineCase().x && m_monstre[m_decor[0][j][k].getMonstre()].getCoordonnee().y<=m_monstre[m_decor[0][j][k].getMonstre()].getProchaineCase().y)
+                                            m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
                                 }
                         }
 
@@ -2002,13 +1980,13 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                         }
                         else
                         {
-                            if(hero->m_personnage.getCoordonnee().x>hero->m_personnage.getProchaineCase().x&&hero->m_personnage.getCoordonnee().y>hero->m_personnage.getProchaineCase().y)
-                            {
-                                if(hero->m_personnage.getProchaineCase().x+1==k&&hero->m_personnage.getProchaineCase().y+1==j)
-                                    hero->Afficher(ecran,camera,position,getDimensions());
-                            }
-                            else
-                                if(hero->m_personnage.getProchaineCase().x==k&&hero->m_personnage.getProchaineCase().y==j)
+                            coordonnee decalage={0,0,0,0};
+                            if(hero->m_personnage.getCoordonnee().x>hero->m_personnage.getProchaineCase().x)
+                                decalage.x=1;
+                            if(hero->m_personnage.getCoordonnee().y>hero->m_personnage.getProchaineCase().y)
+                                decalage.y=1;
+
+                            if(hero->m_personnage.getProchaineCase().x+decalage.x==k&&hero->m_personnage.getProchaineCase().y+decalage.y==j)
                                     hero->Afficher(ecran,camera,position,getDimensions());
                         }
 
@@ -2056,6 +2034,49 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                                     Sprite.SetScale(1,1);
                                 }
+
+
+                        if(j>=0&&j<m_decor[0].size()&&k>=0&&k<m_decor[0][0].size())
+                        {
+                                if(m_monstreIllumine==m_decor[0][j][k].getMonstre()&&m_monstreIllumine!=-1||m_monstreIllumine==m_decor[1][j][k].getMonstre()&&m_monstreIllumine!=-1)
+                                {
+                                    if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
+                                    {
+                                        if(m_monstre[m_decor[0][j][k].getMonstre()].enVie())
+                                        {
+                                            m_monstre[m_decor[0][j][k].getMonstre()].m_lumiere.rouge=255;
+                                            m_monstre[m_decor[0][j][k].getMonstre()].m_lumiere.vert=32;
+                                            m_monstre[m_decor[0][j][k].getMonstre()].m_lumiere.bleu=32;
+                                            m_monstre[m_decor[0][j][k].getMonstre()].m_lumiere.intensite=255;
+                                        }
+
+                                        m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
+                                    }
+
+                                    if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
+                                    {
+                                        if(m_monstre[m_decor[1][j][k].getMonstre()].enVie())
+                                        {
+                                            m_monstre[m_decor[1][j][k].getMonstre()].m_lumiere.rouge=255;
+                                            m_monstre[m_decor[1][j][k].getMonstre()].m_lumiere.vert=32;
+                                            m_monstre[m_decor[1][j][k].getMonstre()].m_lumiere.bleu=32;
+                                            m_monstre[m_decor[1][j][k].getMonstre()].m_lumiere.intensite=255;
+                                        }
+                                        m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
+                                    }
+                                }
+                                /*else
+                                {
+                                    if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
+                                        if(m_monstre[m_decor[0][j][k].getMonstre()].getCoordonnee().x>m_monstre[m_decor[0][j][k].getMonstre()].getProchaineCase().x || m_monstre[m_decor[0][j][k].getMonstre()].getCoordonnee().y>m_monstre[m_decor[0][j][k].getMonstre()].getProchaineCase().y)
+                                            m_monstre[m_decor[0][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()]);
+                                    if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
+                                        if(m_monstre[m_decor[1][j][k].getMonstre()].getCoordonnee().x>m_monstre[m_decor[1][j][k].getMonstre()].getProchaineCase().x || m_monstre[m_decor[1][j][k].getMonstre()].getCoordonnee().y>m_monstre[m_decor[1][j][k].getMonstre()].getProchaineCase().y)
+                                            m_monstre[m_decor[1][j][k].getMonstre()].Afficher(ecran,camera,position,getDimensions(),&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()]);
+                                }*/
+                        }
+
+
 
                         if(j>=0&&j<m_decor[0].size()&&k>=0&&k<m_decor[0][0].size())
                         {

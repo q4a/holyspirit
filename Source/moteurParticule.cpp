@@ -75,7 +75,7 @@ void ParticuleSysteme::Generer(float force, ModeleParticuleSysteme *modele,coord
 }
 bool ParticuleSysteme::Gerer(float temps,int tailleMapY)
 {
-    int efface=0;
+    bool efface=false;
     for(int i=0;i<m_particules.size();i++)
     {
         if(m_particules[i].vie==100)
@@ -120,12 +120,12 @@ bool ParticuleSysteme::Gerer(float temps,int tailleMapY)
         if(m_particules[i].vie<=0)
              m_particules[i].alpha-=temps*100;
         if(m_particules[i].alpha<=0)
-            m_particules[i].alpha=0,efface++;
+            efface=true;
 
 
     }
 
-    if(efface==m_particules.size())
+    if(efface)
         return 0;
 
     return 1;
