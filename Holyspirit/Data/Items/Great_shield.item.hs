@@ -8,7 +8,7 @@ $
 $
 * e2 mData/Entities/Hero/Small_shield/Small_shield.rs.hs $
 $
-*x0 y0 h96 w96 $
+*x96 y0 h96 w96 $
 $
 *x3 y3 $
 $
