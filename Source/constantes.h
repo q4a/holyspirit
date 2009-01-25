@@ -34,6 +34,8 @@
 #include <fstream>
 #include <vector>
 
+#include "datFile.h"
+
 #include "console.h"
 
 

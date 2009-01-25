@@ -92,6 +92,8 @@
 		<Unit filename="constantes.h" />
 		<Unit filename="contexte.cpp" />
 		<Unit filename="crypter.cpp" />
+		<Unit filename="datFile.cpp" />
+		<Unit filename="datFile.h" />
 		<Unit filename="decor.cpp" />
 		<Unit filename="evenement.cpp" />
 		<Unit filename="eventManager.cpp" />

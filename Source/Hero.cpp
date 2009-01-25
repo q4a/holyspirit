@@ -485,22 +485,22 @@ void Hero::ChargerModele()
     if(pasEquipe[0])
     {
         if(m_cas==0)
-            if(m_cheminModele[0]!="Data/Entities/hero/Nude/CroiseSansArmure.char.hs")
+            if(m_cheminModele[0]!="Data/Entities/hero/Nude/NudeOneHand.rs.hs")
             {
-                m_modelePersonnage[0].Charger("Data/Entities/hero/Nude/CroiseSansArmure.char.hs");
-                m_cheminModele[0]="Data/Entities/hero/Nude/CroiseSansArmure.char.hs";
+                m_modelePersonnage[0].Charger("Data/Entities/hero/Nude/NudeOneHand.rs.hs");
+                m_cheminModele[0]="Data/Entities/hero/Nude/NudeOneHand.rs.hs";
             }
         if(m_cas==1)
-            if(m_cheminModele[0]!="Data/Entities/hero/Nude/CroiseSansArmureDeuxArmes.char.hs")
+            if(m_cheminModele[0]!="Data/Entities/hero/Nude/NudeTwoWeapons.rs.hs")
             {
-                m_modelePersonnage[0].Charger("Data/Entities/hero/Nude/CroiseSansArmureDeuxArmes.char.hs");
-                m_cheminModele[0]="Data/Entities/hero/Nude/CroiseSansArmureDeuxArmes.char.hs";
+                m_modelePersonnage[0].Charger("Data/Entities/hero/Nude/NudeTwoWeapons.rs.hs");
+                m_cheminModele[0]="Data/Entities/hero/Nude/NudeTwoWeapons.rs.hs";
             }
         if(m_cas==2)
-            if(m_cheminModele[0]!="Data/Entities/hero/Nude/CroiseSansArmureDeuxMains.char.hs")
+            if(m_cheminModele[0]!="Data/Entities/hero/Nude/NudeTwoHand.rs.hs")
             {
-                m_modelePersonnage[0].Charger("Data/Entities/hero/Nude/CroiseSansArmureDeuxMains.char.hs");
-                m_cheminModele[0]="Data/Entities/hero/Nude/CroiseSansArmureDeuxMains.char.hs";
+                m_modelePersonnage[0].Charger("Data/Entities/hero/Nude/NudeTwoHand.rs.hs");
+                m_cheminModele[0]="Data/Entities/hero/Nude/NudeTwoHand.rs.hs";
             }
     }
 

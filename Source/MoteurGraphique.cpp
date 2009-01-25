@@ -172,6 +172,27 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera)
     }
 }
 
+int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std::string nom)
+{
+    for(int i=0;i<m_cheminsImages.size();i++)
+        if(m_cheminsImages[i]==nom.c_str())
+            return i;
+
+    m_images.push_back(sf::Image ());
+    m_cheminsImages.push_back(nom);
+
+    if(!m_images[m_images.size()-1].LoadFromMemory(Data,SizeInBytes))
+    {
+        console.Ajouter("Impossible de charger depuis la mémoire : "+nom,1);
+        return -1;
+    }
+    else
+        console.Ajouter("Chargement de : "+nom,0);
+
+
+    return m_images.size()-1;
+}
+
 int MoteurGraphique::AjouterImage(std::string chemin)
 {
     for(int i=0;i<m_cheminsImages.size();i++)

@@ -96,11 +96,6 @@ Modele_Personnage::~Modele_Personnage()
    // m_sons.clear();
 }
 
-/*int Modele_Personnage::getBuffer(int ID)
-{
-    if(ID>=0&&ID<m_buffer.size())
-        return m_buffer[ID];
-}*/
 
 bool Modele_Personnage::Charger(string chemin)
 {
@@ -118,59 +113,73 @@ bool Modele_Personnage::Charger(string chemin)
     console.Ajouter("",0);
 	console.Ajouter("Chargement du personnage : "+chemin,0);
 
-    ifstream fichier;
-    fichier.open(chemin.c_str(), ios::in);
+
+	cDAT reader;
+    char* buffer;
+
+    reader.Read(chemin);
+
+	//buffer = reader.GetFile("infos.char.hs");
+
+
+
+    ifstream *fichier;
+    fichier = reader.GetInfos();
+    //fichier.open(chemin.c_str(), ios::in);
     if(fichier)
     {
     	char caractere;
     	do
     	{
-    		fichier.get(caractere);
+    		fichier->get(caractere);
     		if(caractere=='*')
     		{
     			string cheminImage;
-                getline(fichier, cheminImage);
-                m_image.push_back(moteurGraphique.AjouterImage(cheminImage));
+    			*fichier>>cheminImage;
+
+                buffer=reader.GetFile(cheminImage);
+
+                m_image.push_back(moteurGraphique.AjouterImage(buffer, reader.GetFileSize(cheminImage), cheminImage));
     		}
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Personnage \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+    		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Personnage \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
     	}while(caractere!='$');
 
     	m_sons.clear();
     	do
     	{
-    		fichier.get(caractere);
+    		fichier->get(caractere);
     		if(caractere=='*')
     		{
     			string cheminSon;
-                getline(fichier, cheminSon);
+    			*fichier>>cheminSon;
                 m_sons.push_back(moteurSons.AjouterBuffer(cheminSon));
     		}
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Personnage \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+    		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Personnage \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
     	}while(caractere!='$');
 
 
     	do
     	{
-    		fichier.get(caractere);
+    		fichier->get(caractere);
     		if(caractere=='*')
             {
                 do
                 {
-                    fichier.get(caractere);
+                    fichier->get(caractere);
                     switch (caractere)
                     {
-                        case 'r' : fichier>>m_porteeLumineuse.rouge; break;
-                        case 'v' : fichier>>m_porteeLumineuse.vert; break;
-                        case 'b' : fichier>>m_porteeLumineuse.bleu; break;
-                        case 'i' : fichier>>m_porteeLumineuse.intensite; break;
+                        case 'r' : *fichier>>m_porteeLumineuse.rouge; break;
+                        case 'v' : *fichier>>m_porteeLumineuse.vert; break;
+                        case 'b' : *fichier>>m_porteeLumineuse.bleu; break;
+                        case 'i' : *fichier>>m_porteeLumineuse.intensite; break;
                     }
 
-                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+                    if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
 
                 }while(caractere!='$');
-                fichier.get(caractere);
+                fichier->get(caractere);
             }
-    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+    		if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
 
     	}while(caractere!='$');
 
@@ -192,25 +201,25 @@ bool Modele_Personnage::Charger(string chemin)
 
                         do
                         {
-                            fichier.get(caractere);
+                            fichier->get(caractere);
                             switch (caractere)
                             {
-                                case 'x': fichier>>position.x; break;
-                                case 'y': fichier>>position.y; break;
-                                case 'w': fichier>>position.w; break;
-                                case 'h': fichier>>position.h; break;
-                                case 'a': fichier>>animation; break;
-                                case 't': fichier>>tempsAnimation; break;
-                                case 's': fichier>>son; break;
-                                case 'i': fichier>>image; break;
-                                case 'd': fichier>>attaque; break;
-                                case 'l': fichier>>lumiere; break;
+                                case 'x': *fichier>>position.x; break;
+                                case 'y': *fichier>>position.y; break;
+                                case 'w': *fichier>>position.w; break;
+                                case 'h': *fichier>>position.h; break;
+                                case 'a': *fichier>>animation; break;
+                                case 't': *fichier>>tempsAnimation; break;
+                                case 's': *fichier>>son; break;
+                                case 'i': *fichier>>image; break;
+                                case 'd': *fichier>>attaque; break;
+                                case 'l': *fichier>>lumiere; break;
 
-                                case 'o': fichier>>ordre; break;
+                                case 'o': *fichier>>ordre; break;
 
-                                case 'c': fichier.get(caractere); if(caractere=='x') fichier>>centre.x; else fichier>>centre.y; break;
+                                case 'c': fichier->get(caractere); if(caractere=='x') *fichier>>centre.x; else *fichier>>centre.y; break;
                             }
-                            if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
+                            if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
                         }while(caractere!='$');
 
                         if(centre.x==-1)
@@ -220,11 +229,11 @@ bool Modele_Personnage::Charger(string chemin)
 
                         m_pose[i][j].push_back(poseTemp);
                         m_pose[i][j][m_pose[i][j].size()-1].setPose(position,centre,animation,son,image,attaque,lumiere,tempsAnimation,ordre);
-                        fichier.get(caractere);
-                        if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }
+                        fichier->get(caractere);
+                        if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }
                     }
-                    fichier.get(caractere);
-                    if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0; }
+                    fichier->get(caractere);
+                    if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0; }
                 }while(caractere!='$');
     	    }
     	}
@@ -235,7 +244,9 @@ bool Modele_Personnage::Charger(string chemin)
 
         return 0;
     }
-    fichier.close();
+    fichier->close();
+
+    delete fichier;
 
     return true;
 }
