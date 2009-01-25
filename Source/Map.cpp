@@ -1952,7 +1952,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                                     m_decor[0][j][k].getCouleurHerbe().b,
                                                     255));
                                             }
-                                            moteurGraphique.AjouterCommande(&Sprite,8,1);
+                                            moteurGraphique.AjouterCommande(&Sprite,10,1);
                                         }
                                         Sprite.SetScale(1,1);
                                 }
@@ -2050,7 +2050,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                                     m_decor[1][j][k].getCouleurHerbe().b,
                                                     255));
                                             }
-                                            moteurGraphique.AjouterCommande(&Sprite,8,1);
+                                            moteurGraphique.AjouterCommande(&Sprite,10,1);
                                              //ecran->Draw(Sprite);
                                         }
 

@@ -28,13 +28,13 @@
 	<File name="Monstre.h" open="0" top="0" tabpos="7">
 		<Cursor position="868" topLine="0" />
 	</File>
-	<File name="MoteurGraphique.h" open="1" top="0" tabpos="8">
+	<File name="MoteurGraphique.h" open="0" top="0" tabpos="8">
 		<Cursor position="620" topLine="11" />
 	</File>
 	<File name="Objet.h" open="0" top="0" tabpos="7">
 		<Cursor position="1353" topLine="30" />
 	</File>
-	<File name="Personnage.h" open="1" top="0" tabpos="4">
+	<File name="Personnage.h" open="0" top="0" tabpos="4">
 		<Cursor position="542" topLine="14" />
 	</File>
 	<File name="Pose.h" open="0" top="0" tabpos="5">
@@ -97,10 +97,10 @@
 	<File name="crypter.cpp" open="0" top="0" tabpos="24">
 		<Cursor position="529" topLine="7" />
 	</File>
-	<File name="datFile.cpp" open="1" top="1" tabpos="6">
-		<Cursor position="4968" topLine="144" />
+	<File name="datFile.cpp" open="0" top="0" tabpos="6">
+		<Cursor position="4929" topLine="144" />
 	</File>
-	<File name="datFile.h" open="1" top="0" tabpos="5">
+	<File name="datFile.h" open="0" top="0" tabpos="5">
 		<Cursor position="491" topLine="0" />
 	</File>
 	<File name="decor.cpp" open="0" top="0" tabpos="11">
@@ -115,7 +115,7 @@
 	<File name="eventManager.h" open="0" top="0" tabpos="10">
 		<Cursor position="774" topLine="4" />
 	</File>
-	<File name="hero.cpp" open="1" top="0" tabpos="3">
+	<File name="hero.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="17638" topLine="471" />
 	</File>
 	<File name="jeu.cpp" open="0" top="0" tabpos="13">
@@ -136,8 +136,8 @@
 	<File name="main.h" open="0" top="0" tabpos="13">
 		<Cursor position="197" topLine="0" />
 	</File>
-	<File name="map.cpp" open="0" top="0" tabpos="10">
-		<Cursor position="239248" topLine="3504" />
+	<File name="map.cpp" open="1" top="1" tabpos="4">
+		<Cursor position="138908" topLine="2023" />
 	</File>
 	<File name="menu.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="11802" topLine="255" />
@@ -154,10 +154,10 @@
 	<File name="modeleMoteurParticule.cpp" open="0" top="0" tabpos="13">
 		<Cursor position="3006" topLine="55" />
 	</File>
-	<File name="monstre.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="557" topLine="38" />
+	<File name="monstre.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="3516" topLine="114" />
 	</File>
-	<File name="moteurGraphique.cpp" open="1" top="0" tabpos="7">
+	<File name="moteurGraphique.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="7980" topLine="153" />
 	</File>
 	<File name="moteurParticule.cpp" open="0" top="0" tabpos="14">
@@ -176,7 +176,7 @@
 		<Cursor position="19858" topLine="605" />
 	</File>
 	<File name="personnage.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="2772" topLine="117" />
+		<Cursor position="3203" topLine="132" />
 	</File>
 	<File name="pose.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="124" topLine="7" />
