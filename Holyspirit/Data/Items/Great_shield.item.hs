@@ -1,18 +1,18 @@
 * t2 e2 $
 $
-*Petit bouclier.
+*Grand bouclier.
 $
-*"Un petit bouclier."
+*"Un grand bouclier."
 $
 *Data/Items/Images/shield01.png
 $
 * e2 mData/Entities/Hero/Small_shield/Small_shield.rs.hs $
 $
-*x0 y0 h64 w64 $
+*x0 y0 h96 w96 $
 $
-*x2 y2 $
+*x3 y3 $
 $
 *r0 b5  $
 $
-*ai5 aa50 $ 
+*ai25 aa100 $ 
 $
