@@ -527,7 +527,7 @@
 
 1229864540 source:d:\backup disque e\c++\holyspirit\source\ressource.rc
 
-1232810278 source:d:\backup disque e\c++\holyspirit\source\hero.cpp
+1232876600 source:d:\backup disque e\c++\holyspirit\source\hero.cpp
 	"Hero.h"
 	"Globale.h"
 	<iostream>
@@ -727,7 +727,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1232810547 source:d:\backup disque e\c++\holyspirit\source\c_jeu.cpp
+1232816979 source:d:\backup disque e\c++\holyspirit\source\c_jeu.cpp
 	"c_jeu.h"
 	"jeu.h"
 	"Globale.h"

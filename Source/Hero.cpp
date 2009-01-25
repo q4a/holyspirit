@@ -479,7 +479,8 @@ void Hero::ChargerModele()
         }
 
     for(int i=1;i<NOMBRE_MORCEAU_PERSONNAGE;i++)
-        m_modelePersonnage[i].Charger(m_cheminModele[i]);
+        if(m_cheminModele[i]!="")
+            m_modelePersonnage[i].Charger(m_cheminModele[i]);
 
     if(pasEquipe[0])
     {
