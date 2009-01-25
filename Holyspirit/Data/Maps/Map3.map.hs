@@ -21,9 +21,9 @@ Liste des tilesets de l'herbe
 *Data/Landscapes/Grass/Mushroom.ts.hs
 $
 Liste des tilesets des monstres
-*Data/Entities/Monsters/GolemQuartz/GolemQuartz.char.hs
-*Data/Entities/Breakables/Barrel/Barrel.char.hs
-*Data/Entities/Breakables/Barrel/ExplosiveBarrel.char.hs
+*Data/Entities/Monsters/GolemQuartz/GolemQuartz.rs.hs
+*Data/Entities/Breakables/Barrel.rs.hs
+*Data/Entities/Breakables/ExplosiveBarrel.rs.hs
 $
 Liste des événements
 * e0 $ * i2 i57 i31 $

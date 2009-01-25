@@ -41,8 +41,8 @@ Liste des tilesets de l'herbe
 *Data/Landscapes/Grass/Grass1.ts.hs
 $
 Liste des tilesets des monstres
-*Data/Entities/Monsters/PantinMorbide/Axe/PantinMorbide.char.hs
-*Data/Entities/Monsters/ErrantRoche/ErrantRocheChef.char.hs
+*Data/Entities/Monsters/PantinMorbide/Axe/Axe.rs.hs
+*Data/Entities/Monsters/ErrantRoche/ErrantRoche.rs.hs
 $
 Liste des événements
 * e0 $ * i2 i62 i78 $

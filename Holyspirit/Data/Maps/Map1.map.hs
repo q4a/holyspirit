@@ -47,9 +47,9 @@ Liste des tilesets de l'herbe
 *Data/Landscapes/Grass/Grass1.ts.hs
 $
 Liste des tilesets des monstres
-*Data/Entities/Monsters/PantinMorbide/Axe/PantinMorbide.char.hs
-*Data/Entities/Breakables/Barrel/ExplosiveBarrel.char.hs
-*Data/Entities/Monsters/DemonicPriest/DemonicPriest.char.hs
+*Data/Entities/Monsters/PantinMorbide/Axe/Axe.rs.hs
+*Data/Entities/Breakables/ExplosiveBarrel.rs.hs
+*Data/Entities/Monsters/DemonicPriest/DemonicPriest.rs.hs
 $
 Liste des événements
 * e0 $ * i3 i3 i3 $
