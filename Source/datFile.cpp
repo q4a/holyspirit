@@ -15,6 +15,7 @@ cDAT::~cDAT (void)
 {
     if (m_buffer!=NULL)
         delete (m_buffer);
+    m_entries.clear();
 }
 
 bool cDAT::Create (std::vector<std::string> files, std::string destination)

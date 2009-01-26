@@ -1823,7 +1823,7 @@ void Map::AfficherSacInventaire(RenderWindow* ecran,coordonnee positionSac,float
                  {
                      Sprite.SetImage(*moteurGraphique.getImage(0));
                      Sprite.SetColor(sf::Color(255,255,255,128));
-                     Sprite.Resize(320,20*configuration.Resolution.w/800);
+                     Sprite.Resize(320*configuration.Resolution.w/800,20*configuration.Resolution.h/600);
                      Sprite.SetX(436*configuration.Resolution.w/800);
                      Sprite.SetY(30*configuration.Resolution.h/600+(z-m_defilerObjets)*20*configuration.Resolution.w/800 - decalage*configuration.Resolution.h/600);
                      moteurGraphique.AjouterCommande(&Sprite,16,0);
@@ -3413,7 +3413,7 @@ bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *ca
             if(m_monstre[numeroMonstre].getCaracteristique().pointAme>0)
             {
                 coordonneeDecimal position;
-                position.x=(((m_monstre[numeroMonstre].getCoordonnee().x-m_monstre[numeroMonstre].getCoordonnee().y-1+m_decor[0].size())*64)-camera->GetRect().Left+48-(configuration.Resolution.x/configuration.zoom/2-400));
+                position.x=(((m_monstre[numeroMonstre].getCoordonnee().x-m_monstre[numeroMonstre].getCoordonnee().y-1+m_decor[0].size())*64)-camera->GetRect().Left+48-(configuration.Resolution.w/configuration.zoom/2-400));
                 position.y=(((m_monstre[numeroMonstre].getCoordonnee().x+m_monstre[numeroMonstre].getCoordonnee().y)*32)-camera->GetRect().Top-96);
                 menu->AjouterAme(position,m_monstre[numeroMonstre].getCaracteristique().pointAme);
             }

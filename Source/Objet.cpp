@@ -628,14 +628,6 @@ sf::String Objet::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee 
     string.SetSize(14.f*configuration.Resolution.h/600);
     string.SetText(chaine);
 
-    if(position.x<400)
-        string.SetX((position.x-10+((int)string.GetRect().Right-(int)string.GetRect().Left)));
-    else
-        string.SetX((position.x+decalage->x+10-((int)string.GetRect().Right-(int)string.GetRect().Left)));
-
-
-    string.SetY((position.y+decalage->y+10));
-
     if(tailleCadran->x<((int)string.GetRect().Right-(int)string.GetRect().Left))
         tailleCadran->x=((int)string.GetRect().Right-(int)string.GetRect().Left);
 
@@ -655,6 +647,9 @@ void Objet::AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position
     sf::String string;
 
     coordonnee tailleCadran={0,0,0,0},decalage={-10,0,0,0};
+
+    //position.x*=configuration.Resolution.w/configuration.Resolution.x;
+    //position.y*=configuration.Resolution.h/configuration.Resolution.y;
 
     sprintf(chaine,"%s",m_nom.c_str());
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
@@ -721,12 +716,20 @@ void Objet::AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
     }
 
+    if(position.x-tailleCadran.x-10<0)
+            position.x=tailleCadran.x+10;
+
+    if(position.y+decalage.y+10>configuration.Resolution.h)
+            position.y=configuration.Resolution.h-decalage.y-10;
+
+    int decalY=0;
     for(int i=0;i<temp.size();i++)
     {
-        if(position.x<400)
-            temp[i].SetX(position.x+(tailleCadran.x/2-((int)temp[i].GetRect().Right-(int)temp[i].GetRect().Left)/2));
-        else
-            temp[i].SetX(position.x+(tailleCadran.x/2-((int)temp[i].GetRect().Right-(int)temp[i].GetRect().Left)/2)-tailleCadran.x);
+        temp[i].SetY((position.y+decalY+10));
+        temp[i].SetX(position.x+(tailleCadran.x/2-((int)temp[i].GetRect().Right-(int)temp[i].GetRect().Left)/2)-tailleCadran.x);
+
+        decalY+=(int)temp[i].GetRect().Bottom-(int)temp[i].GetRect().Top+5;
+
         moteurGraphique.AjouterTexte(&temp[i],19);
     }
 
@@ -738,10 +741,7 @@ void Objet::AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position
     sprite.SetImage(*moteurGraphique.getImage(0));
     sprite.SetColor(sf::Color(0,0,0,224));
     sprite.SetY(position.y);
-    if(position.x>400)
-        sprite.SetX(position.x-tailleCadran.x+10);
-    else
-        sprite.SetX(position.x-10);
+    sprite.SetX(position.x-tailleCadran.x+10);
     sprite.Resize(tailleCadran.x,tailleCadran.y);
     moteurGraphique.AjouterCommande(&sprite,18,0);
 

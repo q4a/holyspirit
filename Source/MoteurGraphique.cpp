@@ -181,6 +181,9 @@ int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std
     m_images.push_back(sf::Image ());
     m_cheminsImages.push_back(nom);
 
+    if(!configuration.lissage)
+        m_images[m_images.size()-1].SetSmooth(false);
+
     if(!m_images[m_images.size()-1].LoadFromMemory(Data,SizeInBytes))
     {
         console.Ajouter("Impossible de charger depuis la mémoire : "+nom,1);
@@ -201,6 +204,9 @@ int MoteurGraphique::AjouterImage(std::string chemin)
 
     m_images.push_back(sf::Image ());
     m_cheminsImages.push_back(chemin);
+
+    if(!configuration.lissage)
+        m_images[m_images.size()-1].SetSmooth(false);
 
     if(!m_images[m_images.size()-1].LoadFromFile(chemin.c_str()))
     {
@@ -248,8 +254,8 @@ void MoteurGraphique::AjouterTexte(sf::String* string, int couche,bool titre)
         /*while(m_textes.size()<=couche)
             m_textes.push_back(std::vector <sf::String> ());*/
 
-        if(temp.GetRect().Right>configuration.Resolution.x)
-            temp.SetX(configuration.Resolution.x-(temp.GetRect().Right-temp.GetRect().Left));
+        if(temp.GetRect().Right>configuration.Resolution.w)
+            temp.SetX(configuration.Resolution.w-(temp.GetRect().Right-temp.GetRect().Left));
 
         if(temp.GetRect().Left<0)
             temp.SetX(0);
@@ -257,8 +263,8 @@ void MoteurGraphique::AjouterTexte(sf::String* string, int couche,bool titre)
         if(temp.GetRect().Top<0)
             temp.SetY(0);
 
-        if(temp.GetRect().Bottom>configuration.Resolution.y)
-            temp.SetY(configuration.Resolution.y-(temp.GetRect().Bottom-temp.GetRect().Top));
+        if(temp.GetRect().Bottom>configuration.Resolution.h)
+            temp.SetY(configuration.Resolution.h-(temp.GetRect().Bottom-temp.GetRect().Top));
 
         if(titre)
         {

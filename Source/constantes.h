@@ -120,6 +120,7 @@ struct Configuration
                         if(chaine== "window:") { fichier>>mode_fenetre; }
                         if(chaine== "videos:") { fichier>>video; }
                         if(chaine== "postFX:") { fichier>>postFX; }
+                        if(chaine== "smooth:") { fichier>>lissage; }
                         if(chaine== "blood:") { fichier>>sang; }
                         if(chaine== "shadows:") { fichier>>Ombre; }
                         if(chaine== "light_quality:") { fichier>>Lumiere; }
@@ -255,6 +256,7 @@ struct Configuration
                         fichier<< "blood: " <<sang<<std::endl;
                         fichier<< "grass: " <<Herbes<<std::endl;
                         fichier<< "particules: " <<particules<<std::endl;
+                        fichier<< "smooth: " <<lissage<<std::endl;
                         fichier<<std::endl;
                         fichier<<std::endl;
                         fichier<<"SOUNDS"<<std::endl;
@@ -282,7 +284,7 @@ struct Configuration
 
 
     coordonnee Resolution;
-    bool Ombre,Minimap,amelioration_lampes,console,Herbes,syncronisation_verticale,mode_fenetre,postFX,sang,video,particules,debug,desactivate_console;
+    bool Ombre,Minimap,amelioration_lampes,console,Herbes,syncronisation_verticale,mode_fenetre,postFX,sang,video,particules,debug,desactivate_console,lissage;
     int Lumiere;
     float effetMort,effetNoir,volume,minute,zoom,frequence_sauvegarde,frequence_lumiere,luminosite,contrastes;
     int heure,cache,alpha;

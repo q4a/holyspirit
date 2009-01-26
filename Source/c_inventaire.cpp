@@ -41,6 +41,9 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         m_afficher=0;
         jeu->Clock.Reset();
         jeu->eventManager.StopEvenement(Key::I,"ET");
+
+        if(jeu->hero.m_objetEnMain>=0)
+            jeu->map.AjouterObjet(jeu->hero.prendreEnMain(jeu->eventManager.getPositionSouris()));
     }
 
     if(jeu->eventManager.getEvenement(Mouse::Left,"C"))

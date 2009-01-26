@@ -248,6 +248,8 @@ bool Modele_Personnage::Charger(string chemin)
 
     delete fichier;
 
+    delete[] buffer;
+
     return true;
 }
 
@@ -609,7 +611,7 @@ void Personnage::infligerDegats(float degats)
 
 int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,bool *explosif,coordonnee positionHero)
 {
-    int retour=-1;
+    int retour=-2;
 
     m_animation+=temps;
 
@@ -642,7 +644,8 @@ int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,boo
         else
         {
             //if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==0)
-            retour=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque();
+            if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()>retour)
+                retour=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque();
         }
 
         if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==1)

@@ -27,6 +27,7 @@ class Hero
 	void ChargerModele();
 
 	void Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap);
+	void CalculerOrdreAffichage();
 
 	void afficherInventaire(sf::RenderWindow *,coordonnee,float);
 	void afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionSouris,float decalage);
@@ -63,7 +64,7 @@ class Hero
 
 	Personnage m_personnage;
 	Modele_Personnage m_modelePersonnage[NOMBRE_MORCEAU_PERSONNAGE];
-	std::string m_cheminModele[NOMBRE_MORCEAU_PERSONNAGE];
+	std::string m_cheminModele[NOMBRE_MORCEAU_PERSONNAGE],m_cheminModeleNouveau[NOMBRE_MORCEAU_PERSONNAGE];
 
     Caracteristique m_caracteristiques;
 

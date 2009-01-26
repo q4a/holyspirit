@@ -88,7 +88,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
             if(tempsEcoule>0.1)
             tempsEcoule=0.1;
 
-            if(tempsEcoule>0.0)
+            if(tempsEcoule>0.013&&configuration.syncronisation_verticale||!configuration.syncronisation_verticale)
             {
                 tempsEcouleDepuisDernierDeplacement+=tempsEcoule;
                 tempsDepuisDerniereAnimation+=tempsEcoule;
@@ -234,8 +234,11 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
 
                     bool a; // Variable qui ne sert pas ici, mais qui remplace le explosif des monstres
-                    int retour=-1;
+                    int retour=-2;
                     retour=jeu->hero.m_personnage.animer(&jeu->hero.m_modelePersonnage[0],jeu->map.getDimensions().y,tempsDepuisDerniereAnimation,&a,positionHero);
+                    if(retour!=-2)
+                        jeu->hero.CalculerOrdreAffichage();
+
                     if(retour==0) //Animation du héro
                     {
                         if(jeu->hero.miracleEnCours==1)
