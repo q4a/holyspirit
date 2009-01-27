@@ -422,6 +422,94 @@ void Hero::Charger()
     ChargerModele();
 }
 
+void Hero::ReChargerModele()
+{
+    m_cas=0;
+
+    int nombreArme=0;
+
+    for(int i=0;i<m_inventaire.size();i++)
+    {
+        if(m_inventaire[i].m_equipe==ARME_PRINCIPAL&&m_inventaire[i].m_type==ARME||m_inventaire[i].m_equipe==BOUCLIER&&m_inventaire[i].m_type==ARME)
+            nombreArme++;
+
+        if(m_inventaire[i].m_equipe==ARME_PRINCIPAL&&m_inventaire[i].m_type==ARME)
+            for(int j=0;j<m_inventaire[i].m_emplacementImpossible.size();j++)
+                if(m_inventaire[i].m_emplacementImpossible[j]==BOUCLIER)
+                    m_cas=2;
+    }
+
+    if(nombreArme==2)
+        m_cas=1;
+
+
+
+    bool pasEquipe[NOMBRE_MORCEAU_PERSONNAGE];
+
+    for(int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;i++)
+        pasEquipe[i]=true,m_cheminModele[i]="",m_cheminModeleNouveau[i]="";
+
+
+    for(int i=0;i<m_inventaire.size();i++)
+        if(m_inventaire[i].m_equipe>0)
+        {
+                if(m_inventaire[i].m_emplacementImageHero.size()>0)
+                {
+                    int temp=m_cas;
+
+                    if(m_inventaire[i].m_equipe==ARME_PRINCIPAL&&m_inventaire[i].m_type==ARME&&m_cas>0)
+                        temp=0;
+
+                    if(m_inventaire[i].m_equipe==BOUCLIER&&m_inventaire[i].m_type==ARME&&m_cas>0)
+                        temp=1;
+
+                    if(temp>=m_inventaire[i].m_emplacementImageHero.size())
+                        temp=0;
+
+                    if(m_inventaire[i].m_emplacementImageHero[temp]>=0&&m_inventaire[i].m_emplacementImageHero[temp]<NOMBRE_MORCEAU_PERSONNAGE)
+                        //if(m_cheminModele[m_inventaire[i].m_emplacementImageHero[temp]]!=m_inventaire[i].m_cheminImageHero[temp])
+                        {
+                            m_cheminModeleNouveau[m_inventaire[i].m_emplacementImageHero[temp]]=m_inventaire[i].m_cheminImageHero[temp];
+                            pasEquipe[m_inventaire[i].m_emplacementImageHero[temp]]=false;
+                        }
+                }
+        }
+
+    for(int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;i++)
+    {
+        if(m_cheminModeleNouveau[i]!="" && m_cheminModeleNouveau[i]!=m_cheminModele[i])
+            m_modelePersonnage[i].Charger(m_cheminModeleNouveau[i]);
+        else if(m_cheminModeleNouveau[i]=="")
+            m_modelePersonnage[i].Reinitialiser();
+
+        m_cheminModele[i]=m_cheminModeleNouveau[i];
+    }
+
+    if(pasEquipe[0])
+    {
+        if(m_cas==0)
+            if(m_cheminModele[0]!="Data/Entities/hero/Nude/OneHand.rs.hs")
+            {
+                m_modelePersonnage[0].Charger("Data/Entities/hero/Nude/OneHand.rs.hs");
+                m_cheminModele[0]="Data/Entities/hero/Nude/OneHand.rs.hs";
+            }
+        if(m_cas==1)
+            if(m_cheminModele[0]!="Data/Entities/hero/Nude/TwoWeapons.rs.hs")
+            {
+                m_modelePersonnage[0].Charger("Data/Entities/hero/Nude/TwoWeapons.rs.hs");
+                m_cheminModele[0]="Data/Entities/hero/Nude/TwoWeapons.rs.hs";
+            }
+        if(m_cas==2)
+            if(m_cheminModele[0]!="Data/Entities/hero/Nude/TwoHand.rs.hs")
+            {
+                m_modelePersonnage[0].Charger("Data/Entities/hero/Nude/TwoHand.rs.hs");
+                m_cheminModele[0]="Data/Entities/hero/Nude/TwoHand.rs.hs";
+            }
+    }
+
+    CalculerOrdreAffichage();
+}
+
 void Hero::ChargerModele()
 {
     m_cas=0;
@@ -868,8 +956,8 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
         sprite.Resize(m_inventaire[m_objetEnMain].getTaille().x*32*configuration.Resolution.w/800,m_inventaire[m_objetEnMain].getTaille().y*32*configuration.Resolution.h/600);
 
         coordonnee caseVisee;
-        caseVisee.x=((positionSouris.x+16*configuration.Resolution.x/800)-436*configuration.Resolution.x/800)/(32*configuration.Resolution.x/800) - m_inventaire[m_objetEnMain].getTaille().x/2;
-        caseVisee.y=((positionSouris.y+16*configuration.Resolution.y/600)-150*configuration.Resolution.y/600)/(32*configuration.Resolution.y/600) - m_inventaire[m_objetEnMain].getTaille().y/2;
+        caseVisee.x=((positionSouris.x+8*configuration.Resolution.x/800)-436*configuration.Resolution.x/800)/(32*configuration.Resolution.x/800) - m_inventaire[m_objetEnMain].getTaille().x/2;
+        caseVisee.y=((positionSouris.y+8*configuration.Resolution.y/600)-150*configuration.Resolution.y/600)/(32*configuration.Resolution.y/600) - m_inventaire[m_objetEnMain].getTaille().y/2;
 
         sprite.SetX(positionSouris.x*configuration.Resolution.w/configuration.Resolution.x - m_inventaire[m_objetEnMain].getTaille().x*32*configuration.Resolution.x/1600);
         sprite.SetY(positionSouris.y*configuration.Resolution.h/configuration.Resolution.y - m_inventaire[m_objetEnMain].getTaille().y*32*configuration.Resolution.y/1200);
@@ -1198,15 +1286,37 @@ void Hero::AttribuerPositionObjet(coordonnee position,int numero)
     }
 }
 
-Objet Hero::prendreEnMain(coordonnee positionSouris)
+Objet Hero::DeposerObjet()
 {
+    if(m_objetADeposer>=0&&m_objetADeposer<m_inventaire.size())
+    {
+        Objet temp=m_inventaire[m_objetADeposer];
+
+        m_inventaire.erase(m_inventaire.begin()+m_objetADeposer);
+
+        temp.setPosition(m_personnage.getCoordonnee().x,m_personnage.getCoordonnee().y);
+
+        temp.m_equipe=0;
+
+        recalculerCaracteristiques();
+
+        m_objetADeposer=-1;
+        m_objetEnMain=-1;
+
+        return temp;
+    }
+}
+
+bool Hero::prendreEnMain(coordonnee positionSouris)
+{
+    m_objetADeposer=-1;
     if(positionSouris.x>436*configuration.Resolution.x/800&&positionSouris.x<436*configuration.Resolution.x/800+32*10*configuration.Resolution.x/800&&positionSouris.y>150*configuration.Resolution.y/600&&positionSouris.y<150*configuration.Resolution.y/600+32*10*configuration.Resolution.y/600)
     {
         coordonnee caseVisee;
         if(m_objetEnMain>=0&&m_objetEnMain<m_inventaire.size())
         {
-            caseVisee.x=((positionSouris.x+16*configuration.Resolution.x/800)-436*configuration.Resolution.x/800)/(32*configuration.Resolution.x/800) - m_inventaire[m_objetEnMain].getTaille().x/2;
-            caseVisee.y=((positionSouris.y+16*configuration.Resolution.y/600)-150*configuration.Resolution.y/600)/(32*configuration.Resolution.y/600) - m_inventaire[m_objetEnMain].getTaille().y/2;
+            caseVisee.x=((positionSouris.x+8*configuration.Resolution.x/800)-436*configuration.Resolution.x/800)/(32*configuration.Resolution.x/800) - m_inventaire[m_objetEnMain].getTaille().x/2;
+            caseVisee.y=((positionSouris.y+8*configuration.Resolution.y/600)-150*configuration.Resolution.y/600)/(32*configuration.Resolution.y/600) - m_inventaire[m_objetEnMain].getTaille().y/2;
         }
         else
         {
@@ -1221,7 +1331,7 @@ Objet Hero::prendreEnMain(coordonnee positionSouris)
 
             for(int i=caseVisee.y;i<caseVisee.y+m_inventaire[m_objetEnMain].getTaille().y;i++)
                 for(int j=caseVisee.x;j<caseVisee.x+m_inventaire[m_objetEnMain].getTaille().x;j++)
-                    if(i<10&&j<10)
+                    if(i<10&&j<10&&i>=0&&j>=0)
                     {
                        // if(m_caseInventaire[i][j])
                             for(int z=0;z<m_inventaire.size();z++)
@@ -1268,19 +1378,11 @@ Objet Hero::prendreEnMain(coordonnee positionSouris)
         {
             if(m_objetEnMain>=0&&m_objetEnMain<m_inventaire.size())
             {
-                Objet temp=m_inventaire[m_objetEnMain];
-
-                m_inventaire.erase(m_inventaire.begin()+m_objetEnMain);
-
+                m_objetADeposer=m_objetEnMain;
                 m_objetEnMain=-1;
 
-                temp.setPosition(m_personnage.getCoordonnee().x,m_personnage.getCoordonnee().y);
+                return 1;
 
-                temp.m_equipe=0;
-
-                recalculerCaracteristiques();
-
-                return temp;
             }
         }
         else
@@ -1345,10 +1447,8 @@ Objet Hero::prendreEnMain(coordonnee positionSouris)
                 }
         }
     }
-    recalculerCaracteristiques();
-
-    Objet temp2;
-    return temp2;
+    return 0;
+    //recalculerCaracteristiques();
 }
 
 bool Hero::equiper(int numero, int emplacement)

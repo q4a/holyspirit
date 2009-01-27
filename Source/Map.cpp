@@ -26,7 +26,7 @@ Map::Map()
 
     console.Ajouter("");
     console.Ajouter("Chargements d'images diverses :");
-    IDImageSac=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_sac);
+    IDImageSac=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_sac,-1);
 }
 
 Map::~Map()
@@ -825,7 +825,6 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
 
     if(configuration.Ombre)
         hero->m_personnage.m_lumiere.AjouterOmbre(lumiereMap.intensite/4,angleOmbreMap,lumiereMap.hauteur);
-
 
         // Je fonctionne comme pour en bas, juste que je prend le héro comme source de lumière, pour la portée lumineuse
     for(int i=0;i<30;++i)
@@ -1874,8 +1873,10 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 {
     coordonnee positionPartieDecor,vueMin,vueMax,positionHero;
 
-	Sprite Sprite;
+	Sprite Sprite,sprite2;
 	String texte;
+
+	sprite2.SetColor(sf::Color(255,255,255,(int)alpha));
 
 	positionPartieDecor.x=0;
 	positionPartieDecor.y=0;
@@ -1887,7 +1888,6 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
     if(type==1)
     {
-
         coordonnee position;
 
         vueMin.x=hero->m_personnage.getCoordonnee().x-15;
@@ -2351,15 +2351,66 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                     }
 
 
+                    if(configuration.Minimap)
+                    {
 
+                        sprite2.SetCenter(4*configuration.Resolution.w/800,4*configuration.Resolution.w/800);
+                        sprite2.SetRotation(45);
+                        sprite2.SetSubRect(sf::IntRect(0,0,8,8));
 
+                        position.x=(((k-(hero->m_personnage.getCoordonnee().x-15))-(j-(hero->m_personnage.getCoordonnee().y-15))-1+40)*6*configuration.Resolution.w/800);
+                        position.y=(((k-(hero->m_personnage.getCoordonnee().x-15))+(j-(hero->m_personnage.getCoordonnee().y-15)))*6*configuration.Resolution.w/800);
+
+                        if(position.x+465*configuration.Resolution.w/800>605*configuration.Resolution.w/800&&position.x+465*configuration.Resolution.w/800<800*configuration.Resolution.w/800&&position.y*configuration.Resolution.y/600>0&&position.y-80*configuration.Resolution.w/800<195*configuration.Resolution.h/600)
+                        {
+                            int typeCase=getTypeCase(k,j);
+                            if(typeCase==1)
+                            {
+                                sprite2.SetImage(carreBrun);
+                                sprite2.SetX((float)(position.x+465*configuration.Resolution.w/800));
+                                sprite2.SetY((float)(position.y-80*configuration.Resolution.w/800));
+                                moteurGraphique.AjouterCommande(&sprite2,14,0);
+                            }
+
+                            if(typeCase==2)
+                            {
+                                sprite2.SetImage(carreRouge);
+                                sprite2.SetX((float)(position.x+465*configuration.Resolution.w/800));
+                                sprite2.SetY((float)(position.y-80*configuration.Resolution.w/800));
+                                moteurGraphique.AjouterCommande(&sprite2,14,0);
+                            }
+
+                            if(typeCase==3)
+                            {
+                                sprite2.SetImage(carreVert);
+                                sprite2.SetX((float)(position.x+465*configuration.Resolution.w/800));
+                                sprite2.SetY((float)(position.y-80*configuration.Resolution.w/800));
+                                moteurGraphique.AjouterCommande(&sprite2,14,0);
+                            }
+
+                            if(typeCase==4)
+                            {
+                                sprite2.SetImage(carreJaune);
+                                sprite2.SetX((float)(position.x+465*configuration.Resolution.w/800));
+                                sprite2.SetY((float)(position.y-80*configuration.Resolution.w/800));
+                                moteurGraphique.AjouterCommande(&sprite2,14,0);
+                            }
+
+                            if(hero->m_personnage.getCoordonnee().x==k&&hero->m_personnage.getCoordonnee().y==j)
+                            {
+                                sprite2.SetImage(carreBleu);
+                                sprite2.SetX((float)(position.x+465*configuration.Resolution.w/800));
+                                sprite2.SetY((float)(position.y-80*configuration.Resolution.w/800));
+                                moteurGraphique.AjouterCommande(&sprite2,14,0);
+                            }
+                        }
+                    }
                 }
             }
         }
-
     }
 
-	if(type==2)
+	/*if(type==2)
 	{
 	    coordonneeDecimal position;
         vueMin.x=hero->m_personnage.getCoordonnee().x-15;
@@ -2428,7 +2479,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                     }
                 }
             }
-	}
+	}*/
 
 	if(type==3)
 	{

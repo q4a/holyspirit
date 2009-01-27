@@ -227,6 +227,9 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                if(tempsDepuisDerniereAnimation>0.024)
                 {
+                    if(tempsDepuisDerniereAnimation>0.5)
+                        tempsDepuisDerniereAnimation=0.5;
+
                     coordonnee positionHero;
                     positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1+jeu->map.getDimensions().y)/5;
                     positionHero.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
@@ -242,8 +245,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     if(retour==0) //Animation du héro
                     {
                         if(jeu->hero.miracleEnCours==1)
-                             jeu->map.infligerDegatsMasse(jeu->hero.m_personnage.getCoordonnee(),1,rand()%(jeu->hero.m_caracteristiques.degatsMax - jeu->hero.m_caracteristiques.degatsMin +1) + jeu->hero.m_caracteristiques.degatsMin ,false,&jeu->hero,&jeu->menu,&jeu->camera);
-                        else
+                            jeu->map.infligerDegatsMasse(jeu->hero.m_personnage.getCoordonnee(),1,rand()%(jeu->hero.m_caracteristiques.degatsMax - jeu->hero.m_caracteristiques.degatsMin +1) + jeu->hero.m_caracteristiques.degatsMin ,false,&jeu->hero,&jeu->menu,&jeu->camera);
+                        else if(jeu->hero.m_personnage.frappeEnCours)
                             jeu->map.infligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&jeu->camera,&jeu->hero,1);
 
                         jeu->hero.miracleEnCours=0;
@@ -254,7 +257,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
                             jeu->hero.setMonstreVise(-1),jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
 
                     if(retour==1)
-                        jeu->hero.setMonstreVise(-1),jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
+                        if(!jeu->eventManager.getEvenement(Mouse::Left,"C"))
+                            jeu->hero.setMonstreVise(-1),jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
 
 
                     jeu->map.animer(&jeu->hero,tempsDepuisDerniereAnimation,&jeu->menu,&jeu->camera); // Animation des tiles de la jeu->map
@@ -369,7 +373,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                     moteurGraphique.Gerer(&jeu->ecran,tempsEcouleDepuisDernierAffichage,jeu->map.getDimensions().y);
 
-                    jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,jeu->eventManager.getPositionSouris(),jeu->eventManager.getEvenement(Key::LAlt,"ET"));//Affichage de la jeu->map
+                    jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,jeu->eventManager.getPositionSouris(),jeu->eventManager.getEvenement(Key::LAlt,"ET"),alpha_map);//Affichage de la jeu->map
 
                     if(configuration.Minimap)
                     {
@@ -386,7 +390,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     if(alpha_map>0)
                     {
                         jeu->menu.Afficher(&jeu->ecran,2,alpha_map);//On affiche la mini-map
-                        jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,jeu->eventManager.getPositionSouris(),0,alpha_map); // On affiche la mini-map
+                        //jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,jeu->eventManager.getPositionSouris(),0,alpha_map); // On affiche la mini-map
                     }
 
                     if(jeu->hero.getChercherSac().x!=-1&&jeu->map.getNombreObjets(jeu->hero.getChercherSac())>0)

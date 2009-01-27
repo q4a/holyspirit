@@ -43,15 +43,18 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         jeu->eventManager.StopEvenement(Key::I,"ET");
 
         if(jeu->hero.m_objetEnMain>=0)
-            jeu->map.AjouterObjet(jeu->hero.prendreEnMain(jeu->eventManager.getPositionSouris()));
+        {
+            jeu->hero.m_objetADeposer=jeu->hero.m_objetEnMain;
+            jeu->map.AjouterObjet(jeu->hero.DeposerObjet());
+        }
     }
 
     if(jeu->eventManager.getEvenement(Mouse::Left,"C"))
     {
-        if(jeu->hero.m_objetEnMain==-1&&jeu->map.getObjetPointe()==-1&&jeu->eventManager.getPositionSouris().x>436*configuration.Resolution.w/800&&jeu->eventManager.getPositionSouris().x<756*configuration.Resolution.w/800&&jeu->eventManager.getPositionSouris().y>30*configuration.Resolution.h/600&&jeu->eventManager.getPositionSouris().y<30*configuration.Resolution.h/600+20*configuration.Resolution.w/800)
+        if(jeu->hero.m_objetEnMain==-1&&jeu->map.getObjetPointe()==-1&&jeu->eventManager.getPositionSouris().x>436*configuration.Resolution.x/800&&jeu->eventManager.getPositionSouris().x<756*configuration.Resolution.x/800&&jeu->eventManager.getPositionSouris().y>30*configuration.Resolution.y/600&&jeu->eventManager.getPositionSouris().y<30*configuration.Resolution.y/600+20*configuration.Resolution.x/800)
             jeu->map.m_defilerObjets--,jeu->eventManager.StopEvenement(Mouse::Left,"C");
 
-        if(jeu->hero.m_objetEnMain==-1&&jeu->map.getObjetPointe()==-1&&jeu->eventManager.getPositionSouris().x>436*configuration.Resolution.w/800&&jeu->eventManager.getPositionSouris().x<756*configuration.Resolution.w/800&&jeu->eventManager.getPositionSouris().y>30*configuration.Resolution.h/600+3*20*configuration.Resolution.w/800&&jeu->eventManager.getPositionSouris().y<30*configuration.Resolution.h/600+4*20*configuration.Resolution.w/800)
+        if(jeu->hero.m_objetEnMain==-1&&jeu->map.getObjetPointe()==-1&&jeu->eventManager.getPositionSouris().x>436*configuration.Resolution.x/800&&jeu->eventManager.getPositionSouris().x<756*configuration.Resolution.x/800&&jeu->eventManager.getPositionSouris().y>30*configuration.Resolution.y/600+3*20*configuration.Resolution.x/800&&jeu->eventManager.getPositionSouris().y<30*configuration.Resolution.y/600+4*20*configuration.Resolution.x/800)
             jeu->map.m_defilerObjets++,jeu->eventManager.StopEvenement(Mouse::Left,"C");
     }
 
@@ -63,7 +66,8 @@ void c_Inventaire::Utiliser(Jeu *jeu)
 
     if(jeu->eventManager.getEvenement(Mouse::Left,"C"))
     {
-        jeu->map.AjouterObjet(jeu->hero.prendreEnMain(jeu->eventManager.getPositionSouris()));
+        if(jeu->hero.prendreEnMain(jeu->eventManager.getPositionSouris()))
+            jeu->map.AjouterObjet(jeu->hero.DeposerObjet());
         jeu->eventManager.StopEvenement(Mouse::Left,"C");
     }
 

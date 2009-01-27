@@ -105,8 +105,12 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         jeu->hero.Sauvegarder();
 
+        jeu->hero.ReChargerModele();
+
         if(!jeu->map.Charger(numeroProchaineMap))
             console.Ajouter("CRITICAL ERROR"), throw  "CRITICAL ERROR";
+
+        moteurGraphique.DecrementerImportance();
 
         jeu->hero.placerCamera(&jeu->camera,jeu->map.getDimensions());
         jeu->camera.Zoom(configuration.zoom);
@@ -156,10 +160,8 @@ void c_Chargement::Utiliser(Jeu *jeu)
                 jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,temp,0);
 
                 if(configuration.Minimap)
-                {
                     jeu->menu.Afficher(&jeu->ecran,2);
-                    jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,0);
-                }
+
                 if(jeu->hero.getChercherSac().x!=-1&&jeu->map.getNombreObjets(jeu->hero.getChercherSac())>0)
                 {
                     jeu->menu.Afficher(&jeu->ecran,3);

@@ -21,18 +21,18 @@ Menu::Menu()
     m_alphaSang=0;
     console.Ajouter("",0);
     console.Ajouter("Chargement des menus :",0);
-    m_imageMiniMap=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_minimap);
-    m_imageHUD=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_hud);
-    m_imageBulleVie=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_bulle_vie);
-    m_imageBulleFoi=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_bulle_foi);
+    m_imageMiniMap=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_minimap,-1);
+    m_imageHUD=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_hud,-1);
+    m_imageBulleVie=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_bulle_vie,-1);
+    m_imageBulleFoi=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_bulle_foi,-1);
 
-    m_imageAme=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_ame);
-    m_imageSang=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_sang);
-    m_barrePointAme=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_barre_ame);
-    m_inventaire=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_inventaire);
+    m_imageAme=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_ame,-1);
+    m_imageSang=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_sang,-1);
+    m_barrePointAme=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_barre_ame,-1);
+    m_inventaire=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_inventaire,-1);
 
-    m_barreVie=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_barre_vie);
-    m_barreVieVide=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_barre_vie_vide);
+    m_barreVie=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_barre_vie,-1);
+    m_barreVieVide=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_barre_vie_vide,-1);
 }
 
 void Menu::Afficher(sf::RenderWindow* ecran,int type,float alpha)
@@ -56,7 +56,7 @@ void Menu::Afficher(sf::RenderWindow* ecran,int type,float alpha)
 		sprite.SetImage(*moteurGraphique.getImage(0));
 		sprite.SetX(configuration.Resolution.w-configuration.Resolution.w*0.25);
 		sprite.SetY(0);
-		sprite.SetColor(sf::Color(0,0,0,224*(int)alpha/255));
+		sprite.SetColor(sf::Color(0,0,0,192*(int)alpha/255));
 		sprite.Resize(configuration.Resolution.w*0.25, configuration.Resolution.w*0.25);
 		moteurGraphique.AjouterCommande(&sprite,13,0);
 

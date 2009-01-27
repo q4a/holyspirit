@@ -247,7 +247,7 @@ void Objet::Charger(std::string chemin)
                 string temp;
                 getline(fichier, temp);
 
-                m_image=moteurGraphique.AjouterImage(temp);
+                m_image=moteurGraphique.AjouterImage(temp,-1);
             }
     		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
 

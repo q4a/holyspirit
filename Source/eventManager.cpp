@@ -24,7 +24,7 @@ EventManager::EventManager()
 	console.Ajouter("",0);
     console.Ajouter("Chargement des curseurs :",0);
 
-    idcurseur=moteurGraphique.AjouterImage(configuration.chemin_curseurs+configuration.nom_curseur_base);
+    idcurseur=moteurGraphique.AjouterImage(configuration.chemin_curseurs+configuration.nom_curseur_base,-1);
 
 }
 

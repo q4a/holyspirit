@@ -25,6 +25,7 @@ class Hero
 	void Sauvegarder();
 	void Charger();
 	void ChargerModele();
+	void ReChargerModele();
 
 	void Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap);
 	void CalculerOrdreAffichage();
@@ -47,7 +48,8 @@ class Hero
 
 	bool ajouterObjet(Objet objet,bool enMain=false);
 
-	Objet prendreEnMain(coordonnee positionSouris);
+	Objet DeposerObjet();
+	bool prendreEnMain(coordonnee positionSouris);
 	bool equiper(int numero, int emplacement);
 	void AttribuerPositionObjet(coordonnee position,int numero);
 	void LibererCases(int numero);
@@ -68,7 +70,7 @@ class Hero
 
     Caracteristique m_caracteristiques;
 
-    int miracleEnCours,frappeEnCours,m_objetEnMain;
+    int miracleEnCours,frappeEnCours,m_objetEnMain,m_objetADeposer;
 
 	private:
 	coordonneeDecimal m_positionAffichage;

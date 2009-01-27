@@ -34,7 +34,7 @@ void ModeleParticuleSysteme::Charger(std::string chemin)
             {
                 std::string m_cheminImage;
                 getline(fichier, m_cheminImage);
-                m_image=moteurGraphique.AjouterImage(m_cheminImage);
+                m_image=moteurGraphique.AjouterImage(m_cheminImage,-1);
             }
     		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Système de particules \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
 
