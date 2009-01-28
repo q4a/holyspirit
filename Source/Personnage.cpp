@@ -137,9 +137,7 @@ bool Modele_Personnage::Charger(string chemin)
     			string cheminImage;
     			*fichier>>cheminImage;
 
-                buffer=reader.GetFile(cheminImage);
-
-                m_image.push_back(moteurGraphique.AjouterImage(buffer, reader.GetFileSize(cheminImage), cheminImage));
+                m_image.push_back(moteurGraphique.AjouterImage(reader.GetFile(cheminImage), reader.GetFileSize(cheminImage), cheminImage));
     		}
     		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Personnage \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
     	}while(caractere!='$');

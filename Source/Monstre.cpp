@@ -103,9 +103,7 @@ bool Modele_Monstre::Charger(string chemin)
     			string cheminImage;
     			*fichier>>cheminImage;
 
-                buffer=reader.GetFile(cheminImage);
-
-                m_image.push_back(moteurGraphique.AjouterImage(buffer, reader.GetFileSize(cheminImage), cheminImage));
+                m_image.push_back(moteurGraphique.AjouterImage(reader.GetFile(cheminImage), reader.GetFileSize(cheminImage), cheminImage));
     		}
     		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0; }
     	}while(caractere!='$');
@@ -300,7 +298,7 @@ bool Modele_Monstre::Charger(string chemin)
                 {
                     if(caractere=='*')
                     {
-                        coordonnee position,centre={-1,-1,-1,-1};
+                        coordonnee position={-1,-1,-1,-1},centre={-1,-1,-1,-1};
                         int animation,son,image,attaque=-1,lumiere=-1;
                         float tempsAnimation=0.075;
 
