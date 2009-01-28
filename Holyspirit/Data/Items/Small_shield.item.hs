@@ -6,7 +6,7 @@ $
 $
 *Data/Items/Images/shield01.png
 $
-* e2 mData/Entities/Hero/Small_shield/Small_shield.rs.hs $
+* e2 mData/Entities/Hero/Shield/Small_shield.rs.hs $
 $
 *x0 y0 h64 w64 $
 $

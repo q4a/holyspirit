@@ -6,9 +6,9 @@ $
 $
 *Data/Items/Images/shield01.png
 $
-* e2 mData/Entities/Hero/Shield/Great_shield.rs.hs $
+* e2 mData/Entities/Hero/Shield/Unique_shield.rs.hs $
 $
-*x96 y0 h96 w96 $
+*x192 y0 h96 w96 $
 $
 *x3 y3 $
 $
