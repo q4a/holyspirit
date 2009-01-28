@@ -125,22 +125,57 @@
          
          Chargement de l'objet : Data/Items/Armor.item.hs
          Chargement de : Data/Items/Images/armor01.png
+         
+         Chargement de l'objet : Data/Items/Ring.item.hs
          /Lectures des objets.
          
-         Chargement du personnage : Data/Entities/Hero/Small_shield/Small_shield.rs.hs
-         Chargement de : PetitBouclierAttente.png
-         Chargement de : PetitBouclierMarche1.png
-         Chargement de : PetitBouclierMarche2.png
-         Chargement de : PetitBouclierFrappe1.png
-         Chargement de : PetitBouclierFrappe2.png
-         Chargement de : PetitBouclierFrappe3.png
-         Chargement de : PetitBouclierFrappe4.png
-         Chargement de : PetitBouclierFrappe5.png
-         Chargement de : PetitBouclierFrappe6.png
-         Chargement de : PetitBouclierFrappe7.png
-         Chargement de : PetitBouclierFrappe8.png
+         Chargement du personnage : Data/Entities/Hero/Matelasse/TwoHand.rs.hs
+         Chargement de : CroiseMatelasseAttente2Main0.png
+         Chargement de : CroiseMatelasseAttente2Main1.png
+         Chargement de : CroiseMatelasseMarcheSansEpee2Mains0.png
+         Chargement de : CroiseMatelasseMarcheSansEpee2Mains1.png
+         Chargement de : CroiseMatelasseMarcheSansEpee2Mains2.png
+         Chargement de : CroiseMatelasseMarcheSansEpee2Mains3.png
+         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains0.png
+         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains1.png
+         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains2.png
+         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains3.png
+         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains4.png
+         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains5.png
+         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains6.png
+         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains7.png
+         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains8.png
+         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains9.png
+         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains10.png
+         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains11.png
+         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains12.png
+         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains13.png
+         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains14.png
+         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains15.png
          
-         Chargement du personnage : Data/Entities/hero/Nude/OneHand.rs.hs
+         Chargement du personnage : Data/Entities/Hero/Two_hands_sword/Two_hands_sword.rs.hs
+         Chargement de : Epee2MainsAttente0.png
+         Chargement de : Epee2MainsAttente1.png
+         Chargement de : Epee2MainsMarche10.png
+         Chargement de : Epee2MainsMarche11.png
+         Chargement de : Epee2MainsMarche20.png
+         Chargement de : Epee2MainsMarche21.png
+         Chargement de : Epee2MainsFrappe10.png
+         Chargement de : Epee2MainsFrappe11.png
+         Chargement de : Epee2MainsFrappe20.png
+         Chargement de : Epee2MainsFrappe21.png
+         Chargement de : Epee2MainsFrappe30.png
+         Chargement de : Epee2MainsFrappe31.png
+         Chargement de : Epee2MainsFrappe40.png
+         Chargement de : Epee2MainsFrappe41.png
+         Chargement de : Epee2MainsFrappe50.png
+         Chargement de : Epee2MainsFrappe51.png
+         Chargement de : Epee2MainsFrappe60.png
+         Chargement de : Epee2MainsFrappe61.png
+         Chargement de : Epee2MainsFrappe70.png
+         Chargement de : Epee2MainsFrappe71.png
+         Chargement de : Epee2MainsFrappe80.png
+         Chargement de : Epee2MainsFrappe81.png
          
          Destruction de la map...
          Destruction des cases...
@@ -187,12 +222,13 @@
          /Sauvegarde de Data/Items/Small_sword.item.hs
          /Sauvegarde de Data/Items/Small_sword_divin.item.hs
          /Sauvegarde de Data/Items/Armor.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
-         Chargement du personnage : Data/Entities/Hero/Small_shield/Small_shield.rs.hs
+         Chargement du personnage : Data/Entities/Hero/Matelasse/TwoHand.rs.hs
          
-         Chargement du personnage : Data/Entities/hero/Nude/OneHand.rs.hs
+         Chargement du personnage : Data/Entities/Hero/Two_hands_sword/Two_hands_sword.rs.hs
          
          Chargement de la map : Data/Maps/Map1.map.hs
          /Test de l'existence des fichiers temps.
@@ -264,7 +300,92 @@
          Chargement de la map terminé.
          
          
-         Chargement du personnage : Data/Entities/hero/Nude/OneHand.rs.hs
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Ecriture des cases inventaires.
+         /Sauvegarde de Data/Items/Small_shield.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Arquebuse.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Great_shield.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Boot.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Armor.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/Temp/map1.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
+         Sauvegarde terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Ecriture des cases inventaires.
+         /Sauvegarde de Data/Items/Small_shield.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Arquebuse.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Great_shield.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Boot.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Armor.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/Temp/map1.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
+         Sauvegarde terminée !
+         
+         Chargement du personnage : Data/Entities/Hero/Matelasse/TwoWeapons.rs.hs
+         Chargement de : CroiseMatelasseAttente1Main0.png
+         Chargement de : CroiseMatelasseMarche1Epee0.png
+         Chargement de : CroiseMatelasseMarche1Epee1.png
+         Chargement de : CroiseMatelasseFrappeSans2Arme0.png
+         Chargement de : CroiseMatelasseFrappeSans2Arme1.png
+         Chargement de : CroiseMatelasseFrappeSans2Arme2.png
+         Chargement de : CroiseMatelasseFrappeSans2Arme3.png
+         Chargement de : CroiseMatelasseFrappeSans2Arme4.png
+         Chargement de : CroiseMatelasseFrappeSans2Arme5.png
+         Chargement de : CroiseMatelasseFrappeSans2Arme6.png
+         Chargement de : CroiseMatelasseFrappeSans2Arme7.png
          
          Chargement du personnage : Data/Entities/Hero/Small_sword/Small_sword_divin_r.rs.hs
          Chargement de : TueuseDivineAttenteDroite.png
@@ -279,7 +400,18 @@
          Chargement de : TueuseDivineDroite7.png
          Chargement de : TueuseDivineDroite8.png
          
-         Chargement du personnage : Data/Entities/hero/Nude/OneHand.rs.hs
+         Chargement du personnage : Data/Entities/Hero/Small_sword/Small_sword_l.rs.hs
+         Chargement de : EpeeCourteAttenteGauche.png
+         Chargement de : EpeeCourteMarche3.png
+         Chargement de : EpeeCourteMarche4.png
+         Chargement de : EpeeCourteGauche1.png
+         Chargement de : EpeeCourteGauche2.png
+         Chargement de : EpeeCourteGauche3.png
+         Chargement de : EpeeCourteGauche4.png
+         Chargement de : EpeeCourteGauche5.png
+         Chargement de : EpeeCourteGauche6.png
+         Chargement de : EpeeCourteGauche7.png
+         Chargement de : EpeeCourteGauche8.png
          
          Sauvegarde du héro...
          Ouverture du fichier.
@@ -310,6 +442,7 @@
          /Sauvegarde de Data/Items/Small_sword.item.hs
          /Sauvegarde de Data/Items/Small_sword_divin.item.hs
          /Sauvegarde de Data/Items/Armor.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
@@ -317,7 +450,211 @@
          Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
          Sauvegarde terminée !
          
-         Chargement du personnage : Data/Entities/hero/Nude/OneHand.rs.hs
+         Chargement du personnage : Data/Entities/Hero/Matelasse/OneHand.rs.hs
+         Chargement de : CroiseMatelasseFrappeSansArme0.png
+         Chargement de : CroiseMatelasseFrappeSansArme1.png
+         Chargement de : CroiseMatelasseFrappeSansArme2.png
+         Chargement de : CroiseMatelasseFrappeSansArme3.png
+         Chargement de : CroiseMatelasseFrappeSansArme4.png
+         Chargement de : CroiseMatelasseFrappeSansArme5.png
+         Chargement de : CroiseMatelasseFrappeSansArme6.png
+         Chargement de : CroiseMatelasseFrappeSansArme7.png
+         
+         Chargement du personnage : Data/Entities/Hero/Small_shield/Small_shield.rs.hs
+         Chargement de : PetitBouclierAttente.png
+         Chargement de : PetitBouclierMarche1.png
+         Chargement de : PetitBouclierMarche2.png
+         Chargement de : PetitBouclierFrappe1.png
+         Chargement de : PetitBouclierFrappe2.png
+         Chargement de : PetitBouclierFrappe3.png
+         Chargement de : PetitBouclierFrappe4.png
+         Chargement de : PetitBouclierFrappe5.png
+         Chargement de : PetitBouclierFrappe6.png
+         Chargement de : PetitBouclierFrappe7.png
+         Chargement de : PetitBouclierFrappe8.png
+         
+         ---------------------------------------------------------------------------------
+         EVENEMENT : Changement de map
+         ---------------------------------------------------------------------------------
+         Chargement de : Data/Loading_screens/Plaines3.png
+         
+         Sauvegarde de la map : Data/Temp/map1.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
+         Sauvegarde terminée !
+         
+         Destruction de la map...
+         Destruction des cases...
+         0
+         1
+         2
+         3
+         4
+         5
+         6
+         7
+         8
+         9
+         10
+         11
+         12
+         13
+         14
+         15
+         16
+         17
+         18
+         19
+         20
+         21
+         22
+         23
+         24
+         25
+         26
+         27
+         28
+         29
+         30
+         31
+         32
+         33
+         34
+         35
+         36
+         37
+         38
+         39
+         40
+         41
+         42
+         43
+         44
+         45
+         46
+         47
+         48
+         49
+         50
+         51
+         52
+         53
+         54
+         55
+         56
+         57
+         58
+         59
+         60
+         61
+         62
+         63
+         64
+         65
+         66
+         67
+         68
+         69
+         70
+         71
+         72
+         73
+         74
+         75
+         76
+         77
+         78
+         79
+         -
+         0
+         1
+         2
+         3
+         4
+         5
+         6
+         7
+         8
+         9
+         10
+         11
+         12
+         13
+         14
+         15
+         16
+         17
+         18
+         19
+         20
+         21
+         22
+         23
+         24
+         25
+         26
+         27
+         28
+         29
+         30
+         31
+         32
+         33
+         34
+         35
+         36
+         37
+         38
+         39
+         40
+         41
+         42
+         43
+         44
+         45
+         46
+         47
+         48
+         49
+         50
+         51
+         52
+         53
+         54
+         55
+         56
+         57
+         58
+         59
+         60
+         61
+         62
+         63
+         64
+         65
+         66
+         67
+         68
+         69
+         70
+         71
+         72
+         73
+         74
+         75
+         76
+         77
+         78
+         79
+         -
+         Cases détruites !
+         Modèles monstres détruits !
+         Monstres détruits !
+         Evénements détruits !
+         Fonds détruits !
+         Chemins musiques détruits !
+         Projectiles détruits !
+         Effets détruits !
+         Map détruite !
          
          Sauvegarde du héro...
          Ouverture du fichier.
@@ -348,11 +685,694 @@
          /Sauvegarde de Data/Items/Small_sword.item.hs
          /Sauvegarde de Data/Items/Small_sword_divin.item.hs
          /Sauvegarde de Data/Items/Armor.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
-         Sauvegarde de la map : Data/Temp/map1.map.hs
-         Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
+         Chargement du personnage : Data/Entities/Hero/Matelasse/OneHand.rs.hs
+         
+         Chargement du personnage : Data/Entities/Hero/Small_sword/Small_sword_divin_r.rs.hs
+         
+         Chargement du personnage : Data/Entities/Hero/Small_shield/Small_shield.rs.hs
+         
+         Chargement de la map : Data/Maps/Map5.map.hs
+         /Test de l'existence des fichiers temps.
+         /Lectures du nom.
+         /Lectures des fonds.
+         /Lectures des musiques.
+         /Lectures des lumières.
+         /Lectures des tilesets.
+         Chargement de : Data/Landscapes/Grass/Wheat.png
+         /Lectures des herbes.
+         
+         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Axe/Axe.rs.hs
+         Chargement du script : "Data/Scripts/AI/standard.script.hs"
+         
+         Chargement de l'objet : Data/Items/Small_axe.item.hs
+         Chargement de : Data/Entities/Monsters/PantinMorbide/Axe/Axe.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Breakables/Barrel.rs.hs
+         Chargement de : Data/Sounds/31622__Srehpog__light_crate_smash1.wav
+         Chargement de : Data/Sounds/31623__Srehpog__light_crate_smash2.wav
+         Chargement de : Data/Sounds/31624__Srehpog__light_crate_smash3.wav
+         Chargement du script : "Data/Scripts/AI/breakable.script.hs"
+         
+         Chargement de l'objet : Data/Items/Small_axe.item.hs
+         
+         Chargement de l'objet : Data/Items/Armor.item.hs
+         Chargement de : Data/Entities/Breakables/Barrel.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Breakables/ExplosiveBarrel.rs.hs
+         Chargement du script : "Data/Scripts/AI/inert.script.hs"
+         
+         Chargement de l'objet : Data/Items/Coal.item.hs
+         Chargement de : Data/Entities/Breakables/ExplosiveBarrel.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Monsters/ErrantRoche/ErrantRoche.rs.hs
+         Chargement de : ErrantRocheArret.png
+         Chargement de : ErrantRocheMarche1.png
+         Chargement de : ErrantRocheMarche2.png
+         Chargement de : ErrantRocheFrappe1.png
+         Chargement de : ErrantRocheFrappe2.png
+         Chargement de : ErrantRocheFrappe3.png
+         Chargement de : ErrantRocheFrappe4.png
+         Chargement de : ErrantRocheFrappe5.png
+         Chargement de : ErrantRocheFrappe6.png
+         Chargement de : ErrantRocheFrappe7.png
+         Chargement de : ErrantRocheFrappe8.png
+         Chargement de : ErrantRocheMort1.png
+         Chargement de : ErrantRocheMort2.png
+         Chargement de : ErrantRocheMort3.png
+         Chargement de : ErrantRocheMort4.png
+         Chargement de : Data/Sounds/15569__tigersound__walking_on_stone.wav
+         Chargement de : Data/Sounds/30009__thanvannispen__stone_on_stone_impact_loud2.aiff
+         Chargement du script : "Data/Scripts/AI/standard.script.hs"
+         
+         Chargement de l'objet : Data/Items/Ore.item.hs
+         Chargement de : Data/Entities/Monsters/ErrantRoche/ErrantRoche.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Monsters/DemonicPriest/DemonicPriest.rs.hs
+         Chargement du script : "Data/Scripts/AI/DemonicPriest.script.hs"
+         
+         Chargement de l'objet : Data/Items/Gown.item.hs
+         Chargement de : Data/Entities/Monsters/DemonicPriest/DemonicPriest.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Axe/Servant.rs.hs
+         Chargement du script : "Data/Scripts/AI/standard.script.hs"
+         
+         Chargement de l'objet : Data/Items/Small_axe.item.hs
+         Chargement de : Data/Entities/Monsters/PantinMorbide/Axe/Servant.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Sword/Sword.rs.hs
+         Chargement de : PanMorHache-Arret.png
+         Chargement de : PantMorbEpee-Course1.png
+         Chargement de : PantMorbEpee-Course2.png
+         Chargement de : PantMorbEpee-Frappe1.png
+         Chargement de : PantMorbEpee-Frappe2.png
+         Chargement de : PantMorbEpee-Frappe3.png
+         Chargement de : PantMorbEpee-Frappe4.png
+         Chargement de : PantMorbEpee-Frappe5.png
+         Chargement de : PantMorbEpee-Frappe6.png
+         Chargement de : PantMorbEpee-Frappe7.png
+         Chargement de : PantMorbEpee-Frappe8.png
+         Chargement du script : "Data/Scripts/AI/standard.script.hs"
+         
+         Chargement de l'objet : Data/Items/Small_sword.item.hs
+         
+         Chargement de l'objet : Data/Items/Small_shield.item.hs
+         
+         Chargement de l'objet : Data/Items/Small_sword_divin.item.hs
+         Chargement de : Data/Entities/Monsters/PantinMorbide/Sword/Sword.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Guardian/Guardian.rs.hs
+         Chargement de : GuardianCourse1.png
+         Chargement de : GuardianCourse2.png
+         Chargement de : GuardianCourse3.png
+         Chargement de : GuardianCourse4.png
+         Chargement de : GuardianFrappe1.png
+         Chargement de : GuardianFrappe2.png
+         Chargement de : GuardianFrappe3.png
+         Chargement de : GuardianFrappe4.png
+         Chargement de : GuardianFrappe5.png
+         Chargement de : GuardianFrappe6.png
+         Chargement de : GuardianFrappe7.png
+         Chargement de : GuardianFrappe8.png
+         Chargement de : Data/Sounds/contre3.wav
+         Chargement du script : "Data/Scripts/AI/standard.script.hs"
+         
+         Chargement de l'objet : Data/Items/Two_hand_sword.item.hs
+         
+         Chargement de l'objet : Data/Items/Helmet.item.hs
+         Chargement de : Data/Entities/Monsters/PantinMorbide/Guardian/Guardian.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Arquebuse/Arquebuse.rs.hs
+         Chargement de : ArquebuseSqueletteMarche1.png
+         Chargement de : ArquebuseSqueletteMarche2.png
+         Chargement de : ArquebuseSqueletteMarche3.png
+         Chargement de : ArquebuseSqueletteMarche4.png
+         Chargement de : ArquebuseSqueletteTir1.png
+         Chargement de : ArquebuseSqueletteTir2.png
+         Chargement de : ArquebuseSqueletteTir3.png
+         Chargement de : ArquebuseSqueletteTir4.png
+         Chargement de : Data/Sounds/Arquebuse.wav
+         Chargement du script : "Data/Scripts/AI/shooter.script.hs"
+         
+         Chargement de l'objet : Data/Items/Arquebuse.item.hs
+         Chargement de : Data/Entities/Monsters/PantinMorbide/Arquebuse/Arquebuse.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Warrior/Warrior.rs.hs
+         Chargement de : GuerrierSqueletteCourse0.png
+         Chargement de : GuerrierSqueletteCourse1.png
+         Chargement de : GuerrierSqueletteFrappe0.png
+         Chargement de : GuerrierSqueletteFrappe1.png
+         Chargement de : GuerrierSqueletteFrappe2.png
+         Chargement de : GuerrierSqueletteFrappe3.png
+         Chargement de : GuerrierSqueletteFrappe4.png
+         Chargement de : GuerrierSqueletteFrappe5.png
+         Chargement de : GuerrierSqueletteFrappe6.png
+         Chargement de : GuerrierSqueletteFrappe7.png
+         Chargement du script : "Data/Scripts/AI/standard.script.hs"
+         
+         Chargement de l'objet : Data/Items/Armor.item.hs
+         
+         Chargement de l'objet : Data/Items/Boot.item.hs
+         
+         Chargement de l'objet : Data/Items/Ring.item.hs
+         
+         Chargement de l'objet : Data/Items/Small_sword_divin.item.hs
+         
+         Chargement de l'objet : Data/Items/Great_shield.item.hs
+         Chargement de : Data/Entities/Monsters/PantinMorbide/Warrior/Warrior.rs.hs terminé
+         /Lectures des monstres.
+         
+         /Lectures des événements.
+         /Lectures des cases.
+         Chargement de la map terminé.
+         
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Ecriture des cases inventaires.
+         /Sauvegarde de Data/Items/Small_shield.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Arquebuse.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Great_shield.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Boot.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Armor.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/Temp/map5.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map5.emap.hs
+         Sauvegarde terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Ecriture des cases inventaires.
+         /Sauvegarde de Data/Items/Small_shield.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Arquebuse.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Great_shield.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Boot.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Armor.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/Temp/map5.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map5.emap.hs
+         Sauvegarde terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Ecriture des cases inventaires.
+         /Sauvegarde de Data/Items/Small_shield.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Arquebuse.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Great_shield.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Boot.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Armor.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/Temp/map5.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map5.emap.hs
+         Sauvegarde terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Ecriture des cases inventaires.
+         /Sauvegarde de Data/Items/Small_shield.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Arquebuse.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Great_shield.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Boot.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Armor.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/Temp/map5.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map5.emap.hs
+         Sauvegarde terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Ecriture des cases inventaires.
+         /Sauvegarde de Data/Items/Small_shield.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Arquebuse.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Great_shield.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Boot.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Armor.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/Temp/map5.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map5.emap.hs
+         Sauvegarde terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Ecriture des cases inventaires.
+         /Sauvegarde de Data/Items/Small_shield.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Arquebuse.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Great_shield.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Boot.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Armor.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/Temp/map5.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map5.emap.hs
+         Sauvegarde terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Ecriture des cases inventaires.
+         /Sauvegarde de Data/Items/Small_shield.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Arquebuse.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Great_shield.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Boot.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Armor.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/Temp/map5.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map5.emap.hs
+         Sauvegarde terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Ecriture des cases inventaires.
+         /Sauvegarde de Data/Items/Small_shield.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Arquebuse.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Great_shield.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Boot.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Armor.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Boot.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/Temp/map5.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map5.emap.hs
+         Sauvegarde terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Ecriture des cases inventaires.
+         /Sauvegarde de Data/Items/Small_shield.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Arquebuse.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Great_shield.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Armor.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Boot.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/Temp/map5.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map5.emap.hs
+         Sauvegarde terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Ecriture des cases inventaires.
+         /Sauvegarde de Data/Items/Small_shield.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Arquebuse.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Great_shield.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Armor.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Boot.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/Temp/map5.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map5.emap.hs
+         Sauvegarde terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Ecriture des cases inventaires.
+         /Sauvegarde de Data/Items/Small_shield.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Arquebuse.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Great_shield.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Armor.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Boot.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/Temp/map5.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map5.emap.hs
+         Sauvegarde terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Ecriture des cases inventaires.
+         /Sauvegarde de Data/Items/Small_shield.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Arquebuse.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Great_shield.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Armor.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Boot.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/Temp/map5.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map5.emap.hs
+         Sauvegarde terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Ecriture des cases inventaires.
+         /Sauvegarde de Data/Items/Small_shield.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Arquebuse.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Great_shield.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Armor.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Boot.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/Temp/map5.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map5.emap.hs
+         Sauvegarde terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Ecriture des cases inventaires.
+         /Sauvegarde de Data/Items/Small_shield.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Arquebuse.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Great_shield.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Gown.item.hs
+         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
+         /Sauvegarde de Data/Items/Armor.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Boot.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/Temp/map5.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map5.emap.hs
          Sauvegarde terminée !
          
          Fermeture des contextes effectuée avec succès.
@@ -439,6 +1459,78 @@
          77
          78
          79
+         80
+         81
+         82
+         83
+         84
+         85
+         86
+         87
+         88
+         89
+         90
+         91
+         92
+         93
+         94
+         95
+         96
+         97
+         98
+         99
+         100
+         101
+         102
+         103
+         104
+         105
+         106
+         107
+         108
+         109
+         110
+         111
+         112
+         113
+         114
+         115
+         116
+         117
+         118
+         119
+         120
+         121
+         122
+         123
+         124
+         125
+         126
+         127
+         128
+         129
+         130
+         131
+         132
+         133
+         134
+         135
+         136
+         137
+         138
+         139
+         140
+         141
+         142
+         143
+         144
+         145
+         146
+         147
+         148
+         149
+         150
+         151
          -
          0
          1
@@ -520,6 +1612,78 @@
          77
          78
          79
+         80
+         81
+         82
+         83
+         84
+         85
+         86
+         87
+         88
+         89
+         90
+         91
+         92
+         93
+         94
+         95
+         96
+         97
+         98
+         99
+         100
+         101
+         102
+         103
+         104
+         105
+         106
+         107
+         108
+         109
+         110
+         111
+         112
+         113
+         114
+         115
+         116
+         117
+         118
+         119
+         120
+         121
+         122
+         123
+         124
+         125
+         126
+         127
+         128
+         129
+         130
+         131
+         132
+         133
+         134
+         135
+         136
+         137
+         138
+         139
+         140
+         141
+         142
+         143
+         144
+         145
+         146
+         147
+         148
+         149
+         150
+         151
          -
          Cases détruites !
          Modèles monstres détruits !

@@ -6,6 +6,7 @@ $
 $
 *Data/Items/Images/armor01.png
 $
+* e0 mData/Entities/Hero/Matelasse/OneHand.rs.hs e0 mData/Entities/Hero/Matelasse/TwoWeapons.rs.hs e0 mData/Entities/Hero/Matelasse/TwoHand.rs.hs $
 $
 *x0 y0 h96 w64 $
 $
