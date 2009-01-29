@@ -74,8 +74,8 @@ void MoteurGraphique::Charger()
 
 void MoteurGraphique::Gerer(sf::RenderWindow *ecran,float temps,int tailleMapY)
 {
-    for(int i=0;i<m_systemeParticules.size();i++)
-        if(m_systemeParticules[i].m_modele>=0&&m_systemeParticules[i].m_modele<m_modeleSystemeParticules.size())
+    for(int i=0;i<(int)m_systemeParticules.size();i++)
+        if(m_systemeParticules[i].m_modele>=0&&m_systemeParticules[i].m_modele<(int)m_modeleSystemeParticules.size())
         {
             if(!m_systemeParticules[i].Gerer(temps,tailleMapY))
                 m_systemeParticules.erase (m_systemeParticules.begin()+i);
@@ -87,8 +87,8 @@ void MoteurGraphique::Gerer(sf::RenderWindow *ecran,float temps,int tailleMapY)
 void MoteurGraphique::CalculerLumiereParticules(LumiereOmbrage tableauDesLampes[30][30],coordonnee vueMin,sf::RenderWindow *ecran, int tailleMapY)
 {
     coordonnee positionCase;
-    for(int i=0;i<m_systemeParticules.size();i++)
-        for(int j=0;j<m_systemeParticules[i].m_particules.size();j++)
+    for(int i=0;i<(int)m_systemeParticules.size();i++)
+        for(int j=0;j<(int)m_systemeParticules[i].m_particules.size();j++)
         {
             if((float)((m_systemeParticules[i].m_particules[j].position.y*2-m_systemeParticules[i].m_particules[j].position.x)/2)/64+tailleMapY/2<(float)tailleMapY/2)
                 positionCase.y=(int)((m_systemeParticules[i].m_particules[j].position.y*2-m_systemeParticules[i].m_particules[j].position.x)/2)/64+tailleMapY/2-1;
@@ -113,7 +113,7 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera)
 
     for(int k=0;k<20;k++)
     {
-        for(int i=0;i<m_commandes[k].size();i++)
+        for(int i=0;i<(int)m_commandes[k].size();i++)
         {
             if(m_commandes[k][i].m_utiliserCamera)
                 ecran->SetView(*camera);
@@ -126,7 +126,7 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera)
 
 
 
-        for(int i=0;i<m_textes[k].size();i++)
+        for(int i=0;i<(int)m_textes[k].size();i++)
         {
             ecran->SetView(ecran->GetDefaultView());
             ecran->Draw(m_textes[k][i]);
@@ -175,7 +175,7 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera)
 
 int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std::string nom,int importance)
 {
-    for(int i=0;i<m_images.size();i++)
+    for(int i=0;i<(int)m_images.size();i++)
     {
         if(m_images[i].nom==nom.c_str())
         {
@@ -224,7 +224,7 @@ int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std
 
 int MoteurGraphique::AjouterImage(std::string chemin,int importance)
 {
-    for(int i=0;i<m_images.size();i++)
+    for(int i=0;i<(int)m_images.size();i++)
     {
         if(m_images[i].nom==chemin.c_str())
         {
@@ -274,7 +274,7 @@ int MoteurGraphique::AjouterImage(std::string chemin,int importance)
 
 void MoteurGraphique::DecrementerImportance()
 {
-    for(int i=0;i<m_images.size();i++)
+    for(int i=0;i<(int)m_images.size();i++)
         if(m_images[i].importance!=-1)
         {
             m_images[i].importance--;
@@ -285,7 +285,7 @@ void MoteurGraphique::DecrementerImportance()
 
 int MoteurGraphique::AjouterModeleSystemeParticules(std::string chemin)
 {
-    for(int i=0;i<m_modeleSystemeParticules.size();i++)
+    for(int i=0;i<(int)m_modeleSystemeParticules.size();i++)
         if(m_modeleSystemeParticules[i].m_chemin==chemin)
             return i;
 
@@ -297,7 +297,7 @@ int MoteurGraphique::AjouterModeleSystemeParticules(std::string chemin)
 
 void MoteurGraphique::AjouterSystemeParticules(int ID,coordonnee position,sf::Color color,float force,float angle)
 {
-    if(ID>=0&&ID<m_modeleSystemeParticules.size())
+    if(ID>=0&&ID<(int)m_modeleSystemeParticules.size())
     {
         m_systemeParticules.push_back(ParticuleSysteme (ID,&m_modeleSystemeParticules[ID],position,color,force,angle));
     }
@@ -364,7 +364,7 @@ void MoteurGraphique::ViderParticules()
 
 sf::Image* MoteurGraphique::getImage(int IDimage)
 {
-    if(IDimage>=0&&IDimage<m_images.size())
+    if(IDimage>=0&&IDimage<(int)m_images.size())
         return &m_images[IDimage].img;
     else
         return &m_images[0].img;
@@ -372,7 +372,7 @@ sf::Image* MoteurGraphique::getImage(int IDimage)
 
 ModeleParticuleSysteme* MoteurGraphique::getModeleMoteurParticules(int ID)
 {
-    if(ID>=0&&ID<m_modeleSystemeParticules.size())
+    if(ID>=0&&ID<(int)m_modeleSystemeParticules.size())
         return &m_modeleSystemeParticules[ID];
     else
         return &m_modeleSystemeParticules[0];
@@ -380,7 +380,7 @@ ModeleParticuleSysteme* MoteurGraphique::getModeleMoteurParticules(int ID)
 
 std::string MoteurGraphique::getCheminImage(int IDimage)
 {
-    if(IDimage>=0&&IDimage<m_images.size())
+    if(IDimage>=0&&IDimage<(int)m_images.size())
         return m_images[IDimage].nom;
     else
         return "";

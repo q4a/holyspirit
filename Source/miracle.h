@@ -56,9 +56,9 @@ struct Effet
         m_type=0;
         m_sequence=0;
 
-        m_informations[0];
-        m_informations[0];
-        m_informations[0];
+        m_informations[0]=0;
+        m_informations[1]=0;
+        m_informations[2]=0;
     }
 
     int m_lien;

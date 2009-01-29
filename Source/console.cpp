@@ -19,7 +19,7 @@ void Console::Afficher(sf::RenderWindow* ecran)
         int min=m_textes.size()-27+m_defilement;
         if(min<0)
         min=0;
-        for(int i=min;i<m_textes.size()+m_defilement;i++)
+        for(int i=min;i<(int)m_textes.size()+m_defilement;i++)
         {
             sf::String texte;
             texte.SetText(m_textes[i].c_str());
@@ -50,7 +50,7 @@ void Console::Ajouter(int nombre,bool erreur)
     if(!configuration.desactivate_console)
     {
         char temp[10];
-        sprintf(temp,"%ld",nombre);
+        sprintf(temp,"%i",nombre);
         m_textes.push_back(temp);
         m_erreur.push_back(erreur);
         Rapport();
@@ -64,7 +64,7 @@ void Console::defiler(bool direction)
     if(direction==0)
     {
         m_defilement--;
-        if(m_defilement<-m_textes.size())
+        if(m_defilement<(int)-m_textes.size())
             m_defilement=-m_textes.size()+1;
     }
     if(direction==1)
@@ -80,7 +80,7 @@ void Console::Rapport()
     ofstream fichier("Log.txt", ios::out | ios::trunc);
     if(fichier)  // si l'ouverture a réussi
     {
-        for(int i=0;i<m_textes.size();i++)
+        for(int i=0;i<(int)m_textes.size();i++)
         {
             if(m_erreur[i])
                 fichier<<"ERREUR : ";

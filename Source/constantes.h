@@ -1,8 +1,3 @@
-///**************************************************\\\
-||| Dernière modification : Le 06/02/08 par Gregouar |||
-///**************************************************///
-
-
 
 
 #ifndef CONSTANTEH
@@ -96,6 +91,13 @@ struct coordonnee3D
 	float z;
 };
 
+struct coordonneeDecimal
+{
+    float x;
+	float y;
+	float h;
+	float w;
+};
 
 struct Configuration
 {
@@ -109,7 +111,6 @@ struct Configuration
             fichier.open("configuration.conf", std::ios::in);
             if(fichier)
             {
-                char caractere;
                 std::string chaine;
                 while(fichier>>chaine)
                 {
@@ -149,7 +150,6 @@ struct Configuration
             fichier2.open("holyspirit.ini", std::ios::in);
             if(fichier2)
             {
-                char caractere;
                 std::string chaine;
                 while(fichier2>>chaine)
                 {
@@ -210,6 +210,11 @@ struct Configuration
             Resolution.w=resolution.x;
             Resolution.h=resolution.y;
 
+            Redimensionnement.x=resolution.x;
+            Redimensionnement.y=resolution.y;
+            Redimensionnement.w=resolution.x;
+            Redimensionnement.h=resolution.y;
+
             zoom=1;
 
             if(!Lumiere)
@@ -217,8 +222,6 @@ struct Configuration
 
 
             text_benedictions=new std::string [NOMBRE_BENEDICTION];
-
-            char temp[255];
 
             std::ifstream fichier3;
             fichier3.open(chemin_text_benedictions.c_str(), std::ios::in);
@@ -284,6 +287,7 @@ struct Configuration
 
 
     coordonnee Resolution;
+    coordonneeDecimal Redimensionnement;
     bool Ombre,Minimap,amelioration_lampes,console,Herbes,syncronisation_verticale,mode_fenetre,postFX,sang,video,particules,debug,desactivate_console,lissage;
     int Lumiere;
     float effetMort,effetNoir,volume,minute,zoom,frequence_sauvegarde,frequence_lumiere,luminosite,contrastes;
@@ -322,13 +326,7 @@ struct Caracteristique
     bool sang;
 };
 
-struct coordonneeDecimal
-{
-    float x;
-	float y;
-	float h;
-	float w;
-};
+
 
 class Lumiere
 {
@@ -364,29 +362,28 @@ class LumiereOmbrage : public Lumiere
     }
     void AjouterOmbre(int intensite, float angle, float hauteur_lumiere)
     {
-        Ombre ombreTemp;
-        m_ombre.push_back(ombreTemp);
+        m_ombre.push_back(Ombre ());
 
-        m_ombre[m_ombre.size()-1].intensite=intensite;
-        m_ombre[m_ombre.size()-1].intensiteBasique=intensite;
-        m_ombre[m_ombre.size()-1].angle=angle;
-        m_ombre[m_ombre.size()-1].taille=(100-(float)hauteur_lumiere)/50;
+        m_ombre.back().intensite=intensite;
+        m_ombre.back().intensiteBasique=intensite;
+        m_ombre.back().angle=angle;
+        m_ombre.back().taille=(100-(float)hauteur_lumiere)/50;
 
 
-        for(int i=0;i<m_ombre.size()-1;i++)
+        for (std::vector <Ombre>::iterator ombre = m_ombre.begin(); ombre!=m_ombre.end(); ++ombre)
         {
             float angle;
-            angle=valeurAbsolue(m_ombre[m_ombre.size()-1].angle-m_ombre[i].angle);
+            angle=valeurAbsolue(m_ombre.back().angle-ombre->angle);
             if(angle>180)
                 angle=360-angle;
 
-            m_ombre[m_ombre.size()-1].intensite-=(int)((float)m_ombre[i].intensiteBasique*angle/270);
-            m_ombre[i].intensite-=(int)((float)m_ombre[m_ombre.size()-1].intensiteBasique*angle/270);
+            m_ombre.back().intensite-=(int)((float)ombre->intensiteBasique*angle/270);
+            ombre->intensite-=(int)((float)m_ombre.back().intensiteBasique*angle/270);
 
-            if(m_ombre[m_ombre.size()-1].intensite<0)
-                m_ombre[m_ombre.size()-1].intensite=0;
-            if(m_ombre[i].intensite<0)
-                m_ombre[i].intensite=0;
+            if(m_ombre.back().intensite<0)
+                m_ombre.back().intensite=0;
+            if(ombre->intensite<0)
+                ombre->intensite=0;
         }
 
     }
@@ -401,7 +398,7 @@ class LumiereOmbrage : public Lumiere
         Ombre temp;
         m_ombre.resize(lumiere.m_ombre.size(),temp);
 
-        for(int i=0;i<lumiere.m_ombre.size();i++)
+        for(int i=0;i<(int)lumiere.m_ombre.size();i++)
         {
             m_ombre[i].intensite=lumiere.m_ombre[i].intensite;
             m_ombre[i].intensiteBasique=lumiere.m_ombre[i].intensiteBasique;

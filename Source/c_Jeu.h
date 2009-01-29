@@ -12,7 +12,6 @@ class c_Jeu : public Contexte
 {
     public:
     c_Jeu(Jeu *jeu);
-    ~c_Jeu(){/*delete camera;*/}
     void Utiliser(Jeu *jeu);
 
    // sf::View *camera;

@@ -1,7 +1,3 @@
-///**************************************************\\\
-||| Dernière modification : Le 06/02/08 par Gregouar |||
-///**************************************************///
-
 
 #include "Personnage.h"
 #include "Globale.h"
@@ -69,9 +65,9 @@ Modele_Personnage::Modele_Personnage()
 
 void Modele_Personnage::Reinitialiser()
 {
-    for(int i=0;i<m_pose.size();i++)
+    for(int i=0;i<(int)m_pose.size();i++)
     {
-         for(int j=0;j<m_pose[i].size();j++)
+         for(int j=0;j<(int)m_pose[i].size();j++)
             m_pose[i][j].clear();
          m_pose[i].clear();
     }
@@ -83,9 +79,9 @@ void Modele_Personnage::Reinitialiser()
 
 Modele_Personnage::~Modele_Personnage()
 {
-    for(int i=0;i<m_pose.size();i++)
+    for(int i=0;i<(int)m_pose.size();i++)
     {
-         for(int j=0;j<m_pose[i].size();j++)
+         for(int j=0;j<(int)m_pose[i].size();j++)
             m_pose[i][j].clear();
          m_pose[i].clear();
     }
@@ -99,9 +95,9 @@ Modele_Personnage::~Modele_Personnage()
 
 bool Modele_Personnage::Charger(string chemin)
 {
-    for(int i=0;i<m_pose.size();i++)
+    for(int i=0;i<(int)m_pose.size();i++)
     {
-         for(int j=0;j<m_pose[i].size();j++)
+         for(int j=0;j<(int)m_pose[i].size();j++)
             m_pose[i][j].clear();
          m_pose[i].clear();
     }
@@ -115,7 +111,6 @@ bool Modele_Personnage::Charger(string chemin)
 
 
 	cDAT reader;
-    char* buffer;
 
     reader.Read(chemin);
 
@@ -246,8 +241,6 @@ bool Modele_Personnage::Charger(string chemin)
 
     delete fichier;
 
-    delete[] buffer;
-
     return true;
 }
 
@@ -255,8 +248,8 @@ int Personnage::getOrdre(Modele_Personnage *modele)
 {
     if(modele->m_pose.size()>0)
         if(m_etat>=0&&m_etat<NOMBRE_ETAT)
-            if((int)(m_angle/45)>=0&&(int)(m_angle/45)<modele->m_pose[m_etat].size())
-                if(m_poseEnCours>=0&&m_poseEnCours<modele->m_pose[m_etat][(int)(m_angle/45)].size())
+            if((int)(m_angle/45)>=0&&(int)(m_angle/45)<(int)modele->m_pose[m_etat].size())
+                if(m_poseEnCours>=0&&m_poseEnCours<(int)modele->m_pose[m_etat][(int)(m_angle/45)].size())
                      return modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getOrdre();
 
     return -10;
@@ -272,7 +265,7 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
 
         if(configuration.Ombre&&modele->m_ombre)
         {
-            for(int o=0;o<m_lumiere.m_ombre.size();o++)
+            for(int o=0;o<(int)m_lumiere.m_ombre.size();o++)
             {
                 int angleOmbre=(int)((m_angle-m_lumiere.m_ombre[o].angle)+22.5);
 
@@ -281,8 +274,8 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
                 while(angleOmbre>=360)
                     angleOmbre=angleOmbre-360;
 
-                if((int)(angleOmbre/45)>=0&&(int)(angleOmbre/45)<modele->m_pose[m_etat].size())
-                    if(m_poseEnCours>=0&&m_poseEnCours<modele->m_pose[m_etat][(int)(angleOmbre/45)].size())
+                if((int)(angleOmbre/45)>=0&&(int)(angleOmbre/45)<(int)modele->m_pose[m_etat].size())
+                    if(m_poseEnCours>=0&&m_poseEnCours<(int)modele->m_pose[m_etat][(int)(angleOmbre/45)].size())
                     {
 
 
@@ -310,8 +303,8 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
             }
         }
 
-        if((int)(m_angle/45)>=0&&(int)(m_angle/45)<modele->m_pose[m_etat].size())
-            if(m_poseEnCours>=0&&m_poseEnCours<modele->m_pose[m_etat][(int)(m_angle/45)].size())
+        if((int)(m_angle/45)>=0&&(int)(m_angle/45)<(int)modele->m_pose[m_etat].size())
+            if(m_poseEnCours>=0&&m_poseEnCours<(int)modele->m_pose[m_etat][(int)(m_angle/45)].size())
             {
                 sprite.SetImage(*moteurGraphique.getImage(modele->m_image[modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()]));
                 sprite.SetSubRect(IntRect(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h));
@@ -502,6 +495,8 @@ int Personnage::pathfinding(bool** map,coordonnee exception)
         for(int i=0;i<20;i++)
                 delete[] map[i];
             delete[] map;
+
+    return 2;
 }
 
 
@@ -589,6 +584,7 @@ bool Personnage::seDeplacer(float tempsEcoule)
 
         return 0;
     }
+    return 0;
 }
 
 void Personnage::infligerDegats(float degats)
@@ -618,7 +614,7 @@ int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,boo
 
         m_poseEnCours=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAnimation();
 
-        if(m_poseEnCours>modele->m_pose[m_etat][(int)(m_angle/45)].size())
+        if(m_poseEnCours>(int)modele->m_pose[m_etat][(int)(m_angle/45)].size())
         m_poseEnCours=0;
 
         //if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getSon()>=0)
@@ -698,7 +694,7 @@ void Personnage::frappe(coordonnee direction,coordonnee position)
 
 void Modele_Personnage::jouerSon(int numeroSon,coordonnee position,coordonnee positionHero)
 {
-    if(numeroSon>=0&&numeroSon<m_sons.size())
+    if(numeroSon>=0&&numeroSon<(int)m_sons.size())
     {
         coordonnee pos;
         pos.x=-position.x;

@@ -23,10 +23,10 @@ ParticuleSysteme::~ParticuleSysteme()
 }
 void ParticuleSysteme::Afficher(sf::RenderWindow *ecran, ModeleParticuleSysteme *modele)
 {
-    for(int i=0;i<m_particules.size();i++)
+    for(int i=0;i<(int)m_particules.size();i++)
     {
         sf::Sprite sprite;
-        if(m_particules[i].numero>=0&&m_particules[i].numero<modele->m_particules.size())
+        if(m_particules[i].numero>=0&&m_particules[i].numero<(int)modele->m_particules.size())
         {
             sprite.SetImage(*moteurGraphique.getImage(modele->m_image));
             sprite.SetSubRect(sf::IntRect(modele->m_particules[m_particules[i].numero].positionImage.x,modele->m_particules[m_particules[i].numero].positionImage.y,modele->m_particules[m_particules[i].numero].positionImage.x+modele->m_particules[m_particules[i].numero].positionImage.w,modele->m_particules[m_particules[i].numero].positionImage.y+modele->m_particules[m_particules[i].numero].positionImage.h));
@@ -49,7 +49,7 @@ void ParticuleSysteme::Afficher(sf::RenderWindow *ecran, ModeleParticuleSysteme 
 }
 void ParticuleSysteme::Generer(float force, ModeleParticuleSysteme *modele,coordonnee position,float angle)
 {
-    for(int i=0;i<modele->m_particules.size();i++)
+    for(int i=0;i<(int)modele->m_particules.size();i++)
     {
         int nombre=(rand() % (modele->m_particules[i].max - modele->m_particules[i].min + 1)) + modele->m_particules[i].min;
         for(int j=0;j<nombre;j++)
@@ -76,7 +76,7 @@ void ParticuleSysteme::Generer(float force, ModeleParticuleSysteme *modele,coord
 bool ParticuleSysteme::Gerer(float temps,int tailleMapY)
 {
     bool efface=false;
-    for(int i=0;i<m_particules.size();i++)
+    for(int i=0;i<(int)m_particules.size();i++)
     {
         if(m_particules[i].vie==100)
         {

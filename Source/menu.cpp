@@ -144,7 +144,7 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
 
     texte.SetColor(Color(255,255,255,255));
 
-    sprintf(chaine,"%ld",caracteristique.niveau);
+    sprintf(chaine,"%i",caracteristique.niveau);
     texte.SetText(chaine);
 
     texte.SetX(configuration.Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
@@ -155,7 +155,7 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
 
     if(type!=-1)
     {
-        for(int i=0;i<m_ame.size();i++)
+        for(int i=0;i<(int)m_ame.size();i++)
         {
             if(m_ame[i].m_mode<3)
             {
@@ -174,7 +174,7 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
             }
         }
 
-        for(int i=0;i<m_sang.size();i++)
+        for(int i=0;i<(int)m_sang.size();i++)
         {
             Sprite sprite;
 
@@ -219,7 +219,7 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
         texte.SetSize(20.f*configuration.Resolution.h/600);
          texte.SetStyle(1);
 
-        sprintf(chaine,"%s (%ld)",caracteristiqueMonstre.nom.c_str(),caracteristiqueMonstre.niveau);
+        sprintf(chaine,"%s (%i)",caracteristiqueMonstre.nom.c_str(),caracteristiqueMonstre.niveau);
         sprintf(chaine2,"%s",chaine);
         if(caracteristiqueMonstre.rang==1){sprintf(chaine2,"Champion : %s",chaine);}
         if(caracteristiqueMonstre.rang==2){sprintf(chaine2,"Chef : %s",chaine);}
@@ -378,9 +378,9 @@ int Menu::GererDynamique(float temps)
             nombre_sang_disparu++;
     }
 
-    if(nombre_ame_absorbee>=m_ame.size()&&m_ame.size()>0)
+    if(nombre_ame_absorbee>=(int)m_ame.size()&&(int)m_ame.size()>0)
         m_ame.clear();
-    if(nombre_sang_disparu>=m_sang.size()&&m_sang.size()>0)
+    if(nombre_sang_disparu>=(int)m_sang.size()&&(int)m_sang.size()>0)
         m_sang.clear();
 
     //m_alphaSang-=temps*200;

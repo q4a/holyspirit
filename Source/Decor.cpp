@@ -28,6 +28,29 @@ Decor::~Decor()
        // console.Ajouter("/Destruction des objets");
 }
 
+Decor Decor::operator=(const Decor &Decor)
+{
+    m_tileset=Decor.m_tileset;
+    m_tile=Decor.m_tile;
+    m_monstre=Decor.m_monstre;
+    m_projectile=Decor.m_projectile;
+    m_effet=Decor.m_effet;
+    m_couche=Decor.m_couche;
+    m_animation=Decor.m_animation;
+    m_position=Decor.m_position;
+    m_herbe=Decor.m_herbe;
+    m_numeroHerbe=Decor.m_numeroHerbe;
+    m_herbe_taille=Decor.m_herbe_taille;
+    m_herbe_decalage=Decor.m_herbe_decalage;
+    m_herbe_couleur=Decor.m_herbe_couleur;
+
+
+    m_evenement=Decor.m_evenement;
+	m_objets=Decor.m_objets;
+
+    return *this;
+}
+
 void Decor::setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche)
 {
 	m_tileset=tileset;
@@ -63,7 +86,7 @@ void Decor::setProjectile(int projectile){m_projectile=projectile;}
 void Decor::setEffetGraphique(int effet){m_effet=effet;}
 void Decor::setEvenement(int evenement, int numero)
 {
-    if(numero>=0&&numero<m_evenement.size())
+    if(numero>=0&&numero<(int)m_evenement.size())
         m_evenement[numero]=evenement;
 }
 void Decor::ajouterEvenement(int evenement)
@@ -77,7 +100,7 @@ void Decor::ajouterObjet(Objet objet){m_objets.push_back(objet);}
 
 void Decor::supprimerObjet(int numero)
 {
-    if(numero>=0&&numero<m_objets.size())
+    if(numero>=0&&numero<(int)m_objets.size())
     {
         m_objets.erase(m_objets.begin()+numero);
     }
@@ -99,7 +122,7 @@ sf::Color Decor::getCouleurHerbe(){return m_herbe_couleur;}
 coordonnee Decor::getDecalageHerbe(){return m_herbe_decalage;}
 
 float Decor::getAnimation(){return m_animation;}
-Objet Decor::getObjet(int numero){ if(numero>=0&&numero<m_objets.size()) return m_objets[numero];}
+Objet Decor::getObjet(int numero){ if(numero>=0&&numero<(int)m_objets.size()) return m_objets[numero]; Objet temp; return temp; }
 std::vector<Objet> Decor::getObjets(){return m_objets;}
 int Decor::getNombreObjets(){return m_objets.size();}
 

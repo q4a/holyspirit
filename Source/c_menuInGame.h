@@ -11,7 +11,6 @@ class c_MenuInGame : public Contexte
 {
     public:
     c_MenuInGame(Jeu *jeu);
-    ~c_MenuInGame(){/*delete camera;*/}
     void Utiliser(Jeu *jeu);
 
     //sf::View *camera;

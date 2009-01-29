@@ -13,9 +13,7 @@ using namespace sf;
 c_Jeu::c_Jeu(Jeu *jeu)
 {
         continuer=true,lumiere=false,augmenter=false;
-        chaine[10];
-        tempsActuel=0,tempsPrecedent=0,tempsDepuisDerniereAnimation=0,tempsEcoule=0,tempsNbrTourBoucle=0,tempsEcouleDepuisDernierCalculLumiere=0,tempsEcouleDepuisDernierDeplacement=0,tempsEcouleDepuisDernierIA=0,tempsEcouleDepuisDernierAffichage=0,tempsEcouleDepuisFPS,tempsEffetMort=0,tempsSauvergarde=0;
-        //tempsActuel=0,tempsPrecedent=0,tempsDepuisDerniereAnimation=0,tempsEcoule=0,tempsNbrTourBoucle=0,tempsEcouleDepuisDernierCalculLumiere=0,tempsEcouleDepuisDernierDeplacement=0,tempsEcouleDepuisDernierIA=0,tempsEcouleDepuisDernierAffichage=0,tempsEcouleDepuisFPS=0,tempsEffetMort=0,tempsSauvergarde=0;
+        tempsActuel=0,tempsPrecedent=0,tempsDepuisDerniereAnimation=0,tempsEcoule=0,tempsNbrTourBoucle=0,tempsEcouleDepuisDernierCalculLumiere=0,tempsEcouleDepuisDernierDeplacement=0,tempsEcouleDepuisDernierIA=0,tempsEcouleDepuisDernierAffichage=0,tempsEcouleDepuisFPS=0,tempsEffetMort=0,tempsSauvergarde=0;
         nbrTourBoucle=0;
 
         configuration.heure=(rand() % (24));
@@ -32,7 +30,7 @@ c_Jeu::c_Jeu(Jeu *jeu)
         Version.SetY(20);
 
         Temps.SetSize(16.f);
-        sprintf(chaine,"Temps : %ld h %ld ",configuration.heure,(int)configuration.minute);
+        sprintf(chaine,"Temps : %i h %i ",configuration.heure,(int)configuration.minute);
         Temps.SetText(chaine);
         Temps.SetY(40);
 
@@ -452,7 +450,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 if(tempsNbrTourBoucle>1)
                 {
-                    sprintf(chaine,"Nbr Tour de boucle : %ld",nbrTourBoucle);
+                    sprintf(chaine,"Nbr Tour de boucle : %i",nbrTourBoucle);
                     TourBoucle.SetText(chaine);
                     nbrTourBoucle=0;
 
@@ -460,7 +458,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                 }
 
                 if(configuration.console&&jeu->ecran.GetFrameTime()!=0)
-                    sprintf(chaine,"%ld FPS",(int)( 1.f / jeu->ecran.GetFrameTime()));
+                    sprintf(chaine,"%i FPS",(int)( 1.f / jeu->ecran.GetFrameTime()));
 
                 if(configuration.console)
                     if(tempsEcouleDepuisFPS>0.1)
@@ -470,7 +468,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                         fps.SetText(chaine);
 
 
-                        sprintf(chaine,"Temps : %ld h %ld ",configuration.heure,(int)configuration.minute);
+                        sprintf(chaine,"Temps : %i h %i ",configuration.heure,(int)configuration.minute);
                         Temps.SetText(chaine);
 
                         tempsEcouleDepuisFPS=0;

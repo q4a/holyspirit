@@ -55,9 +55,17 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
                 m_Clic[Event.MouseButton.Button]=0;
                 m_ClicAncien[Event.MouseButton.Button]=0;
                 break;
+            case Event::Closed:
+                *continuer = false;
+                break;
+
+            case Event::Resized:
+                configuration.Redimensionnement.w=(float)configuration.Resolution.w*0,00125;
+                configuration.Redimensionnement.h=(float)configuration.Resolution.h*0,00167;
+                configuration.Redimensionnement.x=(float)configuration.Resolution.x*0,00125;
+                configuration.Redimensionnement.y=(float)configuration.Resolution.y*0,00167;
+                break;
     	}
-    	if (Event.Type == Event::Closed)
-        *continuer = false;
 	}
 
     /*if(m_EventTableau[Key::Escape])
@@ -182,6 +190,8 @@ bool EventManager::getEvenement(int numeroEvenement,std::string evenement)
 	if(evenement=="CA")
 	    if(numeroEvenement>=0&&numeroEvenement<=5)
 	        return m_ClicAncien[numeroEvenement];
+
+    return 0;
 }
 
 void EventManager::StopEvenement(int numeroEvenement,std::string evenement)

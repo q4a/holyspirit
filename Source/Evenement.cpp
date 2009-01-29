@@ -53,7 +53,7 @@ int Evenement::getInformation(int numeroInfo)
 
 void Evenement::setInformation(int information,int numero)
 {
-    if(numero>=0&&numero<m_information.size())
+    if(numero>=0&&numero<(int)m_information.size())
         m_information[numero]=information;
 }
 

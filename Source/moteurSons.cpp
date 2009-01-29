@@ -30,7 +30,7 @@ void MoteurSons::Vider()
 
 int MoteurSons::AjouterBuffer(std::string chemin)
 {
-   for(int i=0;i<m_cheminsSons.size();i++)
+   for(int i=0;i<(int)m_cheminsSons.size();i++)
         if(m_cheminsSons[i]==chemin)
             return i;
 
@@ -55,7 +55,7 @@ void MoteurSons::JouerSon(int ID,coordonnee position,coordonnee positionHero,boo
         volume=100;
     if(volume<0)
         volume=0;
-    if(ID>=0&&ID<m_buffers.size())
+    if(ID>=0&&ID<(int)m_buffers.size())
     {
         bool creerNouveauSon=true;
         if(unique)

@@ -127,7 +127,7 @@ void Objet::Sauvegarder(std::ofstream *fichier)
     fichier->write(m_chemin.c_str(), n);
    // fichier->write((char*)&espace, sizeof(char));
 
-    for(int i=0;i<m_benedictions.size();i++)
+    for(int i=0;i<(int)m_benedictions.size();i++)
     {
         caractere='b';
         fichier->write((char*)&caractere, sizeof(char));
@@ -506,7 +506,7 @@ void Objet::Generer(int bonus)
             else
                 temp.info1=(int)(rand()%(m_capaciteBenediction*2 - (int)((float)m_capaciteBenediction*0.5))+(float)m_capaciteBenediction*0.5);
 
-            for(int j=0;j<m_benedictions.size();j++)
+            for(int j=0;j<(int)m_benedictions.size();j++)
                 if(m_benedictions[j].type==temp.type)
                     m_benedictions[j].info1+=temp.info1,ajouter=false;
 
@@ -518,7 +518,7 @@ void Objet::Generer(int bonus)
             }
         }
 
-        for(int i=0;i<m_benedictions.size();i++)
+        for(int i=0;i<(int)m_benedictions.size();i++)
             if(m_benedictions[i].type==EFFICACITE_ACCRUE)
             {
                 m_armure+=(int)((float)m_armure*(float)m_benedictions[i].info1*0.01);
@@ -671,18 +671,18 @@ void Objet::AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position
     if(m_rarete==CRAFT)
         temp[0].SetColor(sf::Color(128,64,0));
 
-    for(int i=0;i<m_description.size();i++)
+    for(int i=0;i<(int)m_description.size();i++)
     {
         sprintf(chaine,"%s",m_description[i].c_str());
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
     }
 
-    sprintf(chaine,"");
+    sprintf(chaine," ");
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
 
     float multiplieurEfficacite=100;
 
-    for(int i=0;i<m_benedictions.size();i++)
+    for(int i=0;i<(int)m_benedictions.size();i++)
         if(m_benedictions[i].type==EFFICACITE_ACCRUE)
             multiplieurEfficacite+=m_benedictions[i].info1;
 
@@ -707,10 +707,10 @@ void Objet::AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position
         break;
     }
 
-    sprintf(chaine,"");
+    sprintf(chaine," ");
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
 
-    for(int i=0;i<m_benedictions.size();i++)
+    for(int i=0;i<(int)m_benedictions.size();i++)
     {
         sprintf(chaine,"%s %i",configuration.text_benedictions[m_benedictions[i].type].c_str(),m_benedictions[i].info1);
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
@@ -723,7 +723,7 @@ void Objet::AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position
             position.y=configuration.Resolution.h-decalage.y-10;
 
     int decalY=0;
-    for(int i=0;i<temp.size();i++)
+    for(int i=0;i<(int)temp.size();i++)
     {
         temp[i].SetY((position.y+decalY+10));
         temp[i].SetX(position.x+(tailleCadran.x/2-((int)temp[i].GetRect().Right-(int)temp[i].GetRect().Left)/2)-tailleCadran.x);

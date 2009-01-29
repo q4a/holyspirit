@@ -84,7 +84,6 @@ bool Modele_Monstre::Charger(string chemin)
     m_particules=-1;
 
     cDAT reader;
-    char* buffer;
 
     reader.Read(chemin);
 

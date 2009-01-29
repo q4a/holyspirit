@@ -11,7 +11,6 @@ class c_Demarrage : public Contexte
 {
     public:
     c_Demarrage(Jeu *jeu);
-    ~c_Demarrage(){/*delete camera;*/}
     void Utiliser(Jeu *jeu);
 
     //sf::View *camera;

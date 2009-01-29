@@ -1,6 +1,3 @@
-///**************************************************\\\
-||| Dernière modification : Le 06/02/08 par Gregouar |||
-///**************************************************///
 
 
 ///Liste de cases utilisée pour le pathfinding

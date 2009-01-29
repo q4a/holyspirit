@@ -28,7 +28,7 @@ void liste_case::supprimer(){m_liste.clear();}
 bool liste_case::testerCasesEnCours(coordonnee caseCherchee)
 {
     // Je regarde si je suis sur ma case d'arrivee
-	for(int i=0;i<m_liste.size();i++)
+	for(int i=0;i<(int)m_liste.size();i++)
 			if(m_liste[i].getPosition().x==caseCherchee.x&&m_liste[i].getPosition().y==caseCherchee.y)
 				return 1;
 
@@ -126,6 +126,7 @@ bool liste_case::ajouterCasesAdjacentes(bool **grille,coordonnee *arrivee,coordo
 		}
 		else
             return 0;
+        return 1;
 }
 
 void liste_case::incrementerDistanceEnCours(){m_distanceEnCours++;}
@@ -138,62 +139,63 @@ coordonnee liste_case::trouverLeChemin(coordonnee caseEnCours)
 {
     // Je repart de mon arrivee et suis les cases dans l'ordre décroisant jusqu'à me retrouver à ma case départ
 	coordonnee enCours;
-	for(int i=0;i<m_liste.size();i++)
+	for(int i=0;i<(int)m_liste.size();i++)
 		if(m_liste[i].getPosition().x==caseEnCours.x&&m_liste[i].getPosition().y==caseEnCours.y)
 		{
 			enCours.y=m_liste[i].getPosition().y;
 			enCours.x=m_liste[i].getPosition().x+1;
-			for(int j=0;j<m_liste.size();j++)
+			for(int j=0;j<(int)m_liste.size();j++)
 				if(m_liste[j].getDistance()==m_distanceEnCours-1&&m_liste[j].getPosition().x==enCours.x&&m_liste[j].getPosition().y==enCours.y)
 					return m_liste[j].getPosition();
 
 			enCours.y=m_liste[i].getPosition().y;
 			enCours.x=m_liste[i].getPosition().x-1;
-			for(int j=0;j<m_liste.size();j++)
+			for(int j=0;j<(int)m_liste.size();j++)
 				if(m_liste[j].getDistance()==m_distanceEnCours-1&&m_liste[j].getPosition().x==enCours.x&&m_liste[j].getPosition().y==enCours.y)
 					return m_liste[j].getPosition();
 
 			enCours.y=m_liste[i].getPosition().y+1;
 			enCours.x=m_liste[i].getPosition().x;
-			for(int j=0;j<m_liste.size();j++)
+			for(int j=0;j<(int)m_liste.size();j++)
 				if(m_liste[j].getDistance()==m_distanceEnCours-1&&m_liste[j].getPosition().x==enCours.x&&m_liste[j].getPosition().y==enCours.y)
 					return m_liste[j].getPosition();
 
 			enCours.y=m_liste[i].getPosition().y-1;
 			enCours.x=m_liste[i].getPosition().x;
-			for(int j=0;j<m_liste.size();j++)
+			for(int j=0;j<(int)m_liste.size();j++)
 				if(m_liste[j].getDistance()==m_distanceEnCours-1&&m_liste[j].getPosition().x==enCours.x&&m_liste[j].getPosition().y==enCours.y)
 					return m_liste[j].getPosition();
 
 			enCours.y=m_liste[i].getPosition().y-1;
 			enCours.x=m_liste[i].getPosition().x+1;
-			for(int j=0;j<m_liste.size();j++)
+			for(int j=0;j<(int)m_liste.size();j++)
 				if(m_liste[j].getDistance()==m_distanceEnCours-1&&m_liste[j].getPosition().x==enCours.x&&m_liste[j].getPosition().y==enCours.y)
 					return m_liste[j].getPosition();
 
 			enCours.y=m_liste[i].getPosition().y+1;
 			enCours.x=m_liste[i].getPosition().x-1;
-			for(int j=0;j<m_liste.size();j++)
+			for(int j=0;j<(int)m_liste.size();j++)
 				if(m_liste[j].getDistance()==m_distanceEnCours-1&&m_liste[j].getPosition().x==enCours.x&&m_liste[j].getPosition().y==enCours.y)
 					return m_liste[j].getPosition();
 
 			enCours.y=m_liste[i].getPosition().y+1;
 			enCours.x=m_liste[i].getPosition().x+1;
-			for(int j=0;j<m_liste.size();j++)
+			for(int j=0;j<(int)m_liste.size();j++)
 				if(m_liste[j].getDistance()==m_distanceEnCours-1&&m_liste[j].getPosition().x==enCours.x&&m_liste[j].getPosition().y==enCours.y)
 					return m_liste[j].getPosition();
 
 			enCours.y=m_liste[i].getPosition().y-1;
 			enCours.x=m_liste[i].getPosition().x-1;
-			for(int j=0;j<m_liste.size();j++)
+			for(int j=0;j<(int)m_liste.size();j++)
 				if(m_liste[j].getDistance()==m_distanceEnCours-1&&m_liste[j].getPosition().x==enCours.x&&m_liste[j].getPosition().y==enCours.y)
 					return m_liste[j].getPosition();
 
             enCours.y=m_liste[i].getPosition().y;
 			enCours.x=m_liste[i].getPosition().x;
-			for(int j=0;j<m_liste.size();j++)
+			for(int j=0;j<(int)m_liste.size();j++)
 				if(m_liste[j].getDistance()==m_distanceEnCours-1&&m_liste[j].getPosition().x==enCours.x&&m_liste[j].getPosition().y==enCours.y)
 					return m_liste[j].getPosition();
 		}
+		return enCours;
 }
 

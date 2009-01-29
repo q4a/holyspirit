@@ -73,7 +73,7 @@ Miracle::Miracle(std::string chemin)
 Miracle::~Miracle()
 {
 	m_sons.clear();
-	for(int i=0;i<m_tile.size();i++)
+	for(int i=0;i<(int)m_tile.size();i++)
         m_tile[i].clear();
     m_tile.clear();
     m_image.clear();
@@ -237,7 +237,7 @@ void Miracle::Charger(std::string chemin)
 
 void Miracle::jouerSon(int numeroSon,coordonnee position,coordonnee positionHero)
 {
-    if(numeroSon>=0&&numeroSon<m_sons.size())
+    if(numeroSon>=0&&numeroSon<(int)m_sons.size())
     {
         coordonnee pos;
         pos.x=-position.x;

@@ -1,7 +1,3 @@
-///**************************************************\\\
-||| Dernière modification : Le 06/02/08 par Gregouar |||
-///**************************************************///
-
 
 
 
@@ -22,6 +18,7 @@ class Decor
 	Decor(){}
 	Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche);
 	~Decor();
+	Decor operator=(const Decor &Decor);
 	void setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe,int couche); //Définir une valeur au décor
 	void setNumeroHerbe(int numero);
 	void setMonstre(int monstre);

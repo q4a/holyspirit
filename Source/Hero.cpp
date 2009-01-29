@@ -102,9 +102,6 @@ void Hero::Sauvegarder()
 
         std::string temp;
         char caractere,espace='_';
-        int tempInt;
-        float tempFloat;
-
 
         int n = m_personnage.getCaracteristique().nom.size()+1;
         fichier.write((char *)&n, sizeof(int));
@@ -157,7 +154,7 @@ void Hero::Sauvegarder()
         if(configuration.debug)
             console.Ajouter("/Ecriture des cases inventaires.");
 
-        for(int i=0;i<m_inventaire.size();++i)
+        for(int i=0;i<(int)m_inventaire.size();++i)
         {
             m_inventaire[i].Sauvegarder(&fichier);
         }
@@ -428,13 +425,13 @@ void Hero::ReChargerModele()
 
     int nombreArme=0;
 
-    for(int i=0;i<m_inventaire.size();i++)
+    for(int i=0;i<(int)m_inventaire.size();i++)
     {
         if(m_inventaire[i].m_equipe==ARME_PRINCIPAL&&m_inventaire[i].m_type==ARME||m_inventaire[i].m_equipe==BOUCLIER&&m_inventaire[i].m_type==ARME)
             nombreArme++;
 
         if(m_inventaire[i].m_equipe==ARME_PRINCIPAL&&m_inventaire[i].m_type==ARME)
-            for(int j=0;j<m_inventaire[i].m_emplacementImpossible.size();j++)
+            for(int j=0;j<(int)m_inventaire[i].m_emplacementImpossible.size();j++)
                 if(m_inventaire[i].m_emplacementImpossible[j]==BOUCLIER)
                     m_cas=2;
     }
@@ -450,7 +447,7 @@ void Hero::ReChargerModele()
         pasEquipe[i]=true,m_cheminModele[i]="",m_cheminModeleNouveau[i]="";
 
 
-    for(int i=0;i<m_inventaire.size();i++)
+    for(int i=0;i<(int)m_inventaire.size();i++)
         if(m_inventaire[i].m_equipe>0)
         {
                 if(m_inventaire[i].m_emplacementImageHero.size()>0)
@@ -463,7 +460,7 @@ void Hero::ReChargerModele()
                     if(m_inventaire[i].m_equipe==BOUCLIER&&m_inventaire[i].m_type==ARME&&m_cas>0)
                         temp=1;
 
-                    if(temp>=m_inventaire[i].m_emplacementImageHero.size())
+                    if(temp>=(int)m_inventaire[i].m_emplacementImageHero.size())
                         temp=0;
 
                     if(m_inventaire[i].m_emplacementImageHero[temp]>=0&&m_inventaire[i].m_emplacementImageHero[temp]<NOMBRE_MORCEAU_PERSONNAGE)
@@ -516,13 +513,13 @@ void Hero::ChargerModele()
 
     int nombreArme=0;
 
-    for(int i=0;i<m_inventaire.size();i++)
+    for(int i=0;i<(int)m_inventaire.size();i++)
     {
         if(m_inventaire[i].m_equipe==ARME_PRINCIPAL&&m_inventaire[i].m_type==ARME||m_inventaire[i].m_equipe==BOUCLIER&&m_inventaire[i].m_type==ARME)
             nombreArme++;
 
         if(m_inventaire[i].m_equipe==ARME_PRINCIPAL&&m_inventaire[i].m_type==ARME)
-            for(int j=0;j<m_inventaire[i].m_emplacementImpossible.size();j++)
+            for(int j=0;j<(int)m_inventaire[i].m_emplacementImpossible.size();j++)
                 if(m_inventaire[i].m_emplacementImpossible[j]==BOUCLIER)
                     m_cas=2;
     }
@@ -538,7 +535,7 @@ void Hero::ChargerModele()
         pasEquipe[i]=true,m_cheminModeleNouveau[i]="";
 
 
-    for(int i=0;i<m_inventaire.size();i++)
+    for(int i=0;i<(int)m_inventaire.size();i++)
         if(m_inventaire[i].m_equipe>0)
         {
                 if(m_inventaire[i].m_emplacementImageHero.size()>0)
@@ -551,7 +548,7 @@ void Hero::ChargerModele()
                     if(m_inventaire[i].m_equipe==BOUCLIER&&m_inventaire[i].m_type==ARME&&m_cas>0)
                         temp=1;
 
-                    if(temp>=m_inventaire[i].m_emplacementImageHero.size())
+                    if(temp>=(int)m_inventaire[i].m_emplacementImageHero.size())
                         temp=0;
 
                     if(m_inventaire[i].m_emplacementImageHero[temp]>=0&&m_inventaire[i].m_emplacementImageHero[temp]<NOMBRE_MORCEAU_PERSONNAGE)
@@ -609,8 +606,6 @@ void Hero::CalculerOrdreAffichage()
 
     for(int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;i++)
     {
-        bool ajouter=true;
-
         ordre=m_personnage.getOrdre(&m_modelePersonnage[i]);
         if(ordre!=-10)
             ordreAffichage[NOMBRE_MORCEAU_PERSONNAGE/2+ordre]=i;
@@ -749,7 +744,7 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
     //positionSouris.y=(int)ecran->ConvertCoords(ecran->GetInput().GetMouseX(), ecran->GetInput().GetMouseY()).y;
 
 
-    for(int i=0;i<m_inventaire.size();i++)
+    for(int i=0;i<(int)m_inventaire.size();i++)
     if(i!=m_objetEnMain)
         {
             coordonneeDecimal position;
@@ -947,7 +942,7 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
             sprite.SetRotation(0);
         }
 
-    if(m_objetEnMain>=0&&m_objetEnMain<m_inventaire.size())
+    if(m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
     {
         sf::Sprite sprite;
 
@@ -1015,7 +1010,7 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
         caseVisee.x=(positionSouris.x-436*configuration.Resolution.x/800)/(32*configuration.Resolution.x/800);
         caseVisee.y=(positionSouris.y-150*configuration.Resolution.y/600)/(32*configuration.Resolution.y/600);
 
-        for(int i=0;i<m_inventaire.size();i++)
+        for(int i=0;i<(int)m_inventaire.size();i++)
             if(caseVisee.x>=m_inventaire[i].getPosition().x&&caseVisee.x<=m_inventaire[i].getPosition().x+m_inventaire[i].getTaille().x-1
              &&caseVisee.y>=m_inventaire[i].getPosition().y&&caseVisee.y<=m_inventaire[i].getPosition().y+m_inventaire[i].getTaille().y-1)
                  if(m_inventaire[i].m_equipe==AUCUN)
@@ -1109,9 +1104,9 @@ void Hero::recalculerCaracteristiques()
     m_caracteristiques.maxVie=0;
     m_caracteristiques.maxFoi=0;
 
-    for(int i=0;i<m_inventaire.size();i++)
+    for(int i=0;i<(int)m_inventaire.size();i++)
         if(m_inventaire[i].m_equipe>0)
-            for(int j=0;j<m_inventaire[i].m_benedictions.size();++j)
+            for(int j=0;j<(int)m_inventaire[i].m_benedictions.size();++j)
                 switch (m_inventaire[i].m_benedictions[j].type)
                 {
                     case FO_SUPP:
@@ -1149,12 +1144,12 @@ void Hero::recalculerCaracteristiques()
     m_caracteristiques.maxFoi+=m_caracteristiques.piete*25;
 
 
-    for(int i=0;i<m_inventaire.size();i++)
+    for(int i=0;i<(int)m_inventaire.size();i++)
     {
         if(m_inventaire[i].m_equipe>0)
         {
             int accru=100;
-            for(int j=0;j<m_inventaire[i].m_benedictions.size();++j)
+            for(int j=0;j<(int)m_inventaire[i].m_benedictions.size();++j)
                 if(m_inventaire[i].m_benedictions[j].type==EFFICACITE_ACCRUE)
                     accru+=m_inventaire[i].m_benedictions[j].info1;
 
@@ -1264,7 +1259,7 @@ bool Hero::ajouterObjet(Objet objet,bool enMain)
 
 void Hero::LibererCases(int numero)
 {
-    if(numero>=0&&numero<m_inventaire.size())
+    if(numero>=0&&numero<(int)m_inventaire.size())
     {
         for(int x=0;x<m_inventaire[numero].getTaille().x;x++)
             for(int y=0;y<m_inventaire[numero].getTaille().y;y++)
@@ -1274,7 +1269,7 @@ void Hero::LibererCases(int numero)
 
 void Hero::AttribuerPositionObjet(coordonnee position,int numero)
 {
-    if(numero>=0&&numero<m_inventaire.size())
+    if(numero>=0&&numero<(int)m_inventaire.size())
     {
         m_inventaire[numero].setPosition(position.x,position.y);
 
@@ -1288,9 +1283,10 @@ void Hero::AttribuerPositionObjet(coordonnee position,int numero)
 
 Objet Hero::DeposerObjet()
 {
-    if(m_objetADeposer>=0&&m_objetADeposer<m_inventaire.size())
+    Objet temp;
+    if(m_objetADeposer>=0&&m_objetADeposer<(int)m_inventaire.size())
     {
-        Objet temp=m_inventaire[m_objetADeposer];
+        temp=m_inventaire[m_objetADeposer];
 
         m_inventaire.erase(m_inventaire.begin()+m_objetADeposer);
 
@@ -1302,9 +1298,8 @@ Objet Hero::DeposerObjet()
 
         m_objetADeposer=-1;
         m_objetEnMain=-1;
-
-        return temp;
     }
+    return temp;
 }
 
 bool Hero::prendreEnMain(coordonnee positionSouris)
@@ -1313,7 +1308,7 @@ bool Hero::prendreEnMain(coordonnee positionSouris)
     if(positionSouris.x>436*configuration.Resolution.x/800&&positionSouris.x<436*configuration.Resolution.x/800+32*10*configuration.Resolution.x/800&&positionSouris.y>150*configuration.Resolution.y/600&&positionSouris.y<150*configuration.Resolution.y/600+32*10*configuration.Resolution.y/600)
     {
         coordonnee caseVisee;
-        if(m_objetEnMain>=0&&m_objetEnMain<m_inventaire.size())
+        if(m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
         {
             caseVisee.x=((positionSouris.x+8*configuration.Resolution.x/800)-436*configuration.Resolution.x/800)/(32*configuration.Resolution.x/800) - m_inventaire[m_objetEnMain].getTaille().x/2;
             caseVisee.y=((positionSouris.y+8*configuration.Resolution.y/600)-150*configuration.Resolution.y/600)/(32*configuration.Resolution.y/600) - m_inventaire[m_objetEnMain].getTaille().y/2;
@@ -1324,7 +1319,7 @@ bool Hero::prendreEnMain(coordonnee positionSouris)
             caseVisee.y=((positionSouris.y)-150*configuration.Resolution.y/600)/(32*configuration.Resolution.y/600);
         }
 
-        if(m_objetEnMain>=0&&m_objetEnMain<m_inventaire.size())
+        if(m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
         {
             int temp=-1;
             bool ok=true;
@@ -1334,7 +1329,7 @@ bool Hero::prendreEnMain(coordonnee positionSouris)
                     if(i<10&&j<10&&i>=0&&j>=0)
                     {
                        // if(m_caseInventaire[i][j])
-                            for(int z=0;z<m_inventaire.size();z++)
+                            for(int z=0;z<(int)m_inventaire.size();z++)
                                 for(int y=m_inventaire[z].getPosition().y;y<m_inventaire[z].getPosition().y+m_inventaire[z].getTaille().y;y++)
                                     for(int x=m_inventaire[z].getPosition().x;x<m_inventaire[z].getPosition().x+m_inventaire[z].getTaille().x;x++)
                                         if(m_inventaire[z].m_equipe==AUCUN)
@@ -1364,7 +1359,7 @@ bool Hero::prendreEnMain(coordonnee positionSouris)
         }
         else
         {
-            for(int z=0;z<m_inventaire.size();z++)
+            for(int z=0;z<(int)m_inventaire.size();z++)
                 if(m_inventaire[z].m_equipe==AUCUN)
                     if(caseVisee.x>=m_inventaire[z].getPosition().x&&caseVisee.x<m_inventaire[z].getPosition().x+m_inventaire[z].getTaille().x
                      &&caseVisee.y>=m_inventaire[z].getPosition().y&&caseVisee.y<m_inventaire[z].getPosition().y+m_inventaire[z].getTaille().y)
@@ -1376,7 +1371,7 @@ bool Hero::prendreEnMain(coordonnee positionSouris)
     {
         if(positionSouris.x>435*configuration.Resolution.x/800&&positionSouris.x<758*configuration.Resolution.x/800&&positionSouris.y>30*configuration.Resolution.y/600&&positionSouris.y<114*configuration.Resolution.y/600)
         {
-            if(m_objetEnMain>=0&&m_objetEnMain<m_inventaire.size())
+            if(m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
             {
                 m_objetADeposer=m_objetEnMain;
                 m_objetEnMain=-1;
@@ -1404,7 +1399,7 @@ bool Hero::prendreEnMain(coordonnee positionSouris)
             else if(positionSouris.x>94*configuration.Resolution.x/800&&positionSouris.x<190*configuration.Resolution.x/800&&positionSouris.y>40*configuration.Resolution.y/600&&positionSouris.y<136*configuration.Resolution.y/600)
                 equiper(m_objetEnMain,BOUCLIER);
 
-            else if(m_objetEnMain>=0&&m_objetEnMain<m_inventaire.size())
+            else if(m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
                 if(m_inventaire[m_objetEnMain].m_equipe==AUCUN)
                 {
                     for(int i=0;i<10;i++)
@@ -1456,10 +1451,10 @@ bool Hero::equiper(int numero, int emplacement)
     int ancienEquipe=-1;
     bool ok=true;
 
-    if(m_objetEnMain>=0 && m_objetEnMain<m_inventaire.size())
+    if(m_objetEnMain>=0 && m_objetEnMain<(int)m_inventaire.size())
     {
         ok=false;
-        for(int i=0;i<m_inventaire[m_objetEnMain].m_emplacement.size();i++)
+        for(int i=0;i<(int)m_inventaire[m_objetEnMain].m_emplacement.size();i++)
         {
             if(m_inventaire[m_objetEnMain].m_emplacement[i]==emplacement)
                 ok=true;
@@ -1467,29 +1462,29 @@ bool Hero::equiper(int numero, int emplacement)
 
         if(ok)
         {
-            for(int i=0;i<m_inventaire.size();i++)
+            for(int i=0;i<(int)m_inventaire.size();i++)
             {
                 if(m_inventaire[i].m_equipe==emplacement)
                     if(numero!=i)
                         ancienEquipe=i;
 
-                for(int j=0;j<m_inventaire[i].m_emplacementImpossible.size();j++)
+                for(int j=0;j<(int)m_inventaire[i].m_emplacementImpossible.size();j++)
                     if(numero!=i)
                         if(m_inventaire[i].m_equipe>0)
                             if(m_inventaire[i].m_emplacementImpossible[j]==emplacement)
                                 ok=false;
 
-                if(m_objetEnMain>=0&&m_objetEnMain<m_inventaire.size())
-                    for(int j=0;j<m_inventaire[m_objetEnMain].m_emplacementImpossible.size();j++)
+                if(m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
+                    for(int j=0;j<(int)m_inventaire[m_objetEnMain].m_emplacementImpossible.size();j++)
                         if(m_inventaire[i].m_equipe==m_inventaire[m_objetEnMain].m_emplacementImpossible[j])
                             ok=false;
             }
 
             if(ok)
-                if(numero>=0&&numero<m_inventaire.size())
+                if(numero>=0&&numero<(int)m_inventaire.size())
                 {
                     ok=false;
-                    for(int i=0;i<m_inventaire[numero].m_emplacement.size();++i)
+                    for(int i=0;i<(int)m_inventaire[numero].m_emplacement.size();++i)
                         if(m_inventaire[numero].m_emplacement[i]==emplacement)
                             ok=true;
 
@@ -1509,12 +1504,13 @@ bool Hero::equiper(int numero, int emplacement)
     }
     else
     {
-        for(int i=0;i<m_inventaire.size();i++)
+        for(int i=0;i<(int)m_inventaire.size();i++)
             if(m_inventaire[i].m_equipe==emplacement)
                 m_objetEnMain=i;
     }
 
     recalculerCaracteristiques();
+    return 0;
 }
 
 void Hero::infligerDegats(float degats)

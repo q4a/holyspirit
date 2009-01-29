@@ -163,16 +163,16 @@ bool Tileset::Charger(std::string chemin)
 
 int Tileset::getImage(int tile)
 {
-    if(tile>=0&&tile<m_tile.size())
-        if(m_tile[tile].getImage()>=0&&m_tile[tile].getImage()<m_image.size())
+    if(tile>=0&&tile<(int)m_tile.size())
+        if(m_tile[tile].getImage()>=0&&m_tile[tile].getImage()<(int)m_image.size())
             return m_image[m_tile[tile].getImage()];
-    else
-        return 0;
+
+    return 0;
 }
 
 coordonnee Tileset::getPositionDuTile(int tile)
 {
-    if(tile>=0&&tile<m_tile.size())
+    if(tile>=0&&tile<(int)m_tile.size())
         return m_tile[tile].getCoordonnee();
     else
     {
@@ -185,7 +185,7 @@ coordonnee Tileset::getPositionDuTile(int tile)
 
 bool Tileset::getCollisionTile(int tile)
 {
-    if(tile>=0&&tile<m_tile.size())
+    if(tile>=0&&tile<(int)m_tile.size())
         return m_tile[tile].getCollision();
 
     return 0;
@@ -193,7 +193,7 @@ bool Tileset::getCollisionTile(int tile)
 
 int Tileset::getAnimationTile(int tile)
 {
-    if(tile>=0&&tile<m_tile.size())
+    if(tile>=0&&tile<(int)m_tile.size())
         return m_tile[tile].getAnimation();
 
     return 0;
@@ -202,7 +202,7 @@ int Tileset::getAnimationTile(int tile)
 
 int Tileset::getSonTile(int tile)
 {
-    if(tile>=0&&tile<m_tile.size())
+    if(tile>=0&&tile<(int)m_tile.size())
         return m_tile[tile].getSon();
     return 0;
 }
@@ -211,7 +211,7 @@ int Tileset::getTaille(){return m_tile.size();}
 
 Lumiere Tileset::getLumiereDuTile(int tile)
 {
-    if(tile>=0&&tile<m_tile.size())
+    if(tile>=0&&tile<(int)m_tile.size())
         return m_tile[tile].getLumiere();
 
     Lumiere temp;
@@ -226,7 +226,7 @@ Lumiere Tileset::getLumiereDuTile(int tile)
 
 bool Tileset::getOmbreDuTile(int tile)
 {
-    if(tile>=0&&tile<m_tile.size())
+    if(tile>=0&&tile<(int)m_tile.size())
         return m_tile[tile].getOmbre();
 
     return 0;
@@ -234,14 +234,14 @@ bool Tileset::getOmbreDuTile(int tile)
 
 bool Tileset::getTransparentDuTile(int tile)
 {
-    if(tile>=0&&tile<m_tile.size())
+    if(tile>=0&&tile<(int)m_tile.size())
         return m_tile[tile].getTransparent();
 
     return 0;
 }
 float Tileset::getTempsDuTile(int tile)
 {
-    if(tile>=0&&tile<m_tile.size())
+    if(tile>=0&&tile<(int)m_tile.size())
         return m_tile[tile].getTemps();
 
     return 0;
@@ -251,14 +251,14 @@ float Tileset::getTempsDuTile(int tile)
 
 char Tileset::getOrientationDuTile(int tile)
 {
-    if(tile>=0&&tile<m_tile.size())
+    if(tile>=0&&tile<(int)m_tile.size())
         return m_tile[tile].getOrientation();
     return 0;
 }
 
 coordonnee Tileset::getCentreDuTile(int tile)
 {
-    if(tile>=0&&tile<m_tile.size())
+    if(tile>=0&&tile<(int)m_tile.size())
         return m_tile[tile].getCentre();
     else
     {
@@ -278,7 +278,7 @@ coordonnee Tileset::getCentreDuTile(int tile)
 
 void Tileset::jouerSon(int numeroSon,coordonnee position,coordonnee positionHero)
 {
-    if(numeroSon>=0&&numeroSon<m_sons.size())
+    if(numeroSon>=0&&numeroSon<(int)m_sons.size())
     {
         coordonnee pos;
         pos.x=-position.x;
