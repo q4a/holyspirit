@@ -22,6 +22,7 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add option="--enable-auto-import" />
 				</Linker>
 			</Target>
 			<Target title="Debug">
@@ -45,6 +46,8 @@
 			<Add option="-O2" />
 			<Add option="-O1" />
 			<Add option="-O" />
+			<Add option="-Wall" />
+			<Add option="-enable-auto-import" />
 		</Compiler>
 		<Linker>
 			<Add option="-s" />
