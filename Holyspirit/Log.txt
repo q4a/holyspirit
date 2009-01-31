@@ -63,7 +63,7 @@
          Chargement de la map terminé.
          
          Chargement de : Data/Menus/Alpha-arts.png
-         Chargement de : Data/Loading_screens/Plaines2.png
+         Chargement de : Data/Loading_screens/Plaines3.png
          /Lectures des caracteristiques.
          /Lectures des cases de l'inventaire.
          
@@ -129,6 +129,9 @@
          Chargement de l'objet : Data/Items/Katzbalger.item.hs
          
          Chargement de l'objet : Data/Items/Unique_shield.item.hs
+         
+         Chargement de l'objet : Data/Items/Necklage.item.hs
+         Chargement de : Data/Items/Images/Necklage01.png
          /Lectures des objets.
          
          Chargement du personnage : Data/Entities/Hero/Matelasse/OneHand.rs.hs
@@ -204,7 +207,7 @@
          /Sauvegarde de Data/Items/Ring.item.hs
          /Sauvegarde de Data/Items/Gown.item.hs
          /Sauvegarde de Data/Items/Two_hand_sword.item.hs
-         /Sauvegarde de Data/Items/Helmet    m.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
          /Sauvegarde de Data/Items/Small_sword.item.hs
          /Sauvegarde de Data/Items/Small_sword_divin.item.hs
          /Sauvegarde de Data/Items/Armor.item.hs
@@ -217,6 +220,7 @@
          /Sauvegarde de Data/Items/Gown.item.hs
          /Sauvegarde de Data/Items/Katzbalger.item.hs
          /Sauvegarde de Data/Items/Unique_shield.item.hs
+         /Sauvegarde de Data/Items/Necklage.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
@@ -296,54 +300,6 @@
          Chargement de la map terminé.
          
          
-         Chargement du personnage : Data/Entities/Hero/Matelasse/TwoHand.rs.hs
-         Chargement de : CroiseMatelasseAttente2Main0.png
-         Chargement de : CroiseMatelasseAttente2Main1.png
-         Chargement de : CroiseMatelasseMarcheSansEpee2Mains0.png
-         Chargement de : CroiseMatelasseMarcheSansEpee2Mains1.png
-         Chargement de : CroiseMatelasseMarcheSansEpee2Mains2.png
-         Chargement de : CroiseMatelasseMarcheSansEpee2Mains3.png
-         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains0.png
-         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains1.png
-         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains2.png
-         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains3.png
-         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains4.png
-         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains5.png
-         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains6.png
-         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains7.png
-         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains8.png
-         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains9.png
-         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains10.png
-         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains11.png
-         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains12.png
-         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains13.png
-         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains14.png
-         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains15.png
-         
-         Chargement du personnage : Data/Entities/Hero/Two_hands_sword/Katzbalger.rs.hs
-         Chargement de : KatzbalgerAttente0.png
-         Chargement de : KatzbalgerAttente1.png
-         Chargement de : KatzbalgerMarche0.png
-         Chargement de : KatzbalgerMarche1.png
-         Chargement de : KatzbalgerMarche2.png
-         Chargement de : KatzbalgerMarche3.png
-         Chargement de : KatzbalgerFrappe0.png
-         Chargement de : KatzbalgerFrappe1.png
-         Chargement de : KatzbalgerFrappe2.png
-         Chargement de : KatzbalgerFrappe3.png
-         Chargement de : KatzbalgerFrappe4.png
-         Chargement de : KatzbalgerFrappe5.png
-         Chargement de : KatzbalgerFrappe6.png
-         Chargement de : KatzbalgerFrappe7.png
-         Chargement de : KatzbalgerFrappe8.png
-         Chargement de : KatzbalgerFrappe9.png
-         Chargement de : KatzbalgerFrappe10.png
-         Chargement de : KatzbalgerFrappe11.png
-         Chargement de : KatzbalgerFrappe12.png
-         Chargement de : KatzbalgerFrappe13.png
-         Chargement de : KatzbalgerFrappe14.png
-         Chargement de : KatzbalgerFrappe15.png
-         
          Sauvegarde du héro...
          Ouverture du fichier.
          /Ecriture des caracterstiques.
@@ -375,99 +331,7 @@
          /Sauvegarde de Data/Items/Gown.item.hs
          /Sauvegarde de Data/Items/Katzbalger.item.hs
          /Sauvegarde de Data/Items/Unique_shield.item.hs
-         /Ecriture des objets.
-         Sauvegarde du héro terminée !
-         
-         Sauvegarde de la map : Data/Temp/map1.map.hs
-         Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
-         Sauvegarde terminée !
-         
-         Chargement du personnage : Data/Entities/Hero/Matelasse/OneHand.rs.hs
-         
-         Chargement du personnage : Data/Entities/Hero/Small_sword/Small_sword_divin_r.rs.hs
-         Chargement de : TueuseDivineAttenteDroite.png
-         Chargement de : TueuseDivineMarche1.png
-         Chargement de : TueuseDivineMarche2.png
-         Chargement de : TueuseDivineDroite1.png
-         Chargement de : TueuseDivineDroite2.png
-         Chargement de : TueuseDivineDroite3.png
-         Chargement de : TueuseDivineDroite4.png
-         Chargement de : TueuseDivineDroite5.png
-         Chargement de : TueuseDivineDroite6.png
-         Chargement de : TueuseDivineDroite7.png
-         Chargement de : TueuseDivineDroite8.png
-         
-         Chargement du personnage : Data/Entities/Hero/Shield/Great_shield.rs.hs
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Ecriture des cases inventaires.
-         /Sauvegarde de Data/Items/Small_shield.item.hs
-         /Sauvegarde de Data/Items/Gown.item.hs
-         /Sauvegarde de Data/Items/Helmet.item.hs
-         /Sauvegarde de Data/Items/Arquebuse.item.hs
-         /Sauvegarde de Data/Items/Ring.item.hs
-         /Sauvegarde de Data/Items/Ring.item.hs
-         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
-         /Sauvegarde de Data/Items/Small_sword.item.hs
-         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
-         /Sauvegarde de Data/Items/Great_shield.item.hs
-         /Sauvegarde de Data/Items/Ring.item.hs
-         /Sauvegarde de Data/Items/Ring.item.hs
-         /Sauvegarde de Data/Items/Gown.item.hs
-         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
-         /Sauvegarde de Data/Items/Helmet.item.hs
-         /Sauvegarde de Data/Items/Small_sword.item.hs
-         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
-         /Sauvegarde de Data/Items/Armor.item.hs
-         /Sauvegarde de Data/Items/Ring.item.hs
-         /Sauvegarde de Data/Items/Boot.item.hs
-         /Sauvegarde de Data/Items/Ring.item.hs
-         /Sauvegarde de Data/Items/Ring.item.hs
-         /Sauvegarde de Data/Items/Small_shield.item.hs
-         /Sauvegarde de Data/Items/Ring.item.hs
-         /Sauvegarde de Data/Items/Gown.item.hs
-         /Sauvegarde de Data/Items/Katzbalger.item.hs
-         /Sauvegarde de Data/Items/Unique_shield.item.hs
-         /Ecriture des objets.
-         Sauvegarde du héro terminée !
-         
-         Sauvegarde de la map : Data/Temp/map1.map.hs
-         Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
-         Sauvegarde terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Ecriture des cases inventaires.
-         /Sauvegarde de Data/Items/Small_shield.item.hs
-         /Sauvegarde de Data/Items/Gown.item.hs
-         /Sauvegarde de Data/Items/Helmet.item.hs
-         /Sauvegarde de Data/Items/Arquebuse.item.hs
-         /Sauvegarde de Data/Items/Ring.item.hs
-         /Sauvegarde de Data/Items/Ring.item.hs
-         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
-         /Sauvegarde de Data/Items/Small_sword.item.hs
-         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
-         /Sauvegarde de Data/Items/Great_shield.item.hs
-         /Sauvegarde de Data/Items/Ring.item.hs
-         /Sauvegarde de Data/Items/Ring.item.hs
-         /Sauvegarde de Data/Items/Gown.item.hs
-         /Sauvegarde de Data/Items/Two_hand_sword.item.hs
-         /Sauvegarde de Data/Items/Helmet.item.hs
-         /Sauvegarde de Data/Items/Small_sword.item.hs
-         /Sauvegarde de Data/Items/Small_sword_divin.item.hs
-         /Sauvegarde de Data/Items/Armor.item.hs
-         /Sauvegarde de Data/Items/Ring.item.hs
-         /Sauvegarde de Data/Items/Boot.item.hs
-         /Sauvegarde de Data/Items/Ring.item.hs
-         /Sauvegarde de Data/Items/Ring.item.hs
-         /Sauvegarde de Data/Items/Small_shield.item.hs
-         /Sauvegarde de Data/Items/Ring.item.hs
-         /Sauvegarde de Data/Items/Gown.item.hs
-         /Sauvegarde de Data/Items/Katzbalger.item.hs
-         /Sauvegarde de Data/Items/Unique_shield.item.hs
+         /Sauvegarde de Data/Items/Necklage.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          

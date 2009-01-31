@@ -41,7 +41,7 @@ $
 *Data/Entities/Monsters/PantinMorbide/Axe/Axe.rs.hs
 *Data/Entities/Breakables/Barrel.rs.hs
 *Data/Entities/Breakables/ExplosiveBarrel.rs.hs
-*Data/Entities/Monsters/ErrantRoche/ErrantRoche.rs.hs
+*Data/Entities/Monsters/PantinMorbide/Warrior/Warrior.rs.hs
 
 *Data/Entities/Monsters/DemonicPriest/DemonicPriest.rs.hs
 *Data/Entities/Monsters/PantinMorbide/Axe/Servant.rs.hs
