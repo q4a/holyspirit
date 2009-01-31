@@ -298,7 +298,7 @@ bool Modele_Monstre::Charger(string chemin)
                     if(caractere=='*')
                     {
                         coordonnee position={-1,-1,-1,-1},centre={-1,-1,-1,-1};
-                        int animation,son,image,attaque=-1,lumiere=-1;
+                        int animation=0,son=-1,image=0,attaque=-1,lumiere=-1;
                         float tempsAnimation=0.075;
 
                         do

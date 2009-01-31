@@ -313,8 +313,10 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
 
                 sprite.FlipX(false);
 
-                sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64)-64+(64-sprite.GetSize().x/2));
-                sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+(64-sprite.GetSize().y) +(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().y) -32 );
+                sprite.SetCenter(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().x,modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().y);
+
+                sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64));
+                sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+32);
 
 
                 if(configuration.Lumiere)

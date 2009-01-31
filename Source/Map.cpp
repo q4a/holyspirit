@@ -3785,21 +3785,21 @@ int Map::getMonstre(Hero *hero,View *camera,RenderWindow *ecran,coordonnee posit
                     if(m_monstre[m_decor[i][j][k].getMonstre()].enVie())
                     {
                         coordonneeDecimal temp;
-                        temp.x=((float)m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x*(float)DIVISEUR_COTE_TILE-(float)m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y*DIVISEUR_COTE_TILE-1+(float)m_decor[1].size())*64;
-                        temp.y=(float)(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x*(float)DIVISEUR_COTE_TILE+(float)m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y*DIVISEUR_COTE_TILE)*32;
+                        temp.x=(((m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x-m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y)*64/COTE_TILE+m_decor[1].size()*64));
+                        temp.y=(((m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x+m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y)*64/COTE_TILE)/2+32);
+
+
                         coordonnee positionSourisTotale;
                         positionSourisTotale.x=(int)ecran->ConvertCoords(ecran->GetInput().GetMouseX(),ecran->GetInput().GetMouseY()).x;
                         positionSourisTotale.y=(int)ecran->ConvertCoords(ecran->GetInput().GetMouseX(), ecran->GetInput().GetMouseY()).y;
-                        //if(positionSourisTotale.x>
-
-                        if(positionSourisTotale.x>temp.x-m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().w*0/128
-                        &&positionSourisTotale.x<temp.x+m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().w*128/128
-                        &&positionSourisTotale.y>temp.y-m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().h*48/128
-                        &&positionSourisTotale.y<temp.y+64*m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_pose[m_monstre[m_decor[i][j][k].getMonstre()].getEtat()][(int)(m_monstre[m_decor[i][j][k].getMonstre()].getAngle()/45)][m_monstre[m_decor[i][j][k].getMonstre()].getPose()].getCoordonnee().h/128)
+                        if(positionSourisTotale.x>temp.x-64
+                        &&positionSourisTotale.x<temp.x+64
+                        &&positionSourisTotale.y>temp.y-128
+                        &&positionSourisTotale.y<temp.y+32)
                         {
                             float temp2=0;
-                            temp2=gpl::sqrt((temp.x-(positionSourisTotale.x-64))
-                            *(temp.x-(positionSourisTotale.x-64))
+                            temp2=gpl::sqrt((temp.x-(positionSourisTotale.x))
+                            *(temp.x-(positionSourisTotale.x))
                             +(temp.y-(positionSourisTotale.y))
                             *(temp.y-(positionSourisTotale.y)));
 
