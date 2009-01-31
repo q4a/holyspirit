@@ -914,6 +914,23 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
                     if(m_objetEnMain==-1&&positionSouris.x>104*configuration.Resolution.x/800&&positionSouris.x<136*configuration.Resolution.x/800&&positionSouris.y>148*configuration.Resolution.y/600&&positionSouris.y<180*configuration.Resolution.y/600)
                         m_inventaire[i].AfficherCaracteristiques(ecran,positionSouris);
                 }
+
+                if(m_inventaire[i].m_equipe==PENDENTIF)
+                {
+                    sprite.Resize(32*configuration.Resolution.w/800,32*configuration.Resolution.h/600);
+
+                    position.h=32*configuration.Resolution.h/600;
+                    position.w=32*configuration.Resolution.w/800;
+
+                    position.x=(210 + 16 - m_inventaire[i].getPositionImage().w/2 )*configuration.Resolution.w/800;
+                    position.y=(37 + 16 - m_inventaire[i].getPositionImage().h/2 )*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600;
+
+                    sprite.SetX((210)*configuration.Resolution.w/800);
+                    sprite.SetY((37)*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
+                    if(m_objetEnMain==-1&&positionSouris.x>210*configuration.Resolution.x/800&&positionSouris.x<242*configuration.Resolution.x/800&&positionSouris.y>37*configuration.Resolution.y/600&&positionSouris.y<69*configuration.Resolution.y/600)
+                    if(m_objetEnMain==-1&&positionSouris.x>210*configuration.Resolution.x/800&&positionSouris.x<242*configuration.Resolution.x/800&&positionSouris.y>37*configuration.Resolution.y/600&&positionSouris.y<69*configuration.Resolution.y/600)
+                        m_inventaire[i].AfficherCaracteristiques(ecran,positionSouris);
+                }
             }
 
             moteurGraphique.AjouterCommande(&sprite,16,0);
@@ -1396,6 +1413,8 @@ bool Hero::prendreEnMain(coordonnee positionSouris)
                 equiper(m_objetEnMain,ANNEAU1);
             else if(positionSouris.x>104*configuration.Resolution.x/800&&positionSouris.x<136*configuration.Resolution.x/800&&positionSouris.y>148*configuration.Resolution.y/600&&positionSouris.y<180*configuration.Resolution.y/600)
                 equiper(m_objetEnMain,ANNEAU2);
+            else if(positionSouris.x>210*configuration.Resolution.x/800&&positionSouris.x<242*configuration.Resolution.x/800&&positionSouris.y>37*configuration.Resolution.y/600&&positionSouris.y<69*configuration.Resolution.y/600)
+                equiper(m_objetEnMain,PENDENTIF);
             else if(positionSouris.x>94*configuration.Resolution.x/800&&positionSouris.x<190*configuration.Resolution.x/800&&positionSouris.y>40*configuration.Resolution.y/600&&positionSouris.y<136*configuration.Resolution.y/600)
                 equiper(m_objetEnMain,BOUCLIER);
 

@@ -17,6 +17,8 @@ MoteurGraphique::~MoteurGraphique()
 {
     Vider();
     m_images.clear();
+    m_systemeParticules.clear();
+    m_modeleSystemeParticules.clear();
 }
 
 void MoteurGraphique::Charger()
