@@ -67,11 +67,11 @@
 	<File name="c_inventaire.h" open="0" top="0" tabpos="42">
 		<Cursor position="270" topLine="0" />
 	</File>
-	<File name="c_jeu.cpp" open="0" top="0" tabpos="7">
-		<Cursor position="6336" topLine="146" />
+	<File name="c_jeu.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="5221" topLine="218" />
 	</File>
-	<File name="c_menuInGame.cpp" open="0" top="0" tabpos="21">
-		<Cursor position="2418" topLine="104" />
+	<File name="c_menuInGame.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="3673" topLine="94" />
 	</File>
 	<File name="c_menuInGame.h" open="0" top="0" tabpos="7">
 		<Cursor position="171" topLine="0" />
@@ -109,8 +109,8 @@
 	<File name="evenement.cpp" open="0" top="0" tabpos="16">
 		<Cursor position="964" topLine="36" />
 	</File>
-	<File name="eventManager.cpp" open="0" top="0" tabpos="17">
-		<Cursor position="1987" topLine="138" />
+	<File name="eventManager.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="5870" topLine="171" />
 	</File>
 	<File name="eventManager.h" open="0" top="0" tabpos="10">
 		<Cursor position="0" topLine="0" />
@@ -136,8 +136,8 @@
 	<File name="main.h" open="0" top="0" tabpos="20">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="map.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="256415" topLine="3770" />
+	<File name="map.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="1192" topLine="35" />
 	</File>
 	<File name="menu.cpp" open="0" top="0" tabpos="21">
 		<Cursor position="14920" topLine="366" />
@@ -157,8 +157,8 @@
 	<File name="monstre.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="10350" topLine="291" />
 	</File>
-	<File name="moteurGraphique.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="435" topLine="0" />
+	<File name="moteurGraphique.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="6092" topLine="129" />
 	</File>
 	<File name="moteurParticule.cpp" open="0" top="0" tabpos="23">
 		<Cursor position="2332" topLine="38" />
@@ -175,8 +175,8 @@
 	<File name="objet.cpp" open="0" top="0" tabpos="9">
 		<Cursor position="15520" topLine="496" />
 	</File>
-	<File name="personnage.cpp" open="1" top="1" tabpos="2">
-		<Cursor position="4811" topLine="176" />
+	<File name="personnage.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="6470" topLine="202" />
 	</File>
 	<File name="pose.cpp" open="0" top="0" tabpos="15">
 		<Cursor position="168" topLine="0" />

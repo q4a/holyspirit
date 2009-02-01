@@ -188,7 +188,7 @@ bool Modele_Personnage::Charger(string chemin)
                 {
                     if(caractere=='*')
                     {
-                        coordonnee position,centre={-1,-1,-1,-1};
+                        coordonnee position,centre={-1000,-1000,-1,-1};
                         int animation=0,son=-1,image=0,attaque=-1,lumiere=m_porteeLumineuse.intensite,ordre=0;
                         float tempsAnimation=0.075;
 
@@ -215,9 +215,9 @@ bool Modele_Personnage::Charger(string chemin)
                             if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
                         }while(caractere!='$');
 
-                        if(centre.x==-1)
+                        if(centre.x==-1000)
                             centre.x=position.w/2;
-                        if(centre.y==-1)
+                        if(centre.y==-1000)
                             centre.y=position.h-32;
 
                         m_pose[i][j].push_back(poseTemp);
@@ -285,9 +285,10 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
                         sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
 
                         sprite.SetColor(sf::Color(0,0,0,m_lumiere.m_ombre[o].intensite));
-                        sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64)-64+(64-sprite.GetSize().x/2)+sprite.GetSize().x/2);
-                        sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+(64-sprite.GetSize().y)+sprite.GetSize().y-32);
                         sprite.SetCenter(modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCentre().x,modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCentre().y);
+
+                        sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64));
+                        sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+32);
 
                         sprite.SetScale(m_caracteristique.modificateurTaille, m_caracteristique.modificateurTaille*m_lumiere.m_ombre[o].taille);
                         sprite.SetRotation(m_lumiere.m_ombre[o].angle);
@@ -307,13 +308,15 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
             if(m_poseEnCours>=0&&m_poseEnCours<(int)modele->m_pose[m_etat][(int)(m_angle/45)].size())
             {
                 sprite.SetImage(*moteurGraphique.getImage(modele->m_image[modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()]));
+
+                sprite.SetCenter(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().x,modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().y);
+
                 sprite.SetSubRect(IntRect(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h));
 
                 sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
 
                 sprite.FlipX(false);
 
-                sprite.SetCenter(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().x,modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().y);
 
                 sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64));
                 sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+32);
@@ -519,30 +522,30 @@ bool Personnage::seDeplacer(float tempsEcoule)
                 if(m_positionCase.x<m_cheminFinal.x)
                 {
                     if(m_positionCase.y>m_cheminFinal.y)
-                        m_positionPixel.x+=2*tempsEcoule*m_caracteristique.vitesse;
+                        m_positionPixel.x+=(float)2*tempsEcoule*m_caracteristique.vitesse;
                     else
-                        m_positionPixel.x+=4*tempsEcoule*m_caracteristique.vitesse;
+                        m_positionPixel.x+=(float)4*tempsEcoule*m_caracteristique.vitesse;
                 }
                 if(m_positionCase.x>m_cheminFinal.x)
                 {
                     if(m_positionCase.y<m_cheminFinal.y)
-                        m_positionPixel.x-=2*tempsEcoule*m_caracteristique.vitesse;
+                        m_positionPixel.x-=(float)2*tempsEcoule*m_caracteristique.vitesse;
                     else
-                        m_positionPixel.x-=4*tempsEcoule*m_caracteristique.vitesse;
+                        m_positionPixel.x-=(float)4*tempsEcoule*m_caracteristique.vitesse;
                 }
                 if(m_positionCase.y<m_cheminFinal.y)
                 {
                     if(m_positionCase.x>m_cheminFinal.x)
-                        m_positionPixel.y+=2*tempsEcoule*m_caracteristique.vitesse;
+                        m_positionPixel.y+=(float)2*tempsEcoule*m_caracteristique.vitesse;
                     else
-                        m_positionPixel.y+=4*tempsEcoule*m_caracteristique.vitesse;
+                        m_positionPixel.y+=(float)4*tempsEcoule*m_caracteristique.vitesse;
                 }
                 if(m_positionCase.y>m_cheminFinal.y)
                 {
                     if(m_positionCase.x<m_cheminFinal.x)
-                        m_positionPixel.y-=2*tempsEcoule*m_caracteristique.vitesse;
+                        m_positionPixel.y-=(float)2*tempsEcoule*m_caracteristique.vitesse;
                     else
-                        m_positionPixel.y-=4*tempsEcoule*m_caracteristique.vitesse;
+                        m_positionPixel.y-=(float)4*tempsEcoule*m_caracteristique.vitesse;
                 }
 
                 //m_angle=atan((double)(m_positionCase.y-m_cheminFinal.y)/(double)(m_positionCase.x-m_cheminFinal.x))*360/(2*M_PI);
@@ -616,7 +619,7 @@ int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,boo
 
         m_poseEnCours=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAnimation();
 
-        if(m_poseEnCours>(int)modele->m_pose[m_etat][(int)(m_angle/45)].size())
+        if(m_poseEnCours>=(int)modele->m_pose[m_etat][(int)(m_angle/45)].size())
         m_poseEnCours=0;
 
         //if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getSon()>=0)
