@@ -121,18 +121,21 @@
          Chargement de l'objet : Data/Items/Helmet.item.hs
          
          Chargement de l'objet : Data/Items/Great_shield.item.hs
+         
+         Chargement de l'objet : Data/Items/Helmet.item.hs
          /Lectures des objets.
          
-         Chargement du personnage : Data/Entities/Hero/Matelasse/TwoHand.rs.hs
-         Chargement de : CroiseMatelasseAttente2Main0.png
-         Chargement de : CroiseMatelasseMarcheSansEpee2Mains0.png
-         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains0.png
-         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains1.png
+         Chargement du personnage : Data/Entities/Hero/Small_sword/Small_sword_r.rs.hs
+         Chargement de : EpeeCourteAttenteDroite0.png
+         Chargement de : EpeeCourteMarcheDroite0.png
+         Chargement de : EpeeCourteAttaqueDroite0.png
          
-         Chargement du personnage : Data/Entities/Hero/Two_hands_sword/Katzbalger.rs.hs
-         Chargement de : KatzbalgerAttente0.png
-         Chargement de : KatzbalgerMarche0.png
-         Chargement de : KatzbalgerFrappe0.png
+         Chargement du personnage : Data/Entities/Hero/Shield/Great_shield.rs.hs
+         Chargement de : GrandBouclierAttente0.png
+         Chargement de : GrandBouclierMarche0.png
+         Chargement de : GrandBouclierFrappe0.png
+         
+         Chargement du personnage : Data/Entities/hero/Nude/OneHand.rs.hs
          
          Destruction de la map...
          Destruction des cases...
@@ -180,12 +183,15 @@
          /Sauvegarde de Data/Items/Necklage.item.hs
          /Sauvegarde de Data/Items/Helmet.item.hs
          /Sauvegarde de Data/Items/Great_shield.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
-         Chargement du personnage : Data/Entities/Hero/Matelasse/TwoHand.rs.hs
+         Chargement du personnage : Data/Entities/Hero/Small_sword/Small_sword_r.rs.hs
          
-         Chargement du personnage : Data/Entities/Hero/Two_hands_sword/Katzbalger.rs.hs
+         Chargement du personnage : Data/Entities/Hero/Shield/Great_shield.rs.hs
+         
+         Chargement du personnage : Data/Entities/hero/Nude/OneHand.rs.hs
          
          Chargement de la map : Data/Maps/Map1.map.hs
          /Test de l'existence des fichiers temps.
@@ -284,6 +290,7 @@
          /Sauvegarde de Data/Items/Necklage.item.hs
          /Sauvegarde de Data/Items/Helmet.item.hs
          /Sauvegarde de Data/Items/Great_shield.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
