@@ -189,7 +189,7 @@ bool Modele_Personnage::Charger(string chemin)
                     if(caractere=='*')
                     {
                         coordonnee position,centre={-1,-1,-1,-1};
-                        int animation,son,image,attaque=-1,lumiere=m_porteeLumineuse.intensite,ordre=0;
+                        int animation=0,son=-1,image=0,attaque=-1,lumiere=m_porteeLumineuse.intensite,ordre=0;
                         float tempsAnimation=0.075;
 
                         do
