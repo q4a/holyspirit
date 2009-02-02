@@ -60,10 +60,10 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
                 break;
 
             case Event::Resized:
-                configuration.Redimensionnement.w=(float)configuration.Resolution.w*0,00125;
-                configuration.Redimensionnement.h=(float)configuration.Resolution.h*0,00167;
-                configuration.Redimensionnement.x=(float)configuration.Resolution.x*0,00125;
-                configuration.Redimensionnement.y=(float)configuration.Resolution.y*0,00167;
+                configuration.Redimensionnement.w=(float)configuration.Resolution.w*0.00125;
+                configuration.Redimensionnement.h=(float)configuration.Resolution.h*0.00167;
+                configuration.Redimensionnement.x=(float)configuration.Resolution.x*0.00125;
+                configuration.Redimensionnement.y=(float)configuration.Resolution.y*0.00167;
                 break;
     	}
 	}

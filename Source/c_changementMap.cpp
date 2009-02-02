@@ -105,7 +105,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         jeu->hero.Sauvegarder();
 
-        jeu->hero.ReChargerModele();
+        jeu->hero.ChargerModele();
 
         if(!jeu->map.Charger(numeroProchaineMap))
             console.Ajouter("CRITICAL ERROR"), throw  "CRITICAL ERROR";
@@ -160,15 +160,15 @@ void c_Chargement::Utiliser(Jeu *jeu)
                 jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,temp,0);
 
                 if(configuration.Minimap)
-                    jeu->menu.Afficher(&jeu->ecran,2);
+                    jeu->menu.Afficher(&jeu->ecran,2,255,&jeu->hero.m_classe);
 
                 if(jeu->hero.getChercherSac().x!=-1&&jeu->map.getNombreObjets(jeu->hero.getChercherSac())>0)
                 {
-                    jeu->menu.Afficher(&jeu->ecran,3);
+                    jeu->menu.Afficher(&jeu->ecran,3,255,&jeu->hero.m_classe);
                     jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,0);
                 }
-                jeu->menu.Afficher(&jeu->ecran,1);
-                jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,0,jeu->hero.m_personnage.getCaracteristique());
+                jeu->menu.Afficher(&jeu->ecran,1,255,&jeu->hero.m_classe);
+                jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,0,jeu->hero.m_personnage.getCaracteristique(),&jeu->hero.m_classe);
             }
         }
         else
@@ -187,12 +187,12 @@ void c_Chargement::Utiliser(Jeu *jeu)
                 jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,temp,0);
                 if(configuration.Minimap)
                 {
-                    jeu->menu.Afficher(&jeu->ecran,1);
+                    jeu->menu.Afficher(&jeu->ecran,1,255,&jeu->hero.m_classe);
                     jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,0);
-                    jeu->menu.Afficher(&jeu->ecran,2);
+                    jeu->menu.Afficher(&jeu->ecran,2,255,&jeu->hero.m_classe);
                 }
-                jeu->menu.Afficher(&jeu->ecran,3);
-                jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,0,jeu->hero.m_personnage.getCaracteristique());
+                jeu->menu.Afficher(&jeu->ecran,3,255,&jeu->hero.m_classe);
+                jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,0,jeu->hero.m_personnage.getCaracteristique(),&jeu->hero.m_classe);
             }
         }
         else

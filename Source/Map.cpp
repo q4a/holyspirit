@@ -1797,7 +1797,7 @@ void Map::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *
 
 }
 
-void Map::AfficherSacInventaire(RenderWindow* ecran,coordonnee positionSac,float decalage,coordonnee positionSouris)
+void Map::AfficherSacInventaire(RenderWindow* ecran,coordonnee positionSac,float decalage,coordonnee positionSouris,Classe *classe)
 {
     Sprite Sprite;
 	String texte;

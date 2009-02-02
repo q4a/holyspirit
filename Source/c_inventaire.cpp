@@ -79,12 +79,12 @@ void c_Inventaire::Utiliser(Jeu *jeu)
 
     if(configuration.Minimap)
     {
-        jeu->menu.Afficher(&jeu->ecran,2);
+        jeu->menu.Afficher(&jeu->ecran,2,255,&jeu->hero.m_classe);
         jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,255);
     }
     if(jeu->hero.getChercherSac().x!=-1&&jeu->map.getNombreObjets(jeu->hero.getChercherSac())>0)
     {
-        jeu->menu.Afficher(&jeu->ecran,3);
+        jeu->menu.Afficher(&jeu->ecran,3,255,&jeu->hero.m_classe);
         jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,255);
     }
     //jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_personnage.getCaracteristique(),0,jeu->hero.m_personnage.getCaracteristique());
@@ -102,14 +102,14 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         jeu->m_contexte=jeu->m_jeu,jeu->eventManager.StopEvenement(Key::I,"ET");
     }
 
-    jeu->menu.AfficherInventaire(&jeu->ecran,m_decalage);
+    jeu->menu.AfficherInventaire(&jeu->ecran,m_decalage,&jeu->hero.m_classe);
 
     jeu->hero.afficherInventaire(&jeu->ecran,jeu->eventManager.getPositionSouris(),m_decalage);
 
-    jeu->map.AfficherSacInventaire(&jeu->ecran,jeu->hero.m_personnage.getCoordonnee(),m_decalage,jeu->eventManager.getPositionSouris());
+    jeu->map.AfficherSacInventaire(&jeu->ecran,jeu->hero.m_personnage.getCoordonnee(),m_decalage,jeu->eventManager.getPositionSouris(),&jeu->hero.m_classe);
 
-    jeu->menu.Afficher(&jeu->ecran,1);
-    jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,-1,jeu->hero.m_caracteristiques);
+    jeu->menu.Afficher(&jeu->ecran,1,255,&jeu->hero.m_classe);
+    jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,-1,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
 
 }
 

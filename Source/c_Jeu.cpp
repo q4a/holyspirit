@@ -387,7 +387,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     }
                     if(alpha_map>0)
                     {
-                        jeu->menu.Afficher(&jeu->ecran,2,alpha_map);//On affiche la mini-map
+                        jeu->menu.Afficher(&jeu->ecran,2,alpha_map,&jeu->hero.m_classe);//On affiche la mini-map
                         //jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,jeu->eventManager.getPositionSouris(),0,alpha_map); // On affiche la mini-map
                     }
 
@@ -405,15 +405,15 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     }
                     if(alpha_sac>0)
                     {
-                        jeu->menu.Afficher(&jeu->ecran,3,alpha_sac);
+                        jeu->menu.Afficher(&jeu->ecran,3,alpha_sac,&jeu->hero.m_classe);
                         jeu->map.Afficher(&jeu->ecran,&jeu->camera,3,&jeu->hero,jeu->eventManager.getPositionSouris(),0,alpha_sac);
                     }
 
-                    jeu->menu.Afficher(&jeu->ecran,1); // On affiche le hud
+                    jeu->menu.Afficher(&jeu->ecran,1,255,&jeu->hero.m_classe); // On affiche le hud
                     if(jeu->map.getEntiteMonstre(jeu->map.getMonstreIllumine())!=NULL)
-                        jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,1,jeu->map.getEntiteMonstre(jeu->map.getMonstreIllumine())->getCaracteristique());
+                        jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,1,jeu->map.getEntiteMonstre(jeu->map.getMonstreIllumine())->getCaracteristique(),&jeu->hero.m_classe);
                     else
-                        jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,0,jeu->hero.m_caracteristiques);
+                        jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,0,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
                     jeu->eventManager.AfficherCurseur(&jeu->ecran); // On affiche le curseur de la souris
 
                     if(jeu->map.getEvenement(jeu->eventManager.getCasePointee())>=0)

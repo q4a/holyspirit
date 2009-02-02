@@ -23,7 +23,7 @@ class Map
 	void Sauvegarder();
 	void Afficher(sf::RenderWindow* ecran,sf::View *camera,int type,Hero *hero,coordonnee positionSouris,bool alt,float alpha=255);
 
-	void AfficherSacInventaire(sf::RenderWindow* ecran,coordonnee positionSac,float decalage,coordonnee positionSouris);
+	void AfficherSacInventaire(sf::RenderWindow* ecran,coordonnee positionSac,float decalage,coordonnee positionSouris,Classe *classe);
 
 	void AfficherNomEvenement(sf::RenderWindow* ecran,coordonnee casePointee,coordonnee positionSouris);
 

@@ -9,6 +9,7 @@
 #define MENUH
 
 #include "constantes.h"
+#include "hero.h"
 
 class Ame
 {
@@ -51,10 +52,10 @@ class Menu
 	public:
 	Menu();
 	~Menu();
-	void Afficher(sf::RenderWindow* ecran,int type,float alpha=255);
-	void AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracteristique,int type,Caracteristique caracteristiqueMonstre);
+	void Afficher(sf::RenderWindow* ecran,int type,float alpha,Classe *classe);
+	void AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracteristique,int type,Caracteristique caracteristiqueMonstre,Classe *classe);
 	void AfficherChargement(sf::RenderWindow* ecran,std::string nom,int fond,int z);
-	void AfficherInventaire(sf::RenderWindow* ecran,float);
+	void AfficherInventaire(sf::RenderWindow* ecran,float,Classe *classe);
 
 	void AjouterSang(coordonneeDecimal position);
 
@@ -63,7 +64,7 @@ class Menu
 
 
 	private:
-	int m_fondMiniMap,m_imageHUD,m_imageBulleVie,m_imageBulleFoi,m_imageAme,m_imageSang,m_barrePointAme,m_barreVie,m_barreVieVide,m_inventaire;
+	int m_fondMiniMap,/*m_imageHUD,m_imageBulleVie,m_imageBulleFoi,*/m_imageAme,m_imageSang,m_barrePointAme,m_barreVie,m_barreVieVide/*,m_inventaire*/;
 
 	sf::String texte;
 

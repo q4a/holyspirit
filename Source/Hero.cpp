@@ -107,6 +107,10 @@ void Hero::Sauvegarder()
         fichier.write((char *)&n, sizeof(int));
         fichier.write(m_personnage.getCaracteristique().nom.c_str(), n);
 
+        n = m_cheminClasse.size()+1;
+        fichier.write((char *)&n, sizeof(int));
+        fichier.write(m_cheminClasse.c_str(), n);
+
         //fichier.write((char*)&m_personnage.getCaracteristique().nom, sizeof(string));
 
         fichier.write((char*)&m_personnage.getCaracteristique().vitesse, sizeof(float));
@@ -177,6 +181,285 @@ void Hero::Sauvegarder()
 
 
 }
+
+void Classe::Charger(string chemin)
+{
+    ifstream fichier;
+    fichier.open(chemin.c_str(), ios::in);
+    if(fichier)
+    {
+        char caractere;
+        do
+    	{
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
+                fichier>>nom;
+            }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+    	}while(caractere!='$');
+
+
+    	do
+    	{
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
+                do
+                {
+                    fichier.get(caractere);
+                    switch (caractere)
+                    {
+                        case 'f' : fichier>>caracteristique.force; break;
+                        case 'v' : fichier>>caracteristique.vitalite; break;
+                        case 'p' : fichier>>caracteristique.piete; break;
+                        case 'd' : fichier>>caracteristique.dexterite; break;
+                        case 'c' : fichier>>caracteristique.charisme; break;
+                    }
+
+                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+                }while(caractere!='$');
+                fichier.get(caractere);
+            }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
+
+    	do
+    	{
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
+                do
+                {
+                    fichier.get(caractere);
+                    switch (caractere)
+                    {
+                        case 'm' : string temp; fichier>>temp; equipementParDefaut.push_back(temp); break;
+                    }
+
+                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+                }while(caractere!='$');
+                fichier.get(caractere);
+            }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
+
+    	do
+    	{
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
+                int temp=0;
+                do
+                {
+                    fichier.get(caractere);
+                    switch (caractere)
+                    {
+                        case 'm' : fichier>>modeleNu[temp]; temp++; break;
+                    }
+
+                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+                }while(caractere!='$');
+                fichier.get(caractere);
+            }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
+
+    	std::string string;
+
+    	do
+    	{
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
+
+                do
+                {
+                    fichier.get(caractere);
+                    switch (caractere)
+                    {
+                        case 'm' : fichier>>string; inventaire.image=moteurGraphique.AjouterImage(string,-1); break;
+                        case 'x' : fichier>>inventaire.position.x; break;
+                        case 'y' : fichier>>inventaire.position.y; break;
+                        case 'w' : fichier>>inventaire.position.w; break;
+                        case 'h' : fichier>>inventaire.position.h; break;
+                    }
+
+                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+                }while(caractere!='$');
+                fichier.get(caractere);
+            }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
+
+    	do
+    	{
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
+                do
+                {
+                    fichier.get(caractere);
+                    switch (caractere)
+                    {
+                        case 'm' : fichier>>string; hud.image=moteurGraphique.AjouterImage(string,-1); break;
+                        case 'x' : fichier>>hud.position.x; break;
+                        case 'y' : fichier>>hud.position.y; break;
+                        case 'w' : fichier>>hud.position.w; break;
+                        case 'h' : fichier>>hud.position.h; break;
+                    }
+
+                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+                }while(caractere!='$');
+                fichier.get(caractere);
+            }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
+
+    	do
+    	{
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
+                do
+                {
+                    fichier.get(caractere);
+                    switch (caractere)
+                    {
+                        case 'm' : fichier>>string; orbe_vie.image=moteurGraphique.AjouterImage(string,-1); break;
+                        case 'x' : fichier>>orbe_vie.position.x; break;
+                        case 'y' : fichier>>orbe_vie.position.y; break;
+                        case 'w' : fichier>>orbe_vie.position.w; break;
+                        case 'h' : fichier>>orbe_vie.position.h; break;
+                    }
+
+                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+                }while(caractere!='$');
+                fichier.get(caractere);
+            }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
+
+    	do
+    	{
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
+                do
+                {
+                    fichier.get(caractere);
+                    switch (caractere)
+                    {
+                        case 'm' : fichier>>string; orbe_foi.image=moteurGraphique.AjouterImage(string,-1); break;
+                        case 'x' : fichier>>orbe_foi.position.x; break;
+                        case 'y' : fichier>>orbe_foi.position.y; break;
+                        case 'w' : fichier>>orbe_foi.position.w; break;
+                        case 'h' : fichier>>orbe_foi.position.h; break;
+                    }
+
+                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+                }while(caractere!='$');
+                fichier.get(caractere);
+            }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
+
+    	do
+    	{
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
+                do
+                {
+                    fichier.get(caractere);
+                    switch (caractere)
+                    {
+                        case 'x' : fichier>>position_sac_inventaire.x; break;
+                        case 'y' : fichier>>position_sac_inventaire.y; break;
+                        case 'w' : fichier>>position_sac_inventaire.w; break;
+                        case 'h' : fichier>>position_sac_inventaire.h; break;
+                    }
+
+                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+                }while(caractere!='$');
+                fichier.get(caractere);
+            }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
+
+    	do
+    	{
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
+                do
+                {
+                    fichier.get(caractere);
+                    switch (caractere)
+                    {
+                        case 'x' : fichier>>position_contenu_inventaire.x; break;
+                        case 'y' : fichier>>position_contenu_inventaire.y; break;
+                        case 'w' : fichier>>position_contenu_inventaire.w; break;
+                        case 'h' : fichier>>position_contenu_inventaire.h; break;
+                    }
+
+                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+                }while(caractere!='$');
+                fichier.get(caractere);
+            }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
+
+    	do
+    	{
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
+                emplacements.push_back(Emplacement_inventaire ());
+                do
+                {
+                    fichier.get(caractere);
+                    switch (caractere)
+                    {
+                        case 'e' : fichier>>emplacements.back().emplacement; break;
+                        case 'x' : fichier>>emplacements.back().position.x; break;
+                        case 'y' : fichier>>emplacements.back().position.y; break;
+                        case 'w' : fichier>>emplacements.back().position.w; break;
+                        case 'h' : fichier>>emplacements.back().position.h; break;
+                    }
+
+                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+                }while(caractere!='$');
+                fichier.get(caractere);
+            }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
+
+
+        fichier.close();
+    }
+
+}
+
 void Hero::Charger()
 {
 
@@ -210,6 +493,12 @@ void Hero::Charger()
                 buffer=new char[n];
                 fichier.read(buffer,n);
                 charTemp.nom=buffer;
+                delete[] buffer;
+
+                fichier.read((char *)&n, sizeof(int));
+                buffer=new char[n];
+                fichier.read(buffer,n);
+                m_cheminClasse=buffer;
                 delete[] buffer;
 
 
@@ -391,6 +680,9 @@ void Hero::Charger()
         }
     }
     closedir(repertoire);
+
+    m_classe.Charger(m_cheminClasse);
+
     recalculerCaracteristiques();
 
     m_caracteristiques.vie=m_caracteristiques.maxVie;
@@ -398,114 +690,32 @@ void Hero::Charger()
 
     if(nouveau)
     {
+        m_cheminClasse="Data/Entities/Heroes/Crusader.class.hs";
+        m_classe.Charger(m_cheminClasse);
+
         sf::Color color;
         color.r=255;
         color.g=255;
         color.b=255;
-        m_inventaire.push_back(Objet ());
-        m_inventaire[m_inventaire.size()-1].Charger("Data/Items/Small_sword.item.hs");
 
-        m_inventaire[m_inventaire.size()-1].setRarete(0);
-        m_inventaire[m_inventaire.size()-1].setPosition(0,0);
-        m_inventaire[m_inventaire.size()-1].m_equipe=ARME_PRINCIPAL;
 
-        m_inventaire[m_inventaire.size()-1].m_armure=0;
-        m_inventaire[m_inventaire.size()-1].m_degatsMin=1;
-        m_inventaire[m_inventaire.size()-1].m_degatsMax=2;
+        for(int i=0;i<(int)m_classe.equipementParDefaut.size();i++)
+        {
+            Objet temp;
 
-        m_inventaire[m_inventaire.size()-1].m_color=color;
+            temp.Charger(m_classe.equipementParDefaut[i]);
+            temp.Generer(1);
+            ajouterObjet(temp);
+            /*m_inventaire.push_back(Objet ());
+            m_inventaire.back().Charger(m_classe.equipementParDefaut[i]);
+            m_inventaire.back().Generer(1);*/
+        }
     }
 
     ChargerModele();
 }
 
-void Hero::ReChargerModele()
-{
-    m_cas=0;
 
-    int nombreArme=0;
-
-    for(int i=0;i<(int)m_inventaire.size();i++)
-    {
-        if(m_inventaire[i].m_equipe==ARME_PRINCIPAL&&m_inventaire[i].m_type==ARME||m_inventaire[i].m_equipe==BOUCLIER&&m_inventaire[i].m_type==ARME)
-            nombreArme++;
-
-        if(m_inventaire[i].m_equipe==ARME_PRINCIPAL&&m_inventaire[i].m_type==ARME)
-            for(int j=0;j<(int)m_inventaire[i].m_emplacementImpossible.size();j++)
-                if(m_inventaire[i].m_emplacementImpossible[j]==BOUCLIER)
-                    m_cas=2;
-    }
-
-    if(nombreArme==2)
-        m_cas=1;
-
-
-
-    bool pasEquipe[NOMBRE_MORCEAU_PERSONNAGE];
-
-    for(int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;i++)
-        pasEquipe[i]=true,m_cheminModele[i]="",m_cheminModeleNouveau[i]="";
-
-
-    for(int i=0;i<(int)m_inventaire.size();i++)
-        if(m_inventaire[i].m_equipe>0)
-        {
-                if(m_inventaire[i].m_emplacementImageHero.size()>0)
-                {
-                    int temp=m_cas;
-
-                    if(m_inventaire[i].m_equipe==ARME_PRINCIPAL&&m_inventaire[i].m_type==ARME&&m_cas>0)
-                        temp=0;
-
-                    if(m_inventaire[i].m_equipe==BOUCLIER&&m_inventaire[i].m_type==ARME&&m_cas>0)
-                        temp=1;
-
-                    if(temp>=(int)m_inventaire[i].m_emplacementImageHero.size())
-                        temp=0;
-
-                    if(m_inventaire[i].m_emplacementImageHero[temp]>=0&&m_inventaire[i].m_emplacementImageHero[temp]<NOMBRE_MORCEAU_PERSONNAGE)
-                        //if(m_cheminModele[m_inventaire[i].m_emplacementImageHero[temp]]!=m_inventaire[i].m_cheminImageHero[temp])
-                        {
-                            m_cheminModeleNouveau[m_inventaire[i].m_emplacementImageHero[temp]]=m_inventaire[i].m_cheminImageHero[temp];
-                            pasEquipe[m_inventaire[i].m_emplacementImageHero[temp]]=false;
-                        }
-                }
-        }
-
-    for(int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;i++)
-    {
-        if(m_cheminModeleNouveau[i]!="" && m_cheminModeleNouveau[i]!=m_cheminModele[i])
-            m_modelePersonnage[i].Charger(m_cheminModeleNouveau[i]);
-        else if(m_cheminModeleNouveau[i]=="")
-            m_modelePersonnage[i].Reinitialiser();
-
-        m_cheminModele[i]=m_cheminModeleNouveau[i];
-    }
-
-    if(pasEquipe[0])
-    {
-        if(m_cas==0)
-            if(m_cheminModele[0]!="Data/Entities/hero/Nude/OneHand.rs.hs")
-            {
-                m_modelePersonnage[0].Charger("Data/Entities/hero/Nude/OneHand.rs.hs");
-                m_cheminModele[0]="Data/Entities/hero/Nude/OneHand.rs.hs";
-            }
-        if(m_cas==1)
-            if(m_cheminModele[0]!="Data/Entities/hero/Nude/TwoWeapons.rs.hs")
-            {
-                m_modelePersonnage[0].Charger("Data/Entities/hero/Nude/TwoWeapons.rs.hs");
-                m_cheminModele[0]="Data/Entities/hero/Nude/TwoWeapons.rs.hs";
-            }
-        if(m_cas==2)
-            if(m_cheminModele[0]!="Data/Entities/hero/Nude/TwoHand.rs.hs")
-            {
-                m_modelePersonnage[0].Charger("Data/Entities/hero/Nude/TwoHand.rs.hs");
-                m_cheminModele[0]="Data/Entities/hero/Nude/TwoHand.rs.hs";
-            }
-    }
-
-    CalculerOrdreAffichage();
-}
 
 void Hero::ChargerModele()
 {
@@ -572,24 +782,30 @@ void Hero::ChargerModele()
 
     if(pasEquipe[0])
     {
-        if(m_cas==0)
-            if(m_cheminModele[0]!="Data/Entities/hero/Nude/OneHand.rs.hs")
+        if(m_cheminModele[0]!=m_classe.modeleNu[m_cas])
+        {
+            m_modelePersonnage[0].Charger(m_classe.modeleNu[m_cas]);
+            m_cheminModele[0]=m_classe.modeleNu[m_cas];
+        }
+
+        /*if(m_cas==0)
+            if(m_cheminModele[0]!="Data/Entities/heroes/Crusader/Nude/OneHand.rs.hs")
             {
-                m_modelePersonnage[0].Charger("Data/Entities/hero/Nude/OneHand.rs.hs");
-                m_cheminModele[0]="Data/Entities/hero/Nude/OneHand.rs.hs";
+                m_modelePersonnage[0].Charger("Data/Entities/heroes/Crusader/Nude/OneHand.rs.hs");
+                m_cheminModele[0]="Data/Entities/heroes/Crusader/Nude/OneHand.rs.hs";
             }
         if(m_cas==1)
-            if(m_cheminModele[0]!="Data/Entities/hero/Nude/TwoWeapons.rs.hs")
+            if(m_cheminModele[0]!="Data/Entities/heroes/Crusader/Nude/TwoWeapons.rs.hs")
             {
-                m_modelePersonnage[0].Charger("Data/Entities/hero/Nude/TwoWeapons.rs.hs");
-                m_cheminModele[0]="Data/Entities/hero/Nude/TwoWeapons.rs.hs";
+                m_modelePersonnage[0].Charger("Data/Entities/heroes/Crusader/Nude/TwoWeapons.rs.hs");
+                m_cheminModele[0]="Data/Entities/heroes/Crusader/Nude/TwoWeapons.rs.hs";
             }
         if(m_cas==2)
-            if(m_cheminModele[0]!="Data/Entities/hero/Nude/TwoHand.rs.hs")
+            if(m_cheminModele[0]!="Data/Entities/heroes/Crusader/Nude/TwoHand.rs.hs")
             {
-                m_modelePersonnage[0].Charger("Data/Entities/hero/Nude/TwoHand.rs.hs");
-                m_cheminModele[0]="Data/Entities/hero/Nude/TwoHand.rs.hs";
-            }
+                m_modelePersonnage[0].Charger("Data/Entities/heroes/Crusader/Nude/TwoHand.rs.hs");
+                m_cheminModele[0]="Data/Entities/heroes/Crusader/Nude/TwoHand.rs.hs";
+            }*/
     }
 
     CalculerOrdreAffichage();
@@ -785,8 +1001,26 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
             else
             {
 
+                for(int k=0;k<(int)m_classe.emplacements.size();k++)
+                {
+                    if(m_inventaire[i].m_equipe==m_classe.emplacements[k].emplacement)
+                    {
+                        sprite.Resize(m_classe.emplacements[k].position.w*configuration.Resolution.w/800,m_classe.emplacements[k].position.h*configuration.Resolution.h/600);
 
-                if(m_inventaire[i].m_equipe==ARME_PRINCIPAL)
+                        position.x=(m_classe.emplacements[k].position.x + m_classe.emplacements[k].position.w/2 - m_inventaire[i].getPositionImage().w/2 )*configuration.Resolution.w/800;
+                        position.y=(m_classe.emplacements[k].position.y + m_classe.emplacements[k].position.h/2 - m_inventaire[i].getPositionImage().h/2 )*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600;
+
+                        position.h=m_classe.emplacements[k].position.h*configuration.Resolution.w/800;
+                        position.w=m_classe.emplacements[k].position.w*configuration.Resolution.h/600;
+
+                        sprite.SetX((m_classe.emplacements[k].position.x)*configuration.Resolution.w/800);
+                        sprite.SetY((m_classe.emplacements[k].position.y)*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
+                        if(m_objetEnMain==-1&&positionSouris.x>m_classe.emplacements[k].position.x*configuration.Resolution.x/800&&positionSouris.x<(m_classe.emplacements[k].position.x+m_classe.emplacements[k].position.w)*configuration.Resolution.x/800&&positionSouris.y>m_classe.emplacements[k].position.y*configuration.Resolution.y/600&&positionSouris.y<(m_classe.emplacements[k].position.y+m_classe.emplacements[k].position.h)*configuration.Resolution.y/600)
+                            m_inventaire[i].AfficherCaracteristiques(ecran,positionSouris);
+                    }
+                }
+
+                /*if(m_inventaire[i].m_equipe==ARME_PRINCIPAL)
                 {
                     sprite.Resize(64*configuration.Resolution.w/800,160*configuration.Resolution.h/600);
 
@@ -883,7 +1117,7 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
                         m_inventaire[i].AfficherCaracteristiques(ecran,positionSouris);
                 }
 
-                if(m_inventaire[i].m_equipe==ANNEAU1)
+                if(m_inventaire[i].m_equipe==ANNEAU)
                 {
                     sprite.Resize(32*configuration.Resolution.w/800,32*configuration.Resolution.h/600);
 
@@ -896,22 +1130,6 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
                     sprite.SetX((153)*configuration.Resolution.w/800);
                     sprite.SetY((148)*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
                     if(m_objetEnMain==-1&&positionSouris.x>153*configuration.Resolution.x/800&&positionSouris.x<185*configuration.Resolution.x/800&&positionSouris.y>148*configuration.Resolution.y/600&&positionSouris.y<180*configuration.Resolution.y/600)
-                        m_inventaire[i].AfficherCaracteristiques(ecran,positionSouris);
-                }
-
-                if(m_inventaire[i].m_equipe==ANNEAU2)
-                {
-                    sprite.Resize(32*configuration.Resolution.w/800,32*configuration.Resolution.h/600);
-
-                    position.h=32*configuration.Resolution.h/600;
-                    position.w=32*configuration.Resolution.w/800;
-
-                    position.x=(104 + 16 - m_inventaire[i].getPositionImage().w/2 )*configuration.Resolution.w/800;
-                    position.y=(148 + 16 - m_inventaire[i].getPositionImage().h/2 )*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600;
-
-                    sprite.SetX((104)*configuration.Resolution.w/800);
-                    sprite.SetY((148)*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
-                    if(m_objetEnMain==-1&&positionSouris.x>104*configuration.Resolution.x/800&&positionSouris.x<136*configuration.Resolution.x/800&&positionSouris.y>148*configuration.Resolution.y/600&&positionSouris.y<180*configuration.Resolution.y/600)
                         m_inventaire[i].AfficherCaracteristiques(ecran,positionSouris);
                 }
 
@@ -930,7 +1148,7 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
                     if(m_objetEnMain==-1&&positionSouris.x>210*configuration.Resolution.x/800&&positionSouris.x<242*configuration.Resolution.x/800&&positionSouris.y>37*configuration.Resolution.y/600&&positionSouris.y<69*configuration.Resolution.y/600)
                     if(m_objetEnMain==-1&&positionSouris.x>210*configuration.Resolution.x/800&&positionSouris.x<242*configuration.Resolution.x/800&&positionSouris.y>37*configuration.Resolution.y/600&&positionSouris.y<69*configuration.Resolution.y/600)
                         m_inventaire[i].AfficherCaracteristiques(ecran,positionSouris);
-                }
+                }*/
             }
 
             moteurGraphique.AjouterCommande(&sprite,16,0);
@@ -1113,8 +1331,8 @@ void Hero::recalculerCaracteristiques()
     float vie=m_caracteristiques.vie,foi=m_caracteristiques.foi;
 
     Caracteristique temp=m_personnage.getCaracteristique();
-    temp.maxVie=temp.vitalite*25;
-    temp.maxFoi=temp.piete*25;
+    temp.maxVie=temp.vitalite*10;
+    temp.maxFoi=temp.piete*10;
 
 
     m_caracteristiques=m_personnage.getCaracteristique();
@@ -1157,8 +1375,8 @@ void Hero::recalculerCaracteristiques()
     temp.degatsMax=(int)(m_caracteristiques.force)/2;
     temp.armure=m_caracteristiques.dexterite;
 
-    m_caracteristiques.maxVie+=m_caracteristiques.vitalite*25;
-    m_caracteristiques.maxFoi+=m_caracteristiques.piete*25;
+    m_caracteristiques.maxVie+=m_caracteristiques.vitalite*10;
+    m_caracteristiques.maxFoi+=m_caracteristiques.piete*10;
 
 
     for(int i=0;i<(int)m_inventaire.size();i++)
@@ -1399,7 +1617,16 @@ bool Hero::prendreEnMain(coordonnee positionSouris)
         }
         else
         {
-            if(positionSouris.x>20*configuration.Resolution.x/800&&positionSouris.x<84*configuration.Resolution.x/800&&positionSouris.y>20*configuration.Resolution.y/600&&positionSouris.y<180*configuration.Resolution.y/600)
+            bool equipe=false;
+
+            for(int k=0;k<(int)m_classe.emplacements.size();k++)
+            {
+                if(!equipe&&positionSouris.x>m_classe.emplacements[k].position.x*configuration.Resolution.x/800&&positionSouris.x<(m_classe.emplacements[k].position.x+m_classe.emplacements[k].position.w)*configuration.Resolution.x/800&&positionSouris.y>m_classe.emplacements[k].position.y*configuration.Resolution.y/600&&positionSouris.y<(m_classe.emplacements[k].position.y+m_classe.emplacements[k].position.h)*configuration.Resolution.y/600)
+                    equipe=true,equiper(m_objetEnMain,m_classe.emplacements[k].emplacement);
+
+            }
+
+            /*if(positionSouris.x>20*configuration.Resolution.x/800&&positionSouris.x<84*configuration.Resolution.x/800&&positionSouris.y>20*configuration.Resolution.y/600&&positionSouris.y<180*configuration.Resolution.y/600)
                 equiper(m_objetEnMain,ARME_PRINCIPAL);
             else if(positionSouris.x>222*configuration.Resolution.x/800&&positionSouris.x<284*configuration.Resolution.x/800&&positionSouris.y>83*configuration.Resolution.y/600&&positionSouris.y<178*configuration.Resolution.y/600)
                 equiper(m_objetEnMain,ARMURE_CORPS);
@@ -1410,15 +1637,13 @@ bool Hero::prendreEnMain(coordonnee positionSouris)
             else if(positionSouris.x>300*configuration.Resolution.x/800&&positionSouris.x<364*configuration.Resolution.x/800&&positionSouris.y>184*configuration.Resolution.y/600&&positionSouris.y<248*configuration.Resolution.y/600)
                 equiper(m_objetEnMain,BOTTES);
             else if(positionSouris.x>153*configuration.Resolution.x/800&&positionSouris.x<185*configuration.Resolution.x/800&&positionSouris.y>148*configuration.Resolution.y/600&&positionSouris.y<180*configuration.Resolution.y/600)
-                equiper(m_objetEnMain,ANNEAU1);
-            else if(positionSouris.x>104*configuration.Resolution.x/800&&positionSouris.x<136*configuration.Resolution.x/800&&positionSouris.y>148*configuration.Resolution.y/600&&positionSouris.y<180*configuration.Resolution.y/600)
-                equiper(m_objetEnMain,ANNEAU2);
+                equiper(m_objetEnMain,ANNEAU);
             else if(positionSouris.x>210*configuration.Resolution.x/800&&positionSouris.x<242*configuration.Resolution.x/800&&positionSouris.y>37*configuration.Resolution.y/600&&positionSouris.y<69*configuration.Resolution.y/600)
                 equiper(m_objetEnMain,PENDENTIF);
             else if(positionSouris.x>94*configuration.Resolution.x/800&&positionSouris.x<190*configuration.Resolution.x/800&&positionSouris.y>40*configuration.Resolution.y/600&&positionSouris.y<136*configuration.Resolution.y/600)
-                equiper(m_objetEnMain,BOUCLIER);
+                equiper(m_objetEnMain,BOUCLIER);*/
 
-            else if(m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
+            if(!equipe&&m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
                 if(m_inventaire[m_objetEnMain].m_equipe==AUCUN)
                 {
                     for(int i=0;i<10;i++)

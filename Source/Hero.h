@@ -9,6 +9,40 @@
 
 #include "Personnage.h"
 #include "Monstre.h"
+
+struct Image_interface
+{
+    coordonnee position;
+    int image;
+};
+
+struct Emplacement_inventaire
+{
+    coordonnee position;
+    int emplacement;
+};
+
+struct Classe
+{
+    void Charger(std::string chemin);
+
+    std::string nom;
+    Caracteristique caracteristique;
+
+    std::vector <std::string> equipementParDefaut;
+    std::string modeleNu[3];
+
+    Image_interface inventaire;
+    Image_interface hud;
+    Image_interface orbe_vie;
+    Image_interface orbe_foi;
+
+    coordonnee position_sac_inventaire;
+    coordonnee position_contenu_inventaire;
+
+    std::vector <Emplacement_inventaire> emplacements;
+};
+
 class Hero
 {
 	public:
@@ -21,7 +55,6 @@ class Hero
 	void Sauvegarder();
 	void Charger();
 	void ChargerModele();
-	void ReChargerModele();
 
 	void Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap);
 	void CalculerOrdreAffichage();
@@ -59,6 +92,9 @@ class Hero
 	coordonnee getSacVise();
 
 	Lumiere getPorteeLumineuse();
+
+	std::string m_cheminClasse;
+	Classe m_classe;
 
 	Personnage m_personnage;
 	Modele_Personnage m_modelePersonnage[NOMBRE_MORCEAU_PERSONNAGE];

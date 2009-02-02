@@ -22,30 +22,30 @@ Menu::Menu()
     console.Ajouter("",0);
     console.Ajouter("Chargement des menus :",0);
     m_imageMiniMap=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_minimap,-1);
-    m_imageHUD=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_hud,-1);
+    /*m_imageHUD=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_hud,-1);
     m_imageBulleVie=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_bulle_vie,-1);
-    m_imageBulleFoi=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_bulle_foi,-1);
+    m_imageBulleFoi=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_bulle_foi,-1);*/
 
     m_imageAme=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_ame,-1);
     m_imageSang=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_sang,-1);
     m_barrePointAme=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_barre_ame,-1);
-    m_inventaire=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_inventaire,-1);
+    //m_inventaire=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_inventaire,-1);
 
     m_barreVie=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_barre_vie,-1);
     m_barreVieVide=moteurGraphique.AjouterImage(configuration.chemin_menus+configuration.nom_barre_vie_vide,-1);
 }
 
-void Menu::Afficher(sf::RenderWindow* ecran,int type,float alpha)
+void Menu::Afficher(sf::RenderWindow* ecran,int type,float alpha,Classe *classe)
 {
 	Sprite sprite,sprite2;
 
 	if(type==1)
     {
 	    //On affiche l'HUD
-		sprite2.SetImage(*moteurGraphique.getImage(m_imageHUD));
-		sprite2.SetX(0);
-		sprite2.SetY(configuration.Resolution.h-128*configuration.Resolution.h/600);
-		sprite2.Resize(configuration.Resolution.w, 128*configuration.Resolution.h/600);
+		sprite2.SetImage(*moteurGraphique.getImage(classe->hud.image));
+		sprite2.SetX(classe->hud.position.x*configuration.Resolution.x/800);
+		sprite2.SetY(classe->hud.position.y*configuration.Resolution.h/600);
+		sprite2.Resize(classe->hud.position.w*configuration.Resolution.w/800, classe->hud.position.h*configuration.Resolution.h/600);
 		sprite.SetColor(sf::Color(255,255,255,(int)alpha));
 		moteurGraphique.AjouterCommande(&sprite2,17,0);
     }
@@ -91,17 +91,19 @@ void Menu::Afficher(sf::RenderWindow* ecran,int type,float alpha)
 }
 
 
-void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracteristique,int type,Caracteristique caracteristiqueMonstre)
+void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracteristique,int type,Caracteristique caracteristiqueMonstre,Classe *classe)
 {
 
     if(caracteristique.vie>0)
     {
         Sprite sprite;
-        sprite.SetImage(*moteurGraphique.getImage(m_imageBulleVie));
-        sprite.Resize(96*configuration.Resolution.w/800, 66*configuration.Resolution.h/600);
-        sprite.SetSubRect(sf::IntRect(0, (int)(66-caracteristique.vie*66/caracteristique.maxVie), 88, 66));
-        sprite.SetX(116*configuration.Resolution.w/800);
-        sprite.SetY((int)(configuration.Resolution.h-(128-12)*configuration.Resolution.h/600+(caracteristique.maxVie-caracteristique.vie)/caracteristique.maxVie*66*configuration.Resolution.h/600));
+        sprite.SetImage(*moteurGraphique.getImage(classe->orbe_vie.image));
+
+
+        sprite.SetX(classe->orbe_vie.position.x*configuration.Resolution.x/800);
+		sprite.SetY(classe->orbe_vie.position.y*configuration.Resolution.h/600+(caracteristique.maxVie-caracteristique.vie)/caracteristique.maxVie*classe->orbe_vie.position.h*configuration.Resolution.h/600);
+		sprite.Resize(classe->orbe_vie.position.w*configuration.Resolution.w/800, classe->orbe_vie.position.h*configuration.Resolution.h/600);
+        sprite.SetSubRect(sf::IntRect(0, (int)(classe->orbe_vie.position.h-caracteristique.vie*classe->orbe_vie.position.h/caracteristique.maxVie), classe->orbe_vie.position.w, classe->orbe_vie.position.h));
 
         moteurGraphique.AjouterCommande(&sprite,17,0);
     }
@@ -109,11 +111,12 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
     if(caracteristique.foi>0)
     {
         Sprite sprite;
-        sprite.SetImage(*moteurGraphique.getImage(m_imageBulleFoi));
-        sprite.Resize(96*configuration.Resolution.w/800, 66*configuration.Resolution.h/600);
-        sprite.SetSubRect(sf::IntRect(0, (int)(66-caracteristique.foi*66/caracteristique.maxFoi), 88, 66));
-        sprite.SetX(588*configuration.Resolution.w/800);
-        sprite.SetY((int)(configuration.Resolution.h-(128-12)*configuration.Resolution.h/600+(caracteristique.maxFoi-caracteristique.foi)/caracteristique.maxFoi*66*configuration.Resolution.h/600));
+        sprite.SetImage(*moteurGraphique.getImage(classe->orbe_foi.image));
+
+        sprite.SetX(classe->orbe_foi.position.x*configuration.Resolution.x/800);
+		sprite.SetY(classe->orbe_foi.position.y*configuration.Resolution.h/600+(caracteristique.maxFoi-caracteristique.foi)/caracteristique.maxFoi*classe->orbe_foi.position.h*configuration.Resolution.h/600);
+		sprite.Resize(classe->orbe_foi.position.w*configuration.Resolution.w/800, classe->orbe_foi.position.h*configuration.Resolution.h/600);
+        sprite.SetSubRect(sf::IntRect(0, (int)(classe->orbe_foi.position.h-caracteristique.foi*classe->orbe_foi.position.h/caracteristique.maxFoi), classe->orbe_foi.position.w, classe->orbe_foi.position.h));
 
         moteurGraphique.AjouterCommande(&sprite,17,0);
     }
@@ -267,13 +270,14 @@ void Menu::AfficherChargement(sf::RenderWindow* ecran,string nom,int fond,int z=
     moteurGraphique.AjouterTexte(&texte,0,1);
 }
 
-void Menu::AfficherInventaire(sf::RenderWindow* ecran,float decalage)
+void Menu::AfficherInventaire(sf::RenderWindow* ecran,float decalage,Classe *classe)
 {
     Sprite sprite;
 
-    sprite.SetImage(*moteurGraphique.getImage(m_inventaire));
-    sprite.Resize(configuration.Resolution.w, configuration.Resolution.h);
-    sprite.SetY(-decalage*configuration.Resolution.h/600);
+    sprite.SetImage(*moteurGraphique.getImage(classe->inventaire.image));
+    sprite.SetX(classe->inventaire.position.x*configuration.Resolution.x/800);
+    sprite.SetY(classe->inventaire.position.y*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
+    sprite.Resize(classe->inventaire.position.w*configuration.Resolution.w/800, classe->inventaire.position.h*configuration.Resolution.h/600);
 
     moteurGraphique.AjouterCommande(&sprite,15,0);
 

@@ -74,16 +74,16 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,temp,0);
     if(configuration.Minimap)
     {
-        jeu->menu.Afficher(&jeu->ecran,2);
+        jeu->menu.Afficher(&jeu->ecran,2,255,&jeu->hero.m_classe);
         jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,255);
     }
     if(jeu->hero.getChercherSac().x!=-1&&jeu->map.getNombreObjets(jeu->hero.getChercherSac())>0)
     {
-        jeu->menu.Afficher(&jeu->ecran,3);
+        jeu->menu.Afficher(&jeu->ecran,3,255,&jeu->hero.m_classe);
         jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,255);
     }
-    jeu->menu.Afficher(&jeu->ecran,1);
-    jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,0,jeu->hero.m_caracteristiques);
+    jeu->menu.Afficher(&jeu->ecran,1,255,&jeu->hero.m_classe);
+    jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,0,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
 
 
     texte.SetSize(56.f*configuration.Resolution.h/600);

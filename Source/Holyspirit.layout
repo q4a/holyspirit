@@ -115,8 +115,8 @@
 	<File name="eventManager.h" open="0" top="0" tabpos="10">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="hero.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="38177" topLine="905" />
+	<File name="hero.cpp" open="1" top="1" tabpos="7">
+		<Cursor position="69245" topLine="1521" />
 	</File>
 	<File name="jeu.cpp" open="0" top="0" tabpos="13">
 		<Cursor position="65" topLine="0" />
@@ -175,8 +175,8 @@
 	<File name="objet.cpp" open="0" top="0" tabpos="9">
 		<Cursor position="15520" topLine="496" />
 	</File>
-	<File name="personnage.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="6470" topLine="202" />
+	<File name="personnage.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="6470" topLine="193" />
 	</File>
 	<File name="pose.cpp" open="0" top="0" tabpos="15">
 		<Cursor position="168" topLine="0" />
