@@ -61,7 +61,7 @@ class Hero
 
 	void afficherInventaire(sf::RenderWindow *,coordonnee,float);
 	void afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionSouris,float decalage);
-
+	void GenererGrille();
 	void placerCamera(sf::View *camera,coordonnee dimensionsMap);
 
 	bool testMonstreVise(Monstre *monstre,int hauteurMap);
@@ -81,7 +81,7 @@ class Hero
 	bool prendreEnMain(coordonnee positionSouris);
 	bool equiper(int numero, int emplacement);
 	void AttribuerPositionObjet(coordonnee position,int numero);
-	void LibererCases(int numero);
+	//void LibererCases(int numero);
 
 	void setMonstreVise(int monstre);
 	void setChercherSac(coordonnee);
@@ -115,7 +115,7 @@ class Hero
 
 
 	std::vector<Objet> m_inventaire;
-	bool m_caseInventaire[10][10];
+	std::vector < std::vector <bool> > m_caseInventaire;
 };
 
 #endif

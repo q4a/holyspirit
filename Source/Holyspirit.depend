@@ -528,7 +528,7 @@
 
 1229864540 source:d:\backup disque e\c++\holyspirit\source\ressource.rc
 
-1233582525 source:d:\backup disque e\c++\holyspirit\source\hero.cpp
+1233595039 source:d:\backup disque e\c++\holyspirit\source\hero.cpp
 	"Hero.h"
 	"Globale.h"
 	<iostream>
@@ -538,7 +538,7 @@
 	<math.h>
 	<dirent.h>
 
-1233582390 d:\backup disque e\c++\holyspirit\source\hero.h
+1233590339 d:\backup disque e\c++\holyspirit\source\hero.h
 	<iostream>
 	<string>
 	"Personnage.h"

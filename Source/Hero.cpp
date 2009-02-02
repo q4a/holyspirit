@@ -73,10 +73,6 @@ Hero::Hero()
 
 	m_monstreVise=-1;
 
-	for(int i=0;i<10;++i)
-        for(int j=0;j<10;++j)
-            m_caseInventaire[i][j]=0;
-
     m_objetEnMain=-1;
 
     recalculerCaracteristiques();
@@ -101,7 +97,7 @@ void Hero::Sauvegarder()
             console.Ajouter("Ouverture du fichier.");
 
         std::string temp;
-        char caractere,espace='_';
+        char caractere;
 
         int n = m_personnage.getCaracteristique().nom.size()+1;
         fichier.write((char *)&n, sizeof(int));
@@ -137,13 +133,13 @@ void Hero::Sauvegarder()
         //fichier.write((char*)&caractere, sizeof(char));
         //fichier.write((char*)&espace, sizeof(char));
 
-        for(int i=0;i<10;++i)
+        /*for(int i=0;i<(int)m_caseInventaire.size();++i)
         {
             caractere='*';
             fichier.write((char*)&caractere, sizeof(char));
             //fichier.write((char*)&espace, sizeof(char));
 
-            for(int j=0;j<10;++j)
+            for(int j=0;j<(int)m_caseInventaire[i].size();++j)
                 fichier.write((char*)&m_caseInventaire[i][j], sizeof(bool));
 
             caractere='$';
@@ -151,7 +147,7 @@ void Hero::Sauvegarder()
             fichier.write((char*)&caractere, sizeof(char));
             fichier.write((char*)&espace, sizeof(char));
         }
-        caractere='$';
+        caractere='$';*/
         //fichier.write((char*)&espace, sizeof(char));
         fichier.write((char*)&caractere, sizeof(char));
 
@@ -184,6 +180,10 @@ void Hero::Sauvegarder()
 
 void Classe::Charger(string chemin)
 {
+
+    emplacements.clear();
+    equipementParDefaut.clear();
+
     ifstream fichier;
     fichier.open(chemin.c_str(), ios::in);
     if(fichier)
@@ -462,7 +462,8 @@ void Classe::Charger(string chemin)
 
 void Hero::Charger()
 {
-
+    console.Ajouter("Chargement du hero.");
+    m_cheminClasse="Data/Entities/Heroes/Crusader.class.hs";
     for(int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;i++)
         m_cheminModele[i]="";
 
@@ -501,6 +502,12 @@ void Hero::Charger()
                 m_cheminClasse=buffer;
                 delete[] buffer;
 
+               /* m_caseInventaire.resize(m_classe.position_contenu_inventaire.h , std::vector<bool> ());
+                for(int i=0;i<m_classe.position_contenu_inventaire.h;++i)
+                {
+                    m_caseInventaire[i].resize(m_classe.position_contenu_inventaire.w, 0);
+                }*/
+
 
                 //fichier.read((char*)&charTemp.nom, sizeof(string));
                 fichier.read((char*)&charTemp.vitesse, sizeof(float));
@@ -518,12 +525,12 @@ void Hero::Charger()
 
                     coordonnee position={0,0,0,0};
 
-                    do
+                    /*do
                     {
                         fichier.read((char*)&caractere, sizeof(char));
                         if(caractere=='*')
                         {
-                            for(int i=0;i<10;i++)
+                            for(int i=0;i<m_classe.position_contenu_inventaire.h;i++)
                             {
                                 bool temp;
                                 //fichier>>temp;
@@ -543,12 +550,12 @@ void Hero::Charger()
                             position.y++;
                             position.x=0;
 
-                            if(position.y>=10)
-                                position.y=9;
+                            if(position.y>=m_classe.position_contenu_inventaire.h)
+                                position.y=m_classe.position_contenu_inventaire.h-1;
                         }
                         if(fichier.eof()){throw "Impossible de charger la sauvegarde";}
 
-                     }while(caractere!='$');
+                     }while(caractere!='$');*/
 
                      if(configuration.debug)
                             console.Ajouter("/Lectures des cases de l'inventaire.");
@@ -683,15 +690,15 @@ void Hero::Charger()
 
     m_classe.Charger(m_cheminClasse);
 
-    recalculerCaracteristiques();
+    m_caseInventaire.resize(m_classe.position_contenu_inventaire.h , std::vector<bool> ());
+        for(int i=0;i<m_classe.position_contenu_inventaire.h;++i)
+            m_caseInventaire[i].resize(m_classe.position_contenu_inventaire.w, 0);
 
-    m_caracteristiques.vie=m_caracteristiques.maxVie;
-    m_caracteristiques.foi=m_caracteristiques.maxFoi;
+    GenererGrille();
 
     if(nouveau)
     {
-        m_cheminClasse="Data/Entities/Heroes/Crusader.class.hs";
-        m_classe.Charger(m_cheminClasse);
+        //m_classe.Charger(m_cheminClasse);
 
         sf::Color color;
         color.r=255;
@@ -706,13 +713,29 @@ void Hero::Charger()
             temp.Charger(m_classe.equipementParDefaut[i]);
             temp.Generer(1);
             ajouterObjet(temp);
-            /*m_inventaire.push_back(Objet ());
-            m_inventaire.back().Charger(m_classe.equipementParDefaut[i]);
-            m_inventaire.back().Generer(1);*/
-        }
-    }
 
+            Caracteristique charTemp;
+            charTemp=m_personnage.getCaracteristique();
+
+            charTemp.force=m_classe.caracteristique.force;
+            charTemp.vitalite=m_classe.caracteristique.vitalite;
+            charTemp.dexterite=m_classe.caracteristique.dexterite;
+            charTemp.piete=m_classe.caracteristique.piete;
+            charTemp.charisme=m_classe.caracteristique.charisme;
+
+            m_personnage.setCaracteristique(charTemp);
+        }
+
+
+
+    }
+    GenererGrille();
     ChargerModele();
+
+    recalculerCaracteristiques();
+
+    m_caracteristiques.vie=m_caracteristiques.maxVie;
+    m_caracteristiques.foi=m_caracteristiques.maxFoi;
 }
 
 
@@ -787,25 +810,6 @@ void Hero::ChargerModele()
             m_modelePersonnage[0].Charger(m_classe.modeleNu[m_cas]);
             m_cheminModele[0]=m_classe.modeleNu[m_cas];
         }
-
-        /*if(m_cas==0)
-            if(m_cheminModele[0]!="Data/Entities/heroes/Crusader/Nude/OneHand.rs.hs")
-            {
-                m_modelePersonnage[0].Charger("Data/Entities/heroes/Crusader/Nude/OneHand.rs.hs");
-                m_cheminModele[0]="Data/Entities/heroes/Crusader/Nude/OneHand.rs.hs";
-            }
-        if(m_cas==1)
-            if(m_cheminModele[0]!="Data/Entities/heroes/Crusader/Nude/TwoWeapons.rs.hs")
-            {
-                m_modelePersonnage[0].Charger("Data/Entities/heroes/Crusader/Nude/TwoWeapons.rs.hs");
-                m_cheminModele[0]="Data/Entities/heroes/Crusader/Nude/TwoWeapons.rs.hs";
-            }
-        if(m_cas==2)
-            if(m_cheminModele[0]!="Data/Entities/heroes/Crusader/Nude/TwoHand.rs.hs")
-            {
-                m_modelePersonnage[0].Charger("Data/Entities/heroes/Crusader/Nude/TwoHand.rs.hs");
-                m_cheminModele[0]="Data/Entities/heroes/Crusader/Nude/TwoHand.rs.hs";
-            }*/
     }
 
     CalculerOrdreAffichage();
@@ -989,11 +993,11 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
 
             if(m_inventaire[i].m_equipe==AUCUN)
             {
-                sprite.SetX((m_inventaire[i].getPosition().x*32+436)*configuration.Resolution.w/800);
-                sprite.SetY(((m_inventaire[i].getPosition().y-1)*32+150+32)*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
+                sprite.SetX((m_inventaire[i].getPosition().x*32+m_classe.position_contenu_inventaire.x)*configuration.Resolution.w/800);
+                sprite.SetY(((m_inventaire[i].getPosition().y-1)*32+(m_classe.position_contenu_inventaire.y))*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600);
 
-                position.x=(m_inventaire[i].getPosition().x*32+436)*configuration.Resolution.w/800;
-                position.y=((m_inventaire[i].getPosition().y-1)*32+150+32)*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600;
+                position.x=(m_inventaire[i].getPosition().x*32+m_classe.position_contenu_inventaire.x)*configuration.Resolution.w/800;
+                position.y=((m_inventaire[i].getPosition().y-1)*32+(m_classe.position_contenu_inventaire.y))*configuration.Resolution.h/600-decalage*configuration.Resolution.h/600;
 
                 position.h=m_inventaire[i].getTaille().y*32*configuration.Resolution.h/600;
                 position.w=m_inventaire[i].getTaille().x*32*configuration.Resolution.w/800;
@@ -1186,8 +1190,8 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
         sprite.Resize(m_inventaire[m_objetEnMain].getTaille().x*32*configuration.Resolution.w/800,m_inventaire[m_objetEnMain].getTaille().y*32*configuration.Resolution.h/600);
 
         coordonnee caseVisee;
-        caseVisee.x=((positionSouris.x+8*configuration.Resolution.x/800)-436*configuration.Resolution.x/800)/(32*configuration.Resolution.x/800) - m_inventaire[m_objetEnMain].getTaille().x/2;
-        caseVisee.y=((positionSouris.y+8*configuration.Resolution.y/600)-150*configuration.Resolution.y/600)/(32*configuration.Resolution.y/600) - m_inventaire[m_objetEnMain].getTaille().y/2;
+        caseVisee.x=((positionSouris.x+8*configuration.Resolution.x/800)-m_classe.position_contenu_inventaire.x*configuration.Resolution.x/800)/(32*configuration.Resolution.x/800) - m_inventaire[m_objetEnMain].getTaille().x/2;
+        caseVisee.y=((positionSouris.y+8*configuration.Resolution.y/600)-(m_classe.position_contenu_inventaire.y-32)*configuration.Resolution.y/600)/(32*configuration.Resolution.y/600) - m_inventaire[m_objetEnMain].getTaille().y/2;
 
         sprite.SetX(positionSouris.x*configuration.Resolution.w/configuration.Resolution.x - m_inventaire[m_objetEnMain].getTaille().x*32*configuration.Resolution.x/1600);
         sprite.SetY(positionSouris.y*configuration.Resolution.h/configuration.Resolution.y - m_inventaire[m_objetEnMain].getTaille().y*32*configuration.Resolution.y/1200);
@@ -1209,15 +1213,15 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
         if(m_inventaire[m_objetEnMain].getRarete()==CRAFT)
             sprite.SetColor(sf::Color(128,64,0,128));
 
-        if(positionSouris.x<436*configuration.Resolution.x/800||positionSouris.x>436*configuration.Resolution.x/800+32*10*configuration.Resolution.x/800||positionSouris.y<150*configuration.Resolution.y/600||positionSouris.y>150*configuration.Resolution.y/600+32*10*configuration.Resolution.y/600)
+        if(positionSouris.x<m_classe.position_contenu_inventaire.x*configuration.Resolution.x/800||positionSouris.x>m_classe.position_contenu_inventaire.x*configuration.Resolution.x/800+32*m_classe.position_contenu_inventaire.w*configuration.Resolution.x/800||positionSouris.y<(m_classe.position_contenu_inventaire.y-32)*configuration.Resolution.y/600||positionSouris.y>(m_classe.position_contenu_inventaire.y-32)*configuration.Resolution.y/600+32*m_classe.position_contenu_inventaire.h*configuration.Resolution.y/600)
         {
             if(positionSouris.x>435*configuration.Resolution.x/800&&positionSouris.x<758*configuration.Resolution.x/800&&positionSouris.y>30*configuration.Resolution.y/600&&positionSouris.y<114*configuration.Resolution.x/600)
                 sprite.SetColor(sf::Color(128,0,0,128));
         }
         else
         {
-            sprite.SetX(caseVisee.x*32*configuration.Resolution.w/800 + 436*configuration.Resolution.w/800);
-            sprite.SetY(caseVisee.y*32*configuration.Resolution.h/600 + 150*configuration.Resolution.h/600);
+            sprite.SetX(caseVisee.x*32*configuration.Resolution.w/800 + m_classe.position_contenu_inventaire.x*configuration.Resolution.w/800);
+            sprite.SetY(caseVisee.y*32*configuration.Resolution.h/600 + (m_classe.position_contenu_inventaire.y-32)*configuration.Resolution.h/600);
         }
 
         moteurGraphique.AjouterCommande(&sprite,18,0);
@@ -1231,7 +1235,7 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
         sprite.SetX(positionSouris.x*configuration.Resolution.w/configuration.Resolution.x - m_inventaire[m_objetEnMain].getTaille().x*32*configuration.Resolution.x/1600);
         sprite.SetY(positionSouris.y*configuration.Resolution.h/configuration.Resolution.y - m_inventaire[m_objetEnMain].getTaille().y*32*configuration.Resolution.y/1200);
 
-        /*if(positionSouris.x<436*configuration.Resolution.x/800||positionSouris.x>436*configuration.Resolution.y/800+32*10*configuration.Resolution.x/800||positionSouris.y<150*configuration.Resolution.y/600||positionSouris.y>150*configuration.Resolution.y/600+32*10*configuration.Resolution.y/600)
+        /*if(positionSouris.x<m_classe.position_contenu_inventaire.x*configuration.Resolution.x/800||positionSouris.x>m_classe.position_contenu_inventaire.x*configuration.Resolution.y/800+32*10*configuration.Resolution.x/800||positionSouris.y<m_classe.position_contenu_inventaire.y*configuration.Resolution.y/600||positionSouris.y>m_classe.position_contenu_inventaire.y*configuration.Resolution.y/600+32*10*configuration.Resolution.y/600)
         {
             sprite.SetX(positionSouris.x- m_inventaire[m_objetEnMain].getTaille().x*32*configuration.Resolution.x/1600);
             sprite.SetY(positionSouris.y- m_inventaire[m_objetEnMain].getTaille().y*32*configuration.Resolution.y/1200);
@@ -1239,11 +1243,11 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
 
         moteurGraphique.AjouterCommande(&sprite,19,0);
     }
-    else if(positionSouris.x>436*configuration.Resolution.x/800&&positionSouris.x<436*configuration.Resolution.x/800+32*10*configuration.Resolution.x/800&&positionSouris.y>150*configuration.Resolution.y/600&&positionSouris.y<150*configuration.Resolution.y/600+32*10*configuration.Resolution.y/600)
+    else if(positionSouris.x>m_classe.position_contenu_inventaire.x*configuration.Resolution.x/800&&positionSouris.x<m_classe.position_contenu_inventaire.x*configuration.Resolution.x/800+32*m_classe.position_contenu_inventaire.w*configuration.Resolution.x/800&&positionSouris.y>(m_classe.position_contenu_inventaire.y-32)*configuration.Resolution.y/600&&positionSouris.y<(m_classe.position_contenu_inventaire.y-32)*configuration.Resolution.y/600+32*m_classe.position_contenu_inventaire.h*configuration.Resolution.y/600)
     {
         coordonnee caseVisee;
-        caseVisee.x=(positionSouris.x-436*configuration.Resolution.x/800)/(32*configuration.Resolution.x/800);
-        caseVisee.y=(positionSouris.y-150*configuration.Resolution.y/600)/(32*configuration.Resolution.y/600);
+        caseVisee.x=(positionSouris.x-m_classe.position_contenu_inventaire.x*configuration.Resolution.x/800)/(32*configuration.Resolution.x/800);
+        caseVisee.y=(positionSouris.y-(m_classe.position_contenu_inventaire.y-32)*configuration.Resolution.y/600)/(32*configuration.Resolution.y/600);
 
         for(int i=0;i<(int)m_inventaire.size();i++)
             if(caseVisee.x>=m_inventaire[i].getPosition().x&&caseVisee.x<=m_inventaire[i].getPosition().x+m_inventaire[i].getTaille().x-1
@@ -1440,21 +1444,34 @@ int Hero::utiliserClicDroit(coordonnee positionSouris, int monstreVise)
     return 0;
 }
 
+void Hero::GenererGrille()
+{
+    for(int i=0;i<m_classe.position_contenu_inventaire.h;i++)
+            for(int j=0;j<m_classe.position_contenu_inventaire.w;j++)
+                m_caseInventaire[i][j]=0;
+
+    for(int i=0;i<(int)m_inventaire.size();i++)
+        if(m_inventaire[i].m_equipe==AUCUN&&i!=m_objetEnMain)
+            for(int y=0;y<m_inventaire[i].getTaille().y;y++)
+                for(int x=0;x<m_inventaire[i].getTaille().x;x++)
+                    m_caseInventaire[y+m_inventaire[i].getPosition().y][x+m_inventaire[i].getPosition().x]=1;
+}
+
 bool Hero::ajouterObjet(Objet objet,bool enMain)
 {
     bool ramasser=false;
 
     if(!enMain)
     {
-        for(int i=0;i<10;i++)
-            for(int j=0;j<10;j++)
+        for(int i=0;i<m_classe.position_contenu_inventaire.h;i++)
+            for(int j=0;j<m_classe.position_contenu_inventaire.w;j++)
             {
                 if(!m_caseInventaire[i][j])
                 {
                     bool ok=true;
                     for(int x=j;x<j+objet.getTaille().x;x++)
                         for(int y=i;y<i+objet.getTaille().y;y++)
-                            if(x<10&&y<10)
+                            if(x<m_classe.position_contenu_inventaire.w&&y<m_classe.position_contenu_inventaire.h)
                             {
                                 if(m_caseInventaire[y][x])
                                     ok=false;
@@ -1475,7 +1492,7 @@ bool Hero::ajouterObjet(Objet objet,bool enMain)
 
                         ramasser=true;
 
-                        i=10,j=10;
+                        i=m_classe.position_contenu_inventaire.h,j=m_classe.position_contenu_inventaire.w;
                     }
                 }
             }
@@ -1489,10 +1506,12 @@ bool Hero::ajouterObjet(Objet objet,bool enMain)
         ramasser=true;
     }
 
+    GenererGrille();
+
     return ramasser;
 }
 
-void Hero::LibererCases(int numero)
+/*void Hero::LibererCases(int numero)
 {
     if(numero>=0&&numero<(int)m_inventaire.size())
     {
@@ -1500,7 +1519,7 @@ void Hero::LibererCases(int numero)
             for(int y=0;y<m_inventaire[numero].getTaille().y;y++)
                 m_caseInventaire[y+m_inventaire[numero].getPosition().y][x+m_inventaire[numero].getPosition().x]=0;
     }
-}
+}*/
 
 void Hero::AttribuerPositionObjet(coordonnee position,int numero)
 {
@@ -1510,9 +1529,7 @@ void Hero::AttribuerPositionObjet(coordonnee position,int numero)
 
         m_inventaire[numero].m_equipe=0;
 
-        for(int x=position.x;x<position.x+m_inventaire[numero].getTaille().x;x++)
-                for(int y=position.y;y<position.y+m_inventaire[numero].getTaille().y;y++)
-                    m_caseInventaire[y][x]=1;
+        GenererGrille();
     }
 }
 
@@ -1540,18 +1557,18 @@ Objet Hero::DeposerObjet()
 bool Hero::prendreEnMain(coordonnee positionSouris)
 {
     m_objetADeposer=-1;
-    if(positionSouris.x>436*configuration.Resolution.x/800&&positionSouris.x<436*configuration.Resolution.x/800+32*10*configuration.Resolution.x/800&&positionSouris.y>150*configuration.Resolution.y/600&&positionSouris.y<150*configuration.Resolution.y/600+32*10*configuration.Resolution.y/600)
+    if(positionSouris.x>m_classe.position_contenu_inventaire.x*configuration.Resolution.x/800&&positionSouris.x<m_classe.position_contenu_inventaire.x*configuration.Resolution.x/800+32*m_classe.position_contenu_inventaire.w*configuration.Resolution.x/800&&positionSouris.y>(m_classe.position_contenu_inventaire.y-32)*configuration.Resolution.y/600&&positionSouris.y<(m_classe.position_contenu_inventaire.y-32)*configuration.Resolution.y/600+32*m_classe.position_contenu_inventaire.h*configuration.Resolution.y/600)
     {
         coordonnee caseVisee;
         if(m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
         {
-            caseVisee.x=((positionSouris.x+8*configuration.Resolution.x/800)-436*configuration.Resolution.x/800)/(32*configuration.Resolution.x/800) - m_inventaire[m_objetEnMain].getTaille().x/2;
-            caseVisee.y=((positionSouris.y+8*configuration.Resolution.y/600)-150*configuration.Resolution.y/600)/(32*configuration.Resolution.y/600) - m_inventaire[m_objetEnMain].getTaille().y/2;
+            caseVisee.x=((positionSouris.x+8*configuration.Resolution.x/800)-m_classe.position_contenu_inventaire.x*configuration.Resolution.x/800)/(32*configuration.Resolution.x/800) - m_inventaire[m_objetEnMain].getTaille().x/2;
+            caseVisee.y=((positionSouris.y+8*configuration.Resolution.y/600)-(m_classe.position_contenu_inventaire.y-32)*configuration.Resolution.y/600)/(32*configuration.Resolution.y/600) - m_inventaire[m_objetEnMain].getTaille().y/2;
         }
         else
         {
-            caseVisee.x=((positionSouris.x)-436*configuration.Resolution.x/800)/(32*configuration.Resolution.x/800);
-            caseVisee.y=((positionSouris.y)-150*configuration.Resolution.y/600)/(32*configuration.Resolution.y/600);
+            caseVisee.x=((positionSouris.x)-m_classe.position_contenu_inventaire.x*configuration.Resolution.x/800)/(32*configuration.Resolution.x/800);
+            caseVisee.y=((positionSouris.y)-(m_classe.position_contenu_inventaire.y-32)*configuration.Resolution.y/600)/(32*configuration.Resolution.y/600);
         }
 
         if(m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
@@ -1561,7 +1578,7 @@ bool Hero::prendreEnMain(coordonnee positionSouris)
 
             for(int i=caseVisee.y;i<caseVisee.y+m_inventaire[m_objetEnMain].getTaille().y;i++)
                 for(int j=caseVisee.x;j<caseVisee.x+m_inventaire[m_objetEnMain].getTaille().x;j++)
-                    if(i<10&&j<10&&i>=0&&j>=0)
+                    if(i<m_classe.position_contenu_inventaire.h&&j<m_classe.position_contenu_inventaire.w&&i>=0&&j>=0)
                     {
                        // if(m_caseInventaire[i][j])
                             for(int z=0;z<(int)m_inventaire.size();z++)
@@ -1581,8 +1598,8 @@ bool Hero::prendreEnMain(coordonnee positionSouris)
 
             if(ok)
             {
-                if(temp!=-1)
-                    LibererCases(temp);
+                //if(temp!=-1)
+                  //  LibererCases(temp);
 
                 AttribuerPositionObjet(caseVisee,m_objetEnMain);
 
@@ -1598,7 +1615,7 @@ bool Hero::prendreEnMain(coordonnee positionSouris)
                 if(m_inventaire[z].m_equipe==AUCUN)
                     if(caseVisee.x>=m_inventaire[z].getPosition().x&&caseVisee.x<m_inventaire[z].getPosition().x+m_inventaire[z].getTaille().x
                      &&caseVisee.y>=m_inventaire[z].getPosition().y&&caseVisee.y<m_inventaire[z].getPosition().y+m_inventaire[z].getTaille().y)
-                        m_objetEnMain=z,LibererCases(m_objetEnMain);
+                        m_objetEnMain=z/*,LibererCases(m_objetEnMain)*/;
         }
 
     }
@@ -1611,6 +1628,8 @@ bool Hero::prendreEnMain(coordonnee positionSouris)
                 m_objetADeposer=m_objetEnMain;
                 m_objetEnMain=-1;
 
+                GenererGrille();
+
                 return 1;
 
             }
@@ -1621,39 +1640,22 @@ bool Hero::prendreEnMain(coordonnee positionSouris)
 
             for(int k=0;k<(int)m_classe.emplacements.size();k++)
             {
-                if(!equipe&&positionSouris.x>m_classe.emplacements[k].position.x*configuration.Resolution.x/800&&positionSouris.x<(m_classe.emplacements[k].position.x+m_classe.emplacements[k].position.w)*configuration.Resolution.x/800&&positionSouris.y>m_classe.emplacements[k].position.y*configuration.Resolution.y/600&&positionSouris.y<(m_classe.emplacements[k].position.y+m_classe.emplacements[k].position.h)*configuration.Resolution.y/600)
+                if(positionSouris.x>m_classe.emplacements[k].position.x*configuration.Resolution.x/800&&positionSouris.x<(m_classe.emplacements[k].position.x+m_classe.emplacements[k].position.w)*configuration.Resolution.x/800&&positionSouris.y>m_classe.emplacements[k].position.y*configuration.Resolution.y/600&&positionSouris.y<(m_classe.emplacements[k].position.y+m_classe.emplacements[k].position.h)*configuration.Resolution.y/600)
                     equipe=true,equiper(m_objetEnMain,m_classe.emplacements[k].emplacement);
 
             }
 
-            /*if(positionSouris.x>20*configuration.Resolution.x/800&&positionSouris.x<84*configuration.Resolution.x/800&&positionSouris.y>20*configuration.Resolution.y/600&&positionSouris.y<180*configuration.Resolution.y/600)
-                equiper(m_objetEnMain,ARME_PRINCIPAL);
-            else if(positionSouris.x>222*configuration.Resolution.x/800&&positionSouris.x<284*configuration.Resolution.x/800&&positionSouris.y>83*configuration.Resolution.y/600&&positionSouris.y<178*configuration.Resolution.y/600)
-                equiper(m_objetEnMain,ARMURE_CORPS);
-            else if(positionSouris.x>301*configuration.Resolution.x/800&&positionSouris.x<364*configuration.Resolution.x/800&&positionSouris.y>83*configuration.Resolution.y/600&&positionSouris.y<178*configuration.Resolution.y/600)
-                equiper(m_objetEnMain,ARMURE_CORPS2);
-            else if(positionSouris.x>262*configuration.Resolution.x/800&&positionSouris.x<324*configuration.Resolution.x/800&&positionSouris.y>14*configuration.Resolution.y/600&&positionSouris.y<77*configuration.Resolution.y/600)
-                equiper(m_objetEnMain,CASQUE);
-            else if(positionSouris.x>300*configuration.Resolution.x/800&&positionSouris.x<364*configuration.Resolution.x/800&&positionSouris.y>184*configuration.Resolution.y/600&&positionSouris.y<248*configuration.Resolution.y/600)
-                equiper(m_objetEnMain,BOTTES);
-            else if(positionSouris.x>153*configuration.Resolution.x/800&&positionSouris.x<185*configuration.Resolution.x/800&&positionSouris.y>148*configuration.Resolution.y/600&&positionSouris.y<180*configuration.Resolution.y/600)
-                equiper(m_objetEnMain,ANNEAU);
-            else if(positionSouris.x>210*configuration.Resolution.x/800&&positionSouris.x<242*configuration.Resolution.x/800&&positionSouris.y>37*configuration.Resolution.y/600&&positionSouris.y<69*configuration.Resolution.y/600)
-                equiper(m_objetEnMain,PENDENTIF);
-            else if(positionSouris.x>94*configuration.Resolution.x/800&&positionSouris.x<190*configuration.Resolution.x/800&&positionSouris.y>40*configuration.Resolution.y/600&&positionSouris.y<136*configuration.Resolution.y/600)
-                equiper(m_objetEnMain,BOUCLIER);*/
-
             if(!equipe&&m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
                 if(m_inventaire[m_objetEnMain].m_equipe==AUCUN)
                 {
-                    for(int i=0;i<10;i++)
-                        for(int j=0;j<10;j++)
+                    for(int i=0;i<m_classe.position_contenu_inventaire.h;i++)
+                        for(int j=0;j<m_classe.position_contenu_inventaire.w;j++)
                             if(!m_caseInventaire[i][j])
                             {
                                 bool ok=true;
                                 for(int x=j;x<j+m_inventaire[m_objetEnMain].getTaille().x;x++)
                                     for(int y=i;y<i+m_inventaire[m_objetEnMain].getTaille().y;y++)
-                                        if(x<10&&y<10)
+                                        if(x<m_classe.position_contenu_inventaire.w&&y<m_classe.position_contenu_inventaire.h)
                                         {
                                             if(m_caseInventaire[y][x])
                                                 ok=false;
@@ -1676,7 +1678,7 @@ bool Hero::prendreEnMain(coordonnee positionSouris)
 
                                     m_objetEnMain=-1;
 
-                                    i=10,j=10;
+                                    i=m_classe.position_contenu_inventaire.h,j=m_classe.position_contenu_inventaire.w;
                                 }
                             }
                 }
@@ -1686,12 +1688,14 @@ bool Hero::prendreEnMain(coordonnee positionSouris)
                 }
         }
     }
+
+    GenererGrille();
     return 0;
-    //recalculerCaracteristiques();
 }
 
 bool Hero::equiper(int numero, int emplacement)
 {
+    GenererGrille();
     int ancienEquipe=-1;
     bool ok=true;
 

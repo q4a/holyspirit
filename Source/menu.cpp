@@ -101,7 +101,7 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
 
 
         sprite.SetX(classe->orbe_vie.position.x*configuration.Resolution.x/800);
-		sprite.SetY(classe->orbe_vie.position.y*configuration.Resolution.h/600+(caracteristique.maxVie-caracteristique.vie)/caracteristique.maxVie*classe->orbe_vie.position.h*configuration.Resolution.h/600);
+		sprite.SetY(classe->orbe_vie.position.y*configuration.Resolution.h/600+(int)((caracteristique.maxVie-caracteristique.vie)/caracteristique.maxVie*classe->orbe_vie.position.h*configuration.Resolution.h/600));
 		sprite.Resize(classe->orbe_vie.position.w*configuration.Resolution.w/800, classe->orbe_vie.position.h*configuration.Resolution.h/600);
         sprite.SetSubRect(sf::IntRect(0, (int)(classe->orbe_vie.position.h-caracteristique.vie*classe->orbe_vie.position.h/caracteristique.maxVie), classe->orbe_vie.position.w, classe->orbe_vie.position.h));
 
@@ -114,7 +114,7 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
         sprite.SetImage(*moteurGraphique.getImage(classe->orbe_foi.image));
 
         sprite.SetX(classe->orbe_foi.position.x*configuration.Resolution.x/800);
-		sprite.SetY(classe->orbe_foi.position.y*configuration.Resolution.h/600+(caracteristique.maxFoi-caracteristique.foi)/caracteristique.maxFoi*classe->orbe_foi.position.h*configuration.Resolution.h/600);
+		sprite.SetY(classe->orbe_foi.position.y*configuration.Resolution.h/600+(int)((caracteristique.maxFoi-caracteristique.foi)/caracteristique.maxFoi*classe->orbe_foi.position.h*configuration.Resolution.h/600));
 		sprite.Resize(classe->orbe_foi.position.w*configuration.Resolution.w/800, classe->orbe_foi.position.h*configuration.Resolution.h/600);
         sprite.SetSubRect(sf::IntRect(0, (int)(classe->orbe_foi.position.h-caracteristique.foi*classe->orbe_foi.position.h/caracteristique.maxFoi), classe->orbe_foi.position.w, classe->orbe_foi.position.h));
 
