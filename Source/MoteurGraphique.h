@@ -27,7 +27,7 @@ class MoteurGraphique
 	void CalculerLumiereParticules(LumiereOmbrage tableauDesLampes[30][30],coordonnee ,sf::RenderWindow *,int tailleMapY);
 
 	int AjouterImage(std::string,int importance = 3);
-	int AjouterImage(const char *Data, std::size_t SizeInBytes, std::string nom,int importance =3);
+	int AjouterImage(const char *Data, std::size_t SizeInBytes, std::string nom,int importance =5);
 	int AjouterModeleSystemeParticules(std::string);
 
 	void AjouterSystemeParticules(int ID,coordonnee position,sf::Color color,float force,float angle);

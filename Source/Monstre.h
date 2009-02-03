@@ -18,7 +18,7 @@ class Modele_Monstre : public Modele_Personnage
     Script m_scriptAI;
     int m_particules;
 
-    std::vector <Miracle> m_miracles;
+    std::vector<Miracle> m_miracles;
 
     private:
     std::vector<Objet> m_objets;

@@ -29,7 +29,7 @@ struct Classe
     std::string nom;
     Caracteristique caracteristique;
 
-    std::vector <std::string> equipementParDefaut;
+    std::vector<std::string> equipementParDefaut;
     std::string modeleNu[3];
 
     Image_interface inventaire;
@@ -115,7 +115,7 @@ class Hero
 
 
 	std::vector<Objet> m_inventaire;
-	std::vector < std::vector <bool> > m_caseInventaire;
+	std::vector< std::vector<bool> > m_caseInventaire;
 };
 
 #endif

@@ -13,7 +13,7 @@ Objet::Objet()
     m_nom="Un objet merveilleux";
     m_chemin="";
     m_rarete=0;
-    m_equipe=0;
+    m_equipe=-1;
 
     m_armure=0;
     m_degatsMin=0;
@@ -28,7 +28,7 @@ Objet::Objet(std::string nom, int rarete)
     m_rarete=rarete;
     m_image=0;
     m_chemin="";
-    m_equipe=0;
+    m_equipe=-1;
     m_capaciteBenediction=0;
 }
 
