@@ -17,7 +17,17 @@ main
 			else
 				if distance * 6
 				then
-					useMiracle * 0  
+					if rand *15
+					then
+						useMiracle * 2
+					else
+						if rand * 10
+						then
+							useMiracle * 1
+						else
+							useMiracle * 0
+						end 
+					end
 				else
 					fight
 				end
