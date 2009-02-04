@@ -128,29 +128,33 @@ void Miracle::Charger(std::string chemin)
                     switch(caractere)
                     {
                         case 't':
-                            fichier>>m_effets[m_effets.size()-1].m_type;
+                            fichier>>m_effets.back().m_type;
                         break;
 
                         case 'l':
-                            fichier>>m_effets[m_effets.size()-1].m_lien;
+                            int buffer;
+                            fichier>>buffer;
+                            m_effets.back().m_lien.push_back(buffer);
                         break;
 
                         case 's':
-                            fichier>>m_effets[m_effets.size()-1].m_sequence;
+                            fichier>>m_effets.back().m_sequence;
                         break;
 
                         case 'i':
                             fichier.get(caractere);
-                            if(caractere=='a') { fichier>>m_effets[m_effets.size()-1].m_informations[0];}
-                            if(caractere=='b') { fichier>>m_effets[m_effets.size()-1].m_informations[1];}
-                            if(caractere=='c') { fichier>>m_effets[m_effets.size()-1].m_informations[2];}
+                            if(caractere=='a') { fichier>>m_effets.back().m_informations[0];}
+                            if(caractere=='b') { fichier>>m_effets.back().m_informations[1];}
+                            if(caractere=='c') { fichier>>m_effets.back().m_informations[2];}
                         break;
                     }
                     if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+
                 }while(caractere!='$');
 
                 fichier.get(caractere);
     		}
+
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
     	}while(caractere!='$');
 
@@ -218,8 +222,8 @@ void Miracle::Charger(std::string chemin)
                             if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
                         }while(caractere!='$');
                         //AjouterTile(position,collision,animation,son,lumiere,ombre,orientation);
-                        m_tile[m_tile.size()-1].push_back(Tile());
-                        m_tile[m_tile.size()-1][m_tile[m_tile.size()-1].size()-1].setTile(position,image,collision,animation,son,lumiere,ombre,orientation,transparent,centre,tempsAnimation);
+                        m_tile.back().push_back(Tile());
+                        m_tile.back().back().setTile(position,image,collision,animation,son,lumiere,ombre,orientation,transparent,centre,tempsAnimation);
 
                         fichier.get(caractere);
                     }

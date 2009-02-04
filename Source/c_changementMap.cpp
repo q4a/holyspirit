@@ -59,7 +59,7 @@ void c_Chargement::setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool
             if(caractere=='*')
             {
                 cheminFond.push_back("");
-                getline(fichier, cheminFond[cheminFond.size()-1]);
+                getline(fichier, cheminFond.back());
 
             }
         }while(caractere!='$');
@@ -105,7 +105,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         jeu->hero.Sauvegarder();
 
-        jeu->hero.ChargerModele();
+        jeu->hero.ChargerModele(true);
 
         if(!jeu->map.Charger(numeroProchaineMap))
             console.Ajouter("CRITICAL ERROR"), throw  "CRITICAL ERROR";

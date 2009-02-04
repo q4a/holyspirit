@@ -221,7 +221,7 @@ bool Modele_Personnage::Charger(string chemin)
                             centre.y=position.h-32;
 
                         m_pose[i][j].push_back(poseTemp);
-                        m_pose[i][j][m_pose[i][j].size()-1].setPose(position,centre,animation,son,image,attaque,lumiere,tempsAnimation,ordre);
+                        m_pose[i][j].back().setPose(position,centre,animation,son,image,attaque,lumiere,tempsAnimation,ordre);
                         fichier->get(caractere);
                         if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }
                     }

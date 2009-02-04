@@ -391,9 +391,9 @@ void Objet::Charger(std::string chemin)
                 }while(caractere!='$');
 
                 m_benedictions.push_back(benediction ());
-                m_benedictions[m_benedictions.size()-1].type=b;
-                m_benedictions[m_benedictions.size()-1].info1=ia;
-                m_benedictions[m_benedictions.size()-1].info2=ib;
+                m_benedictions.back().type=b;
+                m_benedictions.back().info1=ia;
+                m_benedictions.back().info2=ib;
 
                 fichier.get(caractere);
             }
@@ -513,8 +513,8 @@ void Objet::Generer(int bonus)
             if(ajouter)
             {
                 m_benedictions.push_back(benediction ());
-                m_benedictions[m_benedictions.size()-1]=temp;
-                m_benedictions[m_benedictions.size()-1].info2=0;
+                m_benedictions.back()=temp;
+                m_benedictions.back().info2=0;
             }
         }
 

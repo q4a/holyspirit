@@ -611,7 +611,7 @@ void Hero::Charger()
 
 
                                     m_inventaire.push_back(Objet ());
-                                    m_inventaire[m_inventaire.size()-1].Charger(buffer);
+                                    m_inventaire.back().Charger(buffer);
                                     delete[] buffer;
                                 }
                                 else if(caractere=='b')
@@ -635,9 +635,9 @@ void Hero::Charger()
                                     }while(caractere!='$');
 
                                     bene.push_back(benediction ());
-                                    bene[bene.size()-1].type=type;
-                                    bene[bene.size()-1].info1=info1;
-                                    bene[bene.size()-1].info2=info2;
+                                    bene.back().type=type;
+                                    bene.back().info1=info1;
+                                    bene.back().info2=info2;
                                     fichier.read((char*)&caractere, sizeof(char));
                                 }
 
@@ -647,18 +647,18 @@ void Hero::Charger()
                             if(m_inventaire.size()>0)
                             {
 
-                                m_inventaire[m_inventaire.size()-1].setRarete(rarete);
-                                m_inventaire[m_inventaire.size()-1].setPosition(position.x,position.y);
-                                m_inventaire[m_inventaire.size()-1].m_equipe=equipe;
+                                m_inventaire.back().setRarete(rarete);
+                                m_inventaire.back().setPosition(position.x,position.y);
+                                m_inventaire.back().m_equipe=equipe;
 
-                                m_inventaire[m_inventaire.size()-1].m_armure=armure;
-                                m_inventaire[m_inventaire.size()-1].m_degatsMin=degMin;
-                                m_inventaire[m_inventaire.size()-1].m_degatsMax=degMax;
+                                m_inventaire.back().m_armure=armure;
+                                m_inventaire.back().m_degatsMin=degMin;
+                                m_inventaire.back().m_degatsMax=degMax;
 
-                                m_inventaire[m_inventaire.size()-1].m_color=color;
+                                m_inventaire.back().m_color=color;
 
 
-                                m_inventaire[m_inventaire.size()-1].m_benedictions=bene;
+                                m_inventaire.back().m_benedictions=bene;
                             }
 
                             fichier.read((char*)&caractere, sizeof(char));
@@ -732,7 +732,7 @@ void Hero::Charger()
 
 
 
-void Hero::ChargerModele()
+void Hero::ChargerModele(bool tout)
 {
     m_cas=0;
 
@@ -760,7 +760,11 @@ void Hero::ChargerModele()
     bool pasEquipe[NOMBRE_MORCEAU_PERSONNAGE];
 
     for(int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;i++)
+    {
         pasEquipe[i]=true,m_cheminModeleNouveau[i]="";
+        if(tout)
+            m_cheminModele[i]="";
+    }
 
 
     for(int i=0;i<(int)m_inventaire.size();i++)
@@ -1247,7 +1251,7 @@ void Hero::recalculerCaracteristiques()
 
     for(int i=0;i<(int)m_inventaire.size();i++)
     {
-        if(m_inventaire[i].m_equipe>0)
+        if(m_inventaire[i].m_equipe>+0)
         {
             int accru=100;
             for(int j=0;j<(int)m_inventaire[i].m_benedictions.size();++j)
@@ -1263,10 +1267,6 @@ void Hero::recalculerCaracteristiques()
             temp.armure+=m_inventaire[i].m_armure;
         }
     }
-
-    /*temp.degatsMin=m_caracteristiques.degatsMin;
-    temp.degatsMax=m_caracteristiques.degatsMax;
-    temp.armure=m_caracteristiques.armure;*/
 
     m_caracteristiques.niveau=temp.niveau;
 
@@ -1372,16 +1372,6 @@ bool Hero::ajouterObjet(Objet objet,bool enMain)
 
     return ramasser;
 }
-
-/*void Hero::LibererCases(int numero)
-{
-    if(numero>=0&&numero<(int)m_inventaire.size())
-    {
-        for(int x=0;x<m_inventaire[numero].getTaille().x;x++)
-            for(int y=0;y<m_inventaire[numero].getTaille().y;y++)
-                m_caseInventaire[y+m_inventaire[numero].getPosition().y][x+m_inventaire[numero].getPosition().x]=0;
-    }
-}*/
 
 void Hero::AttribuerPositionObjet(coordonnee position,int numero)
 {

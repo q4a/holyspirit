@@ -52,7 +52,6 @@ struct Effet
 {
     Effet()
     {
-        m_lien=-1;
         m_type=0;
         m_sequence=0;
 
@@ -61,7 +60,12 @@ struct Effet
         m_informations[2]=0;
     }
 
-    int m_lien;
+    ~Effet()
+    {
+        m_lien.clear();
+    }
+
+    std::vector <int> m_lien;
     int m_type;
     int m_sequence;
 
@@ -88,22 +92,32 @@ class Miracle
     int m_coutFoi;
 };
 
-class EntiteMiracle
+struct infosEntiteMiracle
 {
-    public:
-    EntiteMiracle()
+    infosEntiteMiracle()
     {
         m_effetEnCours=0;
         m_imageEnCours=0;
-        m_modele=0;
+        m_IDObjet=-1;
+
+        m_position.x=0;
+        m_position.y=0;
+        m_position.w=0;
+        m_position.h=0;
     }
 
     int m_effetEnCours;
     int m_imageEnCours;
-    int m_modele;
     int m_IDObjet;
 
     coordonneeDecimal m_position;
+};
+
+class EntiteMiracle
+{
+    public:
+    std::vector<infosEntiteMiracle> m_infos;
+    int m_modele;
 };
 
 #endif

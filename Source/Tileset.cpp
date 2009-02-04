@@ -147,7 +147,7 @@ bool Tileset::Charger(std::string chemin)
     			//AjouterTile(position,collision,animation,son,lumiere,ombre,orientation);
     			Tile tileTemp;
     			m_tile.push_back(tileTemp);
-    			m_tile[m_tile.size()-1].setTile(position,image,collision,animation,son,lumiere,ombre,orientation,transparent,centre,tempsAnimation);
+    			m_tile.back().setTile(position,image,collision,animation,son,lumiere,ombre,orientation,transparent,centre,tempsAnimation);
 
     			fichier.get(caractere);
     		}

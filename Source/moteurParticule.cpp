@@ -56,20 +56,20 @@ void ParticuleSysteme::Generer(float force, ModeleParticuleSysteme *modele,coord
         {
             angle+= (180-(rand() % 360))*force/100;
             m_particules.push_back(Particule ());
-            m_particules[m_particules.size()-1].vie=100;
-            m_particules[m_particules.size()-1].position.x=position.x;
-            m_particules[m_particules.size()-1].position.y=position.y;
-            m_particules[m_particules.size()-1].position.z=(rand() % (64 - 0 + 1)) + 0;
-            m_particules[m_particules.size()-1].vecteur.x=cos(angle*M_PI/180);
-            m_particules[m_particules.size()-1].vecteur.y=sin(angle*M_PI/180)/2;
-            m_particules[m_particules.size()-1].vecteur.z=(rand() % (int)(force*0.6 - force*0.4 + 1)) + force*0.4;
-            m_particules[m_particules.size()-1].vitesse=(rand() % (int)(force*1.25 - force*0.75 + 1)) + force*0.75;
-            m_particules[m_particules.size()-1].vitesse_rotation=((rand() % (int)(force*1 - force*0.5 + 1)) + force*0.5)*5;
-            if(m_particules[m_particules.size()-1].vitesse_rotation>100)
-                m_particules[m_particules.size()-1].vitesse_rotation=100;
-            m_particules[m_particules.size()-1].rotation=rand() % 360;
-            m_particules[m_particules.size()-1].alpha=255;
-            m_particules[m_particules.size()-1].numero=i;
+            m_particules.back().vie=100;
+            m_particules.back().position.x=position.x;
+            m_particules.back().position.y=position.y;
+            m_particules.back().position.z=(rand() % (64 - 0 + 1)) + 0;
+            m_particules.back().vecteur.x=cos(angle*M_PI/180);
+            m_particules.back().vecteur.y=sin(angle*M_PI/180)/2;
+            m_particules.back().vecteur.z=(rand() % (int)(force*0.6 - force*0.4 + 1)) + force*0.4;
+            m_particules.back().vitesse=(rand() % (int)(force*1.25 - force*0.75 + 1)) + force*0.75;
+            m_particules.back().vitesse_rotation=((rand() % (int)(force*1 - force*0.5 + 1)) + force*0.5)*5;
+            if(m_particules.back().vitesse_rotation>100)
+                m_particules.back().vitesse_rotation=100;
+            m_particules.back().rotation=rand() % 360;
+            m_particules.back().alpha=255;
+            m_particules.back().numero=i;
         }
     }
 }

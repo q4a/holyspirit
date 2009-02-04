@@ -179,7 +179,7 @@ int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std
 {
     for(int i=0;i<(int)m_images.size();i++)
     {
-        if(m_images[i].nom==nom.c_str())
+        if(m_images[i].nom==nom)
         {
             m_images[i].importance=importance;
             return i;
@@ -206,12 +206,12 @@ int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std
     }
 
     m_images.push_back(Image_moteur ());
-    m_images[m_images.size()-1].nom=nom;
+    m_images.back().nom=nom;
 
     if(!configuration.lissage)
-        m_images[m_images.size()-1].img.SetSmooth(false);
+        m_images.back().img.SetSmooth(false);
 
-    if(!m_images[m_images.size()-1].img.LoadFromMemory(Data,SizeInBytes))
+    if(!m_images.back().img.LoadFromMemory(Data,SizeInBytes))
     {
         console.Ajouter("Impossible de charger depuis la mémoire : "+nom,1);
         return -1;
@@ -219,7 +219,7 @@ int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std
     else
         console.Ajouter("Chargement de : "+nom,0);
 
-    m_images[m_images.size()-1].importance=importance;
+    m_images.back().importance=importance;
 
     return m_images.size()-1;
 }
@@ -228,7 +228,7 @@ int MoteurGraphique::AjouterImage(std::string chemin,int importance)
 {
     for(int i=0;i<(int)m_images.size();i++)
     {
-        if(m_images[i].nom==chemin.c_str())
+        if(m_images[i].nom==chemin)
         {
             m_images[i].importance=importance;
             return i;
@@ -256,12 +256,12 @@ int MoteurGraphique::AjouterImage(std::string chemin,int importance)
     }
 
     m_images.push_back(Image_moteur ());
-    m_images[m_images.size()-1].nom=chemin;
+    m_images.back().nom=chemin;
 
     if(!configuration.lissage)
-        m_images[m_images.size()-1].img.SetSmooth(false);
+        m_images.back().img.SetSmooth(false);
 
-    if(!m_images[m_images.size()-1].img.LoadFromFile(chemin.c_str()))
+    if(!m_images.back().img.LoadFromFile(chemin.c_str()))
     {
         console.Ajouter("Impossible de charger : "+chemin,1);
         return -1;
@@ -269,7 +269,7 @@ int MoteurGraphique::AjouterImage(std::string chemin,int importance)
     else
         console.Ajouter("Chargement de : "+chemin,0);
 
-    m_images[m_images.size()-1].importance=importance;
+    m_images.back().importance=importance;
 
     return m_images.size()-1;
 }

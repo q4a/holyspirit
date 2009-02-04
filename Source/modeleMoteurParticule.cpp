@@ -67,13 +67,13 @@ void ModeleParticuleSysteme::Charger(std::string chemin)
                     fichier.get(caractere);
                     switch (caractere)
                     {
-                        case 'x' : fichier>>m_particules[m_particules.size()-1].positionImage.x; break;
-                        case 'y' : fichier>>m_particules[m_particules.size()-1].positionImage.y; break;
-                        case 'w' : fichier>>m_particules[m_particules.size()-1].positionImage.w; break;
-                        case 'h' : fichier>>m_particules[m_particules.size()-1].positionImage.h; break;
+                        case 'x' : fichier>>m_particules.back().positionImage.x; break;
+                        case 'y' : fichier>>m_particules.back().positionImage.y; break;
+                        case 'w' : fichier>>m_particules.back().positionImage.w; break;
+                        case 'h' : fichier>>m_particules.back().positionImage.h; break;
 
-                        case 'i' : fichier>>m_particules[m_particules.size()-1].min; break;
-                        case 'a' : fichier>>m_particules[m_particules.size()-1].max; break;
+                        case 'i' : fichier>>m_particules.back().min; break;
+                        case 'a' : fichier>>m_particules.back().max; break;
                     }
 
                     if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }

@@ -70,7 +70,7 @@ int Script::Lire(ifstream *fichier)
         {
             int valeur;
             *fichier>>valeur;
-            m_instructions[m_instructions.size()-1].valeurs.push_back(valeur);
+            m_instructions.back().valeurs.push_back(valeur);
         }
 
         fichier->get(caractere);
@@ -78,7 +78,7 @@ int Script::Lire(ifstream *fichier)
         {
             int valeur;
             *fichier>>valeur;
-            m_instructions[m_instructions.size()-1].valeurs.push_back(valeur);
+            m_instructions.back().valeurs.push_back(valeur);
         }
     }
 

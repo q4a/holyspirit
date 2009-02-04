@@ -54,7 +54,7 @@ class Hero
 
 	void Sauvegarder();
 	void Charger();
-	void ChargerModele();
+	void ChargerModele(bool tout=false);
 
 	void Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap);
 	void CalculerOrdreAffichage();

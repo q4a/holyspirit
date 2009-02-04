@@ -20,7 +20,7 @@ void liste_case::ajouterCase(coordonnee coordonneeAjoutable)
 {
     Case caseTemp;
 	m_liste.push_back(caseTemp);
-	m_liste[m_liste.size()-1].setCoordonnee(coordonneeAjoutable,m_distanceEnCours);
+	m_liste.back().setCoordonnee(coordonneeAjoutable,m_distanceEnCours);
 }
 
 void liste_case::supprimer(){m_liste.clear();}
