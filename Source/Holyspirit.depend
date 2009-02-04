@@ -528,7 +528,7 @@
 
 1229864540 source:d:\backup disque e\c++\holyspirit\source\ressource.rc
 
-1233756144 source:d:\backup disque e\c++\holyspirit\source\hero.cpp
+1233759627 source:d:\backup disque e\c++\holyspirit\source\hero.cpp
 	"Hero.h"
 	"Globale.h"
 	<iostream>
@@ -687,7 +687,7 @@
 	<libavformat/avformat.h>
 	<libavcodec/avcodec.h>
 
-1233756348 source:d:\backup disque e\c++\holyspirit\source\map.cpp
+1233758799 source:d:\backup disque e\c++\holyspirit\source\map.cpp
 	"Map.h"
 	<iostream>
 	<fstream>

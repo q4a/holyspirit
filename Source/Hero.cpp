@@ -1210,7 +1210,7 @@ void Hero::recalculerCaracteristiques()
     m_caracteristiques.maxFoi=0;
 
     for(int i=0;i<(int)m_inventaire.size();i++)
-        if(m_inventaire[i].m_equipe>0)
+        if(m_inventaire[i].m_equipe>=0)
             for(int j=0;j<(int)m_inventaire[i].m_benedictions.size();++j)
                 switch (m_inventaire[i].m_benedictions[j].type)
                 {
@@ -1251,7 +1251,7 @@ void Hero::recalculerCaracteristiques()
 
     for(int i=0;i<(int)m_inventaire.size();i++)
     {
-        if(m_inventaire[i].m_equipe>+0)
+        if(m_inventaire[i].m_equipe>=0)
         {
             int accru=100;
             for(int j=0;j<(int)m_inventaire[i].m_benedictions.size();++j)
@@ -1481,6 +1481,7 @@ bool Hero::prendreEnMain(coordonnee positionSouris)
                 m_objetEnMain=-1;
 
                 GenererGrille();
+                recalculerCaracteristiques();
 
                 return 1;
 
@@ -1541,6 +1542,7 @@ bool Hero::prendreEnMain(coordonnee positionSouris)
         }
     }
 
+    recalculerCaracteristiques();
     GenererGrille();
     return 0;
 }

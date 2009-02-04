@@ -2741,7 +2741,7 @@ int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,bool m
             if(modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_type==DEGATS)
             {
                 retour+=modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[0];
-                for(int p=0;p<=(int)modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien.size();p++)
+                for(int p=0;p<(int)modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien.size();p++)
                 {
                     entiteMiracle->m_infos.push_back(infosEntiteMiracle ());
                     entiteMiracle->m_infos.back().m_effetEnCours=modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p];
@@ -2751,6 +2751,7 @@ int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,bool m
                 entiteMiracle->m_infos.erase(entiteMiracle->m_infos.begin()+o);
                 continuer=false;
                 gererMiracle(entiteMiracle,modeleMiracle,monstre,lanceur,cible,couche);
+
             }
         }
     }
@@ -2936,6 +2937,7 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                                             }
                                         }
 
+                                        //if(continuer)
                                         if(m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_effetEnCours>=0)
                                         {
                                             if(m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence)
@@ -2958,8 +2960,8 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                             }
 
 
-                            if(m_monstre[monstre].m_miracleEnCours[i].m_infos.size()==0)
-                               console.Ajouter("Detruire"),m_monstre[monstre].m_miracleEnCours.erase (m_monstre[monstre].m_miracleEnCours.begin()+i);
+                            if(m_monstre[monstre].m_miracleEnCours[i].m_infos.empty()) console.Ajouter("Test");
+                             //  m_monstre[monstre].m_miracleEnCours.erase (m_monstre[monstre].m_miracleEnCours.begin()+i);
                         }
                    }
 
