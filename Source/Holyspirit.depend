@@ -500,7 +500,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1233241349 d:\backup disque e\c++\holyspirit\source\decor.h
+1233763640 d:\backup disque e\c++\holyspirit\source\decor.h
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
@@ -644,7 +644,7 @@
 	"constantes.h"
 	"hero.h"
 
-1233245908 source:d:\backup disque e\c++\holyspirit\source\decor.cpp
+1233763640 source:d:\backup disque e\c++\holyspirit\source\decor.cpp
 	"Decor.h"
 	"Globale.h"
 
@@ -687,7 +687,7 @@
 	<libavformat/avformat.h>
 	<libavcodec/avcodec.h>
 
-1233758799 source:d:\backup disque e\c++\holyspirit\source\map.cpp
+1233769046 source:d:\backup disque e\c++\holyspirit\source\map.cpp
 	"Map.h"
 	<iostream>
 	<fstream>
@@ -1119,11 +1119,11 @@
 	"Globale.h"
 	<iostream>
 
-1233752155 d:\backup disque e\c++\holyspirit\source\miracle.h
+1233766801 d:\backup disque e\c++\holyspirit\source\miracle.h
 	"constantes.h"
 	"tile.h"
 
-1233756144 source:d:\backup disque e\c++\holyspirit\source\miracle.cpp
+1233766984 source:d:\backup disque e\c++\holyspirit\source\miracle.cpp
 	"miracle.h"
 	"globale.h"
 	<iostream>

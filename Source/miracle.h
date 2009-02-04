@@ -5,7 +5,7 @@
 #ifndef MIRACLEH
 #define MIRACLEH
 
-enum  {PROJECTILE,CORPS_A_CORPS,DEGATS,EFFET_GRAPHIQUE};
+enum  {PROJECTILE,CORPS_A_CORPS,DEGATS,EFFET_GRAPHIQUE,INVOCATION};
 
 class Projectile
 {
@@ -16,6 +16,7 @@ class Projectile
     bool m_monstre,m_actif;
     int m_degats;
     coordonneeDecimal m_position,m_vecteur;
+    coordonnee m_positionCase;
     float m_rotation,m_rotationReelle;
 
     int m_image;
@@ -70,6 +71,7 @@ struct Effet
     int m_sequence;
 
     int m_informations[3];
+    std::string m_chaine;
 };
 
 class Miracle

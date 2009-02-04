@@ -137,6 +137,12 @@ void Miracle::Charger(std::string chemin)
                             m_effets.back().m_lien.push_back(buffer);
                         break;
 
+                        case 'm':
+                            fichier>>m_effets.back().m_chaine;
+                        break;
+
+
+
                         case 's':
                             fichier>>m_effets.back().m_sequence;
                         break;
