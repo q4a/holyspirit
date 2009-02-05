@@ -17,11 +17,11 @@ main
 			else
 				if distance * 6
 				then
-					if rand *15
+					if rand *25
 					then
 						useMiracle * 2
 					else
-						if rand * 10
+						if rand * 25
 						then
 							useMiracle * 1
 						else

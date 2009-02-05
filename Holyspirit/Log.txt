@@ -44,7 +44,7 @@
          Chargement de la map terminé.
          
          Chargement de : Data/Menus/Alpha-arts.png
-         Chargement de : Data/Loading_screens/Plaines2.png
+         Chargement de : Data/Loading_screens/Plaines3.png
          Chargement du hero.
          /Lectures des caracteristiques.
          /Lectures des cases de l'inventaire.
@@ -203,10 +203,9 @@
          Chargement de : Data/Entities/Breakables/ExplosiveBarrel.rs.hs terminé
          
          Chargement du monstre : Data/Entities/Monsters/DemonicPriest/DemonicPriest.rs.hs
-         Chargement de : DemonicPriestRun1.png
-         Chargement de : DemonicPriestRun2.png
-         Chargement de : DemonicPriestAttak1.png
-         Chargement de : DemonicPriestAttak2.png
+         Chargement de : PretreMarche0.png
+         Chargement de : PretreAttaque0.png
+         Chargement de : PretreAttaque1.png
          Chargement du script : "Data/Scripts/AI/DemonicPriest.script.hs"
          
          Chargement de l'objet : Data/Items/Gown.item.hs
@@ -219,58 +218,6 @@
          /Lectures des cases.
          Chargement de la map terminé.
          
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Ecriture des cases inventaires.
-         /Sauvegarde de Data/Items/Small_shield.item.hs
-         /Sauvegarde de Data/Items/Small_axe.item.hs
-         /Sauvegarde de Data/Items/Small_axe.item.hs
-         /Sauvegarde de Data/Items/Small_axe.item.hs
-         /Sauvegarde de Data/Items/Small_axe.item.hs
-         /Sauvegarde de Data/Items/Necklage.item.hs
-         /Sauvegarde de Data/Items/Boot.item.hs
-         /Sauvegarde de Data/Items/Great_shield.item.hs
-         /Sauvegarde de Data/Items/Small_sword.item.hs
-         /Sauvegarde de Data/Items/Necklage.item.hs
-         /Sauvegarde de Data/Items/Great_shield.item.hs
-         /Sauvegarde de Data/Items/Ring.item.hs
-         /Sauvegarde de Data/Items/Boot.item.hs
-         /Sauvegarde de Data/Items/Armor.item.hs
-         /Sauvegarde de Data/Items/Great_shield.item.hs
-         /Ecriture des objets.
-         Sauvegarde du héro terminée !
-         
-         Sauvegarde de la map : Data/Temp/map1.map.hs
-         Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
-         Sauvegarde terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Ecriture des cases inventaires.
-         /Sauvegarde de Data/Items/Small_shield.item.hs
-         /Sauvegarde de Data/Items/Small_axe.item.hs
-         /Sauvegarde de Data/Items/Small_axe.item.hs
-         /Sauvegarde de Data/Items/Small_axe.item.hs
-         /Sauvegarde de Data/Items/Small_axe.item.hs
-         /Sauvegarde de Data/Items/Necklage.item.hs
-         /Sauvegarde de Data/Items/Boot.item.hs
-         /Sauvegarde de Data/Items/Great_shield.item.hs
-         /Sauvegarde de Data/Items/Small_sword.item.hs
-         /Sauvegarde de Data/Items/Necklage.item.hs
-         /Sauvegarde de Data/Items/Great_shield.item.hs
-         /Sauvegarde de Data/Items/Ring.item.hs
-         /Sauvegarde de Data/Items/Boot.item.hs
-         /Sauvegarde de Data/Items/Armor.item.hs
-         /Sauvegarde de Data/Items/Great_shield.item.hs
-         /Ecriture des objets.
-         Sauvegarde du héro terminée !
-         
-         Sauvegarde de la map : Data/Temp/map1.map.hs
-         Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
-         Sauvegarde terminée !
          
          Sauvegarde du héro...
          Ouverture du fichier.
