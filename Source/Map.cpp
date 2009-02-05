@@ -2754,8 +2754,8 @@ int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,bool m
                 bool invoquer=true;
                 int x=0,y=0;
                 coordonnee positionCase;
-                positionCase.x=lanceur.x+rand()%3-6;
-                positionCase.y=lanceur.y+rand()%3-6;
+                positionCase.x=cible.x+rand()%2-4;
+                positionCase.y=cible.y+rand()%2-4;
 
                 if(positionCase.x<0)
                     positionCase.x=0;
@@ -3226,7 +3226,8 @@ void Map::musiquePlay(coordonnee position)
                                 m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()); \
                                 \
                                 \
-                                m_monstre[m_decor[i][j][k].getMonstre()].m_miracleALancer=numero;\
+                                if(m_monstre[m_decor[i][j][k].getMonstre()].m_miracleALancer==-1) \
+                                    m_monstre[m_decor[i][j][k].getMonstre()].m_miracleALancer=numero;\
                                 if(m_monstre[m_decor[i][j][k].getMonstre()].getEtat()!=2) \
                                     m_monstre[m_decor[i][j][k].getMonstre()].setEtat(2); \
                                 m_monstre[m_decor[i][j][k].getMonstre()].frappe(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee(),hero->m_personnage.getCoordonnee());   \

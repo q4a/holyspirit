@@ -7,8 +7,8 @@
 	<File name="Contexte.h" open="0" top="0" tabpos="3">
 		<Cursor position="213" topLine="0" />
 	</File>
-	<File name="Decor.h" open="0" top="0" tabpos="14">
-		<Cursor position="844" topLine="30" />
+	<File name="Decor.h" open="1" top="0" tabpos="24">
+		<Cursor position="1694" topLine="26" />
 	</File>
 	<File name="Evenement.h" open="0" top="0" tabpos="15">
 		<Cursor position="619" topLine="0" />
@@ -19,14 +19,14 @@
 	<File name="Hero.h" open="0" top="0" tabpos="1">
 		<Cursor position="705" topLine="9" />
 	</File>
-	<File name="Map.h" open="0" top="0" tabpos="10">
-		<Cursor position="1527" topLine="18" />
+	<File name="Map.h" open="1" top="0" tabpos="23">
+		<Cursor position="1251" topLine="62" />
 	</File>
 	<File name="ModeleMoteurParticule.h" open="0" top="0" tabpos="12">
 		<Cursor position="376" topLine="0" />
 	</File>
-	<File name="Monstre.h" open="0" top="0" tabpos="4">
-		<Cursor position="446" topLine="11" />
+	<File name="Monstre.h" open="1" top="0" tabpos="25">
+		<Cursor position="302" topLine="8" />
 	</File>
 	<File name="MoteurGraphique.h" open="0" top="0" tabpos="3">
 		<Cursor position="633" topLine="45" />
@@ -115,8 +115,8 @@
 	<File name="eventManager.h" open="0" top="0" tabpos="10">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="hero.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="66700" topLine="1529" />
+	<File name="hero.cpp" open="1" top="0" tabpos="21">
+		<Cursor position="59133" topLine="1376" />
 	</File>
 	<File name="jeu.cpp" open="0" top="0" tabpos="13">
 		<Cursor position="478" topLine="0" />
@@ -136,8 +136,8 @@
 	<File name="main.h" open="0" top="0" tabpos="20">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="map.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="200481" topLine="2886" />
+	<File name="map.cpp" open="1" top="1" tabpos="19">
+		<Cursor position="182849" topLine="2752" />
 	</File>
 	<File name="menu.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="5379" topLine="93" />
@@ -145,11 +145,11 @@
 	<File name="menu.h" open="0" top="0" tabpos="7">
 		<Cursor position="1073" topLine="41" />
 	</File>
-	<File name="miracle.cpp" open="0" top="0" tabpos="22">
-		<Cursor position="4689" topLine="129" />
+	<File name="miracle.cpp" open="1" top="0" tabpos="22">
+		<Cursor position="3656" topLine="115" />
 	</File>
-	<File name="miracle.h" open="1" top="0" tabpos="2">
-		<Cursor position="348" topLine="18" />
+	<File name="miracle.h" open="1" top="0" tabpos="20">
+		<Cursor position="1384" topLine="0" />
 	</File>
 	<File name="modeleMoteurParticule.cpp" open="0" top="0" tabpos="13">
 		<Cursor position="2358" topLine="53" />
