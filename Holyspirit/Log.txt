@@ -427,6 +427,32 @@
          Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
          Sauvegarde terminée !
          
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Ecriture des cases inventaires.
+         /Sauvegarde de Data/Items/Small_shield.item.hs
+         /Sauvegarde de Data/Items/Small_axe.item.hs
+         /Sauvegarde de Data/Items/Small_axe.item.hs
+         /Sauvegarde de Data/Items/Small_axe.item.hs
+         /Sauvegarde de Data/Items/Small_axe.item.hs
+         /Sauvegarde de Data/Items/Necklage.item.hs
+         /Sauvegarde de Data/Items/Boot.item.hs
+         /Sauvegarde de Data/Items/Great_shield.item.hs
+         /Sauvegarde de Data/Items/Small_sword.item.hs
+         /Sauvegarde de Data/Items/Necklage.item.hs
+         /Sauvegarde de Data/Items/Great_shield.item.hs
+         /Sauvegarde de Data/Items/Ring.item.hs
+         /Sauvegarde de Data/Items/Boot.item.hs
+         /Sauvegarde de Data/Items/Armor.item.hs
+         /Sauvegarde de Data/Items/Great_shield.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/Temp/map1.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
+         Sauvegarde terminée !
+         
          Fermeture des contextes effectuée avec succès.
          
          Destruction de la map...

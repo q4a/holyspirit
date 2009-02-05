@@ -8,7 +8,17 @@ main
 			then
 				evasion
 			else
-				useMiracle * 0  
+				if rand *25
+				then
+					useMiracle * 2
+				else
+					if rand * 25
+					then
+						useMiracle * 1
+					else
+						useMiracle * 0
+					end 
+				end  
 			end
 		else
 			if distance * 3
