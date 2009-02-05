@@ -477,7 +477,7 @@
 	"Script.h"
 	"miracle.h"
 
-1233240528 d:\backup disque e\c++\holyspirit\source\personnage.h
+1233854044 d:\backup disque e\c++\holyspirit\source\personnage.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -551,7 +551,7 @@
 1233240587 d:\backup disque e\c++\holyspirit\source\evenement.h
 	"constantes.h"
 
-1233756145 source:d:\backup disque e\c++\holyspirit\source\personnage.cpp
+1233859994 source:d:\backup disque e\c++\holyspirit\source\personnage.cpp
 	"Personnage.h"
 	"Globale.h"
 	<iostream>
@@ -687,7 +687,7 @@
 	<libavformat/avformat.h>
 	<libavcodec/avcodec.h>
 
-1233850681 source:d:\backup disque e\c++\holyspirit\source\map.cpp
+1233860460 source:d:\backup disque e\c++\holyspirit\source\map.cpp
 	"Map.h"
 	<iostream>
 	<fstream>
@@ -1123,7 +1123,7 @@
 	"constantes.h"
 	"tile.h"
 
-1233766984 source:d:\backup disque e\c++\holyspirit\source\miracle.cpp
+1233854242 source:d:\backup disque e\c++\holyspirit\source\miracle.cpp
 	"miracle.h"
 	"globale.h"
 	<iostream>

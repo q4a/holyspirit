@@ -481,8 +481,9 @@ int Personnage::pathfinding(bool** map,coordonnee exception)
             else
             {
                 m_arrivee=m_positionCase;
+                m_cheminFinal=m_positionCase;
                 if(m_etat!=0)
-                    m_etat=0,m_poseEnCours=0;
+                    m_etat=0,m_poseEnCours=0,frappeEnCours=0;
             }
 
             for(int i=0;i<20;i++)
@@ -577,7 +578,7 @@ bool Personnage::seDeplacer(float tempsEcoule)
                 if(m_etat!=0)
                     m_poseEnCours=0;
 
-                m_etat=0;
+                m_etat=0,frappeEnCours=0;
             }
         }
 
@@ -708,6 +709,8 @@ void Modele_Personnage::jouerSon(int numeroSon,coordonnee position,coordonnee po
     }
 }
 
+
+
 void Modele_Personnage::setPorteeLumineuse(Lumiere  lumiere){m_porteeLumineuse=lumiere;}
 void Personnage::setPorteeLumineuse(Lumiere  lumiere){m_porteeLumineuse=lumiere;}
 void Personnage::setCaracteristique(Caracteristique caracteristique){m_caracteristique=caracteristique;}
@@ -716,6 +719,7 @@ void Personnage::setVitesse(float vitesse){m_caracteristique.vitesse=vitesse;}
 void Personnage::setEtat(int etat){m_etat=etat,m_poseEnCours=0,frappeEnCours=false;}
 void Personnage::setPose(int pose){m_poseEnCours=pose;}
 void Personnage::setAngle(int angle){m_angle=angle;}
+void Personnage::setErreurPathfinding(bool erreur){m_erreurPathfinding=erreur;}
 void Personnage::setCoordonnee(coordonnee nouvellesCoordonnees)
 {
 	m_positionCase=nouvellesCoordonnees;

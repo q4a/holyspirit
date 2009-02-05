@@ -12,46 +12,52 @@ using namespace sf;
 
 void Projectile::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap)
 {
-    Sprite sprite;
+    if(m_actif)
+    {
+        Sprite sprite;
 
-    sprite.SetImage(*moteurGraphique.getImage(m_image));
-    sprite.SetSubRect(IntRect(m_positionImage.x, m_positionImage.y, m_positionImage.x+m_positionImage.w, m_positionImage.y+m_positionImage.h));
+        sprite.SetImage(*moteurGraphique.getImage(m_image));
+        sprite.SetSubRect(IntRect(m_positionImage.x, m_positionImage.y, m_positionImage.x+m_positionImage.w, m_positionImage.y+m_positionImage.h));
 
-    sprite.FlipX(false);
+        sprite.FlipX(false);
 
-    sprite.SetX(((m_position.x-m_position.y)*64/COTE_TILE+dimensionsMap.y*64) - (m_centre.x - m_positionImage.w/2) * cos(-m_rotationReelle-M_PI/4));
-    sprite.SetY(((m_position.x+m_position.y)*64/COTE_TILE)/2+(64-sprite.GetSize().y)+16);
+        sprite.SetX(((m_position.x-m_position.y)*64/COTE_TILE+dimensionsMap.y*64) - (m_centre.x - m_positionImage.w/2) * cos(-m_rotationReelle-M_PI/4));
+        sprite.SetY(((m_position.x+m_position.y)*64/COTE_TILE)/2+(64-sprite.GetSize().y)+16);
 
-    sprite.SetCenter(m_centre.x,m_centre.y);
+        sprite.SetCenter(m_centre.x,m_centre.y);
 
-    sprite.Rotate((-(m_rotation)*180/M_PI)/*-45*/);
+        sprite.Rotate((-(m_rotation)*180/M_PI)/*-45*/);
 
-    if(sprite.GetPosition().x+sprite.GetSize().x>=camera->GetRect().Left
-    &&sprite.GetPosition().x<camera->GetRect().Right
-    &&sprite.GetPosition().y+sprite.GetSize().y>=camera->GetRect().Top
-    &&sprite.GetPosition().y<camera->GetRect().Bottom)
-    moteurGraphique.AjouterCommande(&sprite,10,1);
+        if(sprite.GetPosition().x+sprite.GetSize().x>=camera->GetRect().Left
+        &&sprite.GetPosition().x<camera->GetRect().Right
+        &&sprite.GetPosition().y+sprite.GetSize().y>=camera->GetRect().Top
+        &&sprite.GetPosition().y<camera->GetRect().Bottom)
+        moteurGraphique.AjouterCommande(&sprite,10,1);
+    }
 }
 
 void EffetGraphique::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap)
 {
-    Sprite sprite;
+    if(m_actif)
+    {
+        Sprite sprite;
 
-    sprite.SetImage(*moteurGraphique.getImage(m_image));
-    sprite.SetSubRect(IntRect(m_positionImage.x, m_positionImage.y, m_positionImage.x+m_positionImage.w, m_positionImage.y+m_positionImage.h));
+        sprite.SetImage(*moteurGraphique.getImage(m_image));
+        sprite.SetSubRect(IntRect(m_positionImage.x, m_positionImage.y, m_positionImage.x+m_positionImage.w, m_positionImage.y+m_positionImage.h));
 
-    sprite.FlipX(false);
+        sprite.FlipX(false);
 
-    sprite.SetX(((m_position.x-m_position.y)*64/COTE_TILE+dimensionsMap.y*64)/*-64+(64-sprite.GetSize().x/2)*/);
-    sprite.SetY(((m_position.x+m_position.y)*64/COTE_TILE)/2+(64-sprite.GetSize().y)+16);
+        sprite.SetX(((m_position.x-m_position.y)*64/COTE_TILE+dimensionsMap.y*64)/*-64+(64-sprite.GetSize().x/2)*/);
+        sprite.SetY(((m_position.x+m_position.y)*64/COTE_TILE)/2+(64-sprite.GetSize().y)+16);
 
-    sprite.SetCenter(m_positionImage.w/2,m_positionImage.h/2);
+        sprite.SetCenter(m_positionImage.w/2,m_positionImage.h/2);
 
-    if(sprite.GetPosition().x+sprite.GetSize().x>=camera->GetRect().Left
-    &&sprite.GetPosition().x<camera->GetRect().Right
-    &&sprite.GetPosition().y+sprite.GetSize().y>=camera->GetRect().Top
-    &&sprite.GetPosition().y<camera->GetRect().Bottom)
-    moteurGraphique.AjouterCommande(&sprite,10,1);
+        if(sprite.GetPosition().x+sprite.GetSize().x>=camera->GetRect().Left
+        &&sprite.GetPosition().x<camera->GetRect().Right
+        &&sprite.GetPosition().y+sprite.GetSize().y>=camera->GetRect().Top
+        &&sprite.GetPosition().y<camera->GetRect().Bottom)
+        moteurGraphique.AjouterCommande(&sprite,10,1);
+    }
 }
 
 void Projectile::Deplacer(float temps)

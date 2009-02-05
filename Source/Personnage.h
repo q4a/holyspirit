@@ -72,6 +72,8 @@ class Personnage
 
 	void infligerDegats(float degats);
 
+	void setErreurPathfinding(bool);
+
 	void setArrivee(coordonnee arrivee);
 	void setMauvaiseArrivee(coordonnee arrivee);
 	void setEtat(int  etat);
