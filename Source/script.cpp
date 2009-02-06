@@ -55,6 +55,13 @@ int Script::Lire(ifstream *fichier)
         retour=-2;
     else if(temp=="else")
         retour=-3;
+    else if(temp=="*")
+    {
+        int valeur;
+        *fichier>>valeur;
+        m_instructions.back().valeurs.push_back(valeur);
+        retour = -4;
+    }
     else
     {
         retour=m_instructions.size();
@@ -63,23 +70,6 @@ int Script::Lire(ifstream *fichier)
         instructionBuffer.nom=temp;
 
         m_instructions.push_back(instructionBuffer);
-
-        char caractere;
-        fichier->get(caractere);
-        if(caractere=='*')
-        {
-            int valeur;
-            *fichier>>valeur;
-            m_instructions.back().valeurs.push_back(valeur);
-        }
-
-        fichier->get(caractere);
-        if(caractere=='*')
-        {
-            int valeur;
-            *fichier>>valeur;
-            m_instructions.back().valeurs.push_back(valeur);
-        }
     }
 
     return retour;

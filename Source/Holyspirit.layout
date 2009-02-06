@@ -34,8 +34,8 @@
 	<File name="Objet.h" open="0" top="0" tabpos="7">
 		<Cursor position="1353" topLine="30" />
 	</File>
-	<File name="Personnage.h" open="0" top="0" tabpos="2">
-		<Cursor position="0" topLine="0" />
+	<File name="Personnage.h" open="1" top="0" tabpos="9">
+		<Cursor position="2532" topLine="81" />
 	</File>
 	<File name="Pose.h" open="0" top="0" tabpos="5">
 		<Cursor position="168" topLine="0" />
@@ -137,7 +137,7 @@
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="map.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="180690" topLine="2776" />
+		<Cursor position="225739" topLine="2655" />
 	</File>
 	<File name="menu.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="5379" topLine="93" />
@@ -146,7 +146,7 @@
 		<Cursor position="1073" topLine="41" />
 	</File>
 	<File name="miracle.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="3656" topLine="115" />
+		<Cursor position="1399" topLine="31" />
 	</File>
 	<File name="miracle.h" open="1" top="0" tabpos="2">
 		<Cursor position="1384" topLine="0" />
@@ -175,8 +175,8 @@
 	<File name="objet.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="15839" topLine="499" />
 	</File>
-	<File name="personnage.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="6630" topLine="207" />
+	<File name="personnage.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="14192" topLine="350" />
 	</File>
 	<File name="pose.cpp" open="0" top="0" tabpos="15">
 		<Cursor position="168" topLine="0" />

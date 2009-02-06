@@ -1958,6 +1958,23 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                             Sprite.SetScale(1,1);
                                     }
 
+                                    if(hero->m_personnage.getCoordonnee().x==hero->m_personnage.getProchaineCase().x&&hero->m_personnage.getCoordonnee().y==hero->m_personnage.getProchaineCase().y)
+                                    {
+                                        if(hero->m_personnage.getCoordonnee().x==k&&hero->m_personnage.getCoordonnee().y==j)
+                                            hero->Afficher(ecran,camera,position,getDimensions());
+                                    }
+                                    else
+                                    {
+                                        coordonnee decalage={0,0,0,0};
+                                        if(hero->m_personnage.getCoordonnee().x>hero->m_personnage.getProchaineCase().x)
+                                            decalage.x=1;
+                                        if(hero->m_personnage.getCoordonnee().y>hero->m_personnage.getProchaineCase().y)
+                                            decalage.y=1;
+
+                                        if(hero->m_personnage.getProchaineCase().x+decalage.x==k&&hero->m_personnage.getProchaineCase().y+decalage.y==j)
+                                                hero->Afficher(ecran,camera,position,getDimensions());
+                                    }
+
                                     if(m_monstreIllumine==m_decor[0][j][k].getMonstre()&&m_monstreIllumine!=-1||m_monstreIllumine==m_decor[1][j][k].getMonstre()&&m_monstreIllumine!=-1)
                                     {
                                         if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<(int)m_monstre.size())
@@ -1996,22 +2013,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     }
                         }
 
-                        if(hero->m_personnage.getCoordonnee().x==hero->m_personnage.getProchaineCase().x&&hero->m_personnage.getCoordonnee().y==hero->m_personnage.getProchaineCase().y)
-                        {
-                            if(hero->m_personnage.getCoordonnee().x==k&&hero->m_personnage.getCoordonnee().y==j)
-                                hero->Afficher(ecran,camera,position,getDimensions());
-                        }
-                        else
-                        {
-                            coordonnee decalage={0,0,0,0};
-                            if(hero->m_personnage.getCoordonnee().x>hero->m_personnage.getProchaineCase().x)
-                                decalage.x=1;
-                            if(hero->m_personnage.getCoordonnee().y>hero->m_personnage.getProchaineCase().y)
-                                decalage.y=1;
 
-                            if(hero->m_personnage.getProchaineCase().x+decalage.x==k&&hero->m_personnage.getProchaineCase().y+decalage.y==j)
-                                    hero->Afficher(ecran,camera,position,getDimensions());
-                        }
 
                         if(j>=0&&j<(int)m_decor[0].size()&&k>=0&&k<(int)m_decor[0][0].size())
                         {
@@ -3218,6 +3220,19 @@ void Map::musiquePlay(coordonnee position)
                                 m_monstre[m_decor[i][j][k].getMonstre()].frappe(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee(),hero->m_personnage.getCoordonnee());   \
                             }
 
+#define PLAYSOUND(numero)   if(m_monstre[m_decor[i][j][k].getMonstre()].getModele()>=0&&m_monstre[m_decor[i][j][k].getMonstre()].getModele()<(int)m_ModeleMonstre.size()) \
+                            { \
+                                coordonnee position; \
+                                position.x=(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-1+m_decor[0].size())/5; \
+                                position.y=(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x+m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y)/5; \
+                                 \
+                                coordonnee positionHero; \
+                                positionHero.x=(hero->m_personnage.getCoordonnee().x-hero->m_personnage.getCoordonnee().y-1+m_decor[0].size())/5; \
+                                positionHero.y=(hero->m_personnage.getCoordonnee().x+hero->m_personnage.getCoordonnee().y)/5; \
+                                 \
+                                m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].jouerSon(numero,position,positionHero,true); \
+                            }
+
 #define SHOOT()             m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(m_monstre[m_decor[i][j][k].getMonstre()].getProchaineCase()); \
                             if(m_monstre[m_decor[i][j][k].getMonstre()].seDeplacer(temps*100))   \
                             { \
@@ -3281,56 +3296,65 @@ void Map::musiquePlay(coordonnee position)
 
 
 
-#define LISTE_INSTRUCTIONS(noInstruction) if(noInstruction>=0&&noInstruction<(int)script.m_instructions.size()) \
+#define LISTE_INSTRUCTIONS(noInstruction) if(noInstruction>=0&&noInstruction<(int)script->m_instructions.size()) \
                                              { \
-                                                if(script.m_instructions[noInstruction].nom=="fight") { FIGHT() } \
-                                                if(script.m_instructions[noInstruction].nom=="evasion") { EVASION() } \
-                                                if(script.m_instructions[noInstruction].nom=="useMiracle") { USEMIRACLE(script.m_instructions[noInstruction].valeurs.at(0)) } \
-                                                if(script.m_instructions[noInstruction].nom=="shoot") { SHOOT() } \
-                                                if(script.m_instructions[noInstruction].nom=="randomDisplace") { RANDOMDISPLACE() } \
-                                                if(script.m_instructions[noInstruction].nom=="if") { gererConditions(script,noInstruction,i,j,k,hero,temps,camera,menu); } \
+                                                if(script->m_instructions[noInstruction].nom=="fight") { FIGHT() } \
+                                                if(script->m_instructions[noInstruction].nom=="evasion") { EVASION() } \
+                                                if(script->m_instructions[noInstruction].nom=="useMiracle") { USEMIRACLE(script->m_instructions[noInstruction].valeurs.at(0)) } \
+                                                if(script->m_instructions[noInstruction].nom=="shoot") { SHOOT() } \
+                                                if(script->m_instructions[noInstruction].nom=="randomDisplace") { RANDOMDISPLACE() } \
+                                                if(script->m_instructions[noInstruction].nom=="playSound") { PLAYSOUND(script->m_instructions[noInstruction].valeurs.at(0)) } \
+                                                if(script->m_instructions[noInstruction].nom=="if") { gererConditions(script,noInstruction,i,j,k,hero,temps,camera,menu); } \
+                                                if(script->m_instructions[noInstruction].nom=="variable") { script->variables[script->m_instructions[noInstruction].valeurs.at(0)]=script->m_instructions[noInstruction].valeurs.at(1); }  \
                                              }
 
-#define LISTE_CONDITIONS(noInstruction) if(script.m_instructions[noInstruction].nom=="see")\
+#define LISTE_CONDITIONS(noInstruction) if(script->m_instructions[noInstruction].nom=="see")\
                                         {\
                                             if(!m_monstre[m_decor[i][j][k].getMonstre()].getVu()) \
                                                 ok=false;\
                                         }\
-                                        else if(script.m_instructions[noInstruction].nom=="distance")\
+                                        else if(script->m_instructions[noInstruction].nom=="distance")\
                                         {\
-                                            if(sqrt((m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)*(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x) + (m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)*(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)) < script.m_instructions[noInstruction].valeurs.at(0)) \
+                                            if(sqrt((m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)*(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x) + (m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)*(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)) < script->m_instructions[noInstruction].valeurs.at(0)) \
                                                 ok=true;\
                                             else \
                                                 ok=false;\
                                         }\
-                                        else if(script.m_instructions[noInstruction].nom=="rand")\
+                                        else if(script->m_instructions[noInstruction].nom=="rand")\
                                         {\
-                                            if(rand() % 100 <= script.m_instructions[noInstruction].valeurs.at(0)) \
+                                            if(rand() % 100 <= script->m_instructions[noInstruction].valeurs.at(0)) \
+                                                ok=true;\
+                                            else \
+                                                ok=false;\
+                                        } \
+                                        else if(script->m_instructions[noInstruction].nom=="variable")\
+                                        {\
+                                            if(script->variables[script->m_instructions[noInstruction].valeurs.at(0)]==script->m_instructions[noInstruction].valeurs.at(1)) \
                                                 ok=true;\
                                             else \
                                                 ok=false;\
                                         }
 
 
-void Map::gererConditions(Script script,int noInstruction,int i, int j, int k,Hero *hero,float temps,sf::View *camera,Menu *menu)
+void Map::gererConditions(Script *script,int noInstruction,int i, int j, int k,Hero *hero,float temps,sf::View *camera,Menu *menu)
 {
-    if(noInstruction>=0&&noInstruction<(int)script.m_instructions.size())
+    if(noInstruction>=0&&noInstruction<(int)script->m_instructions.size())
     {
         int b=0;
         bool ok=true;
-        for(;b<(int)script.m_instructions[noInstruction].valeurs.size()&&script.m_instructions[noInstruction].valeurs[b]!=-2;b++)
+        for(;b<(int)script->m_instructions[noInstruction].valeurs.size()&&script->m_instructions[noInstruction].valeurs[b]!=-2;b++)
         {
-            if(script.m_instructions[noInstruction].valeurs[b]>=0&&script.m_instructions[noInstruction].valeurs[b]<(int)script.m_instructions.size())
-                LISTE_CONDITIONS(script.m_instructions[noInstruction].valeurs[b]);
+            if(script->m_instructions[noInstruction].valeurs[b]>=0&&script->m_instructions[noInstruction].valeurs[b]<(int)script->m_instructions.size())
+                LISTE_CONDITIONS(script->m_instructions[noInstruction].valeurs[b]);
         }
-        for(;b<(int)script.m_instructions[noInstruction].valeurs.size()&&script.m_instructions[noInstruction].valeurs[b]!=-1&&script.m_instructions[noInstruction].valeurs[b]!=-3;b++)
+        for(;b<(int)script->m_instructions[noInstruction].valeurs.size()&&script->m_instructions[noInstruction].valeurs[b]!=-1&&script->m_instructions[noInstruction].valeurs[b]!=-3;b++)
             if(ok)
-                if(script.m_instructions[noInstruction].valeurs[b]>=0&&script.m_instructions[noInstruction].valeurs[b]<(int)script.m_instructions.size())
-                    LISTE_INSTRUCTIONS(script.m_instructions[noInstruction].valeurs[b])
+                if(script->m_instructions[noInstruction].valeurs[b]>=0&&script->m_instructions[noInstruction].valeurs[b]<(int)script->m_instructions.size())
+                    LISTE_INSTRUCTIONS(script->m_instructions[noInstruction].valeurs[b])
         if(!ok)
-            for(;b<(int)script.m_instructions[noInstruction].valeurs.size()&&script.m_instructions[noInstruction].valeurs[b]!=-1;b++)
-                if(script.m_instructions[noInstruction].valeurs[b]>=0&&script.m_instructions[noInstruction].valeurs[b]<(int)script.m_instructions.size())
-                    LISTE_INSTRUCTIONS(script.m_instructions[noInstruction].valeurs[b])
+            for(;b<(int)script->m_instructions[noInstruction].valeurs.size()&&script->m_instructions[noInstruction].valeurs[b]!=-1;b++)
+                if(script->m_instructions[noInstruction].valeurs[b]>=0&&script->m_instructions[noInstruction].valeurs[b]<(int)script->m_instructions.size())
+                    LISTE_INSTRUCTIONS(script->m_instructions[noInstruction].valeurs[b])
     }
 }
 
@@ -3441,11 +3465,11 @@ void Map::gererMonstres(Hero *hero,float temps,sf::View *camera,Menu *menu)
 
                         if(m_monstre[m_decor[i][j][k].getMonstre()].m_attente<=0)
                         {
-                            Script script=m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_scriptAI;
-                            for(int a=0;a<(int)script.m_instructions[0].valeurs.size();a++)
-                                if(script.m_instructions[0].valeurs[a]>=0&&script.m_instructions[0].valeurs[a]<(int)script.m_instructions.size())
-                                    if(script.m_instructions[script.m_instructions[0].valeurs[a]].nom=="if")
-                                        gererConditions(script,script.m_instructions[0].valeurs[a],i,j,k,hero,temps,camera,menu);
+                            Script *script=&m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_scriptAI;
+                            for(int a=0;a<(int)script->m_instructions[0].valeurs.size();a++)
+                                if(script->m_instructions[0].valeurs[a]>=0&&script->m_instructions[0].valeurs[a]<(int)script->m_instructions.size())
+                                    if(script->m_instructions[script->m_instructions[0].valeurs[a]].nom=="if")
+                                        gererConditions(script,script->m_instructions[0].valeurs[a],i,j,k,hero,temps,camera,menu);
 
                             if(m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding())
                                 RANDOMDISPLACE()

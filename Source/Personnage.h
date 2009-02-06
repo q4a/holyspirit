@@ -28,7 +28,7 @@ class Modele_Personnage
 	//int getBuffer(int ID);
 	Caracteristique getCaracteristique();
 
-	void jouerSon(int numeroSon,coordonnee position,coordonnee positionHero);
+	void jouerSon(int numeroSon,coordonnee position,coordonnee positionHero, bool uniqueSound=false);
 
 	std::vector <std::vector<std::vector<Pose> > > m_pose;
 	std::vector <int> m_image;

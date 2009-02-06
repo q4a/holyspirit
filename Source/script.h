@@ -22,6 +22,8 @@ class Script
 	int Lire(std::ifstream *fichier);
 
 	std::vector<Instruction> m_instructions;
+
+	int variables[10];
 };
 
 #endif

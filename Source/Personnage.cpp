@@ -698,14 +698,14 @@ void Personnage::frappe(coordonnee direction,coordonnee position)
 }
 
 
-void Modele_Personnage::jouerSon(int numeroSon,coordonnee position,coordonnee positionHero)
+void Modele_Personnage::jouerSon(int numeroSon,coordonnee position,coordonnee positionHero,bool uniqueSound)
 {
     if(numeroSon>=0&&numeroSon<(int)m_sons.size())
     {
         coordonnee pos;
         pos.x=-position.x;
         pos.y=position.y;
-        moteurSons.JouerSon(m_sons[numeroSon],pos,positionHero);
+        moteurSons.JouerSon(m_sons[numeroSon],pos,positionHero,uniqueSound);
     }
 }
 
