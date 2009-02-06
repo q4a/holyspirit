@@ -59,6 +59,8 @@ class MoteurGraphique
 
 	private:
 
+	float nettoyageAuto;
+
 	std::vector <Image_moteur> m_images;
 
 	std::vector <ModeleParticuleSysteme> m_modeleSystemeParticules;

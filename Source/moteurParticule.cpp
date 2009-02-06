@@ -119,7 +119,7 @@ bool ParticuleSysteme::Gerer(float temps,int tailleMapY)
             m_particules[i].vitesse=0,m_particules[i].vie-=temps*20;
         if(m_particules[i].vie<=0)
              m_particules[i].alpha-=temps*100;
-        if(m_particules[i].alpha<=0)
+        if(m_particules[i].alpha<=1)
             efface=true;
 
 

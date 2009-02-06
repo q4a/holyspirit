@@ -12,6 +12,7 @@ MoteurGraphique::MoteurGraphique()
     m_images[0].img.Create(1, 1, sf::Color(255, 255, 255));
     m_images[0].nom="O";
     m_images[0].importance=-1;
+    nettoyageAuto=0;
 }
 MoteurGraphique::~MoteurGraphique()
 {
@@ -81,9 +82,13 @@ void MoteurGraphique::Gerer(sf::RenderWindow *ecran,float temps,int tailleMapY)
         {
             if(!m_systemeParticules[i].Gerer(temps,tailleMapY))
                 m_systemeParticules.erase (m_systemeParticules.begin()+i);
+            nettoyageAuto=0;
 
             m_systemeParticules[i].Afficher(ecran,&m_modeleSystemeParticules[m_systemeParticules[i].m_modele]);
         }
+    nettoyageAuto+=temps;
+    if(nettoyageAuto>10)
+        m_systemeParticules.clear(),nettoyageAuto=0;
 }
 
 void MoteurGraphique::CalculerLumiereParticules(LumiereOmbrage tableauDesLampes[30][30],coordonnee vueMin,sf::RenderWindow *ecran, int tailleMapY)
