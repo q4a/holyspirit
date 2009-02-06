@@ -2,11 +2,11 @@
 main 
 	if see
 	then
-		if distance * 3
+		if distance * 3 
 		then
 			evasion  
 		else
-			if distance * 5
+			if distance * 5 
 			then
 				shoot   
 			else
