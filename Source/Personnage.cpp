@@ -243,7 +243,8 @@ bool Modele_Personnage::Charger(string chemin)
     }
     fichier->close();
 
-    delete fichier;
+    //delete fichier;
+
 
     return true;
 }
