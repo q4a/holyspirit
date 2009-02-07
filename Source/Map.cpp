@@ -456,7 +456,7 @@ bool Map::Charger(int numeroMap)
 
 
     	std::vector<int> evenementTemp;
-    	Decor decorTemp(-1,-1,evenementTemp,-1,-1,0);
+    	Decor decorTemp(-1,-1,evenementTemp,-1,-1,0,0);
 
     	//m_decor.resize(2,vector<vector<Decor> >(0,vector<Decor>(0,decorTemp)));
 
@@ -477,7 +477,7 @@ bool Map::Charger(int numeroMap)
                     do
                     {
                         std::vector<int> evenement;
-                        int tileset=-1,tileFinal=-1,herbe=-1,monstreFinal=-1,layer=0;
+                        int tileset=-1,tileFinal=-1,herbe=-1,monstreFinal=-1,layer=0,hauteur=0;
                         int rarete=0;
                         int temp;
                         vector <int>tile;
@@ -494,6 +494,7 @@ bool Map::Charger(int numeroMap)
                                 case 'm': if(!entite_map_existante) { fichier>>temp; monstre.push_back(temp);  } else {  fichier>>monstreFinal; } break;
                                 case 'h': fichier>>herbe; break;
                                 case 'l': fichier>>layer; break;
+                                case 'i': fichier>>hauteur; break;
 
                                 case 'o':
 
@@ -598,8 +599,8 @@ bool Map::Charger(int numeroMap)
                         if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
 
 
-                        m_decor[couche][position.y].push_back(Decor (tileset,tileFinal,evenement,monstreFinal,herbe,layer,objets));
-                        tileset=-1,tile.clear(),tileFinal=-1,evenement.clear(),monstreFinal=-1,herbe=-1,layer=0;
+                        m_decor[couche][position.y].push_back(Decor (tileset,tileFinal,evenement,monstreFinal,herbe,layer,hauteur,objets));
+                        tileset=-1,tile.clear(),tileFinal=-1,evenement.clear(),monstreFinal=-1,herbe=-1,layer=0,hauteur=0;
                         objets.clear();
                         position.x++;
                         fichier.get(caractere);
@@ -2938,7 +2939,7 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                         while(m_decor[i][j][k].getAnimation()>=tempsAnimation)
                         {
                             if(m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile())>=0)
-                                m_decor[i][j][k].setDecor(m_decor[i][j][k].getTileset(),m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile()),m_decor[i][j][k].getEvenement(),m_decor[i][j][k].getMonstre(),m_decor[i][j][k].getHerbe(),m_decor[i][j][k].getCouche());
+                                m_decor[i][j][k].setDecor(m_decor[i][j][k].getTileset(),m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile()),m_decor[i][j][k].getEvenement(),m_decor[i][j][k].getMonstre(),m_decor[i][j][k].getHerbe(),m_decor[i][j][k].getCouche(),m_decor[i][j][k].getHauteur());
 
                             coordonnee position;
                             position.x=(k-j-1+m_decor[0].size())/5;
@@ -3783,18 +3784,21 @@ bool Map::getMonstreEnVie(int numeroMonstre)
         return 0;
 }
 
-bool** Map::getAlentourDuPersonnage(coordonnee positionPersonnage)
+casePathfinding** Map::getAlentourDuPersonnage(coordonnee positionPersonnage)
 {
-    bool **grille = new bool* [20];
+    casePathfinding **grille = new casePathfinding* [20];
 
 	for(int y=positionPersonnage.y-10;y<positionPersonnage.y+10;y++)
 	{
-	    grille[y-positionPersonnage.y+10] = new bool[20];
+	    grille[y-positionPersonnage.y+10] = new casePathfinding[20];
 		for(int x=positionPersonnage.x-10;x<positionPersonnage.x+10;x++)
+		{
+		    grille[y-positionPersonnage.y+10][x-positionPersonnage.x+10].hauteur=0;
 			if(y>=0&&x>=0&&x<(int)m_decor[0][0].size()&&y<(int)m_decor[0].size())
-				grille[y-positionPersonnage.y+10][x-positionPersonnage.x+10]=getCollision(x,y);
+				grille[y-positionPersonnage.y+10][x-positionPersonnage.x+10].collision=getCollision(x,y),grille[y-positionPersonnage.y+10][x-positionPersonnage.x+10].hauteur=m_decor[0][y][x].getHauteur();
 			else
-				grille[y-positionPersonnage.y+10][x-positionPersonnage.x+10]=1;
+				grille[y-positionPersonnage.y+10][x-positionPersonnage.x+10].collision=1;
+		}
 	}
 
 	return grille;

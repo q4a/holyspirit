@@ -1,7 +1,7 @@
 #include "Decor.h"
 #include "Globale.h"
 
-Decor::Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche)
+Decor::Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe,int hauteur, int couche)
 {
     m_tileset=tileset;
 	m_tile=tile;
@@ -11,12 +11,13 @@ Decor::Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int her
 	m_numeroHerbe=0;
 	m_animation=0;
 	m_couche=couche;
+    m_hauteur=hauteur;
 
 	m_projectile=-1;
 	m_effet=-1;
 }
 
-Decor::Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche,std::vector <Objet> objets)
+Decor::Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche,int hauteur,std::vector <Objet> objets)
 {
     m_tileset=tileset;
 	m_tile=tile;
@@ -26,6 +27,7 @@ Decor::Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int her
 	m_numeroHerbe=0;
 	m_animation=0;
 	m_couche=couche;
+	m_hauteur=hauteur;
 
 	m_objets=objets;
 
@@ -60,6 +62,7 @@ Decor Decor::operator=(const Decor &Decor)
     m_herbe_taille=Decor.m_herbe_taille;
     m_herbe_decalage=Decor.m_herbe_decalage;
     m_herbe_couleur=Decor.m_herbe_couleur;
+    m_hauteur=Decor.m_hauteur;
 
 
     m_evenement=Decor.m_evenement;
@@ -68,7 +71,7 @@ Decor Decor::operator=(const Decor &Decor)
     return *this;
 }
 
-void Decor::setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche)
+void Decor::setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche,int hauteur)
 {
 	m_tileset=tileset;
 	m_tile=tile;
@@ -77,6 +80,7 @@ void Decor::setDecor(int tileset,int tile,std::vector<int> evenement,int monstre
 	m_herbe=herbe;
 	m_numeroHerbe=0;
 	m_couche=couche;
+	m_hauteur=hauteur;
 
 	if(m_couche>4)
         m_couche=4;
@@ -84,7 +88,7 @@ void Decor::setDecor(int tileset,int tile,std::vector<int> evenement,int monstre
         m_couche=0;
 }
 
-void Decor::setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche,std::vector <Objet> objets)
+void Decor::setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche,int hauteur,std::vector <Objet> objets)
 {
 	m_tileset=tileset;
 	m_tile=tile;
@@ -93,6 +97,7 @@ void Decor::setDecor(int tileset,int tile,std::vector<int> evenement,int monstre
 	m_herbe=herbe;
 	m_numeroHerbe=0;
 	m_couche=couche;
+	m_hauteur=hauteur;
 
 	if(m_couche>4)
         m_couche=4;
@@ -159,6 +164,7 @@ float Decor::getAnimation(){return m_animation;}
 Objet Decor::getObjet(int numero){ if(numero>=0&&numero<(int)m_objets.size()) return m_objets[numero]; Objet temp; return temp; }
 std::vector<Objet> Decor::getObjets(){return m_objets;}
 int Decor::getNombreObjets(){return m_objets.size();}
+int Decor::getHauteur(){return m_hauteur;}
 
 void Decor::decrementerAnimation(float nombre){m_animation-=nombre;}
 void Decor::augmenterAnimation(float temps){m_animation+=temps;}

@@ -16,12 +16,12 @@ class Decor
 {
 	public:
 	Decor(){}
-	Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche);
-	Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche,std::vector <Objet> objets);
+	Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche,int hauteur);
+	Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche,int hauteur,std::vector <Objet> objets);
 	~Decor();
 	Decor operator=(const Decor &Decor);
-	void setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe,int couche);
-	void setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe,int couche,std::vector <Objet> objets); //Définir une valeur au décor
+	void setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe,int couche,int hauteur);
+	void setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe,int couche,int hauteur,std::vector <Objet> objets); //Définir une valeur au décor
 	void setNumeroHerbe(int numero);
 	void setMonstre(int monstre);
 	void setProjectile(int projectile);
@@ -43,6 +43,7 @@ class Decor
 	int getHerbe(); // Retourne le numero de l'herbe du décor
 	int getNumeroHerbe();
 	int getTailleHerbe();
+	int getHauteur();
 	sf::Color getCouleurHerbe();
     coordonnee getDecalageHerbe();
 	Objet getObjet(int numero);
@@ -68,6 +69,7 @@ class Decor
 
 	int m_herbe,m_numeroHerbe;
 	int m_herbe_taille;
+	int m_hauteur;
 	coordonnee m_herbe_decalage;
 	sf::Color m_herbe_couleur;
 };

@@ -8,6 +8,12 @@
 #include "constantes.h"
 #include "case.h"
 
+struct casePathfinding
+{
+    bool collision;
+    int hauteur;
+};
+
 class liste_case
 {
 	public:
@@ -16,7 +22,7 @@ class liste_case
 	void setTailleListe(int taille);
 	int getTailleListe();
 
-	bool ajouterCasesAdjacentes(bool ** grille,coordonnee *arrivee,coordonnee depart);
+	bool ajouterCasesAdjacentes(casePathfinding ** grille,coordonnee *arrivee,coordonnee depart);
 	bool testerCasesEnCours(coordonnee caseCherchee);
 	void incrementerDistanceEnCours();
 	void decrementerDistanceEnCours();

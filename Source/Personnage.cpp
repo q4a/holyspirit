@@ -56,6 +56,10 @@ Personnage::Personnage()
     m_porteeLumineuseBasique.rouge=255;
     m_porteeLumineuseBasique.vert=255;
     m_porteeLumineuseBasique.bleu=255;
+
+    m_positionPixel.h=0;
+    m_cheminFinal.h=0;
+    m_positionCase.h=0;
 }
 Modele_Personnage::Modele_Personnage()
 {
@@ -288,7 +292,7 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
                         sprite.SetCenter(modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCentre().x,modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCentre().y);
 
                         sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64));
-                        sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+32);
+                        sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+32 -m_positionPixel.h);
 
                         sprite.SetScale(m_caracteristique.modificateurTaille, m_caracteristique.modificateurTaille*m_lumiere.m_ombre[o].taille);
                         sprite.SetRotation(m_lumiere.m_ombre[o].angle);
@@ -319,7 +323,7 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
 
 
                 sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64));
-                sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+32);
+                sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+32 -m_positionPixel.h);
 
 
                 if(configuration.Lumiere)
@@ -357,7 +361,7 @@ void Personnage::regenererVie(float vie)
         m_caracteristique.vie=m_caracteristique.maxVie;
 }
 
-int Personnage::pathfinding(bool** map,coordonnee exception)
+int Personnage::pathfinding(casePathfinding** map,coordonnee exception)
 {
 
 
@@ -379,52 +383,52 @@ int Personnage::pathfinding(bool** map,coordonnee exception)
             exception.y=exception.y-decalage.y;
 
             if(exception.x>=0&&exception.x<20&&exception.y>=0&&exception.y<20)
-                map[exception.y][exception.x]=1;
+                map[exception.y][exception.x].collision=1;
 
             casesVisitee.setTailleListe(0);
 
             casesVisitee.ajouterCase(depart);
 
             if(arrivee.y>=0&&arrivee.x>=0&&arrivee.y<20&&arrivee.x<20)
-                if(map[arrivee.y][arrivee.x])
+                if(map[arrivee.y][arrivee.x].collision)
                 {
                     coordonnee temp={-100,-100,-1,-1},enCours;
 
                     enCours.y=arrivee.y-1;
                     enCours.x=arrivee.x-1;
                     if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
-                        if(!map[enCours.y][enCours.x]&&!(enCours.x==depart.x&&enCours.y==depart.y))
+                        if(!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                             if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                                 temp.y=enCours.y,temp.x=enCours.x;
                     enCours.y=arrivee.y;
                     enCours.x=arrivee.x-1;
                     if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
-                        if(!map[enCours.y][enCours.x]&&!(enCours.x==depart.x&&enCours.y==depart.y))
+                        if(!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                             if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                                 temp.y=enCours.y,temp.x=enCours.x;
                     enCours.y=arrivee.y-1;
                     enCours.x=arrivee.x;
                     if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
-                        if(!map[enCours.y][enCours.x]&&!(enCours.x==depart.x&&enCours.y==depart.y))
+                        if(!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                             if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                                 temp.y=enCours.y,temp.x=enCours.x;
 
                     enCours.y=arrivee.y+1;
                     enCours.x=arrivee.x+1;
                     if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
-                        if(!map[enCours.y][enCours.x]&&!(enCours.x==depart.x&&enCours.y==depart.y))
+                        if(!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                             if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                                 temp.y=enCours.y,temp.x=enCours.x;
                     enCours.y=arrivee.y+1;
                     enCours.x=arrivee.x;
                     if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
-                        if(!map[enCours.y][enCours.x]&&!(enCours.x==depart.x&&enCours.y==depart.y))
+                        if(!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                             if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                                 temp.y=enCours.y,temp.x=enCours.x;
                     enCours.y=arrivee.y;
                     enCours.x=arrivee.x+1;
                     if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
-                        if(!map[enCours.y][enCours.x]&&!(enCours.x==depart.x&&enCours.y==depart.y))
+                        if(!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                             if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                                 temp.y=enCours.y,temp.x=enCours.x;
 
@@ -432,13 +436,13 @@ int Personnage::pathfinding(bool** map,coordonnee exception)
                     enCours.y=arrivee.y+1;
                     enCours.x=arrivee.x-1;
                     if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
-                        if(!map[enCours.y][enCours.x]&&!(enCours.x==depart.x&&enCours.y==depart.y))
+                        if(!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                             if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                                 temp.y=enCours.y,temp.x=enCours.x;
                     enCours.y=arrivee.y-1;
                     enCours.x=arrivee.x+1;
                     if(enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
-                        if(!map[enCours.y][enCours.x]&&!(enCours.x==depart.x&&enCours.y==depart.y))
+                        if(!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                             if(sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                                 temp.y=enCours.y,temp.x=enCours.x;
 
@@ -475,7 +479,10 @@ int Personnage::pathfinding(bool** map,coordonnee exception)
                 m_arrivee.x=arrivee.x+decalage.x;
                 m_arrivee.y=arrivee.y+decalage.y;
 
+                m_cheminFinal.h=map[m_cheminFinal.y][m_cheminFinal.x].hauteur;
+
                 m_cheminFinal.x+=decalage.x,m_cheminFinal.y+=decalage.y;
+
                 m_ancienneArrivee=m_arrivee;
             }
             else
@@ -520,8 +527,12 @@ bool Personnage::seDeplacer(float tempsEcoule)
                 m_positionPixelPrecedente.x=(int)m_positionPixel.x;
                 m_positionPixelPrecedente.y=(int)m_positionPixel.y;
 
+
+
                 if(m_positionCase.x<m_cheminFinal.x)
                 {
+                    if(m_positionCase.h!=m_cheminFinal.h && m_positionPixel.h!=m_cheminFinal.h)
+                        m_positionPixel.h=m_positionCase.h*( COTE_TILE - fabs(m_positionPixel.x-m_positionCase.x*COTE_TILE))/COTE_TILE + m_cheminFinal.h*( fabs(m_positionPixel.x-m_positionCase.x*COTE_TILE))/COTE_TILE ;
                     if(m_positionCase.y>m_cheminFinal.y)
                         m_positionPixel.x+=(float)2*tempsEcoule*m_caracteristique.vitesse;
                     else
@@ -529,6 +540,8 @@ bool Personnage::seDeplacer(float tempsEcoule)
                 }
                 if(m_positionCase.x>m_cheminFinal.x)
                 {
+                    if(m_positionCase.h!=m_cheminFinal.h && m_positionPixel.h!=m_cheminFinal.h)
+                        m_positionPixel.h=m_positionCase.h*( COTE_TILE - fabs(m_positionPixel.x-m_positionCase.x*COTE_TILE))/COTE_TILE + m_cheminFinal.h*( fabs(m_positionPixel.x-m_positionCase.x*COTE_TILE))/COTE_TILE ;
                     if(m_positionCase.y<m_cheminFinal.y)
                         m_positionPixel.x-=(float)2*tempsEcoule*m_caracteristique.vitesse;
                     else
@@ -536,6 +549,8 @@ bool Personnage::seDeplacer(float tempsEcoule)
                 }
                 if(m_positionCase.y<m_cheminFinal.y)
                 {
+                    if(m_positionCase.h!=m_cheminFinal.h && m_positionPixel.h!=m_cheminFinal.h)
+                        m_positionPixel.h=m_positionCase.h*( COTE_TILE - fabs(m_positionPixel.y-m_positionCase.y*COTE_TILE))/COTE_TILE + m_cheminFinal.h*( fabs(m_positionPixel.y-m_positionCase.y*COTE_TILE))/COTE_TILE ;
                     if(m_positionCase.x>m_cheminFinal.x)
                         m_positionPixel.y+=(float)2*tempsEcoule*m_caracteristique.vitesse;
                     else
@@ -543,6 +558,8 @@ bool Personnage::seDeplacer(float tempsEcoule)
                 }
                 if(m_positionCase.y>m_cheminFinal.y)
                 {
+                    if(m_positionCase.h!=m_cheminFinal.h && m_positionPixel.h!=m_cheminFinal.h)
+                        m_positionPixel.h=m_positionCase.h*( COTE_TILE - fabs(m_positionPixel.y-m_positionCase.y*COTE_TILE))/COTE_TILE + m_cheminFinal.h*( fabs(m_positionPixel.y-m_positionCase.y*COTE_TILE))/COTE_TILE ;
                     if(m_positionCase.x<m_cheminFinal.x)
                         m_positionPixel.y-=(float)2*tempsEcoule*m_caracteristique.vitesse;
                     else
@@ -563,8 +580,11 @@ bool Personnage::seDeplacer(float tempsEcoule)
                         m_positionPixel.x=(m_cheminFinal.x*COTE_TILE);
                         m_positionPixel.y=(m_cheminFinal.y*COTE_TILE);
 
+                        m_positionPixel.h=m_cheminFinal.h;
+
                         m_positionCase.y=m_cheminFinal.y;
                         m_positionCase.x=m_cheminFinal.x;
+                        m_positionCase.h=m_cheminFinal.h;
 
                         return 1;
                     }

@@ -13,6 +13,7 @@
 #include "Pose.h"
 
 
+
 class Modele_Personnage
 {
 	public:
@@ -64,7 +65,7 @@ class Personnage
 	void setCoordonnee(coordonnee nouvellesCoordonnees);
 	void Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap,Modele_Personnage *modele);
 
-	int pathfinding(bool** map,coordonnee exception);
+	int pathfinding(casePathfinding** map,coordonnee exception);
 
 	void frappe(coordonnee direction,coordonnee position);
 

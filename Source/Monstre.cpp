@@ -9,6 +9,7 @@ using namespace std;
 
 Monstre::Monstre()
 {
+    Personnage::Personnage();
     m_vu=0;
     m_modele=-1;
     m_monstre=true;
@@ -17,6 +18,10 @@ Monstre::Monstre()
     m_compteur=0;
 
     m_miracleALancer=-1;
+
+    m_positionPixel.h=0;
+    m_cheminFinal.h=0;
+    m_positionCase.h=0;
 }
 
 void Monstre::Charger(int numero,Modele_Monstre *modele)
