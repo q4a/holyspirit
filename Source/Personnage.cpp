@@ -317,13 +317,17 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
 
                 sprite.SetSubRect(IntRect(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h));
 
-                sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
+
+
 
                 sprite.FlipX(false);
 
 
                 sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64));
                 sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+32 -m_positionPixel.h);
+
+
+                sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
 
 
                 if(configuration.Lumiere)
@@ -347,7 +351,7 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
                 }
 
                 if(sprite.GetPosition().x+sprite.GetSize().x>=camera->GetRect().Left
-                &&sprite.GetPosition().x<camera->GetRect().Right
+                &&sprite.GetPosition().x-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().x<camera->GetRect().Right
                 &&sprite.GetPosition().y+sprite.GetSize().y>=camera->GetRect().Top
                 &&sprite.GetPosition().y<camera->GetRect().Bottom)
                 moteurGraphique.AjouterCommande(&sprite,10,1);
@@ -823,6 +827,7 @@ coordonnee Personnage::getCoordonneePixel()
     coordonnee position;
     position.x=(int)m_positionPixel.x;
     position.y=(int)m_positionPixel.y;
+    position.h=(int)m_positionPixel.h;
 	return position;
 }
 coordonnee Personnage::getProchaineCase()

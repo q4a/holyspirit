@@ -1136,7 +1136,7 @@ void Hero::placerCamera(sf::View *camera,coordonnee dimensionsMap)
 	m_positionAffichage.x=(((m_personnage.getCoordonneePixel().x-m_personnage.getCoordonneePixel().y)*64/COTE_TILE+dimensionsMap.y*64)-64);
 
 	coordonneeDecimal positionCamera;
-	positionCamera.y=m_positionAffichage.y-250*configuration.Resolution.h/600;
+	positionCamera.y=m_positionAffichage.y-250*configuration.Resolution.h/600 ;
 	positionCamera.x=m_positionAffichage.x-((400*configuration.Resolution.w/800))+64;
 
 	camera->SetFromRect(sf::FloatRect(positionCamera.x,positionCamera.y,positionCamera.x+configuration.Resolution.w,positionCamera.y+configuration.Resolution.h));

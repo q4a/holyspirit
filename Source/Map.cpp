@@ -2195,7 +2195,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                             position.y=(k+j)*32;
                             positionPartieDecor=m_tileset[m_decor[couche][j][k].getTileset()].getPositionDuTile(m_decor[couche][j][k].getTile());
                             if(position.x+positionPartieDecor.h*2+positionPartieDecor.w>=ViewRect.Left&&position.x-positionPartieDecor.h*2-positionPartieDecor.w-64<ViewRect.Right&&position.y+positionPartieDecor.h+positionPartieDecor.w>=ViewRect.Top&&position.y-positionPartieDecor.h-32<ViewRect.Bottom+100&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()&&configuration.Ombre&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()))
-                            ||position.x+positionPartieDecor.w>=ViewRect.Left&&position.x<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y-positionPartieDecor.h+64<ViewRect.Bottom)
+                            ||position.x+positionPartieDecor.w>=ViewRect.Left&&position.x-positionPartieDecor.w*0.5<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y-positionPartieDecor.h+64<ViewRect.Bottom)
                             {
                                 Sprite.SetImage(*moteurGraphique.getImage(m_tileset[m_decor[couche][j][k].getTileset()].getImage(m_decor[couche][j][k].getTile())));
                                 Sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
@@ -2290,6 +2290,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                         layer=m_decor[couche][j][k].getCouche();
                                     if(couche==1)
                                         layer=10;
+
 
                                     if(Sprite.GetPosition().x+Sprite.GetSize().x>=camera->GetRect().Left)
                                     if(Sprite.GetPosition().x<camera->GetRect().Right)
