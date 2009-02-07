@@ -180,7 +180,6 @@ void Hero::Sauvegarder()
 
 void Classe::Charger(string chemin)
 {
-
     emplacements.clear();
     equipementParDefaut.clear();
 
@@ -734,6 +733,7 @@ void Hero::Charger()
 
 void Hero::ChargerModele(bool tout)
 {
+    m_personnage.setPose(0);
     m_cas=0;
 
     int nombreArme=0;

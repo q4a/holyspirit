@@ -16,6 +16,23 @@ Decor::Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int her
 	m_effet=-1;
 }
 
+Decor::Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche,std::vector <Objet> objets)
+{
+    m_tileset=tileset;
+	m_tile=tile;
+	m_evenement=evenement;
+	m_monstre=monstre;
+	m_herbe=herbe;
+	m_numeroHerbe=0;
+	m_animation=0;
+	m_couche=couche;
+
+	m_objets=objets;
+
+	m_projectile=-1;
+	m_effet=-1;
+}
+
 Decor::~Decor()
 {
     if(m_evenement.size()>0)
@@ -65,6 +82,23 @@ void Decor::setDecor(int tileset,int tile,std::vector<int> evenement,int monstre
         m_couche=4;
     if(m_couche<0)
         m_couche=0;
+}
+
+void Decor::setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche,std::vector <Objet> objets)
+{
+	m_tileset=tileset;
+	m_tile=tile;
+	m_evenement=evenement;
+	m_monstre=monstre;
+	m_herbe=herbe;
+	m_numeroHerbe=0;
+	m_couche=couche;
+
+	if(m_couche>4)
+        m_couche=4;
+    if(m_couche<0)
+        m_couche=0;
+    m_objets=objets;
 }
 
 void Decor::setNumeroHerbe(int numero)

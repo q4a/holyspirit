@@ -40,6 +40,7 @@ Objet::~Objet()
     m_emplacementImpossible.clear();
 }
 
+std::string Objet::getChemin(){return m_chemin;}
 std::string Objet::getNom(){return m_nom;}
 int Objet::getRarete(){return m_rarete;}
 int Objet::getImage(){return m_image;};
@@ -161,6 +162,115 @@ void Objet::Sauvegarder(std::ofstream *fichier)
 
     if(configuration.debug)
             console.Ajouter("/Sauvegarde de "+m_chemin);
+}
+
+void Objet::SauvegarderTexte(std::ofstream *fichier)
+{
+    *fichier<<" o ";
+    *fichier<<" e"<<m_equipe;
+    *fichier<<" r"<<m_rarete;
+
+    *fichier<<" di"<<m_degatsMin;
+    *fichier<<" da"<<m_degatsMax;
+    *fichier<<" a"<<m_armure;
+
+    *fichier<<" lr"<<m_color.r;
+    *fichier<<" lg"<<m_color.g;
+    *fichier<<" lb"<<m_color.b;
+
+    *fichier<<" m"<<m_chemin;
+
+    for(int i=0;i<(int)m_benedictions.size();i++)
+    {
+        *fichier<<" b"<<m_benedictions[i].type;
+
+        *fichier<<" i1"<<m_benedictions[i].info1;
+        *fichier<<" i2"<<m_benedictions[i].info2;
+
+        *fichier<<" $ ";
+    }
+
+    *fichier<<" $ ";
+
+    if(configuration.debug)
+            console.Ajouter("/Sauvegarde de "+m_chemin);
+}
+
+void Objet::ChargerTexte(std::ifstream *fichier)
+{
+    m_rarete=0,m_equipe=-1;
+    m_degatsMin=0,m_degatsMax=0,m_armure=0;
+    m_position.y=0;
+    m_position.x=0;
+
+    char caractere;
+
+    do
+    {
+        fichier->get(caractere);
+        if(caractere=='e')
+            *fichier>>m_equipe;
+
+        else if(caractere=='r')
+            *fichier>>m_rarete;
+
+        else if(caractere=='x')
+            *fichier>>m_position.x;
+        else if(caractere=='y')
+            *fichier>>m_position.y;
+
+        else if(caractere=='d')
+        {
+            fichier->get(caractere);
+            if(caractere=='i')
+                *fichier>>m_degatsMin;
+            else if(caractere=='a')
+                *fichier>>m_degatsMax;
+        }
+
+        else if(caractere=='a')
+            *fichier>>m_armure;
+
+        else if(caractere=='l')
+        {
+            fichier->get(caractere);
+            if(caractere=='r')
+                *fichier>>m_color.r;
+            else if(caractere=='g')
+                *fichier>>m_color.g;
+            else if(caractere=='b')
+                *fichier>>m_color.b;
+        }
+        else if(caractere=='m')
+            *fichier>>m_chemin;
+        else if(caractere=='b')
+        {
+            int type=0,info1=0,info2=0;
+
+            *fichier>>type;
+
+            do
+            {
+                fichier->get(caractere);
+                if(caractere=='i')
+                {
+                    fichier->get(caractere);
+                    if(caractere=='1')
+                        *fichier>>info1;
+                    if(caractere=='2')
+                        *fichier>>info2;
+                }
+            }while(caractere!='$');
+
+            m_benedictions.push_back(benediction ());
+            m_benedictions.back().type=type;
+            m_benedictions.back().info1=info1;
+            m_benedictions.back().info2=info2;
+            fichier->get(caractere);
+        }
+
+        if(fichier->eof()){throw "Impossible de charger l'objet";}
+    }while(caractere!='$');
 }
 
 

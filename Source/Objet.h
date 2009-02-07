@@ -25,9 +25,12 @@ class Objet
     void ChargerCaracteristiques(std::ifstream *fichier);
     void setChanceTrouver(int);
     void Sauvegarder(std::ofstream *fichier);
+    void SauvegarderTexte(std::ofstream *fichier);
+    void ChargerTexte(std::ifstream *fichier);
 
     void Generer(int bonus);
 
+    std::string getChemin();
     std::string getNom();
     int getRarete();
     int getImage();

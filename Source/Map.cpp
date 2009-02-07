@@ -478,12 +478,13 @@ bool Map::Charger(int numeroMap)
                     {
                         std::vector<int> evenement;
                         int tileset=-1,tileFinal=-1,herbe=-1,monstreFinal=-1,layer=0;
+                        int rarete=0;
                         int temp;
                         vector <int>tile;
                         vector <int>monstre;
+                        vector <Objet> objets;
                         do
                         {
-
                             fichier.get(caractere);
                             switch (caractere)
                             {
@@ -493,6 +494,17 @@ bool Map::Charger(int numeroMap)
                                 case 'm': if(!entite_map_existante) { fichier>>temp; monstre.push_back(temp);  } else {  fichier>>monstreFinal; } break;
                                 case 'h': fichier>>herbe; break;
                                 case 'l': fichier>>layer; break;
+
+                                case 'o':
+
+
+                                    objets.push_back(Objet ());
+                                    objets.back().ChargerTexte(&fichier);
+                                    rarete=objets.back().getRarete();
+                                    objets.back().Charger(objets.back().getChemin());
+                                    objets.back().setRarete(rarete);
+
+                                break;
 
                                 case 'r':
                                     int noModuleCaseMin=-1,noModuleCaseMax=-1;
@@ -586,8 +598,9 @@ bool Map::Charger(int numeroMap)
                         if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
 
 
-                        m_decor[couche][position.y].push_back(Decor (tileset,tileFinal,evenement,monstreFinal,herbe,layer));
+                        m_decor[couche][position.y].push_back(Decor (tileset,tileFinal,evenement,monstreFinal,herbe,layer,objets));
                         tileset=-1,tile.clear(),tileFinal=-1,evenement.clear(),monstreFinal=-1,herbe=-1,layer=0;
+                        objets.clear();
                         position.x++;
                         fichier.get(caractere);
                     }while(caractere!='\n');
@@ -710,6 +723,9 @@ void Map::Sauvegarder()
 
                     fichier<<"l"<<m_decor[couche][i][j].getCouche()<<" ";
 
+                    for(int o=0;o<(int)m_decor[couche][i][j].getNombreObjets();o++)
+                        m_decor[couche][i][j].getObjet(o).SauvegarderTexte(&fichier);
+
                     fichier<<"|";
                 }
                 fichier<<"\n";
@@ -747,6 +763,27 @@ void Map::Sauvegarder()
 
         fichier2.close();
     }
+
+
+    /*chemin = configuration.chemin_temps;
+    sprintf(numero,"item_map%i.imap.hs",m_numero);
+	chemin += numero;
+
+	console.Ajouter("Sauvegarde de la map_item : "+chemin,0);
+
+    ofstream fichier2(chemin.c_str(), ios::out | ios::trunc);
+    if(fichier2)
+    {
+        for(int i=0;i<(int)m_monstre.size();i++)
+        {
+            fichier2<<"* m"<<m_monstre[i].getModele()<<" vi"<<m_monstre[i].getCaracteristique().vie<<" va"<<m_monstre[i].getCaracteristique().maxVie<<" di"<<m_monstre[i].getCaracteristique().degatsMin<<" da"<<m_monstre[i].getCaracteristique().degatsMax<<" r"<<m_monstre[i].getCaracteristique().rang<<" a"<<m_monstre[i].getCaracteristique().pointAme<<" t"<<m_monstre[i].getCaracteristique().modificateurTaille
+            <<" p"<<m_monstre[i].getPose()<<" e"<<m_monstre[i].getEtat()<<" g"<<m_monstre[i].getAngle()
+            <<" lr"<<m_monstre[i].getPorteeLumineuse().rouge<<" lv"<<m_monstre[i].getPorteeLumineuse().vert<<" lb"<<m_monstre[i].getPorteeLumineuse().bleu<<" li"<<m_monstre[i].getPorteeLumineuse().intensite<<" $\n";
+        }
+        fichier2<<"\n$";
+
+        fichier2.close();
+    }*/
 
 
     console.Ajouter("Sauvegarde terminée !");
@@ -2332,7 +2369,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                     }
 
 
-                    if(configuration.Minimap)
+                    if(configuration.Minimap&&couche==1)
                     {
 
                         sprite2.SetCenter(4*configuration.Resolution.w/800,4*configuration.Resolution.w/800);
@@ -3881,7 +3918,8 @@ int Map::getTypeCase(int positionX,int positionY)
 
             if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<(int)m_monstre.size())
                 if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].enVie())
-                    return 2;
+                    if(m_ModeleMonstre[m_monstre[m_decor[i][positionY][positionX].getMonstre()].getModele()].m_minimap)
+                        return 2;
 
             if(m_decor[i][positionY][positionX].getNombreObjets())
                 return 4;

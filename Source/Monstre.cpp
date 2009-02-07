@@ -175,6 +175,7 @@ bool Modele_Monstre::Charger(string chemin)
                 m_caracteristique.modificateurTaille=1;
                 m_caracteristique.sang=0;
                 m_explosif=false;
+                m_minimap=true;
                 do
                 {
                     fichier->get(caractere);
@@ -192,6 +193,8 @@ bool Modele_Monstre::Charger(string chemin)
                         case 't': *fichier>>m_caracteristique.modificateurTaille; break;
 
                         case 'e': *fichier>>m_explosif; break;
+
+                        case 'i': *fichier>>m_minimap; break;
                     }
                      if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
                 }while(caractere!='$');

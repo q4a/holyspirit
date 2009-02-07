@@ -17,6 +17,7 @@ class Modele_Monstre : public Modele_Personnage
 
     Script m_scriptAI;
     int m_particules;
+    bool m_minimap;
 
     std::vector<Miracle> m_miracles;
 

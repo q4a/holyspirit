@@ -17,9 +17,11 @@ class Decor
 	public:
 	Decor(){}
 	Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche);
+	Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche,std::vector <Objet> objets);
 	~Decor();
 	Decor operator=(const Decor &Decor);
-	void setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe,int couche); //Définir une valeur au décor
+	void setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe,int couche);
+	void setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe,int couche,std::vector <Objet> objets); //Définir une valeur au décor
 	void setNumeroHerbe(int numero);
 	void setMonstre(int monstre);
 	void setProjectile(int projectile);
