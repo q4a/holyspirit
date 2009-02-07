@@ -98,6 +98,8 @@
          Chargement de l'objet : Data/Items/Helmet.item.hs
          
          Chargement de l'objet : Data/Items/Great_shield.item.hs
+         
+         Chargement de l'objet : Data/Items/Small_shield.item.hs
          /Lectures des objets.
          Chargement de : Data/Menus/Inventory.png
          Chargement de : Data/Menus/Hud.png
@@ -157,6 +159,7 @@
          /Sauvegarde de Data/Items/Boot.item.hs
          /Sauvegarde de Data/Items/Helmet.item.hs
          /Sauvegarde de Data/Items/Great_shield.item.hs
+         /Sauvegarde de Data/Items/Small_shield.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
@@ -171,6 +174,7 @@
          /Lectures des musiques.
          /Lectures des lumières.
          Chargement de : Data/Grounds/Plain_grass/Plain_grass.png
+         Chargement de : Data/Grounds/Plain_grass/hill.png
          Chargement de : Data/Landscapes/Trees/Bouleau2.png
          Chargement de : Data/Landscapes/Trees/Buis.png
          Chargement de : Data/Landscapes/Trees/Chene1.png
@@ -225,10 +229,7 @@
          Chargement de : Data/Entities/Monsters/DemonicPriest/DemonicPriest.rs.hs terminé
          /Lectures des monstres.
          
-         Une map des entités est déjà existante.
          /Lectures des événements.
-         
-         Chargement de l'objet : Data/Items/Small_shield.item.hs
          /Lectures des cases.
          Chargement de la map terminé.
          
