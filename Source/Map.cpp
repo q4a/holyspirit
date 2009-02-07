@@ -721,6 +721,7 @@ void Map::Sauvegarder()
                         fichier<<"m"<<m_decor[couche][i][j].getMonstre()<<" ";
                             //fichier<<"m"<<m_monstre[m_decor[couche][i][j].getMonstre()].getModele()<<" ";
                     fichier<<"h"<<m_decor[couche][i][j].getHerbe()<<" ";
+                    fichier<<"i"<<m_decor[couche][i][j].getHauteur()<<" ";
 
                     fichier<<"l"<<m_decor[couche][i][j].getCouche()<<" ";
 
