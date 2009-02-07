@@ -44,28 +44,13 @@
          Chargement de la map terminé.
          
          Chargement de : Data/Menus/Alpha-arts.png
-         Chargement de : Data/Loading_screens/Plaines2.png
+         Chargement de : Data/Loading_screens/Plaines3.png
          Chargement du hero.
          /Lectures des caracteristiques.
          /Lectures des cases de l'inventaire.
          
-         Chargement de l'objet : Data/Items/Small_axe.item.hs
-         Chargement de : Data/Items/Images/axes01.png
-         
-         Chargement de l'objet : Data/Items/Small_axe.item.hs
-         
-         Chargement de l'objet : Data/Items/Small_axe.item.hs
-         
-         Chargement de l'objet : Data/Items/Small_axe.item.hs
-         
          Chargement de l'objet : Data/Items/Necklage.item.hs
          Chargement de : Data/Items/Images/Necklage01.png
-         
-         Chargement de l'objet : Data/Items/Boot.item.hs
-         Chargement de : Data/Items/Images/Boot.png
-         
-         Chargement de l'objet : Data/Items/Small_sword.item.hs
-         Chargement de : Data/Items/Images/swords01.png
          
          Chargement de l'objet : Data/Items/Necklage.item.hs
          
@@ -73,59 +58,64 @@
          Chargement de : Data/Items/Images/Ring1.png
          
          Chargement de l'objet : Data/Items/Boot.item.hs
+         Chargement de : Data/Items/Images/Boot.png
          
          Chargement de l'objet : Data/Items/Armor.item.hs
          Chargement de : Data/Items/Images/armor01.png
          
-         Chargement de l'objet : Data/Items/Great_shield.item.hs
-         Chargement de : Data/Items/Images/shield01.png
-         
          Chargement de l'objet : Data/Items/Small_shield.item.hs
-         
-         Chargement de l'objet : Data/Items/Helmet.item.hs
-         Chargement de : Data/Items/Images/helmet01.png
+         Chargement de : Data/Items/Images/shield01.png
          
          Chargement de l'objet : Data/Items/Two_hand_sword.item.hs
          Chargement de : Data/Items/Images/TwoHand01Sword.png
          
          Chargement de l'objet : Data/Items/Necklage.item.hs
          
-         Chargement de l'objet : Data/Items/Great_shield.item.hs
-         
          Chargement de l'objet : Data/Items/Small_sword.item.hs
-         
-         Chargement de l'objet : Data/Items/Small_shield.item.hs
+         Chargement de : Data/Items/Images/swords01.png
          
          Chargement de l'objet : Data/Items/Helmet.item.hs
+         Chargement de : Data/Items/Images/helmet01.png
          
          Chargement de l'objet : Data/Items/Two_hand_sword.item.hs
-         
-         Chargement de l'objet : Data/Items/Small_sword.item.hs
          
          Chargement de l'objet : Data/Items/Necklage.item.hs
          
          Chargement de l'objet : Data/Items/Ring.item.hs
          
          Chargement de l'objet : Data/Items/Small_axe.item.hs
+         Chargement de : Data/Items/Images/axes01.png
+         
+         Chargement de l'objet : Data/Items/Necklage.item.hs
+         
+         Chargement de l'objet : Data/Items/Helmet.item.hs
+         
+         Chargement de l'objet : Data/Items/Arquebuse.item.hs
+         Chargement de : Data/Items/Images/Arquebuse.png
+         
+         Chargement de l'objet : Data/Items/Boot.item.hs
+         
+         Chargement de l'objet : Data/Items/Helmet.item.hs
+         
+         Chargement de l'objet : Data/Items/Great_shield.item.hs
          /Lectures des objets.
          Chargement de : Data/Menus/Inventory.png
          Chargement de : Data/Menus/Hud.png
          Chargement de : Data/Menus/Life_orb.png
          Chargement de : Data/Menus/Faith_orb.png
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Matelasse/TwoHand.rs.hs
-         Chargement de : CroiseMatelasseAttente2Main0.png
-         Chargement de : CroiseMatelasseMarcheSansEpee2Mains0.png
-         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains0.png
-         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains1.png
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Matelasse/TwoWeapons.rs.hs
+         Chargement de : CroiseMatelasseAttente1Main0.png
+         Chargement de : CroiseMatelasseMarche1Epee0.png
+         Chargement de : CroiseMatelasseFrappeSans2Arme0.png
+         Chargement de : CroiseMatelasseFrappeSans2Arme1.png
          Chargement de : Data/Sounds/9906__Snoman__grass3.wav
          Chargement de : Data/Sounds/epee.wav
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Two_hands_sword/Two_hands_sword.rs.hs
-         Chargement de : Epee2MainsAttente0.png
-         Chargement de : Epee2MainsMarche0.png
-         Chargement de : Epee2MainsFrappe0.png
-         Chargement de : Epee2MainsFrappe1.png
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_r.rs.hs
+         Chargement de : EpeeCourteAttenteDroite0.png
+         Chargement de : EpeeCourteMarcheDroite0.png
+         Chargement de : EpeeCourteAttaqueDroite0.png
          
          Destruction de la map...
          Destruction des cases...
@@ -147,37 +137,32 @@
          Ouverture du fichier.
          /Ecriture des caracterstiques.
          /Ecriture des cases inventaires.
-         /Sauvegarde de Data/Items/Small_axe.item.hs
-         /Sauvegarde de Data/Items/Small_axe.item.hs
-         /Sauvegarde de Data/Items/Small_axe.item.hs
-         /Sauvegarde de Data/Items/Small_axe.item.hs
          /Sauvegarde de Data/Items/Necklage.item.hs
-         /Sauvegarde de Data/Items/Boot.item.hs
-         /Sauvegarde de Data/Items/Small_sword.item.hs
          /Sauvegarde de Data/Items/Necklage.item.hs
          /Sauvegarde de Data/Items/Ring.item.hs
          /Sauvegarde de Data/Items/Boot.item.hs
          /Sauvegarde de Data/Items/Armor.item.hs
-         /Sauvegarde de Data/Items/Great_shield.item.hs
          /Sauvegarde de Data/Items/Small_shield.item.hs
-         /Sauvegarde de Data/Items/Helmet.item.hs
          /Sauvegarde de Data/Items/Two_hand_sword.item.hs
          /Sauvegarde de Data/Items/Necklage.item.hs
-         /Sauvegarde de Data/Items/Great_shield.item.hs
          /Sauvegarde de Data/Items/Small_sword.item.hs
-         /Sauvegarde de Data/Items/Small_shield.item.hs
          /Sauvegarde de Data/Items/Helmet.item.hs
          /Sauvegarde de Data/Items/Two_hand_sword.item.hs
-         /Sauvegarde de Data/Items/Small_sword.item.hs
          /Sauvegarde de Data/Items/Necklage.item.hs
          /Sauvegarde de Data/Items/Ring.item.hs
          /Sauvegarde de Data/Items/Small_axe.item.hs
+         /Sauvegarde de Data/Items/Necklage.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Arquebuse.item.hs
+         /Sauvegarde de Data/Items/Boot.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Great_shield.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Matelasse/TwoHand.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Matelasse/TwoWeapons.rs.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Two_hands_sword/Two_hands_sword.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_r.rs.hs
          
          Chargement de la map : Data/Maps/Map1.map.hs
          /Test de l'existence des fichiers temps.
@@ -240,7 +225,10 @@
          Chargement de : Data/Entities/Monsters/DemonicPriest/DemonicPriest.rs.hs terminé
          /Lectures des monstres.
          
+         Une map des entités est déjà existante.
          /Lectures des événements.
+         
+         Chargement de l'objet : Data/Items/Small_shield.item.hs
          /Lectures des cases.
          Chargement de la map terminé.
          
@@ -249,31 +237,27 @@
          Ouverture du fichier.
          /Ecriture des caracterstiques.
          /Ecriture des cases inventaires.
-         /Sauvegarde de Data/Items/Small_axe.item.hs
-         /Sauvegarde de Data/Items/Small_axe.item.hs
-         /Sauvegarde de Data/Items/Small_axe.item.hs
-         /Sauvegarde de Data/Items/Small_axe.item.hs
          /Sauvegarde de Data/Items/Necklage.item.hs
-         /Sauvegarde de Data/Items/Boot.item.hs
-         /Sauvegarde de Data/Items/Small_sword.item.hs
          /Sauvegarde de Data/Items/Necklage.item.hs
          /Sauvegarde de Data/Items/Ring.item.hs
          /Sauvegarde de Data/Items/Boot.item.hs
          /Sauvegarde de Data/Items/Armor.item.hs
-         /Sauvegarde de Data/Items/Great_shield.item.hs
          /Sauvegarde de Data/Items/Small_shield.item.hs
-         /Sauvegarde de Data/Items/Helmet.item.hs
          /Sauvegarde de Data/Items/Two_hand_sword.item.hs
          /Sauvegarde de Data/Items/Necklage.item.hs
-         /Sauvegarde de Data/Items/Great_shield.item.hs
          /Sauvegarde de Data/Items/Small_sword.item.hs
-         /Sauvegarde de Data/Items/Small_shield.item.hs
          /Sauvegarde de Data/Items/Helmet.item.hs
          /Sauvegarde de Data/Items/Two_hand_sword.item.hs
-         /Sauvegarde de Data/Items/Small_sword.item.hs
          /Sauvegarde de Data/Items/Necklage.item.hs
          /Sauvegarde de Data/Items/Ring.item.hs
          /Sauvegarde de Data/Items/Small_axe.item.hs
+         /Sauvegarde de Data/Items/Necklage.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Arquebuse.item.hs
+         /Sauvegarde de Data/Items/Boot.item.hs
+         /Sauvegarde de Data/Items/Helmet.item.hs
+         /Sauvegarde de Data/Items/Great_shield.item.hs
+         /Sauvegarde de Data/Items/Small_shield.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
