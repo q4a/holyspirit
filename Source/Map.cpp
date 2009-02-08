@@ -2821,64 +2821,88 @@ int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,bool m
             }
 
             if(continuer)
-            if(modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_type==INVOCATION&&entiteMiracle->m_infos[o].m_IDObjet==-1)
+            if(modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_type==INVOCATION)
             {
-                bool invoquer=true;
-                int x=0,y=0;
-                coordonnee positionCase;
-                positionCase.x=cible.x+rand()%2-4;
-                positionCase.y=cible.y+rand()%2-4;
-
-                if(positionCase.x<0)
-                    positionCase.x=0;
-                if(positionCase.y<0)
-                    positionCase.y=0;
-
-                while(getCollision(positionCase.x,positionCase.y) && invoquer)
+                if(entiteMiracle->m_infos[o].m_IDObjet==-1)
                 {
-                    positionCase.x++;
-                    positionCase.y++;
-                    x++; y++;
-                    if(x>10)
-                        invoquer=false;
-                }
+                    bool invoquer=true;
+                    int x=0,y=0;
+                    coordonnee positionCase;
+                    positionCase.x=cible.x+rand()%2-4;
+                    positionCase.y=cible.y+rand()%2-4;
 
-                if(invoquer)
-                {
-                    entiteMiracle->m_infos[o].m_position.x=positionCase.x*COTE_TILE;
-                    entiteMiracle->m_infos[o].m_position.y=positionCase.y*COTE_TILE;
+                    if(positionCase.x<0)
+                        positionCase.x=0;
+                    if(positionCase.y<0)
+                        positionCase.y=0;
 
-                    int numero=-1;
-                    for(int j=0;j<(int)m_ModeleMonstre.size();j++)
-                        if(modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_chaine==m_ModeleMonstre[j].m_chemin)
-                            numero=j,j=m_ModeleMonstre.size();
-
-                    if(numero==-1)
+                    while(getCollision(positionCase.x,positionCase.y) && invoquer)
                     {
-                        m_ModeleMonstre.push_back(Modele_Monstre ());
-                        m_ModeleMonstre.back().Charger(modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_chaine);
-                        console.Ajouter("Chargement de : "+modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_chaine+" terminé",0);
-                        numero=m_ModeleMonstre.size()-1;
+                        positionCase.x++;
+                        positionCase.y++;
+                        x++; y++;
+                        if(x>10)
+                            invoquer=false;
                     }
 
-                    m_monstre.push_back(Monstre ());
-                    m_monstre.back().Charger(numero,&m_ModeleMonstre[numero]);
-                    m_monstre.back().setCoordonnee(positionCase),m_monstre.back().setDepart();
+                    if(invoquer)
+                    {
+                        entiteMiracle->m_infos[o].m_position.x=positionCase.x*COTE_TILE;
+                        entiteMiracle->m_infos[o].m_position.y=positionCase.y*COTE_TILE;
 
-                    m_decor[1][positionCase.y][positionCase.x].setMonstre(m_monstre.size()-1);
+                        int numero=-1;
+                        for(int j=0;j<(int)m_ModeleMonstre.size();j++)
+                            if(modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_chaine==m_ModeleMonstre[j].m_chemin)
+                                numero=j,j=m_ModeleMonstre.size();
+
+                        if(numero==-1)
+                        {
+                            m_ModeleMonstre.push_back(Modele_Monstre ());
+                            m_ModeleMonstre.back().Charger(modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_chaine);
+                            console.Ajouter("Chargement de : "+modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_chaine+" terminé",0);
+                            numero=m_ModeleMonstre.size()-1;
+                        }
+
+                        m_monstre.push_back(Monstre ());
+                        m_monstre.back().Charger(numero,&m_ModeleMonstre[numero]);
+                        m_monstre.back().setCoordonnee(positionCase),m_monstre.back().setDepart();
+
+                        m_decor[1][positionCase.y][positionCase.x].setMonstre(m_monstre.size()-1);
+
+                        entiteMiracle->m_infos[o].m_IDObjet=m_monstre.size()-1;
+                    }
+
+
+                    continuer=false;
+                    gererMiracle(entiteMiracle,modeleMiracle,monstre,lanceur,cible,couche);
                 }
-
-                for(int p=0;p<(int)modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien.size();p++)
+                else if(entiteMiracle->m_infos[o].m_IDObjet>=0&&entiteMiracle->m_infos[o].m_IDObjet<(int)m_monstre.size())
                 {
-                    entiteMiracle->m_infos.push_back(infosEntiteMiracle ());
-                    entiteMiracle->m_infos.back().m_effetEnCours=modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p];
-                    entiteMiracle->m_infos.back().m_position=entiteMiracle->m_infos[o].m_position;
-                }
+                    if(!m_monstre[entiteMiracle->m_infos[o].m_IDObjet].enVie())
+                    {
+                        for(int p=0;p<(int)modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien.size();p++)
+                        {
+                            entiteMiracle->m_infos.push_back(infosEntiteMiracle ());
+                            entiteMiracle->m_infos.back().m_effetEnCours=modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p];
+                            entiteMiracle->m_infos.back().m_position=entiteMiracle->m_infos[o].m_position;
+                        }
 
-                entiteMiracle->m_infos.erase(entiteMiracle->m_infos.begin()+o);
-                continuer=false;
-                gererMiracle(entiteMiracle,modeleMiracle,monstre,lanceur,cible,couche);
+                        entiteMiracle->m_infos.erase(entiteMiracle->m_infos.begin()+o);
+                    }
+                }
+                else
+                {
+                    for(int p=0;p<(int)modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien.size();p++)
+                    {
+                        entiteMiracle->m_infos.push_back(infosEntiteMiracle ());
+                        entiteMiracle->m_infos.back().m_effetEnCours=modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p];
+                        entiteMiracle->m_infos.back().m_position=entiteMiracle->m_infos[o].m_position;
+                    }
+
+                    entiteMiracle->m_infos.erase(entiteMiracle->m_infos.begin()+o);
+                }
             }
+
 
             if(continuer)
             if(modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_type==DEGATS)
@@ -3016,6 +3040,8 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                             infligerDegatsMasse(temp,1,degats,1,hero,menu,camera);
                         }
 
+                        m_monstre[monstre].m_nombreInvocation=0;
+
                         for(int i=0;i<(int)m_monstre[monstre].m_miracleEnCours.size();i++)
                         {
                             bool continuer=true;
@@ -3064,6 +3090,14 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
 
                                             }
                                         }
+                                    if(continuer)
+                                    if(m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type==INVOCATION)
+                                        if(m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_IDObjet>=0)
+                                        {
+                                            m_monstre[monstre].m_nombreInvocation++;
+                                        }
+
+
 
                                     if(continuer)
                                     if(m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type==EFFET_GRAPHIQUE)
@@ -3376,11 +3410,19 @@ void Map::musiquePlay(coordonnee position)
                                                 if(script->m_instructions[noInstruction].nom=="playSound") { PLAYSOUND(script->m_instructions[noInstruction].valeurs.at(0)) } \
                                                 if(script->m_instructions[noInstruction].nom=="if") { gererConditions(script,noInstruction,i,j,k,hero,temps,camera,menu); } \
                                                 if(script->m_instructions[noInstruction].nom=="variable") { script->variables[script->m_instructions[noInstruction].valeurs.at(0)]=script->m_instructions[noInstruction].valeurs.at(1); }  \
+                                                if(script->m_instructions[noInstruction].nom=="incrementeVariable") { script->variables[script->m_instructions[noInstruction].valeurs.at(0)]+=script->m_instructions[noInstruction].valeurs.at(1); }  \
                                              }
 
 #define LISTE_CONDITIONS(noInstruction) if(script->m_instructions[noInstruction].nom=="see")\
                                         {\
                                             if(!m_monstre[m_decor[i][j][k].getMonstre()].getVu()) \
+                                                ok=false;\
+                                        }\
+                                        else if(script->m_instructions[noInstruction].nom=="numberInvocation")\
+                                        {\
+                                            if(m_monstre[m_decor[i][j][k].getMonstre()].m_nombreInvocation==script->m_instructions[noInstruction].valeurs.at(0)) \
+                                                ok=true;\
+                                            else\
                                                 ok=false;\
                                         }\
                                         else if(script->m_instructions[noInstruction].nom=="distance")\
@@ -3827,7 +3869,13 @@ casePathfinding** Map::getAlentourDuPersonnage(coordonnee positionPersonnage)
 		{
 		    grille[y-positionPersonnage.y+10][x-positionPersonnage.x+10].hauteur=0;
 			if(y>=0&&x>=0&&x<(int)m_decor[0][0].size()&&y<(int)m_decor[0].size())
-				grille[y-positionPersonnage.y+10][x-positionPersonnage.x+10].collision=getCollision(x,y),grille[y-positionPersonnage.y+10][x-positionPersonnage.x+10].hauteur=m_decor[0][y][x].getHauteur();
+			{
+				grille[y-positionPersonnage.y+10][x-positionPersonnage.x+10].collision=getCollision(x,y);
+				//if(m_decor[0][y][x].getHauteur()>m_decor[1][y][x].getHauteur())
+                    grille[y-positionPersonnage.y+10][x-positionPersonnage.x+10].hauteur=m_decor[0][y][x].getHauteur();
+               // else
+                   // grille[y-positionPersonnage.y+10][x-positionPersonnage.x+10].hauteur=m_decor[1][y][x].getHauteur();
+			}
 			else
 				grille[y-positionPersonnage.y+10][x-positionPersonnage.x+10].collision=1;
 		}

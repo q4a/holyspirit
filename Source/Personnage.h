@@ -99,6 +99,7 @@ class Personnage
 
 	LumiereOmbrage m_lumiere;
 	bool frappeEnCours;
+	int m_nombreInvocation;
 
 	protected:
 	int m_etat,m_poseEnCours,m_angle;

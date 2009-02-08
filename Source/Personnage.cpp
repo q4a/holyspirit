@@ -60,6 +60,8 @@ Personnage::Personnage()
     m_positionPixel.h=0;
     m_cheminFinal.h=0;
     m_positionCase.h=0;
+
+    m_nombreInvocation=0;
 }
 Modele_Personnage::Modele_Personnage()
 {
