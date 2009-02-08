@@ -2,8 +2,8 @@
 $
 	* f5 v20 p10 d5 c5 $
 $
-	* mData/Items/Small_sword.item.hs $
-	* mData/Items/Small_shield.item.hs $
+	* mSmall_sword.item.hs $
+	* mSmall_shield.item.hs $
 $
 	* mData/Entities/Heroes/Crusader/Nude/OneHand.rs.hs mData/Entities/Heroes/Crusader/Nude/TwoWeapons.rs.hs mData/Entities/Heroes/Crusader/Nude/TwoHand.rs.hs $
 $
