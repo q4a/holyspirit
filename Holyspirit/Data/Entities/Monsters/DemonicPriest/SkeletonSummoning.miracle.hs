@@ -5,15 +5,22 @@ $
 	*Data/Sounds/47252__nthompson__rocketexpl.wav
 $
 //Effets
-	* t-1 l1 l3 l5 $ // t pour le type, l c'est pour le lien, s pour la séquence et ia pour les infos relatives
-	* t4 mData/Entities/Monsters/PantinMorbide/Axe/Axe.rs.hs l2 $
-	* t3 s0 ia7 $
+	* t-1 l2 l4 l6 l8 l10 $ // t pour le type, l c'est pour le lien, s pour la séquence et ia pour les infos relatives
+	
+	* t4 mData/Entities/Monsters/PantinMorbide/Axe/Axe.rs.hs $
+	* t3 s0 ia7 l1 $
 
-	* t4 mData/Entities/Monsters/PantinMorbide/Axe/Axe.rs.hs l4 $
-	* t3 s0 ia7 $
+	* t4 mData/Entities/Monsters/PantinMorbide/Sword/Sword.rs.hs $
+	* t3 s0 ia7 l3 $
 
-	* t4 mData/Entities/Monsters/PantinMorbide/Axe/Axe.rs.hs l6 $
-	* t3 s0 ia7 $
+	* t4 mData/Entities/Monsters/PantinMorbide/Guardian/Guardian.rs.hs $
+	* t3 s0 ia7 l5 $
+	
+	* t4 mData/Entities/Monsters/PantinMorbide/Sword/Sword.rs.hs $
+	* t3 s0 ia7 l7 $
+
+	* t4 mData/Entities/Monsters/PantinMorbide/Axe/Axe.rs.hs $
+	* t3 s0 ia7 l9 $
 
 $
 //Séquences

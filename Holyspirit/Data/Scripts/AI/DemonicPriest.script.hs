@@ -1,23 +1,26 @@
 
 main 
+	variable * 0 * -1
+
 	if see
 	then
+		variable * 0 * -1
 		if distance * 2 
 		then
 			if rand * 75 
 			then
 				evasion
 			else
-				if rand * 25 
+				if rand * 10 
 				then
-					useMiracle * 2 
-				else
-					if rand * 25 
+					if numberInvocation * 0
 					then
-						useMiracle * 1 
+						variable * 0 * 1
 					else
-						useMiracle * 0 
-					end 
+						variable * 0 * 0
+					end
+				else
+					variable * 0 * 0
 				end  
 			end
 		else
@@ -27,17 +30,15 @@ main
 			else
 				if distance * 6 
 				then
-					if rand * 25 
-					then
-						useMiracle * 2 
-					else
-						if rand * 25 
+					
+						if numberInvocation * 0
 						then
-							useMiracle * 1 
+							variable * 0 * 1
 						else
-							useMiracle * 0 
-						end 
-					end
+							variable * 0 * 0
+						end
+					
+	
 				else
 					fight
 				end
@@ -45,7 +46,23 @@ main
 		end
 		
 	else
+		variable * 0 * -1
 		randomDisplace  
 	end
 	
+	if variable * 0 * 0
+	then
+		if rand * 25
+		then
+			useMiracle * 0
+		else
+			useMiracle * 1
+		end
+	end
+
+	if variable * 0 * 1
+	then
+		useMiracle * 2
+	end
+
 end 
