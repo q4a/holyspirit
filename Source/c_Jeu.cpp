@@ -59,7 +59,7 @@ c_Jeu::c_Jeu(Jeu *jeu)
 
         //jeu->hero.m_personnage.Charger(&jeu->hero.m_modelePersonnage);
 
-        if(!jeu->map.Charger(0)==1) // Chargement de  jeu->map0.txt
+        if(!jeu->map.Charger(0,&jeu->hero)==1) // Chargement de  jeu->map0.txt
             throw("CRITICAL ERROR");
 
         jeu->ecran.ShowMouseCursor(false);
@@ -143,7 +143,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                 if(tempsSauvergarde>=configuration.frequence_sauvegarde)
                 {
                     jeu->hero.Sauvegarder();
-                    jeu->map.Sauvegarder();
+                    jeu->map.Sauvegarder(&jeu->hero);
                     tempsSauvergarde=0;
                 }
 

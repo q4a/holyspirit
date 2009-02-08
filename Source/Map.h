@@ -19,8 +19,8 @@ class Map
 	public:
 	Map();
 	~Map();
-	bool Charger(int numeroMap);
-	void Sauvegarder();
+	bool Charger(int numeroMap,Hero *hero);
+	void Sauvegarder(Hero *hero);
 	void Afficher(sf::RenderWindow* ecran,sf::View *camera,int type,Hero *hero,coordonnee positionSouris,bool alt,float alpha=255);
 
 	void AfficherSacInventaire(sf::RenderWindow* ecran,coordonnee positionSac,float decalage,coordonnee positionSouris,Classe *classe);

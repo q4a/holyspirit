@@ -158,6 +158,7 @@ struct Configuration
                         if(chaine== "version:") { fichier2>>version; }
 
                         if(chaine== "maps:") { fichier2>>chemin_maps; }
+                        if(chaine== "items:") { fichier2>>chemin_items; }
                         if(chaine== "temps:") { fichier2>>chemin_temps; }
                         if(chaine== "saves:") { fichier2>>chemin_saves; }
                         if(chaine== "events:") { fichier2>>chemin_evenements; }
@@ -173,16 +174,12 @@ struct Configuration
                         if(chaine== "fxContrast:") { fichier2>>nom_effetContrastes; }
                         if(chaine== "fxBlur:") { fichier2>>nom_effetBlur; }
 
-                        if(chaine== "menu_hud:") { fichier2>>nom_hud; }
                         if(chaine== "menu_minimap:") { fichier2>>nom_minimap; }
-                        if(chaine== "menu_life_orb:") { fichier2>>nom_bulle_vie; }
-                        if(chaine== "menu_faith_orb:") { fichier2>>nom_bulle_foi; }
 
                         if(chaine== "menu_soul:") { fichier2>>nom_ame; }
                         if(chaine== "menu_soul_orb:") { fichier2>>nom_barre_ame; }
                         if(chaine== "menu_life_monster:") { fichier2>>nom_barre_vie; }
                         if(chaine== "menu_life_monster_blank:") { fichier2>>nom_barre_vie_vide; }
-                        if(chaine== "menu_inventory:") { fichier2>>nom_inventaire; }
                         if(chaine== "menu_bag:") { fichier2>>nom_sac; }
 
                         if(chaine== "text_benedictions:") { fichier2>>chemin_text_benedictions; }
@@ -294,7 +291,7 @@ struct Configuration
     int Lumiere;
     float effetMort,effetNoir,volume,minute,zoom,frequence_sauvegarde,frequence_lumiere,luminosite,contrastes;
     int heure,cache,alpha;
-    std::string version,chemin_maps,chemin_temps,chemin_saves,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetMort,nom_effetContrastes,nom_effetBlur,nom_hud,nom_minimap,nom_bulle_vie,nom_bulle_foi,nom_ame,nom_barre_ame,nom_barre_vie,nom_barre_vie_vide,nom_sang,nom_inventaire,chemin_son_mort;
+    std::string version,chemin_maps,chemin_items,chemin_temps,chemin_saves,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetMort,nom_effetContrastes,nom_effetBlur,nom_minimap,nom_ame,nom_barre_ame,nom_barre_vie,nom_barre_vie_vide,nom_sang,chemin_son_mort;
     std::string font_titre,chemin_video_developpeur,nom_video_developpeur,nom_sac,chemin_aa;
 
     std::string chemin_text_benedictions;

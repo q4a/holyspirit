@@ -6,6 +6,9 @@
 #include <fstream>
 #include <vector>
 
+#ifndef DATFILEH
+#define DATFILEH
+
 struct sDATHeader
 {
     char uniqueID[5]; /// Unique ID used to know if this file is a DAT File from this class
@@ -32,13 +35,17 @@ class cDAT
         cDAT (void);
         ~cDAT (void);
         bool Create (std::vector<std::string> files, std::string destination);
-        void Read (std::string source);
+        bool Read (std::string source);
         char* GetFile (std::string filename);
-        std::ifstream* GetInfos();
+        std::ifstream* GetInfos(std::string filename);
+        bool IsFileExist(std::string filename);
         long int GetFileSize (std::string filename);
 
+        int GetNumberFile();
+        std::string GetFileName(int ID);
+        void ExportFile(int ID);
 
 };
 
 
-
+#endif

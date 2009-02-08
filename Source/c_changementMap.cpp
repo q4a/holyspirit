@@ -32,39 +32,45 @@ void c_Chargement::setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool
 
     m_debut=debut;
 
-    char chemin[128];
+    char chemin[255];
     vector <string> cheminFond;
-    sprintf(chemin,"Data/Maps/map%i.map.hs",numeroProchaineMap);
 
 
-    ifstream fichier;
-    fichier.open(chemin, ios::in);
+    cDAT reader;
+    reader.Read(configuration.chemin_maps);
+    sprintf(chemin,"map%i.map.hs",numeroMap);
+
+    ifstream *fichier=reader.GetInfos(chemin);
     if(fichier)
     {
         char caractere;
         do
         {
             //Chargement du nom
-            fichier.get(caractere);
+            fichier->get(caractere);
             if(caractere=='*')
             {
-                getline(fichier, nomMap);
+                *fichier>>nomMap;
+                for(int i=0;i<(int)nomMap.size();i++)
+                    if(nomMap[i]=='_')
+                        nomMap[i]=' ';
             }
         }while(caractere!='$');
 
         do
         {
             //Chargement du nom
-            fichier.get(caractere);
+            fichier->get(caractere);
             if(caractere=='*')
             {
-                cheminFond.push_back("");
-                getline(fichier, cheminFond.back());
+                string temp;
+                *fichier>>temp;
+                cheminFond.push_back(temp);
 
             }
         }while(caractere!='$');
     }
-    fichier.close();
+    fichier->close();
 
     int random=rand()%cheminFond.size();
 
@@ -99,7 +105,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         moteurGraphique.ViderParticules();
 
         if(!m_debut)
-            jeu->map.Sauvegarder();
+            jeu->map.Sauvegarder(&jeu->hero);
 
         jeu->map.Detruire();
 
@@ -107,7 +113,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         jeu->hero.ChargerModele(true);
 
-        if(!jeu->map.Charger(numeroProchaineMap))
+        if(!jeu->map.Charger(numeroProchaineMap,&jeu->hero))
             console.Ajouter("CRITICAL ERROR"), throw  "CRITICAL ERROR";
 
         moteurGraphique.DecrementerImportance();

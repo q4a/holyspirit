@@ -110,8 +110,55 @@ bool cDAT::Create (std::vector<std::string> files, std::string destination)
     return (true);
 }
 
-void cDAT::Read (std::string source)
+int cDAT::GetNumberFile()
 {
+    return m_header.nb_files;
+}
+
+std::string cDAT::GetFileName(int ID)
+{
+    if(ID>=0&&ID<(int)m_header.nb_files)
+        return m_entries[ID].name;
+    return "";
+}
+
+
+void cDAT::ExportFile(int ID)
+{
+    if(ID>=0&&ID<(int)m_header.nb_files)
+    {
+        std::ifstream datfile;
+        std::ofstream fichier(m_entries[ID].name, std::ios::out | std::ios::trunc);
+        if(fichier)
+        {
+            //We are allocating memory to the buffer
+            m_buffer = new char[(m_entries[ID].size)];
+            //Simple error catch
+            //if (m_buffer==NULL)
+              //  return (NULL);
+            //Opening the DAT file ot read the file datas needed
+            datfile.open (m_datfile.c_str(), std::ifstream::in | std::ifstream::binary);
+            if (datfile.is_open())
+            {
+                //Going to the right position
+                datfile.seekg (m_entries[ID].offset, std::ios::beg);
+              //  for(int o=0;o<m_entries[i].size;o++)
+                 //   fichier<<
+                //Reading
+                datfile.read (m_buffer, m_entries[ID].size);
+                fichier<<m_buffer;
+                //We can close the DAT file
+                datfile.close();
+            }
+
+            fichier.close();
+        }
+    }
+}
+
+bool cDAT::Read (std::string source)
+{
+    bool ok=false;
     //The input file stream from which we want informations
     std::ifstream datfile;
     //A file entry in order to push it in the object's std::vector
@@ -123,6 +170,7 @@ void cDAT::Read (std::string source)
     datfile.open (source.c_str(), std::ifstream::in | std::ifstream::binary);
     if (datfile.is_open())
     {
+        ok=true;
         //Getting to the Header position
         datfile.seekg (0, std::ios::beg);
         //Reading the DAT Header
@@ -138,11 +186,23 @@ void cDAT::Read (std::string source)
         //Since all seems ok, we keep the DAT file name
         m_datfile = source;
     }
+    else
+        console.Ajouter("Impossible de lire le fichier : " + source);
     //Closing the DAT file
     datfile.close();
+
+    return ok;
 }
 
-std::ifstream* cDAT::GetInfos()
+bool cDAT::IsFileExist(std::string filename)
+{
+    for (unsigned int i=0; i<m_header.nb_files;i++)
+        if (filename == m_entries[i].name)
+            return true;
+    return false;
+}
+
+std::ifstream* cDAT::GetInfos(std::string filename)
 {
     //The input file stream from which we want information
     std::ifstream *datfile;
@@ -159,9 +219,10 @@ std::ifstream* cDAT::GetInfos()
     for (unsigned int i=0; i<m_header.nb_files;i++)
     {
         //If we found it
-        std::string temp="infos.txt";
-        if (temp == m_entries[i].name)
+        //std::string temp="infos.txt";
+        if (filename == m_entries[i].name)
         {
+
             //We are allocating memory to the buffer
             m_buffer = new char[(m_entries[i].size)];
             //Simple error catch

@@ -104,6 +104,9 @@ class Hero
 
     int miracleEnCours,frappeEnCours,m_objetEnMain,m_objetADeposer;
 
+    //cDAT m_fichierSave;
+    std::vector<std::string> m_contenuSave;
+
 	private:
 	coordonneeDecimal m_positionAffichage;
 	int m_monstreVise;

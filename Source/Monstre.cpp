@@ -93,7 +93,7 @@ bool Modele_Monstre::Charger(string chemin)
     reader.Read(chemin);
 
     ifstream *fichier;
-    fichier = reader.GetInfos();
+    fichier = reader.GetInfos("infos.txt");
 
     if(fichier)
     {
@@ -350,6 +350,8 @@ bool Modele_Monstre::Charger(string chemin)
     console.Ajouter("Impossible d'ouvrir : "+chemin,1);
 
     fichier->close();
+
+    delete fichier;
 
     return 1;
 }

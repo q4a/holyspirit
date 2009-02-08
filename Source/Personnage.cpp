@@ -123,7 +123,7 @@ bool Modele_Personnage::Charger(string chemin)
 
 
     ifstream *fichier;
-    fichier = reader.GetInfos();
+    fichier = reader.GetInfos("infos.txt");
     //fichier.open(chemin.c_str(), ios::in);
     if(fichier)
     {
@@ -243,8 +243,7 @@ bool Modele_Personnage::Charger(string chemin)
     }
     fichier->close();
 
-    //delete fichier;
-
+    delete fichier;
 
     return true;
 }

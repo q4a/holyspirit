@@ -102,7 +102,7 @@ void Map::Detruire()
     console.Ajouter("Map détruite !");
 }
 
-bool Map::Charger(int numeroMap)
+bool Map::Charger(int numeroMap,Hero *hero)
 {
 
     int numeroModuleAleatoire=rand()%10;
@@ -113,12 +113,11 @@ bool Map::Charger(int numeroMap)
 	char numero[7];
 	string chemin = configuration.chemin_maps,chemin2 = configuration.chemin_temps+"map";
 
-	sprintf(numero,"%i.map.hs",numeroMap);
+
 	chemin += numero;
 	chemin2 += numero;
 
-	console.Ajouter("",0);
-	console.Ajouter("Chargement de la map : "+chemin);
+
 
 	m_lumiere[0].intensite=1;
 	m_lumiere[0].rouge=0;
@@ -127,37 +126,34 @@ bool Map::Charger(int numeroMap)
 
     m_musiqueEnCours=0;
 
-	ifstream fichier,fichier2;
+    sprintf(numero,"Chargement de la map : map%i.map.hs",numeroMap);
 
-    struct dirent *lecture;
+    console.Ajouter("",0);
+	console.Ajouter(numero);
 
-	DIR *repertoire;
-    repertoire = opendir(configuration.chemin_temps.c_str());
-    while ((lecture = readdir(repertoire)))
-    {
-        char temp2[255];
-        string temp;
-        sprintf(temp2,"map%i.map.hs",numeroMap);
-        temp=temp2;
-        if(lecture->d_name==temp)
-            mapExistante=true,fichier.open(chemin2.c_str(), ios::in),chemin=chemin2;
+	sprintf(numero,"map%i.map.hs",numeroMap);
 
+    cDAT reader;
 
-        sprintf(temp2,"entites_map%i.emap.hs",numeroMap);
-        temp=temp2;
-        if(lecture->d_name==temp)
-        {
-            string cheminEntites = configuration.chemin_temps + temp;
-            entite_map_existante=true,fichier2.open(cheminEntites.c_str(), ios::in);
-        }
-    }
-    closedir(repertoire);
+    reader.Read(configuration.chemin_saves+"hero.sav.hs");
 
-    if(configuration.debug)
-            console.Ajouter("/Test de l'existence des fichiers temps.");
+    if(reader.IsFileExist(configuration.chemin_temps+numero))
+       mapExistante=true,entite_map_existante=true,console.Ajouter("Map sauvée existante.");
 
     if(!mapExistante)
-        fichier.open(chemin.c_str(), ios::in);
+        reader.Read(configuration.chemin_maps);
+
+
+	ifstream *fichier=reader.GetInfos(numero);
+	ifstream *fichier2=NULL;
+
+	if(mapExistante)
+	{
+        fichier=reader.GetInfos(configuration.chemin_temps+numero);
+	    sprintf(numero,"entites_map%i.emap.hs",numeroMap);
+        fichier2=reader.GetInfos(configuration.chemin_temps+numero);
+	}
+
 
     if(fichier)
     {
@@ -165,31 +161,27 @@ bool Map::Charger(int numeroMap)
     	do
     	{
     	    //Chargement du nom
-    		fichier.get(caractere);
+    		fichier->get(caractere);
     		if(caractere=='*')
-    		{
-    			string nom;
-                getline(fichier, nom);
-                m_nom=nom;
-    		}
+                *fichier>>m_nom;
 
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
+    		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
     	}while(caractere!='$');
     	if(configuration.debug)
             console.Ajouter("/Lectures du nom.");
 
     	do
         {
-            fichier.get(caractere);
+            fichier->get(caractere);
 
             if(caractere=='*')
     		{
     			string nom;
-                getline(fichier, nom);
+                *fichier>>nom;
                 m_fond.push_back(nom);
     		}
 
-            if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
+            if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
         }while(caractere!='$');
 
         if(configuration.debug)
@@ -201,12 +193,12 @@ bool Map::Charger(int numeroMap)
     	do
     	{
     	    //Chargement des musiques
-    		fichier.get(caractere);
+    		fichier->get(caractere);
     		if(caractere=='*'&&m_musiqueEnCours<MAX_MUSIQUE)
     		{
     		    std::string temp2;
 
-                getline(fichier, temp2);
+                *fichier>>temp2;
 
                 if(!m_musique[m_musiqueEnCours].OpenFromFile(temp2.c_str()))
                     console.Ajouter("Impossible de charger : "+temp2,1);
@@ -220,7 +212,7 @@ bool Map::Charger(int numeroMap)
 
                 m_musiqueEnCours++;
     		}
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str()); throw (&temp); }
+    		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str()); throw (&temp); }
     	}while(caractere!='$');
 
     	if(configuration.debug)
@@ -235,20 +227,20 @@ bool Map::Charger(int numeroMap)
     	{
 
     	    //Chargement de la lumière ambiante
-    		fichier.get(caractere);
+    		fichier->get(caractere);
     		if(caractere=='*')
     		{
-    			fichier>>m_lumiere[heureEnCours].rouge;
-    			fichier>>m_lumiere[heureEnCours].vert;
-    			fichier>>m_lumiere[heureEnCours].bleu;
-    			fichier>>m_lumiere[heureEnCours].intensite;
-    			fichier>>m_lumiere[heureEnCours].hauteur;
+    			*fichier>>m_lumiere[heureEnCours].rouge;
+    			*fichier>>m_lumiere[heureEnCours].vert;
+    			*fichier>>m_lumiere[heureEnCours].bleu;
+    			*fichier>>m_lumiere[heureEnCours].intensite;
+    			*fichier>>m_lumiere[heureEnCours].hauteur;
     			heureEnCours++;
 
     			if(heureEnCours>23)
                     heureEnCours=23;
     		}
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
+    		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
     	}while(caractere!='$');
 
     	if(configuration.debug)
@@ -273,17 +265,17 @@ bool Map::Charger(int numeroMap)
     	do
     	{
     	    //Chargement des tileset
-    		fichier.get(caractere);
+    		fichier->get(caractere);
     		if(caractere=='*')
     		{
     			string cheminDuTileset;
-                getline(fichier, cheminDuTileset);
+    			*fichier>>cheminDuTileset;
                 m_tileset.push_back(tilesetTemp);
                 if(!m_tileset.back().Charger(cheminDuTileset))
                     return 0;
 
     		}
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
+    		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
 
     	}while(caractere!='$');
 
@@ -293,17 +285,17 @@ bool Map::Charger(int numeroMap)
     	do
     	{
     	    //Chargement des tileset
-    		fichier.get(caractere);
+    		fichier->get(caractere);
     		if(caractere=='*')
     		{
     			string cheminDuTileset;
-                getline(fichier, cheminDuTileset);
+                *fichier>>cheminDuTileset;
                 m_herbe.push_back(Herbe ());
                 if(!m_herbe.back().Charger(cheminDuTileset))
                     return 0;
 
     		}
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
+    		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
 
     	}while(caractere!='$');
 
@@ -318,17 +310,18 @@ bool Map::Charger(int numeroMap)
     	{
 
     	    //Chargement des tileset
-    		fichier.get(caractere);
+    		fichier->get(caractere);
     		if(caractere=='*')
     		{
     			string cheminDuMonstre;
-                getline(fichier, cheminDuMonstre);
+                //getline(fichier, cheminDuMonstre);
+                *fichier>>cheminDuMonstre;
                 m_ModeleMonstre.push_back(Modele_Monstre ());
                 m_ModeleMonstre.back().Charger(cheminDuMonstre);
                 console.Ajouter("Chargement de : "+cheminDuMonstre+" terminé",0);
 
     		}
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
+    		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
     	}while(caractere!='$');
 
     	if(configuration.debug)
@@ -345,7 +338,7 @@ bool Map::Charger(int numeroMap)
                 do
                 {
                     //Chargement du nom
-                    fichier2.get(caractere);
+                    fichier2->get(caractere);
                     if(caractere=='*')
                     {
                         Lumiere lumiere;
@@ -357,33 +350,33 @@ bool Map::Charger(int numeroMap)
                         do
                         {
                             //Chargement du nom
-                            fichier2.get(caractere);
+                            fichier2->get(caractere);
                             switch(caractere)
                             {
-                                case 'm': fichier2>>numeroModele; break;
-                                case 'v': fichier2.get(caractere); if(caractere=='i') { fichier2>>vieMin; } else if(caractere=='a') { fichier2>>vieMax; } break;
-                                case 'd': fichier2.get(caractere); if(caractere=='i') { fichier2>>degatsMin; } else if(caractere=='a') { fichier2>>degatsMax; } break;
-                                case 'r': fichier2>>rang; break;
-                                case 'a': fichier2>>ame; break;
-                                case 't': fichier2>>taille; break;
+                                case 'm': *fichier2>>numeroModele; break;
+                                case 'v': fichier2->get(caractere); if(caractere=='i') { *fichier2>>vieMin; } else if(caractere=='a') { *fichier2>>vieMax; } break;
+                                case 'd': fichier2->get(caractere); if(caractere=='i') { *fichier2>>degatsMin; } else if(caractere=='a') { *fichier2>>degatsMax; } break;
+                                case 'r': *fichier2>>rang; break;
+                                case 'a': *fichier2>>ame; break;
+                                case 't': *fichier2>>taille; break;
 
-                                case 'p': fichier2>>pose; break;
-                                case 'e': fichier2>>etat; break;
-                                case 'g': fichier2>>angle; break;
+                                case 'p': *fichier2>>pose; break;
+                                case 'e': *fichier2>>etat; break;
+                                case 'g': *fichier2>>angle; break;
 
                                 case 'l':
-                                    fichier2.get(caractere);
+                                    fichier2->get(caractere);
                                     switch(caractere)
                                     {
-                                        case 'r': fichier2>>lumiere.rouge; break;
-                                        case 'v': fichier2>>lumiere.vert; break;
-                                        case 'b': fichier2>>lumiere.bleu; break;
-                                        case 'i': fichier2>>lumiere.intensite; break;
+                                        case 'r': *fichier2>>lumiere.rouge; break;
+                                        case 'v': *fichier2>>lumiere.vert; break;
+                                        case 'b': *fichier2>>lumiere.bleu; break;
+                                        case 'i': *fichier2>>lumiere.intensite; break;
                                     }
                                 break;
                             }
 
-                            if(fichier2.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
+                            if(fichier2->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
                         }while(caractere!='$');
 
                         if((int)m_monstre.size()>0)
@@ -406,9 +399,9 @@ bool Map::Charger(int numeroMap)
                         }
                     }
 
-                    if(fichier2.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
+                    if(fichier2->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
                 }while(caractere!='$');
-                fichier2.close();
+                fichier2->close();
             }
 
         }
@@ -417,18 +410,18 @@ bool Map::Charger(int numeroMap)
 
     	do
     	{
-    		fichier.get(caractere);
+    		fichier->get(caractere);
     		if(caractere=='*')
     		{
     		    int numeroEvenement;
     			do
     			{
-    				fichier.get(caractere);
+    				fichier->get(caractere);
     				switch (caractere)
     				{
-    					case 'e': fichier>>numeroEvenement; break;
+    					case 'e': *fichier>>numeroEvenement; break;
     				}
-    				if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
+    				if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
     			}while(caractere!='$');
     			m_evenement.push_back(numeroEvenement);
 
@@ -437,18 +430,19 @@ bool Map::Charger(int numeroMap)
     			int information;
     			do
     			{
-    				fichier.get(caractere);
+    				fichier->get(caractere);
     				if(caractere=='i')
     				{
-                        fichier>>information;
+                        *fichier>>information;
+
     				    m_evenement.back().AjouterInformation(information);
     				}
-    				if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
+    				if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
     			}while(caractere!='$');
 
-    			fichier.get(caractere);
+    			fichier->get(caractere);
     		}
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
+    		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
     	}while(caractere!='$');
 
     	if(configuration.debug)
@@ -469,13 +463,14 @@ bool Map::Charger(int numeroMap)
             do
             {
                 //Chargement des "décors", des cases de la map
-                fichier.get(caractere);
+                fichier->get(caractere);
                 if(caractere=='*')
                 {
                    // if(couche==0)
                     m_decor[couche].push_back(vector<Decor> (0,decorTemp));
                     do
                     {
+
                         std::vector<int> evenement;
                         int tileset=-1,tileFinal=-1,herbe=-1,monstreFinal=-1,layer=0,hauteur=0;
                         int rarete=0;
@@ -485,22 +480,20 @@ bool Map::Charger(int numeroMap)
                         vector <Objet> objets;
                         do
                         {
-                            fichier.get(caractere);
+                            fichier->get(caractere);
                             switch (caractere)
                             {
-                                case 's': fichier>>tileset; break;
-                                case 't': fichier>>temp; tile.push_back(temp); break;
-                                case 'e': int temp2; fichier>>temp2; evenement.push_back(temp2); break;
-                                case 'm': if(!entite_map_existante) { fichier>>temp; monstre.push_back(temp);  } else {  fichier>>monstreFinal; } break;
-                                case 'h': fichier>>herbe; break;
-                                case 'l': fichier>>layer; break;
-                                case 'i': fichier>>hauteur; break;
+                                case 's': *fichier>>tileset; break;
+                                case 't': *fichier>>temp; tile.push_back(temp); break;
+                                case 'e': int temp2; *fichier>>temp2; evenement.push_back(temp2); break;
+                                case 'm': if(!entite_map_existante) { *fichier>>temp; monstre.push_back(temp);  } else {  *fichier>>monstreFinal; } break;
+                                case 'h': *fichier>>herbe; break;
+                                case 'l': *fichier>>layer; break;
+                                case 'i': *fichier>>hauteur; break;
 
                                 case 'o':
-
-
                                     objets.push_back(Objet ());
-                                    objets.back().ChargerTexte(&fichier);
+                                    objets.back().ChargerTexte(fichier);
                                     rarete=objets.back().getRarete();
                                     objets.back().Charger(objets.back().getChemin());
                                     objets.back().setRarete(rarete);
@@ -511,111 +504,120 @@ bool Map::Charger(int numeroMap)
                                     int noModuleCaseMin=-1,noModuleCaseMax=-1;
                                     do
                                     {
-                                        fichier.get(caractere);
+                                        fichier->get(caractere);
 
                                         if(caractere=='i')
-                                            fichier>>noModuleCaseMin;
+                                            *fichier>>noModuleCaseMin;
                                         else if(caractere=='a')
-                                            fichier>>noModuleCaseMax;
+                                            *fichier>>noModuleCaseMax;
 
                                         else if(caractere=='*')
                                             if(numeroModuleAleatoire>=noModuleCaseMin&&numeroModuleAleatoire<=noModuleCaseMax)
                                                 do
                                                 {
-                                                    fichier.get(caractere);
+                                                    fichier->get(caractere);
                                                     switch (caractere)
                                                     {
-                                                        case 's': fichier>>tileset; break;
-                                                        case 't': fichier>>temp; tile.push_back(temp); break;
-                                                        case 'e': int temp2; fichier>>temp2; evenement.push_back(temp2); break;
-                                                        case 'm': if(!entite_map_existante) { fichier>>temp; monstre.push_back(temp);  } else {  fichier>>monstreFinal; } break;
-                                                        case 'h': fichier>>herbe; break;
-                                                        case 'l': fichier>>layer; break;
+                                                        case 's': *fichier>>tileset; break;
+                                                        case 't': *fichier>>temp; tile.push_back(temp); break;
+                                                        case 'e': int temp2; *fichier>>temp2; evenement.push_back(temp2); break;
+                                                        case 'm': if(!entite_map_existante) { *fichier>>temp; monstre.push_back(temp);  } else {  *fichier>>monstreFinal; } break;
+                                                        case 'h': *fichier>>herbe; break;
+                                                        case 'l': *fichier>>layer; break;
                                                     }
 
-                                                    if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
+                                                    if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
                                                 }while(caractere!='$');
 
-                                        if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
+                                        if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
                                     }while(caractere!='$');
 
                                 break;
                             }
-                            if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
-                        }while(caractere!='|');
+                            if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
+                        }while(caractere!='|' && caractere!='$');
+
                         //AjouterDecor(tileset,tile,evenement,position,couche,monstre);
                         //decorTemp2.setDecor(tileset,tile,evenement,monstre);
 
-                        if(couche==1)
-                            if(m_decor[0][position.y][position.x].getHerbe()>=0&&herbe<0)
-                                herbe=m_decor[0][position.y][position.x].getHerbe();
-
-                        if(!entite_map_existante)
+                        if(caractere!='$')
                         {
-                            if((int)monstre.size()>0)
-                            {
-                                int random = (rand() % (monstre.size() -1 - 0 + 1)) + 0;
-                                if(random>=0&&random<(int)monstre.size())
-                                    monstreFinal = monstre[random];
+                            if(couche==1)
+                                if(m_decor[0][position.y][position.x].getHerbe()>=0&&herbe<0)
+                                    herbe=m_decor[0][position.y][position.x].getHerbe();
 
-                                monstre.clear();
-                            }
-
-                            if(monstreFinal>=0&&monstreFinal<(int)m_ModeleMonstre.size())
+                            if(!entite_map_existante)
                             {
-                                m_monstre.push_back(Monstre ());
-                                m_monstre.back().Charger(monstreFinal,&m_ModeleMonstre[monstreFinal]);
-                                m_monstre.back().setCoordonnee(position),m_monstre.back().setDepart();
-                                monstreFinal=m_monstre.size()-1;
+                                if((int)monstre.size()>0)
+                                {
+                                    int random = (rand() % (monstre.size() -1 - 0 + 1)) + 0;
+                                    if(random>=0&&random<(int)monstre.size())
+                                        monstreFinal = monstre[random];
+
+                                    monstre.clear();
+                                }
+
+                                if(monstreFinal>=0&&monstreFinal<(int)m_ModeleMonstre.size())
+                                {
+                                    m_monstre.push_back(Monstre ());
+                                    m_monstre.back().Charger(monstreFinal,&m_ModeleMonstre[monstreFinal]);
+                                    m_monstre.back().setCoordonnee(position),m_monstre.back().setDepart();
+                                    monstreFinal=m_monstre.size()-1;
+                                }
+                                else
+                                monstreFinal=-1;
                             }
                             else
-                            monstreFinal=-1;
-                        }
-                        else
-                        {
-                            if(monstreFinal>=0&&monstreFinal<(int)m_monstre.size())
                             {
-                                int etat,pose,angle;
-                                etat=m_monstre[monstreFinal].getEtat();
-                                pose=m_monstre[monstreFinal].getPose();
-                                angle=m_monstre[monstreFinal].getAngle();
-                                m_monstre[monstreFinal].setCoordonnee(position);
-                                m_monstre[monstreFinal].setDepart();
-                                m_monstre[monstreFinal].setEtat(etat);
-                                m_monstre[monstreFinal].setPose(pose);
-                                m_monstre[monstreFinal].setAngle(angle);
+                                if(monstreFinal>=0&&monstreFinal<(int)m_monstre.size())
+                                {
+                                    int etat,pose,angle;
+                                    etat=m_monstre[monstreFinal].getEtat();
+                                    pose=m_monstre[monstreFinal].getPose();
+                                    angle=m_monstre[monstreFinal].getAngle();
+                                    m_monstre[monstreFinal].setCoordonnee(position);
+                                    m_monstre[monstreFinal].setDepart();
+                                    m_monstre[monstreFinal].setEtat(etat);
+                                    m_monstre[monstreFinal].setPose(pose);
+                                    m_monstre[monstreFinal].setAngle(angle);
+                                }
                             }
+
+                            if(tile.size()>0)
+                            {
+                                int random = (rand() % (tile.size() -1 - 0 + 1)) + 0;
+                                if(random>=0&&random<(int)tile.size())
+                                    tileFinal = tile[random];
+
+                                tile.clear();
+                            }
+
+                            if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
+
+
+                            m_decor[couche][position.y].push_back(Decor (tileset,tileFinal,evenement,monstreFinal,herbe,layer,hauteur,objets));
+
+                            tileset=-1,tile.clear(),tileFinal=-1,evenement.clear(),monstreFinal=-1,herbe=-1,layer=0,hauteur=0;
+                            objets.clear();
+                            position.x++;
                         }
 
-                        if(tile.size()>0)
-                        {
-                            int random = (rand() % (tile.size() -1 - 0 + 1)) + 0;
-                            if(random>=0&&random<(int)tile.size())
-                                tileFinal = tile[random];
+                        //fichier->get(caractere);
 
-                            tile.clear();
-                        }
+                    }while(caractere!='$');
 
-                        if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
+                    fichier->get(caractere);
 
-
-                        m_decor[couche][position.y].push_back(Decor (tileset,tileFinal,evenement,monstreFinal,herbe,layer,hauteur,objets));
-                        tileset=-1,tile.clear(),tileFinal=-1,evenement.clear(),monstreFinal=-1,herbe=-1,layer=0,hauteur=0;
-                        objets.clear();
-                        position.x++;
-                        fichier.get(caractere);
-                    }while(caractere!='\n');
                     position.x=0;
                     position.y++;
                 }
-                if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1);  throw (&temp); }
-
+                if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1);  throw (&temp); }
             }while(caractere!='$');
     	}
     	if(configuration.debug)
             console.Ajouter("/Lectures des cases.");
 
-    	fichier.close();
+    	fichier->close();
     }
     else
     {
@@ -641,6 +643,8 @@ bool Map::Charger(int numeroMap)
                     }
             }
 
+    delete fichier;
+
     console.Ajouter("Chargement de la map terminé.");
     console.Ajouter("");
 
@@ -653,7 +657,7 @@ bool Map::Charger(int numeroMap)
 
 
 
-void Map::Sauvegarder()
+void Map::Sauvegarder(Hero *hero)
 {
 	char numero[7];
 	string chemin = configuration.chemin_temps;
@@ -666,6 +670,14 @@ void Map::Sauvegarder()
 
 
 	ofstream fichier(chemin.c_str(), ios::out | ios::trunc);
+
+	bool ajouter=true;
+	for(int i=0;i<(int)hero->m_contenuSave.size();i++)
+        if(hero->m_contenuSave[i]==chemin)
+            ajouter=false;
+    if(ajouter)
+        hero->m_contenuSave.push_back(chemin);
+
     if(fichier)
     {
         fichier<<"*"<<m_nom<<"\n$\n";
@@ -730,7 +742,7 @@ void Map::Sauvegarder()
 
                     fichier<<"|";
                 }
-                fichier<<"\n";
+                fichier<<"$\n";
     	    }
     	    fichier<<"$\n";
     	}
@@ -753,6 +765,14 @@ void Map::Sauvegarder()
 	console.Ajouter("Sauvegarde de la map_entite : "+chemin,0);
 
     ofstream fichier2(chemin.c_str(), ios::out | ios::trunc);
+
+    ajouter=true;
+	for(int i=0;i<(int)hero->m_contenuSave.size();i++)
+        if(hero->m_contenuSave[i]==chemin)
+            ajouter=false;
+    if(ajouter)
+        hero->m_contenuSave.push_back(chemin);
+
     if(fichier2)
     {
         for(int i=0;i<(int)m_monstre.size();i++)
@@ -2139,11 +2159,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     255));
                             }
 
-                            coordonnee positionSourisTotale;
-                            positionSourisTotale.x=(int)ecran->ConvertCoords(ecran->GetInput().GetMouseX(),ecran->GetInput().GetMouseY()).x;
-                            positionSourisTotale.y=(int)ecran->ConvertCoords(ecran->GetInput().GetMouseX(), ecran->GetInput().GetMouseY()).y;
-
-                            if(m_sacPointe.x==k&&m_sacPointe.y==j)
+                            if(m_sacPointe.x==k&&m_sacPointe.y==j&&m_monstreIllumine<0)
                                 Sprite.SetColor(sf::Color(
                                     255,
                                     128,
@@ -2588,25 +2604,29 @@ void Map::AfficherNomEvenement(sf::RenderWindow* ecran,coordonnee casePointee,co
                     {
                         string nom;
                         char chemin[128];
-                        sprintf(chemin,"Data/Maps/map%i.map.hs",m_evenement[evenement].getInformation(0));
 
+                        cDAT reader;
+                        reader.Read(configuration.chemin_maps);
+                        sprintf(chemin,"map%i.map.hs",m_evenement[evenement].getInformation(0));
 
-                        ifstream fichier;
-                        fichier.open(chemin, ios::in);
+                        ifstream *fichier=reader.GetInfos(chemin);
                         if(fichier)
                         {
                             char caractere;
                             do
                             {
                                 //Chargement du nom
-                                fichier.get(caractere);
+                                fichier->get(caractere);
                                 if(caractere=='*')
                                 {
-                                    getline(fichier, nom);
+                                    *fichier>>nom;
+                                    for(int i=0;i<(int)nom.size();i++)
+                                        if(nom[i]=='_')
+                                            nom[i]=' ';
                                 }
                             }while(caractere!='$');
                         }
-                        fichier.close();
+                        fichier->close();
 
                         sprintf(chemin,"Vers %s",nom.c_str());
 
@@ -3140,16 +3160,16 @@ void Map::infligerDegatsMasse(coordonnee position,int rayon,int degats,bool sour
                         {
                             coordonnee vecteur;
 
-                            if(hero->m_personnage.getCoordonnee().x-m_monstre[m_decor[couche][y][x].getMonstre()].getCoordonnee().x<0)
+                            if(position.x-m_monstre[m_decor[couche][y][x].getMonstre()].getCoordonnee().x<0)
                                 vecteur.x=1;
-                            else if(hero->m_personnage.getCoordonnee().x-m_monstre[m_decor[couche][y][x].getMonstre()].getCoordonnee().x>0)
+                            else if(position.x-m_monstre[m_decor[couche][y][x].getMonstre()].getCoordonnee().x>0)
                                 vecteur.x=-1;
                             else
                                 vecteur.x=0;
 
-                            if(hero->m_personnage.getCoordonnee().y-m_monstre[m_decor[couche][y][x].getMonstre()].getCoordonnee().y<0)
+                            if(position.y-m_monstre[m_decor[couche][y][x].getMonstre()].getCoordonnee().y<0)
                                 vecteur.y=1;
-                            else if(hero->m_personnage.getCoordonnee().y-m_monstre[m_decor[couche][y][x].getMonstre()].getCoordonnee().y>0)
+                            else if(position.y-m_monstre[m_decor[couche][y][x].getMonstre()].getCoordonnee().y>0)
                                 vecteur.y=-1;
                             else
                                 vecteur.y=0;

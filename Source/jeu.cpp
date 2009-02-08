@@ -1,6 +1,8 @@
 #include "constantes.h"
 #include "Globale.h"
 #include "jeu.h"
+#include "datFile.h"
+
 #include <dirent.h>
 
 void lireVideo(sf::RenderWindow *ecran,std::string Chemin);
@@ -29,6 +31,19 @@ void Jeu::Demarrer()
 
     lireVideo(&ecran,"Data/Menus/Videos/Cinematique test 1-2");
 
+    this->hero.Charger();
+
+    {
+        cDAT reader;
+        if(reader.Read(configuration.chemin_saves+"hero.sav.hs"))
+            for(int i=0;i<(int)reader.GetNumberFile();i++)
+                if(reader.GetFileName(i)!=configuration.chemin_temps+"hero.sav.txt")
+                    reader.ExportFile(i),this->hero.m_contenuSave.push_back(reader.GetFileName(i));
+
+    }
+
+
+
     this->m_jeu = new c_Jeu(this);
     this->m_demarrage = new c_Demarrage(this);
     this->m_chargement = new c_Chargement(this);
@@ -39,7 +54,7 @@ void Jeu::Demarrer()
     this->m_chargement->setC_Chargement(1,temp,1);
     this->m_contexte = this->m_demarrage;
 
-    this->hero.Charger();
+
 
     Clock.Reset();
 
@@ -59,11 +74,15 @@ void Jeu::Demarrer()
             moteurGraphique.Vider();
 		}
 	}
-	this->hero.Sauvegarder();
-	this->map.Sauvegarder();
+
+	this->map.Sauvegarder(&this->hero);
 
 	if(m_reset)
         Reset();
+
+    this->hero.Sauvegarder();
+
+    Reset();
 
     delete this->m_demarrage;
     delete this->m_jeu;
@@ -88,6 +107,9 @@ void Jeu::Reset()
         remove(temp.c_str());
     }
     closedir(repertoire);
+
+    this->hero.m_contenuSave.clear();
+    this->hero.m_contenuSave.push_back(configuration.chemin_temps+"hero.sav.txt");
 }
 
 
