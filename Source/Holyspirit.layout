@@ -62,7 +62,7 @@
 		<Cursor position="210" topLine="0" />
 	</File>
 	<File name="c_inventaire.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="1670" topLine="3" />
+		<Cursor position="753" topLine="24" />
 	</File>
 	<File name="c_inventaire.h" open="0" top="0" tabpos="42">
 		<Cursor position="270" topLine="0" />
@@ -137,7 +137,7 @@
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="map.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="251687" topLine="3710" />
+		<Cursor position="160139" topLine="2326" />
 	</File>
 	<File name="menu.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="5379" topLine="93" />
@@ -161,7 +161,7 @@
 		<Cursor position="11024" topLine="288" />
 	</File>
 	<File name="moteurParticule.cpp" open="1" top="0" tabpos="12">
-		<Cursor position="464" topLine="72" />
+		<Cursor position="4059" topLine="72" />
 	</File>
 	<File name="moteurParticule.h" open="0" top="0" tabpos="14">
 		<Cursor position="729" topLine="8" />
@@ -175,8 +175,8 @@
 	<File name="objet.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="26389" topLine="807" />
 	</File>
-	<File name="personnage.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="1212" topLine="66" />
+	<File name="personnage.cpp" open="1" top="1" tabpos="6">
+		<Cursor position="10554" topLine="282" />
 	</File>
 	<File name="pose.cpp" open="0" top="0" tabpos="15">
 		<Cursor position="168" topLine="0" />
@@ -196,8 +196,8 @@
 	<File name="tile.cpp" open="0" top="0" tabpos="14">
 		<Cursor position="523" topLine="13" />
 	</File>
-	<File name="tileset.cpp" open="0" top="0" tabpos="12">
-		<Cursor position="7179" topLine="267" />
+	<File name="tileset.cpp" open="1" top="0" tabpos="13">
+		<Cursor position="4509" topLine="123" />
 	</File>
 	<File name="video.cpp" open="0" top="0" tabpos="10">
 		<Cursor position="4796" topLine="156" />

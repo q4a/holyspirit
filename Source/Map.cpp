@@ -2224,6 +2224,8 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                 Sprite.SetImage(*moteurGraphique.getImage(m_tileset[m_decor[couche][j][k].getTileset()].getImage(m_decor[couche][j][k].getTile())));
                                 Sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
 
+                                Sprite.SetCenter(m_tileset[m_decor[couche][j][k].getTileset()].getCentreDuTile(m_decor[couche][j][k].getTile()).x,m_tileset[m_decor[couche][j][k].getTileset()].getCentreDuTile(m_decor[couche][j][k].getTile()).y);
+
                                 if(configuration.Ombre)
                                 {
                                     if(m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()))
@@ -2234,22 +2236,22 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                                             Sprite.SetColor(sf::Color(0,0,0,m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].intensite));
 
-                                            Sprite.SetCenter(m_tileset[m_decor[couche][j][k].getTileset()].getCentreDuTile(m_decor[couche][j][k].getTile()).x,m_tileset[m_decor[couche][j][k].getTileset()].getCentreDuTile(m_decor[couche][j][k].getTile()).y);
+                                            //Sprite.SetCenter(m_tileset[m_decor[couche][j][k].getTileset()].getCentreDuTile(m_decor[couche][j][k].getTile()).x,m_tileset[m_decor[couche][j][k].getTileset()].getCentreDuTile(m_decor[couche][j][k].getTile()).y);
                                             Sprite.SetScale(1, m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].taille);
                                             Sprite.SetRotation(m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle);
                                              //if(m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle>90&&m_tableauDesLampes[j-vueMin.y][k-vueMin.x].m_ombre[o].angle<270)
                                                // Sprite.FlipX(true);
-                                            Sprite.SetX(position.x+64-positionPartieDecor.w/2+positionPartieDecor.w/2);
+                                            Sprite.SetX(position.x+64/*-positionPartieDecor.w/2+positionPartieDecor.w/2*/);
                                             //Sprite.SetY(position.y-32+(positionPartieDecor.h-m_tileset[m_decor[couche][j][k].getTileset()].getCentreDuTile(m_decor[couche][j][k].getTile()).y));
 
-                                            Sprite.SetY(position.y-positionPartieDecor.h+32+(positionPartieDecor.h-m_tileset[m_decor[couche][j][k].getTileset()].getCentreDuTile(m_decor[couche][j][k].getTile()).y) + m_tileset[m_decor[couche][j][k].getTileset()].getCentreDuTile(m_decor[couche][j][k].getTile()).y);
+                                            Sprite.SetY(position.y/*-positionPartieDecor.h*/+32/*+(positionPartieDecor.h-m_tileset[m_decor[couche][j][k].getTileset()].getCentreDuTile(m_decor[couche][j][k].getTile()).y) + m_tileset[m_decor[couche][j][k].getTileset()].getCentreDuTile(m_decor[couche][j][k].getTile()).y*/);
 
                                             if(Sprite.GetPosition().x+Sprite.GetSize().x>=camera->GetRect().Left)
                                             if(Sprite.GetPosition().x-Sprite.GetSize().y<camera->GetRect().Right)
                                             if(Sprite.GetPosition().y+Sprite.GetSize().y>=camera->GetRect().Top)
                                             if(Sprite.GetPosition().y-Sprite.GetSize().x<camera->GetRect().Bottom)
                                             moteurGraphique.AjouterCommande(&Sprite,9,1);
-                                            Sprite.SetCenter(0,0);
+                                           // Sprite.SetCenter(0,0);
                                             Sprite.SetScale(1, 1);
                                             Sprite.FlipX(false);
                                             Sprite.SetRotation(0);
@@ -2262,18 +2264,8 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                                 if(position.x+64-positionPartieDecor.w/2+positionPartieDecor.w>=ViewRect.Left&&position.x+64-positionPartieDecor.w/2<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y-positionPartieDecor.h+64<ViewRect.Bottom)
                                 {
-                                    if(couche==1)
-                                    {
-                                        Sprite.SetX(position.x+64-positionPartieDecor.w/2);
-                                        //Sprite.SetY(position.y-positionPartieDecor.h+64/*-(32-(positionPartieDecor.h-m_tileset[m_decor[couche][j][k].getTileset()].getCentreDuTile(m_decor[couche][j][k].getTile()).y))*/);
-
-                                        Sprite.SetY(position.y-positionPartieDecor.h+32+(positionPartieDecor.h-m_tileset[m_decor[couche][j][k].getTileset()].getCentreDuTile(m_decor[couche][j][k].getTile()).y));
-                                    }
-                                    else
-                                    {
-                                        Sprite.SetX(position.x+64-positionPartieDecor.w/2);
-                                        Sprite.SetY(position.y-positionPartieDecor.h/2+64);
-                                    }
+                                    Sprite.SetX(position.x+64);
+                                    Sprite.SetY(position.y+32);
 
                                     int alpha=255;
 
@@ -2316,13 +2308,14 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                         layer=10;
 
 
-                                    if(Sprite.GetPosition().x+Sprite.GetSize().x>=camera->GetRect().Left)
-                                    if(Sprite.GetPosition().x<camera->GetRect().Right)
-                                    if(Sprite.GetPosition().y+Sprite.GetSize().y>=camera->GetRect().Top)
-                                    if(Sprite.GetPosition().y<camera->GetRect().Bottom)
+                                    if(Sprite.GetPosition().x+Sprite.GetSize().x/2>=camera->GetRect().Left)
+                                    if(Sprite.GetPosition().x-Sprite.GetSize().x/2<camera->GetRect().Right)
+                                    if(Sprite.GetPosition().y+Sprite.GetSize().y/2>=camera->GetRect().Top)
+                                    if(Sprite.GetPosition().y-Sprite.GetSize().y/2<camera->GetRect().Bottom)
                                     moteurGraphique.AjouterCommande(&Sprite,layer,1);
                                      //ecran->Draw(Sprite);
                                 }
+                                Sprite.SetCenter(0,0);
                             }
                         }
 
@@ -2370,16 +2363,10 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     }
                                     Sprite.SetImage(*moteurGraphique.getImage(m_tileset[m_decor[couche][w][z].getTileset()].getImage(m_decor[couche][w][z].getTile())));
                                     Sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
-                                    if(couche==1)
-                                    {
-                                        Sprite.SetX(position.x+64-positionPartieDecor.w/2);
-                                        Sprite.SetY(position.y-positionPartieDecor.h+64);
-                                    }
-                                    else
-                                    {
-                                        Sprite.SetX(position.x+64-positionPartieDecor.w/2);
-                                        Sprite.SetY(position.y-positionPartieDecor.h/2+64);
-                                    }
+                                    Sprite.SetCenter(m_tileset[m_decor[couche][w][z].getTileset()].getCentreDuTile(m_decor[couche][w][z].getTile()).x,m_tileset[m_decor[couche][w][z].getTileset()].getCentreDuTile(m_decor[couche][w][z].getTile()).y);
+
+                                    Sprite.SetX(position.x+64);
+                                    Sprite.SetY(position.y+32);
 
                                     int layer=6;
 
@@ -2388,7 +2375,14 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     if(couche==1)
                                         layer=10;
 
+                                    if(Sprite.GetPosition().x+Sprite.GetSize().x/2>=camera->GetRect().Left)
+                                    if(Sprite.GetPosition().x-Sprite.GetSize().x/2<camera->GetRect().Right)
+                                    if(Sprite.GetPosition().y+Sprite.GetSize().y/2>=camera->GetRect().Top)
+                                    if(Sprite.GetPosition().y-Sprite.GetSize().y/2<camera->GetRect().Bottom)
                                     moteurGraphique.AjouterCommande(&Sprite,layer,1);
+
+
+                                    Sprite.SetCenter(0,0);
                                     //ecran->Draw(Sprite);
                                 }
                             }

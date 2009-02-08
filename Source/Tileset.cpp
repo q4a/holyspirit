@@ -94,7 +94,7 @@ bool Tileset::Charger(std::string chemin)
     		fichier.get(caractere);
     		if(caractere=='*')
     		{
-    			coordonnee position={-1,-1,-1,-1},centre={-1,-1,-1,-1};
+    			coordonnee position={-1,-1,-1,-1},centre={-100,-100,-1,-1};
     			int animation=m_tile.size(),son=-1,image=0;
     			Lumiere lumiere;
     			lumiere.intensite=0;
@@ -145,6 +145,12 @@ bool Tileset::Charger(std::string chemin)
     				if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Tileset \" %s \" Invalide",cheminFinal.c_str());console.Ajouter(temp,1); caractere='$'; }
     			}while(caractere!='$');
     			//AjouterTile(position,collision,animation,son,lumiere,ombre,orientation);
+
+    			if(centre.x==-100)
+                    centre.x=position.w/2;
+                if(centre.y==-100)
+                    centre.y=position.h-32;
+
     			Tile tileTemp;
     			m_tile.push_back(tileTemp);
     			m_tile.back().setTile(position,image,collision,animation,son,lumiere,ombre,orientation,transparent,centre,tempsAnimation);
