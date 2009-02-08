@@ -34,8 +34,8 @@
 	<File name="Objet.h" open="0" top="0" tabpos="7">
 		<Cursor position="727" topLine="21" />
 	</File>
-	<File name="Personnage.h" open="0" top="0" tabpos="3">
-		<Cursor position="221" topLine="0" />
+	<File name="Personnage.h" open="1" top="0" tabpos="8">
+		<Cursor position="2485" topLine="85" />
 	</File>
 	<File name="Pose.h" open="0" top="0" tabpos="5">
 		<Cursor position="168" topLine="0" />
@@ -109,8 +109,8 @@
 	<File name="evenement.cpp" open="0" top="0" tabpos="16">
 		<Cursor position="599" topLine="0" />
 	</File>
-	<File name="eventManager.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="2156" topLine="54" />
+	<File name="eventManager.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="1764" topLine="55" />
 	</File>
 	<File name="eventManager.h" open="0" top="0" tabpos="10">
 		<Cursor position="0" topLine="0" />
@@ -137,7 +137,7 @@
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="map.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="17476" topLine="505" />
+		<Cursor position="195121" topLine="2987" />
 	</File>
 	<File name="menu.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="5379" topLine="93" />
@@ -148,8 +148,8 @@
 	<File name="miracle.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="1399" topLine="31" />
 	</File>
-	<File name="miracle.h" open="0" top="0" tabpos="2">
-		<Cursor position="1384" topLine="0" />
+	<File name="miracle.h" open="1" top="0" tabpos="9">
+		<Cursor position="2172" topLine="92" />
 	</File>
 	<File name="modeleMoteurParticule.cpp" open="0" top="0" tabpos="13">
 		<Cursor position="2358" topLine="53" />
@@ -175,8 +175,8 @@
 	<File name="objet.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="26389" topLine="807" />
 	</File>
-	<File name="personnage.cpp" open="1" top="1" tabpos="6">
-		<Cursor position="8668" topLine="257" />
+	<File name="personnage.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="1212" topLine="66" />
 	</File>
 	<File name="pose.cpp" open="0" top="0" tabpos="15">
 		<Cursor position="168" topLine="0" />
