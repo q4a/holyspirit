@@ -3718,8 +3718,8 @@ bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *ca
 
                 float force=((-m_monstre[numeroMonstre].getCaracteristique().vie*2)/m_monstre[numeroMonstre].getCaracteristique().maxVie)*5,angle;
 
-                if(force<10)
-                    force=10;
+                if(force<5)
+                    force=5;
                 if(force>20)
                     force=20;
 
