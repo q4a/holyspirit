@@ -339,38 +339,6 @@
          Sauvegarde du héro terminée !
          
          Sauvegarde de la map : Data/Temp/map1.map.hs
-         Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
-         Sauvegarde terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Ecriture des cases inventaires.
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Gown.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Ecriture des objets.
-         Sauvegarde du héro terminée !
-         
-         Sauvegarde de la map : Data/Temp/map1.map.hs
          /Sauvegarde de Small_axe.item.hs
          Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
          Sauvegarde terminée !
@@ -406,8 +374,41 @@
          Sauvegarde de la map : Data/Temp/map1.map.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
+         Sauvegarde terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Ecriture des cases inventaires.
+         /Sauvegarde de Small_sword.item.hs
          /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Arquebuse.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Gown.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/Temp/map1.map.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_axe.item.hs
          Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
          Sauvegarde terminée !
@@ -443,22 +444,138 @@
          Sauvegarde de la map : Data/Temp/map1.map.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
+         Sauvegarde terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Ecriture des cases inventaires.
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Arquebuse.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Armor.item.hs
          /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Gown.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/Temp/map1.map.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
+         Sauvegarde terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Ecriture des cases inventaires.
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Arquebuse.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Gown.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/Temp/map1.map.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
+         Sauvegarde terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Ecriture des cases inventaires.
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Arquebuse.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Gown.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/Temp/map1.map.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
          Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
          Sauvegarde terminée !
          
          Sauvegarde de la map : Data/Temp/map1.map.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_sword.item.hs
          Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
          Sauvegarde terminée !
          
