@@ -3691,6 +3691,18 @@ bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *ca
         if(!m_monstre[numeroMonstre].enVie()&&viePrecedente>0)
         {
 
+
+            for(int i=0;i<(int)m_monstre[numeroMonstre].m_miracleEnCours.size();i++)
+            {
+                for(int o=0;o<(int)m_monstre[numeroMonstre].m_miracleEnCours[i].m_infos.size();o++)
+                    if(m_monstre[numeroMonstre].m_miracleEnCours[i].m_infos[o].m_effetEnCours>=0)
+                        if(m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].m_miracles[m_monstre[numeroMonstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[numeroMonstre].m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type==INVOCATION)
+                            if(m_monstre[numeroMonstre].m_miracleEnCours[i].m_infos[o].m_IDObjet>=0&&m_monstre[numeroMonstre].m_miracleEnCours[i].m_infos[o].m_IDObjet<(int)m_monstre.size())
+                                infligerDegats(m_monstre[numeroMonstre].m_miracleEnCours[i].m_infos[o].m_IDObjet, m_monstre[m_monstre[numeroMonstre].m_miracleEnCours[i].m_infos[o].m_IDObjet].getCaracteristique().vie ,menu,camera,hero,false);
+            }
+
+            //m_monstre[numeroMonstre].m_miracleEnCours.clear();
+
             if(m_monstre[numeroMonstre].getCaracteristique().pointAme>0)
             {
                 coordonneeDecimal position;
