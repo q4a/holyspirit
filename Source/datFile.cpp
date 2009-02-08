@@ -204,6 +204,7 @@ bool cDAT::IsFileExist(std::string filename)
 
 std::ifstream* cDAT::GetInfos(std::string filename)
 {
+    bool ok=false;
     //The input file stream from which we want information
     std::ifstream *datfile;
     datfile = new std::ifstream;
@@ -222,12 +223,13 @@ std::ifstream* cDAT::GetInfos(std::string filename)
         //std::string temp="infos.txt";
         if (filename == m_entries[i].name)
         {
+            ok=true;
 
             //We are allocating memory to the buffer
-            m_buffer = new char[(m_entries[i].size)];
+           // m_buffer = new char[(m_entries[i].size)];
             //Simple error catch
-            if (m_buffer==NULL)
-                return (NULL);
+            //if (m_buffer==NULL)
+                //return (NULL);
             //Opening the DAT file ot read the file datas needed
             datfile->open (m_datfile.c_str(), std::ifstream::in | std::ifstream::binary);
             if (datfile->is_open())
@@ -237,6 +239,9 @@ std::ifstream* cDAT::GetInfos(std::string filename)
             }
         }
     }
+
+    if(!ok)
+        console.Ajouter("Fichier introuvable : "+filename);
     //Finally, there is no such file in our DAT file
     return datfile;
 }

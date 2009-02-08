@@ -133,18 +133,16 @@ bool Map::Charger(int numeroMap,Hero *hero)
 
 	sprintf(numero,"map%i.map.hs",numeroMap);
 
-    cDAT reader;
+    cDAT reader,reader2;
 
     reader.Read(configuration.chemin_saves+"hero.sav.hs");
 
     if(reader.IsFileExist(configuration.chemin_temps+numero))
        mapExistante=true,entite_map_existante=true,console.Ajouter("Map sauvée existante.");
 
-    if(!mapExistante)
-        reader.Read(configuration.chemin_maps);
 
 
-	ifstream *fichier=reader.GetInfos(numero);
+	ifstream *fichier=NULL;
 	ifstream *fichier2=NULL;
 
 	if(mapExistante)
@@ -153,9 +151,14 @@ bool Map::Charger(int numeroMap,Hero *hero)
 	    sprintf(numero,"entites_map%i.emap.hs",numeroMap);
         fichier2=reader.GetInfos(configuration.chemin_temps+numero);
 	}
+	else
+	{
+	    reader2.Read(configuration.chemin_maps);
+	    sprintf(numero,"map%i.map.hs",numeroMap);
+        fichier=reader2.GetInfos(numero);
+	}
 
-
-    if(fichier)
+    if(*fichier)
     {
     	char caractere;
     	do
@@ -478,9 +481,10 @@ bool Map::Charger(int numeroMap,Hero *hero)
                         vector <int>tile;
                         vector <int>monstre;
                         vector <Objet> objets;
+
                         do
                         {
-                            fichier->get(caractere);
+
                             switch (caractere)
                             {
                                 case 's': *fichier>>tileset; break;
@@ -501,39 +505,41 @@ bool Map::Charger(int numeroMap,Hero *hero)
                                 break;
 
                                 case 'r':
+                                    fichier->get(caractere);
                                     int noModuleCaseMin=-1,noModuleCaseMax=-1;
                                     do
                                     {
-                                        fichier->get(caractere);
-
                                         if(caractere=='i')
                                             *fichier>>noModuleCaseMin;
                                         else if(caractere=='a')
                                             *fichier>>noModuleCaseMax;
 
                                         else if(caractere=='*')
-                                            if(numeroModuleAleatoire>=noModuleCaseMin&&numeroModuleAleatoire<=noModuleCaseMax)
                                                 do
                                                 {
                                                     fichier->get(caractere);
-                                                    switch (caractere)
-                                                    {
-                                                        case 's': *fichier>>tileset; break;
-                                                        case 't': *fichier>>temp; tile.push_back(temp); break;
-                                                        case 'e': int temp2; *fichier>>temp2; evenement.push_back(temp2); break;
-                                                        case 'm': if(!entite_map_existante) { *fichier>>temp; monstre.push_back(temp);  } else {  *fichier>>monstreFinal; } break;
-                                                        case 'h': *fichier>>herbe; break;
-                                                        case 'l': *fichier>>layer; break;
-                                                    }
+
+                                                    if(numeroModuleAleatoire>=noModuleCaseMin&&numeroModuleAleatoire<=noModuleCaseMax)
+                                                        switch (caractere)
+                                                        {
+                                                            case 's': *fichier>>tileset; break;
+                                                            case 't': *fichier>>temp; tile.push_back(temp); break;
+                                                            case 'e': int temp2; *fichier>>temp2; evenement.push_back(temp2); break;
+                                                            case 'm': if(!entite_map_existante) { *fichier>>temp; monstre.push_back(temp);  } else {  *fichier>>monstreFinal; } break;
+                                                            case 'h': *fichier>>herbe; break;
+                                                            case 'l': *fichier>>layer; break;
+                                                        }
 
                                                     if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
                                                 }while(caractere!='$');
 
+                                        fichier->get(caractere);
+
                                         if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
                                     }while(caractere!='$');
-
                                 break;
                             }
+                            fichier->get(caractere);
                             if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); throw (&temp); }
                         }while(caractere!='|' && caractere!='$');
 
@@ -627,11 +633,12 @@ bool Map::Charger(int numeroMap,Hero *hero)
 
 
     for(int i=0;i<24;i++)
-    if(m_lumiere[i].intensite<0)
-        m_lumiere[i].intensite=0;
+    if(m_lumiere[i].intensite<1)
+        m_lumiere[i].intensite=1;
+
     for(int couche=0;couche<2;couche++)
-        for(int i=0;i<(int)m_decor[0].size();i++)
-            for(int j=0;j<(int)m_decor[0][0].size();j++)
+        for(int i=0;i<(int)m_decor[couche].size();i++)
+            for(int j=0;j<(int)m_decor[couche][i].size();j++)
             {
                 if(m_decor[couche][i][j].getHerbe()>=0&&m_decor[couche][i][j].getHerbe()<(int)m_herbe.size())
                     if(m_herbe[m_decor[couche][i][j].getHerbe()].getTaille()>0)
@@ -644,6 +651,7 @@ bool Map::Charger(int numeroMap,Hero *hero)
             }
 
     delete fichier;
+    delete fichier2;
 
     console.Ajouter("Chargement de la map terminé.");
     console.Ajouter("");
@@ -2627,6 +2635,8 @@ void Map::AfficherNomEvenement(sf::RenderWindow* ecran,coordonnee casePointee,co
                             }while(caractere!='$');
                         }
                         fichier->close();
+
+                        delete fichier;
 
                         sprintf(chemin,"Vers %s",nom.c_str());
 

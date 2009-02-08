@@ -526,6 +526,7 @@ void Objet::Charger(std::string chemin)
     else
     console.Ajouter("Impossible d'ouvrir : "+chemin,1);
 
+    delete fichier;
 
 
 

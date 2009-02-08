@@ -72,6 +72,8 @@ void c_Chargement::setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool
     }
     fichier->close();
 
+    delete fichier;
+
     int random=rand()%cheminFond.size();
 
     m_fond=moteurGraphique.AjouterImage(cheminFond.at(random));
