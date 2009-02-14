@@ -131,7 +131,7 @@
 		<Cursor position="213" topLine="1" />
 	</File>
 	<File name="main.cpp" open="0" top="0" tabpos="15">
-		<Cursor position="354" topLine="8" />
+		<Cursor position="4" topLine="0" />
 	</File>
 	<File name="main.h" open="0" top="0" tabpos="20">
 		<Cursor position="0" topLine="0" />
@@ -175,7 +175,7 @@
 	<File name="objet.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="26389" topLine="807" />
 	</File>
-	<File name="personnage.cpp" open="1" top="1" tabpos="6">
+	<File name="personnage.cpp" open="1" top="0" tabpos="6">
 		<Cursor position="10554" topLine="282" />
 	</File>
 	<File name="pose.cpp" open="0" top="0" tabpos="15">
