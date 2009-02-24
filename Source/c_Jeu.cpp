@@ -16,21 +16,21 @@ c_Jeu::c_Jeu(Jeu *jeu)
         tempsActuel=0,tempsPrecedent=0,tempsDepuisDerniereAnimation=0,tempsEcoule=0,tempsNbrTourBoucle=0,tempsEcouleDepuisDernierCalculLumiere=0,tempsEcouleDepuisDernierDeplacement=0,tempsEcouleDepuisDernierIA=0,tempsEcouleDepuisDernierAffichage=0,tempsEcouleDepuisFPS=0,tempsEffetMort=0,tempsSauvergarde=0;
         nbrTourBoucle=0;
 
-        configuration.heure=(rand() % (24));
-        configuration.minute=0;
+        configuration->heure=(rand() % (24));
+        configuration->minute=0;
 
-        sf::Listener::SetGlobalVolume((float)configuration.volume);
+        sf::Listener::SetGlobalVolume((float)configuration->volume);
 
         // Texte pour l'affichage des FPS
         fps.SetSize(16.f);
 
         Version.SetSize(16.f);
-        sprintf(chaine,"v %s",configuration.version.c_str());
+        sprintf(chaine,"v %s",configuration->version.c_str());
         Version.SetText(chaine);
         Version.SetY(20);
 
         Temps.SetSize(16.f);
-        sprintf(chaine,"Temps : %i h %i ",configuration.heure,(int)configuration.minute);
+        sprintf(chaine,"Temps : %i h %i ",configuration->heure,(int)configuration->minute);
         Temps.SetText(chaine);
         Temps.SetY(40);
 
@@ -39,14 +39,14 @@ c_Jeu::c_Jeu(Jeu *jeu)
 
         // Chargement des menus
 
-        console.Ajouter("",0);
-        console.Ajouter("Chargement des sons :",0);
+        console->Ajouter("",0);
+        console->Ajouter("Chargement des sons :",0);
 
 
-        if(!jeu->bufferSonMort.LoadFromFile(configuration.chemin_son_mort))
-            console.Ajouter("Impossible de charger : "+configuration.chemin_son_mort,1);
+        if(!jeu->bufferSonMort.LoadFromFile(configuration->chemin_son_mort))
+            console->Ajouter("Impossible de charger : "+configuration->chemin_son_mort,1);
         else
-            console.Ajouter("Chargement de : "+configuration.chemin_son_mort,0);
+            console->Ajouter("Chargement de : "+configuration->chemin_son_mort,0);
 
         jeu->sonMort.SetBuffer(jeu->bufferSonMort);
         jeu->sonMort.SetVolume(0);
@@ -64,9 +64,9 @@ c_Jeu::c_Jeu(Jeu *jeu)
 
         jeu->ecran.ShowMouseCursor(false);
 
-        if(configuration.Lumiere)
+        if(configuration->Lumiere)
         {
-            jeu->map.calculerOmbresEtLumieres(&jeu->ecran,&jeu->hero,&jeu->camera);
+            jeu->map.calculerOmbresEtLumieres();
             lumiere=false;
         }
 
@@ -86,7 +86,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
             if(tempsEcoule>0.1)
             tempsEcoule=0.1;
 
-            if(tempsEcoule>0.013&&configuration.syncronisation_verticale||!configuration.syncronisation_verticale)
+            if(tempsEcoule>0.01&&configuration->syncronisation_verticale||!configuration->syncronisation_verticale)
             {
                 tempsEcouleDepuisDernierDeplacement+=tempsEcoule;
                 tempsDepuisDerniereAnimation+=tempsEcoule;
@@ -94,12 +94,12 @@ void c_Jeu::Utiliser(Jeu *jeu)
                 tempsEcouleDepuisDernierIA+=tempsEcoule;
                 tempsEcouleDepuisDernierCalculLumiere+=tempsEcoule;
                 tempsSauvergarde+=tempsEcoule;
-                configuration.minute+=tempsEcoule;
+                configuration->minute+=tempsEcoule;
                 tempsNbrTourBoucle+=tempsEcoule;
-                if(configuration.minute>=60)
-                    configuration.minute=0,configuration.heure++;
-                if(configuration.heure>23)
-                    configuration.heure=0;
+                if(configuration->minute>=60)
+                    configuration->minute=0,configuration->heure++;
+                if(configuration->heure>23)
+                    configuration->heure=0;
                 if(augmenter)
                     tempsEffetMort+=tempsEcoule*10;
                 else
@@ -129,18 +129,18 @@ void c_Jeu::Utiliser(Jeu *jeu)
                 {
                     if(jeu->hero.m_caracteristiques.maxVie!=0)
                         if(jeu->hero.m_caracteristiques.vie/(float)jeu->hero.m_caracteristiques.maxVie<0.5)
-                            configuration.effetMort=150-(jeu->hero.m_caracteristiques.vie*300/jeu->hero.m_caracteristiques.maxVie),jeu->sonMort.SetVolume(configuration.effetMort);
+                            configuration->effetMort=150-(jeu->hero.m_caracteristiques.vie*300/jeu->hero.m_caracteristiques.maxVie),jeu->sonMort.SetVolume(configuration->effetMort);
                     else
-                        configuration.effetMort=0,jeu->sonMort.SetVolume(0);
+                        configuration->effetMort=0,jeu->sonMort.SetVolume(0);
                 }
                 else
-                    configuration.effetMort=150;
+                    configuration->effetMort=150;
 
                 ///**********************************************************///
                 ///Sauvegarde automatique
                 ///**********************************************************///
 
-                if(tempsSauvergarde>=configuration.frequence_sauvegarde)
+                if(tempsSauvergarde>=configuration->frequence_sauvegarde)
                 {
                     jeu->hero.Sauvegarder();
                     jeu->map.Sauvegarder(&jeu->hero);
@@ -167,7 +167,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     if(jeu->hero.getMonstreVise()==-1)
                         temp.x=jeu->hero.m_personnage.getCoordonnee().x,temp.y=jeu->hero.m_personnage.getCoordonnee().y;
 
-                    if(jeu->hero.m_personnage.seDeplacer(tempsEcouleDepuisDernierDeplacement*100))
+                    if(jeu->hero.m_personnage.seDeplacer(tempsEcouleDepuisDernierDeplacement*100,jeu->map.getDimensions()))
                     {
                         bool ok=true;
                         if(jeu->hero.getMonstreVise()>-1)
@@ -178,8 +178,10 @@ void c_Jeu::Utiliser(Jeu *jeu)
                             ok=false;
 
                         if(ok)
+                        {
                             jeu->hero.m_personnage.pathfinding(jeu->map.getAlentourDuPersonnage(jeu->hero.m_personnage.getCoordonnee()),temp); // Recherche du chemin
-                        if(configuration.Lumiere)
+                        }
+                        if(configuration->Lumiere)
                             lumiere=true;
                     }
                     jeu->map.testEvenement(&jeu->camera,jeu,tempsEcoule); // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
@@ -190,7 +192,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     position.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1+jeu->map.getDimensions().y)/5;
                     position.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
 
-                    Listener::SetGlobalVolume((float)configuration.volume);
+                    Listener::SetGlobalVolume((float)configuration->volume);
                     Listener::SetPosition(-position.x, 0, position.y);
                     Listener::SetTarget(0, 0, 1);
                     jeu->map.musiquePlay(position);
@@ -202,28 +204,10 @@ void c_Jeu::Utiliser(Jeu *jeu)
                 }
 
                 ///**********************************************************///
-                /// On calcule les lumières et les ombre
-                ///**********************************************************///
-
-                jeu->ecran.SetView(jeu->camera);
-
-                if(tempsEcouleDepuisDernierCalculLumiere>configuration.frequence_lumiere)
-                {
-
-                    lumiere=true;
-                    tempsEcouleDepuisDernierCalculLumiere=0;
-                }
-                if(configuration.Lumiere&&lumiere)
-                {
-                        jeu->map.calculerOmbresEtLumieres(&jeu->ecran,&jeu->hero,&jeu->camera);
-                        lumiere=false;
-                }
-
-                ///**********************************************************///
                 ///Animation
                 ///**********************************************************///
 
-               if(tempsDepuisDerniereAnimation>0.024)
+                if(tempsDepuisDerniereAnimation>0.04)
                 {
                     if(tempsDepuisDerniereAnimation>0.5)
                         tempsDepuisDerniereAnimation=0.5;
@@ -231,7 +215,6 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     coordonnee positionHero;
                     positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1+jeu->map.getDimensions().y)/5;
                     positionHero.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
-
 
 
                     bool a; // Variable qui ne sert pas ici, mais qui remplace le explosif des monstres
@@ -261,19 +244,34 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                     jeu->map.animer(&jeu->hero,tempsDepuisDerniereAnimation,&jeu->menu,&jeu->camera); // Animation des tiles de la jeu->map
 
-                    /*if(!jeu->eventManager.getEvenement(Mouse::Left,"C")&&!jeu->hero.m_personnage.frappeEnCours)
-                            jeu->hero.setMonstreVise(-1);*/
+
 
                     tempsDepuisDerniereAnimation=0;
                 }
 
+                ///**********************************************************///
+                /// On calcule les lumières et les ombre
+                ///**********************************************************///
+
+                jeu->ecran.SetView(jeu->camera);
+
+                jeu->map.calculerOmbresEtLumieres();
 
 
 
-                if(tempsEcouleDepuisDernierAffichage>0.013&&configuration.syncronisation_verticale||!configuration.syncronisation_verticale)
+                if(configuration->Lumiere&&tempsEcouleDepuisDernierCalculLumiere>configuration->frequence_lumiere)
+                {
+                    configuration->RafraichirLumiere=true;
+                    tempsEcouleDepuisDernierCalculLumiere=0;
+                }
+
+                moteurGraphique->LightManager->Generate(jeu->hero.m_personnage.m_light);
+
+
+                if(tempsEcouleDepuisDernierAffichage>0.01&&configuration->syncronisation_verticale||!configuration->syncronisation_verticale)
                 {
                     jeu->hero.placerCamera(&jeu->camera,jeu->map.getDimensions()); // On place la camera suivant ou se trouve le perso
-                    jeu->camera.Zoom(configuration.zoom);
+                    jeu->camera.Zoom(configuration->zoom);
 
                     ///**********************************************************///
                     ///Evenements
@@ -287,8 +285,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                     if(jeu->eventManager.getEvenement(Mouse::Left,"CA")&&!jeu->eventManager.getEvenement(Key::LShift,"ET"))
                     {
-                        if(!(jeu->eventManager.getPositionSouris().x>configuration.Resolution.w-configuration.Resolution.w*0.25
-                          &&jeu->eventManager.getPositionSouris().y>configuration.Resolution.w*0.25&&jeu->eventManager.getPositionSouris().y<configuration.Resolution.w*0.25+configuration.Resolution.w*0.34
+                        if(!(jeu->eventManager.getPositionSouris().x>configuration->Resolution.w-configuration->Resolution.w*0.25
+                          &&jeu->eventManager.getPositionSouris().y>configuration->Resolution.w*0.25&&jeu->eventManager.getPositionSouris().y<configuration->Resolution.w*0.25+configuration->Resolution.w*0.34
                           &&alpha_sac>=128)||alpha_sac<=128)
                         {
                             if(jeu->hero.getMonstreVise()==-1)
@@ -358,10 +356,10 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                     if(alpha_sac>128)
                     {
-                        if(jeu->eventManager.getEvenement(Mouse::Left,"C")&&jeu->eventManager.getPositionSouris().x>configuration.Resolution.w-configuration.Resolution.w*0.25&&jeu->eventManager.getPositionSouris().y>configuration.Resolution.w*0.265+10*20*configuration.Resolution.w/800+20*configuration.Resolution.w/800&&jeu->eventManager.getPositionSouris().y<configuration.Resolution.w*0.265+11*20*configuration.Resolution.w/800+20*configuration.Resolution.w/800)
+                        if(jeu->eventManager.getEvenement(Mouse::Left,"C")&&jeu->eventManager.getPositionSouris().x>configuration->Resolution.w-configuration->Resolution.w*0.25&&jeu->eventManager.getPositionSouris().y>configuration->Resolution.w*0.265+10*20*configuration->Resolution.w/800+20*configuration->Resolution.w/800&&jeu->eventManager.getPositionSouris().y<configuration->Resolution.w*0.265+11*20*configuration->Resolution.w/800+20*configuration->Resolution.w/800)
                             jeu->map.m_defilerObjets++,jeu->eventManager.StopEvenement(Mouse::Left,"C");
 
-                        if(jeu->eventManager.getEvenement(Mouse::Left,"C")&&jeu->eventManager.getPositionSouris().x>configuration.Resolution.w-configuration.Resolution.w*0.25&&jeu->eventManager.getPositionSouris().y>configuration.Resolution.w*0.265&&jeu->eventManager.getPositionSouris().y<configuration.Resolution.w*0.265+20*configuration.Resolution.w/800)
+                        if(jeu->eventManager.getEvenement(Mouse::Left,"C")&&jeu->eventManager.getPositionSouris().x>configuration->Resolution.w-configuration->Resolution.w*0.25&&jeu->eventManager.getPositionSouris().y>configuration->Resolution.w*0.265&&jeu->eventManager.getPositionSouris().y<configuration->Resolution.w*0.265+20*configuration->Resolution.w/800)
                             jeu->map.m_defilerObjets--,jeu->eventManager.StopEvenement(Mouse::Left,"C");
                     }
 
@@ -369,11 +367,11 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     ///Affichage
                     ///**********************************************************///
 
-                    moteurGraphique.Gerer(&jeu->ecran,tempsEcouleDepuisDernierAffichage,jeu->map.getDimensions().y);
+                    moteurGraphique->Gerer(&jeu->ecran,tempsEcouleDepuisDernierAffichage,jeu->map.getDimensions().y);
 
                     jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,jeu->eventManager.getPositionSouris(),jeu->eventManager.getEvenement(Key::LAlt,"ET"),alpha_map);//Affichage de la jeu->map
 
-                    if(configuration.Minimap)
+                    if(configuration->Minimap)
                     {
                         alpha_map+=tempsEcoule*500;
                         if(alpha_map>255)
@@ -419,22 +417,22 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     if(jeu->map.getEvenement(jeu->eventManager.getCasePointee())>=0)
                         jeu->map.AfficherNomEvenement(&jeu->ecran,jeu->eventManager.getCasePointee(),jeu->eventManager.getPositionSouris());
 
-                    if(configuration.effetMort&&sf::PostFX::CanUsePostFX() == true&&configuration.postFX&&tempsEffetMort!=0)
+                    if(configuration->effetMort&&sf::PostFX::CanUsePostFX() == true&&configuration->postFX&&tempsEffetMort!=0)
                     {
-                        moteurGraphique.EffectMort.SetParameter("offset", 0.005*configuration.effetMort/100*(0.6+tempsEffetMort/10));
-                        moteurGraphique.EffectMort.SetParameter("color",1+1*configuration.effetMort/100*tempsEffetMort, 1-0.5*configuration.effetMort/100*tempsEffetMort, 1-0.5*configuration.effetMort/100*tempsEffetMort);
+                        moteurGraphique->EffectMort.SetParameter("offset", 0.005*configuration->effetMort/100*(0.6+tempsEffetMort/10));
+                        moteurGraphique->EffectMort.SetParameter("color",1+1*configuration->effetMort/100*tempsEffetMort, 1-0.5*configuration->effetMort/100*tempsEffetMort, 1-0.5*configuration->effetMort/100*tempsEffetMort);
                     }
 
-                    if(configuration.console)
+                    if(configuration->console)
                     {
-                        moteurGraphique.AjouterTexte(&fps,17);
+                        moteurGraphique->AjouterTexte(&fps,17);
                         Version.SetY(20);
-                        moteurGraphique.AjouterTexte(&Version,17);
+                        moteurGraphique->AjouterTexte(&Version,17);
                         Temps.SetY(40);
-                        moteurGraphique.AjouterTexte(&Temps,17);
-                        moteurGraphique.AjouterTexte(&TourBoucle,17);
+                        moteurGraphique->AjouterTexte(&Temps,17);
+                        moteurGraphique->AjouterTexte(&TourBoucle,17);
 
-                        console.Afficher(&jeu->ecran);
+                        console->Afficher(&jeu->ecran);
                     }
 
                     jeu->m_display=true;
@@ -457,10 +455,10 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     tempsNbrTourBoucle=0;
                 }
 
-                if(configuration.console&&jeu->ecran.GetFrameTime()!=0)
+                if(configuration->console&&jeu->ecran.GetFrameTime()!=0)
                     sprintf(chaine,"%i FPS",(int)( 1.f / jeu->ecran.GetFrameTime()));
 
-                if(configuration.console)
+                if(configuration->console)
                     if(tempsEcouleDepuisFPS>0.1)
                     {
                         //  Calcule du nombre de FPS
@@ -468,7 +466,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                         fps.SetText(chaine);
 
 
-                        sprintf(chaine,"Temps : %i h %i ",configuration.heure,(int)configuration.minute);
+                        sprintf(chaine,"Temps : %i h %i ",configuration->heure,(int)configuration->minute);
                         Temps.SetText(chaine);
 
                         tempsEcouleDepuisFPS=0;

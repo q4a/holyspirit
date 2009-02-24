@@ -44,7 +44,7 @@ class Map
 
 	void animer(Hero *hero,float temps,Menu *menu,sf::View *camera); // Animation des tiles
 	bool testEvenement(sf::View *camera, Jeu *jeu,float temps);
-	void calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *camera);
+	void calculerOmbresEtLumieres();
 	void Detruire();
 
 	int gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,bool monstre,coordonnee lanceur, coordonnee cible,int couche);
@@ -78,11 +78,12 @@ class Map
 
 	private:
 	int m_monstreIllumine,m_numero,IDImageSac,m_objetPointe,m_calculLumiere,m_musiqueEnCours;
+
 	coordonnee m_sacPointe;
 	Lumiere m_lumiere[24];
 	std::vector <Tileset> m_tileset;
 	std::vector <Herbe> m_herbe;
-	std::vector< std::vector < Decor > >  m_decor[NOMBRE_COUCHE_MAP];
+	std::vector < std::vector < Decor > >  m_decor[NOMBRE_COUCHE_MAP];
 	std::vector <Evenement> m_evenement;
 
 	sf::Music m_musique[MAX_MUSIQUE];
@@ -99,7 +100,8 @@ class Map
 
 	sf::Image carreBrun,carreBleu,carreRouge,carreVert,carreJaune;
 
-	LumiereOmbrage m_tableauDesLampes[30][30],m_tableauDesLampesBasique[30][30]; // Tableau de lumière et ombres, 30X30 car c'est le nbr max de tiles affichables à l'écran
+	std::vector<Decor>::iterator IterY;
+	std::vector<Decor>::iterator Iter;
 };
 
 

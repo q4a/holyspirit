@@ -11,6 +11,8 @@
 #include "constantes.h"
 
 #include "Objet.h"
+#include "Light.h"
+
 
 class Decor
 {
@@ -59,6 +61,10 @@ class Decor
 	void setTileset( int tileset);
 	void setTile(int tile);
 
+	Light_Entity m_light;
+
+	sf::Color color;
+
 	private:
 	int m_tileset,m_tile,m_monstre,m_projectile,m_effet,m_couche;
 	std::vector<int> m_evenement;
@@ -72,6 +78,7 @@ class Decor
 	int m_hauteur;
 	coordonnee m_herbe_decalage;
 	sf::Color m_herbe_couleur;
+
 };
 
 #endif

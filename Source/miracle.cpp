@@ -16,7 +16,7 @@ void Projectile::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
     {
         Sprite sprite;
 
-        sprite.SetImage(*moteurGraphique.getImage(m_image));
+        sprite.SetImage(*moteurGraphique->getImage(m_image));
         sprite.SetSubRect(IntRect(m_positionImage.x, m_positionImage.y, m_positionImage.x+m_positionImage.w, m_positionImage.y+m_positionImage.h));
 
         sprite.FlipX(false);
@@ -32,7 +32,7 @@ void Projectile::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
         &&sprite.GetPosition().x<camera->GetRect().Right
         &&sprite.GetPosition().y+sprite.GetSize().y>=camera->GetRect().Top
         &&sprite.GetPosition().y<camera->GetRect().Bottom)
-        moteurGraphique.AjouterCommande(&sprite,10,1);
+        moteurGraphique->AjouterCommande(&sprite,10,1);
     }
 }
 
@@ -42,7 +42,7 @@ void EffetGraphique::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonne
     {
         Sprite sprite;
 
-        sprite.SetImage(*moteurGraphique.getImage(m_image));
+        sprite.SetImage(*moteurGraphique->getImage(m_image));
         sprite.SetSubRect(IntRect(m_positionImage.x, m_positionImage.y, m_positionImage.x+m_positionImage.w, m_positionImage.y+m_positionImage.h));
 
         sprite.FlipX(false);
@@ -56,7 +56,7 @@ void EffetGraphique::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonne
         &&sprite.GetPosition().x<camera->GetRect().Right
         &&sprite.GetPosition().y+sprite.GetSize().y>=camera->GetRect().Top
         &&sprite.GetPosition().y<camera->GetRect().Bottom)
-        moteurGraphique.AjouterCommande(&sprite,10,1);
+        moteurGraphique->AjouterCommande(&sprite,10,1);
     }
 }
 
@@ -103,9 +103,9 @@ void Miracle::Charger(std::string chemin)
     		{
     			string cheminImage;
                 getline(fichier, cheminImage);
-                m_image.push_back(moteurGraphique.AjouterImage(cheminImage));
+                m_image.push_back(moteurGraphique->AjouterImage(cheminImage));
     		}
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
     	}while(caractere!='$');
 
     	do
@@ -116,9 +116,9 @@ void Miracle::Charger(std::string chemin)
     		    string cheminDuSon;
                 getline(fichier, cheminDuSon);
 
-                m_sons.push_back(moteurSons.AjouterBuffer(cheminDuSon));
+                m_sons.push_back(moteurSons->AjouterBuffer(cheminDuSon));
     		}
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
     	}while(caractere!='$');
 
 
@@ -160,14 +160,14 @@ void Miracle::Charger(std::string chemin)
                             if(caractere=='c') { fichier>>m_effets.back().m_informations[2];}
                         break;
                     }
-                    if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+                    if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
 
                 }while(caractere!='$');
 
                 fichier.get(caractere);
     		}
 
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
     	}while(caractere!='$');
 
     	do
@@ -231,7 +231,7 @@ void Miracle::Charger(std::string chemin)
                                 break;
                                 case 'r': fichier>>orientation; break;
                             }
-                            if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+                            if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
                         }while(caractere!='$');
                         //AjouterTile(position,collision,animation,son,lumiere,ombre,orientation);
                         m_tile.back().push_back(Tile());
@@ -239,15 +239,15 @@ void Miracle::Charger(std::string chemin)
 
                         fichier.get(caractere);
                     }
-                    if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+                    if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
                 }while(caractere!='$');
                 fichier.get(caractere);
     		}
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
     	}while(caractere!='$');
     }
     else
-        console.Ajouter("Impossible d'ouvrir le fichier : "+chemin,1);
+        console->Ajouter("Impossible d'ouvrir le fichier : "+chemin,1);
 }
 
 
@@ -259,7 +259,7 @@ void Miracle::jouerSon(int numeroSon,coordonnee position,coordonnee positionHero
         pos.x=-position.x;
         pos.y=position.y;
 
-        moteurSons.JouerSon(m_sons[numeroSon],pos,positionHero,0);
+        moteurSons->JouerSon(m_sons[numeroSon],pos,positionHero,0);
     }
 }
 

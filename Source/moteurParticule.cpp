@@ -28,7 +28,7 @@ void ParticuleSysteme::Afficher(sf::RenderWindow *ecran, ModeleParticuleSysteme 
         sf::Sprite sprite;
         if(m_particules[i].numero>=0&&m_particules[i].numero<(int)modele->m_particules.size())
         {
-            sprite.SetImage(*moteurGraphique.getImage(modele->m_image));
+            sprite.SetImage(*moteurGraphique->getImage(modele->m_image));
             sprite.SetSubRect(sf::IntRect(modele->m_particules[m_particules[i].numero].positionImage.x,modele->m_particules[m_particules[i].numero].positionImage.y,modele->m_particules[m_particules[i].numero].positionImage.x+modele->m_particules[m_particules[i].numero].positionImage.w,modele->m_particules[m_particules[i].numero].positionImage.y+modele->m_particules[m_particules[i].numero].positionImage.h));
             sprite.SetCenter(modele->m_particules[m_particules[i].numero].positionImage.w/2,modele->m_particules[m_particules[i].numero].positionImage.h/2);
             sprite.SetRotation(m_particules[i].rotation);
@@ -36,14 +36,14 @@ void ParticuleSysteme::Afficher(sf::RenderWindow *ecran, ModeleParticuleSysteme 
             sprite.SetScale(scale,scale);
             sprite.SetX(m_particules[i].position.x);
             sprite.SetY(m_particules[i].position.y-m_particules[i].position.z);
-            if(configuration.Lumiere!=0)
+            if(configuration->Lumiere!=0)
                 sprite.SetColor(sf::Color(m_particules[i].color.r,m_particules[i].color.g,m_particules[i].color.b,(int)m_particules[i].alpha));
             else
                 sprite.SetColor(sf::Color(255,255,255,(int)m_particules[i].alpha));
             if(m_particules[i].position.z>32)
-                moteurGraphique.AjouterCommande(&sprite,12,1);
+                moteurGraphique->AjouterCommande(&sprite,11,1);
             else
-                moteurGraphique.AjouterCommande(&sprite,10,1);
+                moteurGraphique->AjouterCommande(&sprite,10,1);
         }
     }
 }
@@ -70,59 +70,59 @@ void ParticuleSysteme::Generer(float force, ModeleParticuleSysteme *modele,coord
             m_particules.back().rotation=rand() % 360;
             m_particules.back().alpha=255;
             m_particules.back().numero=i;
+            m_particules.back().color=sf::Color(255,255,255);
         }
     }
 }
 bool ParticuleSysteme::Gerer(float temps,int tailleMapY)
 {
     bool efface=false;
-    for(int i=0;i<(int)m_particules.size();i++)
+    int i=0;
+    for(Iter=m_particules.begin();Iter!=m_particules.end();++Iter,++i)
     {
-        if(m_particules[i].vie==100)
+        if(Iter->vie==100)
         {
-            m_particules[i].position.x+=m_particules[i].vecteur.x*m_particules[i].vitesse*temps*25;
-            m_particules[i].position.y+=m_particules[i].vecteur.y*m_particules[i].vitesse*temps*25;
-            m_particules[i].position.z+=m_particules[i].vecteur.z*temps*25;
+            Iter->position.x+=Iter->vecteur.x*Iter->vitesse*temps*25;
+            Iter->position.y+=Iter->vecteur.y*Iter->vitesse*temps*25;
+            Iter->position.z+=Iter->vecteur.z*temps*25;
 
-            m_particules[i].vecteur.z-=temps*25;
+            Iter->vecteur.z-=temps*25;
 
-            if(m_particules[i].position.z<=1&&m_particules[i].vie==100&&i%5==0)
+            if(Iter->position.z<=1&&Iter->vie==100&&i%5==0)
             {
                 coordonnee positionHero={0,0,0,0},position,positionCase;
 
-                if((float)((m_particules[i].position.y*2-m_particules[i].position.x)/2)/64+tailleMapY/2<(float)tailleMapY/2)
-                    positionCase.y=(int)((m_particules[i].position.y*2-m_particules[i].position.x)/2)/64+tailleMapY/2-1;
+                if((float)((Iter->position.y*2-Iter->position.x)/2)/64+tailleMapY/2<(float)tailleMapY/2)
+                    positionCase.y=(int)((Iter->position.y*2-Iter->position.x)/2)/64+tailleMapY/2-1;
                 else
-                    positionCase.y=(int)((m_particules[i].position.y*2-m_particules[i].position.x)/2)/64+tailleMapY/2;
+                    positionCase.y=(int)((Iter->position.y*2-Iter->position.x)/2)/64+tailleMapY/2;
 
-                positionCase.x=(int)(m_particules[i].position.x+((m_particules[i].position.y*2-m_particules[i].position.x)/2))/64-tailleMapY/2;
+                positionCase.x=(int)(Iter->position.x+((Iter->position.y*2-Iter->position.x)/2))/64-tailleMapY/2;
 
                 position.x=-(positionCase.x-positionCase.y-1+tailleMapY)/5;
                 position.y=(positionCase.x+positionCase.y)/5;
 
-                if((int)(m_particules[i].vecteur.z*100)>10)
-                    moteurSons.JouerSon(m_son,position,positionHero,0,(int)(m_particules[i].vecteur.z*100));
+                if((int)(Iter->vecteur.z*100)>10)
+                    moteurSons->JouerSon(m_son,position,positionHero,0,(int)(Iter->vecteur.z*100));
             }
 
-            if(m_particules[i].position.z<0)
-                m_particules[i].position.z=0,m_particules[i].vecteur.z=fabs(m_particules[i].vecteur.z)/4;
+            if(Iter->position.z<0)
+                Iter->position.z=0,Iter->vecteur.z=fabs(Iter->vecteur.z)/4;
 
-            m_particules[i].vitesse-=temps*10;
-            m_particules[i].vitesse_rotation-=temps*50;
-            if(m_particules[i].vitesse_rotation<0)
-                m_particules[i].vitesse_rotation=0;
+            Iter->vitesse-=temps*10;
+            Iter->vitesse_rotation-=temps*50;
+            if(Iter->vitesse_rotation<0)
+                Iter->vitesse_rotation=0;
 
-             m_particules[i].rotation+=m_particules[i].vitesse_rotation*temps*10;
+             Iter->rotation+=Iter->vitesse_rotation*temps*10;
         }
 
-        if(m_particules[i].vitesse<=0)
-            m_particules[i].vitesse=0,m_particules[i].vie-=temps*20;
-        if(m_particules[i].vie<=0)
-             m_particules[i].alpha-=temps*100;
-        if(m_particules[i].alpha<=1)
+        if(Iter->vitesse<=0)
+            Iter->vitesse=0,Iter->vie-=temps*20;
+        if(Iter->vie<=0)
+             Iter->alpha-=temps*100;
+        if(Iter->alpha<=1)
             efface=true;
-
-
     }
 
     if(efface)

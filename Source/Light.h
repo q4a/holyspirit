@@ -2,20 +2,67 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
+#include "constantes.h"
+
+#ifndef LIGHTH
+#define LIGHTH
+
 struct Wall
 {
     Wall (sf::Vector2f p1,sf::Vector2f p2)
     {
         pt1=p1;
         pt2=p2;
+        hauteur=32;
+    }
+    Wall (sf::Vector2f p1,sf::Vector2f p2,int hauteur)
+    {
+        pt1=p1;
+        pt2=p2;
+        hauteur=hauteur;
     }
 
     // Pt1 et Pt2 sont les deux extrémités du mur
     sf::Vector2f pt1;
     sf::Vector2f pt2;
+    int hauteur;
 
-    // collision permet de savoir si on a déjà compter la collision avec une extrémité du mur
-    bool collision;
+    // Position du mur
+    sf::Vector2f position;
+};
+
+// Wall_Entity est une variable qui permet de représenter dans le programme un mur
+struct Wall_Entity
+{
+    Wall_Entity (int id)
+    {
+        m_ID=id;
+    }
+
+    int ID() { return m_ID; }
+
+    private:
+
+    int m_ID;
+};
+
+// Light_Entity est une variable qui permet de représenter dans le programme une lumière
+struct Light_Entity
+{
+    Light_Entity (){m_Dynamic=false,m_ID=-1;}
+    Light_Entity (int id,bool d)
+    {
+        m_ID=id;
+        m_Dynamic=d;
+    }
+
+    int ID() { return m_ID; }
+    bool Dynamic() { return m_Dynamic; }
+
+    private:
+
+    int m_ID;
+    bool m_Dynamic;
 };
 
 class Light
@@ -28,19 +75,20 @@ class Light
     ~Light();
 
     // Afficher la lumière
-    void Draw(sf::RenderWindow *App);
+    void Draw(sf::RenderWindow *App, coordonnee dimensionsMap);
+    void DrawWall(sf::RenderWindow *App, coordonnee dimensionsMap);
 
     // Calculer la lumière
-    void Generate(std::vector <Wall> m_wall);
+    void Generate(std::vector <Wall> &m_wall);
 
     // Ajouter un triangle à la lumière, en effet, les lumières sont composée de triangles
-    void AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std::vector <Wall> m_wall);
+    void AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std::vector <Wall> &m_wall);
 
     // Tester voir si un point "pt" se trouve dans le triangle [(0;0),"pt1","pt2"]
-    bool CollisionWithPoint(sf::Vector2f pt,sf::Vector2f pt1,sf::Vector2f pt2);
+    bool CollisionWithPoint(sf::Vector2f &pt,sf::Vector2f &pt1,sf::Vector2f &pt2);
 
     // Tester voir si une ligne ["l1","l1"] traverse le triangle [(0;0),"pt1","pt2"]
-    bool CollisionWithLine(sf::Vector2f l1, sf::Vector2f l2,sf::Vector2f pt1,sf::Vector2f pt2);
+    bool CollisionWithLine(sf::Vector2f &l1, sf::Vector2f &l2,sf::Vector2f &pt1,sf::Vector2f &ypt2);
 
     // Changer différents attributs de la lumière
     void SetIntensity(float);
@@ -74,6 +122,14 @@ class Light
 
     //Tableau dynamique de Shape, ce sont ces shapes de type triangle qui compose la lumière
     std::vector <sf::Shape> m_shape;
+    std::vector <sf::Shape> m_shape_wall;
+
+
+
+    std::vector <sf::Vector2f> m_dejaPasse;
+
+    std::vector<sf::Vector2f>::iterator IterDejaPasse;
 };
 
+#endif
 

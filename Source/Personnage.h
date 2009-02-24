@@ -11,7 +11,7 @@
 #include "Decor.h"
 #include "liste_case.h"
 #include "Pose.h"
-
+#include "LightManager.h"
 
 
 class Modele_Personnage
@@ -61,14 +61,13 @@ class Personnage
 	void Pousser(coordonnee vecteur);
 	void PousserCase(coordonnee vecteur);
 
-	bool seDeplacer(float);
+	bool seDeplacer(float,coordonnee dimensionsMap);
 	void setCoordonnee(coordonnee nouvellesCoordonnees);
 	void Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap,Modele_Personnage *modele);
 
 	int pathfinding(casePathfinding** map,coordonnee exception);
 
 	void frappe(coordonnee direction,coordonnee position);
-
 
 
 	void infligerDegats(float degats);
@@ -101,6 +100,8 @@ class Personnage
 	bool frappeEnCours;
 	int m_nombreInvocation;
 
+	Light_Entity m_light;
+
 	protected:
 	int m_etat,m_poseEnCours,m_angle;
 	float m_animation;
@@ -108,7 +109,9 @@ class Personnage
 	Caracteristique m_caracteristique;
 	coordonnee m_cheminFinal,m_arrivee,m_ancienneArrivee,m_mauvaiseArrivee, m_positionCase,m_positionAffichage,m_positionPixelPrecedente;
 	coordonneeDecimal m_positionPixel;
+
 	Lumiere m_porteeLumineuse,m_porteeLumineuseBasique;
+
 
 
 	//std::vector <int>  m_sons;

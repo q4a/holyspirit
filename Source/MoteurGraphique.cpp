@@ -6,16 +6,24 @@
 
 MoteurGraphique::MoteurGraphique()
 {
-
+    LightManager=Light_Manager::GetInstance();
 
     m_images.push_back(Image_moteur ());
     m_images[0].img.Create(1, 1, sf::Color(255, 255, 255));
     m_images[0].nom="O";
     m_images[0].importance=-1;
+
+    m_soleil.rouge=255;
+    m_soleil.vert=255;
+    m_soleil.bleu=255;
+    m_soleil.intensite=255;
+
+
     nettoyageAuto=0;
 }
 MoteurGraphique::~MoteurGraphique()
 {
+    LightManager->Kill();
     Vider();
     m_images.clear();
     m_systemeParticules.clear();
@@ -24,55 +32,55 @@ MoteurGraphique::~MoteurGraphique()
 
 void MoteurGraphique::Charger()
 {
-    if (sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
+    if (sf::PostFX::CanUsePostFX() == true&&configuration->postFX)
     {
-        console.Ajouter("");
-        console.Ajouter("Chargement des postFX :");
+        console->Ajouter("");
+        console->Ajouter("Chargement des postFX :");
 
-        if(!EffectBlur.LoadFromFile(configuration.chemin_fx+configuration.nom_effetBlur))
-            console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetBlur,1);
+        if(!EffectBlur.LoadFromFile(configuration->chemin_fx+configuration->nom_effetBlur))
+            console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetBlur,1);
         else
-            console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetBlur,0);
+            console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetBlur,0);
         EffectBlur.SetTexture("framebuffer", NULL);
 
-        if(!EffectMort.LoadFromFile(configuration.chemin_fx+configuration.nom_effetMort))
-            console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetMort,1);
+        if(!EffectMort.LoadFromFile(configuration->chemin_fx+configuration->nom_effetMort))
+            console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetMort,1);
         else
-            console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetMort,0);
+            console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetMort,0);
 
         EffectMort.SetParameter("offset", 0);
         EffectMort.SetTexture("framebuffer", NULL);
         EffectMort.SetParameter("color",1, 1, 1);
 
-        if(!EffectContrastes.LoadFromFile(configuration.chemin_fx+configuration.nom_effetContrastes))
-            console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetContrastes,1);
+        if(!EffectContrastes.LoadFromFile(configuration->chemin_fx+configuration->nom_effetContrastes))
+            console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetContrastes,1);
         else
         {
-            console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetContrastes,0);
+            console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetContrastes,0);
             EffectContrastes.SetTexture("framebuffer", NULL);
             EffectContrastes.SetParameter("color", 0.f, 0.f, 0.f);
         }
 
-        if(!EffectNoir.LoadFromFile(configuration.chemin_fx+configuration.nom_effetNoir))
-            console.Ajouter("Impossible de charger : "+configuration.chemin_fx+configuration.nom_effetNoir,1);
+        if(!EffectNoir.LoadFromFile(configuration->chemin_fx+configuration->nom_effetNoir))
+            console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetNoir,1);
         else
         {
-            console.Ajouter("Chargement de : "+configuration.chemin_fx+configuration.nom_effetNoir,0);
+            console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetNoir,0);
             EffectNoir.SetTexture("framebuffer", NULL);
             EffectNoir.SetParameter("color", 0.f, 0.f, 0.f);
         }
-        configuration.effetMort=0;
+        configuration->effetMort=0;
     }
 
-    console.Ajouter("");
-    console.Ajouter("Chargement des polices d'écriture :");
+    console->Ajouter("");
+    console->Ajouter("Chargement des polices d'écriture :");
 
-    if(!m_font_titre.LoadFromFile(configuration.chemin_fonts+configuration.font_titre))
-        console.Ajouter("Impossible de charger : "+configuration.chemin_fonts+configuration.font_titre,1);
+    if(!m_font_titre.LoadFromFile(configuration->chemin_fonts+configuration->font_titre))
+        console->Ajouter("Impossible de charger : "+configuration->chemin_fonts+configuration->font_titre,1);
     else
-        console.Ajouter("Chargement de : "+configuration.chemin_fonts+configuration.font_titre,0);
+        console->Ajouter("Chargement de : "+configuration->chemin_fonts+configuration->font_titre,0);
 
-    //Luminosite.Create(configuration.Resolution.x, configuration.Resolution.y, sf::Color(255,255,255));
+    //Luminosite.Create(configuration->Resolution.x, configuration->Resolution.y, sf::Color(255,255,255));
 }
 
 void MoteurGraphique::Gerer(sf::RenderWindow *ecran,float temps,int tailleMapY)
@@ -113,24 +121,146 @@ void MoteurGraphique::CalculerLumiereParticules(LumiereOmbrage tableauDesLampes[
         }
 }
 
-void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera)
+void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordonnee dimensionsMap)
 {
-
     sf::Sprite sprite;
+    sf::Sprite sprite2;
+
+   ecran->Clear(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
+
+    if(configuration->Lumiere && configuration->RafraichirLumiere)
+    {
+        ecran->SetView(*camera);
+
+        for(int i=0;i<(int)m_commandes[9].size();i++)
+        {
+            ecran->SetView(*camera);
+            sprite=m_commandes[9][i].m_sprite;
+            sprite.SetColor(sf::Color(0,0,0,255));
+            ecran->Draw(sprite);
+            sprite.SetBlendMode(sf::Blend::Alpha);
+        }
+
+        m_light_screen2.CopyScreen(*ecran);
+
+        ecran->Clear(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
+
+        sprite2.FlipY(true);
+        sprite2.SetImage(m_light_screen2);
+        sprite2.SetBlendMode(sf::Blend::Alpha);
+        sprite2.SetColor(sf::Color(255,255,255,196));
+
+        ecran->SetView(ecran->GetDefaultView());
+        ecran->Draw(sprite2);
+        ecran->SetView(*camera);
+
+        sprite2.SetColor(sf::Color(255,255,255,255));
+
+        LightManager->Draw(ecran,camera,dimensionsMap);
+
+        EffectBlur.SetParameter("offset",0.01);
+        ecran->Draw(EffectBlur);
+        ecran->Draw(EffectBlur);
+        ecran->Draw(EffectBlur);
+
+        m_light_screen.CopyScreen(*ecran);
+
+
+        /*ecran->Clear(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
+
+        LightManager->Draw(ecran,camera,dimensionsMap);
+        LightManager->DrawWall(ecran,camera,dimensionsMap);
+
+        m_light_screen3.CopyScreen(*ecran);*/
+
+
+
+        /*ecran->Clear(sf::Color(255,255,255));
+
+        ecran->SetView(*camera);
+        //LightManager->Draw(ecran,camera,dimensionsMap);
+
+        for(int i=0;i<(int)m_commandes[10].size();i++)
+        {
+            if(!m_commandes[10][i].wall)
+            {
+                sprite=m_commandes[10][i].m_sprite;
+                sprite.SetColor(sf::Color(0,0,0));
+                ecran->Draw(sprite);
+
+                sprite.SetBlendMode(sf::Blend::Alpha);
+            }
+        }
+
+        LightManager->Draw(ecran,camera,dimensionsMap);
+
+        for(int i=0;i<(int)m_commandes[10].size();i++)
+        {
+            if(m_commandes[10][i].wall)
+            {
+                sprite=m_commandes[10][i].m_sprite;
+                sprite.SetColor(sf::Color(0,0,0));
+                ecran->Draw(sprite);
+
+                sprite.SetBlendMode(sf::Blend::Alpha);
+            }
+        }
+
+        m_light_screen2.Create(configuration->Resolution.w,configuration->Resolution.h,sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
+        sprite2.SetImage(m_light_screen2);
+        ecran->SetView(ecran->GetDefaultView());
+        sprite2.SetBlendMode(sf::Blend::Add);
+        ecran->Draw(sprite2);
+
+        ecran->SetView(*camera);
+
+        LightManager->DrawWall(ecran,camera,dimensionsMap);
+
+         m_light_screen2.CopyScreen(*ecran);*/
+
+        configuration->RafraichirLumiere=false;
+    }
+
+    ecran->Clear();
+
+    sprite2.FlipY(true);
+    sprite2.SetImage(m_light_screen);
+    sprite2.SetBlendMode(sf::Blend::Multiply);
 
     for(int k=0;k<20;k++)
     {
-        for(int i=0;i<(int)m_commandes[k].size();i++)
+
+        if(k==12&&configuration->Lumiere)
         {
-            if(m_commandes[k][i].m_utiliserCamera)
-                ecran->SetView(*camera);
-            else
-                ecran->SetView(ecran->GetDefaultView());
-
-            sprite=m_commandes[k][i].m_sprite;
-            ecran->Draw(sprite);
+            ecran->SetView(ecran->GetDefaultView());
+            ecran->Draw(sprite2);
         }
+        /*if(k==12&&configuration->Lumiere)
+        {
+            sprite2.SetImage(m_light_screen3);
+            ecran->SetView(ecran->GetDefaultView());
+            ecran->Draw(sprite2);
+        }*/
+      /* if(k==12&&configuration->Lumiere)
+        {
+            ecran->SetView(*camera);
+            LightManager->DrawWall(ecran,camera,dimensionsMap);
+        }*/
 
+
+
+        if(k!=9)
+        {
+            for(IterCommande=m_commandes[k].begin();IterCommande!=m_commandes[k].end();++IterCommande)
+            {
+                if(IterCommande->m_utiliserCamera)
+                    ecran->SetView(*camera);
+                else
+                    ecran->SetView(ecran->GetDefaultView());
+
+                ecran->Draw(IterCommande->m_sprite);
+            }
+        }
 
 
         for(int i=0;i<(int)m_textes[k].size();i++)
@@ -143,7 +273,7 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera)
         {
             if(m_blur>0)
             {
-                EffectBlur.SetTexture("framebuffer", NULL);
+
                 EffectBlur.SetParameter("offset",m_blur);
                 ecran->Draw(EffectBlur);
                 ecran->Draw(EffectBlur);
@@ -151,30 +281,35 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera)
                 ecran->Draw(EffectBlur);
                 ecran->Draw(EffectBlur);
             }
-            if(configuration.effetMort>0)
+            if(configuration->effetMort>0)
             {
-                EffectMort.SetTexture("framebuffer", NULL);
+
                 ecran->Draw(EffectMort);
             }
         }
+
+
     }
 
-    EffectNoir.SetTexture("framebuffer", NULL);
-    EffectNoir.SetParameter("color", configuration.effetNoir, configuration.effetNoir, configuration.effetNoir);
-    ecran->Draw(EffectNoir);
-
-    if(configuration.contrastes>1&&sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
+    if(configuration->effetNoir>0)
     {
-        EffectContrastes.SetTexture("framebuffer", NULL);
-        ecran->Draw(EffectContrastes);
-        EffectContrastes.SetParameter("color", configuration.contrastes, configuration.contrastes, configuration.contrastes);
+
+        EffectNoir.SetParameter("color", configuration->effetNoir, configuration->effetNoir, configuration->effetNoir);
+        ecran->Draw(EffectNoir);
     }
-    if(configuration.luminosite>0)
+
+    if(configuration->contrastes>1&&sf::PostFX::CanUsePostFX() == true&&configuration->postFX)
+    {
+
+        ecran->Draw(EffectContrastes);
+        EffectContrastes.SetParameter("color", configuration->contrastes, configuration->contrastes, configuration->contrastes);
+    }
+    if(configuration->luminosite>0)
     {
         sf::Sprite sprite2;
         sprite2.SetImage(*getImage(0));
-        sprite2.Resize(configuration.Resolution.w,configuration.Resolution.h);
-        sprite2.SetColor(sf::Color((int)configuration.luminosite,(int)configuration.luminosite,(int)configuration.luminosite,255));
+        sprite2.Resize(configuration->Resolution.w,configuration->Resolution.h);
+        sprite2.SetColor(sf::Color((int)configuration->luminosite,(int)configuration->luminosite,(int)configuration->luminosite,255));
         sprite2.SetBlendMode(sf::Blend::Add);
         ecran->Draw(sprite2);
     }
@@ -193,16 +328,16 @@ int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std
         {
             m_images[i].nom=nom;
 
-            if(!configuration.lissage)
+            if(!configuration->lissage)
                 m_images[i].img.SetSmooth(false);
 
             if(!m_images[i].img.LoadFromMemory(Data,SizeInBytes))
             {
-                console.Ajouter("Impossible de charger : "+nom,1);
+                console->Ajouter("Impossible de charger : "+nom,1);
                 return -1;
             }
             else
-                console.Ajouter("Chargement de : "+nom,0);
+                console->Ajouter("Chargement de : "+nom,0);
 
             m_images[i].importance=importance;
 
@@ -213,16 +348,16 @@ int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std
     m_images.push_back(Image_moteur ());
     m_images.back().nom=nom;
 
-    if(!configuration.lissage)
+    if(!configuration->lissage)
         m_images.back().img.SetSmooth(false);
 
     if(!m_images.back().img.LoadFromMemory(Data,SizeInBytes))
     {
-        console.Ajouter("Impossible de charger depuis la mémoire : "+nom,1);
+        console->Ajouter("Impossible de charger depuis la mémoire : "+nom,1);
         return -1;
     }
     else
-        console.Ajouter("Chargement de : "+nom,0);
+        console->Ajouter("Chargement de : "+nom,0);
 
     m_images.back().importance=importance;
 
@@ -243,16 +378,16 @@ int MoteurGraphique::AjouterImage(std::string chemin,int importance)
         {
             m_images[i].nom=chemin;
 
-            if(!configuration.lissage)
+            if(!configuration->lissage)
                 m_images[i].img.SetSmooth(false);
 
             if(!m_images[i].img.LoadFromFile(chemin.c_str()))
             {
-                console.Ajouter("Impossible de charger : "+chemin,1);
+                console->Ajouter("Impossible de charger : "+chemin,1);
                 return -1;
             }
             else
-                console.Ajouter("Chargement de : "+chemin,0);
+                console->Ajouter("Chargement de : "+chemin,0);
 
             m_images[i].importance=importance;
 
@@ -263,16 +398,16 @@ int MoteurGraphique::AjouterImage(std::string chemin,int importance)
     m_images.push_back(Image_moteur ());
     m_images.back().nom=chemin;
 
-    if(!configuration.lissage)
+    if(!configuration->lissage)
         m_images.back().img.SetSmooth(false);
 
     if(!m_images.back().img.LoadFromFile(chemin.c_str()))
     {
-        console.Ajouter("Impossible de charger : "+chemin,1);
+        console->Ajouter("Impossible de charger : "+chemin,1);
         return -1;
     }
     else
-        console.Ajouter("Chargement de : "+chemin,0);
+        console->Ajouter("Chargement de : "+chemin,0);
 
     m_images.back().importance=importance;
 
@@ -310,10 +445,10 @@ void MoteurGraphique::AjouterSystemeParticules(int ID,coordonnee position,sf::Co
     }
 }
 
-void MoteurGraphique::AjouterCommande(sf::Sprite *sprite, int couche, bool camera)
+void MoteurGraphique::AjouterCommande(sf::Sprite *sprite, int couche, bool camera, bool wall)
 {
     if(couche>=0&&couche<20)
-        m_commandes[couche].push_back(Commande (sprite,camera));
+        m_commandes[couche].push_back(Commande (sprite,camera,wall));
 }
 
 void MoteurGraphique::AjouterTexte(sf::String* string, int couche,bool titre)
@@ -324,8 +459,8 @@ void MoteurGraphique::AjouterTexte(sf::String* string, int couche,bool titre)
         /*while(m_textes.size()<=couche)
             m_textes.push_back(std::vector <sf::String> ());*/
 
-        if(temp.GetRect().Right>configuration.Resolution.w)
-            temp.SetX(configuration.Resolution.w-(temp.GetRect().Right-temp.GetRect().Left));
+        if(temp.GetRect().Right>configuration->Resolution.w)
+            temp.SetX(configuration->Resolution.w-(temp.GetRect().Right-temp.GetRect().Left));
 
         if(temp.GetRect().Left<0)
             temp.SetX(0);
@@ -333,8 +468,8 @@ void MoteurGraphique::AjouterTexte(sf::String* string, int couche,bool titre)
         if(temp.GetRect().Top<0)
             temp.SetY(0);
 
-        if(temp.GetRect().Bottom>configuration.Resolution.h)
-            temp.SetY(configuration.Resolution.h-(temp.GetRect().Bottom-temp.GetRect().Top));
+        if(temp.GetRect().Bottom>configuration->Resolution.h)
+            temp.SetY(configuration->Resolution.h-(temp.GetRect().Bottom-temp.GetRect().Top));
 
         if(titre)
         {
@@ -429,24 +564,24 @@ void MoteurGraphique::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *her
     if(vueMin.y<0) { vueMin.y=0; }
     if(vueMax.x>map->getDimensions().x) { vueMax.x=map->getDimensions().x; }
     if(vueMax.y>map->getDimensions().y) { vueMax.y=map->getDimensions().y; }
-    if(configuration.heure+1<24)
+    if(configuration->heure+1<24)
     {
-        lumiereMap.intensite=(int)(((float)m_lumiere[configuration.heure].intensite*(60-configuration.minute)+((float)m_lumiere[configuration.heure+1].intensite*configuration.minute))*0.016666666666666666666666666666667);
-        lumiereMap.rouge=(int)(((float)m_lumiere[configuration.heure].rouge*(60-configuration.minute)+((float)m_lumiere[configuration.heure+1].rouge*configuration.minute))*0.016666666666666666666666666666667);
-        lumiereMap.vert=(int)(((float)m_lumiere[configuration.heure].vert*(60-configuration.minute)+((float)m_lumiere[configuration.heure+1].vert*configuration.minute))*0.016666666666666666666666666666667);
-        lumiereMap.bleu=(int)(((float)m_lumiere[configuration.heure].bleu*(60-configuration.minute)+((float)m_lumiere[configuration.heure+1].bleu*configuration.minute))*0.016666666666666666666666666666667);
-        lumiereMap.hauteur=((float)m_lumiere[configuration.heure].hauteur*(60-configuration.minute)+((float)m_lumiere[configuration.heure+1].hauteur*configuration.minute))*0.016666666666666666666666666666667;
+        lumiereMap.intensite=(int)(((float)m_lumiere[configuration->heure].intensite*(60-configuration->minute)+((float)m_lumiere[configuration->heure+1].intensite*configuration->minute))*0.016666666666666666666666666666667);
+        lumiereMap.rouge=(int)(((float)m_lumiere[configuration->heure].rouge*(60-configuration->minute)+((float)m_lumiere[configuration->heure+1].rouge*configuration->minute))*0.016666666666666666666666666666667);
+        lumiereMap.vert=(int)(((float)m_lumiere[configuration->heure].vert*(60-configuration->minute)+((float)m_lumiere[configuration->heure+1].vert*configuration->minute))*0.016666666666666666666666666666667);
+        lumiereMap.bleu=(int)(((float)m_lumiere[configuration->heure].bleu*(60-configuration->minute)+((float)m_lumiere[configuration->heure+1].bleu*configuration->minute))*0.016666666666666666666666666666667);
+        lumiereMap.hauteur=((float)m_lumiere[configuration->heure].hauteur*(60-configuration->minute)+((float)m_lumiere[configuration->heure+1].hauteur*configuration->minute))*0.016666666666666666666666666666667;
     }
     else
     {
-        lumiereMap.intensite=(int)(((float)m_lumiere[configuration.heure].intensite*(60-configuration.minute)+((float)m_lumiere[0].intensite*configuration.minute))*0.016666666666666666666666666666667);
-        lumiereMap.rouge=(int)(((float)m_lumiere[configuration.heure].rouge*(60-configuration.minute)+((float)m_lumiere[0].rouge*configuration.minute))*0.016666666666666666666666666666667);
-        lumiereMap.vert=(int)(((float)m_lumiere[configuration.heure].vert*(60-configuration.minute)+((float)m_lumiere[0].vert*configuration.minute))*0.016666666666666666666666666666667);
-        lumiereMap.bleu=(int)(((float)m_lumiere[configuration.heure].bleu*(60-configuration.minute)+((float)m_lumiere[0].bleu*configuration.minute))*0.016666666666666666666666666666667);
-        lumiereMap.hauteur=((float)m_lumiere[configuration.heure].hauteur*(60-configuration.minute)+((float)m_lumiere[0].hauteur*configuration.minute))*0.016666666666666666666666666666667;
+        lumiereMap.intensite=(int)(((float)m_lumiere[configuration->heure].intensite*(60-configuration->minute)+((float)m_lumiere[0].intensite*configuration->minute))*0.016666666666666666666666666666667);
+        lumiereMap.rouge=(int)(((float)m_lumiere[configuration->heure].rouge*(60-configuration->minute)+((float)m_lumiere[0].rouge*configuration->minute))*0.016666666666666666666666666666667);
+        lumiereMap.vert=(int)(((float)m_lumiere[configuration->heure].vert*(60-configuration->minute)+((float)m_lumiere[0].vert*configuration->minute))*0.016666666666666666666666666666667);
+        lumiereMap.bleu=(int)(((float)m_lumiere[configuration->heure].bleu*(60-configuration->minute)+((float)m_lumiere[0].bleu*configuration->minute))*0.016666666666666666666666666666667);
+        lumiereMap.hauteur=((float)m_lumiere[configuration->heure].hauteur*(60-configuration->minute)+((float)m_lumiere[0].hauteur*configuration->minute))*0.016666666666666666666666666666667;
     }
 
-    angleOmbreMap=((float)configuration.heure*60+configuration.minute)*180/720;
+    angleOmbreMap=((float)configuration->heure*60+configuration->minute)*180/720;
 
     m_lumiereHero=hero->m_modelePersonnage.getPorteeLumineuse();
 
@@ -458,7 +593,7 @@ void MoteurGraphique::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *her
     if(m_lumiereHero.intensite>255) m_lumiereHero.intensite=255;
     if(m_lumiereHero.intensite<0) m_lumiereHero.intensite=0;
 
-    if(configuration.Ombre)
+    if(configuration->Ombre)
         m_lumiereHero.AjouterOmbre(lumiereMap.intensite/4,angleOmbreMap,lumiereMap.hauteur);
 
 
@@ -468,7 +603,7 @@ void MoteurGraphique::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *her
         {
             m_tableauDesLampes[i][j].detruire();
              m_tableauDesLampes[i][j]=lumiereMap;
-            if(configuration.Ombre)
+            if(configuration->Ombre)
                 m_tableauDesLampes[i][j].AjouterOmbre((int)((float)lumiereMap.intensite*0.25),angleOmbreMap,lumiereMap.hauteur);
 
             if(i>=0&&i<vueMax.y-vueMin.y&&j>=0&&j<vueMax.x-vueMin.x)
@@ -612,7 +747,7 @@ void MoteurGraphique::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *her
                         m_lumiereHero.bleu=255;
                 }
 
-                if(configuration.Ombre)
+                if(configuration->Ombre)
                 {
                     coordonnee coord1,coord2;
 
@@ -717,12 +852,12 @@ void MoteurGraphique::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *her
                                     if(m_decor[1][l][m].getTileset()>-1)
                                     {
                                         positionPartieDecor=m_tileset[m_decor[1][l][m].getTileset()].getPositionDuTile(m_decor[1][l][m].getTile());
-                                        if(m_tileset[m_decor[1][l][m].getTileset()].getOmbreDuTile(m_decor[1][l][m].getTile())&&configuration.Ombre)
+                                        if(m_tileset[m_decor[1][l][m].getTileset()].getOmbreDuTile(m_decor[1][l][m].getTile())&&configuration->Ombre)
                                             ombre=true;
                                     }
 
                                     if(position.x+positionPartieDecor.h*2+positionPartieDecor.w>=ViewRect.Left&&position.x-positionPartieDecor.h*2-positionPartieDecor.w-64<ViewRect.Right&&position.y+positionPartieDecor.h+positionPartieDecor.w>=ViewRect.Top&&position.y-positionPartieDecor.h-32<ViewRect.Bottom+100&&ombre
-                                    ||position.x+positionPartieDecor.w/configuration.zoom>=ViewRect.Left&&position.x-128/configuration.zoom<ViewRect.Right&&position.y+64+positionPartieDecor.h/configuration.zoom>=ViewRect.Top&&position.y-positionPartieDecor.h/configuration.zoom+64<ViewRect.Bottom)
+                                    ||position.x+positionPartieDecor.w/configuration->zoom>=ViewRect.Left&&position.x-128/configuration->zoom<ViewRect.Right&&position.y+64+positionPartieDecor.h/configuration->zoom>=ViewRect.Top&&position.y-positionPartieDecor.h/configuration->zoom+64<ViewRect.Bottom)
                                   //  if(position.x>=ViewRect.Left-384&&position.x<ViewRect.Right+384&&position.y>=ViewRect.Top-384&&position.y<ViewRect.Bottom+384)// Je test si le tile va êtrz affiché à l'écran ou pas
                                     {
 
@@ -826,7 +961,7 @@ void MoteurGraphique::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *her
 
                                         // Je calcule les ombres
                                         if(!(l==j&&m==k))
-                                        if(configuration.Ombre)
+                                        if(configuration->Ombre)
                                         {
                                             coordonnee coord1,coord2;
 
@@ -864,7 +999,7 @@ void MoteurGraphique::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *her
                                             if(m_lumiereHero.bleu>255)
                                                m_lumiereHero.bleu=255;
 
-                                            if(configuration.Ombre)
+                                            if(configuration->Ombre)
                                             {
                                                 coordonnee coord1,coord2;
 
@@ -1006,7 +1141,7 @@ void MoteurGraphique::calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *her
             }
         }
 
-        if(configuration.amelioration_lampes)
+        if(configuration->amelioration_lampes)
         for(int z=0;z<2;z++)
             for(int i=0;i<vueMax.y-vueMin.y;i++)
             for(int j=0;j<vueMax.x-vueMin.x;j++)
@@ -1102,7 +1237,7 @@ void MoteurGraphique::AjouterCommandesMap(Map *map)
 
                     if(j>=0&&j<m_decor[0].size()&&k>=0&&k<m_decor[0][0].size())
                     {
-                        if(couche==1&&position.x+288>ViewRect.Left&&position.x<ViewRect.Right&&position.y+160>ViewRect.Top&&position.y<ViewRect.Bottom&&configuration.FonduLumiere)
+                        if(couche==1&&position.x+288>ViewRect.Left&&position.x<ViewRect.Right&&position.y+160>ViewRect.Top&&position.y<ViewRect.Bottom&&configuration->FonduLumiere)
                         {
                             spriteLumiereMask.SetX(position.x-128);
                             spriteLumiereMask.SetY(position.y-64);
@@ -1123,7 +1258,7 @@ void MoteurGraphique::AjouterCommandesMap(Map *map)
                         if(couche==1)
                         {
                             if(j>=0&&j<m_decor[0].size()&&k>=0&&k<m_decor[0][0].size())
-                            if(configuration.Herbes)
+                            if(configuration->Herbes)
                                 if(m_decor[0][j][k].getHerbe()>=0&&m_decor[0][j][k].getHerbe()<m_herbe.size())
                                 {
                                     positionPartieDecor=m_herbe[m_decor[0][j][k].getHerbe()].getPositionDuTile(m_decor[0][j][k].getNumeroHerbe());
@@ -1139,7 +1274,7 @@ void MoteurGraphique::AjouterCommandesMap(Map *map)
                                             Sprite.SetX(position.x+64-positionPartieDecor.w/2);
                                             Sprite.SetY(position.y-positionPartieDecor.h+64);
 
-                                            if(configuration.Lumiere)
+                                            if(configuration->Lumiere)
                                             {
                                                 Sprite.SetColor(sf::Color(
                                                     (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].intensite*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].rouge)/255,
@@ -1165,7 +1300,7 @@ void MoteurGraphique::AjouterCommandesMap(Map *map)
                                 if(m_monstreIllumine==m_decor[0][j][k].getMonstre()&&m_monstreIllumine!=-1||m_monstreIllumine==m_decor[1][j][k].getMonstre()&&m_monstreIllumine!=-1)
                                 {
                                     LumiereOmbrage temp;
-                                    if(configuration.Lumiere)
+                                    if(configuration->Lumiere)
                                         temp=m_tableauDesLampes[j-vueMin.y][k-vueMin.x];
 
                                     temp.rouge=255;
@@ -1188,14 +1323,14 @@ void MoteurGraphique::AjouterCommandesMap(Map *map)
                                 else
                                 {
                                     LumiereOmbrage temp;
-                                    if(configuration.Lumiere)
+                                    if(configuration->Lumiere)
                                         temp=m_tableauDesLampes[j-vueMin.y][k-vueMin.x];
 
 
 
                                     if(m_decor[0][j][k].getMonstre()>=0&&m_decor[0][j][k].getMonstre()<m_monstre.size())
                                     {
-                                        if(configuration.Lumiere)
+                                        if(configuration->Lumiere)
                                         {
                                             temp.rouge=(temp.rouge*temp.intensite+m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().rouge*m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+temp.intensite);
                                             temp.vert=(temp.vert*temp.intensite+m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().vert*m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[0][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+temp.intensite);
@@ -1217,7 +1352,7 @@ void MoteurGraphique::AjouterCommandesMap(Map *map)
                                     }
                                     if(m_decor[1][j][k].getMonstre()>=0&&m_decor[1][j][k].getMonstre()<m_monstre.size())
                                     {
-                                        if(configuration.Lumiere)
+                                        if(configuration->Lumiere)
                                         {
                                             temp.rouge=(temp.rouge*temp.intensite+m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().rouge*m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+temp.intensite);
                                             temp.vert=(temp.vert*temp.intensite+m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().vert*m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite)/(m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()].getModele()].getPorteeLumineuse().intensite+temp.intensite);
@@ -1263,7 +1398,7 @@ void MoteurGraphique::AjouterCommandesMap(Map *map)
 
 
                         if(j>=0&&j<m_decor[0].size()&&k>=0&&k<m_decor[0][0].size())
-                            if(configuration.Herbes)
+                            if(configuration->Herbes)
                                 if(m_decor[1][j][k].getHerbe()>=0&&m_decor[1][j][k].getHerbe()<m_herbe.size())
                                 {
                                     position.x=(k-j-1+m_decor[1].size())*64;
@@ -1281,7 +1416,7 @@ void MoteurGraphique::AjouterCommandesMap(Map *map)
                                             Sprite.SetX(position.x+64-positionPartieDecor.w/2);
                                             Sprite.SetY(position.y-positionPartieDecor.h+64);
 
-                                            if(configuration.Lumiere)
+                                            if(configuration->Lumiere)
                                             {
                                                 Sprite.SetColor(sf::Color(
                                                     (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].intensite*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].rouge)/255,
@@ -1307,13 +1442,13 @@ void MoteurGraphique::AjouterCommandesMap(Map *map)
                         if(m_decor[couche][j][k].getTileset()>=0&&m_decor[couche][j][k].getTileset()<m_tileset.size())
                         {
                             positionPartieDecor=m_tileset[m_decor[couche][j][k].getTileset()].getPositionDuTile(m_decor[couche][j][k].getTile());
-                            if(position.x+positionPartieDecor.h*2+positionPartieDecor.w>=ViewRect.Left&&position.x-positionPartieDecor.h*2-positionPartieDecor.w-64<ViewRect.Right&&position.y+positionPartieDecor.h+positionPartieDecor.w>=ViewRect.Top&&position.y-positionPartieDecor.h-32<ViewRect.Bottom+100&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()&&configuration.Ombre&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()))
+                            if(position.x+positionPartieDecor.h*2+positionPartieDecor.w>=ViewRect.Left&&position.x-positionPartieDecor.h*2-positionPartieDecor.w-64<ViewRect.Right&&position.y+positionPartieDecor.h+positionPartieDecor.w>=ViewRect.Top&&position.y-positionPartieDecor.h-32<ViewRect.Bottom+100&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()&&configuration->Ombre&&m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()))
                             ||position.x+positionPartieDecor.w>=ViewRect.Left&&position.x<ViewRect.Right&&position.y+positionPartieDecor.h>=ViewRect.Top&&position.y-positionPartieDecor.h+64<ViewRect.Bottom)
                             {
                                 Sprite.SetImage(*m_tileset[m_decor[couche][j][k].getTileset()].getImage());
                                 Sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
 
-                                if(configuration.Ombre)
+                                if(configuration->Ombre)
                                 {
                                     if(m_tileset[m_decor[couche][j][k].getTileset()].getOmbreDuTile(m_decor[couche][j][k].getTile()))
                                     {
@@ -1372,7 +1507,7 @@ void MoteurGraphique::AjouterCommandesMap(Map *map)
 
 
 
-                                    if(configuration.Lumiere&&configuration.FonduLumiere)
+                                    if(configuration->Lumiere&&configuration->FonduLumiere)
                                     {
                                         if(couche==1)
                                             Sprite.SetColor(sf::Color(
@@ -1387,7 +1522,7 @@ void MoteurGraphique::AjouterCommandesMap(Map *map)
                                             (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].bleu),
                                             alpha));
                                     }
-                                    else if(configuration.Lumiere)
+                                    else if(configuration->Lumiere)
                                     {
                                         Sprite.SetColor(sf::Color(
                                             (m_tableauDesLampes[j-vueMin.y][k-vueMin.x].intensite*m_tableauDesLampes[j-vueMin.y][k-vueMin.x].rouge)/255,
@@ -1444,7 +1579,7 @@ void MoteurGraphique::AjouterCommandesMap(Map *map)
                                     int alpha=255;
                                     if(couche==1)
                                     alpha=128;
-                                    if(configuration.Lumiere)
+                                    if(configuration->Lumiere)
                                     {
                                         Sprite.SetColor(sf::Color(
                                                 (int)(((double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].intensite*(double)m_tableauDesLampes[w-vueMin.y][z-vueMin.x].rouge)*0.7/255),
@@ -1493,7 +1628,7 @@ void MoteurGraphique::AjouterCommandesMap(Map *map)
         vueMax.x=hero->m_personnage.getCoordonnee().x+16;
         vueMax.y=hero->m_personnage.getCoordonnee().y+15;
 
-        Sprite.SetCenter(4*configuration.Resolution.x/800,4*configuration.Resolution.x/800);
+        Sprite.SetCenter(4*configuration->Resolution.x/800,4*configuration->Resolution.x/800);
         Sprite.SetRotation(45);
 
         Sprite.SetColor(sf::Color(255,255,255,128));
@@ -1502,15 +1637,15 @@ void MoteurGraphique::AjouterCommandesMap(Map *map)
             {
                 for(int k=vueMin.x;k<vueMax.x;k++)
                 {
-                    position.x=(float)(((k-vueMin.x)-(j-vueMin.y)-1+40)*6*(float)configuration.Resolution.x/800);
-                    position.y=(float)(((k-vueMin.x)+(j-vueMin.y))*6*(float)configuration.Resolution.x/800);
-                    if(position.x+465*configuration.Resolution.x/800>605*configuration.Resolution.x/800&&position.x+465*configuration.Resolution.x/800<800*configuration.Resolution.x/800&&position.y*configuration.Resolution.x/800>0&&position.y-80*configuration.Resolution.x/800<195*configuration.Resolution.x/800)
+                    position.x=(float)(((k-vueMin.x)-(j-vueMin.y)-1+40)*6*(float)configuration->Resolution.x/800);
+                    position.y=(float)(((k-vueMin.x)+(j-vueMin.y))*6*(float)configuration->Resolution.x/800);
+                    if(position.x+465*configuration->Resolution.x/800>605*configuration->Resolution.x/800&&position.x+465*configuration->Resolution.x/800<800*configuration->Resolution.x/800&&position.y*configuration->Resolution.x/800>0&&position.y-80*configuration->Resolution.x/800<195*configuration->Resolution.x/800)
                     {
                         if(getTypeCase(k,j)==1)
                         {
                             Sprite.SetImage(carreBrun);
-                            Sprite.SetX((float)(position.x+465*configuration.Resolution.x/800));
-                            Sprite.SetY((float)(position.y-80*configuration.Resolution.x/800));
+                            Sprite.SetX((float)(position.x+465*configuration->Resolution.x/800));
+                            Sprite.SetY((float)(position.y-80*configuration->Resolution.x/800));
                             ecran->Draw(Sprite);
                         }
 
@@ -1518,24 +1653,24 @@ void MoteurGraphique::AjouterCommandesMap(Map *map)
                         {
                             Sprite.SetImage(carreRouge);
 
-                            Sprite.SetX(position.x+465*configuration.Resolution.x/800);
-                            Sprite.SetY(position.y-80*configuration.Resolution.x/800);
+                            Sprite.SetX(position.x+465*configuration->Resolution.x/800);
+                            Sprite.SetY(position.y-80*configuration->Resolution.x/800);
                             ecran->Draw(Sprite);
                         }
 
                         if(getTypeCase(k,j)==3)
                         {
                                 Sprite.SetImage(carreVert);
-                                Sprite.SetX(position.x+465*configuration.Resolution.x/800);
-                                Sprite.SetY(position.y-80*configuration.Resolution.x/800);
+                                Sprite.SetX(position.x+465*configuration->Resolution.x/800);
+                                Sprite.SetY(position.y-80*configuration->Resolution.x/800);
                                 ecran->Draw(Sprite);
                         }
 
                         if(hero->m_personnage.getCoordonnee().x==k&&hero->m_personnage.getCoordonnee().y==j)
                         {
                                 Sprite.SetImage(carreBleu);
-                                Sprite.SetX((float)(position.x+465*configuration.Resolution.x/800));
-                                Sprite.SetY((float)(position.y-80*configuration.Resolution.x/800));
+                                Sprite.SetX((float)(position.x+465*configuration->Resolution.x/800));
+                                Sprite.SetY((float)(position.y-80*configuration->Resolution.x/800));
                                 ecran->Draw(Sprite);
                         }
                     }

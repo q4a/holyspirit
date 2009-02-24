@@ -42,7 +42,7 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
 
         if(m_caracteristique.rang==1)
         {
-            m_porteeLumineuse.intensite=512;
+            m_porteeLumineuse.intensite=128;
             m_caracteristique.maxVie*=3;
             m_caracteristique.vie*=3;
             m_caracteristique.degatsMin*=1;
@@ -53,7 +53,7 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
         }
         if(m_caracteristique.rang==2)
         {
-            m_porteeLumineuse.intensite=768;
+            m_porteeLumineuse.intensite=255;
             m_caracteristique.maxVie*=5;
             m_caracteristique.vie*=5;
             m_caracteristique.degatsMin*=2;
@@ -77,8 +77,8 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
 
 bool Modele_Monstre::Charger(string chemin)
 {
-    console.Ajouter("",0);
-	console.Ajouter("Chargement du monstre : "+chemin,0);
+    console->Ajouter("",0);
+	console->Ajouter("Chargement du monstre : "+chemin,0);
 
     m_caracteristique.vitesse=0;
     m_caracteristique.vie=0;
@@ -107,9 +107,9 @@ bool Modele_Monstre::Charger(string chemin)
     			string cheminImage;
     			*fichier>>cheminImage;
 
-                m_image.push_back(moteurGraphique.AjouterImage(reader.GetFile(cheminImage), reader.GetFileSize(cheminImage), cheminImage));
+                m_image.push_back(moteurGraphique->AjouterImage(reader.GetFile(cheminImage), reader.GetFileSize(cheminImage), cheminImage));
     		}
-    		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0; }
+    		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0; }
     	}while(caractere!='$');
 
     	//m_buffer.clear();
@@ -120,9 +120,9 @@ bool Modele_Monstre::Charger(string chemin)
     		{
     			string cheminSon;
     			*fichier>>cheminSon;
-                m_sons.push_back(moteurSons.AjouterBuffer(cheminSon));
+                m_sons.push_back(moteurSons->AjouterBuffer(cheminSon));
     		}
-    		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
+    		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
     	}while(caractere!='$');
 
         do
@@ -141,12 +141,12 @@ bool Modele_Monstre::Charger(string chemin)
                         case 'b': *fichier>>m_porteeLumineuse.bleu; break;
                         case 'i': *fichier>>m_porteeLumineuse.intensite; break;
                     }
-                     if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
+                     if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
                 }while(caractere!='$');
                 fichier->get(caractere);
-                 if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
+                 if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
             }
-    		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+    		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
 
     	}while(caractere!='$');
 
@@ -158,7 +158,7 @@ bool Modele_Monstre::Charger(string chemin)
                 getline(*fichier,m_caracteristique.nom);
                 //*fichier>>m_caracteristique.nom;
             }
-    		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+    		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
 
     	}while(caractere!='$');
 
@@ -169,7 +169,7 @@ bool Modele_Monstre::Charger(string chemin)
             {
                 *fichier>>m_caracteristique.rang;
             }
-    		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+    		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
 
     	}while(caractere!='$');
 
@@ -201,17 +201,17 @@ bool Modele_Monstre::Charger(string chemin)
 
                         case 'i': *fichier>>m_minimap; break;
                     }
-                     if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
+                     if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
                 }while(caractere!='$');
 
 
                 m_caracteristique.vie=m_caracteristique.maxVie;
 
                 fichier->get(caractere);
-                 if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
+                 if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
             }
             fichier->get(caractere);
-            if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }
+            if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }
         }while(caractere!='$');
 
         do
@@ -226,7 +226,7 @@ bool Modele_Monstre::Charger(string chemin)
                 m_scriptAI.Charger(temp);
             }
 
-    	    if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }
+    	    if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }
         }while(caractere!='$');
 
 
@@ -254,12 +254,12 @@ bool Modele_Monstre::Charger(string chemin)
                         tempModeleObjet.Charger(temp2);
                     }
 
-                    if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+                    if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
                 }while(caractere!='$');
                 m_objets.push_back(tempModeleObjet);
                 fichier->get(caractere);
             }
-    		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; }
+    		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
 
     	}while(caractere!='$');
 
@@ -271,10 +271,10 @@ bool Modele_Monstre::Charger(string chemin)
                 string temp;
                 //getline(fichier, temp);
                 *fichier>>temp;
-                m_particules=moteurGraphique.AjouterModeleSystemeParticules(temp);
+                m_particules=moteurGraphique->AjouterModeleSystemeParticules(temp);
             }
 
-    	    if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }
+    	    if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }
         }while(caractere!='$');
 
 
@@ -289,7 +289,7 @@ bool Modele_Monstre::Charger(string chemin)
                 m_miracles.push_back(Miracle (temp));
             }
 
-    	    if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }
+    	    if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }
         }while(caractere!='$');
 
 
@@ -327,7 +327,7 @@ bool Modele_Monstre::Charger(string chemin)
 
                                 case 'c': fichier->get(caractere); if(caractere=='x') *fichier>>centre.x; else *fichier>>centre.y; break;
                             }
-                            if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
+                            if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
                         }while(caractere!='$');
 
                         if(centre.x==-1)
@@ -338,16 +338,16 @@ bool Modele_Monstre::Charger(string chemin)
                         m_pose[i][j].push_back(poseTemp);
                         m_pose[i][j].back().setPose(position,centre,animation,son,image,attaque,lumiere,tempsAnimation,0);
                         fichier->get(caractere);
-                        if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }
+                        if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }
                     }
                     fichier->get(caractere);
-                    if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console.Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0; }
+                    if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0; }
                 }while(caractere!='$');
     	    }
     	}
     }
     else
-    console.Ajouter("Impossible d'ouvrir : "+chemin,1);
+    console->Ajouter("Impossible d'ouvrir : "+chemin,1);
 
     fichier->close();
 

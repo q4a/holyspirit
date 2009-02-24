@@ -39,11 +39,11 @@ int MoteurSons::AjouterBuffer(std::string chemin)
 
     if(!m_buffers.back().LoadFromFile(chemin.c_str()))
     {
-        console.Ajouter("Impossible de charger : "+chemin,1);
+        console->Ajouter("Impossible de charger : "+chemin,1);
         return -1;
     }
     else
-        console.Ajouter("Chargement de : "+chemin,0);
+        console->Ajouter("Chargement de : "+chemin,0);
 
     return m_buffers.size()-1;
 }

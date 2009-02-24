@@ -19,15 +19,16 @@ Jeu::Jeu()
 void Jeu::Demarrer()
 {
 
-    if(!configuration.mode_fenetre)
-        ecran.Create(sf::VideoMode(configuration.Resolution.x, configuration.Resolution.y, 32),"HolySpirit : Act of Faith",sf::Style::Fullscreen);
+    if(!configuration->mode_fenetre)
+        ecran.Create(sf::VideoMode(configuration->Resolution.x, configuration->Resolution.y, 32),"HolySpirit : Act of Faith",sf::Style::Fullscreen);
     else
-        ecran.Create(sf::VideoMode(configuration.Resolution.x, configuration.Resolution.y, 32),"HolySpirit : Act of Faith");
-    if(configuration.syncronisation_verticale)
+        ecran.Create(sf::VideoMode(configuration->Resolution.x, configuration->Resolution.y, 32),"HolySpirit : Act of Faith");
+    if(configuration->syncronisation_verticale)
     {
         ecran.UseVerticalSync(true);
         ecran.SetFramerateLimit(60);
     }
+
 
     lireVideo(&ecran,"Data/Menus/Videos/Cinematique test 1-2");
 
@@ -35,9 +36,9 @@ void Jeu::Demarrer()
 
     {
         cDAT reader;
-        if(reader.Read(configuration.chemin_saves+"hero.sav.hs"))
+        if(reader.Read(configuration->chemin_saves+"hero.sav.hs"))
             for(int i=0;i<(int)reader.GetNumberFile();i++)
-                if(reader.GetFileName(i)!=configuration.chemin_temps+"hero.sav.txt")
+                if(reader.GetFileName(i)!=configuration->chemin_temps+"hero.sav.txt")
                     reader.ExportFile(i),this->hero.m_contenuSave.push_back(reader.GetFileName(i));
 
     }
@@ -61,17 +62,17 @@ void Jeu::Demarrer()
     this->m_run = true;
     while (this->m_run)
 	{
-	    configuration.Resolution.x=this->ecran.GetWidth();
-	    configuration.Resolution.y=this->ecran.GetHeight();
+	    configuration->Resolution.x=this->ecran.GetWidth();
+	    configuration->Resolution.y=this->ecran.GetHeight();
 
 		this->m_contexte->Utiliser(this);
 		if(this->m_display)
 		{
-		    ecran.Clear();
-		    moteurSons.Vider();
-		    moteurGraphique.Afficher(&this->ecran,&this->camera);
+		    moteurSons->Vider();
+		    moteurGraphique->Afficher(&this->ecran,&this->camera,this->map.getDimensions());
             this->ecran.Display();
-            moteurGraphique.Vider();
+            moteurGraphique->Vider();
+            ecran.Clear();
 		}
 	}
 
@@ -90,8 +91,8 @@ void Jeu::Demarrer()
     delete this->m_inventaire;
     delete this->m_menuInGame;
 
-    console.Ajouter("");
-    console.Ajouter("Fermeture des contextes effectuée avec succès.");
+    console->Ajouter("");
+    console->Ajouter("Fermeture des contextes effectuée avec succès.");
 }
 
 
@@ -100,16 +101,16 @@ void Jeu::Reset()
     struct dirent *lecture;
 
 	DIR *repertoire;
-    repertoire = opendir(configuration.chemin_temps.c_str());
+    repertoire = opendir(configuration->chemin_temps.c_str());
     while ((lecture = readdir(repertoire)))
     {
-        std::string temp=configuration.chemin_temps+lecture->d_name;
+        std::string temp=configuration->chemin_temps+lecture->d_name;
         remove(temp.c_str());
     }
     closedir(repertoire);
 
     this->hero.m_contenuSave.clear();
-    this->hero.m_contenuSave.push_back(configuration.chemin_temps+"hero.sav.txt");
+    this->hero.m_contenuSave.push_back(configuration->chemin_temps+"hero.sav.txt");
 }
 
 

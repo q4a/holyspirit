@@ -22,6 +22,10 @@ c_Chargement::c_Chargement(Jeu *jeu)
 
 void c_Chargement::setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool debut)
 {
+    moteurGraphique->LightManager->Delete_All_Light();
+    moteurGraphique->LightManager->Delete_All_Wall();
+
+
     tempsActuel=0,tempsPrecedent=0,temps_ecoule=0,tempsEcouleDepuisDernierAffichage=0;
 
     m_coordonneePerso.x=coordonneePerso.x;
@@ -37,7 +41,7 @@ void c_Chargement::setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool
 
 
     cDAT reader;
-    reader.Read(configuration.chemin_maps);
+    reader.Read(configuration->chemin_maps);
     sprintf(chemin,"map%i.map.hs",numeroMap);
 
     ifstream *fichier=reader.GetInfos(chemin);
@@ -76,7 +80,7 @@ void c_Chargement::setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool
 
     int random=rand()%cheminFond.size();
 
-    m_fond=moteurGraphique.AjouterImage(cheminFond.at(random));
+    m_fond=moteurGraphique->AjouterImage(cheminFond.at(random));
 
     cheminFond.clear();
 
@@ -90,13 +94,15 @@ void c_Chargement::Utiliser(Jeu *jeu)
     jeu->hero.placerCamera(&jeu->camera,jeu->map.getDimensions());
     jeu->ecran.SetView(jeu->camera);
 
-    if(configuration.Lumiere)
-        jeu->map.calculerOmbresEtLumieres(&jeu->ecran,&jeu->hero,&jeu->camera);
+    if(configuration->Lumiere)
+        jeu->map.calculerOmbresEtLumieres();
 
     temps_ecoule=0;
     temps_ecoule=jeu->Clock.GetElapsedTime();
     tempsEcouleDepuisDernierAffichage+=temps_ecoule;
     jeu->Clock.Reset();
+
+    moteurGraphique->LightManager->Generate(&jeu->camera);
 
 
     if(z>=49&&!augmenterNoir&&allerVersImageChargement)
@@ -104,38 +110,46 @@ void c_Chargement::Utiliser(Jeu *jeu)
         jeu->Clock.Reset();
         jeu->hero.m_personnage.setCoordonnee(m_coordonneePerso);
 
-        moteurGraphique.ViderParticules();
+        moteurGraphique->ViderParticules();
 
         if(!m_debut)
             jeu->map.Sauvegarder(&jeu->hero);
 
         jeu->map.Detruire();
 
+        jeu->hero.m_personnage.m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),196,384,8,sf::Color(255,255,255));
+
         jeu->hero.Sauvegarder();
 
         jeu->hero.ChargerModele(true);
 
         if(!jeu->map.Charger(numeroProchaineMap,&jeu->hero))
-            console.Ajouter("CRITICAL ERROR"), throw  "CRITICAL ERROR";
+            console->Ajouter("CRITICAL ERROR"), throw  "CRITICAL ERROR";
 
-        moteurGraphique.DecrementerImportance();
+        moteurGraphique->DecrementerImportance();
 
         jeu->hero.placerCamera(&jeu->camera,jeu->map.getDimensions());
-        jeu->camera.Zoom(configuration.zoom);
+        jeu->camera.Zoom(configuration->zoom);
 
         coordonnee position;
         position.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1+jeu->map.getDimensions().y)/5;
         position.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
-        Listener::SetGlobalVolume((float)configuration.volume);
+        Listener::SetGlobalVolume((float)configuration->volume);
         Listener::SetPosition(-position.x, 0, position.y);
         Listener::SetTarget(0, 0, 1);
         jeu->map.musiquePlay(position);
 
-        if(configuration.Lumiere)
-            jeu->map.calculerOmbresEtLumieres(&jeu->ecran,&jeu->hero,&jeu->camera);
+        if(configuration->Lumiere)
+            jeu->map.calculerOmbresEtLumieres();
 
-       // while(jeu->Clock.GetElapsedTime()<1){}
+        sf::Vector2f pos;
+        pos.x=(((jeu->hero.m_personnage.getCoordonneePixel().x-jeu->hero.m_personnage.getCoordonneePixel().y)*64/COTE_TILE+jeu->map.getDimensions().y*64));
+        pos.y=(((jeu->hero.m_personnage.getCoordonneePixel().x+jeu->hero.m_personnage.getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
+
+        moteurGraphique->LightManager->SetPosition(jeu->hero.m_personnage.m_light,pos);
         allerVersImageChargement=false;
+
+        jeu->Clock.Reset();
     }
 
 
@@ -156,25 +170,20 @@ void c_Chargement::Utiliser(Jeu *jeu)
         z=0;
 
 
-    if (sf::PostFX::CanUsePostFX() == true&&configuration.postFX)
+    if (sf::PostFX::CanUsePostFX() == true&&configuration->postFX)
     {
         if(allerVersImageChargement&&z<49&&augmenterNoir||!allerVersImageChargement&&z>0&&!augmenterNoir)
         {
-            jeu->camera.Zoom(configuration.zoom);
-            jeu->map.setVolumeMusique((int)(z*(float)configuration.volume/50));
+            jeu->camera.Zoom(configuration->zoom);
+            jeu->map.setVolumeMusique((int)(z*(float)configuration->volume/50));
             if(!m_debut&&augmenterNoir||!augmenterNoir)
             {
                 coordonnee temp;
                 jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,temp,0);
 
-                if(configuration.Minimap)
+                if(configuration->Minimap)
                     jeu->menu.Afficher(&jeu->ecran,2,255,&jeu->hero.m_classe);
 
-                if(jeu->hero.getChercherSac().x!=-1&&jeu->map.getNombreObjets(jeu->hero.getChercherSac())>0)
-                {
-                    jeu->menu.Afficher(&jeu->ecran,3,255,&jeu->hero.m_classe);
-                    jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,0);
-                }
                 jeu->menu.Afficher(&jeu->ecran,1,255,&jeu->hero.m_classe);
                 jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,0,jeu->hero.m_personnage.getCaracteristique(),&jeu->hero.m_classe);
             }
@@ -182,24 +191,24 @@ void c_Chargement::Utiliser(Jeu *jeu)
         else
         jeu->menu.AfficherChargement(&jeu->ecran,nomMap,m_fond,50);
 
-        configuration.effetNoir=((float)z)/50;
+        configuration->effetNoir=((float)z)/50;
     }
     else
     {
         if(allerVersImageChargement&&z<49&&augmenterNoir||!allerVersImageChargement&&z>0&&!augmenterNoir)
         {
-            jeu->map.setVolumeMusique((int)(z*(float)configuration.volume/50));
+            jeu->map.setVolumeMusique((int)(z*(float)configuration->volume/50));
             if(!m_debut&&augmenterNoir||!augmenterNoir)
             {
                 coordonnee temp;
                 jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,temp,0);
-                if(configuration.Minimap)
+                if(configuration->Minimap)
                 {
                     jeu->menu.Afficher(&jeu->ecran,1,255,&jeu->hero.m_classe);
                     jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,0);
                     jeu->menu.Afficher(&jeu->ecran,2,255,&jeu->hero.m_classe);
                 }
-                jeu->menu.Afficher(&jeu->ecran,3,255,&jeu->hero.m_classe);
+
                 jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,0,jeu->hero.m_personnage.getCaracteristique(),&jeu->hero.m_classe);
             }
         }

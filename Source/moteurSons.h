@@ -8,11 +8,12 @@
 #define MOTEURSONSH
 
 
-class MoteurSons
+class MoteurSons : public CSingleton<MoteurSons>
 {
 	public:
-	MoteurSons();
-	~MoteurSons();
+	friend MoteurSons* CSingleton<MoteurSons>::GetInstance();
+    friend void CSingleton<MoteurSons>::Kill();
+
 
 	void Gerer();
 	void Vider();
@@ -20,7 +21,13 @@ class MoteurSons
 	void JouerSon(int ID,coordonnee position,coordonnee positionHero,bool unique=0,int volume=100);
 
 	std::string getCheminSon(int IDimage);
-	private:
+
+
+	protected:
+
+	MoteurSons();
+	~MoteurSons();
+
 	int sonEnCours;
 	sf::Sound m_sons[NOMBRE_SONS];
 	int m_IDSons[NOMBRE_SONS];

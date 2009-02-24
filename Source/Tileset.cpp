@@ -45,7 +45,7 @@ bool Tileset::Charger(std::string chemin)
 	string cheminFinal,temp;
 	m_chemin=chemin;
 	/*cheminFinal=chemin+".png";
-    m_image=moteurGraphique.AjouterImage(cheminFinal);*/
+    m_image=moteurGraphique->AjouterImage(cheminFinal);*/
 
 	/*int nombreTiles=0;
 	cheminFinal=chemin+".ts.hs";*/
@@ -70,9 +70,9 @@ bool Tileset::Charger(std::string chemin)
     		{
     			string cheminImage;
                 getline(fichier, cheminImage);
-                m_image.push_back(moteurGraphique.AjouterImage(cheminImage));
+                m_image.push_back(moteurGraphique->AjouterImage(cheminImage));
     		}
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Tileset \" %s \" Invalide",cheminFinal.c_str());console.Ajouter(temp,1); caractere='$'; }
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Tileset \" %s \" Invalide",cheminFinal.c_str());console->Ajouter(temp,1); caractere='$'; }
     	}while(caractere!='$');
 
     	do
@@ -83,10 +83,9 @@ bool Tileset::Charger(std::string chemin)
     			string cheminDuSon;
                 getline(fichier, cheminDuSon);
 
-                m_sons.push_back(moteurSons.AjouterBuffer(cheminDuSon));
-                //m_sons.push_back( moteurSons.AjouterSon(m_buffer[m_buffer.size()-1]) );
+                m_sons.push_back(moteurSons->AjouterBuffer(cheminDuSon));
     		}
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Tileset \" %s \" Invalide",cheminFinal.c_str());console.Ajouter(temp,1); caractere='$'; }
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Tileset \" %s \" Invalide",cheminFinal.c_str());console->Ajouter(temp,1); caractere='$'; }
     	}while(caractere!='$');
 
     	do
@@ -142,7 +141,7 @@ bool Tileset::Charger(std::string chemin)
     					break;
     					case 'r': fichier>>orientation; break;
     				}
-    				if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Tileset \" %s \" Invalide",cheminFinal.c_str());console.Ajouter(temp,1); caractere='$'; }
+    				if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Tileset \" %s \" Invalide",cheminFinal.c_str());console->Ajouter(temp,1); caractere='$'; }
     			}while(caractere!='$');
     			//AjouterTile(position,collision,animation,son,lumiere,ombre,orientation);
 
@@ -157,11 +156,11 @@ bool Tileset::Charger(std::string chemin)
 
     			fichier.get(caractere);
     		}
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Tileset \" %s \" Invalide",cheminFinal.c_str());console.Ajouter(temp,1); caractere='$'; }
+    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Tileset \" %s \" Invalide",cheminFinal.c_str());console->Ajouter(temp,1); caractere='$'; }
     	}while(caractere!='$');
     }
     else
-        console.Ajouter("Impossible d'ouvrir le fichier : "+cheminFinal,1);
+        console->Ajouter("Impossible d'ouvrir le fichier : "+cheminFinal,1);
 
     fichier.close();
     return 1;
@@ -275,13 +274,6 @@ coordonnee Tileset::getCentreDuTile(int tile)
     }
 }
 
-/*void Tileset::remiseAZeroDesSons()
-{
-	for(int i=0;i<m_sonAZero.size();i++)
-		m_sonAZero[i]=true;
-}*/
-
-
 void Tileset::jouerSon(int numeroSon,coordonnee position,coordonnee positionHero)
 {
     if(numeroSon>=0&&numeroSon<(int)m_sons.size())
@@ -290,8 +282,7 @@ void Tileset::jouerSon(int numeroSon,coordonnee position,coordonnee positionHero
         pos.x=-position.x;
         pos.y=position.y;
 
-        moteurSons.JouerSon(m_sons[numeroSon],pos,positionHero,1);
-        //console.Ajouter(m_sons[numeroSon]);
+        moteurSons->JouerSon(m_sons[numeroSon],pos,positionHero,1);
     }
 }
 

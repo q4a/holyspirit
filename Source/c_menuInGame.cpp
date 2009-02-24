@@ -22,14 +22,14 @@ c_MenuInGame::c_MenuInGame(Jeu *jeu)
 
 void c_MenuInGame::Utiliser(Jeu *jeu)
 {
-    moteurGraphique.m_blur=0.0025*m_alpha/255;
+    moteurGraphique->m_blur=0.0025*m_alpha/255;
 
     jeu->m_display=true;
     jeu->hero.placerCamera(&jeu->camera,jeu->map.getDimensions());
     jeu->ecran.SetView(jeu->camera);
 
-    if(configuration.Lumiere)
-        jeu->map.calculerOmbresEtLumieres(&jeu->ecran,&jeu->hero,&jeu->camera);
+    if(configuration->Lumiere)
+        jeu->map.calculerOmbresEtLumieres();
 
     temps_ecoule=0;
     temps_ecoule=jeu->Clock.GetElapsedTime();
@@ -40,7 +40,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
         if(m_alpha>0)
             m_alpha-=temps_ecoule*1000;
         if(m_alpha<0)
-            m_alpha=0,retour=false,jeu->m_contexte=jeu->m_jeu,moteurGraphique.m_blur=0;
+            m_alpha=0,retour=false,jeu->m_contexte=jeu->m_jeu,moteurGraphique->m_blur=0;
 
     }
     else
@@ -63,8 +63,8 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
 
    /* if(jeu->eventManager.getEvenement(Mouse::Left,"C"))
     {
-        if(jeu->eventManager.getPositionSouris().y<configuration.Resolution.h/2)
-            jeu->m_contexte=jeu->m_jeu,moteurGraphique.m_blur=0;
+        if(jeu->eventManager.getPositionSouris().y<configuration->Resolution.h/2)
+            jeu->m_contexte=jeu->m_jeu,moteurGraphique->m_blur=0;
         else
             jeu->m_run=false;
     }*/
@@ -72,7 +72,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     coordonnee temp;
 
     jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,temp,0);
-    if(configuration.Minimap)
+    if(configuration->Minimap)
     {
         jeu->menu.Afficher(&jeu->ecran,2,255,&jeu->hero.m_classe);
         jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,255);
@@ -86,12 +86,12 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,0,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
 
 
-    texte.SetSize(56.f*configuration.Resolution.h/600);
+    texte.SetSize(56.f*configuration->Resolution.h/600);
     texte.SetText("Retour");
 
-    texte.SetY(configuration.Resolution.h/2-texte.GetRect().GetHeight());
-    texte.SetX(configuration.Resolution.w/2-texte.GetRect().GetWidth()/2);
-    if(jeu->eventManager.getPositionSouris().y>configuration.Resolution.y/2-texte.GetRect().GetHeight()&&jeu->eventManager.getPositionSouris().y<configuration.Resolution.y/2)
+    texte.SetY(configuration->Resolution.h/2-texte.GetRect().GetHeight());
+    texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetWidth()/2);
+    if(jeu->eventManager.getPositionSouris().y>configuration->Resolution.y/2-texte.GetRect().GetHeight()&&jeu->eventManager.getPositionSouris().y<configuration->Resolution.y/2)
     {
         texte.SetColor(Color(100,50,0,(int)m_alpha));
         if(jeu->eventManager.getEvenement(Mouse::Left,"C"))
@@ -100,13 +100,13 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     }
     else
         texte.SetColor(Color(150,100,50,(int)m_alpha));
-    moteurGraphique.AjouterTexte(&texte,18,1);
+    moteurGraphique->AjouterTexte(&texte,18,1);
 
     texte.SetText("Sauvegarder et quitter");
 
-    texte.SetY(configuration.Resolution.h/2);
-    texte.SetX(configuration.Resolution.w/2-texte.GetRect().GetWidth()/2);
-    if(jeu->eventManager.getPositionSouris().y>configuration.Resolution.y/2&&jeu->eventManager.getPositionSouris().y<configuration.Resolution.y/2+texte.GetRect().GetHeight())
+    texte.SetY(configuration->Resolution.h/2);
+    texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetWidth()/2);
+    if(jeu->eventManager.getPositionSouris().y>configuration->Resolution.y/2&&jeu->eventManager.getPositionSouris().y<configuration->Resolution.y/2+texte.GetRect().GetHeight())
     {
         texte.SetColor(Color(100,50,0,(int)m_alpha));
         if(jeu->eventManager.getEvenement(Mouse::Left,"C"))
@@ -114,13 +114,13 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     }
     else
         texte.SetColor(Color(150,100,50,(int)m_alpha));
-    moteurGraphique.AjouterTexte(&texte,18,1);
+    moteurGraphique->AjouterTexte(&texte,18,1);
 
     texte.SetText("Reinitialiser la partie et quitter");
 
-    texte.SetY(configuration.Resolution.h/2+texte.GetRect().GetHeight());
-    texte.SetX(configuration.Resolution.w/2-texte.GetRect().GetWidth()/2);
-    if(jeu->eventManager.getPositionSouris().y>configuration.Resolution.y/2+texte.GetRect().GetHeight()&&jeu->eventManager.getPositionSouris().y<configuration.Resolution.y/2+texte.GetRect().GetHeight()*2)
+    texte.SetY(configuration->Resolution.h/2+texte.GetRect().GetHeight());
+    texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetWidth()/2);
+    if(jeu->eventManager.getPositionSouris().y>configuration->Resolution.y/2+texte.GetRect().GetHeight()&&jeu->eventManager.getPositionSouris().y<configuration->Resolution.y/2+texte.GetRect().GetHeight()*2)
     {
         texte.SetColor(Color(100,50,0,(int)m_alpha));
         if(jeu->eventManager.getEvenement(Mouse::Left,"C"))
@@ -128,7 +128,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     }
     else
         texte.SetColor(Color(150,100,50,(int)m_alpha));
-    moteurGraphique.AjouterTexte(&texte,18,1);
+    moteurGraphique->AjouterTexte(&texte,18,1);
 
     jeu->eventManager.AfficherCurseur(&jeu->ecran);
 

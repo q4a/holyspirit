@@ -32,10 +32,13 @@ class ParticuleSysteme
 
     int m_modele;
     std::vector <Particule> m_particules;
+    std::vector <Particule>::iterator Iter;
 
     private:
     sf::Color m_color;
     int m_son;
+
+
 };
 
 #endif

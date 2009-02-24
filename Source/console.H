@@ -6,12 +6,15 @@
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "Singleton.h"
 
-
-class Console
+class Console : public CSingleton<Console>
 {
 	public:
-	~Console();
+
+	friend Console* CSingleton<Console>::GetInstance();
+    friend void CSingleton<Console>::Kill();
+
 	void Afficher(sf::RenderWindow* ecran);
 	void Ajouter(std::string texte,bool erreur=0);
 	void Ajouter(int texte,bool erreur=0);
@@ -19,7 +22,10 @@ class Console
     void defiler(bool direction);
 
 
-	private:
+	protected:
+
+	Console(){m_defilement=0;}
+	~Console();
 
 	void Rapport();
 

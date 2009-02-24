@@ -5,20 +5,22 @@
 #ifndef COMMANDEH
 #define COMMANDEH
 
-extern Console console;
+extern Console *console;
 
-class Commande
+struct Commande
 {
 	public:
 
-	Commande(sf::Sprite *sprite,bool utiliserCamera)
+	Commande(sf::Sprite *sprite,bool utiliserCamera,bool wall)
 	{
 	    m_sprite=*sprite;
 	    m_utiliserCamera=utiliserCamera;
+	    wall=wall;
     }
 
 	sf::Sprite m_sprite;
 	bool m_utiliserCamera;
+	bool wall;
 };
 
 #endif

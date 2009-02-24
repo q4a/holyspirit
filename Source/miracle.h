@@ -1,6 +1,7 @@
 
 #include "constantes.h"
 #include "tile.h"
+#include "light.h"
 
 #ifndef MIRACLEH
 #define MIRACLEH
@@ -29,6 +30,8 @@ class Projectile
     int m_couche;
 
     bool m_dejaDeplace;
+
+    Light_Entity m_light;
 };
 
 class EffetGraphique
@@ -47,6 +50,8 @@ class EffetGraphique
 
     float m_animation;
     int m_couche;
+
+    Light_Entity m_light;
 };
 
 struct Effet

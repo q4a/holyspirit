@@ -51,10 +51,10 @@ void c_Inventaire::Utiliser(Jeu *jeu)
 
     if(jeu->eventManager.getEvenement(Mouse::Left,"C"))
     {
-        if(jeu->hero.m_objetEnMain==-1&&jeu->map.getObjetPointe()==-1&&jeu->eventManager.getPositionSouris().x>436*configuration.Resolution.x/800&&jeu->eventManager.getPositionSouris().x<756*configuration.Resolution.x/800&&jeu->eventManager.getPositionSouris().y>30*configuration.Resolution.y/600&&jeu->eventManager.getPositionSouris().y<30*configuration.Resolution.y/600+20*configuration.Resolution.x/800)
+        if(jeu->hero.m_objetEnMain==-1&&jeu->map.getObjetPointe()==-1&&jeu->eventManager.getPositionSouris().x>436*configuration->Resolution.x/800&&jeu->eventManager.getPositionSouris().x<756*configuration->Resolution.x/800&&jeu->eventManager.getPositionSouris().y>30*configuration->Resolution.y/600&&jeu->eventManager.getPositionSouris().y<30*configuration->Resolution.y/600+20*configuration->Resolution.x/800)
             jeu->map.m_defilerObjets--,jeu->eventManager.StopEvenement(Mouse::Left,"C");
 
-        if(jeu->hero.m_objetEnMain==-1&&jeu->map.getObjetPointe()==-1&&jeu->eventManager.getPositionSouris().x>436*configuration.Resolution.x/800&&jeu->eventManager.getPositionSouris().x<756*configuration.Resolution.x/800&&jeu->eventManager.getPositionSouris().y>30*configuration.Resolution.y/600+3*20*configuration.Resolution.x/800&&jeu->eventManager.getPositionSouris().y<30*configuration.Resolution.y/600+4*20*configuration.Resolution.x/800)
+        if(jeu->hero.m_objetEnMain==-1&&jeu->map.getObjetPointe()==-1&&jeu->eventManager.getPositionSouris().x>436*configuration->Resolution.x/800&&jeu->eventManager.getPositionSouris().x<756*configuration->Resolution.x/800&&jeu->eventManager.getPositionSouris().y>30*configuration->Resolution.y/600+3*20*configuration->Resolution.x/800&&jeu->eventManager.getPositionSouris().y<30*configuration->Resolution.y/600+4*20*configuration->Resolution.x/800)
             jeu->map.m_defilerObjets++,jeu->eventManager.StopEvenement(Mouse::Left,"C");
     }
 
@@ -73,12 +73,12 @@ void c_Inventaire::Utiliser(Jeu *jeu)
     }
 
     jeu->hero.placerCamera(&jeu->camera,jeu->map.getDimensions()); // On place la camera suivant ou se trouve le perso
-    jeu->camera.Zoom(configuration.zoom);
+    jeu->camera.Zoom(configuration->zoom);
 
     coordonnee temp;
     jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,temp,0);
 
-    if(configuration.Minimap)
+    if(configuration->Minimap)
     {
         jeu->menu.Afficher(&jeu->ecran,2,255,&jeu->hero.m_classe);
         jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,255);

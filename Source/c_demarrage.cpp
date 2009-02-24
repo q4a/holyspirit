@@ -18,7 +18,7 @@ c_Demarrage::c_Demarrage(Jeu *jeu)
 {
     m_alpha=0;
     m_augmenter=true;
-    m_image=moteurGraphique.AjouterImage(configuration.chemin_aa);
+    m_image=moteurGraphique->AjouterImage(configuration->chemin_aa);
     jeu->Clock.Reset();
 }
 
@@ -29,17 +29,17 @@ void c_Demarrage::Utiliser(Jeu *jeu)
 
     Sprite sprite;
 
-    sprite.SetImage(*moteurGraphique.getImage(m_image));
+    sprite.SetImage(*moteurGraphique->getImage(m_image));
 
-    configuration.effetNoir=1;
+    configuration->effetNoir=1;
 
     if(m_alpha<255)
         sprite.SetColor(Color(255,255,255,(int)m_alpha));
     else
         sprite.SetColor(Color(255,255,255,255));
-    sprite.Resize(configuration.Resolution.x,configuration.Resolution.y);
+    sprite.Resize(configuration->Resolution.x,configuration->Resolution.y);
 
-    moteurGraphique.AjouterCommande(&sprite,0,0);
+    moteurGraphique->AjouterCommande(&sprite,11,0);
 
     if(m_augmenter)
         m_alpha+=temps_ecoule*200;

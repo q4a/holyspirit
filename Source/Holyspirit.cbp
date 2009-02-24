@@ -68,6 +68,10 @@
 		<Unit filename="Evenement.h" />
 		<Unit filename="Globale.h" />
 		<Unit filename="Hero.h" />
+		<Unit filename="Light.cpp" />
+		<Unit filename="Light.h" />
+		<Unit filename="LightManager.cpp" />
+		<Unit filename="LightManager.h" />
 		<Unit filename="Map.h" />
 		<Unit filename="ModeleMoteurParticule.h" />
 		<Unit filename="Monstre.h" />
@@ -75,6 +79,7 @@
 		<Unit filename="Objet.h" />
 		<Unit filename="Personnage.h" />
 		<Unit filename="Pose.h" />
+		<Unit filename="Singleton.h" />
 		<Unit filename="Tile.h" />
 		<Unit filename="Tileset.h" />
 		<Unit filename="c_Jeu.h">

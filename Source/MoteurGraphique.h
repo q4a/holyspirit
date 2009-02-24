@@ -8,6 +8,7 @@
 #include "map.h"
 #include "commande.h"
 #include "moteurParticule.h"
+#include "LightManager.h"
 
 struct Image_moteur
 {
@@ -16,12 +17,14 @@ struct Image_moteur
     int importance;
 };
 
-class MoteurGraphique
+class MoteurGraphique : public CSingleton<MoteurGraphique>
 {
 	public:
-	MoteurGraphique();
-	~MoteurGraphique();
-	void Afficher(sf::RenderWindow *, sf::View *);
+
+	friend MoteurGraphique* CSingleton<MoteurGraphique>::GetInstance();
+    friend void CSingleton<MoteurGraphique>::Kill();
+
+	void Afficher(sf::RenderWindow *, sf::View *,coordonnee );
 
 	void Gerer(sf::RenderWindow *,float,int);
 	void CalculerLumiereParticules(LumiereOmbrage tableauDesLampes[30][30],coordonnee ,sf::RenderWindow *,int tailleMapY);
@@ -31,7 +34,7 @@ class MoteurGraphique
 	int AjouterModeleSystemeParticules(std::string);
 
 	void AjouterSystemeParticules(int ID,coordonnee position,sf::Color color,float force,float angle);
-	void AjouterCommande(sf::Sprite*,int=0, bool=0);
+	void AjouterCommande(sf::Sprite*,int=0, bool=0, bool=0);
 	void AjouterTexte(sf::String*, int couche=0,bool titre=false);
 
 	void DecrementerImportance();
@@ -49,15 +52,24 @@ class MoteurGraphique
 
 	std::string getCheminImage(int IDimage);
 
-
-
 	sf::PostFX EffectBlur,EffectMort,EffectNoir,EffectContrastes;
 
 	sf::Font m_font_titre;
 
 	float m_blur;
 
-	private:
+	Light_Manager *LightManager;
+    Lumiere m_soleil;
+    float m_angleOmbreSoleil;
+
+    sf::Image m_light_screen;
+    sf::Image m_light_screen2;
+    sf::Image m_light_screen3;
+
+	protected:
+
+	MoteurGraphique();
+	~MoteurGraphique();
 
 	float nettoyageAuto;
 
@@ -70,6 +82,9 @@ class MoteurGraphique
 	std::vector <sf::String> m_textes[20];
 	std::vector <Commande> m_commandes[20];
 	std::vector <ParticuleSysteme> m_systemeParticules;
+
+	std::vector<Commande>::iterator IterCommande;
+
 
 
 };

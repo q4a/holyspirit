@@ -21,10 +21,10 @@ EventManager::EventManager()
 	m_positionSouris.x=450;
 	m_positionSouris.y=300;
 
-	console.Ajouter("",0);
-    console.Ajouter("Chargement des curseurs :",0);
+	console->Ajouter("",0);
+    console->Ajouter("Chargement des curseurs :",0);
 
-    idcurseur=moteurGraphique.AjouterImage(configuration.chemin_curseurs+configuration.nom_curseur_base,-1);
+    idcurseur=moteurGraphique->AjouterImage(configuration->chemin_curseurs+configuration->nom_curseur_base,-1);
 
 }
 
@@ -60,10 +60,10 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
                 break;
 
             case Event::Resized:
-                configuration.Redimensionnement.w=(float)configuration.Resolution.w*0.00125;
-                configuration.Redimensionnement.h=(float)configuration.Resolution.h*0.00167;
-                configuration.Redimensionnement.x=(float)configuration.Resolution.x*0.00125;
-                configuration.Redimensionnement.y=(float)configuration.Resolution.y*0.00167;
+                configuration->Redimensionnement.w=(float)configuration->Resolution.w*0.00125;
+                configuration->Redimensionnement.h=(float)configuration->Resolution.h*0.00167;
+                configuration->Redimensionnement.x=(float)configuration->Resolution.x*0.00125;
+                configuration->Redimensionnement.y=(float)configuration->Resolution.y*0.00167;
                 break;
     	}
 	}
@@ -71,73 +71,73 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
     /*if(m_EventTableau[Key::Escape])
 		*continuer=false;*/
 	if(m_EventTableau[Key::PageUp])
-		configuration.zoom*=(1+(0.5*temps));
+		configuration->zoom*=(1+(0.5*temps));
 	if(m_EventTableau[Key::PageDown])
-		configuration.zoom*=((1-(0.5*temps)));
+		configuration->zoom*=((1-(0.5*temps)));
 
-    if(configuration.zoom<0.75+((float)configuration.Resolution.x/800-1)/2)
-		configuration.zoom=0.75+((float)configuration.Resolution.x/800-1)/2;
-	if(configuration.zoom>1.5+((float)configuration.Resolution.x/800-1))
-		configuration.zoom=1.5+((float)configuration.Resolution.x/800-1);
+    if(configuration->zoom<0.75+((float)configuration->Resolution.x/800-1)/2)
+		configuration->zoom=0.75+((float)configuration->Resolution.x/800-1)/2;
+	if(configuration->zoom>1.5+((float)configuration->Resolution.x/800-1))
+		configuration->zoom=1.5+((float)configuration->Resolution.x/800-1);
 
     if(m_EventTableau[Key::Add])
     {
         if(m_EventTableau[Key::S])
-            configuration.volume+=temps*50;
+            configuration->volume+=temps*50;
         if(m_EventTableau[Key::L])
-            configuration.luminosite+=temps*50;
+            configuration->luminosite+=temps*50;
         if(m_EventTableau[Key::C])
-            configuration.contrastes+=temps*2;
+            configuration->contrastes+=temps*2;
     }
     if(m_EventTableau[Key::Subtract])
 	{
         if(m_EventTableau[Key::S])
-            configuration.volume-=temps*50;
+            configuration->volume-=temps*50;
         if(m_EventTableau[Key::L])
-            configuration.luminosite-=temps*50;
+            configuration->luminosite-=temps*50;
         if(m_EventTableau[Key::C])
-            configuration.contrastes-=temps*2;
+            configuration->contrastes-=temps*2;
     }
 
-    if(configuration.contrastes<1)
-        configuration.contrastes=1;
-    if(configuration.contrastes>5)
-        configuration.contrastes=5;
+    if(configuration->contrastes<1)
+        configuration->contrastes=1;
+    if(configuration->contrastes>5)
+        configuration->contrastes=5;
 
-    if(configuration.luminosite<0)
-        configuration.luminosite=0;
-    if(configuration.luminosite>64)
-        configuration.luminosite=64;
+    if(configuration->luminosite<0)
+        configuration->luminosite=0;
+    if(configuration->luminosite>64)
+        configuration->luminosite=64;
 
     if(m_EventTableau[Key::M])
     {
-        if(!configuration.Minimap)
-            configuration.Minimap=true;
+        if(!configuration->Minimap)
+            configuration->Minimap=true;
         else
-            configuration.Minimap=false;
+            configuration->Minimap=false;
         m_EventTableau[Key::M]=false;
     }
 
     if(m_EventTableau[Key::Up])
     {
-        console.defiler(0);
+        console->defiler(0);
         m_EventTableau[Key::Up]=false;
     }
     if(m_EventTableau[Key::Down])
     {
-         console.defiler(1);
+         console->defiler(1);
          m_EventTableau[Key::Down]=false;
     }
 
     if(m_EventTableau[Key::Space])
-        configuration.minute+=200*temps;
+        configuration->minute+=200*temps;
 
     if(m_EventTableau[Key::Tab])
     {
-        if(configuration.console)
-            configuration.console=false;
+        if(configuration->console)
+            configuration->console=false;
         else
-            configuration.console=true;
+            configuration->console=true;
         m_EventTableau[Key::Tab]=false;
     }
 
@@ -169,12 +169,12 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
 void EventManager::AfficherCurseur(sf::RenderWindow *ecran)
 {
 	Sprite Sprite;
-	Sprite.SetImage(*moteurGraphique.getImage(idcurseur));
-	if(configuration.Resolution.x>0)
-        Sprite.SetX(m_positionSouris.x*configuration.Resolution.w/configuration.Resolution.x);
-    if(configuration.Resolution.y>0)
-        Sprite.SetY(m_positionSouris.y*configuration.Resolution.h/configuration.Resolution.y);
-	moteurGraphique.AjouterCommande(&Sprite,19,0);
+	Sprite.SetImage(*moteurGraphique->getImage(idcurseur));
+	if(configuration->Resolution.x>0)
+        Sprite.SetX(m_positionSouris.x*configuration->Resolution.w/configuration->Resolution.x);
+    if(configuration->Resolution.y>0)
+        Sprite.SetY(m_positionSouris.y*configuration->Resolution.h/configuration->Resolution.y);
+	moteurGraphique->AjouterCommande(&Sprite,19,0);
 }
 
 bool EventManager::getEvenement(int numeroEvenement,std::string evenement)

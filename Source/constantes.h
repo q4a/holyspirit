@@ -45,6 +45,9 @@ enum{AUCUN,ARME,ARMURE};
 
 enum{EFFICACITE_ACCRUE,FO_SUPP,DEX_SUPP,VIT_SUPP,PI_SUPP,CH_SUPP,VIE_SUPP,FOI_SUPP};
 
+/// http://www.sfml-dev.org/wiki/fr/sources/fonctions_maths
+/// Par hiura
+
 namespace gpl
 {
 /**
@@ -101,8 +104,120 @@ struct coordonneeDecimal
 	float w;
 };
 
-struct Configuration
+class Lumiere
 {
+    public:
+    int intensite;
+    int rouge;
+    int vert;
+    int bleu;
+    float hauteur;
+};
+
+struct Ombre
+{
+    float angle;
+    int intensite;
+    int intensiteBasique;
+    float taille;
+};
+
+class LumiereOmbrage : public Lumiere
+{
+    public:
+    LumiereOmbrage()
+    {
+    }
+    ~LumiereOmbrage()
+    {
+        m_ombre.clear();
+    }
+    void detruire()
+    {
+        m_ombre.clear();
+    }
+    void AjouterOmbre(int intensite, float angle, float hauteur_lumiere)
+    {
+        m_ombre.push_back(Ombre ());
+
+        m_ombre.back().intensite=intensite;
+        m_ombre.back().intensiteBasique=intensite;
+        m_ombre.back().angle=angle;
+        m_ombre.back().taille=(100-(float)hauteur_lumiere)/50;
+
+
+        for (std::vector <Ombre>::iterator ombre = m_ombre.begin(); ombre!=m_ombre.end(); ++ombre)
+        {
+            float angle;
+            angle=valeurAbsolue(m_ombre.back().angle-ombre->angle);
+            if(angle>180)
+                angle=360-angle;
+
+            m_ombre.back().intensite-=(int)((float)ombre->intensiteBasique*angle/270);
+            ombre->intensite-=(int)((float)m_ombre.back().intensiteBasique*angle/270);
+
+            if(m_ombre.back().intensite<0)
+                m_ombre.back().intensite=0;
+            if(ombre->intensite<0)
+                ombre->intensite=0;
+        }
+
+    }
+    LumiereOmbrage LumiereOmbrage::operator=(const LumiereOmbrage &lumiere)
+    {
+        intensite = lumiere.intensite;
+        rouge = lumiere.rouge;
+        vert = lumiere.vert;
+        bleu = lumiere.bleu;
+        hauteur = lumiere.hauteur;
+
+        Ombre temp;
+        m_ombre.resize(lumiere.m_ombre.size(),temp);
+
+        for(int i=0;i<(int)lumiere.m_ombre.size();i++)
+        {
+            m_ombre[i].intensite=lumiere.m_ombre[i].intensite;
+            m_ombre[i].intensiteBasique=lumiere.m_ombre[i].intensiteBasique;
+            m_ombre[i].angle=lumiere.m_ombre[i].angle;
+            m_ombre[i].taille=lumiere.m_ombre[i].taille;
+        }
+
+        return *this;
+    }
+    LumiereOmbrage LumiereOmbrage::operator=(const Lumiere &lumiere)
+    {
+        intensite = lumiere.intensite;
+        rouge = lumiere.rouge;
+        vert = lumiere.vert;
+        bleu = lumiere.bleu;
+        hauteur = lumiere.hauteur;
+
+        return *this;
+    }
+
+    std::vector <Ombre> m_ombre;
+
+};
+
+class Configuration : public CSingleton<Configuration>
+{
+    protected :
+
+    Configuration()
+    {
+
+    }
+    ~Configuration()
+    {
+        delete[] text_benedictions;
+    }
+
+    public :
+
+
+    friend Configuration* CSingleton<Configuration>::GetInstance();
+    friend void CSingleton<Configuration>::Kill();
+
     void Charger()
     {
             coordonnee resolution;
@@ -297,6 +412,7 @@ struct Configuration
     std::string chemin_text_benedictions;
 
     std::string *text_benedictions;
+    bool RafraichirLumiere;
 };
 
 struct Caracteristique
@@ -327,100 +443,7 @@ struct Caracteristique
 
 
 
-class Lumiere
-{
-    public:
-    int intensite;
-    int rouge;
-    int vert;
-    int bleu;
-    float hauteur;
-};
 
-struct Ombre
-{
-    float angle;
-    int intensite;
-    int intensiteBasique;
-    float taille;
-};
-
-class LumiereOmbrage : public Lumiere
-{
-    public:
-    LumiereOmbrage()
-    {
-    }
-    ~LumiereOmbrage()
-    {
-        m_ombre.clear();
-    }
-    void detruire()
-    {
-        m_ombre.clear();
-    }
-    void AjouterOmbre(int intensite, float angle, float hauteur_lumiere)
-    {
-        m_ombre.push_back(Ombre ());
-
-        m_ombre.back().intensite=intensite;
-        m_ombre.back().intensiteBasique=intensite;
-        m_ombre.back().angle=angle;
-        m_ombre.back().taille=(100-(float)hauteur_lumiere)/50;
-
-
-        for (std::vector <Ombre>::iterator ombre = m_ombre.begin(); ombre!=m_ombre.end(); ++ombre)
-        {
-            float angle;
-            angle=valeurAbsolue(m_ombre.back().angle-ombre->angle);
-            if(angle>180)
-                angle=360-angle;
-
-            m_ombre.back().intensite-=(int)((float)ombre->intensiteBasique*angle/270);
-            ombre->intensite-=(int)((float)m_ombre.back().intensiteBasique*angle/270);
-
-            if(m_ombre.back().intensite<0)
-                m_ombre.back().intensite=0;
-            if(ombre->intensite<0)
-                ombre->intensite=0;
-        }
-
-    }
-    LumiereOmbrage LumiereOmbrage::operator=(const LumiereOmbrage &lumiere)
-    {
-        intensite = lumiere.intensite;
-        rouge = lumiere.rouge;
-        vert = lumiere.vert;
-        bleu = lumiere.bleu;
-        hauteur = lumiere.hauteur;
-
-        Ombre temp;
-        m_ombre.resize(lumiere.m_ombre.size(),temp);
-
-        for(int i=0;i<(int)lumiere.m_ombre.size();i++)
-        {
-            m_ombre[i].intensite=lumiere.m_ombre[i].intensite;
-            m_ombre[i].intensiteBasique=lumiere.m_ombre[i].intensiteBasique;
-            m_ombre[i].angle=lumiere.m_ombre[i].angle;
-            m_ombre[i].taille=lumiere.m_ombre[i].taille;
-        }
-
-        return *this;
-    }
-    LumiereOmbrage LumiereOmbrage::operator=(const Lumiere &lumiere)
-    {
-        intensite = lumiere.intensite;
-        rouge = lumiere.rouge;
-        vert = lumiere.vert;
-        bleu = lumiere.bleu;
-        hauteur = lumiere.hauteur;
-
-        return *this;
-    }
-
-    std::vector <Ombre> m_ombre;
-
-};
 
 #endif
 

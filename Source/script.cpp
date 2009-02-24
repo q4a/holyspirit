@@ -109,5 +109,5 @@ void Script::Charger(std::string chemin)
     char chaine[255];
 
     sprintf(chaine,"Chargement du script : \"%s\"",chemin.c_str());
-    console.Ajouter(chaine);
+    console->Ajouter(chaine);
 }
