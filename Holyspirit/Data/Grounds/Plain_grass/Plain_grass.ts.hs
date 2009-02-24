@@ -7,7 +7,7 @@
 $
 $
 Herbe
-*x0 y0 w180 h96 i0 ey48 $
+*x0 y192 w180 h96 i0 ey48 $
 
 *x0 y96 w180 h96 i0 ey48 $
 *x0 y192 w180 h96 i0 ey48 $

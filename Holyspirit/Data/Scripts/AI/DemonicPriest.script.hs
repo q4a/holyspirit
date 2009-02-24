@@ -54,9 +54,9 @@ main
 	then
 		if rand * 25
 		then
-			useMiracle * 0
-		else
 			useMiracle * 1
+		else
+			useMiracle * 0
 		end
 	end
 
