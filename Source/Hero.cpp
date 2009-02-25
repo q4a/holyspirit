@@ -1025,9 +1025,11 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
             sprite.SetSubRect(IntRect(m_inventaire[i].getPositionImage().x, m_inventaire[i].getPositionImage().y, m_inventaire[i].getPositionImage().x+m_inventaire[i].getPositionImage().w, m_inventaire[i].getPositionImage().y+m_inventaire[i].getPositionImage().h));
             sprite.Resize(m_inventaire[i].getTaille().x*32*configuration->Resolution.w/800,m_inventaire[i].getTaille().y*32*configuration->Resolution.h/600);
 
+            if(m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==BOUCLIER && m_inventaire[i].m_type==ARME)
+                sprite.SetRotation(-45);
+            else
+                sprite.SetRotation(0);
 
-
-            sprite.SetRotation(rotation);
             moteurGraphique->AjouterCommande(&sprite,17,0);
             sprite.SetRotation(0);
         }

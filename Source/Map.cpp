@@ -67,6 +67,8 @@ void Map::Detruire()
         console->Ajouter("Cases détruites !");
 
 
+    for(int i=0;i<(int)m_ModeleMonstre.size();i++)
+        m_ModeleMonstre.erase(m_ModeleMonstre.begin()+1);
     m_ModeleMonstre.clear();
 
     if(configuration->debug)
@@ -1862,6 +1864,8 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                     int monstre=m_decor[i][j][k].getMonstre();
                     if(monstre>=0&&monstre<(int)m_monstre.size())
                     {
+                        moteurGraphique->LightManager->Generate(m_monstre[monstre].m_light);
+
                         bool explosif=false;
                         int degats = m_monstre[monstre].animer(&m_ModeleMonstre[m_monstre[monstre].getModele()],m_decor[0].size(),temps,&explosif,positionHero);
                         if(degats>0&&!explosif)

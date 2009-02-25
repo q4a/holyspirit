@@ -10,6 +10,9 @@
 class Modele_Monstre : public Modele_Personnage
 {
     public:
+    Modele_Monstre(){};
+    ~Modele_Monstre();
+
     bool Charger(std::string chemin);
     std::vector<Objet> getObjets();
 
@@ -30,6 +33,7 @@ class Monstre : public Personnage
 {
     public:
     Monstre();
+    ~Monstre();
     void Charger(int numero,Modele_Monstre *modele);
     void testerVision(coordonnee positionHero);
     int getModele();

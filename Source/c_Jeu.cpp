@@ -255,15 +255,14 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 jeu->ecran.SetView(jeu->camera);
 
-                jeu->map.calculerOmbresEtLumieres();
-
-
-
                 if(configuration->Lumiere&&tempsEcouleDepuisDernierCalculLumiere>configuration->frequence_lumiere)
                 {
+                    jeu->map.calculerOmbresEtLumieres();
+
                     configuration->RafraichirLumiere=true;
                     tempsEcouleDepuisDernierCalculLumiere=0;
 
+                    //moteurGraphique->LightManager->SetIntensity(jeu->hero.m_personnage.m_light,255-moteurGraphique->m_soleil.intensite);
                     moteurGraphique->LightManager->Generate(jeu->hero.m_personnage.m_light);
                 }
 

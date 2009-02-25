@@ -126,12 +126,9 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
     sf::Sprite sprite;
     sf::Sprite sprite2;
 
-
     if(configuration->Lumiere && configuration->RafraichirLumiere)
     {
-        m_light_screen3.Copy(m_light_screen,800,600);
-
-        ecran->Clear(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
+        ecran->Clear(sf::Color(255,255,255));
 
         ecran->SetView(*camera);
 
@@ -139,33 +136,29 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
         {
             ecran->SetView(*camera);
             sprite=m_commandes[9][i].m_sprite;
-            sprite.SetColor(sf::Color(0,0,0,255));
+            sprite.SetColor(sf::Color(0,0,0,m_soleil.intensite/2));
             ecran->Draw(sprite);
             sprite.SetBlendMode(sf::Blend::Alpha);
         }
+
+        EffectBlur.SetParameter("offset",0.0025);
+        ecran->Draw(EffectBlur);
 
         m_light_screen2.CopyScreen(*ecran);
 
         ecran->Clear(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
 
-        sprite2.FlipY(true);
-        sprite2.SetImage(m_light_screen2);
-        sprite2.SetBlendMode(sf::Blend::Alpha);
-        sprite2.SetColor(sf::Color(255,255,255,196));
-
-        ecran->SetView(ecran->GetDefaultView());
-        ecran->Draw(sprite2);
         ecran->SetView(*camera);
 
         sprite2.SetColor(sf::Color(255,255,255,255));
 
         LightManager->Draw(ecran,camera,dimensionsMap);
 
-        EffectBlur.SetParameter("offset",0.02);
-        ecran->Draw(EffectBlur);
         EffectBlur.SetParameter("offset",0.01);
         ecran->Draw(EffectBlur);
         EffectBlur.SetParameter("offset",0.005);
+        ecran->Draw(EffectBlur);
+        EffectBlur.SetParameter("offset",0.0025);
         ecran->Draw(EffectBlur);
 
         m_light_screen.CopyScreen(*ecran);
@@ -176,20 +169,31 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
 
     ecran->Clear();
 
-    sprite2.FlipY(true);
-    sprite2.SetImage(m_light_screen);
-    sprite2.SetBlendMode(sf::Blend::Multiply);
+
 
     for(int k=0;k<20;k++)
     {
 
         if(k==12&&configuration->Lumiere)
         {
+            sprite2.FlipY(true);
             sprite2.SetImage(m_light_screen);
+            sprite2.SetBlendMode(sf::Blend::Multiply);
+            sprite2.SetColor(sf::Color(255,255,255,255));
             ecran->SetView(ecran->GetDefaultView());
             ecran->Draw(sprite2);
-
         }
+
+        if(k==10&&configuration->Lumiere)
+        {
+            sprite2.FlipY(true);
+            sprite2.SetImage(m_light_screen2);
+            sprite2.SetBlendMode(sf::Blend::Multiply);
+            sprite2.SetColor(sf::Color(255,255,255));
+            ecran->SetView(ecran->GetDefaultView());
+            ecran->Draw(sprite2);
+        }
+
 
         if(k!=9)
         {

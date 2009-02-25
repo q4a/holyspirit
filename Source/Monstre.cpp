@@ -7,6 +7,28 @@
 
 using namespace std;
 
+Modele_Monstre::~Modele_Monstre()
+{
+    for(int i=0;i<(int)m_pose.size();i++)
+    {
+         for(int j=0;j<(int)m_pose[i].size();j++)
+            m_pose[i][j].clear();
+         m_pose[i].clear();
+    }
+    m_pose.clear();
+
+    m_image.clear();
+    m_sons.clear();
+
+    m_miracles.clear();
+    m_objets.clear();
+}
+
+Monstre::~Monstre()
+{
+    m_miracleEnCours.clear();
+}
+
 Monstre::Monstre()
 {
     Personnage::Personnage();

@@ -95,7 +95,6 @@ Modele_Personnage::~Modele_Personnage()
 
     m_image.clear();
     m_sons.clear();
-   // m_sons.clear();
 }
 
 
@@ -576,8 +575,6 @@ bool Personnage::seDeplacer(float tempsEcoule,coordonnee dimensionsMap)
                         m_positionCase.y=m_cheminFinal.y;
                         m_positionCase.x=m_cheminFinal.x;
                         m_positionCase.h=m_cheminFinal.h;
-
-                        moteurGraphique->LightManager->Generate(m_light);
 
                         return 1;
                     }
