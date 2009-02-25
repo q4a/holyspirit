@@ -65,6 +65,8 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
                 configuration->Redimensionnement.x=(float)configuration->Resolution.x*0.00125;
                 configuration->Redimensionnement.y=(float)configuration->Resolution.y*0.00167;
                 break;
+            default:
+            break;
     	}
 	}
 

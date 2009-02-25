@@ -12,7 +12,7 @@ class Projectile
 {
     public:
     void Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap);
-    void Deplacer(float temp);
+    void Deplacer(float temp,int);
 
     bool m_monstre,m_actif;
     int m_degats;

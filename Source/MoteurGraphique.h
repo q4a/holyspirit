@@ -84,9 +84,6 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	std::vector <ParticuleSysteme> m_systemeParticules;
 
 	std::vector<Commande>::iterator IterCommande;
-
-
-
 };
 
 #endif

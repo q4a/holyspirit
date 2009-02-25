@@ -263,9 +263,11 @@ void c_Jeu::Utiliser(Jeu *jeu)
                 {
                     configuration->RafraichirLumiere=true;
                     tempsEcouleDepuisDernierCalculLumiere=0;
+
+                    moteurGraphique->LightManager->Generate(jeu->hero.m_personnage.m_light);
                 }
 
-                moteurGraphique->LightManager->Generate(jeu->hero.m_personnage.m_light);
+
 
 
                 if(tempsEcouleDepuisDernierAffichage>0.01&&configuration->syncronisation_verticale||!configuration->syncronisation_verticale)
@@ -384,10 +386,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                             alpha_map=0;
                     }
                     if(alpha_map>0)
-                    {
                         jeu->menu.Afficher(&jeu->ecran,2,alpha_map,&jeu->hero.m_classe);//On affiche la mini-map
-                        //jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,jeu->eventManager.getPositionSouris(),0,alpha_map); // On affiche la mini-map
-                    }
 
                     if(jeu->hero.getChercherSac().x!=-1&&jeu->map.getNombreObjets(jeu->hero.getChercherSac())>0)
                     {

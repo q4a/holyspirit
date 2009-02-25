@@ -60,10 +60,16 @@ void EffetGraphique::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonne
     }
 }
 
-void Projectile::Deplacer(float temps)
+void Projectile::Deplacer(float temps,int hauteurMap)
 {
     m_position.x+=m_vecteur.x*temps*500;
     m_position.y+=m_vecteur.y*temps*500;
+
+    sf::Vector2f pos;
+    pos.x=(((m_position.x-m_position.y)*64/COTE_TILE+hauteurMap*64));
+    pos.y=(((m_position.x+m_position.y)*64/COTE_TILE)/2+32)*2;
+
+    moteurGraphique->LightManager->SetPosition(m_light,pos);
 }
 
 

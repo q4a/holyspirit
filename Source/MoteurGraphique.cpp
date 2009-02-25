@@ -126,10 +126,13 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
     sf::Sprite sprite;
     sf::Sprite sprite2;
 
-   ecran->Clear(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
 
     if(configuration->Lumiere && configuration->RafraichirLumiere)
     {
+        m_light_screen3.Copy(m_light_screen,800,600);
+
+        ecran->Clear(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
+
         ecran->SetView(*camera);
 
         for(int i=0;i<(int)m_commandes[9].size();i++)
@@ -158,65 +161,15 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
 
         LightManager->Draw(ecran,camera,dimensionsMap);
 
+        EffectBlur.SetParameter("offset",0.02);
+        ecran->Draw(EffectBlur);
         EffectBlur.SetParameter("offset",0.01);
         ecran->Draw(EffectBlur);
-        ecran->Draw(EffectBlur);
+        EffectBlur.SetParameter("offset",0.005);
         ecran->Draw(EffectBlur);
 
         m_light_screen.CopyScreen(*ecran);
 
-
-        /*ecran->Clear(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
-
-        LightManager->Draw(ecran,camera,dimensionsMap);
-        LightManager->DrawWall(ecran,camera,dimensionsMap);
-
-        m_light_screen3.CopyScreen(*ecran);*/
-
-
-
-        /*ecran->Clear(sf::Color(255,255,255));
-
-        ecran->SetView(*camera);
-        //LightManager->Draw(ecran,camera,dimensionsMap);
-
-        for(int i=0;i<(int)m_commandes[10].size();i++)
-        {
-            if(!m_commandes[10][i].wall)
-            {
-                sprite=m_commandes[10][i].m_sprite;
-                sprite.SetColor(sf::Color(0,0,0));
-                ecran->Draw(sprite);
-
-                sprite.SetBlendMode(sf::Blend::Alpha);
-            }
-        }
-
-        LightManager->Draw(ecran,camera,dimensionsMap);
-
-        for(int i=0;i<(int)m_commandes[10].size();i++)
-        {
-            if(m_commandes[10][i].wall)
-            {
-                sprite=m_commandes[10][i].m_sprite;
-                sprite.SetColor(sf::Color(0,0,0));
-                ecran->Draw(sprite);
-
-                sprite.SetBlendMode(sf::Blend::Alpha);
-            }
-        }
-
-        m_light_screen2.Create(configuration->Resolution.w,configuration->Resolution.h,sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
-        sprite2.SetImage(m_light_screen2);
-        ecran->SetView(ecran->GetDefaultView());
-        sprite2.SetBlendMode(sf::Blend::Add);
-        ecran->Draw(sprite2);
-
-        ecran->SetView(*camera);
-
-        LightManager->DrawWall(ecran,camera,dimensionsMap);
-
-         m_light_screen2.CopyScreen(*ecran);*/
 
         configuration->RafraichirLumiere=false;
     }
@@ -232,22 +185,11 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
 
         if(k==12&&configuration->Lumiere)
         {
+            sprite2.SetImage(m_light_screen);
             ecran->SetView(ecran->GetDefaultView());
             ecran->Draw(sprite2);
+
         }
-        /*if(k==12&&configuration->Lumiere)
-        {
-            sprite2.SetImage(m_light_screen3);
-            ecran->SetView(ecran->GetDefaultView());
-            ecran->Draw(sprite2);
-        }*/
-      /* if(k==12&&configuration->Lumiere)
-        {
-            ecran->SetView(*camera);
-            LightManager->DrawWall(ecran,camera,dimensionsMap);
-        }*/
-
-
 
         if(k!=9)
         {

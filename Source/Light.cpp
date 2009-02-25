@@ -378,79 +378,21 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std:
     m_shape.back().SetBlendMode(sf::Blend::Add);
     m_shape.back().SetPosition(m_position.x,m_position.y/2);
 
-    if(1/*wall*/)
+    if(intensity>0||intensity2>0)
     {
-         // On ajoute un shape
+        m_shape.push_back(sf::Shape ());
 
-          // On ajoute un shape
-
-
-        if(1)
-        {
-            m_shape.push_back(sf::Shape ());
-
-            m_shape.back().AddPoint(pt1.x,pt1.y/2,  sf::Color((int)(intensity*m_color.r/255),(int)(intensity*m_color.g/255),(int)(intensity*m_color.b/255)));
-
-            m_shape.back().AddPoint(pt1.x,pt1.y/2-96,  sf::Color(0,0,0));
-            m_shape.back().AddPoint(pt2.x,pt2.y/2-96,  sf::Color(0,0,0));
-
-            m_shape.back().AddPoint(pt2.x,pt2.y/2,  sf::Color((int)(intensity2*m_color.r/255),(int)(intensity2*m_color.g/255),(int)(intensity2*m_color.b/255)));
+        m_shape.back().AddPoint(pt1.x,pt1.y/2,  sf::Color((int)(intensity*m_color.r/255),(int)(intensity*m_color.g/255),(int)(intensity*m_color.b/255)));
+        m_shape.back().AddPoint(pt1.x,pt1.y/2-96,  sf::Color(0,0,0));
+        m_shape.back().AddPoint(pt2.x,pt2.y/2-96,  sf::Color(0,0,0));
+        m_shape.back().AddPoint(pt2.x,pt2.y/2,  sf::Color((int)(intensity2*m_color.r/255),(int)(intensity2*m_color.g/255),(int)(intensity2*m_color.b/255)));
 
 
-            m_shape.back().SetBlendMode(sf::Blend::Add);
-            m_shape.back().SetPosition(m_position.x,m_position.y/2);
-        }
-        else
-        {
+        m_shape.back().SetBlendMode(sf::Blend::Add);
+        m_shape.back().SetPosition(m_position.x,m_position.y/2);
 
-        }
-        /*else
-        {
-            sf::Color buffer;
-            m_shape.push_back(sf::Shape ());
-
-            buffer.r=moteurGraphique->m_soleil.rouge*moteurGraphique->m_soleil.intensite/255+intensity*m_color.r/255;
-            buffer.g=moteurGraphique->m_soleil.vert*moteurGraphique->m_soleil.intensite/255+intensity*m_color.g/255;
-            buffer.b=moteurGraphique->m_soleil.bleu*moteurGraphique->m_soleil.intensite/255+intensity*m_color.b/255;
-
-            if(buffer.r>255)
-                buffer.r=255;
-            if(buffer.g>255)
-                buffer.g=255;
-            if(buffer.b>255)
-                buffer.b=255;
-
-            m_shape.back().AddPoint(pt1.x,pt1.y/2,  sf::Color(moteurGraphique->m_soleil.rouge*moteurGraphique->m_soleil.intensite/255,moteurGraphique->m_soleil.vert*moteurGraphique->m_soleil.intensite/255,moteurGraphique->m_soleil.bleu*moteurGraphique->m_soleil.intensite/255));
-
-            m_shape.back().AddPoint(pt1.x,pt1.y/2-64,  sf::Color(moteurGraphique->m_soleil.rouge*moteurGraphique->m_soleil.intensite/255,moteurGraphique->m_soleil.vert*moteurGraphique->m_soleil.intensite/255,moteurGraphique->m_soleil.bleu*moteurGraphique->m_soleil.intensite/255));
-
-
-            buffer.r=moteurGraphique->m_soleil.rouge*moteurGraphique->m_soleil.intensite/255+intensity2*m_color.r/255;
-            buffer.g=moteurGraphique->m_soleil.vert*moteurGraphique->m_soleil.intensite/255+intensity2*m_color.g/255;
-            buffer.b=moteurGraphique->m_soleil.bleu*moteurGraphique->m_soleil.intensite/255+intensity2*m_color.b/255;
-
-            if(buffer.r>255)
-                buffer.r=255;
-            if(buffer.g>255)
-                buffer.g=255;
-            if(buffer.b>255)
-                buffer.b=255;
-
-
-            m_shape.back().AddPoint(pt2.x,pt2.y/2-64,  sf::Color(moteurGraphique->m_soleil.rouge*moteurGraphique->m_soleil.intensite/255,moteurGraphique->m_soleil.vert*moteurGraphique->m_soleil.intensite/255,moteurGraphique->m_soleil.bleu*moteurGraphique->m_soleil.intensite/255));
-            m_shape.back().AddPoint(pt2.x,pt2.y/2,  sf::Color(moteurGraphique->m_soleil.rouge*moteurGraphique->m_soleil.intensite/255,moteurGraphique->m_soleil.vert*moteurGraphique->m_soleil.intensite/255,moteurGraphique->m_soleil.bleu*moteurGraphique->m_soleil.intensite/255));
-
-
-
-            m_shape.back().SetBlendMode(sf::Blend::Multiply);
-            m_shape.back().SetPosition(m_position.x,m_position.y/2);
-        }*/
     }
 
-    /*m_shape.back().SetPointOutlineColor(0, sf::Color(255, 255, 255));
-    m_shape.back().SetPointOutlineColor(1, sf::Color(255, 255, 255));
-    m_shape.back().SetPointOutlineColor(2, sf::Color(255, 255, 255));
-    m_shape.back().SetOutlineWidth(1);*/
 }
 
 void Light::Generate(std::vector <Wall> &m_wall)

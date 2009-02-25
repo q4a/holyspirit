@@ -47,6 +47,8 @@ Hero::Hero()
     for(int i=1;i<NOMBRE_MORCEAU_PERSONNAGE;i++)
         m_modelePersonnage[i].setPorteeLumineuse(lumiere);
 
+    m_personnage.setPorteeLumineuse(lumiere);
+
 	Caracteristique temp;
 
 	temp.vie=100;

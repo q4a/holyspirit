@@ -328,25 +328,10 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
                 sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
 
 
-                /*if(configuration->Lumiere)
-                {
-                    sprite.SetColor(sf::Color((m_lumiere.intensite*m_lumiere.rouge)/255,(m_lumiere.intensite*m_lumiere.vert)/255,(m_lumiere.intensite*m_lumiere.bleu)/255, 255));
-
-                    int intensite=m_porteeLumineuse.intensite;
-                    if(intensite>255)
-                        intensite=255;
-
-                    if(m_porteeLumineuse.intensite>m_lumiere.intensite)
-                        sprite.SetColor(sf::Color(m_porteeLumineuse.rouge*intensite/255,m_porteeLumineuse.vert*intensite/255,m_porteeLumineuse.bleu*intensite/255, 255));
-                }
-                else*/
-                {
-                    if(m_porteeLumineuse.intensite>0)
-                        sprite.SetColor(sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu, 255));
-                    else
-                        sprite.SetColor(sf::Color(255,255,255, 255));
-
-                }
+                 if(m_porteeLumineuse.intensite>0)
+                    sprite.SetColor(sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu, 255));
+                else
+                    sprite.SetColor(sf::Color(255,255,255, 255));
 
                 if(sprite.GetPosition().x+sprite.GetSize().x>=camera->GetRect().Left
                 &&sprite.GetPosition().x-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().x<camera->GetRect().Right
@@ -601,7 +586,6 @@ bool Personnage::seDeplacer(float tempsEcoule,coordonnee dimensionsMap)
             }
             else if(m_arrivee.x!=m_positionCase.x||m_arrivee.y!=m_positionCase.y)
             {
-                moteurGraphique->LightManager->Generate(m_light);
                 return 1;
             }
             else
@@ -613,7 +597,6 @@ bool Personnage::seDeplacer(float tempsEcoule,coordonnee dimensionsMap)
             }
         }
 
-        moteurGraphique->LightManager->Generate(m_light);
 
         if(m_etat==2)
             return 1;
@@ -689,13 +672,11 @@ int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,boo
             if(m_porteeLumineuse.intensite>255)
                 m_porteeLumineuse.intensite=255;
 
-            moteurGraphique->LightManager->SetIntensity(m_light,inte);
-            moteurGraphique->LightManager->SetRadius(m_light,inte*2);
+            moteurGraphique->LightManager->SetIntensity(m_light,(int)inte);
+            moteurGraphique->LightManager->SetRadius(m_light,(int)inte*2);
             moteurGraphique->LightManager->SetColor(m_light,sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu));
         }
-
     }
-
     return retour;
 }
 
