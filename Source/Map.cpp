@@ -1499,7 +1499,6 @@ void Map::AfficherNomEvenement(sf::RenderWindow* ecran,coordonnee casePointee,co
                         if(configuration->Resolution.x>0)
                             texte.SetX(positionSouris.x*configuration->Resolution.w/configuration->Resolution.x);
                         moteurGraphique->AjouterTexte(&texte,15);
-                        //ecran->Draw(texte);
                     }
                 }
             }
