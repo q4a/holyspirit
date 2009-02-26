@@ -1031,8 +1031,8 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                         Sprite.SetY(position.y-positionPartieDecor.h+64);
 
                                         Sprite.SetColor(m_decor[0][j][k].getCouleurHerbe());
-
                                         moteurGraphique->AjouterCommande(&Sprite,10,1);
+                                        Sprite.SetColor(sf::Color(255,255,255,255));
                                     }
                                     Sprite.SetScale(1,1);
                                 }
@@ -1110,6 +1110,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                                                     Sprite.SetColor(m_decor[1][j][k].getCouleurHerbe());
                                                     moteurGraphique->AjouterCommande(&Sprite,10,1);
+                                                    Sprite.SetColor(sf::Color(255,255,255,255));
                                                 }
 
                                             Sprite.SetScale(1,1);
@@ -1138,17 +1139,14 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
 
                                     if(m_sacPointe.x==k&&m_sacPointe.y==j&&m_monstreIllumine<0)
-                                        Sprite.SetColor(sf::Color(
-                                            255,
-                                            128,
-                                            128,
-                                            255));
+                                        Sprite.SetColor(sf::Color(255,128,128));
 
                                     moteurGraphique->AjouterCommande(&Sprite,10,1);
 
+                                    Sprite.SetColor(sf::Color(255,255,255));
+
                                     if(m_sacPointe.x==k&&m_sacPointe.y==j&&m_monstreIllumine<0||alt)
                                     {
-
                                         for(int z=0;z<m_decor[1][j][k].getNombreObjets();z++)
                                         {
                                             int rarete=m_decor[1][j][k].getObjet(z).getRarete();
@@ -1235,8 +1233,6 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                         if(alpha>255)
                                             alpha=255;
                                     }
-
-
 
 
                                     int layer=6;
@@ -1543,7 +1539,7 @@ bool Map::testEvenement(sf::View *camera, Jeu *jeu,float temps)
     return 1;
 }
 
-int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,bool monstre,coordonnee lanceur, coordonnee cible,int couche=0)
+int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *hero,bool monstre,coordonnee lanceur, coordonnee cible,int couche=0)
 {
     couche=0;
     int retour=0;
@@ -1684,7 +1680,7 @@ int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,bool m
                     if(positionCase.y<0)
                         positionCase.y=0;
 
-                    while(getCollision(positionCase.x,positionCase.y) && invoquer )
+                    while((getCollision(positionCase.x,positionCase.y) || ( positionCase.x==hero->m_personnage.getCoordonnee().x && positionCase.y==hero->m_personnage.getCoordonnee().y )) && invoquer )
                     {
                         positionCase.x++;
                         positionCase.y++;
@@ -1730,7 +1726,7 @@ int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,bool m
                     }
 
                     continuer=false;
-                    gererMiracle(entiteMiracle,modeleMiracle,monstre,lanceur,cible,couche);
+                    gererMiracle(entiteMiracle,modeleMiracle,hero,monstre,lanceur,cible,couche);
                 }
                 else if(entiteMiracle->m_infos[o].m_IDObjet>=0&&entiteMiracle->m_infos[o].m_IDObjet<(int)m_monstre.size())
                 {
@@ -1738,14 +1734,14 @@ int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,bool m
                     {
                         entiteMiracle->m_infos.erase(entiteMiracle->m_infos.begin()+o);
                         continuer=false;
-                        gererMiracle(entiteMiracle,modeleMiracle,monstre,lanceur,cible,couche);
+                        gererMiracle(entiteMiracle,modeleMiracle,hero,monstre,lanceur,cible,couche);
                     }
                 }
                 else
                 {
                     entiteMiracle->m_infos.erase(entiteMiracle->m_infos.begin()+o);
                     continuer=false;
-                    gererMiracle(entiteMiracle,modeleMiracle,monstre,lanceur,cible,couche);
+                    gererMiracle(entiteMiracle,modeleMiracle,hero,monstre,lanceur,cible,couche);
                 }
             }
 
@@ -1763,7 +1759,7 @@ int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,bool m
 
                 entiteMiracle->m_infos.erase(entiteMiracle->m_infos.begin()+o);
                 continuer=false;
-                gererMiracle(entiteMiracle,modeleMiracle,monstre,lanceur,cible,couche);
+                gererMiracle(entiteMiracle,modeleMiracle,hero,monstre,lanceur,cible,couche);
 
             }
 
@@ -1778,7 +1774,7 @@ int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,bool m
 
                 entiteMiracle->m_infos.erase(entiteMiracle->m_infos.begin()+o);
                 continuer=false;
-                gererMiracle(entiteMiracle,modeleMiracle,monstre,lanceur,cible,couche);
+                gererMiracle(entiteMiracle,modeleMiracle,hero,monstre,lanceur,cible,couche);
             }
         }
         else
@@ -1792,7 +1788,7 @@ int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,bool m
 
             entiteMiracle->m_infos.erase(entiteMiracle->m_infos.begin()+o);
             continuer=false;
-            gererMiracle(entiteMiracle,modeleMiracle,monstre,lanceur,cible,couche);
+            gererMiracle(entiteMiracle,modeleMiracle,hero,monstre,lanceur,cible,couche);
         }
     }
 
@@ -1883,7 +1879,7 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                                 m_monstre[monstre].m_miracleEnCours.back().m_infos.back().m_position.y=m_monstre[monstre].getCoordonneePixel().y;
 
                                 if(m_monstre[monstre].m_miracleEnCours.back().m_modele>=0&&m_monstre[monstre].m_miracleEnCours.back().m_modele<(int)m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles.size())
-                                    gererMiracle(&m_monstre[monstre].m_miracleEnCours.back(),&m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours.back().m_modele],1,m_monstre[monstre].getCoordonnee(),hero->m_personnage.getProchaineCase(),i);
+                                    gererMiracle(&m_monstre[monstre].m_miracleEnCours.back(),&m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours.back().m_modele],hero,1,m_monstre[monstre].getCoordonnee(),hero->m_personnage.getProchaineCase(),i);
                             }
                             m_monstre[monstre].m_miracleALancer=-1;
                         }
@@ -2011,7 +2007,7 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                                                     }
                                         }
 
-                                    gererMiracle(&m_monstre[monstre].m_miracleEnCours[i],&m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele],true,m_monstre[monstre].getCoordonnee(),hero->m_personnage.getProchaineCase(),i);
+                                    gererMiracle(&m_monstre[monstre].m_miracleEnCours[i],&m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele],hero,true,m_monstre[monstre].getCoordonnee(),hero->m_personnage.getProchaineCase(),i);
                                 }
                                 else
                                    m_monstre[monstre].m_miracleEnCours[i].m_infos.erase(m_monstre[monstre].m_miracleEnCours[i].m_infos.begin()+o);
@@ -2228,12 +2224,6 @@ void Map::musiquePlay(coordonnee position)
                                                 \
                                                 coordonnee tempCoord={hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1};   \
                                                 m_monstre[m_decor[i][j][k].getMonstre()].pathfinding(getAlentourDuPersonnage(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()),tempCoord);   \
-                                                \
-                                                if(!m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding())   \
-                                                {   \
-                                                    arrivee=hero->m_personnage.getProchaineCase();   \
-                                                    m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(arrivee);   \
-                                                }   \
                                             }   \
                                             else  \
                                             {   \
@@ -2477,9 +2467,6 @@ void Map::gererMonstres(Hero *hero,float temps,sf::View *camera,Menu *menu)
 
                         if(!m_monstre[m_decor[i][j][k].getMonstre()].enVie()&&m_monstre[m_decor[i][j][k].getMonstre()].getEtat()!=3)
                             m_monstre[m_decor[i][j][k].getMonstre()].setEtat(3);
-
-
-
 
 
                         ///GESTION DES EVENEMENTS SUR LES MONSTRES

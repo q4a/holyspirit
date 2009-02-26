@@ -417,8 +417,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                     if(configuration->effetMort&&sf::PostFX::CanUsePostFX() == true&&configuration->postFX&&tempsEffetMort!=0)
                     {
-                        moteurGraphique->EffectMort.SetParameter("offset", 0.005*configuration->effetMort/100*(0.6+tempsEffetMort/10));
-                        moteurGraphique->EffectMort.SetParameter("color",1+1*configuration->effetMort/100*tempsEffetMort, 1-0.5*configuration->effetMort/100*tempsEffetMort, 1-0.5*configuration->effetMort/100*tempsEffetMort);
+                        moteurGraphique->EffectMort.SetParameter("offset", 0.003*configuration->effetMort/100*(0.6+tempsEffetMort/10));
+                        moteurGraphique->EffectMort.SetParameter("color",1+0.5*configuration->effetMort/100*tempsEffetMort, 1-1*configuration->effetMort/100*tempsEffetMort, 1-1*configuration->effetMort/100*tempsEffetMort);
                     }
 
                     if(configuration->console)

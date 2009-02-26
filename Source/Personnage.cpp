@@ -435,13 +435,7 @@ int Personnage::pathfinding(casePathfinding** map,coordonnee exception)
                     if(temp.y!=-100&&temp.x!=-100)
                         arrivee=temp;
                     else
-                    {
-                        for(int i=0;i<20;i++)
-                            delete[] map[i];
-                        delete[] map;
                         m_erreurPathfinding=true;
-                        return 0;
-                    }
                 }
 
             while(!casesVisitee.testerCasesEnCours(arrivee)&&!m_erreurPathfinding)
@@ -482,8 +476,6 @@ int Personnage::pathfinding(casePathfinding** map,coordonnee exception)
             for(int i=0;i<20;i++)
                 delete[] map[i];
             delete[] map;
-
-
 
             if(m_etat==0)
             return 0;
@@ -593,8 +585,6 @@ bool Personnage::seDeplacer(float tempsEcoule,coordonnee dimensionsMap)
                 m_etat=0,frappeEnCours=0;
             }
         }
-
-
         if(m_etat==2)
             return 1;
 

@@ -228,10 +228,7 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
                 ecran->Draw(EffectBlur);
             }
             if(configuration->effetMort>0)
-            {
-
                 ecran->Draw(EffectMort);
-            }
         }
 
 
