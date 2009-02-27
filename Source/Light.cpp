@@ -118,31 +118,23 @@ bool Light::CollisionWithLine(sf::Vector2f &l1, sf::Vector2f &l2,sf::Vector2f &p
 {
     // On regarde si le mur traverse le triangle, j'ai laissé les 0 pour pouvoir mieux cerner la formule.
 
-    float r = 1;
-    float s = 1;
-
-    if(((l2.x-l1.x)*(0-pt1.y)-(l2.y-l1.y)*(0-pt1.x))!=0)
-        r = ((l1.y-pt1.y)*(0-pt1.x)-(l1.x-pt1.x)*(0-pt1.y))/((l2.x-l1.x)*(0-pt1.y)-(l2.y-l1.y)*(0-pt1.x));
-    if(((l2.x-l1.x)*(0-pt1.y)-(l2.y-l1.y)*(0-pt1.x))!=0)
-        s = ((l1.y-pt1.y)*(l2.x-l1.x)-(l1.x-pt1.x)*(l2.y-l1.y))/((l2.x-l1.x)*(0-pt1.y)-(l2.y-l1.y)*(0-pt1.x));
+    float r = ((l1.y-pt1.y)*(0-pt1.x)-(l1.x-pt1.x)*(0-pt1.y))/((l2.x-l1.x)*(0-pt1.y)-(l2.y-l1.y)*(0-pt1.x));
+    float s = ((l1.y-pt1.y)*(l2.x-l1.x)-(l1.x-pt1.x)*(l2.y-l1.y))/((l2.x-l1.x)*(0-pt1.y)-(l2.y-l1.y)*(0-pt1.x));
 
     // r et s représente ou l'on se trouve dans les deux segment à l'intersection. 0 est une extrémité du segment, 1 l'autre, r et s doivent donc être tout deux entre
     // 0 et 1 pour que le point d'intersection des deux droites soit un point des deux segments.
     if (0.0001<=r && r<=1.0001 && 0<s && s<1)
         return 1;
 
-    if(((l2.x-l1.x)*(pt2.y-0)-(l2.y-l1.y)*(pt2.x-0))!=0)
-        r = ((l1.y-0)*(pt2.x-0)-(l1.x-0)*(pt2.y-0))/((l2.x-l1.x)*(pt2.y-0)-(l2.y-l1.y)*(pt2.x-0));
-    if(((l2.x-l1.x)*(pt2.y-0)-(l2.y-l1.y)*(pt2.x-0))!=0)
-        s = ((l1.y-0)*(l2.x-l1.x)-(l1.x-0)*(l2.y-l1.y))/((l2.x-l1.x)*(pt2.y-0)-(l2.y-l1.y)*(pt2.x-0));
+    r = ((l1.y-0)*(pt2.x-0)-(l1.x-0)*(pt2.y-0))/((l2.x-l1.x)*(pt2.y-0)-(l2.y-l1.y)*(pt2.x-0));
+    s = ((l1.y-0)*(l2.x-l1.x)-(l1.x-0)*(l2.y-l1.y))/((l2.x-l1.x)*(pt2.y-0)-(l2.y-l1.y)*(pt2.x-0));
 
     if (0.0001<=r && r<=1.0001 && 0<s && s<1)
         return 1;
 
-    if(((l2.x-l1.x)*(pt2.y-pt1.y)-(l2.y-l1.y)*(pt2.x-pt1.x))!=0)
-        r = ((l1.y-pt1.y)*(pt2.x-pt1.x)-(l1.x-pt1.x)*(pt2.y-pt1.y))/((l2.x-l1.x)*(pt2.y-pt1.y)-(l2.y-l1.y)*(pt2.x-pt1.x));
-    if(((l2.x-l1.x)*(pt2.y-pt1.y)-(l2.y-l1.y)*(pt2.x-pt1.x))!=0)
-        s = ((l1.y-pt1.y)*(l2.x-l1.x)-(l1.x-pt1.x)*(l2.y-l1.y))/((l2.x-l1.x)*(pt2.y-pt1.y)-(l2.y-l1.y)*(pt2.x-pt1.x));
+
+    r = ((l1.y-pt1.y)*(pt2.x-pt1.x)-(l1.x-pt1.x)*(pt2.y-pt1.y))/((l2.x-l1.x)*(pt2.y-pt1.y)-(l2.y-l1.y)*(pt2.x-pt1.x));
+    s = ((l1.y-pt1.y)*(l2.x-l1.x)-(l1.x-pt1.x)*(l2.y-l1.y))/((l2.x-l1.x)*(pt2.y-pt1.y)-(l2.y-l1.y)*(pt2.x-pt1.x));
 
     if (0.0001<=r && r<=1.0001 && 0<s && s<1)
         return 1;
@@ -165,9 +157,6 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std:
         // l1 et l2 sont les positions relative au centre de la lumière des deux extrémités du mur
         sf::Vector2f l1(IterWall->pt1.x-m_position.x,IterWall->pt1.y-m_position.y);
         sf::Vector2f l2(IterWall->pt2.x-m_position.x,IterWall->pt2.y-m_position.y);
-
-        if(l1.x==l2.x)
-            l2.x+=0.0001;
 
         // Deux bool, elles contiendront "true" si l1 ou l2 se trouve dans le triangle
         bool Collision1 = false;
@@ -207,10 +196,7 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std:
             sf::Vector2f ptP(cos(angle)*m_radius,sin(angle)*m_radius);
 
             // On calcul le point d'intersection entre le segment [(0,0),'ptP'].
-            float s = 1;
-
-            if(((pt2.x-pt1.x)*(ptP.y-0)-(pt2.y-pt1.y)*(ptP.x-0))!=0)
-                s = ((pt1.y-0)*(ptP.x-0)-(pt1.x-0)*(ptP.y-0))/((pt2.x-pt1.x)*(ptP.y-0)-(pt2.y-pt1.y)*(ptP.x-0));
+            float s = ((pt1.y-0)*(ptP.x-0)-(pt1.x-0)*(ptP.y-0))/((pt2.x-pt1.x)*(ptP.y-0)-(pt2.y-pt1.y)*(ptP.x-0));
 
             sf::Vector2f pt=pt1;
             if(0<=s && s<=1)
@@ -260,9 +246,7 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std:
 
             sf::Vector2f ptP(cos(angle)*m_radius,sin(angle)*m_radius);
 
-            float s = 1;
-            if(((pt2.x-pt1.x)*(ptP.y-0)-(pt2.y-pt1.y)*(ptP.x-0))!=0)
-                s = ((pt1.y-0)*(ptP.x-0)-(pt1.x-0)*(ptP.y-0))/((pt2.x-pt1.x)*(ptP.y-0)-(pt2.y-pt1.y)*(ptP.x-0));
+            float s = ((pt1.y-0)*(ptP.x-0)-(pt1.x-0)*(ptP.y-0))/((pt2.x-pt1.x)*(ptP.y-0)-(pt2.y-pt1.y)*(ptP.x-0));
 
             sf::Vector2f pt=pt1;
             if(0<=s && s<=1)
@@ -315,10 +299,7 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std:
 
 
                 // On calcul l'intersection entre [(0,0) , 'pt1' ] et le mur
-                float s = 1;
-
-                if(((pt1.x-0)*(l2.y-l1.y)-(pt1.y-0)*(l2.x-l1.x))!=0)
-                    s = ((0-l1.y)*(l2.x-l1.x)-(0-l1.x)*(l2.y-l1.y))/((pt1.x-0)*(l2.y-l1.y)-(pt1.y-0)*(l2.x-l1.x));
+                float s = ((0-l1.y)*(l2.x-l1.x)-(0-l1.x)*(l2.y-l1.y))/((pt1.x-0)*(l2.y-l1.y)-(pt1.y-0)*(l2.x-l1.x));
 
                 // Si elle se trouve sur le segment [(0,0) , 'pt1' ], p1 prend comme valeur ce point d'intersection, sinon, p1 garde comme valeur pt1
                 if(0<=s && s<=1)
@@ -328,8 +309,7 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std:
                 }
 
                 // Idem, mais avec p2 et pt2
-                if(((pt2.x-0)*(l2.y-l1.y)-(pt2.y-0)*(l2.x-l1.x))!=0)
-                    s = ((0-l1.y)*(l2.x-l1.x)-(0-l1.x)*(l2.y-l1.y))/((pt2.x-0)*(l2.y-l1.y)-(pt2.y-0)*(l2.x-l1.x));
+                s = ((0-l1.y)*(l2.x-l1.x)-(0-l1.x)*(l2.y-l1.y))/((pt2.x-0)*(l2.y-l1.y)-(pt2.y-0)*(l2.x-l1.x));
 
                 if(0<=s && s<=1)
                 {
@@ -338,8 +318,7 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std:
                 }
 
                 // On calcul l'intersection entre ['pt1' , 'pt2' ] et le mur
-                if(((pt2.x-pt1.x)*(l2.y-l1.y)-(pt2.y-pt1.y)*(l2.x-l1.x))!=0)
-                    s = ((pt1.y-l1.y)*(l2.x-l1.x)-(pt1.x-l1.x)*(l2.y-l1.y))/((pt2.x-pt1.x)*(l2.y-l1.y)-(pt2.y-pt1.y)*(l2.x-l1.x));
+                s = ((pt1.y-l1.y)*(l2.x-l1.x)-(pt1.x-l1.x)*(l2.y-l1.y))/((pt2.x-pt1.x)*(l2.y-l1.y)-(pt2.y-pt1.y)*(l2.x-l1.x));
 
                 // Si il y a intersection
                 if(0<=s && s<=1)
@@ -368,9 +347,8 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std:
     float intensity,intensity2;
 
     bool devant=false;
-    if(((pt1.x)-(pt2.x))!=0)
-        if( 0>=(pt1.y) - (pt1.x)*(((pt1.y)-(pt2.y))/((pt1.x)-(pt2.x))))
-            devant=true;
+    if( 0>=(pt1.y) - (pt1.x)*(((pt1.y)-(pt2.y))/((pt1.x)-(pt2.x))))
+        devant=true;
 
 
     // On ajoute un shape
@@ -396,21 +374,21 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std:
     // On met que le shape soit en Add et on lui donne sa position
     m_shape.back().SetBlendMode(sf::Blend::Add);
     m_shape.back().SetPosition(m_position.x,m_position.y/2);
-    if(devant)
-        if(intensity>1||intensity2>1)
-        {
-            m_shape.push_back(sf::Shape ());
 
-            m_shape.back().AddPoint(pt1.x,pt1.y/2,  sf::Color((int)(intensity*m_color.r/255),(int)(intensity*m_color.g/255),(int)(intensity*m_color.b/255)));
-            m_shape.back().AddPoint(pt1.x,pt1.y/2-96,  sf::Color(0,0,0));
-            m_shape.back().AddPoint(pt2.x,pt2.y/2-96,  sf::Color(0,0,0));
-            m_shape.back().AddPoint(pt2.x,pt2.y/2,  sf::Color((int)(intensity2*m_color.r/255),(int)(intensity2*m_color.g/255),(int)(intensity2*m_color.b/255)));
+    if(intensity>1||intensity2>1)
+    {
+        m_shape.push_back(sf::Shape ());
+
+        m_shape.back().AddPoint(pt1.x,pt1.y/2,  sf::Color((int)(intensity*m_color.r/255),(int)(intensity*m_color.g/255),(int)(intensity*m_color.b/255)));
+        m_shape.back().AddPoint(pt1.x,pt1.y/2-96,  sf::Color(0,0,0));
+        m_shape.back().AddPoint(pt2.x,pt2.y/2-96,  sf::Color(0,0,0));
+        m_shape.back().AddPoint(pt2.x,pt2.y/2,  sf::Color((int)(intensity2*m_color.r/255),(int)(intensity2*m_color.g/255),(int)(intensity2*m_color.b/255)));
 
 
-            m_shape.back().SetBlendMode(sf::Blend::Add);
-            m_shape.back().SetPosition(m_position.x,m_position.y/2);
+        m_shape.back().SetBlendMode(sf::Blend::Add);
+        m_shape.back().SetPosition(m_position.x,m_position.y/2);
 
-        }
+    }
 
 }
 
@@ -440,8 +418,8 @@ void Light::SetColor(sf::Color color) { m_color=color; }
 void Light::SetPosition(sf::Vector2f position)
 {
     m_position=position;
-    m_position.x+=3.35257;
-    m_position.y+=3.37125;
+    m_position.x+=5.34752;
+    m_position.y+=5.52863;
 }
 
 

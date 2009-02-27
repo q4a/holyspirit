@@ -117,7 +117,7 @@ Wall_Entity Light_Manager::Add_Wall(sf::Vector2f pt1,sf::Vector2f pt2)
 Wall_Entity Light_Manager::Add_Wall(sf::Vector2f pt1,sf::Vector2f pt2,int hauteur)
 {
 
-    sf::Vector2f min=pt1,max=pt2;
+   /* sf::Vector2f min=pt1,max=pt2;
 
     if(pt2.x<min.x)
         min.x=pt2.x;
@@ -126,7 +126,13 @@ Wall_Entity Light_Manager::Add_Wall(sf::Vector2f pt1,sf::Vector2f pt2,int hauteu
     if(pt2.y<min.y)
         min.y=pt2.y;
     if(pt1.y>max.y)
-        max.y=pt2.y;
+        max.y=pt2.y;*/
+
+    if(pt2.x<pt1.x)
+    {
+        sf::Vector2f buffer=pt1;
+        pt1=pt2,pt2=buffer;
+    }
 
     bool NoCorner1=false,NoCorner2=false;
     for(int i=0;i<(int)m_wall.size();i++)
@@ -136,60 +142,32 @@ Wall_Entity Light_Manager::Add_Wall(sf::Vector2f pt1,sf::Vector2f pt2,int hauteu
              ||(pt2.x+4>=(int)m_wall[i].pt1.x && pt2.x-4<=(int)m_wall[i].pt1.x && pt2.y+4>=(int)m_wall[i].pt1.y && pt2.y-4<=(int)m_wall[i].pt1.y)
              ||(pt2.x+4>=(int)m_wall[i].pt2.x && pt2.x-4<=(int)m_wall[i].pt2.x && pt2.y+4>=(int)m_wall[i].pt2.y && pt2.y-4<=(int)m_wall[i].pt2.y))
              {
-                if( ((pt1.y-pt2.y)/(pt1.x-pt2.y))+0.0001>=((m_wall[i].pt1.y-m_wall[i].pt2.y)/(m_wall[i].pt1.x-m_wall[i].pt2.y)) && ((pt1.y-pt2.y)/(pt1.x-pt2.y))-0.0001<=((m_wall[i].pt1.y-m_wall[i].pt2.y)/(m_wall[i].pt1.x-m_wall[i].pt2.y)) )
+                if( ((pt1.y-pt2.y)/(pt1.x-pt2.y))+0.01>=((m_wall[i].pt1.y-m_wall[i].pt2.y)/(m_wall[i].pt1.x-m_wall[i].pt2.y)) && ((pt1.y-pt2.y)/(pt1.x-pt2.y))-0.01<=((m_wall[i].pt1.y-m_wall[i].pt2.y)/(m_wall[i].pt1.x-m_wall[i].pt2.y)) )
                 {
                     sf::Vector2f min=pt1,max=pt2;
 
                     if(pt2.x<min.x)
-                        min.x=pt2.x;
-                    if(pt1.x>max.x)
-                        max.x=pt2.x;
-
+                        min=pt2;
                     if(m_wall[i].pt1.x<min.x)
-                        min.x=m_wall[i].pt1.x;
+                        min=m_wall[i].pt1;
                     if(m_wall[i].pt2.x<min.x)
-                        min.x=m_wall[i].pt2.x;
+                        min=m_wall[i].pt2;
 
+                    if(pt1.x>max.x)
+                        max=pt1;
                     if(m_wall[i].pt1.x>max.x)
-                        max.x=m_wall[i].pt1.x;
+                        max=m_wall[i].pt1;
                     if(m_wall[i].pt2.x>max.x)
-                        max.x=m_wall[i].pt2.x;
-
-
-                    if(pt2.y<min.y)
-                        min.y=pt2.y;
-                    if(pt1.y>max.y)
-                        max.y=pt2.y;
-
-                    if(m_wall[i].pt1.y<min.y)
-                        min.y=m_wall[i].pt1.y;
-                    if(m_wall[i].pt2.y<min.y)
-                        min.y=m_wall[i].pt2.y;
-
-                    if(m_wall[i].pt1.y>max.y)
-                        max.y=m_wall[i].pt1.y;
-                    if(m_wall[i].pt2.y>max.y)
-                        max.y=m_wall[i].pt2.y;
+                        max=m_wall[i].pt2;
 
                     m_wall[i].pt1=min;
                     m_wall[i].pt2=max;
 
                     return Wall_Entity(i);
                 }
-                else
-                {
-                    if(((int)pt1.x==(int)m_wall[i].pt1.x && (int)pt1.y==(int)m_wall[i].pt1.y)
-                    ||((int)pt1.x==(int)m_wall[i].pt2.x && (int)pt1.y==(int)m_wall[i].pt2.y))
-                        NoCorner1=true;
-                    else
-                        NoCorner2=true;
-                }
              }
 
     m_wall.push_back(Wall (pt1,pt2,hauteur));
-
-    m_wall.back().NoCorner1=NoCorner1;
-    m_wall.back().NoCorner2=NoCorner2;
 
     return Wall_Entity(m_wall.size()-1);
 }
