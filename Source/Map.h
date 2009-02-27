@@ -20,6 +20,8 @@ class Map
 	Map();
 	~Map();
 	bool Charger(int numeroMap,Hero *hero);
+	void Initialiser();
+	void CreerSprite(sf::Vector3f position_case);
 	void Sauvegarder(Hero *hero);
 	void Afficher(sf::RenderWindow* ecran,sf::View *camera,int type,Hero *hero,coordonnee positionSouris,bool alt,float alpha=255);
 

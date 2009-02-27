@@ -128,23 +128,26 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
 
     if(configuration->Lumiere && configuration->RafraichirLumiere)
     {
-        ecran->Clear(sf::Color(255,255,255));
-
-        ecran->SetView(*camera);
-
-        for(int i=0;i<(int)m_commandes[9].size();i++)
+        if(configuration->Ombre&&m_soleil.intensite>64)
         {
+            ecran->Clear(sf::Color(255,255,255));
+
             ecran->SetView(*camera);
-            sprite=m_commandes[9][i].m_sprite;
-            sprite.SetColor(sf::Color(0,0,0,m_soleil.intensite/2));
-            ecran->Draw(sprite);
-            sprite.SetBlendMode(sf::Blend::Alpha);
+
+            for(int i=0;i<(int)m_commandes[9].size();i++)
+            {
+                ecran->SetView(*camera);
+                sprite=m_commandes[9][i].m_sprite;
+                sprite.SetColor(sf::Color(0,0,0,m_soleil.intensite/2));
+                ecran->Draw(sprite);
+                sprite.SetBlendMode(sf::Blend::Alpha);
+            }
+
+            EffectBlur.SetParameter("offset",0.0025);
+            ecran->Draw(EffectBlur);
+
+            m_light_screen2.CopyScreen(*ecran);
         }
-
-        EffectBlur.SetParameter("offset",0.0025);
-        ecran->Draw(EffectBlur);
-
-        m_light_screen2.CopyScreen(*ecran);
 
         ecran->Clear(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
 
@@ -158,8 +161,6 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
         ecran->Draw(EffectBlur);
         EffectBlur.SetParameter("offset",0.005);
         ecran->Draw(EffectBlur);
-        EffectBlur.SetParameter("offset",0.0025);
-        ecran->Draw(EffectBlur);
 
         m_light_screen.CopyScreen(*ecran);
 
@@ -170,10 +171,8 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
     ecran->Clear();
 
 
-
     for(int k=0;k<20;k++)
     {
-
         if(k==12&&configuration->Lumiere)
         {
             sprite2.FlipY(true);
@@ -184,7 +183,7 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
             ecran->Draw(sprite2);
         }
 
-        if(k==10&&configuration->Lumiere)
+        if(k==10&&configuration->Ombre&&configuration->Ombre&&m_soleil.intensite>64)
         {
             sprite2.FlipY(true);
             sprite2.SetImage(m_light_screen2);
@@ -388,10 +387,10 @@ void MoteurGraphique::AjouterSystemeParticules(int ID,coordonnee position,sf::Co
     }
 }
 
-void MoteurGraphique::AjouterCommande(sf::Sprite *sprite, int couche, bool camera, bool wall)
+void MoteurGraphique::AjouterCommande(sf::Sprite *sprite, int couche, bool camera)
 {
     if(couche>=0&&couche<20)
-        m_commandes[couche].push_back(Commande (sprite,camera,wall));
+        m_commandes[couche].push_back(Commande (sprite,camera));
 }
 
 void MoteurGraphique::AjouterTexte(sf::String* string, int couche,bool titre)
@@ -399,8 +398,6 @@ void MoteurGraphique::AjouterTexte(sf::String* string, int couche,bool titre)
     sf::String temp(*string);
     if(couche>=0&&couche<20)
     {
-        /*while(m_textes.size()<=couche)
-            m_textes.push_back(std::vector <sf::String> ());*/
 
         if(temp.GetRect().Right>configuration->Resolution.w)
             temp.SetX(configuration->Resolution.w-(temp.GetRect().Right-temp.GetRect().Left));

@@ -209,8 +209,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 if(tempsDepuisDerniereAnimation>0.04)
                 {
-                    if(tempsDepuisDerniereAnimation>0.5)
-                        tempsDepuisDerniereAnimation=0.5;
+                    if(tempsDepuisDerniereAnimation>0.8)
+                        tempsDepuisDerniereAnimation=0.8;
 
                     coordonnee positionHero;
                     positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1+jeu->map.getDimensions().y)/5;

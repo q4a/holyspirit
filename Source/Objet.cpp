@@ -556,10 +556,10 @@ void Objet::Generer(int bonus)
         if(random<=300)
             rarete=BENI;
 
-        if(random<=50)
+        if(random<=30)
             rarete=SACRE;
 
-        if(random<10)
+        if(random<3)
             rarete=SANCTIFIE;
 
         if(rarete<m_rarete)

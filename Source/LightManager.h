@@ -53,7 +53,6 @@ class Light_Manager : public CSingleton<Light_Manager>
 
     // Afficher toutes les lumières à l'écran
     void Draw(sf::RenderWindow *App,sf::View *camera, coordonnee dimensionsMap);
-    void DrawWall(sf::RenderWindow *App,sf::View *camera, coordonnee dimensionsMap);
     void Draw(sf::RenderWindow *App,sf::View *camera, coordonnee dimensionsMap,Light_Entity);
 
     // Différentes méthodes pour modifier les attributs d'une lumière, ou les récupérer. Il faut à chaque fois envoyer une Light_Entity en paramètre pour

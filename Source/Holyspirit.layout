@@ -19,11 +19,11 @@
 	<File name="Hero.h" open="1" top="0" tabpos="18">
 		<Cursor position="283" topLine="8" />
 	</File>
-	<File name="Light.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="14297" topLine="354" />
+	<File name="Light.cpp" open="1" top="0" tabpos="20">
+		<Cursor position="5453" topLine="163" />
 	</File>
-	<File name="Light.h" open="0" top="0" tabpos="9">
-		<Cursor position="525" topLine="2" />
+	<File name="Light.h" open="1" top="1" tabpos="21">
+		<Cursor position="2706" topLine="99" />
 	</File>
 	<File name="LightManager.cpp" open="0" top="0" tabpos="11">
 		<Cursor position="4810" topLine="215" />
@@ -65,7 +65,7 @@
 		<Cursor position="172" topLine="0" />
 	</File>
 	<File name="c_changementMap.cpp" open="1" top="0" tabpos="11">
-		<Cursor position="3059" topLine="102" />
+		<Cursor position="2549" topLine="90" />
 	</File>
 	<File name="c_changementMap.h" open="0" top="0" tabpos="5">
 		<Cursor position="171" topLine="0" />
@@ -130,8 +130,8 @@
 	<File name="eventManager.h" open="0" top="0" tabpos="10">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="hero.cpp" open="1" top="1" tabpos="2">
-		<Cursor position="43381" topLine="921" />
+	<File name="hero.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="1837" topLine="63" />
 	</File>
 	<File name="jeu.cpp" open="0" top="0" tabpos="13">
 		<Cursor position="1583" topLine="66" />
@@ -152,7 +152,7 @@
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="map.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="77868" topLine="1509" />
+		<Cursor position="149380" topLine="2435" />
 	</File>
 	<File name="menu.cpp" open="0" top="0" tabpos="13">
 		<Cursor position="11773" topLine="248" />

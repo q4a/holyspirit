@@ -15,6 +15,10 @@ Decor::Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int her
 
 	m_projectile=-1;
 	m_effet=-1;
+
+	m_sprite.SetSubRect(sf::IntRect(0,0,0,0));
+	m_spriteHerbe.SetSubRect(sf::IntRect(0,0,0,0));
+	m_spriteOmbre.SetSubRect(sf::IntRect(0,0,0,0));
 }
 
 Decor::Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche,int hauteur,std::vector <Objet> objets)
@@ -33,6 +37,10 @@ Decor::Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int her
 
 	m_projectile=-1;
 	m_effet=-1;
+
+    m_sprite.SetSubRect(sf::IntRect(0,0,0,0));
+	m_spriteHerbe.SetSubRect(sf::IntRect(0,0,0,0));
+	m_spriteOmbre.SetSubRect(sf::IntRect(0,0,0,0));
 }
 
 Decor::~Decor()
@@ -106,6 +114,7 @@ void Decor::setDecor(int tileset,int tile,std::vector<int> evenement,int monstre
     m_objets=objets;
 }
 
+
 void Decor::setNumeroHerbe(int numero)
 {
     m_numeroHerbe=numero;
@@ -134,6 +143,7 @@ void Decor::ajouterEvenement(int evenement)
 }
 void Decor::setTileset( int tileset){m_tileset=tileset;}
 void Decor::setTile(int tile){m_tile=tile;}
+void Decor::setCouche(int couche){m_couche=couche;}
 void Decor::ajouterObjet(Objet objet){m_objets.push_back(objet);}
 
 

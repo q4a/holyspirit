@@ -95,16 +95,48 @@ Wall_Entity Light_Manager::Add_Wall(sf::Vector2f pt1,sf::Vector2f pt2)
 
             }
 
+
+     sf::Vector2f min=pt1,max=pt2;
+
+    if(pt2.x<min.x)
+        min.x=pt2.x;
+    if(pt1.x>max.x)
+        max.x=pt2.x;
+    if(pt2.y<min.y)
+        min.y=pt2.y;
+    if(pt1.y>max.y)
+        max.y=pt2.y;
+
+    pt1=min;
+    pt2=max;
+
     m_wall.push_back(Wall (pt1,pt2));
     return Wall_Entity(m_wall.size()-1);
 }
 
 Wall_Entity Light_Manager::Add_Wall(sf::Vector2f pt1,sf::Vector2f pt2,int hauteur)
 {
+
+    sf::Vector2f min=pt1,max=pt2;
+
+    if(pt2.x<min.x)
+        min.x=pt2.x;
+    if(pt1.x>max.x)
+        max.x=pt2.x;
+    if(pt2.y<min.y)
+        min.y=pt2.y;
+    if(pt1.y>max.y)
+        max.y=pt2.y;
+
+    bool NoCorner1=false,NoCorner2=false;
     for(int i=0;i<(int)m_wall.size();i++)
-        if(hauteur==m_wall[i].hauteur)
-            if((pt1.y-pt2.y)/(pt1.x-pt2.y)==(m_wall[i].pt1.y-m_wall[i].pt2.y)/(m_wall[i].pt1.x-m_wall[i].pt2.y))
-                if(pt1==m_wall[i].pt1 || pt2==m_wall[i].pt1 || pt1==m_wall[i].pt2 || pt2==m_wall[i].pt2)
+      //  if(hauteur==m_wall[i].hauteur)
+            if((pt1.x+4>=(int)m_wall[i].pt1.x && pt1.x-4<=(int)m_wall[i].pt1.x && pt1.y+4>=(int)m_wall[i].pt1.y && pt1.y-4<=(int)m_wall[i].pt1.y)
+             ||(pt1.x+4>=(int)m_wall[i].pt2.x && pt1.x-4<=(int)m_wall[i].pt2.x && pt1.y+4>=(int)m_wall[i].pt2.y && pt1.y-4<=(int)m_wall[i].pt2.y)
+             ||(pt2.x+4>=(int)m_wall[i].pt1.x && pt2.x-4<=(int)m_wall[i].pt1.x && pt2.y+4>=(int)m_wall[i].pt1.y && pt2.y-4<=(int)m_wall[i].pt1.y)
+             ||(pt2.x+4>=(int)m_wall[i].pt2.x && pt2.x-4<=(int)m_wall[i].pt2.x && pt2.y+4>=(int)m_wall[i].pt2.y && pt2.y-4<=(int)m_wall[i].pt2.y))
+             {
+                if( ((pt1.y-pt2.y)/(pt1.x-pt2.y))+0.0001>=((m_wall[i].pt1.y-m_wall[i].pt2.y)/(m_wall[i].pt1.x-m_wall[i].pt2.y)) && ((pt1.y-pt2.y)/(pt1.x-pt2.y))-0.0001<=((m_wall[i].pt1.y-m_wall[i].pt2.y)/(m_wall[i].pt1.x-m_wall[i].pt2.y)) )
                 {
                     sf::Vector2f min=pt1,max=pt2;
 
@@ -144,8 +176,21 @@ Wall_Entity Light_Manager::Add_Wall(sf::Vector2f pt1,sf::Vector2f pt2,int hauteu
 
                     return Wall_Entity(i);
                 }
+                else
+                {
+                    if(((int)pt1.x==(int)m_wall[i].pt1.x && (int)pt1.y==(int)m_wall[i].pt1.y)
+                    ||((int)pt1.x==(int)m_wall[i].pt2.x && (int)pt1.y==(int)m_wall[i].pt2.y))
+                        NoCorner1=true;
+                    else
+                        NoCorner2=true;
+                }
+             }
 
     m_wall.push_back(Wall (pt1,pt2,hauteur));
+
+    m_wall.back().NoCorner1=NoCorner1;
+    m_wall.back().NoCorner2=NoCorner2;
+
     return Wall_Entity(m_wall.size()-1);
 }
 
@@ -190,9 +235,7 @@ void Light_Manager::Generate(sf::View *camera)
 {
     for(int i=0;i<(int)m_DynamicLight.size();i++)
         if(m_DynamicLight[i].m_actif)
-            if(m_DynamicLight[i].GetPosition().x + m_DynamicLight[i].GetRadius()>camera->GetRect().Left && m_DynamicLight[i].GetPosition().x - m_DynamicLight[i].GetRadius()<camera->GetRect().Right
-            && m_DynamicLight[i].GetPosition().y*0.5 + m_DynamicLight[i].GetRadius()*0.5>camera->GetRect().Top  && m_DynamicLight[i].GetPosition().y*0.5 - m_DynamicLight[i].GetRadius()*0.5<camera->GetRect().Bottom)
-                m_DynamicLight[i].Generate(m_wall);
+            m_DynamicLight[i].Generate(m_wall);
 }
 
 void Light_Manager::Generate(Light_Entity &e)
@@ -218,21 +261,6 @@ void Light_Manager::Draw(sf::RenderWindow *App,sf::View *camera, coordonnee dime
             if(Iter->GetPosition().x + Iter->GetRadius()>camera->GetRect().Left && Iter->GetPosition().x - Iter->GetRadius()<camera->GetRect().Right
             && Iter->GetPosition().y*0.5 + Iter->GetRadius()*0.5>camera->GetRect().Top  && Iter->GetPosition().y*0.5 - Iter->GetRadius()*0.5<camera->GetRect().Bottom)
                 Iter->Draw(App,dimensionsMap);
-}
-
-void Light_Manager::DrawWall(sf::RenderWindow *App,sf::View *camera, coordonnee dimensionsMap)
-{
-    for(Iter=m_DynamicLight.begin();Iter!=m_DynamicLight.end();++Iter)
-        if(Iter->m_actif)
-            if(Iter->GetPosition().x + Iter->GetRadius()>camera->GetRect().Left && Iter->GetPosition().x - Iter->GetRadius()<camera->GetRect().Right
-            && Iter->GetPosition().y*0.5 + Iter->GetRadius()*0.5>camera->GetRect().Top  && Iter->GetPosition().y*0.5 - Iter->GetRadius()*0.5<camera->GetRect().Bottom)
-                Iter->DrawWall(App,dimensionsMap);
-
-    for(Iter=m_StaticLight.begin();Iter!=m_StaticLight.end();++Iter)
-        if(Iter->m_actif)
-            if(Iter->GetPosition().x + Iter->GetRadius()>camera->GetRect().Left && Iter->GetPosition().x - Iter->GetRadius()<camera->GetRect().Right
-            && Iter->GetPosition().y*0.5 + Iter->GetRadius()*0.5>camera->GetRect().Top  && Iter->GetPosition().y*0.5 - Iter->GetRadius()*0.5<camera->GetRect().Bottom)
-                Iter->DrawWall(App,dimensionsMap);
 }
 
 void Light_Manager::Draw(sf::RenderWindow *App,sf::View *camera, coordonnee dimensionsMap,Light_Entity e)

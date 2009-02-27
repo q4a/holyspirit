@@ -816,11 +816,11 @@ void Hero::CalculerOrdreAffichage()
     }
 }
 
-void Hero::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap)
+void Hero::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee dimensionsMap)
 {
     for(int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;i++)
         if(ordreAffichage[i]!=-1)
-            m_personnage.Afficher(ecran,camera,position,dimensionsMap,&m_modelePersonnage[ordreAffichage[i]]);
+            m_personnage.Afficher(ecran,camera,dimensionsMap,&m_modelePersonnage[ordreAffichage[i]]);
 }
 
 void Hero::afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionSouris,float decalage)

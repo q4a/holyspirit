@@ -22,6 +22,8 @@ class Decor
 	Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche,int hauteur,std::vector <Objet> objets);
 	~Decor();
 	Decor operator=(const Decor &Decor);
+
+
 	void setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe,int couche,int hauteur);
 	void setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe,int couche,int hauteur,std::vector <Objet> objets); //Définir une valeur au décor
 	void setNumeroHerbe(int numero);
@@ -60,10 +62,13 @@ class Decor
 	void ajouterEvenement(int evenement);
 	void setTileset( int tileset);
 	void setTile(int tile);
+	void setCouche(int couche);
 
 	Light_Entity m_light;
 
 	sf::Color color;
+
+	sf::Sprite m_sprite,m_spriteHerbe,m_spriteOmbre;
 
 	private:
 	int m_tileset,m_tile,m_monstre,m_projectile,m_effet,m_couche;
@@ -78,6 +83,8 @@ class Decor
 	int m_hauteur;
 	coordonnee m_herbe_decalage;
 	sf::Color m_herbe_couleur;
+
+
 
 };
 

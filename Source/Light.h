@@ -14,12 +14,18 @@ struct Wall
         pt1=p1;
         pt2=p2;
         hauteur=32;
+
+        NoCorner1=false;
+        NoCorner2=false;
     }
     Wall (sf::Vector2f p1,sf::Vector2f p2,int hauteur)
     {
         pt1=p1;
         pt2=p2;
         hauteur=hauteur;
+
+        NoCorner1=false;
+        NoCorner2=false;
     }
 
     // Pt1 et Pt2 sont les deux extrémités du mur
@@ -29,6 +35,9 @@ struct Wall
 
     // Position du mur
     sf::Vector2f position;
+
+    bool NoCorner1;
+    bool NoCorner2;
 };
 
 // Wall_Entity est une variable qui permet de représenter dans le programme un mur
@@ -76,7 +85,6 @@ class Light
 
     // Afficher la lumière
     void Draw(sf::RenderWindow *App, coordonnee dimensionsMap);
-    void DrawWall(sf::RenderWindow *App, coordonnee dimensionsMap);
 
     // Calculer la lumière
     void Generate(std::vector <Wall> &m_wall);
@@ -122,9 +130,6 @@ class Light
 
     //Tableau dynamique de Shape, ce sont ces shapes de type triangle qui compose la lumière
     std::vector <sf::Shape> m_shape;
-    std::vector <sf::Shape> m_shape_wall;
-
-
 
     std::vector <sf::Vector2f> m_dejaPasse;
 

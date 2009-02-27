@@ -34,7 +34,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	int AjouterModeleSystemeParticules(std::string);
 
 	void AjouterSystemeParticules(int ID,coordonnee position,sf::Color color,float force,float angle);
-	void AjouterCommande(sf::Sprite*,int=0, bool=0, bool=0);
+	void AjouterCommande(sf::Sprite*,int=0, bool=0);
 	void AjouterTexte(sf::String*, int couche=0,bool titre=false);
 
 	void DecrementerImportance();

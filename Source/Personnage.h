@@ -63,7 +63,7 @@ class Personnage
 
 	bool seDeplacer(float,coordonnee dimensionsMap);
 	void setCoordonnee(coordonnee nouvellesCoordonnees);
-	void Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap,Modele_Personnage *modele);
+	void Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee dimensionsMap,Modele_Personnage *modele);
 
 	int pathfinding(casePathfinding** map,coordonnee exception);
 

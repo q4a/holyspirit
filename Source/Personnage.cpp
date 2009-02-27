@@ -260,7 +260,7 @@ int Personnage::getOrdre(Modele_Personnage *modele)
     return -10;
 }
 
-void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap,Modele_Personnage *modele)
+void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee dimensionsMap,Modele_Personnage *modele)
 {
     if(modele->m_pose.size()>0)
     if((int)(m_angle/45)>=0&&(int)(m_angle/45)<8)
@@ -271,8 +271,6 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
         {
             //for(int o=0;o<(int)m_lumiere.m_ombre.size();o++)
            // {
-
-
 
                 int angleOmbre=(int)((m_angle-moteurGraphique->m_angleOmbreSoleil)+22.5);
 
@@ -296,10 +294,6 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
 
                         sprite.SetScale(m_caracteristique.modificateurTaille, m_caracteristique.modificateurTaille*(100-(float)moteurGraphique->m_soleil.hauteur)/50);
                         sprite.SetRotation(moteurGraphique->m_angleOmbreSoleil);
-                        if(sprite.GetPosition().x+sprite.GetSize().x>=camera->GetRect().Left)
-                        if(sprite.GetPosition().x<camera->GetRect().Right)
-                        if(sprite.GetPosition().y+sprite.GetSize().y>=camera->GetRect().Top)
-                        if(sprite.GetPosition().y<camera->GetRect().Bottom)
                         moteurGraphique->AjouterCommande(&sprite,9,1);
                         sprite.SetCenter(0,0);
                         sprite.SetScale(1, 1);

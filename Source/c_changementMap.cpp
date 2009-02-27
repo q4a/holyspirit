@@ -142,6 +142,8 @@ void c_Chargement::Utiliser(Jeu *jeu)
         if(configuration->Lumiere)
             jeu->map.calculerOmbresEtLumieres();
 
+        configuration->RafraichirLumiere=true;
+
         sf::Vector2f pos;
         pos.x=(((jeu->hero.m_personnage.getCoordonneePixel().x-jeu->hero.m_personnage.getCoordonneePixel().y)*64/COTE_TILE+jeu->map.getDimensions().y*64));
         pos.y=(((jeu->hero.m_personnage.getCoordonneePixel().x+jeu->hero.m_personnage.getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
