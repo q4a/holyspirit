@@ -21,6 +21,8 @@ MoteurSons *moteurSons;
 
 int main ( int argc, char** argv )
 {
+    std::set_terminate( __gnu_cxx::__verbose_terminate_handler);
+
     moteurGraphique=MoteurGraphique::GetInstance();
     moteurSons=MoteurSons::GetInstance();
 

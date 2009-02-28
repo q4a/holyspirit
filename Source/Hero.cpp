@@ -952,7 +952,6 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
     if(i!=m_objetEnMain)
         {
             coordonneeDecimal position;
-            float rotation=0;
              sf::Sprite sprite;
 
             sprite.SetImage(*moteurGraphique->getImage(0));

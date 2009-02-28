@@ -79,8 +79,6 @@ void MoteurGraphique::Charger()
         console->Ajouter("Impossible de charger : "+configuration->chemin_fonts+configuration->font_titre,1);
     else
         console->Ajouter("Chargement de : "+configuration->chemin_fonts+configuration->font_titre,0);
-
-    //Luminosite.Create(configuration->Resolution.x, configuration->Resolution.y, sf::Color(255,255,255));
 }
 
 void MoteurGraphique::Gerer(sf::RenderWindow *ecran,float temps,int tailleMapY)
@@ -133,14 +131,13 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
             ecran->Clear(sf::Color(255,255,255));
 
             ecran->SetView(*camera);
+            sprite.SetBlendMode(sf::Blend::Alpha);
 
             for(int i=0;i<(int)m_commandes[9].size();i++)
             {
-                ecran->SetView(*camera);
                 sprite=m_commandes[9][i].m_sprite;
                 sprite.SetColor(sf::Color(0,0,0,m_soleil.intensite/2));
                 ecran->Draw(sprite);
-                sprite.SetBlendMode(sf::Blend::Alpha);
             }
 
             EffectBlur.SetParameter("offset",0.0025);
@@ -164,12 +161,10 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
 
         m_light_screen.CopyScreen(*ecran);
 
-
         configuration->RafraichirLumiere=false;
     }
 
     ecran->Clear();
-
 
     for(int k=0;k<20;k++)
     {
@@ -218,7 +213,6 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
         {
             if(m_blur>0)
             {
-
                 EffectBlur.SetParameter("offset",m_blur);
                 ecran->Draw(EffectBlur);
                 ecran->Draw(EffectBlur);

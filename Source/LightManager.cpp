@@ -116,33 +116,20 @@ Wall_Entity Light_Manager::Add_Wall(sf::Vector2f pt1,sf::Vector2f pt2)
 
 Wall_Entity Light_Manager::Add_Wall(sf::Vector2f pt1,sf::Vector2f pt2,int hauteur)
 {
-
-   /* sf::Vector2f min=pt1,max=pt2;
-
-    if(pt2.x<min.x)
-        min.x=pt2.x;
-    if(pt1.x>max.x)
-        max.x=pt2.x;
-    if(pt2.y<min.y)
-        min.y=pt2.y;
-    if(pt1.y>max.y)
-        max.y=pt2.y;*/
-
-    if(pt2.x<pt1.x)
+   /* if(pt2.x<pt1.x)
     {
         sf::Vector2f buffer=pt1;
         pt1=pt2,pt2=buffer;
     }
 
-    bool NoCorner1=false,NoCorner2=false;
     for(int i=0;i<(int)m_wall.size();i++)
       //  if(hauteur==m_wall[i].hauteur)
-            if((pt1.x+4>=(int)m_wall[i].pt1.x && pt1.x-4<=(int)m_wall[i].pt1.x && pt1.y+4>=(int)m_wall[i].pt1.y && pt1.y-4<=(int)m_wall[i].pt1.y)
-             ||(pt1.x+4>=(int)m_wall[i].pt2.x && pt1.x-4<=(int)m_wall[i].pt2.x && pt1.y+4>=(int)m_wall[i].pt2.y && pt1.y-4<=(int)m_wall[i].pt2.y)
-             ||(pt2.x+4>=(int)m_wall[i].pt1.x && pt2.x-4<=(int)m_wall[i].pt1.x && pt2.y+4>=(int)m_wall[i].pt1.y && pt2.y-4<=(int)m_wall[i].pt1.y)
-             ||(pt2.x+4>=(int)m_wall[i].pt2.x && pt2.x-4<=(int)m_wall[i].pt2.x && pt2.y+4>=(int)m_wall[i].pt2.y && pt2.y-4<=(int)m_wall[i].pt2.y))
+            if((pt1.x+2>=(int)m_wall[i].pt1.x && pt1.x-2<=(int)m_wall[i].pt1.x && pt1.y+2>=(int)m_wall[i].pt1.y && pt1.y-2<=(int)m_wall[i].pt1.y)
+             ||(pt1.x+2>=(int)m_wall[i].pt2.x && pt1.x-2<=(int)m_wall[i].pt2.x && pt1.y+2>=(int)m_wall[i].pt2.y && pt1.y-2<=(int)m_wall[i].pt2.y)
+             ||(pt2.x+2>=(int)m_wall[i].pt1.x && pt2.x-2<=(int)m_wall[i].pt1.x && pt2.y+2>=(int)m_wall[i].pt1.y && pt2.y-2<=(int)m_wall[i].pt1.y)
+             ||(pt2.x+2>=(int)m_wall[i].pt2.x && pt2.x-2<=(int)m_wall[i].pt2.x && pt2.y+2>=(int)m_wall[i].pt2.y && pt2.y-2<=(int)m_wall[i].pt2.y))
              {
-                if( ((pt1.y-pt2.y)/(pt1.x-pt2.y))+0.01>=((m_wall[i].pt1.y-m_wall[i].pt2.y)/(m_wall[i].pt1.x-m_wall[i].pt2.y)) && ((pt1.y-pt2.y)/(pt1.x-pt2.y))-0.01<=((m_wall[i].pt1.y-m_wall[i].pt2.y)/(m_wall[i].pt1.x-m_wall[i].pt2.y)) )
+                if(((pt1.y-pt2.y)/(pt1.x-pt2.y))==((m_wall[i].pt1.y-m_wall[i].pt2.y)/(m_wall[i].pt1.x-m_wall[i].pt2.y)))
                 {
                     sf::Vector2f min=pt1,max=pt2;
 
@@ -165,7 +152,7 @@ Wall_Entity Light_Manager::Add_Wall(sf::Vector2f pt1,sf::Vector2f pt2,int hauteu
 
                     return Wall_Entity(i);
                 }
-             }
+             }*/
 
     m_wall.push_back(Wall (pt1,pt2,hauteur));
 

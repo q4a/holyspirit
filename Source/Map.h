@@ -79,7 +79,7 @@ class Map
 	int m_defilerObjets;
 
 	private:
-	int m_monstreIllumine,m_numero,IDImageSac,m_objetPointe,m_calculLumiere,m_musiqueEnCours;
+	int m_monstreIllumine,m_numero,IDImageSac,m_objetPointe,m_calculLumiere,m_musiqueEnCours,m_nombreMusique;
 
 	coordonnee m_sacPointe;
 	Lumiere m_lumiere[24];

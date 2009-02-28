@@ -14,18 +14,12 @@ struct Wall
         pt1=p1;
         pt2=p2;
         hauteur=32;
-
-        NoCorner1=false;
-        NoCorner2=false;
     }
     Wall (sf::Vector2f p1,sf::Vector2f p2,int hauteur)
     {
         pt1=p1;
         pt2=p2;
         hauteur=hauteur;
-
-        NoCorner1=false;
-        NoCorner2=false;
     }
 
     // Pt1 et Pt2 sont les deux extrémités du mur
@@ -35,9 +29,6 @@ struct Wall
 
     // Position du mur
     sf::Vector2f position;
-
-    bool NoCorner1;
-    bool NoCorner2;
 };
 
 // Wall_Entity est une variable qui permet de représenter dans le programme un mur

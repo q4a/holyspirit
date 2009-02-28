@@ -197,6 +197,7 @@ bool Map::Charger(int numeroMap,Hero *hero)
         for(int i=0;i<MAX_MUSIQUE;i++)
                 m_musique[i].Stop();
 
+        m_nombreMusique=0;
     	do
     	{
     	    //Chargement des musiques
@@ -218,6 +219,7 @@ bool Map::Charger(int numeroMap,Hero *hero)
                 m_musique[m_musiqueEnCours].SetVolume(0);
 
                 m_musiqueEnCours++;
+                m_nombreMusique++;
     		}
     		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str()); throw (&temp); }
     	}while(caractere!='$');
@@ -705,7 +707,12 @@ void Map::Initialiser()
                     pos.x=(((k*COTE_TILE-j*COTE_TILE)*64/COTE_TILE+getDimensions().y*64));
                     pos.y=(((k*COTE_TILE+j*COTE_TILE)*64/COTE_TILE)/2+32)*2;
                     if(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite>0)
-                        m_decor[i][j][k].m_light=moteurGraphique->LightManager->Add_Dynamic_Light(pos,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite*3,8,sf::Color(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).rouge,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).vert,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).bleu));
+                    {
+                        if(m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile())!=-1)
+                            m_decor[i][j][k].m_light=moteurGraphique->LightManager->Add_Dynamic_Light(pos,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite*3,8,sf::Color(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).rouge,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).vert,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).bleu));
+                        else
+                            m_decor[i][j][k].m_light=moteurGraphique->LightManager->Add_Static_Light(pos,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite*3,8,sf::Color(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).rouge,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).vert,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).bleu));
+                    }
                     else if(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite<0)
                         {
                             if(m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='x'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='c')
@@ -1736,29 +1743,30 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                     if(m_decor[i][j][k].getTileset()>=0&&m_decor[i][j][k].getTileset()<(int)m_tileset.size())
                     {
                         float tempsAnimation=m_tileset[m_decor[i][j][k].getTileset()].getTempsDuTile(m_decor[i][j][k].getTile());
-                        while(m_decor[i][j][k].getAnimation()>=tempsAnimation)
-                        {
-                            if(m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile())>=0)
+
+                        if(m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile())>=0)
+                            while(m_decor[i][j][k].getAnimation()>=tempsAnimation)
+                            {
                                 m_decor[i][j][k].setDecor(m_decor[i][j][k].getTileset(),m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile()),m_decor[i][j][k].getEvenement(),m_decor[i][j][k].getMonstre(),m_decor[i][j][k].getHerbe(),m_decor[i][j][k].getCouche(),m_decor[i][j][k].getHauteur());
 
-                            CreerSprite(sf::Vector3f(k,j,i));
+                                CreerSprite(sf::Vector3f(k,j,i));
 
-                            if(m_decor[i][j][k].getTileset()>=0&&m_decor[i][j][k].getTileset()<(int)m_tileset.size())
-                            {
-                                moteurGraphique->LightManager->SetIntensity(m_decor[i][j][k].m_light,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite);
-                                moteurGraphique->LightManager->SetRadius(m_decor[i][j][k].m_light,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite*3);
-                                moteurGraphique->LightManager->SetColor(m_decor[i][j][k].m_light,sf::Color(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).rouge,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).vert,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).bleu));
-                                moteurGraphique->LightManager->Generate(m_decor[i][j][k].m_light);
+                                if(m_decor[i][j][k].getTileset()>=0&&m_decor[i][j][k].getTileset()<(int)m_tileset.size())
+                                {
+                                    moteurGraphique->LightManager->SetIntensity(m_decor[i][j][k].m_light,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite);
+                                    moteurGraphique->LightManager->SetRadius(m_decor[i][j][k].m_light,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite*3);
+                                    moteurGraphique->LightManager->SetColor(m_decor[i][j][k].m_light,sf::Color(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).rouge,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).vert,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).bleu));
+                                    moteurGraphique->LightManager->Generate(m_decor[i][j][k].m_light);
+                                }
+
+                                coordonnee position;
+                                position.x=(k-j-1+m_decor[0].size())/5;
+                                position.y=(k+j)/5;
+
+                                m_tileset[m_decor[i][j][k].getTileset()].jouerSon(m_tileset[m_decor[i][j][k].getTileset()].getSonTile(m_decor[i][j][k].getTile()),position,positionHero);
+
+                                m_decor[i][j][k].decrementerAnimation(tempsAnimation);
                             }
-
-                            coordonnee position;
-                            position.x=(k-j-1+m_decor[0].size())/5;
-                            position.y=(k+j)/5;
-
-                            m_tileset[m_decor[i][j][k].getTileset()].jouerSon(m_tileset[m_decor[i][j][k].getTileset()].getSonTile(m_decor[i][j][k].getTile()),position,positionHero);
-
-                            m_decor[i][j][k].decrementerAnimation(tempsAnimation);
-                        }
                     }
 
                     int monstre=m_decor[i][j][k].getMonstre();
@@ -1917,14 +1925,11 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                                    m_monstre[monstre].m_miracleEnCours[i].m_infos.erase(m_monstre[monstre].m_miracleEnCours[i].m_infos.begin()+o);
                             }
 
-
                             if(m_monstre[monstre].m_miracleEnCours[i].m_infos.empty())
                                m_monstre[monstre].m_miracleEnCours.erase (m_monstre[monstre].m_miracleEnCours.begin()+i);
                         }
                    }
-
            }
-
 }
 
 void Map::gererEvenements(int evenement,int z,int couche,int x,int y)
@@ -1947,7 +1952,6 @@ void Map::gererEvenements(int evenement,int z,int couche,int x,int y)
                         moteurGraphique->LightManager->Generate(m_decor[couche][y][x].m_light);
                     }
                 }
-
         }
         if(m_evenement[evenement].getType()==EXPLOSION)
         {
@@ -2014,24 +2018,23 @@ void Map::verifierDeclencheursDegats(int i, int j)
 
 void Map::musiquePlay(coordonnee position)
 {
-    if(m_musiqueEnCours>=0&&m_musiqueEnCours<MAX_MUSIQUE)
-    {
-      //  if(m_musique[m_musiqueEnCours].GetPlayingOffset)
-
-        Sound::Status Status = m_musique[m_musiqueEnCours].GetStatus();
-
-        if(Status==0)
-        {
-            m_musiqueEnCours++;
-            if(m_musiqueEnCours>=0&&m_musiqueEnCours<MAX_MUSIQUE)
-                m_musique[m_musiqueEnCours].Play();
-         }
-
+    if(m_nombreMusique>0)
         if(m_musiqueEnCours>=0&&m_musiqueEnCours<MAX_MUSIQUE)
-            m_musique[m_musiqueEnCours].SetPosition(-position.x, 0, position.y);
-    }
-    else
-    m_musiqueEnCours=0;
+        {
+            Sound::Status Status = m_musique[m_musiqueEnCours].GetStatus();
+
+            if(Status==0)
+            {
+                m_musiqueEnCours++;
+                if(m_musiqueEnCours>=0&&m_musiqueEnCours<MAX_MUSIQUE&&m_musiqueEnCours<m_nombreMusique)
+                    m_musique[m_musiqueEnCours].Play();
+             }
+
+            if(m_musiqueEnCours>=0&&m_musiqueEnCours<MAX_MUSIQUE&&m_musiqueEnCours<m_nombreMusique)
+                m_musique[m_musiqueEnCours].SetPosition(-position.x, 0, position.y);
+        }
+        else
+        m_musiqueEnCours=0;
 }
 
 
@@ -2363,10 +2366,8 @@ void Map::gererMonstres(Hero *hero,float temps,sf::View *camera,Menu *menu)
                         else
                             m_monstre[m_decor[i][j][k].getMonstre()].m_compteur=0;
 
-                        if(m_monstre[m_decor[i][j][k].getMonstre()].m_compteur>5)
-                           // m_monstre[m_decor[i][j][k].getMonstre()].setErreurPathfinding(-1);
-                            m_monstre[m_decor[i][j][k].getMonstre()].m_attente=5,m_monstre[m_decor[i][j][k].getMonstre()].m_compteur=0,m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee());
-                         //   m_monstre[m_decor[i][j][k].getMonstre()].m_attente=0.1;
+                        if(m_monstre[m_decor[i][j][k].getMonstre()].m_compteur>3)
+                            m_monstre[m_decor[i][j][k].getMonstre()].m_attente=2,m_monstre[m_decor[i][j][k].getMonstre()].m_compteur=0,m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee());
 
 
                         if(!m_monstre[m_decor[i][j][k].getMonstre()].enVie()&&m_monstre[m_decor[i][j][k].getMonstre()].getEtat()!=3)
@@ -2378,12 +2379,9 @@ void Map::gererMonstres(Hero *hero,float temps,sf::View *camera,Menu *menu)
                             if(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y>=0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y<(int)m_decor[0].size()
                              &&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x>=0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x<(int)m_decor[0][0].size())
                              for(int z=0;z<(int)m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement().size();z++)
-                             if(m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]>=0&&m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]<(int)m_evenement.size())
-                                if(m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]].getType()==INFLIGER_DEGATS)
-                                {
-                                    //m_monstre[m_decor[i][j][k].getMonstre()].infligerDegats(m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()].getInformation(0)*temps*10);
-                                    infligerDegats(m_decor[i][j][k].getMonstre(),m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]].getInformation(0)*temps*10,menu,camera,hero,0);
-                                }
+                                if(m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]>=0&&m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]<(int)m_evenement.size())
+                                    if(m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]].getType()==INFLIGER_DEGATS)
+                                        infligerDegats(m_decor[i][j][k].getMonstre(),m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]].getInformation(0)*temps*10,menu,camera,hero,0);
                     }
 
                     if(m_decor[i][j][k].getProjectile()<0||m_decor[i][j][k].getProjectile()>=(int)m_projectile.size())
@@ -2514,23 +2512,15 @@ bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *ca
 void Map::PousserMonstre(int numeroMonstre, coordonnee vecteur)
 {
     if(numeroMonstre>=0&&numeroMonstre<(int)m_monstre.size())
-    {
         if(1!=getTypeCase((int)((m_monstre[numeroMonstre].getCoordonneePixel().x+(float)vecteur.x)/COTE_TILE),(int)((m_monstre[numeroMonstre].getCoordonneePixel().y+(float)vecteur.y)/COTE_TILE)))
-        {
             m_monstre[numeroMonstre].Pousser(vecteur);
-        }
-    }
 }
 
 void Map::PousserMonstreCase(int numeroMonstre, coordonnee vecteur)
 {
     if(numeroMonstre>=0&&numeroMonstre<(int)m_monstre.size())
-    {
         if(1!=getTypeCase((int)((m_monstre[numeroMonstre].getCoordonnee().x+vecteur.x)),(int)((m_monstre[numeroMonstre].getCoordonnee().y+vecteur.y))))
-        {
             m_monstre[numeroMonstre].PousserCase(vecteur);
-        }
-    }
 }
 
 bool Map::ramasserObjet(Hero *hero,bool enMain)
