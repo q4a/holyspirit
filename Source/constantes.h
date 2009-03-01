@@ -413,6 +413,7 @@ class Configuration : public CSingleton<Configuration>
 
     std::string *text_benedictions;
     bool RafraichirLumiere;
+    int numero_screen;
 };
 
 struct Caracteristique

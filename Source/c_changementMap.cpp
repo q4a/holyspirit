@@ -102,6 +102,8 @@ void c_Chargement::Utiliser(Jeu *jeu)
     tempsEcouleDepuisDernierAffichage+=temps_ecoule;
     jeu->Clock.Reset();
 
+    jeu->eventManager.GererLesEvenements(&jeu->ecran,&jeu->camera,&jeu->m_run,temps_ecoule,jeu->map.getDimensions());
+
     moteurGraphique->LightManager->Generate(&jeu->camera);
 
 

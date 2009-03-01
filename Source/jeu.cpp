@@ -65,14 +65,24 @@ void Jeu::Demarrer()
 	    configuration->Resolution.x=this->ecran.GetWidth();
 	    configuration->Resolution.y=this->ecran.GetHeight();
 
+	    if(eventManager.getEvenement(Key::F1,"ET"))
+        {
+            char buffer[255];
+            eventManager.StopEvenement(Key::F1,"ET");
+            sf::Image Screen = ecran.Capture();
+            sprintf(buffer,"screenshot%i.png",configuration->numero_screen);
+            Screen.SaveToFile(buffer);
+            configuration->numero_screen++;
+        }
+
 		this->m_contexte->Utiliser(this);
 		if(this->m_display)
 		{
+		    ecran.Clear();
 		    moteurSons->Vider();
 		    moteurGraphique->Afficher(&this->ecran,&this->camera,this->map.getDimensions());
             this->ecran.Display();
             moteurGraphique->Vider();
-            ecran.Clear();
 		}
 	}
 

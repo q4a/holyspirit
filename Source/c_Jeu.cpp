@@ -267,8 +267,6 @@ void c_Jeu::Utiliser(Jeu *jeu)
                 }
 
 
-
-
                 if(tempsEcouleDepuisDernierAffichage>0.01&&configuration->syncronisation_verticale||!configuration->syncronisation_verticale)
                 {
                     jeu->hero.placerCamera(&jeu->camera,jeu->map.getDimensions()); // On place la camera suivant ou se trouve le perso

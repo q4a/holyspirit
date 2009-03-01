@@ -36,6 +36,8 @@ int main ( int argc, char** argv )
     console->Ajouter("---------------------------------------------------------------------------------");
     console->Ajouter("");
 
+    configuration->numero_screen=0;
+
     try
 	{
 	    ///Chargement de la configuration
