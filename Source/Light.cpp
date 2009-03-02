@@ -34,6 +34,11 @@ Light::Light()
 Light::Light(sf::Vector2f position, float intensity, float radius, int quality, sf::Color color)
 {
     m_position=position;
+
+    m_position=position;
+    m_position.x+=0.34752;
+    m_position.y+=0.52863;
+
     m_intensity=intensity;
     m_radius=radius;
     m_color=color;
@@ -392,7 +397,7 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std:
     // On met que le shape soit en Add et on lui donne sa position
     m_shape.back().SetBlendMode(sf::Blend::Add);
     m_shape.back().SetPosition(m_position.x,m_position.y/2);
-
+    if(devant)
     if(intensity>1||intensity2>1)
     {
         m_shape.push_back(sf::Shape ());
@@ -436,8 +441,8 @@ void Light::SetColor(sf::Color color) { m_color=color; }
 void Light::SetPosition(sf::Vector2f position)
 {
     m_position=position;
-    m_position.x+=5.34752;
-    m_position.y+=5.52863;
+    m_position.x+=0.34752;
+    m_position.y+=0.52863;
 }
 
 
