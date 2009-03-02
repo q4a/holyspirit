@@ -669,12 +669,11 @@ int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,boo
                 m_porteeLumineuse=m_porteeLumineuseBasique;
 
             float inte=m_porteeLumineuse.intensite;
-            if(m_porteeLumineuse.intensite>255)
-                m_porteeLumineuse.intensite=255;
+            if(inte>255)
+                inte=255;
 
             moteurGraphique->LightManager->SetIntensity(m_light,(int)inte);
-            moteurGraphique->LightManager->SetRadius(m_light,(int)inte*2);
-            moteurGraphique->LightManager->SetColor(m_light,sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu));
+            moteurGraphique->LightManager->SetRadius(m_light,(int)m_porteeLumineuse.intensite*2);
         }
     }
     return retour;

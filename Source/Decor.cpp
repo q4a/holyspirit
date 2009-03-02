@@ -160,7 +160,7 @@ void Decor::ajouterEvenement(int evenement)
 {
     m_evenement.push_back(evenement);
 }
-void Decor::setTileset( int tileset){m_tileset=tileset;}
+void Decor::setTileset( int tileset){m_tileset=tileset; m_animation=0;}
 void Decor::setTile(int tile){m_tile=tile;}
 void Decor::setCouche(int couche){m_couche=couche;}
 void Decor::ajouterObjet(Objet objet){m_objets.push_back(objet);}

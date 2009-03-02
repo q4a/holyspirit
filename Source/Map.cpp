@@ -712,6 +712,14 @@ void Map::Initialiser()
     {
         m_monstre[i].m_light=moteurGraphique->LightManager->Add_Dynamic_Light();
         moteurGraphique->LightManager->SetQuality(m_monstre[i].m_light,6);
+
+        sf::Vector2f pos;
+        pos.x=(((m_monstre[i].getCoordonneePixel().x-m_monstre[i].getCoordonneePixel().y)*64/COTE_TILE+getDimensions().y*64));
+        pos.y=(((m_monstre[i].getCoordonneePixel().x+m_monstre[i].getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
+
+        moteurGraphique->LightManager->SetPosition(m_monstre[i].m_light,pos);
+
+        moteurGraphique->LightManager->SetColor(m_monstre[i].m_light,sf::Color(m_monstre[i].getPorteeLumineuse().rouge,m_monstre[i].getPorteeLumineuse().vert,m_monstre[i].getPorteeLumineuse().bleu));
     }
 
     sf::Vector2f pos;
