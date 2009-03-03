@@ -1186,6 +1186,15 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                             texte.SetX((position.x-camera->GetRect().Left)*configuration->zoom);
 
                                             moteurGraphique->AjouterTexte(&texte,14);
+
+                                            sprite.SetImage(*moteurGraphique->getImage(0));
+
+                                            sprite.SetY((position.y-camera->GetRect().Top)*configuration->zoom-20*configuration->Resolution.w/800*(z+1));
+                                            sprite.SetX((position.x-camera->GetRect().Left)*configuration->zoom-4);
+                                            sprite.SetColor(sf::Color(0,0,0,255));
+                                            sprite.Resize(texte.GetRect().Right-texte.GetRect().Left +8 , texte.GetRect().Bottom-texte.GetRect().Top +6);
+
+                                            moteurGraphique->AjouterCommande(&sprite,13,0);
                                         }
                                     }
                                 }

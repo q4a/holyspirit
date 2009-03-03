@@ -28,7 +28,7 @@ MoteurGraphique::MoteurGraphique()
     LightManager=Light_Manager::GetInstance();
 
     m_images.push_back(Image_moteur ());
-    m_images[0].img.Create(1, 1, sf::Color(255, 255, 255));
+    m_images[0].img.Create(128, 128, sf::Color(255, 255, 255));
     m_images[0].nom="O";
     m_images[0].importance=-1;
 
