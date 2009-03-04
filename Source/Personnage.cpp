@@ -133,18 +133,12 @@ bool Modele_Personnage::Charger(string chemin)
     console->Ajouter("",0);
 	console->Ajouter("Chargement du personnage : "+chemin,0);
 
-
 	cDAT reader;
 
     reader.Read(chemin);
 
-	//buffer = reader.GetFile("infos.char.hs");
-
-
-
     ifstream *fichier;
     fichier = reader.GetInfos("infos.txt");
-    //fichier.open(chemin.c_str(), ios::in);
     if(fichier)
     {
     	char caractere;
@@ -491,9 +485,9 @@ int Personnage::pathfinding(casePathfinding** map,coordonnee exception)
             delete[] map;
 
             if(m_etat==0)
-            return 0;
+                return 0;
             else
-            return 1;
+                return 1;
         }
 
         for(int i=0;i<20;i++)
@@ -560,8 +554,6 @@ bool Personnage::seDeplacer(float tempsEcoule,coordonnee dimensionsMap)
                 pos.y=(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+32)*2;
 
                 moteurGraphique->LightManager->SetPosition(m_light,pos);
-
-                //m_angle=atan((double)(m_positionCase.y-m_cheminFinal.y)/(double)(m_positionCase.x-m_cheminFinal.x))*360/(2*M_PI);
 
                 m_angle=calculerAngle(m_cheminFinal.x-m_positionCase.x,m_cheminFinal.y-m_positionCase.y);
 
