@@ -1877,8 +1877,6 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
 
                                                     moteurGraphique->LightManager->SetIntensity(m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_IDObjet].m_light,m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere.intensite);
                                                     moteurGraphique->LightManager->SetRadius(m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_IDObjet].m_light,m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere.intensite*5);
-                                                    moteurGraphique->LightManager->SetColor(m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_IDObjet].m_light,sf::Color(m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere.rouge,m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere.vert,m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere.bleu));
-                                                    moteurGraphique->LightManager->Generate(m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_IDObjet].m_light);
 
                                                     m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_position=m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_IDObjet].m_position;
                                                 }
@@ -1897,6 +1895,8 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                                                 }
 
                                             }
+
+                                            moteurGraphique->LightManager->Generate(m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_IDObjet].m_light);
                                         }
                                     if(continuer)
                                     if(m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type==INVOCATION)
@@ -1925,9 +1925,9 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                                                     moteurGraphique->LightManager->SetIntensity(m_effets[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_IDObjet].m_light,m_effets[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere.intensite);
                                                     moteurGraphique->LightManager->SetRadius(m_effets[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_IDObjet].m_light,m_effets[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere.intensite*5);
                                                     moteurGraphique->LightManager->SetColor(m_effets[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_IDObjet].m_light,sf::Color(m_effets[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere.rouge,m_effets[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere.vert,m_effets[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere.bleu));
-                                                    moteurGraphique->LightManager->Generate(m_effets[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_IDObjet].m_light);
-
                                                 }
+
+                                                moteurGraphique->LightManager->Generate(m_effets[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_IDObjet].m_light);
 
                                                 if(m_effets[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_IDObjet].m_compteur<=0)
                                                 {
