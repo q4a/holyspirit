@@ -62,9 +62,6 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	void Vider();
 	void ViderParticules();
 
-	void calculerOmbresEtLumieres(sf::RenderWindow* ecran,Hero *hero,sf::View *camera,Map *map);
-	void AjouterCommandesMap(Map *map);
-
 	sf::Image* getImage(int IDimage);
 	ModeleParticuleSysteme* getModeleMoteurParticules(int ID);
 
