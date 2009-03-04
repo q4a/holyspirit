@@ -116,28 +116,6 @@ void MoteurGraphique::Gerer(sf::RenderWindow *ecran,float temps,int tailleMapY)
         m_systemeParticules.clear(),nettoyageAuto=0;
 }
 
-void MoteurGraphique::CalculerLumiereParticules(LumiereOmbrage tableauDesLampes[30][30],coordonnee vueMin,sf::RenderWindow *ecran, int tailleMapY)
-{
-    coordonnee positionCase;
-    for(int i=0;i<(int)m_systemeParticules.size();i++)
-        for(int j=0;j<(int)m_systemeParticules[i].m_particules.size();j++)
-        {
-            if((float)((m_systemeParticules[i].m_particules[j].position.y*2-m_systemeParticules[i].m_particules[j].position.x)/2)/64+tailleMapY/2<(float)tailleMapY/2)
-                positionCase.y=(int)((m_systemeParticules[i].m_particules[j].position.y*2-m_systemeParticules[i].m_particules[j].position.x)/2)/64+tailleMapY/2-1;
-            else
-                positionCase.y=(int)((m_systemeParticules[i].m_particules[j].position.y*2-m_systemeParticules[i].m_particules[j].position.x)/2)/64+tailleMapY/2;
-
-            positionCase.x=(int)(m_systemeParticules[i].m_particules[j].position.x+((m_systemeParticules[i].m_particules[j].position.y*2-m_systemeParticules[i].m_particules[j].position.x)/2))/64-tailleMapY/2;
-
-            if(positionCase.x-vueMin.x>=0&&positionCase.x-vueMin.x<30&&positionCase.y-vueMin.y>=0&&positionCase.y-vueMin.y<30)
-            {
-                m_systemeParticules[i].m_particules[j].color.r=tableauDesLampes[positionCase.y-vueMin.y][positionCase.x-vueMin.x].rouge*tableauDesLampes[positionCase.y-vueMin.y][positionCase.x-vueMin.x].intensite/255;
-                m_systemeParticules[i].m_particules[j].color.g=tableauDesLampes[positionCase.y-vueMin.y][positionCase.x-vueMin.x].vert*tableauDesLampes[positionCase.y-vueMin.y][positionCase.x-vueMin.x].intensite/255;
-                m_systemeParticules[i].m_particules[j].color.b=tableauDesLampes[positionCase.y-vueMin.y][positionCase.x-vueMin.x].bleu*tableauDesLampes[positionCase.y-vueMin.y][positionCase.x-vueMin.x].intensite/255;
-            }
-        }
-}
-
 void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordonnee dimensionsMap)
 {
     sf::Sprite sprite;
@@ -395,9 +373,7 @@ int MoteurGraphique::AjouterModeleSystemeParticules(std::string chemin)
 void MoteurGraphique::AjouterSystemeParticules(int ID,coordonnee position,sf::Color color,float force,float angle)
 {
     if(ID>=0&&ID<(int)m_modeleSystemeParticules.size())
-    {
         m_systemeParticules.push_back(ParticuleSysteme (ID,&m_modeleSystemeParticules[ID],position,color,force,angle));
-    }
 }
 
 void MoteurGraphique::AjouterCommande(sf::Sprite *sprite, int couche, bool camera)

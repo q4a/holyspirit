@@ -55,10 +55,8 @@ void ParticuleSysteme::Afficher(sf::RenderWindow *ecran, ModeleParticuleSysteme 
             sprite.SetScale(scale,scale);
             sprite.SetX(m_particules[i].position.x);
             sprite.SetY(m_particules[i].position.y-m_particules[i].position.z);
-            if(configuration->Lumiere!=0)
-                sprite.SetColor(sf::Color(m_particules[i].color.r,m_particules[i].color.g,m_particules[i].color.b,(int)m_particules[i].alpha));
-            else
-                sprite.SetColor(sf::Color(255,255,255,(int)m_particules[i].alpha));
+            sprite.SetColor(sf::Color(m_color.r,m_color.g,m_color.b,(int)m_particules[i].alpha));
+
             if(m_particules[i].position.z>32)
                 moteurGraphique->AjouterCommande(&sprite,11,1);
             else
@@ -89,7 +87,6 @@ void ParticuleSysteme::Generer(float force, ModeleParticuleSysteme *modele,coord
             m_particules.back().rotation=rand() % 360;
             m_particules.back().alpha=255;
             m_particules.back().numero=i;
-            m_particules.back().color=sf::Color(255,255,255);
         }
     }
 }

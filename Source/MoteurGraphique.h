@@ -46,7 +46,6 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	void Afficher(sf::RenderWindow *, sf::View *,coordonnee );
 
 	void Gerer(sf::RenderWindow *,float,int);
-	void CalculerLumiereParticules(LumiereOmbrage tableauDesLampes[30][30],coordonnee ,sf::RenderWindow *,int tailleMapY);
 
 	int AjouterImage(std::string,int importance = 3);
 	int AjouterImage(const char *Data, std::size_t SizeInBytes, std::string nom,int importance =5);
@@ -95,8 +94,6 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	std::vector <Image_moteur> m_images;
 
 	std::vector <ModeleParticuleSysteme> m_modeleSystemeParticules;
-	//std::vector <std::string> m_cheminsImages;//Permet de s'assurer d'avoir des singletons
-
 
 	std::vector <sf::String> m_textes[20];
 	std::vector <Commande> m_commandes[20];

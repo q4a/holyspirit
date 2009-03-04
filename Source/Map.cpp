@@ -1148,11 +1148,14 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                 {
                                     sprite.SetImage(*moteurGraphique->getImage(IDImageSac));
                                     sprite.SetSubRect(IntRect(0,0,32,32));
+                                    sprite.Resize(32 , 32);
                                     sprite.SetX(position.x);
                                     sprite.SetY(position.y);
 
                                     if(m_sacPointe.x==k&&m_sacPointe.y==j&&m_monstreIllumine<0)
                                         sprite.SetColor(sf::Color(255,128,128));
+                                    else
+                                        sprite.SetColor(sf::Color(255,255,255));
 
                                     moteurGraphique->AjouterCommande(&sprite,10,1);
 
@@ -2524,10 +2527,13 @@ bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *ca
 
                 angle+=45;
 
-                sf::Color buffer;
-                buffer.r=m_monstre[numeroMonstre].getPorteeLumineuse().rouge;
-                buffer.g=m_monstre[numeroMonstre].getPorteeLumineuse().vert;
-                buffer.b=m_monstre[numeroMonstre].getPorteeLumineuse().bleu;
+                sf::Color buffer(255,255,255);
+                if(m_monstre[numeroMonstre].getPorteeLumineuse().intensite>0)
+                {
+                    buffer.r=m_monstre[numeroMonstre].getPorteeLumineuse().rouge;
+                    buffer.g=m_monstre[numeroMonstre].getPorteeLumineuse().vert;
+                    buffer.b=m_monstre[numeroMonstre].getPorteeLumineuse().bleu;
+                }
                 moteurGraphique->AjouterSystemeParticules(m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].m_particules,position2,buffer,force,angle);
             }
 

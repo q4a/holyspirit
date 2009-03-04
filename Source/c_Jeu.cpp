@@ -96,8 +96,6 @@ c_Jeu::c_Jeu(Jeu *jeu)
 
 void c_Jeu::Utiliser(Jeu *jeu)
 {
-	//while(jeu->m_run)
-	//{
             //Gestion du temps
             jeu->m_display=false;
             tempsEcoule = jeu->Clock.GetElapsedTime();
@@ -327,14 +325,12 @@ void c_Jeu::Utiliser(Jeu *jeu)
                         {
                             jeu->eventManager.StopEvenement(Mouse::Left,"CA");
                             jeu->hero.setMonstreVise(jeu->map.getMonstreIllumine());
-                           //* jeu->hero.m_personnage.frappeEnCours=false;
                         }
                         else
                             jeu->hero.setMonstreVise(-1);
                     }
                     if(jeu->eventManager.getEvenement(Mouse::Left,"C")&&jeu->eventManager.getEvenement(Mouse::Left,"CA"))
                     {
-                       // jeu->hero.m_personnage.setArrivee(jeu->eventManager.getCasePointee());
                         jeu->hero.setSacVise(jeu->map.getSacPointe());
 
                         if(jeu->map.getSacPointe().x!=-1)
@@ -486,7 +482,5 @@ void c_Jeu::Utiliser(Jeu *jeu)
                         tempsEcouleDepuisFPS=0;
                     }
             }
-
-	//}
 }
 
