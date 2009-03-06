@@ -100,11 +100,14 @@ class Map
 	private:
 	int m_monstreIllumine,m_numero,IDImageSac,m_objetPointe,m_calculLumiere,m_musiqueEnCours,m_nombreMusique;
 
+	coordonnee m_dimensions;
+
 	coordonnee m_sacPointe;
 	Lumiere m_lumiere[24];
 	std::vector <Tileset> m_tileset;
 	std::vector <Herbe> m_herbe;
-	std::vector < std::vector < Decor > >  m_decor[NOMBRE_COUCHE_MAP];
+	Decor ***m_decor;
+	std::vector < std::vector < Decor > >  decorBuffer[NOMBRE_COUCHE_MAP];
 	std::vector <Evenement> m_evenement;
 
 	sf::Music m_musique[MAX_MUSIQUE];

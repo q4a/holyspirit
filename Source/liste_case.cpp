@@ -47,8 +47,8 @@ void liste_case::supprimer(){m_liste.clear();}
 bool liste_case::testerCasesEnCours(coordonnee caseCherchee)
 {
     // Je regarde si je suis sur ma case d'arrivee
-	for(int i=0;i<(int)m_liste.size();i++)
-			if(m_liste[i].getPosition().x==caseCherchee.x&&m_liste[i].getPosition().y==caseCherchee.y)
+	for(iter=m_liste.begin();iter!=m_liste.end();++iter)
+			if(iter->getPosition().x==caseCherchee.x&&iter->getPosition().y==caseCherchee.y)
 				return 1;
 
 	return 0;

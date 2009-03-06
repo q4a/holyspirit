@@ -52,6 +52,7 @@ class liste_case
 	private:
 	int m_distanceEnCours;
 	std::vector <Case> m_liste;
+	std::vector<Case>::iterator iter;
 };
 
 #endif
