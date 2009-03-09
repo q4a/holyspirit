@@ -38,9 +38,6 @@
          Chargement de l'objet : Ring.item.hs
          Chargement de : Data/Items/Images/Ring1.png
          
-         Chargement de l'objet : Great_shield.item.hs
-         Chargement de : Data/Items/Images/shield01.png
-         
          Chargement de l'objet : Helmet.item.hs
          Chargement de : Data/Items/Images/helmet01.png
          
@@ -52,9 +49,8 @@
          
          Chargement de l'objet : Gown.item.hs
          
-         Chargement de l'objet : Ring.item.hs
-         
          Chargement de l'objet : Great_shield.item.hs
+         Chargement de : Data/Items/Images/shield01.png
          
          Chargement de l'objet : Small_sword.item.hs
          Chargement de : Data/Items/Images/swords01.png
@@ -81,6 +77,8 @@
          
          Chargement de l'objet : Small_shield.item.hs
          
+         Chargement de l'objet : Necklage.item.hs
+         
          Chargement de l'objet : Armband.item.hs
          
          Chargement de l'objet : Arquebuse.item.hs
@@ -90,14 +88,19 @@
          
          Chargement de l'objet : Ring.item.hs
          
-         Chargement de l'objet : Necklage.item.hs
-         
-         Chargement de l'objet : Ring.item.hs
-         
          Chargement de l'objet : Coal.item.hs
          Chargement de : Data/Items/Images/craft01.png
          
          Chargement de l'objet : Coal.item.hs
+         
+         Chargement de l'objet : Great_shield.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         Chargement de : Data/Items/Images/axes01.png
+         
+         Chargement de l'objet : Ring.item.hs
+         
+         Chargement de l'objet : Ring.item.hs
          /Lectures des objets.
          Chargement de : Data/Menus/Inventory.png
          Chargement de : Data/Menus/Hud.png
@@ -165,12 +168,10 @@
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Boot.item.hs
          /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Helmet.item.hs
          /Sauvegarde de Gown.item.hs
          /Sauvegarde de Two_hand_sword.item.hs
          /Sauvegarde de Gown.item.hs
-         /Sauvegarde de Ring.item.hs
          /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Small_sword.item.hs
          /Sauvegarde de Chainmail.item.hs
@@ -183,14 +184,17 @@
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Armband.item.hs
          /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Armband.item.hs
          /Sauvegarde de Arquebuse.item.hs
          /Sauvegarde de Long_sword.item.hs
          /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Ring.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
@@ -234,7 +238,6 @@
          Chargement du script : "Data/Scripts/AI/standard.script.hs"
          
          Chargement de l'objet : Small_axe.item.hs
-         Chargement de : Data/Items/Images/axes01.png
          
          Chargement du systeme de particules : Data/Particule_system/human_bones.ps.hs
          Chargement de : Data/Particule_system/Images/human_bones.png
@@ -363,12 +366,10 @@
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Boot.item.hs
          /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Helmet.item.hs
          /Sauvegarde de Gown.item.hs
          /Sauvegarde de Two_hand_sword.item.hs
          /Sauvegarde de Gown.item.hs
-         /Sauvegarde de Ring.item.hs
          /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Small_sword.item.hs
          /Sauvegarde de Chainmail.item.hs
@@ -380,16 +381,18 @@
          /Sauvegarde de Unique_shield.item.hs
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Arquebuse.item.hs
          /Sauvegarde de Long_sword.item.hs
          /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Ring.item.hs
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Coal.item.hs
          /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Small_axe.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
