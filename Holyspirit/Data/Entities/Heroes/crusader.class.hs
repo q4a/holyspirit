@@ -15,9 +15,13 @@ $
 $
 	* x588 y484 w96 h68 m Data/Menus/Faith_orb.png $
 $
-	* x436 y30 h4 y320 $
+	* x108 y481 w112 h123 m Data/Menus/Coupe2.png $
 $
-	* x436 y182 w10 h10 $
+	* x582 y481 w112 h123 m Data/Menus/Coupe2.png $
+$
+	* x436 y390 h4 w320 $
+$
+	* x436 y60 w10 h10 $
 $
 	* e1 x20 y20 w64 h160 $
 	* e2 x94 y40 w96 h96 $
