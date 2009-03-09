@@ -121,9 +121,9 @@ void Script::Charger(std::string chemin)
                 m_instructions[0].valeurs.push_back(temp);
 
         }
-    }
 
-    fichier.close();
+        fichier.close();
+    }
 
     char chaine[255];
 

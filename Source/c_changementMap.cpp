@@ -91,8 +91,10 @@ void c_Chargement::setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool
 
             }
         }while(caractere!='$');
+
+        fichier->close();
     }
-    fichier->close();
+
 
     delete fichier;
 

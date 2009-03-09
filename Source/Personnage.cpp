@@ -248,6 +248,7 @@ bool Modele_Personnage::Charger(string chemin)
                 }while(caractere!='$');
     	    }
     	}
+    	fichier->close();
     }
     else
     {
@@ -255,7 +256,7 @@ bool Modele_Personnage::Charger(string chemin)
 
         return 0;
     }
-    fichier->close();
+
 
     delete fichier;
 

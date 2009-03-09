@@ -541,6 +541,7 @@ void Objet::Charger(std::string chemin)
     		if(fichier->eof()){ caractere='$'; }
 
     	}while(caractere!='$');
+    	fichier->close();
     }
     else
     console->Ajouter("Impossible d'ouvrir : "+chemin,1);

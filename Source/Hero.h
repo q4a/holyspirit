@@ -55,6 +55,8 @@ struct Classe
     Image_interface hud;
     Image_interface orbe_vie;
     Image_interface orbe_foi;
+    Image_interface cache_vie;
+    Image_interface cache_foi;
 
     coordonnee position_sac_inventaire;
     coordonnee position_contenu_inventaire;

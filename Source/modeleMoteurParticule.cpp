@@ -103,6 +103,8 @@ void ModeleParticuleSysteme::Charger(std::string chemin)
     		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
 
     	}while(caractere!='$');
+
+    	fichier.close();
     }
     else
     console->Ajouter("Impossible d'ouvrir : "+chemin,1);

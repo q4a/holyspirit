@@ -1008,25 +1008,25 @@ void Map::AfficherSacInventaire(RenderWindow* ecran,coordonnee positionSac,float
 	     &&positionSac.y>=0&&positionSac.y<(int)m_dimensions.y)
 	    if(m_decor[1][positionSac.y][positionSac.x].getNombreObjets()>0)
         {
-            if(m_defilerObjets>m_decor[1][positionSac.y][positionSac.x].getNombreObjets()-3)
-                m_defilerObjets=m_decor[1][positionSac.y][positionSac.x].getNombreObjets()-3;
+            if(m_defilerObjets>m_decor[1][positionSac.y][positionSac.x].getNombreObjets()-classe->position_sac_inventaire.h-1)
+                m_defilerObjets=m_decor[1][positionSac.y][positionSac.x].getNombreObjets()-classe->position_sac_inventaire.h-1;
             if(m_defilerObjets<0)
                 m_defilerObjets=0;
 
-            for(int z=m_defilerObjets;z<m_decor[1][positionSac.y][positionSac.x].getNombreObjets()&&z<4+m_defilerObjets;z++)
+            for(int z=m_defilerObjets;z<m_decor[1][positionSac.y][positionSac.x].getNombreObjets()&&z<classe->position_sac_inventaire.h+m_defilerObjets;z++)
             {
-                if(positionSouris.x>436*configuration->Resolution.w/800&&positionSouris.x<756*configuration->Resolution.w/800
-                 &&positionSouris.y>30*configuration->Resolution.h/600+(z-m_defilerObjets)*20*configuration->Resolution.w/800
-                 &&positionSouris.y<30*configuration->Resolution.h/600+(z-m_defilerObjets)*20*configuration->Resolution.w/800+20*configuration->Resolution.w/800)
+                if(positionSouris.x>classe->position_sac_inventaire.x*configuration->Resolution.w/800&&positionSouris.x<(classe->position_sac_inventaire.x+classe->position_sac_inventaire.w)*configuration->Resolution.w/800
+                 &&positionSouris.y>classe->position_sac_inventaire.y*configuration->Resolution.h/600+(z-m_defilerObjets)*20*configuration->Resolution.w/800
+                 &&positionSouris.y<classe->position_sac_inventaire.y*configuration->Resolution.h/600+(z-m_defilerObjets)*20*configuration->Resolution.w/800+20*configuration->Resolution.w/800)
                  {
                      Sprite.SetImage(*moteurGraphique->getImage(0));
                      Sprite.SetColor(sf::Color(255,255,255,128));
                      Sprite.Resize(320*configuration->Resolution.w/800,20*configuration->Resolution.h/600);
-                     Sprite.SetX(436*configuration->Resolution.w/800);
-                     Sprite.SetY(30*configuration->Resolution.h/600+(z-m_defilerObjets)*20*configuration->Resolution.w/800 - decalage*configuration->Resolution.h/600);
+                     Sprite.SetX(classe->position_sac_inventaire.x*configuration->Resolution.w/800);
+                     Sprite.SetY(classe->position_sac_inventaire.y*configuration->Resolution.h/600+(z-m_defilerObjets)*20*configuration->Resolution.w/800 - decalage*configuration->Resolution.h/600);
                      moteurGraphique->AjouterCommande(&Sprite,16,0);
 
-                    if(!(z-m_defilerObjets==0&&m_defilerObjets>0)&&!((z-m_defilerObjets==3&&z+m_defilerObjets<=m_decor[1][positionSac.y][positionSac.x].getNombreObjets()+1)))
+                    if(!(z-m_defilerObjets==0&&m_defilerObjets>0)&&!((z-m_defilerObjets==classe->position_sac_inventaire.h-1&&z+m_defilerObjets<=m_decor[1][positionSac.y][positionSac.x].getNombreObjets()+1)))
                         m_objetPointe=z;
                  }
 
@@ -1051,14 +1051,14 @@ void Map::AfficherSacInventaire(RenderWindow* ecran,coordonnee positionSac,float
 
                 if(z-m_defilerObjets==0&&m_defilerObjets>0)
                     texte.SetText("...");
-                else if((z-m_defilerObjets==3&&z+m_defilerObjets<=m_decor[1][positionSac.y][positionSac.x].getNombreObjets()+1))
+                else if((z-m_defilerObjets==classe->position_sac_inventaire.h-1&&z+m_defilerObjets<=m_decor[1][positionSac.y][positionSac.x].getNombreObjets()+1))
                     texte.SetText("...");
                 else
                     texte.SetText(m_decor[1][positionSac.y][positionSac.x].getObjet(z).getNom());
                 texte.SetSize(16*configuration->Resolution.w/800);
 
-                position.x=(int)((436*configuration->Resolution.w/800)+(160*configuration->Resolution.w/800)-(texte.GetRect().Right-texte.GetRect().Left)/2);
-                position.y=(int)(30*configuration->Resolution.h/600+(z-m_defilerObjets)*20*configuration->Resolution.w/800 - decalage*configuration->Resolution.h/600 );
+                position.x=(int)((classe->position_sac_inventaire.x*configuration->Resolution.w/800)+((classe->position_sac_inventaire.w/2)*configuration->Resolution.w/800)-(texte.GetRect().Right-texte.GetRect().Left)/2);
+                position.y=(int)(classe->position_sac_inventaire.y*configuration->Resolution.h/600+(z-m_defilerObjets)*20*configuration->Resolution.w/800 - decalage*configuration->Resolution.h/600 );
 
                 texte.SetY(position.y);
                 texte.SetX(position.x);
@@ -2191,7 +2191,6 @@ void Map::musiquePlay(coordonnee position)
                                         \
                                         if(fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)>1||fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)>1)   \
                                         {   \
-                                                \
                                                 if(m_monstre[m_decor[i][j][k].getMonstre()].getArrivee().x==m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x&&m_monstre[m_decor[i][j][k].getMonstre()].getArrivee().y==m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y)   \
                                                 {   \
                                                     arrivee=hero->m_personnage.getProchaineCase();   \

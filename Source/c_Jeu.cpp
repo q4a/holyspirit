@@ -278,7 +278,6 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     configuration->RafraichirLumiere=true;
                     tempsEcouleDepuisDernierCalculLumiere=0;
 
-                    //moteurGraphique->LightManager->SetIntensity(jeu->hero.m_personnage.m_light,255-moteurGraphique->m_soleil.intensite);
                     moteurGraphique->LightManager->Generate(jeu->hero.m_personnage.m_light);
                 }
 

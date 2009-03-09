@@ -417,6 +417,58 @@ void Classe::Charger(string chemin)
                     fichier.get(caractere);
                     switch (caractere)
                     {
+                        case 'm' : fichier>>string; cache_vie.image=moteurGraphique->AjouterImage(string,-1); break;
+                        case 'x' : fichier>>cache_vie.position.x; break;
+                        case 'y' : fichier>>cache_vie.position.y; break;
+                        case 'w' : fichier>>cache_vie.position.w; break;
+                        case 'h' : fichier>>cache_vie.position.h; break;
+                    }
+
+                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+
+                }while(caractere!='$');
+                fichier.get(caractere);
+            }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
+
+    	do
+    	{
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
+                do
+                {
+                    fichier.get(caractere);
+                    switch (caractere)
+                    {
+                        case 'm' : fichier>>string; cache_foi.image=moteurGraphique->AjouterImage(string,-1); break;
+                        case 'x' : fichier>>cache_foi.position.x; break;
+                        case 'y' : fichier>>cache_foi.position.y; break;
+                        case 'w' : fichier>>cache_foi.position.w; break;
+                        case 'h' : fichier>>cache_foi.position.h; break;
+                    }
+
+                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+
+                }while(caractere!='$');
+                fichier.get(caractere);
+            }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
+
+    	do
+    	{
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
+                do
+                {
+                    fichier.get(caractere);
+                    switch (caractere)
+                    {
                         case 'x' : fichier>>position_sac_inventaire.x; break;
                         case 'y' : fichier>>position_sac_inventaire.y; break;
                         case 'w' : fichier>>position_sac_inventaire.w; break;
@@ -483,7 +535,6 @@ void Classe::Charger(string chemin)
     		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
 
     	}while(caractere!='$');
-
 
         fichier.close();
     }
@@ -1086,7 +1137,7 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
 
         if(positionSouris.x<m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800||positionSouris.x>m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800+32*m_classe.position_contenu_inventaire.w*configuration->Resolution.x/800||positionSouris.y<(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600||positionSouris.y>(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_inventaire.h*configuration->Resolution.y/600)
         {
-            if(positionSouris.x>435*configuration->Resolution.x/800&&positionSouris.x<758*configuration->Resolution.x/800&&positionSouris.y>30*configuration->Resolution.y/600&&positionSouris.y<114*configuration->Resolution.x/600)
+            if(positionSouris.x>m_classe.position_sac_inventaire.x*configuration->Resolution.x/800&&positionSouris.x<(m_classe.position_sac_inventaire.x+m_classe.position_sac_inventaire.w)*configuration->Resolution.x/800&&positionSouris.y>m_classe.position_sac_inventaire.y*configuration->Resolution.y/600&&positionSouris.y<(m_classe.position_sac_inventaire.y+m_classe.position_sac_inventaire.h*20)*configuration->Resolution.x/600)
                 sprite.SetColor(sf::Color(128,0,0,128));
         }
         else
@@ -1478,7 +1529,7 @@ bool Hero::prendreEnMain(coordonnee positionSouris)
     }
     else
     {
-        if(positionSouris.x>435*configuration->Resolution.x/800&&positionSouris.x<758*configuration->Resolution.x/800&&positionSouris.y>30*configuration->Resolution.y/600&&positionSouris.y<114*configuration->Resolution.y/600)
+        if(positionSouris.x>m_classe.position_sac_inventaire.x*configuration->Resolution.x/800&&positionSouris.x<(m_classe.position_sac_inventaire.x+m_classe.position_sac_inventaire.w)*configuration->Resolution.x/800&&positionSouris.y>m_classe.position_sac_inventaire.y*configuration->Resolution.y/600&&positionSouris.y<(m_classe.position_sac_inventaire.y+m_classe.position_sac_inventaire.h*20)*configuration->Resolution.y/600)
         {
             if(m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
             {

@@ -67,6 +67,20 @@ void Menu::Afficher(sf::RenderWindow* ecran,int type,float alpha,Classe *classe)
 		sprite2.Resize(classe->hud.position.w*configuration->Resolution.w/800, classe->hud.position.h*configuration->Resolution.h/600);
 		sprite.SetColor(sf::Color(255,255,255,(int)alpha));
 		moteurGraphique->AjouterCommande(&sprite2,17,0);
+
+		Sprite sprite3;
+
+		sprite3.SetImage(*moteurGraphique->getImage(classe->cache_vie.image));
+		sprite3.SetX(classe->cache_vie.position.x*configuration->Resolution.x/800);
+		sprite3.SetY(classe->cache_vie.position.y*configuration->Resolution.h/600);
+		sprite3.Resize(classe->cache_vie.position.w*configuration->Resolution.w/800, classe->cache_vie.position.h*configuration->Resolution.h/600);
+		moteurGraphique->AjouterCommande(&sprite3,18,0);
+
+		sprite3.SetImage(*moteurGraphique->getImage(classe->cache_foi.image));
+		sprite3.SetX(classe->cache_foi.position.x*configuration->Resolution.x/800);
+		sprite3.SetY(classe->cache_foi.position.y*configuration->Resolution.h/600);
+		sprite3.Resize(classe->cache_foi.position.w*configuration->Resolution.w/800, classe->cache_foi.position.h*configuration->Resolution.h/600);
+		moteurGraphique->AjouterCommande(&sprite3,18,0);
     }
 
 	if(type==2)

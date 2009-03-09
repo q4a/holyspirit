@@ -104,11 +104,11 @@ void MoteurGraphique::Gerer(sf::RenderWindow *ecran,float temps,int tailleMapY)
     for(int i=0;i<(int)m_systemeParticules.size();i++)
         if(m_systemeParticules[i].m_modele>=0&&m_systemeParticules[i].m_modele<(int)m_modeleSystemeParticules.size())
         {
+            m_systemeParticules[i].Afficher(ecran,&m_modeleSystemeParticules[m_systemeParticules[i].m_modele]);
+
             if(!m_systemeParticules[i].Gerer(temps,tailleMapY))
                 m_systemeParticules.erase (m_systemeParticules.begin()+i);
             nettoyageAuto=0;
-
-            m_systemeParticules[i].Afficher(ecran,&m_modeleSystemeParticules[m_systemeParticules[i].m_modele]);
         }
     nettoyageAuto+=temps;
     if(nettoyageAuto>10)

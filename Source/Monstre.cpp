@@ -386,11 +386,10 @@ bool Modele_Monstre::Charger(string chemin)
                 }while(caractere!='$');
     	    }
     	}
+    	fichier->close();
     }
     else
     console->Ajouter("Impossible d'ouvrir : "+chemin,1);
-
-    fichier->close();
 
     delete fichier;
 
