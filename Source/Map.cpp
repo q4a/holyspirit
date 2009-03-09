@@ -1008,8 +1008,8 @@ void Map::AfficherSacInventaire(RenderWindow* ecran,coordonnee positionSac,float
 	     &&positionSac.y>=0&&positionSac.y<(int)m_dimensions.y)
 	    if(m_decor[1][positionSac.y][positionSac.x].getNombreObjets()>0)
         {
-            if(m_defilerObjets>m_decor[1][positionSac.y][positionSac.x].getNombreObjets()-classe->position_sac_inventaire.h-1)
-                m_defilerObjets=m_decor[1][positionSac.y][positionSac.x].getNombreObjets()-classe->position_sac_inventaire.h-1;
+            if(m_defilerObjets>m_decor[1][positionSac.y][positionSac.x].getNombreObjets()-classe->position_sac_inventaire.h+1)
+                m_defilerObjets=m_decor[1][positionSac.y][positionSac.x].getNombreObjets()-classe->position_sac_inventaire.h+1;
             if(m_defilerObjets<0)
                 m_defilerObjets=0;
 
