@@ -118,7 +118,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     }
     else
         texte.SetColor(Color(150,100,50,(int)m_alpha));
-    moteurGraphique->AjouterTexte(&texte,18,1);
+    moteurGraphique->AjouterTexte(&texte,19,1);
 
     texte.SetText("Sauvegarder et quitter");
 
@@ -132,7 +132,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     }
     else
         texte.SetColor(Color(150,100,50,(int)m_alpha));
-    moteurGraphique->AjouterTexte(&texte,18,1);
+    moteurGraphique->AjouterTexte(&texte,19,1);
 
     texte.SetText("Reinitialiser la partie et quitter");
 
@@ -146,10 +146,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     }
     else
         texte.SetColor(Color(150,100,50,(int)m_alpha));
-    moteurGraphique->AjouterTexte(&texte,18,1);
+    moteurGraphique->AjouterTexte(&texte,19,1);
 
     jeu->eventManager.AfficherCurseur(&jeu->ecran);
-
-
-
 }

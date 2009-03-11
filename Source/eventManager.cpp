@@ -89,8 +89,6 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
     	}
 	}
 
-    /*if(m_EventTableau[Key::Escape])
-		*continuer=false;*/
 	if(m_EventTableau[Key::PageUp])
 		configuration->zoom*=(1+(0.5*temps));
 	if(m_EventTableau[Key::PageDown])
@@ -195,7 +193,7 @@ void EventManager::AfficherCurseur(sf::RenderWindow *ecran)
         Sprite.SetX(m_positionSouris.x*configuration->Resolution.w/configuration->Resolution.x);
     if(configuration->Resolution.y>0)
         Sprite.SetY(m_positionSouris.y*configuration->Resolution.h/configuration->Resolution.y);
-	moteurGraphique->AjouterCommande(&Sprite,19,0);
+	moteurGraphique->AjouterCommande(&Sprite,20,0);
 }
 
 bool EventManager::getEvenement(int numeroEvenement,std::string evenement)

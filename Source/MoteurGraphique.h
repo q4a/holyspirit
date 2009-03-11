@@ -92,8 +92,8 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	std::vector <ModeleParticuleSysteme> m_modeleSystemeParticules;
 
-	std::vector <sf::String> m_textes[20];
-	std::vector <Commande> m_commandes[20];
+	std::vector <sf::String> m_textes[21];
+	std::vector <Commande> m_commandes[21];
 	std::vector <ParticuleSysteme> m_systemeParticules;
 
 	std::vector<Commande>::iterator IterCommande;

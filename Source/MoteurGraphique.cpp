@@ -162,7 +162,7 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
 
     ecran->Clear();
 
-    for(int k=0;k<20;k++)
+    for(int k=0;k<=20;k++)
     {
         if(k==12&&configuration->Lumiere)
         {
@@ -205,7 +205,7 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
             ecran->Draw(m_textes[k][i]);
         }
 
-        if(k==17)
+        if(k==18)
         {
             if(m_blur>0)
             {
@@ -375,14 +375,14 @@ void MoteurGraphique::AjouterSystemeParticules(int ID,coordonnee position,sf::Co
 
 void MoteurGraphique::AjouterCommande(sf::Sprite *sprite, int couche, bool camera)
 {
-    if(couche>=0&&couche<20)
+    if(couche>=0&&couche<=20)
         m_commandes[couche].push_back(Commande (sprite,camera));
 }
 
 void MoteurGraphique::AjouterTexte(sf::String* string, int couche,bool titre)
 {
     sf::String temp(*string);
-    if(couche>=0&&couche<20)
+    if(couche>=0&&couche<=20)
     {
 
         if(temp.GetRect().Right>configuration->Resolution.w)
@@ -419,9 +419,9 @@ void MoteurGraphique::AjouterTexte(sf::String* string, int couche,bool titre)
 
 void MoteurGraphique::Vider()
 {
-    for(int i=0;i<20;i++)
+    for(int i=0;i<=20;i++)
         m_commandes[i].clear();
-    for(int i=0;i<20;i++)
+    for(int i=0;i<=20;i++)
         m_textes[i].clear();
 }
 void MoteurGraphique::ViderParticules()

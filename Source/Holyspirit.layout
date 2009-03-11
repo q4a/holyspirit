@@ -16,17 +16,17 @@
 	<File name="Globale.h" open="0" top="0" tabpos="41">
 		<Cursor position="743" topLine="0" />
 	</File>
-	<File name="Hero.h" open="0" top="0" tabpos="42">
-		<Cursor position="743" topLine="0" />
+	<File name="Hero.h" open="1" top="0" tabpos="3">
+		<Cursor position="1464" topLine="33" />
 	</File>
-	<File name="Light.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="6549" topLine="204" />
+	<File name="Light.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="7326" topLine="126" />
 	</File>
 	<File name="Light.h" open="0" top="0" tabpos="43">
 		<Cursor position="3949" topLine="117" />
 	</File>
-	<File name="LightManager.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="7359" topLine="216" />
+	<File name="LightManager.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="6999" topLine="99" />
 	</File>
 	<File name="LightManager.h" open="0" top="0" tabpos="44">
 		<Cursor position="3627" topLine="67" />
@@ -35,13 +35,13 @@
 		<Cursor position="3998" topLine="100" />
 	</File>
 	<File name="ModeleMoteurParticule.h" open="0" top="0" tabpos="1">
-		<Cursor position="737" topLine="14" />
+		<Cursor position="863" topLine="14" />
 	</File>
 	<File name="Monstre.h" open="0" top="0" tabpos="47">
 		<Cursor position="743" topLine="0" />
 	</File>
-	<File name="MoteurGraphique.h" open="0" top="0" tabpos="2">
-		<Cursor position="83" topLine="4" />
+	<File name="MoteurGraphique.h" open="1" top="0" tabpos="8">
+		<Cursor position="2429" topLine="30" />
 	</File>
 	<File name="Objet.h" open="0" top="0" tabpos="49">
 		<Cursor position="743" topLine="0" />
@@ -65,34 +65,34 @@
 		<Cursor position="743" topLine="0" />
 	</File>
 	<File name="c_changementMap.cpp" open="0" top="0" tabpos="9">
-		<Cursor position="741" topLine="0" />
+		<Cursor position="2504" topLine="69" />
 	</File>
 	<File name="c_changementMap.h" open="0" top="0" tabpos="56">
 		<Cursor position="743" topLine="0" />
 	</File>
 	<File name="c_demarrage.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="741" topLine="0" />
+		<Cursor position="521" topLine="42" />
 	</File>
 	<File name="c_demarrage.h" open="0" top="0" tabpos="57">
 		<Cursor position="743" topLine="0" />
 	</File>
-	<File name="c_inventaire.cpp" open="0" top="0" tabpos="7">
-		<Cursor position="741" topLine="0" />
+	<File name="c_inventaire.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="2532" topLine="57" />
 	</File>
 	<File name="c_inventaire.h" open="0" top="0" tabpos="58">
 		<Cursor position="743" topLine="0" />
 	</File>
 	<File name="c_jeu.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="15206" topLine="275" />
+		<Cursor position="18734" topLine="72" />
 	</File>
-	<File name="c_menuInGame.cpp" open="0" top="0" tabpos="9">
-		<Cursor position="741" topLine="0" />
+	<File name="c_menuInGame.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="1818" topLine="0" />
 	</File>
 	<File name="c_menuInGame.h" open="0" top="0" tabpos="59">
 		<Cursor position="743" topLine="0" />
 	</File>
 	<File name="case.cpp" open="0" top="0" tabpos="10">
-		<Cursor position="741" topLine="0" />
+		<Cursor position="760" topLine="10" />
 	</File>
 	<File name="case.h" open="0" top="0" tabpos="60">
 		<Cursor position="743" topLine="0" />
@@ -101,40 +101,40 @@
 		<Cursor position="743" topLine="0" />
 	</File>
 	<File name="console.cpp" open="0" top="0" tabpos="11">
-		<Cursor position="741" topLine="0" />
+		<Cursor position="851" topLine="81" />
 	</File>
 	<File name="constantes.h" open="0" top="0" tabpos="62">
 		<Cursor position="1115" topLine="36" />
 	</File>
 	<File name="contexte.cpp" open="0" top="0" tabpos="12">
-		<Cursor position="741" topLine="0" />
+		<Cursor position="792" topLine="0" />
 	</File>
 	<File name="crypter.cpp" open="0" top="0" tabpos="13">
-		<Cursor position="741" topLine="0" />
+		<Cursor position="867" topLine="67" />
 	</File>
 	<File name="datFile.cpp" open="0" top="0" tabpos="14">
-		<Cursor position="0" topLine="0" />
+		<Cursor position="555" topLine="277" />
 	</File>
 	<File name="datFile.h" open="0" top="0" tabpos="63">
 		<Cursor position="1402" topLine="18" />
 	</File>
 	<File name="decor.cpp" open="0" top="0" tabpos="15">
-		<Cursor position="4444" topLine="125" />
+		<Cursor position="3982" topLine="49" />
 	</File>
 	<File name="evenement.cpp" open="0" top="0" tabpos="16">
-		<Cursor position="743" topLine="0" />
+		<Cursor position="820" topLine="49" />
 	</File>
-	<File name="eventManager.cpp" open="0" top="0" tabpos="17">
-		<Cursor position="743" topLine="0" />
+	<File name="eventManager.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="799" topLine="4" />
 	</File>
 	<File name="eventManager.h" open="0" top="0" tabpos="64">
 		<Cursor position="743" topLine="0" />
 	</File>
-	<File name="hero.cpp" open="0" top="0" tabpos="18">
-		<Cursor position="60142" topLine="1381" />
+	<File name="hero.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="62586" topLine="1432" />
 	</File>
 	<File name="jeu.cpp" open="0" top="0" tabpos="19">
-		<Cursor position="743" topLine="0" />
+		<Cursor position="939" topLine="113" />
 	</File>
 	<File name="jeu.h" open="0" top="0" tabpos="65">
 		<Cursor position="743" topLine="0" />
@@ -151,35 +151,35 @@
 	<File name="main.h" open="0" top="0" tabpos="67">
 		<Cursor position="743" topLine="0" />
 	</File>
-	<File name="map.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="12730" topLine="342" />
+	<File name="map.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="6734" topLine="190" />
 	</File>
 	<File name="menu.cpp" open="0" top="0" tabpos="23">
-		<Cursor position="743" topLine="0" />
+		<Cursor position="1787" topLine="14" />
 	</File>
 	<File name="menu.h" open="0" top="0" tabpos="68">
 		<Cursor position="743" topLine="0" />
 	</File>
 	<File name="miracle.cpp" open="0" top="0" tabpos="24">
-		<Cursor position="743" topLine="0" />
+		<Cursor position="10499" topLine="103" />
 	</File>
 	<File name="miracle.h" open="0" top="0" tabpos="69">
 		<Cursor position="743" topLine="0" />
 	</File>
 	<File name="modeleMoteurParticule.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="1326" topLine="31" />
+		<Cursor position="3596" topLine="76" />
 	</File>
 	<File name="monstre.cpp" open="0" top="0" tabpos="26">
-		<Cursor position="9253" topLine="264" />
+		<Cursor position="14325" topLine="372" />
 	</File>
-	<File name="moteurGraphique.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="1586" topLine="36" />
+	<File name="moteurGraphique.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="4510" topLine="0" />
 	</File>
 	<File name="moteurParticule.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="4131" topLine="10" />
+		<Cursor position="1543" topLine="17" />
 	</File>
 	<File name="moteurParticule.h" open="0" top="0" tabpos="5">
-		<Cursor position="1437" topLine="13" />
+		<Cursor position="1272" topLine="31" />
 	</File>
 	<File name="moteurSons.cpp" open="0" top="0" tabpos="29">
 		<Cursor position="743" topLine="0" />
@@ -188,13 +188,13 @@
 		<Cursor position="743" topLine="0" />
 	</File>
 	<File name="objet.cpp" open="0" top="0" tabpos="30">
-		<Cursor position="743" topLine="0" />
+		<Cursor position="16951" topLine="531" />
 	</File>
 	<File name="personnage.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="13678" topLine="349" />
+		<Cursor position="8059" topLine="235" />
 	</File>
 	<File name="pose.cpp" open="0" top="0" tabpos="32">
-		<Cursor position="743" topLine="0" />
+		<Cursor position="932" topLine="33" />
 	</File>
 	<File name="prototypes.h" open="0" top="0" tabpos="72">
 		<Cursor position="743" topLine="0" />
@@ -203,18 +203,18 @@
 		<Cursor position="201" topLine="0" />
 	</File>
 	<File name="script.cpp" open="0" top="0" tabpos="33">
-		<Cursor position="743" topLine="0" />
+		<Cursor position="2838" topLine="99" />
 	</File>
 	<File name="script.h" open="0" top="0" tabpos="73">
 		<Cursor position="912" topLine="18" />
 	</File>
 	<File name="tile.cpp" open="0" top="0" tabpos="34">
-		<Cursor position="743" topLine="0" />
+		<Cursor position="895" topLine="30" />
 	</File>
 	<File name="tileset.cpp" open="0" top="0" tabpos="35">
-		<Cursor position="743" topLine="0" />
+		<Cursor position="828" topLine="0" />
 	</File>
 	<File name="video.cpp" open="0" top="0" tabpos="36">
-		<Cursor position="3891" topLine="72" />
+		<Cursor position="2552" topLine="72" />
 	</File>
 </CodeBlocks_layout_file>

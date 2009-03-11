@@ -603,7 +603,7 @@ void Objet::Generer(int bonus)
             m_armure*=1;
             m_degatsMin*=1;
             m_degatsMax*=1;
-            nbrBene=rand()%(5-2)+2;
+            nbrBene=rand()%(4-2)+2;
 
             m_color.r=255-rand()%128;
             m_color.g=255-rand()%128;
@@ -615,7 +615,7 @@ void Objet::Generer(int bonus)
             m_armure*=1;
             m_degatsMin*=1;
             m_degatsMax*=1;
-            nbrBene=rand()%(10-5)+5;
+            nbrBene=rand()%(9-5)+5;
 
             m_color.r=255-rand()%192;
             m_color.g=255-rand()%192;
@@ -643,10 +643,13 @@ void Objet::Generer(int bonus)
 
             if(temp.type==VIE_SUPP||temp.type==FOI_SUPP)
                 temp.info1=rand()%(m_capaciteBenediction*10 - (int)(m_capaciteBenediction*3))+m_capaciteBenediction*3;
-            else if(temp.type==EFFICACITE_ACCRUE)
+            else if(temp.type==EFFICACITE_ACCRUE&&(m_type==ARME||m_type==ARMURE))
                 temp.info1=(int)(rand()%(m_capaciteBenediction*10 - (int)((float)m_capaciteBenediction*2.5))+(float)m_capaciteBenediction*2.5);
             else
                 temp.info1=(int)(rand()%(m_capaciteBenediction*1 - (int)((float)m_capaciteBenediction*0.5))+(float)m_capaciteBenediction*0.5);
+
+            if(temp.type==EFFICACITE_ACCRUE&&!(m_type==ARME||m_type==ARMURE))
+                ajouter=false,i--;
 
             for(int j=0;j<(int)m_benedictions.size();j++)
                 if(m_benedictions[j].type==temp.type)

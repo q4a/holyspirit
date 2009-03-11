@@ -1159,7 +1159,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     if(m_sacPointe.x==k&&m_sacPointe.y==j&&m_monstreIllumine<0)
                                         sprite.SetColor(sf::Color(255,128,128));
                                     else
-                                        sprite.SetColor(sf::Color(255,255,255));
+                                        sprite.SetColor(sf::Color(192,192,192));
 
                                     moteurGraphique->AjouterCommande(&sprite,10,1);
 
@@ -1198,7 +1198,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                                             sprite.SetY((position.y-camera->GetRect().Top)*configuration->zoom-20*configuration->Resolution.w/800*(z+1));
                                             sprite.SetX((position.x-camera->GetRect().Left)*configuration->zoom-4);
-                                            sprite.SetColor(sf::Color(0,0,0,255));
+                                            sprite.SetColor(sf::Color(0,0,0,128));
                                             sprite.Resize(texte.GetRect().Right-texte.GetRect().Left +8 , texte.GetRect().Bottom-texte.GetRect().Top +6);
 
                                             moteurGraphique->AjouterCommande(&sprite,13,0);
