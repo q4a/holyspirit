@@ -82,8 +82,8 @@
 	<File name="c_inventaire.h" open="0" top="0" tabpos="58">
 		<Cursor position="743" topLine="0" />
 	</File>
-	<File name="c_jeu.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="18734" topLine="72" />
+	<File name="c_jeu.cpp" open="1" top="1" tabpos="10">
+		<Cursor position="11866" topLine="237" />
 	</File>
 	<File name="c_menuInGame.cpp" open="1" top="0" tabpos="6">
 		<Cursor position="1818" topLine="0" />
@@ -152,7 +152,7 @@
 		<Cursor position="743" topLine="0" />
 	</File>
 	<File name="map.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="43299" topLine="944" />
+		<Cursor position="137752" topLine="2260" />
 	</File>
 	<File name="menu.cpp" open="0" top="0" tabpos="23">
 		<Cursor position="1787" topLine="14" />
@@ -187,7 +187,7 @@
 	<File name="moteurSons.h" open="0" top="0" tabpos="71">
 		<Cursor position="743" topLine="0" />
 	</File>
-	<File name="objet.cpp" open="1" top="1" tabpos="9">
+	<File name="objet.cpp" open="1" top="0" tabpos="9">
 		<Cursor position="22386" topLine="696" />
 	</File>
 	<File name="personnage.cpp" open="0" top="0" tabpos="5">
