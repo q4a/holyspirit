@@ -11,13 +11,13 @@ main
 			then
 				evasion
 			else
-				if rand * 10 
+				if rand * 25 
 				then
 					if numberInvocation * 0
 					then
 						variable * 0 * 1
 					else
-						variable * 0 * 0
+						variable * 0 * 2
 					end
 				else
 					variable * 0 * 0
@@ -38,7 +38,6 @@ main
 							variable * 0 * 0
 						end
 					
-	
 				else
 					fight
 				end
@@ -52,9 +51,14 @@ main
 	
 	if variable * 0 * 0
 	then
-		if rand * 25
+		if rand * 35
 		then
-			useMiracle * 1
+			if rand * 50
+			then
+				useMiracle * 3
+			else
+				useMiracle * 1
+			end
 		else
 			useMiracle * 0
 		end
@@ -64,5 +68,7 @@ main
 	then
 		useMiracle * 2
 	end
+	
+
 
 end 
