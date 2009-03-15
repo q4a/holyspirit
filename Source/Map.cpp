@@ -163,8 +163,6 @@ bool Map::Charger(int numeroMap,Hero *hero)
     if(reader.IsFileExist(configuration->chemin_temps+numero))
        mapExistante=true,entite_map_existante=true,console->Ajouter("Map sauvée existante.");
 
-
-
 	ifstream *fichier=NULL;
 	ifstream *fichier2=NULL;
 

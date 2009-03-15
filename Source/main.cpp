@@ -22,12 +22,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include <fstream>
-#include <dirent.h>
 
+#include <dirent.h>
+#include "ChargThread.h"
 #include "main.h"
-#include "MoteurGraphique.h"
-#include "MoteurSons.h"
+
 
 using namespace std;
 //using namespace sf;
@@ -43,10 +42,12 @@ int main ( int argc, char** argv )
     std::set_terminate( __gnu_cxx::__verbose_terminate_handler);
 
     moteurGraphique=MoteurGraphique::GetInstance();
-    moteurSons=MoteurSons::GetInstance();
 
-    console=Console::GetInstance();
     configuration=Configuration::GetInstance();
+
+    moteurSons=MoteurSons::GetInstance();
+    console=Console::GetInstance();
+
 
     srand(time(NULL));
 
@@ -55,20 +56,19 @@ int main ( int argc, char** argv )
     console->Ajouter("---------------------------------------------------------------------------------");
     console->Ajouter("");
 
-    configuration->numero_screen=0;
-
     try
 	{
 	    ///Chargement de la configuration
-
         configuration->Charger();
-
-        moteurGraphique->Charger();
-
+        ChargThread chargThread(moteurGraphique);
+        chargThread.charger();
+        //moteurGraphique->Charger();
+        configuration->numero_screen=0;
         ///On démarre le jeu
 		Jeu m_jeu;
 
 		m_jeu.Demarrer();
+
 	}
 	catch (const std::string& str)
 	{
