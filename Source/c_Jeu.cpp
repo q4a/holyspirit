@@ -257,6 +257,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                         if(!jeu->eventManager.getEvenement(Mouse::Left,"C"))
                             jeu->hero.setMonstreVise(-1),jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
 
+
                     jeu->map.animer(&jeu->hero,tempsDepuisDerniereAnimation,&jeu->menu,&jeu->camera); // Animation des tiles de la jeu->map
 
                     tempsDepuisDerniereAnimation=0;

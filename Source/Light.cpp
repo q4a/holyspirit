@@ -21,6 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <math.h>
 #include "light.h"
 #include "globale.h"
+#include "computeLight.h"
 
 
 Light::Light()
@@ -59,6 +60,7 @@ Light::~Light()
 void Light::Draw(sf::RenderWindow *App, coordonnee dimensionsMap)
 {
     // On boucle sur m_shape pour afficher tous les triangles.
+
     for(int i=0;i<(int)m_shape.size();i++)
         App->Draw(m_shape[i]);
 }
@@ -67,6 +69,9 @@ void Light::Draw(sf::RenderWindow *App, coordonnee dimensionsMap)
 
 bool Light::CollisionWithPoint(sf::Vector2f &p,sf::Vector2f &pt1,sf::Vector2f &pt2)
 {
+
+
+
     // D'abord, on calcul les extrémités du rectangle dans lequel est inscrit le triangle
     sf::Vector2f min(0,0),max(0,0);
     if(pt1.x<min.x)
@@ -89,7 +94,7 @@ bool Light::CollisionWithPoint(sf::Vector2f &p,sf::Vector2f &pt1,sf::Vector2f &p
 
     // Si le point se trouve en dehors de ce rectangle, ça ne sert à rien d'aller plus loin, on quitte
     if(p.x<min.x || p.x>max.x || p.y<min.y || p.y>max.y)
-        return 0;
+       return false;
 
     // Variable qui contiendra le coéficient angulaire
     float rapport;
@@ -103,7 +108,7 @@ bool Light::CollisionWithPoint(sf::Vector2f &p,sf::Vector2f &pt1,sf::Vector2f &p
 
         // Suivant si on se trouve à gauche ou à droite, on doit être plus grand ou plus petit.
         if( (pt1.x<0 && (p.x)*rapport<(p.y)) || (pt1.x>0 && (p.x)*rapport>(p.y)) )
-            return 0;
+            return false;
     }
 
     //Idem
@@ -112,7 +117,7 @@ bool Light::CollisionWithPoint(sf::Vector2f &p,sf::Vector2f &pt1,sf::Vector2f &p
         rapport=(pt2.y/pt2.x);
 
         if( (pt2.x<0 && p.x*rapport>p.y) || (pt2.x>0 && p.x*rapport<p.y) )
-            return 0;
+           return false;
     }
 
     //Idem, mais avec le segment ["pt1","pt2"]
@@ -120,27 +125,26 @@ bool Light::CollisionWithPoint(sf::Vector2f &p,sf::Vector2f &pt1,sf::Vector2f &p
     {
         rapport=(pt1.y-pt2.y)/(pt1.x-pt2.x);
         if( ( pt1.x>pt2.x && (p.x-pt2.x)*rapport<(p.y-pt2.y)) || ( pt1.x<pt2.x && (p.x-pt1.x)*rapport>(p.y-pt1.y)) )
-            return 0;
+            return false;
     }
     else
     {
         if(pt1.x<0)
             if(p.x<pt1.x)
-                return 0;
+                 return false;
 
         if(pt1.x>0)
             if(p.x>pt1.x)
-                return 0;
+                 return false;
     }
 
     // On retourne 1 pour dire que le point se trouve dans le triangle
-    return 1;
+     return true;
 }
 
 bool Light::CollisionWithLine(sf::Vector2f &l1, sf::Vector2f &l2,sf::Vector2f &pt1,sf::Vector2f &pt2)
 {
     // On regarde si le mur traverse le triangle, j'ai laissé les 0 pour pouvoir mieux cerner la formule.
-
     float r = ((l1.y-pt1.y)*(0-pt1.x)-(l1.x-pt1.x)*(0-pt1.y))/((l2.x-l1.x)*(0-pt1.y)-(l2.y-l1.y)*(0-pt1.x));
     float s = ((l1.y-pt1.y)*(l2.x-l1.x)-(l1.x-pt1.x)*(l2.y-l1.y))/((l2.x-l1.x)*(0-pt1.y)-(l2.y-l1.y)*(0-pt1.x));
 
@@ -167,6 +171,7 @@ bool Light::CollisionWithLine(sf::Vector2f &l1, sf::Vector2f &l2,sf::Vector2f &p
 
 void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std::vector <Wall>& m_wall)
 {
+
     int m=minimum_wall;
     bool wall=false;
     int hauteur=0;
@@ -201,8 +206,10 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std:
         // Collision 1 et 2 prennent la veleur true si l1 ou l2 se trouve dans le triangle
         if(!NoUseCollision1)
             Collision1 = CollisionWithPoint(l1,pt1,pt2);
+
         if(!NoUseCollision2)
-               Collision2 = CollisionWithPoint(l2,pt1,pt2);
+
+             Collision2 = CollisionWithPoint(l2,pt1,pt2);
 
 
         // Si l1 est dans le triangle
@@ -417,6 +424,8 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std:
 
 void Light::Generate(std::vector <Wall> &m_wall)
 {
+
+
     // On vide la mémoire
     m_shape.clear();
 
@@ -427,6 +436,7 @@ void Light::Generate(std::vector <Wall> &m_wall)
     for(int i=0;i<m_quality;i++)
     {
         m_dejaPasse.clear();
+
         AddTriangle(sf::Vector2f((int)((float)m_radius*cos((float)i*buf)),(int)((float)m_radius*sin((float)i*buf))) , sf::Vector2f((int)((float)m_radius*cos((float)(i+1)*buf)),(int)((float)m_radius*sin((float)(i+1)*buf))),0,m_wall);
     }
 }
@@ -452,5 +462,12 @@ float Light::GetRadius(){ return m_radius; }
 int Light::GetQuality(){ return m_quality; }
 sf::Vector2f Light::GetPosition(){ return m_position;}
 sf::Color Light::GetColor(){ return m_color; }
+
+
+
+
+
+
+
 
 

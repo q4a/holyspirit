@@ -19,6 +19,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "LightManager.h"
 #include "Globale.h"
+#include "generateLight.h"
 
 Light_Manager::Light_Manager()
 {
@@ -216,9 +217,14 @@ void Light_Manager::Generate()
 
 void Light_Manager::Generate(sf::View *camera)
 {
-    for(int i=0;i<(int)m_DynamicLight.size();i++)
-        if(m_DynamicLight[i].m_actif)
-            m_DynamicLight[i].Generate(m_wall);
+    for(int i=0;i<(int)m_DynamicLight.size();i++) {
+        if(m_DynamicLight[i].m_actif) {
+            GenerateLight genLight(m_DynamicLight[i], m_wall);
+            genLight.compute ();
+            //m_DynamicLight[i].Generate(m_wall);
+        }
+    }
+
 }
 
 void Light_Manager::Generate(Light_Entity &e)

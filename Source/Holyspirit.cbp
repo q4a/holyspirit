@@ -57,8 +57,6 @@
 			<Add option="-lsfml-window" />
 			<Add option="-lsfml-system" />
 		</Linker>
-		<Unit filename="ChargThread.cpp" />
-		<Unit filename="ChargThread.h" />
 		<Unit filename="Commande.h" />
 		<Unit filename="Contexte.h" />
 		<Unit filename="Decor.h" />
@@ -93,6 +91,8 @@
 		<Unit filename="c_menuInGame.h" />
 		<Unit filename="case.cpp" />
 		<Unit filename="case.h" />
+		<Unit filename="computeLight.cpp" />
+		<Unit filename="computeLight.h" />
 		<Unit filename="console.H" />
 		<Unit filename="console.cpp" />
 		<Unit filename="constantes.h" />

@@ -116,6 +116,7 @@ class Light
     void SetPosition(sf::Vector2f);
 
 
+
     // Retourner différents attributs de la lumière
     float GetIntensity();
     float GetRadius();

@@ -26,6 +26,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <SFML/Audio.hpp>
 #include <dirent.h>
 
+
 using namespace std;
 using namespace sf;
 
@@ -51,6 +52,7 @@ Map::~Map()
 {
     Detruire();
 }
+
 
 void Map::Detruire()
 {
@@ -1186,7 +1188,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                                 texte.SetColor(sf::Color(128,64,0));
 
                                             texte.SetText(m_decor[1][j][k].getObjet(z).getNom());
-                                            texte.SetSize(16*configuration->Resolution.w/800);
+                                            texte.SetSize(32*configuration->Resolution.w/800);
                                             texte.SetY((position.y-camera->GetRect().Top)*configuration->zoom-20*configuration->Resolution.w/800*(z+1));
                                             texte.SetX((position.x-camera->GetRect().Left)*configuration->zoom);
 
@@ -1282,7 +1284,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                         position.x=(((k-(hero->m_personnage.getCoordonnee().x-15))-(j-(hero->m_personnage.getCoordonnee().y-15))-1+40)*6*configuration->Resolution.w/800);
                         position.y=(((k-(hero->m_personnage.getCoordonnee().x-15))+(j-(hero->m_personnage.getCoordonnee().y-15)))*6*configuration->Resolution.w/800);
 
-                        if(position.x+465*configuration->Resolution.w/800>605*configuration->Resolution.w/800&&position.x+465*configuration->Resolution.w/800<800*configuration->Resolution.w/800&&position.y*configuration->Resolution.y/600>0&&position.y-80*configuration->Resolution.w/800<195*configuration->Resolution.h/600)
+                        if(position.x+465*configuration->Resolution.w/800>605*configuration->Resolution.w/800&&position.x+465*configuration->Resolution.w/800<800*configuration->Resolution.w/800&&position.y*configuration->Resolution.y/800>0&&position.y-80*configuration->Resolution.w/800<195*configuration->Resolution.h/600)
                         {
                             int typeCase=getTypeCase(k,j);
                             if(typeCase==1)
@@ -1801,6 +1803,7 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                                     moteurGraphique->LightManager->SetRadius(m_decor[i][j][k].m_light,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite*3);
                                     moteurGraphique->LightManager->SetColor(m_decor[i][j][k].m_light,sf::Color(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).rouge,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).vert,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).bleu));
                                     moteurGraphique->LightManager->Generate(m_decor[i][j][k].m_light);
+
                                 }
 
                                 coordonnee position;
@@ -1817,6 +1820,7 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                     if(monstre>=0&&monstre<(int)m_monstre.size())
                     {
                         moteurGraphique->LightManager->Generate(m_monstre[monstre].m_light);
+
 
                         bool explosif=false;
                         int degats = m_monstre[monstre].animer(&m_ModeleMonstre[m_monstre[monstre].getModele()],m_dimensions.y,temps,&explosif,positionHero);

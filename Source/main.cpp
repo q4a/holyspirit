@@ -60,9 +60,8 @@ int main ( int argc, char** argv )
 	{
 	    ///Chargement de la configuration
         configuration->Charger();
-        ChargThread chargThread(moteurGraphique);
-        chargThread.charger();
-        //moteurGraphique->Charger();
+
+        moteurGraphique->Charger();
         configuration->numero_screen=0;
         ///On démarre le jeu
 		Jeu m_jeu;
@@ -83,15 +82,15 @@ int main ( int argc, char** argv )
 	console->Ajouter("Sauvegarde de la configuration");
 
     configuration->Sauvegarder();
+    console->Ajouter("");
+    console->Ajouter("EXIT_SUCCESS");
+    console->Kill();
 
     moteurGraphique->Kill();
     moteurSons->Kill();
     configuration->Kill();
 
-    console->Ajouter("");
-    console->Ajouter("EXIT_SUCCESS");
 
-    console->Kill();
 
     return EXIT_SUCCESS;
 }
