@@ -29,9 +29,6 @@
          /Lectures des caracteristiques.
          /Lectures des cases de l'inventaire.
          
-         Chargement de l'objet : Necklage.item.hs
-         Chargement de : Data/Items/Images/Necklage01.png
-         
          Chargement de l'objet : Ring.item.hs
          Chargement de : Data/Items/Images/Ring1.png
          
@@ -62,6 +59,7 @@
          Chargement de l'objet : Unique_shield.item.hs
          
          Chargement de l'objet : Necklage.item.hs
+         Chargement de : Data/Items/Images/Necklage01.png
          
          Chargement de l'objet : Armband.item.hs
          
@@ -70,8 +68,6 @@
          Chargement de l'objet : Long_sword.item.hs
          
          Chargement de l'objet : Ring.item.hs
-         
-         Chargement de l'objet : Great_shield.item.hs
          
          Chargement de l'objet : Armband.item.hs
          
@@ -107,6 +103,12 @@
          
          Chargement de l'objet : Unique_boot.item.hs
          Chargement de : Data/Items/Images/Boot.png
+         
+         Chargement de l'objet : Necklage.item.hs
+         
+         Chargement de l'objet : Great_shield.item.hs
+         
+         Chargement de l'objet : Small_sword_divin.item.hs
          /Lectures des objets.
          Chargement de : Data/Menus/Inventory.png
          Chargement de : Data/Menus/Hud.png
@@ -114,11 +116,11 @@
          Chargement de : Data/Menus/Faith_orb.png
          Chargement de : Data/Menus/Coupe2.png
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/OneHand.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoWeapons.rs.hs
          Chargement de : CroiseMailleAttente1Main0.png
          Chargement de : CroiseMailleMarche1Epee0.png
-         Chargement de : CroiseMailleFrappeSansArme0.png
-         Chargement de : CroiseMailleFrappeSansArme1.png
+         Chargement de : CroiseMailleFrappeSans2Arme0.png
+         Chargement de : CroiseMailleFrappeSans2Arme1.png
          Chargement de : Data/Sounds/9906__Snoman__grass3.wav
          Chargement de : Data/Sounds/epee.wav
          
@@ -127,10 +129,10 @@
          Chargement de : TueuseDivineMarcheDroite0.png
          Chargement de : TueuseDivineAttaqueDroite0.png
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Shield/Unique_shield.rs.hs
-         Chargement de : BouclierUniqueAttente0.png
-         Chargement de : BouclierUniqueMarche0.png
-         Chargement de : BouclierUniqueFrappe0.png
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
+         Chargement de : TueuseDivineAttenteGauche0.png
+         Chargement de : TueuseDivineMarcheGauche0.png
+         Chargement de : TueuseDivineAttaqueGauche0.png
          
          Chargement des sons :
          Chargement de : Data/Sounds/Coeur.wav
@@ -149,7 +151,7 @@
          Chargement de la map terminé.
          
          Chargement de : Data/Menus/Alpha-arts.png
-         Chargement de : Data/Loading_screens/Plaines3.png
+         Chargement de : Data/Loading_screens/Plaines2.png
          
          Destruction de la map...
          Destruction des cases...
@@ -171,7 +173,6 @@
          Ouverture du fichier.
          /Ecriture des caracterstiques.
          /Ecriture des cases inventaires.
-         /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Helmet.item.hs
          /Sauvegarde de Gown.item.hs
@@ -188,7 +189,6 @@
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Long_sword.item.hs
          /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Armband.item.hs
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Coal.item.hs
@@ -205,17 +205,19 @@
          /Sauvegarde de Armor.item.hs
          /Sauvegarde de Small_shield.item.hs
          /Sauvegarde de Unique_boot.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword_divin.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/OneHand.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoWeapons.rs.hs
          
          Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_r.rs.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Shield/Unique_shield.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
          
          Chargement de la map : map1.map.hs
-         Map sauvée existante.
          /Lectures du nom.
          /Lectures des fonds.
          /Lectures des musiques.
@@ -365,7 +367,6 @@
          Chargement de : Data/Entities/Monsters/PantinMorbide/Warrior/Warrior.rs.hs terminé
          /Lectures des monstres.
          
-         Une map des entités est déjà existante.
          /Lectures des événements.
          /Lectures des cases.
          Chargement de la map terminé.
@@ -379,7 +380,6 @@
          Ouverture du fichier.
          /Ecriture des caracterstiques.
          /Ecriture des cases inventaires.
-         /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Helmet.item.hs
          /Sauvegarde de Gown.item.hs
@@ -396,7 +396,6 @@
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Long_sword.item.hs
          /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Armband.item.hs
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Coal.item.hs
@@ -413,6 +412,9 @@
          /Sauvegarde de Armor.item.hs
          /Sauvegarde de Small_shield.item.hs
          /Sauvegarde de Unique_boot.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword_divin.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
