@@ -1616,13 +1616,14 @@
 	<libavformat/avformat.h>
 	<libavcodec/avcodec.h>
 
-1204386659 source:d:\holy spirit\source\light.cpp
+1237228520 source:d:\holy spirit\source\light.cpp
 	<iostream>
 	<math.h>
 	"light.h"
 	"globale.h"
+	"computeLight.h"
 
-1204386659 d:\holy spirit\source\light.h
+1237211309 d:\holy spirit\source\light.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Window.hpp>
@@ -1664,7 +1665,7 @@
 	"moteurParticule.h"
 	"LightManager.h"
 
-1204386659 d:\holy spirit\source\map.h
+1237227512 d:\holy spirit\source\map.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -1790,9 +1791,10 @@
 	<SFML/Audio.hpp>
 	"constantes.h"
 
-1204386659 source:d:\holy spirit\source\lightmanager.cpp
+1237230794 source:d:\holy spirit\source\lightmanager.cpp
 	"LightManager.h"
 	"Globale.h"
+	"generateLight.h"
 
 1204386659 source:d:\holy spirit\source\c_changementmap.cpp
 	"c_jeu.h"
@@ -1869,7 +1871,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1204388339 source:d:\holy spirit\source\c_jeu.cpp
+1237227573 source:d:\holy spirit\source\c_jeu.cpp
 	"c_jeu.h"
 	"jeu.h"
 	"Globale.h"
@@ -1947,7 +1949,7 @@
 	"globale.h"
 	<iostream>
 
-1237127446 source:d:\holy spirit\source\main.cpp
+1237218249 source:d:\holy spirit\source\main.cpp
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<iostream>
@@ -1959,7 +1961,7 @@
 	"Jeu.h"
 	"constantes.h"
 
-1237113631 source:d:\holy spirit\source\map.cpp
+1237230599 source:d:\holy spirit\source\map.cpp
 	"Map.h"
 	<iostream>
 	<fstream>
@@ -2064,11 +2066,19 @@
 	<libavformat/avformat.h>
 	<libavcodec/avcodec.h>
 
-1237128422 source:d:\holy spirit\source\chargthread.cpp
-	<SFML/System.hpp>
-	"ChargThread.h"
+1237147058 source:d:\holy spirit\source\chargthread.cpp
 
-1237128422 d:\holy spirit\source\chargthread.h
-	<SFML/System.hpp>
-	"MoteurGraphique.h"
+1237147057 d:\holy spirit\source\chargthread.h
+
+1237212665 source:d:\holy spirit\source\computelight.cpp
+	"computeLight.h"
+
+1237222316 d:\holy spirit\source\computelight.h
+	"Map.h"
+
+1237228858 source:d:\holy spirit\source\generatelight.cpp
+	"generateLight.h"
+
+1237228647 d:\holy spirit\source\generatelight.h
+	"Light.h"
 

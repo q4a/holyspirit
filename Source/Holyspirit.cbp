@@ -91,8 +91,6 @@
 		<Unit filename="c_menuInGame.h" />
 		<Unit filename="case.cpp" />
 		<Unit filename="case.h" />
-		<Unit filename="computeLight.cpp" />
-		<Unit filename="computeLight.h" />
 		<Unit filename="console.H" />
 		<Unit filename="console.cpp" />
 		<Unit filename="constantes.h" />
@@ -104,6 +102,8 @@
 		<Unit filename="evenement.cpp" />
 		<Unit filename="eventManager.cpp" />
 		<Unit filename="eventManager.h" />
+		<Unit filename="generateLight.cpp" />
+		<Unit filename="generateLight.h" />
 		<Unit filename="hero.cpp" />
 		<Unit filename="jeu.cpp" />
 		<Unit filename="jeu.h" />
