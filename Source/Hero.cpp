@@ -1200,18 +1200,19 @@ void Hero::placerCamera(sf::View *camera,coordonnee dimensionsMap)
 
 bool Hero::testMonstreVise(Monstre *monstre,int hauteurMap)
 {
-    if(m_monstreVise>-1&&m_caracteristiques.vie>0)
-    {
-        if((fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)<=1) || (fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=1))
+    if(monstre!=NULL)
+        if(m_monstreVise>-1&&m_caracteristiques.vie>0)
         {
-            m_personnage.setArrivee(m_personnage.getCoordonnee());
-            m_personnage.frappe(m_personnage.getCoordonnee(),monstre->getCoordonnee());
+            if((fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)<=1) || (fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=1))
+            {
+                m_personnage.setArrivee(m_personnage.getCoordonnee());
+                m_personnage.frappe(m_personnage.getCoordonnee(),monstre->getCoordonnee());
 
-            return 1;
+                return 1;
+            }
+            else
+                 m_personnage.setArrivee(monstre->getProchaineCase());
         }
-        else
-             m_personnage.setArrivee(monstre->getProchaineCase());
-    }
     return 0;
 }
 

@@ -102,9 +102,6 @@ class Decor
 	int m_hauteur;
 	coordonnee m_herbe_decalage;
 	sf::Color m_herbe_couleur;
-
-
-
 };
 
 #endif

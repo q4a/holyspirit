@@ -57,6 +57,8 @@ class Map
 	coordonnee getSacPointe();
 	int getObjetPointe();
 	int getNombreObjets(coordonnee position);
+	int getNombreMonstres();
+
 	Monstre *getEntiteMonstre (int numeroMonstre);
 	coordonnee getPositionMonstre(int numeroMonstre);
 	casePathfinding ** getAlentourDuPersonnage(coordonnee positionPersonnage); // Retourne un tableau de bool contenant toutes les collitions dans les alentour du héro, pour le pathfinding

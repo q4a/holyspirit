@@ -45,7 +45,7 @@ void Projectile::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
 
         sprite.SetCenter(m_centre.x,m_centre.y);
 
-        sprite.Rotate((-(m_rotation)*180/M_PI)/*-45*/);
+        sprite.Rotate((-(m_rotation)*180/M_PI));
 
         if(sprite.GetPosition().x+sprite.GetSize().x>=camera->GetRect().Left
         &&sprite.GetPosition().x<camera->GetRect().Right

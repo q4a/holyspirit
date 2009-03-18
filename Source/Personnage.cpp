@@ -283,9 +283,6 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee di
 
         if(configuration->Ombre&&modele->m_ombre)
         {
-            //for(int o=0;o<(int)m_lumiere.m_ombre.size();o++)
-           // {
-
                 int angleOmbre=(int)((m_angle-moteurGraphique->m_angleOmbreSoleil)+22.5);
 
                 while(angleOmbre<0)
@@ -313,7 +310,6 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee di
                         sprite.SetScale(1, 1);
                         sprite.SetRotation(0);
                     }
-            //}
         }
 
         if((int)(m_angle/45)>=0&&(int)(m_angle/45)<(int)modele->m_pose[m_etat].size())

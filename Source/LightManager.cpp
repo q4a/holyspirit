@@ -219,9 +219,9 @@ void Light_Manager::Generate(sf::View *camera)
 {
     for(int i=0;i<(int)m_DynamicLight.size();i++) {
         if(m_DynamicLight[i].m_actif) {
-            GenerateLight genLight(m_DynamicLight[i], m_wall);
-            genLight.compute ();
-            //m_DynamicLight[i].Generate(m_wall);
+           // GenerateLight genLight(m_DynamicLight[i], m_wall);
+            //genLight.compute ();
+            m_DynamicLight[i].Generate(m_wall);
         }
     }
 
