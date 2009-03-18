@@ -68,7 +68,4 @@ main
 	then
 		useMiracle * 2
 	end
-	
-
-
 end 
