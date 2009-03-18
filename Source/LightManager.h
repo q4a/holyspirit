@@ -67,7 +67,6 @@ class Light_Manager : public CSingleton<Light_Manager>
 
     // Calculer toutes les lumières dynamiques1
     void Generate();
-    void Generate(sf::View *camera);
     void Generate(Light_Entity &);
 
     // Afficher toutes les lumières à l'écran
