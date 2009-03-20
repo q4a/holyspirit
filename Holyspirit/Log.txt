@@ -151,7 +151,7 @@
          Chargement de la map terminé.
          
          Chargement de : Data/Menus/Alpha-arts.png
-         Chargement de : Data/Loading_screens/Plaines2.png
+         Chargement de : Data/Loading_screens/Plaines3.png
          
          Destruction de la map...
          Destruction des cases...
@@ -274,6 +274,7 @@
          Chargement de : PretreMarche0.png
          Chargement de : PretreAttaque0.png
          Chargement de : PretreAttaque1.png
+         Chargement de : PretreMeurt0.png
          Chargement du script : "Data/Scripts/AI/DemonicPriest.script.hs"
          
          Chargement de l'objet : Gown.item.hs
@@ -373,7 +374,6 @@
          
          
          Sauvegarde de la map : Data/Temp/map1.map.hs
-         /Sauvegarde de Small_axe.item.hs
          Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
          Sauvegarde terminée !
          
