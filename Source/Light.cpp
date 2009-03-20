@@ -21,7 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <math.h>
 #include "light.h"
 #include "globale.h"
-#include "computeLight.h"
+#include "generateLight.h"
 
 
 Light::Light()

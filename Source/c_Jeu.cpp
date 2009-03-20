@@ -26,6 +26,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
+
 using namespace sf;
 
 c_Jeu::c_Jeu(Jeu *jeu)
@@ -186,7 +187,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     if(jeu->hero.m_personnage.seDeplacer(tempsEcouleDepuisDernierDeplacement*100,jeu->map.getDimensions()))
                     {
                         bool ok=true;
-                        if(jeu->hero.getMonstreVise()>-1&&jeu->hero.getMonstreVise()<jeu->map.getNombreMonstres())
+                        if(jeu->hero.getMonstreVise()>-1)
                             if(jeu->hero.testMonstreVise(jeu->map.getEntiteMonstre(jeu->hero.getMonstreVise()),jeu->map.getDimensions().y))
                                 ok=false;
 

@@ -1188,7 +1188,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                                 texte.SetColor(sf::Color(128,64,0));
 
                                             texte.SetText(m_decor[1][j][k].getObjet(z).getNom());
-                                            texte.SetSize(16*configuration->Resolution.w/800);
+                                            texte.SetSize(32*configuration->Resolution.w/800);
                                             texte.SetY((position.y-camera->GetRect().Top)*configuration->zoom-20*configuration->Resolution.w/800*(z+1));
                                             texte.SetX((position.x-camera->GetRect().Left)*configuration->zoom);
 
@@ -1802,7 +1802,9 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                                     moteurGraphique->LightManager->SetIntensity(m_decor[i][j][k].m_light,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite);
                                     moteurGraphique->LightManager->SetRadius(m_decor[i][j][k].m_light,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite*3);
                                     moteurGraphique->LightManager->SetColor(m_decor[i][j][k].m_light,sf::Color(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).rouge,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).vert,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).bleu));
+
                                     moteurGraphique->LightManager->Generate(m_decor[i][j][k].m_light);
+
                                 }
 
                                 coordonnee position;
@@ -1818,7 +1820,8 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                     int monstre=m_decor[i][j][k].getMonstre();
                     if(monstre>=0&&monstre<(int)m_monstre.size())
                     {
-                        moteurGraphique->LightManager->Generate(m_monstre[monstre].m_light);
+
+                        moteurGraphique->LightManager->Generate();
 
 
                         bool explosif=false;
@@ -1900,7 +1903,6 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                                                 }
 
                                             }
-
                                             moteurGraphique->LightManager->Generate(m_projectile[m_monstre[monstre].m_miracleEnCours[i].m_infos[o].m_IDObjet].m_light);
                                         }
                                     if(continuer)
@@ -1996,6 +1998,7 @@ void Map::gererEvenements(int evenement,int z,int couche,int x,int y)
                     if(m_tileset[m_decor[couche][y][x].getTileset()].getLumiereDuTile(m_decor[couche][y][x].getTile()).intensite>0)
                     {
                         m_decor[couche][y][x].m_light=moteurGraphique->LightManager->Add_Dynamic_Light(pos,m_tileset[m_decor[couche][y][x].getTileset()].getLumiereDuTile(m_decor[couche][y][x].getTile()).intensite,m_tileset[m_decor[couche][y][x].getTileset()].getLumiereDuTile(m_decor[couche][y][x].getTile()).intensite*3,8,sf::Color(m_tileset[m_decor[couche][y][x].getTileset()].getLumiereDuTile(m_decor[couche][y][x].getTile()).rouge,m_tileset[m_decor[couche][y][x].getTileset()].getLumiereDuTile(m_decor[couche][y][x].getTile()).vert,m_tileset[m_decor[couche][y][x].getTileset()].getLumiereDuTile(m_decor[couche][y][x].getTile()).bleu));
+
                         moteurGraphique->LightManager->Generate(m_decor[couche][y][x].m_light);
                     }
                 }
@@ -2319,8 +2322,8 @@ void Map::gererMonstres(Hero *hero,float temps,sf::View *camera,Menu *menu)
                                         m_projectile[temp].m_actif=false;
                                     else
                                     {
-                                        m_projectile[i].m_positionCase.y=(int)((m_projectile[temp].m_position.y+32)/COTE_TILE);
-                                        m_projectile[i].m_positionCase.x=(int)((m_projectile[temp].m_position.x+32)/COTE_TILE);
+                                        m_projectile[i].m_positionCase.y=(int)(m_projectile[temp].m_position.y/COTE_TILE);
+                                        m_projectile[i].m_positionCase.x=(int)(m_projectile[temp].m_position.x/COTE_TILE);
                                         if(m_decor[m_projectile[i].m_positionCase.h][m_projectile[i].m_positionCase.y][m_projectile[i].m_positionCase.x].getProjectile()!=-1)
                                             if(m_projectile[i].m_positionCase.h==1)
                                                 m_projectile[i].m_positionCase.h=0;
@@ -2635,10 +2638,10 @@ Monstre *Map::getEntiteMonstre(int numeroMonstre)
     if(numeroMonstre>=0&&numeroMonstre<(int)m_monstre.size())
         return &m_monstre[numeroMonstre];
     else
+    {
         return NULL;
+    }
 }
-
-int Map::getNombreMonstres(){return m_monstre.size();}
 
 bool Map::getMonstreEnVie(int numeroMonstre)
 {

@@ -1,8 +1,11 @@
 #include "generateLight.h"
-GenerateLight::GenerateLight (Light &light, std::vector<Wall> &wall) {
-    (*this).wall = wall;
+GenerateLight::GenerateLight (std::vector<Light> &light, std::vector<Wall> &wall) {
     (*this).light = light;
+    (*this).wall = wall;
 }
+
 void GenerateLight::run () {
-    light.Generate(wall);
+    for(int i=0;i<(int)light.size();i++) {
+       light[i].Generate(wall);
+    }
 }

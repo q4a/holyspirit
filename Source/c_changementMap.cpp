@@ -124,7 +124,8 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
     jeu->eventManager.GererLesEvenements(&jeu->ecran,&jeu->camera,&jeu->m_run,temps_ecoule,jeu->map.getDimensions());
 
-    moteurGraphique->LightManager->Generate();
+    //moteurGraphique->LightManager->Generate(&jeu->camera);
+
 
     if(z>=49&&!augmenterNoir&&allerVersImageChargement)
     {
@@ -138,7 +139,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         jeu->map.Detruire();
 
-        jeu->hero.m_personnage.m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,384,16,sf::Color(255,255,255));
+        jeu->hero.m_personnage.m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),224,384,16,sf::Color(255,255,255));
 
         jeu->hero.Sauvegarder();
 

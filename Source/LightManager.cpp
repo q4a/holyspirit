@@ -30,6 +30,7 @@ Light_Manager::~Light_Manager()
     m_wall.clear();
     m_StaticLight.clear();
     m_DynamicLight.clear();
+
 }
 
 // Les différents moyens d'ajouter des lumières
@@ -130,6 +131,7 @@ Wall_Entity Light_Manager::Add_Wall(sf::Vector2f pt1,sf::Vector2f pt2)
     pt2=max;
 
     m_wall.push_back(Wall (pt1,pt2));
+
     return Wall_Entity(m_wall.size()-1);
 }
 
@@ -211,16 +213,34 @@ void Light_Manager::Delete_All_Light(bool justDynamic)
 
 void Light_Manager::Generate()
 {
-    for(int i=0;i<(int)m_DynamicLight.size();i++)
-        m_DynamicLight[i].Generate(m_wall);
+        GenerateLight genLight(m_DynamicLight, m_wall);
+        genLight.compute ();
+        genLight.stop ();
 }
+
+/*void Light_Manager::Generate(sf::View *camera)
+{
+    for(int i=0;i<(int)m_DynamicLight.size();i++) {
+        if(m_DynamicLight[i].m_actif) {
+
+            m_DynamicLight[i].Generate(m_wall);
+        }
+    }
+
+}*/
 
 void Light_Manager::Generate(Light_Entity &e)
 {
-    if(e.Dynamic())
-        if(e.ID()>=0&&e.ID()<(int)m_DynamicLight.size())
-            if(m_DynamicLight[e.ID()].m_actif)
+
+    if(e.Dynamic()) {
+        if(e.ID()>=0&&e.ID()<(int)m_DynamicLight.size()) {
+            if(m_DynamicLight[e.ID()].m_actif) {
+
+
                 m_DynamicLight[e.ID()].Generate(m_wall);
+            }
+        }
+    }
 }
 
 

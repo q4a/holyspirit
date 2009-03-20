@@ -24,11 +24,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define LIGHTMANAGERH
 
 #include "Singleton.h"
-
+#include "generateLight.h"
 
 class Light_Manager : public CSingleton<Light_Manager>
 {
-    protected :
+    public :
 
     Light_Manager();
     ~Light_Manager();
@@ -67,7 +67,8 @@ class Light_Manager : public CSingleton<Light_Manager>
 
     // Calculer toutes les lumières dynamiques1
     void Generate();
-    void Generate(Light_Entity &);
+    //void Generate(sf::View *camera);
+    void Generate(Light_Entity &e);
 
     // Afficher toutes les lumières à l'écran
     void Draw(sf::RenderWindow *App,sf::View *camera, coordonnee dimensionsMap);
