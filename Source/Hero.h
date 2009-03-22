@@ -68,10 +68,7 @@ class Hero
 {
 	public:
 	Hero();
-	~Hero()
-	{
-	    m_inventaire.clear();
-	}
+	~Hero();
 
 	void Sauvegarder();
 	void Charger();

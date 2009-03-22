@@ -64,11 +64,11 @@ Decor::Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int her
 
 Decor::~Decor()
 {
-    if(m_evenement.size()>0)
+
         m_evenement.clear();
     //if(configuration.debug)
        //console.Ajouter("/Destruction des evenements");
-    if(m_objets.size()>0)
+
         m_objets.clear();
     //  if(configuration.debug)
        // console.Ajouter("/Destruction des objets");

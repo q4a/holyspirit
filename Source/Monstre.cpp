@@ -26,6 +26,14 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 using namespace std;
 
+Modele_Monstre::Modele_Monstre()
+{
+    m_porteeLumineuse.rouge=0;
+    m_porteeLumineuse.vert=0;
+    m_porteeLumineuse.bleu=0;
+    m_porteeLumineuse.intensite=0;
+}
+
 Modele_Monstre::~Modele_Monstre()
 {
     for(int i=0;i<(int)m_pose.size();i++)
@@ -63,6 +71,11 @@ Monstre::Monstre()
     m_positionPixel.h=0;
     m_cheminFinal.h=0;
     m_positionCase.h=0;
+
+    m_porteeLumineuse.rouge=0;
+    m_porteeLumineuse.vert=0;
+    m_porteeLumineuse.bleu=0;
+    m_porteeLumineuse.intensite=0;
 }
 
 void Monstre::Charger(int numero,Modele_Monstre *modele)
@@ -73,6 +86,9 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
     m_caracteristique=modele->getCaracteristique();
     m_porteeLumineuse=modele->getPorteeLumineuse();
     m_porteeLumineuseBasique=m_porteeLumineuse;
+
+    m_friendly=modele->m_friendly;
+
     if(m_caracteristique.rang==0&&m_caracteristique.pointAme>0)
     {
         int temp=rand()%(1000);
@@ -222,6 +238,7 @@ bool Modele_Monstre::Charger(string chemin)
                 m_caracteristique.sang=0;
                 m_explosif=false;
                 m_minimap=true;
+                m_friendly=false;
                 do
                 {
                     fichier->get(caractere);
@@ -241,6 +258,9 @@ bool Modele_Monstre::Charger(string chemin)
                         case 'e': *fichier>>m_explosif; break;
 
                         case 'i': *fichier>>m_minimap; break;
+
+                        case 'f': *fichier>>m_friendly; break;
+
                     }
                      if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
                 }while(caractere!='$');
@@ -405,7 +425,7 @@ void Monstre::testerVision(coordonnee positionHero)
         if(fabs(positionHero.x-m_positionCase.x)<5&&fabs(positionHero.y-m_positionCase.y)<5)
         {
             m_vu=1;
-            if(m_etat==0) m_poseEnCours=0;
+           // if(m_etat==0) m_poseEnCours=0;
         }
         if(fabs(positionHero.x-m_positionCase.x)>10||fabs(positionHero.y-m_positionCase.y)>10)
         {

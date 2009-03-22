@@ -57,6 +57,8 @@ Objet::~Objet()
     m_benedictions.clear();
     m_emplacement.clear();
     m_emplacementImpossible.clear();
+    m_emplacementImageHero.clear();
+    m_cheminImageHero.clear();
 }
 
 std::string Objet::getChemin(){return m_chemin;}

@@ -114,6 +114,8 @@ void Jeu::Demarrer()
 
     Reset();
 
+    this->m_contexte=NULL;
+
     delete this->m_demarrage;
     delete this->m_jeu;
     delete this->m_chargement;

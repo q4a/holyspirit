@@ -29,7 +29,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 class Modele_Monstre : public Modele_Personnage
 {
     public:
-    Modele_Monstre(){};
+    Modele_Monstre();
     ~Modele_Monstre();
 
     bool Charger(std::string chemin);
@@ -40,6 +40,7 @@ class Modele_Monstre : public Modele_Personnage
     Script m_scriptAI;
     int m_particules;
     bool m_minimap;
+    bool m_friendly;
 
     std::vector<Miracle> m_miracles;
 
@@ -66,6 +67,7 @@ class Monstre : public Personnage
     float m_attente;
     int m_compteur;
     int m_miracleALancer;
+    bool m_friendly;
 
 
     std::vector <EntiteMiracle> m_miracleEnCours;
@@ -74,7 +76,6 @@ class Monstre : public Personnage
     bool m_vu;
     int m_modele;
     coordonnee m_depart;
-
 
 };
 

@@ -2419,8 +2419,8 @@ void Map::gererMonstres(Hero *hero,float temps,sf::View *camera,Menu *menu)
                             m_monstre[m_decor[i][j][k].getMonstre()].m_attente=2,m_monstre[m_decor[i][j][k].getMonstre()].m_compteur=0,m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee());
 
 
-                        if(!m_monstre[m_decor[i][j][k].getMonstre()].enVie()&&m_monstre[m_decor[i][j][k].getMonstre()].getEtat()!=3)
-                            m_monstre[m_decor[i][j][k].getMonstre()].setEtat(3);
+                        //if(!m_monstre[m_decor[i][j][k].getMonstre()].enVie()&&m_monstre[m_decor[i][j][k].getMonstre()].getEtat()!=3)
+                           // m_monstre[m_decor[i][j][k].getMonstre()].setEtat(3);
 
 
                         ///GESTION DES EVENEMENTS SUR LES MONSTRES

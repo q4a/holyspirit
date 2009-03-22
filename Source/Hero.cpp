@@ -110,6 +110,25 @@ Hero::Hero()
     m_personnage.m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(m_personnage.getCoordonnee().x,m_personnage.getCoordonnee().y),512,2048,16,sf::Color(255,255,255));
 }
 
+Hero::~Hero()
+{
+    if(configuration->debug)
+        console->Ajouter("Destruction du héro ...");
+
+    m_inventaire.clear();
+    if(configuration->debug)
+        console->Ajouter("Destruction de l'inventaire.");
+    m_contenuSave.clear();
+    if(configuration->debug)
+        console->Ajouter("Destruction de la save.");
+    m_caseInventaire.clear();
+    if(configuration->debug)
+        console->Ajouter("Destruction des cases de l'inventaire.");
+
+
+    console->Ajouter("Destruction du héro terminée.");
+}
+
 void Hero::Sauvegarder()
 {
     console->Ajouter("");
@@ -1206,7 +1225,9 @@ bool Hero::testMonstreVise(Monstre *monstre,int hauteurMap)
             if((fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)<=1) || (fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=1))
             {
                 m_personnage.setArrivee(m_personnage.getCoordonnee());
-                m_personnage.frappe(m_personnage.getCoordonnee(),monstre->getCoordonnee());
+
+                if(!monstre->m_friendly)
+                    m_personnage.frappe(m_personnage.getCoordonnee(),monstre->getCoordonnee());
 
                 return 1;
             }
@@ -1447,7 +1468,7 @@ Objet Hero::DeposerObjet()
     Objet temp;
     if(m_objetADeposer>=0&&m_objetADeposer<(int)m_inventaire.size())
     {
-        temp=m_inventaire[m_objetADeposer];
+        temp=m_inventaire[(int)m_objetADeposer];
 
         m_inventaire.erase(m_inventaire.begin()+m_objetADeposer);
 
