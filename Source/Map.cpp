@@ -68,19 +68,27 @@ void Map::Detruire()
     if(configuration->debug)
         console->Ajouter("Destruction des cases...");
 
-    for(int i=0;i<NOMBRE_COUCHE_MAP;i++)
+
+    if(m_decor!=NULL)
     {
-            for(int j=0;j<m_dimensions.y;j++)
+        for(int i=0;i<NOMBRE_COUCHE_MAP;i++)
+        {
+            if(m_decor[i]!=NULL)
             {
+                for(int j=0;j<m_dimensions.y;j++)
+                {
+                    if(configuration->debug)
+                        console->Ajouter(j);
+                    if(m_decor[i][j]!=NULL)
+                        delete[] m_decor[i][j];
+                }
                 if(configuration->debug)
-                    console->Ajouter(j);
-                delete[] m_decor[i][j];
+                        console->Ajouter("-");
+                delete[] m_decor[i];
             }
-        if(configuration->debug)
-                console->Ajouter("-");
-        delete[] m_decor[i];
+        }
+        delete[] m_decor;
     }
-    delete[] m_decor;
 
     // m_decor.clear();
 
