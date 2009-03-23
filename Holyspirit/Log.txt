@@ -1,3 +1,7 @@
+         ---------------------------------------------------------------------------------
+         Demarrage du jeu
+         ---------------------------------------------------------------------------------
+         
          
          Chargement des postFX :
          Chargement de : Data/Effects/blurFX.sfx
@@ -63,8 +67,6 @@
          
          Chargement de l'objet : Ring.item.hs
          
-         Chargement de l'objet : Armband.item.hs
-         
          Chargement de l'objet : Ring.item.hs
          
          Chargement de l'objet : Coal.item.hs
@@ -105,6 +107,9 @@
          Chargement de l'objet : Small_sword_divin.item.hs
          
          Chargement de l'objet : Armband.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         Chargement de : Data/Items/Images/axes01.png
          /Lectures des objets.
          Chargement de : Data/Menus/Inventory.png
          Chargement de : Data/Menus/Hud.png
@@ -184,7 +189,6 @@
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Long_sword.item.hs
          /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Armband.item.hs
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Coal.item.hs
          /Sauvegarde de Chainmail.item.hs
@@ -204,6 +208,7 @@
          /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Small_sword_divin.item.hs
          /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Small_axe.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
@@ -214,7 +219,6 @@
          Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
          
          Chargement de la map : map1.map.hs
-         Map sauvée existante.
          /Lectures du nom.
          /Lectures des fonds.
          /Lectures des musiques.
@@ -248,7 +252,6 @@
          Chargement du script : "Data/Scripts/AI/standard.script.hs"
          
          Chargement de l'objet : Small_axe.item.hs
-         Chargement de : Data/Items/Images/axes01.png
          
          Chargement du systeme de particules : Data/Particule_system/human_bones.ps.hs
          Chargement de : Data/Particule_system/Images/human_bones.png
@@ -374,7 +377,6 @@
          Chargement de : Data/Entities/NPC/Trader.rs.hs terminé
          /Lectures des monstres.
          
-         Une map des entités est déjà existante.
          /Lectures des événements.
          /Lectures des cases.
          Chargement de la map terminé.
@@ -403,7 +405,6 @@
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Long_sword.item.hs
          /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Armband.item.hs
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Coal.item.hs
          /Sauvegarde de Chainmail.item.hs
@@ -423,6 +424,7 @@
          /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Small_sword_divin.item.hs
          /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Small_axe.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
@@ -608,5 +610,7 @@
          Destruction du héro terminée.
          
          Sauvegarde de la configuration
+         
+         Destruction des moteurs
          
          EXIT_SUCCESS
