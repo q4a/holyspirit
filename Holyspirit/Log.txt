@@ -49,8 +49,6 @@
          
          Chargement de l'objet : Two_hand_sword.item.hs
          
-         Chargement de l'objet : Two_hand_sword.item.hs
-         
          Chargement de l'objet : Ring.item.hs
          
          Chargement de l'objet : Unique_shield.item.hs
@@ -110,6 +108,8 @@
          
          Chargement de l'objet : Small_axe.item.hs
          Chargement de : Data/Items/Images/axes01.png
+         
+         Chargement de l'objet : Katzbalger.item.hs
          /Lectures des objets.
          Chargement de : Data/Menus/Inventory.png
          Chargement de : Data/Menus/Hud.png
@@ -117,23 +117,18 @@
          Chargement de : Data/Menus/Faith_orb.png
          Chargement de : Data/Menus/Coupe2.png
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoWeapons.rs.hs
-         Chargement de : CroiseMailleAttente1Main0.png
-         Chargement de : CroiseMailleMarche1Epee0.png
-         Chargement de : CroiseMailleFrappeSans2Arme0.png
-         Chargement de : CroiseMailleFrappeSans2Arme1.png
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoHand.rs.hs
+         Chargement de : CroiseMailleAttente2Main0.png
+         Chargement de : CroiseMailleMarcheSansEpee2Mains0.png
+         Chargement de : CroiseMailleFrappeSansArmeDeuxMains0.png
+         Chargement de : CroiseMailleFrappeSansArmeDeuxMains1.png
          Chargement de : Data/Sounds/9906__Snoman__grass3.wav
          Chargement de : Data/Sounds/epee.wav
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_r.rs.hs
-         Chargement de : TueuseDivineAttenteDroite0.png
-         Chargement de : TueuseDivineMarcheDroite0.png
-         Chargement de : TueuseDivineAttaqueDroite0.png
-         
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
-         Chargement de : TueuseDivineAttenteGauche0.png
-         Chargement de : TueuseDivineMarcheGauche0.png
-         Chargement de : TueuseDivineAttaqueGauche0.png
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Two_hands_sword/Katzbalger.rs.hs
+         Chargement de : KatzbalgerAttente0.png
+         Chargement de : KatzbalgerMarche0.png
+         Chargement de : KatzbalgerFrappe0.png
          
          Chargement des sons :
          Chargement de : Data/Sounds/Coeur.wav
@@ -152,7 +147,7 @@
          Chargement de la map terminé.
          
          Chargement de : Data/Menus/Alpha-arts.png
-         Chargement de : Data/Loading_screens/Plaines2.png
+         Chargement de : Data/Loading_screens/Plaines3.png
          
          Destruction de la map...
          Destruction des cases...
@@ -181,7 +176,6 @@
          /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Small_sword.item.hs
          /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Unique_shield.item.hs
          /Sauvegarde de Necklage.item.hs
@@ -209,14 +203,13 @@
          /Sauvegarde de Small_sword_divin.item.hs
          /Sauvegarde de Armband.item.hs
          /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Katzbalger.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoWeapons.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoHand.rs.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_r.rs.hs
-         
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Two_hands_sword/Katzbalger.rs.hs
          
          Chargement de la map : map1.map.hs
          /Lectures du nom.
@@ -309,308 +302,3 @@
          Chargement de : Data/Entities/Monsters/PantinMorbide/Sword/Sword.rs.hs terminé
          
          Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Guardian/Guardian.rs.hs
-         Chargement de : GardienSqueletteMarche0.png
-         Chargement de : GardienSqueletteFrappe0.png
-         Chargement de : GardienSqueletteFrappe1.png
-         Chargement de : Data/Sounds/contre3.wav
-         Chargement du script : "Data/Scripts/AI/standard.script.hs"
-         
-         Chargement de l'objet : Two_hand_sword.item.hs
-         
-         Chargement de l'objet : Katzbalger.item.hs
-         
-         Chargement de l'objet : Helmet.item.hs
-         
-         Chargement de l'objet : Chainmail.item.hs
-         Chargement de : Data/Entities/Monsters/PantinMorbide/Guardian/Guardian.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Arquebuse/Arquebuse.rs.hs
-         Chargement de : ArquebuseSqueletteMarche0.png
-         Chargement de : ArquebuseSqueletteMarche1.png
-         Chargement de : ArquebuseSqueletteTir0.png
-         Chargement de : ArquebuseSqueletteTir1.png
-         Chargement de : Data/Sounds/Arquebuse.wav
-         Chargement du script : "Data/Scripts/AI/shooter.script.hs"
-         
-         Chargement de l'objet : Arquebuse.item.hs
-         Chargement de : Data/Items/Images/Arquebuse.png
-         
-         Chargement de l'objet : Coal.item.hs
-         Chargement de : Data/Entities/Monsters/PantinMorbide/Arquebuse/Arquebuse.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Warrior/Warrior.rs.hs
-         Chargement de : GuerrierSqueletteCourse0.png
-         Chargement de : GuerrierSqueletteFrappe0.png
-         Chargement de : GuerrierSqueletteFrappe1.png
-         Chargement du script : "Data/Scripts/AI/standard.script.hs"
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Boot.item.hs
-         
-         Chargement de l'objet : Unique_boot.item.hs
-         
-         Chargement de l'objet : Ring.item.hs
-         
-         Chargement de l'objet : Necklage.item.hs
-         
-         Chargement de l'objet : Long_sword.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Small_sword_divin.item.hs
-         
-         Chargement de l'objet : Great_shield.item.hs
-         
-         Chargement de l'objet : Unique_shield.item.hs
-         Chargement de : Data/Entities/Monsters/PantinMorbide/Warrior/Warrior.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/NPC/Trader.rs.hs
-         Chargement de : Marchand0.png
-         Chargement du script : "Data/Scripts/NPC/standing.script.hs"
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         Chargement de : Data/Entities/NPC/Trader.rs.hs terminé
-         /Lectures des monstres.
-         
-         /Lectures des événements.
-         /Lectures des cases.
-         Chargement de la map terminé.
-         
-         
-         Sauvegarde de la map : Data/Temp/map1.map.hs
-         Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
-         Sauvegarde terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Ecriture des cases inventaires.
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Gown.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Unique_shield.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Small_sword_divin.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Unique_boot.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_sword_divin.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Ecriture des objets.
-         Sauvegarde du héro terminée !
-         
-         Fermeture des contextes effectuée avec succès.
-         
-         Destruction de la map...
-         Destruction des cases...
-         0
-         1
-         2
-         3
-         4
-         5
-         6
-         7
-         8
-         9
-         10
-         11
-         12
-         13
-         14
-         15
-         16
-         17
-         18
-         19
-         20
-         21
-         22
-         23
-         24
-         25
-         26
-         27
-         28
-         29
-         30
-         31
-         32
-         33
-         34
-         35
-         36
-         37
-         38
-         39
-         40
-         41
-         42
-         43
-         44
-         45
-         46
-         47
-         48
-         49
-         50
-         51
-         52
-         53
-         54
-         55
-         56
-         57
-         58
-         59
-         60
-         61
-         62
-         63
-         64
-         65
-         66
-         67
-         68
-         69
-         70
-         71
-         72
-         73
-         74
-         75
-         76
-         77
-         78
-         79
-         -
-         0
-         1
-         2
-         3
-         4
-         5
-         6
-         7
-         8
-         9
-         10
-         11
-         12
-         13
-         14
-         15
-         16
-         17
-         18
-         19
-         20
-         21
-         22
-         23
-         24
-         25
-         26
-         27
-         28
-         29
-         30
-         31
-         32
-         33
-         34
-         35
-         36
-         37
-         38
-         39
-         40
-         41
-         42
-         43
-         44
-         45
-         46
-         47
-         48
-         49
-         50
-         51
-         52
-         53
-         54
-         55
-         56
-         57
-         58
-         59
-         60
-         61
-         62
-         63
-         64
-         65
-         66
-         67
-         68
-         69
-         70
-         71
-         72
-         73
-         74
-         75
-         76
-         77
-         78
-         79
-         -
-         Cases détruites !
-         Modèles monstres détruits !
-         Monstres détruits !
-         Evénements détruits !
-         Fonds détruits !
-         Chemins musiques détruits !
-         Projectiles détruits !
-         Effets détruits !
-         Map détruite !
-         Destruction du héro ...
-         Destruction de l'inventaire.
-         Destruction de la save.
-         Destruction des cases de l'inventaire.
-         Destruction du héro terminée.
-         
-         Sauvegarde de la configuration
-         
-         Destruction des moteurs
-         
-         EXIT_SUCCESS
