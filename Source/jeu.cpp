@@ -41,7 +41,7 @@ void Jeu::Demarrer()
     if(!configuration->mode_fenetre)
         ecran.Create(sf::VideoMode(configuration->Resolution.x, configuration->Resolution.y, 32),"HolySpirit : Act of Faith",sf::Style::Fullscreen);
     else
-        ecran.Create(sf::VideoMode(configuration->Resolution.x, configuration->Resolution.y, 32),"HolySpirit : Act of Faith");
+        ecran.Create(sf::VideoMode(configuration->Resolution.x, configuration->Resolution.y, 32),"HolySpirit : Act of Faith",sf::Style::Titlebar);
     if(configuration->syncronisation_verticale)
     {
         ecran.UseVerticalSync(true);
@@ -79,6 +79,7 @@ void Jeu::Demarrer()
     Clock.Reset();
 
     this->m_run = true;
+    this->m_display = true;
     while (this->m_run)
 	{
 	    configuration->Resolution.x=this->ecran.GetWidth();
@@ -98,12 +99,13 @@ void Jeu::Demarrer()
 		if(this->m_display)
 		{
 		    ecran.Clear();
-		    moteurSons->Vider();
 		    moteurGraphique->Afficher(&this->ecran,&this->camera,this->map.getDimensions());
             this->ecran.Display();
             moteurGraphique->Vider();
 		}
 	}
+
+	ecran.Close();
 
 	this->map.Sauvegarder(&this->hero);
 

@@ -209,7 +209,7 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
         {
             if(m_blur>0)
             {
-                EffectBlur.SetParameter("offset",m_blur);
+                EffectBlur.SetParameter("offset",(float)m_blur);
                 ecran->Draw(EffectBlur);
                 ecran->Draw(EffectBlur);
                 ecran->Draw(EffectBlur);

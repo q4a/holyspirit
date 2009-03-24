@@ -31,6 +31,8 @@ using namespace sf;
 
 Menu::~Menu()
 {
+     if(configuration->debug)
+        console->Ajouter("Destruction du menu ...");
     m_sang.clear();
     m_ame.clear();
 }

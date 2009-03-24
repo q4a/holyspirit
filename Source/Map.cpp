@@ -90,7 +90,6 @@ void Map::Detruire()
         delete[] m_decor;
     }
 
-    // m_decor.clear();
 
      if(configuration->debug)
         console->Ajouter("Cases détruites !");
@@ -107,8 +106,7 @@ void Map::Detruire()
 
     if(configuration->debug)
         console->Ajouter("Monstres détruits !");
-   // for(int i=0;i<m_evenement.size();i++)
-     //   m_evenement[i].deleteInformations();
+
     m_evenement.clear();
     if(configuration->debug)
         console->Ajouter("Evénements détruits !");
@@ -137,7 +135,6 @@ void Map::Detruire()
 
 bool Map::Charger(int numeroMap,Hero *hero)
 {
-
     m_dimensions.x=0;
     m_dimensions.y=0;
 
@@ -486,7 +483,6 @@ bool Map::Charger(int numeroMap,Hero *hero)
     	coordonnee position;
     	for(int couche=0;couche<NOMBRE_COUCHE_MAP;couche++)
     	{
-    	    decorBuffer[couche].clear();
             position.x=0;
             position.y=0;
 
@@ -680,6 +676,13 @@ bool Map::Charger(int numeroMap,Hero *hero)
 
     Initialiser();
 
+    for(int i=0;i<NOMBRE_COUCHE_MAP;i++)
+    {
+        for(int j=0;j<(int)decorBuffer[i].size();j++)
+            decorBuffer[i][j].clear();
+        decorBuffer[i].clear();
+    }
+
     return 1;
 }
 
@@ -748,7 +751,10 @@ void Map::Initialiser()
                     if(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite>0)
                     {
                         if(m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile())!=-1)
+                        {
                             m_decor[i][j][k].m_light=moteurGraphique->LightManager->Add_Dynamic_Light(pos,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite*3,8,sf::Color(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).rouge,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).vert,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).bleu));
+                            moteurGraphique->LightManager->Generate(m_decor[i][j][k].m_light);
+                        }
                         else
                             m_decor[i][j][k].m_light=moteurGraphique->LightManager->Add_Static_Light(pos,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite*3,8,sf::Color(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).rouge,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).vert,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).bleu));
                     }
@@ -1270,7 +1276,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                         int alpha=(int)((positionHero.y)-position.y)+160;
 
                                         if(alpha<configuration->alpha)
-                                            alpha=configuration->alpha;
+                                                alpha=configuration->alpha;
                                         if(alpha>255)
                                             alpha=255;
 
@@ -2793,30 +2799,51 @@ bool Map::getCollision(int positionX,int positionY)
 
 int Map::getTypeCase(int positionX,int positionY)
 {
-	for(int i=0;i<2;i++)
-	{
+
 	    if(positionY>=0&&positionY<(int)m_dimensions.y&&positionX>=0&&positionX<m_dimensions.x)
 	    {
-            if(m_decor[i][positionY][positionX].getTileset()>=0&&m_decor[i][positionY][positionX].getTileset()<(int)m_tileset.size())
-                if(m_tileset[m_decor[i][positionY][positionX].getTileset()].getCollisionTile(m_decor[i][positionY][positionX].getTile()))
+            if(m_decor[0][positionY][positionX].getTileset()>=0&&m_decor[0][positionY][positionX].getTileset()<(int)m_tileset.size())
+                if(m_tileset[m_decor[0][positionY][positionX].getTileset()].getCollisionTile(m_decor[0][positionY][positionX].getTile()))
                     return 1;
 
-            if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<(int)m_monstre.size())
-                if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].enVie())
-                    if(m_ModeleMonstre[m_monstre[m_decor[i][positionY][positionX].getMonstre()].getModele()].m_minimap)
+            if(m_decor[0][positionY][positionX].getMonstre()>-1&&m_decor[0][positionY][positionX].getMonstre()<(int)m_monstre.size())
+                if(m_monstre[m_decor[0][positionY][positionX].getMonstre()].enVie())
+                    if(m_ModeleMonstre[m_monstre[m_decor[0][positionY][positionX].getMonstre()].getModele()].m_minimap)
                         return 2;
 
-            if(m_decor[i][positionY][positionX].getNombreObjets())
+            if(m_decor[0][positionY][positionX].getNombreObjets())
                 return 4;
 
-            for(int z=0;z<(int)m_decor[i][positionY][positionX].getEvenement().size();z++)
-                if(m_decor[i][positionY][positionX].getEvenement()[z]>=0&&m_decor[i][positionY][positionX].getEvenement()[z]<(int)m_evenement.size())
-                    if(m_evenement[m_decor[i][positionY][positionX].getEvenement()[z]].getType()==CHANGEMENT_DE_MAP)
+            for(int z=0;z<(int)m_decor[0][positionY][positionX].getEvenement().size();z++)
+                if(m_decor[0][positionY][positionX].getEvenement()[z]>=0&&m_decor[0][positionY][positionX].getEvenement()[z]<(int)m_evenement.size())
+                    if(m_evenement[m_decor[0][positionY][positionX].getEvenement()[z]].getType()==CHANGEMENT_DE_MAP)
                         return 3;
 	    }
 	    else
-	    return 1;
-	}
+            return 1;
+
+        if(positionY>=0&&positionY<(int)m_dimensions.y&&positionX>=0&&positionX<m_dimensions.x)
+	    {
+            if(m_decor[1][positionY][positionX].getTileset()>=0&&m_decor[1][positionY][positionX].getTileset()<(int)m_tileset.size())
+                if(m_tileset[m_decor[1][positionY][positionX].getTileset()].getCollisionTile(m_decor[1][positionY][positionX].getTile()))
+                    return 1;
+
+            if(m_decor[1][positionY][positionX].getMonstre()>-1&&m_decor[1][positionY][positionX].getMonstre()<(int)m_monstre.size())
+                if(m_monstre[m_decor[1][positionY][positionX].getMonstre()].enVie())
+                    if(m_ModeleMonstre[m_monstre[m_decor[1][positionY][positionX].getMonstre()].getModele()].m_minimap)
+                        return 2;
+
+            if(m_decor[1][positionY][positionX].getNombreObjets())
+                return 4;
+
+            for(int z=0;z<(int)m_decor[1][positionY][positionX].getEvenement().size();z++)
+                if(m_decor[1][positionY][positionX].getEvenement()[z]>=0&&m_decor[1][positionY][positionX].getEvenement()[z]<(int)m_evenement.size())
+                    if(m_evenement[m_decor[1][positionY][positionX].getEvenement()[z]].getType()==CHANGEMENT_DE_MAP)
+                        return 3;
+	    }
+	    else
+            return 1;
+
 
 	return 0;
 }

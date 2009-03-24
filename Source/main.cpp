@@ -82,15 +82,17 @@ int main ( int argc, char** argv )
 	console->Ajouter("Sauvegarde de la configuration");
 
     configuration->Sauvegarder();
+
     console->Ajouter("");
-    console->Ajouter("EXIT_SUCCESS");
-    console->Kill();
+    console->Ajouter("Destruction des moteurs");
 
     moteurGraphique->Kill();
     moteurSons->Kill();
     configuration->Kill();
 
+    console->Ajouter("");
+    console->Ajouter("EXIT_SUCCESS");
 
-
+    console->Kill();
     return EXIT_SUCCESS;
 }

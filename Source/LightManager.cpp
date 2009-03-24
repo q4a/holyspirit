@@ -213,9 +213,12 @@ void Light_Manager::Delete_All_Light(bool justDynamic)
 
 void Light_Manager::Generate()
 {
+    if(configuration->Lumiere>0)
+    {
         GenerateLight genLight(m_DynamicLight, m_wall);
         genLight.compute ();
         genLight.stop ();
+    }
 }
 
 /*void Light_Manager::Generate(sf::View *camera)
@@ -231,12 +234,10 @@ void Light_Manager::Generate()
 
 void Light_Manager::Generate(Light_Entity &e)
 {
-
+    if(configuration->Lumiere>0)
     if(e.Dynamic()) {
         if(e.ID()>=0&&e.ID()<(int)m_DynamicLight.size()) {
             if(m_DynamicLight[e.ID()].m_actif) {
-
-
                 m_DynamicLight[e.ID()].Generate(m_wall);
             }
         }

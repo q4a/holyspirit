@@ -424,8 +424,6 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std:
 
 void Light::Generate(std::vector <Wall> &m_wall)
 {
-
-
     // On vide la mémoire
     m_shape.clear();
 

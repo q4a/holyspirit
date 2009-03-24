@@ -118,8 +118,6 @@ class Map
 
 	std::vector <std::string> m_fond,m_cheminMusique;
 
-	sf::Image lumiereMask;
-
 	std::vector <Modele_Monstre> m_ModeleMonstre;
 	std::vector <Monstre> m_monstre;
 	std::vector <Projectile> m_projectile;
