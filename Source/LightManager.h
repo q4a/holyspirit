@@ -94,6 +94,7 @@ class Light_Manager : public CSingleton<Light_Manager>
 
     private :
     std::vector<Light>::iterator Iter;
+    GenerateLight m_genLight;
 
 };
 #endif

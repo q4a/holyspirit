@@ -49,8 +49,8 @@ class Jeu
     sf::View camera;
     Menu menu;
     EventManager eventManager;
-    Hero hero;
     Map map;
+    Hero hero;
     sf::Clock Clock;
     sf::SoundBuffer bufferSonMort;
 	sf::Sound  sonMort;

@@ -21,7 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Globale.h"
 #include "generateLight.h"
 
-Light_Manager::Light_Manager()
+Light_Manager::Light_Manager() : m_genLight (&m_DynamicLight, &m_wall)
 {
 
 }
@@ -214,11 +214,9 @@ void Light_Manager::Delete_All_Light(bool justDynamic)
 void Light_Manager::Generate()
 {
     if(configuration->Lumiere>0)
-    {
-        GenerateLight genLight(m_DynamicLight, m_wall);
-        genLight.compute ();
-        genLight.stop ();
-    }
+        for(Iter=m_DynamicLight.begin();Iter!=m_DynamicLight.end();++Iter)
+            if(Iter->m_actif)
+                Iter->Generate(m_wall);
 }
 
 void Light_Manager::Generate(Light_Entity &e)
@@ -227,7 +225,9 @@ void Light_Manager::Generate(Light_Entity &e)
     if(e.Dynamic()) {
         if(e.ID()>=0&&e.ID()<(int)m_DynamicLight.size()) {
             if(m_DynamicLight[e.ID()].m_actif) {
-                m_DynamicLight[e.ID()].Generate(m_wall);
+                m_genLight.compute (&e);
+                m_genLight.stop ();
+                //m_DynamicLight[e.ID()].Generate(m_wall);
             }
         }
     }
