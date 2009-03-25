@@ -39,6 +39,8 @@ class Objet
     Objet(std::string nom,int rarete);
     ~Objet();
 
+    Objet operator=(const Objet &objet);
+
     void AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position);
     void Charger(std::string chemin);
     void ChargerCaracteristiques(std::ifstream *fichier);

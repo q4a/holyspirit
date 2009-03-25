@@ -32,8 +32,7 @@ Evenement::Evenement(int numero)
 
 Evenement::~Evenement()
 {
-    if(m_information.size()>0)
-        m_information.clear();
+    //m_information.clear();
 }
 
 void Evenement::deleteInformations()

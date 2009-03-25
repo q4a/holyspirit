@@ -61,6 +61,40 @@ Objet::~Objet()
     m_cheminImageHero.clear();
 }
 
+Objet Objet::operator=(const Objet &objet)
+{
+	m_type=objet.m_type;
+
+	m_equipe=objet.m_equipe;
+	m_emplacement=objet.m_emplacement;
+	m_emplacementImpossible=objet.m_emplacementImpossible;
+	m_degatsMin=objet.m_degatsMin;
+	m_degatsMax=objet.m_degatsMax;
+	m_armure=objet.m_armure;
+	m_capaciteBenediction=objet.m_capaciteBenediction;
+	m_emplacementImageHero=objet.m_emplacementImageHero;
+	m_cheminImageHero=objet.m_cheminImageHero;
+	m_benedictions=objet.m_benedictions;
+	m_color=objet.m_color;
+	m_nom=objet.m_nom;
+	m_chemin=objet.m_chemin;
+	m_description=objet.m_description;
+	m_rarete=objet.m_rarete;
+	m_image=objet.m_image;
+	m_chanceTrouver=objet.m_chanceTrouver;
+	m_positionImage=objet.m_positionImage;
+	m_taille=objet.m_taille;
+	m_position=objet.m_position;
+	ai=objet.ai;
+	aa=objet.aa;
+	dii=objet.dii;
+	dia=objet.dia;
+	dai=objet.dai;
+	daa=objet.daa;
+
+    return *this;
+}
+
 std::string Objet::getChemin(){return m_chemin;}
 std::string Objet::getNom(){return m_nom;}
 int Objet::getRarete(){return m_rarete;}

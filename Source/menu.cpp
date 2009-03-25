@@ -43,14 +43,9 @@ Menu::Menu()
     console->Ajouter("",0);
     console->Ajouter("Chargement des menus :",0);
     m_imageMiniMap=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_minimap,-1);
-    /*m_imageHUD=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_hud,-1);
-    m_imageBulleVie=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_bulle_vie,-1);
-    m_imageBulleFoi=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_bulle_foi,-1);*/
-
     m_imageAme=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_ame,-1);
     m_imageSang=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_sang,-1);
     m_barrePointAme=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_barre_ame,-1);
-    //m_inventaire=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_inventaire,-1);
 
     m_barreVie=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_barre_vie,-1);
     m_barreVieVide=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_barre_vie_vide,-1);

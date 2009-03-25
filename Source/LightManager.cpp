@@ -221,17 +221,6 @@ void Light_Manager::Generate()
     }
 }
 
-/*void Light_Manager::Generate(sf::View *camera)
-{
-    for(int i=0;i<(int)m_DynamicLight.size();i++) {
-        if(m_DynamicLight[i].m_actif) {
-
-            m_DynamicLight[i].Generate(m_wall);
-        }
-    }
-
-}*/
-
 void Light_Manager::Generate(Light_Entity &e)
 {
     if(configuration->Lumiere>0)

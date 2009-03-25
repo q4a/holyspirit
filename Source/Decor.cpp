@@ -91,9 +91,16 @@ Decor Decor::operator=(const Decor &Decor)
     m_herbe_couleur=Decor.m_herbe_couleur;
     m_hauteur=Decor.m_hauteur;
 
-
     m_evenement=Decor.m_evenement;
 	m_objets=Decor.m_objets;
+
+	m_light=Decor.m_light;
+	color=Decor.color;
+	m_sprite=Decor.m_sprite;
+	m_spriteHerbe=Decor.m_spriteHerbe;
+	m_spriteOmbre=Decor.m_spriteOmbre;
+	m_herbe_couleur=Decor.m_herbe_couleur;
+	m_herbe_decalage=Decor.m_herbe_decalage;
 
     return *this;
 }
