@@ -147,7 +147,7 @@
          Chargement de la map terminé.
          
          Chargement de : Data/Menus/Alpha-arts.png
-         Chargement de : Data/Loading_screens/Plaines2.png
+         Chargement de : Data/Loading_screens/Plaines3.png
          
          Destruction de la map...
          Destruction des cases...
@@ -212,6 +212,7 @@
          Chargement du personnage : Data/Entities/Heroes/Crusader/Two_hands_sword/Katzbalger.rs.hs
          
          Chargement de la map : map1.map.hs
+         Map sauvée existante.
          /Lectures du nom.
          /Lectures des fonds.
          /Lectures des musiques.
@@ -370,6 +371,7 @@
          Chargement de : Data/Entities/NPC/Trader.rs.hs terminé
          /Lectures des monstres.
          
+         Une map des entités est déjà existante.
          /Lectures des événements.
          /Lectures des cases.
          Chargement de la map terminé.
@@ -422,7 +424,6 @@
          Sauvegarde terminée !
          
          Sauvegarde de la map : Data/Temp/map1.map.hs
-         /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_axe.item.hs
          Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
          Sauvegarde terminée !
