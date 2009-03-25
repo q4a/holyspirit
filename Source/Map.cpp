@@ -35,10 +35,6 @@ using namespace sf;
 
 Map::Map()
 {
-    carreBleu.SetSmooth(true);
-    carreRouge.SetSmooth(true);
-    carreVert.SetSmooth(true);
-    carreJaune.SetSmooth(true);
     carreBrun.Create(8*configuration->Resolution.x/800, 8*configuration->Resolution.x/800, Color(128, 64, 0)),carreBleu.Create(8*configuration->Resolution.x/800, 8*configuration->Resolution.x/800, Color(32, 0, 128));
     carreRouge.Create(8*configuration->Resolution.x/800,8*configuration->Resolution.x/800, Color(128, 0, 0)),carreVert.Create(8*configuration->Resolution.x/800, 8*configuration->Resolution.x/800, Color(0, 128, 0));
     carreJaune.Create(8*configuration->Resolution.x/800, 8*configuration->Resolution.x/800, Color(255, 255, 64));
@@ -1090,6 +1086,9 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 	String texte;
 
 	spriteMinimap.SetColor(sf::Color(255,255,255,(int)alpha));
+	spriteMinimap.SetCenter(4*configuration->Resolution.w/800,4*configuration->Resolution.w/800);
+    spriteMinimap.SetRotation(45);
+    spriteMinimap.SetSubRect(sf::IntRect(0,0,8,8));
 
 	positionHero.y=(int)((hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y)*DIVISEUR_COTE_TILE*32);
     positionHero.x=(int)(((hero->m_personnage.getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().y)*DIVISEUR_COTE_TILE-1+m_dimensions.y)*64);
@@ -1290,10 +1289,6 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                     if(configuration->Minimap&&couche==1)
                     {
-                        spriteMinimap.SetCenter(4*configuration->Resolution.w/800,4*configuration->Resolution.w/800);
-                        spriteMinimap.SetRotation(45);
-                        spriteMinimap.SetSubRect(sf::IntRect(0,0,8,8));
-
                         position.x=(((k-(hero->m_personnage.getCoordonnee().x-15))-(j-(hero->m_personnage.getCoordonnee().y-15))-1+40)*6*configuration->Resolution.w/800);
                         position.y=(((k-(hero->m_personnage.getCoordonnee().x-15))+(j-(hero->m_personnage.getCoordonnee().y-15)))*6*configuration->Resolution.w/800);
 
