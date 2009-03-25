@@ -239,6 +239,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
     if(z>=49&&!augmenterNoir&&!allerVersImageChargement)
     {
+        configuration->effetNoir=0;
         jeu->m_contexte = jeu->m_jeu;
        // jeu->m_contexte->CopierCamera(jeu->m_jeu->camera);
     }

@@ -213,8 +213,6 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
                 ecran->Draw(EffectBlur);
                 ecran->Draw(EffectBlur);
                 ecran->Draw(EffectBlur);
-                ecran->Draw(EffectBlur);
-                ecran->Draw(EffectBlur);
             }
             if(configuration->effetMort>0)
                 ecran->Draw(EffectMort);
@@ -385,7 +383,7 @@ void MoteurGraphique::AjouterTexte(sf::String* string, int couche,bool titre)
     if(couche>=0&&couche<=20)
     {
 
-        if(temp.GetRect().Right>configuration->Resolution.w)
+       /* if(temp.GetRect().Right>configuration->Resolution.w)
             temp.SetX(configuration->Resolution.w-(temp.GetRect().Right-temp.GetRect().Left));
 
         if(temp.GetRect().Left<0)
@@ -395,7 +393,7 @@ void MoteurGraphique::AjouterTexte(sf::String* string, int couche,bool titre)
             temp.SetY(0);
 
         if(temp.GetRect().Bottom>configuration->Resolution.h)
-            temp.SetY(configuration->Resolution.h-(temp.GetRect().Bottom-temp.GetRect().Top));
+            temp.SetY(configuration->Resolution.h-(temp.GetRect().Bottom-temp.GetRect().Top));*/
 
         if(titre)
         {
@@ -409,8 +407,6 @@ void MoteurGraphique::AjouterTexte(sf::String* string, int couche,bool titre)
             temp.SetColor(sf::Color((int)(string->GetColor().r*0.15),(int)(string->GetColor().g*0.15),(int)(string->GetColor().b*0.15),string->GetColor().a));
             temp.SetStyle(sf::String::Regular);
             m_textes[couche].push_back(temp);
-
-
         }
 
         m_textes[couche].push_back(temp);
@@ -420,9 +416,10 @@ void MoteurGraphique::AjouterTexte(sf::String* string, int couche,bool titre)
 void MoteurGraphique::Vider()
 {
     for(int i=0;i<=20;i++)
+    {
         m_commandes[i].clear();
-    for(int i=0;i<=20;i++)
         m_textes[i].clear();
+    }
 }
 void MoteurGraphique::ViderParticules()
 {

@@ -434,7 +434,6 @@ void Light::Generate(std::vector <Wall> &m_wall)
     for(int i=0;i<m_quality;i++)
     {
         m_dejaPasse.clear();
-
         AddTriangle(sf::Vector2f((int)((float)m_radius*cos((float)i*buf)),(int)((float)m_radius*sin((float)i*buf))) , sf::Vector2f((int)((float)m_radius*cos((float)(i+1)*buf)),(int)((float)m_radius*sin((float)(i+1)*buf))),0,m_wall);
     }
 }

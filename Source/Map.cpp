@@ -95,8 +95,8 @@ void Map::Detruire()
         console->Ajouter("Cases détruites !");
 
 
-    for(int i=0;i<(int)m_ModeleMonstre.size();i++)
-        m_ModeleMonstre.erase(m_ModeleMonstre.begin()+1);
+    //for(int i=0;i<(int)m_ModeleMonstre.size();i++)
+     //  m_ModeleMonstre.erase(m_ModeleMonstre.begin()+1);
     m_ModeleMonstre.clear();
 
     if(configuration->debug)
@@ -1290,7 +1290,6 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                     if(configuration->Minimap&&couche==1)
                     {
-
                         spriteMinimap.SetCenter(4*configuration->Resolution.w/800,4*configuration->Resolution.w/800);
                         spriteMinimap.SetRotation(45);
                         spriteMinimap.SetSubRect(sf::IntRect(0,0,8,8));
