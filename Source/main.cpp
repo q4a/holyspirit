@@ -24,7 +24,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <iostream>
 
 #include <dirent.h>
-#include "ChargThread.h"
 #include "main.h"
 
 
