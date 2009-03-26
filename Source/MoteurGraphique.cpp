@@ -150,7 +150,7 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
 
         LightManager->Draw(ecran,camera,dimensionsMap);
 
-        EffectBlur.SetParameter("offset",0.01);
+        EffectBlur.SetParameter("offset",0.02);
         ecran->Draw(EffectBlur);
         EffectBlur.SetParameter("offset",0.005);
         ecran->Draw(EffectBlur);
