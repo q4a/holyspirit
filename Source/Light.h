@@ -33,12 +33,16 @@ struct Wall
         pt1=p1;
         pt2=p2;
         hauteur=32;
+
+        m_shadow=NULL;
     }
-    Wall (sf::Vector2f p1,sf::Vector2f p2,int hauteur)
+    Wall (sf::Vector2f p1,sf::Vector2f p2,int newhauteur)
     {
         pt1=p1;
         pt2=p2;
-        hauteur=hauteur;
+        hauteur=newhauteur;
+
+        m_shadow=NULL;
     }
 
     // Pt1 et Pt2 sont les deux extrémités du mur
@@ -48,6 +52,9 @@ struct Wall
 
     // Position du mur
     sf::Vector2f position;
+
+    // Ombre du mur
+    sf::Shape *m_shadow;
 };
 
 // Wall_Entity est une variable qui permet de représenter dans le programme un mur

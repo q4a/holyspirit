@@ -122,9 +122,14 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
 
     if(configuration->Lumiere && configuration->RafraichirLumiere)
     {
-        if(configuration->Ombre&&m_soleil.intensite>64)
+        if(configuration->Ombre&&m_soleil.intensite>32)
         {
             ecran->Clear(sf::Color(255,255,255));
+
+            LightManager->DrawWallShadow(ecran,camera,dimensionsMap);
+
+            EffectBlur.SetParameter("offset",0.01);
+            ecran->Draw(EffectBlur);
 
             ecran->SetView(*camera);
             sprite.SetBlendMode(sf::Blend::Alpha);
@@ -144,13 +149,13 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
 
         ecran->Clear(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
 
-        ecran->SetView(*camera);
+
 
         sprite2.SetColor(sf::Color(255,255,255,255));
 
         LightManager->Draw(ecran,camera,dimensionsMap);
 
-        EffectBlur.SetParameter("offset",0.02);
+        EffectBlur.SetParameter("offset",0.01);
         ecran->Draw(EffectBlur);
         EffectBlur.SetParameter("offset",0.005);
         ecran->Draw(EffectBlur);

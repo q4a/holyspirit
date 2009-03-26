@@ -174,7 +174,6 @@ Wall_Entity Light_Manager::Add_Wall(sf::Vector2f pt1,sf::Vector2f pt2,int hauteu
                     return Wall_Entity(i);
                 }
              }*/
-
     m_wall.push_back(Wall (pt1,pt2,hauteur));
 
     return Wall_Entity(m_wall.size()-1);
@@ -233,6 +232,23 @@ void Light_Manager::Generate(Light_Entity &e)
     }
 }
 
+void Light_Manager::GenerateWallShadow(float angle,Lumiere soleil)
+{
+    angle-=90;
+    for(std::vector<Wall>::iterator IterWall=m_wall.begin();IterWall!=m_wall.end();++IterWall)
+    {
+        if(IterWall->m_shadow!=NULL)
+            delete IterWall->m_shadow;
+
+        IterWall->m_shadow=new sf::Shape();
+
+        IterWall->m_shadow->AddPoint(sf::Vector2f(IterWall->pt2.x,IterWall->pt2.y*0.5),sf::Color(0,0,0,soleil.intensite*0.5));
+        IterWall->m_shadow->AddPoint(sf::Vector2f(IterWall->pt1.x,IterWall->pt1.y*0.5),sf::Color(0,0,0,soleil.intensite*0.5));
+
+        IterWall->m_shadow->AddPoint(sf::Vector2f(IterWall->pt1.x-(100-soleil.hauteur)*0.01*IterWall->hauteur*cos(angle*M_PI/180),(IterWall->pt1.y+(100-soleil.hauteur)*0.01*IterWall->hauteur*sin(angle*M_PI/180))*0.5),sf::Color(0,0,0,soleil.intensite*0.5));
+        IterWall->m_shadow->AddPoint(sf::Vector2f(IterWall->pt2.x-(100-soleil.hauteur)*0.01*IterWall->hauteur*cos(angle*M_PI/180),(IterWall->pt2.y+(100-soleil.hauteur)*0.01*IterWall->hauteur*sin(angle*M_PI/180))*0.5),sf::Color(0,0,0,soleil.intensite*0.5));
+    }
+}
 
 // On affiche toutes les lumières actives
 void Light_Manager::Draw(sf::RenderWindow *App,sf::View *camera, coordonnee dimensionsMap)
@@ -248,6 +264,13 @@ void Light_Manager::Draw(sf::RenderWindow *App,sf::View *camera, coordonnee dime
             if(Iter->GetPosition().x + Iter->GetRadius()>camera->GetRect().Left && Iter->GetPosition().x - Iter->GetRadius()<camera->GetRect().Right
             && Iter->GetPosition().y*0.5 + Iter->GetRadius()*0.5>camera->GetRect().Top  && Iter->GetPosition().y*0.5 - Iter->GetRadius()*0.5<camera->GetRect().Bottom)
                 Iter->Draw(App,dimensionsMap);
+}
+
+void Light_Manager::DrawWallShadow(sf::RenderWindow *App,sf::View *camera, coordonnee dimensionsMap)
+{
+    for(std::vector<Wall>::iterator IterWall=m_wall.begin();IterWall!=m_wall.end();++IterWall)
+        if(IterWall->m_shadow!=NULL)
+            App->Draw(*IterWall->m_shadow);
 }
 
 void Light_Manager::Draw(sf::RenderWindow *App,sf::View *camera, coordonnee dimensionsMap,Light_Entity e)
