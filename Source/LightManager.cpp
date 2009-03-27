@@ -270,7 +270,15 @@ void Light_Manager::DrawWallShadow(sf::RenderWindow *App,sf::View *camera, coord
 {
     for(std::vector<Wall>::iterator IterWall=m_wall.begin();IterWall!=m_wall.end();++IterWall)
         if(IterWall->m_shadow!=NULL)
-            App->Draw(*IterWall->m_shadow);
+            if((IterWall->m_shadow->GetPointPosition(0).x > camera->GetRect().Left && IterWall->m_shadow->GetPointPosition(0).x < camera->GetRect().Right
+              &&IterWall->m_shadow->GetPointPosition(0).y > camera->GetRect().Top  && IterWall->m_shadow->GetPointPosition(0).y < camera->GetRect().Bottom)
+             ||(IterWall->m_shadow->GetPointPosition(1).x > camera->GetRect().Left && IterWall->m_shadow->GetPointPosition(1).x < camera->GetRect().Right
+              &&IterWall->m_shadow->GetPointPosition(1).y > camera->GetRect().Top  && IterWall->m_shadow->GetPointPosition(1).y < camera->GetRect().Bottom)
+             ||(IterWall->m_shadow->GetPointPosition(2).x > camera->GetRect().Left && IterWall->m_shadow->GetPointPosition(2).x < camera->GetRect().Right
+              &&IterWall->m_shadow->GetPointPosition(2).y > camera->GetRect().Top  && IterWall->m_shadow->GetPointPosition(2).y < camera->GetRect().Bottom)
+             ||(IterWall->m_shadow->GetPointPosition(3).x > camera->GetRect().Left && IterWall->m_shadow->GetPointPosition(3).x < camera->GetRect().Right
+              &&IterWall->m_shadow->GetPointPosition(3).y > camera->GetRect().Top  && IterWall->m_shadow->GetPointPosition(3).y < camera->GetRect().Bottom))
+                App->Draw(*IterWall->m_shadow);
 }
 
 void Light_Manager::Draw(sf::RenderWindow *App,sf::View *camera, coordonnee dimensionsMap,Light_Entity e)

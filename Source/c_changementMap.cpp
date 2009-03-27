@@ -161,6 +161,8 @@ void c_Chargement::Utiliser(Jeu *jeu)
         if(configuration->Lumiere)
             jeu->map.calculerOmbresEtLumieres();
 
+        moteurGraphique->LightManager->GenerateWallShadow(moteurGraphique->m_angleOmbreSoleil,moteurGraphique->m_soleil);
+
         configuration->RafraichirLumiere=true;
 
         sf::Vector2f pos;

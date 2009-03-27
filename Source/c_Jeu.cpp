@@ -272,7 +272,6 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 if(configuration->Lumiere&&tempsEcouleDepuisDernierCalculLumiere>configuration->frequence_lumiere)
                 {
-                    moteurGraphique->LightManager->GenerateWallShadow(moteurGraphique->m_angleOmbreSoleil,moteurGraphique->m_soleil);
                     jeu->map.calculerOmbresEtLumieres();
 
                     configuration->RafraichirLumiere=true;
