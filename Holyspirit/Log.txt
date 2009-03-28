@@ -35,9 +35,6 @@
          Chargement de l'objet : Helmet.item.hs
          Chargement de : Data/Items/Images/helmet01.png
          
-         Chargement de l'objet : Gown.item.hs
-         Chargement de : Data/Items/Images/gown.png
-         
          Chargement de l'objet : Two_hand_sword.item.hs
          Chargement de : Data/Items/Images/TwoHand01Sword.png
          
@@ -100,8 +97,6 @@
          
          Chargement de l'objet : Necklage.item.hs
          
-         Chargement de l'objet : Great_shield.item.hs
-         
          Chargement de l'objet : Small_sword_divin.item.hs
          
          Chargement de l'objet : Armband.item.hs
@@ -110,6 +105,11 @@
          Chargement de : Data/Items/Images/axes01.png
          
          Chargement de l'objet : Katzbalger.item.hs
+         
+         Chargement de l'objet : Gown.item.hs
+         Chargement de : Data/Items/Images/gown.png
+         
+         Chargement de l'objet : Great_shield.item.hs
          /Lectures des objets.
          Chargement de : Data/Menus/Inventory.png
          Chargement de : Data/Menus/Hud.png
@@ -117,18 +117,23 @@
          Chargement de : Data/Menus/Faith_orb.png
          Chargement de : Data/Menus/Coupe2.png
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoHand.rs.hs
-         Chargement de : CroiseMailleAttente2Main0.png
-         Chargement de : CroiseMailleMarcheSansEpee2Mains0.png
-         Chargement de : CroiseMailleFrappeSansArmeDeuxMains0.png
-         Chargement de : CroiseMailleFrappeSansArmeDeuxMains1.png
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoWeapons.rs.hs
+         Chargement de : CroiseMailleAttente1Main0.png
+         Chargement de : CroiseMailleMarche1Epee0.png
+         Chargement de : CroiseMailleFrappeSans2Arme0.png
+         Chargement de : CroiseMailleFrappeSans2Arme1.png
          Chargement de : Data/Sounds/9906__Snoman__grass3.wav
          Chargement de : Data/Sounds/epee.wav
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Two_hands_sword/Katzbalger.rs.hs
-         Chargement de : KatzbalgerAttente0.png
-         Chargement de : KatzbalgerMarche0.png
-         Chargement de : KatzbalgerFrappe0.png
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_r.rs.hs
+         Chargement de : TueuseDivineAttenteDroite0.png
+         Chargement de : TueuseDivineMarcheDroite0.png
+         Chargement de : TueuseDivineAttaqueDroite0.png
+         
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
+         Chargement de : TueuseDivineAttenteGauche0.png
+         Chargement de : TueuseDivineMarcheGauche0.png
+         Chargement de : TueuseDivineAttaqueGauche0.png
          
          Chargement des sons :
          Chargement de : Data/Sounds/Coeur.wav
@@ -171,7 +176,6 @@
          /Ecriture des cases inventaires.
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Gown.item.hs
          /Sauvegarde de Two_hand_sword.item.hs
          /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Small_sword.item.hs
@@ -199,17 +203,20 @@
          /Sauvegarde de Small_shield.item.hs
          /Sauvegarde de Unique_boot.item.hs
          /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Small_sword_divin.item.hs
          /Sauvegarde de Armband.item.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Katzbalger.item.hs
+         /Sauvegarde de Gown.item.hs
+         /Sauvegarde de Great_shield.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoHand.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoWeapons.rs.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Two_hands_sword/Katzbalger.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_r.rs.hs
+         
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
          
          Chargement de la map : map1.map.hs
          /Lectures du nom.
@@ -563,7 +570,6 @@
          /Ecriture des cases inventaires.
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Gown.item.hs
          /Sauvegarde de Two_hand_sword.item.hs
          /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Small_sword.item.hs
@@ -591,17 +597,20 @@
          /Sauvegarde de Small_shield.item.hs
          /Sauvegarde de Unique_boot.item.hs
          /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Small_sword_divin.item.hs
          /Sauvegarde de Armband.item.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Katzbalger.item.hs
+         /Sauvegarde de Gown.item.hs
+         /Sauvegarde de Great_shield.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoHand.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoWeapons.rs.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Two_hands_sword/Katzbalger.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_r.rs.hs
+         
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
          
          Chargement de la map : map2.map.hs
          /Lectures du nom.
@@ -835,7 +844,6 @@
          /Ecriture des cases inventaires.
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Gown.item.hs
          /Sauvegarde de Two_hand_sword.item.hs
          /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Small_sword.item.hs
@@ -863,17 +871,20 @@
          /Sauvegarde de Small_shield.item.hs
          /Sauvegarde de Unique_boot.item.hs
          /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Small_sword_divin.item.hs
          /Sauvegarde de Armband.item.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Katzbalger.item.hs
+         /Sauvegarde de Gown.item.hs
+         /Sauvegarde de Great_shield.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoHand.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoWeapons.rs.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Two_hands_sword/Katzbalger.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_r.rs.hs
+         
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
          
          Chargement de la map : map1.map.hs
          Map sauvée existante.
@@ -979,13 +990,16 @@
          Chargement de la map terminé.
          
          
+         Sauvegarde de la map : Data/Temp/map1.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
+         Sauvegarde terminée !
+         
          Sauvegarde du héro...
          Ouverture du fichier.
          /Ecriture des caracterstiques.
          /Ecriture des cases inventaires.
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Gown.item.hs
          /Sauvegarde de Two_hand_sword.item.hs
          /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Small_sword.item.hs
@@ -1013,291 +1027,12 @@
          /Sauvegarde de Small_shield.item.hs
          /Sauvegarde de Unique_boot.item.hs
          /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Small_sword_divin.item.hs
          /Sauvegarde de Armband.item.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Katzbalger.item.hs
-         /Ecriture des objets.
-         Sauvegarde du héro terminée !
-         
-         Sauvegarde de la map : Data/Temp/map1.map.hs
-         Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
-         Sauvegarde terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Ecriture des cases inventaires.
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Helmet.item.hs
          /Sauvegarde de Gown.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
          /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Unique_shield.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Small_sword_divin.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Unique_boot.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_sword_divin.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Katzbalger.item.hs
-         /Ecriture des objets.
-         Sauvegarde du héro terminée !
-         
-         Sauvegarde de la map : Data/Temp/map1.map.hs
-         Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
-         Sauvegarde terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Ecriture des cases inventaires.
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Gown.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Unique_shield.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Small_sword_divin.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Unique_boot.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_sword_divin.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Katzbalger.item.hs
-         /Ecriture des objets.
-         Sauvegarde du héro terminée !
-         
-         Sauvegarde de la map : Data/Temp/map1.map.hs
-         Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
-         Sauvegarde terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Ecriture des cases inventaires.
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Gown.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Unique_shield.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Small_sword_divin.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Unique_boot.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_sword_divin.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Katzbalger.item.hs
-         /Ecriture des objets.
-         Sauvegarde du héro terminée !
-         
-         Sauvegarde de la map : Data/Temp/map1.map.hs
-         Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
-         Sauvegarde terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Ecriture des cases inventaires.
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Gown.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Unique_shield.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Small_sword_divin.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Unique_boot.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_sword_divin.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Katzbalger.item.hs
-         /Ecriture des objets.
-         Sauvegarde du héro terminée !
-         
-         Sauvegarde de la map : Data/Temp/map1.map.hs
-         Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
-         Sauvegarde terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Ecriture des cases inventaires.
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Gown.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Unique_shield.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Small_sword_divin.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Unique_boot.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_sword_divin.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Katzbalger.item.hs
-         /Ecriture des objets.
-         Sauvegarde du héro terminée !
-         
-         Sauvegarde de la map : Data/Temp/map1.map.hs
-         Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
-         Sauvegarde terminée !
-         
-         Sauvegarde de la map : Data/Temp/map1.map.hs
-         Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
-         Sauvegarde terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Ecriture des cases inventaires.
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Gown.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Unique_shield.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Small_sword_divin.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Unique_boot.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_sword_divin.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Katzbalger.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
