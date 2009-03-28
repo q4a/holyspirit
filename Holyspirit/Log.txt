@@ -219,6 +219,7 @@
          Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
          
          Chargement de la map : map1.map.hs
+         Map sauvée existante.
          /Lectures du nom.
          /Lectures des fonds.
          /Lectures des musiques.
@@ -377,7 +378,10 @@
          Chargement de : Data/Entities/NPC/Trader.rs.hs terminé
          /Lectures des monstres.
          
+         Une map des entités est déjà existante.
          /Lectures des événements.
+         
+         Chargement de l'objet : Small_axe.item.hs
          /Lectures des cases.
          Chargement de la map terminé.
          
@@ -387,6 +391,7 @@
          ---------------------------------------------------------------------------------
          
          Sauvegarde de la map : Data/Temp/map1.map.hs
+         /Sauvegarde de Small_axe.item.hs
          Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
          Sauvegarde terminée !
          
@@ -613,6 +618,7 @@
          Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
          
          Chargement de la map : map2.map.hs
+         Map sauvée existante.
          /Lectures du nom.
          /Lectures des fonds.
          /Lectures des musiques.
@@ -651,6 +657,7 @@
          Chargement de : Data/Entities/Monsters/ErrantRoche/ErrantRoche.rs.hs terminé
          /Lectures des monstres.
          
+         Une map des entités est déjà existante.
          /Lectures des événements.
          /Lectures des cases.
          Chargement de la map terminé.
@@ -986,11 +993,615 @@
          
          Une map des entités est déjà existante.
          /Lectures des événements.
+         
+         Chargement de l'objet : Small_axe.item.hs
+         /Lectures des cases.
+         Chargement de la map terminé.
+         
+         
+         ---------------------------------------------------------------------------------
+         EVENEMENT : Changement de map
+         ---------------------------------------------------------------------------------
+         Chargement de : Data/Loading_screens/Plaines3.png
+         
+         Sauvegarde de la map : Data/Temp/map1.map.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
+         Sauvegarde terminée !
+         
+         Destruction de la map...
+         Destruction des cases...
+         0
+         1
+         2
+         3
+         4
+         5
+         6
+         7
+         8
+         9
+         10
+         11
+         12
+         13
+         14
+         15
+         16
+         17
+         18
+         19
+         20
+         21
+         22
+         23
+         24
+         25
+         26
+         27
+         28
+         29
+         30
+         31
+         32
+         33
+         34
+         35
+         36
+         37
+         38
+         39
+         40
+         41
+         42
+         43
+         44
+         45
+         46
+         47
+         48
+         49
+         50
+         51
+         52
+         53
+         54
+         55
+         56
+         57
+         58
+         59
+         60
+         61
+         62
+         63
+         64
+         65
+         66
+         67
+         68
+         69
+         70
+         71
+         72
+         73
+         74
+         75
+         76
+         77
+         78
+         79
+         -
+         0
+         1
+         2
+         3
+         4
+         5
+         6
+         7
+         8
+         9
+         10
+         11
+         12
+         13
+         14
+         15
+         16
+         17
+         18
+         19
+         20
+         21
+         22
+         23
+         24
+         25
+         26
+         27
+         28
+         29
+         30
+         31
+         32
+         33
+         34
+         35
+         36
+         37
+         38
+         39
+         40
+         41
+         42
+         43
+         44
+         45
+         46
+         47
+         48
+         49
+         50
+         51
+         52
+         53
+         54
+         55
+         56
+         57
+         58
+         59
+         60
+         61
+         62
+         63
+         64
+         65
+         66
+         67
+         68
+         69
+         70
+         71
+         72
+         73
+         74
+         75
+         76
+         77
+         78
+         79
+         -
+         Cases détruites !
+         Modèles monstres détruits !
+         Monstres détruits !
+         Evénements détruits !
+         Fonds détruits !
+         Chemins musiques détruits !
+         Projectiles détruits !
+         Effets détruits !
+         Map détruite !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Ecriture des cases inventaires.
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Unique_shield.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Small_sword_divin.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Unique_boot.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Small_sword_divin.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Katzbalger.item.hs
+         /Sauvegarde de Gown.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoWeapons.rs.hs
+         
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_r.rs.hs
+         
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
+         
+         Chargement de la map : map2.map.hs
+         Map sauvée existante.
+         /Lectures du nom.
+         /Lectures des fonds.
+         /Lectures des musiques.
+         /Lectures des lumières.
+         /Lectures des tilesets.
+         /Lectures des herbes.
+         
+         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Axe/Axe.rs.hs
+         Chargement du script : "Data/Scripts/AI/standard.script.hs"
+         
+         Chargement de l'objet : Small_axe.item.hs
+         Chargement de : Data/Entities/Monsters/PantinMorbide/Axe/Axe.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Monsters/ErrantRoche/ErrantRoche.rs.hs
+         Chargement du script : "Data/Scripts/AI/standard.script.hs"
+         
+         Chargement de l'objet : Ore.item.hs
+         Chargement de : Data/Entities/Monsters/ErrantRoche/ErrantRoche.rs.hs terminé
+         /Lectures des monstres.
+         
+         Une map des entités est déjà existante.
+         /Lectures des événements.
+         /Lectures des cases.
+         Chargement de la map terminé.
+         
+         
+         ---------------------------------------------------------------------------------
+         EVENEMENT : Changement de map
+         ---------------------------------------------------------------------------------
+         
+         Sauvegarde de la map : Data/Temp/map2.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map2.emap.hs
+         Sauvegarde terminée !
+         
+         Destruction de la map...
+         Destruction des cases...
+         0
+         1
+         2
+         3
+         4
+         5
+         6
+         7
+         8
+         9
+         10
+         11
+         12
+         13
+         14
+         15
+         16
+         17
+         18
+         19
+         20
+         21
+         22
+         23
+         24
+         25
+         26
+         27
+         28
+         29
+         30
+         31
+         32
+         33
+         34
+         35
+         36
+         37
+         38
+         39
+         40
+         41
+         42
+         43
+         44
+         45
+         46
+         47
+         48
+         49
+         50
+         51
+         52
+         53
+         54
+         55
+         56
+         57
+         58
+         59
+         60
+         61
+         62
+         63
+         64
+         65
+         66
+         67
+         68
+         69
+         70
+         71
+         72
+         73
+         74
+         75
+         76
+         77
+         78
+         79
+         -
+         0
+         1
+         2
+         3
+         4
+         5
+         6
+         7
+         8
+         9
+         10
+         11
+         12
+         13
+         14
+         15
+         16
+         17
+         18
+         19
+         20
+         21
+         22
+         23
+         24
+         25
+         26
+         27
+         28
+         29
+         30
+         31
+         32
+         33
+         34
+         35
+         36
+         37
+         38
+         39
+         40
+         41
+         42
+         43
+         44
+         45
+         46
+         47
+         48
+         49
+         50
+         51
+         52
+         53
+         54
+         55
+         56
+         57
+         58
+         59
+         60
+         61
+         62
+         63
+         64
+         65
+         66
+         67
+         68
+         69
+         70
+         71
+         72
+         73
+         74
+         75
+         76
+         77
+         78
+         79
+         -
+         Cases détruites !
+         Modèles monstres détruits !
+         Monstres détruits !
+         Evénements détruits !
+         Fonds détruits !
+         Chemins musiques détruits !
+         Projectiles détruits !
+         Effets détruits !
+         Map détruite !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Ecriture des cases inventaires.
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Unique_shield.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Small_sword_divin.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Unique_boot.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Small_sword_divin.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Katzbalger.item.hs
+         /Sauvegarde de Gown.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoWeapons.rs.hs
+         
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_r.rs.hs
+         
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
+         
+         Chargement de la map : map1.map.hs
+         Map sauvée existante.
+         /Lectures du nom.
+         /Lectures des fonds.
+         /Lectures des musiques.
+         /Lectures des lumières.
+         /Lectures des tilesets.
+         /Lectures des herbes.
+         
+         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Axe/Axe.rs.hs
+         Chargement du script : "Data/Scripts/AI/standard.script.hs"
+         
+         Chargement de l'objet : Small_axe.item.hs
+         Chargement de : Data/Entities/Monsters/PantinMorbide/Axe/Axe.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Breakables/ExplosiveBarrel.rs.hs
+         Chargement du script : "Data/Scripts/AI/inert.script.hs"
+         
+         Chargement de l'objet : Coal.item.hs
+         Chargement de : Data/Entities/Breakables/ExplosiveBarrel.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Monsters/DemonicPriest/DemonicPriest.rs.hs
+         Chargement du script : "Data/Scripts/AI/DemonicPriest.script.hs"
+         
+         Chargement de l'objet : Gown.item.hs
+         
+         Chargement de l'objet : Ring.item.hs
+         
+         Chargement de l'objet : Necklage.item.hs
+         
+         Chargement de l'objet : Unique_boot.item.hs
+         Chargement de : Data/Entities/Monsters/DemonicPriest/DemonicPriest.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Sword/Sword.rs.hs
+         Chargement du script : "Data/Scripts/AI/standard.script.hs"
+         
+         Chargement de l'objet : Small_sword.item.hs
+         
+         Chargement de l'objet : Small_shield.item.hs
+         
+         Chargement de l'objet : Small_sword_divin.item.hs
+         Chargement de : Data/Entities/Monsters/PantinMorbide/Sword/Sword.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Guardian/Guardian.rs.hs
+         Chargement du script : "Data/Scripts/AI/standard.script.hs"
+         
+         Chargement de l'objet : Two_hand_sword.item.hs
+         
+         Chargement de l'objet : Katzbalger.item.hs
+         
+         Chargement de l'objet : Helmet.item.hs
+         
+         Chargement de l'objet : Chainmail.item.hs
+         Chargement de : Data/Entities/Monsters/PantinMorbide/Guardian/Guardian.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Arquebuse/Arquebuse.rs.hs
+         Chargement du script : "Data/Scripts/AI/shooter.script.hs"
+         
+         Chargement de l'objet : Arquebuse.item.hs
+         
+         Chargement de l'objet : Coal.item.hs
+         Chargement de : Data/Entities/Monsters/PantinMorbide/Arquebuse/Arquebuse.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Warrior/Warrior.rs.hs
+         Chargement du script : "Data/Scripts/AI/standard.script.hs"
+         
+         Chargement de l'objet : Armor.item.hs
+         
+         Chargement de l'objet : Boot.item.hs
+         
+         Chargement de l'objet : Unique_boot.item.hs
+         
+         Chargement de l'objet : Ring.item.hs
+         
+         Chargement de l'objet : Necklage.item.hs
+         
+         Chargement de l'objet : Long_sword.item.hs
+         
+         Chargement de l'objet : Small_sword.item.hs
+         
+         Chargement de l'objet : Armband.item.hs
+         
+         Chargement de l'objet : Small_sword_divin.item.hs
+         
+         Chargement de l'objet : Great_shield.item.hs
+         
+         Chargement de l'objet : Unique_shield.item.hs
+         Chargement de : Data/Entities/Monsters/PantinMorbide/Warrior/Warrior.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/NPC/Trader.rs.hs
+         Chargement du script : "Data/Scripts/NPC/standing.script.hs"
+         
+         Chargement de l'objet : Small_sword.item.hs
+         
+         Chargement de l'objet : Small_shield.item.hs
+         Chargement de : Data/Entities/NPC/Trader.rs.hs terminé
+         /Lectures des monstres.
+         
+         Une map des entités est déjà existante.
+         /Lectures des événements.
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
          /Lectures des cases.
          Chargement de la map terminé.
          
          
          Sauvegarde de la map : Data/Temp/map1.map.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
          Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
          Sauvegarde terminée !
          
