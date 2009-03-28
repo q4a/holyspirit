@@ -104,10 +104,10 @@ class Light
     void Draw(sf::RenderWindow *App, coordonnee dimensionsMap);
 
     // Calculer la lumière
-    void Generate(std::vector <Wall> &m_wall);
+    void Generate( std::vector<Wall>& m_wall);
 
     // Ajouter un triangle à la lumière, en effet, les lumières sont composée de triangles
-    void AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std::vector <Wall> &m_wall);
+    void AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std::vector<Wall>& m_wall);
 
     // Tester voir si un point "pt" se trouve dans le triangle [(0;0),"pt1","pt2"]
     bool CollisionWithPoint(sf::Vector2f &pt,sf::Vector2f &pt1,sf::Vector2f &pt2);

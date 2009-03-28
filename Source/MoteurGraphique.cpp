@@ -28,7 +28,7 @@ MoteurGraphique::MoteurGraphique()
     LightManager=Light_Manager::GetInstance();
 
     m_images.push_back(Image_moteur ());
-    m_images[0].img.Create(128, 128, sf::Color(255, 255, 255));
+    m_images[0].img.Create(1024, 1024, sf::Color(255, 255, 255));
     m_images[0].nom="O";
     m_images[0].importance=-1;
 
@@ -36,8 +36,6 @@ MoteurGraphique::MoteurGraphique()
     m_soleil.vert=255;
     m_soleil.bleu=255;
     m_soleil.intensite=255;
-
-    nettoyageAuto=0;
 }
 MoteurGraphique::~MoteurGraphique()
 {
@@ -101,18 +99,21 @@ void MoteurGraphique::Charger()
 
 void MoteurGraphique::Gerer(sf::RenderWindow *ecran,float temps,int tailleMapY)
 {
-    for(int i=0;i<(int)m_systemeParticules.size();i++)
-        if(m_systemeParticules[i].m_modele>=0&&m_systemeParticules[i].m_modele<(int)m_modeleSystemeParticules.size())
+    int k=0;
+    for(m_systemeParticules_iter=m_systemeParticules.begin();m_systemeParticules_iter!=m_systemeParticules.end();++m_systemeParticules_iter,++k)
+        if(m_systemeParticules_iter->m_modele>=0&&m_systemeParticules_iter->m_modele<(int)m_modeleSystemeParticules.size())
         {
-            m_systemeParticules[i].Afficher(ecran,&m_modeleSystemeParticules[m_systemeParticules[i].m_modele]);
+            m_systemeParticules_iter->Afficher(ecran,&m_modeleSystemeParticules[m_systemeParticules_iter->m_modele]);
 
-            if(!m_systemeParticules[i].Gerer(temps,tailleMapY))
-                m_systemeParticules.erase (m_systemeParticules.begin()+i);
-            nettoyageAuto=0;
+            if(!m_systemeParticules_iter->Gerer(temps,tailleMapY))
+            {
+                m_systemeParticules.erase (m_systemeParticules_iter);
+                if((int)m_systemeParticules.size()>0)
+                    m_systemeParticules_iter=m_systemeParticules.begin()+k;
+                else
+                    break;
+            }
         }
-    nettoyageAuto+=temps;
-    if(nettoyageAuto>10)
-        m_systemeParticules.clear(),nettoyageAuto=0;
 }
 
 void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordonnee dimensionsMap)
@@ -128,7 +129,7 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
 
             LightManager->DrawWallShadow(ecran,camera,dimensionsMap);
 
-            EffectBlur.SetParameter("offset",0.01);
+            EffectBlur.SetParameter("offset",0.02);
             ecran->Draw(EffectBlur);
 
             ecran->SetView(*camera);
@@ -137,19 +138,30 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
             for(int i=0;i<(int)m_commandes[9].size();i++)
             {
                 sprite=m_commandes[9][i].m_sprite;
-                sprite.SetColor(sf::Color(0,0,0,m_soleil.intensite/2));
+                sprite.SetColor(sf::Color(0,0,0,255));
                 ecran->Draw(sprite);
             }
 
-            EffectBlur.SetParameter("offset",0.0025);
+            ecran->SetView(ecran->GetDefaultView());
+
+            sf::Sprite sprite3;
+            sprite3.SetX(0);
+            sprite3.SetY(0);
+            sprite3.SetImage(*getImage(0));
+            sprite3.Resize(configuration->Resolution.w,configuration->Resolution.h);
+            sprite3.SetColor(sf::Color(sf::Color(128+128-m_soleil.intensite*0.5,128+128-m_soleil.intensite*0.5,128+128-m_soleil.intensite*0.5)));
+            sprite3.SetBlendMode(sf::Blend::Add);
+            ecran->Draw(sprite3);
+
+            EffectBlur.SetParameter("offset",0.005);
             ecran->Draw(EffectBlur);
 
             m_light_screen2.CopyScreen(*ecran);
         }
 
+        ecran->SetView(*camera);
+
         ecran->Clear(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
-
-
 
         sprite2.SetColor(sf::Color(255,255,255,255));
 
@@ -179,7 +191,7 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
             ecran->Draw(sprite2);
         }
 
-        if(k==10&&configuration->Ombre&&configuration->Ombre&&m_soleil.intensite>64)
+        if(k==10&&configuration->Ombre&&configuration->Ombre&&m_soleil.intensite>32)
         {
             sprite2.FlipY(true);
             sprite2.SetImage(m_light_screen2);

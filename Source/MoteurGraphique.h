@@ -86,8 +86,6 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	MoteurGraphique();
 	~MoteurGraphique();
 
-	float nettoyageAuto;
-
 	std::vector <Image_moteur> m_images;
 
 	std::vector <ModeleParticuleSysteme> m_modeleSystemeParticules;
@@ -95,6 +93,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	std::vector <sf::String> m_textes[21];
 	std::vector <Commande> m_commandes[21];
 	std::vector <ParticuleSysteme> m_systemeParticules;
+	std::vector <ParticuleSysteme>::iterator m_systemeParticules_iter;
 
 	std::vector <Commande>::iterator IterCommande;
 };

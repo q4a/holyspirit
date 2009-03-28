@@ -65,11 +65,11 @@ Decor::Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int her
 Decor::~Decor()
 {
 
-        m_evenement.clear();
+    m_evenement.clear();
     //if(configuration.debug)
        //console.Ajouter("/Destruction des evenements");
 
-        m_objets.clear();
+    m_objets.clear();
     //  if(configuration.debug)
        // console.Ajouter("/Destruction des objets");
 }
@@ -91,8 +91,14 @@ Decor Decor::operator=(const Decor &Decor)
     m_herbe_couleur=Decor.m_herbe_couleur;
     m_hauteur=Decor.m_hauteur;
 
-    m_evenement=Decor.m_evenement;
-	m_objets=Decor.m_objets;
+    m_evenement.resize((int)Decor.m_evenement.size(), 0);
+    for(int i=0;i<(int)Decor.m_evenement.size();++i)
+        m_evenement[i]=Decor.m_evenement[i];
+
+    m_objets.resize(Decor.m_objets.size(),Objet ());
+    for(int i=0;i<(int)Decor.m_objets.size();++i)
+        m_objets[i]=Decor.m_objets[i];
+
 
 	m_light=Decor.m_light;
 	color=Decor.color;

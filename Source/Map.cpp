@@ -2495,8 +2495,6 @@ bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *ca
 
         if(!m_monstre[numeroMonstre].enVie()&&viePrecedente>0)
         {
-
-
             for(int i=0;i<(int)m_monstre[numeroMonstre].m_miracleEnCours.size();i++)
             {
                 for(int o=0;o<(int)m_monstre[numeroMonstre].m_miracleEnCours[i].m_infos.size();o++)

@@ -153,10 +153,13 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
 
     if(m_EventTableau[Key::Tab])
     {
-        if(configuration->console)
-            configuration->console=false;
+        if(configuration->console==0)
+            configuration->console=1;
+        else if(configuration->console==1)
+            configuration->console=2;
         else
-            configuration->console=true;
+            configuration->console=0;
+
         m_EventTableau[Key::Tab]=false;
     }
 

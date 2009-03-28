@@ -169,9 +169,8 @@ bool Light::CollisionWithLine(sf::Vector2f &l1, sf::Vector2f &l2,sf::Vector2f &p
     return 0;
 }
 
-void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std::vector <Wall>& m_wall)
+void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std::vector <Wall>& m_wall)
 {
-
     int m=minimum_wall;
     bool wall=false;
     int hauteur=0;
@@ -422,7 +421,7 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std:
 
 }
 
-void Light::Generate(std::vector <Wall> &m_wall)
+void Light::Generate( std::vector <Wall> &m_wall)
 {
     // On vide la mémoire
     m_shape.clear();

@@ -354,14 +354,13 @@ bool Modele_Monstre::Charger(string chemin)
         }while(caractere!='$');
 
 
-        Pose poseTemp;
-        m_pose.resize(NOMBRE_ETAT,vector<vector<Pose> >(0,vector<Pose>(0,poseTemp)));
+        m_pose.resize(NOMBRE_ETAT,vector<vector<Pose> >(0,vector<Pose>(0, Pose ())));
 
     	for(int i=0;i<NOMBRE_ETAT;i++)
     	{
     	    for(int j=0;j<8;j++)
     	    {
-    	        m_pose[i].push_back(vector<Pose> (0,poseTemp));
+    	        m_pose[i].push_back(vector<Pose> (0,Pose ()));
                 do
                 {
                     if(caractere=='*')
@@ -396,7 +395,7 @@ bool Modele_Monstre::Charger(string chemin)
                         if(centre.y==-1)
                             centre.y=position.h-32;
 
-                        m_pose[i][j].push_back(poseTemp);
+                        m_pose[i][j].push_back(Pose ());
                         m_pose[i][j].back().setPose(position,centre,animation,son,image,attaque,lumiere,tempsAnimation,0);
                         fichier->get(caractere);
                         if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }

@@ -670,6 +670,7 @@ int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,boo
 
 void Personnage::frappe(coordonnee direction,coordonnee position)
 {
+
     if(!frappeEnCours)
     {
         m_etat=2;

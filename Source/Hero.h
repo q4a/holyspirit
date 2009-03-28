@@ -121,6 +121,7 @@ class Hero
     Caracteristique m_caracteristiques;
 
     int miracleEnCours,frappeEnCours,m_objetEnMain,m_objetADeposer;
+    int m_argent;
 
     //cDAT m_fichierSave;
     std::vector<std::string> m_contenuSave;

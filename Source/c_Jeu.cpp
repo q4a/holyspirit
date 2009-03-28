@@ -215,7 +215,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     jeu->map.musiquePlay(position);
                     jeu->sonMort.SetPosition(position.x,0,position.y);
 
-                    jeu->hero.m_personnage.AjouterPointAme(jeu->menu.GererDynamique(tempsEcoule));
+                   jeu->hero.m_personnage.AjouterPointAme(jeu->menu.GererDynamique(tempsEcoule));
 
                     tempsEcouleDepuisDernierDeplacement=0;
                 }
@@ -440,7 +440,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
                         moteurGraphique->AjouterTexte(&Temps,17);
                         moteurGraphique->AjouterTexte(&TourBoucle,17);
 
-                        console->Afficher(&jeu->ecran);
+                        if(configuration->console!=2)
+                            console->Afficher(&jeu->ecran);
                     }
 
                     jeu->m_display=true;

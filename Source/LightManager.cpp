@@ -224,9 +224,9 @@ void Light_Manager::Generate(Light_Entity &e)
     if(e.Dynamic()) {
         if(e.ID()>=0&&e.ID()<(int)m_DynamicLight.size()) {
             if(m_DynamicLight[e.ID()].m_actif) {
-                m_genLight.compute (&e);
-                m_genLight.stop ();
-                //m_DynamicLight[e.ID()].Generate(m_wall);
+                //m_genLight.compute (&e);
+              //  m_genLight.stop ();
+                m_DynamicLight[e.ID()].Generate(m_wall);
             }
         }
     }
@@ -234,7 +234,7 @@ void Light_Manager::Generate(Light_Entity &e)
 
 void Light_Manager::GenerateWallShadow(float angle,Lumiere soleil)
 {
-    angle-=90;
+    angle-=90+22.5;
     for(std::vector<Wall>::iterator IterWall=m_wall.begin();IterWall!=m_wall.end();++IterWall)
     {
         if(IterWall->m_shadow!=NULL)
@@ -242,11 +242,11 @@ void Light_Manager::GenerateWallShadow(float angle,Lumiere soleil)
 
         IterWall->m_shadow=new sf::Shape();
 
-        IterWall->m_shadow->AddPoint(sf::Vector2f(IterWall->pt2.x,IterWall->pt2.y*0.5),sf::Color(0,0,0,soleil.intensite*0.5));
-        IterWall->m_shadow->AddPoint(sf::Vector2f(IterWall->pt1.x,IterWall->pt1.y*0.5),sf::Color(0,0,0,soleil.intensite*0.5));
+        IterWall->m_shadow->AddPoint(sf::Vector2f(IterWall->pt2.x,IterWall->pt2.y*0.5),sf::Color(0,0,0,(int)(255)));
+        IterWall->m_shadow->AddPoint(sf::Vector2f(IterWall->pt1.x,IterWall->pt1.y*0.5),sf::Color(0,0,0,(int)(255/*soleil.intensite*0.5*/)));
 
-        IterWall->m_shadow->AddPoint(sf::Vector2f(IterWall->pt1.x-(100-soleil.hauteur)*0.01*IterWall->hauteur*cos(angle*M_PI/180),(IterWall->pt1.y+(100-soleil.hauteur)*0.01*IterWall->hauteur*sin(angle*M_PI/180))*0.5),sf::Color(0,0,0,soleil.intensite*0.5));
-        IterWall->m_shadow->AddPoint(sf::Vector2f(IterWall->pt2.x-(100-soleil.hauteur)*0.01*IterWall->hauteur*cos(angle*M_PI/180),(IterWall->pt2.y+(100-soleil.hauteur)*0.01*IterWall->hauteur*sin(angle*M_PI/180))*0.5),sf::Color(0,0,0,soleil.intensite*0.5));
+        IterWall->m_shadow->AddPoint(sf::Vector2f(IterWall->pt1.x-(100-soleil.hauteur)*0.02*IterWall->hauteur*cos(angle*M_PI/180),(IterWall->pt1.y+(100-soleil.hauteur)*0.015*IterWall->hauteur*sin(angle*M_PI/180))*0.5),sf::Color(0,0,0,(int)(255)));
+        IterWall->m_shadow->AddPoint(sf::Vector2f(IterWall->pt2.x-(100-soleil.hauteur)*0.02*IterWall->hauteur*cos(angle*M_PI/180),(IterWall->pt2.y+(100-soleil.hauteur)*0.015*IterWall->hauteur*sin(angle*M_PI/180))*0.5),sf::Color(0,0,0,(int)(255)));
     }
 }
 
@@ -278,7 +278,7 @@ void Light_Manager::DrawWallShadow(sf::RenderWindow *App,sf::View *camera, coord
               &&IterWall->m_shadow->GetPointPosition(2).y > camera->GetRect().Top  && IterWall->m_shadow->GetPointPosition(2).y < camera->GetRect().Bottom)
              ||(IterWall->m_shadow->GetPointPosition(3).x > camera->GetRect().Left && IterWall->m_shadow->GetPointPosition(3).x < camera->GetRect().Right
               &&IterWall->m_shadow->GetPointPosition(3).y > camera->GetRect().Top  && IterWall->m_shadow->GetPointPosition(3).y < camera->GetRect().Bottom))
-                App->Draw(*IterWall->m_shadow);
+            App->Draw(*IterWall->m_shadow);
 }
 
 void Light_Manager::Draw(sf::RenderWindow *App,sf::View *camera, coordonnee dimensionsMap,Light_Entity e)

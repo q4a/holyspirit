@@ -102,6 +102,8 @@ Hero::Hero()
 
     m_cas=0;
 
+    m_argent=0;
+
     for(int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;i++)
             m_cheminModeleNouveau[i]="",m_cheminModele[i]="";
 
@@ -169,6 +171,8 @@ void Hero::Sauvegarder()
         fichier.write((char*)&m_personnage.getCaracteristique().piete, sizeof(int));
 
         fichier.write((char*)&m_personnage.getCaracteristique().charisme, sizeof(int));
+
+        fichier.write((char*)&m_argent, sizeof(int));
 
         if(configuration->debug)
             console->Ajouter("/Ecriture des caracterstiques.");
@@ -614,6 +618,8 @@ void Hero::Charger()
                     fichier->read((char*)&charTemp.vitalite, sizeof(int));
                     fichier->read((char*)&charTemp.piete, sizeof(int));
                     fichier->read((char*)&charTemp.charisme, sizeof(int));
+
+                    fichier->read((char*)&m_argent, sizeof(int));
 
                     if(configuration->debug)
                         console->Ajouter("/Lectures des caracteristiques.");
