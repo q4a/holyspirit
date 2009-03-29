@@ -224,9 +224,9 @@ void Light_Manager::Generate(Light_Entity &e)
     if(e.Dynamic()) {
         if(e.ID()>=0&&e.ID()<(int)m_DynamicLight.size()) {
             if(m_DynamicLight[e.ID()].m_actif) {
-                //m_genLight.compute (&e);
-              //  m_genLight.stop ();
-                m_DynamicLight[e.ID()].Generate(m_wall);
+                m_genLight.compute (&e);
+                m_genLight.stop ();
+              //  m_DynamicLight[e.ID()].Generate(m_wall);
             }
         }
     }

@@ -193,56 +193,32 @@ void c_Chargement::Utiliser(Jeu *jeu)
         z=0;
 
 
-    if (sf::PostFX::CanUsePostFX() == true&&configuration->postFX)
+
+    if(allerVersImageChargement&&z<49&&augmenterNoir||!allerVersImageChargement&&z>0&&!augmenterNoir)
     {
-        if(allerVersImageChargement&&z<49&&augmenterNoir||!allerVersImageChargement&&z>0&&!augmenterNoir)
+        jeu->camera.Zoom(configuration->zoom);
+        jeu->map.setVolumeMusique((int)(z*(float)configuration->volume/50));
+        if(!m_debut&&augmenterNoir||!augmenterNoir)
         {
-            jeu->camera.Zoom(configuration->zoom);
-            jeu->map.setVolumeMusique((int)(z*(float)configuration->volume/50));
-            if(!m_debut&&augmenterNoir||!augmenterNoir)
-            {
-                coordonnee temp;
-                jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,temp,0);
+            coordonnee temp;
+            jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,temp,0);
 
-                if(configuration->Minimap)
-                    jeu->menu.Afficher(&jeu->ecran,2,255,&jeu->hero.m_classe);
+            if(configuration->Minimap)
+                jeu->menu.Afficher(&jeu->ecran,2,255,&jeu->hero.m_classe);
 
-                jeu->menu.Afficher(&jeu->ecran,1,255,&jeu->hero.m_classe);
-                jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,0,jeu->hero.m_personnage.getCaracteristique(),&jeu->hero.m_classe);
-            }
+            jeu->menu.Afficher(&jeu->ecran,1,255,&jeu->hero.m_classe);
+            jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,0,jeu->hero.m_personnage.getCaracteristique(),&jeu->hero.m_classe);
         }
-        else
-        jeu->menu.AfficherChargement(&jeu->ecran,nomMap,m_fond,50);
-
-        configuration->effetNoir=((float)z)/50;
     }
     else
-    {
-        if(allerVersImageChargement&&z<49&&augmenterNoir||!allerVersImageChargement&&z>0&&!augmenterNoir)
-        {
-            jeu->map.setVolumeMusique((int)(z*(float)configuration->volume/50));
-            if(!m_debut&&augmenterNoir||!augmenterNoir)
-            {
-                coordonnee temp;
-                jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,temp,0);
-                if(configuration->Minimap)
-                {
-                    jeu->menu.Afficher(&jeu->ecran,1,255,&jeu->hero.m_classe);
-                    jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,0);
-                    jeu->menu.Afficher(&jeu->ecran,2,255,&jeu->hero.m_classe);
-                }
+    jeu->menu.AfficherChargement(&jeu->ecran,nomMap,m_fond,50);
 
-                jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,0,jeu->hero.m_personnage.getCaracteristique(),&jeu->hero.m_classe);
-            }
-        }
-        else
-            jeu->menu.AfficherChargement(&jeu->ecran,nomMap,m_fond,(int)z);
-    }
+    configuration->effetNoir=((float)z)/50;
+
 
     if(z>=49&&!augmenterNoir&&!allerVersImageChargement)
     {
         configuration->effetNoir=0;
         jeu->m_contexte = jeu->m_jeu;
-       // jeu->m_contexte->CopierCamera(jeu->m_jeu->camera);
     }
 }

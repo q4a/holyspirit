@@ -129,8 +129,11 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
 
             LightManager->DrawWallShadow(ecran,camera,dimensionsMap);
 
-            EffectBlur.SetParameter("offset",0.02);
-            ecran->Draw(EffectBlur);
+            if (sf::PostFX::CanUsePostFX() == true&&configuration->postFX)
+            {
+                EffectBlur.SetParameter("offset",0.02);
+                ecran->Draw(EffectBlur);
+            }
 
             ecran->SetView(*camera);
             sprite.SetBlendMode(sf::Blend::Alpha);
@@ -153,8 +156,11 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
             sprite3.SetBlendMode(sf::Blend::Add);
             ecran->Draw(sprite3);
 
-            EffectBlur.SetParameter("offset",0.005);
-            ecran->Draw(EffectBlur);
+            if (sf::PostFX::CanUsePostFX() == true&&configuration->postFX)
+            {
+                EffectBlur.SetParameter("offset",0.005);
+                ecran->Draw(EffectBlur);
+            }
 
             m_light_screen2.CopyScreen(*ecran);
         }
@@ -167,10 +173,13 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
 
         LightManager->Draw(ecran,camera,dimensionsMap);
 
-        EffectBlur.SetParameter("offset",0.01);
-        ecran->Draw(EffectBlur);
-        EffectBlur.SetParameter("offset",0.005);
-        ecran->Draw(EffectBlur);
+        if (sf::PostFX::CanUsePostFX() == true&&configuration->postFX)
+        {
+            EffectBlur.SetParameter("offset",0.01);
+            ecran->Draw(EffectBlur);
+            EffectBlur.SetParameter("offset",0.005);
+            ecran->Draw(EffectBlur);
+        }
 
         m_light_screen.CopyScreen(*ecran);
 
@@ -222,7 +231,7 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
             ecran->Draw(m_textes[k][i]);
         }
 
-        if(k==18)
+        if(k==18&&sf::PostFX::CanUsePostFX() == true&&configuration->postFX)
         {
             if(m_blur>0)
             {
@@ -240,9 +249,22 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
 
     if(configuration->effetNoir>0)
     {
-        EffectNoir.SetParameter("color", configuration->effetNoir, configuration->effetNoir, configuration->effetNoir);
-        ecran->Draw(EffectNoir);
+        if (sf::PostFX::CanUsePostFX() == true&&configuration->postFX)
+        {
+            EffectNoir.SetParameter("color", configuration->effetNoir, configuration->effetNoir, configuration->effetNoir);
+            ecran->Draw(EffectNoir);
+        }
+        else
+        {
+            sf::Sprite sprite2;
+            sprite2.SetImage(*getImage(0));
+            sprite2.Resize(configuration->Resolution.w,configuration->Resolution.h);
+            sprite2.SetColor(sf::Color(configuration->effetNoir*255,configuration->effetNoir*255,configuration->effetNoir*255,255));
+            sprite2.SetBlendMode(sf::Blend::Multiply);
+            ecran->Draw(sprite2);
+        }
     }
+
 
     if(configuration->contrastes>1&&sf::PostFX::CanUsePostFX() == true&&configuration->postFX)
     {
