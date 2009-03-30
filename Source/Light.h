@@ -28,7 +28,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 struct Wall
 {
-    Wall (sf::Vector2f p1,sf::Vector2f p2)
+    Wall(sf::Vector2f p1 , sf::Vector2f p2 )
     {
         pt1=p1;
         pt2=p2;
@@ -36,7 +36,7 @@ struct Wall
 
         m_shadow=NULL;
     }
-    Wall (sf::Vector2f p1,sf::Vector2f p2,int newhauteur)
+    Wall(sf::Vector2f p1,sf::Vector2f p2,int newhauteur)
     {
         pt1=p1;
         pt2=p2;

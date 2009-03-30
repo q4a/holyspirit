@@ -17,10 +17,10 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.*/
 
 
-#include "c_jeu.h"
+#include "c_Jeu.h"
 #include "jeu.h"
 
-#include "Globale.h"
+#include "globale.h"
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>

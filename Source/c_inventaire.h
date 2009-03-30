@@ -25,7 +25,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 
-#include "Contexte.h"
+#include "contexte.h"
 
 class c_Inventaire : public Contexte
 {

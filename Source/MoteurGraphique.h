@@ -27,7 +27,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "map.h"
 #include "commande.h"
 #include "moteurParticule.h"
-#include "LightManager.h"
+#include "lightManager.h"
 
 struct Image_moteur
 {

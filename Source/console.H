@@ -25,7 +25,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-#include "Singleton.h"
+#include "singleton.h"
 
 class Console : public CSingleton<Console>
 {

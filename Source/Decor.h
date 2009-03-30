@@ -29,8 +29,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <SFML/Audio.hpp>
 #include "constantes.h"
 
-#include "Objet.h"
-#include "Light.h"
+#include "objet.h"
+#include "light.h"
 
 
 class Decor

@@ -1,6 +1,6 @@
 #ifndef GEN_LIGHT
 #define GEN_LIGHT
-#include "Light.h"
+#include "light.h"
 
 class  GenerateLight : private sf::Thread {
     private :

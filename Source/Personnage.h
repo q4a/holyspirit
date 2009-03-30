@@ -27,10 +27,10 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "constantes.h"
 //#include "map.h"
-#include "Decor.h"
+#include "decor.h"
 #include "liste_case.h"
-#include "Pose.h"
-#include "LightManager.h"
+#include "pose.h"
+#include "lightManager.h"
 
 
 class Modele_Personnage

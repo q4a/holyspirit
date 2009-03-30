@@ -34,7 +34,7 @@ class Tile
 	Tile();
 	~Tile();
 	Tile operator=(const Tile &tile);
-	void Tile::setTile(coordonnee positionDansLImage,int image,bool collision,int animation,int son,Lumiere lumiere,bool ombre,char orientation,bool transparent,coordonnee centre,float temps);
+	void setTile(coordonnee positionDansLImage,int image,bool collision,int animation,int son,Lumiere lumiere,bool ombre,char orientation,bool transparent,coordonnee centre,float temps);
 	coordonnee getCoordonnee();
 	bool getCollision();
 	int getAnimation();

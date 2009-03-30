@@ -36,7 +36,7 @@ class Contexte
 	virtual void Utiliser(Jeu *jeu) = 0;
 
 
-    Contexte operator=(const c_Jeu &c_jeu);
+    //Contexte operator=(const c_Jeu &c_jeu);
 
 };
 

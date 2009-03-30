@@ -24,11 +24,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef MAPH
 #define MAPH
 
-#include "Tileset.h"
-#include "Decor.h"
-#include "Menu.h"
-#include "Monstre.h"
-#include "Evenement.h"
+#include "tileset.h"
+#include "decor.h"
+#include "menu.h"
+#include "monstre.h"
+#include "evenement.h"
 #include "c_changementMap.h"
 
 class Jeu;

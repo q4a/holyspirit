@@ -18,12 +18,12 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 
 
-#include "Light.h"
+#include "light.h"
 
 #ifndef LIGHTMANAGERH
 #define LIGHTMANAGERH
 
-#include "Singleton.h"
+#include "singleton.h"
 #include "generateLight.h"
 
 class Light_Manager : public CSingleton<Light_Manager>

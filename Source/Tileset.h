@@ -29,7 +29,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <SFML/Audio.hpp>
 
 #include "tile.h"
-#include "Hero.h"
+#include "hero.h"
 
 class Tileset
 {

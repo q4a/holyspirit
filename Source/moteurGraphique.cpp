@@ -18,8 +18,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 
 
-#include "MoteurGraphique.h"
-#include "Globale.h"
+#include "moteurGraphique.h"
+#include "globale.h"
 
 #include <iostream>
 

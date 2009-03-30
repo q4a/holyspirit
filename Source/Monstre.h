@@ -20,9 +20,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef MONSTREH
 #define MONSTREH
 
-#include "Personnage.h"
-#include "Constantes.h"
-#include "Script.h"
+#include "personnage.h"
+#include "constantes.h"
+#include "script.h"
 #include "miracle.h"
 
 

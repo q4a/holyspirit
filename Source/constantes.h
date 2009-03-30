@@ -182,7 +182,7 @@ class LumiereOmbrage : public Lumiere
         }
 
     }
-    LumiereOmbrage LumiereOmbrage::operator=(const LumiereOmbrage &lumiere)
+    LumiereOmbrage operator=(const LumiereOmbrage &lumiere)
     {
         intensite = lumiere.intensite;
         rouge = lumiere.rouge;
@@ -203,7 +203,7 @@ class LumiereOmbrage : public Lumiere
 
         return *this;
     }
-    LumiereOmbrage LumiereOmbrage::operator=(const Lumiere &lumiere)
+    LumiereOmbrage operator=(const Lumiere &lumiere)
     {
         intensite = lumiere.intensite;
         rouge = lumiere.rouge;

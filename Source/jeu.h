@@ -31,7 +31,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "menu.h"
 #include "personnage.h"
 
-#include "c_Jeu.h"
+#include "c_jeu.h"
 #include "c_changementMap.h"
 #include "c_inventaire.h"
 #include "c_menuInGame.h"

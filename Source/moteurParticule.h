@@ -23,7 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define MOTEURPARTICULES
 
 #include "constantes.h"
-#include "modelemoteurparticule.h"
+#include "modeleMoteurParticule.h"
 
 struct Particule
 {

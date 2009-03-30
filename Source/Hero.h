@@ -26,8 +26,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <iostream>
 #include <string>
 
-#include "Personnage.h"
-#include "Monstre.h"
+#include "personnage.h"
+#include "monstre.h"
 
 struct Image_interface
 {
