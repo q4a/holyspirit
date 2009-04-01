@@ -65,7 +65,6 @@ class Jeu
     Contexte *m_contexte;
 
     private:
-
 };
 
 #endif

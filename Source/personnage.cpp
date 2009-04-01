@@ -497,6 +497,10 @@ int Personnage::pathfinding(casePathfinding** map,coordonnee exception)
 
 bool Personnage::seDeplacer(float tempsEcoule,coordonnee dimensionsMap)
 {
+    int buf=(int)(tempsEcoule*1000);
+    tempsEcoule=(float)buf/1000;
+
+
     if(m_caracteristique.vie>0)
     {
         if(!frappeEnCours)

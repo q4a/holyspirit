@@ -53,7 +53,7 @@ c_Jeu::c_Jeu(Jeu *jeu)
         Temps.SetText(chaine);
         Temps.SetY(40);
 
-        TourBoucle.SetX(100);
+        TourBoucle.SetX(120);
         TourBoucle.SetSize(16.f);
 
         // Chargement des menus
@@ -93,6 +93,7 @@ c_Jeu::c_Jeu(Jeu *jeu)
 
         alpha_map=0;
         alpha_sac=0;
+        lowFPS=-1;
 }
 
 void c_Jeu::Utiliser(Jeu *jeu)
@@ -100,10 +101,12 @@ void c_Jeu::Utiliser(Jeu *jeu)
             //Gestion du temps
             jeu->m_display=false;
             tempsEcoule = jeu->Clock.GetElapsedTime();
-            if(tempsEcoule>0.1)
-            tempsEcoule=0.1;
 
-            if(tempsEcoule>0.01&&configuration->syncronisation_verticale||!configuration->syncronisation_verticale)
+
+            if(tempsEcoule>0.1)
+                tempsEcoule=0.1;
+
+            if(tempsEcoule>0.001/*&&configuration->syncronisation_verticale||!configuration->syncronisation_verticale*/)
             {
                 tempsEcouleDepuisDernierDeplacement+=tempsEcoule;
                 tempsDepuisDerniereAnimation+=tempsEcoule;
@@ -444,6 +447,27 @@ void c_Jeu::Utiliser(Jeu *jeu)
                             console->Afficher(&jeu->ecran);
                     }
 
+                    if(lowFPS==-1&&(int)( 1.f / jeu->ecran.GetFrameTime())>0)
+                        lowFPS=(int)( 1.f / jeu->ecran.GetFrameTime());
+                    if(lowFPS>(int)( 1.f / jeu->ecran.GetFrameTime()) &&(int)( 1.f / jeu->ecran.GetFrameTime())>0 )
+                        lowFPS=(int)( 1.f / jeu->ecran.GetFrameTime());
+
+                    if(configuration->console)
+                    if(tempsEcouleDepuisFPS>0.1)
+                    {
+                        if(configuration->console&&jeu->ecran.GetFrameTime()!=0)
+                            sprintf(chaine,"%i / %i FPS",(int)( 1.f / jeu->ecran.GetFrameTime()), (int)lowFPS);
+                        //  Calcule du nombre de FPS
+
+                        fps.SetText(chaine);
+
+
+                        sprintf(chaine,"Temps : %i h %i ",configuration->heure,(int)configuration->minute);
+                        Temps.SetText(chaine);
+
+                        tempsEcouleDepuisFPS=0;
+                    }
+
                     jeu->m_display=true;
 
                     tempsEcouleDepuisDernierAffichage=0;
@@ -457,6 +481,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 if(tempsNbrTourBoucle>1)
                 {
+                    lowFPS=-1;
+
                     sprintf(chaine,"Nbr Tour de boucle : %i",nbrTourBoucle);
                     TourBoucle.SetText(chaine);
                     nbrTourBoucle=0;
@@ -464,22 +490,9 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     tempsNbrTourBoucle=0;
                 }
 
-                if(configuration->console&&jeu->ecran.GetFrameTime()!=0)
-                    sprintf(chaine,"%i FPS",(int)( 1.f / jeu->ecran.GetFrameTime()));
-
-                if(configuration->console)
-                    if(tempsEcouleDepuisFPS>0.1)
-                    {
-                        //  Calcule du nombre de FPS
-
-                        fps.SetText(chaine);
 
 
-                        sprintf(chaine,"Temps : %i h %i ",configuration->heure,(int)configuration->minute);
-                        Temps.SetText(chaine);
 
-                        tempsEcouleDepuisFPS=0;
-                    }
             }
 }
 

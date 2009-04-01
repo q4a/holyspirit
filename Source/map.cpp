@@ -2295,7 +2295,7 @@ void Map::gererMonstres(Hero *hero,float temps,sf::View *camera,Menu *menu)
     if(vueMax.x>=m_dimensions.x) { vueMax.x=m_dimensions.x-1; }
     if(vueMax.y>=(int)m_dimensions.y) { vueMax.y=m_dimensions.y-1; }
 
-    if(m_projectile.size()>0)
+    if(!m_projectile.empty())
     {
         int nombreInactif=0;
         for(int i=0;i<(int)m_projectile.size();i++)
@@ -2361,7 +2361,7 @@ void Map::gererMonstres(Hero *hero,float temps,sf::View *camera,Menu *menu)
             m_projectile.clear();
     }
 
-    if(m_effets.size()>0)
+    if(!m_effets.empty())
     {
         int nombreInactif=0;
         for(int i=0;i<(int)m_effets.size();i++)
@@ -2376,6 +2376,7 @@ void Map::gererMonstres(Hero *hero,float temps,sf::View *camera,Menu *menu)
             for(int k=vueMin.x;k<vueMax.x;k++)
             {
                     if(m_decor[i][j][k].getMonstre()>=0&&m_decor[i][j][k].getMonstre()<(int)m_monstre.size())
+                    if(m_monstre[m_decor[i][j][k].getMonstre()].enVie())
                     {
 
                         if(hero->m_personnage.enVie())
@@ -2387,10 +2388,11 @@ void Map::gererMonstres(Hero *hero,float temps,sf::View *camera,Menu *menu)
                         if(m_monstre[m_decor[i][j][k].getMonstre()].m_attente<=0)
                         {
                             Script *script=&m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_scriptAI;
-                            for(int a=0;a<(int)script->m_instructions[0].valeurs.size();a++)
-                                if(script->m_instructions[0].valeurs[a]>=0&&script->m_instructions[0].valeurs[a]<(int)script->m_instructions.size())
-                                    if(script->m_instructions[script->m_instructions[0].valeurs[a]].nom=="if")
-                                        gererConditions(script,script->m_instructions[0].valeurs[a],i,j,k,hero,temps,camera,menu);
+                            if((int)script->m_instructions.size()>0)
+                                for(int a=0;a<(int)script->m_instructions[0].valeurs.size();a++)
+                                    if(script->m_instructions[0].valeurs[a]>=0&&script->m_instructions[0].valeurs[a]<(int)script->m_instructions.size())
+                                        if(script->m_instructions[script->m_instructions[0].valeurs[a]].nom=="if")
+                                            gererConditions(script,script->m_instructions[0].valeurs[a],i,j,k,hero,temps,camera,menu);
 
                             if(m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding())
                                 RANDOMDISPLACE()

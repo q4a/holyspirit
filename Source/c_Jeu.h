@@ -45,6 +45,8 @@ class c_Jeu : public Contexte
 	float tempsActuel,tempsPrecedent,tempsDepuisDerniereAnimation,tempsEcoule,tempsNbrTourBoucle,tempsEcouleDepuisDernierCalculLumiere,tempsEcouleDepuisDernierDeplacement,tempsEcouleDepuisDernierIA,tempsEcouleDepuisDernierAffichage,tempsEcouleDepuisFPS,tempsEffetMort,tempsSauvergarde;
 	float alpha_map,alpha_sac;
 
+	float lowFPS;
+
 };
 
 #endif
