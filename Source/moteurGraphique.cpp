@@ -123,6 +123,8 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
 
     if(configuration->Lumiere && configuration->RafraichirLumiere)
     {
+        decalageLumiere=camera->GetCenter();
+
         if(configuration->Ombre&&m_soleil.intensite>32)
         {
             ecran->Clear(sf::Color(255,255,255));
@@ -196,6 +198,10 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
             sprite2.SetImage(m_light_screen);
             sprite2.SetBlendMode(sf::Blend::Multiply);
             sprite2.SetColor(sf::Color(255,255,255,255));
+
+            sprite2.SetX(decalageLumiere.x-camera->GetCenter().x);
+            sprite2.SetY(decalageLumiere.y-camera->GetCenter().y);
+
             ecran->SetView(ecran->GetDefaultView());
             ecran->Draw(sprite2);
         }
@@ -206,6 +212,10 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
             sprite2.SetImage(m_light_screen2);
             sprite2.SetBlendMode(sf::Blend::Multiply);
             sprite2.SetColor(sf::Color(255,255,255));
+
+            sprite2.SetX(decalageLumiere.x-camera->GetCenter().x);
+            sprite2.SetY(decalageLumiere.y-camera->GetCenter().y);
+
             ecran->SetView(ecran->GetDefaultView());
             ecran->Draw(sprite2);
         }

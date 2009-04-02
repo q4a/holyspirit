@@ -86,6 +86,8 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	MoteurGraphique();
 	~MoteurGraphique();
 
+	sf::Vector2f decalageLumiere;
+
 	std::vector <Image_moteur> m_images;
 
 	std::vector <ModeleParticuleSysteme> m_modeleSystemeParticules;
@@ -96,6 +98,8 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	std::vector <ParticuleSysteme>::iterator m_systemeParticules_iter;
 
 	std::vector <Commande>::iterator IterCommande;
+
+
 };
 
 #endif

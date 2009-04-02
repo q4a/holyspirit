@@ -685,6 +685,8 @@ bool Map::Charger(int numeroMap,Hero *hero)
 
 void Map::Initialiser()
 {
+    calculerOmbresEtLumieres();
+
     for(int couche=0;couche<2;couche++)
         for(int i=0;i<m_dimensions.y;i++)
             for(int j=0;j<m_dimensions.x;j++)
@@ -744,14 +746,8 @@ void Map::Initialiser()
 
                     pos.x=(((k*COTE_TILE-j*COTE_TILE)*64/COTE_TILE+getDimensions().y*64));
                     pos.y=(((k*COTE_TILE+j*COTE_TILE)*64/COTE_TILE)/2+32)*2;
-                    if(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite>0)
-                    {
-                        if(m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile())!=-1)
-                            m_decor[i][j][k].m_light=moteurGraphique->LightManager->Add_Dynamic_Light(pos,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite*3,8,sf::Color(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).rouge,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).vert,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).bleu));
-                        else
-                            m_decor[i][j][k].m_light=moteurGraphique->LightManager->Add_Static_Light(pos,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite*3,8,sf::Color(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).rouge,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).vert,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).bleu));
-                    }
-                    else if(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite<0)
+
+                    if(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite<0)
                         {
                             if(m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='x'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='c')
                                 moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y-32), sf::Vector2f(pos.x+32 , pos.y+32),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
@@ -774,6 +770,22 @@ void Map::Initialiser()
                             if(m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='h'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='d')
                                 moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y+32), sf::Vector2f(pos.x , pos.y),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
                         }
+                }
+
+    for(int i=0;i<NOMBRE_COUCHE_MAP;i++)
+        for(int j=0;j<m_dimensions.y;j++)
+            for(int k=0;k<m_dimensions.x;k++)
+                if(m_decor[i][j][k].getTileset()>=0&&m_decor[i][j][k].getTileset()<(int)m_tileset.size())
+                {
+                    pos.x=(((k*COTE_TILE-j*COTE_TILE)*64/COTE_TILE+getDimensions().y*64));
+                    pos.y=(((k*COTE_TILE+j*COTE_TILE)*64/COTE_TILE)/2+32)*2;
+                    if(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite>0)
+                    {
+                        if(m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile())!=-1)
+                            m_decor[i][j][k].m_light=moteurGraphique->LightManager->Add_Dynamic_Light(pos,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite*3,8,sf::Color(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).rouge,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).vert,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).bleu));
+                        else
+                            m_decor[i][j][k].m_light=moteurGraphique->LightManager->Add_Static_Light(pos,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite*3,8,sf::Color(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).rouge,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).vert,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).bleu));
+                    }
                 }
     moteurGraphique->LightManager->Generate();
 }
@@ -2391,8 +2403,9 @@ void Map::gererMonstres(Hero *hero,float temps,sf::View *camera,Menu *menu)
                             if((int)script->m_instructions.size()>0)
                                 for(int a=0;a<(int)script->m_instructions[0].valeurs.size();a++)
                                     if(script->m_instructions[0].valeurs[a]>=0&&script->m_instructions[0].valeurs[a]<(int)script->m_instructions.size())
-                                        if(script->m_instructions[script->m_instructions[0].valeurs[a]].nom=="if")
-                                            gererConditions(script,script->m_instructions[0].valeurs[a],i,j,k,hero,temps,camera,menu);
+                                        LISTE_INSTRUCTIONS(script->m_instructions[0].valeurs[a])
+                                        //if(script->m_instructions[script->m_instructions[0].valeurs[a]].nom=="if")
+                                            //gererConditions(script,script->m_instructions[0].valeurs[a],i,j,k,hero,temps,camera,menu);
 
                             if(m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding())
                                 RANDOMDISPLACE()
