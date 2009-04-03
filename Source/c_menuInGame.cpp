@@ -105,7 +105,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
 
 
     texte.SetSize(56.f*configuration->Resolution.h/600);
-    texte.SetText("Retour");
+    texte.SetText(configuration->text_menus[0]);
 
     texte.SetY(configuration->Resolution.h/2-texte.GetRect().GetHeight());
     texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetWidth()/2);
@@ -120,7 +120,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
         texte.SetColor(Color(150,100,50,(int)m_alpha));
     moteurGraphique->AjouterTexte(&texte,19,1);
 
-    texte.SetText("Sauvegarder et quitter");
+    texte.SetText(configuration->text_menus[1]);
 
     texte.SetY(configuration->Resolution.h/2);
     texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetWidth()/2);
@@ -134,7 +134,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
         texte.SetColor(Color(150,100,50,(int)m_alpha));
     moteurGraphique->AjouterTexte(&texte,19,1);
 
-    texte.SetText("Reinitialiser la partie et quitter");
+    texte.SetText(configuration->text_menus[2]);
 
     texte.SetY(configuration->Resolution.h/2+texte.GetRect().GetHeight());
     texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetWidth()/2);

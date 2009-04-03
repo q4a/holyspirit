@@ -35,6 +35,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define NOMBRE_TYPE_OBJET 2
 
 #define NOMBRE_BENEDICTION 8
+#define NOMBRE_TXT_MENU 13
 
 #define NOMBRE_SONS 200
 
@@ -229,6 +230,7 @@ class Configuration : public CSingleton<Configuration>
     ~Configuration()
     {
         delete[] text_benedictions;
+        delete[] text_menus;
     }
 
     public :
@@ -317,6 +319,7 @@ class Configuration : public CSingleton<Configuration>
                         if(chaine== "menu_bag:") { fichier2>>nom_sac; }
 
                         if(chaine== "text_benedictions:") { fichier2>>chemin_text_benedictions; }
+                        if(chaine== "text_menus:") { fichier2>>chemin_text_menus; }
 
 
 
@@ -355,6 +358,7 @@ class Configuration : public CSingleton<Configuration>
 
 
             text_benedictions=new std::string [NOMBRE_BENEDICTION];
+            text_menus=new std::string [NOMBRE_TXT_MENU];
 
             std::ifstream fichier3;
             fichier3.open(chemin_text_benedictions.c_str(), std::ios::in);
@@ -366,6 +370,15 @@ class Configuration : public CSingleton<Configuration>
                 fichier3.close();
             }
 
+            std::ifstream fichier4;
+            fichier4.open(chemin_text_menus.c_str(), std::ios::in);
+            if(fichier4)
+            {
+                std::string chaine;
+                for(int i=0;i<NOMBRE_TXT_MENU;i++)
+                    getline(fichier4,text_menus[i]);
+                fichier4.close();
+            }
     }
 
     void Sauvegarder()
@@ -428,11 +441,13 @@ class Configuration : public CSingleton<Configuration>
     std::string version,chemin_maps,chemin_items,chemin_temps,chemin_saves,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetMort,nom_effetContrastes,nom_effetBlur,nom_minimap,nom_ame,nom_barre_ame,nom_barre_vie,nom_barre_vie_vide,nom_sang,chemin_son_mort;
     std::string font_titre,chemin_video_developpeur,nom_video_developpeur,nom_sac,chemin_aa;
 
-    std::string chemin_text_benedictions;
+    std::string chemin_text_benedictions,chemin_text_menus;
 
     std::string *text_benedictions;
+    std::string *text_menus;
+
     bool RafraichirLumiere;
-    int numero_screen;
+    int numero_screen,RafraichirOmbre;
 };
 
 struct Caracteristique

@@ -101,8 +101,8 @@ void Jeu::Demarrer()
 		    ecran.Clear();
 		    moteurGraphique->Afficher(&this->ecran,&this->camera,this->map.getDimensions());
             this->ecran.Display();
-            moteurGraphique->Vider();
 		}
+		 moteurGraphique->Vider();
 	}
 
 	ecran.Close();

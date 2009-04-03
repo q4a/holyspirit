@@ -121,12 +121,11 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
     sf::Sprite sprite;
     sf::Sprite sprite2;
 
-    if(configuration->Lumiere && configuration->RafraichirLumiere)
-    {
-        decalageLumiere=camera->GetCenter();
 
-        if(configuration->Ombre&&m_soleil.intensite>32)
+        if(configuration->RafraichirOmbre==1&&configuration->Ombre&&m_soleil.intensite>32)
         {
+            decalageLumiere=camera->GetCenter();
+
             ecran->Clear(sf::Color(255,255,255));
 
             LightManager->DrawWallShadow(ecran,camera,dimensionsMap);
@@ -140,9 +139,9 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
             ecran->SetView(*camera);
             sprite.SetBlendMode(sf::Blend::Alpha);
 
-            for(int i=0;i<(int)m_commandes[9].size();i++)
+            for(IterCommande=m_commandes[9].begin();IterCommande!=m_commandes[9].end();++IterCommande)
             {
-                sprite=m_commandes[9][i].m_sprite;
+                sprite=IterCommande->m_sprite;
                 sprite.SetColor(sf::Color(0,0,0,255));
                 ecran->Draw(sprite);
             }
@@ -165,8 +164,12 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
             }
 
             m_light_screen2.CopyScreen(*ecran);
+
+            configuration->RafraichirOmbre==2;
         }
 
+    if(configuration->Lumiere && configuration->RafraichirLumiere)
+    {
         ecran->SetView(*camera);
 
         ecran->Clear(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
@@ -199,8 +202,8 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
             sprite2.SetBlendMode(sf::Blend::Multiply);
             sprite2.SetColor(sf::Color(255,255,255,255));
 
-            sprite2.SetX(decalageLumiere.x-camera->GetCenter().x);
-            sprite2.SetY(decalageLumiere.y-camera->GetCenter().y);
+            sprite2.SetX(0);
+            sprite2.SetY(0);
 
             ecran->SetView(ecran->GetDefaultView());
             ecran->Draw(sprite2);

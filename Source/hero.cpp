@@ -945,8 +945,18 @@ void Hero::afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionS
 
 
 
-    sprintf(chaine,"%i / %i",(int)m_caracteristiques.vie,(int)m_caracteristiques.maxVie);
+    sprintf(chaine,"%s : %i / %i",configuration->text_menus[3].c_str(),(int)m_caracteristiques.vie,(int)m_caracteristiques.maxVie);
     string.SetText(chaine);
+
+    if((string.GetRect().Right-string.GetRect().Left)>104)
+    {
+        string.SetSize(14*configuration->Resolution.h/600);
+        if((string.GetRect().Right-string.GetRect().Left)>104)
+            sprintf(chaine,"%i / %i",(int)m_caracteristiques.vie,(int)m_caracteristiques.maxVie);
+    }
+
+    string.SetText(chaine);
+
     string.SetX((178*configuration->Resolution.w/800)+54*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
     string.SetY(263*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     if(m_caracteristiques.maxVie!=m_personnage.getCaracteristique().maxVie)
@@ -955,15 +965,31 @@ void Hero::afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionS
         string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
-    sprintf(chaine,"%i / %i",(int)m_caracteristiques.foi,(int)m_caracteristiques.maxFoi);
+    string.SetSize(16*configuration->Resolution.h/600);
+
+
+    sprintf(chaine,"%s : %i / %i",configuration->text_menus[4].c_str(),(int)m_caracteristiques.foi,(int)m_caracteristiques.maxFoi);
     string.SetText(chaine);
-    string.SetX((290*configuration->Resolution.w/800)+54*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
+
+    if((string.GetRect().Right-string.GetRect().Left)>104)
+    {
+        string.SetSize(14*configuration->Resolution.h/600);
+        if((string.GetRect().Right-string.GetRect().Left)>104)
+            sprintf(chaine,"%i / %i",(int)m_caracteristiques.foi,(int)m_caracteristiques.maxFoi);
+    }
+
+    string.SetText(chaine);
+
+    string.SetX((288*configuration->Resolution.w/800)+54*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
     string.SetY(263*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     if(m_caracteristiques.maxFoi!=m_personnage.getCaracteristique().maxFoi)
         string.SetColor(sf::Color(0,128,255));
     else
         string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
+
+    string.SetSize(16*configuration->Resolution.h/600);
+
 
     sprintf(chaine,"%i",m_caracteristiques.force);
     string.SetText(chaine);
@@ -975,6 +1001,15 @@ void Hero::afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionS
         string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
+    sprintf(chaine,"%s",configuration->text_menus[5].c_str());
+    string.SetText(chaine);
+    string.SetX(32);
+    string.SetY(311*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+    string.SetColor(sf::Color(255,255,255));
+    moteurGraphique->AjouterTexte(&string,15);
+
+
+
     sprintf(chaine,"%i",m_caracteristiques.dexterite);
     string.SetText(chaine);
     string.SetX((129*configuration->Resolution.w/800)+21*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
@@ -984,6 +1019,15 @@ void Hero::afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionS
     else
         string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
+
+    sprintf(chaine,"%s",configuration->text_menus[6].c_str());
+    string.SetText(chaine);
+    string.SetX(32);
+    string.SetY(338*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+    string.SetColor(sf::Color(255,255,255));
+    moteurGraphique->AjouterTexte(&string,15);
+
+
 
     sprintf(chaine,"%i",m_caracteristiques.vitalite);
     string.SetText(chaine);
@@ -995,6 +1039,16 @@ void Hero::afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionS
         string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
+    sprintf(chaine,"%s",configuration->text_menus[7].c_str());
+    string.SetText(chaine);
+    string.SetX(32);
+    string.SetY(365*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+    string.SetColor(sf::Color(255,255,255));
+    moteurGraphique->AjouterTexte(&string,15);
+
+
+
+
     sprintf(chaine,"%i",m_caracteristiques.piete);
     string.SetText(chaine);
     string.SetX((129*configuration->Resolution.w/800)+21*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
@@ -1004,6 +1058,15 @@ void Hero::afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionS
     else
         string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
+
+    sprintf(chaine,"%s",configuration->text_menus[8].c_str());
+    string.SetText(chaine);
+    string.SetX(32);
+    string.SetY(392*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+    string.SetColor(sf::Color(255,255,255));
+    moteurGraphique->AjouterTexte(&string,15);
+
+
 
     sprintf(chaine,"%i",m_caracteristiques.charisme);
     string.SetText(chaine);
@@ -1015,6 +1078,23 @@ void Hero::afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionS
         string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
+    sprintf(chaine,"%s",configuration->text_menus[9].c_str());
+    string.SetText(chaine);
+    string.SetX(32);
+    string.SetY(419*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+    string.SetColor(sf::Color(255,255,255));
+    moteurGraphique->AjouterTexte(&string,15);
+
+
+    sprintf(chaine,"%s",configuration->text_menus[12].c_str());
+    string.SetText(chaine);
+    string.SetX(32);
+    string.SetY(446*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+    string.SetColor(sf::Color(255,255,255));
+    moteurGraphique->AjouterTexte(&string,15);
+
+
+
     sprintf(chaine,"%i - %i",m_caracteristiques.degatsMin,m_caracteristiques.degatsMax);
     string.SetText(chaine);
     string.SetX((314*configuration->Resolution.w/800)+32*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
@@ -1025,6 +1105,15 @@ void Hero::afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionS
         string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
+    sprintf(chaine,"%s",configuration->text_menus[10].c_str());
+    string.SetText(chaine);
+    string.SetX(246);
+    string.SetY(300*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+    string.SetColor(sf::Color(255,255,255));
+    moteurGraphique->AjouterTexte(&string,15);
+
+
+
     sprintf(chaine,"%i",m_caracteristiques.armure);
     string.SetText(chaine);
     string.SetX((314*configuration->Resolution.w/800)+32*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
@@ -1033,6 +1122,25 @@ void Hero::afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionS
         string.SetColor(sf::Color(0,128,255));
     else
         string.SetColor(sf::Color(255,255,255));
+    moteurGraphique->AjouterTexte(&string,15);
+
+    sprintf(chaine,"%s",configuration->text_menus[11].c_str());
+    string.SetText(chaine);
+    string.SetX(246);
+    string.SetY(327*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+    string.SetColor(sf::Color(255,255,255));
+    moteurGraphique->AjouterTexte(&string,15);
+
+
+
+
+
+    sprintf(chaine,"%i",m_argent);
+    string.SetText(chaine);
+    string.SetSize(14*configuration->Resolution.h/600);
+    string.SetX((112*configuration->Resolution.w/800)+32*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
+    string.SetY(220*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+    string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 }
 

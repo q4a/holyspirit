@@ -273,8 +273,15 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 jeu->ecran.SetView(jeu->camera);
 
+                if(configuration->Lumiere&&tempsEcouleDepuisDernierCalculLumiere>configuration->frequence_lumiere/2&&configuration->RafraichirOmbre==0)
+                {
+                    configuration->RafraichirOmbre=1;
+                }
+
                 if(configuration->Lumiere&&tempsEcouleDepuisDernierCalculLumiere>configuration->frequence_lumiere)
                 {
+                    configuration->RafraichirOmbre=0;
+
                     jeu->map.calculerOmbresEtLumieres();
 
                     configuration->RafraichirLumiere=true;

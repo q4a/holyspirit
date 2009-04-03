@@ -138,7 +138,7 @@ bool ParticuleSysteme::Gerer(float temps,int tailleMapY)
         if(Iter->vie<=0)
              Iter->alpha-=temps*100;
         if(Iter->alpha<=1)
-            efface=true;
+            Iter->alpha=1,efface=true;
     }
 
     if(efface)
