@@ -97,5 +97,6 @@ int main ( int argc, char** argv )
     console->Ajouter("EXIT_SUCCESS");
 
     console->Kill();
+
     return EXIT_SUCCESS;
 }

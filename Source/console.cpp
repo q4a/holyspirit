@@ -62,6 +62,8 @@ void Console::Ajouter(std::string texte,bool erreur)
         m_textes.push_back(texte);
         m_erreur.push_back(erreur);
         Rapport();
+
+        std::cout<<m_textes.back()<<std::endl;
     }
 }
 
@@ -74,6 +76,8 @@ void Console::Ajouter(int nombre,bool erreur)
         m_textes.push_back(temp);
         m_erreur.push_back(erreur);
         Rapport();
+
+        std::cout<<m_textes.back()<<std::endl;
     }
 }
 
