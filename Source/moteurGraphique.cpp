@@ -108,8 +108,8 @@ void MoteurGraphique::Gerer(sf::RenderWindow *ecran,float temps,int tailleMapY)
             if(!m_systemeParticules_iter->Gerer(temps,tailleMapY))
             {
                 m_systemeParticules.erase (m_systemeParticules_iter);
-                if((int)m_systemeParticules.size()>0)
-                    m_systemeParticules_iter=m_systemeParticules.begin()+k;
+                if((int)m_systemeParticules.size()>0&&m_systemeParticules.begin()+k!=m_systemeParticules.end())
+                    m_systemeParticules_iter=m_systemeParticules.begin()+(k-1);
                 else
                     break;
             }
@@ -121,6 +121,10 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
     sf::Sprite sprite;
     sf::Sprite sprite2;
 
+    EffectBlur.SetTexture("framebuffer", NULL);
+    EffectNoir.SetTexture("framebuffer", NULL);
+    EffectMort.SetTexture("framebuffer", NULL);
+    EffectContrastes.SetTexture("framebuffer", NULL);
 
         if(configuration->RafraichirOmbre==1&&configuration->Ombre&&m_soleil.intensite>32)
         {
@@ -165,7 +169,7 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
 
             m_light_screen2.CopyScreen(*ecran);
 
-            configuration->RafraichirOmbre==2;
+            configuration->RafraichirOmbre=2;
         }
 
     if(configuration->Lumiere && configuration->RafraichirLumiere)

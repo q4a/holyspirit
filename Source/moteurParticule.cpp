@@ -44,9 +44,9 @@ void ParticuleSysteme::Afficher(sf::RenderWindow *ecran, ModeleParticuleSysteme 
 {
     for(Iter=m_particules.begin();Iter!=m_particules.end();++Iter)
     {
-        sf::Sprite sprite;
         if(Iter->numero>=0&&Iter->numero<(int)modele->m_particules.size())
         {
+            sf::Sprite sprite;
             sprite.SetImage(*moteurGraphique->getImage(modele->m_image));
             sprite.SetSubRect(sf::IntRect(modele->m_particules[Iter->numero].positionImage.x,modele->m_particules[Iter->numero].positionImage.y,modele->m_particules[Iter->numero].positionImage.x+modele->m_particules[Iter->numero].positionImage.w,modele->m_particules[Iter->numero].positionImage.y+modele->m_particules[Iter->numero].positionImage.h));
             sprite.SetCenter(modele->m_particules[Iter->numero].positionImage.w/2,modele->m_particules[Iter->numero].positionImage.h/2);
@@ -60,7 +60,7 @@ void ParticuleSysteme::Afficher(sf::RenderWindow *ecran, ModeleParticuleSysteme 
             if(Iter->position.z>32)
                 moteurGraphique->AjouterCommande(&sprite,11,1);
             else
-                moteurGraphique->AjouterCommande(&sprite,10,1);
+                moteurGraphique->AjouterCommande(&sprite,8,1);
         }
     }
 }

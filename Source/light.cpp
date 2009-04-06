@@ -387,14 +387,14 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std
     m_shape.back().AddPoint(0, 0,  sf::Color((int)(m_intensity*m_color.r/255),(int)(m_intensity*m_color.g/255),(int)(m_intensity*m_color.b/255)));
 
     // On calcul ou l'on se trouve par rapport au centre, pour savoir à quel intensité on est
-    intensity=m_intensity-sqrt(pt1.x*pt1.x + pt1.y*pt1.y)*m_intensity/m_radius;
+    intensity=m_intensity-gpl::sqrt(pt1.x*pt1.x + pt1.y*pt1.y)*m_intensity/m_radius;
     // Et on ajoute un  point au shape
     m_shape.back().AddPoint(pt1.x,pt1.y/2,  sf::Color((int)(intensity*m_color.r/255),(int)(intensity*m_color.g/255),(int)(intensity*m_color.b/255)));
 
    //m_shape.back().AddPoint(pt1.x*1.2,pt1.y/2*1.2,  sf::Color(0,0,0));
 
     // Idem
-    intensity2=m_intensity-sqrt(pt2.x*pt2.x + pt2.y*pt2.y)*m_intensity/m_radius;
+    intensity2=m_intensity-gpl::sqrt(pt2.x*pt2.x + pt2.y*pt2.y)*m_intensity/m_radius;
 
   //  m_shape.back().AddPoint(pt2.x*1.2,pt2.y/2*1.2,  sf::Color(0,0,0));
 

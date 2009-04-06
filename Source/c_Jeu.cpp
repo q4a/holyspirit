@@ -273,10 +273,6 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 jeu->ecran.SetView(jeu->camera);
 
-                if(configuration->Lumiere&&tempsEcouleDepuisDernierCalculLumiere>configuration->frequence_lumiere/2&&configuration->RafraichirOmbre==0)
-                {
-                    configuration->RafraichirOmbre=1;
-                }
 
                 if(configuration->Lumiere&&tempsEcouleDepuisDernierCalculLumiere>configuration->frequence_lumiere)
                 {
@@ -289,6 +285,10 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                     moteurGraphique->LightManager->Generate(jeu->hero.m_personnage.m_light);
                 }
+
+                if(configuration->Lumiere&&tempsEcouleDepuisDernierCalculLumiere>configuration->frequence_lumiere/2&&configuration->RafraichirOmbre==0)
+                    configuration->RafraichirOmbre=1;
+
 
 
                 if(tempsEcouleDepuisDernierAffichage>0.01&&configuration->syncronisation_verticale||!configuration->syncronisation_verticale)

@@ -136,7 +136,7 @@ bool Map::Charger(int numeroMap,Hero *hero)
 
     int numeroModuleAleatoire=rand()%10;
 
-    bool entite_map_existante=false,mapExistante=false;
+    bool entite_map_existante=0,mapExistante=0;
 
     m_numero=numeroMap;
 	char numero[7];
@@ -169,7 +169,7 @@ bool Map::Charger(int numeroMap,Hero *hero)
 	ifstream *fichier=NULL;
 	ifstream *fichier2=NULL;
 
-	if(mapExistante)
+	if(mapExistante==true)
 	{
         fichier=reader.GetInfos(configuration->chemin_temps+numero);
 	    sprintf(numero,"entites_map%i.emap.hs",numeroMap);
@@ -353,7 +353,7 @@ bool Map::Charger(int numeroMap,Hero *hero)
 
     	console->Ajouter("");
 
-    	if(entite_map_existante)
+    	if(entite_map_existante==true)
         {
             console->Ajouter("Une map des entités est déjà existante.");
             if(fichier2)
@@ -542,7 +542,7 @@ bool Map::Charger(int numeroMap,Hero *hero)
                                                             case 's': *fichier>>tileset; break;
                                                             case 't': *fichier>>temp; tile.push_back(temp); break;
                                                             case 'e': int temp2; *fichier>>temp2; evenement.push_back(temp2); break;
-                                                            case 'm': if(!entite_map_existante) { *fichier>>temp; monstre.push_back(temp);  } else {  *fichier>>monstreFinal; } break;
+                                                            case 'm': if(entite_map_existante!=true) { *fichier>>temp; monstre.push_back(temp);  } else {  *fichier>>monstreFinal; } break;
                                                             case 'h': *fichier>>herbe; break;
                                                             case 'l': *fichier>>layer; break;
                                                         }
@@ -566,7 +566,7 @@ bool Map::Charger(int numeroMap,Hero *hero)
                                 if(decorBuffer[0][position.y][position.x].getHerbe()>=0&&herbe<0)
                                     herbe=decorBuffer[0][position.y][position.x].getHerbe();
 
-                            if(!entite_map_existante)
+                            if(entite_map_existante!=true)
                             {
                                 if((int)monstre.size()>0)
                                 {
@@ -915,7 +915,7 @@ void Map::Sauvegarder(Hero *hero)
                     fichier<<"l"<<m_decor[couche][i][j].getCouche()<<" ";
 
                     for(int o=0;o<(int)m_decor[couche][i][j].getNombreObjets();o++)
-                        m_decor[couche][i][j].getObjet(o).SauvegarderTexte(&fichier);
+                        m_decor[couche][i][j].getObjet(o)->SauvegarderTexte(&fichier);
 
                     fichier<<"|";
                 }
@@ -1050,7 +1050,7 @@ void Map::AfficherSacInventaire(RenderWindow* ecran,coordonnee positionSac,float
                  }
 
 
-                int rarete=m_decor[1][positionSac.y][positionSac.x].getObjet(z).getRarete();
+                int rarete=m_decor[1][positionSac.y][positionSac.x].getObjet(z)->getRarete();
                 if(rarete==NORMAL)
                     texte.SetColor(sf::Color(224,224,224,255));
                 if(rarete==BONNEFACTURE)
@@ -1073,7 +1073,7 @@ void Map::AfficherSacInventaire(RenderWindow* ecran,coordonnee positionSac,float
                 else if((z-m_defilerObjets==classe->position_sac_inventaire.h-1&&z+m_defilerObjets<=m_decor[1][positionSac.y][positionSac.x].getNombreObjets()+1))
                     texte.SetText("...");
                 else
-                    texte.SetText(m_decor[1][positionSac.y][positionSac.x].getObjet(z).getNom());
+                    texte.SetText(m_decor[1][positionSac.y][positionSac.x].getObjet(z)->getNom());
                 texte.SetSize(16*configuration->Resolution.w/800);
 
                 position.x=(int)((classe->position_sac_inventaire.x*configuration->Resolution.w/800)+((classe->position_sac_inventaire.w/2)*configuration->Resolution.w/800)-(texte.GetRect().Right-texte.GetRect().Left)/2);
@@ -1191,7 +1191,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                     {
                                         for(int z=0;z<m_decor[1][j][k].getNombreObjets();z++)
                                         {
-                                            int rarete=m_decor[1][j][k].getObjet(z).getRarete();
+                                            int rarete=m_decor[1][j][k].getObjet(z)->getRarete();
                                             if(rarete==NORMAL)
                                                 texte.SetColor(sf::Color(224,224,224));
                                             if(rarete==BONNEFACTURE)
@@ -1209,7 +1209,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                                             if(rarete==CRAFT)
                                                 texte.SetColor(sf::Color(128,64,0));
 
-                                            texte.SetText(m_decor[1][j][k].getObjet(z).getNom());
+                                            texte.SetText(m_decor[1][j][k].getObjet(z)->getNom());
                                             texte.SetSize(16*configuration->Resolution.w/800);
                                             texte.SetY((position.y-camera->GetRect().Top)*configuration->zoom-20*configuration->Resolution.w/800*(z+1));
                                             texte.SetX((position.x-camera->GetRect().Left)*configuration->zoom);
@@ -1383,7 +1383,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                  }
 
 
-                int rarete=m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getObjet(z).getRarete();
+                int rarete=m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getObjet(z)->getRarete();
                 if(rarete==NORMAL)
                     texte.SetColor(sf::Color(224,224,224,255));
                 if(rarete==BONNEFACTURE)
@@ -1406,7 +1406,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                 else if((z-m_defilerObjets==11&&z+m_defilerObjets<=m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getNombreObjets()+1))
                     texte.SetText("...");
                 else
-                    texte.SetText(m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getObjet(z).getNom());
+                    texte.SetText(m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getObjet(z)->getNom());
                 texte.SetSize(16*configuration->Resolution.w/800);
 
                 position.x=(int)((configuration->Resolution.w-configuration->Resolution.w*0.25*alpha/255)+(configuration->Resolution.w*0.25)/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
@@ -1524,22 +1524,36 @@ int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
             if(continuer)
             if(modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_type==PROJECTILE&&entiteMiracle->m_infos[o].m_IDObjet==-1)
             {
-                m_projectile.push_back(Projectile ());
-                m_projectile.back().m_position.x=entiteMiracle->m_infos[o].m_position.x;
-                m_projectile.back().m_position.y=entiteMiracle->m_infos[o].m_position.y;
+                int no=-1;
+                bool ajouter=true;
+                for(int i=0;i<(int)m_projectile.size();i++)
+                    if(!m_projectile[i].m_actif)
+                    {
+                        ajouter=false,no=i;
+                        break;
+                    }
 
-                m_projectile.back().m_degats=0;
+                if(ajouter)
+                {
+                    m_projectile.push_back(Projectile ());
+                    no=(int)m_projectile.size()-1;
+                }
+
+                m_projectile[no].m_position.x=entiteMiracle->m_infos[o].m_position.x;
+                m_projectile[no].m_position.y=entiteMiracle->m_infos[o].m_position.y;
+
+                m_projectile[no].m_degats=0;
 
                 for(int p=0;p<(int)modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien.size();p++)
                     if(modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]>=0&&modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]<(int)modeleMiracle->m_effets.size())
                         if(modeleMiracle->m_effets[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]].m_type==DEGATS)
-                            m_projectile.back().m_degats+=modeleMiracle->m_effets[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]].m_informations[0];
+                            m_projectile[no].m_degats+=modeleMiracle->m_effets[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]].m_informations[0];
 
-                m_projectile.back().m_monstre=monstre;
+                m_projectile[no].m_monstre=monstre;
 
-                m_projectile.back().m_actif=true;
+                m_projectile[no].m_actif=true;
 
-                m_projectile.back().m_couche=couche;
+                m_projectile[no].m_couche=couche;
 
                 coordonneeDecimal position,position2;
 
@@ -1550,9 +1564,9 @@ int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
                 position.x=cos(m)*modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[0]/10;
                 position.y=sin(m)*modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[0]/10;
 
-                m_projectile.back().m_vecteur=position;
+                m_projectile[no].m_vecteur=position;
 
-                m_projectile.back().m_rotationReelle=m;
+                m_projectile[no].m_rotationReelle=m;
 
                 position.x=(lanceur.x-lanceur.y)+m_dimensions.y;
                 position.y=(lanceur.x+lanceur.y)/2;
@@ -1564,20 +1578,20 @@ int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
 
                 m+=(float)modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[1]*M_PI/180;
 
-                m_projectile.back().m_rotation=m;
+                m_projectile[no].m_rotation=m;
 
-                m_projectile.back().m_positionCase=lanceur;
+                m_projectile[no].m_positionCase=lanceur;
 
 
-                m_projectile.back().m_positionImage= modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getCoordonnee();
-                m_projectile.back().m_centre= modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getCentre();
-                m_projectile.back().m_lumiere=modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getLumiere();
+                m_projectile[no].m_positionImage= modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getCoordonnee();
+                m_projectile[no].m_centre= modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getCentre();
+                m_projectile[no].m_lumiere=modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getLumiere();
 
-                m_projectile.back().m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(position.x*64,position.y*32),m_projectile.back().m_lumiere.intensite,m_projectile.back().m_lumiere.intensite,4,sf::Color(m_projectile.back().m_lumiere.rouge,m_projectile.back().m_lumiere.vert,m_projectile.back().m_lumiere.bleu));
+                m_projectile[no].m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(position.x*64,position.y*32),m_projectile[no].m_lumiere.intensite,m_projectile[no].m_lumiere.intensite,4,sf::Color(m_projectile[no].m_lumiere.rouge,m_projectile[no].m_lumiere.vert,m_projectile[no].m_lumiere.bleu));
 
                 if(modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getImage()>=0&&modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getImage()<(int)modeleMiracle->m_image.size())
-                    m_projectile.back().m_image=modeleMiracle->m_image[modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getImage()];
-                m_projectile.back().m_positionImage= modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getCoordonnee();
+                    m_projectile[no].m_image=modeleMiracle->m_image[modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getImage()];
+                m_projectile[no].m_positionImage= modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getCoordonnee();
 
                 entiteMiracle->m_infos[o].m_IDObjet=m_projectile.size()-1;
 
@@ -1587,8 +1601,8 @@ int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
                     if(lanceur.y>=0&&lanceur.y<m_dimensions.y)
                         if(lanceur.x>=0&&lanceur.x<m_dimensions.x)
                         {
-                            m_projectile.back().m_positionCase.x=lanceur.x;
-                            m_projectile.back().m_positionCase.y=lanceur.y;
+                            m_projectile[no].m_positionCase.x=lanceur.x;
+                            m_projectile[no].m_positionCase.y=lanceur.y;
                             if(m_decor[1][lanceur.y][lanceur.x].getProjectile()!=-1)
                                 m_decor[0][lanceur.y][lanceur.x].setProjectile(m_projectile.size()-1);
                             else
@@ -1599,34 +1613,50 @@ int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
             if(continuer)
             if(modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_type==EFFET_GRAPHIQUE&&entiteMiracle->m_infos[o].m_IDObjet==-1)
             {
-                m_effets.push_back(EffetGraphique ());
-                m_effets.back().m_position.x=entiteMiracle->m_infos[o].m_position.x;
-                m_effets.back().m_position.y=entiteMiracle->m_infos[o].m_position.y;
+
+                int no=-1;
+                bool ajouter=true;
+                for(int i=0;i<(int)m_effets.size();i++)
+                    if(!m_effets[i].m_actif)
+                    {
+                        ajouter=false,no=i;
+                        break;
+                    }
+
+                if(ajouter)
+                {
+                    m_effets.push_back(EffetGraphique
+                     ());
+                    no=(int)m_projectile.size()-1;
+                }
+
+                m_effets[no].m_position.x=entiteMiracle->m_infos[o].m_position.x;
+                m_effets[no].m_position.y=entiteMiracle->m_infos[o].m_position.y;
 
                 sf::Vector2f position;
 
-                m_effets.back().m_compteur=modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[0];
+                m_effets[no].m_compteur=modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[0];
 
-                m_effets.back().m_actif=true;
+                m_effets[no].m_actif=true;
 
-                m_effets.back().m_couche=couche;
+                m_effets[no].m_couche=couche;
 
-                m_effets.back().m_lumiere.intensite=128;
-                m_effets.back().m_lumiere.rouge=255;
-                m_effets.back().m_lumiere.vert=128;
-                m_effets.back().m_lumiere.bleu=128;
+                m_effets[no].m_lumiere.intensite=128;
+                m_effets[no].m_lumiere.rouge=255;
+                m_effets[no].m_lumiere.vert=128;
+                m_effets[no].m_lumiere.bleu=128;
 
 
-                position.x=(((m_effets.back().m_position.x-m_effets.back().m_position.y)*64/COTE_TILE+m_dimensions.y*64));
-                position.y=(((m_effets.back().m_position.x+m_effets.back().m_position.y)*64/COTE_TILE)/2+32)*2;
+                position.x=(((m_effets[no].m_position.x-m_effets[no].m_position.y)*64/COTE_TILE+m_dimensions.y*64));
+                position.y=(((m_effets[no].m_position.x+m_effets[no].m_position.y)*64/COTE_TILE)/2+32)*2;
 
-                m_effets.back().m_light=moteurGraphique->LightManager->Add_Dynamic_Light(position,m_effets.back().m_lumiere.intensite,m_effets.back().m_lumiere.intensite,4,sf::Color(m_effets.back().m_lumiere.rouge,m_effets.back().m_lumiere.vert,m_effets.back().m_lumiere.bleu));
+                m_effets[no].m_light=moteurGraphique->LightManager->Add_Dynamic_Light(position,m_effets[no].m_lumiere.intensite,m_effets[no].m_lumiere.intensite,4,sf::Color(m_effets[no].m_lumiere.rouge,m_effets[no].m_lumiere.vert,m_effets[no].m_lumiere.bleu));
 
                 entiteMiracle->m_infos[o].m_imageEnCours=0;
 
                 if(modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getImage()>=0&&modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getImage()<(int)modeleMiracle->m_image.size())
-                    m_effets.back().m_image=modeleMiracle->m_image[modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getImage()];
-                m_effets.back().m_positionImage= modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getCoordonnee();
+                    m_effets[no].m_image=modeleMiracle->m_image[modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getImage()];
+                m_effets[no].m_positionImage= modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getCoordonnee();
 
                 entiteMiracle->m_infos[o].m_IDObjet=m_effets.size()-1;
 
@@ -2248,7 +2278,7 @@ void Map::musiquePlay(coordonnee position)
                                         }\
                                         else if(script->m_instructions[noInstruction].nom=="distance")\
                                         {\
-                                            if(sqrt((m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)*(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x) + (m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)*(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)) < script->m_instructions[noInstruction].valeurs.at(0)) \
+                                            if(((m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)*(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x) + (m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)*(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)) < script->m_instructions[noInstruction].valeurs.at(0)*script->m_instructions[noInstruction].valeurs.at(0)) \
                                                 ok=true;\
                                             else \
                                                 ok=false;\
@@ -2530,7 +2560,7 @@ bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *ca
                 position2.x=(int)(((m_monstre[numeroMonstre].getCoordonneePixel().x-m_monstre[numeroMonstre].getCoordonneePixel().y)*64/COTE_TILE+m_dimensions.y*64));
                 position2.y=(int)(((m_monstre[numeroMonstre].getCoordonneePixel().x+m_monstre[numeroMonstre].getCoordonneePixel().y)*64/COTE_TILE)/2);
 
-                float force=((-m_monstre[numeroMonstre].getCaracteristique().vie*2)/m_monstre[numeroMonstre].getCaracteristique().maxVie)*5,angle;
+                float force=((degats*2)/m_monstre[numeroMonstre].getCaracteristique().maxVie)*5,angle;
 
                 if(force<7)
                     force=7;
@@ -2603,7 +2633,7 @@ bool Map::ramasserObjet(Hero *hero,bool enMain)
      &&position.y>=0&&position.y<(int)m_dimensions.y)
 	    if(m_objetPointe>=0&&m_objetPointe<m_decor[1][position.y][position.x].getNombreObjets())
         {
-            if(hero->ajouterObjet(m_decor[1][position.y][position.x].getObjet(m_objetPointe),enMain))
+            if(hero->ajouterObjet(*m_decor[1][position.y][position.x].getObjet(m_objetPointe),enMain))
             {
                 m_decor[1][position.y][position.x].supprimerObjet(m_objetPointe);
                 return true;

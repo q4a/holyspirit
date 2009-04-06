@@ -1787,8 +1787,8 @@ bool Hero::equiper(int numero, int emplacement)
                     if(ok)
                         m_inventaire[numero].m_equipe=emplacement;
 
-                    m_inventaire[ancienEquipe].m_equipe=-1;
-
+                    if(ancienEquipe>=0&&ancienEquipe<(int)m_inventaire.size())
+                        m_inventaire[ancienEquipe].m_equipe=-1;
                 }
 
             if(ok)

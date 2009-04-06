@@ -203,7 +203,7 @@ sf::Color Decor::getCouleurHerbe(){return m_herbe_couleur;}
 coordonnee Decor::getDecalageHerbe(){return m_herbe_decalage;}
 
 float Decor::getAnimation(){return m_animation;}
-Objet Decor::getObjet(int numero){ if(numero>=0&&numero<(int)m_objets.size()) return m_objets[numero]; Objet temp; return temp; }
+Objet* Decor::getObjet(int numero){ if(numero>=0&&numero<(int)m_objets.size()) return &m_objets[numero]; return NULL; }
 std::vector<Objet> Decor::getObjets(){return m_objets;}
 int Decor::getNombreObjets(){return m_objets.size();}
 int Decor::getHauteur(){return m_hauteur;}

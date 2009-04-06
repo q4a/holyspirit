@@ -69,7 +69,7 @@ class Decor
 	int getHauteur();
 	sf::Color getCouleurHerbe();
     coordonnee getDecalageHerbe();
-	Objet getObjet(int numero);
+	Objet *getObjet(int numero);
 	void supprimerObjet(int numero);
 	std::vector<Objet> getObjets();
 	int getNombreObjets();
