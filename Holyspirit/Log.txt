@@ -1,7 +1,3 @@
-         ---------------------------------------------------------------------------------
-         Demarrage du jeu
-         ---------------------------------------------------------------------------------
-         
          
          Chargement des postFX :
          Chargement de : Data/Effects/blurFX.sfx
@@ -49,8 +45,6 @@
          
          Chargement de l'objet : Two_hand_sword.item.hs
          
-         Chargement de l'objet : Two_hand_sword.item.hs
-         
          Chargement de l'objet : Ring.item.hs
          
          Chargement de l'objet : Unique_shield.item.hs
@@ -66,8 +60,6 @@
          Chargement de l'objet : Long_sword.item.hs
          
          Chargement de l'objet : Ring.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
          
          Chargement de l'objet : Ring.item.hs
          
@@ -99,14 +91,19 @@
          
          Chargement de l'objet : Small_shield.item.hs
          
+         Chargement de l'objet : Unique_boot.item.hs
+         Chargement de : Data/Items/Images/Boot.png
+         
          Chargement de l'objet : Necklage.item.hs
+         
+         Chargement de l'objet : Great_shield.item.hs
          
          Chargement de l'objet : Small_sword_divin.item.hs
          
          Chargement de l'objet : Armband.item.hs
          
-         Chargement de l'objet : Unique_boot.item.hs
-         Chargement de : Data/Items/Images/Boot.png
+         Chargement de l'objet : Small_axe.item.hs
+         Chargement de : Data/Items/Images/axes01.png
          /Lectures des objets.
          Chargement de : Data/Menus/Inventory.png
          Chargement de : Data/Menus/Hud.png
@@ -178,7 +175,6 @@
          /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Small_sword.item.hs
          /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Unique_shield.item.hs
          /Sauvegarde de Necklage.item.hs
@@ -186,7 +182,6 @@
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Long_sword.item.hs
          /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Armband.item.hs
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Coal.item.hs
          /Sauvegarde de Chainmail.item.hs
@@ -201,10 +196,12 @@
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Armor.item.hs
          /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Unique_boot.item.hs
          /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Small_sword_divin.item.hs
          /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Unique_boot.item.hs
+         /Sauvegarde de Small_axe.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
@@ -248,7 +245,6 @@
          Chargement du script : "Data/Scripts/AI/standard.script.hs"
          
          Chargement de l'objet : Small_axe.item.hs
-         Chargement de : Data/Items/Images/axes01.png
          
          Chargement du systeme de particules : Data/Particule_system/human_bones.ps.hs
          Chargement de : Data/Particule_system/Images/human_bones.png
@@ -394,7 +390,6 @@
          /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Small_sword.item.hs
          /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Unique_shield.item.hs
          /Sauvegarde de Necklage.item.hs
@@ -402,7 +397,6 @@
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Long_sword.item.hs
          /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Armband.item.hs
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Coal.item.hs
          /Sauvegarde de Chainmail.item.hs
@@ -417,10 +411,12 @@
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Armor.item.hs
          /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Unique_boot.item.hs
          /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Small_sword_divin.item.hs
          /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Unique_boot.item.hs
+         /Sauvegarde de Small_axe.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
@@ -609,5 +605,3 @@
          Sauvegarde de la configuration
          
          Destruction des moteurs
-         
-         EXIT_SUCCESS
