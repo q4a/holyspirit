@@ -121,10 +121,13 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
     sf::Sprite sprite;
     sf::Sprite sprite2;
 
-    EffectBlur.SetTexture("framebuffer", NULL);
-    EffectNoir.SetTexture("framebuffer", NULL);
-    EffectMort.SetTexture("framebuffer", NULL);
-    EffectContrastes.SetTexture("framebuffer", NULL);
+    if(configuration->postFX)
+    {
+        EffectBlur.SetTexture("framebuffer", NULL);
+        EffectNoir.SetTexture("framebuffer", NULL);
+        EffectMort.SetTexture("framebuffer", NULL);
+        EffectContrastes.SetTexture("framebuffer", NULL);
+    }
 
         if(configuration->RafraichirOmbre==1&&configuration->Ombre&&m_soleil.intensite>32)
         {
@@ -297,6 +300,9 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
         sprite2.SetBlendMode(sf::Blend::Add);
         ecran->Draw(sprite2);
     }
+
+    ecran->Display();
+    Vider();
 }
 
 int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std::string nom,int importance)

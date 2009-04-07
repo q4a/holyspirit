@@ -19,9 +19,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "LightManager.h"
 #include "Globale.h"
-#include "generateLight.h"
 
-Light_Manager::Light_Manager() : m_genLight (&m_DynamicLight, &m_wall)
+Light_Manager::Light_Manager()
 {
 
 }
@@ -224,9 +223,7 @@ void Light_Manager::Generate(Light_Entity &e)
     if(e.Dynamic()) {
         if(e.ID()>=0&&e.ID()<(int)m_DynamicLight.size()) {
             if(m_DynamicLight[e.ID()].m_actif) {
-                m_genLight.compute (&e);
-                m_genLight.stop ();
-              //  m_DynamicLight[e.ID()].Generate(m_wall);
+                m_DynamicLight[e.ID()].Generate(m_wall);
             }
         }
     }

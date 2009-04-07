@@ -97,12 +97,7 @@ void Jeu::Demarrer()
 
 		this->m_contexte->Utiliser(this);
 		if(this->m_display)
-		{
-		    ecran.Clear();
 		    moteurGraphique->Afficher(&this->ecran,&this->camera,this->map.getDimensions());
-            this->ecran.Display();
-		}
-		 moteurGraphique->Vider();
 	}
 
 	ecran.Close();

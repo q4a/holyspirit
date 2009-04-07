@@ -24,11 +24,10 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define LIGHTMANAGERH
 
 #include "singleton.h"
-#include "generateLight.h"
 
 class Light_Manager : public CSingleton<Light_Manager>
 {
-    public :
+    private :
 
     Light_Manager();
     ~Light_Manager();
@@ -98,7 +97,6 @@ class Light_Manager : public CSingleton<Light_Manager>
 
     private :
     std::vector<Light>::iterator Iter;
-    GenerateLight m_genLight;
 
 };
 #endif
