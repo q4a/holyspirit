@@ -1,3 +1,7 @@
+         ---------------------------------------------------------------------------------
+         Demarrage du jeu
+         ---------------------------------------------------------------------------------
+         
          
          Chargement des postFX :
          Chargement de : Data/Effects/blurFX.sfx
@@ -605,3 +609,5 @@
          Sauvegarde de la configuration
          
          Destruction des moteurs
+         
+         EXIT_SUCCESS
