@@ -1,11 +1,13 @@
 	*Croisé
 $
-	* f5 v20 p10 d5 c5 $
+	* f5 v20 p10 d5 c5 i0 $
 $
 	* mSmall_sword.item.hs $
 	* mSmall_shield.item.hs $
 $
-	* mData/Entities/Heroes/Crusader/Nude/OneHand.rs.hs mData/Entities/Heroes/Crusader/Nude/TwoWeapons.rs.hs mData/Entities/Heroes/Crusader/Nude/TwoHand.rs.hs $
+	* mData/Entities/Heroes/Crusader/ $
+$
+	* mNude/OneHand.rs.hs mNude/TwoWeapons.rs.hs mNude/TwoHand.rs.hs $
 $
 	* x0 y0 w800 h600 m Data/Menus/Inventory.png $
 $

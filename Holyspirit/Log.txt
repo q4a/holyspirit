@@ -115,23 +115,19 @@
          Chargement de : Data/Menus/Faith_orb.png
          Chargement de : Data/Menus/Coupe2.png
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoWeapons.rs.hs
-         Chargement de : CroiseMailleAttente1Main0.png
-         Chargement de : CroiseMailleMarche1Epee0.png
-         Chargement de : CroiseMailleFrappeSans2Arme0.png
-         Chargement de : CroiseMailleFrappeSans2Arme1.png
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Matelasse/TwoHand.rs.hs
+         Chargement de : CroiseMatelasseAttente2Main0.png
+         Chargement de : CroiseMatelasseMarcheSansEpee2Mains0.png
+         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains0.png
+         Chargement de : CroiseMatelasseFrappeSansArmeDeuxMains1.png
          Chargement de : Data/Sounds/9906__Snoman__grass3.wav
          Chargement de : Data/Sounds/epee.wav
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_r.rs.hs
-         Chargement de : TueuseDivineAttenteDroite0.png
-         Chargement de : TueuseDivineMarcheDroite0.png
-         Chargement de : TueuseDivineAttaqueDroite0.png
-         
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
-         Chargement de : TueuseDivineAttenteGauche0.png
-         Chargement de : TueuseDivineMarcheGauche0.png
-         Chargement de : TueuseDivineAttaqueGauche0.png
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Two_hands_sword/Two_hands_sword.rs.hs
+         Chargement de : Epee2MainsAttente0.png
+         Chargement de : Epee2MainsMarche0.png
+         Chargement de : Epee2MainsFrappe0.png
+         Chargement de : Epee2MainsFrappe1.png
          
          Chargement des sons :
          Chargement de : Data/Sounds/Coeur.wav
@@ -150,7 +146,7 @@
          Chargement de la map terminé.
          
          Chargement de : Data/Menus/Alpha-arts.png
-         Chargement de : Data/Loading_screens/Plaines3.png
+         Chargement de : Data/Loading_screens/Plaines2.png
          
          Destruction de la map...
          Destruction des cases...
@@ -209,11 +205,9 @@
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoWeapons.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Matelasse/TwoHand.rs.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_r.rs.hs
-         
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Two_hands_sword/Two_hands_sword.rs.hs
          
          Chargement de la map : map1.map.hs
          /Lectures du nom.
@@ -378,6 +372,22 @@
          /Lectures des cases.
          Chargement de la map terminé.
          
+         
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Matelasse/TwoWeapons.rs.hs
+         Chargement de : CroiseMatelasseAttente1Main0.png
+         Chargement de : CroiseMatelasseMarche1Epee0.png
+         Chargement de : CroiseMatelasseFrappeSans2Arme0.png
+         Chargement de : CroiseMatelasseFrappeSans2Arme1.png
+         
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_r.rs.hs
+         Chargement de : TueuseDivineAttenteDroite0.png
+         Chargement de : TueuseDivineMarcheDroite0.png
+         Chargement de : TueuseDivineAttaqueDroite0.png
+         
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
+         Chargement de : TueuseDivineAttenteGauche0.png
+         Chargement de : TueuseDivineMarcheGauche0.png
+         Chargement de : TueuseDivineAttaqueGauche0.png
          
          Sauvegarde de la map : Data/Temp/map1.map.hs
          Sauvegarde de la map_entite : Data/Temp/entites_map1.emap.hs
