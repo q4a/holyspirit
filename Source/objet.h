@@ -66,6 +66,7 @@ class Objet
     int m_type,m_equipe;
     std::vector <int> m_emplacement;
     std::vector <int> m_emplacementImpossible;
+    std::vector <int> m_IDClasse;
 
 
     int m_degatsMin, m_degatsMax,m_armure;
@@ -86,6 +87,7 @@ class Objet
     int m_rarete,m_image,m_chanceTrouver;
     coordonnee m_positionImage,m_taille,m_position;
     int ai,aa,dii,dia,dai,daa;
+
 
 
 };

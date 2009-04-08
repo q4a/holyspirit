@@ -1715,6 +1715,18 @@ int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
 
                         m_monstre.back().m_light=moteurGraphique->LightManager->Add_Dynamic_Light();
 
+                        moteurGraphique->LightManager->SetQuality(m_monstre.back().m_light,6);
+
+                        sf::Vector2f pos;
+                        pos.x=(((m_monstre.back().getCoordonneePixel().x-m_monstre.back().getCoordonneePixel().y)*64/COTE_TILE+getDimensions().y*64));
+                        pos.y=(((m_monstre.back().getCoordonneePixel().x+m_monstre.back().getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
+
+                        moteurGraphique->LightManager->SetPosition(m_monstre.back().m_light,pos);
+
+                        moteurGraphique->LightManager->SetColor(m_monstre.back().m_light,sf::Color(m_monstre.back().getPorteeLumineuse().rouge,m_monstre.back().getPorteeLumineuse().vert,m_monstre.back().getPorteeLumineuse().bleu));
+
+
+
                         m_decor[1][positionCase.y][positionCase.x].setMonstre(m_monstre.size()-1);
 
                         entiteMiracle->m_infos[o].m_IDObjet=m_monstre.size()-1;

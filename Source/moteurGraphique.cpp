@@ -103,7 +103,7 @@ void MoteurGraphique::Gerer(sf::RenderWindow *ecran,float temps,int tailleMapY)
     for(m_systemeParticules_iter=m_systemeParticules.begin();m_systemeParticules_iter!=m_systemeParticules.end();++m_systemeParticules_iter,++k)
         if(m_systemeParticules_iter->m_modele>=0&&m_systemeParticules_iter->m_modele<(int)m_modeleSystemeParticules.size())
         {
-            m_systemeParticules_iter->Afficher(ecran,&m_modeleSystemeParticules[m_systemeParticules_iter->m_modele]);
+            //m_systemeParticules_iter->Afficher(ecran,&m_modeleSystemeParticules[m_systemeParticules_iter->m_modele]);
 
             if(!m_systemeParticules_iter->Gerer(temps,tailleMapY))
             {

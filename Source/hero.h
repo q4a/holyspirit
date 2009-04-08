@@ -45,8 +45,13 @@ struct Classe
 {
     void Charger(std::string chemin);
 
+    int ID;
+
     std::string nom;
     Caracteristique caracteristique;
+
+
+    std::string chemin_modele;
 
     std::vector<std::string> equipementParDefaut;
     std::string modeleNu[3];

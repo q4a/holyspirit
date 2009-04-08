@@ -43,6 +43,8 @@ Hero::Hero()
    ///Je donnes des valeur à mes variables juste pour les tests
 	m_personnage.setEtat(ARRET);
 
+	m_cheminClasse="Data/Entities/Heroes/Crusader.class.hs";
+
 	m_chercherSac.x=-1;
 	m_chercherSac.y=-1;
 
@@ -268,6 +270,8 @@ void Classe::Charger(string chemin)
                         case 'p' : fichier>>caracteristique.piete; break;
                         case 'd' : fichier>>caracteristique.dexterite; break;
                         case 'c' : fichier>>caracteristique.charisme; break;
+                        case 'i' : fichier>>ID; break;
+
                     }
 
                     if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
@@ -290,6 +294,29 @@ void Classe::Charger(string chemin)
                     switch (caractere)
                     {
                         case 'm' : string temp; fichier>>temp; equipementParDefaut.push_back(temp); break;
+                    }
+
+                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+
+                }while(caractere!='$');
+                fichier.get(caractere);
+            }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
+
+
+    	do
+    	{
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
+                do
+                {
+                    fichier.get(caractere);
+                    switch (caractere)
+                    {
+                        case 'm' : fichier>>chemin_modele; break;
                     }
 
                     if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
@@ -567,7 +594,6 @@ void Classe::Charger(string chemin)
 void Hero::Charger()
 {
     console->Ajouter("Chargement du hero.");
-    m_cheminClasse="Data/Entities/Heroes/Crusader.class.hs";
     for(int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;i++)
         m_cheminModele[i]="";
 
@@ -864,18 +890,17 @@ void Hero::ChargerModele(bool tout)
                         temp=0;
 
                     if(m_inventaire[i].m_emplacementImageHero[temp]>=0&&m_inventaire[i].m_emplacementImageHero[temp]<NOMBRE_MORCEAU_PERSONNAGE)
-                        //if(m_cheminModele[m_inventaire[i].m_emplacementImageHero[temp]]!=m_inventaire[i].m_cheminImageHero[temp])
-                        {
-                            m_cheminModeleNouveau[m_inventaire[i].m_emplacementImageHero[temp]]=m_inventaire[i].m_cheminImageHero[temp];
-                            pasEquipe[m_inventaire[i].m_emplacementImageHero[temp]]=false;
-                        }
+                    {
+                        m_cheminModeleNouveau[m_inventaire[i].m_emplacementImageHero[temp]]=m_inventaire[i].m_cheminImageHero[temp];
+                        pasEquipe[m_inventaire[i].m_emplacementImageHero[temp]]=false;
+                    }
                 }
         }
 
     for(int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;i++)
     {
         if(m_cheminModeleNouveau[i]!="" && m_cheminModeleNouveau[i]!=m_cheminModele[i])
-            m_modelePersonnage[i].Charger(m_cheminModeleNouveau[i]);
+            m_modelePersonnage[i].Charger(m_classe.chemin_modele+m_cheminModeleNouveau[i]);
         else if(m_cheminModeleNouveau[i]=="")
             m_modelePersonnage[i].Reinitialiser();
 
@@ -886,7 +911,7 @@ void Hero::ChargerModele(bool tout)
     {
         if(m_cheminModele[0]!=m_classe.modeleNu[m_cas])
         {
-            m_modelePersonnage[0].Charger(m_classe.modeleNu[m_cas]);
+            m_modelePersonnage[0].Charger(m_classe.chemin_modele+m_classe.modeleNu[m_cas]);
             m_cheminModele[0]=m_classe.modeleNu[m_cas];
         }
     }
@@ -1749,8 +1774,18 @@ bool Hero::equiper(int numero, int emplacement)
     {
         ok=false;
         for(int i=0;i<(int)m_inventaire[m_objetEnMain].m_emplacement.size();i++)
-        {
             if(m_inventaire[m_objetEnMain].m_emplacement[i]==m_classe.emplacements[emplacement].emplacement)
+                ok=true;
+
+        if(ok)
+        {
+            ok=false;
+
+            for(int i=0;i<(int)m_inventaire[m_objetEnMain].m_IDClasse.size();i++)
+                if(m_inventaire[m_objetEnMain].m_IDClasse[i]==m_classe.ID)
+                    ok=true;
+
+            if(m_inventaire[m_objetEnMain].m_IDClasse.empty())
                 ok=true;
         }
 

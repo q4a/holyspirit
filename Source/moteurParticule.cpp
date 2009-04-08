@@ -44,24 +44,25 @@ void ParticuleSysteme::Afficher(sf::RenderWindow *ecran, ModeleParticuleSysteme 
 {
     for(Iter=m_particules.begin();Iter!=m_particules.end();++Iter)
     {
-        if(Iter->numero>=0&&Iter->numero<(int)modele->m_particules.size())
-        {
-            sf::Sprite sprite;
-            sprite.SetImage(*moteurGraphique->getImage(modele->m_image));
-            sprite.SetSubRect(sf::IntRect(modele->m_particules[Iter->numero].positionImage.x,modele->m_particules[Iter->numero].positionImage.y,modele->m_particules[Iter->numero].positionImage.x+modele->m_particules[Iter->numero].positionImage.w,modele->m_particules[Iter->numero].positionImage.y+modele->m_particules[Iter->numero].positionImage.h));
-            sprite.SetCenter(modele->m_particules[Iter->numero].positionImage.w/2,modele->m_particules[Iter->numero].positionImage.h/2);
-            sprite.SetRotation(Iter->rotation);
-            float scale=Iter->position.z/200+1;
-            sprite.SetScale(scale,scale);
-            sprite.SetX(Iter->position.x);
-            sprite.SetY(Iter->position.y-Iter->position.z);
-            sprite.SetColor(sf::Color(m_color.r,m_color.g,m_color.b,(int)Iter->alpha));
+        if(!modele->m_particules.empty())
+            if(Iter->numero>=0&&Iter->numero<(int)modele->m_particules.size())
+            {
+                sf::Sprite sprite;
+                sprite.SetImage(*moteurGraphique->getImage(modele->m_image));
+                sprite.SetSubRect(sf::IntRect(modele->m_particules[Iter->numero].positionImage.x,modele->m_particules[Iter->numero].positionImage.y,modele->m_particules[Iter->numero].positionImage.x+modele->m_particules[Iter->numero].positionImage.w,modele->m_particules[Iter->numero].positionImage.y+modele->m_particules[Iter->numero].positionImage.h));
+                sprite.SetCenter(modele->m_particules[Iter->numero].positionImage.w/2,modele->m_particules[Iter->numero].positionImage.h/2);
+                sprite.SetRotation(Iter->rotation);
+                float scale=Iter->position.z/200+1;
+                sprite.SetScale(scale,scale);
+                sprite.SetX(Iter->position.x);
+                sprite.SetY(Iter->position.y-Iter->position.z);
+                sprite.SetColor(sf::Color(m_color.r,m_color.g,m_color.b,(int)Iter->alpha));
 
-            if(Iter->position.z>32)
-                moteurGraphique->AjouterCommande(&sprite,11,1);
-            else
-                moteurGraphique->AjouterCommande(&sprite,8,1);
-        }
+                if(Iter->position.z>32)
+                    moteurGraphique->AjouterCommande(&sprite,11,1);
+                else
+                    moteurGraphique->AjouterCommande(&sprite,8,1);
+            }
     }
 }
 void ParticuleSysteme::Generer(float force, ModeleParticuleSysteme *modele,coordonnee position,float angle)
