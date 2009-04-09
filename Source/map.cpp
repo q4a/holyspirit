@@ -507,7 +507,7 @@ bool Map::Charger(int numeroMap,Hero *hero)
                                 case 's': *fichier>>tileset; break;
                                 case 't': *fichier>>temp; tile.push_back(temp); break;
                                 case 'e': int temp2; *fichier>>temp2; evenement.push_back(temp2); break;
-                                case 'm': if(!entite_map_existante) { *fichier>>temp; monstre.push_back(temp);  } else {  *fichier>>monstreFinal; } break;
+                                case 'm': if(entite_map_existante!=true) { *fichier>>temp; monstre.push_back(temp);  } else {  *fichier>>monstreFinal; } break;
                                 case 'h': *fichier>>herbe; break;
                                 case 'l': *fichier>>layer; break;
                                 case 'i': *fichier>>hauteur; break;
@@ -570,7 +570,7 @@ bool Map::Charger(int numeroMap,Hero *hero)
                             {
                                 if((int)monstre.size()>0)
                                 {
-                                    int random = (rand() % (monstre.size() -1 - 0 + 1)) + 0;
+                                    int random = rand() % (int)monstre.size();
                                     if(random>=0&&random<(int)monstre.size())
                                         monstreFinal = monstre[random];
 
