@@ -39,6 +39,8 @@ Map::Map()
     carreRouge.Create(8*configuration->Resolution.x/800,8*configuration->Resolution.x/800, Color(128, 0, 0)),carreVert.Create(8*configuration->Resolution.x/800, 8*configuration->Resolution.x/800, Color(0, 128, 0));
     carreJaune.Create(8*configuration->Resolution.x/800, 8*configuration->Resolution.x/800, Color(255, 255, 64));
 
+    carreMauve.Create(8*configuration->Resolution.x/800, 8*configuration->Resolution.x/800, Color(160, 0, 160));
+
     console->Ajouter("");
     console->Ajouter("Chargements d'images diverses :");
     IDImageSac=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_sac,-1);
@@ -1331,6 +1333,14 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                             if(typeCase==4)
                             {
                                 spriteMinimap.SetImage(carreJaune);
+                                spriteMinimap.SetX((float)(position.x+465*configuration->Resolution.w/800));
+                                spriteMinimap.SetY((float)(position.y-80*configuration->Resolution.w/800));
+                                moteurGraphique->AjouterCommande(&spriteMinimap,14,0);
+                            }
+
+                            if(typeCase==5)
+                            {
+                                spriteMinimap.SetImage(carreMauve);
                                 spriteMinimap.SetX((float)(position.x+465*configuration->Resolution.w/800));
                                 spriteMinimap.SetY((float)(position.y-80*configuration->Resolution.w/800));
                                 moteurGraphique->AjouterCommande(&spriteMinimap,14,0);
@@ -2766,7 +2776,7 @@ bool Map::getCollision(int positionX,int positionY)
                 return 1;
 
         if(m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<(int)m_monstre.size())
-            if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].enVie())
+            if(m_monstre[m_decor[i][positionY][positionX].getMonstre()].enVie()&&m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().rang>=0)
                 return 1;
 
         coordonnee enCours;
@@ -2851,7 +2861,10 @@ int Map::getTypeCase(int positionX,int positionY)
             if(m_decor[0][positionY][positionX].getMonstre()>-1&&m_decor[0][positionY][positionX].getMonstre()<(int)m_monstre.size())
                 if(m_monstre[m_decor[0][positionY][positionX].getMonstre()].enVie())
                     if(m_ModeleMonstre[m_monstre[m_decor[0][positionY][positionX].getMonstre()].getModele()].m_minimap)
-                        return 2;
+                        if(m_monstre[m_decor[0][positionY][positionX].getMonstre()].m_friendly)
+                            return 5;
+                        else
+                            return 2;
 
             if(m_decor[0][positionY][positionX].getNombreObjets())
                 return 4;
@@ -2873,7 +2886,10 @@ int Map::getTypeCase(int positionX,int positionY)
             if(m_decor[1][positionY][positionX].getMonstre()>-1&&m_decor[1][positionY][positionX].getMonstre()<(int)m_monstre.size())
                 if(m_monstre[m_decor[1][positionY][positionX].getMonstre()].enVie())
                     if(m_ModeleMonstre[m_monstre[m_decor[1][positionY][positionX].getMonstre()].getModele()].m_minimap)
-                        return 2;
+                        if(m_monstre[m_decor[1][positionY][positionX].getMonstre()].m_friendly)
+                            return 5;
+                        else
+                            return 2;
 
             if(m_decor[1][positionY][positionX].getNombreObjets())
                 return 4;
@@ -2923,7 +2939,7 @@ int Map::getMonstre(Hero *hero,View *camera,RenderWindow *ecran,coordonnee posit
             for(int k=vueMin.x;k<vueMax.x;k++)
             {
                     if(m_decor[i][j][k].getMonstre()>=0&&m_decor[i][j][k].getMonstre()<(int)m_monstre.size())
-                    if(m_monstre[m_decor[i][j][k].getMonstre()].enVie())
+                    if(m_monstre[m_decor[i][j][k].getMonstre()].enVie()&&m_monstre[m_decor[i][j][k].getMonstre()].getCaracteristique().rang>=0)
                     {
                         coordonneeDecimal temp;
                         temp.x=(((m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x-m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y)*64/COTE_TILE+m_dimensions.y*64));
