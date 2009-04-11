@@ -108,7 +108,10 @@ void MoteurGraphique::Gerer(sf::RenderWindow *ecran,float temps,int tailleMapY)
             if(!m_systemeParticules_iter->Gerer(temps,tailleMapY))
             {
                 m_systemeParticules.erase (m_systemeParticules_iter);
-                m_systemeParticules_iter=m_systemeParticules.begin()+(k-1);
+                if(k!=0&&!m_systemeParticules.empty())
+                    m_systemeParticules_iter=m_systemeParticules.begin()+(k-1);
+                else
+                    break;
             }
         }
 }
