@@ -724,18 +724,19 @@ void Map::Initialiser()
             }
 
     for(int i=0;i<(int)m_monstre.size();i++)
-    {
-        m_monstre[i].m_light=moteurGraphique->LightManager->Add_Dynamic_Light();
-        moteurGraphique->LightManager->SetQuality(m_monstre[i].m_light,6);
+        if(m_monstre[i].getCaracteristique().rang>=0)
+        {
+            m_monstre[i].m_light=moteurGraphique->LightManager->Add_Dynamic_Light();
+            moteurGraphique->LightManager->SetQuality(m_monstre[i].m_light,6);
 
-        sf::Vector2f pos;
-        pos.x=(((m_monstre[i].getCoordonneePixel().x-m_monstre[i].getCoordonneePixel().y)*64/COTE_TILE+getDimensions().y*64));
-        pos.y=(((m_monstre[i].getCoordonneePixel().x+m_monstre[i].getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
+            sf::Vector2f pos;
+            pos.x=(((m_monstre[i].getCoordonneePixel().x-m_monstre[i].getCoordonneePixel().y)*64/COTE_TILE+getDimensions().y*64));
+            pos.y=(((m_monstre[i].getCoordonneePixel().x+m_monstre[i].getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
 
-        moteurGraphique->LightManager->SetPosition(m_monstre[i].m_light,pos);
+            moteurGraphique->LightManager->SetPosition(m_monstre[i].m_light,pos);
 
-        moteurGraphique->LightManager->SetColor(m_monstre[i].m_light,sf::Color(m_monstre[i].getPorteeLumineuse().rouge,m_monstre[i].getPorteeLumineuse().vert,m_monstre[i].getPorteeLumineuse().bleu));
-    }
+            moteurGraphique->LightManager->SetColor(m_monstre[i].m_light,sf::Color(m_monstre[i].getPorteeLumineuse().rouge,m_monstre[i].getPorteeLumineuse().vert,m_monstre[i].getPorteeLumineuse().bleu));
+        }
 
     sf::Vector2f pos;
 
@@ -2083,31 +2084,32 @@ void Map::infligerDegatsMasse(coordonnee position,int rayon,int degats,bool sour
     for(int couche=0;couche<2;couche++)
         for(int y=position.y-rayon;y<=position.y+rayon;y++)
             for(int x=position.x-rayon;x<=position.x+rayon;x++)
-                if(y>0&&x>0&&y<(int)m_dimensions.y&&x<m_dimensions.x)
+                if(y>=0&&x>=0&&y<m_dimensions.y&&x<m_dimensions.x)
                     if(sourceConcernee||!sourceConcernee&&!(y==position.y&&x==position.x))
                     {
                         infligerDegats(m_decor[couche][y][x].getMonstre(), degats,menu,camera,hero,0);
 
-                        if(m_monstre[m_decor[couche][y][x].getMonstre()].enVie())
-                        {
-                            coordonnee vecteur;
+                        if(m_decor[couche][y][x].getMonstre()>=0&&m_decor[couche][y][x].getMonstre()<(int)m_monstre.size())
+                            if(m_monstre[m_decor[couche][y][x].getMonstre()].enVie())
+                            {
+                                coordonnee vecteur;
 
-                            if(position.x-m_monstre[m_decor[couche][y][x].getMonstre()].getCoordonnee().x<0)
-                                vecteur.x=1;
-                            else if(position.x-m_monstre[m_decor[couche][y][x].getMonstre()].getCoordonnee().x>0)
-                                vecteur.x=-1;
-                            else
-                                vecteur.x=0;
+                                if(position.x-m_monstre[m_decor[couche][y][x].getMonstre()].getCoordonnee().x<0)
+                                    vecteur.x=1;
+                                else if(position.x-m_monstre[m_decor[couche][y][x].getMonstre()].getCoordonnee().x>0)
+                                    vecteur.x=-1;
+                                else
+                                    vecteur.x=0;
 
-                            if(position.y-m_monstre[m_decor[couche][y][x].getMonstre()].getCoordonnee().y<0)
-                                vecteur.y=1;
-                            else if(position.y-m_monstre[m_decor[couche][y][x].getMonstre()].getCoordonnee().y>0)
-                                vecteur.y=-1;
-                            else
-                                vecteur.y=0;
+                                if(position.y-m_monstre[m_decor[couche][y][x].getMonstre()].getCoordonnee().y<0)
+                                    vecteur.y=1;
+                                else if(position.y-m_monstre[m_decor[couche][y][x].getMonstre()].getCoordonnee().y>0)
+                                    vecteur.y=-1;
+                                else
+                                    vecteur.y=0;
 
-                            PousserMonstreCase(m_decor[couche][y][x].getMonstre(),vecteur);
-                        }
+                                PousserMonstreCase(m_decor[couche][y][x].getMonstre(),vecteur);
+                            }
 
                         if(y==hero->m_personnage.getCoordonnee().y&&x==hero->m_personnage.getCoordonnee().x)
                             hero->infligerDegats(degats);

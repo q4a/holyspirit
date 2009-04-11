@@ -43,7 +43,10 @@ Hero::Hero()
    ///Je donnes des valeur à mes variables juste pour les tests
 	m_personnage.setEtat(ARRET);
 
-	m_cheminClasse="Data/Entities/Heroes/Crusader.class.hs";
+	if(rand()%2==1)
+        m_cheminClasse="Data/Entities/Heroes/Crusader.class.hs";
+    else
+        m_cheminClasse="Data/Entities/Heroes/Concubine.class.hs";
 
 	m_chercherSac.x=-1;
 	m_chercherSac.y=-1;
@@ -105,6 +108,7 @@ Hero::Hero()
     m_cas=0;
 
     m_argent=0;
+
 
     for(int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;i++)
             m_cheminModeleNouveau[i]="",m_cheminModele[i]="";

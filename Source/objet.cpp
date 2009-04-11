@@ -92,6 +92,8 @@ Objet Objet::operator=(const Objet &objet)
 	dai=objet.dai;
 	daa=objet.daa;
 
+	m_IDClasse=objet.m_IDClasse;
+
     return *this;
 }
 
