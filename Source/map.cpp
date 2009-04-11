@@ -2090,7 +2090,7 @@ void Map::infligerDegatsMasse(coordonnee position,int rayon,int degats,bool sour
                         infligerDegats(m_decor[couche][y][x].getMonstre(), degats,menu,camera,hero,0);
 
                         if(m_decor[couche][y][x].getMonstre()>=0&&m_decor[couche][y][x].getMonstre()<(int)m_monstre.size())
-                            if(m_monstre[m_decor[couche][y][x].getMonstre()].enVie())
+                            if(m_monstre[m_decor[couche][y][x].getMonstre()].enVie()&&!m_monstre[m_decor[couche][y][x].getMonstre()].m_friendly&&m_monstre[m_decor[couche][y][x].getMonstre()].getCaracteristique().rang>=0)
                             {
                                 coordonnee vecteur;
 
