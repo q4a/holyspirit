@@ -17,10 +17,36 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.*/
 
 
-#include "Moteurs/moteurGraphique.h"
-#include "Moteurs/moteurSons.h"
 
-extern Configuration *configuration;
-extern Console *console;
-extern MoteurGraphique *moteurGraphique;
-extern MoteurSons *moteurSons;
+#ifndef SCRIPTH
+#define SCRIPTH
+
+#include <iostream.h>
+#include "../constantes.h"
+
+struct Instruction
+{
+    std::string nom;
+    std::vector < int > valeurs;
+};
+
+class Script
+{
+	public:
+    Script();
+    Script(std::string chemin);
+	void Charger(std::string chemin);
+
+	void AjouterCondition(std::ifstream *fichier);
+	int Lire(std::ifstream *fichier);
+
+	std::vector<Instruction> m_instructions;
+
+	int variables[10];
+};
+
+#endif
+
+
+
+

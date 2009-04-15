@@ -1,6 +1,6 @@
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
-#include <iostream>
+#include <iostream.h>
 #include <fstream>
 
 #include "constantes.h"

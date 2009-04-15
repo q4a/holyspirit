@@ -17,10 +17,31 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.*/
 
 
-#include "Moteurs/moteurGraphique.h"
-#include "Moteurs/moteurSons.h"
 
-extern Configuration *configuration;
-extern Console *console;
-extern MoteurGraphique *moteurGraphique;
-extern MoteurSons *moteurSons;
+
+#ifndef MODELMOTEURPARTICULES
+#define MODELMOTEURPARTICULES
+
+#include "../constantes.h"
+
+struct ModeleParticule
+{
+    coordonnee positionImage;
+
+    int min,max;
+};
+
+class ModeleParticuleSysteme
+{
+    public:
+    ModeleParticuleSysteme();
+    ModeleParticuleSysteme(std::string chemin);
+    ~ModeleParticuleSysteme();
+    void Charger(std::string chemin);
+
+    //private:
+    int m_image,m_son;
+    std::string m_chemin;
+    std::vector <ModeleParticule> m_particules;
+};
+#endif

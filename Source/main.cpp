@@ -21,10 +21,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
-#include <iostream>
+#include <iostream.h>
 
 #include <dirent.h>
-#include "ChargThread.h"
 #include "main.h"
 
 

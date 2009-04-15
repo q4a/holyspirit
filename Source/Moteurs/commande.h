@@ -17,10 +17,31 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.*/
 
 
-#include "Moteurs/moteurGraphique.h"
-#include "Moteurs/moteurSons.h"
+#include <SFML/System.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
-extern Configuration *configuration;
+#ifndef COMMANDEH
+#define COMMANDEH
+
+#include "../constantes.h"
+
 extern Console *console;
-extern MoteurGraphique *moteurGraphique;
-extern MoteurSons *moteurSons;
+
+struct Commande
+{
+	public:
+
+	Commande(sf::Sprite *sprite,bool utiliserCamera)
+	{
+	    m_sprite=*sprite;
+	    m_utiliserCamera=utiliserCamera;
+    }
+
+	sf::Sprite m_sprite;
+	bool m_utiliserCamera;
+};
+
+#endif
+
+

@@ -17,10 +17,29 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.*/
 
 
-#include "Moteurs/moteurGraphique.h"
-#include "Moteurs/moteurSons.h"
 
-extern Configuration *configuration;
-extern Console *console;
-extern MoteurGraphique *moteurGraphique;
-extern MoteurSons *moteurSons;
+
+#ifndef CASEH
+#define CASEH
+
+#include "../constantes.h"
+#include "../Map/decor.h"
+
+class Case
+{
+	public:
+	coordonnee getPosition();
+	void setCoordonnee(coordonnee nouvelleCoordonnee,int distance);
+	int getDistance();
+
+	Case operator=(const Case &caseCopiee);
+
+	private:
+	coordonnee m_coordonnee;
+	int m_distance;
+};
+
+#endif
+
+
+

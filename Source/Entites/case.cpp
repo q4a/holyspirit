@@ -16,11 +16,28 @@ You should have received a copy of the GNU General Public License along
 with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.*/
 
+#include "case.h"
 
-#include "Moteurs/moteurGraphique.h"
-#include "Moteurs/moteurSons.h"
+#include <iostream.h>
 
-extern Configuration *configuration;
-extern Console *console;
-extern MoteurGraphique *moteurGraphique;
-extern MoteurSons *moteurSons;
+coordonnee Case::getPosition()
+{
+	return m_coordonnee;
+}
+
+void Case::setCoordonnee(coordonnee nouvelleCoordonnee,int distance)
+{
+	m_coordonnee=nouvelleCoordonnee;
+	m_distance=distance;
+}
+
+int Case::getDistance(){return m_distance;}
+
+Case Case::operator=(const Case &caseCopiee)
+{
+	m_coordonnee=caseCopiee.m_coordonnee;
+	m_distance=caseCopiee.m_distance;
+    return *this;
+}
+
+

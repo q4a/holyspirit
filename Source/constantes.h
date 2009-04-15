@@ -45,13 +45,13 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include <cmath>
 #include <utility>
-#include <iostream>
+#include <iostream.h>
 #include <fstream>
 #include <vector>
 
 #include "datFile.h"
 
-#include "console.h"
+#include "Moteurs/console.h"
 
 
 enum{ARRET,COURSE,FRAPPE,MORT};

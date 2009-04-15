@@ -20,7 +20,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "menu.h"
 #include "Globale.h"
 
-#include <iostream>
+#include <iostream.h>
 #include <fstream>
 
 #include <SFML/System.hpp>

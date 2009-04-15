@@ -26,16 +26,16 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <SFML/Graphics.hpp>
 
 #include "constantes.h"
-#include "map.h"
-#include "eventManager.h"
+#include "Map/map.h"
+#include "Moteurs/eventManager.h"
 #include "menu.h"
-#include "personnage.h"
+#include "Entites/personnage.h"
 
-#include "c_jeu.h"
-#include "c_changementMap.h"
-#include "c_inventaire.h"
-#include "c_menuInGame.h"
-#include "c_demarrage.h"
+#include "Contextes/c_jeu.h"
+#include "Contextes/c_changementMap.h"
+#include "Contextes/c_inventaire.h"
+#include "Contextes/c_menuInGame.h"
+#include "Contextes/c_demarrage.h"
 
 class Jeu
 {

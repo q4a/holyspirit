@@ -28,7 +28,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define MENUH
 
 #include "constantes.h"
-#include "hero.h"
+#include "Entites/hero.h"
 
 class Ame
 {

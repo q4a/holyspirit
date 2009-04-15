@@ -1,0 +1,2137 @@
+# depslib dependency file v1.0
+1238434529 source:d:\backup disque e\c++\holyspirit\source\chargthread.cpp
+
+1238434549 source:d:\backup disque e\c++\holyspirit\source\contexte.cpp
+	"c_Jeu.h"
+
+1238582962 d:\backup disque e\c++\holyspirit\source\c_jeu.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"contexte.h"
+	"globale.h"
+
+1238434550 d:\backup disque e\c++\holyspirit\source\contexte.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1238434566 d:\backup disque e\c++\holyspirit\source\globale.h
+	"moteurGraphique.h"
+	"moteurSons.h"
+
+1238593689 d:\backup disque e\c++\holyspirit\source\moteurgraphique.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"map.h"
+	"commande.h"
+	"moteurParticule.h"
+	"lightManager.h"
+
+1238434594 d:\backup disque e\c++\holyspirit\source\map.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"tileset.h"
+	"decor.h"
+	"menu.h"
+	"monstre.h"
+	"evenement.h"
+	"c_changementMap.h"
+
+1238434668 d:\backup disque e\c++\holyspirit\source\tileset.h
+	<iostream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"tile.h"
+	"hero.h"
+
+1238434663 d:\backup disque e\c++\holyspirit\source\tile.h
+	<iostream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"constantes.h"
+
+1238848187 d:\backup disque e\c++\holyspirit\source\constantes.h
+	<cmath>
+	<utility>
+	<iostream>
+	<fstream>
+	<vector>
+	"datFile.h"
+	"console.h"
+
+1204390259 d:\backup disque e\c++\holyspirit\source\datfile.h
+	<iostream>
+	<fstream>
+	<vector>
+
+1238335481 d:\backup disque e\c++\holyspirit\source\console.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"singleton.h"
+
+1238434643 d:\backup disque e\c++\holyspirit\source\singleton.h
+	<iostream>
+
+1238434574 d:\backup disque e\c++\holyspirit\source\hero.h
+	<iostream>
+	<string>
+	"personnage.h"
+	"monstre.h"
+
+1238434633 d:\backup disque e\c++\holyspirit\source\personnage.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"constantes.h"
+	"decor.h"
+	"liste_case.h"
+	"pose.h"
+	"lightManager.h"
+
+1239010243 d:\backup disque e\c++\holyspirit\source\decor.h
+	<iostream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"constantes.h"
+	"objet.h"
+	"light.h"
+
+1238434627 d:\backup disque e\c++\holyspirit\source\objet.h
+	<iostream>
+	"constantes.h"
+	<fstream>
+
+1238434580 d:\backup disque e\c++\holyspirit\source\light.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Window.hpp>
+	"constantes.h"
+
+1204390259 d:\backup disque e\c++\holyspirit\source\liste_case.h
+	"constantes.h"
+	"case.h"
+
+1238335510 d:\backup disque e\c++\holyspirit\source\case.h
+	"constantes.h"
+	"decor.h"
+
+1238434639 d:\backup disque e\c++\holyspirit\source\pose.h
+	<iostream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"constantes.h"
+
+1239039853 d:\backup disque e\c++\holyspirit\source\lightmanager.h
+	"light.h"
+	"singleton.h"
+
+1239039735 d:\backup disque e\c++\holyspirit\source\generatelight.h
+	"light.h"
+
+1238434606 d:\backup disque e\c++\holyspirit\source\monstre.h
+	"personnage.h"
+	"constantes.h"
+	"script.h"
+	"miracle.h"
+
+1204390259 d:\backup disque e\c++\holyspirit\source\script.h
+	<iostream>
+	"constantes.h"
+
+1204390259 d:\backup disque e\c++\holyspirit\source\miracle.h
+	"constantes.h"
+	"tile.h"
+	"light.h"
+
+1204390259 d:\backup disque e\c++\holyspirit\source\menu.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"constantes.h"
+	"hero.h"
+
+1238434562 d:\backup disque e\c++\holyspirit\source\evenement.h
+	"constantes.h"
+
+1238335481 d:\backup disque e\c++\holyspirit\source\c_changementmap.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"contexte.h"
+
+1238434542 d:\backup disque e\c++\holyspirit\source\commande.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1238427827 d:\backup disque e\c++\holyspirit\source\moteurparticule.h
+	"constantes.h"
+	"modeleMoteurParticule.h"
+
+1238434614 d:\backup disque e\c++\holyspirit\source\modelemoteurparticule.h
+	"constantes.h"
+
+1204390259 d:\backup disque e\c++\holyspirit\source\moteursons.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"constantes.h"
+
+1239010319 source:d:\backup disque e\c++\holyspirit\source\decor.cpp
+	"Decor.h"
+	"Globale.h"
+
+1238434561 source:d:\backup disque e\c++\holyspirit\source\evenement.cpp
+	"Evenement.h"
+	<iostream>
+
+1239011387 source:d:\backup disque e\c++\holyspirit\source\hero.cpp
+	"Hero.h"
+	"Globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<math.h>
+	<dirent.h>
+
+1239039853 source:d:\backup disque e\c++\holyspirit\source\light.cpp
+	<iostream>
+	<math.h>
+	"light.h"
+	"globale.h"
+
+1239039853 source:d:\backup disque e\c++\holyspirit\source\lightmanager.cpp
+	"LightManager.h"
+	"Globale.h"
+
+1239011910 source:d:\backup disque e\c++\holyspirit\source\map.cpp
+	"Map.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<dirent.h>
+	"Globale.h"
+	"Jeu.h"
+
+1238519422 d:\backup disque e\c++\holyspirit\source\jeu.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"constantes.h"
+	"map.h"
+	"eventManager.h"
+	"menu.h"
+	"personnage.h"
+	"c_jeu.h"
+	"c_changementMap.h"
+	"c_inventaire.h"
+	"c_menuInGame.h"
+	"c_demarrage.h"
+
+1237723778 d:\backup disque e\c++\holyspirit\source\eventmanager.h
+	<iostream>
+	"prototypes.h"
+	"hero.h"
+
+1204390259 d:\backup disque e\c++\holyspirit\source\prototypes.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"constantes.h"
+
+1238335510 d:\backup disque e\c++\holyspirit\source\c_inventaire.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"contexte.h"
+
+1238335555 d:\backup disque e\c++\holyspirit\source\c_menuingame.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"contexte.h"
+
+1238335570 d:\backup disque e\c++\holyspirit\source\c_demarrage.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"contexte.h"
+
+1238434599 source:d:\backup disque e\c++\holyspirit\source\modelepersonnage.cpp
+
+1238434605 source:d:\backup disque e\c++\holyspirit\source\monstre.cpp
+	<iostream>
+	<fstream>
+	"Monstre.h"
+	"Constantes.h"
+	"Globale.h"
+
+1238434626 source:d:\backup disque e\c++\holyspirit\source\objet.cpp
+	"Objet.h"
+	"Globale.h"
+	<fstream>
+
+1238521219 source:d:\backup disque e\c++\holyspirit\source\personnage.cpp
+	"Personnage.h"
+	"Globale.h"
+	<iostream>
+	<fstream>
+	<math.h>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+
+1238434638 source:d:\backup disque e\c++\holyspirit\source\pose.cpp
+	"Pose.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+
+1238434662 source:d:\backup disque e\c++\holyspirit\source\tile.cpp
+	"Tile.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+
+1238434667 source:d:\backup disque e\c++\holyspirit\source\tileset.cpp
+	"Tileset.h"
+	"Globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+
+1239040309 source:d:\backup disque e\c++\holyspirit\source\c_jeu.cpp
+	"c_Jeu.h"
+	"jeu.h"
+	"globale.h"
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1238335661 source:d:\backup disque e\c++\holyspirit\source\c_changementmap.cpp
+	"c_jeu.h"
+	"jeu.h"
+	"globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1204390259 source:d:\backup disque e\c++\holyspirit\source\c_demarrage.cpp
+	"c_jeu.h"
+	"jeu.h"
+	"Globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1204390259 source:d:\backup disque e\c++\holyspirit\source\c_inventaire.cpp
+	"c_jeu.h"
+	"jeu.h"
+	"Globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1238770958 source:d:\backup disque e\c++\holyspirit\source\c_menuingame.cpp
+	"c_jeu.h"
+	"jeu.h"
+	"Globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1204390259 source:d:\backup disque e\c++\holyspirit\source\case.cpp
+	"case.h"
+	<iostream>
+
+1238837219 source:d:\backup disque e\c++\holyspirit\source\console.cpp
+	"console.h"
+	"constantes.h"
+	"Globale.h"
+	<iostream>
+	<fstream>
+
+1235913182 source:d:\backup disque e\c++\holyspirit\source\crypter.cpp
+	<iostream>
+	<list>
+
+1204390259 source:d:\backup disque e\c++\holyspirit\source\datfile.cpp
+	"globale.h"
+
+1238248942 source:d:\backup disque e\c++\holyspirit\source\eventmanager.cpp
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<math.h>
+	"eventManager.h"
+	"prototypes.h"
+	"Globale.h"
+	<iostream>
+
+1238436334 source:d:\backup disque e\c++\holyspirit\source\generatelight.cpp
+	"generateLight.h"
+
+1237231436 source:d:\backup disque e\c++\holyspirit\source\generetelight.cpp
+
+1239040064 source:d:\backup disque e\c++\holyspirit\source\jeu.cpp
+	"constantes.h"
+	"Globale.h"
+	"jeu.h"
+	"datFile.h"
+	<dirent.h>
+
+1238247563 source:d:\backup disque e\c++\holyspirit\source\liste_case.cpp
+	"liste_case.h"
+	"globale.h"
+	<iostream>
+
+1238837325 source:d:\backup disque e\c++\holyspirit\source\main.cpp
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<iostream>
+	<dirent.h>
+	"ChargThread.h"
+	"main.h"
+
+1238434530 d:\backup disque e\c++\holyspirit\source\chargthread.h
+
+1204390259 d:\backup disque e\c++\holyspirit\source\main.h
+	"Jeu.h"
+	"constantes.h"
+
+1238250958 source:d:\backup disque e\c++\holyspirit\source\menu.cpp
+	"menu.h"
+	"Globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+
+1237376712 source:d:\backup disque e\c++\holyspirit\source\miracle.cpp
+	"miracle.h"
+	"globale.h"
+	<iostream>
+	<fstream>
+
+1238434613 source:d:\backup disque e\c++\holyspirit\source\modelemoteurparticule.cpp
+	"modeleMoteurParticule.h"
+	"globale.h"
+	<fstream>
+
+1239040309 source:d:\backup disque e\c++\holyspirit\source\moteurgraphique.cpp
+	"moteurGraphique.h"
+	"globale.h"
+	<iostream>
+
+1239011796 source:d:\backup disque e\c++\holyspirit\source\moteurparticule.cpp
+	"moteurParticule.h"
+	"globale.h"
+	<fstream>
+
+1204390259 source:d:\backup disque e\c++\holyspirit\source\moteursons.cpp
+	"MoteurSons.h"
+	"Globale.h"
+	<iostream>
+
+1204390259 source:d:\backup disque e\c++\holyspirit\source\ressource.rc
+
+1204390259 source:d:\backup disque e\c++\holyspirit\source\script.cpp
+	<fstream>
+	"script.h"
+	"globale.h"
+
+1237157098 source:d:\backup disque e\c++\holyspirit\source\testthread.cpp
+	<SFML/System.hpp>
+	<iostream>
+
+1204390259 source:d:\backup disque e\c++\holyspirit\source\video.cpp
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<iostream>
+	<fstream>
+	"constantes.h"
+	"Globale.h"
+	<libavformat/avformat.h>
+	<libavcodec/avcodec.h>
+
+1216652924 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\system.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Clock.hpp>
+	<SFML/System/Lock.hpp>
+	<SFML/System/Mutex.hpp>
+	<SFML/System/Randomizer.hpp>
+	<SFML/System/Sleep.hpp>
+	<SFML/System/Thread.hpp>
+	<SFML/System/Unicode.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Vector3.hpp>
+
+1218174344 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\config.hpp
+	<climits>
+
+1200747000 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\system\clock.hpp
+	<SFML/Config.hpp>
+
+1200747000 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\system\lock.hpp
+	<SFML/System/NonCopyable.hpp>
+
+1220779780 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\system\noncopyable.hpp
+	<SFML/Config.hpp>
+
+1200747000 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\system\mutex.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Win32/Mutex.hpp>
+	<SFML/System/Unix/Mutex.hpp>
+
+1216036886 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\system\win32\mutex.hpp
+	<SFML/System/NonCopyable.hpp>
+	<windows.h>
+
+1187703890 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\system\unix\mutex.hpp
+	<SFML/System/NonCopyable.hpp>
+	<pthread.h>
+
+1200747000 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\system\randomizer.hpp
+	<SFML/Config.hpp>
+
+1200747000 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\system\sleep.hpp
+	<SFML/Config.hpp>
+
+1200747000 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\system\thread.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Win32/Thread.hpp>
+	<SFML/System/Unix/Thread.hpp>
+
+1216037300 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\system\win32\thread.hpp
+	<SFML/System/NonCopyable.hpp>
+	<windows.h>
+
+1187703890 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\system\unix\thread.hpp
+	<SFML/System/NonCopyable.hpp>
+	<pthread.h>
+
+1217864442 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\system\unicode.hpp
+	<SFML/Config.hpp>
+	<iterator>
+	<locale>
+	<string>
+	<stdlib.h>
+	<SFML/System/Unicode.inl>
+
+1217691044 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\system\unicode.inl
+
+1211475634 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\system\vector2.hpp
+	<SFML/System/Vector2.inl>
+
+1208949368 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\system\vector2.inl
+
+1208949368 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\system\vector3.hpp
+	<SFML/System/Vector3.inl>
+
+1208949368 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\system\vector3.inl
+
+1217857698 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\graphics.hpp
+	<SFML/Window.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Font.hpp>
+	<SFML/Graphics/Glyph.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Graphics/PostFX.hpp>
+	<SFML/Graphics/RenderWindow.hpp>
+	<SFML/Graphics/Shape.hpp>
+	<SFML/Graphics/Sprite.hpp>
+	<SFML/Graphics/String.hpp>
+	<SFML/Graphics/View.hpp>
+
+1220443246 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\window.hpp
+	<SFML/System.hpp>
+	<SFML/Window/Context.hpp>
+	<SFML/Window/Event.hpp>
+	<SFML/Window/Input.hpp>
+	<SFML/Window/VideoMode.hpp>
+	<SFML/Window/Window.hpp>
+	<SFML/Window/WindowListener.hpp>
+	<SFML/Window/WindowStyle.hpp>
+	<SFML/Window/OpenGL.hpp>
+
+1223579050 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\window\context.hpp
+	<SFML/Config.hpp>
+	<SFML/System/NonCopyable.hpp>
+
+1223575718 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\window\event.hpp
+	<SFML/Config.hpp>
+
+1219505422 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\window\input.hpp
+	<SFML/Config.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/Window/Event.hpp>
+	<SFML/Window/WindowListener.hpp>
+
+1200747000 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\window\windowlistener.hpp
+	<SFML/Config.hpp>
+
+1200747000 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\window\videomode.hpp
+	<SFML/Config.hpp>
+	<cstdlib>
+
+1220803016 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\window\window.hpp
+	<SFML/Window/Event.hpp>
+	<SFML/Window/Input.hpp>
+	<SFML/Window/VideoMode.hpp>
+	<SFML/Window/WindowHandle.hpp>
+	<SFML/Window/WindowListener.hpp>
+	<SFML/Window/WindowSettings.hpp>
+	<SFML/Window/WindowStyle.hpp>
+	<SFML/System/Clock.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<queue>
+	<string>
+
+1206021104 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\window\windowhandle.hpp
+	<SFML/Config.hpp>
+
+1211392040 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\window\windowsettings.hpp
+
+1205502056 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\window\windowstyle.hpp
+
+1209228282 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\window\opengl.hpp
+	<GL/gl.h>
+	<GL/glu.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+
+1219758040 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\graphics\color.hpp
+	<SFML/Config.hpp>
+
+1219499676 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\graphics\font.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Unicode.hpp>
+	<SFML/Graphics/Glyph.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<map>
+	<string>
+
+1218292244 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\system\resource.hpp
+	<set>
+	<SFML/System/Resource.inl>
+	<SFML/System/ResourcePtr.inl>
+
+1218347950 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\system\resource.inl
+
+1218292238 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\system\resourceptr.inl
+
+1219594282 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\graphics\glyph.hpp
+	<SFML/Config.hpp>
+	<SFML/Graphics/Rect.hpp>
+
+1219196308 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\graphics\rect.hpp
+	<algorithm>
+	<SFML/Graphics/Rect.inl>
+
+1203766702 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\graphics\rect.inl
+
+1227897708 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\graphics\image.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<string>
+	<vector>
+
+1220604250 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\graphics\postfx.hpp
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Image.hpp>
+	<istream>
+	<map>
+	<string>
+
+1217869994 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\graphics\drawable.hpp
+	<SFML/System/Vector2.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Matrix3.hpp>
+
+1210863174 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\graphics\matrix3.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Vector2.hpp>
+	<math.h>
+	<SFML/Graphics/Matrix3.inl>
+
+1223652168 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\graphics\matrix3.inl
+
+1215089256 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\graphics\renderwindow.hpp
+	<SFML/Graphics/Image.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/Window/Window.hpp>
+	<string>
+
+1215250336 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\graphics\rendertarget.hpp
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/View.hpp>
+	<SFML/Graphics/Rect.hpp>
+
+1219599328 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\graphics\view.hpp
+	<SFML/Config.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Matrix3.hpp>
+	<SFML/System/Vector2.hpp>
+
+1219754934 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\graphics\shape.hpp
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/System/Vector2.hpp>
+	<vector>
+
+1219196308 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\graphics\sprite.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Rect.hpp>
+
+1220084142 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\graphics\string.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/System/Unicode.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Font.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<string>
+
+1194368490 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\audio.hpp
+	<SFML/System.hpp>
+	<SFML/Audio/Listener.hpp>
+	<SFML/Audio/Music.hpp>
+	<SFML/Audio/Sound.hpp>
+	<SFML/Audio/SoundBuffer.hpp>
+	<SFML/Audio/SoundBufferRecorder.hpp>
+	<SFML/Audio/SoundRecorder.hpp>
+	<SFML/Audio/SoundStream.hpp>
+
+1205668632 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\audio\listener.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Vector3.hpp>
+
+1221308672 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\audio\music.hpp
+	<SFML/Audio/SoundStream.hpp>
+	<string>
+	<vector>
+
+1222281774 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\audio\soundstream.hpp
+	<SFML/Audio/Sound.hpp>
+	<SFML/System/Thread.hpp>
+	<cstdlib>
+
+1219771576 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\audio\sound.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/System/Vector3.hpp>
+	<SFML/Audio/AudioResource.hpp>
+	<cstdlib>
+
+1200747004 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\audio\audioresource.hpp
+	<SFML/Config.hpp>
+
+1218292412 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\audio\soundbuffer.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/Audio/AudioResource.hpp>
+	<string>
+	<vector>
+
+1225575844 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\audio\soundbufferrecorder.hpp
+	<SFML/Audio/SoundBuffer.hpp>
+	<SFML/Audio/SoundRecorder.hpp>
+	<vector>
+
+1225575660 d:\backup disque e\c++\sfml-1.4-sdk-windows\sfml-1.4\include\sfml\audio\soundrecorder.hpp
+	<SFML/System/Thread.hpp>
+	<vector>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\system.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Clock.hpp>
+	<SFML/System/Lock.hpp>
+	<SFML/System/Mutex.hpp>
+	<SFML/System/Randomizer.hpp>
+	<SFML/System/Sleep.hpp>
+	<SFML/System/Thread.hpp>
+	<SFML/System/Unicode.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Vector3.hpp>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\config.hpp
+	<climits>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\system\clock.hpp
+	<SFML/Config.hpp>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\system\lock.hpp
+	<SFML/System/NonCopyable.hpp>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\system\noncopyable.hpp
+	<SFML/Config.hpp>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\system\mutex.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Win32/Mutex.hpp>
+	<SFML/System/Unix/Mutex.hpp>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\system\win32\mutex.hpp
+	<SFML/System/NonCopyable.hpp>
+	<windows.h>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\system\unix\mutex.hpp
+	<SFML/System/NonCopyable.hpp>
+	<pthread.h>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\system\randomizer.hpp
+	<SFML/Config.hpp>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\system\sleep.hpp
+	<SFML/Config.hpp>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\system\thread.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Win32/Thread.hpp>
+	<SFML/System/Unix/Thread.hpp>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\system\win32\thread.hpp
+	<SFML/System/NonCopyable.hpp>
+	<windows.h>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\system\unix\thread.hpp
+	<SFML/System/NonCopyable.hpp>
+	<pthread.h>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\system\unicode.hpp
+	<SFML/Config.hpp>
+	<iterator>
+	<locale>
+	<string>
+	<stdlib.h>
+	<SFML/System/Unicode.inl>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\system\unicode.inl
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\system\vector2.hpp
+	<SFML/System/Vector2.inl>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\system\vector2.inl
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\system\vector3.hpp
+	<SFML/System/Vector3.inl>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\system\vector3.inl
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\graphics.hpp
+	<SFML/Window.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Font.hpp>
+	<SFML/Graphics/Glyph.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Graphics/PostFX.hpp>
+	<SFML/Graphics/RenderWindow.hpp>
+	<SFML/Graphics/Shape.hpp>
+	<SFML/Graphics/Sprite.hpp>
+	<SFML/Graphics/String.hpp>
+	<SFML/Graphics/View.hpp>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\window.hpp
+	<SFML/System.hpp>
+	<SFML/Window/Context.hpp>
+	<SFML/Window/Event.hpp>
+	<SFML/Window/Input.hpp>
+	<SFML/Window/VideoMode.hpp>
+	<SFML/Window/Window.hpp>
+	<SFML/Window/WindowListener.hpp>
+	<SFML/Window/WindowStyle.hpp>
+	<SFML/Window/OpenGL.hpp>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\window\context.hpp
+	<SFML/Config.hpp>
+	<SFML/System/NonCopyable.hpp>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\window\event.hpp
+	<SFML/Config.hpp>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\window\input.hpp
+	<SFML/Config.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/Window/Event.hpp>
+	<SFML/Window/WindowListener.hpp>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\window\windowlistener.hpp
+	<SFML/Config.hpp>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\window\videomode.hpp
+	<SFML/Config.hpp>
+	<cstdlib>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\window\window.hpp
+	<SFML/Window/Event.hpp>
+	<SFML/Window/Input.hpp>
+	<SFML/Window/VideoMode.hpp>
+	<SFML/Window/WindowHandle.hpp>
+	<SFML/Window/WindowListener.hpp>
+	<SFML/Window/WindowSettings.hpp>
+	<SFML/Window/WindowStyle.hpp>
+	<SFML/System/Clock.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<queue>
+	<string>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\window\windowhandle.hpp
+	<SFML/Config.hpp>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\window\windowsettings.hpp
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\window\windowstyle.hpp
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\window\opengl.hpp
+	<GL/gl.h>
+	<GL/glu.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+
+1238685541 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\graphics\color.hpp
+	<SFML/Config.hpp>
+
+1238685541 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\graphics\font.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Unicode.hpp>
+	<SFML/Graphics/Glyph.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<map>
+	<string>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\system\resource.hpp
+	<set>
+	<SFML/System/Resource.inl>
+	<SFML/System/ResourcePtr.inl>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\system\resource.inl
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\system\resourceptr.inl
+
+1238685541 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\graphics\glyph.hpp
+	<SFML/Config.hpp>
+	<SFML/Graphics/Rect.hpp>
+
+1238685541 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\graphics\rect.hpp
+	<algorithm>
+	<SFML/Graphics/Rect.inl>
+
+1238685541 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\graphics\rect.inl
+
+1238685541 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\graphics\image.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<string>
+	<vector>
+
+1238685541 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\graphics\postfx.hpp
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Image.hpp>
+	<istream>
+	<map>
+	<string>
+
+1238685541 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\graphics\drawable.hpp
+	<SFML/System/Vector2.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Matrix3.hpp>
+
+1238685541 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\graphics\matrix3.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Vector2.hpp>
+	<math.h>
+	<SFML/Graphics/Matrix3.inl>
+
+1238685541 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\graphics\matrix3.inl
+
+1238685541 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\graphics\renderwindow.hpp
+	<SFML/Graphics/Image.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/Window/Window.hpp>
+	<string>
+
+1238685541 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\graphics\rendertarget.hpp
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/View.hpp>
+	<SFML/Graphics/Rect.hpp>
+
+1238685541 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\graphics\view.hpp
+	<SFML/Config.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Matrix3.hpp>
+	<SFML/System/Vector2.hpp>
+
+1238685541 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\graphics\shape.hpp
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/System/Vector2.hpp>
+	<vector>
+
+1238685541 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\graphics\sprite.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Rect.hpp>
+
+1238685541 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\graphics\string.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/System/Unicode.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Font.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<string>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\audio.hpp
+	<SFML/System.hpp>
+	<SFML/Audio/Listener.hpp>
+	<SFML/Audio/Music.hpp>
+	<SFML/Audio/Sound.hpp>
+	<SFML/Audio/SoundBuffer.hpp>
+	<SFML/Audio/SoundBufferRecorder.hpp>
+	<SFML/Audio/SoundRecorder.hpp>
+	<SFML/Audio/SoundStream.hpp>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\audio\listener.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Vector3.hpp>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\audio\music.hpp
+	<SFML/Audio/SoundStream.hpp>
+	<string>
+	<vector>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\audio\soundstream.hpp
+	<SFML/Audio/Sound.hpp>
+	<SFML/System/Thread.hpp>
+	<cstdlib>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\audio\sound.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/System/Vector3.hpp>
+	<SFML/Audio/AudioResource.hpp>
+	<cstdlib>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\audio\audioresource.hpp
+	<SFML/Config.hpp>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\audio\soundbuffer.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/Audio/AudioResource.hpp>
+	<string>
+	<vector>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\audio\soundbufferrecorder.hpp
+	<SFML/Audio/SoundBuffer.hpp>
+	<SFML/Audio/SoundRecorder.hpp>
+	<vector>
+
+1238685542 d:\backup disque e\c++\sfml_svn\trunk\include\sfml\audio\soundrecorder.hpp
+	<SFML/System/Thread.hpp>
+	<vector>
+
+1239039853 source:e:\c++\holyspirit\source\light.cpp
+	<iostream>
+	<math.h>
+	"light.h"
+	"globale.h"
+
+1238434580 e:\c++\holyspirit\source\light.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Window.hpp>
+	"constantes.h"
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\system.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Clock.hpp>
+	<SFML/System/Lock.hpp>
+	<SFML/System/Mutex.hpp>
+	<SFML/System/Randomizer.hpp>
+	<SFML/System/Sleep.hpp>
+	<SFML/System/Thread.hpp>
+	<SFML/System/Unicode.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Vector3.hpp>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\config.hpp
+	<climits>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\system\clock.hpp
+	<SFML/Config.hpp>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\system\lock.hpp
+	<SFML/System/NonCopyable.hpp>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\system\noncopyable.hpp
+	<SFML/Config.hpp>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\system\mutex.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Win32/Mutex.hpp>
+	<SFML/System/Unix/Mutex.hpp>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\system\win32\mutex.hpp
+	<SFML/System/NonCopyable.hpp>
+	<windows.h>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\system\unix\mutex.hpp
+	<SFML/System/NonCopyable.hpp>
+	<pthread.h>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\system\randomizer.hpp
+	<SFML/Config.hpp>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\system\sleep.hpp
+	<SFML/Config.hpp>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\system\thread.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Win32/Thread.hpp>
+	<SFML/System/Unix/Thread.hpp>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\system\win32\thread.hpp
+	<SFML/System/NonCopyable.hpp>
+	<windows.h>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\system\unix\thread.hpp
+	<SFML/System/NonCopyable.hpp>
+	<pthread.h>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\system\unicode.hpp
+	<SFML/Config.hpp>
+	<iterator>
+	<locale>
+	<string>
+	<stdlib.h>
+	<SFML/System/Unicode.inl>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\system\unicode.inl
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\system\vector2.hpp
+	<SFML/System/Vector2.inl>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\system\vector2.inl
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\system\vector3.hpp
+	<SFML/System/Vector3.inl>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\system\vector3.inl
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\graphics.hpp
+	<SFML/Window.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Font.hpp>
+	<SFML/Graphics/Glyph.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Graphics/PostFX.hpp>
+	<SFML/Graphics/RenderWindow.hpp>
+	<SFML/Graphics/Shape.hpp>
+	<SFML/Graphics/Sprite.hpp>
+	<SFML/Graphics/String.hpp>
+	<SFML/Graphics/View.hpp>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\window.hpp
+	<SFML/System.hpp>
+	<SFML/Window/Context.hpp>
+	<SFML/Window/Event.hpp>
+	<SFML/Window/Input.hpp>
+	<SFML/Window/VideoMode.hpp>
+	<SFML/Window/Window.hpp>
+	<SFML/Window/WindowListener.hpp>
+	<SFML/Window/WindowStyle.hpp>
+	<SFML/Window/OpenGL.hpp>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\window\context.hpp
+	<SFML/Config.hpp>
+	<SFML/System/NonCopyable.hpp>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\window\event.hpp
+	<SFML/Config.hpp>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\window\input.hpp
+	<SFML/Config.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/Window/Event.hpp>
+	<SFML/Window/WindowListener.hpp>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\window\windowlistener.hpp
+	<SFML/Config.hpp>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\window\videomode.hpp
+	<SFML/Config.hpp>
+	<cstdlib>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\window\window.hpp
+	<SFML/Window/Event.hpp>
+	<SFML/Window/Input.hpp>
+	<SFML/Window/VideoMode.hpp>
+	<SFML/Window/WindowHandle.hpp>
+	<SFML/Window/WindowListener.hpp>
+	<SFML/Window/WindowSettings.hpp>
+	<SFML/Window/WindowStyle.hpp>
+	<SFML/System/Clock.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<queue>
+	<string>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\window\windowhandle.hpp
+	<SFML/Config.hpp>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\window\windowsettings.hpp
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\window\windowstyle.hpp
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\window\opengl.hpp
+	<GL/gl.h>
+	<GL/glu.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+
+1238685541 e:\c++\sfml_svn\trunk\include\sfml\graphics\color.hpp
+	<SFML/Config.hpp>
+
+1238685541 e:\c++\sfml_svn\trunk\include\sfml\graphics\font.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Unicode.hpp>
+	<SFML/Graphics/Glyph.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<map>
+	<string>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\system\resource.hpp
+	<set>
+	<SFML/System/Resource.inl>
+	<SFML/System/ResourcePtr.inl>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\system\resource.inl
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\system\resourceptr.inl
+
+1238685541 e:\c++\sfml_svn\trunk\include\sfml\graphics\glyph.hpp
+	<SFML/Config.hpp>
+	<SFML/Graphics/Rect.hpp>
+
+1238685541 e:\c++\sfml_svn\trunk\include\sfml\graphics\rect.hpp
+	<algorithm>
+	<SFML/Graphics/Rect.inl>
+
+1238685541 e:\c++\sfml_svn\trunk\include\sfml\graphics\rect.inl
+
+1238685541 e:\c++\sfml_svn\trunk\include\sfml\graphics\image.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<string>
+	<vector>
+
+1238685541 e:\c++\sfml_svn\trunk\include\sfml\graphics\postfx.hpp
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Image.hpp>
+	<istream>
+	<map>
+	<string>
+
+1238685541 e:\c++\sfml_svn\trunk\include\sfml\graphics\drawable.hpp
+	<SFML/System/Vector2.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Matrix3.hpp>
+
+1238685541 e:\c++\sfml_svn\trunk\include\sfml\graphics\matrix3.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Vector2.hpp>
+	<math.h>
+	<SFML/Graphics/Matrix3.inl>
+
+1238685541 e:\c++\sfml_svn\trunk\include\sfml\graphics\matrix3.inl
+
+1238685541 e:\c++\sfml_svn\trunk\include\sfml\graphics\renderwindow.hpp
+	<SFML/Graphics/Image.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/Window/Window.hpp>
+	<string>
+
+1238685541 e:\c++\sfml_svn\trunk\include\sfml\graphics\rendertarget.hpp
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/View.hpp>
+	<SFML/Graphics/Rect.hpp>
+
+1238685541 e:\c++\sfml_svn\trunk\include\sfml\graphics\view.hpp
+	<SFML/Config.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Matrix3.hpp>
+	<SFML/System/Vector2.hpp>
+
+1238685541 e:\c++\sfml_svn\trunk\include\sfml\graphics\shape.hpp
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/System/Vector2.hpp>
+	<vector>
+
+1238685541 e:\c++\sfml_svn\trunk\include\sfml\graphics\sprite.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Rect.hpp>
+
+1238685541 e:\c++\sfml_svn\trunk\include\sfml\graphics\string.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/System/Unicode.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Font.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<string>
+
+1239711318 e:\c++\holyspirit\source\constantes.h
+	<cmath>
+	<utility>
+	<iostream.h>
+	<fstream>
+	<vector>
+	"datFile.h"
+	"Moteurs/console.h"
+
+1239711318 e:\c++\holyspirit\source\datfile.h
+	<iostream.h>
+	<fstream>
+	<vector>
+
+1238335481 e:\c++\holyspirit\source\console.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"singleton.h"
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\audio.hpp
+	<SFML/System.hpp>
+	<SFML/Audio/Listener.hpp>
+	<SFML/Audio/Music.hpp>
+	<SFML/Audio/Sound.hpp>
+	<SFML/Audio/SoundBuffer.hpp>
+	<SFML/Audio/SoundBufferRecorder.hpp>
+	<SFML/Audio/SoundRecorder.hpp>
+	<SFML/Audio/SoundStream.hpp>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\audio\listener.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Vector3.hpp>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\audio\music.hpp
+	<SFML/Audio/SoundStream.hpp>
+	<string>
+	<vector>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\audio\soundstream.hpp
+	<SFML/Audio/Sound.hpp>
+	<SFML/System/Thread.hpp>
+	<cstdlib>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\audio\sound.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/System/Vector3.hpp>
+	<SFML/Audio/AudioResource.hpp>
+	<cstdlib>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\audio\audioresource.hpp
+	<SFML/Config.hpp>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\audio\soundbuffer.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/Audio/AudioResource.hpp>
+	<string>
+	<vector>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\audio\soundbufferrecorder.hpp
+	<SFML/Audio/SoundBuffer.hpp>
+	<SFML/Audio/SoundRecorder.hpp>
+	<vector>
+
+1238685542 e:\c++\sfml_svn\trunk\include\sfml\audio\soundrecorder.hpp
+	<SFML/System/Thread.hpp>
+	<vector>
+
+1239711318 e:\c++\holyspirit\source\singleton.h
+	<iostream.h>
+
+1239701714 e:\c++\holyspirit\source\globale.h
+	"Moteurs/moteurGraphique.h"
+	"Moteurs/moteurSons.h"
+
+1238593689 e:\c++\holyspirit\source\moteurgraphique.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"map.h"
+	"commande.h"
+	"moteurParticule.h"
+	"lightManager.h"
+
+1239277990 e:\c++\holyspirit\source\map.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"tileset.h"
+	"decor.h"
+	"menu.h"
+	"monstre.h"
+	"evenement.h"
+	"c_changementMap.h"
+
+1238434668 e:\c++\holyspirit\source\tileset.h
+	<iostream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"tile.h"
+	"hero.h"
+
+1238434663 e:\c++\holyspirit\source\tile.h
+	<iostream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"constantes.h"
+
+1239203455 e:\c++\holyspirit\source\hero.h
+	<iostream>
+	<string>
+	"personnage.h"
+	"monstre.h"
+
+1238434633 e:\c++\holyspirit\source\personnage.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"constantes.h"
+	"decor.h"
+	"liste_case.h"
+	"pose.h"
+	"lightManager.h"
+
+1239010243 e:\c++\holyspirit\source\decor.h
+	<iostream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"constantes.h"
+	"objet.h"
+	"light.h"
+
+1239202305 e:\c++\holyspirit\source\objet.h
+	<iostream>
+	"constantes.h"
+	<fstream>
+
+1204390259 e:\c++\holyspirit\source\liste_case.h
+	"constantes.h"
+	"case.h"
+
+1238335510 e:\c++\holyspirit\source\case.h
+	"constantes.h"
+	"decor.h"
+
+1238434639 e:\c++\holyspirit\source\pose.h
+	<iostream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"constantes.h"
+
+1239039853 e:\c++\holyspirit\source\lightmanager.h
+	"light.h"
+	"singleton.h"
+
+1238434606 e:\c++\holyspirit\source\monstre.h
+	"personnage.h"
+	"constantes.h"
+	"script.h"
+	"miracle.h"
+
+1204390259 e:\c++\holyspirit\source\script.h
+	<iostream>
+	"constantes.h"
+
+1204390259 e:\c++\holyspirit\source\miracle.h
+	"constantes.h"
+	"tile.h"
+	"light.h"
+
+1239710843 e:\c++\holyspirit\source\menu.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"constantes.h"
+	"Entites/hero.h"
+
+1238434562 e:\c++\holyspirit\source\evenement.h
+	"constantes.h"
+
+1238335481 e:\c++\holyspirit\source\c_changementmap.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"contexte.h"
+
+1238434550 e:\c++\holyspirit\source\contexte.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1239184154 e:\c++\holyspirit\source\commande.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1238427827 e:\c++\holyspirit\source\moteurparticule.h
+	"constantes.h"
+	"modeleMoteurParticule.h"
+
+1238434614 e:\c++\holyspirit\source\modelemoteurparticule.h
+	"constantes.h"
+
+1204390259 e:\c++\holyspirit\source\moteursons.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"constantes.h"
+
+1239039853 source:e:\c++\holyspirit\source\lightmanager.cpp
+	"LightManager.h"
+	"Globale.h"
+
+1239278890 source:e:\c++\holyspirit\source\c_changementmap.cpp
+	"c_jeu.h"
+	"jeu.h"
+	"globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1238582962 e:\c++\holyspirit\source\c_jeu.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"contexte.h"
+	"globale.h"
+
+1239710854 e:\c++\holyspirit\source\jeu.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"constantes.h"
+	"Map/map.h"
+	"Moteurs/eventManager.h"
+	"menu.h"
+	"Entites/personnage.h"
+	"Contextes/c_jeu.h"
+	"Contextes/c_changementMap.h"
+	"Contextes/c_inventaire.h"
+	"Contextes/c_menuInGame.h"
+	"Contextes/c_demarrage.h"
+
+1237723778 e:\c++\holyspirit\source\eventmanager.h
+	<iostream>
+	"prototypes.h"
+	"hero.h"
+
+1204390259 e:\c++\holyspirit\source\prototypes.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"constantes.h"
+
+1238335510 e:\c++\holyspirit\source\c_inventaire.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"contexte.h"
+
+1238335555 e:\c++\holyspirit\source\c_menuingame.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"contexte.h"
+
+1238335570 e:\c++\holyspirit\source\c_demarrage.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"contexte.h"
+
+1204390259 source:e:\c++\holyspirit\source\c_demarrage.cpp
+	"c_jeu.h"
+	"jeu.h"
+	"Globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1204390259 source:e:\c++\holyspirit\source\c_inventaire.cpp
+	"c_jeu.h"
+	"jeu.h"
+	"Globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1239278993 source:e:\c++\holyspirit\source\c_jeu.cpp
+	"c_Jeu.h"
+	"jeu.h"
+	"globale.h"
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1238770958 source:e:\c++\holyspirit\source\c_menuingame.cpp
+	"c_jeu.h"
+	"jeu.h"
+	"Globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1204390259 source:e:\c++\holyspirit\source\case.cpp
+	"case.h"
+	<iostream>
+
+1238837219 source:e:\c++\holyspirit\source\console.cpp
+	"console.h"
+	"constantes.h"
+	"Globale.h"
+	<iostream>
+	<fstream>
+
+1238434549 source:e:\c++\holyspirit\source\contexte.cpp
+	"c_Jeu.h"
+
+1235913182 source:e:\c++\holyspirit\source\crypter.cpp
+	<iostream>
+	<list>
+
+1204390259 source:e:\c++\holyspirit\source\datfile.cpp
+	"globale.h"
+
+1239010319 source:e:\c++\holyspirit\source\decor.cpp
+	"Decor.h"
+	"Globale.h"
+
+1238434561 source:e:\c++\holyspirit\source\evenement.cpp
+	"Evenement.h"
+	<iostream>
+
+1238248942 source:e:\c++\holyspirit\source\eventmanager.cpp
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<math.h>
+	"eventManager.h"
+	"prototypes.h"
+	"Globale.h"
+	<iostream>
+
+1239453322 source:e:\c++\holyspirit\source\hero.cpp
+	"Hero.h"
+	"Globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<math.h>
+	<dirent.h>
+
+1239184475 source:e:\c++\holyspirit\source\jeu.cpp
+	"constantes.h"
+	"Globale.h"
+	"jeu.h"
+	"datFile.h"
+	<dirent.h>
+
+1238247563 source:e:\c++\holyspirit\source\liste_case.cpp
+	"liste_case.h"
+	"globale.h"
+	<iostream>
+
+1238837325 source:e:\c++\holyspirit\source\main.cpp
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<iostream>
+	<dirent.h>
+	"ChargThread.h"
+	"main.h"
+
+1238434530 e:\c++\holyspirit\source\chargthread.h
+
+1204390259 e:\c++\holyspirit\source\main.h
+	"Jeu.h"
+	"constantes.h"
+
+1239463511 source:e:\c++\holyspirit\source\map.cpp
+	"Map.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<dirent.h>
+	"Globale.h"
+	"Jeu.h"
+
+1238250958 source:e:\c++\holyspirit\source\menu.cpp
+	"menu.h"
+	"Globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+
+1237376712 source:e:\c++\holyspirit\source\miracle.cpp
+	"miracle.h"
+	"globale.h"
+	<iostream>
+	<fstream>
+
+1238434613 source:e:\c++\holyspirit\source\modelemoteurparticule.cpp
+	"modeleMoteurParticule.h"
+	"globale.h"
+	<fstream>
+
+1238434605 source:e:\c++\holyspirit\source\monstre.cpp
+	<iostream>
+	<fstream>
+	"Monstre.h"
+	"Constantes.h"
+	"Globale.h"
+
+1239268009 source:e:\c++\holyspirit\source\moteurparticule.cpp
+	"moteurParticule.h"
+	"globale.h"
+	<fstream>
+
+1204390259 source:e:\c++\holyspirit\source\moteursons.cpp
+	"MoteurSons.h"
+	"Globale.h"
+	<iostream>
+
+1239453363 source:e:\c++\holyspirit\source\objet.cpp
+	"Objet.h"
+	"Globale.h"
+	<fstream>
+
+1238521219 source:e:\c++\holyspirit\source\personnage.cpp
+	"Personnage.h"
+	"Globale.h"
+	<iostream>
+	<fstream>
+	<math.h>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+
+1238434638 source:e:\c++\holyspirit\source\pose.cpp
+	"Pose.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+
+1204390259 source:e:\c++\holyspirit\source\ressource.rc
+
+1204390259 source:e:\c++\holyspirit\source\script.cpp
+	<fstream>
+	"script.h"
+	"globale.h"
+
+1238434662 source:e:\c++\holyspirit\source\tile.cpp
+	"Tile.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+
+1238434667 source:e:\c++\holyspirit\source\tileset.cpp
+	"Tileset.h"
+	"Globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+
+1204390259 source:e:\c++\holyspirit\source\video.cpp
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<iostream>
+	<fstream>
+	"constantes.h"
+	"Globale.h"
+	<libavformat/avformat.h>
+	<libavcodec/avcodec.h>
+
+1239464153 source:e:\c++\holyspirit\source\moteurgraphique.cpp
+	"moteurGraphique.h"
+	"globale.h"
+	<iostream>
+
+1238593689 e:\c++\holyspirit\source\moteurs\moteurgraphique.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"map.h"
+	"commande.h"
+	"moteurParticule.h"
+	"lightManager.h"
+
+1239710570 e:\c++\holyspirit\source\moteurs\commande.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"../constantes.h"
+
+1239701733 e:\c++\holyspirit\source\moteurs\moteurparticule.h
+	"../constantes.h"
+	"modeleMoteurParticule.h"
+
+1239701801 e:\c++\holyspirit\source\moteurs\modelemoteurparticule.h
+	"../constantes.h"
+
+1239701801 e:\c++\holyspirit\source\moteurs\lightmanager.h
+	"light.h"
+	"../singleton.h"
+
+1239701830 e:\c++\holyspirit\source\moteurs\light.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Window.hpp>
+	"../constantes.h"
+
+1239710468 e:\c++\holyspirit\source\moteurs\moteursons.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"../constantes.h"
+
+1239701829 e:\c++\holyspirit\source\moteurs\console.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"../singleton.h"
+
+1239710543 e:\c++\holyspirit\source\moteurs\eventmanager.h
+	<iostream>
+	"../Entites/hero.h"
+
+1239710590 e:\c++\holyspirit\source\entites\personnage.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"../constantes.h"
+	"../Map/decor.h"
+	"liste_case.h"
+	"pose.h"
+	"../Moteurs/lightManager.h"
+
+1239710634 e:\c++\holyspirit\source\entites\liste_case.h
+	"../constantes.h"
+	"case.h"
+
+1239710661 e:\c++\holyspirit\source\entites\case.h
+	"../constantes.h"
+	"../Map/decor.h"
+
+1239711317 e:\c++\holyspirit\source\entites\pose.h
+	<iostream.h>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"../constantes.h"
+
+1239701696 e:\c++\holyspirit\source\contextes\c_jeu.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"contexte.h"
+	"../globale.h"
+
+1238434550 e:\c++\holyspirit\source\contextes\contexte.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1238335481 e:\c++\holyspirit\source\contextes\c_changementmap.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"contexte.h"
+
+1238335510 e:\c++\holyspirit\source\contextes\c_inventaire.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"contexte.h"
+
+1238335555 e:\c++\holyspirit\source\contextes\c_menuingame.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"contexte.h"
+
+1238335570 e:\c++\holyspirit\source\contextes\c_demarrage.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"contexte.h"
+
+1239711317 e:\c++\holyspirit\source\entites\hero.h
+	<iostream.h>
+	<string>
+	"personnage.h"
+	"monstre.h"
+
+1239710766 e:\c++\holyspirit\source\entites\monstre.h
+	"personnage.h"
+	"../constantes.h"
+	"script.h"
+	"miracle.h"
+
+1239711317 e:\c++\holyspirit\source\entites\script.h
+	<iostream.h>
+	"../constantes.h"
+
+1239710839 e:\c++\holyspirit\source\entites\miracle.h
+	"../constantes.h"
+	"../Map/tile.h"
+	"../Moteurs/light.h"
+
+1239711317 e:\c++\holyspirit\source\map\decor.h
+	<iostream.h>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"../constantes.h"
+	"../Entites/objet.h"
+	"../Moteurs/light.h"
+
+1239711317 e:\c++\holyspirit\source\entites\objet.h
+	<iostream.h>
+	"../constantes.h"
+	<fstream>
+
+1239711318 e:\c++\holyspirit\source\map\tile.h
+	<iostream.h>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"../constantes.h"
+
+1239710909 e:\c++\holyspirit\source\map\map.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"tileset.h"
+	"decor.h"
+	"../menu.h"
+	"../Entites/monstre.h"
+	"evenement.h"
+	"../Contextes/c_changementMap.h"
+
+1239711318 e:\c++\holyspirit\source\map\tileset.h
+	<iostream.h>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"tile.h"
+	"../Entites/hero.h"
+
+1239710899 e:\c++\holyspirit\source\map\evenement.h
+	"../constantes.h"
+
+1239701829 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
+	"c_Jeu.h"
+	"../jeu.h"
+	"../globale.h"
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1239710922 source:e:\c++\holyspirit\source\contextes\c_changementmap.cpp
+	"c_jeu.h"
+	"../jeu.h"
+	"../globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1239710935 source:e:\c++\holyspirit\source\contextes\c_demarrage.cpp
+	"c_jeu.h"
+	"../jeu.h"
+	"../Globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1239710955 source:e:\c++\holyspirit\source\contextes\c_inventaire.cpp
+	"c_jeu.h"
+	"../jeu.h"
+	"../Globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1239711006 source:e:\c++\holyspirit\source\contextes\c_menuingame.cpp
+	"c_jeu.h"
+	"../jeu.h"
+	"../Globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1238434549 source:e:\c++\holyspirit\source\contextes\contexte.cpp
+	"c_Jeu.h"
+
+1204390259 source:e:\c++\holyspirit\source\entites\case.cpp
+	"case.h"
+	<iostream>
+
+1239711015 source:e:\c++\holyspirit\source\entites\hero.cpp
+	"Hero.h"
+	"../Globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<math.h>
+	<dirent.h>
+
+1239711020 source:e:\c++\holyspirit\source\entites\liste_case.cpp
+	"liste_case.h"
+	"../globale.h"
+	<iostream>
+
+1239711024 source:e:\c++\holyspirit\source\entites\miracle.cpp
+	"miracle.h"
+	"../globale.h"
+	<iostream>
+	<fstream>
+
+1238434599 source:e:\c++\holyspirit\source\entites\modelepersonnage.cpp
+
+1239711054 source:e:\c++\holyspirit\source\entites\monstre.cpp
+	<iostream>
+	<fstream>
+	"Monstre.h"
+	"../Constantes.h"
+	"../Globale.h"
+
+1239711060 source:e:\c++\holyspirit\source\entites\objet.cpp
+	"Objet.h"
+	"../Globale.h"
+	<fstream>
+
+1239711065 source:e:\c++\holyspirit\source\entites\personnage.cpp
+	"Personnage.h"
+	"../Globale.h"
+	<iostream>
+	<fstream>
+	<math.h>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+
+1238434638 source:e:\c++\holyspirit\source\entites\pose.cpp
+	"Pose.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+
+1239711070 source:e:\c++\holyspirit\source\entites\script.cpp
+	<fstream>
+	"script.h"
+	"../globale.h"
+
+1239711074 source:e:\c++\holyspirit\source\map\decor.cpp
+	"Decor.h"
+	"../Globale.h"
+
+1238434561 source:e:\c++\holyspirit\source\map\evenement.cpp
+	"Evenement.h"
+	<iostream>
+
+1239711090 source:e:\c++\holyspirit\source\map\map.cpp
+	"Map.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<dirent.h>
+	"../Globale.h"
+	"../Jeu.h"
+
+1238434662 source:e:\c++\holyspirit\source\map\tile.cpp
+	"Tile.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+
+1239711097 source:e:\c++\holyspirit\source\map\tileset.cpp
+	"Tileset.h"
+	"../Globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+
+1239711107 source:e:\c++\holyspirit\source\moteurs\console.cpp
+	"console.h"
+	"../constantes.h"
+	"../Globale.h"
+	<iostream>
+	<fstream>
+
+1239711123 source:e:\c++\holyspirit\source\moteurs\eventmanager.cpp
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<math.h>
+	"eventManager.h"
+	"../Globale.h"
+	<iostream>
+
+1239711127 source:e:\c++\holyspirit\source\moteurs\light.cpp
+	<iostream>
+	<math.h>
+	"light.h"
+	"../globale.h"
+
+1239711131 source:e:\c++\holyspirit\source\moteurs\lightmanager.cpp
+	"LightManager.h"
+	"../Globale.h"
+
+1239711135 source:e:\c++\holyspirit\source\moteurs\modelemoteurparticule.cpp
+	"modeleMoteurParticule.h"
+	"../globale.h"
+	<fstream>
+
+1239711139 source:e:\c++\holyspirit\source\moteurs\moteurgraphique.cpp
+	"moteurGraphique.h"
+	"../globale.h"
+	<iostream>
+
+1239711144 source:e:\c++\holyspirit\source\moteurs\moteurparticule.cpp
+	"moteurParticule.h"
+	"../globale.h"
+	<fstream>
+
+1239711175 source:e:\c++\holyspirit\source\moteurs\moteursons.cpp
+	"MoteurSons.h"
+	"../Globale.h"
+	<iostream>
+

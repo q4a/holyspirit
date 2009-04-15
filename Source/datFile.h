@@ -2,7 +2,7 @@
 ///Code repris de http://www.sfml-dev.org/wiki/fr/tutoriels/formatdat
 ///Sources : http://www.gamedev.net/reference/programming/features/pak/
 
-#include <iostream>
+#include <iostream.h>
 #include <fstream>
 #include <vector>
 
