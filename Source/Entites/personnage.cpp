@@ -300,7 +300,7 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee di
 
                         sprite.SetCenter(modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCentre().x,modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCentre().y);
 
-                        sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64));
+                        sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE/*+dimensionsMap.y*64*/));
                         sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+32 -m_positionPixel.h);
 
                         sprite.SetScale(m_caracteristique.modificateurTaille, m_caracteristique.modificateurTaille*(100-(float)moteurGraphique->m_soleil.hauteur)/50);
@@ -324,8 +324,8 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee di
                 sprite.FlipX(false);
 
 
-                sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64));
-                sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+32 -m_positionPixel.h);
+                sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE/*+dimensionsMap.y*64*/));
+                sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
 
 
                 sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
@@ -551,8 +551,8 @@ bool Personnage::seDeplacer(float tempsEcoule,coordonnee dimensionsMap)
                 }
 
                 sf::Vector2f pos;
-                pos.x=(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE+dimensionsMap.y*64));
-                pos.y=(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+32)*2;
+                pos.x=((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE);
+                pos.y=((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)+64;
 
                 moteurGraphique->LightManager->SetPosition(m_light,pos);
 
@@ -610,7 +610,7 @@ void Personnage::infligerDegats(float degats)
         m_poseEnCours=0,m_etat=3;
 }
 
-int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,bool *explosif,coordonnee positionHero)
+int Personnage::animer(Modele_Personnage *modele,float temps,bool *explosif,coordonnee positionHero)
 {
     int retour=-2;
 
@@ -625,7 +625,7 @@ int Personnage::animer(Modele_Personnage *modele,int hauteur_map,float temps,boo
     while(m_animation>=tempsAnimation)
     {
         coordonnee position;
-        position.x=(m_positionCase.x-m_positionCase.y-1+hauteur_map)/5;
+        position.x=(m_positionCase.x-m_positionCase.y-1)/5;
         position.y=(m_positionCase.x+m_positionCase.y)/5;
 
         m_poseEnCours=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAnimation();

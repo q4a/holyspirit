@@ -47,7 +47,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	void Gerer(sf::RenderWindow *,float,int);
 
-	int AjouterImage(std::string,int importance = 3);
+	int AjouterImage(std::string,int importance = 4);
 	int AjouterImage(const char *Data, std::size_t SizeInBytes, std::string nom,int importance =5);
 	int AjouterModeleSystemeParticules(std::string);
 

@@ -166,7 +166,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         configuration->RafraichirLumiere=true;
 
         sf::Vector2f pos;
-        pos.x=(((jeu->hero.m_personnage.getCoordonneePixel().x-jeu->hero.m_personnage.getCoordonneePixel().y)*64/COTE_TILE+jeu->map.getDimensions().y*64));
+        pos.x=(((jeu->hero.m_personnage.getCoordonneePixel().x-jeu->hero.m_personnage.getCoordonneePixel().y)*64/COTE_TILE));
         pos.y=(((jeu->hero.m_personnage.getCoordonneePixel().x+jeu->hero.m_personnage.getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
 
         moteurGraphique->LightManager->SetPosition(jeu->hero.m_personnage.m_light,pos);

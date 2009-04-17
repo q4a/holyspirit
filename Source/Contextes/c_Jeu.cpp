@@ -239,7 +239,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                     bool a; // Variable qui ne sert pas ici, mais qui remplace le explosif des monstres
                     int retour=-2;
-                    retour=jeu->hero.m_personnage.animer(&jeu->hero.m_modelePersonnage[0],jeu->map.getDimensions().y,tempsDepuisDerniereAnimation,&a,positionHero);
+                    retour=jeu->hero.m_personnage.animer(&jeu->hero.m_modelePersonnage[0],tempsDepuisDerniereAnimation,&a,positionHero);
                     if(retour!=-2)
                         jeu->hero.CalculerOrdreAffichage();
 

@@ -704,7 +704,7 @@ void Map::Initialiser()
                             numeroHerbe = (rand() % (m_herbe[m_decor[couche][i][j].getHerbe()].getTaille()));
                         m_decor[couche][i][j].setNumeroHerbe(numeroHerbe);
 
-                        position.x=(j-i-1+m_dimensions.y)*64;
+                        position.x=(j-i-1)*64;
                         position.y=(j+i)*32;
 
                         positionPartieDecor=m_herbe[m_decor[couche][i][j].getHerbe()].getPositionDuTile(m_decor[couche][i][j].getNumeroHerbe());
@@ -730,7 +730,7 @@ void Map::Initialiser()
             moteurGraphique->LightManager->SetQuality(m_monstre[i].m_light,6);
 
             sf::Vector2f pos;
-            pos.x=(((m_monstre[i].getCoordonneePixel().x-m_monstre[i].getCoordonneePixel().y)*64/COTE_TILE+getDimensions().y*64));
+            pos.x=(((m_monstre[i].getCoordonneePixel().x-m_monstre[i].getCoordonneePixel().y)*64/COTE_TILE));
             pos.y=(((m_monstre[i].getCoordonneePixel().x+m_monstre[i].getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
 
             moteurGraphique->LightManager->SetPosition(m_monstre[i].m_light,pos);
@@ -747,7 +747,7 @@ void Map::Initialiser()
                 {
                     CreerSprite(sf::Vector3f(k,j,i));
 
-                    pos.x=(((k*COTE_TILE-j*COTE_TILE)*64/COTE_TILE+getDimensions().y*64));
+                    pos.x=(((k*COTE_TILE-j*COTE_TILE)*64/COTE_TILE));
                     pos.y=(((k*COTE_TILE+j*COTE_TILE)*64/COTE_TILE)/2+32)*2;
 
                     if(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite<0)
@@ -780,7 +780,7 @@ void Map::Initialiser()
             for(int k=0;k<m_dimensions.x;k++)
                 if(m_decor[i][j][k].getTileset()>=0&&m_decor[i][j][k].getTileset()<(int)m_tileset.size())
                 {
-                    pos.x=(((k*COTE_TILE-j*COTE_TILE)*64/COTE_TILE+getDimensions().y*64));
+                    pos.x=(((k*COTE_TILE-j*COTE_TILE)*64/COTE_TILE));
                     pos.y=(((k*COTE_TILE+j*COTE_TILE)*64/COTE_TILE)/2+32)*2;
                     if(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite>0)
                     {
@@ -797,7 +797,7 @@ void Map::CreerSprite(sf::Vector3f position_case)
 {
     coordonnee position,positionPartieDecor;
 
-    position.x=((int)position_case.x-(int)position_case.y-1+m_dimensions.y)*64;
+    position.x=((int)position_case.x-(int)position_case.y-1)*64;
     position.y=((int)position_case.x+(int)position_case.y)*32;
     positionPartieDecor=m_tileset[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getTileset()].getPositionDuTile(m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getTile());
 
@@ -1116,7 +1116,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
             {
                 for(int k=hero->m_personnage.getCoordonnee().x-15;k<hero->m_personnage.getCoordonnee().x+15;++k)
                 {
-                    position.x=(k-j-1+m_dimensions.y)*64+48;
+                    position.x=(k-j-1)*64+48;
                     position.y=(k+j)*32+16;
 
                     if(j>=0&&j<(int)m_dimensions.y&&k>=0&&k<m_dimensions.x)
@@ -1852,7 +1852,7 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                                 }
 
                                 coordonnee position;
-                                position.x=(k-j-1+m_dimensions.y)/5;
+                                position.x=(k-j-1)/5;
                                 position.y=(k+j)/5;
 
                                 m_tileset[m_decor[i][j][k].getTileset()].jouerSon(m_tileset[m_decor[i][j][k].getTileset()].getSonTile(m_decor[i][j][k].getTile()),position,positionHero);
@@ -1867,7 +1867,7 @@ void Map::animer(Hero *hero,float temps,Menu *menu,sf::View *camera)
                         moteurGraphique->LightManager->Generate(m_monstre[monstre].m_light);
 
                         bool explosif=false;
-                        int degats = m_monstre[monstre].animer(&m_ModeleMonstre[m_monstre[monstre].getModele()],m_dimensions.y,temps,&explosif,positionHero);
+                        int degats = m_monstre[monstre].animer(&m_ModeleMonstre[m_monstre[monstre].getModele()],temps,&explosif,positionHero);
                         if(degats>0&&!explosif)
                         {
                             if(m_monstre[monstre].m_miracleALancer==-1)
@@ -2039,7 +2039,7 @@ void Map::gererEvenements(int evenement,int z,int couche,int x,int y)
                 if(m_decor[couche][y][x].getTileset()>=0&&m_decor[couche][y][x].getTileset()<(int)m_tileset.size())
                 {
                     sf::Vector2f pos;
-                    pos.x=(((x*COTE_TILE-y*COTE_TILE)*64/COTE_TILE+getDimensions().y*64));
+                    pos.x=(((x*COTE_TILE-y*COTE_TILE)*64/COTE_TILE));
                     pos.y=(((x*COTE_TILE+y*COTE_TILE)*64/COTE_TILE)/2+32)*2;
                     if(m_tileset[m_decor[couche][y][x].getTileset()].getLumiereDuTile(m_decor[couche][y][x].getTile()).intensite>0)
                     {
@@ -2922,7 +2922,7 @@ int Map::getMonstre(Hero *hero,View *camera,RenderWindow *ecran,coordonnee posit
                     if(m_monstre[m_decor[i][j][k].getMonstre()].enVie()&&m_monstre[m_decor[i][j][k].getMonstre()].getCaracteristique().rang>=0)
                     {
                         coordonneeDecimal temp;
-                        temp.x=(((m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x-m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y)*64/COTE_TILE+m_dimensions.y*64));
+                        temp.x=(((m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x-m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y)*64/COTE_TILE/*+m_dimensions.y*64*/));
                         temp.y=(((m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x+m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y)*64/COTE_TILE)/2+32);
 
 

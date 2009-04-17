@@ -1351,7 +1351,7 @@ void Hero::afficherInventaire(sf::RenderWindow *ecran,coordonnee positionSouris,
 void Hero::placerCamera(sf::View *camera,coordonnee dimensionsMap)
 {
 	m_positionAffichage.y=(((m_personnage.getCoordonneePixel().x+m_personnage.getCoordonneePixel().y)*64/COTE_TILE)/2);
-	m_positionAffichage.x=(((m_personnage.getCoordonneePixel().x-m_personnage.getCoordonneePixel().y)*64/COTE_TILE+dimensionsMap.y*64)-64);
+	m_positionAffichage.x=(((m_personnage.getCoordonneePixel().x-m_personnage.getCoordonneePixel().y)*64/COTE_TILE/*+dimensionsMap.y*64*/)-64);
 
 	coordonneeDecimal positionCamera;
 	positionCamera.y=m_positionAffichage.y-250*configuration->Resolution.h/600 ;

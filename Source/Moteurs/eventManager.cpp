@@ -171,11 +171,11 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
 
     //Conversion des coord cartésienne en coord iso
     if((float)((positionSourisTotale.y*2-positionSourisTotale.x)/2)/64+tailleMap.y/2<(float)tailleMap.y/2)
-        m_casePointee.y=((positionSourisTotale.y*2-positionSourisTotale.x)/2)/64+tailleMap.y/2-1;
+        m_casePointee.y=((positionSourisTotale.y*2-positionSourisTotale.x)/2)/64/*+tailleMap.y/2*/-1;
     else
-        m_casePointee.y=((positionSourisTotale.y*2-positionSourisTotale.x)/2)/64+tailleMap.y/2;
+        m_casePointee.y=((positionSourisTotale.y*2-positionSourisTotale.x)/2)/64/*+tailleMap.y/2*/;
 
-    m_casePointee.x=(positionSourisTotale.x+((positionSourisTotale.y*2-positionSourisTotale.x)/2))/64-tailleMap.y/2;
+    m_casePointee.x=(positionSourisTotale.x+((positionSourisTotale.y*2-positionSourisTotale.x)/2))/64/*-tailleMap.y/2*/;
 
     if(m_casePointee.x<0)
         m_casePointee.x=0;

@@ -74,7 +74,7 @@ class Personnage
 	coordonnee getProchaineCase();
 	bool getErreurPathfinding();
 	bool enVie();
-	int animer(Modele_Personnage *modele,int hauteur_map,float temps,bool *explosif,coordonnee positionHero);
+	int animer(Modele_Personnage *modele,float temps,bool *explosif,coordonnee positionHero);
 
 	void Pousser(coordonnee vecteur);
 	void PousserCase(coordonnee vecteur);
