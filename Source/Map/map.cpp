@@ -547,6 +547,16 @@ bool Map::Charger(int numeroMap,Hero *hero)
                                                             case 'm': if(entite_map_existante!=true) { *fichier>>temp; monstre.push_back(temp);  } else {  *fichier>>monstreFinal; } break;
                                                             case 'h': *fichier>>herbe; break;
                                                             case 'l': *fichier>>layer; break;
+                                                            case 'i': *fichier>>hauteur; break;
+
+                                                            case 'o':
+                                                                objets.push_back(Objet ());
+                                                                objets.back().ChargerTexte(fichier);
+                                                                rarete=objets.back().getRarete();
+                                                                objets.back().Charger(objets.back().getChemin());
+                                                                objets.back().setRarete(rarete);
+
+                                                            break;
                                                         }
 
                                                     if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); throw (&temp); }
