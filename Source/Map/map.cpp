@@ -2562,14 +2562,14 @@ bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu,sf::View *ca
             if(m_monstre[numeroMonstre].getCaracteristique().pointAme>0)
             {
                 coordonneeDecimal position;
-                position.x=(((m_monstre[numeroMonstre].getCoordonnee().x-m_monstre[numeroMonstre].getCoordonnee().y-1+m_dimensions.y)*64)-camera->GetRect().Left+48-(configuration->Resolution.w/configuration->zoom/2-400));
+                position.x=(((m_monstre[numeroMonstre].getCoordonnee().x-m_monstre[numeroMonstre].getCoordonnee().y-1)*64)-camera->GetRect().Left+48-(configuration->Resolution.w/configuration->zoom/2-400));
                 position.y=(((m_monstre[numeroMonstre].getCoordonnee().x+m_monstre[numeroMonstre].getCoordonnee().y)*32)-camera->GetRect().Top-96);
                 menu->AjouterAme(position,m_monstre[numeroMonstre].getCaracteristique().pointAme);
             }
             if(configuration->particules&&m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].m_particules>=0)
             {
                 coordonnee position2;
-                position2.x=(int)(((m_monstre[numeroMonstre].getCoordonneePixel().x-m_monstre[numeroMonstre].getCoordonneePixel().y)*64/COTE_TILE+m_dimensions.y*64));
+                position2.x=(int)(((m_monstre[numeroMonstre].getCoordonneePixel().x-m_monstre[numeroMonstre].getCoordonneePixel().y)*64/COTE_TILE));
                 position2.y=(int)(((m_monstre[numeroMonstre].getCoordonneePixel().x+m_monstre[numeroMonstre].getCoordonneePixel().y)*64/COTE_TILE)/2);
 
                 float force=((degats*2)/m_monstre[numeroMonstre].getCaracteristique().maxVie)*5,angle;

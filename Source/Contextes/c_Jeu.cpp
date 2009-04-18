@@ -209,7 +209,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                     ///Placer l'écouteur, à la position du héro
                     coordonnee position;
-                    position.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1+jeu->map.getDimensions().y)/5;
+                    position.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
                     position.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
 
                     Listener::SetGlobalVolume((float)configuration->volume);
@@ -240,7 +240,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     bool a; // Variable qui ne sert pas ici, mais qui remplace le explosif des monstres
                     int retour=-2;
                     retour=jeu->hero.m_personnage.animer(&jeu->hero.m_modelePersonnage[0],tempsDepuisDerniereAnimation,&a,positionHero);
-                    if(retour!=-2)
+                   // if(retour!=-2)
                         jeu->hero.CalculerOrdreAffichage();
 
                     if(retour==0) //Animation du héro
