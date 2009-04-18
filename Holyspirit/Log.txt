@@ -80,6 +80,14 @@
          Chargement de l'objet : Boot.item.hs
          
          Chargement de l'objet : Armband.item.hs
+         
+         Chargement de l'objet : Armband.item.hs
+         
+         Chargement de l'objet : Boot.item.hs
+         
+         Chargement de l'objet : Ring.item.hs
+         
+         Chargement de l'objet : Dagger.item.hs
          /Lectures des objets.
          Chargement de : Data/Menus/Inventory.png
          Chargement de : Data/Menus/Hud.png
@@ -167,6 +175,10 @@
          /Sauvegarde de Dagger.item.hs
          /Sauvegarde de Boot.item.hs
          /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Dagger.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
@@ -383,6 +395,10 @@
          /Sauvegarde de Dagger.item.hs
          /Sauvegarde de Boot.item.hs
          /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Dagger.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
