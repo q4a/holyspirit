@@ -35,12 +35,6 @@ using namespace sf;
 
 Map::Map()
 {
-    carreBrun.Create(8*configuration->Resolution.x/800, 8*configuration->Resolution.x/800, Color(128, 64, 0)),carreBleu.Create(8*configuration->Resolution.x/800, 8*configuration->Resolution.x/800, Color(32, 0, 128));
-    carreRouge.Create(8*configuration->Resolution.x/800,8*configuration->Resolution.x/800, Color(128, 0, 0)),carreVert.Create(8*configuration->Resolution.x/800, 8*configuration->Resolution.x/800, Color(0, 128, 0));
-    carreJaune.Create(8*configuration->Resolution.x/800, 8*configuration->Resolution.x/800, Color(255, 255, 64));
-
-    carreMauve.Create(8*configuration->Resolution.x/800, 8*configuration->Resolution.x/800, Color(160, 0, 160));
-
     console->Ajouter("");
     console->Ajouter("Chargements d'images diverses :");
     IDImageSac=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_sac,-1);
@@ -1107,10 +1101,9 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 	Sprite sprite,spriteMinimap;
 	String texte;
 
-	spriteMinimap.SetColor(sf::Color(255,255,255,(int)alpha));
+
 	spriteMinimap.SetCenter(4*configuration->Resolution.w/800,4*configuration->Resolution.w/800);
     spriteMinimap.SetRotation(45);
-    spriteMinimap.SetSubRect(sf::IntRect(0,0,8,8));
 
 	positionHero.y=(int)((hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y)*DIVISEUR_COTE_TILE*32);
     positionHero.x=(int)(((hero->m_personnage.getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().y)*DIVISEUR_COTE_TILE-1+m_dimensions.y)*64);
@@ -1309,7 +1302,7 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                     }
 
 
-                    if(configuration->Minimap&&couche==1)
+                    if(alpha>0&&couche==1)
                     {
                         position.x=(((k-(hero->m_personnage.getCoordonnee().x-15))-(j-(hero->m_personnage.getCoordonnee().y-15))-1+40)*6*configuration->Resolution.w/800);
                         position.y=(((k-(hero->m_personnage.getCoordonnee().x-15))+(j-(hero->m_personnage.getCoordonnee().y-15)))*6*configuration->Resolution.w/800);
@@ -1319,7 +1312,10 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
                             int typeCase=getTypeCase(k,j);
                             if(typeCase==1)
                             {
-                                spriteMinimap.SetImage(carreBrun);
+                                spriteMinimap.SetImage(*moteurGraphique->getImage(0));
+                                spriteMinimap.SetColor(sf::Color(128,64,0,(int)alpha));
+                                spriteMinimap.SetSubRect(sf::IntRect(0,0,8,8));
+
                                 spriteMinimap.SetX((float)(position.x+465*configuration->Resolution.w/800));
                                 spriteMinimap.SetY((float)(position.y-80*configuration->Resolution.w/800));
                                 moteurGraphique->AjouterCommande(&spriteMinimap,14,0);
@@ -1327,7 +1323,10 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                             if(typeCase==2)
                             {
-                                spriteMinimap.SetImage(carreRouge);
+                                spriteMinimap.SetImage(*moteurGraphique->getImage(0));
+                                spriteMinimap.SetColor(sf::Color(128,0,0,(int)alpha));
+                                spriteMinimap.SetSubRect(sf::IntRect(0,0,8,8));
+
                                 spriteMinimap.SetX((float)(position.x+465*configuration->Resolution.w/800));
                                 spriteMinimap.SetY((float)(position.y-80*configuration->Resolution.w/800));
                                 moteurGraphique->AjouterCommande(&spriteMinimap,14,0);
@@ -1335,7 +1334,10 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                             if(typeCase==3)
                             {
-                                spriteMinimap.SetImage(carreVert);
+                                spriteMinimap.SetImage(*moteurGraphique->getImage(0));
+                                spriteMinimap.SetColor(sf::Color(0,128,0,(int)alpha));
+                                spriteMinimap.SetSubRect(sf::IntRect(0,0,8,8));
+
                                 spriteMinimap.SetX((float)(position.x+465*configuration->Resolution.w/800));
                                 spriteMinimap.SetY((float)(position.y-80*configuration->Resolution.w/800));
                                 moteurGraphique->AjouterCommande(&spriteMinimap,14,0);
@@ -1343,7 +1345,10 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                             if(typeCase==4)
                             {
-                                spriteMinimap.SetImage(carreJaune);
+                                spriteMinimap.SetImage(*moteurGraphique->getImage(0));
+                                spriteMinimap.SetColor(sf::Color(255,255,64,(int)alpha));
+                                spriteMinimap.SetSubRect(sf::IntRect(0,0,8,8));
+
                                 spriteMinimap.SetX((float)(position.x+465*configuration->Resolution.w/800));
                                 spriteMinimap.SetY((float)(position.y-80*configuration->Resolution.w/800));
                                 moteurGraphique->AjouterCommande(&spriteMinimap,14,0);
@@ -1351,7 +1356,10 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                             if(typeCase==5)
                             {
-                                spriteMinimap.SetImage(carreMauve);
+                                spriteMinimap.SetImage(*moteurGraphique->getImage(0));
+                                spriteMinimap.SetColor(sf::Color(160,0,160,(int)alpha));
+                                spriteMinimap.SetSubRect(sf::IntRect(0,0,8,8));
+
                                 spriteMinimap.SetX((float)(position.x+465*configuration->Resolution.w/800));
                                 spriteMinimap.SetY((float)(position.y-80*configuration->Resolution.w/800));
                                 moteurGraphique->AjouterCommande(&spriteMinimap,14,0);
@@ -1359,7 +1367,10 @@ void Map::Afficher(RenderWindow* ecran,View *camera,int type,Hero *hero,coordonn
 
                             if(hero->m_personnage.getCoordonnee().x==k&&hero->m_personnage.getCoordonnee().y==j)
                             {
-                                spriteMinimap.SetImage(carreBleu);
+                                spriteMinimap.SetImage(*moteurGraphique->getImage(0));
+                                spriteMinimap.SetColor(sf::Color(32,0,128,(int)alpha));
+                                spriteMinimap.SetSubRect(sf::IntRect(0,0,8,8));
+
                                 spriteMinimap.SetX((float)(position.x+465*configuration->Resolution.w/800));
                                 spriteMinimap.SetY((float)(position.y-80*configuration->Resolution.w/800));
                                 moteurGraphique->AjouterCommande(&spriteMinimap,14,0);

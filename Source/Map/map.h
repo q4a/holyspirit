@@ -123,8 +123,6 @@ class Map
 	std::vector <Projectile> m_projectile;
 	std::vector <EffetGraphique> m_effets;
 
-	sf::Image carreBrun,carreBleu,carreRouge,carreVert,carreJaune,carreMauve;
-
 	std::vector<Decor>::iterator IterY;
 	std::vector<Decor>::iterator Iter;
 };
