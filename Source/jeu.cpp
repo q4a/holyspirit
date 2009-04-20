@@ -37,19 +37,9 @@ Jeu::Jeu()
 
 void Jeu::Demarrer()
 {
+    moteurGraphique->createWindow();
 
-    if(!configuration->mode_fenetre)
-        ecran.Create(sf::VideoMode(configuration->Resolution.x, configuration->Resolution.y, 32),"HolySpirit : Act of Faith",sf::Style::Fullscreen);
-    else
-        ecran.Create(sf::VideoMode(configuration->Resolution.x, configuration->Resolution.y, 32),"HolySpirit : Act of Faith",sf::Style::Titlebar);
-    if(configuration->syncronisation_verticale)
-    {
-        ecran.UseVerticalSync(true);
-        ecran.SetFramerateLimit(60);
-    }
-
-
-    lireVideo(&ecran,"Data/Menus/Videos/Cinematique test 1-2");
+    //lireVideo("Data/Menus/Videos/Cinematique test 1-2");
 
     this->hero.Charger();
 
@@ -82,25 +72,16 @@ void Jeu::Demarrer()
     this->m_display = true;
     while (this->m_run)
 	{
-	    configuration->Resolution.x=this->ecran.GetWidth();
-	    configuration->Resolution.y=this->ecran.GetHeight();
-
 	    if(eventManager.getEvenement(Key::F1,"ET"))
-        {
-            char buffer[255];
+	    {
+            moteurGraphique->printscreen();
             eventManager.StopEvenement(Key::F1,"ET");
-            sf::Image Screen = ecran.Capture();
-            sprintf(buffer,"screenshot%i.png",configuration->numero_screen);
-            Screen.SaveToFile(buffer);
-            configuration->numero_screen++;
-        }
+	    }
 
 		this->m_contexte->Utiliser(this);
 		if(this->m_display)
-		    moteurGraphique->Afficher(&this->ecran,&this->camera,this->map.getDimensions());
+		    moteurGraphique->Afficher(this->map.getDimensions());
 	}
-
-	ecran.Close();
 
 	this->map.Sauvegarder(&this->hero);
 

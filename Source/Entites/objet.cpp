@@ -820,7 +820,7 @@ sf::String Objet::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee 
 }
 
 
-void Objet::AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position)
+void Objet::AfficherCaracteristiques(coordonnee position)
 {
     std::vector <sf::String> temp;
 
@@ -830,9 +830,6 @@ void Objet::AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position
     sf::String string;
 
     coordonnee tailleCadran={0,0,0,0},decalage={-10,0,0,0};
-
-    //position.x*=configuration->Resolution.w/configuration->Resolution.x;
-    //position.y*=configuration->Resolution.h/configuration->Resolution.y;
 
     sprintf(chaine,"%s",m_nom.c_str());
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));

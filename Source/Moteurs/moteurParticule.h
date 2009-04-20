@@ -45,7 +45,7 @@ class ParticuleSysteme
     ParticuleSysteme();
     ParticuleSysteme(int , ModeleParticuleSysteme *, coordonnee , sf::Color,float ,float);
     ~ParticuleSysteme();
-    void Afficher(sf::RenderWindow *ecran, ModeleParticuleSysteme *modele);
+    void Afficher( ModeleParticuleSysteme *modele);
     void Generer(float force, ModeleParticuleSysteme *modele,coordonnee position,float);
     bool Gerer(float temps,int tailleMapY);
 

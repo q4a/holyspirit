@@ -71,10 +71,10 @@ class Menu
 	public:
 	Menu();
 	~Menu();
-	void Afficher(sf::RenderWindow* ecran,int type,float alpha,Classe *classe);
-	void AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracteristique,int type,Caracteristique caracteristiqueMonstre,Classe *classe);
-	void AfficherChargement(sf::RenderWindow* ecran,std::string nom,int fond,int z);
-	void AfficherInventaire(sf::RenderWindow* ecran,float,Classe *classe);
+	void Afficher(int type,float alpha,Classe *classe);
+	void AfficherDynamique(Caracteristique caracteristique,int type,Caracteristique caracteristiqueMonstre,Classe *classe);
+	void AfficherChargement(std::string nom,int fond,int z);
+	void AfficherInventaire(float,Classe *classe);
 
 	void AjouterSang(coordonneeDecimal position);
 

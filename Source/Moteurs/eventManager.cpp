@@ -46,10 +46,10 @@ EventManager::EventManager()
 
 }
 
-void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *continuer,float temps,coordonnee tailleMap)
+void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tailleMap)
 {
 	Event Event;
-	if(ecran->GetEvent(Event))
+	if(moteurGraphique->getEvent(Event))
 	{
 		switch(Event.Type)
    		{
@@ -162,12 +162,9 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
         m_EventTableau[Key::Tab]=false;
     }
 
-	ecran->SetView(*camera);
-	FloatRect ViewRect = camera->GetRect();
+	FloatRect ViewRect = moteurGraphique->m_camera.GetRect();
 
-	coordonnee positionSourisTotale;
-	positionSourisTotale.x=(int)ecran->ConvertCoords(ecran->GetInput().GetMouseX(),ecran->GetInput().GetMouseY()).x;
-    positionSourisTotale.y=(int)ecran->ConvertCoords(ecran->GetInput().GetMouseX(), ecran->GetInput().GetMouseY()).y;
+	coordonnee positionSourisTotale=moteurGraphique->getPositionSouris();
 
     //Conversion des coord cartésienne en coord iso
     if((float)((positionSourisTotale.y*2-positionSourisTotale.x)/2)/64+tailleMap.y/2<(float)tailleMap.y/2)
@@ -187,7 +184,7 @@ void EventManager::GererLesEvenements(RenderWindow *ecran,View *camera,bool *con
         m_casePointee.y=tailleMap.y;
 }
 
-void EventManager::AfficherCurseur(sf::RenderWindow *ecran)
+void EventManager::AfficherCurseur()
 {
 	Sprite Sprite;
 	Sprite.SetImage(*moteurGraphique->getImage(idcurseur));

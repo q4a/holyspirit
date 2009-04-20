@@ -51,7 +51,7 @@ Menu::Menu()
     m_barreVieVide=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_barre_vie_vide,-1);
 }
 
-void Menu::Afficher(sf::RenderWindow* ecran,int type,float alpha,Classe *classe)
+void Menu::Afficher(int type,float alpha,Classe *classe)
 {
 	Sprite sprite,sprite2;
 
@@ -121,7 +121,7 @@ void Menu::Afficher(sf::RenderWindow* ecran,int type,float alpha,Classe *classe)
 }
 
 
-void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracteristique,int type,Caracteristique caracteristiqueMonstre,Classe *classe)
+void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteristique caracteristiqueMonstre,Classe *classe)
 {
 
     if(caracteristique.vie>0)
@@ -277,7 +277,7 @@ void Menu::AfficherDynamique(sf::RenderWindow* ecran,Caracteristique caracterist
     }
 }
 
-void Menu::AfficherChargement(sf::RenderWindow* ecran,string nom,int fond,int z=50)
+void Menu::AfficherChargement(string nom,int fond,int z=50)
 {
     Sprite sprite;
 
@@ -299,7 +299,7 @@ void Menu::AfficherChargement(sf::RenderWindow* ecran,string nom,int fond,int z=
     moteurGraphique->AjouterTexte(&texte,13,1);
 }
 
-void Menu::AfficherInventaire(sf::RenderWindow* ecran,float decalage,Classe *classe)
+void Menu::AfficherInventaire(float decalage,Classe *classe)
 {
     Sprite sprite;
 

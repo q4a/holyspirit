@@ -79,13 +79,13 @@ class Hero
 	void Charger();
 	void ChargerModele(bool tout=false);
 
-	void Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee dimensionsMap);
+	void Afficher(coordonnee dimensionsMap);
 	void CalculerOrdreAffichage();
 
-	void afficherInventaire(sf::RenderWindow *,coordonnee,float);
-	void afficherCaracteristiques(sf::RenderWindow *ecran,coordonnee positionSouris,float decalage);
+	void afficherInventaire(coordonnee,float);
+	void afficherCaracteristiques(coordonnee positionSouris,float decalage);
 	void GenererGrille();
-	void placerCamera(sf::View *camera,coordonnee dimensionsMap);
+	void placerCamera(coordonnee dimensionsMap);
 
 	bool testMonstreVise(Monstre *monstre,int hauteurMap);
 

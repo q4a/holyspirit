@@ -30,7 +30,7 @@ enum  {PROJECTILE,CORPS_A_CORPS,DEGATS,EFFET_GRAPHIQUE,INVOCATION};
 class Projectile
 {
     public:
-    void Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap);
+    void Afficher(coordonnee position,coordonnee dimensionsMap);
     void Deplacer(float temp,int);
 
     bool m_monstre,m_actif;
@@ -56,7 +56,7 @@ class Projectile
 class EffetGraphique
 {
     public:
-    void Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap);
+    void Afficher(coordonnee position,coordonnee dimensionsMap);
 
     bool m_actif;
     coordonneeDecimal m_position;

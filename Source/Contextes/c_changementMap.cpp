@@ -111,8 +111,8 @@ void c_Chargement::setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool
 void c_Chargement::Utiliser(Jeu *jeu)
 {
     jeu->m_display=true;
-    jeu->hero.placerCamera(&jeu->camera,jeu->map.getDimensions());
-    jeu->ecran.SetView(jeu->camera);
+    jeu->hero.placerCamera(jeu->map.getDimensions());
+    //jeu->ecran.SetView(jeu->camera);
 
     if(configuration->Lumiere)
         jeu->map.calculerOmbresEtLumieres();
@@ -122,7 +122,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
     tempsEcouleDepuisDernierAffichage+=temps_ecoule;
     jeu->Clock.Reset();
 
-    jeu->eventManager.GererLesEvenements(&jeu->ecran,&jeu->camera,&jeu->m_run,temps_ecoule,jeu->map.getDimensions());
+    jeu->eventManager.GererLesEvenements(&jeu->m_run,temps_ecoule,jeu->map.getDimensions());
 
     if(z>=49&&!augmenterNoir&&allerVersImageChargement)
     {
@@ -147,8 +147,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         moteurGraphique->DecrementerImportance();
 
-        jeu->hero.placerCamera(&jeu->camera,jeu->map.getDimensions());
-        jeu->camera.Zoom(configuration->zoom);
+        jeu->hero.placerCamera(jeu->map.getDimensions());
 
         coordonnee position;
         position.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1+jeu->map.getDimensions().y)/5;
@@ -192,26 +191,24 @@ void c_Chargement::Utiliser(Jeu *jeu)
     if(z<0)
         z=0;
 
-
-
     if(allerVersImageChargement&&z<49&&augmenterNoir||!allerVersImageChargement&&z>0&&!augmenterNoir)
     {
-        jeu->camera.Zoom(configuration->zoom);
+        //jeu->camera.Zoom(configuration->zoom);
         jeu->map.setVolumeMusique((int)(z*(float)configuration->volume/50));
         if(!m_debut&&augmenterNoir||!augmenterNoir)
         {
             coordonnee temp;
-            jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,temp,0);
+            jeu->map.Afficher(1,&jeu->hero,temp,0);
 
             if(configuration->Minimap)
-                jeu->menu.Afficher(&jeu->ecran,2,255,&jeu->hero.m_classe);
+                jeu->menu.Afficher(2,255,&jeu->hero.m_classe);
 
-            jeu->menu.Afficher(&jeu->ecran,1,255,&jeu->hero.m_classe);
-            jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,0,jeu->hero.m_personnage.getCaracteristique(),&jeu->hero.m_classe);
+            jeu->menu.Afficher(1,255,&jeu->hero.m_classe);
+            jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,0,jeu->hero.m_personnage.getCaracteristique(),&jeu->hero.m_classe);
         }
     }
     else
-    jeu->menu.AfficherChargement(&jeu->ecran,nomMap,m_fond,50);
+    jeu->menu.AfficherChargement(nomMap,m_fond,50);
 
     configuration->effetNoir=((float)z)/50;
 

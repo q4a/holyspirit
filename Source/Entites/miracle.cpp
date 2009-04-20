@@ -29,7 +29,7 @@ using namespace sf;
 
 
 
-void Projectile::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap)
+void Projectile::Afficher(coordonnee position,coordonnee dimensionsMap)
 {
     if(m_actif)
     {
@@ -47,15 +47,15 @@ void Projectile::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee po
 
         sprite.Rotate((-(m_rotation)*180/M_PI));
 
-        if(sprite.GetPosition().x+sprite.GetSize().x>=camera->GetRect().Left
-        &&sprite.GetPosition().x<camera->GetRect().Right
-        &&sprite.GetPosition().y+sprite.GetSize().y>=camera->GetRect().Top
-        &&sprite.GetPosition().y<camera->GetRect().Bottom)
+        if(sprite.GetPosition().x+sprite.GetSize().x>=moteurGraphique->m_camera.GetRect().Left
+        &&sprite.GetPosition().x<moteurGraphique->m_camera.GetRect().Right
+        &&sprite.GetPosition().y+sprite.GetSize().y>=moteurGraphique->m_camera.GetRect().Top
+        &&sprite.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)
         moteurGraphique->AjouterCommande(&sprite,10,1);
     }
 }
 
-void EffetGraphique::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee position,coordonnee dimensionsMap)
+void EffetGraphique::Afficher(coordonnee position,coordonnee dimensionsMap)
 {
     if(m_actif)
     {
@@ -71,10 +71,10 @@ void EffetGraphique::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonne
 
         sprite.SetCenter(m_positionImage.w/2,m_positionImage.h/2);
 
-        if(sprite.GetPosition().x+sprite.GetSize().x>=camera->GetRect().Left
-        &&sprite.GetPosition().x<camera->GetRect().Right
-        &&sprite.GetPosition().y+sprite.GetSize().y>=camera->GetRect().Top
-        &&sprite.GetPosition().y<camera->GetRect().Bottom)
+        if(sprite.GetPosition().x+sprite.GetSize().x>=moteurGraphique->m_camera.GetRect().Left
+        &&sprite.GetPosition().x<moteurGraphique->m_camera.GetRect().Right
+        &&sprite.GetPosition().y+sprite.GetSize().y>=moteurGraphique->m_camera.GetRect().Top
+        &&sprite.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)
         moteurGraphique->AjouterCommande(&sprite,10,1);
     }
 }

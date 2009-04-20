@@ -36,6 +36,8 @@ MoteurGraphique::MoteurGraphique()
     m_soleil.vert=255;
     m_soleil.bleu=255;
     m_soleil.intensite=255;
+
+    m_ecran=NULL;
 }
 MoteurGraphique::~MoteurGraphique()
 {
@@ -44,6 +46,36 @@ MoteurGraphique::~MoteurGraphique()
     m_images.clear();
     m_systemeParticules.clear();
     m_modeleSystemeParticules.clear();
+
+    if(m_ecran!=NULL)
+    {
+        m_ecran->Close();
+        delete m_ecran;
+    }
+}
+
+void MoteurGraphique::createWindow()
+{
+    if(m_ecran!=NULL)
+    {
+        m_ecran->Close();
+        delete m_ecran;
+    }
+
+    m_ecran = new sf::RenderWindow();
+
+    if(!configuration->mode_fenetre)
+        m_ecran->Create(sf::VideoMode(configuration->Resolution.x, configuration->Resolution.y, 32),"HolySpirit : Act of Faith",sf::Style::Fullscreen);
+    else
+        m_ecran->Create(sf::VideoMode(configuration->Resolution.x, configuration->Resolution.y, 32),"HolySpirit : Act of Faith",sf::Style::Titlebar);
+
+    if(configuration->syncronisation_verticale)
+    {
+        m_ecran->UseVerticalSync(true);
+        m_ecran->SetFramerateLimit(60);
+    }
+
+    m_ecran->ShowMouseCursor(false);
 }
 
 void MoteurGraphique::Charger()
@@ -97,27 +129,32 @@ void MoteurGraphique::Charger()
         console->Ajouter("Chargement de : "+configuration->chemin_fonts+configuration->font_titre,0);
 }
 
-void MoteurGraphique::Gerer(sf::RenderWindow *ecran,float temps,int tailleMapY)
+void MoteurGraphique::Gerer(float temps,int tailleMapY)
 {
     int k=0;
     for(m_systemeParticules_iter=m_systemeParticules.begin();m_systemeParticules_iter!=m_systemeParticules.end();++m_systemeParticules_iter,++k)
         if(m_systemeParticules_iter->m_modele>=0&&m_systemeParticules_iter->m_modele<(int)m_modeleSystemeParticules.size())
         {
-            m_systemeParticules_iter->Afficher(ecran,&m_modeleSystemeParticules[m_systemeParticules_iter->m_modele]);
+            m_systemeParticules_iter->Afficher(&m_modeleSystemeParticules[m_systemeParticules_iter->m_modele]);
 
             if(!m_systemeParticules_iter->Gerer(temps,tailleMapY))
             {
                 m_systemeParticules.erase (m_systemeParticules_iter);
                 if(k!=0&&!m_systemeParticules.empty())
                     m_systemeParticules_iter=m_systemeParticules.begin()+(k-1);
+                else if(k==0&&!m_systemeParticules.empty())
+                    m_systemeParticules_iter=m_systemeParticules.begin();
                 else
                     break;
             }
         }
 }
 
-void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordonnee dimensionsMap)
+void MoteurGraphique::Afficher(coordonnee dimensionsMap)
 {
+    configuration->Resolution.x=m_ecran->GetWidth();
+    configuration->Resolution.y=m_ecran->GetHeight();
+
     sf::Sprite sprite;
     sf::Sprite sprite2;
 
@@ -129,31 +166,33 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
         EffectContrastes.SetTexture("framebuffer", NULL);
     }
 
+    m_ecran->SetView(m_camera);
+
         if(configuration->RafraichirOmbre==1&&configuration->Ombre&&m_soleil.intensite>32)
         {
-            decalageLumiere=camera->GetCenter();
+            decalageLumiere=m_camera.GetCenter();
 
-            ecran->Clear(sf::Color(255,255,255));
+            m_ecran->Clear(sf::Color(255,255,255));
 
-            LightManager->DrawWallShadow(ecran,camera,dimensionsMap);
+            LightManager->DrawWallShadow(m_ecran,&m_camera,dimensionsMap);
 
             if (configuration->postFX)
             {
                 EffectBlur.SetParameter("offset",0.02);
-                ecran->Draw(EffectBlur);
+                m_ecran->Draw(EffectBlur);
             }
 
-            ecran->SetView(*camera);
+            m_ecran->SetView(m_camera);
             sprite.SetBlendMode(sf::Blend::Alpha);
 
             for(IterCommande=m_commandes[9].begin();IterCommande!=m_commandes[9].end();++IterCommande)
             {
                 sprite=IterCommande->m_sprite;
                 sprite.SetColor(sf::Color(0,0,0,255));
-                ecran->Draw(sprite);
+                m_ecran->Draw(sprite);
             }
 
-            ecran->SetView(ecran->GetDefaultView());
+            m_ecran->SetView(m_ecran->GetDefaultView());
 
             sf::Sprite sprite3;
             sprite3.SetX(0);
@@ -162,43 +201,43 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
             sprite3.Resize(configuration->Resolution.w,configuration->Resolution.h);
             sprite3.SetColor(sf::Color(sf::Color((int)(128+128-m_soleil.intensite*0.5),(int)(128+128-m_soleil.intensite*0.5),(int)(128+128-m_soleil.intensite*0.5))));
             sprite3.SetBlendMode(sf::Blend::Add);
-            ecran->Draw(sprite3);
+            m_ecran->Draw(sprite3);
 
             if (configuration->postFX)
             {
                 EffectBlur.SetParameter("offset",0.005);
-                ecran->Draw(EffectBlur);
+                m_ecran->Draw(EffectBlur);
             }
 
-            m_light_screen2.CopyScreen(*ecran);
+            m_light_screen2.CopyScreen(*m_ecran);
 
             configuration->RafraichirOmbre=2;
         }
 
     if(configuration->Lumiere && configuration->RafraichirLumiere)
     {
-        ecran->SetView(*camera);
+        m_ecran->SetView(m_camera);
 
-        ecran->Clear(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
+        m_ecran->Clear(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
 
         sprite2.SetColor(sf::Color(255,255,255,255));
 
-        LightManager->Draw(ecran,camera,dimensionsMap);
+        LightManager->Draw(m_ecran,&m_camera,dimensionsMap);
 
         if (configuration->postFX)
         {
             EffectBlur.SetParameter("offset",0.01);
-            ecran->Draw(EffectBlur);
+            m_ecran->Draw(EffectBlur);
             EffectBlur.SetParameter("offset",0.005);
-            ecran->Draw(EffectBlur);
+            m_ecran->Draw(EffectBlur);
         }
 
-        m_light_screen.CopyScreen(*ecran);
+        m_light_screen.CopyScreen(*m_ecran);
 
         configuration->RafraichirLumiere=false;
     }
 
-    ecran->Clear();
+    m_ecran->Clear();
 
     for(int k=0;k<=20;k++)
     {
@@ -212,8 +251,8 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
             sprite2.SetX(0);
             sprite2.SetY(0);
 
-            ecran->SetView(ecran->GetDefaultView());
-            ecran->Draw(sprite2);
+            m_ecran->SetView(m_ecran->GetDefaultView());
+            m_ecran->Draw(sprite2);
         }
 
         if(k==10&&configuration->Ombre&&configuration->Ombre&&m_soleil.intensite>32)
@@ -223,11 +262,11 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
             sprite2.SetBlendMode(sf::Blend::Multiply);
             sprite2.SetColor(sf::Color(255,255,255));
 
-            sprite2.SetX(decalageLumiere.x-camera->GetCenter().x);
-            sprite2.SetY(decalageLumiere.y-camera->GetCenter().y);
+            sprite2.SetX(decalageLumiere.x-m_camera.GetCenter().x);
+            sprite2.SetY(decalageLumiere.y-m_camera.GetCenter().y);
 
-            ecran->SetView(ecran->GetDefaultView());
-            ecran->Draw(sprite2);
+            m_ecran->SetView(m_ecran->GetDefaultView());
+            m_ecran->Draw(sprite2);
         }
 
 
@@ -236,19 +275,19 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
             for(IterCommande=m_commandes[k].begin();IterCommande!=m_commandes[k].end();++IterCommande)
             {
                 if(IterCommande->m_utiliserCamera)
-                    ecran->SetView(*camera);
+                    m_ecran->SetView(m_camera);
                 else
-                    ecran->SetView(ecran->GetDefaultView());
+                    m_ecran->SetView(m_ecran->GetDefaultView());
 
-                ecran->Draw(IterCommande->m_sprite);
+                m_ecran->Draw(IterCommande->m_sprite);
             }
         }
 
 
         for(int i=0;i<(int)m_textes[k].size();i++)
         {
-            ecran->SetView(ecran->GetDefaultView());
-            ecran->Draw(m_textes[k][i]);
+            m_ecran->SetView(m_ecran->GetDefaultView());
+            m_ecran->Draw(m_textes[k][i]);
         }
 
         if(k==18&&configuration->postFX)
@@ -256,12 +295,12 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
             if(m_blur>0)
             {
                 EffectBlur.SetParameter("offset",(float)m_blur);
-                ecran->Draw(EffectBlur);
-                ecran->Draw(EffectBlur);
-                ecran->Draw(EffectBlur);
+                m_ecran->Draw(EffectBlur);
+                m_ecran->Draw(EffectBlur);
+                m_ecran->Draw(EffectBlur);
             }
             if(configuration->effetMort>0)
-                ecran->Draw(EffectMort);
+                m_ecran->Draw(EffectMort);
         }
 
 
@@ -272,7 +311,7 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
         if (configuration->postFX)
         {
             EffectNoir.SetParameter("color", configuration->effetNoir, configuration->effetNoir, configuration->effetNoir);
-            ecran->Draw(EffectNoir);
+            m_ecran->Draw(EffectNoir);
         }
         else
         {
@@ -281,14 +320,14 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
             sprite2.Resize(configuration->Resolution.w,configuration->Resolution.h);
             sprite2.SetColor(sf::Color((int)(configuration->effetNoir*255),(int)(configuration->effetNoir*255),(int)(configuration->effetNoir*255),255));
             sprite2.SetBlendMode(sf::Blend::Multiply);
-            ecran->Draw(sprite2);
+            m_ecran->Draw(sprite2);
         }
     }
 
 
     if(configuration->contrastes>1&&configuration->postFX)
     {
-        ecran->Draw(EffectContrastes);
+        m_ecran->Draw(EffectContrastes);
         EffectContrastes.SetParameter("color", configuration->contrastes, configuration->contrastes, configuration->contrastes);
     }
     if(configuration->luminosite>0)
@@ -298,10 +337,10 @@ void MoteurGraphique::Afficher(sf::RenderWindow *ecran, sf::View *camera,coordon
         sprite2.Resize(configuration->Resolution.w,configuration->Resolution.h);
         sprite2.SetColor(sf::Color((int)configuration->luminosite,(int)configuration->luminosite,(int)configuration->luminosite,255));
         sprite2.SetBlendMode(sf::Blend::Add);
-        ecran->Draw(sprite2);
+        m_ecran->Draw(sprite2);
     }
 
-    ecran->Display();
+    m_ecran->Display();
     Vider();
 }
 
@@ -512,3 +551,29 @@ std::string MoteurGraphique::getCheminImage(int IDimage)
     else
         return "";
 }
+
+bool MoteurGraphique::getEvent(sf::Event &EventReceived)
+{
+    return m_ecran->GetEvent(EventReceived);
+}
+
+coordonnee MoteurGraphique::getPositionSouris()
+{
+    m_ecran->SetView(m_camera);
+    coordonnee pos;
+
+    pos.x=(int)m_ecran->ConvertCoords(m_ecran->GetInput().GetMouseX(), m_ecran->GetInput().GetMouseY()).x;
+    pos.y=(int)m_ecran->ConvertCoords(m_ecran->GetInput().GetMouseX(), m_ecran->GetInput().GetMouseY()).y;
+
+    return pos;
+}
+
+void MoteurGraphique::printscreen()
+{
+    char buffer[255];
+    sf::Image Screen = m_ecran->Capture();
+    sprintf(buffer,"screenshot%i.png",configuration->numero_screen);
+    Screen.SaveToFile(buffer);
+    configuration->numero_screen++;
+}
+

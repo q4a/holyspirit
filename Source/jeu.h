@@ -45,8 +45,6 @@ class Jeu
     void Demarrer();
     void Reset();
 
-    sf::RenderWindow ecran;
-    sf::View camera;
     Menu menu;
     EventManager eventManager;
     Map map;

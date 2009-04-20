@@ -30,8 +30,8 @@ class EventManager
 {
 	public:
 	EventManager();
-	void GererLesEvenements(sf::RenderWindow *ecran,sf::View *camera,bool *continuer,float temps,coordonnee tailleMap);
-	void AfficherCurseur(sf::RenderWindow *ecran);
+	void GererLesEvenements(bool *continuer,float temps,coordonnee tailleMap);
+	void AfficherCurseur();
 
 	void StopEvenement(int numeroEvenement,std::string evenement);
 

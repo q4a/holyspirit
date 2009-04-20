@@ -43,8 +43,8 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     moteurGraphique->m_blur=0.0025*m_alpha/255;
 
     jeu->m_display=true;
-    jeu->hero.placerCamera(&jeu->camera,jeu->map.getDimensions());
-    jeu->ecran.SetView(jeu->camera);
+    jeu->hero.placerCamera(jeu->map.getDimensions());
+    //jeu->ecran.SetView(jeu->camera);
 
     if(configuration->Lumiere)
         jeu->map.calculerOmbresEtLumieres();
@@ -69,39 +69,28 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
             m_alpha=255;
     }
 
-
-
-    jeu->eventManager.GererLesEvenements(&jeu->ecran,&jeu->camera,&jeu->m_run,temps_ecoule,jeu->map.getDimensions());
+    jeu->eventManager.GererLesEvenements(&jeu->m_run,temps_ecoule,jeu->map.getDimensions());
 
     if(jeu->eventManager.getEvenement(Key::Escape,"ET")&&m_alpha==255)
         jeu->eventManager.StopEvenement(Key::I,"ET"),retour=1;
     if(jeu->eventManager.getEvenement(Key::Space,"ET"))
         jeu->m_run=false;
 
-
-   /* if(jeu->eventManager.getEvenement(Mouse::Left,"C"))
-    {
-        if(jeu->eventManager.getPositionSouris().y<configuration->Resolution.h/2)
-            jeu->m_contexte=jeu->m_jeu,moteurGraphique->m_blur=0;
-        else
-            jeu->m_run=false;
-    }*/
-
     coordonnee temp;
 
-    jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,temp,0);
+    jeu->map.Afficher(1,&jeu->hero,temp,0);
     if(configuration->Minimap)
     {
-        jeu->menu.Afficher(&jeu->ecran,2,255,&jeu->hero.m_classe);
-        jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,255);
+        jeu->menu.Afficher(2,255,&jeu->hero.m_classe);
+        jeu->map.Afficher(2,&jeu->hero,temp,255);
     }
     if(jeu->hero.getChercherSac().x!=-1&&jeu->map.getNombreObjets(jeu->hero.getChercherSac())>0)
     {
-        jeu->menu.Afficher(&jeu->ecran,3,255,&jeu->hero.m_classe);
-        jeu->map.Afficher(&jeu->ecran,&jeu->camera,2,&jeu->hero,temp,255);
+        jeu->menu.Afficher(3,255,&jeu->hero.m_classe);
+        jeu->map.Afficher(2,&jeu->hero,temp,255);
     }
-    jeu->menu.Afficher(&jeu->ecran,1,255,&jeu->hero.m_classe);
-    jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,0,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
+    jeu->menu.Afficher(1,255,&jeu->hero.m_classe);
+    jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,0,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
 
 
     texte.SetSize(56.f*configuration->Resolution.h/600);
@@ -148,5 +137,5 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
         texte.SetColor(Color(150,100,50,(int)m_alpha));
     moteurGraphique->AjouterTexte(&texte,19,1);
 
-    jeu->eventManager.AfficherCurseur(&jeu->ecran);
+    jeu->eventManager.AfficherCurseur();
 }

@@ -30,7 +30,7 @@ Console::~Console()
     m_erreur.clear();
 }
 
-void Console::Afficher(sf::RenderWindow* ecran)
+void Console::Afficher()
 {
     if(!configuration->desactivate_console)
     {

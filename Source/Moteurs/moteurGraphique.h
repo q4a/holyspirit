@@ -43,9 +43,11 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	friend MoteurGraphique* CSingleton<MoteurGraphique>::GetInstance();
     friend void CSingleton<MoteurGraphique>::Kill();
 
-	void Afficher(sf::RenderWindow *, sf::View *,coordonnee );
+	void Afficher(coordonnee );
 
-	void Gerer(sf::RenderWindow *,float,int);
+	void createWindow();
+
+	void Gerer(float,int);
 
 	int AjouterImage(std::string,int importance = 4);
 	int AjouterImage(const char *Data, std::size_t SizeInBytes, std::string nom,int importance =5);
@@ -62,6 +64,11 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	void Vider();
 	void ViderParticules();
 
+	coordonnee getPositionSouris();
+	bool getEvent(sf::Event &EventReceived);
+
+	void printscreen();
+
 	sf::Image* getImage(int IDimage);
 	ModeleParticuleSysteme* getModeleMoteurParticules(int ID);
 
@@ -73,13 +80,14 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	float m_blur;
 
+    sf::View m_camera;
+
 	Light_Manager *LightManager;
     Lumiere m_soleil;
     float m_angleOmbreSoleil;
 
     sf::Image m_light_screen;
     sf::Image m_light_screen2;
-    sf::Image m_light_screen3;
 
 	protected:
 
@@ -99,6 +107,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	std::vector <Commande>::iterator IterCommande;
 
+	sf::RenderWindow *m_ecran;
 
 };
 

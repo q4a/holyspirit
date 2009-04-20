@@ -155,7 +155,7 @@ void close_video()
 }
 */
 
-void lireVideo(sf::RenderWindow *ecran,std::string Chemin)
+void lireVideo(std::string Chemin)
 {
 	// Notre fonction pour initialiser la video
 	/*if ( init_video("Data/Menus/Videos/Cinematique test 1-2.wmv") == 0 )

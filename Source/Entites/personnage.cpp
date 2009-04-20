@@ -274,7 +274,7 @@ int Personnage::getOrdre(Modele_Personnage *modele)
     return -10;
 }
 
-void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee dimensionsMap,Modele_Personnage *modele)
+void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele)
 {
     if(modele->m_pose.size()>0)
     if((int)(m_angle/45)>=0&&(int)(m_angle/45)<8)
@@ -336,10 +336,10 @@ void Personnage::Afficher(sf::RenderWindow* ecran,sf::View *camera,coordonnee di
                 else
                     sprite.SetColor(sf::Color(255,255,255, 255));
 
-                if(sprite.GetPosition().x+sprite.GetSize().x>=camera->GetRect().Left
-                &&sprite.GetPosition().x-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().x<camera->GetRect().Right
-                &&sprite.GetPosition().y+sprite.GetSize().y>=camera->GetRect().Top
-                &&sprite.GetPosition().y<camera->GetRect().Bottom)
+                if(sprite.GetPosition().x+sprite.GetSize().x>=moteurGraphique->m_camera.GetRect().Left
+                &&sprite.GetPosition().x-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().x<moteurGraphique->m_camera.GetRect().Right
+                &&sprite.GetPosition().y+sprite.GetSize().y>=moteurGraphique->m_camera.GetRect().Top
+                &&sprite.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)
                 moteurGraphique->AjouterCommande(&sprite,10,1);
             }
     }

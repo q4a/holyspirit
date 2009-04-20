@@ -40,7 +40,7 @@ ParticuleSysteme::~ParticuleSysteme()
 {
     m_particules.clear();
 }
-void ParticuleSysteme::Afficher(sf::RenderWindow *ecran, ModeleParticuleSysteme *modele)
+void ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele)
 {
     for(Iter=m_particules.begin();Iter!=m_particules.end();++Iter)
     {
@@ -138,8 +138,8 @@ bool ParticuleSysteme::Gerer(float temps,int tailleMapY)
             Iter->vitesse=0,Iter->vie-=temps*20;
         if(Iter->vie<=0)
              Iter->alpha-=temps*100;
-        if(Iter->alpha<=1)
-            Iter->alpha=1,efface=true;
+        if(Iter->alpha<=0)
+            Iter->alpha=0,efface=true;
     }
 
     if(efface)

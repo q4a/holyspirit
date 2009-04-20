@@ -81,8 +81,6 @@ c_Jeu::c_Jeu(Jeu *jeu)
         if(!jeu->map.Charger(0,&jeu->hero)==1) // Chargement de  jeu->map0.txt
             throw("CRITICAL ERROR");
 
-        jeu->ecran.ShowMouseCursor(false);
-
         if(configuration->Lumiere)
         {
             jeu->map.calculerOmbresEtLumieres();
@@ -173,7 +171,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 if(tempsEcouleDepuisDernierIA>=0.027)
                 {
-                    jeu->map.gererMonstres(&jeu->hero,tempsEcouleDepuisDernierIA,&jeu->camera,&jeu->menu);
+                    jeu->map.gererMonstres(&jeu->hero,tempsEcouleDepuisDernierIA,&jeu->menu);
                     tempsEcouleDepuisDernierIA=0;
                 }
 
@@ -204,7 +202,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                         if(configuration->Lumiere)
                             lumiere=true;
                     }
-                    jeu->map.testEvenement(&jeu->camera,jeu,tempsEcoule); // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
+                    jeu->map.testEvenement(jeu,tempsEcoule); // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
 
 
                     ///Placer l'écouteur, à la position du héro
@@ -246,9 +244,9 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     if(retour==0) //Animation du héro
                     {
                         if(jeu->hero.miracleEnCours==1)
-                            jeu->map.infligerDegatsMasse(jeu->hero.m_personnage.getCoordonnee(),1,rand()%(jeu->hero.m_caracteristiques.degatsMax - jeu->hero.m_caracteristiques.degatsMin +1) + jeu->hero.m_caracteristiques.degatsMin ,false,&jeu->hero,&jeu->menu,&jeu->camera);
+                            jeu->map.infligerDegatsMasse(jeu->hero.m_personnage.getCoordonnee(),1,rand()%(jeu->hero.m_caracteristiques.degatsMax - jeu->hero.m_caracteristiques.degatsMin +1) + jeu->hero.m_caracteristiques.degatsMin ,false,&jeu->hero,&jeu->menu);
                         else if(jeu->hero.m_personnage.frappeEnCours)
-                            jeu->map.infligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&jeu->camera,&jeu->hero,1);
+                            jeu->map.infligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&jeu->hero,1);
 
                         jeu->hero.miracleEnCours=0;
                     }
@@ -262,7 +260,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                             jeu->hero.setMonstreVise(-1),jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
 
 
-                    jeu->map.animer(&jeu->hero,tempsDepuisDerniereAnimation,&jeu->menu,&jeu->camera); // Animation des tiles de la jeu->map
+                    jeu->map.animer(&jeu->hero,tempsDepuisDerniereAnimation,&jeu->menu); // Animation des tiles de la jeu->map
 
                     tempsDepuisDerniereAnimation=0;
                 }
@@ -271,8 +269,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                 /// On calcule les lumières et les ombre
                 ///**********************************************************///
 
-                jeu->ecran.SetView(jeu->camera);
-
+                //jeu->ecran.SetView(jeu->camera);
 
                 if(configuration->Lumiere&&tempsEcouleDepuisDernierCalculLumiere>configuration->frequence_lumiere)
                 {
@@ -293,18 +290,17 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 if(tempsEcouleDepuisDernierAffichage>0.01&&configuration->syncronisation_verticale||!configuration->syncronisation_verticale)
                 {
-                    jeu->hero.placerCamera(&jeu->camera,jeu->map.getDimensions()); // On place la camera suivant ou se trouve le perso
-                    jeu->camera.Zoom(configuration->zoom);
+                    jeu->hero.placerCamera(jeu->map.getDimensions()); // On place la camera suivant ou se trouve le perso
 
                     ///**********************************************************///
                     ///Evenements
                     ///**********************************************************///
-                    jeu->eventManager.GererLesEvenements(&jeu->ecran,&jeu->camera,&jeu->m_run,tempsEcoule,jeu->map.getDimensions());
+                    jeu->eventManager.GererLesEvenements(&jeu->m_run,tempsEcoule,jeu->map.getDimensions());
 
                     int monstreVise=-1;
 
                     if(!jeu->eventManager.getEvenement(Mouse::Left,"C"))
-                        jeu->map.getMonstre(&jeu->hero,&jeu->camera,&jeu->ecran,jeu->eventManager.getPositionSouris(),jeu->eventManager.getCasePointee());
+                        jeu->map.getMonstre(&jeu->hero,jeu->eventManager.getPositionSouris(),jeu->eventManager.getCasePointee());
 
                     if(jeu->eventManager.getEvenement(Mouse::Left,"CA")&&!jeu->eventManager.getEvenement(Key::LShift,"ET"))
                     {
@@ -388,9 +384,9 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     ///Affichage
                     ///**********************************************************///
 
-                    moteurGraphique->Gerer(&jeu->ecran,tempsEcouleDepuisDernierAffichage,jeu->map.getDimensions().y);
+                    moteurGraphique->Gerer(tempsEcouleDepuisDernierAffichage,jeu->map.getDimensions().y);
 
-                    jeu->map.Afficher(&jeu->ecran,&jeu->camera,1,&jeu->hero,jeu->eventManager.getPositionSouris(),jeu->eventManager.getEvenement(Key::LAlt,"ET"),alpha_map);//Affichage de la jeu->map
+                    jeu->map.Afficher(1,&jeu->hero,jeu->eventManager.getPositionSouris(),jeu->eventManager.getEvenement(Key::LAlt,"ET"),alpha_map);//Affichage de la jeu->map
 
                     if(configuration->Minimap)
                     {
@@ -405,7 +401,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                             alpha_map=0;
                     }
                     if(alpha_map>0)
-                        jeu->menu.Afficher(&jeu->ecran,2,alpha_map,&jeu->hero.m_classe);//On affiche la mini-map
+                        jeu->menu.Afficher(2,alpha_map,&jeu->hero.m_classe);//On affiche la mini-map
 
                     if(jeu->hero.getChercherSac().x!=-1&&jeu->map.getNombreObjets(jeu->hero.getChercherSac())>0)
                     {
@@ -421,19 +417,19 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     }
                     if(alpha_sac>0)
                     {
-                        jeu->menu.Afficher(&jeu->ecran,3,alpha_sac,&jeu->hero.m_classe);
-                        jeu->map.Afficher(&jeu->ecran,&jeu->camera,3,&jeu->hero,jeu->eventManager.getPositionSouris(),0,alpha_sac);
+                        jeu->menu.Afficher(3,alpha_sac,&jeu->hero.m_classe);
+                        jeu->map.Afficher(3,&jeu->hero,jeu->eventManager.getPositionSouris(),0,alpha_sac);
                     }
 
-                    jeu->menu.Afficher(&jeu->ecran,1,255,&jeu->hero.m_classe); // On affiche le hud
+                    jeu->menu.Afficher(1,255,&jeu->hero.m_classe); // On affiche le hud
                     if(jeu->map.getEntiteMonstre(jeu->map.getMonstreIllumine())!=NULL)
-                        jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,1,jeu->map.getEntiteMonstre(jeu->map.getMonstreIllumine())->getCaracteristique(),&jeu->hero.m_classe);
+                        jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,1,jeu->map.getEntiteMonstre(jeu->map.getMonstreIllumine())->getCaracteristique(),&jeu->hero.m_classe);
                     else
-                        jeu->menu.AfficherDynamique(&jeu->ecran,jeu->hero.m_caracteristiques,0,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
-                    jeu->eventManager.AfficherCurseur(&jeu->ecran); // On affiche le curseur de la souris
+                        jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,0,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
+                    jeu->eventManager.AfficherCurseur(); // On affiche le curseur de la souris
 
                     if(jeu->map.getEvenement(jeu->eventManager.getCasePointee())>=0)
-                        jeu->map.AfficherNomEvenement(&jeu->ecran,jeu->eventManager.getCasePointee(),jeu->eventManager.getPositionSouris());
+                        jeu->map.AfficherNomEvenement(jeu->eventManager.getCasePointee(),jeu->eventManager.getPositionSouris());
 
                     if(configuration->effetMort&&sf::PostFX::CanUsePostFX() == true&&configuration->postFX&&tempsEffetMort!=0)
                     {
@@ -451,19 +447,19 @@ void c_Jeu::Utiliser(Jeu *jeu)
                         moteurGraphique->AjouterTexte(&TourBoucle,17);
 
                         if(configuration->console!=2)
-                            console->Afficher(&jeu->ecran);
+                            console->Afficher();
                     }
 
-                    if(lowFPS==-1&&(int)( 1.f / jeu->ecran.GetFrameTime())>0)
+                    /*if(lowFPS==-1&&(int)( 1.f / jeu->ecran.GetFrameTime())>0)
                         lowFPS=(int)( 1.f / jeu->ecran.GetFrameTime());
                     if(lowFPS>(int)( 1.f / jeu->ecran.GetFrameTime()) &&(int)( 1.f / jeu->ecran.GetFrameTime())>0 )
-                        lowFPS=(int)( 1.f / jeu->ecran.GetFrameTime());
+                        lowFPS=(int)( 1.f / jeu->ecran.GetFrameTime());*/
 
                     if(configuration->console)
                     if(tempsEcouleDepuisFPS>0.1)
                     {
-                        if(configuration->console&&jeu->ecran.GetFrameTime()!=0)
-                            sprintf(chaine,"%i / %i FPS",(int)( 1.f / jeu->ecran.GetFrameTime()), (int)lowFPS);
+                        //if(configuration->console&&jeu->ecran.GetFrameTime()!=0)
+                            //sprintf(chaine,"%i / %i FPS",(int)( 1.f / jeu->ecran.GetFrameTime()), (int)lowFPS);
                         //  Calcule du nombre de FPS
 
                         fps.SetText(chaine);
@@ -496,10 +492,6 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                     tempsNbrTourBoucle=0;
                 }
-
-
-
-
             }
 }
 

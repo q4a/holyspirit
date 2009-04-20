@@ -43,17 +43,17 @@ class Map
 	void Initialiser();
 	void CreerSprite(sf::Vector3f position_case);
 	void Sauvegarder(Hero *hero);
-	void Afficher(sf::RenderWindow* ecran,sf::View *camera,int type,Hero *hero,coordonnee positionSouris,bool alt,float alpha=255);
+	void Afficher(int type,Hero *hero,coordonnee positionSouris,bool alt,float alpha=255);
 
-	void AfficherSacInventaire(sf::RenderWindow* ecran,coordonnee positionSac,float decalage,coordonnee positionSouris,Classe *classe);
+	void AfficherSacInventaire(coordonnee positionSac,float decalage,coordonnee positionSouris,Classe *classe);
 
-	void AfficherNomEvenement(sf::RenderWindow* ecran,coordonnee casePointee,coordonnee positionSouris);
+	void AfficherNomEvenement(coordonnee casePointee,coordonnee positionSouris);
 
 	int getMonstreIllumine();
 	bool getCollision(int positionX,int positionY); // Retourne 1 s'il y a une collision avec le décors se trouvant à la position X et Y
 	int getTypeCase(int positionX,int positionY);
 	int getEvenement(coordonnee casePointee);
-	int getMonstre(Hero *hero,sf::View *camera,sf::RenderWindow *ecran,coordonnee positionSouris,coordonnee casePointee);
+	int getMonstre(Hero *hero,coordonnee positionSouris,coordonnee casePointee);
 	coordonnee getSacPointe();
 	int getObjetPointe();
 	int getNombreObjets(coordonnee position);
@@ -66,19 +66,19 @@ class Map
 	bool getMonstreEnVie(int numeroMonstre);
 
 
-	void animer(Hero *hero,float temps,Menu *menu,sf::View *camera); // Animation des tiles
-	bool testEvenement(sf::View *camera, Jeu *jeu,float temps);
+	void animer(Hero *hero,float temps,Menu *menu); // Animation des tiles
+	bool testEvenement(Jeu *jeu,float temps);
 	void calculerOmbresEtLumieres();
 	void Detruire();
 
 	int gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *hero,bool monstre,coordonnee lanceur, coordonnee cible,int couche);
 
-	void infligerDegatsMasse(coordonnee position,int rayon,int degats,bool sourceConcernee, Hero *hero,Menu *menu,sf::View *camera);
+	void infligerDegatsMasse(coordonnee position,int rayon,int degats,bool sourceConcernee, Hero *hero,Menu *menu);
 
-	bool infligerDegats(int numeroMontre, float degats,Menu *menu,sf::View *camera, Hero *hero,bool pousser);
+	bool infligerDegats(int numeroMontre, float degats,Menu *menu, Hero *hero,bool pousser);
 	void PousserMonstre(int numeroMonstre, coordonnee vecteur);
 	void PousserMonstreCase(int numeroMonstre, coordonnee vecteur);
-	void gererMonstres(Hero *hero,float temps,sf::View *camera,Menu *menu);
+	void gererMonstres(Hero *hero,float temps,Menu *menu);
 
 	void gererEvenements(int evenement,int z,int couche,int x,int y);
 
@@ -95,7 +95,7 @@ class Map
 
 
 
-	void gererConditions(Script *script,int noInstruction,int i, int j, int k,Hero *hero,float temps,sf::View *camera,Menu *menu);
+	void gererConditions(Script *script,int noInstruction,int i, int j, int k,Hero *hero,float temps,Menu *menu);
 
 
 	int m_defilerObjets;

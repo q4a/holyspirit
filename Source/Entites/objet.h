@@ -41,7 +41,7 @@ class Objet
 
     Objet operator=(const Objet &objet);
 
-    void AfficherCaracteristiques(sf::RenderWindow *ecran,coordonnee position);
+    void AfficherCaracteristiques(coordonnee position);
     void Charger(std::string chemin);
     void ChargerCaracteristiques(std::ifstream *fichier);
     void setChanceTrouver(int);

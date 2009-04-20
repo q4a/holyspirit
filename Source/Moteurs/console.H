@@ -34,7 +34,7 @@ class Console : public CSingleton<Console>
 	friend Console* CSingleton<Console>::GetInstance();
     friend void CSingleton<Console>::Kill();
 
-	void Afficher(sf::RenderWindow* ecran);
+	void Afficher();
 	void Ajouter(std::string texte,bool erreur=0);
 	void Ajouter(int texte,bool erreur=0);
     int getTaille();
