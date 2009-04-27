@@ -29,7 +29,7 @@ using namespace sf;
 
 
 
-void Projectile::Afficher(coordonnee position,coordonnee dimensionsMap)
+void Projectile::Afficher(coordonnee position)
 {
     if(m_actif)
     {
@@ -40,7 +40,7 @@ void Projectile::Afficher(coordonnee position,coordonnee dimensionsMap)
 
         sprite.FlipX(false);
 
-        sprite.SetX(((m_position.x-m_position.y)*64/COTE_TILE+dimensionsMap.y*64) - (m_centre.x - m_positionImage.w/2) * cos(-m_rotationReelle-M_PI/4));
+        sprite.SetX(((m_position.x-m_position.y)*64/COTE_TILE) - (m_centre.x - m_positionImage.w/2) * cos(-m_rotationReelle-M_PI/4));
         sprite.SetY(((m_position.x+m_position.y)*64/COTE_TILE)/2+(64-sprite.GetSize().y)+16);
 
         sprite.SetCenter(m_centre.x,m_centre.y);
@@ -55,7 +55,7 @@ void Projectile::Afficher(coordonnee position,coordonnee dimensionsMap)
     }
 }
 
-void EffetGraphique::Afficher(coordonnee position,coordonnee dimensionsMap)
+void EffetGraphique::Afficher(coordonnee position)
 {
     if(m_actif)
     {
@@ -66,7 +66,7 @@ void EffetGraphique::Afficher(coordonnee position,coordonnee dimensionsMap)
 
         sprite.FlipX(false);
 
-        sprite.SetX(((m_position.x-m_position.y)*64/COTE_TILE+dimensionsMap.y*64)/*-64+(64-sprite.GetSize().x/2)*/);
+        sprite.SetX(((m_position.x-m_position.y)*64/COTE_TILE)/*-64+(64-sprite.GetSize().x/2)*/);
         sprite.SetY(((m_position.x+m_position.y)*64/COTE_TILE)/2+(64-sprite.GetSize().y)+16);
 
         sprite.SetCenter(m_positionImage.w/2,m_positionImage.h/2);
@@ -79,13 +79,13 @@ void EffetGraphique::Afficher(coordonnee position,coordonnee dimensionsMap)
     }
 }
 
-void Projectile::Deplacer(float temps,int hauteurMap)
+void Projectile::Deplacer(float temps)
 {
     m_position.x+=m_vecteur.x*temps*500;
     m_position.y+=m_vecteur.y*temps*500;
 
     sf::Vector2f pos;
-    pos.x=(((m_position.x-m_position.y)*64/COTE_TILE+hauteurMap*64));
+    pos.x=(((m_position.x-m_position.y)*64/COTE_TILE));
     pos.y=(((m_position.x+m_position.y)*64/COTE_TILE)/2+32)*2;
 
     moteurGraphique->LightManager->SetPosition(m_light,pos);

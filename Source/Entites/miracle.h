@@ -30,8 +30,8 @@ enum  {PROJECTILE,CORPS_A_CORPS,DEGATS,EFFET_GRAPHIQUE,INVOCATION};
 class Projectile
 {
     public:
-    void Afficher(coordonnee position,coordonnee dimensionsMap);
-    void Deplacer(float temp,int);
+    void Afficher(coordonnee position);
+    void Deplacer(float temp);
 
     bool m_monstre,m_actif;
     int m_degats;
@@ -56,7 +56,7 @@ class Projectile
 class EffetGraphique
 {
     public:
-    void Afficher(coordonnee position,coordonnee dimensionsMap);
+    void Afficher(coordonnee position);
 
     bool m_actif;
     coordonneeDecimal m_position;

@@ -835,7 +835,9 @@ void Map::CreerSprite(sf::Vector3f position_case)
     if(position_case.z==0)
         layer=m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getCouche();
     if(position_case.z==1)
-        layer=10;
+    {
+        layer=6+m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getCouche();
+    }
 
     m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].setCouche(layer);
 }
@@ -1166,14 +1168,14 @@ void Map::Afficher(int type,Hero *hero,coordonnee positionSouris,bool alt,float 
 
 
                                 if(m_decor[0][j][k].getProjectile()>=0&&m_decor[0][j][k].getProjectile()<(int)m_projectile.size())
-                                    m_projectile[m_decor[0][j][k].getProjectile()].Afficher(position,getDimensions());
+                                    m_projectile[m_decor[0][j][k].getProjectile()].Afficher(position);
                                 if(m_decor[1][j][k].getProjectile()>=0&&m_decor[1][j][k].getProjectile()<(int)m_projectile.size())
-                                    m_projectile[m_decor[1][j][k].getProjectile()].Afficher(position,getDimensions());
+                                    m_projectile[m_decor[1][j][k].getProjectile()].Afficher(position);
 
                                 if(m_decor[0][j][k].getEffetGraphique()>=0&&m_decor[0][j][k].getEffetGraphique()<(int)m_effets.size())
-                                    m_effets[m_decor[0][j][k].getEffetGraphique()].Afficher(position,getDimensions());
+                                    m_effets[m_decor[0][j][k].getEffetGraphique()].Afficher(position);
                                 if(m_decor[1][j][k].getEffetGraphique()>=0&&m_decor[1][j][k].getEffetGraphique()<(int)m_effets.size())
-                                    m_effets[m_decor[1][j][k].getEffetGraphique()].Afficher(position,getDimensions());
+                                    m_effets[m_decor[1][j][k].getEffetGraphique()].Afficher(position);
 
 
                                 if(m_decor[1][j][k].getNombreObjets()>0&&couche==1)
@@ -1587,10 +1589,10 @@ int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
 
                 m_projectile.back().m_rotationReelle=m;
 
-                position.x=(lanceur.x-lanceur.y)+m_dimensions.y;
+                position.x=(lanceur.x-lanceur.y);
                 position.y=(lanceur.x+lanceur.y)/2;
 
-                position2.x=(cible.x-cible.y)+m_dimensions.y;
+                position2.x=(cible.x-cible.y);
                 position2.y=(cible.x+cible.y)/2;
 
                 m=atan2(position2.y-position.y,position2.x-position.x);
@@ -1652,7 +1654,7 @@ int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
                  m_effets.back().m_lumiere.bleu=128;
 
 
-                position.x=((( m_effets.back().m_position.x- m_effets.back().m_position.y)*64/COTE_TILE+m_dimensions.y*64));
+                position.x=((( m_effets.back().m_position.x- m_effets.back().m_position.y)*64/COTE_TILE));
                 position.y=((( m_effets.back().m_position.x+ m_effets.back().m_position.y)*64/COTE_TILE)/2+32)*2;
 
                  m_effets.back().m_light=moteurGraphique->LightManager->Add_Dynamic_Light(position, m_effets.back().m_lumiere.intensite, m_effets.back().m_lumiere.intensite,4,sf::Color( m_effets.back().m_lumiere.rouge, m_effets.back().m_lumiere.vert, m_effets.back().m_lumiere.bleu));
@@ -2410,7 +2412,7 @@ void Map::gererMonstres(Hero *hero,float temps,Menu *menu)
                                         m_decor[0][(int)(m_projectile[temp].m_position.y/COTE_TILE)][(int)(m_projectile[temp].m_position.x/COTE_TILE)].setProjectile(-1);
                                 }
 
-                                m_projectile[i].Deplacer(temps,getDimensions().y);
+                                m_projectile[i].Deplacer(temps);
                             }
                             else
                             {
@@ -2856,7 +2858,8 @@ int Map::getTypeCase(int positionX,int positionY)
 	    if(positionY>=0&&positionY<(int)m_dimensions.y&&positionX>=0&&positionX<m_dimensions.x)
 	    {
             if(m_decor[0][positionY][positionX].getTileset()>=0&&m_decor[0][positionY][positionX].getTileset()<(int)m_tileset.size())
-                if(m_tileset[m_decor[0][positionY][positionX].getTileset()].getCollisionTile(m_decor[0][positionY][positionX].getTile()))
+                //if(m_tileset[m_decor[0][positionY][positionX].getTileset()].getCollisionTile(m_decor[0][positionY][positionX].getTile()))
+                if((int)m_tileset[m_decor[0][positionY][positionX].getTileset()].getLumiereDuTile(m_decor[0][positionY][positionX].getTile()).hauteur>32)
                     return 1;
 
             if(m_decor[0][positionY][positionX].getMonstre()>-1&&m_decor[0][positionY][positionX].getMonstre()<(int)m_monstre.size())
@@ -2881,7 +2884,8 @@ int Map::getTypeCase(int positionX,int positionY)
         if(positionY>=0&&positionY<(int)m_dimensions.y&&positionX>=0&&positionX<m_dimensions.x)
 	    {
             if(m_decor[1][positionY][positionX].getTileset()>=0&&m_decor[1][positionY][positionX].getTileset()<(int)m_tileset.size())
-                if(m_tileset[m_decor[1][positionY][positionX].getTileset()].getCollisionTile(m_decor[1][positionY][positionX].getTile()))
+                //if(m_tileset[m_decor[1][positionY][positionX].getTileset()].getCollisionTile(m_decor[1][positionY][positionX].getTile()))
+                if((int)m_tileset[m_decor[1][positionY][positionX].getTileset()].getLumiereDuTile(m_decor[1][positionY][positionX].getTile()).hauteur>32)
                     return 1;
 
             if(m_decor[1][positionY][positionX].getMonstre()>-1&&m_decor[1][positionY][positionX].getMonstre()<(int)m_monstre.size())

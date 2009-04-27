@@ -68,6 +68,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	bool getEvent(sf::Event &EventReceived);
 
 	void printscreen();
+	int GetFPS();
 
 	sf::Image* getImage(int IDimage);
 	ModeleParticuleSysteme* getModeleMoteurParticules(int ID);

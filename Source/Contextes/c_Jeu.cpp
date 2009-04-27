@@ -450,16 +450,16 @@ void c_Jeu::Utiliser(Jeu *jeu)
                             console->Afficher();
                     }
 
-                    /*if(lowFPS==-1&&(int)( 1.f / jeu->ecran.GetFrameTime())>0)
-                        lowFPS=(int)( 1.f / jeu->ecran.GetFrameTime());
-                    if(lowFPS>(int)( 1.f / jeu->ecran.GetFrameTime()) &&(int)( 1.f / jeu->ecran.GetFrameTime())>0 )
-                        lowFPS=(int)( 1.f / jeu->ecran.GetFrameTime());*/
+                    if(lowFPS==-1&&moteurGraphique->GetFPS()>0)
+                        lowFPS=moteurGraphique->GetFPS();
+                    if(lowFPS>moteurGraphique->GetFPS() &&moteurGraphique->GetFPS()>0 )
+                        lowFPS=moteurGraphique->GetFPS();
 
                     if(configuration->console)
                     if(tempsEcouleDepuisFPS>0.1)
                     {
-                        //if(configuration->console&&jeu->ecran.GetFrameTime()!=0)
-                            //sprintf(chaine,"%i / %i FPS",(int)( 1.f / jeu->ecran.GetFrameTime()), (int)lowFPS);
+                        if(configuration->console&&moteurGraphique->GetFPS()!=0)
+                            sprintf(chaine,"%i / %i FPS",moteurGraphique->GetFPS(), (int)lowFPS);
                         //  Calcule du nombre de FPS
 
                         fps.SetText(chaine);

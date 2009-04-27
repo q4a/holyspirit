@@ -49,6 +49,7 @@
 			<Add option="-lsfml-graphics" />
 			<Add option="-lsfml-window" />
 			<Add option="-lsfml-system" />
+			<Add option="-Wno-deprecated" />
 			<Add directory="..\..\SFML_SVN\trunk\lib\mingw" />
 			<Add directory="..\..\SFML-1.4-sdk-windows\SFML-1.4\lib\mingw" />
 		</Linker>

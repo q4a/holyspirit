@@ -577,3 +577,8 @@ void MoteurGraphique::printscreen()
     configuration->numero_screen++;
 }
 
+int MoteurGraphique::GetFPS()
+{
+    return (int)( 1.f / m_ecran->GetFrameTime());
+}
+
