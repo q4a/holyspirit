@@ -3,9 +3,9 @@ main
 	
 	if see
 	then
-		if variable * 0 * 1 
+		if variable * 0 * 0 
 		then
-			variable * 0 * 0
+			variable * 0 * 1
 			playSound * 0
 		end
 
@@ -16,7 +16,7 @@ main
 			randomDisplace
 		end
 	else
-		variable * 0 * 1 
+		variable * 0 * 0 
 		randomDisplace
 	end
 	
