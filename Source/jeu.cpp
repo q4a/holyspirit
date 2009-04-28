@@ -52,8 +52,6 @@ void Jeu::Demarrer()
 
     }
 
-
-
     this->m_jeu = new c_Jeu(this);
     this->m_demarrage = new c_Demarrage(this);
     this->m_chargement = new c_Chargement(this);
@@ -61,10 +59,8 @@ void Jeu::Demarrer()
     this->m_menuInGame = new c_MenuInGame(this);
 
     coordonnee temp={1,1,-1,-1};
-    this->m_chargement->setC_Chargement(1,temp,1);
+    this->m_chargement->setC_Chargement("ArableLand0.map.hs",temp,1);
     this->m_contexte = this->m_demarrage;
-
-
 
     Clock.Reset();
 

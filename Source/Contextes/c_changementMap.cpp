@@ -38,7 +38,7 @@ c_Chargement::c_Chargement(Jeu *jeu)
     augmenterNoir = true;
 }
 
-void c_Chargement::setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool debut)
+void c_Chargement::setC_Chargement(std::string prochaineMap,coordonnee coordonneePerso,bool debut)
 {
     moteurGraphique->LightManager->Delete_All_Light();
     moteurGraphique->LightManager->Delete_All_Wall();
@@ -48,7 +48,7 @@ void c_Chargement::setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool
 
     m_coordonneePerso.x=coordonneePerso.x;
     m_coordonneePerso.y=coordonneePerso.y;
-    numeroProchaineMap=numeroMap;
+    m_nomProchaineMap=prochaineMap;
     z=50;
     augmenterNoir = true;
 
@@ -60,9 +60,8 @@ void c_Chargement::setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool
 
     cDAT reader;
     reader.Read(configuration->chemin_maps);
-    sprintf(chemin,"map%i.map.hs",numeroMap);
 
-    ifstream *fichier=reader.GetInfos(chemin);
+    ifstream *fichier=reader.GetInfos(prochaineMap);
     if(fichier)
     {
         char caractere;
@@ -142,7 +141,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         jeu->hero.ChargerModele(true);
 
-        if(!jeu->map.Charger(numeroProchaineMap,&jeu->hero))
+        if(!jeu->map.Charger(m_nomProchaineMap,&jeu->hero))
             console->Ajouter("CRITICAL ERROR"), throw  "CRITICAL ERROR";
 
         moteurGraphique->DecrementerImportance();

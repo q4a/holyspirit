@@ -67,6 +67,8 @@ struct Classe
     coordonnee position_contenu_inventaire;
 
     std::vector <Emplacement_inventaire> emplacements;
+
+    std::vector<Miracle> miracle;
 };
 
 class Hero

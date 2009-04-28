@@ -125,7 +125,7 @@ void Map::Detruire()
     console->Ajouter("Map détruite !");
 }
 
-bool Map::Charger(int numeroMap,Hero *hero)
+bool Map::Charger(std::string nomMap,Hero *hero)
 {
     m_dimensions.x=0;
     m_dimensions.y=0;
@@ -134,12 +134,8 @@ bool Map::Charger(int numeroMap,Hero *hero)
 
     bool entite_map_existante=0,mapExistante=0;
 
-    m_numero=numeroMap;
-	char numero[7];
-	string chemin = configuration->chemin_maps,chemin2 = configuration->chemin_temps+"map";
-
-	chemin += numero;
-	chemin2 += numero;
+    m_nom_fichier=nomMap;
+	string chemin = nomMap,chemin2 = configuration->chemin_temps+nomMap;
 
 	m_lumiere[0].intensite=1;
 	m_lumiere[0].rouge=0;
@@ -148,18 +144,14 @@ bool Map::Charger(int numeroMap,Hero *hero)
 
     m_musiqueEnCours=0;
 
-    sprintf(numero,"Chargement de la map : map%i.map.hs",numeroMap);
-
     console->Ajouter("",0);
-	console->Ajouter(numero);
-
-	sprintf(numero,"map%i.map.hs",numeroMap);
+	console->Ajouter("Chargement de la map : "+nomMap);
 
     cDAT reader,reader2;
 
     reader.Read(configuration->chemin_saves+"hero.sav.hs");
 
-    if(reader.IsFileExist(configuration->chemin_temps+numero))
+    if(reader.IsFileExist(configuration->chemin_temps+nomMap))
        mapExistante=true,entite_map_existante=true,console->Ajouter("Map sauvée existante.");
 
 	ifstream *fichier=NULL;
@@ -167,15 +159,17 @@ bool Map::Charger(int numeroMap,Hero *hero)
 
 	if(mapExistante==true)
 	{
-        fichier=reader.GetInfos(configuration->chemin_temps+numero);
-	    sprintf(numero,"entites_map%i.emap.hs",numeroMap);
-        fichier2=reader.GetInfos(configuration->chemin_temps+numero);
+        fichier=reader.GetInfos(configuration->chemin_temps+nomMap);
+
+        char buf[255];
+        sprintf(buf,"entites_map_%s.emap.hs",nomMap.c_str());
+
+        fichier2=reader.GetInfos(configuration->chemin_temps+buf);
 	}
 	else
 	{
 	    reader2.Read(configuration->chemin_maps);
-	    sprintf(numero,"map%i.map.hs",numeroMap);
-        fichier=reader2.GetInfos(numero);
+        fichier=reader2.GetInfos(nomMap);
 	}
 
     if(*fichier)
@@ -281,7 +275,6 @@ bool Map::Charger(int numeroMap,Hero *hero)
             heureEnCours++;
     	}
 
-    	Tileset tilesetTemp;
     	do
     	{
     	    //Chargement des tileset
@@ -290,9 +283,7 @@ bool Map::Charger(int numeroMap,Hero *hero)
     		{
     			string cheminDuTileset;
     			*fichier>>cheminDuTileset;
-                m_tileset.push_back(tilesetTemp);
-                if(!m_tileset.back().Charger(cheminDuTileset))
-                    return 0;
+                m_tileset.push_back(Tileset (cheminDuTileset));
 
     		}
     		if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); throw (&temp); }
@@ -321,10 +312,6 @@ bool Map::Charger(int numeroMap,Hero *hero)
 
     	if(configuration->debug)
             console->Ajouter("/Lectures des herbes.");
-
-    	if(numeroMap==0)
-            for(int i=0;i<5;i++)
-                m_tileset.push_back(tilesetTemp);
 
     	do
     	{
@@ -456,6 +443,14 @@ bool Map::Charger(int numeroMap,Hero *hero)
                         *fichier>>information;
 
     				    m_evenement.back().AjouterInformation(information);
+    				}
+
+    				if(caractere=='m')
+    				{
+    				    std::string temp;
+                        *fichier>>temp;
+
+    				    m_evenement.back().setString(temp);
     				}
     				if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); throw (&temp); }
     			}while(caractere!='$');
@@ -846,10 +841,7 @@ void Map::CreerSprite(sf::Vector3f position_case)
 void Map::Sauvegarder(Hero *hero)
 {
 	char numero[7];
-	string chemin = configuration->chemin_temps;
-
-	sprintf(numero,"map%i.map.hs",m_numero);
-	chemin += numero;
+	string chemin = configuration->chemin_temps+m_nom_fichier;
 
 	console->Ajouter("",0);
 	console->Ajouter("Sauvegarde de la map : "+chemin,0);
@@ -897,6 +889,8 @@ void Map::Sauvegarder(Hero *hero)
         for(int i=0;i<(int)m_evenement.size();i++)
         {
             fichier<<"* e"<<m_evenement[i].getType()<<" $ * ";
+            if(m_evenement[i].getString()!="")
+                fichier<<"m"<<m_evenement[i].getString()<<" ";
             for(int j=0;j<m_evenement[i].getNombreInformation();j++)
                 fichier<<"i"<<m_evenement[i].getInformation(j)<<" ";
             fichier<<"$\n";
@@ -945,7 +939,7 @@ void Map::Sauvegarder(Hero *hero)
 
 
     chemin = configuration->chemin_temps;
-    sprintf(numero,"entites_map%i.emap.hs",m_numero);
+    sprintf(numero,"entites_map_%s.emap.hs",m_nom_fichier.c_str());
 	chemin += numero;
 
 	console->Ajouter("Sauvegarde de la map_entite : "+chemin,0);
@@ -1473,9 +1467,8 @@ void Map::AfficherNomEvenement(coordonnee casePointee,coordonnee positionSouris)
 
                         cDAT reader;
                         reader.Read(configuration->chemin_maps);
-                        sprintf(chemin,"map%i.map.hs",m_evenement[evenement].getInformation(0));
 
-                        ifstream *fichier=reader.GetInfos(chemin);
+                        ifstream *fichier=reader.GetInfos(m_evenement[evenement].getString());
                         if(fichier)
                         {
                             char caractere;
@@ -1519,7 +1512,7 @@ bool Map::testEvenement(Jeu *jeu,float temps)
     {
         if(m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getType()==CHANGEMENT_DE_MAP)
         {
-            int numeroMap=m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(0);
+            string nomMap=m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getString();
 
             console->Ajouter("",0);
             console->Ajouter("---------------------------------------------------------------------------------",0);
@@ -1527,13 +1520,13 @@ bool Map::testEvenement(Jeu *jeu,float temps)
             console->Ajouter("---------------------------------------------------------------------------------",0);
 
             coordonnee coordonneePerso;
-            coordonneePerso.x=m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(1);
-            coordonneePerso.y=m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(2);
+            coordonneePerso.x=m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(0);
+            coordonneePerso.y=m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(1);
 
             sf::Clock Clock;
              Clock.Reset();
 
-            jeu->m_chargement->setC_Chargement(numeroMap,coordonneePerso);
+            jeu->m_chargement->setC_Chargement(nomMap,coordonneePerso);
             jeu->m_contexte = jeu->m_chargement;
         }
 

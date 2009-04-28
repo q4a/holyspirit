@@ -23,6 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 Evenement::Evenement()
 {
+    m_string="";
 }
 
 Evenement::Evenement(int numero)
@@ -68,11 +69,20 @@ int Evenement::getInformation(int numeroInfo)
     else
         return 0;
 }
+std::string Evenement::getString()
+{
+    return m_string;
+}
 
 void Evenement::setInformation(int information,int numero)
 {
     if(numero>=0&&numero<(int)m_information.size())
         m_information[numero]=information;
+}
+
+void Evenement::setString(std::string string)
+{
+    m_string=string;
 }
 
 void Evenement::AjouterInformation(int information)

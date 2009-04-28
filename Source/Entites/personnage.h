@@ -30,6 +30,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "liste_case.h"
 #include "pose.h"
 #include "../Moteurs/lightManager.h"
+#include "miracle.h"
 
 
 class Modele_Personnage
@@ -44,7 +45,6 @@ class Modele_Personnage
 
 	Lumiere getPorteeLumineuse();
 	int getNombreSons();
-	//int getBuffer(int ID);
 	Caracteristique getCaracteristique();
 
 	void jouerSon(int numeroSon,coordonnee position,coordonnee positionHero, bool uniqueSound=false);
@@ -52,13 +52,14 @@ class Modele_Personnage
 	std::vector <std::vector<std::vector<Pose> > > m_pose;
 	std::vector <int> m_image;
 
+	std::vector<Miracle> m_miracles;
+
 	bool m_ombre,m_explosif;
 
 	protected:
 	Caracteristique m_caracteristique;
 	Lumiere m_porteeLumineuse;
 	std::vector <int> m_sons;
-	//std::vector <sf::Sound>  m_sons;
 };
 
 class Personnage
@@ -120,6 +121,9 @@ class Personnage
 
 	Light_Entity m_light;
 
+	int m_miracleALancer;
+    std::vector <EntiteMiracle> m_miracleEnCours;
+
 	protected:
 	int m_etat,m_poseEnCours,m_angle;
 	float m_animation;
@@ -129,10 +133,6 @@ class Personnage
 	coordonneeDecimal m_positionPixel;
 
 	Lumiere m_porteeLumineuse,m_porteeLumineuseBasique;
-
-
-
-	//std::vector <int>  m_sons;
 };
 
 

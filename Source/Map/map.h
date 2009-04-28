@@ -39,7 +39,7 @@ class Map
 	Map();
 	~Map();
 
-	bool Charger(int numeroMap,Hero *hero);
+	bool Charger(std::string,Hero *hero);
 	void Initialiser();
 	void CreerSprite(sf::Vector3f position_case);
 	void Sauvegarder(Hero *hero);
@@ -101,7 +101,8 @@ class Map
 	int m_defilerObjets;
 
 	private:
-	int m_monstreIllumine,m_numero,IDImageSac,m_objetPointe,m_calculLumiere,m_musiqueEnCours,m_nombreMusique;
+	int m_monstreIllumine,IDImageSac,m_objetPointe,m_calculLumiere,m_musiqueEnCours,m_nombreMusique;
+	std::string m_nom_fichier;
 
 	coordonnee m_dimensions;
 

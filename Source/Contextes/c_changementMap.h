@@ -31,20 +31,20 @@ class c_Chargement : public Contexte
     public:
     c_Chargement(Jeu *jeu);
     void Utiliser(Jeu *jeu);
-    void setC_Chargement(int numeroMap,coordonnee coordonneePerso,bool debut=false);
+    void setC_Chargement(std::string,coordonnee coordonneePerso,bool debut=false);
 
     //sf::View *camera;
 
     private:
 
-	std::string nomMap;
+	std::string nomMap,m_nomProchaineMap;
 
 
 	float tempsActuel,tempsPrecedent,temps_ecoule,tempsEcouleDepuisDernierAffichage;
 	float z;
 	bool augmenterNoir,allerVersImageChargement,m_debut;
 	coordonnee m_coordonneePerso;
-	int numeroProchaineMap,m_fond;
+	int m_fond;
 	float m_tempsChargement;
 
 };

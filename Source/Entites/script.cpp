@@ -27,6 +27,8 @@ using namespace std;
 
 Script::Script()
 {
+    for(int i=0;i<10;i++)
+        variables[i]=0;
 }
 
 

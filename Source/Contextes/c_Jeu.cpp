@@ -78,7 +78,7 @@ c_Jeu::c_Jeu(Jeu *jeu)
 
         //jeu->hero.m_personnage.Charger(&jeu->hero.m_modelePersonnage);
 
-        if(!jeu->map.Charger(0,&jeu->hero)==1) // Chargement de  jeu->map0.txt
+        if(!jeu->map.Charger("Begin.map.hs",&jeu->hero)==1) // Chargement de  jeu->map0.txt
             throw("CRITICAL ERROR");
 
         if(configuration->Lumiere)

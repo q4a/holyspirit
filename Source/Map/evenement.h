@@ -33,8 +33,10 @@ class Evenement
 	void setEvenement(int numeroEvenement);
 	void AjouterInformation(int information); // Ajouter une information à l'événement ( ex : pour un changement de map, le numéro de la prochaine map, la position du héro, etc... )
 	int getType();
+	std::string getString();
 	int getInformation(int numeroInfo);
 	void setInformation(int information,int numero);
+	void setString(std::string);
 	int getNombreInformation(){return m_information.size();}
 	void deleteInformations();
 
@@ -42,6 +44,7 @@ class Evenement
 
 	protected:
 	int m_numero;
+	std::string m_string;
 	std::vector <int> m_information;
 };
 

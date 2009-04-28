@@ -23,7 +23,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "personnage.h"
 #include "../constantes.h"
 #include "script.h"
-#include "miracle.h"
 
 
 class Modele_Monstre : public Modele_Personnage
@@ -41,8 +40,6 @@ class Modele_Monstre : public Modele_Personnage
     int m_particules;
     bool m_minimap;
     bool m_friendly;
-
-    std::vector<Miracle> m_miracles;
 
     private:
     std::vector<Objet> m_objets;
@@ -66,11 +63,7 @@ class Monstre : public Personnage
 
     float m_attente;
     int m_compteur;
-    int m_miracleALancer;
     bool m_friendly;
-
-
-    std::vector <EntiteMiracle> m_miracleEnCours;
 
     private:
     bool m_vu;
