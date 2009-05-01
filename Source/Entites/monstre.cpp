@@ -76,6 +76,7 @@ Monstre::Monstre()
     m_porteeLumineuse.vert=0;
     m_porteeLumineuse.bleu=0;
     m_porteeLumineuse.intensite=0;
+    m_caracteristique.rang=0;
 }
 
 void Monstre::Charger(int numero,Modele_Monstre *modele)
@@ -129,6 +130,16 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
             m_porteeLumineuseBasique=m_porteeLumineuse;
         }
     }
+
+
+    for(int i=0;i<(int)modele->getObjets().size();i++)
+        if(rand()%100000/(m_caracteristique.rang*3+1)<=modele->getObjets()[i].getChanceTrouver())
+        {
+            Objet temp;
+            temp=modele->getObjets()[i];
+            temp.Generer((m_caracteristique.rang*5+1));
+            m_objets.push_back(temp);
+        }
 }
 
 
@@ -141,6 +152,7 @@ bool Modele_Monstre::Charger(string chemin)
     m_caracteristique.vie=0;
     m_caracteristique.degatsMin=0;
     m_caracteristique.degatsMax=0;
+    m_caracteristique.rang=0;
 
     m_chemin=chemin;
     m_particules=-1;
@@ -437,6 +449,12 @@ void Monstre::testerVision(coordonnee positionHero)
 }
 
 coordonnee Monstre::getDepart(){return m_depart;}
+
+ std::vector<Objet> Monstre::getObjets(){return m_objets;}
+ void Monstre::setObjets(std::vector<Objet> objets)
+{
+    m_objets=objets;
+}
 
 int Monstre::getModele(){ return m_modele; }
 

@@ -351,7 +351,9 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                         Lumiere lumiere;
                         int numeroModele=-1,vieMin=0,vieMax=1,degatsMin=0,degatsMax=0,rang=0,ame=0,pose=0,etat=0,angle=0;
                         float taille=1;
+                        vector <Objet> objets;
                         m_monstre.push_back(Monstre ());
+
 
                         char caractere;
                         do
@@ -381,6 +383,14 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                         case 'i': *fichier2>>lumiere.intensite; break;
                                     }
                                 break;
+
+                                case 'o':
+                                    objets.push_back(Objet ());
+                                    objets.back().ChargerTexte(fichier2);
+                                    int rarete=objets.back().getRarete();
+                                    objets.back().Charger(objets.back().getChemin());
+                                    objets.back().setRarete(rarete);
+                                break;
                             }
 
                             if(fichier2->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); throw (&temp); }
@@ -403,7 +413,10 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                             m_monstre.back().setEtat(etat);
                             m_monstre.back().setPose(pose);
                             m_monstre.back().setAngle(angle);
+                            m_monstre.back().setObjets(objets);
                         }
+
+                        objets.clear();
                     }
 
                     if(fichier2->eof()){ char temp[1000]; sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); throw (&temp); }
@@ -509,7 +522,6 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                     rarete=objets.back().getRarete();
                                     objets.back().Charger(objets.back().getChemin());
                                     objets.back().setRarete(rarete);
-
                                 break;
 
                                 case 'r':
@@ -544,7 +556,6 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                                                 rarete=objets.back().getRarete();
                                                                 objets.back().Charger(objets.back().getChemin());
                                                                 objets.back().setRarete(rarete);
-
                                                             break;
                                                         }
 
@@ -959,7 +970,12 @@ void Map::Sauvegarder(Hero *hero)
         {
             fichier2<<"* m"<<m_monstre[i].getModele()<<" vi"<<m_monstre[i].getCaracteristique().vie<<" va"<<m_monstre[i].getCaracteristique().maxVie<<" di"<<m_monstre[i].getCaracteristique().degatsMin<<" da"<<m_monstre[i].getCaracteristique().degatsMax<<" r"<<m_monstre[i].getCaracteristique().rang<<" a"<<m_monstre[i].getCaracteristique().pointAme<<" t"<<m_monstre[i].getCaracteristique().modificateurTaille
             <<" p"<<m_monstre[i].getPose()<<" e"<<m_monstre[i].getEtat()<<" g"<<m_monstre[i].getAngle()
-            <<" lr"<<m_monstre[i].getPorteeLumineuse().rouge<<" lv"<<m_monstre[i].getPorteeLumineuse().vert<<" lb"<<m_monstre[i].getPorteeLumineuse().bleu<<" li"<<m_monstre[i].getPorteeLumineuse().intensite<<" $\n";
+            <<" lr"<<m_monstre[i].getPorteeLumineuse().rouge<<" lv"<<m_monstre[i].getPorteeLumineuse().vert<<" lb"<<m_monstre[i].getPorteeLumineuse().bleu<<" li"<<m_monstre[i].getPorteeLumineuse().intensite;
+
+            for(int o=0;o<(int)m_monstre[i].getObjets().size();o++)
+                m_monstre[i].getObjets()[o].SauvegarderTexte(&fichier2);
+
+            fichier2<<" $\n";
         }
         fichier2<<"\n$";
 
@@ -2266,7 +2282,11 @@ void Map::musiquePlay(coordonnee position)
                                                 \
                                         }   \
                                     }   \
-                                } \
+                                }
+
+#define TRADE() hero->setMonstreVise(-1);\
+                jeu->m_inventaire->setTrader(m_monstre[m_decor[i][j][k].getMonstre()].getObjets(),&hero->m_classe);\
+                jeu->m_contexte=jeu->m_inventaire;\
 
 
 #define LISTE_INSTRUCTIONS(noInstruction) if(noInstruction>=0&&noInstruction<(int)script->m_instructions.size()) \
@@ -2277,9 +2297,10 @@ void Map::musiquePlay(coordonnee position)
                                                 if(script->m_instructions[noInstruction].nom=="shoot") { SHOOT() } \
                                                 if(script->m_instructions[noInstruction].nom=="randomDisplace") { RANDOMDISPLACE() } \
                                                 if(script->m_instructions[noInstruction].nom=="playSound") { PLAYSOUND(script->m_instructions[noInstruction].valeurs.at(0)) } \
-                                                if(script->m_instructions[noInstruction].nom=="if") { gererConditions(script,noInstruction,i,j,k,hero,temps,menu); } \
+                                                if(script->m_instructions[noInstruction].nom=="if") { gererConditions(jeu,script,noInstruction,i,j,k,hero,temps,menu); } \
                                                 if(script->m_instructions[noInstruction].nom=="variable") { script->variables[script->m_instructions[noInstruction].valeurs.at(0)]=script->m_instructions[noInstruction].valeurs.at(1); }  \
                                                 if(script->m_instructions[noInstruction].nom=="incrementeVariable") { script->variables[script->m_instructions[noInstruction].valeurs.at(0)]+=script->m_instructions[noInstruction].valeurs.at(1); }  \
+                                                if(script->m_instructions[noInstruction].nom=="trade") { TRADE() } \
                                              }
 
 #define LISTE_CONDITIONS(noInstruction) if(script->m_instructions[noInstruction].nom=="see")\
@@ -2314,10 +2335,17 @@ void Map::musiquePlay(coordonnee position)
                                                 ok=true;\
                                             else \
                                                 ok=false;\
+                                        }\
+                                        else if(script->m_instructions[noInstruction].nom=="talk")\
+                                        {\
+                                            if(hero->getMonstreVise()==m_decor[i][j][k].getMonstre()&&fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)<=1&&fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)<=1) \
+                                                ok=true;\
+                                            else \
+                                                ok=false;\
                                         }
 
 
-void Map::gererConditions(Script *script,int noInstruction,int i, int j, int k,Hero *hero,float temps,Menu *menu)
+void Map::gererConditions(Jeu *jeu,Script *script,int noInstruction,int i, int j, int k,Hero *hero,float temps,Menu *menu)
 {
     if(noInstruction>=0&&noInstruction<(int)script->m_instructions.size())
     {
@@ -2339,7 +2367,7 @@ void Map::gererConditions(Script *script,int noInstruction,int i, int j, int k,H
     }
 }
 
-void Map::gererMonstres(Hero *hero,float temps,Menu *menu)
+void Map::gererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
 {
     coordonnee vueMin,vueMax;
 
@@ -2607,15 +2635,8 @@ bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu, Hero *hero,
             }
 
             if(m_monstre[numeroMonstre].getCoordonnee().x>=0&&m_monstre[numeroMonstre].getCoordonnee().x<m_dimensions.x&&m_monstre[numeroMonstre].getCoordonnee().y>=0&&m_monstre[numeroMonstre].getCoordonnee().y<(int)m_dimensions.y)
-                if(m_monstre[numeroMonstre].getModele()>=0&&m_monstre[numeroMonstre].getModele()<(int)m_ModeleMonstre.size())
-                        for(int i=0;i<(int)m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets().size();i++)
-                            if(rand()%100000/(m_monstre[numeroMonstre].getCaracteristique().rang*3+1)<=m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets()[i].getChanceTrouver())
-                            {
-                                Objet temp;
-                                temp=m_ModeleMonstre[m_monstre[numeroMonstre].getModele()].getObjets()[i];
-                                temp.Generer((m_monstre[numeroMonstre].getCaracteristique().rang*5+1));
-                                m_decor[1][m_monstre[numeroMonstre].getCoordonnee().y][m_monstre[numeroMonstre].getCoordonnee().x].ajouterObjet(temp);
-                            }
+                for(int i=0;i<(int)m_monstre[numeroMonstre].getObjets().size();i++)
+                    m_decor[1][m_monstre[numeroMonstre].getCoordonnee().y][m_monstre[numeroMonstre].getCoordonnee().x].ajouterObjet(m_monstre[numeroMonstre].getObjets()[i]);
 
             return 1;
         }

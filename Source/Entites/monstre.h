@@ -57,6 +57,9 @@ class Monstre : public Personnage
     coordonnee getDepart();
     void setDepart();
 
+    void setObjets(std::vector<Objet>);
+    std::vector<Objet> getObjets();
+
     bool getVu();
     void setVu(bool);
 
@@ -69,6 +72,7 @@ class Monstre : public Personnage
     bool m_vu;
     int m_modele;
     coordonnee m_depart;
+    std::vector<Objet> m_objets;
 
 };
 

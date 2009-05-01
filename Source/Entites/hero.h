@@ -57,6 +57,7 @@ struct Classe
     std::string modeleNu[3];
 
     Image_interface inventaire;
+    Image_interface menu_marchand;
     Image_interface hud;
     Image_interface orbe_vie;
     Image_interface orbe_foi;
@@ -65,11 +66,14 @@ struct Classe
 
     coordonnee position_sac_inventaire;
     coordonnee position_contenu_inventaire;
+    coordonnee position_contenu_marchand;
 
     std::vector <Emplacement_inventaire> emplacements;
 
     std::vector<Miracle> miracle;
 };
+
+void AjouterTrader(Objet,std::vector<Objet>&,Classe*);
 
 class Hero
 {
@@ -84,8 +88,8 @@ class Hero
 	void Afficher(coordonnee dimensionsMap);
 	void CalculerOrdreAffichage();
 
-	void afficherInventaire(coordonnee,float);
-	void afficherCaracteristiques(coordonnee positionSouris,float decalage);
+	void AfficherInventaire(coordonnee,float,std::vector<Objet>);
+	void AfficherCaracteristiques(coordonnee positionSouris,float decalage);
 	void GenererGrille();
 	void placerCamera(coordonnee dimensionsMap);
 
@@ -103,7 +107,7 @@ class Hero
 	bool ajouterObjet(Objet objet,bool enMain=false);
 
 	Objet DeposerObjet();
-	bool prendreEnMain(coordonnee positionSouris);
+	bool prendreEnMain(coordonnee positionSouris,std::vector<Objet>&);
 	bool equiper(int numero, int emplacement);
 	void AttribuerPositionObjet(coordonnee position,int numero);
 	//void LibererCases(int numero);
@@ -133,6 +137,8 @@ class Hero
     //cDAT m_fichierSave;
     std::vector<std::string> m_contenuSave;
 
+    int m_defilement_trader;
+
 	private:
 	coordonneeDecimal m_positionAffichage;
 	int m_monstreVise;
@@ -141,7 +147,6 @@ class Hero
 	int m_cas;
 
 	int ordreAffichage[NOMBRE_MORCEAU_PERSONNAGE];
-
 
 	std::vector<Objet> m_inventaire;
 	std::vector< std::vector<bool> > m_caseInventaire;

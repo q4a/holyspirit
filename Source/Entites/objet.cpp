@@ -255,6 +255,7 @@ void Objet::SauvegarderTexte(std::ofstream *fichier)
 
 void Objet::ChargerTexte(std::ifstream *fichier)
 {
+    m_prix=0;
     m_rarete=0,m_equipe=-1;
     m_degatsMin=0,m_degatsMax=0,m_armure=0;
     m_position.y=0;
@@ -297,11 +298,14 @@ void Objet::ChargerTexte(std::ifstream *fichier)
                 *fichier>>m_color.g;
             else if(caractere=='b')
                 *fichier>>m_color.b;
+
+            cout<<m_armure<<endl;
         }
         else if(caractere=='m')
             *fichier>>m_chemin;
         else if(caractere=='b')
         {
+
             int type=0,info1=0,info2=0;
 
             *fichier>>type;
@@ -317,17 +321,21 @@ void Objet::ChargerTexte(std::ifstream *fichier)
                     if(caractere=='2')
                         *fichier>>info2;
                 }
+                if(fichier->eof()){throw "Impossible de charger l'objet";}
             }while(caractere!='$');
 
             m_benedictions.push_back(benediction ());
             m_benedictions.back().type=type;
             m_benedictions.back().info1=info1;
             m_benedictions.back().info2=info2;
-            fichier->get(caractere);
+            m_prix+=50;
+            caractere='_';
         }
 
         if(fichier->eof()){throw "Impossible de charger l'objet";}
     }while(caractere!='$');
+
+    m_prix+=(m_armure+m_degatsMax+m_degatsMin)*3;
 }
 
 
@@ -598,6 +606,8 @@ void Objet::Generer(int bonus)
     m_degatsMin=(rand() % (dia - dii + 1)) + dii;
     m_degatsMax=(rand() % (daa - dai + 1)) + dai;
 
+    m_prix=(m_armure+m_degatsMin+m_degatsMax)*3;
+
     m_color.r=255;
     m_color.g=255;
     m_color.b=255;
@@ -674,6 +684,7 @@ void Objet::Generer(int bonus)
 
         for(int i=0;i<nbrBene;i++)
         {
+
             bool ajouter=true;
 
             benediction temp;
@@ -689,6 +700,8 @@ void Objet::Generer(int bonus)
             if(temp.type==EFFICACITE_ACCRUE&&!(m_type==ARME||m_type==ARMURE))
                 ajouter=false,i--;
 
+            m_prix+=50;
+
             for(int j=0;j<(int)m_benedictions.size();j++)
                 if(m_benedictions[j].type==temp.type)
                     m_benedictions[j].info1+=temp.info1,ajouter=false;
@@ -700,14 +713,6 @@ void Objet::Generer(int bonus)
                 m_benedictions.back().info2=0;
             }
         }
-
-        /*for(int i=0;i<(int)m_benedictions.size();i++)
-            if(m_benedictions[i].type==EFFICACITE_ACCRUE)
-            {
-                m_armure+=(int)((float)m_armure*(float)m_benedictions[i].info1*0.01);
-                m_degatsMin+=(int)(m_degatsMin*m_benedictions[i].info1*0.01);
-                m_degatsMax+=(int)(m_degatsMax*m_benedictions[i].info1*0.01);
-            }*/
     }
 }
 
@@ -899,6 +904,10 @@ void Objet::AfficherCaracteristiques(coordonnee position)
         }
     }
 
+    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+    sprintf(chaine,"Prix : %i",m_prix);
+    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
+
     if(position.x-tailleCadran.x-10<0)
             position.x=tailleCadran.x+10;
 
@@ -915,6 +924,7 @@ void Objet::AfficherCaracteristiques(coordonnee position)
 
         moteurGraphique->AjouterTexte(&temp[i],19);
     }
+
 
     tailleCadran.y=decalage.y;
 
@@ -933,8 +943,7 @@ void Objet::AfficherCaracteristiques(coordonnee position)
 
 
 
-
-
 void Objet::setChanceTrouver(int chance){ m_chanceTrouver=chance; }
 
 int Objet::getChanceTrouver(){return m_chanceTrouver;}
+int Objet::getPrix(){return m_prix;}

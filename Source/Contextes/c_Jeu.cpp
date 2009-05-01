@@ -171,7 +171,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 if(tempsEcouleDepuisDernierIA>=0.027)
                 {
-                    jeu->map.gererMonstres(&jeu->hero,tempsEcouleDepuisDernierIA,&jeu->menu);
+                    jeu->map.gererMonstres(jeu,&jeu->hero,tempsEcouleDepuisDernierIA,&jeu->menu);
                     tempsEcouleDepuisDernierIA=0;
                 }
 
@@ -295,7 +295,6 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     ///**********************************************************///
                     ///Evenements
                     ///**********************************************************///
-                    jeu->eventManager.GererLesEvenements(&jeu->m_run,tempsEcoule,jeu->map.getDimensions());
 
                     int monstreVise=-1;
 

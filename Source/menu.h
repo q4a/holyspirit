@@ -74,7 +74,7 @@ class Menu
 	void Afficher(int type,float alpha,Classe *classe);
 	void AfficherDynamique(Caracteristique caracteristique,int type,Caracteristique caracteristiqueMonstre,Classe *classe);
 	void AfficherChargement(std::string nom,int fond,int z);
-	void AfficherInventaire(float,Classe *classe);
+	void AfficherInventaire(float,Classe *classe,bool);
 
 	void AjouterSang(coordonneeDecimal position);
 

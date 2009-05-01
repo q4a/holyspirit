@@ -116,6 +116,8 @@ Hero::Hero()
     m_contenuSave.push_back(configuration->chemin_temps+"hero.sav.txt");
 
     m_personnage.m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(m_personnage.getCoordonnee().x,m_personnage.getCoordonnee().y),512,2048,16,sf::Color(255,255,255));
+
+    m_defilement_trader=0;
 }
 
 Hero::~Hero()
@@ -388,6 +390,34 @@ void Classe::Charger(string chemin)
     		fichier.get(caractere);
     		if(caractere=='*')
             {
+
+                do
+                {
+                    fichier.get(caractere);
+                    switch (caractere)
+                    {
+                        case 'm' : fichier>>string; menu_marchand.image=moteurGraphique->AjouterImage(string,-1); break;
+                        case 'x' : fichier>>menu_marchand.position.x; break;
+                        case 'y' : fichier>>menu_marchand.position.y; break;
+                        case 'w' : fichier>>menu_marchand.position.w; break;
+                        case 'h' : fichier>>menu_marchand.position.h; break;
+                    }
+
+                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+                }while(caractere!='$');
+                fichier.get(caractere);
+            }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
+
+
+
+    	do
+    	{
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
                 do
                 {
                     fichier.get(caractere);
@@ -568,6 +598,31 @@ void Classe::Charger(string chemin)
     		fichier.get(caractere);
     		if(caractere=='*')
             {
+                do
+                {
+                    fichier.get(caractere);
+                    switch (caractere)
+                    {
+                        case 'x' : fichier>>position_contenu_marchand.x; break;
+                        case 'y' : fichier>>position_contenu_marchand.y; break;
+                        case 'w' : fichier>>position_contenu_marchand.w; break;
+                        case 'h' : fichier>>position_contenu_marchand.h; break;
+                    }
+
+                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+
+                }while(caractere!='$');
+                fichier.get(caractere);
+            }
+    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
+
+    	do
+    	{
+    		fichier.get(caractere);
+    		if(caractere=='*')
+            {
                 emplacements.push_back(Emplacement_inventaire ());
                 do
                 {
@@ -666,7 +721,7 @@ void Hero::Charger()
                             if(caractere=='*')
                             {
                                 int rarete=0,equipe=0;
-                                int degMin=0,degMax=0,armure=0;
+                                int degMin=0,degMax=0,armure=0,prix=0;
                                 position.y=0;
                                 position.x=0;
                                 std::vector <benediction> bene;
@@ -746,6 +801,7 @@ void Hero::Charger()
                                         bene.back().type=type;
                                         bene.back().info1=info1;
                                         bene.back().info2=info2;
+                                        prix+=50;
                                         fichier->read((char*)&caractere, sizeof(char));
                                     }
 
@@ -754,7 +810,6 @@ void Hero::Charger()
 
                                 if(m_inventaire.size()>0)
                                 {
-
                                     m_inventaire.back().setRarete(rarete);
                                     m_inventaire.back().setPosition(position.x,position.y);
                                     m_inventaire.back().m_equipe=equipe;
@@ -764,6 +819,8 @@ void Hero::Charger()
                                     m_inventaire.back().m_degatsMax=degMax;
 
                                     m_inventaire.back().m_color=color;
+
+                                    m_inventaire.back().m_prix=(armure+degMin+degMax)*3+prix;
 
 
                                     m_inventaire.back().m_benedictions=bene;
@@ -947,7 +1004,7 @@ void Hero::Afficher(coordonnee dimensionsMap)
             m_personnage.Afficher(dimensionsMap,&m_modelePersonnage[ordreAffichage[i]]);
 }
 
-void Hero::afficherCaracteristiques(coordonnee positionSouris,float decalage)
+void Hero::AfficherCaracteristiques(coordonnee positionSouris,float decalage)
 {
     sf::String string;
     char chaine[255];
@@ -1162,18 +1219,16 @@ void Hero::afficherCaracteristiques(coordonnee positionSouris,float decalage)
 
 
 
-
-
     sprintf(chaine,"%i",m_argent);
     string.SetText(chaine);
     string.SetSize(14*configuration->Resolution.h/600);
     string.SetX((112*configuration->Resolution.w/800)+32*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
-    string.SetY(220*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+    string.SetY(218*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 }
 
-void Hero::afficherInventaire(coordonnee positionSouris,float decalage)
+void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vector<Objet> trader)
 {
     for(int i=0;i<(int)m_inventaire.size();i++)
     if(i!=m_objetEnMain)
@@ -1259,6 +1314,123 @@ void Hero::afficherInventaire(coordonnee positionSouris,float decalage)
             sprite.SetRotation(0);
         }
 
+    for(int i=0;i<(int)trader.size();i++)
+        {
+            if(trader[i].getPosition().y+trader[i].getTaille().y-m_defilement_trader>0&&trader[i].getPosition().y-m_defilement_trader<m_classe.position_contenu_marchand.h)
+            {
+                coordonneeDecimal position;
+                 sf::Sprite sprite;
+
+                sprite.SetImage(*moteurGraphique->getImage(0));
+                if(trader[i].getRarete()==NORMAL)
+                    sprite.SetColor(sf::Color(224,224,224,128));
+                if(trader[i].getRarete()==BONNEFACTURE)
+                    sprite.SetColor(sf::Color(128,0,128,128));
+                if(trader[i].getRarete()==BENI)
+                    sprite.SetColor(sf::Color(0,64,128,128));
+                if(trader[i].getRarete()==SACRE)
+                    sprite.SetColor(sf::Color(255,255,128,128));
+                if(trader[i].getRarete()==SANCTIFIE)
+                    sprite.SetColor(sf::Color(128,255,255,128));
+                if(trader[i].getRarete()==DIVIN)
+                    sprite.SetColor(sf::Color(255,164,32,128));
+                if(trader[i].getRarete()==INFERNAL)
+                    sprite.SetColor(sf::Color(224,0,0,128));
+                if(trader[i].getRarete()==CRAFT)
+                    sprite.SetColor(sf::Color(128,64,0,128));
+
+                sprite.Resize(trader[i].getTaille().x*32*configuration->Resolution.w/800,trader[i].getTaille().y*32*configuration->Resolution.h/600);
+
+                if(trader[i].m_equipe==-1)
+                {
+                    sprite.SetX((trader[i].getPosition().x*32+m_classe.position_contenu_marchand.x)*configuration->Resolution.w/800);
+                    sprite.SetY(((trader[i].getPosition().y-1-m_defilement_trader)*32+(m_classe.position_contenu_marchand.y))*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+
+                    position.x=(trader[i].getPosition().x*32+m_classe.position_contenu_marchand.x)*configuration->Resolution.w/800;
+                    position.y=((trader[i].getPosition().y-1-m_defilement_trader)*32+(m_classe.position_contenu_marchand.y))*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600;
+
+                    position.h=trader[i].getTaille().y*32*configuration->Resolution.h/600;
+                    position.w=trader[i].getTaille().x*32*configuration->Resolution.w/800;
+                }
+                else
+                {
+
+                    if(trader[i].m_equipe>=0&&trader[i].m_equipe<(int)m_classe.emplacements.size())
+                    {
+                        sprite.Resize(m_classe.emplacements[trader[i].m_equipe].position.w*configuration->Resolution.w/800,m_classe.emplacements[trader[i].m_equipe].position.h*configuration->Resolution.h/600);
+
+                        position.x=(m_classe.emplacements[trader[i].m_equipe].position.x + m_classe.emplacements[trader[i].m_equipe].position.w/2 - trader[i].getPositionImage().w/2 )*configuration->Resolution.w/800;
+                        position.y=(m_classe.emplacements[trader[i].m_equipe].position.y + m_classe.emplacements[trader[i].m_equipe].position.h/2 - trader[i].getPositionImage().h/2 )*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600;
+
+                        position.h=m_classe.emplacements[trader[i].m_equipe].position.h*configuration->Resolution.w/800;
+                        position.w=m_classe.emplacements[trader[i].m_equipe].position.w*configuration->Resolution.h/600;
+
+                        sprite.SetX((m_classe.emplacements[trader[i].m_equipe].position.x)*configuration->Resolution.w/800);
+                        sprite.SetY((m_classe.emplacements[trader[i].m_equipe].position.y)*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+                        if(m_objetEnMain==-1&&positionSouris.x>m_classe.emplacements[trader[i].m_equipe].position.x*configuration->Resolution.x/800&&positionSouris.x<(m_classe.emplacements[trader[i].m_equipe].position.x+m_classe.emplacements[trader[i].m_equipe].position.w)*configuration->Resolution.x/800&&positionSouris.y>m_classe.emplacements[trader[i].m_equipe].position.y*configuration->Resolution.y/600&&positionSouris.y<(m_classe.emplacements[trader[i].m_equipe].position.y+m_classe.emplacements[trader[i].m_equipe].position.h)*configuration->Resolution.y/600)
+                            trader[i].AfficherCaracteristiques(positionSouris);
+                    }
+                }
+
+                if(trader[i].getPosition().y+trader[i].getTaille().y-m_defilement_trader>=m_classe.position_contenu_marchand.h)
+                    sprite.Resize(trader[i].getTaille().x*32,(m_defilement_trader+m_classe.position_contenu_marchand.h-trader[i].getPosition().y)*32);
+
+                if(trader[i].getPosition().y-m_defilement_trader<0)
+                {
+                    sprite.Resize(trader[i].getTaille().x*32,trader[i].getTaille().y*32-(-trader[i].getPosition().y+m_defilement_trader)*32);
+                    sprite.Move(0,(-trader[i].getPosition().y+m_defilement_trader)*32);
+                }
+
+                moteurGraphique->AjouterCommande(&sprite,16,0);
+
+                sprite.Resize(position.w-4*configuration->Resolution.w/800,position.h-4*configuration->Resolution.h/600);
+
+                if(trader[i].getPosition().y+trader[i].getTaille().y-m_defilement_trader>=m_classe.position_contenu_marchand.h)
+                    sprite.Resize(trader[i].getTaille().x*32-4,(m_defilement_trader+m_classe.position_contenu_marchand.h-trader[i].getPosition().y)*32-4);
+
+                if(trader[i].getPosition().y-m_defilement_trader<0)
+                {
+                    sprite.Resize(trader[i].getTaille().x*32-4,trader[i].getTaille().y*32-(-trader[i].getPosition().y+m_defilement_trader)*32-4);
+                }
+
+                sprite.Move(2*configuration->Resolution.w/800,2*configuration->Resolution.h/600);
+
+                moteurGraphique->AjouterCommande(&sprite,16,0);
+
+                sprite.SetCenter(trader[i].getPositionImage().w/2,trader[i].getPositionImage().h/2);
+
+                sprite.SetX(position.x+trader[i].getPositionImage().w/2*configuration->Resolution.w/800);
+                sprite.SetY(position.y+trader[i].getPositionImage().h/2*configuration->Resolution.h/600);
+
+                sprite.SetColor(trader[i].m_color);
+
+                sprite.SetImage(*moteurGraphique->getImage(trader[i].getImage()));
+                sprite.SetSubRect(IntRect(trader[i].getPositionImage().x, trader[i].getPositionImage().y, trader[i].getPositionImage().x+trader[i].getPositionImage().w, trader[i].getPositionImage().y+trader[i].getPositionImage().h));
+                sprite.Resize(trader[i].getTaille().x*32*configuration->Resolution.w/800,trader[i].getTaille().y*32*configuration->Resolution.h/600);
+
+                if(trader[i].getPosition().y+trader[i].getTaille().y-m_defilement_trader>=m_classe.position_contenu_marchand.h)
+                {
+                    sprite.SetSubRect(sf::IntRect(trader[i].getPositionImage().x,trader[i].getPositionImage().y,trader[i].getPositionImage().x+trader[i].getTaille().x*32,trader[i].getPositionImage().y+(m_defilement_trader+m_classe.position_contenu_marchand.h-trader[i].getPosition().y)*32));
+                    sprite.Resize(trader[i].getTaille().x*32,(m_defilement_trader+m_classe.position_contenu_marchand.h-trader[i].getPosition().y)*32);
+                }
+
+                if(trader[i].getPosition().y-m_defilement_trader<0)
+                {
+                    sprite.SetSubRect(sf::IntRect(trader[i].getPositionImage().x,trader[i].getPositionImage().y+(-trader[i].getPosition().y+m_defilement_trader)*32,trader[i].getPositionImage().x+trader[i].getTaille().x*32,trader[i].getPositionImage().y+trader[i].getTaille().y*32));
+                    sprite.Resize(trader[i].getTaille().x*32,trader[i].getTaille().y*32-(-trader[i].getPosition().y+m_defilement_trader)*32);
+                    sprite.Move(0,(-trader[i].getPosition().y+m_defilement_trader)*32);
+                }
+
+                if(m_classe.emplacements[trader[i].m_equipe].emplacement==BOUCLIER && trader[i].m_type==ARME)
+                    sprite.SetRotation(-45);
+                else
+                    sprite.SetRotation(0);
+
+                moteurGraphique->AjouterCommande(&sprite,17,0);
+                sprite.SetRotation(0);
+            }
+        }
+
     if(m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
     {
         sf::Sprite sprite;
@@ -1336,8 +1508,22 @@ void Hero::afficherInventaire(coordonnee positionSouris,float decalage)
                     m_inventaire[i].AfficherCaracteristiques(positionSouris);
                  }
     }
+    else if(positionSouris.x>m_classe.position_contenu_marchand.x*configuration->Resolution.x/800&&positionSouris.x<m_classe.position_contenu_marchand.x*configuration->Resolution.x/800+32*m_classe.position_contenu_marchand.w*configuration->Resolution.x/800&&positionSouris.y>(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600&&positionSouris.y<(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_marchand.h*configuration->Resolution.y/600)
+    {
+        coordonnee caseVisee;
+        caseVisee.x=(positionSouris.x-m_classe.position_contenu_marchand.x*configuration->Resolution.x/800)/(32*configuration->Resolution.x/800);
+        caseVisee.y=m_defilement_trader+(positionSouris.y-(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600)/(32*configuration->Resolution.y/600);
 
-    afficherCaracteristiques(positionSouris,decalage);
+        for(int i=0;i<(int)trader.size();i++)
+            if(caseVisee.x>=trader[i].getPosition().x&&caseVisee.x<=trader[i].getPosition().x+trader[i].getTaille().x-1
+             &&caseVisee.y>=trader[i].getPosition().y&&caseVisee.y<=trader[i].getPosition().y+trader[i].getTaille().y-1)
+                 {
+                    positionSouris.y-=32*configuration->Resolution.h/600;
+                    trader[i].AfficherCaracteristiques(positionSouris);
+                 }
+    }
+
+    AfficherCaracteristiques(positionSouris,decalage);
 }
 
 void Hero::placerCamera(coordonnee dimensionsMap)
@@ -1621,8 +1807,23 @@ Objet Hero::DeposerObjet()
     return temp;
 }
 
-bool Hero::prendreEnMain(coordonnee positionSouris)
+bool Hero::prendreEnMain(coordonnee positionSouris,std::vector<Objet> &trader)
 {
+    if(trader.empty())
+    {
+    }
+    else
+    {
+        if(positionSouris.x>14*configuration->Resolution.x/800&&positionSouris.x<34*configuration->Resolution.x/800&&positionSouris.y>260*configuration->Resolution.x/800&&positionSouris.y<290*configuration->Resolution.x/800)
+            m_defilement_trader--;
+
+        if(positionSouris.x>14*configuration->Resolution.x/800&&positionSouris.x<34*configuration->Resolution.x/800&&positionSouris.y>442*configuration->Resolution.x/800&&positionSouris.y<472*configuration->Resolution.x/800)
+            m_defilement_trader++;
+
+        if(m_defilement_trader<0)
+            m_defilement_trader=0;
+    }
+
     m_objetADeposer=-1;
     if(positionSouris.x>m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800&&positionSouris.x<m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800+32*m_classe.position_contenu_inventaire.w*configuration->Resolution.x/800&&positionSouris.y>(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600&&positionSouris.y<(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_inventaire.h*configuration->Resolution.y/600)
     {
@@ -1647,7 +1848,6 @@ bool Hero::prendreEnMain(coordonnee positionSouris)
                 for(int j=caseVisee.x;j<caseVisee.x+m_inventaire[m_objetEnMain].getTaille().x;j++)
                     if(i<m_classe.position_contenu_inventaire.h&&j<m_classe.position_contenu_inventaire.w&&i>=0&&j>=0)
                     {
-                       // if(m_caseInventaire[i][j])
                             for(int z=0;z<(int)m_inventaire.size();z++)
                                 for(int y=m_inventaire[z].getPosition().y;y<m_inventaire[z].getPosition().y+m_inventaire[z].getTaille().y;y++)
                                     for(int x=m_inventaire[z].getPosition().x;x<m_inventaire[z].getPosition().x+m_inventaire[z].getTaille().x;x++)
@@ -1683,6 +1883,45 @@ bool Hero::prendreEnMain(coordonnee positionSouris)
                     if(caseVisee.x>=m_inventaire[z].getPosition().x&&caseVisee.x<m_inventaire[z].getPosition().x+m_inventaire[z].getTaille().x
                      &&caseVisee.y>=m_inventaire[z].getPosition().y&&caseVisee.y<m_inventaire[z].getPosition().y+m_inventaire[z].getTaille().y)
                         m_objetEnMain=z/*,LibererCases(m_objetEnMain)*/;
+        }
+
+    }
+    else if(!trader.empty()&&positionSouris.x>m_classe.position_contenu_marchand.x*configuration->Resolution.x/800&&positionSouris.x<m_classe.position_contenu_marchand.x*configuration->Resolution.x/800+32*m_classe.position_contenu_marchand.w*configuration->Resolution.x/800&&positionSouris.y>(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600&&positionSouris.y<(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_marchand.h*configuration->Resolution.y/600)
+    {
+        coordonnee caseVisee;
+        if(m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
+        {
+            caseVisee.x=((positionSouris.x+8*configuration->Resolution.x/800)-m_classe.position_contenu_marchand.x*configuration->Resolution.x/800)/(32*configuration->Resolution.x/800) - m_inventaire[m_objetEnMain].getTaille().x/2;
+            caseVisee.y=m_defilement_trader+((positionSouris.y+8*configuration->Resolution.y/600)-(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600)/(32*configuration->Resolution.y/600) - m_inventaire[m_objetEnMain].getTaille().y/2;
+        }
+        else
+        {
+            caseVisee.x=((positionSouris.x)-m_classe.position_contenu_marchand.x*configuration->Resolution.x/800)/(32*configuration->Resolution.x/800);
+            caseVisee.y=m_defilement_trader+((positionSouris.y)-(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600)/(32*configuration->Resolution.y/600);
+        }
+
+        if(m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
+        {
+            m_argent+=m_inventaire[m_objetEnMain].getPrix();
+            m_inventaire[m_objetEnMain].m_equipe=-1;
+            AjouterTrader(m_inventaire[m_objetEnMain],trader,&m_classe);
+            m_inventaire.erase(m_inventaire.begin()+m_objetEnMain);
+            m_objetEnMain=-1;
+        }
+        else
+        {
+            for(int z=0;z<(int)trader.size();z++)
+                if(caseVisee.x>=trader[z].getPosition().x&&caseVisee.x<trader[z].getPosition().x+trader[z].getTaille().x
+                 &&caseVisee.y>=trader[z].getPosition().y&&caseVisee.y<trader[z].getPosition().y+trader[z].getTaille().y)
+                     if(trader[z].getPrix()<=m_argent)
+                     {
+                        m_argent-=trader[z].getPrix();
+
+                        m_inventaire.push_back(trader[z]);
+                        m_objetEnMain=m_inventaire.size()-1;
+
+                        trader.erase(trader.begin()+z);
+                     }
         }
 
     }

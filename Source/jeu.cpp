@@ -68,6 +68,8 @@ void Jeu::Demarrer()
     this->m_display = true;
     while (this->m_run)
 	{
+	     eventManager.GererLesEvenements(&m_run,Clock.GetElapsedTime(),map.getDimensions());
+
 	    if(eventManager.getEvenement(Key::F1,"ET"))
 	    {
             moteurGraphique->printscreen();

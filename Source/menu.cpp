@@ -299,7 +299,7 @@ void Menu::AfficherChargement(string nom,int fond,int z=50)
     moteurGraphique->AjouterTexte(&texte,13,1);
 }
 
-void Menu::AfficherInventaire(float decalage,Classe *classe)
+void Menu::AfficherInventaire(float decalage,Classe *classe,bool noTrader)
 {
     Sprite sprite;
 
@@ -309,6 +309,16 @@ void Menu::AfficherInventaire(float decalage,Classe *classe)
     sprite.Resize(classe->inventaire.position.w*configuration->Resolution.w/800, classe->inventaire.position.h*configuration->Resolution.h/600);
 
     moteurGraphique->AjouterCommande(&sprite,15,0);
+
+    if(!noTrader)
+    {
+        sprite.SetImage(*moteurGraphique->getImage(classe->menu_marchand.image));
+        sprite.SetX(classe->menu_marchand.position.x*configuration->Resolution.x/800);
+        sprite.SetY(classe->menu_marchand.position.y*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+        sprite.Resize(classe->menu_marchand.position.w*configuration->Resolution.w/800, classe->menu_marchand.position.h*configuration->Resolution.h/600);
+
+        moteurGraphique->AjouterCommande(&sprite,16,0);
+    }
 
    // ecran->Draw(sprite);
 }
@@ -423,11 +433,6 @@ int Menu::GererDynamique(float temps)
                 break;
         }
     }
-
-    //m_alphaSang-=temps*200;
-
-   /* if(m_alphaSang<0)
-        m_alphaSang=255,m_sang.clear();*/
 
     return retour;
 }

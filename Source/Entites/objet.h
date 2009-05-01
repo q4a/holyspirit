@@ -56,6 +56,7 @@ class Objet
     int getRarete();
     int getImage();
     int getChanceTrouver();
+    int getPrix();
     coordonnee getPosition();
     coordonnee getTaille();
     coordonnee getPositionImage();
@@ -71,6 +72,7 @@ class Objet
 
     int m_degatsMin, m_degatsMax,m_armure;
     int m_capaciteBenediction;
+    int m_prix;
 
     std::vector <int> m_emplacementImageHero;
     std::vector <std::string> m_cheminImageHero;
@@ -87,6 +89,7 @@ class Objet
     int m_rarete,m_image,m_chanceTrouver;
     coordonnee m_positionImage,m_taille,m_position;
     int ai,aa,dii,dia,dai,daa;
+
 
 
 

@@ -78,7 +78,7 @@ class Map
 	bool infligerDegats(int numeroMontre, float degats,Menu *menu, Hero *hero,bool pousser);
 	void PousserMonstre(int numeroMonstre, coordonnee vecteur);
 	void PousserMonstreCase(int numeroMonstre, coordonnee vecteur);
-	void gererMonstres(Hero *hero,float temps,Menu *menu);
+	void gererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu);
 
 	void gererEvenements(int evenement,int z,int couche,int x,int y);
 
@@ -95,7 +95,7 @@ class Map
 
 
 
-	void gererConditions(Script *script,int noInstruction,int i, int j, int k,Hero *hero,float temps,Menu *menu);
+	void gererConditions(Jeu *jeu,Script *script,int noInstruction,int i, int j, int k,Hero *hero,float temps,Menu *menu);
 
 
 	int m_defilerObjets;

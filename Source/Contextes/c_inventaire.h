@@ -33,11 +33,17 @@ class c_Inventaire : public Contexte
     c_Inventaire(Jeu *jeu);
     void Utiliser(Jeu *jeu);
 
+    void setTrader(std::vector<Objet>,Classe *);
+
     sf::View camera;
 
     private:
 	float tempsActuel,tempsPrecedent,temps_ecoule,tempsEcouleDepuisDernierAffichage,m_decalage;
 	bool m_afficher;
+
+	std::vector<Objet> m_trader;
+
+	void AfficherTrader();
 };
 
 #endif
