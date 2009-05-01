@@ -11,6 +11,8 @@ $
 $
 	* x0 y0 w800 h600 m Data/Menus/Inventory.png $
 $
+	* x0 y0 w800 h600 m Data/Menus/Trader.png $
+$
 	* x0 y472 w800 h128 m Data/Menus/Hud.png $
 $
 	* x114 y484 w96 h68 m Data/Menus/Life_orb.png $
@@ -24,6 +26,8 @@ $
 	* x436 y390 h4 w320 $
 $
 	* x436 y60 w10 h10 $
+$	
+	* x58 y300 w10 h6 $
 $
 	* e1 x20 y20 w64 h160 $
 	* e2 x94 y40 w96 h96 $
