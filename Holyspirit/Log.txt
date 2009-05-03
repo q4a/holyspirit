@@ -26,16 +26,18 @@
          Chargements d'images diverses :
          Chargement de : Data/Menus/Bag.png
          Chargement du hero.
-         Impossible de lire le fichier : Data/Saves/hero.sav.hs
+         /Lectures des caracteristiques.
+         /Lectures des cases de l'inventaire.
+         
+         Chargement de l'objet : Dagger.item.hs
+         Chargement de : Data/Items/Images/Dagger.png
+         /Lectures des objets.
          Chargement de : Data/Menus/Inventory.png
          Chargement de : Data/Menus/Trader.png
          Chargement de : Data/Menus/Hud.png
          Chargement de : Data/Menus/Life_orb.png
          Chargement de : Data/Menus/Faith_orb.png
          Chargement de : Data/Menus/Coupe2.png
-         
-         Chargement de l'objet : Dagger.item.hs
-         Chargement de : Data/Items/Images/Dagger.png
          
          Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/OneHand.rs.hs
          Chargement de : CourtisaneBaseAttente1Main0.png
@@ -46,7 +48,6 @@
          Chargement de : CourtisaneBaseAttaque1Main2.png
          Chargement de : Data/Sounds/9906__Snoman__grass3.wav
          Chargement de : Data/Sounds/epee.wav
-         Impossible de lire le fichier : Data/Saves/hero.sav.hs
          
          Chargement des sons :
          Chargement de : Data/Sounds/Coeur.wav
@@ -54,7 +55,6 @@
          Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/OneHand.rs.hs
          
          Chargement de la map : Begin.map.hs
-         Impossible de lire le fichier : Data/Saves/hero.sav.hs
          /Lectures du nom.
          /Lectures des fonds.
          /Lectures des musiques.
@@ -68,7 +68,7 @@
          Chargement de la map terminé.
          
          Chargement de : Data/Menus/Alpha-arts.png
-         Chargement de : Data/Loading_screens/Plaines3.png
+         Chargement de : Data/Loading_screens/Plaines2.png
          
          Destruction de la map...
          Destruction des cases...
@@ -362,13 +362,14 @@
          Sauvegarde de la map : Data/Temp/ArableLand0.map.hs
          Sauvegarde de la map_entite : Data/Temp/entites_map_ArableLand0.map.hs.emap.hs
          /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Coal.item.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Armband.item.hs
          /Sauvegarde de Armor.item.hs
          /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Chainmail.item.hs
          /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Long_sword.item.hs
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Small_shield.item.hs
@@ -379,21 +380,24 @@
          /Sauvegarde de Armor.item.hs
          /Sauvegarde de Boot.item.hs
          /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Ring.item.hs
          /Sauvegarde de Small_shield.item.hs
          /Sauvegarde de Small_sword.item.hs
          /Sauvegarde de Ceremonial_dagger.item.hs
          /Sauvegarde de Armband.item.hs
          /Sauvegarde de Armor.item.hs
          /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Chainmail.item.hs
          /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Long_sword.item.hs
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Small_shield.item.hs
          /Sauvegarde de Small_sword.item.hs
          /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_axe.item.hs
