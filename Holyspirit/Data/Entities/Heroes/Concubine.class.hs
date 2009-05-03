@@ -1,6 +1,6 @@
 	*Courtisane
 $
-	* f5 v10 p15 d5 c20 i3 $
+	* f10 v10 p15 d25 c20 i3 $
 $
 	* mDagger.item.hs $
 $
