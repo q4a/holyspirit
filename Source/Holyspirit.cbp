@@ -23,7 +23,6 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add option="--enable-auto-import" />
 				</Linker>
 			</Target>
 			<Target title="Debug">
@@ -42,15 +41,14 @@
 			<Add alias="All" targets="Release;" />
 		</VirtualTargets>
 		<Compiler>
-			<Add directory="..\..\SFML_SVN\trunk\include" />
+			<Add option="-Wno-deprecated" />
+			<Add directory="..\..\SFML-1.4-sdk-windows\SFML-1.4\include" />
 		</Compiler>
 		<Linker>
 			<Add option="-lsfml-audio" />
 			<Add option="-lsfml-graphics" />
 			<Add option="-lsfml-window" />
 			<Add option="-lsfml-system" />
-			<Add option="-Wno-deprecated" />
-			<Add directory="..\..\SFML_SVN\trunk\lib\mingw" />
 			<Add directory="..\..\SFML-1.4-sdk-windows\SFML-1.4\lib\mingw" />
 		</Linker>
 		<Unit filename="Contextes\c_Jeu.cpp" />

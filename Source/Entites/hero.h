@@ -137,7 +137,7 @@ class Hero
     //cDAT m_fichierSave;
     std::vector<std::string> m_contenuSave;
 
-    int m_defilement_trader;
+    int m_defilement_trader,m_max_defilement_trader;
 
 	private:
 	coordonneeDecimal m_positionAffichage;

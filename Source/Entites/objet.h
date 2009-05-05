@@ -32,6 +32,15 @@ struct benediction
     int info2;
 };
 
+struct Requirement
+{
+    int force;
+    int dexterite;
+    int vitalite;
+    int piete;
+    int charisme;
+};
+
 class Objet
 {
     public:
@@ -41,7 +50,7 @@ class Objet
 
     Objet operator=(const Objet &objet);
 
-    void AfficherCaracteristiques(coordonnee position);
+    void AfficherCaracteristiques(coordonnee position,Caracteristique caract);
     void Charger(std::string chemin);
     void ChargerCaracteristiques(std::ifstream *fichier);
     void setChanceTrouver(int);
@@ -74,6 +83,8 @@ class Objet
     int m_capaciteBenediction;
     int m_prix;
 
+    Requirement m_requirement;
+
     std::vector <int> m_emplacementImageHero;
     std::vector <std::string> m_cheminImageHero;
 
@@ -82,7 +93,7 @@ class Objet
     sf::Color m_color;
 
     private:
-    sf::String AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, char *chaine,bool bleu=false);
+    sf::String AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, char *chaine,sf::Color color=sf::Color(255,255,255));
 
     std::string m_nom,m_chemin;
     std::vector <std::string> m_description;

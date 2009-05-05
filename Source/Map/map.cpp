@@ -840,10 +840,8 @@ void Map::CreerSprite(sf::Vector3f position_case)
 
     if(position_case.z==0)
         layer=m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getCouche();
-    if(position_case.z==1)
-    {
-        layer=6+m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getCouche();
-    }
+    else
+        layer=/*6+m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getCouche()*/10;
 
     m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].setCouche(layer);
 }

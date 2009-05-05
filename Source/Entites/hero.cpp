@@ -277,7 +277,6 @@ void Classe::Charger(string chemin)
                         case 'd' : fichier>>caracteristique.dexterite; break;
                         case 'c' : fichier>>caracteristique.charisme; break;
                         case 'i' : fichier>>ID; break;
-
                     }
 
                     if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
@@ -1283,7 +1282,7 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
                     sprite.SetX((m_classe.emplacements[m_inventaire[i].m_equipe].position.x)*configuration->Resolution.w/800);
                     sprite.SetY((m_classe.emplacements[m_inventaire[i].m_equipe].position.y)*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
                     if(m_objetEnMain==-1&&positionSouris.x>m_classe.emplacements[m_inventaire[i].m_equipe].position.x*configuration->Resolution.x/800&&positionSouris.x<(m_classe.emplacements[m_inventaire[i].m_equipe].position.x+m_classe.emplacements[m_inventaire[i].m_equipe].position.w)*configuration->Resolution.x/800&&positionSouris.y>m_classe.emplacements[m_inventaire[i].m_equipe].position.y*configuration->Resolution.y/600&&positionSouris.y<(m_classe.emplacements[m_inventaire[i].m_equipe].position.y+m_classe.emplacements[m_inventaire[i].m_equipe].position.h)*configuration->Resolution.y/600)
-                        m_inventaire[i].AfficherCaracteristiques(positionSouris);
+                        m_inventaire[i].AfficherCaracteristiques(positionSouris,m_caracteristiques);
                 }
             }
 
@@ -1314,8 +1313,13 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
             sprite.SetRotation(0);
         }
 
+    m_max_defilement_trader=0;
+
     for(int i=0;i<(int)trader.size();i++)
         {
+            if(trader[i].getPosition().y+trader[i].getTaille().y>m_max_defilement_trader)
+                m_max_defilement_trader=trader[i].getPosition().y+trader[i].getTaille().y;
+
             if(trader[i].getPosition().y+trader[i].getTaille().y-m_defilement_trader>0&&trader[i].getPosition().y-m_defilement_trader<m_classe.position_contenu_marchand.h)
             {
                 coordonneeDecimal position;
@@ -1368,7 +1372,7 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
                         sprite.SetX((m_classe.emplacements[trader[i].m_equipe].position.x)*configuration->Resolution.w/800);
                         sprite.SetY((m_classe.emplacements[trader[i].m_equipe].position.y)*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
                         if(m_objetEnMain==-1&&positionSouris.x>m_classe.emplacements[trader[i].m_equipe].position.x*configuration->Resolution.x/800&&positionSouris.x<(m_classe.emplacements[trader[i].m_equipe].position.x+m_classe.emplacements[trader[i].m_equipe].position.w)*configuration->Resolution.x/800&&positionSouris.y>m_classe.emplacements[trader[i].m_equipe].position.y*configuration->Resolution.y/600&&positionSouris.y<(m_classe.emplacements[trader[i].m_equipe].position.y+m_classe.emplacements[trader[i].m_equipe].position.h)*configuration->Resolution.y/600)
-                            trader[i].AfficherCaracteristiques(positionSouris);
+                            trader[i].AfficherCaracteristiques(positionSouris,m_caracteristiques);
                     }
                 }
 
@@ -1505,7 +1509,7 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
                  if(m_inventaire[i].m_equipe==-1)
                  {
                     positionSouris.y-=32*configuration->Resolution.h/600;
-                    m_inventaire[i].AfficherCaracteristiques(positionSouris);
+                    m_inventaire[i].AfficherCaracteristiques(positionSouris,m_caracteristiques);
                  }
     }
     else if(positionSouris.x>m_classe.position_contenu_marchand.x*configuration->Resolution.x/800&&positionSouris.x<m_classe.position_contenu_marchand.x*configuration->Resolution.x/800+32*m_classe.position_contenu_marchand.w*configuration->Resolution.x/800&&positionSouris.y>(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600&&positionSouris.y<(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_marchand.h*configuration->Resolution.y/600)
@@ -1519,7 +1523,7 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
              &&caseVisee.y>=trader[i].getPosition().y&&caseVisee.y<=trader[i].getPosition().y+trader[i].getTaille().y-1)
                  {
                     positionSouris.y-=32*configuration->Resolution.h/600;
-                    trader[i].AfficherCaracteristiques(positionSouris);
+                    trader[i].AfficherCaracteristiques(positionSouris,m_caracteristiques);
                  }
     }
 
@@ -1572,11 +1576,11 @@ void Hero::augmenterAme(float temps)
     if(temp.ancienPointAme>=CALCUL_PA_PROCHAIN_NIVEAU)
     {
         temp.niveau++;
-        temp.force++;
-        temp.dexterite++;
+        temp.force+=3;
+        temp.dexterite+=3;
         temp.vitalite++;
         temp.piete++;
-        temp.charisme++;
+        temp.charisme+=3;
 
         temp.maxVie=temp.vitalite*25;
         temp.vie=temp.maxVie;
@@ -1822,6 +1826,8 @@ bool Hero::prendreEnMain(coordonnee positionSouris,std::vector<Objet> &trader)
 
         if(m_defilement_trader<0)
             m_defilement_trader=0;
+        if(m_defilement_trader>m_max_defilement_trader-m_classe.position_contenu_marchand.h)
+            m_defilement_trader=m_max_defilement_trader-m_classe.position_contenu_marchand.h;
     }
 
     m_objetADeposer=-1;
@@ -2010,9 +2016,21 @@ bool Hero::equiper(int numero, int emplacement)
     if(m_objetEnMain>=0 && m_objetEnMain<(int)m_inventaire.size())
     {
         ok=false;
-        for(int i=0;i<(int)m_inventaire[m_objetEnMain].m_emplacement.size();i++)
-            if(m_inventaire[m_objetEnMain].m_emplacement[i]==m_classe.emplacements[emplacement].emplacement)
-                ok=true;
+
+        if(m_inventaire[m_objetEnMain].m_requirement.force<=m_caracteristiques.force)
+        if(m_inventaire[m_objetEnMain].m_requirement.dexterite<=m_caracteristiques.dexterite)
+        if(m_inventaire[m_objetEnMain].m_requirement.charisme<=m_caracteristiques.charisme)
+        if(m_inventaire[m_objetEnMain].m_requirement.vitalite<=m_caracteristiques.vitalite)
+        if(m_inventaire[m_objetEnMain].m_requirement.piete<=m_caracteristiques.piete)
+            ok=true;
+
+        if(ok)
+        {
+            ok=false;
+            for(int i=0;i<(int)m_inventaire[m_objetEnMain].m_emplacement.size();i++)
+                if(m_inventaire[m_objetEnMain].m_emplacement[i]==m_classe.emplacements[emplacement].emplacement)
+                    ok=true;
+        }
 
         if(ok)
         {

@@ -38,6 +38,14 @@ Objet::Objet()
     m_degatsMin=0;
     m_degatsMax=0;
 
+    m_requirement.force=0;
+    m_requirement.dexterite=0;
+    m_requirement.charisme=0;
+    m_requirement.vitalite=0;
+    m_requirement.piete=0;
+
+    m_prix=0;
+
     ai=0,aa=0,dii=0,dia=0,dai=0,daa=0;
 }
 
@@ -91,6 +99,9 @@ Objet Objet::operator=(const Objet &objet)
 	dia=objet.dia;
 	dai=objet.dai;
 	daa=objet.daa;
+
+	m_requirement=objet.m_requirement;
+	m_prix=objet.m_prix;
 
 	m_IDClasse=objet.m_IDClasse;
 
@@ -227,6 +238,8 @@ void Objet::SauvegarderTexte(std::ofstream *fichier)
     *fichier<<" e"<<m_equipe;
     *fichier<<" r"<<m_rarete;
 
+    *fichier<<" g"<<m_prix;
+
     *fichier<<" di"<<m_degatsMin;
     *fichier<<" da"<<m_degatsMax;
     *fichier<<" a"<<m_armure;
@@ -255,7 +268,6 @@ void Objet::SauvegarderTexte(std::ofstream *fichier)
 
 void Objet::ChargerTexte(std::ifstream *fichier)
 {
-    m_prix=0;
     m_rarete=0,m_equipe=-1;
     m_degatsMin=0,m_degatsMax=0,m_armure=0;
     m_position.y=0;
@@ -303,6 +315,8 @@ void Objet::ChargerTexte(std::ifstream *fichier)
         }
         else if(caractere=='m')
             *fichier>>m_chemin;
+        else if(caractere=='g')
+            *fichier>>m_prix;
         else if(caractere=='b')
         {
 
@@ -328,7 +342,6 @@ void Objet::ChargerTexte(std::ifstream *fichier)
             m_benedictions.back().type=type;
             m_benedictions.back().info1=info1;
             m_benedictions.back().info2=info2;
-            m_prix+=50;
             caractere='_';
         }
 
@@ -367,6 +380,34 @@ void Objet::Charger(std::string chemin)
                         case 'e' : int temp; *fichier>>temp; m_emplacement.push_back(temp); break;
                         case 'i' :  *fichier>>temp; m_emplacementImpossible.push_back(temp); break;
                         case 'c' :  *fichier>>temp; m_IDClasse.push_back(temp); break;
+                    }
+
+                    if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+
+                }while(caractere!='$');
+                fichier->get(caractere);
+            }
+    		if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+
+    	}while(caractere!='$');
+
+    	do
+    	{
+    		fichier->get(caractere);
+    		if(caractere=='*')
+            {
+                do
+                {
+                    fichier->get(caractere);
+                    switch (caractere)
+                    {
+                        case 'g' : *fichier>>m_prix; break;
+
+                        case 's' : *fichier>>m_requirement.force; break;
+                        case 'd' : *fichier>>m_requirement.dexterite; break;
+                        case 'c' : *fichier>>m_requirement.charisme; break;
+                        case 'p' : *fichier>>m_requirement.piete; break;
+                        case 'v' : *fichier>>m_requirement.vitalite; break;
                     }
 
                     if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
@@ -438,9 +479,6 @@ void Objet::Charger(std::string chemin)
     		if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
 
     	}while(caractere!='$');
-
-    	//m_cheminImageHero="";
-        //m_emplacementImageHero=-1;
 
     	do
     	{
@@ -605,9 +643,6 @@ void Objet::Generer(int bonus)
     m_armure=(rand() % (aa - ai + 1)) + ai;
     m_degatsMin=(rand() % (dia - dii + 1)) + dii;
     m_degatsMax=(rand() % (daa - dai + 1)) + dai;
-
-    m_prix=(m_armure+m_degatsMin+m_degatsMax)*3;
-
     m_color.r=255;
     m_color.g=255;
     m_color.b=255;
@@ -700,7 +735,7 @@ void Objet::Generer(int bonus)
             if(temp.type==EFFICACITE_ACCRUE&&!(m_type==ARME||m_type==ARMURE))
                 ajouter=false,i--;
 
-            m_prix+=50;
+            m_prix*=1.25;
 
             for(int j=0;j<(int)m_benedictions.size();j++)
                 if(m_benedictions[j].type==temp.type)
@@ -806,12 +841,11 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
 }
 
 
-sf::String Objet::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, char *chaine,bool bleu)
+sf::String Objet::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, char *chaine,sf::Color color)
 {
     sf::String string;
 
-    if(bleu)
-        string.SetColor(sf::Color(0,128,255));
+    string.SetColor(color);
 
     string.SetSize(14.f*configuration->Resolution.h/600);
     string.SetText(chaine);
@@ -825,7 +859,7 @@ sf::String Objet::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee 
 }
 
 
-void Objet::AfficherCaracteristiques(coordonnee position)
+void Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract)
 {
     std::vector <sf::String> temp;
 
@@ -877,7 +911,7 @@ void Objet::AfficherCaracteristiques(coordonnee position)
             sprintf(chaine,"Dégats : %i - %i",(int)(m_degatsMin*multiplieurEfficacite/100),(int)(m_degatsMax*multiplieurEfficacite/100));
 
             if(multiplieurEfficacite!=100)
-                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine,1));
+                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine,sf::Color(0,64,128)));
             else
                 temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
 
@@ -886,14 +920,57 @@ void Objet::AfficherCaracteristiques(coordonnee position)
             sprintf(chaine,"Armure : %i",(int)(m_armure*multiplieurEfficacite/100));
 
             if(multiplieurEfficacite!=100)
-                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine,1));
+                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine,sf::Color(0,64,128)));
             else
                 temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
         break;
     }
 
-    sprintf(chaine," ");
-    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
+    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+
+
+    if(m_requirement.force>0)
+    {
+        sprintf(chaine,"Force requise : %i",m_requirement.force);
+        if(caract.force<m_requirement.force)
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine,sf::Color(192,0,0)));
+        else
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
+    }
+    if(m_requirement.dexterite>0)
+    {
+        sprintf(chaine,"Dextérité requise : %i",m_requirement.dexterite);
+        if(caract.dexterite<m_requirement.dexterite)
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine,sf::Color(192,0,0)));
+        else
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
+    }
+    if(m_requirement.charisme>0)
+    {
+        sprintf(chaine,"Charisme requis : %i",m_requirement.charisme);
+        if(caract.charisme<m_requirement.charisme)
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine,sf::Color(192,0,0)));
+        else
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
+    }
+    if(m_requirement.vitalite>0)
+    {
+        sprintf(chaine,"Vitalité requise : %i",m_requirement.vitalite);
+        if(caract.vitalite<m_requirement.vitalite)
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine,sf::Color(192,0,0)));
+        else
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
+    }
+    if(m_requirement.piete>0)
+    {
+        sprintf(chaine,"Piété requise : %i",m_requirement.piete);
+        if(caract.piete<m_requirement.piete)
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine,sf::Color(192,0,0)));
+        else
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
+    }
+
+    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
 
     for(int i=0;i<(int)m_benedictions.size();i++)
     {

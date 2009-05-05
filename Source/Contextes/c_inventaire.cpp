@@ -91,6 +91,7 @@ void c_Inventaire::Utiliser(Jeu *jeu)
     if(jeu->eventManager.getEvenement(Key::I,"ET")||jeu->eventManager.getEvenement(Key::Escape,"ET"))
     {
         jeu->hero.m_defilement_trader=0;
+        jeu->hero.m_max_defilement_trader=0;
         m_trader.clear();
         jeu->hero.ChargerModele();
         m_afficher=0;
