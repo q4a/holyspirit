@@ -274,7 +274,7 @@ int Personnage::getOrdre(Modele_Personnage *modele)
     return -10;
 }
 
-void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele)
+void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,bool surbrillance)
 {
     if(modele->m_pose.size()>0)
     if((int)(m_angle/45)>=0&&(int)(m_angle/45)<8)
@@ -340,7 +340,14 @@ void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele)
                 &&sprite.GetPosition().x-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().x<moteurGraphique->m_camera.GetRect().Right
                 &&sprite.GetPosition().y+sprite.GetSize().y>=moteurGraphique->m_camera.GetRect().Top
                 &&sprite.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)
-                moteurGraphique->AjouterCommande(&sprite,10,1);
+                {
+                    moteurGraphique->AjouterCommande(&sprite,10,1);
+                    if(surbrillance)
+                    {
+                        sprite.SetBlendMode(sf::Blend::Add);
+                        moteurGraphique->AjouterCommande(&sprite,10,1);
+                    }
+                }
             }
     }
 }
@@ -500,7 +507,6 @@ bool Personnage::seDeplacer(float tempsEcoule,coordonnee dimensionsMap)
     int buf=(int)(tempsEcoule*1000);
     tempsEcoule=(float)buf/1000;
 
-
     if(m_caracteristique.vie>0)
     {
         if(!frappeEnCours)
@@ -522,7 +528,7 @@ bool Personnage::seDeplacer(float tempsEcoule,coordonnee dimensionsMap)
                     else
                         m_positionPixel.x+=(float)4*tempsEcoule*m_caracteristique.vitesse;
                 }
-                if(m_positionCase.x>m_cheminFinal.x)
+                else if(m_positionCase.x>m_cheminFinal.x)
                 {
                     if(m_positionCase.h!=m_cheminFinal.h && m_positionPixel.h!=m_cheminFinal.h)
                         m_positionPixel.h=m_positionCase.h*( COTE_TILE - fabs(m_positionPixel.x-m_positionCase.x*COTE_TILE))/COTE_TILE + m_cheminFinal.h*( fabs(m_positionPixel.x-m_positionCase.x*COTE_TILE))/COTE_TILE ;
@@ -540,7 +546,7 @@ bool Personnage::seDeplacer(float tempsEcoule,coordonnee dimensionsMap)
                     else
                         m_positionPixel.y+=(float)4*tempsEcoule*m_caracteristique.vitesse;
                 }
-                if(m_positionCase.y>m_cheminFinal.y)
+                else if(m_positionCase.y>m_cheminFinal.y)
                 {
                     if(m_positionCase.h!=m_cheminFinal.h && m_positionPixel.h!=m_cheminFinal.h)
                         m_positionPixel.h=m_positionCase.h*( COTE_TILE - fabs(m_positionPixel.y-m_positionCase.y*COTE_TILE))/COTE_TILE + m_cheminFinal.h*( fabs(m_positionPixel.y-m_positionCase.y*COTE_TILE))/COTE_TILE ;
@@ -576,13 +582,9 @@ bool Personnage::seDeplacer(float tempsEcoule,coordonnee dimensionsMap)
 
                         return 1;
                     }
-
-
             }
             else if(m_arrivee.x!=m_positionCase.x||m_arrivee.y!=m_positionCase.y)
-            {
                 return 1;
-            }
             else
             {
                 if(m_etat!=0)
@@ -591,13 +593,8 @@ bool Personnage::seDeplacer(float tempsEcoule,coordonnee dimensionsMap)
                 m_etat=0,frappeEnCours=0;
             }
         }
-        if(m_etat==2)
+        if(m_etat==2||m_arrivee.x==m_positionCase.x&&m_arrivee.y==m_positionCase.y)
             return 1;
-
-        if(m_arrivee.x==m_positionCase.x&&m_arrivee.y==m_positionCase.y)
-            return 1;
-
-        return 0;
     }
 
     return 0;
@@ -686,7 +683,7 @@ void Personnage::frappe(coordonnee direction,coordonnee position)
     frappeEnCours=1;
 
     float m=atan2((double)(direction.x-position.x),(double)(direction.y-position.y));
-    m+=M_PI/4;
+    m+=M_PI/3;
 
 
     m_angle=(int)(m*180/M_PI);

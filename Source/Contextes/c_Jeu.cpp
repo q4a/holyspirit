@@ -160,8 +160,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
                 if(tempsSauvergarde>=configuration->frequence_sauvegarde)
                 {
-                    jeu->hero.Sauvegarder();
                     jeu->map.Sauvegarder(&jeu->hero);
+                    jeu->hero.Sauvegarder();
                     tempsSauvergarde=0;
                 }
 
@@ -185,7 +185,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     if(jeu->hero.getMonstreVise()==-1)
                         temp.x=jeu->hero.m_personnage.getCoordonnee().x,temp.y=jeu->hero.m_personnage.getCoordonnee().y;
 
-                    if(jeu->hero.m_personnage.seDeplacer(tempsEcouleDepuisDernierDeplacement*100,jeu->map.getDimensions()))
+                    if(jeu->hero.m_personnage.seDeplacer(tempsEcouleDepuisDernierDeplacement*100,jeu->map.getDimensions())&&!jeu->eventManager.getEvenement(Key::LShift,"ET")||jeu->eventManager.getEvenement(Key::LShift,"ET"))
                     {
                         bool ok=true;
                         if(jeu->hero.getMonstreVise()>-1)
@@ -326,8 +326,14 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     {
                         if(jeu->map.getMonstreIllumine()!=-1)
                         {
+                            bool test=false;
+                            if(jeu->hero.getMonstreVise()>-1&&jeu->hero.m_personnage.getArrivee().x==jeu->hero.m_personnage.getCoordonnee().x&&jeu->hero.m_personnage.getArrivee().y==jeu->hero.m_personnage.getCoordonnee().y)
+                                test=true;
+
                             jeu->eventManager.StopEvenement(Mouse::Left,"CA");
                             jeu->hero.setMonstreVise(jeu->map.getMonstreIllumine());
+                            if(test)
+                                jeu->hero.testMonstreVise(jeu->map.getEntiteMonstre(jeu->hero.getMonstreVise()),jeu->map.getDimensions().y);
                         }
                         else
                             jeu->hero.setMonstreVise(-1);
@@ -402,7 +408,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
                     if(alpha_map>0)
                         jeu->menu.Afficher(2,alpha_map,&jeu->hero.m_classe);//On affiche la mini-map
 
-                    if(jeu->hero.getChercherSac().x!=-1&&jeu->map.getNombreObjets(jeu->hero.getChercherSac())>0)
+                    if(jeu->hero.getChercherSac().x!=-1&&jeu->map.getNombreObjets(jeu->hero.getChercherSac())>=1)
                     {
                         alpha_sac+=tempsEcoule*1000;
                         if(alpha_sac>255)
@@ -414,6 +420,12 @@ void c_Jeu::Utiliser(Jeu *jeu)
                         if(alpha_sac<0)
                             alpha_sac=0;
                     }
+
+                    if(jeu->hero.getChercherSac().x!=-1&&jeu->map.getNombreObjets(jeu->hero.getChercherSac())==1&&alpha_sac<128)
+                    {
+                        jeu->map.ramasserObjet(&jeu->hero);
+                    }
+
                     if(alpha_sac>0)
                     {
                         jeu->menu.Afficher(3,alpha_sac,&jeu->hero.m_classe);

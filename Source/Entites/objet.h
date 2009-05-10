@@ -82,6 +82,7 @@ class Objet
     int m_degatsMin, m_degatsMax,m_armure;
     int m_capaciteBenediction;
     int m_prix;
+    bool m_shoot_weapon;
 
     Requirement m_requirement;
 

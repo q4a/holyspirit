@@ -47,6 +47,7 @@ Objet::Objet()
     m_prix=0;
 
     ai=0,aa=0,dii=0,dia=0,dai=0,daa=0;
+    m_shoot_weapon=0;
 }
 
 Objet::Objet(std::string nom, int rarete)
@@ -310,8 +311,6 @@ void Objet::ChargerTexte(std::ifstream *fichier)
                 *fichier>>m_color.g;
             else if(caractere=='b')
                 *fichier>>m_color.b;
-
-            cout<<m_armure<<endl;
         }
         else if(caractere=='m')
             *fichier>>m_chemin;
@@ -348,7 +347,6 @@ void Objet::ChargerTexte(std::ifstream *fichier)
         if(fichier->eof()){throw "Impossible de charger l'objet";}
     }while(caractere!='$');
 
-    m_prix+=(m_armure+m_degatsMax+m_degatsMin)*3;
 }
 
 
@@ -380,6 +378,7 @@ void Objet::Charger(std::string chemin)
                         case 'e' : int temp; *fichier>>temp; m_emplacement.push_back(temp); break;
                         case 'i' :  *fichier>>temp; m_emplacementImpossible.push_back(temp); break;
                         case 'c' :  *fichier>>temp; m_IDClasse.push_back(temp); break;
+                        case 's' :  *fichier>>m_shoot_weapon; break;
                     }
 
                     if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
@@ -735,7 +734,7 @@ void Objet::Generer(int bonus)
             if(temp.type==EFFICACITE_ACCRUE&&!(m_type==ARME||m_type==ARMURE))
                 ajouter=false,i--;
 
-            m_prix*=1.25;
+            m_prix+=m_prix/4;
 
             for(int j=0;j<(int)m_benedictions.size();j++)
                 if(m_benedictions[j].type==temp.type)

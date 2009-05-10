@@ -49,7 +49,7 @@ EventManager::EventManager()
 void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tailleMap)
 {
 	Event Event;
-	if(moteurGraphique->getEvent(Event))
+	while(moteurGraphique->getEvent(Event))
 	{
 		switch(Event.Type)
    		{

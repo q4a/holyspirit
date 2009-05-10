@@ -813,6 +813,14 @@ void Hero::Charger()
                                     m_inventaire.back().setPosition(position.x,position.y);
                                     m_inventaire.back().m_equipe=equipe;
 
+                                    if(m_inventaire.back().m_equipe>=0&&m_inventaire.back().m_type==ARME)
+                                    {
+                                        if(m_inventaire.back().m_shoot_weapon)
+                                            m_personnage.m_shooter=true;
+                                        else
+                                            m_personnage.m_shooter=false;
+                                    }
+
                                     m_inventaire.back().m_armure=armure;
                                     m_inventaire.back().m_degatsMin=degMin;
                                     m_inventaire.back().m_degatsMax=degMax;
@@ -1549,12 +1557,13 @@ bool Hero::testMonstreVise(Monstre *monstre,int hauteurMap)
     if(monstre!=NULL)
         if(m_monstreVise>-1&&m_caracteristiques.vie>0)
         {
-            if((fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)<=1) || (fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=1))
+            if((!m_personnage.m_shooter||monstre->m_friendly)&&(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)<=1) || (!m_personnage.m_shooter||monstre->m_friendly)&&(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=1)
+             ||!monstre->m_friendly&&m_personnage.m_shooter&&(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)<=13&&fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)<=13) || !monstre->m_friendly&&m_personnage.m_shooter&&(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=13&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=13))
             {
                 m_personnage.setArrivee(m_personnage.getCoordonnee());
 
                 if(!monstre->m_friendly)
-                    m_personnage.frappe(m_personnage.getCoordonnee(),monstre->getCoordonnee());
+                    m_personnage.frappe(m_personnage.getCoordonneePixel(),monstre->getCoordonneePixel());
 
                 return 1;
             }
@@ -2075,7 +2084,17 @@ bool Hero::equiper(int numero, int emplacement)
                             ok=true;
 
                     if(ok)
+                    {
+                        if(m_inventaire[numero].m_type==ARME)
+                        {
+                            if(m_inventaire[numero].m_shoot_weapon)
+                                m_personnage.m_shooter=true;
+                            else
+                                m_personnage.m_shooter=false;
+                        }
+
                         m_inventaire[numero].m_equipe=emplacement;
+                    }
 
                     if(ancienEquipe>=0&&ancienEquipe<(int)m_inventaire.size())
                         m_inventaire[ancienEquipe].m_equipe=-1;

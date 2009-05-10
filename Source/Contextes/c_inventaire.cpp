@@ -162,7 +162,7 @@ void c_Inventaire::Utiliser(Jeu *jeu)
 
     jeu->hero.AfficherInventaire(jeu->eventManager.getPositionSouris(),m_decalage,m_trader);
 
-    jeu->map.AfficherSacInventaire(jeu->hero.m_personnage.getCoordonnee(),m_decalage,jeu->eventManager.getPositionSouris(),&jeu->hero.m_classe);
+    jeu->map.AfficherSacInventaire(jeu->hero.m_personnage.getCoordonnee(),m_decalage,jeu->eventManager.getPositionSouris(),&jeu->hero);
 
     jeu->menu.Afficher(1,255,&jeu->hero.m_classe);
     jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,-1,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);

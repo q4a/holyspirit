@@ -45,7 +45,7 @@ class Map
 	void Sauvegarder(Hero *hero);
 	void Afficher(int type,Hero *hero,coordonnee positionSouris,bool alt,float alpha=255);
 
-	void AfficherSacInventaire(coordonnee positionSac,float decalage,coordonnee positionSouris,Classe *classe);
+	void AfficherSacInventaire(coordonnee positionSac,float decalage,coordonnee positionSouris,Hero *hero);
 
 	void AfficherNomEvenement(coordonnee casePointee,coordonnee positionSouris);
 

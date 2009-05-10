@@ -82,7 +82,7 @@ class Personnage
 
 	bool seDeplacer(float,coordonnee dimensionsMap);
 	void setCoordonnee(coordonnee nouvellesCoordonnees);
-	void Afficher(coordonnee dimensionsMap,Modele_Personnage *modele);
+	void Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,bool surbrillance=false);
 
 	int pathfinding(casePathfinding** map,coordonnee exception);
 
@@ -117,6 +117,7 @@ class Personnage
 
 	LumiereOmbrage m_lumiere;
 	bool frappeEnCours;
+	bool m_shooter;
 	int m_nombreInvocation;
 
 	Light_Entity m_light;
