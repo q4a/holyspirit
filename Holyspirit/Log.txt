@@ -1,7 +1,3 @@
-         ---------------------------------------------------------------------------------
-         Demarrage du jeu
-         ---------------------------------------------------------------------------------
-         
          
          Chargement des postFX :
          Chargement de : Data/Effects/blurFX.sfx
@@ -29,11 +25,60 @@
          /Lectures des caracteristiques.
          /Lectures des cases de l'inventaire.
          
-         Chargement de l'objet : Crossbow.item.hs
-         Chargement de : Data/Items/Images/crossbow01.png
+         Chargement de l'objet : Helmet.item.hs
+         Chargement de : Data/Items/Images/helmet01.png
          
-         Chargement de l'objet : Arquebuse.item.hs
-         Chargement de : Data/Items/Images/Arquebuse.png
+         Chargement de l'objet : Gown.item.hs
+         Chargement de : Data/Items/Images/gown.png
+         
+         Chargement de l'objet : Two_hand_sword.item.hs
+         Chargement de : Data/Items/Images/TwoHand01Sword.png
+         
+         Chargement de l'objet : Two_hand_sword.item.hs
+         
+         Chargement de l'objet : Two_hand_sword.item.hs
+         
+         Chargement de l'objet : Ring.item.hs
+         Chargement de : Data/Items/Images/Ring1.png
+         
+         Chargement de l'objet : Unique_shield.item.hs
+         Chargement de : Data/Items/Images/shield01.png
+         
+         Chargement de l'objet : Armband.item.hs
+         Chargement de : Data/Items/Images/Brassards.png
+         
+         Chargement de l'objet : Chainmail.item.hs
+         Chargement de : Data/Items/Images/armor01.png
+         
+         Chargement de l'objet : Small_sword_divin.item.hs
+         Chargement de : Data/Items/Images/swords01.png
+         
+         Chargement de l'objet : Ring.item.hs
+         
+         Chargement de l'objet : Unique_boot.item.hs
+         Chargement de : Data/Items/Images/Boot.png
+         
+         Chargement de l'objet : Necklage.item.hs
+         Chargement de : Data/Items/Images/Necklage01.png
+         
+         Chargement de l'objet : Small_sword_divin.item.hs
+         
+         Chargement de l'objet : Armband.item.hs
+         
+         Chargement de l'objet : Great_shield.item.hs
+         
+         Chargement de l'objet : Small_shield.item.hs
+         
+         Chargement de l'objet : Small_sword.item.hs
+         
+         Chargement de l'objet : Long_sword.item.hs
+         
+         Chargement de l'objet : Armor.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         Chargement de : Data/Items/Images/axes01.png
+         
+         Chargement de l'objet : Small_axe.item.hs
          /Lectures des objets.
          Chargement de : Data/Menus/Inventory.png
          Chargement de : Data/Menus/Trader.png
@@ -42,24 +87,26 @@
          Chargement de : Data/Menus/Faith_orb.png
          Chargement de : Data/Menus/Coupe2.png
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Crossbow/Crossbow.rs.hs
-         Chargement de : ArbaleteAttente0.png
-         Chargement de : ArbaleteMarche0.png
-         Chargement de : ArbaleteTir0.png
-         
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/TwoHand.rs.hs
-         Chargement de : CourtisaneBaseAttente1Main0.png
-         Chargement de : CourtisaneBaseMarcheArbalete0.png
-         Chargement de : CourtisaneBaseMarcheArbalete1.png
-         Chargement de : CourtisaneBaseTir0.png
-         Chargement de : CourtisaneBaseTir1.png
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoWeapons.rs.hs
+         Chargement de : CroiseMailleAttente1Main0.png
+         Chargement de : CroiseMailleMarche1Epee0.png
+         Chargement de : CroiseMailleFrappeSans2Arme0.png
+         Chargement de : CroiseMailleFrappeSans2Arme1.png
          Chargement de : Data/Sounds/9906__Snoman__grass3.wav
-         Chargement de : Data/Sounds/65734__Erdie__bow02.wav
+         Chargement de : Data/Sounds/epee.wav
+         
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_r.rs.hs
+         Chargement de : TueuseDivineAttenteDroite0.png
+         Chargement de : TueuseDivineMarcheDroite0.png
+         Chargement de : TueuseDivineAttaqueDroite0.png
+         
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
+         Chargement de : TueuseDivineAttenteGauche0.png
+         Chargement de : TueuseDivineMarcheGauche0.png
+         Chargement de : TueuseDivineAttaqueGauche0.png
          
          Chargement des sons :
          Chargement de : Data/Sounds/Coeur.wav
-         
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/TwoHand.rs.hs
          
          Chargement de la map : Begin.map.hs
          /Lectures du nom.
@@ -93,20 +140,45 @@
          Effets détruits !
          Map détruite !
          
+         Chargements d'images diverses :
+         
          Sauvegarde du héro...
          Ouverture du fichier.
          /Ecriture des caracterstiques.
          /Ecriture des cases inventaires.
-         /Sauvegarde de Crossbow.item.hs
-         /Sauvegarde de Arquebuse.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Gown.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Unique_shield.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Small_sword_divin.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Unique_boot.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Small_sword_divin.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Crossbow/Crossbow.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoWeapons.rs.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/TwoHand.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_r.rs.hs
+         
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
          
          Chargement de la map : ArableLand0.map.hs
+         Map sauvée existante.
          /Lectures du nom.
          /Lectures des fonds.
          /Lectures des musiques.
@@ -140,7 +212,6 @@
          Chargement du script : "Data/Scripts/AI/standard.script.hs"
          
          Chargement de l'objet : Small_axe.item.hs
-         Chargement de : Data/Items/Images/axes01.png
          
          Chargement du systeme de particules : Data/Particule_system/human_bones.ps.hs
          Chargement de : Data/Particule_system/Images/human_bones.png
@@ -168,16 +239,12 @@
          Chargement du script : "Data/Scripts/AI/DemonicPriest.script.hs"
          
          Chargement de l'objet : Gown.item.hs
-         Chargement de : Data/Items/Images/gown.png
          
          Chargement de l'objet : Ring.item.hs
-         Chargement de : Data/Items/Images/Ring1.png
          
          Chargement de l'objet : Necklage.item.hs
-         Chargement de : Data/Items/Images/Necklage01.png
          
          Chargement de l'objet : Unique_boot.item.hs
-         Chargement de : Data/Items/Images/Boot.png
          
          Chargement de l'objet : Ceremonial_dagger.item.hs
          Chargement de : Data/Items/Images/Dagger.png
@@ -201,10 +268,8 @@
          Chargement du script : "Data/Scripts/AI/standard.script.hs"
          
          Chargement de l'objet : Small_sword.item.hs
-         Chargement de : Data/Items/Images/swords01.png
          
          Chargement de l'objet : Small_shield.item.hs
-         Chargement de : Data/Items/Images/shield01.png
          
          Chargement de l'objet : Small_sword_divin.item.hs
          Chargement de : Data/Entities/Monsters/PantinMorbide/Sword/Sword.rs.hs terminé
@@ -217,15 +282,12 @@
          Chargement du script : "Data/Scripts/AI/standard.script.hs"
          
          Chargement de l'objet : Two_hand_sword.item.hs
-         Chargement de : Data/Items/Images/TwoHand01Sword.png
          
          Chargement de l'objet : Katzbalger.item.hs
          
          Chargement de l'objet : Helmet.item.hs
-         Chargement de : Data/Items/Images/helmet01.png
          
          Chargement de l'objet : Chainmail.item.hs
-         Chargement de : Data/Items/Images/armor01.png
          Chargement de : Data/Entities/Monsters/PantinMorbide/Guardian/Guardian.rs.hs terminé
          
          Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Arquebuse/Arquebuse.rs.hs
@@ -237,6 +299,7 @@
          Chargement du script : "Data/Scripts/AI/shooter.script.hs"
          
          Chargement de l'objet : Arquebuse.item.hs
+         Chargement de : Data/Items/Images/Arquebuse.png
          
          Chargement de l'objet : Coal.item.hs
          Chargement de : Data/Entities/Monsters/PantinMorbide/Arquebuse/Arquebuse.rs.hs terminé
@@ -262,7 +325,6 @@
          Chargement de l'objet : Small_sword.item.hs
          
          Chargement de l'objet : Armband.item.hs
-         Chargement de : Data/Items/Images/Brassards.png
          
          Chargement de l'objet : Small_sword_divin.item.hs
          
@@ -350,6 +412,7 @@
          Chargement de l'objet : Ceremonial_dagger.item.hs
          
          Chargement de l'objet : Crossbow.item.hs
+         Chargement de : Data/Items/Images/crossbow01.png
          
          Chargement de l'objet : Crossbow.item.hs
          
@@ -368,7 +431,144 @@
          Chargement de : Data/Entities/AmbientSound/Raven.rs.hs terminé
          /Lectures des monstres.
          
+         Une map des entités est déjà existante.
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Coal.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Necklage.item.hs
+         
+         Chargement de l'objet : Ring.item.hs
+         
+         Chargement de l'objet : Ring.item.hs
+         
+         Chargement de l'objet : Armor.item.hs
+         
+         Chargement de l'objet : Armor.item.hs
+         
+         Chargement de l'objet : Armor.item.hs
+         
+         Chargement de l'objet : Chainmail.item.hs
+         
+         Chargement de l'objet : Chainmail.item.hs
+         
+         Chargement de l'objet : Boot.item.hs
+         
+         Chargement de l'objet : Boot.item.hs
+         
+         Chargement de l'objet : Boot.item.hs
+         
+         Chargement de l'objet : Armband.item.hs
+         
+         Chargement de l'objet : Armband.item.hs
+         
+         Chargement de l'objet : Armband.item.hs
+         
+         Chargement de l'objet : Helmet.item.hs
+         
+         Chargement de l'objet : Helmet.item.hs
+         
+         Chargement de l'objet : Helmet.item.hs
+         
+         Chargement de l'objet : Small_shield.item.hs
+         
+         Chargement de l'objet : Small_shield.item.hs
+         
+         Chargement de l'objet : Small_shield.item.hs
+         
+         Chargement de l'objet : Great_shield.item.hs
+         
+         Chargement de l'objet : Small_sword.item.hs
+         
+         Chargement de l'objet : Small_sword.item.hs
+         
+         Chargement de l'objet : Small_sword.item.hs
+         
+         Chargement de l'objet : Long_sword.item.hs
+         
+         Chargement de l'objet : Dagger.item.hs
+         
+         Chargement de l'objet : Dagger.item.hs
+         
+         Chargement de l'objet : Dagger.item.hs
+         
+         Chargement de l'objet : Ceremonial_dagger.item.hs
+         
+         Chargement de l'objet : Ceremonial_dagger.item.hs
+         
+         Chargement de l'objet : Ceremonial_dagger.item.hs
+         
+         Chargement de l'objet : Crossbow.item.hs
+         
+         Chargement de l'objet : Crossbow.item.hs
+         
+         Chargement de l'objet : Crossbow.item.hs
+         
+         Chargement de l'objet : Two_hand_sword.item.hs
+         
+         Chargement de l'objet : Two_hand_sword.item.hs
+         
+         Chargement de l'objet : Two_hand_sword.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
          /Lectures des événements.
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
          /Lectures des cases.
          Chargement de la map terminé.
          
@@ -376,15 +576,18 @@
          ---------------------------------------------------------------------------------
          EVENEMENT : Changement de map
          ---------------------------------------------------------------------------------
-         Chargement de : Data/Loading_screens/Plaines2.png
+         Chargement de : Data/Loading_screens/Crypte2.png
          
          Sauvegarde de la map : Data/Temp/ArableLand0.map.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
          Sauvegarde de la map_entite : Data/Temp/entites_map_ArableLand0.map.hs.emap.hs
          /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Coal.item.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Necklage.item.hs
@@ -412,7 +615,6 @@
          /Sauvegarde de Small_sword.item.hs
          /Sauvegarde de Small_sword.item.hs
          /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Long_sword.item.hs
          /Sauvegarde de Dagger.item.hs
          /Sauvegarde de Dagger.item.hs
          /Sauvegarde de Dagger.item.hs
@@ -423,6 +625,19 @@
          /Sauvegarde de Crossbow.item.hs
          /Sauvegarde de Crossbow.item.hs
          /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_axe.item.hs
@@ -609,105 +824,57 @@
          Effets détruits !
          Map détruite !
          
+         Chargements d'images diverses :
+         
          Sauvegarde du héro...
          Ouverture du fichier.
          /Ecriture des caracterstiques.
          /Ecriture des cases inventaires.
-         /Sauvegarde de Crossbow.item.hs
-         /Sauvegarde de Arquebuse.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Gown.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Unique_shield.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Small_sword_divin.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Unique_boot.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Small_sword_divin.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Crossbow/Crossbow.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoWeapons.rs.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/TwoHand.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_r.rs.hs
          
-         Chargement de la map : ArableLand2.map.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
+         
+         Chargement de la map : TerribleDungeon.map.hs
          /Lectures du nom.
          /Lectures des fonds.
          /Lectures des musiques.
          /Lectures des lumières.
-         Chargement de : Data/Landscapes/Misc/Banner.png
+         Chargement de : Data/Grounds/Dungeon/Dungeon_floor_new.png
+         Chargement de : Data/Landscapes/Stone_wall/Stone_wall2.png
+         Chargement de : Data/Landscapes/Dungeon/Chandelier.png
+         Chargement de : Data/Landscapes/Dungeon/CryptWall.png
+         Chargement de : Data/Landscapes/Dungeon/CryptBowl.png
+         Chargement de : Data/Landscapes/Dungeon/Pentagram.png
          /Lectures des tilesets.
-         Chargement de : Data/Landscapes/Grass/Wheat.png
+         Chargement de : Data/Landscapes/Grass/Web.png
          /Lectures des herbes.
-         
-         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Axe/Axe.rs.hs
-         Chargement du script : "Data/Scripts/AI/standard.script.hs"
-         
-         Chargement de l'objet : Small_axe.item.hs
-         Chargement de : Data/Entities/Monsters/PantinMorbide/Axe/Axe.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/Breakables/Barrel.rs.hs
-         Chargement de : Data/Sounds/31622__Srehpog__light_crate_smash1.wav
-         Chargement de : Data/Sounds/31623__Srehpog__light_crate_smash2.wav
-         Chargement de : Data/Sounds/31624__Srehpog__light_crate_smash3.wav
-         Chargement du script : "Data/Scripts/AI/breakable.script.hs"
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         Chargement de : Data/Entities/Breakables/Barrel.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/Breakables/ExplosiveBarrel.rs.hs
-         Chargement du script : "Data/Scripts/AI/inert.script.hs"
-         
-         Chargement de l'objet : Coal.item.hs
-         Chargement de : Data/Entities/Breakables/ExplosiveBarrel.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Warrior/Warrior.rs.hs
-         Chargement du script : "Data/Scripts/AI/standard.script.hs"
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Boot.item.hs
-         
-         Chargement de l'objet : Unique_boot.item.hs
-         
-         Chargement de l'objet : Ring.item.hs
-         
-         Chargement de l'objet : Necklage.item.hs
-         
-         Chargement de l'objet : Long_sword.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Small_sword_divin.item.hs
-         
-         Chargement de l'objet : Great_shield.item.hs
-         
-         Chargement de l'objet : Unique_shield.item.hs
-         
-         Chargement de l'objet : Dagger.item.hs
-         Chargement de : Data/Entities/Monsters/PantinMorbide/Warrior/Warrior.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/Monsters/DemonicPriest/DemonicPriest.rs.hs
-         Chargement du script : "Data/Scripts/AI/DemonicPriest.script.hs"
-         
-         Chargement de l'objet : Gown.item.hs
-         
-         Chargement de l'objet : Ring.item.hs
-         
-         Chargement de l'objet : Necklage.item.hs
-         
-         Chargement de l'objet : Unique_boot.item.hs
-         
-         Chargement de l'objet : Ceremonial_dagger.item.hs
-         
-         Chargement de l'objet : Unique_dagger.item.hs
-         Chargement de : Data/Entities/Monsters/DemonicPriest/DemonicPriest.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Axe/Servant.rs.hs
-         Chargement de : PantMorbHache-Frappe1.png
-         Chargement de : PantMorbHache-Frappe2.png
-         Chargement de : PantMorbHache-Frappe3.png
-         Chargement de : PantMorbHache-Frappe4.png
-         Chargement du script : "Data/Scripts/AI/standard.script.hs"
-         
-         Chargement de l'objet : Small_axe.item.hs
-         Chargement de : Data/Entities/Monsters/PantinMorbide/Axe/Servant.rs.hs terminé
          
          Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Sword/Sword.rs.hs
          Chargement du script : "Data/Scripts/AI/standard.script.hs"
@@ -780,491 +947,6 @@
          Chargement de l'objet : Necklage.item.hs
          Chargement de : Data/Entities/Monsters/Shadow/Shadow.rs.hs terminé
          
-         Chargement du monstre : Data/Entities/AmbientSound/Raven.rs.hs
-         Chargement du script : "Data/Scripts/AI/AmbientSound.script.hs"
-         Chargement de : Data/Entities/AmbientSound/Raven.rs.hs terminé
-         /Lectures des monstres.
-         
-         /Lectures des événements.
-         /Lectures des cases.
-         Chargement de la map terminé.
-         
-         
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/TwoHand.rs.hs
-         
-         ---------------------------------------------------------------------------------
-         EVENEMENT : Changement de map
-         ---------------------------------------------------------------------------------
-         
-         Sauvegarde de la map : Data/Temp/ArableLand2.map.hs
-         Sauvegarde de la map_entite : Data/Temp/entites_map_ArableLand2.map.hs.emap.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Gown.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Dagger.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Armband.item.hs
-         Sauvegarde terminée !
-         
-         Destruction de la map...
-         Destruction des cases...
-         0
-         1
-         2
-         3
-         4
-         5
-         6
-         7
-         8
-         9
-         10
-         11
-         12
-         13
-         14
-         15
-         16
-         17
-         18
-         19
-         20
-         21
-         22
-         23
-         24
-         25
-         26
-         27
-         28
-         29
-         30
-         31
-         32
-         33
-         34
-         35
-         36
-         37
-         38
-         39
-         40
-         41
-         42
-         43
-         44
-         45
-         46
-         47
-         48
-         49
-         50
-         51
-         52
-         53
-         54
-         55
-         56
-         57
-         58
-         59
-         60
-         61
-         62
-         63
-         64
-         65
-         66
-         67
-         68
-         69
-         70
-         71
-         72
-         73
-         74
-         75
-         76
-         77
-         78
-         79
-         80
-         81
-         82
-         83
-         84
-         85
-         86
-         87
-         88
-         89
-         90
-         91
-         92
-         93
-         94
-         95
-         96
-         97
-         98
-         99
-         100
-         101
-         102
-         103
-         104
-         105
-         106
-         107
-         108
-         109
-         110
-         111
-         112
-         113
-         114
-         115
-         116
-         117
-         118
-         119
-         120
-         121
-         122
-         123
-         124
-         125
-         126
-         127
-         128
-         129
-         130
-         131
-         132
-         133
-         134
-         135
-         136
-         137
-         138
-         139
-         140
-         141
-         142
-         143
-         144
-         145
-         146
-         147
-         148
-         149
-         150
-         151
-         -
-         0
-         1
-         2
-         3
-         4
-         5
-         6
-         7
-         8
-         9
-         10
-         11
-         12
-         13
-         14
-         15
-         16
-         17
-         18
-         19
-         20
-         21
-         22
-         23
-         24
-         25
-         26
-         27
-         28
-         29
-         30
-         31
-         32
-         33
-         34
-         35
-         36
-         37
-         38
-         39
-         40
-         41
-         42
-         43
-         44
-         45
-         46
-         47
-         48
-         49
-         50
-         51
-         52
-         53
-         54
-         55
-         56
-         57
-         58
-         59
-         60
-         61
-         62
-         63
-         64
-         65
-         66
-         67
-         68
-         69
-         70
-         71
-         72
-         73
-         74
-         75
-         76
-         77
-         78
-         79
-         80
-         81
-         82
-         83
-         84
-         85
-         86
-         87
-         88
-         89
-         90
-         91
-         92
-         93
-         94
-         95
-         96
-         97
-         98
-         99
-         100
-         101
-         102
-         103
-         104
-         105
-         106
-         107
-         108
-         109
-         110
-         111
-         112
-         113
-         114
-         115
-         116
-         117
-         118
-         119
-         120
-         121
-         122
-         123
-         124
-         125
-         126
-         127
-         128
-         129
-         130
-         131
-         132
-         133
-         134
-         135
-         136
-         137
-         138
-         139
-         140
-         141
-         142
-         143
-         144
-         145
-         146
-         147
-         148
-         149
-         150
-         151
-         -
-         Cases détruites !
-         Modèles monstres détruits !
-         Monstres détruits !
-         Evénements détruits !
-         Fonds détruits !
-         Chemins musiques détruits !
-         Projectiles détruits !
-         Effets détruits !
-         Map détruite !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Ecriture des cases inventaires.
-         /Sauvegarde de Crossbow.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Ecriture des objets.
-         Sauvegarde du héro terminée !
-         
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Crossbow/Crossbow.rs.hs
-         
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/TwoHand.rs.hs
-         
-         Chargement de la map : ArableLand0.map.hs
-         Map sauvée existante.
-         /Lectures du nom.
-         /Lectures des fonds.
-         /Lectures des musiques.
-         /Lectures des lumières.
-         /Lectures des tilesets.
-         /Lectures des herbes.
-         
-         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Axe/Axe.rs.hs
-         Chargement du script : "Data/Scripts/AI/standard.script.hs"
-         
-         Chargement de l'objet : Small_axe.item.hs
-         Chargement de : Data/Entities/Monsters/PantinMorbide/Axe/Axe.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/Breakables/ExplosiveBarrel.rs.hs
-         Chargement du script : "Data/Scripts/AI/inert.script.hs"
-         
-         Chargement de l'objet : Coal.item.hs
-         Chargement de : Data/Entities/Breakables/ExplosiveBarrel.rs.hs terminé
-         
          Chargement du monstre : Data/Entities/Monsters/DemonicPriest/DemonicPriest.rs.hs
          Chargement du script : "Data/Scripts/AI/DemonicPriest.script.hs"
          
@@ -1281,560 +963,10 @@
          Chargement de l'objet : Unique_dagger.item.hs
          Chargement de : Data/Entities/Monsters/DemonicPriest/DemonicPriest.rs.hs terminé
          
-         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Sword/Sword.rs.hs
-         Chargement du script : "Data/Scripts/AI/standard.script.hs"
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Small_sword_divin.item.hs
-         Chargement de : Data/Entities/Monsters/PantinMorbide/Sword/Sword.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Guardian/Guardian.rs.hs
-         Chargement du script : "Data/Scripts/AI/standard.script.hs"
-         
-         Chargement de l'objet : Two_hand_sword.item.hs
-         
-         Chargement de l'objet : Katzbalger.item.hs
-         
-         Chargement de l'objet : Helmet.item.hs
-         
-         Chargement de l'objet : Chainmail.item.hs
-         Chargement de : Data/Entities/Monsters/PantinMorbide/Guardian/Guardian.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Arquebuse/Arquebuse.rs.hs
-         Chargement du script : "Data/Scripts/AI/shooter.script.hs"
-         
-         Chargement de l'objet : Arquebuse.item.hs
-         
-         Chargement de l'objet : Coal.item.hs
-         Chargement de : Data/Entities/Monsters/PantinMorbide/Arquebuse/Arquebuse.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Warrior/Warrior.rs.hs
-         Chargement du script : "Data/Scripts/AI/standard.script.hs"
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Boot.item.hs
-         
-         Chargement de l'objet : Unique_boot.item.hs
-         
-         Chargement de l'objet : Ring.item.hs
-         
-         Chargement de l'objet : Necklage.item.hs
-         
-         Chargement de l'objet : Long_sword.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Small_sword_divin.item.hs
-         
-         Chargement de l'objet : Great_shield.item.hs
-         
-         Chargement de l'objet : Unique_shield.item.hs
-         
-         Chargement de l'objet : Dagger.item.hs
-         Chargement de : Data/Entities/Monsters/PantinMorbide/Warrior/Warrior.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/NPC/Trader.rs.hs
-         Chargement du script : "Data/Scripts/NPC/trader.script.hs"
-         
-         Chargement de l'objet : Necklage.item.hs
-         
-         Chargement de l'objet : Ring.item.hs
-         
-         Chargement de l'objet : Ring.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Chainmail.item.hs
-         
-         Chargement de l'objet : Chainmail.item.hs
-         
-         Chargement de l'objet : Chainmail.item.hs
-         
-         Chargement de l'objet : Boot.item.hs
-         
-         Chargement de l'objet : Boot.item.hs
-         
-         Chargement de l'objet : Boot.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Helmet.item.hs
-         
-         Chargement de l'objet : Helmet.item.hs
-         
-         Chargement de l'objet : Helmet.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Great_shield.item.hs
-         
-         Chargement de l'objet : Great_shield.item.hs
-         
-         Chargement de l'objet : Great_shield.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Long_sword.item.hs
-         
-         Chargement de l'objet : Long_sword.item.hs
-         
-         Chargement de l'objet : Long_sword.item.hs
-         
-         Chargement de l'objet : Dagger.item.hs
-         
-         Chargement de l'objet : Dagger.item.hs
-         
-         Chargement de l'objet : Dagger.item.hs
-         
-         Chargement de l'objet : Ceremonial_dagger.item.hs
-         
-         Chargement de l'objet : Ceremonial_dagger.item.hs
-         
-         Chargement de l'objet : Ceremonial_dagger.item.hs
-         
-         Chargement de l'objet : Crossbow.item.hs
-         
-         Chargement de l'objet : Crossbow.item.hs
-         
-         Chargement de l'objet : Crossbow.item.hs
-         
-         Chargement de l'objet : Two_hand_sword.item.hs
-         
-         Chargement de l'objet : Two_hand_sword.item.hs
-         
-         Chargement de l'objet : Two_hand_sword.item.hs
-         Chargement de : Data/Entities/NPC/Trader.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/AmbientSound/Raven.rs.hs
-         Chargement du script : "Data/Scripts/AI/AmbientSound.script.hs"
-         Chargement de : Data/Entities/AmbientSound/Raven.rs.hs terminé
-         /Lectures des monstres.
-         
-         Une map des entités est déjà existante.
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Necklage.item.hs
-         
-         Chargement de l'objet : Ring.item.hs
-         
-         Chargement de l'objet : Ring.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Chainmail.item.hs
-         
-         Chargement de l'objet : Chainmail.item.hs
-         
-         Chargement de l'objet : Boot.item.hs
-         
-         Chargement de l'objet : Boot.item.hs
-         
-         Chargement de l'objet : Boot.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Helmet.item.hs
-         
-         Chargement de l'objet : Helmet.item.hs
-         
-         Chargement de l'objet : Helmet.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Great_shield.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Long_sword.item.hs
-         
-         Chargement de l'objet : Long_sword.item.hs
-         
-         Chargement de l'objet : Dagger.item.hs
-         
-         Chargement de l'objet : Dagger.item.hs
-         
-         Chargement de l'objet : Dagger.item.hs
-         
-         Chargement de l'objet : Ceremonial_dagger.item.hs
-         
-         Chargement de l'objet : Ceremonial_dagger.item.hs
-         
-         Chargement de l'objet : Ceremonial_dagger.item.hs
-         
-         Chargement de l'objet : Crossbow.item.hs
-         
-         Chargement de l'objet : Crossbow.item.hs
-         
-         Chargement de l'objet : Crossbow.item.hs
-         
-         Chargement de l'objet : Two_hand_sword.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         /Lectures des événements.
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         /Lectures des cases.
-         Chargement de la map terminé.
-         
-         
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/TwoHand.rs.hs
-         
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Dagger/Dagger_r.rs.hs
-         Chargement de : PoignardAttenteDroite0.png
-         Chargement de : PoignardMarcheDroite0.png
-         Chargement de : PoignardAttaqueDroite0.png
-         
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Dagger/Dagger_l.rs.hs
-         Chargement de : PoignardAttenteGauche0.png
-         Chargement de : PoignardMarcheGauche0.png
-         Chargement de : PoignardAttaqueGauche0.png
-         
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/TwoWeapons.rs.hs
-         Chargement de : CourtisaneBaseMarche1Main0.png
-         Chargement de : CourtisaneBaseMarche1Main1.png
-         Chargement de : CourtisaneBaseAttaque2Main0.png
-         Chargement de : CourtisaneBaseAttaque2Main1.png
-         Chargement de : CourtisaneBaseAttaque2Main2.png
-         Chargement de : Data/Sounds/epee.wav
-         
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Crossbow/Crossbow.rs.hs
-         
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/TwoHand.rs.hs
-         
-         ---------------------------------------------------------------------------------
-         EVENEMENT : Changement de map
-         ---------------------------------------------------------------------------------
-         
-         Sauvegarde de la map : Data/Temp/ArableLand0.map.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         Sauvegarde de la map_entite : Data/Temp/entites_map_ArableLand0.map.hs.emap.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Dagger.item.hs
-         /Sauvegarde de Dagger.item.hs
-         /Sauvegarde de Dagger.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Crossbow.item.hs
-         /Sauvegarde de Crossbow.item.hs
-         /Sauvegarde de Crossbow.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         Sauvegarde terminée !
-         
-         Destruction de la map...
-         Destruction des cases...
-         0
-         1
-         2
-         3
-         4
-         5
-         6
-         7
-         8
-         9
-         10
-         11
-         12
-         13
-         14
-         15
-         16
-         17
-         18
-         19
-         20
-         21
-         22
-         23
-         24
-         25
-         26
-         27
-         28
-         29
-         30
-         31
-         32
-         33
-         34
-         35
-         36
-         37
-         38
-         39
-         40
-         41
-         42
-         43
-         44
-         45
-         46
-         47
-         48
-         49
-         50
-         51
-         52
-         53
-         54
-         55
-         56
-         57
-         58
-         59
-         60
-         61
-         62
-         63
-         64
-         65
-         66
-         67
-         68
-         69
-         70
-         71
-         72
-         73
-         74
-         75
-         76
-         77
-         78
-         79
-         -
-         0
-         1
-         2
-         3
-         4
-         5
-         6
-         7
-         8
-         9
-         10
-         11
-         12
-         13
-         14
-         15
-         16
-         17
-         18
-         19
-         20
-         21
-         22
-         23
-         24
-         25
-         26
-         27
-         28
-         29
-         30
-         31
-         32
-         33
-         34
-         35
-         36
-         37
-         38
-         39
-         40
-         41
-         42
-         43
-         44
-         45
-         46
-         47
-         48
-         49
-         50
-         51
-         52
-         53
-         54
-         55
-         56
-         57
-         58
-         59
-         60
-         61
-         62
-         63
-         64
-         65
-         66
-         67
-         68
-         69
-         70
-         71
-         72
-         73
-         74
-         75
-         76
-         77
-         78
-         79
-         -
-         Cases détruites !
-         Modèles monstres détruits !
-         Monstres détruits !
-         Evénements détruits !
-         Fonds détruits !
-         Chemins musiques détruits !
-         Projectiles détruits !
-         Effets détruits !
-         Map détruite !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Ecriture des cases inventaires.
-         /Sauvegarde de Crossbow.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Ecriture des objets.
-         Sauvegarde du héro terminée !
-         
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Crossbow/Crossbow.rs.hs
-         
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/TwoHand.rs.hs
-         
-         Chargement de la map : ArableLand2.map.hs
-         Map sauvée existante.
-         /Lectures du nom.
-         /Lectures des fonds.
-         /Lectures des musiques.
-         /Lectures des lumières.
-         /Lectures des tilesets.
-         /Lectures des herbes.
-         
-         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Axe/Axe.rs.hs
-         Chargement du script : "Data/Scripts/AI/standard.script.hs"
-         
-         Chargement de l'objet : Small_axe.item.hs
-         Chargement de : Data/Entities/Monsters/PantinMorbide/Axe/Axe.rs.hs terminé
-         
          Chargement du monstre : Data/Entities/Breakables/Barrel.rs.hs
+         Chargement de : Data/Sounds/31622__Srehpog__light_crate_smash1.wav
+         Chargement de : Data/Sounds/31623__Srehpog__light_crate_smash2.wav
+         Chargement de : Data/Sounds/31624__Srehpog__light_crate_smash3.wav
          Chargement du script : "Data/Scripts/AI/breakable.script.hs"
          
          Chargement de l'objet : Small_axe.item.hs
@@ -1848,824 +980,49 @@
          Chargement de l'objet : Coal.item.hs
          Chargement de : Data/Entities/Breakables/ExplosiveBarrel.rs.hs terminé
          
-         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Warrior/Warrior.rs.hs
-         Chargement du script : "Data/Scripts/AI/standard.script.hs"
+         Chargement du monstre : Data/Entities/Breakables/Coffre1.rs.hs
+         Chargement de : Coffre1.png
+         Chargement du script : "Data/Scripts/AI/breakable.script.hs"
+         
+         Chargement de l'objet : Armband.item.hs
          
          Chargement de l'objet : Armor.item.hs
          
          Chargement de l'objet : Boot.item.hs
          
-         Chargement de l'objet : Unique_boot.item.hs
-         
-         Chargement de l'objet : Ring.item.hs
-         
-         Chargement de l'objet : Necklage.item.hs
-         
-         Chargement de l'objet : Long_sword.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Small_sword_divin.item.hs
+         Chargement de l'objet : Chainmail.item.hs
          
          Chargement de l'objet : Great_shield.item.hs
          
-         Chargement de l'objet : Unique_shield.item.hs
-         
-         Chargement de l'objet : Dagger.item.hs
-         Chargement de : Data/Entities/Monsters/PantinMorbide/Warrior/Warrior.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/Monsters/DemonicPriest/DemonicPriest.rs.hs
-         Chargement du script : "Data/Scripts/AI/DemonicPriest.script.hs"
-         
-         Chargement de l'objet : Gown.item.hs
-         
-         Chargement de l'objet : Ring.item.hs
-         
-         Chargement de l'objet : Necklage.item.hs
-         
-         Chargement de l'objet : Unique_boot.item.hs
-         
-         Chargement de l'objet : Ceremonial_dagger.item.hs
-         
-         Chargement de l'objet : Unique_dagger.item.hs
-         Chargement de : Data/Entities/Monsters/DemonicPriest/DemonicPriest.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Axe/Servant.rs.hs
-         Chargement du script : "Data/Scripts/AI/standard.script.hs"
-         
-         Chargement de l'objet : Small_axe.item.hs
-         Chargement de : Data/Entities/Monsters/PantinMorbide/Axe/Servant.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Sword/Sword.rs.hs
-         Chargement du script : "Data/Scripts/AI/standard.script.hs"
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Small_sword_divin.item.hs
-         Chargement de : Data/Entities/Monsters/PantinMorbide/Sword/Sword.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Guardian/Guardian.rs.hs
-         Chargement du script : "Data/Scripts/AI/standard.script.hs"
-         
-         Chargement de l'objet : Two_hand_sword.item.hs
+         Chargement de l'objet : Helmet.item.hs
          
          Chargement de l'objet : Katzbalger.item.hs
          
-         Chargement de l'objet : Helmet.item.hs
-         
-         Chargement de l'objet : Chainmail.item.hs
-         Chargement de : Data/Entities/Monsters/PantinMorbide/Guardian/Guardian.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Arquebuse/Arquebuse.rs.hs
-         Chargement du script : "Data/Scripts/AI/shooter.script.hs"
-         
-         Chargement de l'objet : Arquebuse.item.hs
-         
-         Chargement de l'objet : Coal.item.hs
-         Chargement de : Data/Entities/Monsters/PantinMorbide/Arquebuse/Arquebuse.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Warrior/Warrior.rs.hs
-         Chargement du script : "Data/Scripts/AI/standard.script.hs"
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Boot.item.hs
-         
-         Chargement de l'objet : Unique_boot.item.hs
-         
-         Chargement de l'objet : Ring.item.hs
-         
-         Chargement de l'objet : Necklage.item.hs
-         
          Chargement de l'objet : Long_sword.item.hs
          
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Small_sword_divin.item.hs
-         
-         Chargement de l'objet : Great_shield.item.hs
-         
-         Chargement de l'objet : Unique_shield.item.hs
-         
-         Chargement de l'objet : Dagger.item.hs
-         Chargement de : Data/Entities/Monsters/PantinMorbide/Warrior/Warrior.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/Monsters/Shadow/Shadow.rs.hs
-         Chargement du script : "Data/Scripts/AI/shadow.script.hs"
+         Chargement de l'objet : Necklage.item.hs
          
          Chargement de l'objet : Ring.item.hs
          
-         Chargement de l'objet : Necklage.item.hs
-         Chargement de : Data/Entities/Monsters/Shadow/Shadow.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/AmbientSound/Raven.rs.hs
-         Chargement du script : "Data/Scripts/AI/AmbientSound.script.hs"
-         Chargement de : Data/Entities/AmbientSound/Raven.rs.hs terminé
-         /Lectures des monstres.
-         
-         Une map des entités est déjà existante.
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Two_hand_sword.item.hs
-         
-         Chargement de l'objet : Helmet.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Boot.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Arquebuse.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Boot.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Two_hand_sword.item.hs
-         
-         Chargement de l'objet : Helmet.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
          Chargement de l'objet : Small_shield.item.hs
          
          Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Great_shield.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Great_shield.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Great_shield.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Boot.item.hs
-         
-         Chargement de l'objet : Necklage.item.hs
-         
-         Chargement de l'objet : Long_sword.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Great_shield.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Gown.item.hs
-         
-         Chargement de l'objet : Ring.item.hs
          
          Chargement de l'objet : Ceremonial_dagger.item.hs
          
-         Chargement de l'objet : Small_axe.item.hs
+         Chargement de l'objet : Small_sword_divin.item.hs
          
-         Chargement de l'objet : Small_axe.item.hs
+         Chargement de l'objet : Two_hand_sword.item.hs
          
-         Chargement de l'objet : Ring.item.hs
+         Chargement de l'objet : Unique_boot.item.hs
          
-         Chargement de l'objet : Boot.item.hs
+         Chargement de l'objet : Unique_shield.item.hs
          
-         Chargement de l'objet : Armband.item.hs
+         Chargement de l'objet : Unique_dagger.item.hs
+         Chargement de : Data/Entities/Breakables/Coffre1.rs.hs terminé
+         /Lectures des monstres.
          
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Boot.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Ring.item.hs
-         
-         Chargement de l'objet : Great_shield.item.hs
-         
-         Chargement de l'objet : Great_shield.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Coal.item.hs
-         
-         Chargement de l'objet : Arquebuse.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Arquebuse.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Coal.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Great_shield.item.hs
-         
-         Chargement de l'objet : Coal.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Coal.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Boot.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Boot.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Great_shield.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Great_shield.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Great_shield.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Boot.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Dagger.item.hs
-         
-         Chargement de l'objet : Boot.item.hs
-         
-         Chargement de l'objet : Long_sword.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
          /Lectures des événements.
          /Lectures des cases.
          Chargement de la map terminé.
          
-         
-         Sauvegarde de la map : Data/Temp/ArableLand2.map.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Helmet.item.hs
-         Sauvegarde de la map_entite : Data/Temp/entites_map_ArableLand2.map.hs.emap.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Gown.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Dagger.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Armband.item.hs
-         Sauvegarde terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Ecriture des cases inventaires.
-         /Sauvegarde de Crossbow.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Ecriture des objets.
-         Sauvegarde du héro terminée !
-         
-         Fermeture des contextes effectuée avec succès.
-         Destruction du héro ...
-         Destruction de l'inventaire.
-         Destruction de la save.
-         Destruction des cases de l'inventaire.
-         Destruction du héro terminée.
-         
-         Destruction de la map...
-         Destruction des cases...
-         0
-         1
-         2
-         3
-         4
-         5
-         6
-         7
-         8
-         9
-         10
-         11
-         12
-         13
-         14
-         15
-         16
-         17
-         18
-         19
-         20
-         21
-         22
-         23
-         24
-         25
-         26
-         27
-         28
-         29
-         30
-         31
-         32
-         33
-         34
-         35
-         36
-         37
-         38
-         39
-         40
-         41
-         42
-         43
-         44
-         45
-         46
-         47
-         48
-         49
-         50
-         51
-         52
-         53
-         54
-         55
-         56
-         57
-         58
-         59
-         60
-         61
-         62
-         63
-         64
-         65
-         66
-         67
-         68
-         69
-         70
-         71
-         72
-         73
-         74
-         75
-         76
-         77
-         78
-         79
-         80
-         81
-         82
-         83
-         84
-         85
-         86
-         87
-         88
-         89
-         90
-         91
-         92
-         93
-         94
-         95
-         96
-         97
-         98
-         99
-         100
-         101
-         102
-         103
-         104
-         105
-         106
-         107
-         108
-         109
-         110
-         111
-         112
-         113
-         114
-         115
-         116
-         117
-         118
-         119
-         120
-         121
-         122
-         123
-         124
-         125
-         126
-         127
-         128
-         129
-         130
-         131
-         132
-         133
-         134
-         135
-         136
-         137
-         138
-         139
-         140
-         141
-         142
-         143
-         144
-         145
-         146
-         147
-         148
-         149
-         150
-         151
-         -
-         0
-         1
-         2
-         3
-         4
-         5
-         6
-         7
-         8
-         9
-         10
-         11
-         12
-         13
-         14
-         15
-         16
-         17
-         18
-         19
-         20
-         21
-         22
-         23
-         24
-         25
-         26
-         27
-         28
-         29
-         30
-         31
-         32
-         33
-         34
-         35
-         36
-         37
-         38
-         39
-         40
-         41
-         42
-         43
-         44
-         45
-         46
-         47
-         48
-         49
-         50
-         51
-         52
-         53
-         54
-         55
-         56
-         57
-         58
-         59
-         60
-         61
-         62
-         63
-         64
-         65
-         66
-         67
-         68
-         69
-         70
-         71
-         72
-         73
-         74
-         75
-         76
-         77
-         78
-         79
-         80
-         81
-         82
-         83
-         84
-         85
-         86
-         87
-         88
-         89
-         90
-         91
-         92
-         93
-         94
-         95
-         96
-         97
-         98
-         99
-         100
-         101
-         102
-         103
-         104
-         105
-         106
-         107
-         108
-         109
-         110
-         111
-         112
-         113
-         114
-         115
-         116
-         117
-         118
-         119
-         120
-         121
-         122
-         123
-         124
-         125
-         126
-         127
-         128
-         129
-         130
-         131
-         132
-         133
-         134
-         135
-         136
-         137
-         138
-         139
-         140
-         141
-         142
-         143
-         144
-         145
-         146
-         147
-         148
-         149
-         150
-         151
-         -
-         Cases détruites !
-         Modèles monstres détruits !
-         Monstres détruits !
-         Evénements détruits !
-         Fonds détruits !
-         Chemins musiques détruits !
-         Projectiles détruits !
-         Effets détruits !
-         Map détruite !
-         Destruction du menu ...
-         
-         Sauvegarde de la configuration
-         
-         Destruction des moteurs
-         
-         EXIT_SUCCESS

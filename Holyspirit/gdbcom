@@ -1,0 +1,22 @@
+echo --------------------------------------------------------------
+echo A debugging session for Holyspirit_debug.exe has been started.\nPlease note that SIGTRAP signals have been disabled.\nAlso be aware that some informations will be lost.
+echo --------------------------------------------------------------
+handle SIGTRAP nostop noprint nopass
+file Holyspirit_debug.exe
+run
+echo Program crashed, showing informations and killing the exe...
+echo \nWHERE---------------------------------------------------------------------------\n
+where
+echo \nLOCALS--------------------------------------------------------------------------\n
+info locals
+echo \nTHREADS-------------------------------------------------------------------------\n
+info threads
+echo \nSTACK---------------------------------------------------------------------------\n
+info stack
+echo \nARGS----------------------------------------------------------------------------\n
+info args
+echo \nFRAME---------------------------------------------------------------------------\n
+#info frame
+echo WARNING: info frame disabled !
+kill
+quit
