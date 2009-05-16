@@ -47,7 +47,7 @@ class Jeu
 
     Menu menu;
     EventManager eventManager;
-    Map map;
+    Map *map;
     Hero hero;
     sf::Clock Clock;
     sf::SoundBuffer bufferSonMort;

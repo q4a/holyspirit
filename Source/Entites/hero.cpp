@@ -20,10 +20,10 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef HEROCPP
 #define HEROCPP
 
-#include "Hero.h"
-#include "../Globale.h"
+#include "hero.h"
+#include "../globale.h"
 
-#include <iostream.h>
+#include <iostream>
 #include <fstream>
 
 #include <SFML/System.hpp>
@@ -151,12 +151,12 @@ void Hero::Sauvegarder()
         if(configuration->debug)
             console->Ajouter("Ouverture du fichier.");
 
-        std::string temp;
+        std::string temp=m_personnage.getCaracteristique().nom;
         char caractere;
 
-        int n = m_personnage.getCaracteristique().nom.size()+1;
+        int n = temp.size()+1;
         fichier.write((char *)&n, sizeof(int));
-        fichier.write(m_personnage.getCaracteristique().nom.c_str(), n);
+        fichier.write(temp.c_str(), n);
 
         n = m_cheminClasse.size()+1;
         fichier.write((char *)&n, sizeof(int));
@@ -244,6 +244,7 @@ void Classe::Charger(string chemin)
 {
     emplacements.clear();
     equipementParDefaut.clear();
+
 
     ifstream fichier;
     fichier.open(chemin.c_str(), ios::in);
@@ -855,9 +856,10 @@ void Hero::Charger()
 
     m_classe.Charger(m_cheminClasse);
 
-    m_caseInventaire.resize(m_classe.position_contenu_inventaire.h , std::vector<bool> ());
-        for(int i=0;i<m_classe.position_contenu_inventaire.h;++i)
-            m_caseInventaire[i].resize(m_classe.position_contenu_inventaire.w, 0);
+    m_caseInventaire.clear();
+
+    m_caseInventaire.resize(m_classe.position_contenu_inventaire.h , std::vector<bool> (m_classe.position_contenu_inventaire.w,false));
+
 
     GenererGrille();
 
@@ -901,6 +903,9 @@ void Hero::Charger()
 
     m_caracteristiques.vie=m_caracteristiques.maxVie;
     m_caracteristiques.foi=m_caracteristiques.maxFoi;
+
+    if(configuration->debug)
+        console->Ajouter("/Chargement du héro terminé");
 }
 
 
@@ -1366,7 +1371,6 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
                 }
                 else
                 {
-
                     if(trader[i].m_equipe>=0&&trader[i].m_equipe<(int)m_classe.emplacements.size())
                     {
                         sprite.Resize(m_classe.emplacements[trader[i].m_equipe].position.w*configuration->Resolution.w/800,m_classe.emplacements[trader[i].m_equipe].position.h*configuration->Resolution.h/600);
@@ -1380,7 +1384,7 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
                         sprite.SetX((m_classe.emplacements[trader[i].m_equipe].position.x)*configuration->Resolution.w/800);
                         sprite.SetY((m_classe.emplacements[trader[i].m_equipe].position.y)*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
                         if(m_objetEnMain==-1&&positionSouris.x>m_classe.emplacements[trader[i].m_equipe].position.x*configuration->Resolution.x/800&&positionSouris.x<(m_classe.emplacements[trader[i].m_equipe].position.x+m_classe.emplacements[trader[i].m_equipe].position.w)*configuration->Resolution.x/800&&positionSouris.y>m_classe.emplacements[trader[i].m_equipe].position.y*configuration->Resolution.y/600&&positionSouris.y<(m_classe.emplacements[trader[i].m_equipe].position.y+m_classe.emplacements[trader[i].m_equipe].position.h)*configuration->Resolution.y/600)
-                            trader[i].AfficherCaracteristiques(positionSouris,m_caracteristiques);
+                            trader[i].AfficherCaracteristiques(positionSouris,m_caracteristiques,(5-(float)m_caracteristiques.charisme/100));
                     }
                 }
 
@@ -1531,7 +1535,7 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
              &&caseVisee.y>=trader[i].getPosition().y&&caseVisee.y<=trader[i].getPosition().y+trader[i].getTaille().y-1)
                  {
                     positionSouris.y-=32*configuration->Resolution.h/600;
-                    trader[i].AfficherCaracteristiques(positionSouris,m_caracteristiques);
+                    trader[i].AfficherCaracteristiques(positionSouris,m_caracteristiques,(5-(float)m_caracteristiques.charisme/100));
                  }
     }
 
@@ -1928,9 +1932,9 @@ bool Hero::prendreEnMain(coordonnee positionSouris,std::vector<Objet> &trader)
             for(int z=0;z<(int)trader.size();z++)
                 if(caseVisee.x>=trader[z].getPosition().x&&caseVisee.x<trader[z].getPosition().x+trader[z].getTaille().x
                  &&caseVisee.y>=trader[z].getPosition().y&&caseVisee.y<trader[z].getPosition().y+trader[z].getTaille().y)
-                     if(trader[z].getPrix()<=m_argent)
+                     if((float)trader[z].getPrix()*(5-(float)m_caracteristiques.charisme/100)<=m_argent)
                      {
-                        m_argent-=trader[z].getPrix();
+                        m_argent-=(float)trader[z].getPrix()*(5-(float)m_caracteristiques.charisme/100);
 
                         m_inventaire.push_back(trader[z]);
                         m_objetEnMain=m_inventaire.size()-1;

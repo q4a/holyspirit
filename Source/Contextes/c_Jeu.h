@@ -36,13 +36,22 @@ class c_Jeu : public Contexte
    // sf::View *camera;
 
     private:
+    void GererTemps(Jeu *jeu);
+    void Sauvegarder(Jeu *jeu);
+    void IA(Jeu *jeu);
+    void Deplacements(Jeu *jeu);
+    void Animation(Jeu *jeu);
+    void Lumieres(Jeu *jeu);
+    void Evenements(Jeu *jeu);
+    void Affichage(Jeu *jeu);
+    void FPS(Jeu *jeu);
 
 	bool continuer,lumiere,augmenter;
 	int nbrTourBoucle;
 	char chaine[10];
 	sf::String variableQuiNeSertARien,Version,Temps,fps,TourBoucle;
 
-	float tempsActuel,tempsPrecedent,tempsDepuisDerniereAnimation,tempsEcoule,tempsNbrTourBoucle,tempsEcouleDepuisDernierCalculLumiere,tempsEcouleDepuisDernierDeplacement,tempsEcouleDepuisDernierIA,tempsEcouleDepuisDernierAffichage,tempsEcouleDepuisFPS,tempsEffetMort,tempsSauvergarde;
+	float tempsActuel,tempsPrecedent,tempsDepuisDerniereAnimation,tempsEcoule,tempsNbrTourBoucle,tempsEcouleDepuisDernierCalculLumiere,tempsEcouleDepuisDernierCalculOmbre,tempsEcouleDepuisDernierDeplacement,tempsEcouleDepuisDernierIA,tempsEcouleDepuisDernierAffichage,tempsEcouleDepuisFPS,tempsEffetMort,tempsSauvergarde;
 	float alpha_map,alpha_sac;
 
 	float lowFPS;

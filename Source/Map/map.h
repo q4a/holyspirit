@@ -91,9 +91,9 @@ class Map
 	bool ramasserObjet(Hero *hero,bool enMain = false);
 	void AjouterObjet(Objet objet);
 
+	int AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coordonnee lanceur,int couche,float  vitesse,float decalageAngle,int degats,bool monstre,Tile *tile, int image);
+
 	coordonnee getDimensions();
-
-
 
 	void gererConditions(Jeu *jeu,Script *script,int noInstruction,int i, int j, int k,Hero *hero,float temps,Menu *menu);
 

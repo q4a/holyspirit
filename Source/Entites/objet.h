@@ -18,7 +18,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 
 
-#include<iostream.h>
+#include<iostream>
 #include "../constantes.h"
 #include <fstream>
 
@@ -48,9 +48,9 @@ class Objet
     Objet(std::string nom,int rarete);
     ~Objet();
 
-    Objet operator=(const Objet &objet);
+   // Objet operator=(const Objet &objet);
 
-    void AfficherCaracteristiques(coordonnee position,Caracteristique caract);
+    void AfficherCaracteristiques(coordonnee position,Caracteristique caract,float modPrix=1);
     void Charger(std::string chemin);
     void ChargerCaracteristiques(std::ifstream *fichier);
     void setChanceTrouver(int);

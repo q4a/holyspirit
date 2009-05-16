@@ -22,7 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef POSEH
 #define POSEH
 
-#include <iostream.h>
+#include <iostream>
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include "../constantes.h"
@@ -31,7 +31,7 @@ class Pose
 {
 	public:
 	Pose operator=(const Pose &Pose);
-	void Pose::setPose(coordonnee positionDansLImage,coordonnee centre,int animation,int son,int image,int attaque,int lum_intensite,float tempsAnimation,int ordre);
+	void setPose(coordonnee positionDansLImage,coordonnee centre,int animation,int son,int image,int attaque,int lum_intensite,float tempsAnimation,int ordre);
 	coordonnee getCoordonnee();
 	coordonnee getCentre();
 	int getAnimation();

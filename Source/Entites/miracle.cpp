@@ -21,7 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "miracle.h"
 #include "../globale.h"
 
-#include <iostream.h>
+#include <iostream>
 #include <fstream>
 
 using namespace std;
@@ -127,7 +127,7 @@ void Miracle::Charger(std::string chemin)
     		if(caractere=='*')
     		{
     			string cheminImage;
-                getline(fichier, cheminImage);
+                fichier>>cheminImage;
                 m_image.push_back(moteurGraphique->AjouterImage(cheminImage));
     		}
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
@@ -139,8 +139,7 @@ void Miracle::Charger(std::string chemin)
     		if(caractere=='*')
     		{
     		    string cheminDuSon;
-                getline(fichier, cheminDuSon);
-
+                fichier>>cheminDuSon;
                 m_sons.push_back(moteurSons->AjouterBuffer(cheminDuSon));
     		}
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }

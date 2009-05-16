@@ -21,7 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "moteurGraphique.h"
 #include "../globale.h"
 
-#include <iostream.h>
+#include <iostream>
 
 MoteurGraphique::MoteurGraphique()
 {
@@ -89,15 +89,12 @@ void MoteurGraphique::Charger()
             console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetBlur,1);
         else
             console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetBlur,0);
-        EffectBlur.SetTexture("framebuffer", NULL);
-
         if(!EffectMort.LoadFromFile(configuration->chemin_fx+configuration->nom_effetMort))
             console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetMort,1);
         else
             console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetMort,0);
 
         EffectMort.SetParameter("offset", 0);
-        EffectMort.SetTexture("framebuffer", NULL);
         EffectMort.SetParameter("color",1, 1, 1);
 
         if(!EffectContrastes.LoadFromFile(configuration->chemin_fx+configuration->nom_effetContrastes))
@@ -105,7 +102,6 @@ void MoteurGraphique::Charger()
         else
         {
             console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetContrastes,0);
-            EffectContrastes.SetTexture("framebuffer", NULL);
             EffectContrastes.SetParameter("color", 0.f, 0.f, 0.f);
         }
 
@@ -114,7 +110,6 @@ void MoteurGraphique::Charger()
         else
         {
             console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetNoir,0);
-            EffectNoir.SetTexture("framebuffer", NULL);
             EffectNoir.SetParameter("color", 0.f, 0.f, 0.f);
         }
         configuration->effetMort=0;

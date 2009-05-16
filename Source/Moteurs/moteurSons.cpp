@@ -18,10 +18,10 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 
 
-#include "MoteurSons.h"
-#include "../Globale.h"
+#include "moteurSons.h"
+#include "../globale.h"
 
-#include <iostream.h>
+#include <iostream>
 
 
 MoteurSons::MoteurSons()

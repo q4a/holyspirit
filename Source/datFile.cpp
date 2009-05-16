@@ -7,6 +7,11 @@
 
 #include "globale.h"
 
+#include <stdio.h>
+#include <string.h>
+
+
+
 cDAT::cDAT (void)
 {
     m_buffer = NULL;

@@ -18,9 +18,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 
 
-#include "Objet.h"
+#include "objet.h"
 
-#include "../Globale.h"
+#include "../globale.h"
 #include <fstream>
 
 using namespace std;
@@ -70,7 +70,7 @@ Objet::~Objet()
     m_cheminImageHero.clear();
 }
 
-Objet Objet::operator=(const Objet &objet)
+/*Objet Objet::operator=(const Objet &objet)
 {
 	m_type=objet.m_type;
 
@@ -107,7 +107,7 @@ Objet Objet::operator=(const Objet &objet)
 	m_IDClasse=objet.m_IDClasse;
 
     return *this;
-}
+}*/
 
 std::string Objet::getChemin(){return m_chemin;}
 std::string Objet::getNom(){return m_nom;}
@@ -827,15 +827,11 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
 
                 }while(caractere!='$');
 
-
-
                 fichier->get(caractere);
             }
             if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",m_chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
 
         }while(caractere!='$');
-
-
     }
 }
 
@@ -858,7 +854,7 @@ sf::String Objet::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee 
 }
 
 
-void Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract)
+void Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,float modPrix)
 {
     std::vector <sf::String> temp;
 
@@ -981,7 +977,7 @@ void Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract)
     }
 
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
-    sprintf(chaine,"Prix : %i",m_prix);
+    sprintf(chaine,"Prix : %i",(int)((float)m_prix*modPrix));
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
 
     if(position.x-tailleCadran.x-10<0)

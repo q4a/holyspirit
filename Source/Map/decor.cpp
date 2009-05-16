@@ -17,8 +17,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.*/
 
 
-#include "Decor.h"
-#include "../Globale.h"
+#include "decor.h"
+#include "../globale.h"
 
 Decor::Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe,int hauteur, int couche)
 {

@@ -52,7 +52,7 @@ void ModeleParticuleSysteme::Charger(std::string chemin)
     		if(caractere=='*')
             {
                 std::string m_cheminImage;
-                getline(fichier, m_cheminImage);
+                fichier>>m_cheminImage;
                 m_image=moteurGraphique->AjouterImage(m_cheminImage,-1);
             }
     		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Système de particules \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
@@ -65,7 +65,7 @@ void ModeleParticuleSysteme::Charger(std::string chemin)
     		if(caractere=='*')
             {
                 std::string m_cheminSon;
-                getline(fichier, m_cheminSon);
+                fichier>>m_cheminSon;
                 m_son=moteurSons->AjouterBuffer(m_cheminSon);
             }
     		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Système de particules \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }

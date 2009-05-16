@@ -1,10 +1,10 @@
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
-#include <iostream.h>
+#include <iostream>
 #include <fstream>
 
 #include "constantes.h"
-#include "Globale.h"
+#include "globale.h"
 
 /*
 extern "C"

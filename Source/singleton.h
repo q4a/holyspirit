@@ -1,4 +1,4 @@
-#include <iostream.h>
+#include <iostream>
 
 /// Script repris de : http://www.siteduzero.com/tutoriel-3-32923-la-classe-singleton.html
 /// Ecrit par : Davidbrcz

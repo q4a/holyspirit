@@ -22,8 +22,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <SFML/Graphics.hpp>
 #include <math.h>
 #include "eventManager.h"
-#include "../Globale.h"
-#include <iostream.h>
+#include "../globale.h"
+#include <iostream>
 
 using namespace sf;
 

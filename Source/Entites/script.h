@@ -21,7 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef SCRIPTH
 #define SCRIPTH
 
-#include <iostream.h>
+#include <iostream>
 #include "../constantes.h"
 
 struct Instruction

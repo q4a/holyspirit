@@ -23,7 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef TILESETH
 #define TILESETH
 
-#include <iostream.h>
+#include <iostream>
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
@@ -44,7 +44,7 @@ class Tileset
 	bool getCollisionTile(int tile);
 	int getAnimationTile(int tile);
 	int getSonTile(int tile);
-	Lumiere Tileset::getLumiereDuTile(int tile);
+	Lumiere getLumiereDuTile(int tile);
 	bool getOmbreDuTile(int tile);
 	bool getTransparentDuTile(int tile);
 	char getOrientationDuTile(int tile);

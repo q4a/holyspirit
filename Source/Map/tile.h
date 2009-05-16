@@ -23,7 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef TILEH
 #define TILEH
 
-#include <iostream.h>
+#include <iostream>
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include "../constantes.h"

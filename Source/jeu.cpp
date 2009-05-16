@@ -18,7 +18,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 
 #include "constantes.h"
-#include "Globale.h"
+#include "globale.h"
 #include "jeu.h"
 #include "datFile.h"
 
@@ -33,11 +33,12 @@ using namespace sf;
 Jeu::Jeu()
 {
     m_reset=false;
+    map=NULL;
 }
 
 void Jeu::Demarrer()
 {
-    moteurGraphique->createWindow();
+    map=new Map();
 
     //lireVideo("Data/Menus/Videos/Cinematique test 1-2");
 
@@ -68,9 +69,9 @@ void Jeu::Demarrer()
     this->m_display = true;
     while (this->m_run)
 	{
-	     eventManager.GererLesEvenements(&m_run,Clock.GetElapsedTime(),map.getDimensions());
+        eventManager.GererLesEvenements(&m_run,Clock.GetElapsedTime(),map->getDimensions());
 
-	    if(eventManager.getEvenement(Key::F1,"ET"))
+        if(eventManager.getEvenement(Key::F1,"ET"))
 	    {
             moteurGraphique->printscreen();
             eventManager.StopEvenement(Key::F1,"ET");
@@ -78,10 +79,10 @@ void Jeu::Demarrer()
 
 		this->m_contexte->Utiliser(this);
 		if(this->m_display)
-		    moteurGraphique->Afficher(this->map.getDimensions());
+		    moteurGraphique->Afficher(this->map->getDimensions());
 	}
 
-	this->map.Sauvegarder(&this->hero);
+	this->map->Sauvegarder(&this->hero);
 
 	if(m_reset)
         Reset();
@@ -91,6 +92,8 @@ void Jeu::Demarrer()
     Reset();
 
     this->m_contexte=NULL;
+
+    delete map;
 
     delete this->m_demarrage;
     delete this->m_jeu;

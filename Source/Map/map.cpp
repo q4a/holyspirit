@@ -17,9 +17,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.*/
 
 
-#include "Map.h"
+#include "map.h"
 
-#include <iostream.h>
+#include <iostream>
 #include <fstream>
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
@@ -30,8 +30,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 using namespace std;
 using namespace sf;
 
-#include "../Globale.h"
-#include "../Jeu.h"
+#include "../globale.h"
+#include "../jeu.h"
 
 Map::Map()
 {
@@ -1044,7 +1044,7 @@ void Map::AfficherSacInventaire(coordonnee positionSac,float decalage,coordonnee
                     if(!(z-m_defilerObjets==0&&m_defilerObjets>0)&&!((z-m_defilerObjets==hero->m_classe.position_sac_inventaire.h-1&&z+m_defilerObjets<=m_decor[1][positionSac.y][positionSac.x].getNombreObjets()+1)))
                     {
                         m_objetPointe=z;
-                        m_decor[1][positionSac.y][positionSac.x].getObjet(z)->AfficherCaracteristiques(positionSouris,hero->m_personnage.getCaracteristique());
+                        m_decor[1][positionSac.y][positionSac.x].getObjet(z)->AfficherCaracteristiques(positionSouris,hero->m_caracteristiques);
                     }
                  }
 
@@ -1414,7 +1414,7 @@ void Map::Afficher(int type,Hero *hero,coordonnee positionSouris,bool alt,float 
                     if(!(z-m_defilerObjets==0&&m_defilerObjets>0)&&!((z-m_defilerObjets==11&&z+m_defilerObjets<=m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getNombreObjets()+1)))
                     {
                         m_objetPointe=z;
-                        m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getObjet(z)->AfficherCaracteristiques(positionSouris,hero->m_personnage.getCaracteristique());
+                        m_decor[1][hero->getChercherSac().y][hero->getChercherSac().x].getObjet(z)->AfficherCaracteristiques(positionSouris,hero->m_caracteristiques);
                     }
                  }
 
@@ -1546,6 +1546,73 @@ bool Map::testEvenement(Jeu *jeu,float temps)
     return 1;
 }
 
+int Map::AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coordonnee lanceur,int couche,float  vitesse,float decalageAngle,int degats,bool monstre,Tile *tile, int image)
+{
+    m_projectile.push_back(Projectile ());
+
+    m_projectile.back().m_position.x=positionReel.x;
+    m_projectile.back().m_position.y=positionReel.y;
+
+    m_projectile.back().m_degats=degats;
+
+    m_projectile.back().m_monstre=monstre;
+
+    m_projectile.back().m_actif=true;
+
+    m_projectile.back().m_couche=couche;
+
+    coordonneeDecimal position,position2;
+
+    double m=atan2(cible.y-lanceur.y,cible.x-lanceur.x);
+
+    m+=decalageAngle;
+
+    position.x=cos(m)*vitesse/10;
+    position.y=sin(m)*vitesse/10;
+
+    m_projectile.back().m_vecteur=position;
+
+    m_projectile.back().m_rotationReelle=m;
+
+    position.x=(lanceur.x-lanceur.y);
+    position.y=(lanceur.x+lanceur.y)/2;
+
+    position2.x=(cible.x-cible.y);
+    position2.y=(cible.x+cible.y)/2;
+
+    m=atan2(position2.y-position.y,position2.x-position.x);
+
+    m+=decalageAngle;
+
+    m_projectile.back().m_rotation=m;
+
+    m_projectile.back().m_positionCase=lanceur;
+
+
+    m_projectile.back().m_positionImage= tile->getCoordonnee();
+    m_projectile.back().m_centre= tile->getCentre();
+    m_projectile.back().m_lumiere=tile->getLumiere();
+
+    m_projectile.back().m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(position.x*64,position.y*32),m_projectile.back().m_lumiere.intensite,m_projectile.back().m_lumiere.intensite,4,sf::Color(m_projectile.back().m_lumiere.rouge,m_projectile.back().m_lumiere.vert,m_projectile.back().m_lumiere.bleu));
+    m_projectile.back().m_image=image;
+    m_projectile.back().m_positionImage= tile->getCoordonnee();
+
+
+    if(couche>=0&&couche<2)
+        if(lanceur.y>=0&&lanceur.y<m_dimensions.y)
+            if(lanceur.x>=0&&lanceur.x<m_dimensions.x)
+            {
+                m_projectile.back().m_positionCase.x=lanceur.x;
+                m_projectile.back().m_positionCase.y=lanceur.y;
+                if(m_decor[1][lanceur.y][lanceur.x].getProjectile()!=-1)
+                    m_decor[0][lanceur.y][lanceur.x].setProjectile(m_projectile.size()-1);
+                else
+                    m_decor[1][lanceur.y][lanceur.x].setProjectile(m_projectile.size()-1);
+            }
+
+    return m_projectile.size()-1;
+}
+
 int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *hero,bool monstre,coordonnee lanceur, coordonnee cible,int couche=0)
 {
     couche=0;
@@ -1559,77 +1626,18 @@ int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
             if(continuer)
             if(modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_type==PROJECTILE&&entiteMiracle->m_infos[o].m_IDObjet==-1)
             {
-                m_projectile.push_back(Projectile ());
-
-                m_projectile.back().m_position.x=entiteMiracle->m_infos[o].m_position.x;
-                m_projectile.back().m_position.y=entiteMiracle->m_infos[o].m_position.y;
-
-                m_projectile.back().m_degats=0;
-
+                int degats=0,image=0;
                 for(int p=0;p<(int)modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien.size();p++)
                     if(modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]>=0&&modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]<(int)modeleMiracle->m_effets.size())
                         if(modeleMiracle->m_effets[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]].m_type==DEGATS)
-                            m_projectile.back().m_degats+=modeleMiracle->m_effets[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]].m_informations[0];
-
-                m_projectile.back().m_monstre=monstre;
-
-                m_projectile.back().m_actif=true;
-
-                m_projectile.back().m_couche=couche;
-
-                coordonneeDecimal position,position2;
-
-                double m=atan2(cible.y-lanceur.y,cible.x-lanceur.x);
-
-                m+=(float)modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[1]*M_PI/180;
-
-                position.x=cos(m)*modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[0]/10;
-                position.y=sin(m)*modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[0]/10;
-
-                m_projectile.back().m_vecteur=position;
-
-                m_projectile.back().m_rotationReelle=m;
-
-                position.x=(lanceur.x-lanceur.y);
-                position.y=(lanceur.x+lanceur.y)/2;
-
-                position2.x=(cible.x-cible.y);
-                position2.y=(cible.x+cible.y)/2;
-
-                m=atan2(position2.y-position.y,position2.x-position.x);
-
-                m+=(float)modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[1]*M_PI/180;
-
-                m_projectile.back().m_rotation=m;
-
-                m_projectile.back().m_positionCase=lanceur;
-
-
-                m_projectile.back().m_positionImage= modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getCoordonnee();
-                m_projectile.back().m_centre= modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getCentre();
-                m_projectile.back().m_lumiere=modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getLumiere();
-
-                m_projectile.back().m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(position.x*64,position.y*32),m_projectile.back().m_lumiere.intensite,m_projectile.back().m_lumiere.intensite,4,sf::Color(m_projectile.back().m_lumiere.rouge,m_projectile.back().m_lumiere.vert,m_projectile.back().m_lumiere.bleu));
+                            degats+=modeleMiracle->m_effets[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]].m_informations[0];
 
                 if(modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getImage()>=0&&modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getImage()<(int)modeleMiracle->m_image.size())
-                    m_projectile.back().m_image=modeleMiracle->m_image[modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getImage()];
-                m_projectile.back().m_positionImage= modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getCoordonnee();
+                    image=modeleMiracle->m_image[modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getImage()];
 
-                entiteMiracle->m_infos[o].m_IDObjet=m_projectile.size()-1;
-
+                entiteMiracle->m_infos[o].m_IDObjet=AjouterProjectile(entiteMiracle->m_infos[o].m_position,cible,lanceur,couche,modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[0],(float)modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[1]*M_PI/180,degats,monstre,&modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours],image);
                 entiteMiracle->m_infos[o].m_imageEnCours=0;
 
-                if(couche>=0&&couche<2)
-                    if(lanceur.y>=0&&lanceur.y<m_dimensions.y)
-                        if(lanceur.x>=0&&lanceur.x<m_dimensions.x)
-                        {
-                            m_projectile.back().m_positionCase.x=lanceur.x;
-                            m_projectile.back().m_positionCase.y=lanceur.y;
-                            if(m_decor[1][lanceur.y][lanceur.x].getProjectile()!=-1)
-                                m_decor[0][lanceur.y][lanceur.x].setProjectile(m_projectile.size()-1);
-                            else
-                                m_decor[1][lanceur.y][lanceur.x].setProjectile(m_projectile.size()-1);
-                        }
             }
 
             if(continuer)

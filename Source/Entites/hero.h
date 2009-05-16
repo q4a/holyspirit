@@ -23,7 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef HEROH
 #define HEROH
 
-#include <iostream.h>
+#include <iostream>
 #include <string>
 
 #include "personnage.h"

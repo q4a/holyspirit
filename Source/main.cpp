@@ -21,7 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
-#include <iostream.h>
+#include <iostream>
 
 #include <dirent.h>
 #include "main.h"
@@ -59,6 +59,8 @@ int main ( int argc, char** argv )
 	{
 	    ///Chargement de la configuration
         configuration->Charger();
+
+        moteurGraphique->createWindow();
 
         if(!sf::PostFX::CanUsePostFX())
             configuration->postFX=false;

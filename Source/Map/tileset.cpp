@@ -17,11 +17,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.*/
 
 
-#include "Tileset.h"
+#include "tileset.h"
 
-#include "../Globale.h"
+#include "../globale.h"
 
-#include <iostream.h>
+#include <iostream>
 #include <fstream>
 
 #include <SFML/System.hpp>
@@ -88,7 +88,7 @@ bool Tileset::Charger(std::string chemin)
     		if(caractere=='*')
     		{
     			string cheminImage;
-                getline(fichier, cheminImage);
+                fichier>>cheminImage;
                 m_image.push_back(moteurGraphique->AjouterImage(cheminImage));
     		}
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Tileset \" %s \" Invalide",cheminFinal.c_str());console->Ajouter(temp,1); caractere='$'; }
@@ -100,8 +100,7 @@ bool Tileset::Charger(std::string chemin)
     		if(caractere=='*')
     		{
     			string cheminDuSon;
-                getline(fichier, cheminDuSon);
-
+                fichier>>cheminDuSon;
                 m_sons.push_back(moteurSons->AjouterBuffer(cheminDuSon));
     		}
     		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Tileset \" %s \" Invalide",cheminFinal.c_str());console->Ajouter(temp,1); caractere='$'; }

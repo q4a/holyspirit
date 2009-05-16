@@ -19,7 +19,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 
 
-#include "Jeu.h"
+#include "jeu.h"
 #include "constantes.h"
 
 

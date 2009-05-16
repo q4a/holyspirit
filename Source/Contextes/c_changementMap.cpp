@@ -22,7 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "../globale.h"
 
-#include <iostream.h>
+#include <iostream>
 #include <fstream>
 
 #include <SFML/System.hpp>
@@ -54,9 +54,7 @@ void c_Chargement::setC_Chargement(std::string prochaineMap,coordonnee coordonne
 
     m_debut=debut;
 
-    char chemin[255];
     vector <string> cheminFond;
-
 
     cDAT reader;
     reader.Read(configuration->chemin_maps);
@@ -110,18 +108,18 @@ void c_Chargement::setC_Chargement(std::string prochaineMap,coordonnee coordonne
 void c_Chargement::Utiliser(Jeu *jeu)
 {
     jeu->m_display=true;
-    jeu->hero.placerCamera(jeu->map.getDimensions());
+    jeu->hero.placerCamera(jeu->map->getDimensions());
     //jeu->ecran.SetView(jeu->camera);
 
     if(configuration->Lumiere)
-        jeu->map.calculerOmbresEtLumieres();
+        jeu->map->calculerOmbresEtLumieres();
 
     temps_ecoule=0;
     temps_ecoule=jeu->Clock.GetElapsedTime();
     tempsEcouleDepuisDernierAffichage+=temps_ecoule;
     jeu->Clock.Reset();
 
-    jeu->eventManager.GererLesEvenements(&jeu->m_run,temps_ecoule,jeu->map.getDimensions());
+    jeu->eventManager.GererLesEvenements(&jeu->m_run,temps_ecoule,jeu->map->getDimensions());
 
     if(z>=49&&!augmenterNoir&&allerVersImageChargement)
     {
@@ -131,9 +129,13 @@ void c_Chargement::Utiliser(Jeu *jeu)
         moteurGraphique->ViderParticules();
 
         if(!m_debut)
-            jeu->map.Sauvegarder(&jeu->hero);
+            jeu->map->Sauvegarder(&jeu->hero);
 
-        jeu->map.Detruire();
+        //jeu->map->Detruire();
+        if(jeu->map!=NULL)
+            delete jeu->map;
+
+        jeu->map=new Map();
 
         jeu->hero.m_personnage.m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),224,384,16,sf::Color(255,255,255));
 
@@ -141,23 +143,23 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         jeu->hero.ChargerModele(true);
 
-        if(!jeu->map.Charger(m_nomProchaineMap,&jeu->hero))
+        if(!jeu->map->Charger(m_nomProchaineMap,&jeu->hero))
             console->Ajouter("CRITICAL ERROR"), throw  "CRITICAL ERROR";
 
         moteurGraphique->DecrementerImportance();
 
-        jeu->hero.placerCamera(jeu->map.getDimensions());
+        jeu->hero.placerCamera(jeu->map->getDimensions());
 
         coordonnee position;
-        position.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1+jeu->map.getDimensions().y)/5;
+        position.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1+jeu->map->getDimensions().y)/5;
         position.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
         Listener::SetGlobalVolume((float)configuration->volume);
         Listener::SetPosition(-position.x, 0, position.y);
         Listener::SetTarget(0, 0, 1);
-        jeu->map.musiquePlay(position);
+        jeu->map->musiquePlay(position);
 
         if(configuration->Lumiere)
-            jeu->map.calculerOmbresEtLumieres();
+            jeu->map->calculerOmbresEtLumieres();
 
         moteurGraphique->LightManager->GenerateWallShadow(moteurGraphique->m_angleOmbreSoleil,moteurGraphique->m_soleil);
 
@@ -193,11 +195,11 @@ void c_Chargement::Utiliser(Jeu *jeu)
     if(allerVersImageChargement&&z<49&&augmenterNoir||!allerVersImageChargement&&z>0&&!augmenterNoir)
     {
         //jeu->camera.Zoom(configuration->zoom);
-        jeu->map.setVolumeMusique((int)(z*(float)configuration->volume/50));
+        jeu->map->setVolumeMusique((int)(z*(float)configuration->volume/50));
         if(!m_debut&&augmenterNoir||!augmenterNoir)
         {
             coordonnee temp;
-            jeu->map.Afficher(1,&jeu->hero,temp,0);
+            jeu->map->Afficher(1,&jeu->hero,temp,0);
 
             if(configuration->Minimap)
                 jeu->menu.Afficher(2,255,&jeu->hero.m_classe);

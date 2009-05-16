@@ -18,10 +18,10 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 
 
-#include "Personnage.h"
-#include "../Globale.h"
+#include "personnage.h"
+#include "../globale.h"
 
-#include <iostream.h>
+#include <iostream>
 #include <fstream>
 #include <math.h>
 
@@ -276,6 +276,7 @@ int Personnage::getOrdre(Modele_Personnage *modele)
 
 void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,bool surbrillance)
 {
+    if(modele!=NULL)
     if(modele->m_pose.size()>0)
     if((int)(m_angle/45)>=0&&(int)(m_angle/45)<8)
     {
@@ -292,63 +293,65 @@ void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,boo
 
                 if((int)(angleOmbre/45)>=0&&(int)(angleOmbre/45)<(int)modele->m_pose[m_etat].size())
                     if(m_poseEnCours>=0&&m_poseEnCours<(int)modele->m_pose[m_etat][(int)(angleOmbre/45)].size())
-                    {
-                        sprite.SetImage(*moteurGraphique->getImage(modele->m_image[modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getImage()]));
-                        sprite.SetSubRect(IntRect(modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().x, modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().y, modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().x+modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().w, modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().y+modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().h));
+                        if(modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getImage()>=0&&modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getImage()<(int)modele->m_image.size())
+                        {
+                            sprite.SetImage(*moteurGraphique->getImage(modele->m_image[modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getImage()]));
+                            sprite.SetSubRect(IntRect(modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().x, modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().y, modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().x+modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().w, modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().y+modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().h));
 
-                        sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
+                            sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
 
-                        sprite.SetCenter(modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCentre().x,modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCentre().y);
+                            sprite.SetCenter(modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCentre().x,modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCentre().y);
 
-                        sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE/*+dimensionsMap.y*64*/));
-                        sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+32 -m_positionPixel.h);
+                            sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
+                            sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+32 -m_positionPixel.h);
 
-                        sprite.SetScale(m_caracteristique.modificateurTaille, m_caracteristique.modificateurTaille*(100-(float)moteurGraphique->m_soleil.hauteur)/50);
-                        sprite.SetRotation(moteurGraphique->m_angleOmbreSoleil);
-                        moteurGraphique->AjouterCommande(&sprite,9,1);
-                        sprite.SetCenter(0,0);
-                        sprite.SetScale(1, 1);
-                        sprite.SetRotation(0);
-                    }
+                            sprite.SetScale(m_caracteristique.modificateurTaille, m_caracteristique.modificateurTaille*(100-(float)moteurGraphique->m_soleil.hauteur)/50);
+                            sprite.SetRotation(moteurGraphique->m_angleOmbreSoleil);
+                            moteurGraphique->AjouterCommande(&sprite,9,1);
+                            sprite.SetCenter(0,0);
+                            sprite.SetScale(1, 1);
+                            sprite.SetRotation(0);
+                        }
         }
 
         if((int)(m_angle/45)>=0&&(int)(m_angle/45)<(int)modele->m_pose[m_etat].size())
             if(m_poseEnCours>=0&&m_poseEnCours<(int)modele->m_pose[m_etat][(int)(m_angle/45)].size())
-            {
-                sprite.SetImage(*moteurGraphique->getImage(modele->m_image[modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()]));
-
-                sprite.SetCenter(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().x,modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().y);
-
-                sprite.SetSubRect(IntRect(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h));
-
-                sprite.FlipX(false);
-
-
-                sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE/*+dimensionsMap.y*64*/));
-                sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
-
-
-                sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
-
-
-                 if(m_porteeLumineuse.intensite>0)
-                    sprite.SetColor(sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu, 255));
-                else
-                    sprite.SetColor(sf::Color(255,255,255, 255));
-
-                if(sprite.GetPosition().x+sprite.GetSize().x>=moteurGraphique->m_camera.GetRect().Left
-                &&sprite.GetPosition().x-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().x<moteurGraphique->m_camera.GetRect().Right
-                &&sprite.GetPosition().y+sprite.GetSize().y>=moteurGraphique->m_camera.GetRect().Top
-                &&sprite.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)
+                if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()>=0&&modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()<(int)modele->m_image.size())
                 {
-                    moteurGraphique->AjouterCommande(&sprite,10,1);
-                    if(surbrillance)
+                    sprite.SetImage(*moteurGraphique->getImage(modele->m_image[modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()]));
+
+                    sprite.SetCenter(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().x,modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().y);
+
+                    sprite.SetSubRect(IntRect(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h));
+
+                    sprite.FlipX(false);
+
+
+                    sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE/*+dimensionsMap.y*64*/));
+                    sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
+
+
+                    sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
+
+
+                     if(m_porteeLumineuse.intensite>0)
+                        sprite.SetColor(sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu, 255));
+                    else
+                        sprite.SetColor(sf::Color(255,255,255, 255));
+
+                    if(sprite.GetPosition().x+sprite.GetSize().x>=moteurGraphique->m_camera.GetRect().Left
+                    &&sprite.GetPosition().x-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().x<moteurGraphique->m_camera.GetRect().Right
+                    &&sprite.GetPosition().y+sprite.GetSize().y>=moteurGraphique->m_camera.GetRect().Top
+                    &&sprite.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)
                     {
-                        sprite.SetBlendMode(sf::Blend::Add);
                         moteurGraphique->AjouterCommande(&sprite,10,1);
+                        if(surbrillance)
+                        {
+                            sprite.SetBlendMode(sf::Blend::Add);
+                            moteurGraphique->AjouterCommande(&sprite,10,1);
+                        }
                     }
                 }
-            }
     }
 }
 void Personnage::regenererVie(float vie)

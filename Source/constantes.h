@@ -45,7 +45,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include <cmath>
 #include <utility>
-#include <iostream.h>
+#include <iostream>
 #include <fstream>
 #include <vector>
 

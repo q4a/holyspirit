@@ -24,7 +24,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef MOTEURGRAPHIQUEH
 #define MOTEURGRAPHIQUEH
 
-#include "map.h"
+#include "../Map/map.h"
 #include "commande.h"
 #include "moteurParticule.h"
 #include "lightManager.h"

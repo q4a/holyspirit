@@ -20,7 +20,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "liste_case.h"
 #include "../globale.h"
 
-#include <iostream.h>
+#include <iostream>
 
 liste_case::~liste_case()
 {

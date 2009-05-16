@@ -18,7 +18,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "case.h"
 
-#include <iostream.h>
+#include <iostream>
 
 coordonnee Case::getPosition()
 {

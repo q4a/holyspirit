@@ -20,9 +20,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "c_jeu.h"
 #include "../jeu.h"
 
-#include "../Globale.h"
+#include "../globale.h"
 
-#include <iostream.h>
+#include <iostream>
 #include <fstream>
 
 #include <SFML/System.hpp>

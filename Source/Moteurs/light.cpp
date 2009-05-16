@@ -17,7 +17,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 
 
-#include <iostream.h>
+#include <iostream>
 #include <math.h>
 #include "light.h"
 #include "../globale.h"
