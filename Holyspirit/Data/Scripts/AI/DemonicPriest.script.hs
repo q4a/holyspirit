@@ -67,5 +67,6 @@ main
 	if variable * 0 * 1
 	then
 		useMiracle * 2
+		setState * 4
 	end
 end 

@@ -72,6 +72,11 @@
          Chargement de l'objet : Small_sword.item.hs
          
          Chargement de l'objet : Unique_shield.item.hs
+         
+         Chargement de l'objet : Armor.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         Chargement de : Data/Items/Images/axes01.png
          /Lectures des objets.
          Chargement de : Data/Menus/Inventory.png
          Chargement de : Data/Menus/Trader.png
@@ -80,11 +85,11 @@
          Chargement de : Data/Menus/Faith_orb.png
          Chargement de : Data/Menus/Coupe2.png
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoWeapons.rs.hs
-         Chargement de : CroiseMailleAttente1Main0.png
-         Chargement de : CroiseMailleMarche1Epee0.png
-         Chargement de : CroiseMailleFrappeSans2Arme0.png
-         Chargement de : CroiseMailleFrappeSans2Arme1.png
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Matelasse/TwoWeapons.rs.hs
+         Chargement de : CroiseMatelasseAttente1Main0.png
+         Chargement de : CroiseMatelasseMarche1Epee0.png
+         Chargement de : CroiseMatelasseFrappeSans2Arme0.png
+         Chargement de : CroiseMatelasseFrappeSans2Arme1.png
          Chargement de : Data/Sounds/9906__Snoman__grass3.wav
          Chargement de : Data/Sounds/epee.wav
          
@@ -157,17 +162,18 @@
          /Sauvegarde de Small_shield.item.hs
          /Sauvegarde de Small_sword.item.hs
          /Sauvegarde de Unique_shield.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Small_axe.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoWeapons.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Matelasse/TwoWeapons.rs.hs
          
          Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_r.rs.hs
          
          Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
          
          Chargement de la map : ArableLand0.map.hs
-         Map sauvée existante.
          /Lectures du nom.
          /Lectures des fonds.
          /Lectures des musiques.
@@ -201,7 +207,6 @@
          Chargement du script : "Data/Scripts/AI/standard.script.hs"
          
          Chargement de l'objet : Small_axe.item.hs
-         Chargement de : Data/Items/Images/axes01.png
          
          Chargement du systeme de particules : Data/Particule_system/human_bones.ps.hs
          Chargement de : Data/Particule_system/Images/human_bones.png
@@ -226,6 +231,8 @@
          Chargement de : PretreAttaque0.png
          Chargement de : PretreAttaque1.png
          Chargement de : PretreMeurt0.png
+         Chargement de : PretreInvocation0.png
+         Chargement de : PretreInvocation1.png
          Chargement du script : "Data/Scripts/AI/DemonicPriest.script.hs"
          
          Chargement de l'objet : Gown.item.hs
@@ -421,186 +428,10 @@
          Chargement de : Data/Entities/AmbientSound/Raven.rs.hs terminé
          /Lectures des monstres.
          
-         Une map des entités est déjà existante.
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Coal.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Ring.item.hs
-         
-         Chargement de l'objet : Ring.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Chainmail.item.hs
-         
-         Chargement de l'objet : Chainmail.item.hs
-         
-         Chargement de l'objet : Boot.item.hs
-         
-         Chargement de l'objet : Boot.item.hs
-         
-         Chargement de l'objet : Boot.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Helmet.item.hs
-         
-         Chargement de l'objet : Helmet.item.hs
-         
-         Chargement de l'objet : Helmet.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Great_shield.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Long_sword.item.hs
-         
-         Chargement de l'objet : Long_sword.item.hs
-         
-         Chargement de l'objet : Dagger.item.hs
-         
-         Chargement de l'objet : Dagger.item.hs
-         
-         Chargement de l'objet : Dagger.item.hs
-         
-         Chargement de l'objet : Ceremonial_dagger.item.hs
-         
-         Chargement de l'objet : Ceremonial_dagger.item.hs
-         
-         Chargement de l'objet : Ceremonial_dagger.item.hs
-         
-         Chargement de l'objet : Crossbow.item.hs
-         
-         Chargement de l'objet : Crossbow.item.hs
-         
-         Chargement de l'objet : Crossbow.item.hs
-         
-         Chargement de l'objet : Two_hand_sword.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
          /Lectures des événements.
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
          /Lectures des cases.
          Chargement de la map terminé.
          
-         
-         Sauvegarde de la map : Data/Temp/ArableLand0.map.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         Sauvegarde de la map_entite : Data/Temp/entites_map_ArableLand0.map.hs.emap.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Dagger.item.hs
-         /Sauvegarde de Dagger.item.hs
-         /Sauvegarde de Dagger.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Crossbow.item.hs
-         /Sauvegarde de Crossbow.item.hs
-         /Sauvegarde de Crossbow.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         Sauvegarde terminée !
          
          Sauvegarde du héro...
          Ouverture du fichier.
@@ -623,6 +454,8 @@
          /Sauvegarde de Small_shield.item.hs
          /Sauvegarde de Small_sword.item.hs
          /Sauvegarde de Unique_shield.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Small_axe.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
