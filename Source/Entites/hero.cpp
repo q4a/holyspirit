@@ -151,7 +151,7 @@ void Hero::Sauvegarder()
         if(configuration->debug)
             console->Ajouter("Ouverture du fichier.");
 
-        std::string temp=m_personnage.getCaracteristique().nom;
+        std::string temp=m_personnage.getNom();
         char caractere;
 
         int n = temp.size()+1;
@@ -1266,6 +1266,9 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
             if(m_inventaire[i].getRarete()==CRAFT)
                 sprite.SetColor(sf::Color(128,64,0,128));
 
+            if(!m_inventaire[i].utilisable(m_caracteristiques,m_classe.ID))
+                sprite.SetColor(sf::Color(sprite.GetColor().r*0.25,sprite.GetColor().g*0.25,sprite.GetColor().b*0.25,128));
+
             sprite.Resize(m_inventaire[i].getTaille().x*32*configuration->Resolution.w/800,m_inventaire[i].getTaille().y*32*configuration->Resolution.h/600);
 
             if(m_inventaire[i].m_equipe==-1)
@@ -1355,6 +1358,9 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
                     sprite.SetColor(sf::Color(224,0,0,128));
                 if(trader[i].getRarete()==CRAFT)
                     sprite.SetColor(sf::Color(128,64,0,128));
+
+                if(!trader[i].utilisable(m_caracteristiques,m_classe.ID))
+                    sprite.SetColor(sf::Color(sprite.GetColor().r*0.25,sprite.GetColor().g*0.25,sprite.GetColor().b*0.25,128));
 
                 sprite.Resize(trader[i].getTaille().x*32*configuration->Resolution.w/800,trader[i].getTaille().y*32*configuration->Resolution.h/600);
 
@@ -2030,11 +2036,7 @@ bool Hero::equiper(int numero, int emplacement)
     {
         ok=false;
 
-        if(m_inventaire[m_objetEnMain].m_requirement.force<=m_caracteristiques.force)
-        if(m_inventaire[m_objetEnMain].m_requirement.dexterite<=m_caracteristiques.dexterite)
-        if(m_inventaire[m_objetEnMain].m_requirement.charisme<=m_caracteristiques.charisme)
-        if(m_inventaire[m_objetEnMain].m_requirement.vitalite<=m_caracteristiques.vitalite)
-        if(m_inventaire[m_objetEnMain].m_requirement.piete<=m_caracteristiques.piete)
+        if(m_inventaire[m_objetEnMain].utilisable(m_caracteristiques,m_classe.ID))
             ok=true;
 
         if(ok)
@@ -2043,18 +2045,6 @@ bool Hero::equiper(int numero, int emplacement)
             for(int i=0;i<(int)m_inventaire[m_objetEnMain].m_emplacement.size();i++)
                 if(m_inventaire[m_objetEnMain].m_emplacement[i]==m_classe.emplacements[emplacement].emplacement)
                     ok=true;
-        }
-
-        if(ok)
-        {
-            ok=false;
-
-            for(int i=0;i<(int)m_inventaire[m_objetEnMain].m_IDClasse.size();i++)
-                if(m_inventaire[m_objetEnMain].m_IDClasse[i]==m_classe.ID)
-                    ok=true;
-
-            if(m_inventaire[m_objetEnMain].m_IDClasse.empty())
-                ok=true;
         }
 
         if(ok)

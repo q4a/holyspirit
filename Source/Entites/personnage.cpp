@@ -194,8 +194,8 @@ bool Modele_Personnage::Charger(string chemin)
 
     	}while(caractere!='$');
 
-    	 Pose poseTemp;
-    	 m_pose.resize(NOMBRE_ETAT,vector<vector<Pose> >(0,vector<Pose>(0,poseTemp)));
+    	 /*Pose poseTemp;
+    	 m_pose.resize(NOMBRE_ETAT,vector<vector<Pose> >(0,vector<Pose>(0,Pose ())));
 
     	for(int i=0;i<NOMBRE_ETAT;i++)
     	{
@@ -247,7 +247,76 @@ bool Modele_Personnage::Charger(string chemin)
                     if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0; }
                 }while(caractere!='$');
     	    }
-    	}
+    	}*/
+
+    	int etat=-1;
+
+    	do
+    	{
+    	    fichier->get(caractere);
+
+    	    if(caractere=='*')
+    	    {
+    	        fichier->seekg(-1,ios::cur);
+
+                etat++;
+                m_pose.push_back(vector<vector<Pose> >(0,vector<Pose>(0,Pose ())));
+
+                fichier->get(caractere);
+
+                for(int j=0;j<8;j++)
+                {
+                    m_pose[etat].push_back(vector<Pose> (0,Pose ()));
+                    do
+                    {
+                        if(caractere=='*')
+                        {
+                            coordonnee position={-1,-1,0,0},centre={-1000,-1000,-1,-1};
+                            int animation=0,son=-1,image=0,attaque=-1,lumiere=m_porteeLumineuse.intensite,ordre=0;
+                            float tempsAnimation=0.075;
+
+                            do
+                            {
+                                fichier->get(caractere);
+                                switch (caractere)
+                                {
+                                    case 'x': *fichier>>position.x; break;
+                                    case 'y': *fichier>>position.y; break;
+                                    case 'w': *fichier>>position.w; break;
+                                    case 'h': *fichier>>position.h; break;
+                                    case 'a': *fichier>>animation; break;
+                                    case 't': *fichier>>tempsAnimation; break;
+                                    case 's': *fichier>>son; break;
+                                    case 'i': *fichier>>image; break;
+                                    case 'd': *fichier>>attaque; break;
+                                    case 'l': *fichier>>lumiere; break;
+
+                                    case 'o': *fichier>>ordre; break;
+
+                                    case 'c': fichier->get(caractere); if(caractere=='x') *fichier>>centre.x; else *fichier>>centre.y; break;
+                                }
+                                if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
+                            }while(caractere!='$');
+
+                            if(centre.x==-1000)
+                                centre.x=position.w/2;
+                            if(centre.y==-1000)
+                                centre.y=position.h-32;
+
+                            m_pose[etat][j].push_back(Pose ());
+                            m_pose[etat][j].back().setPose(position,centre,animation,son,image,attaque,lumiere,tempsAnimation,ordre);
+                            fichier->get(caractere);
+                            if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }
+                        }
+                        fichier->get(caractere);
+                        if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0; }
+                    }while(caractere!='$');
+                }
+                fichier->get(caractere);
+    	    }
+    	}while(caractere!='$');
+
+
     	fichier->close();
     }
     else
@@ -618,57 +687,60 @@ int Personnage::animer(Modele_Personnage *modele,float temps,bool *explosif,coor
 
     float tempsAnimation=0.075;
 
-    if(modele->m_pose.size()>0)
-        tempsAnimation = modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getTempsAnimation();
-
-    if(modele->m_pose.size()>0&&tempsAnimation>0)
-    while(m_animation>=tempsAnimation)
+    if(m_etat>=0&&m_etat<(int)modele->m_pose.size())
     {
-        coordonnee position;
-        position.x=(m_positionCase.x-m_positionCase.y-1)/5;
-        position.y=(m_positionCase.x+m_positionCase.y)/5;
+        if(modele->m_pose.size()>0)
+            tempsAnimation = modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getTempsAnimation();
 
-        m_poseEnCours=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAnimation();
-
-        if(m_poseEnCours>=(int)modele->m_pose[m_etat][(int)(m_angle/45)].size())
-        m_poseEnCours=0;
-
-        //if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getSon()>=0)
-        modele->jouerSon(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getSon(),position,positionHero);
-
-        m_animation-=tempsAnimation;
-        tempsAnimation = modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getTempsAnimation();
-
-        if(m_monstre)
+        if(modele->m_pose.size()>0&&tempsAnimation>0)
+        while(m_animation>=tempsAnimation)
         {
-            if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==0)
-                retour+=(rand()%(m_caracteristique.degatsMax-m_caracteristique.degatsMin+1)+m_caracteristique.degatsMin);
-        }
-        else
-        {
-            //if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==0)
-            if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()>retour)
-                retour=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque();
-        }
+            coordonnee position;
+            position.x=(m_positionCase.x-m_positionCase.y-1)/5;
+            position.y=(m_positionCase.x+m_positionCase.y)/5;
 
-        if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==1)
-            frappeEnCours=false;
+            m_poseEnCours=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAnimation();
 
-        *explosif=modele->m_explosif;
+            if(m_poseEnCours>=(int)modele->m_pose[m_etat][(int)(m_angle/45)].size())
+            m_poseEnCours=0;
 
-        if(m_monstre)
-        {
-            if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite()!=-1)
-                m_porteeLumineuse.intensite=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite();
-            else if(m_porteeLumineuseBasique.intensite>=0)
-                m_porteeLumineuse=m_porteeLumineuseBasique;
+            //if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getSon()>=0)
+            modele->jouerSon(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getSon(),position,positionHero);
 
-            float inte=m_porteeLumineuse.intensite;
-            if(inte>255)
-                inte=255;
+            m_animation-=tempsAnimation;
+            tempsAnimation = modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getTempsAnimation();
 
-            moteurGraphique->LightManager->SetIntensity(m_light,(int)inte);
-            moteurGraphique->LightManager->SetRadius(m_light,(int)m_porteeLumineuse.intensite*2);
+            if(m_monstre)
+            {
+                if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==0)
+                    retour+=(rand()%(m_caracteristique.degatsMax-m_caracteristique.degatsMin+1)+m_caracteristique.degatsMin);
+            }
+            else
+            {
+                //if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==0)
+                if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()>retour)
+                    retour=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque();
+            }
+
+            if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==1)
+                frappeEnCours=false;
+
+            *explosif=modele->m_explosif;
+
+            if(m_monstre)
+            {
+                if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite()!=-1)
+                    m_porteeLumineuse.intensite=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite();
+                else if(m_porteeLumineuseBasique.intensite>=0)
+                    m_porteeLumineuse=m_porteeLumineuseBasique;
+
+                float inte=m_porteeLumineuse.intensite;
+                if(inte>255)
+                    inte=255;
+
+                moteurGraphique->LightManager->SetIntensity(m_light,(int)inte);
+                moteurGraphique->LightManager->SetRadius(m_light,(int)m_porteeLumineuse.intensite*2);
+            }
         }
     }
     return retour;
@@ -677,7 +749,7 @@ int Personnage::animer(Modele_Personnage *modele,float temps,bool *explosif,coor
 void Personnage::frappe(coordonnee direction,coordonnee position)
 {
 
-    if(!frappeEnCours)
+    if(m_etat<2)
     {
         m_etat=2;
         m_poseEnCours=0;
@@ -719,7 +791,12 @@ void Personnage::setPorteeLumineuse(Lumiere  lumiere){m_porteeLumineuse=lumiere;
 void Personnage::setCaracteristique(Caracteristique caracteristique){m_caracteristique=caracteristique;}
 void Personnage::setProchaineCase(coordonnee position){m_cheminFinal=position;}
 void Personnage::setVitesse(float vitesse){m_caracteristique.vitesse=vitesse;}
+
 void Personnage::setEtat(int etat){m_etat=etat,m_poseEnCours=0,frappeEnCours=false;}
+void Personnage::setJustEtat(int etat){m_etat=etat,m_poseEnCours=0;}
+
+
+
 void Personnage::setPose(int pose){m_poseEnCours=pose;}
 void Personnage::setAngle(int angle){m_angle=angle;}
 void Personnage::setErreurPathfinding(bool erreur){m_erreurPathfinding=erreur;}
@@ -797,6 +874,8 @@ coordonnee Personnage::getArrivee(){return m_arrivee;}
 
 Caracteristique Personnage::getCaracteristique(){return m_caracteristique;}
 Caracteristique Modele_Personnage::getCaracteristique(){return m_caracteristique;}
+std::string Personnage::getNom(){return m_caracteristique.nom;}
+
 Lumiere Modele_Personnage::getPorteeLumineuse(){return m_porteeLumineuse;}
 Lumiere Personnage::getPorteeLumineuse(){return m_porteeLumineuse;}
 int Personnage::getEtat(){return m_etat;}

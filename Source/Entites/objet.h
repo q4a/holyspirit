@@ -60,6 +60,8 @@ class Objet
 
     void Generer(int bonus);
 
+    bool utilisable(Caracteristique caract,int IDClasse);
+
     std::string getChemin();
     std::string getNom();
     int getRarete();

@@ -366,7 +366,7 @@ bool Modele_Monstre::Charger(string chemin)
         }while(caractere!='$');
 
 
-        m_pose.resize(NOMBRE_ETAT,vector<vector<Pose> >(0,vector<Pose>(0, Pose ())));
+        /*m_pose.resize(NOMBRE_ETAT,vector<vector<Pose> >(0,vector<Pose>(0, Pose ())));
 
     	for(int i=0;i<NOMBRE_ETAT;i++)
     	{
@@ -416,7 +416,73 @@ bool Modele_Monstre::Charger(string chemin)
                     if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0; }
                 }while(caractere!='$');
     	    }
-    	}
+    	}*/
+
+    	int etat=-1;
+
+    	do
+    	{
+    	    fichier->get(caractere);
+
+    	    if(caractere=='*')
+    	    {
+    	        fichier->seekg(-1,ios::cur);
+
+                etat++;
+                m_pose.push_back(vector<vector<Pose> >(0,vector<Pose>(0,Pose ())));
+
+                fichier->get(caractere);
+
+                for(int j=0;j<8;j++)
+                {
+                    m_pose[etat].push_back(vector<Pose> (0,Pose ()));
+                    do
+                    {
+                        if(caractere=='*')
+                        {
+                            coordonnee position={-1,-1,0,0},centre={-1000,-1000,-1,-1};
+                            int animation=0,son=-1,image=0,attaque=-1,lumiere=m_porteeLumineuse.intensite,ordre=0;
+                            float tempsAnimation=0.075;
+
+                            do
+                            {
+                                fichier->get(caractere);
+                                switch (caractere)
+                                {
+                                    case 'x': *fichier>>position.x; break;
+                                    case 'y': *fichier>>position.y; break;
+                                    case 'w': *fichier>>position.w; break;
+                                    case 'h': *fichier>>position.h; break;
+                                    case 'a': *fichier>>animation; break;
+                                    case 't': *fichier>>tempsAnimation; break;
+                                    case 's': *fichier>>son; break;
+                                    case 'i': *fichier>>image; break;
+                                    case 'd': *fichier>>attaque; break;
+                                    case 'l': *fichier>>lumiere; break;
+
+                                    case 'c': fichier->get(caractere); if(caractere=='x') *fichier>>centre.x; else *fichier>>centre.y; break;
+                                }
+                                if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
+                            }while(caractere!='$');
+
+                            if(centre.x==-1000)
+                                centre.x=position.w/2;
+                            if(centre.y==-1000)
+                                centre.y=position.h-32;
+
+                            m_pose[etat][j].push_back(Pose ());
+                            m_pose[etat][j].back().setPose(position,centre,animation,son,image,attaque,lumiere,tempsAnimation,ordre);
+                            fichier->get(caractere);
+                            if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }
+                        }
+                        fichier->get(caractere);
+                        if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0; }
+                    }while(caractere!='$');
+                }
+                fichier->get(caractere);
+    	    }
+    	}while(caractere!='$');
+
     	fichier->close();
     }
     else

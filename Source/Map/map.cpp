@@ -981,7 +981,7 @@ void Map::Sauvegarder(Hero *hero)
     }
 
 
-    console->Ajouter("Sauvegarde terminée !");
+    console->Ajouter("Sauvegarde de la map terminée !");
 }
 
 
@@ -2220,10 +2220,16 @@ void Map::musiquePlay(coordonnee position)
                                 \
                                 if(m_monstre[m_decor[i][j][k].getMonstre()].m_miracleALancer==-1) \
                                     m_monstre[m_decor[i][j][k].getMonstre()].m_miracleALancer=numero;\
-                                if(m_monstre[m_decor[i][j][k].getMonstre()].getEtat()!=2) \
-                                    m_monstre[m_decor[i][j][k].getMonstre()].setEtat(2); \
+                                if(m_monstre[m_decor[i][j][k].getMonstre()].getEtat()<2)   \
+                                    m_monstre[m_decor[i][j][k].getMonstre()].setEtat(2);   \
                                 m_monstre[m_decor[i][j][k].getMonstre()].frappe(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee(),hero->m_personnage.getCoordonnee());   \
                             }
+
+#define SETSTATE(numero)  if(m_monstre[m_decor[i][j][k].getMonstre()].getEtat()!=numero) \
+                                m_monstre[m_decor[i][j][k].getMonstre()].setJustEtat(numero);
+
+
+
 
 #define PLAYSOUND(numero)   if(m_monstre[m_decor[i][j][k].getMonstre()].getModele()>=0&&m_monstre[m_decor[i][j][k].getMonstre()].getModele()<(int)m_ModeleMonstre.size()) \
                             { \
@@ -2269,7 +2275,7 @@ void Map::musiquePlay(coordonnee position)
                                             {   \
                                                 if(hero->m_personnage.enVie()<=0)   \
                                                     m_monstre[m_decor[i][j][k].getMonstre()].setVu(0);   \
-                                                if(m_monstre[m_decor[i][j][k].getMonstre()].getEtat()!=2)   \
+                                                if(m_monstre[m_decor[i][j][k].getMonstre()].getEtat()<2)   \
                                                     m_monstre[m_decor[i][j][k].getMonstre()].setEtat(2);   \
                                                 m_monstre[m_decor[i][j][k].getMonstre()].frappe(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee(),hero->m_personnage.getCoordonnee());  \
                                                 m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee());   \
@@ -2299,6 +2305,7 @@ void Map::musiquePlay(coordonnee position)
                                                 if(script->m_instructions[noInstruction].nom=="fight") { FIGHT() } \
                                                 if(script->m_instructions[noInstruction].nom=="evasion") { EVASION() } \
                                                 if(script->m_instructions[noInstruction].nom=="useMiracle") { USEMIRACLE(script->m_instructions[noInstruction].valeurs.at(0)) } \
+                                                if(script->m_instructions[noInstruction].nom=="setState") { SETSTATE(script->m_instructions[noInstruction].valeurs.at(0)) } \
                                                 if(script->m_instructions[noInstruction].nom=="shoot") { SHOOT() } \
                                                 if(script->m_instructions[noInstruction].nom=="randomDisplace") { RANDOMDISPLACE() } \
                                                 if(script->m_instructions[noInstruction].nom=="playSound") { PLAYSOUND(script->m_instructions[noInstruction].valeurs.at(0)) } \
@@ -2581,6 +2588,13 @@ bool Map::infligerDegats(int numeroMonstre, float degats,Menu *menu, Hero *hero,
 
         m_monstre[numeroMonstre].infligerDegats(degats);
 
+        for(int o=0;o<2;o++)
+            for(int x=m_monstre[numeroMonstre].getCoordonnee().x;x<10+m_monstre[numeroMonstre].getCoordonnee().x;x++)
+                for(int y=m_monstre[numeroMonstre].getCoordonnee().y;y<10+m_monstre[numeroMonstre].getCoordonnee().y;y++)
+                    if(x>=0&&y>=0&&x<m_dimensions.x&&y<m_dimensions.y)
+                        if(m_decor[o][y][x].getMonstre()>=0&&m_decor[o][y][x].getMonstre()<m_monstre.size())
+                            m_monstre[m_decor[o][y][x].getMonstre()].setVu(1);
+
         if(!m_monstre[numeroMonstre].enVie())
             if(m_monstreIllumine==numeroMonstre||hero->getMonstreVise()==numeroMonstre)
                 m_monstreIllumine=-1,hero->setMonstreVise(-1);
@@ -2665,7 +2679,6 @@ void Map::PousserMonstreCase(int numeroMonstre, coordonnee vecteur)
 
 bool Map::ramasserObjet(Hero *hero,bool enMain)
 {
-    cout<<m_objetPointe;
     coordonnee position;
 
     if(enMain)

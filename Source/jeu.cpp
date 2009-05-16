@@ -84,7 +84,7 @@ void Jeu::Demarrer()
 
 	this->map->Sauvegarder(&this->hero);
 
-	if(m_reset)
+	if(this->m_reset==true)
         Reset();
 
     this->hero.Sauvegarder();

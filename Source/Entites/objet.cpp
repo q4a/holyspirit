@@ -972,7 +972,7 @@ void Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,
         if(m_benedictions[i].type>=0&&m_benedictions[i].type<NOMBRE_BENEDICTION)
         {
             sprintf(chaine,"%s %i",configuration->text_benedictions[m_benedictions[i].type].c_str(),m_benedictions[i].info1);
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine,sf::Color(0,64,128)));
         }
     }
 
@@ -1012,6 +1012,22 @@ void Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,
     temp.clear();
 }
 
+bool Objet::utilisable(Caracteristique caract,int IDClasse)
+{
+    if(m_requirement.force<=caract.force)
+    if(m_requirement.dexterite<=caract.dexterite)
+    if(m_requirement.charisme<=caract.charisme)
+    if(m_requirement.vitalite<=caract.vitalite)
+    if(m_requirement.piete<=caract.piete)
+    {
+        for(int i=0;i<(int)m_IDClasse.size();i++)
+            if(m_IDClasse[i]==IDClasse)
+                return true;
+        if(m_IDClasse.empty())
+            return true;
+    }
+    return false;
+}
 
 
 

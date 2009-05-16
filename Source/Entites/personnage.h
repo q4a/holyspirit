@@ -96,6 +96,7 @@ class Personnage
 	void setArrivee(coordonnee arrivee);
 	void setMauvaiseArrivee(coordonnee arrivee);
 	void setEtat(int  etat);
+	void setJustEtat(int etat);
 	void setPose(int  pose);
 	void setAngle(int  angle);
 	void setVitesse(float vitesse);
@@ -112,6 +113,7 @@ class Personnage
 	int getPose();
 	Lumiere getPorteeLumineuse();
 	Caracteristique getCaracteristique();
+	std::string getNom();
 
 	int getOrdre(Modele_Personnage *modele);
 
