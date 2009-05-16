@@ -1485,6 +1485,14 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
         if(m_inventaire[m_objetEnMain].getRarete()==CRAFT)
             sprite.SetColor(sf::Color(128,64,0,128));
 
+        int emplacement=-1;
+        for(int k=0;k<(int)m_classe.emplacements.size();k++)
+            if(positionSouris.x>m_classe.emplacements[k].position.x*configuration->Resolution.x/800&&positionSouris.x<(m_classe.emplacements[k].position.x+m_classe.emplacements[k].position.w)*configuration->Resolution.x/800&&positionSouris.y>m_classe.emplacements[k].position.y*configuration->Resolution.y/600&&positionSouris.y<(m_classe.emplacements[k].position.y+m_classe.emplacements[k].position.h)*configuration->Resolution.y/600)
+               emplacement=k;
+
+        if(!possibleEquiper(emplacement))
+            sprite.SetColor(sf::Color(sprite.GetColor().r*0.25,sprite.GetColor().g*0.25,sprite.GetColor().b*0.25,128));
+
         if(positionSouris.x<m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800||positionSouris.x>m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800+32*m_classe.position_contenu_inventaire.w*configuration->Resolution.x/800||positionSouris.y<(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600||positionSouris.y>(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_inventaire.h*configuration->Resolution.y/600)
         {
             if(positionSouris.x>m_classe.position_sac_inventaire.x*configuration->Resolution.x/800&&positionSouris.x<(m_classe.position_sac_inventaire.x+m_classe.position_sac_inventaire.w)*configuration->Resolution.x/800&&positionSouris.y>m_classe.position_sac_inventaire.y*configuration->Resolution.y/600&&positionSouris.y<(m_classe.position_sac_inventaire.y+m_classe.position_sac_inventaire.h*20)*configuration->Resolution.x/600)
@@ -1506,12 +1514,6 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
 
         sprite.SetX(positionSouris.x*configuration->Resolution.w/configuration->Resolution.x - m_inventaire[m_objetEnMain].getTaille().x*32*configuration->Resolution.x/1600);
         sprite.SetY(positionSouris.y*configuration->Resolution.h/configuration->Resolution.y - m_inventaire[m_objetEnMain].getTaille().y*32*configuration->Resolution.y/1200);
-
-        /*if(positionSouris.x<m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800||positionSouris.x>m_classe.position_contenu_inventaire.x*configuration->Resolution.y/800+32*10*configuration->Resolution.x/800||positionSouris.y<m_classe.position_contenu_inventaire.y*configuration->Resolution.y/600||positionSouris.y>m_classe.position_contenu_inventaire.y*configuration->Resolution.y/600+32*10*configuration->Resolution.y/600)
-        {
-            sprite.SetX(positionSouris.x- m_inventaire[m_objetEnMain].getTaille().x*32*configuration->Resolution.x/1600);
-            sprite.SetY(positionSouris.y- m_inventaire[m_objetEnMain].getTaille().y*32*configuration->Resolution.y/1200);
-        }*/
 
         moteurGraphique->AjouterCommande(&sprite,19,0);
     }
@@ -1974,7 +1976,6 @@ bool Hero::prendreEnMain(coordonnee positionSouris,std::vector<Objet> &trader)
             {
                 if(positionSouris.x>m_classe.emplacements[k].position.x*configuration->Resolution.x/800&&positionSouris.x<(m_classe.emplacements[k].position.x+m_classe.emplacements[k].position.w)*configuration->Resolution.x/800&&positionSouris.y>m_classe.emplacements[k].position.y*configuration->Resolution.y/600&&positionSouris.y<(m_classe.emplacements[k].position.y+m_classe.emplacements[k].position.h)*configuration->Resolution.y/600)
                     equipe=true,equiper(m_objetEnMain,k);
-
             }
 
             if(!equipe&&m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
@@ -2026,6 +2027,15 @@ bool Hero::prendreEnMain(coordonnee positionSouris,std::vector<Objet> &trader)
     return 0;
 }
 
+bool Hero::possibleEquiper(int emplacement)
+{
+    if(m_inventaire[m_objetEnMain].utilisable(m_caracteristiques,m_classe.ID))
+        for(int i=0;i<(int)m_inventaire[m_objetEnMain].m_emplacement.size();i++)
+            if(m_inventaire[m_objetEnMain].m_emplacement[i]==m_classe.emplacements[emplacement].emplacement)
+                return true;
+    return false;
+}
+
 bool Hero::equiper(int numero, int emplacement)
 {
     GenererGrille();
@@ -2034,20 +2044,9 @@ bool Hero::equiper(int numero, int emplacement)
 
     if(m_objetEnMain>=0 && m_objetEnMain<(int)m_inventaire.size())
     {
-        ok=false;
+        ok=true;
 
-        if(m_inventaire[m_objetEnMain].utilisable(m_caracteristiques,m_classe.ID))
-            ok=true;
-
-        if(ok)
-        {
-            ok=false;
-            for(int i=0;i<(int)m_inventaire[m_objetEnMain].m_emplacement.size();i++)
-                if(m_inventaire[m_objetEnMain].m_emplacement[i]==m_classe.emplacements[emplacement].emplacement)
-                    ok=true;
-        }
-
-        if(ok)
+        if(possibleEquiper(emplacement))
         {
             for(int i=0;i<(int)m_inventaire.size();i++)
             {

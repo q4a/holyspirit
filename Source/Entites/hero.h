@@ -108,6 +108,8 @@ class Hero
 
 	Objet DeposerObjet();
 	bool prendreEnMain(coordonnee positionSouris,std::vector<Objet>&);
+
+	bool possibleEquiper(int emplacement);
 	bool equiper(int numero, int emplacement);
 	void AttribuerPositionObjet(coordonnee position,int numero);
 	//void LibererCases(int numero);

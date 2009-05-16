@@ -82,12 +82,12 @@ void Jeu::Demarrer()
 		    moteurGraphique->Afficher(this->map->getDimensions());
 	}
 
-	this->map->Sauvegarder(&this->hero);
-
-	if(this->m_reset==true)
+	if(m_reset)
         Reset();
+    else
+        map->Sauvegarder(&this->hero);
 
-    this->hero.Sauvegarder();
+    hero.Sauvegarder();
 
     Reset();
 
