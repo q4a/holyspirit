@@ -1,6 +1,7 @@
 *Data/Landscapes/Inn/Inn20.png
 *Data/Landscapes/Inn/Inn21.png
 *Data/Landscapes/Inn/Inn22.png
+
 $
 $
 Taverne
