@@ -41,5 +41,5 @@ $
 	* e8 x153 y148 w32 h32 $
 	* e9 x210 y37 w32 h32 $
 $
-	*mData/Entities/Heroes/Miracles/Crusader/PowerShot.miracle.hs $
+	* mData/Entities/Heroes/Miracles/Crusader/PowerShot.miracle.hs $
 $
