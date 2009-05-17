@@ -39,6 +39,8 @@ class Modele_Personnage
 	Modele_Personnage();
 	~Modele_Personnage();
 	bool Charger(std::string chemin);
+	void ChargerPose(std::ifstream *fichier);
+
 	void Reinitialiser();
 
 	void setPorteeLumineuse(Lumiere  lumiere);

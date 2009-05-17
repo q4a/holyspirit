@@ -194,62 +194,27 @@ bool Modele_Personnage::Charger(string chemin)
 
     	}while(caractere!='$');
 
-    	 /*Pose poseTemp;
-    	 m_pose.resize(NOMBRE_ETAT,vector<vector<Pose> >(0,vector<Pose>(0,Pose ())));
+        ChargerPose(fichier);
 
-    	for(int i=0;i<NOMBRE_ETAT;i++)
-    	{
-    	    for(int j=0;j<8;j++)
-    	    {
-    	        m_pose[i].push_back(vector<Pose> (0,poseTemp));
-                do
-                {
-                    if(caractere=='*')
-                    {
-                        coordonnee position,centre={-1000,-1000,-1,-1};
-                        int animation=0,son=-1,image=0,attaque=-1,lumiere=m_porteeLumineuse.intensite,ordre=0;
-                        float tempsAnimation=0.075;
+    	fichier->close();
+    }
+    else
+    {
+        console->Ajouter("Impossible d'ouvrir : "+chemin,1);
 
-                        do
-                        {
-                            fichier->get(caractere);
-                            switch (caractere)
-                            {
-                                case 'x': *fichier>>position.x; break;
-                                case 'y': *fichier>>position.y; break;
-                                case 'w': *fichier>>position.w; break;
-                                case 'h': *fichier>>position.h; break;
-                                case 'a': *fichier>>animation; break;
-                                case 't': *fichier>>tempsAnimation; break;
-                                case 's': *fichier>>son; break;
-                                case 'i': *fichier>>image; break;
-                                case 'd': *fichier>>attaque; break;
-                                case 'l': *fichier>>lumiere; break;
+        return 0;
+    }
 
-                                case 'o': *fichier>>ordre; break;
 
-                                case 'c': fichier->get(caractere); if(caractere=='x') *fichier>>centre.x; else *fichier>>centre.y; break;
-                            }
-                            if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
-                        }while(caractere!='$');
+    delete fichier;
 
-                        if(centre.x==-1000)
-                            centre.x=position.w/2;
-                        if(centre.y==-1000)
-                            centre.y=position.h-32;
+    return true;
+}
 
-                        m_pose[i][j].push_back(poseTemp);
-                        m_pose[i][j].back().setPose(position,centre,animation,son,image,attaque,lumiere,tempsAnimation,ordre);
-                        fichier->get(caractere);
-                        if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }
-                    }
-                    fichier->get(caractere);
-                    if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0; }
-                }while(caractere!='$');
-    	    }
-    	}*/
-
-    	int etat=-1;
+void Modele_Personnage::ChargerPose(ifstream *fichier)
+{
+    int etat=-1;
+    char caractere=' ';
 
     	do
     	{
@@ -295,7 +260,7 @@ bool Modele_Personnage::Charger(string chemin)
 
                                     case 'c': fichier->get(caractere); if(caractere=='x') *fichier>>centre.x; else *fichier>>centre.y; break;
                                 }
-                                if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
+                                if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Entité Invalide");console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;}
                             }while(caractere!='$');
 
                             if(centre.x==-1000)
@@ -306,30 +271,15 @@ bool Modele_Personnage::Charger(string chemin)
                             m_pose[etat][j].push_back(Pose ());
                             m_pose[etat][j].back().setPose(position,centre,animation,son,image,attaque,lumiere,tempsAnimation,ordre);
                             fichier->get(caractere);
-                            if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }
+                            if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Entité Invalide");console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0;  }
                         }
                         fichier->get(caractere);
-                        if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0; }
+                        if(fichier->eof()){ char temp[1000]; sprintf(temp,"Erreur : Entité Invalide");console->Ajouter(temp,1); caractere='$'; m_caracteristique.maxVie=0; }
                     }while(caractere!='$');
                 }
                 fichier->get(caractere);
     	    }
     	}while(caractere!='$');
-
-
-    	fichier->close();
-    }
-    else
-    {
-        console->Ajouter("Impossible d'ouvrir : "+chemin,1);
-
-        return 0;
-    }
-
-
-    delete fichier;
-
-    return true;
 }
 
 int Personnage::getOrdre(Modele_Personnage *modele)
@@ -723,7 +673,7 @@ int Personnage::animer(Modele_Personnage *modele,float temps,bool *explosif,coor
             }
 
             if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==1)
-                frappeEnCours=false;
+                frappeEnCours=false,m_miracleALancer=-1;
 
             *explosif=modele->m_explosif;
 

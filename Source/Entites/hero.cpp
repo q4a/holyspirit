@@ -856,11 +856,6 @@ void Hero::Charger()
 
     m_classe.Charger(m_cheminClasse);
 
-    m_caseInventaire.clear();
-
-    m_caseInventaire.resize(m_classe.position_contenu_inventaire.h , std::vector<bool> (m_classe.position_contenu_inventaire.w,false));
-
-
     GenererGrille();
 
     if(nouveau)
@@ -1267,7 +1262,7 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
                 sprite.SetColor(sf::Color(128,64,0,128));
 
             if(!m_inventaire[i].utilisable(m_caracteristiques,m_classe.ID))
-                sprite.SetColor(sf::Color(sprite.GetColor().r*0.25,sprite.GetColor().g*0.25,sprite.GetColor().b*0.25,128));
+                sprite.SetColor(sf::Color((int)(sprite.GetColor().r*0.25),(int)(sprite.GetColor().g*0.25),(int)(sprite.GetColor().b*0.25),128));
 
             sprite.Resize(m_inventaire[i].getTaille().x*32*configuration->Resolution.w/800,m_inventaire[i].getTaille().y*32*configuration->Resolution.h/600);
 
@@ -1360,7 +1355,7 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
                     sprite.SetColor(sf::Color(128,64,0,128));
 
                 if(!trader[i].utilisable(m_caracteristiques,m_classe.ID))
-                    sprite.SetColor(sf::Color(sprite.GetColor().r*0.25,sprite.GetColor().g*0.25,sprite.GetColor().b*0.25,128));
+                    sprite.SetColor(sf::Color((int)(sprite.GetColor().r*0.25),(int)(sprite.GetColor().g*0.25),(int)(sprite.GetColor().b*0.25),128));
 
                 sprite.Resize(trader[i].getTaille().x*32*configuration->Resolution.w/800,trader[i].getTaille().y*32*configuration->Resolution.h/600);
 
@@ -1491,7 +1486,7 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
                emplacement=k;
 
         if(!possibleEquiper(emplacement))
-            sprite.SetColor(sf::Color(sprite.GetColor().r*0.25,sprite.GetColor().g*0.25,sprite.GetColor().b*0.25,128));
+            sprite.SetColor(sf::Color((int)(sprite.GetColor().r*0.25),(int)(sprite.GetColor().g*0.25),(int)(sprite.GetColor().b*0.25),128));
 
         if(positionSouris.x<m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800||positionSouris.x>m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800+32*m_classe.position_contenu_inventaire.w*configuration->Resolution.x/800||positionSouris.y<(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600||positionSouris.y>(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_inventaire.h*configuration->Resolution.y/600)
         {
@@ -1734,9 +1729,11 @@ int Hero::utiliserClicDroit(coordonnee positionSouris, int monstreVise)
 
 void Hero::GenererGrille()
 {
-    for(int i=0;i<m_classe.position_contenu_inventaire.h;i++)
+    m_caseInventaire.clear();
+    m_caseInventaire.resize(m_classe.position_contenu_inventaire.h , std::vector<bool> (m_classe.position_contenu_inventaire.w,0));
+    /*for(int i=0;i<m_classe.position_contenu_inventaire.h;i++)
             for(int j=0;j<m_classe.position_contenu_inventaire.w;j++)
-                m_caseInventaire[i][j]=0;
+                m_caseInventaire[i][j]=0;*/
 
     for(int i=0;i<(int)m_inventaire.size();i++)
         if(m_inventaire[i].m_equipe==-1&&i!=m_objetEnMain)
@@ -1816,7 +1813,7 @@ Objet Hero::DeposerObjet()
     Objet temp;
     if(m_objetADeposer>=0&&m_objetADeposer<(int)m_inventaire.size())
     {
-        temp=m_inventaire[(int)m_objetADeposer];
+        temp=m_inventaire[m_objetADeposer];
 
         m_inventaire.erase(m_inventaire.begin()+m_objetADeposer);
 
@@ -1942,7 +1939,7 @@ bool Hero::prendreEnMain(coordonnee positionSouris,std::vector<Objet> &trader)
                  &&caseVisee.y>=trader[z].getPosition().y&&caseVisee.y<trader[z].getPosition().y+trader[z].getTaille().y)
                      if((float)trader[z].getPrix()*(5-(float)m_caracteristiques.charisme/100)<=m_argent)
                      {
-                        m_argent-=(float)trader[z].getPrix()*(5-(float)m_caracteristiques.charisme/100);
+                        m_argent-=(int)((float)trader[z].getPrix()*(5-(float)m_caracteristiques.charisme/100));
 
                         m_inventaire.push_back(trader[z]);
                         m_objetEnMain=m_inventaire.size()-1;

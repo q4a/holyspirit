@@ -1690,8 +1690,8 @@ int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
                     bool invoquer=true;
                     int x=0,y=0;
                     coordonnee positionCase;
-                    positionCase.x=cible.x+rand()%2-4;
-                    positionCase.y=cible.y+rand()%2-4;
+                    positionCase.x=cible.x-1;
+                    positionCase.y=cible.y-1;
 
                     if(positionCase.x<0)
                         positionCase.x=0;
@@ -1701,9 +1701,10 @@ int Map::gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
                     while((getCollision(positionCase.x,positionCase.y) || ( positionCase.x==hero->m_personnage.getCoordonnee().x && positionCase.y==hero->m_personnage.getCoordonnee().y )) && invoquer )
                     {
                         positionCase.x++;
-                        positionCase.y++;
-                        x++; y++;
-                        if(x>10)
+                        x++;
+                        if(x>=3)
+                            x=0,positionCase.x-=3,y++,positionCase.y++;
+                        if(y>=3)
                             invoquer=false;
                     }
 
@@ -1920,7 +1921,7 @@ void Map::animer(Hero *hero,float temps,Menu *menu)
                                 if(m_monstre[monstre].m_miracleEnCours.back().m_modele>=0&&m_monstre[monstre].m_miracleEnCours.back().m_modele<(int)m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles.size())
                                     gererMiracle(&m_monstre[monstre].m_miracleEnCours.back(),&m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours.back().m_modele],hero,1,m_monstre[monstre].getCoordonnee(),hero->m_personnage.getProchaineCase(),i);
                             }
-                            m_monstre[monstre].m_miracleALancer=-1;
+
                         }
                         if(explosif&&degats>0)
                         {
@@ -2219,9 +2220,10 @@ void Map::musiquePlay(coordonnee position)
                                 m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()); \
                                 \
                                 if(m_monstre[m_decor[i][j][k].getMonstre()].m_miracleALancer==-1) \
+                                {\
                                     m_monstre[m_decor[i][j][k].getMonstre()].m_miracleALancer=numero;\
-                                if(m_monstre[m_decor[i][j][k].getMonstre()].getEtat()<2)   \
                                     m_monstre[m_decor[i][j][k].getMonstre()].setEtat(2);   \
+                                }\
                                 m_monstre[m_decor[i][j][k].getMonstre()].frappe(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee(),hero->m_personnage.getCoordonnee());   \
                             }
 
@@ -2275,7 +2277,7 @@ void Map::musiquePlay(coordonnee position)
                                             {   \
                                                 if(hero->m_personnage.enVie()<=0)   \
                                                     m_monstre[m_decor[i][j][k].getMonstre()].setVu(0);   \
-                                                if(m_monstre[m_decor[i][j][k].getMonstre()].getEtat()<2)   \
+                                                if(!m_monstre[m_decor[i][j][k].getMonstre()].frappeEnCours)   \
                                                     m_monstre[m_decor[i][j][k].getMonstre()].setEtat(2);   \
                                                 m_monstre[m_decor[i][j][k].getMonstre()].frappe(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee(),hero->m_personnage.getCoordonnee());  \
                                                 m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee());   \
