@@ -921,7 +921,7 @@ void Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,
         break;
     }
 
-    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran," "));
 
 
     if(m_requirement.force>0)
@@ -965,7 +965,7 @@ void Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
     }
 
-    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran," "));
 
     for(int i=0;i<(int)m_benedictions.size();i++)
     {
@@ -976,7 +976,7 @@ void Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,
         }
     }
 
-    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran," "));
     sprintf(chaine,"Prix : %i",(int)((float)m_prix*modPrix));
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
 

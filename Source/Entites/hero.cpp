@@ -647,6 +647,8 @@ void Classe::Charger(string chemin)
 
         fichier.close();
     }
+    else
+        console->Ajouter("Impossible de charger : "+chemin,1);
 
 }
 
@@ -1730,10 +1732,8 @@ int Hero::utiliserClicDroit(coordonnee positionSouris, int monstreVise)
 void Hero::GenererGrille()
 {
     m_caseInventaire.clear();
+
     m_caseInventaire.resize(m_classe.position_contenu_inventaire.h , std::vector<bool> (m_classe.position_contenu_inventaire.w,0));
-    /*for(int i=0;i<m_classe.position_contenu_inventaire.h;i++)
-            for(int j=0;j<m_classe.position_contenu_inventaire.w;j++)
-                m_caseInventaire[i][j]=0;*/
 
     for(int i=0;i<(int)m_inventaire.size();i++)
         if(m_inventaire[i].m_equipe==-1&&i!=m_objetEnMain)
