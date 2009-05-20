@@ -29,7 +29,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Map/map.h"
 #include "Moteurs/eventManager.h"
 #include "menu.h"
-#include "Entites/personnage.h"
 
 #include "Contextes/c_jeu.h"
 #include "Contextes/c_changementMap.h"

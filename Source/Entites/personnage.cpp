@@ -406,7 +406,7 @@ int Personnage::pathfinding(casePathfinding** map,coordonnee exception)
 
             casesVisitee.setTailleListe(0);
 
-            casesVisitee.ajouterCase(depart);
+            casesVisitee.AjouterCase(depart);
 
             if(arrivee.y>=0&&arrivee.x>=0&&arrivee.y<20&&arrivee.x<20)
                 if(map[arrivee.y][arrivee.x].collision)
@@ -471,10 +471,10 @@ int Personnage::pathfinding(casePathfinding** map,coordonnee exception)
                         m_erreurPathfinding=true;
                 }
 
-            while(!casesVisitee.testerCasesEnCours(arrivee)&&!m_erreurPathfinding)
+            while(!casesVisitee.TesterCasesEnCours(arrivee)&&!m_erreurPathfinding)
             {
-                casesVisitee.incrementerDistanceEnCours();
-                casesVisitee.ajouterCasesAdjacentes(map,&arrivee,depart);
+                casesVisitee.IncrementerDistanceEnCours();
+                casesVisitee.AjouterCasesAdjacentes(map,&arrivee,depart);
                 if(casesVisitee.getDistance()>10)
                     m_erreurPathfinding=true;
             }
@@ -485,8 +485,8 @@ int Personnage::pathfinding(casePathfinding** map,coordonnee exception)
 
                 while(casesVisitee.getDistance()>1)
                 {
-                    m_cheminFinal=casesVisitee.trouverLeChemin(m_cheminFinal);
-                    casesVisitee.decrementerDistanceEnCours();
+                    m_cheminFinal=casesVisitee.TrouverLeChemin(m_cheminFinal);
+                    casesVisitee.DecrementerDistanceEnCours();
                 }
 
                 m_arrivee.x=arrivee.x+decalage.x;
@@ -655,7 +655,7 @@ int Personnage::animer(Modele_Personnage *modele,float temps,bool *explosif,coor
             m_poseEnCours=0;
 
             //if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getSon()>=0)
-            modele->jouerSon(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getSon(),position,positionHero);
+            modele->JouerSon(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getSon(),position,positionHero);
 
             m_animation-=tempsAnimation;
             tempsAnimation = modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getTempsAnimation();
@@ -723,7 +723,7 @@ void Personnage::frappe(coordonnee direction,coordonnee position)
 }
 
 
-void Modele_Personnage::jouerSon(int numeroSon,coordonnee position,coordonnee positionHero,bool uniqueSound)
+void Modele_Personnage::JouerSon(int numeroSon,coordonnee position,coordonnee positionHero,bool uniqueSound)
 {
     if(numeroSon>=0&&numeroSon<(int)m_sons.size())
     {

@@ -101,7 +101,7 @@ Hero::Hero()
 
     m_objetEnMain=-1;
 
-    recalculerCaracteristiques();
+    RecalculerCaracteristiques();
 
     miracleEnCours=0;
 
@@ -240,417 +240,7 @@ void Hero::Sauvegarder()
 
 }
 
-void Classe::Charger(string chemin)
-{
-    emplacements.clear();
-    equipementParDefaut.clear();
 
-
-    ifstream fichier;
-    fichier.open(chemin.c_str(), ios::in);
-    if(fichier)
-    {
-        char caractere;
-        do
-    	{
-    		fichier.get(caractere);
-    		if(caractere=='*')
-            {
-                fichier>>nom;
-            }
-    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-    	}while(caractere!='$');
-
-
-    	do
-    	{
-    		fichier.get(caractere);
-    		if(caractere=='*')
-            {
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                        case 'f' : fichier>>caracteristique.force; break;
-                        case 'v' : fichier>>caracteristique.vitalite; break;
-                        case 'p' : fichier>>caracteristique.piete; break;
-                        case 'd' : fichier>>caracteristique.dexterite; break;
-                        case 'c' : fichier>>caracteristique.charisme; break;
-                        case 'i' : fichier>>ID; break;
-                    }
-
-                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-                }while(caractere!='$');
-                fichier.get(caractere);
-            }
-    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-    	}while(caractere!='$');
-
-    	do
-    	{
-    		fichier.get(caractere);
-    		if(caractere=='*')
-            {
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                        case 'm' : string temp; fichier>>temp; equipementParDefaut.push_back(temp); break;
-                    }
-
-                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-                }while(caractere!='$');
-                fichier.get(caractere);
-            }
-    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-    	}while(caractere!='$');
-
-
-    	do
-    	{
-    		fichier.get(caractere);
-    		if(caractere=='*')
-            {
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                        case 'm' : fichier>>chemin_modele; break;
-                    }
-
-                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-                }while(caractere!='$');
-                fichier.get(caractere);
-            }
-    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-    	}while(caractere!='$');
-
-    	do
-    	{
-    		fichier.get(caractere);
-    		if(caractere=='*')
-            {
-                int temp=0;
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                        case 'm' : fichier>>modeleNu[temp]; temp++; break;
-                    }
-
-                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-                }while(caractere!='$');
-                fichier.get(caractere);
-            }
-    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-    	}while(caractere!='$');
-
-    	std::string string;
-
-    	do
-    	{
-    		fichier.get(caractere);
-    		if(caractere=='*')
-            {
-
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                        case 'm' : fichier>>string; inventaire.image=moteurGraphique->AjouterImage(string,-1); break;
-                        case 'x' : fichier>>inventaire.position.x; break;
-                        case 'y' : fichier>>inventaire.position.y; break;
-                        case 'w' : fichier>>inventaire.position.w; break;
-                        case 'h' : fichier>>inventaire.position.h; break;
-                    }
-
-                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-                }while(caractere!='$');
-                fichier.get(caractere);
-            }
-    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-    	}while(caractere!='$');
-
-    	do
-    	{
-    		fichier.get(caractere);
-    		if(caractere=='*')
-            {
-
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                        case 'm' : fichier>>string; menu_marchand.image=moteurGraphique->AjouterImage(string,-1); break;
-                        case 'x' : fichier>>menu_marchand.position.x; break;
-                        case 'y' : fichier>>menu_marchand.position.y; break;
-                        case 'w' : fichier>>menu_marchand.position.w; break;
-                        case 'h' : fichier>>menu_marchand.position.h; break;
-                    }
-
-                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-                }while(caractere!='$');
-                fichier.get(caractere);
-            }
-    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-    	}while(caractere!='$');
-
-
-
-    	do
-    	{
-    		fichier.get(caractere);
-    		if(caractere=='*')
-            {
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                        case 'm' : fichier>>string; hud.image=moteurGraphique->AjouterImage(string,-1); break;
-                        case 'x' : fichier>>hud.position.x; break;
-                        case 'y' : fichier>>hud.position.y; break;
-                        case 'w' : fichier>>hud.position.w; break;
-                        case 'h' : fichier>>hud.position.h; break;
-                    }
-
-                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-                }while(caractere!='$');
-                fichier.get(caractere);
-            }
-    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-    	}while(caractere!='$');
-
-    	do
-    	{
-    		fichier.get(caractere);
-    		if(caractere=='*')
-            {
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                        case 'm' : fichier>>string; orbe_vie.image=moteurGraphique->AjouterImage(string,-1); break;
-                        case 'x' : fichier>>orbe_vie.position.x; break;
-                        case 'y' : fichier>>orbe_vie.position.y; break;
-                        case 'w' : fichier>>orbe_vie.position.w; break;
-                        case 'h' : fichier>>orbe_vie.position.h; break;
-                    }
-
-                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-                }while(caractere!='$');
-                fichier.get(caractere);
-            }
-    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-    	}while(caractere!='$');
-
-    	do
-    	{
-    		fichier.get(caractere);
-    		if(caractere=='*')
-            {
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                        case 'm' : fichier>>string; orbe_foi.image=moteurGraphique->AjouterImage(string,-1); break;
-                        case 'x' : fichier>>orbe_foi.position.x; break;
-                        case 'y' : fichier>>orbe_foi.position.y; break;
-                        case 'w' : fichier>>orbe_foi.position.w; break;
-                        case 'h' : fichier>>orbe_foi.position.h; break;
-                    }
-
-                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-                }while(caractere!='$');
-                fichier.get(caractere);
-            }
-    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-    	}while(caractere!='$');
-
-    	do
-    	{
-    		fichier.get(caractere);
-    		if(caractere=='*')
-            {
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                        case 'm' : fichier>>string; cache_vie.image=moteurGraphique->AjouterImage(string,-1); break;
-                        case 'x' : fichier>>cache_vie.position.x; break;
-                        case 'y' : fichier>>cache_vie.position.y; break;
-                        case 'w' : fichier>>cache_vie.position.w; break;
-                        case 'h' : fichier>>cache_vie.position.h; break;
-                    }
-
-                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-                }while(caractere!='$');
-                fichier.get(caractere);
-            }
-    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-    	}while(caractere!='$');
-
-    	do
-    	{
-    		fichier.get(caractere);
-    		if(caractere=='*')
-            {
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                        case 'm' : fichier>>string; cache_foi.image=moteurGraphique->AjouterImage(string,-1); break;
-                        case 'x' : fichier>>cache_foi.position.x; break;
-                        case 'y' : fichier>>cache_foi.position.y; break;
-                        case 'w' : fichier>>cache_foi.position.w; break;
-                        case 'h' : fichier>>cache_foi.position.h; break;
-                    }
-
-                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-                }while(caractere!='$');
-                fichier.get(caractere);
-            }
-    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-    	}while(caractere!='$');
-
-    	do
-    	{
-    		fichier.get(caractere);
-    		if(caractere=='*')
-            {
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                        case 'x' : fichier>>position_sac_inventaire.x; break;
-                        case 'y' : fichier>>position_sac_inventaire.y; break;
-                        case 'w' : fichier>>position_sac_inventaire.w; break;
-                        case 'h' : fichier>>position_sac_inventaire.h; break;
-                    }
-
-                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-                }while(caractere!='$');
-                fichier.get(caractere);
-            }
-    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-    	}while(caractere!='$');
-
-    	do
-    	{
-    		fichier.get(caractere);
-    		if(caractere=='*')
-            {
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                        case 'x' : fichier>>position_contenu_inventaire.x; break;
-                        case 'y' : fichier>>position_contenu_inventaire.y; break;
-                        case 'w' : fichier>>position_contenu_inventaire.w; break;
-                        case 'h' : fichier>>position_contenu_inventaire.h; break;
-                    }
-
-                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-                }while(caractere!='$');
-                fichier.get(caractere);
-            }
-    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-    	}while(caractere!='$');
-
-    	do
-    	{
-    		fichier.get(caractere);
-    		if(caractere=='*')
-            {
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                        case 'x' : fichier>>position_contenu_marchand.x; break;
-                        case 'y' : fichier>>position_contenu_marchand.y; break;
-                        case 'w' : fichier>>position_contenu_marchand.w; break;
-                        case 'h' : fichier>>position_contenu_marchand.h; break;
-                    }
-
-                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-                }while(caractere!='$');
-                fichier.get(caractere);
-            }
-    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-    	}while(caractere!='$');
-
-    	do
-    	{
-    		fichier.get(caractere);
-    		if(caractere=='*')
-            {
-                emplacements.push_back(Emplacement_inventaire ());
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                        case 'e' : fichier>>emplacements.back().emplacement; break;
-                        case 'x' : fichier>>emplacements.back().position.x; break;
-                        case 'y' : fichier>>emplacements.back().position.y; break;
-                        case 'w' : fichier>>emplacements.back().position.w; break;
-                        case 'h' : fichier>>emplacements.back().position.h; break;
-                    }
-
-                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-                }while(caractere!='$');
-                fichier.get(caractere);
-            }
-    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-
-    	}while(caractere!='$');
-
-        fichier.close();
-    }
-    else
-        console->Ajouter("Impossible de charger : "+chemin,1);
-
-}
 
 void Hero::Charger()
 {
@@ -876,7 +466,7 @@ void Hero::Charger()
 
             temp.Charger(m_classe.equipementParDefaut[i]);
             temp.Generer(1);
-            ajouterObjet(temp);
+            AjouterObjet(temp);
 
             Caracteristique charTemp;
             charTemp=m_personnage.getCaracteristique();
@@ -896,7 +486,7 @@ void Hero::Charger()
     GenererGrille();
     ChargerModele();
 
-    recalculerCaracteristiques();
+    RecalculerCaracteristiques();
 
     m_caracteristiques.vie=m_caracteristiques.maxVie;
     m_caracteristiques.foi=m_caracteristiques.maxFoi;
@@ -1263,7 +853,7 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
             if(m_inventaire[i].getRarete()==CRAFT)
                 sprite.SetColor(sf::Color(128,64,0,128));
 
-            if(!m_inventaire[i].utilisable(m_caracteristiques,m_classe.ID))
+            if(!m_inventaire[i].Utilisable(m_caracteristiques,m_classe.ID))
                 sprite.SetColor(sf::Color((int)(sprite.GetColor().r*0.25),(int)(sprite.GetColor().g*0.25),(int)(sprite.GetColor().b*0.25),128));
 
             sprite.Resize(m_inventaire[i].getTaille().x*32*configuration->Resolution.w/800,m_inventaire[i].getTaille().y*32*configuration->Resolution.h/600);
@@ -1356,7 +946,7 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
                 if(trader[i].getRarete()==CRAFT)
                     sprite.SetColor(sf::Color(128,64,0,128));
 
-                if(!trader[i].utilisable(m_caracteristiques,m_classe.ID))
+                if(!trader[i].Utilisable(m_caracteristiques,m_classe.ID))
                     sprite.SetColor(sf::Color((int)(sprite.GetColor().r*0.25),(int)(sprite.GetColor().g*0.25),(int)(sprite.GetColor().b*0.25),128));
 
                 sprite.Resize(trader[i].getTaille().x*32*configuration->Resolution.w/800,trader[i].getTaille().y*32*configuration->Resolution.h/600);
@@ -1487,7 +1077,7 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
             if(positionSouris.x>m_classe.emplacements[k].position.x*configuration->Resolution.x/800&&positionSouris.x<(m_classe.emplacements[k].position.x+m_classe.emplacements[k].position.w)*configuration->Resolution.x/800&&positionSouris.y>m_classe.emplacements[k].position.y*configuration->Resolution.y/600&&positionSouris.y<(m_classe.emplacements[k].position.y+m_classe.emplacements[k].position.h)*configuration->Resolution.y/600)
                emplacement=k;
 
-        if(!possibleEquiper(emplacement))
+        if(!PossibleEquiper(emplacement))
             sprite.SetColor(sf::Color((int)(sprite.GetColor().r*0.25),(int)(sprite.GetColor().g*0.25),(int)(sprite.GetColor().b*0.25),128));
 
         if(positionSouris.x<m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800||positionSouris.x>m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800+32*m_classe.position_contenu_inventaire.w*configuration->Resolution.x/800||positionSouris.y<(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600||positionSouris.y>(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_inventaire.h*configuration->Resolution.y/600)
@@ -1547,7 +1137,7 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
     AfficherCaracteristiques(positionSouris,decalage);
 }
 
-void Hero::placerCamera(coordonnee dimensionsMap)
+void Hero::PlacerCamera(coordonnee dimensionsMap)
 {
 	m_positionAffichage.y=(((m_personnage.getCoordonneePixel().x+m_personnage.getCoordonneePixel().y)*64/COTE_TILE)/2);
 	m_positionAffichage.x=(((m_personnage.getCoordonneePixel().x-m_personnage.getCoordonneePixel().y)*64/COTE_TILE/*+dimensionsMap.y*64*/)-64);
@@ -1561,7 +1151,7 @@ void Hero::placerCamera(coordonnee dimensionsMap)
     moteurGraphique->m_camera.Zoom(configuration->zoom);
 }
 
-bool Hero::testMonstreVise(Monstre *monstre,int hauteurMap)
+bool Hero::TestMonstreVise(Monstre *monstre,int hauteurMap)
 {
     if(monstre!=NULL)
         if(m_monstreVise>-1&&m_caracteristiques.vie>0)
@@ -1582,7 +1172,7 @@ bool Hero::testMonstreVise(Monstre *monstre,int hauteurMap)
     return 0;
 }
 
-void Hero::augmenterAme(float temps)
+void Hero::AugmenterAme(float temps)
 {
     Caracteristique temp = m_personnage.getCaracteristique();
 
@@ -1606,7 +1196,7 @@ void Hero::augmenterAme(float temps)
         temp.maxFoi=temp.piete*25;
         temp.foi=temp.maxFoi;
 
-        recalculerCaracteristiques();
+        RecalculerCaracteristiques();
 
         m_caracteristiques.vie=m_caracteristiques.maxVie;
         m_caracteristiques.foi=m_caracteristiques.maxFoi;
@@ -1619,7 +1209,7 @@ void Hero::augmenterAme(float temps)
     //recalculerCaracteristiques();
 }
 
-void Hero::recalculerCaracteristiques()
+void Hero::RecalculerCaracteristiques()
 {
     float vie=m_caracteristiques.vie,foi=m_caracteristiques.foi;
 
@@ -1703,7 +1293,7 @@ void Hero::recalculerCaracteristiques()
         m_caracteristiques.foi=m_caracteristiques.maxFoi;
 }
 
-int Hero::utiliserClicDroit(coordonnee positionSouris, int monstreVise)
+int Hero::UtiliserClicDroit(coordonnee positionSouris, int monstreVise)
 {
     if(!m_personnage.frappeEnCours)
         if(m_caracteristiques.foi-(m_caracteristiques.degatsMin+m_caracteristiques.degatsMax)*1.5>0)
@@ -1742,7 +1332,7 @@ void Hero::GenererGrille()
                     m_caseInventaire[(int)(y+m_inventaire[i].getPosition().y)][(int)(x+m_inventaire[i].getPosition().x)]=1;
 }
 
-bool Hero::ajouterObjet(Objet objet,bool enMain)
+bool Hero::AjouterObjet(Objet objet,bool enMain)
 {
     bool ramasser=false;
 
@@ -1821,7 +1411,7 @@ Objet Hero::DeposerObjet()
 
         temp.m_equipe=-1;
 
-        recalculerCaracteristiques();
+        RecalculerCaracteristiques();
 
         m_objetADeposer=-1;
         m_objetEnMain=-1;
@@ -1829,7 +1419,7 @@ Objet Hero::DeposerObjet()
     return temp;
 }
 
-bool Hero::prendreEnMain(coordonnee positionSouris,std::vector<Objet> &trader)
+bool Hero::PrendreEnMain(coordonnee positionSouris,std::vector<Objet> &trader)
 {
     if(trader.empty())
     {
@@ -1894,6 +1484,8 @@ bool Hero::prendreEnMain(coordonnee positionSouris,std::vector<Objet> &trader)
 
                 AttribuerPositionObjet(caseVisee,m_objetEnMain);
 
+                m_inventaire[m_objetEnMain].JouerSon();
+
                 m_objetEnMain=-1;
 
                 if(temp!=-1)
@@ -1926,6 +1518,7 @@ bool Hero::prendreEnMain(coordonnee positionSouris,std::vector<Objet> &trader)
 
         if(m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
         {
+            m_inventaire[m_objetEnMain].JouerSon();
             m_argent+=m_inventaire[m_objetEnMain].getPrix();
             m_inventaire[m_objetEnMain].m_equipe=-1;
             AjouterTrader(m_inventaire[m_objetEnMain],trader,&m_classe);
@@ -1959,7 +1552,7 @@ bool Hero::prendreEnMain(coordonnee positionSouris,std::vector<Objet> &trader)
                 m_objetEnMain=-1;
 
                 GenererGrille();
-                recalculerCaracteristiques();
+                RecalculerCaracteristiques();
 
                 return 1;
 
@@ -1972,7 +1565,7 @@ bool Hero::prendreEnMain(coordonnee positionSouris,std::vector<Objet> &trader)
             for(int k=0;k<(int)m_classe.emplacements.size();k++)
             {
                 if(positionSouris.x>m_classe.emplacements[k].position.x*configuration->Resolution.x/800&&positionSouris.x<(m_classe.emplacements[k].position.x+m_classe.emplacements[k].position.w)*configuration->Resolution.x/800&&positionSouris.y>m_classe.emplacements[k].position.y*configuration->Resolution.y/600&&positionSouris.y<(m_classe.emplacements[k].position.y+m_classe.emplacements[k].position.h)*configuration->Resolution.y/600)
-                    equipe=true,equiper(m_objetEnMain,k);
+                    equipe=true,Equiper(m_objetEnMain,k);
             }
 
             if(!equipe&&m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
@@ -2019,21 +1612,21 @@ bool Hero::prendreEnMain(coordonnee positionSouris,std::vector<Objet> &trader)
         }
     }
 
-    recalculerCaracteristiques();
+    RecalculerCaracteristiques();
     GenererGrille();
     return 0;
 }
 
-bool Hero::possibleEquiper(int emplacement)
+bool Hero::PossibleEquiper(int emplacement)
 {
-    if(m_inventaire[m_objetEnMain].utilisable(m_caracteristiques,m_classe.ID))
+    if(m_inventaire[m_objetEnMain].Utilisable(m_caracteristiques,m_classe.ID))
         for(int i=0;i<(int)m_inventaire[m_objetEnMain].m_emplacement.size();i++)
             if(m_inventaire[m_objetEnMain].m_emplacement[i]==m_classe.emplacements[emplacement].emplacement)
                 return true;
     return false;
 }
 
-bool Hero::equiper(int numero, int emplacement)
+bool Hero::Equiper(int numero, int emplacement)
 {
     GenererGrille();
     int ancienEquipe=-1;
@@ -2043,7 +1636,7 @@ bool Hero::equiper(int numero, int emplacement)
     {
         ok=true;
 
-        if(possibleEquiper(emplacement))
+        if(PossibleEquiper(emplacement))
         {
             for(int i=0;i<(int)m_inventaire.size();i++)
             {
@@ -2092,8 +1685,8 @@ bool Hero::equiper(int numero, int emplacement)
 
             if(ok)
             {
+                m_inventaire[m_objetEnMain].JouerSon();
                 m_objetEnMain=ancienEquipe;
-
             }
         }
     }
@@ -2104,11 +1697,11 @@ bool Hero::equiper(int numero, int emplacement)
                 m_objetEnMain=i;
     }
 
-    recalculerCaracteristiques();
+    RecalculerCaracteristiques();
     return 0;
 }
 
-void Hero::infligerDegats(float degats)
+void Hero::InfligerDegats(float degats)
 {
     degats-=m_caracteristiques.armure/50;
     if(degats<0)
@@ -2118,7 +1711,7 @@ void Hero::infligerDegats(float degats)
     if(m_caracteristiques.vie<=0)
         m_personnage.infligerDegats(m_caracteristiques.maxVie);
 }
-void Hero::regenererVie(float vie)
+void Hero::RegenererVie(float vie)
 {
     m_caracteristiques.vie+=vie;
     if(m_caracteristiques.vie>m_caracteristiques.maxVie)
@@ -2128,7 +1721,7 @@ void Hero::regenererVie(float vie)
     temp.vie=m_caracteristiques.vie;
     m_personnage.setCaracteristique(temp);
 }
-void Hero::regenererFoi(float foi)
+void Hero::RegenererFoi(float foi)
 {
     m_caracteristiques.foi+=foi;
     if(m_caracteristiques.foi>m_caracteristiques.maxFoi)

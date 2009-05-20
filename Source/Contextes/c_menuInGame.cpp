@@ -43,11 +43,10 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     moteurGraphique->m_blur=0.0025*m_alpha/255;
 
     jeu->m_display=true;
-    jeu->hero.placerCamera(jeu->map->getDimensions());
-    //jeu->ecran.SetView(jeu->camera);
+    jeu->hero.PlacerCamera(jeu->map->getDimensions());
 
     if(configuration->Lumiere)
-        jeu->map->calculerOmbresEtLumieres();
+        jeu->map->CalculerOmbresEtLumieres();
 
     temps_ecoule=0;
     temps_ecoule=jeu->Clock.GetElapsedTime();

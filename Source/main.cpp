@@ -60,7 +60,7 @@ int main ( int argc, char** argv )
 	    ///Chargement de la configuration
         configuration->Charger();
 
-        moteurGraphique->createWindow();
+        moteurGraphique->CreateNewWindow();
 
         if(!sf::PostFX::CanUsePostFX())
             configuration->postFX=false;

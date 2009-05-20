@@ -19,6 +19,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "Moteurs/moteurGraphique.h"
 #include "Moteurs/moteurSons.h"
+#include "configuration.h"
 
 extern Configuration *configuration;
 extern Console *console;

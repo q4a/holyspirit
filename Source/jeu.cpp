@@ -73,7 +73,7 @@ void Jeu::Demarrer()
 
         if(eventManager.getEvenement(Key::F1,"ET"))
 	    {
-            moteurGraphique->printscreen();
+            moteurGraphique->Printscreen();
             eventManager.StopEvenement(Key::F1,"ET");
 	    }
 

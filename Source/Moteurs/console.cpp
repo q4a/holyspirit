@@ -83,7 +83,7 @@ void Console::Ajouter(int nombre,bool erreur)
 
 int Console::getTaille(){return m_textes.size();}
 
-void Console::defiler(bool direction)
+void Console::Defiler(bool direction)
 {
     if(direction==0)
     {

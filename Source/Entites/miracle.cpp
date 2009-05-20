@@ -276,7 +276,7 @@ void Miracle::Charger(std::string chemin)
 }
 
 
-void Miracle::jouerSon(int numeroSon,coordonnee position,coordonnee positionHero)
+void Miracle::JouerSon(int numeroSon,coordonnee position,coordonnee positionHero)
 {
     if(numeroSon>=0&&numeroSon<(int)m_sons.size())
     {

@@ -35,16 +35,16 @@ void liste_case::setTailleListe(int taille)
 }
 int liste_case::getTailleListe(){return m_liste.size();}
 
-void liste_case::ajouterCase(coordonnee coordonneeAjoutable)
+void liste_case::AjouterCase(coordonnee coordonneeAjoutable)
 {
     Case caseTemp;
 	m_liste.push_back(caseTemp);
 	m_liste.back().setCoordonnee(coordonneeAjoutable,m_distanceEnCours);
 }
 
-void liste_case::supprimer(){m_liste.clear();}
+void liste_case::Supprimer(){m_liste.clear();}
 
-bool liste_case::testerCasesEnCours(coordonnee caseCherchee)
+bool liste_case::TesterCasesEnCours(coordonnee caseCherchee)
 {
     // Je regarde si je suis sur ma case d'arrivee
 	for(iter=m_liste.begin();iter!=m_liste.end();++iter)
@@ -54,7 +54,7 @@ bool liste_case::testerCasesEnCours(coordonnee caseCherchee)
 	return 0;
 }
 
-bool liste_case::ajouterCasesAdjacentes(casePathfinding **grille,coordonnee *arrivee,coordonnee depart)
+bool liste_case::AjouterCasesAdjacentes(casePathfinding **grille,coordonnee *arrivee,coordonnee depart)
 {
 	coordonnee enCours;
 
@@ -65,62 +65,57 @@ bool liste_case::ajouterCasesAdjacentes(casePathfinding **grille,coordonnee *arr
 			enCours.x=m_liste[i].getPosition().x+1;
 			enCours.y=m_liste[i].getPosition().y;
 			if(enCours.x>=0&&enCours.y>=0&&enCours.x<20&&enCours.y<20)
-				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
-					ajouterCase(enCours);
-                /*else if(enCours.x==arrivee->x&&enCours.y==arrivee->y&&grille[enCours.y][enCours.x]&&!(exception.x==m_liste[i].getPosition().x&&exception.y==m_liste[i].getPosition().y))
-                {
-                    arrivee->x=m_liste[i].getPosition().x,arrivee->y=m_liste[i].getPosition().y;
-                    return 0;
-                }*/
+				if(!TesterCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+					AjouterCase(enCours);
+
 
 			enCours.x=m_liste[i].getPosition().x-1;
 			enCours.y=m_liste[i].getPosition().y;
 			if(enCours.x>=0&&enCours.y>=0&&enCours.x<20&&enCours.y<20)
-				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
-					ajouterCase(enCours);
-
+				if(!TesterCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+					AjouterCase(enCours);
 
 
 			enCours.x=m_liste[i].getPosition().x;
 			enCours.y=m_liste[i].getPosition().y+1;
 			if(enCours.x>=0&&enCours.y>=0&&enCours.x<20&&enCours.y<20)
-				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
-					ajouterCase(enCours);
+				if(!TesterCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+					AjouterCase(enCours);
 
 
 			enCours.x=m_liste[i].getPosition().x;
 			enCours.y=m_liste[i].getPosition().y-1;
 			if(enCours.x>=0&&enCours.y>=0&&enCours.x<20&&enCours.y<20)
-				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
-					ajouterCase(enCours);
+				if(!TesterCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+					AjouterCase(enCours);
 
 
 			enCours.x=m_liste[i].getPosition().x+1;
 			enCours.y=m_liste[i].getPosition().y+1;
 			if(enCours.x>=0&&enCours.y>=0&&enCours.x<20&&enCours.y<20)
-				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
-					ajouterCase(enCours);
+				if(!TesterCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+					AjouterCase(enCours);
 
 
 			enCours.x=m_liste[i].getPosition().x-1;
 			enCours.y=m_liste[i].getPosition().y-1;
 			if(enCours.x>=0&&enCours.y>=0&&enCours.x<20&&enCours.y<20)
-				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
-					ajouterCase(enCours);
+				if(!TesterCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+					AjouterCase(enCours);
 
 
 			enCours.x=m_liste[i].getPosition().x-1;
 			enCours.y=m_liste[i].getPosition().y+1;
 			if(enCours.x>=0&&enCours.y>=0&&enCours.x<20&&enCours.y<20)
-				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
-					ajouterCase(enCours);
+				if(!TesterCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+					AjouterCase(enCours);
 
 
 			enCours.x=m_liste[i].getPosition().x+1;
 			enCours.y=m_liste[i].getPosition().y-1;
 			if(enCours.x>=0&&enCours.y>=0&&enCours.x<20&&enCours.y<20)
-				if(!testerCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
-					ajouterCase(enCours);
+				if(!TesterCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+					AjouterCase(enCours);
 
 		}
 		else
@@ -128,13 +123,13 @@ bool liste_case::ajouterCasesAdjacentes(casePathfinding **grille,coordonnee *arr
         return 1;
 }
 
-void liste_case::incrementerDistanceEnCours(){m_distanceEnCours++;}
+void liste_case::IncrementerDistanceEnCours(){m_distanceEnCours++;}
 
-void liste_case::decrementerDistanceEnCours(){m_distanceEnCours--;}
+void liste_case::DecrementerDistanceEnCours(){m_distanceEnCours--;}
 
 int liste_case::getDistance(){return m_distanceEnCours;}
 
-coordonnee liste_case::trouverLeChemin(coordonnee caseEnCours)
+coordonnee liste_case::TrouverLeChemin(coordonnee caseEnCours)
 {
     // Je repart de mon arrivee et suis les cases dans l'ordre décroisant jusqu'à me retrouver à ma case départ
 	coordonnee enCours;

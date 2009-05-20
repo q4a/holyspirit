@@ -40,7 +40,6 @@ class Pose
 	int getAttaque();
 	int getLumiereIntensite();
 	int getOrdre();
-
 	float getTempsAnimation();
 
 	private:

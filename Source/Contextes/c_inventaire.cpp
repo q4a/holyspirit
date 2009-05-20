@@ -116,19 +116,19 @@ void c_Inventaire::Utiliser(Jeu *jeu)
 
     if(jeu->eventManager.getEvenement(Mouse::Left,"C"))
     {
-        if(jeu->map->ramasserObjet(&jeu->hero,1))
+        if(jeu->map->RamasserObjet(&jeu->hero,1))
             jeu->eventManager.StopEvenement(Mouse::Left,"C");
     }
 
     if(jeu->eventManager.getEvenement(Mouse::Left,"C"))
     {
-        if(jeu->hero.prendreEnMain(jeu->eventManager.getPositionSouris(),m_trader))
+        if(jeu->hero.PrendreEnMain(jeu->eventManager.getPositionSouris(),m_trader))
             if(jeu->hero.m_objetADeposer>=0)
                 jeu->map->AjouterObjet(jeu->hero.DeposerObjet());
         jeu->eventManager.StopEvenement(Mouse::Left,"C");
     }
 
-    jeu->hero.placerCamera(jeu->map->getDimensions()); // On place la camera suivant ou se trouve le perso
+    jeu->hero.PlacerCamera(jeu->map->getDimensions()); // On place la camera suivant ou se trouve le perso
 
     coordonnee temp;
     jeu->map->Afficher(1,&jeu->hero,temp,0);

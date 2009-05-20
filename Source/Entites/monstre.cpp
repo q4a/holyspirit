@@ -135,10 +135,9 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
     for(int i=0;i<(int)modele->getObjets().size();i++)
         if(rand()%100000/(m_caracteristique.rang*3+1)<=modele->getObjets()[i].getChanceTrouver())
         {
-            Objet temp;
-            temp=modele->getObjets()[i];
-            temp.Generer((m_caracteristique.rang*5+1));
-            m_objets.push_back(temp);
+            m_objets.push_back(Objet ());
+            m_objets.back()=modele->getObjets()[i];
+            m_objets.back().Generer((m_caracteristique.rang*5+1));
         }
 }
 
@@ -379,7 +378,7 @@ bool Modele_Monstre::Charger(string chemin)
 
 std::vector<Objet> Modele_Monstre::getObjets(){return m_objets;}
 
-void Monstre::testerVision(coordonnee positionHero)
+void Monstre::TesterVision(coordonnee positionHero)
 {
     if(m_caracteristique.vie>0)
     {

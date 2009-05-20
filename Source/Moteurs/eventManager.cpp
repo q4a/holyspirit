@@ -138,12 +138,12 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
 
     if(m_EventTableau[Key::Up])
     {
-        console->defiler(0);
+        console->Defiler(0);
         m_EventTableau[Key::Up]=false;
     }
     if(m_EventTableau[Key::Down])
     {
-         console->defiler(1);
+         console->Defiler(1);
          m_EventTableau[Key::Down]=false;
     }
 

@@ -24,12 +24,13 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef MAPH
 #define MAPH
 
+
+#include "../Entites/hero.h"
 #include "tileset.h"
 #include "decor.h"
 #include "../menu.h"
 #include "../Entites/monstre.h"
 #include "evenement.h"
-#include "../Contextes/c_changementMap.h"
 
 class Jeu;
 
@@ -43,11 +44,38 @@ class Map
 	void Initialiser();
 	void CreerSprite(sf::Vector3f position_case);
 	void Sauvegarder(Hero *hero);
+
 	void Afficher(int type,Hero *hero,coordonnee positionSouris,bool alt,float alpha=255);
-
 	void AfficherSacInventaire(coordonnee positionSac,float decalage,coordonnee positionSouris,Hero *hero);
-
 	void AfficherNomEvenement(coordonnee casePointee,coordonnee positionSouris);
+
+	void Animer(Hero *hero,float temps,Menu *menu); // Animation des tiles
+	bool TestEvenement(Jeu *jeu,float temps);
+	void CalculerOmbresEtLumieres();
+	void Detruire();
+
+	int GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *hero,bool monstre,coordonnee lanceur, coordonnee cible,int couche);
+	void GererConditions(Jeu *jeu,Script *script,int noInstruction,int i, int j, int k,Hero *hero,float temps,Menu *menu);
+	void GererEvenements(int evenement,int z,int couche,int x,int y);
+	void GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu);
+
+	void InfligerDegatsMasse(coordonnee position,int rayon,int degats,bool sourceConcernee, Hero *hero,Menu *menu);
+
+	bool InfligerDegats(int numeroMontre, float degats,Menu *menu, Hero *hero,bool pousser);
+	void PousserMonstre(int numeroMonstre, coordonnee vecteur);
+	void PousserMonstreCase(int numeroMonstre, coordonnee vecteur);
+
+	void MusiquePlay(coordonnee position);
+
+	void VerifierDeclencheursDegats(int i, int j);
+
+	bool RamasserObjet(Hero *hero,bool enMain = false);
+
+	void AjouterObjet(Objet objet);
+	int AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coordonnee lanceur,int couche,float  vitesse,float decalageAngle,int degats,bool monstre,Tile *tile, int image);
+
+
+
 
 	int getMonstreIllumine();
 	bool getCollision(int positionX,int positionY); // Retourne 1 s'il y a une collision avec le décors se trouvant à la position X et Y
@@ -58,44 +86,15 @@ class Map
 	int getObjetPointe();
 	int getNombreObjets(coordonnee position);
 	int getNombreMonstres();
+	bool getMonstreEnVie(int numeroMonstre);
+	coordonnee getDimensions();
 
 	Monstre *getEntiteMonstre (int numeroMonstre);
 	coordonnee getPositionMonstre(int numeroMonstre);
 	casePathfinding ** getAlentourDuPersonnage(coordonnee positionPersonnage); // Retourne un tableau de bool contenant toutes les collitions dans les alentour du héro, pour le pathfinding
 
-	bool getMonstreEnVie(int numeroMonstre);
-
-
-	void animer(Hero *hero,float temps,Menu *menu); // Animation des tiles
-	bool testEvenement(Jeu *jeu,float temps);
-	void calculerOmbresEtLumieres();
-	void Detruire();
-
-	int gererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *hero,bool monstre,coordonnee lanceur, coordonnee cible,int couche);
-
-	void infligerDegatsMasse(coordonnee position,int rayon,int degats,bool sourceConcernee, Hero *hero,Menu *menu);
-
-	bool infligerDegats(int numeroMontre, float degats,Menu *menu, Hero *hero,bool pousser);
-	void PousserMonstre(int numeroMonstre, coordonnee vecteur);
-	void PousserMonstreCase(int numeroMonstre, coordonnee vecteur);
-	void gererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu);
-
-	void gererEvenements(int evenement,int z,int couche,int x,int y);
-
-	void musiquePlay(coordonnee position);
-
 	void setVolumeMusique(int volume);
 
-	void verifierDeclencheursDegats(int i, int j);
-
-	bool ramasserObjet(Hero *hero,bool enMain = false);
-	void AjouterObjet(Objet objet);
-
-	int AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coordonnee lanceur,int couche,float  vitesse,float decalageAngle,int degats,bool monstre,Tile *tile, int image);
-
-	coordonnee getDimensions();
-
-	void gererConditions(Jeu *jeu,Script *script,int noInstruction,int i, int j, int k,Hero *hero,float temps,Menu *menu);
 
 
 	int m_defilerObjets;

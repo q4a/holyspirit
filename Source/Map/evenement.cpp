@@ -36,7 +36,7 @@ Evenement::~Evenement()
     //m_information.clear();
 }
 
-void Evenement::deleteInformations()
+void Evenement::DeleteInformations()
 {
     m_information.clear();
 }

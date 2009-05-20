@@ -105,7 +105,7 @@ class Miracle
     Miracle(std::string chemin);
     ~Miracle();
     void Charger(std::string chemin);
-    void jouerSon(int numeroSon,coordonnee position,coordonnee positionHero);
+    void JouerSon(int numeroSon,coordonnee position,coordonnee positionHero);
 
     std::vector < std::vector <Tile> > m_tile;
     std::vector <Effet> m_effets;
@@ -118,9 +118,9 @@ class Miracle
     int m_coutFoi;
 };
 
-struct infosEntiteMiracle
+struct InfosEntiteMiracle
 {
-    infosEntiteMiracle()
+    InfosEntiteMiracle()
     {
         m_effetEnCours=0;
         m_imageEnCours=0;
@@ -142,7 +142,7 @@ struct infosEntiteMiracle
 class EntiteMiracle
 {
     public:
-    std::vector<infosEntiteMiracle> m_infos;
+    std::vector<InfosEntiteMiracle> m_infos;
     int m_modele;
 };
 

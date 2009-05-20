@@ -293,7 +293,7 @@ coordonnee Tileset::getCentreDuTile(int tile)
     }
 }
 
-void Tileset::jouerSon(int numeroSon,coordonnee position,coordonnee positionHero)
+void Tileset::JouerSon(int numeroSon,coordonnee position,coordonnee positionHero)
 {
     if(numeroSon>=0&&numeroSon<(int)m_sons.size())
     {
@@ -305,10 +305,9 @@ void Tileset::jouerSon(int numeroSon,coordonnee position,coordonnee positionHero
     }
 }
 
-void Tileset::deleteTiles()
+void Tileset::DeleteTiles()
 {
     m_tile.clear();
-    //m_buffer.clear();
     m_sons.clear();
 }
 

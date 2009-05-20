@@ -30,17 +30,19 @@ class Evenement
 	Evenement();
 	Evenement(int numero);
 	~Evenement();
-	void setEvenement(int numeroEvenement);
+	Evenement operator=(const Evenement &evenement);
+
 	void AjouterInformation(int information); // Ajouter une information à l'événement ( ex : pour un changement de map, le numéro de la prochaine map, la position du héro, etc... )
+	void DeleteInformations();
+
 	int getType();
-	std::string getString();
+	int getNombreInformation(){return m_information.size();}
 	int getInformation(int numeroInfo);
+	std::string getString();
+
+	void setEvenement(int numeroEvenement);
 	void setInformation(int information,int numero);
 	void setString(std::string);
-	int getNombreInformation(){return m_information.size();}
-	void deleteInformations();
-
-	Evenement operator=(const Evenement &evenement);
 
 	protected:
 	int m_numero;

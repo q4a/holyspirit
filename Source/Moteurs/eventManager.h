@@ -24,7 +24,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define EVENTMANAGERH
 
 #include <iostream>
-#include "../Entites/hero.h"
+#include "../constantes.h"
 
 class EventManager
 {

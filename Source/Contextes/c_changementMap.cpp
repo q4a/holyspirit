@@ -108,11 +108,10 @@ void c_Chargement::setC_Chargement(std::string prochaineMap,coordonnee coordonne
 void c_Chargement::Utiliser(Jeu *jeu)
 {
     jeu->m_display=true;
-    jeu->hero.placerCamera(jeu->map->getDimensions());
-    //jeu->ecran.SetView(jeu->camera);
+    jeu->hero.PlacerCamera(jeu->map->getDimensions());
 
     if(configuration->Lumiere)
-        jeu->map->calculerOmbresEtLumieres();
+        jeu->map->CalculerOmbresEtLumieres();
 
     temps_ecoule=0;
     temps_ecoule=jeu->Clock.GetElapsedTime();
@@ -148,7 +147,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         moteurGraphique->DecrementerImportance();
 
-        jeu->hero.placerCamera(jeu->map->getDimensions());
+        jeu->hero.PlacerCamera(jeu->map->getDimensions());
 
         coordonnee position;
         position.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1+jeu->map->getDimensions().y)/5;
@@ -156,10 +155,10 @@ void c_Chargement::Utiliser(Jeu *jeu)
         Listener::SetGlobalVolume((float)configuration->volume);
         Listener::SetPosition(-position.x, 0, position.y);
         Listener::SetTarget(0, 0, 1);
-        jeu->map->musiquePlay(position);
+        jeu->map->MusiquePlay(position);
 
         if(configuration->Lumiere)
-            jeu->map->calculerOmbresEtLumieres();
+            jeu->map->CalculerOmbresEtLumieres();
 
         moteurGraphique->LightManager->GenerateWallShadow(moteurGraphique->m_angleOmbreSoleil,moteurGraphique->m_soleil);
 

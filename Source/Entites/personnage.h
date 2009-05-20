@@ -26,7 +26,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <SFML/Audio.hpp>
 
 #include "../constantes.h"
-#include "../Map/decor.h"
+#include "objet.h"
 #include "liste_case.h"
 #include "pose.h"
 #include "../Moteurs/lightManager.h"
@@ -43,13 +43,15 @@ class Modele_Personnage
 
 	void Reinitialiser();
 
-	void setPorteeLumineuse(Lumiere  lumiere);
+	void JouerSon(int numeroSon,coordonnee position,coordonnee positionHero, bool uniqueSound=false);
 
 	Lumiere getPorteeLumineuse();
 	int getNombreSons();
 	Caracteristique getCaracteristique();
 
-	void jouerSon(int numeroSon,coordonnee position,coordonnee positionHero, bool uniqueSound=false);
+	void setPorteeLumineuse(Lumiere  lumiere);
+
+
 
 	std::vector <std::vector<std::vector<Pose> > > m_pose;
 	std::vector <int> m_image;

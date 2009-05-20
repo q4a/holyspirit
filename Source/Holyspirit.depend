@@ -1359,7 +1359,7 @@
 	<SFML/Graphics/Rect.hpp>
 	<string>
 
-1242470096 e:\c++\holyspirit\source\constantes.h
+1242844594 e:\c++\holyspirit\source\constantes.h
 	<cmath>
 	<utility>
 	<iostream>
@@ -1434,9 +1434,10 @@
 
 1239711501 h>
 
-1239701714 e:\c++\holyspirit\source\globale.h
+1242837662 e:\c++\holyspirit\source\globale.h
 	"Moteurs/moteurGraphique.h"
 	"Moteurs/moteurSons.h"
+	"configuration.h"
 
 1239701714 oteurSons.h"
 
@@ -1537,12 +1538,12 @@
 	"tile.h"
 	"light.h"
 
-1241108175 e:\c++\holyspirit\source\menu.h
+1242835447 e:\c++\holyspirit\source\menu.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"constantes.h"
-	"Entites/hero.h"
+	"Entites/classe.h"
 
 1241108175 ero.h"
 
@@ -1597,14 +1598,13 @@
 	"contexte.h"
 	"globale.h"
 
-1241952698 e:\c++\holyspirit\source\jeu.h
+1242835297 e:\c++\holyspirit\source\jeu.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"constantes.h"
 	"Map/map.h"
 	"Moteurs/eventManager.h"
 	"menu.h"
-	"Entites/personnage.h"
 	"Contextes/c_jeu.h"
 	"Contextes/c_changementMap.h"
 	"Contextes/c_inventaire.h"
@@ -1726,7 +1726,7 @@
 	<math.h>
 	<dirent.h>
 
-1242489987 source:e:\c++\holyspirit\source\jeu.cpp
+1242843627 source:e:\c++\holyspirit\source\jeu.cpp
 	"constantes.h"
 	"globale.h"
 	"jeu.h"
@@ -1738,7 +1738,7 @@
 	"globale.h"
 	<iostream>
 
-1242470617 source:e:\c++\holyspirit\source\main.cpp
+1242843634 source:e:\c++\holyspirit\source\main.cpp
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<iostream>
@@ -1856,11 +1856,10 @@
 	"globale.h"
 	<iostream>
 
-1242470083 e:\c++\holyspirit\source\moteurs\moteurgraphique.h
+1242837649 e:\c++\holyspirit\source\moteurs\moteurgraphique.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
-	"../Map/map.h"
 	"commande.h"
 	"moteurParticule.h"
 	"lightManager.h"
@@ -1898,40 +1897,39 @@
 	<SFML/Audio.hpp>
 	"../constantes.h"
 
-1240240866 e:\c++\holyspirit\source\moteurs\console.h
+1242837636 e:\c++\holyspirit\source\moteurs\console.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"../singleton.h"
 
-1240240500 e:\c++\holyspirit\source\moteurs\eventmanager.h
+1242836054 e:\c++\holyspirit\source\moteurs\eventmanager.h
 	<iostream>
-	"../Entites/hero.h"
+	"../constantes.h"
 
 1240240500 s/hero.h"
 
-1242552296 e:\c++\holyspirit\source\entites\personnage.h
+1242837636 e:\c++\holyspirit\source\entites\personnage.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"../constantes.h"
-	"../Map/decor.h"
+	"objet.h"
 	"liste_case.h"
 	"pose.h"
 	"../Moteurs/lightManager.h"
 	"miracle.h"
 
-1242470272 e:\c++\holyspirit\source\entites\liste_case.h
+1242837635 e:\c++\holyspirit\source\entites\liste_case.h
 	"../constantes.h"
 	"case.h"
 
-1239710661 e:\c++\holyspirit\source\entites\case.h
+1242834530 e:\c++\holyspirit\source\entites\case.h
 	"../constantes.h"
-	"../Map/decor.h"
 
 1239710661 cor.h"
 
-1242470277 e:\c++\holyspirit\source\entites\pose.h
+1242837636 e:\c++\holyspirit\source\entites\pose.h
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
@@ -1970,13 +1968,14 @@
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1242552526 e:\c++\holyspirit\source\entites\hero.h
+1242837635 e:\c++\holyspirit\source\entites\hero.h
 	<iostream>
 	<string>
+	"classe.h"
 	"personnage.h"
 	"monstre.h"
 
-1241108758 e:\c++\holyspirit\source\entites\monstre.h
+1242837635 e:\c++\holyspirit\source\entites\monstre.h
 	"personnage.h"
 	"../constantes.h"
 	"script.h"
@@ -1985,14 +1984,14 @@
 	<iostream>
 	"../constantes.h"
 
-1240659661 e:\c++\holyspirit\source\entites\miracle.h
+1242837671 e:\c++\holyspirit\source\entites\miracle.h
 	"../constantes.h"
 	"../Map/tile.h"
 	"../Moteurs/light.h"
 
 1240659661 s/light.h"
 
-1242470173 e:\c++\holyspirit\source\map\decor.h
+1242837636 e:\c++\holyspirit\source\map\decor.h
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
@@ -2001,42 +2000,41 @@
 	"../Entites/objet.h"
 	"../Moteurs/light.h"
 
-1242488290 e:\c++\holyspirit\source\entites\objet.h
+1242844324 e:\c++\holyspirit\source\entites\objet.h
 	<iostream>
 	"../constantes.h"
 	<fstream>
 
-1242470093 e:\c++\holyspirit\source\map\tile.h
+1242837636 e:\c++\holyspirit\source\map\tile.h
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"../constantes.h"
 
-1242218748 e:\c++\holyspirit\source\map\map.h
+1242837636 e:\c++\holyspirit\source\map\map.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
+	"../Entites/hero.h"
 	"tileset.h"
 	"decor.h"
 	"../menu.h"
 	"../Entites/monstre.h"
 	"evenement.h"
-	"../Contextes/c_changementMap.h"
 
 1242218748 tes/c_changementMap.h"
 
-1242470281 e:\c++\holyspirit\source\map\tileset.h
+1242837636 e:\c++\holyspirit\source\map\tileset.h
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"tile.h"
-	"../Entites/hero.h"
 
-1240935845 e:\c++\holyspirit\source\map\evenement.h
+1242837636 e:\c++\holyspirit\source\map\evenement.h
 	"../constantes.h"
 
-1242474116 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
+1242837840 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -2044,7 +2042,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1242470258 source:e:\c++\holyspirit\source\contextes\c_changementmap.cpp
+1242837711 source:e:\c++\holyspirit\source\contextes\c_changementmap.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -2064,7 +2062,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1242470298 source:e:\c++\holyspirit\source\contextes\c_inventaire.cpp
+1242837723 source:e:\c++\holyspirit\source\contextes\c_inventaire.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -2074,7 +2072,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1242470312 source:e:\c++\holyspirit\source\contextes\c_menuingame.cpp
+1242837850 source:e:\c++\holyspirit\source\contextes\c_menuingame.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -2091,7 +2089,7 @@
 	"case.h"
 	<iostream>
 
-1242552649 source:e:\c++\holyspirit\source\entites\hero.cpp
+1242844324 source:e:\c++\holyspirit\source\entites\hero.cpp
 	"hero.h"
 	"../globale.h"
 	<iostream>
@@ -2101,12 +2099,12 @@
 	<math.h>
 	<dirent.h>
 
-1242470337 source:e:\c++\holyspirit\source\entites\liste_case.cpp
+1242838022 source:e:\c++\holyspirit\source\entites\liste_case.cpp
 	"liste_case.h"
 	"../globale.h"
 	<iostream>
 
-1242474238 source:e:\c++\holyspirit\source\entites\miracle.cpp
+1242838029 source:e:\c++\holyspirit\source\entites\miracle.cpp
 	"miracle.h"
 	"../globale.h"
 	<iostream>
@@ -2114,19 +2112,19 @@
 
 1238434599 source:e:\c++\holyspirit\source\entites\modelepersonnage.cpp
 
-1242552295 source:e:\c++\holyspirit\source\entites\monstre.cpp
+1242842960 source:e:\c++\holyspirit\source\entites\monstre.cpp
 	<iostream>
 	<fstream>
 	"monstre.h"
 	"../constantes.h"
 	"../globale.h"
 
-1242488289 source:e:\c++\holyspirit\source\entites\objet.cpp
+1242844666 source:e:\c++\holyspirit\source\entites\objet.cpp
 	"objet.h"
 	"../globale.h"
 	<fstream>
 
-1242553033 source:e:\c++\holyspirit\source\entites\personnage.cpp
+1242838078 source:e:\c++\holyspirit\source\entites\personnage.cpp
 	"personnage.h"
 	"../globale.h"
 	<iostream>
@@ -2147,15 +2145,15 @@
 	"script.h"
 	"../globale.h"
 
-1242470381 source:e:\c++\holyspirit\source\map\decor.cpp
+1242838089 source:e:\c++\holyspirit\source\map\decor.cpp
 	"decor.h"
 	"../globale.h"
 
-1242470388 source:e:\c++\holyspirit\source\map\evenement.cpp
+1242838102 source:e:\c++\holyspirit\source\map\evenement.cpp
 	"evenement.h"
 	<iostream>
 
-1242553027 source:e:\c++\holyspirit\source\map\map.cpp
+1242839022 source:e:\c++\holyspirit\source\map\map.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -2173,7 +2171,7 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1242473935 source:e:\c++\holyspirit\source\map\tileset.cpp
+1242842811 source:e:\c++\holyspirit\source\map\tileset.cpp
 	"tileset.h"
 	"../globale.h"
 	<iostream>
@@ -2181,14 +2179,14 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1242470424 source:e:\c++\holyspirit\source\moteurs\console.cpp
+1242842818 source:e:\c++\holyspirit\source\moteurs\console.cpp
 	"console.h"
 	"../constantes.h"
 	"../globale.h"
 	<iostream>
 	<fstream>
 
-1242470431 source:e:\c++\holyspirit\source\moteurs\eventmanager.cpp
+1242842826 source:e:\c++\holyspirit\source\moteurs\eventmanager.cpp
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<math.h>
@@ -2211,7 +2209,7 @@
 	"../globale.h"
 	<fstream>
 
-1242470448 source:e:\c++\holyspirit\source\moteurs\moteurgraphique.cpp
+1242842843 source:e:\c++\holyspirit\source\moteurs\moteurgraphique.cpp
 	"moteurGraphique.h"
 	"../globale.h"
 	<iostream>
@@ -3043,6 +3041,9 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
 
 1194364890 /media/Documents/C++/SFML-1.4-sdk-windows/SFML-1.4/include/SFML/Audio.hpp
 	<SFML/System.hpp>
@@ -3097,8 +3098,17 @@
 	"Moteurs/moteurSons.h"
 	"Moteurs/moteurGraphique.h"
 	"Moteurs/moteurSons.h"
+	"Moteurs/moteurGraphique.h"
+	"Moteurs/moteurSons.h"
 
 1242470083 /media/Documents/C++/Holyspirit/Source/Moteurs/moteurGraphique.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"../Map/map.h"
+	"commande.h"
+	"moteurParticule.h"
+	"lightManager.h"
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -3123,8 +3133,19 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"../constantes.h"
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"../constantes.h"
 
 1242470096 /media/Documents/C++/Holyspirit/Source/constantes.h
+	<cmath>
+	<utility>
+	<iostream>
+	<fstream>
+	<vector>
+	"datFile.h"
+	"Moteurs/console.h"
 	<cmath>
 	<utility>
 	<iostream>
@@ -3147,8 +3168,13 @@
 	<iostream>
 	<fstream>
 	<vector>
+	<iostream>
+	<fstream>
+	<vector>
 
 1240243980 /media/Documents/C++/Holyspirit/Source/Moteurs/moteurParticule.h
+	"../constantes.h"
+	"modeleMoteurParticule.h"
 	"../constantes.h"
 	"modeleMoteurParticule.h"
 	"../constantes.h"
@@ -3157,8 +3183,11 @@
 1239701801 /media/Documents/C++/Holyspirit/Source/Moteurs/modeleMoteurParticule.h
 	"../constantes.h"
 	"../constantes.h"
+	"../constantes.h"
 
 1239701801 /media/Documents/C++/Holyspirit/Source/Moteurs/lightManager.h
+	"light.h"
+	"../singleton.h"
 	"light.h"
 	"../singleton.h"
 	"light.h"
@@ -3173,8 +3202,13 @@
 	<SFML/Graphics.hpp>
 	<SFML/Window.hpp>
 	"../constantes.h"
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Window.hpp>
+	"../constantes.h"
 
 1242470167 /media/Documents/C++/Holyspirit/Source/singleton.h
+	<iostream>
 	<iostream>
 	<iostream>
 
@@ -3187,8 +3221,24 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"../constantes.h"
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"../constantes.h"
 
 1241952698 /media/Documents/C++/Holyspirit/Source/jeu.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"constantes.h"
+	"Map/map.h"
+	"Moteurs/eventManager.h"
+	"menu.h"
+	"Entites/personnage.h"
+	"Contextes/c_jeu.h"
+	"Contextes/c_changementMap.h"
+	"Contextes/c_inventaire.h"
+	"Contextes/c_menuInGame.h"
+	"Contextes/c_demarrage.h"
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"constantes.h"
@@ -3233,8 +3283,23 @@
 	"../Entites/monstre.h"
 	"evenement.h"
 	"../Contextes/c_changementMap.h"
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"tileset.h"
+	"decor.h"
+	"../menu.h"
+	"../Entites/monstre.h"
+	"evenement.h"
+	"../Contextes/c_changementMap.h"
 
 1242470281 /media/Documents/C++/Holyspirit/Source/Map/tileset.h
+	<iostream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"tile.h"
+	"../Entites/hero.h"
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
@@ -3257,8 +3322,12 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"../constantes.h"
+	<iostream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"../constantes.h"
 
-1242496619 /media/Documents/C++/Holyspirit/Source/Entites/hero.h
+1242552526 /media/Documents/C++/Holyspirit/Source/Entites/hero.h
 	<iostream>
 	<string>
 	"personnage.h"
@@ -3267,8 +3336,21 @@
 	<string>
 	"personnage.h"
 	"monstre.h"
+	<iostream>
+	<string>
+	"personnage.h"
+	"monstre.h"
 
-1242486894 /media/Documents/C++/Holyspirit/Source/Entites/personnage.h
+1242552296 /media/Documents/C++/Holyspirit/Source/Entites/personnage.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"../constantes.h"
+	"../Map/decor.h"
+	"liste_case.h"
+	"pose.h"
+	"../Moteurs/lightManager.h"
+	"miracle.h"
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -3303,8 +3385,18 @@
 	"../constantes.h"
 	"../Entites/objet.h"
 	"../Moteurs/light.h"
+	<iostream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"../constantes.h"
+	"../Entites/objet.h"
+	"../Moteurs/light.h"
 
 1242488290 /media/Documents/C++/Holyspirit/Source/Entites/objet.h
+	<iostream>
+	"../constantes.h"
+	<fstream>
 	<iostream>
 	"../constantes.h"
 	<fstream>
@@ -3317,14 +3409,22 @@
 	"case.h"
 	"../constantes.h"
 	"case.h"
+	"../constantes.h"
+	"case.h"
 
 1239710661 /media/Documents/C++/Holyspirit/Source/Entites/case.h
 	"../constantes.h"
 	"../Map/decor.h"
 	"../constantes.h"
 	"../Map/decor.h"
+	"../constantes.h"
+	"../Map/decor.h"
 
 1242470277 /media/Documents/C++/Holyspirit/Source/Entites/pose.h
+	<iostream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"../constantes.h"
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
@@ -3341,6 +3441,9 @@
 	"../constantes.h"
 	"../Map/tile.h"
 	"../Moteurs/light.h"
+	"../constantes.h"
+	"../Map/tile.h"
+	"../Moteurs/light.h"
 
 1241108758 /media/Documents/C++/Holyspirit/Source/Entites/monstre.h
 	"personnage.h"
@@ -3349,8 +3452,13 @@
 	"personnage.h"
 	"../constantes.h"
 	"script.h"
+	"personnage.h"
+	"../constantes.h"
+	"script.h"
 
 1242470182 /media/Documents/C++/Holyspirit/Source/Entites/script.h
+	<iostream>
+	"../constantes.h"
 	<iostream>
 	"../constantes.h"
 	<iostream>
@@ -3367,12 +3475,21 @@
 	<SFML/Audio.hpp>
 	"constantes.h"
 	"Entites/hero.h"
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"constantes.h"
+	"Entites/hero.h"
 
 1240935845 /media/Documents/C++/Holyspirit/Source/Map/evenement.h
 	"../constantes.h"
 	"../constantes.h"
+	"../constantes.h"
 
 1240935920 /media/Documents/C++/Holyspirit/Source/Contextes/c_changementMap.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"contexte.h"
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"contexte.h"
@@ -3385,8 +3502,13 @@
 	"../Entites/hero.h"
 	<iostream>
 	"../Entites/hero.h"
+	<iostream>
+	"../Entites/hero.h"
 
 1241172701 /media/Documents/C++/Holyspirit/Source/Contextes/c_inventaire.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"contexte.h"
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"contexte.h"
@@ -3401,6 +3523,9 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"contexte.h"
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"contexte.h"
 
 1238335570 /media/Documents/C++/Holyspirit/Source/Contextes/c_demarrage.h
 	<SFML/System.hpp>
@@ -3409,8 +3534,19 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"contexte.h"
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"contexte.h"
 
 1242470258 source:/media/Documents/C++/Holyspirit/Source/Contextes/c_changementMap.cpp
+	"c_jeu.h"
+	"../jeu.h"
+	"../globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -3445,8 +3581,24 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
+	"c_jeu.h"
+	"../jeu.h"
+	"../globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
 
 1242470298 source:/media/Documents/C++/Holyspirit/Source/Contextes/c_inventaire.cpp
+	"c_jeu.h"
+	"../jeu.h"
+	"../globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -3481,8 +3633,17 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
+	"c_jeu.h"
+	"../jeu.h"
+	"../globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
 
 1242470316 source:/media/Documents/C++/Holyspirit/Source/Contextes/contexte.cpp
+	"c_jeu.h"
 	"c_jeu.h"
 	"c_jeu.h"
 
@@ -3491,8 +3652,18 @@
 	<iostream>
 	"case.h"
 	<iostream>
+	"case.h"
+	<iostream>
 
-1242496619 source:/media/Documents/C++/Holyspirit/Source/Entites/hero.cpp
+1242557407 source:/media/Documents/C++/Holyspirit/Source/Entites/hero.cpp
+	"hero.h"
+	"../globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<math.h>
+	<dirent.h>
 	"hero.h"
 	"../globale.h"
 	<iostream>
@@ -3517,6 +3688,9 @@
 	"liste_case.h"
 	"../globale.h"
 	<iostream>
+	"liste_case.h"
+	"../globale.h"
+	<iostream>
 
 1242474238 source:/media/Documents/C++/Holyspirit/Source/Entites/miracle.cpp
 	"miracle.h"
@@ -3527,8 +3701,12 @@
 	"../globale.h"
 	<iostream>
 	<fstream>
+	"miracle.h"
+	"../globale.h"
+	<iostream>
+	<fstream>
 
-1242486348 source:/media/Documents/C++/Holyspirit/Source/Entites/monstre.cpp
+1242552295 source:/media/Documents/C++/Holyspirit/Source/Entites/monstre.cpp
 	<iostream>
 	<fstream>
 	"monstre.h"
@@ -3539,16 +3717,31 @@
 	"monstre.h"
 	"../constantes.h"
 	"../globale.h"
+	<iostream>
+	<fstream>
+	"monstre.h"
+	"../constantes.h"
+	"../globale.h"
 
-1242488289 source:/media/Documents/C++/Holyspirit/Source/Entites/objet.cpp
+1242556905 source:/media/Documents/C++/Holyspirit/Source/Entites/objet.cpp
 	"objet.h"
 	"../globale.h"
 	<fstream>
 	"objet.h"
 	"../globale.h"
 	<fstream>
+	"objet.h"
+	"../globale.h"
+	<fstream>
 
-1242487018 source:/media/Documents/C++/Holyspirit/Source/Entites/personnage.cpp
+1242553033 source:/media/Documents/C++/Holyspirit/Source/Entites/personnage.cpp
+	"personnage.h"
+	"../globale.h"
+	<iostream>
+	<fstream>
+	<math.h>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
 	"personnage.h"
 	"../globale.h"
 	<iostream>
@@ -3575,8 +3768,16 @@
 	<fstream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
+	"pose.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
 
 1240850898 source:/media/Documents/C++/Holyspirit/Source/Entites/script.cpp
+	<fstream>
+	"script.h"
+	"../globale.h"
 	<fstream>
 	"script.h"
 	"../globale.h"
@@ -3589,14 +3790,27 @@
 	"../globale.h"
 	"decor.h"
 	"../globale.h"
+	"decor.h"
+	"../globale.h"
 
 1242470388 source:/media/Documents/C++/Holyspirit/Source/Map/evenement.cpp
 	"evenement.h"
 	<iostream>
 	"evenement.h"
 	<iostream>
+	"evenement.h"
+	<iostream>
 
-1242487592 source:/media/Documents/C++/Holyspirit/Source/Map/map.cpp
+1242554002 source:/media/Documents/C++/Holyspirit/Source/Map/map.cpp
+	"map.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<dirent.h>
+	"../globale.h"
+	"../jeu.h"
 	"map.h"
 	<iostream>
 	<fstream>
@@ -3627,8 +3841,19 @@
 	<fstream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
+	"tile.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
 
 1242473935 source:/media/Documents/C++/Holyspirit/Source/Map/tileset.cpp
+	"tileset.h"
+	"../globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
 	"tileset.h"
 	"../globale.h"
 	<iostream>
@@ -3653,8 +3878,19 @@
 	"../globale.h"
 	<iostream>
 	<fstream>
+	"console.h"
+	"../constantes.h"
+	"../globale.h"
+	<iostream>
+	<fstream>
 
 1242470431 source:/media/Documents/C++/Holyspirit/Source/Moteurs/eventManager.cpp
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<math.h>
+	"eventManager.h"
+	"../globale.h"
+	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<math.h>
@@ -3677,14 +3913,23 @@
 	<math.h>
 	"light.h"
 	"../globale.h"
+	<iostream>
+	<math.h>
+	"light.h"
+	"../globale.h"
 
 1242470442 source:/media/Documents/C++/Holyspirit/Source/Moteurs/lightManager.cpp
 	"lightManager.h"
 	"../globale.h"
 	"lightManager.h"
 	"../globale.h"
+	"lightManager.h"
+	"../globale.h"
 
 1242474238 source:/media/Documents/C++/Holyspirit/Source/Moteurs/modeleMoteurParticule.cpp
+	"modeleMoteurParticule.h"
+	"../globale.h"
+	<fstream>
 	"modeleMoteurParticule.h"
 	"../globale.h"
 	<fstream>
@@ -3699,8 +3944,14 @@
 	"moteurGraphique.h"
 	"../globale.h"
 	<iostream>
+	"moteurGraphique.h"
+	"../globale.h"
+	<iostream>
 
 1240244547 source:/media/Documents/C++/Holyspirit/Source/Moteurs/moteurParticule.cpp
+	"moteurParticule.h"
+	"../globale.h"
+	<fstream>
 	"moteurParticule.h"
 	"../globale.h"
 	<fstream>
@@ -3715,6 +3966,9 @@
 	"moteurSons.h"
 	"../globale.h"
 	<iostream>
+	"moteurSons.h"
+	"../globale.h"
+	<iostream>
 
 1242470604 source:/media/Documents/C++/Holyspirit/Source/datFile.cpp
 	"globale.h"
@@ -3723,8 +3977,16 @@
 	"globale.h"
 	<stdio.h>
 	<string.h>
+	"globale.h"
+	<stdio.h>
+	<string.h>
 
 1242489987 source:/media/Documents/C++/Holyspirit/Source/jeu.cpp
+	"constantes.h"
+	"globale.h"
+	"jeu.h"
+	"datFile.h"
+	<dirent.h>
 	"constantes.h"
 	"globale.h"
 	"jeu.h"
@@ -3747,8 +4009,15 @@
 	<iostream>
 	<dirent.h>
 	"main.h"
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<iostream>
+	<dirent.h>
+	"main.h"
 
 1242470621 /media/Documents/C++/Holyspirit/Source/main.h
+	"jeu.h"
+	"constantes.h"
 	"jeu.h"
 	"constantes.h"
 	"jeu.h"
@@ -3767,10 +4036,24 @@
 	<fstream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
+	"menu.h"
+	"globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
 
 1204386659 source:/media/Documents/C++/Holyspirit/Source/ressource.rc
 
 1242470642 source:/media/Documents/C++/Holyspirit/Source/video.cpp
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<iostream>
+	<fstream>
+	"constantes.h"
+	"globale.h"
+	<libavformat/avformat.h>
+	<libavcodec/avcodec.h>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<iostream>
@@ -4085,8 +4368,16 @@
 	<SFML/Graphics.hpp>
 	"contexte.h"
 	"../globale.h"
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"contexte.h"
+	"../globale.h"
 
 1240240866 /media/Documents/C++/Holyspirit/Source/Moteurs/console.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"../singleton.h"
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -4109,443 +4400,24 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
-
-1242470258 source:/media/Documents/C++/Holyspirit/Source/Contextes/c_changementMap.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
-	<iostream>
-	<fstream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1241952698 /media/Documents/C++/Holyspirit/Source/jeu.h
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	"constantes.h"
-	"Map/map.h"
-	"Moteurs/eventManager.h"
-	"menu.h"
-	"Entites/personnage.h"
-	"Contextes/c_jeu.h"
-	"Contextes/c_changementMap.h"
-	"Contextes/c_inventaire.h"
-	"Contextes/c_menuInGame.h"
-	"Contextes/c_demarrage.h"
-
-1242470096 /media/Documents/C++/Holyspirit/Source/constantes.h
-	<cmath>
-	<utility>
-	<iostream>
-	<fstream>
-	<vector>
-	"datFile.h"
-	"Moteurs/console.h"
-
-1242470101 /media/Documents/C++/Holyspirit/Source/datFile.h
-	<iostream>
-	<fstream>
-	<vector>
-
-1242218748 /media/Documents/C++/Holyspirit/Source/Map/map.h
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	<SFML/Audio.hpp>
-	"tileset.h"
-	"decor.h"
-	"../menu.h"
-	"../Entites/monstre.h"
-	"evenement.h"
-	"../Contextes/c_changementMap.h"
-
-1242470281 /media/Documents/C++/Holyspirit/Source/Map/tileset.h
-	<iostream>
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	<SFML/Audio.hpp>
-	"tile.h"
-	"../Entites/hero.h"
-
-1242470093 /media/Documents/C++/Holyspirit/Source/Map/tile.h
-	<iostream>
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	"../constantes.h"
-
-1242552526 /media/Documents/C++/Holyspirit/Source/Entites/hero.h
-	<iostream>
-	<string>
-	"personnage.h"
-	"monstre.h"
-
-1242552296 /media/Documents/C++/Holyspirit/Source/Entites/personnage.h
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	<SFML/Audio.hpp>
-	"../constantes.h"
-	"../Map/decor.h"
-	"liste_case.h"
-	"pose.h"
-	"../Moteurs/lightManager.h"
+1242835816 e:\c++\holyspirit\source\entites\classe.h
 	"miracle.h"
 
-1242470173 /media/Documents/C++/Holyspirit/Source/Map/decor.h
-	<iostream>
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	<SFML/Audio.hpp>
-	"../constantes.h"
-	"../Entites/objet.h"
-	"../Moteurs/light.h"
-
-1242488290 /media/Documents/C++/Holyspirit/Source/Entites/objet.h
-	<iostream>
-	"../constantes.h"
-	<fstream>
-
-1239701830 /media/Documents/C++/Holyspirit/Source/Moteurs/light.h
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	<SFML/Window.hpp>
-	"../constantes.h"
-
-1242470272 /media/Documents/C++/Holyspirit/Source/Entites/liste_case.h
-	"../constantes.h"
-	"case.h"
-
-1239710661 /media/Documents/C++/Holyspirit/Source/Entites/case.h
-	"../constantes.h"
-	"../Map/decor.h"
-
-1242470277 /media/Documents/C++/Holyspirit/Source/Entites/pose.h
-	<iostream>
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	"../constantes.h"
-
-1239701801 /media/Documents/C++/Holyspirit/Source/Moteurs/lightManager.h
-	"light.h"
-	"../singleton.h"
-
-1242470167 /media/Documents/C++/Holyspirit/Source/singleton.h
-	<iostream>
-
-1240659661 /media/Documents/C++/Holyspirit/Source/Entites/miracle.h
-	"../constantes.h"
-	"../Map/tile.h"
-	"../Moteurs/light.h"
-
-1241108758 /media/Documents/C++/Holyspirit/Source/Entites/monstre.h
-	"personnage.h"
-	"../constantes.h"
-	"script.h"
-
-1242470182 /media/Documents/C++/Holyspirit/Source/Entites/script.h
-	<iostream>
-	"../constantes.h"
-
-1241108175 /media/Documents/C++/Holyspirit/Source/menu.h
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	<SFML/Audio.hpp>
-	"constantes.h"
-	"Entites/hero.h"
-
-1240935845 /media/Documents/C++/Holyspirit/Source/Map/evenement.h
-	"../constantes.h"
-
-1240935920 /media/Documents/C++/Holyspirit/Source/Contextes/c_changementMap.h
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	"contexte.h"
-
-1238434550 /media/Documents/C++/Holyspirit/Source/Contextes/contexte.h
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	<SFML/Audio.hpp>
-
-1240240500 /media/Documents/C++/Holyspirit/Source/Moteurs/eventManager.h
-	<iostream>
-	"../Entites/hero.h"
-
-1241172701 /media/Documents/C++/Holyspirit/Source/Contextes/c_inventaire.h
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	"contexte.h"
-
-1238335555 /media/Documents/C++/Holyspirit/Source/Contextes/c_menuInGame.h
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	"contexte.h"
-
-1238335570 /media/Documents/C++/Holyspirit/Source/Contextes/c_demarrage.h
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	"contexte.h"
-
-1239701714 /media/Documents/C++/Holyspirit/Source/globale.h
-	"Moteurs/moteurGraphique.h"
-	"Moteurs/moteurSons.h"
-
-1242470083 /media/Documents/C++/Holyspirit/Source/Moteurs/moteurGraphique.h
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	<SFML/Audio.hpp>
-	"../Map/map.h"
-	"commande.h"
-	"moteurParticule.h"
-	"lightManager.h"
-
-1239710570 /media/Documents/C++/Holyspirit/Source/Moteurs/commande.h
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	<SFML/Audio.hpp>
-	"../constantes.h"
-
-1240243980 /media/Documents/C++/Holyspirit/Source/Moteurs/moteurParticule.h
-	"../constantes.h"
-	"modeleMoteurParticule.h"
-
-1239701801 /media/Documents/C++/Holyspirit/Source/Moteurs/modeleMoteurParticule.h
-	"../constantes.h"
-
-1239710468 /media/Documents/C++/Holyspirit/Source/Moteurs/moteurSons.h
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	<SFML/Audio.hpp>
-	"../constantes.h"
-
-1242470291 source:/media/Documents/C++/Holyspirit/Source/Contextes/c_demarrage.cpp
-	"c_jeu.h"
-	"../jeu.h"
-	"../globale.h"
-	<iostream>
-	<fstream>
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	<SFML/Audio.hpp>
-
-1242470298 source:/media/Documents/C++/Holyspirit/Source/Contextes/c_inventaire.cpp
-	"c_jeu.h"
-	"../jeu.h"
-	"../globale.h"
-	<iostream>
-	<fstream>
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	<SFML/Audio.hpp>
-
-1242470312 source:/media/Documents/C++/Holyspirit/Source/Contextes/c_menuInGame.cpp
-	"c_jeu.h"
-	"../jeu.h"
-	"../globale.h"
-	<iostream>
-	<fstream>
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	<SFML/Audio.hpp>
-
-1242470316 source:/media/Documents/C++/Holyspirit/Source/Contextes/contexte.cpp
-	"c_jeu.h"
-
-1242470320 source:/media/Documents/C++/Holyspirit/Source/Entites/case.cpp
-	"case.h"
-	<iostream>
-
-1242557407 source:/media/Documents/C++/Holyspirit/Source/Entites/hero.cpp
-	"hero.h"
-	"../globale.h"
-	<iostream>
-	<fstream>
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	<math.h>
-	<dirent.h>
-
-1242470337 source:/media/Documents/C++/Holyspirit/Source/Entites/liste_case.cpp
-	"liste_case.h"
-	"../globale.h"
-	<iostream>
-
-1242474238 source:/media/Documents/C++/Holyspirit/Source/Entites/miracle.cpp
-	"miracle.h"
-	"../globale.h"
-	<iostream>
-	<fstream>
-
-1242552295 source:/media/Documents/C++/Holyspirit/Source/Entites/monstre.cpp
-	<iostream>
-	<fstream>
-	"monstre.h"
-	"../constantes.h"
+1242835990 source:e:\c++\holyspirit\source\entites\classe.cpp
+	"classe.h"
 	"../globale.h"
 
-1242556905 source:/media/Documents/C++/Holyspirit/Source/Entites/objet.cpp
-	"objet.h"
-	"../globale.h"
-	<fstream>
-
-1242553033 source:/media/Documents/C++/Holyspirit/Source/Entites/personnage.cpp
-	"personnage.h"
-	"../globale.h"
-	<iostream>
-	<fstream>
-	<math.h>
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-
-1242470373 source:/media/Documents/C++/Holyspirit/Source/Entites/pose.cpp
-	"pose.h"
-	<iostream>
-	<fstream>
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-
-1240850898 source:/media/Documents/C++/Holyspirit/Source/Entites/script.cpp
-	<fstream>
-	"script.h"
-	"../globale.h"
-
-1242470381 source:/media/Documents/C++/Holyspirit/Source/Map/decor.cpp
-	"decor.h"
-	"../globale.h"
-
-1242470388 source:/media/Documents/C++/Holyspirit/Source/Map/evenement.cpp
-	"evenement.h"
-	<iostream>
-
-1242554002 source:/media/Documents/C++/Holyspirit/Source/Map/map.cpp
-	"map.h"
-	<iostream>
-	<fstream>
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	<SFML/Audio.hpp>
-	<dirent.h>
-	"../globale.h"
-	"../jeu.h"
-
-1242470409 source:/media/Documents/C++/Holyspirit/Source/Map/tile.cpp
-	"tile.h"
-	<iostream>
-	<fstream>
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-
-1242473935 source:/media/Documents/C++/Holyspirit/Source/Map/tileset.cpp
-	"tileset.h"
-	"../globale.h"
-	<iostream>
-	<fstream>
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-
-1242470424 source:/media/Documents/C++/Holyspirit/Source/Moteurs/console.cpp
-	"console.h"
-	"../constantes.h"
-	"../globale.h"
-	<iostream>
-	<fstream>
-
-1242470431 source:/media/Documents/C++/Holyspirit/Source/Moteurs/eventManager.cpp
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	<math.h>
-	"eventManager.h"
-	"../globale.h"
-	<iostream>
-
-1242470436 source:/media/Documents/C++/Holyspirit/Source/Moteurs/light.cpp
-	<iostream>
-	<math.h>
-	"light.h"
-	"../globale.h"
-
-1242470442 source:/media/Documents/C++/Holyspirit/Source/Moteurs/lightManager.cpp
-	"lightManager.h"
-	"../globale.h"
-
-1242474238 source:/media/Documents/C++/Holyspirit/Source/Moteurs/modeleMoteurParticule.cpp
-	"modeleMoteurParticule.h"
-	"../globale.h"
-	<fstream>
-
-1242470448 source:/media/Documents/C++/Holyspirit/Source/Moteurs/moteurGraphique.cpp
-	"moteurGraphique.h"
-	"../globale.h"
-	<iostream>
-
-1240244547 source:/media/Documents/C++/Holyspirit/Source/Moteurs/moteurParticule.cpp
-	"moteurParticule.h"
-	"../globale.h"
-	<fstream>
-
-1242470460 source:/media/Documents/C++/Holyspirit/Source/Moteurs/moteurSons.cpp
-	"moteurSons.h"
-	"../globale.h"
-	<iostream>
-
-1242470604 source:/media/Documents/C++/Holyspirit/Source/datFile.cpp
-	"globale.h"
-	<stdio.h>
-	<string.h>
-
-1242489987 source:/media/Documents/C++/Holyspirit/Source/jeu.cpp
-	"constantes.h"
-	"globale.h"
-	"jeu.h"
-	"datFile.h"
-	<dirent.h>
-
-1242470617 source:/media/Documents/C++/Holyspirit/Source/main.cpp
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	<iostream>
-	<dirent.h>
-	"main.h"
-
-1242470621 /media/Documents/C++/Holyspirit/Source/main.h
-	"jeu.h"
+1242842973 e:\c++\holyspirit\source\configuration.h
+	"singleton.h"
 	"constantes.h"
 
-1242470632 source:/media/Documents/C++/Holyspirit/Source/menu.cpp
-	"menu.h"
-	"globale.h"
-	<iostream>
-	<fstream>
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-
-1204386659 source:/media/Documents/C++/Holyspirit/Source/ressource.rc
-
-1242470642 source:/media/Documents/C++/Holyspirit/Source/video.cpp
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	<iostream>
-	<fstream>
-	"constantes.h"
-	"globale.h"
-	<libavformat/avformat.h>
-	<libavcodec/avcodec.h>
-
-1242221822 /media/Documents/C++/Holyspirit/Source/Contextes/c_jeu.h
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	"contexte.h"
-	"../globale.h"
-
-1240240866 /media/Documents/C++/Holyspirit/Source/Moteurs/console.h
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	<SFML/Audio.hpp>
-	"../singleton.h"
-
-1242474116 source:/media/Documents/C++/Holyspirit/Source/Contextes/c_jeu.cpp
-	"c_jeu.h"
-	"../jeu.h"
-	"../globale.h"
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	<SFML/Audio.hpp>
+1242843702 source:e:\c++\holyspirit\source\configuration.cpp
+	"configuration.h"
 

@@ -43,17 +43,10 @@ class Decor
 	Decor operator=(const Decor &Decor);
 
 
-	void setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe,int couche,int hauteur);
-	void setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe,int couche,int hauteur,std::vector <Objet> objets); //Définir une valeur au décor
-	void setNumeroHerbe(int numero);
-	void setMonstre(int monstre);
-	void setProjectile(int projectile);
-	void setEffetGraphique(int effet);
+	void AjouterObjet(Objet);
 
-	float getAnimation();
-
-	void decrementerAnimation(float nombre);
-	void augmenterAnimation(float temps);
+	void DecrementerAnimation(float nombre);
+	void AugmenterAnimation(float temps);
 
 	int getTile(); // Prendre le numéro du tile du décor
 	int getTileset(); // Prendre le numéro du tileset du décor
@@ -73,8 +66,7 @@ class Decor
 	void supprimerObjet(int numero);
 	std::vector<Objet> getObjets();
 	int getNombreObjets();
-
-	void ajouterObjet(Objet);
+	float getAnimation();
 
 
 	void setEvenement(int evenement,int numero);
@@ -82,6 +74,13 @@ class Decor
 	void setTileset( int tileset);
 	void setTile(int tile);
 	void setCouche(int couche);
+	void setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe,int couche,int hauteur);
+	void setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe,int couche,int hauteur,std::vector <Objet> objets); //Définir une valeur au décor
+	void setNumeroHerbe(int numero);
+	void setMonstre(int monstre);
+	void setProjectile(int projectile);
+	void setEffetGraphique(int effet);
+
 
 	Light_Entity m_light;
 

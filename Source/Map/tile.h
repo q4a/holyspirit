@@ -35,6 +35,7 @@ class Tile
 	~Tile();
 	Tile operator=(const Tile &tile);
 	void setTile(coordonnee positionDansLImage,int image,bool collision,int animation,int son,Lumiere lumiere,bool ombre,char orientation,bool transparent,coordonnee centre,float temps);
+
 	coordonnee getCoordonnee();
 	bool getCollision();
 	int getAnimation();

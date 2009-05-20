@@ -37,17 +37,19 @@ class liste_case
 {
 	public:
 	~liste_case();
-	void ajouterCase(coordonnee coordonneeAjoutable);
-	void setTailleListe(int taille);
-	int getTailleListe();
+	void AjouterCase(coordonnee coordonneeAjoutable);
 
-	bool ajouterCasesAdjacentes(casePathfinding ** grille,coordonnee *arrivee,coordonnee depart);
-	bool testerCasesEnCours(coordonnee caseCherchee);
-	void incrementerDistanceEnCours();
-	void decrementerDistanceEnCours();
-	void supprimer();
+	bool AjouterCasesAdjacentes(casePathfinding ** grille,coordonnee *arrivee,coordonnee depart);
+	bool TesterCasesEnCours(coordonnee caseCherchee);
+	void IncrementerDistanceEnCours();
+	void DecrementerDistanceEnCours();
+	void Supprimer();
+
+	coordonnee TrouverLeChemin(coordonnee caseEnCours);
+
 	int getDistance();
-	coordonnee trouverLeChemin(coordonnee caseEnCours);
+	int getTailleListe();
+	void setTailleListe(int taille);
 
 	private:
 	int m_distanceEnCours;

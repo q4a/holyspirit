@@ -53,14 +53,16 @@ class Objet
     void AfficherCaracteristiques(coordonnee position,Caracteristique caract,float modPrix=1);
     void Charger(std::string chemin);
     void ChargerCaracteristiques(std::ifstream *fichier);
-    void setChanceTrouver(int);
+
     void Sauvegarder(std::ofstream *fichier);
     void SauvegarderTexte(std::ofstream *fichier);
     void ChargerTexte(std::ifstream *fichier);
 
     void Generer(int bonus);
 
-    bool utilisable(Caracteristique caract,int IDClasse);
+    bool Utilisable(Caracteristique caract,int IDClasse);
+
+    void JouerSon();
 
     std::string getChemin();
     std::string getNom();
@@ -74,6 +76,7 @@ class Objet
 
     void setRarete(int);
     void setPosition(int, int);
+    void setChanceTrouver(int);
 
     int m_type,m_equipe;
     std::vector <int> m_emplacement;
@@ -100,7 +103,7 @@ class Objet
 
     std::string m_nom,m_chemin;
     std::vector <std::string> m_description;
-    int m_rarete,m_image,m_chanceTrouver;
+    int m_rarete,m_image,m_son,m_chanceTrouver;
     coordonnee m_positionImage,m_taille,m_position;
     int ai,aa,dii,dia,dai,daa;
 

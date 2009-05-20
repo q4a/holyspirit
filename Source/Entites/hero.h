@@ -26,52 +26,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <iostream>
 #include <string>
 
+#include "classe.h"
 #include "personnage.h"
 #include "monstre.h"
-
-struct Image_interface
-{
-    coordonnee position;
-    int image;
-};
-
-struct Emplacement_inventaire
-{
-    coordonnee position;
-    int emplacement;
-};
-
-struct Classe
-{
-    void Charger(std::string chemin);
-
-    int ID;
-
-    std::string nom;
-    Caracteristique caracteristique;
-
-
-    std::string chemin_modele;
-
-    std::vector<std::string> equipementParDefaut;
-    std::string modeleNu[3];
-
-    Image_interface inventaire;
-    Image_interface menu_marchand;
-    Image_interface hud;
-    Image_interface orbe_vie;
-    Image_interface orbe_foi;
-    Image_interface cache_vie;
-    Image_interface cache_foi;
-
-    coordonnee position_sac_inventaire;
-    coordonnee position_contenu_inventaire;
-    coordonnee position_contenu_marchand;
-
-    std::vector <Emplacement_inventaire> emplacements;
-
-    std::vector<Miracle> miracle;
-};
 
 void AjouterTrader(Objet,std::vector<Objet>&,Classe*);
 
@@ -91,26 +48,26 @@ class Hero
 	void AfficherInventaire(coordonnee,float,std::vector<Objet>);
 	void AfficherCaracteristiques(coordonnee positionSouris,float decalage);
 	void GenererGrille();
-	void placerCamera(coordonnee dimensionsMap);
+	void PlacerCamera(coordonnee dimensionsMap);
 
-	bool testMonstreVise(Monstre *monstre,int hauteurMap);
+	bool TestMonstreVise(Monstre *monstre,int hauteurMap);
 
-	void augmenterAme(float temps);
-	void recalculerCaracteristiques();
+	void AugmenterAme(float temps);
+	void RecalculerCaracteristiques();
 
-	void infligerDegats(float degats);
-	void regenererVie(float vie);
-	void regenererFoi(float foi);
+	void InfligerDegats(float degats);
+	void RegenererVie(float vie);
+	void RegenererFoi(float foi);
 
-	int utiliserClicDroit(coordonnee positionSouris, int monstreVise);
+	int UtiliserClicDroit(coordonnee positionSouris, int monstreVise);
 
-	bool ajouterObjet(Objet objet,bool enMain=false);
+	bool AjouterObjet(Objet objet,bool enMain=false);
 
 	Objet DeposerObjet();
-	bool prendreEnMain(coordonnee positionSouris,std::vector<Objet>&);
+	bool PrendreEnMain(coordonnee positionSouris,std::vector<Objet>&);
 
-	bool possibleEquiper(int emplacement);
-	bool equiper(int numero, int emplacement);
+	bool PossibleEquiper(int emplacement);
+	bool Equiper(int numero, int emplacement);
 	void AttribuerPositionObjet(coordonnee position,int numero);
 	//void LibererCases(int numero);
 

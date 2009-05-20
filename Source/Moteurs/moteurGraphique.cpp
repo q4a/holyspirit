@@ -54,7 +54,7 @@ MoteurGraphique::~MoteurGraphique()
     }
 }
 
-void MoteurGraphique::createWindow()
+void MoteurGraphique::CreateNewWindow()
 {
     if(m_ecran!=NULL)
     {
@@ -563,7 +563,7 @@ coordonnee MoteurGraphique::getPositionSouris()
     return pos;
 }
 
-void MoteurGraphique::printscreen()
+void MoteurGraphique::Printscreen()
 {
     char buffer[255];
     sf::Image Screen = m_ecran->Capture();

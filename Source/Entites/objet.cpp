@@ -481,9 +481,20 @@ void Objet::Charger(std::string chemin)
 
     	do
     	{
+    		fichier->get(caractere);
+    		if(caractere=='*')
+            {
+                string temp;
+                *fichier>>temp;
 
+                m_son=moteurSons->AjouterBuffer(temp);
+            }
+    		if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
 
+    	}while(caractere!='$');
 
+    	do
+    	{
     		fichier->get(caractere);
     		if(caractere=='*')
             {
@@ -1012,7 +1023,7 @@ void Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,
     temp.clear();
 }
 
-bool Objet::utilisable(Caracteristique caract,int IDClasse)
+bool Objet::Utilisable(Caracteristique caract,int IDClasse)
 {
     if(m_requirement.force<=caract.force)
     if(m_requirement.dexterite<=caract.dexterite)
@@ -1029,6 +1040,11 @@ bool Objet::utilisable(Caracteristique caract,int IDClasse)
     return false;
 }
 
+void Objet::JouerSon()
+{
+    coordonnee temp={0,0,0,0};
+    moteurSons->JouerSon(m_son,temp,temp);
+}
 
 
 void Objet::setChanceTrouver(int chance){ m_chanceTrouver=chance; }

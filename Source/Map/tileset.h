@@ -29,7 +29,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <SFML/Audio.hpp>
 
 #include "tile.h"
-#include "../Entites/hero.h"
 
 class Tileset
 {
@@ -38,7 +37,12 @@ class Tileset
 	Tileset(std::string chemin);
 	~Tileset();
 	Tileset operator=(const Tileset &tileset);
+
 	bool Charger(std::string chemin);
+
+	void JouerSon(int numeroSon,coordonnee position,coordonnee positionHero);
+	void DeleteTiles();
+
 	int getImage(int tile);
 	coordonnee getPositionDuTile(int tile);
 	bool getCollisionTile(int tile);
@@ -51,21 +55,12 @@ class Tileset
 	coordonnee getCentreDuTile(int tile);
 	std::string getChemin(){return m_chemin;}
 	float getTempsDuTile(int tile);
-
 	int getTaille();
 
-	void jouerSon(int numeroSon,coordonnee position,coordonnee positionHero);
-	//void remiseAZeroDesSons();
-
-	void deleteTiles();
-
 	private:
-	//std::vector <bool> m_sonAZero;
 	std::vector <int> m_image;
 	std::vector <Tile> m_tile;
 	std::vector <int> m_sons;
-	//std::vector <int> m_sons;
-	//std::vector <sf::Sound> m_sons;
 	std::string m_chemin;
 };
 

@@ -52,7 +52,7 @@ class Monstre : public Personnage
     Monstre();
     ~Monstre();
     void Charger(int numero,Modele_Monstre *modele);
-    void testerVision(coordonnee positionHero);
+    void TesterVision(coordonnee positionHero);
     int getModele();
     coordonnee getDepart();
     void setDepart();

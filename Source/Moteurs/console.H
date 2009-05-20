@@ -37,8 +37,11 @@ class Console : public CSingleton<Console>
 	void Afficher();
 	void Ajouter(std::string texte,bool erreur=0);
 	void Ajouter(int texte,bool erreur=0);
+
+    void Defiler(bool direction);
+
     int getTaille();
-    void defiler(bool direction);
+
 
 
 	protected:

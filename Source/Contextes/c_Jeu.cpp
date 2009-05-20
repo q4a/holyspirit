@@ -83,7 +83,7 @@ c_Jeu::c_Jeu(Jeu *jeu)
 
         if(configuration->Lumiere)
         {
-            jeu->map->calculerOmbresEtLumieres();
+            jeu->map->CalculerOmbresEtLumieres();
             lumiere=false;
         }
 
@@ -114,7 +114,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
         if(tempsEcouleDepuisDernierAffichage>0.01&&configuration->syncronisation_verticale||!configuration->syncronisation_verticale)
         {
-            jeu->hero.placerCamera(jeu->map->getDimensions()); // On place la camera suivant ou se trouve le perso
+            jeu->hero.PlacerCamera(jeu->map->getDimensions()); // On place la camera suivant ou se trouve le perso
 
             Evenements(jeu);
             Affichage(jeu);
@@ -151,12 +151,12 @@ void c_Jeu::GererTemps(Jeu *jeu)
         augmenter=true;
     tempsEcouleDepuisFPS+=tempsEcoule;
 
-    jeu->hero.augmenterAme(tempsEcoule);
-    jeu->hero.recalculerCaracteristiques();
+    jeu->hero.AugmenterAme(tempsEcoule);
+    jeu->hero.RecalculerCaracteristiques();
     if(jeu->hero.m_personnage.enVie())
     {
-        jeu->hero.regenererVie((float)jeu->hero.m_caracteristiques.maxVie*(float)(tempsEcoule/100));
-        jeu->hero.regenererFoi((float)jeu->hero.m_caracteristiques.maxFoi*(float)(tempsEcoule/100));
+        jeu->hero.RegenererVie((float)jeu->hero.m_caracteristiques.maxVie*(float)(tempsEcoule/100));
+        jeu->hero.RegenererFoi((float)jeu->hero.m_caracteristiques.maxFoi*(float)(tempsEcoule/100));
     }
 
     jeu->Clock.Reset();
@@ -185,7 +185,7 @@ void c_Jeu::IA(Jeu *jeu)
 {
     if(tempsEcouleDepuisDernierIA>=0.027)
     {
-        jeu->map->gererMonstres(jeu,&jeu->hero,tempsEcouleDepuisDernierIA,&jeu->menu);
+        jeu->map->GererMonstres(jeu,&jeu->hero,tempsEcouleDepuisDernierIA,&jeu->menu);
         tempsEcouleDepuisDernierIA=0;
     }
 }
@@ -201,7 +201,7 @@ void c_Jeu::Deplacements(Jeu *jeu)
         {
             bool ok=true;
             if(jeu->hero.getMonstreVise()>-1)
-                if(jeu->hero.testMonstreVise(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise()),jeu->map->getDimensions().y))
+                if(jeu->hero.TestMonstreVise(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise()),jeu->map->getDimensions().y))
                     ok=false;
 
             if(jeu->hero.m_personnage.getCoordonnee().x==jeu->hero.m_personnage.getArrivee().x && jeu->hero.m_personnage.getCoordonnee().y==jeu->hero.m_personnage.getArrivee().y)
@@ -213,7 +213,7 @@ void c_Jeu::Deplacements(Jeu *jeu)
             if(configuration->Lumiere)
                 lumiere=true;
         }
-        jeu->map->testEvenement(jeu,tempsEcoule); // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
+        jeu->map->TestEvenement(jeu,tempsEcoule); // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
 
 
         ///Placer l'écouteur, à la position du héro
@@ -224,7 +224,7 @@ void c_Jeu::Deplacements(Jeu *jeu)
         Listener::SetGlobalVolume((float)configuration->volume);
         Listener::SetPosition(-position.x, 0, position.y);
         Listener::SetTarget(0, 0, 1);
-        jeu->map->musiquePlay(position);
+        jeu->map->MusiquePlay(position);
         jeu->sonMort.SetPosition(position.x,0,position.y);
 
         jeu->hero.m_personnage.AjouterPointAme(jeu->menu.GererDynamique(tempsEcoule));
@@ -252,13 +252,13 @@ void c_Jeu::Animation(Jeu *jeu)
         if(retour==0) //Animation du héro
         {
             if(jeu->hero.miracleEnCours==1)
-                jeu->map->infligerDegatsMasse(jeu->hero.m_personnage.getCoordonnee(),1,rand()%(jeu->hero.m_caracteristiques.degatsMax - jeu->hero.m_caracteristiques.degatsMin +1) + jeu->hero.m_caracteristiques.degatsMin ,false,&jeu->hero,&jeu->menu);
+                jeu->map->InfligerDegatsMasse(jeu->hero.m_personnage.getCoordonnee(),1,rand()%(jeu->hero.m_caracteristiques.degatsMax - jeu->hero.m_caracteristiques.degatsMin +1) + jeu->hero.m_caracteristiques.degatsMin ,false,&jeu->hero,&jeu->menu);
             else if(jeu->hero.m_personnage.frappeEnCours)
             {
                 //if(jeu->hero.m_personnage.m_shooter)
                     //  jeu->map->ajouterProjectile(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&jeu->hero,1);
                 //else
-                jeu->map->infligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&jeu->hero,1);
+                jeu->map->InfligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&jeu->hero,1);
             }
             jeu->hero.miracleEnCours=0;
         }
@@ -272,7 +272,7 @@ void c_Jeu::Animation(Jeu *jeu)
                 jeu->hero.setMonstreVise(-1),jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
 
 
-        jeu->map->animer(&jeu->hero,tempsDepuisDerniereAnimation,&jeu->menu); // Animation des tiles de la jeu->map
+        jeu->map->Animer(&jeu->hero,tempsDepuisDerniereAnimation,&jeu->menu); // Animation des tiles de la jeu->map
 
         tempsDepuisDerniereAnimation=0;
     }
@@ -287,7 +287,7 @@ void c_Jeu::Lumieres(Jeu *jeu)
         if(configuration->RafraichirOmbre==2)
             configuration->RafraichirOmbre=0;
 
-        jeu->map->calculerOmbresEtLumieres();
+        jeu->map->CalculerOmbresEtLumieres();
 
         configuration->RafraichirLumiere=true;
         tempsEcouleDepuisDernierCalculLumiere=0;
@@ -297,8 +297,6 @@ void c_Jeu::Lumieres(Jeu *jeu)
 
 
 }
-
-
 
 
 
@@ -325,7 +323,7 @@ void c_Jeu::Evenements(Jeu *jeu)
         }
         else if(jeu->hero.getChercherSac().x!=-1&&jeu->map->getObjetPointe()!=-1)
         {
-            jeu->map->ramasserObjet(&jeu->hero);
+            jeu->map->RamasserObjet(&jeu->hero);
             jeu->eventManager.StopEvenement(Mouse::Left,"CA");
         }
     }
@@ -341,7 +339,7 @@ void c_Jeu::Evenements(Jeu *jeu)
             jeu->eventManager.StopEvenement(Mouse::Left,"CA");
             jeu->hero.setMonstreVise(jeu->map->getMonstreIllumine());
             if(test)
-                jeu->hero.testMonstreVise(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise()),jeu->map->getDimensions().y);
+                jeu->hero.TestMonstreVise(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise()),jeu->map->getDimensions().y);
         }
         else
             jeu->hero.setMonstreVise(-1);
@@ -375,7 +373,7 @@ void c_Jeu::Evenements(Jeu *jeu)
         if(jeu->eventManager.getEvenement(Mouse::Left,"C"))
             jeu->eventManager.StopEvenement(Mouse::Left,"C");
         else
-            jeu->hero.utiliserClicDroit(jeu->eventManager.getPositionSouris(),monstreVise);
+            jeu->hero.UtiliserClicDroit(jeu->eventManager.getPositionSouris(),monstreVise);
     }
 
     if(jeu->eventManager.getEvenement(Key::I,"ET"))
@@ -428,7 +426,7 @@ void c_Jeu::Affichage(Jeu *jeu)
     }
 
     if(jeu->hero.getChercherSac().x!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())==1&&alpha_sac<128)
-        jeu->map->ramasserObjet(&jeu->hero);
+        jeu->map->RamasserObjet(&jeu->hero);
 
     if(alpha_sac>0)
     {

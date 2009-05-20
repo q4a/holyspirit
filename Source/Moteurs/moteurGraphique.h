@@ -24,7 +24,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef MOTEURGRAPHIQUEH
 #define MOTEURGRAPHIQUEH
 
-#include "../Map/map.h"
 #include "commande.h"
 #include "moteurParticule.h"
 #include "lightManager.h"
@@ -45,7 +44,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	void Afficher(coordonnee );
 
-	void createWindow();
+	void CreateNewWindow();
 
 	void Gerer(float,int);
 
@@ -67,7 +66,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	coordonnee getPositionSouris();
 	bool getEvent(sf::Event &EventReceived);
 
-	void printscreen();
+	void Printscreen();
 	int GetFPS();
 
 	sf::Image* getImage(int IDimage);

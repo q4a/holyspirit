@@ -23,7 +23,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define CASEH
 
 #include "../constantes.h"
-#include "../Map/decor.h"
 
 class Case
 {
