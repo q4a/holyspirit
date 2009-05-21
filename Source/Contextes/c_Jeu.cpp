@@ -255,13 +255,30 @@ void c_Jeu::Animation(Jeu *jeu)
                 jeu->map->InfligerDegatsMasse(jeu->hero.m_personnage.getCoordonnee(),1,rand()%(jeu->hero.m_caracteristiques.degatsMax - jeu->hero.m_caracteristiques.degatsMin +1) + jeu->hero.m_caracteristiques.degatsMin ,false,&jeu->hero,&jeu->menu);
             else if (jeu->hero.m_personnage.frappeEnCours)
             {
-                //if(jeu->hero.m_personnage.m_shooter)
-                //  jeu->map->ajouterProjectile(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&jeu->hero,1);
-                //else
-                jeu->map->InfligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&jeu->hero,1);
+                if(!jeu->hero.m_personnage.m_shooter)
+                     jeu->map->InfligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&jeu->hero,1);
+
+              /*  if(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())!=NULL)
+                    (jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonneePixel(),jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee(),jeu->hero.m_personnage.getCoordonnee(),1,4,0,(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,0,Tile *tile, int image)
+
+                    jeu->map->AjouterProjectile(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&jeu->hero,1);
+                else*/
+
+                coordonnee cible;
+
+                if(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())!=NULL)
+                    cible=jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee();
+                else
+                    cible=jeu->eventManager.getCasePointee();
+
+                if(jeu->hero.AjouterMiracleArme())
+                    jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),cible,1);
+
             }
             jeu->hero.miracleEnCours=0;
         }
+
+        //jeu->map->AnimerMiracle(&jeu->hero.m_personnage,jeu->hero.m_classe.miracles,tempsDepuisDerniereAnimation,positionHero,&jeu->hero);
 
         if (retour==2)
             if (!jeu->eventManager.getEvenement(Mouse::Left,"C") || !jeu->map->getMonstreEnVie(jeu->hero.getMonstreVise()) )

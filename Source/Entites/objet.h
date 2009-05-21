@@ -25,6 +25,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef OBJETH
 #define OBJETH
 
+#include "miracle.h"
+
 struct benediction
 {
     int type;
@@ -87,7 +89,7 @@ public:
     int m_degatsMin, m_degatsMax,m_armure;
     int m_capaciteBenediction;
     int m_prix;
-    bool m_shoot_weapon;
+    bool m_shoot_weapon,m_useMiracle;
 
     Requirement m_requirement;
 
@@ -97,6 +99,8 @@ public:
     std::vector <benediction> m_benedictions;
 
     sf::Color m_color;
+
+    Miracle m_miracle;
 
 private:
     sf::String AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, char *chaine,sf::Color color=sf::Color(255,255,255));

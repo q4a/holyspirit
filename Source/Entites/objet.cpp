@@ -48,6 +48,7 @@ Objet::Objet()
 
     ai=0,aa=0,dii=0,dia=0,dai=0,daa=0;
     m_shoot_weapon=0;
+    m_useMiracle=0;
 }
 
 Objet::Objet(std::string nom, int rarete)
@@ -585,7 +586,6 @@ void Objet::Charger(std::string chemin)
                 console->Ajouter(temp,1);
                 caractere='$';
             }
-
         }
         while (caractere!='$');
 
@@ -606,7 +606,6 @@ void Objet::Charger(std::string chemin)
                 console->Ajouter(temp,1);
                 caractere='$';
             }
-
         }
         while (caractere!='$');
 
@@ -845,6 +844,28 @@ void Objet::Charger(std::string chemin)
 
         }
         while (caractere!='$');
+
+        do
+        {
+            fichier->get(caractere);
+            if (caractere=='*')
+            {
+                string temp;
+                *fichier>>temp;
+
+                m_miracle.Charger(temp);
+                m_useMiracle=true;
+            }
+            if (fichier->eof())
+            {
+                char temp[255];
+                sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                caractere='$';
+            }
+        }
+        while (caractere!='$');
+
         fichier->close();
     }
     else

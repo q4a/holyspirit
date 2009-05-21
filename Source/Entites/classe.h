@@ -61,6 +61,6 @@ struct Classe
 
     std::vector <Emplacement_inventaire> emplacements;
 
-    std::vector<Miracle> miracle;
+    std::vector<Miracle> miracles;
 };
 #endif

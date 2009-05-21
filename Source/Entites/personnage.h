@@ -123,7 +123,7 @@ public:
 
     LumiereOmbrage m_lumiere;
     bool frappeEnCours;
-    bool m_shooter;
+    bool m_shooter,m_monstre;
     int m_nombreInvocation;
 
     Light_Entity m_light;
@@ -134,7 +134,7 @@ public:
 protected:
     int m_etat,m_poseEnCours,m_angle;
     float m_animation;
-    bool m_monstre,m_erreurPathfinding;
+    bool m_erreurPathfinding;
     Caracteristique m_caracteristique;
     coordonnee m_cheminFinal,m_arrivee,m_ancienneArrivee,m_mauvaiseArrivee, m_positionCase,m_positionAffichage,m_positionPixelPrecedente;
     coordonneeDecimal m_positionPixel;

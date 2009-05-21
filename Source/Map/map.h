@@ -51,6 +51,8 @@ public:
     void AfficherNomEvenement(coordonnee casePointee,coordonnee positionSouris);
 
     void Animer(Hero *hero,float temps,Menu *menu); // Animation des tiles
+    void AnimerMiracle(Personnage *personnage,std::vector<Miracle> &miracles,float temps,coordonnee positionHero,Hero *hero);
+
     bool TestEvenement(Jeu *jeu,float temps);
     void CalculerOmbresEtLumieres();
     void Detruire();

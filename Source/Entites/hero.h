@@ -69,6 +69,8 @@ public:
     bool PossibleEquiper(int emplacement);
     bool Equiper(int numero, int emplacement);
     void AttribuerPositionObjet(coordonnee position,int numero);
+
+    bool AjouterMiracleArme();
     //void LibererCases(int numero);
 
     void setMonstreVise(int monstre);
@@ -109,6 +111,8 @@ private:
 
     std::vector<Objet> m_inventaire;
     std::vector< std::vector<bool> > m_caseInventaire;
+
+    int m_weaponMiracle;
 };
 
 #endif

@@ -512,6 +512,7 @@ void Hero::ChargerModele(bool tout)
     m_cas=0;
 
     int nombreArme=0;
+    m_weaponMiracle=-1;
 
     for (int i=0;i<(int)m_inventaire.size();i++)
     {
@@ -524,12 +525,28 @@ void Hero::ChargerModele(bool tout)
                 for (int j=0;j<(int)m_inventaire[i].m_emplacementImpossible.size();j++)
                     if (m_inventaire[i].m_emplacementImpossible[j]==BOUCLIER)
                         m_cas=2;
+
+            if (m_inventaire[i].m_useMiracle)
+            {
+                m_classe.miracles.push_back(m_inventaire[i].m_miracle);
+
+                m_classe.miracles.back().m_effets.back().m_lien.push_back((int) m_classe.miracles.back().m_effets.size());
+
+                m_classe.miracles.back().m_effets.push_back(Effet ());
+
+                m_classe.miracles.back().m_effets.back().m_type=DEGATS;
+                m_classe.miracles.back().m_effets.back().m_informations[0]=m_caracteristiques.degatsMin;
+                m_classe.miracles.back().m_effets.back().m_informations[1]=m_caracteristiques.degatsMax;
+
+
+                if (m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==ARME_PRINCIPAL)
+                    m_weaponMiracle=m_classe.miracles.size()-1;
+            }
         }
     }
 
     if (nombreArme==2)
         m_cas=1;
-
 
 
     bool pasEquipe[NOMBRE_MORCEAU_PERSONNAGE];
@@ -1325,6 +1342,23 @@ int Hero::UtiliserClicDroit(coordonnee positionSouris, int monstreVise)
 
             return 1;
         }
+    return 0;
+}
+
+bool Hero::AjouterMiracleArme()
+{
+    if (m_weaponMiracle>=0&&m_weaponMiracle<(int)m_classe.miracles.size())
+    {
+        m_personnage.m_miracleEnCours.push_back(EntiteMiracle ());
+        m_personnage.m_miracleEnCours.back().m_infos.push_back(InfosEntiteMiracle ());
+
+        m_personnage.m_miracleEnCours.back().m_modele=m_weaponMiracle;
+
+        m_personnage.m_miracleEnCours.back().m_infos.back().m_position.x=m_personnage.getCoordonneePixel().x;
+        m_personnage.m_miracleEnCours.back().m_infos.back().m_position.y=m_personnage.getCoordonneePixel().y;
+
+        return 1;
+    }
     return 0;
 }
 
