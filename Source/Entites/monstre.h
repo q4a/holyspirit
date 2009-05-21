@@ -27,7 +27,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 class Modele_Monstre : public Modele_Personnage
 {
-    public:
+public:
     Modele_Monstre();
     ~Modele_Monstre();
 
@@ -41,14 +41,14 @@ class Modele_Monstre : public Modele_Personnage
     bool m_minimap;
     bool m_friendly;
 
-    private:
+private:
     std::vector<Objet> m_objets;
 };
 
 
 class Monstre : public Personnage
 {
-    public:
+public:
     Monstre();
     ~Monstre();
     void Charger(int numero,Modele_Monstre *modele);
@@ -68,7 +68,7 @@ class Monstre : public Personnage
     int m_compteur;
     bool m_friendly;
 
-    private:
+private:
     bool m_vu;
     int m_modele;
     coordonnee m_depart;

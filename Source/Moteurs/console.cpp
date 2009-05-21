@@ -32,21 +32,21 @@ Console::~Console()
 
 void Console::Afficher()
 {
-    if(!configuration->desactivate_console)
+    if (!configuration->desactivate_console)
     {
         int min=m_textes.size()-27+m_defilement;
-        if(min<0)
-        min=0;
-        for(int i=min;i<(int)m_textes.size()+m_defilement;i++)
+        if (min<0)
+            min=0;
+        for (int i=min;i<(int)m_textes.size()+m_defilement;i++)
         {
-            if(i>=0&&i<(int)m_erreur.size())
+            if (i>=0&&i<(int)m_erreur.size())
             {
                 sf::String texte;
                 texte.SetText(m_textes[i].c_str());
                 texte.SetSize(12.f);
                 texte.SetY((i-m_textes.size()+27-m_defilement)*15+60);
 
-                if(m_erreur[i])
+                if (m_erreur[i])
                     texte.SetColor(sf::Color(255,0,0,255));
 
                 moteurGraphique->AjouterTexte(&texte,19);
@@ -57,7 +57,7 @@ void Console::Afficher()
 }
 void Console::Ajouter(std::string texte,bool erreur)
 {
-    if(!configuration->desactivate_console)
+    if (!configuration->desactivate_console)
     {
         m_textes.push_back(texte);
         m_erreur.push_back(erreur);
@@ -69,7 +69,7 @@ void Console::Ajouter(std::string texte,bool erreur)
 
 void Console::Ajouter(int nombre,bool erreur)
 {
-    if(!configuration->desactivate_console)
+    if (!configuration->desactivate_console)
     {
         char temp[10];
         sprintf(temp,"%i",nombre);
@@ -81,20 +81,23 @@ void Console::Ajouter(int nombre,bool erreur)
     }
 }
 
-int Console::getTaille(){return m_textes.size();}
+int Console::getTaille()
+{
+    return m_textes.size();
+}
 
 void Console::Defiler(bool direction)
 {
-    if(direction==0)
+    if (direction==0)
     {
         m_defilement--;
-        if(m_defilement<(int)-m_textes.size())
+        if (m_defilement<(int)-m_textes.size())
             m_defilement=-m_textes.size()+1;
     }
-    if(direction==1)
+    if (direction==1)
     {
         m_defilement++;
-        if(m_defilement>0)
+        if (m_defilement>0)
             m_defilement=0;
     }
 }
@@ -102,11 +105,11 @@ void Console::Defiler(bool direction)
 void Console::Rapport()
 {
     ofstream fichier("Log.txt", ios::out | ios::trunc);
-    if(fichier)  // si l'ouverture a réussi
+    if (fichier) // si l'ouverture a réussi
     {
-        for(int i=0;i<(int)m_textes.size();i++)
+        for (int i=0;i<(int)m_textes.size();i++)
         {
-            if(m_erreur[i])
+            if (m_erreur[i])
                 fichier<<"ERREUR : ";
             else
                 fichier<<"         ";

@@ -31,7 +31,7 @@ using namespace sf;
 
 void Projectile::Afficher(coordonnee position)
 {
-    if(m_actif)
+    if (m_actif)
     {
         Sprite sprite;
 
@@ -47,17 +47,17 @@ void Projectile::Afficher(coordonnee position)
 
         sprite.Rotate((-(m_rotation)*180/M_PI));
 
-        if(sprite.GetPosition().x+sprite.GetSize().x>=moteurGraphique->m_camera.GetRect().Left
-        &&sprite.GetPosition().x<moteurGraphique->m_camera.GetRect().Right
-        &&sprite.GetPosition().y+sprite.GetSize().y>=moteurGraphique->m_camera.GetRect().Top
-        &&sprite.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)
-        moteurGraphique->AjouterCommande(&sprite,10,1);
+        if (sprite.GetPosition().x+sprite.GetSize().x>=moteurGraphique->m_camera.GetRect().Left
+                &&sprite.GetPosition().x<moteurGraphique->m_camera.GetRect().Right
+                &&sprite.GetPosition().y+sprite.GetSize().y>=moteurGraphique->m_camera.GetRect().Top
+                &&sprite.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)
+            moteurGraphique->AjouterCommande(&sprite,10,1);
     }
 }
 
 void EffetGraphique::Afficher(coordonnee position)
 {
-    if(m_actif)
+    if (m_actif)
     {
         Sprite sprite;
 
@@ -71,11 +71,11 @@ void EffetGraphique::Afficher(coordonnee position)
 
         sprite.SetCenter(m_positionImage.w/2,m_positionImage.h/2);
 
-        if(sprite.GetPosition().x+sprite.GetSize().x>=moteurGraphique->m_camera.GetRect().Left
-        &&sprite.GetPosition().x<moteurGraphique->m_camera.GetRect().Right
-        &&sprite.GetPosition().y+sprite.GetSize().y>=moteurGraphique->m_camera.GetRect().Top
-        &&sprite.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)
-        moteurGraphique->AjouterCommande(&sprite,10,1);
+        if (sprite.GetPosition().x+sprite.GetSize().x>=moteurGraphique->m_camera.GetRect().Left
+                &&sprite.GetPosition().x<moteurGraphique->m_camera.GetRect().Right
+                &&sprite.GetPosition().y+sprite.GetSize().y>=moteurGraphique->m_camera.GetRect().Top
+                &&sprite.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)
+            moteurGraphique->AjouterCommande(&sprite,10,1);
     }
 }
 
@@ -103,8 +103,8 @@ Miracle::Miracle(std::string chemin)
 
 Miracle::~Miracle()
 {
-	m_sons.clear();
-	for(int i=0;i<(int)m_tile.size();i++)
+    m_sons.clear();
+    for (int i=0;i<(int)m_tile.size();i++)
         m_tile[i].clear();
     m_tile.clear();
     m_image.clear();
@@ -117,95 +117,132 @@ void Miracle::Charger(std::string chemin)
 
     ifstream fichier;
     fichier.open(m_chemin.c_str(), ios::in);
-    if(fichier)
+    if (fichier)
     {
         char caractere;
 
-    	do
-    	{
-    		fichier.get(caractere);
-    		if(caractere=='*')
-    		{
-    			string cheminImage;
+        do
+        {
+            fichier.get(caractere);
+            if (caractere=='*')
+            {
+                string cheminImage;
                 fichier>>cheminImage;
                 m_image.push_back(moteurGraphique->AjouterImage(cheminImage));
-    		}
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-    	}while(caractere!='$');
+            }
+            if (fichier.eof())
+            {
+                char temp[1000];
+                sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                caractere='$';
+            }
+        }
+        while (caractere!='$');
 
-    	do
-    	{
-    		fichier.get(caractere);
-    		if(caractere=='*')
-    		{
-    		    string cheminDuSon;
+        do
+        {
+            fichier.get(caractere);
+            if (caractere=='*')
+            {
+                string cheminDuSon;
                 fichier>>cheminDuSon;
                 m_sons.push_back(moteurSons->AjouterBuffer(cheminDuSon));
-    		}
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-    	}while(caractere!='$');
+            }
+            if (fichier.eof())
+            {
+                char temp[1000];
+                sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                caractere='$';
+            }
+        }
+        while (caractere!='$');
 
 
-    	do
-    	{
-    		fichier.get(caractere);
-    		if(caractere=='*')
-    		{
-    		    m_effets.push_back(Effet ());
+        do
+        {
+            fichier.get(caractere);
+            if (caractere=='*')
+            {
+                m_effets.push_back(Effet ());
                 do
                 {
                     fichier.get(caractere);
-                    switch(caractere)
+                    switch (caractere)
                     {
-                        case 't':
-                            fichier>>m_effets.back().m_type;
+                    case 't':
+                        fichier>>m_effets.back().m_type;
                         break;
 
-                        case 'l':
-                            int buffer;
-                            fichier>>buffer;
-                            m_effets.back().m_lien.push_back(buffer);
+                    case 'l':
+                        int buffer;
+                        fichier>>buffer;
+                        m_effets.back().m_lien.push_back(buffer);
                         break;
 
-                        case 'm':
-                            fichier>>m_effets.back().m_chaine;
+                    case 'm':
+                        fichier>>m_effets.back().m_chaine;
                         break;
 
 
 
-                        case 's':
-                            fichier>>m_effets.back().m_sequence;
+                    case 's':
+                        fichier>>m_effets.back().m_sequence;
                         break;
 
-                        case 'i':
-                            fichier.get(caractere);
-                            if(caractere=='a') { fichier>>m_effets.back().m_informations[0];}
-                            if(caractere=='b') { fichier>>m_effets.back().m_informations[1];}
-                            if(caractere=='c') { fichier>>m_effets.back().m_informations[2];}
+                    case 'i':
+                        fichier.get(caractere);
+                        if (caractere=='a')
+                        {
+                            fichier>>m_effets.back().m_informations[0];
+                        }
+                        if (caractere=='b')
+                        {
+                            fichier>>m_effets.back().m_informations[1];
+                        }
+                        if (caractere=='c')
+                        {
+                            fichier>>m_effets.back().m_informations[2];
+                        }
                         break;
                     }
-                    if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+                    if (fichier.eof())
+                    {
+                        char temp[1000];
+                        sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());
+                        console->Ajouter(temp,1);
+                        caractere='$';
+                    }
 
-                }while(caractere!='$');
+                }
+                while (caractere!='$');
 
                 fichier.get(caractere);
-    		}
+            }
 
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-    	}while(caractere!='$');
+            if (fichier.eof())
+            {
+                char temp[1000];
+                sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                caractere='$';
+            }
+        }
+        while (caractere!='$');
 
-    	do
-    	{
-    		fichier.get(caractere);
-    		if(caractere=='*')
-    		{
+        do
+        {
+            fichier.get(caractere);
+            if (caractere=='*')
+            {
 
-    		    m_tile.push_back(vector <Tile> () );
+                m_tile.push_back(vector <Tile> () );
 
-    		    do
+                do
                 {
                     fichier.get(caractere);
-                    if(caractere=='*')
+                    if (caractere=='*')
                     {
                         coordonnee position={-1,-1,-1,-1},centre={-1,-1,-1,-1};
                         int animation=m_tile.size(),son=-1,image=0;
@@ -220,56 +257,101 @@ void Miracle::Charger(std::string chemin)
                             fichier.get(caractere);
                             switch (caractere)
                             {
-                                case 'x': fichier>>position.x; break;
-                                case 'y': fichier>>position.y; break;
-                                case 'w': fichier>>position.w; break;
-                                case 'h': fichier>>position.h; break;
-                                case 'i': fichier>>image; break;
-                                case 'c': fichier>>collision; break;
-                                case 'a': fichier>>animation; break;
-                                case 's': fichier>>son; break;
-                                case 'o': fichier>>ombre; break;
-                                case 't': fichier>>transparent; break;
-                                case 'n': fichier>>tempsAnimation; break;
-
-                                case 'e':
-                                        fichier.get(caractere);
-                                        if(caractere=='y')
-                                            fichier>>centre.y;
-                                        if(caractere=='x')
-                                            fichier>>centre.x;
+                            case 'x':
+                                fichier>>position.x;
+                                break;
+                            case 'y':
+                                fichier>>position.y;
+                                break;
+                            case 'w':
+                                fichier>>position.w;
+                                break;
+                            case 'h':
+                                fichier>>position.h;
+                                break;
+                            case 'i':
+                                fichier>>image;
+                                break;
+                            case 'c':
+                                fichier>>collision;
+                                break;
+                            case 'a':
+                                fichier>>animation;
+                                break;
+                            case 's':
+                                fichier>>son;
+                                break;
+                            case 'o':
+                                fichier>>ombre;
+                                break;
+                            case 't':
+                                fichier>>transparent;
+                                break;
+                            case 'n':
+                                fichier>>tempsAnimation;
                                 break;
 
-                                case 'l':
-                                        fichier.get(caractere);
-                                        if(caractere=='r')
-                                            fichier>>lumiere.rouge;
-                                        if(caractere=='v')
-                                            fichier>>lumiere.vert;
-                                        if(caractere=='b')
-                                            fichier>>lumiere.bleu;
-                                        if(caractere=='i')
-                                            fichier>>lumiere.intensite;
-                                        if(caractere=='h')
-                                            fichier>>lumiere.hauteur;
+                            case 'e':
+                                fichier.get(caractere);
+                                if (caractere=='y')
+                                    fichier>>centre.y;
+                                if (caractere=='x')
+                                    fichier>>centre.x;
                                 break;
-                                case 'r': fichier>>orientation; break;
+
+                            case 'l':
+                                fichier.get(caractere);
+                                if (caractere=='r')
+                                    fichier>>lumiere.rouge;
+                                if (caractere=='v')
+                                    fichier>>lumiere.vert;
+                                if (caractere=='b')
+                                    fichier>>lumiere.bleu;
+                                if (caractere=='i')
+                                    fichier>>lumiere.intensite;
+                                if (caractere=='h')
+                                    fichier>>lumiere.hauteur;
+                                break;
+                            case 'r':
+                                fichier>>orientation;
+                                break;
                             }
-                            if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-                        }while(caractere!='$');
+                            if (fichier.eof())
+                            {
+                                char temp[1000];
+                                sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());
+                                console->Ajouter(temp,1);
+                                caractere='$';
+                            }
+                        }
+                        while (caractere!='$');
                         //AjouterTile(position,collision,animation,son,lumiere,ombre,orientation);
                         m_tile.back().push_back(Tile());
                         m_tile.back().back().setTile(position,image,collision,animation,son,lumiere,ombre,orientation,transparent,centre,tempsAnimation);
 
                         fichier.get(caractere);
                     }
-                    if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-                }while(caractere!='$');
+                    if (fichier.eof())
+                    {
+                        char temp[1000];
+                        sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());
+                        console->Ajouter(temp,1);
+                        caractere='$';
+                    }
+                }
+                while (caractere!='$');
                 fichier.get(caractere);
-    		}
-    		if(fichier.eof()){ char temp[1000]; sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
-    	}while(caractere!='$');
-    	fichier.close();
+            }
+            if (fichier.eof())
+            {
+                char temp[1000];
+                sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                caractere='$';
+            }
+        }
+        while (caractere!='$');
+        fichier.close();
     }
     else
         console->Ajouter("Impossible d'ouvrir le fichier : "+chemin,1);
@@ -278,7 +360,7 @@ void Miracle::Charger(std::string chemin)
 
 void Miracle::JouerSon(int numeroSon,coordonnee position,coordonnee positionHero)
 {
-    if(numeroSon>=0&&numeroSon<(int)m_sons.size())
+    if (numeroSon>=0&&numeroSon<(int)m_sons.size())
     {
         coordonnee pos;
         pos.x=-position.x;

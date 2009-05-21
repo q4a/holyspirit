@@ -29,7 +29,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 class c_Inventaire : public Contexte
 {
-    public:
+public:
     c_Inventaire(Jeu *jeu);
     void Utiliser(Jeu *jeu);
 
@@ -37,13 +37,13 @@ class c_Inventaire : public Contexte
 
     sf::View camera;
 
-    private:
-	float tempsActuel,tempsPrecedent,temps_ecoule,tempsEcouleDepuisDernierAffichage,m_decalage;
-	bool m_afficher;
+private:
+    float tempsActuel,tempsPrecedent,temps_ecoule,tempsEcouleDepuisDernierAffichage,m_decalage;
+    bool m_afficher;
 
-	std::vector<Objet> m_trader;
+    std::vector<Objet> m_trader;
 
-	void AfficherTrader();
+    void AfficherTrader();
 };
 
 #endif

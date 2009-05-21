@@ -29,7 +29,7 @@ enum  {PROJECTILE,CORPS_A_CORPS,DEGATS,EFFET_GRAPHIQUE,INVOCATION};
 
 class Projectile
 {
-    public:
+public:
     void Afficher(coordonnee position);
     void Deplacer(float temp);
 
@@ -55,7 +55,7 @@ class Projectile
 
 class EffetGraphique
 {
-    public:
+public:
     void Afficher(coordonnee position);
 
     bool m_actif;
@@ -100,7 +100,7 @@ struct Effet
 
 class Miracle
 {
-    public:
+public:
     Miracle();
     Miracle(std::string chemin);
     ~Miracle();
@@ -112,8 +112,8 @@ class Miracle
 
 
     std::vector <int> m_image;
-	std::vector <int> m_sons;
-	std::string m_chemin;
+    std::vector <int> m_sons;
+    std::string m_chemin;
 
     int m_coutFoi;
 };
@@ -141,7 +141,7 @@ struct InfosEntiteMiracle
 
 class EntiteMiracle
 {
-    public:
+public:
     std::vector<InfosEntiteMiracle> m_infos;
     int m_modele;
 };

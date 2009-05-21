@@ -56,34 +56,34 @@ int main ( int argc, char** argv )
     console->Ajouter("");
 
     try
-	{
-	    ///Chargement de la configuration
+    {
+        ///Chargement de la configuration
         configuration->Charger();
 
         moteurGraphique->CreateNewWindow();
 
-        if(!sf::PostFX::CanUsePostFX())
+        if (!sf::PostFX::CanUsePostFX())
             configuration->postFX=false;
 
         moteurGraphique->Charger();
         configuration->numero_screen=0;
         ///On démarre le jeu
-		Jeu m_jeu;
+        Jeu m_jeu;
 
-		m_jeu.Demarrer();
+        m_jeu.Demarrer();
 
-	}
-	catch (const std::string& str)
-	{
-	    console->Ajouter("FATAL ERROR : ",1);
-		console->Ajouter(str,1);
+    }
+    catch (const std::string& str)
+    {
+        console->Ajouter("FATAL ERROR : ",1);
+        console->Ajouter(str,1);
 
-		return EXIT_FAILURE;
-	}
+        return EXIT_FAILURE;
+    }
 
 
-	console->Ajouter("");
-	console->Ajouter("Sauvegarde de la configuration");
+    console->Ajouter("");
+    console->Ajouter("Sauvegarde de la configuration");
 
     configuration->Sauvegarder();
 
@@ -100,4 +100,5 @@ int main ( int argc, char** argv )
     console->Kill();
 
     return EXIT_SUCCESS;
-}
+}
+

@@ -28,13 +28,13 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 class c_Demarrage : public Contexte
 {
-    public:
+public:
     c_Demarrage(Jeu *jeu);
     void Utiliser(Jeu *jeu);
 
     //sf::View *camera;
 
-    private:
+private:
     float temps_ecoule,m_alpha;
     int m_image;
     bool m_augmenter;

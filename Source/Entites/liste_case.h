@@ -35,26 +35,26 @@ struct casePathfinding
 
 class liste_case
 {
-	public:
-	~liste_case();
-	void AjouterCase(coordonnee coordonneeAjoutable);
+public:
+    ~liste_case();
+    void AjouterCase(coordonnee coordonneeAjoutable);
 
-	bool AjouterCasesAdjacentes(casePathfinding ** grille,coordonnee *arrivee,coordonnee depart);
-	bool TesterCasesEnCours(coordonnee caseCherchee);
-	void IncrementerDistanceEnCours();
-	void DecrementerDistanceEnCours();
-	void Supprimer();
+    bool AjouterCasesAdjacentes(casePathfinding ** grille,coordonnee *arrivee,coordonnee depart);
+    bool TesterCasesEnCours(coordonnee caseCherchee);
+    void IncrementerDistanceEnCours();
+    void DecrementerDistanceEnCours();
+    void Supprimer();
 
-	coordonnee TrouverLeChemin(coordonnee caseEnCours);
+    coordonnee TrouverLeChemin(coordonnee caseEnCours);
 
-	int getDistance();
-	int getTailleListe();
-	void setTailleListe(int taille);
+    int getDistance();
+    int getTailleListe();
+    void setTailleListe(int taille);
 
-	private:
-	int m_distanceEnCours;
-	std::vector <Case> m_liste;
-	std::vector<Case>::iterator iter;
+private:
+    int m_distanceEnCours;
+    std::vector <Case> m_liste;
+    std::vector<Case>::iterator iter;
 };
 
 #endif

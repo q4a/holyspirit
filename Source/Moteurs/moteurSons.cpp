@@ -28,13 +28,13 @@ MoteurSons::MoteurSons()
 {
     sonEnCours=0;
 
-    for(int i=0;i<NOMBRE_SONS;i++)
+    for (int i=0;i<NOMBRE_SONS;i++)
         m_IDSons[i]=-1;
 }
 MoteurSons::~MoteurSons()
 {
-	m_buffers.clear();
-	m_cheminsSons.clear();
+    m_buffers.clear();
+    m_cheminsSons.clear();
 }
 
 void MoteurSons::Gerer()
@@ -49,14 +49,14 @@ void MoteurSons::Vider()
 
 int MoteurSons::AjouterBuffer(std::string chemin)
 {
-   for(int i=0;i<(int)m_cheminsSons.size();i++)
-        if(m_cheminsSons[i]==chemin)
+    for (int i=0;i<(int)m_cheminsSons.size();i++)
+        if (m_cheminsSons[i]==chemin)
             return i;
 
     m_buffers.push_back(sf::SoundBuffer ());
     m_cheminsSons.push_back(chemin);
 
-    if(!m_buffers.back().LoadFromFile(chemin.c_str()))
+    if (!m_buffers.back().LoadFromFile(chemin.c_str()))
     {
         console->Ajouter("Impossible de charger : "+chemin,1);
         return -1;
@@ -70,17 +70,17 @@ int MoteurSons::AjouterBuffer(std::string chemin)
 void MoteurSons::JouerSon(int ID,coordonnee position,coordonnee positionHero,bool unique,int volume)
 {
 
-    if(volume>100)
+    if (volume>100)
         volume=100;
-    if(volume<0)
+    if (volume<0)
         volume=0;
-    if(ID>=0&&ID<(int)m_buffers.size())
+    if (ID>=0&&ID<(int)m_buffers.size())
     {
         bool creerNouveauSon=true;
-        if(unique)
+        if (unique)
         {
-            for(int i=0;i<NOMBRE_SONS;i++)
-                if(m_IDSons[i]==ID)
+            for (int i=0;i<NOMBRE_SONS;i++)
+                if (m_IDSons[i]==ID)
                 {
                     m_sons[i].SetVolume(volume);
                     float x,y,z;
@@ -88,31 +88,31 @@ void MoteurSons::JouerSon(int ID,coordonnee position,coordonnee positionHero,boo
                     y=m_sons[i].GetPosition().y;
                     z=m_sons[i].GetPosition().z;
                     // Je test voir si le nouveau son du même type est plus près du perso que l'ancien, si oui, je mets la position du nouveau à la place de l'ancien
-                    if((double)(gpl::sqrt((positionHero.x+x)*(positionHero.x+x)+(positionHero.y-y)*(positionHero.y-y)))>(double)(gpl::sqrt((positionHero.x-position.x)*(positionHero.x-position.x)+(positionHero.y-position.y)*(positionHero.y-position.y))))
+                    if ((double)(gpl::sqrt((positionHero.x+x)*(positionHero.x+x)+(positionHero.y-y)*(positionHero.y-y)))>(double)(gpl::sqrt((positionHero.x-position.x)*(positionHero.x-position.x)+(positionHero.y-position.y)*(positionHero.y-position.y))))
                         m_sons[i].SetPosition(position.x,0,position.y);
 
                     sf::Sound::Status Status = m_sons[i].GetStatus();
-                    if(Status==0)
+                    if (Status==0)
                         m_sons[i].Play();
 
                     creerNouveauSon=false;
                 }
         }
 
-        if(creerNouveauSon)
+        if (creerNouveauSon)
         {
             m_sons[sonEnCours].SetVolume(volume);
             m_IDSons[sonEnCours]=ID;
             m_sons[sonEnCours].SetBuffer(m_buffers[ID]);
 
             sf::Sound::Status Status = m_sons[sonEnCours].GetStatus();
-            if(Status==0)
+            if (Status==0)
                 m_sons[sonEnCours].Play();
 
             m_sons[sonEnCours].SetPosition(position.x,0,position.y);
 
             sonEnCours++;
-            if(sonEnCours>=NOMBRE_SONS)
+            if (sonEnCours>=NOMBRE_SONS)
                 sonEnCours=0;
         }
     }

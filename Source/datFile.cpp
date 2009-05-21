@@ -123,7 +123,7 @@ int cDAT::GetNumberFile()
 
 std::string cDAT::GetFileName(int ID)
 {
-    if(ID>=0&&ID<(int)m_header.nb_files)
+    if (ID>=0&&ID<(int)m_header.nb_files)
         return m_entries[ID].name;
     return "";
 }
@@ -131,25 +131,25 @@ std::string cDAT::GetFileName(int ID)
 
 void cDAT::ExportFile(int ID)
 {
-    if(ID>=0&&ID<(int)m_header.nb_files)
+    if (ID>=0&&ID<(int)m_header.nb_files)
     {
         std::ifstream datfile;
         std::ofstream fichier(m_entries[ID].name, std::ios::out | std::ios::trunc);
-        if(fichier)
+        if (fichier)
         {
             //We are allocating memory to the buffer
             m_buffer = new char[(m_entries[ID].size)];
             //Simple error catch
             //if (m_buffer==NULL)
-              //  return (NULL);
+            //  return (NULL);
             //Opening the DAT file ot read the file datas needed
             datfile.open (m_datfile.c_str(), std::ifstream::in | std::ifstream::binary);
             if (datfile.is_open())
             {
                 //Going to the right position
                 datfile.seekg (m_entries[ID].offset, std::ios::beg);
-              //  for(int o=0;o<m_entries[i].size;o++)
-                 //   fichier<<
+                //  for(int o=0;o<m_entries[i].size;o++)
+                //   fichier<<
                 //Reading
                 datfile.read (m_buffer, m_entries[ID].size);
                 fichier<<m_buffer;
@@ -232,10 +232,10 @@ std::ifstream* cDAT::GetInfos(std::string filename)
             ok=true;
 
             //We are allocating memory to the buffer
-           // m_buffer = new char[(m_entries[i].size)];
+            // m_buffer = new char[(m_entries[i].size)];
             //Simple error catch
             //if (m_buffer==NULL)
-                //return (NULL);
+            //return (NULL);
             //Opening the DAT file ot read the file datas needed
             datfile->open (m_datfile.c_str(), std::ifstream::in | std::ifstream::binary);
             if (datfile->is_open())
@@ -246,7 +246,7 @@ std::ifstream* cDAT::GetInfos(std::string filename)
         }
     }
 
-    if(!ok)
+    if (!ok)
         console->Ajouter("Fichier introuvable : "+filename);
     //Finally, there is no such file in our DAT file
     return datfile;

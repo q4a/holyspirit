@@ -39,46 +39,60 @@ ModeleParticuleSysteme::~ModeleParticuleSysteme()
 void ModeleParticuleSysteme::Charger(std::string chemin)
 {
     console->Ajouter("",0);
-	console->Ajouter("Chargement du systeme de particules : "+chemin,0);
+    console->Ajouter("Chargement du systeme de particules : "+chemin,0);
 
-	std::ifstream fichier;
+    std::ifstream fichier;
     fichier.open(chemin.c_str(), std::ios::in);
-    if(fichier)
+    if (fichier)
     {
         char caractere;
         do
-    	{
-    		fichier.get(caractere);
-    		if(caractere=='*')
+        {
+            fichier.get(caractere);
+            if (caractere=='*')
             {
                 std::string m_cheminImage;
                 fichier>>m_cheminImage;
                 m_image=moteurGraphique->AjouterImage(m_cheminImage,-1);
             }
-    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Système de particules \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+            if (fichier.eof())
+            {
+                char temp[255];
+                sprintf(temp,"Erreur : Système de particules \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                caractere='$';
+            }
 
-    	}while(caractere!='$');
+        }
+        while (caractere!='$');
 
-    	do
-    	{
-    		fichier.get(caractere);
-    		if(caractere=='*')
+        do
+        {
+            fichier.get(caractere);
+            if (caractere=='*')
             {
                 std::string m_cheminSon;
                 fichier>>m_cheminSon;
                 m_son=moteurSons->AjouterBuffer(m_cheminSon);
             }
-    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Système de particules \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+            if (fichier.eof())
+            {
+                char temp[255];
+                sprintf(temp,"Erreur : Système de particules \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                caractere='$';
+            }
 
-    	}while(caractere!='$');
+        }
+        while (caractere!='$');
 
 
-    	m_chemin=chemin;
+        m_chemin=chemin;
 
-    	do
-    	{
-    		fichier.get(caractere);
-    		if(caractere=='*')
+        do
+        {
+            fichier.get(caractere);
+            if (caractere=='*')
             {
                 m_particules.push_back(ModeleParticule ());
                 do
@@ -86,26 +100,52 @@ void ModeleParticuleSysteme::Charger(std::string chemin)
                     fichier.get(caractere);
                     switch (caractere)
                     {
-                        case 'x' : fichier>>m_particules.back().positionImage.x; break;
-                        case 'y' : fichier>>m_particules.back().positionImage.y; break;
-                        case 'w' : fichier>>m_particules.back().positionImage.w; break;
-                        case 'h' : fichier>>m_particules.back().positionImage.h; break;
+                    case 'x' :
+                        fichier>>m_particules.back().positionImage.x;
+                        break;
+                    case 'y' :
+                        fichier>>m_particules.back().positionImage.y;
+                        break;
+                    case 'w' :
+                        fichier>>m_particules.back().positionImage.w;
+                        break;
+                    case 'h' :
+                        fichier>>m_particules.back().positionImage.h;
+                        break;
 
-                        case 'i' : fichier>>m_particules.back().min; break;
-                        case 'a' : fichier>>m_particules.back().max; break;
+                    case 'i' :
+                        fichier>>m_particules.back().min;
+                        break;
+                    case 'a' :
+                        fichier>>m_particules.back().max;
+                        break;
                     }
 
-                    if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+                    if (fichier.eof())
+                    {
+                        char temp[255];
+                        sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());
+                        console->Ajouter(temp,1);
+                        caractere='$';
+                    }
 
-                }while(caractere!='$');
+                }
+                while (caractere!='$');
                 fichier.get(caractere);
             }
-    		if(fichier.eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+            if (fichier.eof())
+            {
+                char temp[255];
+                sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                caractere='$';
+            }
 
-    	}while(caractere!='$');
+        }
+        while (caractere!='$');
 
-    	fichier.close();
+        fichier.close();
     }
     else
-    console->Ajouter("Impossible d'ouvrir : "+chemin,1);
+        console->Ajouter("Impossible d'ouvrir : "+chemin,1);
 }

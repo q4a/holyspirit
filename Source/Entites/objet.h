@@ -43,12 +43,12 @@ struct Requirement
 
 class Objet
 {
-    public:
+public:
     Objet();
     Objet(std::string nom,int rarete);
     ~Objet();
 
-   // Objet operator=(const Objet &objet);
+    // Objet operator=(const Objet &objet);
 
     void AfficherCaracteristiques(coordonnee position,Caracteristique caract,float modPrix=1);
     void Charger(std::string chemin);
@@ -98,7 +98,7 @@ class Objet
 
     sf::Color m_color;
 
-    private:
+private:
     sf::String AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, char *chaine,sf::Color color=sf::Color(255,255,255));
 
     std::string m_nom,m_chemin;

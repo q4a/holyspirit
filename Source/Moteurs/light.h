@@ -65,9 +65,12 @@ struct Wall_Entity
         m_ID=id;
     }
 
-    int ID() { return m_ID; }
+    int ID()
+    {
+        return m_ID;
+    }
 
-    private:
+private:
 
     int m_ID;
 };
@@ -75,17 +78,26 @@ struct Wall_Entity
 // Light_Entity est une variable qui permet de représenter dans le programme une lumière
 struct Light_Entity
 {
-    Light_Entity (){m_Dynamic=false,m_ID=-1;}
+    Light_Entity ()
+    {
+        m_Dynamic=false,m_ID=-1;
+    }
     Light_Entity (int id,bool d)
     {
         m_ID=id;
         m_Dynamic=d;
     }
 
-    int ID() { return m_ID; }
-    bool Dynamic() { return m_Dynamic; }
+    int ID()
+    {
+        return m_ID;
+    }
+    bool Dynamic()
+    {
+        return m_Dynamic;
+    }
 
-    private:
+private:
 
     int m_ID;
     bool m_Dynamic;
@@ -93,7 +105,7 @@ struct Light_Entity
 
 class Light
 {
-    public :
+public :
 
     // Constructeur et destructeur
     Light();
@@ -134,7 +146,7 @@ class Light
     // Une petite bool pour savoir si la lumière est allumée ou éteinte
     bool m_actif;
 
-    private :
+private :
     //Position à l'écran
     sf::Vector2f m_position;
     //Intensité, gère la transparence ( entre 0 et 255 )

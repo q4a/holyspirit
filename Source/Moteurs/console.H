@@ -29,14 +29,14 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 class Console : public CSingleton<Console>
 {
-	public:
+public:
 
-	friend Console* CSingleton<Console>::GetInstance();
+    friend Console* CSingleton<Console>::GetInstance();
     friend void CSingleton<Console>::Kill();
 
-	void Afficher();
-	void Ajouter(std::string texte,bool erreur=0);
-	void Ajouter(int texte,bool erreur=0);
+    void Afficher();
+    void Ajouter(std::string texte,bool erreur=0);
+    void Ajouter(int texte,bool erreur=0);
 
     void Defiler(bool direction);
 
@@ -44,16 +44,19 @@ class Console : public CSingleton<Console>
 
 
 
-	protected:
+protected:
 
-	Console(){m_defilement=0;}
-	~Console();
+    Console()
+    {
+        m_defilement=0;
+    }
+    ~Console();
 
-	void Rapport();
+    void Rapport();
 
-	std::vector <std::string> m_textes;
-	std::vector <bool> m_erreur;
-	int m_defilement;
+    std::vector <std::string> m_textes;
+    std::vector <bool> m_erreur;
+    int m_defilement;
 };
 
 

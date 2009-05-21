@@ -70,63 +70,64 @@ enum{EFFICACITE_ACCRUE,FO_SUPP,DEX_SUPP,VIT_SUPP,PI_SUPP,CH_SUPP,VIE_SUPP,FOI_SU
 
 namespace gpl
 {
-/**
-\brief Racine carre
+    /**
+    \brief Racine carre
 
-\param number : X
+    \param number : X
 
-\return racine carre de X
-*/
-inline float sqrt(float number) {
-    long i;
-    float x, y;
-    const float f = 1.5F;
+    \return racine carre de X
+    */
+    inline float sqrt(float number)
+    {
+        long i;
+        float x, y;
+        const float f = 1.5F;
 
-    x = number * 0.5F;
-    y  = number;
-    i  = * ( long * ) &y;
-    i  = 0x5f3759df - ( i >> 1 );
-    y  = * ( float * ) &i;
-    y  = y * ( f - ( x * y * y ) );
-    y  = y * ( f - ( x * y * y ) ); // si on veut plus de précision
-    return number * y;
-}
+        x = number * 0.5F;
+        y  = number;
+        i  = * ( long * ) &y;
+        i  = 0x5f3759df - ( i >> 1 );
+        y  = * ( float * ) &i;
+        y  = y * ( f - ( x * y * y ) );
+        y  = y * ( f - ( x * y * y ) ); // si on veut plus de précision
+        return number * y;
+    }
 } // namespace gpl
 
 template <typename T>
 inline T valeurAbsolue(T valeur)
 {
-    if(valeur < 0)
+    if (valeur < 0)
         valeur = - valeur;
     return valeur;
 }
 
 struct coordonnee
 {
-	int x;
-	int y;
-	int h;
-	int w;
+    int x;
+    int y;
+    int w;
+    int h;
 };
 
 struct coordonnee3D
 {
-	float x;
-	float y;
-	float z;
+    float x;
+    float y;
+    float z;
 };
 
 struct coordonneeDecimal
 {
     float x;
-	float y;
-	float h;
-	float w;
+    float y;
+    float w;
+    float h;
 };
 
 class Lumiere
 {
-    public:
+public:
     int intensite;
     int rouge;
     int vert;
@@ -144,7 +145,7 @@ struct Ombre
 
 class LumiereOmbrage : public Lumiere
 {
-    public:
+public:
     LumiereOmbrage()
     {
     }
@@ -170,15 +171,15 @@ class LumiereOmbrage : public Lumiere
         {
             float angle;
             angle=valeurAbsolue(m_ombre.back().angle-ombre->angle);
-            if(angle>180)
+            if (angle>180)
                 angle=360-angle;
 
             m_ombre.back().intensite-=(int)((float)ombre->intensiteBasique*angle/270);
             ombre->intensite-=(int)((float)m_ombre.back().intensiteBasique*angle/270);
 
-            if(m_ombre.back().intensite<0)
+            if (m_ombre.back().intensite<0)
                 m_ombre.back().intensite=0;
-            if(ombre->intensite<0)
+            if (ombre->intensite<0)
                 ombre->intensite=0;
         }
 
@@ -194,7 +195,7 @@ class LumiereOmbrage : public Lumiere
         Ombre temp;
         m_ombre.resize(lumiere.m_ombre.size(),temp);
 
-        for(int i=0;i<(int)lumiere.m_ombre.size();i++)
+        for (int i=0;i<(int)lumiere.m_ombre.size();i++)
         {
             m_ombre[i].intensite=lumiere.m_ombre[i].intensite;
             m_ombre[i].intensiteBasique=lumiere.m_ombre[i].intensiteBasique;

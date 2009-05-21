@@ -30,10 +30,10 @@ ParticuleSysteme::ParticuleSysteme()
 }
 ParticuleSysteme::ParticuleSysteme(int modeleInt, ModeleParticuleSysteme *modele, coordonnee position, sf::Color color,float force,float angle)
 {
-     m_modele=modeleInt;
-     Generer(force,modele,position,angle);
-     m_color=color;
-     m_son=modele->m_son;
+    m_modele=modeleInt;
+    Generer(force,modele,position,angle);
+    m_color=color;
+    m_son=modele->m_son;
 }
 
 ParticuleSysteme::~ParticuleSysteme()
@@ -42,10 +42,10 @@ ParticuleSysteme::~ParticuleSysteme()
 }
 void ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele)
 {
-    for(Iter=m_particules.begin();Iter!=m_particules.end();++Iter)
+    for (Iter=m_particules.begin();Iter!=m_particules.end();++Iter)
     {
-        if(!modele->m_particules.empty())
-            if(Iter->numero>=0&&Iter->numero<(int)modele->m_particules.size())
+        if (!modele->m_particules.empty())
+            if (Iter->numero>=0&&Iter->numero<(int)modele->m_particules.size())
             {
                 sf::Sprite sprite;
                 sprite.SetImage(*moteurGraphique->getImage(modele->m_image));
@@ -58,7 +58,7 @@ void ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele)
                 sprite.SetY(Iter->position.y-Iter->position.z);
                 sprite.SetColor(sf::Color(m_color.r,m_color.g,m_color.b,(int)Iter->alpha));
 
-                if(Iter->position.z>32)
+                if (Iter->position.z>32)
                     moteurGraphique->AjouterCommande(&sprite,11,1);
                 else
                     moteurGraphique->AjouterCommande(&sprite,8,1);
@@ -67,10 +67,10 @@ void ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele)
 }
 void ParticuleSysteme::Generer(float force, ModeleParticuleSysteme *modele,coordonnee position,float angle)
 {
-    for(int i=0;i<(int)modele->m_particules.size();i++)
+    for (int i=0;i<(int)modele->m_particules.size();i++)
     {
         int nombre=(rand() % (modele->m_particules[i].max - modele->m_particules[i].min + 1)) + modele->m_particules[i].min;
-        for(int j=0;j<nombre;j++)
+        for (int j=0;j<nombre;j++)
         {
             angle+= (180-(rand() % 360))*force/100;
             m_particules.push_back(Particule ());
@@ -83,7 +83,7 @@ void ParticuleSysteme::Generer(float force, ModeleParticuleSysteme *modele,coord
             m_particules.back().vecteur.z=(rand() % (int)(force*0.6 - force*0.4 + 1)) + force*0.4;
             m_particules.back().vitesse=(rand() % (int)(force*1.25 - force*0.75 + 1)) + force*0.75;
             m_particules.back().vitesse_rotation=((rand() % (int)(force*1 - force*0.5 + 1)) + force*0.5)*5;
-            if(m_particules.back().vitesse_rotation>100)
+            if (m_particules.back().vitesse_rotation>100)
                 m_particules.back().vitesse_rotation=100;
             m_particules.back().rotation=rand() % 360;
             m_particules.back().alpha=255;
@@ -95,9 +95,9 @@ bool ParticuleSysteme::Gerer(float temps,int tailleMapY)
 {
     bool efface=false;
     int i=0;
-    for(Iter=m_particules.begin();Iter!=m_particules.end();++Iter,++i)
+    for (Iter=m_particules.begin();Iter!=m_particules.end();++Iter,++i)
     {
-        if(Iter->vie==100)
+        if (Iter->vie==100)
         {
             Iter->position.x+=Iter->vecteur.x*Iter->vitesse*temps*25;
             Iter->position.y+=Iter->vecteur.y*Iter->vitesse*temps*25;
@@ -105,11 +105,11 @@ bool ParticuleSysteme::Gerer(float temps,int tailleMapY)
 
             Iter->vecteur.z-=temps*25;
 
-            if(Iter->position.z<=1&&Iter->vie==100&&i%5==0)
+            if (Iter->position.z<=1&&Iter->vie==100&&i%5==0)
             {
                 coordonnee positionHero={0,0,0,0},position,positionCase;
 
-                if((float)((Iter->position.y*2-Iter->position.x)/2)/64+tailleMapY/2<(float)tailleMapY/2)
+                if ((float)((Iter->position.y*2-Iter->position.x)/2)/64+tailleMapY/2<(float)tailleMapY/2)
                     positionCase.y=(int)((Iter->position.y*2-Iter->position.x)/2)/64+tailleMapY/2-1;
                 else
                     positionCase.y=(int)((Iter->position.y*2-Iter->position.x)/2)/64+tailleMapY/2;
@@ -119,30 +119,30 @@ bool ParticuleSysteme::Gerer(float temps,int tailleMapY)
                 position.x=-(positionCase.x-positionCase.y-1+tailleMapY)/5;
                 position.y=(positionCase.x+positionCase.y)/5;
 
-                if((int)(Iter->vecteur.z*100)>10)
+                if ((int)(Iter->vecteur.z*100)>10)
                     moteurSons->JouerSon(m_son,position,positionHero,0,(int)(Iter->vecteur.z*100));
             }
 
-            if(Iter->position.z<0)
+            if (Iter->position.z<0)
                 Iter->position.z=0,Iter->vecteur.z=fabs(Iter->vecteur.z)/4;
 
             Iter->vitesse-=temps*10;
             Iter->vitesse_rotation-=temps*50;
-            if(Iter->vitesse_rotation<0)
+            if (Iter->vitesse_rotation<0)
                 Iter->vitesse_rotation=0;
 
-             Iter->rotation+=Iter->vitesse_rotation*temps*10;
+            Iter->rotation+=Iter->vitesse_rotation*temps*10;
         }
 
-        if(Iter->vitesse<=0)
+        if (Iter->vitesse<=0)
             Iter->vitesse=0,Iter->vie-=temps*20;
-        if(Iter->vie<=0)
-             Iter->alpha-=temps*100;
-        if(Iter->alpha<=0)
+        if (Iter->vie<=0)
+            Iter->alpha-=temps*100;
+        if (Iter->alpha<=0)
             Iter->alpha=0,efface=true;
     }
 
-    if(efface)
+    if (efface)
         return 0;
 
     return 1;

@@ -157,85 +157,85 @@ void close_video()
 
 void lireVideo(std::string Chemin)
 {
-	// Notre fonction pour initialiser la video
-	/*if ( init_video("Data/Menus/Videos/Cinematique test 1-2.wmv") == 0 )
-	{
+    // Notre fonction pour initialiser la video
+    /*if ( init_video("Data/Menus/Videos/Cinematique test 1-2.wmv") == 0 )
+    {
 
-		// On crée notre image, en blanc par exemple
-	  im_video.Create(pCodecCtx->width, pCodecCtx->height, sf::Color(255,255,255,255));
-		// J'aime bien ne pas mettre le smooth, ça dépend de la qualité de la video :)
-	  im_video.SetSmooth(false);
-		// On crée notre sprite
-	  sp_video.SetImage(im_video);
-		// Vous pouvez utiliser les fonctionnalité du sprite sur la video,
-		// comme le scale, de la même manière qu'une simple image fixe
+    	// On crée notre image, en blanc par exemple
+      im_video.Create(pCodecCtx->width, pCodecCtx->height, sf::Color(255,255,255,255));
+    	// J'aime bien ne pas mettre le smooth, ça dépend de la qualité de la video :)
+      im_video.SetSmooth(false);
+    	// On crée notre sprite
+      sp_video.SetImage(im_video);
+    	// Vous pouvez utiliser les fonctionnalité du sprite sur la video,
+    	// comme le scale, de la même manière qu'une simple image fixe
 
-	  // La boucle principale
-	  bool Running = true;
-	  while (Running)
-	  {
-	    // Les évènements
-	    sf::Event Event;
-	    while (ecran->GetEvent(Event))
-	    {
-	      if (Event.Type == sf::Event::Closed)
-	        Running = false;
+      // La boucle principale
+      bool Running = true;
+      while (Running)
+      {
+        // Les évènements
+        sf::Event Event;
+        while (ecran->GetEvent(Event))
+        {
+          if (Event.Type == sf::Event::Closed)
+            Running = false;
 
-	      if ((Event.Type == sf::Event::KeyPressed) && (Event.Key.Code == sf::Key::Escape))
-	        Running = false;
-	    }
+          if ((Event.Type == sf::Event::KeyPressed) && (Event.Key.Code == sf::Key::Escape))
+            Running = false;
+        }
 
-			// Notre fonction de lecture et dessin de la video
-	    display(ecran);
+    		// Notre fonction de lecture et dessin de la video
+        display(ecran);
 
-			// On affiche tout ça
-	    ecran->Display();
-	    ecran->SetFramerateLimit(50);
-	  }
+    		// On affiche tout ça
+        ecran->Display();
+        ecran->SetFramerateLimit(50);
+      }
 
-		// Notre fonction pour fermer la video
-	  close_video();
-	}*/
+    	// Notre fonction pour fermer la video
+      close_video();
+    }*/
 
-	/*Clock Clock;
-	std::string cheminFinal;
-	char numero[4];
-	int numeroImagePrecedente=-1;
+    /*Clock Clock;
+    std::string cheminFinal;
+    char numero[4];
+    int numeroImagePrecedente=-1;
 
-	float tempsEcoule=0;
+    float tempsEcoule=0;
 
 
-	while(tempsEcoule<5)
-	{
-		tempsEcoule += Clock.GetElapsedTime()*15;
-		Clock.Reset();
-	}
+    while(tempsEcoule<5)
+    {
+    	tempsEcoule += Clock.GetElapsedTime()*15;
+    	Clock.Reset();
+    }
 
-	tempsEcoule=0;
+    tempsEcoule=0;
 
-	bool continuer=true;
-	while(continuer)
-	{
-	    /// Gestion des événements
-		Event Event;
-		while(ecran->GetEvent(Event))
-		{
-			switch(Event.Type)
-			{
+    bool continuer=true;
+    while(continuer)
+    {
+        /// Gestion des événements
+    	Event Event;
+    	while(ecran->GetEvent(Event))
+    	{
+    		switch(Event.Type)
+    		{
         	case Event::KeyReleased:
-				continuer = false;
+    			continuer = false;
             	break;
             case Event::MouseButtonReleased:
                 continuer = false;
                 break;
-			}
-			if (Event.Type == Event::Closed)
-			continuer = false;
-		}
-		tempsEcoule += Clock.GetElapsedTime()*15;
-		Clock.Reset();
+    		}
+    		if (Event.Type == Event::Closed)
+    		continuer = false;
+    	}
+    	tempsEcoule += Clock.GetElapsedTime()*15;
+    	Clock.Reset();
 
-		ecran->Display();
-	}*/
+    	ecran->Display();
+    }*/
 }
 

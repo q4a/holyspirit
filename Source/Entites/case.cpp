@@ -22,21 +22,24 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 coordonnee Case::getPosition()
 {
-	return m_coordonnee;
+    return m_coordonnee;
 }
 
 void Case::setCoordonnee(coordonnee nouvelleCoordonnee,int distance)
 {
-	m_coordonnee=nouvelleCoordonnee;
-	m_distance=distance;
+    m_coordonnee=nouvelleCoordonnee;
+    m_distance=distance;
 }
 
-int Case::getDistance(){return m_distance;}
+int Case::getDistance()
+{
+    return m_distance;
+}
 
 Case Case::operator=(const Case &caseCopiee)
 {
-	m_coordonnee=caseCopiee.m_coordonnee;
-	m_distance=caseCopiee.m_distance;
+    m_coordonnee=caseCopiee.m_coordonnee;
+    m_distance=caseCopiee.m_distance;
     return *this;
 }
 

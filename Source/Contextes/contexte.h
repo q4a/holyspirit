@@ -30,10 +30,10 @@ class c_Jeu;
 
 class Contexte
 {
-    public:
+public:
     virtual ~Contexte();
 
-	virtual void Utiliser(Jeu *jeu) = 0;
+    virtual void Utiliser(Jeu *jeu) = 0;
 
 
     //Contexte operator=(const c_Jeu &c_jeu);

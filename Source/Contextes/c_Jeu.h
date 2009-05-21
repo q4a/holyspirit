@@ -29,13 +29,13 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 class c_Jeu : public Contexte
 {
-    public:
+public:
     c_Jeu(Jeu *jeu);
     void Utiliser(Jeu *jeu);
 
-   // sf::View *camera;
+    // sf::View *camera;
 
-    private:
+private:
     void GererTemps(Jeu *jeu);
     void Sauvegarder(Jeu *jeu);
     void IA(Jeu *jeu);
@@ -46,15 +46,15 @@ class c_Jeu : public Contexte
     void Affichage(Jeu *jeu);
     void FPS(Jeu *jeu);
 
-	bool continuer,lumiere,augmenter;
-	int nbrTourBoucle;
-	char chaine[10];
-	sf::String variableQuiNeSertARien,Version,Temps,fps,TourBoucle;
+    bool continuer,lumiere,augmenter;
+    int nbrTourBoucle;
+    char chaine[10];
+    sf::String variableQuiNeSertARien,Version,Temps,fps,TourBoucle;
 
-	float tempsActuel,tempsPrecedent,tempsDepuisDerniereAnimation,tempsEcoule,tempsNbrTourBoucle,tempsEcouleDepuisDernierCalculLumiere,tempsEcouleDepuisDernierCalculOmbre,tempsEcouleDepuisDernierDeplacement,tempsEcouleDepuisDernierIA,tempsEcouleDepuisDernierAffichage,tempsEcouleDepuisFPS,tempsEffetMort,tempsSauvergarde;
-	float alpha_map,alpha_sac;
+    float tempsActuel,tempsPrecedent,tempsDepuisDerniereAnimation,tempsEcoule,tempsNbrTourBoucle,tempsEcouleDepuisDernierCalculLumiere,tempsEcouleDepuisDernierCalculOmbre,tempsEcouleDepuisDernierDeplacement,tempsEcouleDepuisDernierIA,tempsEcouleDepuisDernierAffichage,tempsEcouleDepuisFPS,tempsEffetMort,tempsSauvergarde;
+    float alpha_map,alpha_sac;
 
-	float lowFPS;
+    float lowFPS;
 
 };
 

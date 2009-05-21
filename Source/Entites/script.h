@@ -32,17 +32,17 @@ struct Instruction
 
 class Script
 {
-	public:
+public:
     Script();
     Script(std::string chemin);
-	void Charger(std::string chemin);
+    void Charger(std::string chemin);
 
-	void AjouterCondition(std::ifstream *fichier);
-	int Lire(std::ifstream *fichier);
+    void AjouterCondition(std::ifstream *fichier);
+    int Lire(std::ifstream *fichier);
 
-	std::vector<Instruction> m_instructions;
+    std::vector<Instruction> m_instructions;
 
-	int variables[10];
+    int variables[10];
 };
 
 #endif

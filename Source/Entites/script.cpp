@@ -27,7 +27,7 @@ using namespace std;
 
 Script::Script()
 {
-    for(int i=0;i<10;i++)
+    for (int i=0;i<10;i++)
         variables[i]=0;
 }
 
@@ -49,12 +49,12 @@ void Script::AjouterCondition(ifstream *fichier)
 
     bool OK=true;
 
-    while(!fichier->eof()&&OK)
+    while (!fichier->eof()&&OK)
     {
         int temp;
         temp=Lire(fichier);
 
-        if(temp==-1)
+        if (temp==-1)
             OK=false;
         else
             m_instructions.at(noCondition).valeurs.push_back(temp);
@@ -68,15 +68,15 @@ int Script::Lire(ifstream *fichier)
     string temp;
 
     *fichier>>temp;
-    if(temp=="if")
+    if (temp=="if")
         retour=m_instructions.size(),AjouterCondition(fichier);
-    else if(temp=="end")
+    else if (temp=="end")
         retour=-1;
-    else if(temp=="then")
+    else if (temp=="then")
         retour=-2;
-    else if(temp=="else")
+    else if (temp=="else")
         retour=-3;
-    else if(temp=="*")
+    else if (temp=="*")
     {
         int valeur;
         *fichier>>valeur;
@@ -101,10 +101,10 @@ void Script::Charger(std::string chemin)
     ifstream fichier;
     fichier.open(chemin.c_str(), ios::in);
 
-    if(fichier)
+    if (fichier)
     {
         string temp;
-        while(!fichier.eof()&&temp!="main")
+        while (!fichier.eof()&&temp!="main")
         {
             fichier>>temp;
             Instruction instructionBuffer;
@@ -113,11 +113,11 @@ void Script::Charger(std::string chemin)
         }
 
         bool OK=true;
-        while(!fichier.eof()&&OK==true)
+        while (!fichier.eof()&&OK==true)
         {
             int temp=Lire(&fichier);
 
-            if(temp==-1)
+            if (temp==-1)
                 OK=false;
             else
                 m_instructions[0].valeurs.push_back(temp);

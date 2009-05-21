@@ -46,9 +46,9 @@ void Jeu::Demarrer()
 
     {
         cDAT reader;
-        if(reader.Read(configuration->chemin_saves+"hero.sav.hs"))
-            for(int i=0;i<(int)reader.GetNumberFile();i++)
-                if(reader.GetFileName(i)!=configuration->chemin_temps+"hero.sav.txt")
+        if (reader.Read(configuration->chemin_saves+"hero.sav.hs"))
+            for (int i=0;i<(int)reader.GetNumberFile();i++)
+                if (reader.GetFileName(i)!=configuration->chemin_temps+"hero.sav.txt")
                     reader.ExportFile(i),this->hero.m_contenuSave.push_back(reader.GetFileName(i));
 
     }
@@ -68,21 +68,21 @@ void Jeu::Demarrer()
     this->m_run = true;
     this->m_display = true;
     while (this->m_run)
-	{
+    {
         eventManager.GererLesEvenements(&m_run,Clock.GetElapsedTime(),map->getDimensions());
 
-        if(eventManager.getEvenement(Key::F1,"ET"))
-	    {
+        if (eventManager.getEvenement(Key::F1,"ET"))
+        {
             moteurGraphique->Printscreen();
             eventManager.StopEvenement(Key::F1,"ET");
-	    }
+        }
 
-		this->m_contexte->Utiliser(this);
-		if(this->m_display)
-		    moteurGraphique->Afficher(this->map->getDimensions());
-	}
+        this->m_contexte->Utiliser(this);
+        if (this->m_display)
+            moteurGraphique->Afficher(this->map->getDimensions());
+    }
 
-	if(m_reset)
+    if (m_reset)
         Reset();
     else
         map->Sauvegarder(&this->hero);
@@ -110,7 +110,7 @@ void Jeu::Reset()
 {
     struct dirent *lecture;
 
-	DIR *repertoire;
+    DIR *repertoire;
     repertoire = opendir(configuration->chemin_temps.c_str());
     while ((lecture = readdir(repertoire)))
     {

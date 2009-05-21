@@ -44,7 +44,7 @@ void Evenement::DeleteInformations()
 Evenement Evenement::operator=(const Evenement &evenement)
 {
     //Copie des variables
-	m_numero=evenement.m_numero;
+    m_numero=evenement.m_numero;
     m_information = evenement.m_information;
 
     return *this;
@@ -64,7 +64,7 @@ int Evenement::getType()
 
 int Evenement::getInformation(int numeroInfo)
 {
-    if(m_information.at(numeroInfo))
+    if (m_information.at(numeroInfo))
         return m_information.at(numeroInfo);
     else
         return 0;
@@ -76,7 +76,7 @@ std::string Evenement::getString()
 
 void Evenement::setInformation(int information,int numero)
 {
-    if(numero>=0&&numero<(int)m_information.size())
+    if (numero>=0&&numero<(int)m_information.size())
         m_information[numero]=information;
 }
 

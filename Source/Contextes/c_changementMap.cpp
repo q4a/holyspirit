@@ -60,34 +60,36 @@ void c_Chargement::setC_Chargement(std::string prochaineMap,coordonnee coordonne
     reader.Read(configuration->chemin_maps);
 
     ifstream *fichier=reader.GetInfos(prochaineMap);
-    if(fichier)
+    if (fichier)
     {
         char caractere;
         do
         {
             //Chargement du nom
             fichier->get(caractere);
-            if(caractere=='*')
+            if (caractere=='*')
             {
                 *fichier>>nomMap;
-                for(int i=0;i<(int)nomMap.size();i++)
-                    if(nomMap[i]=='_')
+                for (int i=0;i<(int)nomMap.size();i++)
+                    if (nomMap[i]=='_')
                         nomMap[i]=' ';
             }
-        }while(caractere!='$');
+        }
+        while (caractere!='$');
 
         do
         {
             //Chargement du nom
             fichier->get(caractere);
-            if(caractere=='*')
+            if (caractere=='*')
             {
                 string temp;
                 *fichier>>temp;
                 cheminFond.push_back(temp);
 
             }
-        }while(caractere!='$');
+        }
+        while (caractere!='$');
 
         fichier->close();
     }
@@ -110,7 +112,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
     jeu->m_display=true;
     jeu->hero.PlacerCamera(jeu->map->getDimensions());
 
-    if(configuration->Lumiere)
+    if (configuration->Lumiere)
         jeu->map->CalculerOmbresEtLumieres();
 
     temps_ecoule=0;
@@ -120,18 +122,18 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
     jeu->eventManager.GererLesEvenements(&jeu->m_run,temps_ecoule,jeu->map->getDimensions());
 
-    if(z>=49&&!augmenterNoir&&allerVersImageChargement)
+    if (z>=49&&!augmenterNoir&&allerVersImageChargement)
     {
         jeu->Clock.Reset();
         jeu->hero.m_personnage.setCoordonnee(m_coordonneePerso);
 
         moteurGraphique->ViderParticules();
 
-        if(!m_debut)
+        if (!m_debut)
             jeu->map->Sauvegarder(&jeu->hero);
 
         //jeu->map->Detruire();
-        if(jeu->map!=NULL)
+        if (jeu->map!=NULL)
             delete jeu->map;
 
         jeu->map=new Map();
@@ -142,7 +144,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         jeu->hero.ChargerModele(true);
 
-        if(!jeu->map->Charger(m_nomProchaineMap,&jeu->hero))
+        if (!jeu->map->Charger(m_nomProchaineMap,&jeu->hero))
             console->Ajouter("CRITICAL ERROR"), throw  "CRITICAL ERROR";
 
         moteurGraphique->DecrementerImportance();
@@ -157,7 +159,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         Listener::SetTarget(0, 0, 1);
         jeu->map->MusiquePlay(position);
 
-        if(configuration->Lumiere)
+        if (configuration->Lumiere)
             jeu->map->CalculerOmbresEtLumieres();
 
         moteurGraphique->LightManager->GenerateWallShadow(moteurGraphique->m_angleOmbreSoleil,moteurGraphique->m_soleil);
@@ -175,32 +177,32 @@ void c_Chargement::Utiliser(Jeu *jeu)
     }
 
 
-     if(z<=1&&augmenterNoir)
+    if (z<=1&&augmenterNoir)
         augmenterNoir=false,z=1;
-    if(z>=49&&!augmenterNoir)
+    if (z>=49&&!augmenterNoir)
         augmenterNoir=true,z=49;
 
-    if(augmenterNoir)
+    if (augmenterNoir)
         z-=temps_ecoule*200;
     else
         z+=temps_ecoule*200;
 
 
-    if(z>50)
+    if (z>50)
         z=50;
-    if(z<0)
+    if (z<0)
         z=0;
 
-    if(allerVersImageChargement&&z<49&&augmenterNoir||!allerVersImageChargement&&z>0&&!augmenterNoir)
+    if (allerVersImageChargement&&z<49&&augmenterNoir||!allerVersImageChargement&&z>0&&!augmenterNoir)
     {
         //jeu->camera.Zoom(configuration->zoom);
         jeu->map->setVolumeMusique((int)(z*(float)configuration->volume/50));
-        if(!m_debut&&augmenterNoir||!augmenterNoir)
+        if (!m_debut&&augmenterNoir||!augmenterNoir)
         {
             coordonnee temp;
-            jeu->map->Afficher(1,&jeu->hero,temp,0);
+            jeu->map->Afficher(&jeu->hero,temp,0);
 
-            if(configuration->Minimap)
+            if (configuration->Minimap)
                 jeu->menu.Afficher(2,255,&jeu->hero.m_classe);
 
             jeu->menu.Afficher(1,255,&jeu->hero.m_classe);
@@ -208,12 +210,12 @@ void c_Chargement::Utiliser(Jeu *jeu)
         }
     }
     else
-    jeu->menu.AfficherChargement(nomMap,m_fond,50);
+        jeu->menu.AfficherChargement(nomMap,m_fond,50);
 
     configuration->effetNoir=((float)z)/50;
 
 
-    if(z>=49&&!augmenterNoir&&!allerVersImageChargement)
+    if (z>=49&&!augmenterNoir&&!allerVersImageChargement)
     {
         configuration->effetNoir=0;
         jeu->m_contexte = jeu->m_jeu;

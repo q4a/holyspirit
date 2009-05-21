@@ -26,28 +26,31 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 class Evenement
 {
-	public:
-	Evenement();
-	Evenement(int numero);
-	~Evenement();
-	Evenement operator=(const Evenement &evenement);
+public:
+    Evenement();
+    Evenement(int numero);
+    ~Evenement();
+    Evenement operator=(const Evenement &evenement);
 
-	void AjouterInformation(int information); // Ajouter une information à l'événement ( ex : pour un changement de map, le numéro de la prochaine map, la position du héro, etc... )
-	void DeleteInformations();
+    void AjouterInformation(int information); // Ajouter une information à l'événement ( ex : pour un changement de map, le numéro de la prochaine map, la position du héro, etc... )
+    void DeleteInformations();
 
-	int getType();
-	int getNombreInformation(){return m_information.size();}
-	int getInformation(int numeroInfo);
-	std::string getString();
+    int getType();
+    int getNombreInformation()
+    {
+        return m_information.size();
+    }
+    int getInformation(int numeroInfo);
+    std::string getString();
 
-	void setEvenement(int numeroEvenement);
-	void setInformation(int information,int numero);
-	void setString(std::string);
+    void setEvenement(int numeroEvenement);
+    void setInformation(int information,int numero);
+    void setString(std::string);
 
-	protected:
-	int m_numero;
-	std::string m_string;
-	std::vector <int> m_information;
+protected:
+    int m_numero;
+    std::string m_string;
+    std::vector <int> m_information;
 };
 
 #endif

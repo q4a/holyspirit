@@ -51,7 +51,7 @@ void c_Demarrage::Utiliser(Jeu *jeu)
 
     configuration->effetNoir=1;
 
-    if(m_alpha<255)
+    if (m_alpha<255)
         sprite.SetColor(Color(255,255,255,(int)m_alpha));
     else
         sprite.SetColor(Color(255,255,255,255));
@@ -59,18 +59,18 @@ void c_Demarrage::Utiliser(Jeu *jeu)
 
     moteurGraphique->AjouterCommande(&sprite,11,0);
 
-    if(m_augmenter)
+    if (m_augmenter)
         m_alpha+=temps_ecoule*200;
     else
         m_alpha-=temps_ecoule*200;
 
-    if(m_alpha>384)
+    if (m_alpha>384)
         m_augmenter=false;
 
-    if(jeu->eventManager.getEvenement(Mouse::Left,"C"))
+    if (jeu->eventManager.getEvenement(Mouse::Left,"C"))
         m_augmenter=false;
 
-    if(m_alpha<0)
+    if (m_alpha<0)
         jeu->m_contexte=jeu->m_chargement;
 
     jeu->m_display=1;

@@ -26,16 +26,16 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 class Case
 {
-	public:
-	coordonnee getPosition();
-	void setCoordonnee(coordonnee nouvelleCoordonnee,int distance);
-	int getDistance();
+public:
+    coordonnee getPosition();
+    void setCoordonnee(coordonnee nouvelleCoordonnee,int distance);
+    int getDistance();
 
-	Case operator=(const Case &caseCopiee);
+    Case operator=(const Case &caseCopiee);
 
-	private:
-	coordonnee m_coordonnee;
-	int m_distance;
+private:
+    coordonnee m_coordonnee;
+    int m_distance;
 };
 
 #endif

@@ -109,16 +109,43 @@ Objet::~Objet()
     return *this;
 }*/
 
-std::string Objet::getChemin(){return m_chemin;}
-std::string Objet::getNom(){return m_nom;}
-int Objet::getRarete(){return m_rarete;}
-int Objet::getImage(){return m_image;};
-coordonnee Objet::getPosition(){return m_position;};
-coordonnee Objet::getTaille(){return m_taille;};
-coordonnee Objet::getPositionImage(){return m_positionImage;};
+std::string Objet::getChemin()
+{
+    return m_chemin;
+}
+std::string Objet::getNom()
+{
+    return m_nom;
+}
+int Objet::getRarete()
+{
+    return m_rarete;
+}
+int Objet::getImage()
+{
+    return m_image;
+};
+coordonnee Objet::getPosition()
+{
+    return m_position;
+};
+coordonnee Objet::getTaille()
+{
+    return m_taille;
+};
+coordonnee Objet::getPositionImage()
+{
+    return m_positionImage;
+};
 
-void Objet::setRarete(int chance){ m_rarete=chance; }
-void Objet::setPosition(int x, int y){m_position.x=x,m_position.y=y;}
+void Objet::setRarete(int chance)
+{
+    m_rarete=chance;
+}
+void Objet::setPosition(int x, int y)
+{
+    m_position.x=x,m_position.y=y;
+}
 
 
 
@@ -154,7 +181,7 @@ void Objet::Sauvegarder(std::ofstream *fichier)
     caractere='i';
     fichier->write((char*)&caractere, sizeof(char));
     fichier->write((char*)&m_degatsMin, sizeof(int));
-   // fichier->write((char*)&espace, sizeof(char));
+    // fichier->write((char*)&espace, sizeof(char));
 
     caractere='d';
     fichier->write((char*)&caractere, sizeof(char));
@@ -188,16 +215,16 @@ void Objet::Sauvegarder(std::ofstream *fichier)
     caractere='b';
     fichier->write((char*)&caractere, sizeof(char));
     fichier->write((char*)&m_color.b, sizeof(Uint8));
-   // fichier->write((char*)&espace, sizeof(char));
+    // fichier->write((char*)&espace, sizeof(char));
 
     caractere='m';
     fichier->write((char*)&caractere, sizeof(char));
     int n=m_chemin.size()+1;
     fichier->write((char *)&n, sizeof(int));
     fichier->write(m_chemin.c_str(), n);
-   // fichier->write((char*)&espace, sizeof(char));
+    // fichier->write((char*)&espace, sizeof(char));
 
-    for(int i=0;i<(int)m_benedictions.size();i++)
+    for (int i=0;i<(int)m_benedictions.size();i++)
     {
         caractere='b';
         fichier->write((char*)&caractere, sizeof(char));
@@ -219,18 +246,18 @@ void Objet::Sauvegarder(std::ofstream *fichier)
         //fichier->write((char*)&espace, sizeof(char));
 
         caractere='$';
-         //fichier->write((char*)&espace, sizeof(char));
+        //fichier->write((char*)&espace, sizeof(char));
         fichier->write((char*)&caractere, sizeof(char));
         fichier->write((char*)&espace, sizeof(char));
     }
 
     caractere='$';
-   // fichier->write((char*)&espace, sizeof(char));
+    // fichier->write((char*)&espace, sizeof(char));
     fichier->write((char*)&caractere, sizeof(char));
     fichier->write((char*)&espace, sizeof(char));
 
-    if(configuration->debug)
-            console->Ajouter("/Sauvegarde de "+m_chemin);
+    if (configuration->debug)
+        console->Ajouter("/Sauvegarde de "+m_chemin);
 }
 
 void Objet::SauvegarderTexte(std::ofstream *fichier)
@@ -251,7 +278,7 @@ void Objet::SauvegarderTexte(std::ofstream *fichier)
 
     *fichier<<" m"<<m_chemin;
 
-    for(int i=0;i<(int)m_benedictions.size();i++)
+    for (int i=0;i<(int)m_benedictions.size();i++)
     {
         *fichier<<" b"<<m_benedictions[i].type;
 
@@ -263,8 +290,8 @@ void Objet::SauvegarderTexte(std::ofstream *fichier)
 
     *fichier<<" $ ";
 
-    if(configuration->debug)
-            console->Ajouter("/Sauvegarde de "+m_chemin);
+    if (configuration->debug)
+        console->Ajouter("/Sauvegarde de "+m_chemin);
 }
 
 void Objet::ChargerTexte(std::ifstream *fichier)
@@ -279,44 +306,44 @@ void Objet::ChargerTexte(std::ifstream *fichier)
     do
     {
         fichier->get(caractere);
-        if(caractere=='e')
+        if (caractere=='e')
             *fichier>>m_equipe;
 
-        else if(caractere=='r')
+        else if (caractere=='r')
             *fichier>>m_rarete;
 
-        else if(caractere=='x')
+        else if (caractere=='x')
             *fichier>>m_position.x;
-        else if(caractere=='y')
+        else if (caractere=='y')
             *fichier>>m_position.y;
 
-        else if(caractere=='d')
+        else if (caractere=='d')
         {
             fichier->get(caractere);
-            if(caractere=='i')
+            if (caractere=='i')
                 *fichier>>m_degatsMin;
-            else if(caractere=='a')
+            else if (caractere=='a')
                 *fichier>>m_degatsMax;
         }
 
-        else if(caractere=='a')
+        else if (caractere=='a')
             *fichier>>m_armure;
 
-        else if(caractere=='l')
+        else if (caractere=='l')
         {
             fichier->get(caractere);
-            if(caractere=='r')
+            if (caractere=='r')
                 *fichier>>m_color.r;
-            else if(caractere=='g')
+            else if (caractere=='g')
                 *fichier>>m_color.g;
-            else if(caractere=='b')
+            else if (caractere=='b')
                 *fichier>>m_color.b;
         }
-        else if(caractere=='m')
+        else if (caractere=='m')
             *fichier>>m_chemin;
-        else if(caractere=='g')
+        else if (caractere=='g')
             *fichier>>m_prix;
-        else if(caractere=='b')
+        else if (caractere=='b')
         {
 
             int type=0,info1=0,info2=0;
@@ -326,16 +353,20 @@ void Objet::ChargerTexte(std::ifstream *fichier)
             do
             {
                 fichier->get(caractere);
-                if(caractere=='i')
+                if (caractere=='i')
                 {
                     fichier->get(caractere);
-                    if(caractere=='1')
+                    if (caractere=='1')
                         *fichier>>info1;
-                    if(caractere=='2')
+                    if (caractere=='2')
                         *fichier>>info2;
                 }
-                if(fichier->eof()){throw "Impossible de charger l'objet";}
-            }while(caractere!='$');
+                if (fichier->eof())
+                {
+                    throw "Impossible de charger l'objet";
+                }
+            }
+            while (caractere!='$');
 
             m_benedictions.push_back(benediction ());
             m_benedictions.back().type=type;
@@ -344,8 +375,12 @@ void Objet::ChargerTexte(std::ifstream *fichier)
             caractere='_';
         }
 
-        if(fichier->eof()){throw "Impossible de charger l'objet";}
-    }while(caractere!='$');
+        if (fichier->eof())
+        {
+            throw "Impossible de charger l'objet";
+        }
+    }
+    while (caractere!='$');
 
 }
 
@@ -353,109 +388,177 @@ void Objet::ChargerTexte(std::ifstream *fichier)
 void Objet::Charger(std::string chemin)
 {
     console->Ajouter("",0);
-	console->Ajouter("Chargement de l'objet : "+chemin,0);
+    console->Ajouter("Chargement de l'objet : "+chemin,0);
 
-	cDAT reader;
-	reader.Read(configuration->chemin_items);
+    cDAT reader;
+    reader.Read(configuration->chemin_items);
 
-	ifstream *fichier=reader.GetInfos(chemin);
+    ifstream *fichier=reader.GetInfos(chemin);
     //fichier.open(chemin.c_str(), ios::in);
-    if(fichier)
+    if (fichier)
     {
         char caractere;
 
         do
-    	{
-    		fichier->get(caractere);
-    		if(caractere=='*')
+        {
+            fichier->get(caractere);
+            if (caractere=='*')
             {
                 do
                 {
                     fichier->get(caractere);
                     switch (caractere)
                     {
-                        case 't' : *fichier>>m_type; break;
-                        case 'e' : int temp; *fichier>>temp; m_emplacement.push_back(temp); break;
-                        case 'i' :  *fichier>>temp; m_emplacementImpossible.push_back(temp); break;
-                        case 'c' :  *fichier>>temp; m_IDClasse.push_back(temp); break;
-                        case 's' :  *fichier>>m_shoot_weapon; break;
+                    case 't' :
+                        *fichier>>m_type;
+                        break;
+                    case 'e' :
+                        int temp;
+                        *fichier>>temp;
+                        m_emplacement.push_back(temp);
+                        break;
+                    case 'i' :
+                        *fichier>>temp;
+                        m_emplacementImpossible.push_back(temp);
+                        break;
+                    case 'c' :
+                        *fichier>>temp;
+                        m_IDClasse.push_back(temp);
+                        break;
+                    case 's' :
+                        *fichier>>m_shoot_weapon;
+                        break;
                     }
 
-                    if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+                    if (fichier->eof())
+                    {
+                        char temp[255];
+                        sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());
+                        console->Ajouter(temp,1);
+                        caractere='$';
+                    }
 
-                }while(caractere!='$');
+                }
+                while (caractere!='$');
                 fichier->get(caractere);
             }
-    		if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+            if (fichier->eof())
+            {
+                char temp[255];
+                sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                caractere='$';
+            }
 
-    	}while(caractere!='$');
+        }
+        while (caractere!='$');
 
-    	do
-    	{
-    		fichier->get(caractere);
-    		if(caractere=='*')
+        do
+        {
+            fichier->get(caractere);
+            if (caractere=='*')
             {
                 do
                 {
                     fichier->get(caractere);
                     switch (caractere)
                     {
-                        case 'g' : *fichier>>m_prix; break;
+                    case 'g' :
+                        *fichier>>m_prix;
+                        break;
 
-                        case 's' : *fichier>>m_requirement.force; break;
-                        case 'd' : *fichier>>m_requirement.dexterite; break;
-                        case 'c' : *fichier>>m_requirement.charisme; break;
-                        case 'p' : *fichier>>m_requirement.piete; break;
-                        case 'v' : *fichier>>m_requirement.vitalite; break;
+                    case 's' :
+                        *fichier>>m_requirement.force;
+                        break;
+                    case 'd' :
+                        *fichier>>m_requirement.dexterite;
+                        break;
+                    case 'c' :
+                        *fichier>>m_requirement.charisme;
+                        break;
+                    case 'p' :
+                        *fichier>>m_requirement.piete;
+                        break;
+                    case 'v' :
+                        *fichier>>m_requirement.vitalite;
+                        break;
                     }
 
-                    if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+                    if (fichier->eof())
+                    {
+                        char temp[255];
+                        sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());
+                        console->Ajouter(temp,1);
+                        caractere='$';
+                    }
 
-                }while(caractere!='$');
+                }
+                while (caractere!='$');
                 fichier->get(caractere);
             }
-    		if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+            if (fichier->eof())
+            {
+                char temp[255];
+                sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                caractere='$';
+            }
 
-    	}while(caractere!='$');
+        }
+        while (caractere!='$');
 
 
-    	m_chemin=chemin;
+        m_chemin=chemin;
 
-    	do
-    	{
-    		fichier->get(caractere);
-    		if(caractere=='*')
+        do
+        {
+            fichier->get(caractere);
+            if (caractere=='*')
             {
                 *fichier>>m_nom;
-                for(int i=0;i<(int)m_nom.size();i++)
-                    if(m_nom[i]=='_')
+                for (int i=0;i<(int)m_nom.size();i++)
+                    if (m_nom[i]=='_')
                         m_nom[i]=' ';
                 //getline(fichier, m_nom);
             }
-    		if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+            if (fichier->eof())
+            {
+                char temp[255];
+                sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                caractere='$';
+            }
 
-    	}while(caractere!='$');
+        }
+        while (caractere!='$');
 
-    	std::string description;
+        std::string description;
 
-    	do
-    	{
-    		fichier->get(caractere);
-    		if(caractere=='*')
+        do
+        {
+            fichier->get(caractere);
+            if (caractere=='*')
             {
                 *fichier>>description;
-                for(int i=0;i<(int)description.size();i++)
-                    if(description[i]=='_')
+                for (int i=0;i<(int)description.size();i++)
+                    if (description[i]=='_')
                         description[i]=' ';
                 //getline(fichier, description);
             }
-    		if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+            if (fichier->eof())
+            {
+                char temp[255];
+                sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                caractere='$';
+            }
 
-    	}while(caractere!='$');
+        }
+        while (caractere!='$');
 
         std::string::size_type stTemp = description.find('\\');
 
-        while(stTemp !=  std::string::npos)
+        while (stTemp !=  std::string::npos)
         {
             m_description.push_back(description.substr(0, stTemp)+'\n');
             description = description.substr(stTemp + 1);
@@ -464,10 +567,10 @@ void Objet::Charger(std::string chemin)
         m_description.push_back(description.substr(0, stTemp)+'\n');
 
 
-    	do
-    	{
-    		fichier->get(caractere);
-    		if(caractere=='*')
+        do
+        {
+            fichier->get(caractere);
+            if (caractere=='*')
             {
                 string temp;
                 //getline(fichier, temp);
@@ -475,28 +578,42 @@ void Objet::Charger(std::string chemin)
 
                 m_image=moteurGraphique->AjouterImage(temp,-1);
             }
-    		if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+            if (fichier->eof())
+            {
+                char temp[255];
+                sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                caractere='$';
+            }
 
-    	}while(caractere!='$');
+        }
+        while (caractere!='$');
 
-    	do
-    	{
-    		fichier->get(caractere);
-    		if(caractere=='*')
+        do
+        {
+            fichier->get(caractere);
+            if (caractere=='*')
             {
                 string temp;
                 *fichier>>temp;
 
                 m_son=moteurSons->AjouterBuffer(temp);
             }
-    		if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+            if (fichier->eof())
+            {
+                char temp[255];
+                sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                caractere='$';
+            }
 
-    	}while(caractere!='$');
+        }
+        while (caractere!='$');
 
-    	do
-    	{
-    		fichier->get(caractere);
-    		if(caractere=='*')
+        do
+        {
+            fichier->get(caractere);
+            if (caractere=='*')
             {
 
                 do
@@ -504,94 +621,174 @@ void Objet::Charger(std::string chemin)
                     fichier->get(caractere);
                     switch (caractere)
                     {
-                        case 'e' : int temp; *fichier>>temp; m_emplacementImageHero.push_back(temp); break;
-                        case 'm' : string temp2; *fichier>>temp2; m_cheminImageHero.push_back(temp2); break;
+                    case 'e' :
+                        int temp;
+                        *fichier>>temp;
+                        m_emplacementImageHero.push_back(temp);
+                        break;
+                    case 'm' :
+                        string temp2;
+                        *fichier>>temp2;
+                        m_cheminImageHero.push_back(temp2);
+                        break;
                     }
 
-                    if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+                    if (fichier->eof())
+                    {
+                        char temp[255];
+                        sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());
+                        console->Ajouter(temp,1);
+                        caractere='$';
+                    }
 
-                }while(caractere!='$');
+                }
+                while (caractere!='$');
                 fichier->get(caractere);
             }
-    		if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+            if (fichier->eof())
+            {
+                char temp[255];
+                sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                caractere='$';
+            }
 
-    	}while(caractere!='$');
+        }
+        while (caractere!='$');
 
 
 
 
-    	do
-    	{
-    		fichier->get(caractere);
-    		if(caractere=='*')
+        do
+        {
+            fichier->get(caractere);
+            if (caractere=='*')
             {
                 do
                 {
                     fichier->get(caractere);
                     switch (caractere)
                     {
-                        case 'x' : *fichier>>m_positionImage.x; break;
-                        case 'y' : *fichier>>m_positionImage.y; break;
-                        case 'w' : *fichier>>m_positionImage.w; break;
-                        case 'h' : *fichier>>m_positionImage.h; break;
+                    case 'x' :
+                        *fichier>>m_positionImage.x;
+                        break;
+                    case 'y' :
+                        *fichier>>m_positionImage.y;
+                        break;
+                    case 'w' :
+                        *fichier>>m_positionImage.w;
+                        break;
+                    case 'h' :
+                        *fichier>>m_positionImage.h;
+                        break;
                     }
 
-                    if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+                    if (fichier->eof())
+                    {
+                        char temp[255];
+                        sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());
+                        console->Ajouter(temp,1);
+                        caractere='$';
+                    }
 
-                }while(caractere!='$');
+                }
+                while (caractere!='$');
                 fichier->get(caractere);
             }
-    		if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+            if (fichier->eof())
+            {
+                char temp[255];
+                sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                caractere='$';
+            }
 
-    	}while(caractere!='$');
+        }
+        while (caractere!='$');
 
-    	do
-    	{
-    		fichier->get(caractere);
-    		if(caractere=='*')
+        do
+        {
+            fichier->get(caractere);
+            if (caractere=='*')
             {
                 do
                 {
                     fichier->get(caractere);
                     switch (caractere)
                     {
-                        case 'x' : *fichier>>m_taille.x; break;
-                        case 'y' : *fichier>>m_taille.y; break;
+                    case 'x' :
+                        *fichier>>m_taille.x;
+                        break;
+                    case 'y' :
+                        *fichier>>m_taille.y;
+                        break;
                     }
 
-                    if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+                    if (fichier->eof())
+                    {
+                        char temp[255];
+                        sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());
+                        console->Ajouter(temp,1);
+                        caractere='$';
+                    }
 
-                }while(caractere!='$');
+                }
+                while (caractere!='$');
                 fichier->get(caractere);
             }
-    		if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+            if (fichier->eof())
+            {
+                char temp[255];
+                sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                caractere='$';
+            }
 
-    	}while(caractere!='$');
+        }
+        while (caractere!='$');
 
 
-    	do
-    	{
+        do
+        {
 
-    		fichier->get(caractere);
-    		if(caractere=='*')
+            fichier->get(caractere);
+            if (caractere=='*')
             {
                 do
                 {
                     fichier->get(caractere);
                     switch (caractere)
                     {
-                        case 'r' : *fichier>>m_rarete; break;
-                        case 'b' : *fichier>>m_capaciteBenediction; break;
+                    case 'r' :
+                        *fichier>>m_rarete;
+                        break;
+                    case 'b' :
+                        *fichier>>m_capaciteBenediction;
+                        break;
                     }
 
-                    if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+                    if (fichier->eof())
+                    {
+                        char temp[255];
+                        sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());
+                        console->Ajouter(temp,1);
+                        caractere='$';
+                    }
 
-                }while(caractere!='$');
+                }
+                while (caractere!='$');
                 fichier->get(caractere);
             }
-    		if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+            if (fichier->eof())
+            {
+                char temp[255];
+                sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                caractere='$';
+            }
 
-    	}while(caractere!='$');
+        }
+        while (caractere!='$');
 
         this->ChargerCaracteristiques(fichier);
 
@@ -599,10 +796,10 @@ void Objet::Charger(std::string chemin)
 
 
         do
-    	{
+        {
 
-    		fichier->get(caractere);
-    		if(caractere=='*')
+            fichier->get(caractere);
+            if (caractere=='*')
             {
                 int b=-1,ia=-1,ib=-1;
                 do
@@ -610,19 +807,28 @@ void Objet::Charger(std::string chemin)
                     fichier->get(caractere);
                     switch (caractere)
                     {
-                        case 'b' : *fichier>>b; break;
-                        case 'i' :
-                            fichier->get(caractere);
-                            if(caractere=='1')
-                                *fichier>>ia;
-                            if(caractere=='2')
-                                *fichier>>ib;
+                    case 'b' :
+                        *fichier>>b;
+                        break;
+                    case 'i' :
+                        fichier->get(caractere);
+                        if (caractere=='1')
+                            *fichier>>ia;
+                        if (caractere=='2')
+                            *fichier>>ib;
                         break;
                     }
 
-                    if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+                    if (fichier->eof())
+                    {
+                        char temp[255];
+                        sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());
+                        console->Ajouter(temp,1);
+                        caractere='$';
+                    }
 
-                }while(caractere!='$');
+                }
+                while (caractere!='$');
 
                 m_benedictions.push_back(benediction ());
                 m_benedictions.back().type=b;
@@ -632,13 +838,17 @@ void Objet::Charger(std::string chemin)
                 fichier->get(caractere);
             }
 
-    		if(fichier->eof()){ caractere='$'; }
+            if (fichier->eof())
+            {
+                caractere='$';
+            }
 
-    	}while(caractere!='$');
-    	fichier->close();
+        }
+        while (caractere!='$');
+        fichier->close();
     }
     else
-    console->Ajouter("Impossible d'ouvrir : "+chemin,1);
+        console->Ajouter("Impossible d'ouvrir : "+chemin,1);
 
     delete fichier;
 
@@ -658,28 +868,28 @@ void Objet::Generer(int bonus)
     m_color.b=255;
     m_color.a=255;
 
-    if(m_rarete<DIVIN)
+    if (m_rarete<DIVIN)
     {
         int nbrBene=0;
         int rarete=NORMAL;
         int random=rand()%10000 / bonus;
-        if(random<=3000)
+        if (random<=3000)
             rarete=BONNEFACTURE;
 
-        if(random<=300)
+        if (random<=300)
             rarete=BENI;
 
-        if(random<=30)
+        if (random<=30)
             rarete=SACRE;
 
-        if(random<3)
+        if (random<3)
             rarete=SANCTIFIE;
 
-        if(rarete<m_rarete)
+        if (rarete<m_rarete)
             rarete=m_rarete;
         m_rarete=rarete;
 
-        if(m_rarete==BONNEFACTURE)
+        if (m_rarete==BONNEFACTURE)
         {
             m_armure*=1;
             m_degatsMin*=1;
@@ -691,7 +901,7 @@ void Objet::Generer(int bonus)
             m_color.b=255-rand()%64;
         }
 
-        if(m_rarete==BENI)
+        if (m_rarete==BENI)
         {
             m_armure*=1;
             m_degatsMin*=1;
@@ -703,7 +913,7 @@ void Objet::Generer(int bonus)
             m_color.b=255-rand()%128;
         }
 
-        if(m_rarete==SACRE)
+        if (m_rarete==SACRE)
         {
             m_armure*=1;
             m_degatsMin*=1;
@@ -715,7 +925,7 @@ void Objet::Generer(int bonus)
             m_color.b=255-rand()%192;
         }
 
-        if(m_rarete==SANCTIFIE)
+        if (m_rarete==SANCTIFIE)
         {
             m_armure*=1;
             m_degatsMin*=1;
@@ -727,7 +937,7 @@ void Objet::Generer(int bonus)
             m_color.b=255-rand()%255;
         }
 
-        for(int i=0;i<nbrBene;i++)
+        for (int i=0;i<nbrBene;i++)
         {
 
             bool ajouter=true;
@@ -735,23 +945,23 @@ void Objet::Generer(int bonus)
             benediction temp;
             temp.type=rand()%NOMBRE_BENEDICTION;
 
-            if(temp.type==VIE_SUPP||temp.type==FOI_SUPP)
+            if (temp.type==VIE_SUPP||temp.type==FOI_SUPP)
                 temp.info1=rand()%(m_capaciteBenediction*10 - (int)(m_capaciteBenediction*3))+m_capaciteBenediction*3;
-            else if(temp.type==EFFICACITE_ACCRUE&&(m_type==ARME||m_type==ARMURE))
+            else if (temp.type==EFFICACITE_ACCRUE&&(m_type==ARME||m_type==ARMURE))
                 temp.info1=(int)(rand()%(m_capaciteBenediction*10 - (int)((float)m_capaciteBenediction*2.5))+(float)m_capaciteBenediction*2.5);
             else
                 temp.info1=(int)(rand()%(m_capaciteBenediction*1 - (int)((float)m_capaciteBenediction*0.5))+(float)m_capaciteBenediction*0.5);
 
-            if(temp.type==EFFICACITE_ACCRUE&&!(m_type==ARME||m_type==ARMURE))
+            if (temp.type==EFFICACITE_ACCRUE&&!(m_type==ARME||m_type==ARMURE))
                 ajouter=false,i--;
 
             m_prix+=m_prix/4;
 
-            for(int j=0;j<(int)m_benedictions.size();j++)
-                if(m_benedictions[j].type==temp.type)
+            for (int j=0;j<(int)m_benedictions.size();j++)
+                if (m_benedictions[j].type==temp.type)
                     m_benedictions[j].info1+=temp.info1,ajouter=false;
 
-            if(ajouter)
+            if (ajouter)
             {
                 m_benedictions.push_back(benediction ());
                 m_benedictions.back()=temp;
@@ -763,86 +973,114 @@ void Objet::Generer(int bonus)
 
 void Objet::ChargerCaracteristiques(std::ifstream *fichier)
 {
-    if(m_type==ARME)
+    if (m_type==ARME)
     {
         char caractere;
         do
         {
             fichier->get(caractere);
-            if(caractere=='*')
+            if (caractere=='*')
             {
                 do
                 {
                     fichier->get(caractere);
                     switch (caractere)
                     {
-                        case 'd' :
+                    case 'd' :
+                        fichier->get(caractere);
+                        if (caractere=='i')
+                        {
                             fichier->get(caractere);
-                            if(caractere=='i')
-                            {
-                                fichier->get(caractere);
-                                if(caractere=='i')
-                                    *fichier>>dii;
-                                if(caractere=='a')
-                                    *fichier>>dia;
-                            }
-                            else if(caractere=='a')
-                            {
-                                fichier->get(caractere);
-                                if(caractere=='i')
-                                    *fichier>>dai;
-                                if(caractere=='a')
-                                    *fichier>>daa;
-                            }
+                            if (caractere=='i')
+                                *fichier>>dii;
+                            if (caractere=='a')
+                                *fichier>>dia;
+                        }
+                        else if (caractere=='a')
+                        {
+                            fichier->get(caractere);
+                            if (caractere=='i')
+                                *fichier>>dai;
+                            if (caractere=='a')
+                                *fichier>>daa;
+                        }
                         break;
                     }
 
-                    if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",m_chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+                    if (fichier->eof())
+                    {
+                        char temp[255];
+                        sprintf(temp,"Erreur : Objet \" %s \" Invalide",m_chemin.c_str());
+                        console->Ajouter(temp,1);
+                        caractere='$';
+                    }
 
-                }while(caractere!='$');
+                }
+                while (caractere!='$');
                 fichier->get(caractere);
 
 
 
             }
-            if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",m_chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+            if (fichier->eof())
+            {
+                char temp[255];
+                sprintf(temp,"Erreur : Objet \" %s \" Invalide",m_chemin.c_str());
+                console->Ajouter(temp,1);
+                caractere='$';
+            }
 
-        }while(caractere!='$');
+        }
+        while (caractere!='$');
     }
 
-    if(m_type==ARMURE)
+    if (m_type==ARMURE)
     {
         char caractere;
         do
         {
             fichier->get(caractere);
-            if(caractere=='*')
+            if (caractere=='*')
             {
                 do
                 {
                     fichier->get(caractere);
                     switch (caractere)
                     {
-                        case 'a' :
+                    case 'a' :
 
-                            fichier->get(caractere);
-                            if(caractere=='i')
-                                *fichier>>ai;
-                            if(caractere=='a')
-                                *fichier>>aa;
+                        fichier->get(caractere);
+                        if (caractere=='i')
+                            *fichier>>ai;
+                        if (caractere=='a')
+                            *fichier>>aa;
 
-                          break;
+                        break;
                     }
 
-                    if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",m_chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+                    if (fichier->eof())
+                    {
+                        char temp[255];
+                        sprintf(temp,"Erreur : Objet \" %s \" Invalide",m_chemin.c_str());
+                        console->Ajouter(temp,1);
+                        caractere='$';
+                    }
 
-                }while(caractere!='$');
+                }
+                while (caractere!='$');
 
                 fichier->get(caractere);
             }
-            if(fichier->eof()){ char temp[255]; sprintf(temp,"Erreur : Objet \" %s \" Invalide",m_chemin.c_str());console->Ajouter(temp,1); caractere='$'; }
+            if (fichier->eof())
+            {
+                char temp[255];
+                sprintf(temp,"Erreur : Objet \" %s \" Invalide",m_chemin.c_str());
+                console->Ajouter(temp,1);
+                caractere='$';
+            }
 
-        }while(caractere!='$');
+        }
+        while (caractere!='$');
     }
 }
 
@@ -856,7 +1094,7 @@ sf::String Objet::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee 
     string.SetSize(14.f*configuration->Resolution.h/600);
     string.SetText(chaine);
 
-    if(tailleCadran->x<((int)string.GetRect().Right-(int)string.GetRect().Left))
+    if (tailleCadran->x<((int)string.GetRect().Right-(int)string.GetRect().Left))
         tailleCadran->x=((int)string.GetRect().Right-(int)string.GetRect().Left);
 
     decalage->y+=(int)string.GetRect().Bottom-(int)string.GetRect().Top+5;
@@ -879,24 +1117,24 @@ void Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,
     sprintf(chaine,"%s",m_nom.c_str());
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
 
-    if(m_rarete==NORMAL)
+    if (m_rarete==NORMAL)
         temp[0].SetColor(sf::Color(224,224,224));
-    if(m_rarete==BONNEFACTURE)
+    if (m_rarete==BONNEFACTURE)
         temp[0].SetColor(sf::Color(128,0,128));
-    if(m_rarete==BENI)
+    if (m_rarete==BENI)
         temp[0].SetColor(sf::Color(0,64,128));
-    if(m_rarete==SACRE)
+    if (m_rarete==SACRE)
         temp[0].SetColor(sf::Color(255,255,128));
-    if(m_rarete==SANCTIFIE)
+    if (m_rarete==SANCTIFIE)
         temp[0].SetColor(sf::Color(128,255,255));
-    if(m_rarete==DIVIN)
+    if (m_rarete==DIVIN)
         temp[0].SetColor(sf::Color(255,164,32));
-    if(m_rarete==INFERNAL)
+    if (m_rarete==INFERNAL)
         temp[0].SetColor(sf::Color(224,0,0));
-    if(m_rarete==CRAFT)
+    if (m_rarete==CRAFT)
         temp[0].SetColor(sf::Color(128,64,0));
 
-    for(int i=0;i<(int)m_description.size();i++)
+    for (int i=0;i<(int)m_description.size();i++)
     {
         sprintf(chaine,"%s",m_description[i].c_str());
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
@@ -907,70 +1145,70 @@ void Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,
 
     float multiplieurEfficacite=100;
 
-    for(int i=0;i<(int)m_benedictions.size();i++)
-        if(m_benedictions[i].type==EFFICACITE_ACCRUE)
+    for (int i=0;i<(int)m_benedictions.size();i++)
+        if (m_benedictions[i].type==EFFICACITE_ACCRUE)
             multiplieurEfficacite+=m_benedictions[i].info1;
 
-    switch(m_type)
+    switch (m_type)
     {
-        case ARME:
-            sprintf(chaine,"Dégats : %i - %i",(int)(m_degatsMin*multiplieurEfficacite/100),(int)(m_degatsMax*multiplieurEfficacite/100));
+    case ARME:
+        sprintf(chaine,"Dégats : %i - %i",(int)(m_degatsMin*multiplieurEfficacite/100),(int)(m_degatsMax*multiplieurEfficacite/100));
 
-            if(multiplieurEfficacite!=100)
-                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine,sf::Color(0,64,128)));
-            else
-                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
+        if (multiplieurEfficacite!=100)
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine,sf::Color(0,64,128)));
+        else
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
 
         break;
-        case ARMURE:
-            sprintf(chaine,"Armure : %i",(int)(m_armure*multiplieurEfficacite/100));
+    case ARMURE:
+        sprintf(chaine,"Armure : %i",(int)(m_armure*multiplieurEfficacite/100));
 
-            if(multiplieurEfficacite!=100)
-                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine,sf::Color(0,64,128)));
-            else
-                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
+        if (multiplieurEfficacite!=100)
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine,sf::Color(0,64,128)));
+        else
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
         break;
     }
 
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran," "));
 
 
-    if(m_requirement.force>0)
+    if (m_requirement.force>0)
     {
         sprintf(chaine,"Force requise : %i",m_requirement.force);
-        if(caract.force<m_requirement.force)
+        if (caract.force<m_requirement.force)
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine,sf::Color(192,0,0)));
         else
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
     }
-    if(m_requirement.dexterite>0)
+    if (m_requirement.dexterite>0)
     {
         sprintf(chaine,"Dextérité requise : %i",m_requirement.dexterite);
-        if(caract.dexterite<m_requirement.dexterite)
+        if (caract.dexterite<m_requirement.dexterite)
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine,sf::Color(192,0,0)));
         else
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
     }
-    if(m_requirement.charisme>0)
+    if (m_requirement.charisme>0)
     {
         sprintf(chaine,"Charisme requis : %i",m_requirement.charisme);
-        if(caract.charisme<m_requirement.charisme)
+        if (caract.charisme<m_requirement.charisme)
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine,sf::Color(192,0,0)));
         else
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
     }
-    if(m_requirement.vitalite>0)
+    if (m_requirement.vitalite>0)
     {
         sprintf(chaine,"Vitalité requise : %i",m_requirement.vitalite);
-        if(caract.vitalite<m_requirement.vitalite)
+        if (caract.vitalite<m_requirement.vitalite)
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine,sf::Color(192,0,0)));
         else
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
     }
-    if(m_requirement.piete>0)
+    if (m_requirement.piete>0)
     {
         sprintf(chaine,"Piété requise : %i",m_requirement.piete);
-        if(caract.piete<m_requirement.piete)
+        if (caract.piete<m_requirement.piete)
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine,sf::Color(192,0,0)));
         else
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
@@ -978,9 +1216,9 @@ void Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,
 
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran," "));
 
-    for(int i=0;i<(int)m_benedictions.size();i++)
+    for (int i=0;i<(int)m_benedictions.size();i++)
     {
-        if(m_benedictions[i].type>=0&&m_benedictions[i].type<NOMBRE_BENEDICTION)
+        if (m_benedictions[i].type>=0&&m_benedictions[i].type<NOMBRE_BENEDICTION)
         {
             sprintf(chaine,"%s %i",configuration->text_benedictions[m_benedictions[i].type].c_str(),m_benedictions[i].info1);
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine,sf::Color(0,64,128)));
@@ -991,14 +1229,14 @@ void Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,
     sprintf(chaine,"Prix : %i",(int)((float)m_prix*modPrix));
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,chaine));
 
-    if(position.x-tailleCadran.x-10<0)
-            position.x=tailleCadran.x+10;
+    if (position.x-tailleCadran.x-10<0)
+        position.x=tailleCadran.x+10;
 
-    if(position.y+decalage.y+10>configuration->Resolution.h)
-            position.y=configuration->Resolution.h-decalage.y-10;
+    if (position.y+decalage.y+10>configuration->Resolution.h)
+        position.y=configuration->Resolution.h-decalage.y-10;
 
     int decalY=0;
-    for(int i=0;i<(int)temp.size();i++)
+    for (int i=0;i<(int)temp.size();i++)
     {
         temp[i].SetY((position.y+decalY+10));
         temp[i].SetX(position.x+(tailleCadran.x/2-((int)temp[i].GetRect().Right-(int)temp[i].GetRect().Left)/2)-tailleCadran.x);
@@ -1025,18 +1263,18 @@ void Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,
 
 bool Objet::Utilisable(Caracteristique caract,int IDClasse)
 {
-    if(m_requirement.force<=caract.force)
-    if(m_requirement.dexterite<=caract.dexterite)
-    if(m_requirement.charisme<=caract.charisme)
-    if(m_requirement.vitalite<=caract.vitalite)
-    if(m_requirement.piete<=caract.piete)
-    {
-        for(int i=0;i<(int)m_IDClasse.size();i++)
-            if(m_IDClasse[i]==IDClasse)
-                return true;
-        if(m_IDClasse.empty())
-            return true;
-    }
+    if (m_requirement.force<=caract.force)
+        if (m_requirement.dexterite<=caract.dexterite)
+            if (m_requirement.charisme<=caract.charisme)
+                if (m_requirement.vitalite<=caract.vitalite)
+                    if (m_requirement.piete<=caract.piete)
+                    {
+                        for (int i=0;i<(int)m_IDClasse.size();i++)
+                            if (m_IDClasse[i]==IDClasse)
+                                return true;
+                        if (m_IDClasse.empty())
+                            return true;
+                    }
     return false;
 }
 
@@ -1047,7 +1285,16 @@ void Objet::JouerSon()
 }
 
 
-void Objet::setChanceTrouver(int chance){ m_chanceTrouver=chance; }
+void Objet::setChanceTrouver(int chance)
+{
+    m_chanceTrouver=chance;
+}
 
-int Objet::getChanceTrouver(){return m_chanceTrouver;}
-int Objet::getPrix(){return m_prix;}
+int Objet::getChanceTrouver()
+{
+    return m_chanceTrouver;
+}
+int Objet::getPrix()
+{
+    return m_prix;
+}

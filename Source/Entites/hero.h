@@ -34,59 +34,59 @@ void AjouterTrader(Objet,std::vector<Objet>&,Classe*);
 
 class Hero
 {
-	public:
-	Hero();
-	~Hero();
+public:
+    Hero();
+    ~Hero();
 
-	void Sauvegarder();
-	void Charger();
-	void ChargerModele(bool tout=false);
+    void Sauvegarder();
+    void Charger();
+    void ChargerModele(bool tout=false);
 
-	void Afficher(coordonnee dimensionsMap);
-	void CalculerOrdreAffichage();
+    void Afficher(coordonnee dimensionsMap);
+    void CalculerOrdreAffichage();
 
-	void AfficherInventaire(coordonnee,float,std::vector<Objet>);
-	void AfficherCaracteristiques(coordonnee positionSouris,float decalage);
-	void GenererGrille();
-	void PlacerCamera(coordonnee dimensionsMap);
+    void AfficherInventaire(coordonnee,float,std::vector<Objet>);
+    void AfficherCaracteristiques(coordonnee positionSouris,float decalage);
+    void GenererGrille();
+    void PlacerCamera(coordonnee dimensionsMap);
 
-	bool TestMonstreVise(Monstre *monstre,int hauteurMap);
+    bool TestMonstreVise(Monstre *monstre,int hauteurMap);
 
-	void AugmenterAme(float temps);
-	void RecalculerCaracteristiques();
+    void AugmenterAme(float temps);
+    void RecalculerCaracteristiques();
 
-	void InfligerDegats(float degats);
-	void RegenererVie(float vie);
-	void RegenererFoi(float foi);
+    void InfligerDegats(float degats);
+    void RegenererVie(float vie);
+    void RegenererFoi(float foi);
 
-	int UtiliserClicDroit(coordonnee positionSouris, int monstreVise);
+    int UtiliserClicDroit(coordonnee positionSouris, int monstreVise);
 
-	bool AjouterObjet(Objet objet,bool enMain=false);
+    bool AjouterObjet(Objet objet,bool enMain=false);
 
-	Objet DeposerObjet();
-	bool PrendreEnMain(coordonnee positionSouris,std::vector<Objet>&);
+    Objet DeposerObjet();
+    bool PrendreEnMain(coordonnee positionSouris,std::vector<Objet>&);
 
-	bool PossibleEquiper(int emplacement);
-	bool Equiper(int numero, int emplacement);
-	void AttribuerPositionObjet(coordonnee position,int numero);
-	//void LibererCases(int numero);
+    bool PossibleEquiper(int emplacement);
+    bool Equiper(int numero, int emplacement);
+    void AttribuerPositionObjet(coordonnee position,int numero);
+    //void LibererCases(int numero);
 
-	void setMonstreVise(int monstre);
-	void setChercherSac(coordonnee);
-	void setSacVise(coordonnee);
+    void setMonstreVise(int monstre);
+    void setChercherSac(coordonnee);
+    void setSacVise(coordonnee);
 
-	int getMonstreVise();
-	coordonnee getChercherSac();
-	coordonnee getSacVise();
+    int getMonstreVise();
+    coordonnee getChercherSac();
+    coordonnee getSacVise();
 
-	Lumiere getPorteeLumineuse();
+    Lumiere getPorteeLumineuse();
 
-	std::string m_cheminClasse;
-	Classe m_classe;
+    std::string m_cheminClasse;
+    Classe m_classe;
 
-	Personnage m_personnage;
-	Modele_Personnage m_modelePersonnage[NOMBRE_MORCEAU_PERSONNAGE];
-	std::string m_cheminModele[NOMBRE_MORCEAU_PERSONNAGE],m_cheminModeleNouveau[NOMBRE_MORCEAU_PERSONNAGE];
+    Personnage m_personnage;
+    Modele_Personnage m_modelePersonnage[NOMBRE_MORCEAU_PERSONNAGE];
+    std::string m_cheminModele[NOMBRE_MORCEAU_PERSONNAGE],m_cheminModeleNouveau[NOMBRE_MORCEAU_PERSONNAGE];
 
     Caracteristique m_caracteristiques;
 
@@ -98,17 +98,17 @@ class Hero
 
     int m_defilement_trader,m_max_defilement_trader;
 
-	private:
-	coordonneeDecimal m_positionAffichage;
-	int m_monstreVise;
-	coordonnee m_chercherSac,m_sacVise;
+private:
+    coordonneeDecimal m_positionAffichage;
+    int m_monstreVise;
+    coordonnee m_chercherSac,m_sacVise;
 
-	int m_cas;
+    int m_cas;
 
-	int ordreAffichage[NOMBRE_MORCEAU_PERSONNAGE];
+    int ordreAffichage[NOMBRE_MORCEAU_PERSONNAGE];
 
-	std::vector<Objet> m_inventaire;
-	std::vector< std::vector<bool> > m_caseInventaire;
+    std::vector<Objet> m_inventaire;
+    std::vector< std::vector<bool> > m_caseInventaire;
 };
 
 #endif
