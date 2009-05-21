@@ -91,6 +91,9 @@ void MoteurSons::JouerSon(int ID,coordonnee position,coordonnee positionHero,boo
                     if ((double)(gpl::sqrt((positionHero.x+x)*(positionHero.x+x)+(positionHero.y-y)*(positionHero.y-y)))>(double)(gpl::sqrt((positionHero.x-position.x)*(positionHero.x-position.x)+(positionHero.y-position.y)*(positionHero.y-position.y))))
                         m_sons[i].SetPosition(position.x,0,position.y);
 
+                    if(position.x==-1&&position.y==-1)
+                        m_sons[i].SetPosition(sf::Listener::GetPosition());
+
                     sf::Sound::Status Status = m_sons[i].GetStatus();
                     if (Status==0)
                         m_sons[i].Play();

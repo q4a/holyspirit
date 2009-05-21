@@ -1280,7 +1280,7 @@ bool Objet::Utilisable(Caracteristique caract,int IDClasse)
 
 void Objet::JouerSon()
 {
-    coordonnee temp={0,0,0,0};
+    coordonnee temp={-1,-1,-1,-1};
     moteurSons->JouerSon(m_son,temp,temp);
 }
 
