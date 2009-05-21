@@ -278,7 +278,7 @@ void c_Jeu::Animation(Jeu *jeu)
             jeu->hero.miracleEnCours=0;
         }
 
-        //jeu->map->AnimerMiracle(&jeu->hero.m_personnage,jeu->hero.m_classe.miracles,tempsDepuisDerniereAnimation,positionHero,&jeu->hero);
+        jeu->map->AnimerMiracle(&jeu->hero.m_personnage,jeu->hero.m_classe.miracles,tempsDepuisDerniereAnimation,positionHero,&jeu->hero);
 
         if (retour==2)
             if (!jeu->eventManager.getEvenement(Mouse::Left,"C") || !jeu->map->getMonstreEnVie(jeu->hero.getMonstreVise()) )
