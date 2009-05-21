@@ -16,7 +16,7 @@ $
 	* t0 l10 l9 s0 ia10 ib270 $
 	* t0 l10 l9 s0 ia10 ib315 $
 
-	* t2 ia25 $
+	* t2 ia10 ib25 $
 	* t3 s1 ia7 $
 $
 //Séquences

@@ -10,7 +10,7 @@ $
 	* t0 l5 l4 s0 ia10 ib-30 $ // t pour le type, l c'est pour le lien, s pour la séquence et ia pour les infos relatives
 	* t0 l5 l4 s0 ia10 ib0 $
 	* t0 l5 l4 s0 ia10 ib30 $
-	* t2 ia25 $
+	* t2 ia10 ib25 $
 	* t3 s1 ia7 $
 $
 //Séquences
