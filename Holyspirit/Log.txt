@@ -43,9 +43,6 @@
          
          Chargement de l'objet : Ceremonial_dagger.item.hs
          
-         Chargement de l'objet : Two_hand_sword.item.hs
-         Chargement de : Data/Items/Images/TwoHand01Sword.png
-         
          Chargement de l'objet : Helmet.item.hs
          Chargement de : Data/Items/Images/helmet01.png
          
@@ -54,10 +51,12 @@
          
          Chargement de l'objet : Ring.item.hs
          
-         Chargement de l'objet : Small_axe.item.hs
-         Chargement de : Data/Items/Images/axes01.png
+         Chargement de l'objet : Ring.item.hs
+         
+         Chargement de l'objet : Ring.item.hs
          
          Chargement de l'objet : Small_axe.item.hs
+         Chargement de : Data/Items/Images/axes01.png
          /Lectures des objets.
          Chargement de : Data/Menus/Inventory.png
          Chargement de : Data/Menus/Trader.png
@@ -128,11 +127,11 @@
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Ceremonial_dagger.item.hs
          /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
          /Sauvegarde de Helmet.item.hs
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Ring.item.hs
          /Sauvegarde de Small_axe.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
@@ -251,6 +250,7 @@
          Chargement du script : "Data/Scripts/AI/standard.script.hs"
          
          Chargement de l'objet : Two_hand_sword.item.hs
+         Chargement de : Data/Items/Images/TwoHand01Sword.png
          
          Chargement de l'objet : Katzbalger.item.hs
          
@@ -414,11 +414,11 @@
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Ceremonial_dagger.item.hs
          /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
          /Sauvegarde de Helmet.item.hs
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Ring.item.hs
          /Sauvegarde de Small_axe.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
