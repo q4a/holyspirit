@@ -1,0 +1,66 @@
+/*Copyright (C) 2009 Naisse Grégoire
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.*/
+
+
+#ifndef CLASSEH
+#define CLASSEH
+
+#include "miracle.h"
+
+struct Image_interface
+{
+    coordonnee position;
+    int image;
+};
+
+struct Emplacement_inventaire
+{
+    coordonnee position;
+    int emplacement;
+};
+
+struct Classe
+{
+    void Charger(std::string chemin);
+
+    int ID;
+
+    std::string nom;
+    Caracteristique caracteristique;
+
+
+    std::string chemin_modele;
+
+    std::vector<std::string> equipementParDefaut;
+    std::string modeleNu[3];
+
+    Image_interface inventaire;
+    Image_interface menu_marchand;
+    Image_interface hud;
+    Image_interface orbe_vie;
+    Image_interface orbe_foi;
+    Image_interface cache_vie;
+    Image_interface cache_foi;
+
+    coordonnee position_sac_inventaire;
+    coordonnee position_contenu_inventaire;
+    coordonnee position_contenu_marchand;
+
+    std::vector <Emplacement_inventaire> emplacements;
+
+    std::vector<Miracle> miracles;
+};
+#endif
