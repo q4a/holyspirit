@@ -6,3 +6,5 @@ Points de piété supplémentaires :
 Points de charisme supplémentaires : 
 Points de vie supplémentaires : 
 Points de foi supplémentaires : 
+Dégats par le feu : 
+Dégats par la foi : 
