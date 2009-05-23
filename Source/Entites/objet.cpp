@@ -971,9 +971,9 @@ void Objet::Generer(int bonus)
             m_degatsMax*=1;
             nbrBene=1;
 
-            m_color.r=255-rand()%64;
+           /* m_color.r=255-rand()%64;
             m_color.g=255-rand()%64;
-            m_color.b=255-rand()%64;
+            m_color.b=255-rand()%64;*/
         }
 
         if (m_rarete==BENI)
@@ -983,9 +983,9 @@ void Objet::Generer(int bonus)
             m_degatsMax*=1;
             nbrBene=rand()%(4-2)+2;
 
-            m_color.r=255-rand()%128;
+            /*m_color.r=255-rand()%128;
             m_color.g=255-rand()%128;
-            m_color.b=255-rand()%128;
+            m_color.b=255-rand()%128;*/
         }
 
         if (m_rarete==SACRE)
@@ -995,9 +995,9 @@ void Objet::Generer(int bonus)
             m_degatsMax*=1;
             nbrBene=rand()%(9-5)+5;
 
-            m_color.r=255-rand()%192;
+            /*m_color.r=255-rand()%192;
             m_color.g=255-rand()%192;
-            m_color.b=255-rand()%192;
+            m_color.b=255-rand()%192;*/
         }
 
         if (m_rarete==SANCTIFIE)
@@ -1007,9 +1007,9 @@ void Objet::Generer(int bonus)
             m_degatsMax*=1;
             nbrBene=rand()%(15-10)+10;
 
-            m_color.r=255-rand()%255;
+            /*m_color.r=255-rand()%255;
             m_color.g=255-rand()%255;
-            m_color.b=255-rand()%255;
+            m_color.b=255-rand()%255;*/
         }
 
         for (int i=0;i<nbrBene;i++)
@@ -1036,8 +1036,8 @@ void Objet::Generer(int bonus)
 
             if(
                  (temp.type==EFFICACITE_ACCRUE&&!(m_type==ARME||m_type==ARMURE))||
-                 (temp.type==DEGATS_FEU&&!m_type==ARME)||
-                 (temp.type==DEGATS_FOI&&!m_type==ARME)
+                 (temp.type==DEGATS_FEU&&m_type!=ARME)||
+                 (temp.type==DEGATS_FOI&&m_type!=ARME)
               )
                 ajouter=false,i--;
 
@@ -1054,8 +1054,12 @@ void Objet::Generer(int bonus)
                 m_benedictions.back()=temp;
 
 
+
                 if (temp.type==DEGATS_FEU)
                 {
+                    m_color.r=255;
+                    m_color.g=64;
+                    m_color.b=64;
                     if(!m_useMiracle)
                         m_miracle.Charger("Data/Items/FireEffect/FireEffect.miracle.hs"),m_useMiracle=true;
                     else
@@ -1063,6 +1067,9 @@ void Objet::Generer(int bonus)
                 }
                 if (temp.type==DEGATS_FOI)
                 {
+                    m_color.r=64;
+                    m_color.g=64;
+                    m_color.b=255;
                     if(!m_useMiracle)
                         m_miracle.Charger("Data/Items/HolyEffect/HolyEffect.miracle.hs"),m_useMiracle=true;
                     else

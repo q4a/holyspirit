@@ -50,7 +50,7 @@
 		<Cursor position="1662" topLine="34" />
 	</File>
 	<File name="Entites\hero.cpp" open="1" top="0" tabpos="10">
-		<Cursor position="6714" topLine="235" />
+		<Cursor position="50169" topLine="1035" />
 	</File>
 	<File name="Entites\hero.h" open="0" top="0" tabpos="6">
 		<Cursor position="2055" topLine="54" />
@@ -68,19 +68,19 @@
 		<Cursor position="2015" topLine="87" />
 	</File>
 	<File name="Entites\monstre.cpp" open="1" top="0" tabpos="14">
-		<Cursor position="16485" topLine="548" />
+		<Cursor position="2680" topLine="101" />
 	</File>
 	<File name="Entites\monstre.h" open="0" top="0" tabpos="28">
 		<Cursor position="1376" topLine="22" />
 	</File>
-	<File name="Entites\objet.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="7736" topLine="262" />
+	<File name="Entites\objet.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="35359" topLine="1308" />
 	</File>
 	<File name="Entites\objet.h" open="1" top="0" tabpos="2">
 		<Cursor position="1622" topLine="42" />
 	</File>
-	<File name="Entites\personnage.cpp" open="1" top="0" tabpos="13">
-		<Cursor position="1993" topLine="60" />
+	<File name="Entites\personnage.cpp" open="1" top="1" tabpos="13">
+		<Cursor position="32064" topLine="753" />
 	</File>
 	<File name="Entites\personnage.h" open="0" top="0" tabpos="5">
 		<Cursor position="3309" topLine="102" />

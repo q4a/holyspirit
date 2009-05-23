@@ -123,6 +123,7 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
 
         if (m_caracteristique.rang>0)
         {
+            m_porteeLumineuse.intensite=255;
             m_porteeLumineuse.rouge=rand()%255;
             m_porteeLumineuse.vert=rand()%255;
             m_porteeLumineuse.bleu=rand()%255;

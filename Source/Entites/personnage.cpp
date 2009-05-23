@@ -767,7 +767,7 @@ int Personnage::animer(Modele_Personnage *modele,float temps,bool *explosif,coor
 
                 if (m_monstre)
                 {
-                    if (modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite()!=-1)
+                    if (modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite()!=-1&&m_caracteristique.rang==0)
                         m_porteeLumineuse.intensite=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite();
                     else if (m_porteeLumineuseBasique.intensite>=0)
                         m_porteeLumineuse=m_porteeLumineuseBasique;

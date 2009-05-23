@@ -338,6 +338,8 @@ void Hero::ChargerModele(bool tout)
     m_personnage.setPose(0);
     m_cas=0;
 
+    Lumiere color[NOMBRE_MORCEAU_PERSONNAGE];
+
     int nombreArme=0;
     m_weaponMiracle=-1;
 
@@ -366,7 +368,7 @@ void Hero::ChargerModele(bool tout)
                 m_classe.miracles.back().m_effets.back().m_informations[1]=m_caracteristiques.degatsMax;
 
 
-                if (m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==ARME_PRINCIPAL)
+                if (m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==ARME_PRINCIPAL||m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==BOUCLIER)
                     m_weaponMiracle=m_classe.miracles.size()-1;
             }
         }
@@ -405,6 +407,10 @@ void Hero::ChargerModele(bool tout)
                 if (m_inventaire[i].m_emplacementImageHero[temp]>=0&&m_inventaire[i].m_emplacementImageHero[temp]<NOMBRE_MORCEAU_PERSONNAGE)
                 {
                     m_cheminModeleNouveau[m_inventaire[i].m_emplacementImageHero[temp]]=m_inventaire[i].m_cheminImageHero[temp];
+                    color[m_inventaire[i].m_emplacementImageHero[temp]].rouge=m_inventaire[i].m_color.r;
+                    color[m_inventaire[i].m_emplacementImageHero[temp]].vert=m_inventaire[i].m_color.g;
+                    color[m_inventaire[i].m_emplacementImageHero[temp]].bleu=m_inventaire[i].m_color.b;
+                    color[m_inventaire[i].m_emplacementImageHero[temp]].intensite=255;
                     pasEquipe[m_inventaire[i].m_emplacementImageHero[temp]]=false;
                 }
             }
@@ -413,7 +419,7 @@ void Hero::ChargerModele(bool tout)
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;i++)
     {
         if (m_cheminModeleNouveau[i]!="" && m_cheminModeleNouveau[i]!=m_cheminModele[i])
-            m_modelePersonnage[i].Charger(m_classe.chemin_modele+m_cheminModeleNouveau[i]);
+            m_modelePersonnage[i].Charger(m_classe.chemin_modele+m_cheminModeleNouveau[i]),m_modelePersonnage[i].setPorteeLumineuse(color[i]);
         else if (m_cheminModeleNouveau[i]=="")
             m_modelePersonnage[i].Reinitialiser();
 
@@ -453,7 +459,10 @@ void Hero::Afficher(coordonnee dimensionsMap)
 {
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;i++)
         if (ordreAffichage[i]!=-1)
+        {
+            m_personnage.setPorteeLumineuse(m_modelePersonnage[ordreAffichage[i]].getPorteeLumineuse());
             m_personnage.Afficher(dimensionsMap,&m_modelePersonnage[ordreAffichage[i]]);
+        }
 }
 
 void Hero::AfficherCaracteristiques(coordonnee positionSouris,float decalage)
@@ -1057,6 +1066,8 @@ void Hero::AugmenterAme(float temps)
 
     m_personnage.setCaracteristique(temp);
 
+    RecalculerCaracteristiques();
+
     m_caracteristiques.ancienPointAme=temp.ancienPointAme;
 
     //recalculerCaracteristiques();
@@ -1234,6 +1245,8 @@ bool Hero::AjouterObjet(Objet objet,bool enMain)
                     {
                         objet.setPosition(j,i);
                         m_inventaire.push_back(objet);
+
+                        m_inventaire.back().JouerSon();
 
                         for (int x=j;x<j+objet.getTaille().x;x++)
                             for (int y=i;y<i+objet.getTaille().y;y++)
