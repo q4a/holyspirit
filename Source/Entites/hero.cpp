@@ -460,7 +460,7 @@ void Hero::Afficher(coordonnee dimensionsMap)
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;i++)
         if (ordreAffichage[i]!=-1)
         {
-            m_personnage.setPorteeLumineuse(m_modelePersonnage[ordreAffichage[i]].getPorteeLumineuse());
+            //m_personnage.setPorteeLumineuse(m_modelePersonnage[ordreAffichage[i]].getPorteeLumineuse());
             m_personnage.Afficher(dimensionsMap,&m_modelePersonnage[ordreAffichage[i]]);
         }
 }
@@ -1057,6 +1057,8 @@ void Hero::AugmenterAme(float temps)
 
         temp.maxFoi=temp.piete*25;
         temp.foi=temp.maxFoi;
+
+        m_personnage.setCaracteristique(temp);
 
         RecalculerCaracteristiques();
 

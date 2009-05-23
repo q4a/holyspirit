@@ -1362,7 +1362,7 @@ void Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,
     tailleCadran.x+=20;
 
     sprite.SetImage(*moteurGraphique->getImage(0));
-    sprite.SetColor(sf::Color(0,0,0,224));
+    sprite.SetColor(sf::Color(0,0,0,248));
     sprite.SetY(position.y);
     sprite.SetX(position.x-tailleCadran.x+10);
     sprite.Resize(tailleCadran.x,tailleCadran.y);
