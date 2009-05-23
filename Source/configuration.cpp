@@ -52,87 +52,46 @@ void Configuration::ChargerConf()
                 Resolution.h=Resolution.y;
             }
             if (chaine== "brightness:")
-            {
                 fichier>>luminosite;
-            }
             if (chaine== "contrast:")
-            {
                 fichier>>contrastes;
-            }
             if (chaine== "alpha_opacity:")
-            {
                 fichier>>alpha;
-            }
             if (chaine== "window:")
-            {
                 fichier>>mode_fenetre;
-            }
             if (chaine== "videos:")
-            {
                 fichier>>video;
-            }
             if (chaine== "postFX:")
-            {
                 fichier>>postFX;
-            }
             if (chaine== "smooth:")
-            {
                 fichier>>lissage;
-            }
             if (chaine== "blood:")
-            {
                 fichier>>sang;
-            }
             if (chaine== "shadows:")
-            {
                 fichier>>Ombre;
-            }
             if (chaine== "light_quality:")
-            {
                 fichier>>Lumiere;
-            }
             if (chaine== "grass:")
-            {
                 fichier>>Herbes;
-            }
             if (chaine== "particules:")
-            {
                 fichier>>particules;
-            }
             if (chaine== "vsync:")
-            {
                 fichier>>syncronisation_verticale;
-            }
             if (chaine== "volume:")
-            {
                 fichier>>volume;
-            }
             if (chaine== "minimap:")
-            {
                 fichier>>Minimap;
-            }
             if (chaine== "light_refresh_rate:")
-            {
                 fichier>>frequence_lumiere;
-            }
             if (chaine== "console:")
-            {
                 fichier>>console;
-            }
 
             if (chaine== "saving_frequency:")
-            {
                 fichier>>frequence_sauvegarde;
-            }
             if (chaine== "debug_mod:")
-            {
                 fichier>>debug;
-            }
             if (chaine== "desactivate_console:")
-            {
                 fichier>>desactivate_console;
-            }
-
         }
         fichier.close();
     }
@@ -150,123 +109,66 @@ void Configuration::ChargerInit()
         while (fichier>>chaine)
         {
             if (chaine== "version:")
-            {
                 fichier>>version;
-            }
-
             if (chaine== "maps:")
-            {
                 fichier>>chemin_maps;
-            }
             if (chaine== "items:")
-            {
                 fichier>>chemin_items;
-            }
             if (chaine== "temps:")
-            {
                 fichier>>chemin_temps;
-            }
             if (chaine== "saves:")
-            {
                 fichier>>chemin_saves;
-            }
             if (chaine== "events:")
-            {
                 fichier>>chemin_evenements;
-            }
             if (chaine== "cursor:")
-            {
                 fichier>>chemin_curseurs;
-            }
             if (chaine== "menus:")
-            {
                 fichier>>chemin_menus;
-            }
             if (chaine== "fonts:")
-            {
                 fichier>>chemin_fonts;
-            }
             if (chaine== "fx:")
-            {
                 fichier>>chemin_fx;
-            }
             if (chaine== "alpha_arts:")
-            {
                 fichier>>chemin_aa;
-            }
 
             if (chaine== "basic_cursor:")
-            {
                 fichier>>nom_curseur_base;
-            }
             if (chaine== "fxBlack:")
-            {
                 fichier>>nom_effetNoir;
-            }
             if (chaine== "fxDeath:")
-            {
                 fichier>>nom_effetMort;
-            }
             if (chaine== "fxContrast:")
-            {
                 fichier>>nom_effetContrastes;
-            }
             if (chaine== "fxBlur:")
-            {
                 fichier>>nom_effetBlur;
-            }
 
             if (chaine== "menu_minimap:")
-            {
                 fichier>>nom_minimap;
-            }
 
             if (chaine== "menu_soul:")
-            {
                 fichier>>nom_ame;
-            }
             if (chaine== "menu_soul_orb:")
-            {
                 fichier>>nom_barre_ame;
-            }
             if (chaine== "menu_life_monster:")
-            {
                 fichier>>nom_barre_vie;
-            }
             if (chaine== "menu_life_monster_blank:")
-            {
                 fichier>>nom_barre_vie_vide;
-            }
             if (chaine== "menu_bag:")
-            {
                 fichier>>nom_sac;
-            }
 
             if (chaine== "text_benedictions:")
-            {
                 fichier>>chemin_text_benedictions;
-            }
             if (chaine== "text_menus:")
-            {
                 fichier>>chemin_text_menus;
-            }
 
             if (chaine== "font_title:")
-            {
                 fichier>>font_titre;
-            }
             if (chaine== "menu_blood:")
-            {
                 fichier>>nom_sang;
-            }
             if (chaine== "cache: ")
-            {
                 fichier>>cache;
-            }
             if (chaine== "death_sound:")
-            {
                 fichier>>chemin_son_mort;
-            }
 
         }
         fichier.close();

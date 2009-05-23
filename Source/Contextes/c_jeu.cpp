@@ -260,7 +260,7 @@ void c_Jeu::Animation(Jeu *jeu)
             {
                 if (!jeu->hero.m_personnage.m_shooter)
                     if (jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())!=NULL)
-                        if (fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().x)<=1&&fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().y-jeu->hero.m_personnage.getCoordonnee().y)<=1)
+                        if (fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().x)<=2&&fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().y-jeu->hero.m_personnage.getCoordonnee().y)<=2)
                             jeu->map->InfligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&jeu->hero,1);
 
                 coordonnee cible;
@@ -442,12 +442,12 @@ void c_Jeu::Affichage(Jeu *jeu)
     }
 
     if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())==1&&alpha_sac<128)
-        jeu->map->RamasserObjet(&jeu->hero);
+        jeu->map->m_objetPointe=0,jeu->map->RamasserObjet(&jeu->hero);
 
     if (alpha_sac>0)
     {
         coordonnee temp={600,configuration->Resolution.w*0.265,200,10};
-        jeu->menu.Afficher(3,255,&jeu->hero.m_classe);
+        jeu->menu.Afficher(3,alpha_sac,&jeu->hero.m_classe);
         jeu->map->AfficherSac(jeu->hero.getChercherSac(),0,jeu->eventManager.getPositionSouris(),temp,jeu->hero.m_caracteristiques);
     }
 

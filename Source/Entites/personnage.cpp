@@ -81,6 +81,8 @@ Personnage::Personnage()
     m_positionCase.h=0;
 
     m_nombreInvocation=0;
+
+    m_shooter=false;
 }
 Modele_Personnage::Modele_Personnage()
 {

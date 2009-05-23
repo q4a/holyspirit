@@ -370,4 +370,39 @@ void Miracle::JouerSon(int numeroSon,coordonnee position,coordonnee positionHero
     }
 }
 
+void Miracle::Concatenencer(std::string chemin)
+{
+    Miracle miracle(chemin);
+    m_effets.back().m_lien.push_back((int)m_effets.size());
+
+    int tailleEffets=m_effets.size();
+    int tailleImage=m_image.size();
+    int tailleSon=m_sons.size();
+    int tailleTile=m_tile.size();
+
+    for(int i=0;i<(int)miracle.m_tile.size();i++)
+    {
+        m_tile.push_back(miracle.m_tile[i]);
+        for(int j=0;j<(int)m_tile.back().size();j++)
+        {
+            m_tile.back()[j].setImage(m_tile.back()[j].getImage()+tailleImage);
+            if(m_tile.back()[j].getSon()!=-1)
+                m_tile.back()[j].setSon(m_tile.back()[j].getSon()+tailleSon);
+        }
+    }
+
+    for(int i=0;i<(int)miracle.m_image.size();i++)
+        m_image.push_back(miracle.m_image[i]);
+    for(int i=0;i<(int)miracle.m_sons.size();i++)
+        m_sons.push_back(miracle.m_sons[i]);
+
+    for(int i=0;i<(int)miracle.m_effets.size();i++)
+    {
+        m_effets.push_back(miracle.m_effets[i]);
+        for(int j=0;j<(int)m_effets.back().m_lien.size();j++)
+            m_effets.back().m_lien[j]+=tailleEffets;
+        m_effets.back().m_sequence+=tailleTile;
+    }
+
+}
 

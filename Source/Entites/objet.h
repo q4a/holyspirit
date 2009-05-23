@@ -53,12 +53,13 @@ public:
     // Objet operator=(const Objet &objet);
 
     void AfficherCaracteristiques(coordonnee position,Caracteristique caract,float modPrix=1);
-    void Charger(std::string chemin);
+    void Charger(std::string chemin,bool NePasAjouterBenedictions=false);
     void ChargerCaracteristiques(std::ifstream *fichier);
 
     void Sauvegarder(std::ofstream *fichier);
     void SauvegarderTexte(std::ofstream *fichier);
-    void ChargerTexte(std::ifstream *fichier);
+    void ChargerTexte(std::ifstream *fichier,bool NePasAjouterBenedictions=false);
+    void ChargerChemin(std::ifstream *fichier);
 
     void Generer(int bonus);
 

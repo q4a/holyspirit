@@ -105,7 +105,9 @@ public:
     Miracle(std::string chemin);
     ~Miracle();
     void Charger(std::string chemin);
+    void Concatenencer(std::string chemin);
     void JouerSon(int numeroSon,coordonnee position,coordonnee positionHero);
+
 
     std::vector < std::vector <Tile> > m_tile;
     std::vector <Effet> m_effets;

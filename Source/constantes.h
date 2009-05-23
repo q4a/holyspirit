@@ -34,7 +34,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #define NOMBRE_TYPE_OBJET 2
 
-#define NOMBRE_BENEDICTION 8
 #define NOMBRE_TXT_MENU 13
 
 #define NOMBRE_SONS 64
@@ -63,7 +62,7 @@ enum{AUCUN_EMPLACEMENT,ARME_PRINCIPAL,BOUCLIER,ARMURE_CORPS,ARMURE_CORPS2,CASQUE
 
 enum{AUCUN,ARME,ARMURE};
 
-enum{EFFICACITE_ACCRUE,FO_SUPP,DEX_SUPP,VIT_SUPP,PI_SUPP,CH_SUPP,VIE_SUPP,FOI_SUPP};
+enum{EFFICACITE_ACCRUE,FO_SUPP,DEX_SUPP,VIT_SUPP,PI_SUPP,CH_SUPP,VIE_SUPP,FOI_SUPP,DEGATS_FEU,DEGATS_FOI};
 
 /// http://www.sfml-dev.org/wiki/fr/sources/fonctions_maths
 /// Par hiura

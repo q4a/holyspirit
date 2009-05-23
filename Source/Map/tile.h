@@ -48,6 +48,9 @@ class Tile
 	coordonnee getCentre();
 	float getTemps();
 
+	void setImage(int);
+	void setSon(int);
+
 	private:
 	coordonnee m_positionDansLImage,m_centre;
 	bool m_collision,m_ombre,m_transparent;

@@ -116,3 +116,13 @@ float Tile::getTemps()
 {
     return m_temps;
 }
+
+void Tile::setImage(int image)
+{
+    m_image=image;
+}
+void Tile::setSon(int son)
+{
+    m_son=son;
+}
+

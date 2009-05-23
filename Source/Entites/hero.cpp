@@ -151,77 +151,30 @@ void Hero::Sauvegarder()
         if (configuration->debug)
             console->Ajouter("Ouverture du fichier.");
 
-        std::string temp=m_personnage.getNom();
-        char caractere;
+        fichier<<m_personnage.getNom()<<" "<<endl;
+        fichier<<m_cheminClasse<<" "<<endl;
 
-        int n = temp.size()+1;
-        fichier.write((char *)&n, sizeof(int));
-        fichier.write(temp.c_str(), n);
-
-        n = m_cheminClasse.size()+1;
-        fichier.write((char *)&n, sizeof(int));
-        fichier.write(m_cheminClasse.c_str(), n);
-
-        //fichier.write((char*)&m_personnage.getCaracteristique().nom, sizeof(string));
-
-        fichier.write((char*)&m_personnage.getCaracteristique().vitesse, sizeof(float));
-
-        fichier.write((char*)&m_personnage.getCaracteristique().pointAme, sizeof(int));
-
-        fichier.write((char*)&m_personnage.getCaracteristique().niveau, sizeof(int));
-
-        fichier.write((char*)&m_personnage.getCaracteristique().force, sizeof(int));
-
-        fichier.write((char*)&m_personnage.getCaracteristique().dexterite, sizeof(int));
-
-        fichier.write((char*)&m_personnage.getCaracteristique().vitalite, sizeof(int));
-
-        fichier.write((char*)&m_personnage.getCaracteristique().piete, sizeof(int));
-
-        fichier.write((char*)&m_personnage.getCaracteristique().charisme, sizeof(int));
-
-        fichier.write((char*)&m_argent, sizeof(int));
+        fichier<<m_personnage.getCaracteristique().vitesse<<endl;
+        fichier<<m_personnage.getCaracteristique().pointAme<<endl;
+        fichier<<m_personnage.getCaracteristique().niveau<<endl;
+        fichier<<m_personnage.getCaracteristique().force<<endl;
+        fichier<<m_personnage.getCaracteristique().dexterite<<endl;
+        fichier<<m_personnage.getCaracteristique().vitalite<<endl;
+        fichier<<m_personnage.getCaracteristique().piete<<endl;
+        fichier<<m_personnage.getCaracteristique().charisme<<endl;
+        fichier<<m_argent<<endl;
 
         if (configuration->debug)
             console->Ajouter("/Ecriture des caracterstiques.");
 
-
-        // caractere='$';
-        //fichier.write((char*)&caractere, sizeof(char));
-        //fichier.write((char*)&espace, sizeof(char));
-
-        /*for(int i=0;i<(int)m_caseInventaire.size();++i)
-        {
-            caractere='*';
-            fichier.write((char*)&caractere, sizeof(char));
-            //fichier.write((char*)&espace, sizeof(char));
-
-            for(int j=0;j<(int)m_caseInventaire[i].size();++j)
-                fichier.write((char*)&m_caseInventaire[i][j], sizeof(bool));
-
-            caractere='$';
-            //fichier.write((char*)&espace, sizeof(char));
-            fichier.write((char*)&caractere, sizeof(char));
-            fichier.write((char*)&espace, sizeof(char));
-        }
-        caractere='$';*/
-        //fichier.write((char*)&espace, sizeof(char));
-        fichier.write((char*)&caractere, sizeof(char));
-
-        if (configuration->debug)
-            console->Ajouter("/Ecriture des cases inventaires.");
-
         for (int i=0;i<(int)m_inventaire.size();++i)
-        {
-            m_inventaire[i].Sauvegarder(&fichier);
-        }
+            m_inventaire[i].SauvegarderTexte(&fichier);
 
         if (configuration->debug)
             console->Ajouter("/Ecriture des objets.");
 
         // fichier.write((char*)&espace, sizeof(char));
-        caractere='$';
-        fichier.write((char*)&caractere, sizeof(char));
+        fichier<<'$'<<endl;
 
         fichier.close();
 
@@ -251,15 +204,7 @@ void Hero::Charger()
 
     bool nouveau=true;
     string chemin;
-    // struct dirent *lecture;
 
-    //DIR *repertoire;
-    //repertoire = opendir(configuration->chemin_saves.c_str());
-    //while ((lecture = readdir(repertoire)))
-    //  {
-    // string temp="hero.sav.hs";
-    // if(lecture->d_name==temp)
-    //{
     cDAT reader;
     if (reader.Read(configuration->chemin_saves+"hero.sav.hs"))
     {
@@ -271,167 +216,49 @@ void Hero::Charger()
             Caracteristique charTemp;
             charTemp=m_personnage.getCaracteristique();
 
-            int n;
-            char *buffer;
+            *fichier>>charTemp.nom;
 
-            fichier->read((char *)&n, sizeof(int));
-            buffer=new char[n];
-            fichier->read(buffer,n);
-            charTemp.nom=buffer;
-            delete[] buffer;
+            *fichier>>m_cheminClasse;
 
-            fichier->read((char *)&n, sizeof(int));
-            buffer=new char[n];
-            fichier->read(buffer,n);
-            m_cheminClasse=buffer;
-            delete[] buffer;
+            *fichier>>charTemp.vitesse;
+            *fichier>>charTemp.pointAme;
+            *fichier>>charTemp.niveau;
 
-            fichier->read((char*)&charTemp.vitesse, sizeof(float));
-            fichier->read((char*)&charTemp.pointAme, sizeof(int)),charTemp.ancienPointAme=charTemp.pointAme,charTemp.positionAncienAme=charTemp.pointAme;
-            fichier->read((char*)&charTemp.niveau, sizeof(int));
+            *fichier>>charTemp.force;
+            *fichier>>charTemp.dexterite;
+            *fichier>>charTemp.vitalite;
+            *fichier>>charTemp.piete;
+            *fichier>>charTemp.charisme;
 
-            fichier->read((char*)&charTemp.force, sizeof(int));
-            fichier->read((char*)&charTemp.dexterite, sizeof(int));
-            fichier->read((char*)&charTemp.vitalite, sizeof(int));
-            fichier->read((char*)&charTemp.piete, sizeof(int));
-            fichier->read((char*)&charTemp.charisme, sizeof(int));
+            *fichier>>m_argent;
 
-            fichier->read((char*)&m_argent, sizeof(int));
+            charTemp.ancienPointAme=charTemp.pointAme,charTemp.positionAncienAme=charTemp.pointAme;
 
             if (configuration->debug)
                 console->Ajouter("/Lectures des caracteristiques.");
 
-            coordonnee position={0,0,0,0};
-
-
-            if (configuration->debug)
-                console->Ajouter("/Lectures des cases de l'inventaire.");
-
             do
             {
-                fichier->read((char*)&caractere, sizeof(char));
-                if (caractere=='*')
+                fichier->get(caractere);
+                if (caractere=='o')
                 {
-                    int rarete=0,equipe=0;
-                    int degMin=0,degMax=0,armure=0,prix=0;
-                    position.y=0;
-                    position.x=0;
-                    std::vector <benediction> bene;
-                    sf::Color color;
+                    int pos=fichier->tellg();
+                    m_inventaire.push_back(Objet ());
+                    m_inventaire.back().ChargerTexte(fichier,true);
+                    m_inventaire.back().Charger(m_inventaire.back().getChemin(),true);
+                    fichier->seekg(pos, ios::beg);
+                    m_inventaire.back().m_benedictions.clear();
+                    m_inventaire.back().ChargerTexte(fichier);
 
-                    do
+                    if (m_inventaire.back().m_equipe>=0&&m_inventaire.back().m_type==ARME)
                     {
-                        fichier->read((char*)&caractere, sizeof(char));
-                        if (caractere=='e')
-                            fichier->read((char*)&equipe, sizeof(int));//fichier>>equipe;
-
-                        else if (caractere=='r')
-                            fichier->read((char*)&rarete, sizeof(int));//fichier>>rarete;
-
-                        else if (caractere=='x')
-                            fichier->read((char*)&position.x, sizeof(int));//fichier>>position.x;
-                        else if (caractere=='y')
-                            fichier->read((char*)&position.y, sizeof(int));//fichier>>position.y;
-
-                        else  if (caractere=='d')
-                        {
-                            fichier->read((char*)&caractere, sizeof(char));
-                            if (caractere=='i')
-                                fichier->read((char*)&degMin, sizeof(int)); //fichier>>degMin;
-                            else if (caractere=='a')
-                                fichier->read((char*)&degMax, sizeof(int)); // fichier>>degMax;
-                        }
-
-                        else if (caractere=='a')
-                            fichier->read((char*)&armure, sizeof(int));//fichier>>armure;
-
-                        else  if (caractere=='l')
-                        {
-                            fichier->read((char*)&caractere, sizeof(char));
-                            if (caractere=='r')
-                                fichier->read((char*)&color.r, sizeof(Uint8));//fichier>>color.r;
-                            else if (caractere=='g')
-                                fichier->read((char*)&color.g, sizeof(Uint8));//fichier>>color.g;
-                            else if (caractere=='b')
-                                fichier->read((char*)&color.b, sizeof(Uint8)); //fichier>>color.b;
-                        }
-                        else if (caractere=='m')
-                        {
-                            int m;
-                            char *buffer;
-
-                            fichier->read((char*)&m, sizeof(int));
-                            buffer=new char[m];
-                            fichier->read(buffer,m);
-
-
-                            m_inventaire.push_back(Objet ());
-                            m_inventaire.back().Charger(buffer);
-                            delete[] buffer;
-                        }
-                        else if (caractere=='b')
-                        {
-                            int type=0,info1=0,info2=0;
-
-                            //fichier>>type;
-                            fichier->read((char*)&type, sizeof(int));
-
-                            do
-                            {
-                                fichier->read((char*)&caractere, sizeof(char));
-                                if (caractere=='i')
-                                {
-                                    fichier->read((char*)&caractere, sizeof(char));
-                                    if (caractere=='1')
-                                        fichier->read((char*)&info1, sizeof(int));//fichier>>info1;
-                                    if (caractere=='2')
-                                        fichier->read((char*)&info2, sizeof(int));//fichier>>info2;
-                                }
-                            }
-                            while (caractere!='$');
-
-                            bene.push_back(benediction ());
-                            bene.back().type=type;
-                            bene.back().info1=info1;
-                            bene.back().info2=info2;
-                            prix+=50;
-                            fichier->read((char*)&caractere, sizeof(char));
-                        }
-
-                        if (fichier->eof())
-                        {
-                            throw "Impossible de charger la sauvegarde";
-                        }
-                    }
-                    while (caractere!='$');
-
-                    if (m_inventaire.size()>0)
-                    {
-                        m_inventaire.back().setRarete(rarete);
-                        m_inventaire.back().setPosition(position.x,position.y);
-                        m_inventaire.back().m_equipe=equipe;
-
-                        if (m_inventaire.back().m_equipe>=0&&m_inventaire.back().m_type==ARME)
-                        {
-                            if (m_inventaire.back().m_shoot_weapon)
-                                m_personnage.m_shooter=true;
-                            else
-                                m_personnage.m_shooter=false;
-                        }
-
-                        m_inventaire.back().m_armure=armure;
-                        m_inventaire.back().m_degatsMin=degMin;
-                        m_inventaire.back().m_degatsMax=degMax;
-
-                        m_inventaire.back().m_color=color;
-
-                        m_inventaire.back().m_prix=(armure+degMin+degMax)*3+prix;
-
-
-                        m_inventaire.back().m_benedictions=bene;
+                        if (m_inventaire.back().m_shoot_weapon)
+                            m_personnage.m_shooter=true;
+                        else
+                            m_personnage.m_shooter=false;
                     }
 
-                    fichier->read((char*)&caractere, sizeof(char));
+                    fichier->get(caractere);
                 }
                 if (fichier->eof())
                 {
@@ -530,7 +357,7 @@ void Hero::ChargerModele(bool tout)
             {
                 m_classe.miracles.push_back(m_inventaire[i].m_miracle);
 
-                m_classe.miracles.back().m_effets.back().m_lien.push_back((int) m_classe.miracles.back().m_effets.size());
+                m_classe.miracles.back().m_effets[0].m_lien.push_back((int) m_classe.miracles.back().m_effets.size());
 
                 m_classe.miracles.back().m_effets.push_back(Effet ());
 
@@ -1301,6 +1128,10 @@ void Hero::RecalculerCaracteristiques()
             m_caracteristiques.degatsMax+=m_inventaire[i].m_degatsMax*accru/100;
             m_caracteristiques.armure+=m_inventaire[i].m_armure*accru/100;
 
+            for (int j=0;j<(int)m_inventaire[i].m_benedictions.size();++j)
+                if (m_inventaire[i].m_benedictions[j].type==DEGATS_FEU||m_inventaire[i].m_benedictions[j].type==DEGATS_FOI)
+                    m_caracteristiques.degatsMin+=m_inventaire[i].m_benedictions[j].info1,m_caracteristiques.degatsMax+=m_inventaire[i].m_benedictions[j].info1;
+
             temp.degatsMin+=m_inventaire[i].m_degatsMin;
             temp.degatsMax+=m_inventaire[i].m_degatsMax;
             temp.armure+=m_inventaire[i].m_armure;
@@ -1354,8 +1185,8 @@ bool Hero::AjouterMiracleArme()
 
         m_personnage.m_miracleEnCours.back().m_modele=m_weaponMiracle;
 
-        m_personnage.m_miracleEnCours.back().m_infos.back().m_position.x=m_personnage.getCoordonneePixel().x;
-        m_personnage.m_miracleEnCours.back().m_infos.back().m_position.y=m_personnage.getCoordonneePixel().y;
+        m_personnage.m_miracleEnCours.back().m_infos.back().m_position.x=m_personnage.getCoordonneePixel().x+cos(-(m_personnage.getAngle()+22.5)*M_PI/180)*96;
+        m_personnage.m_miracleEnCours.back().m_infos.back().m_position.y=m_personnage.getCoordonneePixel().y+sin(-(m_personnage.getAngle()+22.5)*M_PI/180)*96;
 
         return 1;
     }

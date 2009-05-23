@@ -100,10 +100,10 @@ public:
 
 
 
-    int m_defilerObjets;
+    int m_defilerObjets,m_objetPointe;
 
 private:
-    int m_monstreIllumine,IDImageSac,m_objetPointe,m_calculLumiere,m_musiqueEnCours,m_nombreMusique;
+    int m_monstreIllumine,IDImageSac,m_calculLumiere,m_musiqueEnCours,m_nombreMusique;
     std::string m_nom_fichier;
 
     coordonnee m_dimensions;

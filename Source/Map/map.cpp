@@ -475,11 +475,13 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                 break;
 
                             case 'o':
+                                int pos=fichier2->tellg();
                                 objets.push_back(Objet ());
+                                objets.back().ChargerTexte(fichier2,true);
+                                objets.back().Charger(objets.back().getChemin(),true);
+                                fichier2->seekg(pos, ios::beg);
+                                objets.back().m_benedictions.clear();
                                 objets.back().ChargerTexte(fichier2);
-                                int rarete=objets.back().getRarete();
-                                objets.back().Charger(objets.back().getChemin());
-                                objets.back().setRarete(rarete);
                                 break;
                             }
 
@@ -669,11 +671,13 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                 break;
 
                             case 'o':
+                                int pos=fichier->tellg();
                                 objets.push_back(Objet ());
+                                objets.back().ChargerTexte(fichier,true);
+                                objets.back().Charger(objets.back().getChemin(),true);
+                                fichier->seekg(pos, ios::beg);
+                                objets.back().m_benedictions.clear();
                                 objets.back().ChargerTexte(fichier);
-                                rarete=objets.back().getRarete();
-                                objets.back().Charger(objets.back().getChemin());
-                                objets.back().setRarete(rarete);
                                 break;
 
                             case 'r':
@@ -728,11 +732,13 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                                     break;
 
                                                 case 'o':
+                                                    int pos=fichier->tellg();
                                                     objets.push_back(Objet ());
+                                                    objets.back().ChargerTexte(fichier,true);
+                                                    objets.back().Charger(objets.back().getChemin(),true);
+                                                    fichier->seekg(pos, ios::beg);
+                                                    objets.back().m_benedictions.clear();
                                                     objets.back().ChargerTexte(fichier);
-                                                    rarete=objets.back().getRarete();
-                                                    objets.back().Charger(objets.back().getChemin());
-                                                    objets.back().setRarete(rarete);
                                                     break;
                                                 }
 
@@ -1235,6 +1241,7 @@ void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee positionS
             &&positionSac.y>=0&&positionSac.y<(int)m_dimensions.y)
         if (m_decor[1][positionSac.y][positionSac.x].getNombreObjets()>0)
         {
+
             if (m_defilerObjets>m_decor[1][positionSac.y][positionSac.x].getNombreObjets()-position_sac_inventaire.h+1)
                 m_defilerObjets=m_decor[1][positionSac.y][positionSac.x].getNombreObjets()-position_sac_inventaire.h+1;
             if (m_defilerObjets<0)
