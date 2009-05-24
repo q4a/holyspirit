@@ -1182,14 +1182,14 @@ void Map::Sauvegarder(Hero *hero)
 
     if (fichier2)
     {
-        for (int i=0;i<(int)m_monstre.size();i++)
+        for (std::vector<Monstre>::iterator iter = m_monstre.begin();iter!=m_monstre.end();++iter)
         {
-            fichier2<<"* m"<<m_monstre[i].getModele()<<" vi"<<m_monstre[i].getCaracteristique().vie<<" va"<<m_monstre[i].getCaracteristique().maxVie<<" di"<<m_monstre[i].getCaracteristique().degatsMin<<" da"<<m_monstre[i].getCaracteristique().degatsMax<<" r"<<m_monstre[i].getCaracteristique().rang<<" a"<<m_monstre[i].getCaracteristique().pointAme<<" t"<<m_monstre[i].getCaracteristique().modificateurTaille
-            <<" p"<<m_monstre[i].getPose()<<" e"<<m_monstre[i].getEtat()<<" g"<<m_monstre[i].getAngle()
-            <<" lr"<<m_monstre[i].getPorteeLumineuse().rouge<<" lv"<<m_monstre[i].getPorteeLumineuse().vert<<" lb"<<m_monstre[i].getPorteeLumineuse().bleu<<" li"<<m_monstre[i].getPorteeLumineuse().intensite;
+            fichier2<<"* m"<<iter->getModele()<<" vi"<<iter->getCaracteristique().vie<<" va"<<iter->getCaracteristique().maxVie<<" di"<<iter->getCaracteristique().degatsMin<<" da"<<iter->getCaracteristique().degatsMax<<" r"<<iter->getCaracteristique().rang<<" a"<<iter->getCaracteristique().pointAme<<" t"<<iter->getCaracteristique().modificateurTaille
+            <<" p"<<iter->getPose()<<" e"<<iter->getEtat()<<" g"<<iter->getAngle()
+            <<" lr"<<iter->getPorteeLumineuse().rouge<<" lv"<<iter->getPorteeLumineuse().vert<<" lb"<<iter->getPorteeLumineuse().bleu<<" li"<<iter->getPorteeLumineuse().intensite;
 
-            for (int o=0;o<(int)m_monstre[i].getObjets().size();o++)
-                m_monstre[i].getObjets()[o].SauvegarderTexte(&fichier2);
+            for (int o=0;o<(int)iter->getObjets().size();o++)
+                iter->getObjets()[o].SauvegarderTexte(&fichier2);
 
             fichier2<<" $\n";
         }
@@ -1197,7 +1197,6 @@ void Map::Sauvegarder(Hero *hero)
 
         fichier2.close();
     }
-
 
     console->Ajouter("Sauvegarde de la map terminée !");
 }

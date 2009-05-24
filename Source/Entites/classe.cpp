@@ -774,6 +774,44 @@ void Classe::Charger(string chemin)
         }
         while (caractere!='$');
 
+
+
+        do
+        {
+            fichier.get(caractere);
+            if (caractere=='*')
+            {
+                do
+                {
+                    fichier.get(caractere);
+                    if(caractere=='m')
+                    {
+                        std::string temp;
+                        fichier>>temp;
+                        miracles.push_back(Miracle (temp));
+                    }
+
+                    if (fichier.eof())
+                    {
+                        char temp[255];
+                        sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
+                        console->Ajouter(temp,1);
+                        caractere='$';
+                    }
+                }
+                while (caractere!='$');
+                fichier.get(caractere);
+            }
+            if (fichier.eof())
+            {
+                char temp[255];
+                sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                caractere='$';
+            }
+        }
+        while (caractere!='$');
+
         fichier.close();
     }
     else

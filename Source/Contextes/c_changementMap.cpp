@@ -129,18 +129,21 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         moteurGraphique->ViderParticules();
 
-        if (!m_debut)
-            jeu->map->Sauvegarder(&jeu->hero);
+        if (jeu->map!=NULL&&!m_debut)
+           jeu->map->Sauvegarder(&jeu->hero);
+
+        jeu->hero.Sauvegarder();
 
         //jeu->map->Detruire();
         if (jeu->map!=NULL)
+        {
             delete jeu->map;
+            jeu->map = NULL;
+        }
 
         jeu->map=new Map();
 
-        jeu->hero.m_personnage.m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),224,384,16,sf::Color(255,255,255));
-
-        jeu->hero.Sauvegarder();
+        jeu->hero.m_personnage.m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,384,16,sf::Color(255,255,255));
 
         jeu->hero.ChargerModele(true);
 

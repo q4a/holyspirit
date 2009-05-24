@@ -25,7 +25,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef MIRACLEH
 #define MIRACLEH
 
-enum  {PROJECTILE,CORPS_A_CORPS,DEGATS,EFFET_GRAPHIQUE,INVOCATION};
+enum  {PROJECTILE,CORPS_A_CORPS,DEGATS,EFFET_GRAPHIQUE,INVOCATION,AURA};
 
 class Projectile
 {

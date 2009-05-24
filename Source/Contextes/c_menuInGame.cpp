@@ -82,7 +82,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
         jeu->menu.Afficher(2,255,&jeu->hero.m_classe);
     if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())>0)
     {
-        coordonnee temp={600,configuration->Resolution.w*0.265,200,10};
+        coordonnee temp={600,(int)((float)configuration->Resolution.w*0.265),200,10};
         jeu->menu.Afficher(3,255,&jeu->hero.m_classe);
         jeu->map->AfficherSac(jeu->hero.getChercherSac(),0,jeu->eventManager.getPositionSouris(),temp,jeu->hero.m_caracteristiques);
     }

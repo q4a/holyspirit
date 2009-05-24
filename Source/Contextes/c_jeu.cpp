@@ -212,7 +212,7 @@ void c_Jeu::Deplacements(Jeu *jeu)
 
             if (jeu->eventManager.getEvenement(Mouse::Left,"CA")&&jeu->eventManager.getEvenement(Key::LShift,"ET"))
             {
-                coordonnee temp={jeu->eventManager.getCasePointee().x*COTE_TILE,jeu->eventManager.getCasePointee().y*COTE_TILE,0,0};
+                coordonnee temp={(int)(jeu->eventManager.getCasePointee().x*COTE_TILE),(int)(jeu->eventManager.getCasePointee().y*COTE_TILE),0,0};
                 jeu->hero.m_personnage.frappe(jeu->hero.m_personnage.getCoordonneePixel(),temp);
             }
         }
@@ -446,7 +446,7 @@ void c_Jeu::Affichage(Jeu *jeu)
 
     if (alpha_sac>0)
     {
-        coordonnee temp={600,configuration->Resolution.w*0.265,200,10};
+        coordonnee temp={600,(int)((float)configuration->Resolution.w*0.265),200,10};
         jeu->menu.Afficher(3,alpha_sac,&jeu->hero.m_classe);
         jeu->map->AfficherSac(jeu->hero.getChercherSac(),0,jeu->eventManager.getPositionSouris(),temp,jeu->hero.m_caracteristiques);
     }
