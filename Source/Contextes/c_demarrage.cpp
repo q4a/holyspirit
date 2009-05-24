@@ -32,12 +32,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 using namespace sf;
 using namespace std;
 
-c_Demarrage::c_Demarrage(Jeu *jeu)
+c_Demarrage::c_Demarrage()
 {
     m_alpha=0;
     m_augmenter=true;
     m_image=moteurGraphique->AjouterImage(configuration->chemin_aa);
-    jeu->Clock.Reset();
 }
 
 void c_Demarrage::Utiliser(Jeu *jeu)

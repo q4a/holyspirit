@@ -32,10 +32,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 using namespace sf;
 using namespace std;
 
-c_Chargement::c_Chargement(Jeu *jeu)
+c_Chargement::c_Chargement()
 {
-    z=0;
-    augmenterNoir = true;
 }
 
 void c_Chargement::setC_Chargement(std::string prochaineMap,coordonnee coordonneePerso,bool debut)
@@ -109,19 +107,13 @@ void c_Chargement::setC_Chargement(std::string prochaineMap,coordonnee coordonne
 void c_Chargement::Utiliser(Jeu *jeu)
 {
     jeu->m_display=true;
-    jeu->hero.PlacerCamera(jeu->map->getDimensions());
-
-    if (configuration->Lumiere)
-        jeu->map->CalculerOmbresEtLumieres();
 
     temps_ecoule=0;
     temps_ecoule=jeu->Clock.GetElapsedTime();
     tempsEcouleDepuisDernierAffichage+=temps_ecoule;
     jeu->Clock.Reset();
 
-    jeu->eventManager.GererLesEvenements(&jeu->m_run,temps_ecoule,jeu->map->getDimensions());
-
-    if (z>=49&&!augmenterNoir&&allerVersImageChargement)
+    if (z>=49&&!augmenterNoir&&allerVersImageChargement||m_debut)
     {
         jeu->Clock.Reset();
         jeu->hero.m_personnage.setCoordonnee(m_coordonneePerso);
@@ -197,11 +189,13 @@ void c_Chargement::Utiliser(Jeu *jeu)
     if (allerVersImageChargement&&z<49&&augmenterNoir||!allerVersImageChargement&&z>0&&!augmenterNoir)
     {
         //jeu->camera.Zoom(configuration->zoom);
-        jeu->map->setVolumeMusique((int)(z*(float)configuration->volume/50));
+        if(jeu->map!=NULL)
+            jeu->map->setVolumeMusique((int)(z*(float)configuration->volume/50));
         if (!m_debut&&augmenterNoir||!augmenterNoir)
         {
             coordonnee temp;
-            jeu->map->Afficher(&jeu->hero,temp,0);
+            if(jeu->map!=NULL)
+                jeu->map->Afficher(&jeu->hero,temp,0);
 
             if (configuration->Minimap)
                 jeu->menu.Afficher(2,255,&jeu->hero.m_classe);
@@ -216,7 +210,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
     configuration->effetNoir=((float)z)/50;
 
 
-    if (z>=49&&!augmenterNoir&&!allerVersImageChargement)
+    if (z>=49&&!augmenterNoir&&!allerVersImageChargement||m_debut)
     {
         configuration->effetNoir=0;
         jeu->m_contexte = jeu->m_jeu;

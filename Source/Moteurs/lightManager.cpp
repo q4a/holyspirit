@@ -251,22 +251,22 @@ void Light_Manager::GenerateWallShadow(float angle,Lumiere soleil)
 }
 
 // On affiche toutes les lumières actives
-void Light_Manager::Draw(sf::RenderWindow *App,sf::View *camera, coordonnee dimensionsMap)
+void Light_Manager::Draw(sf::RenderWindow *App,sf::View *camera)
 {
     for (Iter=m_DynamicLight.begin();Iter!=m_DynamicLight.end();++Iter)
         if (Iter->m_actif)
             if (Iter->GetPosition().x + Iter->GetRadius()>camera->GetRect().Left && Iter->GetPosition().x - Iter->GetRadius()<camera->GetRect().Right
                     && Iter->GetPosition().y*0.5 + Iter->GetRadius()*0.5>camera->GetRect().Top  && Iter->GetPosition().y*0.5 - Iter->GetRadius()*0.5<camera->GetRect().Bottom)
-                Iter->Draw(App,dimensionsMap);
+                Iter->Draw(App);
 
     for (Iter=m_StaticLight.begin();Iter!=m_StaticLight.end();++Iter)
         if (Iter->m_actif)
             if (Iter->GetPosition().x + Iter->GetRadius()>camera->GetRect().Left && Iter->GetPosition().x - Iter->GetRadius()<camera->GetRect().Right
                     && Iter->GetPosition().y*0.5 + Iter->GetRadius()*0.5>camera->GetRect().Top  && Iter->GetPosition().y*0.5 - Iter->GetRadius()*0.5<camera->GetRect().Bottom)
-                Iter->Draw(App,dimensionsMap);
+                Iter->Draw(App);
 }
 
-void Light_Manager::DrawWallShadow(sf::RenderWindow *App,sf::View *camera, coordonnee dimensionsMap)
+void Light_Manager::DrawWallShadow(sf::RenderWindow *App,sf::View *camera)
 {
     for (std::vector<Wall>::iterator IterWall=m_wall.begin();IterWall!=m_wall.end();++IterWall)
         if (IterWall->m_shadow!=NULL)
@@ -281,12 +281,12 @@ void Light_Manager::DrawWallShadow(sf::RenderWindow *App,sf::View *camera, coord
                 App->Draw(*IterWall->m_shadow);
 }
 
-void Light_Manager::Draw(sf::RenderWindow *App,sf::View *camera, coordonnee dimensionsMap,Light_Entity e)
+void Light_Manager::Draw(sf::RenderWindow *App,sf::View *camera,Light_Entity e)
 {
     if (e.Dynamic())
         if (e.ID()>=0&&e.ID()<(int)m_DynamicLight.size())
             if (m_DynamicLight[e.ID()].m_actif)
-                m_DynamicLight[e.ID()].Draw(App,dimensionsMap);
+                m_DynamicLight[e.ID()].Draw(App);
 }
 
 

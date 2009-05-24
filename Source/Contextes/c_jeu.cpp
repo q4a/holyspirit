@@ -29,7 +29,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 using namespace sf;
 
-c_Jeu::c_Jeu(Jeu *jeu)
+c_Jeu::c_Jeu()
 {
     continuer=true,lumiere=false,augmenter=false;
     tempsActuel=0,tempsPrecedent=0,tempsDepuisDerniereAnimation=0,tempsEcoule=0,tempsNbrTourBoucle=0,tempsEcouleDepuisDernierCalculLumiere=0,tempsEcouleDepuisDernierCalculOmbre=0,tempsEcouleDepuisDernierDeplacement=0,tempsEcouleDepuisDernierIA=0,tempsEcouleDepuisDernierAffichage=0,tempsEcouleDepuisFPS=0,tempsEffetMort=0,tempsSauvergarde=0;
@@ -62,7 +62,7 @@ c_Jeu::c_Jeu(Jeu *jeu)
     console->Ajouter("Chargement des sons :",0);
 
 
-    if (!jeu->bufferSonMort.LoadFromFile(configuration->chemin_son_mort))
+    /*if (!jeu->bufferSonMort.LoadFromFile(configuration->chemin_son_mort))
         console->Ajouter("Impossible de charger : "+configuration->chemin_son_mort,1);
     else
         console->Ajouter("Chargement de : "+configuration->chemin_son_mort,0);
@@ -72,22 +72,18 @@ c_Jeu::c_Jeu(Jeu *jeu)
     jeu->sonMort.SetLoop(true);
     jeu->sonMort.Play();
 
-
-
     jeu->hero.ChargerModele(); // Chargement du héro
 
-    //jeu->hero.m_personnage.Charger(&jeu->hero.m_modelePersonnage);
-
     if (!jeu->map->Charger("Begin.map.hs",&jeu->hero)==1) // Chargement de  jeu->map0.txt
-        throw("CRITICAL ERROR");
+        throw("CRITICAL ERROR");*/
 
-    if (configuration->Lumiere)
+   /* if (configuration->Lumiere)
     {
         jeu->map->CalculerOmbresEtLumieres();
         lumiere=false;
-    }
+    }*/
 
-    jeu->Clock.Reset();
+   // jeu->Clock.Reset();
 
     alpha_map=0;
     alpha_sac=0;
@@ -337,7 +333,7 @@ void c_Jeu::Evenements(Jeu *jeu)
                 jeu->hero.setSacVise(temp);
             }
         }
-        else if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getObjetPointe()!=-1)
+        else if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getObjetPointe()!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())>6)
         {
             jeu->map->RamasserObjet(&jeu->hero);
             jeu->eventManager.StopEvenement(Mouse::Left,"CA");
@@ -364,8 +360,10 @@ void c_Jeu::Evenements(Jeu *jeu)
     {
         jeu->hero.setSacVise(jeu->map->getSacPointe());
 
+        jeu->hero.m_objetVise=jeu->map->m_objetPointe;
+
         if (jeu->map->getSacPointe().x!=-1)
-            jeu->eventManager.StopEvenement(Mouse::Left,"CA");
+            jeu->eventManager.StopEvenement(Mouse::Left,"CA"),jeu->hero.m_personnage.setArrivee(jeu->map->getSacPointe());
     }
 
     if (jeu->hero.getSacVise().x!=-1)
@@ -428,7 +426,7 @@ void c_Jeu::Affichage(Jeu *jeu)
     if (alpha_map>0)
         jeu->menu.Afficher(2,alpha_map,&jeu->hero.m_classe);//On affiche la mini-map
 
-    if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())>=1)
+    if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())>6)
     {
         alpha_sac+=tempsEcoule*1000;
         if (alpha_sac>255)
@@ -441,12 +439,19 @@ void c_Jeu::Affichage(Jeu *jeu)
             alpha_sac=0;
     }
 
-    if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())==1&&alpha_sac<128)
-        jeu->map->m_objetPointe=0,jeu->map->RamasserObjet(&jeu->hero);
+    if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())<=6&&alpha_sac<128)
+    {
+        jeu->map->m_objetPointe=jeu->hero.m_objetVise;
+        jeu->map->RamasserObjet(&jeu->hero);
+        jeu->map->m_objetPointe=-1;
+        coordonnee buf={-1,-1,-1,-1};
+        jeu->hero.setChercherSac(buf);
+        jeu->hero.setSacVise(buf);
+    }
 
     if (alpha_sac>0)
     {
-        coordonnee temp={600,(int)((float)configuration->Resolution.w*0.265),200,10};
+        coordonnee temp={600,(int)((float)configuration->Reysolution.w*0.265),200,10};
         jeu->menu.Afficher(3,alpha_sac,&jeu->hero.m_classe);
         jeu->map->AfficherSac(jeu->hero.getChercherSac(),0,jeu->eventManager.getPositionSouris(),temp,jeu->hero.m_caracteristiques);
     }

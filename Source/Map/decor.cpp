@@ -146,14 +146,13 @@ void Decor::setDecor(int tileset,int tile,std::vector<int> evenement,int monstre
     m_objets=objets;
 }
 
-
-void Decor::AfficherTexteObjets(coordonnee position)
+void Decor::AfficherTexteObjet(coordonnee position,int objet)
 {
-    sf::String texte;
-    sf::Sprite sprite;
-    for (int z=0;z<(int)m_objets.size();z++)
+    if(objet>=0&&objet<(int)m_objets.size())
     {
-        int rarete=m_objets[z].getRarete();
+        sf::String texte;
+        sf::Sprite sprite;
+        int rarete=m_objets[objet].getRarete();
         if (rarete==NORMAL)
             texte.SetColor(sf::Color(224,224,224));
         if (rarete==BONNEFACTURE)
@@ -171,21 +170,30 @@ void Decor::AfficherTexteObjets(coordonnee position)
         if (rarete==CRAFT)
             texte.SetColor(sf::Color(128,64,0));
 
-        texte.SetText(m_objets[z].getNom());
+        texte.SetText(m_objets[objet].getNom());
         texte.SetSize(16*configuration->Resolution.w/800);
-        texte.SetY((position.y-moteurGraphique->m_camera.GetRect().Top)*configuration->zoom-20*configuration->Resolution.w/800*(z+1));
+        texte.SetY((position.y-moteurGraphique->m_camera.GetRect().Top)*configuration->zoom);
         texte.SetX((position.x-moteurGraphique->m_camera.GetRect().Left)*configuration->zoom);
 
         moteurGraphique->AjouterTexte(&texte,14);
 
         sprite.SetImage(*moteurGraphique->getImage(0));
 
-        sprite.SetY((position.y-moteurGraphique->m_camera.GetRect().Top)*configuration->zoom-20*configuration->Resolution.w/800*(z+1));
+        sprite.SetY((position.y-moteurGraphique->m_camera.GetRect().Top)*configuration->zoom);
         sprite.SetX((position.x-moteurGraphique->m_camera.GetRect().Left)*configuration->zoom-4);
         sprite.SetColor(sf::Color(0,0,0,128));
         sprite.Resize(texte.GetRect().Right-texte.GetRect().Left +8 , texte.GetRect().Bottom-texte.GetRect().Top +6);
 
         moteurGraphique->AjouterCommande(&sprite,13,0);
+    }
+}
+
+void Decor::AfficherTexteObjets(coordonnee position)
+{
+    for (int z=0;z<(int)m_objets.size();z++)
+    {
+        coordonnee buf={position.x,position.y-20*(z+1),0,0};
+        AfficherTexteObjet(buf,z);
     }
 }
 

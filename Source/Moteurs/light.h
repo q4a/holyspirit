@@ -113,7 +113,7 @@ public :
     ~Light();
 
     // Afficher la lumière
-    void Draw(sf::RenderWindow *App, coordonnee dimensionsMap);
+    void Draw(sf::RenderWindow *App);
 
     // Calculer la lumière
     void Generate( std::vector<Wall>& m_wall);

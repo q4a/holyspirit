@@ -42,7 +42,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	friend MoteurGraphique* CSingleton<MoteurGraphique>::GetInstance();
     friend void CSingleton<MoteurGraphique>::Kill();
 
-	void Afficher(coordonnee );
+	void Afficher();
 
 	void CreateNewWindow();
 

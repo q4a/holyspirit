@@ -30,7 +30,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 class c_Inventaire : public Contexte
 {
 public:
-    c_Inventaire(Jeu *jeu);
+    c_Inventaire();
     void Utiliser(Jeu *jeu);
 
     void setTrader(std::vector<Objet>,Classe *);

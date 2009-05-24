@@ -38,7 +38,7 @@ Jeu::Jeu()
 
 void Jeu::Demarrer()
 {
-    map=new Map();
+    //map=new Map();
 
     //lireVideo("Data/Menus/Videos/Cinematique test 1-2");
 
@@ -52,14 +52,16 @@ void Jeu::Demarrer()
                     reader.ExportFile(i),this->hero.m_contenuSave.push_back(reader.GetFileName(i));
     }
 
-    this->m_jeu = new c_Jeu(this);
-    this->m_demarrage = new c_Demarrage(this);
-    this->m_chargement = new c_Chargement(this);
-    this->m_inventaire = new c_Inventaire(this);
-    this->m_menuInGame = new c_MenuInGame(this);
+    this->hero.ChargerModele();
 
-    coordonnee temp={1,1,-1,-1};
-    this->m_chargement->setC_Chargement("ArableLand0.map.hs",temp,1);
+    this->m_jeu = new c_Jeu();
+    this->m_demarrage = new c_Demarrage();
+    this->m_chargement = new c_Chargement();
+    this->m_inventaire = new c_Inventaire();
+    this->m_menuInGame = new c_MenuInGame();
+
+    coordonnee temp={0,0,-1,-1};
+    this->m_chargement->setC_Chargement("Begin.map.hs",temp,1);
     this->m_contexte = this->m_demarrage;
 
     Clock.Reset();
@@ -68,7 +70,13 @@ void Jeu::Demarrer()
     this->m_display = true;
     while (this->m_run)
     {
-        eventManager.GererLesEvenements(&m_run,Clock.GetElapsedTime(),map->getDimensions());
+        if(map!=NULL)
+            eventManager.GererLesEvenements(&m_run,Clock.GetElapsedTime(),map->getDimensions());
+        else
+        {
+            coordonnee buf={1,1,1,1};
+            eventManager.GererLesEvenements(&m_run,Clock.GetElapsedTime(),buf);
+        }
 
         if (eventManager.getEvenement(Key::F1,"ET"))
         {
@@ -78,7 +86,7 @@ void Jeu::Demarrer()
 
         this->m_contexte->Utiliser(this);
         if (this->m_display)
-            moteurGraphique->Afficher(this->map->getDimensions());
+            moteurGraphique->Afficher();
     }
 
     if (m_reset)

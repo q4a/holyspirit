@@ -626,7 +626,6 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                     {
                         std::vector<int> evenement;
                         int tileset=-1,tileFinal=-1,herbe=-1,monstreFinal=-1,layer=0,hauteur=0;
-                        int rarete=0;
                         int temp;
                         vector <int>tile;
                         vector <int>monstre;
@@ -1381,9 +1380,20 @@ void Map::Afficher(Hero *hero,coordonnee positionSouris,bool alt,float alpha)
 
                         if (m_decor[1][j][k].getNombreObjets()>0&&couche==1)
                         {
-                            sprite.SetImage(*moteurGraphique->getImage(IDImageSac));
-                            sprite.SetSubRect(IntRect(0,0,32,32));
-                            sprite.Resize(32 , 32);
+                            /*if(m_decor[1][j][k].getNombreObjets()>1)
+                            {
+                                sprite.SetImage(*moteurGraphique->getImage(IDImageSac));
+                                sprite.SetSubRect(IntRect(0,0,32,32));
+                                sprite.Resize(32 , 32);
+                            }
+                            else
+                            {
+                                sprite.SetImage(*moteurGraphique->getImage(m_decor[1][j][k].getObjet(0)->getImage()));
+                                sprite.SetSubRect(IntRect(m_decor[1][j][k].getObjet(0)->getPositionImage().x, m_decor[1][j][k].getObjet(0)->getPositionImage().y, m_decor[1][j][k].getObjet(0)->getPositionImage().x+m_decor[1][j][k].getObjet(0)->getPositionImage().w, m_decor[1][j][k].getObjet(0)->getPositionImage().y+m_decor[1][j][k].getObjet(0)->getPositionImage().h));
+
+                                sprite.SetScale(0.8,0.4);
+                            }
+
                             sprite.SetX(position.x);
                             sprite.SetY(position.y);
 
@@ -1392,11 +1402,76 @@ void Map::Afficher(Hero *hero,coordonnee positionSouris,bool alt,float alpha)
                             else
                                 sprite.SetColor(sf::Color(192,192,192));
 
-                            moteurGraphique->AjouterCommande(&sprite,10,1);
+                            moteurGraphique->AjouterCommande(&sprite,8,1);
+
+                            sprite.SetScale(1,1);
+
+                            sprite.SetColor(sf::Color(255,255,255));*/
+
+                            if(m_decor[1][j][k].getNombreObjets()<=6)
+                            {
+                                for(int o=0;o<m_decor[1][j][k].getNombreObjets();o++)
+                                {
+                                    sprite.SetImage(*moteurGraphique->getImage(m_decor[1][j][k].getObjet(o)->getImage()));
+                                    sprite.SetSubRect(IntRect(m_decor[1][j][k].getObjet(o)->getPositionImage().x, m_decor[1][j][k].getObjet(o)->getPositionImage().y, m_decor[1][j][k].getObjet(o)->getPositionImage().x+m_decor[1][j][k].getObjet(o)->getPositionImage().w, m_decor[1][j][k].getObjet(o)->getPositionImage().y+m_decor[1][j][k].getObjet(o)->getPositionImage().h));
+                                    sprite.SetScale(0.8,0.4);
+
+                                    if(((o+1)%3==0))
+                                        sprite.SetX(position.x-32+64);
+                                    else if(((o+1)%2==0))
+                                        sprite.SetX(position.x-32+32);
+                                    else
+                                        sprite.SetX(position.x-32);
+
+                                    sprite.SetY(position.y+32*(int)(o/3));
+
+                                    if(moteurGraphique->getPositionSouris().x>sprite.GetPosition().x&&moteurGraphique->getPositionSouris().x<sprite.GetPosition().x+32&&moteurGraphique->getPositionSouris().y>sprite.GetPosition().y&&moteurGraphique->getPositionSouris().y<sprite.GetPosition().y+32)
+                                    {
+                                        coordonnee buf={sprite.GetPosition().x,sprite.GetPosition().y,0,0};
+                                        m_decor[1][j][k].AfficherTexteObjet(buf,o);
+
+                                        m_sacPointe.x=k;
+                                        m_sacPointe.y=j;
+
+                                        m_objetPointe=o;
+
+                                        sprite.SetColor(sf::Color(255,128,128));
+                                    }
+
+                                    moteurGraphique->AjouterCommande(&sprite,8,1);
+
+                                    sprite.SetColor(sf::Color(255,255,255));
+                                }
+                            }
+                            else
+                            {
+                                sprite.SetImage(*moteurGraphique->getImage(IDImageSac));
+                                sprite.SetSubRect(IntRect(0,0,32,32));
+                                sprite.Resize(32 , 32);
+
+                                sprite.SetX(position.x);
+                                sprite.SetY(position.y);
+
+                                if (m_sacPointe.x==k&&m_sacPointe.y==j&&m_monstreIllumine<0)
+                                    sprite.SetColor(sf::Color(255,128,128));
+                                else
+                                    sprite.SetColor(sf::Color(255,255,255));
+
+                                moteurGraphique->AjouterCommande(&sprite,8,1);
+                            }
+
+
+                            sprite.SetScale(1,1);
 
                             sprite.SetColor(sf::Color(255,255,255));
 
-                            if (m_sacPointe.x==k&&m_sacPointe.y==j&&m_monstreIllumine<0||alt)
+                            if(moteurGraphique->getPositionSouris().x>sprite.GetPosition().x&&moteurGraphique->getPositionSouris().x<sprite.GetPosition().x+32&&moteurGraphique->getPositionSouris().y>sprite.GetPosition().y&&moteurGraphique->getPositionSouris().y<sprite.GetPosition().y+32)
+                            {
+                                m_sacPointe.x=k;
+                                m_sacPointe.y=j;
+                            }
+
+                            if (m_sacPointe.x==k&&m_sacPointe.y==j&&m_monstreIllumine<0&&m_decor[1][j][k].getNombreObjets()>6||alt)
                                 m_decor[1][j][k].AfficherTexteObjets(position);
                         }
                     }
@@ -3071,21 +3146,31 @@ int Map::getMonstre(Hero *hero,coordonnee positionSouris,coordonnee casePointee)
     m_sacPointe.x=-1;
     m_sacPointe.y=-1;
 
+    if(casePointee.y>=0&&casePointee.y<m_dimensions.y&&casePointee.x>=0&&casePointee.x<m_dimensions.x)
     for (int i=0;i<2;i++)
     {
-        if (m_decor[i][casePointee.y][casePointee.x].getNombreObjets()>0)
+       /* if (m_decor[i][casePointee.y][casePointee.x].getNombreObjets()>0)
         {
             m_sacPointe.x=casePointee.x;
-            m_sacPointe.y=casePointee.y;
-            if (m_decor[i][casePointee.y][casePointee.x].getNombreObjets()==1)
-                m_objetPointe=0;
+            m_sacPointe.y=casePointee.y;*/
+           // if (m_decor[i][casePointee.y][casePointee.x].getNombreObjets()==1)
+                //m_objetPointe=0;
+
+        /*    coordonnee position;
+            position.x=(casePointee.x-casePointee.y-1)*64+48;
+            position.y=(casePointee.x+casePointee.y)*32+16;
+
+             if (m_decor[i][casePointee.y][casePointee.x].getNombreObjets()<=6)
+                m_objetPointe=(moteurGraphique->getPositionSouris().x-position.x+32)/32+(moteurGraphique->getPositionSouris().y-position.y)/32*3;
+*/
+
             /*for(int z=0;z<m_decor[i][casePointee.y][casePointee.x].getNombreObjets();z++)
             {
                 sprite.SetY((position.y-moteurGraphique->m_camera.GetRect().Top)*configuration->zoom-20*configuration->Resolution.w/800*(z+1));
                 sprite.SetX((position.x-moteurGraphique->m_camera.GetRect().Left)*configuration->zoom-4);
                 sprite.Resize(texte.GetRect().Right-texte.GetRect().Left +8 , texte.GetRect().Bottom-texte.GetRect().Top +6);
             }*/
-        }
+       // }
 
         for (int j=vueMin.y;j<vueMax.y;j++)
             for (int k=vueMin.x;k<vueMax.x;k++)

@@ -29,7 +29,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 class c_Demarrage : public Contexte
 {
 public:
-    c_Demarrage(Jeu *jeu);
+    c_Demarrage();
     void Utiliser(Jeu *jeu);
 
     //sf::View *camera;

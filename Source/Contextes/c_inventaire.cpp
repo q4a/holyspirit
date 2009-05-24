@@ -32,7 +32,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 using namespace sf;
 using namespace std;
 
-c_Inventaire::c_Inventaire(Jeu *jeu)
+c_Inventaire::c_Inventaire()
 {
     m_decalage=-600;
 }

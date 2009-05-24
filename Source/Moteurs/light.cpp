@@ -56,7 +56,7 @@ Light::~Light()
 }
 
 
-void Light::Draw(sf::RenderWindow *App, coordonnee dimensionsMap)
+void Light::Draw(sf::RenderWindow *App)
 {
     // On boucle sur m_shape pour afficher tous les triangles.
 

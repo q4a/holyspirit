@@ -32,7 +32,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 using namespace sf;
 using namespace std;
 
-c_MenuInGame::c_MenuInGame(Jeu *jeu)
+c_MenuInGame::c_MenuInGame()
 {
     m_alpha=0;
     retour=false;

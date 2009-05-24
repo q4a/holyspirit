@@ -92,7 +92,7 @@ public:
 
     Caracteristique m_caracteristiques;
 
-    int miracleEnCours,frappeEnCours,m_objetEnMain,m_objetADeposer;
+    int miracleEnCours,frappeEnCours,m_objetEnMain,m_objetADeposer,m_objetVise;
     int m_argent;
 
     //cDAT m_fichierSave;

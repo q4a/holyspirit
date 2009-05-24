@@ -16,11 +16,7 @@ You should have received a copy of the GNU General Public License along
 with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.*/
 
-//! Classe contexte qui s'occupe de gérer l'écran de chargement
-/**
-c_Chargement est un contexte qui va s'occuper d'interchanger la map précédente avec la map suivante. Elle s'occupe de faire le fondu vers
-le noir du chargement.
-*/
+
 
 
 
@@ -32,23 +28,29 @@ le noir du chargement.
 
 #include "contexte.h"
 
+//! Classe contexte qui s'occupe de gérer l'écran de chargement
+/**
+c_Chargement est un contexte qui va s'occuper d'interchanger la map précédente avec la map suivante. Elle s'occupe de faire le fondu vers
+le noir du chargement.
+*/
 class c_Chargement : public Contexte
 {
 public:
 
     //! Constructeur.
     /**
-    Il ne fait pas grand chose à part initialiser les membres de la classe.
+    Le constructeur de cette classe est obsolète. ^^'
     */
-    c_Chargement(Jeu *jeu);
+    c_Chargement();
 
-    //! Permet d'utiliser le contexte.
+    //! Utilise le contexte.
     /**
     C'est le coeur du contexte. C'est dans cette méthode qu'il fait tout ce qu'il a à faire.
+    \param jeu : class qui contient le jeu, donc le héro, la map en cours, ...
     */
     void Utiliser(Jeu *jeu);
 
-    //! Permet de dire quelle sera la prochaine map à charger.
+    //! Permet de dire quelle sera la prochaine map à charger suivant le paramètre prochaineMap.
     /**
     Cette méthode va réinitialiser certains membres et va aller charger l'en-tête de la prochaine map pour récupérer son nom et le fond de chargement utilisé.
     \param prochaineMap : chemin relatif de la prochaine map à charger.

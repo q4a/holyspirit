@@ -72,10 +72,10 @@ class Light_Manager : public CSingleton<Light_Manager>
     void GenerateWallShadow(float angle,Lumiere soleil);
 
     // Afficher toutes les lumières à l'écran
-    void Draw(sf::RenderWindow *App,sf::View *camera, coordonnee dimensionsMap);
-    void Draw(sf::RenderWindow *App,sf::View *camera, coordonnee dimensionsMap,Light_Entity);
+    void Draw(sf::RenderWindow *App,sf::View *camera);
+    void Draw(sf::RenderWindow *App,sf::View *camera,Light_Entity);
 
-    void DrawWallShadow(sf::RenderWindow *App,sf::View *camera, coordonnee dimensionsMap);
+    void DrawWallShadow(sf::RenderWindow *App,sf::View *camera);
 
     // Différentes méthodes pour modifier les attributs d'une lumière, ou les récupérer. Il faut à chaque fois envoyer une Light_Entity en paramètre pour
     // savoir de quelle lumière on parle/

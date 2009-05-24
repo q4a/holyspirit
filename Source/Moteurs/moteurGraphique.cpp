@@ -145,7 +145,7 @@ void MoteurGraphique::Gerer(float temps,int tailleMapY)
         }
 }
 
-void MoteurGraphique::Afficher(coordonnee dimensionsMap)
+void MoteurGraphique::Afficher()
 {
     configuration->Resolution.x=m_ecran->GetWidth();
     configuration->Resolution.y=m_ecran->GetHeight();
@@ -169,7 +169,7 @@ void MoteurGraphique::Afficher(coordonnee dimensionsMap)
 
         m_ecran->Clear(sf::Color(255,255,255));
 
-        LightManager->DrawWallShadow(m_ecran,&m_camera,dimensionsMap);
+        LightManager->DrawWallShadow(m_ecran,&m_camera);
 
         if (configuration->postFX)
         {
@@ -217,7 +217,7 @@ void MoteurGraphique::Afficher(coordonnee dimensionsMap)
 
         sprite2.SetColor(sf::Color(255,255,255,255));
 
-        LightManager->Draw(m_ecran,&m_camera,dimensionsMap);
+        LightManager->Draw(m_ecran,&m_camera);
 
         if (configuration->postFX)
         {

@@ -30,7 +30,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 class c_Jeu : public Contexte
 {
 public:
-    c_Jeu(Jeu *jeu);
+    c_Jeu();
     void Utiliser(Jeu *jeu);
 
     // sf::View *camera;

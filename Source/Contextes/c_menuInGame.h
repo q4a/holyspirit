@@ -29,7 +29,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 class c_MenuInGame : public Contexte
 {
 public:
-    c_MenuInGame(Jeu *jeu);
+    c_MenuInGame();
     void Utiliser(Jeu *jeu);
 
     //sf::View *camera;
