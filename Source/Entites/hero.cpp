@@ -746,8 +746,11 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
 
                     sprite.SetX((m_classe.emplacements[m_inventaire[i].m_equipe].position.x)*configuration->Resolution.w/800);
                     sprite.SetY((m_classe.emplacements[m_inventaire[i].m_equipe].position.y)*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+
+                    coordonnee buf={position.x,position.y+position.h,0,0};
+
                     if (m_objetEnMain==-1&&positionSouris.x>m_classe.emplacements[m_inventaire[i].m_equipe].position.x*configuration->Resolution.x/800&&positionSouris.x<(m_classe.emplacements[m_inventaire[i].m_equipe].position.x+m_classe.emplacements[m_inventaire[i].m_equipe].position.w)*configuration->Resolution.x/800&&positionSouris.y>m_classe.emplacements[m_inventaire[i].m_equipe].position.y*configuration->Resolution.y/600&&positionSouris.y<(m_classe.emplacements[m_inventaire[i].m_equipe].position.y+m_classe.emplacements[m_inventaire[i].m_equipe].position.h)*configuration->Resolution.y/600)
-                        m_inventaire[i].AfficherCaracteristiques(positionSouris,m_caracteristiques);
+                        m_inventaire[i].AfficherCaracteristiques(buf,m_caracteristiques);
                 }
             }
 

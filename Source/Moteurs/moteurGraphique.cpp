@@ -319,21 +319,22 @@ void MoteurGraphique::Afficher(coordonnee dimensionsMap)
         }
     }
 
-
-    if (configuration->contrastes>1&&configuration->postFX)
-    {
-        m_ecran->Draw(EffectContrastes);
-        EffectContrastes.SetParameter("color", configuration->contrastes, configuration->contrastes, configuration->contrastes);
-    }
-    if (configuration->luminosite>0)
+     if (configuration->luminosite>0)
     {
         sf::Sprite sprite2;
         sprite2.SetImage(*getImage(0));
         sprite2.Resize(configuration->Resolution.w,configuration->Resolution.h);
-        sprite2.SetColor(sf::Color((int)configuration->luminosite,(int)configuration->luminosite,(int)configuration->luminosite,255));
+        sprite2.SetColor(sf::Color((int)configuration->luminosite*2,(int)configuration->luminosite*2,(int)configuration->luminosite*2,255));
         sprite2.SetBlendMode(sf::Blend::Add);
         m_ecran->Draw(sprite2);
     }
+
+    if (configuration->contrastes>1&&configuration->postFX)
+    {
+        m_ecran->Draw(EffectContrastes);
+        EffectContrastes.SetParameter("color", configuration->contrastes-1, configuration->contrastes-1, configuration->contrastes-1);
+    }
+
 
     m_ecran->Display();
     Vider();

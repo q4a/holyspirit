@@ -16,6 +16,12 @@ You should have received a copy of the GNU General Public License along
 with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.*/
 
+//! Classe contexte qui s'occupe de gérer l'écran de chargement
+/**
+c_Chargement est un contexte qui va s'occuper d'interchanger la map précédente avec la map suivante. Elle s'occupe de faire le fondu vers
+le noir du chargement.
+*/
+
 
 
 #ifndef C_CHARGEMENT
@@ -29,11 +35,27 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 class c_Chargement : public Contexte
 {
 public:
-    c_Chargement(Jeu *jeu);
-    void Utiliser(Jeu *jeu);
-    void setC_Chargement(std::string,coordonnee coordonneePerso,bool debut=false);
 
-    //sf::View *camera;
+    //! Constructeur.
+    /**
+    Il ne fait pas grand chose à part initialiser les membres de la classe.
+    */
+    c_Chargement(Jeu *jeu);
+
+    //! Permet d'utiliser le contexte.
+    /**
+    C'est le coeur du contexte. C'est dans cette méthode qu'il fait tout ce qu'il a à faire.
+    */
+    void Utiliser(Jeu *jeu);
+
+    //! Permet de dire quelle sera la prochaine map à charger.
+    /**
+    Cette méthode va réinitialiser certains membres et va aller charger l'en-tête de la prochaine map pour récupérer son nom et le fond de chargement utilisé.
+    \param prochaineMap : chemin relatif de la prochaine map à charger.
+    \param coordonneePerso : nouvelle position du héro.
+    \param debut : ce bool permet juste de dire si c'est la première map du jeu, la map d'initialisation car celle-ci ne doit pas être sauvegardée.
+    */
+    void setC_Chargement(std::string prochaineMap,coordonnee coordonneePerso,bool debut=false);
 
 private:
 

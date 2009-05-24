@@ -43,7 +43,6 @@ void c_Chargement::setC_Chargement(std::string prochaineMap,coordonnee coordonne
     moteurGraphique->LightManager->Delete_All_Light();
     moteurGraphique->LightManager->Delete_All_Wall();
 
-
     tempsActuel=0,tempsPrecedent=0,temps_ecoule=0,tempsEcouleDepuisDernierAffichage=0;
 
     m_coordonneePerso.x=coordonneePerso.x;
@@ -134,7 +133,6 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         jeu->hero.Sauvegarder();
 
-        //jeu->map->Detruire();
         if (jeu->map!=NULL)
         {
             delete jeu->map;

@@ -50,7 +50,6 @@ void Jeu::Demarrer()
             for (int i=0;i<(int)reader.GetNumberFile();i++)
                 if (reader.GetFileName(i)!=configuration->chemin_temps+"hero.sav.txt")
                     reader.ExportFile(i),this->hero.m_contenuSave.push_back(reader.GetFileName(i));
-
     }
 
     this->m_jeu = new c_Jeu(this);
