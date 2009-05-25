@@ -74,7 +74,7 @@ Objet::~Objet()
     m_cheminImageHero.clear();
 }
 
-/*Objet Objet::operator=(const Objet &objet)
+Objet Objet::operator=(const Objet &objet)
 {
 	m_type=objet.m_type;
 
@@ -94,6 +94,7 @@ Objet::~Objet()
 	m_description=objet.m_description;
 	m_rarete=objet.m_rarete;
 	m_image=objet.m_image;
+	m_son=objet.m_son;
 	m_chanceTrouver=objet.m_chanceTrouver;
 	m_positionImage=objet.m_positionImage;
 	m_taille=objet.m_taille;
@@ -109,9 +110,12 @@ Objet::~Objet()
 	m_prix=objet.m_prix;
 
 	m_IDClasse=objet.m_IDClasse;
+    m_shoot_weapon=objet.m_shoot_weapon;
+    m_useMiracle=objet.m_useMiracle;
+    m_miracle=objet.m_miracle;
 
     return *this;
-}*/
+}
 
 std::string Objet::getChemin()
 {

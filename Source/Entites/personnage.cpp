@@ -505,38 +505,38 @@ int Personnage::pathfinding(casePathfinding** map,coordonnee exception)
                 enCours.x=arrivee.x-1;
                 if (enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
-                        if (sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
+                        if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
                 enCours.y=arrivee.y;
                 enCours.x=arrivee.x-1;
                 if (enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
-                        if (sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
+                        if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
                 enCours.y=arrivee.y-1;
                 enCours.x=arrivee.x;
                 if (enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
-                        if (sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
+                        if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
 
                 enCours.y=arrivee.y+1;
                 enCours.x=arrivee.x+1;
                 if (enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
-                        if (sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
+                        if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
                 enCours.y=arrivee.y+1;
                 enCours.x=arrivee.x;
                 if (enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
-                        if (sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
+                        if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
                 enCours.y=arrivee.y;
                 enCours.x=arrivee.x+1;
                 if (enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
-                        if (sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
+                        if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
 
 
@@ -544,13 +544,13 @@ int Personnage::pathfinding(casePathfinding** map,coordonnee exception)
                 enCours.x=arrivee.x-1;
                 if (enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
-                        if (sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
+                        if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
                 enCours.y=arrivee.y-1;
                 enCours.x=arrivee.x+1;
                 if (enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
-                        if (sqrt((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < sqrt((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
+                        if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
 
                 if (temp.y!=-100&&temp.x!=-100)
@@ -873,8 +873,8 @@ void Personnage::setCoordonnee(coordonnee nouvellesCoordonnees)
     m_positionCase=nouvellesCoordonnees;
     m_etat=ARRET;
 
-    m_positionPixel.x=(int)(m_positionCase.x*sqrt(64*64+32*32));
-    m_positionPixel.y=(int)(m_positionCase.y*sqrt(64*64+32*32));
+    m_positionPixel.x=(int)(m_positionCase.x*COTE_TILE);
+    m_positionPixel.y=(int)(m_positionCase.y*COTE_TILE);
 
     m_arrivee.x=m_positionCase.x;
     m_arrivee.y=m_positionCase.y;
@@ -910,8 +910,8 @@ void Personnage::PousserCase(coordonnee vecteur)
     m_positionCase.x+=vecteur.x;
     m_positionCase.y+=vecteur.y;
 
-    m_positionPixel.x=(int)(m_positionCase.x*sqrt(64*64+32*32));
-    m_positionPixel.y=(int)(m_positionCase.y*sqrt(64*64+32*32));
+    m_positionPixel.x=(int)(m_positionCase.x*COTE_TILE);
+    m_positionPixel.y=(int)(m_positionCase.y*COTE_TILE);
 
     m_arrivee.x=m_positionCase.x;
     m_arrivee.y=m_positionCase.y;
@@ -925,8 +925,8 @@ void Personnage::Pousser(coordonnee vecteur)
     m_positionPixel.x+=vecteur.x;
     m_positionPixel.y+=vecteur.y;
 
-    m_positionCase.x=(int)(m_positionPixel.x/sqrt(64*64+32*32));
-    m_positionCase.y=(int)(m_positionPixel.y/sqrt(64*64+32*32));
+    m_positionCase.x=(int)(m_positionPixel.x/COTE_TILE);
+    m_positionCase.y=(int)(m_positionPixel.y/COTE_TILE);
 
     m_arrivee.x=m_positionCase.x;
     m_arrivee.y=m_positionCase.y;

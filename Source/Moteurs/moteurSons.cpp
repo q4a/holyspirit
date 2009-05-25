@@ -88,7 +88,7 @@ void MoteurSons::JouerSon(int ID,coordonnee position,coordonnee positionHero,boo
                     y=m_sons[i].GetPosition().y;
                     z=m_sons[i].GetPosition().z;
                     // Je test voir si le nouveau son du même type est plus près du perso que l'ancien, si oui, je mets la position du nouveau à la place de l'ancien
-                    if ((double)(gpl::sqrt((positionHero.x+x)*(positionHero.x+x)+(positionHero.y-y)*(positionHero.y-y)))>(double)(gpl::sqrt((positionHero.x-position.x)*(positionHero.x-position.x)+(positionHero.y-position.y)*(positionHero.y-position.y))))
+                    if ((double)(((positionHero.x+x)*(positionHero.x+x)+(positionHero.y-y)*(positionHero.y-y)))>(double)(((positionHero.x-position.x)*(positionHero.x-position.x)+(positionHero.y-position.y)*(positionHero.y-position.y))))
                         m_sons[i].SetPosition(position.x,0,position.y);
 
                     if(position.x==-1&&position.y==-1)

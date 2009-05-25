@@ -494,7 +494,6 @@ bool Modele_Monstre::Charger(string chemin)
             if (caractere=='*')
             {
                 string temp;
-                //getline(fichier, temp);
                 *fichier>>temp;
                 m_miracles.push_back(Miracle (temp));
             }

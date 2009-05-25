@@ -50,7 +50,7 @@ public:
     Objet(std::string nom,int rarete);
     ~Objet();
 
-    // Objet operator=(const Objet &objet);
+     Objet operator=(const Objet &objet);
 
     void AfficherCaracteristiques(coordonnee position,Caracteristique caract,float modPrix=1);
     void Charger(std::string chemin,bool NePasAjouterBenedictions=false);
@@ -86,7 +86,6 @@ public:
     std::vector <int> m_emplacementImpossible;
     std::vector <int> m_IDClasse;
 
-
     int m_degatsMin, m_degatsMax,m_armure;
     int m_capaciteBenediction;
     int m_prix;
@@ -111,10 +110,6 @@ private:
     int m_rarete,m_image,m_son,m_chanceTrouver;
     coordonnee m_positionImage,m_taille,m_position;
     int ai,aa,dii,dia,dai,daa;
-
-
-
-
 };
 
 #endif

@@ -291,9 +291,6 @@ void Light_Manager::Draw(sf::RenderWindow *App,sf::View *camera,Light_Entity e)
 
 
 
-
-
-
 // On modifie ou récupère les attributs de lumières dynamiques
 
 void Light_Manager::SetPosition(Light_Entity &e, sf::Vector2f p)
