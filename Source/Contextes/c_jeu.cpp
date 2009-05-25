@@ -56,35 +56,6 @@ c_Jeu::c_Jeu()
     TourBoucle.SetX(120);
     TourBoucle.SetSize(16.f);
 
-    // Chargement des menus
-
-    console->Ajouter("",0);
-    console->Ajouter("Chargement des sons :",0);
-
-
-    /*if (!jeu->bufferSonMort.LoadFromFile(configuration->chemin_son_mort))
-        console->Ajouter("Impossible de charger : "+configuration->chemin_son_mort,1);
-    else
-        console->Ajouter("Chargement de : "+configuration->chemin_son_mort,0);
-
-    jeu->sonMort.SetBuffer(jeu->bufferSonMort);
-    jeu->sonMort.SetVolume(0);
-    jeu->sonMort.SetLoop(true);
-    jeu->sonMort.Play();
-
-    jeu->hero.ChargerModele(); // Chargement du héro
-
-    if (!jeu->map->Charger("Begin.map.hs",&jeu->hero)==1) // Chargement de  jeu->map0.txt
-        throw("CRITICAL ERROR");*/
-
-   /* if (configuration->Lumiere)
-    {
-        jeu->map->CalculerOmbresEtLumieres();
-        lumiere=false;
-    }*/
-
-   // jeu->Clock.Reset();
-
     alpha_map=0;
     alpha_sac=0;
     lowFPS=-1;

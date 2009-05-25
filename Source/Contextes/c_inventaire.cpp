@@ -75,7 +75,6 @@ void AjouterTrader(Objet newObj,std::vector<Objet>& trader,Classe *classe)
 
 void c_Inventaire::Utiliser(Jeu *jeu)
 {
-
     if (m_decalage<=-600)
         m_afficher=1;
 

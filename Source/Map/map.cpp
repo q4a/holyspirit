@@ -82,13 +82,9 @@ void Map::Detruire()
         delete[] m_decor;
     }
 
-
     if (configuration->debug)
         console->Ajouter("Cases détruites !");
 
-
-    //for(int i=0;i<(int)m_ModeleMonstre.size();i++)
-    //  m_ModeleMonstre.erase(m_ModeleMonstre.begin()+1);
     m_ModeleMonstre.clear();
 
     if (configuration->debug)
