@@ -45,8 +45,8 @@ public:
     void CreerSprite(sf::Vector3f position_case);
     void Sauvegarder(Hero *hero);
 
-    void Afficher(Hero *hero,coordonnee positionSouris,bool alt,float alpha=255);
-    void AfficherSac(coordonnee positionSac,float decalage,coordonnee positionSouris,coordonnee positionEcranSac,Caracteristique caract);
+    void Afficher(Hero *hero,bool alt,float alpha=255);
+    void AfficherSac(coordonnee positionSac,float decalage,coordonnee positionEcranSac,Caracteristique caract);
     void AfficherMinimap(coordonnee position,int typeCase,float alpha);
     void AfficherNomEvenement(coordonnee casePointee,coordonnee positionSouris);
 

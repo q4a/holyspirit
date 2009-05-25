@@ -1227,7 +1227,7 @@ void Map::CalculerOmbresEtLumieres()
 
 }
 
-void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee positionSouris,coordonnee position_sac_inventaire,Caracteristique caract)
+void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_sac_inventaire,Caracteristique caract)
 {
     Sprite Sprite;
     String texte;
@@ -1247,9 +1247,10 @@ void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee positionS
 
             for (int z=m_defilerObjets;z<m_decor[1][positionSac.y][positionSac.x].getNombreObjets()&&z<position_sac_inventaire.h+m_defilerObjets;z++)
             {
-                if (positionSouris.x>position_sac_inventaire.x*configuration->Resolution.w/800&&positionSouris.x<(position_sac_inventaire.x+position_sac_inventaire.w)*configuration->Resolution.w/800
-                        &&positionSouris.y>position_sac_inventaire.y*configuration->Resolution.h/600+(z-m_defilerObjets)*20*configuration->Resolution.w/800
-                        &&positionSouris.y<position_sac_inventaire.y*configuration->Resolution.h/600+(z-m_defilerObjets)*20*configuration->Resolution.w/800+20*configuration->Resolution.w/800)
+                if (eventManager->getPositionSouris().x>position_sac_inventaire.x*configuration->Resolution.w/800
+                  &&eventManager->getPositionSouris().x<(position_sac_inventaire.x+position_sac_inventaire.w)*configuration->Resolution.w/800
+                  &&eventManager->getPositionSouris().y>position_sac_inventaire.y*configuration->Resolution.h/600+(z-m_defilerObjets)*20*configuration->Resolution.w/800
+                  &&eventManager->getPositionSouris().y<position_sac_inventaire.y*configuration->Resolution.h/600+(z-m_defilerObjets)*20*configuration->Resolution.w/800+20*configuration->Resolution.w/800)
                 {
                     Sprite.SetImage(*moteurGraphique->getImage(0));
                     Sprite.SetColor(sf::Color(255,255,255,128));
@@ -1261,7 +1262,7 @@ void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee positionS
                     if (!(z-m_defilerObjets==0&&m_defilerObjets>0)&&!((z-m_defilerObjets==position_sac_inventaire.h-1&&z+m_defilerObjets<=m_decor[1][positionSac.y][positionSac.x].getNombreObjets()+1)))
                     {
                         m_objetPointe=z;
-                        m_decor[1][positionSac.y][positionSac.x].getObjet(z)->AfficherCaracteristiques(positionSouris,caract);
+                        m_decor[1][positionSac.y][positionSac.x].getObjet(z)->AfficherCaracteristiques(eventManager->getPositionSouris(),caract);
                     }
                 }
 
@@ -1303,7 +1304,7 @@ void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee positionS
         }
 }
 
-void Map::Afficher(Hero *hero,coordonnee positionSouris,bool alt,float alpha)
+void Map::Afficher(Hero *hero,bool alt,float alpha)
 {
     coordonnee positionHero;
 
@@ -1380,35 +1381,7 @@ void Map::Afficher(Hero *hero,coordonnee positionSouris,bool alt,float alpha)
 
                         if (m_decor[1][j][k].getNombreObjets()>0&&couche==1)
                         {
-                            /*if(m_decor[1][j][k].getNombreObjets()>1)
-                            {
-                                sprite.SetImage(*moteurGraphique->getImage(IDImageSac));
-                                sprite.SetSubRect(IntRect(0,0,32,32));
-                                sprite.Resize(32 , 32);
-                            }
-                            else
-                            {
-                                sprite.SetImage(*moteurGraphique->getImage(m_decor[1][j][k].getObjet(0)->getImage()));
-                                sprite.SetSubRect(IntRect(m_decor[1][j][k].getObjet(0)->getPositionImage().x, m_decor[1][j][k].getObjet(0)->getPositionImage().y, m_decor[1][j][k].getObjet(0)->getPositionImage().x+m_decor[1][j][k].getObjet(0)->getPositionImage().w, m_decor[1][j][k].getObjet(0)->getPositionImage().y+m_decor[1][j][k].getObjet(0)->getPositionImage().h));
-
-                                sprite.SetScale(0.8,0.4);
-                            }
-
-                            sprite.SetX(position.x);
-                            sprite.SetY(position.y);
-
-                            if (m_sacPointe.x==k&&m_sacPointe.y==j&&m_monstreIllumine<0)
-                                sprite.SetColor(sf::Color(255,128,128));
-                            else
-                                sprite.SetColor(sf::Color(192,192,192));
-
-                            moteurGraphique->AjouterCommande(&sprite,8,1);
-
-                            sprite.SetScale(1,1);
-
-                            sprite.SetColor(sf::Color(255,255,255));*/
-
-                            if(m_decor[1][j][k].getNombreObjets()<=6)
+                            if(m_decor[1][j][k].getNombreObjets()<=4)
                             {
                                 for(int o=0;o<m_decor[1][j][k].getNombreObjets();o++)
                                 {
@@ -1416,18 +1389,12 @@ void Map::Afficher(Hero *hero,coordonnee positionSouris,bool alt,float alpha)
                                     sprite.SetSubRect(IntRect(m_decor[1][j][k].getObjet(o)->getPositionImage().x, m_decor[1][j][k].getObjet(o)->getPositionImage().y, m_decor[1][j][k].getObjet(o)->getPositionImage().x+m_decor[1][j][k].getObjet(o)->getPositionImage().w, m_decor[1][j][k].getObjet(o)->getPositionImage().y+m_decor[1][j][k].getObjet(o)->getPositionImage().h));
                                     sprite.SetScale(0.8,0.4);
 
-                                    if(((o+1)%3==0))
-                                        sprite.SetX(position.x-32+64);
-                                    else if(((o+1)%2==0))
-                                        sprite.SetX(position.x-32+32);
-                                    else
-                                        sprite.SetX(position.x-32);
+                                    sprite.SetX(position.x-32*(o%2==0)+16-(m_decor[1][j][k].getObjet(o)->getPositionImage().w*0.8)/2);
+                                    sprite.SetY(position.y+32*(int)(o/2));
 
-                                    sprite.SetY(position.y+32*(int)(o/3));
-
-                                    if(moteurGraphique->getPositionSouris().x>sprite.GetPosition().x&&moteurGraphique->getPositionSouris().x<sprite.GetPosition().x+32&&moteurGraphique->getPositionSouris().y>sprite.GetPosition().y&&moteurGraphique->getPositionSouris().y<sprite.GetPosition().y+32)
+                                    if(!eventManager->getEvenement(sf::Mouse::Left,"C")&&moteurGraphique->getPositionSouris().x>sprite.GetPosition().x&&moteurGraphique->getPositionSouris().x<sprite.GetPosition().x+32&&moteurGraphique->getPositionSouris().y>sprite.GetPosition().y&&moteurGraphique->getPositionSouris().y<sprite.GetPosition().y+32)
                                     {
-                                        coordonnee buf={sprite.GetPosition().x,sprite.GetPosition().y,0,0};
+                                        coordonnee buf={(int)(sprite.GetPosition().x),(int)(sprite.GetPosition().y),0,0};
                                         m_decor[1][j][k].AfficherTexteObjet(buf,o);
 
                                         m_sacPointe.x=k;
@@ -1465,13 +1432,13 @@ void Map::Afficher(Hero *hero,coordonnee positionSouris,bool alt,float alpha)
 
                             sprite.SetColor(sf::Color(255,255,255));
 
-                            if(moteurGraphique->getPositionSouris().x>sprite.GetPosition().x&&moteurGraphique->getPositionSouris().x<sprite.GetPosition().x+32&&moteurGraphique->getPositionSouris().y>sprite.GetPosition().y&&moteurGraphique->getPositionSouris().y<sprite.GetPosition().y+32)
+                            if(!eventManager->getEvenement(sf::Mouse::Left,"C")&&moteurGraphique->getPositionSouris().x>sprite.GetPosition().x&&moteurGraphique->getPositionSouris().x<sprite.GetPosition().x+32&&moteurGraphique->getPositionSouris().y>sprite.GetPosition().y&&moteurGraphique->getPositionSouris().y<sprite.GetPosition().y+32&&m_decor[1][j][k].getNombreObjets()>4)
                             {
                                 m_sacPointe.x=k;
                                 m_sacPointe.y=j;
                             }
 
-                            if (m_sacPointe.x==k&&m_sacPointe.y==j&&m_monstreIllumine<0&&m_decor[1][j][k].getNombreObjets()>6||alt)
+                            if (m_sacPointe.x==k&&m_sacPointe.y==j&&m_monstreIllumine<0&&m_decor[1][j][k].getNombreObjets()>4||alt)
                                 m_decor[1][j][k].AfficherTexteObjets(position);
                         }
                     }

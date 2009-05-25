@@ -465,7 +465,7 @@ void Hero::Afficher(coordonnee dimensionsMap)
         }
 }
 
-void Hero::AfficherCaracteristiques(coordonnee positionSouris,float decalage)
+void Hero::AfficherCaracteristiques(float decalage)
 {
     sf::String string;
     char chaine[255];
@@ -689,7 +689,7 @@ void Hero::AfficherCaracteristiques(coordonnee positionSouris,float decalage)
     moteurGraphique->AjouterTexte(&string,15);
 }
 
-void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vector<Objet> trader)
+void Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
 {
     for (int i=0;i<(int)m_inventaire.size();i++)
         if (i!=m_objetEnMain)
@@ -747,9 +747,9 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
                     sprite.SetX((m_classe.emplacements[m_inventaire[i].m_equipe].position.x)*configuration->Resolution.w/800);
                     sprite.SetY((m_classe.emplacements[m_inventaire[i].m_equipe].position.y)*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
 
-                    coordonnee buf={position.x,position.y+position.h,0,0};
+                    coordonnee buf={(int)(position.x),(int)(position.y+position.h),0,0};
 
-                    if (m_objetEnMain==-1&&positionSouris.x>m_classe.emplacements[m_inventaire[i].m_equipe].position.x*configuration->Resolution.x/800&&positionSouris.x<(m_classe.emplacements[m_inventaire[i].m_equipe].position.x+m_classe.emplacements[m_inventaire[i].m_equipe].position.w)*configuration->Resolution.x/800&&positionSouris.y>m_classe.emplacements[m_inventaire[i].m_equipe].position.y*configuration->Resolution.y/600&&positionSouris.y<(m_classe.emplacements[m_inventaire[i].m_equipe].position.y+m_classe.emplacements[m_inventaire[i].m_equipe].position.h)*configuration->Resolution.y/600)
+                    if (m_objetEnMain==-1&&eventManager->getPositionSouris().x>m_classe.emplacements[m_inventaire[i].m_equipe].position.x*configuration->Resolution.x/800&&eventManager->getPositionSouris().x<(m_classe.emplacements[m_inventaire[i].m_equipe].position.x+m_classe.emplacements[m_inventaire[i].m_equipe].position.w)*configuration->Resolution.x/800&&eventManager->getPositionSouris().y>m_classe.emplacements[m_inventaire[i].m_equipe].position.y*configuration->Resolution.y/600&&eventManager->getPositionSouris().y<(m_classe.emplacements[m_inventaire[i].m_equipe].position.y+m_classe.emplacements[m_inventaire[i].m_equipe].position.h)*configuration->Resolution.y/600)
                         m_inventaire[i].AfficherCaracteristiques(buf,m_caracteristiques);
                 }
             }
@@ -841,8 +841,8 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
 
                     sprite.SetX((m_classe.emplacements[trader[i].m_equipe].position.x)*configuration->Resolution.w/800);
                     sprite.SetY((m_classe.emplacements[trader[i].m_equipe].position.y)*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
-                    if (m_objetEnMain==-1&&positionSouris.x>m_classe.emplacements[trader[i].m_equipe].position.x*configuration->Resolution.x/800&&positionSouris.x<(m_classe.emplacements[trader[i].m_equipe].position.x+m_classe.emplacements[trader[i].m_equipe].position.w)*configuration->Resolution.x/800&&positionSouris.y>m_classe.emplacements[trader[i].m_equipe].position.y*configuration->Resolution.y/600&&positionSouris.y<(m_classe.emplacements[trader[i].m_equipe].position.y+m_classe.emplacements[trader[i].m_equipe].position.h)*configuration->Resolution.y/600)
-                        trader[i].AfficherCaracteristiques(positionSouris,m_caracteristiques,(5-(float)m_caracteristiques.charisme/100));
+                    if (m_objetEnMain==-1&&eventManager->getPositionSouris().x>m_classe.emplacements[trader[i].m_equipe].position.x*configuration->Resolution.x/800&&eventManager->getPositionSouris().x<(m_classe.emplacements[trader[i].m_equipe].position.x+m_classe.emplacements[trader[i].m_equipe].position.w)*configuration->Resolution.x/800&&eventManager->getPositionSouris().y>m_classe.emplacements[trader[i].m_equipe].position.y*configuration->Resolution.y/600&&eventManager->getPositionSouris().y<(m_classe.emplacements[trader[i].m_equipe].position.y+m_classe.emplacements[trader[i].m_equipe].position.h)*configuration->Resolution.y/600)
+                        trader[i].AfficherCaracteristiques(eventManager->getPositionSouris(),m_caracteristiques,(5-(float)m_caracteristiques.charisme/100));
                 }
             }
 
@@ -914,11 +914,11 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
         sprite.Resize(m_inventaire[m_objetEnMain].getTaille().x*32*configuration->Resolution.w/800,m_inventaire[m_objetEnMain].getTaille().y*32*configuration->Resolution.h/600);
 
         coordonnee caseVisee;
-        caseVisee.x=((positionSouris.x+8*configuration->Resolution.x/800)-m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800)/(32*configuration->Resolution.x/800) - m_inventaire[m_objetEnMain].getTaille().x/2;
-        caseVisee.y=((positionSouris.y+8*configuration->Resolution.y/600)-(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600)/(32*configuration->Resolution.y/600) - m_inventaire[m_objetEnMain].getTaille().y/2;
+        caseVisee.x=((eventManager->getPositionSouris().x+8*configuration->Resolution.x/800)-m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800)/(32*configuration->Resolution.x/800) - m_inventaire[m_objetEnMain].getTaille().x/2;
+        caseVisee.y=((eventManager->getPositionSouris().y+8*configuration->Resolution.y/600)-(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600)/(32*configuration->Resolution.y/600) - m_inventaire[m_objetEnMain].getTaille().y/2;
 
-        sprite.SetX(positionSouris.x*configuration->Resolution.w/configuration->Resolution.x - m_inventaire[m_objetEnMain].getTaille().x*32*configuration->Resolution.x/1600);
-        sprite.SetY(positionSouris.y*configuration->Resolution.h/configuration->Resolution.y - m_inventaire[m_objetEnMain].getTaille().y*32*configuration->Resolution.y/1200);
+        sprite.SetX(eventManager->getPositionSouris().x*configuration->Resolution.w/configuration->Resolution.x - m_inventaire[m_objetEnMain].getTaille().x*32*configuration->Resolution.x/1600);
+        sprite.SetY(eventManager->getPositionSouris().y*configuration->Resolution.h/configuration->Resolution.y - m_inventaire[m_objetEnMain].getTaille().y*32*configuration->Resolution.y/1200);
 
         if (m_inventaire[m_objetEnMain].getRarete()==NORMAL)
             sprite.SetColor(sf::Color(224,224,224,128));
@@ -939,15 +939,18 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
 
         int emplacement=-1;
         for (int k=0;k<(int)m_classe.emplacements.size();k++)
-            if (positionSouris.x>m_classe.emplacements[k].position.x*configuration->Resolution.x/800&&positionSouris.x<(m_classe.emplacements[k].position.x+m_classe.emplacements[k].position.w)*configuration->Resolution.x/800&&positionSouris.y>m_classe.emplacements[k].position.y*configuration->Resolution.y/600&&positionSouris.y<(m_classe.emplacements[k].position.y+m_classe.emplacements[k].position.h)*configuration->Resolution.y/600)
+            if (eventManager->getPositionSouris().x>m_classe.emplacements[k].position.x*configuration->Resolution.x/800&&eventManager->getPositionSouris().x<(m_classe.emplacements[k].position.x+m_classe.emplacements[k].position.w)*configuration->Resolution.x/800&&eventManager->getPositionSouris().y>m_classe.emplacements[k].position.y*configuration->Resolution.y/600&&eventManager->getPositionSouris().y<(m_classe.emplacements[k].position.y+m_classe.emplacements[k].position.h)*configuration->Resolution.y/600)
                 emplacement=k;
 
         if (!PossibleEquiper(emplacement))
             sprite.SetColor(sf::Color((int)(sprite.GetColor().r*0.25),(int)(sprite.GetColor().g*0.25),(int)(sprite.GetColor().b*0.25),128));
 
-        if (positionSouris.x<m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800||positionSouris.x>m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800+32*m_classe.position_contenu_inventaire.w*configuration->Resolution.x/800||positionSouris.y<(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600||positionSouris.y>(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_inventaire.h*configuration->Resolution.y/600)
+        if (eventManager->getPositionSouris().x<m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800||eventManager->getPositionSouris().x>m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800+32*m_classe.position_contenu_inventaire.w*configuration->Resolution.x/800||eventManager->getPositionSouris().y<(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600||eventManager->getPositionSouris().y>(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_inventaire.h*configuration->Resolution.y/600)
         {
-            if (positionSouris.x>m_classe.position_sac_inventaire.x*configuration->Resolution.x/800&&positionSouris.x<(m_classe.position_sac_inventaire.x+m_classe.position_sac_inventaire.w)*configuration->Resolution.x/800&&positionSouris.y>m_classe.position_sac_inventaire.y*configuration->Resolution.y/600&&positionSouris.y<(m_classe.position_sac_inventaire.y+m_classe.position_sac_inventaire.h*20)*configuration->Resolution.x/600)
+            if (eventManager->getPositionSouris().x>m_classe.position_sac_inventaire.x*configuration->Resolution.x/800
+            &&eventManager->getPositionSouris().x<(m_classe.position_sac_inventaire.x+m_classe.position_sac_inventaire.w)*configuration->Resolution.x/800
+            &&eventManager->getPositionSouris().y>m_classe.position_sac_inventaire.y*configuration->Resolution.y/600
+            &&eventManager->getPositionSouris().y<(m_classe.position_sac_inventaire.y+m_classe.position_sac_inventaire.h*20)*configuration->Resolution.x/600)
                 sprite.SetColor(sf::Color(128,0,0,128));
         }
         else
@@ -964,42 +967,43 @@ void Hero::AfficherInventaire(coordonnee positionSouris,float decalage,std::vect
         sprite.SetSubRect(IntRect(m_inventaire[m_objetEnMain].getPositionImage().x, m_inventaire[m_objetEnMain].getPositionImage().y, m_inventaire[m_objetEnMain].getPositionImage().x+m_inventaire[m_objetEnMain].getPositionImage().w, m_inventaire[m_objetEnMain].getPositionImage().y+m_inventaire[m_objetEnMain].getPositionImage().h));
         sprite.Resize(m_inventaire[m_objetEnMain].getTaille().x*32*configuration->Resolution.w/800,m_inventaire[m_objetEnMain].getTaille().y*32*configuration->Resolution.h/600);
 
-        sprite.SetX(positionSouris.x*configuration->Resolution.w/configuration->Resolution.x - m_inventaire[m_objetEnMain].getTaille().x*32*configuration->Resolution.x/1600);
-        sprite.SetY(positionSouris.y*configuration->Resolution.h/configuration->Resolution.y - m_inventaire[m_objetEnMain].getTaille().y*32*configuration->Resolution.y/1200);
+        sprite.SetX(eventManager->getPositionSouris().x*configuration->Resolution.w/configuration->Resolution.x - m_inventaire[m_objetEnMain].getTaille().x*32*configuration->Resolution.x/1600);
+        sprite.SetY(eventManager->getPositionSouris().y*configuration->Resolution.h/configuration->Resolution.y - m_inventaire[m_objetEnMain].getTaille().y*32*configuration->Resolution.y/1200);
 
         moteurGraphique->AjouterCommande(&sprite,19,0);
     }
-    else if (positionSouris.x>m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800&&positionSouris.x<m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800+32*m_classe.position_contenu_inventaire.w*configuration->Resolution.x/800&&positionSouris.y>(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600&&positionSouris.y<(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_inventaire.h*configuration->Resolution.y/600)
+    else if (eventManager->getPositionSouris().x>m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800&&eventManager->getPositionSouris().x<m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800+32*m_classe.position_contenu_inventaire.w*configuration->Resolution.x/800&&eventManager->getPositionSouris().y>(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600&&eventManager->getPositionSouris().y<(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_inventaire.h*configuration->Resolution.y/600)
     {
         coordonnee caseVisee;
-        caseVisee.x=(positionSouris.x-m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800)/(32*configuration->Resolution.x/800);
-        caseVisee.y=(positionSouris.y-(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600)/(32*configuration->Resolution.y/600);
+        caseVisee.x=(eventManager->getPositionSouris().x-m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800)/(32*configuration->Resolution.x/800);
+        caseVisee.y=(eventManager->getPositionSouris().y-(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600)/(32*configuration->Resolution.y/600);
 
         for (int i=0;i<(int)m_inventaire.size();i++)
             if (caseVisee.x>=m_inventaire[i].getPosition().x&&caseVisee.x<=m_inventaire[i].getPosition().x+m_inventaire[i].getTaille().x-1
                     &&caseVisee.y>=m_inventaire[i].getPosition().y&&caseVisee.y<=m_inventaire[i].getPosition().y+m_inventaire[i].getTaille().y-1)
                 if (m_inventaire[i].m_equipe==-1)
                 {
-                    positionSouris.y-=32*configuration->Resolution.h/600;
-                    m_inventaire[i].AfficherCaracteristiques(positionSouris,m_caracteristiques);
+                    coordonnee temp=eventManager->getPositionSouris();
+                    temp.y-=32*configuration->Resolution.h/600;
+                    m_inventaire[i].AfficherCaracteristiques(temp,m_caracteristiques);
                 }
     }
-    else if (positionSouris.x>m_classe.position_contenu_marchand.x*configuration->Resolution.x/800&&positionSouris.x<m_classe.position_contenu_marchand.x*configuration->Resolution.x/800+32*m_classe.position_contenu_marchand.w*configuration->Resolution.x/800&&positionSouris.y>(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600&&positionSouris.y<(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_marchand.h*configuration->Resolution.y/600)
+    else if (eventManager->getPositionSouris().x>m_classe.position_contenu_marchand.x*configuration->Resolution.x/800&&eventManager->getPositionSouris().x<m_classe.position_contenu_marchand.x*configuration->Resolution.x/800+32*m_classe.position_contenu_marchand.w*configuration->Resolution.x/800&&eventManager->getPositionSouris().y>(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600&&eventManager->getPositionSouris().y<(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_marchand.h*configuration->Resolution.y/600)
     {
         coordonnee caseVisee;
-        caseVisee.x=(positionSouris.x-m_classe.position_contenu_marchand.x*configuration->Resolution.x/800)/(32*configuration->Resolution.x/800);
-        caseVisee.y=m_defilement_trader+(positionSouris.y-(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600)/(32*configuration->Resolution.y/600);
+        caseVisee.x=(eventManager->getPositionSouris().x-m_classe.position_contenu_marchand.x*configuration->Resolution.x/800)/(32*configuration->Resolution.x/800);
+        caseVisee.y=m_defilement_trader+(eventManager->getPositionSouris().y-(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600)/(32*configuration->Resolution.y/600);
 
         for (int i=0;i<(int)trader.size();i++)
             if (caseVisee.x>=trader[i].getPosition().x&&caseVisee.x<=trader[i].getPosition().x+trader[i].getTaille().x-1
                     &&caseVisee.y>=trader[i].getPosition().y&&caseVisee.y<=trader[i].getPosition().y+trader[i].getTaille().y-1)
             {
-                positionSouris.y-=32*configuration->Resolution.h/600;
-                trader[i].AfficherCaracteristiques(positionSouris,m_caracteristiques,(5-(float)m_caracteristiques.charisme/100));
+                eventManager->getPositionSouris().y-=32*configuration->Resolution.h/600;
+                trader[i].AfficherCaracteristiques(eventManager->getPositionSouris(),m_caracteristiques,(5-(float)m_caracteristiques.charisme/100));
             }
     }
 
-    AfficherCaracteristiques(positionSouris,decalage);
+    AfficherCaracteristiques(decalage);
 }
 
 void Hero::PlacerCamera(coordonnee dimensionsMap)
@@ -1166,7 +1170,7 @@ void Hero::RecalculerCaracteristiques()
         m_caracteristiques.foi=m_caracteristiques.maxFoi;
 }
 
-int Hero::UtiliserClicDroit(coordonnee positionSouris, int monstreVise)
+int Hero::UtiliserClicDroit(int monstreVise)
 {
     if (!m_personnage.frappeEnCours)
         if (m_caracteristiques.foi-(m_caracteristiques.degatsMin+m_caracteristiques.degatsMax)*1.5>0)
@@ -1178,7 +1182,7 @@ int Hero::UtiliserClicDroit(coordonnee positionSouris, int monstreVise)
             m_monstreVise=-1;
 
             if (m_monstreVise==-1)
-                m_personnage.frappe(positionSouris,temp);
+                m_personnage.frappe(eventManager->getPositionSouris(),temp);
 
             m_personnage.setArrivee(m_personnage.getCoordonnee());
 
@@ -1311,17 +1315,20 @@ Objet Hero::DeposerObjet()
     return temp;
 }
 
-bool Hero::PrendreEnMain(coordonnee positionSouris,std::vector<Objet> &trader)
+bool Hero::PrendreEnMain(std::vector<Objet> &trader)
 {
-    if (trader.empty())
+    if(!trader.empty())
     {
-    }
-    else
-    {
-        if (positionSouris.x>14*configuration->Resolution.x/800&&positionSouris.x<34*configuration->Resolution.x/800&&positionSouris.y>260*configuration->Resolution.x/800&&positionSouris.y<290*configuration->Resolution.x/800)
+        if (eventManager->getPositionSouris().x>14*configuration->Resolution.x/800
+          &&eventManager->getPositionSouris().x<34*configuration->Resolution.x/800
+          &&eventManager->getPositionSouris().y>260*configuration->Resolution.x/800
+          &&eventManager->getPositionSouris().y<290*configuration->Resolution.x/800)
             m_defilement_trader--;
 
-        if (positionSouris.x>14*configuration->Resolution.x/800&&positionSouris.x<34*configuration->Resolution.x/800&&positionSouris.y>442*configuration->Resolution.x/800&&positionSouris.y<472*configuration->Resolution.x/800)
+        if (eventManager->getPositionSouris().x>14*configuration->Resolution.x/800
+          &&eventManager->getPositionSouris().x<34*configuration->Resolution.x/800
+          &&eventManager->getPositionSouris().y>442*configuration->Resolution.x/800
+          &&eventManager->getPositionSouris().y<472*configuration->Resolution.x/800)
             m_defilement_trader++;
 
         if (m_defilement_trader<0)
@@ -1331,18 +1338,21 @@ bool Hero::PrendreEnMain(coordonnee positionSouris,std::vector<Objet> &trader)
     }
 
     m_objetADeposer=-1;
-    if (positionSouris.x>m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800&&positionSouris.x<m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800+32*m_classe.position_contenu_inventaire.w*configuration->Resolution.x/800&&positionSouris.y>(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600&&positionSouris.y<(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_inventaire.h*configuration->Resolution.y/600)
+    if (eventManager->getPositionSouris().x>m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800
+      &&eventManager->getPositionSouris().x<m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800+32*m_classe.position_contenu_inventaire.w*configuration->Resolution.x/800
+      &&eventManager->getPositionSouris().y>(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600
+      &&eventManager->getPositionSouris().y<(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_inventaire.h*configuration->Resolution.y/600)
     {
         coordonnee caseVisee;
         if (m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
         {
-            caseVisee.x=((positionSouris.x+8*configuration->Resolution.x/800)-m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800)/(32*configuration->Resolution.x/800) - m_inventaire[m_objetEnMain].getTaille().x/2;
-            caseVisee.y=((positionSouris.y+8*configuration->Resolution.y/600)-(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600)/(32*configuration->Resolution.y/600) - m_inventaire[m_objetEnMain].getTaille().y/2;
+            caseVisee.x=((eventManager->getPositionSouris().x+8*configuration->Resolution.x/800)-m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800)/(32*configuration->Resolution.x/800) - m_inventaire[m_objetEnMain].getTaille().x/2;
+            caseVisee.y=((eventManager->getPositionSouris().y+8*configuration->Resolution.y/600)-(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600)/(32*configuration->Resolution.y/600) - m_inventaire[m_objetEnMain].getTaille().y/2;
         }
         else
         {
-            caseVisee.x=((positionSouris.x)-m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800)/(32*configuration->Resolution.x/800);
-            caseVisee.y=((positionSouris.y)-(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600)/(32*configuration->Resolution.y/600);
+            caseVisee.x=((eventManager->getPositionSouris().x)-m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800)/(32*configuration->Resolution.x/800);
+            caseVisee.y=((eventManager->getPositionSouris().y)-(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600)/(32*configuration->Resolution.y/600);
         }
 
         if (m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
@@ -1394,18 +1404,21 @@ bool Hero::PrendreEnMain(coordonnee positionSouris,std::vector<Objet> &trader)
         }
 
     }
-    else if (!trader.empty()&&positionSouris.x>m_classe.position_contenu_marchand.x*configuration->Resolution.x/800&&positionSouris.x<m_classe.position_contenu_marchand.x*configuration->Resolution.x/800+32*m_classe.position_contenu_marchand.w*configuration->Resolution.x/800&&positionSouris.y>(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600&&positionSouris.y<(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_marchand.h*configuration->Resolution.y/600)
+    else if (!trader.empty()&&eventManager->getPositionSouris().x>m_classe.position_contenu_marchand.x*configuration->Resolution.x/800
+                            &&eventManager->getPositionSouris().x<m_classe.position_contenu_marchand.x*configuration->Resolution.x/800+32*m_classe.position_contenu_marchand.w*configuration->Resolution.x/800
+                            &&eventManager->getPositionSouris().y>(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600
+                            &&eventManager->getPositionSouris().y<(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_marchand.h*configuration->Resolution.y/600)
     {
         coordonnee caseVisee;
         if (m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
         {
-            caseVisee.x=((positionSouris.x+8*configuration->Resolution.x/800)-m_classe.position_contenu_marchand.x*configuration->Resolution.x/800)/(32*configuration->Resolution.x/800) - m_inventaire[m_objetEnMain].getTaille().x/2;
-            caseVisee.y=m_defilement_trader+((positionSouris.y+8*configuration->Resolution.y/600)-(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600)/(32*configuration->Resolution.y/600) - m_inventaire[m_objetEnMain].getTaille().y/2;
+            caseVisee.x=((eventManager->getPositionSouris().x+8*configuration->Resolution.x/800)-m_classe.position_contenu_marchand.x*configuration->Resolution.x/800)/(32*configuration->Resolution.x/800) - m_inventaire[m_objetEnMain].getTaille().x/2;
+            caseVisee.y=m_defilement_trader+((eventManager->getPositionSouris().y+8*configuration->Resolution.y/600)-(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600)/(32*configuration->Resolution.y/600) - m_inventaire[m_objetEnMain].getTaille().y/2;
         }
         else
         {
-            caseVisee.x=((positionSouris.x)-m_classe.position_contenu_marchand.x*configuration->Resolution.x/800)/(32*configuration->Resolution.x/800);
-            caseVisee.y=m_defilement_trader+((positionSouris.y)-(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600)/(32*configuration->Resolution.y/600);
+            caseVisee.x=((eventManager->getPositionSouris().x)-m_classe.position_contenu_marchand.x*configuration->Resolution.x/800)/(32*configuration->Resolution.x/800);
+            caseVisee.y=m_defilement_trader+((eventManager->getPositionSouris().y)-(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600)/(32*configuration->Resolution.y/600);
         }
 
         if (m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
@@ -1432,11 +1445,13 @@ bool Hero::PrendreEnMain(coordonnee positionSouris,std::vector<Objet> &trader)
                         trader.erase(trader.begin()+z);
                     }
         }
-
     }
     else
     {
-        if (positionSouris.x>m_classe.position_sac_inventaire.x*configuration->Resolution.x/800&&positionSouris.x<(m_classe.position_sac_inventaire.x+m_classe.position_sac_inventaire.w)*configuration->Resolution.x/800&&positionSouris.y>m_classe.position_sac_inventaire.y*configuration->Resolution.y/600&&positionSouris.y<(m_classe.position_sac_inventaire.y+m_classe.position_sac_inventaire.h*20)*configuration->Resolution.y/600)
+        if (eventManager->getPositionSouris().x>m_classe.position_sac_inventaire.x*configuration->Resolution.x/800
+          &&eventManager->getPositionSouris().x<(m_classe.position_sac_inventaire.x+m_classe.position_sac_inventaire.w)*configuration->Resolution.x/800
+          &&eventManager->getPositionSouris().y>m_classe.position_sac_inventaire.y*configuration->Resolution.y/600
+          &&eventManager->getPositionSouris().y<(m_classe.position_sac_inventaire.y+m_classe.position_sac_inventaire.h*20)*configuration->Resolution.y/600)
         {
             if (m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
             {
@@ -1447,7 +1462,6 @@ bool Hero::PrendreEnMain(coordonnee positionSouris,std::vector<Objet> &trader)
                 RecalculerCaracteristiques();
 
                 return 1;
-
             }
         }
         else
@@ -1456,7 +1470,10 @@ bool Hero::PrendreEnMain(coordonnee positionSouris,std::vector<Objet> &trader)
 
             for (int k=0;k<(int)m_classe.emplacements.size();k++)
             {
-                if (positionSouris.x>m_classe.emplacements[k].position.x*configuration->Resolution.x/800&&positionSouris.x<(m_classe.emplacements[k].position.x+m_classe.emplacements[k].position.w)*configuration->Resolution.x/800&&positionSouris.y>m_classe.emplacements[k].position.y*configuration->Resolution.y/600&&positionSouris.y<(m_classe.emplacements[k].position.y+m_classe.emplacements[k].position.h)*configuration->Resolution.y/600)
+                if (eventManager->getPositionSouris().x>m_classe.emplacements[k].position.x*configuration->Resolution.x/800
+                  &&eventManager->getPositionSouris().x<(m_classe.emplacements[k].position.x+m_classe.emplacements[k].position.w)*configuration->Resolution.x/800
+                  &&eventManager->getPositionSouris().y>m_classe.emplacements[k].position.y*configuration->Resolution.y/600
+                  &&eventManager->getPositionSouris().y<(m_classe.emplacements[k].position.y+m_classe.emplacements[k].position.h)*configuration->Resolution.y/600)
                     equipe=true,Equiper(m_objetEnMain,k);
             }
 

@@ -68,23 +68,19 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
             m_alpha=255;
     }
 
-    jeu->eventManager.GererLesEvenements(&jeu->m_run,temps_ecoule,jeu->map->getDimensions());
-
-    if (jeu->eventManager.getEvenement(Key::Escape,"ET")&&m_alpha==255)
-        jeu->eventManager.StopEvenement(Key::I,"ET"),retour=1;
-    if (jeu->eventManager.getEvenement(Key::Space,"ET"))
+    if (eventManager->getEvenement(Key::Escape,"ET")&&m_alpha==255)
+        eventManager->StopEvenement(Key::I,"ET"),retour=1;
+    if (eventManager->getEvenement(Key::Space,"ET"))
         jeu->m_run=false;
 
-    coordonnee temp;
+    jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
+    jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);
 
-    jeu->map->Afficher(&jeu->hero,temp,0);
-    if (configuration->Minimap)
-        jeu->menu.Afficher(2,255,&jeu->hero.m_classe);
     if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())>0)
     {
         coordonnee temp={600,(int)((float)configuration->Resolution.w*0.265),200,10};
         jeu->menu.Afficher(3,255,&jeu->hero.m_classe);
-        jeu->map->AfficherSac(jeu->hero.getChercherSac(),0,jeu->eventManager.getPositionSouris(),temp,jeu->hero.m_caracteristiques);
+        jeu->map->AfficherSac(jeu->hero.getChercherSac(),0,temp,jeu->hero.m_caracteristiques);
     }
     jeu->menu.Afficher(1,255,&jeu->hero.m_classe);
     jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,0,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
@@ -95,10 +91,10 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
 
     texte.SetY(configuration->Resolution.h/2-texte.GetRect().GetHeight());
     texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetWidth()/2);
-    if (jeu->eventManager.getPositionSouris().y>configuration->Resolution.y/2-texte.GetRect().GetHeight()&&jeu->eventManager.getPositionSouris().y<configuration->Resolution.y/2)
+    if (eventManager->getPositionSouris().y>configuration->Resolution.y/2-texte.GetRect().GetHeight()&&eventManager->getPositionSouris().y<configuration->Resolution.y/2)
     {
         texte.SetColor(Color(100,50,0,(int)m_alpha));
-        if (jeu->eventManager.getEvenement(Mouse::Left,"C"))
+        if (eventManager->getEvenement(Mouse::Left,"C"))
             retour=1;
 
     }
@@ -110,10 +106,10 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
 
     texte.SetY(configuration->Resolution.h/2);
     texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetWidth()/2);
-    if (jeu->eventManager.getPositionSouris().y>configuration->Resolution.y/2&&jeu->eventManager.getPositionSouris().y<configuration->Resolution.y/2+texte.GetRect().GetHeight())
+    if (eventManager->getPositionSouris().y>configuration->Resolution.y/2&&eventManager->getPositionSouris().y<configuration->Resolution.y/2+texte.GetRect().GetHeight())
     {
         texte.SetColor(Color(100,50,0,(int)m_alpha));
-        if (jeu->eventManager.getEvenement(Mouse::Left,"C"))
+        if (eventManager->getEvenement(Mouse::Left,"C"))
             jeu->m_run=false;
     }
     else
@@ -124,15 +120,15 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
 
     texte.SetY(configuration->Resolution.h/2+texte.GetRect().GetHeight());
     texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetWidth()/2);
-    if (jeu->eventManager.getPositionSouris().y>configuration->Resolution.y/2+texte.GetRect().GetHeight()&&jeu->eventManager.getPositionSouris().y<configuration->Resolution.y/2+texte.GetRect().GetHeight()*2)
+    if (eventManager->getPositionSouris().y>configuration->Resolution.y/2+texte.GetRect().GetHeight()&&eventManager->getPositionSouris().y<configuration->Resolution.y/2+texte.GetRect().GetHeight()*2)
     {
         texte.SetColor(Color(100,50,0,(int)m_alpha));
-        if (jeu->eventManager.getEvenement(Mouse::Left,"C"))
+        if (eventManager->getEvenement(Mouse::Left,"C"))
             jeu->m_reset=true,jeu->m_run=false;
     }
     else
         texte.SetColor(Color(150,100,50,(int)m_alpha));
     moteurGraphique->AjouterTexte(&texte,19,1);
 
-    jeu->eventManager.AfficherCurseur();
+    eventManager->AfficherCurseur();
 }

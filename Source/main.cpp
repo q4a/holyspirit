@@ -34,7 +34,7 @@ Console *console;
 Configuration *configuration;
 MoteurGraphique *moteurGraphique;
 MoteurSons *moteurSons;
-
+EventManager *eventManager;
 
 int main ( int argc, char** argv )
 {
@@ -59,6 +59,8 @@ int main ( int argc, char** argv )
     {
         ///Chargement de la configuration
         configuration->Charger();
+
+        eventManager=EventManager::GetInstance();
 
         moteurGraphique->CreateNewWindow();
 
@@ -93,6 +95,7 @@ int main ( int argc, char** argv )
     moteurGraphique->Kill();
     moteurSons->Kill();
     configuration->Kill();
+    eventManager->Kill();
 
     console->Ajouter("");
     console->Ajouter("EXIT_SUCCESS");

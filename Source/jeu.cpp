@@ -71,17 +71,17 @@ void Jeu::Demarrer()
     while (this->m_run)
     {
         if(map!=NULL)
-            eventManager.GererLesEvenements(&m_run,Clock.GetElapsedTime(),map->getDimensions());
+            eventManager->GererLesEvenements(&m_run,Clock.GetElapsedTime(),map->getDimensions());
         else
         {
             coordonnee buf={1,1,1,1};
-            eventManager.GererLesEvenements(&m_run,Clock.GetElapsedTime(),buf);
+            eventManager->GererLesEvenements(&m_run,Clock.GetElapsedTime(),buf);
         }
 
-        if (eventManager.getEvenement(Key::F1,"ET"))
+        if (eventManager->getEvenement(Key::F1,"ET"))
         {
             moteurGraphique->Printscreen();
-            eventManager.StopEvenement(Key::F1,"ET");
+            eventManager->StopEvenement(Key::F1,"ET");
         }
 
         this->m_contexte->Utiliser(this);

@@ -83,12 +83,10 @@ void c_Inventaire::Utiliser(Jeu *jeu)
     jeu->m_display=true;
     jeu->Clock.Reset();
 
-    jeu->eventManager.GererLesEvenements(&jeu->m_run,0,jeu->map->getDimensions());
-
     if (jeu->hero.m_objetEnMain==-1)
-        jeu->eventManager.AfficherCurseur();
+        eventManager->AfficherCurseur();
 
-    if (jeu->eventManager.getEvenement(Key::I,"ET")||jeu->eventManager.getEvenement(Key::Escape,"ET"))
+    if (eventManager->getEvenement(Key::I,"ET")||eventManager->getEvenement(Key::Escape,"ET"))
     {
         jeu->hero.m_defilement_trader=0;
         jeu->hero.m_max_defilement_trader=0;
@@ -96,7 +94,7 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         jeu->hero.ChargerModele();
         m_afficher=0;
         jeu->Clock.Reset();
-        jeu->eventManager.StopEvenement(Key::I,"ET");
+        eventManager->StopEvenement(Key::I,"ET");
 
         if (jeu->hero.m_objetEnMain>=0)
         {
@@ -105,36 +103,33 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         }
     }
 
-    if (jeu->eventManager.getEvenement(Mouse::Left,"C"))
+    if (eventManager->getEvenement(Mouse::Left,"C"))
     {
-        if (jeu->hero.m_objetEnMain==-1&&jeu->map->getObjetPointe()==-1&&jeu->eventManager.getPositionSouris().x>jeu->hero.m_classe.position_sac_inventaire.x*configuration->Resolution.x/800&&jeu->eventManager.getPositionSouris().x<(jeu->hero.m_classe.position_sac_inventaire.x+jeu->hero.m_classe.position_sac_inventaire.w)*configuration->Resolution.x/800&&jeu->eventManager.getPositionSouris().y>jeu->hero.m_classe.position_sac_inventaire.y*configuration->Resolution.y/600&&jeu->eventManager.getPositionSouris().y<jeu->hero.m_classe.position_sac_inventaire.y*configuration->Resolution.y/600+20*configuration->Resolution.x/800)
-            jeu->map->m_defilerObjets--,jeu->eventManager.StopEvenement(Mouse::Left,"C");
+        if (jeu->hero.m_objetEnMain==-1&&jeu->map->getObjetPointe()==-1&&eventManager->getPositionSouris().x>jeu->hero.m_classe.position_sac_inventaire.x*configuration->Resolution.x/800&&eventManager->getPositionSouris().x<(jeu->hero.m_classe.position_sac_inventaire.x+jeu->hero.m_classe.position_sac_inventaire.w)*configuration->Resolution.x/800&&eventManager->getPositionSouris().y>jeu->hero.m_classe.position_sac_inventaire.y*configuration->Resolution.y/600&&eventManager->getPositionSouris().y<jeu->hero.m_classe.position_sac_inventaire.y*configuration->Resolution.y/600+20*configuration->Resolution.x/800)
+            jeu->map->m_defilerObjets--,eventManager->StopEvenement(Mouse::Left,"C");
 
-        if (jeu->hero.m_objetEnMain==-1&&jeu->map->getObjetPointe()==-1&&jeu->eventManager.getPositionSouris().x>jeu->hero.m_classe.position_sac_inventaire.x*configuration->Resolution.x/800&&jeu->eventManager.getPositionSouris().x<(jeu->hero.m_classe.position_sac_inventaire.x+jeu->hero.m_classe.position_sac_inventaire.w)*configuration->Resolution.x/800&&jeu->eventManager.getPositionSouris().y>jeu->hero.m_classe.position_sac_inventaire.y*configuration->Resolution.y/600+(jeu->hero.m_classe.position_sac_inventaire.h-1)*20*configuration->Resolution.x/800&&jeu->eventManager.getPositionSouris().y<jeu->hero.m_classe.position_sac_inventaire.y*configuration->Resolution.y/600+jeu->hero.m_classe.position_sac_inventaire.h*20*configuration->Resolution.x/800)
-            jeu->map->m_defilerObjets++,jeu->eventManager.StopEvenement(Mouse::Left,"C");
+        if (jeu->hero.m_objetEnMain==-1&&jeu->map->getObjetPointe()==-1&&eventManager->getPositionSouris().x>jeu->hero.m_classe.position_sac_inventaire.x*configuration->Resolution.x/800&&eventManager->getPositionSouris().x<(jeu->hero.m_classe.position_sac_inventaire.x+jeu->hero.m_classe.position_sac_inventaire.w)*configuration->Resolution.x/800&&eventManager->getPositionSouris().y>jeu->hero.m_classe.position_sac_inventaire.y*configuration->Resolution.y/600+(jeu->hero.m_classe.position_sac_inventaire.h-1)*20*configuration->Resolution.x/800&&eventManager->getPositionSouris().y<jeu->hero.m_classe.position_sac_inventaire.y*configuration->Resolution.y/600+jeu->hero.m_classe.position_sac_inventaire.h*20*configuration->Resolution.x/800)
+            jeu->map->m_defilerObjets++,eventManager->StopEvenement(Mouse::Left,"C");
     }
 
-    if (jeu->eventManager.getEvenement(Mouse::Left,"C"))
+    if (eventManager->getEvenement(Mouse::Left,"C"))
     {
         if (jeu->map->RamasserObjet(&jeu->hero,1))
-            jeu->eventManager.StopEvenement(Mouse::Left,"C");
+            eventManager->StopEvenement(Mouse::Left,"C");
     }
 
-    if (jeu->eventManager.getEvenement(Mouse::Left,"C"))
+    if (eventManager->getEvenement(Mouse::Left,"C"))
     {
-        if (jeu->hero.PrendreEnMain(jeu->eventManager.getPositionSouris(),m_trader))
+        if (jeu->hero.PrendreEnMain(m_trader))
             if (jeu->hero.m_objetADeposer>=0)
                 jeu->map->AjouterObjet(jeu->hero.DeposerObjet());
-        jeu->eventManager.StopEvenement(Mouse::Left,"C");
+        eventManager->StopEvenement(Mouse::Left,"C");
     }
 
     jeu->hero.PlacerCamera(jeu->map->getDimensions()); // On place la camera suivant ou se trouve le perso
 
-    coordonnee temp;
-    jeu->map->Afficher(&jeu->hero,temp,0);
-
-    if (configuration->Minimap)
-        jeu->menu.Afficher(2,255,&jeu->hero.m_classe);
+    jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
+    jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);
 
     if (m_afficher)
         m_decalage+=temps_ecoule*2000;
@@ -146,14 +141,14 @@ void c_Inventaire::Utiliser(Jeu *jeu)
     if (m_decalage<-600)
     {
         m_decalage=-600;
-        jeu->m_contexte=jeu->m_jeu,jeu->eventManager.StopEvenement(Key::I,"ET");
+        jeu->m_contexte=jeu->m_jeu,eventManager->StopEvenement(Key::I,"ET");
     }
 
     jeu->menu.AfficherInventaire(m_decalage,&jeu->hero.m_classe,m_trader.empty());
 
-    jeu->hero.AfficherInventaire(jeu->eventManager.getPositionSouris(),m_decalage,m_trader);
+    jeu->hero.AfficherInventaire(m_decalage,m_trader);
 
-    jeu->map->AfficherSac(jeu->hero.m_personnage.getCoordonnee(),m_decalage,jeu->eventManager.getPositionSouris(),jeu->hero.m_classe.position_sac_inventaire,jeu->hero.m_caracteristiques);
+    jeu->map->AfficherSac(jeu->hero.m_personnage.getCoordonnee(),m_decalage,jeu->hero.m_classe.position_sac_inventaire,jeu->hero.m_caracteristiques);
 
     jeu->menu.Afficher(1,255,&jeu->hero.m_classe);
     jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,-1,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);

@@ -83,13 +83,13 @@ class Menu
 
 
 	private:
-	int m_fondMiniMap,/*m_imageHUD,m_imageBulleVie,m_imageBulleFoi,*/m_imageAme,m_imageSang,m_barrePointAme,m_barreVie,m_barreVieVide/*,m_inventaire*/;
+	int m_fondMiniMap,m_imageAme,m_imageSang,m_barrePointAme,m_barreVie,m_barreVieVide/*,m_inventaire*/;
 
 	sf::String texte;
 
 	float m_alphaSang;
 
-	int m_imageMiniMap,;
+	int m_imageMiniMap;
 
 	std::vector <Sang> m_sang;
 	std::vector <Sang>::iterator IterSang;

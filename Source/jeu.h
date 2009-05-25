@@ -45,7 +45,6 @@ class Jeu
     void Reset();
 
     Menu menu;
-    EventManager eventManager;
     Map *map;
     Hero hero;
     sf::Clock Clock;

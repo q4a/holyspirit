@@ -45,8 +45,8 @@ public:
     void Afficher(coordonnee dimensionsMap);
     void CalculerOrdreAffichage();
 
-    void AfficherInventaire(coordonnee,float,std::vector<Objet>);
-    void AfficherCaracteristiques(coordonnee positionSouris,float decalage);
+    void AfficherInventaire(float,std::vector<Objet>);
+    void AfficherCaracteristiques(float decalage);
     void GenererGrille();
     void PlacerCamera(coordonnee dimensionsMap);
 
@@ -59,12 +59,12 @@ public:
     void RegenererVie(float vie);
     void RegenererFoi(float foi);
 
-    int UtiliserClicDroit(coordonnee positionSouris, int monstreVise);
+    int UtiliserClicDroit(int monstreVise);
 
     bool AjouterObjet(Objet objet,bool enMain=false);
 
     Objet DeposerObjet();
-    bool PrendreEnMain(coordonnee positionSouris,std::vector<Objet>&);
+    bool PrendreEnMain(std::vector<Objet>&);
 
     bool PossibleEquiper(int emplacement);
     bool Equiper(int numero, int emplacement);

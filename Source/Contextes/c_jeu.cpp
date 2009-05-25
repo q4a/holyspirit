@@ -193,7 +193,7 @@ void c_Jeu::Deplacements(Jeu *jeu)
         if (jeu->hero.getMonstreVise()==-1)
             temp.x=jeu->hero.m_personnage.getCoordonnee().x,temp.y=jeu->hero.m_personnage.getCoordonnee().y;
 
-        if (jeu->hero.m_personnage.seDeplacer(tempsEcouleDepuisDernierDeplacement*100,jeu->map->getDimensions())/*&&!jeu->eventManager.getEvenement(Key::LShift,"ET")||jeu->eventManager.getEvenement(Key::LShift,"ET")*/)
+        if (jeu->hero.m_personnage.seDeplacer(tempsEcouleDepuisDernierDeplacement*100,jeu->map->getDimensions())/*&&!eventManager->getEvenement(Key::LShift,"ET")||eventManager->getEvenement(Key::LShift,"ET")*/)
         {
             bool ok=true;
             if (jeu->hero.getMonstreVise()>-1)
@@ -206,9 +206,9 @@ void c_Jeu::Deplacements(Jeu *jeu)
             if (ok)
                 jeu->hero.m_personnage.pathfinding(jeu->map->getAlentourDuPersonnage(jeu->hero.m_personnage.getCoordonnee()),temp); // Recherche du chemin
 
-            if (jeu->eventManager.getEvenement(Mouse::Left,"CA")&&jeu->eventManager.getEvenement(Key::LShift,"ET"))
+            if (eventManager->getEvenement(Mouse::Left,"CA")&&eventManager->getEvenement(Key::LShift,"ET"))
             {
-                coordonnee temp={(int)(jeu->eventManager.getCasePointee().x*COTE_TILE),(int)(jeu->eventManager.getCasePointee().y*COTE_TILE),0,0};
+                coordonnee temp={(int)(eventManager->getCasePointee().x*COTE_TILE),(int)(eventManager->getCasePointee().y*COTE_TILE),0,0};
                 jeu->hero.m_personnage.frappe(jeu->hero.m_personnage.getCoordonneePixel(),temp);
             }
         }
@@ -264,7 +264,7 @@ void c_Jeu::Animation(Jeu *jeu)
                 if (jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())!=NULL)
                     cible=jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee();
                 else
-                    cible=jeu->eventManager.getCasePointee();
+                    cible=eventManager->getCasePointee();
 
                 if (jeu->hero.AjouterMiracleArme())
                     jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),cible,1);
@@ -276,11 +276,11 @@ void c_Jeu::Animation(Jeu *jeu)
         jeu->map->AnimerMiracle(&jeu->hero.m_personnage,jeu->hero.m_classe.miracles,tempsDepuisDerniereAnimation,positionHero,&jeu->hero);
 
         if (retour==2)
-            if (!jeu->eventManager.getEvenement(Mouse::Left,"C") || !jeu->map->getMonstreEnVie(jeu->hero.getMonstreVise()) )
+            if (!eventManager->getEvenement(Mouse::Left,"C") || !jeu->map->getMonstreEnVie(jeu->hero.getMonstreVise()) )
                 jeu->hero.setMonstreVise(-1),jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
 
         if (retour==1)
-            if (!jeu->eventManager.getEvenement(Mouse::Left,"C"))
+            if (!eventManager->getEvenement(Mouse::Left,"C"))
                 jeu->hero.setMonstreVise(-1),jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
 
 
@@ -316,31 +316,31 @@ void c_Jeu::Evenements(Jeu *jeu)
 {
     int monstreVise=-1;
 
-    if (!jeu->eventManager.getEvenement(Mouse::Left,"C"))
-        jeu->map->getMonstre(&jeu->hero,jeu->eventManager.getPositionSouris(),jeu->eventManager.getCasePointee());
+    if (!eventManager->getEvenement(Mouse::Left,"C"))
+        jeu->map->getMonstre(&jeu->hero,eventManager->getPositionSouris(),eventManager->getCasePointee());
 
-    if (jeu->eventManager.getEvenement(Mouse::Left,"CA")&&!jeu->eventManager.getEvenement(Key::LShift,"ET"))
+    if (eventManager->getEvenement(Mouse::Left,"CA")&&!eventManager->getEvenement(Key::LShift,"ET"))
     {
-        if (!(jeu->eventManager.getPositionSouris().x>configuration->Resolution.w-configuration->Resolution.w*0.25
-                &&jeu->eventManager.getPositionSouris().y>configuration->Resolution.w*0.25&&jeu->eventManager.getPositionSouris().y<configuration->Resolution.w*0.25+configuration->Resolution.w*0.34
+        if (!(eventManager->getPositionSouris().x>configuration->Resolution.w-configuration->Resolution.w*0.25
+                &&eventManager->getPositionSouris().y>configuration->Resolution.w*0.25&&eventManager->getPositionSouris().y<configuration->Resolution.w*0.25+configuration->Resolution.w*0.34
                 &&alpha_sac>=128)||alpha_sac<=128)
         {
             if (jeu->hero.getMonstreVise()==-1)
             {
-                jeu->hero.m_personnage.setArrivee(jeu->eventManager.getCasePointee());
+                jeu->hero.m_personnage.setArrivee(eventManager->getCasePointee());
 
                 coordonnee temp={-1,-1,-1,-1};
                 jeu->hero.setSacVise(temp);
             }
         }
-        else if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getObjetPointe()!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())>6)
+        else if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getObjetPointe()!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())>4)
         {
             jeu->map->RamasserObjet(&jeu->hero);
-            jeu->eventManager.StopEvenement(Mouse::Left,"CA");
+            eventManager->StopEvenement(Mouse::Left,"CA");
         }
     }
 
-    if (jeu->eventManager.getEvenement(Mouse::Left,"C")&&jeu->eventManager.getEvenement(Mouse::Left,"CA"))
+    if (eventManager->getEvenement(Mouse::Left,"C")&&eventManager->getEvenement(Mouse::Left,"CA"))
     {
         if (jeu->map->getMonstreIllumine()!=-1)
         {
@@ -348,7 +348,7 @@ void c_Jeu::Evenements(Jeu *jeu)
             if (jeu->hero.getMonstreVise()>-1&&jeu->hero.m_personnage.getArrivee().x==jeu->hero.m_personnage.getCoordonnee().x&&jeu->hero.m_personnage.getArrivee().y==jeu->hero.m_personnage.getCoordonnee().y)
                 test=true;
 
-            jeu->eventManager.StopEvenement(Mouse::Left,"CA");
+            eventManager->StopEvenement(Mouse::Left,"CA");
             jeu->hero.setMonstreVise(jeu->map->getMonstreIllumine());
             if (test)
                 jeu->hero.TestMonstreVise(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise()),jeu->map->getDimensions().y);
@@ -356,14 +356,14 @@ void c_Jeu::Evenements(Jeu *jeu)
         else
             jeu->hero.setMonstreVise(-1);
     }
-    if (jeu->eventManager.getEvenement(Mouse::Left,"C")&&jeu->eventManager.getEvenement(Mouse::Left,"CA"))
+    if (eventManager->getEvenement(Mouse::Left,"C")&&eventManager->getEvenement(Mouse::Left,"CA"))
     {
         jeu->hero.setSacVise(jeu->map->getSacPointe());
 
         jeu->hero.m_objetVise=jeu->map->m_objetPointe;
 
         if (jeu->map->getSacPointe().x!=-1)
-            jeu->eventManager.StopEvenement(Mouse::Left,"CA"),jeu->hero.m_personnage.setArrivee(jeu->map->getSacPointe());
+            eventManager->StopEvenement(Mouse::Left,"CA"),jeu->hero.m_personnage.setArrivee(jeu->map->getSacPointe());
     }
 
     if (jeu->hero.getSacVise().x!=-1)
@@ -382,34 +382,34 @@ void c_Jeu::Evenements(Jeu *jeu)
         jeu->hero.setChercherSac(temp);
     }
 
-    if (jeu->eventManager.getEvenement(Mouse::Right,"C"))
+    if (eventManager->getEvenement(Mouse::Right,"C"))
     {
-        if (jeu->eventManager.getEvenement(Mouse::Left,"C"))
-            jeu->eventManager.StopEvenement(Mouse::Left,"C");
+        if (eventManager->getEvenement(Mouse::Left,"C"))
+            eventManager->StopEvenement(Mouse::Left,"C");
         else
-            jeu->hero.UtiliserClicDroit(jeu->eventManager.getPositionSouris(),monstreVise);
+            jeu->hero.UtiliserClicDroit(monstreVise);
     }
 
-    if (jeu->eventManager.getEvenement(Key::I,"ET"))
-        jeu->eventManager.StopEvenement(Key::I,"ET"),jeu->map->m_defilerObjets=0,jeu->m_contexte=jeu->m_inventaire;
+    if (eventManager->getEvenement(Key::I,"ET"))
+        eventManager->StopEvenement(Key::I,"ET"),jeu->map->m_defilerObjets=0,jeu->m_contexte=jeu->m_inventaire;
 
-    if (jeu->eventManager.getEvenement(Key::Escape,"ET"))
-        jeu->eventManager.StopEvenement(Key::Escape,"ET"),jeu->m_contexte=jeu->m_menuInGame;
+    if (eventManager->getEvenement(Key::Escape,"ET"))
+        eventManager->StopEvenement(Key::Escape,"ET"),jeu->m_contexte=jeu->m_menuInGame;
 
     if (alpha_sac>128)
     {
-        if (jeu->eventManager.getEvenement(Mouse::Left,"C")&&jeu->eventManager.getPositionSouris().x>configuration->Resolution.w-configuration->Resolution.w*0.25&&jeu->eventManager.getPositionSouris().y>configuration->Resolution.w*0.265+10*20*configuration->Resolution.w/800+20*configuration->Resolution.w/800&&jeu->eventManager.getPositionSouris().y<configuration->Resolution.w*0.265+11*20*configuration->Resolution.w/800+20*configuration->Resolution.w/800)
-            jeu->map->m_defilerObjets++,jeu->eventManager.StopEvenement(Mouse::Left,"C");
+        if (eventManager->getEvenement(Mouse::Left,"C")&&eventManager->getPositionSouris().x>configuration->Resolution.w-configuration->Resolution.w*0.25&&eventManager->getPositionSouris().y>configuration->Resolution.w*0.265+10*20*configuration->Resolution.w/800+20*configuration->Resolution.w/800&&eventManager->getPositionSouris().y<configuration->Resolution.w*0.265+11*20*configuration->Resolution.w/800+20*configuration->Resolution.w/800)
+            jeu->map->m_defilerObjets++,eventManager->StopEvenement(Mouse::Left,"C");
 
-        if (jeu->eventManager.getEvenement(Mouse::Left,"C")&&jeu->eventManager.getPositionSouris().x>configuration->Resolution.w-configuration->Resolution.w*0.25&&jeu->eventManager.getPositionSouris().y>configuration->Resolution.w*0.265&&jeu->eventManager.getPositionSouris().y<configuration->Resolution.w*0.265+20*configuration->Resolution.w/800)
-            jeu->map->m_defilerObjets--,jeu->eventManager.StopEvenement(Mouse::Left,"C");
+        if (eventManager->getEvenement(Mouse::Left,"C")&&eventManager->getPositionSouris().x>configuration->Resolution.w-configuration->Resolution.w*0.25&&eventManager->getPositionSouris().y>configuration->Resolution.w*0.265&&eventManager->getPositionSouris().y<configuration->Resolution.w*0.265+20*configuration->Resolution.w/800)
+            jeu->map->m_defilerObjets--,eventManager->StopEvenement(Mouse::Left,"C");
     }
 }
 void c_Jeu::Affichage(Jeu *jeu)
 {
     moteurGraphique->Gerer(tempsEcouleDepuisDernierAffichage,jeu->map->getDimensions().y);
 
-    jeu->map->Afficher(&jeu->hero,jeu->eventManager.getPositionSouris(),jeu->eventManager.getEvenement(Key::LAlt,"ET"),alpha_map);//Affichage de la jeu->map
+    jeu->map->Afficher(&jeu->hero,eventManager->getEvenement(Key::LAlt,"ET"),alpha_map);//Affichage de la jeu->map
 
     if (configuration->Minimap)
     {
@@ -426,7 +426,7 @@ void c_Jeu::Affichage(Jeu *jeu)
     if (alpha_map>0)
         jeu->menu.Afficher(2,alpha_map,&jeu->hero.m_classe);//On affiche la mini-map
 
-    if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())>6)
+    if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())>4)
     {
         alpha_sac+=tempsEcoule*1000;
         if (alpha_sac>255)
@@ -439,7 +439,7 @@ void c_Jeu::Affichage(Jeu *jeu)
             alpha_sac=0;
     }
 
-    if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())<=6&&alpha_sac<128)
+    if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())<=4&&alpha_sac<128)
     {
         jeu->map->m_objetPointe=jeu->hero.m_objetVise;
         jeu->map->RamasserObjet(&jeu->hero);
@@ -451,9 +451,9 @@ void c_Jeu::Affichage(Jeu *jeu)
 
     if (alpha_sac>0)
     {
-        coordonnee temp={600,(int)((float)configuration->Reysolution.w*0.265),200,10};
+        coordonnee temp={600,(int)((float)configuration->Resolution.w*0.265),200,10};
         jeu->menu.Afficher(3,alpha_sac,&jeu->hero.m_classe);
-        jeu->map->AfficherSac(jeu->hero.getChercherSac(),0,jeu->eventManager.getPositionSouris(),temp,jeu->hero.m_caracteristiques);
+        jeu->map->AfficherSac(jeu->hero.getChercherSac(),0,temp,jeu->hero.m_caracteristiques);
     }
 
     jeu->menu.Afficher(1,255,&jeu->hero.m_classe); // On affiche le hud
@@ -462,10 +462,10 @@ void c_Jeu::Affichage(Jeu *jeu)
         jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,1,jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())->getCaracteristique(),&jeu->hero.m_classe);
     else
         jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,0,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
-    jeu->eventManager.AfficherCurseur(); // On affiche le curseur de la souris
+    eventManager->AfficherCurseur(); // On affiche le curseur de la souris
 
-    if (jeu->map->getEvenement(jeu->eventManager.getCasePointee())>=0)
-        jeu->map->AfficherNomEvenement(jeu->eventManager.getCasePointee(),jeu->eventManager.getPositionSouris());
+    if (jeu->map->getEvenement(eventManager->getCasePointee())>=0)
+        jeu->map->AfficherNomEvenement(eventManager->getCasePointee(),eventManager->getPositionSouris());
 
     if (configuration->effetMort&&sf::PostFX::CanUsePostFX() == true&&configuration->postFX&&tempsEffetMort!=0)
     {

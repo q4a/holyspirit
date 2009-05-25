@@ -66,7 +66,7 @@ void c_Demarrage::Utiliser(Jeu *jeu)
     if (m_alpha>384)
         m_augmenter=false;
 
-    if (jeu->eventManager.getEvenement(Mouse::Left,"C"))
+    if (eventManager->getEvenement(Mouse::Left,"C"))
         m_augmenter=false;
 
     if (m_alpha<0)

@@ -33,7 +33,7 @@ public:
     c_Jeu();
     void Utiliser(Jeu *jeu);
 
-    // sf::View *camera;
+    float alpha_map,alpha_sac;
 
 private:
     void GererTemps(Jeu *jeu);
@@ -52,7 +52,7 @@ private:
     sf::String variableQuiNeSertARien,Version,Temps,fps,TourBoucle;
 
     float tempsActuel,tempsPrecedent,tempsDepuisDerniereAnimation,tempsEcoule,tempsNbrTourBoucle,tempsEcouleDepuisDernierCalculLumiere,tempsEcouleDepuisDernierCalculOmbre,tempsEcouleDepuisDernierDeplacement,tempsEcouleDepuisDernierIA,tempsEcouleDepuisDernierAffichage,tempsEcouleDepuisFPS,tempsEffetMort,tempsSauvergarde;
-    float alpha_map,alpha_sac;
+
 
     float lowFPS;
 

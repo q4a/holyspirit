@@ -26,9 +26,13 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <iostream>
 #include "../constantes.h"
 
-class EventManager
+class EventManager : public CSingleton<EventManager>
 {
 	public:
+
+	friend EventManager* CSingleton<EventManager>::GetInstance();
+    friend void CSingleton<EventManager>::Kill();
+
 	EventManager();
 	void GererLesEvenements(bool *continuer,float temps,coordonnee tailleMap);
 	void AfficherCurseur();
