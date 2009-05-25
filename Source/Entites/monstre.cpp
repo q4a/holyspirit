@@ -134,7 +134,7 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
 
 
     for (int i=0;i<(int)modele->getObjets().size();i++)
-        if (rand()%100000/(m_caracteristique.rang*3+1)<=modele->getObjets()[i].getChanceTrouver())
+        if (rand()%1000000/(m_caracteristique.rang*3+1)<=modele->getObjets()[i].getChanceTrouver())
         {
             m_objets.push_back(Objet ());
             m_objets.back()=modele->getObjets()[i];

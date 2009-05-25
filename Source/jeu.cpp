@@ -42,33 +42,33 @@ void Jeu::Demarrer()
 
     //lireVideo("Data/Menus/Videos/Cinematique test 1-2");
 
-    this->hero.Charger();
+    hero.Charger();
 
     {
         cDAT reader;
         if (reader.Read(configuration->chemin_saves+"hero.sav.hs"))
             for (int i=0;i<(int)reader.GetNumberFile();i++)
                 if (reader.GetFileName(i)!=configuration->chemin_temps+"hero.sav.txt")
-                    reader.ExportFile(i),this->hero.m_contenuSave.push_back(reader.GetFileName(i));
+                    reader.ExportFile(i),hero.m_contenuSave.push_back(reader.GetFileName(i));
     }
 
-    this->hero.ChargerModele();
+    hero.ChargerModele();
 
-    this->m_jeu = new c_Jeu();
-    this->m_demarrage = new c_Demarrage();
-    this->m_chargement = new c_Chargement();
-    this->m_inventaire = new c_Inventaire();
-    this->m_menuInGame = new c_MenuInGame();
+    m_jeu = new c_Jeu();
+    m_demarrage = new c_Demarrage();
+    m_chargement = new c_Chargement();
+    m_inventaire = new c_Inventaire();
+    m_menuInGame = new c_MenuInGame();
 
     coordonnee temp={0,0,-1,-1};
-    this->m_chargement->setC_Chargement("Begin.map.hs",temp,1);
-    this->m_contexte = this->m_demarrage;
+    m_chargement->setC_Chargement("Begin.map.hs",temp,1);
+    m_contexte = m_demarrage;
 
     Clock.Reset();
 
-    this->m_run = true;
-    this->m_display = true;
-    while (this->m_run)
+    m_run = true;
+    m_display = true;
+    while (m_run)
     {
         if(map!=NULL)
             eventManager->GererLesEvenements(&m_run,Clock.GetElapsedTime(),map->getDimensions());
@@ -84,29 +84,29 @@ void Jeu::Demarrer()
             eventManager->StopEvenement(Key::F1,"ET");
         }
 
-        this->m_contexte->Utiliser(this);
-        if (this->m_display)
+        m_contexte->Utiliser(this);
+        if (m_display)
             moteurGraphique->Afficher();
     }
 
     if (m_reset)
         Reset();
     else
-        map->Sauvegarder(&this->hero);
+        map->Sauvegarder(&hero);
 
     hero.Sauvegarder();
 
     Reset();
 
-    this->m_contexte=NULL;
+    m_contexte=NULL;
 
     delete map;
 
-    delete this->m_demarrage;
-    delete this->m_jeu;
-    delete this->m_chargement;
-    delete this->m_inventaire;
-    delete this->m_menuInGame;
+    delete m_demarrage;
+    delete m_jeu;
+    delete m_chargement;
+    delete m_inventaire;
+    delete m_menuInGame;
 
     console->Ajouter("");
     console->Ajouter("Fermeture des contextes effectuée avec succès.");
@@ -126,8 +126,8 @@ void Jeu::Reset()
     }
     closedir(repertoire);
 
-    this->hero.m_contenuSave.clear();
-    this->hero.m_contenuSave.push_back(configuration->chemin_temps+"hero.sav.txt");
+    hero.m_contenuSave.clear();
+    hero.m_contenuSave.push_back(configuration->chemin_temps+"hero.sav.txt");
 }
 
 

@@ -620,6 +620,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                     decorBuffer[couche].push_back(std::vector<Decor> ());
                     do
                     {
+                        int pos;
                         std::vector<int> evenement;
                         int tileset=-1,tileFinal=-1,herbe=-1,monstreFinal=-1,layer=0,hauteur=0;
                         int temp;
@@ -666,7 +667,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                 break;
 
                             case 'o':
-                                int pos=fichier->tellg();
+                                pos=fichier->tellg();
                                 objets.push_back(Objet ());
                                 objets.back().ChargerTexte(fichier,true);
                                 objets.back().Charger(objets.back().getChemin(),true);
@@ -727,7 +728,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                                     break;
 
                                                 case 'o':
-                                                    int pos=fichier->tellg();
+                                                    pos=fichier->tellg();
                                                     objets.push_back(Objet ());
                                                     objets.back().ChargerTexte(fichier,true);
                                                     objets.back().Charger(objets.back().getChemin(),true);
