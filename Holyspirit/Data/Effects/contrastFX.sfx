@@ -4,7 +4,10 @@ vec3 color
 
 effect
 {
-	_out=  vec4( color, 1.0) * framebuffer(_in)   ;
+	vec4 temp=framebuffer(_in);
+	vec4 temp2=temp - vec4( 0.5,0.5,0.5,0.0);
+	vec4 temp3=temp2 * vec4(color,1.0);
+	_out=  temp + temp3;
 }
 
 
