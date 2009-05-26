@@ -61,17 +61,17 @@ void Map::Detruire()
         console->Ajouter("Destruction des cases...");
 
 
-    if (m_decor!=NULL)
+    if (m_decor)
     {
         for (int i=0;i<NOMBRE_COUCHE_MAP;i++)
         {
-            if (m_decor[i]!=NULL)
+            if (m_decor[i])
             {
                 for (int j=0;j<m_dimensions.y;j++)
                 {
                     if (configuration->debug)
                         console->Ajouter(j);
-                    if (m_decor[i][j]!=NULL)
+                    if (m_decor[i][j])
                         delete[] m_decor[i][j];
                 }
                 if (configuration->debug)
@@ -1063,12 +1063,10 @@ void Map::CreerSprite(sf::Vector3f position_case)
 
 void Map::Sauvegarder(Hero *hero)
 {
-    char numero[7];
     string chemin = configuration->chemin_temps+m_nom_fichier;
 
     console->Ajouter("",0);
     console->Ajouter("Sauvegarde de la map : "+chemin,0);
-
 
     ofstream fichier(chemin.c_str(), ios::out | ios::trunc);
 
@@ -1161,9 +1159,7 @@ void Map::Sauvegarder(Hero *hero)
 
 
 
-    chemin = configuration->chemin_temps;
-    sprintf(numero,"entites_map_%s.emap.hs",m_nom_fichier.c_str());
-    chemin += numero;
+    chemin = configuration->chemin_temps+"entites_map_"+m_nom_fichier+".emap.hs";
 
     console->Ajouter("Sauvegarde de la map_entite : "+chemin,0);
 
@@ -1389,7 +1385,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                                     sprite.SetX(position.x-32*(o%2==0)+16-(m_decor[1][j][k].getObjet(o)->getPositionImage().w*0.8)/2);
                                     sprite.SetY(position.y+32*(int)(o/2));
 
-                                    if(!eventManager->getEvenement(sf::Mouse::Left,"C")&&moteurGraphique->getPositionSouris().x>position.x-32*(o%2==0)&&moteurGraphique->getPositionSouris().x<position.x-32*(o%2==0)+32&&moteurGraphique->getPositionSouris().y>position.y+32*(int)(o/2)&&moteurGraphique->getPositionSouris().y<position.y+32*(int)(o/2)+32)
+                                    if(!alt&&!eventManager->getEvenement(sf::Mouse::Left,"C")&&moteurGraphique->getPositionSouris().x>position.x-32*(o%2==0)&&moteurGraphique->getPositionSouris().x<position.x-32*(o%2==0)+32&&moteurGraphique->getPositionSouris().y>position.y+32*(int)(o/2)&&moteurGraphique->getPositionSouris().y<position.y+32*(int)(o/2)+32)
                                     {
                                         coordonnee buf={(int)(sprite.GetPosition().x),(int)(sprite.GetPosition().y),0,0};
                                         m_decor[1][j][k].AfficherTexteObjet(buf,o);
@@ -1429,14 +1425,27 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
 
                             sprite.SetColor(sf::Color(255,255,255));
 
+
+
+                            int objetPointe=-1;
+
+                            if (m_sacPointe.x==k&&m_sacPointe.y==j&&m_monstreIllumine<0&&m_decor[1][j][k].getNombreObjets()>4||alt)
+                                objetPointe=m_decor[1][j][k].AfficherTexteObjets(position,m_objetPointe);
+
                             if(!eventManager->getEvenement(sf::Mouse::Left,"C")&&moteurGraphique->getPositionSouris().x>sprite.GetPosition().x&&moteurGraphique->getPositionSouris().x<sprite.GetPosition().x+32&&moteurGraphique->getPositionSouris().y>sprite.GetPosition().y&&moteurGraphique->getPositionSouris().y<sprite.GetPosition().y+32&&m_decor[1][j][k].getNombreObjets()>4)
                             {
                                 m_sacPointe.x=k;
                                 m_sacPointe.y=j;
                             }
 
-                            if (m_sacPointe.x==k&&m_sacPointe.y==j&&m_monstreIllumine<0&&m_decor[1][j][k].getNombreObjets()>4||alt)
-                                m_decor[1][j][k].AfficherTexteObjets(position);
+                            if(objetPointe>=0&&!eventManager->getEvenement(sf::Mouse::Left,"C"))
+                            {
+                                m_sacPointe.x=k;
+                                m_sacPointe.y=j;
+
+                                m_objetPointe=objetPointe;
+                            }
+
                         }
                     }
 
@@ -2264,7 +2273,8 @@ void Map::MusiquePlay(coordonnee position)
             {
                 m_musiqueEnCours++;
                 if (m_musiqueEnCours>=0&&m_musiqueEnCours<MAX_MUSIQUE&&m_musiqueEnCours<m_nombreMusique)
-                    m_musique[m_musiqueEnCours].Play();
+                    if(m_musique[m_musiqueEnCours].GetDuration()>0)
+                        m_musique[m_musiqueEnCours].Play();
             }
 
             if (m_musiqueEnCours>=0&&m_musiqueEnCours<MAX_MUSIQUE&&m_musiqueEnCours<m_nombreMusique)
@@ -2716,7 +2726,7 @@ bool Map::InfligerDegats(int numeroMonstre, float degats,Menu *menu, Hero *hero,
             for (int x=m_monstre[numeroMonstre].getCoordonnee().x;x<10+m_monstre[numeroMonstre].getCoordonnee().x;x++)
                 for (int y=m_monstre[numeroMonstre].getCoordonnee().y;y<10+m_monstre[numeroMonstre].getCoordonnee().y;y++)
                     if (x>=0&&y>=0&&x<m_dimensions.x&&y<m_dimensions.y)
-                        if (m_decor[o][y][x].getMonstre()>=0&&m_decor[o][y][x].getMonstre()<m_monstre.size())
+                        if (m_decor[o][y][x].getMonstre()>=0&&m_decor[o][y][x].getMonstre()<(int)m_monstre.size())
                             m_monstre[m_decor[o][y][x].getMonstre()].setVu(1);
 
         if (!m_monstre[numeroMonstre].enVie())

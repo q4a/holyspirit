@@ -32,8 +32,6 @@ class Configuration : public CSingleton<Configuration>
     }
     ~Configuration()
     {
-        delete[] text_benedictions;
-        delete[] text_menus;
     }
 
     public :
@@ -60,8 +58,8 @@ class Configuration : public CSingleton<Configuration>
 
     std::string chemin_text_benedictions,chemin_text_menus;
 
-    std::string *text_benedictions;
-    std::string *text_menus;
+    std::string text_benedictions[NOMBRE_BENEDICTION];
+    std::string text_menus[NOMBRE_TXT_MENU];
 
     bool RafraichirLumiere;
     int numero_screen,RafraichirOmbre;

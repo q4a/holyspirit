@@ -179,9 +179,6 @@ void Configuration::ChargerInit()
 
 void Configuration::ChargerTxt()
 {
-    text_benedictions=new std::string [NOMBRE_BENEDICTION];
-    text_menus=new std::string [NOMBRE_TXT_MENU];
-
     std::ifstream fichier;
     fichier.open(chemin_text_benedictions.c_str(), std::ios::in);
     if (fichier)

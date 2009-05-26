@@ -55,11 +55,15 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option use_console_runner="0" />
+				<Compiler>
+					<Add directory="..\..\SFML-1.4-sdk-windows\SFML-1.4\include" />
+				</Compiler>
 				<Linker>
 					<Add option="-lsfml-audio-d" />
 					<Add option="-lsfml-graphics-d" />
 					<Add option="-lsfml-window-d" />
 					<Add option="-lsfml-system-d" />
+					<Add directory="..\..\SFML-1.4-sdk-windows\SFML-1.4\lib\mingw" />
 				</Linker>
 			</Target>
 			<Target title="Linux">

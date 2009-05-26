@@ -146,8 +146,9 @@ void Decor::setDecor(int tileset,int tile,std::vector<int> evenement,int monstre
     m_objets=objets;
 }
 
-void Decor::AfficherTexteObjet(coordonnee position,int objet)
+bool Decor::AfficherTexteObjet(coordonnee position,int objet)
 {
+    bool retour=false;
     if(objet>=0&&objet<(int)m_objets.size())
     {
         sf::String texte;
@@ -182,19 +183,33 @@ void Decor::AfficherTexteObjet(coordonnee position,int objet)
         sprite.SetY((position.y-moteurGraphique->m_camera.GetRect().Top)*configuration->zoom);
         sprite.SetX((position.x-moteurGraphique->m_camera.GetRect().Left)*configuration->zoom-4);
         sprite.SetColor(sf::Color(0,0,0,128));
-        sprite.Resize(texte.GetRect().Right-texte.GetRect().Left +8 , texte.GetRect().Bottom-texte.GetRect().Top +6);
+        sprite.Resize(texte.GetRect().Right-texte.GetRect().Left +8 , 24);
+
+
+
+        if(eventManager->getPositionSouris().x>sprite.GetPosition().x
+         &&eventManager->getPositionSouris().y>sprite.GetPosition().y
+         &&eventManager->getPositionSouris().x<sprite.GetPosition().x+texte.GetRect().Right-texte.GetRect().Left +8
+         &&eventManager->getPositionSouris().y<sprite.GetPosition().y+texte.GetRect().Bottom-texte.GetRect().Top +6)
+            retour = true,sprite.SetColor(sf::Color(64,64,64,128));
 
         moteurGraphique->AjouterCommande(&sprite,13,0);
     }
+    return (retour);
 }
 
-void Decor::AfficherTexteObjets(coordonnee position)
+int Decor::AfficherTexteObjets(coordonnee position, int objetPointe)
 {
+    int retour = -1;
+
     for (int z=0;z<(int)m_objets.size();z++)
     {
-        coordonnee buf={position.x,position.y-20*(z+1),0,0};
-        AfficherTexteObjet(buf,z);
+        coordonnee buf={position.x,position.y-24*(z+1),0,0};
+        if(AfficherTexteObjet(buf,z))
+            retour=z;
     }
+
+    return (retour);
 }
 
 

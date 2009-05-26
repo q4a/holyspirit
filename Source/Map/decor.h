@@ -44,8 +44,8 @@ public:
 
     void AjouterObjet(Objet);
 
-    void AfficherTexteObjets(coordonnee position);
-    void AfficherTexteObjet(coordonnee position,int);
+    int AfficherTexteObjets(coordonnee positionn,int);
+    bool AfficherTexteObjet(coordonnee position,int);
 
     void DecrementerAnimation(float nombre);
     void AugmenterAnimation(float temps);

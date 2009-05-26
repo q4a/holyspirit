@@ -40,9 +40,7 @@ void Classe::Charger(string chemin)
             }
             if (fichier.eof())
             {
-                char temp[255];
-                sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                 caractere='$';
             }
         }
@@ -81,9 +79,7 @@ void Classe::Charger(string chemin)
 
                     if (fichier.eof())
                     {
-                        char temp[255];
-                        sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                        console->Ajouter(temp,1);
+                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                         caractere='$';
                     }
 
@@ -93,9 +89,7 @@ void Classe::Charger(string chemin)
             }
             if (fichier.eof())
             {
-                char temp[255];
-                sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                 caractere='$';
             }
 
@@ -121,9 +115,7 @@ void Classe::Charger(string chemin)
 
                     if (fichier.eof())
                     {
-                        char temp[255];
-                        sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                        console->Ajouter(temp,1);
+                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                         caractere='$';
                     }
 
@@ -133,9 +125,7 @@ void Classe::Charger(string chemin)
             }
             if (fichier.eof())
             {
-                char temp[255];
-                sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                 caractere='$';
             }
 
@@ -160,9 +150,7 @@ void Classe::Charger(string chemin)
 
                     if (fichier.eof())
                     {
-                        char temp[255];
-                        sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                        console->Ajouter(temp,1);
+                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                         caractere='$';
                     }
 
@@ -172,9 +160,7 @@ void Classe::Charger(string chemin)
             }
             if (fichier.eof())
             {
-                char temp[255];
-                sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                 caractere='$';
             }
 
@@ -200,9 +186,7 @@ void Classe::Charger(string chemin)
 
                     if (fichier.eof())
                     {
-                        char temp[255];
-                        sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                        console->Ajouter(temp,1);
+                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                         caractere='$';
                     }
 
@@ -212,9 +196,7 @@ void Classe::Charger(string chemin)
             }
             if (fichier.eof())
             {
-                char temp[255];
-                sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                 caractere='$';
             }
 
@@ -254,9 +236,7 @@ void Classe::Charger(string chemin)
 
                     if (fichier.eof())
                     {
-                        char temp[255];
-                        sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                        console->Ajouter(temp,1);
+                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                         caractere='$';
                     }
                 }
@@ -265,9 +245,7 @@ void Classe::Charger(string chemin)
             }
             if (fichier.eof())
             {
-                char temp[255];
-                sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                 caractere='$';
             }
 
@@ -305,9 +283,7 @@ void Classe::Charger(string chemin)
 
                     if (fichier.eof())
                     {
-                        char temp[255];
-                        sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                        console->Ajouter(temp,1);
+                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                         caractere='$';
                     }
                 }
@@ -316,9 +292,7 @@ void Classe::Charger(string chemin)
             }
             if (fichier.eof())
             {
-                char temp[255];
-                sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                 caractere='$';
             }
 
@@ -357,9 +331,7 @@ void Classe::Charger(string chemin)
 
                     if (fichier.eof())
                     {
-                        char temp[255];
-                        sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                        console->Ajouter(temp,1);
+                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                         caractere='$';
                     }
 
@@ -369,9 +341,7 @@ void Classe::Charger(string chemin)
             }
             if (fichier.eof())
             {
-                char temp[255];
-                sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                 caractere='$';
             }
 
@@ -408,9 +378,7 @@ void Classe::Charger(string chemin)
 
                     if (fichier.eof())
                     {
-                        char temp[255];
-                        sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                        console->Ajouter(temp,1);
+                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                         caractere='$';
                     }
 
@@ -420,9 +388,7 @@ void Classe::Charger(string chemin)
             }
             if (fichier.eof())
             {
-                char temp[255];
-                sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                 caractere='$';
             }
 
@@ -459,9 +425,7 @@ void Classe::Charger(string chemin)
 
                     if (fichier.eof())
                     {
-                        char temp[255];
-                        sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                        console->Ajouter(temp,1);
+                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                         caractere='$';
                     }
 
@@ -471,9 +435,7 @@ void Classe::Charger(string chemin)
             }
             if (fichier.eof())
             {
-                char temp[255];
-                sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                 caractere='$';
             }
 
@@ -510,9 +472,7 @@ void Classe::Charger(string chemin)
 
                     if (fichier.eof())
                     {
-                        char temp[255];
-                        sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                        console->Ajouter(temp,1);
+                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                         caractere='$';
                     }
 
@@ -522,9 +482,7 @@ void Classe::Charger(string chemin)
             }
             if (fichier.eof())
             {
-                char temp[255];
-                sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                 caractere='$';
             }
 
@@ -561,9 +519,7 @@ void Classe::Charger(string chemin)
 
                     if (fichier.eof())
                     {
-                        char temp[255];
-                        sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                        console->Ajouter(temp,1);
+                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                         caractere='$';
                     }
 
@@ -573,9 +529,7 @@ void Classe::Charger(string chemin)
             }
             if (fichier.eof())
             {
-                char temp[255];
-                sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                 caractere='$';
             }
 
@@ -608,9 +562,7 @@ void Classe::Charger(string chemin)
 
                     if (fichier.eof())
                     {
-                        char temp[255];
-                        sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                        console->Ajouter(temp,1);
+                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                         caractere='$';
                     }
 
@@ -620,9 +572,7 @@ void Classe::Charger(string chemin)
             }
             if (fichier.eof())
             {
-                char temp[255];
-                sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                 caractere='$';
             }
 
@@ -655,9 +605,7 @@ void Classe::Charger(string chemin)
 
                     if (fichier.eof())
                     {
-                        char temp[255];
-                        sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                        console->Ajouter(temp,1);
+                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                         caractere='$';
                     }
 
@@ -667,9 +615,7 @@ void Classe::Charger(string chemin)
             }
             if (fichier.eof())
             {
-                char temp[255];
-                sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                 caractere='$';
             }
 
@@ -702,9 +648,7 @@ void Classe::Charger(string chemin)
 
                     if (fichier.eof())
                     {
-                        char temp[255];
-                        sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                        console->Ajouter(temp,1);
+                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                         caractere='$';
                     }
 
@@ -714,9 +658,7 @@ void Classe::Charger(string chemin)
             }
             if (fichier.eof())
             {
-                char temp[255];
-                sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                 caractere='$';
             }
 
@@ -753,9 +695,7 @@ void Classe::Charger(string chemin)
 
                     if (fichier.eof())
                     {
-                        char temp[255];
-                        sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                        console->Ajouter(temp,1);
+                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                         caractere='$';
                     }
 
@@ -765,9 +705,7 @@ void Classe::Charger(string chemin)
             }
             if (fichier.eof())
             {
-                char temp[255];
-                sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                 caractere='$';
             }
 
@@ -793,9 +731,7 @@ void Classe::Charger(string chemin)
 
                     if (fichier.eof())
                     {
-                        char temp[255];
-                        sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                        console->Ajouter(temp,1);
+                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                         caractere='$';
                     }
                 }
@@ -804,9 +740,7 @@ void Classe::Charger(string chemin)
             }
             if (fichier.eof())
             {
-                char temp[255];
-                sprintf(temp,"Erreur : Classe \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
                 caractere='$';
             }
         }

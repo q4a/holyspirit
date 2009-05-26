@@ -151,7 +151,7 @@ void Hero::Sauvegarder()
         if (configuration->debug)
             console->Ajouter("Ouverture du fichier.");
 
-        fichier<<m_personnage.getNom()<<" "<<endl;
+        fichier<<m_personnage.getNom().c_str()<<" "<<endl;
         fichier<<m_cheminClasse<<" "<<endl;
 
         fichier<<m_personnage.getCaracteristique().vitesse<<endl;
