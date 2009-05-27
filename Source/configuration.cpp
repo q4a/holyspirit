@@ -166,6 +166,8 @@ void Configuration::ChargerInit()
 
             if (chaine== "font_title:")
                 fichier>>font_titre;
+            if (chaine== "font:")
+                fichier>>font;
             if (chaine== "menu_blood:")
                 fichier>>nom_sang;
             if (chaine== "cache: ")

@@ -469,6 +469,7 @@ void Hero::Afficher(coordonnee dimensionsMap)
 void Hero::AfficherCaracteristiques(float decalage)
 {
     sf::String string;
+    string.SetFont(moteurGraphique->m_font);
     string.SetSize(16*configuration->Resolution.h/600);
 
     string.SetColor(sf::Color(255,255,255));
@@ -562,7 +563,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     }
 
     string.SetText(configuration->text_menus[5].c_str());
-    string.SetX(32);
+    string.SetX(16);
     string.SetY(311*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
@@ -581,7 +582,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     }
 
     string.SetText(configuration->text_menus[6].c_str());
-    string.SetX(32);
+    string.SetX(16);
     string.SetY(338*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
@@ -601,7 +602,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     }
 
     string.SetText(configuration->text_menus[7].c_str());
-    string.SetX(32);
+    string.SetX(16);
     string.SetY(365*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
@@ -621,7 +622,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     }
 
     string.SetText(configuration->text_menus[8].c_str());
-    string.SetX(32);
+    string.SetX(16);
     string.SetY(392*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
@@ -641,13 +642,13 @@ void Hero::AfficherCaracteristiques(float decalage)
     }
 
     string.SetText(configuration->text_menus[9].c_str());
-    string.SetX(32);
+    string.SetX(16);
     string.SetY(419*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
     string.SetText(configuration->text_menus[12].c_str());
-    string.SetX(32);
+    string.SetX(16);
     string.SetY(446*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
@@ -667,7 +668,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     }
 
     string.SetText(configuration->text_menus[10].c_str());
-    string.SetX(246);
+    string.SetX(234);
     string.SetY(300*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
@@ -686,7 +687,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     }
 
     string.SetText(configuration->text_menus[11].c_str());
-    string.SetX(246);
+    string.SetX(234);
     string.SetY(327*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
@@ -1000,15 +1001,15 @@ void Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
                     coordonnee temp=eventManager->getPositionSouris();
                    // temp.y-=32*configuration->Resolution.h/600;
                    temp.y+=48;
-                   temp.x+=160;
-                    int decalage=m_inventaire[i].AfficherCaracteristiques(temp,m_caracteristiques,1,1);
+                   temp.x+=128;
+                    int decalage=m_inventaire[i].AfficherCaracteristiques(temp,m_caracteristiques,1,1,0);
 
                     for (int j=0;j<(int)m_inventaire.size();j++)
                         if(m_inventaire[j].m_equipe>=0/*&&m_inventaire[j].m_type==m_inventaire[i].m_type*/)
                             for (int k=0;k<(int)m_inventaire[i].m_emplacement.size();k++)
                                 for (int l=0;l<(int)m_inventaire[j].m_emplacement.size();l++)
                                     if(m_inventaire[i].m_emplacement[k]==m_inventaire[j].m_emplacement[l])
-                                        temp.x=decalage,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,1,1),l=(int)m_inventaire[j].m_emplacement.size(),k=(int)m_inventaire[i].m_emplacement.size();
+                                        temp.x=decalage-2,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,1,1,0,1),l=(int)m_inventaire[j].m_emplacement.size(),k=(int)m_inventaire[i].m_emplacement.size();
                 }
     }
     else if (eventManager->getPositionSouris().x>m_classe.position_contenu_marchand.x*configuration->Resolution.x/800&&eventManager->getPositionSouris().x<m_classe.position_contenu_marchand.x*configuration->Resolution.x/800+32*m_classe.position_contenu_marchand.w*configuration->Resolution.x/800&&eventManager->getPositionSouris().y>(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600&&eventManager->getPositionSouris().y<(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_marchand.h*configuration->Resolution.y/600)
@@ -1030,7 +1031,7 @@ void Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
                         for (int k=0;k<(int)trader[i].m_emplacement.size();k++)
                             for (int l=0;l<(int)m_inventaire[j].m_emplacement.size();l++)
                                 if(trader[i].m_emplacement[k]==m_inventaire[j].m_emplacement[l])
-                                    temp.x=decalage,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,1,1,1),l=(int)m_inventaire[j].m_emplacement.size(),k=(int)m_inventaire[i].m_emplacement.size();
+                                    temp.x=decalage+2,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,1,1,1,1),l=(int)m_inventaire[j].m_emplacement.size(),k=(int)m_inventaire[i].m_emplacement.size();
             }
     }
 

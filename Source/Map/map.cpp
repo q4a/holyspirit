@@ -1395,9 +1395,10 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                                 m_sacPointe.x=k;
                                 m_sacPointe.y=j;
 
-                                m_objetPointe=objetPointe;
                                 if(eventManager->getEvenement(sf::Key::LControl,"ET"))
                                     m_decor[1][j][k].getObjet(objetPointe)->AfficherCaracteristiques(eventManager->getPositionSouris(),hero->m_caracteristiques);
+
+                                m_objetPointe=objetPointe;
                             }
 
                         }

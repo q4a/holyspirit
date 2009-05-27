@@ -76,7 +76,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	sf::PostFX EffectBlur,EffectMort,EffectNoir,EffectContrastes;
 
-	sf::Font m_font_titre;
+	sf::Font m_font,m_font_titre;
 
 	float m_blur;
 

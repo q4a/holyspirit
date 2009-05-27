@@ -119,10 +119,17 @@ void MoteurGraphique::Charger()
     console->Ajouter("");
     console->Ajouter("Chargement des polices d'écriture :");
 
+    if (!m_font.LoadFromFile(configuration->chemin_fonts+configuration->font))
+        console->Ajouter("Impossible de charger : "+configuration->chemin_fonts+configuration->font,1);
+    else
+        console->Ajouter("Chargement de : "+configuration->chemin_fonts+configuration->font,0);
+
     if (!m_font_titre.LoadFromFile(configuration->chemin_fonts+configuration->font_titre))
         console->Ajouter("Impossible de charger : "+configuration->chemin_fonts+configuration->font_titre,1);
     else
         console->Ajouter("Chargement de : "+configuration->chemin_fonts+configuration->font_titre,0);
+
+
 }
 
 void MoteurGraphique::Gerer(float temps,int tailleMapY)
@@ -480,18 +487,7 @@ void MoteurGraphique::AjouterTexte(sf::String* string, int couche,bool titre)
     sf::String temp(*string);
     if (couche>=0&&couche<=20)
     {
-
-        /* if(temp.GetRect().Right>configuration->Resolution.w)
-             temp.SetX(configuration->Resolution.w-(temp.GetRect().Right-temp.GetRect().Left));
-
-         if(temp.GetRect().Left<0)
-             temp.SetX(0);
-
-         if(temp.GetRect().Top<0)
-             temp.SetY(0);
-
-         if(temp.GetRect().Bottom>configuration->Resolution.h)
-             temp.SetY(configuration->Resolution.h-(temp.GetRect().Bottom-temp.GetRect().Top));*/
+        temp.SetFont(m_font);
 
         if (titre)
         {

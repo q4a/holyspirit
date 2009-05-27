@@ -171,8 +171,10 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet)
         if (rarete==CRAFT)
             texte.SetColor(sf::Color(128,64,0));
 
+        texte.SetFont(moteurGraphique->m_font);
+
         texte.SetText(m_objets[objet].getNom());
-        texte.SetSize(16*configuration->Resolution.w/800);
+        texte.SetSize(14*configuration->Resolution.w/800);
         texte.SetY((position.y-moteurGraphique->m_camera.GetRect().Top)*configuration->zoom);
         texte.SetX((position.x-moteurGraphique->m_camera.GetRect().Left)*configuration->zoom);
 
@@ -182,8 +184,8 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet)
 
         sprite.SetY((position.y-moteurGraphique->m_camera.GetRect().Top)*configuration->zoom);
         sprite.SetX((position.x-moteurGraphique->m_camera.GetRect().Left)*configuration->zoom-4);
-        sprite.SetColor(sf::Color(0,0,0,128));
-        sprite.Resize(texte.GetRect().Right-texte.GetRect().Left +8 , 24);
+        sprite.SetColor(sf::Color(0,0,0,224));
+        sprite.Resize(texte.GetRect().Right-texte.GetRect().Left +8 , 18);
 
 
 
@@ -191,7 +193,7 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet)
          &&eventManager->getPositionSouris().y>sprite.GetPosition().y
          &&eventManager->getPositionSouris().x<sprite.GetPosition().x+texte.GetRect().Right-texte.GetRect().Left +8
          &&eventManager->getPositionSouris().y<sprite.GetPosition().y+texte.GetRect().Bottom-texte.GetRect().Top +6)
-            retour = true,sprite.SetColor(sf::Color(64,64,64,128));
+            retour = true,sprite.SetColor(sf::Color(32,32,32,224));
 
         moteurGraphique->AjouterCommande(&sprite,13,0);
     }
@@ -204,7 +206,7 @@ int Decor::AfficherTexteObjets(coordonnee position, int objetPointe)
 
     for (int z=0;z<(int)m_objets.size();z++)
     {
-        coordonnee buf={position.x,position.y-24*(z+1),0,0};
+        coordonnee buf={position.x,position.y-18*(z+1),0,0};
         if(AfficherTexteObjet(buf,z))
             retour=z;
     }

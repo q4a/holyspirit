@@ -1159,9 +1159,11 @@ sf::String Objet::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee 
 {
     sf::String string;
 
+    string.SetFont(moteurGraphique->m_font);
+
     string.SetColor(color);
 
-    string.SetSize(14.f*configuration->Resolution.h/600);
+    string.SetSize(12.f*(int)(configuration->Resolution.h/600));
     string.SetText(chaine);
 
     if (tailleCadran->x<((int)string.GetRect().Right-(int)string.GetRect().Left))
@@ -1173,7 +1175,7 @@ sf::String Objet::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee 
 }
 
 
-int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,float modPrix,bool compare,bool decalageDroite)
+int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,float modPrix,bool compare,bool decalageDroite, bool surbrillance)
 {
     std::vector <sf::String> temp;
 
@@ -1358,7 +1360,10 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
     tailleCadran.x+=20;
 
     sprite.SetImage(*moteurGraphique->getImage(0));
-    sprite.SetColor(sf::Color(0,0,0,248));
+    if(surbrillance)
+        sprite.SetColor(sf::Color(16,16,16,248));
+    else
+        sprite.SetColor(sf::Color(0,0,0,248));
     sprite.SetY(position.y);
     sprite.SetX(position.x-tailleCadran.x+10);
     sprite.Resize(tailleCadran.x,tailleCadran.y);
