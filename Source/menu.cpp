@@ -254,6 +254,8 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
 
         moteurGraphique->AjouterCommande(&sprite2,17,0);
 
+        texte.SetFont(moteurGraphique->m_font);
+
         //char chaine[255];
 
         texte.SetSize(20.f*configuration->Resolution.h/600);
