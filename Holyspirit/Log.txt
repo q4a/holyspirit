@@ -33,18 +33,6 @@
          Chargement de : Data/Items/Images/shield01.png
          Chargement de : Data/Sounds/tomber3.wav
          
-         Chargement de l'objet : Small_axe.item.hs
-         Chargement de : Data/Items/Images/axes01.png
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Ring.item.hs
-         Chargement de : Data/Items/Images/Ring1.png
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
          Chargement de l'objet : Armor.item.hs
          Chargement de : Data/Items/Images/armor01.png
          Chargement de : Data/Sounds/Tombertissu.wav
@@ -52,18 +40,30 @@
          Chargement de l'objet : Boot.item.hs
          Chargement de : Data/Items/Images/Boot.png
          
-         Chargement de l'objet : Long_sword.item.hs
-         
          Chargement de l'objet : Armband.item.hs
          Chargement de : Data/Items/Images/Brassards.png
          
-         Chargement de l'objet : Great_shield.item.hs
+         Chargement de l'objet : Small_sword.item.hs
          
-         Chargement de l'objet : Great_shield.item.hs
+         Chargement de l'objet : Small_shield.item.hs
+         
+         Chargement de l'objet : Ring.item.hs
+         Chargement de : Data/Items/Images/Ring1.png
+         
+         Chargement de l'objet : Armor.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         Chargement de : Data/Items/Images/axes01.png
          
          Chargement de l'objet : Small_sword.item.hs
          
-         Chargement de l'objet : Armor.item.hs
+         Chargement de l'objet : Long_sword.item.hs
+         
+         Chargement de l'objet : Great_shield.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Great_shield.item.hs
          /Lectures des objets.
          Chargement de : Data/Menus/Inventory.png
          Chargement de : Data/Menus/Trader.png
@@ -99,19 +99,19 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          /Ecriture des caracterstiques.
          /Sauvegarde de Small_sword.item.hs
          /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
          /Sauvegarde de Armor.item.hs
          /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Long_sword.item.hs
          /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Ring.item.hs
          /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Great_shield.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
@@ -151,19 +151,19 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          /Ecriture des caracterstiques.
          /Sauvegarde de Small_sword.item.hs
          /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
          /Sauvegarde de Armor.item.hs
          /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Long_sword.item.hs
          /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Ring.item.hs
          /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Great_shield.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
@@ -460,19 +460,19 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          /Ecriture des caracterstiques.
          /Sauvegarde de Small_sword.item.hs
          /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
          /Sauvegarde de Armor.item.hs
          /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Long_sword.item.hs
          /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Ring.item.hs
          /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Great_shield.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
