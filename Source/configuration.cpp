@@ -28,6 +28,9 @@ void Configuration::Charger()
 
     zoom=1;
 
+    RafraichirOmbre=0;
+    RafraichirLumiere=0;
+
     if (!Lumiere)
         Ombre=0;
 

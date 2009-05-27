@@ -52,7 +52,7 @@ public:
 
      Objet operator=(const Objet &objet);
 
-    void AfficherCaracteristiques(coordonnee position,Caracteristique caract,float modPrix=1);
+    int AfficherCaracteristiques(coordonnee position,Caracteristique caract,float modPrix = 1, bool compare = false, bool = false);
     void Charger(std::string chemin,bool NePasAjouterBenedictions=false);
     void ChargerCaracteristiques(std::ifstream *fichier);
 

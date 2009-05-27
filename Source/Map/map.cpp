@@ -1337,6 +1337,8 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                                     {
                                         coordonnee buf={(int)(sprite.GetPosition().x),(int)(sprite.GetPosition().y),0,0};
                                         m_decor[1][j][k].AfficherTexteObjet(buf,o);
+                                        if(eventManager->getEvenement(sf::Key::LControl,"ET"))
+                                            m_decor[1][j][k].getObjet(o)->AfficherCaracteristiques(eventManager->getPositionSouris(),hero->m_caracteristiques);
 
                                         m_sacPointe.x=k;
                                         m_sacPointe.y=j;
@@ -1392,6 +1394,8 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                                 m_sacPointe.y=j;
 
                                 m_objetPointe=objetPointe;
+                                if(eventManager->getEvenement(sf::Key::LControl,"ET"))
+                                    m_decor[1][j][k].getObjet(objetPointe)->AfficherCaracteristiques(eventManager->getPositionSouris(),hero->m_caracteristiques);
                             }
 
                         }

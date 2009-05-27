@@ -1173,7 +1173,7 @@ sf::String Objet::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee 
 }
 
 
-void Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,float modPrix)
+int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,float modPrix,bool compare,bool decalageDroite)
 {
     std::vector <sf::String> temp;
 
@@ -1183,24 +1183,40 @@ void Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,
 
     coordonnee tailleCadran={0,0,0,0},decalage={-10,0,0,0};
 
+    if(m_equipe>=0&&compare)
+    {
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"Equipé :"));
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"---------------"));
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+    }
+    else if(compare)
+    {
+        if(decalageDroite)
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"Marchand :"));
+        else
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"Inventaire :"));
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"---------------"));
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+    }
+
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_nom.c_str()));
 
     if (m_rarete==NORMAL)
-        temp[0].SetColor(sf::Color(224,224,224));
+        temp.back().SetColor(sf::Color(224,224,224));
     if (m_rarete==BONNEFACTURE)
-        temp[0].SetColor(sf::Color(128,0,128));
+        temp.back().SetColor(sf::Color(128,0,128));
     if (m_rarete==BENI)
-        temp[0].SetColor(sf::Color(0,64,128));
+        temp.back().SetColor(sf::Color(0,64,128));
     if (m_rarete==SACRE)
-        temp[0].SetColor(sf::Color(255,255,128));
+        temp.back().SetColor(sf::Color(255,255,128));
     if (m_rarete==SANCTIFIE)
-        temp[0].SetColor(sf::Color(128,255,255));
+        temp.back().SetColor(sf::Color(128,255,255));
     if (m_rarete==DIVIN)
-        temp[0].SetColor(sf::Color(255,164,32));
+        temp.back().SetColor(sf::Color(255,164,32));
     if (m_rarete==INFERNAL)
-        temp[0].SetColor(sf::Color(224,0,0));
+        temp.back().SetColor(sf::Color(224,0,0));
     if (m_rarete==CRAFT)
-        temp[0].SetColor(sf::Color(128,64,0));
+        temp.back().SetColor(sf::Color(128,64,0));
 
     for (int i=0;i<(int)m_description.size();i++)
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_description[i].c_str()));
@@ -1315,8 +1331,14 @@ void Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,
     if (position.x-tailleCadran.x-10<0)
         position.x=tailleCadran.x+10;
 
+    if (position.x-tailleCadran.x-10<position.x&&decalageDroite)
+        position.x=position.x+tailleCadran.x-10;
+
     if (position.y+decalage.y+10>configuration->Resolution.h)
         position.y=configuration->Resolution.h-decalage.y-10;
+
+    if (position.x+decalage.x+10>configuration->Resolution.w)
+        position.x=configuration->Resolution.w-decalage.x-20;
 
     int decalY=0;
     for (int i=0;i<(int)temp.size();i++)
@@ -1342,6 +1364,12 @@ void Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,
     sprite.Resize(tailleCadran.x,tailleCadran.y);
     moteurGraphique->AjouterCommande(&sprite,18,0);
     temp.clear();
+
+    if(decalageDroite)
+        return (position.x+20);
+
+    return (position.x-tailleCadran.x);
+
 }
 
 bool Objet::Utilisable(Caracteristique caract,int IDClasse)

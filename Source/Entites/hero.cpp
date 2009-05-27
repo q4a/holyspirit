@@ -998,8 +998,17 @@ void Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
                 if (m_inventaire[i].m_equipe==-1)
                 {
                     coordonnee temp=eventManager->getPositionSouris();
-                    temp.y-=32*configuration->Resolution.h/600;
-                    m_inventaire[i].AfficherCaracteristiques(temp,m_caracteristiques);
+                   // temp.y-=32*configuration->Resolution.h/600;
+                   temp.y+=48;
+                   temp.x+=160;
+                    int decalage=m_inventaire[i].AfficherCaracteristiques(temp,m_caracteristiques,1,1);
+
+                    for (int j=0;j<(int)m_inventaire.size();j++)
+                        if(m_inventaire[j].m_equipe>=0/*&&m_inventaire[j].m_type==m_inventaire[i].m_type*/)
+                            for (int k=0;k<(int)m_inventaire[i].m_emplacement.size();k++)
+                                for (int l=0;l<(int)m_inventaire[j].m_emplacement.size();l++)
+                                    if(m_inventaire[i].m_emplacement[k]==m_inventaire[j].m_emplacement[l])
+                                        temp.x=decalage,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,1,1),l=(int)m_inventaire[j].m_emplacement.size(),k=(int)m_inventaire[i].m_emplacement.size();
                 }
     }
     else if (eventManager->getPositionSouris().x>m_classe.position_contenu_marchand.x*configuration->Resolution.x/800&&eventManager->getPositionSouris().x<m_classe.position_contenu_marchand.x*configuration->Resolution.x/800+32*m_classe.position_contenu_marchand.w*configuration->Resolution.x/800&&eventManager->getPositionSouris().y>(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600&&eventManager->getPositionSouris().y<(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_marchand.h*configuration->Resolution.y/600)
@@ -1012,8 +1021,16 @@ void Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
             if (caseVisee.x>=trader[i].getPosition().x&&caseVisee.x<=trader[i].getPosition().x+trader[i].getTaille().x-1
                     &&caseVisee.y>=trader[i].getPosition().y&&caseVisee.y<=trader[i].getPosition().y+trader[i].getTaille().y-1)
             {
-                eventManager->getPositionSouris().y-=32*configuration->Resolution.h/600;
-                trader[i].AfficherCaracteristiques(eventManager->getPositionSouris(),m_caracteristiques,(5-(float)m_caracteristiques.charisme/100));
+                coordonnee temp=eventManager->getPositionSouris();
+                temp.y+=48;
+                int decalage=trader[i].AfficherCaracteristiques(temp,m_caracteristiques,(5-(float)m_caracteristiques.charisme/100),1,1);
+
+                for (int j=0;j<(int)m_inventaire.size();j++)
+                    if(m_inventaire[j].m_equipe>=0)
+                        for (int k=0;k<(int)trader[i].m_emplacement.size();k++)
+                            for (int l=0;l<(int)m_inventaire[j].m_emplacement.size();l++)
+                                if(trader[i].m_emplacement[k]==m_inventaire[j].m_emplacement[l])
+                                    temp.x=decalage,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,1,1,1),l=(int)m_inventaire[j].m_emplacement.size(),k=(int)m_inventaire[i].m_emplacement.size();
             }
     }
 
