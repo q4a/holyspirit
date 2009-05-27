@@ -54,11 +54,11 @@ void Jeu::Demarrer()
 
     hero.ChargerModele();
 
-    m_jeu = new c_Jeu();
-    m_demarrage = new c_Demarrage();
-    m_chargement = new c_Chargement();
-    m_inventaire = new c_Inventaire();
-    m_menuInGame = new c_MenuInGame();
+    m_jeu = new c_Jeu;
+    m_demarrage = new c_Demarrage;
+    m_chargement = new c_Chargement;
+    m_inventaire = new c_Inventaire;
+    m_menuInGame = new c_MenuInGame;
 
     coordonnee temp={0,0,-1,-1};
     m_chargement->setC_Chargement("Begin.map.hs",temp,1);

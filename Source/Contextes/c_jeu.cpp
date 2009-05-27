@@ -26,6 +26,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
+#include <sstream>
+
 
 using namespace sf;
 
@@ -44,13 +46,10 @@ c_Jeu::c_Jeu()
     fps.SetSize(16.f);
 
     Version.SetSize(16.f);
-    sprintf(chaine,"v %s",configuration->version.c_str());
-    Version.SetText(chaine);
+    Version.SetText("v "+configuration->version);
     Version.SetY(20);
 
     Temps.SetSize(16.f);
-    sprintf(chaine,"Temps : %i h %i ",configuration->heure,(int)configuration->minute);
-    Temps.SetText(chaine);
     Temps.SetY(40);
 
     TourBoucle.SetX(120);
@@ -465,14 +464,19 @@ void c_Jeu::Affichage(Jeu *jeu)
     if (configuration->console)
         if (tempsEcouleDepuisFPS>0.1)
         {
-            if (configuration->console&&moteurGraphique->GetFPS()!=0)
-                sprintf(chaine,"%i / %i FPS",moteurGraphique->GetFPS(), (int)lowFPS);
-            //  Calcule du nombre de FPS
-            fps.SetText(chaine);
+            {
+                std::ostringstream  buf;
+                if (configuration->console&&moteurGraphique->GetFPS()!=0)
+                    buf<<moteurGraphique->GetFPS()<<" / "<<(int)lowFPS<<" FPS";
+                fps.SetText(buf.str());
+            }
 
+            {
+                std::ostringstream  buf;
 
-            sprintf(chaine,"Temps : %i h %i ",configuration->heure,(int)configuration->minute);
-            Temps.SetText(chaine);
+                buf<<"Temps : "<<configuration->heure<<" h "<<(int)configuration->minute;
+                Temps.SetText(buf.str());
+            }
 
             tempsEcouleDepuisFPS=0;
         }
@@ -486,9 +490,9 @@ void c_Jeu::FPS(Jeu *jeu)
     if (tempsNbrTourBoucle>1)
     {
         lowFPS=-1;
-
-        sprintf(chaine,"Nbr Tour de boucle : %i",nbrTourBoucle);
-        TourBoucle.SetText(chaine);
+        std::ostringstream  buf;
+        buf<<"Nbr Tour de boucle : "<<nbrTourBoucle;
+        TourBoucle.SetText(buf.str());
         nbrTourBoucle=0;
 
         tempsNbrTourBoucle=0;

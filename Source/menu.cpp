@@ -22,6 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
@@ -173,12 +174,13 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
 
     texte.SetSize(16.f*configuration->Resolution.y/600);
 
-    char chaine[255],chaine2[255];
 
     texte.SetColor(Color(255,255,255,255));
-
-    sprintf(chaine,"%i",caracteristique.niveau);
-    texte.SetText(chaine);
+    {
+        std::ostringstream buf;
+        buf<<caracteristique.niveau;
+        texte.SetText(buf.str());
+    }
 
     texte.SetX(configuration->Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
     texte.SetY(configuration->Resolution.h-52*configuration->Resolution.h/600);
@@ -257,17 +259,17 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         texte.SetSize(20.f*configuration->Resolution.h/600);
         texte.SetStyle(1);
 
-        sprintf(chaine,"%s (%i)",caracteristiqueMonstre.nom.c_str(),caracteristiqueMonstre.niveau);
-        sprintf(chaine2,"%s",chaine);
-        if (caracteristiqueMonstre.rang==1)
         {
-            sprintf(chaine2,"Champion : %s",chaine);
+            std::string buf;
+            buf=caracteristiqueMonstre.nom;
+            if (caracteristiqueMonstre.rang==1)
+                buf="Champion : "+buf;
+            if (caracteristiqueMonstre.rang==2)
+                buf="Chef : "+buf;
+
+            texte.SetText(buf);
         }
-        if (caracteristiqueMonstre.rang==2)
-        {
-            sprintf(chaine2,"Chef : %s",chaine);
-        }
-        texte.SetText(chaine2);
+
 
 
         texte.SetX(configuration->Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2+2);
@@ -307,9 +309,7 @@ void Menu::AfficherChargement(string nom,int fond,int z=50)
     moteurGraphique->AjouterCommande(&sprite,12);
 
     texte.SetSize(50.f*configuration->Resolution.h/600);
-    char chaine[255];
-    sprintf(chaine,"%s",nom.c_str());
-    texte.SetText(chaine);
+    texte.SetText(nom);
 
     texte.SetX(configuration->Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
     texte.SetY(configuration->Resolution.h-(texte.GetRect().Bottom-texte.GetRect().Top)/2-60*configuration->Resolution.h/600);

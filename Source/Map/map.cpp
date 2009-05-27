@@ -60,8 +60,14 @@ void Map::Detruire()
     if (configuration->debug)
         console->Ajouter("Destruction des cases...");
 
+    for (int i=0;i<NOMBRE_COUCHE_MAP;i++)
+    {
+        for (int j=0;j<(int)m_decor[i].size();j++)
+            m_decor[i][j].clear();
+        m_decor[i].clear();
+    }
 
-    if (m_decor)
+    /*if (m_decor)
     {
         for (int i=0;i<NOMBRE_COUCHE_MAP;i++)
         {
@@ -80,7 +86,7 @@ void Map::Detruire()
             }
         }
         delete[] m_decor;
-    }
+    }*/
 
     if (configuration->debug)
         console->Ajouter("Cases détruites !");
@@ -156,11 +162,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
     if (mapExistante==true)
     {
         fichier=reader.GetInfos(configuration->chemin_temps+nomMap);
-
-        char buf[255];
-        sprintf(buf,"entites_map_%s.emap.hs",nomMap.c_str());
-
-        fichier2=reader.GetInfos(configuration->chemin_temps+buf);
+        fichier2=reader.GetInfos(configuration->chemin_temps+"entites_map_"+nomMap+".emap.hs");
     }
     else
     {
@@ -180,10 +182,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
             if (fichier->eof())
             {
-                char temp[1000];
-                sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
-                throw (&temp);
+                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
+                throw ("Erreur : Map \" "+chemin+" \" Invalide");
             }
         }
         while (caractere!='$');
@@ -203,10 +203,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
             if (fichier->eof())
             {
-                char temp[1000];
-                sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
-                throw (&temp);
+                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
+                throw ("Erreur : Map \" "+chemin+" \" Invalide");
             }
         }
         while (caractere!='$');
@@ -243,9 +241,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
             }
             if (fichier->eof())
             {
-                char temp[1000];
-                sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
-                throw (&temp);
+                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
+                throw ("Erreur : Map \" "+chemin+" \" Invalide");
             }
         }
         while (caractere!='$');
@@ -277,10 +274,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
             }
             if (fichier->eof())
             {
-                char temp[1000];
-                sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
-                throw (&temp);
+                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
+                throw ("Erreur : Map \" "+chemin+" \" Invalide");
             }
         }
         while (caractere!='$');
@@ -311,10 +306,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
             }
             if (fichier->eof())
             {
-                char temp[1000];
-                sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
-                throw (&temp);
+                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
+                throw ("Erreur : Map \" "+chemin+" \" Invalide");
             }
 
         }
@@ -338,10 +331,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
             }
             if (fichier->eof())
             {
-                char temp[1000];
-                sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
-                throw (&temp);
+                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
+                throw ("Erreur : Map \" "+chemin+" \" Invalide");
             }
 
         }
@@ -367,10 +358,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
             }
             if (fichier->eof())
             {
-                char temp[1000];
-                sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
-                throw (&temp);
+                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
+                throw ("Erreur : Map \" "+chemin+" \" Invalide");
             }
         }
         while (caractere!='$');
@@ -483,10 +472,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
                             if (fichier2->eof())
                             {
-                                char temp[1000];
-                                sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
-                                console->Ajouter(temp,1);
-                                throw (&temp);
+                                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
+                                throw ("Erreur : Map \" "+chemin+" \" Invalide");
                             }
                         }
                         while (caractere!='$');
@@ -516,10 +503,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
                     if (fichier2->eof())
                     {
-                        char temp[1000];
-                        sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
-                        console->Ajouter(temp,1);
-                        throw (&temp);
+                        console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
+                        throw ("Erreur : Map \" "+chemin+" \" Invalide");
                     }
                 }
                 while (caractere!='$');
@@ -547,10 +532,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                     }
                     if (fichier->eof())
                     {
-                        char temp[1000];
-                        sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
-                        console->Ajouter(temp,1);
-                        throw (&temp);
+                        console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
+                        throw ("Erreur : Map \" "+chemin+" \" Invalide");
                     }
                 }
                 while (caractere!='$');
@@ -578,10 +561,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                     }
                     if (fichier->eof())
                     {
-                        char temp[1000];
-                        sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
-                        console->Ajouter(temp,1);
-                        throw (&temp);
+                        console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
+                        throw ("Erreur : Map \" "+chemin+" \" Invalide");
                     }
                 }
                 while (caractere!='$');
@@ -590,10 +571,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
             }
             if (fichier->eof())
             {
-                char temp[1000];
-                sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
-                throw (&temp);
+                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
+                throw ("Erreur : Map \" "+chemin+" \" Invalide");
             }
         }
         while (caractere!='$');
@@ -617,7 +596,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                 fichier->get(caractere);
                 if (caractere=='*')
                 {
-                    decorBuffer[couche].push_back(std::vector<Decor> ());
+                    m_decor[couche].push_back(std::vector<Decor> ());
                     do
                     {
                         int pos;
@@ -740,10 +719,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
                                             if (fichier->eof())
                                             {
-                                                char temp[1000];
-                                                sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
-                                                console->Ajouter(temp,1);
-                                                throw (&temp);
+                                                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
+                                                throw ("Erreur : Map \" "+chemin+" \" Invalide");
                                             }
                                         }
                                         while (caractere!='$');
@@ -752,10 +729,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
                                     if (fichier->eof())
                                     {
-                                        char temp[1000];
-                                        sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
-                                        console->Ajouter(temp,1);
-                                        throw (&temp);
+                                        console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
+                                        throw ("Erreur : Map \" "+chemin+" \" Invalide");
                                     }
                                 }
                                 while (caractere!='$');
@@ -764,10 +739,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                             fichier->get(caractere);
                             if (fichier->eof())
                             {
-                                char temp[1000];
-                                sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
-                                console->Ajouter(temp,1);
-                                throw (&temp);
+                                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
+                                throw ("Erreur : Map \" "+chemin+" \" Invalide");
                             }
                         }
                         while (caractere!='|' && caractere!='$');
@@ -775,8 +748,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                         if (caractere!='$')
                         {
                             if (couche==1)
-                                if (decorBuffer[0][position.y][position.x].getHerbe()>=0&&herbe<0)
-                                    herbe=decorBuffer[0][position.y][position.x].getHerbe();
+                                if (m_decor[0][position.y][position.x].getHerbe()>=0&&herbe<0)
+                                    herbe=m_decor[0][position.y][position.x].getHerbe();
 
                             if (entite_map_existante!=true)
                             {
@@ -826,13 +799,11 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
                             if (fichier->eof())
                             {
-                                char temp[1000];
-                                sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
-                                console->Ajouter(temp,1);
-                                throw (&temp);
+                                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
+                                throw ("Erreur : Map \" "+chemin+" \" Invalide");
                             }
 
-                            decorBuffer[couche][position.y].push_back(Decor (tileset,tileFinal,evenement,monstreFinal,herbe,layer,hauteur,objets));
+                            m_decor[couche][position.y].push_back(Decor (tileset,tileFinal,evenement,monstreFinal,herbe,layer,hauteur,objets));
 
                             tileset=-1,tile.clear(),tileFinal=-1,evenement.clear(),monstreFinal=-1,herbe=-1,layer=0,hauteur=0;
                             objets.clear();
@@ -849,10 +820,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                 }
                 if (fichier->eof())
                 {
-                    char temp[1000];
-                    sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
-                    console->Ajouter(temp,1);
-                    throw (&temp);
+                    console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
+                    throw ("Erreur : Map \" "+chemin+" \" Invalide");
                 }
             }
             while (caractere!='$');
@@ -876,34 +845,13 @@ bool Map::Charger(std::string nomMap,Hero *hero)
     delete fichier;
     delete fichier2;
 
-    m_dimensions.x=(int)decorBuffer[0][0].size();
-    m_dimensions.y=(int)decorBuffer[0].size();
-
-    m_decor = new Decor** [NOMBRE_COUCHE_MAP];
-    for (int i=0;i<NOMBRE_COUCHE_MAP;i++)
-    {
-        m_decor[i] = new Decor* [(int)decorBuffer[i].size()];
-        for (int j=0;j<(int)decorBuffer[i].size();j++)
-        {
-            m_decor[i][j] = new Decor[(int)decorBuffer[i][j].size()];
-            for (int k=0;k<(int)decorBuffer[i][j].size();k++)
-                m_decor[i][j][k]=decorBuffer[i][j][k];
-        }
-    }
+    m_dimensions.x=(int)m_decor[0][0].size();
+    m_dimensions.y=(int)m_decor[0].size();
 
     console->Ajouter("Chargement de la map terminé.");
     console->Ajouter("");
 
-    //calculerOmbresEtLumieres();
-
     Initialiser();
-
-    for (int i=0;i<NOMBRE_COUCHE_MAP;i++)
-    {
-        for (int j=0;j<(int)decorBuffer[i].size();j++)
-            decorBuffer[i][j].clear();
-        decorBuffer[i].clear();
-    }
 
     return 1;
 }
@@ -1573,7 +1521,6 @@ void Map::AfficherNomEvenement(coordonnee casePointee,coordonnee positionSouris)
                     if (m_evenement[evenement].getType()==CHANGEMENT_DE_MAP)
                     {
                         string nom;
-                        char chemin[128];
 
                         cDAT reader;
                         reader.Read(configuration->chemin_maps);
@@ -1600,10 +1547,8 @@ void Map::AfficherNomEvenement(coordonnee casePointee,coordonnee positionSouris)
 
                         delete fichier;
 
-                        sprintf(chemin,"Vers %s",nom.c_str());
-
                         sf::String texte;
-                        texte.SetText(chemin);
+                        texte.SetText("Vers "+nom);
                         texte.SetSize(16.f);
                         if (configuration->Resolution.y>0)
                             texte.SetY((positionSouris.y-16)*configuration->Resolution.h/configuration->Resolution.y);

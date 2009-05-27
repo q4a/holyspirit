@@ -21,6 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "../globale.h"
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -71,9 +72,9 @@ void Console::Ajouter(int nombre,bool erreur)
 {
     if (!configuration->desactivate_console)
     {
-        char temp[10];
-        sprintf(temp,"%i",nombre);
-        m_textes.push_back(temp);
+        std::ostringstream buf;
+        buf<<nombre;
+        m_textes.push_back(buf.str());
         m_erreur.push_back(erreur);
         Rapport();
 

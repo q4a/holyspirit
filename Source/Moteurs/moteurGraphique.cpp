@@ -22,6 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "../globale.h"
 
 #include <iostream>
+#include <sstream>
 
 MoteurGraphique::MoteurGraphique()
 {
@@ -566,10 +567,10 @@ coordonnee MoteurGraphique::getPositionSouris()
 
 void MoteurGraphique::Printscreen()
 {
-    char buffer[255];
+    std::ostringstream buf;
+    buf<<"screenshot"<<configuration->numero_screen<<".png";
     sf::Image Screen = m_ecran->Capture();
-    sprintf(buffer,"screenshot%i.png",configuration->numero_screen);
-    Screen.SaveToFile(buffer);
+    Screen.SaveToFile(buf.str());
     configuration->numero_screen++;
 }
 

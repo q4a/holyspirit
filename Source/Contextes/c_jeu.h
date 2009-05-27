@@ -119,7 +119,6 @@ private:
 
     bool continuer,lumiere,augmenter;
     int nbrTourBoucle;
-    char chaine[10];
     sf::String Version,Temps,fps,TourBoucle;
 
     float tempsActuel,tempsPrecedent,tempsDepuisDerniereAnimation,tempsEcoule,tempsNbrTourBoucle,tempsEcouleDepuisDernierCalculLumiere,tempsEcouleDepuisDernierCalculOmbre,tempsEcouleDepuisDernierDeplacement,tempsEcouleDepuisDernierIA,tempsEcouleDepuisDernierAffichage,tempsEcouleDepuisFPS,tempsEffetMort,tempsSauvergarde;

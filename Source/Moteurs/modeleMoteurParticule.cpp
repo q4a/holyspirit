@@ -57,9 +57,7 @@ void ModeleParticuleSysteme::Charger(std::string chemin)
             }
             if (fichier.eof())
             {
-                char temp[255];
-                sprintf(temp,"Erreur : Système de particules \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Système de particules \" "+chemin+" \" Invalide",1);
                 caractere='$';
             }
 
@@ -77,9 +75,7 @@ void ModeleParticuleSysteme::Charger(std::string chemin)
             }
             if (fichier.eof())
             {
-                char temp[255];
-                sprintf(temp,"Erreur : Système de particules \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Système de particules \" "+chemin+" \" Invalide",1);
                 caractere='$';
             }
 
@@ -123,9 +119,7 @@ void ModeleParticuleSysteme::Charger(std::string chemin)
 
                     if (fichier.eof())
                     {
-                        char temp[255];
-                        sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());
-                        console->Ajouter(temp,1);
+                        console->Ajouter("Erreur : Système de particules \" "+chemin+" \" Invalide",1);
                         caractere='$';
                     }
 
@@ -135,9 +129,7 @@ void ModeleParticuleSysteme::Charger(std::string chemin)
             }
             if (fichier.eof())
             {
-                char temp[255];
-                sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Système de particules \" "+chemin+" \" Invalide",1);
                 caractere='$';
             }
 

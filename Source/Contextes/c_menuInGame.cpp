@@ -58,7 +58,6 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
             m_alpha-=temps_ecoule*1000;
         if (m_alpha<0)
             m_alpha=0,retour=false,jeu->m_contexte=jeu->m_jeu,moteurGraphique->m_blur=0;
-
     }
     else
     {

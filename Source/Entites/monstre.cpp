@@ -180,9 +180,7 @@ bool Modele_Monstre::Charger(string chemin)
             }
             if (fichier->eof())
             {
-                char temp[1000];
-                sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                 caractere='$';
                 m_caracteristique.maxVie=0;
             }
@@ -201,9 +199,7 @@ bool Modele_Monstre::Charger(string chemin)
             }
             if (fichier->eof())
             {
-                char temp[1000];
-                sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                 caractere='$';
                 m_caracteristique.maxVie=0;
             }
@@ -236,9 +232,7 @@ bool Modele_Monstre::Charger(string chemin)
                     }
                     if (fichier->eof())
                     {
-                        char temp[1000];
-                        sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());
-                        console->Ajouter(temp,1);
+                        console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                         caractere='$';
                         m_caracteristique.maxVie=0;
                     }
@@ -247,18 +241,14 @@ bool Modele_Monstre::Charger(string chemin)
                 fichier->get(caractere);
                 if (fichier->eof())
                 {
-                    char temp[1000];
-                    sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());
-                    console->Ajouter(temp,1);
+                    console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                     caractere='$';
                     m_caracteristique.maxVie=0;
                 }
             }
             if (fichier->eof())
             {
-                char temp[1000];
-                sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                 caractere='$';
             }
 
@@ -275,9 +265,7 @@ bool Modele_Monstre::Charger(string chemin)
             }
             if (fichier->eof())
             {
-                char temp[1000];
-                sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                 caractere='$';
             }
 
@@ -293,9 +281,7 @@ bool Modele_Monstre::Charger(string chemin)
             }
             if (fichier->eof())
             {
-                char temp[1000];
-                sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                 caractere='$';
             }
 
@@ -360,9 +346,7 @@ bool Modele_Monstre::Charger(string chemin)
                     }
                     if (fichier->eof())
                     {
-                        char temp[1000];
-                        sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());
-                        console->Ajouter(temp,1);
+                        console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                         caractere='$';
                         m_caracteristique.maxVie=0;
                     }
@@ -375,9 +359,7 @@ bool Modele_Monstre::Charger(string chemin)
                 fichier->get(caractere);
                 if (fichier->eof())
                 {
-                    char temp[1000];
-                    sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());
-                    console->Ajouter(temp,1);
+                    console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                     caractere='$';
                     m_caracteristique.maxVie=0;
                 }
@@ -385,9 +367,7 @@ bool Modele_Monstre::Charger(string chemin)
             fichier->get(caractere);
             if (fichier->eof())
             {
-                char temp[1000];
-                sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                 caractere='$';
                 m_caracteristique.maxVie=0;
             }
@@ -408,9 +388,7 @@ bool Modele_Monstre::Charger(string chemin)
 
             if (fichier->eof())
             {
-                char temp[1000];
-                sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                 caractere='$';
                 m_caracteristique.maxVie=0;
             }
@@ -444,9 +422,7 @@ bool Modele_Monstre::Charger(string chemin)
 
                     if (fichier->eof())
                     {
-                        char temp[1000];
-                        sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());
-                        console->Ajouter(temp,1);
+                        console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                         caractere='$';
                     }
                 }
@@ -456,9 +432,7 @@ bool Modele_Monstre::Charger(string chemin)
             }
             if (fichier->eof())
             {
-                char temp[1000];
-                sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                 caractere='$';
             }
 
@@ -478,9 +452,7 @@ bool Modele_Monstre::Charger(string chemin)
 
             if (fichier->eof())
             {
-                char temp[1000];
-                sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                 caractere='$';
                 m_caracteristique.maxVie=0;
             }
@@ -500,9 +472,7 @@ bool Modele_Monstre::Charger(string chemin)
 
             if (fichier->eof())
             {
-                char temp[1000];
-                sprintf(temp,"Erreur : Monstre \" %s \" Invalide",chemin.c_str());
-                console->Ajouter(temp,1);
+                console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                 caractere='$';
                 m_caracteristique.maxVie=0;
             }
