@@ -3072,29 +3072,6 @@ int Map::getMonstre(Hero *hero,coordonnee positionSouris,coordonnee casePointee)
     if(casePointee.y>=0&&casePointee.y<m_dimensions.y&&casePointee.x>=0&&casePointee.x<m_dimensions.x)
     for (int i=0;i<2;i++)
     {
-       /* if (m_decor[i][casePointee.y][casePointee.x].getNombreObjets()>0)
-        {
-            m_sacPointe.x=casePointee.x;
-            m_sacPointe.y=casePointee.y;*/
-           // if (m_decor[i][casePointee.y][casePointee.x].getNombreObjets()==1)
-                //m_objetPointe=0;
-
-        /*    coordonnee position;
-            position.x=(casePointee.x-casePointee.y-1)*64+48;
-            position.y=(casePointee.x+casePointee.y)*32+16;
-
-             if (m_decor[i][casePointee.y][casePointee.x].getNombreObjets()<=6)
-                m_objetPointe=(moteurGraphique->getPositionSouris().x-position.x+32)/32+(moteurGraphique->getPositionSouris().y-position.y)/32*3;
-*/
-
-            /*for(int z=0;z<m_decor[i][casePointee.y][casePointee.x].getNombreObjets();z++)
-            {
-                sprite.SetY((position.y-moteurGraphique->m_camera.GetRect().Top)*configuration->zoom-20*configuration->Resolution.w/800*(z+1));
-                sprite.SetX((position.x-moteurGraphique->m_camera.GetRect().Left)*configuration->zoom-4);
-                sprite.Resize(texte.GetRect().Right-texte.GetRect().Left +8 , texte.GetRect().Bottom-texte.GetRect().Top +6);
-            }*/
-       // }
-
         for (int j=vueMin.y;j<vueMax.y;j++)
             for (int k=vueMin.x;k<vueMax.x;k++)
             {
@@ -3102,7 +3079,7 @@ int Map::getMonstre(Hero *hero,coordonnee positionSouris,coordonnee casePointee)
                     if (m_monstre[m_decor[i][j][k].getMonstre()].enVie()&&m_monstre[m_decor[i][j][k].getMonstre()].getCaracteristique().rang>=0)
                     {
                         coordonneeDecimal temp;
-                        temp.x=(((m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x-m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y)*64/COTE_TILE/*+m_dimensions.y*64*/));
+                        temp.x=(((m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x-m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y)*64/COTE_TILE));
                         temp.y=(((m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x+m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y)*64/COTE_TILE)/2+32);
 
 
