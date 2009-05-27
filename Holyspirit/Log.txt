@@ -141,7 +141,6 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          ---------------------------------------------------------------------------------
          EVENEMENT : Changement de map
          ---------------------------------------------------------------------------------
-         Chargement de : Data/Loading_screens/Plaines3.png
          
          Sauvegarde de la map : Data/Temp/Begin.map.hs
          Sauvegarde de la map_entite : Data/Temp/entites_map_Begin.map.hs.emap.hs
@@ -451,6 +450,7 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          /Lectures des monstres.
          
          /Lectures des événements.
+         Chargement de : Data/Items/FireEffect/FireEffect.png
          /Lectures des cases.
          Chargement de la map terminé.
          
