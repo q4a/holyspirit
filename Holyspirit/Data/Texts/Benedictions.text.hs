@@ -1,10 +1,10 @@
-Efficacite de l'objet accru de (%) : 
-Points de force supplémentaires : 
-Points de dexterité supplémentaires : 
-Points de vitalité supplémentaires : 
-Points de piété supplémentaires : 
-Points de charisme supplémentaires : 
-Points de vie supplémentaires : 
-Points de foi supplémentaires : 
-Dégats par le feu : 
-Dégats par la foi : 
+Efficacite accrue de (%) : 
+Force accrue : 
+Dexterité accrue : 
+Vitalité accrue : 
+Piété accrue : 
+Charisme accru : 
+Vie accrue : 
+Foi accrue : 
+Dégats de feu : 
+Dégats de foi : 
