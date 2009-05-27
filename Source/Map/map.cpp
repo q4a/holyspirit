@@ -1362,7 +1362,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                                 sprite.SetX(position.x);
                                 sprite.SetY(position.y);
 
-                                if (m_sacPointe.x==k&&m_sacPointe.y==j&&m_monstreIllumine<0)
+                                if(eventManager->getCasePointee().x==k&&eventManager->getCasePointee().y==j&&m_monstreIllumine<0&&m_decor[1][j][k].getNombreObjets()>4&&!alt&&m_monstreIllumine<0)
                                     sprite.SetColor(sf::Color(255,128,128));
                                 else
                                     sprite.SetColor(sf::Color(255,255,255));
@@ -1379,7 +1379,9 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
 
                             int objetPointe=-1;
 
-                            if (m_sacPointe.x==k&&m_sacPointe.y==j&&m_monstreIllumine<0&&m_decor[1][j][k].getNombreObjets()>4||alt)
+                            if(eventManager->getCasePointee().x==k&&eventManager->getCasePointee().y==j&&m_monstreIllumine<0&&m_decor[1][j][k].getNombreObjets()>4&&!alt)
+                                m_objetPointe=-1,m_decor[1][j][k].AfficherTexteObjets(position,-1);
+                            if (alt)
                                 objetPointe=m_decor[1][j][k].AfficherTexteObjets(position,m_objetPointe);
 
                             if(!eventManager->getEvenement(sf::Mouse::Left,"C")&&moteurGraphique->getPositionSouris().x>sprite.GetPosition().x&&moteurGraphique->getPositionSouris().x<sprite.GetPosition().x+32&&moteurGraphique->getPositionSouris().y>sprite.GetPosition().y&&moteurGraphique->getPositionSouris().y<sprite.GetPosition().y+32&&m_decor[1][j][k].getNombreObjets()>4)

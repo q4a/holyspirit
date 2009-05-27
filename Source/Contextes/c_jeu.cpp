@@ -409,7 +409,7 @@ void c_Jeu::Affichage(Jeu *jeu)
             alpha_sac=0;
     }
 
-    if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())<=4&&alpha_sac<128)
+    if (jeu->hero.getChercherSac().x!=-1&&alpha_sac<128&&jeu->hero.m_objetVise>=0)
     {
         jeu->map->m_objetPointe=jeu->hero.m_objetVise;
         jeu->map->RamasserObjet(&jeu->hero);

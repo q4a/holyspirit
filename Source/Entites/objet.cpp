@@ -1337,7 +1337,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
     if (position.y+decalage.y+10>configuration->Resolution.h)
         position.y=configuration->Resolution.h-decalage.y-10;
 
-    if (position.x+decalage.x+10>configuration->Resolution.w)
+    if (position.x+decalage.x+20>configuration->Resolution.w)
         position.x=configuration->Resolution.w-decalage.x-20;
 
     int decalY=0;
