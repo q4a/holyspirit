@@ -1031,7 +1031,7 @@ void Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
                         for (int k=0;k<(int)trader[i].m_emplacement.size();k++)
                             for (int l=0;l<(int)m_inventaire[j].m_emplacement.size();l++)
                                 if(trader[i].m_emplacement[k]==m_inventaire[j].m_emplacement[l])
-                                    temp.x=decalage+2,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,1,1,1,1),l=(int)m_inventaire[j].m_emplacement.size(),k=(int)m_inventaire[i].m_emplacement.size();
+                                    temp.x=decalage+2,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,1,1,1,1),l=(int)m_inventaire[j].m_emplacement.size(),k=(int)trader[i].m_emplacement.size();
             }
     }
 
@@ -1347,9 +1347,9 @@ Objet Hero::DeposerObjet()
     return temp;
 }
 
-bool Hero::PrendreEnMain(std::vector<Objet> &trader)
+bool Hero::PrendreEnMain(std::vector<Objet> *trader)
 {
-    if(!trader.empty())
+    if(trader)
     {
         if (eventManager->getPositionSouris().x>14*configuration->Resolution.x/800
           &&eventManager->getPositionSouris().x<34*configuration->Resolution.x/800
@@ -1436,7 +1436,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> &trader)
         }
 
     }
-    else if (!trader.empty()&&eventManager->getPositionSouris().x>m_classe.position_contenu_marchand.x*configuration->Resolution.x/800
+    else if (trader&&eventManager->getPositionSouris().x>m_classe.position_contenu_marchand.x*configuration->Resolution.x/800
                             &&eventManager->getPositionSouris().x<m_classe.position_contenu_marchand.x*configuration->Resolution.x/800+32*m_classe.position_contenu_marchand.w*configuration->Resolution.x/800
                             &&eventManager->getPositionSouris().y>(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600
                             &&eventManager->getPositionSouris().y<(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_marchand.h*configuration->Resolution.y/600)
@@ -1464,17 +1464,17 @@ bool Hero::PrendreEnMain(std::vector<Objet> &trader)
         }
         else
         {
-            for (int z=0;z<(int)trader.size();z++)
-                if (caseVisee.x>=trader[z].getPosition().x&&caseVisee.x<trader[z].getPosition().x+trader[z].getTaille().x
-                        &&caseVisee.y>=trader[z].getPosition().y&&caseVisee.y<trader[z].getPosition().y+trader[z].getTaille().y)
-                    if ((float)trader[z].getPrix()*(5-(float)m_caracteristiques.charisme/100)<=m_argent)
+            for (int z=0;z<(int)trader->size();z++)
+                if (caseVisee.x>=(*trader)[z].getPosition().x&&caseVisee.x<(*trader)[z].getPosition().x+(*trader)[z].getTaille().x
+                        &&caseVisee.y>=(*trader)[z].getPosition().y&&caseVisee.y<(*trader)[z].getPosition().y+(*trader)[z].getTaille().y)
+                    if ((float)(*trader)[z].getPrix()*(5-(float)m_caracteristiques.charisme/100)<=m_argent)
                     {
-                        m_argent-=(int)((float)trader[z].getPrix()*(5-(float)m_caracteristiques.charisme/100));
+                        m_argent-=(int)((float)(*trader)[z].getPrix()*(5-(float)m_caracteristiques.charisme/100));
 
-                        m_inventaire.push_back(trader[z]);
+                        m_inventaire.push_back((*trader)[z]);
                         m_objetEnMain=m_inventaire.size()-1;
 
-                        trader.erase(trader.begin()+z);
+                        trader->erase(trader->begin()+z);
                     }
         }
     }

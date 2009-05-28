@@ -524,6 +524,11 @@ std::vector<Objet> Monstre::getObjets()
 {
     return m_objets;
 }
+std::vector<Objet>* Monstre::getPointeurObjets()
+{
+    return &m_objets;
+}
+
 void Monstre::setObjets(std::vector<Objet> objets)
 {
     m_objets=objets;

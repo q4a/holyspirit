@@ -59,6 +59,7 @@ public:
 
     void setObjets(std::vector<Objet>);
     std::vector<Objet> getObjets();
+    std::vector<Objet> *getPointeurObjets();
 
     bool getVu();
     void setVu(bool);

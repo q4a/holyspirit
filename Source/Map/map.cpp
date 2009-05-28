@@ -2364,7 +2364,7 @@ void Map::MusiquePlay(coordonnee position)
                                 }
 
 #define TRADE() hero->setMonstreVise(-1);\
-                jeu->m_inventaire->setTrader(m_monstre[m_decor[i][j][k].getMonstre()].getObjets(),&hero->m_classe);\
+                jeu->m_inventaire->setTrader(m_monstre[m_decor[i][j][k].getMonstre()].getPointeurObjets(),&hero->m_classe);\
                 jeu->m_contexte=jeu->m_inventaire;\
 
 

@@ -342,6 +342,10 @@ std::vector<Objet> Decor::getObjets()
 {
     return m_objets;
 }
+std::vector<Objet>* Decor::getPointeurObjets()
+{
+    return &m_objets;
+}
 int Decor::getNombreObjets()
 {
     return m_objets.size();

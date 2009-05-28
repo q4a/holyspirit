@@ -30,7 +30,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "personnage.h"
 #include "monstre.h"
 
-void AjouterTrader(Objet,std::vector<Objet>&,Classe*);
+void AjouterTrader(Objet,std::vector<Objet>*,Classe*);
 
 class Hero
 {
@@ -64,7 +64,7 @@ public:
     bool AjouterObjet(Objet objet,bool enMain=false);
 
     Objet DeposerObjet();
-    bool PrendreEnMain(std::vector<Objet>&);
+    bool PrendreEnMain(std::vector<Objet>*);
 
     bool PossibleEquiper(int emplacement);
     bool Equiper(int numero, int emplacement);

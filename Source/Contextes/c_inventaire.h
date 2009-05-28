@@ -64,7 +64,7 @@ public:
     \param trader : liste des objets qui vont être ajoutés à m_trader
     \param classe : classe du héro, nécessaire pour pouvoir connaitre la largeur de l'inventaire du marchand
     */
-    void setTrader(std::vector<Objet> trader,Classe *classe);
+    void setTrader(std::vector<Objet> *trader,Classe *classe);
 
     sf::View camera;
 
@@ -72,7 +72,7 @@ private:
     float temps_ecoule,m_decalage;
     bool m_afficher;
 
-    std::vector<Objet> m_trader;
+    std::vector<Objet> *m_trader;
 
     //! Affiche les objets du marchand
     /**
