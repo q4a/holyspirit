@@ -73,7 +73,7 @@ void MoteurGraphique::CreateNewWindow()
     if (configuration->syncronisation_verticale)
     {
         m_ecran->UseVerticalSync(true);
-        m_ecran->SetFramerateLimit(60);
+        m_ecran->SetFramerateLimit(30);
     }
 
     m_ecran->ShowMouseCursor(false);
@@ -114,6 +114,13 @@ void MoteurGraphique::Charger()
             EffectNoir.SetParameter("color", 0.f, 0.f, 0.f);
         }
         configuration->effetMort=0;
+
+
+        if (!EffectFiltre.LoadFromFile(configuration->chemin_fx+configuration->nom_effetFiltre))
+            console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetFiltre,1);
+        else
+            console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetFiltre,0);
+
     }
 
     console->Ajouter("");
@@ -167,6 +174,7 @@ void MoteurGraphique::Afficher()
         EffectNoir.SetTexture("framebuffer", NULL);
         EffectMort.SetTexture("framebuffer", NULL);
         EffectContrastes.SetTexture("framebuffer", NULL);
+        EffectFiltre.SetTexture("framebuffer", NULL);
     }
 
     m_ecran->SetView(m_camera);
@@ -208,7 +216,7 @@ void MoteurGraphique::Afficher()
 
         if (configuration->postFX)
         {
-            EffectBlur.SetParameter("offset",0.005);
+            EffectBlur.SetParameter("offset",0.0075);
             m_ecran->Draw(EffectBlur);
         }
 
@@ -229,10 +237,10 @@ void MoteurGraphique::Afficher()
 
         if (configuration->postFX)
         {
-            EffectBlur.SetParameter("offset",0.01);
+            EffectBlur.SetParameter("offset",0.02);
             m_ecran->Draw(EffectBlur);
-            EffectBlur.SetParameter("offset",0.005);
-            m_ecran->Draw(EffectBlur);
+            /*EffectBlur.SetParameter("offset",0.005);
+            m_ecran->Draw(EffectBlur);*/
         }
 
         m_light_screen.CopyScreen(*m_ecran);
@@ -244,6 +252,9 @@ void MoteurGraphique::Afficher()
 
     for (int k=0;k<=20;k++)
     {
+        /*if (k==12&&configuration->postFX)
+            m_ecran->Draw(EffectFiltre);*/
+
         if (k==12&&configuration->Lumiere)
         {
             sprite2.FlipY(true);
@@ -293,8 +304,11 @@ void MoteurGraphique::Afficher()
             m_ecran->Draw(m_textes[k][i]);
         }
 
+
+
         if (k==18&&configuration->postFX)
         {
+
             if (m_blur>0)
             {
                 EffectBlur.SetParameter("offset",(float)m_blur);

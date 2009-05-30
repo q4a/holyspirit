@@ -74,7 +74,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	std::string getCheminImage(int IDimage);
 
-	sf::PostFX EffectBlur,EffectMort,EffectNoir,EffectContrastes;
+	sf::PostFX EffectBlur,EffectMort,EffectNoir,EffectContrastes,EffectFiltre;
 
 	sf::Font m_font,m_font_titre;
 

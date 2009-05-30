@@ -115,6 +115,14 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
     if (z>=49&&!augmenterNoir&&allerVersImageChargement||m_debut)
     {
+        if(jeu->m_jeu->m_thread_sauvegarde)
+        {
+            jeu->m_jeu->m_thread_sauvegarde->Wait();
+            delete jeu->m_jeu->m_thread_sauvegarde;
+            jeu->m_jeu->m_thread_sauvegarde = NULL;
+        }
+
+
         jeu->Clock.Reset();
         jeu->hero.m_personnage.setCoordonnee(m_coordonneePerso);
 

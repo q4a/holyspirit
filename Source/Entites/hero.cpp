@@ -495,7 +495,7 @@ void Hero::AfficherCaracteristiques(float decalage)
 
     {
         std::ostringstream  buf;
-        buf<<configuration->text_menus[3].c_str()<<" : "<<(int)m_caracteristiques.vie<<" / "<<(int)m_caracteristiques.vie;
+        buf<<configuration->text_menus[3].c_str()<<" : "<<(int)m_caracteristiques.vie<<" / "<<(int)m_caracteristiques.maxVie;
         string.SetText(buf.str());
     }
 
@@ -505,7 +505,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         if ((string.GetRect().Right-string.GetRect().Left)>104)
         {
             std::ostringstream  buf;
-            buf<<(int)m_caracteristiques.vie<<" / "<<(int)m_caracteristiques.vie;
+            buf<<(int)m_caracteristiques.vie<<" / "<<(int)m_caracteristiques.maxVie;
             string.SetText(buf.str());
         }
     }

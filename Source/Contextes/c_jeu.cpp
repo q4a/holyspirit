@@ -31,6 +31,14 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 using namespace sf;
 
+void Sauvegarder(void* UserData)
+{
+    Jeu *jeu = static_cast<Jeu*>(UserData);
+
+    jeu->map->Sauvegarder(&jeu->hero);
+    jeu->hero.Sauvegarder();
+}
+
 c_Jeu::c_Jeu()
 {
     continuer=true,lumiere=false,augmenter=false;
@@ -58,27 +66,43 @@ c_Jeu::c_Jeu()
     alpha_map=0;
     alpha_sac=0;
     lowFPS=-1;
+
+
+    m_thread_sauvegarde = NULL;
 }
 
 void c_Jeu::Utiliser(Jeu *jeu)
 {
     //Gestion du temps
-    jeu->m_display=false;
+
     tempsEcoule = jeu->Clock.GetElapsedTime();
 
     if (tempsEcoule>0.1)
         tempsEcoule=0.1;
 
-    if (tempsEcoule>0.001/*&&configuration->syncronisation_verticale||!configuration->syncronisation_verticale*/)
+    if(1)
     {
+        jeu->m_display=false;
         GererTemps(jeu);
-        Sauvegarder(jeu);
+        //Sauvegarder(jeu);
+        if (tempsSauvergarde>=configuration->frequence_sauvegarde)
+        {
+            if(m_thread_sauvegarde)
+            {
+                m_thread_sauvegarde->Wait();
+                delete m_thread_sauvegarde;
+            }
+
+            m_thread_sauvegarde = new sf::Thread(&Sauvegarder, jeu);
+            m_thread_sauvegarde->Launch();
+            tempsSauvergarde=0;
+        }
         IA(jeu);
         Deplacements(jeu);
         Animation(jeu);
         Lumieres(jeu);
 
-        if (tempsEcouleDepuisDernierAffichage>0.01&&configuration->syncronisation_verticale||!configuration->syncronisation_verticale)
+        if (tempsEcouleDepuisDernierAffichage>0.02&&configuration->syncronisation_verticale||!configuration->syncronisation_verticale)
         {
             jeu->hero.PlacerCamera(jeu->map->getDimensions()); // On place la camera suivant ou se trouve le perso
 
@@ -137,15 +161,6 @@ void c_Jeu::GererTemps(Jeu *jeu)
     }
     else
         configuration->effetMort=150;
-}
-void c_Jeu::Sauvegarder(Jeu *jeu)
-{
-    if (tempsSauvergarde>=configuration->frequence_sauvegarde)
-    {
-        jeu->map->Sauvegarder(&jeu->hero);
-        jeu->hero.Sauvegarder();
-        tempsSauvergarde=0;
-    }
 }
 void c_Jeu::IA(Jeu *jeu)
 {
@@ -238,7 +253,6 @@ void c_Jeu::Animation(Jeu *jeu)
 
                 if (jeu->hero.AjouterMiracleArme())
                     jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),cible,1);
-
             }
             jeu->hero.miracleEnCours=0;
         }
@@ -276,8 +290,6 @@ void c_Jeu::Lumieres(Jeu *jeu)
 
         moteurGraphique->LightManager->Generate(jeu->hero.m_personnage.m_light);
     }
-
-
 }
 
 

@@ -85,9 +85,12 @@ void Jeu::Demarrer()
         }
 
         m_contexte->Utiliser(this);
-        if (m_display)
-            moteurGraphique->Afficher();
+
+        moteurGraphique->Afficher();
     }
+
+    if(m_jeu->m_thread_sauvegarde)
+        m_jeu->m_thread_sauvegarde->Wait(),delete m_jeu->m_thread_sauvegarde;
 
     if (m_reset)
         Reset();
@@ -101,6 +104,7 @@ void Jeu::Demarrer()
     m_contexte=NULL;
 
     delete map;
+
 
     delete m_demarrage;
     delete m_jeu;

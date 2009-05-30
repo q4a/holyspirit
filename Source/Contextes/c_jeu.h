@@ -53,6 +53,8 @@ public:
 
     float alpha_map,alpha_sac;
 
+    sf::Thread *m_thread_sauvegarde;
+
 private:
 
     //! Incrémente les compteurs de temps avec le temps écoulé depuis la dernière boucle
@@ -63,11 +65,6 @@ private:
     */
     void GererTemps(Jeu *jeu);
 
-    //! Sauvegarde automatique de la map et du héro
-    /**
-    \param jeu : class qui contient le jeu, donc le héro, la map en cours, ...
-    */
-    void Sauvegarder(Jeu *jeu);
 
     //! Gère l'IA des monstres
     /**
@@ -124,6 +121,7 @@ private:
     float tempsActuel,tempsPrecedent,tempsDepuisDerniereAnimation,tempsEcoule,tempsNbrTourBoucle,tempsEcouleDepuisDernierCalculLumiere,tempsEcouleDepuisDernierCalculOmbre,tempsEcouleDepuisDernierDeplacement,tempsEcouleDepuisDernierIA,tempsEcouleDepuisDernierAffichage,tempsEcouleDepuisFPS,tempsEffetMort,tempsSauvergarde;
 
     float lowFPS;
+
 };
 
 #endif

@@ -144,6 +144,9 @@ void Configuration::ChargerInit()
                 fichier>>nom_effetContrastes;
             if (chaine== "fxBlur:")
                 fichier>>nom_effetBlur;
+            if (chaine== "fxFilter:")
+                fichier>>nom_effetFiltre;
+
 
             if (chaine== "menu_minimap:")
                 fichier>>nom_minimap;
