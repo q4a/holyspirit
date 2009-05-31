@@ -53,6 +53,8 @@ Objet::Objet()
     ai=0,aa=0,dii=0,dia=0,dai=0,daa=0;
     m_shoot_weapon=0;
     m_useMiracle=0;
+
+    m_img_corner = moteurGraphique->AjouterImage(configuration->chemin_menus + configuration->nom_corner);
 }
 
 Objet::Objet(std::string nom, int rarete)
@@ -63,6 +65,8 @@ Objet::Objet(std::string nom, int rarete)
     m_chemin="";
     m_equipe=-1;
     m_capaciteBenediction=0;
+
+    m_img_corner = moteurGraphique->AjouterImage(configuration->chemin_menus + configuration->nom_corner);
 }
 
 Objet::~Objet()
@@ -917,7 +921,7 @@ void Objet::Generer(int bonus)
         int nbrBene=0;
         int rarete=NORMAL;
         int random=rand()%10000 / bonus;
-        if (random<=3000)
+        if (random<=900)
             rarete=BONNEFACTURE;
 
         if (random<=300)
@@ -1330,14 +1334,14 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
     }
 
-    if (position.x-tailleCadran.x-10<0)
-        position.x=tailleCadran.x+10;
-
     if (position.x-tailleCadran.x-10<position.x&&decalageDroite)
         position.x=position.x+tailleCadran.x-10;
 
-    if (position.y+decalage.y+10>configuration->Resolution.h)
-        position.y=configuration->Resolution.h-decalage.y-10;
+    if (position.x-tailleCadran.x-10<0)
+        position.x=tailleCadran.x+10;
+
+    if (position.y+decalage.y+20>configuration->Resolution.h)
+        position.y=configuration->Resolution.h-decalage.y-20;
 
     if (position.x+decalage.x+20>configuration->Resolution.w)
         position.x=configuration->Resolution.w-decalage.x-20;
@@ -1367,7 +1371,34 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
     sprite.SetY(position.y);
     sprite.SetX(position.x-tailleCadran.x+10);
     sprite.Resize(tailleCadran.x,tailleCadran.y);
-    moteurGraphique->AjouterCommande(&sprite,18,0);
+    moteurGraphique->AjouterCommande(&sprite,19,0);
+
+    sf::Sprite sprite2;
+
+    sprite2.SetImage(*moteurGraphique->getImage(m_img_corner));
+    sprite2.Resize(16,16);
+    sprite2.SetColor(sf::Color(255,255,255,255));
+    sprite2.SetY(position.y-2);
+    sprite2.SetX(position.x-tailleCadran.x+10-2);
+    moteurGraphique->AjouterCommande(&sprite2,19,0);
+
+
+    sprite2.SetY(position.y-2);
+    sprite2.SetX(position.x+10+2);
+    sprite2.SetRotation(270);
+    moteurGraphique->AjouterCommande(&sprite2,19,0);
+
+    sprite2.SetY(position.y+tailleCadran.y+2);
+    sprite2.SetX(position.x+10+2);
+    sprite2.SetRotation(180);
+    moteurGraphique->AjouterCommande(&sprite2,19,0);
+
+    sprite2.SetY(position.y+tailleCadran.y+2);
+    sprite2.SetX(position.x+-tailleCadran.x+10-2);
+    sprite2.SetRotation(90);
+    moteurGraphique->AjouterCommande(&sprite2,19,0);
+
+
     temp.clear();
 
     if(decalageDroite)

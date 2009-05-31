@@ -762,7 +762,7 @@ void Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
                     sprite.SetX((m_classe.emplacements[m_inventaire[i].m_equipe].position.x)*configuration->Resolution.w/800);
                     sprite.SetY((m_classe.emplacements[m_inventaire[i].m_equipe].position.y)*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
 
-                    coordonnee buf={(int)(position.x),(int)(position.y+position.h),0,0};
+                    coordonnee buf={(int)(position.x+ m_classe.emplacements[m_inventaire[i].m_equipe].position.w),(int)(position.y+position.h),0,0};
 
                     if (m_objetEnMain==-1&&eventManager->getPositionSouris().x>m_classe.emplacements[m_inventaire[i].m_equipe].position.x*configuration->Resolution.x/800&&eventManager->getPositionSouris().x<(m_classe.emplacements[m_inventaire[i].m_equipe].position.x+m_classe.emplacements[m_inventaire[i].m_equipe].position.w)*configuration->Resolution.x/800&&eventManager->getPositionSouris().y>m_classe.emplacements[m_inventaire[i].m_equipe].position.y*configuration->Resolution.y/600&&eventManager->getPositionSouris().y<(m_classe.emplacements[m_inventaire[i].m_equipe].position.y+m_classe.emplacements[m_inventaire[i].m_equipe].position.h)*configuration->Resolution.y/600)
                         m_inventaire[i].AfficherCaracteristiques(buf,m_caracteristiques);
@@ -1009,7 +1009,7 @@ void Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
                             for (int k=0;k<(int)m_inventaire[i].m_emplacement.size();k++)
                                 for (int l=0;l<(int)m_inventaire[j].m_emplacement.size();l++)
                                     if(m_inventaire[i].m_emplacement[k]==m_inventaire[j].m_emplacement[l])
-                                        temp.x=decalage-2,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,1,1,0,1),l=(int)m_inventaire[j].m_emplacement.size(),k=(int)m_inventaire[i].m_emplacement.size();
+                                        temp.x=decalage-4,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,1,1,0,1),l=(int)m_inventaire[j].m_emplacement.size(),k=(int)m_inventaire[i].m_emplacement.size();
                 }
     }
     else if (eventManager->getPositionSouris().x>m_classe.position_contenu_marchand.x*configuration->Resolution.x/800&&eventManager->getPositionSouris().x<m_classe.position_contenu_marchand.x*configuration->Resolution.x/800+32*m_classe.position_contenu_marchand.w*configuration->Resolution.x/800&&eventManager->getPositionSouris().y>(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600&&eventManager->getPositionSouris().y<(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_marchand.h*configuration->Resolution.y/600)
@@ -1024,6 +1024,7 @@ void Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
             {
                 coordonnee temp=eventManager->getPositionSouris();
                 temp.y+=48;
+                temp.x-=96;
                 int decalage=trader[i].AfficherCaracteristiques(temp,m_caracteristiques,(5-(float)m_caracteristiques.charisme/100),1,1);
 
                 for (int j=0;j<(int)m_inventaire.size();j++)
@@ -1031,7 +1032,7 @@ void Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
                         for (int k=0;k<(int)trader[i].m_emplacement.size();k++)
                             for (int l=0;l<(int)m_inventaire[j].m_emplacement.size();l++)
                                 if(trader[i].m_emplacement[k]==m_inventaire[j].m_emplacement[l])
-                                    temp.x=decalage+2,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,1,1,1,1),l=(int)m_inventaire[j].m_emplacement.size(),k=(int)trader[i].m_emplacement.size();
+                                    temp.x=decalage+12,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,1,1,1,1),l=(int)m_inventaire[j].m_emplacement.size(),k=(int)trader[i].m_emplacement.size();
             }
     }
 

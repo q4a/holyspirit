@@ -142,7 +142,9 @@ void MoteurGraphique::Charger()
 void MoteurGraphique::Gerer(float temps,int tailleMapY)
 {
     int k=0;
-    for (m_systemeParticules_iter=m_systemeParticules.begin();m_systemeParticules_iter!=m_systemeParticules.end();++m_systemeParticules_iter,++k)
+    m_systemeParticules_iter=m_systemeParticules.begin();
+    while(m_systemeParticules_iter!=m_systemeParticules.end())
+    {
         if (m_systemeParticules_iter->m_modele>=0&&m_systemeParticules_iter->m_modele<(int)m_modeleSystemeParticules.size())
         {
             m_systemeParticules_iter->Afficher(&m_modeleSystemeParticules[m_systemeParticules_iter->m_modele]);
@@ -150,14 +152,15 @@ void MoteurGraphique::Gerer(float temps,int tailleMapY)
             if (!m_systemeParticules_iter->Gerer(temps,tailleMapY))
             {
                 m_systemeParticules.erase (m_systemeParticules_iter);
-                if (k!=0&&!m_systemeParticules.empty())
-                    m_systemeParticules_iter=m_systemeParticules.begin()+(k-1);
-                else if (k==0&&!m_systemeParticules.empty())
-                    m_systemeParticules_iter=m_systemeParticules.begin();
-                else
-                    break;
+                if((int)m_systemeParticules.size()>k)
+                    m_systemeParticules_iter=m_systemeParticules.begin()+k;
             }
+            else
+                ++m_systemeParticules_iter,++k;
         }
+        else
+            ++m_systemeParticules_iter,++k;
+    }
 }
 
 void MoteurGraphique::Afficher()
