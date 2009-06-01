@@ -310,6 +310,8 @@ void Menu::AfficherChargement(string nom,int fond,int z=50)
     sprite.Resize(configuration->Resolution.w,configuration->Resolution.h*5/6);
     moteurGraphique->AjouterCommande(&sprite,12);
 
+
+    texte.SetFont(moteurGraphique->m_font_titre);
     texte.SetSize(50.f*configuration->Resolution.h/600);
     texte.SetText(nom);
 
