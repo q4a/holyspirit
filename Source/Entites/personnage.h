@@ -124,6 +124,7 @@ public:
     LumiereOmbrage m_lumiere;
     bool frappeEnCours;
     bool m_shooter,m_monstre;
+    bool m_touche;
     int m_nombreInvocation;
 
     Light_Entity m_light;

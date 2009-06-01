@@ -1941,7 +1941,6 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                                 moteurGraphique->LightManager->SetColor(m_decor[i][j][k].m_light,sf::Color(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).rouge,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).vert,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).bleu));
 
                                 moteurGraphique->LightManager->Generate(m_decor[i][j][k].m_light);
-
                             }
 
                             coordonnee position;
@@ -1966,7 +1965,8 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                         if (m_monstre[monstre].m_miracleALancer==-1)
                         {
                             if (m_monstre[monstre].m_shooter||!m_monstre[monstre].m_shooter&&fabs(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)<=1&&fabs(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)<=1)
-                                hero->InfligerDegats(degats);
+                                if(rand() % 100 < (float)((float)m_monstre[monstre].getCaracteristique().dexterite/(float)hero->m_caracteristiques.dexterite)*75 )
+                                    hero->InfligerDegats(degats);
                         }
                         else
                         {
@@ -2368,7 +2368,7 @@ void Map::MusiquePlay(coordonnee position)
                 jeu->m_contexte=jeu->m_inventaire;\
 
 
-#define LISTE_INSTRUCTIONS(noInstruction) if(noInstruction>=0&&noInstruction<(int)script->m_instructions.size()) \
+#define LISTE_INSTRUCTIONS(noInstruction)      if(noInstruction>=0&&noInstruction<(int)script->m_instructions.size()) \
                                              { \
                                                 if(script->m_instructions[noInstruction].nom=="fight") { FIGHT() } \
                                                 if(script->m_instructions[noInstruction].nom=="evasion") { EVASION() } \
@@ -2386,6 +2386,11 @@ void Map::MusiquePlay(coordonnee position)
 #define LISTE_CONDITIONS(noInstruction) if(script->m_instructions[noInstruction].nom=="see")\
                                         {\
                                             if(!m_monstre[m_decor[i][j][k].getMonstre()].getVu()) \
+                                                ok=false;\
+                                        }\
+                                        else if(script->m_instructions[noInstruction].nom=="touch")\
+                                        {\
+                                            if(!m_monstre[m_decor[i][j][k].getMonstre()].m_touche) \
                                                 ok=false;\
                                         }\
                                         else if(script->m_instructions[noInstruction].nom=="numberInvocation")\
@@ -2575,12 +2580,11 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                                 for (int a=0;a<(int)script->m_instructions[0].valeurs.size();a++)
                                     if (script->m_instructions[0].valeurs[a]>=0&&script->m_instructions[0].valeurs[a]<(int)script->m_instructions.size())
                                         LISTE_INSTRUCTIONS(script->m_instructions[0].valeurs[a])
-                                        //if(script->m_instructions[script->m_instructions[0].valeurs[a]].nom=="if")
-                                        //gererConditions(script,script->m_instructions[0].valeurs[a],i,j,k,hero,temps,camera,menu);
 
                                         if (m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding())
                                             RANDOMDISPLACE()
-                                        }
+                            m_monstre[m_decor[i][j][k].getMonstre()].m_touche = false;
+                        }
                         else
                             m_monstre[m_decor[i][j][k].getMonstre()].m_attente-=temps*100;
 
@@ -2591,11 +2595,6 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
 
                         if (m_monstre[m_decor[i][j][k].getMonstre()].m_compteur>3)
                             m_monstre[m_decor[i][j][k].getMonstre()].m_attente=2,m_monstre[m_decor[i][j][k].getMonstre()].m_compteur=0,m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee());
-
-
-                        //if(!m_monstre[m_decor[i][j][k].getMonstre()].enVie()&&m_monstre[m_decor[i][j][k].getMonstre()].getEtat()!=3)
-                        // m_monstre[m_decor[i][j][k].getMonstre()].setEtat(3);
-
 
                         ///GESTION DES EVENEMENTS SUR LES MONSTRES
                         for (int l=0;l<2;l++)
@@ -2670,7 +2669,6 @@ bool Map::InfligerDegats(int numeroMonstre, float degats,Menu *menu, Hero *hero,
                             if(m_decor[o][y][x].getMonstre()>=0&&m_decor[o][y][x].getMonstre()<m_monstre.size())
                                 m_monstre[m_decor[o][y][x].getMonstre()].setVu(1);
         }*/
-
 
         m_monstre[numeroMonstre].infligerDegats(degats);
 

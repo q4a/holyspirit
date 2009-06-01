@@ -699,8 +699,11 @@ bool Personnage::seDeplacer(float tempsEcoule,coordonnee dimensionsMap)
 void Personnage::infligerDegats(float degats)
 {
     m_caracteristique.vie-=degats;
+
     if (m_caracteristique.vie<=0&&m_etat!=3)
         m_poseEnCours=0,m_etat=3;
+
+    m_touche = true;
 }
 
 int Personnage::animer(Modele_Personnage *modele,float temps,bool *explosif,coordonnee positionHero)

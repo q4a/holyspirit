@@ -239,20 +239,29 @@ void c_Jeu::Animation(Jeu *jeu)
                 jeu->map->InfligerDegatsMasse(jeu->hero.m_personnage.getCoordonnee(),1,rand()%(jeu->hero.m_caracteristiques.degatsMax - jeu->hero.m_caracteristiques.degatsMin +1) + jeu->hero.m_caracteristiques.degatsMin ,false,&jeu->hero,&jeu->menu);
             else if (jeu->hero.m_personnage.frappeEnCours)
             {
+                bool toucher=false;
                 if (!jeu->hero.m_personnage.m_shooter)
+                {
                     if (jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())!=NULL)
                         if (fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().x)<=2&&fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().y-jeu->hero.m_personnage.getCoordonnee().y)<=2)
-                            jeu->map->InfligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&jeu->hero,1);
-
-                coordonnee cible;
-
-                if (jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())!=NULL)
-                    cible=jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee();
+                            if(rand() % 100 < (float)((float)jeu->hero.m_caracteristiques.dexterite / ((float)jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCaracteristique().dexterite+1))*75 )
+                                toucher=true,jeu->map->InfligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->menu,&jeu->hero,1);
+                }
                 else
-                    cible=eventManager->getCasePointee();
+                    toucher=true;
 
-                if (jeu->hero.AjouterMiracleArme())
-                    jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),cible,1);
+                if(toucher)
+                {
+                    coordonnee cible;
+
+                    if (jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())!=NULL)
+                        cible=jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee();
+                    else
+                        cible=eventManager->getCasePointee();
+
+                    if (jeu->hero.AjouterMiracleArme())
+                        jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),cible,1);
+                }
             }
             jeu->hero.miracleEnCours=0;
         }
