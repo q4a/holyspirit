@@ -255,8 +255,8 @@ void MoteurGraphique::Afficher()
 
     for (int k=0;k<=20;k++)
     {
-        /*if (k==12&&configuration->postFX)
-            m_ecran->Draw(EffectFiltre);*/
+        if (k==12&&configuration->postFX)
+            m_ecran->Draw(EffectFiltre);
 
         if (k==12&&configuration->Lumiere)
         {
@@ -307,6 +307,25 @@ void MoteurGraphique::Afficher()
             m_ecran->Draw(m_textes[k][i]);
         }
 
+        if (k==13&configuration->postFX)
+        {
+            if (configuration->luminosite>0)
+            {
+                sf::Sprite sprite2;
+                sprite2.SetImage(*getImage(0));
+                sprite2.Resize(configuration->Resolution.w,configuration->Resolution.h);
+                sprite2.SetColor(sf::Color((int)configuration->luminosite*2,(int)configuration->luminosite*2,(int)configuration->luminosite*2,255));
+                sprite2.SetBlendMode(sf::Blend::Add);
+                m_ecran->Draw(sprite2);
+            }
+
+            if (configuration->contrastes>1&&configuration->postFX)
+            {
+                m_ecran->Draw(EffectContrastes);
+                EffectContrastes.SetParameter("color", configuration->contrastes-1, configuration->contrastes-1, configuration->contrastes-1);
+            }
+        }
+
 
 
         if (k==18&&configuration->postFX)
@@ -344,21 +363,7 @@ void MoteurGraphique::Afficher()
         }
     }
 
-     if (configuration->luminosite>0)
-    {
-        sf::Sprite sprite2;
-        sprite2.SetImage(*getImage(0));
-        sprite2.Resize(configuration->Resolution.w,configuration->Resolution.h);
-        sprite2.SetColor(sf::Color((int)configuration->luminosite*2,(int)configuration->luminosite*2,(int)configuration->luminosite*2,255));
-        sprite2.SetBlendMode(sf::Blend::Add);
-        m_ecran->Draw(sprite2);
-    }
 
-    if (configuration->contrastes>1&&configuration->postFX)
-    {
-        m_ecran->Draw(EffectContrastes);
-        EffectContrastes.SetParameter("color", configuration->contrastes-1, configuration->contrastes-1, configuration->contrastes-1);
-    }
 
 
     m_ecran->Display();

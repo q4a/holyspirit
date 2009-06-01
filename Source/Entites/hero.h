@@ -50,7 +50,7 @@ public:
     void GenererGrille();
     void PlacerCamera(coordonnee dimensionsMap);
 
-    bool TestMonstreVise(Monstre *monstre,int hauteurMap);
+    bool TestMonstreVise(Monstre *monstre);
 
     void AugmenterAme(float temps);
     void RecalculerCaracteristiques();

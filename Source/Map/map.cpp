@@ -1253,7 +1253,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
     String texte;
 
     positionHero.y=(int)((hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y)*DIVISEUR_COTE_TILE*32);
-    positionHero.x=(int)(((hero->m_personnage.getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().y)*DIVISEUR_COTE_TILE-1+m_dimensions.y)*64);
+    positionHero.x=(int)(((hero->m_personnage.getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().y)*DIVISEUR_COTE_TILE-1)*64);
 
     coordonnee position;
 
@@ -1794,7 +1794,7 @@ int Map::GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
                             moteurGraphique->LightManager->SetQuality(m_monstre.back().m_light,6);
 
                             sf::Vector2f pos;
-                            pos.x=(((m_monstre.back().getCoordonneePixel().x-m_monstre.back().getCoordonneePixel().y)*64/COTE_TILE+getDimensions().y*64));
+                            pos.x=(((m_monstre.back().getCoordonneePixel().x-m_monstre.back().getCoordonneePixel().y)*64/COTE_TILE*64));
                             pos.y=(((m_monstre.back().getCoordonneePixel().x+m_monstre.back().getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
 
                             moteurGraphique->LightManager->SetPosition(m_monstre.back().m_light,pos);
@@ -1886,7 +1886,7 @@ int Map::GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
 void Map::Animer(Hero *hero,float temps,Menu *menu)
 {
     coordonnee positionHero;
-    positionHero.x=(hero->m_personnage.getCoordonnee().x-hero->m_personnage.getCoordonnee().y-1+m_dimensions.y)/5;
+    positionHero.x=(hero->m_personnage.getCoordonnee().x-hero->m_personnage.getCoordonnee().y-1)/5;
     positionHero.y=(hero->m_personnage.getCoordonnee().x+hero->m_personnage.getCoordonnee().y)/5;
 
     coordonnee vueMin,vueMax;
@@ -2110,7 +2110,7 @@ void Map::AnimerMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,f
                             if (miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getSon()>=0)
                             {
                                 coordonnee position;
-                                position.x=(personnage->getCoordonnee().x-personnage->getCoordonnee().y-1+m_dimensions.y)/5;
+                                position.x=(personnage->getCoordonnee().x-personnage->getCoordonnee().y-1)/5;
                                 position.y=(personnage->getCoordonnee().x+personnage->getCoordonnee().y)/5;
 
                                 miracles[personnage->m_miracleEnCours[i].m_modele].JouerSon(miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getSon(),position,positionHero);
@@ -2302,11 +2302,11 @@ void Map::MusiquePlay(coordonnee position)
 #define PLAYSOUND(numero)   if(m_monstre[m_decor[i][j][k].getMonstre()].getModele()>=0&&m_monstre[m_decor[i][j][k].getMonstre()].getModele()<(int)m_ModeleMonstre.size()) \
                             { \
                                 coordonnee position; \
-                                position.x=(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-1+m_dimensions.y)/5; \
+                                position.x=(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-1)/5; \
                                 position.y=(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x+m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y)/5; \
                                  \
                                 coordonnee positionHero; \
-                                positionHero.x=(hero->m_personnage.getCoordonnee().x-hero->m_personnage.getCoordonnee().y-1+m_dimensions.y)/5; \
+                                positionHero.x=(hero->m_personnage.getCoordonnee().x-hero->m_personnage.getCoordonnee().y-1)/5; \
                                 positionHero.y=(hero->m_personnage.getCoordonnee().x+hero->m_personnage.getCoordonnee().y)/5; \
                                  \
                                 m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].JouerSon(numero,position,positionHero,true); \

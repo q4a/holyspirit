@@ -182,7 +182,7 @@ void c_Jeu::Deplacements(Jeu *jeu)
         {
             bool ok=true;
             if (jeu->hero.getMonstreVise()>-1)
-                if (jeu->hero.TestMonstreVise(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise()),jeu->map->getDimensions().y))
+                if (jeu->hero.TestMonstreVise(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())))
                     ok=false;
 
             if (jeu->hero.m_personnage.getCoordonnee().x==jeu->hero.m_personnage.getArrivee().x && jeu->hero.m_personnage.getCoordonnee().y==jeu->hero.m_personnage.getArrivee().y)
@@ -224,7 +224,7 @@ void c_Jeu::Animation(Jeu *jeu)
             tempsDepuisDerniereAnimation=0.8;
 
         coordonnee positionHero;
-        positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1+jeu->map->getDimensions().y)/5;
+        positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
         positionHero.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
 
         bool a; // Variable qui ne sert pas ici, mais qui remplace le explosif des monstres
@@ -333,7 +333,7 @@ void c_Jeu::Evenements(Jeu *jeu)
             eventManager->StopEvenement(Mouse::Left,"CA");
             jeu->hero.setMonstreVise(jeu->map->getMonstreIllumine());
             if (test)
-                jeu->hero.TestMonstreVise(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise()),jeu->map->getDimensions().y);
+                jeu->hero.TestMonstreVise(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise()));
         }
         else
             jeu->hero.setMonstreVise(-1);

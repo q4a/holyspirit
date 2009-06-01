@@ -1053,7 +1053,7 @@ void Hero::PlacerCamera(coordonnee dimensionsMap)
     moteurGraphique->m_camera.Zoom(configuration->zoom);
 }
 
-bool Hero::TestMonstreVise(Monstre *monstre,int hauteurMap)
+bool Hero::TestMonstreVise(Monstre *monstre)
 {
     if (monstre!=NULL)
         if (m_monstreVise>-1&&m_caracteristiques.vie>0)
