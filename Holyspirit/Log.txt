@@ -82,8 +82,6 @@
          
          Chargement de l'objet : Necklage.item.hs
          
-         Chargement de l'objet : Great_shield.item.hs
-         
          Chargement de l'objet : Small_sword_divin.item.hs
          
          Chargement de l'objet : Armband.item.hs
@@ -114,6 +112,8 @@
          Chargement de l'objet : Necklage.item.hs
          
          Chargement de l'objet : Ring.item.hs
+         
+         Chargement de l'objet : Gown.item.hs
          /Lectures des objets.
          Chargement de : Data/Menus/Inventory.png
          Chargement de : Data/Menus/Trader.png
@@ -166,7 +166,6 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Unique_boot.item.hs
          /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Small_sword_divin.item.hs
          /Sauvegarde de Armband.item.hs
          /Sauvegarde de Small_sword.item.hs
@@ -182,6 +181,7 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Gown.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
@@ -238,7 +238,6 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Unique_boot.item.hs
          /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Small_sword_divin.item.hs
          /Sauvegarde de Armband.item.hs
          /Sauvegarde de Small_sword.item.hs
@@ -254,6 +253,7 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Gown.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
@@ -626,6 +626,111 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          Chargement de la map terminé.
          
          
+         Sauvegarde de la map : Data/Temp/ArableLand0.map.hs
+         /Sauvegarde de Small_axe.item.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map_ArableLand0.map.hs.emap.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         Sauvegarde de la map terminée !
+         
          Sauvegarde du héro...
          Ouverture du fichier.
          /Ecriture des caracterstiques.
@@ -648,7 +753,6 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Unique_boot.item.hs
          /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Small_sword_divin.item.hs
          /Sauvegarde de Armband.item.hs
          /Sauvegarde de Small_sword.item.hs
@@ -664,6 +768,48 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Gown.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Gown.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Unique_shield.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Small_sword_divin.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Unique_boot.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Small_sword_divin.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Katzbalger.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Gown.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
