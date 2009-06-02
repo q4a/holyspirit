@@ -36,7 +36,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #define NOMBRE_TXT_MENU 13
 
-#define NOMBRE_SONS 64
+#define NOMBRE_SONS 128
 
 #define NOMBRE_COUCHE_MAP 2
 

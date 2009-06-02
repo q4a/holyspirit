@@ -127,6 +127,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         jeu->hero.m_personnage.setCoordonnee(m_coordonneePerso);
 
         moteurGraphique->ViderParticules();
+        moteurSons->StopAllSounds();
 
         if (jeu->map!=NULL&&!m_debut)
            jeu->map->Sauvegarder(&jeu->hero);

@@ -20,7 +20,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "decor.h"
 #include "../globale.h"
 
-Decor::Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe,int hauteur, int couche)
+Decor::Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche,int hauteur)
 {
     m_tileset=tileset;
     m_tile=tile;
@@ -31,6 +31,8 @@ Decor::Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int her
     m_animation=0;
     m_couche=couche;
     m_hauteur=hauteur;
+
+    m_animation=0;
 
     m_projectile=-1;
     m_effet=-1;
@@ -250,10 +252,9 @@ void Decor::ajouterEvenement(int evenement)
 {
     m_evenement.push_back(evenement);
 }
-void Decor::setTileset( int tileset)
+void Decor::setTileset(int tileset)
 {
     m_tileset=tileset;
-    m_animation=0;
 }
 void Decor::setTile(int tile)
 {

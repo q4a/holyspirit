@@ -190,12 +190,6 @@ void MoteurGraphique::Afficher()
 
         LightManager->DrawWallShadow(m_ecran,&m_camera);
 
-        if (configuration->postFX)
-        {
-            EffectBlur.SetParameter("offset",0.02);
-            m_ecran->Draw(EffectBlur);
-        }
-
         m_ecran->SetView(m_camera);
         sprite.SetBlendMode(sf::Blend::Alpha);
 
@@ -341,8 +335,6 @@ void MoteurGraphique::Afficher()
             if (configuration->effetMort>0)
                 m_ecran->Draw(EffectMort);
         }
-
-
     }
 
     if (configuration->effetNoir>0)

@@ -67,6 +67,12 @@ int MoteurSons::AjouterBuffer(std::string chemin)
     return m_buffers.size()-1;
 }
 
+void MoteurSons::StopAllSounds()
+{
+    for (int i=0;i<NOMBRE_SONS;i++)
+        m_sons[i].Stop();
+}
+
 void MoteurSons::JouerSon(int ID,coordonnee position,coordonnee positionHero,bool unique,int volume)
 {
 
@@ -94,9 +100,9 @@ void MoteurSons::JouerSon(int ID,coordonnee position,coordonnee positionHero,boo
                     if(position.x==-1&&position.y==-1)
                         m_sons[i].SetPosition(sf::Listener::GetPosition());
 
-                    sf::Sound::Status Status = m_sons[i].GetStatus();
-                    if (Status==0)
-                        m_sons[i].Play();
+                    //sf::Sound::Status Status = m_sons[i].GetStatus();
+                    //if (Status==0)
+                      //  m_sons[i].Play();
 
                     creerNouveauSon=false;
                 }

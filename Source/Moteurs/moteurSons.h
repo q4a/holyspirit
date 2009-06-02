@@ -38,6 +38,7 @@ class MoteurSons : public CSingleton<MoteurSons>
 	void Vider();
 	int AjouterBuffer(std::string);
 	void JouerSon(int ID,coordonnee position,coordonnee positionHero,bool unique=0,int volume=100);
+	void StopAllSounds();
 
 	std::string getCheminSon(int IDimage);
 

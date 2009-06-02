@@ -664,7 +664,6 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                         *fichier>>noModuleCaseMin;
                                     else if (caractere=='a')
                                         *fichier>>noModuleCaseMax;
-
                                     else if (caractere=='*')
                                         do
                                         {
@@ -802,6 +801,11 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                 console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
                                 throw ("Erreur : Map \" "+chemin+" \" Invalide");
                             }
+
+                            if(couche==0)
+                                layer+=1;
+                            else
+                                layer+=10;
 
                             m_decor[couche][position.y].push_back(Decor (tileset,tileFinal,evenement,monstreFinal,herbe,layer,hauteur,objets));
 
@@ -998,14 +1002,7 @@ void Map::CreerSprite(sf::Vector3f position_case)
     m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].m_sprite.SetX(position.x+64);
     m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].m_sprite.SetY(position.y+32);
 
-    int layer=6;
 
-    if (position_case.z==0)
-        layer=m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getCouche();
-    else
-        layer=/*6+m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getCouche()*/10;
-
-    m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].setCouche(layer);
 }
 
 
@@ -1082,9 +1079,13 @@ void Map::Sauvegarder(Hero *hero)
                         fichier<<"m"<<m_decor[couche][i][j].getMonstre()<<" ";
                     //fichier<<"m"<<m_monstre[m_decor[couche][i][j].getMonstre()].getModele()<<" ";
                     fichier<<"h"<<m_decor[couche][i][j].getHerbe()<<" ";
+
                     fichier<<"i"<<m_decor[couche][i][j].getHauteur()<<" ";
 
-                    fichier<<"l"<<m_decor[couche][i][j].getCouche()<<" ";
+                    if(couche==0)
+                        fichier<<"l"<<m_decor[couche][i][j].getCouche()-1<<" ";
+                    else
+                        fichier<<"l"<<m_decor[couche][i][j].getCouche()-10<<" ";
 
                     for (int o=0;o<(int)m_decor[couche][i][j].getNombreObjets();o++)
                         m_decor[couche][i][j].getObjet(o)->SauvegarderTexte(&fichier);
@@ -1930,7 +1931,7 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                     if (m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile())>=0)
                         while (m_decor[i][j][k].getAnimation()>=tempsAnimation)
                         {
-                            m_decor[i][j][k].setDecor(m_decor[i][j][k].getTileset(),m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile()),m_decor[i][j][k].getEvenement(),m_decor[i][j][k].getMonstre(),m_decor[i][j][k].getHerbe(),m_decor[i][j][k].getCouche(),m_decor[i][j][k].getHauteur());
+                            m_decor[i][j][k].setTile(m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile()));
 
                             CreerSprite(sf::Vector3f(k,j,i));
 

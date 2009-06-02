@@ -438,11 +438,17 @@ void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,boo
                                     &&sprite.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)
                             {
                                 moteurGraphique->AjouterCommande(&sprite,10,1);
+
                                 if (surbrillance)
                                 {
                                     sprite.SetBlendMode(sf::Blend::Add);
                                     moteurGraphique->AjouterCommande(&sprite,10,1);
                                 }
+
+                                sprite.FlipY(true);
+                                sprite.Scale(1,0.5);
+                                sprite.Move(0,sprite.GetSize().y);
+                                moteurGraphique->AjouterCommande(&sprite,0,1);
                             }
                         }
             }
