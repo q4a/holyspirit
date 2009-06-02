@@ -52,22 +52,23 @@
          Chargement de : Data/Menus/Faith_orb.png
          Chargement de : Data/Menus/Coupe2.png
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Crossbow/Crossbow.rs.hs
-         Chargement de : ArbaleteAttente0.png
-         Chargement de : ArbaleteMarche0.png
-         Chargement de : ArbaleteTir0.png
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Dagger/Dagger_r.rs.hs
+         Chargement de : PoignardAttenteDroite0.png
+         Chargement de : PoignardMarcheDroite0.png
+         Chargement de : PoignardAttaqueDroite0.png
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/TwoHand.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/OneHand.rs.hs
          Chargement de : CourtisaneBaseAttente1Main0.png
-         Chargement de : CourtisaneBaseMarcheArbalete0.png
-         Chargement de : CourtisaneBaseMarcheArbalete1.png
-         Chargement de : CourtisaneBaseTir0.png
-         Chargement de : CourtisaneBaseTir1.png
+         Chargement de : CourtisaneBaseMarche1Main0.png
+         Chargement de : CourtisaneBaseMarche1Main1.png
+         Chargement de : CourtisaneBaseAttaque1Main0.png
+         Chargement de : CourtisaneBaseAttaque1Main1.png
+         Chargement de : CourtisaneBaseAttaque1Main2.png
          Chargement de : Data/Sounds/9906__Snoman__grass3.wav
-         Chargement de : Data/Sounds/65734__Erdie__bow02.wav
+         Chargement de : Data/Sounds/epee.wav
          /Chargement du héro terminé
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/TwoHand.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/OneHand.rs.hs
          Chargement de : Data/Menus/alpha-arts.png
          Chargement de : Data/Loading_screens/Plaines2.png
          
@@ -85,9 +86,9 @@
          Chargements d'images diverses :
          Chargement de : Data/Menus/Bag.png
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Crossbow/Crossbow.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Dagger/Dagger_r.rs.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/TwoHand.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/OneHand.rs.hs
          
          Chargement de la map : Begin.map.hs
          /Lectures du nom.
@@ -106,7 +107,6 @@
          ---------------------------------------------------------------------------------
          EVENEMENT : Changement de map
          ---------------------------------------------------------------------------------
-         Chargement de : Data/Loading_screens/Plaines3.png
          
          Sauvegarde de la map : Data/Temp/Begin.map.hs
          Sauvegarde de la map_entite : Data/Temp/entites_map_Begin.map.hs.emap.hs
@@ -137,9 +137,9 @@
          
          Chargements d'images diverses :
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Crossbow/Crossbow.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Dagger/Dagger_r.rs.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/TwoHand.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/OneHand.rs.hs
          
          Chargement de la map : ArableLand0.map.hs
          /Lectures du nom.
@@ -163,7 +163,7 @@
          Chargement de : Data/Landscapes/Inn/Inn21.png
          Chargement de : Data/Landscapes/Inn/Inn22.png
          Chargement de : Data/Grounds/Climatic/Still_water.png
-         Chargement de : Data/Landscapes/Climatic/Rain.png
+         Chargement de : Data/Landscapes/Climatic/Rain3.png
          Chargement de : Data/Sounds/Pluie.ogg
          /Lectures des tilesets.
          Chargement de : Data/Landscapes/Grass/Grass1.png
@@ -503,6 +503,444 @@
          /Lectures des cases.
          Chargement de la map terminé.
          
+         
+         Sauvegarde de la map : Data/Temp/ArableLand0.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map_ArableLand0.map.hs.emap.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/Temp/ArableLand0.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map_ArableLand0.map.hs.emap.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/Temp/ArableLand0.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map_ArableLand0.map.hs.emap.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
          
          Sauvegarde du héro...
          Ouverture du fichier.
