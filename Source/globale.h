@@ -22,6 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Moteurs/eventManager.h"
 #include "configuration.h"
 
+
 extern Configuration *configuration;
 extern Console *console;
 extern MoteurGraphique *moteurGraphique;

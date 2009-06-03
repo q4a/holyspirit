@@ -218,7 +218,7 @@ std::ifstream* cDAT::GetInfos(std::string filename)
     //Cleaning properly an ancient file loaded
     if (m_buffer != NULL)
     {
-        delete[] (m_buffer);
+        delete (m_buffer);
         m_buffer = NULL;
     }
 
@@ -261,7 +261,7 @@ char* cDAT::GetFile (std::string filename)
     //Cleaning properly an ancient file loaded
     if (m_buffer != NULL)
     {
-        delete[] (m_buffer);
+        delete (m_buffer);
         m_buffer = NULL;
     }
 

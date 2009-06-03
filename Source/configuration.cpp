@@ -28,9 +28,6 @@ void Configuration::Charger()
 
     zoom=1;
 
-    RafraichirOmbre=0;
-    RafraichirLumiere=0;
-
     if (!Lumiere)
         Ombre=0;
 
@@ -144,9 +141,6 @@ void Configuration::ChargerInit()
                 fichier>>nom_effetContrastes;
             if (chaine== "fxBlur:")
                 fichier>>nom_effetBlur;
-            if (chaine== "fxFilter:")
-                fichier>>nom_effetFiltre;
-
 
             if (chaine== "menu_minimap:")
                 fichier>>nom_minimap;
@@ -161,9 +155,6 @@ void Configuration::ChargerInit()
                 fichier>>nom_barre_vie_vide;
             if (chaine== "menu_bag:")
                 fichier>>nom_sac;
-            if (chaine== "menu_corner:")
-                fichier>>nom_corner;
-
 
             if (chaine== "text_benedictions:")
                 fichier>>chemin_text_benedictions;
@@ -172,8 +163,6 @@ void Configuration::ChargerInit()
 
             if (chaine== "font_title:")
                 fichier>>font_titre;
-            if (chaine== "font:")
-                fichier>>font;
             if (chaine== "menu_blood:")
                 fichier>>nom_sang;
             if (chaine== "cache: ")
