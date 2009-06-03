@@ -156,7 +156,9 @@ bool Modele_Personnage::Charger(string chemin)
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Personnage \" "+chemin+" \" Invalide",1);
+                char temp[1000];
+                sprintf(temp,"Erreur : Personnage \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
                 caractere='$';
             }
         }
@@ -174,7 +176,9 @@ bool Modele_Personnage::Charger(string chemin)
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Personnage \" "+chemin+" \" Invalide",1);
+                char temp[1000];
+                sprintf(temp,"Erreur : Personnage \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
                 caractere='$';
             }
         }
@@ -207,7 +211,9 @@ bool Modele_Personnage::Charger(string chemin)
 
                     if (fichier->eof())
                     {
-                        console->Ajouter("Erreur : Personnage \" "+chemin+" \" Invalide",1);
+                        char temp[255];
+                        sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());
+                        console->Ajouter(temp,1);
                         caractere='$';
                     }
 
@@ -217,7 +223,9 @@ bool Modele_Personnage::Charger(string chemin)
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Personnage \" "+chemin+" \" Invalide",1);
+                char temp[255];
+                sprintf(temp,"Erreur : Objet \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
                 caractere='$';
             }
 
@@ -318,7 +326,9 @@ void Modele_Personnage::ChargerPose(ifstream *fichier)
                             }
                             if (fichier->eof())
                             {
-                                console->Ajouter("Erreur : Entité Invalide",1);
+                                char temp[1000];
+                                sprintf(temp,"Erreur : Entité Invalide");
+                                console->Ajouter(temp,1);
                                 caractere='$';
                                 m_caracteristique.maxVie=0;
                             }
@@ -335,7 +345,9 @@ void Modele_Personnage::ChargerPose(ifstream *fichier)
                         fichier->get(caractere);
                         if (fichier->eof())
                         {
-                            console->Ajouter("Erreur : Entité Invalide",1);
+                            char temp[1000];
+                            sprintf(temp,"Erreur : Entité Invalide");
+                            console->Ajouter(temp,1);
                             caractere='$';
                             m_caracteristique.maxVie=0;
                         }
@@ -343,7 +355,9 @@ void Modele_Personnage::ChargerPose(ifstream *fichier)
                     fichier->get(caractere);
                     if (fichier->eof())
                     {
-                        console->Ajouter("Erreur : Entité Invalide",1);
+                        char temp[1000];
+                        sprintf(temp,"Erreur : Entité Invalide");
+                        console->Ajouter(temp,1);
                         caractere='$';
                         m_caracteristique.maxVie=0;
                     }
@@ -438,17 +452,11 @@ void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,boo
                                     &&sprite.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)
                             {
                                 moteurGraphique->AjouterCommande(&sprite,10,1);
-
                                 if (surbrillance)
                                 {
                                     sprite.SetBlendMode(sf::Blend::Add);
                                     moteurGraphique->AjouterCommande(&sprite,10,1);
                                 }
-
-                                sprite.FlipY(true);
-                                sprite.Scale(1,0.5);
-                                sprite.Move(0,sprite.GetSize().y);
-                                moteurGraphique->AjouterCommande(&sprite,0,1);
                             }
                         }
             }
@@ -705,11 +713,8 @@ bool Personnage::seDeplacer(float tempsEcoule,coordonnee dimensionsMap)
 void Personnage::infligerDegats(float degats)
 {
     m_caracteristique.vie-=degats;
-
     if (m_caracteristique.vie<=0&&m_etat!=3)
         m_poseEnCours=0,m_etat=3;
-
-    m_touche = true;
 }
 
 int Personnage::animer(Modele_Personnage *modele,float temps,bool *explosif,coordonnee positionHero)

@@ -132,7 +132,9 @@ void Miracle::Charger(std::string chemin)
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
+                char temp[1000];
+                sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
                 caractere='$';
             }
         }
@@ -149,7 +151,9 @@ void Miracle::Charger(std::string chemin)
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
+                char temp[1000];
+                sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
                 caractere='$';
             }
         }
@@ -205,7 +209,9 @@ void Miracle::Charger(std::string chemin)
                     }
                     if (fichier.eof())
                     {
-                        console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
+                        char temp[1000];
+                        sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());
+                        console->Ajouter(temp,1);
                         caractere='$';
                     }
 
@@ -217,7 +223,9 @@ void Miracle::Charger(std::string chemin)
 
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
+                char temp[1000];
+                sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
                 caractere='$';
             }
         }
@@ -310,7 +318,9 @@ void Miracle::Charger(std::string chemin)
                             }
                             if (fichier.eof())
                             {
-                                console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
+                                char temp[1000];
+                                sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());
+                                console->Ajouter(temp,1);
                                 caractere='$';
                             }
                         }
@@ -323,7 +333,9 @@ void Miracle::Charger(std::string chemin)
                     }
                     if (fichier.eof())
                     {
-                        console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
+                        char temp[1000];
+                        sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());
+                        console->Ajouter(temp,1);
                         caractere='$';
                     }
                 }
@@ -332,7 +344,9 @@ void Miracle::Charger(std::string chemin)
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
+                char temp[1000];
+                sprintf(temp,"Erreur : Miracle \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
                 caractere='$';
             }
         }

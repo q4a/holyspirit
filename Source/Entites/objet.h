@@ -52,7 +52,7 @@ public:
 
      Objet operator=(const Objet &objet);
 
-    int AfficherCaracteristiques(coordonnee position,Caracteristique caract,float modPrix = 1, bool compare = false, bool = false, bool = false);
+    void AfficherCaracteristiques(coordonnee position,Caracteristique caract,float modPrix=1);
     void Charger(std::string chemin,bool NePasAjouterBenedictions=false);
     void ChargerCaracteristiques(std::ifstream *fichier);
 
@@ -103,14 +103,13 @@ public:
     Miracle m_miracle;
 
 private:
-    sf::String AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color=sf::Color(255,255,255));
+    sf::String AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, char *chaine,sf::Color color=sf::Color(255,255,255));
 
     std::string m_nom,m_chemin;
     std::vector <std::string> m_description;
     int m_rarete,m_image,m_son,m_chanceTrouver;
     coordonnee m_positionImage,m_taille,m_position;
     int ai,aa,dii,dia,dai,daa;
-    int m_img_corner;
 };
 
 #endif
