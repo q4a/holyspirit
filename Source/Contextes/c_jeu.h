@@ -24,9 +24,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 
-#include "contexte.h"
-#include "../globale.h"
 
+#include "../globale.h"
+#include "contexte.h"
+
+class DisplayingThread;
 //! Contexte principal du jeu. Il gère à peu près tout ce qui concerne le jeu en in-game.
 /**
 Gère l'IA, les déplacements, les animations, l'affichage...
@@ -42,6 +44,7 @@ public:
     Initialise les écritures pour les FPS
     */
     c_Jeu();
+    ~c_Jeu ();
 
     //! Utilise le contexte.
     /**
@@ -51,10 +54,25 @@ public:
     */
     void Utiliser(Jeu *jeu);
 
-    float alpha_map,alpha_sac;
 
+    float alpha_map,alpha_sac;
+    void Animation(Jeu *jeu);
+    void Sauvegarder(Jeu *jeu);
+    void IA(Jeu *jeu);
+    DisplayingThread *displThread;
+    void GererTemps(Jeu *jeu);
+    void Deplacements(Jeu *jeu);
+    void Lumieres(Jeu *jeu);
+    float tempsActuel,tempsPrecedent,tempsDepuisDerniereAnimation,tempsEcoule,tempsNbrTourBoucle,tempsEcouleDepuisDernierCalculLumiere,tempsEcouleDepuisDernierCalculOmbre,tempsEcouleDepuisDernierDeplacement,tempsEcouleDepuisDernierIA,tempsEcouleDepuisDernierAffichage,tempsEcouleDepuisFPS,tempsEffetMort,tempsSauvergarde;
+
+<<<<<<< .mine
+    void Evenements(Jeu *jeu);
+    void Affichage(Jeu *jeu);
+    void FPS(Jeu *jeu);
+=======
     sf::Thread *m_thread_sauvegarde;
 
+>>>>>>> .r988
 private:
 
     //! Incrémente les compteurs de temps avec le temps écoulé depuis la dernière boucle
@@ -63,7 +81,15 @@ private:
     Et gerer le taux du post effect pour quand la vie est presque à 0
     \param jeu : class qui contient le jeu, donc le héro, la map en cours, ...
     */
-    void GererTemps(Jeu *jeu);
+
+<<<<<<< .mine
+
+    //! Sauvegarde automatique de la map et du héro
+    /**
+    \param jeu : class qui contient le jeu, donc le héro, la map en cours, ...
+    */
+=======
+>>>>>>> .r988
 
 
     //! Gère l'IA des monstres
@@ -71,7 +97,7 @@ private:
     Fait simplement appelle à la fonction de gestion de l'IA des monstres
     \param jeu : class qui contient le jeu, donc le héro, la map en cours, ...
     */
-    void IA(Jeu *jeu);
+
 
     //! Gère les déplacements du héro
     /**
@@ -80,7 +106,7 @@ private:
     Placement de l'écouteur
     \param jeu : class qui contient le jeu, donc le héro, la map en cours, ...
     */
-    void Deplacements(Jeu *jeu);
+
 
     //! Gère l'animation des décors, monstres et du héro
     /**
@@ -89,13 +115,13 @@ private:
     Gère les dégats infligés par le héro
     \param jeu : class qui contient le jeu, donc le héro, la map en cours, ...
     */
-    void Animation(Jeu *jeu);
+
 
     //! Calcul la lumière du héro et le timing de rafraichissement des lumières
     /**
     \param jeu : class qui contient le jeu, donc le héro, la map en cours, ...
     */
-    void Lumieres(Jeu *jeu);
+
 
     //! Gères les événements au clavier et à la souris
     /**
@@ -103,7 +129,7 @@ private:
     l'objet à ramasser...
     \param jeu : class qui contient le jeu, donc le héro, la map en cours, ...
     */
-    void Evenements(Jeu *jeu);
+
 
     //! Affiche le jeu
     /**
@@ -111,14 +137,13 @@ private:
     Gère aussi le fondu de la minimap.
     \param jeu : class qui contient le jeu, donc le héro, la map en cours, ...
     */
-    void Affichage(Jeu *jeu);
-    void FPS(Jeu *jeu);
+
+
 
     bool continuer,lumiere,augmenter;
     int nbrTourBoucle;
     sf::String Version,Temps,fps,TourBoucle;
 
-    float tempsActuel,tempsPrecedent,tempsDepuisDerniereAnimation,tempsEcoule,tempsNbrTourBoucle,tempsEcouleDepuisDernierCalculLumiere,tempsEcouleDepuisDernierCalculOmbre,tempsEcouleDepuisDernierDeplacement,tempsEcouleDepuisDernierIA,tempsEcouleDepuisDernierAffichage,tempsEcouleDepuisFPS,tempsEffetMort,tempsSauvergarde;
 
     float lowFPS;
 

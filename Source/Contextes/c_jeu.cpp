@@ -18,9 +18,10 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 
 #include "c_jeu.h"
-#include "../jeu.h"
+
 
 #include "../globale.h"
+#include "../Moteurs/displayingThread.h"
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
@@ -41,6 +42,7 @@ void Sauvegarder(void* UserData)
 
 c_Jeu::c_Jeu()
 {
+
     continuer=true,lumiere=false,augmenter=false;
     tempsActuel=0,tempsPrecedent=0,tempsDepuisDerniereAnimation=0,tempsEcoule=0,tempsNbrTourBoucle=0,tempsEcouleDepuisDernierCalculLumiere=0,tempsEcouleDepuisDernierCalculOmbre=0,tempsEcouleDepuisDernierDeplacement=0,tempsEcouleDepuisDernierIA=0,tempsEcouleDepuisDernierAffichage=0,tempsEcouleDepuisFPS=0,tempsEffetMort=0,tempsSauvergarde=0;
     nbrTourBoucle=0;
@@ -66,15 +68,28 @@ c_Jeu::c_Jeu()
     alpha_map=0;
     alpha_sac=0;
     lowFPS=-1;
+<<<<<<< .mine
+    displThread = new DisplayingThread (this);
+
+=======
 
 
     m_thread_sauvegarde = NULL;
+>>>>>>> .r988
 }
+
 
 void c_Jeu::Utiliser(Jeu *jeu)
 {
-    //Gestion du temps
 
+    //Gestion du temps
+<<<<<<< .mine
+
+
+    jeu->m_display=false;
+=======
+
+>>>>>>> .r988
     tempsEcoule = jeu->Clock.GetElapsedTime();
 
     if (tempsEcoule>0.1)
@@ -82,8 +97,19 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
     if(1)
     {
+<<<<<<< .mine
+
+        if (!displThread->estEnMarche())
+            displThread->lancer(jeu);
+=======
         jeu->m_display=false;
+>>>>>>> .r988
         GererTemps(jeu);
+<<<<<<< .mine
+
+        //Sauvegarder(jeu);
+        //IA(jeu);
+=======
         //Sauvegarder(jeu);
         if (tempsSauvergarde>=configuration->frequence_sauvegarde)
         {
@@ -98,9 +124,10 @@ void c_Jeu::Utiliser(Jeu *jeu)
             tempsSauvergarde=0;
         }
         IA(jeu);
+>>>>>>> .r988
         Deplacements(jeu);
         Animation(jeu);
-        Lumieres(jeu);
+        //Lumieres(jeu);
 
         if (tempsEcouleDepuisDernierAffichage>0.02&&configuration->syncronisation_verticale||!configuration->syncronisation_verticale)
         {
@@ -162,6 +189,19 @@ void c_Jeu::GererTemps(Jeu *jeu)
     else
         configuration->effetMort=150;
 }
+<<<<<<< .mine
+void c_Jeu::Sauvegarder(Jeu *jeu)
+{
+
+    if (tempsSauvergarde>=configuration->frequence_sauvegarde)
+    {
+        jeu->map->Sauvegarder(&jeu->hero);
+        jeu->hero.Sauvegarder();
+        tempsSauvergarde=0;
+    }
+}
+=======
+>>>>>>> .r988
 void c_Jeu::IA(Jeu *jeu)
 {
     if (tempsEcouleDepuisDernierIA>=0.027)
@@ -518,5 +558,9 @@ void c_Jeu::FPS(Jeu *jeu)
 
         tempsNbrTourBoucle=0;
     }
+}
+c_Jeu::~c_Jeu () {
+
+    delete displThread;
 }
 

@@ -104,7 +104,7 @@ void c_Chargement::setC_Chargement(std::string prochaineMap,coordonnee coordonne
     m_tempsChargement=0;
 }
 
-void c_Chargement::Utiliser(Jeu *jeu)
+void c_Chargement::Utiliser(Jeu* jeu)
 {
     jeu->m_display=true;
 
@@ -132,8 +132,8 @@ void c_Chargement::Utiliser(Jeu *jeu)
         if (jeu->map!=NULL&&!m_debut)
            jeu->map->Sauvegarder(&jeu->hero);
 
-        jeu->hero.Sauvegarder();
 
+        jeu->hero.Sauvegarder();
         if (jeu->map!=NULL)
         {
             delete jeu->map;
