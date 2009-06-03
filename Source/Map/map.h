@@ -112,8 +112,8 @@ private:
     Lumiere m_lumiere[24];
     std::vector <Tileset> m_tileset;
     std::vector <Herbe> m_herbe;
-    //Decor ***m_decor;
-    std::vector < std::vector < Decor > >  m_decor[NOMBRE_COUCHE_MAP];
+    Decor ***m_decor;
+    std::vector < std::vector < Decor > >  decorBuffer[NOMBRE_COUCHE_MAP];
     std::vector <Evenement> m_evenement;
 
     sf::Music m_musique[MAX_MUSIQUE];

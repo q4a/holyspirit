@@ -93,7 +93,9 @@ bool Tileset::Charger(std::string chemin)
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Tileset \" "+cheminFinal+" \" Invalide",1);
+                char temp[1000];
+                sprintf(temp,"Erreur : Tileset \" %s \" Invalide",cheminFinal.c_str());
+                console->Ajouter(temp,1);
                 caractere='$';
             }
         }
@@ -110,7 +112,9 @@ bool Tileset::Charger(std::string chemin)
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Tileset \" "+cheminFinal+" \" Invalide",1);
+                char temp[1000];
+                sprintf(temp,"Erreur : Tileset \" %s \" Invalide",cheminFinal.c_str());
+                console->Ajouter(temp,1);
                 caractere='$';
             }
         }
@@ -196,7 +200,9 @@ bool Tileset::Charger(std::string chemin)
                     }
                     if (fichier.eof())
                     {
-                        console->Ajouter("Erreur : Tileset \" "+cheminFinal+" \" Invalide",1);
+                        char temp[1000];
+                        sprintf(temp,"Erreur : Tileset \" %s \" Invalide",cheminFinal.c_str());
+                        console->Ajouter(temp,1);
                         caractere='$';
                     }
                 }
@@ -216,7 +222,9 @@ bool Tileset::Charger(std::string chemin)
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Tileset \" "+cheminFinal+" \" Invalide",1);
+                char temp[1000];
+                sprintf(temp,"Erreur : Tileset \" %s \" Invalide",cheminFinal.c_str());
+                console->Ajouter(temp,1);
                 caractere='$';
             }
         }

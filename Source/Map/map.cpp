@@ -32,6 +32,7 @@ using namespace sf;
 
 #include "../globale.h"
 #include "../jeu.h"
+#include "../Moteurs/displayingThread.h"
 
 Map::Map()
 {
@@ -60,14 +61,8 @@ void Map::Detruire()
     if (configuration->debug)
         console->Ajouter("Destruction des cases...");
 
-    for (int i=0;i<NOMBRE_COUCHE_MAP;i++)
-    {
-        for (int j=0;j<(int)m_decor[i].size();j++)
-            m_decor[i][j].clear();
-        m_decor[i].clear();
-    }
 
-    /*if (m_decor)
+    if (m_decor)
     {
         for (int i=0;i<NOMBRE_COUCHE_MAP;i++)
         {
@@ -86,7 +81,7 @@ void Map::Detruire()
             }
         }
         delete[] m_decor;
-    }*/
+    }
 
     if (configuration->debug)
         console->Ajouter("Cases détruites !");
@@ -162,7 +157,11 @@ bool Map::Charger(std::string nomMap,Hero *hero)
     if (mapExistante==true)
     {
         fichier=reader.GetInfos(configuration->chemin_temps+nomMap);
-        fichier2=reader.GetInfos(configuration->chemin_temps+"entites_map_"+nomMap+".emap.hs");
+
+        char buf[255];
+        sprintf(buf,"entites_map_%s.emap.hs",nomMap.c_str());
+
+        fichier2=reader.GetInfos(configuration->chemin_temps+buf);
     }
     else
     {
@@ -182,8 +181,10 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                char temp[1000];
+                sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                throw (&temp);
             }
         }
         while (caractere!='$');
@@ -203,8 +204,10 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                char temp[1000];
+                sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                throw (&temp);
             }
         }
         while (caractere!='$');
@@ -241,8 +244,9 @@ bool Map::Charger(std::string nomMap,Hero *hero)
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                char temp[1000];
+                sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
+                throw (&temp);
             }
         }
         while (caractere!='$');
@@ -274,8 +278,10 @@ bool Map::Charger(std::string nomMap,Hero *hero)
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                char temp[1000];
+                sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                throw (&temp);
             }
         }
         while (caractere!='$');
@@ -306,8 +312,10 @@ bool Map::Charger(std::string nomMap,Hero *hero)
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                char temp[1000];
+                sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                throw (&temp);
             }
 
         }
@@ -331,8 +339,10 @@ bool Map::Charger(std::string nomMap,Hero *hero)
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                char temp[1000];
+                sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                throw (&temp);
             }
 
         }
@@ -358,8 +368,10 @@ bool Map::Charger(std::string nomMap,Hero *hero)
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                char temp[1000];
+                sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                throw (&temp);
             }
         }
         while (caractere!='$');
@@ -472,8 +484,10 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
                             if (fichier2->eof())
                             {
-                                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                                throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                                char temp[1000];
+                                sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
+                                console->Ajouter(temp,1);
+                                throw (&temp);
                             }
                         }
                         while (caractere!='$');
@@ -503,8 +517,10 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
                     if (fichier2->eof())
                     {
-                        console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                        throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                        char temp[1000];
+                        sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
+                        console->Ajouter(temp,1);
+                        throw (&temp);
                     }
                 }
                 while (caractere!='$');
@@ -532,8 +548,10 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                     }
                     if (fichier->eof())
                     {
-                        console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                        throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                        char temp[1000];
+                        sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
+                        console->Ajouter(temp,1);
+                        throw (&temp);
                     }
                 }
                 while (caractere!='$');
@@ -561,8 +579,10 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                     }
                     if (fichier->eof())
                     {
-                        console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                        throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                        char temp[1000];
+                        sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
+                        console->Ajouter(temp,1);
+                        throw (&temp);
                     }
                 }
                 while (caractere!='$');
@@ -571,8 +591,10 @@ bool Map::Charger(std::string nomMap,Hero *hero)
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                char temp[1000];
+                sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
+                console->Ajouter(temp,1);
+                throw (&temp);
             }
         }
         while (caractere!='$');
@@ -596,7 +618,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                 fichier->get(caractere);
                 if (caractere=='*')
                 {
-                    m_decor[couche].push_back(std::vector<Decor> ());
+                    decorBuffer[couche].push_back(std::vector<Decor> ());
                     do
                     {
                         int pos;
@@ -619,11 +641,12 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                 *fichier>>temp;
                                 tile.push_back(temp);
                                 break;
-                            case 'e':
+                            case 'e': {
                                 int temp2;
                                 *fichier>>temp2;
                                 evenement.push_back(temp2);
                                 break;
+                            }
                             case 'm':
                                 if (entite_map_existante!=true)
                                 {
@@ -645,15 +668,17 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                 *fichier>>hauteur;
                                 break;
 
-                            case 'o':
+                            case 'o': {
                                 pos=fichier->tellg();
                                 objets.push_back(Objet ());
                                 objets.back().ChargerTexte(fichier,true);
                                 objets.back().Charger(objets.back().getChemin(),true);
+
                                 fichier->seekg(pos, ios::beg);
                                 objets.back().m_benedictions.clear();
                                 objets.back().ChargerTexte(fichier);
                                 break;
+                            }
 
                             case 'r':
                                 fichier->get(caractere);
@@ -664,7 +689,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                         *fichier>>noModuleCaseMin;
                                     else if (caractere=='a')
                                         *fichier>>noModuleCaseMax;
-                                    else if (caractere=='*')
+
+                                    else if (caractere=='*') {
                                         do
                                         {
                                             fichier->get(caractere);
@@ -718,28 +744,36 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
                                             if (fichier->eof())
                                             {
-                                                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                                                throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                                                char temp[1000];
+                                                sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
+                                                console->Ajouter(temp,1);
+                                                throw (&temp);
                                             }
                                         }
                                         while (caractere!='$');
+                                    }
 
                                     fichier->get(caractere);
 
                                     if (fichier->eof())
                                     {
-                                        console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                                        throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                                        char temp[1000];
+                                        sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
+                                        console->Ajouter(temp,1);
+                                        throw (&temp);
                                     }
                                 }
                                 while (caractere!='$');
                                 break;
                             }
+
                             fichier->get(caractere);
                             if (fichier->eof())
                             {
-                                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                                throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                                char temp[1000];
+                                sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
+                                console->Ajouter(temp,1);
+                                throw (&temp);
                             }
                         }
                         while (caractere!='|' && caractere!='$');
@@ -747,8 +781,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                         if (caractere!='$')
                         {
                             if (couche==1)
-                                if (m_decor[0][position.y][position.x].getHerbe()>=0&&herbe<0)
-                                    herbe=m_decor[0][position.y][position.x].getHerbe();
+                                if (decorBuffer[0][position.y][position.x].getHerbe()>=0&&herbe<0)
+                                    herbe=decorBuffer[0][position.y][position.x].getHerbe();
 
                             if (entite_map_existante!=true)
                             {
@@ -798,16 +832,13 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
                             if (fichier->eof())
                             {
-                                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                                throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                                char temp[1000];
+                                sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
+                                console->Ajouter(temp,1);
+                                throw (&temp);
                             }
 
-                            if(couche==0)
-                                layer+=1;
-                            else
-                                layer+=10;
-
-                            m_decor[couche][position.y].push_back(Decor (tileset,tileFinal,evenement,monstreFinal,herbe,layer,hauteur,objets));
+                            decorBuffer[couche][position.y].push_back(Decor (tileset,tileFinal,evenement,monstreFinal,herbe,layer,hauteur,objets));
 
                             tileset=-1,tile.clear(),tileFinal=-1,evenement.clear(),monstreFinal=-1,herbe=-1,layer=0,hauteur=0;
                             objets.clear();
@@ -824,8 +855,10 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                 }
                 if (fichier->eof())
                 {
-                    console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                    throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                    char temp[1000];
+                    sprintf(temp,"Erreur : Map \" %s \" Invalide",chemin.c_str());
+                    console->Ajouter(temp,1);
+                    throw (&temp);
                 }
             }
             while (caractere!='$');
@@ -849,13 +882,34 @@ bool Map::Charger(std::string nomMap,Hero *hero)
     delete fichier;
     delete fichier2;
 
-    m_dimensions.x=(int)m_decor[0][0].size();
-    m_dimensions.y=(int)m_decor[0].size();
+    m_dimensions.x=(int)decorBuffer[0][0].size();
+    m_dimensions.y=(int)decorBuffer[0].size();
+
+    m_decor = new Decor**[NOMBRE_COUCHE_MAP];
+    for (int i=0;i<NOMBRE_COUCHE_MAP;i++)
+    {
+        m_decor[i] = new Decor* [(int)decorBuffer[i].size()];
+        for (int j=0;j<(int)decorBuffer[i].size();j++)
+        {
+            m_decor[i][j] = new Decor[(int)decorBuffer[i][j].size()];
+            for (int k=0;k<(int)decorBuffer[i][j].size();k++)
+                m_decor[i][j][k]=decorBuffer[i][j][k];
+        }
+    }
 
     console->Ajouter("Chargement de la map terminé.");
     console->Ajouter("");
 
+    //calculerOmbresEtLumieres();
+
     Initialiser();
+
+    for (int i=0;i<NOMBRE_COUCHE_MAP;i++)
+    {
+        for (int j=0;j<(int)decorBuffer[i].size();j++)
+            decorBuffer[i][j].clear();
+        decorBuffer[i].clear();
+    }
 
     return 1;
 }
@@ -1002,12 +1056,20 @@ void Map::CreerSprite(sf::Vector3f position_case)
     m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].m_sprite.SetX(position.x+64);
     m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].m_sprite.SetY(position.y+32);
 
+    int layer=6;
 
+    if (position_case.z==0)
+        layer=m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getCouche();
+    else
+        layer=/*6+m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getCouche()*/10;
+
+    m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].setCouche(layer);
 }
 
 
-void Map::Sauvegarder(Hero *hero)
-{
+void Map::Sauvegarder(Hero* hero){
+
+
     string chemin = configuration->chemin_temps+m_nom_fichier;
 
     console->Ajouter("",0);
@@ -1079,13 +1141,9 @@ void Map::Sauvegarder(Hero *hero)
                         fichier<<"m"<<m_decor[couche][i][j].getMonstre()<<" ";
                     //fichier<<"m"<<m_monstre[m_decor[couche][i][j].getMonstre()].getModele()<<" ";
                     fichier<<"h"<<m_decor[couche][i][j].getHerbe()<<" ";
-
                     fichier<<"i"<<m_decor[couche][i][j].getHauteur()<<" ";
 
-                    if(couche==0)
-                        fichier<<"l"<<m_decor[couche][i][j].getCouche()-1<<" ";
-                    else
-                        fichier<<"l"<<m_decor[couche][i][j].getCouche()-10<<" ";
+                    fichier<<"l"<<m_decor[couche][i][j].getCouche()<<" ";
 
                     for (int o=0;o<(int)m_decor[couche][i][j].getNombreObjets();o++)
                         m_decor[couche][i][j].getObjet(o)->SauvegarderTexte(&fichier);
@@ -1108,7 +1166,13 @@ void Map::Sauvegarder(Hero *hero)
 
 
 
+
     chemin = configuration->chemin_temps+"entites_map_"+m_nom_fichier+".emap.hs";
+
+
+
+
+
 
     console->Ajouter("Sauvegarde de la map_entite : "+chemin,0);
 
@@ -1138,7 +1202,6 @@ void Map::Sauvegarder(Hero *hero)
 
         fichier2.close();
     }
-
     console->Ajouter("Sauvegarde de la map terminée !");
 }
 
@@ -1254,7 +1317,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
     String texte;
 
     positionHero.y=(int)((hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y)*DIVISEUR_COTE_TILE*32);
-    positionHero.x=(int)(((hero->m_personnage.getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().y)*DIVISEUR_COTE_TILE-1)*64);
+    positionHero.x=(int)(((hero->m_personnage.getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().y)*DIVISEUR_COTE_TILE-1+m_dimensions.y)*64);
 
     coordonnee position;
 
@@ -1338,8 +1401,6 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                                     {
                                         coordonnee buf={(int)(sprite.GetPosition().x),(int)(sprite.GetPosition().y),0,0};
                                         m_decor[1][j][k].AfficherTexteObjet(buf,o);
-                                        if(eventManager->getEvenement(sf::Key::LControl,"ET"))
-                                            m_decor[1][j][k].getObjet(o)->AfficherCaracteristiques(eventManager->getPositionSouris(),hero->m_caracteristiques);
 
                                         m_sacPointe.x=k;
                                         m_sacPointe.y=j;
@@ -1363,7 +1424,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                                 sprite.SetX(position.x);
                                 sprite.SetY(position.y);
 
-                                if(eventManager->getCasePointee().x==k&&eventManager->getCasePointee().y==j&&m_monstreIllumine<0&&m_decor[1][j][k].getNombreObjets()>4&&!alt&&m_monstreIllumine<0)
+                                if (m_sacPointe.x==k&&m_sacPointe.y==j&&m_monstreIllumine<0)
                                     sprite.SetColor(sf::Color(255,128,128));
                                 else
                                     sprite.SetColor(sf::Color(255,255,255));
@@ -1380,9 +1441,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
 
                             int objetPointe=-1;
 
-                            if(eventManager->getCasePointee().x==k&&eventManager->getCasePointee().y==j&&m_monstreIllumine<0&&m_decor[1][j][k].getNombreObjets()>4&&!alt)
-                                m_objetPointe=-1,m_decor[1][j][k].AfficherTexteObjets(position,-1);
-                            if (alt)
+                            if (m_sacPointe.x==k&&m_sacPointe.y==j&&m_monstreIllumine<0&&m_decor[1][j][k].getNombreObjets()>4||alt)
                                 objetPointe=m_decor[1][j][k].AfficherTexteObjets(position,m_objetPointe);
 
                             if(!eventManager->getEvenement(sf::Mouse::Left,"C")&&moteurGraphique->getPositionSouris().x>sprite.GetPosition().x&&moteurGraphique->getPositionSouris().x<sprite.GetPosition().x+32&&moteurGraphique->getPositionSouris().y>sprite.GetPosition().y&&moteurGraphique->getPositionSouris().y<sprite.GetPosition().y+32&&m_decor[1][j][k].getNombreObjets()>4)
@@ -1395,9 +1454,6 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                             {
                                 m_sacPointe.x=k;
                                 m_sacPointe.y=j;
-
-                                if(eventManager->getEvenement(sf::Key::LControl,"ET"))
-                                    m_decor[1][j][k].getObjet(objetPointe)->AfficherCaracteristiques(eventManager->getPositionSouris(),hero->m_caracteristiques);
 
                                 m_objetPointe=objetPointe;
                             }
@@ -1529,6 +1585,7 @@ void Map::AfficherNomEvenement(coordonnee casePointee,coordonnee positionSouris)
                     if (m_evenement[evenement].getType()==CHANGEMENT_DE_MAP)
                     {
                         string nom;
+                        char chemin[128];
 
                         cDAT reader;
                         reader.Read(configuration->chemin_maps);
@@ -1555,8 +1612,10 @@ void Map::AfficherNomEvenement(coordonnee casePointee,coordonnee positionSouris)
 
                         delete fichier;
 
+                        sprintf(chemin,"Vers %s",nom.c_str());
+
                         sf::String texte;
-                        texte.SetText("Vers "+nom);
+                        texte.SetText(chemin);
                         texte.SetSize(16.f);
                         if (configuration->Resolution.y>0)
                             texte.SetY((positionSouris.y-16)*configuration->Resolution.h/configuration->Resolution.y);
@@ -1570,28 +1629,33 @@ void Map::AfficherNomEvenement(coordonnee casePointee,coordonnee positionSouris)
 
 bool Map::TestEvenement(Jeu *jeu,float temps)
 {
+
     for (int i=0;i<2;i++)
         for (int z=0;z<(int)m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement().size();z++)
             if (m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]>=0)
             {
                 if (m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getType()==CHANGEMENT_DE_MAP)
                 {
+
                     string nomMap=m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getString();
 
                     console->Ajouter("",0);
                     console->Ajouter("---------------------------------------------------------------------------------",0);
-                    console->Ajouter("EVENEMENT : Changement de map",0);
+                    console->Ajouter("EVENEMENT : Changement de map : "+nomMap,0);
                     console->Ajouter("---------------------------------------------------------------------------------",0);
 
                     coordonnee coordonneePerso;
                     coordonneePerso.x=m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(0);
                     coordonneePerso.y=m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(1);
 
+
                     sf::Clock Clock;
                     Clock.Reset();
 
                     jeu->m_chargement->setC_Chargement(nomMap,coordonneePerso);
                     jeu->m_contexte = jeu->m_chargement;
+                    //jeu->m_jeu->displThread->arreter();
+
                 }
 
                 if (m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getType()==INFLIGER_DEGATS)
@@ -1795,7 +1859,7 @@ int Map::GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
                             moteurGraphique->LightManager->SetQuality(m_monstre.back().m_light,6);
 
                             sf::Vector2f pos;
-                            pos.x=(((m_monstre.back().getCoordonneePixel().x-m_monstre.back().getCoordonneePixel().y)*64/COTE_TILE*64));
+                            pos.x=(((m_monstre.back().getCoordonneePixel().x-m_monstre.back().getCoordonneePixel().y)*64/COTE_TILE+getDimensions().y*64));
                             pos.y=(((m_monstre.back().getCoordonneePixel().x+m_monstre.back().getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
 
                             moteurGraphique->LightManager->SetPosition(m_monstre.back().m_light,pos);
@@ -1887,7 +1951,7 @@ int Map::GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
 void Map::Animer(Hero *hero,float temps,Menu *menu)
 {
     coordonnee positionHero;
-    positionHero.x=(hero->m_personnage.getCoordonnee().x-hero->m_personnage.getCoordonnee().y-1)/5;
+    positionHero.x=(hero->m_personnage.getCoordonnee().x-hero->m_personnage.getCoordonnee().y-1+m_dimensions.y)/5;
     positionHero.y=(hero->m_personnage.getCoordonnee().x+hero->m_personnage.getCoordonnee().y)/5;
 
     coordonnee vueMin,vueMax;
@@ -1931,7 +1995,7 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                     if (m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile())>=0)
                         while (m_decor[i][j][k].getAnimation()>=tempsAnimation)
                         {
-                            m_decor[i][j][k].setTile(m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile()));
+                            m_decor[i][j][k].setDecor(m_decor[i][j][k].getTileset(),m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile()),m_decor[i][j][k].getEvenement(),m_decor[i][j][k].getMonstre(),m_decor[i][j][k].getHerbe(),m_decor[i][j][k].getCouche(),m_decor[i][j][k].getHauteur());
 
                             CreerSprite(sf::Vector3f(k,j,i));
 
@@ -1942,6 +2006,7 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                                 moteurGraphique->LightManager->SetColor(m_decor[i][j][k].m_light,sf::Color(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).rouge,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).vert,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).bleu));
 
                                 moteurGraphique->LightManager->Generate(m_decor[i][j][k].m_light);
+
                             }
 
                             coordonnee position;
@@ -1966,8 +2031,7 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                         if (m_monstre[monstre].m_miracleALancer==-1)
                         {
                             if (m_monstre[monstre].m_shooter||!m_monstre[monstre].m_shooter&&fabs(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)<=1&&fabs(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)<=1)
-                                if(rand() % 100 < (float)((float)m_monstre[monstre].getCaracteristique().dexterite/(float)hero->m_caracteristiques.dexterite)*75 )
-                                    hero->InfligerDegats(degats);
+                                hero->InfligerDegats(degats);
                         }
                         else
                         {
@@ -2111,7 +2175,7 @@ void Map::AnimerMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,f
                             if (miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getSon()>=0)
                             {
                                 coordonnee position;
-                                position.x=(personnage->getCoordonnee().x-personnage->getCoordonnee().y-1)/5;
+                                position.x=(personnage->getCoordonnee().x-personnage->getCoordonnee().y-1+m_dimensions.y)/5;
                                 position.y=(personnage->getCoordonnee().x+personnage->getCoordonnee().y)/5;
 
                                 miracles[personnage->m_miracleEnCours[i].m_modele].JouerSon(miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getSon(),position,positionHero);
@@ -2303,11 +2367,11 @@ void Map::MusiquePlay(coordonnee position)
 #define PLAYSOUND(numero)   if(m_monstre[m_decor[i][j][k].getMonstre()].getModele()>=0&&m_monstre[m_decor[i][j][k].getMonstre()].getModele()<(int)m_ModeleMonstre.size()) \
                             { \
                                 coordonnee position; \
-                                position.x=(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-1)/5; \
+                                position.x=(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-1+m_dimensions.y)/5; \
                                 position.y=(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x+m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y)/5; \
                                  \
                                 coordonnee positionHero; \
-                                positionHero.x=(hero->m_personnage.getCoordonnee().x-hero->m_personnage.getCoordonnee().y-1)/5; \
+                                positionHero.x=(hero->m_personnage.getCoordonnee().x-hero->m_personnage.getCoordonnee().y-1+m_dimensions.y)/5; \
                                 positionHero.y=(hero->m_personnage.getCoordonnee().x+hero->m_personnage.getCoordonnee().y)/5; \
                                  \
                                 m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].JouerSon(numero,position,positionHero,true); \
@@ -2365,11 +2429,11 @@ void Map::MusiquePlay(coordonnee position)
                                 }
 
 #define TRADE() hero->setMonstreVise(-1);\
-                jeu->m_inventaire->setTrader(m_monstre[m_decor[i][j][k].getMonstre()].getPointeurObjets(),&hero->m_classe);\
+                jeu->m_inventaire->setTrader(m_monstre[m_decor[i][j][k].getMonstre()].getObjets(),&hero->m_classe);\
                 jeu->m_contexte=jeu->m_inventaire;\
 
 
-#define LISTE_INSTRUCTIONS(noInstruction)      if(noInstruction>=0&&noInstruction<(int)script->m_instructions.size()) \
+#define LISTE_INSTRUCTIONS(noInstruction) if(noInstruction>=0&&noInstruction<(int)script->m_instructions.size()) \
                                              { \
                                                 if(script->m_instructions[noInstruction].nom=="fight") { FIGHT() } \
                                                 if(script->m_instructions[noInstruction].nom=="evasion") { EVASION() } \
@@ -2387,11 +2451,6 @@ void Map::MusiquePlay(coordonnee position)
 #define LISTE_CONDITIONS(noInstruction) if(script->m_instructions[noInstruction].nom=="see")\
                                         {\
                                             if(!m_monstre[m_decor[i][j][k].getMonstre()].getVu()) \
-                                                ok=false;\
-                                        }\
-                                        else if(script->m_instructions[noInstruction].nom=="touch")\
-                                        {\
-                                            if(!m_monstre[m_decor[i][j][k].getMonstre()].m_touche) \
                                                 ok=false;\
                                         }\
                                         else if(script->m_instructions[noInstruction].nom=="numberInvocation")\
@@ -2581,11 +2640,12 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                                 for (int a=0;a<(int)script->m_instructions[0].valeurs.size();a++)
                                     if (script->m_instructions[0].valeurs[a]>=0&&script->m_instructions[0].valeurs[a]<(int)script->m_instructions.size())
                                         LISTE_INSTRUCTIONS(script->m_instructions[0].valeurs[a])
+                                        //if(script->m_instructions[script->m_instructions[0].valeurs[a]].nom=="if")
+                                        //gererConditions(script,script->m_instructions[0].valeurs[a],i,j,k,hero,temps,camera,menu);
 
                                         if (m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding())
                                             RANDOMDISPLACE()
-                            m_monstre[m_decor[i][j][k].getMonstre()].m_touche = false;
-                        }
+                                        }
                         else
                             m_monstre[m_decor[i][j][k].getMonstre()].m_attente-=temps*100;
 
@@ -2596,6 +2656,11 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
 
                         if (m_monstre[m_decor[i][j][k].getMonstre()].m_compteur>3)
                             m_monstre[m_decor[i][j][k].getMonstre()].m_attente=2,m_monstre[m_decor[i][j][k].getMonstre()].m_compteur=0,m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee());
+
+
+                        //if(!m_monstre[m_decor[i][j][k].getMonstre()].enVie()&&m_monstre[m_decor[i][j][k].getMonstre()].getEtat()!=3)
+                        // m_monstre[m_decor[i][j][k].getMonstre()].setEtat(3);
+
 
                         ///GESTION DES EVENEMENTS SUR LES MONSTRES
                         for (int l=0;l<2;l++)
@@ -2670,6 +2735,7 @@ bool Map::InfligerDegats(int numeroMonstre, float degats,Menu *menu, Hero *hero,
                             if(m_decor[o][y][x].getMonstre()>=0&&m_decor[o][y][x].getMonstre()<m_monstre.size())
                                 m_monstre[m_decor[o][y][x].getMonstre()].setVu(1);
         }*/
+
 
         m_monstre[numeroMonstre].infligerDegats(degats);
 
@@ -3074,6 +3140,29 @@ int Map::getMonstre(Hero *hero,coordonnee positionSouris,coordonnee casePointee)
     if(casePointee.y>=0&&casePointee.y<m_dimensions.y&&casePointee.x>=0&&casePointee.x<m_dimensions.x)
     for (int i=0;i<2;i++)
     {
+       /* if (m_decor[i][casePointee.y][casePointee.x].getNombreObjets()>0)
+        {
+            m_sacPointe.x=casePointee.x;
+            m_sacPointe.y=casePointee.y;*/
+           // if (m_decor[i][casePointee.y][casePointee.x].getNombreObjets()==1)
+                //m_objetPointe=0;
+
+        /*    coordonnee position;
+            position.x=(casePointee.x-casePointee.y-1)*64+48;
+            position.y=(casePointee.x+casePointee.y)*32+16;
+
+             if (m_decor[i][casePointee.y][casePointee.x].getNombreObjets()<=6)
+                m_objetPointe=(moteurGraphique->getPositionSouris().x-position.x+32)/32+(moteurGraphique->getPositionSouris().y-position.y)/32*3;
+*/
+
+            /*for(int z=0;z<m_decor[i][casePointee.y][casePointee.x].getNombreObjets();z++)
+            {
+                sprite.SetY((position.y-moteurGraphique->m_camera.GetRect().Top)*configuration->zoom-20*configuration->Resolution.w/800*(z+1));
+                sprite.SetX((position.x-moteurGraphique->m_camera.GetRect().Left)*configuration->zoom-4);
+                sprite.Resize(texte.GetRect().Right-texte.GetRect().Left +8 , texte.GetRect().Bottom-texte.GetRect().Top +6);
+            }*/
+       // }
+
         for (int j=vueMin.y;j<vueMax.y;j++)
             for (int k=vueMin.x;k<vueMax.x;k++)
             {
@@ -3081,7 +3170,7 @@ int Map::getMonstre(Hero *hero,coordonnee positionSouris,coordonnee casePointee)
                     if (m_monstre[m_decor[i][j][k].getMonstre()].enVie()&&m_monstre[m_decor[i][j][k].getMonstre()].getCaracteristique().rang>=0)
                     {
                         coordonneeDecimal temp;
-                        temp.x=(((m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x-m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y)*64/COTE_TILE));
+                        temp.x=(((m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x-m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y)*64/COTE_TILE/*+m_dimensions.y*64*/));
                         temp.y=(((m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x+m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y)*64/COTE_TILE)/2+32);
 
 

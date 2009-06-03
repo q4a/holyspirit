@@ -67,7 +67,6 @@ public:
     Objet *getObjet(int numero);
     void supprimerObjet(int numero);
     std::vector<Objet> getObjets();
-    std::vector<Objet> *getPointeurObjets();
     int getNombreObjets();
     float getAnimation();
 
