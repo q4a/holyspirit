@@ -206,7 +206,6 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std
                     Collision1 = CollisionWithPoint(l1,pt1,pt2);
 
                 if (!NoUseCollision2)
-
                     Collision2 = CollisionWithPoint(l2,pt1,pt2);
 
 

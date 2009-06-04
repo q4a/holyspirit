@@ -113,7 +113,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
     tempsEcouleDepuisDernierAffichage+=temps_ecoule;
     jeu->Clock.Reset();
 
-    if (z>=49&&!augmenterNoir&&allerVersImageChargement||m_debut)
+    if ((z>=49 && !augmenterNoir && allerVersImageChargement) || m_debut)
     {
         if(jeu->m_jeu->m_thread_sauvegarde)
         {
@@ -195,12 +195,12 @@ void c_Chargement::Utiliser(Jeu *jeu)
     if (z<0)
         z=0;
 
-    if (allerVersImageChargement&&z<49&&augmenterNoir||!allerVersImageChargement&&z>0&&!augmenterNoir)
+    if ((allerVersImageChargement&&z<49&&augmenterNoir)||(!allerVersImageChargement&&z>0&&!augmenterNoir))
     {
         //jeu->camera.Zoom(configuration->zoom);
         if(jeu->map!=NULL)
             jeu->map->setVolumeMusique((int)(z*(float)configuration->volume/50));
-        if (!m_debut&&augmenterNoir||!augmenterNoir)
+        if ((!m_debut&&augmenterNoir)||(!augmenterNoir))
         {
             if(jeu->map!=NULL)
             {
@@ -218,7 +218,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
     configuration->effetNoir=((float)z)/50;
 
 
-    if (z>=49&&!augmenterNoir&&!allerVersImageChargement||m_debut)
+    if ((z>=49&&!augmenterNoir&&!allerVersImageChargement)||(m_debut))
     {
         configuration->effetNoir=0;
         jeu->m_contexte = jeu->m_jeu;

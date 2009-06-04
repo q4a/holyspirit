@@ -100,7 +100,6 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
 
         if (m_caracteristique.rang==1)
         {
-            m_porteeLumineuse.intensite=128;
             m_caracteristique.maxVie*=10;
             m_caracteristique.vie*=10;
             m_caracteristique.degatsMin*=1;
@@ -111,7 +110,6 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
         }
         if (m_caracteristique.rang==2)
         {
-            m_porteeLumineuse.intensite=255;
             m_caracteristique.maxVie*=20;
             m_caracteristique.vie*=20;
             m_caracteristique.degatsMin*=1.5;

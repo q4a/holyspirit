@@ -348,7 +348,7 @@ void Hero::ChargerModele(bool tout)
     {
         if (m_inventaire[i].m_equipe>=0&&m_inventaire[i].m_equipe<(int)m_classe.emplacements.size())
         {
-            if (m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==ARME_PRINCIPAL&&m_inventaire[i].m_type==ARME||m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==BOUCLIER&&m_inventaire[i].m_type==ARME)
+            if ((m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==ARME_PRINCIPAL&&m_inventaire[i].m_type==ARME)||(m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==BOUCLIER&&m_inventaire[i].m_type==ARME))
                 nombreArme++;
 
             if (m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==ARME_PRINCIPAL&&m_inventaire[i].m_type==ARME)
@@ -709,7 +709,7 @@ void Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
     for (int i=0;i<(int)m_inventaire.size();i++)
         if (i!=m_objetEnMain)
         {
-            coordonneeDecimal position;
+            coordonneeDecimal position = {0,0,0,0};
             sf::Sprite sprite;
 
             sprite.SetImage(*moteurGraphique->getImage(0));
@@ -1058,8 +1058,8 @@ bool Hero::TestMonstreVise(Monstre *monstre)
     if (monstre!=NULL)
         if (m_monstreVise>-1&&m_caracteristiques.vie>0)
         {
-            if ((!m_personnage.m_shooter||monstre->m_friendly)&&(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)<=1) || (!m_personnage.m_shooter||monstre->m_friendly)&&(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=1)
-                    ||!monstre->m_friendly&&m_personnage.m_shooter&&(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)<=13&&fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)<=13) || !monstre->m_friendly&&m_personnage.m_shooter&&(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=13&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=13))
+            if (((!m_personnage.m_shooter||monstre->m_friendly)&&(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)<=1)) || ((!m_personnage.m_shooter||monstre->m_friendly)&&(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=1))
+                    ||(!monstre->m_friendly&&m_personnage.m_shooter&&(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)<=13&&fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)<=13)) || (!monstre->m_friendly&&m_personnage.m_shooter&&(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=13&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=13)))
             {
                 m_personnage.setArrivee(m_personnage.getCoordonnee());
 
@@ -1511,6 +1511,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
             }
 
             if (!equipe&&m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
+            {
                 if (m_inventaire[m_objetEnMain].m_equipe==-1)
                 {
                     for (int i=0;i<m_classe.position_contenu_inventaire.h;i++)
@@ -1548,9 +1549,8 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
                             }
                 }
                 else
-                {
                     m_objetEnMain=-1;
-                }
+            }
         }
     }
 

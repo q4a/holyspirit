@@ -102,7 +102,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
         Animation(jeu);
         Lumieres(jeu);
 
-        if (tempsEcouleDepuisDernierAffichage>0.02&&configuration->syncronisation_verticale||!configuration->syncronisation_verticale)
+        if ((tempsEcouleDepuisDernierAffichage>0.02&&configuration->syncronisation_verticale)||(!configuration->syncronisation_verticale))
         {
             jeu->hero.PlacerCamera(jeu->map->getDimensions()); // On place la camera suivant ou se trouve le perso
 
@@ -154,10 +154,12 @@ void c_Jeu::GererTemps(Jeu *jeu)
     if (jeu->hero.m_personnage.enVie())
     {
         if (jeu->hero.m_caracteristiques.maxVie!=0)
+        {
             if (jeu->hero.m_caracteristiques.vie/(float)jeu->hero.m_caracteristiques.maxVie<0.5)
                 configuration->effetMort=150-(jeu->hero.m_caracteristiques.vie*300/jeu->hero.m_caracteristiques.maxVie),jeu->sonMort.SetVolume(configuration->effetMort);
             else
                 configuration->effetMort=0,jeu->sonMort.SetVolume(0);
+        }
     }
     else
         configuration->effetMort=150;
