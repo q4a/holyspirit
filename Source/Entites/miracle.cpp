@@ -115,6 +115,8 @@ void Miracle::Charger(std::string chemin)
 {
     m_chemin=chemin;
 
+    std::cout<<m_chemin<<std::endl;
+
     ifstream fichier;
     fichier.open(m_chemin.c_str(), ios::in);
     if (fichier)

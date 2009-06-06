@@ -47,6 +47,8 @@ public:
 
     void AfficherInventaire(float,std::vector<Objet>);
     void AfficherCaracteristiques(float decalage);
+    void AfficherRaccourcis();
+
     void GenererGrille();
     void PlacerCamera(coordonnee dimensionsMap);
 
@@ -66,9 +68,11 @@ public:
     Objet DeposerObjet();
     bool PrendreEnMain(std::vector<Objet>*);
 
-    bool PossibleEquiper(int emplacement);
+    bool PossibleEquiper(int numero, int emplacement);
     bool Equiper(int numero, int emplacement);
+    bool UtiliserObjet(int numero);
     void AttribuerPositionObjet(coordonnee position,int numero);
+    void RangerObjet(int numero);
 
     bool AjouterMiracleArme();
     //void LibererCases(int numero);
@@ -99,6 +103,7 @@ public:
     std::vector<std::string> m_contenuSave;
 
     int m_defilement_trader,m_max_defilement_trader,m_buttonPointe;
+    int m_objets_raccourcis[4];
 
 private:
     coordonneeDecimal m_positionAffichage;

@@ -42,11 +42,13 @@ Objet::Objet()
     m_degatsMin=0;
     m_degatsMax=0;
 
+
     m_requirement.force=0;
     m_requirement.dexterite=0;
     m_requirement.charisme=0;
     m_requirement.vitalite=0;
     m_requirement.piete=0;
+    m_capaciteBenediction = 0;
 
     m_prix=0;
 
@@ -81,40 +83,40 @@ Objet::~Objet()
 
 Objet Objet::operator=(const Objet &objet)
 {
-	m_type=objet.m_type;
+    m_type=objet.m_type;
 
-	m_equipe=objet.m_equipe;
-	m_emplacement=objet.m_emplacement;
-	m_emplacementImpossible=objet.m_emplacementImpossible;
-	m_degatsMin=objet.m_degatsMin;
-	m_degatsMax=objet.m_degatsMax;
-	m_armure=objet.m_armure;
-	m_capaciteBenediction=objet.m_capaciteBenediction;
-	m_emplacementImageHero=objet.m_emplacementImageHero;
-	m_cheminImageHero=objet.m_cheminImageHero;
-	m_benedictions=objet.m_benedictions;
-	m_color=objet.m_color;
-	m_nom=objet.m_nom;
-	m_chemin=objet.m_chemin;
-	m_description=objet.m_description;
-	m_rarete=objet.m_rarete;
-	m_image=objet.m_image;
-	m_son=objet.m_son;
-	m_chanceTrouver=objet.m_chanceTrouver;
-	m_positionImage=objet.m_positionImage;
-	m_taille=objet.m_taille;
-	m_position=objet.m_position;
-	ai=objet.ai;
-	aa=objet.aa;
-	dii=objet.dii;
-	dia=objet.dia;
-	dai=objet.dai;
-	daa=objet.daa;
+    m_equipe=objet.m_equipe;
+    m_emplacement=objet.m_emplacement;
+    m_emplacementImpossible=objet.m_emplacementImpossible;
+    m_degatsMin=objet.m_degatsMin;
+    m_degatsMax=objet.m_degatsMax;
+    m_armure=objet.m_armure;
+    m_capaciteBenediction=objet.m_capaciteBenediction;
+    m_emplacementImageHero=objet.m_emplacementImageHero;
+    m_cheminImageHero=objet.m_cheminImageHero;
+    m_benedictions=objet.m_benedictions;
+    m_color=objet.m_color;
+    m_nom=objet.m_nom;
+    m_chemin=objet.m_chemin;
+    m_description=objet.m_description;
+    m_rarete=objet.m_rarete;
+    m_image=objet.m_image;
+    m_son=objet.m_son;
+    m_chanceTrouver=objet.m_chanceTrouver;
+    m_positionImage=objet.m_positionImage;
+    m_taille=objet.m_taille;
+    m_position=objet.m_position;
+    ai=objet.ai;
+    aa=objet.aa;
+    dii=objet.dii;
+    dia=objet.dia;
+    dai=objet.dai;
+    daa=objet.daa;
 
-	m_requirement=objet.m_requirement;
-	m_prix=objet.m_prix;
+    m_requirement=objet.m_requirement;
+    m_prix=objet.m_prix;
 
-	m_IDClasse=objet.m_IDClasse;
+    m_IDClasse=objet.m_IDClasse;
     m_shoot_weapon=objet.m_shoot_weapon;
     m_useMiracle=objet.m_useMiracle;
     m_miracle=objet.m_miracle;
@@ -402,7 +404,7 @@ void Objet::ChargerTexte(std::ifstream *fichier,bool NePasAjouterBenedictions)
             }
             while (caractere!='$');
 
-            if(!NePasAjouterBenedictions)
+            if (!NePasAjouterBenedictions)
             {
                 m_benedictions.push_back(benediction ());
                 m_benedictions.back().type=type;
@@ -412,14 +414,14 @@ void Objet::ChargerTexte(std::ifstream *fichier,bool NePasAjouterBenedictions)
 
                 if (m_benedictions.back().type==DEGATS_FEU)
                 {
-                    if(!m_useMiracle)
+                    if (!m_useMiracle)
                         m_miracle.Charger("Data/Items/FireEffect/FireEffect.miracle.hs"),m_useMiracle=true;
                     else
                         m_miracle.Concatenencer("Data/Items/FireEffect/FireEffect.miracle.hs");
                 }
                 if (m_benedictions.back().type==DEGATS_FOI)
                 {
-                    if(!m_useMiracle)
+                    if (!m_useMiracle)
                         m_miracle.Charger("Data/Items/HolyEffect/HolyEffect.miracle.hs"),m_useMiracle=true;
                     else
                         m_miracle.Concatenencer("Data/Items/HolyEffect/HolyEffect.miracle.hs");
@@ -863,7 +865,7 @@ void Objet::Charger(std::string chemin,bool NePasAjouterBenedictions)
                 }
                 while (caractere!='$');
 
-                if(!NePasAjouterBenedictions)
+                if (!NePasAjouterBenedictions)
                 {
                     m_benedictions.push_back(benediction ());
                     m_benedictions.back().type=b;
@@ -873,14 +875,14 @@ void Objet::Charger(std::string chemin,bool NePasAjouterBenedictions)
 
                     if (m_benedictions.back().type==DEGATS_FEU)
                     {
-                        if(!m_useMiracle)
+                        if (!m_useMiracle)
                             m_miracle.Charger("Data/Items/FireEffect/FireEffect.miracle.hs"),m_useMiracle=true;
                         else
                             m_miracle.Concatenencer("Data/Items/FireEffect/FireEffect.miracle.hs");
                     }
                     if (m_benedictions.back().type==DEGATS_FOI)
                     {
-                        if(!m_useMiracle)
+                        if (!m_useMiracle)
                             m_miracle.Charger("Data/Items/HolyEffect/HolyEffect.miracle.hs"),m_useMiracle=true;
                         else
                             m_miracle.Concatenencer("Data/Items/HolyEffect/HolyEffect.miracle.hs");
@@ -916,141 +918,126 @@ void Objet::Generer(int bonus)
     m_color.b=255;
     m_color.a=255;
 
-    if (m_rarete<DIVIN)
-    {
-        int nbrBene=0;
-        int rarete=NORMAL;
-        int random=rand()%10000 / bonus;
-        if (random<=900)
-            rarete=BONNEFACTURE;
-
-        if (random<=300)
-            rarete=BENI;
-
-        if (random<=30)
-            rarete=SACRE;
-
-        if (random<3)
-            rarete=SANCTIFIE;
-
-        if (rarete<m_rarete)
-            rarete=m_rarete;
-        m_rarete=rarete;
-
-        if (m_rarete==BONNEFACTURE)
+    if (m_type != CONSOMMABLE)
+        if (m_rarete<DIVIN)
         {
-            m_armure*=1;
-            m_degatsMin*=1;
-            m_degatsMax*=1;
-            nbrBene=1;
+            int nbrBene=0;
+            int rarete=NORMAL;
+            int random=rand()%10000 / bonus;
+            if (random<=900)
+                rarete=BONNEFACTURE;
 
-           /* m_color.r=255-rand()%64;
-            m_color.g=255-rand()%64;
-            m_color.b=255-rand()%64;*/
-        }
+            if (random<=300)
+                rarete=BENI;
 
-        if (m_rarete==BENI)
-        {
-            m_armure*=1;
-            m_degatsMin*=1;
-            m_degatsMax*=1;
-            nbrBene=rand()%(4-2)+2;
+            if (random<=30)
+                rarete=SACRE;
 
-            /*m_color.r=255-rand()%128;
-            m_color.g=255-rand()%128;
-            m_color.b=255-rand()%128;*/
-        }
+            if (random<3)
+                rarete=SANCTIFIE;
 
-        if (m_rarete==SACRE)
-        {
-            m_armure*=1;
-            m_degatsMin*=1;
-            m_degatsMax*=1;
-            nbrBene=rand()%(9-5)+5;
+            if (rarete<m_rarete)
+                rarete=m_rarete;
+            m_rarete=rarete;
 
-            /*m_color.r=255-rand()%192;
-            m_color.g=255-rand()%192;
-            m_color.b=255-rand()%192;*/
-        }
-
-        if (m_rarete==SANCTIFIE)
-        {
-            m_armure*=1;
-            m_degatsMin*=1;
-            m_degatsMax*=1;
-            nbrBene=rand()%(15-10)+10;
-
-            /*m_color.r=255-rand()%255;
-            m_color.g=255-rand()%255;
-            m_color.b=255-rand()%255;*/
-        }
-
-        for (int i=0;i<nbrBene;i++)
-        {
-
-            bool ajouter=true;
-
-            benediction temp;
-            temp.type=rand()%NOMBRE_BENEDICTION;
-
-            temp.info1=0;
-            temp.info2=0;
-
-            if (temp.type==VIE_SUPP||temp.type==FOI_SUPP)
-                temp.info1=rand()%(m_capaciteBenediction*10 - (int)(m_capaciteBenediction*3))+m_capaciteBenediction*3;
-            else if (temp.type==EFFICACITE_ACCRUE&&(m_type==ARME||m_type==ARMURE))
-                temp.info1=(int)(rand()%(m_capaciteBenediction*10 - (int)((float)m_capaciteBenediction*2.5))+(float)m_capaciteBenediction*2.5);
-            else if (temp.type==DEGATS_FEU&&m_type==ARME)
-                temp.info1=(int)(rand()%(m_capaciteBenediction*2 - (int)((float)m_capaciteBenediction*0.5))+(float)m_capaciteBenediction*0.5);
-            else if (temp.type==DEGATS_FOI&&m_type==ARME)
-                temp.info1=(int)(rand()%(m_capaciteBenediction*2 - (int)((float)m_capaciteBenediction*0.5))+(float)m_capaciteBenediction*0.5);
-            else
-                temp.info1=(int)(rand()%(m_capaciteBenediction*1 - (int)((float)m_capaciteBenediction*0.5))+(float)m_capaciteBenediction*0.5);
-
-            if(
-                 (temp.type==EFFICACITE_ACCRUE&&!(m_type==ARME||m_type==ARMURE))||
-                 (temp.type==DEGATS_FEU&&m_type!=ARME)||
-                 (temp.type==DEGATS_FOI&&m_type!=ARME)
-              )
-                ajouter=false,i--;
-
-
-            m_prix+=m_prix/4;
-
-            for (int j=0;j<(int)m_benedictions.size();j++)
-                if (m_benedictions[j].type==temp.type)
-                    m_benedictions[j].info1+=temp.info1,ajouter=false;
-
-            if (ajouter)
+            if (m_rarete==BONNEFACTURE)
             {
-                m_benedictions.push_back(benediction ());
-                m_benedictions.back()=temp;
+                m_armure*=1;
+                m_degatsMin*=1;
+                m_degatsMax*=1;
+                nbrBene=1;
+            }
+
+            if (m_rarete==BENI)
+            {
+                m_armure*=1;
+                m_degatsMin*=1;
+                m_degatsMax*=1;
+                nbrBene=rand()%(4-2)+2;
+            }
+
+            if (m_rarete==SACRE)
+            {
+                m_armure*=1;
+                m_degatsMin*=1;
+                m_degatsMax*=1;
+                nbrBene=rand()%(9-5)+5;
+            }
+
+            if (m_rarete==SANCTIFIE)
+            {
+                m_armure*=1;
+                m_degatsMin*=1;
+                m_degatsMax*=1;
+                nbrBene=rand()%(15-10)+10;
+            }
+
+            for (int i=0;i<nbrBene;i++)
+            {
+
+                bool ajouter=true;
+
+                benediction temp;
+                temp.type=rand()%NOMBRE_BENEDICTION;
+
+                temp.info1=0;
+                temp.info2=0;
+
+                if (temp.type==VIE_SUPP||temp.type==FOI_SUPP)
+                    temp.info1=rand()%(m_capaciteBenediction*10 - (int)(m_capaciteBenediction*3) + 1)+m_capaciteBenediction*3;
+                else if (temp.type==EFFICACITE_ACCRUE&&(m_type==ARME||m_type==ARMURE))
+                    temp.info1=(int)(rand()%(m_capaciteBenediction*10 - (int)((float)m_capaciteBenediction*2.5) + 1)+(float)m_capaciteBenediction*2.5);
+                else if (temp.type==DEGATS_FEU&&m_type==ARME)
+                    temp.info1=(int)(rand()%(m_capaciteBenediction*2 - (int)((float)m_capaciteBenediction*0.5) + 1)+(float)m_capaciteBenediction*0.5);
+                else if (temp.type==DEGATS_FOI&&m_type==ARME)
+                    temp.info1=(int)(rand()%(m_capaciteBenediction*2 - (int)((float)m_capaciteBenediction*0.5) + 1)+(float)m_capaciteBenediction*0.5);
+                else
+                    temp.info1=(int)(rand()%(m_capaciteBenediction*1 - (int)((float)m_capaciteBenediction*0.5) + 1)+(float)m_capaciteBenediction*0.5);
+
+                if (
+                    (temp.type==EFFICACITE_ACCRUE&&!(m_type==ARME||m_type==ARMURE))||
+                    (temp.type==DEGATS_FEU&&m_type!=ARME)||
+                    (temp.type==DEGATS_FOI&&m_type!=ARME)
+                )
+                    ajouter=false,i--;
 
 
+                m_prix+=m_prix/4;
 
-                if (temp.type==DEGATS_FEU)
+                for (int j=0;j<(int)m_benedictions.size();j++)
+                    if (m_benedictions[j].type==temp.type)
+                        m_benedictions[j].info1+=temp.info1,ajouter=false;
+
+                if (ajouter)
                 {
-                    m_color.r=255;
-                    m_color.g=64;
-                    m_color.b=64;
-                    if(!m_useMiracle)
-                        m_miracle.Charger("Data/Items/FireEffect/FireEffect.miracle.hs"),m_useMiracle=true;
-                    else
-                        m_miracle.Concatenencer("Data/Items/FireEffect/FireEffect.miracle.hs");
-                }
-                if (temp.type==DEGATS_FOI)
-                {
-                    m_color.r=64;
-                    m_color.g=64;
-                    m_color.b=255;
-                    if(!m_useMiracle)
-                        m_miracle.Charger("Data/Items/HolyEffect/HolyEffect.miracle.hs"),m_useMiracle=true;
-                    else
-                        m_miracle.Concatenencer("Data/Items/HolyEffect/HolyEffect.miracle.hs");
+                    m_benedictions.push_back(benediction ());
+                    m_benedictions.back()=temp;
+
+
+
+                    if (temp.type==DEGATS_FEU)
+                    {
+                        m_color.r=255;
+                        m_color.g=64;
+                        m_color.b=64;
+                        if (!m_useMiracle)
+                            m_miracle.Charger("Data/Items/FireEffect/FireEffect.miracle.hs"),m_useMiracle=true;
+                        else
+                            m_miracle.Concatenencer("Data/Items/FireEffect/FireEffect.miracle.hs");
+                    }
+                    if (temp.type==DEGATS_FOI)
+                    {
+                        m_color.r=64;
+                        m_color.g=64;
+                        m_color.b=255;
+                        if (!m_useMiracle)
+                            m_miracle.Charger("Data/Items/HolyEffect/HolyEffect.miracle.hs"),m_useMiracle=true;
+                        else
+                            m_miracle.Concatenencer("Data/Items/HolyEffect/HolyEffect.miracle.hs");
+                    }
                 }
             }
         }
-    }
 }
 
 void Objet::ChargerCaracteristiques(std::ifstream *fichier)
@@ -1189,15 +1176,15 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
 
     coordonnee tailleCadran={0,0,0,0},decalage={-10,0,0,0};
 
-    if(m_equipe>=0&&compare)
+    if (m_equipe>=0&&compare)
     {
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"Equipé :"));
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"---------------"));
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
     }
-    else if(compare)
+    else if (compare)
     {
-        if(decalageDroite)
+        if (decalageDroite)
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"Marchand :"));
         else
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"Inventaire :"));
@@ -1238,27 +1225,27 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
     switch (m_type)
     {
     case ARME:
-        {
-            std::ostringstream buf;
-            buf<<"Dégats : "<<(int)(m_degatsMin*multiplieurEfficacite/100)<<" - "<<(int)(m_degatsMax*multiplieurEfficacite/100);
+    {
+        std::ostringstream buf;
+        buf<<"Dégats : "<<(int)(m_degatsMin*multiplieurEfficacite/100)<<" - "<<(int)(m_degatsMax*multiplieurEfficacite/100);
 
-            if (multiplieurEfficacite!=100)
-                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(0,64,128)));
-            else
-                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
-        }
-        break;
+        if (multiplieurEfficacite!=100)
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(0,64,128)));
+        else
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+    }
+    break;
     case ARMURE:
-        {
-            std::ostringstream buf;
-            buf<<"Armure : "<<(int)(m_armure*multiplieurEfficacite/100);
+    {
+        std::ostringstream buf;
+        buf<<"Armure : "<<(int)(m_armure*multiplieurEfficacite/100);
 
-            if (multiplieurEfficacite!=100)
-                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(0,64,128)));
-            else
-                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
-        }
-        break;
+        if (multiplieurEfficacite!=100)
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(0,64,128)));
+        else
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+    }
+    break;
     }
 
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran," "));
@@ -1318,9 +1305,9 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
         {
             std::ostringstream buf;
             buf<<configuration->text_benedictions[m_benedictions[i].type];
-            if(m_benedictions[i].info1>0||m_benedictions[i].info2>0)
+            if (m_benedictions[i].info1>0||m_benedictions[i].info2>0)
                 buf<<m_benedictions[i].info1;
-            if(m_benedictions[i].info2>0)
+            if (m_benedictions[i].info2>0)
                 buf<<m_benedictions[i].info2;
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(0,64,128)));
         }
@@ -1364,7 +1351,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
     tailleCadran.x+=20;
 
     sprite.SetImage(*moteurGraphique->getImage(0));
-    if(surbrillance)
+    if (surbrillance)
         sprite.SetColor(sf::Color(16,16,16,248));
     else
         sprite.SetColor(sf::Color(0,0,0,248));
@@ -1401,7 +1388,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
 
     temp.clear();
 
-    if(decalageDroite)
+    if (decalageDroite)
         return (position.x+20);
 
     return (position.x-tailleCadran.x);

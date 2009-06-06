@@ -397,6 +397,34 @@ void c_Jeu::Evenements(Jeu *jeu)
         if (eventManager->getEvenement(Mouse::Left,"C")&&eventManager->getPositionSouris().x>configuration->Resolution.w-configuration->Resolution.w*0.25&&eventManager->getPositionSouris().y>configuration->Resolution.w*0.265&&eventManager->getPositionSouris().y<configuration->Resolution.w*0.265+20*configuration->Resolution.w/800)
             jeu->map->m_defilerObjets--,eventManager->StopEvenement(Mouse::Left,"C");
     }
+
+
+    if (eventManager->getEvenement(Key::F1,"ET"))
+    {
+        eventManager->StopEvenement(Key::F1,"ET");
+        if(jeu->hero.UtiliserObjet(jeu->hero.m_objets_raccourcis[0]))
+            jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),eventManager->getCasePointee(),1);
+    }
+    if (eventManager->getEvenement(Key::F2,"ET"))
+    {
+        eventManager->StopEvenement(Key::F2,"ET");
+        if(jeu->hero.UtiliserObjet(jeu->hero.m_objets_raccourcis[1]))
+            jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),eventManager->getCasePointee(),1);
+    }
+    if (eventManager->getEvenement(Key::F3,"ET"))
+    {
+        eventManager->StopEvenement(Key::F3,"ET");
+        if(jeu->hero.UtiliserObjet(jeu->hero.m_objets_raccourcis[2]))
+            jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),eventManager->getCasePointee(),1);
+    }
+    if (eventManager->getEvenement(Key::F4,"ET"))
+    {
+        eventManager->StopEvenement(Key::F4,"ET");
+        if(jeu->hero.UtiliserObjet(jeu->hero.m_objets_raccourcis[3]))
+            jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),eventManager->getCasePointee(),1);
+    }
+
+
 }
 void c_Jeu::Affichage(Jeu *jeu)
 {

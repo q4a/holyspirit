@@ -120,6 +120,11 @@ Hero::Hero()
     m_personnage.m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(m_personnage.getCoordonnee().x,m_personnage.getCoordonnee().y),512,2048,16,sf::Color(255,255,255));
 
     m_defilement_trader=0;
+
+    m_objets_raccourcis[0] = -1;
+    m_objets_raccourcis[1] = -1;
+    m_objets_raccourcis[2] = -1;
+    m_objets_raccourcis[3] = -1;
 }
 
 Hero::~Hero()
@@ -166,6 +171,11 @@ void Hero::Sauvegarder()
         fichier<<m_personnage.getCaracteristique().charisme<<endl;
         fichier<<m_personnage.getCaracteristique().pts_restant<<endl;
         fichier<<m_argent<<endl;
+
+        fichier<<m_objets_raccourcis[0]<<endl;
+        fichier<<m_objets_raccourcis[1]<<endl;
+        fichier<<m_objets_raccourcis[2]<<endl;
+        fichier<<m_objets_raccourcis[3]<<endl;
 
         if (configuration->debug)
             console->Ajouter("/Ecriture des caracterstiques.");
@@ -235,6 +245,11 @@ void Hero::Charger()
             *fichier>>charTemp.pts_restant;
 
             *fichier>>m_argent;
+
+            *fichier>>m_objets_raccourcis[0];
+            *fichier>>m_objets_raccourcis[1];
+            *fichier>>m_objets_raccourcis[2];
+            *fichier>>m_objets_raccourcis[3];
 
             charTemp.ancienPointAme=charTemp.pointAme,charTemp.positionAncienAme=charTemp.pointAme;
 
@@ -467,6 +482,8 @@ void Hero::Afficher(coordonnee dimensionsMap)
             //m_personnage.setPorteeLumineuse(m_modelePersonnage[ordreAffichage[i]].getPorteeLumineuse());
             m_personnage.Afficher(dimensionsMap,&m_modelePersonnage[ordreAffichage[i]]);
         }
+
+    AfficherRaccourcis();
 }
 
 void Hero::AfficherCaracteristiques(float decalage)
@@ -1066,7 +1083,7 @@ void Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
             if (eventManager->getPositionSouris().x>m_classe.emplacements[k].position.x*configuration->Resolution.x/800&&eventManager->getPositionSouris().x<(m_classe.emplacements[k].position.x+m_classe.emplacements[k].position.w)*configuration->Resolution.x/800&&eventManager->getPositionSouris().y>m_classe.emplacements[k].position.y*configuration->Resolution.y/600&&eventManager->getPositionSouris().y<(m_classe.emplacements[k].position.y+m_classe.emplacements[k].position.h)*configuration->Resolution.y/600)
                 emplacement=k;
 
-        if (!PossibleEquiper(emplacement))
+        if (!PossibleEquiper(m_objetEnMain, emplacement))
             sprite.SetColor(sf::Color((int)(sprite.GetColor().r*0.25),(int)(sprite.GetColor().g*0.25),(int)(sprite.GetColor().b*0.25),128));
 
         if (eventManager->getPositionSouris().x<m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800||eventManager->getPositionSouris().x>m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800+32*m_classe.position_contenu_inventaire.w*configuration->Resolution.x/800||eventManager->getPositionSouris().y<(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600||eventManager->getPositionSouris().y>(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_inventaire.h*configuration->Resolution.y/600)
@@ -1146,6 +1163,27 @@ void Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
     }
 
     AfficherCaracteristiques(decalage);
+}
+
+void Hero::AfficherRaccourcis()
+{
+    for(int i=0;i<4;i++)
+        if(m_objets_raccourcis[i] >= 0 && m_objets_raccourcis[i] < m_inventaire.size())
+        {
+            sf::Sprite sprite;
+            sprite.SetImage(*moteurGraphique->getImage(m_inventaire[m_objets_raccourcis[i]].getImage()));
+
+            sprite.SetSubRect(IntRect(  m_inventaire[m_objets_raccourcis[i]].getPositionImage().x,
+                                        m_inventaire[m_objets_raccourcis[i]].getPositionImage().y,
+                                        m_inventaire[m_objets_raccourcis[i]].getPositionImage().x+m_inventaire[m_objets_raccourcis[i]].getPositionImage().w,
+                                        m_inventaire[m_objets_raccourcis[i]].getPositionImage().y+m_inventaire[m_objets_raccourcis[i]].getPositionImage().h));
+            sprite.SetX(255 + 32*i);
+            sprite.SetY(492);
+
+            sprite.Resize(20,20);
+
+             moteurGraphique->AjouterCommande(&sprite,19,0);
+        }
 }
 
 void Hero::PlacerCamera(coordonnee dimensionsMap)
@@ -1302,10 +1340,10 @@ void Hero::RecalculerCaracteristiques()
 
     m_caracteristiques.vie=vie,m_caracteristiques.foi=foi;
 
-    if (m_caracteristiques.vie>m_caracteristiques.maxVie)
-        m_caracteristiques.vie=m_caracteristiques.maxVie;
-    if (m_caracteristiques.foi>m_caracteristiques.maxFoi)
-        m_caracteristiques.foi=m_caracteristiques.maxFoi;
+    if (m_caracteristiques.vie>m_caracteristiques.maxVie*2)
+        m_caracteristiques.vie=m_caracteristiques.maxVie*2;
+    if (m_caracteristiques.foi>m_caracteristiques.maxFoi*2)
+        m_caracteristiques.foi=m_caracteristiques.maxFoi*2;
 }
 
 int Hero::UtiliserClicDroit(int monstreVise)
@@ -1441,6 +1479,15 @@ Objet Hero::DeposerObjet()
 
         m_inventaire.erase(m_inventaire.begin()+m_objetADeposer);
 
+        if(m_objetADeposer == m_objets_raccourcis[0])
+            m_objets_raccourcis[0] = -1;
+        if(m_objetADeposer == m_objets_raccourcis[1])
+            m_objets_raccourcis[1] = -1;
+        if(m_objetADeposer == m_objets_raccourcis[2])
+            m_objets_raccourcis[2] = -1;
+        if(m_objetADeposer == m_objets_raccourcis[3])
+            m_objets_raccourcis[3] = -1;
+
         temp.setPosition(m_personnage.getCoordonnee().x,m_personnage.getCoordonnee().y);
 
         temp.m_equipe=-1;
@@ -1519,6 +1566,42 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
             RecalculerCaracteristiques();
         }
     }
+    if(m_objetEnMain >= 0)
+    {
+        if(eventManager->getPositionSouris().x > 255
+         &&eventManager->getPositionSouris().x < 275
+         &&eventManager->getPositionSouris().y > 492
+         &&eventManager->getPositionSouris().y < 512)
+        {
+            m_objets_raccourcis[0] = m_objetEnMain;
+           m_objetEnMain = -1;
+
+        }
+        else if(eventManager->getPositionSouris().x > 287
+         &&eventManager->getPositionSouris().x < 307
+         &&eventManager->getPositionSouris().y > 492
+         &&eventManager->getPositionSouris().y < 512)
+        {
+            m_objets_raccourcis[1] = m_objetEnMain;
+            m_objetEnMain = -1;
+        }
+        else if(eventManager->getPositionSouris().x > 319
+         &&eventManager->getPositionSouris().x < 339
+         &&eventManager->getPositionSouris().y > 492
+         &&eventManager->getPositionSouris().y < 512)
+        {
+            m_objets_raccourcis[2] = m_objetEnMain;
+            m_objetEnMain = -1;
+        }
+        else if(eventManager->getPositionSouris().x > 351
+         &&eventManager->getPositionSouris().x < 371
+         &&eventManager->getPositionSouris().y > 492
+         &&eventManager->getPositionSouris().y < 512)
+        {
+            m_objets_raccourcis[3] = m_objetEnMain;
+            m_objetEnMain = -1;
+        }
+    }
 
     m_objetADeposer=-1;
     if (eventManager->getPositionSouris().x>m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800
@@ -1582,8 +1665,19 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
             for (int z=0;z<(int)m_inventaire.size();z++)
                 if (m_inventaire[z].m_equipe==-1)
                     if (caseVisee.x>=m_inventaire[z].getPosition().x&&caseVisee.x<m_inventaire[z].getPosition().x+m_inventaire[z].getTaille().x
-                            &&caseVisee.y>=m_inventaire[z].getPosition().y&&caseVisee.y<m_inventaire[z].getPosition().y+m_inventaire[z].getTaille().y)
-                        m_objetEnMain=z/*,LibererCases(m_objetEnMain)*/;
+                      &&caseVisee.y>=m_inventaire[z].getPosition().y&&caseVisee.y<m_inventaire[z].getPosition().y+m_inventaire[z].getTaille().y)
+                    {
+                        if(eventManager->getEvenement(Key::LControl,"ET"))
+                        {
+                            m_inventaire[z].JouerSon();
+                            m_argent+=m_inventaire[z].getPrix();
+                            m_inventaire[z].m_equipe=-1;
+                            AjouterTrader(m_inventaire[z],trader,&m_classe);
+                            m_inventaire.erase(m_inventaire.begin()+z);
+                        }
+                        else
+                            m_objetEnMain=z;
+                    }
         }
 
     }
@@ -1618,13 +1712,10 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
             for (int z=0;z<(int)trader->size();z++)
                 if (caseVisee.x>=(*trader)[z].getPosition().x&&caseVisee.x<(*trader)[z].getPosition().x+(*trader)[z].getTaille().x
                         &&caseVisee.y>=(*trader)[z].getPosition().y&&caseVisee.y<(*trader)[z].getPosition().y+(*trader)[z].getTaille().y)
-                    if ((float)(*trader)[z].getPrix()*(5-(float)m_caracteristiques.charisme/100)<=m_argent)
+                    if ((int)((float)(*trader)[z].getPrix()*(5-(float)m_caracteristiques.charisme/100))<=m_argent)
                     {
                         m_argent-=(int)((float)(*trader)[z].getPrix()*(5-(float)m_caracteristiques.charisme/100));
-
-                        m_inventaire.push_back((*trader)[z]);
-                        m_objetEnMain=m_inventaire.size()-1;
-
+                        AjouterObjet((*trader)[z],!eventManager->getEvenement(Key::LControl,"ET"));
                         trader->erase(trader->begin()+z);
                     }
         }
@@ -1639,6 +1730,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
             if (m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
             {
                 m_objetADeposer=m_objetEnMain;
+
                 m_objetEnMain=-1;
 
                 GenererGrille();
@@ -1663,41 +1755,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
             if (!equipe&&m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
             {
                 if (m_inventaire[m_objetEnMain].m_equipe==-1)
-                {
-                    for (int i=0;i<m_classe.position_contenu_inventaire.h;i++)
-                        for (int j=0;j<m_classe.position_contenu_inventaire.w;j++)
-                            if (!m_caseInventaire[i][j])
-                            {
-                                bool ok=true;
-                                for (int x=j;x<j+m_inventaire[m_objetEnMain].getTaille().x;x++)
-                                    for (int y=i;y<i+m_inventaire[m_objetEnMain].getTaille().y;y++)
-                                        if (x<m_classe.position_contenu_inventaire.w&&y<m_classe.position_contenu_inventaire.h)
-                                        {
-                                            if (m_caseInventaire[y][x])
-                                                ok=false;
-                                        }
-                                        else
-                                        {
-                                            ok=false;
-                                        }
-
-                                if (ok)
-                                {
-                                    coordonnee pos={j,i,-1,-1};
-                                    m_inventaire[m_objetEnMain].setPosition(j,i);
-
-                                    AttribuerPositionObjet(pos,m_objetEnMain);
-
-                                    for (int x=j;x<j+m_inventaire[m_objetEnMain].getTaille().x;x++)
-                                        for (int y=i;y<i+m_inventaire[m_objetEnMain].getTaille().y;y++)
-                                            m_caseInventaire[y][x]=1;
-
-                                    m_objetEnMain=-1;
-
-                                    i=m_classe.position_contenu_inventaire.h,j=m_classe.position_contenu_inventaire.w;
-                                }
-                            }
-                }
+                    RangerObjet(m_objetEnMain);
                 else
                     m_objetEnMain=-1;
             }
@@ -1709,13 +1767,68 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
     return 0;
 }
 
-bool Hero::PossibleEquiper(int emplacement)
+bool Hero::PossibleEquiper(int numero, int emplacement)
 {
-    if (m_inventaire[m_objetEnMain].Utilisable(m_caracteristiques,m_classe.ID))
-        for (int i=0;i<(int)m_inventaire[m_objetEnMain].m_emplacement.size();i++)
-            if (m_inventaire[m_objetEnMain].m_emplacement[i]==m_classe.emplacements[emplacement].emplacement)
-                return true;
+    if(numero >= 0 && numero < (int)m_inventaire.size())
+        if (m_inventaire[ numero].Utilisable(m_caracteristiques,m_classe.ID))
+            for (int i=0;i<(int)m_inventaire[ numero].m_emplacement.size();i++)
+                if (m_inventaire[ numero].m_emplacement[i]==m_classe.emplacements[emplacement].emplacement)
+                    return true;
     return false;
+}
+
+bool Hero::UtiliserObjet(int numero)
+{
+    if(numero >= 0 && numero < (int)m_inventaire.size())
+    {
+        if(m_inventaire[numero].m_type == ARME || m_inventaire[numero].m_type == ARMURE)
+        {
+            bool continuer = true;
+            for (int i=0;i<(int)m_inventaire[numero].m_emplacement.size() && continuer;i++)
+                for (int j=0;j<(int)m_classe.emplacements.size() && continuer;j++)
+                    if (m_inventaire[numero].m_emplacement[i]==m_classe.emplacements[j].emplacement)
+                        if(Equiper(numero, j))
+                            continuer=false;
+        }
+
+        if(m_inventaire[numero].m_type == CONSOMMABLE)
+        {
+            m_classe.miracles.push_back(m_inventaire[numero].m_miracle);
+
+            m_personnage.m_miracleEnCours.push_back(EntiteMiracle ());
+            m_personnage.m_miracleEnCours.back().m_infos.push_back(InfosEntiteMiracle ());
+
+            m_personnage.m_miracleEnCours.back().m_modele=(int)m_classe.miracles.size()-1;
+
+            m_personnage.m_miracleEnCours.back().m_infos.back().m_position.x=m_personnage.getCoordonneePixel().x+cos(-(m_personnage.getAngle()+22.5)*M_PI/180)*96;
+            m_personnage.m_miracleEnCours.back().m_infos.back().m_position.y=m_personnage.getCoordonneePixel().y+sin(-(m_personnage.getAngle()+22.5)*M_PI/180)*96;
+
+            string temp = m_inventaire[numero].getNom();
+
+            m_inventaire.erase(m_inventaire.begin()+numero);
+
+
+            for(int i=0;i<4;i++)
+                if(numero == m_objets_raccourcis[i])
+                {
+                    bool continuer=true;
+
+                        for(int j=0;j<(int)m_inventaire.size() && continuer;j++)
+                            if(m_inventaire[j].getNom()==temp)
+                            {
+                                m_objets_raccourcis[i] = j;
+                                continuer=false;
+                            }
+                    if(continuer)
+                        m_objets_raccourcis[i] = -1;
+                }
+
+            return 1;
+        }
+    }
+    RecalculerCaracteristiques();
+
+    return 0;
 }
 
 bool Hero::Equiper(int numero, int emplacement)
@@ -1724,11 +1837,11 @@ bool Hero::Equiper(int numero, int emplacement)
     int ancienEquipe=-1;
     bool ok=true;
 
-    if (m_objetEnMain>=0 && m_objetEnMain<(int)m_inventaire.size())
+    if (numero>=0 && numero<(int)m_inventaire.size())
     {
         ok=true;
 
-        if (PossibleEquiper(emplacement))
+        if (PossibleEquiper(numero, emplacement))
         {
             for (int i=0;i<(int)m_inventaire.size();i++)
             {
@@ -1743,10 +1856,10 @@ bool Hero::Equiper(int numero, int emplacement)
                                 ok=false;
 
 
-                if (m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
-                    for (int j=0;j<(int)m_inventaire[m_objetEnMain].m_emplacementImpossible.size();j++)
+                if (numero>=0&&numero<(int)m_inventaire.size())
+                    for (int j=0;j<(int)m_inventaire[numero].m_emplacementImpossible.size();j++)
                         if (m_inventaire[i].m_equipe>=0&&m_inventaire[i].m_equipe<(int)m_classe.emplacements.size())
-                            if (m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==m_inventaire[m_objetEnMain].m_emplacementImpossible[j])
+                            if (m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==m_inventaire[numero].m_emplacementImpossible[j])
                                 ok=false;
             }
 
@@ -1777,8 +1890,11 @@ bool Hero::Equiper(int numero, int emplacement)
 
             if (ok)
             {
-                m_inventaire[m_objetEnMain].JouerSon();
-                m_objetEnMain=ancienEquipe;
+                m_inventaire[numero].JouerSon();
+                if(m_objetEnMain>=0)
+                    m_objetEnMain=ancienEquipe;
+                else
+                    RangerObjet(ancienEquipe);
             }
         }
     }
@@ -1793,21 +1909,76 @@ bool Hero::Equiper(int numero, int emplacement)
     return 0;
 }
 
+void Hero::RangerObjet(int numero)
+{
+    if (numero>=0&&numero<(int)m_inventaire.size())
+                {
+                    if (m_inventaire[numero].m_equipe==-1)
+                    {
+                        for (int i=0;i<m_classe.position_contenu_inventaire.h;i++)
+                            for (int j=0;j<m_classe.position_contenu_inventaire.w;j++)
+                                if (!m_caseInventaire[i][j])
+                                {
+                                    bool ok=true;
+                                    for (int x=j;x<j+m_inventaire[numero].getTaille().x;x++)
+                                        for (int y=i;y<i+m_inventaire[numero].getTaille().y;y++)
+                                            if (x<m_classe.position_contenu_inventaire.w&&y<m_classe.position_contenu_inventaire.h)
+                                            {
+                                                if (m_caseInventaire[y][x])
+                                                    ok=false;
+                                            }
+                                            else
+                                                ok=false;
+
+                                    if (ok)
+                                    {
+                                        coordonnee pos={j,i,-1,-1};
+                                        m_inventaire[numero].setPosition(j,i);
+
+                                        AttribuerPositionObjet(pos,numero);
+
+                                        for (int x=j;x<j+m_inventaire[numero].getTaille().x;x++)
+                                            for (int y=i;y<i+m_inventaire[numero].getTaille().y;y++)
+                                                m_caseInventaire[y][x]=1;
+
+                                        numero=-1;
+
+                                        i=m_classe.position_contenu_inventaire.h,j=m_classe.position_contenu_inventaire.w;
+                                    }
+                                }
+                    }
+                    else
+                        numero=-1;
+                }
+}
+
 void Hero::InfligerDegats(float degats)
 {
-    degats-=m_caracteristiques.armure/50;
-    if (degats<0)
-        degats=0;
+    int temp = degats;
+    degats -= m_caracteristiques.armure/50;
+    if (degats < 0)
+        degats = 0;
+    if (degats > temp)
+        degats = temp;
 
     m_caracteristiques.vie-=degats;
     if (m_caracteristiques.vie<=0)
         m_personnage.infligerDegats(m_caracteristiques.maxVie);
+
+    if(m_caracteristiques.vie > m_caracteristiques.maxVie*2)
+        m_caracteristiques.vie = m_caracteristiques.maxVie*2;
 }
 void Hero::RegenererVie(float vie)
 {
-    m_caracteristiques.vie+=vie;
+
     if (m_caracteristiques.vie>m_caracteristiques.maxVie)
-        m_caracteristiques.vie=m_caracteristiques.maxVie;
+    {
+        m_caracteristiques.vie-=(m_caracteristiques.vie-m_caracteristiques.maxVie)*vie/500;
+        if(m_caracteristiques.vie<m_caracteristiques.maxVie)
+           m_caracteristiques.vie=m_caracteristiques.maxVie;
+    }
+    else
+        m_caracteristiques.vie+=vie;
 
     Caracteristique temp=m_personnage.getCaracteristique();
     temp.vie=m_caracteristiques.vie;

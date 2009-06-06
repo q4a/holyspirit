@@ -132,11 +132,27 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
 
 
         sprite.SetX(classe->orbe_vie.position.x*configuration->Resolution.x/800);
-        sprite.SetY(classe->orbe_vie.position.y*configuration->Resolution.h/600+(int)((caracteristique.maxVie-caracteristique.vie)/caracteristique.maxVie*classe->orbe_vie.position.h*configuration->Resolution.h/600));
+
+        if(caracteristique.vie<=caracteristique.maxVie)
+            sprite.SetY(classe->orbe_vie.position.y*configuration->Resolution.h/600+(int)((caracteristique.maxVie-caracteristique.vie)/caracteristique.maxVie*classe->orbe_vie.position.h*configuration->Resolution.h/600));
+        else
+            sprite.SetY(classe->orbe_vie.position.y*configuration->Resolution.h/600);
         sprite.Resize(classe->orbe_vie.position.w*configuration->Resolution.w/800, classe->orbe_vie.position.h*configuration->Resolution.h/600);
-        sprite.SetSubRect(sf::IntRect(0, (int)(classe->orbe_vie.position.h-caracteristique.vie*classe->orbe_vie.position.h/caracteristique.maxVie), classe->orbe_vie.position.w, classe->orbe_vie.position.h));
+
+        if(caracteristique.vie<=caracteristique.maxVie)
+            sprite.SetSubRect(sf::IntRect(0, (int)(classe->orbe_vie.position.h-caracteristique.vie*classe->orbe_vie.position.h/caracteristique.maxVie), classe->orbe_vie.position.w, classe->orbe_vie.position.h));
+        else
+            sprite.SetSubRect(sf::IntRect(0, 0, classe->orbe_vie.position.w, classe->orbe_vie.position.h));
 
         moteurGraphique->AjouterCommande(&sprite,17,0);
+
+        if(caracteristique.vie>caracteristique.maxVie)
+        {
+            sprite.SetY(classe->orbe_vie.position.y*configuration->Resolution.h/600+(int)((caracteristique.maxVie*2-caracteristique.vie)/caracteristique.maxVie*classe->orbe_vie.position.h*configuration->Resolution.h/600));
+            sprite.SetSubRect(sf::IntRect(0, (int)(classe->orbe_vie.position.h-(caracteristique.vie-caracteristique.maxVie)*classe->orbe_vie.position.h/caracteristique.maxVie), classe->orbe_vie.position.w, classe->orbe_vie.position.h));
+            sprite.SetBlendMode(Blend::Add);
+            moteurGraphique->AjouterCommande(&sprite,17,0);
+        }
     }
 
     if (caracteristique.foi>0)
