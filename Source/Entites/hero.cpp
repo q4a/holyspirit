@@ -102,6 +102,7 @@ Hero::Hero()
     m_monstreVise=-1;
 
     m_objetEnMain=-1;
+    m_achat=false;
 
     RecalculerCaracteristiques();
 
@@ -1168,7 +1169,7 @@ void Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
 void Hero::AfficherRaccourcis()
 {
     for(int i=0;i<4;i++)
-        if(m_objets_raccourcis[i] >= 0 && m_objets_raccourcis[i] < m_inventaire.size())
+        if(m_objets_raccourcis[i] >= 0 && m_objets_raccourcis[i] < (int)m_inventaire.size())
         {
             sf::Sprite sprite;
             sprite.SetImage(*moteurGraphique->getImage(m_inventaire[m_objets_raccourcis[i]].getImage()));
@@ -1496,6 +1497,7 @@ Objet Hero::DeposerObjet()
 
         m_objetADeposer=-1;
         m_objetEnMain=-1;
+        m_achat=false;
     }
     return temp;
 }
@@ -1658,6 +1660,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
 
                 if (temp!=-1)
                     m_objetEnMain=temp;
+                m_achat=false;
             }
         }
         else
@@ -1676,7 +1679,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
                             m_inventaire.erase(m_inventaire.begin()+z);
                         }
                         else
-                            m_objetEnMain=z;
+                            m_objetEnMain=z,m_achat=false;
                     }
         }
 
@@ -1700,12 +1703,17 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
 
         if (m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
         {
+
             m_inventaire[m_objetEnMain].JouerSon();
-            m_argent+=m_inventaire[m_objetEnMain].getPrix();
+            if(m_achat)
+                m_argent+=(int)((float)m_inventaire[m_objetEnMain].getPrix()*(5-(float)m_caracteristiques.charisme/100));
+            else
+                m_argent+=m_inventaire[m_objetEnMain].getPrix();
             m_inventaire[m_objetEnMain].m_equipe=-1;
             AjouterTrader(m_inventaire[m_objetEnMain],trader,&m_classe);
             m_inventaire.erase(m_inventaire.begin()+m_objetEnMain);
             m_objetEnMain=-1;
+            m_achat=false;
         }
         else
         {
@@ -1714,6 +1722,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
                         &&caseVisee.y>=(*trader)[z].getPosition().y&&caseVisee.y<(*trader)[z].getPosition().y+(*trader)[z].getTaille().y)
                     if ((int)((float)(*trader)[z].getPrix()*(5-(float)m_caracteristiques.charisme/100))<=m_argent)
                     {
+                        m_achat=true;
                         m_argent-=(int)((float)(*trader)[z].getPrix()*(5-(float)m_caracteristiques.charisme/100));
                         AjouterObjet((*trader)[z],!eventManager->getEvenement(Key::LControl,"ET"));
                         trader->erase(trader->begin()+z);
@@ -1732,6 +1741,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
                 m_objetADeposer=m_objetEnMain;
 
                 m_objetEnMain=-1;
+                m_achat=false;
 
                 GenererGrille();
                 RecalculerCaracteristiques();
@@ -1757,7 +1767,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
                 if (m_inventaire[m_objetEnMain].m_equipe==-1)
                     RangerObjet(m_objetEnMain);
                 else
-                    m_objetEnMain=-1;
+                    m_objetEnMain=-1,m_achat=false;
             }
         }
     }
@@ -1895,6 +1905,7 @@ bool Hero::Equiper(int numero, int emplacement)
                     m_objetEnMain=ancienEquipe;
                 else
                     RangerObjet(ancienEquipe);
+                 m_achat=false;
             }
         }
     }
@@ -1902,7 +1913,7 @@ bool Hero::Equiper(int numero, int emplacement)
     {
         for (int i=0;i<(int)m_inventaire.size();i++)
             if (m_inventaire[i].m_equipe==emplacement)
-                m_objetEnMain=i;
+                m_objetEnMain=i, m_achat=false;
     }
 
     RecalculerCaracteristiques();
@@ -1955,7 +1966,7 @@ void Hero::RangerObjet(int numero)
 void Hero::InfligerDegats(float degats)
 {
     int temp = degats;
-    degats -= m_caracteristiques.armure/50;
+    degats -= (float)m_caracteristiques.armure/50;
     if (degats < 0)
         degats = 0;
     if (degats > temp)

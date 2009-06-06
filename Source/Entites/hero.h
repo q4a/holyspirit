@@ -118,6 +118,7 @@ private:
     std::vector< std::vector<bool> > m_caseInventaire;
 
     int m_weaponMiracle;
+    bool m_achat;
 };
 
 #endif
