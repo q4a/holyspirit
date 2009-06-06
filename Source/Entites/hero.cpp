@@ -93,6 +93,7 @@ Hero::Hero()
     temp.vitalite=4;
     temp.piete=4;
     temp.charisme=4;
+    temp.pts_restant=0;
 
     temp.modificateurTaille=1;
 
@@ -163,6 +164,7 @@ void Hero::Sauvegarder()
         fichier<<m_personnage.getCaracteristique().vitalite<<endl;
         fichier<<m_personnage.getCaracteristique().piete<<endl;
         fichier<<m_personnage.getCaracteristique().charisme<<endl;
+        fichier<<m_personnage.getCaracteristique().pts_restant<<endl;
         fichier<<m_argent<<endl;
 
         if (configuration->debug)
@@ -230,6 +232,7 @@ void Hero::Charger()
             *fichier>>charTemp.vitalite;
             *fichier>>charTemp.piete;
             *fichier>>charTemp.charisme;
+            *fichier>>charTemp.pts_restant;
 
             *fichier>>m_argent;
 
@@ -468,6 +471,13 @@ void Hero::Afficher(coordonnee dimensionsMap)
 
 void Hero::AfficherCaracteristiques(float decalage)
 {
+
+    sf::Sprite sprite;
+    sprite.SetImage(*moteurGraphique->getImage(m_classe.plus_button.image));
+    sprite.Resize(m_classe.plus_button.position.w*configuration->Resolution.w/800, m_classe.plus_button.position.h*configuration->Resolution.h/600);
+    sprite.SetX(m_classe.plus_button.position.x*configuration->Resolution.x/800);
+
+
     sf::String string;
     string.SetFont(moteurGraphique->m_font);
     string.SetSize(16*configuration->Resolution.h/600);
@@ -562,6 +572,23 @@ void Hero::AfficherCaracteristiques(float decalage)
         moteurGraphique->AjouterTexte(&string,15);
     }
 
+    m_buttonPointe=0;
+
+    if(m_caracteristiques.pts_restant>0)
+    {
+        sprite.SetY(string.GetPosition().y);
+
+        if(eventManager->getEvenement(Mouse::Left,"CA"))
+            if(eventManager->getPositionSouris().x > sprite.GetPosition().x
+             &&eventManager->getPositionSouris().x < sprite.GetPosition().x+sprite.GetSize().x
+             &&eventManager->getPositionSouris().y > sprite.GetPosition().y
+             &&eventManager->getPositionSouris().y < sprite.GetPosition().y+sprite.GetSize().y)
+                sprite.SetColor(sf::Color(128,128,128)),m_buttonPointe=1;
+
+        moteurGraphique->AjouterCommande(&sprite,15,0);
+        sprite.SetColor(sf::Color(255,255,255));
+    }
+
     string.SetText(configuration->text_menus[5].c_str());
     string.SetX(16);
     string.SetY(311*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
@@ -579,6 +606,21 @@ void Hero::AfficherCaracteristiques(float decalage)
         else
             string.SetColor(sf::Color(255,255,255));
         moteurGraphique->AjouterTexte(&string,15);
+    }
+
+    if(m_caracteristiques.pts_restant>0)
+    {
+        sprite.SetY(string.GetPosition().y);
+
+        if(eventManager->getEvenement(Mouse::Left,"CA"))
+            if(eventManager->getPositionSouris().x > sprite.GetPosition().x
+             &&eventManager->getPositionSouris().x < sprite.GetPosition().x+sprite.GetSize().x
+             &&eventManager->getPositionSouris().y > sprite.GetPosition().y
+             &&eventManager->getPositionSouris().y < sprite.GetPosition().y+sprite.GetSize().y)
+                sprite.SetColor(sf::Color(128,128,128)),m_buttonPointe=2;
+
+        moteurGraphique->AjouterCommande(&sprite,15,0);
+        sprite.SetColor(sf::Color(255,255,255));
     }
 
     string.SetText(configuration->text_menus[6].c_str());
@@ -601,6 +643,21 @@ void Hero::AfficherCaracteristiques(float decalage)
         moteurGraphique->AjouterTexte(&string,15);
     }
 
+    if(m_caracteristiques.pts_restant>0)
+    {
+        sprite.SetY(string.GetPosition().y);
+
+        if(eventManager->getEvenement(Mouse::Left,"CA"))
+            if(eventManager->getPositionSouris().x > sprite.GetPosition().x
+             &&eventManager->getPositionSouris().x < sprite.GetPosition().x+sprite.GetSize().x
+             &&eventManager->getPositionSouris().y > sprite.GetPosition().y
+             &&eventManager->getPositionSouris().y < sprite.GetPosition().y+sprite.GetSize().y)
+                sprite.SetColor(sf::Color(128,128,128)),m_buttonPointe=3;
+
+        moteurGraphique->AjouterCommande(&sprite,15,0);
+        sprite.SetColor(sf::Color(255,255,255));
+    }
+
     string.SetText(configuration->text_menus[7].c_str());
     string.SetX(16);
     string.SetY(365*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
@@ -619,6 +676,21 @@ void Hero::AfficherCaracteristiques(float decalage)
         else
             string.SetColor(sf::Color(255,255,255));
         moteurGraphique->AjouterTexte(&string,15);
+    }
+
+    if(m_caracteristiques.pts_restant>0)
+    {
+        sprite.SetY(string.GetPosition().y);
+
+        if(eventManager->getEvenement(Mouse::Left,"CA"))
+            if(eventManager->getPositionSouris().x > sprite.GetPosition().x
+             &&eventManager->getPositionSouris().x < sprite.GetPosition().x+sprite.GetSize().x
+             &&eventManager->getPositionSouris().y > sprite.GetPosition().y
+             &&eventManager->getPositionSouris().y < sprite.GetPosition().y+sprite.GetSize().y)
+                sprite.SetColor(sf::Color(128,128,128)),m_buttonPointe=4;
+
+        moteurGraphique->AjouterCommande(&sprite,15,0);
+        sprite.SetColor(sf::Color(255,255,255));
     }
 
     string.SetText(configuration->text_menus[8].c_str());
@@ -641,6 +713,21 @@ void Hero::AfficherCaracteristiques(float decalage)
         moteurGraphique->AjouterTexte(&string,15);
     }
 
+    if(m_caracteristiques.pts_restant>0)
+    {
+        sprite.SetY(string.GetPosition().y);
+
+        if(eventManager->getEvenement(Mouse::Left,"CA"))
+            if(eventManager->getPositionSouris().x > sprite.GetPosition().x
+             &&eventManager->getPositionSouris().x < sprite.GetPosition().x+sprite.GetSize().x
+             &&eventManager->getPositionSouris().y > sprite.GetPosition().y
+             &&eventManager->getPositionSouris().y < sprite.GetPosition().y+sprite.GetSize().y)
+                sprite.SetColor(sf::Color(128,128,128)),m_buttonPointe=5;
+
+        moteurGraphique->AjouterCommande(&sprite,15,0);
+        sprite.SetColor(sf::Color(255,255,255));
+    }
+
     string.SetText(configuration->text_menus[9].c_str());
     string.SetX(16);
     string.SetY(419*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
@@ -652,6 +739,16 @@ void Hero::AfficherCaracteristiques(float decalage)
     string.SetY(446*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
+
+    {
+        std::ostringstream  buf;
+        buf<<m_caracteristiques.pts_restant;
+        string.SetText(buf.str());
+        string.SetX((172*configuration->Resolution.w/800)+21*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
+        string.SetY(450*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+        string.SetColor(sf::Color(255,255,255));
+        moteurGraphique->AjouterTexte(&string,15);
+    }
 
 
     {
@@ -920,6 +1017,18 @@ void Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
         }
     }
 
+    if(!trader.empty())
+    {
+        sf::Sprite sprite;
+
+        sprite.SetImage(*moteurGraphique->getImage(m_classe.scroll_button.image));
+        sprite.SetX(m_classe.scroll_button.position.x*configuration->Resolution.x/800);
+        sprite.SetY((m_classe.scroll_button.position.y+(m_defilement_trader*m_classe.position_contenu_marchand.h*24)/(m_max_defilement_trader-m_classe.position_contenu_marchand.h))*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+        sprite.Resize(m_classe.scroll_button.position.w*configuration->Resolution.w/800, m_classe.scroll_button.position.h*configuration->Resolution.h/600);
+
+        moteurGraphique->AjouterCommande(&sprite,18,0);
+    }
+
     if (m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
     {
         sf::Sprite sprite;
@@ -1086,11 +1195,7 @@ void Hero::AugmenterAme(float temps)
     if (temp.ancienPointAme>=CALCUL_PA_PROCHAIN_NIVEAU)
     {
         temp.niveau++;
-        temp.force+=3;
-        temp.dexterite+=3;
-        temp.vitalite++;
-        temp.piete++;
-        temp.charisme+=3;
+        temp.pts_restant+=10;
 
         temp.maxVie=temp.vitalite*25;
         temp.vie=temp.maxVie;
@@ -1363,11 +1468,56 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
           &&eventManager->getPositionSouris().y>442*configuration->Resolution.x/800
           &&eventManager->getPositionSouris().y<472*configuration->Resolution.x/800)
             m_defilement_trader++;
+    }
 
-        if (m_defilement_trader<0)
-            m_defilement_trader=0;
-        if (m_defilement_trader>m_max_defilement_trader-m_classe.position_contenu_marchand.h)
-            m_defilement_trader=m_max_defilement_trader-m_classe.position_contenu_marchand.h;
+    if(m_buttonPointe>0)
+    {
+        if(m_buttonPointe==1&&m_caracteristiques.pts_restant>0)
+        {
+            Caracteristique temp = m_personnage.getCaracteristique();
+            temp.pts_restant--;
+            temp.force++;
+            m_personnage.setCaracteristique(temp);
+            RecalculerCaracteristiques();
+        }
+        else if(m_buttonPointe==2&&m_caracteristiques.pts_restant>0)
+        {
+            Caracteristique temp = m_personnage.getCaracteristique();
+            temp.pts_restant--;
+            temp.dexterite++;
+            m_personnage.setCaracteristique(temp);
+            RecalculerCaracteristiques();
+        }
+        else if(m_buttonPointe==3&&m_caracteristiques.pts_restant>0)
+        {
+            Caracteristique temp = m_personnage.getCaracteristique();
+            temp.pts_restant--;
+            temp.vitalite++;
+            temp.maxVie=temp.vitalite*10;
+            temp.vie=temp.maxVie;
+            m_personnage.setCaracteristique(temp);
+            RecalculerCaracteristiques();
+            m_caracteristiques.vie+=10;
+        }
+        else if(m_buttonPointe==4&&m_caracteristiques.pts_restant>0)
+        {
+            Caracteristique temp = m_personnage.getCaracteristique();
+            temp.pts_restant--;
+            temp.piete++;
+            temp.maxFoi=temp.piete*10;
+            temp.foi=temp.maxFoi;
+            m_personnage.setCaracteristique(temp);
+            RecalculerCaracteristiques();
+            m_caracteristiques.foi+=10;
+        }
+        else if(m_buttonPointe==5&&m_caracteristiques.pts_restant>0)
+        {
+            Caracteristique temp = m_personnage.getCaracteristique();
+            temp.pts_restant--;
+            temp.charisme++;
+            m_personnage.setCaracteristique(temp);
+            RecalculerCaracteristiques();
+        }
     }
 
     m_objetADeposer=-1;

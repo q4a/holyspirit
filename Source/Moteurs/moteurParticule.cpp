@@ -62,6 +62,9 @@ void ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele)
                     moteurGraphique->AjouterCommande(&sprite,11,1);
                 else
                     moteurGraphique->AjouterCommande(&sprite,8,1);
+
+                sprite.Move(0,Iter->position.z);
+                moteurGraphique->AjouterCommande(&sprite,9,1);
             }
     }
 }

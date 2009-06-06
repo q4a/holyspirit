@@ -239,6 +239,7 @@ struct Caracteristique
     int vitalite;
     int piete;
     int charisme;
+    int pts_restant;
 
     float modificateurTaille;
 

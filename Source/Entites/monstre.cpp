@@ -112,8 +112,8 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
         {
             m_caracteristique.maxVie*=20;
             m_caracteristique.vie*=20;
-            m_caracteristique.degatsMin*=1.5;
-            m_caracteristique.degatsMax*=1.5;
+            m_caracteristique.degatsMin=(int)((float)m_caracteristique.degatsMin*1.5);
+            m_caracteristique.degatsMax=(int)((float)m_caracteristique.degatsMax*1.5);
             m_caracteristique.pointAme*=4;
 
             m_caracteristique.modificateurTaille*=1.2;

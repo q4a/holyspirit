@@ -54,6 +54,8 @@ struct Classe
     Image_interface orbe_foi;
     Image_interface cache_vie;
     Image_interface cache_foi;
+    Image_interface plus_button;
+    Image_interface scroll_button;
 
     coordonnee position_sac_inventaire;
     coordonnee position_contenu_inventaire;

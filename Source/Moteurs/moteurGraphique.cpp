@@ -196,7 +196,7 @@ void MoteurGraphique::Afficher()
         for (IterCommande=m_commandes[9].begin();IterCommande!=m_commandes[9].end();++IterCommande)
         {
             sprite=IterCommande->m_sprite;
-            sprite.SetColor(sf::Color(0,0,0,255));
+            sprite.SetColor(sf::Color(0,0,0,sprite.GetColor().a));
             m_ecran->Draw(sprite);
         }
 

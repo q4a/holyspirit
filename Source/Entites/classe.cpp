@@ -20,6 +20,59 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 using namespace std;
 
+
+void                ChargerImageInterface(ifstream &fichier, Image_interface &image_interface)
+{
+    char            caractere;
+    std::string     string;
+    do
+    {
+        fichier.get(caractere);
+        if (caractere=='*')
+        {
+
+            do
+            {
+                fichier.get(caractere);
+                switch (caractere)
+                {
+                case 'm' :
+                    fichier>>string;
+                    image_interface.image=moteurGraphique->AjouterImage(string,-1);
+                    break;
+                case 'x' :
+                    fichier>>image_interface.position.x;
+                    break;
+                case 'y' :
+                    fichier>>image_interface.position.y;
+                    break;
+                case 'w' :
+                    fichier>>image_interface.position.w;
+                    break;
+                case 'h' :
+                    fichier>>image_interface.position.h;
+                    break;
+                }
+
+                if (fichier.eof())
+                {
+                    console->Ajouter("Erreur : Classe Invalide",1);
+                    caractere='$';
+                }
+            }
+            while (caractere!='$');
+            fichier.get(caractere);
+        }
+        if (fichier.eof())
+        {
+            console->Ajouter("Erreur : Classe Invalide",1);
+            caractere='$';
+        }
+
+    }
+    while (caractere!='$');
+}
+
 void Classe::Charger(string chemin)
 {
     emplacements.clear();
@@ -203,338 +256,15 @@ void Classe::Charger(string chemin)
         }
         while (caractere!='$');
 
-        std::string string;
-
-        do
-        {
-            fichier.get(caractere);
-            if (caractere=='*')
-            {
-
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                    case 'm' :
-                        fichier>>string;
-                        inventaire.image=moteurGraphique->AjouterImage(string,-1);
-                        break;
-                    case 'x' :
-                        fichier>>inventaire.position.x;
-                        break;
-                    case 'y' :
-                        fichier>>inventaire.position.y;
-                        break;
-                    case 'w' :
-                        fichier>>inventaire.position.w;
-                        break;
-                    case 'h' :
-                        fichier>>inventaire.position.h;
-                        break;
-                    }
-
-                    if (fichier.eof())
-                    {
-                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
-                        caractere='$';
-                    }
-                }
-                while (caractere!='$');
-                fichier.get(caractere);
-            }
-            if (fichier.eof())
-            {
-                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
-                caractere='$';
-            }
-
-        }
-        while (caractere!='$');
-
-        do
-        {
-            fichier.get(caractere);
-            if (caractere=='*')
-            {
-
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                    case 'm' :
-                        fichier>>string;
-                        menu_marchand.image=moteurGraphique->AjouterImage(string,-1);
-                        break;
-                    case 'x' :
-                        fichier>>menu_marchand.position.x;
-                        break;
-                    case 'y' :
-                        fichier>>menu_marchand.position.y;
-                        break;
-                    case 'w' :
-                        fichier>>menu_marchand.position.w;
-                        break;
-                    case 'h' :
-                        fichier>>menu_marchand.position.h;
-                        break;
-                    }
-
-                    if (fichier.eof())
-                    {
-                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
-                        caractere='$';
-                    }
-                }
-                while (caractere!='$');
-                fichier.get(caractere);
-            }
-            if (fichier.eof())
-            {
-                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
-                caractere='$';
-            }
-
-        }
-        while (caractere!='$');
-
-
-
-        do
-        {
-            fichier.get(caractere);
-            if (caractere=='*')
-            {
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                    case 'm' :
-                        fichier>>string;
-                        hud.image=moteurGraphique->AjouterImage(string,-1);
-                        break;
-                    case 'x' :
-                        fichier>>hud.position.x;
-                        break;
-                    case 'y' :
-                        fichier>>hud.position.y;
-                        break;
-                    case 'w' :
-                        fichier>>hud.position.w;
-                        break;
-                    case 'h' :
-                        fichier>>hud.position.h;
-                        break;
-                    }
-
-                    if (fichier.eof())
-                    {
-                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
-                        caractere='$';
-                    }
-
-                }
-                while (caractere!='$');
-                fichier.get(caractere);
-            }
-            if (fichier.eof())
-            {
-                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
-                caractere='$';
-            }
-
-        }
-        while (caractere!='$');
-
-        do
-        {
-            fichier.get(caractere);
-            if (caractere=='*')
-            {
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                    case 'm' :
-                        fichier>>string;
-                        orbe_vie.image=moteurGraphique->AjouterImage(string,-1);
-                        break;
-                    case 'x' :
-                        fichier>>orbe_vie.position.x;
-                        break;
-                    case 'y' :
-                        fichier>>orbe_vie.position.y;
-                        break;
-                    case 'w' :
-                        fichier>>orbe_vie.position.w;
-                        break;
-                    case 'h' :
-                        fichier>>orbe_vie.position.h;
-                        break;
-                    }
-
-                    if (fichier.eof())
-                    {
-                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
-                        caractere='$';
-                    }
-
-                }
-                while (caractere!='$');
-                fichier.get(caractere);
-            }
-            if (fichier.eof())
-            {
-                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
-                caractere='$';
-            }
-
-        }
-        while (caractere!='$');
-
-        do
-        {
-            fichier.get(caractere);
-            if (caractere=='*')
-            {
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                    case 'm' :
-                        fichier>>string;
-                        orbe_foi.image=moteurGraphique->AjouterImage(string,-1);
-                        break;
-                    case 'x' :
-                        fichier>>orbe_foi.position.x;
-                        break;
-                    case 'y' :
-                        fichier>>orbe_foi.position.y;
-                        break;
-                    case 'w' :
-                        fichier>>orbe_foi.position.w;
-                        break;
-                    case 'h' :
-                        fichier>>orbe_foi.position.h;
-                        break;
-                    }
-
-                    if (fichier.eof())
-                    {
-                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
-                        caractere='$';
-                    }
-
-                }
-                while (caractere!='$');
-                fichier.get(caractere);
-            }
-            if (fichier.eof())
-            {
-                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
-                caractere='$';
-            }
-
-        }
-        while (caractere!='$');
-
-        do
-        {
-            fichier.get(caractere);
-            if (caractere=='*')
-            {
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                    case 'm' :
-                        fichier>>string;
-                        cache_vie.image=moteurGraphique->AjouterImage(string,-1);
-                        break;
-                    case 'x' :
-                        fichier>>cache_vie.position.x;
-                        break;
-                    case 'y' :
-                        fichier>>cache_vie.position.y;
-                        break;
-                    case 'w' :
-                        fichier>>cache_vie.position.w;
-                        break;
-                    case 'h' :
-                        fichier>>cache_vie.position.h;
-                        break;
-                    }
-
-                    if (fichier.eof())
-                    {
-                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
-                        caractere='$';
-                    }
-
-                }
-                while (caractere!='$');
-                fichier.get(caractere);
-            }
-            if (fichier.eof())
-            {
-                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
-                caractere='$';
-            }
-
-        }
-        while (caractere!='$');
-
-        do
-        {
-            fichier.get(caractere);
-            if (caractere=='*')
-            {
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                    case 'm' :
-                        fichier>>string;
-                        cache_foi.image=moteurGraphique->AjouterImage(string,-1);
-                        break;
-                    case 'x' :
-                        fichier>>cache_foi.position.x;
-                        break;
-                    case 'y' :
-                        fichier>>cache_foi.position.y;
-                        break;
-                    case 'w' :
-                        fichier>>cache_foi.position.w;
-                        break;
-                    case 'h' :
-                        fichier>>cache_foi.position.h;
-                        break;
-                    }
-
-                    if (fichier.eof())
-                    {
-                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
-                        caractere='$';
-                    }
-
-                }
-                while (caractere!='$');
-                fichier.get(caractere);
-            }
-            if (fichier.eof())
-            {
-                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
-                caractere='$';
-            }
-
-        }
-        while (caractere!='$');
+        ChargerImageInterface(fichier, inventaire);
+        ChargerImageInterface(fichier, menu_marchand);
+        ChargerImageInterface(fichier, hud);
+        ChargerImageInterface(fichier, orbe_vie);
+        ChargerImageInterface(fichier, orbe_foi);
+        ChargerImageInterface(fichier, cache_vie);
+        ChargerImageInterface(fichier, cache_foi);
+        ChargerImageInterface(fichier, plus_button);
+        ChargerImageInterface(fichier, scroll_button);
 
         do
         {
@@ -722,7 +452,7 @@ void Classe::Charger(string chemin)
                 do
                 {
                     fichier.get(caractere);
-                    if(caractere=='m')
+                    if (caractere=='m')
                     {
                         std::string temp;
                         fichier>>temp;

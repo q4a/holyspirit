@@ -42,6 +42,7 @@ class EventManager : public CSingleton<EventManager>
 	bool getEvenement(int numeroEvenement,std::string evenement);
 	coordonnee getCasePointee();
 	coordonnee getPositionSouris();
+	int getMolette();
 
 	void arreterClique();
 
@@ -49,6 +50,7 @@ class EventManager : public CSingleton<EventManager>
 	bool m_EventTableau[500],m_Clic[5],m_ClicAncien[5];
 	coordonnee m_positionSouris,m_casePointee;
 	int idcurseur;
+	int m_molette;
 
 };
 

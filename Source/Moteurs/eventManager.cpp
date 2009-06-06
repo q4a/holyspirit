@@ -44,10 +44,12 @@ EventManager::EventManager()
 
     idcurseur=moteurGraphique->AjouterImage(configuration->chemin_curseurs+configuration->nom_curseur_base,-1);
 
+    m_molette = 0;
 }
 
 void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tailleMap)
 {
+    m_molette = 0;
     Event Event;
     while (moteurGraphique->getEvent(Event))
     {
@@ -72,6 +74,9 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
         case Event::MouseButtonReleased:
             m_Clic[Event.MouseButton.Button]=0;
             m_ClicAncien[Event.MouseButton.Button]=0;
+            break;
+        case Event::MouseWheelMoved:
+            m_molette = Event.MouseWheel.Delta;
             break;
         case Event::Closed:
             *continuer = false;
@@ -237,6 +242,11 @@ coordonnee EventManager::getPositionSouris()
 {
     return m_positionSouris;
 }
+int EventManager::getMolette()
+{
+    return m_molette;
+}
+
 
 void EventManager::arreterClique()
 {
