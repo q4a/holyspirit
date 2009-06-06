@@ -72,10 +72,6 @@
          Chargement de l'objet : Long_sword.item.hs
          Chargement de : Data/Items/HolyEffect/HolyEffect.png
          Chargement de : Data/Sounds/39016_wildweasel_DSFIRXPL.wav
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Boot.item.hs
          /Lectures des objets.
          Chargement de : Data/Menus/Inventory.png
          Chargement de : Data/Menus/Trader.png
@@ -126,8 +122,6 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          /Sauvegarde de Armor.item.hs
          /Sauvegarde de Helmet.item.hs
          /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Boot.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
@@ -141,6 +135,7 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          Chargement du personnage : Data/Entities/Heroes/Crusader/Shield/Small_shield.rs.hs
          
          Chargement de la map : Begin.map.hs
+         Map sauvée existante.
          /Lectures du nom.
          /Lectures des fonds.
          /Lectures des musiques.
@@ -149,6 +144,7 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          /Lectures des herbes.
          /Lectures des monstres.
          
+         Une map des entités est déjà existante.
          /Lectures des événements.
          /Lectures des cases.
          Chargement de la map terminé.
@@ -181,8 +177,6 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          /Sauvegarde de Armor.item.hs
          /Sauvegarde de Helmet.item.hs
          /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Boot.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
          
@@ -207,6 +201,7 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          Chargement du personnage : Data/Entities/Heroes/Crusader/Shield/Small_shield.rs.hs
          
          Chargement de la map : ArableLand0.map.hs
+         Map sauvée existante.
          /Lectures du nom.
          /Lectures des fonds.
          /Lectures des musiques.
@@ -595,7 +590,404 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          Chargement de : Data/Entities/NPC/RareTrader.rs.hs terminé
          /Lectures des monstres.
          
+         Une map des entités est déjà existante.
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         
+         Chargement de l'objet : Armor.item.hs
+         
+         Chargement de l'objet : Chainmail.item.hs
+         
+         Chargement de l'objet : Boot.item.hs
+         
+         Chargement de l'objet : Boot.item.hs
+         
+         Chargement de l'objet : Armband.item.hs
+         
+         Chargement de l'objet : Armband.item.hs
+         
+         Chargement de l'objet : Helmet.item.hs
+         
+         Chargement de l'objet : Small_shield.item.hs
+         
+         Chargement de l'objet : Small_shield.item.hs
+         
+         Chargement de l'objet : Small_shield.item.hs
+         
+         Chargement de l'objet : Great_shield.item.hs
+         
+         Chargement de l'objet : Great_shield.item.hs
+         
+         Chargement de l'objet : Small_sword.item.hs
+         
+         Chargement de l'objet : Small_sword.item.hs
+         
+         Chargement de l'objet : Dagger.item.hs
+         
+         Chargement de l'objet : Dagger.item.hs
+         
+         Chargement de l'objet : Ceremonial_dagger.item.hs
+         
+         Chargement de l'objet : Ceremonial_dagger.item.hs
+         
+         Chargement de l'objet : Ceremonial_dagger.item.hs
+         
+         Chargement de l'objet : Crossbow.item.hs
+         
+         Chargement de l'objet : Crossbow.item.hs
+         
+         Chargement de l'objet : Crossbow.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Boot.item.hs
+         
+         Chargement de l'objet : Small_shield.item.hs
+         
+         Chargement de l'objet : Necklage.item.hs
+         
+         Chargement de l'objet : Ring.item.hs
+         
+         Chargement de l'objet : Ring.item.hs
+         
+         Chargement de l'objet : Armor.item.hs
+         
+         Chargement de l'objet : Armor.item.hs
+         
+         Chargement de l'objet : Armor.item.hs
+         
+         Chargement de l'objet : Chainmail.item.hs
+         
+         Chargement de l'objet : Chainmail.item.hs
+         
+         Chargement de l'objet : Chainmail.item.hs
+         
+         Chargement de l'objet : Boot.item.hs
+         
+         Chargement de l'objet : Boot.item.hs
+         
+         Chargement de l'objet : Boot.item.hs
+         
+         Chargement de l'objet : Armband.item.hs
+         
+         Chargement de l'objet : Armband.item.hs
+         
+         Chargement de l'objet : Armband.item.hs
+         
+         Chargement de l'objet : Helmet.item.hs
+         
+         Chargement de l'objet : Helmet.item.hs
+         
+         Chargement de l'objet : Helmet.item.hs
+         
+         Chargement de l'objet : Small_shield.item.hs
+         
+         Chargement de l'objet : Small_shield.item.hs
+         
+         Chargement de l'objet : Small_shield.item.hs
+         
+         Chargement de l'objet : Great_shield.item.hs
+         
+         Chargement de l'objet : Great_shield.item.hs
+         
+         Chargement de l'objet : Great_shield.item.hs
+         
+         Chargement de l'objet : Small_sword.item.hs
+         
+         Chargement de l'objet : Small_sword.item.hs
+         
+         Chargement de l'objet : Small_sword.item.hs
+         
+         Chargement de l'objet : Long_sword.item.hs
+         
+         Chargement de l'objet : Long_sword.item.hs
+         
+         Chargement de l'objet : Long_sword.item.hs
+         
+         Chargement de l'objet : Dagger.item.hs
+         
+         Chargement de l'objet : Dagger.item.hs
+         
+         Chargement de l'objet : Dagger.item.hs
+         
+         Chargement de l'objet : Ceremonial_dagger.item.hs
+         
+         Chargement de l'objet : Ceremonial_dagger.item.hs
+         
+         Chargement de l'objet : Ceremonial_dagger.item.hs
+         
+         Chargement de l'objet : Crossbow.item.hs
+         
+         Chargement de l'objet : Crossbow.item.hs
+         
+         Chargement de l'objet : Crossbow.item.hs
+         
+         Chargement de l'objet : Two_hand_sword.item.hs
+         
+         Chargement de l'objet : Two_hand_sword.item.hs
+         
+         Chargement de l'objet : Two_hand_sword.item.hs
+         Chargement de : Data/Items/FireEffect/FireEffect.png
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
          /Lectures des événements.
          /Lectures des cases.
          Chargement de la map terminé.
          
+         
+         Sauvegarde de la map : Data/Temp/ArableLand0.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map_ArableLand0.map.hs.emap.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Ecriture des objets.
+         Sauvegarde du héro terminée !
+         
+         Destruction de la map...
+         Destruction des cases...
+         Cases détruites !
+         Modèles monstres détruits !
+         Monstres détruits !
+         Evénements détruits !
+         Fonds détruits !
+         Chemins musiques détruits !
+         Projectiles détruits !
+         Effets détruits !
+         Map détruite !
+         
+         Fermeture des contextes effectuée avec succès.
+         Destruction du héro ...
+         Destruction de l'inventaire.
+         Destruction de la save.
+         Destruction des cases de l'inventaire.
+         Destruction du héro terminée.
+         Destruction du menu ...
+         
+         Sauvegarde de la configuration
+         
+         Destruction des moteurs
+         
+         EXIT_SUCCESS
