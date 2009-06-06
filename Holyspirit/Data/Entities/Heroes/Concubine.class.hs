@@ -23,6 +23,10 @@ $
 $
 	* x582 y481 w112 h123 m Data/Menus/Coupe2.png $
 $
+	* x180 y0 w20 h20 m Data/Menus/Plus_button.png $
+$
+	* x8 y278 w32 h32 m Data/Menus/Scroll_button.png $
+$
 	* x436 y390 h4 w320 $
 $
 	* x436 y60 w10 h10 $

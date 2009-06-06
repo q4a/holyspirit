@@ -1,7 +1,5 @@
 texture framebuffer
 
-
-
 effect
 {
 	vec4 pixel = framebuffer(_in);
