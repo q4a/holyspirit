@@ -84,8 +84,6 @@
          
          Chargement de l'objet : Heal_potion.item.hs
          
-         Chargement de l'objet : Helmet.item.hs
-         
          Chargement de l'objet : Heal_potion.item.hs
          
          Chargement de l'objet : Heal_potion.item.hs
@@ -93,10 +91,6 @@
          Chargement de l'objet : Heal_potion.item.hs
          
          Chargement de l'objet : Heal_potion.item.hs
-         
-         Chargement de l'objet : Heal_potion.item.hs
-         
-         Chargement de l'objet : Necklage.item.hs
          
          Chargement de l'objet : Chainmail.item.hs
          
@@ -116,18 +110,24 @@
          Chargement de : Data/Items/FireEffect/FireEffect.png
          Chargement de : Data/Sounds/39016_wildweasel_DSFIRXPL.wav
          
-         Chargement de l'objet : Small_axe.item.hs
-         
          Chargement de l'objet : Small_shield.item.hs
          
-         Chargement de l'objet : Helmet.item.hs
+         Chargement de l'objet : Heal_potion.item.hs
          
          Chargement de l'objet : Ring.item.hs
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         
+         Chargement de l'objet : Helmet.item.hs
          
          Chargement de l'objet : Long_sword.item.hs
          Chargement de : Data/Items/HolyEffect/HolyEffect.png
          
-         Chargement de l'objet : Heal_potion.item.hs
+         Chargement de l'objet : Small_axe.item.hs
+         
+         Chargement de l'objet : Helmet.item.hs
+         
+         Chargement de l'objet : Necklage.item.hs
          
          Chargement de l'objet : Heal_potion.item.hs
          /Lectures des objets.
@@ -186,13 +186,10 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Helmet.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Chainmail.item.hs
          /Sauvegarde de Boot.item.hs
          /Sauvegarde de Two_hand_sword.item.hs
@@ -200,12 +197,15 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          /Sauvegarde de Two_hand_sword.item.hs
          /Sauvegarde de Small_shield.item.hs
          /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Long_sword.item.hs
          /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
@@ -265,13 +265,10 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Helmet.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Chainmail.item.hs
          /Sauvegarde de Boot.item.hs
          /Sauvegarde de Two_hand_sword.item.hs
@@ -279,12 +276,15 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          /Sauvegarde de Two_hand_sword.item.hs
          /Sauvegarde de Small_shield.item.hs
          /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Long_sword.item.hs
          /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Ecriture des objets.
          Sauvegarde du héro terminée !
