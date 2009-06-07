@@ -1794,11 +1794,12 @@ bool Hero::UtiliserObjet(int numero)
         if(m_inventaire[numero].m_type == ARME || m_inventaire[numero].m_type == ARMURE)
         {
             bool continuer = true;
-            for (int i=0;i<(int)m_inventaire[numero].m_emplacement.size() && continuer;i++)
-                for (int j=0;j<(int)m_classe.emplacements.size() && continuer;j++)
-                    if (m_inventaire[numero].m_emplacement[i]==m_classe.emplacements[j].emplacement)
-                        if(Equiper(numero, j))
-                            continuer=false;
+            for (int j=0;j<(int)m_classe.emplacements.size() && continuer;j++)
+                for (int i=0;i<(int)m_inventaire[numero].m_emplacement.size() && continuer;i++)
+                    if (m_inventaire[numero].m_emplacement[i] == m_classe.emplacements[j].emplacement && continuer)
+                        Equiper(numero, j),continuer=false;
+
+            ChargerModele();
         }
 
         if(m_inventaire[numero].m_type == CONSOMMABLE)
@@ -1965,7 +1966,7 @@ void Hero::RangerObjet(int numero)
 
 void Hero::InfligerDegats(float degats)
 {
-    int temp = degats;
+    float temp = degats;
     degats -= (float)m_caracteristiques.armure/50;
     if (degats < 0)
         degats = 0;

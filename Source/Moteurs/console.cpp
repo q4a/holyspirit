@@ -20,15 +20,21 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "../constantes.h"
 #include "../globale.h"
 #include <iostream>
-#include <fstream>
 #include <sstream>
 
 using namespace std;
+
+Console::Console()
+{
+    m_defilement=0;
+    fichier.open("Log.txt", ios::out | ios::trunc);
+}
 
 Console::~Console()
 {
     m_textes.clear();
     m_erreur.clear();
+    fichier.close();
 }
 
 void Console::Afficher()
@@ -105,18 +111,13 @@ void Console::Defiler(bool direction)
 
 void Console::Rapport()
 {
-    ofstream fichier("Log.txt", ios::out | ios::trunc);
     if (fichier) // si l'ouverture a réussi
     {
-        for (int i=0;i<(int)m_textes.size();i++)
-        {
-            if (m_erreur[i])
-                fichier<<"ERREUR : ";
-            else
-                fichier<<"         ";
+        if (m_erreur.back())
+            fichier<<"ERREUR : ";
+        else
+            fichier<<"         ";
 
-            fichier<<m_textes[i]<<'\n';
-        }
-        fichier.close();
+        fichier<<m_textes.back()<<'\n';
     }
 }

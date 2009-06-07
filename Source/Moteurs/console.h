@@ -26,6 +26,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "../singleton.h"
+#include <fstream>
 
 class Console : public CSingleton<Console>
 {
@@ -46,10 +47,7 @@ public:
 
 protected:
 
-    Console()
-    {
-        m_defilement=0;
-    }
+    Console();
     ~Console();
 
     void Rapport();
@@ -57,6 +55,7 @@ protected:
     std::vector <std::string> m_textes;
     std::vector <bool> m_erreur;
     int m_defilement;
+    std::ofstream fichier;
 };
 
 
