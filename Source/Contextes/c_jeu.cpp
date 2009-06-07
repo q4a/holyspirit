@@ -306,50 +306,50 @@ void c_Jeu::Lumieres(Jeu *jeu)
 
 void GestionRaccourcisObjets(Jeu *jeu)
 {
-    if (eventManager->getEvenement(Key::F1,"ET")
+    if (eventManager->getEvenement('1',"ET")
     || eventManager->getEvenement(Mouse::Left,"C")
     && eventManager->getPositionSouris().x > 255
     && eventManager->getPositionSouris().x < 275
     && eventManager->getPositionSouris().y > 492
     && eventManager->getPositionSouris().y < 512)
     {
-        eventManager->StopEvenement(Key::F1,"ET");
+        eventManager->StopEvenement('1',"ET");
         eventManager->StopEvenement(Mouse::Left,"C");
         if(jeu->hero.UtiliserObjet(jeu->hero.m_objets_raccourcis[0]))
             jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),eventManager->getCasePointee(),1);
     }
-    if (eventManager->getEvenement(Key::F2,"ET")
+    if (eventManager->getEvenement('2',"ET")
     || eventManager->getEvenement(Mouse::Left,"C")
     && eventManager->getPositionSouris().x > 287
     && eventManager->getPositionSouris().x < 307
     && eventManager->getPositionSouris().y > 492
     && eventManager->getPositionSouris().y < 512)
     {
-        eventManager->StopEvenement(Key::F2,"ET");
+        eventManager->StopEvenement('2',"ET");
         eventManager->StopEvenement(Mouse::Left,"C");
         if(jeu->hero.UtiliserObjet(jeu->hero.m_objets_raccourcis[1]))
             jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),eventManager->getCasePointee(),1);
     }
-    if (eventManager->getEvenement(Key::F3,"ET")
+    if (eventManager->getEvenement('3',"ET")
     || eventManager->getEvenement(Mouse::Left,"C")
     && eventManager->getPositionSouris().x > 319
     && eventManager->getPositionSouris().x < 339
     && eventManager->getPositionSouris().y > 492
     && eventManager->getPositionSouris().y < 512)
     {
-        eventManager->StopEvenement(Key::F3,"ET");
+        eventManager->StopEvenement('3',"ET");
         eventManager->StopEvenement(Mouse::Left,"C");
         if(jeu->hero.UtiliserObjet(jeu->hero.m_objets_raccourcis[2]))
             jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),eventManager->getCasePointee(),1);
     }
-    if (eventManager->getEvenement(Key::F4,"ET")
+    if (eventManager->getEvenement('4',"ET")
     || eventManager->getEvenement(Mouse::Left,"C")
     && eventManager->getPositionSouris().x > 351
     && eventManager->getPositionSouris().x < 371
     && eventManager->getPositionSouris().y > 492
     && eventManager->getPositionSouris().y < 512)
     {
-        eventManager->StopEvenement(Key::F4,"ET");
+        eventManager->StopEvenement('4',"ET");
         eventManager->StopEvenement(Mouse::Left,"C");
         if(jeu->hero.UtiliserObjet(jeu->hero.m_objets_raccourcis[3]))
             jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),eventManager->getCasePointee(),1);

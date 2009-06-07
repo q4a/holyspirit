@@ -1725,7 +1725,8 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
                         m_achat=true;
                         m_argent-=(int)((float)(*trader)[z].getPrix()*(5-(float)m_caracteristiques.charisme/100));
                         AjouterObjet((*trader)[z],!eventManager->getEvenement(Key::LControl,"ET"));
-                        trader->erase(trader->begin()+z);
+                        if((*trader)[z].m_type!=CONSOMMABLE)
+                            trader->erase(trader->begin()+z);
                     }
         }
     }
