@@ -79,9 +79,6 @@
          
          Chargement de l'objet : Heal_potion.item.hs
          
-         Chargement de l'objet : Small_axe.item.hs
-         Chargement de : Data/Items/Images/axes01.png
-         
          Chargement de l'objet : Heal_potion.item.hs
          
          Chargement de l'objet : Heal_potion.item.hs
@@ -134,8 +131,6 @@
          Chargement de l'objet : Necklage.item.hs
          
          Chargement de l'objet : Heal_potion.item.hs
-         
-         Chargement de l'objet : Ring.item.hs
          
          Chargement de l'objet : Heal_potion.item.hs
          
@@ -192,7 +187,6 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
@@ -219,7 +213,6 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Ring.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Ecriture des objets.
@@ -276,7 +269,6 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
@@ -303,7 +295,6 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Ring.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Ecriture des objets.
@@ -370,6 +361,7 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          Chargement de l'objet : Heal_potion.item.hs
          
          Chargement de l'objet : Small_axe.item.hs
+         Chargement de : Data/Items/Images/axes01.png
          
          Chargement du systeme de particules : Data/Particule_system/human_bones.ps.hs
          Chargement de : Data/Particule_system/Images/human_bones.png
@@ -715,7 +707,6 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          /Lectures des monstres.
          
          /Lectures des événements.
-         Chargement de : Data/Items/FireEffect/FireEffect.png
          /Lectures des cases.
          Chargement de la map terminé.
          
@@ -740,7 +731,6 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Heroes/Crusader/Miracles
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
