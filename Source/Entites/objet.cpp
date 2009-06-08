@@ -27,6 +27,26 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 using namespace std;
 using namespace sf;
 
+sf::Color GetItemColor(int rarete)
+{
+    if (rarete==NORMAL)
+        return (sf::Color(224,224,224,255));
+    if (rarete==BONNEFACTURE)
+        return (sf::Color(96,0,96,255));
+    if (rarete==BENI)
+        return (sf::Color(0,64,128,255));
+    if (rarete==SACRE)
+        return (sf::Color(255,255,128,255));
+    if (rarete==SANCTIFIE)
+        return (sf::Color(128,255,255,255));
+    if (rarete==DIVIN)
+        return (sf::Color(255,164,32,255));
+    if (rarete==INFERNAL)
+        return (sf::Color(224,0,0,255));
+    if (rarete==CRAFT)
+        return (sf::Color(128,64,0,255));
+    return (sf::Color(224,224,224,255));
+}
 
 Objet::Objet()
 {
@@ -1193,23 +1213,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
     }
 
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_nom.c_str()));
-
-    if (m_rarete==NORMAL)
-        temp.back().SetColor(sf::Color(224,224,224));
-    if (m_rarete==BONNEFACTURE)
-        temp.back().SetColor(sf::Color(128,0,128));
-    if (m_rarete==BENI)
-        temp.back().SetColor(sf::Color(0,64,128));
-    if (m_rarete==SACRE)
-        temp.back().SetColor(sf::Color(255,255,128));
-    if (m_rarete==SANCTIFIE)
-        temp.back().SetColor(sf::Color(128,255,255));
-    if (m_rarete==DIVIN)
-        temp.back().SetColor(sf::Color(255,164,32));
-    if (m_rarete==INFERNAL)
-        temp.back().SetColor(sf::Color(224,0,0));
-    if (m_rarete==CRAFT)
-        temp.back().SetColor(sf::Color(128,64,0));
+    temp.back().SetColor(GetItemColor(m_rarete));
 
     for (int i=0;i<(int)m_description.size();i++)
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_description[i].c_str()));

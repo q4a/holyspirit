@@ -27,6 +27,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "miracle.h"
 
+sf::Color GetItemColor(int rarete);
+
 struct benediction
 {
     int type;

@@ -30,7 +30,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "personnage.h"
 #include "monstre.h"
 
-void AjouterTrader(Objet,std::vector<Objet>*,Classe*);
+bool AjouterObjetInventaire(Objet newObj, std::vector<Objet>* inventaire, coordonnee taille, bool infini);
 
 class Hero
 {
@@ -49,7 +49,7 @@ public:
     void AfficherCaracteristiques(float decalage);
     void AfficherRaccourcis();
 
-    void GenererGrille();
+    //void GenererGrille();
     void PlacerCamera(coordonnee dimensionsMap);
 
     bool TestMonstreVise(Monstre *monstre);
@@ -71,7 +71,7 @@ public:
     bool PossibleEquiper(int numero, int emplacement);
     bool Equiper(int numero, int emplacement);
     bool UtiliserObjet(int numero);
-    void AttribuerPositionObjet(coordonnee position,int numero);
+   // void AttribuerPositionObjet(coordonnee position,int numero);
     void RangerObjet(int numero);
 
     bool AjouterMiracleArme();
@@ -115,7 +115,7 @@ private:
     int ordreAffichage[NOMBRE_MORCEAU_PERSONNAGE];
 
     std::vector<Objet> m_inventaire;
-    std::vector< std::vector<bool> > m_caseInventaire;
+   // std::vector< std::vector<bool> > m_caseInventaire;
 
     int m_weaponMiracle;
     bool m_achat;

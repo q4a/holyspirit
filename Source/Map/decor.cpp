@@ -155,23 +155,8 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet)
     {
         sf::String texte;
         sf::Sprite sprite;
-        int rarete=m_objets[objet].getRarete();
-        if (rarete==NORMAL)
-            texte.SetColor(sf::Color(224,224,224));
-        if (rarete==BONNEFACTURE)
-            texte.SetColor(sf::Color(128,0,128));
-        if (rarete==BENI)
-            texte.SetColor(sf::Color(0,64,128));
-        if (rarete==SACRE)
-            texte.SetColor(sf::Color(255,255,128));
-        if (rarete==SANCTIFIE)
-            texte.SetColor(sf::Color(128,255,255));
-        if (rarete==DIVIN)
-            texte.SetColor(sf::Color(255,164,32));
-        if (rarete==INFERNAL)
-            texte.SetColor(sf::Color(224,0,0));
-        if (rarete==CRAFT)
-            texte.SetColor(sf::Color(128,64,0));
+
+        texte.SetColor(GetItemColor(m_objets[objet].getRarete()));
 
         texte.SetFont(moteurGraphique->m_font);
 

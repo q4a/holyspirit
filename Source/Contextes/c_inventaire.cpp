@@ -74,39 +74,7 @@ void c_Inventaire::setTrader(std::vector<Objet> *trade,Classe *classe)
     }
 }
 
-void AjouterTrader(Objet newObj,std::vector<Objet>* trader,Classe *classe)
-{
-    bool continuer=true;
 
-    if(trader)
-    {
-        trader->push_back(newObj);
-
-        for (int y=0;continuer;y++)
-            for (int x=0;x<classe->position_contenu_marchand.w&&continuer;x++)
-            {
-                bool ajouter=true;
-                for (int h=0;h<trader->back().getTaille().y;h++)
-                    for (int w=0;w<trader->back().getTaille().x;w++)
-                        if (x+w<classe->position_contenu_marchand.w)
-                        {
-                            for (int j=0;j<(int)trader->size()-1;j++)
-                                for (int Y=0;Y<(*trader)[j].getTaille().y;Y++)
-                                    for (int X=0;X<(*trader)[j].getTaille().x;X++)
-                                        if ((*trader)[j].getPosition().x+X==x+w && (*trader)[j].getPosition().y+Y==y+h)
-                                            ajouter=false;
-                        }
-                        else
-                            ajouter=false;
-
-                if (ajouter)
-                {
-                    continuer=false;
-                    trader->back().setPosition(x,y);
-                }
-            }
-    }
-}
 
 void c_Inventaire::Utiliser(Jeu *jeu)
 {

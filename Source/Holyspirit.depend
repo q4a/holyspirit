@@ -1359,7 +1359,7 @@
 	<SFML/Graphics/Rect.hpp>
 	<string>
 
-1244298967 e:\c++\holyspirit\source\constantes.h
+1244395567 e:\c++\holyspirit\source\constantes.h
 	<cmath>
 	<utility>
 	<iostream>
@@ -1975,7 +1975,7 @@
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1244310489 e:\c++\holyspirit\source\entites\hero.h
+1244474002 e:\c++\holyspirit\source\entites\hero.h
 	<iostream>
 	<string>
 	"classe.h"
@@ -2007,7 +2007,7 @@
 	"../Entites/objet.h"
 	"../Moteurs/light.h"
 
-1244286755 e:\c++\holyspirit\source\entites\objet.h
+1244395819 e:\c++\holyspirit\source\entites\objet.h
 	<iostream>
 	"../constantes.h"
 	<fstream>
@@ -2071,7 +2071,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1244296824 source:e:\c++\holyspirit\source\contextes\c_inventaire.cpp
+1244473129 source:e:\c++\holyspirit\source\contextes\c_inventaire.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -2098,7 +2098,8 @@
 	"case.h"
 	<iostream>
 
-1244375043 source:e:\c++\holyspirit\source\entites\hero.cpp
+1244474454 source:e:\c++\holyspirit\source\entites\hero.cpp
+	"../constantes.h"
 	"hero.h"
 	"../globale.h"
 	<iostream>
@@ -2129,7 +2130,7 @@
 	"../constantes.h"
 	"../globale.h"
 
-1244309971 source:e:\c++\holyspirit\source\entites\objet.cpp
+1244474483 source:e:\c++\holyspirit\source\entites\objet.cpp
 	"objet.h"
 	"../globale.h"
 	<fstream>
@@ -2156,7 +2157,7 @@
 	"script.h"
 	"../globale.h"
 
-1244286756 source:e:\c++\holyspirit\source\map\decor.cpp
+1244395754 source:e:\c++\holyspirit\source\map\decor.cpp
 	"decor.h"
 	"../globale.h"
 
@@ -2164,7 +2165,7 @@
 	"evenement.h"
 	<iostream>
 
-1244302954 source:e:\c++\holyspirit\source\map\map.cpp
+1244395766 source:e:\c++\holyspirit\source\map\map.cpp
 	"map.h"
 	<iostream>
 	<fstream>

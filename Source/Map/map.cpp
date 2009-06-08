@@ -1209,23 +1209,9 @@ void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_
                 }
 
 
-                int rarete=m_decor[1][positionSac.y][positionSac.x].getObjet(z)->getRarete();
-                if (rarete==NORMAL)
-                    texte.SetColor(sf::Color(224,224,224,255));
-                if (rarete==BONNEFACTURE)
-                    texte.SetColor(sf::Color(128,0,128,255));
-                if (rarete==BENI)
-                    texte.SetColor(sf::Color(0,64,128,255));
-                if (rarete==SACRE)
-                    texte.SetColor(sf::Color(255,255,128,255));
-                if (rarete==SANCTIFIE)
-                    texte.SetColor(sf::Color(128,255,255,255));
-                if (rarete==DIVIN)
-                    texte.SetColor(sf::Color(255,164,32,255));
-                if (rarete==INFERNAL)
-                    texte.SetColor(sf::Color(224,0,0,255));
-                if (rarete==CRAFT)
-                    texte.SetColor(sf::Color(128,64,0,255));
+                //int rarete=m_decor[1][positionSac.y][positionSac.x].getObjet(z)->getRarete();
+
+                texte.SetColor(GetItemColor(m_decor[1][positionSac.y][positionSac.x].getObjet(z)->getRarete()));
 
                 if (z-m_defilerObjets==0&&m_defilerObjets>0)
                     texte.SetText("...");
