@@ -240,6 +240,9 @@ void Miracle::Charger(std::string chemin)
                         int animation=m_tile.size(),son=-1,image=0;
                         Lumiere lumiere;
                         lumiere.intensite=0;
+                        lumiere.rouge=0;
+                        lumiere.vert=0;
+                        lumiere.bleu=0;
                         bool collision=0,ombre=0,transparent=0;
                         char orientation=' ';
                         float tempsAnimation=0.075;

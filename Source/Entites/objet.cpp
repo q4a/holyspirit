@@ -74,9 +74,10 @@ Objet::Objet()
 
     ai=0,aa=0,dii=0,dia=0,dai=0,daa=0;
     m_shoot_weapon=0;
-    m_useMiracle=0;
 
     m_img_corner = moteurGraphique->AjouterImage(configuration->chemin_menus + configuration->nom_corner);
+
+    m_useMiracle = false;
 }
 
 Objet::Objet(std::string nom, int rarete)
@@ -87,6 +88,8 @@ Objet::Objet(std::string nom, int rarete)
     m_chemin="";
     m_equipe=-1;
     m_capaciteBenediction=0;
+
+    m_useMiracle = false;
 
     m_img_corner = moteurGraphique->AjouterImage(configuration->chemin_menus + configuration->nom_corner);
 }

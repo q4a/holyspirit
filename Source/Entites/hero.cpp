@@ -413,21 +413,20 @@ void Hero::ChargerModele(bool tout)
                         m_cas=2;
 
             if (m_inventaire[i].m_useMiracle)
-            {
-                m_classe.miracles.push_back(m_inventaire[i].m_miracle);
-
-                m_classe.miracles.back().m_effets[0].m_lien.push_back((int) m_classe.miracles.back().m_effets.size());
-
-                m_classe.miracles.back().m_effets.push_back(Effet ());
-
-                m_classe.miracles.back().m_effets.back().m_type=DEGATS;
-                m_classe.miracles.back().m_effets.back().m_informations[0]=m_caracteristiques.degatsMin;
-                m_classe.miracles.back().m_effets.back().m_informations[1]=m_caracteristiques.degatsMax;
-
-
                 if (m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==ARME_PRINCIPAL||m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==BOUCLIER)
+                {
+                    m_classe.miracles.push_back(m_inventaire[i].m_miracle);
+
+                    m_classe.miracles.back().m_effets[0].m_lien.push_back((int) m_classe.miracles.back().m_effets.size());
+
+                    m_classe.miracles.back().m_effets.push_back(Effet ());
+
+                    m_classe.miracles.back().m_effets.back().m_type=DEGATS;
+                    m_classe.miracles.back().m_effets.back().m_informations[0]=m_caracteristiques.degatsMin;
+                    m_classe.miracles.back().m_effets.back().m_informations[1]=m_caracteristiques.degatsMax;
+
                     m_weaponMiracle=m_classe.miracles.size()-1;
-            }
+                }
         }
     }
 
@@ -869,7 +868,7 @@ void Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
             sprite.SetColor(sf::Color(sprite.GetColor().r,sprite.GetColor().g,sprite.GetColor().b,96));
 
             if (!m_inventaire[i].Utilisable(m_caracteristiques,m_classe.ID))
-                sprite.SetColor(sf::Color((int)(sprite.GetColor().r*0.25),(int)(sprite.GetColor().g*0.25),(int)(sprite.GetColor().b*0.25),32));
+                sprite.SetColor(sf::Color((int)(sprite.GetColor().r*0.5),(int)(sprite.GetColor().g*0.5),(int)(sprite.GetColor().b*0.5),32));
 
             sprite.Resize(m_inventaire[i].getTaille().x*32*configuration->Resolution.w/800,m_inventaire[i].getTaille().y*32*configuration->Resolution.h/600);
 
@@ -930,6 +929,9 @@ void Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
             else
                 sprite.SetRotation(0);
 
+            if (!m_inventaire[i].Utilisable(m_caracteristiques,m_classe.ID))
+                sprite.SetColor(sf::Color((int)(sprite.GetColor().r*0.5),(int)(sprite.GetColor().g*0.5),(int)(sprite.GetColor().b*0.5),255));
+
             moteurGraphique->AjouterCommande(&sprite,17,0);
             sprite.SetRotation(0);
         }
@@ -951,7 +953,7 @@ void Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
             sprite.SetColor(sf::Color(sprite.GetColor().r,sprite.GetColor().g,sprite.GetColor().b,96));
 
             if (!trader[i].Utilisable(m_caracteristiques,m_classe.ID))
-                sprite.SetColor(sf::Color((int)(sprite.GetColor().r*0.25),(int)(sprite.GetColor().g*0.25),(int)(sprite.GetColor().b*0.25),32));
+                sprite.SetColor(sf::Color((int)(sprite.GetColor().r*0.5),(int)(sprite.GetColor().g*0.5),(int)(sprite.GetColor().b*0.5),32));
 
             sprite.Resize(trader[i].getTaille().x*32*configuration->Resolution.w/800,trader[i].getTaille().y*32*configuration->Resolution.h/600);
 
@@ -1038,6 +1040,9 @@ void Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
                 sprite.SetRotation(-45);
             else
                 sprite.SetRotation(0);
+
+            if (!trader[i].Utilisable(m_caracteristiques,m_classe.ID))
+                sprite.SetColor(sf::Color((int)(sprite.GetColor().r*0.5),(int)(sprite.GetColor().g*0.5),(int)(sprite.GetColor().b*0.5),255));
 
             moteurGraphique->AjouterCommande(&sprite,17,0);
             sprite.SetRotation(0);
@@ -1227,6 +1232,8 @@ void Hero::AugmenterAme(float temps)
 
     if (temp.ancienPointAme>=CALCUL_PA_PROCHAIN_NIVEAU)
     {
+        temp.ancienPointAme = temp.pointAme;
+
         temp.niveau++;
         temp.pts_restant+=10;
 
@@ -1249,15 +1256,15 @@ void Hero::AugmenterAme(float temps)
     RecalculerCaracteristiques();
 
     m_caracteristiques.ancienPointAme=temp.ancienPointAme;
-
-    //recalculerCaracteristiques();
 }
 
-void Hero::RecalculerCaracteristiques()
+void Hero::RecalculerCaracteristiques(bool bis)
 {
     float vie=m_caracteristiques.vie,foi=m_caracteristiques.foi;
 
-    Caracteristique temp=m_personnage.getCaracteristique();
+    Caracteristique temp = m_personnage.getCaracteristique();
+    Caracteristique buf = m_caracteristiques;
+
     temp.maxVie=temp.vitalite*10;
     temp.maxFoi=temp.piete*10;
 
@@ -1268,31 +1275,32 @@ void Hero::RecalculerCaracteristiques()
 
     for (int i=0;i<(int)m_inventaire.size();i++)
         if (m_inventaire[i].m_equipe>=0)
-            for (int j=0;j<(int)m_inventaire[i].m_benedictions.size();++j)
-                switch (m_inventaire[i].m_benedictions[j].type)
-                {
-                case FO_SUPP:
-                    m_caracteristiques.force+=m_inventaire[i].m_benedictions[j].info1;
-                    break;
-                case VIT_SUPP:
-                    m_caracteristiques.vitalite+=m_inventaire[i].m_benedictions[j].info1;
-                    break;
-                case PI_SUPP:
-                    m_caracteristiques.piete+=m_inventaire[i].m_benedictions[j].info1;
-                    break;
-                case DEX_SUPP:
-                    m_caracteristiques.dexterite+=m_inventaire[i].m_benedictions[j].info1;
-                    break;
-                case CH_SUPP:
-                    m_caracteristiques.charisme+=m_inventaire[i].m_benedictions[j].info1;
-                    break;
-                case VIE_SUPP:
-                    m_caracteristiques.maxVie+=m_inventaire[i].m_benedictions[j].info1;
-                    break;
-                case FOI_SUPP:
-                    m_caracteristiques.maxFoi+=m_inventaire[i].m_benedictions[j].info1;
-                    break;
-                }
+            if (m_inventaire[i].Utilisable(buf,m_classe.ID))
+                for (int j=0;j<(int)m_inventaire[i].m_benedictions.size();++j)
+                    switch (m_inventaire[i].m_benedictions[j].type)
+                    {
+                    case FO_SUPP:
+                        m_caracteristiques.force+=m_inventaire[i].m_benedictions[j].info1;
+                        break;
+                    case VIT_SUPP:
+                        m_caracteristiques.vitalite+=m_inventaire[i].m_benedictions[j].info1;
+                        break;
+                    case PI_SUPP:
+                        m_caracteristiques.piete+=m_inventaire[i].m_benedictions[j].info1;
+                        break;
+                    case DEX_SUPP:
+                        m_caracteristiques.dexterite+=m_inventaire[i].m_benedictions[j].info1;
+                        break;
+                    case CH_SUPP:
+                        m_caracteristiques.charisme+=m_inventaire[i].m_benedictions[j].info1;
+                        break;
+                    case VIE_SUPP:
+                        m_caracteristiques.maxVie+=m_inventaire[i].m_benedictions[j].info1;
+                        break;
+                    case FOI_SUPP:
+                        m_caracteristiques.maxFoi+=m_inventaire[i].m_benedictions[j].info1;
+                        break;
+                    }
 
     m_caracteristiques.degatsMin=m_caracteristiques.force/3;
     m_caracteristiques.degatsMax=(int)(m_caracteristiques.force)/2;
@@ -1307,28 +1315,26 @@ void Hero::RecalculerCaracteristiques()
 
 
     for (int i=0;i<(int)m_inventaire.size();i++)
-    {
         if (m_inventaire[i].m_equipe>=0)
-        {
-            int accru=100;
-            for (int j=0;j<(int)m_inventaire[i].m_benedictions.size();++j)
-                if (m_inventaire[i].m_benedictions[j].type==EFFICACITE_ACCRUE)
-                    accru+=m_inventaire[i].m_benedictions[j].info1;
+            if (m_inventaire[i].Utilisable(buf,m_classe.ID))
+            {
+                int accru=100;
+                for (int j=0;j<(int)m_inventaire[i].m_benedictions.size();++j)
+                    if (m_inventaire[i].m_benedictions[j].type==EFFICACITE_ACCRUE)
+                        accru+=m_inventaire[i].m_benedictions[j].info1;
 
-            m_caracteristiques.degatsMin+=m_inventaire[i].m_degatsMin*accru/100;
-            m_caracteristiques.degatsMax+=m_inventaire[i].m_degatsMax*accru/100;
-            m_caracteristiques.armure+=m_inventaire[i].m_armure*accru/100;
+                m_caracteristiques.degatsMin+=m_inventaire[i].m_degatsMin*accru/100;
+                m_caracteristiques.degatsMax+=m_inventaire[i].m_degatsMax*accru/100;
+                m_caracteristiques.armure+=m_inventaire[i].m_armure*accru/100;
 
-            for (int j=0;j<(int)m_inventaire[i].m_benedictions.size();++j)
-                if (m_inventaire[i].m_benedictions[j].type==DEGATS_FEU||m_inventaire[i].m_benedictions[j].type==DEGATS_FOI)
-                    m_caracteristiques.degatsMin+=m_inventaire[i].m_benedictions[j].info1,m_caracteristiques.degatsMax+=m_inventaire[i].m_benedictions[j].info1;
+                for (int j=0;j<(int)m_inventaire[i].m_benedictions.size();++j)
+                    if (m_inventaire[i].m_benedictions[j].type==DEGATS_FEU||m_inventaire[i].m_benedictions[j].type==DEGATS_FOI)
+                        m_caracteristiques.degatsMin+=m_inventaire[i].m_benedictions[j].info1,m_caracteristiques.degatsMax+=m_inventaire[i].m_benedictions[j].info1;
 
-            temp.degatsMin+=m_inventaire[i].m_degatsMin;
-            temp.degatsMax+=m_inventaire[i].m_degatsMax;
-            temp.armure+=m_inventaire[i].m_armure;
-        }
-    }
-
+                temp.degatsMin+=m_inventaire[i].m_degatsMin;
+                temp.degatsMax+=m_inventaire[i].m_degatsMax;
+                temp.armure+=m_inventaire[i].m_armure;
+            }
     m_caracteristiques.niveau=temp.niveau;
 
     m_personnage.setCaracteristique(temp);
@@ -1339,6 +1345,9 @@ void Hero::RecalculerCaracteristiques()
         m_caracteristiques.vie=m_caracteristiques.maxVie*2;
     if (m_caracteristiques.foi>m_caracteristiques.maxFoi*2)
         m_caracteristiques.foi=m_caracteristiques.maxFoi*2;
+
+    if(bis)
+        RecalculerCaracteristiques(false);
 }
 
 int Hero::UtiliserClicDroit(int monstreVise)
@@ -1384,19 +1393,6 @@ bool Hero::AjouterMiracleArme()
     return 0;
 }
 
-/*void Hero::GenererGrille()
-{
-    m_caseInventaire.clear();
-
-    m_caseInventaire.resize(m_classe.position_contenu_inventaire.h , std::vector<bool> (m_classe.position_contenu_inventaire.w,0));
-
-    for (int i=0;i<(int)m_inventaire.size();i++)
-        if (m_inventaire[i].m_equipe==-1&&i!=m_objetEnMain)
-            for (int y=0;y<m_inventaire[i].getTaille().y;y++)
-                for (int x=0;x<m_inventaire[i].getTaille().x;x++)
-                    m_caseInventaire[(int)(y+m_inventaire[i].getPosition().y)][(int)(x+m_inventaire[i].getPosition().x)]=1;
-}*/
-
 bool Hero::AjouterObjet(Objet objet,bool enMain)
 {
     bool ramasser=false;
@@ -1416,22 +1412,8 @@ bool Hero::AjouterObjet(Objet objet,bool enMain)
         ramasser = true;
     }
 
-    //GenererGrille();
-
     return ramasser;
 }
-
-/*void Hero::AttribuerPositionObjet(coordonnee position,int numero)
-{
-    if (numero>=0&&numero<(int)m_inventaire.size())
-    {
-        m_inventaire[numero].setPosition(position.x,position.y);
-
-        m_inventaire[numero].m_equipe=-1;
-
-        // GenererGrille();
-    }
-}*/
 
 Objet Hero::DeposerObjet()
 {
@@ -1614,13 +1596,10 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
 
             if (ok)
             {
-                //if(temp!=-1)
-                //  LibererCases(temp);
-
-                //AttribuerPositionObjet(caseVisee,m_objetEnMain);
                 m_inventaire[m_objetEnMain].setPosition(caseVisee.x, caseVisee.y);
 
                 m_inventaire[m_objetEnMain].JouerSon();
+                m_inventaire[m_objetEnMain].m_equipe = -1;
 
                 m_objetEnMain=-1;
 

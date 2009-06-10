@@ -55,7 +55,7 @@ public:
     bool TestMonstreVise(Monstre *monstre);
 
     void AugmenterAme(float temps);
-    void RecalculerCaracteristiques();
+    void RecalculerCaracteristiques(bool bis = true);
 
     void InfligerDegats(float degats);
     void RegenererVie(float vie);
