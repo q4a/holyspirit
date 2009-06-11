@@ -1317,10 +1317,11 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                                     sprite.SetSubRect(IntRect(m_decor[1][j][k].getObjet(o)->getPositionImage().x, m_decor[1][j][k].getObjet(o)->getPositionImage().y, m_decor[1][j][k].getObjet(o)->getPositionImage().x+m_decor[1][j][k].getObjet(o)->getPositionImage().w, m_decor[1][j][k].getObjet(o)->getPositionImage().y+m_decor[1][j][k].getObjet(o)->getPositionImage().h));
                                     sprite.SetScale(0.8,0.4);
 
-                                    sprite.SetX(position.x-32*(o%2==0)+16-(m_decor[1][j][k].getObjet(o)->getPositionImage().w*0.8)/2);
-                                    sprite.SetY(position.y+32*(int)(o/2));
+                                    sprite.SetX(position.x-32+m_decor[1][j][k].getObjet(o)->getPosition().x*32+16-(m_decor[1][j][k].getObjet(o)->getPositionImage().w*0.8)/2);
+                                    sprite.SetY(position.y+m_decor[1][j][k].getObjet(o)->getPosition().y*32);
 
-                                    if (!alt&&!eventManager->getEvenement(sf::Mouse::Left,"C")&&moteurGraphique->getPositionSouris().x>position.x-32*(o%2==0)&&moteurGraphique->getPositionSouris().x<position.x-32*(o%2==0)+32&&moteurGraphique->getPositionSouris().y>position.y+32*(int)(o/2)&&moteurGraphique->getPositionSouris().y<position.y+32*(int)(o/2)+32)
+                                    if (!alt&&!eventManager->getEvenement(sf::Mouse::Left,"C")&&moteurGraphique->getPositionSouris().x>position.x-32+m_decor[1][j][k].getObjet(o)->getPosition().x*32&&moteurGraphique->getPositionSouris().x<position.x+m_decor[1][j][k].getObjet(o)->getPosition().x*32
+                                    &&moteurGraphique->getPositionSouris().y>position.y+m_decor[1][j][k].getObjet(o)->getPosition().y*32&&moteurGraphique->getPositionSouris().y<position.y+m_decor[1][j][k].getObjet(o)->getPosition().y*32+32)
                                     {
                                         coordonnee buf={(int)(sprite.GetPosition().x),(int)(sprite.GetPosition().y),0,0};
                                         m_decor[1][j][k].AfficherTexteObjet(buf,o);

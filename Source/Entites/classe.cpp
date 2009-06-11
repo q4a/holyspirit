@@ -160,9 +160,8 @@ void Classe::Charger(string chemin)
                     switch (caractere)
                     {
                     case 'm' :
-                        string temp;
-                        fichier>>temp;
-                        equipementParDefaut.push_back(temp);
+                        equipementParDefaut.push_back(string ());
+                        fichier>>equipementParDefaut.back();
                         break;
                     }
 

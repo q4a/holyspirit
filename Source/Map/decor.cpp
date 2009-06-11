@@ -251,8 +251,25 @@ void Decor::setCouche(int couche)
 }
 void Decor::AjouterObjet(Objet objet)
 {
+    coordonnee position = {0,0,0,0};
+
     m_objets.push_back(objet);
+    bool continuer = true;
+    for(position.y = 0;continuer;++position.y)
+        for(position.x = 0;position.x < 2 && continuer;++position.x)
+        {
+            bool ok = true;
+            for(int i = 0;i < (int)m_objets.size() - 1;++i)
+                if(m_objets[i].getPosition().x == position.x && m_objets[i].getPosition().y == position.y)
+                    ok = false;
+
+            if(ok)
+                continuer = false, m_objets.back().setPosition(position.x, position.y);
+        }
+
+
     m_objets.back().JouerSon();
+
 }
 
 
@@ -261,6 +278,16 @@ void Decor::supprimerObjet(int numero)
     if (numero>=0&&numero<(int)m_objets.size())
     {
         m_objets.erase(m_objets.begin()+numero);
+
+        int x = 0, y = 0;
+        if((int)m_objets.size() == 4)
+            for(int i = 0;i < (int)m_objets.size();++i)
+            {
+                m_objets[i].setPosition(x, y);
+                x++;
+                if(x>=2)
+                    x = 0, y++;
+            }
     }
 }
 
