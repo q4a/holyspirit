@@ -2001,10 +2001,10 @@ void Map::AnimerMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,f
                 if (continuer)
                     if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type==SOIN)
                     {
-                        if (personnage->m_monstre)
+                        //if (personnage->m_monstre)
                             personnage->infligerDegats(-miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[0]);
-                        else
-                            hero->InfligerDegats(-miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[0]);
+                        //else
+                         //   hero->InfligerDegats(-miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[0]);
 
                         for (int p=0;p<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien.size();p++)
                         {
@@ -2371,7 +2371,8 @@ void Map::MusiquePlay(coordonnee position)
 
 #define TRADE() hero->setMonstreVise(-1);\
                 jeu->m_inventaire->setTrader(m_monstre[m_decor[i][j][k].getMonstre()].getPointeurObjets(),&hero->m_classe);\
-                jeu->m_contexte=jeu->m_inventaire;\
+                jeu->Clock.Reset();\
+                jeu->m_contexte=jeu->m_inventaire;
 
 
 #define LISTE_INSTRUCTIONS(noInstruction)      if(noInstruction>=0&&noInstruction<(int)script->m_instructions.size()) \

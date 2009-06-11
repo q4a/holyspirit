@@ -737,7 +737,6 @@ int Personnage::animer(Modele_Personnage *modele,float temps,bool *explosif,coor
                 if (m_poseEnCours>=(int)modele->m_pose[m_etat][(int)(m_angle/45)].size())
                     m_poseEnCours=0;
 
-                //if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getSon()>=0)
                 modele->JouerSon(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getSon(),position,positionHero);
 
                 m_animation-=tempsAnimation;
@@ -750,7 +749,6 @@ int Personnage::animer(Modele_Personnage *modele,float temps,bool *explosif,coor
                 }
                 else
                 {
-                    //if(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==0)
                     if (modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()>retour)
                         retour=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque();
                 }
@@ -764,8 +762,6 @@ int Personnage::animer(Modele_Personnage *modele,float temps,bool *explosif,coor
                 {
                     if (modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite()!=-1&&m_caracteristique.rang==0)
                         m_porteeLumineuse.intensite=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite();
-                    /*else if (m_porteeLumineuseBasique.intensite>=0)
-                        m_porteeLumineuse=m_porteeLumineuseBasique;*/
 
                     float inte=m_porteeLumineuse.intensite;
                     if (inte>255)
@@ -781,12 +777,14 @@ int Personnage::animer(Modele_Personnage *modele,float temps,bool *explosif,coor
 
 void Personnage::frappe(coordonnee direction,coordonnee position)
 {
-
     if (m_etat<2)
     {
         m_etat=2;
         m_poseEnCours=0;
     }
+
+    if(!frappeEnCours)
+        m_poseEnCours=0;
 
     frappeEnCours=1;
 

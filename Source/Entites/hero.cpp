@@ -384,6 +384,11 @@ void Hero::Charger()
     m_caracteristiques.vie=m_caracteristiques.maxVie;
     m_caracteristiques.foi=m_caracteristiques.maxFoi;
 
+    Caracteristique temp = m_personnage.getCaracteristique();
+    temp.maxVie = m_caracteristiques.maxVie;
+    temp.vie = m_caracteristiques.maxVie;
+    m_personnage.setCaracteristique(temp);
+
     if (configuration->debug)
         console->Ajouter("/Chargement du héro terminé");
 }
@@ -1348,6 +1353,10 @@ void Hero::RecalculerCaracteristiques(bool bis)
 
     if(bis)
         RecalculerCaracteristiques(false);
+
+    temp = m_personnage.getCaracteristique();
+    temp.maxVie = m_caracteristiques.maxVie;
+    m_personnage.setCaracteristique(temp);
 }
 
 int Hero::UtiliserClicDroit(int monstreVise)
@@ -1912,28 +1921,32 @@ void Hero::InfligerDegats(float degats)
     if (degats > temp)
         degats = temp;
 
-    m_caracteristiques.vie-=degats;
-    if (m_caracteristiques.vie<=0)
-        m_personnage.infligerDegats(m_caracteristiques.maxVie);
-
-    if (m_caracteristiques.vie > m_caracteristiques.maxVie*2)
-        m_caracteristiques.vie = m_caracteristiques.maxVie*2;
+    m_caracteristiques.vie -= degats;
+    m_personnage.infligerDegats(degats);
 }
 void Hero::RegenererVie(float vie)
 {
 
-    if (m_caracteristiques.vie>m_caracteristiques.maxVie)
+    Caracteristique temp=m_personnage.getCaracteristique();
+
+    if (temp.vie>temp.maxVie)
     {
-        m_caracteristiques.vie-=(m_caracteristiques.vie-m_caracteristiques.maxVie)*vie/500;
-        if (m_caracteristiques.vie<m_caracteristiques.maxVie)
-            m_caracteristiques.vie=m_caracteristiques.maxVie;
+        temp.vie-=(temp.vie-temp.maxVie)*vie/500;
+        if (temp.vie<temp.maxVie)
+            temp.vie=temp.maxVie;
     }
     else
-        m_caracteristiques.vie+=vie;
+        temp.vie+=vie;
 
-    Caracteristique temp=m_personnage.getCaracteristique();
-    temp.vie=m_caracteristiques.vie;
     m_personnage.setCaracteristique(temp);
+
+    if(m_caracteristiques.vie > m_personnage.getCaracteristique().vie)
+        m_caracteristiques.vie += (m_personnage.getCaracteristique().vie-m_caracteristiques.vie)*vie*5;
+    else if(m_caracteristiques.vie < m_personnage.getCaracteristique().vie)
+        m_caracteristiques.vie += (m_personnage.getCaracteristique().vie-m_caracteristiques.vie)*vie/10;
+
+    if (m_caracteristiques.vie > m_caracteristiques.maxVie*2)
+        m_caracteristiques.vie = m_caracteristiques.maxVie*2;
 }
 void Hero::RegenererFoi(float foi)
 {

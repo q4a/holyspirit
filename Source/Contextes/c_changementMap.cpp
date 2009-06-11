@@ -221,6 +221,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
     if ((z>=49&&!augmenterNoir&&!allerVersImageChargement)||(m_debut))
     {
         configuration->effetNoir=0;
+        jeu->Clock.Reset();
         jeu->m_contexte = jeu->m_jeu;
     }
 }
