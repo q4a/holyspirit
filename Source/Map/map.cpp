@@ -1320,6 +1320,10 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                                     sprite.SetX(position.x-32+m_decor[1][j][k].getObjet(o)->getPosition().x*32+16-(m_decor[1][j][k].getObjet(o)->getPositionImage().w*0.8)/2);
                                     sprite.SetY(position.y+m_decor[1][j][k].getObjet(o)->getPosition().y*32);
 
+                                    sprite.SetColor(m_decor[1][j][k].getObjet(o)->m_color);
+
+                                    moteurGraphique->AjouterCommande(&sprite,8,1);
+
                                     if (!alt&&!eventManager->getEvenement(sf::Mouse::Left,"C")&&moteurGraphique->getPositionSouris().x>position.x-32+m_decor[1][j][k].getObjet(o)->getPosition().x*32&&moteurGraphique->getPositionSouris().x<position.x+m_decor[1][j][k].getObjet(o)->getPosition().x*32
                                     &&moteurGraphique->getPositionSouris().y>position.y+m_decor[1][j][k].getObjet(o)->getPosition().y*32&&moteurGraphique->getPositionSouris().y<position.y+m_decor[1][j][k].getObjet(o)->getPosition().y*32+32)
                                     {
@@ -1333,11 +1337,11 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
 
                                         m_objetPointe=o;
 
-                                        sprite.SetColor(sf::Color(255,128,128));
+                                        sprite.SetBlendMode(Blend::Add);
+                                        moteurGraphique->AjouterCommande(&sprite,12,1);
                                     }
 
-                                    moteurGraphique->AjouterCommande(&sprite,8,1);
-
+                                    sprite.SetBlendMode(Blend::Alpha);
                                     sprite.SetColor(sf::Color(255,255,255));
                                 }
                             }

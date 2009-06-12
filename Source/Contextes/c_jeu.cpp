@@ -363,6 +363,9 @@ void c_Jeu::Evenements(Jeu *jeu)
     if (!eventManager->getEvenement(Mouse::Left,"C"))
         jeu->map->getMonstre(&jeu->hero,eventManager->getPositionSouris(),eventManager->getCasePointee());
 
+    if(eventManager->getEvenement(Key::LAlt,"ET"))
+        jeu->map->m_monstreIllumine = -1;
+
     if (eventManager->getEvenement(Mouse::Left,"CA")&&!eventManager->getEvenement(Key::LShift,"ET")&&eventManager->getPositionSouris().y < 492)
     {
         if (!(eventManager->getPositionSouris().x>configuration->Resolution.w-configuration->Resolution.w*0.25
