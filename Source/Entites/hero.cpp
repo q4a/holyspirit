@@ -380,6 +380,7 @@ void Hero::Charger()
     ChargerModele();
 
     RecalculerCaracteristiques();
+    RecalculerCaracteristiques();
 
     m_caracteristiques.vie=m_caracteristiques.maxVie;
     m_caracteristiques.foi=m_caracteristiques.maxFoi;
@@ -1242,10 +1243,10 @@ void Hero::AugmenterAme(float temps)
         temp.niveau++;
         temp.pts_restant+=10;
 
-        temp.maxVie=temp.vitalite*25;
+        temp.maxVie=temp.vitalite*10;
         temp.vie=temp.maxVie;
 
-        temp.maxFoi=temp.piete*25;
+        temp.maxFoi=temp.piete*10;
         temp.foi=temp.maxFoi;
 
         m_personnage.setCaracteristique(temp);

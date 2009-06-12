@@ -52,8 +52,6 @@ void Jeu::Demarrer()
                     reader.ExportFile(i),hero.m_contenuSave.push_back(reader.GetFileName(i));
     }
 
-    hero.ChargerModele();
-
     m_jeu = new c_Jeu;
     m_demarrage = new c_Demarrage;
     m_chargement = new c_Chargement;
@@ -65,6 +63,7 @@ void Jeu::Demarrer()
     m_contexte = m_demarrage;
 
     Clock.Reset();
+
 
     m_run = true;
     m_display = true;

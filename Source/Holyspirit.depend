@@ -1731,7 +1731,7 @@
 	<math.h>
 	<dirent.h>
 
-1244297291 source:e:\c++\holyspirit\source\jeu.cpp
+1244801399 source:e:\c++\holyspirit\source\jeu.cpp
 	"constantes.h"
 	"globale.h"
 	"jeu.h"
@@ -2098,7 +2098,7 @@
 	"case.h"
 	<iostream>
 
-1244710805 source:e:\c++\holyspirit\source\entites\hero.cpp
+1244801399 source:e:\c++\holyspirit\source\entites\hero.cpp
 	"../constantes.h"
 	"hero.h"
 	"../globale.h"
