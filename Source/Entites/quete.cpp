@@ -50,17 +50,28 @@ Quete::    ~Quete()
 
 void    Quete::    SauvegarderTexte(std::ofstream *fichier)
 {
-    for (int i=0;i<(int)m_description.size();i++)
-        if (m_description[i]==' ')
-                m_description[i]='_';
-    for (int i=0;i<(int)m_nom.size();i++)
-        if (m_nom[i]==' ')
-                m_nom[i]='_';
+    std::string description = m_description;
+    std::string nom = m_nom;
+
+    for (int i=0;i<(int)description.size();i++)
+    {
+        if (description[i]=='\n')
+                description[i]='\\';
+        if (description[i]==' ')
+                description[i]='_';
+    }
+    for (int i=0;i<(int)nom.size();i++)
+    {
+        if (nom[i]=='\n')
+                nom[i]='\\';
+        if (nom[i]==' ')
+                nom[i]='_';
+    }
 
     *fichier<<" q ";
 
-    *fichier<<" n"<<m_nom;
-    *fichier<<" d"<<m_description;
+    *fichier<<" n"<<nom;
+    *fichier<<" d"<<description;
     *fichier<<" i"<<m_id;
     *fichier<<" s"<<m_statut;
 
@@ -90,16 +101,28 @@ void    Quete::    ChargerTexte(std::ifstream *fichier)
 
         if (fichier->eof())
         {
-            throw "Impossible de charger l'objet";
+            throw "Impossible de charger la quête";
         }
     }
     while (caractere!='$');
 
 
+
+
     for (int i=0;i<(int)m_description.size();i++)
+    {
+        if (m_description[i]=='\\')
+                m_description[i]='\n';
         if (m_description[i]=='_')
                 m_description[i]=' ';
+    }
     for (int i=0;i<(int)m_nom.size();i++)
+    {
+        if (m_nom[i]=='\\')
+                m_nom[i]='\n';
         if (m_nom[i]=='_')
                 m_nom[i]=' ';
+    }
+
+    cout<<m_nom<<endl;
 }

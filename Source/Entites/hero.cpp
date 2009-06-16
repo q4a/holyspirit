@@ -345,7 +345,6 @@ void Hero::Charger()
                 {
                     m_quetes.push_back(Quete ());
                     m_quetes.back().ChargerTexte(fichier);
-
                     fichier->get(caractere);
                 }
                 if (fichier->eof())
