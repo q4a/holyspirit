@@ -1326,7 +1326,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                                     moteurGraphique->AjouterCommande(&sprite,8,1);
 
                                     if (!alt&&!eventManager->getEvenement(sf::Mouse::Left,"C")&&moteurGraphique->getPositionSouris().x>position.x-32+m_decor[1][j][k].getObjet(o)->getPosition().x*32&&moteurGraphique->getPositionSouris().x<position.x+m_decor[1][j][k].getObjet(o)->getPosition().x*32
-                                    &&moteurGraphique->getPositionSouris().y>position.y+m_decor[1][j][k].getObjet(o)->getPosition().y*32&&moteurGraphique->getPositionSouris().y<position.y+m_decor[1][j][k].getObjet(o)->getPosition().y*32+32)
+                                            &&moteurGraphique->getPositionSouris().y>position.y+m_decor[1][j][k].getObjet(o)->getPosition().y*32&&moteurGraphique->getPositionSouris().y<position.y+m_decor[1][j][k].getObjet(o)->getPosition().y*32+32)
                                     {
                                         coordonnee buf={(int)(sprite.GetPosition().x),(int)(sprite.GetPosition().y),0,0};
                                         m_decor[1][j][k].AfficherTexteObjet(buf,o);
@@ -2008,9 +2008,9 @@ void Map::AnimerMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,f
                     if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type==SOIN)
                     {
                         //if (personnage->m_monstre)
-                            personnage->infligerDegats(-miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[0]);
+                        personnage->infligerDegats(-miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[0]);
                         //else
-                         //   hero->InfligerDegats(-miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[0]);
+                        //   hero->InfligerDegats(-miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[0]);
 
                         for (int p=0;p<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien.size();p++)
                         {
@@ -2083,7 +2083,7 @@ void Map::AnimerMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,f
                                 m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_animation-=tempsAnimation;
                                 if (m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_compteur>0)
                                 {
-                                    if(miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getImage()<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_image.size())
+                                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getImage()<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_image.size())
                                         m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_image=miracles[personnage->m_miracleEnCours[i].m_modele].m_image[miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getImage()];
                                     m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_positionImage= miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getCoordonnee();
                                     m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_compteur--;
@@ -2380,117 +2380,121 @@ void Map::MusiquePlay(coordonnee position)
                 jeu->Clock.Reset();\
                 jeu->m_contexte=jeu->m_inventaire;
 
+std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)
+{
+    sf::String temp;
+    temp.SetSize(tailleTexte);
+    temp.SetFont(moteurGraphique->m_font);
 
-#define LISTE_INSTRUCTIONS(noInstruction)      if(noInstruction>=0&&noInstruction<(int)script->m_instructions.size()) \
-                                             { \
-                                                if(script->m_instructions[noInstruction].nom=="fight") { FIGHT() } \
-                                                if(script->m_instructions[noInstruction].nom=="evasion") { EVASION() } \
-                                                if(script->m_instructions[noInstruction].nom=="useMiracle") { USEMIRACLE(script->m_instructions[noInstruction].valeurs.at(0)) } \
-                                                if(script->m_instructions[noInstruction].nom=="setState") { SETSTATE(script->m_instructions[noInstruction].valeurs.at(0)) } \
-                                                if(script->m_instructions[noInstruction].nom=="dammages") { InfligerDegats(m_decor[i][j][k].getMonstre(), script->m_instructions[noInstruction].valeurs.at(0), menu, hero, false); } \
-                                                if(script->m_instructions[noInstruction].nom=="shoot") { SHOOT() } \
-                                                if(script->m_instructions[noInstruction].nom=="randomDisplace") { RANDOMDISPLACE() } \
-                                                if(script->m_instructions[noInstruction].nom=="playSound") { PLAYSOUND(script->m_instructions[noInstruction].valeurs.at(0)) } \
-                                                if(script->m_instructions[noInstruction].nom=="trade") { TRADE() } \
-                                                if(script->m_instructions[noInstruction].nom=="if") { GererConditions(jeu,script,noInstruction,i,j,k,hero,temps,menu); } \
-                                                if(script->m_instructions[noInstruction].nom=="variable") { script->variables[script->m_instructions[noInstruction].valeurs.at(0)]=script->m_instructions[noInstruction].valeurs.at(1); }  \
-                                                if(script->m_instructions[noInstruction].nom=="incrementeVariable") { script->variables[script->m_instructions[noInstruction].valeurs.at(0)]+=script->m_instructions[noInstruction].valeurs.at(1); }  \
-                                                \
-                                                if(script->m_instructions[noInstruction].nom=="speak") { console->Ajouter(script->m_instructions[noInstruction].valeurString); }  \
-                                                if(script->m_instructions[noInstruction].nom=="newQuest") {\
-                                                    bool ok = true;\
-                                                    for(int i = 0;i < (int)hero->m_quetes.size(); ++i)\
-                                                    if(hero->m_quetes[i].m_id == script->m_instructions[noInstruction].valeurs.at(0))\
-                                                        ok = false;\
-                                                    if(ok)\
-                                                        hero->m_quetes.push_back(Quete (script->m_instructions[noInstruction].valeurs.at(0))); \
-                                                }  \
-                                                if(script->m_instructions[noInstruction].nom=="setQuestName") { \
-                                                    for(int i = 0;i < (int)hero->m_quetes.size(); ++i)\
-                                                    if(hero->m_quetes[i].m_id == script->m_instructions[noInstruction].valeurs.at(0))\
-                                                        hero->m_quetes[i].m_nom = script->m_instructions[noInstruction].valeurString; \
-                                                } \
-                                                if(script->m_instructions[noInstruction].nom=="setQuestState") {\
-                                                    for(int i = 0;i < (int)hero->m_quetes.size(); ++i)\
-                                                        if(hero->m_quetes[i].m_id == script->m_instructions[noInstruction].valeurs.at(0))\
-                                                        { \
-                                                            hero->m_quetes[i].m_description = script->m_instructions[noInstruction].valeurString; \
-                                                            hero->m_quetes[i].m_statut = script->m_instructions[noInstruction].valeurs.at(1); } \
-                                                } \
-                                                if(script->m_instructions[noInstruction].nom=="giftItem") { if(script->m_instructions[noInstruction].valeurs.at(0) >= 0 && script->m_instructions[noInstruction].valeurs.at(0) < (int)(*m_monstre[m_decor[i][j][k].getMonstre()].getPointeurObjets()).size()) \
-                                                    if(!hero->AjouterObjet((*m_monstre[m_decor[i][j][k].getMonstre()].getPointeurObjets())[script->m_instructions[noInstruction].valeurs.at(0)], false))\
-                                                        m_decor[1][j][k].AjouterObjet((*m_monstre[m_decor[i][j][k].getMonstre()].getPointeurObjets())[script->m_instructions[noInstruction].valeurs.at(0)]);\
-                                                }  \
-                                            }
+    std::string buf;
+    std::string bufMot;
+    for (int p = 0;p < texte.size();p++)
+    {
+        if (texte[p] != ' ' && texte[p] != '"')
+        {
+            bufMot += texte[p];
+            temp.SetText(buf + bufMot);
+            if (temp.GetRect().Right - temp.GetRect().Left > tailleCadran)
+                bufMot = '\n' + bufMot;
+        }
+        else
+            buf += bufMot, bufMot = " ";
+    }
 
-#define LISTE_CONDITIONS(noInstruction) if(script->m_instructions[noInstruction].nom=="alive")\
-                                        {\
-                                            if (!m_monstre[m_decor[i][j][k].getMonstre()].enVie()) \
-                                                ok=false;\
-                                        }\
-                                        else if(script->m_instructions[noInstruction].nom=="see")\
-                                        {\
-                                            if(!m_monstre[m_decor[i][j][k].getMonstre()].getVu()) \
-                                                ok=false;\
-                                        }\
-                                        else if(script->m_instructions[noInstruction].nom=="touch")\
-                                        {\
-                                            if(!m_monstre[m_decor[i][j][k].getMonstre()].m_touche) \
-                                                ok=false;\
-                                        }\
-                                        else if(script->m_instructions[noInstruction].nom=="numberInvocation")\
-                                        {\
-                                            if(m_monstre[m_decor[i][j][k].getMonstre()].m_nombreInvocation==script->m_instructions[noInstruction].valeurs.at(0)) \
-                                                ok=true;\
-                                            else\
-                                                ok=false;\
-                                        }\
-                                        else if(script->m_instructions[noInstruction].nom=="distance")\
-                                        {\
-                                            if(((m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)*(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x) + (m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)*(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)) < script->m_instructions[noInstruction].valeurs.at(0)*script->m_instructions[noInstruction].valeurs.at(0)) \
-                                                ok=true;\
-                                            else \
-                                                ok=false;\
-                                        }\
-                                        else if(script->m_instructions[noInstruction].nom=="rand")\
-                                        {\
-                                            if(rand() % 100 <= script->m_instructions[noInstruction].valeurs.at(0)) \
-                                                ok=true;\
-                                            else \
-                                                ok=false;\
-                                        } \
-                                        else if(script->m_instructions[noInstruction].nom=="variable")\
-                                        {\
-                                            if(script->variables[script->m_instructions[noInstruction].valeurs.at(0)]==script->m_instructions[noInstruction].valeurs.at(1)) \
-                                                ok=true;\
-                                            else \
-                                                ok=false;\
-                                        }\
-                                        else if(script->m_instructions[noInstruction].nom=="talk")\
-                                        {\
-                                            if(hero->getMonstreVise()==m_decor[i][j][k].getMonstre()&&fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)<=1&&fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)<=1) \
-                                                ok=true;\
-                                            else \
-                                                ok=false;\
-                                        }\
-                                        else if(script->m_instructions[noInstruction].nom=="quest")\
-                                        {\
-                                            if(script->m_instructions[noInstruction].valeurs.at(1) == -1) \
-                                            {\
-                                                for(int i = 0;i < (int)hero->m_quetes.size(); ++i)\
-                                                    if(hero->m_quetes[i].m_id == script->m_instructions[noInstruction].valeurs.at(0))\
-                                                        ok = false;\
-                                            }\
-                                            else\
-                                            {\
-                                                ok = false;\
-                                                for(int i = 0;i < (int)hero->m_quetes.size(); ++i)\
-                                                    if(hero->m_quetes[i].m_id == script->m_instructions[noInstruction].valeurs.at(0))\
-                                                        if(hero->m_quetes[i].m_statut == script->m_instructions[noInstruction].valeurs.at(1))\
-                                                            ok = true;\
-                                            }\
-                                        }
+    return buf;
+}
 
+
+void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int i, int j, int k,Hero *hero,float temps,Menu *menu)
+{
+    if (noInstruction>=0&&noInstruction<(int)script->m_instructions.size())
+    {
+        if (script->m_instructions[noInstruction].nom=="fight")
+        {
+            FIGHT()
+        }
+        if (script->m_instructions[noInstruction].nom=="evasion")
+        {
+            EVASION()
+        }
+        if (script->m_instructions[noInstruction].nom=="useMiracle")
+        {
+            USEMIRACLE(script->m_instructions[noInstruction].valeurs.at(0))
+        }
+        if (script->m_instructions[noInstruction].nom=="setState")
+        {
+            SETSTATE(script->m_instructions[noInstruction].valeurs.at(0))
+        }
+        if (script->m_instructions[noInstruction].nom=="dammages")
+        {
+            InfligerDegats(m_decor[i][j][k].getMonstre(), script->m_instructions[noInstruction].valeurs.at(0), menu, hero, false);
+        }
+        if (script->m_instructions[noInstruction].nom=="shoot")
+        {
+            SHOOT()
+        }
+        if (script->m_instructions[noInstruction].nom=="randomDisplace")
+        {
+            RANDOMDISPLACE()
+        }
+        if (script->m_instructions[noInstruction].nom=="playSound")
+        {
+            PLAYSOUND(script->m_instructions[noInstruction].valeurs.at(0))
+        }
+        if (script->m_instructions[noInstruction].nom=="trade")
+        {
+            TRADE()
+        }
+        if (script->m_instructions[noInstruction].nom=="if")
+        {
+            GererConditions(jeu,script,noInstruction,i,j,k,hero,temps,menu);
+        }
+        if (script->m_instructions[noInstruction].nom=="variable")
+        {
+            script->variables[script->m_instructions[noInstruction].valeurs.at(0)]=script->m_instructions[noInstruction].valeurs.at(1);
+        }
+        if (script->m_instructions[noInstruction].nom=="incrementeVariable")
+        {
+            script->variables[script->m_instructions[noInstruction].valeurs.at(0)]+=script->m_instructions[noInstruction].valeurs.at(1);
+        }
+
+        if (script->m_instructions[noInstruction].nom=="speak")
+        {
+            if(jeu->menu.m_dialogue == " ")
+                jeu->menu.m_dialogue = DecouperTexte(script->m_instructions[noInstruction].valeurString, hero->m_classe.position_contenu_dialogue.w, 14);
+        }
+        if (script->m_instructions[noInstruction].nom=="newQuest")
+        {
+            bool ok = true;
+            for (int i = 0;i < (int)hero->m_quetes.size(); ++i)
+                if (hero->m_quetes[i].m_id == script->m_instructions[noInstruction].valeurs.at(0))
+                    ok = false;
+            if (ok)
+                hero->m_quetes.push_back(Quete (script->m_instructions[noInstruction].valeurs.at(0)));
+        }
+        if (script->m_instructions[noInstruction].nom=="setQuestName")
+        {
+            for (int i = 0;i < (int)hero->m_quetes.size(); ++i)
+                if (hero->m_quetes[i].m_id == script->m_instructions[noInstruction].valeurs.at(0))
+                    hero->m_quetes[i].m_nom = DecouperTexte(script->m_instructions[noInstruction].valeurString, hero->m_classe.position_contenu_quetes.w, 12);
+        }
+        if (script->m_instructions[noInstruction].nom=="setQuestState")
+        {
+            for (int i = 0;i < (int)hero->m_quetes.size(); ++i)
+                if (hero->m_quetes[i].m_id == script->m_instructions[noInstruction].valeurs.at(0))
+                {
+                    hero->m_quetes[i].m_description = DecouperTexte(script->m_instructions[noInstruction].valeurString, hero->m_classe.position_contenu_description_quete.w, 12);
+                    hero->m_quetes[i].m_statut = script->m_instructions[noInstruction].valeurs.at(1);
+                }
+        }
+        if (script->m_instructions[noInstruction].nom=="giftItem")
+        {
+            if (script->m_instructions[noInstruction].valeurs.at(0) >= 0 && script->m_instructions[noInstruction].valeurs.at(0) < (int)(*m_monstre[m_decor[i][j][k].getMonstre()].getPointeurObjets()).size())
+                if (!hero->AjouterObjet((*m_monstre[m_decor[i][j][k].getMonstre()].getPointeurObjets())[script->m_instructions[noInstruction].valeurs.at(0)], false))
+                    m_decor[1][j][k].AjouterObjet((*m_monstre[m_decor[i][j][k].getMonstre()].getPointeurObjets())[script->m_instructions[noInstruction].valeurs.at(0)]);
+        }
+    }
+}
 
 void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int i, int j, int k,Hero *hero,float temps,Menu *menu)
 {
@@ -2501,17 +2505,85 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int i, int j
         for (;b<(int)script->m_instructions[noInstruction].valeurs.size()&&script->m_instructions[noInstruction].valeurs[b]!=-2;b++)
         {
             if (script->m_instructions[noInstruction].valeurs[b]>=0&&script->m_instructions[noInstruction].valeurs[b]<(int)script->m_instructions.size())
-                LISTE_CONDITIONS(script->m_instructions[noInstruction].valeurs[b]);
+            {
+                if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="alive")
+                {
+                    if (!m_monstre[m_decor[i][j][k].getMonstre()].enVie())
+                        ok=false;
+                }
+                else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="see")
+                {
+                    if (!m_monstre[m_decor[i][j][k].getMonstre()].getVu())
+                        ok=false;
+                }
+                else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="touch")
+                {
+                    if (!m_monstre[m_decor[i][j][k].getMonstre()].m_touche)
+                        ok=false;
+                }
+                else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="numberInvocation")
+                {
+                    if (m_monstre[m_decor[i][j][k].getMonstre()].m_nombreInvocation==script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0))
+                        ok=true;
+                    else
+                        ok=false;
+                }
+                else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="distance")
+                {
+                    if (((m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)*(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x) + (m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)*(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)) < script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0)*script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0))
+                        ok=true;
+                    else
+                        ok=false;
+                }
+                else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="rand")
+                {
+                    if (rand() % 100 <= script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0))
+                        ok=true;
+                    else
+                        ok=false;
+                }
+                else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="variable")
+                {
+                    if (script->variables[script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0)]==script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(1))
+                        ok=true;
+                    else
+                        ok=false;
+                }
+                else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="talk")
+                {
+                    if (hero->getMonstreVise()==m_decor[i][j][k].getMonstre()&&fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)<=1&&fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)<=1)
+                        ok=true;
+                    else
+                        ok=false;
+                }
+                else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="quest")
+                {
+                    if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(1) == -1)
+                    {
+                        for (int i = 0;i < (int)hero->m_quetes.size(); ++i)
+                            if (hero->m_quetes[i].m_id == script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0))
+                                ok = false;
+                    }
+                    else
+                    {
+                        ok = false;
+                        for (int i = 0;i < (int)hero->m_quetes.size(); ++i)
+                            if (hero->m_quetes[i].m_id == script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0))
+                                if (hero->m_quetes[i].m_statut == script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(1))
+                                    ok = true;
+                    }
+                }
+            }
         }
         for (;b<(int)script->m_instructions[noInstruction].valeurs.size()&&script->m_instructions[noInstruction].valeurs[b]!=-1&&script->m_instructions[noInstruction].valeurs[b]!=-3;b++)
             if (ok)
                 if (script->m_instructions[noInstruction].valeurs[b]>=0&&script->m_instructions[noInstruction].valeurs[b]<(int)script->m_instructions.size())
-                    LISTE_INSTRUCTIONS(script->m_instructions[noInstruction].valeurs[b])
-                    if (!ok)
-                        for (;b<(int)script->m_instructions[noInstruction].valeurs.size()&&script->m_instructions[noInstruction].valeurs[b]!=-1;b++)
-                            if (script->m_instructions[noInstruction].valeurs[b]>=0&&script->m_instructions[noInstruction].valeurs[b]<(int)script->m_instructions.size())
-                                LISTE_INSTRUCTIONS(script->m_instructions[noInstruction].valeurs[b])
-                            }
+                    GererInstructions(jeu,script,script->m_instructions[noInstruction].valeurs[b],i,j,k,hero,temps,menu);
+        if (!ok)
+            for (;b<(int)script->m_instructions[noInstruction].valeurs.size()&&script->m_instructions[noInstruction].valeurs[b]!=-1;b++)
+                if (script->m_instructions[noInstruction].valeurs[b]>=0&&script->m_instructions[noInstruction].valeurs[b]<(int)script->m_instructions.size())
+                    GererInstructions(jeu,script,script->m_instructions[noInstruction].valeurs[b],i,j,k,hero,temps,menu);
+    }
 }
 
 void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
@@ -2627,64 +2699,64 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
             for (int k=vueMin.x;k<vueMax.x;k++)
             {
                 if (m_decor[i][j][k].getMonstre()>=0&&m_decor[i][j][k].getMonstre()<(int)m_monstre.size())
-                   // if (m_monstre[m_decor[i][j][k].getMonstre()].enVie())
+                    // if (m_monstre[m_decor[i][j][k].getMonstre()].enVie())
+                {
+                    if (hero->m_personnage.enVie())
+                        m_monstre[m_decor[i][j][k].getMonstre()].TesterVision(hero->m_personnage.getCoordonnee());
+                    else
+                        m_monstre[m_decor[i][j][k].getMonstre()].setVu(0);
+
+
+                    if (m_monstre[m_decor[i][j][k].getMonstre()].m_attente<=0)
                     {
-                        if (hero->m_personnage.enVie())
-                            m_monstre[m_decor[i][j][k].getMonstre()].TesterVision(hero->m_personnage.getCoordonnee());
-                        else
-                            m_monstre[m_decor[i][j][k].getMonstre()].setVu(0);
-
-
-                        if (m_monstre[m_decor[i][j][k].getMonstre()].m_attente<=0)
-                        {
-                            Script *script=&m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_scriptAI;
-                            if ((int)script->m_instructions.size()>0)
-                                for (int a=0;a<(int)script->m_instructions[0].valeurs.size();a++)
-                                    if (script->m_instructions[0].valeurs[a]>=0&&script->m_instructions[0].valeurs[a]<(int)script->m_instructions.size())
-                                        LISTE_INSTRUCTIONS(script->m_instructions[0].valeurs[a])
-
-                                       if (m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding())
-                                            if (m_monstre[m_decor[i][j][k].getMonstre()].enVie())
-                                                RANDOMDISPLACE()
-                                            m_monstre[m_decor[i][j][k].getMonstre()].m_touche = false;
-                        }
-                        else
-                            m_monstre[m_decor[i][j][k].getMonstre()].m_attente-=temps*100;
+                        Script *script=&m_ModeleMonstre[m_monstre[m_decor[i][j][k].getMonstre()].getModele()].m_scriptAI;
+                        if ((int)script->m_instructions.size()>0)
+                            for (int a=0;a<(int)script->m_instructions[0].valeurs.size();a++)
+                                if (script->m_instructions[0].valeurs[a]>=0&&script->m_instructions[0].valeurs[a]<(int)script->m_instructions.size())
+                                    GererInstructions(jeu,script,script->m_instructions[0].valeurs[a],i,j,k,hero,temps,menu);
 
                         if (m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding())
-                            m_monstre[m_decor[i][j][k].getMonstre()].m_compteur++;
-                        else
-                            m_monstre[m_decor[i][j][k].getMonstre()].m_compteur=0;
-
-                        if (m_monstre[m_decor[i][j][k].getMonstre()].m_compteur>3)
-                            m_monstre[m_decor[i][j][k].getMonstre()].m_attente=2,m_monstre[m_decor[i][j][k].getMonstre()].m_compteur=0,m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee());
-
-                        ///GESTION DES EVENEMENTS SUR LES MONSTRES
-                        for (int l=0;l<2;l++)
-                            if (m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y>=0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y<(int)m_dimensions.y
-                                    &&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x>=0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x<m_dimensions.x)
-                                for (int z=0;z<(int)m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement().size();z++)
-                                    if (m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]>=0&&m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]<(int)m_evenement.size())
-                                        if (m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]].getType()==INFLIGER_DEGATS)
-                                            if (m_monstre[m_decor[i][j][k].getMonstre()].enVie())
-                                                InfligerDegats(m_decor[i][j][k].getMonstre(),m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]].getInformation(0)*temps*10,menu,hero,0);
-
-                        if (!(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y==j&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x==k))
-                            if (m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x<m_dimensions.x&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y<(int)m_dimensions.y)
-                            {
-                                if (m_decor[0][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()<0&&m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()<0)
-                                    m_decor[i][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].setMonstre(m_decor[i][j][k].getMonstre());
-                                else
-                                {
-                                    int temp=m_decor[i][j][k].getMonstre();
-                                    if (m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()>=0)
-                                        m_decor[0][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].setMonstre(m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre());
-                                    m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].setMonstre(temp);
-                                }
-                                m_decor[i][j][k].setMonstre(-1);
-                            }
-
+                            if (m_monstre[m_decor[i][j][k].getMonstre()].enVie())
+                                RANDOMDISPLACE()
+                                m_monstre[m_decor[i][j][k].getMonstre()].m_touche = false;
                     }
+                    else
+                        m_monstre[m_decor[i][j][k].getMonstre()].m_attente-=temps*100;
+
+                    if (m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding())
+                        m_monstre[m_decor[i][j][k].getMonstre()].m_compteur++;
+                    else
+                        m_monstre[m_decor[i][j][k].getMonstre()].m_compteur=0;
+
+                    if (m_monstre[m_decor[i][j][k].getMonstre()].m_compteur>3)
+                        m_monstre[m_decor[i][j][k].getMonstre()].m_attente=2,m_monstre[m_decor[i][j][k].getMonstre()].m_compteur=0,m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee());
+
+                    ///GESTION DES EVENEMENTS SUR LES MONSTRES
+                    for (int l=0;l<2;l++)
+                        if (m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y>=0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y<(int)m_dimensions.y
+                                &&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x>=0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x<m_dimensions.x)
+                            for (int z=0;z<(int)m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement().size();z++)
+                                if (m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]>=0&&m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]<(int)m_evenement.size())
+                                    if (m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]].getType()==INFLIGER_DEGATS)
+                                        if (m_monstre[m_decor[i][j][k].getMonstre()].enVie())
+                                            InfligerDegats(m_decor[i][j][k].getMonstre(),m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]].getInformation(0)*temps*10,menu,hero,0);
+
+                    if (!(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y==j&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x==k))
+                        if (m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x<m_dimensions.x&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y<(int)m_dimensions.y)
+                        {
+                            if (m_decor[0][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()<0&&m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()<0)
+                                m_decor[i][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].setMonstre(m_decor[i][j][k].getMonstre());
+                            else
+                            {
+                                int temp=m_decor[i][j][k].getMonstre();
+                                if (m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()>=0)
+                                    m_decor[0][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].setMonstre(m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre());
+                                m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].setMonstre(temp);
+                            }
+                            m_decor[i][j][k].setMonstre(-1);
+                        }
+
+                }
 
                 if (m_decor[i][j][k].getProjectile()<0||m_decor[i][j][k].getProjectile()>=(int)m_projectile.size())
                     m_decor[i][j][k].setProjectile(-1);

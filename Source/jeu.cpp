@@ -56,6 +56,7 @@ void Jeu::Demarrer()
     m_demarrage = new c_Demarrage;
     m_chargement = new c_Chargement;
     m_inventaire = new c_Inventaire;
+    m_quetes = new c_Quetes;
     m_menuInGame = new c_MenuInGame;
 
     coordonnee temp={0,0,-1,-1};
@@ -92,7 +93,7 @@ void Jeu::Demarrer()
         m_jeu->m_thread_sauvegarde->Wait(),delete m_jeu->m_thread_sauvegarde;
 
     if (m_reset)
-        Reset();
+        Reset(), hero.m_quetes.clear();
     else
         map->Sauvegarder(&hero);
 
@@ -109,6 +110,7 @@ void Jeu::Demarrer()
     delete m_jeu;
     delete m_chargement;
     delete m_inventaire;
+    delete m_quetes;
     delete m_menuInGame;
 
     console->Ajouter("");

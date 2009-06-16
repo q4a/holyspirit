@@ -75,12 +75,14 @@ class Menu
 	void AfficherDynamique(Caracteristique caracteristique,int type,Caracteristique caracteristiqueMonstre,Classe *classe);
 	void AfficherChargement(std::string nom,int fond,int z);
 	void AfficherInventaire(float,Classe *classe,bool);
+	void AfficherQuetes(float,Classe *classe);
 
 	void AjouterSang(coordonneeDecimal position);
 
 	void AjouterAme(coordonneeDecimal position,int pointAme);
 	int GererDynamique(float temps);
 
+	std::string m_dialogue;
 
 	private:
 	int m_fondMiniMap,m_imageAme,m_imageSang,m_barrePointAme,m_barreVie,m_barreVieVide/*,m_inventaire*/;

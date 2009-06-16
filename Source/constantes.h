@@ -133,6 +133,7 @@ public:
     float hauteur;
 };
 
+
 struct Ombre
 {
     float angle;

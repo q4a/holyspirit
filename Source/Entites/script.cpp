@@ -85,7 +85,7 @@ int Script::Lire(ifstream *fichier)
     }
     else if (temp=="\"")
     {
-        m_instructions.back().valeurString = "\"";
+        m_instructions.back().valeurString = "";
         char caractere;
 
         do

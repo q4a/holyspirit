@@ -141,6 +141,7 @@ Hero::Hero()
 
     temp.modificateurTaille=1;
 
+
     m_personnage.setCaracteristique(temp);
 
     m_monstreVise=-1;
@@ -170,6 +171,8 @@ Hero::Hero()
     m_objets_raccourcis[1] = -1;
     m_objets_raccourcis[2] = -1;
     m_objets_raccourcis[3] = -1;
+
+    m_queteSelectionnee = -1;
 }
 
 Hero::~Hero()
@@ -880,6 +883,61 @@ void Hero::AfficherCaracteristiques(float decalage)
         string.SetY(218*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
         string.SetColor(sf::Color(255,255,255));
         moteurGraphique->AjouterTexte(&string,15);
+    }
+}
+
+void Hero::AfficherQuetes(float decalage)
+{
+    m_quetePointee = -1;
+    coordonnee position = m_classe.position_contenu_quetes;
+    for(int i = 0;i < (int)m_quetes.size();i++)
+    {
+        sf::String texte;
+        texte.SetFont(moteurGraphique->m_font);
+        texte.SetSize(12);
+        texte.SetPosition(position.x, position.y - decalage);
+        texte.SetText(m_quetes[i].m_nom);
+
+        moteurGraphique->AjouterTexte(&texte,15);
+
+        if(eventManager->getPositionSouris().x > m_classe.position_contenu_quetes.x
+         &&eventManager->getPositionSouris().x < m_classe.position_contenu_quetes.x + m_classe.position_contenu_quetes.w
+         &&eventManager->getPositionSouris().y > texte.GetRect().Top
+         &&eventManager->getPositionSouris().y < texte.GetRect().Bottom)
+         {
+             sf::Sprite sprite;
+             sprite.SetImage(*moteurGraphique->getImage(0));
+             sprite.Resize(m_classe.position_contenu_quetes.w, texte.GetRect().Bottom - texte.GetRect().Top+4);
+             sprite.SetPosition(position.x, position.y - decalage);
+             sprite.SetColor(sf::Color(255, 255, 255, 128));
+
+             m_quetePointee = i;
+
+             moteurGraphique->AjouterCommande(&sprite,15,0);
+         }
+
+         position.y += texte.GetRect().Bottom - texte.GetRect().Top;
+    }
+
+    int queteAffichee = m_queteSelectionnee;
+    if(m_quetePointee >= 0)
+        queteAffichee = m_quetePointee;
+
+    if(queteAffichee >= 0 && queteAffichee < (int)m_quetes.size())
+    {
+        sf::String texte;
+        texte.SetFont(moteurGraphique->m_font);
+        texte.SetSize(18);
+        texte.SetPosition(m_classe.position_contenu_description_quete.x, m_classe.position_contenu_description_quete.y - decalage);
+        texte.SetText(m_quetes[queteAffichee].m_nom);
+
+        moteurGraphique->AjouterTexte(&texte,15,0);
+
+        texte.SetSize(12);
+        texte.SetPosition(m_classe.position_contenu_description_quete.x, m_classe.position_contenu_description_quete.y - decalage + 64);
+        texte.SetText(m_quetes[queteAffichee].m_description);
+
+        moteurGraphique->AjouterTexte(&texte,15,0);
     }
 }
 

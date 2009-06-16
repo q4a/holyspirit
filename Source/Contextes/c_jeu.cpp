@@ -65,6 +65,7 @@ c_Jeu::c_Jeu()
 
     alpha_map=0;
     alpha_sac=0;
+    alpha_dialog=0;
     lowFPS=-1;
 
 
@@ -376,6 +377,8 @@ void c_Jeu::Evenements(Jeu *jeu)
             {
                 jeu->hero.m_personnage.setArrivee(eventManager->getCasePointee());
 
+                jeu->menu.m_dialogue = " ";
+
                 coordonnee temp={-1,-1,-1,-1};
                 jeu->hero.setSacVise(temp);
             }
@@ -440,6 +443,9 @@ void c_Jeu::Evenements(Jeu *jeu)
     if (eventManager->getEvenement(Key::I,"ET"))
         eventManager->StopEvenement(Key::I,"ET"),jeu->map->m_defilerObjets=0,jeu->m_contexte=jeu->m_inventaire;
 
+    if (eventManager->getEvenement(Key::Q,"ET"))
+        eventManager->StopEvenement(Key::Q,"ET"),jeu->m_contexte=jeu->m_quetes;
+
     if (eventManager->getEvenement(Key::Escape,"ET"))
         eventManager->StopEvenement(Key::Escape,"ET"),jeu->m_contexte=jeu->m_menuInGame;
 
@@ -475,6 +481,9 @@ void c_Jeu::Affichage(Jeu *jeu)
     }
     if (alpha_map>0)
         jeu->menu.Afficher(2,alpha_map,&jeu->hero.m_classe);//On affiche la mini-map
+    if (alpha_dialog>0)
+        jeu->menu.Afficher(4,alpha_dialog,&jeu->hero.m_classe);//On affiche la mini-map
+
 
     if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())>4)
     {
@@ -487,6 +496,19 @@ void c_Jeu::Affichage(Jeu *jeu)
         alpha_sac-=tempsEcoule*1000;
         if (alpha_sac<0)
             alpha_sac=0;
+    }
+
+    if (jeu->menu.m_dialogue != " ")
+    {
+        alpha_dialog+=tempsEcoule*1000;
+        if (alpha_dialog>255)
+            alpha_dialog=255;
+    }
+    else
+    {
+        alpha_dialog-=tempsEcoule*1000;
+        if (alpha_dialog<0)
+            alpha_dialog=0;
     }
 
     if (jeu->hero.getChercherSac().x!=-1&&alpha_sac<128&&jeu->hero.m_objetVise>=0)

@@ -73,6 +73,54 @@ void                ChargerImageInterface(ifstream &fichier, Image_interface &im
     while (caractere!='$');
 }
 
+void                ChargerCoordonneeInterface(ifstream &fichier, coordonnee &coord_interface)
+{
+    char            caractere;
+
+    do
+    {
+        fichier.get(caractere);
+        if (caractere=='*')
+        {
+            do
+            {
+                fichier.get(caractere);
+                switch (caractere)
+                {
+                case 'x' :
+                    fichier>>coord_interface.x;
+                    break;
+                case 'y' :
+                    fichier>>coord_interface.y;
+                    break;
+                case 'w' :
+                    fichier>>coord_interface.w;
+                    break;
+                case 'h' :
+                    fichier>>coord_interface.h;
+                    break;
+                }
+
+                if (fichier.eof())
+                {
+                    console->Ajouter("Erreur : Classe Invalide",1);
+                    caractere='$';
+                }
+            }
+            while (caractere!='$');
+            fichier.get(caractere);
+        }
+        if (fichier.eof())
+        {
+            console->Ajouter("Erreur : Classe Invalide",1);
+            caractere='$';
+        }
+
+    }
+    while (caractere!='$');
+}
+
+
 void Classe::Charger(string chemin)
 {
     emplacements.clear();
@@ -264,135 +312,15 @@ void Classe::Charger(string chemin)
         ChargerImageInterface(fichier, cache_foi);
         ChargerImageInterface(fichier, plus_button);
         ChargerImageInterface(fichier, scroll_button);
+        ChargerImageInterface(fichier, talk);
+        ChargerImageInterface(fichier, quest);
 
-        do
-        {
-            fichier.get(caractere);
-            if (caractere=='*')
-            {
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                    case 'x' :
-                        fichier>>position_sac_inventaire.x;
-                        break;
-                    case 'y' :
-                        fichier>>position_sac_inventaire.y;
-                        break;
-                    case 'w' :
-                        fichier>>position_sac_inventaire.w;
-                        break;
-                    case 'h' :
-                        fichier>>position_sac_inventaire.h;
-                        break;
-                    }
-
-                    if (fichier.eof())
-                    {
-                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
-                        caractere='$';
-                    }
-
-                }
-                while (caractere!='$');
-                fichier.get(caractere);
-            }
-            if (fichier.eof())
-            {
-                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
-                caractere='$';
-            }
-
-        }
-        while (caractere!='$');
-
-        do
-        {
-            fichier.get(caractere);
-            if (caractere=='*')
-            {
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                    case 'x' :
-                        fichier>>position_contenu_inventaire.x;
-                        break;
-                    case 'y' :
-                        fichier>>position_contenu_inventaire.y;
-                        break;
-                    case 'w' :
-                        fichier>>position_contenu_inventaire.w;
-                        break;
-                    case 'h' :
-                        fichier>>position_contenu_inventaire.h;
-                        break;
-                    }
-
-                    if (fichier.eof())
-                    {
-                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
-                        caractere='$';
-                    }
-
-                }
-                while (caractere!='$');
-                fichier.get(caractere);
-            }
-            if (fichier.eof())
-            {
-                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
-                caractere='$';
-            }
-
-        }
-        while (caractere!='$');
-
-        do
-        {
-            fichier.get(caractere);
-            if (caractere=='*')
-            {
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                    case 'x' :
-                        fichier>>position_contenu_marchand.x;
-                        break;
-                    case 'y' :
-                        fichier>>position_contenu_marchand.y;
-                        break;
-                    case 'w' :
-                        fichier>>position_contenu_marchand.w;
-                        break;
-                    case 'h' :
-                        fichier>>position_contenu_marchand.h;
-                        break;
-                    }
-
-                    if (fichier.eof())
-                    {
-                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
-                        caractere='$';
-                    }
-
-                }
-                while (caractere!='$');
-                fichier.get(caractere);
-            }
-            if (fichier.eof())
-            {
-                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
-                caractere='$';
-            }
-
-        }
-        while (caractere!='$');
+        ChargerCoordonneeInterface(fichier, position_sac_inventaire);
+        ChargerCoordonneeInterface(fichier, position_contenu_inventaire);
+        ChargerCoordonneeInterface(fichier, position_contenu_marchand);
+        ChargerCoordonneeInterface(fichier, position_contenu_dialogue);
+        ChargerCoordonneeInterface(fichier, position_contenu_quetes);
+        ChargerCoordonneeInterface(fichier, position_contenu_description_quete);
 
         do
         {

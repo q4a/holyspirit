@@ -50,6 +50,8 @@ Menu::Menu()
 
     m_barreVie=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_barre_vie,-1);
     m_barreVieVide=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_barre_vie_vide,-1);
+
+    m_dialogue = " ";
 }
 
 void Menu::Afficher(int type,float alpha,Classe *classe)
@@ -118,6 +120,25 @@ void Menu::Afficher(int type,float alpha,Classe *classe)
         sprite2.Resize(configuration->Resolution.w*0.25, configuration->Resolution.w*0.34);
         sprite2.SetColor(sf::Color(255,255,255));
         moteurGraphique->AjouterCommande(&sprite2,15,0);
+    }
+
+
+    if (type==4)
+    {
+        sprite2.SetImage(*moteurGraphique->getImage(classe->talk.image));
+        sprite2.SetX(classe->talk.position.x*configuration->Resolution.x/800);
+        sprite2.SetY(classe->talk.position.y*configuration->Resolution.h/600 + classe->talk.position.h*configuration->Resolution.h/600 - classe->talk.position.h*configuration->Resolution.h/600*alpha/255);
+        sprite2.Resize(classe->talk.position.w*configuration->Resolution.w/800, classe->talk.position.h*configuration->Resolution.h/600);
+        sprite.SetColor(sf::Color(255,255,255));
+        moteurGraphique->AjouterCommande(&sprite2,16,0);
+
+        sf::String texte;
+        texte.SetSize(14);
+        texte.SetFont(moteurGraphique->m_font);
+        texte.SetText(m_dialogue);
+        texte.SetPosition(classe->position_contenu_dialogue.x + classe->position_contenu_dialogue.w/2 - (texte.GetRect().Right-texte.GetRect().Left)/2, classe->position_contenu_dialogue.y+ classe->talk.position.h*configuration->Resolution.h/600 - classe->talk.position.h*configuration->Resolution.h/600*alpha/255);
+
+        moteurGraphique->AjouterTexte(&texte,16,0);
     }
 }
 
@@ -337,6 +358,19 @@ void Menu::AfficherChargement(string nom,int fond,int z=50)
     moteurGraphique->AjouterTexte(&texte,13,1);
 }
 
+
+void Menu::AfficherQuetes(float decalage,Classe *classe)
+{
+    Sprite sprite;
+
+    sprite.SetImage(*moteurGraphique->getImage(classe->quest.image));
+    sprite.SetX(classe->quest.position.x*configuration->Resolution.x/800);
+    sprite.SetY(classe->quest.position.y*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+    sprite.Resize(classe->quest.position.w*configuration->Resolution.w/800, classe->quest.position.h*configuration->Resolution.h/600);
+
+    moteurGraphique->AjouterCommande(&sprite,15,0);
+}
+
 void Menu::AfficherInventaire(float decalage,Classe *classe,bool noTrader)
 {
     Sprite sprite;
@@ -357,8 +391,6 @@ void Menu::AfficherInventaire(float decalage,Classe *classe,bool noTrader)
 
         moteurGraphique->AjouterCommande(&sprite,16,0);
     }
-
-    // ecran->Draw(sprite);
 }
 
 void Menu::AjouterSang(coordonneeDecimal position)

@@ -58,7 +58,10 @@ public:
     void Detruire();
 
     int GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *hero,bool monstre,coordonnee lanceur, coordonnee cible,int couche);
+
     void GererConditions(Jeu *jeu,Script *script,int noInstruction,int i, int j, int k,Hero *hero,float temps,Menu *menu);
+    void GererInstructions(Jeu *jeu,Script *script,int noInstruction,int i, int j, int k,Hero *hero,float temps,Menu *menu);
+
     void GererEvenements(int evenement,int z,int couche,int x,int y);
     void GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu);
 

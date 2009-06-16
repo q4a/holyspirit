@@ -56,10 +56,16 @@ struct Classe
     Image_interface cache_foi;
     Image_interface plus_button;
     Image_interface scroll_button;
+    Image_interface talk;
+    Image_interface quest;
 
     coordonnee position_sac_inventaire;
     coordonnee position_contenu_inventaire;
     coordonnee position_contenu_marchand;
+
+    coordonnee position_contenu_dialogue;
+    coordonnee position_contenu_quetes;
+    coordonnee position_contenu_description_quete;
 
     std::vector <Emplacement_inventaire> emplacements;
 

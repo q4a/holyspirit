@@ -47,6 +47,7 @@ public:
     void CalculerOrdreAffichage();
 
     void AfficherInventaire(float,std::vector<Objet>);
+    void AfficherQuetes(float);
     void AfficherCaracteristiques(float decalage);
     void AfficherRaccourcis();
 
@@ -106,6 +107,8 @@ public:
     int m_defilement_trader,m_max_defilement_trader,m_buttonPointe;
     int m_objets_raccourcis[4];
 
+    int m_quetePointee, m_queteSelectionnee;
+
     std::vector<Quete> m_quetes;
 
 private:
@@ -122,6 +125,7 @@ private:
    // std::vector< std::vector<bool> > m_caseInventaire;
 
     int m_weaponMiracle;
+
     bool m_achat;
 };
 
