@@ -33,11 +33,21 @@ $
 $
 	* x8 y278 w32 h32 m Data/Menus/Scroll_button.png $
 $
+	* x0 y344 w800 h256 m Data/Menus/Talks.png $
+$
+	* x0 y0 w800 h600 m Data/Menus/Quest.png $
+$
 	* x436 y390 h4 w320 $
 $
 	* x436 y60 w10 h10 $
 $
 	* x58 y300 w10 h6 $
+$
+	* x96 y360 w608 h128 $
+$
+	* x48 y32 w316 h10 $
+$
+	* x48 y256 w320 h150 $
 $
 	* e1 x20 y20 w64 h160 $
 	* e2 x94 y40 w96 h96 $
