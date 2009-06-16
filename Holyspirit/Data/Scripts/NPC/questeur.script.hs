@@ -26,7 +26,7 @@ main
 			speak " Si vous allez tuer les trois gros méchants du donjon, je vous offrirez une belle tiare ! "
 			newQuest * 1 
 			setQuestName * 1 " Les trois méchants"
-			setQuestState * 1 * 0 " Allez tuez les trois méchants prêtres démoniaques dans le donjon. Mais attention, ils sont très très forts ! "
+			setQuestState * 1 * 0 " Allez tuer les trois méchants prêtres démoniaques dans le donjon. Mais attention, ils sont très très forts ! "
 		end
 	end
 end 
