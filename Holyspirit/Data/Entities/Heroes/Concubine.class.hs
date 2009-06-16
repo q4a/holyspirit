@@ -4,6 +4,12 @@ $
 $
 	* mDagger.item.hs $
 	* mCrossbow.item.hs $
+	* mHeal_potion.item.hs $
+	* mHeal_potion.item.hs $
+	* mHeal_potion.item.hs $
+	* mHeal_potion.item.hs $
+	* mHeal_potion.item.hs $
+	* mHeal_potion.item.hs $
 $
 	* mData/Entities/Heroes/Concubine/ $
 $

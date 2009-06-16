@@ -1,10 +1,12 @@
 
 main
-	if see
+	if alive
 	then
-		fight
-	else
-		randomDisplace
+		if see
+		then
+			fight
+		else
+			randomDisplace
+		end
 	end
-	
 end

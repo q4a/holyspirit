@@ -1,6 +1,6 @@
 *Data/Landscapes/Climatic/Rain.png
 $
-*Data/Sounds/Pluie.ogg
+*Data/Sounds/Pluie.wav
 $
 *x0 y0 w64 h256 i0 a1 s0  $
 *x128 y0 w64 h256 i0 a2 s0 $

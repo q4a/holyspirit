@@ -4,6 +4,10 @@ $
 $
 	* mSmall_sword.item.hs $
 	* mSmall_shield.item.hs $
+	* mHeal_potion.item.hs $
+	* mHeal_potion.item.hs $
+	* mHeal_potion.item.hs $
+	* mHeal_potion.item.hs $
 $
 	* mData/Entities/Heroes/Crusader/ $
 $
