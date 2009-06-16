@@ -227,7 +227,14 @@ void Hero::Sauvegarder()
         if (configuration->debug)
             console->Ajouter("/Ecriture des objets.");
 
-        // fichier.write((char*)&espace, sizeof(char));
+        fichier<<'$'<<endl;
+
+        for (int i=0;i<(int)m_quetes.size();++i)
+            m_quetes[i].SauvegarderTexte(&fichier);
+
+        if (configuration->debug)
+            console->Ajouter("/Ecriture des quetes.");
+
         fichier<<'$'<<endl;
 
         fichier.close();
@@ -321,15 +328,30 @@ void Hero::Charger()
                     fichier->get(caractere);
                 }
                 if (fichier->eof())
-                {
                     throw "Impossible de charger la sauvegarde";
-                }
-
             }
             while (caractere!='$');
 
             if (configuration->debug)
                 console->Ajouter("/Lectures des objets.");
+
+            do
+            {
+                fichier->get(caractere);
+                if (caractere=='q')
+                {
+                    m_quetes.push_back(Quete ());
+                    m_quetes.back().ChargerTexte(fichier);
+
+                    fichier->get(caractere);
+                }
+                if (fichier->eof())
+                    throw "Impossible de charger la sauvegarde";
+            }
+            while (caractere!='$');
+
+            if (configuration->debug)
+                console->Ajouter("/Lectures des quêtes.");
 
 
 
@@ -919,7 +941,7 @@ void Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
 
             moteurGraphique->AjouterCommande(&sprite,16,0);
 
-            sprite.SetCenter(m_inventaire[i].getPositionImage().w/2,m_inventaire[i].getPositionImage().h/2);
+            sprite.SetOrigin(m_inventaire[i].getPositionImage().w/2,m_inventaire[i].getPositionImage().h/2);
 
             sprite.SetX(position.x+m_inventaire[i].getPositionImage().w/2*configuration->Resolution.w/800);
             sprite.SetY(position.y+m_inventaire[i].getPositionImage().h/2*configuration->Resolution.h/600);
@@ -1018,7 +1040,7 @@ void Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
 
             moteurGraphique->AjouterCommande(&sprite,16,0);
 
-            sprite.SetCenter(trader[i].getPositionImage().w/2,trader[i].getPositionImage().h/2);
+            sprite.SetOrigin(trader[i].getPositionImage().w/2,trader[i].getPositionImage().h/2);
 
             sprite.SetX(position.x+trader[i].getPositionImage().w/2*configuration->Resolution.w/800);
             sprite.SetY(position.y+trader[i].getPositionImage().h/2*configuration->Resolution.h/600);
@@ -1201,7 +1223,7 @@ void Hero::PlacerCamera(coordonnee dimensionsMap)
     positionCamera.y=m_positionAffichage.y-250*configuration->Resolution.h/600 ;
     positionCamera.x=m_positionAffichage.x-((400*configuration->Resolution.w/800))+64;
 
-    moteurGraphique->m_camera.SetFromRect(sf::FloatRect(positionCamera.x,positionCamera.y,positionCamera.x+configuration->Resolution.w,positionCamera.y+configuration->Resolution.h));
+    moteurGraphique->m_camera.SetRect(sf::FloatRect(positionCamera.x,positionCamera.y,positionCamera.x+configuration->Resolution.w,positionCamera.y+configuration->Resolution.h));
 
     moteurGraphique->m_camera.Zoom(configuration->zoom);
 }
@@ -1893,8 +1915,8 @@ void Hero::RangerObjet(int numero)
                         for (int w=0;w<m_inventaire[numero].getTaille().x;w++)
                             if (x+w<m_classe.position_contenu_inventaire.w && y+h<m_classe.position_contenu_inventaire.h)
                             {
-                                for (int j=0;j<(int)m_inventaire.size()-1;j++)
-                                    if(m_inventaire[j].m_equipe<0)
+                                for (int j=0;j<(int)m_inventaire.size();j++)
+                                    if(m_inventaire[j].m_equipe<0 && j!=m_objetEnMain && j!=numero)
                                         for (int Y=0;Y<m_inventaire[j].getTaille().y;Y++)
                                             for (int X=0;X<m_inventaire[j].getTaille().x;X++)
                                                 if (m_inventaire[j].getPosition().x+X==x+w && m_inventaire[j].getPosition().y+Y==y+h)

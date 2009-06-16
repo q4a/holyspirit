@@ -50,7 +50,7 @@ void ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele)
                 sf::Sprite sprite;
                 sprite.SetImage(*moteurGraphique->getImage(modele->m_image));
                 sprite.SetSubRect(sf::IntRect(modele->m_particules[Iter->numero].positionImage.x,modele->m_particules[Iter->numero].positionImage.y,modele->m_particules[Iter->numero].positionImage.x+modele->m_particules[Iter->numero].positionImage.w,modele->m_particules[Iter->numero].positionImage.y+modele->m_particules[Iter->numero].positionImage.h));
-                sprite.SetCenter(modele->m_particules[Iter->numero].positionImage.w/2,modele->m_particules[Iter->numero].positionImage.h/2);
+                sprite.SetOrigin(modele->m_particules[Iter->numero].positionImage.w/2,modele->m_particules[Iter->numero].positionImage.h/2);
                 sprite.SetRotation(Iter->rotation);
                 float scale=Iter->position.z/200+1;
                 sprite.SetScale(scale,scale);

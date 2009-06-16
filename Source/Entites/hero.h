@@ -29,6 +29,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "classe.h"
 #include "personnage.h"
 #include "monstre.h"
+#include "quete.h"
 
 bool AjouterObjetInventaire(Objet newObj, std::vector<Objet>* inventaire, coordonnee taille, bool infini);
 
@@ -105,6 +106,8 @@ public:
     int m_defilement_trader,m_max_defilement_trader,m_buttonPointe;
     int m_objets_raccourcis[4];
 
+    std::vector<Quete> m_quetes;
+
 private:
     coordonneeDecimal m_positionAffichage;
     int m_monstreVise;
@@ -115,6 +118,7 @@ private:
     int ordreAffichage[NOMBRE_MORCEAU_PERSONNAGE];
 
     std::vector<Objet> m_inventaire;
+
    // std::vector< std::vector<bool> > m_caseInventaire;
 
     int m_weaponMiracle;

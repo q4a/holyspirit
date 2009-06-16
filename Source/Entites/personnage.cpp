@@ -393,7 +393,7 @@ void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,boo
 
                                 sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
 
-                                sprite.SetCenter(modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCentre().x,modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCentre().y);
+                                sprite.SetOrigin(modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCentre().x,modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCentre().y);
 
                                 sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
                                 sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+32 -m_positionPixel.h);
@@ -401,7 +401,7 @@ void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,boo
                                 sprite.SetScale(m_caracteristique.modificateurTaille, m_caracteristique.modificateurTaille*(100-(float)moteurGraphique->m_soleil.hauteur)/50);
                                 sprite.SetRotation(moteurGraphique->m_angleOmbreSoleil);
                                 moteurGraphique->AjouterCommande(&sprite,9,1);
-                                sprite.SetCenter(0,0);
+                                sprite.SetOrigin(0,0);
                                 sprite.SetScale(1, 1);
                                 sprite.SetRotation(0);
                             }
@@ -413,7 +413,7 @@ void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,boo
                         {
                             sprite.SetImage(*moteurGraphique->getImage(modele->m_image[modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()]));
 
-                            sprite.SetCenter(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().x,modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().y);
+                            sprite.SetOrigin(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().x,modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().y);
 
                             sprite.SetSubRect(IntRect(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h));
 

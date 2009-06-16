@@ -77,6 +77,12 @@ void MoteurGraphique::CreateNewWindow()
     }
 
     m_ecran->ShowMouseCursor(false);
+
+    //m_light_screen.Create(configuration->Resolution.w + 64, configuration->Resolution.h + 64);
+    //m_light_screen2.Create(configuration->Resolution.w, configuration->Resolution.h);
+
+    //m_light_screen.Clear(sf::Color(255, 255, 255));
+    //m_light_screen2.Clear(sf::Color(255, 255, 255));
 }
 
 void MoteurGraphique::Charger()
@@ -184,7 +190,7 @@ void MoteurGraphique::Afficher()
 
     if (configuration->RafraichirOmbre==1&&configuration->Ombre&&m_soleil.intensite>32)
     {
-        decalageLumiere=m_camera.GetCenter();
+        decalageOmbre=m_camera.GetCenter();
 
         m_ecran->Clear(sf::Color(255,255,255));
 
@@ -224,6 +230,8 @@ void MoteurGraphique::Afficher()
 
     if (configuration->Lumiere && configuration->RafraichirLumiere)
     {
+        decalageLumiere=m_camera.GetCenter();
+
         m_ecran->SetView(m_camera);
 
         m_ecran->Clear(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
@@ -236,8 +244,6 @@ void MoteurGraphique::Afficher()
         {
             EffectBlur.SetParameter("offset",0.02);
             m_ecran->Draw(EffectBlur);
-            /*EffectBlur.SetParameter("offset",0.005);
-            m_ecran->Draw(EffectBlur);*/
         }
 
         m_light_screen.CopyScreen(*m_ecran);
@@ -254,13 +260,12 @@ void MoteurGraphique::Afficher()
 
         if (k==12&&configuration->Lumiere)
         {
-            sprite2.FlipY(true);
             sprite2.SetImage(m_light_screen);
             sprite2.SetBlendMode(sf::Blend::Multiply);
             sprite2.SetColor(sf::Color(255,255,255,255));
 
-            sprite2.SetX(0);
-            sprite2.SetY(0);
+            //sprite2.SetX(decalageLumiere.x-m_camera.GetCenter().x);
+            //sprite2.SetY(decalageLumiere.y-m_camera.GetCenter().y);
 
             m_ecran->SetView(m_ecran->GetDefaultView());
             m_ecran->Draw(sprite2);
@@ -268,13 +273,12 @@ void MoteurGraphique::Afficher()
 
         if (k==10&&configuration->Ombre&&configuration->Ombre&&m_soleil.intensite>32)
         {
-            sprite2.FlipY(true);
             sprite2.SetImage(m_light_screen2);
             sprite2.SetBlendMode(sf::Blend::Multiply);
             sprite2.SetColor(sf::Color(255,255,255));
 
-            sprite2.SetX(decalageLumiere.x-m_camera.GetCenter().x);
-            sprite2.SetY(decalageLumiere.y-m_camera.GetCenter().y);
+            sprite2.SetX(decalageOmbre.x-m_camera.GetCenter().x);
+            sprite2.SetY(decalageOmbre.y-m_camera.GetCenter().y);
 
             m_ecran->SetView(m_ecran->GetDefaultView());
             m_ecran->Draw(sprite2);

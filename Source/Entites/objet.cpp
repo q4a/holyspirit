@@ -45,6 +45,9 @@ sf::Color GetItemColor(int rarete)
         return (sf::Color(224,0,0,255));
     if (rarete==CRAFT)
         return (sf::Color(128,64,0,255));
+    if (rarete==QUETE)
+        return (sf::Color(96,255,96,255));
+
     return (sf::Color(224,224,224,255));
 }
 

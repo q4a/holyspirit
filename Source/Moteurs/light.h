@@ -109,7 +109,7 @@ public :
     ~Light();
 
     // Afficher la lumière
-    void Draw(sf::RenderWindow *App);
+    void Draw(sf::RenderTarget *App);
 
     // Calculer la lumière
     void Generate( std::vector<Wall>& m_wall);

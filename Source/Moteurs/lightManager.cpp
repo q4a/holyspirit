@@ -248,7 +248,7 @@ void Light_Manager::GenerateWallShadow(float angle,Lumiere soleil)
 }
 
 // On affiche toutes les lumières actives
-void Light_Manager::Draw(sf::RenderWindow *App,sf::View *camera)
+void Light_Manager::Draw(sf::RenderTarget *App,sf::View *camera)
 {
     for (Iter=m_DynamicLight.begin();Iter!=m_DynamicLight.end();++Iter)
         if (Iter->m_actif)
@@ -263,7 +263,7 @@ void Light_Manager::Draw(sf::RenderWindow *App,sf::View *camera)
                 Iter->Draw(App);
 }
 
-void Light_Manager::DrawWallShadow(sf::RenderWindow *App,sf::View *camera)
+void Light_Manager::DrawWallShadow(sf::RenderTarget *App,sf::View *camera)
 {
     for (std::vector<Wall>::iterator IterWall=m_wall.begin();IterWall!=m_wall.end();++IterWall)
         if ((IterWall->m_shadow.GetPointPosition(0).x +128 > camera->GetRect().Left && IterWall->m_shadow.GetPointPosition(0).x -128 < camera->GetRect().Right
@@ -277,7 +277,7 @@ void Light_Manager::DrawWallShadow(sf::RenderWindow *App,sf::View *camera)
                 App->Draw(IterWall->m_shadow);
 }
 
-void Light_Manager::Draw(sf::RenderWindow *App,sf::View *camera,Light_Entity e)
+void Light_Manager::Draw(sf::RenderTarget *App,sf::View *camera,Light_Entity e)
 {
     if (e.Dynamic())
         if (e.ID()>=0&&e.ID()<(int)m_DynamicLight.size())

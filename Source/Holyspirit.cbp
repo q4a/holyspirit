@@ -21,7 +21,7 @@
 					<Add option="-O1" />
 					<Add option="-O" />
 					<Add option="-Wall" />
-					<Add directory="..\..\SFML-1.4-sdk-windows\SFML-1.4\include" />
+					<Add directory="..\..\SFML_SVN\branches\sfml2\include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -29,7 +29,7 @@
 					<Add option="-lsfml-graphics" />
 					<Add option="-lsfml-window" />
 					<Add option="-lsfml-system" />
-					<Add directory="..\..\SFML-1.4-sdk-windows\SFML-1.4\lib\mingw" />
+					<Add directory="..\..\SFML_SVN\branches\sfml2\lib\mingw" />
 				</Linker>
 			</Target>
 			<Target title="Debug">
@@ -40,14 +40,14 @@
 				<Option projectResourceIncludeDirsRelation="1" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="..\..\SFML-1.4-sdk-windows\SFML-1.4\include" />
+					<Add directory="..\..\SFML_SVN\branches\sfml2\include" />
 				</Compiler>
 				<Linker>
 					<Add option="-lsfml-audio" />
 					<Add option="-lsfml-graphics" />
 					<Add option="-lsfml-window" />
 					<Add option="-lsfml-system" />
-					<Add directory="..\..\SFML-1.4-sdk-windows\SFML-1.4\lib\mingw" />
+					<Add directory="..\..\SFML_SVN\branches\sfml2\lib\mingw" />
 				</Linker>
 			</Target>
 			<Target title="FullDebug">

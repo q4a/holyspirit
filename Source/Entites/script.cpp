@@ -83,6 +83,20 @@ int Script::Lire(ifstream *fichier)
         m_instructions.back().valeurs.push_back(valeur);
         retour = -4;
     }
+    else if (temp=="\"")
+    {
+        m_instructions.back().valeurString = "\"";
+        char caractere;
+
+        do
+        {
+            fichier->get(caractere);
+            m_instructions.back().valeurString += caractere;
+        }
+        while(caractere!= '"');
+
+        retour = -4;
+    }
     else
     {
         retour=m_instructions.size();

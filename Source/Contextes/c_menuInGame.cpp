@@ -40,7 +40,7 @@ c_MenuInGame::c_MenuInGame()
 
 void c_MenuInGame::Utiliser(Jeu *jeu)
 {
-    moteurGraphique->m_blur=0.0025*m_alpha/255;
+    moteurGraphique->m_blur=0.005*m_alpha/255;
 
     jeu->m_display=true;
     jeu->hero.PlacerCamera(jeu->map->getDimensions());
@@ -88,9 +88,9 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     texte.SetSize(56.f*configuration->Resolution.h/600);
     texte.SetText(configuration->text_menus[0]);
 
-    texte.SetY(configuration->Resolution.h/2-texte.GetRect().GetHeight());
-    texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetWidth()/2);
-    if (eventManager->getPositionSouris().y>configuration->Resolution.y/2-texte.GetRect().GetHeight()&&eventManager->getPositionSouris().y<configuration->Resolution.y/2)
+    texte.SetY(configuration->Resolution.h/2-texte.GetRect().GetSize().y);
+    texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetSize().x/2);
+    if (eventManager->getPositionSouris().y>configuration->Resolution.y/2-texte.GetRect().GetSize().y&&eventManager->getPositionSouris().y<configuration->Resolution.y/2)
     {
         texte.SetColor(Color(100,50,0,(int)m_alpha));
         if (eventManager->getEvenement(Mouse::Left,"C"))
@@ -104,8 +104,8 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     texte.SetText(configuration->text_menus[1]);
 
     texte.SetY(configuration->Resolution.h/2);
-    texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetWidth()/2);
-    if (eventManager->getPositionSouris().y>configuration->Resolution.y/2&&eventManager->getPositionSouris().y<configuration->Resolution.y/2+texte.GetRect().GetHeight())
+    texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetSize().x/2);
+    if (eventManager->getPositionSouris().y>configuration->Resolution.y/2&&eventManager->getPositionSouris().y<configuration->Resolution.y/2+texte.GetRect().GetSize().y)
     {
         texte.SetColor(Color(100,50,0,(int)m_alpha));
         if (eventManager->getEvenement(Mouse::Left,"C"))
@@ -117,9 +117,9 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
 
     texte.SetText(configuration->text_menus[2]);
 
-    texte.SetY(configuration->Resolution.h/2+texte.GetRect().GetHeight());
-    texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetWidth()/2);
-    if (eventManager->getPositionSouris().y>configuration->Resolution.y/2+texte.GetRect().GetHeight()&&eventManager->getPositionSouris().y<configuration->Resolution.y/2+texte.GetRect().GetHeight()*2)
+    texte.SetY(configuration->Resolution.h/2+texte.GetRect().GetSize().y);
+    texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetSize().x/2);
+    if (eventManager->getPositionSouris().y>configuration->Resolution.y/2+texte.GetRect().GetSize().y&&eventManager->getPositionSouris().y<configuration->Resolution.y/2+texte.GetRect().GetSize().y*2)
     {
         texte.SetColor(Color(100,50,0,(int)m_alpha));
         if (eventManager->getEvenement(Mouse::Left,"C"))

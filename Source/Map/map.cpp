@@ -980,7 +980,7 @@ void Map::CreerSprite(sf::Vector3f position_case)
     m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].m_sprite.SetImage(*moteurGraphique->getImage(m_tileset[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getTileset()].getImage(m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getTile())));
     m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].m_sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
 
-    m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].m_sprite.SetCenter(m_tileset[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getTileset()].getCentreDuTile(m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getTile()).x,m_tileset[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getTileset()].getCentreDuTile(m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getTile()).y);
+    m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].m_sprite.SetOrigin(m_tileset[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getTileset()].getCentreDuTile(m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getTile()).x,m_tileset[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getTileset()].getCentreDuTile(m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getTile()).y);
 
     m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].m_spriteOmbre=m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].m_sprite;
 
@@ -1212,6 +1212,7 @@ void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_
                 //int rarete=m_decor[1][positionSac.y][positionSac.x].getObjet(z)->getRarete();
 
                 texte.SetColor(GetItemColor(m_decor[1][positionSac.y][positionSac.x].getObjet(z)->getRarete()));
+                texte.SetFont(moteurGraphique->m_font);
 
                 if (z-m_defilerObjets==0&&m_defilerObjets>0)
                     texte.SetText("...");
@@ -1397,10 +1398,10 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                     }
 
                     if (m_decor[couche][j][k].m_sprite.GetSize().x>0)
-                        if (m_decor[couche][j][k].m_sprite.GetPosition().x+m_decor[couche][j][k].m_sprite.GetSize().x-m_decor[couche][j][k].m_sprite.GetCenter().x>=moteurGraphique->m_camera.GetRect().Left
-                                &&m_decor[couche][j][k].m_sprite.GetPosition().x-m_decor[couche][j][k].m_sprite.GetCenter().x<moteurGraphique->m_camera.GetRect().Right
-                                &&m_decor[couche][j][k].m_sprite.GetPosition().y+m_decor[couche][j][k].m_sprite.GetSize().y-m_decor[couche][j][k].m_sprite.GetCenter().y>=moteurGraphique->m_camera.GetRect().Top
-                                &&m_decor[couche][j][k].m_sprite.GetPosition().y-m_decor[couche][j][k].m_sprite.GetCenter().y<moteurGraphique->m_camera.GetRect().Bottom)
+                        if (m_decor[couche][j][k].m_sprite.GetPosition().x+m_decor[couche][j][k].m_sprite.GetSize().x-m_decor[couche][j][k].m_sprite.GetOrigin().x>=moteurGraphique->m_camera.GetRect().Left
+                                &&m_decor[couche][j][k].m_sprite.GetPosition().x-m_decor[couche][j][k].m_sprite.GetOrigin().x<moteurGraphique->m_camera.GetRect().Right
+                                &&m_decor[couche][j][k].m_sprite.GetPosition().y+m_decor[couche][j][k].m_sprite.GetSize().y-m_decor[couche][j][k].m_sprite.GetOrigin().y>=moteurGraphique->m_camera.GetRect().Top
+                                &&m_decor[couche][j][k].m_sprite.GetPosition().y-m_decor[couche][j][k].m_sprite.GetOrigin().y<moteurGraphique->m_camera.GetRect().Bottom)
                         {
                             if (m_tileset[m_decor[couche][j][k].getTileset()].getTransparentDuTile(m_decor[couche][j][k].getTile()))
                             {
@@ -1439,10 +1440,10 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                     buffer.SetY(position.y+32-16);
 
                     if (buffer.GetSize().x>0)
-                        if (buffer.GetPosition().x+buffer.GetSize().x-buffer.GetCenter().x>=moteurGraphique->m_camera.GetRect().Left
-                                &&buffer.GetPosition().x-buffer.GetCenter().x<moteurGraphique->m_camera.GetRect().Right
-                                &&buffer.GetPosition().y+buffer.GetSize().y-buffer.GetCenter().y>=moteurGraphique->m_camera.GetRect().Top
-                                &&buffer.GetPosition().y-buffer.GetCenter().y<moteurGraphique->m_camera.GetRect().Bottom)
+                        if (buffer.GetPosition().x+buffer.GetSize().x-buffer.GetOrigin().x>=moteurGraphique->m_camera.GetRect().Left
+                                &&buffer.GetPosition().x-buffer.GetOrigin().x<moteurGraphique->m_camera.GetRect().Right
+                                &&buffer.GetPosition().y+buffer.GetSize().y-buffer.GetOrigin().y>=moteurGraphique->m_camera.GetRect().Top
+                                &&buffer.GetPosition().y-buffer.GetOrigin().y<moteurGraphique->m_camera.GetRect().Bottom)
                         {
                             if (m_decor[couche][w][z].getTileset()>=0 && m_decor[couche][w][z].getTileset()<(int)m_tileset.size())
                                 if (m_tileset[m_decor[couche][w][z].getTileset()].getTransparentDuTile(m_decor[couche][w][z].getTile()))
@@ -1480,7 +1481,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
 void Map::AfficherMinimap(coordonnee position,int typeCase,float alpha)
 {
     Sprite spriteMinimap;
-    spriteMinimap.SetCenter(4*configuration->Resolution.w/800,4*configuration->Resolution.w/800);
+    spriteMinimap.SetOrigin(4*configuration->Resolution.w/800,4*configuration->Resolution.w/800);
     spriteMinimap.SetRotation(45);
     spriteMinimap.SetImage(*moteurGraphique->getImage(0));
     spriteMinimap.SetSubRect(sf::IntRect(0,0,8,8));
@@ -2386,6 +2387,7 @@ void Map::MusiquePlay(coordonnee position)
                                                 if(script->m_instructions[noInstruction].nom=="evasion") { EVASION() } \
                                                 if(script->m_instructions[noInstruction].nom=="useMiracle") { USEMIRACLE(script->m_instructions[noInstruction].valeurs.at(0)) } \
                                                 if(script->m_instructions[noInstruction].nom=="setState") { SETSTATE(script->m_instructions[noInstruction].valeurs.at(0)) } \
+                                                if(script->m_instructions[noInstruction].nom=="dammages") { InfligerDegats(m_decor[i][j][k].getMonstre(), script->m_instructions[noInstruction].valeurs.at(0), menu, hero, false); } \
                                                 if(script->m_instructions[noInstruction].nom=="shoot") { SHOOT() } \
                                                 if(script->m_instructions[noInstruction].nom=="randomDisplace") { RANDOMDISPLACE() } \
                                                 if(script->m_instructions[noInstruction].nom=="playSound") { PLAYSOUND(script->m_instructions[noInstruction].valeurs.at(0)) } \
@@ -2393,9 +2395,40 @@ void Map::MusiquePlay(coordonnee position)
                                                 if(script->m_instructions[noInstruction].nom=="if") { GererConditions(jeu,script,noInstruction,i,j,k,hero,temps,menu); } \
                                                 if(script->m_instructions[noInstruction].nom=="variable") { script->variables[script->m_instructions[noInstruction].valeurs.at(0)]=script->m_instructions[noInstruction].valeurs.at(1); }  \
                                                 if(script->m_instructions[noInstruction].nom=="incrementeVariable") { script->variables[script->m_instructions[noInstruction].valeurs.at(0)]+=script->m_instructions[noInstruction].valeurs.at(1); }  \
-                                             }
+                                                \
+                                                if(script->m_instructions[noInstruction].nom=="speak") { console->Ajouter(script->m_instructions[noInstruction].valeurString); }  \
+                                                if(script->m_instructions[noInstruction].nom=="newQuest") {\
+                                                    bool ok = true;\
+                                                    for(int i = 0;i < (int)hero->m_quetes.size(); ++i)\
+                                                    if(hero->m_quetes[i].m_id == script->m_instructions[noInstruction].valeurs.at(0))\
+                                                        ok = false;\
+                                                    if(ok)\
+                                                        hero->m_quetes.push_back(Quete (script->m_instructions[noInstruction].valeurs.at(0))); \
+                                                }  \
+                                                if(script->m_instructions[noInstruction].nom=="setQuestName") { \
+                                                    for(int i = 0;i < (int)hero->m_quetes.size(); ++i)\
+                                                    if(hero->m_quetes[i].m_id == script->m_instructions[noInstruction].valeurs.at(0))\
+                                                        hero->m_quetes[i].m_nom = script->m_instructions[noInstruction].valeurString; \
+                                                } \
+                                                if(script->m_instructions[noInstruction].nom=="setQuestState") {\
+                                                    for(int i = 0;i < (int)hero->m_quetes.size(); ++i)\
+                                                        if(hero->m_quetes[i].m_id == script->m_instructions[noInstruction].valeurs.at(0))\
+                                                        { \
+                                                            hero->m_quetes[i].m_description = script->m_instructions[noInstruction].valeurString; \
+                                                            hero->m_quetes[i].m_statut = script->m_instructions[noInstruction].valeurs.at(1); } \
+                                                } \
+                                                if(script->m_instructions[noInstruction].nom=="giftItem") { if(script->m_instructions[noInstruction].valeurs.at(0) >= 0 && script->m_instructions[noInstruction].valeurs.at(0) < (int)(*m_monstre[m_decor[i][j][k].getMonstre()].getPointeurObjets()).size()) \
+                                                    if(!hero->AjouterObjet((*m_monstre[m_decor[i][j][k].getMonstre()].getPointeurObjets())[script->m_instructions[noInstruction].valeurs.at(0)], false))\
+                                                        m_decor[1][j][k].AjouterObjet((*m_monstre[m_decor[i][j][k].getMonstre()].getPointeurObjets())[script->m_instructions[noInstruction].valeurs.at(0)]);\
+                                                }  \
+                                            }
 
-#define LISTE_CONDITIONS(noInstruction) if(script->m_instructions[noInstruction].nom=="see")\
+#define LISTE_CONDITIONS(noInstruction) if(script->m_instructions[noInstruction].nom=="alive")\
+                                        {\
+                                            if (!m_monstre[m_decor[i][j][k].getMonstre()].enVie()) \
+                                                ok=false;\
+                                        }\
+                                        else if(script->m_instructions[noInstruction].nom=="see")\
                                         {\
                                             if(!m_monstre[m_decor[i][j][k].getMonstre()].getVu()) \
                                                 ok=false;\
@@ -2439,6 +2472,23 @@ void Map::MusiquePlay(coordonnee position)
                                                 ok=true;\
                                             else \
                                                 ok=false;\
+                                        }\
+                                        else if(script->m_instructions[noInstruction].nom=="quest")\
+                                        {\
+                                            if(script->m_instructions[noInstruction].valeurs.at(1) == -1) \
+                                            {\
+                                                for(int i = 0;i < (int)hero->m_quetes.size(); ++i)\
+                                                    if(hero->m_quetes[i].m_id == script->m_instructions[noInstruction].valeurs.at(0))\
+                                                        ok = false;\
+                                            }\
+                                            else\
+                                            {\
+                                                ok = false;\
+                                                for(int i = 0;i < (int)hero->m_quetes.size(); ++i)\
+                                                    if(hero->m_quetes[i].m_id == script->m_instructions[noInstruction].valeurs.at(0))\
+                                                        if(hero->m_quetes[i].m_statut == script->m_instructions[noInstruction].valeurs.at(1))\
+                                                            ok = true;\
+                                            }\
                                         }
 
 
@@ -2577,7 +2627,7 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
             for (int k=vueMin.x;k<vueMax.x;k++)
             {
                 if (m_decor[i][j][k].getMonstre()>=0&&m_decor[i][j][k].getMonstre()<(int)m_monstre.size())
-                    if (m_monstre[m_decor[i][j][k].getMonstre()].enVie())
+                   // if (m_monstre[m_decor[i][j][k].getMonstre()].enVie())
                     {
                         if (hero->m_personnage.enVie())
                             m_monstre[m_decor[i][j][k].getMonstre()].TesterVision(hero->m_personnage.getCoordonnee());
@@ -2593,8 +2643,9 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                                     if (script->m_instructions[0].valeurs[a]>=0&&script->m_instructions[0].valeurs[a]<(int)script->m_instructions.size())
                                         LISTE_INSTRUCTIONS(script->m_instructions[0].valeurs[a])
 
-                                        if (m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding())
-                                            RANDOMDISPLACE()
+                                       if (m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding())
+                                            if (m_monstre[m_decor[i][j][k].getMonstre()].enVie())
+                                                RANDOMDISPLACE()
                                             m_monstre[m_decor[i][j][k].getMonstre()].m_touche = false;
                         }
                         else
@@ -2615,7 +2666,8 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                                 for (int z=0;z<(int)m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement().size();z++)
                                     if (m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]>=0&&m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]<(int)m_evenement.size())
                                         if (m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]].getType()==INFLIGER_DEGATS)
-                                            InfligerDegats(m_decor[i][j][k].getMonstre(),m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]].getInformation(0)*temps*10,menu,hero,0);
+                                            if (m_monstre[m_decor[i][j][k].getMonstre()].enVie())
+                                                InfligerDegats(m_decor[i][j][k].getMonstre(),m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]].getInformation(0)*temps*10,menu,hero,0);
 
                         if (!(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y==j&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x==k))
                             if (m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x<m_dimensions.x&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y>0&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y<(int)m_dimensions.y)

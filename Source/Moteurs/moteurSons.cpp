@@ -100,9 +100,9 @@ void MoteurSons::JouerSon(int ID,coordonnee position,coordonnee positionHero,boo
                     if(position.x==-1&&position.y==-1)
                         m_sons[i].SetPosition(sf::Listener::GetPosition());
 
-                    //sf::Sound::Status Status = m_sons[i].GetStatus();
-                    //if (Status==0)
-                      //  m_sons[i].Play();
+                    sf::Sound::Status Status = m_sons[i].GetStatus();
+                    if (Status==0)
+                        m_sons[i].Play();
 
                     creerNouveauSon=false;
                 }

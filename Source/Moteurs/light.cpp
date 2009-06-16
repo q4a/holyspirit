@@ -56,10 +56,9 @@ Light::~Light()
 }
 
 
-void Light::Draw(sf::RenderWindow *App)
+void Light::Draw(sf::RenderTarget *App)
 {
     // On boucle sur m_shape pour afficher tous les triangles.
-
     for (int i=0;i<(int)m_shape.size();i++)
         App->Draw(m_shape[i]);
 }
@@ -68,9 +67,6 @@ void Light::Draw(sf::RenderWindow *App)
 
 bool Light::CollisionWithPoint(sf::Vector2f &p,sf::Vector2f &pt1,sf::Vector2f &pt2)
 {
-
-
-
     // D'abord, on calcul les extrémités du rectangle dans lequel est inscrit le triangle
     sf::Vector2f min(0,0),max(0,0);
     if (pt1.x<min.x)

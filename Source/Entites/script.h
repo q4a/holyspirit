@@ -28,6 +28,7 @@ struct Instruction
 {
     std::string nom;
     std::vector < int > valeurs;
+    std::string valeurString;
 };
 
 class Script

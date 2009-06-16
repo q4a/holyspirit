@@ -89,12 +89,14 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
     sf::Image m_light_screen;
     sf::Image m_light_screen2;
 
+    sf::RenderImage m_light_screen3;
+
 	protected:
 
 	MoteurGraphique();
 	~MoteurGraphique();
 
-	sf::Vector2f decalageLumiere;
+	sf::Vector2f decalageLumiere,decalageOmbre;
 
 	std::vector <Image_moteur> m_images;
 

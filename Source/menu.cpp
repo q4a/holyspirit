@@ -213,7 +213,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
                 Sprite sprite;
 
                 sprite.SetImage(*moteurGraphique->getImage(m_imageAme));
-                sprite.SetCenter(16,16);
+                sprite.SetOrigin(16,16);
                 sprite.Resize(32*configuration->Resolution.w/800*Iter->m_taille, 32*configuration->Resolution.w/800*Iter->m_taille);
                 sprite.SetColor(sf::Color(255,255,255,(int)Iter->m_alpha));
                 sprite.SetX((Iter->m_position.x+16)*configuration->Resolution.w/800);
@@ -229,9 +229,9 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
             Sprite sprite;
 
             sprite.SetImage(*moteurGraphique->getImage(m_imageSang));
-            sprite.SetCenter(200*IterSang->m_taille,200*IterSang->m_taille);
+            sprite.SetOrigin(200*IterSang->m_taille,200*IterSang->m_taille);
             sprite.SetRotation(IterSang->m_rotation);
-            sprite.SetCenter(0,0);
+            sprite.SetOrigin(0,0);
             sprite.SetSubRect(sf::IntRect(200*IterSang->m_numero, 0,300+300*IterSang->m_numero, 200));
             sprite.Resize(300*configuration->Resolution.x/800*IterSang->m_taille, 200*configuration->Resolution.y/600*IterSang->m_taille);
             sprite.SetColor(sf::Color(255,255,255,(int)IterSang->m_alpha));

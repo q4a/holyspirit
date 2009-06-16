@@ -43,7 +43,7 @@ void Projectile::Afficher(coordonnee position)
         sprite.SetX(((m_position.x-m_position.y)*64/COTE_TILE) - (m_centre.x - m_positionImage.w/2) * cos(-m_rotationReelle-M_PI/4));
         sprite.SetY(((m_position.x+m_position.y)*64/COTE_TILE)/2+(64-sprite.GetSize().y)+16);
 
-        sprite.SetCenter(m_centre.x,m_centre.y);
+        sprite.SetOrigin(m_centre.x,m_centre.y);
 
         sprite.Rotate((-(m_rotation)*180/M_PI));
 
@@ -69,7 +69,7 @@ void EffetGraphique::Afficher(coordonnee position)
         sprite.SetX(((m_position.x-m_position.y)*64/COTE_TILE)/*-64+(64-sprite.GetSize().x/2)*/);
         sprite.SetY(((m_position.x+m_position.y)*64/COTE_TILE)/2+(64-sprite.GetSize().y)+16);
 
-        sprite.SetCenter(m_positionImage.w/2,m_positionImage.h/2);
+        sprite.SetOrigin(m_positionImage.w/2,m_positionImage.h/2);
 
         if (sprite.GetPosition().x+sprite.GetSize().x>=moteurGraphique->m_camera.GetRect().Left
                 &&sprite.GetPosition().x<moteurGraphique->m_camera.GetRect().Right
