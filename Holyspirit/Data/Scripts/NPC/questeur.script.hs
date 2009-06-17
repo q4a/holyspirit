@@ -16,17 +16,17 @@ main
 
 		if quest * 1 * 3
 		then
-			speak " Vous les avez euts, voici la tiare !"
+			speak " Bien joué, vous les avez éliminés, voici la tiare !"
 			setQuestState * 1 * 4 " Quête terminée."
 			giftItem * 0
 		end
 		
 		if quest * 1 * -1
 		then
-			speak " Si vous allez tuer les trois gros méchants du donjon, je vous offrirez une belle tiare ! "
+			speak " Si vous allez tuer les trois gros méchants prêtres démoniaques du donjon, je vous offrirai une belle tiare ! "
 			newQuest * 1 
 			setQuestName * 1 " Les trois méchants"
-			setQuestState * 1 * 0 " Allez tuer les trois méchants prêtres démoniaques dans le donjon. Mais attention, ils sont très très forts ! "
+			setQuestState * 1 * 0 " Allez tuer les trois méchants prêtres démoniaques dans le donjon. Mais attention, ils sont très puissants ! "
 		end
 	end
 end 

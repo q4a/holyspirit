@@ -2,7 +2,6 @@
 main 
 	if alive
 	then
-		variable * 1 * 1
 		variable * 0 * -1
 
 		if see
@@ -73,23 +72,26 @@ main
 				setState * 4
 			end
 	else
-		if variable * 1 * 1
+		if variable * 1 * 0
 		then
 			if quest * 1 * 2
 			then
-				variable * 1 * 0
-				setQuestState * 1 * 3 " Allez chercher votre récompense chez le questeur ! "
+				variable * 1 * -1
+				speak " Allez chercher votre récompense chez le questeur ! "
+			else
+				if quest * 1 * 1
+				then
+					variable * 1 * -1
+					speak " Plus que un à tuer ! "
+				else
+					if quest * 1 * 0
+					then
+						variable * 1 * -1
+						setQuestState * 1 * 1 " Plus que deux à tuer ! "
+					end
+				end
 			end
-			if quest * 1 * 1
-			then
-				variable * 1 * 0
-				setQuestState * 1 * 2 " Plus que 1 à tuer ! "
-			end
-			if quest * 1 * 0
-			then
-				variable * 1 * 0
-				setQuestState * 1 * 1 " Plus que deux à tuer ! "
-			end
+			
 		end
 	end
 end 
