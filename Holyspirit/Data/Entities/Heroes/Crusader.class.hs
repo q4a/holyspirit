@@ -59,5 +59,16 @@ $
 	* e8 x153 y148 w32 h32 $
 	* e9 x210 y37 w32 h32 $
 $
-	* mData/Entities/Heroes/Crusader/Miracles/PowerShot.miracle.hs $
+	* x52 y20 w32 h32 $
+$
+	* e0 x0 y64 w140 h128 m La_voie_du_Persécuteur $
+	* e1 x0 y196 w140 h128 m La_voie_du_Protecteur $
+	* e2 x0 y324 w140 h128 m La_voie_du_Pieux $
+$
+	* x0 y0 w800 h600 m Data/Menus/Crusader/CroisePersecuteur.png $
+	* x0 y0 w800 h600 m Data/Menus/Crusader/CroiseProtecteur.png $
+	* x0 y0 w800 h600 m Data/Menus/Crusader/CroiseIncarnation.png $
+$
+	* x210 y94 w42 h42 mData/Entities/Heroes/Crusader/Miracles/HolyTornado.miracle.hs $
+	* x210 y334 w42 h42 mData/Entities/Heroes/Crusader/Miracles/PowerShot.miracle.hs $
 $

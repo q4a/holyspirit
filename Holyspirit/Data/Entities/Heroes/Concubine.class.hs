@@ -61,5 +61,15 @@ $
 	* e8 x153 y148 w32 h32 $
 	* e9 x210 y37 w32 h32 $
 $
-	
+	* x52 y24 w32 h32 $
+$
+	* e0 x0 y64 w140 h128 mLa_voie_de_l'Empoisoneuse $
+	* e1 x0 y196 w140 h128 mLa_voie_de_l'Assassin $
+	* e2 x0 y324 w140 h128 mLa_voie_de_la_Séductrice $
+$
+	* x0 y0 w800 h600 m Data/Menus/Concubine/CourtisanePoison.png $
+	* x0 y0 w800 h600 m Data/Menus/Concubine/CourtisaneAssassin.png $
+	* x0 y0 w800 h600 m Data/Menus/Concubine/CourtisaneCharme.png $
+$
+	* x210 y94 w42 h42 mData/Entities/Heroes/Concubine/Miracles/Toxic.miracle.hs $
 $
