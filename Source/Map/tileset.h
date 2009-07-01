@@ -44,16 +44,16 @@ class Tileset
 	void DeleteTiles();
 
 	int getImage(int tile);
-	coordonnee getPositionDuTile(int tile);
+	const coordonnee &getPositionDuTile(int tile);
 	bool getCollisionTile(int tile);
 	int getAnimationTile(int tile);
 	int getSonTile(int tile);
-	Lumiere getLumiereDuTile(int tile);
+	const Lumiere &getLumiereDuTile(int tile);
 	bool getOmbreDuTile(int tile);
 	bool getTransparentDuTile(int tile);
 	char getOrientationDuTile(int tile);
-	coordonnee getCentreDuTile(int tile);
-	std::string getChemin(){return m_chemin;}
+	const coordonnee &getCentreDuTile(int tile);
+	const std::string &getChemin(){return m_chemin;}
 	float getTempsDuTile(int tile);
 	int getTaille();
 

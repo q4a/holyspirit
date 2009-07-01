@@ -55,6 +55,9 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	void AjouterSystemeParticules(int ID,coordonnee position,sf::Color color,float force,float angle);
 	void AjouterCommande(sf::Sprite*,int=0, bool=0);
 	void AjouterTexte(sf::String*, int couche=0,bool titre=false);
+	void AjouterTexteNonChevauchable(sf::String*, int couche=0,bool titre=false);
+	void AjouterTexte(std::string, coordonnee, int couche=0, bool titre=false, int size = 14, sf::Color color = sf::Color(224,224,224));
+
 
 	void DecrementerImportance();
 

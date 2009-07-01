@@ -48,11 +48,11 @@ public:
 
     void AfficherInventaire(float,std::vector<Objet>);
     void AfficherQuetes(float);
+    void AfficherMiracles(float , int );
     void AfficherCaracteristiques(float decalage);
     void AfficherRaccourcis();
 
-    //void GenererGrille();
-    void PlacerCamera(coordonnee dimensionsMap);
+    void PlacerCamera();
 
     bool TestMonstreVise(Monstre *monstre);
 
@@ -63,8 +63,6 @@ public:
     void RegenererVie(float vie);
     void RegenererFoi(float foi);
 
-    int UtiliserClicDroit(int monstreVise);
-
     bool AjouterObjet(Objet objet,bool enMain=false);
 
     Objet DeposerObjet();
@@ -73,11 +71,11 @@ public:
     bool PossibleEquiper(int numero, int emplacement);
     bool Equiper(int numero, int emplacement);
     bool UtiliserObjet(int numero);
-   // void AttribuerPositionObjet(coordonnee position,int numero);
     void RangerObjet(int numero);
 
+    bool UtiliserMiracle(int, Personnage*);
     bool AjouterMiracleArme();
-    //void LibererCases(int numero);
+    void StopMiracles();
 
     void setMonstreVise(int monstre);
     void setChercherSac(coordonnee);
@@ -110,9 +108,9 @@ public:
     int m_quetePointee, m_queteSelectionnee;
 
     std::vector<Quete> m_quetes;
+    std::vector<int> m_lvl_miracles;
 
 private:
-    coordonneeDecimal m_positionAffichage;
     int m_monstreVise;
     coordonnee m_chercherSac,m_sacVise;
 
@@ -121,8 +119,6 @@ private:
     int ordreAffichage[NOMBRE_MORCEAU_PERSONNAGE];
 
     std::vector<Objet> m_inventaire;
-
-   // std::vector< std::vector<bool> > m_caseInventaire;
 
     int m_weaponMiracle;
 

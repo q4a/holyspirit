@@ -67,9 +67,9 @@ void EffetGraphique::Afficher(coordonnee position)
         sprite.FlipX(false);
 
         sprite.SetX(((m_position.x-m_position.y)*64/COTE_TILE)/*-64+(64-sprite.GetSize().x/2)*/);
-        sprite.SetY(((m_position.x+m_position.y)*64/COTE_TILE)/2+(64-sprite.GetSize().y)+16);
+        sprite.SetY(((m_position.x+m_position.y)*64/COTE_TILE)/2/*+(64-sprite.GetSize().y)+16*/);
 
-        sprite.SetOrigin(m_positionImage.w/2,m_positionImage.h/2);
+        sprite.SetOrigin(m_centre.x,m_centre.y);
 
         if (sprite.GetPosition().x+sprite.GetSize().x>=moteurGraphique->m_camera.GetRect().Left
                 &&sprite.GetPosition().x<moteurGraphique->m_camera.GetRect().Right
@@ -190,17 +190,15 @@ void Miracle::Charger(std::string chemin)
                     case 'i':
                         fichier.get(caractere);
                         if (caractere=='a')
-                        {
                             fichier>>m_effets.back().m_informations[0];
-                        }
                         if (caractere=='b')
-                        {
                             fichier>>m_effets.back().m_informations[1];
-                        }
                         if (caractere=='c')
-                        {
                             fichier>>m_effets.back().m_informations[2];
-                        }
+                        if (caractere=='d')
+                            fichier>>m_effets.back().m_informations[3];
+                        if (caractere=='e')
+                            fichier>>m_effets.back().m_informations[4];
                         break;
                     }
                     if (fichier.eof())
@@ -236,7 +234,7 @@ void Miracle::Charger(std::string chemin)
                     fichier.get(caractere);
                     if (caractere=='*')
                     {
-                        coordonnee position={-1,-1,-1,-1},centre={-1,-1,-1,-1};
+                        coordonnee position(-1,-1,-1,-1),centre(-100,-100,-1,-1);
                         int animation=m_tile.size(),son=-1,image=0;
                         Lumiere lumiere;
                         lumiere.intensite=0;
@@ -318,6 +316,12 @@ void Miracle::Charger(std::string chemin)
                             }
                         }
                         while (caractere!='$');
+
+                        if(centre.x == -100)
+                            centre.x = position.w / 2;
+                        if(centre.y == -100)
+                            centre.y = position.h - 32;
+
                         //AjouterTile(position,collision,animation,son,lumiere,ombre,orientation);
                         m_tile.back().push_back(Tile());
                         m_tile.back().back().setTile(position,image,collision,animation,son,lumiere,ombre,orientation,transparent,centre,tempsAnimation);

@@ -45,9 +45,9 @@ public:
 
     void JouerSon(int numeroSon,coordonnee position,coordonnee positionHero, bool uniqueSound=false);
 
-    Lumiere getPorteeLumineuse();
+    const Lumiere &getPorteeLumineuse();
     int getNombreSons();
-    Caracteristique getCaracteristique();
+    const Caracteristique &getCaracteristique();
 
     void setPorteeLumineuse(Lumiere  lumiere);
 
@@ -73,10 +73,10 @@ public:
 
 
 
-    coordonnee getCoordonnee();
-    coordonnee getArrivee();
-    coordonnee getCoordonneePixel();
-    coordonnee getProchaineCase();
+    const coordonnee &getCoordonnee();
+    const coordonnee &getArrivee();
+    const coordonnee &getCoordonneePixel();
+    const coordonnee &getProchaineCase();
     bool getErreurPathfinding();
     bool enVie();
     int animer(Modele_Personnage *modele,float temps,bool *explosif,coordonnee positionHero);
@@ -115,9 +115,9 @@ public:
     int getEtat();
     int getAngle();
     int getPose();
-    Lumiere getPorteeLumineuse();
-    Caracteristique getCaracteristique();
-    std::string getNom();
+    const Lumiere &getPorteeLumineuse();
+    const Caracteristique &getCaracteristique();
+    const std::string &getNom();
 
     int getOrdre(Modele_Personnage *modele);
 

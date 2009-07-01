@@ -22,7 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef CONSTANTEH
 #define CONSTANTEH
 
-#define COTE_TILE 71.5542
+#define COTE_TILE 71.5542f
 #define DIVISEUR_COTE_TILE 0.013975420031249039189872851628556
 
 #define NOMBRE_ETAT 4
@@ -100,8 +100,51 @@ inline T valeurAbsolue(T valeur)
     return valeur;
 }
 
+struct coordonneeDecimal
+{
+    float x;
+    float y;
+    float w;
+    float h;
+};
+
 struct coordonnee
 {
+    coordonnee()
+    {
+        x = 0;
+        y = 0;
+        w = 0;
+        h = 0;
+    }
+    coordonnee(int X, int Y, int W, int H)
+    {
+        x = X;
+        y = Y;
+        w = W;
+        h = H;
+    }
+    coordonnee(int X, int Y)
+    {
+        x = X;
+        y = Y;
+        w = 0;
+        h = 0;
+    }
+    coordonnee(const coordonnee &temp)
+    {
+        x = temp.x;
+        y = temp.y;
+        w = temp.w;
+        h = temp.h;
+    }
+    coordonnee(const coordonneeDecimal &temp)
+    {
+        x = (int)temp.x;
+        y = (int)temp.y;
+        w = (int)temp.w;
+        h = (int)temp.h;
+    }
     int x;
     int y;
     int w;
@@ -115,13 +158,7 @@ struct coordonnee3D
     float z;
 };
 
-struct coordonneeDecimal
-{
-    float x;
-    float y;
-    float w;
-    float h;
-};
+
 
 class Lumiere
 {
@@ -240,6 +277,7 @@ struct Caracteristique
     int piete;
     int charisme;
     int pts_restant;
+    int miracles_restant;
 
     float modificateurTaille;
 

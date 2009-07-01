@@ -69,8 +69,8 @@ public:
 
     void JouerSon();
 
-    std::string getChemin();
-    std::string getNom();
+    const std::string &getChemin();
+    const std::string &getNom();
     int getRarete();
     int getImage();
     int getChanceTrouver();

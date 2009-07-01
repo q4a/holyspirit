@@ -121,7 +121,7 @@ bool Tileset::Charger(std::string chemin)
             fichier.get(caractere);
             if (caractere=='*')
             {
-                coordonnee position={-1,-1,-1,-1},centre={-100,-100,-1,-1};
+                coordonnee position(-1,-1,-1,-1),centre(-100,-100,-1,-1);
                 int animation=m_tile.size(),son=-1,image=0;
                 Lumiere lumiere;
                 lumiere.intensite=0;
@@ -238,17 +238,12 @@ int Tileset::getImage(int tile)
     return 0;
 }
 
-coordonnee Tileset::getPositionDuTile(int tile)
+const coordonnee &Tileset::getPositionDuTile(int tile)
 {
     if (tile>=0&&tile<(int)m_tile.size())
         return m_tile[tile].getCoordonnee();
     else
-    {
-        coordonnee position;
-        position.x=0;
-        position.y=0;
-        return position;
-    }
+        return m_tile[0].getCoordonnee();
 }
 
 bool Tileset::getCollisionTile(int tile)
@@ -280,19 +275,12 @@ int Tileset::getTaille()
     return m_tile.size();
 }
 
-Lumiere Tileset::getLumiereDuTile(int tile)
+const Lumiere &Tileset::getLumiereDuTile(int tile)
 {
     if (tile>=0&&tile<(int)m_tile.size())
         return m_tile[tile].getLumiere();
 
-    Lumiere temp;
-    temp.intensite=0;
-    temp.rouge=0;
-    temp.vert=0;
-    temp.bleu=0;
-    temp.hauteur=0;
-
-    return temp;
+    return m_tile[0].getLumiere();
 }
 
 bool Tileset::getOmbreDuTile(int tile)
@@ -327,17 +315,12 @@ char Tileset::getOrientationDuTile(int tile)
     return 0;
 }
 
-coordonnee Tileset::getCentreDuTile(int tile)
+const coordonnee &Tileset::getCentreDuTile(int tile)
 {
     if (tile>=0&&tile<(int)m_tile.size())
         return m_tile[tile].getCentre();
     else
-    {
-        coordonnee position;
-        position.x=0;
-        position.y=0;
-        return position;
-    }
+        return m_tile[0].getCentre();;
 }
 
 void Tileset::JouerSon(int numeroSon,coordonnee position,coordonnee positionHero)

@@ -46,8 +46,6 @@ void c_Quetes::Utiliser(Jeu *jeu)
     jeu->m_display=true;
     jeu->Clock.Reset();
 
-    jeu->hero.PlacerCamera(jeu->map->getDimensions()); // On place la camera suivant ou se trouve le perso
-
     jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
     jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);
 
@@ -68,8 +66,6 @@ void c_Quetes::Utiliser(Jeu *jeu)
 
     jeu->hero.AfficherQuetes(m_decalage);
 
-    jeu->map->AfficherSac(jeu->hero.m_personnage.getCoordonnee(),m_decalage,jeu->hero.m_classe.position_sac_inventaire,jeu->hero.m_caracteristiques);
-
     jeu->menu.Afficher(1,255,&jeu->hero.m_classe);
     jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,-1,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
 
@@ -87,33 +83,5 @@ void c_Quetes::Utiliser(Jeu *jeu)
         eventManager->StopEvenement(Mouse::Left,"C");
         jeu->hero.m_queteSelectionnee = jeu->hero.m_quetePointee;
     }
-
-    /*if (eventManager->getEvenement(Mouse::Left,"C"))
-    {
-        if (jeu->map->RamasserObjet(&jeu->hero,1))
-            eventManager->StopEvenement(Mouse::Left,"C");
-    }
-
-    if (eventManager->getEvenement(Mouse::Left,"C"))
-    {
-        if (jeu->hero.PrendreEnMain(m_trader))
-            if (jeu->hero.m_objetADeposer>=0)
-                jeu->map->AjouterObjet(jeu->hero.DeposerObjet());
-        eventManager->StopEvenement(Mouse::Left,"C");
-    }
-
-    jeu->hero.m_defilement_trader -= eventManager->getMolette();*/
-
-    /*if(eventManager->getEvenement(Mouse::Left,"CA"))
-        if (eventManager->getPositionSouris().x>jeu->hero.m_classe.scroll_button.position.x*configuration->Resolution.x/800
-        &&eventManager->getPositionSouris().x<(jeu->hero.m_classe.scroll_button.position.x+jeu->hero.m_classe.scroll_button.position.w)*configuration->Resolution.x/800
-        &&eventManager->getPositionSouris().y>jeu->hero.m_classe.scroll_button.position.y*configuration->Resolution.h/600
-        &&eventManager->getPositionSouris().y-jeu->hero.m_classe.scroll_button.position.h<(jeu->hero.m_classe.scroll_button.position.y+jeu->hero.m_classe.position_contenu_marchand.h*24)*configuration->Resolution.h/600)
-            jeu->hero.m_defilement_trader = (int)((((float)eventManager->getPositionSouris().y-jeu->hero.m_classe.scroll_button.position.h*0.25-(float)jeu->hero.m_classe.scroll_button.position.y)/((float)jeu->hero.m_classe.position_contenu_marchand.h*24))*(float)(jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h));
-
-    if (jeu->hero.m_defilement_trader<0)
-        jeu->hero.m_defilement_trader=0;
-    if (jeu->hero.m_defilement_trader>jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h)
-        jeu->hero.m_defilement_trader=jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h;*/
 }
 

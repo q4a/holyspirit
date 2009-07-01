@@ -40,8 +40,6 @@ c_Inventaire::c_Inventaire()
 
 void c_Inventaire::setTrader(std::vector<Objet> *trade,Classe *classe)
 {
-    //AjouterTrader(trade,m_trader,classe);
-
     bool continuer=true;
     m_trader=trade;
 
@@ -84,8 +82,6 @@ void c_Inventaire::Utiliser(Jeu *jeu)
     temps_ecoule=jeu->Clock.GetElapsedTime();
     jeu->m_display=true;
     jeu->Clock.Reset();
-
-    jeu->hero.PlacerCamera(jeu->map->getDimensions()); // On place la camera suivant ou se trouve le perso
 
     jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
     jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);
@@ -173,6 +169,4 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         jeu->hero.m_defilement_trader=0;
     if (jeu->hero.m_defilement_trader>jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h)
         jeu->hero.m_defilement_trader=jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h;
-
-
 }

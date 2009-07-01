@@ -26,6 +26,13 @@ struct Image_interface
     int image;
 };
 
+struct Bouton
+{
+    coordonnee position;
+    std::string nom;
+    int lien;
+};
+
 struct Emplacement_inventaire
 {
     coordonnee position;
@@ -58,6 +65,9 @@ struct Classe
     Image_interface scroll_button;
     Image_interface talk;
     Image_interface quest;
+    std::vector<Image_interface> interface_miracles;
+
+    std::vector<Bouton> boutons_miracles;
 
     coordonnee position_sac_inventaire;
     coordonnee position_contenu_inventaire;
@@ -67,8 +77,11 @@ struct Classe
     coordonnee position_contenu_quetes;
     coordonnee position_contenu_description_quete;
 
+    coordonnee position_points_miracles;
+
     std::vector <Emplacement_inventaire> emplacements;
 
     std::vector<Miracle> miracles;
+    std::vector<coordonnee> position_miracles;
 };
 #endif

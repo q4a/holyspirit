@@ -72,7 +72,7 @@ void Tile::setTile(coordonnee positionDansLImage,int image,bool collision,int an
         m_centre.y=positionDansLImage.h-32;
 }
 
-coordonnee Tile::getCoordonnee()
+const coordonnee &Tile::getCoordonnee()
 {
     return m_positionDansLImage;
 }
@@ -92,7 +92,7 @@ int Tile::getSon()
 {
     return m_son;
 }
-Lumiere Tile::getLumiere()
+const Lumiere &Tile::getLumiere()
 {
     return m_lumiere;
 }
@@ -108,7 +108,7 @@ char Tile::getOrientation()
 {
     return m_orientation;
 }
-coordonnee Tile::getCentre()
+const coordonnee &Tile::getCentre()
 {
     return m_centre;
 }

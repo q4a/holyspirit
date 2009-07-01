@@ -43,7 +43,6 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     moteurGraphique->m_blur=0.005*m_alpha/255;
 
     jeu->m_display=true;
-    jeu->hero.PlacerCamera(jeu->map->getDimensions());
 
     if (configuration->Lumiere)
         jeu->map->CalculerOmbresEtLumieres();
@@ -77,9 +76,10 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
 
     if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())>0)
     {
-        coordonnee temp={600,(int)((float)configuration->Resolution.w*0.265),200,10};
         jeu->menu.Afficher(3,255,&jeu->hero.m_classe);
-        jeu->map->AfficherSac(jeu->hero.getChercherSac(),0,temp,jeu->hero.m_caracteristiques);
+        jeu->map->AfficherSac(jeu->hero.getChercherSac(),0,
+                              coordonnee (600,(int)((float)configuration->Resolution.w*0.265),200,10),
+                              jeu->hero.m_caracteristiques);
     }
     jeu->menu.Afficher(1,255,&jeu->hero.m_classe);
     jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,0,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);

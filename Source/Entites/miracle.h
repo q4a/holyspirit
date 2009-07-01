@@ -22,10 +22,13 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "../Map/tile.h"
 #include "../Moteurs/light.h"
 
+
 #ifndef MIRACLEH
 #define MIRACLEH
 
-enum  {PROJECTILE,CORPS_A_CORPS,DEGATS,EFFET_GRAPHIQUE,INVOCATION,AURA,SOIN};
+class Personnage;
+
+enum  {PROJECTILE,CORPS_A_CORPS,DEGATS,EFFET_GRAPHIQUE,INVOCATION,AURA,SOIN,M_EXPLOSION,REPETITION};
 
 class Projectile
 {
@@ -64,6 +67,7 @@ public:
     int m_image;
     int m_compteur;
     coordonnee m_positionImage;
+    coordonnee m_centre;
 
     Lumiere m_lumiere;
 
@@ -83,6 +87,8 @@ struct Effet
         m_informations[0]=0;
         m_informations[1]=0;
         m_informations[2]=0;
+        m_informations[3]=0;
+        m_informations[4]=0;
     }
 
     ~Effet()
@@ -94,7 +100,7 @@ struct Effet
     int m_type;
     int m_sequence;
 
-    int m_informations[3];
+    int m_informations[5];
     std::string m_chaine;
 };
 
@@ -112,7 +118,6 @@ public:
 
     std::vector < std::vector <Tile> > m_tile;
     std::vector <Effet> m_effets;
-
 
     std::vector <int> m_image;
     std::vector <int> m_sons;
@@ -133,11 +138,18 @@ struct InfosEntiteMiracle
         m_position.y=0;
         m_position.w=0;
         m_position.h=0;
+
+        m_informations[0]=0;
+        m_informations[1]=0;
+        m_informations[2]=0;
+        m_informations[3]=0;
+        m_informations[4]=0;
     }
 
     int m_effetEnCours;
     int m_imageEnCours;
     int m_IDObjet;
+    float m_informations[5];
 
     coordonneeDecimal m_position;
 };
@@ -145,8 +157,10 @@ struct InfosEntiteMiracle
 class EntiteMiracle
 {
 public:
+    EntiteMiracle(){ m_cible = NULL; }
     std::vector<InfosEntiteMiracle> m_infos;
     int m_modele;
+    Personnage *m_cible;
 };
 
 #endif

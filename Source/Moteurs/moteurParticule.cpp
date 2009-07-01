@@ -110,7 +110,7 @@ bool ParticuleSysteme::Gerer(float temps,int tailleMapY)
 
             if (Iter->position.z<=1&&Iter->vie==100&&i%5==0)
             {
-                coordonnee positionHero={0,0,0,0},position,positionCase;
+                coordonnee positionHero,position,positionCase;
 
                 if ((float)((Iter->position.y*2-Iter->position.x)/2)/64+tailleMapY/2<(float)tailleMapY/2)
                     positionCase.y=(int)((Iter->position.y*2-Iter->position.x)/2)/64+tailleMapY/2-1;

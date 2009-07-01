@@ -266,7 +266,7 @@ void Modele_Personnage::ChargerPose(ifstream *fichier)
                 {
                     if (caractere=='*')
                     {
-                        coordonnee position={-1,-1,0,0},centre={-1000,-1000,-1,-1};
+                        coordonnee position(-1,-1,0,0),centre(-1000,-1000,-1,-1);
                         int animation=0,son=-1,image=0,attaque=-1,lumiere=m_porteeLumineuse.intensite,ordre=0;
                         float tempsAnimation=0.075;
 
@@ -491,7 +491,7 @@ int Personnage::pathfinding(casePathfinding** map,coordonnee exception)
         if (arrivee.y>=0&&arrivee.x>=0&&arrivee.y<20&&arrivee.x<20)
             if (map[arrivee.y][arrivee.x].collision)
             {
-                coordonnee temp={-100,-100,-1,-1},enCours;
+                coordonnee temp(-100,-100,-1,-1),enCours;
 
                 enCours.y=arrivee.y-1;
                 enCours.x=arrivee.x-1;
@@ -753,7 +753,7 @@ int Personnage::animer(Modele_Personnage *modele,float temps,bool *explosif,coor
                         retour=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque();
                 }
 
-                if (modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==1)
+                if (modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==1 && m_monstre)
                     frappeEnCours=false,m_miracleALancer=-1;
 
                 *explosif=modele->m_explosif;
@@ -866,8 +866,8 @@ void Personnage::setCoordonnee(coordonnee nouvellesCoordonnees)
     m_positionCase=nouvellesCoordonnees;
     m_etat=ARRET;
 
-    m_positionPixel.x=(int)(m_positionCase.x*COTE_TILE);
-    m_positionPixel.y=(int)(m_positionCase.y*COTE_TILE);
+    m_positionPixel.x=(float)m_positionCase.x*COTE_TILE;
+    m_positionPixel.y=(float)m_positionCase.y*COTE_TILE;
 
     m_arrivee.x=m_positionCase.x;
     m_arrivee.y=m_positionCase.y;
@@ -943,33 +943,33 @@ int Modele_Personnage::getNombreSons()
 {
     return m_sons.size();
 }
-coordonnee Personnage::getCoordonnee()
+const coordonnee &Personnage::getCoordonnee()
 {
     return m_positionCase;
 }
-coordonnee Personnage::getArrivee()
+const coordonnee &Personnage::getArrivee()
 {
     return m_arrivee;
 }
 
-Caracteristique Personnage::getCaracteristique()
+const Caracteristique &Personnage::getCaracteristique()
 {
     return m_caracteristique;
 }
-Caracteristique Modele_Personnage::getCaracteristique()
+const Caracteristique &Modele_Personnage::getCaracteristique()
 {
     return m_caracteristique;
 }
-std::string Personnage::getNom()
+const std::string &Personnage::getNom()
 {
     return m_caracteristique.nom;
 }
 
-Lumiere Modele_Personnage::getPorteeLumineuse()
+const Lumiere &Modele_Personnage::getPorteeLumineuse()
 {
     return m_porteeLumineuse;
 }
-Lumiere Personnage::getPorteeLumineuse()
+const Lumiere &Personnage::getPorteeLumineuse()
 {
     return m_porteeLumineuse;
 }
@@ -989,15 +989,11 @@ bool Personnage::getErreurPathfinding()
 {
     return m_erreurPathfinding;
 }
-coordonnee Personnage::getCoordonneePixel()
+const coordonnee &Personnage::getCoordonneePixel()
 {
-    coordonnee position;
-    position.x=(int)m_positionPixel.x;
-    position.y=(int)m_positionPixel.y;
-    position.h=(int)m_positionPixel.h;
-    return position;
+    return m_positionPixel;
 }
-coordonnee Personnage::getProchaineCase()
+const coordonnee &Personnage::getProchaineCase()
 {
     if (m_cheminFinal.x!=m_positionCase.x||m_cheminFinal.y!=m_positionCase.y)
         return m_cheminFinal;

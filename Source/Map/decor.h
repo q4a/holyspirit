@@ -45,7 +45,7 @@ public:
     void AjouterObjet(Objet);
 
     int AfficherTexteObjets(coordonnee positionn,int);
-    bool AfficherTexteObjet(coordonnee position,int);
+    bool AfficherTexteObjet(coordonnee position,int, float *decalage = NULL);
 
     void DecrementerAnimation(float nombre);
     void AugmenterAnimation(float temps);
@@ -53,7 +53,7 @@ public:
     int getTile(); // Prendre le numéro du tile du décor
     int getTileset(); // Prendre le numéro du tileset du décor
     int getPosition(char type); // Prendre la position du décor
-    std::vector<int> getEvenement(); // Prendre le numéro de l'événement du décor
+    const std::vector<int> &getEvenement(); // Prendre le numéro de l'événement du décor
     int getMonstre(); // Retourne l'ID du monstre sur la case
     int getProjectile();
     int getEffetGraphique();
@@ -62,11 +62,11 @@ public:
     int getNumeroHerbe();
     int getTailleHerbe();
     int getHauteur();
-    sf::Color getCouleurHerbe();
-    coordonnee getDecalageHerbe();
+    const sf::Color &getCouleurHerbe();
+    const coordonnee &getDecalageHerbe();
     Objet *getObjet(int numero);
     void supprimerObjet(int numero);
-    std::vector<Objet> getObjets();
+    const std::vector<Objet> &getObjets();
     std::vector<Objet> *getPointeurObjets();
     int getNombreObjets();
     float getAnimation();

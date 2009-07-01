@@ -58,7 +58,7 @@ public:
     void setDepart();
 
     void setObjets(std::vector<Objet>);
-    std::vector<Objet> getObjets();
+    const std::vector<Objet> &getObjets();
     std::vector<Objet> *getPointeurObjets();
 
     bool getVu();
@@ -68,6 +68,8 @@ public:
     float m_attente;
     int m_compteur;
     bool m_friendly;
+
+    Script m_scriptAI;
 
 private:
     bool m_vu;

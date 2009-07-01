@@ -69,7 +69,7 @@ int Evenement::getInformation(int numeroInfo)
     else
         return 0;
 }
-std::string Evenement::getString()
+const std::string &Evenement::getString()
 {
     return m_string;
 }

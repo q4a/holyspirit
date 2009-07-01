@@ -88,6 +88,8 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
     m_porteeLumineuse=modele->getPorteeLumineuse();
     m_porteeLumineuseBasique=m_porteeLumineuse;
 
+    m_scriptAI = modele->m_scriptAI;
+
     m_friendly=modele->m_friendly;
 
     if (m_caracteristique.rang==0&&m_caracteristique.pointAme>0)
@@ -509,7 +511,7 @@ void Monstre::TesterVision(coordonnee positionHero)
             m_vu=1;
             // if(m_etat==0) m_poseEnCours=0;
         }
-        if (fabs(positionHero.x-m_positionCase.x)>10||fabs(positionHero.y-m_positionCase.y)>10)
+        if (fabs(positionHero.x-m_positionCase.x)>9||fabs(positionHero.y-m_positionCase.y)>9)
         {
             if (m_vu)
                 setDepart();
@@ -524,7 +526,7 @@ coordonnee Monstre::getDepart()
     return m_depart;
 }
 
-std::vector<Objet> Monstre::getObjets()
+const std::vector<Objet> &Monstre::getObjets()
 {
     return m_objets;
 }

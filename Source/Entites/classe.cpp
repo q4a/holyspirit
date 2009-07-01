@@ -73,6 +73,117 @@ void                ChargerImageInterface(ifstream &fichier, Image_interface &im
     while (caractere!='$');
 }
 
+
+void                ChargerImageInterface(ifstream &fichier, std::vector <Image_interface> &image_interface)
+{
+    char            caractere;
+    std::string     string;
+    do
+    {
+        fichier.get(caractere);
+        if (caractere=='*')
+        {
+            image_interface.push_back(Image_interface ());
+            do
+            {
+                fichier.get(caractere);
+                switch (caractere)
+                {
+                case 'm' :
+                    fichier>>string;
+                    image_interface.back().image=moteurGraphique->AjouterImage(string,-1);
+                    break;
+                case 'x' :
+                    fichier>>image_interface.back().position.x;
+                    break;
+                case 'y' :
+                    fichier>>image_interface.back().position.y;
+                    break;
+                case 'w' :
+                    fichier>>image_interface.back().position.w;
+                    break;
+                case 'h' :
+                    fichier>>image_interface.back().position.h;
+                    break;
+                }
+
+                if (fichier.eof())
+                {
+                    console->Ajouter("Erreur : Classe Invalide",1);
+                    caractere='$';
+                }
+            }
+            while (caractere!='$');
+            fichier.get(caractere);
+        }
+        if (fichier.eof())
+        {
+            console->Ajouter("Erreur : Classe Invalide",1);
+            caractere='$';
+        }
+
+    }
+    while (caractere!='$');
+}
+
+void                ChargerBouton(ifstream &fichier, std::vector <Bouton> &bouton)
+{
+    char            caractere;
+    std::string     string;
+    do
+    {
+        fichier.get(caractere);
+        if (caractere=='*')
+        {
+            bouton.push_back(Bouton ());
+            do
+            {
+                fichier.get(caractere);
+                switch (caractere)
+                {
+                case 'm' :
+                    fichier>>bouton.back().nom;
+                    for (int i=0;i<(int)bouton.back().nom.size();i++)
+                        if (bouton.back().nom[i]=='_')
+                            bouton.back().nom[i]=' ';
+                    break;
+                case 'e' :
+                    fichier>>bouton.back().lien;
+                    break;
+                case 'x' :
+                    fichier>>bouton.back().position.x;
+                    break;
+                case 'y' :
+                    fichier>>bouton.back().position.y;
+                    break;
+                case 'w' :
+                    fichier>>bouton.back().position.w;
+                    break;
+                case 'h' :
+                    fichier>>bouton.back().position.h;
+                    break;
+                }
+
+                if (fichier.eof())
+                {
+                    console->Ajouter("Erreur : Classe Invalide",1);
+                    caractere='$';
+                }
+            }
+            while (caractere!='$');
+            fichier.get(caractere);
+        }
+        if (fichier.eof())
+        {
+            console->Ajouter("Erreur : Classe Invalide",1);
+            caractere='$';
+        }
+
+    }
+    while (caractere!='$');
+}
+
+
 void                ChargerCoordonneeInterface(ifstream &fichier, coordonnee &coord_interface)
 {
     char            caractere;
@@ -119,6 +230,8 @@ void                ChargerCoordonneeInterface(ifstream &fichier, coordonnee &co
     }
     while (caractere!='$');
 }
+
+
 
 
 void Classe::Charger(string chemin)
@@ -369,13 +482,18 @@ void Classe::Charger(string chemin)
         }
         while (caractere!='$');
 
+        ChargerCoordonneeInterface(fichier, position_points_miracles);
 
+        ChargerBouton(fichier, boutons_miracles);
+        ChargerImageInterface(fichier, interface_miracles);
 
         do
         {
             fichier.get(caractere);
             if (caractere=='*')
             {
+                position_miracles.push_back(coordonnee ());
+
                 do
                 {
                     fichier.get(caractere);
@@ -385,6 +503,15 @@ void Classe::Charger(string chemin)
                         fichier>>temp;
                         miracles.push_back(Miracle (temp));
                     }
+
+                    if (caractere=='x')
+                        fichier>>position_miracles.back().x;
+                    if (caractere=='y')
+                        fichier>>position_miracles.back().y;
+                    if (caractere=='h')
+                        fichier>>position_miracles.back().h;
+                    if (caractere=='w')
+                        fichier>>position_miracles.back().w;
 
                     if (fichier.eof())
                     {
@@ -402,6 +529,7 @@ void Classe::Charger(string chemin)
             }
         }
         while (caractere!='$');
+
 
         fichier.close();
     }

@@ -66,8 +66,6 @@ public:
     */
     void setTrader(std::vector<Objet> *trader,Classe *classe);
 
-    sf::View camera;
-
 private:
     float temps_ecoule,m_decalage;
     bool m_afficher;

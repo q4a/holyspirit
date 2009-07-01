@@ -36,16 +36,16 @@ class Tile
 	Tile operator=(const Tile &tile);
 	void setTile(coordonnee positionDansLImage,int image,bool collision,int animation,int son,Lumiere lumiere,bool ombre,char orientation,bool transparent,coordonnee centre,float temps);
 
-	coordonnee getCoordonnee();
+	const coordonnee &getCoordonnee();
 	bool getCollision();
 	int getAnimation();
 	int getImage();
 	int getSon();
-	Lumiere getLumiere();
+	const Lumiere &getLumiere();
 	bool getOmbre();
 	bool getTransparent();
 	char getOrientation();
-	coordonnee getCentre();
+	const coordonnee &getCentre();
 	float getTemps();
 
 	void setImage(int);

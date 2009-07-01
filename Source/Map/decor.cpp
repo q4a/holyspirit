@@ -66,14 +66,8 @@ Decor::Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int her
 
 Decor::~Decor()
 {
-
     m_evenement.clear();
-    //if(configuration.debug)
-    //console.Ajouter("/Destruction des evenements");
-
     m_objets.clear();
-    //  if(configuration.debug)
-    // console.Ajouter("/Destruction des objets");
 }
 
 Decor Decor::operator=(const Decor &Decor)
@@ -148,7 +142,7 @@ void Decor::setDecor(int tileset,int tile,std::vector<int> evenement,int monstre
     m_objets=objets;
 }
 
-bool Decor::AfficherTexteObjet(coordonnee position,int objet)
+bool Decor::AfficherTexteObjet(coordonnee position,int objet, float *decalage)
 {
     bool retour=false;
     if(objet>=0&&objet<(int)m_objets.size())
@@ -162,27 +156,28 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet)
 
         texte.SetText(m_objets[objet].getNom());
         texte.SetSize(14*configuration->Resolution.w/800);
-        texte.SetY((position.y-moteurGraphique->m_camera.GetRect().Top)*configuration->zoom);
-        texte.SetX((position.x-moteurGraphique->m_camera.GetRect().Left)*configuration->zoom);
+        texte.SetY((position.y-moteurGraphique->m_camera.GetRect().Top)/configuration->zoom);
+        texte.SetX((position.x-moteurGraphique->m_camera.GetRect().Left)/configuration->zoom);
 
-        moteurGraphique->AjouterTexte(&texte,14);
+        moteurGraphique->AjouterTexteNonChevauchable(&texte,14);
 
         sprite.SetImage(*moteurGraphique->getImage(0));
 
-        sprite.SetY((position.y-moteurGraphique->m_camera.GetRect().Top)*configuration->zoom);
-        sprite.SetX((position.x-moteurGraphique->m_camera.GetRect().Left)*configuration->zoom-4);
+        sprite.SetY(texte.GetPosition().y);
+        sprite.SetX(texte.GetPosition().x-4);
         sprite.SetColor(sf::Color(0,0,0,224));
-        sprite.Resize(texte.GetRect().Right-texte.GetRect().Left +8 , 18);
-
-
+        sprite.Resize(texte.GetRect().Right-texte.GetRect().Left +8 , texte.GetRect().Bottom-texte.GetRect().Top+4);
 
         if(eventManager->getPositionSouris().x>sprite.GetPosition().x
          &&eventManager->getPositionSouris().y>sprite.GetPosition().y
          &&eventManager->getPositionSouris().x<sprite.GetPosition().x+texte.GetRect().Right-texte.GetRect().Left +8
-         &&eventManager->getPositionSouris().y<sprite.GetPosition().y+texte.GetRect().Bottom-texte.GetRect().Top +6)
+         &&eventManager->getPositionSouris().y<sprite.GetPosition().y+texte.GetRect().Bottom-texte.GetRect().Top +4)
             retour = true,sprite.SetColor(sf::Color(32,32,32,224));
 
         moteurGraphique->AjouterCommande(&sprite,13,0);
+
+        if(decalage != NULL)
+            *decalage = (sprite.GetPosition().y + moteurGraphique->m_camera.GetRect().Top)/configuration->zoom - sprite.GetSize().y;
     }
     return (retour);
 }
@@ -190,11 +185,11 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet)
 int Decor::AfficherTexteObjets(coordonnee position, int objetPointe)
 {
     int retour = -1;
+    float decalage = position.y-18;
 
     for (int z=0;z<(int)m_objets.size();z++)
     {
-        coordonnee buf={position.x,position.y-18*(z+1),0,0};
-        if(AfficherTexteObjet(buf,z))
+        if(AfficherTexteObjet(coordonnee ((int)position.x, (int)decalage), z, &decalage))
             retour=z;
     }
 
@@ -251,7 +246,7 @@ void Decor::setCouche(int couche)
 }
 void Decor::AjouterObjet(Objet objet)
 {
-    coordonnee position = {0,0,0,0};
+    coordonnee position;
 
     m_objets.push_back(objet);
     bool continuer = true;
@@ -300,7 +295,7 @@ int Decor::getTileset()
 {
     return m_tileset;
 }
-std::vector<int> Decor::getEvenement()
+const std::vector<int> &Decor::getEvenement()
 {
     return m_evenement;
 }
@@ -333,11 +328,11 @@ int Decor::getTailleHerbe()
 {
     return m_herbe_taille;
 }
-sf::Color Decor::getCouleurHerbe()
+const sf::Color &Decor::getCouleurHerbe()
 {
     return m_herbe_couleur;
 }
-coordonnee Decor::getDecalageHerbe()
+const coordonnee &Decor::getDecalageHerbe()
 {
     return m_herbe_decalage;
 }
@@ -351,7 +346,7 @@ Objet* Decor::getObjet(int numero)
     if (numero>=0&&numero<(int)m_objets.size()) return &m_objets[numero];
     return NULL;
 }
-std::vector<Objet> Decor::getObjets()
+const std::vector<Objet> &Decor::getObjets()
 {
     return m_objets;
 }

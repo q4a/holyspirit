@@ -142,7 +142,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         jeu->map=new Map();
 
-        jeu->hero.m_personnage.m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,384,16,sf::Color(255,255,255));
+        jeu->hero.m_personnage.m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,384,12,sf::Color(255,255,255));
 
         jeu->hero.ChargerModele(true);
 
@@ -150,8 +150,6 @@ void c_Chargement::Utiliser(Jeu *jeu)
             console->Ajouter("CRITICAL ERROR"), throw  "CRITICAL ERROR";
 
         moteurGraphique->DecrementerImportance();
-
-        jeu->hero.PlacerCamera(jeu->map->getDimensions());
 
         coordonnee position;
         position.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
@@ -174,6 +172,8 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         moteurGraphique->LightManager->SetPosition(jeu->hero.m_personnage.m_light,pos);
         allerVersImageChargement=false;
+
+         jeu->hero.PlacerCamera();
 
         jeu->Clock.Reset();
     }

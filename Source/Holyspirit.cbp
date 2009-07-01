@@ -97,6 +97,10 @@
 		<Unit filename="Contextes\c_jeu.h" />
 		<Unit filename="Contextes\c_menuInGame.cpp" />
 		<Unit filename="Contextes\c_menuInGame.h" />
+		<Unit filename="Contextes\c_miracles.cpp" />
+		<Unit filename="Contextes\c_miracles.h" />
+		<Unit filename="Contextes\c_quetes.cpp" />
+		<Unit filename="Contextes\c_quetes.h" />
 		<Unit filename="Contextes\contexte.cpp" />
 		<Unit filename="Contextes\contexte.h" />
 		<Unit filename="Entites\case.cpp" />
@@ -117,6 +121,8 @@
 		<Unit filename="Entites\personnage.h" />
 		<Unit filename="Entites\pose.cpp" />
 		<Unit filename="Entites\pose.h" />
+		<Unit filename="Entites\quete.cpp" />
+		<Unit filename="Entites\quete.h" />
 		<Unit filename="Entites\script.cpp" />
 		<Unit filename="Entites\script.h" />
 		<Unit filename="Map\decor.cpp" />

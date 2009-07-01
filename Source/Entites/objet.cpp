@@ -150,11 +150,11 @@ Objet Objet::operator=(const Objet &objet)
     return *this;
 }
 
-std::string Objet::getChemin()
+const std::string &Objet::getChemin()
 {
     return m_chemin;
 }
-std::string Objet::getNom()
+const std::string &Objet::getNom()
 {
     return m_nom;
 }
@@ -1200,7 +1200,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
     sf::Sprite sprite;
     sf::String string;
 
-    coordonnee tailleCadran={0,0,0,0},decalage={-10,0,0,0};
+    coordonnee tailleCadran,decalage(-10,0);
 
     if (m_equipe>=0&&compare)
     {
@@ -1424,8 +1424,7 @@ bool Objet::Utilisable(Caracteristique caract,int IDClasse)
 
 void Objet::JouerSon()
 {
-    coordonnee temp={-1,-1,-1,-1};
-    moteurSons->JouerSon(m_son,temp,temp);
+    moteurSons->JouerSon(m_son,coordonnee (-1,-1,-1,-1),coordonnee (-1,-1,-1,-1));
 }
 
 

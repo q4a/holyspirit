@@ -264,8 +264,8 @@ void MoteurGraphique::Afficher()
             sprite2.SetBlendMode(sf::Blend::Multiply);
             sprite2.SetColor(sf::Color(255,255,255,255));
 
-            //sprite2.SetX(decalageLumiere.x-m_camera.GetCenter().x);
-            //sprite2.SetY(decalageLumiere.y-m_camera.GetCenter().y);
+            sprite2.SetX(0);
+            sprite2.SetY(0);
 
             m_ecran->SetView(m_ecran->GetDefaultView());
             m_ecran->Draw(sprite2);
@@ -500,6 +500,35 @@ void MoteurGraphique::AjouterCommande(sf::Sprite *sprite, int couche, bool camer
         m_commandes[couche].push_back(Commande (sprite,camera));
 }
 
+void MoteurGraphique::AjouterTexte(std::string txt, coordonnee pos, int couche, bool titre, int size, sf::Color color)
+{
+    sf::String temp;
+    temp.SetFont(m_font);
+    temp.SetText(txt);
+    temp.SetPosition(pos.x, pos.y);
+    temp.SetSize(size);
+    temp.SetColor(color);
+
+    AjouterTexte(&temp, couche, titre);
+}
+
+void MoteurGraphique::AjouterTexteNonChevauchable(sf::String* string, int couche, bool titre)
+{
+    if (couche>=0&&couche<=20)
+    {
+        for (int i=0;i<(int)m_textes[couche].size();i++)
+        {
+            if(string->GetRect().Right  > m_textes[couche][i].GetRect().Left
+            && string->GetRect().Left   < m_textes[couche][i].GetRect().Right
+            && string->GetRect().Bottom > m_textes[couche][i].GetRect().Top - 3
+            && string->GetRect().Top    < m_textes[couche][i].GetRect().Bottom)
+                string->SetPosition(string->GetPosition().x, m_textes[couche][i].GetRect().Top - string->GetRect().Bottom + string->GetRect().Top - 3), i = 0;
+        }
+
+        AjouterTexte(string, couche, titre);
+    }
+}
+
 void MoteurGraphique::AjouterTexte(sf::String* string, int couche,bool titre)
 {
     sf::String temp(*string);
@@ -519,6 +548,14 @@ void MoteurGraphique::AjouterTexte(sf::String* string, int couche,bool titre)
             temp.SetColor(sf::Color((int)(string->GetColor().r*0.15),(int)(string->GetColor().g*0.15),(int)(string->GetColor().b*0.15),string->GetColor().a));
             temp.SetStyle(sf::String::Regular);
             m_textes[couche].push_back(temp);
+        }
+        else
+        {
+            temp.Move(1,1);
+            temp.SetColor(sf::Color((int)(string->GetColor().r*0.05),(int)(string->GetColor().g*0.05),(int)(string->GetColor().b*0.05),string->GetColor().a));
+            m_textes[couche].push_back(temp);
+            temp.Move(-1,-1);
+            temp.SetColor(string->GetColor());
         }
 
         m_textes[couche].push_back(temp);

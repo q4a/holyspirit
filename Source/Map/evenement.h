@@ -41,7 +41,7 @@ public:
         return m_information.size();
     }
     int getInformation(int numeroInfo);
-    std::string getString();
+    const std::string &getString();
 
     void setEvenement(int numeroEvenement);
     void setInformation(int information,int numero);

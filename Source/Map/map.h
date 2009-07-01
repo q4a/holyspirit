@@ -57,7 +57,7 @@ public:
     void CalculerOmbresEtLumieres();
     void Detruire();
 
-    int GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *hero,bool monstre,coordonnee lanceur, coordonnee cible,int couche);
+    int GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *hero,bool monstre, const coordonnee lanceur, const coordonnee cible,int couche);
 
     void GererConditions(Jeu *jeu,Script *script,int noInstruction,int i, int j, int k,Hero *hero,float temps,Menu *menu);
     void GererInstructions(Jeu *jeu,Script *script,int noInstruction,int i, int j, int k,Hero *hero,float temps,Menu *menu);
@@ -65,9 +65,9 @@ public:
     void GererEvenements(int evenement,int z,int couche,int x,int y);
     void GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu);
 
-    void InfligerDegatsMasse(coordonnee position,int rayon,int degats,bool sourceConcernee, Hero *hero,Menu *menu);
+    void InfligerDegatsMasse(coordonnee position,int rayon,int degats,bool sourceConcernee, Hero *hero, bool pousser = true, bool heroCompris = true);
 
-    bool InfligerDegats(int numeroMontre, float degats,Menu *menu, Hero *hero,bool pousser);
+    bool InfligerDegats(int numeroMontre, float degats, Hero *hero,bool pousser);
     void PousserMonstre(int numeroMonstre, coordonnee vecteur);
     void PousserMonstreCase(int numeroMonstre, coordonnee vecteur);
 
@@ -88,15 +88,15 @@ public:
     int getTypeCase(int positionX,int positionY);
     int getEvenement(coordonnee casePointee);
     int getMonstre(Hero *hero,coordonnee positionSouris,coordonnee casePointee);
-    coordonnee getSacPointe();
+    const coordonnee &getSacPointe();
     int getObjetPointe();
     int getNombreObjets(coordonnee position);
     int getNombreMonstres();
     bool getMonstreEnVie(int numeroMonstre);
-    coordonnee getDimensions();
+    const coordonnee &getDimensions();
 
     Monstre *getEntiteMonstre (int numeroMonstre);
-    coordonnee getPositionMonstre(int numeroMonstre);
+    const coordonnee &getPositionMonstre(int numeroMonstre);
     casePathfinding ** getAlentourDuPersonnage(coordonnee positionPersonnage); // Retourne un tableau de bool contenant toutes les collitions dans les alentour du héro, pour le pathfinding
 
     void setVolumeMusique(int volume);

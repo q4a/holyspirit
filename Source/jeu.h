@@ -34,6 +34,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Contextes/c_changementMap.h"
 #include "Contextes/c_inventaire.h"
 #include "Contextes/c_quetes.h"
+#include "Contextes/c_miracles.h"
 #include "Contextes/c_menuInGame.h"
 #include "Contextes/c_demarrage.h"
 
@@ -59,6 +60,7 @@ class Jeu
     c_Chargement *m_chargement;
     c_Inventaire *m_inventaire;
     c_Quetes *m_quetes;
+    c_Miracles *m_miracles;
     c_MenuInGame *m_menuInGame;
     Contexte *m_contexte;
 

@@ -76,6 +76,7 @@ class Menu
 	void AfficherChargement(std::string nom,int fond,int z);
 	void AfficherInventaire(float,Classe *classe,bool);
 	void AfficherQuetes(float,Classe *classe);
+	void AfficherMiracles(float,Classe *classe, int );
 
 	void AjouterSang(coordonneeDecimal position);
 

@@ -57,9 +57,10 @@ void Jeu::Demarrer()
     m_chargement = new c_Chargement;
     m_inventaire = new c_Inventaire;
     m_quetes = new c_Quetes;
+    m_miracles = new c_Miracles;
     m_menuInGame = new c_MenuInGame;
 
-    coordonnee temp={0,0,-1,-1};
+    coordonnee temp(0,0,-1,-1);
     m_chargement->setC_Chargement("Begin.map.hs",temp,1);
     m_contexte = m_demarrage;
 
@@ -74,7 +75,7 @@ void Jeu::Demarrer()
             eventManager->GererLesEvenements(&m_run,Clock.GetElapsedTime(),map->getDimensions());
         else
         {
-            coordonnee buf={1,1,1,1};
+            coordonnee buf(1,1,1,1);
             eventManager->GererLesEvenements(&m_run,Clock.GetElapsedTime(),buf);
         }
 
@@ -111,6 +112,7 @@ void Jeu::Demarrer()
     delete m_chargement;
     delete m_inventaire;
     delete m_quetes;
+    delete m_miracles;
     delete m_menuInGame;
 
     console->Ajouter("");
