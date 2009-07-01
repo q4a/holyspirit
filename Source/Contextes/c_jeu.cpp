@@ -101,6 +101,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
     if ((tempsEcouleDepuisDernierAffichage>0.02&&configuration->syncronisation_verticale)||(!configuration->syncronisation_verticale))
     {
+        jeu->hero.PlacerCamera();
+
         Evenements(jeu);
         Affichage(jeu);
         tempsEcouleDepuisDernierAffichage=0;
@@ -175,7 +177,7 @@ void c_Jeu::Deplacements(Jeu *jeu)
         if (jeu->hero.getMonstreVise()==-1)
             temp.x=jeu->hero.m_personnage.getCoordonnee().x,temp.y=jeu->hero.m_personnage.getCoordonnee().y;
 
-        if (jeu->hero.m_personnage.seDeplacer(tempsEcouleDepuisDernierDeplacement*100,jeu->map->getDimensions())/*&&!eventManager->getEvenement(Key::LShift,"ET")||eventManager->getEvenement(Key::LShift,"ET")*/)
+        if (jeu->hero.m_personnage.seDeplacer(tempsEcouleDepuisDernierDeplacement*100,jeu->map->getDimensions()))
         {
             bool ok=true;
             if (jeu->hero.getMonstreVise()>-1)
@@ -207,8 +209,6 @@ void c_Jeu::Deplacements(Jeu *jeu)
         Listener::SetTarget(0, 0, 1);
         jeu->map->MusiquePlay(position);
         jeu->sonMort.SetPosition(position.x,0,position.y);
-
-        jeu->hero.PlacerCamera();
 
         tempsEcouleDepuisDernierDeplacement=0;
     }

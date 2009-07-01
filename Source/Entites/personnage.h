@@ -75,7 +75,7 @@ public:
 
     const coordonnee &getCoordonnee();
     const coordonnee &getArrivee();
-    const coordonnee &getCoordonneePixel();
+    const coordonneeDecimal &getCoordonneePixel();
     const coordonnee &getProchaineCase();
     bool getErreurPathfinding();
     bool enVie();

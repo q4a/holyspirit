@@ -866,8 +866,8 @@ void Personnage::setCoordonnee(coordonnee nouvellesCoordonnees)
     m_positionCase=nouvellesCoordonnees;
     m_etat=ARRET;
 
-    m_positionPixel.x=(float)m_positionCase.x*COTE_TILE;
-    m_positionPixel.y=(float)m_positionCase.y*COTE_TILE;
+    m_positionPixel.x=(float)nouvellesCoordonnees.x*COTE_TILE;
+    m_positionPixel.y=(float)nouvellesCoordonnees.y*COTE_TILE;
 
     m_arrivee.x=m_positionCase.x;
     m_arrivee.y=m_positionCase.y;
@@ -989,7 +989,7 @@ bool Personnage::getErreurPathfinding()
 {
     return m_erreurPathfinding;
 }
-const coordonnee &Personnage::getCoordonneePixel()
+const coordonneeDecimal &Personnage::getCoordonneePixel()
 {
     return m_positionPixel;
 }
