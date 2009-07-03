@@ -1,3 +1,6 @@
+$
+$
+$
 //Images
 	*Data/Items/HolyEffect/HolyEffect.png
 $

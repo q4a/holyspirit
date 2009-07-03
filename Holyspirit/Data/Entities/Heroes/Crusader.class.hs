@@ -69,6 +69,5 @@ $
 	* x0 y0 w800 h600 m Data/Menus/Crusader/CroiseProtecteur.png $
 	* x0 y0 w800 h600 m Data/Menus/Crusader/CroiseIncarnation.png $
 $
-	* x210 y94 w42 h42 mData/Entities/Heroes/Crusader/Miracles/HolyTornado.miracle.hs $
-	* x210 y334 w42 h42 mData/Entities/Heroes/Crusader/Miracles/PowerShot.miracle.hs $
+	* e0 x210 y94 w42 h42 mData/Entities/Heroes/Crusader/Miracles/HolyTornado/HolyTornado $
 $

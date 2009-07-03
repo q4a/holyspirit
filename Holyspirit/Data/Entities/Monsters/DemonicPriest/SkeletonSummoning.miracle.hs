@@ -1,8 +1,10 @@
+$
+$
+$
 //Images
 	*Data/Entities/Monsters/DemonicPriest/DemoniacSphere1.png
 $
 //Sons
-	*Data/Sounds/47252__nthompson__rocketexpl.wav
 $
 //Effets
 	* t-1 l1 l1 $ // t pour le type, l c'est pour le lien, s pour la séquence et ia pour les infos relatives
@@ -16,7 +18,7 @@ $
 
 	*
 	//Tiles de la séquence
-		* x0 y256 w128 h128 i0 a1 lr128 lv255 lb128 li128 s0 n0.25 $
+		* x0 y256 w128 h128 i0 a1 lr128 lv255 lb128 li128  n0.25 $
 		* x128 y256 w128 h128 i0 a2 lr128 lv255 lb128 li256 n0.25 $
 		* x256 y256 w128 h128 i0 a3 lr128 lv255 lb128 li384 n0.25 $
 		* x384 y256 w128 h128 i0 a4 lr128 lv255 lb128 li512 n0.25 $

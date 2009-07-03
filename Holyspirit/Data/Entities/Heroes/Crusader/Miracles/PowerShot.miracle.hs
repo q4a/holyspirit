@@ -1,3 +1,6 @@
+$
+$
+$
 //Images
 	*Data/Entities/Heroes/Crusader/Miracles/FireEffect.png
 $

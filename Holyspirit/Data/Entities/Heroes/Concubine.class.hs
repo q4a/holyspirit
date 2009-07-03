@@ -71,5 +71,5 @@ $
 	* x0 y0 w800 h600 m Data/Menus/Concubine/CourtisaneAssassin.png $
 	* x0 y0 w800 h600 m Data/Menus/Concubine/CourtisaneCharme.png $
 $
-	* x210 y94 w42 h42 mData/Entities/Heroes/Concubine/Miracles/Toxic.miracle.hs $
+	* e0 x210 y94 w42 h42 mData/Entities/Heroes/Concubine/Miracles/Toxic/Toxic $
 $
