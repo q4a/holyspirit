@@ -101,15 +101,6 @@
          
          Chargement de l'objet : Necklage.item.hs
          
-         Chargement de l'objet : Heal_potion.item.hs
-         Chargement de : Data/Items/Images/Potions.png
-ERREUR : Impossible de charger : *
-ERREUR : Impossible de charger : i0
-         
-         Chargement de l'objet : Heal_potion.item.hs
-         
-         Chargement de l'objet : Heal_potion.item.hs
-         
          Chargement de l'objet : Necklage.item.hs
          
          Chargement de l'objet : Necklage.item.hs
@@ -135,6 +126,9 @@ ERREUR : Impossible de charger : i0
          Chargement de l'objet : Katzbalger.item.hs
          
          Chargement de l'objet : Heal_potion.item.hs
+         Chargement de : Data/Items/Images/Potions.png
+ERREUR : Impossible de charger : *
+ERREUR : Impossible de charger : i0
          
          Chargement de l'objet : Heal_potion.item.hs
          /Lectures des objets.
@@ -204,9 +198,6 @@ ERREUR : Impossible de charger : i0
          /Sauvegarde de Helmet.item.hs
          /Sauvegarde de Small_shield.item.hs
          /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Necklage.item.hs
@@ -286,9 +277,6 @@ ERREUR : Impossible de charger : i0
          /Sauvegarde de Helmet.item.hs
          /Sauvegarde de Small_shield.item.hs
          /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Necklage.item.hs
@@ -720,6 +708,118 @@ ERREUR : Impossible de charger : i0
          Chargement de la map terminé.
          
          
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Two_hands_sword/Katzbalger.rs.hs
+         Chargement de : KatzbalgerAttente0.png
+         Chargement de : KatzbalgerMarche0.png
+         Chargement de : KatzbalgerFrappe0.png
+         
+         Sauvegarde de la map : Data/Temp/ArableLand0.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map_ArableLand0.map.hs.emap.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Sacred_tiare.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         Sauvegarde de la map terminée !
+         
          Sauvegarde du héro...
          Ouverture du fichier.
          /Ecriture des caracterstiques.
@@ -752,9 +852,6 @@ ERREUR : Impossible de charger : i0
          /Sauvegarde de Helmet.item.hs
          /Sauvegarde de Small_shield.item.hs
          /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Necklage.item.hs
@@ -765,6 +862,209 @@ ERREUR : Impossible de charger : i0
          /Sauvegarde de Coal.item.hs
          /Sauvegarde de Long_sword.item.hs
          /Sauvegarde de Katzbalger.item.hs
+         /Ecriture des objets.
+         /Ecriture des miracles.
+         /Ecriture des quetes.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/Temp/ArableLand0.map.hs
+         /Sauvegarde de Small_axe.item.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map_ArableLand0.map.hs.emap.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Sacred_tiare.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Small_sword_divin.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Unique_boot.item.hs
+         /Sauvegarde de Small_sword_divin.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Gown.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Gown.item.hs
+         /Sauvegarde de Unique_shield.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Katzbalger.item.hs
+         /Ecriture des objets.
+         /Ecriture des miracles.
+         /Ecriture des quetes.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Small_sword_divin.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Unique_boot.item.hs
+         /Sauvegarde de Small_sword_divin.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Gown.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Gown.item.hs
+         /Sauvegarde de Unique_shield.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Katzbalger.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Ecriture des objets.
