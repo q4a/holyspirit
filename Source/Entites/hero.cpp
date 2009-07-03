@@ -404,7 +404,7 @@ void Hero::Charger()
     //}
     // closedir(repertoire);
 
-    m_classe.Charger(m_cheminClasse);
+    m_classe.Charger(m_cheminClasse, m_lvl_miracles);
 
     m_lvl_miracles.resize(m_classe.miracles.size(),0);
 
@@ -470,6 +470,9 @@ void Hero::ChargerModele(bool tout)
 
     int nombreArme=0;
     m_weaponMiracle=-1;
+
+    m_classe.miracles.clear();
+    m_classe.Charger(m_cheminClasse, m_lvl_miracles);
 
     for (int i=0;i<(int)m_inventaire.size();++i)
     {
@@ -999,19 +1002,21 @@ void Hero::AfficherMiracles(float decalage, int fenetreEnCours)
     texte.SetSize(12 * configuration->Resolution.h/600);
 
     for(int i = 0;i < (int)m_classe.position_miracles.size(); ++i)
-    {
-        std::ostringstream buf;
-        buf<<m_lvl_miracles[i]<<endl;
-        texte.SetText(buf.str());
-        texte.SetX(m_classe.position_miracles[i].x + (m_classe.position_miracles[i].w -texte.GetRect().Right + texte.GetRect().Left)/2);
-        texte.SetY(m_classe.position_miracles[i].y + 54 - decalage);
+        if(m_classe.page_miracles[i] == fenetreEnCours)
+        {
+            std::ostringstream buf;
+            buf<<m_lvl_miracles[i]<<endl;
+            texte.SetText(buf.str());
+            texte.SetX(m_classe.position_miracles[i].x + (m_classe.position_miracles[i].w -texte.GetRect().Right + texte.GetRect().Left)/2);
+            texte.SetY(m_classe.position_miracles[i].y + 54 - decalage);
 
-        moteurGraphique->AjouterTexte(&texte,15,0);
-    }
+            moteurGraphique->AjouterTexte(&texte,15,0);
+        }
 }
 
 void Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
 {
+    m_objetVise = -1;
     for (int i=0;i<(int)m_inventaire.size();++i)
         if (i!=m_objetEnMain)
         {
@@ -1277,6 +1282,7 @@ void Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
                     &&caseVisee.y>=m_inventaire[i].getPosition().y&&caseVisee.y<=m_inventaire[i].getPosition().y+m_inventaire[i].getTaille().y-1)
                 if (m_inventaire[i].m_equipe==-1)
                 {
+                    m_objetVise = i;
                     coordonnee temp=eventManager->getPositionSouris();
                     // temp.y-=32*configuration->Resolution.h/600;
                     temp.y+=48;
@@ -1530,20 +1536,25 @@ void Hero::StopMiracles()
 bool Hero::UtiliserMiracle(int miracle, Personnage *cible)
 {
     if (miracle>=0&&miracle<(int)m_classe.miracles.size())
-    {
-        if(cible != NULL && m_classe.miracles[miracle].m_effets[0].m_type == CORPS_A_CORPS || m_classe.miracles[miracle].m_effets[0].m_type != CORPS_A_CORPS )
+        if(m_lvl_miracles[miracle] > 0)
         {
-            m_personnage.m_miracleEnCours.push_back(EntiteMiracle ());
-            m_personnage.m_miracleEnCours.back().m_infos.push_back(InfosEntiteMiracle ());
+            if(m_classe.miracles[miracle].m_coutFoi <= m_caracteristiques.foi)
+                if(m_cas == m_classe.miracles[miracle].m_cas || m_classe.miracles[miracle].m_cas == -1)
+                    if(cible != NULL && m_classe.miracles[miracle].m_effets[0].m_type == CORPS_A_CORPS || m_classe.miracles[miracle].m_effets[0].m_type != CORPS_A_CORPS )
+                    {
+                        m_caracteristiques.foi -= m_classe.miracles[miracle].m_coutFoi;
 
-            m_personnage.m_miracleEnCours.back().m_modele=miracle;
+                        m_personnage.m_miracleEnCours.push_back(EntiteMiracle ());
+                        m_personnage.m_miracleEnCours.back().m_infos.push_back(InfosEntiteMiracle ());
 
-            m_personnage.m_miracleEnCours.back().m_infos.back().m_position.x=m_personnage.getCoordonneePixel().x;
-            m_personnage.m_miracleEnCours.back().m_infos.back().m_position.y=m_personnage.getCoordonneePixel().y;
+                        m_personnage.m_miracleEnCours.back().m_modele=miracle;
 
-            return 1;
+                        m_personnage.m_miracleEnCours.back().m_infos.back().m_position.x=m_personnage.getCoordonneePixel().x;
+                        m_personnage.m_miracleEnCours.back().m_infos.back().m_position.y=m_personnage.getCoordonneePixel().y;
+
+                        return 1;
+                    }
         }
-    }
     return 0;
 }
 

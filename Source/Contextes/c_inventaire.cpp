@@ -156,6 +156,12 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         eventManager->StopEvenement(Mouse::Left,"C");
     }
 
+    if (eventManager->getEvenement(Mouse::Right,"C"))
+    {
+        jeu->hero.UtiliserObjet(jeu->hero.m_objetVise);
+        eventManager->StopEvenement(Mouse::Right,"C");
+    }
+
     jeu->hero.m_defilement_trader -= eventManager->getMolette();
 
     if(eventManager->getEvenement(Mouse::Left,"CA"))

@@ -1704,11 +1704,18 @@ int Map::GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
                                 degats+=rand()%(int)(modeleMiracle->m_effets[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]].m_informations[1] - modeleMiracle->m_effets[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]].m_informations[0] + 1) + modeleMiracle->m_effets[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]].m_informations[0];
 
                     if (modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getImage()>=0&&modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getImage()<(int)modeleMiracle->m_image.size())
-                        image=modeleMiracle->m_image[modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getImage()];
+                        image = modeleMiracle->m_image[modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getImage()];
 
-                    entiteMiracle->m_infos[o].m_IDObjet=AjouterProjectile(entiteMiracle->m_infos[o].m_position,cible,lanceur,couche,modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[0],(float)modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[1]*M_PI/180,degats,monstre,&modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours],image);
-                    entiteMiracle->m_infos[o].m_imageEnCours=0;
+                    entiteMiracle->m_infos[o].m_IDObjet = AjouterProjectile(entiteMiracle->m_infos[o].m_position,
+                                                                            cible,lanceur,couche,modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[0],
+                                                                            (float)modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[1]*M_PI/180,degats,monstre,
+                                                                            &modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours],image);
+                    entiteMiracle->m_infos[o].m_imageEnCours = 0;
 
+                    if(modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[1])
+                        m_projectile.back().m_cible = cible;
+                    else
+                        m_projectile.back().m_cible = coordonnee (-1, -1);
                 }
 
             if (continuer)
@@ -2140,34 +2147,38 @@ void Map::AnimerMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,f
                     if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type==PROJECTILE)
                         if (personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet>=0 && personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet<(int)m_projectile.size())
                         {
-                            float tempsAnimation = miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getTemps();
-                            m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_animation+=temps;
-
-                            moteurGraphique->LightManager->Generate(m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_light);
-
-                            if (m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_animation>=tempsAnimation)
+                            if (m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_actif)
                             {
-                                if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence>=0&&miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_tile.size())
-                                    if (personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours>=0&&personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence].size())
-                                        personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getAnimation();
+                                float tempsAnimation = miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getTemps();
+                                m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_animation+=temps;
 
+                                moteurGraphique->LightManager->Generate(m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_light);
 
-                                m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_animation-=tempsAnimation;
-                                if (m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_actif)
+                                if (m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_animation>=tempsAnimation)
                                 {
-                                    m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_image=miracles[personnage->m_miracleEnCours[i].m_modele].m_image[miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getImage()];
-                                    m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_positionImage= miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getCoordonnee();
-                                    m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_centre= miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getCentre();
+                                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence>=0&&miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_tile.size())
+                                        if (personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours>=0&&personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence].size())
+                                            personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getAnimation();
 
-                                    m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere=miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getLumiere();
 
-                                    moteurGraphique->LightManager->SetIntensity(m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_light,m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere.intensite);
-                                    moteurGraphique->LightManager->SetRadius(m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_light,m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere.intensite*5);
+                                        m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_animation-=tempsAnimation;
 
-                                    personnage->m_miracleEnCours[i].m_infos[o].m_position=m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_position;
+                                        m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_image=miracles[personnage->m_miracleEnCours[i].m_modele].m_image[miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getImage()];
+                                        m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_positionImage= miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getCoordonnee();
+                                        m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_centre= miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getCentre();
+
+                                        m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere=miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getLumiere();
+
+                                        moteurGraphique->LightManager->SetIntensity(m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_light,m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere.intensite);
+                                        moteurGraphique->LightManager->SetRadius(m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_light,m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere.intensite*5);
+
+                                        personnage->m_miracleEnCours[i].m_infos[o].m_position=m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_position;
                                 }
-                                else
-                                {
+
+
+                            }
+                            else
+                            {
                                     for (int p=0;p<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien.size();p++)
                                     {
                                         personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
@@ -2175,11 +2186,9 @@ void Map::AnimerMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,f
                                         personnage->m_miracleEnCours[i].m_infos.back().m_position=personnage->m_miracleEnCours[i].m_infos[o].m_position;
                                     }
 
-                                    personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
+                                personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
 
-                                    continuer=false;
-                                }
-
+                                continuer=false;
                             }
 
                         }
@@ -2733,27 +2742,36 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
 
                     if (m_projectile[temp].m_position.y/COTE_TILE>=vueMin.y&&m_projectile[temp].m_position.y/COTE_TILE<vueMax.y&&m_projectile[temp].m_position.x/COTE_TILE>=vueMin.x&&m_projectile[temp].m_position.x/COTE_TILE<vueMax.x)
                     {
-                        if (m_decor[0][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()>=0&&m_decor[0][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()<(int)m_monstre.size()&&!m_projectile[temp].m_monstre)
-                            if (m_monstre[m_decor[0][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()].enVie())
-                            {
-                                m_projectile[temp].m_actif=false;
-                                InfligerDegats(m_decor[0][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre(),m_projectile[temp].m_degats,hero,false);
-                            }
-                        if (m_decor[1][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()>=0&&m_decor[1][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()<(int)m_monstre.size()&&!m_projectile[temp].m_monstre)
-                            if (m_monstre[m_decor[1][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()].enVie())
-                            {
-                                m_projectile[temp].m_actif=false;
-                                InfligerDegats(m_decor[1][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre(),m_projectile[temp].m_degats,hero,false);
-                            }
-
-                        if (hero->m_personnage.getCoordonnee().x==(int)((m_projectile[temp].m_position.x+32)/COTE_TILE)&&hero->m_personnage.getCoordonnee().y==(int)((m_projectile[temp].m_position.y+32)/COTE_TILE)&&m_projectile[temp].m_monstre)
+                        if(m_projectile[temp].m_cible.x == -1 && m_projectile[temp].m_cible.y == -1)
                         {
-                            m_projectile[temp].m_actif=false;
-                            hero->InfligerDegats(m_projectile[temp].m_degats);
+                            if(m_decor[0][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()>=0
+                            && m_decor[0][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()<(int)m_monstre.size()&&!m_projectile[temp].m_monstre)
+                                if (m_monstre[m_decor[0][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()].enVie())
+                                {
+                                    m_projectile[temp].m_actif=false;
+                                    InfligerDegats(m_decor[0][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre(),m_projectile[temp].m_degats,hero,false);
+                                }
+                            if(m_decor[1][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()>=0
+                            && m_decor[1][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()<(int)m_monstre.size()&&!m_projectile[temp].m_monstre)
+                                if (m_monstre[m_decor[1][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()].enVie())
+                                {
+                                    m_projectile[temp].m_actif=false;
+                                    InfligerDegats(m_decor[1][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre(),m_projectile[temp].m_degats,hero,false);
+                                }
+
+                            if (hero->m_personnage.getCoordonnee().x==(int)((m_projectile[temp].m_position.x+32)/COTE_TILE)&&hero->m_personnage.getCoordonnee().y==(int)((m_projectile[temp].m_position.y+32)/COTE_TILE)&&m_projectile[temp].m_monstre)
+                            {
+                                m_projectile[temp].m_actif=false;
+                                hero->InfligerDegats(m_projectile[temp].m_degats);
+                            }
                         }
+                        else if(m_projectile[temp].m_positionCase.x == m_projectile[temp].m_cible.x && m_projectile[temp].m_positionCase.y == m_projectile[temp].m_cible.y)
+                            m_projectile[temp].m_actif=false;
 
                         if (getTypeCase((int)(m_projectile[temp].m_positionCase.x),(int)(m_projectile[temp].m_positionCase.y))==1)
                             m_projectile[temp].m_actif=false;
+
+
 
                         if (m_projectile[temp].m_actif)
                         {

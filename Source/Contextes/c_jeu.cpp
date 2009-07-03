@@ -143,7 +143,7 @@ void c_Jeu::GererTemps(Jeu *jeu)
     if (jeu->hero.m_personnage.enVie())
     {
         jeu->hero.RegenererVie((float)jeu->hero.m_caracteristiques.maxVie*(float)(tempsEcoule/100));
-        jeu->hero.RegenererFoi((float)jeu->hero.m_caracteristiques.maxFoi*(float)(tempsEcoule/100));
+        jeu->hero.RegenererFoi((float)jeu->hero.m_caracteristiques.maxFoi*(float)(tempsEcoule/50));
     }
 
     jeu->Clock.Reset();

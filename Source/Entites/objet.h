@@ -112,7 +112,6 @@ private:
     int m_rarete,m_image,m_son,m_chanceTrouver;
     coordonnee m_positionImage,m_taille,m_position;
     int ai,aa,dii,dia,dai,daa;
-    int m_img_corner;
 };
 
 #endif

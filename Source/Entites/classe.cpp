@@ -18,6 +18,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "classe.h"
 #include "../globale.h"
 
+#include <sstream>
+
 using namespace std;
 
 
@@ -234,10 +236,17 @@ void                ChargerCoordonneeInterface(ifstream &fichier, coordonnee &co
 
 
 
-void Classe::Charger(string chemin)
+void Classe::Charger(string chemin, const std::vector<int> &lvl_miracles)
 {
     emplacements.clear();
     equipementParDefaut.clear();
+
+    interface_miracles.clear();
+
+    boutons_miracles.clear();
+
+    miracles.clear();
+    position_miracles.clear();
 
 
     ifstream fichier;
@@ -493,15 +502,22 @@ void Classe::Charger(string chemin)
             if (caractere=='*')
             {
                 position_miracles.push_back(coordonnee ());
+                page_miracles.push_back(0);
 
                 do
                 {
                     fichier.get(caractere);
                     if (caractere=='m')
                     {
-                        std::string temp;
-                        fichier>>temp;
-                        miracles.push_back(Miracle (temp));
+                        std::string buf;
+                        std::ostringstream temp;
+                        fichier>>buf;
+
+                        if(lvl_miracles.size() > miracles.size())
+                            temp << buf << lvl_miracles[miracles.size()] << ".miracle.hs";
+                        else
+                            temp << buf <<+ "0.miracle.hs";
+                        miracles.push_back(Miracle (temp.str()));
                     }
 
                     if (caractere=='x')
@@ -512,6 +528,9 @@ void Classe::Charger(string chemin)
                         fichier>>position_miracles.back().h;
                     if (caractere=='w')
                         fichier>>position_miracles.back().w;
+
+                    if(caractere=='e')
+                        fichier>>page_miracles.back();
 
                     if (fichier.eof())
                     {

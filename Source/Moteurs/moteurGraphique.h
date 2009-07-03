@@ -89,6 +89,8 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
     Lumiere m_soleil;
     float m_angleOmbreSoleil;
 
+    int m_img_corner;
+
     sf::Image m_light_screen;
     sf::Image m_light_screen2;
 

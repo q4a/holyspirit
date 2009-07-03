@@ -78,8 +78,6 @@ Objet::Objet()
     ai=0,aa=0,dii=0,dia=0,dai=0,daa=0;
     m_shoot_weapon=0;
 
-    m_img_corner = moteurGraphique->AjouterImage(configuration->chemin_menus + configuration->nom_corner);
-
     m_useMiracle = false;
 }
 
@@ -93,8 +91,6 @@ Objet::Objet(std::string nom, int rarete)
     m_capaciteBenediction=0;
 
     m_useMiracle = false;
-
-    m_img_corner = moteurGraphique->AjouterImage(configuration->chemin_menus + configuration->nom_corner);
 }
 
 Objet::~Objet()
@@ -1196,7 +1192,6 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
 {
     std::vector <sf::String> temp;
 
-
     sf::Sprite sprite;
     sf::String string;
 
@@ -1372,7 +1367,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
 
     sf::Sprite sprite2;
 
-    sprite2.SetImage(*moteurGraphique->getImage(m_img_corner));
+    sprite2.SetImage(*moteurGraphique->getImage(moteurGraphique->m_img_corner));
     sprite2.Resize(16,16);
     sprite2.SetColor(sf::Color(255,255,255,255));
     sprite2.SetY(position.y-2);

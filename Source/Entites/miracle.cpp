@@ -113,13 +113,109 @@ Miracle::~Miracle()
 
 void Miracle::Charger(std::string chemin)
 {
-    m_chemin=chemin;
+    m_max =     false;
+    m_chemin =  chemin;
+    m_cas =     -1;
 
     ifstream fichier;
     fichier.open(m_chemin.c_str(), ios::in);
     if (fichier)
     {
         char caractere;
+
+        do
+        {
+            fichier.get(caractere);
+            if (caractere=='*')
+            {
+                fichier>>m_nom;
+                for (int i=0;i<(int)m_nom.size();i++)
+                    if (m_nom[i]=='_')
+                        m_nom[i]=' ';
+            }
+
+            if (fichier.eof())
+            {
+                console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
+                caractere='$';
+            }
+        }
+        while (caractere!='$');
+
+        std::string description;
+
+        do
+        {
+            fichier.get(caractere);
+            if (caractere=='*')
+            {
+                fichier>>description;
+                for (int i=0;i<(int)description.size();i++)
+                    if (description[i]=='_')
+                        description[i]=' ';
+            }
+
+            if (fichier.eof())
+            {
+                console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
+                caractere='$';
+            }
+        }
+        while (caractere!='$');
+
+        std::string::size_type stTemp = description.find('\\');
+
+        while (stTemp !=  std::string::npos)
+        {
+            m_description.push_back(description.substr(0, stTemp)+'\n');
+            description = description.substr(stTemp + 1);
+            stTemp = description.find('\\');
+        }
+        m_description.push_back(description.substr(0, stTemp)+'\n');
+
+
+        do
+        {
+            fichier.get(caractere);
+            if (caractere=='*')
+            {
+                do
+                {
+                    fichier.get(caractere);
+                    switch (caractere)
+                    {
+                        case 'f':
+                            fichier>>m_coutFoi;
+                        break;
+
+                        case 'm':
+                            fichier>>m_max;
+                        break;
+
+                        case 'e':
+                            fichier>>m_cas;
+                        break;
+
+                    }
+                    if (fichier.eof())
+                    {
+                        console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
+                        caractere='$';
+                    }
+                }
+                while (caractere!='$');
+
+                fichier.get(caractere);
+            }
+
+            if (fichier.eof())
+            {
+                console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
+                caractere='$';
+            }
+        }
+        while (caractere!='$');
+
 
         do
         {
@@ -344,6 +440,7 @@ void Miracle::Charger(std::string chemin)
             }
         }
         while (caractere!='$');
+
         fichier.close();
     }
     else
@@ -398,4 +495,107 @@ void Miracle::Concatenencer(std::string chemin)
     }
 
 }
+
+
+
+sf::String Miracle::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color)
+{
+    sf::String string;
+
+    string.SetFont(moteurGraphique->m_font);
+
+    string.SetColor(color);
+
+    string.SetSize(12.f*(int)(configuration->Resolution.h/600));
+    string.SetText(chaine);
+
+    if (tailleCadran->x<((int)string.GetRect().Right-(int)string.GetRect().Left))
+        tailleCadran->x=((int)string.GetRect().Right-(int)string.GetRect().Left);
+
+    decalage->y+=(int)string.GetRect().Bottom-(int)string.GetRect().Top+5;
+
+    return string;
+}
+
+
+void Miracle::AfficherDescription(coordonnee position)
+{
+    std::vector <sf::String> temp;
+
+    sf::Sprite sprite;
+    sf::String string;
+
+    coordonnee tailleCadran,decalage(-10,0);
+
+    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_nom.c_str()));
+    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"---------------"));
+    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+
+    for (int i=0;i<(int)m_description.size();i++)
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_description[i].c_str()));
+
+
+
+    if (position.x-tailleCadran.x-10<0)
+        position.x=tailleCadran.x+10;
+
+    if (position.y+decalage.y+20>configuration->Resolution.h)
+        position.y=configuration->Resolution.h-decalage.y-20;
+
+    if (position.x+decalage.x+20>configuration->Resolution.w)
+        position.x=configuration->Resolution.w-decalage.x-20;
+
+    int decalY=0;
+    for (int i=0;i<(int)temp.size();i++)
+    {
+        temp[i].SetY((position.y+decalY+10));
+        temp[i].SetX(position.x+(tailleCadran.x/2-((int)temp[i].GetRect().Right-(int)temp[i].GetRect().Left)/2)-tailleCadran.x);
+
+        decalY+=(int)temp[i].GetRect().Bottom-(int)temp[i].GetRect().Top+5;
+
+        moteurGraphique->AjouterTexte(&temp[i],19);
+    }
+
+    tailleCadran.y=decalage.y;
+
+    tailleCadran.y+=20;
+    tailleCadran.x+=20;
+
+    sprite.SetImage(*moteurGraphique->getImage(0));
+    sprite.SetColor(sf::Color(0,0,0,248));
+    sprite.SetY(position.y);
+    sprite.SetX(position.x-tailleCadran.x+10);
+    sprite.Resize(tailleCadran.x,tailleCadran.y);
+    moteurGraphique->AjouterCommande(&sprite,19,0);
+
+    sf::Sprite sprite2;
+
+    sprite2.SetImage(*moteurGraphique->getImage(moteurGraphique->m_img_corner));
+    sprite2.Resize(16,16);
+    sprite2.SetColor(sf::Color(255,255,255,255));
+    sprite2.SetY(position.y-2);
+    sprite2.SetX(position.x-tailleCadran.x+10-2);
+    moteurGraphique->AjouterCommande(&sprite2,19,0);
+
+
+    sprite2.SetY(position.y-2);
+    sprite2.SetX(position.x+10+2);
+    sprite2.SetRotation(270);
+    moteurGraphique->AjouterCommande(&sprite2,19,0);
+
+    sprite2.SetY(position.y+tailleCadran.y+2);
+    sprite2.SetX(position.x+10+2);
+    sprite2.SetRotation(180);
+    moteurGraphique->AjouterCommande(&sprite2,19,0);
+
+    sprite2.SetY(position.y+tailleCadran.y+2);
+    sprite2.SetX(position.x+-tailleCadran.x+10-2);
+    sprite2.SetRotation(90);
+    moteurGraphique->AjouterCommande(&sprite2,19,0);
+
+
+    temp.clear();
+}
+
+
 

@@ -36,7 +36,8 @@ public:
     void Afficher(coordonnee position);
     void Deplacer(float temp);
 
-    bool m_monstre,m_actif;
+    bool m_monstre;
+    bool m_actif;
     int m_degats;
     coordonneeDecimal m_position,m_vecteur;
     coordonnee m_positionCase;
@@ -54,6 +55,8 @@ public:
     bool m_dejaDeplace;
 
     Light_Entity m_light;
+
+    coordonnee m_cible ; //Pour savoir si le projectile doit s'arreter à une case précise ou continuer jusqu'a rencontrer un obstacle, vaut -1 -1 si il doit continuer
 };
 
 class EffetGraphique
@@ -115,15 +118,26 @@ public:
     void Concatenencer(std::string chemin);
     void JouerSon(int numeroSon,coordonnee position,coordonnee positionHero);
 
+    void AfficherDescription(coordonnee position);
+    sf::String AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color=sf::Color(255,255,255));
+
+
 
     std::vector < std::vector <Tile> > m_tile;
-    std::vector <Effet> m_effets;
 
-    std::vector <int> m_image;
-    std::vector <int> m_sons;
-    std::string m_chemin;
+    std::vector <Effet>         m_effets;
 
-    int m_coutFoi;
+    std::vector <int>           m_image;
+    std::vector <int>           m_sons;
+    std::string                 m_chemin;
+
+    int                         m_coutFoi;
+
+    std::string                 m_nom;
+    std::vector<std::string>    m_description;
+
+    bool                        m_max;
+    int                         m_cas;
 };
 
 struct InfosEntiteMiracle
