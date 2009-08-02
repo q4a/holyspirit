@@ -369,6 +369,12 @@ int Personnage::getOrdre(Modele_Personnage *modele)
 
 void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,bool surbrillance)
 {
+    for(int i = 0; i < (int)m_effets.size(); ++i)
+    {
+        m_effets[i].m_effet.m_position = m_positionPixel;
+        m_effets[i].m_effet.Afficher();
+    }
+
     if (modele!=NULL)
         if (modele->m_pose.size()>0)
             if ((int)(m_angle/45)>=0&&(int)(m_angle/45)<8)
@@ -460,7 +466,7 @@ void Personnage::regenererVie(float vie)
         m_caracteristique.vie=m_caracteristique.maxVie;
 }
 
-int Personnage::pathfinding(casePathfinding** map,coordonnee exception)
+int Personnage::Pathfinding(casePathfinding** map,coordonnee exception)
 {
 
 
@@ -604,7 +610,7 @@ int Personnage::pathfinding(casePathfinding** map,coordonnee exception)
 }
 
 
-bool Personnage::seDeplacer(float tempsEcoule,coordonnee dimensionsMap)
+bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap)
 {
     int buf=(int)(tempsEcoule*1000);
     tempsEcoule=(float)buf/1000;
@@ -702,7 +708,7 @@ bool Personnage::seDeplacer(float tempsEcoule,coordonnee dimensionsMap)
     return 0;
 }
 
-void Personnage::infligerDegats(float degats)
+void Personnage::InfligerDegats(float degats)
 {
     m_caracteristique.vie-=degats;
 
@@ -712,9 +718,20 @@ void Personnage::infligerDegats(float degats)
     m_touche = true;
 }
 
-int Personnage::animer(Modele_Personnage *modele,float temps,bool *explosif,coordonnee positionHero)
+int Personnage::Animer(Modele_Personnage *modele,float temps,bool *explosif,coordonnee positionHero)
 {
     int retour=-2;
+
+    int nombreInactif = 0;
+    for(int i = 0; i < (int)m_effets.size(); ++i)
+    {
+        m_effets[i].m_effet.Animer(temps);
+        if(!m_effets[i].m_effet.m_actif)
+            ++nombreInactif;
+    }
+
+    if(nombreInactif == (int)m_effets.size())
+        m_effets.clear();
 
     m_animation+=temps;
 
@@ -775,7 +792,7 @@ int Personnage::animer(Modele_Personnage *modele,float temps,bool *explosif,coor
     return retour;
 }
 
-void Personnage::frappe(coordonnee direction,coordonnee position)
+void Personnage::Frappe(coordonnee direction,coordonnee position)
 {
     if (m_etat<2)
     {
@@ -800,7 +817,22 @@ void Personnage::frappe(coordonnee direction,coordonnee position)
 
     m_cheminFinal=m_positionCase;
     m_arrivee=m_cheminFinal;
+}
 
+int Personnage::AjouterEffet(std::vector<Tile> &tiles, int type, int compteur, int info1, int info2, int info3)
+{
+    m_effets.push_back(EffetPersonnage());
+
+    m_effets.back().m_effet.m_tiles     = tiles;
+    m_effets.back().m_effet.m_compteur  = compteur;
+    m_effets.back().m_effet.m_position  = m_positionPixel;
+
+    m_effets.back().m_type              = type;
+    m_effets.back().m_info1             = info1;
+    m_effets.back().m_info2             = info2;
+    m_effets.back().m_info3             = info3;
+
+    return m_effets.size() - 1;
 }
 
 
@@ -933,7 +965,7 @@ void Personnage::AjouterPointAme(int pointAme)
     m_caracteristique.pointAme+=pointAme;
 }
 
-bool Personnage::enVie()
+bool Personnage::EnVie()
 {
     if (m_caracteristique.vie>0) return 1;
     else return 0;

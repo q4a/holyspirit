@@ -46,9 +46,9 @@ public:
     void Afficher(coordonnee dimensionsMap);
     void CalculerOrdreAffichage();
 
-    void AfficherInventaire(float,std::vector<Objet>);
+    bool AfficherInventaire(float,std::vector<Objet>);
     void AfficherQuetes(float);
-    void AfficherMiracles(float , int );
+    bool AfficherMiracles(float , int );
     void AfficherCaracteristiques(float decalage);
     void AfficherRaccourcis();
 

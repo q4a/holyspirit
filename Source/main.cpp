@@ -16,11 +16,6 @@ You should have received a copy of the GNU General Public License along
 with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.*/
 
-
-
-
-#include <SFML/System.hpp>
-#include <SFML/Graphics.hpp>
 #include <iostream>
 
 #include <dirent.h>
@@ -36,24 +31,30 @@ MoteurGraphique *moteurGraphique;
 MoteurSons *moteurSons;
 EventManager *eventManager;
 
-int main ( int argc, char** argv )
+
+
+int main (  )
 {
     std::set_terminate( __gnu_cxx::__verbose_terminate_handler);
 
-    moteurGraphique=MoteurGraphique::GetInstance();
 
     configuration=Configuration::GetInstance();
-
-    moteurSons=MoteurSons::GetInstance();
     console=Console::GetInstance();
 
+    console->Ajouter("--------------------------------------------------------------------------------");
+    console->Ajouter("Demarrage du jeu",0);
+    console->Ajouter("--------------------------------------------------------------------------------");
+    console->Ajouter("");
+
+    console->Ajouter("Initialisation du moteur graphique");
+    moteurGraphique = MoteurGraphique::GetInstance();
+
+    console->Ajouter("Initialisation du moteur sonore");
+    moteurSons = MoteurSons::GetInstance();
+
+    console->Ajouter("");
 
     srand(time(NULL));
-
-    console->Ajouter("---------------------------------------------------------------------------------");
-    console->Ajouter("Demarrage du jeu",0);
-    console->Ajouter("---------------------------------------------------------------------------------");
-    console->Ajouter("");
 
     try
     {
@@ -62,12 +63,15 @@ int main ( int argc, char** argv )
 
         eventManager=EventManager::GetInstance();
 
-        moteurGraphique->CreateNewWindow();
-
         if (!sf::PostFX::CanUsePostFX())
-            configuration->postFX=false;
+            configuration->postFX = false;
 
         moteurGraphique->Charger();
+        moteurGraphique->CreateNewWindow();
+
+
+
+
         configuration->numero_screen=0;
         ///On démarre le jeu
         Jeu m_jeu;

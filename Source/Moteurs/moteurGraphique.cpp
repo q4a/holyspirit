@@ -26,19 +26,20 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 MoteurGraphique::MoteurGraphique()
 {
-    LightManager=Light_Manager::GetInstance();
+    LightManager = Light_Manager::GetInstance();
 
     m_images.push_back(Image_moteur ());
     m_images[0].img.Create(1024, 1024, sf::Color(255, 255, 255));
-    m_images[0].nom="O";
-    m_images[0].importance=-1;
 
-    m_soleil.rouge=255;
-    m_soleil.vert=255;
-    m_soleil.bleu=255;
-    m_soleil.intensite=255;
+    m_images[0].nom         = "O";
+    m_images[0].importance  = -1;
 
-    m_ecran=NULL;
+    m_soleil.rouge          = 255;
+    m_soleil.vert           = 255;
+    m_soleil.bleu           = 255;
+    m_soleil.intensite      = 255;
+
+   // m_ecran                 = NULL;
 }
 MoteurGraphique::~MoteurGraphique()
 {
@@ -48,41 +49,55 @@ MoteurGraphique::~MoteurGraphique()
     m_systemeParticules.clear();
     m_modeleSystemeParticules.clear();
 
-    if (m_ecran!=NULL)
+    m_ecran.Close();
+
+    /*if (m_ecran!=NULL)
     {
-        m_ecran->Close();
+        m_ecran.Close();
         delete m_ecran;
-    }
+    }*/
 }
 
 void MoteurGraphique::CreateNewWindow()
 {
-    if (m_ecran!=NULL)
+    /*if (m_ecran != NULL)
     {
-        m_ecran->Close();
+        m_ecran.Close();
         delete m_ecran;
     }
 
-    m_ecran = new sf::RenderWindow();
+    m_ecran = new sf::RenderWindow();*/
 
     if (!configuration->mode_fenetre)
-        m_ecran->Create(sf::VideoMode(configuration->Resolution.x, configuration->Resolution.y, 32),"HolySpirit : Act of Faith",sf::Style::Fullscreen);
+        m_ecran.Create(sf::VideoMode(configuration->Resolution.x, configuration->Resolution.y),"HolySpirit : Act of Faith",sf::Style::Fullscreen);
     else
-        m_ecran->Create(sf::VideoMode(configuration->Resolution.x, configuration->Resolution.y, 32),"HolySpirit : Act of Faith",sf::Style::Titlebar);
+        m_ecran.Create(sf::VideoMode(configuration->Resolution.x, configuration->Resolution.y),"HolySpirit : Act of Faith",sf::Style::Titlebar);
 
     if (configuration->syncronisation_verticale)
     {
-        m_ecran->UseVerticalSync(true);
-        m_ecran->SetFramerateLimit(30);
+        m_ecran.UseVerticalSync(true);
+        m_ecran.SetFramerateLimit(30);
     }
 
-    m_ecran->ShowMouseCursor(false);
+    m_ecran.ShowMouseCursor(false);
+
+    m_ecran.PreserveOpenGLStates(false);
+
+    if (configuration->postFX)
+    {
+        EffectBlur.SetTexture("framebuffer", NULL);
+        EffectNoir.SetTexture("framebuffer", NULL);
+        EffectMort.SetTexture("framebuffer", NULL);
+        EffectContrastes.SetTexture("framebuffer", NULL);
+        EffectFiltre.SetTexture("framebuffer", NULL);
+    }
+
 
     //m_light_screen.Create(configuration->Resolution.w + 64, configuration->Resolution.h + 64);
     //m_light_screen2.Create(configuration->Resolution.w, configuration->Resolution.h);
 
     //m_light_screen.Clear(sf::Color(255, 255, 255));
-    //m_light_screen2.Clear(sf::Color(255, 255, 255));
+   // m_light_screen2.Clear(sf::Color(255, 255, 255));
 }
 
 void MoteurGraphique::Charger()
@@ -171,42 +186,33 @@ void MoteurGraphique::Gerer(float temps,int tailleMapY)
 
 void MoteurGraphique::Afficher()
 {
-    configuration->Resolution.x=m_ecran->GetWidth();
-    configuration->Resolution.y=m_ecran->GetHeight();
+    //configuration->Resolution.x = m_ecran.GetWidth();
+    //configuration->Resolution.y = m_ecran.GetHeight();
 
     sf::Sprite sprite;
     sf::Sprite sprite2;
 
-    if (configuration->postFX)
-    {
-        EffectBlur.SetTexture("framebuffer", NULL);
-        EffectNoir.SetTexture("framebuffer", NULL);
-        EffectMort.SetTexture("framebuffer", NULL);
-        EffectContrastes.SetTexture("framebuffer", NULL);
-        EffectFiltre.SetTexture("framebuffer", NULL);
-    }
-
-    m_ecran->SetView(m_camera);
+    m_ecran.SetView(m_camera);
 
     if (configuration->RafraichirOmbre==1&&configuration->Ombre&&m_soleil.intensite>32)
     {
         decalageOmbre=m_camera.GetCenter();
 
-        m_ecran->Clear(sf::Color(255,255,255));
+        m_ecran.Clear(sf::Color(255,255,255));
 
-        LightManager->DrawWallShadow(m_ecran,&m_camera);
+        LightManager->DrawWallShadow(&m_ecran,&m_camera);
 
-        m_ecran->SetView(m_camera);
+        m_ecran.SetView(m_camera);
         sprite.SetBlendMode(sf::Blend::Alpha);
 
         for (IterCommande=m_commandes[9].begin();IterCommande!=m_commandes[9].end();++IterCommande)
         {
             sprite=IterCommande->m_sprite;
             sprite.SetColor(sf::Color(0,0,0,sprite.GetColor().a));
-            m_ecran->Draw(sprite);
+            m_ecran.Draw(sprite);
         }
 
-        m_ecran->SetView(m_ecran->GetDefaultView());
+        m_ecran.SetView(m_ecran.GetDefaultView());
 
         sf::Sprite sprite3;
         sprite3.SetX(0);
@@ -215,15 +221,15 @@ void MoteurGraphique::Afficher()
         sprite3.Resize(configuration->Resolution.w,configuration->Resolution.h);
         sprite3.SetColor(sf::Color(sf::Color((int)(128+128-m_soleil.intensite*0.5),(int)(128+128-m_soleil.intensite*0.5),(int)(128+128-m_soleil.intensite*0.5))));
         sprite3.SetBlendMode(sf::Blend::Add);
-        m_ecran->Draw(sprite3);
+        m_ecran.Draw(sprite3);
 
         if (configuration->postFX)
         {
             EffectBlur.SetParameter("offset",0.0075);
-            m_ecran->Draw(EffectBlur);
+            m_ecran.Draw(EffectBlur);
         }
 
-        m_light_screen2.CopyScreen(*m_ecran);
+        m_light_screen2.CopyScreen(m_ecran);
 
         configuration->RafraichirOmbre=2;
     }
@@ -232,31 +238,31 @@ void MoteurGraphique::Afficher()
     {
         decalageLumiere=m_camera.GetCenter();
 
-        m_ecran->SetView(m_camera);
+        m_ecran.SetView(m_camera);
 
-        m_ecran->Clear(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
+        m_ecran.Clear(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
 
         sprite2.SetColor(sf::Color(255,255,255,255));
 
-        LightManager->Draw(m_ecran,&m_camera);
+        LightManager->Draw(&m_ecran,&m_camera);
 
         if (configuration->postFX)
         {
             EffectBlur.SetParameter("offset",0.02);
-            m_ecran->Draw(EffectBlur);
+            m_ecran.Draw(EffectBlur);
         }
 
-        m_light_screen.CopyScreen(*m_ecran);
+        m_light_screen.CopyScreen(m_ecran);
 
         configuration->RafraichirLumiere=false;
     }
 
-    m_ecran->Clear();
+    m_ecran.Clear();
 
     for (int k=0;k<=20;k++)
     {
         if (k==12&&configuration->postFX)
-            m_ecran->Draw(EffectFiltre);
+            m_ecran.Draw(EffectFiltre);
 
         if (k==12&&configuration->Lumiere)
         {
@@ -267,8 +273,8 @@ void MoteurGraphique::Afficher()
             sprite2.SetX(0);
             sprite2.SetY(0);
 
-            m_ecran->SetView(m_ecran->GetDefaultView());
-            m_ecran->Draw(sprite2);
+            m_ecran.SetView(m_ecran.GetDefaultView());
+            m_ecran.Draw(sprite2);
         }
 
         if (k==10&&configuration->Ombre&&configuration->Ombre&&m_soleil.intensite>32)
@@ -280,8 +286,8 @@ void MoteurGraphique::Afficher()
             sprite2.SetX(decalageOmbre.x-m_camera.GetCenter().x);
             sprite2.SetY(decalageOmbre.y-m_camera.GetCenter().y);
 
-            m_ecran->SetView(m_ecran->GetDefaultView());
-            m_ecran->Draw(sprite2);
+            m_ecran.SetView(m_ecran.GetDefaultView());
+            m_ecran.Draw(sprite2);
         }
 
 
@@ -290,19 +296,19 @@ void MoteurGraphique::Afficher()
             for (IterCommande=m_commandes[k].begin();IterCommande!=m_commandes[k].end();++IterCommande)
             {
                 if (IterCommande->m_utiliserCamera)
-                    m_ecran->SetView(m_camera);
+                    m_ecran.SetView(m_camera);
                 else
-                    m_ecran->SetView(m_ecran->GetDefaultView());
+                    m_ecran.SetView(m_ecran.GetDefaultView());
 
-                m_ecran->Draw(IterCommande->m_sprite);
+                m_ecran.Draw(IterCommande->m_sprite);
             }
         }
 
 
         for (int i=0;i<(int)m_textes[k].size();i++)
         {
-            m_ecran->SetView(m_ecran->GetDefaultView());
-            m_ecran->Draw(m_textes[k][i]);
+            m_ecran.SetView(m_ecran.GetDefaultView());
+            m_ecran.Draw(m_textes[k][i]);
         }
 
         if (k==13&configuration->postFX)
@@ -314,12 +320,12 @@ void MoteurGraphique::Afficher()
                 sprite2.Resize(configuration->Resolution.w,configuration->Resolution.h);
                 sprite2.SetColor(sf::Color((int)configuration->luminosite*2,(int)configuration->luminosite*2,(int)configuration->luminosite*2,255));
                 sprite2.SetBlendMode(sf::Blend::Add);
-                m_ecran->Draw(sprite2);
+                m_ecran.Draw(sprite2);
             }
 
             if (configuration->contrastes>1&&configuration->postFX)
             {
-                m_ecran->Draw(EffectContrastes);
+                m_ecran.Draw(EffectContrastes);
                 EffectContrastes.SetParameter("color", configuration->contrastes-1, configuration->contrastes-1, configuration->contrastes-1);
             }
         }
@@ -332,37 +338,27 @@ void MoteurGraphique::Afficher()
             if (m_blur>0)
             {
                 EffectBlur.SetParameter("offset",(float)m_blur);
-                m_ecran->Draw(EffectBlur);
-                m_ecran->Draw(EffectBlur);
-                m_ecran->Draw(EffectBlur);
+                m_ecran.Draw(EffectBlur);
+                m_ecran.Draw(EffectBlur);
+                m_ecran.Draw(EffectBlur);
             }
             if (configuration->effetMort>0)
-                m_ecran->Draw(EffectMort);
+                m_ecran.Draw(EffectMort);
         }
     }
 
     if (configuration->effetNoir>0)
     {
-        if (configuration->postFX)
-        {
-            EffectNoir.SetParameter("color", configuration->effetNoir, configuration->effetNoir, configuration->effetNoir);
-            m_ecran->Draw(EffectNoir);
-        }
-        else
-        {
-            sf::Sprite sprite2;
-            sprite2.SetImage(*getImage(0));
-            sprite2.Resize(configuration->Resolution.w,configuration->Resolution.h);
-            sprite2.SetColor(sf::Color((int)(configuration->effetNoir*255),(int)(configuration->effetNoir*255),(int)(configuration->effetNoir*255),255));
-            sprite2.SetBlendMode(sf::Blend::Multiply);
-            m_ecran->Draw(sprite2);
-        }
+        sf::Sprite sprite2;
+        sprite2.SetImage(*getImage(0));
+        sprite2.Resize(configuration->Resolution.w,configuration->Resolution.h);
+        sprite2.SetColor(sf::Color((int)(configuration->effetNoir*255),(int)(configuration->effetNoir*255),(int)(configuration->effetNoir*255),255));
+        sprite2.SetBlendMode(sf::Blend::Multiply);
+        m_ecran.Draw(sprite2);
     }
 
 
-
-
-    m_ecran->Display();
+    m_ecran.Display();
     Vider();
 }
 
@@ -602,16 +598,16 @@ std::string MoteurGraphique::getCheminImage(int IDimage)
 
 bool MoteurGraphique::getEvent(sf::Event &EventReceived)
 {
-    return m_ecran->GetEvent(EventReceived);
+    return m_ecran.GetEvent(EventReceived);
 }
 
 coordonnee MoteurGraphique::getPositionSouris()
 {
-    m_ecran->SetView(m_camera);
+    m_ecran.SetView(m_camera);
     coordonnee pos;
 
-    pos.x=(int)m_ecran->ConvertCoords(m_ecran->GetInput().GetMouseX(), m_ecran->GetInput().GetMouseY()).x;
-    pos.y=(int)m_ecran->ConvertCoords(m_ecran->GetInput().GetMouseX(), m_ecran->GetInput().GetMouseY()).y;
+    pos.x=(int)m_ecran.ConvertCoords(m_ecran.GetInput().GetMouseX(), m_ecran.GetInput().GetMouseY()).x;
+    pos.y=(int)m_ecran.ConvertCoords(m_ecran.GetInput().GetMouseX(), m_ecran.GetInput().GetMouseY()).y;
 
     return pos;
 }
@@ -620,13 +616,13 @@ void MoteurGraphique::Printscreen()
 {
     std::ostringstream buf;
     buf<<"screenshot"<<configuration->numero_screen<<".png";
-    sf::Image Screen = m_ecran->Capture();
+    sf::Image Screen = m_ecran.Capture();
     Screen.SaveToFile(buf.str());
     configuration->numero_screen++;
 }
 
 int MoteurGraphique::GetFPS()
 {
-    return (int)( 1.f / m_ecran->GetFrameTime());
+    return (int)( 1.f / m_ecran.GetFrameTime());
 }
 

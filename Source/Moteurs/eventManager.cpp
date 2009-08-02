@@ -189,14 +189,18 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
         m_casePointee.y=tailleMap.y;
 }
 
-void EventManager::AfficherCurseur()
+void EventManager::AfficherCurseur(bool transparent)
 {
     Sprite Sprite;
     Sprite.SetImage(*moteurGraphique->getImage(idcurseur));
-    if (configuration->Resolution.x>0)
+    if (configuration->Resolution.x > 0)
         Sprite.SetX(m_positionSouris.x*configuration->Resolution.w/configuration->Resolution.x);
-    if (configuration->Resolution.y>0)
+    if (configuration->Resolution.y > 0)
         Sprite.SetY(m_positionSouris.y*configuration->Resolution.h/configuration->Resolution.y);
+
+    if(transparent)
+        Sprite.SetColor(sf::Color(255,255,255,64));
+
     moteurGraphique->AjouterCommande(&Sprite,20,0);
 }
 

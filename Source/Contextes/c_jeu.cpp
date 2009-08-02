@@ -129,7 +129,7 @@ void c_Jeu::GererTemps(Jeu *jeu)
         tempsEffetMort+=tempsEcoule*10;
     else
         tempsEffetMort-=tempsEcoule;
-    if (!jeu->hero.m_personnage.enVie())
+    if (!jeu->hero.m_personnage.EnVie())
         tempsEffetMort=1;
 
     if (tempsEffetMort>1)
@@ -140,7 +140,7 @@ void c_Jeu::GererTemps(Jeu *jeu)
 
     jeu->hero.AugmenterAme(tempsEcoule);
     jeu->hero.RecalculerCaracteristiques();
-    if (jeu->hero.m_personnage.enVie())
+    if (jeu->hero.m_personnage.EnVie())
     {
         jeu->hero.RegenererVie((float)jeu->hero.m_caracteristiques.maxVie*(float)(tempsEcoule/100));
         jeu->hero.RegenererFoi((float)jeu->hero.m_caracteristiques.maxFoi*(float)(tempsEcoule/50));
@@ -148,7 +148,7 @@ void c_Jeu::GererTemps(Jeu *jeu)
 
     jeu->Clock.Reset();
 
-    if (jeu->hero.m_personnage.enVie())
+    if (jeu->hero.m_personnage.EnVie())
     {
         if (jeu->hero.m_caracteristiques.maxVie!=0)
         {
@@ -177,7 +177,7 @@ void c_Jeu::Deplacements(Jeu *jeu)
         if (jeu->hero.getMonstreVise()==-1)
             temp.x=jeu->hero.m_personnage.getCoordonnee().x,temp.y=jeu->hero.m_personnage.getCoordonnee().y;
 
-        if (jeu->hero.m_personnage.seDeplacer(tempsEcouleDepuisDernierDeplacement*100,jeu->map->getDimensions()))
+        if (jeu->hero.m_personnage.SeDeplacer(tempsEcouleDepuisDernierDeplacement*100,jeu->map->getDimensions()))
         {
             bool ok=true;
             if (jeu->hero.getMonstreVise()>-1)
@@ -188,12 +188,12 @@ void c_Jeu::Deplacements(Jeu *jeu)
                 ok=false;
 
             if (ok)
-                jeu->hero.m_personnage.pathfinding(jeu->map->getAlentourDuPersonnage(jeu->hero.m_personnage.getCoordonnee()),temp); // Recherche du chemin
+                jeu->hero.m_personnage.Pathfinding(jeu->map->getAlentourDuPersonnage(jeu->hero.m_personnage.getCoordonnee()),temp); // Recherche du chemin
 
             if (eventManager->getEvenement(Mouse::Left,"CA")&&eventManager->getEvenement(Key::LShift,"ET"))
             {
                 coordonnee temp((int)(eventManager->getCasePointee().x*COTE_TILE),(int)(eventManager->getCasePointee().y*COTE_TILE));
-                jeu->hero.m_personnage.frappe(jeu->hero.m_personnage.getCoordonneePixel(),temp);
+                jeu->hero.m_personnage.Frappe(jeu->hero.m_personnage.getCoordonneePixel(),temp);
             }
         }
 
@@ -228,7 +228,7 @@ void c_Jeu::Animation(Jeu *jeu)
 
         bool a; // Variable qui ne sert pas ici, mais qui remplace le explosif des monstres
         int retour=-2;
-        retour=jeu->hero.m_personnage.animer(&jeu->hero.m_modelePersonnage[0],tempsDepuisDerniereAnimation,&a,positionHero);
+        retour=jeu->hero.m_personnage.Animer(&jeu->hero.m_modelePersonnage[0],tempsDepuisDerniereAnimation,&a,positionHero);
 
         jeu->hero.CalculerOrdreAffichage();
 
@@ -450,7 +450,12 @@ void c_Jeu::Evenements(Jeu *jeu)
             {
                 jeu->hero.m_personnage.m_miracleEnCours.back().m_cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine());
 
+                coordonnee positionHero;
+                positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
+                positionHero.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
+
                 jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),cible,1);
+                jeu->map->AnimerMiracle(&jeu->hero.m_personnage,jeu->hero.m_classe.miracles,tempsDepuisDerniereAnimation,positionHero,&jeu->hero);
             }
             else
                 jeu->hero.m_personnage.setArrivee(eventManager->getCasePointee());

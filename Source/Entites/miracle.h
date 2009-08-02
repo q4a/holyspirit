@@ -29,56 +29,65 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 class Personnage;
 
 enum  {PROJECTILE,CORPS_A_CORPS,DEGATS,EFFET_GRAPHIQUE,INVOCATION,AURA,SOIN,M_EXPLOSION,REPETITION};
+enum  {AURA_REGENERATION, AURA_DEGATS};
+enum  {PHYSIQUE, FEU, CORROSION, FOI};
+
+class EffetGraphique
+{
+public:
+    EffetGraphique();
+    void Afficher(float rotation = 0);
+    void Animer(float temps);
+
+    bool m_actif;
+    coordonneeDecimal m_position;
+
+    std::vector <Tile> m_tiles;
+
+    int m_compteur;
+    float m_animation;
+    int m_couche;
+    int m_tileEnCours;
+
+    Light_Entity m_light;
+};
+
+class EffetPersonnage
+{
+public:
+    void Afficher();
+
+    EffetGraphique  m_effet;
+    int             m_type;
+    float           m_info1;
+    float           m_info2;
+    float           m_info3;
+};
+
 
 class Projectile
 {
 public:
-    void Afficher(coordonnee position);
+    void Afficher();
     void Deplacer(float temp);
 
     bool m_monstre;
     bool m_actif;
+    bool m_supprime;
     int m_degats;
     coordonneeDecimal m_position,m_vecteur;
     coordonnee m_positionCase;
     float m_rotation,m_rotationReelle;
 
-    int m_image;
-    coordonnee m_positionImage;
-    coordonnee m_centre;
-
-    Lumiere m_lumiere;
-
-    float m_animation;
-    int m_couche;
-
+    EffetGraphique m_effet;
     bool m_dejaDeplace;
 
-    Light_Entity m_light;
 
     coordonnee m_cible ; //Pour savoir si le projectile doit s'arreter à une case précise ou continuer jusqu'a rencontrer un obstacle, vaut -1 -1 si il doit continuer
+    coordonnee m_depart;
 };
 
-class EffetGraphique
-{
-public:
-    void Afficher(coordonnee position);
 
-    bool m_actif;
-    coordonneeDecimal m_position;
-
-    int m_image;
-    int m_compteur;
-    coordonnee m_positionImage;
-    coordonnee m_centre;
-
-    Lumiere m_lumiere;
-
-    float m_animation;
-    int m_couche;
-
-    Light_Entity m_light;
-};
 
 struct Effet
 {
@@ -132,6 +141,10 @@ public:
     std::string                 m_chemin;
 
     int                         m_coutFoi;
+    int                         m_reserveFoi;
+
+    int                         m_coutVie;
+    int                         m_reserveVie;
 
     std::string                 m_nom;
     std::vector<std::string>    m_description;
@@ -145,7 +158,6 @@ struct InfosEntiteMiracle
     InfosEntiteMiracle()
     {
         m_effetEnCours=0;
-        m_imageEnCours=0;
         m_IDObjet=-1;
 
         m_position.x=0;
@@ -160,12 +172,11 @@ struct InfosEntiteMiracle
         m_informations[4]=0;
     }
 
-    int m_effetEnCours;
-    int m_imageEnCours;
-    int m_IDObjet;
-    float m_informations[5];
+    int        m_effetEnCours;
+    int        m_IDObjet;
+    float               m_informations[5];
 
-    coordonneeDecimal m_position;
+    coordonneeDecimal   m_position;
 };
 
 class EntiteMiracle

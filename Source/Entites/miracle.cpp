@@ -29,66 +29,113 @@ using namespace sf;
 
 
 
-void Projectile::Afficher(coordonnee position)
+void Projectile::Afficher()
 {
     if (m_actif)
+        m_effet.Afficher((-(m_rotation)*180/M_PI));
+}
+
+EffetGraphique::EffetGraphique()
+{
+    m_tileEnCours   = 0;
+    m_actif         = true;
+    m_compteur      = -100;
+    m_light         = moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),0,0,4,sf::Color(0,0,0));
+}
+
+void EffetGraphique::Afficher(float rotation)
+{
+    if (m_actif && m_tileEnCours >= 0 && m_tileEnCours < (int)m_tiles.size())
     {
         Sprite sprite;
 
-        sprite.SetImage(*moteurGraphique->getImage(m_image));
-        sprite.SetSubRect(IntRect(m_positionImage.x, m_positionImage.y, m_positionImage.x+m_positionImage.w, m_positionImage.y+m_positionImage.h));
+        sprite.SetImage(*moteurGraphique->getImage(m_tiles[m_tileEnCours].getImage()));
+        sprite.SetSubRect(IntRect(  m_tiles[m_tileEnCours].getCoordonnee().x,
+                                    m_tiles[m_tileEnCours].getCoordonnee().y,
+                                    m_tiles[m_tileEnCours].getCoordonnee().x + m_tiles[m_tileEnCours].getCoordonnee().w,
+                                    m_tiles[m_tileEnCours].getCoordonnee().y + m_tiles[m_tileEnCours].getCoordonnee().h));
 
         sprite.FlipX(false);
 
-        sprite.SetX(((m_position.x-m_position.y)*64/COTE_TILE) - (m_centre.x - m_positionImage.w/2) * cos(-m_rotationReelle-M_PI/4));
-        sprite.SetY(((m_position.x+m_position.y)*64/COTE_TILE)/2+(64-sprite.GetSize().y)+16);
+        sprite.SetX(((m_position.x - m_position.y) * 64 / COTE_TILE));
+        sprite.SetY(((m_position.x + m_position.y) * 64 / COTE_TILE) * 0.5);
 
-        sprite.SetOrigin(m_centre.x,m_centre.y);
+        sprite.SetOrigin(m_tiles[m_tileEnCours].getCentre().x,m_tiles[m_tileEnCours].getCentre().y);
 
-        sprite.Rotate((-(m_rotation)*180/M_PI));
+        sprite.Rotate(rotation);
 
-        if (sprite.GetPosition().x+sprite.GetSize().x>=moteurGraphique->m_camera.GetRect().Left
-                &&sprite.GetPosition().x<moteurGraphique->m_camera.GetRect().Right
-                &&sprite.GetPosition().y+sprite.GetSize().y>=moteurGraphique->m_camera.GetRect().Top
-                &&sprite.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)
+        if (sprite.GetPosition().x + sprite.GetSize().x  >= moteurGraphique->m_camera.GetRect().Left
+                && sprite.GetPosition().x                       <  moteurGraphique->m_camera.GetRect().Right
+                && sprite.GetPosition().y + sprite.GetSize().y  >= moteurGraphique->m_camera.GetRect().Top
+                && sprite.GetPosition().y                       <  moteurGraphique->m_camera.GetRect().Bottom)
             moteurGraphique->AjouterCommande(&sprite,10,1);
     }
 }
 
-void EffetGraphique::Afficher(coordonnee position)
+void EffetGraphique::Animer(float temps)
 {
-    if (m_actif)
+    if(m_actif)
     {
-        Sprite sprite;
+        float tempsAnimation = m_tiles[m_tileEnCours].getTemps();
+        m_animation += temps;
 
-        sprite.SetImage(*moteurGraphique->getImage(m_image));
-        sprite.SetSubRect(IntRect(m_positionImage.x, m_positionImage.y, m_positionImage.x+m_positionImage.w, m_positionImage.y+m_positionImage.h));
+        if (m_animation >= tempsAnimation)
+        {
+            m_tileEnCours = m_tiles[m_tileEnCours].getAnimation();
 
-        sprite.FlipX(false);
+            m_animation-=tempsAnimation;
 
-        sprite.SetX(((m_position.x-m_position.y)*64/COTE_TILE)/*-64+(64-sprite.GetSize().x/2)*/);
-        sprite.SetY(((m_position.x+m_position.y)*64/COTE_TILE)/2/*+(64-sprite.GetSize().y)+16*/);
+            if (m_compteur > 0 || m_compteur == -100)
+            {
+                if(m_compteur != -100)
+                    m_compteur--;
 
-        sprite.SetOrigin(m_centre.x,m_centre.y);
+                sf::Vector2f pos;
+                pos.x = (m_position.x - m_position.y);
+                pos.y = (m_position.x + m_position.y);
 
-        if (sprite.GetPosition().x+sprite.GetSize().x>=moteurGraphique->m_camera.GetRect().Left
-                &&sprite.GetPosition().x<moteurGraphique->m_camera.GetRect().Right
-                &&sprite.GetPosition().y+sprite.GetSize().y>=moteurGraphique->m_camera.GetRect().Top
-                &&sprite.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)
-            moteurGraphique->AjouterCommande(&sprite,10,1);
+                moteurGraphique->LightManager->SetPosition  (m_light,pos);
+                moteurGraphique->LightManager->SetIntensity (m_light,m_tiles[m_tileEnCours].getLumiere().intensite);
+                moteurGraphique->LightManager->SetRadius    (m_light,m_tiles[m_tileEnCours].getLumiere().intensite*5);
+                moteurGraphique->LightManager->SetColor     (m_light,
+                        sf::Color(  m_tiles[m_tileEnCours].getLumiere().rouge,
+                                    m_tiles[m_tileEnCours].getLumiere().vert,
+                                    m_tiles[m_tileEnCours].getLumiere().bleu));
+
+
+                if (m_tiles[m_tileEnCours].getSon() >= 0)
+                {
+                    coordonnee positionHero;
+                    coordonnee position;
+                    position.x=-(m_position.x/COTE_TILE - m_position.y/COTE_TILE-1)/5;
+                    position.y=(m_position.x/COTE_TILE + m_position.y/COTE_TILE)/5;
+
+                    moteurSons->JouerSon(m_tiles[m_tileEnCours].getSon(), position, positionHero,0);
+                }
+            }
+
+            moteurGraphique->LightManager->Generate(m_light);
+
+            if (m_compteur <= 0 && m_compteur != -100)
+                m_actif=false;
+        }
     }
+    else
+        moteurGraphique->LightManager->Delete_Light(m_light);
 }
 
 void Projectile::Deplacer(float temps)
 {
-    m_position.x+=m_vecteur.x*temps*500;
-    m_position.y+=m_vecteur.y*temps*500;
+    m_position.x += m_vecteur.x*temps*500;
+    m_position.y += m_vecteur.y*temps*500;
 
     sf::Vector2f pos;
     pos.x=(((m_position.x-m_position.y)*64/COTE_TILE));
     pos.y=(((m_position.x+m_position.y)*64/COTE_TILE)/2+32)*2;
 
-    moteurGraphique->LightManager->SetPosition(m_light,pos);
+    moteurGraphique->LightManager->SetPosition(m_effet.m_light,pos);
+
+    m_effet.m_position = m_position;
 }
 
 
@@ -113,9 +160,13 @@ Miracle::~Miracle()
 
 void Miracle::Charger(std::string chemin)
 {
-    m_max =     false;
-    m_chemin =  chemin;
-    m_cas =     -1;
+    m_max        =  false;
+    m_chemin     =  chemin;
+    m_cas        =  -1;
+    m_reserveFoi =  0;
+    m_coutFoi    =  0;
+    m_reserveVie =  0;
+    m_coutVie    =  0;
 
     ifstream fichier;
     fichier.open(m_chemin.c_str(), ios::in);
@@ -184,16 +235,28 @@ void Miracle::Charger(std::string chemin)
                     fichier.get(caractere);
                     switch (caractere)
                     {
-                        case 'f':
-                            fichier>>m_coutFoi;
+                    case 'f':
+                        fichier>>m_coutFoi;
                         break;
 
-                        case 'm':
-                            fichier>>m_max;
+                    case 'F':
+                        fichier>>m_reserveFoi;
                         break;
 
-                        case 'e':
-                            fichier>>m_cas;
+                    case 'v':
+                        fichier>>m_coutVie;
+                        break;
+
+                    case 'V':
+                        fichier>>m_reserveVie;
+                        break;
+
+                    case 'm':
+                        fichier>>m_max;
+                        break;
+
+                    case 'e':
+                        fichier>>m_cas;
                         break;
 
                     }
@@ -413,10 +476,20 @@ void Miracle::Charger(std::string chemin)
                         }
                         while (caractere!='$');
 
-                        if(centre.x == -100)
+                        if (centre.x == -100)
                             centre.x = position.w / 2;
-                        if(centre.y == -100)
+                        if (centre.y == -100)
                             centre.y = position.h - 32;
+
+                        if (image >= 0 && image < m_image.size())
+                            image = m_image[image];
+                        else
+                            image = -1;
+
+                        if (son >= 0 && son < m_sons.size())
+                            son = m_sons[son];
+                        else
+                            son = -1;
 
                         //AjouterTile(position,collision,animation,son,lumiere,ombre,orientation);
                         m_tile.back().push_back(Tile());
@@ -470,26 +543,26 @@ void Miracle::Concatenencer(std::string chemin)
     int tailleSon=m_sons.size();
     int tailleTile=m_tile.size();
 
-    for(int i=0;i<(int)miracle.m_tile.size();i++)
+    for (int i=0;i<(int)miracle.m_tile.size();i++)
     {
         m_tile.push_back(miracle.m_tile[i]);
-        for(int j=0;j<(int)m_tile.back().size();j++)
+        for (int j=0;j<(int)m_tile.back().size();j++)
         {
             m_tile.back()[j].setImage(m_tile.back()[j].getImage()+tailleImage);
-            if(m_tile.back()[j].getSon()!=-1)
+            if (m_tile.back()[j].getSon()!=-1)
                 m_tile.back()[j].setSon(m_tile.back()[j].getSon()+tailleSon);
         }
     }
 
-    for(int i=0;i<(int)miracle.m_image.size();i++)
+    for (int i=0;i<(int)miracle.m_image.size();i++)
         m_image.push_back(miracle.m_image[i]);
-    for(int i=0;i<(int)miracle.m_sons.size();i++)
+    for (int i=0;i<(int)miracle.m_sons.size();i++)
         m_sons.push_back(miracle.m_sons[i]);
 
-    for(int i=0;i<(int)miracle.m_effets.size();i++)
+    for (int i=0;i<(int)miracle.m_effets.size();i++)
     {
         m_effets.push_back(miracle.m_effets[i]);
-        for(int j=0;j<(int)m_effets.back().m_lien.size();j++)
+        for (int j=0;j<(int)m_effets.back().m_lien.size();j++)
             m_effets.back().m_lien[j]+=tailleEffets;
         m_effets.back().m_sequence+=tailleTile;
     }

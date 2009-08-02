@@ -71,31 +71,27 @@ class Personnage
 public:
     Personnage();
 
-
-
-    const coordonnee &getCoordonnee();
-    const coordonnee &getArrivee();
-    const coordonneeDecimal &getCoordonneePixel();
-    const coordonnee &getProchaineCase();
-    bool getErreurPathfinding();
-    bool enVie();
-    int animer(Modele_Personnage *modele,float temps,bool *explosif,coordonnee positionHero);
+    bool EnVie();
+    int Animer(Modele_Personnage *modele,float temps,bool *explosif,coordonnee positionHero);
 
     void Pousser(coordonnee vecteur);
     void PousserCase(coordonnee vecteur);
 
-    bool seDeplacer(float,coordonnee dimensionsMap);
-    void setCoordonnee(coordonnee nouvellesCoordonnees);
+    bool SeDeplacer(float,coordonnee dimensionsMap);
+
     void Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,bool surbrillance=false);
 
-    int pathfinding(casePathfinding** map,coordonnee exception);
+    int Pathfinding(casePathfinding** map,coordonnee exception);
 
-    void frappe(coordonnee direction,coordonnee position);
+    void Frappe(coordonnee direction,coordonnee position);
 
+    void InfligerDegats(float degats);
 
-    void infligerDegats(float degats);
+    int AjouterEffet(std::vector<Tile> &tiles, int type, int compteur, int info1, int info2, int info3);
 
     void setErreurPathfinding(bool);
+
+    void setCoordonnee(coordonnee nouvellesCoordonnees);
 
     void setArrivee(coordonnee arrivee);
     void setMauvaiseArrivee(coordonnee arrivee);
@@ -119,9 +115,18 @@ public:
     const Caracteristique &getCaracteristique();
     const std::string &getNom();
 
+    const coordonnee &getCoordonnee();
+    const coordonnee &getArrivee();
+    const coordonneeDecimal &getCoordonneePixel();
+    const coordonnee &getProchaineCase();
+    bool getErreurPathfinding();
+
     int getOrdre(Modele_Personnage *modele);
 
-    LumiereOmbrage m_lumiere;
+
+
+
+    Lumiere m_lumiere;
     bool frappeEnCours;
     bool m_shooter,m_monstre;
     bool m_touche;
@@ -131,6 +136,8 @@ public:
 
     int m_miracleALancer;
     std::vector <EntiteMiracle> m_miracleEnCours;
+
+    std::vector <EffetPersonnage> m_effets;
 
 protected:
     int m_etat,m_poseEnCours,m_angle;

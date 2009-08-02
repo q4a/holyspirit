@@ -129,7 +129,15 @@ void c_Chargement::Utiliser(Jeu *jeu)
         moteurGraphique->ViderParticules();
         moteurSons->StopAllSounds();
 
-        if (jeu->map!=NULL&&!m_debut)
+       /* {
+            cDAT reader;
+            if (reader.Read(configuration->chemin_saves+"hero.sav.hs"))
+                for (int i=0;i<(int)reader.GetNumberFile();i++)
+                    if (reader.GetFileName(i)!=configuration->chemin_temps+"hero.sav.txt")
+                        reader.ExportFile(i),jeu->hero.m_contenuSave.push_back(reader.GetFileName(i));
+        }*/
+
+        if (jeu->map!=NULL && !m_debut)
            jeu->map->Sauvegarder(&jeu->hero);
 
         jeu->hero.Sauvegarder();

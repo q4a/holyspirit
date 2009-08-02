@@ -35,7 +35,7 @@ class EventManager : public CSingleton<EventManager>
 
 	EventManager();
 	void GererLesEvenements(bool *continuer,float temps,coordonnee tailleMap);
-	void AfficherCurseur();
+	void AfficherCurseur(bool transparent = false);
 
 	void StopEvenement(int numeroEvenement,std::string evenement);
 

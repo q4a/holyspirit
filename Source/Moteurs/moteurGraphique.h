@@ -114,7 +114,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	std::vector <Commande>::iterator IterCommande;
 
-	sf::RenderWindow *m_ecran;
+	sf::RenderWindow m_ecran;
 
 };
 

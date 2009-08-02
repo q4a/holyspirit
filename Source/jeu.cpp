@@ -30,6 +30,7 @@ void lireVideo(sf::RenderWindow *ecran,std::string Chemin);
 using namespace sf;
 
 
+
 Jeu::Jeu()
 {
     m_reset=false;
@@ -71,7 +72,7 @@ void Jeu::Demarrer()
     m_display = true;
     while (m_run)
     {
-        if(map!=NULL)
+        if(map != NULL)
             eventManager->GererLesEvenements(&m_run,Clock.GetElapsedTime(),map->getDimensions());
         else
         {

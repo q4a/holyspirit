@@ -66,12 +66,10 @@ void c_Miracles::Utiliser(Jeu *jeu)
 
     jeu->menu.AfficherMiracles(m_decalage, &jeu->hero.m_classe, m_fenetre);
 
-    jeu->hero.AfficherMiracles(m_decalage, m_fenetre);
+    eventManager->AfficherCurseur(jeu->hero.AfficherMiracles(m_decalage, m_fenetre));
 
     jeu->menu.Afficher(1,255,&jeu->hero.m_classe);
     jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,-1,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
-
-    eventManager->AfficherCurseur();
 
     if (eventManager->getEvenement(Key::T,"ET")||eventManager->getEvenement(Key::Escape,"ET"))
     {
@@ -94,39 +92,6 @@ void c_Miracles::Utiliser(Jeu *jeu)
             {
                 m_fenetre = jeu->hero.m_classe.boutons_miracles[i].lien;
                 eventManager->StopEvenement(Mouse::Left,"C");
-            }
-        }
-
-    for(int i = 0;i < (int)jeu->hero.m_classe.miracles.size(); ++i)
-        if(jeu->hero.m_classe.page_miracles[i] == m_fenetre)
-        if(eventManager->getPositionSouris().x > jeu->hero.m_classe.position_miracles[i].x
-         &&eventManager->getPositionSouris().x < jeu->hero.m_classe.position_miracles[i].x + jeu->hero.m_classe.position_miracles[i].w
-         &&eventManager->getPositionSouris().y > jeu->hero.m_classe.position_miracles[i].y
-         &&eventManager->getPositionSouris().y < jeu->hero.m_classe.position_miracles[i].y + jeu->hero.m_classe.position_miracles[i].h)
-        {
-            coordonnee buf = eventManager->getPositionSouris();
-            buf.y -= 20;
-            jeu->hero.m_classe.miracles[i].AfficherDescription(buf);
-
-            if (eventManager->getEvenement(Mouse::Left,"C"))
-                if(jeu->hero.m_lvl_miracles[i] > 0)
-                {
-                    jeu->hero.m_personnage.m_miracleALancer = i;
-                    eventManager->StopEvenement(Mouse::Left,"C");
-                }
-
-            if (eventManager->getEvenement(Mouse::Right,"C"))
-            {
-                if(jeu->hero.m_personnage.getCaracteristique().miracles_restant > 0 && !jeu->hero.m_classe.miracles[i].m_max)
-                {
-                    Caracteristique temp = jeu->hero.m_personnage.getCaracteristique();
-                    temp.miracles_restant--;
-                    jeu->hero.m_lvl_miracles[i]++;
-                    jeu->hero.m_personnage.setCaracteristique(temp);
-                }
-                eventManager->StopEvenement(Mouse::Right,"C");
-
-                jeu->hero.ChargerModele();
             }
         }
 }

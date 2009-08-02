@@ -187,6 +187,18 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         sprite.SetSubRect(sf::IntRect(0, (int)(classe->orbe_foi.position.h-caracteristique.foi*classe->orbe_foi.position.h/caracteristique.maxFoi), classe->orbe_foi.position.w, classe->orbe_foi.position.h));
 
         moteurGraphique->AjouterCommande(&sprite,17,0);
+
+        if(caracteristique.reserveFoi > 0)
+        {
+            sprite.SetY(classe->orbe_foi.position.y*configuration->Resolution.h/600);
+            sprite.SetSubRect(sf::IntRect(0, 0, classe->orbe_foi.position.w, caracteristique.reserveFoi * classe->orbe_foi.position.h / caracteristique.maxFoi));
+
+            moteurGraphique->AjouterCommande(&sprite,17,0);
+
+            sprite.SetBlendMode(sf::Blend::Multiply);
+            sprite.SetColor(sf::Color(64,64,64,255));
+            moteurGraphique->AjouterCommande(&sprite,18,0);
+        }
     }
 
     texte.SetFont(moteurGraphique->m_font);

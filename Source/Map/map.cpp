@@ -1298,14 +1298,14 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
 
 
                         if (m_decor[0][j][k].getProjectile()>=0&&m_decor[0][j][k].getProjectile()<(int)m_projectile.size())
-                            m_projectile[m_decor[0][j][k].getProjectile()].Afficher(position);
+                            m_projectile[m_decor[0][j][k].getProjectile()].Afficher();
                         if (m_decor[1][j][k].getProjectile()>=0&&m_decor[1][j][k].getProjectile()<(int)m_projectile.size())
-                            m_projectile[m_decor[1][j][k].getProjectile()].Afficher(position);
+                            m_projectile[m_decor[1][j][k].getProjectile()].Afficher();
 
                         if (m_decor[0][j][k].getEffetGraphique()>=0&&m_decor[0][j][k].getEffetGraphique()<(int)m_effets.size())
-                            m_effets[m_decor[0][j][k].getEffetGraphique()].Afficher(position);
+                            m_effets[m_decor[0][j][k].getEffetGraphique()].Afficher();
                         if (m_decor[1][j][k].getEffetGraphique()>=0&&m_decor[1][j][k].getEffetGraphique()<(int)m_effets.size())
-                            m_effets[m_decor[1][j][k].getEffetGraphique()].Afficher(position);
+                            m_effets[m_decor[1][j][k].getEffetGraphique()].Afficher();
 
 
                         if (m_decor[1][j][k].getNombreObjets()>0&&couche==1)
@@ -1616,7 +1616,7 @@ bool Map::TestEvenement(Jeu *jeu,float temps)
     return 1;
 }
 
-int Map::AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coordonnee lanceur,int couche,float  vitesse,float decalageAngle,int degats,bool monstre,Tile *tile, int image)
+int Map::AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coordonnee lanceur,int couche,float  vitesse,float decalageAngle,int degats,bool monstre,std::vector<Tile> &tiles)
 {
     m_projectile.push_back(Projectile ());
 
@@ -1624,13 +1624,16 @@ int Map::AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coord
     m_projectile.back().m_position.y=positionReel.y;
     m_projectile.back().m_position.h=0;
 
+    m_projectile.back().m_depart = lanceur;
+
     m_projectile.back().m_degats=degats;
 
     m_projectile.back().m_monstre=monstre;
 
-    m_projectile.back().m_actif=true;
+    m_projectile.back().m_actif     = true;
+    m_projectile.back().m_supprime  = false;
 
-    m_projectile.back().m_couche=couche;
+    m_projectile.back().m_effet.m_couche=couche;
 
     coordonneeDecimal position,position2;
 
@@ -1659,14 +1662,7 @@ int Map::AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coord
 
     m_projectile.back().m_positionCase=lanceur;
 
-
-    m_projectile.back().m_positionImage= tile->getCoordonnee();
-    m_projectile.back().m_centre= tile->getCentre();
-    m_projectile.back().m_lumiere=tile->getLumiere();
-
-    m_projectile.back().m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(position.x*64,position.y*32),m_projectile.back().m_lumiere.intensite,m_projectile.back().m_lumiere.intensite,4,sf::Color(m_projectile.back().m_lumiere.rouge,m_projectile.back().m_lumiere.vert,m_projectile.back().m_lumiere.bleu));
-    m_projectile.back().m_image=image;
-    m_projectile.back().m_positionImage= tile->getCoordonnee();
+    m_projectile.back().m_effet.m_tiles = tiles;
 
 
     if (couche>=0&&couche<2)
@@ -1703,14 +1699,10 @@ int Map::GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
                             if (modeleMiracle->m_effets[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]].m_type==DEGATS)
                                 degats+=rand()%(int)(modeleMiracle->m_effets[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]].m_informations[1] - modeleMiracle->m_effets[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]].m_informations[0] + 1) + modeleMiracle->m_effets[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]].m_informations[0];
 
-                    if (modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getImage()>=0&&modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getImage()<(int)modeleMiracle->m_image.size())
-                        image = modeleMiracle->m_image[modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getImage()];
-
                     entiteMiracle->m_infos[o].m_IDObjet = AjouterProjectile(entiteMiracle->m_infos[o].m_position,
                                                                             cible,lanceur,couche,modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[0],
                                                                             (float)modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[1]*M_PI/180,degats,monstre,
-                                                                            &modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours],image);
-                    entiteMiracle->m_infos[o].m_imageEnCours = 0;
+                                                                            modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence]);
 
                     if(modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[1])
                         m_projectile.back().m_cible = cible;
@@ -1719,12 +1711,12 @@ int Map::GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
                 }
 
             if (continuer)
-                if (modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_type==EFFET_GRAPHIQUE&&entiteMiracle->m_infos[o].m_IDObjet==-1)
+                if(modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_type == EFFET_GRAPHIQUE && entiteMiracle->m_infos[o].m_IDObjet == -1)
                 {
                     m_effets.push_back(EffetGraphique ());
 
-                    m_effets.back().m_position.x=entiteMiracle->m_infos[o].m_position.x;
-                    m_effets.back().m_position.y=entiteMiracle->m_infos[o].m_position.y;
+                    m_effets.back().m_position.x = entiteMiracle->m_infos[o].m_position.x;
+                    m_effets.back().m_position.y = entiteMiracle->m_infos[o].m_position.y;
 
                     sf::Vector2f position;
 
@@ -1734,23 +1726,17 @@ int Map::GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
 
                     m_effets.back().m_couche=couche;
 
-                    m_effets.back().m_lumiere.intensite=128;
-                    m_effets.back().m_lumiere.rouge=255;
-                    m_effets.back().m_lumiere.vert=128;
-                    m_effets.back().m_lumiere.bleu=128;
-
 
                     position.x=((( m_effets.back().m_position.x- m_effets.back().m_position.y)*64/COTE_TILE));
                     position.y=((( m_effets.back().m_position.x+ m_effets.back().m_position.y)*64/COTE_TILE)/2+32)*2;
 
-                    m_effets.back().m_light=moteurGraphique->LightManager->Add_Dynamic_Light(position, m_effets.back().m_lumiere.intensite, m_effets.back().m_lumiere.intensite,4,sf::Color( m_effets.back().m_lumiere.rouge, m_effets.back().m_lumiere.vert, m_effets.back().m_lumiere.bleu));
 
-                    entiteMiracle->m_infos[o].m_imageEnCours=0;
-
-                    if (modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getImage()>=0&&modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getImage()<(int)modeleMiracle->m_image.size())
+                    /*if (modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getImage()>=0&&modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getImage()<(int)modeleMiracle->m_image.size())
                         m_effets.back().m_image=modeleMiracle->m_image[modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getImage()];
                     m_effets.back().m_positionImage= modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getCoordonnee();
-                    m_effets.back().m_centre= modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getCentre();
+                    m_effets.back().m_centre= modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence][entiteMiracle->m_infos[o].m_imageEnCours].getCentre();*/
+
+                    m_effets.back().m_tiles = modeleMiracle->m_tile[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_sequence];
 
                     entiteMiracle->m_infos[o].m_IDObjet=m_effets.size()-1;
 
@@ -1840,7 +1826,7 @@ int Map::GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
                     }
                     else if (entiteMiracle->m_infos[o].m_IDObjet>=0&&entiteMiracle->m_infos[o].m_IDObjet<(int)m_monstre.size())
                     {
-                        if (!m_monstre[entiteMiracle->m_infos[o].m_IDObjet].enVie())
+                        if (!m_monstre[entiteMiracle->m_infos[o].m_IDObjet].EnVie())
                         {
                             entiteMiracle->m_infos.erase(entiteMiracle->m_infos.begin()+o);
                             continuer=false;
@@ -2028,7 +2014,7 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                     moteurGraphique->LightManager->Generate(m_monstre[monstre].m_light);
 
                     bool explosif=false;
-                    int degats = m_monstre[monstre].animer(&m_ModeleMonstre[m_monstre[monstre].getModele()],temps,&explosif,positionHero);
+                    int degats = m_monstre[monstre].Animer(&m_ModeleMonstre[m_monstre[monstre].getModele()],temps,&explosif,positionHero);
                     if (degats>0&&!explosif)
                     {
                         if (m_monstre[monstre].m_miracleALancer==-1)
@@ -2073,10 +2059,25 @@ void Map::AnimerMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,f
         bool continuer=true;
         for (int o=0;o<(int)personnage->m_miracleEnCours[i].m_infos.size() && continuer && continuerb;o++)
         {
-            if (personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours>=0)
+            int effetEnCours =      personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours;
+            int IDObjet =           personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet;
+
+            if (effetEnCours >= 0)
             {
                 if (continuer)
-                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type==CORPS_A_CORPS)
+                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_type == AURA && IDObjet == -1)
+                    {
+                        personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet = personnage->AjouterEffet(
+                                miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_sequence],
+                                miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0],
+                                -100,
+                                miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[1],
+                                miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[2],
+                                miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[3]);
+                    }
+
+                if (continuer)
+                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_type==CORPS_A_CORPS)
                     {
                         if(personnage->m_miracleEnCours[i].m_cible != NULL)
                         {
@@ -2089,7 +2090,7 @@ void Map::AnimerMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,f
                                 personnage->m_miracleEnCours[i].m_infos[o].m_position.y = (float)personnage->getProchaineCase().y * COTE_TILE + 1;
 
                                 if(personnage->getArrivee().x==personnage->getCoordonnee().x&&personnage->getArrivee().y==personnage->getCoordonnee().y)
-                                    personnage->frappe(personnage->getCoordonneePixel(),personnage->m_miracleEnCours[i].m_cible->getCoordonneePixel());
+                                    personnage->Frappe(personnage->getCoordonneePixel(),personnage->m_miracleEnCours[i].m_cible->getCoordonneePixel());
                             }
                         }
                         else
@@ -2097,13 +2098,13 @@ void Map::AnimerMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,f
                     }
 
                 if (continuer)
-                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type==REPETITION)
+                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_type==REPETITION)
                     {
                         personnage->m_miracleEnCours[i].m_infos[o].m_informations[3] += temps * 100;
-                        if(personnage->m_miracleEnCours[i].m_infos[o].m_informations[3] > miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[2])
+                        if(personnage->m_miracleEnCours[i].m_infos[o].m_informations[3] > miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[2])
                         {
                             personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                            personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours = miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[0];
+                            personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours = miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0];
                             personnage->m_miracleEnCours[i].m_infos.back().m_position = personnage->m_miracleEnCours[i].m_infos[o].m_position;
                             personnage->m_miracleEnCours[i].m_infos.back().m_position.x += 16;
                             personnage->m_miracleEnCours[i].m_infos.back().m_position.y += 16;
@@ -2112,12 +2113,12 @@ void Map::AnimerMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,f
                             personnage->m_miracleEnCours[i].m_infos[o].m_informations[3] = 0;
                         }
 
-                        if(-personnage->m_miracleEnCours[i].m_infos[o].m_informations[1] >= miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[1])
+                        if(-personnage->m_miracleEnCours[i].m_infos[o].m_informations[1] >= miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[1])
                         {
-                            for (int p=0;p<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien.size();p++)
+                            for (int p=0;p<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien.size();p++)
                             {
                                 personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                                personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien[p];
+                                personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien[p];
                                 personnage->m_miracleEnCours[i].m_infos.back().m_position=personnage->m_miracleEnCours[i].m_infos[o].m_position;
                             }
 
@@ -2127,15 +2128,17 @@ void Map::AnimerMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,f
                         }
                     }
 
-                if (continuer)
-                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type==SOIN)
-                    {
-                        personnage->infligerDegats(-miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[0]);
 
-                        for (int p=0;p<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien.size();p++)
+
+                if (continuer)
+                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_type==SOIN)
+                    {
+                        personnage->InfligerDegats(-miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0]);
+
+                        for (int p=0;p<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien.size();p++)
                         {
                             personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                            personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien[p];
+                            personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien[p];
                             personnage->m_miracleEnCours[i].m_infos.back().m_position=personnage->m_miracleEnCours[i].m_infos[o].m_position;
                         }
 
@@ -2144,47 +2147,23 @@ void Map::AnimerMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,f
                         continuer=false;
                     }
                 if (continuer)
-                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type==PROJECTILE)
-                        if (personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet>=0 && personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet<(int)m_projectile.size())
+                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_type==PROJECTILE)
+                        if (IDObjet>=0 && IDObjet<(int)m_projectile.size())
                         {
-                            if (m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_actif)
-                            {
-                                float tempsAnimation = miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getTemps();
-                                m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_animation+=temps;
+                            if(!m_projectile[IDObjet].m_effet.m_actif)
+                                m_projectile[IDObjet].m_actif = false;
 
-                                moteurGraphique->LightManager->Generate(m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_light);
-
-                                if (m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_animation>=tempsAnimation)
-                                {
-                                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence>=0&&miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_tile.size())
-                                        if (personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours>=0&&personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence].size())
-                                            personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getAnimation();
-
-
-                                        m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_animation-=tempsAnimation;
-
-                                        m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_image=miracles[personnage->m_miracleEnCours[i].m_modele].m_image[miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getImage()];
-                                        m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_positionImage= miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getCoordonnee();
-                                        m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_centre= miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getCentre();
-
-                                        m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere=miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getLumiere();
-
-                                        moteurGraphique->LightManager->SetIntensity(m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_light,m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere.intensite);
-                                        moteurGraphique->LightManager->SetRadius(m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_light,m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere.intensite*5);
-
-                                        personnage->m_miracleEnCours[i].m_infos[o].m_position=m_projectile[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_position;
-                                }
-
-
-                            }
+                            if (m_projectile[IDObjet].m_actif)
+                                m_projectile[IDObjet].m_effet.Animer(temps);
                             else
                             {
-                                    for (int p=0;p<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien.size();p++)
-                                    {
-                                        personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                                        personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien[p];
-                                        personnage->m_miracleEnCours[i].m_infos.back().m_position=personnage->m_miracleEnCours[i].m_infos[o].m_position;
-                                    }
+                                m_projectile[IDObjet].m_supprime = true;
+                                for (int p=0;p<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien.size();p++)
+                                {
+                                    personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
+                                    personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien[p];
+                                    personnage->m_miracleEnCours[i].m_infos.back().m_position = m_projectile[IDObjet].m_position;
+                                }
 
                                 personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
 
@@ -2193,78 +2172,36 @@ void Map::AnimerMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,f
 
                         }
                 if (continuer)
-                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type==INVOCATION)
+                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_type == INVOCATION)
                         personnage->m_nombreInvocation++;
 
 
 
                 if (continuer)
-                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type==EFFET_GRAPHIQUE)
-                        if (personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet>=0&&personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet<(int)m_effets.size())
+                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_type == EFFET_GRAPHIQUE)
+
+                        if (IDObjet>=0&&IDObjet<(int)m_effets.size())
                         {
-                            float tempsAnimation = miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getTemps();
-                            m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_animation+=temps;
-
-                            if (m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_animation>=tempsAnimation)
+                            m_effets[IDObjet].Animer(temps);
+                            if(!m_effets[IDObjet].m_actif)
                             {
-                                if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence>=0&&miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_tile.size())
-                                    if (personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours>=0&&personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence].size())
-                                        personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getAnimation();
-
-                                m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_animation-=tempsAnimation;
-                                if (m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_compteur>0)
+                                for (int p=0;p<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien.size();p++)
                                 {
-                                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getImage()<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_image.size())
-                                        m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_image = miracles[personnage->m_miracleEnCours[i].m_modele].m_image[miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getImage()];
-                                    m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_positionImage = miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getCoordonnee();
-                                    m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_centre = miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getCentre();
-                                    m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_compteur--;
-
-                                    m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere=miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getLumiere();
-
-                                    moteurGraphique->LightManager->SetIntensity(m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_light,m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere.intensite);
-                                    moteurGraphique->LightManager->SetRadius(m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_light,m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere.intensite*5);
-                                    moteurGraphique->LightManager->SetColor(m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_light,sf::Color(m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere.rouge,m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere.vert,m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_lumiere.bleu));
+                                    personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
+                                    personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien[p];
+                                    personnage->m_miracleEnCours[i].m_infos.back().m_position = personnage->m_miracleEnCours[i].m_infos[o].m_position;
                                 }
 
-                                moteurGraphique->LightManager->Generate(m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_light);
+                                personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
 
-                                if (m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_compteur<=0)
-                                {
-                                    m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].m_actif=false;
-
-                                    for (int p=0;p<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien.size();p++)
-                                    {
-                                        personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                                        personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien[p];
-                                        personnage->m_miracleEnCours[i].m_infos.back().m_position=personnage->m_miracleEnCours[i].m_infos[o].m_position;
-                                    }
-
-                                    personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
-
-                                    continuer=false;
-                                }
+                                continuer=false;
                             }
                         }
 
-                if (personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours>=0)
-                {
-                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence>=0&&miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_tile.size())
-                        if (personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours>=0&&personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence].size())
-                            if (miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getSon()>=0)
-                            {
-                                coordonnee position;
-                                position.x=(personnage->getCoordonnee().x-personnage->getCoordonnee().y-1)/5;
-                                position.y=(personnage->getCoordonnee().x+personnage->getCoordonnee().y)/5;
-
-                                miracles[personnage->m_miracleEnCours[i].m_modele].JouerSon(miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence][personnage->m_miracleEnCours[i].m_infos[o].m_imageEnCours].getSon(),position,positionHero);
-                            }
-                }
-
                 if(personnage->m_miracleEnCours[i].m_cible != NULL)
                 {
-                    if(personnage->getArrivee().x==personnage->getCoordonnee().x&&personnage->getArrivee().y==personnage->getCoordonnee().y && miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type==CORPS_A_CORPS
-                    || miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type!=CORPS_A_CORPS )
+                    if(personnage->getArrivee().x==personnage->getCoordonnee().x&&personnage->getArrivee().y==personnage->getCoordonnee().y && miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_type==CORPS_A_CORPS
+                    || miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_type!=CORPS_A_CORPS )
                         GererMiracle(&personnage->m_miracleEnCours[i],&miracles[personnage->m_miracleEnCours[i].m_modele],hero,personnage->m_monstre,personnage->getCoordonnee(),personnage->m_miracleEnCours[i].m_cible->getCoordonnee(),i);
                 }
                 else
@@ -2275,7 +2212,17 @@ void Map::AnimerMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,f
         }
 
         if (personnage->m_miracleEnCours[i].m_infos.empty())
-            personnage->m_miracleEnCours.erase (personnage->m_miracleEnCours.begin()+i), continuerb = false;
+        {
+            if(!personnage->m_monstre)
+            {
+                hero->m_caracteristiques.reserveFoi -= miracles[personnage->m_miracleEnCours[i].m_modele].m_reserveFoi;
+                hero->m_caracteristiques.reserveVie -= miracles[personnage->m_miracleEnCours[i].m_modele].m_reserveVie;
+            }
+
+            personnage->m_miracleEnCours.erase (personnage->m_miracleEnCours.begin()+i);
+            continuerb = false;
+
+        }
     }
 }
 
@@ -2318,7 +2265,7 @@ void Map::InfligerDegatsMasse(coordonnee position,int rayon,int degats,bool sour
                     if (sourceConcernee||!sourceConcernee&&!(y==position.y&&x==position.x))
                     {
                         if (m_decor[couche][y][x].getMonstre()>=0&&m_decor[couche][y][x].getMonstre()<(int)m_monstre.size())
-                            if (m_monstre[m_decor[couche][y][x].getMonstre()].enVie()&&m_monstre[m_decor[couche][y][x].getMonstre()].m_friendly!=true&&m_monstre[m_decor[couche][y][x].getMonstre()].getCaracteristique().rang>=0)
+                            if (m_monstre[m_decor[couche][y][x].getMonstre()].EnVie()&&m_monstre[m_decor[couche][y][x].getMonstre()].m_friendly!=true&&m_monstre[m_decor[couche][y][x].getMonstre()].getCaracteristique().rang>=0)
                             {
                                 InfligerDegats(m_decor[couche][y][x].getMonstre(), degats,hero,0);
 
@@ -2391,7 +2338,7 @@ void Map::MusiquePlay(coordonnee position)
 }
 
 
-#define RANDOMDISPLACE( )       {if(m_monstre[m_decor[i][j][k].getMonstre()].enVie())   \
+#define RANDOMDISPLACE( )       {if(m_monstre[m_decor[i][j][k].getMonstre()].EnVie())   \
                                 {   \
                                     if(m_monstre[m_decor[i][j][k].getMonstre()].getArrivee().x==m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x&&m_monstre[m_decor[i][j][k].getMonstre()].getArrivee().y==m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y) \
                                     {   \
@@ -2403,15 +2350,15 @@ void Map::MusiquePlay(coordonnee position)
                                     }   \
                                     else   \
                                     {   \
-                                        if(m_monstre[m_decor[i][j][k].getMonstre()].seDeplacer(temps*100,getDimensions()))   \
+                                        if(m_monstre[m_decor[i][j][k].getMonstre()].SeDeplacer(temps*100,getDimensions()))   \
                                         {   \
                                             coordonnee tempCoord(hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1);   \
-                                            m_monstre[m_decor[i][j][k].getMonstre()].pathfinding(getAlentourDuPersonnage(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()),tempCoord);   \
+                                            m_monstre[m_decor[i][j][k].getMonstre()].Pathfinding(getAlentourDuPersonnage(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()),tempCoord);   \
                                         }   \
                                     }   \
                                 }}
 
-#define EVASION()               {if(m_monstre[m_decor[i][j][k].getMonstre()].enVie())   \
+#define EVASION()               {if(m_monstre[m_decor[i][j][k].getMonstre()].EnVie())   \
                                 {   \
                                     if(!m_monstre[m_decor[i][j][k].getMonstre()].frappeEnCours)\
                                     {\
@@ -2425,17 +2372,17 @@ void Map::MusiquePlay(coordonnee position)
                                         }   \
                                         else   \
                                         {   \
-                                            if(m_monstre[m_decor[i][j][k].getMonstre()].seDeplacer(temps*100,getDimensions()))   \
+                                            if(m_monstre[m_decor[i][j][k].getMonstre()].SeDeplacer(temps*100,getDimensions()))   \
                                             {   \
                                                 coordonnee tempCoord(hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1);   \
-                                                m_monstre[m_decor[i][j][k].getMonstre()].pathfinding(getAlentourDuPersonnage(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()),tempCoord); \
+                                                m_monstre[m_decor[i][j][k].getMonstre()].Pathfinding(getAlentourDuPersonnage(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()),tempCoord); \
                                             }   \
                                         }   \
                                     }\
                                 }}
 
 #define USEMIRACLE(numero)  {m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(m_monstre[m_decor[i][j][k].getMonstre()].getProchaineCase()); \
-                            if(m_monstre[m_decor[i][j][k].getMonstre()].seDeplacer(temps*100,getDimensions()))   \
+                            if(m_monstre[m_decor[i][j][k].getMonstre()].SeDeplacer(temps*100,getDimensions()))   \
                             { \
                                 m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()); \
                                 \
@@ -2444,7 +2391,7 @@ void Map::MusiquePlay(coordonnee position)
                                     m_monstre[m_decor[i][j][k].getMonstre()].m_miracleALancer=numero;\
                                     m_monstre[m_decor[i][j][k].getMonstre()].setEtat(2);   \
                                 }\
-                                m_monstre[m_decor[i][j][k].getMonstre()].frappe(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee(),hero->m_personnage.getCoordonnee());   \
+                                m_monstre[m_decor[i][j][k].getMonstre()].Frappe(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee(),hero->m_personnage.getCoordonnee());   \
                             }}
 
 #define SETSTATE(numero)  {if(m_monstre[m_decor[i][j][k].getMonstre()].getEtat()!=numero) \
@@ -2467,22 +2414,22 @@ void Map::MusiquePlay(coordonnee position)
                             }}
 
 #define SHOOT()             {m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(m_monstre[m_decor[i][j][k].getMonstre()].getProchaineCase()); \
-                            if(m_monstre[m_decor[i][j][k].getMonstre()].seDeplacer(temps*100,getDimensions()))   \
+                            if(m_monstre[m_decor[i][j][k].getMonstre()].SeDeplacer(temps*100,getDimensions()))   \
                             { \
                                 m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()); \
                                 \
                                 m_monstre[m_decor[i][j][k].getMonstre()].m_miracleALancer=-1;\
-                                m_monstre[m_decor[i][j][k].getMonstre()].frappe(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee(),hero->m_personnage.getCoordonnee());   \
+                                m_monstre[m_decor[i][j][k].getMonstre()].Frappe(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee(),hero->m_personnage.getCoordonnee());   \
                                 m_monstre[m_decor[i][j][k].getMonstre()].m_shooter=true; \
                             }}
 
 #define FIGHT()                 {if(!m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding())   \
                                 {   \
-                                    if(m_monstre[m_decor[i][j][k].getMonstre()].enVie())   \
+                                    if(m_monstre[m_decor[i][j][k].getMonstre()].EnVie())   \
                                     {   \
                                         coordonnee arrivee;   \
                                         \
-                                        if(m_monstre[m_decor[i][j][k].getMonstre()].seDeplacer(temps*100,getDimensions()))   \
+                                        if(m_monstre[m_decor[i][j][k].getMonstre()].SeDeplacer(temps*100,getDimensions()))   \
                                         {   \
                                             m_monstre[m_decor[i][j][k].getMonstre()].setDepart(); \
                                             if(fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)>1||fabs(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)>1)   \
@@ -2491,15 +2438,15 @@ void Map::MusiquePlay(coordonnee position)
                                                 m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(arrivee);   \
                                                 \
                                                 coordonnee tempCoord(hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1);   \
-                                                m_monstre[m_decor[i][j][k].getMonstre()].pathfinding(getAlentourDuPersonnage(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()),tempCoord);   \
+                                                m_monstre[m_decor[i][j][k].getMonstre()].Pathfinding(getAlentourDuPersonnage(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee()),tempCoord);   \
                                             }   \
                                             else  \
                                             {   \
-                                                if(hero->m_personnage.enVie()<=0)   \
+                                                if(hero->m_personnage.EnVie()<=0)   \
                                                     m_monstre[m_decor[i][j][k].getMonstre()].setVu(0);   \
                                                 if(!m_monstre[m_decor[i][j][k].getMonstre()].frappeEnCours)   \
                                                     m_monstre[m_decor[i][j][k].getMonstre()].setEtat(2);   \
-                                                m_monstre[m_decor[i][j][k].getMonstre()].frappe(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee(),hero->m_personnage.getCoordonnee());  \
+                                                m_monstre[m_decor[i][j][k].getMonstre()].Frappe(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee(),hero->m_personnage.getCoordonnee());  \
                                                 m_monstre[m_decor[i][j][k].getMonstre()].setArrivee(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee());   \
                                                 m_monstre[m_decor[i][j][k].getMonstre()].m_shooter=false; \
                                             }   \
@@ -2626,7 +2573,7 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int i, int j
             {
                 if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="alive")
                 {
-                    if (!m_monstre[m_decor[i][j][k].getMonstre()].enVie())
+                    if (!m_monstre[m_decor[i][j][k].getMonstre()].EnVie())
                         ok=false;
                 }
                 else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="see")
@@ -2728,7 +2675,7 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
         for (int i=0;i<(int)m_projectile.size();++i)
         {
             m_projectile[i].m_dejaDeplace=false;
-            if (!m_projectile[i].m_actif)
+            if (m_projectile[i].m_supprime)
                 nombreInactif++;
 
             if (!m_projectile[i].m_dejaDeplace)
@@ -2746,14 +2693,14 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                         {
                             if(m_decor[0][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()>=0
                             && m_decor[0][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()<(int)m_monstre.size()&&!m_projectile[temp].m_monstre)
-                                if (m_monstre[m_decor[0][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()].enVie())
+                                if (m_monstre[m_decor[0][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()].EnVie())
                                 {
                                     m_projectile[temp].m_actif=false;
                                     InfligerDegats(m_decor[0][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre(),m_projectile[temp].m_degats,hero,false);
                                 }
                             if(m_decor[1][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()>=0
                             && m_decor[1][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()<(int)m_monstre.size()&&!m_projectile[temp].m_monstre)
-                                if (m_monstre[m_decor[1][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()].enVie())
+                                if (m_monstre[m_decor[1][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()].EnVie())
                                 {
                                     m_projectile[temp].m_actif=false;
                                     InfligerDegats(m_decor[1][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre(),m_projectile[temp].m_degats,hero,false);
@@ -2765,8 +2712,26 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                                 hero->InfligerDegats(m_projectile[temp].m_degats);
                             }
                         }
-                        else if(m_projectile[temp].m_positionCase.x == m_projectile[temp].m_cible.x && m_projectile[temp].m_positionCase.y == m_projectile[temp].m_cible.y)
-                            m_projectile[temp].m_actif=false;
+                        /*else if(m_projectile[temp].m_positionCase.x == m_projectile[temp].m_cible.x && m_projectile[temp].m_positionCase.y == m_projectile[temp].m_cible.y)
+                            m_projectile[temp].m_actif=false;*/
+                        else
+                        {
+                            bool x = false;
+                            bool y = false;
+
+                            if( m_projectile[temp].m_positionCase.x >= m_projectile[temp].m_cible.x && m_projectile[temp].m_cible.x >= m_projectile[temp].m_depart.x)
+                                x = true;
+                            else if( m_projectile[temp].m_positionCase.x <= m_projectile[temp].m_cible.x && m_projectile[temp].m_cible.x <= m_projectile[temp].m_depart.x)
+                                x = true;
+
+                            if( m_projectile[temp].m_positionCase.y >= m_projectile[temp].m_cible.y && m_projectile[temp].m_cible.y >= m_projectile[temp].m_depart.y)
+                                y = true;
+                            else if( m_projectile[temp].m_positionCase.y <= m_projectile[temp].m_cible.y && m_projectile[temp].m_cible.y <= m_projectile[temp].m_depart.y)
+                                y = true;
+
+                            if(x && y)
+                                m_projectile[temp].m_actif = false;
+                        }
 
                         if (getTypeCase((int)(m_projectile[temp].m_positionCase.x),(int)(m_projectile[temp].m_positionCase.y))==1)
                             m_projectile[temp].m_actif=false;
@@ -2801,7 +2766,7 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                 }
                 else
                 {
-                    moteurGraphique->LightManager->Delete_Light(m_projectile[i].m_light);
+                    moteurGraphique->LightManager->Delete_Light(m_projectile[i].m_effet.m_light);
                     m_decor[m_projectile[i].m_positionCase.h][m_projectile[i].m_positionCase.y][m_projectile[i].m_positionCase.x].setProjectile(-1);
                 }
             }
@@ -2826,9 +2791,9 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
             for (int k=vueMin.x;k<vueMax.x;k++)
             {
                 if (m_decor[i][j][k].getMonstre()>=0&&m_decor[i][j][k].getMonstre()<(int)m_monstre.size())
-                    // if (m_monstre[m_decor[i][j][k].getMonstre()].enVie())
+                    // if (m_monstre[m_decor[i][j][k].getMonstre()].EnVie())
                 {
-                    if (hero->m_personnage.enVie())
+                    if (hero->m_personnage.EnVie())
                         m_monstre[m_decor[i][j][k].getMonstre()].TesterVision(hero->m_personnage.getCoordonnee());
                     else
                         m_monstre[m_decor[i][j][k].getMonstre()].setVu(0);
@@ -2843,7 +2808,7 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                                     GererInstructions(jeu,script,script->m_instructions[0].valeurs[a],i,j,k,hero,temps,menu);
 
                         if (m_monstre[m_decor[i][j][k].getMonstre()].getErreurPathfinding())
-                            if (m_monstre[m_decor[i][j][k].getMonstre()].enVie())
+                            if (m_monstre[m_decor[i][j][k].getMonstre()].EnVie())
                                 RANDOMDISPLACE()
                                 m_monstre[m_decor[i][j][k].getMonstre()].m_touche = false;
                     }
@@ -2865,7 +2830,7 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                             for (int z=0;z<(int)m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement().size();z++)
                                 if (m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]>=0&&m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]<(int)m_evenement.size())
                                     if (m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]].getType()==INFLIGER_DEGATS)
-                                        if (m_monstre[m_decor[i][j][k].getMonstre()].enVie())
+                                        if (m_monstre[m_decor[i][j][k].getMonstre()].EnVie())
                                             InfligerDegats(m_decor[i][j][k].getMonstre(),m_evenement[m_decor[l][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getEvenement()[z]].getInformation(0)*temps*10,hero,0);
 
                     if (!(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y==j&&m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x==k))
@@ -2902,7 +2867,7 @@ bool Map::InfligerDegats(int numeroMonstre, float degats, Hero *hero,bool pousse
 {
     if (numeroMonstre>=0&&numeroMonstre<(int)m_monstre.size())
     {
-        /*if (configuration->sang&&m_monstre[numeroMonstre].enVie())
+        /*if (configuration->sang&&m_monstre[numeroMonstre].EnVie())
             for (int i=0;i<5;++i)
                 if (rand()%(100)>25&&m_monstre[numeroMonstre].getCaracteristique().sang)
                 {
@@ -2913,9 +2878,9 @@ bool Map::InfligerDegats(int numeroMonstre, float degats, Hero *hero,bool pousse
                     menu->AjouterSang(position);
                 }*/
 
-        float viePrecedente=m_monstre[numeroMonstre].getCaracteristique().vie;
+        float viePrecedente = m_monstre[numeroMonstre].getCaracteristique().vie;
 
-        /*if(m_monstre[numeroMonstre].enVie()&&pousser)
+        /*if(m_monstre[numeroMonstre].EnVie()&&pousser)
         {
             double m=atan(((double)hero->m_personnage.getCoordonnee().y-(double)m_monstre[numeroMonstre].getCoordonnee().y)/(double)((double)hero->m_personnage.getCoordonnee().x-(double)m_monstre[numeroMonstre].getCoordonnee().x));
             if(hero->m_personnage.getCoordonnee().x-m_monstre[numeroMonstre].getCoordonnee().x<0)
@@ -2933,7 +2898,7 @@ bool Map::InfligerDegats(int numeroMonstre, float degats, Hero *hero,bool pousse
                                 m_monstre[m_decor[o][y][x].getMonstre()].setVu(1);
         }*/
 
-        m_monstre[numeroMonstre].infligerDegats(degats);
+        m_monstre[numeroMonstre].InfligerDegats(degats);
 
         for (int o=0;o<2;o++)
             for (int x=m_monstre[numeroMonstre].getCoordonnee().x;x<10+m_monstre[numeroMonstre].getCoordonnee().x;x++)
@@ -2942,11 +2907,11 @@ bool Map::InfligerDegats(int numeroMonstre, float degats, Hero *hero,bool pousse
                         if (m_decor[o][y][x].getMonstre()>=0&&m_decor[o][y][x].getMonstre()<(int)m_monstre.size())
                             m_monstre[m_decor[o][y][x].getMonstre()].setVu(1);
 
-        if (!m_monstre[numeroMonstre].enVie())
+        if (!m_monstre[numeroMonstre].EnVie())
             if (m_monstreIllumine==numeroMonstre||hero->getMonstreVise()==numeroMonstre)
                 m_monstreIllumine=-1,hero->setMonstreVise(-1);
 
-        if (!m_monstre[numeroMonstre].enVie()&&viePrecedente>0)
+        if (!m_monstre[numeroMonstre].EnVie() && viePrecedente > 0)
         {
             for (int i=0;i<(int)m_monstre[numeroMonstre].m_miracleEnCours.size();++i)
             {
@@ -3099,7 +3064,7 @@ Monstre *Map::getEntiteMonstre(int numeroMonstre)
 bool Map::getMonstreEnVie(int numeroMonstre)
 {
     if (numeroMonstre>=0&&numeroMonstre<(int)m_monstre.size())
-        return m_monstre[numeroMonstre].enVie();
+        return m_monstre[numeroMonstre].EnVie();
     else
         return 0;
 }
@@ -3161,7 +3126,7 @@ bool Map::getCollision(int positionX,int positionY)
                 return 1;
 
         if (m_decor[i][positionY][positionX].getMonstre()>-1&&m_decor[i][positionY][positionX].getMonstre()<(int)m_monstre.size())
-            if (m_monstre[m_decor[i][positionY][positionX].getMonstre()].enVie()&&m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().rang>=0)
+            if (m_monstre[m_decor[i][positionY][positionX].getMonstre()].EnVie()&&m_monstre[m_decor[i][positionY][positionX].getMonstre()].getCaracteristique().rang>=0)
                 return 1;
 
         coordonnee enCours;
@@ -3170,7 +3135,7 @@ bool Map::getCollision(int positionX,int positionY)
         enCours.y=positionY+1;
         if (enCours.x>=0&&enCours.y>=0&&enCours.x<m_dimensions.x&&enCours.y<(int)m_dimensions.y)
             if (m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<(int)m_monstre.size())
-                if (m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].enVie()&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
+                if (m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].EnVie()&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
                     if (m_decor[i][enCours.y][enCours.x].getMonstre()<(int)m_monstre.size())
                         if ((m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)||(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getCoordonnee().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getCoordonnee().y==positionY))
                             return 1;
@@ -3178,7 +3143,7 @@ bool Map::getCollision(int positionX,int positionY)
         enCours.y=positionY-1;
         if (enCours.x>=0&&enCours.y>=0&&enCours.x<m_dimensions.x&&enCours.y<(int)m_dimensions.y)
             if (m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<(int)m_monstre.size())
-                if (m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].enVie()&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
+                if (m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].EnVie()&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
                     if (m_decor[i][enCours.y][enCours.x].getMonstre()<(int)m_monstre.size())
                         if ((m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)||(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getCoordonnee().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getCoordonnee().y==positionY))
                             return 1;
@@ -3186,7 +3151,7 @@ bool Map::getCollision(int positionX,int positionY)
         enCours.y=positionY-1;
         if (enCours.x>=0&&enCours.y>=0&&enCours.x<m_dimensions.x&&enCours.y<(int)m_dimensions.y)
             if (m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<(int)m_monstre.size())
-                if (m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].enVie()&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
+                if (m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].EnVie()&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
                     if (m_decor[i][enCours.y][enCours.x].getMonstre()<(int)m_monstre.size())
                         if ((m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)||(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getCoordonnee().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getCoordonnee().y==positionY))
                             return 1;
@@ -3194,7 +3159,7 @@ bool Map::getCollision(int positionX,int positionY)
         enCours.y=positionY+1;
         if (enCours.x>=0&&enCours.y>=0&&enCours.x<m_dimensions.x&&enCours.y<(int)m_dimensions.y)
             if (m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<(int)m_monstre.size())
-                if (m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].enVie()&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
+                if (m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].EnVie()&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
                     if (m_decor[i][enCours.y][enCours.x].getMonstre()<(int)m_monstre.size())
                         if ((m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)||(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getCoordonnee().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getCoordonnee().y==positionY))
                             return 1;
@@ -3202,7 +3167,7 @@ bool Map::getCollision(int positionX,int positionY)
         enCours.y=positionY+1;
         if (enCours.x>=0&&enCours.y>=0&&enCours.x<m_dimensions.x&&enCours.y<(int)m_dimensions.y)
             if (m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<(int)m_monstre.size())
-                if (m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].enVie()&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
+                if (m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].EnVie()&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
                     if (m_decor[i][enCours.y][enCours.x].getMonstre()<(int)m_monstre.size())
                         if ((m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)||(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getCoordonnee().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getCoordonnee().y==positionY))
                             return 1;
@@ -3210,7 +3175,7 @@ bool Map::getCollision(int positionX,int positionY)
         enCours.y=positionY;
         if (enCours.x>=0&&enCours.y>=0&&enCours.x<m_dimensions.x&&enCours.y<(int)m_dimensions.y)
             if (m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<(int)m_monstre.size())
-                if (m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].enVie()&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
+                if (m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].EnVie()&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
                     if (m_decor[i][enCours.y][enCours.x].getMonstre()<(int)m_monstre.size())
                         if ((m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)||(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getCoordonnee().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getCoordonnee().y==positionY))
                             return 1;
@@ -3218,7 +3183,7 @@ bool Map::getCollision(int positionX,int positionY)
         enCours.y=positionY;
         if (enCours.x>=0&&enCours.y>=0&&enCours.x<m_dimensions.x&&enCours.y<(int)m_dimensions.y)
             if (m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<(int)m_monstre.size())
-                if (m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].enVie()&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
+                if (m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].EnVie()&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
                     if (m_decor[i][enCours.y][enCours.x].getMonstre()<(int)m_monstre.size())
                         if ((m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)||(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getCoordonnee().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getCoordonnee().y==positionY))
                             return 1;
@@ -3226,7 +3191,7 @@ bool Map::getCollision(int positionX,int positionY)
         enCours.y=positionY-1;
         if (enCours.x>=0&&enCours.y>=0&&enCours.x<m_dimensions.x&&enCours.y<(int)m_dimensions.y)
             if (m_decor[i][ enCours.y][enCours.x].getMonstre()>-1&&m_decor[i][ enCours.y][enCours.x].getMonstre()<(int)m_monstre.size())
-                if (m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].enVie()&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
+                if (m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].EnVie()&&m_monstre[m_decor[i][ enCours.y][enCours.x].getMonstre()].getCaracteristique().vitesse>0)
                     if (m_decor[i][enCours.y][enCours.x].getMonstre()<(int)m_monstre.size())
                         if ((m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getProchaineCase().y==positionY)||(m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getCoordonnee().x==positionX&&m_monstre[m_decor[i][enCours.y][enCours.x].getMonstre()].getCoordonnee().y==positionY))
                             return 1;
@@ -3245,7 +3210,7 @@ int Map::getTypeCase(int positionX,int positionY)
                 return 1;
 
         if (m_decor[0][positionY][positionX].getMonstre()>-1&&m_decor[0][positionY][positionX].getMonstre()<(int)m_monstre.size())
-            if (m_monstre[m_decor[0][positionY][positionX].getMonstre()].enVie())
+            if (m_monstre[m_decor[0][positionY][positionX].getMonstre()].EnVie())
                 if (m_ModeleMonstre[m_monstre[m_decor[0][positionY][positionX].getMonstre()].getModele()].m_minimap)
                     if (m_monstre[m_decor[0][positionY][positionX].getMonstre()].m_friendly)
                         return 5;
@@ -3271,7 +3236,7 @@ int Map::getTypeCase(int positionX,int positionY)
                 return 1;
 
         if (m_decor[1][positionY][positionX].getMonstre()>-1&&m_decor[1][positionY][positionX].getMonstre()<(int)m_monstre.size())
-            if (m_monstre[m_decor[1][positionY][positionX].getMonstre()].enVie())
+            if (m_monstre[m_decor[1][positionY][positionX].getMonstre()].EnVie())
                 if (m_ModeleMonstre[m_monstre[m_decor[1][positionY][positionX].getMonstre()].getModele()].m_minimap)
                     if (m_monstre[m_decor[1][positionY][positionX].getMonstre()].m_friendly)
                         return 5;
@@ -3333,7 +3298,7 @@ int Map::getMonstre(Hero *hero,coordonnee positionSouris,coordonnee casePointee)
                 for (int k=vueMin.x;k<vueMax.x;k++)
                 {
                     if (m_decor[i][j][k].getMonstre()>=0&&m_decor[i][j][k].getMonstre()<(int)m_monstre.size())
-                        if (m_monstre[m_decor[i][j][k].getMonstre()].enVie()&&m_monstre[m_decor[i][j][k].getMonstre()].getCaracteristique().rang>=0)
+                        if (m_monstre[m_decor[i][j][k].getMonstre()].EnVie()&&m_monstre[m_decor[i][j][k].getMonstre()].getCaracteristique().rang>=0)
                         {
                             coordonneeDecimal temp;
                             temp.x=(((m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().x-m_monstre[m_decor[i][j][k].getMonstre()].getCoordonneePixel().y)*64/COTE_TILE));

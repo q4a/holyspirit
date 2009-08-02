@@ -102,19 +102,25 @@ void c_Inventaire::Utiliser(Jeu *jeu)
     jeu->menu.AfficherInventaire(m_decalage,&jeu->hero.m_classe,m_trader==NULL);
 
     if(m_trader!=NULL)
+    {
         jeu->hero.AfficherInventaire(m_decalage,*m_trader);
+    }
     else
     {
         std::vector<Objet> temp;
         jeu->hero.AfficherInventaire(m_decalage,temp);
     }
+
+    if(jeu->hero.m_objetEnMain == -1)
+        eventManager->AfficherCurseur();
+
+
     jeu->map->AfficherSac(jeu->hero.m_personnage.getCoordonnee(),m_decalage,jeu->hero.m_classe.position_sac_inventaire,jeu->hero.m_caracteristiques);
 
     jeu->menu.Afficher(1,255,&jeu->hero.m_classe);
     jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,-1,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
 
-    if (jeu->hero.m_objetEnMain==-1)
-        eventManager->AfficherCurseur();
+
 
     if (eventManager->getEvenement(Key::I,"ET")||eventManager->getEvenement(Key::Escape,"ET"))
     {

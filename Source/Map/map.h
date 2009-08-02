@@ -78,7 +78,7 @@ public:
     bool RamasserObjet(Hero *hero,bool enMain = false);
 
     void AjouterObjet(Objet objet);
-    int AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coordonnee lanceur,int couche,float  vitesse,float decalageAngle,int degats,bool monstre,Tile *tile, int image);
+    int AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coordonnee lanceur,int couche,float  vitesse,float decalageAngle,int degats,bool monstre,std::vector<Tile> &tiles);
 
 
 
