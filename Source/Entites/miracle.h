@@ -127,7 +127,7 @@ public:
     void Concatenencer(std::string chemin);
     void JouerSon(int numeroSon,coordonnee position,coordonnee positionHero);
 
-    void AfficherDescription(coordonnee position);
+    void AfficherDescription(coordonnee position, bool suivant = true);
     sf::String AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color=sf::Color(255,255,255));
 
 
@@ -142,12 +142,18 @@ public:
 
     int                         m_coutFoi;
     int                         m_reserveFoi;
+    int                         m_coutFoi_suivant;
+    int                         m_reserveFoi_suivant;
 
     int                         m_coutVie;
     int                         m_reserveVie;
+    int                         m_coutVie_suivant;
+    int                         m_reserveVie_suivant;
 
     std::string                 m_nom;
     std::vector<std::string>    m_description;
+    std::vector<std::string>    m_description_effets;
+    std::vector<std::string>    m_description_effets_suivant;
 
     bool                        m_max;
     int                         m_cas;

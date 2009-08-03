@@ -45,9 +45,9 @@ class ParticuleSysteme
     ParticuleSysteme();
     ParticuleSysteme(int , ModeleParticuleSysteme *, coordonnee , sf::Color,float ,float);
     ~ParticuleSysteme();
-    void Afficher( ModeleParticuleSysteme *modele);
+    bool Afficher( ModeleParticuleSysteme *modele,float temps,int tailleMapY);
     void Generer(float force, ModeleParticuleSysteme *modele,coordonnee position,float);
-    bool Gerer(float temps,int tailleMapY);
+    //bool Gerer(float temps,int tailleMapY);
 
     int m_modele;
     std::vector <Particule> m_particules;

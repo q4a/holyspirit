@@ -1894,6 +1894,9 @@ int Map::GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
                     coordonnee buf((int)(entiteMiracle->m_infos[o].m_position.x/COTE_TILE), (int)(entiteMiracle->m_infos[o].m_position.y/COTE_TILE));
                     InfligerDegatsMasse(buf, modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[3], deg, 1, hero, modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[2], monstre);
 
+                    if(modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[4])
+                        VerifierDeclencheursDegats(buf.y,buf.x);
+
                     for (int p=0;p<(int)modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien.size();p++)
                     {
                         entiteMiracle->m_infos.push_back(InfosEntiteMiracle ());
@@ -2013,9 +2016,8 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                 {
                     moteurGraphique->LightManager->Generate(m_monstre[monstre].m_light);
 
-                    bool explosif=false;
-                    int degats = m_monstre[monstre].Animer(&m_ModeleMonstre[m_monstre[monstre].getModele()],temps,&explosif,positionHero);
-                    if (degats>0&&!explosif)
+                    int degats = m_monstre[monstre].Animer(&m_ModeleMonstre[m_monstre[monstre].getModele()],temps,positionHero);
+                    if (degats>0)
                     {
                         if (m_monstre[monstre].m_miracleALancer==-1)
                         {
@@ -2037,11 +2039,6 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                                 GererMiracle(&m_monstre[monstre].m_miracleEnCours.back(),&m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours.back().m_modele],hero,1,m_monstre[monstre].getCoordonnee(),hero->m_personnage.getProchaineCase(),i);
                         }
 
-                    }
-                    if (explosif&&degats>0)
-                    {
-                        VerifierDeclencheursDegats(j,k);
-                        InfligerDegatsMasse(coordonnee (k,j,-1,-1),1,degats,1,hero);
                     }
 
                     m_monstre[monstre].m_nombreInvocation=0;
@@ -2409,9 +2406,11 @@ void Map::MusiquePlay(coordonnee position)
                                 if(m_monstre[m_decor[i][j][k].getMonstre()].m_miracleALancer==-1) \
                                 {\
                                     m_monstre[m_decor[i][j][k].getMonstre()].m_miracleALancer=numero;\
-                                    m_monstre[m_decor[i][j][k].getMonstre()].setEtat(2);   \
+                                    if(m_monstre[m_decor[i][j][k].getMonstre()].EnVie()) \
+                                        m_monstre[m_decor[i][j][k].getMonstre()].setEtat(2);   \
                                 }\
-                                m_monstre[m_decor[i][j][k].getMonstre()].Frappe(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee(),hero->m_personnage.getCoordonnee());   \
+                                if(m_monstre[m_decor[i][j][k].getMonstre()].EnVie()) \
+                                    m_monstre[m_decor[i][j][k].getMonstre()].Frappe(m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee(),hero->m_personnage.getCoordonnee());   \
                             }}
 
 #define SETSTATE(numero)  {if(m_monstre[m_decor[i][j][k].getMonstre()].getEtat()!=numero) \
@@ -3010,7 +3009,19 @@ void Map::PousserMonstreCase(int numeroMonstre, coordonnee vecteur)
 {
     if (numeroMonstre>=0&&numeroMonstre<(int)m_monstre.size())
         if (1!=getTypeCase((int)((m_monstre[numeroMonstre].getCoordonnee().x+vecteur.x)),(int)((m_monstre[numeroMonstre].getCoordonnee().y+vecteur.y))))
+        {
+            if(m_decor[0][m_monstre[numeroMonstre].getCoordonnee().y][m_monstre[numeroMonstre].getCoordonnee().x].getMonstre() == numeroMonstre)
+            {
+                m_decor[0][m_monstre[numeroMonstre].getCoordonnee().y][m_monstre[numeroMonstre].getCoordonnee().x].setMonstre(-1);
+                m_decor[0][m_monstre[numeroMonstre].getCoordonnee().y+vecteur.y][m_monstre[numeroMonstre].getCoordonnee().x+vecteur.x].setMonstre(numeroMonstre);
+            }
+            if(m_decor[1][m_monstre[numeroMonstre].getCoordonnee().y][m_monstre[numeroMonstre].getCoordonnee().x].getMonstre() == numeroMonstre)
+            {
+                m_decor[1][m_monstre[numeroMonstre].getCoordonnee().y][m_monstre[numeroMonstre].getCoordonnee().x].setMonstre(-1);
+                m_decor[1][m_monstre[numeroMonstre].getCoordonnee().y+vecteur.y][m_monstre[numeroMonstre].getCoordonnee().x+vecteur.x].setMonstre(numeroMonstre);
+            }
             m_monstre[numeroMonstre].PousserCase(vecteur);
+        }
 }
 
 bool Map::RamasserObjet(Hero *hero,bool enMain)

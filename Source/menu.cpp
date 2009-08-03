@@ -145,7 +145,7 @@ void Menu::Afficher(int type,float alpha,Classe *classe)
 
 void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteristique caracteristiqueMonstre,Classe *classe)
 {
-
+    texte.SetFont(moteurGraphique->m_font);
     if (caracteristique.vie>0)
     {
         Sprite sprite;
@@ -176,6 +176,20 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         }
     }
 
+    if(eventManager->getPositionSouris().x > classe->orbe_vie.position.x*configuration->Resolution.w/800
+    && eventManager->getPositionSouris().x < (classe->orbe_vie.position.x + classe->orbe_vie.position.w)*configuration->Resolution.w/800
+    && eventManager->getPositionSouris().y > classe->orbe_vie.position.y*configuration->Resolution.h/600
+    && eventManager->getPositionSouris().y < (classe->orbe_vie.position.y + classe->orbe_vie.position.h)*configuration->Resolution.h/600)
+    {
+        std::ostringstream buf;
+        buf<<(int)caracteristique.vie<<" / "<<caracteristique.maxVie;
+
+        texte.SetSize(12.f*configuration->Resolution.y/600);
+        texte.SetText(buf.str());
+        texte.SetPosition(eventManager->getPositionSouris().x, eventManager->getPositionSouris().y - 20.f*configuration->Resolution.y/600);
+        moteurGraphique->AjouterTexte(&texte,19);
+    }
+
     if (caracteristique.foi>0)
     {
         Sprite sprite;
@@ -201,7 +215,21 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         }
     }
 
-    texte.SetFont(moteurGraphique->m_font);
+    if(eventManager->getPositionSouris().x > classe->orbe_foi.position.x*configuration->Resolution.w/800
+    && eventManager->getPositionSouris().x < (classe->orbe_foi.position.x + classe->orbe_foi.position.w)*configuration->Resolution.w/800
+    && eventManager->getPositionSouris().y > classe->orbe_foi.position.y*configuration->Resolution.h/600
+    && eventManager->getPositionSouris().y < (classe->orbe_foi.position.y + classe->orbe_foi.position.h)*configuration->Resolution.h/600)
+    {
+        std::ostringstream buf;
+        buf<<(int)caracteristique.foi<<" / "<<caracteristique.maxFoi;
+
+        texte.SetSize(12.f*configuration->Resolution.y/600);
+        texte.SetText(buf.str());
+        texte.SetPosition(eventManager->getPositionSouris().x, eventManager->getPositionSouris().y - 20.f*configuration->Resolution.y/600);
+        moteurGraphique->AjouterTexte(&texte,19);
+    }
+
+
 
     if (caracteristique.ancienPointAme>0)
     {
@@ -217,7 +245,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         sprite.SetX(configuration->Resolution.w/2-46*configuration->Resolution.w/800);
         sprite.SetY(configuration->Resolution.h-(temp)*configuration->Resolution.h/600);
 
-        moteurGraphique->AjouterCommande(&sprite,17,0);
+        moteurGraphique->AjouterCommande(&sprite,18,0);
     }
 
 

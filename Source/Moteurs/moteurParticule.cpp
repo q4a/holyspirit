@@ -40,9 +40,12 @@ ParticuleSysteme::~ParticuleSysteme()
 {
     m_particules.clear();
 }
-void ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele)
+bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps,int tailleMapY)
 {
-    for (Iter=m_particules.begin();Iter!=m_particules.end();++Iter)
+    int efface=0;
+    int i=0;
+
+    for (Iter=m_particules.begin();Iter!=m_particules.end();++Iter,++i)
     {
         if (!modele->m_particules.empty())
             if (Iter->numero>=0&&Iter->numero<(int)modele->m_particules.size())
@@ -66,40 +69,7 @@ void ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele)
                 sprite.Move(0,Iter->position.z);
                 moteurGraphique->AjouterCommande(&sprite,9,1);
             }
-    }
-}
-void ParticuleSysteme::Generer(float force, ModeleParticuleSysteme *modele,coordonnee position,float angle)
-{
-    for (int i=0;i<(int)modele->m_particules.size();i++)
-    {
-        int nombre=(rand() % (modele->m_particules[i].max - modele->m_particules[i].min + 1)) + modele->m_particules[i].min;
-        for (int j=0;j<nombre;j++)
-        {
-            angle+= (180-(rand() % 360))*force/100;
-            m_particules.push_back(Particule ());
-            m_particules.back().vie=100;
-            m_particules.back().position.x=position.x;
-            m_particules.back().position.y=position.y;
-            m_particules.back().position.z=(rand() % (64 - 0 + 1)) + 0;
-            m_particules.back().vecteur.x=cos(angle*M_PI/180);
-            m_particules.back().vecteur.y=sin(angle*M_PI/180)/2;
-            m_particules.back().vecteur.z=(rand() % (int)(force*0.6 - force*0.4 + 1)) + force*0.4;
-            m_particules.back().vitesse=(rand() % (int)(force*1.25 - force*0.75 + 1)) + force*0.75;
-            m_particules.back().vitesse_rotation=((rand() % (int)(force*1 - force*0.5 + 1)) + force*0.5)*5;
-            if (m_particules.back().vitesse_rotation>100)
-                m_particules.back().vitesse_rotation=100;
-            m_particules.back().rotation=rand() % 360;
-            m_particules.back().alpha=255;
-            m_particules.back().numero=i;
-        }
-    }
-}
-bool ParticuleSysteme::Gerer(float temps,int tailleMapY)
-{
-    int efface=0;
-    int i=0;
-    for (Iter=m_particules.begin();Iter!=m_particules.end();++Iter,++i)
-    {
+
         if (Iter->vie==100)
         {
             Iter->position.x+=Iter->vecteur.x*Iter->vitesse*temps*25;
@@ -150,3 +120,30 @@ bool ParticuleSysteme::Gerer(float temps,int tailleMapY)
 
     return 1;
 }
+void ParticuleSysteme::Generer(float force, ModeleParticuleSysteme *modele,coordonnee position,float angle)
+{
+    for (int i=0;i<(int)modele->m_particules.size();i++)
+    {
+        int nombre=(rand() % (modele->m_particules[i].max - modele->m_particules[i].min + 1)) + modele->m_particules[i].min;
+        for (int j=0;j<nombre;j++)
+        {
+            angle+= (180-(rand() % 360))*force/100;
+            m_particules.push_back(Particule ());
+            m_particules.back().vie=100;
+            m_particules.back().position.x=position.x;
+            m_particules.back().position.y=position.y;
+            m_particules.back().position.z=(rand() % (64 - 0 + 1)) + 0;
+            m_particules.back().vecteur.x=cos(angle*M_PI/180);
+            m_particules.back().vecteur.y=sin(angle*M_PI/180)/2;
+            m_particules.back().vecteur.z=(rand() % (int)(force*0.6 - force*0.4 + 1)) + force*0.4;
+            m_particules.back().vitesse=(rand() % (int)(force*1.25 - force*0.75 + 1)) + force*0.75;
+            m_particules.back().vitesse_rotation=((rand() % (int)(force*1 - force*0.5 + 1)) + force*0.5)*5;
+            if (m_particules.back().vitesse_rotation>100)
+                m_particules.back().vitesse_rotation=100;
+            m_particules.back().rotation=rand() % 360;
+            m_particules.back().alpha=255;
+            m_particules.back().numero=i;
+        }
+    }
+}
+

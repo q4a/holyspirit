@@ -1112,7 +1112,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                 m_miracleEnMain = -1;
             }
             else
-                m_miracleEnMain = m_miracles_raccourcis[0];
+                m_miracleEnMain = m_miracles_raccourcis[1];
 
             eventManager->StopEvenement(Mouse::Left,"C");
         }
@@ -1127,7 +1127,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                 m_miracleEnMain = -1;
             }
             else
-                m_miracleEnMain = m_miracles_raccourcis[0];
+                m_miracleEnMain = m_miracles_raccourcis[2];
 
             eventManager->StopEvenement(Mouse::Left,"C");
         }
@@ -1142,7 +1142,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                 m_miracleEnMain = -1;
             }
             else
-                m_miracleEnMain = m_miracles_raccourcis[0];
+                m_miracleEnMain = m_miracles_raccourcis[3];
 
             eventManager->StopEvenement(Mouse::Left,"C");
         }
@@ -1533,7 +1533,7 @@ void Hero::AfficherRaccourcis()
             && eventManager->getPositionSouris().x < sprite.GetPosition().x + 20 * configuration->Resolution.x/800
             && eventManager->getPositionSouris().y > sprite.GetPosition().y
             && eventManager->getPositionSouris().y < sprite.GetPosition().y + 20 * configuration->Resolution.h/600)
-                m_classe.miracles[m_miracles_raccourcis[i]].AfficherDescription(eventManager->getPositionSouris());
+                m_classe.miracles[m_miracles_raccourcis[i]].AfficherDescription(eventManager->getPositionSouris(), false);
         }
     }
 
@@ -1557,7 +1557,7 @@ void Hero::AfficherRaccourcis()
             && eventManager->getPositionSouris().x < sprite.GetPosition().x + 20 * configuration->Resolution.x/800
             && eventManager->getPositionSouris().y > sprite.GetPosition().y
             && eventManager->getPositionSouris().y < sprite.GetPosition().y + 20 * configuration->Resolution.h/600)
-                m_classe.miracles[m_personnage.m_miracleALancer].AfficherDescription(eventManager->getPositionSouris());
+                m_classe.miracles[m_personnage.m_miracleALancer].AfficherDescription(eventManager->getPositionSouris(), false);
         }
 }
 

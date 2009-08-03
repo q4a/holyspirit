@@ -703,7 +703,12 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap)
         }
         if (m_etat==2||m_arrivee.x==m_positionCase.x&&m_arrivee.y==m_positionCase.y)
             return 1;
+
+        if(m_caracteristique.vitesse == 0)
+            m_cheminFinal = m_positionCase;
     }
+    else
+        return 1;
 
     return 0;
 }
@@ -718,9 +723,12 @@ void Personnage::InfligerDegats(float degats)
     m_touche = true;
 }
 
-int Personnage::Animer(Modele_Personnage *modele,float temps,bool *explosif,coordonnee positionHero)
+int Personnage::Animer(Modele_Personnage *modele,float temps,coordonnee positionHero)
 {
     int retour=-2;
+
+    if(m_monstre)
+        retour = 0;
 
     int nombreInactif = 0;
     for(int i = 0; i < (int)m_effets.size(); ++i)
@@ -762,7 +770,12 @@ int Personnage::Animer(Modele_Personnage *modele,float temps,bool *explosif,coor
                 if (m_monstre)
                 {
                     if (modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==0)
-                        retour+=(rand()%(m_caracteristique.degatsMax-m_caracteristique.degatsMin+1)+m_caracteristique.degatsMin);
+                    {
+                        if(m_miracleALancer >= 0)
+                            retour = 1;
+                        else
+                            retour+=(rand()%(m_caracteristique.degatsMax-m_caracteristique.degatsMin+1)+m_caracteristique.degatsMin);
+                    }
                 }
                 else
                 {
@@ -772,8 +785,6 @@ int Personnage::Animer(Modele_Personnage *modele,float temps,bool *explosif,coor
 
                 if (modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==1 && m_monstre)
                     frappeEnCours=false,m_miracleALancer=-1;
-
-                *explosif=modele->m_explosif;
 
                 if (m_monstre)
                 {

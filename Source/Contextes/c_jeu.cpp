@@ -219,16 +219,15 @@ void c_Jeu::Animation(Jeu *jeu)
     {
         jeu->map->TestEvenement(jeu,tempsDepuisDerniereAnimation); // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
 
-        if (tempsDepuisDerniereAnimation>0.8)
-            tempsDepuisDerniereAnimation=0.8;
+        if (tempsDepuisDerniereAnimation>0.12)
+            tempsDepuisDerniereAnimation=0.12;
 
         coordonnee positionHero;
         positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
         positionHero.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
 
-        bool a; // Variable qui ne sert pas ici, mais qui remplace le explosif des monstres
         int retour=-2;
-        retour=jeu->hero.m_personnage.Animer(&jeu->hero.m_modelePersonnage[0],tempsDepuisDerniereAnimation,&a,positionHero);
+        retour = jeu->hero.m_personnage.Animer(&jeu->hero.m_modelePersonnage[0],tempsDepuisDerniereAnimation,positionHero);
 
         jeu->hero.CalculerOrdreAffichage();
 

@@ -72,7 +72,7 @@ public:
     Personnage();
 
     bool EnVie();
-    int Animer(Modele_Personnage *modele,float temps,bool *explosif,coordonnee positionHero);
+    int Animer(Modele_Personnage *modele,float temps,coordonnee positionHero);
 
     void Pousser(coordonnee vecteur);
     void PousserCase(coordonnee vecteur);

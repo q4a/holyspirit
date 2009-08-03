@@ -518,7 +518,30 @@ void Classe::Charger(string chemin, const std::vector<int> &lvl_miracles)
                             temp << buf << lvl_miracles[miracles.size()] << ".miracle.hs";
                         else
                             temp << buf <<+ "0.miracle.hs";
+
+                        std::ostringstream temp2;
+                        if(lvl_miracles.size() > miracles.size())
+                            temp2 << buf << (lvl_miracles[miracles.size()]+1) << ".miracle.hs";
+                        else
+                            temp2 << buf <<+ "1.miracle.hs";
+
                         miracles.push_back(Miracle (temp.str()));
+
+
+
+                        if(!miracles.back().m_max)
+                        {
+                            cout<<"ATTENTION "<<temp2.str()<<endl;
+                            Miracle mir(temp2.str());
+                            for(int i = 0 ; i < (int)mir.m_description_effets.size() ; ++i)
+                                miracles.back().m_description_effets_suivant.push_back(mir.m_description_effets[i]);
+
+                            miracles.back().m_coutFoi_suivant = mir.m_coutFoi;
+                            miracles.back().m_reserveFoi_suivant = mir.m_reserveFoi;
+                            miracles.back().m_coutVie_suivant = mir.m_coutVie;
+                            miracles.back().m_reserveVie_suivant = mir.m_reserveVie;
+                        }
+
                     }
 
                     if(caractere == 'x')

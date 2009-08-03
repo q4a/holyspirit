@@ -168,9 +168,9 @@ void MoteurGraphique::Gerer(float temps,int tailleMapY)
     {
         if (m_systemeParticules_iter->m_modele>=0&&m_systemeParticules_iter->m_modele<(int)m_modeleSystemeParticules.size())
         {
-            m_systemeParticules_iter->Afficher(&m_modeleSystemeParticules[m_systemeParticules_iter->m_modele]);
 
-            if (!m_systemeParticules_iter->Gerer(temps,tailleMapY))
+
+            if (!m_systemeParticules_iter->Afficher(&m_modeleSystemeParticules[m_systemeParticules_iter->m_modele],temps,tailleMapY))
             {
                 m_systemeParticules.erase (m_systemeParticules_iter);
                 if((int)m_systemeParticules.size()>k)

@@ -23,6 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 using namespace std;
 using namespace sf;
@@ -227,6 +228,41 @@ void Miracle::Charger(std::string chemin)
         }
         m_description.push_back(description.substr(0, stTemp)+'\n');
 
+        description = "";
+
+        do
+        {
+            fichier.get(caractere);
+            if (caractere=='*')
+            {
+                fichier>>description;
+                for (int i=0;i<(int)description.size();i++)
+                    if (description[i]=='_')
+                        description[i]=' ';
+            }
+
+            if (fichier.eof())
+            {
+                console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
+                caractere='$';
+            }
+        }
+        while (caractere!='$');
+
+        if(description.size() > 0)
+        {
+            stTemp = description.find('\\');
+
+            while (stTemp !=  std::string::npos)
+            {
+                m_description.push_back(description.substr(0, stTemp)+'\n');
+                description = description.substr(stTemp + 1);
+                stTemp = description.find('\\');
+            }
+            m_description_effets.push_back(description.substr(0, stTemp)+'\n');
+        }
+
+        description = "";
 
         do
         {
@@ -570,18 +606,22 @@ void Miracle::Concatenencer(std::string chemin)
         m_effets.back().m_sequence+=tailleTile;
     }
 
-    m_coutFoi       += miracle.m_coutFoi;
-    m_reserveFoi    += miracle.m_reserveFoi;
+    m_coutFoi               += miracle.m_coutFoi;
+    m_reserveFoi            += miracle.m_reserveFoi;
+    m_coutFoi_suivant       += miracle.m_coutFoi;
+    m_reserveFoi_suivant    += miracle.m_reserveFoi;
 
-    m_coutVie       += miracle.m_coutVie;
-    m_reserveVie    += miracle.m_reserveVie;
+    m_coutVie               += miracle.m_coutVie;
+    m_reserveVie            += miracle.m_reserveVie;
+    m_coutVie_suivant       += miracle.m_coutVie;
+    m_reserveVie_suivant    += miracle.m_reserveVie;
 
-    m_description.push_back(std::string ());
+    /*m_description.push_back(std::string ());
     m_description.push_back(std::string ("__________________________"));
-    m_description.push_back(std::string ());
+    m_description.push_back(std::string ());*/
 
-    for(int i = 0 ; i < (int)miracle.m_description.size() ; ++i)
-        m_description.push_back(miracle.m_description[i]);
+    for(int i = 0 ; i < (int)miracle.m_description_effets.size() ; ++i)
+        m_description_effets.push_back(miracle.m_description_effets[i]);
 }
 
 
@@ -606,7 +646,7 @@ sf::String Miracle::AjouterCaracteristiqueAfficher(coordonnee position,coordonne
 }
 
 
-void Miracle::AfficherDescription(coordonnee position)
+void Miracle::AfficherDescription(coordonnee position, bool suivant)
 {
     std::vector <sf::String> temp;
 
@@ -619,10 +659,76 @@ void Miracle::AfficherDescription(coordonnee position)
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"---------------"));
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
 
-    for (int i=0;i<(int)m_description.size();i++)
+    for (int i=0;i<(int)m_description.size() && suivant;i++)
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_description[i].c_str()));
 
+    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
 
+    for (int i=0;i<(int)m_description_effets.size();i++)
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_description_effets[i].c_str()));
+
+    if(m_coutFoi > 0)
+    {
+        std::ostringstream buf;
+        buf<<"Cout en foi : "<<m_coutFoi;
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+    }
+    if(m_reserveFoi > 0)
+    {
+        std::ostringstream buf;
+        buf<<"Réserve en foi : "<<m_reserveFoi;
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+    }
+    if(m_coutVie > 0)
+    {
+        std::ostringstream buf;
+        buf<<"Cout en vie : "<<m_coutVie;
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+    }
+    if(m_reserveVie > 0)
+    {
+        std::ostringstream buf;
+        buf<<"Réserve en vie : "<<m_reserveVie;
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+    }
+
+    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+
+    if(!m_max && suivant)
+    {
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"Niveau suivant :"));
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+
+        for (int i=0;i<(int)m_description_effets_suivant.size();i++)
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_description_effets_suivant[i].c_str()));
+
+        if(m_coutFoi_suivant > 0)
+        {
+            std::ostringstream buf;
+            buf<<"Cout en foi : "<<m_coutFoi_suivant;
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+        }
+        if(m_reserveFoi_suivant > 0)
+        {
+            std::ostringstream buf;
+            buf<<"Réserve en foi : "<<m_reserveFoi_suivant;
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+        }
+        if(m_coutVie_suivant > 0)
+        {
+            std::ostringstream buf;
+            buf<<"Cout en vie : "<<m_coutVie_suivant;
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+        }
+        if(m_reserveVie_suivant > 0)
+        {
+            std::ostringstream buf;
+            buf<<"Réserve en vie : "<<m_reserveVie_suivant;
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+        }
+    }
 
     if (position.x-tailleCadran.x-10<0)
         position.x=tailleCadran.x+10;
