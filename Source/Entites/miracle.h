@@ -29,7 +29,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 class Personnage;
 
 enum  {PROJECTILE,CORPS_A_CORPS,DEGATS,EFFET_GRAPHIQUE,INVOCATION,AURA,SOIN,M_EXPLOSION,REPETITION};
-enum  {AURA_REGENERATION, AURA_DEGATS};
+enum  {AURA_REGENERATION, AURA_DEGATS, AURA_VOL};
 enum  {PHYSIQUE, FEU, CORROSION, FOI};
 
 class EffetGraphique
@@ -151,6 +151,8 @@ public:
 
     bool                        m_max;
     int                         m_cas;
+
+    int                         m_buf;
 };
 
 struct InfosEntiteMiracle

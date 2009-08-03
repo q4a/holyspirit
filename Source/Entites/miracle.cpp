@@ -160,6 +160,8 @@ Miracle::~Miracle()
 
 void Miracle::Charger(std::string chemin)
 {
+    console->Ajouter("Chargement du miracle : "+chemin);
+
     m_max        =  false;
     m_chemin     =  chemin;
     m_cas        =  -1;
@@ -538,10 +540,10 @@ void Miracle::Concatenencer(std::string chemin)
     Miracle miracle(chemin);
     m_effets.back().m_lien.push_back((int)m_effets.size());
 
-    int tailleEffets=m_effets.size();
-    int tailleImage=m_image.size();
-    int tailleSon=m_sons.size();
-    int tailleTile=m_tile.size();
+    int tailleEffets    = m_effets.size();
+    int tailleImage     = m_image.size();
+    int tailleSon       = m_sons.size();
+    int tailleTile      = m_tile.size();
 
     for (int i=0;i<(int)miracle.m_tile.size();i++)
     {
@@ -567,6 +569,18 @@ void Miracle::Concatenencer(std::string chemin)
         m_effets.back().m_sequence+=tailleTile;
     }
 
+    m_coutFoi       += miracle.m_coutFoi;
+    m_reserveFoi    += miracle.m_reserveFoi;
+
+    m_coutVie       += miracle.m_coutVie;
+    m_reserveVie    += miracle.m_reserveVie;
+
+    m_description.push_back(std::string ());
+    m_description.push_back(std::string ("__________________________"));
+    m_description.push_back(std::string ());
+
+    for(int i = 0 ; i < (int)miracle.m_description.size() ; ++i)
+        m_description.push_back(miracle.m_description[i]);
 }
 
 

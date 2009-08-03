@@ -501,6 +501,8 @@ void Classe::Charger(string chemin, const std::vector<int> &lvl_miracles)
             fichier.get(caractere);
             if (caractere=='*')
             {
+                int buf = -1;
+                std::ostringstream temp;
                 position_miracles.push_back(coordonnee ());
                 page_miracles.push_back(0);
 
@@ -510,7 +512,6 @@ void Classe::Charger(string chemin, const std::vector<int> &lvl_miracles)
                     if (caractere=='m')
                     {
                         std::string buf;
-                        std::ostringstream temp;
                         fichier>>buf;
 
                         if(lvl_miracles.size() > miracles.size())
@@ -520,17 +521,20 @@ void Classe::Charger(string chemin, const std::vector<int> &lvl_miracles)
                         miracles.push_back(Miracle (temp.str()));
                     }
 
-                    if (caractere=='x')
+                    if(caractere == 'x')
                         fichier>>position_miracles.back().x;
-                    if (caractere=='y')
+                    if(caractere == 'y')
                         fichier>>position_miracles.back().y;
-                    if (caractere=='h')
+                    if(caractere == 'h')
                         fichier>>position_miracles.back().h;
-                    if (caractere=='w')
+                    if(caractere == 'w')
                         fichier>>position_miracles.back().w;
 
-                    if(caractere=='e')
+                    if(caractere == 'e')
                         fichier>>page_miracles.back();
+
+                    if(caractere == 'b')
+                        fichier>>buf;
 
                     if (fichier.eof())
                     {
@@ -539,6 +543,13 @@ void Classe::Charger(string chemin, const std::vector<int> &lvl_miracles)
                     }
                 }
                 while (caractere!='$');
+
+                miracles.back().m_buf = buf;
+
+                if(lvl_miracles.size() >= miracles.size())
+                    if(miracles.back().m_buf != -1 && lvl_miracles[miracles.size()-1] > 0)
+                        miracles[miracles.back().m_buf].Concatenencer(temp.str());
+
                 fichier.get(caractere);
             }
             if (fichier.eof())

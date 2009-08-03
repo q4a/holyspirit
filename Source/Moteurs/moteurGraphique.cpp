@@ -467,7 +467,7 @@ void MoteurGraphique::DecrementerImportance()
         if (m_images[i].importance!=-1)
         {
             m_images[i].importance--;
-            if (m_images[i].importance<=0)
+            if (m_images[i].importance==0)
                 m_images[i].nom="",m_images[i].importance=0;
         }
 }

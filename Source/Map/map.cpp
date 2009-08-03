@@ -2074,6 +2074,15 @@ void Map::AnimerMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,f
                                 miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[1],
                                 miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[2],
                                 miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[3]);
+
+                        for (int p=0;p<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien.size();p++)
+                            {
+                                personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
+                                personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien[p];
+                                personnage->m_miracleEnCours[i].m_infos.back().m_position=personnage->m_miracleEnCours[i].m_infos[o].m_position;
+                            }
+
+                            continuer=false;
                     }
 
                 if (continuer)
@@ -2899,6 +2908,9 @@ bool Map::InfligerDegats(int numeroMonstre, float degats, Hero *hero,bool pousse
         }*/
 
         m_monstre[numeroMonstre].InfligerDegats(degats);
+
+        hero->m_personnage.InfligerDegats(-degats * hero->m_caracteristiques.volVie);
+        hero->m_caracteristiques.foi += degats * hero->m_caracteristiques.volFoi;
 
         for (int o=0;o<2;o++)
             for (int x=m_monstre[numeroMonstre].getCoordonnee().x;x<10+m_monstre[numeroMonstre].getCoordonnee().x;x++)

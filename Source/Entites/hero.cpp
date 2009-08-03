@@ -120,29 +120,35 @@ Hero::Hero()
 
     Caracteristique temp;
 
-    temp.vie=100;
-    temp.maxVie=100;
-    temp.reserveVie = 0;
-    temp.foi=100;
-    temp.maxFoi=100;
-    temp.reserveFoi = 0;
+    temp.vie                = 100;
+    temp.maxVie             = 100;
+    temp.reserveVie         = 0;
+    temp.regenVie           = 0;
 
-    temp.vitesse=1;
-    temp.pointAme=0;
-    temp.ancienPointAme=0;
-    temp.positionAncienAme=0;
-    temp.niveau=1;
-    temp.nom="Héro";
+    temp.foi                = 100;
+    temp.maxFoi             = 100;
+    temp.reserveFoi         = 0;
+    temp.regenFoi           = 0;
 
-    temp.force=4;
-    temp.dexterite=4;
-    temp.vitalite=4;
-    temp.piete=4;
-    temp.charisme=4;
-    temp.pts_restant=0;
-    temp.miracles_restant = 0;
+    temp.volVie             = 0;
+    temp.volFoi             = 0;
 
-    temp.modificateurTaille=1;
+    temp.vitesse            = 1;
+    temp.pointAme           = 0;
+    temp.ancienPointAme     = 0;
+    temp.positionAncienAme  = 0;
+    temp.niveau             = 1;
+    temp.nom                = "Héro";
+
+    temp.force              = 4;
+    temp.dexterite          = 4;
+    temp.vitalite           = 4;
+    temp.piete              = 4;
+    temp.charisme           = 4;
+    temp.pts_restant        = 0;
+    temp.miracles_restant   = 0;
+
+    temp.modificateurTaille = 1;
 
 
     m_personnage.setCaracteristique(temp);
@@ -1033,19 +1039,24 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                 if (eventManager->getEvenement(Mouse::Left,"C"))
                     if (m_lvl_miracles[i] > 0)
                     {
-                        m_personnage.m_miracleALancer = i;
+                        if(m_classe.miracles[i].m_buf != -1)
+                            m_personnage.m_miracleALancer = m_classe.miracles[i].m_buf;
+                        else
+                            m_personnage.m_miracleALancer = i;
                         eventManager->StopEvenement(Mouse::Left,"C");
                     }
 
                 if (eventManager->getEvenement(Mouse::Right,"C"))
                 {
                     if (m_personnage.getCaracteristique().miracles_restant > 0 && !m_classe.miracles[i].m_max)
-                    {
-                        Caracteristique temp = m_personnage.getCaracteristique();
-                        temp.miracles_restant--;
-                        m_lvl_miracles[i]++;
-                        m_personnage.setCaracteristique(temp);
-                    }
+                        if(m_classe.miracles[i].m_buf == -1 || m_classe.miracles[i].m_buf != -1 && m_lvl_miracles[m_classe.miracles[i].m_buf] > 0)
+                        {
+
+                            Caracteristique temp = m_personnage.getCaracteristique();
+                            temp.miracles_restant--;
+                            m_lvl_miracles[i]++;
+                            m_personnage.setCaracteristique(temp);
+                        }
                     eventManager->StopEvenement(Mouse::Right,"C");
 
                     ChargerModele();
@@ -1471,7 +1482,6 @@ void Hero::RecalculerCaracteristiques(bool bis)
     temp.maxVie                 = temp.vitalite*10;
     temp.maxFoi                 = temp.piete*10;
 
-
     m_caracteristiques          = m_personnage.getCaracteristique();
     m_caracteristiques.maxVie   = 0;
     m_caracteristiques.maxFoi   = 0;
@@ -1546,6 +1556,22 @@ void Hero::RecalculerCaracteristiques(bool bis)
             {
                 m_caracteristiques.degatsMin += m_personnage.m_effets[i].m_info2;
                 m_caracteristiques.degatsMax += m_personnage.m_effets[i].m_info3;
+            }
+
+            if(m_personnage.m_effets[i].m_type == AURA_REGENERATION)
+            {
+                if(m_personnage.m_effets[i].m_info1 == 0)
+                    m_caracteristiques.regenVie += m_personnage.m_effets[i].m_info2;
+                if(m_personnage.m_effets[i].m_info1 == 1)
+                    m_caracteristiques.regenFoi += m_personnage.m_effets[i].m_info2;
+            }
+
+            if(m_personnage.m_effets[i].m_type == AURA_VOL)
+            {
+                if(m_personnage.m_effets[i].m_info1 == 0)
+                    m_caracteristiques.volVie += m_personnage.m_effets[i].m_info2*0.01;
+                if(m_personnage.m_effets[i].m_info1 == 1)
+                    m_caracteristiques.volFoi += m_personnage.m_effets[i].m_info2*0.01;
             }
         }
 
@@ -2168,15 +2194,6 @@ void Hero::InfligerDegats(float degats)
 }
 void Hero::RegenererVie(float vie)
 {
-    float modificateur = 0;
-    for(int i = 0; i < (int)m_personnage.m_effets.size(); ++i)
-        if(m_personnage.m_effets[i].m_effet.m_actif)
-        {
-            if(m_personnage.m_effets[i].m_type == AURA_REGENERATION)
-                if(m_personnage.m_effets[i].m_info1 == 0)
-                    modificateur += m_personnage.m_effets[i].m_info2 * vie;
-        }
-
     Caracteristique temp=m_personnage.getCaracteristique();
 
     if (temp.vie>temp.maxVie)
@@ -2186,14 +2203,14 @@ void Hero::RegenererVie(float vie)
             temp.vie=temp.maxVie;
     }
     else
-        temp.vie+=vie + modificateur;
+        temp.vie += vie + m_caracteristiques.regenVie * vie;
 
     m_personnage.setCaracteristique(temp);
 
     if (m_caracteristiques.vie > m_personnage.getCaracteristique().vie)
-        m_caracteristiques.vie += (m_personnage.getCaracteristique().vie-m_caracteristiques.vie)*(vie + modificateur)*5;
+        m_caracteristiques.vie += (m_personnage.getCaracteristique().vie-m_caracteristiques.vie)*(vie + m_caracteristiques.regenVie * vie)*5;
     else if (m_caracteristiques.vie < m_personnage.getCaracteristique().vie)
-        m_caracteristiques.vie += (m_personnage.getCaracteristique().vie-m_caracteristiques.vie)*(vie + modificateur)/10;
+        m_caracteristiques.vie += (m_personnage.getCaracteristique().vie-m_caracteristiques.vie)*(vie + m_caracteristiques.regenVie * vie)/10;
 
     if (m_caracteristiques.vie > (m_caracteristiques.maxVie - m_caracteristiques.reserveVie) * 2)
         m_caracteristiques.vie = (m_caracteristiques.maxVie - m_caracteristiques.reserveVie) * 2;
@@ -2201,16 +2218,7 @@ void Hero::RegenererVie(float vie)
 }
 void Hero::RegenererFoi(float foi)
 {
-    float modificateur = 0;
-    for(int i = 0; i < (int)m_personnage.m_effets.size(); ++i)
-        if(m_personnage.m_effets[i].m_effet.m_actif)
-        {
-            if(m_personnage.m_effets[i].m_type == AURA_REGENERATION)
-                if(m_personnage.m_effets[i].m_info1 == 1)
-                    modificateur += m_personnage.m_effets[i].m_info2 * foi;
-        }
-
-    m_caracteristiques.foi += foi + modificateur;
+    m_caracteristiques.foi += foi + m_caracteristiques.regenFoi * foi;
     if (m_caracteristiques.foi > m_caracteristiques.maxFoi - m_caracteristiques.reserveFoi)
         m_caracteristiques.foi = m_caracteristiques.maxFoi - m_caracteristiques.reserveFoi;
 

@@ -182,12 +182,20 @@ struct Caracteristique
     float vie;
     float maxVie;
     float reserveVie;
+    float regenVie;
 
     float foi;
     float maxFoi;
     float reserveFoi;
+    float regenFoi;
 
-    int degatsMin,degatsMax,armure;
+    float volVie;
+    float volFoi;
+
+    int degatsMin;
+    int degatsMax;
+    int armure;
+
     int niveau;
     int rang;
 
