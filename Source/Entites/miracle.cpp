@@ -37,6 +37,7 @@ void Projectile::Afficher()
 
 EffetGraphique::EffetGraphique()
 {
+    m_animation     = 0;
     m_tileEnCours   = 0;
     m_actif         = true;
     m_compteur      = -100;

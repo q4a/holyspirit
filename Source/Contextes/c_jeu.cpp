@@ -215,7 +215,7 @@ void c_Jeu::Deplacements(Jeu *jeu)
 }
 void c_Jeu::Animation(Jeu *jeu)
 {
-    if (tempsDepuisDerniereAnimation>0.04)
+    if (tempsDepuisDerniereAnimation >= 0.02)
     {
         jeu->map->TestEvenement(jeu,tempsDepuisDerniereAnimation); // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
 
@@ -360,6 +360,54 @@ void GestionRaccourcisObjets(Jeu *jeu)
     }
 }
 
+void GestionRaccourcisMiracles(Jeu *jeu)
+{
+    if (eventManager->getEvenement(Key::F1,"ET")
+            || eventManager->getEvenement(Mouse::Left,"CA")
+            && eventManager->getPositionSouris().x > 432 * configuration->Resolution.w/800
+            &&eventManager->getPositionSouris().x < 452 * configuration->Resolution.w/800
+            &&eventManager->getPositionSouris().y > 492 * configuration->Resolution.h/600
+            &&eventManager->getPositionSouris().y < 512 * configuration->Resolution.h/600)
+    {
+        eventManager->StopEvenement(Key::F1,"ET");
+        eventManager->StopEvenement(Mouse::Left,"CA");
+        jeu->hero.m_personnage.m_miracleALancer = jeu->hero.m_miracles_raccourcis[0];
+    }
+    if (eventManager->getEvenement(Key::F2,"ET")
+            || eventManager->getEvenement(Mouse::Left,"CA")
+            && eventManager->getPositionSouris().x > 464
+            && eventManager->getPositionSouris().x < 484
+            && eventManager->getPositionSouris().y > 492
+            && eventManager->getPositionSouris().y < 512)
+    {
+        eventManager->StopEvenement(Key::F2,"ET");
+        eventManager->StopEvenement(Mouse::Left,"CA");
+        jeu->hero.m_personnage.m_miracleALancer = jeu->hero.m_miracles_raccourcis[1];
+    }
+    if (eventManager->getEvenement(Key::F3,"ET")
+            || eventManager->getEvenement(Mouse::Left,"CA")
+            && eventManager->getPositionSouris().x > 496
+            && eventManager->getPositionSouris().x < 516
+            && eventManager->getPositionSouris().y > 492
+            && eventManager->getPositionSouris().y < 512)
+    {
+        eventManager->StopEvenement(Key::F3,"ET");
+        eventManager->StopEvenement(Mouse::Left,"CA");
+        jeu->hero.m_personnage.m_miracleALancer = jeu->hero.m_miracles_raccourcis[2];
+    }
+    if (eventManager->getEvenement(Key::F4,"ET")
+            || eventManager->getEvenement(Mouse::Left,"CA")
+            && eventManager->getPositionSouris().x > 528
+            && eventManager->getPositionSouris().x < 548
+            && eventManager->getPositionSouris().y > 492
+            && eventManager->getPositionSouris().y < 512)
+    {
+        eventManager->StopEvenement(Key::F4,"ET");
+        eventManager->StopEvenement(Mouse::Left,"CA");
+        jeu->hero.m_personnage.m_miracleALancer = jeu->hero.m_miracles_raccourcis[3];
+    }
+}
+
 
 void c_Jeu::Evenements(Jeu *jeu)
 {
@@ -483,6 +531,7 @@ void c_Jeu::Evenements(Jeu *jeu)
             jeu->map->m_defilerObjets--,eventManager->StopEvenement(Mouse::Left,"C");
     }
     GestionRaccourcisObjets(jeu);
+    GestionRaccourcisMiracles(jeu);
 }
 
 

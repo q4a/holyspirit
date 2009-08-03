@@ -96,7 +96,7 @@ public:
 
     Caracteristique m_caracteristiques;
 
-    int miracleEnCours,frappeEnCours,m_objetEnMain,m_objetADeposer,m_objetVise;
+    int miracleEnCours,frappeEnCours,m_objetEnMain,m_objetADeposer,m_objetVise,m_miracleEnMain;
     int m_argent;
 
     //cDAT m_fichierSave;
@@ -104,6 +104,7 @@ public:
 
     int m_defilement_trader,m_max_defilement_trader,m_buttonPointe;
     int m_objets_raccourcis[4];
+    int m_miracles_raccourcis[4];
 
     int m_quetePointee, m_queteSelectionnee;
 

@@ -150,7 +150,6 @@ Hero::Hero()
 
     temp.modificateurTaille = 1;
 
-
     m_personnage.setCaracteristique(temp);
 
     m_monstreVise=-1;
@@ -161,6 +160,8 @@ Hero::Hero()
     RecalculerCaracteristiques();
 
     miracleEnCours=0;
+
+    m_miracleEnMain = -1;
 
     m_cas=0;
 
@@ -180,6 +181,11 @@ Hero::Hero()
     m_objets_raccourcis[1] = -1;
     m_objets_raccourcis[2] = -1;
     m_objets_raccourcis[3] = -1;
+
+    m_miracles_raccourcis[0] = -1;
+    m_miracles_raccourcis[1] = -1;
+    m_miracles_raccourcis[2] = -1;
+    m_miracles_raccourcis[3] = -1;
 
     m_queteSelectionnee = -1;
     m_personnage.m_miracleALancer = 0;
@@ -232,6 +238,13 @@ void Hero::Sauvegarder()
         fichier<<m_objets_raccourcis[1]<<endl;
         fichier<<m_objets_raccourcis[2]<<endl;
         fichier<<m_objets_raccourcis[3]<<endl;
+
+        fichier<<m_miracles_raccourcis[0]<<endl;
+        fichier<<m_miracles_raccourcis[1]<<endl;
+        fichier<<m_miracles_raccourcis[2]<<endl;
+        fichier<<m_miracles_raccourcis[3]<<endl;
+
+        fichier<<m_personnage.m_miracleALancer<<endl;
 
         if (configuration->debug)
             console->Ajouter("/Ecriture des caracterstiques.");
@@ -322,6 +335,13 @@ void Hero::Charger()
             *fichier>>m_objets_raccourcis[1];
             *fichier>>m_objets_raccourcis[2];
             *fichier>>m_objets_raccourcis[3];
+
+            *fichier>>m_miracles_raccourcis[0];
+            *fichier>>m_miracles_raccourcis[1];
+            *fichier>>m_miracles_raccourcis[2];
+            *fichier>>m_miracles_raccourcis[3];
+
+            *fichier>>m_personnage.m_miracleALancer;
 
             charTemp.ancienPointAme=charTemp.pointAme,charTemp.positionAncienAme=charTemp.pointAme;
 
@@ -1018,7 +1038,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
             buf<<m_lvl_miracles[i]<<endl;
             texte.SetText(buf.str());
             texte.SetX(m_classe.position_miracles[i].x + (m_classe.position_miracles[i].w -texte.GetRect().Right + texte.GetRect().Left)/2);
-            texte.SetY(m_classe.position_miracles[i].y + 54 - decalage);
+            texte.SetY(m_classe.position_miracles[i].y + 51 - decalage);
 
             moteurGraphique->AjouterTexte(&texte,15,0);
         }
@@ -1044,6 +1064,8 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                         else
                             m_personnage.m_miracleALancer = i;
                         eventManager->StopEvenement(Mouse::Left,"C");
+
+                        m_miracleEnMain = m_personnage.m_miracleALancer;
                     }
 
                 if (eventManager->getEvenement(Mouse::Right,"C"))
@@ -1062,6 +1084,89 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                     ChargerModele();
                 }
             }
+    if (eventManager->getEvenement(Mouse::Left,"C"))
+    {
+        if (eventManager->getPositionSouris().x > 432 * configuration->Resolution.w/800
+                &&eventManager->getPositionSouris().x < 452 * configuration->Resolution.w/800
+                &&eventManager->getPositionSouris().y > 492 * configuration->Resolution.h/600
+                &&eventManager->getPositionSouris().y < 512 * configuration->Resolution.h/600)
+        {
+            if(m_miracleEnMain >= 0)
+            {
+                m_miracles_raccourcis[0] = m_miracleEnMain;
+                m_miracleEnMain = -1;
+            }
+            else
+                m_miracleEnMain = m_miracles_raccourcis[0];
+
+            eventManager->StopEvenement(Mouse::Left,"C");
+        }
+        else if (eventManager->getPositionSouris().x > 464 * configuration->Resolution.w/800
+                 &&eventManager->getPositionSouris().x < 484 * configuration->Resolution.w/800
+                 &&eventManager->getPositionSouris().y > 492 * configuration->Resolution.h/600
+                 &&eventManager->getPositionSouris().y < 512 * configuration->Resolution.h/600)
+        {
+            if(m_miracleEnMain >= 0)
+            {
+                m_miracles_raccourcis[1] = m_miracleEnMain;
+                m_miracleEnMain = -1;
+            }
+            else
+                m_miracleEnMain = m_miracles_raccourcis[0];
+
+            eventManager->StopEvenement(Mouse::Left,"C");
+        }
+        else if (eventManager->getPositionSouris().x > 496 * configuration->Resolution.w/800
+                 &&eventManager->getPositionSouris().x < 516 * configuration->Resolution.w/800
+                 &&eventManager->getPositionSouris().y > 492 * configuration->Resolution.h/600
+                 &&eventManager->getPositionSouris().y < 512 * configuration->Resolution.h/600)
+        {
+            if(m_miracleEnMain >= 0)
+            {
+                m_miracles_raccourcis[2] = m_miracleEnMain;
+                m_miracleEnMain = -1;
+            }
+            else
+                m_miracleEnMain = m_miracles_raccourcis[0];
+
+            eventManager->StopEvenement(Mouse::Left,"C");
+        }
+        else if (eventManager->getPositionSouris().x > 528 * configuration->Resolution.w/800
+                 &&eventManager->getPositionSouris().x < 548 * configuration->Resolution.w/800
+                 &&eventManager->getPositionSouris().y > 492 * configuration->Resolution.h/600
+                 &&eventManager->getPositionSouris().y < 512 * configuration->Resolution.h/600)
+        {
+            if(m_miracleEnMain >= 0)
+            {
+                m_miracles_raccourcis[3] = m_miracleEnMain;
+                m_miracleEnMain = -1;
+            }
+            else
+                m_miracleEnMain = m_miracles_raccourcis[0];
+
+            eventManager->StopEvenement(Mouse::Left,"C");
+        }
+    }
+
+    if (m_miracleEnMain >= 0 && m_miracleEnMain < (int)m_classe.position_miracles.size())
+        {
+            sf::Sprite sprite;
+            sprite.SetImage(*moteurGraphique->getImage(m_classe.interface_miracles[m_classe.page_miracles[m_miracleEnMain]].image));
+
+            sprite.SetSubRect(IntRect(  m_classe.position_miracles[m_miracleEnMain].x,
+                                        m_classe.position_miracles[m_miracleEnMain].y,
+                                        m_classe.position_miracles[m_miracleEnMain].x + m_classe.position_miracles[m_miracleEnMain].w,
+                                        m_classe.position_miracles[m_miracleEnMain].y + m_classe.position_miracles[m_miracleEnMain].h));
+            sprite.SetX(eventManager->getPositionSouris().x - 32 * configuration->Resolution.x/800);
+            sprite.SetY(eventManager->getPositionSouris().y - 32 * configuration->Resolution.h/600);
+
+            sprite.Resize(32 * configuration->Resolution.x/800,32 * configuration->Resolution.h/600);
+
+            moteurGraphique->AjouterCommande(&sprite,19,0);
+        }
+
+    if(eventManager->getEvenement(Mouse::Right,"C"))
+        m_miracleEnMain = -1;
 
     return (retour);
 }
@@ -1384,6 +1489,7 @@ bool Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
 void Hero::AfficherRaccourcis()
 {
     for (int i=0;i<4;++i)
+    {
         if (m_objets_raccourcis[i] >= 0 && m_objets_raccourcis[i] < (int)m_inventaire.size())
         {
             sf::Sprite sprite;
@@ -1398,7 +1504,60 @@ void Hero::AfficherRaccourcis()
 
             sprite.Resize(20 * configuration->Resolution.x/800,20 * configuration->Resolution.h/600);
 
-            moteurGraphique->AjouterCommande(&sprite,19,0);
+            moteurGraphique->AjouterCommande(&sprite,18,0);
+
+            if(eventManager->getPositionSouris().x > sprite.GetPosition().x
+            && eventManager->getPositionSouris().x < sprite.GetPosition().x + 20 * configuration->Resolution.x/800
+            && eventManager->getPositionSouris().y > sprite.GetPosition().y
+            && eventManager->getPositionSouris().y < sprite.GetPosition().y + 20 * configuration->Resolution.h/600)
+                m_inventaire[m_objets_raccourcis[i]].AfficherCaracteristiques(eventManager->getPositionSouris(), m_caracteristiques);
+        }
+
+        if (m_miracles_raccourcis[i] >= 0 && m_miracles_raccourcis[i] < (int)m_classe.position_miracles.size())
+        {
+            sf::Sprite sprite;
+            sprite.SetImage(*moteurGraphique->getImage(m_classe.interface_miracles[m_classe.page_miracles[m_miracles_raccourcis[i]]].image));
+
+            sprite.SetSubRect(IntRect(  m_classe.position_miracles[m_miracles_raccourcis[i]].x,
+                                        m_classe.position_miracles[m_miracles_raccourcis[i]].y,
+                                        m_classe.position_miracles[m_miracles_raccourcis[i]].x + m_classe.position_miracles[m_miracles_raccourcis[i]].w,
+                                        m_classe.position_miracles[m_miracles_raccourcis[i]].y + m_classe.position_miracles[m_miracles_raccourcis[i]].h));
+            sprite.SetX(432 * configuration->Resolution.x/800 + 32*i*configuration->Resolution.x/800);
+            sprite.SetY(492 * configuration->Resolution.h/600);
+
+            sprite.Resize(20 * configuration->Resolution.x/800,20 * configuration->Resolution.h/600);
+
+            moteurGraphique->AjouterCommande(&sprite,18,0);
+
+            if(eventManager->getPositionSouris().x > sprite.GetPosition().x
+            && eventManager->getPositionSouris().x < sprite.GetPosition().x + 20 * configuration->Resolution.x/800
+            && eventManager->getPositionSouris().y > sprite.GetPosition().y
+            && eventManager->getPositionSouris().y < sprite.GetPosition().y + 20 * configuration->Resolution.h/600)
+                m_classe.miracles[m_miracles_raccourcis[i]].AfficherDescription(eventManager->getPositionSouris());
+        }
+    }
+
+    if (m_personnage.m_miracleALancer >= 0 && m_personnage.m_miracleALancer < (int)m_classe.position_miracles.size())
+        {
+            sf::Sprite sprite;
+            sprite.SetImage(*moteurGraphique->getImage(m_classe.interface_miracles[m_classe.page_miracles[m_personnage.m_miracleALancer]].image));
+
+            sprite.SetSubRect(IntRect(  m_classe.position_miracles[m_personnage.m_miracleALancer].x,
+                                        m_classe.position_miracles[m_personnage.m_miracleALancer].y,
+                                        m_classe.position_miracles[m_personnage.m_miracleALancer].x + m_classe.position_miracles[m_personnage.m_miracleALancer].w,
+                                        m_classe.position_miracles[m_personnage.m_miracleALancer].y + m_classe.position_miracles[m_personnage.m_miracleALancer].h));
+            sprite.SetX(512 * configuration->Resolution.x/800);
+            sprite.SetY(545 * configuration->Resolution.h/600);
+
+            sprite.Resize(20 * configuration->Resolution.x/800,20 * configuration->Resolution.h/600);
+
+            moteurGraphique->AjouterCommande(&sprite,18,0);
+
+            if(eventManager->getPositionSouris().x > sprite.GetPosition().x
+            && eventManager->getPositionSouris().x < sprite.GetPosition().x + 20 * configuration->Resolution.x/800
+            && eventManager->getPositionSouris().y > sprite.GetPosition().y
+            && eventManager->getPositionSouris().y < sprite.GetPosition().y + 20 * configuration->Resolution.h/600)
+                m_classe.miracles[m_personnage.m_miracleALancer].AfficherDescription(eventManager->getPositionSouris());
         }
 }
 
@@ -1627,19 +1786,22 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible)
     if (miracle>=0&&miracle<(int)m_classe.miracles.size())
         if (m_lvl_miracles[miracle] > 0)
         {
-
-
             if (m_classe.miracles[miracle].m_effets[0].m_type == AURA)
             {
+                bool retour = false;
                 for (int i = 0; i < (int)m_personnage.m_miracleEnCours.size(); ++i)
                     for (int o = 0; o < (int) m_personnage.m_miracleEnCours[i].m_infos.size() ; ++o)
                         if (m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type == AURA)
                         {
                             m_personnage.m_effets[m_personnage.m_miracleEnCours[i].m_infos[o].m_IDObjet].m_effet.m_actif = false;
                             m_personnage.m_miracleEnCours[i].m_infos.erase(m_personnage.m_miracleEnCours[i].m_infos.begin()+i);
-                            if (m_personnage.m_miracleEnCours[i].m_modele == miracle)
-                                return 1;
+                            if(m_personnage.m_miracleEnCours[i].m_modele == miracle)
+                                retour = true;
+                             o = -1;
                         }
+
+                if (retour)
+                    return 1;
             }
 
             if (m_classe.miracles[miracle].m_coutFoi <= m_caracteristiques.foi && m_classe.miracles[miracle].m_reserveFoi <= m_caracteristiques.maxFoi
