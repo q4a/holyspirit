@@ -69,6 +69,8 @@ Personnage::Personnage()
     m_monstre=false;
     frappeEnCours=false;
 
+    m_modele=-1;
+
     m_erreurPathfinding=false;
 
     m_porteeLumineuseBasique.intensite=-1;
@@ -83,6 +85,8 @@ Personnage::Personnage()
     m_nombreInvocation=0;
 
     m_shooter=false;
+
+    m_cible = NULL;
 }
 Modele_Personnage::Modele_Personnage()
 {
@@ -733,12 +737,43 @@ int Personnage::Animer(Modele_Personnage *modele,float temps,coordonnee position
     int nombreInactif = 0;
     for(int i = 0; i < (int)m_effets.size(); ++i)
     {
+        bool actif = m_effets[i].m_effet.m_actif;
         m_effets[i].m_effet.Animer(temps);
+
+        if(actif && !m_effets[i].m_effet.m_actif)
+        {
+            if(m_effets[i].m_type == AURA_CARACTERISTIQUES)
+            {
+                if(m_effets[i].m_info1 == 0)
+                {
+                    m_caracteristique.maxVie -= m_effets[i].m_info2;
+                    m_caracteristique.vie -= m_effets[i].m_info2;
+                }
+            }
+        }
+
         if(!m_effets[i].m_effet.m_actif)
             ++nombreInactif;
+        else
+        {
+            if(m_effets[i].m_type == AURA_REGENERATION)
+            {
+                if(m_effets[i].m_info3)
+                {
+                    if(m_effets[i].m_info1 == 0)
+                        m_caracteristique.vie += m_effets[i].m_info2 * temps;
+                    if(m_effets[i].m_info1 == 1)
+                        m_caracteristique.foi += m_effets[i].m_info2 * temps;
+                }
+            }
+
+            if(m_monstre)
+                if(m_caracteristique.vie > m_caracteristique.maxVie)
+                    m_caracteristique.vie = m_caracteristique.maxVie;
+        }
     }
 
-    if(nombreInactif == (int)m_effets.size())
+    if(nombreInactif == (int)m_effets.size() || !EnVie())
         m_effets.clear();
 
     m_animation+=temps;
@@ -842,6 +877,15 @@ int Personnage::AjouterEffet(std::vector<Tile> &tiles, int type, int compteur, i
     m_effets.back().m_info1             = info1;
     m_effets.back().m_info2             = info2;
     m_effets.back().m_info3             = info3;
+
+    if(m_effets.back().m_type == AURA_CARACTERISTIQUES)
+    {
+        if(m_effets.back().m_info1 == 0)
+        {
+            m_caracteristique.maxVie += m_effets.back().m_info2;
+            m_caracteristique.vie += m_effets.back().m_info2;
+        }
+    }
 
     return m_effets.size() - 1;
 }
@@ -1042,5 +1086,24 @@ const coordonnee &Personnage::getProchaineCase()
         return m_cheminFinal;
     else
         return m_positionCase;
+}
+
+const std::vector<Objet> &Personnage::getObjets()
+{
+    return m_objets;
+}
+std::vector<Objet>* Personnage::getPointeurObjets()
+{
+    return &m_objets;
+}
+
+void Personnage::setObjets(std::vector<Objet> objets)
+{
+    m_objets=objets;
+}
+
+int Personnage::getModele()
+{
+    return m_modele;
 }
 

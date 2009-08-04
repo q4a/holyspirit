@@ -60,7 +60,7 @@ Monstre::Monstre()
 {
     Personnage::Personnage();
     m_vu=0;
-    m_modele=-1;
+
     m_monstre=true;
 
     m_attente=0;
@@ -77,6 +77,8 @@ Monstre::Monstre()
     m_porteeLumineuse.bleu=0;
     m_porteeLumineuse.intensite=0;
     m_caracteristique.rang=0;
+
+    m_cible = NULL;
 }
 
 void Monstre::Charger(int numero,Modele_Monstre *modele)
@@ -140,6 +142,8 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
             m_objets.back()=modele->getObjets()[i];
             m_objets.back().Generer((m_caracteristique.rang*5+1));
         }
+
+    m_caracteristique.maxVie = m_caracteristique.vie;
 }
 
 
@@ -296,7 +300,6 @@ bool Modele_Monstre::Charger(string chemin)
             {
                 m_caracteristique.modificateurTaille=1;
                 m_caracteristique.sang=0;
-                m_explosif=false;
                 m_minimap=true;
                 m_friendly=false;
                 do
@@ -331,10 +334,6 @@ bool Modele_Monstre::Charger(string chemin)
 
                     case 't':
                         *fichier>>m_caracteristique.modificateurTaille;
-                        break;
-
-                    case 'e':
-                        *fichier>>m_explosif;
                         break;
 
                     case 'i':
@@ -517,6 +516,7 @@ void Monstre::TesterVision(coordonnee positionHero)
                 setDepart();
             m_vu=0,m_etat=0,m_poseEnCours=0;
 
+            m_cible = NULL;
         }
     }
 }
@@ -526,24 +526,6 @@ coordonnee Monstre::getDepart()
     return m_depart;
 }
 
-const std::vector<Objet> &Monstre::getObjets()
-{
-    return m_objets;
-}
-std::vector<Objet>* Monstre::getPointeurObjets()
-{
-    return &m_objets;
-}
-
-void Monstre::setObjets(std::vector<Objet> objets)
-{
-    m_objets=objets;
-}
-
-int Monstre::getModele()
-{
-    return m_modele;
-}
 
 bool Monstre::getVu()
 {
@@ -552,6 +534,8 @@ bool Monstre::getVu()
 void Monstre::setVu(bool vu)
 {
     m_vu=vu;
+    if(m_vu == 0)
+        m_cible = NULL;
 }
 
 void Monstre::setDepart()

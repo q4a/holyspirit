@@ -31,7 +31,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "pose.h"
 #include "../Moteurs/lightManager.h"
 #include "miracle.h"
-
+#include "script.h"
 
 class Modele_Personnage
 {
@@ -58,7 +58,7 @@ public:
 
     std::vector<Miracle> m_miracles;
 
-    bool m_ombre,m_explosif;
+    bool m_ombre;
 
 protected:
     Caracteristique m_caracteristique;
@@ -123,6 +123,12 @@ public:
 
     int getOrdre(Modele_Personnage *modele);
 
+    int getModele();
+
+    void setObjets(std::vector<Objet>);
+    const std::vector<Objet> &getObjets();
+    std::vector<Objet> *getPointeurObjets();
+
 
 
 
@@ -139,6 +145,11 @@ public:
 
     std::vector <EffetPersonnage> m_effets;
 
+    Script m_scriptAI;
+    bool m_friendly;
+    Personnage *m_cible;
+    bool m_cibleHeroique;
+
 protected:
     int m_etat,m_poseEnCours,m_angle;
     float m_animation;
@@ -146,6 +157,9 @@ protected:
     Caracteristique m_caracteristique;
     coordonnee m_cheminFinal,m_arrivee,m_ancienneArrivee,m_mauvaiseArrivee, m_positionCase,m_positionAffichage,m_positionPixelPrecedente;
     coordonneeDecimal m_positionPixel;
+
+    int m_modele;
+    std::vector<Objet> m_objets;
 
     Lumiere m_porteeLumineuse,m_porteeLumineuseBasique;
 };

@@ -28,8 +28,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 class Personnage;
 
-enum  {PROJECTILE,CORPS_A_CORPS,DEGATS,EFFET_GRAPHIQUE,INVOCATION,AURA,SOIN,M_EXPLOSION,REPETITION};
-enum  {AURA_REGENERATION, AURA_DEGATS, AURA_VOL};
+enum  {PROJECTILE,CORPS_A_CORPS,DEGATS,EFFET_GRAPHIQUE,INVOCATION,AURA,EFFET,M_EXPLOSION,REPETITION,CHARME};
+enum  {AURA_REGENERATION, AURA_DEGATS, AURA_VOL, AURA_CARACTERISTIQUES};
 enum  {PHYSIQUE, FEU, CORROSION, FOI};
 
 class EffetGraphique
@@ -101,6 +101,7 @@ struct Effet
         m_informations[2]=0;
         m_informations[3]=0;
         m_informations[4]=0;
+        m_informations[5]=0;
     }
 
     ~Effet()
@@ -112,7 +113,7 @@ struct Effet
     int m_type;
     int m_sequence;
 
-    int m_informations[5];
+    int m_informations[6];
     std::string m_chaine;
 };
 
@@ -178,11 +179,12 @@ struct InfosEntiteMiracle
         m_informations[2]=0;
         m_informations[3]=0;
         m_informations[4]=0;
+        m_informations[5]=0;
     }
 
     int        m_effetEnCours;
     int        m_IDObjet;
-    float               m_informations[5];
+    float               m_informations[6];
 
     coordonneeDecimal   m_position;
 };

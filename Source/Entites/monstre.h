@@ -22,7 +22,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "personnage.h"
 #include "../constantes.h"
-#include "script.h"
 
 
 class Modele_Monstre : public Modele_Personnage
@@ -53,13 +52,11 @@ public:
     ~Monstre();
     void Charger(int numero,Modele_Monstre *modele);
     void TesterVision(coordonnee positionHero);
-    int getModele();
+
     coordonnee getDepart();
     void setDepart();
 
-    void setObjets(std::vector<Objet>);
-    const std::vector<Objet> &getObjets();
-    std::vector<Objet> *getPointeurObjets();
+
 
     bool getVu();
     void setVu(bool);
@@ -67,15 +64,12 @@ public:
 
     float m_attente;
     int m_compteur;
-    bool m_friendly;
-
-    Script m_scriptAI;
 
 private:
     bool m_vu;
-    int m_modele;
+
     coordonnee m_depart;
-    std::vector<Objet> m_objets;
+
 
 };
 

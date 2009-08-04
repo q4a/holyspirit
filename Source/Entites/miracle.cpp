@@ -397,6 +397,8 @@ void Miracle::Charger(std::string chemin)
                             fichier>>m_effets.back().m_informations[3];
                         if (caractere=='e')
                             fichier>>m_effets.back().m_informations[4];
+                        if (caractere=='f')
+                            fichier>>m_effets.back().m_informations[5];
                         break;
                     }
                     if (fichier.eof())

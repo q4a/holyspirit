@@ -265,8 +265,6 @@ void c_Jeu::Animation(Jeu *jeu)
             jeu->hero.miracleEnCours=0;
         }
 
-        jeu->map->AnimerMiracle(&jeu->hero.m_personnage,jeu->hero.m_classe.miracles,tempsDepuisDerniereAnimation,positionHero,&jeu->hero);
-
         if (retour==2)
             if (!eventManager->getEvenement(Mouse::Left,"C") || !jeu->map->getMonstreEnVie(jeu->hero.getMonstreVise()) )
                 jeu->hero.setMonstreVise(-1),jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
@@ -283,6 +281,8 @@ void c_Jeu::Animation(Jeu *jeu)
 
 
         jeu->map->Animer(&jeu->hero,tempsDepuisDerniereAnimation,&jeu->menu); // Animation des tiles de la jeu->map
+
+        jeu->map->AnimerMiracle(&jeu->hero.m_personnage,jeu->hero.m_classe.miracles,tempsDepuisDerniereAnimation,positionHero,&jeu->hero);
 
         tempsDepuisDerniereAnimation=0;
     }

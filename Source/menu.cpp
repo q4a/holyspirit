@@ -207,11 +207,13 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
             sprite.SetY(classe->orbe_foi.position.y*configuration->Resolution.h/600);
             sprite.SetSubRect(sf::IntRect(0, 0, classe->orbe_foi.position.w, caracteristique.reserveFoi * classe->orbe_foi.position.h / caracteristique.maxFoi));
 
-            moteurGraphique->AjouterCommande(&sprite,17,0);
-
-            sprite.SetBlendMode(sf::Blend::Multiply);
             sprite.SetColor(sf::Color(64,64,64,255));
+
             moteurGraphique->AjouterCommande(&sprite,18,0);
+
+            /*sprite.SetBlendMode(sf::Blend::Multiply);
+            sprite.SetColor(sf::Color(64,64,64,255));
+            moteurGraphique->AjouterCommande(&sprite,18,0);*/
         }
     }
 
@@ -355,14 +357,16 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         texte.SetStyle(1);
 
         {
-            std::string buf;
-            buf=caracteristiqueMonstre.nom;
-            if (caracteristiqueMonstre.rang==1)
-                buf="Champion : "+buf;
+            std::ostringstream buf;
+            buf<<caracteristiqueMonstre.nom;
+            /*if (caracteristiqueMonstre.rang==1)
+                buf<<"Champion : "<<buf;
             if (caracteristiqueMonstre.rang==2)
-                buf="Chef : "+buf;
+                buf<<"Chef : "<<buf;*/
 
-            texte.SetText(buf);
+            buf << "( "<<(int)caracteristiqueMonstre.vie<<" / "<<caracteristiqueMonstre.maxVie<<" )";
+
+            texte.SetText(buf.str());
         }
 
 

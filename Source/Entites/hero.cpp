@@ -117,6 +117,7 @@ Hero::Hero()
         m_modelePersonnage[i].setPorteeLumineuse(lumiere);
 
     m_personnage.setPorteeLumineuse(lumiere);
+    m_personnage.m_friendly = 1;
 
     Caracteristique temp;
 
@@ -1719,10 +1720,13 @@ void Hero::RecalculerCaracteristiques(bool bis)
 
             if(m_personnage.m_effets[i].m_type == AURA_REGENERATION)
             {
-                if(m_personnage.m_effets[i].m_info1 == 0)
-                    m_caracteristiques.regenVie += m_personnage.m_effets[i].m_info2;
-                if(m_personnage.m_effets[i].m_info1 == 1)
-                    m_caracteristiques.regenFoi += m_personnage.m_effets[i].m_info2;
+                if(!m_personnage.m_effets[i].m_info3)
+                {
+                    if(m_personnage.m_effets[i].m_info1 == 0)
+                        m_caracteristiques.regenVie += m_personnage.m_effets[i].m_info2;
+                    if(m_personnage.m_effets[i].m_info1 == 1)
+                        m_caracteristiques.regenFoi += m_personnage.m_effets[i].m_info2;
+                }
             }
 
             if(m_personnage.m_effets[i].m_type == AURA_VOL)
@@ -1804,8 +1808,8 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible)
                     return 1;
             }
 
-            if (m_classe.miracles[miracle].m_coutFoi <= m_caracteristiques.foi && m_classe.miracles[miracle].m_reserveFoi <= m_caracteristiques.maxFoi
-             && m_classe.miracles[miracle].m_coutVie <= m_caracteristiques.vie && m_classe.miracles[miracle].m_reserveVie <= m_caracteristiques.maxVie)
+            if (m_classe.miracles[miracle].m_coutFoi <= m_caracteristiques.foi && m_classe.miracles[miracle].m_reserveFoi <= m_caracteristiques.maxFoi - m_caracteristiques.reserveFoi
+             && m_classe.miracles[miracle].m_coutVie <= m_caracteristiques.vie && m_classe.miracles[miracle].m_reserveVie <= m_caracteristiques.maxVie - m_caracteristiques.reserveVie)
                 if (m_cas == m_classe.miracles[miracle].m_cas || m_classe.miracles[miracle].m_cas == -1)
                     if (cible != NULL && m_classe.miracles[miracle].m_effets[0].m_type == CORPS_A_CORPS || m_classe.miracles[miracle].m_effets[0].m_type != CORPS_A_CORPS )
                     {
@@ -2369,10 +2373,12 @@ void Hero::RegenererVie(float vie)
 
     m_personnage.setCaracteristique(temp);
 
-    if (m_caracteristiques.vie > m_personnage.getCaracteristique().vie)
+    m_caracteristiques.vie = m_personnage.getCaracteristique().vie;
+
+    /*if (m_caracteristiques.vie > m_personnage.getCaracteristique().vie)
         m_caracteristiques.vie += (m_personnage.getCaracteristique().vie-m_caracteristiques.vie)*(vie + m_caracteristiques.regenVie * vie)*5;
     else if (m_caracteristiques.vie < m_personnage.getCaracteristique().vie)
-        m_caracteristiques.vie += (m_personnage.getCaracteristique().vie-m_caracteristiques.vie)*(vie + m_caracteristiques.regenVie * vie)/10;
+        m_caracteristiques.vie += (m_personnage.getCaracteristique().vie-m_caracteristiques.vie)*(vie + m_caracteristiques.regenVie * vie);*/
 
     if (m_caracteristiques.vie > (m_caracteristiques.maxVie - m_caracteristiques.reserveVie) * 2)
         m_caracteristiques.vie = (m_caracteristiques.maxVie - m_caracteristiques.reserveVie) * 2;

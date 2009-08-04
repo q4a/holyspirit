@@ -65,9 +65,13 @@ public:
     void GererEvenements(int evenement,int z,int couche,int x,int y);
     void GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu);
 
+    void TestVisionMonstre(int numero, Hero *hero);
+
     void InfligerDegatsMasse(coordonnee position,int rayon,int degats,bool sourceConcernee, Hero *hero, bool pousser = true, bool heroCompris = true);
 
     bool InfligerDegats(int numeroMontre, float degats, Hero *hero,bool pousser);
+    bool InfligerDegats(Personnage *monstre, float degats, Hero *hero,bool pousser);
+
     void PousserMonstre(int numeroMonstre, coordonnee vecteur);
     void PousserMonstreCase(int numeroMonstre, coordonnee vecteur);
 
@@ -79,7 +83,6 @@ public:
 
     void AjouterObjet(Objet objet);
     int AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coordonnee lanceur,int couche,float  vitesse,float decalageAngle,int degats,bool monstre,std::vector<Tile> &tiles);
-
 
 
 
