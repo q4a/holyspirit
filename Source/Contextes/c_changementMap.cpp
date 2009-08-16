@@ -122,7 +122,6 @@ void c_Chargement::Utiliser(Jeu *jeu)
             jeu->m_jeu->m_thread_sauvegarde = NULL;
         }
 
-
         jeu->Clock.Reset();
         jeu->hero.m_personnage.setCoordonnee(m_coordonneePerso);
 
@@ -136,6 +135,10 @@ void c_Chargement::Utiliser(Jeu *jeu)
                     if (reader.GetFileName(i)!=configuration->chemin_temps+"hero.sav.txt")
                         reader.ExportFile(i),jeu->hero.m_contenuSave.push_back(reader.GetFileName(i));
         }*/
+
+        jeu->hero.StopMiraclesCharme();
+
+       // jeu->map.EffacerEffetsMonstres();
 
         if (jeu->map!=NULL && !m_debut)
            jeu->map->Sauvegarder(&jeu->hero);

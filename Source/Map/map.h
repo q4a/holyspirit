@@ -59,8 +59,8 @@ public:
 
     int GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *hero,bool monstre, const coordonnee lanceur, const coordonnee cible,int couche);
 
-    void GererConditions(Jeu *jeu,Script *script,int noInstruction,int i, int j, int k,Hero *hero,float temps,Menu *menu);
-    void GererInstructions(Jeu *jeu,Script *script,int noInstruction,int i, int j, int k,Hero *hero,float temps,Menu *menu);
+    void GererConditions(Jeu *jeu,Script *script,int noInstruction,int i, int j, int k,Hero *hero,float temps,Menu *menu, bool seDeplacer);
+    void GererInstructions(Jeu *jeu,Script *script,int noInstruction,int i, int j, int k,Hero *hero,float temps,Menu *menu, bool seDeplacer);
 
     void GererEvenements(int evenement,int z,int couche,int x,int y);
     void GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu);
@@ -86,17 +86,17 @@ public:
 
 
 
-    int getMonstreIllumine();
-    bool getCollision(int positionX,int positionY); // Retourne 1 s'il y a une collision avec le décors se trouvant à la position X et Y
-    int getTypeCase(int positionX,int positionY);
-    int getEvenement(coordonnee casePointee);
-    int getMonstre(Hero *hero,coordonnee positionSouris,coordonnee casePointee);
-    const coordonnee &getSacPointe();
-    int getObjetPointe();
-    int getNombreObjets(coordonnee position);
-    int getNombreMonstres();
-    bool getMonstreEnVie(int numeroMonstre);
-    const coordonnee &getDimensions();
+    int     getMonstreIllumine();
+    bool    getCollision(int positionX,int positionY, int exception = -1); // Retourne 1 s'il y a une collision avec le décors se trouvant à la position X et Y
+    int     getTypeCase(int positionX,int positionY);
+    int     getEvenement(coordonnee casePointee);
+    int     getMonstre(Hero *hero,coordonnee positionSouris,coordonnee casePointee);
+    const   coordonnee &getSacPointe();
+    int     getObjetPointe();
+    int     getNombreObjets(coordonnee position);
+    int     getNombreMonstres();
+    bool    getMonstreEnVie(int numeroMonstre);
+    const   coordonnee &getDimensions();
 
     Monstre *getEntiteMonstre (int numeroMonstre);
     const coordonnee &getPositionMonstre(int numeroMonstre);

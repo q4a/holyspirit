@@ -147,10 +147,19 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet, float *decalage)
     bool retour=false;
     if(objet>=0&&objet<(int)m_objets.size())
     {
+
+        float alpha = m_objets[objet].m_alpha;
+        if(alpha > 255)
+            alpha = 255;
+        alpha /= 255;
+
         sf::String texte;
         sf::Sprite sprite;
 
-        texte.SetColor(GetItemColor(m_objets[objet].getRarete()));
+        texte.SetColor(sf::Color(   GetItemColor(m_objets[objet].getRarete()).r,
+                                    GetItemColor(m_objets[objet].getRarete()).g,
+                                    GetItemColor(m_objets[objet].getRarete()).b,
+                                    (int)(255.0f*alpha)));
 
         texte.SetFont(moteurGraphique->m_font);
 
@@ -159,22 +168,23 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet, float *decalage)
         texte.SetY((position.y-moteurGraphique->m_camera.GetRect().Top)/configuration->zoom);
         texte.SetX((position.x-moteurGraphique->m_camera.GetRect().Left)/configuration->zoom);
 
-        moteurGraphique->AjouterTexteNonChevauchable(&texte,14);
+        moteurGraphique->AjouterTexteNonChevauchable(&texte,12);
 
         sprite.SetImage(*moteurGraphique->getImage(0));
 
         sprite.SetY(texte.GetPosition().y);
         sprite.SetX(texte.GetPosition().x-4);
-        sprite.SetColor(sf::Color(0,0,0,224));
+        sprite.SetColor(sf::Color(0,0,0,(int)(224.0f*alpha)));
         sprite.Resize(texte.GetRect().Right-texte.GetRect().Left +8 , texte.GetRect().Bottom-texte.GetRect().Top+4);
 
-        if(eventManager->getPositionSouris().x>sprite.GetPosition().x
-         &&eventManager->getPositionSouris().y>sprite.GetPosition().y
-         &&eventManager->getPositionSouris().x<sprite.GetPosition().x+texte.GetRect().Right-texte.GetRect().Left +8
-         &&eventManager->getPositionSouris().y<sprite.GetPosition().y+texte.GetRect().Bottom-texte.GetRect().Top +4)
-            retour = true,sprite.SetColor(sf::Color(32,32,32,224));
+        if(eventManager->getEvenement(sf::Key::LAlt,"ET"))
+            if(eventManager->getPositionSouris().x>sprite.GetPosition().x
+             &&eventManager->getPositionSouris().y>sprite.GetPosition().y
+             &&eventManager->getPositionSouris().x<sprite.GetPosition().x+texte.GetRect().Right-texte.GetRect().Left +8
+             &&eventManager->getPositionSouris().y<sprite.GetPosition().y+texte.GetRect().Bottom-texte.GetRect().Top +4)
+                retour = true,sprite.SetColor(sf::Color(32,32,32,224));
 
-        moteurGraphique->AjouterCommande(&sprite,13,0);
+        moteurGraphique->AjouterCommande(&sprite,12,0);
 
         if(decalage != NULL)
             *decalage = (sprite.GetPosition().y + moteurGraphique->m_camera.GetRect().Top)/configuration->zoom - sprite.GetSize().y;
@@ -189,11 +199,19 @@ int Decor::AfficherTexteObjets(coordonnee position, int objetPointe)
 
     for (int z=0;z<(int)m_objets.size();z++)
     {
-        if(AfficherTexteObjet(coordonnee ((int)position.x, (int)decalage), z, &decalage))
-            retour=z;
+        if(m_objets[z].m_alpha > 0)
+            if(AfficherTexteObjet(coordonnee ((int)position.x, (int)decalage), z, &decalage))
+                retour=z;
     }
 
     return (retour);
+}
+
+void Decor::AlphaObjets(int alpha)
+{
+    for(unsigned i = 0; i < m_objets.size() ; ++i)
+        if(m_objets[i].m_alpha < alpha)
+            m_objets[i].m_alpha = alpha;
 }
 
 
@@ -264,7 +282,7 @@ void Decor::AjouterObjet(Objet objet)
 
 
     m_objets.back().JouerSon();
-
+    m_objets.back().m_alpha = 512;
 }
 
 
@@ -370,6 +388,13 @@ void Decor::DecrementerAnimation(float nombre)
 void Decor::AugmenterAnimation(float temps)
 {
     m_animation+=temps;
+    for(unsigned i = 0; i < m_objets.size() ; ++i)
+    {
+        m_objets[i].m_alpha -= temps*200;
+        if(m_objets[i].m_alpha < 0)
+            m_objets[i].m_alpha = 0;
+    }
+
 }
 
 

@@ -50,21 +50,22 @@ Tile Tile::operator=(const Tile &tile)
     return *this;
 }
 
-void Tile::setTile(coordonnee positionDansLImage,int image,bool collision,int animation,int son,Lumiere lumiere,bool ombre,char orientation,bool transparent,coordonnee centre,float temps)
+void Tile::setTile(coordonnee positionDansLImage,int image,bool collision,int animation,int son,Lumiere lumiere,bool ombre,char orientation,bool transparent,coordonnee centre,float temps, int opacity)
 {
-    m_positionDansLImage=positionDansLImage;
-    m_image=image;
-    m_collision=collision;
-    m_animation=animation;
-    m_son=son;
-    m_lumiere=lumiere;
-    m_ombre=ombre;
-    m_orientation=orientation;
-    m_transparent=transparent;
+    m_positionDansLImage    = positionDansLImage;
+    m_image                 = image;
+    m_collision             = collision;
+    m_animation             = animation;
+    m_son                   = son;
+    m_lumiere               = lumiere;
+    m_ombre                 = ombre;
+    m_orientation           = orientation;
+    m_transparent           = transparent;
+    m_opacity               = opacity;
 
-    m_temps=temps;
+    m_temps                 = temps;
 
-    m_centre=centre;
+    m_centre                = centre;
 
     if (m_centre.x==-1)
         m_centre.x=positionDansLImage.w/2;
@@ -115,6 +116,10 @@ const coordonnee &Tile::getCentre()
 float Tile::getTemps()
 {
     return m_temps;
+}
+int Tile::getOpacity()
+{
+    return m_opacity;
 }
 
 void Tile::setImage(int image)

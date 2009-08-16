@@ -531,7 +531,6 @@ void Classe::Charger(string chemin, const std::vector<int> &lvl_miracles)
 
                         if(!miracles.back().m_max)
                         {
-                            cout<<"ATTENTION "<<temp2.str()<<endl;
                             Miracle mir(temp2.str());
                             for(int i = 0 ; i < (int)mir.m_description_effets.size() ; ++i)
                                 miracles.back().m_description_effets_suivant.push_back(mir.m_description_effets[i]);

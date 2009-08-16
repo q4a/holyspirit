@@ -22,7 +22,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "../globale.h"
 
 #include <iostream>
-#include <fstream>
 #include <math.h>
 
 #include <SFML/System.hpp>
@@ -64,33 +63,73 @@ int calculerAngle(int x, int y)
 
 Personnage::Personnage()
 {
-    m_animation=0;
-    m_angle=45;
-    m_monstre=false;
-    frappeEnCours=false;
+    m_animation                         = 0;
+    m_angle                             = 45;
+    m_monstre                           = false;
+    frappeEnCours                       = false;
 
-    m_modele=-1;
+    m_modele                            = -1;
 
-    m_erreurPathfinding=false;
+    m_erreurPathfinding                 = false;
 
-    m_porteeLumineuseBasique.intensite=-1;
-    m_porteeLumineuseBasique.rouge=255;
-    m_porteeLumineuseBasique.vert=255;
-    m_porteeLumineuseBasique.bleu=255;
+    m_caracteristique.pointAme          = 0;
 
-    m_positionPixel.h=0;
-    m_cheminFinal.h=0;
-    m_positionCase.h=0;
+    m_porteeLumineuseBasique.intensite  = -1;
+    m_porteeLumineuseBasique.rouge      = 255;
+    m_porteeLumineuseBasique.vert       = 255;
+    m_porteeLumineuseBasique.bleu       = 255;
 
-    m_nombreInvocation=0;
+    m_positionPixel.h                   = 0;
+    m_cheminFinal.h                     = 0;
+    m_positionCase.h                    = 0;
 
-    m_shooter=false;
+    m_nombreInvocation                  = 0;
 
-    m_cible = NULL;
+    m_shooter                           = false;
+
+    m_cible                             = NULL;
+
+    m_pousse.x                          = 0;
+    m_pousse.y                          = 0;
+    m_pousse.w                          = 0;
 }
 Modele_Personnage::Modele_Personnage()
 {
     m_ombre=1;
+
+    m_caracteristique.vie                = 1;
+    m_caracteristique.maxVie             = 1;
+    m_caracteristique.reserveVie         = 0;
+    m_caracteristique.regenVie           = 0;
+
+    m_caracteristique.foi                = 1;
+    m_caracteristique.maxFoi             = 1;
+    m_caracteristique.reserveFoi         = 0;
+    m_caracteristique.regenFoi           = 0;
+
+    m_caracteristique.volVie             = 0;
+    m_caracteristique.volFoi             = 0;
+
+    m_caracteristique.vitesse            = 1;
+    m_caracteristique.pointAme           = 0;
+    m_caracteristique.ancienPointAme     = 0;
+    m_caracteristique.positionAncienAme  = 0;
+    m_caracteristique.niveau             = 1;
+    m_caracteristique.nom                = "Entitie";
+
+    m_caracteristique.force              = 0;
+    m_caracteristique.dexterite          = 0;
+    m_caracteristique.vitalite           = 0;
+    m_caracteristique.piete              = 0;
+    m_caracteristique.charisme           = 0;
+    m_caracteristique.pts_restant        = 0;
+    m_caracteristique.miracles_restant   = 0;
+
+    m_caracteristique.modificateurTaille = 1;
+
+    m_caracteristique.degatsMin          = 0;
+    m_caracteristique.degatsMax          = 0;
+    m_caracteristique.armure             = 0;
 }
 
 
@@ -125,12 +164,13 @@ Modele_Personnage::~Modele_Personnage()
 
 bool Modele_Personnage::Charger(string chemin)
 {
-    for (int i=0;i<(int)m_pose.size();i++)
+    for (unsigned i=0;i<m_pose.size();i++)
     {
-        for (int j=0;j<(int)m_pose[i].size();j++)
+        for (unsigned j=0;j<m_pose[i].size();j++)
             m_pose[i][j].clear();
         m_pose[i].clear();
     }
+
     m_pose.clear();
 
     m_image.clear();
@@ -141,106 +181,113 @@ bool Modele_Personnage::Charger(string chemin)
 
     cDAT reader;
 
-    reader.Read(chemin);
-
-    ifstream *fichier;
-    fichier = reader.GetInfos("infos.txt");
-    if (fichier)
+    if(reader.Read(chemin))
     {
-        char caractere;
-        do
+        ifstream *fichier   = NULL;
+        fichier             = reader.GetInfos("infos.txt");
+        if (fichier)
         {
-            fichier->get(caractere);
-            if (caractere=='*')
+            char caractere;
+            do
             {
-                string cheminImage;
-                *fichier>>cheminImage;
-
-                m_image.push_back(moteurGraphique->AjouterImage(reader.GetFile(cheminImage), reader.GetFileSize(cheminImage), cheminImage));
-            }
-            if (fichier->eof())
-            {
-                console->Ajouter("Erreur : Personnage \" "+chemin+" \" Invalide",1);
-                caractere='$';
-            }
-        }
-        while (caractere!='$');
-
-        m_sons.clear();
-        do
-        {
-            fichier->get(caractere);
-            if (caractere=='*')
-            {
-                string cheminSon;
-                *fichier>>cheminSon;
-                m_sons.push_back(moteurSons->AjouterBuffer(cheminSon));
-            }
-            if (fichier->eof())
-            {
-                console->Ajouter("Erreur : Personnage \" "+chemin+" \" Invalide",1);
-                caractere='$';
-            }
-        }
-        while (caractere!='$');
-
-
-        do
-        {
-            fichier->get(caractere);
-            if (caractere=='*')
-            {
-                do
-                {
-                    fichier->get(caractere);
-                    switch (caractere)
-                    {
-                    case 'r' :
-                        *fichier>>m_porteeLumineuse.rouge;
-                        break;
-                    case 'v' :
-                        *fichier>>m_porteeLumineuse.vert;
-                        break;
-                    case 'b' :
-                        *fichier>>m_porteeLumineuse.bleu;
-                        break;
-                    case 'i' :
-                        *fichier>>m_porteeLumineuse.intensite;
-                        break;
-                    }
-
-                    if (fichier->eof())
-                    {
-                        console->Ajouter("Erreur : Personnage \" "+chemin+" \" Invalide",1);
-                        caractere='$';
-                    }
-
-                }
-                while (caractere!='$');
                 fichier->get(caractere);
+                if (caractere=='*')
+                {
+                    string cheminImage;
+                    *fichier>>cheminImage;
+
+                    m_image.push_back(moteurGraphique->AjouterImage(reader.GetFile(cheminImage), reader.GetFileSize(cheminImage), cheminImage));
+                }
+                if (fichier->eof())
+                {
+                    console->Ajouter("Erreur : Personnage \" "+chemin+" \" Invalide",1);
+                    caractere='$';
+                }
             }
-            if (fichier->eof())
+            while (caractere!='$');
+
+            m_sons.clear();
+            do
             {
-                console->Ajouter("Erreur : Personnage \" "+chemin+" \" Invalide",1);
-                caractere='$';
+                fichier->get(caractere);
+                if (caractere=='*')
+                {
+                    string cheminSon;
+                    *fichier>>cheminSon;
+                    m_sons.push_back(moteurSons->AjouterBuffer(cheminSon));
+                }
+                if (fichier->eof())
+                {
+                    console->Ajouter("Erreur : Personnage \" "+chemin+" \" Invalide",1);
+                    caractere='$';
+                }
             }
+            while (caractere!='$');
 
+
+            do
+            {
+                fichier->get(caractere);
+                if (caractere=='*')
+                {
+                    do
+                    {
+                        fichier->get(caractere);
+                        switch (caractere)
+                        {
+                        case 'r' :
+                            *fichier>>m_porteeLumineuse.rouge;
+                            break;
+                        case 'v' :
+                            *fichier>>m_porteeLumineuse.vert;
+                            break;
+                        case 'b' :
+                            *fichier>>m_porteeLumineuse.bleu;
+                            break;
+                        case 'i' :
+                            *fichier>>m_porteeLumineuse.intensite;
+                            break;
+                        }
+
+                        if (fichier->eof())
+                        {
+                            console->Ajouter("Erreur : Personnage \" "+chemin+" \" Invalide",1);
+                            caractere='$';
+                        }
+
+                    }
+                    while (caractere!='$');
+                    fichier->get(caractere);
+                }
+                if (fichier->eof())
+                {
+                    console->Ajouter("Erreur : Personnage \" "+chemin+" \" Invalide",1);
+                    caractere='$';
+                }
+
+            }
+            while (caractere!='$');
+
+            ChargerPose(fichier);
+
+            fichier->close();
         }
-        while (caractere!='$');
+        else
+        {
+            console->Ajouter("Impossible d'ouvrir : "+chemin,1);
+            return 0;
+        }
 
-        ChargerPose(fichier);
-
-        fichier->close();
+        if(fichier != NULL)
+            delete fichier;
     }
     else
     {
         console->Ajouter("Impossible d'ouvrir : "+chemin,1);
-
         return 0;
     }
 
 
-    delete fichier;
 
     return true;
 }
@@ -358,6 +405,60 @@ void Modele_Personnage::ChargerPose(ifstream *fichier)
         }
     }
     while (caractere!='$');
+}
+
+void Personnage::Sauvegarder(ofstream &fichier)
+{
+    for(int i = 0; i < (int)m_effets.size(); ++i)
+    {
+        if(m_effets[i].m_effet.m_actif)
+        {
+            if(m_effets[i].m_type == AURA_CARACTERISTIQUES)
+            {
+                if(m_effets[i].m_info1 == 0)
+                {
+                    m_caracteristique.maxVie -= m_effets[i].m_info2;
+                    m_caracteristique.vie -= m_effets[i].m_info2;
+                }
+            }
+        }
+    }
+
+    fichier <<"* m" <<m_modele
+            <<" vi" <<m_caracteristique.vie
+            <<" va" <<m_caracteristique.maxVie
+            <<" di" <<m_caracteristique.degatsMin
+            <<" da" <<m_caracteristique.degatsMax
+            <<" r"  <<m_caracteristique.rang
+            <<" a"  <<m_caracteristique.pointAme
+            <<" t"  <<m_caracteristique.modificateurTaille
+            <<" p"  <<m_poseEnCours
+            <<" e"  <<m_etat
+            <<" g"  <<m_angle
+            <<" lr" <<m_porteeLumineuse.rouge
+            <<" lv" <<m_porteeLumineuse.vert
+            <<" lb" <<m_porteeLumineuse.bleu
+            <<" li" <<m_porteeLumineuse.intensite;
+
+    for (unsigned o=0;o < m_objets.size();o++)
+            m_objets[o].SauvegarderTexte(&fichier);
+
+    fichier<<" $\n";
+
+    for(int i = 0; i < (int)m_effets.size(); ++i)
+    {
+        if(m_effets[i].m_effet.m_actif)
+        {
+            if(m_effets[i].m_type == AURA_CARACTERISTIQUES)
+            {
+                if(m_effets[i].m_info1 == 0)
+                {
+                    m_caracteristique.maxVie += m_effets[i].m_info2;
+                    m_caracteristique.vie    += m_effets[i].m_info2;
+                }
+            }
+        }
+    }
 }
 
 int Personnage::getOrdre(Modele_Personnage *modele)
@@ -556,7 +657,7 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception)
                             temp.y=enCours.y,temp.x=enCours.x;
 
                 if (temp.y!=-100&&temp.x!=-100)
-                    arrivee=temp;
+                    arrivee=temp, m_arrivee.x = temp.x + decalage.x,  m_arrivee.y = temp.y + decalage.y;
                 else
                     m_erreurPathfinding=true;
             }
@@ -614,12 +715,49 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception)
 }
 
 
-bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap)
+bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap, bool pousserPossible)
 {
-    int buf=(int)(tempsEcoule*1000);
-    tempsEcoule=(float)buf/1000;
+    //int buf=(int)(tempsEcoule*1000);
+    //tempsEcoule=(float)buf/1000;
 
-    if (m_caracteristique.vie>0)
+    if(m_pousse.x != 0 || m_pousse.y != 0)
+    {
+        if(pousserPossible)
+        {
+            m_positionPixel.x += m_pousse.x * tempsEcoule * COTE_TILE * 0.05;
+            m_positionPixel.y += m_pousse.y * tempsEcoule * COTE_TILE * 0.05;
+
+            bool xgrand = (m_pousse.x > 0);
+            bool ygrand = (m_pousse.y > 0);
+
+            m_pousse.x -= tempsEcoule * (-1 + xgrand * 2) * 0.025;
+            m_pousse.y -= tempsEcoule * (-1 + ygrand * 2) * 0.025;
+
+            if(xgrand && m_pousse.x < 0)
+                m_pousse.x = 0;
+            else if(!xgrand && m_pousse.x > 0)
+                m_pousse.x = 0;
+
+            if(ygrand && m_pousse.y < 0)
+                m_pousse.y = 0;
+            else if(!ygrand && m_pousse.y > 0)
+                m_pousse.y = 0;
+        }
+        else
+            m_pousse.y = 0, m_pousse.x = 0;
+
+        m_positionCase.x    = (int)((m_positionPixel.x+COTE_TILE*0.5)/COTE_TILE);
+        m_positionCase.y    = (int)((m_positionPixel.y+COTE_TILE*0.5)/COTE_TILE);
+
+        m_arrivee.x         = m_positionCase.x;
+        m_arrivee.y         = m_positionCase.y;
+
+        m_cheminFinal.x     = m_positionCase.x;
+        m_cheminFinal.y     = m_positionCase.y;
+
+        frappeEnCours       = 0;
+    }
+    else if (m_caracteristique.vie > 0)
     {
         if (!frappeEnCours)
         {
@@ -719,7 +857,17 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap)
 
 void Personnage::InfligerDegats(float degats)
 {
+    float temp = degats;
+    degats -= (float)m_caracteristique.armure/50;
+
+    if (degats < 0)
+        degats = 0;
+    if (degats > temp)
+        degats = temp;
+
     m_caracteristique.vie-=degats;
+
+    m_cible = NULL;
 
     if (m_caracteristique.vie<=0&&m_etat!=3)
         m_poseEnCours=0,m_etat=3;
@@ -932,8 +1080,18 @@ void Personnage::setEtat(int etat)
 void Personnage::setJustEtat(int etat)
 {
     m_etat=etat,m_poseEnCours=0;
-}
 
+    if(etat == 2)
+        frappeEnCours = 1;
+}
+void Personnage::addAngle(int angle)
+{
+    m_angle += angle;
+    if(m_angle < 0)
+        m_angle += 360;
+    if(m_angle > 360)
+        m_angle -= 360;
+}
 
 
 void Personnage::setPose(int pose)
@@ -966,6 +1124,8 @@ void Personnage::setCoordonnee(coordonnee nouvellesCoordonnees)
     m_poseEnCours=0;
 
     moteurGraphique->LightManager->SetPosition(m_light,sf::Vector2f(m_positionPixel.x,m_positionPixel.y));
+
+    m_cible = NULL;
 }
 void Personnage::setArrivee(coordonnee arrivee)
 {
@@ -987,11 +1147,19 @@ void Personnage::setCoordonneePixel(coordonnee position)
 
 void Personnage::PousserCase(coordonnee vecteur)
 {
-    m_positionCase.x+=vecteur.x;
+   /* m_positionCase.x+=vecteur.x;
     m_positionCase.y+=vecteur.y;
 
     m_positionPixel.x=(int)(m_positionCase.x*COTE_TILE);
     m_positionPixel.y=(int)(m_positionCase.y*COTE_TILE);
+
+    m_arrivee.x=m_positionCase.x;
+    m_arrivee.y=m_positionCase.y;
+
+    m_cheminFinal.x=m_positionCase.x;
+    m_cheminFinal.y=m_positionCase.y;*/
+    m_pousse.x += vecteur.x;
+    m_pousse.y += vecteur.y;
 
     m_arrivee.x=m_positionCase.x;
     m_arrivee.y=m_positionCase.y;
@@ -1079,6 +1247,10 @@ bool Personnage::getErreurPathfinding()
 const coordonneeDecimal &Personnage::getCoordonneePixel()
 {
     return m_positionPixel;
+}
+const coordonneeDecimal &Personnage::getPousse()
+{
+    return m_pousse;
 }
 const coordonnee &Personnage::getProchaineCase()
 {

@@ -46,6 +46,7 @@ public:
 
     int AfficherTexteObjets(coordonnee positionn,int);
     bool AfficherTexteObjet(coordonnee position,int, float *decalage = NULL);
+    void AlphaObjets(int alpha);
 
     void DecrementerAnimation(float nombre);
     void AugmenterAnimation(float temps);

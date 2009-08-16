@@ -66,6 +66,8 @@ void EffetGraphique::Afficher(float rotation)
 
         sprite.Rotate(rotation);
 
+        sprite.SetColor(sf::Color(255,255,255,m_tiles[m_tileEnCours].getOpacity()));
+
         if (sprite.GetPosition().x + sprite.GetSize().x  >= moteurGraphique->m_camera.GetRect().Left
                 && sprite.GetPosition().x                       <  moteurGraphique->m_camera.GetRect().Right
                 && sprite.GetPosition().y + sprite.GetSize().y  >= moteurGraphique->m_camera.GetRect().Top
@@ -235,10 +237,12 @@ void Miracle::Charger(std::string chemin)
             fichier.get(caractere);
             if (caractere=='*')
             {
-                fichier>>description;
-                for (int i=0;i<(int)description.size();i++)
-                    if (description[i]=='_')
-                        description[i]=' ';
+                m_description_effets.push_back(string ());
+
+                fichier>>m_description_effets.back();
+                for (int i=0;i<(int)m_description_effets.back().size();i++)
+                    if (m_description_effets.back()[i]=='_')
+                        m_description_effets.back()[i]=' ';
             }
 
             if (fichier.eof())
@@ -249,7 +253,7 @@ void Miracle::Charger(std::string chemin)
         }
         while (caractere!='$');
 
-        if(description.size() > 0)
+        /*if(description.size() > 0)
         {
             stTemp = description.find('\\');
 
@@ -262,7 +266,7 @@ void Miracle::Charger(std::string chemin)
             m_description_effets.push_back(description.substr(0, stTemp)+'\n');
         }
 
-        description = "";
+        description = "";*/
 
         do
         {
@@ -444,6 +448,7 @@ void Miracle::Charger(std::string chemin)
                         bool collision=0,ombre=0,transparent=0;
                         char orientation=' ';
                         float tempsAnimation=0.075;
+                        int opacity = 255;
 
                         do
                         {
@@ -482,6 +487,9 @@ void Miracle::Charger(std::string chemin)
                                 break;
                             case 'n':
                                 fichier>>tempsAnimation;
+                                break;
+                            case 'p':
+                                fichier>>opacity;
                                 break;
 
                             case 'e':
@@ -534,7 +542,7 @@ void Miracle::Charger(std::string chemin)
 
                         //AjouterTile(position,collision,animation,son,lumiere,ombre,orientation);
                         m_tile.back().push_back(Tile());
-                        m_tile.back().back().setTile(position,image,collision,animation,son,lumiere,ombre,orientation,transparent,centre,tempsAnimation);
+                        m_tile.back().back().setTile(position,image,collision,animation,son,lumiere,ombre,orientation,transparent,centre,tempsAnimation,opacity);
 
                         fichier.get(caractere);
                     }

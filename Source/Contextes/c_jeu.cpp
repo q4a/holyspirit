@@ -233,9 +233,7 @@ void c_Jeu::Animation(Jeu *jeu)
 
         if (retour==0) //Animation du héro
         {
-            if (jeu->hero.miracleEnCours==1)
-                jeu->map->InfligerDegatsMasse(jeu->hero.m_personnage.getCoordonnee(),1,rand()%(jeu->hero.m_caracteristiques.degatsMax - jeu->hero.m_caracteristiques.degatsMin +1) + jeu->hero.m_caracteristiques.degatsMin ,false,&jeu->hero);
-            else if (jeu->hero.m_personnage.frappeEnCours)
+            if (jeu->hero.m_personnage.frappeEnCours)
             {
                 bool toucher=false;
                 if (!jeu->hero.m_personnage.m_shooter)
@@ -418,7 +416,7 @@ void c_Jeu::Evenements(Jeu *jeu)
 
     if (eventManager->getEvenement(Mouse::Left,"CA")&&!eventManager->getEvenement(Key::LShift,"ET")&&eventManager->getPositionSouris().y < 492 * configuration->Resolution.h/600)
     {
-        jeu->hero.StopMiracles();
+        jeu->hero.StopMiraclesFrappe();
         if (!(eventManager->getPositionSouris().x>configuration->Resolution.w-configuration->Resolution.w*0.25
                 &&eventManager->getPositionSouris().y>configuration->Resolution.w*0.25&&eventManager->getPositionSouris().y<configuration->Resolution.w*0.25+configuration->Resolution.w*0.34
                 &&alpha_sac>=128)||alpha_sac<=128)
@@ -441,7 +439,7 @@ void c_Jeu::Evenements(Jeu *jeu)
 
     if (eventManager->getEvenement(Mouse::Left,"C")&&eventManager->getEvenement(Mouse::Left,"CA"))
     {
-        jeu->hero.StopMiracles();
+        jeu->hero.StopMiraclesFrappe();
         if (jeu->map->getMonstreIllumine()!=-1)
         {
             bool test=false;
@@ -484,7 +482,7 @@ void c_Jeu::Evenements(Jeu *jeu)
         {
             eventManager->StopEvenement(Mouse::Right,"C");
 
-            jeu->hero.StopMiracles();
+            jeu->hero.StopMiraclesFrappe();
 
             coordonnee cible;
 

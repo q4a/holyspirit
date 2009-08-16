@@ -129,6 +129,7 @@ bool Tileset::Charger(std::string chemin)
                 bool collision=0,ombre=0,transparent=0;
                 char orientation=' ';
                 float tempsAnimation=0.075;
+                int opacity = 255;
 
                 do
                 {
@@ -167,6 +168,9 @@ bool Tileset::Charger(std::string chemin)
                         break;
                     case 'n':
                         fichier>>tempsAnimation;
+                        break;
+                    case 'p':
+                        fichier>>opacity;
                         break;
 
                     case 'e':
@@ -210,7 +214,7 @@ bool Tileset::Charger(std::string chemin)
 
                 Tile tileTemp;
                 m_tile.push_back(tileTemp);
-                m_tile.back().setTile(position,image,collision,animation,son,lumiere,ombre,orientation,transparent,centre,tempsAnimation);
+                m_tile.back().setTile(position,image,collision,animation,son,lumiere,ombre,orientation,transparent,centre,tempsAnimation,opacity);
 
                 fichier.get(caractere);
             }
@@ -305,6 +309,15 @@ float Tileset::getTempsDuTile(int tile)
 
     return 0;
 }
+
+int Tileset::getOpacityDuTile(int tile)
+{
+    if (tile>=0&&tile<(int)m_tile.size())
+        return m_tile[tile].getOpacity();
+
+    return 255;
+}
+
 
 
 

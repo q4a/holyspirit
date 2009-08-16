@@ -79,6 +79,7 @@ Objet::Objet()
     m_shoot_weapon=0;
 
     m_useMiracle = false;
+    m_alpha = 0;
 }
 
 Objet::Objet(std::string nom, int rarete)
@@ -91,6 +92,7 @@ Objet::Objet(std::string nom, int rarete)
     m_capaciteBenediction=0;
 
     m_useMiracle = false;
+    m_alpha = 0;
 }
 
 Objet::~Objet()

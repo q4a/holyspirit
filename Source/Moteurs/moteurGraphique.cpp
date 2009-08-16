@@ -305,7 +305,7 @@ void MoteurGraphique::Afficher()
         }
 
 
-        for (int i=0;i<(int)m_textes[k].size();i++)
+        for (unsigned i=0;i<m_textes[k].size();i++)
         {
             m_ecran.SetView(m_ecran.GetDefaultView());
             m_ecran.Draw(m_textes[k][i]);
@@ -364,14 +364,14 @@ void MoteurGraphique::Afficher()
 
 int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std::string nom,int importance)
 {
-    for (int i=0;i<(int)m_images.size();i++)
+    for (unsigned i=0;i<m_images.size();i++)
     {
         if (m_images[i].nom==nom)
         {
             m_images[i].importance=importance;
             return i;
         }
-        if (m_images[i].nom=="")
+        else if (m_images[i].nom=="")
         {
             m_images[i].nom=nom;
 
@@ -413,7 +413,7 @@ int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std
 
 int MoteurGraphique::AjouterImage(std::string chemin,int importance)
 {
-    for (int i=0;i<(int)m_images.size();i++)
+    for (unsigned i=0;i<m_images.size();i++)
     {
         if (m_images[i].nom==chemin)
         {
@@ -463,18 +463,18 @@ int MoteurGraphique::AjouterImage(std::string chemin,int importance)
 
 void MoteurGraphique::DecrementerImportance()
 {
-    for (int i=0;i<(int)m_images.size();i++)
+    for (unsigned i=0;i<m_images.size();i++)
         if (m_images[i].importance!=-1)
         {
             m_images[i].importance--;
-            if (m_images[i].importance==0)
+            if (m_images[i].importance<=0)
                 m_images[i].nom="",m_images[i].importance=0;
         }
 }
 
 int MoteurGraphique::AjouterModeleSystemeParticules(std::string chemin)
 {
-    for (int i=0;i<(int)m_modeleSystemeParticules.size();i++)
+    for (unsigned i=0;i<m_modeleSystemeParticules.size();i++)
         if (m_modeleSystemeParticules[i].m_chemin==chemin)
             return i;
 
@@ -527,9 +527,10 @@ void MoteurGraphique::AjouterTexteNonChevauchable(sf::String* string, int couche
 
 void MoteurGraphique::AjouterTexte(sf::String* string, int couche,bool titre)
 {
-    sf::String temp(*string);
+
     if (couche>=0&&couche<=20)
     {
+        sf::String temp(*string);
         temp.SetFont(m_font);
 
         if (titre)

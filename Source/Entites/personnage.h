@@ -25,6 +25,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
+#include <fstream>
+
 #include "../constantes.h"
 #include "objet.h"
 #include "liste_case.h"
@@ -71,13 +73,15 @@ class Personnage
 public:
     Personnage();
 
+    void Sauvegarder(std::ofstream &fichier);
+
     bool EnVie();
     int Animer(Modele_Personnage *modele,float temps,coordonnee positionHero);
 
     void Pousser(coordonnee vecteur);
     void PousserCase(coordonnee vecteur);
 
-    bool SeDeplacer(float,coordonnee dimensionsMap);
+    bool SeDeplacer(float,coordonnee dimensionsMap, bool pousserPossible = true);
 
     void Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,bool surbrillance=false);
 
@@ -99,6 +103,7 @@ public:
     void setJustEtat(int etat);
     void setPose(int  pose);
     void setAngle(int  angle);
+    void addAngle(int angle);
     void setVitesse(float vitesse);
     void setCoordonneePixel(coordonnee position);
     void setProchaineCase(coordonnee position);
@@ -118,6 +123,7 @@ public:
     const coordonnee &getCoordonnee();
     const coordonnee &getArrivee();
     const coordonneeDecimal &getCoordonneePixel();
+    const coordonneeDecimal &getPousse();
     const coordonnee &getProchaineCase();
     bool getErreurPathfinding();
 
@@ -148,7 +154,6 @@ public:
     Script m_scriptAI;
     bool m_friendly;
     Personnage *m_cible;
-    bool m_cibleHeroique;
 
 protected:
     int m_etat,m_poseEnCours,m_angle;
@@ -162,6 +167,8 @@ protected:
     std::vector<Objet> m_objets;
 
     Lumiere m_porteeLumineuse,m_porteeLumineuseBasique;
+
+    coordonneeDecimal  m_pousse;
 };
 
 

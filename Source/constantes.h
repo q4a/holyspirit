@@ -40,7 +40,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #define NOMBRE_COUCHE_MAP 2
 
-#define NOMBRE_MORCEAU_PERSONNAGE 5
+#define NOMBRE_MORCEAU_PERSONNAGE 8
 
 #include <cmath>
 #include <utility>

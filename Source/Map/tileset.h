@@ -55,6 +55,7 @@ class Tileset
 	const coordonnee &getCentreDuTile(int tile);
 	const std::string &getChemin(){return m_chemin;}
 	float getTempsDuTile(int tile);
+	int getOpacityDuTile(int tile);
 	int getTaille();
 
 	private:

@@ -59,7 +59,7 @@ public:
     void AugmenterAme(float temps);
     void RecalculerCaracteristiques(bool bis = true);
 
-    void InfligerDegats(float degats);
+    //void InfligerDegats(float degats);
     void RegenererVie(float vie);
     void RegenererFoi(float foi);
 
@@ -75,7 +75,8 @@ public:
 
     bool UtiliserMiracle(int, Personnage*);
     bool AjouterMiracleArme();
-    void StopMiracles();
+    void StopMiraclesFrappe();
+    void StopMiraclesCharme();
 
     void setMonstreVise(int monstre);
     void setChercherSac(coordonnee);
@@ -117,7 +118,7 @@ private:
 
     int m_cas;
 
-    int ordreAffichage[NOMBRE_MORCEAU_PERSONNAGE];
+    int m_ordreAffichage[NOMBRE_MORCEAU_PERSONNAGE];
 
     std::vector<Objet> m_inventaire;
 

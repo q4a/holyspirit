@@ -32,6 +32,8 @@ Modele_Monstre::Modele_Monstre()
     m_porteeLumineuse.vert=0;
     m_porteeLumineuse.bleu=0;
     m_porteeLumineuse.intensite=0;
+
+    Modele_Personnage();
 }
 
 Modele_Monstre::~Modele_Monstre()
@@ -510,7 +512,7 @@ void Monstre::TesterVision(coordonnee positionHero)
             m_vu=1;
             // if(m_etat==0) m_poseEnCours=0;
         }
-        if (fabs(positionHero.x-m_positionCase.x)>=9||fabs(positionHero.y-m_positionCase.y)>=9)
+        if (fabs(positionHero.x-m_positionCase.x)>=8||fabs(positionHero.y-m_positionCase.y)>=8)
         {
             if (m_vu)
                 setDepart();
