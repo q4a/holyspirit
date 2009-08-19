@@ -206,7 +206,7 @@ void c_Jeu::Deplacements(Jeu *jeu)
 
         Listener::SetGlobalVolume((float)configuration->volume);
         Listener::SetPosition(-position.x, 0, position.y);
-        Listener::SetTarget(0, 0, 1);
+        Listener::SetDirection(0, 0, 1);
         jeu->map->MusiquePlay(position);
         jeu->sonMort.SetPosition(position.x,0,position.y);
 
@@ -248,7 +248,6 @@ void c_Jeu::Animation(Jeu *jeu)
                     toucher=true;
 
                 if (toucher)
-
                     if (jeu->hero.AjouterMiracleArme())
                     {
                         coordonnee cible;

@@ -1700,7 +1700,7 @@ int Map::GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
             if (continuer)
                 if (modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_type==PROJECTILE&&entiteMiracle->m_infos[o].m_IDObjet==-1)
                 {
-                    int degats=0,image=0;
+                    int degats=0;
                     for (int p=0;p<(int)modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien.size();p++)
                         if (modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]>=0&&modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]<(int)modeleMiracle->m_effets.size())
                             if (modeleMiracle->m_effets[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]].m_type==DEGATS)
@@ -3134,12 +3134,13 @@ bool Map::InfligerDegats(int numero, float degats, Hero *hero,bool pousser)
 {
     if(numero >= 0 && numero < (int)m_monstre.size())
     {
-        InfligerDegats(&m_monstre[numero], degats, hero, pousser);
+        return InfligerDegats(&m_monstre[numero], degats, hero, pousser);
 
         if (!m_monstre[numero].EnVie())
             if (m_monstreIllumine == numero || hero->getMonstreVise() == numero)
                 m_monstreIllumine=-1,hero->setMonstreVise(-1);
     }
+    return (false);
 }
 
 bool Map::InfligerDegats(Personnage *monstre, float degats, Hero *hero,bool pousser)

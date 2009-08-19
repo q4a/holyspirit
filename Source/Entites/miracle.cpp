@@ -111,8 +111,8 @@ void EffetGraphique::Animer(float temps)
                 {
                     coordonnee positionHero;
                     coordonnee position;
-                    position.x=-(m_position.x/COTE_TILE - m_position.y/COTE_TILE-1)/5;
-                    position.y=(m_position.x/COTE_TILE + m_position.y/COTE_TILE)/5;
+                    position.x=-(int)(m_position.x/COTE_TILE - m_position.y/COTE_TILE-1)/5;
+                    position.y= (int)(m_position.x/COTE_TILE + m_position.y/COTE_TILE)/5;
 
                     moteurSons->JouerSon(m_tiles[m_tileEnCours].getSon(), position, positionHero,0);
                 }
@@ -530,12 +530,12 @@ void Miracle::Charger(std::string chemin)
                         if (centre.y == -100)
                             centre.y = position.h - 32;
 
-                        if (image >= 0 && image < m_image.size())
+                        if (image >= 0 && image < (int)m_image.size())
                             image = m_image[image];
                         else
                             image = -1;
 
-                        if (son >= 0 && son < m_sons.size())
+                        if (son >= 0 && son < (int)m_sons.size())
                             son = m_sons[son];
                         else
                             son = -1;

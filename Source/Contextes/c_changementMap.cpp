@@ -167,7 +167,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         position.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
         Listener::SetGlobalVolume((float)configuration->volume);
         Listener::SetPosition(-position.x, 0, position.y);
-        Listener::SetTarget(0, 0, 1);
+        Listener::SetDirection(0, 0, 1);
         jeu->map->MusiquePlay(position);
 
         if (configuration->Lumiere)
