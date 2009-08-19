@@ -2132,7 +2132,8 @@ void Map::AnimerMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,f
                 if (continuer)
                     if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_type == CHARME && IDObjet == -1)
                     {
-                        if(personnage->m_miracleEnCours[i].m_cible->getCaracteristique().maxVie <= miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0])
+                        if(personnage->m_miracleEnCours[i].m_cible->getCaracteristique().maxVie <= miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0]
+                         &&personnage->m_miracleEnCours[i].m_cible->getCaracteristique().niveau > 0 && personnage->m_miracleEnCours[i].m_cible->getCaracteristique().vitesse > 0)
                         {
                             personnage->m_miracleEnCours[i].m_cible->m_scriptAI     = Script (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_chaine);
 
@@ -3030,12 +3031,14 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                              && m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y >= 0 && m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y < m_dimensions.y)
                             {
                                 int temp;
-                                if (m_decor[0][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()<0&&m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()<0)
+                                if (m_decor[0][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()<0
+                                  &&m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()<0)
                                 {
                                     m_decor[i][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].setMonstre(m_decor[i][j][k].getMonstre());
                                     temp = -1;
                                 }
-                                else if(!(m_decor[0][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()>=0&&m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()>=0))
+                                else if(!(m_decor[0][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()>=0
+                                        &&m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()>=0))
                                 {
                                     temp=m_decor[i][j][k].getMonstre();
                                     if (m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()>=0)
@@ -3044,7 +3047,21 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                                     temp = -1;
                                 }
                                 else
-                                    temp = m_decor[i][j][k].getMonstre();
+                                {
+                                    bool ok = false;
+                                    if(m_decor[0][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()>=0)
+                                        if(!m_monstre[m_decor[0][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()].EnVie())
+                                            m_decor[0][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].setMonstre(m_decor[i][j][k].getMonstre()),ok = true;
+
+                                    if(!ok && m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()>=0)
+                                        if(!m_monstre[m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].getMonstre()].EnVie())
+                                            m_decor[1][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().y][m_monstre[m_decor[i][j][k].getMonstre()].getCoordonnee().x].setMonstre(m_decor[i][j][k].getMonstre()),ok = true;
+
+                                    if(ok)
+                                        temp = -1;
+                                    else
+                                        temp = m_decor[i][j][k].getMonstre();
+                                }
                                 m_decor[i][j][k].setMonstre(temp);
                             }
 
