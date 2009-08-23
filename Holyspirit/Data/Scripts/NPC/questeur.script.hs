@@ -1,6 +1,8 @@
 main 
 	if talk
 	then
+
+
 		if quest * 1 * 0
 		then
 			speak " Allez tuer les gros méchants pour avoir la tiare ! "
@@ -23,10 +25,18 @@ main
 		
 		if quest * 1 * -1
 		then
+			if variable * 0 * 0
+			then
+				playSound * 1
+				variable * 0 * 1
+			end
+
 			speak " Si vous allez tuer les trois gros méchants prêtres démoniaques du donjon, je vous offrirai une belle tiare ! "
 			newQuest * 1 
 			setQuestName * 1 " Les trois méchants"
 			setQuestState * 1 * 0 " Allez tuer les trois méchants prêtres démoniaques dans le donjon. Mais attention, ils sont très puissants ! "
 		end
+	else
+		variable * 0 * 0
 	end
 end 

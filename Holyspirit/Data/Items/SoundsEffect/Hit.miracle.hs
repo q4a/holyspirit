@@ -8,7 +8,8 @@ $
 	*Data/Sounds/punch.wav
 $
 //Effets
-	* t3 s0 ia1 $
+	* t3 l1 s0 ia1 $
+	* t11 ia0 ib2 $
 $
 //Séquences
 	*

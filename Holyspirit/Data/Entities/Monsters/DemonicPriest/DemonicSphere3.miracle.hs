@@ -11,11 +11,12 @@ $
 //Effets
 	* t-1 l1 l2 l3  $
 	
-	* t0 l5 l4 s0 ia10 ib-30 $ // t pour le type, l c'est pour le lien, s pour la séquence et ia pour les infos relatives
-	* t0 l5 l4 s0 ia10 ib0 $
-	* t0 l5 l4 s0 ia10 ib30 $
+	* t0 l5 l4 l6 s0 ia10 ib-30 $ // t pour le type, l c'est pour le lien, s pour la séquence et ia pour les infos relatives
+	* t0 l5 l4 l6 s0 ia10 ib0 $
+	* t0 l5 l4 l6 s0 ia10 ib30 $
 	* t2 ia10 ib25 $
 	* t3 s1 ia7 $
+	* t11 ia0 ib8 $
 $
 //Séquences
 	*

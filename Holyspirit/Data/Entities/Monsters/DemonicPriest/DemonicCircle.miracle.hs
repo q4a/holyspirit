@@ -11,17 +11,19 @@ $
 //Effets
 	* t-1 l1 l2 l3 l4 l5 l6 l7 l8  $
 	
-	* t0 l10 l9 s0 ia10 ib0 $ // t pour le type, l c'est pour le lien, s pour la séquence et ia pour les infos relatives
-	* t0 l10 l9 s0 ia10 ib45 $
-	* t0 l10 l9 s0 ia10 ib90 $
-	* t0 l10 l9 s0 ia10 ib135 $
-	* t0 l10 l9 s0 ia10 ib180 $
-	* t0 l10 l9 s0 ia10 ib225 $
-	* t0 l10 l9 s0 ia10 ib270 $
-	* t0 l10 l9 s0 ia10 ib315 $
+	* t0 l10 l9 l11 s0 ia10 ib0 $ // t pour le type, l c'est pour le lien, s pour la séquence et ia pour les infos relatives
+	* t0 l10 l9 l11 s0 ia10 ib45 $
+	* t0 l10 l9 l11 s0 ia10 ib90 $
+	* t0 l10 l9 l11 s0 ia10 ib135 $
+	* t0 l10 l9 l11 s0 ia10 ib180 $
+	* t0 l10 l9 l11 s0 ia10 ib225 $
+	* t0 l10 l9 l11 s0 ia10 ib270 $
+	* t0 l10 l9 l11 s0 ia10 ib315 $
 
 	* t2 ia10 ib25 $
 	* t3 s1 ia7 $
+
+	* t11 ia0 ib8 $
 $
 //Séquences
 	*

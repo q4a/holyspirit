@@ -10,9 +10,11 @@ $
 //Effets
 	* t-1 l1 l1 $ // t pour le type, l c'est pour le lien, s pour la séquence et ia pour les infos relatives
 	
-	* t4 l2 mData/Entities/Monsters/PantinMorbide/Guardian/Guardian.rs.hs $
+	* t4 l2 l3 mData/Entities/Monsters/PantinMorbide/Guardian/Guardian.rs.hs $
 
 	* t3 s0 ia7 $
+
+	* t11 ia0 ib16 $
 
 $
 //Séquences

@@ -11,16 +11,18 @@ $
 	*Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic.png
 $
 //Sons
-	
+	*Data/Sounds/Globe.wav
 $
 //Effets
-	* t0 l1 l4 s0 ia15 ib1 $ // ia = vitesse, ib = projectile s'arrete à une case précise
+	* t10 l1 ia2 ib0 $
 
-	* t3 l2 s1 ia15 $
-	* t3 l3 s2 ia15 $
+	* t0 l2 l5 s0 ia15 ib1 $ // ia = vitesse, ib = projectile s'arrete à une case précise
+
+	* t3 l3 s1 ia15 $
+	* t3 l4 s2 ia15 $
 	* t3 s3 ia15 $	
 
-	* t8 ia5 ib15 ic20 $
+	* t8 ia6 ib15 ic20 $
 
 	* t7 ia1 ib6 ic0 id1 $
 $
@@ -46,7 +48,7 @@ $
 		* x768 y512 w256 h256 ey128 ex128 i1 a11 n0.1 lv255 li88 p64 $
 		* x0 y768 w256 h256 ey128 ex128 i1 a12 n0.1 lv255 li96 p48 $
 		* x256 y768 w256 h256 ey128 ex128 i1 a13 n0.1 lv255 li104 p32 $
-		* x512 y768 w256 h256 ey128 ex128 i1 a14 n0.1 lv255 li112 p16 $
+		* x512 y768 w256 h256 ey128 ex128 i1 a14 n0.1 lv255 li112 p16 s0 $
 	$
 	*
 		* x0 y0 w256 h256 ey128 ex128 i1 a1 n0.1 lv255 li128 $

@@ -2,13 +2,18 @@
 main
 	if alive
 	then
-		if distance * 8
+		if distance * 7
 		then
 			if distance * 5 
 			then
 				if see
 				then
-					fight
+					if shooter
+					then
+						shoot
+					else
+						fight
+					end
 				else
 					if distance * 2
 					then

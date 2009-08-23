@@ -14,6 +14,7 @@ $
 	* mData/Entities/Heroes/Concubine/ $
 $
 	* mNude/OneHand.rs.hs mNude/TwoWeapons.rs.hs mNude/TwoHand.rs.hs $
+	* mHelmets/Hair_OneHand.rs.hs mHelmets/Hair_OneHand.rs.hs mHelmets/Hair_TwoHand.rs.hs $
 $
 	* x0 y0 w800 h600 m Data/Menus/Inventory.png $
 $

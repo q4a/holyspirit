@@ -31,17 +31,45 @@
          Chargement du hero.
          /Lectures des caracteristiques.
          
-         Chargement de l'objet : Dagger.item.hs
-         Chargement de : Data/Items/Images/Dagger.png
-         Chargement de : Data/Sounds/27826__Erdie__sword01.wav
-         Chargement du miracle : Data/Items/SoundsEffect/Hit.miracle.hs
-         Chargement de : Data/Sounds/punch.wav
-         
          Chargement de l'objet : Crossbow.item.hs
          Chargement de : Data/Items/Images/crossbow01.png
          Chargement de : Data/Sounds/tomber3.wav
          Chargement du miracle : Data/Entities/Heroes/Concubine/Crossbow/Bolt.miracle.hs
          Chargement de : Data/Entities/Heroes/Concubine/Crossbow/Bolt.png
+         Chargement de : Data/Sounds/punch.wav
+         
+         Chargement de l'objet : Coal.item.hs
+         Chargement de : Data/Items/Images/craft01.png
+         
+         Chargement de l'objet : Ceremonial_dagger.item.hs
+         Chargement de : Data/Items/Images/Dagger.png
+         Chargement de : Data/Sounds/27826__Erdie__sword01.wav
+         Chargement du miracle : Data/Items/SoundsEffect/Hit.miracle.hs
+         
+         Chargement de l'objet : Armor.item.hs
+         Chargement de : Data/Items/Images/armor01.png
+         Chargement de : Data/Sounds/Tombertissu.wav
+         
+         Chargement de l'objet : Armband.item.hs
+         Chargement de : Data/Items/Images/Brassards.png
+         
+         Chargement de l'objet : Necklage.item.hs
+         Chargement de : Data/Items/Images/Necklage01.png
+         
+         Chargement de l'objet : Boot.item.hs
+         Chargement de : Data/Items/Images/Boot.png
+         
+         Chargement de l'objet : Boot.item.hs
+         
+         Chargement de l'objet : Armband.item.hs
+         
+         Chargement de l'objet : Ceremonial_dagger.item.hs
+         Chargement du miracle : Data/Items/SoundsEffect/Hit.miracle.hs
+         
+         Chargement de l'objet : Helmet.item.hs
+         Chargement de : Data/Items/Images/helmet01.png
+         
+         Chargement de l'objet : Necklage.item.hs
          
          Chargement de l'objet : Heal_potion.item.hs
          Chargement de : Data/Items/Images/Potions.png
@@ -60,15 +88,116 @@
          Chargement de l'objet : Heal_potion.item.hs
          Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
          
-         Chargement de l'objet : Small_axe.item.hs
-         Chargement de : Data/Items/Images/axes01.png
+         Chargement de l'objet : Ceremonial_dagger.item.hs
          Chargement du miracle : Data/Items/SoundsEffect/Hit.miracle.hs
          
-         Chargement de l'objet : Small_axe.item.hs
+         Chargement de l'objet : Ring.item.hs
+         Chargement de : Data/Items/Images/Ring1.png
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         
+         Chargement de l'objet : Necklage.item.hs
+         
+         Chargement de l'objet : Ring.item.hs
+         
+         Chargement de l'objet : Ceremonial_dagger.item.hs
          Chargement du miracle : Data/Items/SoundsEffect/Hit.miracle.hs
          
-         Chargement de l'objet : Small_axe.item.hs
+         Chargement de l'objet : Boot.item.hs
+         
+         Chargement de l'objet : Coal.item.hs
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         
+         Chargement de l'objet : Necklage.item.hs
+         
+         Chargement de l'objet : Faith_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Faith.miracle.hs
+         
+         Chargement de l'objet : Faith_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Faith.miracle.hs
+         
+         Chargement de l'objet : Faith_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Faith.miracle.hs
+         
+         Chargement de l'objet : Faith_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Faith.miracle.hs
+         
+         Chargement de l'objet : Faith_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Faith.miracle.hs
+         
+         Chargement de l'objet : Faith_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Faith.miracle.hs
+         
+         Chargement de l'objet : Faith_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Faith.miracle.hs
+         
+         Chargement de l'objet : Faith_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Faith.miracle.hs
+         
+         Chargement de l'objet : Faith_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Faith.miracle.hs
+         
+         Chargement de l'objet : Faith_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Faith.miracle.hs
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         
+         Chargement de l'objet : Boot.item.hs
+         
+         Chargement de l'objet : Ceremonial_dagger.item.hs
          Chargement du miracle : Data/Items/SoundsEffect/Hit.miracle.hs
+         
+         Chargement de l'objet : Armor.item.hs
+         
+         Chargement de l'objet : Ring.item.hs
+         
+         Chargement de l'objet : Necklage.item.hs
+         
+         Chargement de l'objet : Helmet.item.hs
+         
+         Chargement de l'objet : Necklage.item.hs
+         
+         Chargement de l'objet : Armor.item.hs
+         
+         Chargement de l'objet : Ceremonial_dagger.item.hs
+         Chargement du miracle : Data/Items/SoundsEffect/Hit.miracle.hs
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         
+         Chargement de l'objet : Ring.item.hs
+         
+         Chargement de l'objet : Unique_dagger.item.hs
+         
+         Chargement de l'objet : Ring.item.hs
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         
+         Chargement de l'objet : Necklage.item.hs
+         
+         Chargement de l'objet : Small_sword_divin.item.hs
+         Chargement de : Data/Items/Images/swords01.png
+         Chargement du miracle : Data/Items/SoundsEffect/Hit.miracle.hs
+         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
+         Chargement de : Data/Items/HolyEffect/HolyEffect.png
+         Chargement de : Data/Sounds/39016_wildweasel_DSFIRXPL.wav
          /Lectures des objets.
          /Lectures des quêtes.
          /Lectures des quêtes.
@@ -85,35 +214,46 @@
          Chargement de : Data/Menus/Concubine/CourtisanePoison.png
          Chargement de : Data/Menus/Concubine/CourtisaneAssassin.png
          Chargement de : Data/Menus/Concubine/CourtisaneCharme.png
-         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic0.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic1.miracle.hs
          Chargement de : Data/Entities/Heroes/Concubine/Miracles/Toxic/Bolt.png
          Chargement de : Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic.png
-         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic1.miracle.hs
-         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/Charmed1.miracle.hs
+         Chargement de : Data/Sounds/Globe.wav
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic2.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/Charmed2.miracle.hs
-         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife0.miracle.hs
-         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife1.miracle.hs
-         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic0.miracle.hs
+         Chargement de : Data/Sounds/Kiss.wav
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/Charmed3.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife2.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife3.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife2.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic1.miracle.hs
-         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/Charmed1.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic2.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/Charmed2.miracle.hs
-         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife0.miracle.hs
-         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife1.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/Charmed3.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife2.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife3.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife2.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Matelasse/TwoWeapons.rs.hs
+         Chargement de : CourtisaneMatelasseAttente1Main0.png
+         Chargement de : CourtisaneMatelasseMarche1Main0.png
+         Chargement de : CourtisaneMatelasseAttaque2Main0.png
+         Chargement de : Data/Sounds/9906__Snoman__grass3.wav
+         Chargement de : Data/Sounds/epee.wav
+         
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Helmets/Cerveliere_OneHand.rs.hs
+         Chargement de : CourtisaneCervelliereAttente1Main0.png
+         Chargement de : CourtisaneCervelliereMarche1Main0.png
+         Chargement de : CourtisaneCervelliereAttaque0.png
          
          Chargement du personnage : Data/Entities/Heroes/Concubine/Dagger/Dagger_r.rs.hs
          Chargement de : PoignardAttenteDroite0.png
          Chargement de : PoignardMarcheDroite0.png
          Chargement de : PoignardAttaqueDroite0.png
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/OneHand.rs.hs
-         Chargement de : CourtisaneBaseAttente1Main0.png
-         Chargement de : CourtisaneBaseMarche1Main0.png
-         Chargement de : CourtisaneBaseMarche1Main1.png
-         Chargement de : CourtisaneBaseAttaque1Main0.png
-         Chargement de : CourtisaneBaseAttaque1Main1.png
-         Chargement de : CourtisaneBaseAttaque1Main2.png
-         Chargement de : Data/Sounds/9906__Snoman__grass3.wav
-         Chargement de : Data/Sounds/epee.wav
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Dagger/Dagger_l.rs.hs
+         Chargement de : PoignardAttenteGauche0.png
+         Chargement de : PoignardMarcheGauche0.png
+         Chargement de : PoignardAttaqueGauche0.png
          /Chargement du héro terminé
          Chargement de : Data/Menus/alpha-arts.png
          Chargement de : Data/Loading_screens/Plaines2.png
@@ -121,16 +261,64 @@
          Sauvegarde du héro...
          Ouverture du fichier.
          /Ecriture des caracterstiques.
-         /Sauvegarde de Dagger.item.hs
          /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Unique_dagger.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Small_sword_divin.item.hs
          /Ecriture des objets.
          /Ecriture des miracles.
          /Ecriture des quetes.
@@ -138,16 +326,21 @@
          
          Chargements d'images diverses :
          Chargement de : Data/Menus/Bag.png
-         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic0.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic1.miracle.hs
-         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/Charmed1.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic2.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/Charmed2.miracle.hs
-         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife0.miracle.hs
-         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife1.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/Charmed3.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife2.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife3.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife2.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Matelasse/TwoWeapons.rs.hs
+         
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Helmets/Cerveliere_OneHand.rs.hs
          
          Chargement du personnage : Data/Entities/Heroes/Concubine/Dagger/Dagger_r.rs.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/OneHand.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Dagger/Dagger_l.rs.hs
          
          Chargement de la map : Begin.map.hs
          /Lectures du nom.
@@ -166,7 +359,6 @@
          ---------------------------------------------------------------------------------
          EVENEMENT : Changement de map
          ---------------------------------------------------------------------------------
-         Chargement de : Data/Loading_screens/Plaines3.png
          
          Sauvegarde de la map : Data/Temp/Begin.map.hs
          Sauvegarde de la map_entite : Data/Temp/entites_map_Begin.map.hs.emap.hs
@@ -175,16 +367,64 @@
          Sauvegarde du héro...
          Ouverture du fichier.
          /Ecriture des caracterstiques.
-         /Sauvegarde de Dagger.item.hs
          /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Unique_dagger.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Small_sword_divin.item.hs
          /Ecriture des objets.
          /Ecriture des miracles.
          /Ecriture des quetes.
@@ -203,16 +443,21 @@
          Map détruite !
          
          Chargements d'images diverses :
-         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic0.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic1.miracle.hs
-         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/Charmed1.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic2.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/Charmed2.miracle.hs
-         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife0.miracle.hs
-         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife1.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/Charmed3.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife2.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife3.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife2.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Matelasse/TwoWeapons.rs.hs
+         
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Helmets/Cerveliere_OneHand.rs.hs
          
          Chargement du personnage : Data/Entities/Heroes/Concubine/Dagger/Dagger_r.rs.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/OneHand.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Dagger/Dagger_l.rs.hs
          
          Chargement de la map : ArableLand0.map.hs
          /Lectures du nom.
@@ -256,6 +501,7 @@
          Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
          
          Chargement de l'objet : Small_axe.item.hs
+         Chargement de : Data/Items/Images/axes01.png
          Chargement du miracle : Data/Items/SoundsEffect/Hit.miracle.hs
          
          Chargement du systeme de particules : Data/Particule_system/human_bones.ps.hs
@@ -270,7 +516,6 @@
          Chargement du script : " Data/Scripts/AI/Explosion.script.hs "
          
          Chargement de l'objet : Coal.item.hs
-         Chargement de : Data/Items/Images/craft01.png
          
          Chargement du systeme de particules : Data/Particule_system/wood_barrel.ps.hs
          Chargement de : Data/Particule_system/Images/wood_barrel.png
@@ -294,16 +539,12 @@
          
          Chargement de l'objet : Gown.item.hs
          Chargement de : Data/Items/Images/gown.png
-         Chargement de : Data/Sounds/Tombertissu.wav
          
          Chargement de l'objet : Ring.item.hs
-         Chargement de : Data/Items/Images/Ring1.png
          
          Chargement de l'objet : Necklage.item.hs
-         Chargement de : Data/Items/Images/Necklage01.png
          
          Chargement de l'objet : Unique_boot.item.hs
-         Chargement de : Data/Items/Images/Boot.png
          
          Chargement de l'objet : Ceremonial_dagger.item.hs
          Chargement du miracle : Data/Items/SoundsEffect/Hit.miracle.hs
@@ -334,7 +575,6 @@
          Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
          
          Chargement de l'objet : Small_sword.item.hs
-         Chargement de : Data/Items/Images/swords01.png
          Chargement du miracle : Data/Items/SoundsEffect/Hit.miracle.hs
          
          Chargement de l'objet : Small_shield.item.hs
@@ -343,8 +583,6 @@
          Chargement de l'objet : Small_sword_divin.item.hs
          Chargement du miracle : Data/Items/SoundsEffect/Hit.miracle.hs
          Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
-         Chargement de : Data/Items/HolyEffect/HolyEffect.png
-         Chargement de : Data/Sounds/39016_wildweasel_DSFIRXPL.wav
          Chargement de : Data/Entities/Monsters/PantinMorbide/Sword/Sword.rs.hs terminé
          
          Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Guardian/Guardian.rs.hs
@@ -368,10 +606,8 @@
          Chargement du miracle : Data/Items/SoundsEffect/Hit.miracle.hs
          
          Chargement de l'objet : Helmet.item.hs
-         Chargement de : Data/Items/Images/helmet01.png
          
          Chargement de l'objet : Chainmail.item.hs
-         Chargement de : Data/Items/Images/armor01.png
          Chargement de : Data/Entities/Monsters/PantinMorbide/Guardian/Guardian.rs.hs terminé
          
          Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Arquebuse/Arquebuse.rs.hs
@@ -417,7 +653,6 @@
          Chargement du miracle : Data/Items/SoundsEffect/Hit.miracle.hs
          
          Chargement de l'objet : Armband.item.hs
-         Chargement de : Data/Items/Images/Brassards.png
          
          Chargement de l'objet : Small_sword_divin.item.hs
          Chargement du miracle : Data/Items/SoundsEffect/Hit.miracle.hs
@@ -433,6 +668,7 @@
          
          Chargement du monstre : Data/Entities/NPC/Trader.rs.hs
          Chargement de : Marchand0.png
+         Chargement de : Data/Sounds/Hein.wav
          Chargement du script : " Data/Scripts/NPC/trader.script.hs "
          
          Chargement de l'objet : Heal_potion.item.hs
@@ -450,20 +686,20 @@
          Chargement de l'objet : Heal_potion.item.hs
          Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
          
-         Chargement de l'objet : Heal_potion.item.hs
-         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         Chargement de l'objet : Faith_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Faith.miracle.hs
          
-         Chargement de l'objet : Heal_potion.item.hs
-         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         Chargement de l'objet : Faith_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Faith.miracle.hs
          
-         Chargement de l'objet : Heal_potion.item.hs
-         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         Chargement de l'objet : Faith_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Faith.miracle.hs
          
-         Chargement de l'objet : Heal_potion.item.hs
-         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         Chargement de l'objet : Faith_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Faith.miracle.hs
          
-         Chargement de l'objet : Heal_potion.item.hs
-         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         Chargement de l'objet : Faith_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Faith.miracle.hs
          
          Chargement de l'objet : Necklage.item.hs
          
@@ -680,6 +916,7 @@
          Chargement de : Data/Entities/NPC/RareTrader.rs.hs terminé
          
          Chargement du monstre : Data/Entities/NPC/Questeur.rs.hs
+         Chargement de : Data/Sounds/QUest1-1.wav
          Chargement du script : " Data/Scripts/NPC/questeur.script.hs "
          
          Chargement de l'objet : Sacred_tiare.item.hs
@@ -692,27 +929,340 @@
          Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
          Chargement de : Data/Items/FireEffect/FireEffect.png
          Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
+         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
          Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
          Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
          Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
-         Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
          /Lectures des cases.
          Chargement de la map terminé.
          
          
+         ---------------------------------------------------------------------------------
+         EVENEMENT : Changement de map
+         ---------------------------------------------------------------------------------
+         
+         Sauvegarde de la map : Data/Temp/ArableLand0.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map_ArableLand0.map.hs.emap.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Sacred_tiare.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         Sauvegarde de la map terminée !
+         
          Sauvegarde du héro...
          Ouverture du fichier.
          /Ecriture des caracterstiques.
-         /Sauvegarde de Dagger.item.hs
          /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Unique_dagger.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Small_sword_divin.item.hs
+         /Ecriture des objets.
+         /Ecriture des miracles.
+         /Ecriture des quetes.
+         Sauvegarde du héro terminée !
+         
+         Destruction de la map...
+         Destruction des cases...
+         Cases détruites !
+         Modèles monstres détruits !
+         Monstres détruits !
+         Evénements détruits !
+         Fonds détruits !
+         Chemins musiques détruits !
+         Projectiles détruits !
+         Effets détruits !
+         Map détruite !
+         
+         Chargements d'images diverses :
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic1.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic2.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/Charmed2.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/Charmed3.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife2.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife3.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife2.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Matelasse/TwoWeapons.rs.hs
+         
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Helmets/Cerveliere_OneHand.rs.hs
+         
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Dagger/Dagger_r.rs.hs
+         
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Dagger/Dagger_l.rs.hs
+         
+         Chargement de la map : ArableLand1.map.hs
+         /Lectures du nom.
+         /Lectures des fonds.
+         /Lectures des musiques.
+         /Lectures des lumières.
+         Chargement de : Data/Landscapes/Conifers/Conifer.png
+         Chargement de : Data/Landscapes/Trees/Trunk.png
+         Chargement de : Data/Landscapes/Inn/Inn.png
+         /Lectures des tilesets.
+         /Lectures des herbes.
+         
+         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Axe/Axe.rs.hs
+         Chargement du script : " Data/Scripts/AI/standard.script.hs "
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         
+         Chargement de l'objet : Small_axe.item.hs
+         Chargement du miracle : Data/Items/SoundsEffect/Hit.miracle.hs
+         Chargement de : Data/Entities/Monsters/PantinMorbide/Axe/Axe.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Monsters/ErrantRoche/ErrantRoche.rs.hs
+         Chargement de : ErrantRocheArret.png
+         Chargement de : ErrantRocheMarche1.png
+         Chargement de : ErrantRocheMarche2.png
+         Chargement de : ErrantRocheFrappe1.png
+         Chargement de : ErrantRocheFrappe2.png
+         Chargement de : ErrantRocheFrappe3.png
+         Chargement de : ErrantRocheFrappe4.png
+         Chargement de : ErrantRocheFrappe5.png
+         Chargement de : ErrantRocheFrappe6.png
+         Chargement de : ErrantRocheFrappe7.png
+         Chargement de : ErrantRocheFrappe8.png
+         Chargement de : ErrantRocheMort1.png
+         Chargement de : ErrantRocheMort2.png
+         Chargement de : ErrantRocheMort3.png
+         Chargement de : ErrantRocheMort4.png
+         Chargement du script : " Data/Scripts/AI/standard.script.hs "
+         
+         Chargement de l'objet : Ore.item.hs
+         Chargement de : Data/Entities/Monsters/ErrantRoche/ErrantRoche.rs.hs terminé
+         /Lectures des monstres.
+         
+         /Lectures des événements.
+         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
+         /Lectures des cases.
+         Chargement de la map terminé.
+         
+         Chargement du script : " Data/Scripts/AI/Charmed.script.hs "
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Unique_dagger.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Small_sword_divin.item.hs
          /Ecriture des objets.
          /Ecriture des miracles.
          /Ecriture des quetes.
