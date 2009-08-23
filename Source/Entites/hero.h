@@ -73,7 +73,7 @@ public:
     bool UtiliserObjet(int numero);
     void RangerObjet(int numero);
 
-    bool UtiliserMiracle(int, Personnage*);
+    bool UtiliserMiracle(int, Personnage*, coordonnee );
     bool AjouterMiracleArme();
     void StopMiraclesFrappe();
     void StopMiraclesCharme();

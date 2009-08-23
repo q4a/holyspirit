@@ -39,6 +39,9 @@ MoteurGraphique::MoteurGraphique()
     m_soleil.bleu           = 255;
     m_soleil.intensite      = 255;
 
+    decalageCamera.x        = 0;
+    decalageCamera.y        = 0;
+
    // m_ecran                 = NULL;
 }
 MoteurGraphique::~MoteurGraphique()
@@ -182,6 +185,43 @@ void MoteurGraphique::Gerer(float temps,int tailleMapY)
         else
             ++m_systemeParticules_iter,++k;
     }
+
+
+    k=0;
+    m_effetsEcran_iter=m_effetsEcran.begin();
+
+    while(m_effetsEcran_iter!=m_effetsEcran.end())
+    {
+        m_effetsEcran_iter->temps += temps;
+
+        if(m_effetsEcran_iter->type == TREMBLEMENT)
+        {
+            if(m_effetsEcran_iter->temps > 0.05)
+            {
+                m_effetsEcran_iter->temps   = 0;
+
+                int valeur = m_effetsEcran_iter->info1 * (1 - 2 * (rand()%2));
+                if(fabs(decalageCamera.x) < fabs(valeur) && fabs(valeur) != m_effetsEcran_iter->info1 || fabs(valeur) == m_effetsEcran_iter->info1)
+                    decalageCamera.x = valeur;
+
+                valeur = m_effetsEcran_iter->info1 * (1 - 2 * (rand()%2));
+                if(fabs(decalageCamera.y) < fabs(valeur) && fabs(valeur) != m_effetsEcran_iter->info1 || fabs(valeur) == m_effetsEcran_iter->info1)
+                    decalageCamera.y = valeur;
+
+                m_effetsEcran_iter->info1  -= 1;
+            }
+        }
+
+        if (m_effetsEcran_iter->info1 < 0)
+        {
+            m_effetsEcran.erase (m_effetsEcran_iter);
+            if((int)m_effetsEcran.size()>k)
+                m_effetsEcran_iter=m_effetsEcran.begin()+k;
+        }
+        else
+            ++m_effetsEcran_iter,++k;
+    }
+
 }
 
 void MoteurGraphique::Afficher()
@@ -191,6 +231,8 @@ void MoteurGraphique::Afficher()
 
     sf::Sprite sprite;
     sf::Sprite sprite2;
+
+    m_camera.Move(decalageCamera.x, decalageCamera.y);
 
     m_ecran.SetView(m_camera);
 

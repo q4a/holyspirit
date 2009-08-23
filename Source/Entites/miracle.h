@@ -28,7 +28,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 class Personnage;
 
-enum  {PROJECTILE,CORPS_A_CORPS,DEGATS,EFFET_GRAPHIQUE,INVOCATION,AURA,EFFET,M_EXPLOSION,REPETITION,CHARME,CHANGEMENT_POSE};
+enum  {PROJECTILE,CORPS_A_CORPS,DEGATS,EFFET_GRAPHIQUE,INVOCATION,AURA,EFFET,M_EXPLOSION,REPETITION,CHARME,CHANGEMENT_POSE,EFFET_ECRAN};
 enum  {AURA_REGENERATION, AURA_DEGATS, AURA_VOL, AURA_CARACTERISTIQUES};
 enum  {PHYSIQUE, FEU, CORROSION, FOI};
 
@@ -193,9 +193,11 @@ class EntiteMiracle
 {
 public:
     EntiteMiracle(){ m_cible = NULL; }
-    std::vector<InfosEntiteMiracle> m_infos;
-    int m_modele;
-    Personnage *m_cible;
+
+    std::vector<InfosEntiteMiracle>     m_infos;
+    int                                 m_modele;
+    Personnage                         *m_cible;
+    coordonnee                          m_coordonneeCible;
 };
 
 #endif

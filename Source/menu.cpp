@@ -234,7 +234,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         if(caracteristique.foi > caracteristique.maxFoi - caracteristique.reserveFoi)
         {
             sprite.SetY(classe->orbe_foi.position.y*configuration->Resolution.h/600+(int)(((caracteristique.maxFoi)*2 - caracteristique.reserveFoi - caracteristique.foi)/(caracteristique.maxFoi)*classe->orbe_foi.position.h*configuration->Resolution.h/600));
-            sprite.SetSubRect(sf::IntRect(0, (int)(classe->orbe_foi.position.h-(caracteristique.foi-(caracteristique.maxFoi - caracteristique.reserveFoi))*classe->orbe_foi.position.h/(caracteristique.maxFoi - caracteristique.reserveFoi)), classe->orbe_foi.position.w, classe->orbe_foi.position.h));
+            sprite.SetSubRect(sf::IntRect(0, (int)(classe->orbe_foi.position.h-(caracteristique.foi-(caracteristique.maxFoi - caracteristique.reserveFoi))*classe->orbe_foi.position.h/(caracteristique.maxFoi/* - caracteristique.reserveFoi*/)), classe->orbe_foi.position.w, classe->orbe_foi.position.h));
             sprite.SetBlendMode(Blend::Add);
             moteurGraphique->AjouterCommande(&sprite,17,0);
         }

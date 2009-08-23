@@ -7,6 +7,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Release">
+				<Option platforms="Windows;" />
 				<Option output="../Holyspirit/Holyspirit" prefix_auto="0" extension_auto="1" />
 				<Option working_dir="../Holyspirit" />
 				<Option type="0" />
@@ -39,6 +40,7 @@
 				</Linker>
 			</Target>
 			<Target title="Debug">
+				<Option platforms="Windows;" />
 				<Option output="../Holyspirit/Holyspirit_debug" prefix_auto="0" extension_auto="1" />
 				<Option working_dir="../Holyspirit" />
 				<Option type="1" />
@@ -74,9 +76,10 @@
 				</Linker>
 			</Target>
 			<Target title="Linux">
+				<Option platforms="Unix;" />
 				<Option output="../Holyspirit/Holyspirit_Linux" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="../Holyspirit" />
-				<Option type="1" />
+				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-DSFML_DYNAMIC" />

@@ -389,41 +389,49 @@ void Classe::Charger(string chemin, const std::vector<int> &lvl_miracles)
         }
         while (caractere!='$');
 
-        do
+
         {
-            fichier.get(caractere);
-            if (caractere=='*')
+            int o = -1;
+            do
             {
-                int temp=0;
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                    case 'm' :
-                        fichier>>modeleNu[temp];
-                        temp++;
-                        break;
-                    }
-
-                    if (fichier.eof())
-                    {
-                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
-                        caractere='$';
-                    }
-
-                }
-                while (caractere!='$');
                 fichier.get(caractere);
-            }
-            if (fichier.eof())
-            {
-                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
-                caractere='$';
-            }
+                if (caractere=='*')
+                {
+                    ++o;
+                    if(o > NOMBRE_MORCEAU_PERSONNAGE)
+                        o = NOMBRE_MORCEAU_PERSONNAGE;
 
+                    int temp=0;
+                    do
+                    {
+                        fichier.get(caractere);
+                        switch (caractere)
+                        {
+                        case 'm' :
+                            fichier>>modeleNu[o][temp];
+                            temp++;
+                            break;
+                        }
+
+                        if (fichier.eof())
+                        {
+                            console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                            caractere='$';
+                        }
+
+                    }
+                    while (caractere!='$');
+                    caractere = ' ';
+                }
+                if (fichier.eof())
+                {
+                    console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                    caractere='$';
+                }
+
+            }
+            while (caractere!='$');
         }
-        while (caractere!='$');
 
         ChargerImageInterface(fichier, inventaire);
         ChargerImageInterface(fichier, menu_marchand);

@@ -1002,7 +1002,6 @@ void Personnage::Frappe(coordonnee direction,coordonnee position)
     float m=atan2((double)(direction.x-position.x),(double)(direction.y-position.y));
     m+=M_PI/3;
 
-
     m_angle=(int)(m*180/M_PI);
     if (m_angle>=360)
         m_angle=0;

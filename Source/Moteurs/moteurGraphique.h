@@ -35,6 +35,22 @@ struct Image_moteur
     int importance;
 };
 
+enum  {TREMBLEMENT};
+
+struct Effet_ecran
+{
+    Effet_ecran()
+    {
+        type    = -1;
+        info1   = 0;
+        temps   = 0;
+    }
+
+    int type;
+    float info1;
+    float temps;
+};
+
 class MoteurGraphique : public CSingleton<MoteurGraphique>
 {
 	public:
@@ -96,6 +112,9 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
     sf::RenderImage m_light_screen3;
 
+    std::vector <Effet_ecran> m_effetsEcran;
+    std::vector <Effet_ecran>::iterator m_effetsEcran_iter;
+
 	protected:
 
 	MoteurGraphique();
@@ -116,6 +135,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	sf::RenderWindow m_ecran;
 
+	coordonnee decalageCamera;
 };
 
 #endif

@@ -153,6 +153,7 @@ public:
 
     Script m_scriptAI;
     bool m_friendly;
+
     Personnage *m_cible;
 
 protected:

@@ -51,7 +51,7 @@ struct Classe
     std::string chemin_modele;
 
     std::vector<std::string> equipementParDefaut;
-    std::string modeleNu[3];
+    std::string modeleNu[NOMBRE_MORCEAU_PERSONNAGE][3];
 
     Image_interface inventaire;
     Image_interface menu_marchand;

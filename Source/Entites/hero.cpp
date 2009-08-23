@@ -590,15 +590,17 @@ void Hero::ChargerModele(bool tout)
         m_cheminModele[i]=m_cheminModeleNouveau[i];
     }
 
-    if (pasEquipe[0])
+    for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE ;++i)
     {
-        if (m_cheminModele[0]!=m_classe.modeleNu[m_cas])
+        if (pasEquipe[i] && !m_classe.modeleNu[i][m_cas].empty())
         {
-            m_modelePersonnage[0].Charger(m_classe.chemin_modele+m_classe.modeleNu[m_cas]);
-            m_cheminModele[0]=m_classe.modeleNu[m_cas];
+            if (m_cheminModele[i]!=m_classe.modeleNu[i][m_cas])
+            {
+                m_modelePersonnage[i].Charger(m_classe.chemin_modele+m_classe.modeleNu[i][m_cas]);
+                m_cheminModele[i]=m_classe.modeleNu[i][m_cas];
+            }
         }
     }
-
 
     CalculerOrdreAffichage();
 
@@ -1700,12 +1702,12 @@ void Hero::RecalculerCaracteristiques(bool bis)
                         break;
                     }
 
-    m_caracteristiques.degatsMin=m_caracteristiques.force/3;
-    m_caracteristiques.degatsMax=(int)(m_caracteristiques.force)/2;
+    m_caracteristiques.degatsMin=0/*m_caracteristiques.force/3*/;
+    m_caracteristiques.degatsMax=0/*(int)(m_caracteristiques.force)/2*/;
     m_caracteristiques.armure=m_caracteristiques.dexterite;
 
-    temp.degatsMin=m_caracteristiques.force/3;
-    temp.degatsMax=(int)(m_caracteristiques.force)/2;
+    temp.degatsMin=0/*m_caracteristiques.force/3*/;
+    temp.degatsMax=0/*(int)(m_caracteristiques.force)/2*/;
     temp.armure=m_caracteristiques.dexterite;
 
     m_caracteristiques.maxVie+=m_caracteristiques.vitalite*10;
@@ -1721,16 +1723,16 @@ void Hero::RecalculerCaracteristiques(bool bis)
                     if (m_inventaire[i].m_benedictions[j].type==EFFICACITE_ACCRUE)
                         accru+=m_inventaire[i].m_benedictions[j].info1;
 
-                m_caracteristiques.degatsMin+=m_inventaire[i].m_degatsMin*accru/100;
-                m_caracteristiques.degatsMax+=m_inventaire[i].m_degatsMax*accru/100;
+                m_caracteristiques.degatsMin+=m_inventaire[i].m_degatsMin*(m_caracteristiques.force + 100)/100*accru/100;
+                m_caracteristiques.degatsMax+=m_inventaire[i].m_degatsMax*(m_caracteristiques.force + 100)/100*accru/100;
                 m_caracteristiques.armure+=m_inventaire[i].m_armure*accru/100;
 
                 for (int j=0;j<(int)m_inventaire[i].m_benedictions.size();++j)
                     if (m_inventaire[i].m_benedictions[j].type==DEGATS_FEU||m_inventaire[i].m_benedictions[j].type==DEGATS_FOI)
                         m_caracteristiques.degatsMin+=m_inventaire[i].m_benedictions[j].info1,m_caracteristiques.degatsMax+=m_inventaire[i].m_benedictions[j].info1;
 
-                temp.degatsMin+=m_inventaire[i].m_degatsMin;
-                temp.degatsMax+=m_inventaire[i].m_degatsMax;
+                temp.degatsMin+=m_inventaire[i].m_degatsMin*(m_caracteristiques.force + 100)/100;
+                temp.degatsMax+=m_inventaire[i].m_degatsMax*(m_caracteristiques.force + 100)/100;
                 temp.armure+=m_inventaire[i].m_armure;
             }
 
@@ -1825,7 +1827,7 @@ void Hero::StopMiraclesCharme()
 }
 
 
-bool Hero::UtiliserMiracle(int miracle, Personnage *cible)
+bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coord)
 {
     if (miracle>=0&&miracle<(int)m_classe.miracles.size())
         if (m_lvl_miracles[miracle] > 0)
@@ -1873,7 +1875,6 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible)
                             temp.reserveFoi += m_classe.miracles[miracle].m_reserveFoi;
                             temp.reserveVie += m_classe.miracles[miracle].m_reserveVie;
                             m_personnage.setCaracteristique(temp);
-
                         }
 
                         m_personnage.m_miracleEnCours.push_back(EntiteMiracle ());
@@ -1883,6 +1884,18 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible)
 
                         m_personnage.m_miracleEnCours.back().m_infos.back().m_position.x=m_personnage.getCoordonneePixel().x;
                         m_personnage.m_miracleEnCours.back().m_infos.back().m_position.y=m_personnage.getCoordonneePixel().y;
+
+                        m_personnage.m_miracleEnCours.back().m_coordonneeCible = cible_coord;
+
+                        float m=atan2((double)(m_personnage.getCoordonnee().x-cible_coord.x),(double)(m_personnage.getCoordonnee().y-cible_coord.y));
+                        m+=M_PI/3;
+
+                        m=(int)(m*180/M_PI);
+                        if (m>=360)
+                            m=0;
+                        if (m<0)
+                            m=360+m;
+                        m_personnage.setAngle(m);
 
                         return 1;
                     }
@@ -2420,6 +2433,9 @@ void Hero::RegenererVie(float vie)
 {
     Caracteristique temp=m_personnage.getCaracteristique();
 
+    if(temp.reserveVie < 0)
+        temp.reserveVie = 0;
+
     if (temp.vie > temp.maxVie  - temp.reserveVie )
     {
         temp.vie-=(temp.vie - temp.maxVie + temp.reserveVie)*vie/50;
@@ -2448,8 +2464,10 @@ void Hero::RegenererVie(float vie)
 }
 void Hero::RegenererFoi(float foi)
 {
-
     Caracteristique temp=m_personnage.getCaracteristique();
+
+    if(temp.reserveFoi < 0)
+        temp.reserveFoi = 0;
 
     if (temp.foi > temp.maxFoi - temp.reserveFoi)
     {
