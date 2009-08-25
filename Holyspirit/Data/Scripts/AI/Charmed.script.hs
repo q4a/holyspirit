@@ -2,9 +2,9 @@
 main
 	if alive
 	then
-		if distance * 7
+		if distance * 9
 		then
-			if distance * 5 
+			if distance * 7 
 			then
 				if see
 				then

@@ -14,8 +14,8 @@ $
 $
 //Effets
 	* t1 l1 l2 $
+	* t3 ia2 s0 $
 	* t9 mData/Scripts/AI/Charmed.script.hs ia60  $
-	* t3 ia2 s0 $	
 $
 //Séquences
 	*
