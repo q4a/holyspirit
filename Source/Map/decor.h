@@ -37,8 +37,8 @@ class Decor
 {
 public:
     Decor(){}
-    Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche,int hauteur);
-    Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche,int hauteur,std::vector <Objet> objets);
+    Decor(int tileset,int tile,const std::vector<int> &evenement,const std::vector<int> &monstre,int herbe, int couche,int hauteur);
+    Decor(int tileset,int tile,const std::vector<int> &evenement,const std::vector<int> &monstre,int herbe, int couche,int hauteur,std::vector <Objet> objets);
     ~Decor();
     Decor operator=(const Decor &Decor);
 
@@ -55,7 +55,7 @@ public:
     int getTileset(); // Prendre le numéro du tileset du décor
     int getPosition(char type); // Prendre la position du décor
     const std::vector<int> &getEvenement(); // Prendre le numéro de l'événement du décor
-    int getMonstre(); // Retourne l'ID du monstre sur la case
+    const std::vector<int> &getMonstre(); // Retourne l'ID du monstre sur la case
     int getProjectile();
     int getEffetGraphique();
     int getCouche();
@@ -78,10 +78,13 @@ public:
     void setTileset( int tileset);
     void setTile(int tile);
     void setCouche(int couche);
-    void setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe,int couche,int hauteur);
-    void setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe,int couche,int hauteur,std::vector <Objet> objets); //Définir une valeur au décor
+    void setDecor(int tileset,int tile,const std::vector<int> &evenement,const std::vector<int> &monstre,int herbe,int couche,int hauteur);
+    void setDecor(int tileset,int tile,const std::vector<int> &evenement,const std::vector<int> &monstre,int herbe,int couche,int hauteur,std::vector <Objet> objets); //Définir une valeur au décor
     void setNumeroHerbe(int numero);
+
     void setMonstre(int monstre);
+    void delMonstre(int monstre);
+
     void setProjectile(int projectile);
     void setEffetGraphique(int effet);
 
@@ -93,7 +96,10 @@ public:
     sf::Sprite m_sprite,m_spriteHerbe,m_spriteOmbre;
 
 private:
-    int m_tileset,m_tile,m_monstre,m_projectile,m_effet,m_couche;
+    int m_tileset,m_tile,m_projectile,m_effet,m_couche;
+
+    std::vector <int> m_monstre;
+
     std::vector<int> m_evenement;
     float m_animation;
     coordonnee m_position;

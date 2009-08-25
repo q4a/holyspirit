@@ -200,11 +200,11 @@ void MoteurGraphique::Gerer(float temps,int tailleMapY)
             {
                 m_effetsEcran_iter->temps   = 0;
 
-                int valeur = m_effetsEcran_iter->info1 * (1 - 2 * (rand()%2));
+                int valeur = (int)m_effetsEcran_iter->info1 * (1 - 2 * (rand()%2));
                 if(fabs(decalageCamera.x) < fabs(valeur) && fabs(valeur) != m_effetsEcran_iter->info1 || fabs(valeur) == m_effetsEcran_iter->info1)
                     decalageCamera.x = valeur;
 
-                valeur = m_effetsEcran_iter->info1 * (1 - 2 * (rand()%2));
+                valeur = (int)m_effetsEcran_iter->info1 * (1 - 2 * (rand()%2));
                 if(fabs(decalageCamera.y) < fabs(valeur) && fabs(valeur) != m_effetsEcran_iter->info1 || fabs(valeur) == m_effetsEcran_iter->info1)
                     decalageCamera.y = valeur;
 
@@ -231,8 +231,6 @@ void MoteurGraphique::Afficher()
 
     sf::Sprite sprite;
     sf::Sprite sprite2;
-
-    m_camera.Move(decalageCamera.x, decalageCamera.y);
 
     m_ecran.SetView(m_camera);
 

@@ -1580,6 +1580,8 @@ void Hero::PlacerCamera()
                                         (m_personnage.getCoordonneePixel().x + m_personnage.getCoordonneePixel().y) * 32.0f * DIVISEUR_COTE_TILE + 32.0f);
     moteurGraphique->m_camera.SetSize(800, 600);
     moteurGraphique->m_camera.Zoom(configuration->zoom);
+
+    moteurGraphique->m_camera.Move(moteurGraphique->decalageCamera.x, moteurGraphique->decalageCamera.y);
 }
 
 bool Hero::TestMonstreVise(Monstre *monstre)
@@ -1630,14 +1632,10 @@ void Hero::AugmenterAme(float temps)
 
         RecalculerCaracteristiques();
 
-        temp.vie=temp.maxVie-temp.reserveVie;
-        temp.foi=temp.maxFoi-temp.reserveFoi;
-        m_caracteristiques.maxVie=temp.maxVie;
-        m_caracteristiques.maxFoi=temp.maxFoi;
+        temp.vie=m_caracteristiques.maxVie;
+        temp.foi=m_caracteristiques.maxFoi;
         m_caracteristiques.vie=m_caracteristiques.maxVie;
         m_caracteristiques.foi=m_caracteristiques.maxFoi;
-
-
     }
 
     m_personnage.setCaracteristique(temp);
@@ -1866,6 +1864,7 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                 if (m_cas == m_classe.miracles[miracle].m_cas || m_classe.miracles[miracle].m_cas == -1)
                     if (cible != NULL && m_classe.miracles[miracle].m_effets[0].m_type == CORPS_A_CORPS || m_classe.miracles[miracle].m_effets[0].m_type != CORPS_A_CORPS )
                     {
+                        m_personnage.m_miracleEnCours.push_back(EntiteMiracle ());
 
                         if(m_classe.miracles[miracle].m_effets[0].m_type != CORPS_A_CORPS)
                         {
@@ -1875,9 +1874,10 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                             temp.reserveFoi += m_classe.miracles[miracle].m_reserveFoi;
                             temp.reserveVie += m_classe.miracles[miracle].m_reserveVie;
                             m_personnage.setCaracteristique(temp);
+
+                            m_personnage.m_miracleEnCours.back().m_dejaConsommeFoi = true;
                         }
 
-                        m_personnage.m_miracleEnCours.push_back(EntiteMiracle ());
                         m_personnage.m_miracleEnCours.back().m_infos.push_back(InfosEntiteMiracle ());
 
                         m_personnage.m_miracleEnCours.back().m_modele = miracle;
@@ -1895,7 +1895,7 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                             m=0;
                         if (m<0)
                             m=360+m;
-                        m_personnage.setAngle(m);
+                        m_personnage.setAngle((int)m);
 
                         return 1;
                     }

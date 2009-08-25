@@ -409,7 +409,7 @@ void Modele_Personnage::ChargerPose(ifstream *fichier)
 
 void Personnage::Sauvegarder(ofstream &fichier)
 {
-    for(int i = 0; i < (int)m_effets.size(); ++i)
+    for(unsigned i = 0; i < m_effets.size(); ++i)
     {
         if(m_effets[i].m_effet.m_actif)
         {
@@ -445,7 +445,7 @@ void Personnage::Sauvegarder(ofstream &fichier)
 
     fichier<<" $\n";
 
-    for(int i = 0; i < (int)m_effets.size(); ++i)
+    for(unsigned i = 0; i < m_effets.size(); ++i)
     {
         if(m_effets[i].m_effet.m_actif)
         {
@@ -573,8 +573,6 @@ void Personnage::regenererVie(float vie)
 
 int Personnage::Pathfinding(casePathfinding** map,coordonnee exception)
 {
-
-
     //if(!(m_arrivee.x==m_mauvaiseArrivee.x&&m_arrivee.y==m_mauvaiseArrivee.y))
     if (!(m_arrivee.x==m_positionCase.x&&m_arrivee.y==m_positionCase.y))
     {
@@ -582,8 +580,8 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception)
         liste_case casesVisitee;
         coordonnee depart,arrivee,decalage;
 
-        decalage.x=m_positionCase.x-10;
-        decalage.y=m_positionCase.y-10;
+        decalage.x=m_positionCase.x-15;
+        decalage.y=m_positionCase.y-15;
 
         depart.x=m_positionCase.x-decalage.x;
         depart.y=m_positionCase.y-decalage.y;
@@ -592,52 +590,52 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception)
         exception.x=exception.x-decalage.x;
         exception.y=exception.y-decalage.y;
 
-        if (exception.x>=0&&exception.x<20&&exception.y>=0&&exception.y<20)
+        if (exception.x>=0&&exception.x<30&&exception.y>=0&&exception.y<30)
             map[exception.y][exception.x].collision=1;
 
         casesVisitee.setTailleListe(0);
 
         casesVisitee.AjouterCase(depart);
 
-        if (arrivee.y>=0&&arrivee.x>=0&&arrivee.y<20&&arrivee.x<20)
+        if (arrivee.y>=0&&arrivee.x>=0&&arrivee.y<30&&arrivee.x<30)
             if (map[arrivee.y][arrivee.x].collision)
             {
                 coordonnee temp(-100,-100,-1,-1),enCours;
 
                 enCours.y=arrivee.y-1;
                 enCours.x=arrivee.x-1;
-                if (enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
+                if (enCours.y>=0&&enCours.y<30&&enCours.x>=0&&enCours.x<30)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                         if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
                 enCours.y=arrivee.y;
                 enCours.x=arrivee.x-1;
-                if (enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
+                if (enCours.y>=0&&enCours.y<30&&enCours.x>=0&&enCours.x<30)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                         if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
                 enCours.y=arrivee.y-1;
                 enCours.x=arrivee.x;
-                if (enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
+                if (enCours.y>=0&&enCours.y<30&&enCours.x>=0&&enCours.x<30)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                         if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
 
                 enCours.y=arrivee.y+1;
                 enCours.x=arrivee.x+1;
-                if (enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
+                if (enCours.y>=0&&enCours.y<30&&enCours.x>=0&&enCours.x<30)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                         if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
                 enCours.y=arrivee.y+1;
                 enCours.x=arrivee.x;
-                if (enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
+                if (enCours.y>=0&&enCours.y<30&&enCours.x>=0&&enCours.x<30)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                         if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
                 enCours.y=arrivee.y;
                 enCours.x=arrivee.x+1;
-                if (enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
+                if (enCours.y>=0&&enCours.y<30&&enCours.x>=0&&enCours.x<30)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                         if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
@@ -645,13 +643,13 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception)
 
                 enCours.y=arrivee.y+1;
                 enCours.x=arrivee.x-1;
-                if (enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
+                if (enCours.y>=0&&enCours.y<30&&enCours.x>=0&&enCours.x<30)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                         if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
                 enCours.y=arrivee.y-1;
                 enCours.x=arrivee.x+1;
-                if (enCours.y>=0&&enCours.y<20&&enCours.x>=0&&enCours.x<20)
+                if (enCours.y>=0&&enCours.y<30&&enCours.x>=0&&enCours.x<30)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                         if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
@@ -666,7 +664,7 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception)
         {
             casesVisitee.IncrementerDistanceEnCours();
             casesVisitee.AjouterCasesAdjacentes(map,&arrivee,depart);
-            if (casesVisitee.getDistance()>10)
+            if (casesVisitee.getDistance()>15)
                 m_erreurPathfinding=true;
         }
 
@@ -697,7 +695,7 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception)
                 m_etat=0,m_poseEnCours=0,frappeEnCours=0;
         }
 
-        for (int i=0;i<20;i++)
+        for (int i=0;i<30;i++)
             delete[] map[i];
         delete[] map;
 
@@ -707,7 +705,7 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception)
             return 1;
     }
 
-    for (int i=0;i<20;i++)
+    for (int i=0;i<30;i++)
         delete[] map[i];
     delete[] map;
 

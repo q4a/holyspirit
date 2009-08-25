@@ -95,8 +95,8 @@ void EffetGraphique::Animer(float temps)
                     m_compteur--;
 
                 sf::Vector2f pos;
-                pos.x = (m_position.x - m_position.y);
-                pos.y = (m_position.x + m_position.y);
+                pos.x = (m_position.x - m_position.y) * 64 / COTE_TILE;
+                pos.y = (m_position.x + m_position.y) * 64 / COTE_TILE;
 
                 moteurGraphique->LightManager->SetPosition  (m_light,pos);
                 moteurGraphique->LightManager->SetIntensity (m_light,m_tiles[m_tileEnCours].getLumiere().intensite);

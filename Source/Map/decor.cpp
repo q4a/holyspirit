@@ -20,7 +20,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "decor.h"
 #include "../globale.h"
 
-Decor::Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche,int hauteur)
+Decor::Decor(int tileset,int tile,const std::vector<int> &evenement,const std::vector<int> &monstre,int herbe, int couche,int hauteur)
 {
     m_tileset=tileset;
     m_tile=tile;
@@ -42,7 +42,7 @@ Decor::Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int her
     m_spriteOmbre.SetSubRect(sf::IntRect(0,0,0,0));
 }
 
-Decor::Decor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche,int hauteur,std::vector <Objet> objets)
+Decor::Decor(int tileset,int tile,const std::vector<int> &evenement,const std::vector<int> &monstre,int herbe, int couche,int hauteur,std::vector <Objet> objets)
 {
     m_tileset=tileset;
     m_tile=tile;
@@ -107,7 +107,7 @@ Decor Decor::operator=(const Decor &Decor)
     return *this;
 }
 
-void Decor::setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche,int hauteur)
+void Decor::setDecor(int tileset,int tile,const std::vector<int> &evenement,const std::vector<int> &monstre,int herbe, int couche,int hauteur)
 {
     m_tileset=tileset;
     m_tile=tile;
@@ -124,7 +124,7 @@ void Decor::setDecor(int tileset,int tile,std::vector<int> evenement,int monstre
         m_couche=0;
 }
 
-void Decor::setDecor(int tileset,int tile,std::vector<int> evenement,int monstre,int herbe, int couche,int hauteur,std::vector <Objet> objets)
+void Decor::setDecor(int tileset,int tile,const std::vector<int> &evenement,const std::vector<int> &monstre,int herbe, int couche,int hauteur,std::vector <Objet> objets)
 {
     m_tileset=tileset;
     m_tile=tile;
@@ -231,8 +231,16 @@ void Decor::setNumeroHerbe(int numero)
 }
 void Decor::setMonstre(int monstre)
 {
-    m_monstre=monstre;
+    m_monstre.push_back(monstre);
 }
+
+void Decor::delMonstre(int monstre)
+{
+    for(int i = 0 ; i < (int)m_monstre.size() ; ++i)
+        if(m_monstre[i]==monstre)
+            m_monstre.erase(m_monstre.begin() + i), i = -1;
+}
+
 void Decor::setProjectile(int projectile)
 {
     m_projectile=projectile;
@@ -317,7 +325,7 @@ const std::vector<int> &Decor::getEvenement()
 {
     return m_evenement;
 }
-int Decor::getMonstre()
+const std::vector<int> &Decor::getMonstre()
 {
     return m_monstre;
 }

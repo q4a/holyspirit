@@ -115,6 +115,8 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
     std::vector <Effet_ecran> m_effetsEcran;
     std::vector <Effet_ecran>::iterator m_effetsEcran_iter;
 
+    coordonnee decalageCamera;
+
 	protected:
 
 	MoteurGraphique();
@@ -135,7 +137,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	sf::RenderWindow m_ecran;
 
-	coordonnee decalageCamera;
+
 };
 
 #endif

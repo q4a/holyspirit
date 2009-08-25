@@ -479,30 +479,33 @@ void c_Jeu::Evenements(Jeu *jeu)
             eventManager->StopEvenement(Mouse::Left,"C");
         else
         {
-            eventManager->StopEvenement(Mouse::Right,"C");
-
-            jeu->hero.StopMiraclesFrappe();
-
-            coordonnee cible;
-
-            if (jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())!=NULL)
-                cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())->getProchaineCase();
-            else
-                cible = eventManager->getCasePointee();
-
-            if (jeu->hero.UtiliserMiracle(jeu->hero.m_personnage.m_miracleALancer, jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible))
+            if(!jeu->hero.m_personnage.frappeEnCours)
             {
-                jeu->hero.m_personnage.m_miracleEnCours.back().m_cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine());
+                eventManager->StopEvenement(Mouse::Right,"C");
 
-                coordonnee positionHero;
-                positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
-                positionHero.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
+                jeu->hero.StopMiraclesFrappe();
 
-                jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),cible,1);
-                jeu->map->AnimerMiracle(&jeu->hero.m_personnage,jeu->hero.m_classe.miracles,tempsDepuisDerniereAnimation,positionHero,&jeu->hero);
+                coordonnee cible;
+
+                if (jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())!=NULL)
+                    cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())->getProchaineCase();
+                else
+                    cible = eventManager->getCasePointee();
+
+                if (jeu->hero.UtiliserMiracle(jeu->hero.m_personnage.m_miracleALancer, jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible))
+                {
+                    jeu->hero.m_personnage.m_miracleEnCours.back().m_cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine());
+
+                    coordonnee positionHero;
+                    positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
+                    positionHero.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
+
+                    jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),cible,1);
+                    jeu->map->AnimerMiracle(&jeu->hero.m_personnage,jeu->hero.m_classe.miracles,tempsDepuisDerniereAnimation,positionHero,&jeu->hero);
+                }
+                else
+                    jeu->hero.m_personnage.setArrivee(eventManager->getCasePointee());
             }
-            else
-                jeu->hero.m_personnage.setArrivee(eventManager->getCasePointee());
         }
     }
 
