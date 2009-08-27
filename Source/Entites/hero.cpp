@@ -1191,7 +1191,7 @@ bool Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
     for (int i=0;i<(int)m_inventaire.size();++i)
         if (i!=m_objetEnMain)
         {
-            coordonneeDecimal position = {0,0,0,0};
+            coordonneeDecimal position(0,0,0,0);
             sf::Sprite sprite;
 
             sprite.SetImage(*moteurGraphique->getImage(0));
@@ -1885,7 +1885,8 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                         m_personnage.m_miracleEnCours.back().m_infos.back().m_position.x=m_personnage.getCoordonneePixel().x;
                         m_personnage.m_miracleEnCours.back().m_infos.back().m_position.y=m_personnage.getCoordonneePixel().y;
 
-                        m_personnage.m_miracleEnCours.back().m_coordonneeCible = cible_coord;
+                        m_personnage.m_miracleEnCours.back().m_coordonneeCible  = cible_coord;
+                        m_personnage.m_miracleEnCours.back().m_coordonneeDepart = m_personnage.getCoordonnee();
 
                         float m=atan2((double)(m_personnage.getCoordonnee().x-cible_coord.x),(double)(m_personnage.getCoordonnee().y-cible_coord.y));
                         m+=M_PI/3;

@@ -523,12 +523,6 @@ void Monstre::TesterVision(coordonnee positionHero)
     }
 }
 
-coordonnee Monstre::getDepart()
-{
-    return m_depart;
-}
-
-
 bool Monstre::getVu()
 {
     return m_vu;
@@ -540,8 +534,5 @@ void Monstre::setVu(bool vu)
         m_cible = NULL;
 }
 
-void Monstre::setDepart()
-{
-    m_depart=m_positionCase;
-}
+
 

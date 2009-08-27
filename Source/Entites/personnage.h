@@ -78,14 +78,13 @@ public:
     bool EnVie();
     int Animer(Modele_Personnage *modele,float temps,coordonnee positionHero);
 
-    void Pousser(coordonnee vecteur);
-    void PousserCase(coordonnee vecteur);
+    void Pousser(coordonneeDecimal vecteur);
 
     bool SeDeplacer(float,coordonnee dimensionsMap, bool pousserPossible = true);
 
     void Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,bool surbrillance=false);
 
-    int Pathfinding(casePathfinding** map,coordonnee exception);
+    int Pathfinding(casePathfinding** map,coordonnee exception, bool noDelete = false);
 
     void Frappe(coordonnee direction,coordonnee position);
 
@@ -93,10 +92,10 @@ public:
 
     int AjouterEffet(std::vector<Tile> &tiles, int type, int compteur, int info1, int info2, int info3);
 
+
+    void setDepart();
     void setErreurPathfinding(bool);
-
     void setCoordonnee(coordonnee nouvellesCoordonnees);
-
     void setArrivee(coordonnee arrivee);
     void setMauvaiseArrivee(coordonnee arrivee);
     void setEtat(int  etat);
@@ -110,6 +109,8 @@ public:
     void setCaracteristique(Caracteristique caracteristique);
     void setPorteeLumineuse(Lumiere  lumiere);
     void regenererVie(float vie);
+
+    void setPousse(coordonneeDecimal pousse);
 
     void AjouterPointAme(int pointAme);
 
@@ -125,6 +126,7 @@ public:
     const coordonneeDecimal &getCoordonneePixel();
     const coordonneeDecimal &getPousse();
     const coordonnee &getProchaineCase();
+    const coordonnee &getDepart();
     bool getErreurPathfinding();
 
     int getOrdre(Modele_Personnage *modele);
@@ -134,7 +136,6 @@ public:
     void setObjets(std::vector<Objet>);
     const std::vector<Objet> &getObjets();
     std::vector<Objet> *getPointeurObjets();
-
 
 
 
@@ -170,6 +171,7 @@ protected:
     Lumiere m_porteeLumineuse,m_porteeLumineuseBasique;
 
     coordonneeDecimal  m_pousse;
+    coordonnee m_depart;
 };
 
 

@@ -89,6 +89,9 @@ Personnage::Personnage()
 
     m_cible                             = NULL;
 
+    m_angle                             = 0;
+    m_poseEnCours                       = 0;
+
     m_pousse.x                          = 0;
     m_pousse.y                          = 0;
     m_pousse.w                          = 0;
@@ -571,17 +574,18 @@ void Personnage::regenererVie(float vie)
         m_caracteristique.vie=m_caracteristique.maxVie;
 }
 
-int Personnage::Pathfinding(casePathfinding** map,coordonnee exception)
+int Personnage::Pathfinding(casePathfinding** map,coordonnee exception, bool noDelete)
 {
     //if(!(m_arrivee.x==m_mauvaiseArrivee.x&&m_arrivee.y==m_mauvaiseArrivee.y))
     if (!(m_arrivee.x==m_positionCase.x&&m_arrivee.y==m_positionCase.y))
     {
+        bool retest = false;
         m_erreurPathfinding=false;
         liste_case casesVisitee;
         coordonnee depart,arrivee,decalage;
 
-        decalage.x=m_positionCase.x-15;
-        decalage.y=m_positionCase.y-15;
+        decalage.x=m_positionCase.x-5;
+        decalage.y=m_positionCase.y-5;
 
         depart.x=m_positionCase.x-decalage.x;
         depart.y=m_positionCase.y-decalage.y;
@@ -590,52 +594,52 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception)
         exception.x=exception.x-decalage.x;
         exception.y=exception.y-decalage.y;
 
-        if (exception.x>=0&&exception.x<30&&exception.y>=0&&exception.y<30)
+        if (exception.x>=0&&exception.x<10&&exception.y>=0&&exception.y<10)
             map[exception.y][exception.x].collision=1;
 
         casesVisitee.setTailleListe(0);
 
         casesVisitee.AjouterCase(depart);
 
-        if (arrivee.y>=0&&arrivee.x>=0&&arrivee.y<30&&arrivee.x<30)
+        if (arrivee.y>=0&&arrivee.x>=0&&arrivee.y<10&&arrivee.x<10)
             if (map[arrivee.y][arrivee.x].collision)
             {
                 coordonnee temp(-100,-100,-1,-1),enCours;
 
                 enCours.y=arrivee.y-1;
                 enCours.x=arrivee.x-1;
-                if (enCours.y>=0&&enCours.y<30&&enCours.x>=0&&enCours.x<30)
+                if (enCours.y>=0&&enCours.y<10&&enCours.x>=0&&enCours.x<10)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                         if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
                 enCours.y=arrivee.y;
                 enCours.x=arrivee.x-1;
-                if (enCours.y>=0&&enCours.y<30&&enCours.x>=0&&enCours.x<30)
+                if (enCours.y>=0&&enCours.y<10&&enCours.x>=0&&enCours.x<10)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                         if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
                 enCours.y=arrivee.y-1;
                 enCours.x=arrivee.x;
-                if (enCours.y>=0&&enCours.y<30&&enCours.x>=0&&enCours.x<30)
+                if (enCours.y>=0&&enCours.y<10&&enCours.x>=0&&enCours.x<10)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                         if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
 
                 enCours.y=arrivee.y+1;
                 enCours.x=arrivee.x+1;
-                if (enCours.y>=0&&enCours.y<30&&enCours.x>=0&&enCours.x<30)
+                if (enCours.y>=0&&enCours.y<10&&enCours.x>=0&&enCours.x<10)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                         if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
                 enCours.y=arrivee.y+1;
                 enCours.x=arrivee.x;
-                if (enCours.y>=0&&enCours.y<30&&enCours.x>=0&&enCours.x<30)
+                if (enCours.y>=0&&enCours.y<10&&enCours.x>=0&&enCours.x<10)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                         if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
                 enCours.y=arrivee.y;
                 enCours.x=arrivee.x+1;
-                if (enCours.y>=0&&enCours.y<30&&enCours.x>=0&&enCours.x<30)
+                if (enCours.y>=0&&enCours.y<10&&enCours.x>=0&&enCours.x<10)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                         if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
@@ -643,13 +647,13 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception)
 
                 enCours.y=arrivee.y+1;
                 enCours.x=arrivee.x-1;
-                if (enCours.y>=0&&enCours.y<30&&enCours.x>=0&&enCours.x<30)
+                if (enCours.y>=0&&enCours.y<10&&enCours.x>=0&&enCours.x<10)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                         if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
                 enCours.y=arrivee.y-1;
                 enCours.x=arrivee.x+1;
-                if (enCours.y>=0&&enCours.y<30&&enCours.x>=0&&enCours.x<30)
+                if (enCours.y>=0&&enCours.y<10&&enCours.x>=0&&enCours.x<10)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                         if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
@@ -665,7 +669,7 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception)
             casesVisitee.IncrementerDistanceEnCours();
             casesVisitee.AjouterCasesAdjacentes(map,&arrivee,depart);
             if (casesVisitee.getDistance()>15)
-                m_erreurPathfinding=true;
+                m_erreurPathfinding=true, retest = true;
         }
 
         if (!m_erreurPathfinding)
@@ -689,15 +693,40 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception)
         }
         else
         {
-            m_arrivee=m_positionCase;
-            m_cheminFinal=m_positionCase;
-            if (m_etat!=0)
-                m_etat=0,m_poseEnCours=0,frappeEnCours=0;
+            if(!noDelete && retest)
+            {
+                if(m_arrivee.x - m_positionCase.x > 0)
+                    m_arrivee.x = m_positionCase.x + 1;
+                else if(m_arrivee.x - m_positionCase.x < 0)
+                    m_arrivee.x = m_positionCase.x - 1;
+                else
+                    m_arrivee.x = m_positionCase.x;
+
+                if(m_arrivee.y - m_positionCase.y > 0)
+                    m_arrivee.y = m_positionCase.y + 1;
+                else if(m_arrivee.y - m_positionCase.y < 0)
+                    m_arrivee.y = m_positionCase.y - 1;
+                else
+                    m_arrivee.y = m_positionCase.y;
+
+                Pathfinding(map, exception, true);
+            }
+            else
+            {
+                m_arrivee=m_positionCase;
+                m_cheminFinal=m_positionCase;
+                if (m_etat!=0)
+                    m_etat=0,m_poseEnCours=0,frappeEnCours=0;
+            }
         }
 
-        for (int i=0;i<30;i++)
-            delete[] map[i];
-        delete[] map;
+        if(!noDelete)
+        {
+            for (int i=0;i<10;i++)
+                delete[] map[i];
+            delete[] map;
+        }
+
 
         if (m_etat==0)
             return 0;
@@ -705,9 +734,13 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception)
             return 1;
     }
 
-    for (int i=0;i<30;i++)
-        delete[] map[i];
-    delete[] map;
+    if(!noDelete)
+    {
+        for (int i=0;i<10;i++)
+            delete[] map[i];
+        delete[] map;
+    }
+
 
     return 2;
 }
@@ -718,7 +751,13 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap, bool pou
     //int buf=(int)(tempsEcoule*1000);
     //tempsEcoule=(float)buf/1000;
 
-    if(m_pousse.x != 0 || m_pousse.y != 0)
+    if(!pousserPossible)
+    {
+        m_pousse.x = 0;
+        m_pousse.y = 0;
+    }
+
+    if((m_pousse.x != 0 || m_pousse.y != 0) && pousserPossible)
     {
         if(pousserPossible)
         {
@@ -754,6 +793,12 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap, bool pou
         m_cheminFinal.y     = m_positionCase.y;
 
         frappeEnCours       = 0;
+
+        sf::Vector2f pos;
+        pos.x=((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE);
+        pos.y=((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)+64;
+
+        moteurGraphique->LightManager->SetPosition(m_light,pos);
     }
     else if (m_caracteristique.vie > 0)
     {
@@ -1076,7 +1121,7 @@ void Personnage::setEtat(int etat)
 }
 void Personnage::setJustEtat(int etat)
 {
-    m_etat=etat,m_poseEnCours=0;
+    m_etat=etat/*,m_poseEnCours=0*/;
 
     if(etat == 2)
         frappeEnCours = 1;
@@ -1117,10 +1162,10 @@ void Personnage::setCoordonnee(coordonnee nouvellesCoordonnees)
     m_cheminFinal.x=m_positionCase.x;
     m_cheminFinal.y=m_positionCase.y;
 
-    m_angle=0;
+    //m_angle=0;
     m_poseEnCours=0;
 
-    moteurGraphique->LightManager->SetPosition(m_light,sf::Vector2f(m_positionPixel.x,m_positionPixel.y));
+    //moteurGraphique->LightManager->SetPosition(m_light,sf::Vector2f(m_positionPixel.x,m_positionPixel.y));
 
     m_cible = NULL;
 }
@@ -1142,43 +1187,40 @@ void Personnage::setCoordonneePixel(coordonnee position)
     m_positionPixel.y=position.y*COTE_TILE;
 }
 
-void Personnage::PousserCase(coordonnee vecteur)
+void Personnage::setDepart()
 {
-   /* m_positionCase.x+=vecteur.x;
-    m_positionCase.y+=vecteur.y;
+    m_depart=m_positionCase;
+}
 
-    m_positionPixel.x=(int)(m_positionCase.x*COTE_TILE);
-    m_positionPixel.y=(int)(m_positionCase.y*COTE_TILE);
 
-    m_arrivee.x=m_positionCase.x;
+void Personnage::setPousse(coordonneeDecimal pousse)
+{
+    m_pousse.x = pousse.x;
+    m_pousse.y = pousse.y;
+
+    //m_arrivee.x=m_positionCase.x;
+    //m_arrivee.y=m_positionCase.y;
+
+   // m_cheminFinal.x=m_positionCase.x;
+   // m_cheminFinal.y=m_positionCase.y;
+}
+
+void Personnage::Pousser(coordonneeDecimal vecteur)
+{
+    if(fabs(vecteur.x) > fabs(m_pousse.x))
+        m_pousse.x = vecteur.x;
+
+    if(fabs(vecteur.y) > fabs(m_pousse.y))
+        m_pousse.y = vecteur.y;
+
+   /* m_arrivee.x=m_positionCase.x;
     m_arrivee.y=m_positionCase.y;
 
     m_cheminFinal.x=m_positionCase.x;
     m_cheminFinal.y=m_positionCase.y;*/
-    m_pousse.x += vecteur.x;
-    m_pousse.y += vecteur.y;
-
-    m_arrivee.x=m_positionCase.x;
-    m_arrivee.y=m_positionCase.y;
-
-    m_cheminFinal.x=m_positionCase.x;
-    m_cheminFinal.y=m_positionCase.y;
 }
 
-void Personnage::Pousser(coordonnee vecteur)
-{
-    m_positionPixel.x+=vecteur.x;
-    m_positionPixel.y+=vecteur.y;
 
-    m_positionCase.x=(int)(m_positionPixel.x/COTE_TILE);
-    m_positionCase.y=(int)(m_positionPixel.y/COTE_TILE);
-
-    m_arrivee.x=m_positionCase.x;
-    m_arrivee.y=m_positionCase.y;
-
-    m_cheminFinal.x=m_positionCase.x;
-    m_cheminFinal.y=m_positionCase.y;
-}
 
 void Personnage::AjouterPointAme(int pointAme)
 {
@@ -1189,6 +1231,11 @@ bool Personnage::EnVie()
 {
     if (m_caracteristique.vie>0) return 1;
     else return 0;
+}
+
+const coordonnee &Personnage::getDepart()
+{
+    return m_depart;
 }
 
 int Modele_Personnage::getNombreSons()

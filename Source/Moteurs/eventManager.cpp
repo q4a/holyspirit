@@ -132,14 +132,14 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
     if (configuration->luminosite>64)
         configuration->luminosite=64;
 
-    if (m_EventTableau[Key::M])
+   /* if (m_EventTableau[Key::M])
     {
         if (!configuration->Minimap)
             configuration->Minimap=true;
         else
             configuration->Minimap=false;
         m_EventTableau[Key::M]=false;
-    }
+    }*/
 
     if (m_EventTableau[Key::Up])
     {

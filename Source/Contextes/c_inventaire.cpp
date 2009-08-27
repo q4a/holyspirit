@@ -32,6 +32,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 using namespace sf;
 using namespace std;
 
+int GestionBoutons(Jeu *jeu);
+
 c_Inventaire::c_Inventaire()
 {
     m_decalage=-600;
@@ -96,7 +98,7 @@ void c_Inventaire::Utiliser(Jeu *jeu)
     if (m_decalage<-600)
     {
         m_decalage=-600;
-        jeu->m_contexte=jeu->m_jeu,eventManager->StopEvenement(Key::I,"ET");
+        jeu->Next();
     }
 
     jeu->menu.AfficherInventaire(m_decalage,&jeu->hero.m_classe,m_trader==NULL);
@@ -119,25 +121,6 @@ void c_Inventaire::Utiliser(Jeu *jeu)
 
     jeu->menu.Afficher(1,255,&jeu->hero.m_classe);
     jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,-1,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
-
-
-
-    if (eventManager->getEvenement(Key::I,"ET")||eventManager->getEvenement(Key::Escape,"ET"))
-    {
-        jeu->hero.m_defilement_trader=0;
-        jeu->hero.m_max_defilement_trader=0;
-        m_trader=NULL;
-        jeu->hero.ChargerModele();
-        m_afficher=0;
-        jeu->Clock.Reset();
-        eventManager->StopEvenement(Key::I,"ET");
-
-        if (jeu->hero.m_objetEnMain>=0)
-        {
-            jeu->hero.m_objetADeposer=jeu->hero.m_objetEnMain;
-            jeu->map->AjouterObjet(jeu->hero.DeposerObjet());
-        }
-    }
 
     if (eventManager->getEvenement(Mouse::Left,"C"))
     {
@@ -168,6 +151,28 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         eventManager->StopEvenement(Mouse::Right,"C");
     }
 
+    int temp = GestionBoutons(jeu);
+    if(temp >= 0)
+    {
+        jeu->next_screen = temp;
+        jeu->hero.m_defilement_trader=0;
+        jeu->hero.m_max_defilement_trader=0;
+        m_trader=NULL;
+        jeu->hero.ChargerModele();
+        m_afficher=0;
+        jeu->Clock.Reset();
+        eventManager->StopEvenement(Key::I,"ET");
+
+        if (jeu->hero.m_objetEnMain>=0)
+        {
+            jeu->hero.m_objetADeposer=jeu->hero.m_objetEnMain;
+            jeu->map->AjouterObjet(jeu->hero.DeposerObjet());
+        }
+
+        if(jeu->next_screen == 2 || jeu->next_screen == 4)
+            jeu->next_screen = 3;
+    }
+
     jeu->hero.m_defilement_trader -= eventManager->getMolette();
 
     if(eventManager->getEvenement(Mouse::Left,"CA"))
@@ -181,4 +186,5 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         jeu->hero.m_defilement_trader=0;
     if (jeu->hero.m_defilement_trader>jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h)
         jeu->hero.m_defilement_trader=jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h;
+
 }

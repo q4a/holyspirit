@@ -32,6 +32,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 using namespace sf;
 using namespace std;
 
+int GestionBoutons(Jeu *jeu);
+
 c_Quetes::c_Quetes()
 {
     m_decalage=-600;
@@ -59,7 +61,7 @@ void c_Quetes::Utiliser(Jeu *jeu)
     if (m_decalage<-600)
     {
         m_decalage=-600;
-        jeu->m_contexte=jeu->m_jeu,eventManager->StopEvenement(Key::Q,"ET");
+        jeu->Next();
     }
 
     jeu->menu.AfficherQuetes(m_decalage,&jeu->hero.m_classe);
@@ -71,17 +73,21 @@ void c_Quetes::Utiliser(Jeu *jeu)
 
     eventManager->AfficherCurseur();
 
-    if (eventManager->getEvenement(Key::Q,"ET")||eventManager->getEvenement(Key::Escape,"ET"))
-    {
-        m_afficher=0;
-        jeu->Clock.Reset();
-        eventManager->StopEvenement(Key::Q,"ET");
-    }
-
     if (eventManager->getEvenement(Mouse::Left,"C"))
     {
         eventManager->StopEvenement(Mouse::Left,"C");
         jeu->hero.m_queteSelectionnee = jeu->hero.m_quetePointee;
+    }
+
+    int temp = GestionBoutons(jeu);
+    if(temp >= 0)
+    {
+        jeu->next_screen = temp;
+        m_afficher=0;
+        jeu->Clock.Reset();
+
+        if(jeu->next_screen == 6 || jeu->next_screen == 4)
+            jeu->next_screen = 3;
     }
 }
 

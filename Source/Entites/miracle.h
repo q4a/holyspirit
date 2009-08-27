@@ -28,7 +28,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 class Personnage;
 
-enum  {PROJECTILE,CORPS_A_CORPS,DEGATS,EFFET_GRAPHIQUE,INVOCATION,AURA,EFFET,M_EXPLOSION,REPETITION,CHARME,CHANGEMENT_POSE,EFFET_ECRAN};
+enum  {PROJECTILE = 0,CORPS_A_CORPS = 1,DEGATS = 2,EFFET_GRAPHIQUE = 3,INVOCATION = 4,AURA = 5,EFFET = 6,M_EXPLOSION = 7,
+       REPETITION = 8,CHARME = 9,CHANGEMENT_POSE = 10,EFFET_ECRAN = 11,CHARGE = 12};
 enum  {AURA_REGENERATION, AURA_DEGATS, AURA_VOL, AURA_CARACTERISTIQUES};
 enum  {PHYSIQUE, FEU, CORROSION, FOI};
 
@@ -198,6 +199,7 @@ public:
     int                                 m_modele;
     Personnage                         *m_cible;
     coordonnee                          m_coordonneeCible;
+    coordonnee                          m_coordonneeDepart;
     bool                                m_dejaConsommeFoi;
 };
 

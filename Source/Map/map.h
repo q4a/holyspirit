@@ -63,6 +63,7 @@ public:
     void GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer);
 
     void GererEvenements(int evenement,int z,int couche,int x,int y);
+    void GererProjectilesEtEffets(Hero *hero,float temps);
     void GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu);
 
 
@@ -87,8 +88,7 @@ public:
     bool InfligerDegats(int numeroMontre, float degats, Hero *hero,bool pousser);
     bool InfligerDegats(Personnage *monstre, float degats, Hero *hero,bool pousser);
 
-    void PousserMonstre(int numeroMonstre, coordonnee vecteur);
-    void PousserMonstreCase(int numeroMonstre, coordonnee vecteur);
+    void PousserMonstre(int numeroMonstre, coordonneeDecimal vecteur);
 
     void MusiquePlay(coordonnee position);
 

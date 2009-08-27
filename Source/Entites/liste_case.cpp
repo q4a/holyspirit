@@ -14,7 +14,7 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along
 with this program; if not, write to the Free Software Foundation, Inc.,
-51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.*/
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1101 USA.*/
 
 
 #include "liste_case.h"
@@ -70,56 +70,56 @@ bool liste_case::AjouterCasesAdjacentes(casePathfinding **grille,coordonnee *arr
         {
             enCours.x=m_liste[i].getPosition().x+1;
             enCours.y=m_liste[i].getPosition().y;
-            if (enCours.x>=0&&enCours.y>=0&&enCours.x<30&&enCours.y<30)
+            if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
                 if (!TesterCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
                     AjouterCase(enCours);
 
 
             enCours.x=m_liste[i].getPosition().x-1;
             enCours.y=m_liste[i].getPosition().y;
-            if (enCours.x>=0&&enCours.y>=0&&enCours.x<30&&enCours.y<30)
+            if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
                 if (!TesterCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
                     AjouterCase(enCours);
 
 
             enCours.x=m_liste[i].getPosition().x;
             enCours.y=m_liste[i].getPosition().y+1;
-            if (enCours.x>=0&&enCours.y>=0&&enCours.x<30&&enCours.y<30)
+            if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
                 if (!TesterCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
                     AjouterCase(enCours);
 
 
             enCours.x=m_liste[i].getPosition().x;
             enCours.y=m_liste[i].getPosition().y-1;
-            if (enCours.x>=0&&enCours.y>=0&&enCours.x<30&&enCours.y<30)
+            if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
                 if (!TesterCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
                     AjouterCase(enCours);
 
 
             enCours.x=m_liste[i].getPosition().x+1;
             enCours.y=m_liste[i].getPosition().y+1;
-            if (enCours.x>=0&&enCours.y>=0&&enCours.x<30&&enCours.y<30)
+            if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
                 if (!TesterCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
                     AjouterCase(enCours);
 
 
             enCours.x=m_liste[i].getPosition().x-1;
             enCours.y=m_liste[i].getPosition().y-1;
-            if (enCours.x>=0&&enCours.y>=0&&enCours.x<30&&enCours.y<30)
+            if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
                 if (!TesterCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
                     AjouterCase(enCours);
 
 
             enCours.x=m_liste[i].getPosition().x-1;
             enCours.y=m_liste[i].getPosition().y+1;
-            if (enCours.x>=0&&enCours.y>=0&&enCours.x<30&&enCours.y<30)
+            if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
                 if (!TesterCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
                     AjouterCase(enCours);
 
 
             enCours.x=m_liste[i].getPosition().x+1;
             enCours.y=m_liste[i].getPosition().y-1;
-            if (enCours.x>=0&&enCours.y>=0&&enCours.x<30&&enCours.y<30)
+            if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
                 if (!TesterCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
                     AjouterCase(enCours);
 

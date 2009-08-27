@@ -99,9 +99,38 @@ inline T valeurAbsolue(T valeur)
         valeur = - valeur;
     return valeur;
 }
-
 struct coordonneeDecimal
 {
+    coordonneeDecimal()
+    {
+        x = 0;
+        y = 0;
+        w = 0;
+        h = 0;
+    }
+    coordonneeDecimal(float X, float Y, float W, float H)
+    {
+        x = X;
+        y = Y;
+        w = W;
+        h = H;
+    }
+    coordonneeDecimal(float X, float Y)
+    {
+        x = X;
+        y = Y;
+        w = 0;
+        h = 0;
+    }
+
+    coordonneeDecimal(const coordonneeDecimal &temp)
+    {
+        x = temp.x;
+        y = temp.y;
+        w = temp.w;
+        h = temp.h;
+    }
+
     float x;
     float y;
     float w;

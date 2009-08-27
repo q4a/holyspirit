@@ -45,6 +45,7 @@ class Jeu
     Jeu();
     void Demarrer();
     void Reset();
+    void Next();
 
     Menu menu;
     Map *map;
@@ -63,6 +64,8 @@ class Jeu
     c_Miracles *m_miracles;
     c_MenuInGame *m_menuInGame;
     Contexte *m_contexte;
+
+    int next_screen;
 
     private:
 };

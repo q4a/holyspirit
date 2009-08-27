@@ -33,8 +33,9 @@ using namespace sf;
 
 Jeu::Jeu()
 {
-    m_reset=false;
-    map=NULL;
+    m_reset     = false;
+    map         = NULL;
+    next_screen = 0;
 }
 
 void Jeu::Demarrer()
@@ -138,5 +139,20 @@ void Jeu::Reset()
     hero.m_contenuSave.push_back(configuration->chemin_temps+"hero.sav.txt");
 }
 
+void Jeu::Next()
+{
+    if(next_screen == 2)
+        m_contexte = m_inventaire;
+    else if(next_screen == 3)
+        m_contexte = m_jeu;
+    else if(next_screen == 4)
+        m_contexte = m_menuInGame;
+    else if(next_screen == 5)
+        m_contexte = m_miracles;
+    else if(next_screen == 6)
+        m_contexte = m_quetes;
+
+    next_screen = -1;
+}
 
 

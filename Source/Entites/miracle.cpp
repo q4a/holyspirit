@@ -597,7 +597,7 @@ void Miracle::Concatenencer(std::string chemin)
         m_tile.push_back(miracle.m_tile[i]);
         for (int j=0;j<(int)m_tile.back().size();j++)
         {
-            m_tile.back()[j].setImage(m_tile.back()[j].getImage()+tailleImage);
+            m_tile.back()[j].setImage(m_tile.back()[j].getImage());
             if (m_tile.back()[j].getSon()!=-1)
                 m_tile.back()[j].setSon(m_tile.back()[j].getSon()+tailleSon);
         }
@@ -625,10 +625,6 @@ void Miracle::Concatenencer(std::string chemin)
     m_reserveVie            += miracle.m_reserveVie;
     m_coutVie_suivant       += miracle.m_coutVie;
     m_reserveVie_suivant    += miracle.m_reserveVie;
-
-    /*m_description.push_back(std::string ());
-    m_description.push_back(std::string ("__________________________"));
-    m_description.push_back(std::string ());*/
 
     for(int i = 0 ; i < (int)miracle.m_description_effets.size() ; ++i)
         m_description_effets.push_back(miracle.m_description_effets[i]);

@@ -53,10 +53,6 @@ public:
     void Charger(int numero,Modele_Monstre *modele);
     void TesterVision(coordonnee positionHero);
 
-    coordonnee getDepart();
-    void setDepart();
-
-
 
     bool getVu();
     void setVu(bool);
@@ -67,10 +63,6 @@ public:
 
 private:
     bool m_vu;
-
-    coordonnee m_depart;
-
-
 };
 
 
