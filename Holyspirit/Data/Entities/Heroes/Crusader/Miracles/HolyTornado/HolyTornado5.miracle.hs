@@ -3,9 +3,9 @@
 $
 	*Le_croise_fait_tournoyer_son_épée\repoussant_les_ennemis_en_contact_avec_lui.\Utilisable_uniquement_avec_des_épées_à_deux_mains.
 $	
-	*Dégats_:_15-30
+	*Dégats_:_27-53
 $
-	* f40 e2 m1 $
+	* f60 e2 m1 $
 $
 //Images
 	*Data/Entities/Heroes/Crusader/Miracles/HolyTornado/HolyTornado.png
