@@ -6,7 +6,7 @@ $
 	*Dégats_durant_la_charge_:_5-6
 	*Dégats_à_l'impact_:_21-32
 $
-	* f60  m1 $
+	* f60  e0  m1 $
 $
 //Images
 	*Data/Entities/Heroes/Crusader/Miracles/Charge/Blast.png
