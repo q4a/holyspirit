@@ -186,5 +186,4 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         jeu->hero.m_defilement_trader=0;
     if (jeu->hero.m_defilement_trader>jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h)
         jeu->hero.m_defilement_trader=jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h;
-
 }

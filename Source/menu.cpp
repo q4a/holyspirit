@@ -195,10 +195,9 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         std::ostringstream buf;
         buf<<(int)caracteristique.vie<<" / "<<caracteristique.maxVie;
 
-        texte.SetSize(12.f*configuration->Resolution.y/600);
-        texte.SetText(buf.str());
-        texte.SetPosition(eventManager->getPositionSouris().x, eventManager->getPositionSouris().y - 20.f*configuration->Resolution.y/600);
-        moteurGraphique->AjouterTexte(&texte,19);
+        moteurGraphique->AjouterTexte(buf.str(),coordonnee(eventManager->getPositionSouris().x,
+                                                                         eventManager->getPositionSouris().y - 20),
+                                                                         19,0,12,sf::Color(224,224,224),1);
     }
 
     if (caracteristique.foi>0)
@@ -226,9 +225,13 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
             sprite.SetY(classe->orbe_foi.position.y*configuration->Resolution.h/600);
             sprite.SetSubRect(sf::IntRect(0, 0, classe->orbe_foi.position.w, (int)caracteristique.reserveFoi * classe->orbe_foi.position.h / (int)caracteristique.maxFoi));
 
-            sprite.SetColor(sf::Color(64,64,64,255));
+            sprite.SetColor(sf::Color(32,32,32,255));
+            sprite.SetBlendMode(Blend::Multiply);
 
             moteurGraphique->AjouterCommande(&sprite,18,0);
+
+            sprite.SetBlendMode(Blend::Add);
+              moteurGraphique->AjouterCommande(&sprite,18,0);
         }
 
         if(caracteristique.foi > caracteristique.maxFoi - caracteristique.reserveFoi)
@@ -248,10 +251,9 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         std::ostringstream buf;
         buf<<(int)caracteristique.foi<<" / "<<caracteristique.maxFoi;
 
-        texte.SetSize(12.f*configuration->Resolution.y/600);
-        texte.SetText(buf.str());
-        texte.SetPosition(eventManager->getPositionSouris().x, eventManager->getPositionSouris().y - 20.f*configuration->Resolution.y/600);
-        moteurGraphique->AjouterTexte(&texte,19);
+        moteurGraphique->AjouterTexte(buf.str(),coordonnee(eventManager->getPositionSouris().x,
+                                                                         eventManager->getPositionSouris().y - 20),
+                                                                         19,0,12,sf::Color(224,224,224),1);
     }
 
 
@@ -283,10 +285,9 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         std::ostringstream buf;
         buf<<(int)caracteristique.ancienPointAme<<" / "<<((caracteristique.niveau)*(caracteristique.niveau)*(caracteristique.niveau)*10);
 
-        texte.SetSize(12.f*configuration->Resolution.y/600);
-        texte.SetText(buf.str());
-        texte.SetPosition(eventManager->getPositionSouris().x, eventManager->getPositionSouris().y - 20.f*configuration->Resolution.y/600);
-        moteurGraphique->AjouterTexte(&texte,19);
+        moteurGraphique->AjouterTexte(buf.str(),coordonnee(eventManager->getPositionSouris().x,
+                                                                         eventManager->getPositionSouris().y - 20),
+                                                                         19,0,12,sf::Color(224,224,224),1);
     }
 
 

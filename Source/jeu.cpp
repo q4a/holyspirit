@@ -151,8 +151,6 @@ void Jeu::Next()
         m_contexte = m_miracles;
     else if(next_screen == 6)
         m_contexte = m_quetes;
-
-    next_screen = -1;
 }
 
 

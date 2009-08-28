@@ -32,6 +32,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 using namespace sf;
 using namespace std;
 
+int GestionBoutons(Jeu *jeu);
+
 c_MenuInGame::c_MenuInGame()
 {
     m_alpha=0;
@@ -56,7 +58,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
         if (m_alpha>0)
             m_alpha-=temps_ecoule*1000;
         if (m_alpha<0)
-            m_alpha=0,retour=false,jeu->m_contexte=jeu->m_jeu,moteurGraphique->m_blur=0;
+            m_alpha=0,retour=false,jeu->Next(),moteurGraphique->m_blur=0;
     }
     else
     {
@@ -66,10 +68,22 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
             m_alpha=255;
     }
 
-    if (eventManager->getEvenement(Key::Escape,"ET")&&m_alpha==255)
-        eventManager->StopEvenement(Key::I,"ET"),retour=1;
-    if (eventManager->getEvenement(Key::Space,"ET"))
-        jeu->m_run=false;
+   // if (eventManager->getEvenement(Key::Escape,"ET")&&m_alpha==255)
+        //eventManager->StopEvenement(Key::I,"ET"),retour=1;
+
+ //   if (eventManager->getEvenement(Key::Space,"ET"))
+     //   jeu->m_run=false;
+
+    int temp = GestionBoutons(jeu);
+    if(temp >= 0)
+    {
+        jeu->next_screen = temp;
+        retour=1;
+        jeu->Clock.Reset();
+
+        if(jeu->next_screen == 4)
+            jeu->next_screen = 3;
+    }
 
     jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
     jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);
@@ -94,7 +108,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     {
         texte.SetColor(Color(100,50,0,(int)m_alpha));
         if (eventManager->getEvenement(Mouse::Left,"C"))
-            retour=1;
+            retour=1, jeu->next_screen = 3;
 
     }
     else

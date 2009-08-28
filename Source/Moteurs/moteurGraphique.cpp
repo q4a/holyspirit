@@ -536,7 +536,7 @@ void MoteurGraphique::AjouterCommande(sf::Sprite *sprite, int couche, bool camer
         m_commandes[couche].push_back(Commande (sprite,camera));
 }
 
-void MoteurGraphique::AjouterTexte(std::string txt, coordonnee pos, int couche, bool titre, int size, sf::Color color)
+void MoteurGraphique::AjouterTexte(std::string txt, coordonnee pos, int couche, bool titre, int size, sf::Color color, bool fond)
 {
     sf::String temp;
     temp.SetFont(m_font);
@@ -546,6 +546,17 @@ void MoteurGraphique::AjouterTexte(std::string txt, coordonnee pos, int couche, 
     temp.SetColor(color);
 
     AjouterTexte(&temp, couche, titre);
+
+    if(fond)
+    {
+        sf::Sprite temp2;
+        temp2.SetImage(*getImage(0));
+        temp2.SetPosition(pos.x-2, pos.y-2);
+        temp2.Resize(temp.GetRect().Right - temp.GetRect().Left + 4,
+                     temp.GetRect().Bottom - temp.GetRect().Top + 4);
+        temp2.SetColor(sf::Color(0,0,0,224));
+        AjouterCommande(&temp2, couche, 0);
+    }
 }
 
 void MoteurGraphique::AjouterTexteNonChevauchable(sf::String* string, int couche, bool titre)
