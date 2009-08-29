@@ -187,7 +187,7 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet, float *decalage)
         moteurGraphique->AjouterCommande(&sprite,12,0);
 
         if(decalage != NULL)
-            *decalage = (sprite.GetPosition().y + moteurGraphique->m_camera.GetRect().Top)/configuration->zoom - sprite.GetSize().y;
+            *decalage = (sprite.GetPosition().y*configuration->zoom + moteurGraphique->m_camera.GetRect().Top) - sprite.GetSize().y;
     }
     return (retour);
 }

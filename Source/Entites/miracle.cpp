@@ -588,7 +588,6 @@ void Miracle::Concatenencer(std::string chemin)
     m_effets.back().m_lien.push_back((int)m_effets.size());
 
     int tailleEffets    = m_effets.size();
-    int tailleImage     = m_image.size();
     int tailleSon       = m_sons.size();
     int tailleTile      = m_tile.size();
 
@@ -736,20 +735,20 @@ void Miracle::AfficherDescription(coordonnee position, bool suivant)
         }
     }
 
-    if (position.x-tailleCadran.x-10<0)
-        position.x=tailleCadran.x+10;
+    if (position.x-10<0)
+        position.x=10;
 
     if (position.y+decalage.y+20>configuration->Resolution.h)
         position.y=configuration->Resolution.h-decalage.y-20;
 
-    if (position.x+decalage.x+20>configuration->Resolution.w)
-        position.x=configuration->Resolution.w-decalage.x-20;
+    if (position.x+tailleCadran.x+20>configuration->Resolution.w)
+        position.x=configuration->Resolution.w-tailleCadran.x-20;
 
     int decalY=0;
     for (int i=0;i<(int)temp.size();i++)
     {
         temp[i].SetY((position.y+decalY+10));
-        temp[i].SetX(position.x+(tailleCadran.x/2-((int)temp[i].GetRect().Right-(int)temp[i].GetRect().Left)/2)-tailleCadran.x);
+        temp[i].SetX(position.x+20+(tailleCadran.x/2-((int)temp[i].GetRect().Right-(int)temp[i].GetRect().Left)/2)/*-tailleCadran.x*/);
 
         decalY+=(int)temp[i].GetRect().Bottom-(int)temp[i].GetRect().Top+5;
 
@@ -764,7 +763,7 @@ void Miracle::AfficherDescription(coordonnee position, bool suivant)
     sprite.SetImage(*moteurGraphique->getImage(0));
     sprite.SetColor(sf::Color(0,0,0,248));
     sprite.SetY(position.y);
-    sprite.SetX(position.x-tailleCadran.x+10);
+    sprite.SetX(position.x/*-tailleCadran.x*/+10);
     sprite.Resize(tailleCadran.x,tailleCadran.y);
     moteurGraphique->AjouterCommande(&sprite,19,0);
 
@@ -774,22 +773,22 @@ void Miracle::AfficherDescription(coordonnee position, bool suivant)
     sprite2.Resize(16,16);
     sprite2.SetColor(sf::Color(255,255,255,255));
     sprite2.SetY(position.y-2);
-    sprite2.SetX(position.x-tailleCadran.x+10-2);
+    sprite2.SetX(position.x/*-tailleCadran.x*/+10-2);
     moteurGraphique->AjouterCommande(&sprite2,19,0);
 
 
     sprite2.SetY(position.y-2);
-    sprite2.SetX(position.x+10+2);
+    sprite2.SetX(position.x+tailleCadran.x+10+2);
     sprite2.SetRotation(270);
     moteurGraphique->AjouterCommande(&sprite2,19,0);
 
     sprite2.SetY(position.y+tailleCadran.y+2);
-    sprite2.SetX(position.x+10+2);
+    sprite2.SetX(position.x+tailleCadran.x+10+2);
     sprite2.SetRotation(180);
     moteurGraphique->AjouterCommande(&sprite2,19,0);
 
     sprite2.SetY(position.y+tailleCadran.y+2);
-    sprite2.SetX(position.x+-tailleCadran.x+10-2);
+    sprite2.SetX(position.x/*-tailleCadran.x*/+10-2);
     sprite2.SetRotation(90);
     moteurGraphique->AjouterCommande(&sprite2,19,0);
 

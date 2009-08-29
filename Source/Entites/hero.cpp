@@ -503,6 +503,10 @@ void Hero::ChargerModele(bool tout)
     int nombreArme=0;
     m_weaponMiracle=-1;
 
+    std::vector <Miracle> miraclesLances;
+    for(unsigned i = 0 ; i < m_personnage.m_miracleEnCours.size() ; ++i)
+        miraclesLances.push_back(m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele]);
+
     m_classe.miracles.clear();
     m_classe.Charger(m_cheminClasse, m_lvl_miracles);
 
@@ -600,6 +604,12 @@ void Hero::ChargerModele(bool tout)
                 m_cheminModele[i]=m_classe.modeleNu[i][m_cas];
             }
         }
+    }
+
+    for(unsigned i = 0 ; i < m_personnage.m_miracleEnCours.size() ; ++i)
+    {
+        m_personnage.m_miracleEnCours[i].m_modele = m_classe.miracles.size();
+        m_classe.miracles.push_back(miraclesLances[i]);
     }
 
     CalculerOrdreAffichage();
@@ -1042,6 +1052,13 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
 
     moteurGraphique->AjouterTexte(&texte,15,0);
 
+    if(eventManager->getPositionSouris().x > m_classe.position_points_miracles.x
+     &&eventManager->getPositionSouris().x < m_classe.position_points_miracles.x + m_classe.position_points_miracles.w
+     &&eventManager->getPositionSouris().y > m_classe.position_points_miracles.y
+     &&eventManager->getPositionSouris().y < m_classe.position_points_miracles.y + m_classe.position_points_miracles.h)
+        moteurGraphique->AjouterTexte("Points de miracles restants", coordonnee(eventManager->getPositionSouris().x,
+                                       eventManager->getPositionSouris().y - 20),20,false,12,sf::Color(224,224,224),true);
+
     texte.SetSize(12 * configuration->Resolution.h/600);
 
     for (int i = 0;i < (int)m_classe.position_miracles.size(); ++i)
@@ -1075,9 +1092,8 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                     &&eventManager->getPositionSouris().y > m_classe.position_miracles[i].y
                     &&eventManager->getPositionSouris().y < m_classe.position_miracles[i].y + m_classe.position_miracles[i].h)
             {
-                coordonnee buf = eventManager->getPositionSouris();
-                buf.y -= 20;
-                m_classe.miracles[i].AfficherDescription(buf);
+                m_classe.miracles[i].AfficherDescription(coordonnee(m_classe.position_miracles[i].x + m_classe.position_miracles[i].w,
+                                                                    m_classe.position_miracles[i].y));
 
                 retour = true;
 
@@ -1093,7 +1109,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                         m_miracleEnMain = m_personnage.m_miracleALancer;
                     }
 
-                if (eventManager->getEvenement(Mouse::Right,"C"))
+                if (eventManager->getEvenement(Mouse::Right,"C") && m_miracleEnMain < 0)
                 {
                     if (m_personnage.getCaracteristique().miracles_restant > 0 && !m_classe.miracles[i].m_max)
                         if(m_classe.miracles[i].m_buf == -1 || m_classe.miracles[i].m_buf != -1 && m_lvl_miracles[m_classe.miracles[i].m_buf] > 0)
@@ -1184,8 +1200,8 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                                         m_classe.position_miracles[m_miracleEnMain].y,
                                         m_classe.position_miracles[m_miracleEnMain].x + m_classe.position_miracles[m_miracleEnMain].w,
                                         m_classe.position_miracles[m_miracleEnMain].y + m_classe.position_miracles[m_miracleEnMain].h));
-            sprite.SetX(eventManager->getPositionSouris().x - 32 * configuration->Resolution.x/800);
-            sprite.SetY(eventManager->getPositionSouris().y - 32 * configuration->Resolution.h/600);
+            sprite.SetX(eventManager->getPositionSouris().x - 16 * configuration->Resolution.x/800);
+            sprite.SetY(eventManager->getPositionSouris().y - 16 * configuration->Resolution.h/600);
 
             sprite.Resize(32 * configuration->Resolution.x/800,32 * configuration->Resolution.h/600);
 
@@ -1537,7 +1553,7 @@ void Hero::AfficherRaccourcis()
             if(eventManager->getPositionSouris().x > sprite.GetPosition().x
             && eventManager->getPositionSouris().x < sprite.GetPosition().x + 20 * configuration->Resolution.x/800
             && eventManager->getPositionSouris().y > sprite.GetPosition().y
-            && eventManager->getPositionSouris().y < sprite.GetPosition().y + 20 * configuration->Resolution.h/600)
+            && eventManager->getPositionSouris().y < sprite.GetPosition().y + 20 * configuration->Resolution.h/600 && m_objetEnMain < 0)
                 m_inventaire[m_objets_raccourcis[i]].AfficherCaracteristiques(eventManager->getPositionSouris(), m_caracteristiques);
         }
         else
@@ -1587,7 +1603,7 @@ void Hero::AfficherRaccourcis()
             if(eventManager->getPositionSouris().x > sprite.GetPosition().x
             && eventManager->getPositionSouris().x < sprite.GetPosition().x + 20 * configuration->Resolution.x/800
             && eventManager->getPositionSouris().y > sprite.GetPosition().y
-            && eventManager->getPositionSouris().y < sprite.GetPosition().y + 20 * configuration->Resolution.h/600)
+            && eventManager->getPositionSouris().y < sprite.GetPosition().y + 20 * configuration->Resolution.h/600 && m_miracleEnMain < 0)
                 m_classe.miracles[m_miracles_raccourcis[i]].AfficherDescription(eventManager->getPositionSouris(), false);
         }
         else
@@ -2322,15 +2338,14 @@ bool Hero::UtiliserObjet(int numero)
 
             ChargerModele();
         }
-
-        if (m_inventaire[numero].m_type == CONSOMMABLE)
+        else if (m_inventaire[numero].m_type == CONSOMMABLE)
         {
             m_classe.miracles.push_back(m_inventaire[numero].m_miracle);
 
             m_personnage.m_miracleEnCours.push_back(EntiteMiracle ());
             m_personnage.m_miracleEnCours.back().m_infos.push_back(InfosEntiteMiracle ());
 
-            m_personnage.m_miracleEnCours.back().m_modele=(int)m_classe.miracles.size()-1;
+            m_personnage.m_miracleEnCours.back().m_modele = (int)m_classe.miracles.size()-1;
 
             m_personnage.m_miracleEnCours.back().m_infos.back().m_position.x=m_personnage.getCoordonneePixel().x+cos(-(m_personnage.getAngle()+22.5)*M_PI/180)*96;
             m_personnage.m_miracleEnCours.back().m_infos.back().m_position.y=m_personnage.getCoordonneePixel().y+sin(-(m_personnage.getAngle()+22.5)*M_PI/180)*96;
@@ -2339,8 +2354,13 @@ bool Hero::UtiliserObjet(int numero)
 
             m_inventaire.erase(m_inventaire.begin()+numero);
 
-
             for (int i=0;i<4;++i)
+            {
+                if(numero < m_objets_raccourcis[i] && m_objets_raccourcis[i] >= 0)
+                {
+                    m_objets_raccourcis[i] --;
+                }
+
                 if (numero == m_objets_raccourcis[i])
                 {
                     bool continuer=true;
@@ -2351,10 +2371,11 @@ bool Hero::UtiliserObjet(int numero)
                             m_objets_raccourcis[i] = j;
                             continuer=false;
                         }
+
                     if (continuer)
                         m_objets_raccourcis[i] = -1;
                 }
-
+            }
             return 1;
         }
     }

@@ -80,6 +80,8 @@ Objet::Objet()
 
     m_useMiracle = false;
     m_alpha = 0;
+
+    m_dejaTrie = false;
 }
 
 Objet::Objet(std::string nom, int rarete)
@@ -318,6 +320,7 @@ void Objet::SauvegarderTexte(std::ofstream *fichier)
     *fichier<<" x"<<m_position.x;
     *fichier<<" y"<<m_position.y;
 
+    *fichier<<" t"<<m_dejaTrie;
 
     *fichier<<" m"<<m_chemin;
 
@@ -399,6 +402,8 @@ void Objet::ChargerTexte(std::ifstream *fichier,bool NePasAjouterBenedictions)
             else if (caractere=='b')
                 *fichier>>m_color.b;
         }
+        else if (caractere=='t')
+            *fichier>>m_dejaTrie;
         else if (caractere=='m')
             *fichier>>m_chemin;
         else if (caractere=='g')

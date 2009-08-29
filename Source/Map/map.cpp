@@ -753,6 +753,9 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                         m_monstre.push_back(Monstre ());
                                         m_monstre.back().Charger(monstreFinal.back(),&m_ModeleMonstre[monstreFinal.back()]);
                                         m_monstre.back().setCoordonnee(position),m_monstre.back().setDepart();
+
+                                        TrierInventaire(m_monstre.back().getPointeurObjets(),hero->m_classe.position_contenu_marchand.w);
+
                                         monstreFinal.back()=m_monstre.size()-1;
                                     }
                                     else
@@ -1695,7 +1698,7 @@ int Map::GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
                 if (modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_type==PROJECTILE&&entiteMiracle->m_infos[o].m_IDObjet==-1)
                 {
                     int degats=0;
-                    for (int p=0;p<(int)modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien.size();p++)
+                    for (unsigned p=0;p<modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien.size();p++)
                         if (modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]>=0&&modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]<(int)modeleMiracle->m_effets.size())
                             if (modeleMiracle->m_effets[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]].m_type==DEGATS)
                                 degats+=rand()%(int)(modeleMiracle->m_effets[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]].m_informations[1] - modeleMiracle->m_effets[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]].m_informations[0] + 1) + modeleMiracle->m_effets[modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p]].m_informations[0];
@@ -1749,7 +1752,7 @@ int Map::GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
                     moteurGraphique->m_effetsEcran.back().info1     = modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[1];
 
 
-                    for (int p=0;p<(int)modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien.size();p++)
+                    for (unsigned p=0;p<modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien.size();p++)
                     {
                         entiteMiracle->m_infos.push_back(InfosEntiteMiracle ());
                         entiteMiracle->m_infos.back().m_effetEnCours=modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p];
@@ -1829,7 +1832,7 @@ int Map::GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
                             entiteMiracle->m_infos[o].m_IDObjet=m_monstre.size()-1;
                         }
 
-                        for (int p=0;p<(int)modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien.size();p++)
+                        for (unsigned p=0;p<modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien.size();p++)
                         {
                             entiteMiracle->m_infos.push_back(InfosEntiteMiracle ());
                             entiteMiracle->m_infos.back().m_effetEnCours=modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p];
@@ -1870,7 +1873,7 @@ int Map::GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
                             }
                     }
                     //retour+=modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[0];
-                    for (int p=0;p<(int)modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien.size();p++)
+                    for (unsigned p=0;p<modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien.size();p++)
                     {
                         entiteMiracle->m_infos.push_back(InfosEntiteMiracle ());
                         entiteMiracle->m_infos.back().m_effetEnCours=modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p];
@@ -1894,7 +1897,7 @@ int Map::GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
                     if (modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_informations[4])
                         VerifierDeclencheursDegats(buf.y,buf.x);
 
-                    for (int p=0;p<(int)modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien.size();p++)
+                    for (unsigned p=0;p<modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien.size();p++)
                     {
                         entiteMiracle->m_infos.push_back(InfosEntiteMiracle ());
                         entiteMiracle->m_infos.back().m_effetEnCours=modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p];
@@ -1908,7 +1911,7 @@ int Map::GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
 
             if (modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_type==-1)
             {
-                for (int p=0;p<(int)modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien.size();p++)
+                for (unsigned p=0;p<modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien.size();p++)
                 {
                     entiteMiracle->m_infos.push_back(InfosEntiteMiracle ());
                     entiteMiracle->m_infos.back().m_effetEnCours=modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p];
@@ -1922,7 +1925,7 @@ int Map::GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *
         }
         else
         {
-            for (int p=0;p<(int)modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien.size();p++)
+            for (unsigned p=0;p<modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien.size();p++)
             {
                 entiteMiracle->m_infos.push_back(InfosEntiteMiracle ());
                 entiteMiracle->m_infos.back().m_effetEnCours=modeleMiracle->m_effets[entiteMiracle->m_infos[o].m_effetEnCours].m_lien[p];
@@ -2491,8 +2494,8 @@ void Map::GererEvenements(int evenement,int z,int couche,int x,int y)
 
 void Map::InfligerDegatsMasse(coordonnee position,int rayon,int degats,bool sourceConcernee, Hero *hero, bool pousser, bool heroCompris)
 {
-    for (int y=(position.y+COTE_TILE*0.5)/COTE_TILE-rayon;y<=(position.y+COTE_TILE*0.5)/COTE_TILE+rayon;y++)
-        for (int x=(position.x+COTE_TILE*0.5)/COTE_TILE-rayon;x<=(position.x+COTE_TILE*0.5)/COTE_TILE+rayon;x++)
+    for (int y=(int)(((float)position.y+COTE_TILE*0.5)/COTE_TILE-rayon);y<=(int)(((float)position.y+COTE_TILE*0.5)/COTE_TILE+rayon);y++)
+        for (int x=(int)(((float)position.x+COTE_TILE*0.5)/COTE_TILE-rayon);x<=(int)(((float)position.x+COTE_TILE*0.5)/COTE_TILE+rayon);x++)
             if (y>=0&&x>=0&&y<m_dimensions.y&&x<m_dimensions.x)
                 if (sourceConcernee||!sourceConcernee&&!(y==position.y&&x==position.x))
                 {
@@ -3408,18 +3411,19 @@ bool Map::InfligerDegats(Personnage *monstre, float degats, Hero *hero,bool pous
 void Map::PousserMonstre(int numeroMonstre, coordonneeDecimal vecteur)
 {
     if (numeroMonstre>=0&&numeroMonstre<(int)m_monstre.size())
-        if (1!=getTypeCase((int)((m_monstre[numeroMonstre].getCoordonnee().x+vecteur.x)),(int)((m_monstre[numeroMonstre].getCoordonnee().y+vecteur.y))))
+        m_monstre[numeroMonstre].Pousser(vecteur);
+        /*if (1!=getTypeCase((int)((m_monstre[numeroMonstre].getCoordonnee().x+vecteur.x)),(int)((m_monstre[numeroMonstre].getCoordonnee().y+vecteur.y))))
         {
             for (unsigned o = 0 ; o < m_decor[1][m_monstre[numeroMonstre].getCoordonnee().y][m_monstre[numeroMonstre].getCoordonnee().x].getMonstre().size() ; ++o)
             {
                 if (m_decor[1][m_monstre[numeroMonstre].getCoordonnee().y][m_monstre[numeroMonstre].getCoordonnee().x].getMonstre()[o] == numeroMonstre)
                 {
                     m_decor[1][m_monstre[numeroMonstre].getCoordonnee().y][m_monstre[numeroMonstre].getCoordonnee().x].delMonstre(numeroMonstre);
-                    m_decor[1][m_monstre[numeroMonstre].getCoordonnee().y+vecteur.y][m_monstre[numeroMonstre].getCoordonnee().x+vecteur.x].setMonstre(numeroMonstre);
+                    m_decor[1][m_monstre[numeroMonstre].getCoordonnee().y+(int)vecteur.y][m_monstre[numeroMonstre].getCoordonnee().x+(int)vecteur.x].setMonstre(numeroMonstre);
                 }
                 m_monstre[numeroMonstre].Pousser(vecteur);
             }
-        }
+        }*/
 }
 
 bool Map::RamasserObjet(Hero *hero,bool enMain)

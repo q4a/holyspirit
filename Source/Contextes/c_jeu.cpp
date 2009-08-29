@@ -321,8 +321,9 @@ void GestionRaccourcisObjets(Jeu *jeu)
             eventManager->StopEvenement('1',"ET");
         else
             eventManager->StopEvenement(Mouse::Left,"CA");
-        if (jeu->hero.UtiliserObjet(jeu->hero.m_objets_raccourcis[0]))
-            jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),eventManager->getCasePointee(),1);
+
+        jeu->hero.UtiliserObjet(jeu->hero.m_objets_raccourcis[0]);
+           //jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),eventManager->getCasePointee(),1);
     }
     if (eventManager->getEvenement('2',"ET")
             || eventManager->getEvenement(Mouse::Left,"CA")

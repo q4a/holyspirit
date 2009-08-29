@@ -40,12 +40,49 @@ c_Inventaire::c_Inventaire()
     m_trader=NULL;
 }
 
-void c_Inventaire::setTrader(std::vector<Objet> *trade,Classe *classe)
+void TrierInventaire(std::vector<Objet> *trade, int largeur)
 {
     bool continuer=true;
-    m_trader=trade;
 
-    for(int i=0;i<(int)m_trader->size();++i)
+    for(unsigned i=0;i<trade->size();++i)
+    if(!(*trade)[i].m_dejaTrie)
+    {
+        continuer = true;
+        for (int y=0;continuer;y++)
+            for (int x=0;x<largeur&continuer;x++)
+            {
+                bool ajouter=true;
+                for (int h=0;h<(*trade)[i].getTaille().y;h++)
+                    for (int w=0;w<(*trade)[i].getTaille().x;w++)
+                        if (x+w<largeur)
+                        {
+                            for (unsigned j=0;j<i;j++)
+                                for (int Y=0;Y<(*trade)[j].getTaille().y;Y++)
+                                    for (int X=0;X<(*trade)[j].getTaille().x;X++)
+                                        if ((*trade)[j].getPosition().x+X==x+w && (*trade)[j].getPosition().y+Y==y+h)
+                                            ajouter=false;
+                        }
+                        else
+                            ajouter=false;
+
+                if (ajouter)
+                {
+                    continuer=false;
+                    (*trade)[i].setPosition(x,y);
+                    (*trade)[i].m_dejaTrie = true;
+                }
+            }
+    }
+}
+
+void c_Inventaire::setTrader(std::vector<Objet> *trade,Classe *classe)
+{
+    //bool continuer=true;
+    m_trader = trade;
+    //TrierInventaire();
+
+    /*for(unsigned i=0;i<m_trader->size();++i)
+    if(!(*m_trader)[i].m_dejaTrie)
     {
         continuer = true;
         for (int y=0;continuer;y++)
@@ -69,9 +106,10 @@ void c_Inventaire::setTrader(std::vector<Objet> *trade,Classe *classe)
                 {
                     continuer=false;
                     (*m_trader)[i].setPosition(x,y);
+                    (*m_trader)[i].m_dejaTrie = true;
                 }
             }
-    }
+    }*/
 }
 
 

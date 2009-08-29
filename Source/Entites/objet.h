@@ -92,6 +92,7 @@ public:
     int m_capaciteBenediction;
     int m_prix;
     bool m_shoot_weapon,m_useMiracle;
+    bool m_dejaTrie;
 
     Requirement m_requirement;
 

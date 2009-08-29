@@ -68,7 +68,10 @@ void c_Miracles::Utiliser(Jeu *jeu)
 
     jeu->menu.AfficherMiracles(m_decalage, &jeu->hero.m_classe, m_fenetre);
 
-    eventManager->AfficherCurseur(jeu->hero.AfficherMiracles(m_decalage, m_fenetre));
+    if(jeu->hero.m_miracleEnMain < 0)
+        eventManager->AfficherCurseur();
+
+    jeu->hero.AfficherMiracles(m_decalage, m_fenetre);
 
     jeu->menu.Afficher(1,255,&jeu->hero.m_classe);
     jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,-1,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
