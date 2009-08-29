@@ -95,6 +95,14 @@ Personnage::Personnage()
     m_pousse.x                          = 0;
     m_pousse.y                          = 0;
     m_pousse.w                          = 0;
+
+    m_miracleALancer                    = -1;
+
+    m_positionPixel.h                   = 0;
+    m_cheminFinal.h                     = 0;
+    m_positionCase.h                    = 0;
+
+    m_caracteristique.rang              = 0;
 }
 Modele_Personnage::Modele_Personnage()
 {

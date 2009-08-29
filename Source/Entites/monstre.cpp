@@ -67,20 +67,6 @@ Monstre::Monstre()
 
     m_attente=0;
     m_compteur=0;
-
-    m_miracleALancer=-1;
-
-    m_positionPixel.h=0;
-    m_cheminFinal.h=0;
-    m_positionCase.h=0;
-
-    m_porteeLumineuse.rouge=0;
-    m_porteeLumineuse.vert=0;
-    m_porteeLumineuse.bleu=0;
-    m_porteeLumineuse.intensite=0;
-    m_caracteristique.rang=0;
-
-    m_cible = NULL;
 }
 
 void Monstre::Charger(int numero,Modele_Monstre *modele)
@@ -137,11 +123,10 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
     }
 
 
-    for (int i=0;i<(int)modele->getObjets().size();i++)
+    for (unsigned i=0;i<modele->getObjets().size();i++)
         if ((float)(rand()%1000000000)<=(float)(modele->getObjets()[i].getChanceTrouver()*0.5*(m_caracteristique.rang*3+1)))
         {
-            m_objets.push_back(Objet ());
-            m_objets.back()=modele->getObjets()[i];
+            m_objets.push_back(modele->getObjets()[i]);
             m_objets.back().Generer((m_caracteristique.rang*5+1));
         }
 

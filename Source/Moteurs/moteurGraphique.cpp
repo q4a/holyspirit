@@ -569,7 +569,7 @@ void MoteurGraphique::AjouterTexteNonChevauchable(sf::String* string, int couche
             && string->GetRect().Left   < m_textes[couche][i].GetRect().Right
             && string->GetRect().Bottom > m_textes[couche][i].GetRect().Top - 3
             && string->GetRect().Top    < m_textes[couche][i].GetRect().Bottom)
-                string->SetPosition(string->GetPosition().x, m_textes[couche][i].GetRect().Top - string->GetRect().Bottom + string->GetRect().Top - 3), i = 0;
+                string->SetPosition(string->GetPosition().x, m_textes[couche][i].GetRect().Top - string->GetRect().Bottom + string->GetRect().Top - 5), i = -1;
         }
 
         AjouterTexte(string, couche, titre);

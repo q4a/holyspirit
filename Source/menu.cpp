@@ -377,7 +377,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
 
         //char chaine[255];
 
-        texte.SetSize(20.f*configuration->Resolution.h/600);
+        texte.SetSize(16.f*configuration->Resolution.h/600);
         texte.SetStyle(1);
 
         {
@@ -393,27 +393,15 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
             texte.SetText(buf.str());
         }
 
-
-
-        /*texte.SetX(configuration->Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2+2);
-        texte.SetY(12*configuration->Resolution.h/600+2);
-        texte.SetColor(Color(0,0,0,255));
-
-        moteurGraphique->AjouterTexte(&texte,18);*/
         texte.SetColor(Color(224,224,224,255));
         if (caracteristiqueMonstre.rang==1)
-        {
             texte.SetColor(Color(100,50,200,255));
-        }
-        if (caracteristiqueMonstre.rang==2)
-        {
+        else if (caracteristiqueMonstre.rang==2)
             texte.SetColor(Color(32,32,128,255));
-        }
 
         texte.SetX(configuration->Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
-        texte.SetY(12*configuration->Resolution.h/600);
+        texte.SetY(14*configuration->Resolution.h/600);
         moteurGraphique->AjouterTexte(&texte,18);
-        //ecran->Draw(texte);
 
         texte.SetStyle(0);
     }
