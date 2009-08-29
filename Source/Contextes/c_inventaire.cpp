@@ -77,39 +77,7 @@ void TrierInventaire(std::vector<Objet> *trade, int largeur)
 
 void c_Inventaire::setTrader(std::vector<Objet> *trade,Classe *classe)
 {
-    //bool continuer=true;
     m_trader = trade;
-    //TrierInventaire();
-
-    /*for(unsigned i=0;i<m_trader->size();++i)
-    if(!(*m_trader)[i].m_dejaTrie)
-    {
-        continuer = true;
-        for (int y=0;continuer;y++)
-            for (int x=0;x<classe->position_contenu_marchand.w&&continuer;x++)
-            {
-                bool ajouter=true;
-                for (int h=0;h<(*m_trader)[i].getTaille().y;h++)
-                    for (int w=0;w<(*m_trader)[i].getTaille().x;w++)
-                        if (x+w<classe->position_contenu_marchand.w)
-                        {
-                            for (int j=0;j<i;j++)
-                                for (int Y=0;Y<(*m_trader)[j].getTaille().y;Y++)
-                                    for (int X=0;X<(*m_trader)[j].getTaille().x;X++)
-                                        if ((*m_trader)[j].getPosition().x+X==x+w && (*m_trader)[j].getPosition().y+Y==y+h)
-                                            ajouter=false;
-                        }
-                        else
-                            ajouter=false;
-
-                if (ajouter)
-                {
-                    continuer=false;
-                    (*m_trader)[i].setPosition(x,y);
-                    (*m_trader)[i].m_dejaTrie = true;
-                }
-            }
-    }*/
 }
 
 

@@ -67,6 +67,7 @@ public:
 
     Objet DeposerObjet();
     bool PrendreEnMain(std::vector<Objet>*);
+    void delObjet(int numero);
 
     bool PossibleEquiper(int numero, int emplacement);
     bool Equiper(int numero, int emplacement);
