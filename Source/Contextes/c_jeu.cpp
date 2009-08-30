@@ -312,10 +312,10 @@ void GestionRaccourcisObjets(Jeu *jeu)
 {
     if (eventManager->getEvenement('1',"ET")
             || eventManager->getEvenement(Mouse::Left,"CA")
-            && eventManager->getPositionSouris().x > 255
-            && eventManager->getPositionSouris().x < 275
-            && eventManager->getPositionSouris().y > 492
-            && eventManager->getPositionSouris().y < 512)
+            && eventManager->getPositionSouris().x > 255 * configuration->Resolution.w/800
+            && eventManager->getPositionSouris().x < 275 * configuration->Resolution.w/800
+            && eventManager->getPositionSouris().y > 492 * configuration->Resolution.y/600
+            && eventManager->getPositionSouris().y < 512 * configuration->Resolution.y/600)
     {
         if(eventManager->getEvenement('1',"ET"))
             eventManager->StopEvenement('1',"ET");
@@ -327,10 +327,10 @@ void GestionRaccourcisObjets(Jeu *jeu)
     }
     if (eventManager->getEvenement('2',"ET")
             || eventManager->getEvenement(Mouse::Left,"CA")
-            && eventManager->getPositionSouris().x > 287
-            && eventManager->getPositionSouris().x < 307
-            && eventManager->getPositionSouris().y > 492
-            && eventManager->getPositionSouris().y < 512)
+            && eventManager->getPositionSouris().x > 287 * configuration->Resolution.w/800
+            && eventManager->getPositionSouris().x < 307 * configuration->Resolution.w/800
+            && eventManager->getPositionSouris().y > 492 * configuration->Resolution.y/600
+            && eventManager->getPositionSouris().y < 512 * configuration->Resolution.y/600)
     {
         if(eventManager->getEvenement('2',"ET"))
             eventManager->StopEvenement('2',"ET");
@@ -341,10 +341,10 @@ void GestionRaccourcisObjets(Jeu *jeu)
     }
     if (eventManager->getEvenement('3',"ET")
             || eventManager->getEvenement(Mouse::Left,"CA")
-            && eventManager->getPositionSouris().x > 319
-            && eventManager->getPositionSouris().x < 339
-            && eventManager->getPositionSouris().y > 492
-            && eventManager->getPositionSouris().y < 512)
+            && eventManager->getPositionSouris().x > 319 * configuration->Resolution.w/800
+            && eventManager->getPositionSouris().x < 339 * configuration->Resolution.w/800
+            && eventManager->getPositionSouris().y > 492 * configuration->Resolution.y/600
+            && eventManager->getPositionSouris().y < 512 * configuration->Resolution.y/600)
     {
         if(eventManager->getEvenement('3',"ET"))
             eventManager->StopEvenement('3',"ET");
@@ -355,10 +355,10 @@ void GestionRaccourcisObjets(Jeu *jeu)
     }
     if (eventManager->getEvenement('4',"ET")
             || eventManager->getEvenement(Mouse::Left,"CA")
-            && eventManager->getPositionSouris().x > 351
-            && eventManager->getPositionSouris().x < 371
-            && eventManager->getPositionSouris().y > 492
-            && eventManager->getPositionSouris().y < 512)
+            && eventManager->getPositionSouris().x > 351 * configuration->Resolution.w/800
+            && eventManager->getPositionSouris().x < 371 * configuration->Resolution.w/800
+            && eventManager->getPositionSouris().y > 492 * configuration->Resolution.y/600
+            && eventManager->getPositionSouris().y < 512 * configuration->Resolution.y/600)
     {
         if(eventManager->getEvenement('4',"ET"))
             eventManager->StopEvenement('4',"ET");
@@ -374,9 +374,9 @@ void GestionRaccourcisMiracles(Jeu *jeu)
     if (eventManager->getEvenement(Key::F1,"ET")
             || eventManager->getEvenement(Mouse::Left,"CA")
             && eventManager->getPositionSouris().x > 432 * configuration->Resolution.w/800
-            &&eventManager->getPositionSouris().x < 452 * configuration->Resolution.w/800
-            &&eventManager->getPositionSouris().y > 492 * configuration->Resolution.h/600
-            &&eventManager->getPositionSouris().y < 512 * configuration->Resolution.h/600)
+            && eventManager->getPositionSouris().x < 452 * configuration->Resolution.w/800
+            && eventManager->getPositionSouris().y > 492 * configuration->Resolution.h/600
+            && eventManager->getPositionSouris().y < 512 * configuration->Resolution.h/600)
     {
         if(eventManager->getEvenement(Key::F1,"ET"))
             eventManager->StopEvenement(Key::F1,"ET");
@@ -386,10 +386,10 @@ void GestionRaccourcisMiracles(Jeu *jeu)
     }
     if (eventManager->getEvenement(Key::F2,"ET")
             || eventManager->getEvenement(Mouse::Left,"CA")
-            && eventManager->getPositionSouris().x > 464
-            && eventManager->getPositionSouris().x < 484
-            && eventManager->getPositionSouris().y > 492
-            && eventManager->getPositionSouris().y < 512)
+            && eventManager->getPositionSouris().x > 464 * configuration->Resolution.w/800
+            && eventManager->getPositionSouris().x < 484 * configuration->Resolution.w/800
+            && eventManager->getPositionSouris().y > 492 * configuration->Resolution.y/600
+            && eventManager->getPositionSouris().y < 512 * configuration->Resolution.y/600)
     {
         if(eventManager->getEvenement(Key::F2,"ET"))
             eventManager->StopEvenement(Key::F2,"ET");
@@ -399,10 +399,10 @@ void GestionRaccourcisMiracles(Jeu *jeu)
     }
     if (eventManager->getEvenement(Key::F3,"ET")
             || eventManager->getEvenement(Mouse::Left,"CA")
-            && eventManager->getPositionSouris().x > 496
-            && eventManager->getPositionSouris().x < 516
-            && eventManager->getPositionSouris().y > 492
-            && eventManager->getPositionSouris().y < 512)
+            && eventManager->getPositionSouris().x > 496 * configuration->Resolution.w/800
+            && eventManager->getPositionSouris().x < 516 * configuration->Resolution.w/800
+            && eventManager->getPositionSouris().y > 492 * configuration->Resolution.y/600
+            && eventManager->getPositionSouris().y < 512 * configuration->Resolution.y/600)
     {
         if(eventManager->getEvenement(Key::F3,"ET"))
             eventManager->StopEvenement(Key::F3,"ET");
@@ -412,10 +412,10 @@ void GestionRaccourcisMiracles(Jeu *jeu)
     }
     if (eventManager->getEvenement(Key::F4,"ET")
             || eventManager->getEvenement(Mouse::Left,"CA")
-            && eventManager->getPositionSouris().x > 528
-            && eventManager->getPositionSouris().x < 548
-            && eventManager->getPositionSouris().y > 492
-            && eventManager->getPositionSouris().y < 512)
+            && eventManager->getPositionSouris().x > 528 * configuration->Resolution.w/800
+            && eventManager->getPositionSouris().x < 548 * configuration->Resolution.w/800
+            && eventManager->getPositionSouris().y > 492 * configuration->Resolution.y/600
+            && eventManager->getPositionSouris().y < 512 * configuration->Resolution.y/600)
     {
         if(eventManager->getEvenement(Key::F4,"ET"))
             eventManager->StopEvenement(Key::F4,"ET");
@@ -428,10 +428,10 @@ void GestionRaccourcisMiracles(Jeu *jeu)
 int GestionBoutons(Jeu *jeu)
 {
     if (eventManager->getEvenement(Key::M,"ET")
-        || eventManager->getPositionSouris().x > 264
-        && eventManager->getPositionSouris().x < 283
-        && eventManager->getPositionSouris().y > 533
-        && eventManager->getPositionSouris().y < 552)
+        || eventManager->getPositionSouris().x > 264 * configuration->Resolution.x/800
+        && eventManager->getPositionSouris().x < 283 * configuration->Resolution.x/800
+        && eventManager->getPositionSouris().y > 533 * configuration->Resolution.y/600
+        && eventManager->getPositionSouris().y < 552 * configuration->Resolution.y/600)
     {
          moteurGraphique->AjouterTexte("Afficher/Cacher carte (M)",coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),
@@ -455,17 +455,17 @@ int GestionBoutons(Jeu *jeu)
     {
         sf::Sprite buf;
         buf.SetImage(*moteurGraphique->getImage(0));
-        buf.SetPosition(264, 533);
-        buf.Resize(20,20);
+        buf.SetPosition(264 * configuration->Resolution.x/800, 533 * configuration->Resolution.y/600);
+        buf.Resize(20 * configuration->Resolution.x/800,20 * configuration->Resolution.y/600);
         buf.SetColor(sf::Color(0,0,0,128));
         moteurGraphique->AjouterCommande(&buf, 18, 0);
     }
 
     if (eventManager->getEvenement(Key::I,"ET")
-        || eventManager->getPositionSouris().x > 302
-        && eventManager->getPositionSouris().x < 321
-        && eventManager->getPositionSouris().y > 533
-        && eventManager->getPositionSouris().y < 552)
+        || eventManager->getPositionSouris().x > 302 * configuration->Resolution.x/800
+        && eventManager->getPositionSouris().x < 321 * configuration->Resolution.x/800
+        && eventManager->getPositionSouris().y > 533 * configuration->Resolution.y/600
+        && eventManager->getPositionSouris().y < 552 * configuration->Resolution.y/600)
     {
         moteurGraphique->AjouterTexte("Inventaire (I)",coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),
@@ -485,17 +485,17 @@ int GestionBoutons(Jeu *jeu)
     {
         sf::Sprite buf;
         buf.SetImage(*moteurGraphique->getImage(0));
-        buf.SetPosition(302, 533);
-        buf.Resize(20,20);
+        buf.SetPosition(302 * configuration->Resolution.x/800, 533 * configuration->Resolution.y/600);
+        buf.Resize(20 * configuration->Resolution.x/800,20 * configuration->Resolution.y/600);
         buf.SetColor(sf::Color(0,0,0,128));
         moteurGraphique->AjouterCommande(&buf, 18, 0);
     }
 
     if (eventManager->getEvenement(Key::Q,"ET")
-        || eventManager->getPositionSouris().x > 264
-        && eventManager->getPositionSouris().x < 283
-        && eventManager->getPositionSouris().y > 565
-        && eventManager->getPositionSouris().y < 584)
+        || eventManager->getPositionSouris().x > 264 * configuration->Resolution.x/800
+        && eventManager->getPositionSouris().x < 283 * configuration->Resolution.x/800
+        && eventManager->getPositionSouris().y > 565 * configuration->Resolution.y/600
+        && eventManager->getPositionSouris().y < 584 * configuration->Resolution.y/600)
     {
         moteurGraphique->AjouterTexte("Quêtes (Q)",coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),
@@ -514,17 +514,17 @@ int GestionBoutons(Jeu *jeu)
     {
         sf::Sprite buf;
         buf.SetImage(*moteurGraphique->getImage(0));
-        buf.SetPosition(264, 565);
-        buf.Resize(20,20);
+        buf.SetPosition(264 * configuration->Resolution.x/800, 565 * configuration->Resolution.y/600);
+        buf.Resize(20 * configuration->Resolution.x/800,20 * configuration->Resolution.y/600);
         buf.SetColor(sf::Color(0,0,0,128));
         moteurGraphique->AjouterCommande(&buf, 18, 0);
     }
 
     if (eventManager->getEvenement(Key::T,"ET")
-        || eventManager->getPositionSouris().x > 302
-        && eventManager->getPositionSouris().x < 321
-        && eventManager->getPositionSouris().y > 565
-        && eventManager->getPositionSouris().y < 584)
+        || eventManager->getPositionSouris().x > 302 * configuration->Resolution.x/800
+        && eventManager->getPositionSouris().x < 321 * configuration->Resolution.x/800
+        && eventManager->getPositionSouris().y > 565 * configuration->Resolution.y/600
+        && eventManager->getPositionSouris().y < 584 * configuration->Resolution.y/600)
     {
         moteurGraphique->AjouterTexte("Miracles (T)",coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),
@@ -543,17 +543,17 @@ int GestionBoutons(Jeu *jeu)
     {
         sf::Sprite buf;
         buf.SetImage(*moteurGraphique->getImage(0));
-        buf.SetPosition(302, 565);
-        buf.Resize(20,20);
+        buf.SetPosition(302 * configuration->Resolution.x/800, 565 * configuration->Resolution.y/600);
+        buf.Resize(20 * configuration->Resolution.x/800,20 * configuration->Resolution.y/600);
         buf.SetColor(sf::Color(0,0,0,128));
         moteurGraphique->AjouterCommande(&buf, 18, 0);
     }
 
     if (eventManager->getEvenement(Key::Escape,"ET")
-     || eventManager->getPositionSouris().x > 333
-     && eventManager->getPositionSouris().x < 352
-     && eventManager->getPositionSouris().y > 577
-     && eventManager->getPositionSouris().y < 596)
+     || eventManager->getPositionSouris().x > 333 * configuration->Resolution.x/800
+     && eventManager->getPositionSouris().x < 352 * configuration->Resolution.x/800
+     && eventManager->getPositionSouris().y > 577 * configuration->Resolution.y/600
+     && eventManager->getPositionSouris().y < 596 * configuration->Resolution.y/600)
     {
         moteurGraphique->AjouterTexte("Menu (Echappe)",coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),
@@ -572,8 +572,8 @@ int GestionBoutons(Jeu *jeu)
     {
         sf::Sprite buf;
         buf.SetImage(*moteurGraphique->getImage(0));
-        buf.SetPosition(333, 577);
-        buf.Resize(20,20);
+        buf.SetPosition(333 * configuration->Resolution.x/800, 577 * configuration->Resolution.y/600);
+        buf.Resize(20 * configuration->Resolution.x/800,20 * configuration->Resolution.y/600);
         buf.SetColor(sf::Color(0,0,0,128));
         moteurGraphique->AjouterCommande(&buf, 18, 0);
     }

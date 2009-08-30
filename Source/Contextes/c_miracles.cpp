@@ -88,10 +88,10 @@ void c_Miracles::Utiliser(Jeu *jeu)
     }
 
     for(int i = 0;i < (int)jeu->hero.m_classe.boutons_miracles.size(); ++i)
-        if(eventManager->getPositionSouris().x > jeu->hero.m_classe.boutons_miracles[i].position.x
-         &&eventManager->getPositionSouris().x < jeu->hero.m_classe.boutons_miracles[i].position.x + jeu->hero.m_classe.boutons_miracles[i].position.w
-         &&eventManager->getPositionSouris().y > jeu->hero.m_classe.boutons_miracles[i].position.y
-         &&eventManager->getPositionSouris().y < jeu->hero.m_classe.boutons_miracles[i].position.y + jeu->hero.m_classe.boutons_miracles[i].position.h)
+        if(eventManager->getPositionSouris().x >  jeu->hero.m_classe.boutons_miracles[i].position.x * configuration->Resolution.w/800
+         &&eventManager->getPositionSouris().x < (jeu->hero.m_classe.boutons_miracles[i].position.x + jeu->hero.m_classe.boutons_miracles[i].position.w) * configuration->Resolution.w/800
+         &&eventManager->getPositionSouris().y >  jeu->hero.m_classe.boutons_miracles[i].position.y * configuration->Resolution.h/600
+         &&eventManager->getPositionSouris().y < (jeu->hero.m_classe.boutons_miracles[i].position.y + jeu->hero.m_classe.boutons_miracles[i].position.h) * configuration->Resolution.h/600)
         {
             coordonnee buf = eventManager->getPositionSouris();
             buf.y -= 20;

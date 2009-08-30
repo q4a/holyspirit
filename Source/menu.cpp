@@ -400,7 +400,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
             texte.SetColor(Color(32,32,128,255));
 
         texte.SetX(configuration->Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
-        texte.SetY(14*configuration->Resolution.h/600);
+        texte.SetY(16*configuration->Resolution.h/600);
         moteurGraphique->AjouterTexte(&texte,18);
 
         texte.SetStyle(0);

@@ -1494,7 +1494,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                     position.x=(((k-(hero->m_personnage.getCoordonnee().x-15))-(j-(hero->m_personnage.getCoordonnee().y-15))-1+40)*6*configuration->Resolution.w/800);
                     position.y=(((k-(hero->m_personnage.getCoordonnee().x-15))+(j-(hero->m_personnage.getCoordonnee().y-15)))*6*configuration->Resolution.w/800);
 
-                    if (position.x+465*configuration->Resolution.w/800>605*configuration->Resolution.w/800&&position.x+465*configuration->Resolution.w/800<800*configuration->Resolution.w/800&&position.y*configuration->Resolution.y/800>0&&position.y-80*configuration->Resolution.w/800<195*configuration->Resolution.h/600)
+                    if (position.x+465*configuration->Resolution.w/800>605*configuration->Resolution.w/800&&position.x+465*configuration->Resolution.w/800<800*configuration->Resolution.w/800&&position.y*configuration->Resolution.w/800>0&&position.y-80*configuration->Resolution.w/800<146*configuration->Resolution.w/600)
                         AfficherMinimap(position,getTypeCase(k,j),alpha);
                     if (hero->m_personnage.getCoordonnee().x==k&&hero->m_personnage.getCoordonnee().y==j)
                         AfficherMinimap(position,6,alpha);
@@ -1510,9 +1510,9 @@ void Map::AfficherMinimap(coordonnee position,int typeCase,float alpha)
     spriteMinimap.SetOrigin(4*configuration->Resolution.w/800,4*configuration->Resolution.w/800);
     spriteMinimap.SetRotation(45);
     spriteMinimap.SetImage(*moteurGraphique->getImage(0));
-    spriteMinimap.SetSubRect(sf::IntRect(0,0,8,8));
-    spriteMinimap.SetX((float)(position.x+465*configuration->Resolution.w/800));
-    spriteMinimap.SetY((float)(position.y-80*configuration->Resolution.w/800));
+    spriteMinimap.SetSubRect(sf::IntRect(0,0,8 * configuration->Resolution.w/800,8 * configuration->Resolution.w/800));
+    spriteMinimap.SetX((float)(position.x+465.0f*configuration->Resolution.w/800));
+    spriteMinimap.SetY((float)(position.y-80.0f*configuration->Resolution.w/800));
 
     if (typeCase==1)
         spriteMinimap.SetColor(sf::Color(128,64,0,(int)alpha));

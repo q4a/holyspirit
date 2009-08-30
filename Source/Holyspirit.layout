@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="Debug" />
-	<File name="Contextes\c_changementMap.cpp" open="1" top="0" tabpos="27">
-		<Cursor position="3168" topLine="167" />
+	<ActiveTarget name="Release" />
+	<File name="Contextes\c_changementMap.cpp" open="1" top="0" tabpos="26">
+		<Cursor position="5529" topLine="146" />
 	</File>
 	<File name="Contextes\c_changementMap.h" open="0" top="0" tabpos="13">
 		<Cursor position="1544" topLine="30" />
@@ -20,7 +20,7 @@
 		<Cursor position="287" topLine="0" />
 	</File>
 	<File name="Contextes\c_jeu.cpp" open="1" top="0" tabpos="9">
-		<Cursor position="13089" topLine="279" />
+		<Cursor position="19699" topLine="408" />
 	</File>
 	<File name="Contextes\c_jeu.h" open="0" top="0" tabpos="14">
 		<Cursor position="858" topLine="95" />
@@ -61,8 +61,8 @@
 	<File name="Entites\classe.h" open="0" top="0" tabpos="18">
 		<Cursor position="1358" topLine="39" />
 	</File>
-	<File name="Entites\hero.cpp" open="1" top="0" tabpos="8">
-		<Cursor position="113865" topLine="2317" />
+	<File name="Entites\hero.cpp" open="1" top="1" tabpos="8">
+		<Cursor position="39775" topLine="1039" />
 	</File>
 	<File name="Entites\hero.h" open="1" top="0" tabpos="23">
 		<Cursor position="1897" topLine="40" />
@@ -77,13 +77,13 @@
 		<Cursor position="19695" topLine="577" />
 	</File>
 	<File name="Entites\miracle.h" open="1" top="0" tabpos="7">
-		<Cursor position="2776" topLine="90" />
+		<Cursor position="4660" topLine="165" />
 	</File>
 	<File name="Entites\monstre.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="4042" topLine="131" />
+		<Cursor position="1605" topLine="54" />
 	</File>
 	<File name="Entites\monstre.h" open="1" top="0" tabpos="5">
-		<Cursor position="1501" topLine="15" />
+		<Cursor position="1501" topLine="37" />
 	</File>
 	<File name="Entites\objet.cpp" open="1" top="0" tabpos="21">
 		<Cursor position="3787" topLine="135" />
@@ -92,7 +92,7 @@
 		<Cursor position="1948" topLine="66" />
 	</File>
 	<File name="Entites\personnage.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="38724" topLine="0" />
+		<Cursor position="2854" topLine="62" />
 	</File>
 	<File name="Entites\personnage.h" open="1" top="0" tabpos="4">
 		<Cursor position="4863" topLine="144" />
@@ -128,7 +128,7 @@
 		<Cursor position="1329" topLine="26" />
 	</File>
 	<File name="Map\map.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="91796" topLine="1830" />
+		<Cursor position="86555" topLine="1741" />
 	</File>
 	<File name="Map\map.h" open="1" top="0" tabpos="22">
 		<Cursor position="1070" topLine="33" />

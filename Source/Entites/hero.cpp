@@ -770,7 +770,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     }
 
     string.SetText(configuration->text_menus[5].c_str());
-    string.SetX(16);
+    string.SetX(16*configuration->Resolution.w/800);
     string.SetY(311*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
@@ -804,7 +804,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     }
 
     string.SetText(configuration->text_menus[6].c_str());
-    string.SetX(16);
+    string.SetX(16*configuration->Resolution.w/800);
     string.SetY(338*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
@@ -839,7 +839,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     }
 
     string.SetText(configuration->text_menus[7].c_str());
-    string.SetX(16);
+    string.SetX(16*configuration->Resolution.w/800);
     string.SetY(365*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
@@ -874,7 +874,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     }
 
     string.SetText(configuration->text_menus[8].c_str());
-    string.SetX(16);
+    string.SetX(16*configuration->Resolution.w/800);
     string.SetY(392*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
@@ -909,13 +909,13 @@ void Hero::AfficherCaracteristiques(float decalage)
     }
 
     string.SetText(configuration->text_menus[9].c_str());
-    string.SetX(16);
+    string.SetX(16*configuration->Resolution.w/800);
     string.SetY(419*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
     string.SetText(configuration->text_menus[12].c_str());
-    string.SetX(16);
+    string.SetX(16*configuration->Resolution.w/800);
     string.SetY(446*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
@@ -945,7 +945,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     }
 
     string.SetText(configuration->text_menus[10].c_str());
-    string.SetX(234);
+    string.SetX(234*configuration->Resolution.w/800);
     string.SetY(300*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
@@ -964,7 +964,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     }
 
     string.SetText(configuration->text_menus[11].c_str());
-    string.SetX(234);
+    string.SetX(234*configuration->Resolution.w/800);
     string.SetY(327*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
@@ -996,14 +996,14 @@ void Hero::AfficherQuetes(float decalage)
         moteurGraphique->AjouterTexte(&texte,15);
 
         if (eventManager->getPositionSouris().x > m_classe.position_contenu_quetes.x * configuration->Resolution.w/800
-                &&eventManager->getPositionSouris().x < m_classe.position_contenu_quetes.x * configuration->Resolution.w/800 + m_classe.position_contenu_quetes.w * configuration->Resolution.w/800
+                &&eventManager->getPositionSouris().x < (m_classe.position_contenu_quetes.x + m_classe.position_contenu_quetes.w) * configuration->Resolution.w/800
                 &&eventManager->getPositionSouris().y > texte.GetRect().Top
                 &&eventManager->getPositionSouris().y < texte.GetRect().Bottom)
         {
             sf::Sprite sprite;
             sprite.SetImage(*moteurGraphique->getImage(0));
-            sprite.Resize(m_classe.position_contenu_quetes.w, texte.GetRect().Bottom - texte.GetRect().Top+4);
-            sprite.SetPosition(position.x, position.y - decalage);
+            sprite.Resize(m_classe.position_contenu_quetes.w * configuration->Resolution.w/800, texte.GetRect().Bottom - texte.GetRect().Top+4);
+            sprite.SetPosition(position.x * configuration->Resolution.w/800, (position.y - decalage) * configuration->Resolution.h/600);
             sprite.SetColor(sf::Color(255, 255, 255, 128));
 
             m_quetePointee = i;
@@ -1047,15 +1047,15 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
     buf<<m_personnage.getCaracteristique().miracles_restant<<endl;
 
     texte.SetText(buf.str());
-    texte.SetX(m_classe.position_points_miracles.x + (m_classe.position_points_miracles.w -texte.GetRect().Right + texte.GetRect().Left)/2);
-    texte.SetY(m_classe.position_points_miracles.y - decalage);
+    texte.SetX(m_classe.position_points_miracles.x*configuration->Resolution.w/800 + (m_classe.position_points_miracles.w*configuration->Resolution.w/800 -texte.GetRect().Right + texte.GetRect().Left)/2);
+    texte.SetY((m_classe.position_points_miracles.y- decalage)*configuration->Resolution.h/600);
 
     moteurGraphique->AjouterTexte(&texte,15,0);
 
-    if (eventManager->getPositionSouris().x > m_classe.position_points_miracles.x
-            &&eventManager->getPositionSouris().x < m_classe.position_points_miracles.x + m_classe.position_points_miracles.w
-            &&eventManager->getPositionSouris().y > m_classe.position_points_miracles.y
-            &&eventManager->getPositionSouris().y < m_classe.position_points_miracles.y + m_classe.position_points_miracles.h)
+    if (eventManager->getPositionSouris().x > m_classe.position_points_miracles.x*configuration->Resolution.w/800
+     && eventManager->getPositionSouris().x < (m_classe.position_points_miracles.x + m_classe.position_points_miracles.w)*configuration->Resolution.w/800
+     && eventManager->getPositionSouris().y > m_classe.position_points_miracles.y*configuration->Resolution.h/600
+     && eventManager->getPositionSouris().y < (m_classe.position_points_miracles.y + m_classe.position_points_miracles.h)*configuration->Resolution.h/600)
         moteurGraphique->AjouterTexte("Points de miracles restants", coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),20,false,12,sf::Color(224,224,224),true);
 
@@ -1067,8 +1067,8 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
             std::ostringstream buf;
             buf<<m_lvl_miracles[i]<<endl;
             texte.SetText(buf.str());
-            texte.SetX(m_classe.position_miracles[i].x + (m_classe.position_miracles[i].w -texte.GetRect().Right + texte.GetRect().Left)/2);
-            texte.SetY(m_classe.position_miracles[i].y + 51 - decalage);
+            texte.SetX(m_classe.position_miracles[i].x*configuration->Resolution.w/800 + (m_classe.position_miracles[i].w*configuration->Resolution.w/800 -texte.GetRect().Right + texte.GetRect().Left)/2);
+            texte.SetY((m_classe.position_miracles[i].y + 51 - decalage) *configuration->Resolution.h/600);
 
             moteurGraphique->AjouterTexte(&texte,15,0);
         }
@@ -1080,20 +1080,20 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
             {
                 sf::Sprite temp;
                 temp.SetImage(*moteurGraphique->getImage(0));
-                temp.SetPosition(m_classe.position_miracles[i].x, m_classe.position_miracles[i].y);
-                temp.Resize(m_classe.position_miracles[i].w, m_classe.position_miracles[i].h);
+                temp.SetPosition(m_classe.position_miracles[i].x*configuration->Resolution.w/800, (m_classe.position_miracles[i].y - decalage)*configuration->Resolution.h/600);
+                temp.Resize(m_classe.position_miracles[i].w*configuration->Resolution.w/800, m_classe.position_miracles[i].h*configuration->Resolution.h/600);
                 temp.SetColor(sf::Color(32,32,32));
                 temp.SetBlendMode(sf::Blend::Multiply);
-                moteurGraphique->AjouterCommande(&temp, 18, 0);
+                moteurGraphique->AjouterCommande(&temp, 15, 0);
             }
 
-            if (eventManager->getPositionSouris().x > m_classe.position_miracles[i].x
-                    &&eventManager->getPositionSouris().x < m_classe.position_miracles[i].x + m_classe.position_miracles[i].w
-                    &&eventManager->getPositionSouris().y > m_classe.position_miracles[i].y
-                    &&eventManager->getPositionSouris().y < m_classe.position_miracles[i].y + m_classe.position_miracles[i].h)
+            if (eventManager->getPositionSouris().x > m_classe.position_miracles[i].x*configuration->Resolution.w/800
+                    &&eventManager->getPositionSouris().x < (m_classe.position_miracles[i].x + m_classe.position_miracles[i].w)*configuration->Resolution.w/800
+                    &&eventManager->getPositionSouris().y > m_classe.position_miracles[i].y*configuration->Resolution.h/600
+                    &&eventManager->getPositionSouris().y < (m_classe.position_miracles[i].y + m_classe.position_miracles[i].h)*configuration->Resolution.h/600)
             {
-                m_classe.miracles[i].AfficherDescription(coordonnee(m_classe.position_miracles[i].x + m_classe.position_miracles[i].w,
-                        m_classe.position_miracles[i].y));
+                m_classe.miracles[i].AfficherDescription(coordonnee((m_classe.position_miracles[i].x + m_classe.position_miracles[i].w)*configuration->Resolution.w/800,
+                        m_classe.position_miracles[i].y*configuration->Resolution.h/600));
 
                 retour = true;
 
