@@ -55,13 +55,15 @@ public:
      Objet operator=(const Objet &objet);
 
     int AfficherCaracteristiques(coordonnee position,Caracteristique caract,float modPrix = 1, bool compare = false, bool = false, bool = false);
-    void Charger(std::string chemin,bool NePasAjouterBenedictions=false);
+    void Charger(std::string chemin, const Caracteristique &caract,bool NePasAjouterBenedictions=false);
     void ChargerCaracteristiques(std::ifstream *fichier);
 
     void Sauvegarder(std::ofstream *fichier);
     void SauvegarderTexte(std::ofstream *fichier);
-    void ChargerTexte(std::ifstream *fichier,bool NePasAjouterBenedictions=false);
+    void ChargerTexte(std::ifstream *fichier, const Caracteristique &caract ,bool NePasAjouterBenedictions=false);
     void ChargerChemin(std::ifstream *fichier);
+
+    void ChargerMiracle(const Caracteristique &caract);
 
     void Generer(int bonus);
 
@@ -104,6 +106,7 @@ public:
     sf::Color m_color;
 
     Miracle m_miracle;
+    std::vector<std::string> m_chemin_miracles;
 
     float m_alpha;
 

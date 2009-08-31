@@ -122,11 +122,11 @@ class Miracle
 {
 public:
     Miracle();
-    Miracle(std::string chemin);
+    Miracle(std::string chemin, const Caracteristique &caract, int level);
     ~Miracle();
 
-    void Charger(std::string chemin);
-    void Concatenencer(std::string chemin);
+    void Charger(std::string chemin, const Caracteristique &caract, int level);
+    void Concatenencer(std::string chemin, const Caracteristique &caract, int level);
     void JouerSon(int numeroSon,coordonnee position,coordonnee positionHero);
 
     void AfficherDescription(coordonnee position, bool suivant = true);

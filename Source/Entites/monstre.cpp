@@ -409,7 +409,7 @@ bool Modele_Monstre::Charger(string chemin)
                         string temp2;
                         //getline(fichier, temp2);
                         *fichier>>temp2;
-                        tempModeleObjet.Charger(temp2);
+                        tempModeleObjet.Charger(temp2,m_caracteristique);
                     }
 
                     if (fichier->eof())
@@ -459,7 +459,7 @@ bool Modele_Monstre::Charger(string chemin)
             {
                 string temp;
                 *fichier>>temp;
-                m_miracles.push_back(Miracle (temp));
+                m_miracles.push_back(Miracle (temp, m_caracteristique, 1));
             }
 
             if (fichier->eof())

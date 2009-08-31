@@ -38,6 +38,7 @@ public:
     void Afficher();
     void Ajouter(std::string texte,bool erreur=0);
     void Ajouter(int texte,bool erreur=0);
+    void Ajouter(char texte,bool erreur=0);
 
     void Defiler(bool direction);
 

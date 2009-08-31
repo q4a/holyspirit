@@ -357,7 +357,7 @@ void Objet::ChargerChemin(std::ifstream *fichier)
     while (caractere!='$');
 }
 
-void Objet::ChargerTexte(std::ifstream *fichier,bool NePasAjouterBenedictions)
+void Objet::ChargerTexte(std::ifstream *fichier, const Caracteristique &caract, bool NePasAjouterBenedictions)
 {
     m_rarete=0,m_equipe=-1;
     m_degatsMin=0,m_degatsMax=0,m_armure=0;
@@ -443,17 +443,19 @@ void Objet::ChargerTexte(std::ifstream *fichier,bool NePasAjouterBenedictions)
 
                 if (m_benedictions.back().type==DEGATS_FEU)
                 {
+                    m_chemin_miracles.push_back("Data/Items/FireEffect/FireEffect.miracle.hs");
                     if (!m_useMiracle)
-                        m_miracle.Charger("Data/Items/FireEffect/FireEffect.miracle.hs"),m_useMiracle=true;
+                        m_miracle.Charger("Data/Items/FireEffect/FireEffect.miracle.hs",caract,0),m_useMiracle=true;
                     else
-                        m_miracle.Concatenencer("Data/Items/FireEffect/FireEffect.miracle.hs");
+                        m_miracle.Concatenencer("Data/Items/FireEffect/FireEffect.miracle.hs",caract,0);
                 }
                 if (m_benedictions.back().type==DEGATS_FOI)
                 {
+                    m_chemin_miracles.push_back("Data/Items/HolyEffect/HolyEffect.miracle.hs");
                     if (!m_useMiracle)
-                        m_miracle.Charger("Data/Items/HolyEffect/HolyEffect.miracle.hs"),m_useMiracle=true;
+                        m_miracle.Charger("Data/Items/HolyEffect/HolyEffect.miracle.hs",caract,0),m_useMiracle=true;
                     else
-                        m_miracle.Concatenencer("Data/Items/HolyEffect/HolyEffect.miracle.hs");
+                        m_miracle.Concatenencer("Data/Items/HolyEffect/HolyEffect.miracle.hs",caract,0);
                 }
             }
             caractere='_';
@@ -469,7 +471,7 @@ void Objet::ChargerTexte(std::ifstream *fichier,bool NePasAjouterBenedictions)
 }
 
 
-void Objet::Charger(std::string chemin,bool NePasAjouterBenedictions)
+void Objet::Charger(std::string chemin, const Caracteristique &caract,bool NePasAjouterBenedictions)
 {
     console->Ajouter("",0);
     console->Ajouter("Chargement de l'objet : "+chemin,0);
@@ -850,7 +852,8 @@ void Objet::Charger(std::string chemin,bool NePasAjouterBenedictions)
             {
                 string temp;
                 *fichier>>temp;
-                m_miracle.Charger(temp);
+                m_miracle.Charger(temp, caract, 0);
+                m_chemin_miracles.push_back(temp);
                 m_useMiracle=true;
             }
             if (fichier->eof())
@@ -904,17 +907,19 @@ void Objet::Charger(std::string chemin,bool NePasAjouterBenedictions)
 
                     if (m_benedictions.back().type==DEGATS_FEU)
                     {
+                        m_chemin_miracles.push_back("Data/Items/FireEffect/FireEffect.miracle.hs");
                         if (!m_useMiracle)
-                            m_miracle.Charger("Data/Items/FireEffect/FireEffect.miracle.hs"),m_useMiracle=true;
+                            m_miracle.Charger("Data/Items/FireEffect/FireEffect.miracle.hs", caract, 0),m_useMiracle=true;
                         else
-                            m_miracle.Concatenencer("Data/Items/FireEffect/FireEffect.miracle.hs");
+                            m_miracle.Concatenencer("Data/Items/FireEffect/FireEffect.miracle.hs", caract, 0);
                     }
                     if (m_benedictions.back().type==DEGATS_FOI)
                     {
+                        m_chemin_miracles.push_back("Data/Items/HolyEffect/HolyEffect.miracle.hs");
                         if (!m_useMiracle)
-                            m_miracle.Charger("Data/Items/HolyEffect/HolyEffect.miracle.hs"),m_useMiracle=true;
+                            m_miracle.Charger("Data/Items/HolyEffect/HolyEffect.miracle.hs", caract, 0),m_useMiracle=true;
                         else
-                            m_miracle.Concatenencer("Data/Items/HolyEffect/HolyEffect.miracle.hs");
+                            m_miracle.Concatenencer("Data/Items/HolyEffect/HolyEffect.miracle.hs", caract, 0);
                     }
                 }
 
@@ -935,6 +940,18 @@ void Objet::Charger(std::string chemin,bool NePasAjouterBenedictions)
         console->Ajouter("Impossible d'ouvrir : "+chemin,1);
 
     delete fichier;
+}
+
+void Objet::ChargerMiracle(const Caracteristique &caract)
+{
+    m_miracle = Miracle ();
+    for(unsigned i = 0 ; i < m_chemin_miracles.size() ; ++i)
+    {
+        if(i > 0)
+            m_miracle.Concatenencer(m_chemin_miracles[i], caract, 0);
+        else
+            m_miracle.Charger(m_chemin_miracles[i], caract, 0);
+    }
 }
 
 void Objet::Generer(int bonus)
@@ -1039,30 +1056,32 @@ void Objet::Generer(int bonus)
 
                 if (ajouter)
                 {
+                    Caracteristique temp2;
                     m_benedictions.push_back(benediction ());
                     m_benedictions.back()=temp;
-
-
 
                     if (temp.type==DEGATS_FEU)
                     {
                         m_color.r=255;
                         m_color.g=64;
                         m_color.b=64;
+
+                        m_chemin_miracles.push_back("Data/Items/FireEffect/FireEffect.miracle.hs");
                         if (!m_useMiracle)
-                            m_miracle.Charger("Data/Items/FireEffect/FireEffect.miracle.hs"),m_useMiracle=true;
+                            m_miracle.Charger("Data/Items/FireEffect/FireEffect.miracle.hs", temp2, 0),m_useMiracle=true;
                         else
-                            m_miracle.Concatenencer("Data/Items/FireEffect/FireEffect.miracle.hs");
+                            m_miracle.Concatenencer("Data/Items/FireEffect/FireEffect.miracle.hs", temp2, 0);
                     }
                     if (temp.type==DEGATS_FOI)
                     {
                         m_color.r=64;
                         m_color.g=64;
                         m_color.b=255;
+                        m_chemin_miracles.push_back("Data/Items/HolyEffect/HolyEffect.miracle.hs");
                         if (!m_useMiracle)
-                            m_miracle.Charger("Data/Items/HolyEffect/HolyEffect.miracle.hs"),m_useMiracle=true;
+                            m_miracle.Charger("Data/Items/HolyEffect/HolyEffect.miracle.hs", temp2, 0),m_useMiracle=true;
                         else
-                            m_miracle.Concatenencer("Data/Items/HolyEffect/HolyEffect.miracle.hs");
+                            m_miracle.Concatenencer("Data/Items/HolyEffect/HolyEffect.miracle.hs", temp2, 0);
                     }
                 }
             }

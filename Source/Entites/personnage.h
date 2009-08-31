@@ -141,6 +141,7 @@ public:
 
     Lumiere m_lumiere;
     bool frappeEnCours;
+    bool m_lancementMiracleEnCours;
     bool m_shooter,m_monstre;
     bool m_touche;
     int m_nombreInvocation;

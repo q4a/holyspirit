@@ -356,11 +356,11 @@ void Hero::Charger()
                 {
                     int pos=fichier->tellg();
                     m_inventaire.push_back(Objet ());
-                    m_inventaire.back().ChargerTexte(fichier,true);
-                    m_inventaire.back().Charger(m_inventaire.back().getChemin(),true);
+                    m_inventaire.back().ChargerTexte(fichier,m_caracteristiques,true);
+                    m_inventaire.back().Charger(m_inventaire.back().getChemin(),m_caracteristiques,true);
                     fichier->seekg(pos, ios::beg);
                     m_inventaire.back().m_benedictions.clear();
-                    m_inventaire.back().ChargerTexte(fichier);
+                    m_inventaire.back().ChargerTexte(fichier,m_caracteristiques);
 
                     if (m_inventaire.back().m_equipe>=0&&m_inventaire.back().m_type==ARME)
                     {
@@ -433,48 +433,48 @@ void Hero::Charger()
     //}
     // closedir(repertoire);
 
-    m_classe.Charger(m_cheminClasse, m_lvl_miracles);
+    m_classe.Charger(m_cheminClasse, m_lvl_miracles, m_caracteristiques);
 
     m_lvl_miracles.resize(m_classe.miracles.size(),0);
+
+    ChargerModele();
+
+    RecalculerCaracteristiques();
+    RecalculerCaracteristiques();
 
 
     if (nouveau)
     {
-        //m_classe.Charger(m_cheminClasse);
-
         sf::Color color;
         color.r=255;
         color.g=255;
         color.b=255;
 
+        Caracteristique charTemp;
+        charTemp=m_personnage.getCaracteristique();
+
+        charTemp.force=m_classe.caracteristique.force;
+        charTemp.vitalite=m_classe.caracteristique.vitalite;
+        charTemp.dexterite=m_classe.caracteristique.dexterite;
+        charTemp.piete=m_classe.caracteristique.piete;
+        charTemp.charisme=m_classe.caracteristique.charisme;
+
+        m_personnage.setCaracteristique(charTemp);
+
+        RecalculerCaracteristiques();
 
         for (int i=0;i<(int)m_classe.equipementParDefaut.size();++i)
         {
             Objet temp;
 
-            temp.Charger(m_classe.equipementParDefaut[i]);
+            temp.Charger(m_classe.equipementParDefaut[i],m_caracteristiques);
             temp.Generer(1);
             AjouterObjet(temp);
-
-            Caracteristique charTemp;
-            charTemp=m_personnage.getCaracteristique();
-
-            charTemp.force=m_classe.caracteristique.force;
-            charTemp.vitalite=m_classe.caracteristique.vitalite;
-            charTemp.dexterite=m_classe.caracteristique.dexterite;
-            charTemp.piete=m_classe.caracteristique.piete;
-            charTemp.charisme=m_classe.caracteristique.charisme;
-
-            m_personnage.setCaracteristique(charTemp);
         }
+        ChargerModele();
 
-
-
+        RecalculerCaracteristiques();
     }
-    ChargerModele();
-
-    RecalculerCaracteristiques();
-    RecalculerCaracteristiques();
 
     m_caracteristiques.vie=m_caracteristiques.maxVie;
     m_caracteristiques.foi=m_caracteristiques.maxFoi;
@@ -508,12 +508,14 @@ void Hero::ChargerModele(bool tout)
         miraclesLances.push_back(m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele]);
 
     m_classe.miracles.clear();
-    m_classe.Charger(m_cheminClasse, m_lvl_miracles);
+    m_classe.Charger(m_cheminClasse, m_lvl_miracles, m_caracteristiques);
 
     for (int i=0;i<(int)m_inventaire.size();++i)
     {
         if (m_inventaire[i].m_equipe>=0&&m_inventaire[i].m_equipe<(int)m_classe.emplacements.size())
         {
+            m_inventaire[i].ChargerMiracle(m_caracteristiques);
+
             if ((m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==ARME_PRINCIPAL&&m_inventaire[i].m_type==ARME)||(m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==BOUCLIER&&m_inventaire[i].m_type==ARME))
                 nombreArme++;
 
@@ -527,13 +529,13 @@ void Hero::ChargerModele(bool tout)
                 {
                     m_classe.miracles.push_back(m_inventaire[i].m_miracle);
 
-                    m_classe.miracles.back().m_effets[0].m_lien.push_back((int) m_classe.miracles.back().m_effets.size());
+                    /*m_classe.miracles.back().m_effets[0].m_lien.push_back((int) m_classe.miracles.back().m_effets.size());
 
                     m_classe.miracles.back().m_effets.push_back(Effet ());
 
                     m_classe.miracles.back().m_effets.back().m_type=DEGATS;
                     m_classe.miracles.back().m_effets.back().m_informations[0]=m_caracteristiques.degatsMin;
-                    m_classe.miracles.back().m_effets.back().m_informations[1]=m_caracteristiques.degatsMax;
+                    m_classe.miracles.back().m_effets.back().m_informations[1]=m_caracteristiques.degatsMax;*/
 
                     m_weaponMiracle=m_classe.miracles.size()-1;
                 }
@@ -1941,6 +1943,7 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                 if (m_cas == m_classe.miracles[miracle].m_cas || m_classe.miracles[miracle].m_cas == -1)
                     if (cible != NULL && m_classe.miracles[miracle].m_effets[0].m_type == CORPS_A_CORPS || m_classe.miracles[miracle].m_effets[0].m_type != CORPS_A_CORPS )
                     {
+                        m_personnage.m_lancementMiracleEnCours = true;
                         m_personnage.m_miracleEnCours.push_back(EntiteMiracle ());
 
                         if (m_classe.miracles[miracle].m_effets[0].m_type != CORPS_A_CORPS)
@@ -1990,6 +1993,24 @@ bool Hero::AjouterObjet(Objet objet,bool enMain)
         ramasser = AjouterObjetInventaire(objet,&m_inventaire,m_classe.position_contenu_inventaire, false);
         if (ramasser)
             m_inventaire.back().JouerSon();
+
+        if (m_inventaire.back().m_type == ARME || m_inventaire.back().m_type == ARMURE)
+        {
+            bool continuer = true;
+            for (int j=0;j<(int)m_classe.emplacements.size() && continuer;j++)
+                for (int i=0;i<(int)m_inventaire.back().m_emplacement.size() && continuer;++i)
+                    if (m_inventaire.back().m_emplacement[i] == m_classe.emplacements[j].emplacement && continuer)
+                    {
+                        continuer=false;
+                        for(unsigned k = 0 ; k < m_inventaire.size() - 1 ; ++k)
+                            if(m_inventaire[k].m_equipe == j)
+                                continuer = true;
+                        if(!continuer)
+                            Equiper(m_inventaire.size() - 1, j);
+                    }
+            if(!continuer)
+                ChargerModele();
+        }
     }
     else if (m_objetEnMain==-1)
     {

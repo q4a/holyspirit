@@ -236,7 +236,7 @@ void                ChargerCoordonneeInterface(ifstream &fichier, coordonnee &co
 
 
 
-void Classe::Charger(string chemin, const std::vector<int> &lvl_miracles)
+void Classe::Charger(string chemin, const std::vector<int> &lvl_miracles, const Caracteristique &caract)
 {
     emplacements.clear();
     equipementParDefaut.clear();
@@ -519,27 +519,18 @@ void Classe::Charger(string chemin, const std::vector<int> &lvl_miracles)
                     fichier.get(caractere);
                     if (caractere=='m')
                     {
-                        std::string buf;
-                        fichier>>buf;
+                        int level = 0;
+                        std::string temp;
+                        fichier>>temp;
 
                         if(lvl_miracles.size() > miracles.size())
-                            temp << buf << lvl_miracles[miracles.size()] << ".miracle.hs";
-                        else
-                            temp << buf <<+ "0.miracle.hs";
+                            level = lvl_miracles[miracles.size()];
 
-                        std::ostringstream temp2;
-                        if(lvl_miracles.size() > miracles.size())
-                            temp2 << buf << (lvl_miracles[miracles.size()]+1) << ".miracle.hs";
-                        else
-                            temp2 << buf <<+ "1.miracle.hs";
+                        miracles.push_back(Miracle (temp, caract, level));
 
-                        miracles.push_back(Miracle (temp.str()));
-
-
-
-                        if(!miracles.back().m_max)
+                        //if(!miracles.back().m_max == )
                         {
-                            Miracle mir(temp2.str());
+                            Miracle mir(temp, caract, level + 1);
                             for(int i = 0 ; i < (int)mir.m_description_effets.size() ; ++i)
                                 miracles.back().m_description_effets_suivant.push_back(mir.m_description_effets[i]);
 
@@ -578,7 +569,7 @@ void Classe::Charger(string chemin, const std::vector<int> &lvl_miracles)
 
                 if(lvl_miracles.size() >= miracles.size())
                     if(miracles.back().m_buf != -1 && lvl_miracles[miracles.size()-1] > 0)
-                        miracles[miracles.back().m_buf].Concatenencer(temp.str());
+                        miracles[miracles.back().m_buf].Concatenencer(temp.str(), caract, lvl_miracles[miracles.size()-1]);
 
                 fichier.get(caractere);
             }

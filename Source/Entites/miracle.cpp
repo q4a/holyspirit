@@ -78,7 +78,7 @@ void EffetGraphique::Afficher(float rotation)
 
 void EffetGraphique::Animer(float temps)
 {
-    if(m_actif)
+    if (m_actif)
     {
         float tempsAnimation = m_tiles[m_tileEnCours].getTemps();
         m_animation += temps;
@@ -91,7 +91,7 @@ void EffetGraphique::Animer(float temps)
 
             if (m_compteur > 0 || m_compteur == -100)
             {
-                if(m_compteur != -100)
+                if (m_compteur != -100)
                     m_compteur--;
 
                 sf::Vector2f pos;
@@ -147,9 +147,9 @@ Miracle::Miracle()
 {
 }
 
-Miracle::Miracle(std::string chemin)
+Miracle::Miracle(std::string chemin, const Caracteristique &caract, int level)
 {
-    Charger(chemin);
+    Charger(chemin, caract, level);
 }
 
 Miracle::~Miracle()
@@ -161,8 +161,169 @@ Miracle::~Miracle()
     m_image.clear();
 }
 
+float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int level, char priorite, bool *cont);
 
-void Miracle::Charger(std::string chemin)
+float getValeur(ifstream &fichier, char caractere)
+{
+    int temp = 0;
+    std::vector<char> buf;
+    do
+    {
+        buf.push_back(caractere);
+        fichier.get(caractere);
+    }
+    while (caractere >= '0' && caractere <= '9');
+
+    for (unsigned i = 0 ; i < buf.size() ; i++ )
+    {
+        int val = 0;
+        if (buf[i] == '0')
+            val = 0;
+        else if (buf[i] == '1')
+            val = 1;
+        else if (buf[i] == '2')
+            val = 2;
+        else if (buf[i] == '3')
+            val = 3;
+        else if (buf[i] == '4')
+            val = 4;
+        else if (buf[i] == '5')
+            val = 5;
+        else if (buf[i] == '6')
+            val = 6;
+        else if (buf[i] == '7')
+            val = 7;
+        else if (buf[i] == '8')
+            val = 8;
+        else if (buf[i] == '9')
+            val = 9;
+
+        int exposant = 1;
+        for (unsigned j = 0 ; j < (buf.size() - i - 1) ; ++j)
+            exposant *= 10;
+
+        temp += val * exposant;
+    }
+    return temp;
+}
+
+float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int level, char priorite, bool *continuer)
+{
+    float valeur = 0;
+    char caractere;
+
+    do
+    {
+        fichier.get(caractere);
+
+        if (caractere == '+')
+        {
+             if(priorite == '+')
+             {
+                valeur += ChargerEquation(fichier, caract, level, '+', continuer);
+                if(!*continuer)
+                    return valeur;
+                else
+                    *continuer = false;
+             }
+             else
+             {
+                 fichier.putback(caractere);
+                *continuer = true;
+                 return valeur;
+             }
+        }
+        else if (caractere == '-')
+        {
+             if(priorite == '+')
+             {
+                valeur -= ChargerEquation(fichier, caract, level, '+', continuer);
+                if(!*continuer)
+                    return valeur;
+                else
+                    *continuer = false;
+             }
+             else
+             {
+                 fichier.putback(caractere);
+                *continuer = true;
+                 return valeur;
+             }
+        }
+        else if (caractere == '*')
+        {
+             if(priorite == '*' || priorite == '+')
+             {
+                valeur *= ChargerEquation(fichier, caract, level, '*', continuer);
+                if(!*continuer)
+                    return valeur;
+                else
+                    *continuer = false;
+             }
+             else
+             {
+                 fichier.putback(caractere);
+                *continuer = true;
+             }
+        }
+        else if (caractere == '/')
+        {
+             if(priorite == '*' || priorite == '+')
+             {
+                valeur /= ChargerEquation(fichier, caract, level, '*', continuer);
+                if(!*continuer)
+                    return valeur;
+                else
+                    *continuer = false;
+             }
+             else
+             {
+                 fichier.putback(caractere);
+                *continuer = true;
+             }
+        }
+        else if (caractere == '^')
+        {
+             if( priorite == '^' || priorite == '*' || priorite == '+')
+             {
+                float temp = ChargerEquation(fichier, caract, level, '^', continuer);
+                float buf = valeur;
+
+                for(int i = 1 ; i < (int)temp ; ++i )
+                    valeur *= buf;
+
+                if(!*continuer)
+                    return valeur;
+                else
+                    *continuer = false;
+             }
+             else
+             {
+                 fichier.putback(caractere);
+                *continuer = true;
+             }
+        }
+
+        else if (caractere == 'l')
+            valeur = level;
+
+        else if (caractere == 'i')
+            valeur = caract.degatsMin;
+        else if (caractere == 'a')
+            valeur = caract.degatsMin;
+
+        else if (caractere == '(')
+            valeur = ChargerEquation(fichier, caract, level, '+', continuer);
+
+        else if (caractere >= '0' && caractere <= '9')
+            valeur = getValeur(fichier, caractere);
+
+    }
+    while (caractere!='$' && caractere!=')');
+    return valeur;
+}
+
+void Miracle::Charger(std::string chemin, const Caracteristique &caract, int level)
 {
     console->Ajouter("Chargement du miracle : "+chemin);
 
@@ -173,6 +334,8 @@ void Miracle::Charger(std::string chemin)
     m_coutFoi    =  0;
     m_reserveVie =  0;
     m_coutVie    =  0;
+
+    std::vector<float> valeurs;
 
     ifstream fichier;
     fichier.open(m_chemin.c_str(), ios::in);
@@ -230,6 +393,24 @@ void Miracle::Charger(std::string chemin)
         }
         m_description.push_back(description.substr(0, stTemp)+'\n');
 
+
+        do
+        {
+            fichier.get(caractere);
+            if (caractere=='*')
+            {
+                bool continuer = false;
+                valeurs.push_back(ChargerEquation(fichier, caract, level, '+', &continuer));
+            }
+
+            if (fichier.eof())
+            {
+                console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
+                caractere='$';
+            }
+        }
+        while (caractere!='$');
+
         description = "";
 
         do
@@ -241,8 +422,77 @@ void Miracle::Charger(std::string chemin)
 
                 fichier>>m_description_effets.back();
                 for (int i=0;i<(int)m_description_effets.back().size();i++)
+                {
                     if (m_description_effets.back()[i]=='_')
                         m_description_effets.back()[i]=' ';
+                    else if (m_description_effets.back()[i]=='\\')
+                    {
+                        std::ostringstream buf2;
+
+                        for(int j = 0 ; j < i ; ++j)
+                            buf2 << m_description_effets.back()[j];
+                        for(int j = i + 1 ; j < (int)m_description_effets.back().size() ; ++j)
+                            buf2 << m_description_effets.back()[j];
+
+                        m_description_effets.back() = buf2.str();
+                    }
+                    else if (m_description_effets.back()[i]=='%')
+                    {
+                        ++i;
+                        int buf = 0;
+                        int nbr = 0;
+                        while(i + buf < (int)m_description_effets.back().size())
+                        {
+                            if(m_description_effets.back()[i + buf] >= '0' && m_description_effets.back()[i + buf] <= '9')
+                                buf++;
+                            else
+                                break;
+                        }
+
+                        for(int j = 0 ; j < buf ; ++j)
+                        {
+                            int val = 0;
+                            if (m_description_effets.back()[i + j] == '0')
+                                val = 0;
+                            else if (m_description_effets.back()[i + j] == '1')
+                                val = 1;
+                            else if (m_description_effets.back()[i + j] == '2')
+                                val = 2;
+                            else if (m_description_effets.back()[i + j] == '3')
+                                val = 3;
+                            else if (m_description_effets.back()[i + j] == '4')
+                                val = 4;
+                            else if (m_description_effets.back()[i + j] == '5')
+                                val = 5;
+                            else if (m_description_effets.back()[i + j] == '6')
+                                val = 6;
+                            else if (m_description_effets.back()[i + j] == '7')
+                                val = 7;
+                            else if (m_description_effets.back()[i + j] == '8')
+                                val = 8;
+                            else if (m_description_effets.back()[i + j] == '9')
+                                val = 9;
+                            for (int k = 0 ; k < (buf-j-1) ; ++k)
+                                val *= 10;
+
+                            nbr  += val;
+                        }
+
+                        if(nbr >= 0 && nbr < (int)valeurs.size())
+                        {
+                            std::ostringstream buf2;
+
+                            for(int j = 0 ; j < i-1 ; ++j)
+                                buf2 << m_description_effets.back()[j];
+                            buf2 << valeurs[nbr];
+                            for(int j = i+buf ; j < (int)m_description_effets.back().size() ; ++j)
+                                buf2 << m_description_effets.back()[j];
+
+                            m_description_effets.back() = buf2.str();
+                            i = -1;
+                        }
+                    }
+                }
             }
 
             if (fichier.eof())
@@ -253,20 +503,8 @@ void Miracle::Charger(std::string chemin)
         }
         while (caractere!='$');
 
-        /*if(description.size() > 0)
-        {
-            stTemp = description.find('\\');
-
-            while (stTemp !=  std::string::npos)
-            {
-                m_description.push_back(description.substr(0, stTemp)+'\n');
-                description = description.substr(stTemp + 1);
-                stTemp = description.find('\\');
-            }
-            m_description_effets.push_back(description.substr(0, stTemp)+'\n');
-        }
-
-        description = "";*/
+        if(level == 0)
+            m_description_effets.clear();
 
         do
         {
@@ -279,19 +517,71 @@ void Miracle::Charger(std::string chemin)
                     switch (caractere)
                     {
                     case 'f':
-                        fichier>>m_coutFoi;
+                        fichier.get(caractere);
+                        if(caractere == '%')
+                        {
+                            fichier.get(caractere);
+                            int nbr = (int)getValeur(fichier, caractere);
+
+                            if(nbr >= 0 && nbr < (int)valeurs.size())
+                                m_coutFoi = (int)valeurs[nbr];
+                        }
+                        else
+                        {
+                            fichier.putback(caractere);
+                            fichier>>m_coutFoi;
+                        }
                         break;
 
                     case 'F':
-                        fichier>>m_reserveFoi;
+                        fichier.get(caractere);
+                        if(caractere == '%')
+                        {
+                            fichier.get(caractere);
+                            int nbr = (int)getValeur(fichier, caractere);
+
+                            if(nbr >= 0 && nbr < (int)valeurs.size())
+                                m_reserveFoi = (int)valeurs[nbr];
+                        }
+                        else
+                        {
+                            fichier.putback(caractere);
+                            fichier>>m_reserveFoi;
+                        }
                         break;
 
                     case 'v':
-                        fichier>>m_coutVie;
+                        fichier.get(caractere);
+                        if(caractere == '%')
+                        {
+                            fichier.get(caractere);
+                            int nbr = (int)getValeur(fichier, caractere);
+
+                            if(nbr >= 0 && nbr < (int)valeurs.size())
+                                m_coutVie = (int)valeurs[nbr];
+                        }
+                        else
+                        {
+                            fichier.putback(caractere);
+                            fichier>>m_coutVie;
+                        }
                         break;
 
                     case 'V':
-                        fichier>>m_reserveVie;
+                        fichier.get(caractere);
+                        if(caractere == '%')
+                        {
+                            fichier.get(caractere);
+                            int nbr = (int)getValeur(fichier, caractere);
+
+                            if(nbr >= 0 && nbr < (int)valeurs.size())
+                                m_reserveVie = (int)valeurs[nbr];
+                        }
+                        else
+                        {
+                            fichier.putback(caractere);
+                            fichier>>m_reserveVie;
+                        }
                         break;
 
                     case 'm':
@@ -383,8 +673,6 @@ void Miracle::Charger(std::string chemin)
                         fichier>>m_effets.back().m_chaine;
                         break;
 
-
-
                     case 's':
                         fichier>>m_effets.back().m_sequence;
                         break;
@@ -392,17 +680,107 @@ void Miracle::Charger(std::string chemin)
                     case 'i':
                         fichier.get(caractere);
                         if (caractere=='a')
-                            fichier>>m_effets.back().m_informations[0];
+                        {
+                            fichier.get(caractere);
+                            if(caractere == '%')
+                            {
+                                fichier.get(caractere);
+                                int nbr =(int) getValeur(fichier, caractere);
+
+                                if(nbr >= 0 && nbr < (int)valeurs.size())
+                                    m_effets.back().m_informations[0] = (int)valeurs[nbr];
+                            }
+                            else
+                            {
+                                fichier.putback(caractere);
+                                fichier>>m_effets.back().m_informations[0];
+                            }
+                        }
                         if (caractere=='b')
-                            fichier>>m_effets.back().m_informations[1];
+                        {
+                            fichier.get(caractere);
+                            if(caractere == '%')
+                            {
+                                fichier.get(caractere);
+                                int nbr =(int) getValeur(fichier, caractere);
+
+                                if(nbr >= 0 && nbr < (int)valeurs.size())
+                                    m_effets.back().m_informations[1] = (int)valeurs[nbr];
+                            }
+                            else
+                            {
+                                fichier.putback(caractere);
+                                fichier>>m_effets.back().m_informations[1];
+                            }
+                        }
                         if (caractere=='c')
-                            fichier>>m_effets.back().m_informations[2];
+                        {
+                            fichier.get(caractere);
+                            if(caractere == '%')
+                            {
+                                fichier.get(caractere);
+                                int nbr =(int) getValeur(fichier, caractere);
+
+                                if(nbr >= 0 && nbr < (int)valeurs.size())
+                                    m_effets.back().m_informations[2] = (int)valeurs[nbr];
+                            }
+                            else
+                            {
+                                fichier.putback(caractere);
+                                fichier>>m_effets.back().m_informations[2];
+                            }
+                        }
                         if (caractere=='d')
-                            fichier>>m_effets.back().m_informations[3];
+                        {
+                            fichier.get(caractere);
+                            if(caractere == '%')
+                            {
+                                fichier.get(caractere);
+                                int nbr =(int) getValeur(fichier, caractere);
+
+                                if(nbr >= 0 && nbr < (int)valeurs.size())
+                                    m_effets.back().m_informations[3] = (int)valeurs[nbr];
+                            }
+                            else
+                            {
+                                fichier.putback(caractere);
+                                fichier>>m_effets.back().m_informations[3];
+                            }
+                        }
                         if (caractere=='e')
-                            fichier>>m_effets.back().m_informations[4];
+                        {
+                            fichier.get(caractere);
+                            if(caractere == '%')
+                            {
+                                fichier.get(caractere);
+                                int nbr =(int) getValeur(fichier, caractere);
+
+                                if(nbr >= 0 && nbr < (int)valeurs.size())
+                                    m_effets.back().m_informations[4] = (int)valeurs[nbr];
+                            }
+                            else
+                            {
+                                fichier.putback(caractere);
+                                fichier>>m_effets.back().m_informations[4];
+                            }
+                        }
                         if (caractere=='f')
-                            fichier>>m_effets.back().m_informations[5];
+                        {
+                            fichier.get(caractere);
+                            if(caractere == '%')
+                            {
+                                fichier.get(caractere);
+                                int nbr =(int) getValeur(fichier, caractere);
+
+                                if(nbr >= 0 && nbr < (int)valeurs.size())
+                                    m_effets.back().m_informations[5] = (int)valeurs[nbr];
+                            }
+                            else
+                            {
+                                fichier.putback(caractere);
+                                fichier>>m_effets.back().m_informations[5];
+                            }
+                        }
                         break;
                     }
                     if (fichier.eof())
@@ -582,9 +960,9 @@ void Miracle::JouerSon(int numeroSon,coordonnee position,coordonnee positionHero
     }
 }
 
-void Miracle::Concatenencer(std::string chemin)
+void Miracle::Concatenencer(std::string chemin, const Caracteristique &caract, int level)
 {
-    Miracle miracle(chemin);
+    Miracle miracle(chemin, caract, level) ;
     m_effets.back().m_lien.push_back((int)m_effets.size());
 
     int tailleEffets    = m_effets.size();
@@ -625,7 +1003,7 @@ void Miracle::Concatenencer(std::string chemin)
     m_coutVie_suivant       += miracle.m_coutVie;
     m_reserveVie_suivant    += miracle.m_reserveVie;
 
-    for(int i = 0 ; i < (int)miracle.m_description_effets.size() ; ++i)
+    for (int i = 0 ; i < (int)miracle.m_description_effets.size() ; ++i)
         m_description_effets.push_back(miracle.m_description_effets[i]);
 }
 
@@ -673,25 +1051,25 @@ void Miracle::AfficherDescription(coordonnee position, bool suivant)
     for (int i=0;i<(int)m_description_effets.size();i++)
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_description_effets[i].c_str()));
 
-    if(m_coutFoi > 0)
+    if (m_coutFoi > 0)
     {
         std::ostringstream buf;
         buf<<"Cout en foi : "<<m_coutFoi;
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
     }
-    if(m_reserveFoi > 0)
+    if (m_reserveFoi > 0)
     {
         std::ostringstream buf;
         buf<<"Réserve en foi : "<<m_reserveFoi;
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
     }
-    if(m_coutVie > 0)
+    if (m_coutVie > 0)
     {
         std::ostringstream buf;
         buf<<"Cout en vie : "<<m_coutVie;
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
     }
-    if(m_reserveVie > 0)
+    if (m_reserveVie > 0)
     {
         std::ostringstream buf;
         buf<<"Réserve en vie : "<<m_reserveVie;
@@ -701,7 +1079,7 @@ void Miracle::AfficherDescription(coordonnee position, bool suivant)
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
 
-    if(!m_max && suivant)
+    if (!m_max && suivant)
     {
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"Niveau suivant :"));
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
@@ -709,25 +1087,25 @@ void Miracle::AfficherDescription(coordonnee position, bool suivant)
         for (int i=0;i<(int)m_description_effets_suivant.size();i++)
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_description_effets_suivant[i].c_str()));
 
-        if(m_coutFoi_suivant > 0)
+        if (m_coutFoi_suivant > 0)
         {
             std::ostringstream buf;
             buf<<"Cout en foi : "<<m_coutFoi_suivant;
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
         }
-        if(m_reserveFoi_suivant > 0)
+        if (m_reserveFoi_suivant > 0)
         {
             std::ostringstream buf;
             buf<<"Réserve en foi : "<<m_reserveFoi_suivant;
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
         }
-        if(m_coutVie_suivant > 0)
+        if (m_coutVie_suivant > 0)
         {
             std::ostringstream buf;
             buf<<"Cout en vie : "<<m_coutVie_suivant;
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
         }
-        if(m_reserveVie_suivant > 0)
+        if (m_reserveVie_suivant > 0)
         {
             std::ostringstream buf;
             buf<<"Réserve en vie : "<<m_reserveVie_suivant;

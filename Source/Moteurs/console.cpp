@@ -88,6 +88,21 @@ void Console::Ajouter(int nombre,bool erreur)
     }
 }
 
+void Console::Ajouter(char caractere,bool erreur)
+{
+    if (!configuration->desactivate_console)
+    {
+        std::ostringstream buf;
+        buf<<caractere;
+        m_textes.push_back(buf.str());
+        m_erreur.push_back(erreur);
+        Rapport();
+
+        std::cout<<m_textes.back()<<std::endl;
+    }
+}
+
+
 int Console::getTaille()
 {
     return m_textes.size();

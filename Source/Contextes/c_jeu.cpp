@@ -237,7 +237,7 @@ void c_Jeu::Animation(Jeu *jeu)
 
         if (retour==0) //Animation du héro
         {
-            if (jeu->hero.m_personnage.frappeEnCours)
+            if (jeu->hero.m_personnage.frappeEnCours && !jeu->hero.m_personnage.m_lancementMiracleEnCours)
             {
                 bool toucher=false;
                 if (!jeu->hero.m_personnage.m_shooter)
@@ -246,7 +246,7 @@ void c_Jeu::Animation(Jeu *jeu)
                         if (fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().x)<=2&&fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().y-jeu->hero.m_personnage.getCoordonnee().y)<=2)
                             if (rand() % 100 < (float)((float)jeu->hero.m_caracteristiques.dexterite / ((float)jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCaracteristique().dexterite+1))*75 )
                                 if (!jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->m_friendly)
-                                    toucher=true,jeu->map->InfligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax - jeu->hero.m_personnage.getCaracteristique().degatsMin+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin,&jeu->hero,1);
+                                    toucher=true,jeu->map->InfligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_caracteristiques.degatsMax - jeu->hero.m_caracteristiques.degatsMin+1))+jeu->hero.m_caracteristiques.degatsMin,&jeu->hero,1);
                 }
                 else
                     toucher=true;
@@ -279,6 +279,9 @@ void c_Jeu::Animation(Jeu *jeu)
                         || fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().y - jeu->hero.m_personnage.getCoordonnee().y) > 1)
                     jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
         }
+
+        if(!jeu->hero.m_personnage.frappeEnCours)
+            jeu->hero.m_personnage.m_lancementMiracleEnCours = false;
 
 
         jeu->map->Animer(&jeu->hero,tempsDepuisDerniereAnimation,&jeu->menu); // Animation des tiles de la jeu->map

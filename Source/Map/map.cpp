@@ -382,6 +382,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                     fichier2->get(caractere);
                     if (caractere=='*')
                     {
+
+                        Caracteristique tempCaract;
                         Lumiere lumiere;
                         int numeroModele=-1,vieMin=0,vieMax=1,degatsMin=0,degatsMax=0,rang=0,ame=0,pose=0,etat=0,angle=0;
                         float taille=1;
@@ -463,11 +465,11 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                             case 'o':
                                 int pos=fichier2->tellg();
                                 objets.push_back(Objet ());
-                                objets.back().ChargerTexte(fichier2,true);
-                                objets.back().Charger(objets.back().getChemin(),true);
+                                objets.back().ChargerTexte(fichier2,tempCaract,true);
+                                objets.back().Charger(objets.back().getChemin(),tempCaract,true);
                                 fichier2->seekg(pos, ios::beg);
                                 objets.back().m_benedictions.clear();
-                                objets.back().ChargerTexte(fichier2);
+                                objets.back().ChargerTexte(fichier2,tempCaract);
                                 break;
                             }
 
@@ -598,6 +600,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                     m_decor[couche].push_back(std::vector<Decor> ());
                     do
                     {
+                        Caracteristique tempCaract;
+
                         int pos;
                         std::vector<int> evenement;
                         int tileset=-1,tileFinal=-1,herbe=-1,layer=0,hauteur=0;
@@ -640,11 +644,12 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                             case 'o':
                                 pos=fichier->tellg();
                                 objets.push_back(Objet ());
-                                objets.back().ChargerTexte(fichier,true);
-                                objets.back().Charger(objets.back().getChemin(),true);
+                                objets.back().ChargerTexte(fichier,tempCaract,true);
+                                objets.back().Charger(objets.back().getChemin(),tempCaract,true);
                                 fichier->seekg(pos, ios::beg);
                                 objets.back().m_benedictions.clear();
-                                objets.back().ChargerTexte(fichier);
+                                objets.back().ChargerTexte(fichier,tempCaract);
+
                                 break;
 
                             case 'r':
@@ -693,11 +698,11 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                                 case 'o':
                                                     pos=fichier->tellg();
                                                     objets.push_back(Objet ());
-                                                    objets.back().ChargerTexte(fichier,true);
-                                                    objets.back().Charger(objets.back().getChemin(),true);
+                                                    objets.back().ChargerTexte(fichier,tempCaract,true);
+                                                    objets.back().Charger(objets.back().getChemin(),tempCaract,true);
                                                     fichier->seekg(pos, ios::beg);
                                                     objets.back().m_benedictions.clear();
-                                                    objets.back().ChargerTexte(fichier);
+                                                    objets.back().ChargerTexte(fichier,tempCaract);
                                                     break;
                                                 }
 
@@ -3240,21 +3245,22 @@ void Map::TestVisionMonstre(int numero, Hero *hero)
                     }
                     else
                     {
-                        if (hero->m_personnage.getCoordonnee().y == y && hero->m_personnage.getCoordonnee().x == x)
-                        {
-                            if (m_monstre[numero].m_cible == NULL)
-                                m_monstre[numero].m_cible = &hero->m_personnage;
-                            else
+                        if(hero->m_personnage.EnVie())
+                            if (hero->m_personnage.getCoordonnee().y == y && hero->m_personnage.getCoordonnee().x == x)
                             {
-                                int x1 = m_monstre[numero].m_cible->getCoordonnee().x - m_monstre[numero].getCoordonnee().x;
-                                int y1 = m_monstre[numero].m_cible->getCoordonnee().y - m_monstre[numero].getCoordonnee().y;
-
-                                int x2 = x - m_monstre[numero].getCoordonnee().x;
-                                int y2 = y - m_monstre[numero].getCoordonnee().y;
-                                if ( x1 * x1 + y1 * y1 > x2 * x2 + y2 * y2)
+                                if (m_monstre[numero].m_cible == NULL)
                                     m_monstre[numero].m_cible = &hero->m_personnage;
+                                else
+                                {
+                                    int x1 = m_monstre[numero].m_cible->getCoordonnee().x - m_monstre[numero].getCoordonnee().x;
+                                    int y1 = m_monstre[numero].m_cible->getCoordonnee().y - m_monstre[numero].getCoordonnee().y;
+
+                                    int x2 = x - m_monstre[numero].getCoordonnee().x;
+                                    int y2 = y - m_monstre[numero].getCoordonnee().y;
+                                    if ( x1 * x1 + y1 * y1 > x2 * x2 + y2 * y2)
+                                        m_monstre[numero].m_cible = &hero->m_personnage;
+                                }
                             }
-                        }
 
                         for (unsigned o = 0 ; o < m_decor[1][y][x].getMonstre().size() ; ++o )
                         {
@@ -3338,7 +3344,7 @@ bool Map::InfligerDegats(Personnage *monstre, float degats, Hero *hero,bool pous
                     if (m_decor[1][y][x].getMonstre()[o]>=0&&m_decor[1][y][x].getMonstre()[o]<(int)m_monstre.size())
                         m_monstre[m_decor[1][y][x].getMonstre()[o]].setVu(1);
 
-    if (!monstre->EnVie() && viePrecedente > 0)
+    if (!monstre->EnVie() && viePrecedente > 0 && monstre != &hero->m_personnage)
     {
         for (int i=0;i<(int)monstre->m_miracleEnCours.size();++i)
         {
