@@ -2,6 +2,7 @@ $
 $
 $
 $
+$
 //Images
 	*Data/Entities/Monsters/DemonicPriest/DemoniacSphere1.png
 $

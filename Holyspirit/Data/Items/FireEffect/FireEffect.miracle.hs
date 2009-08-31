@@ -2,6 +2,7 @@ $
 $
 $
 $
+$
 //Images
 	*Data/Items/FireEffect/FireEffect.png
 $

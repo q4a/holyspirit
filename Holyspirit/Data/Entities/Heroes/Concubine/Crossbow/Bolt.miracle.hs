@@ -1,5 +1,8 @@
 $
 $
+	* i $
+	* a $
+$
 $
 $
 //Images
@@ -9,8 +12,9 @@ $
 	*Data/Sounds/punch.wav
 $
 //Effets
-	* t0 l1 s0 ia15 $ // t pour le type, l c'est pour le lien, s pour la séquence et ia pour les infos relatives
+	* t0 l1 l2 s0 ia15 $ // t pour le type, l c'est pour le lien, s pour la séquence et ia pour les infos relatives
 	* t3 s1 ia2 $
+	* t2 ia%0 ib%1 $
 $
 //Séquences
 	*

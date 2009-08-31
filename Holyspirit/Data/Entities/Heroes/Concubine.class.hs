@@ -72,8 +72,8 @@ $
 	* x0 y0 w800 h600 m Data/Menus/Concubine/CourtisaneAssassin.png $
 	* x0 y0 w800 h600 m Data/Menus/Concubine/CourtisaneCharme.png $
 $
-	* e0 b-1 x215 y99 w32 h32 mData/Entities/Heroes/Concubine/Miracles/Toxic/Toxic $
+	* e0 b-1 x215 y99 w32 h32 mData/Entities/Heroes/Concubine/Miracles/Toxic/Toxic.miracle.hs $
 
-	* e2 b-1 x215 y99 w32 h32 mData/Entities/Heroes/Concubine/Miracles/Charmed/Charmed $
-	* e2 b1 x297 y99 w32 h32 mData/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife $
+	* e2 b-1 x215 y99 w32 h32 mData/Entities/Heroes/Concubine/Miracles/Charmed/Charmed.miracle.hs $
+	* e2 b1 x297 y99 w32 h32 mData/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife.miracle.hs $
 $

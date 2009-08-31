@@ -69,12 +69,12 @@ $
 	* x0 y0 w800 h600 m Data/Menus/Crusader/CroiseProtecteur.png $
 	* x0 y0 w800 h600 m Data/Menus/Crusader/CroiseIncarnation.png $
 $
-	* e0 b-1 x215 y99 w32 h32 mData/Entities/Heroes/Crusader/Miracles/HolyTornado/HolyTornado $
+	* e0 b-1 x215 y99 w32 h32 mData/Entities/Heroes/Crusader/Miracles/HolyTornado/HolyTornado.miracle.hs $
 
-	* e2 b-1 x215 y339 w32 h32 mData/Entities/Heroes/Crusader/Miracles/Lazare/Lazare $
-	* e2 b1 x297 y339 w32 h32 mData/Entities/Heroes/Crusader/Miracles/Lazare/LazareVampirism $
+	* e2 b-1 x215 y339 w32 h32 mData/Entities/Heroes/Crusader/Miracles/Lazare/Lazare.miracle.hs $
+	* e2 b1 x297 y339 w32 h32 mData/Entities/Heroes/Crusader/Miracles/Lazare/LazareVampirism.miracle.hs $
 
-	* e2 b-1 x215 y99 w32 h32 mData/Entities/Heroes/Crusader/Miracles/Barbe/Barbe $
+	* e2 b-1 x215 y99 w32 h32 mData/Entities/Heroes/Crusader/Miracles/Barbe/Barbe.miracle.hs $
 
-	* e1 b-1 x215 y339 w32 h32 mData/Entities/Heroes/Crusader/Miracles/Charge/Charge $
+	* e1 b-1 x215 y339 w32 h32 mData/Entities/Heroes/Crusader/Miracles/Charge/Charge.miracle.hs $
 $
