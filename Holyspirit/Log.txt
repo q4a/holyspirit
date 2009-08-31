@@ -97,35 +97,26 @@
          Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/Charmed.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife.miracle.hs
-         Chargement du miracle : Data/Items/SoundsEffect/Hit.miracle.hs
-         Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
-         Chargement du miracle : Data/Items/SoundsEffect/Hit.miracle.hs
-         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Crossbow/Bolt.miracle.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Dagger/Dagger_r.rs.hs
-         Chargement de : PoignardAttenteDroite0.png
-         Chargement de : PoignardMarcheDroite0.png
-         Chargement de : PoignardAttaqueDroite0.png
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Crossbow/Crossbow.rs.hs
+         Chargement de : ArbaleteAttente0.png
+         Chargement de : ArbaleteMarche0.png
+         Chargement de : ArbaleteTir0.png
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Dagger/Dagger_l.rs.hs
-         Chargement de : PoignardAttenteGauche0.png
-         Chargement de : PoignardMarcheGauche0.png
-         Chargement de : PoignardAttaqueGauche0.png
-         
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/TwoWeapons.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/TwoHand.rs.hs
          Chargement de : CourtisaneBaseAttente1Main0.png
          Chargement de : CourtisaneBaseMarche1Main0.png
          Chargement de : CourtisaneBaseMarche1Main1.png
-         Chargement de : CourtisaneBaseAttaque2Main0.png
-         Chargement de : CourtisaneBaseAttaque2Main1.png
-         Chargement de : CourtisaneBaseAttaque2Main2.png
+         Chargement de : CourtisaneBaseTir0.png
+         Chargement de : CourtisaneBaseTir1.png
          Chargement de : Data/Sounds/9906__Snoman__grass3.wav
-         Chargement de : Data/Sounds/epee.wav
+         Chargement de : Data/Sounds/65734__Erdie__bow02.wav
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Helmets/Hair_OneHand.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Helmets/Hair_TwoHand.rs.hs
          Chargement de : CourtisaneChevelureAttente1Main0.png
          Chargement de : CourtisaneChevelureMarche1Main0.png
-         Chargement de : CourtisaneChevelureAttaque0.png
+         Chargement de : CourtisaneChevelureTir0.png
          /Chargement du héro terminé
          Chargement de : Data/Menus/alpha-arts.png
          Chargement de : Data/Loading_screens/Plaines2.png
@@ -153,18 +144,13 @@
          Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/Charmed.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife.miracle.hs
-         Chargement du miracle : Data/Items/SoundsEffect/Hit.miracle.hs
-         Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
-         Chargement du miracle : Data/Items/SoundsEffect/Hit.miracle.hs
-         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Crossbow/Bolt.miracle.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Dagger/Dagger_r.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Crossbow/Crossbow.rs.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Dagger/Dagger_l.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/TwoHand.rs.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/TwoWeapons.rs.hs
-         
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Helmets/Hair_OneHand.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Helmets/Hair_TwoHand.rs.hs
          
          Chargement de la map : Begin.map.hs
          /Lectures du nom.
@@ -223,18 +209,13 @@
          Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/Charmed.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife.miracle.hs
-         Chargement du miracle : Data/Items/SoundsEffect/Hit.miracle.hs
-         Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
-         Chargement du miracle : Data/Items/SoundsEffect/Hit.miracle.hs
-         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Crossbow/Bolt.miracle.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Dagger/Dagger_r.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Crossbow/Crossbow.rs.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Dagger/Dagger_l.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/TwoHand.rs.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/TwoWeapons.rs.hs
-         
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Helmets/Hair_OneHand.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Helmets/Hair_TwoHand.rs.hs
          
          Chargement de la map : ArableLand0.map.hs
          /Lectures du nom.
@@ -701,7 +682,7 @@
          Chargement de : Data/Entities/NPC/RareTrader.rs.hs terminé
          
          Chargement du monstre : Data/Entities/NPC/Questeur.rs.hs
-         Chargement de : Data/Sounds/QUest1-1.wav
+ERREUR : Impossible de charger : Data/Sounds/QUest1-1.wav
          Chargement du script : " Data/Scripts/NPC/questeur.script.hs "
          
          Chargement de l'objet : Sacred_tiare.item.hs
@@ -710,15 +691,10 @@
          /Lectures des monstres.
          
          /Lectures des événements.
-         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
-         Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
-         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
-         Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
-         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
-         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
          /Lectures des cases.
          Chargement de la map terminé.
          
+         Chargement du script : " Data/Scripts/AI/Charmed.script.hs "
          Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/Charmed.miracle.hs
@@ -727,18 +703,68 @@
          Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Concubine/Crossbow/Bolt.miracle.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Concubine/Crossbow/Crossbow.rs.hs
-         Chargement de : ArbaleteAttente0.png
-         Chargement de : ArbaleteMarche0.png
-         Chargement de : ArbaleteTir0.png
-         
          Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/TwoHand.rs.hs
-         Chargement de : CourtisaneBaseTir0.png
-         Chargement de : CourtisaneBaseTir1.png
-         Chargement de : Data/Sounds/65734__Erdie__bow02.wav
          
          Chargement du personnage : Data/Entities/Heroes/Concubine/Helmets/Hair_TwoHand.rs.hs
-         Chargement de : CourtisaneChevelureTir0.png
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/Charmed.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/Charmed.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Crossbow/Bolt.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/TwoHand.rs.hs
+         
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Helmets/Hair_TwoHand.rs.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/Charmed.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/Charmed.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife.miracle.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife.miracle.hs
+         Chargement du miracle : Data/Items/SoundsEffect/Hit.miracle.hs
+         Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
+         Chargement du miracle : Data/Items/SoundsEffect/Hit.miracle.hs
+         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Dagger/Dagger_r.rs.hs
+         Chargement de : PoignardAttenteDroite0.png
+         Chargement de : PoignardMarcheDroite0.png
+         Chargement de : PoignardAttaqueDroite0.png
+         
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Dagger/Dagger_l.rs.hs
+         Chargement de : PoignardAttenteGauche0.png
+         Chargement de : PoignardMarcheGauche0.png
+         Chargement de : PoignardAttaqueGauche0.png
+         
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Nude/TwoWeapons.rs.hs
+         Chargement de : CourtisaneBaseAttaque2Main0.png
+         Chargement de : CourtisaneBaseAttaque2Main1.png
+         Chargement de : CourtisaneBaseAttaque2Main2.png
+         Chargement de : Data/Sounds/epee.wav
+         
+         Chargement du personnage : Data/Entities/Heroes/Concubine/Helmets/Hair_OneHand.rs.hs
+         Chargement de : CourtisaneChevelureAttaque0.png
+         
+         Sauvegarde de la map : Data/Temp/ArableLand0.map.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map_ArableLand0.map.hs.emap.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Ecriture des objets.
+         /Ecriture des miracles.
+         /Ecriture des quetes.
+         Sauvegarde du héro terminée !
          
          Sauvegarde du héro...
          Ouverture du fichier.
