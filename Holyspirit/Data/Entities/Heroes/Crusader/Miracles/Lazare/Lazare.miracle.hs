@@ -18,7 +18,7 @@ $
 $
 //Effets
 	* t8 l1 l3 ia-1 ib0 ic0 $
-	* t5 l2 s0 ia0 ib0 ic1 $
+	* t5 l2 s0 ia0 ib0 ic%1 $
 	* t3 s1 ia16 $
 	* t8 ia-1 ib0 ic0 $
 $
