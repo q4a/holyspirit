@@ -49,6 +49,7 @@ class Monstre : public Personnage
 {
 public:
     Monstre();
+    Monstre(Personnage &);
     ~Monstre();
     void Charger(int numero,Modele_Monstre *modele);
     void TesterVision(coordonnee positionHero);

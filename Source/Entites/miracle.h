@@ -69,13 +69,15 @@ public:
 class Projectile
 {
 public:
+    Projectile();
+
     void Afficher();
     void Deplacer(float temp);
 
     bool m_monstre;
     bool m_actif;
     bool m_supprime;
-    int m_degats;
+    //int m_degats;
     coordonneeDecimal m_position,m_vecteur;
     coordonnee m_positionCase;
     float m_rotation,m_rotationReelle;
@@ -86,6 +88,8 @@ public:
 
     coordonnee m_cible ; //Pour savoir si le projectile doit s'arreter à une case précise ou continuer jusqu'a rencontrer un obstacle, vaut -1 -1 si il doit continuer
     coordonnee m_depart;
+
+    Personnage *m_entite_cible;
 };
 
 
@@ -161,6 +165,7 @@ public:
     int                         m_cas;
 
     int                         m_buf;
+    int                         m_level;
 };
 
 struct InfosEntiteMiracle

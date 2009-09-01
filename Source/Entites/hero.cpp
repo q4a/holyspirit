@@ -152,6 +152,7 @@ Hero::Hero()
     temp.modificateurTaille = 1;
 
     m_personnage.setCaracteristique(temp);
+    m_personnage.m_friendly = true;
 
     m_monstreVise=-1;
 
@@ -529,14 +530,6 @@ void Hero::ChargerModele(bool tout)
                 {
                     m_classe.miracles.push_back(m_inventaire[i].m_miracle);
 
-                    /*m_classe.miracles.back().m_effets[0].m_lien.push_back((int) m_classe.miracles.back().m_effets.size());
-
-                    m_classe.miracles.back().m_effets.push_back(Effet ());
-
-                    m_classe.miracles.back().m_effets.back().m_type=DEGATS;
-                    m_classe.miracles.back().m_effets.back().m_informations[0]=m_caracteristiques.degatsMin;
-                    m_classe.miracles.back().m_effets.back().m_informations[1]=m_caracteristiques.degatsMax;*/
-
                     m_weaponMiracle=m_classe.miracles.size()-1;
                 }
         }
@@ -653,7 +646,6 @@ void Hero::Afficher(coordonnee dimensionsMap)
 
 void Hero::AfficherCaracteristiques(float decalage)
 {
-
     sf::Sprite sprite;
     sprite.SetImage(*moteurGraphique->getImage(m_classe.plus_button.image));
     sprite.Resize(m_classe.plus_button.position.w*configuration->Resolution.w/800, m_classe.plus_button.position.h*configuration->Resolution.h/600);
@@ -983,6 +975,61 @@ void Hero::AfficherCaracteristiques(float decalage)
     }
 }
 
+void Hero::AfficherAmis()
+{
+    for(unsigned i = 0 ; i < m_amis.size() ; ++i)
+    {
+        moteurGraphique->AjouterTexte(m_amis[i]->getCaracteristique().nom, coordonnee(8, 64 + i * 26), 14, 0, 14);
+
+        sf::Sprite temp;
+        temp.SetImage(*moteurGraphique->getImage(0));
+        temp.SetColor(sf::Color(32,32,32));
+        temp.SetPosition(12,82 + i * 26);
+        temp.Resize(142,8);
+        moteurGraphique->AjouterCommande(&temp, 14, 0);
+
+        temp.Resize(m_amis[i]->getCaracteristique().vie/m_amis[i]->getCaracteristique().maxVie * 140,6);
+        temp.Move(1,1);
+        temp.SetColor(sf::Color(224,32,32));
+        moteurGraphique->AjouterCommande(&temp, 14, 0);
+
+        temp.Resize(8,8);
+        temp.SetPosition(162,82 + i * 26);
+        temp.SetColor(sf::Color(164,32,32));
+
+
+        if(    eventManager->getPositionSouris().x > temp.GetPosition().x
+            && eventManager->getPositionSouris().x < temp.GetPosition().x + 8
+            && eventManager->getPositionSouris().y > temp.GetPosition().y
+            && eventManager->getPositionSouris().y < temp.GetPosition().y + 8)
+            {
+                temp.SetColor(sf::Color(64,32,32));
+
+                if(eventManager->getEvenement(Mouse::Left,"CA"))
+                {
+                    bool charme = false;
+                    eventManager->StopEvenement(Mouse::Left,"C");
+                    eventManager->StopEvenement(Mouse::Left,"CA");
+                    for(unsigned j = 0 ; j < m_personnage.m_miracleEnCours.size() ; ++j)
+                        for(unsigned k = 0 ; k < m_personnage.m_miracleEnCours[j].m_infos.size() ; ++k)
+                        {
+                            if(m_classe.miracles[m_personnage.m_miracleEnCours[j].m_modele].m_effets[m_personnage.m_miracleEnCours[j].m_infos[k].m_effetEnCours].m_type == CHARME)
+                                if(m_personnage.m_miracleEnCours[j].m_cible == m_amis[i])
+                                   m_amis[i]->m_friendly = false, charme = true;
+                        }
+
+                    if(!charme)
+                        m_amis[i]->InfligerDegats(m_amis[i]->getCaracteristique().vie * 2);
+
+                    m_amis.erase(m_amis.begin() + i);
+                    i--;
+                }
+            }
+
+        moteurGraphique->AjouterCommande(&temp, 14, 0);
+    }
+}
+
 void Hero::AfficherQuetes(float decalage)
 {
     m_quetePointee = -1;
@@ -1078,7 +1125,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
     for (int i = 0;i < (int)m_classe.miracles.size(); ++i)
         if (m_classe.page_miracles[i] == fenetreEnCours)
         {
-            if (m_lvl_miracles[i] <= 0)
+            /*if (m_lvl_miracles[i] <= 0)
             {
                 sf::Sprite temp;
                 temp.SetImage(*moteurGraphique->getImage(0));
@@ -1087,7 +1134,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                 temp.SetColor(sf::Color(32,32,32));
                 temp.SetBlendMode(sf::Blend::Multiply);
                 moteurGraphique->AjouterCommande(&temp, 15, 0);
-            }
+            }*/
 
             if (eventManager->getPositionSouris().x > m_classe.position_miracles[i].x*configuration->Resolution.w/800
                     &&eventManager->getPositionSouris().x < (m_classe.position_miracles[i].x + m_classe.position_miracles[i].w)*configuration->Resolution.w/800

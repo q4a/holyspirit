@@ -168,7 +168,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
 
         if(caracteristique.reserveVie > 0)
         {
-            sprite.SetY(classe->orbe_foi.position.y*configuration->Resolution.h/600);
+            sprite.SetY(classe->orbe_vie.position.y*configuration->Resolution.h/600);
             sprite.SetSubRect(sf::IntRect(0, 0, classe->orbe_foi.position.w, (int)caracteristique.reserveVie * classe->orbe_vie.position.h / (int)caracteristique.maxVie));
 
             sprite.SetColor(sf::Color(64,64,64,255));
@@ -225,13 +225,9 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
             sprite.SetY(classe->orbe_foi.position.y*configuration->Resolution.h/600);
             sprite.SetSubRect(sf::IntRect(0, 0, classe->orbe_foi.position.w, (int)caracteristique.reserveFoi * classe->orbe_foi.position.h / (int)caracteristique.maxFoi));
 
-            sprite.SetColor(sf::Color(32,32,32,255));
-            sprite.SetBlendMode(Blend::Multiply);
+            sprite.SetColor(sf::Color(32,32,32,224));
 
             moteurGraphique->AjouterCommande(&sprite,18,0);
-
-            sprite.SetBlendMode(Blend::Add);
-              moteurGraphique->AjouterCommande(&sprite,18,0);
         }
 
         if(caracteristique.foi > caracteristique.maxFoi - caracteristique.reserveFoi)

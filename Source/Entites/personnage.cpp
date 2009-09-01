@@ -1063,6 +1063,26 @@ void Personnage::Frappe(coordonnee direction,coordonnee position)
     m_arrivee=m_cheminFinal;
 }
 
+void Personnage::DetruireEffets()
+{
+    for(unsigned i = 0; i < m_effets.size(); ++i)
+    {
+        if(m_effets[i].m_effet.m_actif)
+        {
+            if(m_effets[i].m_type == AURA_CARACTERISTIQUES)
+            {
+                if(m_effets[i].m_info1 == 0)
+                {
+                    m_caracteristique.maxVie -= m_effets[i].m_info2;
+                    m_caracteristique.vie -= m_effets[i].m_info2;
+                }
+            }
+        }
+    }
+
+    m_effets.clear();
+}
+
 int Personnage::AjouterEffet(std::vector<Tile> &tiles, int type, int compteur, int info1, int info2, int info3)
 {
     m_effets.push_back(EffetPersonnage());
@@ -1198,6 +1218,11 @@ void Personnage::setCoordonneePixel(coordonnee position)
 void Personnage::setDepart()
 {
     m_depart=m_positionCase;
+}
+
+void Personnage::setModele(int modele)
+{
+    m_modele = modele;
 }
 
 

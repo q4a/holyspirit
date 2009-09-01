@@ -91,6 +91,7 @@ public:
     void InfligerDegats(float degats);
 
     int AjouterEffet(std::vector<Tile> &tiles, int type, int compteur, int info1, int info2, int info3);
+    void DetruireEffets();
 
 
     void setDepart();
@@ -109,6 +110,7 @@ public:
     void setCaracteristique(Caracteristique caracteristique);
     void setPorteeLumineuse(Lumiere  lumiere);
     void regenererVie(float vie);
+    void setModele(int);
 
     void setPousse(coordonneeDecimal pousse);
 
@@ -136,7 +138,6 @@ public:
     void setObjets(std::vector<Objet>);
     const std::vector<Objet> &getObjets();
     std::vector<Objet> *getPointeurObjets();
-
 
 
     Lumiere m_lumiere;

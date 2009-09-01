@@ -109,43 +109,45 @@ Objet::~Objet()
 
 Objet Objet::operator=(const Objet &objet)
 {
-    m_type=objet.m_type;
+    m_type                  = objet.m_type;
 
-    m_equipe=objet.m_equipe;
-    m_emplacement=objet.m_emplacement;
-    m_emplacementImpossible=objet.m_emplacementImpossible;
-    m_degatsMin=objet.m_degatsMin;
-    m_degatsMax=objet.m_degatsMax;
-    m_armure=objet.m_armure;
-    m_capaciteBenediction=objet.m_capaciteBenediction;
-    m_emplacementImageHero=objet.m_emplacementImageHero;
-    m_cheminImageHero=objet.m_cheminImageHero;
-    m_benedictions=objet.m_benedictions;
-    m_color=objet.m_color;
-    m_nom=objet.m_nom;
-    m_chemin=objet.m_chemin;
-    m_description=objet.m_description;
-    m_rarete=objet.m_rarete;
-    m_image=objet.m_image;
-    m_son=objet.m_son;
-    m_chanceTrouver=objet.m_chanceTrouver;
-    m_positionImage=objet.m_positionImage;
-    m_taille=objet.m_taille;
-    m_position=objet.m_position;
-    ai=objet.ai;
-    aa=objet.aa;
-    dii=objet.dii;
-    dia=objet.dia;
-    dai=objet.dai;
-    daa=objet.daa;
+    m_equipe                = objet.m_equipe;
+    m_emplacement           = objet.m_emplacement;
+    m_emplacementImpossible = objet.m_emplacementImpossible;
+    m_degatsMin             = objet.m_degatsMin;
+    m_degatsMax             = objet.m_degatsMax;
+    m_armure                = objet.m_armure;
+    m_capaciteBenediction   = objet.m_capaciteBenediction;
+    m_emplacementImageHero  = objet.m_emplacementImageHero;
+    m_cheminImageHero       = objet.m_cheminImageHero;
+    m_benedictions          = objet.m_benedictions;
+    m_color                 = objet.m_color;
+    m_nom                   = objet.m_nom;
+    m_chemin                = objet.m_chemin;
+    m_description           = objet.m_description;
+    m_rarete                = objet.m_rarete;
+    m_image                 = objet.m_image;
+    m_son                   = objet.m_son;
+    m_chanceTrouver         = objet.m_chanceTrouver;
+    m_positionImage         = objet.m_positionImage;
+    m_taille                = objet.m_taille;
+    m_position              = objet.m_position;
+    ai                      = objet.ai;
+    aa                      = objet.aa;
+    dii                     = objet.dii;
+    dia                     = objet.dia;
+    dai                     = objet.dai;
+    daa                     = objet.daa;
 
-    m_requirement=objet.m_requirement;
-    m_prix=objet.m_prix;
+    m_requirement           = objet.m_requirement;
+    m_prix                  = objet.m_prix;
 
-    m_IDClasse=objet.m_IDClasse;
-    m_shoot_weapon=objet.m_shoot_weapon;
-    m_useMiracle=objet.m_useMiracle;
-    m_miracle=objet.m_miracle;
+    m_IDClasse              = objet.m_IDClasse;
+    m_shoot_weapon          = objet.m_shoot_weapon;
+    m_useMiracle            = objet.m_useMiracle;
+    m_miracle               = objet.m_miracle;
+
+    m_chemin_miracles       = objet.m_chemin_miracles;
 
     return *this;
 }
@@ -944,7 +946,8 @@ void Objet::Charger(std::string chemin, const Caracteristique &caract,bool NePas
 
 void Objet::ChargerMiracle(const Caracteristique &caract)
 {
-    m_miracle = Miracle ();
+    m_miracle = Miracle();
+
     for(unsigned i = 0 ; i < m_chemin_miracles.size() ; ++i)
     {
         if(i > 0)
@@ -963,6 +966,13 @@ void Objet::Generer(int bonus)
     m_color.g=255;
     m_color.b=255;
     m_color.a=255;
+
+    if(aa - ai != 0)
+        m_prix += m_prix * (m_armure - aa + ai)/(aa - ai)/2;
+    if(dia - dii != 0)
+        m_prix += m_prix * (m_degatsMin - dia + dii)/(dia - dii)/4;
+    if(daa - dai != 0)
+        m_prix += m_prix * (m_degatsMax - daa + dai)/(daa - dai)/4;
 
     if (m_type != CONSOMMABLE)
         if (m_rarete<DIVIN)
@@ -984,39 +994,20 @@ void Objet::Generer(int bonus)
 
             if (rarete<m_rarete)
                 rarete=m_rarete;
+
             m_rarete=rarete;
 
             if (m_rarete==BONNEFACTURE)
-            {
-                m_armure*=1;
-                m_degatsMin*=1;
-                m_degatsMax*=1;
                 nbrBene=1;
-            }
 
             if (m_rarete==BENI)
-            {
-                m_armure*=1;
-                m_degatsMin*=1;
-                m_degatsMax*=1;
                 nbrBene=rand()%(4-2)+2;
-            }
 
             if (m_rarete==SACRE)
-            {
-                m_armure*=1;
-                m_degatsMin*=1;
-                m_degatsMax*=1;
                 nbrBene=rand()%(9-5)+5;
-            }
 
             if (m_rarete==SANCTIFIE)
-            {
-                m_armure*=1;
-                m_degatsMin*=1;
-                m_degatsMax*=1;
                 nbrBene=rand()%(15-10)+10;
-            }
 
             for (int i=0;i<nbrBene;i++)
             {
@@ -1030,25 +1021,38 @@ void Objet::Generer(int bonus)
                 temp.info2=0;
 
                 if (temp.type==VIE_SUPP||temp.type==FOI_SUPP)
+                {
                     temp.info1=rand()%(m_capaciteBenediction*10 - (int)(m_capaciteBenediction*3) + 1)+m_capaciteBenediction*3;
+                    m_prix += (int)((float)m_prix*0.5*(temp.info1)/(m_capaciteBenediction*10 - m_capaciteBenediction*3));
+                }
                 else if (temp.type==EFFICACITE_ACCRUE&&(m_type==ARME||m_type==ARMURE))
+                {
                     temp.info1=(int)(rand()%(m_capaciteBenediction*10 - (int)((float)m_capaciteBenediction*2.5) + 1)+(float)m_capaciteBenediction*2.5);
+                    m_prix += (int)((float)m_prix*0.5*(temp.info1)/(m_capaciteBenediction*10 - m_capaciteBenediction*2.5));
+                }
                 else if (temp.type==DEGATS_FEU&&m_type==ARME)
+                {
                     temp.info1=(int)(rand()%(m_capaciteBenediction*2 - (int)((float)m_capaciteBenediction*0.5) + 1)+(float)m_capaciteBenediction*0.5);
+                    m_prix += (int)((float)m_prix*0.5*(temp.info1)/(m_capaciteBenediction*2 - m_capaciteBenediction*0.5));
+                }
                 else if (temp.type==DEGATS_FOI&&m_type==ARME)
+                {
                     temp.info1=(int)(rand()%(m_capaciteBenediction*2 - (int)((float)m_capaciteBenediction*0.5) + 1)+(float)m_capaciteBenediction*0.5);
+                    m_prix += (int)((float)m_prix*0.5*(temp.info1)/(m_capaciteBenediction*2 - m_capaciteBenediction*0.5));
+                }
                 else
-                    temp.info1=(int)(rand()%(m_capaciteBenediction*1 - (int)((float)m_capaciteBenediction*0.5) + 1)+(float)m_capaciteBenediction*0.5);
+                {
+                    temp.info1=(int)(rand()%(m_capaciteBenediction - (int)((float)m_capaciteBenediction*0.25) + 1)+(float)m_capaciteBenediction*0.25);
+                    m_prix += (int)((float)m_prix*0.5*(temp.info1)/(m_capaciteBenediction - m_capaciteBenediction*0.25));
+                }
 
-                if (
-                    (temp.type==EFFICACITE_ACCRUE&&!(m_type==ARME||m_type==ARMURE))||
+                if ((temp.type==EFFICACITE_ACCRUE&&!(m_type==ARME||m_type==ARMURE))||
                     (temp.type==DEGATS_FEU&&m_type!=ARME)||
-                    (temp.type==DEGATS_FOI&&m_type!=ARME)
-                )
+                    (temp.type==DEGATS_FOI&&m_type!=ARME))
                     ajouter=false,i--;
 
-
-                m_prix+=m_prix/4;
+                if(temp.info1 <= 0)
+                    temp.info1 = 1;
 
                 for (int j=0;j<(int)m_benedictions.size();j++)
                     if (m_benedictions[j].type==temp.type)

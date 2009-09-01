@@ -53,13 +53,12 @@ public:
     void AfficherNomEvenement(coordonnee casePointee,coordonnee positionSouris);
 
     void Animer(Hero *hero,float temps,Menu *menu); // Animation des tiles
-    void AnimerMiracle(Personnage *personnage,std::vector<Miracle> &miracles,float temps,coordonnee positionHero,Hero *hero);
 
     bool TestEvenement(Jeu *jeu,float temps);
     void CalculerOmbresEtLumieres();
     void Detruire();
 
-    int GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *hero,bool monstre, const coordonnee lanceur, const coordonnee cible,int couche);
+    //int GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *hero,bool monstre, const coordonnee lanceur, const coordonnee cible,int couche);
 
     void GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer);
     void GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer);
@@ -68,6 +67,7 @@ public:
     void GererProjectilesEtEffets(Hero *hero,float temps);
     void GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu);
 
+    void GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles,float temps,coordonnee positionHero,Hero *hero);
 
 
     void Script_Trade(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer);
@@ -80,7 +80,6 @@ public:
     void Script_Follow(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer);
     void Script_Evasion(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer);
     void Script_RandomDisplace(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer);
-
 
 
     void TestVisionMonstre(int numero, Hero *hero);
@@ -99,9 +98,9 @@ public:
     bool RamasserObjet(Hero *hero,bool enMain = false);
 
     void AjouterObjet(Objet objet);
-    int AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coordonnee lanceur,int couche,float  vitesse,float decalageAngle,int degats,bool monstre,std::vector<Tile> &tiles);
-
-
+    int  AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coordonnee lanceur,int couche,float  vitesse,float decalageAngle,bool monstre,std::vector<Tile> &tiles);
+    void AjouterMonstre(Monstre monstre);
+    void AjouterModeleMonstre(Modele_Monstre modele);
 
     int     getMonstreIllumine();
     bool    getCollision(int positionX,int positionY, int exception = -1); // Retourne 1 s'il y a une collision avec le décors se trouvant à la position X et Y
@@ -112,10 +111,12 @@ public:
     int     getObjetPointe();
     int     getNombreObjets(coordonnee position);
     int     getNombreMonstres();
+    int     getNombreModeleMonstres();
     bool    getMonstreEnVie(int numeroMonstre);
     const   coordonnee &getDimensions();
 
     Monstre *getEntiteMonstre (int numeroMonstre);
+    Modele_Monstre getModeleMonstre(int numeroMonstre);
     const coordonnee &getPositionMonstre(int numeroMonstre);
     casePathfinding ** getAlentourDuPersonnage(coordonnee positionPersonnage); // Retourne un tableau de bool contenant toutes les collitions dans les alentour du héro, pour le pathfinding
 

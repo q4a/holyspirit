@@ -69,6 +69,43 @@ Monstre::Monstre()
     m_compteur=0;
 }
 
+Monstre::Monstre(Personnage &personnage)
+{
+    Personnage::Personnage();
+
+    m_attente   = 0;
+    m_compteur  = 0;
+    m_vu        = 0;
+
+    m_cible = NULL;
+
+    m_lumiere                   = personnage.m_lumiere;
+    frappeEnCours               = personnage.frappeEnCours;
+    m_lancementMiracleEnCours   = personnage.m_lancementMiracleEnCours;
+    m_shooter                   = personnage.m_shooter;
+    m_monstre                   = personnage.m_monstre;
+    m_touche                    = personnage.m_touche;
+    m_nombreInvocation          = personnage.m_nombreInvocation;
+    m_light                     = personnage.m_light;
+    m_miracleALancer            = personnage.m_miracleALancer;
+    m_effets                    = personnage.m_effets;
+    m_scriptAI                  = personnage.m_scriptAI;
+    m_friendly                  = personnage.m_friendly;
+    m_caracteristique           = personnage.getCaracteristique();
+    m_positionCase              = personnage.getCoordonnee();
+    m_positionPixel             = personnage.getCoordonneePixel();
+    m_modele                    = personnage.getModele();
+    m_objets                    = personnage.getObjets();
+    m_porteeLumineuse           = personnage.getPorteeLumineuse();
+    m_porteeLumineuseBasique    = personnage.getPorteeLumineuse();
+    m_depart                    = personnage.getDepart();
+
+    m_angle                     = 0;
+    m_poseEnCours               = 0;
+    m_etat                      = 0;
+    m_animation                 = 0;
+}
+
 void Monstre::Charger(int numero,Modele_Monstre *modele)
 {
     // Personnage::Charger(modele);

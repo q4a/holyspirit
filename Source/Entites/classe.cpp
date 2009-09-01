@@ -510,7 +510,7 @@ void Classe::Charger(string chemin, const std::vector<int> &lvl_miracles, const 
             if (caractere=='*')
             {
                 int buf = -1;
-                std::ostringstream temp;
+                std::string temp;
                 position_miracles.push_back(coordonnee ());
                 page_miracles.push_back(0);
 
@@ -520,7 +520,7 @@ void Classe::Charger(string chemin, const std::vector<int> &lvl_miracles, const 
                     if (caractere=='m')
                     {
                         int level = 0;
-                        std::string temp;
+
                         fichier>>temp;
 
                         if(lvl_miracles.size() > miracles.size())
@@ -569,7 +569,7 @@ void Classe::Charger(string chemin, const std::vector<int> &lvl_miracles, const 
 
                 if(lvl_miracles.size() >= miracles.size())
                     if(miracles.back().m_buf != -1 && lvl_miracles[miracles.size()-1] > 0)
-                        miracles[miracles.back().m_buf].Concatenencer(temp.str(), caract, lvl_miracles[miracles.size()-1]);
+                        miracles[miracles.back().m_buf].Concatenencer(temp, caract, lvl_miracles[miracles.size()-1]);
 
                 fichier.get(caractere);
             }

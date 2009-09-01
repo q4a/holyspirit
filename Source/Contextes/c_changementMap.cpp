@@ -136,9 +136,19 @@ void c_Chargement::Utiliser(Jeu *jeu)
                         reader.ExportFile(i),jeu->hero.m_contenuSave.push_back(reader.GetFileName(i));
         }*/
 
-        jeu->hero.StopMiraclesCharme();
+       // jeu->hero.StopMiraclesCharme();
 
        // jeu->map.EffacerEffetsMonstres();
+
+        std::vector<Personnage> buffer;
+        std::vector<Modele_Monstre> bufferModele;
+
+        for(unsigned i = 0 ; i < jeu->hero.m_amis.size() ; ++i)
+        {
+            buffer.push_back(*jeu->hero.m_amis[i]);
+            bufferModele.push_back(jeu->map->getModeleMonstre(jeu->hero.m_amis[i]->getModele()));
+            jeu->hero.m_amis[i]->InfligerDegats(jeu->hero.m_amis[i]->getCaracteristique().vie * 2);
+        }
 
         if (jeu->map!=NULL && !m_debut)
            jeu->map->Sauvegarder(&jeu->hero);
@@ -159,6 +169,33 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         if (!jeu->map->Charger(m_nomProchaineMap,&jeu->hero))
             console->Ajouter("CRITICAL ERROR"), throw  "CRITICAL ERROR";
+
+        for(unsigned i = 0 ; i < jeu->hero.m_amis.size() ; ++i)
+        {
+            buffer[i].setCoordonnee(jeu->hero.m_personnage.getCoordonnee());
+
+            bool ajouter = true;
+            for(int j = 0 ; j < jeu->map->getNombreModeleMonstres() && ajouter ; ++j)
+            {
+                if(bufferModele[i].m_chemin == jeu->map->getModeleMonstre(j).m_chemin)
+                    ajouter = false, buffer[i].setModele(j);
+            }
+
+            if(ajouter)
+                jeu->map->AjouterModeleMonstre(bufferModele[i]);
+
+            jeu->map->AjouterMonstre((Monstre) buffer[i]);
+
+            for(unsigned j = 0 ; j < jeu->hero.m_personnage.m_miracleEnCours.size() ; ++j)
+            for(unsigned k = 0 ; k < jeu->hero.m_personnage.m_miracleEnCours[j].m_infos.size() ; ++k)
+            {
+                if(jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours[j].m_modele].m_effets[jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k].m_effetEnCours].m_type == CHARME)
+                    if(jeu->hero.m_personnage.m_miracleEnCours[j].m_cible == jeu->hero.m_amis[i])
+                       jeu->hero.m_personnage.m_miracleEnCours[j].m_cible = jeu->map->getEntiteMonstre(jeu->map->getNombreMonstres() - 1);
+            }
+
+            jeu->hero.m_amis[i] = jeu->map->getEntiteMonstre(jeu->map->getNombreMonstres() - 1);
+        }
 
         moteurGraphique->DecrementerImportance();
 

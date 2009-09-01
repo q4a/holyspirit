@@ -51,6 +51,7 @@ public:
     bool AfficherMiracles(float , int );
     void AfficherCaracteristiques(float decalage);
     void AfficherRaccourcis();
+    void AfficherAmis();
 
     void PlacerCamera();
 
@@ -112,6 +113,8 @@ public:
 
     std::vector<Quete> m_quetes;
     std::vector<int> m_lvl_miracles;
+
+    std::vector<Personnage *> m_amis;
 
 private:
     int m_monstreVise;
