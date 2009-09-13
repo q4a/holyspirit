@@ -31,7 +31,7 @@ class Pose
 {
 public:
     Pose operator=(const Pose &Pose);
-    void setPose(coordonnee positionDansLImage,coordonnee centre,int animation,int son,int image,int attaque,int lum_intensite,float tempsAnimation,int ordre);
+    void setPose(coordonnee positionDansLImage,coordonnee centre,int animation,int son,int image,int attaque,int lum_intensite,float tempsAnimation,int ordre,int couche);
     coordonnee getCoordonnee();
     coordonnee getCentre();
     int getAnimation();
@@ -40,6 +40,7 @@ public:
     int getAttaque();
     int getLumiereIntensite();
     int getOrdre();
+    int getCouche();
     float getTempsAnimation();
 
 private:
@@ -47,6 +48,7 @@ private:
     int m_son,m_animation,m_image,m_attaque,m_lumiere_intensite;
     float m_tempsAnimation;
     int m_ordre;
+    int m_couche;
 };
 
 #endif

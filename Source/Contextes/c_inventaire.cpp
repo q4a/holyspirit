@@ -33,6 +33,7 @@ using namespace sf;
 using namespace std;
 
 int GestionBoutons(Jeu *jeu);
+void GestionRaccourcisMiracles(Jeu *jeu);
 
 c_Inventaire::c_Inventaire()
 {
@@ -192,4 +193,6 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         jeu->hero.m_defilement_trader=0;
     if (jeu->hero.m_defilement_trader>jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h)
         jeu->hero.m_defilement_trader=jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h;
+
+    GestionRaccourcisMiracles(jeu);
 }

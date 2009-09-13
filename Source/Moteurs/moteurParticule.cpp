@@ -60,6 +60,7 @@ bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps,int 
                 sprite.SetX(Iter->position.x);
                 sprite.SetY(Iter->position.y-Iter->position.z);
                 sprite.SetColor(sf::Color(m_color.r,m_color.g,m_color.b,(int)Iter->alpha));
+                sprite.Scale(Iter->taille, Iter->taille);
 
                 if (Iter->position.z>32)
                     moteurGraphique->AjouterCommande(&sprite,11,1);
@@ -97,7 +98,11 @@ bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps,int 
             }
 
             if (Iter->position.z<0)
-                Iter->position.z=0,Iter->vecteur.z=fabs(Iter->vecteur.z)/4;
+            {
+                Iter->position.z=0;
+                Iter->vecteur.z=fabs(Iter->vecteur.z)/20 * modele->m_particules[Iter->numero].rebond;
+            }
+
 
             Iter->vitesse-=temps*10;
             Iter->vitesse_rotation-=temps*50;
@@ -107,8 +112,17 @@ bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps,int 
             Iter->rotation+=Iter->vitesse_rotation*temps*10;
         }
 
+        if(Iter->position.z < 4)
+        {
+            Iter->vitesse -= temps*modele->m_particules[Iter->numero].frottement;
+            Iter->taille += temps*10;
+
+            if(Iter->taille > 1)
+                Iter->taille = 1;
+        }
+
         if (Iter->vitesse<=0)
-            Iter->vitesse=0,Iter->vie-=temps*20;
+            Iter->vitesse=0,Iter->vie-=temps*5;
         if (Iter->vie<=0)
             Iter->alpha-=temps*100;
         if (Iter->alpha<=0)
@@ -129,20 +143,26 @@ void ParticuleSysteme::Generer(float force, ModeleParticuleSysteme *modele,coord
         {
             angle+= (180-(rand() % 360))*force/100;
             m_particules.push_back(Particule ());
+            m_particules.back().numero=i;
             m_particules.back().vie=100;
             m_particules.back().position.x=position.x;
             m_particules.back().position.y=position.y;
-            m_particules.back().position.z=(rand() % (64 - 0 + 1)) + 0;
+            m_particules.back().position.z=((rand() % (64 - 0 + 1)) + 0)/ (modele->m_particules[i].poids);
             m_particules.back().vecteur.x=cos(angle*M_PI/180);
             m_particules.back().vecteur.y=sin(angle*M_PI/180)/2;
-            m_particules.back().vecteur.z=(rand() % (int)(force*0.6 - force*0.4 + 1)) + force*0.4;
-            m_particules.back().vitesse=(rand() % (int)(force*1.25 - force*0.75 + 1)) + force*0.75;
-            m_particules.back().vitesse_rotation=((rand() % (int)(force*1 - force*0.5 + 1)) + force*0.5)*5;
+            m_particules.back().vecteur.z=((rand() % (int)(force*0.6 - force*0.4 + 1)) + force*0.4) / (modele->m_particules[i].poids);
+            m_particules.back().vitesse=((rand() % (int)(force*1.25 - force*0.75 + 1)) + force*0.75) /*/ (modele->m_particules[i].poids)*/;
+            m_particules.back().vitesse_rotation=(((rand() % (int)(force*1 - force*0.5 + 1)) + force*0.5)*5) / (modele->m_particules[i].poids) * (modele->m_particules[i].rotation);
             if (m_particules.back().vitesse_rotation>100)
                 m_particules.back().vitesse_rotation=100;
             m_particules.back().rotation=rand() % 360;
             m_particules.back().alpha=255;
-            m_particules.back().numero=i;
+
+            if(modele->m_particules[i].sang)
+                m_particules.back().taille = 0.1;
+            else
+                m_particules.back().taille = 1;
+
         }
     }
 }

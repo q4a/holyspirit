@@ -115,6 +115,9 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
     m_porteeLumineuse=modele->getPorteeLumineuse();
     m_porteeLumineuseBasique=m_porteeLumineuse;
 
+    m_impenetrable = modele->m_impenetrable;
+    m_impoussable = modele->m_impoussable;
+
     m_scriptAI = modele->m_scriptAI;
 
     m_friendly=modele->m_friendly;
@@ -129,18 +132,18 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
 
         if (m_caracteristique.rang==1)
         {
-            m_caracteristique.maxVie*=10;
-            m_caracteristique.vie*=10;
-            m_caracteristique.degatsMin*=1;
-            m_caracteristique.degatsMax*=1;
+            m_caracteristique.maxVie*=5;
+            m_caracteristique.vie*=5;
+            m_caracteristique.degatsMin=(int)((float)m_caracteristique.degatsMin*1.25);
+            m_caracteristique.degatsMax=(int)((float)m_caracteristique.degatsMax*1.25);
             m_caracteristique.pointAme*=2;
 
             m_caracteristique.modificateurTaille*=1.1;
         }
         if (m_caracteristique.rang==2)
         {
-            m_caracteristique.maxVie*=20;
-            m_caracteristique.vie*=20;
+            m_caracteristique.maxVie*=10;
+            m_caracteristique.vie*=10;
             m_caracteristique.degatsMin=(int)((float)m_caracteristique.degatsMin*1.5);
             m_caracteristique.degatsMax=(int)((float)m_caracteristique.degatsMax*1.5);
             m_caracteristique.pointAme*=4;
@@ -370,6 +373,14 @@ bool Modele_Monstre::Charger(string chemin)
 
                     case 'x':
                         *fichier>>m_caracteristique.dexterite;
+                        break;
+
+                    case 'p':
+                        *fichier>>m_impenetrable;
+                        break;
+
+                    case 'u':
+                        *fichier>>m_impoussable;
                         break;
 
                     }

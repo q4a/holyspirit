@@ -160,7 +160,7 @@ void MoteurGraphique::Charger()
     else
         console->Ajouter("Chargement de : "+configuration->chemin_fonts+configuration->font_titre,0);
 
-    m_img_corner = AjouterImage(configuration->chemin_menus + configuration->nom_corner);
+    m_img_corner = AjouterImage(configuration->chemin_menus + configuration->nom_corner,-1);
 }
 
 void MoteurGraphique::Gerer(float temps,int tailleMapY)

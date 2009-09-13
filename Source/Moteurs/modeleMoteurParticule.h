@@ -28,6 +28,12 @@ struct ModeleParticule
 {
     coordonnee positionImage;
 
+    bool sang;
+    float rebond;
+    float frottement;
+    float poids;
+    float rotation;
+
     int min,max;
 };
 

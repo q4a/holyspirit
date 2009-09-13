@@ -84,7 +84,7 @@ public:
 
     void TestVisionMonstre(int numero, Hero *hero);
 
-    void InfligerDegatsMasse(coordonnee position,int rayon,int degats,bool sourceConcernee, Hero *hero, bool pousser = true, bool heroCompris = true);
+    void InfligerDegatsMasse(coordonnee position,int rayon,int degats,bool sourceConcernee, Hero *hero, bool pousser = true, bool heroCompris = true, bool monstre = true);
 
     bool InfligerDegats(int numeroMontre, float degats, Hero *hero,bool pousser);
     bool InfligerDegats(Personnage *monstre, float degats, Hero *hero,bool pousser);
@@ -105,6 +105,7 @@ public:
     int     getMonstreIllumine();
     bool    getCollision(int positionX,int positionY, int exception = -1); // Retourne 1 s'il y a une collision avec le décors se trouvant à la position X et Y
     int     getTypeCase(int positionX,int positionY);
+    bool    getCollisionPousse(int positionX,int positionY);
     int     getEvenement(coordonnee casePointee);
     int     getMonstre(Hero *hero,coordonnee positionSouris,coordonnee casePointee);
     const   coordonnee &getSacPointe();

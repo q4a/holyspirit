@@ -103,6 +103,9 @@ Personnage::Personnage()
     m_positionCase.h                    = 0;
 
     m_caracteristique.rang              = 0;
+
+    m_impenetrable                      = 0;
+    m_impoussable                       = 0;
 }
 Modele_Personnage::Modele_Personnage()
 {
@@ -141,6 +144,9 @@ Modele_Personnage::Modele_Personnage()
     m_caracteristique.degatsMin          = 0;
     m_caracteristique.degatsMax          = 0;
     m_caracteristique.armure             = 0;
+
+    m_impenetrable                       = 0;
+    m_impoussable                        = 0;
 }
 
 
@@ -314,7 +320,7 @@ void Modele_Personnage::ChargerPose(ifstream *fichier)
 
         if (caractere=='*')
         {
-            fichier->seekg(-1,ios::cur);
+            fichier->putback(caractere);
 
             etat++;
             m_pose.push_back(vector<vector<Pose> >(0,vector<Pose>(0,Pose ())));
@@ -329,7 +335,7 @@ void Modele_Personnage::ChargerPose(ifstream *fichier)
                     if (caractere=='*')
                     {
                         coordonnee position(-1,-1,0,0),centre(-1000,-1000,-1,-1);
-                        int animation=0,son=-1,image=0,attaque=-1,lumiere=m_porteeLumineuse.intensite,ordre=0;
+                        int animation=0,son=-1,image=0,attaque=-1,lumiere=m_porteeLumineuse.intensite,ordre=0, couche = 0;
                         float tempsAnimation=0.075;
 
                         do
@@ -377,6 +383,10 @@ void Modele_Personnage::ChargerPose(ifstream *fichier)
                                 if (caractere=='x') *fichier>>centre.x;
                                 else *fichier>>centre.y;
                                 break;
+
+                            case 'u':
+                                *fichier>>couche;
+                                break;
                             }
                             if (fichier->eof())
                             {
@@ -393,7 +403,7 @@ void Modele_Personnage::ChargerPose(ifstream *fichier)
                             centre.y=position.h-32;
 
                         m_pose[etat][j].push_back(Pose ());
-                        m_pose[etat][j].back().setPose(position,centre,animation,son,image,attaque,lumiere,tempsAnimation,ordre);
+                        m_pose[etat][j].back().setPose(position,centre,animation,son,image,attaque,lumiere,tempsAnimation,ordre,couche);
                         fichier->get(caractere);
                         if (fichier->eof())
                         {
@@ -559,7 +569,7 @@ void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,boo
                                     &&sprite.GetPosition().y+sprite.GetSize().y>=moteurGraphique->m_camera.GetRect().Top
                                     &&sprite.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)
                             {
-                                moteurGraphique->AjouterCommande(&sprite,10,1);
+                                moteurGraphique->AjouterCommande(&sprite,10 + modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCouche(),1);
 
                                 if (surbrillance)
                                 {
@@ -759,6 +769,12 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap, bool pou
     //int buf=(int)(tempsEcoule*1000);
     //tempsEcoule=(float)buf/1000;
 
+    sf::Vector2f pos;
+    pos.x=((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE);
+    pos.y=((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)+64;
+
+    moteurGraphique->LightManager->SetPosition(m_light,pos);
+
     if(!pousserPossible)
     {
         m_pousse.x = 0;
@@ -802,11 +818,7 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap, bool pou
 
         frappeEnCours       = 0;
 
-        sf::Vector2f pos;
-        pos.x=((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE);
-        pos.y=((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)+64;
-
-        moteurGraphique->LightManager->SetPosition(m_light,pos);
+        return 1;
     }
     else if (m_caracteristique.vie > 0)
     {
@@ -856,12 +868,6 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap, bool pou
                     else
                         m_positionPixel.y-=(float)4*tempsEcoule*m_caracteristique.vitesse;
                 }
-
-                sf::Vector2f pos;
-                pos.x=((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE);
-                pos.y=((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)+64;
-
-                moteurGraphique->LightManager->SetPosition(m_light,pos);
 
                 m_angle=calculerAngle(m_cheminFinal.x-m_positionCase.x,m_cheminFinal.y-m_positionCase.y);
 
@@ -1228,29 +1234,23 @@ void Personnage::setModele(int modele)
 
 void Personnage::setPousse(coordonneeDecimal pousse)
 {
-    m_pousse.x = pousse.x;
-    m_pousse.y = pousse.y;
-
-    //m_arrivee.x=m_positionCase.x;
-    //m_arrivee.y=m_positionCase.y;
-
-   // m_cheminFinal.x=m_positionCase.x;
-   // m_cheminFinal.y=m_positionCase.y;
+    if(!m_impoussable)
+    {
+        m_pousse.x = pousse.x;
+        m_pousse.y = pousse.y;
+    }
 }
 
 void Personnage::Pousser(coordonneeDecimal vecteur)
 {
-    if(fabs(vecteur.x) > fabs(m_pousse.x))
-        m_pousse.x = vecteur.x;
+    if(!m_impoussable)
+    {
+        if(fabs(vecteur.x) > fabs(m_pousse.x))
+            m_pousse.x = vecteur.x;
 
-    if(fabs(vecteur.y) > fabs(m_pousse.y))
-        m_pousse.y = vecteur.y;
-
-   /* m_arrivee.x=m_positionCase.x;
-    m_arrivee.y=m_positionCase.y;
-
-    m_cheminFinal.x=m_positionCase.x;
-    m_cheminFinal.y=m_positionCase.y;*/
+        if(fabs(vecteur.y) > fabs(m_pousse.y))
+            m_pousse.y = vecteur.y;
+    }
 }
 
 

@@ -197,6 +197,10 @@ void c_Chargement::Utiliser(Jeu *jeu)
             jeu->hero.m_amis[i] = jeu->map->getEntiteMonstre(jeu->map->getNombreMonstres() - 1);
         }
 
+        jeu->hero.m_personnage.setPousse(coordonneeDecimal(0,0));
+        jeu->hero.m_personnage.frappeEnCours = false;
+        jeu->hero.m_personnage.m_lancementMiracleEnCours = false;
+
         moteurGraphique->DecrementerImportance();
 
         coordonnee position;

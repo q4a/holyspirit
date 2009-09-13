@@ -91,6 +91,16 @@ void ModeleParticuleSysteme::Charger(std::string chemin)
             if (caractere=='*')
             {
                 m_particules.push_back(ModeleParticule ());
+
+                m_particules.back().min         = 0;
+                m_particules.back().max         = 0;
+
+                m_particules.back().rebond      = 0;
+                m_particules.back().frottement  = 0;
+                m_particules.back().poids       = 1;
+                m_particules.back().sang        = 0;
+                m_particules.back().rotation    = 1;
+
                 do
                 {
                     fichier.get(caractere);
@@ -115,6 +125,21 @@ void ModeleParticuleSysteme::Charger(std::string chemin)
                     case 'a' :
                         fichier>>m_particules.back().max;
                         break;
+
+                    case 'r' :
+                        fichier>>m_particules.back().rebond;
+                        break;
+                    case 'f' :
+                        fichier>>m_particules.back().frottement;
+                        break;
+                    case 'p' :
+                        fichier>>m_particules.back().poids;
+                        break;
+                    case 'b' :
+                        fichier>>m_particules.back().sang;
+                        break;
+
+
                     }
 
                     if (fichier.eof())
@@ -125,6 +150,9 @@ void ModeleParticuleSysteme::Charger(std::string chemin)
 
                 }
                 while (caractere!='$');
+
+                if(m_particules.back().poids == 0)
+                    m_particules.back().poids = 1;
                 fichier.get(caractere);
             }
             if (fichier.eof())

@@ -317,6 +317,9 @@ float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int leve
         else if (caractere == 'a')
             valeur = caract.degatsMax;
 
+        else if (caractere == 'b')
+            valeur = caract.armure;
+
         else if (caractere == '(')
             valeur = ChargerEquation(fichier, caract, level, '+', continuer);
 
@@ -491,7 +494,7 @@ void Miracle::Charger(std::string chemin, const Caracteristique &caract, int lev
 
                             for(int j = 0 ; j < i-1 ; ++j)
                                 buf2 << m_description_effets.back()[j];
-                            buf2 << valeurs[nbr];
+                            buf2 << (int)valeurs[nbr];
                             for(int j = i+buf ; j < (int)m_description_effets.back().size() ; ++j)
                                 buf2 << m_description_effets.back()[j];
 

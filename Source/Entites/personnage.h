@@ -61,6 +61,8 @@ public:
     std::vector<Miracle> m_miracles;
 
     bool m_ombre;
+    bool m_impenetrable;
+    bool m_impoussable;
 
 protected:
     Caracteristique m_caracteristique;
@@ -156,6 +158,9 @@ public:
 
     Script m_scriptAI;
     bool m_friendly;
+
+    bool m_impenetrable;
+    bool m_impoussable;
 
     Personnage *m_cible;
 

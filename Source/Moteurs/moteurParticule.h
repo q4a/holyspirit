@@ -35,6 +35,7 @@ struct Particule
     float alpha;
     float vie;
     sf::Color color;
+    float taille;
 
     int numero;
 };
