@@ -15,7 +15,7 @@ $
 
 	* t3 s0 ia7 $
 
-	* t11 ia0 ib16 $
+	* t11 ia0 ib8 $
 
 $
 //Séquences

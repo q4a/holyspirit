@@ -8,8 +8,8 @@ $
 	* l $
 	* l + 1 $
 
-	* 4 * ( 1 - ( 1 / 2 ) ^ l ) / ( 1 - 1 / 2 ) $
-	* 6 * ( 1 - ( 1 / 2 ) ^ l ) / ( 1 - 1 / 2 ) $
+	* 4 * ( 3 / 2 ) ^ ( l - 1 ) $
+	* 6 * ( 3 / 2 ) ^ ( l - 1 ) $
 $
 	*Dégats_durant_la_charge_:_%1-%2
 	*Dégats_à_l'impact_:_%3-%4
@@ -23,7 +23,7 @@ $
 	*Data/Sounds/9906__Snoman__grass3.wav
 $
 //Effets
-	* t12 l4 l1 ia5 ib1 ic2 $
+	* t12 l4 l1 ia5 ib1 ic3 $
 
 	
 	* t10 l2 l3 ia1 ib-1 $

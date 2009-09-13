@@ -4,7 +4,7 @@ $
 	*Le_croise_appelle_Saint_Lazare_pour_venir_à_son_aide.\Celui-ci_améliore_la_régénération_de_santé_du_croisé.
 $
 	* 25 + 25 * l $	
-	* l $
+	* l * 2 $
 $
 	*Régénération_de_vie_:_+%1
 $
@@ -18,7 +18,7 @@ $
 $
 //Effets
 	* t8 l1 l3 ia-1 ib0 ic0 $
-	* t5 l2 s0 ia0 ib0 ic%1 $
+	* t5 l2 s0 ia0 ib0 ic%1 id1 $
 	* t3 s1 ia16 $
 	* t8 ia-1 ib0 ic0 $
 $

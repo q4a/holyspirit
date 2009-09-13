@@ -72,25 +72,5 @@ main
 				useMiracle * 2
 				setState * 4
 			end
-	else
-		if variable * 1 * 1
-		then
-			if quest * 1 * 2
-			then
-				variable * 1 * 0
-				setQuestState * 1 * 3 " Allez chercher votre récompense chez le questeur ! "
-				speak " Allez chercher votre récompense chez le questeur ! "
-			end
-			if quest * 1 * 1
-			then
-				variable * 1 * 0
-				setQuestState * 1 * 2 " Plus que un à tuer ! "
-			end
-			if quest * 1 * 0
-			then
-				variable * 1 * 0
-				setQuestState * 1 * 1 " Plus que deux à tuer ! "
-			end
-		end
 	end
 end 

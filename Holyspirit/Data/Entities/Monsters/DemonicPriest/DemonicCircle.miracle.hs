@@ -24,7 +24,7 @@ $
 	* t2 ia10 ib25 $
 	* t3 s1 ia7 $
 
-	* t11 ia0 ib8 $
+	* t11 ia0 ib4 $
 $
 //Séquences
 	*
