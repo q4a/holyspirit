@@ -4,7 +4,7 @@ $
 $
 	* 75 + l * 25 $	
 	* 40 + l * 10 $
-	* 15 * l $
+	* 15 * 2 ^ ( l - 1 ) $
 $
 	*Vie_maximal_:_%2
 $
@@ -17,7 +17,7 @@ $
 	*Data/Sounds/Kiss.wav
 $
 //Effets
-	* t1 l1 l2 $
+	* t1 l1 l2 ia2 $
 	* t3 ia2 s0 $
 	* t9 mData/Scripts/AI/Charmed.script.hs ia%2  $
 	

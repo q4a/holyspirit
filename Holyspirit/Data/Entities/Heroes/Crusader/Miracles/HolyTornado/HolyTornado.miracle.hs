@@ -3,7 +3,7 @@
 $
 	*Le_croise_fait_tournoyer_son_épée\repoussant_les_ennemis_en_contact_avec_lui.\Utilisable_uniquement_avec_des_épées_à_deux_mains.
 $
-	* 40 + l * 10 $
+	* 20 + l * 5 $
 	* 40 + l * 10 $
 	* i * ( 40 + l * 10 ) / 100 $
 	* a * ( 40 + l * 10 ) / 100 $
@@ -19,9 +19,9 @@ $
 	*Data/Sounds/39016_wildweasel_DSFIRXPL.wav
 $
 //Effets
-	* t1 l1 l5 $
+	* t1 l1 l5 l23 ia2 $
 	* t3 l22 l2 s0 ia8 $
-	* t7 l3 ia%2 ib%3 ic1 id1 $
+	* t7 l3 ia%2 ib%3 ic1 id2 $
 	* t3 l4 s1 ia8 $
 	* t3 s2 ia8 $
 	
@@ -56,7 +56,7 @@ $
 //Séquences
 	*
 	//Tiles de la séquence
-		* x0 y0 w256 h256 ey160 i0 a1 s0 n0.3 p0 $
+		* x0 y0 w256 h256 ey160 i0 a1 s0 n0.04 p0 $
 		* x256 y0 w256 h256 ey160 i0 a2 n0.04 p32 $
 		* x512 y0 w256 h256 ey160 i0 a3 n0.04 p64 $
 		* x768 y0 w256 h256 ey160 i0 a4 n0.04 p96 $

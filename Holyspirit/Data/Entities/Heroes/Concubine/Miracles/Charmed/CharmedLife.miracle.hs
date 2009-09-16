@@ -4,7 +4,7 @@ $
 $
 	* l * 20 $
 	* l $
-	* l * ( 10 + 10 * ( l - 1 ) ) $	
+	* l * ( 10 + 15 * ( l - 1 ) ) $	
 $
 	*Vie_supplémentaire_:_%2
 	*Régénération_vie_:_+%1/s 

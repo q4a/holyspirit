@@ -3,10 +3,10 @@
 $
 	*Le_croisé_charge_un_adversaire_renversant_tout_sur_son_passage.\Utilisable_uniquement_avec_un_bouclier.
 $	
-	* 10 + 10 * l $
+	* 10 * l $
 
 	* l $
-	* l + 1 $
+	* l * 2 $
 
 	* 4 * ( 3 / 2 ) ^ ( l - 1 ) $
 	* 6 * ( 3 / 2 ) ^ ( l - 1 ) $
@@ -23,7 +23,7 @@ $
 	*Data/Sounds/9906__Snoman__grass3.wav
 $
 //Effets
-	* t12 l4 l1 ia5 ib1 ic3 $
+	* t12 l4 l1 ia5 ib1 ic2 $
 
 	
 	* t10 l2 l3 ia1 ib-1 $
@@ -31,7 +31,7 @@ $
 	* t3 s0 ia8 $ 
 
 	* t11 l5 ia0 ib8 $
-	* t10 l6 ia2 $
+	* t10 l6 ia2 ib6$
 	* t7 ia%3 ib%4 ic1 id1 $
 $
 //Séquences
