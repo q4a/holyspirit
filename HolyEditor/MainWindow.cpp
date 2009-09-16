@@ -150,8 +150,8 @@ MainWindow::MainWindow() : QWidget()
     moduleAleatoireCur->setPrefix ( tr("Module aléatoire courant : ") );
 
     taillePinceau = new QSpinBox(menuInfos);
-    taillePinceau->setGeometry(204,40,200,18);
-    taillePinceau->setMaximum ( 9 );
+    taillePinceau->setGeometry(204,60,200,18);
+    taillePinceau->setMaximum ( 30 );
     taillePinceau->setMinimum ( 1 );
     taillePinceau->setValue ( 1 );
     taillePinceau->setPrefix ( tr("Taille pinceau : ") );
@@ -321,24 +321,40 @@ void MainWindow::paintEvent(QPaintEvent*)
 
     if (/*eventManager->getPositionSouris().x > moteurGraphique->m_ecran->GetWidth()-32 && eventManager->getPositionSouris().x < moteurGraphique->m_ecran->GetWidth() - 8 ||*/ eventManager->getEvenement(sf::Key::Right,"ET"))
     {
-        eventManager->m_coordonnee.x+=eventManager->m_clock.GetElapsedTime()*5;
-        eventManager->m_coordonnee.y-=eventManager->m_clock.GetElapsedTime()*5;
+        eventManager->m_coordonnee.x+=eventManager->m_clock.GetElapsedTime()*5*((configuration->zoom - 1)/2+1);
+        eventManager->m_coordonnee.y-=eventManager->m_clock.GetElapsedTime()*5*((configuration->zoom - 1)/2+1);
     }
     if (/*ventManager->getPositionSouris().x < 32 && eventManager->getPositionSouris().x > 8||*/ eventManager->getEvenement(sf::Key::Left,"ET"))
     {
-        eventManager->m_coordonnee.x-=eventManager->m_clock.GetElapsedTime()*5;
-        eventManager->m_coordonnee.y+=eventManager->m_clock.GetElapsedTime()*5;
+        eventManager->m_coordonnee.x-=eventManager->m_clock.GetElapsedTime()*5*((configuration->zoom - 1)/2+1);
+        eventManager->m_coordonnee.y+=eventManager->m_clock.GetElapsedTime()*5*((configuration->zoom - 1)/2+1);
     }
 
     if (/*eventManager->getPositionSouris().y > moteurGraphique->m_ecran->GetHeight()-32 && eventManager->getPositionSouris().y < moteurGraphique->m_ecran->GetHeight() - 8 ||*/ eventManager->getEvenement(sf::Key::Down,"ET"))
     {
-        eventManager->m_coordonnee.x+=eventManager->m_clock.GetElapsedTime()*10;
-        eventManager->m_coordonnee.y+=eventManager->m_clock.GetElapsedTime()*10;
+        if(eventManager->getEvenement(sf::Key::Right,"ET") || eventManager->getEvenement(sf::Key::Left,"ET"))
+        {
+            eventManager->m_coordonnee.x+=eventManager->m_clock.GetElapsedTime()*5*((configuration->zoom - 1)/2+1);
+            eventManager->m_coordonnee.y+=eventManager->m_clock.GetElapsedTime()*5*((configuration->zoom - 1)/2+1);
+        }
+        else
+        {
+            eventManager->m_coordonnee.x+=eventManager->m_clock.GetElapsedTime()*10*((configuration->zoom - 1)/2+1);
+            eventManager->m_coordonnee.y+=eventManager->m_clock.GetElapsedTime()*10*((configuration->zoom - 1)/2+1);
+        }
     }
     if (/*eventManager->getPositionSouris().y < 32 && eventManager->getPositionSouris().y > 8 ||*/ eventManager->getEvenement(sf::Key::Up,"ET"))
     {
-        eventManager->m_coordonnee.x-=eventManager->m_clock.GetElapsedTime()*10;
-        eventManager->m_coordonnee.y-=eventManager->m_clock.GetElapsedTime()*10;
+        if(eventManager->getEvenement(sf::Key::Right,"ET") || eventManager->getEvenement(sf::Key::Left,"ET"))
+        {
+            eventManager->m_coordonnee.x-=eventManager->m_clock.GetElapsedTime()*5*((configuration->zoom - 1)/2+1);
+            eventManager->m_coordonnee.y-=eventManager->m_clock.GetElapsedTime()*5*((configuration->zoom - 1)/2+1);
+        }
+        else
+        {
+            eventManager->m_coordonnee.x-=eventManager->m_clock.GetElapsedTime()*10*((configuration->zoom - 1)/2+1);
+            eventManager->m_coordonnee.y-=eventManager->m_clock.GetElapsedTime()*10*((configuration->zoom - 1)/2+1);
+        }
     }
 
     if (eventManager->getEvenement(sf::Mouse::Middle, "C"))
@@ -440,18 +456,19 @@ void MainWindow::paintEvent(QPaintEvent*)
                 else
                 {
                     bool ajouter = true;
-                    for (unsigned i = 0 ; i < map->m_decor[1][i][j].size() ; ++i)
-                        if (map->m_decor[1][i][j][i].m_moduleAleatoireMin == map->m_moduleAleatoireMin
-                                &&map->m_decor[1][i][j][i].m_moduleAleatoireMax == map->m_moduleAleatoireMax)
+                    for (unsigned k = 0 ; k < map->m_decor[1][i][j].size() ; ++k)
+                        if (map->m_decor[1][i][j][k].m_moduleAleatoireMin == map->m_moduleAleatoireMin
+                                &&map->m_decor[1][i][j][k].m_moduleAleatoireMax == map->m_moduleAleatoireMax)
                         {
                             ajouter = false;
-                            map->m_decor[1][i][j][i].m_monstre.clear();
+                            map->m_decor[1][i][j][k].m_monstre.clear();
                             if (map->m_selectEntite >= 1)
-                                map->m_decor[1][i][j][i].m_monstre.push_back(map->m_monstre.size()-1);
+                                map->m_decor[1][i][j][k].m_monstre.push_back(map->m_monstre.size()-1);
                         }
                     if (ajouter)
                     {
                         map->m_decor[1][i][j].push_back(map->m_decor[1][i][j].back());
+                        map->m_decor[1][i][j][map->m_decor[1][i][j].size()-2] = Decor ();
                         map->m_decor[1][i][j][map->m_decor[1][i][j].size()-2].m_monstre.clear();
                         if (map->m_selectEntite >= 1)
                             map->m_decor[1][i][j][map->m_decor[1][i][j].size()-2].m_monstre.push_back(map->m_monstre.size()-1);
@@ -475,18 +492,21 @@ void MainWindow::paintEvent(QPaintEvent*)
                 else
                 {
                     bool ajouter = true;
-                    for (unsigned i = 0 ; i < map->m_decor[map->m_selectCouche][i][j].size() ; ++i)
-                        if (map->m_decor[map->m_selectCouche][i][j][i].m_moduleAleatoireMin == map->m_moduleAleatoireMin
-                                &&map->m_decor[map->m_selectCouche][i][j][i].m_moduleAleatoireMax == map->m_moduleAleatoireMax)
+                    for (unsigned k = 0 ; k < map->m_decor[map->m_selectCouche][i][j].size() ; ++k)
+                    {
+                        if (map->m_decor[map->m_selectCouche][i][j][k].m_moduleAleatoireMin == map->m_moduleAleatoireMin)
+                        if (map->m_decor[map->m_selectCouche][i][j][k].m_moduleAleatoireMax == map->m_moduleAleatoireMax)
                         {
                             ajouter = false;
-                            map->m_decor[map->m_selectCouche][i][j][i].m_evenement.clear();
+                            map->m_decor[map->m_selectCouche][i][j][k].m_evenement.clear();
                             if (map->m_selectEvenement >= 1)
-                                map->m_decor[map->m_selectCouche][i][j][i].m_evenement.push_back(map->m_selectEvenement-1);
+                                map->m_decor[map->m_selectCouche][i][j][k].m_evenement.push_back(map->m_selectEvenement-1);
                         }
+                    }
                     if (ajouter)
                     {
                         map->m_decor[map->m_selectCouche][i][j].push_back(map->m_decor[map->m_selectCouche][i][j].back());
+                        map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2] = Decor ();
 
                         map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_evenement.clear();
                         if (map->m_selectEvenement >= 1)
@@ -524,20 +544,21 @@ void MainWindow::paintEvent(QPaintEvent*)
                 else
                 {
                     bool ajouter = true;
-                    for (unsigned i = 0 ; i < map->m_decor[map->m_selectCouche][i][j].size() ; ++i)
-                        if (map->m_decor[map->m_selectCouche][i][j][i].m_moduleAleatoireMin == map->m_moduleAleatoireMin
-                                &&map->m_decor[map->m_selectCouche][i][j][i].m_moduleAleatoireMax == map->m_moduleAleatoireMax)
+                    for (unsigned k = 0 ; k < map->m_decor[map->m_selectCouche][i][j].size() ; ++k)
+                        if (map->m_decor[map->m_selectCouche][i][j][k].m_moduleAleatoireMin == map->m_moduleAleatoireMin
+                                &&map->m_decor[map->m_selectCouche][i][j][k].m_moduleAleatoireMax == map->m_moduleAleatoireMax)
                         {
                             ajouter = false;
-                            map->m_decor[map->m_selectCouche][i][j][i].m_tile.clear();
-                            map->m_decor[map->m_selectCouche][i][j][i].m_tileset = map->m_selectTileset-1;
-                            map->m_decor[map->m_selectCouche][i][j][i].m_couche = layer;
+                            map->m_decor[map->m_selectCouche][i][j][k].m_tile.clear();
+                            map->m_decor[map->m_selectCouche][i][j][k].m_tileset = map->m_selectTileset-1;
+                            map->m_decor[map->m_selectCouche][i][j][k].m_couche = layer;
                             if (map->m_selectTileset >= 1)
-                                map->m_decor[map->m_selectCouche][i][j][i].m_tile.push_back(map->m_selectTile);
+                                map->m_decor[map->m_selectCouche][i][j][k].m_tile.push_back(map->m_selectTile);
                         }
                     if (ajouter)
                     {
                         map->m_decor[map->m_selectCouche][i][j].push_back(map->m_decor[map->m_selectCouche][i][j].back());
+                        map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2] = Decor ();
 
                         map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_tile.clear();
                         map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_tileset = map->m_selectTileset-1;
@@ -559,21 +580,21 @@ void MainWindow::paintEvent(QPaintEvent*)
                 if (map->m_moduleAleatoireMin == 0 && map->m_moduleAleatoireMax == 9)
                 {
                     map->m_decor[map->m_selectCouche][i][j].back().m_herbe = map->m_selectHerbe - 1;
-
                 }
                 else
                 {
                     bool ajouter = true;
-                    for (unsigned i = 0 ; i < map->m_decor[map->m_selectCouche][i][j].size() ; ++i)
-                        if (map->m_decor[map->m_selectCouche][i][j][i].m_moduleAleatoireMin == map->m_moduleAleatoireMin
-                                &&map->m_decor[map->m_selectCouche][i][j][i].m_moduleAleatoireMax == map->m_moduleAleatoireMax)
+                    for (unsigned k = 0 ; k < map->m_decor[map->m_selectCouche][i][j].size() ; ++k)
+                        if (map->m_decor[map->m_selectCouche][i][j][k].m_moduleAleatoireMin == map->m_moduleAleatoireMin
+                                &&map->m_decor[map->m_selectCouche][i][j][k].m_moduleAleatoireMax == map->m_moduleAleatoireMax)
                         {
                             ajouter = false;
-                            map->m_decor[map->m_selectCouche][i][j][i].m_herbe = map->m_selectHerbe - 1;
+                            map->m_decor[map->m_selectCouche][i][j][k].m_herbe = map->m_selectHerbe - 1;
                         }
                     if (ajouter)
                     {
                         map->m_decor[map->m_selectCouche][i][j].push_back(map->m_decor[map->m_selectCouche][i][j].back());
+                        map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2] = Decor ();
 
                         map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_herbe = map->m_selectHerbe - 1;
 
@@ -595,14 +616,14 @@ void MainWindow::paintEvent(QPaintEvent*)
                                 numeroHerbe = (rand() % (map->m_herbe[map->m_decor[map->m_selectCouche][i][j][z].getHerbe()].getTaille()));
                             map->m_decor[map->m_selectCouche][i][j][z].setNumeroHerbe(numeroHerbe);
 
-                            position.x=(eventManager->getCasePointee().x-eventManager->getCasePointee().y-1)*64;
-                            position.y=(eventManager->getCasePointee().x+eventManager->getCasePointee().y)*32;
+                            position.x=(j-i-1)*64;
+                            position.y=(j+i)*32;
 
                             positionPartieDecor=map->m_herbe[map->m_decor[map->m_selectCouche][i][j][z].getHerbe()].getPositionDuTile(map->m_decor[map->m_selectCouche][i][j][z].getNumeroHerbe());
 
                             if (map->m_selectCouche==0)
                                 position.y-=32;
-                            position.x+=map->m_decor[0][i][j].back().getDecalageHerbe().x;
+                            position.x+=map->m_decor[map->m_selectCouche][i][j][z].getDecalageHerbe().x;
 
                             map->m_decor[map->m_selectCouche][i][j][z].m_spriteHerbe.SetImage(*moteurGraphique->getImage(map->m_herbe[map->m_decor[map->m_selectCouche][i][j][z].getHerbe()].getImage(map->m_decor[map->m_selectCouche][i][j][z].getNumeroHerbe())));
                             map->m_decor[map->m_selectCouche][i][j][z].m_spriteHerbe.SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
@@ -621,7 +642,6 @@ void MainWindow::paintEvent(QPaintEvent*)
             for(int j = eventManager->getCasePointee().x - (int)(taillePinceau->value()*0.5) ; j < eventManager->getCasePointee().x + taillePinceau->value()*0.5 ; ++j)
             if(i >= 0 && j >= 0 && i < map->getDimensions().y && j < map->getDimensions().x)
             {
-
                 int layer = modifLayer->value();
                 if (map->m_selectCouche == 0)
                     layer += 1;
@@ -636,23 +656,73 @@ void MainWindow::paintEvent(QPaintEvent*)
 
                 if (map->m_moduleAleatoireMin == 0 && map->m_moduleAleatoireMax == 9)
                 {
-                    map->m_decor[map->m_selectCouche][i][j].back() = map->m_select_brush;
+                    // Essayer de copier à la main en vérifiant !tile.empty(), etc
+                    if(map->m_select_brush.m_tileset != -1)
+                        map->m_decor[map->m_selectCouche][i][j].back().m_tileset = map->m_select_brush.m_tileset;
+
+                    if(!map->m_select_brush.m_tile.empty())
+                        map->m_decor[map->m_selectCouche][i][j].back().m_tile = map->m_select_brush.m_tile;
+
+                    if(!map->m_select_brush.m_objets.empty())
+                        map->m_decor[map->m_selectCouche][i][j].back().m_objets = map->m_select_brush.m_objets;
+
+                    if(map->m_select_brush.m_couche != -1)
+                        map->m_decor[map->m_selectCouche][i][j].back().m_couche = map->m_select_brush.m_couche;
+
+                    if(!map->m_select_brush.m_monstre.empty())
+                    {
+                        map->m_decor[map->m_selectCouche][i][j].back().m_monstre = map->m_select_brush.m_monstre;
+                        for(int z = 0 ; z < map->m_decor[map->m_selectCouche][i][j].back().m_monstre.size() ; ++z)
+                            map->m_monstre[map->m_decor[map->m_selectCouche][i][j].back().m_monstre[z]].setCoordonnee(coordonnee (j, i));
+                    }
+
+                    if(!map->m_select_brush.m_evenement.empty())
+                        map->m_decor[map->m_selectCouche][i][j].back().m_evenement = map->m_select_brush.m_evenement;
+
+                    if(map->m_select_brush.m_herbe != -1)
+                        map->m_decor[map->m_selectCouche][i][j].back().m_herbe = map->m_select_brush.m_herbe;
                 }
                 else
                 {
                     bool ajouter = true;
-                    for (unsigned i = 0 ; i < map->m_decor[map->m_selectCouche][i][j].size() ; ++i)
-                        if (map->m_decor[map->m_selectCouche][i][j][i].m_moduleAleatoireMin == map->m_moduleAleatoireMin
-                                &&map->m_decor[map->m_selectCouche][i][j][i].m_moduleAleatoireMax == map->m_moduleAleatoireMax)
+                    for (unsigned k = 0 ; k < map->m_decor[map->m_selectCouche][i][j].size() ; ++k)
+                        if (map->m_decor[map->m_selectCouche][i][j][k].m_moduleAleatoireMin == map->m_moduleAleatoireMin
+                                &&map->m_decor[map->m_selectCouche][i][j][k].m_moduleAleatoireMax == map->m_moduleAleatoireMax)
                         {
                             ajouter = false;
-                            map->m_decor[map->m_selectCouche][i][j][i] = map->m_select_brush;
+                            map->m_decor[map->m_selectCouche][i][j][k] = map->m_select_brush;
                         }
                     if (ajouter)
                     {
                         map->m_decor[map->m_selectCouche][i][j].push_back(map->m_decor[map->m_selectCouche][i][j].back());
+                        map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2] = Decor ();
 
-                        map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2] = map->m_select_brush;
+                        //map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2] = map->m_select_brush;
+
+                        if(map->m_select_brush.m_tileset != -1)
+                            map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_tileset = map->m_select_brush.m_tileset;
+
+                        if(!map->m_select_brush.m_tile.empty())
+                            map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_tile = map->m_select_brush.m_tile;
+
+                        if(!map->m_select_brush.m_objets.empty())
+                            map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_objets = map->m_select_brush.m_objets;
+
+                        if(map->m_select_brush.m_couche != -1)
+                            map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_couche = map->m_select_brush.m_couche;
+
+                        if(!map->m_select_brush.m_monstre.empty())
+                        {
+                            map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_monstre = map->m_select_brush.m_monstre;
+                            for(int z = 0 ; z < map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_monstre.size() ; ++z)
+                                map->m_monstre[map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_monstre[z]].setCoordonnee(coordonnee (j, i));
+                        }
+
+                        if(!map->m_select_brush.m_evenement.empty())
+                            map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_evenement = map->m_select_brush.m_evenement;
+
+                        if(map->m_select_brush.m_herbe != -1)
+                            map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_herbe = map->m_select_brush.m_herbe;
 
                         map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_moduleAleatoireMin = map->m_moduleAleatoireMin;
                         map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_moduleAleatoireMax = map->m_moduleAleatoireMax;
@@ -674,6 +744,11 @@ void MainWindow::paintEvent(QPaintEvent*)
             }
             else
             {
+                map->m_selectEntite     = -1;
+                map->m_selectTileset    = -1;
+                map->m_selectTile       = -1;
+                map->m_selectHerbe      = -1;
+                map->m_selectEvenement  = -1;
                 /*if(map->m_selectEntite == -100)
                 {
                     map->m_decor[map->m_selectCouche][eventManager->getCasePointee().y][eventManager->getCasePointee().x].m_tile.clear();
@@ -1409,7 +1484,13 @@ void MainWindow::addEntite(QTreeWidgetItem *item, int column)
     map->m_selectHerbe       = -1;
     map->m_selectEvenement   = -1;
 
-    map->m_select_brush.m_monstre.push_back(item->treeWidget()->indexOfTopLevelItem (item) - 1);
+
+    map->m_monstre.push_back(Monstre ());
+    map->m_monstre.back().Charger(item->treeWidget()->indexOfTopLevelItem (item) - 1,&map->m_ModeleMonstre[item->treeWidget()->indexOfTopLevelItem (item) - 1]);
+    map->m_monstre.back().setCoordonnee(eventManager->getCasePointee()),map->m_monstre.back().setDepart();
+    map->m_add_monstre.push_back(false);
+
+    map->m_select_brush.m_monstre.push_back(map->m_monstre.size()-1);
 
     map->m_mode_brush       = true;
 
