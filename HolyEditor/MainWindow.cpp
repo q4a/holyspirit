@@ -97,6 +97,11 @@ MainWindow::MainWindow() : QWidget()
     listEntites      = new QTreeWidget();
     listEvenements   = new QTreeWidget();
 
+    listTileset     ->setSortingEnabled(true);
+    listHerbe       ->setSortingEnabled(true);
+    listEntites     ->setSortingEnabled(true);
+    listEvenements  ->setSortingEnabled(true);
+
     ongletRessources    = new QTabWidget();
     ongletRessources->addTab(listTileset, "Tilesets");
     ongletRessources->addTab(listHerbe, "Herbes");
@@ -849,6 +854,7 @@ void MainWindow::MettreListesAJour()
             temp<<map->m_tileset[k-1].getChemin().c_str();
 
         QTreeWidgetItem *widget = new QTreeWidgetItem(temp, 0);
+        widget ->setData (1, 0, QVariant(k));
 
         if (k > 0)
             for (unsigned l = 0 ; l < map->m_tileset[k-1].m_tile.size() ; ++l)
@@ -859,6 +865,7 @@ void MainWindow::MettreListesAJour()
                 temp<<buf.str().c_str();
                 QTreeWidgetItem *widget2 = new QTreeWidgetItem(temp, 0);
                 widget2->setText(0,temp.at(0));
+                widget2 ->setData (1, 0, QVariant(l));
 
                 widget->addChild(widget2);
             }
@@ -877,6 +884,7 @@ void MainWindow::MettreListesAJour()
             temp<<map->m_herbe[k-1].getChemin().c_str();
 
         QTreeWidgetItem *widget = new QTreeWidgetItem(temp, 0);
+        widget ->setData (1, 0, QVariant(k));
 
         listHerbe->addTopLevelItem(widget);
     }
@@ -890,6 +898,7 @@ void MainWindow::MettreListesAJour()
         else
             temp<<map->m_ModeleMonstre[k-1].m_chemin.c_str();
         QTreeWidgetItem *widget = new QTreeWidgetItem(temp, 0);
+        widget ->setData (1, 0, QVariant(k));
 
         listEntites->addTopLevelItem(widget);
     }
@@ -922,6 +931,7 @@ void MainWindow::MettreListesAJour()
             temp<<buf.str().c_str();
         }
         QTreeWidgetItem *widget = new QTreeWidgetItem(temp, 0);
+        widget ->setData (1, 0, QVariant(k));
 
         listEvenements->addTopLevelItem(widget);
     }
@@ -1384,12 +1394,12 @@ void MainWindow::selectTileset(QTreeWidgetItem *item, int column)
     //std::cout<<item->parent()->text(column).toStdString()<<std::endl;
     if (item->parent() != NULL)
     {
-        map->m_selectTileset = item->treeWidget()->indexOfTopLevelItem (item->parent());
-        map->m_selectTile = item->parent()->indexOfChild(item);
+        map->m_selectTileset = item->parent()->data(1,0).toInt();
+        map->m_selectTile = item->data(1,0).toInt();
     }
     else
     {
-        map->m_selectTileset = item->treeWidget()->indexOfTopLevelItem (item);
+        map->m_selectTileset = item->data(1,0).toInt();
         map->m_selectTile = 0;
     }
 
@@ -1409,7 +1419,7 @@ void MainWindow::selectHerbe(QTreeWidgetItem *item, int column)
     map->m_selectEvenement   = -1;
     //std::cout<<item->parent()->text(column).toStdString()<<std::endl;
 
-    map->m_selectHerbe = item->treeWidget()->indexOfTopLevelItem (item);
+    map->m_selectHerbe = item->data(1,0).toInt();
 
     map->m_mode_brush       = false;
 
@@ -1422,8 +1432,7 @@ void MainWindow::selectEntite(QTreeWidgetItem *item, int column)
     map->m_selectTile        = -1;
     map->m_selectEvenement   = -1;
 
-    map->m_selectEntite = item->treeWidget()->indexOfTopLevelItem (item);
-    std::cout<<item->treeWidget()->indexOfTopLevelItem (item)<<std::endl;
+    map->m_selectEntite = item->data(1,0).toInt();
 
     map->m_mode_brush       = false;
 
@@ -1436,7 +1445,7 @@ void MainWindow::selectEvenement(QTreeWidgetItem *item, int column)
     map->m_selectTile        = -1;
     map->m_selectHerbe       = -1;
 
-    map->m_selectEvenement = item->treeWidget()->indexOfTopLevelItem (item);
+    map->m_selectEvenement = item->data(1,0).toInt();
 
     map->m_mode_brush       = false;
 
@@ -1454,8 +1463,8 @@ void MainWindow::addTileset(QTreeWidgetItem *item, int column)
 
     if (item->parent() != NULL)
     {
-        map->m_select_brush.m_tileset = item->treeWidget()->indexOfTopLevelItem (item->parent()) - 1;
-        map->m_select_brush.m_tile.push_back(item->parent()->indexOfChild(item));
+        map->m_select_brush.m_tileset = item->parent()->data(1,0).toInt();
+        map->m_select_brush.m_tile.push_back(item->data(1,0).toInt());
     }
 
     map->m_mode_brush       = true;
@@ -1470,7 +1479,7 @@ void MainWindow::addHerbe(QTreeWidgetItem *item, int column)
     map->m_selectHerbe       = -1;
     map->m_selectEvenement   = -1;
 
-    map->m_select_brush.m_herbe = item->treeWidget()->indexOfTopLevelItem (item) - 1;
+    map->m_select_brush.m_herbe = item->data(1,0).toInt();
 
     map->m_mode_brush       = true;
 
@@ -1486,7 +1495,7 @@ void MainWindow::addEntite(QTreeWidgetItem *item, int column)
 
 
     map->m_monstre.push_back(Monstre ());
-    map->m_monstre.back().Charger(item->treeWidget()->indexOfTopLevelItem (item) - 1,&map->m_ModeleMonstre[item->treeWidget()->indexOfTopLevelItem (item) - 1]);
+    map->m_monstre.back().Charger(item->data(1,0).toInt() - 1,&map->m_ModeleMonstre[item->data(1,0).toInt()]);
     map->m_monstre.back().setCoordonnee(eventManager->getCasePointee()),map->m_monstre.back().setDepart();
     map->m_add_monstre.push_back(false);
 
@@ -1504,7 +1513,7 @@ void MainWindow::addEvenement(QTreeWidgetItem *item, int column)
     map->m_selectHerbe       = -1;
     map->m_selectEvenement   = -1;
 
-    map->m_select_brush.m_evenement.push_back(item->treeWidget()->indexOfTopLevelItem (item) - 1);
+    map->m_select_brush.m_evenement.push_back(item->data(1,0).toInt());
 
     map->m_mode_brush       = true;
 
