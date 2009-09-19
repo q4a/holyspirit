@@ -49,6 +49,8 @@ public:
 
     const Lumiere &getPorteeLumineuse();
     int getNombreSons();
+    int getNombreSonsTouche();
+    int getSonTouche(int);
     const Caracteristique &getCaracteristique();
 
     void setPorteeLumineuse(Lumiere  lumiere);
@@ -68,6 +70,7 @@ protected:
     Caracteristique m_caracteristique;
     Lumiere m_porteeLumineuse;
     std::vector <int> m_sons;
+    std::vector <int> m_sons_touche;
 };
 
 class Personnage
@@ -90,7 +93,7 @@ public:
 
     void Frappe(coordonnee direction,coordonnee position);
 
-    void InfligerDegats(float degats);
+    void InfligerDegats(float degats, Modele_Personnage *modele);
 
     int AjouterEffet(std::vector<Tile> &tiles, int type, int compteur, int info1, int info2, int info3);
     void DetruireEffets();

@@ -912,7 +912,7 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap, bool pou
     return 0;
 }
 
-void Personnage::InfligerDegats(float degats)
+void Personnage::InfligerDegats(float degats, Modele_Personnage *modele)
 {
     float temp = degats;
     degats -= (float)m_caracteristique.armure/50;
@@ -925,6 +925,17 @@ void Personnage::InfligerDegats(float degats)
     m_caracteristique.vie-=degats;
 
     m_cible = NULL;
+
+    if(modele != NULL)
+        if(modele->getNombreSonsTouche() > 0)
+        {
+            int random = rand()%modele->getNombreSonsTouche();
+            coordonnee position;
+            position.x=(m_positionCase.x-m_positionCase.y-1)/5;
+            position.y=(m_positionCase.x+m_positionCase.y)/5;
+
+            modele->JouerSon(modele->getSonTouche(random),position,coordonnee (0,0), true);
+        }
 
     if (m_caracteristique.vie<=0&&m_etat!=3)
         m_poseEnCours=0,m_etat=3;
@@ -985,7 +996,9 @@ int Personnage::Animer(Modele_Personnage *modele,float temps,coordonnee position
 
     float tempsAnimation=0.075;
 
-    if (m_etat>=0&&m_etat<(int)modele->m_pose.size())
+    if(m_etat >= 0 && m_etat < (int)modele->m_pose.size())
+    if((int)(m_angle/45) >= 0 && (int)(m_angle/45) < (int)modele->m_pose[m_etat].size())
+    if(m_poseEnCours >= 0 && m_poseEnCours < (int)modele->m_pose[m_etat][(int)(m_angle/45)].size())
     {
         if (modele->m_pose.size()>0)
             tempsAnimation = modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getTempsAnimation();
@@ -1275,6 +1288,20 @@ int Modele_Personnage::getNombreSons()
 {
     return m_sons.size();
 }
+
+int Modele_Personnage::getNombreSonsTouche()
+{
+    return m_sons_touche.size();
+}
+
+int Modele_Personnage::getSonTouche(int son)
+{
+    if(son >= 0 && son < (int)m_sons_touche.size())
+        return m_sons_touche[son];
+
+    return -1;
+}
+
 const coordonnee &Personnage::getCoordonnee()
 {
     return m_positionCase;

@@ -20,6 +20,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <list>
 
 #ifndef MOTEURGRAPHIQUEH
 #define MOTEURGRAPHIQUEH
@@ -30,7 +31,13 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 struct Image_moteur
 {
-    sf::Image img;
+    Image_moteur()
+    {
+        importance  = 0;
+        nom         = "";
+        img         =  NULL;
+    }
+    sf::Image *img;
     std::string nom;
     int importance;
 };
@@ -124,7 +131,8 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	sf::Vector2f decalageLumiere,decalageOmbre;
 
-	std::vector <Image_moteur> m_images;
+	std::list <Image_moteur> m_images;
+	std::list <Image_moteur> :: iterator m_images_iter;
 
 	std::vector <ModeleParticuleSysteme> m_modeleSystemeParticules;
 

@@ -147,7 +147,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         {
             buffer.push_back(*jeu->hero.m_amis[i]);
             bufferModele.push_back(jeu->map->getModeleMonstre(jeu->hero.m_amis[i]->getModele()));
-            jeu->hero.m_amis[i]->InfligerDegats(jeu->hero.m_amis[i]->getCaracteristique().vie * 2);
+            jeu->hero.m_amis[i]->InfligerDegats(jeu->hero.m_amis[i]->getCaracteristique().vie * 2, &bufferModele.back());
         }
 
         if (jeu->map!=NULL && !m_debut)
@@ -182,7 +182,10 @@ void c_Chargement::Utiliser(Jeu *jeu)
             }
 
             if(ajouter)
+            {
                 jeu->map->AjouterModeleMonstre(bufferModele[i]);
+                buffer[i].setModele(jeu->map->getNombreModeleMonstres() - 1);
+            }
 
             jeu->map->AjouterMonstre((Monstre) buffer[i]);
 
@@ -191,7 +194,11 @@ void c_Chargement::Utiliser(Jeu *jeu)
             {
                 if(jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours[j].m_modele].m_effets[jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k].m_effetEnCours].m_type == CHARME)
                     if(jeu->hero.m_personnage.m_miracleEnCours[j].m_cible == jeu->hero.m_amis[i])
+                    {
                        jeu->hero.m_personnage.m_miracleEnCours[j].m_cible = jeu->map->getEntiteMonstre(jeu->map->getNombreMonstres() - 1);
+                       jeu->hero.m_personnage.m_miracleEnCours[j].m_cible->setCoordonnee(jeu->hero.m_personnage.m_miracleEnCours[j].m_cible->getCoordonnee());
+                       jeu->hero.m_personnage.m_miracleEnCours[j].m_cible->setDepart();
+                    }
             }
 
             jeu->hero.m_amis[i] = jeu->map->getEntiteMonstre(jeu->map->getNombreMonstres() - 1);

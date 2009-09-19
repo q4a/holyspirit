@@ -29,10 +29,11 @@ MoteurGraphique::MoteurGraphique()
     LightManager = Light_Manager::GetInstance();
 
     m_images.push_back(Image_moteur ());
-    m_images[0].img.Create(1024, 1024, sf::Color(255, 255, 255));
+    m_images.front().img = new sf::Image();
+    m_images.front().img->Create(1024, 1024, sf::Color(255, 255, 255));
 
-    m_images[0].nom         = "O";
-    m_images[0].importance  = -1;
+    m_images.front().nom         = "O";
+    m_images.front().importance  = -1;
 
     m_soleil.rouge          = 255;
     m_soleil.vert           = 255;
@@ -48,6 +49,9 @@ MoteurGraphique::~MoteurGraphique()
 {
     LightManager->Kill();
     Vider();
+    for (m_images_iter=m_images.begin();m_images_iter != m_images.end();++m_images_iter)
+        if(m_images_iter->img != NULL)
+            delete m_images_iter->img;
     m_images.clear();
     m_systemeParticules.clear();
     m_modeleSystemeParticules.clear();
@@ -404,21 +408,24 @@ void MoteurGraphique::Afficher()
 
 int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std::string nom,int importance)
 {
-    for (unsigned i=0;i<m_images.size();i++)
+    unsigned i=0;
+    for (m_images_iter=m_images.begin();m_images_iter != m_images.end();++m_images_iter,i++)
     {
-        if (m_images[i].nom==nom)
+        if (m_images_iter->nom==nom)
         {
-            m_images[i].importance=importance;
+            m_images_iter->importance=importance;
             return i;
         }
-        else if (m_images[i].nom=="")
+        else if (m_images_iter->img == NULL)
         {
-            m_images[i].nom=nom;
+            m_images_iter->nom=nom;
+
+            m_images_iter->img = new sf::Image();
 
             if (!configuration->lissage)
-                m_images[i].img.SetSmooth(false);
+                m_images_iter->img->SetSmooth(false);
 
-            if (!m_images[i].img.LoadFromMemory(Data,SizeInBytes))
+            if (!m_images_iter->img->LoadFromMemory(Data,SizeInBytes))
             {
                 console->Ajouter("Impossible de charger : "+nom,1);
                 return -1;
@@ -426,7 +433,7 @@ int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std
             else
                 console->Ajouter("Chargement de : "+nom,0);
 
-            m_images[i].importance=importance;
+            m_images_iter->importance=importance;
 
             return i;
         }
@@ -435,10 +442,12 @@ int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std
     m_images.push_back(Image_moteur ());
     m_images.back().nom=nom;
 
-    if (!configuration->lissage)
-        m_images.back().img.SetSmooth(false);
+    m_images.back().img = new sf::Image();
 
-    if (!m_images.back().img.LoadFromMemory(Data,SizeInBytes))
+    if (!configuration->lissage)
+        m_images.back().img->SetSmooth(false);
+
+    if (!m_images.back().img->LoadFromMemory(Data,SizeInBytes))
     {
         console->Ajouter("Impossible de charger depuis la mémoire : "+nom,1);
         return -1;
@@ -453,22 +462,25 @@ int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std
 
 int MoteurGraphique::AjouterImage(std::string chemin,int importance)
 {
-    for (unsigned i=0;i<m_images.size();i++)
+    unsigned i=0;
+    for (m_images_iter=m_images.begin();m_images_iter != m_images.end();++m_images_iter,i++)
     {
-        if (m_images[i].nom==chemin)
+        if (m_images_iter->nom==chemin)
         {
-            m_images[i].importance=importance;
+            m_images_iter->importance=importance;
             return i;
         }
 
-        if (m_images[i].nom=="")
+        if (m_images_iter->img == NULL)
         {
-            m_images[i].nom=chemin;
+            m_images_iter->nom=chemin;
+
+            m_images_iter->img = new sf::Image();
 
             if (!configuration->lissage)
-                m_images[i].img.SetSmooth(false);
+                m_images_iter->img->SetSmooth(false);
 
-            if (!m_images[i].img.LoadFromFile(chemin.c_str()))
+            if (!m_images_iter->img->LoadFromFile(chemin.c_str()))
             {
                 console->Ajouter("Impossible de charger : "+chemin,1);
                 return -1;
@@ -476,7 +488,7 @@ int MoteurGraphique::AjouterImage(std::string chemin,int importance)
             else
                 console->Ajouter("Chargement de : "+chemin,0);
 
-            m_images[i].importance=importance;
+            m_images_iter->importance=importance;
 
             return i;
         }
@@ -485,10 +497,12 @@ int MoteurGraphique::AjouterImage(std::string chemin,int importance)
     m_images.push_back(Image_moteur ());
     m_images.back().nom=chemin;
 
-    if (!configuration->lissage)
-        m_images.back().img.SetSmooth(false);
+    m_images.back().img = new sf::Image();
 
-    if (!m_images.back().img.LoadFromFile(chemin.c_str()))
+    if (!configuration->lissage)
+        m_images.back().img->SetSmooth(false);
+
+    if (!m_images.back().img->LoadFromFile(chemin.c_str()))
     {
         console->Ajouter("Impossible de charger : "+chemin,1);
         return -1;
@@ -503,12 +517,16 @@ int MoteurGraphique::AjouterImage(std::string chemin,int importance)
 
 void MoteurGraphique::DecrementerImportance()
 {
-    for (unsigned i=0;i<m_images.size();i++)
-        if (m_images[i].importance!=-1)
+    for (m_images_iter=m_images.begin();m_images_iter != m_images.end();++m_images_iter)
+        if (m_images_iter->importance!=-1)
         {
-            m_images[i].importance--;
-            if (m_images[i].importance<=0)
-                m_images[i].nom="",m_images[i].importance=0;
+            m_images_iter->importance--;
+            if (m_images_iter->importance<=0)
+            {
+                delete m_images_iter->img;
+                m_images_iter->img = NULL;
+                m_images_iter->nom="",m_images_iter->importance=0;
+            }
         }
 }
 
@@ -626,10 +644,16 @@ void MoteurGraphique::ViderParticules()
 
 sf::Image* MoteurGraphique::getImage(int IDimage)
 {
+
     if (IDimage>=0&&IDimage<(int)m_images.size())
-        return &m_images[IDimage].img;
+    {
+        unsigned i=0;
+        for (m_images_iter=m_images.begin();m_images_iter != m_images.end();++m_images_iter,i++)
+            if(i==IDimage)
+                return m_images_iter->img;
+    }
     else
-        return &m_images[0].img;
+        return m_images.front().img;
 }
 
 ModeleParticuleSysteme* MoteurGraphique::getModeleMoteurParticules(int ID)
@@ -643,7 +667,12 @@ ModeleParticuleSysteme* MoteurGraphique::getModeleMoteurParticules(int ID)
 std::string MoteurGraphique::getCheminImage(int IDimage)
 {
     if (IDimage>=0&&IDimage<(int)m_images.size())
-        return m_images[IDimage].nom;
+    {
+        unsigned i=0;
+        for (m_images_iter=m_images.begin();m_images_iter != m_images.end();++m_images_iter,i++)
+            if(i==IDimage)
+                return m_images_iter->nom;
+    }
     else
         return "";
 }

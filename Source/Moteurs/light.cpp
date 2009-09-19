@@ -403,8 +403,8 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std
             m_shape.push_back(sf::Shape ());
 
             m_shape.back().AddPoint(pt1.x,pt1.y/2,  sf::Color((int)(intensity*m_color.r/255),(int)(intensity*m_color.g/255),(int)(intensity*m_color.b/255)));
-            m_shape.back().AddPoint(pt1.x,pt1.y/2-96,  sf::Color(0,0,0));
-            m_shape.back().AddPoint(pt2.x,pt2.y/2-96,  sf::Color(0,0,0));
+            m_shape.back().AddPoint(pt1.x,pt1.y/2-96 * sin(intensity /m_intensity*M_PI_2),  sf::Color(0,0,0));
+            m_shape.back().AddPoint(pt2.x,pt2.y/2-96 * sin(intensity2/m_intensity*M_PI_2),  sf::Color(0,0,0));
             m_shape.back().AddPoint(pt2.x,pt2.y/2,  sf::Color((int)(intensity2*m_color.r/255),(int)(intensity2*m_color.g/255),(int)(intensity2*m_color.b/255)));
 
 

@@ -1019,7 +1019,7 @@ void Hero::AfficherAmis()
                         }
 
                     if(!charme)
-                        m_amis[i]->InfligerDegats(m_amis[i]->getCaracteristique().vie * 2);
+                        m_amis[i]->InfligerDegats(m_amis[i]->getCaracteristique().vie * 2, NULL);
 
                     m_amis.erase(m_amis.begin() + i);
                     i--;

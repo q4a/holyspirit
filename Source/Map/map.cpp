@@ -1639,7 +1639,7 @@ bool Map::TestEvenement(Jeu *jeu,float temps)
 
                 if (m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getType()==INFLIGER_DEGATS)
                 {
-                    jeu->hero.m_personnage.InfligerDegats(m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(0)*temps*10);
+                    jeu->hero.m_personnage.InfligerDegats(m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(0)*temps*10, NULL);
                 }
             }
     return 1;
@@ -2008,7 +2008,8 @@ void Map::GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,fl
                     {
                         if (personnage->m_miracleEnCours[i].m_cible != NULL)
                         {
-                            if (fabs(personnage->m_miracleEnCours[i].m_cible->getCoordonnee().x - personnage->getCoordonnee().x) > 1 || fabs(personnage->m_miracleEnCours[i].m_cible->getCoordonnee().y - personnage->getCoordonnee().y) > 1 )
+                            if (fabs(personnage->m_miracleEnCours[i].m_cible->getCoordonnee().x - personnage->getCoordonnee().x) > miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0]
+                             || fabs(personnage->m_miracleEnCours[i].m_cible->getCoordonnee().y - personnage->getCoordonnee().y) > miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0] )
                                 personnage->setArrivee(personnage->m_miracleEnCours[i].m_cible->getCoordonnee());
                             else
                             {
@@ -2410,7 +2411,7 @@ void Map::GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,fl
                                             miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[5] , !personnage->m_friendly );
 
                         if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[4])
-                            VerifierDeclencheursDegats((int)(buf.y+COTE_TILE*0.5)/COTE_TILE,(int)(buf.x+COTE_TILE*0.5)/COTE_TILE);
+                            VerifierDeclencheursDegats((int)((float)buf.y+COTE_TILE*0.5/COTE_TILE),(int)((float)buf.x+COTE_TILE*0.5/COTE_TILE));
 
                         for (unsigned p=0;p<miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien.size();p++)
                         {
@@ -2545,7 +2546,7 @@ void Map::InfligerDegatsMasse(coordonnee position,int rayon,int degats,bool sour
                             }
 
                     if (y==hero->m_personnage.getCoordonnee().y&&x==hero->m_personnage.getCoordonnee().x && (monstre || amisCompris))
-                        hero->m_personnage.InfligerDegats(degats);
+                        hero->m_personnage.InfligerDegats(degats, &hero->m_modelePersonnage[0]);
                 }
 }
 
@@ -3130,9 +3131,9 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
     if (vueMin.y<0)
         vueMin.y=0;
     if (vueMax.x>=m_dimensions.x)
-        vueMax.x=m_dimensions.x-1;
+        vueMax.x=m_dimensions.x;
     if (vueMax.y>=m_dimensions.y)
-        vueMax.y=m_dimensions.y-1;
+        vueMax.y=m_dimensions.y;
 
 
     for (int j=vueMin.y;j<vueMax.y;j++)
@@ -3349,9 +3350,9 @@ bool Map::InfligerDegats(Personnage *monstre, float degats, Hero *hero,bool pous
                             m_monstre[m_decor[o][y][x].getMonstre()].setVu(1);
     }*/
 
-    monstre->InfligerDegats(degats);
+    monstre->InfligerDegats(degats, &m_ModeleMonstre[monstre->getModele()]);
 
-    hero->m_personnage.InfligerDegats(-degats * hero->m_caracteristiques.volVie);
+    hero->m_personnage.InfligerDegats(-degats * hero->m_caracteristiques.volVie, NULL);
     hero->m_caracteristiques.foi += degats * hero->m_caracteristiques.volFoi;
 
     for (int x=monstre->getCoordonnee().x;x<10+monstre->getCoordonnee().x;x++)
@@ -3605,8 +3606,8 @@ int Map::getEvenement(coordonnee casePointee)
 
 bool Map::getCollision(int positionX,int positionY, int exception)
 {
-    if(positionX >= 0 && positionX < m_decor[0][0].size()
-    && positionY >= 0 && positionY < m_decor[0].size())
+    if(positionX >= 0 && positionX < (int)m_decor[0][0].size()
+    && positionY >= 0 && positionY < (int)m_decor[0].size())
     for (int i=0;i<2;++i)
     {
         if (m_decor[i][positionY][positionX].getTileset()>=0&&m_decor[i][positionY][positionX].getTileset()<(int)m_tileset.size())

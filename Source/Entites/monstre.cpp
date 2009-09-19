@@ -226,10 +226,34 @@ bool Modele_Monstre::Charger(string chemin)
             fichier->get(caractere);
             if (caractere=='*')
             {
-                string cheminSon;
-                *fichier>>cheminSon;
-                m_sons.push_back(moteurSons->AjouterBuffer(cheminSon));
+                do
+                {
+                    fichier->get(caractere);
+                    if (caractere=='m')
+                    {
+                        string cheminSon;
+                        *fichier>>cheminSon;
+                        m_sons.push_back(moteurSons->AjouterBuffer(cheminSon));
+                    }
+                    else if (caractere=='t')
+                    {
+                        int temp;
+                        *fichier>>temp;
+                        if(temp == 0)
+                            m_sons_touche.push_back(m_sons.size()-1);
+                    }
+                    if (fichier->eof())
+                    {
+                        console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
+                        caractere='$';
+                        m_caracteristique.maxVie=0;
+                    }
+                }
+                while (caractere!='$');
+
+                fichier->get(caractere);
             }
+
             if (fichier->eof())
             {
                 console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
