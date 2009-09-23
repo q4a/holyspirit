@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'MainWindow.h'
 **
-** Created: Mon 14. Sep 18:56:42 2009
+** Created: Tue 22. Sep 18:28:58 2009
 **      by: The Qt Meta Object Compiler version 61 (Qt 4.5.0)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        2,       // revision
        0,       // classname
        0,    0, // classinfo
-      19,   12, // methods
+      20,   12, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -37,17 +37,18 @@ static const uint qt_meta_data_MainWindow[] = {
       85,   11,   11,   11, 0x0a,
      101,   11,   11,   11, 0x0a,
      118,   11,   11,   11, 0x0a,
-     127,   11,   11,   11, 0x0a,
      138,   11,   11,   11, 0x0a,
-     145,   11,   11,   11, 0x0a,
-     154,  152,   11,   11, 0x0a,
-     190,  152,   11,   11, 0x0a,
-     224,  152,   11,   11, 0x0a,
-     259,  152,   11,   11, 0x0a,
-     297,  152,   11,   11, 0x0a,
-     330,  152,   11,   11, 0x0a,
-     361,  152,   11,   11, 0x0a,
-     393,  152,   11,   11, 0x0a,
+     147,   11,   11,   11, 0x0a,
+     158,   11,   11,   11, 0x0a,
+     165,   11,   11,   11, 0x0a,
+     174,  172,   11,   11, 0x0a,
+     210,  172,   11,   11, 0x0a,
+     244,  172,   11,   11, 0x0a,
+     279,  172,   11,   11, 0x0a,
+     317,  172,   11,   11, 0x0a,
+     350,  172,   11,   11, 0x0a,
+     381,  172,   11,   11, 0x0a,
+     413,  172,   11,   11, 0x0a,
 
        0        // eod
 };
@@ -56,8 +57,9 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "MainWindow\0\0nouveau()\0s_creerNouveau()\0"
     "s_annulerNouveau()\0ouvrir()\0"
     "importerTileset()\0importerHerbe()\0"
-    "importerEntite()\0sauver()\0sauverAs()\0"
-    "undo()\0redo()\0,\0selectTileset(QTreeWidgetItem*,int)\0"
+    "importerEntite()\0importerEvenement()\0"
+    "sauver()\0sauverAs()\0undo()\0redo()\0,\0"
+    "selectTileset(QTreeWidgetItem*,int)\0"
     "selectHerbe(QTreeWidgetItem*,int)\0"
     "selectEntite(QTreeWidgetItem*,int)\0"
     "selectEvenement(QTreeWidgetItem*,int)\0"
@@ -99,21 +101,22 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 4: importerTileset(); break;
         case 5: importerHerbe(); break;
         case 6: importerEntite(); break;
-        case 7: sauver(); break;
-        case 8: sauverAs(); break;
-        case 9: undo(); break;
-        case 10: redo(); break;
-        case 11: selectTileset((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 12: selectHerbe((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 13: selectEntite((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 14: selectEvenement((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 15: addTileset((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 16: addHerbe((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 17: addEntite((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 18: addEvenement((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 7: importerEvenement(); break;
+        case 8: sauver(); break;
+        case 9: sauverAs(); break;
+        case 10: undo(); break;
+        case 11: redo(); break;
+        case 12: selectTileset((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 13: selectHerbe((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 14: selectEntite((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 15: selectEvenement((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 16: addTileset((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 17: addHerbe((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 18: addEntite((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 19: addEvenement((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         default: ;
         }
-        _id -= 19;
+        _id -= 20;
     }
     return _id;
 }

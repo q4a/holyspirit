@@ -39,6 +39,7 @@ class MainWindow : public QWidget // On hérite de QWidget (IMPORTANT)
     void importerTileset();
     void importerHerbe();
     void importerEntite();
+    void importerEvenement();
     void sauver();
     void sauverAs();
     void undo();
@@ -119,6 +120,7 @@ class MainWindow : public QWidget // On hérite de QWidget (IMPORTANT)
     QAction         *actionImporterTileset;
     QAction         *actionImporterHerbe;
     QAction         *actionImporterEntite;
+    QAction         *actionImporterEvenement;
     QAction         *actionOptionsMap;
 
     QString          chemin;

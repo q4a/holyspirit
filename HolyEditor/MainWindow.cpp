@@ -77,6 +77,8 @@ MainWindow::MainWindow() : QWidget()
     actionImporterEntite    = menuImporterRessources->addAction("&Importer Entité");
     actionImporterEntite->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_E));
 
+    actionImporterEvenement    = menuImporterRessources->addAction("&Créer Entité");
+
     actionOptionsMap        = menuImporterRessources->addAction("&Options de la map");
 
 
@@ -197,6 +199,7 @@ MainWindow::MainWindow() : QWidget()
     connect(actionImporterTileset, SIGNAL(triggered()), this, SLOT(importerTileset()));
     connect(actionImporterHerbe  , SIGNAL(triggered()), this, SLOT(importerHerbe()));
     connect(actionImporterEntite , SIGNAL(triggered()), this, SLOT(importerEntite()));
+    connect(actionImporterEvenement , SIGNAL(triggered()), this, SLOT(importerEvenement()));
 
     connect(listTileset     , SIGNAL(itemPressed(QTreeWidgetItem *, int)), this, SLOT(selectTileset  (QTreeWidgetItem *, int)));
     connect(listHerbe       , SIGNAL(itemPressed(QTreeWidgetItem *, int)), this, SLOT(selectHerbe    (QTreeWidgetItem *, int)));
@@ -254,6 +257,7 @@ MainWindow::~MainWindow()
     delete actionImporterTileset;
     delete actionImporterHerbe;
     delete actionImporterEntite;
+    delete actionImporterEvenement;
     delete actionOptionsMap;
 
     delete menuAide;
@@ -1383,6 +1387,13 @@ void MainWindow::importerEntite()
     backup();
 }
 
+void MainWindow::importerEvenement()
+{
+    if (map != NULL)
+    {
+    }
+}
+
 void MainWindow::selectTileset(QTreeWidgetItem *item, int column)
 {
     // std::cout<<item->text(column).toStdString()<<std::endl;
@@ -1463,7 +1474,7 @@ void MainWindow::addTileset(QTreeWidgetItem *item, int column)
 
     if (item->parent() != NULL)
     {
-        map->m_select_brush.m_tileset = item->parent()->data(1,0).toInt();
+        map->m_select_brush.m_tileset = item->parent()->data(1,0).toInt() - 1;
         map->m_select_brush.m_tile.push_back(item->data(1,0).toInt());
     }
 
@@ -1479,7 +1490,7 @@ void MainWindow::addHerbe(QTreeWidgetItem *item, int column)
     map->m_selectHerbe       = -1;
     map->m_selectEvenement   = -1;
 
-    map->m_select_brush.m_herbe = item->data(1,0).toInt();
+    map->m_select_brush.m_herbe = item->data(1,0).toInt() - 1;
 
     map->m_mode_brush       = true;
 
@@ -1513,7 +1524,7 @@ void MainWindow::addEvenement(QTreeWidgetItem *item, int column)
     map->m_selectHerbe       = -1;
     map->m_selectEvenement   = -1;
 
-    map->m_select_brush.m_evenement.push_back(item->data(1,0).toInt());
+    map->m_select_brush.m_evenement.push_back(item->data(1,0).toInt() - 1);
 
     map->m_mode_brush       = true;
 
