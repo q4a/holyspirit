@@ -49,31 +49,18 @@ MoteurGraphique::~MoteurGraphique()
 {
     LightManager->Kill();
     Vider();
-    for (m_images_iter=m_images.begin();m_images_iter != m_images.end();++m_images_iter)
-        if(m_images_iter->img != NULL)
-            delete m_images_iter->img;
+    for (unsigned i = 0; i < m_images.size(); ++i)
+        if(m_images[i].img != NULL)
+            delete m_images[i].img;
     m_images.clear();
     m_systemeParticules.clear();
     m_modeleSystemeParticules.clear();
 
     m_ecran.Close();
-
-    /*if (m_ecran!=NULL)
-    {
-        m_ecran.Close();
-        delete m_ecran;
-    }*/
 }
 
 void MoteurGraphique::CreateNewWindow()
 {
-    /*if (m_ecran != NULL)
-    {
-        m_ecran.Close();
-        delete m_ecran;
-    }
-
-    m_ecran = new sf::RenderWindow();*/
 
     if (!configuration->mode_fenetre)
         m_ecran.Create(sf::VideoMode(configuration->Resolution.x, configuration->Resolution.y),"HolySpirit : Act of Faith",sf::Style::Fullscreen);
@@ -408,24 +395,23 @@ void MoteurGraphique::Afficher()
 
 int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std::string nom,int importance)
 {
-    unsigned i=0;
-    for (m_images_iter=m_images.begin();m_images_iter != m_images.end();++m_images_iter,i++)
+    for (unsigned i=0; i < m_images.size(); i++)
     {
-        if (m_images_iter->nom==nom)
+        if (m_images[i].nom==nom)
         {
-            m_images_iter->importance=importance;
+            m_images[i].importance=importance;
             return i;
         }
-        else if (m_images_iter->img == NULL)
+        else if (m_images[i].img == NULL)
         {
-            m_images_iter->nom=nom;
+            m_images[i].nom=nom;
 
-            m_images_iter->img = new sf::Image();
+            m_images[i].img = new sf::Image();
 
             if (!configuration->lissage)
-                m_images_iter->img->SetSmooth(false);
+                m_images[i].img->SetSmooth(false);
 
-            if (!m_images_iter->img->LoadFromMemory(Data,SizeInBytes))
+            if (!m_images[i].img->LoadFromMemory(Data,SizeInBytes))
             {
                 console->Ajouter("Impossible de charger : "+nom,1);
                 return -1;
@@ -433,7 +419,7 @@ int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std
             else
                 console->Ajouter("Chargement de : "+nom,0);
 
-            m_images_iter->importance=importance;
+            m_images[i].importance=importance;
 
             return i;
         }
@@ -462,25 +448,24 @@ int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std
 
 int MoteurGraphique::AjouterImage(std::string chemin,int importance)
 {
-    unsigned i=0;
-    for (m_images_iter=m_images.begin();m_images_iter != m_images.end();++m_images_iter,i++)
+    for (unsigned i=0; i < m_images.size(); i++)
     {
-        if (m_images_iter->nom==chemin)
+        if (m_images[i].nom==chemin)
         {
-            m_images_iter->importance=importance;
+            m_images[i].importance=importance;
             return i;
         }
 
-        if (m_images_iter->img == NULL)
+        if (m_images[i].img == NULL)
         {
-            m_images_iter->nom=chemin;
+            m_images[i].nom=chemin;
 
-            m_images_iter->img = new sf::Image();
+            m_images[i].img = new sf::Image();
 
             if (!configuration->lissage)
-                m_images_iter->img->SetSmooth(false);
+                m_images[i].img->SetSmooth(false);
 
-            if (!m_images_iter->img->LoadFromFile(chemin.c_str()))
+            if (!m_images[i].img->LoadFromFile(chemin.c_str()))
             {
                 console->Ajouter("Impossible de charger : "+chemin,1);
                 return -1;
@@ -488,7 +473,7 @@ int MoteurGraphique::AjouterImage(std::string chemin,int importance)
             else
                 console->Ajouter("Chargement de : "+chemin,0);
 
-            m_images_iter->importance=importance;
+            m_images[i].importance=importance;
 
             return i;
         }
@@ -517,15 +502,15 @@ int MoteurGraphique::AjouterImage(std::string chemin,int importance)
 
 void MoteurGraphique::DecrementerImportance()
 {
-    for (m_images_iter=m_images.begin();m_images_iter != m_images.end();++m_images_iter)
-        if (m_images_iter->importance!=-1)
+    for (unsigned i=0; i < m_images.size(); i++)
+        if (m_images[i].importance!=-1)
         {
-            m_images_iter->importance--;
-            if (m_images_iter->importance<=0)
+            m_images[i].importance--;
+            if (m_images[i].importance<=0)
             {
-                delete m_images_iter->img;
-                m_images_iter->img = NULL;
-                m_images_iter->nom="",m_images_iter->importance=0;
+                delete m_images[i].img;
+                m_images[i].img = NULL;
+                m_images[i].nom="",m_images[i].importance=0;
             }
         }
 }
@@ -644,16 +629,9 @@ void MoteurGraphique::ViderParticules()
 
 sf::Image* MoteurGraphique::getImage(int IDimage)
 {
-
     if (IDimage>=0&&IDimage<(int)m_images.size())
-    {
-        unsigned i=0;
-        for (m_images_iter=m_images.begin();m_images_iter != m_images.end();++m_images_iter,i++)
-            if(i==IDimage)
-                return m_images_iter->img;
-    }
-    else
-        return m_images.front().img;
+        return m_images[(unsigned)IDimage].img;
+    return m_images.front().img;
 }
 
 ModeleParticuleSysteme* MoteurGraphique::getModeleMoteurParticules(int ID)
@@ -667,14 +645,8 @@ ModeleParticuleSysteme* MoteurGraphique::getModeleMoteurParticules(int ID)
 std::string MoteurGraphique::getCheminImage(int IDimage)
 {
     if (IDimage>=0&&IDimage<(int)m_images.size())
-    {
-        unsigned i=0;
-        for (m_images_iter=m_images.begin();m_images_iter != m_images.end();++m_images_iter,i++)
-            if(i==IDimage)
-                return m_images_iter->nom;
-    }
-    else
-        return "";
+        return m_images[(unsigned)IDimage].nom;
+    return "";
 }
 
 bool MoteurGraphique::getEvent(sf::Event &EventReceived)

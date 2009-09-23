@@ -131,8 +131,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	sf::Vector2f decalageLumiere,decalageOmbre;
 
-	std::list <Image_moteur> m_images;
-	std::list <Image_moteur> :: iterator m_images_iter;
+	std::vector <Image_moteur> m_images;
 
 	std::vector <ModeleParticuleSysteme> m_modeleSystemeParticules;
 

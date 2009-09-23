@@ -3350,7 +3350,10 @@ bool Map::InfligerDegats(Personnage *monstre, float degats, Hero *hero,bool pous
                             m_monstre[m_decor[o][y][x].getMonstre()].setVu(1);
     }*/
 
-    monstre->InfligerDegats(degats, &m_ModeleMonstre[monstre->getModele()]);
+    if(monstre != &hero->m_personnage)
+        monstre->InfligerDegats(degats, &m_ModeleMonstre[monstre->getModele()]);
+    else
+        monstre->InfligerDegats(degats, &hero->m_modelePersonnage[0]);
 
     hero->m_personnage.InfligerDegats(-degats * hero->m_caracteristiques.volVie, NULL);
     hero->m_caracteristiques.foi += degats * hero->m_caracteristiques.volFoi;

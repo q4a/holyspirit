@@ -934,7 +934,7 @@ void Personnage::InfligerDegats(float degats, Modele_Personnage *modele)
             position.x=(m_positionCase.x-m_positionCase.y-1)/5;
             position.y=(m_positionCase.x+m_positionCase.y)/5;
 
-            modele->JouerSon(modele->getSonTouche(random),position,coordonnee (0,0), true);
+            modele->JouerSon(modele->getSonTouche(random),position,coordonnee (1,1), true);
         }
 
     if (m_caracteristique.vie<=0&&m_etat!=3)
@@ -1130,7 +1130,7 @@ int Personnage::AjouterEffet(std::vector<Tile> &tiles, int type, int compteur, i
 
 void Modele_Personnage::JouerSon(int numeroSon,coordonnee position,coordonnee positionHero,bool uniqueSound)
 {
-    if (numeroSon>=0&&numeroSon<(int)m_sons.size())
+    if (numeroSon>=0 && numeroSon<(int)m_sons.size())
     {
         coordonnee pos;
         pos.x=-position.x;
