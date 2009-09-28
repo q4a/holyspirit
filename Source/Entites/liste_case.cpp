@@ -38,11 +38,11 @@ int liste_case::getTailleListe()
     return m_liste.size();
 }
 
-void liste_case::AjouterCase(coordonnee coordonneeAjoutable)
+void liste_case::AjouterCase(coordonnee coordonneeAjoutable, int parent)
 {
     Case caseTemp;
     m_liste.push_back(caseTemp);
-    m_liste.back().setCoordonnee(coordonneeAjoutable,m_distanceEnCours);
+    m_liste.back().setCoordonnee(coordonneeAjoutable,m_distanceEnCours, parent);
 }
 
 void liste_case::Supprimer()
@@ -50,7 +50,7 @@ void liste_case::Supprimer()
     m_liste.clear();
 }
 
-bool liste_case::TesterCasesEnCours(coordonnee caseCherchee)
+/*bool liste_case::TesterCasesEnCours(coordonnee caseCherchee)
 {
     // Je regarde si je suis sur ma case d'arrivee
     for (iter=m_liste.begin();iter!=m_liste.end();++iter)
@@ -58,7 +58,7 @@ bool liste_case::TesterCasesEnCours(coordonnee caseCherchee)
             return 1;
 
     return 0;
-}
+}*/
 
 bool liste_case::AjouterCasesAdjacentes(casePathfinding **grille,coordonnee *arrivee,coordonnee depart)
 {
@@ -71,62 +71,163 @@ bool liste_case::AjouterCasesAdjacentes(casePathfinding **grille,coordonnee *arr
             enCours.x=m_liste[i].getPosition().x+1;
             enCours.y=m_liste[i].getPosition().y;
             if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
-                if (!TesterCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
-                    AjouterCase(enCours);
+                if(!grille[enCours.y][enCours.x].collision
+                &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 1)
+                  ||grille[enCours.y][enCours.x].valeur == -1)
+                &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+                {
+                    if(grille[enCours.y][enCours.x].cases >= 0)
+                        m_liste.erase(m_liste.begin() + grille[enCours.y][enCours.x].cases);
+                    AjouterCase(enCours, i);
+                    grille[enCours.y][enCours.x].valeur = m_distanceEnCours;
+                    grille[enCours.y][enCours.x].dist = 1;
+                    grille[enCours.y][enCours.x].cases = m_liste.size()-1;
+                }
 
+            if(enCours.x == arrivee->x && enCours.y == arrivee->y)
+                return 1;
 
             enCours.x=m_liste[i].getPosition().x-1;
             enCours.y=m_liste[i].getPosition().y;
             if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
-                if (!TesterCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
-                    AjouterCase(enCours);
+                if(!grille[enCours.y][enCours.x].collision
+                &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 1)
+                  ||grille[enCours.y][enCours.x].valeur == -1)
+                &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+                {
+                    if(grille[enCours.y][enCours.x].cases >= 0)
+                        m_liste.erase(m_liste.begin() + grille[enCours.y][enCours.x].cases);
+                    AjouterCase(enCours, i);
+                    grille[enCours.y][enCours.x].valeur = m_distanceEnCours;
+                    grille[enCours.y][enCours.x].dist = 1;
+                    grille[enCours.y][enCours.x].cases = m_liste.size()-1;
+                }
+
+            if(enCours.x == arrivee->x && enCours.y == arrivee->y)
+                return 1;
 
 
             enCours.x=m_liste[i].getPosition().x;
             enCours.y=m_liste[i].getPosition().y+1;
             if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
-                if (!TesterCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
-                    AjouterCase(enCours);
+                if(!grille[enCours.y][enCours.x].collision
+                &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 1)
+                  ||grille[enCours.y][enCours.x].valeur == -1)
+                &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+                {
+                    if(grille[enCours.y][enCours.x].cases >= 0)
+                        m_liste.erase(m_liste.begin() + grille[enCours.y][enCours.x].cases);
+                    AjouterCase(enCours, i);
+                    grille[enCours.y][enCours.x].valeur = m_distanceEnCours;
+                    grille[enCours.y][enCours.x].dist = 1;
+                    grille[enCours.y][enCours.x].cases = m_liste.size()-1;
+                }
+
+            if(enCours.x == arrivee->x && enCours.y == arrivee->y)
+                return 1;
 
 
             enCours.x=m_liste[i].getPosition().x;
             enCours.y=m_liste[i].getPosition().y-1;
             if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
-                if (!TesterCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
-                    AjouterCase(enCours);
+                if(!grille[enCours.y][enCours.x].collision
+                &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 1)
+                  ||grille[enCours.y][enCours.x].valeur == -1)
+                &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+                {
+                    if(grille[enCours.y][enCours.x].cases >= 0)
+                        m_liste.erase(m_liste.begin() + grille[enCours.y][enCours.x].cases);
+                    AjouterCase(enCours, i);
+                    grille[enCours.y][enCours.x].valeur = m_distanceEnCours;
+                    grille[enCours.y][enCours.x].dist = 1;
+                    grille[enCours.y][enCours.x].cases = m_liste.size()-1;
+                }
+
+            if(enCours.x == arrivee->x && enCours.y == arrivee->y)
+                return 1;
 
 
             enCours.x=m_liste[i].getPosition().x+1;
             enCours.y=m_liste[i].getPosition().y+1;
             if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
-                if (!TesterCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
-                    AjouterCase(enCours);
+                if(!grille[enCours.y][enCours.x].collision
+                &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 2)
+                  ||grille[enCours.y][enCours.x].valeur == -1)
+                &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+                {
+                    if(grille[enCours.y][enCours.x].cases >= 0)
+                        m_liste.erase(m_liste.begin() + grille[enCours.y][enCours.x].cases);
+                    AjouterCase(enCours, i);
+                    grille[enCours.y][enCours.x].valeur = m_distanceEnCours;
+                    grille[enCours.y][enCours.x].dist = 2;
+                    grille[enCours.y][enCours.x].cases = m_liste.size()-1;
+                }
+
+            if(enCours.x == arrivee->x && enCours.y == arrivee->y)
+                return 1;
 
 
             enCours.x=m_liste[i].getPosition().x-1;
             enCours.y=m_liste[i].getPosition().y-1;
             if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
-                if (!TesterCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
-                    AjouterCase(enCours);
+                if(!grille[enCours.y][enCours.x].collision
+                &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 2)
+                  ||grille[enCours.y][enCours.x].valeur == -1)
+                &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+                {
+                    if(grille[enCours.y][enCours.x].cases >= 0)
+                        m_liste.erase(m_liste.begin() + grille[enCours.y][enCours.x].cases);
+                    AjouterCase(enCours, i);
+                    grille[enCours.y][enCours.x].valeur = m_distanceEnCours;
+                    grille[enCours.y][enCours.x].dist = 2;
+                    grille[enCours.y][enCours.x].cases = m_liste.size()-1;
+                }
 
+            if(enCours.x == arrivee->x && enCours.y == arrivee->y)
+                return 1;
 
             enCours.x=m_liste[i].getPosition().x-1;
             enCours.y=m_liste[i].getPosition().y+1;
             if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
-                if (!TesterCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
-                    AjouterCase(enCours);
+                if(!grille[enCours.y][enCours.x].collision
+                &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 2)
+                  ||grille[enCours.y][enCours.x].valeur == -1)
+                &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+                {
+                    if(grille[enCours.y][enCours.x].cases >= 0)
+                        m_liste.erase(m_liste.begin() + grille[enCours.y][enCours.x].cases);
+                    AjouterCase(enCours, i);
+                    grille[enCours.y][enCours.x].valeur = m_distanceEnCours;
+                    grille[enCours.y][enCours.x].dist = 2;
+                    grille[enCours.y][enCours.x].cases = m_liste.size()-1;
+                }
+
+            if(enCours.x == arrivee->x && enCours.y == arrivee->y)
+                return 1;
 
 
             enCours.x=m_liste[i].getPosition().x+1;
             enCours.y=m_liste[i].getPosition().y-1;
             if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
-                if (!TesterCasesEnCours(enCours)&&!grille[enCours.y][enCours.x].collision&&fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
-                    AjouterCase(enCours);
+                if(!grille[enCours.y][enCours.x].collision
+                &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 2)
+                  ||grille[enCours.y][enCours.x].valeur == -1)
+                &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+                {
+                    if(grille[enCours.y][enCours.x].cases >= 0)
+                        m_liste.erase(m_liste.begin() + grille[enCours.y][enCours.x].cases);
+                    AjouterCase(enCours, i);
+                    grille[enCours.y][enCours.x].valeur = m_distanceEnCours;
+                    grille[enCours.y][enCours.x].dist = 2;
+                    grille[enCours.y][enCours.x].cases = m_liste.size()-1;
+                }
 
+            if(enCours.x == arrivee->x && enCours.y == arrivee->y)
+                return 1;
         }
         else
             return 0;
-    return 1;
+    return 0;
 }
 
 void liste_case::IncrementerDistanceEnCours()
@@ -144,68 +245,76 @@ int liste_case::getDistance()
     return m_distanceEnCours;
 }
 
-coordonnee liste_case::TrouverLeChemin(coordonnee caseEnCours)
+Case liste_case::getCase(int ID)
+{
+    if(ID >=0 && ID < (int)m_liste.size())
+        return m_liste[ID];
+
+    return m_liste[0];
+}
+
+/*coordonnee liste_case::TrouverLeChemin(coordonnee caseEnCours)
 {
     // Je repart de mon arrivee et suis les cases dans l'ordre décroisant jusqu'à me retrouver à ma case départ
     coordonnee enCours;
-    for (int i=0;i<(int)m_liste.size();i++)
-        if (m_liste[i].getPosition().x==caseEnCours.x&&m_liste[i].getPosition().y==caseEnCours.y)
+    for (iter = m_liste.begin() ; iter != m_liste.end() ; ++iter)
+        if (iter->getPosition().x==caseEnCours.x&&iter->getPosition().y==caseEnCours.y)
         {
-            enCours.y=m_liste[i].getPosition().y;
-            enCours.x=m_liste[i].getPosition().x+1;
-            for (int j=0;j<(int)m_liste.size();j++)
-                if (m_liste[j].getDistance()==m_distanceEnCours-1&&m_liste[j].getPosition().x==enCours.x&&m_liste[j].getPosition().y==enCours.y)
-                    return m_liste[j].getPosition();
+            enCours.y=iter->getPosition().y;
+            enCours.x=iter->getPosition().x+1;
+            for (std::vector <Case>::iterator iter2 = m_liste.begin() ; iter2 != m_liste.end() ; ++iter2)
+                if (iter2->getDistance()==m_distanceEnCours-1&&iter2->getPosition().x==enCours.x&&iter2->getPosition().y==enCours.y)
+                    return iter2->getPosition();
 
-            enCours.y=m_liste[i].getPosition().y;
-            enCours.x=m_liste[i].getPosition().x-1;
-            for (int j=0;j<(int)m_liste.size();j++)
-                if (m_liste[j].getDistance()==m_distanceEnCours-1&&m_liste[j].getPosition().x==enCours.x&&m_liste[j].getPosition().y==enCours.y)
-                    return m_liste[j].getPosition();
+            enCours.y=iter->getPosition().y;
+            enCours.x=iter->getPosition().x-1;
+            for (std::vector <Case>::iterator iter2 = m_liste.begin() ; iter2 != m_liste.end() ; ++iter2)
+                if (iter2->getDistance()==m_distanceEnCours-1&&iter2->getPosition().x==enCours.x&&iter2->getPosition().y==enCours.y)
+                    return iter2->getPosition();
 
-            enCours.y=m_liste[i].getPosition().y+1;
-            enCours.x=m_liste[i].getPosition().x;
-            for (int j=0;j<(int)m_liste.size();j++)
-                if (m_liste[j].getDistance()==m_distanceEnCours-1&&m_liste[j].getPosition().x==enCours.x&&m_liste[j].getPosition().y==enCours.y)
-                    return m_liste[j].getPosition();
+            enCours.y=iter->getPosition().y+1;
+            enCours.x=iter->getPosition().x;
+            for (std::vector <Case>::iterator iter2 = m_liste.begin() ; iter2 != m_liste.end() ; ++iter2)
+                if (iter2->getDistance()==m_distanceEnCours-1&&iter2->getPosition().x==enCours.x&&iter2->getPosition().y==enCours.y)
+                    return iter2->getPosition();
 
-            enCours.y=m_liste[i].getPosition().y-1;
-            enCours.x=m_liste[i].getPosition().x;
-            for (int j=0;j<(int)m_liste.size();j++)
-                if (m_liste[j].getDistance()==m_distanceEnCours-1&&m_liste[j].getPosition().x==enCours.x&&m_liste[j].getPosition().y==enCours.y)
-                    return m_liste[j].getPosition();
+            enCours.y=iter->getPosition().y-1;
+            enCours.x=iter->getPosition().x;
+            for (std::vector <Case>::iterator iter2 = m_liste.begin() ; iter2 != m_liste.end() ; ++iter2)
+                if (iter2->getDistance()==m_distanceEnCours-1&&iter2->getPosition().x==enCours.x&&iter2->getPosition().y==enCours.y)
+                    return iter2->getPosition();
 
-            enCours.y=m_liste[i].getPosition().y-1;
-            enCours.x=m_liste[i].getPosition().x+1;
-            for (int j=0;j<(int)m_liste.size();j++)
-                if (m_liste[j].getDistance()==m_distanceEnCours-1&&m_liste[j].getPosition().x==enCours.x&&m_liste[j].getPosition().y==enCours.y)
-                    return m_liste[j].getPosition();
+            enCours.y=iter->getPosition().y-1;
+            enCours.x=iter->getPosition().x+1;
+            for (std::vector <Case>::iterator iter2 = m_liste.begin() ; iter2 != m_liste.end() ; ++iter2)
+                if (iter2->getDistance()==m_distanceEnCours-1&&iter2->getPosition().x==enCours.x&&iter2->getPosition().y==enCours.y)
+                    return iter2->getPosition();
 
-            enCours.y=m_liste[i].getPosition().y+1;
-            enCours.x=m_liste[i].getPosition().x-1;
-            for (int j=0;j<(int)m_liste.size();j++)
-                if (m_liste[j].getDistance()==m_distanceEnCours-1&&m_liste[j].getPosition().x==enCours.x&&m_liste[j].getPosition().y==enCours.y)
-                    return m_liste[j].getPosition();
+            enCours.y=iter->getPosition().y+1;
+            enCours.x=iter->getPosition().x-1;
+            for (std::vector <Case>::iterator iter2 = m_liste.begin() ; iter2 != m_liste.end() ; ++iter2)
+                if (iter2->getDistance()==m_distanceEnCours-1&&iter2->getPosition().x==enCours.x&&iter2->getPosition().y==enCours.y)
+                    return iter2->getPosition();
 
-            enCours.y=m_liste[i].getPosition().y+1;
-            enCours.x=m_liste[i].getPosition().x+1;
-            for (int j=0;j<(int)m_liste.size();j++)
-                if (m_liste[j].getDistance()==m_distanceEnCours-1&&m_liste[j].getPosition().x==enCours.x&&m_liste[j].getPosition().y==enCours.y)
-                    return m_liste[j].getPosition();
+            enCours.y=iter->getPosition().y+1;
+            enCours.x=iter->getPosition().x+1;
+            for (std::vector <Case>::iterator iter2 = m_liste.begin() ; iter2 != m_liste.end() ; ++iter2)
+                if (iter2->getDistance()==m_distanceEnCours-1&&iter2->getPosition().x==enCours.x&&iter2->getPosition().y==enCours.y)
+                    return iter2->getPosition();
 
-            enCours.y=m_liste[i].getPosition().y-1;
-            enCours.x=m_liste[i].getPosition().x-1;
-            for (int j=0;j<(int)m_liste.size();j++)
-                if (m_liste[j].getDistance()==m_distanceEnCours-1&&m_liste[j].getPosition().x==enCours.x&&m_liste[j].getPosition().y==enCours.y)
-                    return m_liste[j].getPosition();
+            enCours.y=iter->getPosition().y-1;
+            enCours.x=iter->getPosition().x-1;
+            for (std::vector <Case>::iterator iter2 = m_liste.begin() ; iter2 != m_liste.end() ; ++iter2)
+                if (iter2->getDistance()==m_distanceEnCours-1&&iter2->getPosition().x==enCours.x&&iter2->getPosition().y==enCours.y)
+                    return iter2->getPosition();
 
-            enCours.y=m_liste[i].getPosition().y;
-            enCours.x=m_liste[i].getPosition().x;
-            for (int j=0;j<(int)m_liste.size();j++)
-                if (m_liste[j].getDistance()==m_distanceEnCours-1&&m_liste[j].getPosition().x==enCours.x&&m_liste[j].getPosition().y==enCours.y)
-                    return m_liste[j].getPosition();
+            enCours.y=iter->getPosition().y;
+            enCours.x=iter->getPosition().x;
+            for (std::vector <Case>::iterator iter2 = m_liste.begin() ; iter2 != m_liste.end() ; ++iter2)
+                if (iter2->getDistance()==m_distanceEnCours-1&&iter2->getPosition().x==enCours.x&&iter2->getPosition().y==enCours.y)
+                    return iter2->getPosition();
         }
     return enCours;
-}
+}*/
 
 

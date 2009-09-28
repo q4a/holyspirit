@@ -25,10 +25,11 @@ coordonnee Case::getPosition()
     return m_coordonnee;
 }
 
-void Case::setCoordonnee(coordonnee nouvelleCoordonnee,int distance)
+void Case::setCoordonnee(coordonnee nouvelleCoordonnee,int distance, int parent)
 {
-    m_coordonnee=nouvelleCoordonnee;
-    m_distance=distance;
+    m_coordonnee    = nouvelleCoordonnee;
+    m_distance      = distance;
+    m_parent        = parent;
 }
 
 int Case::getDistance()
@@ -36,11 +37,9 @@ int Case::getDistance()
     return m_distance;
 }
 
-Case Case::operator=(const Case &caseCopiee)
+int Case::getParent()
 {
-    m_coordonnee=caseCopiee.m_coordonnee;
-    m_distance=caseCopiee.m_distance;
-    return *this;
+    return m_parent;
 }
 
 

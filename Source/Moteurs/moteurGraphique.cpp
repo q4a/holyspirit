@@ -70,12 +70,12 @@ void MoteurGraphique::CreateNewWindow()
     if (configuration->syncronisation_verticale)
     {
         m_ecran.UseVerticalSync(true);
-        m_ecran.SetFramerateLimit(30);
+        m_ecran.SetFramerateLimit(60);
     }
 
     m_ecran.ShowMouseCursor(false);
 
-    m_ecran.PreserveOpenGLStates(false);
+   //_ m_ecran.PreserveOpenGLStates(false);
 
     if (configuration->postFX)
     {
@@ -321,7 +321,6 @@ void MoteurGraphique::Afficher()
             m_ecran.Draw(sprite2);
         }
 
-
         if (k!=9)
         {
             for (IterCommande=m_commandes[k].begin();IterCommande!=m_commandes[k].end();++IterCommande)
@@ -334,7 +333,6 @@ void MoteurGraphique::Afficher()
                 m_ecran.Draw(IterCommande->m_sprite);
             }
         }
-
 
         for (unsigned i=0;i<m_textes[k].size();i++)
         {
@@ -360,7 +358,6 @@ void MoteurGraphique::Afficher()
                 EffectContrastes.SetParameter("color", configuration->contrastes-1, configuration->contrastes-1, configuration->contrastes-1);
             }
         }
-
 
 
         if (k==18&&configuration->postFX)
@@ -656,11 +653,11 @@ bool MoteurGraphique::getEvent(sf::Event &EventReceived)
 
 coordonnee MoteurGraphique::getPositionSouris()
 {
-    m_ecran.SetView(m_camera);
+//   m_ecran.SetView(m_camera);
     coordonnee pos;
 
-    pos.x=(int)m_ecran.ConvertCoords(m_ecran.GetInput().GetMouseX(), m_ecran.GetInput().GetMouseY()).x;
-    pos.y=(int)m_ecran.ConvertCoords(m_ecran.GetInput().GetMouseX(), m_ecran.GetInput().GetMouseY()).y;
+    pos.x=(int)m_ecran.ConvertCoords(m_ecran.GetInput().GetMouseX(), m_ecran.GetInput().GetMouseY(), m_camera).x;
+    pos.y=(int)m_ecran.ConvertCoords(m_ecran.GetInput().GetMouseX(), m_ecran.GetInput().GetMouseY(), m_camera).y;
 
     return pos;
 }
@@ -669,7 +666,8 @@ void MoteurGraphique::Printscreen()
 {
     std::ostringstream buf;
     buf<<"screenshot"<<configuration->numero_screen<<".png";
-    sf::Image Screen = m_ecran.Capture();
+    sf::Image Screen;
+    Screen.CopyScreen(m_ecran);
     Screen.SaveToFile(buf.str());
     configuration->numero_screen++;
 }

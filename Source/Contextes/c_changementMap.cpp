@@ -148,6 +148,11 @@ void c_Chargement::Utiliser(Jeu *jeu)
             buffer.push_back(*jeu->hero.m_amis[i]);
             bufferModele.push_back(jeu->map->getModeleMonstre(jeu->hero.m_amis[i]->getModele()));
             jeu->hero.m_amis[i]->InfligerDegats(jeu->hero.m_amis[i]->getCaracteristique().vie * 2, &bufferModele.back());
+            //jeu->hero.m_amis[i]->setEtat(2);
+           // jeu->hero.m_amis[i]->setPose(-1);
+
+            //(*jeu->hero.m_amis[i]).setCoordonnee(coordonnee(-100,-100));
+            //(*jeu->hero.m_amis[i]).setDepart();
         }
 
         if (jeu->map!=NULL && !m_debut)

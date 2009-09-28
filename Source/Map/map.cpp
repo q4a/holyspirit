@@ -1306,10 +1306,10 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                 if (j>=0&&j<m_dimensions.y&&k>=0&&k<m_dimensions.x)
                 {
                     if (m_decor[couche][j][k].m_sprite.GetSize().x>0)
-                        if (m_decor[couche][j][k].m_sprite.GetPosition().x+m_decor[couche][j][k].m_sprite.GetSize().x-m_decor[couche][j][k].m_sprite.GetOrigin().x>=moteurGraphique->m_camera.GetRect().Left
-                                &&m_decor[couche][j][k].m_sprite.GetPosition().x-m_decor[couche][j][k].m_sprite.GetOrigin().x<moteurGraphique->m_camera.GetRect().Right
-                                &&m_decor[couche][j][k].m_sprite.GetPosition().y+m_decor[couche][j][k].m_sprite.GetSize().y-m_decor[couche][j][k].m_sprite.GetOrigin().y>=moteurGraphique->m_camera.GetRect().Top
-                                &&m_decor[couche][j][k].m_sprite.GetPosition().y-m_decor[couche][j][k].m_sprite.GetOrigin().y<moteurGraphique->m_camera.GetRect().Bottom)
+                    if (   m_decor[couche][j][k].m_sprite.GetPosition().x+m_decor[couche][j][k].m_sprite.GetSize().x-m_decor[couche][j][k].m_sprite.GetOrigin().x>=moteurGraphique->m_camera.GetRect().Left
+                            && m_decor[couche][j][k].m_sprite.GetPosition().x-m_decor[couche][j][k].m_sprite.GetOrigin().x<moteurGraphique->m_camera.GetRect().Right
+                            && m_decor[couche][j][k].m_sprite.GetPosition().y+m_decor[couche][j][k].m_sprite.GetSize().y-m_decor[couche][j][k].m_sprite.GetOrigin().y>=moteurGraphique->m_camera.GetRect().Top
+                            && m_decor[couche][j][k].m_sprite.GetPosition().y-m_decor[couche][j][k].m_sprite.GetOrigin().y<moteurGraphique->m_camera.GetRect().Bottom)
                         {
                             sf::IntRect rect = m_decor[couche][j][k].m_sprite.GetSubRect();
                             sf::IntRect rectBuf = m_decor[couche][j][k].m_sprite.GetSubRect();
@@ -2411,7 +2411,7 @@ void Map::GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,fl
                                             miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[5] , !personnage->m_friendly );
 
                         if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[4])
-                            VerifierDeclencheursDegats((int)((float)buf.y+COTE_TILE*0.5/COTE_TILE),(int)((float)buf.x+COTE_TILE*0.5/COTE_TILE));
+                            VerifierDeclencheursDegats((int)((float)(buf.y+COTE_TILE*0.5)/COTE_TILE),(int)((float)(buf.x+COTE_TILE*0.5)/COTE_TILE));
 
                         for (unsigned p=0;p<miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien.size();p++)
                         {
@@ -2482,6 +2482,7 @@ void Map::GererEvenements(int evenement,int z,int couche,int x,int y)
         {
             m_decor[couche][y][x].setTileset(m_evenement[evenement].getInformation(0));
             m_decor[couche][y][x].setTile(m_evenement[evenement].getInformation(1));
+            m_decor[couche][y][x].DecrementerAnimation(m_decor[couche][y][x].getAnimation());
 
             if (m_decor[couche][y][x].getTileset()>=0&&m_decor[couche][y][x].getTileset()<(int)m_tileset.size())
             {
@@ -2852,7 +2853,11 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         else if (script->m_instructions[noInstruction].nom=="speak")
         {
             if (jeu->menu.m_dialogue == " ")
+            {
                 jeu->menu.m_dialogue = DecouperTexte(script->m_instructions[noInstruction].valeurString, hero->m_classe.position_contenu_dialogue.w, 14);
+                eventManager->StopEvenement(Mouse::Left,"C");
+                hero->m_personnage.setArrivee(hero->m_personnage.getProchaineCase());
+            }
         }
         else if (script->m_instructions[noInstruction].nom=="newQuest")
         {
@@ -2948,6 +2953,13 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                 else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="talk")
                 {
                     if (hero->getMonstreVise()==monstre&&fabs(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)<=1&&fabs(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)<=1)
+                        ok=true;
+                    else
+                        ok=false;
+                }
+                else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="no_speak")
+                {
+                    if (jeu->menu.m_dialogue == " ")
                         ok=true;
                     else
                         ok=false;

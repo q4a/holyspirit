@@ -22,21 +22,24 @@
 					<Add option="-O1" />
 					<Add option="-O" />
 					<Add option="-Wall" />
-					<Add directory="..\..\SFML_SVN2\branches\sfml2\include" />
+					<Add option="-DWIN32" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_WINDOWS" />
+					<Add directory="..\..\SFML_SVN\branches\sfml2\include" />
 				</Compiler>
 				<ResourceCompiler>
-					<Add directory="..\..\SFML_SVN2\branches\sfml2\include" />
-					<Add directory="..\..\SFML_SVN2\branches\sfml2\extlibs" />
+					<Add directory="..\..\SFML_SVN\branches\sfml2\extlibs" />
 				</ResourceCompiler>
 				<Linker>
 					<Add option="-s" />
+					<Add option="-lsfml-main" />
 					<Add option="-lsfml-audio-s" />
 					<Add option="-lsfml-graphics-s" />
 					<Add option="-lsfml-window-s" />
 					<Add option="-lsfml-system-s" />
 					<Add library="opengl32" />
 					<Add library="glu32" />
-					<Add directory="..\..\SFML_SVN2\branches\sfml2\lib\mingw" />
+					<Add directory="..\..\SFML_SVN\branches\sfml2\lib\mingw" />
 				</Linker>
 			</Target>
 			<Target title="Debug">
@@ -48,14 +51,14 @@
 				<Option projectResourceIncludeDirsRelation="1" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="..\..\SFML_SVN2\branches\sfml2\include" />
+					<Add directory="..\..\SFML_SVN\branches\sfml2\include" />
 				</Compiler>
 				<Linker>
 					<Add option="-lsfml-audio-s" />
 					<Add option="-lsfml-graphics-s" />
 					<Add option="-lsfml-window-s" />
 					<Add option="-lsfml-system-s" />
-					<Add directory="..\..\SFML_SVN2\branches\sfml2\lib\mingw" />
+					<Add directory="..\..\SFML_SVN\branches\sfml2\lib\mingw" />
 				</Linker>
 			</Target>
 			<Target title="FullDebug">
@@ -65,14 +68,14 @@
 				<Option compiler="gcc" />
 				<Option use_console_runner="0" />
 				<Compiler>
-					<Add directory="..\..\SFML_SVN2\branches\sfml2\include" />
+					<Add directory="..\..\SFML_SVN\branches\sfml2\include" />
 				</Compiler>
 				<Linker>
 					<Add option="-lsfml-audio-s-d" />
 					<Add option="-lsfml-graphics-s-d" />
 					<Add option="-lsfml-window-s-d" />
 					<Add option="-lsfml-system-s-d" />
-					<Add directory="..\..\SFML_SVN2\branches\sfml2\lib\mingw" />
+					<Add directory="..\..\SFML_SVN\branches\sfml2\lib\mingw" />
 				</Linker>
 			</Target>
 			<Target title="Linux">
@@ -95,10 +98,6 @@
 		<VirtualTargets>
 			<Add alias="All" targets="Release;" />
 		</VirtualTargets>
-		<Compiler>
-			<Add option="-Wno-deprecated" />
-			<Add directory="..\..\SFML_SVN2\branches\sfml2\include" />
-		</Compiler>
 		<Unit filename="Contextes\c_changementMap.cpp" />
 		<Unit filename="Contextes\c_changementMap.h" />
 		<Unit filename="Contextes\c_demarrage.cpp" />

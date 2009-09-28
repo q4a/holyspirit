@@ -133,7 +133,7 @@ void Menu::Afficher(int type,float alpha,Classe *classe)
         moteurGraphique->AjouterCommande(&sprite2,16,0);
 
         sf::String texte;
-        texte.SetSize(14 * configuration->Resolution.h/600);
+        texte.SetSize(13 * configuration->Resolution.h/600);
         texte.SetFont(moteurGraphique->m_font);
         texte.SetText(m_dialogue);
         texte.SetPosition(classe->position_contenu_dialogue.x * configuration->Resolution.w/800 + classe->position_contenu_dialogue.w * configuration->Resolution.w/800/2 - (texte.GetRect().Right-texte.GetRect().Left)/2, classe->position_contenu_dialogue.y  * configuration->Resolution.h/600 + classe->talk.position.h*configuration->Resolution.h/600 - classe->talk.position.h*configuration->Resolution.h/600*alpha/255);

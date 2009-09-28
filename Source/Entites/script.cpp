@@ -88,6 +88,8 @@ int Script::Lire(ifstream *fichier)
         m_instructions.back().valeurString = "";
         char caractere;
 
+        fichier->get(caractere);
+
         do
         {
             fichier->get(caractere);

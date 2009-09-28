@@ -564,10 +564,10 @@ void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,boo
                             else
                                 sprite.SetColor(sf::Color(255,255,255, 255));
 
-                            if (sprite.GetPosition().x+sprite.GetSize().x>=moteurGraphique->m_camera.GetRect().Left
-                                    &&sprite.GetPosition().x-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().x<moteurGraphique->m_camera.GetRect().Right
-                                    &&sprite.GetPosition().y+sprite.GetSize().y>=moteurGraphique->m_camera.GetRect().Top
-                                    &&sprite.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)
+                            if(sprite.GetPosition().x+sprite.GetSize().x                                                    >= moteurGraphique->m_camera.GetRect().Left
+                            && sprite.GetPosition().x-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().x<  moteurGraphique->m_camera.GetRect().Right
+                            && sprite.GetPosition().y+sprite.GetSize().y                                                    >= moteurGraphique->m_camera.GetRect().Top
+                            && sprite.GetPosition().y                                                                       <  moteurGraphique->m_camera.GetRect().Bottom)
                             {
                                 moteurGraphique->AjouterCommande(&sprite,10 + modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCouche(),1);
 
@@ -617,7 +617,7 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception, bool noD
 
         casesVisitee.setTailleListe(0);
 
-        casesVisitee.AjouterCase(depart);
+        casesVisitee.AjouterCase(depart, -1);
 
         if (arrivee.y>=0&&arrivee.x>=0&&arrivee.y<10&&arrivee.x<10)
             if (map[arrivee.y][arrivee.x].collision)
@@ -682,11 +682,11 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception, bool noD
                     m_erreurPathfinding=true;
             }
 
-        while (!casesVisitee.TesterCasesEnCours(arrivee)&&!m_erreurPathfinding)
+        casesVisitee.IncrementerDistanceEnCours();
+        while (!casesVisitee.AjouterCasesAdjacentes(map,&arrivee,depart)&&!m_erreurPathfinding)
         {
             casesVisitee.IncrementerDistanceEnCours();
-            casesVisitee.AjouterCasesAdjacentes(map,&arrivee,depart);
-            if (casesVisitee.getDistance()>15)
+            if (casesVisitee.getDistance()>10)
                 m_erreurPathfinding=true, retest = true;
         }
 
@@ -694,11 +694,15 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception, bool noD
         {
             m_cheminFinal=arrivee;
 
-            while (casesVisitee.getDistance()>1)
-            {
-                m_cheminFinal=casesVisitee.TrouverLeChemin(m_cheminFinal);
-                casesVisitee.DecrementerDistanceEnCours();
-            }
+            Case temp = casesVisitee.getCase(casesVisitee.getTailleListe() - 1);
+
+            if(temp.getParent() == -1)
+                temp = casesVisitee.getCase(temp.getParent());
+            else
+                while (casesVisitee.getCase(temp.getParent()).getParent() != -1)
+                    temp = casesVisitee.getCase(temp.getParent());
+
+            m_cheminFinal = temp.getPosition();
 
             m_arrivee.x=arrivee.x+decalage.x;
             m_arrivee.y=arrivee.y+decalage.y;
@@ -726,6 +730,24 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception, bool noD
                     m_arrivee.y = m_positionCase.y - 1;
                 else
                     m_arrivee.y = m_positionCase.y;
+
+                /*float m = atan2(m_arrivee.y - m_positionCase.y, m_arrivee.x - m_positionCase.x);
+
+                if( m <= 3*M_PI/8 && m >= -3*M_PI/8 )
+                    m_arrivee.x = m_positionCase.x + 1;
+
+                if( m >= 5*M_PI/8 && m <= M_PI  ||  m <= -5*M_PI/8 && m >= -M_PI )
+                    m_arrivee.x = m_positionCase.x - 1;
+
+                if( m >= M_PI/8 && m <= 7*M_PI/8 )
+                    m_arrivee.y = m_positionCase.y + 1;
+
+                if( m <= -M_PI/8 && m >= -7*M_PI/8 )
+                    m_arrivee.y = m_positionCase.y - 1;*/
+
+                for(int i = 0 ; i < 10 ; ++i)
+                for(int j = 0 ; j < 10 ; ++j)
+                    map[i][j].valeur = -1, map[i][j].dist = 3, map[i][j].cases = -1;
 
                 Pathfinding(map, exception, true);
             }

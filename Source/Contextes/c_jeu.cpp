@@ -99,7 +99,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
     Animation(jeu);
     Lumieres(jeu);
 
-    if ((tempsEcouleDepuisDernierAffichage>0.02&&configuration->syncronisation_verticale)||(!configuration->syncronisation_verticale))
+    if ((tempsEcouleDepuisDernierAffichage>0.01&&configuration->syncronisation_verticale)||(!configuration->syncronisation_verticale))
     {
         jeu->hero.PlacerCamera();
 
@@ -630,7 +630,10 @@ void c_Jeu::Evenements(Jeu *jeu)
             {
                 if (jeu->hero.getMonstreVise()==-1)
                 {
-                    jeu->hero.m_personnage.setArrivee(eventManager->getCasePointee());
+                    if(jeu->menu.m_dialogue == " ")
+                        jeu->hero.m_personnage.setArrivee(eventManager->getCasePointee());
+                    else
+                        eventManager->StopEvenement(Mouse::Left,"C");
 
                     jeu->menu.m_dialogue = " ";
 
@@ -829,7 +832,7 @@ void c_Jeu::Affichage(Jeu *jeu)
         lowFPS=moteurGraphique->GetFPS();
 
     if (configuration->console)
-        if (tempsEcouleDepuisFPS>0.1)
+        if (tempsEcouleDepuisFPS>1)
         {
             {
                 std::ostringstream  buf;

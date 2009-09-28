@@ -29,23 +29,35 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 struct casePathfinding
 {
-    bool collision;
-    int hauteur;
+    casePathfinding()
+    {
+        collision   = false;
+        hauteur     = 0;
+        valeur      = -1;
+        dist        = 3;
+        cases       = -1;
+    }
+    bool        collision;
+    int         hauteur;
+    int         valeur;
+    float       dist;
+    int         cases;
 };
 
 class liste_case
 {
 public:
     ~liste_case();
-    void AjouterCase(coordonnee coordonneeAjoutable);
+    void AjouterCase(coordonnee coordonneeAjoutable, int parent);
 
     bool AjouterCasesAdjacentes(casePathfinding ** grille,coordonnee *arrivee,coordonnee depart);
-    bool TesterCasesEnCours(coordonnee caseCherchee);
+    //bool TesterCasesEnCours(coordonnee caseCherchee);
     void IncrementerDistanceEnCours();
     void DecrementerDistanceEnCours();
     void Supprimer();
 
-    coordonnee TrouverLeChemin(coordonnee caseEnCours);
+    //coordonnee TrouverLeChemin(coordonnee caseEnCours);
+    Case getCase(int ID);
 
     int getDistance();
     int getTailleListe();
@@ -54,7 +66,7 @@ public:
 private:
     int m_distanceEnCours;
     std::vector <Case> m_liste;
-    std::vector<Case>::iterator iter;
+    std::vector <Case>::iterator iter;
 };
 
 #endif

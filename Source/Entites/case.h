@@ -28,14 +28,14 @@ class Case
 {
 public:
     coordonnee getPosition();
-    void setCoordonnee(coordonnee nouvelleCoordonnee,int distance);
+    void setCoordonnee(coordonnee nouvelleCoordonnee,int distance, int parent);
     int getDistance();
-
-    Case operator=(const Case &caseCopiee);
+    int getParent();
 
 private:
     coordonnee m_coordonnee;
     int m_distance;
+    int m_parent;
 };
 
 #endif

@@ -73,10 +73,10 @@ void EffetGraphique::Afficher(float rotation)
 
         sprite.SetColor(sf::Color(255,255,255,m_tiles[m_tileEnCours].getOpacity()));
 
-        if (sprite.GetPosition().x + sprite.GetSize().x  >= moteurGraphique->m_camera.GetRect().Left
-                && sprite.GetPosition().x                       <  moteurGraphique->m_camera.GetRect().Right
-                && sprite.GetPosition().y + sprite.GetSize().y  >= moteurGraphique->m_camera.GetRect().Top
-                && sprite.GetPosition().y                       <  moteurGraphique->m_camera.GetRect().Bottom)
+        if(sprite.GetPosition().x + sprite.GetSize().x  >= moteurGraphique->m_camera.GetRect().Left
+        && sprite.GetPosition().x                       <  moteurGraphique->m_camera.GetRect().Right
+        && sprite.GetPosition().y + sprite.GetSize().y  >= moteurGraphique->m_camera.GetRect().Top
+        && sprite.GetPosition().y                       <  moteurGraphique->m_camera.GetRect().Bottom)
             moteurGraphique->AjouterCommande(&sprite,10,1);
     }
 }
