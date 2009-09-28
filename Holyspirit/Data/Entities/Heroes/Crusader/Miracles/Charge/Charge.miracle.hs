@@ -3,7 +3,7 @@
 $
 	*Le_croisé_charge_un_adversaire_renversant_tout_sur_son_passage.\Utilisable_uniquement_avec_un_bouclier.
 $	
-	* 10 * l $
+	* 20 + 10 * l $
 
 	* l $
 	* l * 2 $
