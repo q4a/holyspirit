@@ -106,6 +106,7 @@ Personnage::Personnage()
 
     m_impenetrable                      = 0;
     m_impoussable                       = 0;
+    m_doitMourir                        = 0;
 }
 Modele_Personnage::Modele_Personnage()
 {
@@ -225,21 +226,46 @@ bool Modele_Personnage::Charger(string chemin)
 
             m_sons.clear();
             do
+        {
+            fichier->get(caractere);
+            if (caractere=='*')
             {
+                do
+                {
+                    fichier->get(caractere);
+                    if (caractere=='m')
+                    {
+                        string cheminSon;
+                        *fichier>>cheminSon;
+                        m_sons.push_back(moteurSons->AjouterBuffer(cheminSon));
+                    }
+                    else if (caractere=='t')
+                    {
+                        int temp;
+                        *fichier>>temp;
+                        if(temp == 0)
+                            m_sons_touche.push_back(m_sons.size()-1);
+                    }
+                    if (fichier->eof())
+                    {
+                        console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
+                        caractere='$';
+                        m_caracteristique.maxVie=0;
+                    }
+                }
+                while (caractere!='$');
+
                 fichier->get(caractere);
-                if (caractere=='*')
-                {
-                    string cheminSon;
-                    *fichier>>cheminSon;
-                    m_sons.push_back(moteurSons->AjouterBuffer(cheminSon));
-                }
-                if (fichier->eof())
-                {
-                    console->Ajouter("Erreur : Personnage \" "+chemin+" \" Invalide",1);
-                    caractere='$';
-                }
             }
-            while (caractere!='$');
+
+            if (fichier->eof())
+            {
+                console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
+                caractere='$';
+                m_caracteristique.maxVie=0;
+            }
+        }
+        while (caractere!='$');
 
 
             do
@@ -992,8 +1018,10 @@ int Personnage::Animer(Modele_Personnage *modele,float temps,coordonnee position
 
         if(!m_effets[i].m_effet.m_actif)
             ++nombreInactif;
-        else
+        else if(!m_doitMourir)
         {
+            float viePrecedente = m_caracteristique.vie;
+
             if(m_effets[i].m_type == AURA_REGENERATION)
             {
                 if(m_effets[i].m_info3)
@@ -1008,6 +1036,10 @@ int Personnage::Animer(Modele_Personnage *modele,float temps,coordonnee position
             if(m_monstre)
                 if(m_caracteristique.vie > m_caracteristique.maxVie)
                     m_caracteristique.vie = m_caracteristique.maxVie;
+
+
+            if(m_caracteristique.vie <= 0 && viePrecedente >= 0)
+                m_caracteristique.vie = viePrecedente, m_doitMourir = true;
         }
     }
 

@@ -162,8 +162,6 @@ void MoteurGraphique::Gerer(float temps,int tailleMapY)
     {
         if (m_systemeParticules_iter->m_modele>=0&&m_systemeParticules_iter->m_modele<(int)m_modeleSystemeParticules.size())
         {
-
-
             if (!m_systemeParticules_iter->Afficher(&m_modeleSystemeParticules[m_systemeParticules_iter->m_modele],temps,tailleMapY))
             {
                 m_systemeParticules.erase (m_systemeParticules_iter);
@@ -224,6 +222,8 @@ void MoteurGraphique::Afficher()
     sf::Sprite sprite2;
 
     m_ecran.SetView(m_camera);
+
+    int nombre = 0;
 
     if (configuration->RafraichirOmbre==1&&configuration->Ombre&&m_soleil.intensite>32)
     {
@@ -334,13 +334,13 @@ void MoteurGraphique::Afficher()
             }
         }
 
-        for (unsigned i=0;i<m_textes[k].size();i++)
-        {
-            m_ecran.SetView(m_ecran.GetDefaultView());
-            m_ecran.Draw(m_textes[k][i]);
-        }
+        m_ecran.SetView(m_ecran.GetDefaultView());
 
-        if (k==13&configuration->postFX)
+        for (unsigned i=0;i<m_textes[k].size();i++)
+            m_ecran.Draw(m_textes[k][i]);
+
+
+        if (k==13)
         {
             if (configuration->luminosite>0)
             {
@@ -362,18 +362,22 @@ void MoteurGraphique::Afficher()
 
         if (k==18&&configuration->postFX)
         {
-
             if (m_blur>0)
             {
                 EffectBlur.SetParameter("offset",(float)m_blur);
-                m_ecran.Draw(EffectBlur);
-                m_ecran.Draw(EffectBlur);
                 m_ecran.Draw(EffectBlur);
             }
             if (configuration->effetMort>0)
                 m_ecran.Draw(EffectMort);
         }
+
+        nombre += m_commandes[k].size();
+
+        m_commandes[k].clear();
+        m_textes[k].clear();
     }
+
+    //std::cout<<nombre<<std::endl;
 
     if (configuration->effetNoir>0)
     {
@@ -387,7 +391,7 @@ void MoteurGraphique::Afficher()
 
 
     m_ecran.Display();
-    Vider();
+    //Vider();
 }
 
 int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std::string nom,int importance)

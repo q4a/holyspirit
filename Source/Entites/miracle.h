@@ -28,8 +28,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 class Personnage;
 
-enum  {PROJECTILE = 0,CORPS_A_CORPS = 1,DEGATS = 2,EFFET_GRAPHIQUE = 3,INVOCATION = 4,AURA = 5,EFFET = 6,M_EXPLOSION = 7,
-       REPETITION = 8,CHARME = 9,CHANGEMENT_POSE = 10,EFFET_ECRAN = 11,CHARGE = 12};
+enum  {PROJECTILE = 0,CORPS_A_CORPS = 1,DEGATS = 2,EFFET_GRAPHIQUE = 3,INVOCATION = 4,AURA = 5,EFFET = 6,ZONE = 7,
+       REPETITION = 8,CHARME = 9,CHANGEMENT_POSE = 10,EFFET_ECRAN = 11,CHARGE = 12, SOUFFLE = 13};
 enum  {AURA_REGENERATION, AURA_DEGATS, AURA_VOL, AURA_CARACTERISTIQUES};
 enum  {PHYSIQUE, FEU, CORROSION, FOI};
 
@@ -186,23 +186,25 @@ struct InfosEntiteMiracle
         m_informations[3]=0;
         m_informations[4]=0;
         m_informations[5]=0;
+
+        m_cible = NULL;
     }
 
-    int        m_effetEnCours;
-    int        m_IDObjet;
+    int                 m_effetEnCours;
+    int                 m_IDObjet;
     float               m_informations[6];
 
     coordonneeDecimal   m_position;
+    Personnage         *m_cible;
 };
 
 class EntiteMiracle
 {
 public:
-    EntiteMiracle(){ m_cible = NULL; m_dejaConsommeFoi = false; }
+    EntiteMiracle(){ m_dejaConsommeFoi = false; }
 
     std::vector<InfosEntiteMiracle>     m_infos;
     int                                 m_modele;
-    Personnage                         *m_cible;
     coordonnee                          m_coordonneeCible;
     coordonnee                          m_coordonneeDepart;
     bool                                m_dejaConsommeFoi;

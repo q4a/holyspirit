@@ -117,14 +117,14 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
     sf::Image m_light_screen;
     sf::Image m_light_screen2;
 
-    sf::RenderImage m_light_screen3;
+  //  sf::RenderImage m_light_screen3;
 
     std::vector <Effet_ecran> m_effetsEcran;
     std::vector <Effet_ecran>::iterator m_effetsEcran_iter;
 
     coordonnee decalageCamera;
 
-	protected:
+	//protected:
 
 	MoteurGraphique();
 	~MoteurGraphique();

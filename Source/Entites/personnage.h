@@ -164,6 +164,7 @@ public:
 
     bool m_impenetrable;
     bool m_impoussable;
+    bool m_doitMourir;
 
     Personnage *m_cible;
 

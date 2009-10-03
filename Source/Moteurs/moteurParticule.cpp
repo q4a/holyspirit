@@ -70,7 +70,6 @@ bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps,int 
                 sprite.Move(0,Iter->position.z);
                 moteurGraphique->AjouterCommande(&sprite,9,1);
             }
-
         if (Iter->vie==100)
         {
             Iter->position.x+=Iter->vecteur.x*Iter->vitesse*temps*25;

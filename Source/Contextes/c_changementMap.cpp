@@ -198,11 +198,11 @@ void c_Chargement::Utiliser(Jeu *jeu)
             for(unsigned k = 0 ; k < jeu->hero.m_personnage.m_miracleEnCours[j].m_infos.size() ; ++k)
             {
                 if(jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours[j].m_modele].m_effets[jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k].m_effetEnCours].m_type == CHARME)
-                    if(jeu->hero.m_personnage.m_miracleEnCours[j].m_cible == jeu->hero.m_amis[i])
+                    if(jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k].m_cible == jeu->hero.m_amis[i])
                     {
-                       jeu->hero.m_personnage.m_miracleEnCours[j].m_cible = jeu->map->getEntiteMonstre(jeu->map->getNombreMonstres() - 1);
-                       jeu->hero.m_personnage.m_miracleEnCours[j].m_cible->setCoordonnee(jeu->hero.m_personnage.m_miracleEnCours[j].m_cible->getCoordonnee());
-                       jeu->hero.m_personnage.m_miracleEnCours[j].m_cible->setDepart();
+                       jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k].m_cible = jeu->map->getEntiteMonstre(jeu->map->getNombreMonstres() - 1);
+                       jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k].m_cible->setCoordonnee(jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k].m_cible->getCoordonnee());
+                       jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k].m_cible->setDepart();
                     }
             }
 
@@ -220,6 +220,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         position.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
         Listener::SetGlobalVolume((float)configuration->volume);
         Listener::SetPosition(-position.x, 0, position.y);
+        //Listener::SetTarget(0, 0, 1);
         Listener::SetDirection(0, 0, 1);
         jeu->map->MusiquePlay(position);
 

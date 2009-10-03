@@ -84,12 +84,10 @@ public:
 
     void TestVisionMonstre(int numero, Hero *hero);
 
-    void InfligerDegatsMasse(coordonnee position,int rayon,int degats,bool sourceConcernee, Hero *hero, bool pousser = true, bool heroCompris = true, bool monstre = true);
+    //void InfligerDegatsMasse(coordonnee position,int rayon,int degats,bool sourceConcernee, Hero *hero, bool pousser = true, bool heroCompris = true, bool monstre = true);
 
     bool InfligerDegats(int numeroMontre, float degats, Hero *hero,bool pousser);
     bool InfligerDegats(Personnage *monstre, float degats, Hero *hero,bool pousser);
-
-    void PousserMonstre(int numeroMonstre, coordonneeDecimal vecteur);
 
     void MusiquePlay(coordonnee position);
 

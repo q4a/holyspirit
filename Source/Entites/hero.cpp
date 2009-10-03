@@ -1014,7 +1014,7 @@ void Hero::AfficherAmis()
                         for(unsigned k = 0 ; k < m_personnage.m_miracleEnCours[j].m_infos.size() ; ++k)
                         {
                             if(m_classe.miracles[m_personnage.m_miracleEnCours[j].m_modele].m_effets[m_personnage.m_miracleEnCours[j].m_infos[k].m_effetEnCours].m_type == CHARME)
-                                if(m_personnage.m_miracleEnCours[j].m_cible == m_amis[i])
+                                if(m_personnage.m_miracleEnCours[j].m_infos[k].m_cible == m_amis[i])
                                    m_amis[i]->m_friendly = false, charme = true;
                         }
 
