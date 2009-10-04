@@ -209,6 +209,15 @@ void c_Chargement::Utiliser(Jeu *jeu)
             jeu->hero.m_amis[i] = jeu->map->getEntiteMonstre(jeu->map->getNombreMonstres() - 1);
         }
 
+        for (int i = 0; i < (int)jeu->hero.m_personnage.m_miracleEnCours.size(); ++i)
+            for (int o = 0; o < (int) jeu->hero.m_personnage.m_miracleEnCours[i].m_infos.size() ; ++o)
+                if(jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours[i].m_modele].m_effets[jeu->hero.m_personnage.m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type == EFFET)
+                {
+                    if(jeu->hero.m_personnage.m_miracleEnCours[i].m_infos[o].m_cible != &jeu->hero.m_personnage)
+                        jeu->hero.m_personnage.m_miracleEnCours[i].m_infos.erase(jeu->hero.m_personnage.m_miracleEnCours[i].m_infos.begin() + o) ,o = -1;
+                }
+
+
         jeu->hero.m_personnage.setPousse(coordonneeDecimal(0,0));
         jeu->hero.m_personnage.frappeEnCours = false;
         jeu->hero.m_personnage.m_lancementMiracleEnCours = false;

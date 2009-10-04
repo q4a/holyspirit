@@ -335,7 +335,7 @@ void Miracle::Charger(std::string chemin, const Caracteristique &caract, int lev
 {
     console->Ajouter("Chargement du miracle : "+chemin);
 
-    m_max        =  false;
+    m_unique     =  false;
     m_chemin     =  chemin;
     m_cas        =  -1;
     m_reserveFoi =  0;
@@ -594,8 +594,8 @@ void Miracle::Charger(std::string chemin, const Caracteristique &caract, int lev
                         }
                         break;
 
-                    case 'm':
-                        fichier>>m_max;
+                    case 'u':
+                        fichier>>m_unique;
                         break;
 
                     case 'e':
@@ -1000,6 +1000,10 @@ void Miracle::Concatenencer(std::string chemin, const Caracteristique &caract, i
         m_effets.push_back(miracle.m_effets[i]);
         for (int j=0;j<(int)m_effets.back().m_lien.size();j++)
             m_effets.back().m_lien[j]+=tailleEffets;
+        if(m_effets.back().m_type == AURA || m_effets.back().m_type == ZONE)
+            m_effets.back().m_informations[0] += tailleEffets;
+        if(m_effets.back().m_type == DECLENCHEUR)
+            m_effets.back().m_informations[3] += tailleEffets;
         m_effets.back().m_sequence+=tailleTile;
     }
 
@@ -1092,7 +1096,7 @@ void Miracle::AfficherDescription(coordonnee position, bool suivant)
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
 
-    if (!m_max && suivant)
+    if (suivant)
     {
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"Niveau suivant :"));
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));

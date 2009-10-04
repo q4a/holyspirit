@@ -107,6 +107,9 @@ Personnage::Personnage()
     m_impenetrable                      = 0;
     m_impoussable                       = 0;
     m_doitMourir                        = 0;
+
+    m_vientDeFrapper                    = NULL;
+    m_vientDetreTouche                  = NULL;
 }
 Modele_Personnage::Modele_Personnage()
 {
@@ -226,46 +229,46 @@ bool Modele_Personnage::Charger(string chemin)
 
             m_sons.clear();
             do
-        {
-            fichier->get(caractere);
-            if (caractere=='*')
             {
-                do
-                {
-                    fichier->get(caractere);
-                    if (caractere=='m')
-                    {
-                        string cheminSon;
-                        *fichier>>cheminSon;
-                        m_sons.push_back(moteurSons->AjouterBuffer(cheminSon));
-                    }
-                    else if (caractere=='t')
-                    {
-                        int temp;
-                        *fichier>>temp;
-                        if(temp == 0)
-                            m_sons_touche.push_back(m_sons.size()-1);
-                    }
-                    if (fichier->eof())
-                    {
-                        console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
-                        caractere='$';
-                        m_caracteristique.maxVie=0;
-                    }
-                }
-                while (caractere!='$');
-
                 fichier->get(caractere);
-            }
+                if (caractere=='*')
+                {
+                    do
+                    {
+                        fichier->get(caractere);
+                        if (caractere=='m')
+                        {
+                            string cheminSon;
+                            *fichier>>cheminSon;
+                            m_sons.push_back(moteurSons->AjouterBuffer(cheminSon));
+                        }
+                        else if (caractere=='t')
+                        {
+                            int temp;
+                            *fichier>>temp;
+                            if(temp == 0)
+                                m_sons_touche.push_back(m_sons.size()-1);
+                        }
+                        if (fichier->eof())
+                        {
+                            console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
+                            caractere='$';
+                            m_caracteristique.maxVie=0;
+                        }
+                    }
+                    while (caractere!='$');
 
-            if (fichier->eof())
-            {
-                console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
-                caractere='$';
-                m_caracteristique.maxVie=0;
+                    fichier->get(caractere);
+                }
+
+                if (fichier->eof())
+                {
+                    console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
+                    caractere='$';
+                    m_caracteristique.maxVie=0;
+                }
             }
-        }
-        while (caractere!='$');
+            while (caractere!='$');
 
 
             do
@@ -519,13 +522,14 @@ int Personnage::getOrdre(Modele_Personnage *modele)
     return -10;
 }
 
-void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,bool surbrillance)
+void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,bool surbrillance, bool sansEffet)
 {
-    for(int i = 0; i < (int)m_effets.size(); ++i)
-    {
-        m_effets[i].m_effet.m_position = m_positionPixel;
-        m_effets[i].m_effet.Afficher();
-    }
+    if(!sansEffet)
+        for(int i = 0; i < (int)m_effets.size(); ++i)
+        {
+            m_effets[i].m_effet.m_position = m_positionPixel;
+            m_effets[i].m_effet.Afficher();
+        }
 
     if (modele!=NULL)
         if (modele->m_pose.size()>0)

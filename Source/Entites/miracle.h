@@ -29,9 +29,10 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 class Personnage;
 
 enum  {PROJECTILE = 0,CORPS_A_CORPS = 1,DEGATS = 2,EFFET_GRAPHIQUE = 3,INVOCATION = 4,AURA = 5,EFFET = 6,ZONE = 7,
-       REPETITION = 8,CHARME = 9,CHANGEMENT_POSE = 10,EFFET_ECRAN = 11,CHARGE = 12, SOUFFLE = 13};
+       REPETITION = 8,CHARME = 9,CHANGEMENT_POSE = 10,EFFET_ECRAN = 11,CHARGE = 12, SOUFFLE = 13, DECLENCHEUR = 14};
 enum  {AURA_REGENERATION, AURA_DEGATS, AURA_VOL, AURA_CARACTERISTIQUES};
 enum  {PHYSIQUE, FEU, CORROSION, FOI};
+enum  {D_PERMANENT, D_FRAPPE, D_TOUCHE};
 
 class EffetGraphique
 {
@@ -161,7 +162,7 @@ public:
     std::vector<std::string>    m_description_effets;
     std::vector<std::string>    m_description_effets_suivant;
 
-    bool                        m_max;
+    bool                        m_unique;
     int                         m_cas;
 
     int                         m_buf;

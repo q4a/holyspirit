@@ -638,7 +638,7 @@ void Hero::Afficher(coordonnee dimensionsMap)
         if (m_ordreAffichage[i]!=-1)
         {
             //m_personnage.setPorteeLumineuse(m_modelePersonnage[ordreAffichage[i]].getPorteeLumineuse());
-            m_personnage.Afficher(dimensionsMap,&m_modelePersonnage[m_ordreAffichage[i]]);
+            m_personnage.Afficher(dimensionsMap,&m_modelePersonnage[m_ordreAffichage[i]], false, m_ordreAffichage[i]!=0);
         }
 
     AfficherRaccourcis();
@@ -1160,7 +1160,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
 
                 if (eventManager->getEvenement(Mouse::Right,"C") && m_miracleEnMain < 0)
                 {
-                    if (m_personnage.getCaracteristique().miracles_restant > 0 && !m_classe.miracles[i].m_max)
+                    if (m_personnage.getCaracteristique().miracles_restant > 0)
                         if (m_classe.miracles[i].m_buf == -1 || m_classe.miracles[i].m_buf != -1 && m_lvl_miracles[m_classe.miracles[i].m_buf] > 0)
                         {
 
@@ -1950,6 +1950,46 @@ void Hero::StopMiraclesCharme()
                 m_personnage.m_miracleEnCours[i].m_infos.erase(m_personnage.m_miracleEnCours[i].m_infos.begin()+i);
 }
 
+/*void Hero::DetruireMiracle(int i, int effet)
+{
+
+    for (int o = 0; o < (int) m_personnage.m_miracleEnCours[i].m_infos.size() ; ++o)
+        if (m_personnage.m_miracleEnCours[i].m_infos[o].m_effetEnCours == effet)
+        {
+            for (int p=0;p<(int)m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien.size();p++)
+                DetruireMiracle(i, m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien[p])
+
+            if(m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type == AURA)
+            {
+                DetruireMiracle(i, m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[0]);
+
+                for (int p=0;p<(int)m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien.size();p++)
+                {
+                    m_personnage.m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
+                    m_personnage.m_miracleEnCours[i].m_infos.back().m_effetEnCours=m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien[p];
+                    m_personnage.m_miracleEnCours[i].m_infos.back().m_position=m_personnage.m_miracleEnCours[i].m_infos[o].m_position;
+                    m_personnage.m_miracleEnCours[i].m_infos.back().m_cible=m_personnage.m_miracleEnCours[i].m_infos[o].m_cible;
+                }
+            }
+
+            if(m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type == EFFET)
+            {
+
+
+                for (int p=0;p<(int)m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien.size();p++)
+                {
+                    m_personnage.m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
+                    m_personnage.m_miracleEnCours[i].m_infos.back().m_effetEnCours=m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien[p];
+                    m_personnage.m_miracleEnCours[i].m_infos.back().m_position=m_personnage.m_miracleEnCours[i].m_infos[o].m_position;
+                    m_personnage.m_miracleEnCours[i].m_infos.back().m_cible=m_personnage.m_miracleEnCours[i].m_infos[o].m_cible;
+                }
+            }
+
+            m_personnage.m_miracleEnCours[i].m_infos.erase(m_personnage.m_miracleEnCours[i].m_infos.begin() + o);
+        }
+
+}
+*/
 
 bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coord)
 {
@@ -1964,16 +2004,26 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                         for (int o = 0; o < (int) m_personnage.m_miracleEnCours[i].m_infos.size() ; ++o)
                             if (m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type == AURA)
                             {
-                                m_personnage.m_effets[m_personnage.m_miracleEnCours[i].m_infos[o].m_IDObjet].m_effet.m_actif = false;
+
+                                 for (int r = o; r < (int) m_personnage.m_miracleEnCours[i].m_infos.size() ; ++r)
+                                    if (m_personnage.m_miracleEnCours[i].m_infos[r].m_effetEnCours == m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[0])
+                                    {
+                                        if(m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[r].m_effetEnCours].m_type == EFFET)
+                                            m_personnage.m_miracleEnCours[i].m_infos[r].m_cible->m_effets[m_personnage.m_miracleEnCours[i].m_infos[r].m_IDObjet].m_effet.m_actif = false;
+
+                                        m_personnage.m_miracleEnCours[i].m_infos.erase(m_personnage.m_miracleEnCours[i].m_infos.begin() + r);
+                                        r--;
+                                    }
 
                                 for (int p=0;p<(int)m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien.size();p++)
                                 {
                                     m_personnage.m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
                                     m_personnage.m_miracleEnCours[i].m_infos.back().m_effetEnCours=m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien[p];
                                     m_personnage.m_miracleEnCours[i].m_infos.back().m_position=m_personnage.m_miracleEnCours[i].m_infos[o].m_position;
+                                    m_personnage.m_miracleEnCours[i].m_infos.back().m_cible=m_personnage.m_miracleEnCours[i].m_infos[o].m_cible;
                                 }
 
-                                m_personnage.m_miracleEnCours[i].m_infos.erase(m_personnage.m_miracleEnCours[i].m_infos.begin()+i);
+                                m_personnage.m_miracleEnCours[i].m_infos.erase(m_personnage.m_miracleEnCours[i].m_infos.begin()+o);
 
                                 if (m_personnage.m_miracleEnCours[i].m_modele == miracle)
                                     retour = true;
@@ -1983,6 +2033,18 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                     if (retour)
                         return 1;
                 }
+            if(m_classe.miracles[miracle].m_unique)
+                for (int i = 0; i < (int)m_personnage.m_miracleEnCours.size(); ++i)
+                    if(m_personnage.m_miracleEnCours[i].m_modele == miracle)
+                    {
+                        for (int o = 0; o < (int) m_personnage.m_miracleEnCours[i].m_infos.size() ; ++o)
+                            if(m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type == EFFET)
+                                m_personnage.m_miracleEnCours[i].m_infos[o].m_cible->m_effets[m_personnage.m_miracleEnCours[i].m_infos[o].m_IDObjet].m_effet.m_actif = false;
+
+                        m_personnage.m_miracleEnCours.erase(m_personnage.m_miracleEnCours.begin()+i);
+                        i = -1;
+                    }
+
 
             if (m_classe.miracles[miracle].m_coutFoi + m_classe.miracles[miracle].m_reserveFoi <= m_caracteristiques.foi && m_classe.miracles[miracle].m_reserveFoi <= m_caracteristiques.maxFoi - m_caracteristiques.reserveFoi
                     && m_classe.miracles[miracle].m_coutVie + m_classe.miracles[miracle].m_reserveVie

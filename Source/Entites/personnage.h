@@ -87,7 +87,7 @@ public:
 
     bool SeDeplacer(float,coordonnee dimensionsMap, bool pousserPossible = true);
 
-    void Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,bool surbrillance=false);
+    void Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,bool surbrillance=false, bool sansEffet=false);
 
     int Pathfinding(casePathfinding** map,coordonnee exception, bool noDelete = false);
 
@@ -165,6 +165,10 @@ public:
     bool m_impenetrable;
     bool m_impoussable;
     bool m_doitMourir;
+
+    Personnage* m_vientDeFrapper;
+    Personnage* m_vientDetreTouche;
+    int         m_degatsInflige;
 
     Personnage *m_cible;
 

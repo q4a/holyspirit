@@ -235,6 +235,9 @@ void c_Jeu::Animation(Jeu *jeu)
 
         jeu->hero.CalculerOrdreAffichage();
 
+        jeu->hero.m_personnage.m_vientDeFrapper = NULL;
+        jeu->hero.m_personnage.m_degatsInflige  = 0;
+
         if (retour==0) //Animation du héro
         {
             if (jeu->hero.m_personnage.frappeEnCours && !jeu->hero.m_personnage.m_lancementMiracleEnCours)
@@ -246,7 +249,19 @@ void c_Jeu::Animation(Jeu *jeu)
                         if (fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().x)<=2&&fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().y-jeu->hero.m_personnage.getCoordonnee().y)<=2)
                             if (rand() % 100 < (float)((float)jeu->hero.m_caracteristiques.dexterite / ((float)jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCaracteristique().dexterite+1))*75 )
                                 if (!jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->m_friendly)
-                                    toucher=true,jeu->map->InfligerDegats(jeu->hero.getMonstreVise(),(rand()%(jeu->hero.m_caracteristiques.degatsMax - jeu->hero.m_caracteristiques.degatsMin+1))+jeu->hero.m_caracteristiques.degatsMin,&jeu->hero,1);
+                                {
+                                    int degats = (rand()%(jeu->hero.m_caracteristiques.degatsMax - jeu->hero.m_caracteristiques.degatsMin+1))+jeu->hero.m_caracteristiques.degatsMin;
+                                    toucher=true,jeu->map->InfligerDegats(jeu->hero.getMonstreVise(),degats,&jeu->hero,1);
+
+                                    jeu->hero.m_personnage.m_vientDeFrapper = jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise());
+                                    jeu->hero.m_personnage.m_degatsInflige  = degats;
+
+                                    jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->m_vientDetreTouche = &jeu->hero.m_personnage;
+
+                                    jeu->hero.m_personnage.InfligerDegats(-degats * jeu->hero.m_caracteristiques.volVie, NULL);
+                                    jeu->hero.m_caracteristiques.foi += degats *jeu->hero.m_caracteristiques.volFoi;
+                                }
+
                 }
                 else
                     toucher=true;
