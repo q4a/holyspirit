@@ -21,7 +21,7 @@ $
 //Effets
 	* t1 l1 l5 l22 ia2 $
 	* t3 l22 l2 s0 ia8 $
-	* t7 l3 ia%2 ib%3 ic1 id2 $
+	* t7 l3 ia23 ic1 id2 $
 	* t3 l4 s1 ia8 $
 	* t3 s2 ia8 $
 	
@@ -52,6 +52,10 @@ $
 	* t10 ia2 ib22 ic1 $
 
 	* t11 ia0 ib8 $
+
+	* t-1 l24 l25 $
+	* t2  ia%2 ib%3 $
+	* t13 ia1 $
 $
 //Séquences
 	*

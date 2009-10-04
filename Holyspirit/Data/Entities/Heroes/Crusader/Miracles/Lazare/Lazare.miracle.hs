@@ -17,9 +17,12 @@ $
 	*Data/Sounds/39016_wildweasel_DSFIRXPL.wav
 $
 //Effets
-	* t8 l1 l3 ia-1 ib0 ic0 $
-	* t5 l2 s0 ia0 ib0 ic%1 id1 $
+	* t8 l1 l4 ia-1 ib0 ic0 $
+	* t5 l2 ia3 $
 	* t3 s1 ia16 $
+	
+	* t6 s0 ia1 ib0 ic-100 id0 ie%1 if1 $
+
 	* t8 ia-1 ib0 ic0 $
 $
 //Séquences
@@ -40,8 +43,8 @@ $
 		* x512 y256 w128 h256 ey160 a13 i0 n0.04 p192 $
 		* x640 y256 w128 h256 ey160 a14 i0 n0.04 p208 $
 		* x768 y256 w128 h256 ey160 a15 i0 n0.04 p224 $
-		* x896 y256 w128 h256 ey160 a16 i0 n0.04 p240 $		
-
+		* x896 y256 w128 h256 ey160 a16 i0 n0.04 p240 $	
+	
 		* x0 y0 w128 h256 ey160 a17 i0 n0.04 $
 		* x128 y0 w128 h256 ey160 a18 i0 n0.04 $
 		* x256 y0 w128 h256 ey160 a19 i0 n0.04 $
@@ -81,4 +84,5 @@ $
 		* x768 y256 w128 h256 ey160 a14 i0 n0.04 p224 $
 			
 	$
+
 $

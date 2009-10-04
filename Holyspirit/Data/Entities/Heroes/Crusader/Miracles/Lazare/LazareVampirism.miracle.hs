@@ -17,8 +17,9 @@ $
 
 $
 //Effets
-	* t8 l1 l2 ia-1 ib0 ic0 $
-	* t5 s0 ia2 ib0 ic%1 $
+	* t8 l1 l3 ia-1 ib0 ic0 $
+	* t5 ia2 $
+	* t6 s0 ia1 ib2 ic-100 id0 ie%1 $
 	* t8 ia-1 ib0 ic0 $
 $
 //Séquences

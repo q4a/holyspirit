@@ -76,4 +76,6 @@ $
 
 	* e2 b-1 x215 y99 w32 h32 mData/Entities/Heroes/Concubine/Miracles/Charmed/Charmed.miracle.hs $
 	* e2 b1 x297 y99 w32 h32 mData/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife.miracle.hs $
+
+	* e0 b-1 x215 y339 w32 h32 mData/Entities/Heroes/Concubine/Miracles/Venom/Venom.miracle.hs $
 $

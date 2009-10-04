@@ -2,13 +2,13 @@
 $
 	*La_courtisane_envoit_un_globe_qui\_crée_un_nuage_toxique_à_l'impact.
 $
-	* 30 + l * 10 $	
+	* 20 + l * 20 $	
 	
-	* 30 + 10 * l $
+	* 20 + 20 * l $
 
-	* 3 + l $
+	* 0 - ( 1 + l )  $
 $
-	*10-%1_sur_2_secondes
+	*%1_dégats_sur_6_secondes
 $
 	* f%0 $
 $
@@ -32,7 +32,11 @@ $
 
 	* t8 ia7 ib4 ic50 $
 
-	* t7 ia1 ib%2 ic0 id1 $
+	* t7 ia9 ic0 id1 $
+
+	* t2  ia1 ib%2 $
+
+	* t6  s4 ia0 ib0 ic5 id0 ie%2 if1 $
 $
 //Séquences
 	*
@@ -94,5 +98,8 @@ $
 		* x0 y768 w256 h256 ey128 ex128 i1 a12 n0.1 lv255 li96 p192 $
 		* x256 y768 w256 h256 ey128 ex128 i1 a13 n0.1 lv255 li104 p208 $
 		* x512 y768 w256 h256 ey128 ex128 i1 a14 n0.1 lv255 li112 p224 $
+	$
+	*
+		* n1 a0 $  
 	$
 $

@@ -12,13 +12,24 @@ $
 $
 //Images
 	*Data/Entities/Heroes/Crusader/Miracles/Barbe/Barbe.png
+	*Data/Items/FireEffect/FireEffect.png
 $
 //Sons
 $
 //Effets
-	* t8 l1 l3 ia-1 ib0 ic0 $
-	* t5 l2 s0 ia1 ib1 ic%1 id%2 $
+	* t8 l1 l2 l8 ia-1 ib0 ic0 $
+
+	* t5    ia3 $
+	* t5 l7 ia6 $
+
+	* t14 ia1 ib-100 ic0 id4 $
+	* t2 l5 ia%1 ib%2 $
+	* t3 s2 ia8 $
+
+	* t6 s0 ia1 ib-1 ic-100 $
+
 	* t3 s1 ia16 $
+
 	* t8 ia-1 ib0 ic0 $
 $
 //Séquences
@@ -79,5 +90,16 @@ $
 		* x640 y256 w128 h256 ey160 a13 i0 n0.04 p208 $
 		* x768 y256 w128 h256 ey160 a14 i0 n0.04 p224 $
 			
+	$
+	*
+	//Tiles de la séquence
+		* x0 y0 w128 h128 i1 a1 lr255 lv128 lb0 li0 s0 n0.04 $
+		* x128 y0 w128 h128 i1 a2 lr255 lv128 lb0 li64 n0.04 $
+		* x256 y0 w128 h128 i1 a3 lr255 lv128 lb0 li96 n0.04 $
+		* x384 y0 w128 h128 i1 a4 lr255 lv128 lb0 li128 n0.04 $
+		* x512 y0 w128 h128 i1 a5 lr255 lv128 lb0 li96 n0.04 $
+		* x640 y0 w128 h128 i1 a6 lr255 lv128 lb0 li64 n0.04 $
+		* x768 y0 w128 h128 i1 a7 lr255 lv128 lb0 li32 n0.04 $
+		* x896 y0 w128 h128 i1 a7 lr255 lv128 lb0 li0 n0.04 $
 	$
 $

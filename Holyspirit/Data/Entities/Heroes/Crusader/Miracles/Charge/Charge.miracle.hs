@@ -27,12 +27,20 @@ $
 
 	
 	* t10 l2 l3 ia1 ib-1 $
-	* t7 ia%1 ib%2 ic1 id1 $
+	* t7 ia7 ic1 id1 $
 	* t3 s0 ia8 $ 
 
 	* t11 l5 ia0 ib8 $
 	* t10 l6 ia2 ib6$
-	* t7 ia%3 ib%4 ic1 id1 $
+	* t7 ia10 ic1 id1 $
+
+	* t-1 l8 l9 $
+	* t2  ia%1 ib%2 $
+	* t13 ia1 $
+
+	* t-1 l11 l12 $
+	* t2  ia%3 ib%4 $
+	* t13 ia1 $
 $
 //Séquences
 	*
