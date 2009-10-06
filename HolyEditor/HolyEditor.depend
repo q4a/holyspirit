@@ -17,7 +17,7 @@
 	<QWidget>
 	<QTimer>
 
-1247480277 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics.hpp
+1253810018 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Font.hpp>
@@ -25,6 +25,7 @@
 	<SFML/Graphics/Image.hpp>
 	<SFML/Graphics/PostFX.hpp>
 	<SFML/Graphics/RenderImage.hpp>
+	<SFML/Graphics/RenderQueue.hpp>
 	<SFML/Graphics/RenderWindow.hpp>
 	<SFML/Graphics/Shape.hpp>
 	<SFML/Graphics/Sprite.hpp>
@@ -55,7 +56,7 @@
 	<SFML/System/Vector2.hpp>
 	<SFML/System/Vector3.hpp>
 
-1247480278 e:\c++\sfml_svn2\branches\sfml2\include\sfml\config.hpp
+1253810018 e:\c++\sfml_svn2\branches\sfml2\include\sfml\config.hpp
 	<climits>
 
 1250500600 e:\c++\sfml_svn2\branches\sfml2\include\sfml\system\clock.hpp
@@ -106,12 +107,12 @@
 1247480277 e:\c++\sfml_svn2\branches\sfml2\include\sfml\system\vector2.hpp
 	<SFML/System/Vector2.inl>
 
-1247480277 e:\c++\sfml_svn2\branches\sfml2\include\sfml\system\vector2.inl
+1253810018 e:\c++\sfml_svn2\branches\sfml2\include\sfml\system\vector2.inl
 
 1247480277 e:\c++\sfml_svn2\branches\sfml2\include\sfml\system\vector3.hpp
 	<SFML/System/Vector3.inl>
 
-1247480277 e:\c++\sfml_svn2\branches\sfml2\include\sfml\system\vector3.inl
+1253810018 e:\c++\sfml_svn2\branches\sfml2\include\sfml\system\vector3.inl
 
 1247480277 e:\c++\sfml_svn2\branches\sfml2\include\sfml\window\context.hpp
 	<SFML/Config.hpp>
@@ -133,7 +134,7 @@
 	<SFML/Config.hpp>
 	<cstdlib>
 
-1247480277 e:\c++\sfml_svn2\branches\sfml2\include\sfml\window\window.hpp
+1253810018 e:\c++\sfml_svn2\branches\sfml2\include\sfml\window\window.hpp
 	<SFML/Window/Event.hpp>
 	<SFML/Window/Input.hpp>
 	<SFML/Window/VideoMode.hpp>
@@ -186,21 +187,21 @@
 
 1247480277 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics\rect.inl
 
-1247480277 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics\image.hpp
+1253810018 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics\image.hpp
 	<SFML/System/Resource.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<string>
 	<vector>
 
-1247480277 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics\postfx.hpp
+1253810018 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics\postfx.hpp
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Image.hpp>
 	<istream>
 	<map>
 	<string>
 
-1247480277 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics\drawable.hpp
+1253810018 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics\drawable.hpp
 	<SFML/System/Vector2.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Matrix3.hpp>
@@ -214,15 +215,16 @@
 
 1247480277 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics\matrix3.inl
 
-1247480277 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics\renderimage.hpp
+1253810018 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics\renderimage.hpp
 	<SFML/System/NonCopyable.hpp>
 	<SFML/Graphics/Image.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 
-1247480277 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics\rendertarget.hpp
+1253810018 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics\rendertarget.hpp
 	<SFML/Graphics/Color.hpp>
-	<SFML/Graphics/View.hpp>
 	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/RenderQueue.hpp>
+	<SFML/Graphics/View.hpp>
 
 1249050039 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics\view.hpp
 	<SFML/Config.hpp>
@@ -230,23 +232,23 @@
 	<SFML/Graphics/Matrix3.hpp>
 	<SFML/System/Vector2.hpp>
 
-1247480277 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics\renderwindow.hpp
+1253810018 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics\renderwindow.hpp
 	<SFML/Graphics/Image.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 	<SFML/Window/Window.hpp>
 	<string>
 
-1247480277 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics\shape.hpp
+1253810018 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics\shape.hpp
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/System/Vector2.hpp>
 	<vector>
 
-1250500600 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics\sprite.hpp
+1253810018 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics\sprite.hpp
 	<SFML/System/Resource.hpp>
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Rect.hpp>
 
-1247480277 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics\string.hpp
+1253810018 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics\string.hpp
 	<SFML/System/Resource.hpp>
 	<SFML/System/Unicode.hpp>
 	<SFML/Graphics/Drawable.hpp>
@@ -1747,4 +1749,13 @@
 
 1235601160 c:\qt\4.5.0\src\gui\widgets\qcheckbox.h
 	<QtGui/qabstractbutton.h>
+
+1253810018 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics\renderqueue.hpp
+	<SFML/Config.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Graphics/Matrix3.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<vector>
 
