@@ -1005,6 +1005,9 @@ int Personnage::Animer(Modele_Personnage *modele,float temps,coordonnee position
     int nombreInactif = 0;
     for(int i = 0; i < (int)m_effets.size(); ++i)
     {
+        if(m_caracteristique.vie <= 0)
+            m_effets[i].m_effet.m_actif = false;
+
         bool actif = m_effets[i].m_effet.m_actif;
         m_effets[i].m_effet.Animer(temps);
 
@@ -1046,6 +1049,7 @@ int Personnage::Animer(Modele_Personnage *modele,float temps,coordonnee position
                 m_caracteristique.vie = viePrecedente, m_doitMourir = true;
         }
     }
+
 
     if(nombreInactif == (int)m_effets.size() || !EnVie())
         m_effets.clear();

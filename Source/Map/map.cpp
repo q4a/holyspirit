@@ -1856,808 +1856,872 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
             }
 }
 
+bool Map::Miracle_Aura           (Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o)
+{
+    if (info.m_IDObjet == -1)
+    {
+        info.m_IDObjet = 1;
+
+        miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
+        miracleEnCours.m_infos.back().m_effetEnCours    = effet.m_informations[0];
+        miracleEnCours.m_infos.back().m_position        = info.m_position;
+        miracleEnCours.m_infos.back().m_cible           = info.m_cible;
+    }
+    else
+        info.m_position = personnage->getCoordonneePixel();
+
+    return 1;
+}
+
+bool Map::Miracle_Declencheur    (Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o)
+{
+    if(effet.m_informations[0] == D_PERMANENT)
+    {
+        info.m_informations[4] += temps * 100;
+        if (info.m_informations[4] > effet.m_informations[4])
+        {
+            if (effet.m_informations[3] >= 0)
+            {
+                miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
+                miracleEnCours.m_infos.back().m_effetEnCours    = effet.m_informations[3];
+                miracleEnCours.m_infos.back().m_position        = info.m_position;
+
+                if(effet.m_informations[2] == 0)
+                    miracleEnCours.m_infos.back().m_cible = info.m_cible;
+                else
+                    miracleEnCours.m_infos.back().m_cible = personnage;
+            }
+            info.m_informations[4] = 0;
+        }
+    }
+    if(effet.m_informations[0] == D_FRAPPE)
+    {
+        if(personnage->m_vientDeFrapper != NULL)
+        {
+            if (effet.m_informations[3] >= 0)
+            {
+                miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
+                miracleEnCours.m_infos.back().m_effetEnCours    = effet.m_informations[3];
+
+                miracleEnCours.m_infos.back().m_position.x      = personnage->getCoordonneePixel().x+cos(-(personnage->getAngle()+22.5)*M_PI/180)*96;
+                miracleEnCours.m_infos.back().m_position.y      = personnage->getCoordonneePixel().y+sin(-(personnage->getAngle()+22.5)*M_PI/180)*96;
+
+                if(effet.m_informations[2] == 0)
+                    miracleEnCours.m_infos.back().m_cible = personnage->m_vientDeFrapper;
+                else
+                    miracleEnCours.m_infos.back().m_cible = personnage;
+            }
+        }
+    }
+    if(effet.m_informations[0] == D_TOUCHE)
+    {
+        if(personnage->m_vientDetreTouche != NULL)
+        {
+            if (effet.m_informations[3] >= 0)
+            {
+                miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
+                miracleEnCours.m_infos.back().m_effetEnCours    = effet.m_informations[3];
+                miracleEnCours.m_infos.back().m_position        = info.m_position;
+
+                if(effet.m_informations[2] == 0)
+                    miracleEnCours.m_infos.back().m_cible = personnage->m_vientDetreTouche;
+                else
+                    miracleEnCours.m_infos.back().m_cible = personnage;
+            }
+        }
+    }
+
+    if(effet.m_informations[1] != -100)
+    {
+        info.m_informations[3] += temps * 100;
+        if (info.m_informations[3] > effet.m_informations[1])
+        {
+
+            for (int p=0;p<(int)effet.m_lien.size();p++)
+            {
+                miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
+                miracleEnCours.m_infos.back().m_effetEnCours    = effet.m_lien[p];
+                miracleEnCours.m_infos.back().m_position        = info.m_position;
+                miracleEnCours.m_infos.back().m_cible           = info.m_cible;
+            }
+
+            miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin() + o);
+
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+bool Map::Miracle_Effet  (Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o)
+{
+    if(info.m_IDObjet == -1)
+    {
+        if (effet.m_informations[0])
+        {
+            info.m_IDObjet = personnage->AjouterEffet(
+                modele.m_tile[effet.m_sequence],
+                effet.m_informations[1], // TYPE
+                effet.m_informations[2], // TEMPS
+                effet.m_informations[3], // INFOS
+                effet.m_informations[4],
+                effet.m_informations[5]);
+            info.m_cible = personnage;
+        }
+        else if(info.m_cible != NULL)
+        {
+            info.m_IDObjet = info.m_cible->AjouterEffet(
+                modele.m_tile[effet.m_sequence],
+                effet.m_informations[1], // TYPE
+                effet.m_informations[2], // TEMPS
+                effet.m_informations[3], // INFOS
+                effet.m_informations[4],
+                effet.m_informations[5]);
+        }
+        else
+        {
+            miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
+
+            return 0;
+        }
+
+
+        for (int p=0;p<(int)effet.m_lien.size();p++)
+        {
+            miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
+            miracleEnCours.m_infos.back().m_effetEnCours    = effet.m_lien[p];
+            miracleEnCours.m_infos.back().m_position        = info.m_position;
+            miracleEnCours.m_infos.back().m_cible           = info.m_cible;
+        }
+    }
+    else
+    {
+        Personnage *temp;
+        if (effet.m_informations[0])
+            temp = personnage;
+        else
+            temp = info.m_cible;
+
+        if(!temp->m_effets[info.m_IDObjet].m_effet.m_actif)
+        {
+            miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+bool Map::Miracle_Charme (Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o)
+{
+    if(info.m_IDObjet == -1)
+    {
+        if (info.m_cible->getCaracteristique().maxVie <= effet.m_informations[0]
+                &&info.m_cible->getCaracteristique().niveau > 0 && info.m_cible->getCaracteristique().vitesse > 0)
+        {
+            info.m_cible->m_scriptAI     = Script (effet.m_chaine);
+
+            info.m_cible->m_friendly     = true;
+
+            info.m_cible->m_cible        = NULL;
+            info.m_cible->frappeEnCours  = false;
+
+            info.m_IDObjet    = 1;
+
+            if(personnage == &hero->m_personnage)
+                hero->m_amis.push_back(info.m_cible);
+
+            for (int p=0;p<(int)effet.m_lien.size();p++)
+            {
+                miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
+                miracleEnCours.m_infos.back().m_effetEnCours=effet.m_lien[p];
+                miracleEnCours.m_infos.back().m_position=info.m_position;
+                miracleEnCours.m_infos.back().m_cible=info.m_cible;
+            }
+
+            return 0;
+        }
+        else
+        {
+            miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
+            return 0;
+        }
+    }
+    else
+    {
+        Lumiere temp;
+        temp.rouge = 255;
+        temp.vert = 0;
+        temp.bleu = 255;
+        temp.intensite = 255;
+        info.m_cible->setPorteeLumineuse(temp);
+
+        if (!info.m_cible->EnVie())
+        {
+            if(personnage == &hero->m_personnage)
+                for(unsigned o = 0 ; o < hero->m_amis.size() ;  ++o)
+                    if(hero->m_amis[o] == info.m_cible)
+                        hero->m_amis.erase(hero->m_amis.begin() + o);
+
+            miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
+
+            return 0;
+        }
+
+        if (fabs(info.m_cible->getCoordonnee().x - personnage->getCoordonnee().x) > 10 || fabs(info.m_cible->getCoordonnee().y - personnage->getCoordonnee().y) > 10)
+        {
+            info.m_cible->setCoordonnee(personnage->getCoordonnee());
+            info.m_cible->setDepart();
+        }
+
+        if (!info.m_cible->m_friendly)
+        {
+            info.m_cible->DetruireEffets();
+            info.m_cible->m_scriptAI = m_ModeleMonstre[info.m_cible->getModele()].m_scriptAI;
+            info.m_cible->setDepart();
+
+            miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
+
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+bool Map::Miracle_CorpsACorps (Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o)
+{
+    if (info.m_cible != NULL)
+    {
+        if (fabs(info.m_cible->getCoordonnee().x - personnage->getCoordonnee().x) > effet.m_informations[0]
+         || fabs(info.m_cible->getCoordonnee().y - personnage->getCoordonnee().y) > effet.m_informations[0] )
+            personnage->setArrivee(info.m_cible->getCoordonnee());
+        else
+        {
+            personnage->setArrivee(personnage->getProchaineCase());
+            info.m_position.x = (float)personnage->getProchaineCase().x * COTE_TILE + 1;
+            info.m_position.y = (float)personnage->getProchaineCase().y * COTE_TILE + 1;
+
+            if( personnage->getArrivee().x == personnage->getCoordonnee().x
+             && personnage->getArrivee().y == personnage->getCoordonnee().y)
+            {
+                personnage->Frappe(personnage->getCoordonneePixel(),info.m_cible->getCoordonneePixel());
+
+                if (info.m_effetEnCours == 0)
+                {
+                    Caracteristique temp = personnage->getCaracteristique();
+                    temp.foi        -= modele.m_coutFoi + modele.m_reserveFoi;
+                    temp.vie        -= modele.m_coutVie + modele.m_reserveVie;
+                    temp.reserveFoi += modele.m_reserveFoi;
+                    temp.reserveVie += modele.m_reserveVie;
+                    personnage->setCaracteristique(temp);
+
+                    miracleEnCours.m_dejaConsommeFoi = true;
+                }
+
+                for (int p=0;p<(int)effet.m_lien.size();p++)
+                {
+                    miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
+                    miracleEnCours.m_infos.back().m_effetEnCours    =   effet.m_lien[p];
+                    miracleEnCours.m_infos.back().m_position        =   info.m_position;
+                    miracleEnCours.m_infos.back().m_cible           =   info.m_cible;
+                }
+
+                miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
+
+                return 0;
+            }
+        }
+    }
+    else
+        miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
+
+    return 1;
+}
+
+bool Map::Miracle_Repetition(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o)
+{
+    info.m_informations[3] += temps * 100;
+    if (info.m_informations[3] > effet.m_informations[2])
+    {
+        if (effet.m_informations[0] >= 0)
+        {
+            miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
+            miracleEnCours.m_infos.back().m_effetEnCours    = effet.m_informations[0];
+            miracleEnCours.m_infos.back().m_position        = info.m_position;
+            miracleEnCours.m_infos.back().m_cible           = info.m_cible;
+        }
+
+        info.m_informations[1]--;
+        info.m_informations[3] = 0;
+    }
+
+    if (-info.m_informations[1] >= effet.m_informations[1])
+    {
+        for (int p=0;p<(int)effet.m_lien.size();p++)
+        {
+            miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
+            miracleEnCours.m_infos.back().m_effetEnCours    = effet.m_lien[p];
+            miracleEnCours.m_infos.back().m_position        = info.m_position;
+            miracleEnCours.m_infos.back().m_cible           = info.m_cible;
+        }
+
+        miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
+
+        return 0;
+    }
+
+    return 1;
+}
+
+bool Map::Miracle_Projectile(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o)
+{
+    if (info.m_IDObjet >= 0 && info.m_IDObjet < (int)m_projectile.size())
+    {
+        if (!m_projectile[info.m_IDObjet].m_effet.m_actif)
+            m_projectile[info.m_IDObjet].m_actif = false;
+
+        if (m_projectile[info.m_IDObjet].m_actif)
+            m_projectile[info.m_IDObjet].m_effet.Animer(temps);
+        else
+        {
+            m_projectile[info.m_IDObjet].m_supprime = true;
+            info.m_cible = m_projectile[info.m_IDObjet].m_entite_cible;
+
+            for (int p=0;p<(int)effet.m_lien.size();p++)
+            {
+                miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
+                miracleEnCours.m_infos.back().m_effetEnCours    = effet.m_lien[p];
+                miracleEnCours.m_infos.back().m_position        = m_projectile[info.m_IDObjet].m_position;
+                miracleEnCours.m_infos.back().m_cible           = info.m_cible;
+            }
+
+            miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
+
+            return 0;
+        }
+
+    }
+    else
+    {
+        coordonnee pos( (int)((float)info.m_position.x/COTE_TILE),
+                        (int)((float)info.m_position.y/COTE_TILE));
+
+        coordonnee cible;
+
+        if (info.m_cible != NULL)
+            cible = info.m_cible->getProchaineCase();
+        else
+            cible = miracleEnCours.m_coordonneeCible;
+
+
+        info.m_IDObjet = AjouterProjectile( info.m_position,
+                                            cible,personnage->getCoordonnee(),1,effet.m_informations[0],
+                                            (float)effet.m_informations[1]*M_PI/180,!personnage->m_friendly,
+                                            modele.m_tile[effet.m_sequence]);
+
+        if (effet.m_informations[1])
+            m_projectile.back().m_cible = cible;
+        else
+            m_projectile.back().m_cible = coordonnee (-1, -1);
+    }
+
+    return 1;
+}
+
+bool Map::Miracle_EffetGraphique(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o)
+{
+    if (info.m_IDObjet >= 0 && info.m_IDObjet < (int)m_effets.size())
+    {
+        m_effets[info.m_IDObjet].Animer(temps);
+        if (!m_effets[info.m_IDObjet].m_actif)
+        {
+            for (int p=0;p<(int)effet.m_lien.size();p++)
+            {
+                miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
+                miracleEnCours.m_infos.back().m_effetEnCours    = effet.m_lien[p];
+                miracleEnCours.m_infos.back().m_position        = info.m_position;
+                miracleEnCours.m_infos.back().m_cible           = info.m_cible;
+            }
+
+            miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
+
+            return 0;
+        }
+    }
+    else
+    {
+        m_effets.push_back(EffetGraphique ());
+
+        m_effets.back().m_position.x = info.m_position.x;
+        m_effets.back().m_position.y = info.m_position.y;
+
+        m_effets.back().m_compteur   = effet.m_informations[0];
+
+        m_effets.back().m_actif      = true;
+
+        m_effets.back().m_couche     = 1;
+
+        m_effets.back().m_tiles      = modele.m_tile[effet.m_sequence];
+
+        info.m_IDObjet               = m_effets.size()-1;
+
+        if (m_effets.back().m_position.y / COTE_TILE>=0&&m_effets.back().m_position.y / COTE_TILE<m_dimensions.y)
+            if (m_effets.back().m_position.x / COTE_TILE>=0&&m_effets.back().m_position.x / COTE_TILE<m_dimensions.x)
+                m_decor[1][(int)(m_effets.back().m_position.y / COTE_TILE)][(int)(m_effets.back().m_position.x / COTE_TILE)].setEffetGraphique(m_effets.size()-1);
+    }
+    return 1;
+}
+
+bool Map::Miracle_Invocation(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o)
+{
+    if (info.m_IDObjet==-1)
+    {
+        bool invoquer=true;
+        int x=0,y=0;
+
+        coordonnee cible;
+
+        if (info.m_cible != NULL)
+            cible = info.m_cible->getProchaineCase();
+        else
+            cible = miracleEnCours.m_coordonneeCible;
+
+        coordonnee positionCase;
+        positionCase.x = cible.x-1;
+        positionCase.y = cible.y-1;
+
+        if (positionCase.x<0)
+            positionCase.x=0;
+        if (positionCase.y<0)
+            positionCase.y=0;
+
+        while ((getCollision(positionCase.x,positionCase.y) || ( positionCase.x==hero->m_personnage.getCoordonnee().x && positionCase.y==hero->m_personnage.getCoordonnee().y )) && invoquer )
+        {
+            positionCase.x++;
+            x++;
+            if (x>=3)
+                x=0,positionCase.x-=3,y++,positionCase.y++;
+            if (y>=3)
+                invoquer = false;
+        }
+
+        if (invoquer)
+        {
+            info.m_position.x = positionCase.x*COTE_TILE;
+            info.m_position.y = positionCase.y*COTE_TILE;
+
+            for (unsigned p=0;p < effet.m_lien.size();p++)
+            {
+                miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
+                miracleEnCours.m_infos.back().m_effetEnCours    = effet.m_lien[p];
+                miracleEnCours.m_infos.back().m_position        = info.m_position;
+                miracleEnCours.m_infos.back().m_cible           = info.m_cible;
+            }
+
+            int numero=-1;
+            for (int j=0;j<(int)m_ModeleMonstre.size();j++)
+                if (effet.m_chaine==m_ModeleMonstre[j].m_chemin)
+                {
+                    numero=j;
+                    break;
+                }
+
+            if (numero==-1)
+            {
+                m_ModeleMonstre.push_back(Modele_Monstre ());
+                m_ModeleMonstre.back().Charger(effet.m_chaine);
+                console->Ajouter("Chargement de : "+effet.m_chaine+" terminé",0);
+                numero=m_ModeleMonstre.size()-1;
+            }
+
+            m_monstre.push_back(Monstre ());
+
+            m_monstre.back().Charger(numero,&m_ModeleMonstre[numero]);
+            m_monstre.back().setCoordonnee(positionCase),m_monstre.back().setDepart();
+
+            m_monstre.back().m_light=moteurGraphique->LightManager->Add_Dynamic_Light();
+
+            moteurGraphique->LightManager->SetQuality(m_monstre.back().m_light,6);
+
+            sf::Vector2f pos;
+            pos.x=(((m_monstre.back().getCoordonneePixel().x-m_monstre.back().getCoordonneePixel().y)*64/COTE_TILE*64));
+            pos.y=(((m_monstre.back().getCoordonneePixel().x+m_monstre.back().getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
+
+            moteurGraphique->LightManager->SetPosition(m_monstre.back().m_light,pos);
+
+            moteurGraphique->LightManager->SetColor(m_monstre.back().m_light,sf::Color(m_monstre.back().getPorteeLumineuse().rouge,m_monstre.back().getPorteeLumineuse().vert,m_monstre.back().getPorteeLumineuse().bleu));
+
+            m_decor[1][positionCase.y][positionCase.x].setMonstre(m_monstre.size()-1);
+
+            info.m_IDObjet=m_monstre.size()-1;
+        }
+
+        return 0;
+    }
+    else if (info.m_IDObjet>=0&&info.m_IDObjet<(int)m_monstre.size())
+    {
+        personnage->m_nombreInvocation++;
+        if (!m_monstre[info.m_IDObjet].EnVie())
+        {
+            miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
+            return 0;
+        }
+    }
+    else
+    {
+        miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
+        return 0;
+    }
+    return 1;
+}
+
+bool Map::Miracle_Pose(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o)
+{
+    if (effet.m_informations[0] != -1)
+        personnage->setJustEtat(effet.m_informations[0]);
+
+    if (effet.m_informations[1] != -1)
+        personnage->setPose(effet.m_informations[1]);
+
+    personnage->addAngle(effet.m_informations[2]*45);
+
+    for (int p=0;p<(int)effet.m_lien.size();p++)
+    {
+        miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
+        miracleEnCours.m_infos.back().m_effetEnCours    = effet.m_lien[p];
+        miracleEnCours.m_infos.back().m_position        = info.m_position;
+        miracleEnCours.m_infos.back().m_cible           = info.m_cible;
+    }
+
+    miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
+
+    return 0;
+}
+
+bool Map::Miracle_Charge(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o)
+{
+    info.m_informations[3] += temps * 100;
+    if (info.m_informations[3] > effet.m_informations[2])
+    {
+        if (effet.m_informations[1] >= 0)
+        {
+            miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
+            miracleEnCours.m_infos.back().m_effetEnCours    = effet.m_informations[1];
+            miracleEnCours.m_infos.back().m_position        = info.m_position;
+            miracleEnCours.m_infos.back().m_cible           =info.m_cible;
+        }
+
+        info.m_informations[3] = 0;
+    }
+
+    info.m_position.x = (float)personnage->getCoordonneePixel().x;
+    info.m_position.y = (float)personnage->getCoordonneePixel().y;
+
+    if (info.m_IDObjet == 1)
+    {
+        if (((miracleEnCours.m_coordonneeDepart.x  < miracleEnCours.m_coordonneeCible.x&&personnage->getCoordonneePixel().x>=miracleEnCours.m_coordonneeCible.x*COTE_TILE)
+           ||(miracleEnCours.m_coordonneeDepart.x  > miracleEnCours.m_coordonneeCible.x&&personnage->getCoordonneePixel().x<=miracleEnCours.m_coordonneeCible.x*COTE_TILE)
+            ||miracleEnCours.m_coordonneeDepart.x  ==miracleEnCours.m_coordonneeCible.x)
+
+          ||(miracleEnCours.m_coordonneeDepart.y   > miracleEnCours.m_coordonneeCible.y&&personnage->getCoordonneePixel().y<=miracleEnCours.m_coordonneeCible.y*COTE_TILE)
+        && ((miracleEnCours.m_coordonneeDepart.y   < miracleEnCours.m_coordonneeCible.y&&personnage->getCoordonneePixel().y>=miracleEnCours.m_coordonneeCible.y*COTE_TILE)
+           ||miracleEnCours.m_coordonneeDepart.y   ==miracleEnCours.m_coordonneeCible.y)
+
+            ||(personnage->getPousse().x == 0 && personnage->getPousse().y == 0))
+        {
+
+            if(personnage->getCoordonnee().x == miracleEnCours.m_coordonneeCible.x
+            && personnage->getCoordonnee().y == miracleEnCours.m_coordonneeCible.y )
+                personnage->setCoordonnee(coordonnee (miracleEnCours.m_coordonneeCible.x,
+                                                      miracleEnCours.m_coordonneeCible.y));
+
+            personnage->setPousse(coordonneeDecimal  (0,0));
+
+            info.m_position.x = (float)personnage->getCoordonneePixel().x;
+            info.m_position.y = (float)personnage->getCoordonneePixel().y;
+
+            for (int p=0;p<(int)effet.m_lien.size();p++)
+            {
+                miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
+                miracleEnCours.m_infos.back().m_effetEnCours=effet.m_lien[p];
+                miracleEnCours.m_infos.back().m_position = info.m_position;
+                miracleEnCours.m_infos.back().m_cible=info.m_cible;
+            }
+
+            miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
+
+            return 0;
+        }
+    }
+
+    if ( !(personnage->getCoordonnee().x == miracleEnCours.m_coordonneeCible.x && personnage->getCoordonnee().y == miracleEnCours.m_coordonneeCible.y) )
+    {
+        float m = atan2((float)miracleEnCours.m_coordonneeCible.x * COTE_TILE - (float)personnage->getCoordonneePixel().x,
+                        (float)miracleEnCours.m_coordonneeCible.y * COTE_TILE - (float)personnage->getCoordonneePixel().y);
+
+        personnage->setPousse(coordonneeDecimal  (sin(m) * effet.m_informations[0],
+                                                  cos(m) * effet.m_informations[0]));
+    }
+
+    info.m_IDObjet= 1;
+
+    return 1;
+}
+
+bool Map::Miracle_EffetEcran(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o)
+{
+    moteurGraphique->m_effetsEcran.push_back(Effet_ecran ());
+    moteurGraphique->m_effetsEcran.back().type      = effet.m_informations[0];
+    moteurGraphique->m_effetsEcran.back().info1     = effet.m_informations[1];
+
+
+    for (unsigned p=0;p<effet.m_lien.size();p++)
+    {
+        miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
+        miracleEnCours.m_infos.back().m_effetEnCours    = effet.m_lien[p];
+        miracleEnCours.m_infos.back().m_position        = info.m_position;
+        miracleEnCours.m_infos.back().m_cible           = info.m_cible;
+    }
+
+    miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
+
+    return 0;
+}
+
+bool Map::Miracle_Degats(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o)
+{
+    int deg = rand() % (int)(effet.m_informations[1] - effet.m_informations[0] + 1) + effet.m_informations[0];
+    if (info.m_cible != NULL)
+    {
+        if (info.m_cible->getCoordonnee().y >=0 && info.m_cible->getCoordonnee().y < (int)m_decor[0].size())
+            if (info.m_cible->getCoordonnee().x >=0 && info.m_cible->getCoordonnee().x < (int)m_decor[0][info.m_cible->getCoordonnee().y].size())
+                InfligerDegats(info.m_cible, deg, hero, 0);
+    }
+
+    for (unsigned p=0;p<effet.m_lien.size();p++)
+    {
+        miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
+        miracleEnCours.m_infos.back().m_effetEnCours    = effet.m_lien[p];
+        miracleEnCours.m_infos.back().m_position        = info.m_position;
+        miracleEnCours.m_infos.back().m_cible           = info.m_cible;
+    }
+
+    miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
+
+    return 0;
+}
+
+bool Map::Miracle_Souffle(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o)
+{
+    if (info.m_cible != NULL)
+    {
+        coordonneeDecimal vecteur;
+
+        if      (info.m_position.x-info.m_cible->getCoordonneePixel().x<0)
+            vecteur.x =  effet.m_informations[0];
+        else if (info.m_position.x-info.m_cible->getCoordonneePixel().x>0)
+            vecteur.x = -effet.m_informations[0];
+        else
+            vecteur.x = 0;
+
+        if      (info.m_position.y-info.m_cible->getCoordonneePixel().y<0)
+            vecteur.y=  effet.m_informations[0];
+        else if (info.m_position.y-info.m_cible->getCoordonneePixel().y>0)
+            vecteur.y= -effet.m_informations[0];
+        else
+            vecteur.y = 0;
+
+        if(vecteur.x == 0 && vecteur.y == 0)
+            vecteur.x = effet.m_informations[0],
+            vecteur.y = effet.m_informations[0];
+
+        info.m_cible->Pousser(vecteur);
+    }
+
+    for (unsigned p=0;p<effet.m_lien.size();p++)
+    {
+        miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
+        miracleEnCours.m_infos.back().m_effetEnCours    = effet.m_lien[p];
+        miracleEnCours.m_infos.back().m_position        = info.m_position;
+        miracleEnCours.m_infos.back().m_cible           = info.m_cible;
+    }
+
+    miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
+
+    return 0;
+}
+
+bool Map::Miracle_Zone(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o)
+{
+    coordonnee buf( (int)((int)(info.m_position.x+COTE_TILE*0.5)/COTE_TILE),
+                    (int)((int)(info.m_position.y+COTE_TILE*0.5)/COTE_TILE));
+
+    for(int x = buf.x - effet.m_informations[3];
+            x <= buf.x + effet.m_informations[3]; ++x)
+    for(int y = buf.y - effet.m_informations[3];
+            y <= buf.y + effet.m_informations[3]; ++y)
+        if (y>=0&&x>=0&&y<m_dimensions.y&&x<m_dimensions.x)
+            {
+
+                for (unsigned z = 0 ; z < m_decor[1][y][x].getMonstre().size() ; ++z)
+                    if (m_decor[1][y][x].getMonstre()[z]>=0&&m_decor[1][y][x].getMonstre()[z]<(int)m_monstre.size())
+                        if (m_monstre[m_decor[1][y][x].getMonstre()[z]].EnVie()
+                        && ((m_monstre[m_decor[1][y][x].getMonstre()[z]].m_friendly != personnage->m_friendly)
+                         || (m_monstre[m_decor[1][y][x].getMonstre()[z]].m_friendly == personnage->m_friendly && effet.m_informations[5]/*&& y==hero->m_personnage.getCoordonnee().y&&x==hero->m_personnage.getCoordonnee().x*/ /*&& ((!personnage->m_friendly) || effet.m_informations[5]))*/))
+                        &&m_monstre[m_decor[1][y][x].getMonstre()[z]].getCaracteristique().rang>=0
+                        &&m_monstre[m_decor[1][y][x].getMonstre()[z]].getCaracteristique().niveau>=0)
+                        {
+                            miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
+                            miracleEnCours.m_infos.back().m_effetEnCours    =  effet.m_informations[0];
+                            miracleEnCours.m_infos.back().m_position        =  info.m_position;
+                            miracleEnCours.m_infos.back().m_cible           = &m_monstre[m_decor[1][y][x].getMonstre()[z]];
+                        }
+
+                if (y==hero->m_personnage.getCoordonnee().y&&x==hero->m_personnage.getCoordonnee().x && ((!personnage->m_friendly) || effet.m_informations[5]))
+                {
+                    miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
+                    miracleEnCours.m_infos.back().m_effetEnCours    =  effet.m_informations[0];
+                    miracleEnCours.m_infos.back().m_position        =  info.m_position;
+                    miracleEnCours.m_infos.back().m_cible           = &hero->m_personnage;
+                }
+            }
+
+
+    if (effet.m_informations[4])
+        VerifierDeclencheursDegats(buf.y,buf.x);
+
+
+    for (unsigned p=0;p<effet.m_lien.size();p++)
+    {
+        miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
+        miracleEnCours.m_infos.back().m_effetEnCours    = effet.m_lien[p];
+        miracleEnCours.m_infos.back().m_position        = info.m_position;
+        miracleEnCours.m_infos.back().m_cible           = info.m_cible;
+    }
+
+    miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
+
+    return 0;
+}
+
 void Map::GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,float temps,coordonnee positionHero,Hero *hero)
 {
     bool continuerb = true;
     for (int i=0;i<(int)personnage->m_miracleEnCours.size() && continuerb;++i)
     {
         bool continuer=true;
-        for (int o=0;o<(int)personnage->m_miracleEnCours[i].m_infos.size() && continuer && continuerb;o++)
+        for (int o=0;o<(int)personnage->m_miracleEnCours[i].m_infos.size() && continuerb;o++)
         {
-            int effetEnCours =      personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours;
-            int IDObjet =           personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet;
-
-
-            if (effetEnCours >= 0)
+            if (personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours >= 0)
             {
-                coordonnee cible;
+                int effetEnCours = personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours;
+                int type = miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type;
 
-                if (personnage->m_miracleEnCours[i].m_infos[o].m_cible != NULL)
-                    cible = personnage->m_miracleEnCours[i].m_infos[o].m_cible->getProchaineCase();
-                else
-                    cible = personnage->m_miracleEnCours[i].m_coordonneeCible;
+                if (type == AURA)
+                    continuer = Miracle_Aura(       hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
+                                                    personnage->m_miracleEnCours[i], personnage->m_miracleEnCours[i].m_infos[o],
+                                                    temps, o);
 
-                if (continuer)
-                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_type == AURA)
+                else if (type == DECLENCHEUR)
+                    continuer = Miracle_Declencheur(hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
+                                                    personnage->m_miracleEnCours[i], personnage->m_miracleEnCours[i].m_infos[o],
+                                                    temps, o);
+
+                else if (type == EFFET)
+                    continuer = Miracle_Effet(      hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
+                                                    personnage->m_miracleEnCours[i], personnage->m_miracleEnCours[i].m_infos[o],
+                                                    temps, o);
+
+                else if (type == CHARME)
+                    continuer = Miracle_Charme(     hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
+                                                    personnage->m_miracleEnCours[i], personnage->m_miracleEnCours[i].m_infos[o],
+                                                    temps, o);
+
+                else if (type==CORPS_A_CORPS)
+                    continuer = Miracle_CorpsACorps(hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
+                                                    personnage->m_miracleEnCours[i], personnage->m_miracleEnCours[i].m_infos[o],
+                                                    temps, o);
+
+                else if (type==REPETITION)
+                    continuer = Miracle_Repetition( hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
+                                                    personnage->m_miracleEnCours[i], personnage->m_miracleEnCours[i].m_infos[o],
+                                                    temps, o);
+
+                else if (type==PROJECTILE)
+                    continuer = Miracle_Projectile( hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
+                                                    personnage->m_miracleEnCours[i], personnage->m_miracleEnCours[i].m_infos[o],
+                                                    temps, o);
+
+                else if (type == EFFET_GRAPHIQUE)
+                    continuer = Miracle_EffetGraphique( hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
+                                                    personnage->m_miracleEnCours[i], personnage->m_miracleEnCours[i].m_infos[o],
+                                                    temps, o);
+
+                else if (type==INVOCATION)
+                    continuer = Miracle_Invocation( hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
+                                                    personnage->m_miracleEnCours[i], personnage->m_miracleEnCours[i].m_infos[o],
+                                                    temps, o);
+
+                else if (type == CHANGEMENT_POSE)
+                    continuer = Miracle_Pose(       hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
+                                                    personnage->m_miracleEnCours[i], personnage->m_miracleEnCours[i].m_infos[o],
+                                                    temps, o);
+
+                else if (type == CHARGE)
+                    continuer = Miracle_Charge(     hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
+                                                    personnage->m_miracleEnCours[i], personnage->m_miracleEnCours[i].m_infos[o],
+                                                    temps, o);
+
+                else if (type == EFFET_ECRAN)
+                    continuer = Miracle_EffetEcran( hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
+                                                    personnage->m_miracleEnCours[i], personnage->m_miracleEnCours[i].m_infos[o],
+                                                    temps, o);
+
+                else if (type == DEGATS)
+                    continuer = Miracle_Degats( hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
+                                                    personnage->m_miracleEnCours[i], personnage->m_miracleEnCours[i].m_infos[o],
+                                                    temps, o);
+
+                else if (type == SOUFFLE)
+                    continuer = Miracle_Souffle( hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
+                                                    personnage->m_miracleEnCours[i], personnage->m_miracleEnCours[i].m_infos[o],
+                                                    temps, o);
+
+                else if (type == ZONE)
+                    continuer = Miracle_Zone(       hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
+                                                    personnage->m_miracleEnCours[i], personnage->m_miracleEnCours[i].m_infos[o],
+                                                    temps, o);
+
+                else if (type == -1)
+                {
+                    for (unsigned p=0;p<miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien.size();p++)
                     {
-                        if (IDObjet == -1)
-                        {
-                            /*personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet = personnage->AjouterEffet(
-                                        miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_sequence],
-                                        miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0],
-                                        -100,
-                                        miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[1],
-                                        miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[2],
-                                        miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[3]);*/
-
-                            personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet = 1;
-
-                            personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                            personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours = miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0];
-                            personnage->m_miracleEnCours[i].m_infos.back().m_position = personnage->m_miracleEnCours[i].m_infos[o].m_position;
-                            personnage->m_miracleEnCours[i].m_infos.back().m_cible = personnage->m_miracleEnCours[i].m_infos[o].m_cible;
-                        }
-                        else
-                        {
-                            personnage->m_miracleEnCours[i].m_infos[o].m_position = personnage->getCoordonneePixel();
-                        }
+                        personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
+                        personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours   = miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien[p];
+                        personnage->m_miracleEnCours[i].m_infos.back().m_position       = personnage->m_miracleEnCours[i].m_infos[o].m_position;
+                        personnage->m_miracleEnCours[i].m_infos.back().m_cible          = personnage->m_miracleEnCours[i].m_infos[o].m_cible;
                     }
 
-                if (continuer)
-                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_type == DECLENCHEUR)
-                    {
-
-                        if(miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0] == D_PERMANENT)
-                        {
-                            personnage->m_miracleEnCours[i].m_infos[o].m_informations[4] += temps * 100;
-                            if (personnage->m_miracleEnCours[i].m_infos[o].m_informations[4] > miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[4])
-                            {
-                                if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[3] >= 0)
-                                {
-                                    personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours = miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[3];
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_position = personnage->m_miracleEnCours[i].m_infos[o].m_position;
-                                    if(miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[2] == 0)
-                                        personnage->m_miracleEnCours[i].m_infos.back().m_cible = personnage->m_miracleEnCours[i].m_infos[o].m_cible;
-                                    else
-                                        personnage->m_miracleEnCours[i].m_infos.back().m_cible = personnage;
-                                }
-
-                                personnage->m_miracleEnCours[i].m_infos[o].m_informations[4] = 0;
-                            }
-                        }
-                        if(miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0] == D_FRAPPE)
-                        {
-                            if(personnage->m_vientDeFrapper != NULL)
-                            {
-                                if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[3] >= 0)
-                                {
-                                    personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[3];
-                                   // personnage->m_miracleEnCours[i].m_infos.back().m_position=personnage->m_miracleEnCours[i].m_infos[o].m_position;
-
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_position.x=personnage->getCoordonneePixel().x+cos(-(personnage->getAngle()+22.5)*M_PI/180)*96;
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_position.y=personnage->getCoordonneePixel().y+sin(-(personnage->getAngle()+22.5)*M_PI/180)*96;
-
-                                    if(miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[2] == 0)
-                                        personnage->m_miracleEnCours[i].m_infos.back().m_cible = personnage->m_vientDeFrapper;
-                                    else
-                                        personnage->m_miracleEnCours[i].m_infos.back().m_cible = personnage;
-                                }
-                            }
-                        }
-                        if(miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0] == D_TOUCHE)
-                        {
-                            if(personnage->m_vientDetreTouche != NULL)
-                            {
-                                if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[3] >= 0)
-                                {
-                                    personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[3];
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_position=personnage->m_miracleEnCours[i].m_infos[o].m_position;
-
-                                    if(miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[2] == 0)
-                                        personnage->m_miracleEnCours[i].m_infos.back().m_cible = personnage->m_vientDetreTouche;
-                                    else
-                                        personnage->m_miracleEnCours[i].m_infos.back().m_cible = personnage;
-                                }
-                            }
-                        }
-
-                        if(miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[1] != -100)
-                        {
-                            personnage->m_miracleEnCours[i].m_infos[o].m_informations[3] += temps * 100;
-                            if (personnage->m_miracleEnCours[i].m_infos[o].m_informations[3] > miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[1])
-                            {
-                                /*if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[1] >= 0)
-                                {
-                                    personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours = miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[1];
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_position = personnage->m_miracleEnCours[i].m_infos[o].m_position;
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_cible=personnage->m_miracleEnCours[i].m_infos[o].m_cible;
-                                }*/
-
-                                for (int p=0;p<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien.size();p++)
-                                {
-                                    personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien[p];
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_position=personnage->m_miracleEnCours[i].m_infos[o].m_position;
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_cible=personnage->m_miracleEnCours[i].m_infos[o].m_cible;
-                                }
-
-                                personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
-
-                                continuer=false;
-
-                                //personnage->m_miracleEnCours[i].m_infos[o].m_informations[3] = 0;
-                            }
-                        }
-                    }
-
-
-                if (continuer)
-                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_type == EFFET)
-                    {
-                        if(IDObjet == -1)
-                        {
-                            if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0])
-                            {
-                                personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet = personnage->AjouterEffet(
-                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_sequence],
-                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[1], // TYPE
-                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[2], // TEMPS
-                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[3], // INFOS
-                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[4],
-                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[5]);
-                                personnage->m_miracleEnCours[i].m_infos[o].m_cible = personnage;
-                            }
-                            else if(personnage->m_miracleEnCours[i].m_infos[o].m_cible != NULL)
-                            {
-                                personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet = personnage->m_miracleEnCours[i].m_infos[o].m_cible->AjouterEffet(
-                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_sequence],
-                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[1], // TYPE
-                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[2], // TEMPS
-                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[3], // INFOS
-                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[4],
-                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[5]);
-                            }
-                            else
-                            {
-                                personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
-                                continuer=false;
-                            }
-
-                            if(continuer)
-                            {
-                                for (int p=0;p<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien.size();p++)
-                                {
-                                    personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien[p];
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_position=personnage->m_miracleEnCours[i].m_infos[o].m_position;
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_cible=personnage->m_miracleEnCours[i].m_infos[o].m_cible;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            Personnage *temp;
-                            if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0])
-                                temp = personnage;
-                            else
-                                temp = personnage->m_miracleEnCours[i].m_infos[o].m_cible;
-
-                            if(!temp->m_effets[IDObjet].m_effet.m_actif)
-                            {
-                                personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
-                                continuer=false;
-                               /* for (int p=0;p<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien.size();p++)
-                                {
-                                    personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien[p];
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_position=personnage->m_miracleEnCours[i].m_infos[o].m_position;
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_cible=personnage->m_miracleEnCours[i].m_infos[o].m_cible;
-                                }
-
-                                personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
-
-                                continuer=false;*/
-                            }
-                        }
-                    }
-
-                if (continuer)
-                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_type == CHARME && IDObjet == -1)
-                    {
-                        if (personnage->m_miracleEnCours[i].m_infos[o].m_cible->getCaracteristique().maxVie <= miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0]
-                                &&personnage->m_miracleEnCours[i].m_infos[o].m_cible->getCaracteristique().niveau > 0 && personnage->m_miracleEnCours[i].m_infos[o].m_cible->getCaracteristique().vitesse > 0)
-                        {
-                            personnage->m_miracleEnCours[i].m_infos[o].m_cible->m_scriptAI     = Script (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_chaine);
-
-                            personnage->m_miracleEnCours[i].m_infos[o].m_cible->m_friendly     = true;
-
-                            personnage->m_miracleEnCours[i].m_infos[o].m_cible->m_cible        = NULL;
-                            personnage->m_miracleEnCours[i].m_infos[o].m_cible->frappeEnCours  = false;
-
-                            personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet    = 1;
-
-                            if(personnage == &hero->m_personnage)
-                                hero->m_amis.push_back(personnage->m_miracleEnCours[i].m_infos[o].m_cible);
-
-                            for (int p=0;p<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien.size();p++)
-                            {
-                                personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                                personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien[p];
-                                personnage->m_miracleEnCours[i].m_infos.back().m_position=personnage->m_miracleEnCours[i].m_infos[o].m_position;
-                                personnage->m_miracleEnCours[i].m_infos.back().m_cible=personnage->m_miracleEnCours[i].m_infos[o].m_cible;
-                            }
-
-                            continuer=false;
-                        }
-                        else
-                        {
-                            personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
-
-                            continuer=false;
-                        }
-                    }
-
-                if (continuer)
-                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_type == CHARME && IDObjet == 1)
-                    {
-                        Lumiere temp;
-                        temp.rouge = 255;
-                        temp.vert = 0;
-                        temp.bleu = 255;
-                        temp.intensite = 255;
-                        personnage->m_miracleEnCours[i].m_infos[o].m_cible->setPorteeLumineuse(temp);
-
-                        if (!personnage->m_miracleEnCours[i].m_infos[o].m_cible->EnVie())
-                        {
-                            if(personnage == &hero->m_personnage)
-                                for(unsigned o = 0 ; o < hero->m_amis.size() ;  ++o)
-                                    if(hero->m_amis[o] == personnage->m_miracleEnCours[i].m_infos[o].m_cible)
-                                        hero->m_amis.erase(hero->m_amis.begin() + o);
-
-                            personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
-
-                            continuer=false;
-                        }
-
-                        if (fabs(personnage->m_miracleEnCours[i].m_infos[o].m_cible->getCoordonnee().x - personnage->getCoordonnee().x) > 10 || fabs(personnage->m_miracleEnCours[i].m_infos[o].m_cible->getCoordonnee().y - personnage->getCoordonnee().y) > 10)
-                        {
-                            personnage->m_miracleEnCours[i].m_infos[o].m_cible->setCoordonnee(personnage->getCoordonnee());
-                            personnage->m_miracleEnCours[i].m_infos[o].m_cible->setDepart();
-                        }
-
-                        if (!personnage->m_miracleEnCours[i].m_infos[o].m_cible->m_friendly)
-                        {
-                            personnage->m_miracleEnCours[i].m_infos[o].m_cible->DetruireEffets();
-                            personnage->m_miracleEnCours[i].m_infos[o].m_cible->m_scriptAI = m_ModeleMonstre[personnage->m_miracleEnCours[i].m_infos[o].m_cible->getModele()].m_scriptAI;
-                            personnage->m_miracleEnCours[i].m_infos[o].m_cible->setDepart();
-
-                            personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
-
-                            continuer=false;
-                        }
-                    }
-
-                if (continuer)
-                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_type==CORPS_A_CORPS)
-                    {
-                        if (personnage->m_miracleEnCours[i].m_infos[o].m_cible != NULL)
-                        {
-                            if (fabs(personnage->m_miracleEnCours[i].m_infos[o].m_cible->getCoordonnee().x - personnage->getCoordonnee().x) > miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0]
-                             || fabs(personnage->m_miracleEnCours[i].m_infos[o].m_cible->getCoordonnee().y - personnage->getCoordonnee().y) > miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0] )
-                                personnage->setArrivee(personnage->m_miracleEnCours[i].m_infos[o].m_cible->getCoordonnee());
-                            else
-                            {
-                                personnage->setArrivee(personnage->getProchaineCase());
-                                personnage->m_miracleEnCours[i].m_infos[o].m_position.x = (float)personnage->getProchaineCase().x * COTE_TILE + 1;
-                                personnage->m_miracleEnCours[i].m_infos[o].m_position.y = (float)personnage->getProchaineCase().y * COTE_TILE + 1;
-
-                                if (personnage->getArrivee().x==personnage->getCoordonnee().x&&personnage->getArrivee().y==personnage->getCoordonnee().y)
-                                {
-                                    personnage->Frappe(personnage->getCoordonneePixel(),personnage->m_miracleEnCours[i].m_infos[o].m_cible->getCoordonneePixel());
-
-                                    if (effetEnCours == 0)
-                                    {
-                                        Caracteristique temp = personnage->getCaracteristique();
-                                        temp.foi        -= miracles[personnage->m_miracleEnCours[i].m_modele].m_coutFoi + miracles[personnage->m_miracleEnCours[i].m_modele].m_reserveFoi;
-                                        temp.vie        -= miracles[personnage->m_miracleEnCours[i].m_modele].m_coutVie + miracles[personnage->m_miracleEnCours[i].m_modele].m_reserveVie;
-                                        temp.reserveFoi += miracles[personnage->m_miracleEnCours[i].m_modele].m_reserveFoi;
-                                        temp.reserveVie += miracles[personnage->m_miracleEnCours[i].m_modele].m_reserveVie;
-                                        personnage->setCaracteristique(temp);
-
-                                        personnage->m_miracleEnCours[i].m_dejaConsommeFoi = true;
-                                    }
-
-                                    for (int p=0;p<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien.size();p++)
-                                    {
-                                        personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                                        personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien[p];
-                                        personnage->m_miracleEnCours[i].m_infos.back().m_position=personnage->m_miracleEnCours[i].m_infos[o].m_position;
-                                        personnage->m_miracleEnCours[i].m_infos.back().m_cible=personnage->m_miracleEnCours[i].m_infos[o].m_cible;
-                                    }
-
-                                    personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
-
-                                    continuer=false;
-                                }
-                            }
-                        }
-                        else
-                            personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
-                    }
-
-                if (continuer)
-                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_type==REPETITION)
-                    {
-                        personnage->m_miracleEnCours[i].m_infos[o].m_informations[3] += temps * 100;
-                        if (personnage->m_miracleEnCours[i].m_infos[o].m_informations[3] > miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[2])
-                        {
-                            if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0] >= 0)
-                            {
-                                personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                                personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours = miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0];
-                                personnage->m_miracleEnCours[i].m_infos.back().m_position = personnage->m_miracleEnCours[i].m_infos[o].m_position;
-                                personnage->m_miracleEnCours[i].m_infos.back().m_cible=personnage->m_miracleEnCours[i].m_infos[o].m_cible;
-                            }
-
-                            personnage->m_miracleEnCours[i].m_infos[o].m_informations[1]--;
-                            personnage->m_miracleEnCours[i].m_infos[o].m_informations[3] = 0;
-                        }
-
-                        if (-personnage->m_miracleEnCours[i].m_infos[o].m_informations[1] >= miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[1])
-                        {
-                            for (int p=0;p<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien.size();p++)
-                            {
-                                personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                                personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien[p];
-                                personnage->m_miracleEnCours[i].m_infos.back().m_position=personnage->m_miracleEnCours[i].m_infos[o].m_position;
-                                personnage->m_miracleEnCours[i].m_infos.back().m_cible=personnage->m_miracleEnCours[i].m_infos[o].m_cible;
-                            }
-
-                            personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
-
-                            continuer=false;
-                        }
-                    }
-
-                if (continuer)
-                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_type==PROJECTILE)
-                    {
-                        if (IDObjet>=0 && IDObjet<(int)m_projectile.size())
-                        {
-                            if (!m_projectile[IDObjet].m_effet.m_actif)
-                                m_projectile[IDObjet].m_actif = false;
-
-                            if (m_projectile[IDObjet].m_actif)
-                                m_projectile[IDObjet].m_effet.Animer(temps);
-                            else
-                            {
-                                m_projectile[IDObjet].m_supprime = true;
-                                personnage->m_miracleEnCours[i].m_infos[o].m_cible = m_projectile[IDObjet].m_entite_cible;
-
-                                for (int p=0;p<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien.size();p++)
-                                {
-                                    personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien[p];
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_position = m_projectile[IDObjet].m_position;
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_cible=personnage->m_miracleEnCours[i].m_infos[o].m_cible;
-                                }
-
-                                personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
-
-                                continuer=false;
-                            }
-
-                        }
-                        else
-                        {
-                            coordonnee pos( (int)((float)personnage->m_miracleEnCours[i].m_infos[o].m_position.x/COTE_TILE),
-                                            (int)((float)personnage->m_miracleEnCours[i].m_infos[o].m_position.y/COTE_TILE));
-
-                            personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet = AjouterProjectile(personnage->m_miracleEnCours[i].m_infos[o].m_position,
-                                                                  cible,personnage->getCoordonnee(),1,miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[0],
-                                                                  (float)miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[1]*M_PI/180,!personnage->m_friendly,
-                                                                  miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence]);
-
-                            if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[1])
-                                m_projectile.back().m_cible = cible;
-                            else
-                                m_projectile.back().m_cible = coordonnee (-1, -1);
-                        }
-                    }
-
-                if (continuer)
-                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_type == EFFET_GRAPHIQUE)
-                    {
-                        if (IDObjet>=0&&IDObjet<(int)m_effets.size())
-                        {
-                            m_effets[IDObjet].Animer(temps);
-                            if (!m_effets[IDObjet].m_actif)
-                            {
-                                for (int p=0;p<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien.size();p++)
-                                {
-                                    personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien[p];
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_position = personnage->m_miracleEnCours[i].m_infos[o].m_position;
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_cible=personnage->m_miracleEnCours[i].m_infos[o].m_cible;
-                                }
-
-                                personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
-
-                                continuer=false;
-                            }
-                        }
-                        else
-                        {
-                            m_effets.push_back(EffetGraphique ());
-
-                            m_effets.back().m_position.x = personnage->m_miracleEnCours[i].m_infos[o].m_position.x;
-                            m_effets.back().m_position.y = personnage->m_miracleEnCours[i].m_infos[o].m_position.y;
-
-                            m_effets.back().m_compteur=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[0];
-
-                            m_effets.back().m_actif=true;
-
-                            m_effets.back().m_couche=1;
-
-                            m_effets.back().m_tiles = miracles[personnage->m_miracleEnCours[i].m_modele].m_tile[miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_sequence];
-
-                            personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet=m_effets.size()-1;
-
-                            if (m_effets.back().m_position.y / COTE_TILE>=0&&m_effets.back().m_position.y / COTE_TILE<m_dimensions.y)
-                                if (m_effets.back().m_position.x / COTE_TILE>=0&&m_effets.back().m_position.x / COTE_TILE<m_dimensions.x)
-                                    m_decor[1][(int)(m_effets.back().m_position.y / COTE_TILE)][(int)(m_effets.back().m_position.x / COTE_TILE)].setEffetGraphique(m_effets.size()-1);
-                        }
-                    }
-
-                if (continuer)
-                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type==INVOCATION)
-                    {
-                        if (personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet==-1)
-                        {
-                            bool invoquer=true;
-                            int x=0,y=0;
-                            coordonnee positionCase;
-                            positionCase.x=cible.x-1;
-                            positionCase.y=cible.y-1;
-
-                            if (positionCase.x<0)
-                                positionCase.x=0;
-                            if (positionCase.y<0)
-                                positionCase.y=0;
-
-                            while ((getCollision(positionCase.x,positionCase.y) || ( positionCase.x==hero->m_personnage.getCoordonnee().x && positionCase.y==hero->m_personnage.getCoordonnee().y )) && invoquer )
-                            {
-                                positionCase.x++;
-                                x++;
-                                if (x>=3)
-                                    x=0,positionCase.x-=3,y++,positionCase.y++;
-                                if (y>=3)
-                                    invoquer=false;
-                            }
-
-                            if (invoquer)
-                            {
-                                personnage->m_miracleEnCours[i].m_infos[o].m_position.x=positionCase.x*COTE_TILE;
-                                personnage->m_miracleEnCours[i].m_infos[o].m_position.y=positionCase.y*COTE_TILE;
-
-                                for (unsigned p=0;p < miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien.size();p++)
-                                {
-                                    personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien[p];
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_position=personnage->m_miracleEnCours[i].m_infos[o].m_position;
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_cible=personnage->m_miracleEnCours[i].m_infos[o].m_cible;
-                                }
-
-                                int numero=-1;
-                                for (int j=0;j<(int)m_ModeleMonstre.size();j++)
-                                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_chaine==m_ModeleMonstre[j].m_chemin)
-                                    {
-                                        numero=j;
-                                        break;
-                                    }
-
-                                if (numero==-1)
-                                {
-                                    m_ModeleMonstre.push_back(Modele_Monstre ());
-                                    m_ModeleMonstre.back().Charger(miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_chaine);
-                                    console->Ajouter("Chargement de : "+miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_chaine+" terminé",0);
-                                    numero=m_ModeleMonstre.size()-1;
-                                }
-
-                                m_monstre.push_back(Monstre ());
-
-                                m_monstre.back().Charger(numero,&m_ModeleMonstre[numero]);
-                                m_monstre.back().setCoordonnee(positionCase),m_monstre.back().setDepart();
-
-                                m_monstre.back().m_light=moteurGraphique->LightManager->Add_Dynamic_Light();
-
-                                moteurGraphique->LightManager->SetQuality(m_monstre.back().m_light,6);
-
-                                sf::Vector2f pos;
-                                pos.x=(((m_monstre.back().getCoordonneePixel().x-m_monstre.back().getCoordonneePixel().y)*64/COTE_TILE*64));
-                                pos.y=(((m_monstre.back().getCoordonneePixel().x+m_monstre.back().getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
-
-                                moteurGraphique->LightManager->SetPosition(m_monstre.back().m_light,pos);
-
-                                moteurGraphique->LightManager->SetColor(m_monstre.back().m_light,sf::Color(m_monstre.back().getPorteeLumineuse().rouge,m_monstre.back().getPorteeLumineuse().vert,m_monstre.back().getPorteeLumineuse().bleu));
-
-                                m_decor[1][positionCase.y][positionCase.x].setMonstre(m_monstre.size()-1);
-
-                                personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet=m_monstre.size()-1;
-                            }
-
-                            continuer=false;
-                        }
-                        else if (personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet>=0&&personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet<(int)m_monstre.size())
-                        {
-                            personnage->m_nombreInvocation++;
-                            if (!m_monstre[personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet].EnVie())
-                            {
-                                personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
-                                continuer=false;
-                            }
-                        }
-                        else
-                        {
-                            personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
-                            continuer=false;
-                        }
-                    }
-
-                if (continuer)
-                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_type == CHANGEMENT_POSE)
-                    {
-                        if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0] != -1)
-                            personnage->setJustEtat(miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0]);
-
-                        if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[1] != -1)
-                            personnage->setPose(miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[1]);
-
-                        personnage->addAngle(miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[2]*45);
-
-                        for (int p=0;p<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien.size();p++)
-                        {
-                            personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                            personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien[p];
-                            personnage->m_miracleEnCours[i].m_infos.back().m_position = personnage->m_miracleEnCours[i].m_infos[o].m_position;
-                            personnage->m_miracleEnCours[i].m_infos.back().m_cible=personnage->m_miracleEnCours[i].m_infos[o].m_cible;
-                        }
-
-                        personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
-
-                        continuer=false;
-                    }
-
-
-                if (continuer)
-                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_type == CHARGE)
-                    {
-                        personnage->m_miracleEnCours[i].m_infos[o].m_informations[3] += temps * 100;
-                        if (personnage->m_miracleEnCours[i].m_infos[o].m_informations[3] > miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[2])
-                        {
-                            if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[1] >= 0)
-                            {
-                                personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                                personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours = miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[1];
-                                personnage->m_miracleEnCours[i].m_infos.back().m_position = personnage->m_miracleEnCours[i].m_infos[o].m_position;
-                                personnage->m_miracleEnCours[i].m_infos.back().m_cible=personnage->m_miracleEnCours[i].m_infos[o].m_cible;
-                            }
-
-                            personnage->m_miracleEnCours[i].m_infos[o].m_informations[3] = 0;
-                        }
-
-                        personnage->m_miracleEnCours[i].m_infos[o].m_position.x = (float)personnage->getCoordonneePixel().x;
-                        personnage->m_miracleEnCours[i].m_infos[o].m_position.y = (float)personnage->getCoordonneePixel().y;
-
-                        if (IDObjet == 1)
-                        {
-                            if (((personnage->m_miracleEnCours[i].m_coordonneeDepart.x  < personnage->m_miracleEnCours[i].m_coordonneeCible.x&&personnage->getCoordonneePixel().x>=personnage->m_miracleEnCours[i].m_coordonneeCible.x*COTE_TILE)
-                               ||(personnage->m_miracleEnCours[i].m_coordonneeDepart.x  > personnage->m_miracleEnCours[i].m_coordonneeCible.x&&personnage->getCoordonneePixel().x<=personnage->m_miracleEnCours[i].m_coordonneeCible.x*COTE_TILE)
-                                ||personnage->m_miracleEnCours[i].m_coordonneeDepart.x  ==personnage->m_miracleEnCours[i].m_coordonneeCible.x)
-
-                              ||(personnage->m_miracleEnCours[i].m_coordonneeDepart.y   > personnage->m_miracleEnCours[i].m_coordonneeCible.y&&personnage->getCoordonneePixel().y<=personnage->m_miracleEnCours[i].m_coordonneeCible.y*COTE_TILE)
-                            && ((personnage->m_miracleEnCours[i].m_coordonneeDepart.y   < personnage->m_miracleEnCours[i].m_coordonneeCible.y&&personnage->getCoordonneePixel().y>=personnage->m_miracleEnCours[i].m_coordonneeCible.y*COTE_TILE)
-                               ||personnage->m_miracleEnCours[i].m_coordonneeDepart.y   ==personnage->m_miracleEnCours[i].m_coordonneeCible.y)
-
-                                    ||(personnage->getPousse().x == 0 && personnage->getPousse().y == 0))
-                            {
-
-                                if(personnage->getCoordonnee().x == personnage->m_miracleEnCours[i].m_coordonneeCible.x
-                                && personnage->getCoordonnee().y == personnage->m_miracleEnCours[i].m_coordonneeCible.y )
-                                    personnage->setCoordonnee(coordonnee (personnage->m_miracleEnCours[i].m_coordonneeCible.x,
-                                                                          personnage->m_miracleEnCours[i].m_coordonneeCible.y));
-
-                                personnage->setPousse(coordonneeDecimal  (0,0));
-
-                                personnage->m_miracleEnCours[i].m_infos[o].m_position.x = (float)personnage->getCoordonneePixel().x;
-                                personnage->m_miracleEnCours[i].m_infos[o].m_position.y = (float)personnage->getCoordonneePixel().y;
-
-                                for (int p=0;p<(int)miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien.size();p++)
-                                {
-                                    personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_lien[p];
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_position = personnage->m_miracleEnCours[i].m_infos[o].m_position;
-                                    personnage->m_miracleEnCours[i].m_infos.back().m_cible=personnage->m_miracleEnCours[i].m_infos[o].m_cible;
-                                }
-
-                                personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
-
-                                continuer=false;
-                            }
-                        }
-
-                        if ( continuer && !(personnage->getCoordonnee().x == personnage->m_miracleEnCours[i].m_coordonneeCible.x && personnage->getCoordonnee().y == personnage->m_miracleEnCours[i].m_coordonneeCible.y) )
-                        {
-                            float m = atan2((float)personnage->m_miracleEnCours[i].m_coordonneeCible.x * COTE_TILE - (float)personnage->getCoordonneePixel().x,
-                                            (float)personnage->m_miracleEnCours[i].m_coordonneeCible.y * COTE_TILE - (float)personnage->getCoordonneePixel().y);
-
-                            personnage->setPousse(coordonneeDecimal  (sin(m) * miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0],
-                                                                      cos(m) * miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0]));
-                        }
-
-                        if(continuer)
-                            personnage->m_miracleEnCours[i].m_infos[o].m_IDObjet= 1;
-                    }
-
-                if (continuer)
-                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type == EFFET_ECRAN)
-                    {
-                        moteurGraphique->m_effetsEcran.push_back(Effet_ecran ());
-                        moteurGraphique->m_effetsEcran.back().type      = miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[0];
-                        moteurGraphique->m_effetsEcran.back().info1     = miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[1];
-
-
-                        for (unsigned p=0;p<miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien.size();p++)
-                        {
-                            personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                            personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien[p];
-                            personnage->m_miracleEnCours[i].m_infos.back().m_position=personnage->m_miracleEnCours[i].m_infos[o].m_position;
-                            personnage->m_miracleEnCours[i].m_infos.back().m_cible=personnage->m_miracleEnCours[i].m_infos[o].m_cible;
-                        }
-
-                        continuer=false;
-                        personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
-                    }
-
-
-                if (continuer)
-                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type==DEGATS)
-                    {
-                        int deg = rand() % (int)(miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[1] - miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[0] + 1) + miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[0];
-                        if (personnage->m_miracleEnCours[i].m_infos[o].m_cible != NULL)
-                        {
-                            if (personnage->m_miracleEnCours[i].m_infos[o].m_cible->getCoordonnee().y >=0 && personnage->m_miracleEnCours[i].m_infos[o].m_cible->getCoordonnee().y < (int)m_decor[0].size())
-                                if (personnage->m_miracleEnCours[i].m_infos[o].m_cible->getCoordonnee().x >=0 && personnage->m_miracleEnCours[i].m_infos[o].m_cible->getCoordonnee().x < (int)m_decor[0][personnage->m_miracleEnCours[i].m_infos[o].m_cible->getCoordonnee().y].size())
-                                    InfligerDegats(personnage->m_miracleEnCours[i].m_infos[o].m_cible, deg, hero, 0);
-                        }
-
-                        for (unsigned p=0;p<miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien.size();p++)
-                        {
-                            personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                            personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien[p];
-                            personnage->m_miracleEnCours[i].m_infos.back().m_position=personnage->m_miracleEnCours[i].m_infos[o].m_position;
-                            personnage->m_miracleEnCours[i].m_infos.back().m_cible=personnage->m_miracleEnCours[i].m_infos[o].m_cible;
-                        }
-
-                        personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
-                        continuer=false;
-                    }
-
-                if (continuer)
-                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type==SOUFFLE)
-                    {
-                        if (personnage->m_miracleEnCours[i].m_infos[o].m_cible != NULL)
-                        {
-                            coordonneeDecimal vecteur;
-
-                            if      (personnage->m_miracleEnCours[i].m_infos[o].m_position.x-personnage->m_miracleEnCours[i].m_infos[o].m_cible->getCoordonneePixel().x<0)
-                                vecteur.x =  miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0];
-                            else if (personnage->m_miracleEnCours[i].m_infos[o].m_position.x-personnage->m_miracleEnCours[i].m_infos[o].m_cible->getCoordonneePixel().x>0)
-                                vecteur.x = -miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0];
-                            else
-                                vecteur.x = 0;
-
-                            if      (personnage->m_miracleEnCours[i].m_infos[o].m_position.y-personnage->m_miracleEnCours[i].m_infos[o].m_cible->getCoordonneePixel().y<0)
-                                vecteur.y=  miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0];
-                            else if (personnage->m_miracleEnCours[i].m_infos[o].m_position.y-personnage->m_miracleEnCours[i].m_infos[o].m_cible->getCoordonneePixel().y>0)
-                                vecteur.y= -miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0];
-                            else
-                                vecteur.y = 0;
-
-                            if(vecteur.x == 0 && vecteur.y == 0)
-                                vecteur.x = miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0],
-                                vecteur.y = miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0];
-
-                            personnage->m_miracleEnCours[i].m_infos[o].m_cible->Pousser(vecteur);
-                        }
-
-                        for (unsigned p=0;p<miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien.size();p++)
-                        {
-                            personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                            personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien[p];
-                            personnage->m_miracleEnCours[i].m_infos.back().m_position=personnage->m_miracleEnCours[i].m_infos[o].m_position;
-                            personnage->m_miracleEnCours[i].m_infos.back().m_cible=personnage->m_miracleEnCours[i].m_infos[o].m_cible;
-                        }
-
-                        personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
-                        continuer=false;
-                    }
-
-                if (continuer)
-                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type==ZONE)
-                    {
-                        //int deg = rand() % (int)(miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[1] - miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[0] + 1) + miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[0];
-                        coordonnee buf( (int)((int)(personnage->m_miracleEnCours[i].m_infos[o].m_position.x+COTE_TILE*0.5)/COTE_TILE),
-                                        (int)((int)(personnage->m_miracleEnCours[i].m_infos[o].m_position.y+COTE_TILE*0.5)/COTE_TILE));
-                      //  InfligerDegatsMasse(buf, miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[3],
-                               //             deg, 1, hero, miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[2],
-                                //            miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[5] , !personnage->m_friendly );*/
-                        for(int x = buf.x - miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[3];
-                                x <= buf.x + miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[3]; ++x)
-                        for(int y = buf.y - miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[3];
-                                y <= buf.y + miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[3]; ++y)
-                            if (y>=0&&x>=0&&y<m_dimensions.y&&x<m_dimensions.x)
-                                {
-
-                                    for (unsigned z = 0 ; z < m_decor[1][y][x].getMonstre().size() ; ++z)
-                                        if (m_decor[1][y][x].getMonstre()[z]>=0&&m_decor[1][y][x].getMonstre()[z]<(int)m_monstre.size())
-                                            if (m_monstre[m_decor[1][y][x].getMonstre()[z]].EnVie()
-                                            && ((m_monstre[m_decor[1][y][x].getMonstre()[z]].m_friendly != personnage->m_friendly)
-                                             || (m_monstre[m_decor[1][y][x].getMonstre()[z]].m_friendly == personnage->m_friendly && miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[5]/*&& y==hero->m_personnage.getCoordonnee().y&&x==hero->m_personnage.getCoordonnee().x*/ /*&& ((!personnage->m_friendly) || miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[5]))*/))
-                                            &&m_monstre[m_decor[1][y][x].getMonstre()[z]].getCaracteristique().rang>=0
-                                            &&m_monstre[m_decor[1][y][x].getMonstre()[z]].getCaracteristique().niveau>=0)
-                                            {
-                                                personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                                                personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0];
-                                                personnage->m_miracleEnCours[i].m_infos.back().m_position=personnage->m_miracleEnCours[i].m_infos[o].m_position;
-                                                personnage->m_miracleEnCours[i].m_infos.back().m_cible=&m_monstre[m_decor[1][y][x].getMonstre()[z]];
-                                            }
-
-                                    if (y==hero->m_personnage.getCoordonnee().y&&x==hero->m_personnage.getCoordonnee().x && ((!personnage->m_friendly) || miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[5]))
-                                    {
-                                        personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                                        personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours].m_informations[0];
-                                        personnage->m_miracleEnCours[i].m_infos.back().m_position=personnage->m_miracleEnCours[i].m_infos[o].m_position;
-                                        personnage->m_miracleEnCours[i].m_infos.back().m_cible=&hero->m_personnage;
-                                    }
-                                }
-
-
-                        if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_informations[4])
-                            VerifierDeclencheursDegats(buf.y,buf.x);
-
-
-                        for (unsigned p=0;p<miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien.size();p++)
-                        {
-                            personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                            personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien[p];
-                            personnage->m_miracleEnCours[i].m_infos.back().m_position=personnage->m_miracleEnCours[i].m_infos[o].m_position;
-                            personnage->m_miracleEnCours[i].m_infos.back().m_cible=personnage->m_miracleEnCours[i].m_infos[o].m_cible;
-                        }
-
-                        personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
-                        continuer=false;
-                    }
-
-                if (continuer)
-                    if (miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type==-1)
-                    {
-                        for (unsigned p=0;p<miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien.size();p++)
-                        {
-                            personnage->m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                            personnage->m_miracleEnCours[i].m_infos.back().m_effetEnCours=miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien[p];
-                            personnage->m_miracleEnCours[i].m_infos.back().m_position=personnage->m_miracleEnCours[i].m_infos[o].m_position;
-                            personnage->m_miracleEnCours[i].m_infos.back().m_cible=personnage->m_miracleEnCours[i].m_infos[o].m_cible;
-                        }
-
-                        personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
-                        continuer=false;
-                    }
-
+                    personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
+                    continuer=false;
+                }
 
                 if (!continuer)
                     o --, continuer = true;
