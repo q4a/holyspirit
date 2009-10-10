@@ -1740,7 +1740,7 @@ void Hero::AugmenterAme(float temps)
     if (temp.ancienPointAme > temp.pointAme)
         temp.ancienPointAme = temp.pointAme,temp.positionAncienAme=temp.ancienPointAme;
 
-    if (temp.ancienPointAme > CALCUL_PA_PROCHAIN_NIVEAU)
+    if (temp.ancienPointAme >= CALCUL_PA_PROCHAIN_NIVEAU)
     {
         temp.ancienPointAme = temp.pointAme;
 

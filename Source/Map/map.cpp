@@ -2519,17 +2519,17 @@ bool Map::Miracle_Souffle(Hero *hero, Personnage *personnage, Miracle &modele, E
     {
         coordonneeDecimal vecteur;
 
-        if      (info.m_position.x-info.m_cible->getCoordonneePixel().x<0)
+        if      ((int)(info.m_position.x*0.1)-(int)(info.m_cible->getCoordonneePixel().x*0.1)<0)
             vecteur.x =  effet.m_informations[0];
-        else if (info.m_position.x-info.m_cible->getCoordonneePixel().x>0)
+        else if ((int)(info.m_position.x*0.1)-(int)(info.m_cible->getCoordonneePixel().x*0.1)>0)
             vecteur.x = -effet.m_informations[0];
         else
             vecteur.x = 0;
 
-        if      (info.m_position.y-info.m_cible->getCoordonneePixel().y<0)
-            vecteur.y=  effet.m_informations[0];
-        else if (info.m_position.y-info.m_cible->getCoordonneePixel().y>0)
-            vecteur.y= -effet.m_informations[0];
+        if      ((int)(info.m_position.y*0.1)-(int)(info.m_cible->getCoordonneePixel().y*0.1)<0)
+            vecteur.y =  effet.m_informations[0];
+        else if ((int)(info.m_position.y*0.1)-(int)(info.m_cible->getCoordonneePixel().y*0.1)>0)
+            vecteur.y = -effet.m_informations[0];
         else
             vecteur.y = 0;
 
@@ -2972,7 +2972,7 @@ void Map::Script_UseMiracle(Jeu *jeu,Script *script,int noInstruction,int monstr
 
         if (m_monstre[monstre].m_miracleALancer==-1)
         {
-            m_monstre[monstre].m_miracleALancer=script->m_instructions[noInstruction].valeurs.at(0);
+            m_monstre[monstre].m_miracleALancer = script->m_instructions[noInstruction].valeurs.at(0);
             if (m_monstre[monstre].EnVie())
                 m_monstre[monstre].setEtat(2);
         }
@@ -3024,6 +3024,7 @@ void Map::Script_Fight(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
     if (!m_monstre[monstre].getErreurPathfinding())
     {
         if (m_monstre[monstre].EnVie())
+        if (m_monstre[monstre].m_miracleALancer == -1)
         {
             coordonnee arrivee;
 

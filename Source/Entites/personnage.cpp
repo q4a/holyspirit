@@ -110,6 +110,8 @@ Personnage::Personnage()
 
     m_vientDeFrapper                    = NULL;
     m_vientDetreTouche                  = NULL;
+
+    m_stunned                           = false;
 }
 Modele_Personnage::Modele_Personnage()
 {
@@ -872,7 +874,7 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap, bool pou
 
         return 1;
     }
-    else if (m_caracteristique.vie > 0)
+    else if (m_caracteristique.vie > 0 && !m_stunned)
     {
         if (!frappeEnCours)
         {
@@ -1003,6 +1005,7 @@ int Personnage::Animer(Modele_Personnage *modele,float temps,coordonnee position
         retour = 0;
 
     int nombreInactif = 0;
+    m_stunned = false;
     for(int i = 0; i < (int)m_effets.size(); ++i)
     {
         if(m_caracteristique.vie <= 0)
@@ -1040,6 +1043,9 @@ int Personnage::Animer(Modele_Personnage *modele,float temps,coordonnee position
                 }
             }
 
+            if(m_effets[i].m_type == AURA_STUNNED)
+                m_stunned = true;
+
             if(m_monstre)
                 if(m_caracteristique.vie > m_caracteristique.maxVie)
                     m_caracteristique.vie = m_caracteristique.maxVie;
@@ -1058,6 +1064,7 @@ int Personnage::Animer(Modele_Personnage *modele,float temps,coordonnee position
 
     float tempsAnimation=0.075;
 
+    if(!m_stunned)
     if(m_etat >= 0 && m_etat < (int)modele->m_pose.size())
     if((int)(m_angle/45) >= 0 && (int)(m_angle/45) < (int)modele->m_pose[m_etat].size())
     if(m_poseEnCours >= 0 && m_poseEnCours < (int)modele->m_pose[m_etat][(int)(m_angle/45)].size())

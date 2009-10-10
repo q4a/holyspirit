@@ -86,6 +86,8 @@ void MoteurGraphique::CreateNewWindow()
         EffectFiltre.SetTexture("framebuffer", NULL);
     }
 
+    m_ecran.SetActive();
+
 
     //m_light_screen.Create(configuration->Resolution.w + 64, configuration->Resolution.h + 64);
     //m_light_screen2.Create(configuration->Resolution.w, configuration->Resolution.h);

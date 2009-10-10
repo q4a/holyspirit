@@ -394,6 +394,14 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
             texte.SetColor(Color(100,50,200,255));
         else if (caracteristiqueMonstre.rang==2)
             texte.SetColor(Color(32,32,128,255));
+        else if (caracteristiqueMonstre.rang==3)
+            texte.SetColor(Color(255,255,128,255));
+        else if (caracteristiqueMonstre.rang==4)
+            texte.SetColor(Color(128,255,255,255));
+        else if (caracteristiqueMonstre.rang==5)
+            texte.SetColor(Color(255,164,32,255));
+        else if (caracteristiqueMonstre.rang==6)
+            texte.SetColor(Color(224,0,0,255));
 
         texte.SetX(configuration->Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
         texte.SetY(16*configuration->Resolution.h/600);

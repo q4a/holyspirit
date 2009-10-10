@@ -187,6 +187,8 @@ protected:
 
     coordonneeDecimal  m_pousse;
     coordonnee m_depart;
+
+    bool m_stunned;
 };
 
 
