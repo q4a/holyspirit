@@ -1993,6 +1993,16 @@ void Hero::StopMiraclesCharme()
 
 bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coord)
 {
+    float m=atan2((double)(m_personnage.getCoordonnee().x-cible_coord.x),(double)(m_personnage.getCoordonnee().y-cible_coord.y));
+    m+=M_PI/3;
+
+    m=(int)(m*180/M_PI);
+    if (m>=360)
+        m=0;
+    if (m<0)
+        m=360+m;
+    m_personnage.setAngle((int)m);
+
     if (miracle>=0&&miracle<(int)m_classe.miracles.size())
         if (m_lvl_miracles[miracle] > 0)
         {
@@ -2076,16 +2086,6 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
 
                         m_personnage.m_miracleEnCours.back().m_coordonneeCible  = cible_coord;
                         m_personnage.m_miracleEnCours.back().m_coordonneeDepart = m_personnage.getCoordonnee();
-
-                        float m=atan2((double)(m_personnage.getCoordonnee().x-cible_coord.x),(double)(m_personnage.getCoordonnee().y-cible_coord.y));
-                        m+=M_PI/3;
-
-                        m=(int)(m*180/M_PI);
-                        if (m>=360)
-                            m=0;
-                        if (m<0)
-                            m=360+m;
-                        m_personnage.setAngle((int)m);
 
                         return 1;
                     }

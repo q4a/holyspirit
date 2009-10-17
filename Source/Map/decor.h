@@ -56,8 +56,9 @@ public:
     int getPosition(char type); // Prendre la position du décor
     const std::vector<int> &getEvenement(); // Prendre le numéro de l'événement du décor
     const std::vector<int> &getMonstre(); // Retourne l'ID du monstre sur la case
-    int getProjectile();
-    int getEffetGraphique();
+    const std::vector<int> &getProjectile();
+    const std::vector<int> &getEffetGraphique();
+
     int getCouche();
     int getHerbe(); // Retourne le numero de l'herbe du décor
     int getNumeroHerbe();
@@ -86,7 +87,10 @@ public:
     void delMonstre(int monstre);
 
     void setProjectile(int projectile);
+    void delProjectile(int monstre);
+
     void setEffetGraphique(int effet);
+    void delEffetGraphique(int monstre);
 
 
     Light_Entity m_light;
@@ -96,9 +100,11 @@ public:
     sf::Sprite m_sprite,m_spriteHerbe,m_spriteOmbre;
 
 private:
-    int m_tileset,m_tile,m_projectile,m_effet,m_couche;
+    int m_tileset,m_tile,m_couche;
 
     std::vector <int> m_monstre;
+    std::vector <int> m_projectile;
+    std::vector <int> m_effet;
 
     std::vector<int> m_evenement;
     float m_animation;

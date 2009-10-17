@@ -212,6 +212,29 @@ float getValeur(ifstream &fichier, char caractere)
     return temp;
 }
 
+float lireValeur(ifstream &fichier, std::vector<float> &valeurs)
+{
+    char    caractere;
+    float   val;
+
+    fichier.get(caractere);
+    if(caractere == '%')
+    {
+        fichier.get(caractere);
+        int nbr = (int)getValeur(fichier, caractere);
+
+        if(nbr >= 0 && nbr < (int)valeurs.size())
+            val = (int)valeurs[nbr];
+    }
+    else
+    {
+        fichier.putback(caractere);
+        fichier>>val;
+    }
+
+    return val;
+}
+
 float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int level, char priorite, bool *continuer)
 {
     float valeur = 0;
@@ -527,71 +550,19 @@ void Miracle::Charger(std::string chemin, const Caracteristique &caract, int lev
                     switch (caractere)
                     {
                     case 'f':
-                        fichier.get(caractere);
-                        if(caractere == '%')
-                        {
-                            fichier.get(caractere);
-                            int nbr = (int)getValeur(fichier, caractere);
-
-                            if(nbr >= 0 && nbr < (int)valeurs.size())
-                                m_coutFoi = (int)valeurs[nbr];
-                        }
-                        else
-                        {
-                            fichier.putback(caractere);
-                            fichier>>m_coutFoi;
-                        }
+                        m_coutFoi = lireValeur(fichier, valeurs);
                         break;
 
                     case 'F':
-                        fichier.get(caractere);
-                        if(caractere == '%')
-                        {
-                            fichier.get(caractere);
-                            int nbr = (int)getValeur(fichier, caractere);
-
-                            if(nbr >= 0 && nbr < (int)valeurs.size())
-                                m_reserveFoi = (int)valeurs[nbr];
-                        }
-                        else
-                        {
-                            fichier.putback(caractere);
-                            fichier>>m_reserveFoi;
-                        }
+                        m_reserveFoi = lireValeur(fichier, valeurs);
                         break;
 
                     case 'v':
-                        fichier.get(caractere);
-                        if(caractere == '%')
-                        {
-                            fichier.get(caractere);
-                            int nbr = (int)getValeur(fichier, caractere);
-
-                            if(nbr >= 0 && nbr < (int)valeurs.size())
-                                m_coutVie = (int)valeurs[nbr];
-                        }
-                        else
-                        {
-                            fichier.putback(caractere);
-                            fichier>>m_coutVie;
-                        }
+                        m_coutVie = lireValeur(fichier, valeurs);
                         break;
 
                     case 'V':
-                        fichier.get(caractere);
-                        if(caractere == '%')
-                        {
-                            fichier.get(caractere);
-                            int nbr = (int)getValeur(fichier, caractere);
-
-                            if(nbr >= 0 && nbr < (int)valeurs.size())
-                                m_reserveVie = (int)valeurs[nbr];
-                        }
-                        else
-                        {
-                            fichier.putback(caractere);
-                            fichier>>m_reserveVie;
-                        }
+                        m_reserveVie = lireValeur(fichier, valeurs);
                         break;
 
                     case 'u':
@@ -670,12 +641,12 @@ void Miracle::Charger(std::string chemin, const Caracteristique &caract, int lev
                     switch (caractere)
                     {
                     case 't':
-                        fichier>>m_effets.back().m_type;
+                        m_effets.back().m_type = lireValeur(fichier, valeurs);
                         break;
 
                     case 'l':
                         int buffer;
-                        fichier>>buffer;
+                        buffer = lireValeur(fichier, valeurs);
                         m_effets.back().m_lien.push_back(buffer);
                         break;
 
@@ -684,113 +655,23 @@ void Miracle::Charger(std::string chemin, const Caracteristique &caract, int lev
                         break;
 
                     case 's':
-                        fichier>>m_effets.back().m_sequence;
+                        m_effets.back().m_sequence = lireValeur(fichier, valeurs);
                         break;
 
                     case 'i':
                         fichier.get(caractere);
                         if (caractere=='a')
-                        {
-                            fichier.get(caractere);
-                            if(caractere == '%')
-                            {
-                                fichier.get(caractere);
-                                int nbr =(int) getValeur(fichier, caractere);
-
-                                if(nbr >= 0 && nbr < (int)valeurs.size())
-                                    m_effets.back().m_informations[0] = (int)valeurs[nbr];
-                            }
-                            else
-                            {
-                                fichier.putback(caractere);
-                                fichier>>m_effets.back().m_informations[0];
-                            }
-                        }
+                            m_effets.back().m_informations[0] = lireValeur(fichier, valeurs);
                         if (caractere=='b')
-                        {
-                            fichier.get(caractere);
-                            if(caractere == '%')
-                            {
-                                fichier.get(caractere);
-                                int nbr =(int) getValeur(fichier, caractere);
-
-                                if(nbr >= 0 && nbr < (int)valeurs.size())
-                                    m_effets.back().m_informations[1] = (int)valeurs[nbr];
-                            }
-                            else
-                            {
-                                fichier.putback(caractere);
-                                fichier>>m_effets.back().m_informations[1];
-                            }
-                        }
+                            m_effets.back().m_informations[1] = lireValeur(fichier, valeurs);
                         if (caractere=='c')
-                        {
-                            fichier.get(caractere);
-                            if(caractere == '%')
-                            {
-                                fichier.get(caractere);
-                                int nbr =(int) getValeur(fichier, caractere);
-
-                                if(nbr >= 0 && nbr < (int)valeurs.size())
-                                    m_effets.back().m_informations[2] = (int)valeurs[nbr];
-                            }
-                            else
-                            {
-                                fichier.putback(caractere);
-                                fichier>>m_effets.back().m_informations[2];
-                            }
-                        }
+                            m_effets.back().m_informations[2] = lireValeur(fichier, valeurs);
                         if (caractere=='d')
-                        {
-                            fichier.get(caractere);
-                            if(caractere == '%')
-                            {
-                                fichier.get(caractere);
-                                int nbr =(int) getValeur(fichier, caractere);
-
-                                if(nbr >= 0 && nbr < (int)valeurs.size())
-                                    m_effets.back().m_informations[3] = (int)valeurs[nbr];
-                            }
-                            else
-                            {
-                                fichier.putback(caractere);
-                                fichier>>m_effets.back().m_informations[3];
-                            }
-                        }
+                            m_effets.back().m_informations[3] = lireValeur(fichier, valeurs);
                         if (caractere=='e')
-                        {
-                            fichier.get(caractere);
-                            if(caractere == '%')
-                            {
-                                fichier.get(caractere);
-                                int nbr =(int) getValeur(fichier, caractere);
-
-                                if(nbr >= 0 && nbr < (int)valeurs.size())
-                                    m_effets.back().m_informations[4] = (int)valeurs[nbr];
-                            }
-                            else
-                            {
-                                fichier.putback(caractere);
-                                fichier>>m_effets.back().m_informations[4];
-                            }
-                        }
+                            m_effets.back().m_informations[4] = lireValeur(fichier, valeurs);
                         if (caractere=='f')
-                        {
-                            fichier.get(caractere);
-                            if(caractere == '%')
-                            {
-                                fichier.get(caractere);
-                                int nbr =(int) getValeur(fichier, caractere);
-
-                                if(nbr >= 0 && nbr < (int)valeurs.size())
-                                    m_effets.back().m_informations[5] = (int)valeurs[nbr];
-                            }
-                            else
-                            {
-                                fichier.putback(caractere);
-                                fichier>>m_effets.back().m_informations[5];
-                            }
-                        }
+                            m_effets.back().m_informations[5] = lireValeur(fichier, valeurs);
                         break;
                     }
                     if (fichier.eof())
@@ -844,65 +725,65 @@ void Miracle::Charger(std::string chemin, const Caracteristique &caract, int lev
                             switch (caractere)
                             {
                             case 'x':
-                                fichier>>position.x;
+                                position.x = lireValeur(fichier, valeurs);
                                 break;
                             case 'y':
-                                fichier>>position.y;
+                                position.y = lireValeur(fichier, valeurs);
                                 break;
                             case 'w':
-                                fichier>>position.w;
+                                position.w = lireValeur(fichier, valeurs);
                                 break;
                             case 'h':
-                                fichier>>position.h;
+                                position.h = lireValeur(fichier, valeurs);
                                 break;
                             case 'i':
-                                fichier>>image;
+                                image = lireValeur(fichier, valeurs);
                                 break;
                             case 'c':
-                                fichier>>collision;
+                                collision = lireValeur(fichier, valeurs);
                                 break;
                             case 'a':
-                                fichier>>animation;
+                                animation = lireValeur(fichier, valeurs);
                                 break;
                             case 's':
-                                fichier>>son;
+                                son = lireValeur(fichier, valeurs);
                                 break;
                             case 'o':
-                                fichier>>ombre;
+                                ombre = lireValeur(fichier, valeurs);
                                 break;
                             case 't':
-                                fichier>>transparent;
+                                transparent = lireValeur(fichier, valeurs);
                                 break;
                             case 'n':
-                                fichier>>tempsAnimation;
+                                tempsAnimation = lireValeur(fichier, valeurs);
                                 break;
                             case 'p':
-                                fichier>>opacity;
+                                opacity = lireValeur(fichier, valeurs);
                                 break;
 
                             case 'e':
                                 fichier.get(caractere);
                                 if (caractere=='y')
-                                    fichier>>centre.y;
+                                    centre.y = lireValeur(fichier, valeurs);
                                 if (caractere=='x')
-                                    fichier>>centre.x;
+                                    centre.x = lireValeur(fichier, valeurs);
                                 break;
 
                             case 'l':
                                 fichier.get(caractere);
                                 if (caractere=='r')
-                                    fichier>>lumiere.rouge;
+                                    lumiere.rouge = lireValeur(fichier, valeurs);
                                 if (caractere=='v')
-                                    fichier>>lumiere.vert;
+                                    lumiere.vert = lireValeur(fichier, valeurs);
                                 if (caractere=='b')
-                                    fichier>>lumiere.bleu;
+                                    lumiere.bleu = lireValeur(fichier, valeurs);
                                 if (caractere=='i')
-                                    fichier>>lumiere.intensite;
+                                    lumiere.intensite = lireValeur(fichier, valeurs);
                                 if (caractere=='h')
-                                    fichier>>lumiere.hauteur;
+                                    lumiere.hauteur = lireValeur(fichier, valeurs);
                                 break;
                             case 'r':
-                                fichier>>orientation;
+                                orientation = lireValeur(fichier, valeurs);
                                 break;
                             }
                             if (fichier.eof())

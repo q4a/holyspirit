@@ -1384,15 +1384,13 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                                     moteurGraphique->AjouterCommande(&m_decor[1][j][k].m_spriteHerbe,10,1);
 
 
-                        if (m_decor[0][j][k].getProjectile()>=0&&m_decor[0][j][k].getProjectile()<(int)m_projectile.size())
-                            m_projectile[m_decor[0][j][k].getProjectile()].Afficher();
-                        if (m_decor[1][j][k].getProjectile()>=0&&m_decor[1][j][k].getProjectile()<(int)m_projectile.size())
-                            m_projectile[m_decor[1][j][k].getProjectile()].Afficher();
+                        for (unsigned o = 0 ; o < m_decor[1][j][k].getProjectile().size() ; ++o)
+                            if (m_decor[1][j][k].getProjectile()[o]>=0&&m_decor[1][j][k].getProjectile()[o]<(int)m_projectile.size())
+                                m_projectile[m_decor[1][j][k].getProjectile()[o]].Afficher();
 
-                        if (m_decor[0][j][k].getEffetGraphique()>=0&&m_decor[0][j][k].getEffetGraphique()<(int)m_effets.size())
-                            m_effets[m_decor[0][j][k].getEffetGraphique()].Afficher();
-                        if (m_decor[1][j][k].getEffetGraphique()>=0&&m_decor[1][j][k].getEffetGraphique()<(int)m_effets.size())
-                            m_effets[m_decor[1][j][k].getEffetGraphique()].Afficher();
+                        for (unsigned o = 0 ; o < m_decor[1][j][k].getEffetGraphique().size() ; ++o)
+                            if (m_decor[1][j][k].getEffetGraphique()[o]>=0&&m_decor[1][j][k].getEffetGraphique()[o]<(int)m_effets.size())
+                                m_effets[m_decor[1][j][k].getEffetGraphique()[o]].Afficher();
 
 
                         if (m_decor[1][j][k].getNombreObjets()>0&&couche==1)
@@ -1690,10 +1688,7 @@ int Map::AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coord
             {
                 m_projectile.back().m_positionCase.x=lanceur.x;
                 m_projectile.back().m_positionCase.y=lanceur.y;
-                if (m_decor[1][lanceur.y][lanceur.x].getProjectile()!=-1)
-                    m_decor[0][lanceur.y][lanceur.x].setProjectile(m_projectile.size()-1),m_projectile.back().m_positionCase.h=1;
-                else
-                    m_decor[1][lanceur.y][lanceur.x].setProjectile(m_projectile.size()-1),m_projectile.back().m_positionCase.h=0;
+                m_decor[1][lanceur.y][lanceur.x].setProjectile(m_projectile.size()-1);
             }
 
     return m_projectile.size()-1;
@@ -2402,7 +2397,7 @@ bool Map::Miracle_Pose(Hero *hero, Personnage *personnage, Miracle &modele, Effe
 
 bool Map::Miracle_Charge(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o)
 {
-    info.m_informations[3] += temps * 100;
+    info.m_informations[3] += temps * 1000;
     if (info.m_informations[3] > effet.m_informations[2])
     {
         if (effet.m_informations[1] >= 0)
@@ -2410,10 +2405,10 @@ bool Map::Miracle_Charge(Hero *hero, Personnage *personnage, Miracle &modele, Ef
             miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
             miracleEnCours.m_infos.back().m_effetEnCours    = effet.m_informations[1];
             miracleEnCours.m_infos.back().m_position        = info.m_position;
-            miracleEnCours.m_infos.back().m_cible           =info.m_cible;
+            miracleEnCours.m_infos.back().m_cible           = info.m_cible;
         }
 
-        info.m_informations[3] = 0;
+        info.m_informations[3] -= effet.m_informations[2];
     }
 
     info.m_position.x = (float)personnage->getCoordonneePixel().x;
@@ -2421,13 +2416,13 @@ bool Map::Miracle_Charge(Hero *hero, Personnage *personnage, Miracle &modele, Ef
 
     if (info.m_IDObjet == 1)
     {
-        if (((miracleEnCours.m_coordonneeDepart.x  < miracleEnCours.m_coordonneeCible.x&&personnage->getCoordonneePixel().x>=miracleEnCours.m_coordonneeCible.x*COTE_TILE)
-           ||(miracleEnCours.m_coordonneeDepart.x  > miracleEnCours.m_coordonneeCible.x&&personnage->getCoordonneePixel().x<=miracleEnCours.m_coordonneeCible.x*COTE_TILE)
-            ||miracleEnCours.m_coordonneeDepart.x  ==miracleEnCours.m_coordonneeCible.x)
+        if (((  miracleEnCours.m_coordonneeDepart.x  < miracleEnCours.m_coordonneeCible.x&&personnage->getCoordonneePixel().x>miracleEnCours.m_coordonneeCible.x*COTE_TILE)
+            ||( miracleEnCours.m_coordonneeDepart.x  > miracleEnCours.m_coordonneeCible.x&&personnage->getCoordonneePixel().x<miracleEnCours.m_coordonneeCible.x*COTE_TILE)
+            ||  miracleEnCours.m_coordonneeDepart.x  == miracleEnCours.m_coordonneeCible.x)
 
-          ||(miracleEnCours.m_coordonneeDepart.y   > miracleEnCours.m_coordonneeCible.y&&personnage->getCoordonneePixel().y<=miracleEnCours.m_coordonneeCible.y*COTE_TILE)
-        && ((miracleEnCours.m_coordonneeDepart.y   < miracleEnCours.m_coordonneeCible.y&&personnage->getCoordonneePixel().y>=miracleEnCours.m_coordonneeCible.y*COTE_TILE)
-           ||miracleEnCours.m_coordonneeDepart.y   ==miracleEnCours.m_coordonneeCible.y)
+           &&((  miracleEnCours.m_coordonneeDepart.y   > miracleEnCours.m_coordonneeCible.y&&personnage->getCoordonneePixel().y<miracleEnCours.m_coordonneeCible.y*COTE_TILE)
+           ||(   miracleEnCours.m_coordonneeDepart.y   < miracleEnCours.m_coordonneeCible.y&&personnage->getCoordonneePixel().y>miracleEnCours.m_coordonneeCible.y*COTE_TILE)
+           ||    miracleEnCours.m_coordonneeDepart.y   == miracleEnCours.m_coordonneeCible.y)
 
             ||(personnage->getPousse().x == 0 && personnage->getPousse().y == 0))
         {
@@ -2606,6 +2601,35 @@ bool Map::Miracle_Zone(Hero *hero, Personnage *personnage, Miracle &modele, Effe
     return 0;
 }
 
+bool Map::Miracle_Conditions(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o)
+{
+    bool oui = false;
+    if(effet.m_informations[1] == C_ANGLE)
+        if((int)(personnage->getAngle()/45) == effet.m_informations[2])
+            oui = true;
+
+    if(oui)
+    {
+        miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
+        miracleEnCours.m_infos.back().m_effetEnCours    =  effet.m_informations[0];
+        miracleEnCours.m_infos.back().m_position        =  info.m_position;
+        miracleEnCours.m_infos.back().m_cible           =  info.m_cible;
+    }
+
+    for (unsigned p=0;p<effet.m_lien.size();p++)
+    {
+        miracleEnCours.m_infos.push_back(InfosEntiteMiracle ());
+        miracleEnCours.m_infos.back().m_effetEnCours    = effet.m_lien[p];
+        miracleEnCours.m_infos.back().m_position        = info.m_position;
+        miracleEnCours.m_infos.back().m_cible           = info.m_cible;
+    }
+
+    miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
+
+    return 0;
+}
+
+
 void Map::GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,float temps,coordonnee positionHero,Hero *hero)
 {
     bool continuerb = true;
@@ -2705,6 +2729,12 @@ void Map::GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,fl
 
                 else if (type == ZONE)
                     continuer = Miracle_Zone(       hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
+                                                    personnage->m_miracleEnCours[i], personnage->m_miracleEnCours[i].m_infos[o],
+                                                    temps, o);
+
+                else if (type == CONDITION)
+                    continuer = Miracle_Conditions( hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
                                                     miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
                                                     personnage->m_miracleEnCours[i], personnage->m_miracleEnCours[i].m_infos[o],
                                                     temps, o);
@@ -3307,7 +3337,7 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
                     m_projectile[i].m_dejaDeplace=true;
 
                     int temp=i;
-                    m_decor[m_projectile[temp].m_positionCase.h][m_projectile[i].m_positionCase.y][m_projectile[i].m_positionCase.x].setProjectile(-1);
+                    m_decor[1][m_projectile[i].m_positionCase.y][m_projectile[i].m_positionCase.x].delProjectile(i);
 
                     if (m_projectile[temp].m_position.y/COTE_TILE>=vueMin.y&&m_projectile[temp].m_position.y/COTE_TILE<vueMax.y&&m_projectile[temp].m_position.x/COTE_TILE>=vueMin.x&&m_projectile[temp].m_position.x/COTE_TILE<vueMax.x)
                     {
@@ -3363,24 +3393,14 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
                         {
                             m_projectile[i].m_positionCase.y=(int)((m_projectile[temp].m_position.y+32)/COTE_TILE);
                             m_projectile[i].m_positionCase.x=(int)((m_projectile[temp].m_position.x+32)/COTE_TILE);
-                            if (m_decor[m_projectile[i].m_positionCase.h][m_projectile[i].m_positionCase.y][m_projectile[i].m_positionCase.x].getProjectile()!=-1)
-                            {
-                                if (m_projectile[i].m_positionCase.h==1)
-                                    m_projectile[i].m_positionCase.h=0;
-                                else
-                                    m_projectile[i].m_positionCase.h=1;
-                            }
 
-                            m_decor[m_projectile[i].m_positionCase.h][m_projectile[i].m_positionCase.y][m_projectile[i].m_positionCase.x].setProjectile(temp);
+                            m_decor[1][m_projectile[i].m_positionCase.y][m_projectile[i].m_positionCase.x].setProjectile(temp);
                         }
                     }
                     else
                     {
                         m_projectile[temp].m_actif=false;
-                        if (m_decor[1][(int)(m_projectile[i].m_position.y/COTE_TILE)][(int)(m_projectile[i].m_position.x/COTE_TILE)].getProjectile()==i)
-                            m_decor[1][(int)(m_projectile[temp].m_position.y/COTE_TILE)][(int)(m_projectile[temp].m_position.x/COTE_TILE)].setProjectile(-1);
-                        if (m_decor[0][(int)(m_projectile[i].m_position.y/COTE_TILE)][(int)(m_projectile[i].m_position.x/COTE_TILE)].getProjectile()==i)
-                            m_decor[0][(int)(m_projectile[temp].m_position.y/COTE_TILE)][(int)(m_projectile[temp].m_position.x/COTE_TILE)].setProjectile(-1);
+                        m_decor[1][(int)(m_projectile[temp].m_position.y/COTE_TILE)][(int)(m_projectile[temp].m_position.x/COTE_TILE)].delProjectile(temp);
                     }
 
                     m_projectile[i].Deplacer(temps);
@@ -3388,7 +3408,7 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
                 else
                 {
                     moteurGraphique->LightManager->Delete_Light(m_projectile[i].m_effet.m_light);
-                    m_decor[m_projectile[i].m_positionCase.h][m_projectile[i].m_positionCase.y][m_projectile[i].m_positionCase.x].setProjectile(-1);
+                    m_decor[1][m_projectile[i].m_positionCase.y][m_projectile[i].m_positionCase.x].delProjectile(i);
                 }
             }
 
@@ -3402,7 +3422,10 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
         int nombreInactif=0;
         for (int i=0;i<(int)m_effets.size();++i)
             if (!m_effets[i].m_actif)
+            {
+                m_decor[1][(int)(m_effets[i].m_position.y / COTE_TILE)][(int)(m_effets[i].m_position.x / COTE_TILE)].delEffetGraphique(i);
                 nombreInactif++,moteurGraphique->LightManager->Delete_Light(m_effets[i].m_light);
+            }
         if (nombreInactif==(int)m_effets.size())
             m_effets.clear();
     }

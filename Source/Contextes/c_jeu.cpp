@@ -219,7 +219,7 @@ void c_Jeu::Deplacements(Jeu *jeu)
 }
 void c_Jeu::Animation(Jeu *jeu)
 {
-    if (tempsDepuisDerniereAnimation >= 0.02)
+    if (tempsDepuisDerniereAnimation >= 0.0)
     {
         jeu->map->TestEvenement(jeu,tempsDepuisDerniereAnimation); // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
 

@@ -34,9 +34,6 @@ Decor::Decor(int tileset,int tile,const std::vector<int> &evenement,const std::v
 
     m_animation=0;
 
-    m_projectile=-1;
-    m_effet=-1;
-
     m_sprite.SetSubRect(sf::IntRect(0,0,0,0));
     m_spriteHerbe.SetSubRect(sf::IntRect(0,0,0,0));
     m_spriteOmbre.SetSubRect(sf::IntRect(0,0,0,0));
@@ -55,9 +52,6 @@ Decor::Decor(int tileset,int tile,const std::vector<int> &evenement,const std::v
     m_hauteur=hauteur;
 
     m_objets=objets;
-
-    m_projectile=-1;
-    m_effet=-1;
 
     m_sprite.SetSubRect(sf::IntRect(0,0,0,0));
     m_spriteHerbe.SetSubRect(sf::IntRect(0,0,0,0));
@@ -241,14 +235,32 @@ void Decor::delMonstre(int monstre)
             m_monstre.erase(m_monstre.begin() + i), i = -1;
 }
 
-void Decor::setProjectile(int projectile)
+void Decor::setEffetGraphique(int monstre)
 {
-    m_projectile=projectile;
+    m_effet.push_back(monstre);
 }
-void Decor::setEffetGraphique(int effet)
+
+void Decor::delEffetGraphique(int monstre)
 {
-    m_effet=effet;
+    for(int i = 0 ; i < (int)m_effet.size() ; ++i)
+        if(m_effet[i]==monstre)
+            m_effet.erase(m_effet.begin() + i), i = -1;
 }
+
+
+void Decor::setProjectile(int monstre)
+{
+    m_projectile.push_back(monstre);
+}
+
+void Decor::delProjectile(int monstre)
+{
+    for(int i = 0 ; i < (int)m_projectile.size() ; ++i)
+        if(m_projectile[i]==monstre)
+            m_projectile.erase(m_monstre.begin() + i), i = -1;
+}
+
+
 void Decor::setEvenement(int evenement, int numero)
 {
     if (numero>=0&&numero<(int)m_evenement.size())
@@ -329,11 +341,11 @@ const std::vector<int> &Decor::getMonstre()
 {
     return m_monstre;
 }
-int Decor::getProjectile()
+const std::vector<int> & Decor::getProjectile()
 {
     return m_projectile;
 }
-int Decor::getEffetGraphique()
+const std::vector<int> & Decor::getEffetGraphique()
 {
     return m_effet;
 }
