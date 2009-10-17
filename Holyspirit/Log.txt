@@ -126,9 +126,6 @@
          
          Chargement de l'objet : Helmet.item.hs
          
-         Chargement de l'objet : Faith_potion.item.hs
-         Chargement du miracle : Data/Items/Miracles/Faith.miracle.hs
-         
          Chargement de l'objet : Heal_potion.item.hs
          Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
          
@@ -156,8 +153,7 @@
          Chargement de l'objet : Heal_potion.item.hs
          Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
          
-         Chargement de l'objet : Heal_potion.item.hs
-         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         Chargement de l'objet : Necklage.item.hs
          /Lectures des objets.
          /Lectures des quêtes.
          /Lectures des quêtes.
@@ -188,6 +184,7 @@
          Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Barbe/Barbe.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Charge/Charge.miracle.hs
          Chargement de : Data/Entities/Heroes/Crusader/Miracles/Charge/Blast.png
+         Chargement de : Data/Entities/Heroes/Crusader/Miracles/Charge/CineticEffect.png
          Chargement de : Data/Sounds/9906__Snoman__grass3.wav
          Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Charge/Charge.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/HolyTornado/HolyTornado.miracle.hs
@@ -201,13 +198,12 @@
          Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Barbe/Barbe.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Charge/Charge.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Charge/Charge.miracle.hs
-         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoWeapons.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/OneHand.rs.hs
          Chargement de : CroiseMailleAttente1Main0.png
          Chargement de : CroiseMailleMarche1Epee0.png
-         Chargement de : CroiseMailleFrappeSans2Arme0.png
-         Chargement de : CroiseMailleFrappeSans2Arme1.png
+         Chargement de : CroiseMailleFrappeSansArme0.png
+         Chargement de : CroiseMailleFrappeSansArme1.png
          Chargement de : Data/Sounds/epee.wav
          Chargement de : Data/Sounds/male_hurt_0.wav
          Chargement de : Data/Sounds/male_hurt_1.wav
@@ -223,10 +219,10 @@
          Chargement de : TueuseDivineMarcheDroite0.png
          Chargement de : TueuseDivineAttaqueDroite0.png
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
-         Chargement de : TueuseDivineAttenteGauche0.png
-         Chargement de : TueuseDivineMarcheGauche0.png
-         Chargement de : TueuseDivineAttaqueGauche0.png
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Shield/Unique_shield.rs.hs
+         Chargement de : BouclierUniqueAttente0.png
+         Chargement de : BouclierUniqueMarche0.png
+         Chargement de : BouclierUniqueFrappe0.png
          /Chargement du héro terminé
          Chargement de : Data/Menus/alpha-arts.png
          Chargement de : Data/Loading_screens/Plaines2.png
@@ -268,7 +264,6 @@
          /Sauvegarde de Small_sword_divin.item.hs
          /Sauvegarde de Chainmail.item.hs
          /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Faith_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
@@ -278,7 +273,7 @@
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Necklage.item.hs
          /Ecriture des objets.
          /Ecriture des miracles.
          /Ecriture des quetes.
@@ -297,15 +292,14 @@
          Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Barbe/Barbe.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Charge/Charge.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Charge/Charge.miracle.hs
-         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoWeapons.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/OneHand.rs.hs
          
          Chargement du personnage : Data/Entities/Heroes/Crusader/Helmets/Cerveliere_OneHand.rs.hs
          
          Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_r.rs.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Shield/Unique_shield.rs.hs
          
          Chargement de la map : Begin.map.hs
          /Lectures du nom.
@@ -324,6 +318,7 @@
          ---------------------------------------------------------------------------------
          EVENEMENT : Changement de map
          ---------------------------------------------------------------------------------
+         Chargement de : Data/Loading_screens/Plaines3.png
          
          Sauvegarde de la map : Data/Temp/Begin.map.hs
          Sauvegarde de la map_entite : Data/Temp/entites_map_Begin.map.hs.emap.hs
@@ -366,7 +361,6 @@
          /Sauvegarde de Small_sword_divin.item.hs
          /Sauvegarde de Chainmail.item.hs
          /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Faith_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
@@ -376,7 +370,7 @@
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Necklage.item.hs
          /Ecriture des objets.
          /Ecriture des miracles.
          /Ecriture des quetes.
@@ -406,15 +400,14 @@
          Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Barbe/Barbe.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Charge/Charge.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Charge/Charge.miracle.hs
-         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoWeapons.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/OneHand.rs.hs
          
          Chargement du personnage : Data/Entities/Heroes/Crusader/Helmets/Cerveliere_OneHand.rs.hs
          
          Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_r.rs.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Shield/Unique_shield.rs.hs
          
          Chargement de la map : Tutorial.map.hs
          /Lectures du nom.
@@ -668,28 +661,28 @@
          
          Sauvegarde de la map : Data/Temp/Tutorial.map.hs
          Sauvegarde de la map_entite : Data/Temp/entites_map_Tutorial.map.hs.emap.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Armband.item.hs
          /Sauvegarde de Armor.item.hs
          /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Faith_potion.item.hs
-         /Sauvegarde de Faith_potion.item.hs
-         /Sauvegarde de Faith_potion.item.hs
-         /Sauvegarde de Faith_potion.item.hs
-         /Sauvegarde de Faith_potion.item.hs
          /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
+         /Sauvegarde de Faith_potion.item.hs
          /Sauvegarde de Armor.item.hs
          /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Chainmail.item.hs
          /Sauvegarde de Boot.item.hs
          /Sauvegarde de Boot.item.hs
          /Sauvegarde de Boot.item.hs
@@ -698,15 +691,22 @@
          /Sauvegarde de Helmet.item.hs
          /Sauvegarde de Small_shield.item.hs
          /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
          /Sauvegarde de Small_sword.item.hs
          /Sauvegarde de Small_sword.item.hs
          /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Dagger.item.hs
          /Sauvegarde de Dagger.item.hs
          /Sauvegarde de Ceremonial_dagger.item.hs
          /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
          /Sauvegarde de Crossbow.item.hs
          /Sauvegarde de Crossbow.item.hs
-         /Sauvegarde de Crossbow.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
          Sauvegarde de la map terminée !
          
          Sauvegarde du héro...
@@ -746,7 +746,6 @@
          /Sauvegarde de Small_sword_divin.item.hs
          /Sauvegarde de Chainmail.item.hs
          /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Faith_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
@@ -756,7 +755,7 @@
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Necklage.item.hs
          /Ecriture des objets.
          /Ecriture des miracles.
          /Ecriture des quetes.
@@ -786,15 +785,14 @@
          Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Barbe/Barbe.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Charge/Charge.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Charge/Charge.miracle.hs
-         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoWeapons.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/OneHand.rs.hs
          
          Chargement du personnage : Data/Entities/Heroes/Crusader/Helmets/Cerveliere_OneHand.rs.hs
          
          Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_r.rs.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Shield/Unique_shield.rs.hs
          
          Chargement de la map : ArableLand0.map.hs
          /Lectures du nom.
@@ -1258,13 +1256,17 @@
          /Lectures des monstres.
          
          /Lectures des événements.
-         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
-         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
-         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
-         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
          Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
          Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
          Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
+         Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
+         Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
+         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
+         Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
+         Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
+         Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
          Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
          /Lectures des cases.
          Chargement de la map terminé.
@@ -1277,7 +1279,6 @@
          Sauvegarde de la map : Data/Temp/ArableLand0.map.hs
          Sauvegarde de la map_entite : Data/Temp/entites_map_ArableLand0.map.hs.emap.hs
          /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Armor.item.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_axe.item.hs
@@ -1288,24 +1289,23 @@
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Faith_potion.item.hs
          /Sauvegarde de Faith_potion.item.hs
          /Sauvegarde de Faith_potion.item.hs
          /Sauvegarde de Faith_potion.item.hs
          /Sauvegarde de Faith_potion.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Armor.item.hs
          /Sauvegarde de Armor.item.hs
          /Sauvegarde de Armor.item.hs
          /Sauvegarde de Chainmail.item.hs
          /Sauvegarde de Boot.item.hs
          /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Armband.item.hs
          /Sauvegarde de Armband.item.hs
          /Sauvegarde de Helmet.item.hs
          /Sauvegarde de Helmet.item.hs
          /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Small_shield.item.hs
          /Sauvegarde de Small_shield.item.hs
          /Sauvegarde de Small_shield.item.hs
          /Sauvegarde de Great_shield.item.hs
@@ -1313,10 +1313,14 @@
          /Sauvegarde de Small_sword.item.hs
          /Sauvegarde de Small_sword.item.hs
          /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Dagger.item.hs
          /Sauvegarde de Dagger.item.hs
          /Sauvegarde de Dagger.item.hs
          /Sauvegarde de Ceremonial_dagger.item.hs
          /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Crossbow.item.hs
          /Sauvegarde de Crossbow.item.hs
          /Sauvegarde de Two_hand_sword.item.hs
          /Sauvegarde de Necklage.item.hs
@@ -1361,45 +1365,47 @@
          /Sauvegarde de Two_hand_sword.item.hs
          /Sauvegarde de Two_hand_sword.item.hs
          /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Sacred_tiare.item.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Armor.item.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Armband.item.hs
          /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Armor.item.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_axe.item.hs
          /Sauvegarde de Small_axe.item.hs
@@ -1442,7 +1448,6 @@
          /Sauvegarde de Small_sword_divin.item.hs
          /Sauvegarde de Chainmail.item.hs
          /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Faith_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
@@ -1452,7 +1457,7 @@
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Necklage.item.hs
          /Ecriture des objets.
          /Ecriture des miracles.
          /Ecriture des quetes.
@@ -1482,15 +1487,14 @@
          Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Barbe/Barbe.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Charge/Charge.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Charge/Charge.miracle.hs
-         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoWeapons.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/OneHand.rs.hs
          
          Chargement du personnage : Data/Entities/Heroes/Crusader/Helmets/Cerveliere_OneHand.rs.hs
          
          Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_r.rs.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Shield/Unique_shield.rs.hs
          
          Chargement de la map : ArableLand2.map.hs
          /Lectures du nom.
@@ -1827,120 +1831,137 @@
          /Lectures des monstres.
          
          /Lectures des événements.
-         Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
-         Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
          Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
+         Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
          Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
          /Lectures des cases.
          Chargement de la map terminé.
          
          
-         ---------------------------------------------------------------------------------
-         EVENEMENT : Changement de map
-         ---------------------------------------------------------------------------------
-         
          Sauvegarde de la map : Data/Temp/ArableLand2.map.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Arquebuse.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Boot.item.hs
          Sauvegarde de la map_entite : Data/Temp/entites_map_ArableLand2.map.hs.emap.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Dagger.item.hs
          /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Two_hand_sword.item.hs
          /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Arquebuse.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Armor.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Arquebuse.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
          /Sauvegarde de Armor.item.hs
          /Sauvegarde de Ring.item.hs
          /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armband.item.hs
          /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
          /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Armband.item.hs
          /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Necklage.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Arquebuse.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Chainmail.item.hs
          /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Boot.item.hs
          /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Dagger.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Small_axe.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Coal.item.hs
          /Sauvegarde de Armband.item.hs
          /Sauvegarde de Armor.item.hs
          /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Arquebuse.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Arquebuse.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_sword.item.hs
          /Sauvegarde de Small_shield.item.hs
          /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Arquebuse.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
          Sauvegarde de la map terminée !
          
          Sauvegarde du héro...
@@ -1980,7 +2001,6 @@
          /Sauvegarde de Small_sword_divin.item.hs
          /Sauvegarde de Chainmail.item.hs
          /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Faith_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
@@ -1990,7 +2010,187 @@
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Ecriture des objets.
+         /Ecriture des miracles.
+         /Ecriture des quetes.
+         Sauvegarde du héro terminée !
+         
+         ---------------------------------------------------------------------------------
+         EVENEMENT : Changement de map
+         ---------------------------------------------------------------------------------
+         
+         Sauvegarde de la map : Data/Temp/ArableLand2.map.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Arquebuse.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Boot.item.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map_ArableLand2.map.hs.emap.hs
+         /Sauvegarde de Armor.item.hs
          /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Arquebuse.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Arquebuse.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Arquebuse.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Arquebuse.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Arquebuse.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Arquebuse.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Arquebuse.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Ceremonial_dagger.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Small_axe.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Dagger.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Arquebuse.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Armor.item.hs
+         /Sauvegarde de Boot.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Great_shield.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Small_sword_divin.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Unique_boot.item.hs
+         /Sauvegarde de Small_sword_divin.item.hs
+         /Sauvegarde de Armband.item.hs
+         /Sauvegarde de Small_sword.item.hs
+         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Gown.item.hs
+         /Sauvegarde de Unique_shield.item.hs
+         /Sauvegarde de Small_shield.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Necklage.item.hs
+         /Sauvegarde de Two_hand_sword.item.hs
+         /Sauvegarde de Coal.item.hs
+         /Sauvegarde de Long_sword.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Katzbalger.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Gown.item.hs
+         /Sauvegarde de Small_sword_divin.item.hs
+         /Sauvegarde de Chainmail.item.hs
+         /Sauvegarde de Helmet.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Necklage.item.hs
          /Ecriture des objets.
          /Ecriture des miracles.
          /Ecriture des quetes.
@@ -2020,37 +2220,105 @@
          Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Barbe/Barbe.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Charge/Charge.miracle.hs
          Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Charge/Charge.miracle.hs
-         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/TwoWeapons.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Maille/OneHand.rs.hs
          
          Chargement du personnage : Data/Entities/Heroes/Crusader/Helmets/Cerveliere_OneHand.rs.hs
          
          Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_r.rs.hs
          
-         Chargement du personnage : Data/Entities/Heroes/Crusader/Small_sword/Small_sword_divin_l.rs.hs
+         Chargement du personnage : Data/Entities/Heroes/Crusader/Shield/Unique_shield.rs.hs
          
-         Chargement de la map : ArableLand3.map.hs
+         Chargement de la map : BurialGround.map.hs
          /Lectures du nom.
          /Lectures des fonds.
          /Lectures des musiques.
          /Lectures des lumières.
-         Chargement de : Data/Particule_system/Images/human_guts.png
+         Chargement de : Data/Landscapes/Stone_wall/Old_stone_wall.png
+         Chargement de : Data/Landscapes/Crypt/Crypt.png
+         Chargement de : Data/Landscapes/Dungeon/CryptBowl.png
+         Chargement de : Data/Landscapes/Dungeon/Pentagram.png
+         Chargement de : Data/Landscapes/BurialGround/Grave.png
          /Lectures des tilesets.
          /Lectures des herbes.
          
-         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Arquebuse.rs.hs
-         Chargement du script : " Data/Scripts/AI/shooter.script.hs "
+         Chargement du monstre : Data/Entities/AmbientSound/Raven.rs.hs
+         Chargement du script : " Data/Scripts/AI/AmbientSound.script.hs "
+         Chargement de : Data/Entities/AmbientSound/Raven.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Breakables/Vase0.rs.hs
+         Chargement de : Vase0.png
+         Chargement de : Data/Sounds/42901__FreqMan__glass_break_3.wav
+         Chargement du script : " Data/Scripts/AI/breakable.script.hs "
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         Chargement de : Data/Entities/Breakables/Vase0.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Breakables/Vase1.rs.hs
+         Chargement de : Vase1.png
+         Chargement du script : " Data/Scripts/AI/breakable.script.hs "
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         Chargement de : Data/Entities/Breakables/Vase1.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Breakables/Vase0L.rs.hs
+         Chargement du script : " Data/Scripts/AI/breakable.script.hs "
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         Chargement de : Data/Entities/Breakables/Vase0L.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Breakables/Vase0R.rs.hs
+         Chargement du script : " Data/Scripts/AI/breakable.script.hs "
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         Chargement de : Data/Entities/Breakables/Vase0R.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Breakables/Vase0U.rs.hs
+         Chargement du script : " Data/Scripts/AI/breakable.script.hs "
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         Chargement de : Data/Entities/Breakables/Vase0U.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Breakables/Vase0D.rs.hs
+         Chargement du script : " Data/Scripts/AI/breakable.script.hs "
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         Chargement de : Data/Entities/Breakables/Vase0D.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Monsters/Zombies/Zombie_paysan.rs.hs
+         Chargement de : Zombiepaysanmarche0.png
+         Chargement de : Zombieattaque0.png
+         Chargement de : Zombiepaysanmort0.png
+         Chargement de : Zombiepaysanmort1.png
+         Chargement du script : " Data/Scripts/AI/zombie.script.hs "
          
          Chargement de l'objet : Heal_potion.item.hs
          Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
          
-         Chargement de l'objet : Arquebuse.item.hs
+         Chargement de l'objet : Heal_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
          
-         Chargement de l'objet : Coal.item.hs
-         Chargement de : Data/Entities/Monsters/PantinMorbide/Arquebuse.rs.hs terminé
+         Chargement du systeme de particules : Data/Particule_system/human_blood.ps.hs
+         Chargement de : Data/Particule_system/Images/human_guts.png
+         Chargement de : Data/Sounds/gore0.wav
+         Chargement du miracle : Data/Entities/Monsters/Zombies/Poison.miracle.hs
+         Chargement de : Data/Entities/Monsters/Zombies/Zombie_paysan.rs.hs terminé
          
-         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Guardian.rs.hs
+         Chargement du monstre : Data/Entities/Monsters/MiliceCorrompue/Brute.rs.hs
+         Chargement de : Brutemarche0.png
+         Chargement de : Brutemarche1.png
+         Chargement de : Bruteattaque0.png
+         Chargement de : Bruteattaque1.png
+         Chargement de : Brutemeurt0.png
+         Chargement de : Brutemeurt1.png
+         Chargement de : Brutemeurt2.png
+         Chargement de : Data/Sounds/gore1.wav
          Chargement du script : " Data/Scripts/AI/standard.script.hs "
          
          Chargement de l'objet : Heal_potion.item.hs
@@ -2059,28 +2327,129 @@
          Chargement de l'objet : Heal_potion.item.hs
          Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
          
-         Chargement de l'objet : Two_hand_sword.item.hs
+         Chargement du systeme de particules : Data/Particule_system/human_guts.ps.hs
+         Chargement de : Data/Entities/Monsters/MiliceCorrompue/Brute.rs.hs terminé
          
-         Chargement de l'objet : Katzbalger.item.hs
+         Chargement du monstre : Data/Entities/Monsters/Zombies/Zombie_dog.rs.hs
+         Chargement de : chienzombiemarche0.png
+         Chargement de : chienzombieattaque0.png
+         Chargement de : chienzombiemeurt0.png
+         Chargement de : Data/Sounds/grognement.wav
+         Chargement du script : " Data/Scripts/AI/zombie_dog.script.hs "
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         
+         Chargement de l'objet : Heal_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         Chargement du miracle : Data/Entities/Monsters/Zombies/Poison.miracle.hs
+         Chargement du miracle : Data/Entities/Monsters/Zombies/Nuage.miracle.hs
+         Chargement de : Data/Entities/Heroes/Concubine/Miracles/Toxic/Bolt.png
+         Chargement de : Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic.png
+         Chargement de : Data/Sounds/Globe.wav
+         Chargement de : Data/Entities/Monsters/Zombies/Zombie_dog.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/NPC/RareTrader.rs.hs
+         Chargement du script : " Data/Scripts/NPC/trader.script.hs "
+         
+         Chargement de l'objet : Necklage.item.hs
+         
+         Chargement de l'objet : Ring.item.hs
+         
+         Chargement de l'objet : Ring.item.hs
+         
+         Chargement de l'objet : Armor.item.hs
+         
+         Chargement de l'objet : Armor.item.hs
+         
+         Chargement de l'objet : Armor.item.hs
+         
+         Chargement de l'objet : Chainmail.item.hs
+         
+         Chargement de l'objet : Chainmail.item.hs
+         
+         Chargement de l'objet : Chainmail.item.hs
+         
+         Chargement de l'objet : Boot.item.hs
+         
+         Chargement de l'objet : Boot.item.hs
+         
+         Chargement de l'objet : Boot.item.hs
+         
+         Chargement de l'objet : Armband.item.hs
+         
+         Chargement de l'objet : Armband.item.hs
+         
+         Chargement de l'objet : Armband.item.hs
          
          Chargement de l'objet : Helmet.item.hs
          
-         Chargement de l'objet : Chainmail.item.hs
-         Chargement de : Data/Entities/Monsters/PantinMorbide/Guardian.rs.hs terminé
+         Chargement de l'objet : Helmet.item.hs
          
-         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Sword.rs.hs
-         Chargement du script : " Data/Scripts/AI/standard.script.hs "
+         Chargement de l'objet : Helmet.item.hs
+         
+         Chargement de l'objet : Small_shield.item.hs
+         
+         Chargement de l'objet : Small_shield.item.hs
+         
+         Chargement de l'objet : Small_shield.item.hs
+         
+         Chargement de l'objet : Great_shield.item.hs
+         
+         Chargement de l'objet : Great_shield.item.hs
+         
+         Chargement de l'objet : Great_shield.item.hs
+         
+         Chargement de l'objet : Small_sword.item.hs
+         
+         Chargement de l'objet : Small_sword.item.hs
+         
+         Chargement de l'objet : Small_sword.item.hs
+         
+         Chargement de l'objet : Long_sword.item.hs
+         
+         Chargement de l'objet : Long_sword.item.hs
+         
+         Chargement de l'objet : Long_sword.item.hs
+         
+         Chargement de l'objet : Dagger.item.hs
+         
+         Chargement de l'objet : Dagger.item.hs
+         
+         Chargement de l'objet : Dagger.item.hs
+         
+         Chargement de l'objet : Ceremonial_dagger.item.hs
+         
+         Chargement de l'objet : Ceremonial_dagger.item.hs
+         
+         Chargement de l'objet : Ceremonial_dagger.item.hs
+         
+         Chargement de l'objet : Crossbow.item.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Crossbow/Bolt.miracle.hs
+         
+         Chargement de l'objet : Crossbow.item.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Crossbow/Bolt.miracle.hs
+         
+         Chargement de l'objet : Crossbow.item.hs
+         Chargement du miracle : Data/Entities/Heroes/Concubine/Crossbow/Bolt.miracle.hs
+         
+         Chargement de l'objet : Two_hand_sword.item.hs
+         
+         Chargement de l'objet : Two_hand_sword.item.hs
+         
+         Chargement de l'objet : Two_hand_sword.item.hs
+         Chargement de : Data/Entities/NPC/RareTrader.rs.hs terminé
+         
+         Chargement du monstre : Data/Entities/Monsters/Zombies/Zombie_paysan2.rs.hs
+         Chargement du script : " Data/Scripts/AI/zombie.script.hs "
          
          Chargement de l'objet : Heal_potion.item.hs
          Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
          
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Small_sword_divin.item.hs
-         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
-         Chargement de : Data/Entities/Monsters/PantinMorbide/Sword.rs.hs terminé
+         Chargement de l'objet : Heal_potion.item.hs
+         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
+         Chargement du miracle : Data/Entities/Monsters/Zombies/Poison2.miracle.hs
+         Chargement de : Data/Entities/Monsters/Zombies/Zombie_paysan2.rs.hs terminé
          
          Chargement du monstre : Data/Entities/Monsters/PantinMorbide/Warrior.rs.hs
          Chargement du script : " Data/Scripts/AI/standard.script.hs "
@@ -2113,307 +2482,176 @@
          
          Chargement de l'objet : Dagger.item.hs
          Chargement de : Data/Entities/Monsters/PantinMorbide/Warrior.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/Monsters/ErrantRoche/ErrantRoche.rs.hs
-         Chargement de : ErrantRocheArret.png
-         Chargement de : ErrantRocheMarche1.png
-         Chargement de : ErrantRocheMarche2.png
-         Chargement de : ErrantRocheFrappe1.png
-         Chargement de : ErrantRocheFrappe2.png
-         Chargement de : ErrantRocheFrappe3.png
-         Chargement de : ErrantRocheFrappe4.png
-         Chargement de : ErrantRocheFrappe5.png
-         Chargement de : ErrantRocheFrappe6.png
-         Chargement de : ErrantRocheFrappe7.png
-         Chargement de : ErrantRocheFrappe8.png
-         Chargement de : ErrantRocheMort1.png
-         Chargement de : ErrantRocheMort2.png
-         Chargement de : ErrantRocheMort3.png
-         Chargement de : ErrantRocheMort4.png
-         Chargement du script : " Data/Scripts/AI/ErrantRoches.script.hs "
-         
-         Chargement de l'objet : Ore.item.hs
-         Chargement du miracle : Data/Entities/Monsters/ErrantRoche/Stun.miracle.hs
-         Chargement de : Data/Entities/Monsters/ErrantRoche/ErrantRoche.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/Breakables/Barrel.rs.hs
-         Chargement du script : " Data/Scripts/AI/breakable.script.hs "
-         
-         Chargement de l'objet : Heal_potion.item.hs
-         Chargement du miracle : Data/Items/Miracles/Heal.miracle.hs
-         
-         Chargement de l'objet : Small_axe.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         Chargement de : Data/Entities/Breakables/Barrel.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/Breakables/Coffre1.rs.hs
-         Chargement du script : " Data/Scripts/AI/chess.script.hs "
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Boot.item.hs
-         
-         Chargement de l'objet : Chainmail.item.hs
-         
-         Chargement de l'objet : Great_shield.item.hs
-         
-         Chargement de l'objet : Helmet.item.hs
-         
-         Chargement de l'objet : Katzbalger.item.hs
-         
-         Chargement de l'objet : Long_sword.item.hs
-         
-         Chargement de l'objet : Necklage.item.hs
-         
-         Chargement de l'objet : Ring.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Ceremonial_dagger.item.hs
-         
-         Chargement de l'objet : Small_sword_divin.item.hs
-         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
-         
-         Chargement de l'objet : Two_hand_sword.item.hs
-         
-         Chargement de l'objet : Unique_boot.item.hs
-         
-         Chargement de l'objet : Unique_shield.item.hs
-         
-         Chargement de l'objet : Unique_dagger.item.hs
-         Chargement de : Data/Entities/Breakables/Coffre1.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/Breakables/ExplosiveBarrel.rs.hs
-         Chargement du script : " Data/Scripts/AI/Explosion.script.hs "
-         
-         Chargement de l'objet : Coal.item.hs
-         Chargement du miracle : Data/Entities/Breakables/Explosion.miracle.hs
-         Chargement de : Data/Entities/Breakables/ExplosiveBarrel.rs.hs terminé
-         
-         Chargement du monstre : Data/Entities/Monsters/PantinMorbide/LordMerangar.rs.hs
-         Chargement du script : " Data/Scripts/AI/LordMerangar.script.hs "
-         
-         Chargement de l'objet : Armband.item.hs
-         
-         Chargement de l'objet : Armor.item.hs
-         
-         Chargement de l'objet : Boot.item.hs
-         
-         Chargement de l'objet : Ceremonial_dagger.item.hs
-         
-         Chargement de l'objet : Chainmail.item.hs
-         
-         Chargement de l'objet : Crossbow.item.hs
-         Chargement du miracle : Data/Entities/Heroes/Concubine/Crossbow/Bolt.miracle.hs
-         
-         Chargement de l'objet : Dagger.item.hs
-         
-         Chargement de l'objet : Gown.item.hs
-         
-         Chargement de l'objet : Great_shield.item.hs
-         
-         Chargement de l'objet : Helmet.item.hs
-         
-         Chargement de l'objet : Katzbalger.item.hs
-         
-         Chargement de l'objet : Long_sword.item.hs
-         
-         Chargement de l'objet : Necklage.item.hs
-         
-         Chargement de l'objet : Ring.item.hs
-         
-         Chargement de l'objet : Small_shield.item.hs
-         
-         Chargement de l'objet : Small_sword.item.hs
-         
-         Chargement de l'objet : Small_sword_divin.item.hs
-         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
-         
-         Chargement de l'objet : Two_hand_sword.item.hs
-         
-         Chargement de l'objet : Unique_boot.item.hs
-         
-         Chargement de l'objet : Unique_shield.item.hs
-         
-         Chargement de l'objet : Unique_dagger.item.hs
-         Chargement du miracle : Data/Entities/Monsters/PantinMorbide/Charge.miracle.hs
-         Chargement de : Data/Entities/Monsters/PantinMorbide/LordMerangar.rs.hs terminé
          /Lectures des monstres.
          
          /Lectures des événements.
-         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
-         Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
-         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
-         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
-         Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
-         Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
          /Lectures des cases.
          Chargement de la map terminé.
          
          
-         Sauvegarde de la map : Data/Temp/ArableLand3.map.hs
-         Sauvegarde de la map_entite : Data/Temp/entites_map_ArableLand3.map.hs.emap.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
+         Sauvegarde de la map : Data/Temp/BurialGround.map.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         Sauvegarde de la map_entite : Data/Temp/entites_map_BurialGround.map.hs.emap.hs
          /Sauvegarde de Small_sword.item.hs
          /Sauvegarde de Armband.item.hs
          /Sauvegarde de Armor.item.hs
          /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Crossbow.item.hs
-         /Sauvegarde de Dagger.item.hs
-         /Sauvegarde de Gown.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
          /Sauvegarde de Great_shield.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Small_sword.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Dagger.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Ore.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Dagger.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Ore.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Heal_potion.item.hs
          Sauvegarde de la map terminée !
          
          Sauvegarde du héro...
@@ -2453,7 +2691,6 @@
          /Sauvegarde de Small_sword_divin.item.hs
          /Sauvegarde de Chainmail.item.hs
          /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Faith_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
@@ -2463,171 +2700,11 @@
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
+         /Sauvegarde de Necklage.item.hs
          /Ecriture des objets.
          /Ecriture des miracles.
          /Ecriture des quetes.
          Sauvegarde du héro terminée !
-         
-         Sauvegarde de la map : Data/Temp/ArableLand3.map.hs
-         Sauvegarde de la map_entite : Data/Temp/entites_map_ArableLand3.map.hs.emap.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Crossbow.item.hs
-         /Sauvegarde de Dagger.item.hs
-         /Sauvegarde de Gown.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Dagger.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Ore.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Dagger.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Ore.item.hs
-         Sauvegarde de la map terminée !
          
          Sauvegarde du héro...
          Ouverture du fichier.
@@ -2666,515 +2743,6 @@
          /Sauvegarde de Small_sword_divin.item.hs
          /Sauvegarde de Chainmail.item.hs
          /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Faith_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Ecriture des objets.
-         /Ecriture des miracles.
-         /Ecriture des quetes.
-         Sauvegarde du héro terminée !
-         
-         Sauvegarde de la map : Data/Temp/ArableLand3.map.hs
-         Sauvegarde de la map_entite : Data/Temp/entites_map_ArableLand3.map.hs.emap.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Crossbow.item.hs
-         /Sauvegarde de Dagger.item.hs
-         /Sauvegarde de Gown.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Dagger.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Ore.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Dagger.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Ore.item.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_sword_divin.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Unique_boot.item.hs
-         /Sauvegarde de Small_sword_divin.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Gown.item.hs
-         /Sauvegarde de Unique_shield.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Katzbalger.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Gown.item.hs
-         /Sauvegarde de Small_sword_divin.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Faith_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Ecriture des objets.
-         /Ecriture des miracles.
-         /Ecriture des quetes.
-         Sauvegarde du héro terminée !
-         
-         Sauvegarde de la map : Data/Temp/ArableLand3.map.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Crossbow.item.hs
-         /Sauvegarde de Dagger.item.hs
-         /Sauvegarde de Gown.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         Sauvegarde de la map_entite : Data/Temp/entites_map_ArableLand3.map.hs.emap.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Ceremonial_dagger.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Crossbow.item.hs
-         /Sauvegarde de Dagger.item.hs
-         /Sauvegarde de Gown.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Arquebuse.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Dagger.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Ore.item.hs
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Armor.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Boot.item.hs
-         /Sauvegarde de Dagger.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Ore.item.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_sword_divin.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Unique_boot.item.hs
-         /Sauvegarde de Small_sword_divin.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Gown.item.hs
-         /Sauvegarde de Unique_shield.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Katzbalger.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Gown.item.hs
-         /Sauvegarde de Small_sword_divin.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Faith_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Ecriture des objets.
-         /Ecriture des miracles.
-         /Ecriture des quetes.
-         Sauvegarde du héro terminée !
-         Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/HolyTornado/HolyTornado.miracle.hs
-         Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/HolyTornado/HolyTornado.miracle.hs
-         Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Lazare/Lazare.miracle.hs
-         Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Lazare/Lazare.miracle.hs
-         Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Lazare/LazareVampirism.miracle.hs
-         Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Lazare/LazareVampirism.miracle.hs
-         Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Lazare/LazareVampirism.miracle.hs
-         Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Barbe/Barbe.miracle.hs
-         Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Barbe/Barbe.miracle.hs
-         Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Charge/Charge.miracle.hs
-         Chargement du miracle : Data/Entities/Heroes/Crusader/Miracles/Charge/Charge.miracle.hs
-         Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Sauvegarde de Great_shield.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_sword_divin.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Unique_boot.item.hs
-         /Sauvegarde de Small_sword_divin.item.hs
-         /Sauvegarde de Armband.item.hs
-         /Sauvegarde de Small_sword.item.hs
-         /Sauvegarde de Ring.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Gown.item.hs
-         /Sauvegarde de Unique_shield.item.hs
-         /Sauvegarde de Small_shield.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Necklage.item.hs
-         /Sauvegarde de Two_hand_sword.item.hs
-         /Sauvegarde de Coal.item.hs
-         /Sauvegarde de Long_sword.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Katzbalger.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
-         /Sauvegarde de Gown.item.hs
-         /Sauvegarde de Small_sword_divin.item.hs
-         /Sauvegarde de Chainmail.item.hs
-         /Sauvegarde de Helmet.item.hs
-         /Sauvegarde de Faith_potion.item.hs
-         /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
          /Sauvegarde de Heal_potion.item.hs
