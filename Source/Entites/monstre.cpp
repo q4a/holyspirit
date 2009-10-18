@@ -312,7 +312,31 @@ bool Modele_Monstre::Charger(string chemin)
         }
         while (caractere!='$');
 
+
         do
+        {
+            //Chargement du nom
+            fichier->get(caractere);
+            if (caractere=='*')
+            {
+                do
+                {
+                    //Chargement du nom
+                    fichier->get(caractere);
+                    if (caractere=='n')
+                    {
+                        int no;
+                        *fichier>>no;
+                        m_caracteristique.nom = configuration->getText(3, no);
+                    }
+                }
+                while (caractere!='$');
+                fichier->get(caractere);
+            }
+        }
+        while (caractere!='$');
+
+       /* do
         {
             fichier->get(caractere);
             if (caractere=='*')
@@ -327,7 +351,7 @@ bool Modele_Monstre::Charger(string chemin)
             }
 
         }
-        while (caractere!='$');
+        while (caractere!='$');*/
 
         do
         {

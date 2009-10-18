@@ -47,6 +47,8 @@ class Configuration : public CSingleton<Configuration>
 
     void Sauvegarder();
 
+    const std::string &getText(int, int);
+
     coordonnee Resolution;
     coordonneeDecimal Redimensionnement;
     bool Ombre,Minimap,amelioration_lampes,Herbes,syncronisation_verticale,mode_fenetre,postFX,sang,video,particules,debug,desactivate_console,lissage;
@@ -56,10 +58,16 @@ class Configuration : public CSingleton<Configuration>
     std::string version,chemin_maps,chemin_items,chemin_temps,chemin_saves,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetMort,nom_effetContrastes,nom_effetBlur,nom_effetFiltre,nom_minimap,nom_ame,nom_barre_ame,nom_barre_vie,nom_barre_vie_vide,nom_sang,chemin_son_mort;
     std::string font_titre,font,chemin_video_developpeur,nom_video_developpeur,nom_sac,nom_corner,chemin_aa;
 
-    std::string chemin_text_benedictions,chemin_text_menus;
+    std::string chemin_localisation,chemin_text_benedictions,chemin_text_menus,chemin_text_items,chemin_text_entities,chemin_text_dialogs,chemin_text_maps,chemin_text_miracles;
 
-    std::string text_benedictions[NOMBRE_BENEDICTION];
-    std::string text_menus[NOMBRE_TXT_MENU];
+    std::string error;
+    std::vector<std::string> text_menus;
+    std::vector<std::string> text_benedictions;
+    std::vector<std::string> text_items;
+    std::vector<std::string> text_entities;
+    std::vector<std::string> text_dialogs;
+    std::vector<std::string> text_maps;
+    std::vector<std::string> text_miracles;
 
     bool RafraichirLumiere;
     int numero_screen,RafraichirOmbre;

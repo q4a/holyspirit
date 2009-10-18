@@ -454,7 +454,7 @@ int GestionBoutons(Jeu *jeu)
         && eventManager->getPositionSouris().y > 533 * configuration->Resolution.y/600
         && eventManager->getPositionSouris().y < 552 * configuration->Resolution.y/600)
     {
-         moteurGraphique->AjouterTexte("Afficher/Cacher carte (M)",coordonnee(eventManager->getPositionSouris().x,
+         moteurGraphique->AjouterTexte(configuration->getText(0,13),coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),
                                       19,0,12,sf::Color(224,224,224),1);
 
@@ -488,7 +488,7 @@ int GestionBoutons(Jeu *jeu)
         && eventManager->getPositionSouris().y > 533 * configuration->Resolution.y/600
         && eventManager->getPositionSouris().y < 552 * configuration->Resolution.y/600)
     {
-        moteurGraphique->AjouterTexte("Inventaire (I)",coordonnee(eventManager->getPositionSouris().x,
+        moteurGraphique->AjouterTexte(configuration->getText(0,14),coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),
                                       19,0,12,sf::Color(224,224,224),1);
 
@@ -518,7 +518,7 @@ int GestionBoutons(Jeu *jeu)
         && eventManager->getPositionSouris().y > 565 * configuration->Resolution.y/600
         && eventManager->getPositionSouris().y < 584 * configuration->Resolution.y/600)
     {
-        moteurGraphique->AjouterTexte("Quêtes (Q)",coordonnee(eventManager->getPositionSouris().x,
+        moteurGraphique->AjouterTexte(configuration->getText(0,15),coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),
                                       19,0,12,sf::Color(224,224,224),1);
 
@@ -547,7 +547,7 @@ int GestionBoutons(Jeu *jeu)
         && eventManager->getPositionSouris().y > 565 * configuration->Resolution.y/600
         && eventManager->getPositionSouris().y < 584 * configuration->Resolution.y/600)
     {
-        moteurGraphique->AjouterTexte("Miracles (T)",coordonnee(eventManager->getPositionSouris().x,
+        moteurGraphique->AjouterTexte(configuration->getText(0,16),coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),
                                       19,0,12,sf::Color(224,224,224),1);
 
@@ -576,7 +576,7 @@ int GestionBoutons(Jeu *jeu)
      && eventManager->getPositionSouris().y > 577 * configuration->Resolution.y/600
      && eventManager->getPositionSouris().y < 596 * configuration->Resolution.y/600)
     {
-        moteurGraphique->AjouterTexte("Menu (Echappe)",coordonnee(eventManager->getPositionSouris().x,
+        moteurGraphique->AjouterTexte(configuration->getText(0,17),coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),
                                       19,0,12,sf::Color(224,224,224),1);
 

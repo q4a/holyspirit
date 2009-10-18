@@ -157,6 +157,7 @@ private:
 
     sf::Music m_musique[MAX_MUSIQUE];
     std::string m_nom;
+    int m_no_nom;
 
     std::vector <std::string> m_fond,m_cheminMusique;
 

@@ -679,7 +679,7 @@ void Hero::AfficherCaracteristiques(float decalage)
 
     {
         std::ostringstream  buf;
-        buf<<configuration->text_menus[3].c_str()<<" : "<<(int)m_caracteristiques.vie<<" / "<<(int)m_caracteristiques.maxVie;
+        buf<<configuration->getText(0,3)<<" : "<<(int)m_caracteristiques.vie<<" / "<<(int)m_caracteristiques.maxVie;
         string.SetText(buf.str());
     }
 
@@ -707,7 +707,7 @@ void Hero::AfficherCaracteristiques(float decalage)
 
     {
         std::ostringstream  buf;
-        buf<<configuration->text_menus[4].c_str()<<" : "<<(int)m_caracteristiques.foi<<" / "<<(int)m_caracteristiques.maxFoi;
+        buf<<configuration->getText(0,4)<<" : "<<(int)m_caracteristiques.foi<<" / "<<(int)m_caracteristiques.maxFoi;
         string.SetText(buf.str());
     }
 
@@ -763,7 +763,11 @@ void Hero::AfficherCaracteristiques(float decalage)
         sprite.SetColor(sf::Color(255,255,255));
     }
 
-    string.SetText(configuration->text_menus[5].c_str());
+    if(configuration->text_menus.size() > 5)
+        string.SetText(configuration->text_menus[5].c_str());
+    else
+        string.SetText("Error");
+
     string.SetX(16*configuration->Resolution.w/800);
     string.SetY(311*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
@@ -797,7 +801,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         sprite.SetColor(sf::Color(255,255,255));
     }
 
-    string.SetText(configuration->text_menus[6].c_str());
+    string.SetText(configuration->getText(0,6).c_str());
     string.SetX(16*configuration->Resolution.w/800);
     string.SetY(338*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
@@ -832,7 +836,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         sprite.SetColor(sf::Color(255,255,255));
     }
 
-    string.SetText(configuration->text_menus[7].c_str());
+    string.SetText(configuration->getText(0,7).c_str());
     string.SetX(16*configuration->Resolution.w/800);
     string.SetY(365*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
@@ -867,7 +871,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         sprite.SetColor(sf::Color(255,255,255));
     }
 
-    string.SetText(configuration->text_menus[8].c_str());
+    string.SetText(configuration->getText(0,8).c_str());
     string.SetX(16*configuration->Resolution.w/800);
     string.SetY(392*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
@@ -902,13 +906,13 @@ void Hero::AfficherCaracteristiques(float decalage)
         sprite.SetColor(sf::Color(255,255,255));
     }
 
-    string.SetText(configuration->text_menus[9].c_str());
+    string.SetText(configuration->getText(0,9).c_str());
     string.SetX(16*configuration->Resolution.w/800);
     string.SetY(419*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
-    string.SetText(configuration->text_menus[12].c_str());
+    string.SetText(configuration->getText(0,12).c_str());
     string.SetX(16*configuration->Resolution.w/800);
     string.SetY(446*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
@@ -938,7 +942,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         moteurGraphique->AjouterTexte(&string,15);
     }
 
-    string.SetText(configuration->text_menus[10].c_str());
+    string.SetText(configuration->getText(0,10).c_str());
     string.SetX(234*configuration->Resolution.w/800);
     string.SetY(300*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
@@ -957,7 +961,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         moteurGraphique->AjouterTexte(&string,15);
     }
 
-    string.SetText(configuration->text_menus[11].c_str());
+    string.SetText(configuration->getText(0,11).c_str());
     string.SetX(234*configuration->Resolution.w/800);
     string.SetY(327*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
@@ -1101,11 +1105,11 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
 
     moteurGraphique->AjouterTexte(&texte,15,0);
 
-    if (eventManager->getPositionSouris().x > m_classe.position_points_miracles.x*configuration->Resolution.w/800
+    if (eventManager->getPositionSouris().x >  m_classe.position_points_miracles.x * configuration->Resolution.w/800
      && eventManager->getPositionSouris().x < (m_classe.position_points_miracles.x + m_classe.position_points_miracles.w)*configuration->Resolution.w/800
-     && eventManager->getPositionSouris().y > m_classe.position_points_miracles.y*configuration->Resolution.h/600
+     && eventManager->getPositionSouris().y >  m_classe.position_points_miracles.y * configuration->Resolution.h/600
      && eventManager->getPositionSouris().y < (m_classe.position_points_miracles.y + m_classe.position_points_miracles.h)*configuration->Resolution.h/600)
-        moteurGraphique->AjouterTexte("Points de miracles restants", coordonnee(eventManager->getPositionSouris().x,
+        moteurGraphique->AjouterTexte(configuration->getText(0,12), coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),20,false,12,sf::Color(224,224,224),true);
 
     texte.SetSize(12 * configuration->Resolution.h/600);
@@ -1618,7 +1622,7 @@ void Hero::AfficherRaccourcis()
                     && eventManager->getPositionSouris().y < sprite.GetPosition().y + 20 * configuration->Resolution.h/600)
             {
                 std::ostringstream buf;
-                buf<<"Raccourci pour objets ("<<i+1<<")";
+                buf<<configuration->getText(0, 33)<<" ("<<i+1<<")";
                 moteurGraphique->AjouterTexte(buf.str(),coordonnee(eventManager->getPositionSouris().x,
                                               eventManager->getPositionSouris().y - 20),
                                               19,0,12,sf::Color(224,224,224),1);
@@ -1668,7 +1672,7 @@ void Hero::AfficherRaccourcis()
                     && eventManager->getPositionSouris().y < sprite.GetPosition().y + 20 * configuration->Resolution.h/600)
             {
                 std::ostringstream buf;
-                buf<<"Raccourci pour miracles (F"<<i+1<<")";
+                buf<<configuration->getText(0, 34)<<" (F"<<i+1<<")";
                 moteurGraphique->AjouterTexte(buf.str(),coordonnee(eventManager->getPositionSouris().x,
                                               eventManager->getPositionSouris().y - 20),
                                               19,0,12,sf::Color(224,224,224),1);

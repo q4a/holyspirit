@@ -21,6 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 void Configuration::Charger()
 {
+    error = "Error";
 
     ChargerConf();
     ChargerInit();
@@ -164,11 +165,22 @@ void Configuration::ChargerInit()
             if (chaine== "menu_corner:")
                 fichier>>nom_corner;
 
-
+            if (chaine== "localisation:")
+                fichier>>chemin_localisation;
             if (chaine== "text_benedictions:")
                 fichier>>chemin_text_benedictions;
             if (chaine== "text_menus:")
                 fichier>>chemin_text_menus;
+            if (chaine== "text_items:")
+                fichier>>chemin_text_items;
+            if (chaine== "text_entities:")
+                fichier>>chemin_text_entities;
+            if (chaine== "text_dialogs:")
+                fichier>>chemin_text_dialogs;
+            if (chaine== "text_maps:")
+                fichier>>chemin_text_maps;
+            if (chaine== "text_miracles:")
+                fichier>>chemin_text_miracles;
 
             if (chaine== "font_title:")
                 fichier>>font_titre;
@@ -191,24 +203,138 @@ void Configuration::ChargerInit()
 void Configuration::ChargerTxt()
 {
     std::ifstream fichier;
-    fichier.open(chemin_text_benedictions.c_str(), std::ios::in);
+    fichier.open((chemin_localisation+chemin_text_benedictions).c_str(), std::ios::in);
     if (fichier)
     {
         std::string chaine;
-        for (int i=0;i<NOMBRE_BENEDICTION;i++)
-            getline(fichier,text_benedictions[i]);
+        while(!fichier.eof())
+        {
+            text_benedictions.push_back("");
+            getline(fichier,text_benedictions.back());
+        }
         fichier.close();
     }
 
     std::ifstream fichier2;
-    fichier2.open(chemin_text_menus.c_str(), std::ios::in);
+    fichier2.open((chemin_localisation+chemin_text_menus).c_str(), std::ios::in);
     if (fichier2)
     {
         std::string chaine;
-        for (int i=0;i<NOMBRE_TXT_MENU;i++)
-            getline(fichier2,text_menus[i]);
+        while(!fichier2.eof())
+        {
+            text_menus.push_back("");
+            getline(fichier2,text_menus.back());
+        }
         fichier2.close();
     }
+
+
+    std::ifstream fichier3;
+    fichier3.open((chemin_localisation+chemin_text_items).c_str(), std::ios::in);
+    if (fichier3)
+    {
+        std::string chaine;
+        while(!fichier3.eof())
+        {
+            text_items.push_back("");
+            getline(fichier3,text_items.back());
+        }
+        fichier3.close();
+    }
+
+    std::ifstream fichier4;
+    fichier4.open((chemin_localisation+chemin_text_entities).c_str(), std::ios::in);
+    if (fichier4)
+    {
+        std::string chaine;
+        while(!fichier4.eof())
+        {
+            text_entities.push_back("");
+            getline(fichier4,text_entities.back());
+        }
+        fichier4.close();
+    }
+
+    std::ifstream fichier5;
+    fichier5.open((chemin_localisation+chemin_text_dialogs).c_str(), std::ios::in);
+    if (fichier5)
+    {
+        std::string chaine;
+        while(!fichier5.eof())
+        {
+            text_dialogs.push_back("");
+            getline(fichier5,text_dialogs.back());
+        }
+        fichier5.close();
+    }
+
+    std::ifstream fichier6;
+    fichier6.open((chemin_localisation+chemin_text_maps).c_str(), std::ios::in);
+    if (fichier6)
+    {
+        std::string chaine;
+        while(!fichier6.eof())
+        {
+            text_maps.push_back("");
+            getline(fichier6,text_maps.back());
+        }
+        fichier6.close();
+    }
+
+    std::ifstream fichier7;
+    fichier7.open((chemin_localisation+chemin_text_miracles).c_str(), std::ios::in);
+    if (fichier7)
+    {
+        std::string chaine;
+        while(!fichier7.eof())
+        {
+            text_miracles.push_back("");
+            getline(fichier7,text_miracles.back());
+        }
+        fichier7.close();
+    }
+
+}
+
+const std::string &Configuration::getText(int type, int no)
+{
+         if(type == 0)
+    {
+        if((int)text_menus.size() > no)
+            return text_menus[no];
+    }
+    else if(type == 1)
+    {
+        if((int)text_benedictions.size() > no)
+            return text_benedictions[no];
+    }
+    else if(type == 2)
+    {
+        if((int)text_items.size() > no)
+            return text_items[no];
+    }
+    else if(type == 3)
+    {
+        if((int)text_entities.size() > no)
+            return text_entities[no];
+    }
+    else if(type == 4)
+    {
+        if((int)text_dialogs.size() > no)
+            return text_dialogs[no];
+    }
+    else if(type == 5)
+    {
+        if((int)text_maps.size() > no)
+            return text_maps[no];
+    }
+    else if(type == 6)
+    {
+        if((int)text_miracles.size() > no)
+            return text_miracles[no];
+    }
+
+    return error;
 }
 
 void Configuration::Sauvegarder()

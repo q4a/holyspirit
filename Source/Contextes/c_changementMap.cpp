@@ -66,10 +66,19 @@ void c_Chargement::setC_Chargement(std::string prochaineMap,coordonnee coordonne
             fichier->get(caractere);
             if (caractere=='*')
             {
-                *fichier>>nomMap;
-                for (int i=0;i<(int)nomMap.size();i++)
-                    if (nomMap[i]=='_')
-                        nomMap[i]=' ';
+                do
+                {
+                    //Chargement du nom
+                    fichier->get(caractere);
+                    if (caractere=='n')
+                    {
+                        int no;
+                        *fichier>>no;
+                        nomMap = configuration->getText(5, no);
+                    }
+                }
+                while (caractere!='$');
+                fichier->get(caractere);
             }
         }
         while (caractere!='$');
@@ -94,9 +103,8 @@ void c_Chargement::setC_Chargement(std::string prochaineMap,coordonnee coordonne
 
     delete fichier;
 
-    int random=rand()%cheminFond.size();
-
-    m_fond=moteurGraphique->AjouterImage(cheminFond.at(random));
+    if(cheminFond.size() > 0)
+        m_fond=moteurGraphique->AjouterImage(cheminFond.at(rand()%cheminFond.size()));
 
     cheminFond.clear();
 

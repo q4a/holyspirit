@@ -178,7 +178,26 @@ bool Map::Charger(std::string nomMap,Hero *hero)
             //Chargement du nom
             fichier->get(caractere);
             if (caractere=='*')
-                *fichier>>m_nom;
+            {
+                m_no_nom = 0;
+                do
+                {
+                    //Chargement du nom
+                    fichier->get(caractere);
+                    if (caractere=='n')
+                        *fichier>>m_no_nom;
+
+                    if (fichier->eof())
+                    {
+                        console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
+                        throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                    }
+                }
+                while (caractere!='$');
+
+                m_nom = configuration->getText(5,m_no_nom);
+                fichier->get(caractere);
+            }
 
             if (fichier->eof())
             {
@@ -1079,7 +1098,7 @@ void Map::Sauvegarder(Hero *hero)
 
     if (fichier)
     {
-        fichier<<"*"<<m_nom<<"\n$\n";
+        fichier<<"* n"<<m_no_nom<<" $ \n$\n";
         for (int i=0;i<(int)m_fond.size();++i)
             fichier<<"*"<<m_fond[i]<<"\n";
         fichier<<"$\n";
@@ -1576,10 +1595,19 @@ void Map::AfficherNomEvenement(coordonnee casePointee,coordonnee positionSouris)
                                 fichier->get(caractere);
                                 if (caractere=='*')
                                 {
-                                    *fichier>>nom;
-                                    for (int i=0;i<(int)nom.size();++i)
-                                        if (nom[i]=='_')
-                                            nom[i]=' ';
+                                    do
+                                    {
+                                        //Chargement du nom
+                                        fichier->get(caractere);
+                                        if (caractere=='n')
+                                        {
+                                            int no;
+                                            *fichier>>no;
+                                            nom = configuration->getText(5, no);
+                                        }
+                                    }
+                                    while (caractere!='$');
+                                    fichier->get(caractere);
                                 }
                             }
                             while (caractere!='$');
@@ -1589,7 +1617,7 @@ void Map::AfficherNomEvenement(coordonnee casePointee,coordonnee positionSouris)
                         delete fichier;
 
                         sf::String texte;
-                        texte.SetText("Vers "+nom);
+                        texte.SetText(nom);
                         texte.SetSize(16.f);
                         if (configuration->Resolution.y>0)
                             texte.SetY((positionSouris.y-16)*configuration->Resolution.h/configuration->Resolution.y);
@@ -3108,12 +3136,17 @@ std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)
     temp.SetFont(moteurGraphique->m_font);
 
     std::string buf;
-    std::string bufMot;
+    std::string bufMot = " ";
     for (int p = 0;p < (int)texte.size();p++)
     {
-        if (texte[p] != ' ' && texte[p] != '"')
+        if (texte[p] != ' ' && texte[p] != '\0' && texte[p] != '\n')
         {
+            if(texte[p] == '\\')
+                texte[p] = '\n';
             bufMot += texte[p];
+            if(texte[p] == '\n')
+                bufMot += " ";
+
             temp.SetText(buf + bufMot);
             if (temp.GetRect().Right - temp.GetRect().Left > tailleCadran)
                 bufMot = '\n' + bufMot;
@@ -3121,6 +3154,7 @@ std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)
         else
             buf += bufMot, bufMot = " ";
     }
+    buf += bufMot;
 
     return buf;
 }
@@ -3163,7 +3197,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         {
             if (jeu->menu.m_dialogue == " ")
             {
-                jeu->menu.m_dialogue = DecouperTexte(script->m_instructions[noInstruction].valeurString, hero->m_classe.position_contenu_dialogue.w, 14);
+                jeu->menu.m_dialogue = DecouperTexte(configuration->getText(4, script->m_instructions[noInstruction].valeurs.at(0)), hero->m_classe.position_contenu_dialogue.w, 14);
                 eventManager->StopEvenement(Mouse::Left,"C");
                 hero->m_personnage.setArrivee(hero->m_personnage.getProchaineCase());
             }
@@ -3181,14 +3215,14 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         {
             for (int i = 0;i < (int)hero->m_quetes.size(); ++i)
                 if (hero->m_quetes[i].m_id == script->m_instructions[noInstruction].valeurs.at(0))
-                    hero->m_quetes[i].m_nom = DecouperTexte(script->m_instructions[noInstruction].valeurString, hero->m_classe.position_contenu_quetes.w, 12);
+                    hero->m_quetes[i].m_nom = DecouperTexte(configuration->getText(4, script->m_instructions[noInstruction].valeurs.at(1)), hero->m_classe.position_contenu_quetes.w, 12);
         }
         else if (script->m_instructions[noInstruction].nom=="setQuestState")
         {
             for (int i = 0;i < (int)hero->m_quetes.size(); ++i)
                 if (hero->m_quetes[i].m_id == script->m_instructions[noInstruction].valeurs.at(0))
                 {
-                    hero->m_quetes[i].m_description = DecouperTexte(script->m_instructions[noInstruction].valeurString, hero->m_classe.position_contenu_description_quete.w, 12);
+                    hero->m_quetes[i].m_description = DecouperTexte(configuration->getText(4, script->m_instructions[noInstruction].valeurs.at(2)), hero->m_classe.position_contenu_description_quete.w, 12);
                     hero->m_quetes[i].m_statut = script->m_instructions[noInstruction].valeurs.at(1);
                 }
         }

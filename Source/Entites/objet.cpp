@@ -53,7 +53,7 @@ sf::Color GetItemColor(int rarete)
 
 Objet::Objet()
 {
-    m_nom="Un objet merveilleux";
+    m_nom="Item";
     m_chemin="";
     m_rarete=0;
     m_equipe=-1;
@@ -587,10 +587,49 @@ void Objet::Charger(std::string chemin, const Caracteristique &caract,bool NePas
         }
         while (caractere!='$');
 
-
         m_chemin=chemin;
+        std::string description;
 
         do
+        {
+            fichier->get(caractere);
+            if (caractere=='*')
+            {
+                int no;
+                do
+                {
+                    fichier->get(caractere);
+                    switch (caractere)
+                    {
+                        case 'n' :
+                            *fichier>>no;
+                            m_nom       = configuration->getText(2,no);
+                            break;
+                        case 'd' :
+                            *fichier>>no;
+                            description = configuration->getText(2,no);
+                            break;
+                    }
+
+                    if (fichier->eof())
+                    {
+                        console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                        caractere='$';
+                    }
+
+                }
+                while (caractere!='$');
+                fichier->get(caractere);
+            }
+            if (fichier->eof())
+            {
+                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                caractere='$';
+            }
+        }
+        while (caractere!='$');
+
+        /*do
         {
             fichier->get(caractere);
             if (caractere=='*')
@@ -611,7 +650,6 @@ void Objet::Charger(std::string chemin, const Caracteristique &caract,bool NePas
         while (caractere!='$');
 
         std::string description;
-
         do
         {
             fichier->get(caractere);
@@ -630,7 +668,15 @@ void Objet::Charger(std::string chemin, const Caracteristique &caract,bool NePas
             }
 
         }
-        while (caractere!='$');
+        while (caractere!='$');*/
+
+        for (int i=0;i<(int)m_nom.size();i++)
+            if (m_nom[i]=='_')
+                m_nom[i]=' ';
+
+        for (int i=0;i<(int)description.size();i++)
+            if (description[i]=='_')
+                description[i]=' ';
 
         std::string::size_type stTemp = description.find('\\');
 
@@ -1229,16 +1275,16 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
 
     if (m_equipe>=0&&compare)
     {
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"Equipé :"));
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,configuration->getText(0,18).c_str()));
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"---------------"));
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
     }
     else if (compare)
     {
         if (decalageDroite)
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"Marchand :"));
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,configuration->getText(0,19).c_str()));
         else
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"Inventaire :"));
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,configuration->getText(0,20).c_str()));
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"---------------"));
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
     }
@@ -1262,7 +1308,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
     case ARME:
     {
         std::ostringstream buf;
-        buf<<"Dégats : "<<(int)(m_degatsMin*multiplieurEfficacite/100)<<" - "<<(int)(m_degatsMax*multiplieurEfficacite/100);
+        buf<<configuration->getText(0,21)<<(int)(m_degatsMin*multiplieurEfficacite/100)<<" - "<<(int)(m_degatsMax*multiplieurEfficacite/100);
 
         if (multiplieurEfficacite!=100)
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(0,64,128)));
@@ -1273,7 +1319,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
     case ARMURE:
     {
         std::ostringstream buf;
-        buf<<"Armure : "<<(int)(m_armure*multiplieurEfficacite/100);
+        buf<<configuration->getText(0,22)<<(int)(m_armure*multiplieurEfficacite/100);
 
         if (multiplieurEfficacite!=100)
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(0,64,128)));
@@ -1289,7 +1335,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
     if (m_requirement.force>0)
     {
         std::ostringstream buf;
-        buf<<"Force requise : "<<m_requirement.force;
+        buf<<configuration->getText(0,23)<<m_requirement.force;
         if (caract.force<m_requirement.force)
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(192,0,0)));
         else
@@ -1298,7 +1344,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
     if (m_requirement.dexterite>0)
     {
         std::ostringstream buf;
-        buf<<"Dextérité requise : "<<m_requirement.dexterite;
+        buf<<configuration->getText(0,24)<<m_requirement.dexterite;
         if (caract.dexterite<m_requirement.dexterite)
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(192,0,0)));
         else
@@ -1307,7 +1353,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
     if (m_requirement.charisme>0)
     {
         std::ostringstream buf;
-        buf<<"Charisme requis : "<<m_requirement.charisme;
+        buf<<configuration->getText(0,25)<<m_requirement.charisme;
         if (caract.charisme<m_requirement.charisme)
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(192,0,0)));
         else
@@ -1316,7 +1362,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
     if (m_requirement.vitalite>0)
     {
         std::ostringstream buf;
-        buf<<"Vitalité requise : "<<m_requirement.vitalite;
+        buf<<configuration->getText(0,26)<<m_requirement.vitalite;
         if (caract.vitalite<m_requirement.vitalite)
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(192,0,0)));
         else
@@ -1325,7 +1371,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
     if (m_requirement.piete>0)
     {
         std::ostringstream buf;
-        buf<<"Piété requise : "<<m_requirement.piete;
+        buf<<configuration->getText(0,27)<<m_requirement.piete;
         if (caract.piete<m_requirement.piete)
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(192,0,0)));
         else
@@ -1352,7 +1398,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
 
     {
         std::ostringstream buf;
-        buf<<"Prix : "<<(int)((float)m_prix*modPrix);
+        buf<<configuration->getText(0,28)<<(int)((float)m_prix*modPrix);
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
     }
 

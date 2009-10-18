@@ -144,10 +144,11 @@ void                ChargerBouton(ifstream &fichier, std::vector <Bouton> &bouto
                 switch (caractere)
                 {
                 case 'm' :
-                    fichier>>bouton.back().nom;
-                    for (int i=0;i<(int)bouton.back().nom.size();i++)
-                        if (bouton.back().nom[i]=='_')
-                            bouton.back().nom[i]=' ';
+
+                    int no;
+                    fichier>>no;
+                    bouton.back().nom = configuration->getText(0, no);
+
                     break;
                 case 'e' :
                     fichier>>bouton.back().lien;
