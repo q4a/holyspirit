@@ -76,12 +76,13 @@ class MainWindow : public QWidget // On hérite de QWidget (IMPORTANT)
 
 
     QFrame          *menuRessources;
-    QFrame          *menuBrush;
     QFrame          *menuInfos;
 
     QMenuBar        *menu;
     QMenu           *menuFichier;
+    QMenu           *menuEdition;
     QMenu           *menuImporterRessources;
+    QMenu           *menuMap;
     QMenu           *menuAide;
 
     QTabWidget      *ongletRessources;

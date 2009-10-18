@@ -19,13 +19,13 @@
 	<File name="Entites\personnage.h" open="0" top="0" tabpos="3">
 		<Cursor position="1847" topLine="63" />
 	</File>
-	<File name="MainWindow.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="33362" topLine="664" />
+	<File name="MainWindow.cpp" open="1" top="1" tabpos="12">
+		<Cursor position="48294" topLine="1012" />
 	</File>
-	<File name="MainWindow.h" open="1" top="0" tabpos="2">
-		<Cursor position="3097" topLine="106" />
+	<File name="MainWindow.h" open="1" top="0" tabpos="13">
+		<Cursor position="1404" topLine="55" />
 	</File>
-	<File name="Map\decor.cpp" open="1" top="0" tabpos="5">
+	<File name="Map\decor.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="5761" topLine="195" />
 	</File>
 	<File name="Map\decor.h" open="0" top="0" tabpos="7">
@@ -37,11 +37,11 @@
 	<File name="Map\evenement.h" open="0" top="0" tabpos="18">
 		<Cursor position="1317" topLine="24" />
 	</File>
-	<File name="Map\map.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="88758" topLine="1838" />
+	<File name="Map\map.cpp" open="1" top="0" tabpos="23">
+		<Cursor position="9687" topLine="320" />
 	</File>
-	<File name="Map\map.h" open="0" top="0" tabpos="3">
-		<Cursor position="4582" topLine="125" />
+	<File name="Map\map.h" open="1" top="0" tabpos="24">
+		<Cursor position="3987" topLine="98" />
 	</File>
 	<File name="Map\tile.cpp" open="0" top="0" tabpos="13">
 		<Cursor position="0" topLine="0" />
@@ -55,14 +55,17 @@
 	<File name="Moteurs\console.h" open="0" top="0" tabpos="11">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="Moteurs\eventManager.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="4872" topLine="90" />
+	<File name="Moteurs\eventManager.cpp" open="1" top="0" tabpos="19">
+		<Cursor position="3975" topLine="110" />
 	</File>
 	<File name="Moteurs\eventManager.h" open="0" top="0" tabpos="8">
 		<Cursor position="1446" topLine="31" />
 	</File>
-	<File name="Moteurs\moteurGraphique.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="21099" topLine="622" />
+	<File name="Moteurs\modeleMoteurParticule.cpp" open="1" top="0" tabpos="18">
+		<Cursor position="830" topLine="0" />
+	</File>
+	<File name="Moteurs\moteurGraphique.cpp" open="1" top="0" tabpos="14">
+		<Cursor position="15514" topLine="474" />
 	</File>
 	<File name="Moteurs\moteurGraphique.h" open="0" top="0" tabpos="17">
 		<Cursor position="1018" topLine="87" />
@@ -70,14 +73,20 @@
 	<File name="Moteurs\moteurSons.cpp" open="0" top="0" tabpos="10">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="QSFMLCanvas.cpp" open="0" top="0" tabpos="16">
-		<Cursor position="766" topLine="18" />
+	<File name="QSFMLCanvas.cpp" open="1" top="0" tabpos="17">
+		<Cursor position="3162" topLine="0" />
 	</File>
-	<File name="QSFMLCanvas.h" open="0" top="0" tabpos="15">
-		<Cursor position="2087" topLine="52" />
+	<File name="QSFMLCanvas.h" open="1" top="0" tabpos="20">
+		<Cursor position="669" topLine="1" />
 	</File>
-	<File name="SFMLCanvas.h" open="0" top="0" tabpos="3">
-		<Cursor position="371" topLine="2" />
+	<File name="SFMLCanvas.h" open="1" top="0" tabpos="21">
+		<Cursor position="608" topLine="8" />
+	</File>
+	<File name="configuration.cpp" open="1" top="0" tabpos="16">
+		<Cursor position="10663" topLine="335" />
+	</File>
+	<File name="configuration.h" open="1" top="0" tabpos="22">
+		<Cursor position="2750" topLine="43" />
 	</File>
 	<File name="constantes.h" open="0" top="0" tabpos="19">
 		<Cursor position="1382" topLine="33" />
@@ -85,7 +94,7 @@
 	<File name="globale.h" open="0" top="0" tabpos="4">
 		<Cursor position="943" topLine="0" />
 	</File>
-	<File name="main.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="1820" topLine="42" />
+	<File name="main.cpp" open="1" top="0" tabpos="15">
+		<Cursor position="1713" topLine="43" />
 	</File>
 </CodeBlocks_layout_file>

@@ -47,7 +47,7 @@
 		<Compiler>
 			<Add directory="C:\Qt\4.5.0\include" />
 			<Add directory="C:\Qt\4.5.0\include\QtGui" />
-			<Add directory="..\..\SFML_SVN2\branches\sfml2\include" />
+			<Add directory="..\..\SFML_SVN\branches\sfml2\include" />
 			<Add directory="C:\Qt\4.5.0\include\QtCore" />
 		</Compiler>
 		<Linker>
@@ -59,7 +59,7 @@
 			<Add library="QtGui4" />
 			<Add library="QtMain" />
 			<Add directory="C:\Qt\4.5.0\lib" />
-			<Add directory="..\..\SFML_SVN2\branches\sfml2\lib\mingw" />
+			<Add directory="..\..\SFML_SVN\branches\sfml2\lib\mingw" />
 		</Linker>
 		<Unit filename="Entites\case.cpp" />
 		<Unit filename="Entites\case.h" />

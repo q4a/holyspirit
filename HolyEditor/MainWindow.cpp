@@ -57,15 +57,20 @@ MainWindow::MainWindow() : QWidget()
 
     actionSauverAs  = menuFichier->addAction("&Sauvegarder sous");
 
-
-    actionUndo     = menuFichier->addAction("&Undo");
-    actionUndo->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Z));
-
-    actionRedo     = menuFichier->addAction("&Redo");
-    actionRedo->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Y));
-
     actionQuitter   = menuFichier->addAction("&Quitter");
     actionQuitter->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));
+
+
+
+    menuEdition      = menu->addMenu(tr("&Edition"));
+
+    actionUndo     = menuEdition->addAction("&Undo");
+    actionUndo->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Z));
+
+    actionRedo     = menuEdition->addAction("&Redo");
+    actionRedo->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Y));
+
+
 
     menuImporterRessources  = menu->addMenu(tr("&Ressources"));
     actionImporterTileset   = menuImporterRessources->addAction("&Importer Tileset");
@@ -77,9 +82,13 @@ MainWindow::MainWindow() : QWidget()
     actionImporterEntite    = menuImporterRessources->addAction("&Importer Entité");
     actionImporterEntite->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_E));
 
-    actionImporterEvenement    = menuImporterRessources->addAction("&Créer Entité");
+    actionImporterEvenement    = menuImporterRessources->addAction("&Créer Evénement");
 
-    actionOptionsMap        = menuImporterRessources->addAction("&Options de la map");
+
+
+    menuMap        = menu->addMenu(tr("&Map"));
+
+    actionOptionsMap        = menuMap->addAction("&Options de la map");
 
 
     menuAide        = menu->addMenu(tr("&Aide"));
@@ -88,10 +97,8 @@ MainWindow::MainWindow() : QWidget()
     SFMLView        = new MyCanvas;
     moteurGraphique->m_ecran = SFMLView;
 
-    menuBrush       = new QFrame;
     menuInfos       = new QFrame;
 
-    menuBrush       ->setFrameShape(QFrame::StyledPanel);
     menuInfos       ->setFrameShape(QFrame::StyledPanel);
 
     listTileset      = new QTreeWidget();
@@ -175,7 +182,7 @@ MainWindow::MainWindow() : QWidget()
     layout2         = new QHBoxLayout;
     layout2->addWidget(ongletRessources, 3);
     layout2->addLayout(layout3, 8);
-    layout2->addWidget(menuBrush, 2);
+
 
     // Create the main layout
     layout          = new QVBoxLayout;
@@ -239,7 +246,6 @@ MainWindow::~MainWindow()
     delete ongletRessources;
 
     delete SFMLView;
-    delete menuBrush;
     delete menuInfos;
 
     delete layout3;
@@ -260,8 +266,10 @@ MainWindow::~MainWindow()
     delete actionImporterEvenement;
     delete actionOptionsMap;
 
+    delete menuEdition;
     delete menuAide;
     delete menuFichier;
+    delete menuMap;
     delete menuImporterRessources;
 
     delete menu;
@@ -295,7 +303,7 @@ void MainWindow::paintEvent(QPaintEvent*)
 {
     moteurGraphique->m_camera.SetCenter((eventManager->m_coordonnee.x - eventManager->m_coordonnee.y) * 64.0f ,
                                         (eventManager->m_coordonnee.x + eventManager->m_coordonnee.y) * 32.0f + 32.0f);
-    moteurGraphique->m_camera.SetSize(800, 600);
+    moteurGraphique->m_camera.SetSize(SFMLView->geometry().width(), SFMLView->geometry().height());
     moteurGraphique->m_camera.Zoom(configuration->zoom);
 
     moteurGraphique->m_camera.Move(moteurGraphique->decalageCamera.x, moteurGraphique->decalageCamera.y);
@@ -750,32 +758,12 @@ void MainWindow::paintEvent(QPaintEvent*)
                 map->m_select_brush.m_herbe = -1;
                 map->m_mode_brush = false;
                 eventManager->StopEvenement(sf::Mouse::Right, "C");
-            }
-            else
-            {
+
                 map->m_selectEntite     = -1;
                 map->m_selectTileset    = -1;
                 map->m_selectTile       = -1;
                 map->m_selectHerbe      = -1;
                 map->m_selectEvenement  = -1;
-                /*if(map->m_selectEntite == -100)
-                {
-                    map->m_decor[map->m_selectCouche][eventManager->getCasePointee().y][eventManager->getCasePointee().x].m_tile.clear();
-                    map->m_decor[map->m_selectCouche][eventManager->getCasePointee().y][eventManager->getCasePointee().x].m_tileset = -1;
-                    map->m_decor[map->m_selectCouche][eventManager->getCasePointee().y][eventManager->getCasePointee().x].m_herbe = -1;
-                    map->m_decor[map->m_selectCouche][eventManager->getCasePointee().y][eventManager->getCasePointee().x].m_evenement.clear();
-                    map->m_decor[1][eventManager->getCasePointee().y][eventManager->getCasePointee().x].m_monstre.clear();
-                }
-                else
-                {
-                    eventManager->StopEvenement(sf::Mouse::Right, "C");
-                }
-
-                map->m_selectEntite = -100;
-                map->m_selectTileset = -100;
-                map->m_selectTile = -100;
-                map->m_selectHerbe = -100;
-                map->m_selectEvenement = -100;*/
             }
 
         }
@@ -952,7 +940,10 @@ void MainWindow::s_creerNouveau()
         delete map;
     map = new Map();
     map->Creer(tailleX->value(), tailleY->value());
+
     map->m_nom = nomMap->text().toStdString();
+    map->m_no_nom = configuration->text_maps.size();
+    configuration->text_maps.push_back(nomMap->text().toStdString());
 
     eventManager->m_coordonnee.x = 1;
     eventManager->m_coordonnee.y = 1;
@@ -1044,6 +1035,8 @@ void MainWindow::sauverAs()
         }
         map->m_nom_fichier = temp2;
     }
+
+    configuration->Sauvegarder();
 }
 
 void MainWindow::undo()
