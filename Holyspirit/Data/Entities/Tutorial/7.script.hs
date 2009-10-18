@@ -5,8 +5,7 @@ main
 		if variable * 0 * 0
 		then
 			variable * 0 * 1
-			speak " ******** Le tutoriel est fini. *********
-					 ************* Bon jeu ! **************"
+			speak  * 9
 		end
 	end
 end 

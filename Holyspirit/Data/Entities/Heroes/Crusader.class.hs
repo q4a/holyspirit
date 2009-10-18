@@ -61,9 +61,9 @@ $
 $
 	* x52 y20 w32 h32 $
 $
-	* e0 x0 y64 w140 h128 m La_voie_du_Persécuteur $
-	* e1 x0 y196 w140 h128 m La_voie_du_Protecteur $
-	* e2 x0 y324 w140 h128 m La_voie_du_Pieux $
+	* e0 x0 y64 w140 h128 m35 $
+	* e1 x0 y196 w140 h128 m36 $
+	* e2 x0 y324 w140 h128 m37 $
 $
 	* x0 y0 w800 h600 m Data/Menus/Crusader/CroisePersecuteur.png $
 	* x0 y0 w800 h600 m Data/Menus/Crusader/CroiseProtecteur.png $

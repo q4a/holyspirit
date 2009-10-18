@@ -64,9 +64,9 @@ $
 $
 	* x52 y24 w32 h32 $
 $
-	* e0 x0 y64 w140 h128 mLa_voie_de_l'Empoisoneuse $
-	* e1 x0 y196 w140 h128 mLa_voie_de_l'Assassin $
-	* e2 x0 y324 w140 h128 mLa_voie_de_la_Séductrice $
+	* e0 x0 y64 w140 h128 m38 $
+	* e1 x0 y196 w140 h128 m39 $
+	* e2 x0 y324 w140 h128 m40 $
 $
 	* x0 y0 w800 h600 m Data/Menus/Concubine/CourtisanePoison.png $
 	* x0 y0 w800 h600 m Data/Menus/Concubine/CourtisaneAssassin.png $

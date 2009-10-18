@@ -78,18 +78,18 @@ main
 			if quest * 1 * 2
 			then
 				variable * 1 * 0
-				setQuestState * 1 * 3 " Allez chercher votre récompense chez le questeur ! "
-				speak " Allez chercher votre récompense chez le questeur ! "
+				setQuestState * 1 * 3 * 14
+				speak * 14
 			end
 			if quest * 1 * 1
 			then
 				variable * 1 * 0
-				setQuestState * 1 * 2 " Plus que un à tuer ! "
+				setQuestState * 1 * 2 * 13
 			end
 			if quest * 1 * 0
 			then
 				variable * 1 * 0
-				setQuestState * 1 * 1 " Plus que deux à tuer ! "
+				setQuestState * 1 * 1 * 12
 			end
 		end
 	end

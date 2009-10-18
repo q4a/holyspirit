@@ -1,12 +1,12 @@
 
-	*Incarnation_de_Saint_Lazare_:_Vampirisme
+	*10
 $
-	*En_plus_de_soigner_le_croisé,_Saint_Lazare\lui_permet_de_voler_la_vie_de_ses_adversaires.
+	*11
 $
 	* l * 25 $
 	* 3 * l $
 $
-	*Vol_de_vie_:_%1\%
+	*12
 $
 	* F%0 $
 $

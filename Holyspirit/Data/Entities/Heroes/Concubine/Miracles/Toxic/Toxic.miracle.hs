@@ -1,6 +1,6 @@
-	*Nuage_toxique
+	*23
 $
-	*La_courtisane_envoit_un_globe_qui\_crée_un_nuage_toxique_à_l'impact.
+	*24
 $
 	* 20 + l * 20 $	
 	
@@ -8,7 +8,7 @@ $
 
 	* 0 - ( 1 + l )  $
 $
-	*%1_dégats_sur_6_secondes
+	*25
 $
 	* f%0 $
 $

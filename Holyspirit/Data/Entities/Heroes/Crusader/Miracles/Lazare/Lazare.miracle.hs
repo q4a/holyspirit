@@ -1,12 +1,12 @@
 
-	*Incarnation_de_Saint_Lazare
+	*13
 $
-	*Le_croise_appelle_Saint_Lazare_pour_venir_à_son_aide.\Celui-ci_améliore_la_régénération_de_santé_du_croisé.
+	*14
 $
 	* 25 + 25 * l $	
 	* l * 2 $
 $
-	*Régénération_de_vie_:_+%1
+	*15
 $
 	* F%0 $
 $

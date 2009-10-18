@@ -1,13 +1,13 @@
-	*Charme_:_Mastodonte
+	*19
 $
-	*Les_adversaires_charmés_ont_plus_de_vie.\et_se_régénèrent_plus_vite. 
+	*20 
 $
 	* l * 20 $
 	* l $
 	* l * ( 10 + 15 * ( l - 1 ) ) $	
 $
-	*Vie_supplémentaire_:_%2
-	*Régénération_vie_:_+%1/s 
+	*21
+	*22
 $
 	* F%0 $
 $

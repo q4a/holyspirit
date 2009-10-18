@@ -20,7 +20,7 @@ main
 		end
 		if quest * 1 * -1
 		then
-			speak " C'est fermé, je ne suis pas encore censé me trouver ici. "
+			speak  * 19
 		end
 	end
 end 

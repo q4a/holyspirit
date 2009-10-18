@@ -1,14 +1,14 @@
 
-	*Tornade_divine
+	*7
 $
-	*Le_croise_fait_tournoyer_son_épée\repoussant_les_ennemis_en_contact_avec_lui.\Utilisable_uniquement_avec_des_épées_à_deux_mains.
+	*8
 $
 	* 20 + l * 5 $
 	* 40 + l * 10 $
 	* i * ( 40 + l * 10 ) / 100 $
 	* a * ( 40 + l * 10 ) / 100 $
 $
-	*Dégats_:_%1_\%_de_l'arme
+	*9
 $
 	* f%0 e2 $
 $

@@ -1,7 +1,7 @@
 
-	*Charge
+	*3
 $
-	*Le_croisé_charge_un_adversaire_renversant_tout_sur_son_passage.\Utilisable_uniquement_avec_un_bouclier.
+	*4
 $	
 	* 20 + 10 * l $
 
@@ -13,8 +13,8 @@ $
 
 
 $
-	*Dégats_durant_la_charge_:_%1-%2
-	*Dégats_à_l'impact_:_%3-%4
+	*5
+	*6
 $
 	* f%0 e0 u1 $
 $

@@ -1,12 +1,12 @@
-	*Charme
+	*16
 $
-	*La_courtisane_charme_un_adversaire\afin_qu'il_combatte_pour_elle.
+	*17
 $
 	* 75 + l * 25 $	
 	* 40 + l * 10 $
 	* 15 * 2 ^ ( l - 1 ) $
 $
-	*Vie_maximal_:_%2
+	*18
 $
 	* F%0 f%1 $
 $

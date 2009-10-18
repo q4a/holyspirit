@@ -1,6 +1,6 @@
-	*Venin
+	*26
 $
-	*La_courtisane_empoisonne_son_arme_pendant_un_certain_laps_de_temps.
+	*27
 $
 	* 50 + 50 * l $	
 	* 15 + 15 * l $	
@@ -8,8 +8,8 @@ $
 	* 0 - ( l * 3 ) $
 	* l * 6 $
 $
-	*Durée_:_%1_secondes
-	*Dégats_de_poison_:_%4_sur_2_secondes.
+	*28
+	*29
 $
 	* f%0 u1 $
 $

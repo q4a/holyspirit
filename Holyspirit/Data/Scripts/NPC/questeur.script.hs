@@ -5,21 +5,21 @@ main
 
 		if quest * 1 * 0
 		then
-			speak " Allez tuer les gros méchants pour avoir la tiare ! "
+			speak * 11
 		end
 		if quest * 1 * 1
 		then
-			speak " Allez tuer les gros méchants pour avoir la tiare ! Il en reste encore 2 ! "
+			speak * 12
 		end
 		if quest * 1 * 2
 		then
-			speak " Allez tuer les gros méchants pour avoir la tiare ! Il en reste encore 1 ! "
+			speak * 13
 		end
 
 		if quest * 1 * 3
 		then
-			speak " Bien joué, vous les avez éliminés, voici la tiare !"
-			setQuestState * 1 * 4 " Quête terminée."
+			speak * 15
+			setQuestState * 1 * 4  * 17
 			giftItem * 0
 		end
 		
@@ -31,10 +31,10 @@ main
 				variable * 0 * 1
 			end
 
-			speak " Si vous allez tuer les trois gros méchants prêtres démoniaques du donjon, je vous offrirai une belle tiare ! "
+			speak * 16
 			newQuest * 1 
-			setQuestName * 1 " Les trois méchants"
-			setQuestState * 1 * 0 " Allez tuer les trois méchants prêtres démoniaques dans le donjon. Mais attention, ils sont très puissants ! "
+			setQuestName * 1  * 18
+			setQuestState * 1 * 0  * 11
 		end
 	else
 		variable * 0 * 0
