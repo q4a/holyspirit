@@ -37,6 +37,10 @@ public:
     Script();
     Script(std::string chemin);
     void Charger(std::string chemin);
+    void Charger(std::ifstream &fichier);
+
+    void Sauvegarder(std::ofstream &fichier);
+    void Sauvegarder_instruction(std::ofstream &fichier , int no);
 
     void AjouterCondition(std::ifstream *fichier);
     int Lire(std::ifstream *fichier);
@@ -44,6 +48,8 @@ public:
     std::vector<Instruction> m_instructions;
 
     int variables[10];
+
+    std::vector<std::string> m_text;
 };
 
 #endif

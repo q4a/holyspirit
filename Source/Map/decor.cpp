@@ -255,9 +255,9 @@ void Decor::setProjectile(int monstre)
 
 void Decor::delProjectile(int monstre)
 {
-    for(int i = 0 ; i < (int)m_projectile.size() ; ++i)
-        if(m_projectile[i]==monstre)
-            m_projectile.erase(m_monstre.begin() + i), i = -1;
+    for(unsigned i = 0 ; i < m_projectile.size() ; ++i)
+        if(m_projectile[i] == monstre)
+            m_projectile.erase(m_projectile.begin() + i), i --;
 }
 
 

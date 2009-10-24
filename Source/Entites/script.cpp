@@ -112,11 +112,43 @@ int Script::Lire(ifstream *fichier)
     return retour;
 }
 
-void Script::Charger(std::string chemin)
+void Script::Sauvegarder_instruction(ofstream &fichier , int no)
 {
-    ifstream fichier;
-    fichier.open(chemin.c_str(), ios::in);
+    if(no == -2)
+        fichier<<"then"<<endl;
+    else if(no == -3)
+        fichier<<"else"<<endl;
+    else if(no >= 0 && no < (int)m_instructions.size())
+    {
+        fichier<<m_instructions[no].nom<<" ";
+        if(m_instructions[no].nom == "if" || m_instructions[no].nom == "main")
+        {
+            if(m_instructions[no].nom == "main")
+            {
+                for(int i = 0 ; i < 10 ; ++i)
+                    fichier<<endl<<"variable * "<<i<<" * "<<variables[i]<<endl;
+            }
+            for(int i = 0 ; i < m_instructions[no].valeurs.size() ; ++i)
+                Sauvegarder_instruction(fichier ,m_instructions[no].valeurs[i]);
 
+            fichier<<"end"<<endl;
+        }
+        else
+        {
+            for(int i = 0 ; i < m_instructions[no].valeurs.size() ; ++i)
+                fichier<<"* "<<m_instructions[no].valeurs[i]<<" ";
+        }
+        fichier<<endl;
+    }
+}
+
+void Script::Sauvegarder(ofstream &fichier)
+{
+    Sauvegarder_instruction(fichier , 0);
+}
+
+void Script::Charger(ifstream &fichier)
+{
     if (fichier)
     {
         string temp;
@@ -137,11 +169,18 @@ void Script::Charger(std::string chemin)
                 OK=false;
             else
                 m_instructions[0].valeurs.push_back(temp);
-
         }
-
         fichier.close();
     }
+
+}
+
+void Script::Charger(std::string chemin)
+{
+    ifstream fichier;
+    fichier.open(chemin.c_str(), ios::in);
+
+    Charger(fichier);
 
     console->Ajouter("Chargement du script : \" "+chemin+" \"");
 }

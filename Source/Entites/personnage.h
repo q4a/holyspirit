@@ -172,6 +172,8 @@ public:
 
     Personnage *m_cible;
 
+    int m_ID;
+
 protected:
     int m_etat,m_poseEnCours,m_angle;
     float m_animation;

@@ -65,9 +65,10 @@ public:
 
     void GererEvenements(int evenement,int z,int couche,int x,int y);
     void GererProjectilesEtEffets(Hero *hero,float temps);
+    void GererScript(Jeu *jeu,Hero *hero,float temps,Menu *menu);
     void GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu);
 
-    void GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles,float temps,coordonnee positionHero,Hero *hero);
+    bool GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles,float temps,coordonnee positionHero,Hero *hero);
 
     bool Miracle_Aura           (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int );
     bool Miracle_Declencheur    (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int );
@@ -168,6 +169,8 @@ private:
 
     std::vector<Decor>::iterator IterY;
     std::vector<Decor>::iterator Iter;
+
+    Script m_script;
 };
 
 

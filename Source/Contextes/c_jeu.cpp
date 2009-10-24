@@ -167,6 +167,7 @@ void c_Jeu::IA(Jeu *jeu)
     {
         jeu->map->GererMonstres(jeu,&jeu->hero,tempsEcouleDepuisDernierIA,&jeu->menu);
         jeu->map->GererProjectilesEtEffets(&jeu->hero,tempsEcouleDepuisDernierIA);
+        jeu->map->GererScript(jeu,&jeu->hero,tempsEcouleDepuisDernierIA,&jeu->menu);
 
         tempsEcouleDepuisDernierIA=0;
     }

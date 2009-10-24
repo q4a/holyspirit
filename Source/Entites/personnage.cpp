@@ -112,6 +112,7 @@ Personnage::Personnage()
     m_vientDetreTouche                  = NULL;
 
     m_stunned                           = false;
+    m_ID                                = 0;
 }
 Modele_Personnage::Modele_Personnage()
 {
@@ -1332,6 +1333,8 @@ void Personnage::Pousser(coordonneeDecimal vecteur)
 
         if(fabs(vecteur.y) > fabs(m_pousse.y))
             m_pousse.y = vecteur.y;
+
+        frappeEnCours = false;
     }
 }
 
