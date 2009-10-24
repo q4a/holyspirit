@@ -72,25 +72,5 @@ main
 				useMiracle * 2
 				setState * 4
 			end
-	else
-		if variable * 1 * 1
-		then
-			if quest * 1 * 2
-			then
-				variable * 1 * 0
-				setQuestState * 1 * 3 * 14
-				speak * 14
-			end
-			if quest * 1 * 1
-			then
-				variable * 1 * 0
-				setQuestState * 1 * 2 * 13
-			end
-			if quest * 1 * 0
-			then
-				variable * 1 * 0
-				setQuestState * 1 * 1 * 12
-			end
-		end
 	end
 end 
