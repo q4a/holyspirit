@@ -65,6 +65,7 @@ public:
     bool m_ombre;
     bool m_impenetrable;
     bool m_impoussable;
+    bool m_collision;
 
 protected:
     Caracteristique m_caracteristique;
@@ -163,6 +164,7 @@ public:
     bool m_friendly;
 
     bool m_impenetrable;
+    bool m_collision;
     bool m_impoussable;
     bool m_doitMourir;
 
@@ -173,6 +175,7 @@ public:
     Personnage *m_cible;
 
     int m_ID;
+    bool m_etatForce;
 
 protected:
     int m_etat,m_poseEnCours,m_angle;

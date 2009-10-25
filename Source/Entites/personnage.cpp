@@ -107,12 +107,14 @@ Personnage::Personnage()
     m_impenetrable                      = 0;
     m_impoussable                       = 0;
     m_doitMourir                        = 0;
+    m_collision                         = 1;
 
     m_vientDeFrapper                    = NULL;
     m_vientDetreTouche                  = NULL;
 
     m_stunned                           = false;
     m_ID                                = 0;
+    m_etatForce                         = false;
 }
 Modele_Personnage::Modele_Personnage()
 {
@@ -881,7 +883,7 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap, bool pou
         {
             if (m_positionCase.y!=m_cheminFinal.y||m_positionCase.x!=m_cheminFinal.x)
             {
-                if (m_etat!=1)
+                if (m_etat!=1 && !m_etatForce)
                     m_etat=1,m_poseEnCours=0;
 
                 m_positionPixelPrecedente.x=(int)m_positionPixel.x;
@@ -947,7 +949,7 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap, bool pou
             }
             else if (m_arrivee.x!=m_positionCase.x||m_arrivee.y!=m_positionCase.y)
                 return 1;
-            else
+            else if(!m_etatForce)
             {
                 if (m_etat!=0)
                     m_poseEnCours=0;
@@ -1121,6 +1123,9 @@ int Personnage::Animer(Modele_Personnage *modele,float temps,coordonnee position
                     moteurGraphique->LightManager->SetIntensity(m_light,(int)inte);
                     moteurGraphique->LightManager->SetRadius(m_light,(int)m_porteeLumineuse.intensite*2);
                 }
+
+                if(retour == 1)
+                    m_etatForce = false;
             }
     }
     return retour;

@@ -1826,6 +1826,9 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                         }
                 }
 
+                if(m_decor[i][j][k].getTile() < 0)
+                    m_decor[i][j][k].m_sprite.SetSubRect(sf::IntRect(0,0,0,0));
+
                 for (int z=0;z<(int)m_decor[i][j][k].getMonstre().size();z++)
                 {
                     int monstre=m_decor[i][j][k].getMonstre()[z];
@@ -3079,7 +3082,7 @@ void Map::Script_UseMiracle(Jeu *jeu,Script *script,int noInstruction,int monstr
 void Map::Script_SetState(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer)
 {
     if (m_monstre[monstre].getEtat()!=script->m_instructions[noInstruction].valeurs.at(0))
-        m_monstre[monstre].setJustEtat(script->m_instructions[noInstruction].valeurs.at(0));
+        m_monstre[monstre].setJustEtat(script->m_instructions[noInstruction].valeurs.at(0)), m_monstre[monstre].m_etatForce = true;
 }
 
 
@@ -3138,7 +3141,7 @@ void Map::Script_Fight(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
                 {
                     if (m_monstre[monstre].m_cible->EnVie()<=0)
                         m_monstre[monstre].setVu(0);
-                    if (!m_monstre[monstre].frappeEnCours)
+                    if (!m_monstre[monstre].frappeEnCours && !m_monstre[monstre].m_etatForce)
                         m_monstre[monstre].setEtat(2);
                     m_monstre[monstre].Frappe(m_monstre[monstre].getCoordonnee(),m_monstre[monstre].m_cible->getCoordonnee());
                     m_monstre[monstre].setArrivee(m_monstre[monstre].getCoordonnee());
@@ -3229,7 +3232,11 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             script->variables[script->m_instructions[noInstruction].valeurs.at(0)]=script->m_instructions[noInstruction].valeurs.at(1);
         else if (script->m_instructions[noInstruction].nom=="incrementeVariable")
             script->variables[script->m_instructions[noInstruction].valeurs.at(0)]+=script->m_instructions[noInstruction].valeurs.at(1);
-
+        else if (script->m_instructions[noInstruction].nom=="setCollision")
+        {
+            m_monstre[monstre].m_collision = script->m_instructions[noInstruction].valeurs.at(0);
+            m_monstre[monstre].m_impenetrable = script->m_instructions[noInstruction].valeurs.at(0);
+        }
         else if (script->m_instructions[noInstruction].nom=="speak")
         {
             if (jeu->menu.m_dialogue == " ")
@@ -3269,12 +3276,24 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                 if (!hero->AjouterObjet((*m_monstre[monstre].getPointeurObjets())[script->m_instructions[noInstruction].valeurs.at(0)], false))
                     m_decor[1][hero->m_personnage.getCoordonnee().y][hero->m_personnage.getCoordonnee().x].AjouterObjet((*m_monstre[monstre].getPointeurObjets())[script->m_instructions[noInstruction].valeurs.at(0)]);
         }
+        else if (script->m_instructions[noInstruction].nom=="noTalk")
+        {
+            hero->setMonstreVise(-1);
+        }
         else if (script->m_instructions[noInstruction].nom=="entity_variable" && monstre == -1)
         {
             for(unsigned i = 0 ; i < m_monstre.size() ; ++i)
                 if(m_monstre[i].m_ID == script->m_instructions[noInstruction].valeurs.at(0))
                     m_monstre[i].m_scriptAI.variables[script->m_instructions[noInstruction].valeurs.at(1)]=script->m_instructions[noInstruction].valeurs.at(2);
         }
+        else if (script->m_instructions[noInstruction].nom=="setTile" && monstre == -1)
+        {
+            if(script->m_instructions[noInstruction].valeurs.at(0) >= 0 && script->m_instructions[noInstruction].valeurs.at(0) < 2)
+                if(script->m_instructions[noInstruction].valeurs.at(1) >= 0 && script->m_instructions[noInstruction].valeurs.at(1) < (int)m_decor[0][0].size())
+                    if(script->m_instructions[noInstruction].valeurs.at(2) >= 0 && script->m_instructions[noInstruction].valeurs.at(2) < (int)m_decor[0].size())
+                        m_decor[script->m_instructions[noInstruction].valeurs.at(0)][script->m_instructions[noInstruction].valeurs.at(2)][script->m_instructions[noInstruction].valeurs.at(1)].setTile(script->m_instructions[noInstruction].valeurs.at(3));
+        }
+
     }
 }
 
@@ -4007,7 +4026,7 @@ bool Map::getCollision(int positionX,int positionY, int exception)
 
             for (unsigned o = 0 ; o < m_decor[i][positionY][positionX].getMonstre().size() ; ++o)
                 if (m_decor[i][positionY][positionX].getMonstre()[o]>-1&&m_decor[i][positionY][positionX].getMonstre()[o]<(int)m_monstre.size() && m_decor[i][positionY][positionX].getMonstre()[o] != exception)
-                    if (m_monstre[m_decor[i][positionY][positionX].getMonstre()[o]].EnVie()&&m_monstre[m_decor[i][positionY][positionX].getMonstre()[o]].getCaracteristique().rang>=0)
+                    if (m_monstre[m_decor[i][positionY][positionX].getMonstre()[o]].EnVie()&&m_monstre[m_decor[i][positionY][positionX].getMonstre()[o]].m_collision)
                         return 1;
 
             coordonnee enCours;

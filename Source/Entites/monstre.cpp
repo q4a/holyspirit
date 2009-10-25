@@ -117,6 +117,7 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
 
     m_impenetrable = modele->m_impenetrable;
     m_impoussable = modele->m_impoussable;
+    m_collision = modele->m_collision;
 
     m_scriptAI = modele->m_scriptAI;
 
@@ -377,6 +378,7 @@ bool Modele_Monstre::Charger(string chemin)
                 m_caracteristique.sang=0;
                 m_minimap=true;
                 m_friendly=false;
+                m_collision = true;
                 do
                 {
                     fichier->get(caractere);
@@ -429,6 +431,10 @@ bool Modele_Monstre::Charger(string chemin)
 
                     case 'u':
                         *fichier>>m_impoussable;
+                        break;
+
+                    case 'c':
+                        *fichier>>m_collision;
                         break;
 
                     }

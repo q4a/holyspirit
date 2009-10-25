@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="Release" />
+	<ActiveTarget name="Debug" />
 	<File name="Contextes\c_changementMap.cpp" open="0" top="0" tabpos="12">
 		<Cursor position="1653" topLine="56" />
 	</File>
@@ -55,8 +55,8 @@
 	<File name="Entites\case.h" open="0" top="0" tabpos="7">
 		<Cursor position="989" topLine="10" />
 	</File>
-	<File name="Entites\classe.cpp" open="0" top="0" tabpos="14">
-		<Cursor position="4822" topLine="81" />
+	<File name="Entites\classe.cpp" open="1" top="1" tabpos="11">
+		<Cursor position="12379" topLine="409" />
 	</File>
 	<File name="Entites\classe.h" open="0" top="0" tabpos="18">
 		<Cursor position="1358" topLine="39" />
@@ -127,14 +127,14 @@
 	<File name="Map\evenement.h" open="0" top="0" tabpos="25">
 		<Cursor position="1329" topLine="26" />
 	</File>
-	<File name="Map\map.cpp" open="1" top="1" tabpos="3">
-		<Cursor position="159358" topLine="3255" />
+	<File name="Map\map.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="159474" topLine="3255" />
 	</File>
 	<File name="Map\map.h" open="1" top="0" tabpos="4">
 		<Cursor position="2514" topLine="43" />
 	</File>
 	<File name="Map\tile.cpp" open="1" top="0" tabpos="10">
-		<Cursor position="2861" topLine="95" />
+		<Cursor position="2736" topLine="95" />
 	</File>
 	<File name="Map\tile.h" open="0" top="0" tabpos="5">
 		<Cursor position="1444" topLine="34" />
@@ -237,6 +237,9 @@
 	</File>
 	<File name="singleton.h" open="0" top="0" tabpos="47">
 		<Cursor position="302" topLine="0" />
+	</File>
+	<File name="version.h" open="0" top="0" tabpos="11">
+		<Cursor position="518" topLine="0" />
 	</File>
 	<File name="video.cpp" open="0" top="0" tabpos="73">
 		<Cursor position="6086" topLine="220" />
