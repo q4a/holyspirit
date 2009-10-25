@@ -17,3 +17,4 @@ Dépouille putride
 Marchand commun
 Marchand rare
 Le Grand Questeur
+Levier
