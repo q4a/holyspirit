@@ -16,6 +16,7 @@
 #include <QRadioButton>
 #include <QSpinBox>
 #include <QCheckBox>
+#include <QTextEdit>
 
 
 #include <iostream>
@@ -69,6 +70,9 @@ class MainWindow : public QWidget // On hérite de QWidget (IMPORTANT)
     QVBoxLayout     *layout3;
 
     QWidget         *fenetreNouveau;
+    QWidget         *win_script;
+
+    QTextEdit       *text_script;
 
     QLineEdit       *nomMap;
     QSpinBox        *tailleX;

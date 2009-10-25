@@ -1008,7 +1008,7 @@
 1235597756 c:\qt\4.5.0\include\qtcore\qevent
 	"qcoreevent.h"
 
-1256050847 e:\c++\holyspirit\holyeditor\mainwindow.h
+1256484346 e:\c++\holyspirit\holyeditor\mainwindow.h
 	"SFMLCanvas.h"
 	"globale.h"
 	<QApplication>
@@ -1023,6 +1023,7 @@
 	<QRadioButton>
 	<QSpinBox>
 	<QCheckBox>
+	<QTextEdit>
 	<iostream>
 
 1252239298 e:\c++\holyspirit\holyeditor\sfmlcanvas.h
@@ -1032,7 +1033,7 @@
 	<QFrame>
 	<QLabel>
 
-1256318206 source:e:\c++\holyspirit\holyeditor\mainwindow.cpp
+1256485020 source:e:\c++\holyspirit\holyeditor\mainwindow.cpp
 	"MainWindow.h"
 	<iostream>
 	<sstream>
@@ -1150,7 +1151,7 @@
 1235597558 c:\qt\4.5.0\src\gui\dialogs\qdialog.h
 	<QtGui/qwidget.h>
 
-1253633338 e:\c++\holyspirit\holyeditor\mainwindow.moc
+1256484887 e:\c++\holyspirit\holyeditor\mainwindow.moc
 	"MainWindow.h"
 
 1244283155 source:e:\c++\holyspirit\holyeditor\entites\case.cpp
@@ -1350,8 +1351,9 @@
 	<SFML/Graphics.hpp>
 	"../constantes.h"
 
-1256466567 e:\c++\holyspirit\holyeditor\entites\script.h
+1256485669 e:\c++\holyspirit\holyeditor\entites\script.h
 	<iostream>
+	<sstream>
 	"../constantes.h"
 
 1256225418 e:\c++\holyspirit\holyeditor\entites\monstre.h
@@ -1408,7 +1410,7 @@
 	"../constantes.h"
 	"../globale.h"
 
-1256466990 source:e:\c++\holyspirit\holyeditor\entites\script.cpp
+1256487865 source:e:\c++\holyspirit\holyeditor\entites\script.cpp
 	<fstream>
 	"script.h"
 	"../globale.h"
@@ -2052,4 +2054,91 @@
 1253953328 e:\c++\sfml_svn\branches\sfml2\include\sfml\audio\soundrecorder.hpp
 	<SFML/System/Thread.hpp>
 	<vector>
+
+1235597758 c:\qt\4.5.0\include\qtgui\qtextedit
+	"qtextedit.h"
+
+1235597758 c:\qt\4.5.0\include\qtgui\qtextedit.h
+	"../../src/gui/widgets/qtextedit.h"
+
+1235597560 c:\qt\4.5.0\src\gui\widgets\qtextedit.h
+	<QtGui/qabstractscrollarea.h>
+	<QtGui/qtextdocument.h>
+	<QtGui/qtextoption.h>
+	<QtGui/qtextcursor.h>
+	<QtGui/qtextformat.h>
+	<QtGui/qtextobject.h>
+	<QtGui/qtextlayout.h>
+
+1235597758 c:\qt\4.5.0\include\qtgui\qtextdocument.h
+	"../../src/gui/text/qtextdocument.h"
+
+1235597560 c:\qt\4.5.0\src\gui\text\qtextdocument.h
+	<QtCore/qobject.h>
+	<QtCore/qsize.h>
+	<QtCore/qrect.h>
+	<QtGui/qfont.h>
+
+1235597758 c:\qt\4.5.0\include\qtgui\qtextoption.h
+	"../../src/gui/text/qtextoption.h"
+
+1235597560 c:\qt\4.5.0\src\gui\text\qtextoption.h
+	<QtCore/qnamespace.h>
+	<QtCore/qchar.h>
+	<QtCore/qmetatype.h>
+
+1235597758 c:\qt\4.5.0\include\qtgui\qtextcursor.h
+	"../../src/gui/text/qtextcursor.h"
+
+1235597560 c:\qt\4.5.0\src\gui\text\qtextcursor.h
+	<QtCore/qstring.h>
+	<QtCore/qshareddata.h>
+	<QtGui/qtextformat.h>
+
+1235597756 c:\qt\4.5.0\include\qtcore\qshareddata.h
+	"../../src/corelib/tools/qshareddata.h"
+
+1235597558 c:\qt\4.5.0\src\corelib\tools\qshareddata.h
+	<QtCore/qglobal.h>
+	<QtCore/qatomic.h>
+
+1235597758 c:\qt\4.5.0\include\qtgui\qtextformat.h
+	"../../src/gui/text/qtextformat.h"
+
+1235597560 c:\qt\4.5.0\src\gui\text\qtextformat.h
+	<QtGui/qcolor.h>
+	<QtGui/qfont.h>
+	<QtCore/qshareddata.h>
+	<QtCore/qvector.h>
+	<QtCore/qvariant.h>
+	<QtGui/qpen.h>
+	<QtGui/qbrush.h>
+	<QtGui/qtextoption.h>
+
+1235597758 c:\qt\4.5.0\include\qtgui\qpen.h
+	"../../src/gui/painting/qpen.h"
+
+1235597558 c:\qt\4.5.0\src\gui\painting\qpen.h
+	<QtGui/qcolor.h>
+	<QtGui/qbrush.h>
+
+1235597758 c:\qt\4.5.0\include\qtgui\qtextobject.h
+	"../../src/gui/text/qtextobject.h"
+
+1235597560 c:\qt\4.5.0\src\gui\text\qtextobject.h
+	<QtCore/qobject.h>
+	<QtGui/qtextformat.h>
+
+1235597758 c:\qt\4.5.0\include\qtgui\qtextlayout.h
+	"../../src/gui/text/qtextlayout.h"
+
+1235597560 c:\qt\4.5.0\src\gui\text\qtextlayout.h
+	<QtCore/qstring.h>
+	<QtCore/qnamespace.h>
+	<QtCore/qrect.h>
+	<QtCore/qvector.h>
+	<QtGui/qcolor.h>
+	<QtCore/qobject.h>
+	<QtGui/qevent.h>
+	<QtGui/qtextformat.h>
 

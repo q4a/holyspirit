@@ -21,6 +21,12 @@ MainWindow::MainWindow() : QWidget()
     m_undoMax   = 0;
     m_tourUndo  = 0;
 
+
+    win_script      = new QWidget();
+    win_script->setGeometry(200,200,600,600);
+    text_script = new QTextEdit(win_script);
+    text_script->setGeometry(0,0,600,600);
+
     fenetreNouveau      = new QWidget();
     fenetreNouveau->setGeometry(200,200,200,138);
     nomMap              = new QLineEdit     ("Nom",fenetreNouveau);
@@ -36,7 +42,7 @@ MainWindow::MainWindow() : QWidget()
     tailleY->setMaximum ( 500 );
     tailleY->setMinimum ( 3 );
 
-    okNouveau           = new QPushButton   ("Créer", fenetreNouveau );
+    okNouveau           = new QPushButton   ("Créer", fenetreNouveau);
     okNouveau->move(4,94);
     annulerNouveau      = new QPushButton   ("Annuler", fenetreNouveau );
     annulerNouveau->move(104,94);
@@ -211,7 +217,6 @@ MainWindow::MainWindow() : QWidget()
 
     connect(actionScriptMap,  SIGNAL(triggered()), this, SLOT(script()));
 
-
     connect(listTileset     , SIGNAL(itemPressed(QTreeWidgetItem *, int)), this, SLOT(selectTileset  (QTreeWidgetItem *, int)));
     connect(listHerbe       , SIGNAL(itemPressed(QTreeWidgetItem *, int)), this, SLOT(selectHerbe    (QTreeWidgetItem *, int)));
     connect(listEntites     , SIGNAL(itemPressed(QTreeWidgetItem *, int)), this, SLOT(selectEntite   (QTreeWidgetItem *, int)));
@@ -285,6 +290,10 @@ MainWindow::~MainWindow()
     delete annulerNouveau;
 
     delete fenetreNouveau;
+
+
+    delete text_script;
+    delete win_script;
 
     if (map != NULL)
         delete map;
@@ -1022,6 +1031,12 @@ void MainWindow::ouvrir()
         map = new Map();
         map->Charger(temp);
         MettreListesAJour();
+
+        std::ostringstream str;
+        map->m_script.Sauvegarder(str);
+        QString tempstr(str.str().c_str());
+        text_script->setText(tempstr);
+        map->m_script.m_text = str.str().c_str();
     }
 }
 
@@ -1030,6 +1045,7 @@ void MainWindow::sauver()
 {
     if (map != NULL)
     {
+        map->m_script.m_text = text_script->toPlainText().toStdString();
         if(!map->m_nom_fichier.empty())
             map->Sauvegarder(map->m_nom_fichier);
         else
@@ -1419,8 +1435,7 @@ void MainWindow::importerEvenement()
 void MainWindow::script()
 {
     if (map != NULL)
-    {
-    }
+        win_script->show();
 }
 
 void MainWindow::selectTileset(QTreeWidgetItem *item, int column)
