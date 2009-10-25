@@ -834,6 +834,11 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap, bool pou
 
     if(!pousserPossible)
     {
+        if(fabs(m_pousse.x) > 0 || fabs(m_pousse.y) > 0 )
+        {
+                m_positionPixel.x    = m_positionCase.x*COTE_TILE;
+                m_positionPixel.y    = m_positionCase.y*COTE_TILE;
+        }
         m_pousse.x = 0;
         m_pousse.y = 0;
     }
