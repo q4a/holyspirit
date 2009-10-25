@@ -89,6 +89,7 @@ MainWindow::MainWindow() : QWidget()
     menuMap        = menu->addMenu(tr("&Map"));
 
     actionOptionsMap        = menuMap->addAction("&Options de la map");
+    actionScriptMap         = menuMap->addAction("&Script de la map");
 
 
     menuAide        = menu->addMenu(tr("&Aide"));
@@ -207,6 +208,9 @@ MainWindow::MainWindow() : QWidget()
     connect(actionImporterHerbe  , SIGNAL(triggered()), this, SLOT(importerHerbe()));
     connect(actionImporterEntite , SIGNAL(triggered()), this, SLOT(importerEntite()));
     connect(actionImporterEvenement , SIGNAL(triggered()), this, SLOT(importerEvenement()));
+
+    connect(actionScriptMap,  SIGNAL(triggered()), this, SLOT(script()));
+
 
     connect(listTileset     , SIGNAL(itemPressed(QTreeWidgetItem *, int)), this, SLOT(selectTileset  (QTreeWidgetItem *, int)));
     connect(listHerbe       , SIGNAL(itemPressed(QTreeWidgetItem *, int)), this, SLOT(selectHerbe    (QTreeWidgetItem *, int)));
@@ -595,9 +599,7 @@ void MainWindow::paintEvent(QPaintEvent*)
             if(i >= 0 && j >= 0 && i < map->getDimensions().y && j < map->getDimensions().x)
             {
                 if (map->m_moduleAleatoireMin == 0 && map->m_moduleAleatoireMax == 9)
-                {
                     map->m_decor[map->m_selectCouche][i][j].back().m_herbe = map->m_selectHerbe - 1;
-                }
                 else
                 {
                     bool ajouter = true;
@@ -750,14 +752,23 @@ void MainWindow::paintEvent(QPaintEvent*)
 
         if (eventManager->getEvenement(sf::Mouse::Right, "C"))
         {
-            if (map->m_mode_brush)
+            eventManager->StopEvenement(sf::Mouse::Right, "C");
+            if (!map->m_select_brush.m_tile.empty()
+             || !map->m_select_brush.m_monstre.empty()
+             || !map->m_select_brush.m_evenement.empty()
+             || map->m_select_brush.m_herbe != -1
+             || map->m_selectEntite != -1
+             || map->m_selectTileset != -1
+             || map->m_selectTile != -1
+             || map->m_selectHerbe != -1
+             || map->m_selectEvenement != -1
+              )
             {
                 map->m_select_brush.m_tile.clear();
                 map->m_select_brush.m_monstre.clear();
                 map->m_select_brush.m_evenement.clear();
                 map->m_select_brush.m_herbe = -1;
                 map->m_mode_brush = false;
-                eventManager->StopEvenement(sf::Mouse::Right, "C");
 
                 map->m_selectEntite     = -1;
                 map->m_selectTileset    = -1;
@@ -765,8 +776,26 @@ void MainWindow::paintEvent(QPaintEvent*)
                 map->m_selectHerbe      = -1;
                 map->m_selectEvenement  = -1;
             }
+            else
+            {
+                std::cout<<"caca"<<std::endl;
+                int no = QInputDialog::getInteger(this, "Nombre", "ID du/des entités(s)");
 
+                for(int i = eventManager->getCasePointee().y - (int)(taillePinceau->value()*0.5) ; i < eventManager->getCasePointee().y + taillePinceau->value()*0.5 ; ++i)
+                for(int j = eventManager->getCasePointee().x - (int)(taillePinceau->value()*0.5) ; j < eventManager->getCasePointee().x + taillePinceau->value()*0.5 ; ++j)
+                if(i >= 0 && j >= 0 && i < map->getDimensions().y && j < map->getDimensions().x)
+                {
+                    for (unsigned k = 0 ; k < map->m_decor[1][i][j].size() ; ++k)
+                        if (map->m_decor[1][i][j][k].m_moduleAleatoireMin == map->m_moduleAleatoireMin
+                          &&map->m_decor[1][i][j][k].m_moduleAleatoireMax == map->m_moduleAleatoireMax)
+                        {
+                            for(int p = 0 ; p < map->m_decor[1][i][j][k].m_monstre.size() ; ++p)
+                                map->m_monstre[map->m_decor[1][i][j][k].m_monstre[p]].m_ID = no;
+                        }
+                }
+            }
         }
+
 
         if (map->m_selectEntite == -100)
             map->m_selectSprite.SetSubRect(sf::IntRect(0,0,0,0));
@@ -1387,6 +1416,13 @@ void MainWindow::importerEvenement()
     }
 }
 
+void MainWindow::script()
+{
+    if (map != NULL)
+    {
+    }
+}
+
 void MainWindow::selectTileset(QTreeWidgetItem *item, int column)
 {
     // std::cout<<item->text(column).toStdString()<<std::endl;
@@ -1415,13 +1451,10 @@ void MainWindow::selectTileset(QTreeWidgetItem *item, int column)
 
 void MainWindow::selectHerbe(QTreeWidgetItem *item, int column)
 {
-    // std::cout<<item->text(column).toStdString()<<std::endl;
-
     map->m_selectEntite      = -1;
     map->m_selectTileset     = -1;
     map->m_selectTile        = -1;
     map->m_selectEvenement   = -1;
-    //std::cout<<item->parent()->text(column).toStdString()<<std::endl;
 
     map->m_selectHerbe = item->data(1,0).toInt();
 
@@ -1459,69 +1492,81 @@ void MainWindow::selectEvenement(QTreeWidgetItem *item, int column)
 
 void MainWindow::addTileset(QTreeWidgetItem *item, int column)
 {
-    map->m_selectEntite      = -1;
-    map->m_selectTileset     = -1;
-    map->m_selectTile        = -1;
-    map->m_selectHerbe       = -1;
-    map->m_selectEvenement   = -1;
-
-    if (item->parent() != NULL)
+    if (map != NULL)
     {
-        map->m_select_brush.m_tileset = item->parent()->data(1,0).toInt() - 1;
-        map->m_select_brush.m_tile.push_back(item->data(1,0).toInt());
+        map->m_selectEntite      = -1;
+        map->m_selectTileset     = -1;
+        map->m_selectTile        = -1;
+        map->m_selectHerbe       = -1;
+        map->m_selectEvenement   = -1;
+
+        if (item->parent() != NULL)
+        {
+            map->m_select_brush.m_tileset = item->parent()->data(1,0).toInt() - 1;
+            map->m_select_brush.m_tile.push_back(item->data(1,0).toInt());
+        }
+
+        map->m_mode_brush       = true;
+
+        SFMLView->setFocus(Qt::MouseFocusReason);
     }
-
-    map->m_mode_brush       = true;
-
-    SFMLView->setFocus(Qt::MouseFocusReason);
 }
 void MainWindow::addHerbe(QTreeWidgetItem *item, int column)
 {
-    map->m_selectEntite      = -1;
-    map->m_selectTileset     = -1;
-    map->m_selectTile        = -1;
-    map->m_selectHerbe       = -1;
-    map->m_selectEvenement   = -1;
+    if (map != NULL)
+    {
+        map->m_selectEntite      = -1;
+        map->m_selectTileset     = -1;
+        map->m_selectTile        = -1;
+        map->m_selectHerbe       = -1;
+        map->m_selectEvenement   = -1;
 
-    map->m_select_brush.m_herbe = item->data(1,0).toInt() - 1;
+        map->m_select_brush.m_herbe = item->data(1,0).toInt() - 1;
 
-    map->m_mode_brush       = true;
+        map->m_mode_brush       = true;
 
-    SFMLView->setFocus(Qt::MouseFocusReason);
+        SFMLView->setFocus(Qt::MouseFocusReason);
+    }
 }
 void MainWindow::addEntite(QTreeWidgetItem *item, int column)
 {
-    map->m_selectEntite      = -1;
-    map->m_selectTileset     = -1;
-    map->m_selectTile        = -1;
-    map->m_selectHerbe       = -1;
-    map->m_selectEvenement   = -1;
+    if (map != NULL)
+    {
+        map->m_selectEntite      = -1;
+        map->m_selectTileset     = -1;
+        map->m_selectTile        = -1;
+        map->m_selectHerbe       = -1;
+        map->m_selectEvenement   = -1;
 
 
-    map->m_monstre.push_back(Monstre ());
-    map->m_monstre.back().Charger(item->data(1,0).toInt() - 1,&map->m_ModeleMonstre[item->data(1,0).toInt()]);
-    map->m_monstre.back().setCoordonnee(eventManager->getCasePointee()),map->m_monstre.back().setDepart();
-    map->m_add_monstre.push_back(false);
+        map->m_monstre.push_back(Monstre ());
+        map->m_monstre.back().Charger(item->data(1,0).toInt() - 1,&map->m_ModeleMonstre[item->data(1,0).toInt()]);
+        map->m_monstre.back().setCoordonnee(eventManager->getCasePointee()),map->m_monstre.back().setDepart();
+        map->m_add_monstre.push_back(false);
 
-    map->m_select_brush.m_monstre.push_back(map->m_monstre.size()-1);
+        map->m_select_brush.m_monstre.push_back(map->m_monstre.size()-1);
 
-    map->m_mode_brush       = true;
+        map->m_mode_brush       = true;
 
-    SFMLView->setFocus(Qt::MouseFocusReason);
+        SFMLView->setFocus(Qt::MouseFocusReason);
+    }
 }
 void MainWindow::addEvenement(QTreeWidgetItem *item, int column)
 {
-    map->m_selectEntite      = -1;
-    map->m_selectTileset     = -1;
-    map->m_selectTile        = -1;
-    map->m_selectHerbe       = -1;
-    map->m_selectEvenement   = -1;
+    if (map != NULL)
+    {
+        map->m_selectEntite      = -1;
+        map->m_selectTileset     = -1;
+        map->m_selectTile        = -1;
+        map->m_selectHerbe       = -1;
+        map->m_selectEvenement   = -1;
 
-    map->m_select_brush.m_evenement.push_back(item->data(1,0).toInt() - 1);
+        map->m_select_brush.m_evenement.push_back(item->data(1,0).toInt() - 1);
 
-    map->m_mode_brush       = true;
+        map->m_mode_brush       = true;
 
-    SFMLView->setFocus(Qt::MouseFocusReason);
+        SFMLView->setFocus(Qt::MouseFocusReason);
+    }
 }
 
 

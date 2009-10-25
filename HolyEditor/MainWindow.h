@@ -45,6 +45,8 @@ class MainWindow : public QWidget // On hérite de QWidget (IMPORTANT)
     void undo();
     void redo();
 
+    void script();
+
     void selectTileset  (QTreeWidgetItem *, int);
     void selectHerbe    (QTreeWidgetItem *, int);
     void selectEntite   (QTreeWidgetItem *, int);
@@ -123,6 +125,7 @@ class MainWindow : public QWidget // On hérite de QWidget (IMPORTANT)
     QAction         *actionImporterEntite;
     QAction         *actionImporterEvenement;
     QAction         *actionOptionsMap;
+    QAction         *actionScriptMap;
 
     QString          chemin;
 
