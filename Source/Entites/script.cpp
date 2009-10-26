@@ -128,14 +128,14 @@ void Script::Sauvegarder_instruction(ofstream &fichier , int no)
                 for(int i = 0 ; i < 10 ; ++i)
                     fichier<<endl<<"variable * "<<i<<" * "<<variables[i]<<endl;
             }
-            for(int i = 0 ; i < m_instructions[no].valeurs.size() ; ++i)
+            for(unsigned i = 0 ; i < m_instructions[no].valeurs.size() ; ++i)
                 Sauvegarder_instruction(fichier ,m_instructions[no].valeurs[i]);
 
             fichier<<"end"<<endl;
         }
         else
         {
-            for(int i = 0 ; i < m_instructions[no].valeurs.size() ; ++i)
+            for(unsigned i = 0 ; i < m_instructions[no].valeurs.size() ; ++i)
                 fichier<<"* "<<m_instructions[no].valeurs[i]<<" ";
         }
         fichier<<endl;

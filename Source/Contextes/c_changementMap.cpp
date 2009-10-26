@@ -205,12 +205,12 @@ void c_Chargement::Utiliser(Jeu *jeu)
             for(unsigned j = 0 ; j < jeu->hero.m_personnage.m_miracleEnCours.size() ; ++j)
             for(unsigned k = 0 ; k < jeu->hero.m_personnage.m_miracleEnCours[j].m_infos.size() ; ++k)
             {
-                if(jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours[j].m_modele].m_effets[jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k].m_effetEnCours].m_type == CHARME)
-                    if(jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k].m_cible == jeu->hero.m_amis[i])
+                if(jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours[j].m_modele].m_effets[jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_effetEnCours].m_type == CHARME)
+                    if(jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible == jeu->hero.m_amis[i])
                     {
-                       jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k].m_cible = jeu->map->getEntiteMonstre(jeu->map->getNombreMonstres() - 1);
-                       jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k].m_cible->setCoordonnee(jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k].m_cible->getCoordonnee());
-                       jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k].m_cible->setDepart();
+                       jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible = jeu->map->getEntiteMonstre(jeu->map->getNombreMonstres() - 1);
+                       jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible->setCoordonnee(jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible->getCoordonnee());
+                       jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible->setDepart();
                     }
             }
 
@@ -219,10 +219,13 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         for (int i = 0; i < (int)jeu->hero.m_personnage.m_miracleEnCours.size(); ++i)
             for (int o = 0; o < (int) jeu->hero.m_personnage.m_miracleEnCours[i].m_infos.size() ; ++o)
-                if(jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours[i].m_modele].m_effets[jeu->hero.m_personnage.m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type == EFFET)
+                if(jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours[i].m_modele].m_effets[jeu->hero.m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type == EFFET)
                 {
-                    if(jeu->hero.m_personnage.m_miracleEnCours[i].m_infos[o].m_cible != &jeu->hero.m_personnage)
+                    if(jeu->hero.m_personnage.m_miracleEnCours[i].m_infos[o]->m_cible != &jeu->hero.m_personnage)
+                    {
+                        delete jeu->hero.m_personnage.m_miracleEnCours[i].m_infos[o];
                         jeu->hero.m_personnage.m_miracleEnCours[i].m_infos.erase(jeu->hero.m_personnage.m_miracleEnCours[i].m_infos.begin() + o) ,o = -1;
+                    }
                 }
 
 

@@ -205,7 +205,7 @@ class EntiteMiracle
 public:
     EntiteMiracle(){ m_dejaConsommeFoi = false; }
 
-    std::vector<InfosEntiteMiracle>     m_infos;
+    std::vector<InfosEntiteMiracle*>    m_infos;
     int                                 m_modele;
     coordonnee                          m_coordonneeCible;
     coordonnee                          m_coordonneeDepart;
