@@ -1,7 +1,7 @@
 Brassards
 "Des_brassards_basiques_en_cuir."
 Armure_matelassee
-"Une_armure_légère_n'offrant_pas_beaucoup_de_protection."
+"Une_armure_légère_n'offrant_pas\beaucoup_de_protection."
 Arquebuse
 "Une_arquebuse_comme_on\en_faisait_à_l'ancienne.\Vous_ne_pouvez_pas_l'utiliser."
 Bottes
