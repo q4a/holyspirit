@@ -1,22 +1,25 @@
 
 main
-	if alive
+	if variable * 9 * 0 
 	then
-		if see
+		if alive
 		then
-			if distance * 2 
+			if see
 			then
-				if rand * 25
+				if distance * 2 
 				then
-					useMiracle * 0 
+					if rand * 25
+					then
+						useMiracle * 0 
+					else
+						fight
+					end
 				else
 					fight
 				end
 			else
-				fight
+				randomDisplace
 			end
-		else
-			randomDisplace
 		end
 	end
 end

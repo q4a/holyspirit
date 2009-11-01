@@ -1,22 +1,25 @@
 
 main 
-	if alive
+	if variable * 9 * 0 
 	then
-		if see
+		if alive
 		then
-			if distance * 3 
+			if see
 			then
-				evasion  
-			else	
-				if distance * 5 
+				if distance * 3 
 				then
-					shoot   
-				else
-					fight
+					evasion  
+				else	
+					if distance * 5 
+					then
+						shoot   
+					else
+						fight
+					end
 				end
+			else
+				randomDisplace  
 			end
-		else
-			randomDisplace  
 		end
 	end
 end 

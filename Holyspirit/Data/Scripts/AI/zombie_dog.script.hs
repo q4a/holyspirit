@@ -1,26 +1,29 @@
 
 main
-	if alive
+	if variable * 9 * 0 
 	then
-		variable * 1 * 0
-		if see
+		if alive
 		then
-			if variable * 0 * 0 
+			variable * 1 * 0
+			if see
 			then
-				variable * 0 * 1
-				playSound * 2
-			end
+				if variable * 0 * 0 
+				then
+					variable * 0 * 1
+					playSound * 2
+				end
 
-			fight
+				fight
+			else
+				variable * 0 * 0 
+				randomDisplace
+			end
 		else
-			variable * 0 * 0 
-			randomDisplace
-		end
-	else
-		if variable * 1 * 0
-		then
-			variable * 1 * 1
-			useMiracle * 1
+			if variable * 1 * 0
+			then
+				variable * 1 * 1
+				useMiracle * 1
+			end
 		end
 	end
 end

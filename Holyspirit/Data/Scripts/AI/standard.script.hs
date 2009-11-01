@@ -1,12 +1,15 @@
 
 main
-	if alive
+	if variable * 9 * 0 
 	then
-		if see
+		if alive
 		then
-			fight
-		else
-			randomDisplace
+			if see
+			then
+				fight
+			else
+				randomDisplace
+			end
 		end
 	end
 end
