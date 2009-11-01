@@ -1004,25 +1004,25 @@ void Map::Initialiser()
                     if (m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite<0)
                     {
                         if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='x'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='c')
-                            moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y-32), sf::Vector2f(pos.x+32 , pos.y+32),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
+                            m_decor[i][j][k].m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y-32), sf::Vector2f(pos.x+32 , pos.y+32),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
 
                         if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='y'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='c')
-                            moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y+32), sf::Vector2f(pos.x+32 , pos.y-32),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
+                            m_decor[i][j][k].m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y+32), sf::Vector2f(pos.x+32 , pos.y-32),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
 
                         if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='b'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='g')
-                            moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x, pos.y), sf::Vector2f(pos.x+32 , pos.y-32),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
+                            m_decor[i][j][k].m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x, pos.y), sf::Vector2f(pos.x+32 , pos.y-32),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
 
                         if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='b')
-                            moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y-32), sf::Vector2f(pos.x-0.1 , pos.y-0.1),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
+                            m_decor[i][j][k].m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y-32), sf::Vector2f(pos.x-0.1 , pos.y-0.1),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
 
                         if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='d')
-                            moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y-32), sf::Vector2f(pos.x-0.1 , pos.y+0.1),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
+                            m_decor[i][j][k].m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y-32), sf::Vector2f(pos.x-0.1 , pos.y+0.1),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
 
                         if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='h'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='g')
-                            moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x+0.1, pos.y+0.1), sf::Vector2f(pos.x+32 , pos.y+32),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
+                            m_decor[i][j][k].m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x+0.1, pos.y+0.1), sf::Vector2f(pos.x+32 , pos.y+32),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
 
                         if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='h'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='d')
-                            moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y+32), sf::Vector2f(pos.x , pos.y),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
+                            m_decor[i][j][k].m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y+32), sf::Vector2f(pos.x , pos.y),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
                     }
                 }
 
@@ -1379,10 +1379,10 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                         }
 
                     if (m_decor[couche][j][k].m_spriteOmbre.GetSize().x>0)
-                        if (m_decor[couche][j][k].m_spriteOmbre.GetPosition().x+m_decor[couche][j][k].m_spriteOmbre.GetSize().x-m_decor[couche][j][k].m_spriteOmbre.GetOrigin().x>=moteurGraphique->m_camera.GetRect().Left
+                       /* if (   m_decor[couche][j][k].m_spriteOmbre.GetPosition().x+m_decor[couche][j][k].m_spriteOmbre.GetSize().x-m_decor[couche][j][k].m_spriteOmbre.GetOrigin().x>=moteurGraphique->m_camera.GetRect().Left
                             && m_decor[couche][j][k].m_spriteOmbre.GetPosition().x-m_decor[couche][j][k].m_spriteOmbre.GetOrigin().x<moteurGraphique->m_camera.GetRect().Right
                             && m_decor[couche][j][k].m_spriteOmbre.GetPosition().y+m_decor[couche][j][k].m_spriteOmbre.GetSize().y-m_decor[couche][j][k].m_spriteOmbre.GetOrigin().y>=moteurGraphique->m_camera.GetRect().Top
-                            && m_decor[couche][j][k].m_spriteOmbre.GetPosition().y-m_decor[couche][j][k].m_spriteOmbre.GetOrigin().y<moteurGraphique->m_camera.GetRect().Bottom)
+                            && m_decor[couche][j][k].m_spriteOmbre.GetPosition().y-m_decor[couche][j][k].m_spriteOmbre.GetOrigin().y<moteurGraphique->m_camera.GetRect().Bottom)*/
                             moteurGraphique->AjouterCommande(&m_decor[couche][j][k].m_spriteOmbre,9,1);
 
                     if (couche==1)
@@ -1813,6 +1813,9 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                                 moteurGraphique->LightManager->SetColor(m_decor[i][j][k].m_light,sf::Color(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).rouge,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).vert,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).bleu));
 
                                 moteurGraphique->LightManager->Generate(m_decor[i][j][k].m_light);
+
+
+                                moteurGraphique->LightManager->SetIntensity(m_decor[i][j][k].m_light_wall,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite);
                             }
 
                             coordonnee position;
@@ -2351,6 +2354,14 @@ bool Map::Miracle_Invocation(Hero *hero, Personnage *personnage, Miracle &modele
 
         if (invoquer)
         {
+            for (unsigned p=0;p < effet.m_lien.size();p++)
+            {
+                miracleEnCours.m_infos.push_back(new InfosEntiteMiracle ());
+                miracleEnCours.m_infos.back()->m_effetEnCours    = effet.m_lien[p];
+                miracleEnCours.m_infos.back()->m_position        = info.m_position;
+                miracleEnCours.m_infos.back()->m_cible           = info.m_cible;
+            }
+
             info.m_position.x = positionCase.x*COTE_TILE;
             info.m_position.y = positionCase.y*COTE_TILE;
 
@@ -2392,14 +2403,6 @@ bool Map::Miracle_Invocation(Hero *hero, Personnage *personnage, Miracle &modele
             m_decor[1][positionCase.y][positionCase.x].setMonstre(m_monstre.size()-1);
 
             info.m_IDObjet=m_monstre.size()-1;
-
-            for (unsigned p=0;p < effet.m_lien.size();p++)
-            {
-                miracleEnCours.m_infos.push_back(new InfosEntiteMiracle ());
-                miracleEnCours.m_infos.back()->m_effetEnCours    = effet.m_lien[p];
-                miracleEnCours.m_infos.back()->m_position        = info.m_position;
-                miracleEnCours.m_infos.back()->m_cible           = info.m_cible;
-            }
         }
     }
     else if (info.m_IDObjet>=0&&info.m_IDObjet<(int)m_monstre.size())

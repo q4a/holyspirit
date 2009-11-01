@@ -193,6 +193,9 @@ void Configuration::ChargerInit()
             if (chaine== "death_sound:")
                 fichier>>chemin_son_mort;
 
+            if (chaine== "player_class:")
+                fichier>>player_class;
+
         }
         fichier.close();
     }
@@ -377,6 +380,7 @@ void Configuration::Sauvegarder()
         fichier<< "saving_frequency: " <<frequence_sauvegarde<<std::endl;
         fichier<<"debug_mod: "<<debug<<std::endl;
         fichier<<"desactivate_console: "<<desactivate_console<<std::endl;
+
 
         fichier.close();
     }

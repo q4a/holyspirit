@@ -172,7 +172,7 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std
     // On boucle sur tous les murs
     if (configuration->Lumiere==2)
         for (std::vector<Wall>::iterator IterWall=m_wall.begin()+minimum_wall;IterWall!=m_wall.end();++IterWall,++m)
-
+            if(IterWall->actif)
             if ( IterWall->pt1.x-m_position.x>-m_radius && IterWall->pt1.y-m_position.y>-m_radius && IterWall->pt2.x-m_position.x<m_radius && IterWall->pt2.y-m_position.y<m_radius )
 
             {

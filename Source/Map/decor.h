@@ -94,6 +94,7 @@ public:
 
 
     Light_Entity m_light;
+    Wall_Entity  m_light_wall;
 
     sf::Color color;
 

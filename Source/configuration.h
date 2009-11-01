@@ -59,6 +59,7 @@ class Configuration : public CSingleton<Configuration>
     std::string font_titre,font,chemin_video_developpeur,nom_video_developpeur,nom_sac,nom_corner,chemin_aa;
 
     std::string chemin_localisation,chemin_text_benedictions,chemin_text_menus,chemin_text_items,chemin_text_entities,chemin_text_dialogs,chemin_text_maps,chemin_text_miracles;
+    std::string player_class;
 
     std::string error;
     std::vector<std::string> text_menus;

@@ -88,10 +88,11 @@ Hero::Hero()
     ///Je donnes des valeur à mes variables juste pour les tests
     m_personnage.setEtat(ARRET);
 
-    if (rand()%2==1)
+   /* if (rand()%2==1)
         m_cheminClasse="Data/Entities/Heroes/Crusader.class.hs";
     else
-        m_cheminClasse="Data/Entities/Heroes/Concubine.class.hs";
+        m_cheminClasse="Data/Entities/Heroes/Concubine.class.hs";*/
+    m_cheminClasse = configuration->player_class;
 
     m_chercherSac.x=-1;
     m_chercherSac.y=-1;

@@ -86,6 +86,8 @@ class Light_Manager : public CSingleton<Light_Manager>
     void SetColor(Light_Entity &, sf::Color );
     void SetIntensity(Light_Entity &, int);
 
+    void SetIntensity(Wall_Entity &, int);
+
     float GetIntensity(Light_Entity);
     float GetRadius(Light_Entity);
     int GetQuality(Light_Entity);

@@ -320,6 +320,19 @@ void Light_Manager::SetIntensity(Light_Entity &e, int i)
             m_DynamicLight[e.ID()].SetIntensity(i);
 }
 
+void Light_Manager::SetIntensity(Wall_Entity &e, int i)
+{
+    if (e.ID()>=0&&e.ID()<(int)m_wall.size())
+    {
+        if(i < 0)
+            m_wall[e.ID()].actif = true;
+        else
+            m_wall[e.ID()].actif = false;
+    }
+
+}
+
+
 
 float Light_Manager::GetIntensity(Light_Entity e)
 {
