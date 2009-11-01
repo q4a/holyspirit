@@ -1,3 +1,4 @@
+
 #ifndef DEF_MAINWINDOW
 #define DEF_MAINWINDOW
 
@@ -18,6 +19,7 @@
 #include <QCheckBox>
 #include <QTextEdit>
 
+#include "highlighter.h"
 
 #include <iostream>
 
@@ -73,6 +75,8 @@ class MainWindow : public QWidget // On hérite de QWidget (IMPORTANT)
     QWidget         *win_script;
 
     QTextEdit       *text_script;
+    Highlighter     *highlighter;
+
 
     QLineEdit       *nomMap;
     QSpinBox        *tailleX;

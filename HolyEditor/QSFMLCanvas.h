@@ -29,6 +29,8 @@ public :
     ////////////////////////////////////////////////////////////
     QSFMLCanvas(const QSize& size, unsigned int frameTime = 0, QWidget* parent = NULL);
 
+    sf::Vector2f ConvertCoords(unsigned int x, unsigned int y, const sf::View& view) const;
+
     ////////////////////////////////////////////////////////////
     /// Destructor
     ///

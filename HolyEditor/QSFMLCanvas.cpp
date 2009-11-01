@@ -11,6 +11,7 @@
     #include <X11/Xlib.h>
 #endif
 
+using namespace sf;
 
 ////////////////////////////////////////////////////////////
 /// Construct the QSFMLCanvas
@@ -114,4 +115,17 @@ void QSFMLCanvas::paintEvent(QPaintEvent*)
     // Display on screen
    // Display();
 }
+
+sf::Vector2f QSFMLCanvas::ConvertCoords(unsigned int x, unsigned int y, const View& view) const
+{
+    // First, convert from viewport coordinates to homogeneous coordinates
+    Vector2f coords;
+    IntRect viewport = GetViewport(view);
+    coords.x = -1.f + 2.f * (static_cast<int>(x) - viewport.Left) / viewport.GetSize().x;
+    coords.y =  1.f - 2.f * (static_cast<int>(y) - viewport.Top)  / viewport.GetSize().y;
+
+    // Then transform by the inverse of the view matrix
+    return view.GetInverseMatrix().Transform(coords);
+}
+
 

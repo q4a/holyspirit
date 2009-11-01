@@ -1,5 +1,6 @@
 
 #include "MainWindow.h"
+#include "highlighter.moc"
 
 #include <iostream>
 #include <sstream>
@@ -22,10 +23,21 @@ MainWindow::MainWindow() : QWidget()
     m_tourUndo  = 0;
 
 
+    QFont font;
+     font.setFamily("Courier");
+     font.setFixedPitch(true);
+     font.setPointSize(8);
+
     win_script      = new QWidget();
     win_script->setGeometry(200,200,600,600);
-    text_script = new QTextEdit(win_script);
-    text_script->setGeometry(0,0,600,600);
+    text_script = new QTextEdit();
+    text_script->setGeometry(200,200,600,600);
+    text_script->setLineWrapMode(QTextEdit::NoWrap);
+    text_script->setFont(font);
+    //text_script->setColor(QColor(0,255,0));
+    text_script->setStyleSheet("color:red;");
+
+    highlighter = new Highlighter(text_script->document());
 
     fenetreNouveau      = new QWidget();
     fenetreNouveau->setGeometry(200,200,200,138);
@@ -245,6 +257,8 @@ MainWindow::~MainWindow()
     delete afficherMurLumiere;
     delete afficherCouche0;
     delete afficherCouche1;
+
+    delete highlighter;
 
 
     delete listTileset;
@@ -1035,6 +1049,7 @@ void MainWindow::ouvrir()
         std::ostringstream str;
         map->m_script.Sauvegarder(str);
         QString tempstr(str.str().c_str());
+       // tempstr.replace(QString("then"), QString("<span style=\"color : blue\">then<\\span>"));
         text_script->setText(tempstr);
         map->m_script.m_text = str.str().c_str();
     }
@@ -1435,7 +1450,7 @@ void MainWindow::importerEvenement()
 void MainWindow::script()
 {
     if (map != NULL)
-        win_script->show();
+        text_script->show();
 }
 
 void MainWindow::selectTileset(QTreeWidgetItem *item, int column)

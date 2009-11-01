@@ -121,6 +121,8 @@
 		<Unit filename="datFile.cpp" />
 		<Unit filename="datFile.h" />
 		<Unit filename="globale.h" />
+		<Unit filename="highlighter.cpp" />
+		<Unit filename="highlighter.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="singleton.h" />
 		<Extensions>

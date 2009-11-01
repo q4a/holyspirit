@@ -346,7 +346,7 @@ void Configuration::Sauvegarder()
     if (fichier)
     {
         for(unsigned i = 0 ; i < text_benedictions.size() ; ++i)
-            fichier<<text_benedictions[i];
+            fichier<<text_benedictions[i]<<std::endl;
         fichier.close();
     }
 
@@ -355,7 +355,7 @@ void Configuration::Sauvegarder()
     if (fichier2)
     {
         for(unsigned i = 0 ; i < text_menus.size() ; ++i)
-            fichier2<<text_menus[i];
+            fichier2<<text_menus[i]<<std::endl;
         fichier2.close();
     }
 
@@ -365,7 +365,7 @@ void Configuration::Sauvegarder()
     if (fichier3)
     {
         for(unsigned i = 0 ; i < text_items.size() ; ++i)
-            fichier3<<text_items[i];
+            fichier3<<text_items[i]<<std::endl;
         fichier3.close();
     }
 
@@ -374,7 +374,7 @@ void Configuration::Sauvegarder()
     if (fichier4)
     {
         for(unsigned i = 0 ; i < text_entities.size() ; ++i)
-            fichier4<<text_entities[i];
+            fichier4<<text_entities[i]<<std::endl;
         fichier4.close();
     }
 
@@ -383,7 +383,7 @@ void Configuration::Sauvegarder()
     if (fichier5)
     {
         for(unsigned i = 0 ; i < text_dialogs.size() ; ++i)
-            fichier5<<text_dialogs[i];
+            fichier5<<text_dialogs[i]<<std::endl;
         fichier5.close();
     }
 
@@ -391,8 +391,8 @@ void Configuration::Sauvegarder()
     fichier6.open((chemin_localisation+chemin_text_maps).c_str(), std::ios::in | std::ios::out | std::ios::trunc);
     if (fichier6)
     {
-        for(unsigned i = 0 ; i < text_benedictions.size() ; ++i)
-            fichier6<<text_maps[i];
+        for(unsigned i = 0 ; i < text_maps.size() ; ++i)
+            fichier6<<text_maps[i]<<std::endl;
         fichier6.close();
     }
 
@@ -401,7 +401,7 @@ void Configuration::Sauvegarder()
     if (fichier7)
     {
         for(unsigned i = 0 ; i < text_miracles.size() ; ++i)
-            fichier7<<text_miracles[i];
+            fichier7<<text_miracles[i]<<std::endl;
         fichier7.close();
     }
 

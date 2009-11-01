@@ -1,17 +1,10 @@
 INPUT(
 ./release\configuration.o
 ./release\datFile.o
+./release\highlighter.o
 ./release\main.o
 ./release\MainWindow.o
 ./release\QSFMLCanvas.o
-./release\c_changementMap.o
-./release\c_demarrage.o
-./release\c_inventaire.o
-./release\c_jeu.o
-./release\c_menuInGame.o
-./release\c_miracles.o
-./release\c_quetes.o
-./release\contexte.o
 ./release\case.o
 ./release\classe.o
 ./release\hero.o
@@ -36,5 +29,6 @@ INPUT(
 ./release\moteurGraphique.o
 ./release\moteurParticule.o
 ./release\moteurSons.o
+./release\moc_highlighter.o
 ./release\moc_MainWindow.o
 );

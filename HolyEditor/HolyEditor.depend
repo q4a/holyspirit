@@ -12,7 +12,7 @@
 	"configuration.h"
 	"Map/map.h"
 
-1252222208 e:\c++\holyspirit\holyeditor\qsfmlcanvas.h
+1257069606 e:\c++\holyspirit\holyeditor\qsfmlcanvas.h
 	<SFML/Graphics.hpp>
 	<QWidget>
 	<QTimer>
@@ -999,7 +999,7 @@
 1235597560 c:\qt\4.5.0\src\gui\widgets\qlabel.h
 	<QtGui/qframe.h>
 
-1252686736 source:e:\c++\holyspirit\holyeditor\qsfmlcanvas.cpp
+1257069578 source:e:\c++\holyspirit\holyeditor\qsfmlcanvas.cpp
 	"QSFMLCanvas.h"
 	<QEvent>
 	<Qt/qx11info_x11.h>
@@ -1008,7 +1008,7 @@
 1235597756 c:\qt\4.5.0\include\qtcore\qevent
 	"qcoreevent.h"
 
-1256484346 e:\c++\holyspirit\holyeditor\mainwindow.h
+1257070284 e:\c++\holyspirit\holyeditor\mainwindow.h
 	"SFMLCanvas.h"
 	"globale.h"
 	<QApplication>
@@ -1024,6 +1024,7 @@
 	<QSpinBox>
 	<QCheckBox>
 	<QTextEdit>
+	"highlighter.h"
 	<iostream>
 
 1252239298 e:\c++\holyspirit\holyeditor\sfmlcanvas.h
@@ -1033,8 +1034,9 @@
 	<QFrame>
 	<QLabel>
 
-1256485020 source:e:\c++\holyspirit\holyeditor\mainwindow.cpp
+1257073710 source:e:\c++\holyspirit\holyeditor\mainwindow.cpp
 	"MainWindow.h"
+	"highlighter.moc"
 	<iostream>
 	<sstream>
 	"Map/map.h"
@@ -1151,8 +1153,8 @@
 1235597558 c:\qt\4.5.0\src\gui\dialogs\qdialog.h
 	<QtGui/qwidget.h>
 
-1256484887 e:\c++\holyspirit\holyeditor\mainwindow.moc
-	"MainWindow.h"
+1257000985 e:\c++\holyspirit\holyeditor\mainwindow.moc
+	"mainwindow.h"
 
 1244283155 source:e:\c++\holyspirit\holyeditor\entites\case.cpp
 	"case.h"
@@ -1351,7 +1353,7 @@
 	<SFML/Graphics.hpp>
 	"../constantes.h"
 
-1256485669 e:\c++\holyspirit\holyeditor\entites\script.h
+1257074224 e:\c++\holyspirit\holyeditor\entites\script.h
 	<iostream>
 	<sstream>
 	"../constantes.h"
@@ -1410,7 +1412,7 @@
 	"../constantes.h"
 	"../globale.h"
 
-1256487865 source:e:\c++\holyspirit\holyeditor\entites\script.cpp
+1257073812 source:e:\c++\holyspirit\holyeditor\entites\script.cpp
 	<fstream>
 	"script.h"
 	"../globale.h"
@@ -1508,7 +1510,7 @@
 	"../globale.h"
 	<fstream>
 
-1255250025 source:e:\c++\holyspirit\holyeditor\moteurs\moteurgraphique.cpp
+1257069489 source:e:\c++\holyspirit\holyeditor\moteurs\moteurgraphique.cpp
 	"moteurGraphique.h"
 	"../globale.h"
 	<iostream>
@@ -1524,7 +1526,7 @@
 	"../globale.h"
 	<iostream>
 
-1255855327 source:e:\c++\holyspirit\holyeditor\configuration.cpp
+1256756913 source:e:\c++\holyspirit\holyeditor\configuration.cpp
 	"configuration.h"
 
 1244283156 source:e:\c++\holyspirit\holyeditor\datfile.cpp
@@ -1797,7 +1799,7 @@
 1253953329 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\sleep.hpp
 	<SFML/Config.hpp>
 
-1255974734 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\thread.hpp
+1256928506 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\thread.hpp
 	<SFML/Config.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<cstdlib>
@@ -1858,11 +1860,11 @@
 	<SFML/Window/WindowListener.hpp>
 	<SFML/Window/WindowStyle.hpp>
 
-1255764858 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\context.hpp
+1256742579 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\context.hpp
 	<SFML/Config.hpp>
 	<SFML/System/NonCopyable.hpp>
 
-1255974734 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\event.hpp
+1256742579 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\event.hpp
 	<SFML/Config.hpp>
 
 1255764858 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\input.hpp
@@ -1878,7 +1880,7 @@
 	<SFML/Config.hpp>
 	<cstdlib>
 
-1255974734 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\window.hpp
+1256928507 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\window.hpp
 	<SFML/Window/Event.hpp>
 	<SFML/Window/Input.hpp>
 	<SFML/Window/VideoMode.hpp>
@@ -2019,39 +2021,38 @@
 	<SFML/Audio/SoundRecorder.hpp>
 	<SFML/Audio/SoundStream.hpp>
 
-1253953328 e:\c++\sfml_svn\branches\sfml2\include\sfml\audio\listener.hpp
+1256928506 e:\c++\sfml_svn\branches\sfml2\include\sfml\audio\listener.hpp
 	<SFML/Config.hpp>
 	<SFML/System/Vector3.hpp>
 
-1255764857 e:\c++\sfml_svn\branches\sfml2\include\sfml\audio\music.hpp
+1256928506 e:\c++\sfml_svn\branches\sfml2\include\sfml\audio\music.hpp
 	<SFML/Audio/SoundStream.hpp>
 	<SFML/System/Mutex.hpp>
 	<string>
 	<vector>
 
-1253953328 e:\c++\sfml_svn\branches\sfml2\include\sfml\audio\soundstream.hpp
-	<SFML/Audio/Sound.hpp>
+1256928506 e:\c++\sfml_svn\branches\sfml2\include\sfml\audio\soundstream.hpp
+	<SFML/Audio/SoundSource.hpp>
 	<SFML/System/Thread.hpp>
 	<cstdlib>
 
-1255764857 e:\c++\sfml_svn\branches\sfml2\include\sfml\audio\sound.hpp
-	<SFML/Config.hpp>
+1256928506 e:\c++\sfml_svn\branches\sfml2\include\sfml\audio\sound.hpp
+	<SFML/Audio/SoundSource.hpp>
 	<SFML/System/Resource.hpp>
-	<SFML/System/Vector3.hpp>
 	<cstdlib>
 
-1253953328 e:\c++\sfml_svn\branches\sfml2\include\sfml\audio\soundbuffer.hpp
+1256928506 e:\c++\sfml_svn\branches\sfml2\include\sfml\audio\soundbuffer.hpp
 	<SFML/Config.hpp>
 	<SFML/System/Resource.hpp>
 	<string>
 	<vector>
 
-1253953328 e:\c++\sfml_svn\branches\sfml2\include\sfml\audio\soundbufferrecorder.hpp
+1256928506 e:\c++\sfml_svn\branches\sfml2\include\sfml\audio\soundbufferrecorder.hpp
 	<SFML/Audio/SoundBuffer.hpp>
 	<SFML/Audio/SoundRecorder.hpp>
 	<vector>
 
-1253953328 e:\c++\sfml_svn\branches\sfml2\include\sfml\audio\soundrecorder.hpp
+1256928506 e:\c++\sfml_svn\branches\sfml2\include\sfml\audio\soundrecorder.hpp
 	<SFML/System/Thread.hpp>
 	<vector>
 
@@ -2141,4 +2142,46 @@
 	<QtCore/qobject.h>
 	<QtGui/qevent.h>
 	<QtGui/qtextformat.h>
+
+1256928506 e:\c++\sfml_svn\branches\sfml2\include\sfml\audio\soundsource.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Vector3.hpp>
+
+1257000261 e:\c++\holyspirit\holyeditor\highlight.h
+	<QSyntaxHighlighter>
+	<QHash>
+	<QTextCharFormat>
+
+1235597758 c:\qt\4.5.0\include\qtgui\qsyntaxhighlighter
+	"qsyntaxhighlighter.h"
+
+1235597758 c:\qt\4.5.0\include\qtgui\qsyntaxhighlighter.h
+	"../../src/gui/text/qsyntaxhighlighter.h"
+
+1235597560 c:\qt\4.5.0\src\gui\text\qsyntaxhighlighter.h
+	<QtCore/qglobal.h>
+	<QtCore/qobject.h>
+	<QtGui/qtextobject.h>
+
+1235597756 c:\qt\4.5.0\include\qtcore\qhash
+	"qhash.h"
+
+1235597758 c:\qt\4.5.0\include\qtgui\qtextcharformat
+	"qtextformat.h"
+
+1257000270 source:e:\c++\holyspirit\holyeditor\highlight.cpp
+	<QtGui>
+	"highlight.h"
+
+1257067749 e:\c++\holyspirit\holyeditor\highlighter.h
+	<QSyntaxHighlighter>
+	<QHash>
+	<QTextCharFormat>
+
+1257073831 source:e:\c++\holyspirit\holyeditor\highlighter.cpp
+	<QtGui>
+	"highlighter.h"
+
+1257068636 e:\c++\holyspirit\holyeditor\highlighter.moc
+	"highlighter.h"
 

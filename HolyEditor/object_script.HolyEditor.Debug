@@ -1,17 +1,10 @@
 INPUT(
 ./debug\configuration.o
 ./debug\datFile.o
+./debug\highlighter.o
 ./debug\main.o
 ./debug\MainWindow.o
 ./debug\QSFMLCanvas.o
-./debug\c_changementMap.o
-./debug\c_demarrage.o
-./debug\c_inventaire.o
-./debug\c_jeu.o
-./debug\c_menuInGame.o
-./debug\c_miracles.o
-./debug\c_quetes.o
-./debug\contexte.o
 ./debug\case.o
 ./debug\classe.o
 ./debug\hero.o
@@ -36,5 +29,6 @@ INPUT(
 ./debug\moteurGraphique.o
 ./debug\moteurParticule.o
 ./debug\moteurSons.o
+./debug\moc_highlighter.o
 ./debug\moc_MainWindow.o
 );
