@@ -1177,9 +1177,8 @@ void Personnage::DetruireEffets()
                 }
             }
         }
+        m_effets[i].m_effet.m_actif = false;
     }
-
-    m_effets.clear();
 }
 
 int Personnage::AjouterEffet(std::vector<Tile> &tiles, int type, int compteur, int info1, int info2, int info3)

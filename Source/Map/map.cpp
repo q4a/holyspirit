@@ -1003,26 +1003,28 @@ void Map::Initialiser()
 
                     if (m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite<0)
                     {
-                        if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='x'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='c')
+                        if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='x'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='c'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='o'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='q')
                             m_decor[i][j][k].m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y-32), sf::Vector2f(pos.x+32 , pos.y+32),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
 
-                        if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='y'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='c')
+                        if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='y'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='c'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='p'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='r')
                             m_decor[i][j][k].m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y+32), sf::Vector2f(pos.x+32 , pos.y-32),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
 
-                        if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='b'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='g')
+                        if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='b'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='g'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='q')
                             m_decor[i][j][k].m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x, pos.y), sf::Vector2f(pos.x+32 , pos.y-32),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
 
-                        if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='b')
+                        if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='b'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='p')
                             m_decor[i][j][k].m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y-32), sf::Vector2f(pos.x-0.1 , pos.y-0.1),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
 
                         if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='d')
                             m_decor[i][j][k].m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y-32), sf::Vector2f(pos.x-0.1 , pos.y+0.1),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
 
-                        if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='h'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='g')
+                        if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='h'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='g'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='r')
                             m_decor[i][j][k].m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x+0.1, pos.y+0.1), sf::Vector2f(pos.x+32 , pos.y+32),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
 
                         if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='h'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='d')
                             m_decor[i][j][k].m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y+32), sf::Vector2f(pos.x , pos.y),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
+                        if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='o')
+                            m_decor[i][j][k].m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y+32), sf::Vector2f(pos.x-0.1 , pos.y+0.1),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
                     }
                 }
 
@@ -2352,6 +2354,12 @@ bool Map::Miracle_Invocation(Hero *hero, Personnage *personnage, Miracle &modele
                 invoquer = false;
         }
 
+        if(effet.m_informations[0] == 1)
+        {
+            positionCase.x = (int)(info.m_position.x/COTE_TILE);
+            positionCase.y = (int)(info.m_position.y/COTE_TILE);
+        }
+
         if (invoquer)
         {
             for (unsigned p=0;p < effet.m_lien.size();p++)
@@ -3332,44 +3340,32 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                 }
                 else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="numberInvocation" && monstre != -1)
                 {
-                    if (m_monstre[monstre].m_nombreInvocation==script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0))
-                        ok=true;
-                    else
+                    if (m_monstre[monstre].m_nombreInvocation!=script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0))
                         ok=false;
                 }
                 else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="distance" && monstre != -1)
                 {
-                    if (((m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)*(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x) + (m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)*(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)) < script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0)*script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0))
-                        ok=true;
-                    else
+                    if (((m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)*(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x) + (m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)*(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)) >= script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0)*script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0))
                         ok=false;
                 }
                 else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="rand")
                 {
-                    if (rand() % 100 <= script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0))
-                        ok=true;
-                    else
+                    if (rand() % 100 > script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0))
                         ok=false;
                 }
                 else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="variable")
                 {
-                    if (script->variables[script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0)]==script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(1))
-                        ok=true;
-                    else
+                    if (script->variables[script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0)]!=script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(1))
                         ok=false;
                 }
                 else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="talk" && monstre != -1)
                 {
-                    if (hero->getMonstreVise()==monstre&&fabs(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)<=1&&fabs(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)<=1)
-                        ok=true;
-                    else
+                    if (!(hero->getMonstreVise()==monstre&&fabs(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)<=1&&fabs(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)<=1))
                         ok=false;
                 }
                 else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="no_speak")
                 {
-                    if (jeu->menu.m_dialogue == " ")
-                        ok=true;
-                    else
+                    if (jeu->menu.m_dialogue != " ")
                         ok=false;
                 }
                 else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="quest")
@@ -3380,7 +3376,7 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                             if (hero->m_quetes[i].m_id == script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0))
                                 ok = false;
                     }
-                    else
+                    else if(ok)
                     {
                         ok = false;
                         for (int i = 0;i < (int)hero->m_quetes.size(); ++i)
@@ -3391,19 +3387,18 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                 }
                 else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="entity_variable" && monstre == -1)
                 {
-                    ok = true;
                     for(unsigned i = 0 ; i < m_monstre.size() ; ++i)
                         if(m_monstre[i].m_ID == script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs[0])
-                            if (!m_monstre[i].m_scriptAI.variables[script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs[1]]==script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs[2])
+                            if (m_monstre[i].m_scriptAI.variables[script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs[1]]!=script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs[2])
                                 ok=false;
                 }
                 else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="entity_dead" && monstre == -1)
                 {
-                    ok = true;
                     for(unsigned i = 0 ; i < m_monstre.size() ; ++i)
-                        if(m_monstre[i].m_ID == script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs[0])
-                            if (m_monstre[i].EnVie())
-                                ok=false;
+                        if(!m_monstre[i].m_friendly)
+                            if(m_monstre[i].m_ID == script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs[0])
+                                if (m_monstre[i].EnVie())
+                                    ok=false;
                 }
             }
         }

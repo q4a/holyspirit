@@ -2206,8 +2206,8 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
             Caracteristique temp = m_personnage.getCaracteristique();
             temp.pts_restant--;
             temp.vitalite++;
-            temp.maxVie=temp.vitalite*10;
-            temp.vie=temp.maxVie;
+            //temp.maxVie=temp.vitalite*10;
+            //temp.vie=temp.maxVie;
             m_personnage.setCaracteristique(temp);
             RecalculerCaracteristiques();
             m_caracteristiques.vie+=10;
@@ -2217,8 +2217,8 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
             Caracteristique temp = m_personnage.getCaracteristique();
             temp.pts_restant--;
             temp.piete++;
-            temp.maxFoi=temp.piete*10;
-            temp.foi=temp.maxFoi;
+            //temp.maxFoi=temp.piete*10;
+            //temp.foi=temp.maxFoi;
             m_personnage.setCaracteristique(temp);
             RecalculerCaracteristiques();
             m_caracteristiques.foi+=10;
