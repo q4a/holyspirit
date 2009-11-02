@@ -38,4 +38,4 @@ La voie du Protecteur
 La voie du Pieux
 La voie de l'Empoisoneuse
 La voie de l'Assassin
-La voie de la_Séductrice
+La voie de la Séductrice
