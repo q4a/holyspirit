@@ -19,17 +19,17 @@
 	<File name="Entites\personnage.h" open="0" top="0" tabpos="3">
 		<Cursor position="1847" topLine="63" />
 	</File>
-	<File name="Entites\script.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="5178" topLine="155" />
+	<File name="Entites\script.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="4037" topLine="156" />
 	</File>
-	<File name="Entites\script.h" open="1" top="0" tabpos="3">
-		<Cursor position="820" topLine="6" />
+	<File name="Entites\script.h" open="1" top="0" tabpos="5">
+		<Cursor position="964" topLine="31" />
 	</File>
-	<File name="MainWindow.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="610" topLine="15" />
+	<File name="MainWindow.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="867" topLine="20" />
 	</File>
-	<File name="MainWindow.h" open="1" top="0" tabpos="2">
-		<Cursor position="1712" topLine="12" />
+	<File name="MainWindow.h" open="0" top="0" tabpos="2">
+		<Cursor position="2" topLine="0" />
 	</File>
 	<File name="Map\decor.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="5761" topLine="195" />
@@ -80,15 +80,15 @@
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="QSFMLCanvas.cpp" open="0" top="0" tabpos="21">
-		<Cursor position="3162" topLine="0" />
+		<Cursor position="417" topLine="96" />
 	</File>
 	<File name="QSFMLCanvas.h" open="0" top="0" tabpos="24">
-		<Cursor position="669" topLine="1" />
+		<Cursor position="1078" topLine="9" />
 	</File>
 	<File name="SFMLCanvas.h" open="0" top="0" tabpos="25">
 		<Cursor position="608" topLine="8" />
 	</File>
-	<File name="configuration.cpp" open="1" top="0" tabpos="5">
+	<File name="configuration.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="11808" topLine="365" />
 	</File>
 	<File name="configuration.h" open="0" top="0" tabpos="26">
@@ -100,13 +100,13 @@
 	<File name="globale.h" open="0" top="0" tabpos="4">
 		<Cursor position="943" topLine="0" />
 	</File>
-	<File name="highlighter.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="2181" topLine="24" />
+	<File name="highlighter.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="1394" topLine="21" />
 	</File>
-	<File name="highlighter.h" open="1" top="1" tabpos="7">
-		<Cursor position="557" topLine="6" />
+	<File name="highlighter.h" open="0" top="0" tabpos="7">
+		<Cursor position="282" topLine="6" />
 	</File>
 	<File name="main.cpp" open="0" top="0" tabpos="19">
-		<Cursor position="1713" topLine="43" />
+		<Cursor position="163" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>
