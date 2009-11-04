@@ -1,10 +1,9 @@
-texture framebuffer
-vec3 color
+uniform sampler2D framebuffer;
+uniform vec3 color;
 
-
-effect
+void main()
 {
-	_out=  vec4( color, 1.0) * framebuffer(_in)   ;
+   gl_FragColor = vec4( color, 1.0) * texture2D(framebuffer, gl_TexCoord[0].xy);
 }
 
 

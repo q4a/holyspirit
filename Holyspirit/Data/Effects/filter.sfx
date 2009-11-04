@@ -1,14 +1,15 @@
-texture framebuffer
+uniform sampler2D framebuffer;
 
-effect
+void main()
 {
-	vec4 pixel = framebuffer(_in);
+	vec4 pixel = texture2D(framebuffer, gl_TexCoord[0].xy);
 	float gray = pixel.r * 0.39 + pixel.g * 0.50 + pixel.b * 0.11;
 	
 	vec4 temp2 = vec4(gray * vec3(1.0,1.0,1.0), 1.0) * 0.5 + pixel * 0.5;
 	
-	vec4 temp=(temp2 - vec4( 0.1,0.1,0.1,0.0));
-	_out=  temp2 + temp * vec4(0.25,0.25,0.25,1.0);
+	vec4 temp=(temp2 - vec4( 0.1,0.1,0.1,1.0));
+	gl_FragColor =  temp2 + temp * vec4(0.25,0.25,0.25,1.0);
 }
+
 
 

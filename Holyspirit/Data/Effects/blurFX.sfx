@@ -1,7 +1,7 @@
-texture framebuffer
-float offset
+uniform sampler2D framebuffer;
+uniform float offset;
 
-effect
+void main()
 {
 	vec2 offx = vec2(offset, 0.0);
 	vec2 offy = vec2(0.0, offset);
@@ -9,17 +9,18 @@ effect
 	vec2 offx2 = vec2(offset*0.5, 0.0);
 	vec2 offy2 = vec2(0.0, offset*0.5);
 
-	vec4 c0 = framebuffer(_in);
-	vec4 c1 = framebuffer(_in - offy );
-	vec4 c2 = framebuffer(_in + offy );
-	vec4 c3 = framebuffer(_in - offx);
-	vec4 c4 = framebuffer(_in + offx);
+	vec4 c0 = texture2D(framebuffer, gl_TexCoord[0].xy);
+	vec4 c1 = texture2D(framebuffer, gl_TexCoord[0].xy - offy );
+	vec4 c2 = texture2D(framebuffer, gl_TexCoord[0].xy + offy );
+	vec4 c3 = texture2D(framebuffer, gl_TexCoord[0].xy - offx );
+	vec4 c4 = texture2D(framebuffer, gl_TexCoord[0].xy + offx );
 	
-	vec4 c5 = framebuffer(_in);
-	vec4 c6 = framebuffer(_in - offy2 - offx2 );
-	vec4 c7 = framebuffer(_in + offy2 + offx2 );
-	vec4 c8 = framebuffer(_in - offx2 + offy2);
-	vec4 c9 = framebuffer(_in + offx2 - offy2);
+	vec4 c5 = texture2D(framebuffer, gl_TexCoord[0].xy);
+	vec4 c6 = texture2D(framebuffer, gl_TexCoord[0].xy - offy2 - offx2 );
+	vec4 c7 = texture2D(framebuffer, gl_TexCoord[0].xy + offy2 + offx2 );
+	vec4 c8 = texture2D(framebuffer, gl_TexCoord[0].xy - offx2 + offy2 );
+	vec4 c9 = texture2D(framebuffer, gl_TexCoord[0].xy + offx2 - offy2 );
 	
-	_out = 	c0 * 0.1 + c1 * 0.1 + c2 * 0.1 + c3 * 0.1 + c4 * 0.1 + c5 * 0.1 + c6 * 0.1 + c7 * 0.1 + c8 * 0.1 + c9 * 0.1;
+	gl_FragColor = 	c0 * 0.1 + c1 * 0.1 + c2 * 0.1 + c3 * 0.1 + c4 * 0.1 + c5 * 0.1 + c6 * 0.1 + c7 * 0.1 + c8 * 0.1 + c9 * 0.1;
 }
+
