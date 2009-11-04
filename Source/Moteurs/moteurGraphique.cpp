@@ -79,14 +79,19 @@ void MoteurGraphique::CreateNewWindow()
 
     if (configuration->postFX)
     {
-        EffectBlur.SetTexture("framebuffer", NULL);
-        EffectNoir.SetTexture("framebuffer", NULL);
-        EffectMort.SetTexture("framebuffer", NULL);
-        EffectContrastes.SetTexture("framebuffer", NULL);
-        EffectFiltre.SetTexture("framebuffer", NULL);
+        EffectBlur.SetTexture("framebuffer", sf::Shader::CurrentTexture);
+        EffectBlur2.SetTexture("framebuffer", sf::Shader::CurrentTexture);
+        EffectNoir.SetTexture("framebuffer", sf::Shader::CurrentTexture);
+        EffectMort.SetTexture("framebuffer", sf::Shader::CurrentTexture);
+        EffectContrastes.SetTexture("framebuffer", sf::Shader::CurrentTexture);
+        EffectFiltre.SetTexture("framebuffer", sf::Shader::CurrentTexture);
     }
 
     m_ecran.SetActive();
+
+    bufferImage.Create(m_ecran.GetWidth(), m_ecran.GetHeight());
+    m_light_screen.Create(m_ecran.GetWidth(), m_ecran.GetHeight());
+    m_light_screen2.Create(m_ecran.GetWidth(), m_ecran.GetHeight());
 
 
     //m_light_screen.Create(configuration->Resolution.w + 64, configuration->Resolution.h + 64);
@@ -107,6 +112,15 @@ void MoteurGraphique::Charger()
             console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetBlur,1);
         else
             console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetBlur,0);
+
+        if (!EffectBlur2.LoadFromFile(configuration->chemin_fx+configuration->nom_effetBlur))
+            console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetBlur,1);
+        else
+            console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetBlur,0);
+
+        EffectBlur.SetParameter("offset",0.02);
+        EffectBlur2.SetParameter("offset",0.0075);
+
         if (!EffectMort.LoadFromFile(configuration->chemin_fx+configuration->nom_effetMort))
             console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetMort,1);
         else
@@ -217,35 +231,29 @@ void MoteurGraphique::Gerer(float temps,int tailleMapY)
 
 void MoteurGraphique::Afficher()
 {
-    //configuration->Resolution.x = m_ecran.GetWidth();
-    //configuration->Resolution.y = m_ecran.GetHeight();
-
     sf::Sprite sprite;
     sf::Sprite sprite2;
 
-    m_ecran.SetView(m_camera);
-
-    int nombre = 0;
-
     if (configuration->RafraichirOmbre==1&&configuration->Ombre&&m_soleil.intensite>32)
     {
+        m_light_screen2.SetView(m_camera);
+
         decalageOmbre=m_camera.GetCenter();
 
-        m_ecran.Clear(sf::Color(255,255,255));
+        m_light_screen2.Clear(sf::Color(255,255,255));
 
-        LightManager->DrawWallShadow(&m_ecran,&m_camera);
+        LightManager->DrawWallShadow(&m_light_screen2,&m_camera);
 
-        m_ecran.SetView(m_camera);
         sprite.SetBlendMode(sf::Blend::Alpha);
 
         for (IterCommande=m_commandes[9].begin();IterCommande!=m_commandes[9].end();++IterCommande)
         {
             sprite=IterCommande->m_sprite;
             sprite.SetColor(sf::Color(0,0,0,sprite.GetColor().a));
-            m_ecran.Draw(sprite);
+            m_light_screen2.Draw(sprite);
         }
 
-        m_ecran.SetView(m_ecran.GetDefaultView());
+        m_light_screen2.SetView(m_light_screen2.GetDefaultView());
 
         sf::Sprite sprite3;
         sprite3.SetX(0);
@@ -254,15 +262,9 @@ void MoteurGraphique::Afficher()
         sprite3.Resize(configuration->Resolution.w,configuration->Resolution.h);
         sprite3.SetColor(sf::Color(sf::Color((int)(128+128-m_soleil.intensite*0.5),(int)(128+128-m_soleil.intensite*0.5),(int)(128+128-m_soleil.intensite*0.5))));
         sprite3.SetBlendMode(sf::Blend::Add);
-        m_ecran.Draw(sprite3);
+        m_light_screen2.Draw(sprite3);
 
-        if (configuration->postFX)
-        {
-            EffectBlur.SetParameter("offset",0.0075);
-            m_ecran.Draw(EffectBlur);
-        }
-
-        m_light_screen2.CopyScreen(m_ecran);
+        m_light_screen2.Display();
 
         configuration->RafraichirOmbre=2;
     }
@@ -271,56 +273,49 @@ void MoteurGraphique::Afficher()
     {
         decalageLumiere=m_camera.GetCenter();
 
-        m_ecran.SetView(m_camera);
+        m_light_screen.SetView(m_camera);
 
-        m_ecran.Clear(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
+        m_light_screen.Clear(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
 
-        sprite2.SetColor(sf::Color(255,255,255,255));
+        LightManager->Draw(&m_light_screen,&m_camera);
 
-        LightManager->Draw(&m_ecran,&m_camera);
-
-        if (configuration->postFX)
-        {
-            EffectBlur.SetParameter("offset",0.02);
-            m_ecran.Draw(EffectBlur);
-        }
-
-        m_light_screen.CopyScreen(m_ecran);
+        m_light_screen.Display();
 
         configuration->RafraichirLumiere=false;
     }
 
-    m_ecran.Clear();
+    bufferImage.Clear();
 
     for (int k=0;k<=20;k++)
     {
-        if (k==12&&configuration->postFX)
-            m_ecran.Draw(EffectFiltre);
-
-        if (k==12&&configuration->Lumiere)
+        if (k==12 && configuration->Lumiere)
         {
-            sprite2.SetImage(m_light_screen);
-            sprite2.SetBlendMode(sf::Blend::Multiply);
-            sprite2.SetColor(sf::Color(255,255,255,255));
+            sf::Sprite screen(m_light_screen.GetImage());
 
-            sprite2.SetX(0);
-            sprite2.SetY(0);
+            screen.SetBlendMode(sf::Blend::Multiply);
+            screen.SetColor(sf::Color(255,255,255));
 
-            m_ecran.SetView(m_ecran.GetDefaultView());
-            m_ecran.Draw(sprite2);
+            screen.SetX(0);
+            screen.SetY(0);
+
+            bufferImage.SetView(bufferImage.GetDefaultView());
+
+            bufferImage.Draw(screen, EffectBlur);
         }
 
-        if (k==10&&configuration->Ombre&&configuration->Ombre&&m_soleil.intensite>32)
+        if (k==10 && configuration->Ombre && m_soleil.intensite>32)
         {
-            sprite2.SetImage(m_light_screen2);
-            sprite2.SetBlendMode(sf::Blend::Multiply);
-            sprite2.SetColor(sf::Color(255,255,255));
+            sf::Sprite screen(m_light_screen2.GetImage());
 
-            sprite2.SetX(decalageOmbre.x-m_camera.GetCenter().x);
-            sprite2.SetY(decalageOmbre.y-m_camera.GetCenter().y);
+            screen.SetBlendMode(sf::Blend::Multiply);
+            screen.SetColor(sf::Color(255,255,255));
 
-            m_ecran.SetView(m_ecran.GetDefaultView());
-            m_ecran.Draw(sprite2);
+            screen.SetX(decalageOmbre.x-m_camera.GetCenter().x);
+            screen.SetY(decalageOmbre.y-m_camera.GetCenter().y);
+
+            bufferImage.SetView(bufferImage.GetDefaultView());
+
+            bufferImage.Draw(screen, EffectBlur2);
         }
 
         if (k!=9)
@@ -328,18 +323,21 @@ void MoteurGraphique::Afficher()
             for (IterCommande=m_commandes[k].begin();IterCommande!=m_commandes[k].end();++IterCommande)
             {
                 if (IterCommande->m_utiliserCamera)
-                    m_ecran.SetView(m_camera);
+                    bufferImage.SetView(m_camera);
                 else
-                    m_ecran.SetView(m_ecran.GetDefaultView());
+                    bufferImage.SetView(bufferImage.GetDefaultView());
 
-                m_ecran.Draw(IterCommande->m_sprite);
+                if(k < 12)
+                    bufferImage.Draw(IterCommande->m_sprite,EffectFiltre);
+                else
+                    bufferImage.Draw(IterCommande->m_sprite);
             }
         }
 
-        m_ecran.SetView(m_ecran.GetDefaultView());
+        bufferImage.SetView(bufferImage.GetDefaultView());
 
         for (unsigned i=0;i<m_textes[k].size();i++)
-            m_ecran.Draw(m_textes[k][i]);
+            bufferImage.Draw(m_textes[k][i]);
 
 
         if (k==13)
@@ -351,35 +349,36 @@ void MoteurGraphique::Afficher()
                 sprite2.Resize(configuration->Resolution.w,configuration->Resolution.h);
                 sprite2.SetColor(sf::Color((int)configuration->luminosite*2,(int)configuration->luminosite*2,(int)configuration->luminosite*2,255));
                 sprite2.SetBlendMode(sf::Blend::Add);
-                m_ecran.Draw(sprite2);
+                bufferImage.Draw(sprite2);
             }
 
-            if (configuration->contrastes>1&&configuration->postFX)
+            if (configuration->contrastes>1 && configuration->postFX)
             {
-                m_ecran.Draw(EffectContrastes);
+                bufferImage.SetView(bufferImage.GetDefaultView());
+                bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectContrastes);
                 EffectContrastes.SetParameter("color", configuration->contrastes-1, configuration->contrastes-1, configuration->contrastes-1);
             }
         }
 
 
-        if (k==18&&configuration->postFX)
+        if (k==18 && configuration->postFX)
         {
             if (m_blur>0)
             {
+                bufferImage.SetView(bufferImage.GetDefaultView());
+                bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectBlur);
                 EffectBlur.SetParameter("offset",(float)m_blur);
-                m_ecran.Draw(EffectBlur);
             }
             if (configuration->effetMort>0)
-                m_ecran.Draw(EffectMort);
+            {
+                bufferImage.SetView(bufferImage.GetDefaultView());
+                bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectMort);
+            }
         }
-
-        nombre += m_commandes[k].size();
 
         m_commandes[k].clear();
         m_textes[k].clear();
     }
-
-    //std::cout<<nombre<<std::endl;
 
     if (configuration->effetNoir>0)
     {
@@ -388,12 +387,13 @@ void MoteurGraphique::Afficher()
         sprite2.Resize(configuration->Resolution.w,configuration->Resolution.h);
         sprite2.SetColor(sf::Color((int)(configuration->effetNoir*255),(int)(configuration->effetNoir*255),(int)(configuration->effetNoir*255),255));
         sprite2.SetBlendMode(sf::Blend::Multiply);
-        m_ecran.Draw(sprite2);
+        bufferImage.Draw(sprite2);
     }
 
-
+ //   m_ecran.Clear();
+    bufferImage.Display();
+    m_ecran.Draw(sf::Sprite(bufferImage.GetImage()));
     m_ecran.Display();
-    //Vider();
 }
 
 int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std::string nom,int importance)

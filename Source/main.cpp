@@ -63,8 +63,8 @@ int main (  )
 
         eventManager=EventManager::GetInstance();
 
-        if (!sf::PostFX::CanUsePostFX())
-            configuration->postFX = false;
+       // if (!sf::PostFX::CanUsePostFX())
+        //    configuration->postFX = false;
 
         moteurGraphique->Charger();
         moteurGraphique->CreateNewWindow();

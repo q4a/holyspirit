@@ -100,7 +100,10 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	std::string getCheminImage(int IDimage);
 
-	sf::PostFX EffectBlur,EffectMort,EffectNoir,EffectContrastes,EffectFiltre;
+	sf::Shader  EffectBlur,EffectBlur2,EffectMort,EffectNoir,EffectContrastes,EffectFiltre;
+	sf::RenderImage bufferImage;
+	sf::RenderImage m_light_screen;
+    sf::RenderImage m_light_screen2;
 
 	sf::Font m_font,m_font_titre;
 
@@ -114,8 +117,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
     int m_img_corner;
 
-    sf::Image m_light_screen;
-    sf::Image m_light_screen2;
+
 
   //  sf::RenderImage m_light_screen3;
 

@@ -823,7 +823,7 @@ void c_Jeu::Affichage(Jeu *jeu)
     if (jeu->map->getEvenement(eventManager->getCasePointee())>=0)
         jeu->map->AfficherNomEvenement(eventManager->getCasePointee(),eventManager->getPositionSouris());
 
-    if (configuration->effetMort&&sf::PostFX::CanUsePostFX() == true&&configuration->postFX&&tempsEffetMort!=0)
+    if (configuration->effetMort/*&& sf::Shader::CanUseShader() == true*/&&configuration->postFX&&tempsEffetMort!=0)
     {
         moteurGraphique->EffectMort.SetParameter("offset", 0.003*configuration->effetMort/100*(0.6+tempsEffetMort/10));
         moteurGraphique->EffectMort.SetParameter("color",1+0.5*configuration->effetMort/100*tempsEffetMort, 1-1*configuration->effetMort/100*tempsEffetMort, 1-1*configuration->effetMort/100*tempsEffetMort);
