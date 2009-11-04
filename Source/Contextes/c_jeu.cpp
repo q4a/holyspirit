@@ -75,6 +75,7 @@ c_Jeu::c_Jeu()
 void c_Jeu::Utiliser(Jeu *jeu)
 {
     //Gestion du temps
+    while(jeu->Clock.GetElapsedTime() < 0.001){}
     tempsEcoule = jeu->Clock.GetElapsedTime();
     if (tempsEcoule>0.1)
         tempsEcoule=0.1;
@@ -99,7 +100,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
     Animation(jeu);
     Lumieres(jeu);
 
-    if ((tempsEcouleDepuisDernierAffichage>0.01&&configuration->syncronisation_verticale)||(!configuration->syncronisation_verticale))
+    if ((tempsEcouleDepuisDernierAffichage>0.012&&configuration->syncronisation_verticale)||(!configuration->syncronisation_verticale))
     {
         jeu->hero.PlacerCamera();
 

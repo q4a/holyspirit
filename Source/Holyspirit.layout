@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Release" />
-	<File name="Contextes\c_changementMap.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="7925" topLine="207" />
+	<File name="Contextes\c_changementMap.cpp" open="0" top="0" tabpos="10">
+		<Cursor position="7995" topLine="111" />
 	</File>
 	<File name="Contextes\c_changementMap.h" open="0" top="0" tabpos="18">
 		<Cursor position="2349" topLine="39" />
 	</File>
-	<File name="Contextes\c_demarrage.cpp" open="0" top="0" tabpos="17">
-		<Cursor position="1707" topLine="45" />
+	<File name="Contextes\c_demarrage.cpp" open="0" top="0" tabpos="9">
+		<Cursor position="1795" topLine="35" />
 	</File>
 	<File name="Contextes\c_demarrage.h" open="0" top="0" tabpos="1">
 		<Cursor position="1454" topLine="27" />
@@ -19,8 +19,8 @@
 	<File name="Contextes\c_inventaire.h" open="0" top="0" tabpos="25">
 		<Cursor position="287" topLine="0" />
 	</File>
-	<File name="Contextes\c_jeu.cpp" open="1" top="0" tabpos="7">
-		<Cursor position="38267" topLine="809" />
+	<File name="Contextes\c_jeu.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="2142" topLine="67" />
 	</File>
 	<File name="Contextes\c_jeu.h" open="0" top="0" tabpos="14">
 		<Cursor position="858" topLine="95" />
@@ -61,7 +61,7 @@
 	<File name="Entites\classe.h" open="0" top="0" tabpos="18">
 		<Cursor position="1358" topLine="39" />
 	</File>
-	<File name="Entites\hero.cpp" open="1" top="0" tabpos="2">
+	<File name="Entites\hero.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="110387" topLine="2212" />
 	</File>
 	<File name="Entites\hero.h" open="0" top="0" tabpos="5">
@@ -79,7 +79,7 @@
 	<File name="Entites\miracle.h" open="0" top="0" tabpos="2">
 		<Cursor position="5361" topLine="171" />
 	</File>
-	<File name="Entites\monstre.cpp" open="1" top="0" tabpos="4">
+	<File name="Entites\monstre.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="3522" topLine="107" />
 	</File>
 	<File name="Entites\monstre.h" open="0" top="0" tabpos="6">
@@ -91,7 +91,7 @@
 	<File name="Entites\objet.h" open="0" top="0" tabpos="20">
 		<Cursor position="1948" topLine="66" />
 	</File>
-	<File name="Entites\personnage.cpp" open="1" top="0" tabpos="3">
+	<File name="Entites\personnage.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="46346" topLine="1157" />
 	</File>
 	<File name="Entites\personnage.h" open="0" top="0" tabpos="2">
@@ -127,7 +127,7 @@
 	<File name="Map\evenement.h" open="0" top="0" tabpos="25">
 		<Cursor position="1329" topLine="26" />
 	</File>
-	<File name="Map\map.cpp" open="1" top="0" tabpos="1">
+	<File name="Map\map.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="165565" topLine="3331" />
 	</File>
 	<File name="Map\map.h" open="0" top="0" tabpos="4">
@@ -178,10 +178,10 @@
 	<File name="Moteurs\modeleMoteurParticule.h" open="0" top="0" tabpos="21">
 		<Cursor position="926" topLine="19" />
 	</File>
-	<File name="Moteurs\moteurGraphique.cpp" open="1" top="1" tabpos="6">
-		<Cursor position="14603" topLine="372" />
+	<File name="Moteurs\moteurGraphique.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="2307" topLine="57" />
 	</File>
-	<File name="Moteurs\moteurGraphique.h" open="1" top="0" tabpos="5">
+	<File name="Moteurs\moteurGraphique.h" open="0" top="0" tabpos="5">
 		<Cursor position="2367" topLine="85" />
 	</File>
 	<File name="Moteurs\moteurParticule.cpp" open="0" top="0" tabpos="11">
@@ -214,13 +214,13 @@
 	<File name="globale.h" open="0" top="0" tabpos="8">
 		<Cursor position="287" topLine="0" />
 	</File>
-	<File name="jeu.cpp" open="0" top="0" tabpos="14">
-		<Cursor position="2448" topLine="71" />
+	<File name="jeu.cpp" open="1" top="1" tabpos="3">
+		<Cursor position="2118" topLine="62" />
 	</File>
 	<File name="jeu.h" open="0" top="0" tabpos="14">
 		<Cursor position="777" topLine="5" />
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="8">
+	<File name="main.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="2518" topLine="24" />
 	</File>
 	<File name="main.h" open="0" top="0" tabpos="45">

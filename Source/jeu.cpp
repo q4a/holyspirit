@@ -89,7 +89,8 @@ void Jeu::Demarrer()
 
         m_contexte->Utiliser(this);
 
-        moteurGraphique->Afficher();
+        if(m_display)
+            moteurGraphique->Afficher();
     }
 
     if(m_jeu->m_thread_sauvegarde)
