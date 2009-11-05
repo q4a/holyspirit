@@ -18,3 +18,9 @@ Si vous allez tuer les trois méchants prêtres démoniaques du donjon, je vous off
 Quête terminée. J'ai du combattre trois redoutables prêtres démoniaques.
 Les trois méchants
 C'est fermé, je ne suis pas encore censé me trouver ici.
+Saloperie de caillous
+Bien le bonjour guerrier,\Des démons ont récemment converti mon muret de jardin en énormes amas de pierres animées qui ravagent tout sur leur passage. Si vous pouviez éléminer ceux près de ma maison, je vous offrirais une belle récompense. Pour les trouver, aller à l'ouest puis au nord. Ma maison se trouvae juste au croisement de la route.
+Mais qu'est-ce que vous attendez ?\Allez les tuer bon sang !
+Quête terminée. J'ai tué les Errants des roches.
+Merci.\Voici votre du.\+2000 d'argent reçu.
+J'ai tué les Errants des roches, je dois aller récupérer ma récompense auprès du Questeur.
