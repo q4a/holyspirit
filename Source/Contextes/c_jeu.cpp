@@ -37,12 +37,13 @@ void Sauvegarder(void* UserData)
 
     jeu->map->Sauvegarder(&jeu->hero);
     jeu->hero.Sauvegarder();
+    moteurGraphique->LightManager->GenerateWallShadow(moteurGraphique->m_angleOmbreSoleil,moteurGraphique->m_soleil);
 }
 
 c_Jeu::c_Jeu()
 {
     continuer=true,lumiere=false,augmenter=false;
-    tempsActuel=0,tempsPrecedent=0,tempsDepuisDerniereAnimation=0,tempsEcoule=0,tempsNbrTourBoucle=0,tempsEcouleDepuisDernierCalculLumiere=0,tempsEcouleDepuisDernierCalculOmbre=0,tempsEcouleDepuisDernierDeplacement=0,tempsEcouleDepuisDernierIA=0,tempsEcouleDepuisDernierAffichage=0,tempsEcouleDepuisFPS=0,tempsEffetMort=0,tempsSauvergarde=0;
+    tempsActuel=0,tempsPrecedent=0,tempsDepuisDerniereAnimation=0,tempsEcoule=0,tempsNbrTourBoucle=0,tempsEcouleDepuisDernierCalculLumiere=0.005,tempsEcouleDepuisDernierCalculOmbre=0,tempsEcouleDepuisDernierDeplacement=0,tempsEcouleDepuisDernierIA=0,tempsEcouleDepuisDernierAffichage=0,tempsEcouleDepuisFPS=0,tempsEffetMort=0,tempsSauvergarde=0;
     nbrTourBoucle=0;
 
     configuration->heure=(rand() % (24));
@@ -75,7 +76,6 @@ c_Jeu::c_Jeu()
 void c_Jeu::Utiliser(Jeu *jeu)
 {
     //Gestion du temps
-    while(jeu->Clock.GetElapsedTime() < 0.001){}
     tempsEcoule = jeu->Clock.GetElapsedTime();
     if (tempsEcoule>0.1)
         tempsEcoule=0.1;
@@ -120,8 +120,9 @@ void c_Jeu::GererTemps(Jeu *jeu)
     tempsEcouleDepuisDernierIA+=tempsEcoule;
     tempsEcouleDepuisDernierCalculLumiere+=tempsEcoule;
     tempsSauvergarde+=tempsEcoule;
-    configuration->minute+=tempsEcoule;
+    configuration->minute+=tempsEcoule*0.1;
     tempsNbrTourBoucle+=tempsEcoule;
+
     if (configuration->minute>=60)
         configuration->minute=0,configuration->heure++;
     if (configuration->heure>23)
@@ -175,7 +176,7 @@ void c_Jeu::IA(Jeu *jeu)
 }
 void c_Jeu::Deplacements(Jeu *jeu)
 {
-    if (tempsEcouleDepuisDernierDeplacement>=0.01)
+    if (tempsEcouleDepuisDernierDeplacement >= 0.01)
     {
         coordonnee temp(-1 ,-1 ,-1 ,-1);
         if (jeu->hero.getMonstreVise()==-1)
@@ -221,7 +222,7 @@ void c_Jeu::Deplacements(Jeu *jeu)
 }
 void c_Jeu::Animation(Jeu *jeu)
 {
-    if (tempsDepuisDerniereAnimation >= 0.0)
+    if (tempsDepuisDerniereAnimation >= 0.02)
     {
         jeu->map->TestEvenement(jeu,tempsDepuisDerniereAnimation); // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
 

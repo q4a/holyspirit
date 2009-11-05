@@ -46,7 +46,7 @@ void c_Chargement::setC_Chargement(std::string prochaineMap,coordonnee coordonne
     m_coordonneePerso.x=coordonneePerso.x;
     m_coordonneePerso.y=coordonneePerso.y;
     m_nomProchaineMap=prochaineMap;
-    z=50;
+    z=49;
     augmenterNoir = true;
 
     m_debut=debut;
@@ -114,6 +114,12 @@ void c_Chargement::setC_Chargement(std::string prochaineMap,coordonnee coordonne
 
 void c_Chargement::Utiliser(Jeu *jeu)
 {
+        if(z==49)
+        {
+            configuration->RafraichirOmbre=0;
+            configuration->RafraichirLumiere=0;
+        }
+
     jeu->m_display=true;
 
     temps_ecoule=0;
@@ -136,18 +142,6 @@ void c_Chargement::Utiliser(Jeu *jeu)
         moteurGraphique->ViderParticules();
         moteurSons->StopAllSounds();
 
-       /* {
-            cDAT reader;
-            if (reader.Read(configuration->chemin_saves+"hero.sav.hs"))
-                for (int i=0;i<(int)reader.GetNumberFile();i++)
-                    if (reader.GetFileName(i)!=configuration->chemin_temps+"hero.sav.txt")
-                        reader.ExportFile(i),jeu->hero.m_contenuSave.push_back(reader.GetFileName(i));
-        }*/
-
-       // jeu->hero.StopMiraclesCharme();
-
-       // jeu->map.EffacerEffetsMonstres();
-
         std::vector<Personnage> buffer;
         std::vector<Modele_Monstre> bufferModele;
 
@@ -156,11 +150,6 @@ void c_Chargement::Utiliser(Jeu *jeu)
             buffer.push_back(*jeu->hero.m_amis[i]);
             bufferModele.push_back(jeu->map->getModeleMonstre(jeu->hero.m_amis[i]->getModele()));
             jeu->hero.m_amis[i]->InfligerDegats(jeu->hero.m_amis[i]->getCaracteristique().vie * 2, &bufferModele.back());
-            //jeu->hero.m_amis[i]->setEtat(2);
-           // jeu->hero.m_amis[i]->setPose(-1);
-
-            //(*jeu->hero.m_amis[i]).setCoordonnee(coordonnee(-100,-100));
-            //(*jeu->hero.m_amis[i]).setDepart();
         }
 
         if (jeu->map!=NULL && !m_debut)
@@ -258,7 +247,19 @@ void c_Chargement::Utiliser(Jeu *jeu)
         moteurGraphique->LightManager->SetPosition(jeu->hero.m_personnage.m_light,pos);
         allerVersImageChargement=false;
 
-         jeu->hero.PlacerCamera();
+        jeu->hero.PlacerCamera();
+
+        if (configuration->Ombre)
+            configuration->RafraichirOmbre=1;
+
+        if (configuration->Lumiere)
+        {
+            configuration->RafraichirLumiere=true;
+
+            moteurGraphique->LightManager->Generate(jeu->hero.m_personnage.m_light);
+        }
+
+        jeu->map->Animer(&jeu->hero,1,&jeu->menu);
 
         jeu->Clock.Reset();
     }
@@ -275,14 +276,13 @@ void c_Chargement::Utiliser(Jeu *jeu)
         z+=temps_ecoule*200;
 
 
-    if (z>50)
-        z=50;
-    if (z<0)
-        z=0;
+    if (z>49.5)
+        z=49.5;
+    if (z<0.5)
+        z=0.5;
 
     if ((allerVersImageChargement&&z<49&&augmenterNoir)||(!allerVersImageChargement&&z>0&&!augmenterNoir))
     {
-        //jeu->camera.Zoom(configuration->zoom);
         if(jeu->map!=NULL)
             jeu->map->setVolumeMusique((int)(z*(float)configuration->volume/50));
         if ((!m_debut&&augmenterNoir)||(!augmenterNoir))
@@ -302,9 +302,9 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
     configuration->effetNoir=((float)z)/50;
 
-
     if ((z>=49&&!augmenterNoir&&!allerVersImageChargement)||(m_debut))
     {
+        z = 0;
         configuration->effetNoir=0;
         jeu->Clock.Reset();
         jeu->m_contexte = jeu->m_jeu;

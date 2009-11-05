@@ -73,6 +73,8 @@ void Jeu::Demarrer()
     m_display = true;
     while (m_run)
     {
+        while(Clock.GetElapsedTime() < 0.001){}
+
         if(map != NULL)
             eventManager->GererLesEvenements(&m_run,Clock.GetElapsedTime(),map->getDimensions());
         else

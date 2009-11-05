@@ -90,8 +90,8 @@ void MoteurGraphique::CreateNewWindow()
     m_ecran.SetActive();
 
     bufferImage.Create(m_ecran.GetWidth(), m_ecran.GetHeight());
-    m_light_screen.Create(m_ecran.GetWidth(), m_ecran.GetHeight());
-    m_light_screen2.Create(m_ecran.GetWidth(), m_ecran.GetHeight());
+    m_light_screen.Create(m_ecran.GetWidth()+64, m_ecran.GetHeight()+64);
+    m_light_screen2.Create(m_ecran.GetWidth()+64, m_ecran.GetHeight()+64);
 
 
     //m_light_screen.Create(configuration->Resolution.w + 64, configuration->Resolution.h + 64);
@@ -236,13 +236,17 @@ void MoteurGraphique::Afficher()
 
     if (configuration->RafraichirOmbre==1&&configuration->Ombre&&m_soleil.intensite>32)
     {
-        m_light_screen2.SetView(m_camera);
+        sf::View temp = m_camera;
+        temp.SetSize(864, 664);
+        temp.Zoom(configuration->zoom);
 
-        decalageOmbre=m_camera.GetCenter();
+        decalageOmbre=temp.GetCenter();
+
+        m_light_screen2.SetView(temp);
 
         m_light_screen2.Clear(sf::Color(255,255,255));
 
-        LightManager->DrawWallShadow(&m_light_screen2,&m_camera);
+        LightManager->DrawWallShadow(&m_light_screen2,&temp);
 
         sprite.SetBlendMode(sf::Blend::Alpha);
 
@@ -271,13 +275,17 @@ void MoteurGraphique::Afficher()
 
     if (configuration->Lumiere && configuration->RafraichirLumiere)
     {
-        decalageLumiere=m_camera.GetCenter();
+        sf::View temp = m_camera;
+        temp.SetSize(864, 664);
+        temp.Zoom(configuration->zoom);
 
-        m_light_screen.SetView(m_camera);
+        decalageLumiere=temp.GetCenter();
+
+        m_light_screen.SetView(temp);
 
         m_light_screen.Clear(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
 
-        LightManager->Draw(&m_light_screen,&m_camera);
+        LightManager->Draw(&m_light_screen,&temp);
 
         m_light_screen.Display();
 
@@ -288,6 +296,11 @@ void MoteurGraphique::Afficher()
 
     for (int k=0;k<=20;k++)
     {
+        if (k==12 && configuration->postFX)
+        {
+            bufferImage.SetView(bufferImage.GetDefaultView());
+            bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectFiltre);
+        }
         if (k==12 && configuration->Lumiere)
         {
             sf::Sprite screen(m_light_screen.GetImage());
@@ -295,8 +308,8 @@ void MoteurGraphique::Afficher()
             screen.SetBlendMode(sf::Blend::Multiply);
             screen.SetColor(sf::Color(255,255,255));
 
-            screen.SetX(0);
-            screen.SetY(0);
+            screen.SetX(decalageLumiere.x-m_camera.GetCenter().x-32);
+            screen.SetY(decalageLumiere.y-m_camera.GetCenter().y-32);
 
             bufferImage.SetView(bufferImage.GetDefaultView());
 
@@ -310,8 +323,8 @@ void MoteurGraphique::Afficher()
             screen.SetBlendMode(sf::Blend::Multiply);
             screen.SetColor(sf::Color(255,255,255));
 
-            screen.SetX(decalageOmbre.x-m_camera.GetCenter().x);
-            screen.SetY(decalageOmbre.y-m_camera.GetCenter().y);
+            screen.SetX(decalageOmbre.x-m_camera.GetCenter().x-32);
+            screen.SetY(decalageOmbre.y-m_camera.GetCenter().y-32);
 
             bufferImage.SetView(bufferImage.GetDefaultView());
 
@@ -327,9 +340,9 @@ void MoteurGraphique::Afficher()
                 else
                     bufferImage.SetView(bufferImage.GetDefaultView());
 
-                if(k < 12)
+                /*if(k < 12)
                     bufferImage.Draw(IterCommande->m_sprite,EffectFiltre);
-                else
+                else*/
                     bufferImage.Draw(IterCommande->m_sprite);
             }
         }
@@ -390,7 +403,7 @@ void MoteurGraphique::Afficher()
         bufferImage.Draw(sprite2);
     }
 
- //   m_ecran.Clear();
+    //m_ecran.Clear();
     bufferImage.Display();
     m_ecran.Draw(sf::Sprite(bufferImage.GetImage()));
     m_ecran.Display();

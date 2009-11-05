@@ -3291,6 +3291,10 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         {
             hero->setMonstreVise(-1);
         }
+        else if (script->m_instructions[noInstruction].nom=="addCash")
+        {
+            hero->m_argent += script->m_instructions[noInstruction].valeurs.at(0);
+        }
         else if (script->m_instructions[noInstruction].nom=="entity_variable" && monstre == -1)
         {
             for(unsigned i = 0 ; i < m_monstre.size() ; ++i)

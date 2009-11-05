@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="Release" />
+	<ActiveTarget name="Debug" />
 	<File name="Contextes\c_changementMap.cpp" open="0" top="0" tabpos="10">
 		<Cursor position="7995" topLine="111" />
 	</File>
@@ -20,7 +20,7 @@
 		<Cursor position="287" topLine="0" />
 	</File>
 	<File name="Contextes\c_jeu.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="2142" topLine="67" />
+		<Cursor position="2824" topLine="79" />
 	</File>
 	<File name="Contextes\c_jeu.h" open="0" top="0" tabpos="14">
 		<Cursor position="858" topLine="95" />
@@ -73,8 +73,8 @@
 	<File name="Entites\liste_case.h" open="0" top="0" tabpos="5">
 		<Cursor position="868" topLine="18" />
 	</File>
-	<File name="Entites\miracle.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="16839" topLine="505" />
+	<File name="Entites\miracle.cpp" open="1" top="1" tabpos="5">
+		<Cursor position="2103" topLine="55" />
 	</File>
 	<File name="Entites\miracle.h" open="0" top="0" tabpos="2">
 		<Cursor position="5361" topLine="171" />
@@ -127,8 +127,8 @@
 	<File name="Map\evenement.h" open="0" top="0" tabpos="25">
 		<Cursor position="1329" topLine="26" />
 	</File>
-	<File name="Map\map.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="165565" topLine="3331" />
+	<File name="Map\map.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="109202" topLine="2267" />
 	</File>
 	<File name="Map\map.h" open="0" top="0" tabpos="4">
 		<Cursor position="2514" topLine="43" />
@@ -179,7 +179,7 @@
 		<Cursor position="926" topLine="19" />
 	</File>
 	<File name="Moteurs\moteurGraphique.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="2307" topLine="57" />
+		<Cursor position="14606" topLine="378" />
 	</File>
 	<File name="Moteurs\moteurGraphique.h" open="0" top="0" tabpos="5">
 		<Cursor position="2367" topLine="85" />
@@ -214,8 +214,8 @@
 	<File name="globale.h" open="0" top="0" tabpos="8">
 		<Cursor position="287" topLine="0" />
 	</File>
-	<File name="jeu.cpp" open="1" top="1" tabpos="3">
-		<Cursor position="2118" topLine="62" />
+	<File name="jeu.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="2118" topLine="65" />
 	</File>
 	<File name="jeu.h" open="0" top="0" tabpos="14">
 		<Cursor position="777" topLine="5" />
