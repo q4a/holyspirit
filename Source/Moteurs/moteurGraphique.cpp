@@ -403,7 +403,7 @@ void MoteurGraphique::Afficher()
         bufferImage.Draw(sprite2);
     }
 
-    //m_ecran.Clear();
+    m_ecran.Clear();
     bufferImage.Display();
     m_ecran.Draw(sf::Sprite(bufferImage.GetImage()));
     m_ecran.Display();
