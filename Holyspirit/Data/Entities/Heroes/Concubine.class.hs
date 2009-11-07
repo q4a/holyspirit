@@ -38,6 +38,8 @@ $
 $
 	* x0 y0 w800 h600 m Data/Menus/Quest.png $
 $
+	* x400 y557 w35 h64 cx17 cy50 m Data/Menus/Arrow.png $
+$
 	* x436 y390 h4 w320 $
 $
 	* x436 y60 w10 h10 $

@@ -36,6 +36,7 @@ main
 				newQuest * 1 
 				setQuestName * 1  * 18
 				setQuestState * 1 * 0  * 11
+				setQuestPosition * 1 * 20 * 83 " TerribleDungeon.map.hs"
 			end
 		else
 			variable * 0 * 1
@@ -57,6 +58,7 @@ main
 				newQuest * 2 
 				setQuestName * 2  * 20
 				setQuestState * 2 * 0  * 21
+				setQuestPosition * 2 * 24 * 61 " ArableLand3.map.hs"
 			end
 		end
 	else
