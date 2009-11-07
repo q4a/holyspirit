@@ -296,11 +296,11 @@ void MoteurGraphique::Afficher()
 
     for (int k=0;k<=20;k++)
     {
-        if (k==12 && configuration->postFX)
+        /*if (k==12 && configuration->postFX)
         {
             bufferImage.SetView(bufferImage.GetDefaultView());
             bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectFiltre);
-        }
+        }*/
         if (k==12 && configuration->Lumiere)
         {
             sf::Sprite screen(m_light_screen.GetImage());
@@ -340,9 +340,9 @@ void MoteurGraphique::Afficher()
                 else
                     bufferImage.SetView(bufferImage.GetDefaultView());
 
-                /*if(k < 12)
+                if(k < 12)
                     bufferImage.Draw(IterCommande->m_sprite,EffectFiltre);
-                else*/
+                else
                     bufferImage.Draw(IterCommande->m_sprite);
             }
         }

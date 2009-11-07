@@ -3342,6 +3342,11 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                     if (!m_monstre[monstre].m_touche)
                         ok=false;
                 }
+                else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="getState" && monstre != -1)
+                {
+                    if (m_monstre[monstre].getEtat() != script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0))
+                        ok=false;
+                }
                 else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="numberInvocation" && monstre != -1)
                 {
                     if (m_monstre[monstre].m_nombreInvocation!=script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0))

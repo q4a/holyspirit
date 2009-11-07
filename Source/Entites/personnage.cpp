@@ -1114,7 +1114,7 @@ int Personnage::Animer(Modele_Personnage *modele,float temps,coordonnee position
                 }
 
                 if (modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==1 && m_monstre)
-                    frappeEnCours=false,m_miracleALancer=-1;
+                    frappeEnCours=false,m_miracleALancer=-1, m_etatForce = false;
 
                 if (m_monstre)
                 {
@@ -1128,9 +1128,6 @@ int Personnage::Animer(Modele_Personnage *modele,float temps,coordonnee position
                     moteurGraphique->LightManager->SetIntensity(m_light,(int)inte);
                     moteurGraphique->LightManager->SetRadius(m_light,(int)m_porteeLumineuse.intensite*2);
                 }
-
-                if(retour == 1)
-                    m_etatForce = false;
             }
     }
     return retour;
