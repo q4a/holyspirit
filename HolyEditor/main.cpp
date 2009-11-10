@@ -65,8 +65,8 @@ int main(int argc, char **argv)
     configuration->Charger();
 
 
-    if (!sf::PostFX::CanUsePostFX())
-        configuration->postFX = false;
+   // if (!sf::PostFX::CanUsePostFX())
+       // configuration->postFX = false;
 
     moteurGraphique->Charger();
 

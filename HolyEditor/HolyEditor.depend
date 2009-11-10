@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1252237685 source:e:\c++\holyspirit\holyeditor\main.cpp
+1257363324 source:e:\c++\holyspirit\holyeditor\main.cpp
 	"MainWindow.h"
 	"MainWindow.moc"
 	<QApplication>
@@ -1034,7 +1034,7 @@
 	<QFrame>
 	<QLabel>
 
-1257073710 source:e:\c++\holyspirit\holyeditor\mainwindow.cpp
+1257686604 source:e:\c++\holyspirit\holyeditor\mainwindow.cpp
 	"MainWindow.h"
 	"highlighter.moc"
 	<iostream>
@@ -1264,7 +1264,7 @@
 	"Moteurs/eventManager.h"
 	"configuration.h"
 
-1253632546 e:\c++\holyspirit\holyeditor\moteurs\moteurgraphique.h
+1257363244 e:\c++\holyspirit\holyeditor\moteurs\moteurgraphique.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -1437,7 +1437,7 @@
 1245836352 e:\c++\holyspirit\holyeditor\map\evenement.h
 	"../constantes.h"
 
-1256227506 source:e:\c++\holyspirit\holyeditor\map\map.cpp
+1257687047 source:e:\c++\holyspirit\holyeditor\map\map.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -1835,16 +1835,16 @@
 
 1255517226 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\vector3.inl
 
-1253953329 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics.hpp
+1257246771 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Font.hpp>
 	<SFML/Graphics/Glyph.hpp>
 	<SFML/Graphics/Image.hpp>
-	<SFML/Graphics/PostFX.hpp>
 	<SFML/Graphics/RenderImage.hpp>
 	<SFML/Graphics/RenderQueue.hpp>
 	<SFML/Graphics/RenderWindow.hpp>
+	<SFML/Graphics/Shader.hpp>
 	<SFML/Graphics/Shape.hpp>
 	<SFML/Graphics/Sprite.hpp>
 	<SFML/Graphics/String.hpp>
@@ -1896,7 +1896,7 @@
 1253953329 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\windowhandle.hpp
 	<SFML/Config.hpp>
 
-1255764858 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\contextsettings.hpp
+1257335601 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\contextsettings.hpp
 
 1255764858 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\windowstyle.hpp
 
@@ -1961,33 +1961,32 @@
 
 1253953328 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\matrix3.inl
 
-1255764857 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderimage.hpp
+1257246771 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderimage.hpp
 	<SFML/System/NonCopyable.hpp>
 	<SFML/Graphics/Image.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 
-1253953328 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\rendertarget.hpp
+1257246771 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\rendertarget.hpp
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/RenderQueue.hpp>
 	<SFML/Graphics/View.hpp>
 
-1253953328 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderqueue.hpp
+1257246771 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderqueue.hpp
 	<SFML/Config.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<SFML/Graphics/Drawable.hpp>
-	<SFML/Graphics/Image.hpp>
 	<SFML/Graphics/Matrix3.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<vector>
 
-1253957186 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\view.hpp
+1257418521 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\view.hpp
 	<SFML/Config.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Matrix3.hpp>
 	<SFML/System/Vector2.hpp>
 
-1255764857 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderwindow.hpp
+1257246771 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderwindow.hpp
 	<SFML/Graphics/Image.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 	<SFML/Window/Window.hpp>
@@ -2047,12 +2046,12 @@
 	<string>
 	<vector>
 
-1256928506 e:\c++\sfml_svn\branches\sfml2\include\sfml\audio\soundbufferrecorder.hpp
+1257246771 e:\c++\sfml_svn\branches\sfml2\include\sfml\audio\soundbufferrecorder.hpp
 	<SFML/Audio/SoundBuffer.hpp>
 	<SFML/Audio/SoundRecorder.hpp>
 	<vector>
 
-1256928506 e:\c++\sfml_svn\branches\sfml2\include\sfml\audio\soundrecorder.hpp
+1257246771 e:\c++\sfml_svn\branches\sfml2\include\sfml\audio\soundrecorder.hpp
 	<SFML/System/Thread.hpp>
 	<vector>
 
@@ -2178,10 +2177,18 @@
 	<QHash>
 	<QTextCharFormat>
 
-1257073831 source:e:\c++\holyspirit\holyeditor\highlighter.cpp
+1257604852 source:e:\c++\holyspirit\holyeditor\highlighter.cpp
 	<QtGui>
 	"highlighter.h"
 
 1257068636 e:\c++\holyspirit\holyeditor\highlighter.moc
 	"highlighter.h"
+
+1257335599 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\shader.hpp
+	<SFML/Config.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Vector3.hpp>
+	<map>
+	<string>
 

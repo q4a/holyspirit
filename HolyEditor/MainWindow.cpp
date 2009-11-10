@@ -1052,6 +1052,9 @@ void MainWindow::ouvrir()
        // tempstr.replace(QString("then"), QString("<span style=\"color : blue\">then<\\span>"));
         text_script->setText(tempstr);
         map->m_script.m_text = str.str().c_str();
+
+        std::string buf = "HolyEditor - " + map->m_nom_fichier;
+        setWindowTitle(QString(buf.c_str()));
     }
 }
 
@@ -1065,6 +1068,9 @@ void MainWindow::sauver()
             map->Sauvegarder(map->m_nom_fichier);
         else
             sauverAs();
+
+        std::string buf = "HolyEditor - " + map->m_nom_fichier;
+        setWindowTitle(QString(buf.c_str()));
     }
 }
 
