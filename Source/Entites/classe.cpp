@@ -27,6 +27,8 @@ void                ChargerImageInterface(ifstream &fichier, Image_interface &im
 {
     char            caractere;
     std::string     string;
+
+    //image_interface.centre = coordonnee();
     do
     {
         fichier.get(caractere);
@@ -53,6 +55,13 @@ void                ChargerImageInterface(ifstream &fichier, Image_interface &im
                     break;
                 case 'h' :
                     fichier>>image_interface.position.h;
+                    break;
+                case 'c' :
+                    fichier.get(caractere);
+                    if(caractere == 'x')
+                        fichier>>image_interface.centre.x;
+                    if(caractere == 'y')
+                        fichier>>image_interface.centre.y;
                     break;
                 }
 
@@ -445,6 +454,7 @@ void Classe::Charger(string chemin, const std::vector<int> &lvl_miracles, const 
         ChargerImageInterface(fichier, scroll_button);
         ChargerImageInterface(fichier, talk);
         ChargerImageInterface(fichier, quest);
+        ChargerImageInterface(fichier, arrow);
 
         ChargerCoordonneeInterface(fichier, position_sac_inventaire);
         ChargerCoordonneeInterface(fichier, position_contenu_inventaire);

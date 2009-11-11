@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1257424600 source:e:\c++\holyspirit\source\contextes\c_changementmap.cpp
+1257879321 source:e:\c++\holyspirit\source\contextes\c_changementmap.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -430,7 +430,7 @@
 	<iostream>
 	"../constantes.h"
 
-1256581071 e:\c++\holyspirit\source\configuration.h
+1257874128 e:\c++\holyspirit\source\configuration.h
 	"singleton.h"
 	"constantes.h"
 
@@ -453,7 +453,7 @@
 
 1251377198 /c_demarrage.h"
 
-1256232141 e:\c++\holyspirit\source\map\map.h
+1257879322 e:\c++\holyspirit\source\map\map.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -466,15 +466,16 @@
 
 1252149603 .h"
 
-1251794135 e:\c++\holyspirit\source\entites\hero.h
+1257880165 e:\c++\holyspirit\source\entites\hero.h
 	<iostream>
 	<string>
+	<list>
 	"classe.h"
 	"personnage.h"
 	"monstre.h"
 	"quete.h"
 
-1251705168 e:\c++\holyspirit\source\entites\classe.h
+1257604855 e:\c++\holyspirit\source\entites\classe.h
 	"miracle.h"
 
 1251709376 "
@@ -486,7 +487,7 @@
 
 1251197950 s/light.h"
 
-1250420543 e:\c++\holyspirit\source\map\tile.h
+1257875279 e:\c++\holyspirit\source\map\tile.h
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
@@ -532,17 +533,17 @@
 	<iostream>
 	"../constantes.h"
 
-1245144229 e:\c++\holyspirit\source\entites\quete.h
+1257605696 e:\c++\holyspirit\source\entites\quete.h
 	"../constantes.h"
 
-1250420543 e:\c++\holyspirit\source\map\tileset.h
+1257875279 e:\c++\holyspirit\source\map\tileset.h
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"tile.h"
 
-1256987955 e:\c++\holyspirit\source\map\decor.h
+1257879082 e:\c++\holyspirit\source\map\decor.h
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
@@ -615,7 +616,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1257432654 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
+1257689851 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -661,12 +662,12 @@
 	"case.h"
 	<iostream>
 
-1255859943 source:e:\c++\holyspirit\source\entites\classe.cpp
+1257605051 source:e:\c++\holyspirit\source\entites\classe.cpp
 	"classe.h"
 	"../globale.h"
 	<sstream>
 
-1257157384 source:e:\c++\holyspirit\source\entites\hero.cpp
+1257879321 source:e:\c++\holyspirit\source\entites\hero.cpp
 	"../constantes.h"
 	"hero.h"
 	"../globale.h"
@@ -727,12 +728,12 @@
 	"../constantes.h"
 	"../globale.h"
 
-1256580333 source:e:\c++\holyspirit\source\entites\script.cpp
+1257606757 source:e:\c++\holyspirit\source\entites\script.cpp
 	<fstream>
 	"script.h"
 	"../globale.h"
 
-1256309641 source:e:\c++\holyspirit\source\map\decor.cpp
+1257879082 source:e:\c++\holyspirit\source\map\decor.cpp
 	"decor.h"
 	"../globale.h"
 
@@ -740,7 +741,7 @@
 	"evenement.h"
 	<iostream>
 
-1257599264 source:e:\c++\holyspirit\source\map\map.cpp
+1257930503 source:e:\c++\holyspirit\source\map\map.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -751,14 +752,14 @@
 	"../globale.h"
 	"../jeu.h"
 
-1250420543 source:e:\c++\holyspirit\source\map\tile.cpp
+1257874127 source:e:\c++\holyspirit\source\map\tile.cpp
 	"tile.h"
 	<iostream>
 	<fstream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1250420578 source:e:\c++\holyspirit\source\map\tileset.cpp
+1257930019 source:e:\c++\holyspirit\source\map\tileset.cpp
 	"tileset.h"
 	"../globale.h"
 	<iostream>
@@ -812,7 +813,7 @@
 	"../globale.h"
 	<iostream>
 
-1256581071 source:e:\c++\holyspirit\source\configuration.cpp
+1257874430 source:e:\c++\holyspirit\source\configuration.cpp
 	"configuration.h"
 
 1244283156 source:e:\c++\holyspirit\source\datfile.cpp
@@ -820,7 +821,7 @@
 	<stdio.h>
 	<string.h>
 
-1257425055 source:e:\c++\holyspirit\source\jeu.cpp
+1257877897 source:e:\c++\holyspirit\source\jeu.cpp
 	"constantes.h"
 	"globale.h"
 	"jeu.h"
@@ -836,7 +837,7 @@
 	"jeu.h"
 	"constantes.h"
 
-1255161799 source:e:\c++\holyspirit\source\menu.cpp
+1257874128 source:e:\c++\holyspirit\source\menu.cpp
 	"menu.h"
 	"globale.h"
 	<iostream>

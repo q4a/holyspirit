@@ -52,6 +52,9 @@ class Tile
 	void setImage(int);
 	void setSon(int);
 
+    int m_tileMinimap;
+	coordonnee m_coordMinimap;
+
 	private:
 	coordonnee m_positionDansLImage,m_centre;
 	bool m_collision,m_ombre,m_transparent;

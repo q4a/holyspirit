@@ -37,6 +37,8 @@ Decor::Decor(int tileset,int tile,const std::vector<int> &evenement,const std::v
     m_sprite.SetSubRect(sf::IntRect(0,0,0,0));
     m_spriteHerbe.SetSubRect(sf::IntRect(0,0,0,0));
     m_spriteOmbre.SetSubRect(sf::IntRect(0,0,0,0));
+
+    added_minimap = false;
 }
 
 Decor::Decor(int tileset,int tile,const std::vector<int> &evenement,const std::vector<int> &monstre,int herbe, int couche,int hauteur,std::vector <Objet> objets)
@@ -56,6 +58,8 @@ Decor::Decor(int tileset,int tile,const std::vector<int> &evenement,const std::v
     m_sprite.SetSubRect(sf::IntRect(0,0,0,0));
     m_spriteHerbe.SetSubRect(sf::IntRect(0,0,0,0));
     m_spriteOmbre.SetSubRect(sf::IntRect(0,0,0,0));
+
+    added_minimap = false;
 }
 
 Decor::~Decor()

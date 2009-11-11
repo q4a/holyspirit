@@ -43,7 +43,7 @@ public:
     ~Map();
 
     bool Charger(std::string,Hero *hero);
-    void Initialiser();
+    void Initialiser(Hero *hero);
     void CreerSprite(sf::Vector3f position_case);
     void Sauvegarder(Hero *hero);
 
@@ -130,6 +130,7 @@ public:
     int     getNombreModeleMonstres();
     bool    getMonstreEnVie(int numeroMonstre);
     const   coordonnee &getDimensions();
+    const   std::string &getNom();
 
     Monstre *getEntiteMonstre (int numeroMonstre);
     Modele_Monstre getModeleMonstre(int numeroMonstre);

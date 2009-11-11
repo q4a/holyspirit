@@ -121,8 +121,8 @@ bool Tileset::Charger(std::string chemin)
             fichier.get(caractere);
             if (caractere=='*')
             {
-                coordonnee position(-1,-1,-1,-1),centre(-100,-100,-1,-1);
-                int animation=m_tile.size(),son=-1,image=0;
+                coordonnee position,centre(-100,-100,-1,-1), coordMinimap(0,0,0,0);
+                int animation=m_tile.size(),son=-1,image=0,imageMM = 0;
                 Lumiere lumiere;
                 lumiere.intensite=0;
                 lumiere.hauteur=0;
@@ -197,6 +197,34 @@ bool Tileset::Charger(std::string chemin)
                     case 'r':
                         fichier>>orientation;
                         break;
+
+                    case 'm':
+                        do
+                        {
+                            fichier.get(caractere);
+                            switch (caractere)
+                            {
+                                case 'x':
+                                    fichier>>coordMinimap.x;
+                                    break;
+                                case 'y':
+                                    fichier>>coordMinimap.y;
+                                    break;
+                                case 'w':
+                                    fichier>>coordMinimap.w;
+                                    break;
+                                case 'h':
+                                    fichier>>coordMinimap.h;
+                                    break;
+                                case 'i':
+                                    fichier>>imageMM;
+                                    break;
+                            }
+                        }
+                        while (caractere!='$');
+                        fichier.get(caractere);
+
+                        break;
                     }
                     if (fichier.eof())
                     {
@@ -212,9 +240,10 @@ bool Tileset::Charger(std::string chemin)
                 if (centre.y==-100)
                     centre.y=position.h-32;
 
-                Tile tileTemp;
-                m_tile.push_back(tileTemp);
+                m_tile.push_back(Tile ());
                 m_tile.back().setTile(position,image,collision,animation,son,lumiere,ombre,orientation,transparent,centre,tempsAnimation,opacity);
+                m_tile.back().m_tileMinimap = imageMM;
+                m_tile.back().m_coordMinimap = coordMinimap;
 
                 fichier.get(caractere);
             }
@@ -336,6 +365,23 @@ const coordonnee &Tileset::getCentreDuTile(int tile)
         return m_tile[0].getCentre();;
 }
 
+int Tileset::getMinimap(int tile)
+{
+    if (tile>=0&&tile<(int)m_tile.size())
+        if (m_tile[tile].m_tileMinimap>=0&&m_tile[tile].m_tileMinimap<(int)m_image.size())
+            return m_image[m_tile[tile].m_tileMinimap];
+
+    return 0;
+}
+
+const coordonnee &Tileset::getPositionMinimap(int tile)
+{
+    if (tile>=0&&tile<(int)m_tile.size())
+        return m_tile[tile].m_coordMinimap;
+    else
+        return m_tile[0].m_coordMinimap;
+}
+
 void Tileset::JouerSon(int numeroSon,coordonnee position,coordonnee positionHero)
 {
     if (numeroSon>=0&&numeroSon<(int)m_sons.size())
@@ -353,6 +399,8 @@ void Tileset::DeleteTiles()
     m_tile.clear();
     m_sons.clear();
 }
+
+
 
 
 

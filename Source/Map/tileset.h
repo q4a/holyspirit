@@ -58,6 +58,9 @@ class Tileset
 	int getOpacityDuTile(int tile);
 	int getTaille();
 
+	int getMinimap(int tile);
+	const coordonnee &getPositionMinimap(int tile);
+
 	private:
 	std::vector <int> m_image;
 	std::vector <Tile> m_tile;

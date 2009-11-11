@@ -170,6 +170,8 @@ Hero::Hero()
 
     m_argent=0;
 
+    m_angleFleche = 0;
+
 
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
         m_cheminModeleNouveau[i]="",m_cheminModele[i]="";
@@ -1089,6 +1091,48 @@ void Hero::AfficherQuetes(float decalage)
         moteurGraphique->AjouterTexte(&texte,15,0);
     }
 }
+
+void Hero::AfficherFlecheQuetes(const std::string &nomMap, float temps)
+{
+    if(m_queteSelectionnee >= 0)
+    {
+        if(nomMap == m_quetes[m_queteSelectionnee].m_map)
+        {
+            coordonneeDecimal pos,dir;
+
+            pos.x = (m_personnage.getCoordonneePixel().x/COTE_TILE-m_personnage.getCoordonneePixel().y/COTE_TILE-1)*(64);
+            pos.y = (m_personnage.getCoordonneePixel().x/COTE_TILE+m_personnage.getCoordonneePixel().y/COTE_TILE)*(32);
+
+            dir.x = (m_quetes[m_queteSelectionnee].m_position.x-m_quetes[m_queteSelectionnee].m_position.y-1)*(64);
+            dir.y = (m_quetes[m_queteSelectionnee].m_position.x+m_quetes[m_queteSelectionnee].m_position.y)*(32);
+
+
+            float m=atan2((double)(pos.x-dir.x),(double)(pos.y-dir.y));
+            //m+=M_PI/3;
+
+            m_angleFleche=(int)(m*180/M_PI);
+        }
+        else
+            m_angleFleche += temps * 200;
+
+        if (m_angleFleche>=360)
+            m_angleFleche=0;
+        if (m_angleFleche<0)
+            m_angleFleche=360+m_angleFleche;
+
+        Sprite sprite;
+
+        sprite.SetImage(*moteurGraphique->getImage(m_classe.arrow.image));
+        sprite.SetX(m_classe.arrow.position.x*configuration->Resolution.x/800);
+        sprite.SetY(m_classe.arrow.position.y*configuration->Resolution.h/600);
+        sprite.Resize(m_classe.arrow.position.w*configuration->Resolution.w/800, m_classe.arrow.position.h*configuration->Resolution.h/600);
+        sprite.SetOrigin(m_classe.arrow.centre.x, m_classe.arrow.centre.y);
+        sprite.SetRotation(m_angleFleche);
+
+        moteurGraphique->AjouterCommande(&sprite,18,0);
+    }
+}
+
 
 
 bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)

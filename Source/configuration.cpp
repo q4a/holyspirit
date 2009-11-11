@@ -149,9 +149,6 @@ void Configuration::ChargerInit()
                 fichier>>nom_effetFiltre;
 
 
-            if (chaine== "menu_minimap:")
-                fichier>>nom_minimap;
-
             if (chaine== "menu_soul:")
                 fichier>>nom_ame;
             if (chaine== "menu_soul_orb:")

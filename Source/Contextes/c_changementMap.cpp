@@ -114,6 +114,7 @@ void c_Chargement::setC_Chargement(std::string prochaineMap,coordonnee coordonne
 
 void c_Chargement::Utiliser(Jeu *jeu)
 {
+
         if(z==49)
         {
             configuration->RafraichirOmbre=0;
@@ -168,6 +169,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         jeu->hero.m_personnage.m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,384,12,sf::Color(255,255,255));
 
         jeu->hero.ChargerModele(true);
+        jeu->hero.m_minimap.clear();
 
         if (!jeu->map->Charger(m_nomProchaineMap,&jeu->hero))
             console->Ajouter("CRITICAL ERROR"), throw  "CRITICAL ERROR";

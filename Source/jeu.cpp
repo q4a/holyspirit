@@ -73,6 +73,7 @@ void Jeu::Demarrer()
     m_display = true;
     while (m_run)
     {
+
         while(Clock.GetElapsedTime() < 0.001){}
 
         if(map != NULL)
@@ -90,7 +91,6 @@ void Jeu::Demarrer()
         }
 
         m_contexte->Utiliser(this);
-
         if(m_display)
             moteurGraphique->Afficher();
     }

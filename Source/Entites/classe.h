@@ -23,6 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 struct Image_interface
 {
     coordonnee position;
+    coordonnee centre;
     int image;
 };
 
@@ -64,6 +65,7 @@ struct Classe
     Image_interface scroll_button;
     Image_interface talk;
     Image_interface quest;
+    Image_interface arrow;
     std::vector<Image_interface> interface_miracles;
 
     std::vector<Bouton> boutons_miracles;

@@ -55,7 +55,7 @@ class Configuration : public CSingleton<Configuration>
     int Lumiere,console;
     float effetMort,effetNoir,volume,minute,zoom,frequence_sauvegarde,frequence_lumiere,luminosite,contrastes;
     int heure,cache,alpha;
-    std::string version,chemin_maps,chemin_items,chemin_temps,chemin_saves,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetMort,nom_effetContrastes,nom_effetBlur,nom_effetFiltre,nom_minimap,nom_ame,nom_barre_ame,nom_barre_vie,nom_barre_vie_vide,nom_sang,chemin_son_mort;
+    std::string version,chemin_maps,chemin_items,chemin_temps,chemin_saves,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_effetNoir,nom_effetMort,nom_effetContrastes,nom_effetBlur,nom_effetFiltre,nom_ame,nom_barre_ame,nom_barre_vie,nom_barre_vie_vide,nom_sang,chemin_son_mort;
     std::string font_titre,font,chemin_video_developpeur,nom_video_developpeur,nom_sac,nom_corner,chemin_aa;
 
     std::string chemin_localisation,chemin_text_benedictions,chemin_text_menus,chemin_text_items,chemin_text_entities,chemin_text_dialogs,chemin_text_maps,chemin_text_miracles;

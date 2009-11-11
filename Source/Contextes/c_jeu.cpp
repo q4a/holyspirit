@@ -183,8 +183,8 @@ void c_Jeu::Deplacements(Jeu *jeu)
             temp.x=jeu->hero.m_personnage.getCoordonnee().x,temp.y=jeu->hero.m_personnage.getCoordonnee().y;
 
         if (jeu->hero.m_personnage.SeDeplacer(tempsEcouleDepuisDernierDeplacement*100,jeu->map->getDimensions(),
-                                              (jeu->map->getCollisionPousse((int)((jeu->hero.m_personnage.getCoordonneePixel().x + jeu->hero.m_personnage.getPousse().x * tempsEcouleDepuisDernierDeplacement * COTE_TILE * 5 + COTE_TILE * 0.5)/COTE_TILE),
-                                                                            (int)((jeu->hero.m_personnage.getCoordonneePixel().y + jeu->hero.m_personnage.getPousse().y * tempsEcouleDepuisDernierDeplacement * COTE_TILE * 5 + COTE_TILE * 0.5)/COTE_TILE)) != 1)))
+                                              (jeu->map->getCollisionPousse((int)((jeu->hero.m_personnage.getCoordonneePixel().x + jeu->hero.m_personnage.getPousse().x * tempsEcouleDepuisDernierDeplacement * COTE_TILE * 5 + COTE_TILE * 0.5 * (jeu->hero.m_personnage.getPousse().x >= 0))/COTE_TILE),
+                                                                            (int)((jeu->hero.m_personnage.getCoordonneePixel().y + jeu->hero.m_personnage.getPousse().y * tempsEcouleDepuisDernierDeplacement * COTE_TILE * 5 + COTE_TILE * 0.5 * (jeu->hero.m_personnage.getPousse().y >= 0) )/COTE_TILE)) != 1)))
         {
             bool ok=true;
             if (jeu->hero.getMonstreVise()>-1)
@@ -222,6 +222,11 @@ void c_Jeu::Deplacements(Jeu *jeu)
 }
 void c_Jeu::Animation(Jeu *jeu)
 {
+    coordonnee positionHero;
+    positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
+    positionHero.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
+
+
     if (tempsDepuisDerniereAnimation >= 0.02)
     {
         jeu->map->TestEvenement(jeu,tempsDepuisDerniereAnimation); // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
@@ -229,9 +234,6 @@ void c_Jeu::Animation(Jeu *jeu)
         if (tempsDepuisDerniereAnimation>0.12)
             tempsDepuisDerniereAnimation=0.12;
 
-        coordonnee positionHero;
-        positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
-        positionHero.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
 
         int retour=-2;
         retour = jeu->hero.m_personnage.Animer(&jeu->hero.m_modelePersonnage[0],tempsDepuisDerniereAnimation,positionHero);
@@ -307,10 +309,11 @@ void c_Jeu::Animation(Jeu *jeu)
 
         jeu->map->Animer(&jeu->hero,tempsDepuisDerniereAnimation,&jeu->menu); // Animation des tiles de la jeu->map
 
-        jeu->map->GererMiracle(&jeu->hero.m_personnage,jeu->hero.m_classe.miracles,tempsDepuisDerniereAnimation,positionHero,&jeu->hero);
-
         tempsDepuisDerniereAnimation=0;
     }
+
+    jeu->map->GererMiracle(&jeu->hero.m_personnage,jeu->hero.m_classe.miracles,tempsEcoule,positionHero,&jeu->hero);
+
 }
 void c_Jeu::Lumieres(Jeu *jeu)
 {
@@ -752,6 +755,8 @@ void c_Jeu::Affichage(Jeu *jeu)
     jeu->map->Afficher(&jeu->hero,eventManager->getEvenement(Key::LAlt,"ET"),alpha_map);//Affichage de la jeu->map
 
     jeu->hero.AfficherAmis();
+
+    jeu->hero.AfficherFlecheQuetes(jeu->map->getNom(), tempsEcoule);
 
     if (configuration->Minimap)
     {

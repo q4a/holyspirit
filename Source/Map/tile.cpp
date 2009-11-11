@@ -67,6 +67,8 @@ void Tile::setTile(coordonnee positionDansLImage,int image,bool collision,int an
 
     m_centre                = centre;
 
+    m_tileMinimap           = -1;
+
     if (m_centre.x==-1)
         m_centre.x=positionDansLImage.w/2;
     if (m_centre.y==-1)

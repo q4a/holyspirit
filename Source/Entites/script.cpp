@@ -96,6 +96,7 @@ int Script::Lire(ifstream *fichier)
             m_instructions.back().valeurString += caractere;
         }
         while(caractere!= '"');
+        m_instructions.back().valeurString.resize(m_instructions.back().valeurString.size() - 1);
 
         retour = -4;
     }

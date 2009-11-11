@@ -98,7 +98,8 @@ public:
 
     sf::Color color;
 
-    sf::Sprite m_sprite,m_spriteHerbe,m_spriteOmbre;
+    sf::Sprite m_sprite,m_spriteHerbe,m_spriteOmbre,m_spriteMinimap;
+    bool added_minimap;
 
 private:
     int m_tileset,m_tile,m_couche;
