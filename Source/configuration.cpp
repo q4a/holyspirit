@@ -147,6 +147,9 @@ void Configuration::ChargerInit()
                 fichier>>nom_effetBlur;
             if (chaine== "fxFilter:")
                 fichier>>nom_effetFiltre;
+            if (chaine== "fxShadow:")
+                fichier>>nom_effetShadow;
+
 
 
             if (chaine== "menu_soul:")

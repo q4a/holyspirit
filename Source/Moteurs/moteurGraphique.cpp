@@ -35,13 +35,17 @@ MoteurGraphique::MoteurGraphique()
     m_images.front().nom         = "O";
     m_images.front().importance  = -1;
 
-    m_soleil.rouge          = 255;
-    m_soleil.vert           = 255;
-    m_soleil.bleu           = 255;
-    m_soleil.intensite      = 255;
+    m_soleil.rouge               = 255;
+    m_soleil.vert                = 255;
+    m_soleil.bleu                = 255;
+    m_soleil.intensite           = 255;
 
-    decalageCamera.x        = 0;
-    decalageCamera.y        = 0;
+    decalageCamera.x             = 0;
+    decalageCamera.y             = 0;
+    decalageCameraSouhaite.x     = 0;
+    decalageCameraSouhaite.y     = 0;
+
+    cameraDecale                 = false;
 
    // m_ecran                 = NULL;
 }
@@ -85,6 +89,7 @@ void MoteurGraphique::CreateNewWindow()
         EffectMort.SetTexture("framebuffer", sf::Shader::CurrentTexture);
         EffectContrastes.SetTexture("framebuffer", sf::Shader::CurrentTexture);
         EffectFiltre.SetTexture("framebuffer", sf::Shader::CurrentTexture);
+        EffectShadow.SetTexture("framebuffer", sf::Shader::CurrentTexture);
     }
 
     m_ecran.SetActive();
@@ -152,6 +157,12 @@ void MoteurGraphique::Charger()
         else
             console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetFiltre,0);
 
+         if (!EffectShadow.LoadFromFile(configuration->chemin_fx+configuration->nom_effetShadow))
+            console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetShadow,1);
+        else
+            console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetShadow,0);
+
+
     }
 
     console->Ajouter("");
@@ -195,23 +206,47 @@ void MoteurGraphique::Gerer(float temps,int tailleMapY)
     k=0;
     m_effetsEcran_iter=m_effetsEcran.begin();
 
+    bool decalage = false;
     while(m_effetsEcran_iter!=m_effetsEcran.end())
     {
         m_effetsEcran_iter->temps += temps;
 
-        if(m_effetsEcran_iter->type == TREMBLEMENT)
+        if(m_effetsEcran_iter->type == TREMBLEMENT && cameraDecale)
         {
             if(m_effetsEcran_iter->temps > 0.05)
             {
+                decalage = true;
+
                 m_effetsEcran_iter->temps   = 0;
 
-                int valeur = (int)m_effetsEcran_iter->info1 * (1 - 2 * (rand()%2));
-                if(fabs(decalageCamera.x) < fabs(valeur) && fabs(valeur) != m_effetsEcran_iter->info1 || fabs(valeur) == m_effetsEcran_iter->info1)
-                    decalageCamera.x = valeur;
+                int valeur = (int)m_effetsEcran_iter->info1 /* * (1 - 2 * (rand()%2))*/;
+                if(decalage && (fabs(decalageCameraSouhaite.x) < fabs(valeur) && fabs(valeur) != m_effetsEcran_iter->info1 || fabs(valeur) == m_effetsEcran_iter->info1) || !decalage)
+                {
+                   /* if(decalage)
+                    {
+                        if(decalageCameraSouhaite.x > 0)
+                            decalageCameraSouhaite.x = -valeur;
+                        else
+                            decalageCameraSouhaite.x = valeur;
+                    }
+                    else*/
+                        decalageCameraSouhaite.x = (1 - 2 * (rand()%100<50))*valeur;
+                }
 
-                valeur = (int)m_effetsEcran_iter->info1 * (1 - 2 * (rand()%2));
-                if(fabs(decalageCamera.y) < fabs(valeur) && fabs(valeur) != m_effetsEcran_iter->info1 || fabs(valeur) == m_effetsEcran_iter->info1)
-                    decalageCamera.y = valeur;
+
+                valeur = (int)m_effetsEcran_iter->info1 /* (1 - 2 * (rand()%2))*/;
+                if(decalage && (fabs(decalageCameraSouhaite.y) < fabs(valeur) && fabs(valeur) != m_effetsEcran_iter->info1 || fabs(valeur) == m_effetsEcran_iter->info1) || !decalage)
+                {
+                   /* if(decalage)
+                    {
+                        if(decalageCameraSouhaite.y > 0)
+                            decalageCameraSouhaite.y = -valeur;
+                        else
+                            decalageCameraSouhaite.y = valeur;
+                    }
+                    else*/
+                        decalageCameraSouhaite.y = (1 - 2 * (rand()%100<50))*valeur;
+                }
 
                 m_effetsEcran_iter->info1  -= 1;
             }
@@ -226,7 +261,37 @@ void MoteurGraphique::Gerer(float temps,int tailleMapY)
         else
             ++m_effetsEcran_iter,++k;
     }
+    if(decalage)
+        cameraDecale = false;
 
+    if(decalageCameraSouhaite.x < decalageCamera.x)
+    {
+        decalageCamera.x -= temps * 500 * (fabs(decalageCameraSouhaite.x ) + 1);
+        if(decalageCamera.x < decalageCameraSouhaite.x)
+            decalageCamera.x = decalageCameraSouhaite.x;
+    }
+    else if(decalageCameraSouhaite.x > decalageCamera.x)
+    {
+        decalageCamera.x += temps * 500 * (fabs(decalageCameraSouhaite.x) + 1);
+        if(decalageCamera.x > decalageCameraSouhaite.x)
+            decalageCamera.x = decalageCameraSouhaite.x;
+    }
+
+    if(decalageCameraSouhaite.y < decalageCamera.y)
+    {
+        decalageCamera.y -= temps * 500 * (fabs(decalageCameraSouhaite.y) + 1);
+        if(decalageCamera.y < decalageCameraSouhaite.y)
+            decalageCamera.y = decalageCameraSouhaite.y;
+    }
+    else if(decalageCameraSouhaite.y > decalageCamera.y)
+    {
+        decalageCamera.y += temps * 500 * (fabs(decalageCameraSouhaite.y) + 1);
+        if(decalageCamera.y > decalageCameraSouhaite.y)
+            decalageCamera.y = decalageCameraSouhaite.y;
+    }
+
+    if(decalageCameraSouhaite.y == decalageCamera.y && decalageCameraSouhaite.x == decalageCamera.x)
+        cameraDecale = true;
 }
 
 void MoteurGraphique::Afficher()
@@ -269,6 +334,8 @@ void MoteurGraphique::Afficher()
         m_light_screen2.Draw(sprite3);
 
         m_light_screen2.Display();
+
+        EffectShadow.SetTexture("shadow_map", m_light_screen2.GetImage());
 
         configuration->RafraichirOmbre=2;
     }
@@ -344,6 +411,7 @@ void MoteurGraphique::Afficher()
                     bufferImage.Draw(IterCommande->m_sprite,EffectFiltre);
                 else
                     bufferImage.Draw(IterCommande->m_sprite);
+               // bufferImage.Draw(IterCommande->m_sprite,EffectShadow);
             }
         }
 

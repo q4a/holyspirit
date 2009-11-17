@@ -100,7 +100,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	std::string getCheminImage(int IDimage);
 
-	sf::Shader  EffectBlur,EffectBlur2,EffectMort,EffectNoir,EffectContrastes,EffectFiltre;
+	sf::Shader  EffectBlur,EffectBlur2,EffectMort,EffectNoir,EffectContrastes,EffectFiltre, EffectShadow;
 	sf::RenderImage bufferImage;
 	sf::RenderImage m_light_screen;
     sf::RenderImage m_light_screen2;
@@ -124,7 +124,8 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
     std::vector <Effet_ecran> m_effetsEcran;
     std::vector <Effet_ecran>::iterator m_effetsEcran_iter;
 
-    coordonnee decalageCamera;
+    coordonneeDecimal decalageCamera, decalageCameraSouhaite;
+    bool cameraDecale;
 
 	//protected:
 

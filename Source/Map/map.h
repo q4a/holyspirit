@@ -100,6 +100,7 @@ public:
 
 
     void TestVisionMonstre(int numero, Hero *hero);
+    bool TileVisible(int x,int y, coordonnee pos);
 
     //void InfligerDegatsMasse(coordonnee position,int rayon,int degats,bool sourceConcernee, Hero *hero, bool pousser = true, bool heroCompris = true, bool monstre = true);
 

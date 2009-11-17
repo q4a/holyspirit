@@ -1353,7 +1353,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
     {
         sf::Sprite fond;
         fond.SetImage(*moteurGraphique->getImage(0));
-        fond.SetColor(sf::Color(0,0,0,(int)(alpha * 0.75)));
+        fond.SetColor(sf::Color(0,0,0,(int)(alpha * 0.5)));
         fond.Resize(configuration->Resolution.x,configuration->Resolution.y);
         moteurGraphique->AjouterCommande(&fond,12,0);
 
@@ -1432,16 +1432,17 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                             && m_decor[couche][j][k].m_spriteOmbre.GetPosition().y-m_decor[couche][j][k].m_spriteOmbre.GetOrigin().y<moteurGraphique->m_camera.GetRect().Bottom)*/
                             moteurGraphique->AjouterCommande(&m_decor[couche][j][k].m_spriteOmbre,9,1);
 
+                    if(!m_decor[couche][j][k].added_minimap)
+                    if((j-hero->m_personnage.getCoordonnee().y) < 8 && (k-hero->m_personnage.getCoordonnee().x) < 8)
+                    if(TileVisible(k,j,hero->m_personnage.getCoordonnee()))
+                    {
+                        if(m_decor[couche][j][k].m_spriteMinimap.GetSize().x> 1)
+                            hero->m_minimap.push_back(m_decor[couche][j][k].m_spriteMinimap);
+                        m_decor[couche][j][k].added_minimap = true;
+                    }
+
                     if (couche==1)
                     {
-                        if(!m_decor[couche][j][k].added_minimap)
-                        {
-                            if(m_decor[couche][j][k].m_spriteMinimap.GetSize().x> 1)
-                                hero->m_minimap.push_back(m_decor[couche][j][k].m_spriteMinimap);
-                            m_decor[couche][j][k].added_minimap = true;
-                        }
-
-
                         if (configuration->Herbes)
                             if (m_decor[0][j][k].m_spriteHerbe.GetSize().x>1)
                                 if (m_decor[0][j][k].m_spriteHerbe.GetPosition().x+m_decor[0][j][k].m_spriteHerbe.GetSize().x>=moteurGraphique->m_camera.GetRect().Left
@@ -3801,6 +3802,11 @@ void Map::TestVisionMonstre(int numero, Hero *hero)
                     }
 
                 }
+}
+
+bool Map::TileVisible(int x,int y, coordonnee pos)
+{
+    return true;
 }
 
 bool Map::InfligerDegats(int numero, float degats, Hero *hero,bool pousser)
