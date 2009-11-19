@@ -50,6 +50,7 @@ class Tileset
 	int getSonTile(int tile);
 	const Lumiere &getLumiereDuTile(int tile);
 	bool getOmbreDuTile(int tile);
+	bool getReflectionDuTile(int tile);
 	bool getTransparentDuTile(int tile);
 	char getOrientationDuTile(int tile);
 	const coordonnee &getCentreDuTile(int tile);

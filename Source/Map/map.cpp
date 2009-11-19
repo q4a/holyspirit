@@ -1097,6 +1097,18 @@ void Map::CreerSprite(sf::Vector3f position_case)
     m_decor[z][y][x].m_sprite.SetColor(sf::Color(255,255,255,m_tileset[m_decor[z][y][x].getTileset()].getOpacityDuTile(m_decor[z][y][x].getTile())));
 
 
+    if (configuration->Reflection)
+    {
+        if (m_tileset[m_decor[z][y][x].getTileset()].getReflectionDuTile(m_decor[z][y][x].getTile()))
+        {
+            m_decor[z][y][x].m_spriteReflect = m_decor[z][y][x].m_sprite;
+            m_decor[z][y][x].m_spriteReflect.FlipY(true);
+            m_decor[z][y][x].m_spriteReflect.SetOrigin(m_decor[z][y][x].m_spriteReflect.GetOrigin().x, m_decor[z][y][x].m_spriteReflect.GetSize().y - m_decor[z][y][x].m_spriteReflect.GetOrigin().y);
+            //m_decor[z][y][x].m_spriteReflect.Move(0,m_decor[z][y][x].m_spriteReflect.GetOrigin().y-m_decor[z][y][x].m_spriteReflect.GetSize().y);
+            //m_decor[z][y][x].m_spriteReflect.Scale(1,0.5);
+        }
+    }
+
     positionPartieDecor=m_tileset[m_decor[z][y][x].getTileset()].getPositionMinimap(m_decor[z][y][x].getTile());
     m_decor[z][y][x].m_spriteMinimap.SetImage(*moteurGraphique->getImage(m_tileset[m_decor[z][y][x].getTileset()].getMinimap(m_decor[z][y][x].getTile())));
     m_decor[z][y][x].m_spriteMinimap.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
@@ -1426,11 +1438,10 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                         }
 
                     if (m_decor[couche][j][k].m_spriteOmbre.GetSize().x>1)
-                       /* if (   m_decor[couche][j][k].m_spriteOmbre.GetPosition().x+m_decor[couche][j][k].m_spriteOmbre.GetSize().x-m_decor[couche][j][k].m_spriteOmbre.GetOrigin().x>=moteurGraphique->m_camera.GetRect().Left
-                            && m_decor[couche][j][k].m_spriteOmbre.GetPosition().x-m_decor[couche][j][k].m_spriteOmbre.GetOrigin().x<moteurGraphique->m_camera.GetRect().Right
-                            && m_decor[couche][j][k].m_spriteOmbre.GetPosition().y+m_decor[couche][j][k].m_spriteOmbre.GetSize().y-m_decor[couche][j][k].m_spriteOmbre.GetOrigin().y>=moteurGraphique->m_camera.GetRect().Top
-                            && m_decor[couche][j][k].m_spriteOmbre.GetPosition().y-m_decor[couche][j][k].m_spriteOmbre.GetOrigin().y<moteurGraphique->m_camera.GetRect().Bottom)*/
-                            moteurGraphique->AjouterCommande(&m_decor[couche][j][k].m_spriteOmbre,9,1);
+                        moteurGraphique->AjouterCommande(&m_decor[couche][j][k].m_spriteOmbre,9,1);
+
+                    if (m_decor[couche][j][k].m_spriteReflect.GetSize().x>1)
+                        moteurGraphique->AjouterCommande(&m_decor[couche][j][k].m_spriteReflect,0,1);
 
                     if(!m_decor[couche][j][k].added_minimap)
                     if((j-hero->m_personnage.getCoordonnee().y) < 8 && (k-hero->m_personnage.getCoordonnee().x) < 8)
@@ -2364,6 +2375,17 @@ bool Map::Miracle_EffetGraphique(Hero *hero, Personnage *personnage, Miracle &mo
         m_effets.back().m_couche     = 1;
 
         m_effets.back().m_tiles      = modele.m_tile[effet.m_sequence];
+
+        if(m_effets.back().m_tiles.size() > 0)
+        if (m_effets.back().m_tiles[0].getSon() >= 0)
+        {
+            coordonnee positionHero;
+            coordonnee position;
+            position.x=-(int)(m_effets.back().m_position.x/COTE_TILE - m_effets.back().m_position.y/COTE_TILE-1)/5;
+            position.y= (int)(m_effets.back().m_position.x/COTE_TILE + m_effets.back().m_position.y/COTE_TILE)/5;
+
+            moteurSons->JouerSon(m_effets.back().m_tiles[0].getSon(), position, positionHero,0);
+        }
 
         info.m_IDObjet               = m_effets.size()-1;
 

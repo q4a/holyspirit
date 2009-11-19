@@ -126,7 +126,7 @@ bool Tileset::Charger(std::string chemin)
                 Lumiere lumiere;
                 lumiere.intensite=0;
                 lumiere.hauteur=0;
-                bool collision=0,ombre=0,transparent=0;
+                bool collision=0,ombre=0, reflection = 0,transparent=0;
                 char orientation=' ';
                 float tempsAnimation=0.075;
                 int opacity = 255;
@@ -162,6 +162,9 @@ bool Tileset::Charger(std::string chemin)
                         break;
                     case 'o':
                         fichier>>ombre;
+                        break;
+                    case 'f':
+                        fichier>>reflection;
                         break;
                     case 't':
                         fichier>>transparent;
@@ -241,7 +244,7 @@ bool Tileset::Charger(std::string chemin)
                     centre.y=position.h-32;
 
                 m_tile.push_back(Tile ());
-                m_tile.back().setTile(position,image,collision,animation,son,lumiere,ombre,orientation,transparent,centre,tempsAnimation,opacity);
+                m_tile.back().setTile(position,image,collision,animation,son,lumiere,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity);
                 m_tile.back().m_tileMinimap = imageMM;
                 m_tile.back().m_coordMinimap = coordMinimap;
 
@@ -320,6 +323,14 @@ bool Tileset::getOmbreDuTile(int tile)
 {
     if (tile>=0&&tile<(int)m_tile.size())
         return m_tile[tile].getOmbre();
+
+    return 0;
+}
+
+bool Tileset::getReflectionDuTile(int tile)
+{
+    if (tile>=0&&tile<(int)m_tile.size())
+        return m_tile[tile].getReflection();
 
     return 0;
 }

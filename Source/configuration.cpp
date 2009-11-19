@@ -73,6 +73,8 @@ void Configuration::ChargerConf()
                 fichier>>sang;
             if (chaine== "shadows:")
                 fichier>>Ombre;
+            if (chaine== "reflection:")
+                fichier>>Reflection;
             if (chaine== "light_quality:")
                 fichier>>Lumiere;
             if (chaine== "grass:")
@@ -149,6 +151,11 @@ void Configuration::ChargerInit()
                 fichier>>nom_effetFiltre;
             if (chaine== "fxShadow:")
                 fichier>>nom_effetShadow;
+            if (chaine== "fxWater:")
+                fichier>>nom_effetWater;
+
+            if (chaine== "fxWater_image:")
+                fichier>>water_map;
 
 
 
@@ -358,6 +365,7 @@ void Configuration::Sauvegarder()
         fichier<< "light_quality: " <<Lumiere<<std::endl;
         fichier<< "light_refresh_rate: " <<frequence_lumiere<<std::endl;
         fichier<< "shadows: " <<Ombre<<std::endl;
+        fichier<< "reflection: " <<Reflection<<std::endl;
         fichier<< "videos: " <<video<<std::endl;
         fichier<< "postFX: " <<postFX<<std::endl;
         fichier<< "alpha_opacity: "<<alpha<<std::endl;

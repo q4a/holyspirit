@@ -182,6 +182,8 @@ void c_Jeu::Deplacements(Jeu *jeu)
         if (jeu->hero.getMonstreVise()==-1)
             temp.x=jeu->hero.m_personnage.getCoordonnee().x,temp.y=jeu->hero.m_personnage.getCoordonnee().y;
 
+        oldHeroPos = jeu->hero.m_personnage.getCoordonneePixel();
+
         if (jeu->hero.m_personnage.SeDeplacer(tempsEcouleDepuisDernierDeplacement*100,jeu->map->getDimensions(),
                                               (jeu->map->getCollisionPousse((int)((jeu->hero.m_personnage.getCoordonneePixel().x + jeu->hero.m_personnage.getPousse().x * tempsEcouleDepuisDernierDeplacement * COTE_TILE * 5 + COTE_TILE * 0.5 * (jeu->hero.m_personnage.getPousse().x >= 0))/COTE_TILE),
                                                                             (int)((jeu->hero.m_personnage.getCoordonneePixel().y + jeu->hero.m_personnage.getPousse().y * tempsEcouleDepuisDernierDeplacement * COTE_TILE * 5 + COTE_TILE * 0.5 * (jeu->hero.m_personnage.getPousse().y >= 0) )/COTE_TILE)) != 1)))
@@ -204,6 +206,15 @@ void c_Jeu::Deplacements(Jeu *jeu)
             }
         }
 
+        coordonneeDecimal old, heroPos;
+        old.x = (oldHeroPos.x-oldHeroPos.y-1)*64;;
+        old.y = (oldHeroPos.x+oldHeroPos.y)*32;
+
+        heroPos.x = (jeu->hero.m_personnage.getCoordonneePixel().x-jeu->hero.m_personnage.getCoordonneePixel().y-1)*64;;
+        heroPos.y = (jeu->hero.m_personnage.getCoordonneePixel().x+jeu->hero.m_personnage.getCoordonneePixel().y)*32;
+
+        moteurGraphique->decalageReflection.x += heroPos.x - old.x;
+        moteurGraphique->decalageReflection.y += heroPos.y - old.y;
 
 
         ///Placer l'écouteur, à la position du héro

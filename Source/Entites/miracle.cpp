@@ -88,11 +88,13 @@ void EffetGraphique::Animer(float temps)
         float tempsAnimation = m_tiles[m_tileEnCours].getTemps();
         m_animation += temps;
 
-        if (m_animation >= tempsAnimation)
+        while (m_animation >= tempsAnimation && m_actif)
         {
             m_tileEnCours = m_tiles[m_tileEnCours].getAnimation();
 
             m_animation-=tempsAnimation;
+
+            tempsAnimation = m_tiles[m_tileEnCours].getTemps();
 
             if (m_compteur > 0 || m_compteur == -100)
             {
@@ -127,6 +129,8 @@ void EffetGraphique::Animer(float temps)
 
             if (m_compteur <= 0 && m_compteur != -100)
                 m_actif=false;
+
+
         }
     }
     else
@@ -812,7 +816,7 @@ void Miracle::Charger(std::string chemin, const Caracteristique &caract, int lev
 
                         //AjouterTile(position,collision,animation,son,lumiere,ombre,orientation);
                         m_tile.back().push_back(Tile());
-                        m_tile.back().back().setTile(position,image,collision,animation,son,lumiere,ombre,orientation,transparent,centre,tempsAnimation,opacity);
+                        m_tile.back().back().setTile(position,image,collision,animation,son,lumiere,ombre,0,orientation,transparent,centre,tempsAnimation,opacity);
 
                         fichier.get(caractere);
                     }

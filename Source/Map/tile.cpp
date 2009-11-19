@@ -43,6 +43,7 @@ Tile Tile::operator=(const Tile &tile)
     m_son=tile.m_son;
     m_lumiere=tile.m_lumiere;
     m_ombre=tile.m_ombre;
+    m_reflection=tile.m_reflection;
     m_orientation=tile.m_orientation;
     m_transparent=tile.m_transparent;
     m_centre=tile.m_centre;
@@ -50,7 +51,7 @@ Tile Tile::operator=(const Tile &tile)
     return *this;
 }
 
-void Tile::setTile(coordonnee positionDansLImage,int image,bool collision,int animation,int son,Lumiere lumiere,bool ombre,char orientation,bool transparent,coordonnee centre,float temps, int opacity)
+void Tile::setTile(coordonnee positionDansLImage,int image,bool collision,int animation,int son,Lumiere lumiere,bool ombre, bool reflection,char orientation,bool transparent,coordonnee centre,float temps, int opacity)
 {
     m_positionDansLImage    = positionDansLImage;
     m_image                 = image;
@@ -59,6 +60,7 @@ void Tile::setTile(coordonnee positionDansLImage,int image,bool collision,int an
     m_son                   = son;
     m_lumiere               = lumiere;
     m_ombre                 = ombre;
+    m_reflection            = reflection;
     m_orientation           = orientation;
     m_transparent           = transparent;
     m_opacity               = opacity;
@@ -102,6 +104,10 @@ const Lumiere &Tile::getLumiere()
 bool Tile::getOmbre()
 {
     return m_ombre;
+}
+bool Tile::getReflection()
+{
+    return m_reflection;
 }
 bool Tile::getTransparent()
 {

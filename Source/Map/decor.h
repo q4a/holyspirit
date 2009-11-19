@@ -98,7 +98,7 @@ public:
 
     sf::Color color;
 
-    sf::Sprite m_sprite,m_spriteHerbe,m_spriteOmbre,m_spriteMinimap;
+    sf::Sprite m_sprite,m_spriteHerbe,m_spriteOmbre,m_spriteMinimap, m_spriteReflect;
     bool added_minimap;
 
 private:

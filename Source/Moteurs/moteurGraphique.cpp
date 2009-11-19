@@ -90,11 +90,13 @@ void MoteurGraphique::CreateNewWindow()
         EffectContrastes.SetTexture("framebuffer", sf::Shader::CurrentTexture);
         EffectFiltre.SetTexture("framebuffer", sf::Shader::CurrentTexture);
         EffectShadow.SetTexture("framebuffer", sf::Shader::CurrentTexture);
+        EffectWater.SetTexture("framebuffer", sf::Shader::CurrentTexture);
     }
 
     m_ecran.SetActive();
 
     bufferImage.Create(m_ecran.GetWidth(), m_ecran.GetHeight());
+    m_water_screen.Create(m_ecran.GetWidth(), m_ecran.GetHeight());
     m_light_screen.Create(m_ecran.GetWidth()+64, m_ecran.GetHeight()+64);
     m_light_screen2.Create(m_ecran.GetWidth()+64, m_ecran.GetHeight()+64);
 
@@ -162,7 +164,13 @@ void MoteurGraphique::Charger()
         else
             console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetShadow,0);
 
+        if (!EffectWater.LoadFromFile(configuration->chemin_fx+configuration->nom_effetWater))
+            console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetWater,1);
+        else
+            console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetWater,0);
 
+        m_img_water = AjouterImage(configuration->water_map,-1);
+        EffectWater.SetTexture("water_map", *getImage(m_img_water));
     }
 
     console->Ajouter("");
@@ -178,11 +186,30 @@ void MoteurGraphique::Charger()
     else
         console->Ajouter("Chargement de : "+configuration->chemin_fonts+configuration->font_titre,0);
 
+
+
     m_img_corner = AjouterImage(configuration->chemin_menus + configuration->nom_corner,-1);
 }
 
 void MoteurGraphique::Gerer(float temps,int tailleMapY)
 {
+    m_transWater.x += temps*0.005;
+    m_transWater.x += decalageReflection.x / 800 / configuration->zoom * 0.014 * 0.5;
+    decalageReflection.x = 0;
+    if(m_transWater.x > 0.5)
+        m_transWater.x = 0;
+    if(m_transWater.x < 0)
+        m_transWater.x = 0.5;
+
+    m_transWater.y += temps*0.005;
+    m_transWater.y -= decalageReflection.y / 600 / configuration->zoom * 0.014 * 0.5;
+    decalageReflection.y = 0;
+    if(m_transWater.y > 0.5)
+        m_transWater.y = 0;
+    if(m_transWater.y < 0)
+        m_transWater.y = 0.5;
+
+
     int k=0;
     m_systemeParticules_iter=m_systemeParticules.begin();
     while(m_systemeParticules_iter!=m_systemeParticules.end())
@@ -325,10 +352,8 @@ void MoteurGraphique::Afficher()
         m_light_screen2.SetView(m_light_screen2.GetDefaultView());
 
         sf::Sprite sprite3;
-        sprite3.SetX(0);
-        sprite3.SetY(0);
         sprite3.SetImage(*getImage(0));
-        sprite3.Resize(configuration->Resolution.w,configuration->Resolution.h);
+        sprite3.Resize(configuration->Resolution.w+64,configuration->Resolution.h+64);
         sprite3.SetColor(sf::Color(sf::Color((int)(128+128-m_soleil.intensite*0.5),(int)(128+128-m_soleil.intensite*0.5),(int)(128+128-m_soleil.intensite*0.5))));
         sprite3.SetBlendMode(sf::Blend::Add);
         m_light_screen2.Draw(sprite3);
@@ -360,6 +385,7 @@ void MoteurGraphique::Afficher()
     }
 
     bufferImage.Clear();
+    m_water_screen.Clear();
 
     for (int k=0;k<=20;k++)
     {
@@ -388,7 +414,9 @@ void MoteurGraphique::Afficher()
             sf::Sprite screen(m_light_screen2.GetImage());
 
             screen.SetBlendMode(sf::Blend::Multiply);
-            screen.SetColor(sf::Color(255,255,255));
+           // screen.SetColor(sf::Color(255,255,255,128));
+
+            //screen.SetSubRect(sf::IntRect(32,32,832,632));
 
             screen.SetX(decalageOmbre.x-m_camera.GetCenter().x-32);
             screen.SetY(decalageOmbre.y-m_camera.GetCenter().y-32);
@@ -402,20 +430,40 @@ void MoteurGraphique::Afficher()
         {
             for (IterCommande=m_commandes[k].begin();IterCommande!=m_commandes[k].end();++IterCommande)
             {
-                if (IterCommande->m_utiliserCamera)
-                    bufferImage.SetView(m_camera);
-                else
-                    bufferImage.SetView(bufferImage.GetDefaultView());
+                if(k == 0 && configuration->postFX)
+                {
+                    if (IterCommande->m_utiliserCamera)
+                        m_water_screen.SetView(m_camera);
+                    else
+                        m_water_screen.SetView(m_water_screen.GetDefaultView());
 
-                if(k < 12)
-                    bufferImage.Draw(IterCommande->m_sprite,EffectFiltre);
+                    m_water_screen.Draw(IterCommande->m_sprite,EffectFiltre);
+                }
                 else
-                    bufferImage.Draw(IterCommande->m_sprite);
+                {
+                    if (IterCommande->m_utiliserCamera)
+                        bufferImage.SetView(m_camera);
+                    else
+                        bufferImage.SetView(bufferImage.GetDefaultView());
+
+                    if(k < 12 && configuration->postFX)
+                        bufferImage.Draw(IterCommande->m_sprite,EffectFiltre);
+                    else
+                        bufferImage.Draw(IterCommande->m_sprite);
+                }
                // bufferImage.Draw(IterCommande->m_sprite,EffectShadow);
             }
         }
 
         bufferImage.SetView(bufferImage.GetDefaultView());
+
+        if(k == 0 && configuration->postFX)
+        {
+            m_water_screen.Display();
+            EffectWater.SetParameter("translation", m_transWater.x, m_transWater.y);
+            EffectWater.SetParameter("offset", configuration->zoom , configuration->zoom );
+            bufferImage.Draw(sf::Sprite (m_water_screen.GetImage()), EffectWater);
+        }
 
         for (unsigned i=0;i<m_textes[k].size();i++)
             bufferImage.Draw(m_textes[k][i]);

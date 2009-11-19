@@ -100,8 +100,9 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	std::string getCheminImage(int IDimage);
 
-	sf::Shader  EffectBlur,EffectBlur2,EffectMort,EffectNoir,EffectContrastes,EffectFiltre, EffectShadow;
+	sf::Shader  EffectBlur,EffectBlur2,EffectMort,EffectNoir,EffectContrastes,EffectFiltre, EffectShadow, EffectWater;
 	sf::RenderImage bufferImage;
+	sf::RenderImage m_water_screen;
 	sf::RenderImage m_light_screen;
     sf::RenderImage m_light_screen2;
 
@@ -115,7 +116,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
     Lumiere m_soleil;
     float m_angleOmbreSoleil;
 
-    int m_img_corner;
+    int m_img_corner, m_img_water;
 
 
 
@@ -126,6 +127,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
     coordonneeDecimal decalageCamera, decalageCameraSouhaite;
     bool cameraDecale;
+    coordonneeDecimal decalageReflection, m_transWater;
 
 	//protected:
 

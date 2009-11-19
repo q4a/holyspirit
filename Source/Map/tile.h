@@ -34,7 +34,7 @@ class Tile
 	Tile();
 	~Tile();
 	Tile operator=(const Tile &tile);
-	void setTile(coordonnee positionDansLImage,int image,bool collision,int animation,int son,Lumiere lumiere,bool ombre,char orientation,bool transparent,coordonnee centre,float temps, int opacity);
+	void setTile(coordonnee positionDansLImage,int image,bool collision,int animation,int son,Lumiere lumiere,bool ombre,bool reflection,char orientation,bool transparent,coordonnee centre,float temps, int opacity);
 
 	const coordonnee &getCoordonnee();
 	bool getCollision();
@@ -43,6 +43,7 @@ class Tile
 	int getSon();
 	const Lumiere &getLumiere();
 	bool getOmbre();
+	bool getReflection();
 	bool getTransparent();
 	char getOrientation();
 	const coordonnee &getCentre();
@@ -57,7 +58,7 @@ class Tile
 
 	private:
 	coordonnee m_positionDansLImage,m_centre;
-	bool m_collision,m_ombre,m_transparent;
+	bool m_collision,m_ombre,m_reflection,m_transparent;
 	int m_animation,m_son,m_image;
 	char m_orientation; // Orientation du tile, utilisé pour le calcul des lumières
 	Lumiere m_lumiere;
