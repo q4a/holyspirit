@@ -1,4 +1,5 @@
 *Data/Landscapes/Stone_wall/Stone_wall2.png
+*Data/Menus/MinimapIcones.png
 $
 $
 Mur de pierres
