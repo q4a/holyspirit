@@ -15,7 +15,7 @@ $
 //Séquences
 	*
 	//Tiles de la séquence
-		* x0 y0 w128 h128 i0 a1 lr0 lv0 lb255 li0 s0 n0.04 $
+		* x0 y0 w128 h128 i0 a1 lr0 lv0 lb255 li0 n0.04 $
 		* x128 y0 w128 h128 i0 a2 lr0 lv0 lb255 li64 n0.04 $
 		* x256 y0 w128 h128 i0 a3 lr0 lv0 lb255 li96 n0.04 $
 		* x384 y0 w128 h128 i0 a4 lr0 lv0 lb255 li128 n0.04 $
