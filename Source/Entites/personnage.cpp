@@ -613,8 +613,9 @@ void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,boo
                                 }
 
                                 sprite.FlipY(true);
-                                sprite.Move(0,modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().y-sprite.GetSize().y*0.5);
-                                sprite.Scale(1,0.5);
+                                //sprite.Move(0,modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().y-sprite.GetSize().y*0.5);
+                                //sprite.Scale(1,0.5);
+                                sprite.SetOrigin(sprite.GetOrigin().x,sprite.GetSize().y-sprite.GetOrigin().y);
                                 moteurGraphique->AjouterCommande(&sprite,0,1);
                             }
                         }

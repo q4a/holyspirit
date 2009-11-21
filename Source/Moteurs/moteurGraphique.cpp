@@ -437,6 +437,7 @@ void MoteurGraphique::Afficher()
                     else
                         m_water_screen.SetView(m_water_screen.GetDefaultView());
 
+                    IterCommande->m_sprite.SetColor(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
                     m_water_screen.Draw(IterCommande->m_sprite,EffectFiltre);
                 }
                 else

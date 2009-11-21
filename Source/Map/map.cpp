@@ -303,6 +303,29 @@ bool Map::Charger(std::string nomMap,Hero *hero)
         if (configuration->debug)
             console->Ajouter("/Lectures des lumières.");
 
+        do
+        {
+
+            //Chargement de la lumière ambiante
+            fichier->get(caractere);
+            if (caractere=='*')
+            {
+                *fichier>>m_nom_img_sky;
+                m_img_sky = moteurGraphique->AjouterImage(m_nom_img_sky, 3);
+            }
+            if (fichier->eof())
+            {
+                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
+                throw ("Erreur : Map \" "+chemin+" \" Invalide");
+            }
+        }
+        while (caractere!='$');
+
+        if (configuration->debug)
+            console->Ajouter("/Lectures des ciels.");
+
+
+
         while (heureEnCours<24)
         {
             m_lumiere[heureEnCours].rouge=m_lumiere[0].rouge;
@@ -1149,6 +1172,10 @@ void Map::Sauvegarder(Hero *hero)
 
         fichier<<"$\n";
 
+        if(!m_nom_img_sky.empty())
+            fichier<<" *"<<m_nom_img_sky<<endl;
+        fichier<<"$\n";
+
         for (int i=0;i<(int)m_tileset.size();++i)
             fichier<<"*"<<m_tileset[i].getChemin()<<"\n";
 
@@ -1380,6 +1407,11 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
             moteurGraphique->AjouterCommande(&minimap,12,0);
         }
     }
+
+    sf::Sprite sky;
+    sky.SetImage(*moteurGraphique->getImage(m_img_sky));
+   // sky.SetColor(sf::Color(moteurGraphique->m_soleil.rouge*moteurGraphique->m_soleil.intensite/255,moteurGraphique->m_soleil.vert*moteurGraphique->m_soleil.intensite/255,moteurGraphique->m_soleil.bleu*moteurGraphique->m_soleil.intensite/255));
+    moteurGraphique->AjouterCommande(&sky,0,0);
 
     for (int couche=0;couche<NOMBRE_COUCHE_MAP;couche++)
     {

@@ -162,6 +162,9 @@ private:
     std::string m_nom;
     int m_no_nom;
 
+    int m_img_sky;
+    std::string m_nom_img_sky;
+
     std::vector <std::string> m_fond,m_cheminMusique;
 
     std::vector <Modele_Monstre> m_ModeleMonstre;
