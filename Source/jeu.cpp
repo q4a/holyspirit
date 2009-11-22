@@ -74,7 +74,7 @@ void Jeu::Demarrer()
     while (m_run)
     {
 
-        while(Clock.GetElapsedTime() < 0.001){}
+        while(configuration->syncronisation_verticale && Clock.GetElapsedTime() < 0.012){}
 
         if(map != NULL)
             eventManager->GererLesEvenements(&m_run,Clock.GetElapsedTime(),map->getDimensions());

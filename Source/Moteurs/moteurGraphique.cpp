@@ -430,14 +430,16 @@ void MoteurGraphique::Afficher()
         {
             for (IterCommande=m_commandes[k].begin();IterCommande!=m_commandes[k].end();++IterCommande)
             {
-                if(k == 0 && configuration->postFX)
+                if(k==0)
+                    IterCommande->m_sprite.SetColor(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
+
+                if(k == 0 && configuration->postFX && configuration->Reflection)
                 {
                     if (IterCommande->m_utiliserCamera)
                         m_water_screen.SetView(m_camera);
                     else
                         m_water_screen.SetView(m_water_screen.GetDefaultView());
 
-                    IterCommande->m_sprite.SetColor(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
                     m_water_screen.Draw(IterCommande->m_sprite,EffectFiltre);
                 }
                 else
@@ -451,14 +453,18 @@ void MoteurGraphique::Afficher()
                         bufferImage.Draw(IterCommande->m_sprite,EffectFiltre);
                     else
                         bufferImage.Draw(IterCommande->m_sprite);
+                   /* EffectShadow.SetParameter("coord", IterCommande->m_sprite.TransformToGlobal(sf::Vector2f(0,0)).x/configuration->Resolution.x
+                                                     , IterCommande->m_sprite.TransformToGlobal(sf::Vector2f(0,0)).y/configuration->Resolution.y);
+                    EffectShadow.SetParameter("size" , IterCommande->m_sprite.GetSize().x/configuration->Resolution.x
+                                                     , IterCommande->m_sprite.GetSize().y/configuration->Resolution.y);
+                    bufferImage.Draw(IterCommande->m_sprite,EffectShadow);*/
                 }
-               // bufferImage.Draw(IterCommande->m_sprite,EffectShadow);
             }
         }
 
         bufferImage.SetView(bufferImage.GetDefaultView());
 
-        if(k == 0 && configuration->postFX)
+        if(k == 0 && configuration->postFX && configuration->Reflection)
         {
             m_water_screen.Display();
             EffectWater.SetParameter("translation", m_transWater.x, m_transWater.y);

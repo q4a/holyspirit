@@ -176,7 +176,7 @@ void c_Jeu::IA(Jeu *jeu)
 }
 void c_Jeu::Deplacements(Jeu *jeu)
 {
-    if (tempsEcouleDepuisDernierDeplacement >= 0.01)
+    if (tempsEcouleDepuisDernierDeplacement >= 0.0)
     {
         coordonnee temp(-1 ,-1 ,-1 ,-1);
         if (jeu->hero.getMonstreVise()==-1)
@@ -471,6 +471,7 @@ int GestionBoutons(Jeu *jeu)
         && eventManager->getPositionSouris().y > 533 * configuration->Resolution.y/600
         && eventManager->getPositionSouris().y < 552 * configuration->Resolution.y/600)
     {
+        if(!eventManager->getEvenement(Key::M,"ET"))
          moteurGraphique->AjouterTexte(configuration->getText(0,13),coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),
                                       19,0,12,sf::Color(224,224,224),1);
@@ -505,6 +506,7 @@ int GestionBoutons(Jeu *jeu)
         && eventManager->getPositionSouris().y > 533 * configuration->Resolution.y/600
         && eventManager->getPositionSouris().y < 552 * configuration->Resolution.y/600)
     {
+        if(!eventManager->getEvenement(Key::I,"ET"))
         moteurGraphique->AjouterTexte(configuration->getText(0,14),coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),
                                       19,0,12,sf::Color(224,224,224),1);
@@ -535,6 +537,7 @@ int GestionBoutons(Jeu *jeu)
         && eventManager->getPositionSouris().y > 565 * configuration->Resolution.y/600
         && eventManager->getPositionSouris().y < 584 * configuration->Resolution.y/600)
     {
+        if(!eventManager->getEvenement(Key::Q,"ET"))
         moteurGraphique->AjouterTexte(configuration->getText(0,15),coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),
                                       19,0,12,sf::Color(224,224,224),1);
@@ -564,6 +567,7 @@ int GestionBoutons(Jeu *jeu)
         && eventManager->getPositionSouris().y > 565 * configuration->Resolution.y/600
         && eventManager->getPositionSouris().y < 584 * configuration->Resolution.y/600)
     {
+        if(!eventManager->getEvenement(Key::T,"ET"))
         moteurGraphique->AjouterTexte(configuration->getText(0,16),coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),
                                       19,0,12,sf::Color(224,224,224),1);
@@ -593,6 +597,7 @@ int GestionBoutons(Jeu *jeu)
      && eventManager->getPositionSouris().y > 577 * configuration->Resolution.y/600
      && eventManager->getPositionSouris().y < 596 * configuration->Resolution.y/600)
     {
+        if(!eventManager->getEvenement(Key::Escape,"ET"))
         moteurGraphique->AjouterTexte(configuration->getText(0,17),coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),
                                       19,0,12,sf::Color(224,224,224),1);
