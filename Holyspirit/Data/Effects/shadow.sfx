@@ -1,7 +1,9 @@
 uniform sampler2D texture;
 uniform sampler2D shadow_map;
+uniform vec2 coord;
+uniform vec2 size;
 
 void main()
 {
-	gl_FragColor = texture2D(texture, gl_TexCoord[0].xy ) * gl_Color * texture2D(shadow_map, gl_TexCoord[0].xy);
+	gl_FragColor = texture2D(texture, gl_TexCoord[0].xy ) * gl_Color * texture2D(shadow_map, (gl_TexCoord[0] * size + coord).xy);
 }
