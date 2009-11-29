@@ -54,3 +54,7 @@ Scarificateur
 "Scarificateur_est_une\dague_de_cérémonie_unique.\Il_fut_utiliser_par\la_terrible_tueuse_Lavoisin."
 La_Damnation_d'Harold
 "Ce_bouclier_a_appartenu\_au_grand_roi_Harold."
+Gants_renforcés
+"Des_solides_gants_en_cuir\renforcé_par_des_plaques_en_métal."
+Capuche_de_cuir
+"Une_simple_capuche_en_cuir\offrant_peu_de_protection."
