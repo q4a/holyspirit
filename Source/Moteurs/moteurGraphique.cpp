@@ -414,9 +414,6 @@ void MoteurGraphique::Afficher()
             sf::Sprite screen(m_light_screen2.GetImage());
 
             screen.SetBlendMode(sf::Blend::Multiply);
-           // screen.SetColor(sf::Color(255,255,255,128));
-
-            //screen.SetSubRect(sf::IntRect(32,32,832,632));
 
             screen.SetX(decalageOmbre.x-m_camera.GetCenter().x-32);
             screen.SetY(decalageOmbre.y-m_camera.GetCenter().y-32);
@@ -453,7 +450,7 @@ void MoteurGraphique::Afficher()
                         bufferImage.Draw(IterCommande->m_sprite,EffectFiltre);
                     else
                         bufferImage.Draw(IterCommande->m_sprite);
-                   /* EffectShadow.SetParameter("coord", IterCommande->m_sprite.TransformToGlobal(sf::Vector2f(0,0)).x/configuration->Resolution.x
+                    /*EffectShadow.SetParameter("coord", IterCommande->m_sprite.TransformToGlobal(sf::Vector2f(0,0)).x/configuration->Resolution.x
                                                      , IterCommande->m_sprite.TransformToGlobal(sf::Vector2f(0,0)).y/configuration->Resolution.y);
                     EffectShadow.SetParameter("size" , IterCommande->m_sprite.GetSize().x/configuration->Resolution.x
                                                      , IterCommande->m_sprite.GetSize().y/configuration->Resolution.y);
@@ -680,9 +677,9 @@ void MoteurGraphique::AjouterCommande(sf::Sprite *sprite, int couche, bool camer
 
 void MoteurGraphique::AjouterTexte(std::string txt, coordonnee pos, int couche, bool titre, int size, sf::Color color, bool fond)
 {
-    sf::String temp;
+    sf::Text temp;
     temp.SetFont(m_font);
-    temp.SetText(txt);
+    temp.SetString(txt);
     temp.SetPosition(pos.x, pos.y);
     temp.SetSize(size);
     temp.SetColor(color);
@@ -701,7 +698,7 @@ void MoteurGraphique::AjouterTexte(std::string txt, coordonnee pos, int couche, 
     }
 }
 
-void MoteurGraphique::AjouterTexteNonChevauchable(sf::String* string, int couche, bool titre)
+void MoteurGraphique::AjouterTexteNonChevauchable(sf::Text* string, int couche, bool titre)
 {
     if (couche>=0&&couche<=20)
     {
@@ -718,25 +715,25 @@ void MoteurGraphique::AjouterTexteNonChevauchable(sf::String* string, int couche
     }
 }
 
-void MoteurGraphique::AjouterTexte(sf::String* string, int couche,bool titre)
+void MoteurGraphique::AjouterTexte(sf::Text* string, int couche,bool titre)
 {
 
     if (couche>=0&&couche<=20)
     {
-        sf::String temp(*string);
+        sf::Text temp(*string);
         temp.SetFont(m_font);
 
         if (titre)
         {
             temp.SetFont(m_font_titre);
 
-            temp.SetStyle(sf::String::Bold);
+            temp.SetStyle(sf::Text::Bold);
             temp.SetColor(string->GetColor());
 
             m_textes[couche].push_back(temp);
 
             temp.SetColor(sf::Color((int)(string->GetColor().r*0.15),(int)(string->GetColor().g*0.15),(int)(string->GetColor().b*0.15),string->GetColor().a));
-            temp.SetStyle(sf::String::Regular);
+            temp.SetStyle(sf::Text::Regular);
             m_textes[couche].push_back(temp);
         }
         else

@@ -38,7 +38,7 @@ private:
     float temps_ecoule,m_alpha;
     bool retour;
 
-    sf::String texte;
+    sf::Text texte;
 
 };
 

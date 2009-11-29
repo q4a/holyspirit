@@ -151,7 +151,7 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet, float *decalage)
             alpha = 255;
         alpha /= 255;
 
-        sf::String texte;
+        sf::Text texte;
         sf::Sprite sprite;
 
         texte.SetColor(sf::Color(   GetItemColor(m_objets[objet].getRarete()).r,
@@ -161,7 +161,7 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet, float *decalage)
 
         texte.SetFont(moteurGraphique->m_font);
 
-        texte.SetText(m_objets[objet].getNom());
+        texte.SetString(m_objets[objet].getNom());
         texte.SetSize(14*configuration->Resolution.w/800);
         texte.SetY((position.y-moteurGraphique->m_camera.GetRect().Top)/configuration->zoom*configuration->Resolution.h/600);
         texte.SetX((position.x-moteurGraphique->m_camera.GetRect().Left)/configuration->zoom*configuration->Resolution.w/800);

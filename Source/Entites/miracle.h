@@ -136,7 +136,7 @@ public:
     void JouerSon(int numeroSon,coordonnee position,coordonnee positionHero);
 
     void AfficherDescription(coordonnee position, bool suivant = true);
-    sf::String AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color=sf::Color(255,255,255));
+    sf::Text AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color=sf::Color(255,255,255));
 
 
 

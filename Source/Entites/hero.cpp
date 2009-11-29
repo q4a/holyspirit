@@ -655,7 +655,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     sprite.SetX(m_classe.plus_button.position.x*configuration->Resolution.x/800);
 
 
-    sf::String string;
+    sf::Text string;
     string.SetFont(moteurGraphique->m_font);
     string.SetSize(16*configuration->Resolution.h/600);
 
@@ -665,7 +665,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     {
         std::ostringstream  buf;
         buf<<m_caracteristiques.niveau;
-        string.SetText(buf.str());
+        string.SetString(buf.str());
         string.SetX((129*configuration->Resolution.w/800)+22*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
         string.SetY(263*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
         string.SetColor(sf::Color(255,255,255));
@@ -673,7 +673,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     }
 
     {
-        string.SetText(m_caracteristiques.nom.c_str());
+        string.SetString(m_caracteristiques.nom.c_str());
         string.SetX((1*configuration->Resolution.w/800)+62*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
         string.SetY(263*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
         string.SetColor(sf::Color(255,255,255));
@@ -683,7 +683,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     {
         std::ostringstream  buf;
         buf<<configuration->getText(0,3)<<" : "<<(int)m_caracteristiques.vie<<" / "<<(int)m_caracteristiques.maxVie;
-        string.SetText(buf.str());
+        string.SetString(buf.str());
     }
 
     if ((string.GetRect().Right-string.GetRect().Left)>104)
@@ -693,7 +693,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         {
             std::ostringstream  buf;
             buf<<(int)m_caracteristiques.vie<<" / "<<(int)m_caracteristiques.maxVie;
-            string.SetText(buf.str());
+            string.SetString(buf.str());
         }
     }
 
@@ -711,7 +711,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     {
         std::ostringstream  buf;
         buf<<configuration->getText(0,4)<<" : "<<(int)m_caracteristiques.foi<<" / "<<(int)m_caracteristiques.maxFoi;
-        string.SetText(buf.str());
+        string.SetString(buf.str());
     }
 
     if ((string.GetRect().Right-string.GetRect().Left)>104)
@@ -721,7 +721,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         {
             std::ostringstream  buf;
             buf<<(int)m_caracteristiques.foi<<" / "<<(int)m_caracteristiques.maxFoi;
-            string.SetText(buf.str());
+            string.SetString(buf.str());
         }
     }
 
@@ -739,7 +739,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     {
         std::ostringstream  buf;
         buf<<m_caracteristiques.force;
-        string.SetText(buf.str());
+        string.SetString(buf.str());
         string.SetX((129*configuration->Resolution.w/800)+21*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
         string.SetY(311*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
         if (m_caracteristiques.force!=m_personnage.getCaracteristique().force)
@@ -767,9 +767,9 @@ void Hero::AfficherCaracteristiques(float decalage)
     }
 
     if(configuration->text_menus.size() > 5)
-        string.SetText(configuration->text_menus[5].c_str());
+        string.SetString(configuration->text_menus[5].c_str());
     else
-        string.SetText("Error");
+        string.SetString("Error");
 
     string.SetX(16*configuration->Resolution.w/800);
     string.SetY(311*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
@@ -779,7 +779,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     {
         std::ostringstream  buf;
         buf<<m_caracteristiques.dexterite;
-        string.SetText(buf.str());
+        string.SetString(buf.str());
         string.SetX((129*configuration->Resolution.w/800)+21*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
         string.SetY(338*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
         if (m_caracteristiques.dexterite!=m_personnage.getCaracteristique().dexterite)
@@ -804,7 +804,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         sprite.SetColor(sf::Color(255,255,255));
     }
 
-    string.SetText(configuration->getText(0,6).c_str());
+    string.SetString(configuration->getText(0,6).c_str());
     string.SetX(16*configuration->Resolution.w/800);
     string.SetY(338*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
@@ -814,7 +814,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     {
         std::ostringstream  buf;
         buf<<m_caracteristiques.vitalite;
-        string.SetText(buf.str());
+        string.SetString(buf.str());
         string.SetX((129*configuration->Resolution.w/800)+21*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
         string.SetY(365*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
         if (m_caracteristiques.vitalite!=m_personnage.getCaracteristique().vitalite)
@@ -839,7 +839,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         sprite.SetColor(sf::Color(255,255,255));
     }
 
-    string.SetText(configuration->getText(0,7).c_str());
+    string.SetString(configuration->getText(0,7).c_str());
     string.SetX(16*configuration->Resolution.w/800);
     string.SetY(365*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
@@ -849,7 +849,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     {
         std::ostringstream  buf;
         buf<<m_caracteristiques.piete;
-        string.SetText(buf.str());
+        string.SetString(buf.str());
         string.SetX((129*configuration->Resolution.w/800)+21*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
         string.SetY(392*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
         if (m_caracteristiques.piete!=m_personnage.getCaracteristique().piete)
@@ -874,7 +874,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         sprite.SetColor(sf::Color(255,255,255));
     }
 
-    string.SetText(configuration->getText(0,8).c_str());
+    string.SetString(configuration->getText(0,8).c_str());
     string.SetX(16*configuration->Resolution.w/800);
     string.SetY(392*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
@@ -884,7 +884,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     {
         std::ostringstream  buf;
         buf<<m_caracteristiques.charisme;
-        string.SetText(buf.str());
+        string.SetString(buf.str());
         string.SetX((129*configuration->Resolution.w/800)+21*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
         string.SetY(419*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
         if (m_caracteristiques.charisme!=m_personnage.getCaracteristique().charisme)
@@ -909,13 +909,13 @@ void Hero::AfficherCaracteristiques(float decalage)
         sprite.SetColor(sf::Color(255,255,255));
     }
 
-    string.SetText(configuration->getText(0,9).c_str());
+    string.SetString(configuration->getText(0,9).c_str());
     string.SetX(16*configuration->Resolution.w/800);
     string.SetY(419*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
-    string.SetText(configuration->getText(0,12).c_str());
+    string.SetString(configuration->getText(0,12).c_str());
     string.SetX(16*configuration->Resolution.w/800);
     string.SetY(446*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
@@ -924,7 +924,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     {
         std::ostringstream  buf;
         buf<<m_caracteristiques.pts_restant;
-        string.SetText(buf.str());
+        string.SetString(buf.str());
         string.SetX((172*configuration->Resolution.w/800)+21*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
         string.SetY(450*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
         string.SetColor(sf::Color(255,255,255));
@@ -935,7 +935,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     {
         std::ostringstream  buf;
         buf<<m_caracteristiques.degatsMin<<" - "<<m_caracteristiques.degatsMax;
-        string.SetText(buf.str());
+        string.SetString(buf.str());
         string.SetX((314*configuration->Resolution.w/800)+32*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
         string.SetY(300*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
         if (m_caracteristiques.degatsMin!=m_personnage.getCaracteristique().degatsMin||m_caracteristiques.degatsMax!=m_personnage.getCaracteristique().degatsMax)
@@ -945,7 +945,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         moteurGraphique->AjouterTexte(&string,15);
     }
 
-    string.SetText(configuration->getText(0,10).c_str());
+    string.SetString(configuration->getText(0,10).c_str());
     string.SetX(234*configuration->Resolution.w/800);
     string.SetY(300*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
@@ -954,7 +954,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     {
         std::ostringstream  buf;
         buf<<m_caracteristiques.armure;
-        string.SetText(buf.str());
+        string.SetString(buf.str());
         string.SetX((314*configuration->Resolution.w/800)+32*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
         string.SetY(327*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
         if (m_caracteristiques.armure!=m_personnage.getCaracteristique().armure)
@@ -964,7 +964,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         moteurGraphique->AjouterTexte(&string,15);
     }
 
-    string.SetText(configuration->getText(0,11).c_str());
+    string.SetString(configuration->getText(0,11).c_str());
     string.SetX(234*configuration->Resolution.w/800);
     string.SetY(327*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
@@ -973,7 +973,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     {
         std::ostringstream  buf;
         buf<<m_argent;
-        string.SetText(buf.str());
+        string.SetString(buf.str());
         string.SetSize(14*configuration->Resolution.h/600);
         string.SetX((112*configuration->Resolution.w/800)+32*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
         string.SetY(218*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
@@ -1043,11 +1043,11 @@ void Hero::AfficherQuetes(float decalage)
     coordonnee position = m_classe.position_contenu_quetes;
     for (int i = 0;i < (int)m_quetes.size();++i)
     {
-        sf::String texte;
+        sf::Text texte;
         texte.SetFont(moteurGraphique->m_font);
         texte.SetSize(12 * configuration->Resolution.h/600);
         texte.SetPosition(position.x * configuration->Resolution.w/800, (position.y - decalage) * configuration->Resolution.h/600);
-        texte.SetText(m_quetes[i].m_nom);
+        texte.SetString(m_quetes[i].m_nom);
 
         moteurGraphique->AjouterTexte(&texte,15);
 
@@ -1076,17 +1076,17 @@ void Hero::AfficherQuetes(float decalage)
 
     if (queteAffichee >= 0 && queteAffichee < (int)m_quetes.size())
     {
-        sf::String texte;
+        sf::Text texte;
         texte.SetFont(moteurGraphique->m_font);
         texte.SetSize(18 * configuration->Resolution.h/600);
         texte.SetPosition(m_classe.position_contenu_description_quete.x * configuration->Resolution.w/800, m_classe.position_contenu_description_quete.y * configuration->Resolution.h/600 - decalage);
-        texte.SetText(m_quetes[queteAffichee].m_nom);
+        texte.SetString(m_quetes[queteAffichee].m_nom);
 
         moteurGraphique->AjouterTexte(&texte,15,0);
 
         texte.SetSize(12 * configuration->Resolution.h/600);
         texte.SetPosition(m_classe.position_contenu_description_quete.x * configuration->Resolution.w/800, m_classe.position_contenu_description_quete.y * configuration->Resolution.h/600 - decalage + 64);
-        texte.SetText(m_quetes[queteAffichee].m_description);
+        texte.SetString(m_quetes[queteAffichee].m_description);
 
         moteurGraphique->AjouterTexte(&texte,15,0);
     }
@@ -1138,13 +1138,13 @@ void Hero::AfficherFlecheQuetes(const std::string &nomMap, float temps)
 bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
 {
     bool retour = false;
-    sf::String texte;
+    sf::Text texte;
     texte.SetSize(14 * configuration->Resolution.h/600);
 
     std::ostringstream buf;
     buf<<m_personnage.getCaracteristique().miracles_restant<<endl;
 
-    texte.SetText(buf.str());
+    texte.SetString(buf.str());
     texte.SetX(m_classe.position_points_miracles.x*configuration->Resolution.w/800 + (m_classe.position_points_miracles.w*configuration->Resolution.w/800 -texte.GetRect().Right + texte.GetRect().Left)/2);
     texte.SetY((m_classe.position_points_miracles.y- decalage)*configuration->Resolution.h/600);
 
@@ -1164,7 +1164,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
         {
             std::ostringstream buf;
             buf<<m_lvl_miracles[i]<<endl;
-            texte.SetText(buf.str());
+            texte.SetString(buf.str());
             texte.SetX(m_classe.position_miracles[i].x*configuration->Resolution.w/800 + (m_classe.position_miracles[i].w*configuration->Resolution.w/800 -texte.GetRect().Right + texte.GetRect().Left)/2);
             texte.SetY((m_classe.position_miracles[i].y + 51 - decalage) *configuration->Resolution.h/600);
 

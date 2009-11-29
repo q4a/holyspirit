@@ -1244,16 +1244,16 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
 }
 
 
-sf::String Objet::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color)
+sf::Text Objet::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color)
 {
-    sf::String string;
+    sf::Text string;
 
     string.SetFont(moteurGraphique->m_font);
 
     string.SetColor(color);
 
     string.SetSize(12.f*(int)(configuration->Resolution.h/600));
-    string.SetText(chaine);
+    string.SetString(chaine);
 
     if (tailleCadran->x<((int)string.GetRect().Right-(int)string.GetRect().Left))
         tailleCadran->x=((int)string.GetRect().Right-(int)string.GetRect().Left);
@@ -1266,10 +1266,10 @@ sf::String Objet::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee 
 
 int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,float modPrix,bool compare,bool decalageDroite, bool surbrillance)
 {
-    std::vector <sf::String> temp;
+    std::vector <sf::Text> temp;
 
     sf::Sprite sprite;
-    sf::String string;
+    sf::Text string;
 
     coordonnee tailleCadran,decalage(-10,0);
 

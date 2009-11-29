@@ -88,7 +88,7 @@ class Menu
 	private:
 	int m_fondMiniMap,m_imageAme,m_imageSang,m_barrePointAme,m_barreVie,m_barreVieVide/*,m_inventaire*/;
 
-	sf::String texte;
+	sf::Text texte;
 
 	float m_alphaSang;
 

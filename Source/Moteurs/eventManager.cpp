@@ -167,7 +167,7 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
         m_EventTableau[Key::Tab]=false;
     }
 
-    FloatRect ViewRect = moteurGraphique->m_camera.GetRect();
+    //FloatRect ViewRect = moteurGraphique->m_camera.GetRect();
 
     coordonnee positionSourisTotale=moteurGraphique->getPositionSouris();
 

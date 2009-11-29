@@ -32,7 +32,6 @@
 				</ResourceCompiler>
 				<Linker>
 					<Add option="-s" />
-					<Add option="-lsfml-main" />
 					<Add option="-lsfml-audio-s" />
 					<Add option="-lsfml-graphics-s" />
 					<Add option="-lsfml-window-s" />

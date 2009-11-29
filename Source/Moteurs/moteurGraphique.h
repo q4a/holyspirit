@@ -77,8 +77,8 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	void AjouterSystemeParticules(int ID,coordonnee position,sf::Color color,float force,float angle);
 	void AjouterCommande(sf::Sprite*,int=0, bool=0);
-	void AjouterTexte(sf::String*, int couche=0,bool titre=false);
-	void AjouterTexteNonChevauchable(sf::String*, int couche=0,bool titre=false);
+	void AjouterTexte(sf::Text*, int couche=0,bool titre=false);
+	void AjouterTexteNonChevauchable(sf::Text*, int couche=0,bool titre=false);
 	void AjouterTexte(std::string, coordonnee, int couche=0, bool titre=false, int size = 14, sf::Color color = sf::Color(224,224,224), bool fond = false);
 
 
@@ -140,7 +140,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	std::vector <ModeleParticuleSysteme> m_modeleSystemeParticules;
 
-	std::vector <sf::String> m_textes[21];
+	std::vector <sf::Text> m_textes[21];
 	std::vector <Commande> m_commandes[21];
 	std::vector <ParticuleSysteme> m_systemeParticules;
 	std::vector <ParticuleSysteme>::iterator m_systemeParticules_iter;

@@ -116,7 +116,7 @@ private:
 
     bool continuer,lumiere,augmenter;
     int nbrTourBoucle;
-    sf::String Version,Temps,fps,TourBoucle;
+    sf::Text Version,Temps,fps,TourBoucle;
     coordonneeDecimal oldHeroPos;
 
     float tempsActuel,tempsPrecedent,tempsDepuisDerniereAnimation,tempsEcoule,tempsNbrTourBoucle,tempsEcouleDepuisDernierCalculLumiere,tempsEcouleDepuisDernierCalculOmbre,tempsEcouleDepuisDernierDeplacement,tempsEcouleDepuisDernierIA,tempsEcouleDepuisDernierAffichage,tempsEcouleDepuisFPS,tempsEffetMort,tempsSauvergarde;

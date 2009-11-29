@@ -92,10 +92,10 @@ void Menu::Afficher(int type,float alpha,Classe *classe)
         sprite.SetColor(sf::Color(255,255,255));
         moteurGraphique->AjouterCommande(&sprite2,16,0);
 
-        sf::String texte;
+        sf::Text texte;
         texte.SetSize(13 * configuration->Resolution.h/600);
         texte.SetFont(moteurGraphique->m_font);
-        texte.SetText(m_dialogue);
+        texte.SetString(m_dialogue);
         texte.SetPosition(classe->position_contenu_dialogue.x * configuration->Resolution.w/800 + classe->position_contenu_dialogue.w * configuration->Resolution.w/800/2 - (texte.GetRect().Right-texte.GetRect().Left)/2, classe->position_contenu_dialogue.y  * configuration->Resolution.h/600 + classe->talk.position.h*configuration->Resolution.h/600 - classe->talk.position.h*configuration->Resolution.h/600*alpha/255);
 
         moteurGraphique->AjouterTexte(&texte,16,0);
@@ -254,7 +254,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
     {
         std::ostringstream buf;
         buf<<caracteristique.niveau;
-        texte.SetText(buf.str());
+        texte.SetString(buf.str());
     }
 
     texte.SetX(configuration->Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
@@ -346,7 +346,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
 
             buf << "( "<<(int)caracteristiqueMonstre.vie<<" / "<<caracteristiqueMonstre.maxVie<<" )";
 
-            texte.SetText(buf.str());
+            texte.SetString(buf.str());
         }
 
         texte.SetColor(Color(224,224,224,255));
@@ -385,7 +385,7 @@ void Menu::AfficherChargement(string nom,int fond,int z=50)
 
     texte.SetFont(moteurGraphique->m_font_titre);
     texte.SetSize(50.f*configuration->Resolution.h/600);
-    texte.SetText(nom);
+    texte.SetString(nom);
 
     texte.SetX(configuration->Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
     texte.SetY(configuration->Resolution.h-(texte.GetRect().Bottom-texte.GetRect().Top)/2-60*configuration->Resolution.h/600);

@@ -48,8 +48,8 @@ void Console::Afficher()
         {
             if (i>=0&&i<(int)m_erreur.size())
             {
-                sf::String texte;
-                texte.SetText(m_textes[i].c_str());
+                sf::Text texte;
+                texte.SetString(m_textes[i].c_str());
                 texte.SetSize(12.f);
                 texte.SetY((i-m_textes.size()+27-m_defilement)*15+60);
 

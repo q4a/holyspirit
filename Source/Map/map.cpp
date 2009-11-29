@@ -1315,7 +1315,7 @@ void Map::CalculerOmbresEtLumieres()
 void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_sac_inventaire,Caracteristique caract)
 {
     Sprite Sprite;
-    String texte;
+    Text texte;
 
     m_objetPointe=-1;
     coordonnee position;
@@ -1358,11 +1358,11 @@ void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_
                 texte.SetFont(moteurGraphique->m_font);
 
                 if (z-m_defilerObjets==0&&m_defilerObjets>0)
-                    texte.SetText("...");
+                    texte.SetString("...");
                 else if ((z-m_defilerObjets==position_sac_inventaire.h-1&&z+m_defilerObjets<=m_decor[1][positionSac.y][positionSac.x].getNombreObjets()+1))
-                    texte.SetText("...");
+                    texte.SetString("...");
                 else
-                    texte.SetText(m_decor[1][positionSac.y][positionSac.x].getObjet(z)->getNom());
+                    texte.SetString(m_decor[1][positionSac.y][positionSac.x].getObjet(z)->getNom());
                 texte.SetSize(16*configuration->Resolution.w/800);
 
                 position.x=(int)((position_sac_inventaire.x*configuration->Resolution.w/800)+((position_sac_inventaire.w/2)*configuration->Resolution.w/800)-(texte.GetRect().Right-texte.GetRect().Left)/2);
@@ -1445,19 +1445,19 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                                 m_decor[couche][j][k].m_sprite.SetColor(sf::Color(255,255,255,alpha));
                             }
 
-                            if (m_decor[couche][j][k].m_sprite.GetPosition().x + m_decor[couche][j][k].m_sprite.GetSize().x - m_decor[couche][j][k].m_sprite.GetOrigin().x > moteurGraphique->m_camera.GetRect().Right)
-                                rectBuf.Right -= (int)m_decor[couche][j][k].m_sprite.GetPosition().x + (int)m_decor[couche][j][k].m_sprite.GetSize().x - (int)m_decor[couche][j][k].m_sprite.GetOrigin().x - (int)moteurGraphique->m_camera.GetRect().Right;
-                            if (m_decor[couche][j][k].m_sprite.GetPosition().y + m_decor[couche][j][k].m_sprite.GetSize().y - m_decor[couche][j][k].m_sprite.GetOrigin().y > moteurGraphique->m_camera.GetRect().Bottom)
-                                rectBuf.Bottom -= (int)m_decor[couche][j][k].m_sprite.GetPosition().y + (int)m_decor[couche][j][k].m_sprite.GetSize().y - (int)m_decor[couche][j][k].m_sprite.GetOrigin().y - (int)moteurGraphique->m_camera.GetRect().Bottom;
+                            if (m_decor[couche][j][k].m_sprite.GetPosition().x + m_decor[couche][j][k].m_sprite.GetSize().x - m_decor[couche][j][k].m_sprite.GetOrigin().x > (int)(moteurGraphique->m_camera.GetRect().Right))
+                                rectBuf.Right -= (int)m_decor[couche][j][k].m_sprite.GetPosition().x + (int)m_decor[couche][j][k].m_sprite.GetSize().x - (int)m_decor[couche][j][k].m_sprite.GetOrigin().x - (int)moteurGraphique->m_camera.GetRect().Right - 1;
+                            if (m_decor[couche][j][k].m_sprite.GetPosition().y + m_decor[couche][j][k].m_sprite.GetSize().y - m_decor[couche][j][k].m_sprite.GetOrigin().y > (int)(moteurGraphique->m_camera.GetRect().Bottom))
+                                rectBuf.Bottom -= (int)m_decor[couche][j][k].m_sprite.GetPosition().y + (int)m_decor[couche][j][k].m_sprite.GetSize().y - (int)m_decor[couche][j][k].m_sprite.GetOrigin().y - (int)moteurGraphique->m_camera.GetRect().Bottom - 1;
 
                             if (m_decor[couche][j][k].m_sprite.GetPosition().x - m_decor[couche][j][k].m_sprite.GetOrigin().x < moteurGraphique->m_camera.GetRect().Left)
                             {
-                                rectBuf.Left += (int)moteurGraphique->m_camera.GetRect().Left - (int)m_decor[couche][j][k].m_sprite.GetPosition().x + (int)m_decor[couche][j][k].m_sprite.GetOrigin().x;
+                                rectBuf.Left += (int)(moteurGraphique->m_camera.GetRect().Left) - (int)m_decor[couche][j][k].m_sprite.GetPosition().x + (int)m_decor[couche][j][k].m_sprite.GetOrigin().x;
                                 m_decor[couche][j][k].m_sprite.Move(rectBuf.Left - rect.Left, 0);
                             }
                             if (m_decor[couche][j][k].m_sprite.GetPosition().y - m_decor[couche][j][k].m_sprite.GetOrigin().y < moteurGraphique->m_camera.GetRect().Top)
                             {
-                                rectBuf.Top += (int)moteurGraphique->m_camera.GetRect().Top - (int)m_decor[couche][j][k].m_sprite.GetPosition().y + (int)m_decor[couche][j][k].m_sprite.GetOrigin().y;
+                                rectBuf.Top += (int)(moteurGraphique->m_camera.GetRect().Top) - (int)m_decor[couche][j][k].m_sprite.GetPosition().y + (int)m_decor[couche][j][k].m_sprite.GetOrigin().y;
                                 m_decor[couche][j][k].m_sprite.Move(0, rectBuf.Top - rect.Top);
                             }
 
@@ -1731,8 +1731,8 @@ void Map::AfficherNomEvenement(coordonnee casePointee,coordonnee positionSouris)
 
                         delete fichier;
 
-                        sf::String texte;
-                        texte.SetText(nom);
+                        sf::Text texte;
+                        texte.SetString(nom);
                         texte.SetSize(16.f);
                         if (configuration->Resolution.y>0)
                             texte.SetY((positionSouris.y-16)*configuration->Resolution.h/configuration->Resolution.y);
@@ -3297,7 +3297,7 @@ void Map::Script_Trade(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
 
 std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)
 {
-    sf::String temp;
+    sf::Text temp;
     temp.SetSize(tailleTexte);
     temp.SetFont(moteurGraphique->m_font);
 
@@ -3313,7 +3313,7 @@ std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)
             if(texte[p] == '\n')
                 bufMot += " ";
 
-            temp.SetText(buf + bufMot);
+            temp.SetString(buf + bufMot);
             if (temp.GetRect().Right - temp.GetRect().Left > tailleCadran)
                 bufMot = '\n' + bufMot;
         }

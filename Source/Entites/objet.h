@@ -111,7 +111,7 @@ public:
     float m_alpha;
 
 private:
-    sf::String AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color=sf::Color(255,255,255));
+    sf::Text AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color=sf::Color(255,255,255));
 
     std::string m_nom,m_chemin;
     std::vector <std::string> m_description;

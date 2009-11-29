@@ -55,7 +55,7 @@ c_Jeu::c_Jeu()
     fps.SetSize(16.f);
 
     Version.SetSize(16.f);
-    Version.SetText("v "+configuration->version);
+    Version.SetString("v "+configuration->version);
     Version.SetY(20);
 
     Temps.SetSize(16.f);
@@ -877,14 +877,14 @@ void c_Jeu::Affichage(Jeu *jeu)
                 std::ostringstream  buf;
                 if (configuration->console&&moteurGraphique->GetFPS()!=0)
                     buf<<moteurGraphique->GetFPS()<<" / "<<(int)lowFPS<<" FPS";
-                fps.SetText(buf.str());
+                fps.SetString(buf.str());
             }
 
             {
                 std::ostringstream  buf;
 
                 buf<<"Temps : "<<configuration->heure<<" h "<<(int)configuration->minute;
-                Temps.SetText(buf.str());
+                Temps.SetString(buf.str());
             }
 
             tempsEcouleDepuisFPS=0;
@@ -901,7 +901,7 @@ void c_Jeu::FPS(Jeu *jeu)
         lowFPS=-1;
         std::ostringstream  buf;
         buf<<"Nbr Tour de boucle : "<<nbrTourBoucle;
-        TourBoucle.SetText(buf.str());
+        TourBoucle.SetString(buf.str());
         nbrTourBoucle=0;
 
         tempsNbrTourBoucle=0;
