@@ -1241,7 +1241,7 @@
 1251705168 e:\c++\holyspirit\holyeditor\entites\classe.h
 	"miracle.h"
 
-1251801633 e:\c++\holyspirit\holyeditor\entites\miracle.h
+1259497060 e:\c++\holyspirit\holyeditor\entites\miracle.h
 	"../constantes.h"
 	"../Map/tile.h"
 	"../Moteurs/light.h"
@@ -1264,7 +1264,7 @@
 	"Moteurs/eventManager.h"
 	"configuration.h"
 
-1257363244 e:\c++\holyspirit\holyeditor\moteurs\moteurgraphique.h
+1259497061 e:\c++\holyspirit\holyeditor\moteurs\moteurgraphique.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -1304,7 +1304,7 @@
 	"singleton.h"
 	"constantes.h"
 
-1251801633 source:e:\c++\holyspirit\holyeditor\entites\hero.cpp
+1259497060 source:e:\c++\holyspirit\holyeditor\entites\hero.cpp
 	"../constantes.h"
 	"hero.h"
 	"../globale.h"
@@ -1337,7 +1337,7 @@
 	"miracle.h"
 	"script.h"
 
-1251705776 e:\c++\holyspirit\holyeditor\entites\objet.h
+1259497060 e:\c++\holyspirit\holyeditor\entites\objet.h
 	<iostream>
 	"../constantes.h"
 	<fstream>
@@ -1370,7 +1370,7 @@
 	"../globale.h"
 	<iostream>
 
-1251991552 source:e:\c++\holyspirit\holyeditor\entites\miracle.cpp
+1259497060 source:e:\c++\holyspirit\holyeditor\entites\miracle.cpp
 	"miracle.h"
 	"../globale.h"
 	<iostream>
@@ -1384,7 +1384,7 @@
 	"../constantes.h"
 	"../globale.h"
 
-1251801703 source:e:\c++\holyspirit\holyeditor\entites\objet.cpp
+1259497060 source:e:\c++\holyspirit\holyeditor\entites\objet.cpp
 	"objet.h"
 	"../globale.h"
 	<fstream>
@@ -1412,7 +1412,7 @@
 	"../constantes.h"
 	"../globale.h"
 
-1257074224 source:e:\c++\holyspirit\holyeditor\entites\script.cpp
+1257689682 source:e:\c++\holyspirit\holyeditor\entites\script.cpp
 	<fstream>
 	"script.h"
 	"../globale.h"
@@ -1448,7 +1448,7 @@
 	<sstream>
 	"../globale.h"
 
-1256225418 e:\c++\holyspirit\holyeditor\map\map.h
+1258808850 e:\c++\holyspirit\holyeditor\map\map.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -1472,7 +1472,7 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1250420578 source:e:\c++\holyspirit\holyeditor\map\tileset.cpp
+1258201719 source:e:\c++\holyspirit\holyeditor\map\tileset.cpp
 	"tileset.h"
 	"../globale.h"
 	<iostream>
@@ -1763,17 +1763,18 @@
 	<SFML/Graphics/Rect.hpp>
 	<vector>
 
-1253953329 e:\c++\sfml_svn\branches\sfml2\include\sfml\system.hpp
+1259239264 e:\c++\sfml_svn\branches\sfml2\include\sfml\system.hpp
 	<SFML/Config.hpp>
 	<SFML/System/Clock.hpp>
 	<SFML/System/Lock.hpp>
 	<SFML/System/Mutex.hpp>
 	<SFML/System/Randomizer.hpp>
 	<SFML/System/Sleep.hpp>
+	<SFML/System/String.hpp>
 	<SFML/System/Thread.hpp>
 	<SFML/System/ThreadLocal.hpp>
 	<SFML/System/ThreadLocalPtr.hpp>
-	<SFML/System/Unicode.hpp>
+	<SFML/System/Utf.hpp>
 	<SFML/System/Vector2.hpp>
 	<SFML/System/Vector3.hpp>
 
@@ -1835,7 +1836,7 @@
 
 1255517226 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\vector3.inl
 
-1257246771 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics.hpp
+1259239264 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Font.hpp>
@@ -1847,12 +1848,13 @@
 	<SFML/Graphics/Shader.hpp>
 	<SFML/Graphics/Shape.hpp>
 	<SFML/Graphics/Sprite.hpp>
-	<SFML/Graphics/String.hpp>
+	<SFML/Graphics/Text.hpp>
 	<SFML/Graphics/View.hpp>
 
-1253953329 e:\c++\sfml_svn\branches\sfml2\include\sfml\window.hpp
+1258888996 e:\c++\sfml_svn\branches\sfml2\include\sfml\window.hpp
 	<SFML/System.hpp>
 	<SFML/Window/Context.hpp>
+	<SFML/Window/ContextSettings.hpp>
 	<SFML/Window/Event.hpp>
 	<SFML/Window/Input.hpp>
 	<SFML/Window/VideoMode.hpp>
@@ -1903,10 +1905,10 @@
 1255764857 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\color.hpp
 	<SFML/Config.hpp>
 
-1255764857 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\font.hpp
+1259239258 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\font.hpp
 	<SFML/System/Resource.hpp>
 	<SFML/System/Vector2.hpp>
-	<SFML/System/Unicode.hpp>
+	<SFML/System/String.hpp>
 	<SFML/Graphics/Glyph.hpp>
 	<SFML/Graphics/Image.hpp>
 	<SFML/Graphics/Rect.hpp>
@@ -1972,7 +1974,7 @@
 	<SFML/Graphics/RenderQueue.hpp>
 	<SFML/Graphics/View.hpp>
 
-1257246771 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderqueue.hpp
+1259346224 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderqueue.hpp
 	<SFML/Config.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<SFML/Graphics/Drawable.hpp>
@@ -2190,5 +2192,28 @@
 	<SFML/System/Vector2.hpp>
 	<SFML/System/Vector3.hpp>
 	<map>
+	<string>
+
+1259239264 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\string.hpp
+	<SFML/Config.hpp>
+	<locale>
+	<string>
+
+1259239264 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\utf.hpp
+	<SFML/Config.hpp>
+	<algorithm>
+	<locale>
+	<string>
+	<stdlib.h>
+	<SFML/System/Utf.inl>
+
+1259239264 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\utf.inl
+
+1259239258 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\text.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/System/String.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Font.hpp>
+	<SFML/Graphics/Rect.hpp>
 	<string>
 
