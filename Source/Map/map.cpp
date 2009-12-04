@@ -997,7 +997,7 @@ void Map::Initialiser(Hero *hero)
                         m_decor[couche][i][j].m_spriteHerbe.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
                         m_decor[couche][i][j].m_spriteHerbe.SetScale((float)m_decor[couche][i][j].getTailleHerbe()/100,(float)m_decor[couche][i][j].getTailleHerbe()/100);
                         m_decor[couche][i][j].m_spriteHerbe.SetX(position.x+64-positionPartieDecor.w/2);
-                        m_decor[couche][i][j].m_spriteHerbe.SetY(position.y-positionPartieDecor.h+64);
+                        m_decor[couche][i][j].m_spriteHerbe.SetY(position.y-positionPartieDecor.h+96);
                         m_decor[couche][i][j].m_spriteHerbe.SetColor(m_decor[couche][i][j].getCouleurHerbe());
                     }
                 }

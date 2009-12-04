@@ -360,7 +360,9 @@ void MoteurGraphique::Afficher()
 
         m_light_screen2.Display();
 
-        EffectShadow.SetTexture("shadow_map", m_light_screen2.GetImage());
+
+        if(configuration->postFX)
+            EffectShadow.SetTexture("shadow_map", m_light_screen2.GetImage());
 
         configuration->RafraichirOmbre=2;
     }
@@ -406,7 +408,10 @@ void MoteurGraphique::Afficher()
 
             bufferImage.SetView(bufferImage.GetDefaultView());
 
-            bufferImage.Draw(screen, EffectBlur);
+            if(configuration->postFX)
+                bufferImage.Draw(screen, EffectBlur);
+            else
+                bufferImage.Draw(screen);
         }
 
         if (k==10 && configuration->Ombre && m_soleil.intensite>32)
@@ -420,7 +425,10 @@ void MoteurGraphique::Afficher()
 
             bufferImage.SetView(bufferImage.GetDefaultView());
 
-            bufferImage.Draw(screen, EffectBlur2);
+            if(configuration->postFX)
+                bufferImage.Draw(screen, EffectBlur2);
+            else
+                bufferImage.Draw(screen, EffectBlur2);
         }
 
         if (k!=9)

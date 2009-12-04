@@ -639,10 +639,7 @@ void Hero::Afficher(coordonnee dimensionsMap)
 {
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
         if (m_ordreAffichage[i]!=-1)
-        {
-            //m_personnage.setPorteeLumineuse(m_modelePersonnage[ordreAffichage[i]].getPorteeLumineuse());
             m_personnage.Afficher(dimensionsMap,&m_modelePersonnage[m_ordreAffichage[i]], false, m_ordreAffichage[i]!=0);
-        }
 
     AfficherRaccourcis();
 }
