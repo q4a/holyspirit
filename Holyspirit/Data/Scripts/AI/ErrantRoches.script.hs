@@ -9,6 +9,7 @@ main
 				if variable * 2 * 0 
 				   distance * 4
 				then
+					useMiracle * 0 
 					setState * 4
 					variable * 2 * 1
 				end
@@ -18,17 +19,7 @@ main
 					if getState * 4 
 					then
 					else
-						if distance * 2
-						then
-							if rand * 10
-							then
-								useMiracle * 0 
-							else
-								fight
-							end
-						else
-							fight
-						end
+						fight
 					end
 				end
 				

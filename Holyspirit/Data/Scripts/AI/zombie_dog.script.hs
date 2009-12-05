@@ -21,8 +21,8 @@ main
 		else
 			if variable * 1 * 0
 			then
-				variable * 1 * 1
 				useMiracle * 1
+				variable * 1 * 1
 			end
 		end
 	end

@@ -17,7 +17,7 @@ $
 $
 //Effets
 
-	* t-1 l1 l4  $ // ia = vitesse, ib = projectile s'arrete à une case précise
+	* t-1 l1 l4  $ 
 
 	* t3 l2 s1 ia15 $
 	* t3 l3 s2 ia15 $
@@ -27,7 +27,7 @@ $
 
 	* t7 ia6 ic0 id1 $
 
-	* t2 ia10 ib50 $
+	* t2 ia5 ib20 $
 $
 //Séquences
 	*

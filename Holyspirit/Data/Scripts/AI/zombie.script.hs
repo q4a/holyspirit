@@ -4,22 +4,33 @@ main
 	then
 		if alive
 		then
-			if see
-			then
-				if distance * 2 
+
+				if see
 				then
-					if rand * 25
+					if rand * 1
 					then
-						useMiracle * 0 
+						playSound * 3
 					else
-						fight
+						if rand * 1 
+						then
+							playSound * 4
+						end
 					end
-				else
+	
+
+					if variable * 1 * 1 
+					then	
+					else
+						variable * 1 * 1
+						useMiracle * 0 
+						setState * 4 * 0
+					end
+
 					fight
+				else
+					randomDisplace
 				end
-			else
-				randomDisplace
-			end
+
 		end
 	end
 end

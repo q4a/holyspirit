@@ -8,7 +8,10 @@ main
 			then
 				if distance * 2 
 				then
-					useMiracle * 0
+					if rand * 25
+					then
+						useMiracle * 0
+					end
 				else
 					fight
 				end

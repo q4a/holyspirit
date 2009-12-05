@@ -71,7 +71,7 @@ $
 	$
 	*
 	//Tiles de la séquence
-		* x0 y0 w256 h256 ey160 i0 a1 s0 n0.04 $
+		* x0 y0 w256 h256 ey160 i0 a1 n0.04 $
 		* x256 y0 w256 h256 ey160 i0 a2 n0.04 $
 		* x512 y0 w256 h256 ey160 i0 a3 n0.04 $
 		* x768 y0 w256 h256 ey160 i0 a4 n0.04 $
@@ -82,7 +82,7 @@ $
 	$
 	*
 	//Tiles de la séquence
-		* x0 y0 w256 h256 ey160 i0 a1 s0 n0.04 p224 $
+		* x0 y0 w256 h256 ey160 i0 a1 n0.04 p224 $
 		* x256 y0 w256 h256 ey160 i0 a2 n0.04 p192 $
 		* x512 y0 w256 h256 ey160 i0 a3 n0.04 p160 $
 		* x768 y0 w256 h256 ey160 i0 a4 n0.04 p128 $
