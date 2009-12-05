@@ -206,6 +206,9 @@ void c_Jeu::Deplacements(Jeu *jeu)
             }
         }
 
+        if(fabs(jeu->hero.m_personnage.getPousse().x) > 0 || fabs(jeu->hero.m_personnage.getPousse().y) > 0)
+            jeu->hero.setMonstreVise(-1),jeu->hero.m_personnage.frappeEnCours=false;
+
         coordonneeDecimal old, heroPos;
         old.x = (oldHeroPos.x-oldHeroPos.y-1)*64;;
         old.y = (oldHeroPos.x+oldHeroPos.y)*32;
@@ -297,7 +300,7 @@ void c_Jeu::Animation(Jeu *jeu)
                         //jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),cible,1);
                     }
             }
-            jeu->hero.miracleEnCours=0;
+            jeu->hero.miracleEnCours = 0;
         }
 
         if (retour==2)

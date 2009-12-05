@@ -495,6 +495,9 @@ void Personnage::Sauvegarder(ofstream &fichier)
             <<" lb" <<m_porteeLumineuse.bleu
             <<" li" <<m_porteeLumineuse.intensite;
 
+    for(int z = 0 ; z < 10 ; ++z)
+        fichier<<"s"<<z<<m_scriptAI.variables[z]<<" ";
+
     for (unsigned o=0;o < m_objets.size();o++)
             m_objets[o].SauvegarderTexte(&fichier);
 
@@ -847,29 +850,25 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap, bool pou
 
     if((m_pousse.x != 0 || m_pousse.y != 0) && pousserPossible)
     {
-        if(pousserPossible)
-        {
-            m_positionPixel.x += m_pousse.x * tempsEcoule * COTE_TILE * 0.05;
-            m_positionPixel.y += m_pousse.y * tempsEcoule * COTE_TILE * 0.05;
+        m_positionPixel.x += m_pousse.x * tempsEcoule * COTE_TILE * 0.05;
+        m_positionPixel.y += m_pousse.y * tempsEcoule * COTE_TILE * 0.05;
 
-            bool xgrand = (m_pousse.x > 0);
-            bool ygrand = (m_pousse.y > 0);
+        bool xgrand = (m_pousse.x > 0);
+        bool ygrand = (m_pousse.y > 0);
 
-            m_pousse.x -= tempsEcoule * (-1 + xgrand * 2) * 0.025;
-            m_pousse.y -= tempsEcoule * (-1 + ygrand * 2) * 0.025;
+        m_pousse.x -= tempsEcoule * (-1 + xgrand * 2) * 0.025;
+        m_pousse.y -= tempsEcoule * (-1 + ygrand * 2) * 0.025;
 
-            if(xgrand && m_pousse.x < 0)
-                m_pousse.x = 0;
-            else if(!xgrand && m_pousse.x > 0)
-                m_pousse.x = 0;
+        if(xgrand && m_pousse.x < 0)
+            m_pousse.x = 0;
+        else if(!xgrand && m_pousse.x > 0)
+            m_pousse.x = 0;
 
-            if(ygrand && m_pousse.y < 0)
-                m_pousse.y = 0;
-            else if(!ygrand && m_pousse.y > 0)
-                m_pousse.y = 0;
-        }
-        else
-            m_pousse.y = 0, m_pousse.x = 0;
+        if(ygrand && m_pousse.y < 0)
+            m_pousse.y = 0;
+        else if(!ygrand && m_pousse.y > 0)
+            m_pousse.y = 0;
+
 
         m_positionCase.x    = (int)((m_positionPixel.x+COTE_TILE*0.5)/COTE_TILE);
         m_positionCase.y    = (int)((m_positionPixel.y+COTE_TILE*0.5)/COTE_TILE);
@@ -880,7 +879,14 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap, bool pou
         m_cheminFinal.x     = m_positionCase.x;
         m_cheminFinal.y     = m_positionCase.y;
 
-        frappeEnCours       = 0;
+        if(m_miracleALancer == -1)
+            frappeEnCours = 0;
+
+      /*  if(m_pousse.x == 0 && m_pousse.y == 0)
+        {
+            m_positionPixel.x    = m_positionCase.x*COTE_TILE;
+            m_positionPixel.y    = m_positionCase.y*COTE_TILE;
+        }*/
 
         return 1;
     }
@@ -1112,11 +1118,11 @@ int Personnage::Animer(Modele_Personnage *modele,float temps,coordonnee position
                 else
                 {
                     if (modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()>retour)
-                        retour=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque();
+                        retour = modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque();
                 }
 
                 if (modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==1 && m_monstre)
-                    frappeEnCours=false,m_miracleALancer=-1, m_etatForce = false;
+                    frappeEnCours=false, m_etatForce = false;
 
                 if (m_monstre)
                 {
@@ -1139,6 +1145,7 @@ void Personnage::Frappe(coordonnee direction,coordonnee position)
 {
     if (m_etat<2)
     {
+        m_animation = 0;
         m_etat=2;
         m_poseEnCours=0;
     }
@@ -1355,8 +1362,9 @@ void Personnage::AjouterPointAme(int pointAme)
 
 bool Personnage::EnVie()
 {
-    if (m_caracteristique.vie>0) return 1;
-    else return 0;
+    if (m_caracteristique.vie>0)
+        return 1;
+    return 0;
 }
 
 const coordonnee &Personnage::getDepart()

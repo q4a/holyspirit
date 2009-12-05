@@ -160,7 +160,7 @@
 	<SFML/Config.hpp>
 	<cstdlib>
 
-1256928507 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\window.hpp
+1260013483 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\window.hpp
 	<SFML/Window/Event.hpp>
 	<SFML/Window/Input.hpp>
 	<SFML/Window/VideoMode.hpp>
@@ -180,7 +180,7 @@
 
 1255764858 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\windowstyle.hpp
 
-1255764857 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\color.hpp
+1260013483 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\color.hpp
 	<SFML/Config.hpp>
 
 1259239258 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\font.hpp
@@ -219,7 +219,7 @@
 
 1253953328 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\rect.inl
 
-1255764857 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\image.hpp
+1260013483 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\image.hpp
 	<SFML/System/Resource.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Rect.hpp>
@@ -272,7 +272,7 @@
 
 1243526202 em/Vector2.hpp>
 
-1257246771 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderwindow.hpp
+1260013483 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderwindow.hpp
 	<SFML/Graphics/Image.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 	<SFML/Window/Window.hpp>
@@ -618,7 +618,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1259239763 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
+1260027942 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -669,7 +669,7 @@
 	"../globale.h"
 	<sstream>
 
-1259239763 source:e:\c++\holyspirit\source\entites\hero.cpp
+1259863608 source:e:\c++\holyspirit\source\entites\hero.cpp
 	"../constantes.h"
 	"hero.h"
 	"../globale.h"
@@ -706,7 +706,7 @@
 	<fstream>
 	<sstream>
 
-1259411084 source:e:\c++\holyspirit\source\entites\personnage.cpp
+1260028288 source:e:\c++\holyspirit\source\entites\personnage.cpp
 	"personnage.h"
 	"../globale.h"
 	<iostream>
@@ -743,7 +743,7 @@
 	"evenement.h"
 	<iostream>
 
-1259858252 source:e:\c++\holyspirit\source\map\map.cpp
+1260027720 source:e:\c++\holyspirit\source\map\map.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -799,7 +799,7 @@
 	"../globale.h"
 	<fstream>
 
-1259857495 source:e:\c++\holyspirit\source\moteurs\moteurgraphique.cpp
+1259919900 source:e:\c++\holyspirit\source\moteurs\moteurgraphique.cpp
 	"moteurGraphique.h"
 	"../globale.h"
 	<iostream>

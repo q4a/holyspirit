@@ -61,8 +61,8 @@
 	<File name="Entites\classe.h" open="0" top="0" tabpos="18">
 		<Cursor position="873" topLine="19" />
 	</File>
-	<File name="Entites\hero.cpp" open="1" top="1" tabpos="11">
-		<Cursor position="20899" topLine="624" />
+	<File name="Entites\hero.cpp" open="1" top="0" tabpos="11">
+		<Cursor position="19590" topLine="576" />
 	</File>
 	<File name="Entites\hero.h" open="0" top="0" tabpos="11">
 		<Cursor position="835" topLine="9" />
@@ -127,8 +127,8 @@
 	<File name="Map\evenement.h" open="0" top="0" tabpos="25">
 		<Cursor position="1329" topLine="26" />
 	</File>
-	<File name="Map\map.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="38046" topLine="976" />
+	<File name="Map\map.cpp" open="1" top="1" tabpos="2">
+		<Cursor position="64698" topLine="1421" />
 	</File>
 	<File name="Map\map.h" open="1" top="0" tabpos="1">
 		<Cursor position="8822" topLine="151" />
@@ -179,7 +179,7 @@
 		<Cursor position="926" topLine="19" />
 	</File>
 	<File name="Moteurs\moteurGraphique.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="21440" topLine="530" />
+		<Cursor position="17606" topLine="436" />
 	</File>
 	<File name="Moteurs\moteurGraphique.h" open="1" top="0" tabpos="18">
 		<Cursor position="3693" topLine="110" />
