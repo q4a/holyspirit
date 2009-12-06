@@ -4,18 +4,21 @@ $
 $
 $
 //Images
-	*Data/Items/FireEffect/FireEffect.png
+	*Data/Items/PoisonEffect/PoisonEffect.png
 $
 //Sons
 	*Data/Sounds/39016_wildweasel_DSFIRXPL.wav
 $
 //Effets
+	* t-1 l1 l3 $
+	* t2 l2 ia0 ib0 $
 	* t3 s0 ia8 $
+	* t-1 $
 $
 //Séquences
 	*
 	//Tiles de la séquence
-		* x0 y0 w128 h128 i0 a1 lr0 lv255 lb0 li0 s0 n0.04 $
+		* x0 y0 w128 h128 i0 a1 lr0 lv255 lb0 li0 n0.04 $
 		* x128 y0 w128 h128 i0 a2 lr0 lv255 lb0 li64 n0.04 $
 		* x256 y0 w128 h128 i0 a3 lr0 lv255 lb0 li96 n0.04 $
 		* x384 y0 w128 h128 i0 a4 lr0 lv255 lb0 li128 n0.04 $
