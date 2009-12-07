@@ -19,11 +19,11 @@ $
 	*Data/Sounds/39016_wildweasel_DSFIRXPL.wav
 $
 //Effets
-	* t1 l1 l5 ia2 $
+	* t1 l1 l5 l26 ia2 $
 	* t3 l22 l2 l22 s0 ia8 $
 	* t7 l3 ia23 ic1 id2 $
 	* t3 l4 s1 ia8 $
-	* t3 s2 ia8 $
+	* t3 l27 s2 ia8 $
 	
 	* t10 l6 ia2 ib16 ic0 $
 	* t8  l7 ia-1 ib6 ic4 $
@@ -56,6 +56,9 @@ $
 	* t-1 l24 l25 $
 	* t2  ia%2 ib%3 $
 	* t13 ia1 $
+
+	* t16 ia1 $
+	* t16 ia0 $
 $
 //Séquences
 	*

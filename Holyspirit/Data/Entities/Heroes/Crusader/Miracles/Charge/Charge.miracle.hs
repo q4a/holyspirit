@@ -16,7 +16,7 @@ $
 	*5
 	*6
 $
-	* f%0 e0 u1 $
+	* f%0 e0 $
 $
 //Images
 	*Data/Entities/Heroes/Crusader/Miracles/Charge/Blast.png
@@ -65,6 +65,9 @@ $
 	* t3 s6 ia8 $ 
 	* t3 s7 ia8 $ 
 	* t3 s8 ia8 $ 
+
+	* t16 ia1 $
+	* t16 ia0 $
 
 $
 //Séquences
