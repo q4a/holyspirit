@@ -86,7 +86,7 @@ public:
 
     void Pousser(coordonneeDecimal vecteur);
 
-    bool SeDeplacer(float,coordonnee dimensionsMap, bool pousserPossible = true);
+    bool SeDeplacer(float,coordonnee dimensionsMap);
 
     void Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,bool surbrillance=false, bool sansEffet=false);
 
@@ -176,6 +176,7 @@ public:
 
     int m_ID;
     bool m_etatForce;
+    bool m_miracleBloquant;
 
 protected:
     int m_etat,m_poseEnCours,m_angle;

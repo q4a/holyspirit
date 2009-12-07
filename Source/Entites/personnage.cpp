@@ -115,6 +115,7 @@ Personnage::Personnage()
     m_stunned                           = false;
     m_ID                                = 0;
     m_etatForce                         = false;
+    m_miracleBloquant                   = false;
 }
 Modele_Personnage::Modele_Personnage()
 {
@@ -826,7 +827,7 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception, bool noD
 }
 
 
-bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap, bool pousserPossible)
+bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap)
 {
     //int buf=(int)(tempsEcoule*1000);
     //tempsEcoule=(float)buf/1000;
@@ -837,18 +838,7 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap, bool pou
 
     moteurGraphique->LightManager->SetPosition(m_light,pos);
 
-    if(!pousserPossible)
-    {
-        if(fabs(m_pousse.x) > 0 || fabs(m_pousse.y) > 0 )
-        {
-                m_positionPixel.x    = m_positionCase.x*COTE_TILE;
-                m_positionPixel.y    = m_positionCase.y*COTE_TILE;
-        }
-        m_pousse.x = 0;
-        m_pousse.y = 0;
-    }
-
-    if((m_pousse.x != 0 || m_pousse.y != 0) && pousserPossible)
+    if((m_pousse.x != 0 || m_pousse.y != 0))
     {
         m_positionPixel.x += m_pousse.x * tempsEcoule * COTE_TILE * 0.05;
         m_positionPixel.y += m_pousse.y * tempsEcoule * COTE_TILE * 0.05;
@@ -870,23 +860,31 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap, bool pou
             m_pousse.y = 0;
 
 
-        m_positionCase.x    = (int)((m_positionPixel.x+COTE_TILE*0.5)/COTE_TILE);
-        m_positionCase.y    = (int)((m_positionPixel.y+COTE_TILE*0.5)/COTE_TILE);
+        m_positionCase.x    = (int)((m_positionPixel.x+COTE_TILE*0.25)/COTE_TILE);
+        m_positionCase.y    = (int)((m_positionPixel.y+COTE_TILE*0.25)/COTE_TILE);
 
-        m_arrivee.x         = m_positionCase.x;
-        m_arrivee.y         = m_positionCase.y;
+        if(m_pousse.x == 0 && m_pousse.y == 0)
+        {
+            m_positionCase.x    = (int)((m_positionPixel.x)/COTE_TILE);
+            m_positionCase.y    = (int)((m_positionPixel.y)/COTE_TILE);
 
-        m_cheminFinal.x     = m_positionCase.x;
-        m_cheminFinal.y     = m_positionCase.y;
+            if(m_positionPixel.x > m_positionCase.x * COTE_TILE + COTE_TILE * 0.5)
+                m_arrivee.x = m_positionCase.x, m_positionCase.x ++;
+            else if(m_positionPixel.x < m_positionCase.x * COTE_TILE + COTE_TILE * 0.5)
+                m_arrivee.x = m_positionCase.x + 1;
+
+            if(m_positionPixel.y > m_positionCase.y * COTE_TILE + COTE_TILE * 0.5)
+                m_arrivee.y = m_positionCase.y, m_positionCase.y ++;
+            else if(m_positionPixel.y < m_positionCase.y * COTE_TILE + COTE_TILE * 0.5)
+                m_arrivee.y = m_positionCase.y + 1;
+
+            m_cheminFinal.x     = m_arrivee.x;
+            m_cheminFinal.y     = m_arrivee.y;
+        }
+
 
         if(m_miracleALancer == -1)
             frappeEnCours = 0;
-
-      /*  if(m_pousse.x == 0 && m_pousse.y == 0)
-        {
-            m_positionPixel.x    = m_positionCase.x*COTE_TILE;
-            m_positionPixel.y    = m_positionCase.y*COTE_TILE;
-        }*/
 
         return 1;
     }
@@ -942,11 +940,11 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap, bool pou
                 m_angle=calculerAngle(m_cheminFinal.x-m_positionCase.x,m_cheminFinal.y-m_positionCase.y);
 
                 if ((m_positionCase.x<m_cheminFinal.x&&m_positionPixel.x>=m_cheminFinal.x*COTE_TILE)
-                        ||(m_positionCase.x>m_cheminFinal.x&&m_positionPixel.x<=m_cheminFinal.x*COTE_TILE)
-                        ||m_positionCase.x==m_cheminFinal.x)
+                  ||(m_positionCase.x>m_cheminFinal.x&&m_positionPixel.x<=m_cheminFinal.x*COTE_TILE)
+                  || m_positionCase.x==m_cheminFinal.x)
                     if ((m_positionCase.y<m_cheminFinal.y&&m_positionPixel.y>=m_cheminFinal.y*COTE_TILE)
-                            ||(m_positionCase.y>m_cheminFinal.y&&m_positionPixel.y<=m_cheminFinal.y*COTE_TILE)
-                            ||m_positionCase.y==m_cheminFinal.y)
+                      ||(m_positionCase.y>m_cheminFinal.y&&m_positionPixel.y<=m_cheminFinal.y*COTE_TILE)
+                      || m_positionCase.y==m_cheminFinal.y)
                     {
                         m_positionPixel.x=(m_cheminFinal.x*COTE_TILE);
                         m_positionPixel.y=(m_cheminFinal.y*COTE_TILE);
@@ -1334,6 +1332,15 @@ void Personnage::setPousse(coordonneeDecimal pousse)
 {
     if(!m_impoussable)
     {
+        if(pousse.x == 0 && pousse.y == 0)
+            if(fabs(m_pousse.x) > 0 || fabs(m_pousse.y) > 0 )
+            {
+                    m_positionCase.x    = (int)((m_positionPixel.x+COTE_TILE*0.5)/COTE_TILE);
+                    m_positionCase.y    = (int)((m_positionPixel.y+COTE_TILE*0.5)/COTE_TILE);
+                    m_positionPixel.x    = m_positionCase.x*COTE_TILE;
+                    m_positionPixel.y    = m_positionCase.y*COTE_TILE;
+            }
+
         m_pousse.x = pousse.x;
         m_pousse.y = pousse.y;
     }

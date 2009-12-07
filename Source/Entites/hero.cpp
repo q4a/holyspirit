@@ -2055,6 +2055,7 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
         m=360+m;
     m_personnage.setAngle((int)m);
 
+    if(!m_personnage.m_miracleBloquant)
     if (miracle>=0&&miracle<(int)m_classe.miracles.size())
         if (m_lvl_miracles[miracle] > 0)
         {

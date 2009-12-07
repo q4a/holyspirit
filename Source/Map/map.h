@@ -86,6 +86,8 @@ public:
     bool Miracle_Souffle        (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int );
     bool Miracle_Zone           (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int );
     bool Miracle_Conditions     (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int );
+    bool Miracle_Bloquer        (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int );
+
 
     void Script_Trade           (Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer);
     void Script_Fight           (Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer);
@@ -121,7 +123,7 @@ public:
     int     getMonstreIllumine();
     bool    getCollision(int positionX,int positionY, int exception = -1); // Retourne 1 s'il y a une collision avec le décors se trouvant à la position X et Y
     int     getTypeCase(int positionX,int positionY);
-    bool    getCollisionPousse(int positionX,int positionY);
+
     int     getEvenement(coordonnee casePointee);
     int     getMonstre(Hero *hero,coordonnee positionSouris,coordonnee casePointee);
     const   coordonnee &getSacPointe();
@@ -132,6 +134,9 @@ public:
     bool    getMonstreEnVie(int numeroMonstre);
     const   coordonnee &getDimensions();
     const   std::string &getNom();
+
+    bool    getCollisionPousse(int positionX,int positionY, int id = -1);
+    void    TesterPoussable(Personnage &, float temps, int id = -1);
 
     Monstre *getEntiteMonstre (int numeroMonstre);
     Modele_Monstre getModeleMonstre(int numeroMonstre);

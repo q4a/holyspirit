@@ -184,9 +184,11 @@ void c_Jeu::Deplacements(Jeu *jeu)
 
         oldHeroPos = jeu->hero.m_personnage.getCoordonneePixel();
 
-        if (jeu->hero.m_personnage.SeDeplacer(tempsEcouleDepuisDernierDeplacement*100,jeu->map->getDimensions(),
+        jeu->map->TesterPoussable(jeu->hero.m_personnage, tempsEcouleDepuisDernierDeplacement);
+
+        if (jeu->hero.m_personnage.SeDeplacer(tempsEcouleDepuisDernierDeplacement*100,jeu->map->getDimensions()))/*,
                                               (jeu->map->getCollisionPousse((int)((jeu->hero.m_personnage.getCoordonneePixel().x + jeu->hero.m_personnage.getPousse().x * tempsEcouleDepuisDernierDeplacement * COTE_TILE * 5 + COTE_TILE * 0.5 * (jeu->hero.m_personnage.getPousse().x >= 0))/COTE_TILE),
-                                                                            (int)((jeu->hero.m_personnage.getCoordonneePixel().y + jeu->hero.m_personnage.getPousse().y * tempsEcouleDepuisDernierDeplacement * COTE_TILE * 5 + COTE_TILE * 0.5 * (jeu->hero.m_personnage.getPousse().y >= 0) )/COTE_TILE)) != 1)))
+                                                                            (int)((jeu->hero.m_personnage.getCoordonneePixel().y + jeu->hero.m_personnage.getPousse().y * tempsEcouleDepuisDernierDeplacement * COTE_TILE * 5 + COTE_TILE * 0.5 * (jeu->hero.m_personnage.getPousse().y >= 0) )/COTE_TILE)) != 1)))*/
         {
             bool ok=true;
             if (jeu->hero.getMonstreVise()>-1)
@@ -515,10 +517,11 @@ int GestionBoutons(Jeu *jeu)
                                       19,0,12,sf::Color(224,224,224),1);
 
         if (eventManager->getEvenement(Key::I,"ET")
-                || eventManager->getEvenement(Mouse::Left,"CA"))
+         || eventManager->getEvenement(Mouse::Left,"CA"))
         {
             eventManager->StopEvenement(Key::I,"ET");
             eventManager->StopEvenement(Mouse::Left,"CA");
+            eventManager->StopEvenement(Mouse::Left,"C");
             jeu->map->m_defilerObjets=0;
 
             return 2;
@@ -550,6 +553,7 @@ int GestionBoutons(Jeu *jeu)
         {
             eventManager->StopEvenement(Key::Q,"ET");
             eventManager->StopEvenement(Mouse::Left,"CA");
+            eventManager->StopEvenement(Mouse::Left,"C");
 
             return 6;
         }
@@ -580,6 +584,7 @@ int GestionBoutons(Jeu *jeu)
         {
             eventManager->StopEvenement(Key::T,"ET");
             eventManager->StopEvenement(Mouse::Left,"CA");
+            eventManager->StopEvenement(Mouse::Left,"C");
 
             return 5;
         }
@@ -611,6 +616,7 @@ int GestionBoutons(Jeu *jeu)
 
             eventManager->StopEvenement(Key::Escape,"ET");
             eventManager->StopEvenement(Mouse::Left,"CA");
+            eventManager->StopEvenement(Mouse::Left,"C");
             return 4;
         }
     }

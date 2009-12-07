@@ -248,32 +248,11 @@ void MoteurGraphique::Gerer(float temps,int tailleMapY)
 
                 int valeur = (int)m_effetsEcran_iter->info1 /* * (1 - 2 * (rand()%2))*/;
                 if(decalage && (fabs(decalageCameraSouhaite.x) < fabs(valeur) && fabs(valeur) != m_effetsEcran_iter->info1 || fabs(valeur) == m_effetsEcran_iter->info1) || !decalage)
-                {
-                   /* if(decalage)
-                    {
-                        if(decalageCameraSouhaite.x > 0)
-                            decalageCameraSouhaite.x = -valeur;
-                        else
-                            decalageCameraSouhaite.x = valeur;
-                    }
-                    else*/
                         decalageCameraSouhaite.x = (1 - 2 * (rand()%100<50))*valeur;
-                }
-
 
                 valeur = (int)m_effetsEcran_iter->info1 /* (1 - 2 * (rand()%2))*/;
                 if(decalage && (fabs(decalageCameraSouhaite.y) < fabs(valeur) && fabs(valeur) != m_effetsEcran_iter->info1 || fabs(valeur) == m_effetsEcran_iter->info1) || !decalage)
-                {
-                   /* if(decalage)
-                    {
-                        if(decalageCameraSouhaite.y > 0)
-                            decalageCameraSouhaite.y = -valeur;
-                        else
-                            decalageCameraSouhaite.y = valeur;
-                    }
-                    else*/
                         decalageCameraSouhaite.y = (1 - 2 * (rand()%100<50))*valeur;
-                }
 
                 m_effetsEcran_iter->info1  -= 1;
             }
