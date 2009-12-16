@@ -344,8 +344,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
             {
                 string cheminDuTileset;
                 *fichier>>cheminDuTileset;
-                m_tileset.push_back(Tileset (cheminDuTileset));
-
+                m_tileset.push_back(moteurGraphique->AjouterTileset(cheminDuTileset));
             }
             if (fichier->eof())
             {
@@ -367,10 +366,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
             {
                 string cheminDuTileset;
                 *fichier>>cheminDuTileset;
-                m_herbe.push_back(Herbe ());
-                if (!m_herbe.back().Charger(cheminDuTileset))
-                    return 0;
-
+                m_herbe.push_back(moteurGraphique->AjouterTileset(cheminDuTileset));
             }
             if (fichier->eof())
             {
@@ -993,30 +989,25 @@ void Map::Initialiser(Hero *hero)
             {
                 if (m_decor[couche][i][j].getHerbe()>=0&&m_decor[couche][i][j].getHerbe()<(int)m_herbe.size())
                 {
-                    if (m_herbe[m_decor[couche][i][j].getHerbe()].getTaille()>0)
+                    if (m_herbe[m_decor[couche][i][j].getHerbe()] >= 0)
                     {
                         coordonnee position,positionPartieDecor;
 
                         int numeroHerbe=0;
-                        if (m_herbe[m_decor[couche][i][j].getHerbe()].getTaille()>0)
-                            numeroHerbe = (rand() % (m_herbe[m_decor[couche][i][j].getHerbe()].getTaille()));
+                        if (moteurGraphique->getTileset(m_herbe[m_decor[couche][i][j].getHerbe()])->getTaille()>0)
+                            numeroHerbe = (rand() % (moteurGraphique->getTileset(m_herbe[m_decor[couche][i][j].getHerbe()])->getTaille()));
                         m_decor[couche][i][j].setNumeroHerbe(numeroHerbe);
 
-                        position.x=(j-i-1)*64;
-                        position.y=(j+i)*32;
-
-                        positionPartieDecor=m_herbe[m_decor[couche][i][j].getHerbe()].getPositionDuTile(m_decor[couche][i][j].getNumeroHerbe());
+                        position.x=(j-i)*64;
+                        position.y=(j+i+1)*32;
 
                         if (couche==0)
                             position.y-=32;
                         position.x+=m_decor[0][i][j].getDecalageHerbe().x;
 
-                        m_decor[couche][i][j].m_spriteHerbe.SetImage(*moteurGraphique->getImage(m_herbe[m_decor[couche][i][j].getHerbe()].getImage(m_decor[couche][i][j].getNumeroHerbe())));
-                        m_decor[couche][i][j].m_spriteHerbe.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
-                        m_decor[couche][i][j].m_spriteHerbe.SetScale((float)m_decor[couche][i][j].getTailleHerbe()/100,(float)m_decor[couche][i][j].getTailleHerbe()/100);
-                        m_decor[couche][i][j].m_spriteHerbe.SetX(position.x+64-positionPartieDecor.w/2);
-                        m_decor[couche][i][j].m_spriteHerbe.SetY(position.y-positionPartieDecor.h+64);
-                        m_decor[couche][i][j].m_spriteHerbe.SetColor(m_decor[couche][i][j].getCouleurHerbe());
+                        m_decor[couche][i][j].m_entite_herbe = moteurGraphique->getEntiteGraphique(m_herbe[m_decor[couche][i][j].getHerbe()], numeroHerbe, 10);
+                        m_decor[couche][i][j].m_entite_herbe.m_sprite.SetPosition(position.x, position.y);
+                        m_decor[couche][i][j].m_entite_herbe.Initialiser(coordonnee ());
                     }
                 }
             }
@@ -1032,7 +1023,6 @@ void Map::Initialiser(Hero *hero)
             pos.y=(((m_monstre[i].getCoordonneePixel().x+m_monstre[i].getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
 
             moteurGraphique->LightManager->SetPosition(m_monstre[i].m_light,pos);
-
             moteurGraphique->LightManager->SetColor(m_monstre[i].m_light,sf::Color(m_monstre[i].getPorteeLumineuse().rouge,m_monstre[i].getPorteeLumineuse().vert,m_monstre[i].getPorteeLumineuse().bleu));
         }
 
@@ -1043,36 +1033,20 @@ void Map::Initialiser(Hero *hero)
             for (int k=0;k<m_dimensions.x;k++)
                 if (m_decor[i][j][k].getTileset()>=0&&m_decor[i][j][k].getTileset()<(int)m_tileset.size())
                 {
+
+                    coordonnee position, pos;
+
+                    position.x=(k-j)*64;
+                    position.y=(k+j+1)*32;
+
+                    pos.x = (int)(((k*COTE_TILE-j*COTE_TILE)*64/COTE_TILE));
+                    pos.y = (int)(((k*COTE_TILE+j*COTE_TILE)*64/COTE_TILE)+64);
+
+                    m_decor[i][j][k].m_entite_graphique = moteurGraphique->getEntiteGraphique(m_tileset[m_decor[i][j][k].getTileset()], m_decor[i][j][k].getTile(), m_decor[i][j][k].getCouche());
+                    m_decor[i][j][k].m_entite_graphique.m_sprite.SetPosition(position.x, position.y);
+                    m_decor[i][j][k].m_entite_graphique.Initialiser(pos);
+
                     CreerSprite(sf::Vector3f(k,j,i));
-
-                    pos.x=(((k*COTE_TILE-j*COTE_TILE)*64/COTE_TILE));
-                    pos.y=(((k*COTE_TILE+j*COTE_TILE)*64/COTE_TILE)/2+32)*2;
-
-                    if (m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite<0)
-                    {
-                        if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='x'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='c'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='o'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='q')
-                            m_decor[i][j][k].m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y-32), sf::Vector2f(pos.x+32 , pos.y+32),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
-
-                        if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='y'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='c'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='p'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='r')
-                            m_decor[i][j][k].m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y+32), sf::Vector2f(pos.x+32 , pos.y-32),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
-
-                        if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='b'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='g'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='q')
-                            m_decor[i][j][k].m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x, pos.y), sf::Vector2f(pos.x+32 , pos.y-32),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
-
-                        if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='b'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='p')
-                            m_decor[i][j][k].m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y-32), sf::Vector2f(pos.x-0.1 , pos.y-0.1),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
-
-                        if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='d')
-                            m_decor[i][j][k].m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y-32), sf::Vector2f(pos.x-0.1 , pos.y+0.1),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
-
-                        if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='h'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='g'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='r')
-                            m_decor[i][j][k].m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x+0.1, pos.y+0.1), sf::Vector2f(pos.x+32 , pos.y+32),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
-
-                        if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='h'||m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='d')
-                            m_decor[i][j][k].m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y+32), sf::Vector2f(pos.x , pos.y),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
-                        if (m_tileset[m_decor[i][j][k].getTileset()].getOrientationDuTile(m_decor[i][j][k].getTile())=='o')
-                            m_decor[i][j][k].m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y+32), sf::Vector2f(pos.x-0.1 , pos.y+0.1),(int)m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).hauteur);
-                    }
                 }
 
     for (int i=0;i<NOMBRE_COUCHE_MAP;++i)
@@ -1080,20 +1054,11 @@ void Map::Initialiser(Hero *hero)
             for (int k=0;k<m_dimensions.x;k++)
                 if (m_decor[i][j][k].getTileset()>=0&&m_decor[i][j][k].getTileset()<(int)m_tileset.size())
                 {
-                    pos.x=(((k*COTE_TILE-j*COTE_TILE)*64/COTE_TILE));
-                    pos.y=(((k*COTE_TILE+j*COTE_TILE)*64/COTE_TILE)/2+32)*2;
-                    if (m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite>0)
-                    {
-                        if (m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile())!=-1)
-                            m_decor[i][j][k].m_light=moteurGraphique->LightManager->Add_Dynamic_Light(pos,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite*3,6,sf::Color(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).rouge,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).vert,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).bleu));
-                        else
-                            m_decor[i][j][k].m_light=moteurGraphique->LightManager->Add_Static_Light(pos,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite*3,6,sf::Color(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).rouge,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).vert,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).bleu));
-                    }
-
                     if (m_decor[i][j][k].added_minimap)
                         if(m_decor[i][j][k].m_spriteMinimap.GetSize().x> 1)
                             hero->m_minimap.push_back(m_decor[i][j][k].m_spriteMinimap);
                 }
+
     moteurGraphique->LightManager->Generate();
 }
 
@@ -1108,7 +1073,12 @@ void Map::CreerSprite(sf::Vector3f position_case)
     position.x=(x-y-1)*64;
     position.y=(x+y)*32;
 
-    positionPartieDecor = m_tileset[m_decor[z][y][x].getTileset()].getPositionDuTile(m_decor[z][y][x].getTile());
+
+    /*m_decor[z][y][x].m_entite_graphique.m_sprite.SetPosition(position.x, position.y);*/
+
+    //m_decor[z][y][x].m_entite_graphique.Generer();
+
+    /*positionPartieDecor = m_tileset[m_decor[z][y][x].getTileset()].getPositionDuTile(m_decor[z][y][x].getTile());
 
     m_decor[z][y][x].m_sprite.SetImage(*moteurGraphique->getImage(m_tileset[m_decor[z][y][x].getTileset()].getImage(m_decor[z][y][x].getTile())));
     m_decor[z][y][x].m_sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
@@ -1145,17 +1115,18 @@ void Map::CreerSprite(sf::Vector3f position_case)
             m_decor[z][y][x].m_spriteReflect = m_decor[z][y][x].m_sprite;
             m_decor[z][y][x].m_spriteReflect.FlipY(true);
             m_decor[z][y][x].m_spriteReflect.SetOrigin(m_decor[z][y][x].m_spriteReflect.GetOrigin().x, m_decor[z][y][x].m_spriteReflect.GetSize().y - m_decor[z][y][x].m_spriteReflect.GetOrigin().y);
-            //m_decor[z][y][x].m_spriteReflect.Move(0,m_decor[z][y][x].m_spriteReflect.GetOrigin().y-m_decor[z][y][x].m_spriteReflect.GetSize().y);
-            //m_decor[z][y][x].m_spriteReflect.Scale(1,0.5);
         }
-    }
+    }*/
 
-    positionPartieDecor=m_tileset[m_decor[z][y][x].getTileset()].getPositionMinimap(m_decor[z][y][x].getTile());
-    m_decor[z][y][x].m_spriteMinimap.SetImage(*moteurGraphique->getImage(m_tileset[m_decor[z][y][x].getTileset()].getMinimap(m_decor[z][y][x].getTile())));
-    m_decor[z][y][x].m_spriteMinimap.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
-    m_decor[z][y][x].m_spriteMinimap.SetX(position.x);
-    m_decor[z][y][x].m_spriteMinimap.SetY(position.y);
-    m_decor[z][y][x].m_spriteMinimap.SetColor(sf::Color(255,255,255,128));
+    if(m_decor[z][y][x].getTileset() != -1)
+    {
+        positionPartieDecor=moteurGraphique->getTileset(m_tileset[m_decor[z][y][x].getTileset()])->getPositionMinimap(m_decor[z][y][x].getTile());
+        m_decor[z][y][x].m_spriteMinimap.SetImage(*moteurGraphique->getImage(moteurGraphique->getTileset(m_tileset[m_decor[z][y][x].getTileset()])->getMinimap(m_decor[z][y][x].getTile())));
+        m_decor[z][y][x].m_spriteMinimap.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
+        m_decor[z][y][x].m_spriteMinimap.SetX(position.x);
+        m_decor[z][y][x].m_spriteMinimap.SetY(position.y);
+        m_decor[z][y][x].m_spriteMinimap.SetColor(sf::Color(255,255,255,128));
+    }
 }
 
 
@@ -1195,12 +1166,12 @@ void Map::Sauvegarder(Hero *hero)
         fichier<<"$\n";
 
         for (int i=0;i<(int)m_tileset.size();++i)
-            fichier<<"*"<<m_tileset[i].getChemin()<<"\n";
+            fichier<<"*"<<moteurGraphique->getTileset(m_tileset[i])->getChemin()<<"\n";
 
         fichier<<"$\n";
 
         for (int i=0;i<(int)m_herbe.size();++i)
-            fichier<<"*"<<m_herbe[i].getChemin()<<"\n";
+            fichier<<"*"<<moteurGraphique->getTileset(m_herbe[i])->getChemin()<<"\n";
 
         fichier<<"$\n";
 
@@ -1381,7 +1352,7 @@ void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_
                     texte.SetString("...");
                 else
                     texte.SetString(m_decor[1][positionSac.y][positionSac.x].getObjet(z)->getNom());
-                texte.SetSize(16*configuration->Resolution.w/800);
+                texte.SetCharacterSize(16*configuration->Resolution.w/800);
 
                 position.x=(int)((position_sac_inventaire.x*configuration->Resolution.w/800)+((position_sac_inventaire.w/2)*configuration->Resolution.w/800)-(texte.GetRect().Right-texte.GetRect().Left)/2);
                 position.y=(int)(position_sac_inventaire.y*configuration->Resolution.h/600+(z-m_defilerObjets)*20*configuration->Resolution.w/800 - decalage*configuration->Resolution.h/600 );
@@ -1428,89 +1399,47 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
 
     sf::Sprite sky;
     sky.SetImage(*moteurGraphique->getImage(m_img_sky));
-   // sky.SetColor(sf::Color(moteurGraphique->m_soleil.rouge*moteurGraphique->m_soleil.intensite/255,moteurGraphique->m_soleil.vert*moteurGraphique->m_soleil.intensite/255,moteurGraphique->m_soleil.bleu*moteurGraphique->m_soleil.intensite/255));
     moteurGraphique->AjouterCommande(&sky,0,0);
 
     for (int couche=0;couche<NOMBRE_COUCHE_MAP;couche++)
     {
-        for (int j=hero->m_personnage.getCoordonnee().y-15;j<hero->m_personnage.getCoordonnee().y+15;++j)
+        for (int j=hero->m_personnage.getCoordonnee().y - (int)(13 * configuration->zoom) ;j<hero->m_personnage.getCoordonnee().y + (int)(13 * configuration->zoom) ;++j)
         {
-            for (int k=hero->m_personnage.getCoordonnee().x-15;k<hero->m_personnage.getCoordonnee().x+15;++k)
+            for (int k=hero->m_personnage.getCoordonnee().x - (int)(13 * configuration->zoom) ;k<hero->m_personnage.getCoordonnee().x + (int)(13 * configuration->zoom) ;++k)
             {
                 position.x=(k-j-1)*64+48;
                 position.y=(k+j)*32+16;
 
                 if (j>=0&&j<m_dimensions.y&&k>=0&&k<m_dimensions.x)
                 {
-                    if (m_decor[couche][j][k].m_sprite.GetSize().x>1)
-                    if (   m_decor[couche][j][k].m_sprite.GetPosition().x+m_decor[couche][j][k].m_sprite.GetSize().x-m_decor[couche][j][k].m_sprite.GetOrigin().x>=moteurGraphique->m_camera.GetRect().Left
-                            && m_decor[couche][j][k].m_sprite.GetPosition().x-m_decor[couche][j][k].m_sprite.GetOrigin().x<moteurGraphique->m_camera.GetRect().Right
-                            && m_decor[couche][j][k].m_sprite.GetPosition().y+m_decor[couche][j][k].m_sprite.GetSize().y-m_decor[couche][j][k].m_sprite.GetOrigin().y>=moteurGraphique->m_camera.GetRect().Top
-                            && m_decor[couche][j][k].m_sprite.GetPosition().y-m_decor[couche][j][k].m_sprite.GetOrigin().y<moteurGraphique->m_camera.GetRect().Bottom)
+                    if(m_decor[couche][j][k].m_entite_graphique.m_tileset != NULL)
+                    {
+                        if (m_decor[couche][j][k].m_entite_graphique.m_tileset->getTransparentDuTile(m_decor[couche][j][k].m_entite_graphique.m_noAnimation))
                         {
-                            sf::IntRect rect = m_decor[couche][j][k].m_sprite.GetSubRect();
-                            sf::IntRect rectBuf = m_decor[couche][j][k].m_sprite.GetSubRect();
-                            sf::Vector2f pos = m_decor[couche][j][k].m_sprite.GetPosition();
-                            if (m_tileset[m_decor[couche][j][k].getTileset()].getTransparentDuTile(m_decor[couche][j][k].getTile()))
-                            {
-                                int alpha=(int)((positionHero.y)-position.y)+160;
+                            int alpha=(int)((positionHero.y)-position.y)+160;
 
-                                if (alpha<configuration->alpha)
-                                    alpha=configuration->alpha;
-                                if (alpha>255)
-                                    alpha=255;
+                            if (alpha<configuration->alpha)
+                                alpha=configuration->alpha;
+                            if (alpha>255)
+                                alpha=255;
 
-                                m_decor[couche][j][k].m_sprite.SetColor(sf::Color(255,255,255,alpha));
-                            }
-
-                            if (m_decor[couche][j][k].m_sprite.GetPosition().x + m_decor[couche][j][k].m_sprite.GetSize().x - m_decor[couche][j][k].m_sprite.GetOrigin().x > (int)(moteurGraphique->m_camera.GetRect().Right))
-                                rectBuf.Right -= (int)m_decor[couche][j][k].m_sprite.GetPosition().x + (int)m_decor[couche][j][k].m_sprite.GetSize().x - (int)m_decor[couche][j][k].m_sprite.GetOrigin().x - (int)moteurGraphique->m_camera.GetRect().Right - 1;
-                            if (m_decor[couche][j][k].m_sprite.GetPosition().y + m_decor[couche][j][k].m_sprite.GetSize().y - m_decor[couche][j][k].m_sprite.GetOrigin().y > (int)(moteurGraphique->m_camera.GetRect().Bottom))
-                                rectBuf.Bottom -= (int)m_decor[couche][j][k].m_sprite.GetPosition().y + (int)m_decor[couche][j][k].m_sprite.GetSize().y - (int)m_decor[couche][j][k].m_sprite.GetOrigin().y - (int)moteurGraphique->m_camera.GetRect().Bottom - 1;
-
-                            if (m_decor[couche][j][k].m_sprite.GetPosition().x - m_decor[couche][j][k].m_sprite.GetOrigin().x < moteurGraphique->m_camera.GetRect().Left)
-                            {
-                                rectBuf.Left += (int)(moteurGraphique->m_camera.GetRect().Left) - (int)m_decor[couche][j][k].m_sprite.GetPosition().x + (int)m_decor[couche][j][k].m_sprite.GetOrigin().x;
-                                m_decor[couche][j][k].m_sprite.Move(rectBuf.Left - rect.Left, 0);
-                            }
-                            if (m_decor[couche][j][k].m_sprite.GetPosition().y - m_decor[couche][j][k].m_sprite.GetOrigin().y < moteurGraphique->m_camera.GetRect().Top)
-                            {
-                                rectBuf.Top += (int)(moteurGraphique->m_camera.GetRect().Top) - (int)m_decor[couche][j][k].m_sprite.GetPosition().y + (int)m_decor[couche][j][k].m_sprite.GetOrigin().y;
-                                m_decor[couche][j][k].m_sprite.Move(0, rectBuf.Top - rect.Top);
-                            }
-
-                            m_decor[couche][j][k].m_sprite.SetSubRect(rectBuf);
-
-                            moteurGraphique->AjouterCommande(&m_decor[couche][j][k].m_sprite,m_decor[couche][j][k].getCouche(),1);
-
-                            m_decor[couche][j][k].m_sprite.SetSubRect(rect);
-                            m_decor[couche][j][k].m_sprite.SetPosition(pos);
+                            m_decor[couche][j][k].m_entite_graphique.m_sprite.SetColor(sf::Color(255,255,255,alpha));
                         }
-
-                    if (m_decor[couche][j][k].m_spriteOmbre.GetSize().x>1)
-                        moteurGraphique->AjouterCommande(&m_decor[couche][j][k].m_spriteOmbre,9,1);
-
-                    if (m_decor[couche][j][k].m_spriteReflect.GetSize().x>1)
-                        moteurGraphique->AjouterCommande(&m_decor[couche][j][k].m_spriteReflect,0,1);
+                        moteurGraphique->AjouterEntiteGraphique(&m_decor[couche][j][k].m_entite_graphique);
+                    }
 
                     if(!m_decor[couche][j][k].added_minimap)
-                    if((j-hero->m_personnage.getCoordonnee().y) < 8 && (k-hero->m_personnage.getCoordonnee().x) < 8)
-                    if(TileVisible(k,j,hero->m_personnage.getCoordonnee()))
-                    {
-                        if(m_decor[couche][j][k].m_spriteMinimap.GetSize().x> 1)
-                            hero->m_minimap.push_back(m_decor[couche][j][k].m_spriteMinimap);
-                        m_decor[couche][j][k].added_minimap = true;
-                    }
+                        if((j-hero->m_personnage.getCoordonnee().y) < 8 && (k-hero->m_personnage.getCoordonnee().x) < 8)
+                            if(TileVisible(k,j,hero->m_personnage.getCoordonnee()))
+                            {
+                                if(m_decor[couche][j][k].m_spriteMinimap.GetSize().x> 1)
+                                    hero->m_minimap.push_back(m_decor[couche][j][k].m_spriteMinimap);
+                                m_decor[couche][j][k].added_minimap = true;
+                            }
 
                     if (couche==1)
                     {
-                        if (configuration->Herbes)
-                            if (m_decor[0][j][k].m_spriteHerbe.GetSize().x>1)
-                                if (m_decor[0][j][k].m_spriteHerbe.GetPosition().x+m_decor[0][j][k].m_spriteHerbe.GetSize().x>=moteurGraphique->m_camera.GetRect().Left
-                                        &&m_decor[0][j][k].m_spriteHerbe.GetPosition().x<moteurGraphique->m_camera.GetRect().Right
-                                        &&m_decor[0][j][k].m_spriteHerbe.GetPosition().y+m_decor[0][j][k].m_spriteHerbe.GetSize().y>=moteurGraphique->m_camera.GetRect().Top
-                                        &&m_decor[0][j][k].m_spriteHerbe.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)
-                                    moteurGraphique->AjouterCommande(&m_decor[0][j][k].m_spriteHerbe,10,1);
+                        moteurGraphique->AjouterEntiteGraphique(&m_decor[0][j][k].m_entite_herbe);
 
                         for (unsigned o = 0 ; o < m_decor[1][j][k].getMonstre().size() ; ++o)
                             if (m_decor[1][j][k].getMonstre()[o]>=0&&m_decor[1][j][k].getMonstre()[o]<(int)m_monstre.size())
@@ -1520,14 +1449,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                         &&  (int)((hero->m_personnage.getCoordonneePixel().y + COTE_TILE * 0.5) / COTE_TILE) == j)
                                 hero->Afficher(getDimensions());
 
-                        if (configuration->Herbes)
-                            if (m_decor[1][j][k].m_spriteHerbe.GetSize().x>1)
-                                if (m_decor[1][j][k].m_spriteHerbe.GetPosition().x+m_decor[1][j][k].m_spriteHerbe.GetSize().x>=moteurGraphique->m_camera.GetRect().Left
-                                        &&m_decor[1][j][k].m_spriteHerbe.GetPosition().x<moteurGraphique->m_camera.GetRect().Right
-                                        &&m_decor[1][j][k].m_spriteHerbe.GetPosition().y+m_decor[1][j][k].m_spriteHerbe.GetSize().y>=moteurGraphique->m_camera.GetRect().Top
-                                        &&m_decor[1][j][k].m_spriteHerbe.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)
-                                    moteurGraphique->AjouterCommande(&m_decor[1][j][k].m_spriteHerbe,10,1);
-
+                        moteurGraphique->AjouterEntiteGraphique(&m_decor[1][j][k].m_entite_herbe);
 
                         for (unsigned o = 0 ; o < m_decor[1][j][k].getProjectile().size() ; ++o)
                             if (m_decor[1][j][k].getProjectile()[o]>=0&&m_decor[1][j][k].getProjectile()[o]<(int)m_projectile.size())
@@ -1576,9 +1498,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                                 moteurGraphique->AjouterCommande(&sprite,8,1);
                             }
 
-
                             sprite.SetScale(1,1);
-
                             sprite.SetColor(sf::Color(255,255,255));
 
                             int objetPointe=-1;
@@ -1587,12 +1507,6 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                                 m_decor[1][j][k].AlphaObjets(255);
 
                             objetPointe=m_decor[1][j][k].AfficherTexteObjets(position,m_objetPointe);
-
-                            if (!eventManager->getEvenement(sf::Mouse::Left,"CA")&&moteurGraphique->getPositionSouris().x>sprite.GetPosition().x&&moteurGraphique->getPositionSouris().x<sprite.GetPosition().x+32&&moteurGraphique->getPositionSouris().y>sprite.GetPosition().y&&moteurGraphique->getPositionSouris().y<sprite.GetPosition().y+32&&m_decor[1][j][k].getNombreObjets()>4)
-                            {
-                                m_sacPointe.x=k;
-                                m_sacPointe.y=j;
-                            }
 
                             if (objetPointe>=0&&!eventManager->getEvenement(sf::Mouse::Left,"CA") && alt)
                             {
@@ -1607,7 +1521,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                         }
                     }
                 }
-                else if (couche==0)
+               /* else if (couche==0)
                 {
 
                     int w=j,z=k;
@@ -1646,26 +1560,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
 
                             moteurGraphique->AjouterCommande(&buffer,m_decor[couche][w][z].getCouche(),1);
                         }
-                }
-
-
-                if (alpha>0&&couche==1)
-                {
-                    //moteurGraphique->AjouterCommande(&m_decor[1][j][k].m_spriteMinimap,18,0);
-                  /*  position.x=(((k-(hero->m_personnage.getCoordonnee().x-15))-(j-(hero->m_personnage.getCoordonnee().y-15))-1+40)*6*configuration->Resolution.w/800);
-                    position.y=(((k-(hero->m_personnage.getCoordonnee().x-15))+(j-(hero->m_personnage.getCoordonnee().y-15)))*6*configuration->Resolution.w/800);
-
-                    if (position.x+465*configuration->Resolution.w/800>605*configuration->Resolution.w/800&&position.x+465*configuration->Resolution.w/800<800*configuration->Resolution.w/800&&position.y*configuration->Resolution.w/800>0&&position.y-80*configuration->Resolution.w/800<146*configuration->Resolution.w/600)
-                        AfficherMinimap(position,getTypeCase(k,j),alpha);
-                    if (hero->m_personnage.getCoordonnee().x==k&&hero->m_personnage.getCoordonnee().y==j)
-                        AfficherMinimap(position,6,alpha);*/
-
-                        //coordonnee pos;
-
-                       // m_decor[1][j][k].m_spriteMinimap.SetPosition(pos.x, pos.y);
-                       // moteurGraphique->AjouterCommande(&m_decor[1][j][k].m_spriteMinimap,18,0);
-
-                }
+                }*/
             }
         }
     }
@@ -1751,7 +1646,7 @@ void Map::AfficherNomEvenement(coordonnee casePointee,coordonnee positionSouris)
 
                         sf::Text texte;
                         texte.SetString(nom);
-                        texte.SetSize(16.f);
+                        texte.SetCharacterSize(16);
                         if (configuration->Resolution.y>0)
                             texte.SetY((positionSouris.y-16)*configuration->Resolution.h/configuration->Resolution.y);
                         if (configuration->Resolution.x>0)
@@ -1796,12 +1691,12 @@ bool Map::TestEvenement(Jeu *jeu,float temps)
     return 1;
 }
 
-int Map::AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coordonnee lanceur,int couche,float  vitesse,float decalageAngle,bool monstre,std::vector<Tile> &tiles)
+int Map::AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coordonnee lanceur,int couche,float  vitesse,float decalageAngle,bool monstre,Tileset *tileset)
 {
     m_projectile.push_back(Projectile ());
 
-    m_projectile.back().m_position.x=positionReel.x;
-    m_projectile.back().m_position.y=positionReel.y;
+    m_projectile.back().m_position.x = positionReel.x;
+    m_projectile.back().m_position.y = positionReel.y;
     m_projectile.back().m_position.h=0;
 
     m_projectile.back().m_depart = lanceur;
@@ -1811,7 +1706,7 @@ int Map::AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coord
     m_projectile.back().m_actif     = true;
     m_projectile.back().m_supprime  = false;
 
-    m_projectile.back().m_effet.m_couche=couche;
+    m_projectile.back().m_effet.m_couche = couche;
 
     coordonneeDecimal position,position2;
 
@@ -1840,8 +1735,11 @@ int Map::AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coord
 
     m_projectile.back().m_positionCase=lanceur;
 
-    m_projectile.back().m_effet.m_tiles = tiles;
+    position.x=(positionReel.x-positionReel.y) * 64 / COTE_TILE;
+    position.y=(positionReel.x+positionReel.y) * 64 / COTE_TILE;
 
+    m_projectile.back().m_effet.m_tileset = tileset;
+    m_projectile.back().m_effet.Initialiser(position);
 
     if (couche>=0&&couche<2)
         if (lanceur.y>=0&&lanceur.y<m_dimensions.y)
@@ -1854,29 +1752,6 @@ int Map::AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coord
 
     return m_projectile.size()-1;
 }
-
-/*int Map::GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *hero,bool monstre, const coordonnee lanceur, const coordonnee cible,int couche=0)
-{
-    couche=0;
-    int retour=0;
-    bool continuer=true;
-
-    for (int o=0;o<(int)entiteMiracle->m_infos.size()&&continuer;o++)
-    {
-        if (entiteMiracle->m_infos[o]->m_effetEnCours>=0&&entiteMiracle->m_infos[o]->m_effetEnCours<(int)modeleMiracle->m_effets.size())
-        {
-
-        }
-        else
-        {
-            entiteMiracle->m_infos.erase(entiteMiracle->m_infos.begin()+o);
-            continuer=false;
-            GererMiracle(entiteMiracle,modeleMiracle,hero,monstre,lanceur,cible,couche);
-        }
-    }
-
-    return retour;
-}*/
 
 void Map::Animer(Hero *hero,float temps,Menu *menu)
 {
@@ -1917,44 +1792,15 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                             }
                         }
 
-                m_decor[i][j][k].AugmenterAnimation(temps);
+                m_decor[i][j][k].m_entite_graphique.Animer(temps);
+                m_decor[i][j][k].m_entite_herbe.Animer(temps);
 
-                if (m_decor[i][j][k].getTileset()>=0&&m_decor[i][j][k].getTileset()<(int)m_tileset.size())
+                for(unsigned z = 0; z < m_decor[i][j][k].getNombreObjets() ; ++z)
                 {
-                    float tempsAnimation=m_tileset[m_decor[i][j][k].getTileset()].getTempsDuTile(m_decor[i][j][k].getTile());
-
-                    if (m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile())>=0)
-                        while (m_decor[i][j][k].getAnimation()>=tempsAnimation)
-                        {
-                            m_decor[i][j][k].setTile(m_tileset[m_decor[i][j][k].getTileset()].getAnimationTile(m_decor[i][j][k].getTile()));
-
-                            CreerSprite(sf::Vector3f(k,j,i));
-
-                            if (m_decor[i][j][k].getTileset()>=0&&m_decor[i][j][k].getTileset()<(int)m_tileset.size() && configuration->Lumiere)
-                            {
-                                moteurGraphique->LightManager->SetIntensity(m_decor[i][j][k].m_light,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite);
-                                moteurGraphique->LightManager->SetRadius(m_decor[i][j][k].m_light,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite*3);
-                                moteurGraphique->LightManager->SetColor(m_decor[i][j][k].m_light,sf::Color(m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).rouge,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).vert,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).bleu));
-
-                                moteurGraphique->LightManager->Generate(m_decor[i][j][k].m_light);
-
-
-                                moteurGraphique->LightManager->SetIntensity(m_decor[i][j][k].m_light_wall,m_tileset[m_decor[i][j][k].getTileset()].getLumiereDuTile(m_decor[i][j][k].getTile()).intensite);
-                            }
-
-                            coordonnee position;
-                            position.x=(k-j-1)/5;
-                            position.y=(k+j)/5;
-
-                            m_tileset[m_decor[i][j][k].getTileset()].JouerSon(m_tileset[m_decor[i][j][k].getTileset()].getSonTile(m_decor[i][j][k].getTile()),position,positionHero);
-
-                            m_decor[i][j][k].DecrementerAnimation(tempsAnimation);
-                            tempsAnimation=m_tileset[m_decor[i][j][k].getTileset()].getTempsDuTile(m_decor[i][j][k].getTile());
-                        }
+                    m_decor[i][j][k].getObjet(z)->m_alpha -= temps*200;
+                    if(m_decor[i][j][k].getObjet(z)->m_alpha < 0)
+                        m_decor[i][j][k].getObjet(z)->m_alpha = 0;
                 }
-
-                if(m_decor[i][j][k].getTile() < 0)
-                    m_decor[i][j][k].m_sprite.SetSubRect(sf::IntRect(0,0,0,0));
 
                 for (int z=0;z<(int)m_decor[i][j][k].getMonstre().size();z++)
                 {
@@ -1984,7 +1830,6 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                                             InfligerDegats(m_monstre[monstre].m_cible, degats, hero, 0);
 
                                             m_monstre[monstre].InfligerDegats(-degats * m_monstre[monstre].getCaracteristique().volVie, NULL);
-                                           // m_monstre[monstre].m_caracteristiques.foi += degats * m_monstre[monstre].getCaracteristique().volFoi;
                                         }
                                 }
                             }
@@ -2001,11 +1846,7 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                                 m_monstre[monstre].m_miracleEnCours.back().m_infos.back()->m_position.y=m_monstre[monstre].getCoordonneePixel().y;
 
                                 m_monstre[monstre].m_miracleEnCours.back().m_coordonneeCible = hero->m_personnage.getProchaineCase();
-                               // m_monstre[monstre].m_miracleEnCours.back().m_coordonneeCible = m_monstre[monstre].getCoordonnee();
                                 m_monstre[monstre].m_miracleEnCours.back().m_infos.back()->m_cible = m_monstre[monstre].m_cible;
-
-                                //if (m_monstre[monstre].m_miracleEnCours.back().m_modele>=0&&m_monstre[monstre].m_miracleEnCours.back().m_modele<(int)m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles.size())
-                                   // GererMiracle(&m_monstre[monstre].m_miracleEnCours.back(),&m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours.back().m_modele],hero,1,m_monstre[monstre].getCoordonnee(),hero->m_personnage.getProchaineCase(),i);
                             }
 
                         }
@@ -2125,7 +1966,7 @@ bool Map::Miracle_Effet  (Hero *hero, Personnage *personnage, Miracle &modele, E
         if (effet.m_informations[0])
         {
             info.m_IDObjet = personnage->AjouterEffet(
-                modele.m_tile[effet.m_sequence],
+                moteurGraphique->getTileset(modele.m_tileset[effet.m_sequence]),
                 effet.m_informations[1], // TYPE
                 effet.m_informations[2], // TEMPS
                 effet.m_informations[3], // INFOS
@@ -2136,7 +1977,7 @@ bool Map::Miracle_Effet  (Hero *hero, Personnage *personnage, Miracle &modele, E
         else if(info.m_cible != NULL)
         {
             info.m_IDObjet = info.m_cible->AjouterEffet(
-                modele.m_tile[effet.m_sequence],
+                moteurGraphique->getTileset(modele.m_tileset[effet.m_sequence]),
                 effet.m_informations[1], // TYPE
                 effet.m_informations[2], // TEMPS
                 effet.m_informations[3], // INFOS
@@ -2384,7 +2225,7 @@ bool Map::Miracle_Projectile(Hero *hero, Personnage *personnage, Miracle &modele
         info.m_IDObjet = AjouterProjectile( info.m_position,
                                             cible,personnage->getCoordonnee(),1,effet.m_informations[0],
                                             (float)effet.m_informations[1]*M_PI/180,!personnage->m_friendly,
-                                            modele.m_tile[effet.m_sequence]);
+                                            moteurGraphique->getTileset(modele.m_tileset[effet.m_sequence]));
 
         if (effet.m_informations[1])
             m_projectile.back().m_cible = cible;
@@ -2426,20 +2267,20 @@ bool Map::Miracle_EffetGraphique(Hero *hero, Personnage *personnage, Miracle &mo
 
         m_effets.back().m_actif      = true;
 
-        m_effets.back().m_couche     = 1;
+        m_effets.back().m_tileset    = moteurGraphique->getTileset(modele.m_tileset[effet.m_sequence]);
+        m_effets.back().m_couche     = 10;
+        m_effets.back().Initialiser(coordonnee((info.m_position.x - info.m_position.y) * 64 / COTE_TILE,
+                                               (info.m_position.x + info.m_position.y) * 64 / COTE_TILE));
 
-        m_effets.back().m_tiles      = modele.m_tile[effet.m_sequence];
-
-        if(m_effets.back().m_tiles.size() > 0)
+        /*if(m_effets.back().m_tiles.size() > 0)
         if (m_effets.back().m_tiles[0].getSon() >= 0)
         {
-            coordonnee positionHero;
             coordonnee position;
             position.x=-(int)(m_effets.back().m_position.x/COTE_TILE - m_effets.back().m_position.y/COTE_TILE-1)/5;
             position.y= (int)(m_effets.back().m_position.x/COTE_TILE + m_effets.back().m_position.y/COTE_TILE)/5;
 
-            moteurSons->JouerSon(m_effets.back().m_tiles[0].getSon(), position, positionHero,0);
-        }
+            moteurSons->JouerSon(m_effets.back().m_tiles[0].getSon(), position,0);
+        }*/
 
         info.m_IDObjet               = m_effets.size()-1;
 
@@ -2871,7 +2712,7 @@ bool Map::Miracle_Bloquer(Hero *hero, Personnage *personnage, Miracle &modele, E
     return 0;
 }
 
-bool Map::GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,float temps,coordonnee positionHero,Hero *hero)
+void Map::GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,float temps,coordonnee positionHero,Hero *hero)
 {
     bool continuerb = true;
     for (int i=0;i<(int)personnage->m_miracleEnCours.size() && continuerb;++i)
@@ -3044,21 +2885,16 @@ void Map::GererEvenements(int evenement,int z,int couche,int x,int y)
         {
             m_decor[couche][y][x].setTileset(m_evenement[evenement].getInformation(0));
             m_decor[couche][y][x].setTile(m_evenement[evenement].getInformation(1));
-            m_decor[couche][y][x].DecrementerAnimation(m_decor[couche][y][x].getAnimation());
 
             if (m_decor[couche][y][x].getTileset()>=0&&m_decor[couche][y][x].getTileset()<(int)m_tileset.size())
             {
-                sf::Vector2f pos;
-                pos.x=(((x*COTE_TILE-y*COTE_TILE)*64/COTE_TILE));
-                pos.y=(((x*COTE_TILE+y*COTE_TILE)*64/COTE_TILE)/2+32)*2;
+                coordonnee pos;
+                pos.x=(int)(((x*COTE_TILE-y*COTE_TILE)*64/COTE_TILE));
+                pos.y=(int)(((x*COTE_TILE+y*COTE_TILE)*64/COTE_TILE)+64);
 
-                if(configuration->Lumiere)
-                if (m_tileset[m_decor[couche][y][x].getTileset()].getLumiereDuTile(m_decor[couche][y][x].getTile()).intensite>0)
-                {
-                    m_decor[couche][y][x].m_light=moteurGraphique->LightManager->Add_Dynamic_Light(pos,m_tileset[m_decor[couche][y][x].getTileset()].getLumiereDuTile(m_decor[couche][y][x].getTile()).intensite,m_tileset[m_decor[couche][y][x].getTileset()].getLumiereDuTile(m_decor[couche][y][x].getTile()).intensite*3,8,sf::Color(m_tileset[m_decor[couche][y][x].getTileset()].getLumiereDuTile(m_decor[couche][y][x].getTile()).rouge,m_tileset[m_decor[couche][y][x].getTileset()].getLumiereDuTile(m_decor[couche][y][x].getTile()).vert,m_tileset[m_decor[couche][y][x].getTileset()].getLumiereDuTile(m_decor[couche][y][x].getTile()).bleu));
-
-                    moteurGraphique->LightManager->Generate(m_decor[couche][y][x].m_light);
-                }
+                m_decor[couche][y][x].m_entite_graphique = moteurGraphique->getEntiteGraphique(m_tileset[m_decor[couche][y][x].getTileset()], m_decor[couche][y][x].getTile(), m_decor[couche][y][x].getCouche());
+                m_decor[couche][y][x].m_entite_graphique.m_sprite.SetPosition(pos.x, pos.y * 0.5);
+                m_decor[couche][y][x].m_entite_graphique.Initialiser(pos);
             }
         }
         if (m_evenement[evenement].getType()==EXPLOSION)
@@ -3069,51 +2905,6 @@ void Map::GererEvenements(int evenement,int z,int couche,int x,int y)
     }
 }
 
-/*void Map::InfligerDegatsMasse(coordonnee position,int rayon,int degats,bool sourceConcernee, Hero *hero, bool pousser, bool amisCompris, bool monstre)
-{
-    for (int y=(int)(((float)position.y+COTE_TILE*0.5)/COTE_TILE-rayon);y<=(int)(((float)position.y+COTE_TILE*0.5)/COTE_TILE+rayon);y++)
-        for (int x=(int)(((float)position.x+COTE_TILE*0.5)/COTE_TILE-rayon);x<=(int)(((float)position.x+COTE_TILE*0.5)/COTE_TILE+rayon);x++)
-            if (y>=0&&x>=0&&y<m_dimensions.y&&x<m_dimensions.x)
-                if (sourceConcernee||!sourceConcernee&&!(y==position.y&&x==position.x))
-                {
-                    for (unsigned o = 0 ; o < m_decor[1][y][x].getMonstre().size() ; ++o)
-                        if (m_decor[1][y][x].getMonstre()[o]>=0&&m_decor[1][y][x].getMonstre()[o]<(int)m_monstre.size())
-                            if (m_monstre[m_decor[1][y][x].getMonstre()[o]].EnVie()
-                            && ((m_monstre[m_decor[1][y][x].getMonstre()[o]].m_friendly == monstre) || (m_monstre[m_decor[1][y][x].getMonstre()[o]].m_friendly != monstre && amisCompris))
-                            &&m_monstre[m_decor[1][y][x].getMonstre()[o]].getCaracteristique().rang>=0
-                            &&m_monstre[m_decor[1][y][x].getMonstre()[o]].getCaracteristique().niveau>=0)
-                            {
-                                InfligerDegats(m_decor[1][y][x].getMonstre()[o], degats,hero,0);
-
-                                if (pousser)
-                                {
-                                    coordonneeDecimal vecteur;
-
-                                    if (position.x-m_monstre[m_decor[1][y][x].getMonstre()[o]].getCoordonneePixel().x<0)
-                                        vecteur.x=1;
-                                    else if (position.x-m_monstre[m_decor[1][y][x].getMonstre()[o]].getCoordonneePixel().x>0)
-                                        vecteur.x=-1;
-                                    else
-                                        vecteur.x=0;
-
-                                    if (position.y-m_monstre[m_decor[1][y][x].getMonstre()[o]].getCoordonneePixel().y<0)
-                                        vecteur.y=1;
-                                    else if (position.y-m_monstre[m_decor[1][y][x].getMonstre()[o]].getCoordonneePixel().y>0)
-                                        vecteur.y=-1;
-                                    else
-                                        vecteur.y=0;
-
-                                    if(vecteur.x == 0 && vecteur.y == 0)
-                                        vecteur.x = 1, vecteur.y = 1;
-
-                                    PousserMonstre(m_decor[1][y][x].getMonstre()[o],vecteur);
-                                }
-                            }
-
-                    if (y==hero->m_personnage.getCoordonnee().y&&x==hero->m_personnage.getCoordonnee().x && (monstre || amisCompris))
-                        hero->m_personnage.InfligerDegats(degats, &hero->m_modelePersonnage[0]);
-                }
-}*/
 
 void Map::VerifierDeclencheursDegats(int i, int j)
 {
@@ -3365,7 +3156,7 @@ void Map::Script_Trade(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
 std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)
 {
     sf::Text temp;
-    temp.SetSize(tailleTexte);
+    temp.SetCharacterSize(tailleTexte);
     temp.SetFont(moteurGraphique->m_font);
 
     std::string buf;
@@ -3501,7 +3292,13 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             if(script->m_instructions[noInstruction].valeurs.at(0) >= 0 && script->m_instructions[noInstruction].valeurs.at(0) < 2)
                 if(script->m_instructions[noInstruction].valeurs.at(1) >= 0 && script->m_instructions[noInstruction].valeurs.at(1) < (int)m_decor[0][0].size())
                     if(script->m_instructions[noInstruction].valeurs.at(2) >= 0 && script->m_instructions[noInstruction].valeurs.at(2) < (int)m_decor[0].size())
-                        m_decor[script->m_instructions[noInstruction].valeurs.at(0)][script->m_instructions[noInstruction].valeurs.at(2)][script->m_instructions[noInstruction].valeurs.at(1)].setTile(script->m_instructions[noInstruction].valeurs.at(3));
+                    {
+                        int x = script->m_instructions[noInstruction].valeurs.at(1);
+                        int y = script->m_instructions[noInstruction].valeurs.at(2);
+                        int z = script->m_instructions[noInstruction].valeurs.at(0);
+                        m_decor[z][y][x].setTile(script->m_instructions[noInstruction].valeurs.at(3));
+                        m_decor[z][y][x].m_entite_graphique.m_noAnimation = script->m_instructions[noInstruction].valeurs.at(3);
+                    }
         }
 
     }
@@ -4223,7 +4020,7 @@ bool Map::getCollision(int positionX,int positionY, int exception)
     for (int i=0;i<2;++i)
     {
         if (m_decor[i][positionY][positionX].getTileset()>=0&&m_decor[i][positionY][positionX].getTileset()<(int)m_tileset.size())
-            if (m_tileset[m_decor[i][positionY][positionX].getTileset()].getCollisionTile(m_decor[i][positionY][positionX].getTile()))
+            if (moteurGraphique->getTileset(m_tileset[m_decor[i][positionY][positionX].getTileset()])->getCollisionTile(m_decor[i][positionY][positionX].getTile()))
                 return 1;
 
         if (i == 1)
@@ -4319,7 +4116,7 @@ int Map::getTypeCase(int positionX,int positionY)
     {
         if (m_decor[0][positionY][positionX].getTileset()>=0&&m_decor[0][positionY][positionX].getTileset()<(int)m_tileset.size())
             //if(m_tileset[m_decor[0][positionY][positionX].getTileset()].getCollisionTile(m_decor[0][positionY][positionX].getTile()))
-            if ((int)m_tileset[m_decor[0][positionY][positionX].getTileset()].getLumiereDuTile(m_decor[0][positionY][positionX].getTile()).hauteur>32)
+            if ((int)moteurGraphique->getTileset(m_tileset[m_decor[0][positionY][positionX].getTileset()])->getLumiereDuTile(m_decor[0][positionY][positionX].getTile()).hauteur>32)
                 return 1;
 
         if (m_decor[0][positionY][positionX].getNombreObjets())
@@ -4337,7 +4134,7 @@ int Map::getTypeCase(int positionX,int positionY)
     {
         if (m_decor[1][positionY][positionX].getTileset()>=0&&m_decor[1][positionY][positionX].getTileset()<(int)m_tileset.size())
             //if(m_tileset[m_decor[1][positionY][positionX].getTileset()].getCollisionTile(m_decor[1][positionY][positionX].getTile()))
-            if ((int)m_tileset[m_decor[1][positionY][positionX].getTileset()].getLumiereDuTile(m_decor[1][positionY][positionX].getTile()).hauteur>32)
+            if ((int)moteurGraphique->getTileset(m_tileset[m_decor[1][positionY][positionX].getTileset()])->getLumiereDuTile(m_decor[1][positionY][positionX].getTile()).hauteur>32)
                 return 1;
 
         for (unsigned o = 0 ; o < m_decor[1][positionY][positionX].getMonstre().size() ; ++o)
@@ -4370,11 +4167,11 @@ bool Map::getCollisionPousse(int positionX,int positionY, int id)
     if (positionY>=0&&positionY<m_dimensions.y&&positionX>=0&&positionX<m_dimensions.x)
     {
         if (m_decor[0][positionY][positionX].getTileset()>=0&&m_decor[0][positionY][positionX].getTileset()<(int)m_tileset.size())
-            if(m_tileset[m_decor[0][positionY][positionX].getTileset()].getCollisionTile(m_decor[0][positionY][positionX].getTile()))
+            if(moteurGraphique->getTileset(m_tileset[m_decor[0][positionY][positionX].getTileset()])->getCollisionTile(m_decor[0][positionY][positionX].getTile()))
                 return 1;
 
         if (m_decor[1][positionY][positionX].getTileset()>=0&&m_decor[1][positionY][positionX].getTileset()<(int)m_tileset.size())
-            if(m_tileset[m_decor[1][positionY][positionX].getTileset()].getCollisionTile(m_decor[1][positionY][positionX].getTile()))
+            if(moteurGraphique->getTileset(m_tileset[m_decor[1][positionY][positionX].getTileset()])->getCollisionTile(m_decor[1][positionY][positionX].getTile()))
                 return 1;
 
         for (unsigned o = 0 ; o < m_decor[1][positionY][positionX].getMonstre().size() ; ++o)

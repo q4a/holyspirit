@@ -637,9 +637,14 @@ void Hero::CalculerOrdreAffichage()
 
 void Hero::Afficher(coordonnee dimensionsMap)
 {
+    int plusHaut = 0;
+    for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
+        if(m_ordreAffichage[i] >= plusHaut)
+            plusHaut = m_ordreAffichage[i];
+
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
         if (m_ordreAffichage[i]!=-1)
-            m_personnage.Afficher(dimensionsMap,&m_modelePersonnage[m_ordreAffichage[i]], false, m_ordreAffichage[i]!=0);
+            m_personnage.Afficher(dimensionsMap,&m_modelePersonnage[m_ordreAffichage[i]], false, m_ordreAffichage[i]!=plusHaut);
 
     AfficherRaccourcis();
 }
@@ -654,7 +659,7 @@ void Hero::AfficherCaracteristiques(float decalage)
 
     sf::Text string;
     string.SetFont(moteurGraphique->m_font);
-    string.SetSize(16*configuration->Resolution.h/600);
+    string.SetCharacterSize(16*configuration->Resolution.h/600);
 
     string.SetColor(sf::Color(255,255,255));
 
@@ -685,7 +690,7 @@ void Hero::AfficherCaracteristiques(float decalage)
 
     if ((string.GetRect().Right-string.GetRect().Left)>104)
     {
-        string.SetSize(14*configuration->Resolution.h/600);
+        string.SetCharacterSize(14*configuration->Resolution.h/600);
         if ((string.GetRect().Right-string.GetRect().Left)>104)
         {
             std::ostringstream  buf;
@@ -702,7 +707,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
-    string.SetSize(16*configuration->Resolution.h/600);
+    string.SetCharacterSize(16*configuration->Resolution.h/600);
 
 
     {
@@ -713,7 +718,7 @@ void Hero::AfficherCaracteristiques(float decalage)
 
     if ((string.GetRect().Right-string.GetRect().Left)>104)
     {
-        string.SetSize(14*configuration->Resolution.h/600);
+        string.SetCharacterSize(14*configuration->Resolution.h/600);
         if ((string.GetRect().Right-string.GetRect().Left)>104)
         {
             std::ostringstream  buf;
@@ -731,7 +736,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
-    string.SetSize(16*configuration->Resolution.h/600);
+    string.SetCharacterSize(16*configuration->Resolution.h/600);
 
     {
         std::ostringstream  buf;
@@ -971,7 +976,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         std::ostringstream  buf;
         buf<<m_argent;
         string.SetString(buf.str());
-        string.SetSize(14*configuration->Resolution.h/600);
+        string.SetCharacterSize(14*configuration->Resolution.h/600);
         string.SetX((112*configuration->Resolution.w/800)+32*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
         string.SetY(218*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
         string.SetColor(sf::Color(255,255,255));
@@ -1042,7 +1047,7 @@ void Hero::AfficherQuetes(float decalage)
     {
         sf::Text texte;
         texte.SetFont(moteurGraphique->m_font);
-        texte.SetSize(12 * configuration->Resolution.h/600);
+        texte.SetCharacterSize(12 * configuration->Resolution.h/600);
         texte.SetPosition(position.x * configuration->Resolution.w/800, (position.y - decalage) * configuration->Resolution.h/600);
         texte.SetString(m_quetes[i].m_nom);
 
@@ -1075,13 +1080,13 @@ void Hero::AfficherQuetes(float decalage)
     {
         sf::Text texte;
         texte.SetFont(moteurGraphique->m_font);
-        texte.SetSize(18 * configuration->Resolution.h/600);
+        texte.SetCharacterSize(18 * configuration->Resolution.h/600);
         texte.SetPosition(m_classe.position_contenu_description_quete.x * configuration->Resolution.w/800, m_classe.position_contenu_description_quete.y * configuration->Resolution.h/600 - decalage);
         texte.SetString(m_quetes[queteAffichee].m_nom);
 
         moteurGraphique->AjouterTexte(&texte,15,0);
 
-        texte.SetSize(12 * configuration->Resolution.h/600);
+        texte.SetCharacterSize(12 * configuration->Resolution.h/600);
         texte.SetPosition(m_classe.position_contenu_description_quete.x * configuration->Resolution.w/800, m_classe.position_contenu_description_quete.y * configuration->Resolution.h/600 - decalage + 64);
         texte.SetString(m_quetes[queteAffichee].m_description);
 
@@ -1136,7 +1141,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
 {
     bool retour = false;
     sf::Text texte;
-    texte.SetSize(14 * configuration->Resolution.h/600);
+    texte.SetCharacterSize(14 * configuration->Resolution.h/600);
 
     std::ostringstream buf;
     buf<<m_personnage.getCaracteristique().miracles_restant<<endl;
@@ -1154,7 +1159,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
         moteurGraphique->AjouterTexte(configuration->getText(0,12), coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),20,false,12,sf::Color(224,224,224),true);
 
-    texte.SetSize(12 * configuration->Resolution.h/600);
+    texte.SetCharacterSize(12 * configuration->Resolution.h/600);
 
     for (int i = 0;i < (int)m_classe.position_miracles.size(); ++i)
         if (m_classe.page_miracles[i] == fenetreEnCours)

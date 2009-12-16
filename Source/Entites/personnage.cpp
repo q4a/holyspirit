@@ -533,13 +533,6 @@ int Personnage::getOrdre(Modele_Personnage *modele)
 
 void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,bool surbrillance, bool sansEffet)
 {
-    if(!sansEffet)
-        for(int i = 0; i < (int)m_effets.size(); ++i)
-        {
-            m_effets[i].m_effet.m_position = m_positionPixel;
-            m_effets[i].m_effet.Afficher();
-        }
-
     if (modele!=NULL)
         if (modele->m_pose.size()>0)
             if ((int)(m_angle/45)>=0&&(int)(m_angle/45)<8)
@@ -625,6 +618,13 @@ void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,boo
                             }
                         }
             }
+
+    if(!sansEffet)
+        for(int i = 0; i < (int)m_effets.size(); ++i)
+        {
+            m_effets[i].m_effet.m_position = m_positionPixel;
+            m_effets[i].m_effet.Afficher();
+        }
 }
 void Personnage::regenererVie(float vie)
 {
@@ -1185,13 +1185,16 @@ void Personnage::DetruireEffets()
     }
 }
 
-int Personnage::AjouterEffet(std::vector<Tile> &tiles, int type, int compteur, int info1, int info2, int info3)
+int Personnage::AjouterEffet(Tileset *tileset, int type, int compteur, int info1, int info2, int info3)
 {
     m_effets.push_back(EffetPersonnage());
 
-    m_effets.back().m_effet.m_tiles     = tiles;
+    m_effets.back().m_effet.m_tileset = tileset;
     m_effets.back().m_effet.m_compteur  = compteur;
     m_effets.back().m_effet.m_position  = m_positionPixel;
+    m_effets.back().m_effet.m_couche    = 10;
+    m_effets.back().m_effet.Initialiser(coordonnee ((m_positionPixel.x - m_positionPixel.y) * 64 / COTE_TILE,
+                                                   ((m_positionPixel.x + m_positionPixel.y) * 64 / COTE_TILE) * 0.5));
 
     m_effets.back().m_type              = type;
     m_effets.back().m_info1             = info1;
@@ -1218,7 +1221,7 @@ void Modele_Personnage::JouerSon(int numeroSon,coordonnee position,coordonnee po
         coordonnee pos;
         pos.x=-position.x;
         pos.y=position.y;
-        moteurSons->JouerSon(m_sons[numeroSon],pos,positionHero,uniqueSound);
+        moteurSons->JouerSon(m_sons[numeroSon],pos,uniqueSound);
     }
 }
 

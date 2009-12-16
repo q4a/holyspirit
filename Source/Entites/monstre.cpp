@@ -343,7 +343,7 @@ bool Modele_Monstre::Charger(string chemin)
             if (caractere=='*')
             {
                 getline(*fichier,m_caracteristique.nom);
-                //*fichier>>m_caracteristique.nom;
+                // *fichier>>m_caracteristique.nom;
             }
             if (fichier->eof())
             {

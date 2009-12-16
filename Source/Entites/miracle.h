@@ -20,7 +20,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "../constantes.h"
 #include "../Map/tile.h"
-#include "../Moteurs/light.h"
+#include "../Moteurs/Entite_graphique.h"
 
 
 #ifndef MIRACLEH
@@ -36,24 +36,17 @@ enum  {PHYSIQUE, FEU, CORROSION, FOI};
 enum  {D_PERMANENT, D_FRAPPE, D_TOUCHE};
 enum  {C_ANGLE};
 
-class EffetGraphique
+class EffetGraphique : public Entite_graphique
 {
 public:
     EffetGraphique();
-    void Afficher(float rotation = 0);
+    void Afficher();
     void Animer(float temps);
 
+    coordonnee m_position;
     bool m_actif;
-    coordonneeDecimal m_position;
-
-    std::vector <Tile> m_tiles;
 
     int m_compteur;
-    float m_animation;
-    int m_couche;
-    int m_tileEnCours;
-
-    Light_Entity m_light;
 };
 
 class EffetPersonnage
@@ -134,19 +127,14 @@ public:
 
     void Charger(std::string chemin, const Caracteristique &caract, int level);
     void Concatenencer(std::string chemin, const Caracteristique &caract, int level);
-    void JouerSon(int numeroSon,coordonnee position,coordonnee positionHero);
 
     void AfficherDescription(coordonnee position, bool suivant = true);
     sf::Text AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color=sf::Color(255,255,255));
 
-
-
-    std::vector < std::vector <Tile> > m_tile;
+    std::vector <int>           m_tileset;
 
     std::vector <Effet>         m_effets;
 
-    std::vector <int>           m_image;
-    std::vector <int>           m_sons;
     std::string                 m_chemin;
 
     int                         m_coutFoi;

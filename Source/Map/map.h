@@ -68,7 +68,7 @@ public:
     void GererScript(Jeu *jeu,Hero *hero,float temps,Menu *menu);
     void GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu);
 
-    bool GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles,float temps,coordonnee positionHero,Hero *hero);
+    void GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles,float temps,coordonnee positionHero,Hero *hero);
 
     bool Miracle_Aura           (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int );
     bool Miracle_Declencheur    (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int );
@@ -116,7 +116,7 @@ public:
     bool RamasserObjet(Hero *hero,bool enMain = false);
 
     void AjouterObjet(Objet objet);
-    int  AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coordonnee lanceur,int couche,float  vitesse,float decalageAngle,bool monstre,std::vector<Tile> &tiles);
+    int  AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coordonnee lanceur,int couche,float  vitesse,float decalageAngle,bool monstre,Tileset *tileset);
     void AjouterMonstre(Monstre monstre);
     void AjouterModeleMonstre(Modele_Monstre modele);
 
@@ -157,9 +157,8 @@ private:
 
     coordonnee m_sacPointe;
     Lumiere m_lumiere[24];
-    std::vector <Tileset> m_tileset;
-    std::vector <Herbe> m_herbe;
-    //Decor ***m_decor;
+    std::vector <int> m_tileset;
+    std::vector <int> m_herbe;
     std::vector <std::vector < Decor > >  m_decor[NOMBRE_COUCHE_MAP];
     std::vector <Evenement> m_evenement;
 

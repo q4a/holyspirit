@@ -28,6 +28,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "commande.h"
 #include "moteurParticule.h"
 #include "lightManager.h"
+#include "entite_graphique.h"
+#include "../Map/tileset.h"
 
 struct Image_moteur
 {
@@ -38,6 +40,19 @@ struct Image_moteur
         img         =  NULL;
     }
     sf::Image *img;
+    std::string nom;
+    int importance;
+};
+
+struct Tileset_moteur
+{
+    Tileset_moteur()
+    {
+        importance  = 0;
+        nom         = "";
+        tileset     =  NULL;
+    }
+    Tileset *tileset;
     std::string nom;
     int importance;
 };
@@ -73,14 +88,18 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	int AjouterImage(std::string,int importance = 5);
 	int AjouterImage(const char *Data, std::size_t SizeInBytes, std::string nom,int importance =5);
+	int AjouterTileset(std::string,int importance = 5);
+	int AjouterTileset(std::ifstream &fichier, std::string nom = "",int importance = 5);
 	int AjouterModeleSystemeParticules(std::string);
 
 	void AjouterSystemeParticules(int ID,coordonnee position,sf::Color color,float force,float angle);
 	void AjouterCommande(sf::Sprite*,int=0, bool=0);
+	void AjouterEntiteGraphique(Entite_graphique*);
 	void AjouterTexte(sf::Text*, int couche=0,bool titre=false);
 	void AjouterTexteNonChevauchable(sf::Text*, int couche=0,bool titre=false);
 	void AjouterTexte(std::string, coordonnee, int couche=0, bool titre=false, int size = 14, sf::Color color = sf::Color(224,224,224), bool fond = false);
 
+	Entite_graphique getEntiteGraphique(int noTileset, int noTile, int couche);
 
 	void DecrementerImportance();
 
@@ -95,7 +114,9 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	void Printscreen();
 	int GetFPS();
 
-	sf::Image* getImage(int IDimage);
+	sf::Image*  getImage(int);
+	Tileset*    getTileset(int );
+
 	ModeleParticuleSysteme* getModeleMoteurParticules(int ID);
 
 	std::string getCheminImage(int IDimage);
@@ -136,7 +157,8 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	sf::Vector2f decalageLumiere,decalageOmbre;
 
-	std::vector <Image_moteur> m_images;
+	std::vector <Image_moteur>      m_images;
+	std::vector <Tileset_moteur>    m_tileset;
 
 	std::vector <ModeleParticuleSysteme> m_modeleSystemeParticules;
 

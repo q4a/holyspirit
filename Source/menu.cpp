@@ -93,7 +93,7 @@ void Menu::Afficher(int type,float alpha,Classe *classe)
         moteurGraphique->AjouterCommande(&sprite2,16,0);
 
         sf::Text texte;
-        texte.SetSize(13 * configuration->Resolution.h/600);
+        texte.SetCharacterSize(11 * configuration->Resolution.h/600);
         texte.SetFont(moteurGraphique->m_font);
         texte.SetString(m_dialogue);
         texte.SetPosition(classe->position_contenu_dialogue.x * configuration->Resolution.w/800 + classe->position_contenu_dialogue.w * configuration->Resolution.w/800/2 - (texte.GetRect().Right-texte.GetRect().Left)/2, classe->position_contenu_dialogue.y  * configuration->Resolution.h/600 + classe->talk.position.h*configuration->Resolution.h/600 - classe->talk.position.h*configuration->Resolution.h/600*alpha/255);
@@ -247,7 +247,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
     }
 
 
-    texte.SetSize(16.f*configuration->Resolution.y/600);
+    texte.SetCharacterSize(16*configuration->Resolution.y/600);
 
 
     texte.SetColor(Color(255,255,255,255));
@@ -333,8 +333,8 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
 
         //char chaine[255];
 
-        texte.SetSize(16.f*configuration->Resolution.h/600);
-        texte.SetStyle(1);
+        texte.SetCharacterSize(16*configuration->Resolution.h/600);
+        //texte.SetStyle(1);
 
         {
             std::ostringstream buf;
@@ -384,7 +384,7 @@ void Menu::AfficherChargement(string nom,int fond,int z=50)
 
 
     texte.SetFont(moteurGraphique->m_font_titre);
-    texte.SetSize(50.f*configuration->Resolution.h/600);
+    texte.SetCharacterSize(50*configuration->Resolution.h/600);
     texte.SetString(nom);
 
     texte.SetX(configuration->Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2);

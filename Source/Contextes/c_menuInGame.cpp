@@ -99,7 +99,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,0,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
 
 
-    texte.SetSize(56.f*configuration->Resolution.h/600);
+    texte.SetCharacterSize(56*configuration->Resolution.h/600);
 
     texte.SetString(configuration->getText(0,0));
     texte.SetY(configuration->Resolution.h/2-texte.GetRect().GetSize().y);

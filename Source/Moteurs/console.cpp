@@ -50,7 +50,7 @@ void Console::Afficher()
             {
                 sf::Text texte;
                 texte.SetString(m_textes[i].c_str());
-                texte.SetSize(12.f);
+                texte.SetCharacterSize(12);
                 texte.SetY((i-m_textes.size()+27-m_defilement)*15+60);
 
                 if (m_erreur[i])

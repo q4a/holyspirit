@@ -28,15 +28,8 @@ Decor::Decor(int tileset,int tile,const std::vector<int> &evenement,const std::v
     m_monstre=monstre;
     m_herbe=herbe;
     m_numeroHerbe=0;
-    m_animation=0;
     m_couche=couche;
     m_hauteur=hauteur;
-
-    m_animation=0;
-
-    m_sprite.SetSubRect(sf::IntRect(0,0,0,0));
-    m_spriteHerbe.SetSubRect(sf::IntRect(0,0,0,0));
-    m_spriteOmbre.SetSubRect(sf::IntRect(0,0,0,0));
 
     added_minimap = false;
 }
@@ -49,15 +42,10 @@ Decor::Decor(int tileset,int tile,const std::vector<int> &evenement,const std::v
     m_monstre=monstre;
     m_herbe=herbe;
     m_numeroHerbe=0;
-    m_animation=0;
     m_couche=couche;
     m_hauteur=hauteur;
 
     m_objets=objets;
-
-    m_sprite.SetSubRect(sf::IntRect(0,0,0,0));
-    m_spriteHerbe.SetSubRect(sf::IntRect(0,0,0,0));
-    m_spriteOmbre.SetSubRect(sf::IntRect(0,0,0,0));
 
     added_minimap = false;
 }
@@ -76,7 +64,6 @@ Decor Decor::operator=(const Decor &Decor)
     m_projectile=Decor.m_projectile;
     m_effet=Decor.m_effet;
     m_couche=Decor.m_couche;
-    m_animation=Decor.m_animation;
     m_position=Decor.m_position;
     m_herbe=Decor.m_herbe;
     m_numeroHerbe=Decor.m_numeroHerbe;
@@ -94,11 +81,10 @@ Decor Decor::operator=(const Decor &Decor)
         m_objets[i]=Decor.m_objets[i];
 
 
-    m_light=Decor.m_light;
+    m_entite_graphique  = Decor.m_entite_graphique;
+    m_entite_herbe      = Decor.m_entite_herbe;
+
     color=Decor.color;
-    m_sprite=Decor.m_sprite;
-    m_spriteHerbe=Decor.m_spriteHerbe;
-    m_spriteOmbre=Decor.m_spriteOmbre;
     m_herbe_couleur=Decor.m_herbe_couleur;
     m_herbe_decalage=Decor.m_herbe_decalage;
 
@@ -162,7 +148,7 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet, float *decalage)
         texte.SetFont(moteurGraphique->m_font);
 
         texte.SetString(m_objets[objet].getNom());
-        texte.SetSize(14*configuration->Resolution.w/800);
+        texte.SetCharacterSize(14*configuration->Resolution.w/800);
         texte.SetY((position.y-moteurGraphique->m_camera.GetRect().Top)/configuration->zoom*configuration->Resolution.h/600);
         texte.SetX((position.x-moteurGraphique->m_camera.GetRect().Left)/configuration->zoom*configuration->Resolution.w/800);
 
@@ -379,10 +365,7 @@ const coordonnee &Decor::getDecalageHerbe()
     return m_herbe_decalage;
 }
 
-float Decor::getAnimation()
-{
-    return m_animation;
-}
+
 Objet* Decor::getObjet(int numero)
 {
     if (numero>=0&&numero<(int)m_objets.size()) return &m_objets[numero];
@@ -403,22 +386,6 @@ int Decor::getNombreObjets()
 int Decor::getHauteur()
 {
     return m_hauteur;
-}
-
-void Decor::DecrementerAnimation(float nombre)
-{
-    m_animation-=nombre;
-}
-void Decor::AugmenterAnimation(float temps)
-{
-    m_animation+=temps;
-    for(unsigned i = 0; i < m_objets.size() ; ++i)
-    {
-        m_objets[i].m_alpha -= temps*200;
-        if(m_objets[i].m_alpha < 0)
-            m_objets[i].m_alpha = 0;
-    }
-
 }
 
 

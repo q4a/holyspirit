@@ -30,7 +30,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "../constantes.h"
 
 #include "../Entites/objet.h"
-#include "../Moteurs/light.h"
+#include "../Moteurs/Entite_graphique.h"
 
 
 class Decor
@@ -47,9 +47,6 @@ public:
     int AfficherTexteObjets(coordonnee positionn,int);
     bool AfficherTexteObjet(coordonnee position,int, float *decalage = NULL);
     void AlphaObjets(int alpha);
-
-    void DecrementerAnimation(float nombre);
-    void AugmenterAnimation(float temps);
 
     int getTile(); // Prendre le numéro du tile du décor
     int getTileset(); // Prendre le numéro du tileset du décor
@@ -71,7 +68,6 @@ public:
     const std::vector<Objet> &getObjets();
     std::vector<Objet> *getPointeurObjets();
     int getNombreObjets();
-    float getAnimation();
 
 
     void setEvenement(int evenement,int numero);
@@ -92,14 +88,13 @@ public:
     void setEffetGraphique(int effet);
     void delEffetGraphique(int monstre);
 
-
-    Light_Entity m_light;
-    Wall_Entity  m_light_wall;
-
     sf::Color color;
 
-    sf::Sprite m_sprite,m_spriteHerbe,m_spriteOmbre,m_spriteMinimap, m_spriteReflect;
+    sf::Sprite /*m_sprite,m_spriteHerbe,m_spriteOmbre,*/m_spriteMinimap/*, m_spriteReflect*/;
     bool added_minimap;
+
+    Entite_graphique m_entite_graphique;
+    Entite_graphique m_entite_herbe;
 
 private:
     int m_tileset,m_tile,m_couche;
@@ -109,7 +104,6 @@ private:
     std::vector <int> m_effet;
 
     std::vector<int> m_evenement;
-    float m_animation;
     coordonnee m_position;
 
     std::vector<Objet> m_objets;

@@ -52,17 +52,17 @@ c_Jeu::c_Jeu()
     sf::Listener::SetGlobalVolume((float)configuration->volume);
 
     // Texte pour l'affichage des FPS
-    fps.SetSize(16.f);
+    fps.SetCharacterSize(16);
 
-    Version.SetSize(16.f);
+    Version.SetCharacterSize(16);
     Version.SetString("v "+configuration->version);
     Version.SetY(20);
 
-    Temps.SetSize(16.f);
+    Temps.SetCharacterSize(16);
     Temps.SetY(40);
 
     TourBoucle.SetX(120);
-    TourBoucle.SetSize(16.f);
+    TourBoucle.SetCharacterSize(16);
 
     alpha_map=0;
     alpha_sac=0;
@@ -269,7 +269,7 @@ void c_Jeu::Animation(Jeu *jeu)
                     if (jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())!=NULL)
                         if (fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().x)<=2&&fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().y-jeu->hero.m_personnage.getCoordonnee().y)<=2)
                             if (rand() % 100 < (float)((float)jeu->hero.m_caracteristiques.dexterite / ((float)jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCaracteristique().dexterite+1))*75 )
-                                if (!jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->m_friendly)
+                                if (!jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->m_friendly && jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->EnVie())
                                 {
                                     int degats = (rand()%(jeu->hero.m_caracteristiques.degatsMax - jeu->hero.m_caracteristiques.degatsMin+1))+jeu->hero.m_caracteristiques.degatsMin;
                                     toucher=true,jeu->map->InfligerDegats(jeu->hero.getMonstreVise(),degats,&jeu->hero,1);

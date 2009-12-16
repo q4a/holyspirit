@@ -34,6 +34,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "../Moteurs/lightManager.h"
 #include "miracle.h"
 #include "script.h"
+#include "../Map/tileset.h"
 
 class Modele_Personnage
 {
@@ -96,7 +97,7 @@ public:
 
     void InfligerDegats(float degats, Modele_Personnage *modele);
 
-    int AjouterEffet(std::vector<Tile> &tiles, int type, int compteur, int info1, int info2, int info3);
+    int AjouterEffet(Tileset *tileset, int type, int compteur, int info1, int info2, int info3);
     void DetruireEffets();
 
 

@@ -33,16 +33,18 @@ using namespace sf;
 void Projectile::Afficher()
 {
     if (m_actif)
-        m_effet.Afficher((-(m_rotation)*180/M_PI));
+    {
+        m_effet.m_sprite.SetRotation((-(m_rotation)*180/M_PI));
+        m_effet.Afficher();
+    }
 }
 
 EffetGraphique::EffetGraphique()
 {
-    m_animation     = 0;
-    m_tileEnCours   = 0;
+    Entite_graphique::Entite_graphique();
+
     m_actif         = true;
     m_compteur      = -100;
-    m_light         = moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),0,0,4,sf::Color(0,0,0));
 }
 
 Projectile::Projectile()
@@ -50,34 +52,13 @@ Projectile::Projectile()
     m_entite_cible  = NULL;
 }
 
-void EffetGraphique::Afficher(float rotation)
+void EffetGraphique::Afficher()
 {
-    if (m_actif && m_tileEnCours >= 0 && m_tileEnCours < (int)m_tiles.size())
+    if (m_actif)
     {
-        Sprite sprite;
-
-        sprite.SetImage(*moteurGraphique->getImage(m_tiles[m_tileEnCours].getImage()));
-        sprite.SetSubRect(IntRect(  m_tiles[m_tileEnCours].getCoordonnee().x,
-                                    m_tiles[m_tileEnCours].getCoordonnee().y,
-                                    m_tiles[m_tileEnCours].getCoordonnee().x + m_tiles[m_tileEnCours].getCoordonnee().w,
-                                    m_tiles[m_tileEnCours].getCoordonnee().y + m_tiles[m_tileEnCours].getCoordonnee().h));
-
-        sprite.FlipX(false);
-
-        sprite.SetX(((m_position.x - m_position.y) * 64 / COTE_TILE));
-        sprite.SetY(((m_position.x + m_position.y) * 64 / COTE_TILE) * 0.5);
-
-        sprite.SetOrigin(m_tiles[m_tileEnCours].getCentre().x,m_tiles[m_tileEnCours].getCentre().y);
-
-        sprite.Rotate(rotation);
-
-        sprite.SetColor(sf::Color(255,255,255,m_tiles[m_tileEnCours].getOpacity()));
-
-        if(sprite.GetPosition().x + sprite.GetSize().x  >= moteurGraphique->m_camera.GetRect().Left
-        && sprite.GetPosition().x                       <  moteurGraphique->m_camera.GetRect().Right
-        && sprite.GetPosition().y + sprite.GetSize().y  >= moteurGraphique->m_camera.GetRect().Top
-        && sprite.GetPosition().y                       <  moteurGraphique->m_camera.GetRect().Bottom)
-            moteurGraphique->AjouterCommande(&sprite,10,1);
+        m_sprite.SetX(((m_position.x - m_position.y) * 64 / COTE_TILE));
+        m_sprite.SetY(((m_position.x + m_position.y) * 64 / COTE_TILE) * 0.5);
+        moteurGraphique->AjouterEntiteGraphique(this);
     }
 }
 
@@ -85,52 +66,49 @@ void EffetGraphique::Animer(float temps)
 {
     if (m_actif)
     {
-        float tempsAnimation = m_tiles[m_tileEnCours].getTemps();
-        m_animation += temps;
-
-        while (m_animation >= tempsAnimation && m_actif)
+        if(m_tileset != NULL)
         {
-            m_tileEnCours = m_tiles[m_tileEnCours].getAnimation();
-
-            m_animation-=tempsAnimation;
-
-            tempsAnimation = m_tiles[m_tileEnCours].getTemps();
-
-            if (m_compteur > 0 || m_compteur == -100)
-            {
-                if (m_compteur != -100)
-                    m_compteur--;
-
-                sf::Vector2f pos;
-                pos.x = (m_position.x - m_position.y) * 64 / COTE_TILE;
-                pos.y = (m_position.x + m_position.y) * 64 / COTE_TILE;
-
-                moteurGraphique->LightManager->SetPosition  (m_light,pos);
-                moteurGraphique->LightManager->SetIntensity (m_light,m_tiles[m_tileEnCours].getLumiere().intensite);
-                moteurGraphique->LightManager->SetRadius    (m_light,m_tiles[m_tileEnCours].getLumiere().intensite*5);
-                moteurGraphique->LightManager->SetColor     (m_light,
-                        sf::Color(  m_tiles[m_tileEnCours].getLumiere().rouge,
-                                    m_tiles[m_tileEnCours].getLumiere().vert,
-                                    m_tiles[m_tileEnCours].getLumiere().bleu));
+            float tempsAnimation = m_tileset->getTempsDuTile(m_noAnimation);
+            m_animation += temps;
 
 
-                if (m_tiles[m_tileEnCours].getSon() >= 0)
-                {
-                    coordonnee positionHero;
-                    coordonnee position;
-                    position.x=-(int)(m_position.x/COTE_TILE - m_position.y/COTE_TILE-1)/5;
-                    position.y= (int)(m_position.x/COTE_TILE + m_position.y/COTE_TILE)/5;
 
-                    moteurSons->JouerSon(m_tiles[m_tileEnCours].getSon(), position, positionHero,0);
-                }
-            }
+                if (m_tileset->getAnimationTile(m_noAnimation) >= 0)
+                    while (m_animation>=tempsAnimation)
+                    {
+                        if (m_compteur > 0 || m_compteur == -100)
+                        {
+                            if (m_compteur != -100)
+                                m_compteur--;
 
-            moteurGraphique->LightManager->Generate(m_light);
+                            m_noAnimation = m_tileset->getAnimationTile(m_noAnimation);
 
-            if (m_compteur <= 0 && m_compteur != -100)
-                m_actif=false;
+                            if (configuration->Lumiere)
+                            {
+                                moteurGraphique->LightManager->SetIntensity(m_light,m_tileset->getLumiereDuTile(m_noAnimation).intensite);
+                                moteurGraphique->LightManager->SetRadius(m_light,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3);
+                                moteurGraphique->LightManager->SetColor(m_light,sf::Color(m_tileset->getLumiereDuTile(m_noAnimation).rouge,m_tileset->getLumiereDuTile(m_noAnimation).vert,m_tileset->getLumiereDuTile(m_noAnimation).bleu));
 
+                                moteurGraphique->LightManager->Generate(m_light);
 
+                                moteurGraphique->LightManager->SetIntensity(m_light_wall,m_tileset->getLumiereDuTile(m_noAnimation).intensite);
+                            }
+
+                            coordonnee position;
+                            position.x = (int)(m_sprite.GetPosition().x/64/5);
+                            position.y = (int)(m_sprite.GetPosition().y/32/5);
+
+                            m_tileset->JouerSon(m_tileset->getSonTile(m_noAnimation),position);
+
+                            m_animation -= tempsAnimation;
+                            tempsAnimation = m_tileset->getTempsDuTile(m_noAnimation);
+
+                            Generer();
+                        }
+                    }
+
+                if (m_compteur <= 0 && m_compteur != -100)
+                    m_actif=false;
         }
     }
     else
@@ -163,11 +141,7 @@ Miracle::Miracle(std::string chemin, const Caracteristique &caract, int level)
 
 Miracle::~Miracle()
 {
-    m_sons.clear();
-    for (int i=0;i<(int)m_tile.size();i++)
-        m_tile[i].clear();
-    m_tile.clear();
-    m_image.clear();
+    m_tileset.clear();
 }
 
 float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int level, char priorite, bool *cont);
@@ -406,7 +380,6 @@ void Miracle::Charger(std::string chemin, const Caracteristique &caract, int lev
             if (caractere=='*')
             {
                 int no;
-                fichier>>no;
                 description = configuration->getText(6, no);
             }
 
@@ -604,41 +577,6 @@ void Miracle::Charger(std::string chemin, const Caracteristique &caract, int lev
             fichier.get(caractere);
             if (caractere=='*')
             {
-                string cheminImage;
-                fichier>>cheminImage;
-                m_image.push_back(moteurGraphique->AjouterImage(cheminImage));
-            }
-            if (fichier.eof())
-            {
-                console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
-                caractere='$';
-            }
-        }
-        while (caractere!='$');
-
-        do
-        {
-            fichier.get(caractere);
-            if (caractere=='*')
-            {
-                string cheminDuSon;
-                fichier>>cheminDuSon;
-                m_sons.push_back(moteurSons->AjouterBuffer(cheminDuSon));
-            }
-            if (fichier.eof())
-            {
-                console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
-                caractere='$';
-            }
-        }
-        while (caractere!='$');
-
-
-        do
-        {
-            fichier.get(caractere);
-            if (caractere=='*')
-            {
                 m_effets.push_back(Effet ());
                 do
                 {
@@ -704,129 +642,8 @@ void Miracle::Charger(std::string chemin, const Caracteristique &caract, int lev
             fichier.get(caractere);
             if (caractere=='*')
             {
+                m_tileset.push_back(moteurGraphique->AjouterTileset(fichier));
 
-                m_tile.push_back(vector <Tile> () );
-
-                do
-                {
-                    fichier.get(caractere);
-                    if (caractere=='*')
-                    {
-                        coordonnee position(-1,-1,-1,-1),centre(-100,-100,-1,-1);
-                        int animation=m_tile.size(),son=-1,image=0;
-                        Lumiere lumiere;
-                        lumiere.intensite=0;
-                        lumiere.rouge=0;
-                        lumiere.vert=0;
-                        lumiere.bleu=0;
-                        bool collision=0,ombre=0,transparent=0;
-                        char orientation=' ';
-                        float tempsAnimation=0.075;
-                        int opacity = 255;
-
-                        do
-                        {
-                            fichier.get(caractere);
-                            switch (caractere)
-                            {
-                            case 'x':
-                                position.x = (int)lireValeur(fichier, valeurs);
-                                break;
-                            case 'y':
-                                position.y = (int)lireValeur(fichier, valeurs);
-                                break;
-                            case 'w':
-                                position.w = (int)lireValeur(fichier, valeurs);
-                                break;
-                            case 'h':
-                                position.h = (int)lireValeur(fichier, valeurs);
-                                break;
-                            case 'i':
-                                image = (int)lireValeur(fichier, valeurs);
-                                break;
-                            case 'c':
-                                collision = (int)lireValeur(fichier, valeurs);
-                                break;
-                            case 'a':
-                                animation = (int)lireValeur(fichier, valeurs);
-                                break;
-                            case 's':
-                                son = (int)lireValeur(fichier, valeurs);
-                                break;
-                            case 'o':
-                                ombre = (int)lireValeur(fichier, valeurs);
-                                break;
-                            case 't':
-                                transparent = (int)lireValeur(fichier, valeurs);
-                                break;
-                            case 'n':
-                                tempsAnimation = lireValeur(fichier, valeurs);
-                                break;
-                            case 'p':
-                                opacity = (int)lireValeur(fichier, valeurs);
-                                break;
-
-                            case 'e':
-                                fichier.get(caractere);
-                                if (caractere=='y')
-                                    centre.y = (int)lireValeur(fichier, valeurs);
-                                if (caractere=='x')
-                                    centre.x = (int)lireValeur(fichier, valeurs);
-                                break;
-
-                            case 'l':
-                                fichier.get(caractere);
-                                if (caractere=='r')
-                                    lumiere.rouge = (int)lireValeur(fichier, valeurs);
-                                if (caractere=='v')
-                                    lumiere.vert = (int)lireValeur(fichier, valeurs);
-                                if (caractere=='b')
-                                    lumiere.bleu = (int)lireValeur(fichier, valeurs);
-                                if (caractere=='i')
-                                    lumiere.intensite = (int)lireValeur(fichier, valeurs);
-                                if (caractere=='h')
-                                    lumiere.hauteur = (int)lireValeur(fichier, valeurs);
-                                break;
-                            case 'r':
-                                orientation = (int)lireValeur(fichier, valeurs);
-                                break;
-                            }
-                            if (fichier.eof())
-                            {
-                                console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
-                                caractere='$';
-                            }
-                        }
-                        while (caractere!='$');
-
-                        if (centre.x == -100)
-                            centre.x = position.w / 2;
-                        if (centre.y == -100)
-                            centre.y = position.h - 32;
-
-                        if (image >= 0 && image < (int)m_image.size())
-                            image = m_image[image];
-                        else
-                            image = -1;
-
-                        if (son >= 0 && son < (int)m_sons.size())
-                            son = m_sons[son];
-                        else
-                            son = -1;
-
-                        //AjouterTile(position,collision,animation,son,lumiere,ombre,orientation);
-                        m_tile.back().push_back(Tile());
-                        m_tile.back().back().setTile(position,image,collision,animation,son,lumiere,ombre,0,orientation,transparent,centre,tempsAnimation,opacity);
-
-                        fichier.get(caractere);
-                    }
-                    if (fichier.eof())
-                    {
-                        console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
-                        caractere='$';
-                    }
-                }
-                while (caractere!='$');
                 fichier.get(caractere);
             }
             if (fichier.eof())
@@ -844,7 +661,7 @@ void Miracle::Charger(std::string chemin, const Caracteristique &caract, int lev
 }
 
 
-void Miracle::JouerSon(int numeroSon,coordonnee position,coordonnee positionHero)
+/*void Miracle::JouerSon(int numeroSon,coordonnee position,coordonnee positionHero)
 {
     if (numeroSon>=0&&numeroSon<(int)m_sons.size())
     {
@@ -852,9 +669,9 @@ void Miracle::JouerSon(int numeroSon,coordonnee position,coordonnee positionHero
         pos.x=-position.x;
         pos.y=position.y;
 
-        moteurSons->JouerSon(m_sons[numeroSon],pos,positionHero,0);
+        moteurSons->JouerSon(m_sons[numeroSon],pos,0);
     }
-}
+}*/
 
 void Miracle::Concatenencer(std::string chemin, const Caracteristique &caract, int level)
 {
@@ -862,24 +679,24 @@ void Miracle::Concatenencer(std::string chemin, const Caracteristique &caract, i
     m_effets.back().m_lien.push_back((int)m_effets.size());
 
     int tailleEffets    = m_effets.size();
-    int tailleSon       = m_sons.size();
-    int tailleTile      = m_tile.size();
+    int tailleTileset   = m_tileset.size();
 
-    for (int i=0;i<(int)miracle.m_tile.size();i++)
+    for (int i=0;i<(int)miracle.m_tileset.size();i++)
     {
-        m_tile.push_back(miracle.m_tile[i]);
-        for (int j=0;j<(int)m_tile.back().size();j++)
+        m_tileset.push_back(miracle.m_tileset[i]);
+
+        /*for (int j=0;j<(int)m_tile.back().size();j++)
         {
             m_tile.back()[j].setImage(m_tile.back()[j].getImage());
             if (m_tile.back()[j].getSon()!=-1)
                 m_tile.back()[j].setSon(m_tile.back()[j].getSon()+tailleSon);
-        }
+        }*/
     }
 
-    for (int i=0;i<(int)miracle.m_image.size();i++)
+   /* for (int i=0;i<(int)miracle.m_image.size();i++)
         m_image.push_back(miracle.m_image[i]);
     for (int i=0;i<(int)miracle.m_sons.size();i++)
-        m_sons.push_back(miracle.m_sons[i]);
+        m_sons.push_back(miracle.m_sons[i]);*/
 
     for (int i=0;i<(int)miracle.m_effets.size();i++)
     {
@@ -890,7 +707,7 @@ void Miracle::Concatenencer(std::string chemin, const Caracteristique &caract, i
             m_effets.back().m_informations[0] += tailleEffets;
         if(m_effets.back().m_type == DECLENCHEUR)
             m_effets.back().m_informations[3] += tailleEffets;
-        m_effets.back().m_sequence+=tailleTile;
+        m_effets.back().m_sequence+=tailleTileset;
     }
 
     m_coutFoi               += miracle.m_coutFoi;
@@ -917,7 +734,7 @@ sf::Text Miracle::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee 
 
     string.SetColor(color);
 
-    string.SetSize(12.f*(int)(configuration->Resolution.h/600));
+    string.SetCharacterSize(12*(int)(configuration->Resolution.h/600));
     string.SetString(chaine);
 
     if (tailleCadran->x<((int)string.GetRect().Right-(int)string.GetRect().Left))

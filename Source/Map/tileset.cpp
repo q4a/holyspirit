@@ -37,14 +37,12 @@ Tileset::Tileset(string chemin)
 {
     Charger(chemin);
 }
+Tileset::Tileset(ifstream &fichier)
+{
+    Charger(fichier);
+}
 Tileset::~Tileset()
 {
-    /* if(m_sonAZero.size()>0)
-     {
-         m_sonAZero.clear();
-         m_buffer.clear();
-         //m_sons.clear();
-     }*/
     m_sons.clear();
     m_tile.clear();
 
@@ -59,27 +57,10 @@ Tileset Tileset::operator=(const Tileset &tileset)
     return *this;
 }
 
-bool Tileset::Charger(std::string chemin)
+void Tileset::Charger(ifstream &fichier)
 {
-    string cheminFinal,temp;
-    m_chemin=chemin;
-    /*cheminFinal=chemin+".png";
-    m_image=moteurGraphique->AjouterImage(cheminFinal);*/
-
-    /*int nombreTiles=0;
-    cheminFinal=chemin+".ts.hs";*/
-
-
-    ifstream fichier;
-    fichier.open(m_chemin.c_str(), ios::in);
     if (fichier)
     {
-        /*fichier>>temp;
-        if(temp=="*NoAntiCrenelage")
-            m_image.SetSmooth(false);
-        else
-            m_image.SetSmooth(true);*/
-
         char caractere;
 
         do
@@ -93,7 +74,7 @@ bool Tileset::Charger(std::string chemin)
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Tileset \" "+cheminFinal+" \" Invalide",1);
+                console->Ajouter("Erreur : Tileset \" "+m_chemin+" \" Invalide",1);
                 caractere='$';
             }
         }
@@ -110,7 +91,7 @@ bool Tileset::Charger(std::string chemin)
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Tileset \" "+cheminFinal+" \" Invalide",1);
+                console->Ajouter("Erreur : Tileset \" "+m_chemin+" \" Invalide",1);
                 caractere='$';
             }
         }
@@ -130,6 +111,7 @@ bool Tileset::Charger(std::string chemin)
                 char orientation=' ';
                 float tempsAnimation=0.075;
                 int opacity = 255;
+                int layer = 0;
 
                 do
                 {
@@ -200,6 +182,9 @@ bool Tileset::Charger(std::string chemin)
                     case 'r':
                         fichier>>orientation;
                         break;
+                    case 'u':
+                        fichier>>layer;
+                        break;
 
                     case 'm':
                         do
@@ -231,7 +216,7 @@ bool Tileset::Charger(std::string chemin)
                     }
                     if (fichier.eof())
                     {
-                        console->Ajouter("Erreur : Tileset \" "+cheminFinal+" \" Invalide",1);
+                        console->Ajouter("Erreur : Tileset \" "+m_chemin+" \" Invalide",1);
                         caractere='$';
                     }
                 }
@@ -244,7 +229,7 @@ bool Tileset::Charger(std::string chemin)
                     centre.y=position.h-32;
 
                 m_tile.push_back(Tile ());
-                m_tile.back().setTile(position,image,collision,animation,son,lumiere,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity);
+                m_tile.back().setTile(position,image,collision,animation,son,lumiere,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer);
                 m_tile.back().m_tileMinimap = imageMM;
                 m_tile.back().m_coordMinimap = coordMinimap;
 
@@ -252,17 +237,24 @@ bool Tileset::Charger(std::string chemin)
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Tileset \" "+cheminFinal+" \" Invalide",1);
+                console->Ajouter("Erreur : Tileset \" "+m_chemin+" \" Invalide",1);
                 caractere='$';
             }
         }
         while (caractere!='$');
     }
     else
-        console->Ajouter("Impossible d'ouvrir le fichier : "+cheminFinal,1);
+        console->Ajouter("Impossible d'ouvrir le fichier : "+m_chemin,1);
+}
 
+void Tileset::Charger(std::string chemin)
+{
+    m_chemin=chemin;
+
+    ifstream fichier;
+    fichier.open(m_chemin.c_str(), ios::in);
+    Charger(fichier);
     fichier.close();
-    return 1;
 }
 
 int Tileset::getImage(int tile)
@@ -358,6 +350,14 @@ int Tileset::getOpacityDuTile(int tile)
     return 255;
 }
 
+int Tileset::getLayerDuTile(int tile)
+{
+    if (tile>=0&&tile<(int)m_tile.size())
+        return m_tile[tile].getLayer();
+
+    return 0;
+}
+
 
 
 
@@ -393,7 +393,7 @@ const coordonnee &Tileset::getPositionMinimap(int tile)
         return m_tile[0].m_coordMinimap;
 }
 
-void Tileset::JouerSon(int numeroSon,coordonnee position,coordonnee positionHero)
+void Tileset::JouerSon(int numeroSon,coordonnee position)
 {
     if (numeroSon>=0&&numeroSon<(int)m_sons.size())
     {
@@ -401,7 +401,7 @@ void Tileset::JouerSon(int numeroSon,coordonnee position,coordonnee positionHero
         pos.x=-position.x;
         pos.y=position.y;
 
-        moteurSons->JouerSon(m_sons[numeroSon],pos,positionHero,1);
+        moteurSons->JouerSon(m_sons[numeroSon],pos,1);
     }
 }
 

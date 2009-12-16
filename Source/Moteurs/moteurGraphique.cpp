@@ -35,6 +35,13 @@ MoteurGraphique::MoteurGraphique()
     m_images.front().nom         = "O";
     m_images.front().importance  = -1;
 
+
+    m_tileset.push_back(Tileset_moteur ());
+    m_tileset.front().tileset = new Tileset();
+
+    m_tileset.front().nom         = "O";
+    m_tileset.front().importance  = -1;
+
     m_soleil.rouge               = 255;
     m_soleil.vert                = 255;
     m_soleil.bleu                = 255;
@@ -65,21 +72,15 @@ MoteurGraphique::~MoteurGraphique()
 
 void MoteurGraphique::CreateNewWindow()
 {
-
     if (!configuration->mode_fenetre)
         m_ecran.Create(sf::VideoMode(configuration->Resolution.x, configuration->Resolution.y),"HolySpirit : Act of Faith",sf::Style::Fullscreen);
     else
         m_ecran.Create(sf::VideoMode(configuration->Resolution.x, configuration->Resolution.y),"HolySpirit : Act of Faith",sf::Style::Titlebar);
 
     if (configuration->syncronisation_verticale)
-    {
-        m_ecran.UseVerticalSync(true);
         m_ecran.SetFramerateLimit(60);
-    }
 
     m_ecran.ShowMouseCursor(false);
-
-   //_ m_ecran.PreserveOpenGLStates(false);
 
     if (configuration->postFX)
     {
@@ -99,13 +100,6 @@ void MoteurGraphique::CreateNewWindow()
     m_water_screen.Create(m_ecran.GetWidth(), m_ecran.GetHeight());
     m_light_screen.Create(m_ecran.GetWidth()+64, m_ecran.GetHeight()+64);
     m_light_screen2.Create(m_ecran.GetWidth()+64, m_ecran.GetHeight()+64);
-
-
-    //m_light_screen.Create(configuration->Resolution.w + 64, configuration->Resolution.h + 64);
-    //m_light_screen2.Create(configuration->Resolution.w, configuration->Resolution.h);
-
-    //m_light_screen.Clear(sf::Color(255, 255, 255));
-   // m_light_screen2.Clear(sf::Color(255, 255, 255));
 }
 
 void MoteurGraphique::Charger()
@@ -623,6 +617,47 @@ int MoteurGraphique::AjouterImage(std::string chemin,int importance)
     return m_images.size()-1;
 }
 
+int MoteurGraphique::AjouterTileset(std::string chemin,int importance)
+{
+    std::ifstream fichier;
+    fichier.open(chemin.c_str(), std::ios::in);
+    int retour = AjouterTileset(fichier, chemin, importance);
+    fichier.close();
+    return retour;
+}
+
+
+int MoteurGraphique::AjouterTileset(std::ifstream &fichier, std::string chemin,int importance)
+{
+    if(chemin != "")
+        for (unsigned i=0; i < m_tileset.size(); i++)
+        {
+            if (m_tileset[i].nom==chemin)
+            {
+                m_tileset[i].importance=importance;
+                return i;
+            }
+
+            if (m_tileset[i].tileset == NULL)
+            {
+                m_tileset[i].nom = chemin;
+                m_tileset[i].tileset = new Tileset (fichier);
+                m_tileset[i].importance=importance;
+
+                return i;
+            }
+        }
+
+    m_tileset.push_back(Tileset_moteur ());
+
+    m_tileset.back().nom = chemin;
+    m_tileset.back().tileset = new Tileset(fichier);
+    m_tileset.back().tileset->m_chemin = chemin;
+    m_tileset.back().importance=importance;
+
+    return m_tileset.size()-1;
+}
+
 void MoteurGraphique::DecrementerImportance()
 {
     for (unsigned i=0; i < m_images.size(); i++)
@@ -656,6 +691,44 @@ void MoteurGraphique::AjouterSystemeParticules(int ID,coordonnee position,sf::Co
         m_systemeParticules.push_back(ParticuleSysteme (ID,&m_modeleSystemeParticules[ID],position,color,force,angle));
 }
 
+void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
+{
+    if(entite->m_tileset != NULL)
+    {
+        if(entite->m_sprite.GetPosition().x + entite->m_sprite.GetSize().x - entite->m_sprite.GetOrigin().x     >= m_camera.GetRect().Left
+        && entite->m_sprite.GetPosition().x - entite->m_sprite.GetOrigin().x                                    <  m_camera.GetRect().Right
+        && entite->m_sprite.GetPosition().y + entite->m_sprite.GetSize().y - entite->m_sprite.GetOrigin().y     >= m_camera.GetRect().Top
+        && entite->m_sprite.GetPosition().y - entite->m_sprite.GetOrigin().y                                    <  m_camera.GetRect().Bottom)
+            AjouterCommande(&entite->m_sprite, entite->m_couche + entite->m_decalCouche, true);
+
+        if(entite->m_shadow)
+        {
+            sf::Sprite sprite;
+            sprite = entite->m_sprite;
+
+            sprite.SetScale(1, (100-(float)m_soleil.hauteur)/50);
+            sprite.SetRotation(m_angleOmbreSoleil);
+
+            AjouterCommande(&sprite, 9, true);
+        }
+
+        if(entite->m_reflect)
+        {
+            sf::Sprite sprite;
+            sprite = entite->m_sprite;
+
+            sprite.FlipY(true);
+            sprite.SetOrigin(sprite.GetOrigin().x, sprite.GetSize().y - sprite.GetOrigin().y);
+
+            if(sprite.GetPosition().x + sprite.GetSize().x - sprite.GetOrigin().x     >= m_camera.GetRect().Left
+            && sprite.GetPosition().x - sprite.GetOrigin().x                          <  m_camera.GetRect().Right
+            && sprite.GetPosition().y + sprite.GetSize().y - sprite.GetOrigin().y     >= m_camera.GetRect().Top
+            && sprite.GetPosition().y - sprite.GetOrigin().y                          <  m_camera.GetRect().Bottom)
+                AjouterCommande(&sprite, 0, true);
+        }
+    }
+}
+
 void MoteurGraphique::AjouterCommande(sf::Sprite *sprite, int couche, bool camera)
 {
     if (couche>=0&&couche<=20)
@@ -668,7 +741,7 @@ void MoteurGraphique::AjouterTexte(std::string txt, coordonnee pos, int couche, 
     temp.SetFont(m_font);
     temp.SetString(txt);
     temp.SetPosition(pos.x, pos.y);
-    temp.SetSize(size);
+    temp.SetCharacterSize(size);
     temp.SetColor(color);
 
     AjouterTexte(&temp, couche, titre);
@@ -714,13 +787,13 @@ void MoteurGraphique::AjouterTexte(sf::Text* string, int couche,bool titre)
         {
             temp.SetFont(m_font_titre);
 
-            temp.SetStyle(sf::Text::Bold);
+            /*temp.SetStyle(sf::Text::Bold);
             temp.SetColor(string->GetColor());
 
             m_textes[couche].push_back(temp);
 
             temp.SetColor(sf::Color((int)(string->GetColor().r*0.15),(int)(string->GetColor().g*0.15),(int)(string->GetColor().b*0.15),string->GetColor().a));
-            temp.SetStyle(sf::Text::Regular);
+            temp.SetStyle(sf::Text::Regular);*/
             m_textes[couche].push_back(temp);
         }
         else
@@ -749,12 +822,34 @@ void MoteurGraphique::ViderParticules()
     m_systemeParticules.clear();
 }
 
+Entite_graphique MoteurGraphique::getEntiteGraphique(int noTileset, int noTile, int couche)
+{
+    Entite_graphique entite;
+
+    if(noTileset >= 0 && noTileset < (int)m_tileset.size())
+        entite.m_tileset    = m_tileset[noTileset].tileset;
+    else
+        entite.m_tileset    = NULL;
+
+    entite.m_noAnimation    = noTile;
+    entite.m_couche         = couche;
+    //entite.Generer();
+
+    return entite;
+}
 
 sf::Image* MoteurGraphique::getImage(int IDimage)
 {
     if (IDimage>=0&&IDimage<(int)m_images.size())
         return m_images[(unsigned)IDimage].img;
     return m_images.front().img;
+}
+
+Tileset* MoteurGraphique::getTileset(int IDtileset)
+{
+    if (IDtileset>=0 && IDtileset<(int)m_tileset.size())
+        return m_tileset[(unsigned)IDtileset].tileset;
+    return m_tileset.front().tileset;
 }
 
 ModeleParticuleSysteme* MoteurGraphique::getModeleMoteurParticules(int ID)

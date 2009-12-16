@@ -28,6 +28,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
+#include <fstream>
+
 #include "tile.h"
 
 class Tileset
@@ -35,12 +37,14 @@ class Tileset
 	public:
 	Tileset();
 	Tileset(std::string chemin);
+	Tileset(std::ifstream &fichier);
 	~Tileset();
 	Tileset operator=(const Tileset &tileset);
 
-	bool Charger(std::string chemin);
+	void Charger(std::string chemin);
+	void Charger(std::ifstream &fichier);
 
-	void JouerSon(int numeroSon,coordonnee position,coordonnee positionHero);
+	void JouerSon(int numeroSon,coordonnee position);
 	void DeleteTiles();
 
 	int getImage(int tile);
@@ -57,16 +61,19 @@ class Tileset
 	const std::string &getChemin(){return m_chemin;}
 	float getTempsDuTile(int tile);
 	int getOpacityDuTile(int tile);
+	int getLayerDuTile(int tile);
 	int getTaille();
 
 	int getMinimap(int tile);
 	const coordonnee &getPositionMinimap(int tile);
 
+	std::string m_chemin;
+
 	private:
 	std::vector <int> m_image;
 	std::vector <Tile> m_tile;
 	std::vector <int> m_sons;
-	std::string m_chemin;
+
 };
 
 class Herbe : public Tileset
