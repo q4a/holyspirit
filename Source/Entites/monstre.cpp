@@ -38,16 +38,7 @@ Modele_Monstre::Modele_Monstre()
 
 Modele_Monstre::~Modele_Monstre()
 {
-    for (int i=0;i<(int)m_pose.size();i++)
-    {
-        for (int j=0;j<(int)m_pose[i].size();j++)
-            m_pose[i][j].clear();
-        m_pose[i].clear();
-    }
-    m_pose.clear();
-
-    m_image.clear();
-    m_sons.clear();
+    m_tileset.clear();
 
     m_miracles.clear();
     m_objets.clear();
@@ -86,7 +77,6 @@ Monstre::Monstre(Personnage &personnage)
     m_monstre                   = personnage.m_monstre;
     m_touche                    = personnage.m_touche;
     m_nombreInvocation          = personnage.m_nombreInvocation;
-    m_light                     = personnage.m_light;
     m_miracleALancer            = personnage.m_miracleALancer;
     m_effets                    = personnage.m_effets;
     m_scriptAI                  = personnage.m_scriptAI;
@@ -101,9 +91,7 @@ Monstre::Monstre(Personnage &personnage)
     m_depart                    = personnage.getDepart();
 
     m_angle                     = 0;
-    m_poseEnCours               = 0;
     m_etat                      = 0;
-    m_animation                 = 0;
 }
 
 void Monstre::Charger(int numero,Modele_Monstre *modele)
@@ -191,71 +179,27 @@ bool Modele_Monstre::Charger(string chemin)
     m_chemin=chemin;
     m_particules=-1;
 
-    cDAT reader;
+    //cDAT reader;
 
-    reader.Read(chemin);
+   // reader.Read(chemin);
 
-    ifstream *fichier;
-    fichier = reader.GetInfos("infos.txt");
+    ifstream fichier;
+    fichier.open(chemin.c_str(), ios::in);
 
     if (fichier)
     {
         char caractere;
         do
         {
-            fichier->get(caractere);
+            fichier.get(caractere);
             if (caractere=='*')
             {
 
                 string cheminImage;
-                *fichier>>cheminImage;
-
-                m_image.push_back(moteurGraphique->AjouterImage(reader.GetFile(cheminImage), reader.GetFileSize(cheminImage), cheminImage));
+                fichier>>cheminImage;
+                Modele_Personnage::Charger(cheminImage);
             }
-            if (fichier->eof())
-            {
-                console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
-                caractere='$';
-                m_caracteristique.maxVie=0;
-            }
-        }
-        while (caractere!='$');
-
-        //m_buffer.clear();
-        do
-        {
-            fichier->get(caractere);
-            if (caractere=='*')
-            {
-                do
-                {
-                    fichier->get(caractere);
-                    if (caractere=='m')
-                    {
-                        string cheminSon;
-                        *fichier>>cheminSon;
-                        m_sons.push_back(moteurSons->AjouterBuffer(cheminSon));
-                    }
-                    else if (caractere=='t')
-                    {
-                        int temp;
-                        *fichier>>temp;
-                        if(temp == 0)
-                            m_sons_touche.push_back(m_sons.size()-1);
-                    }
-                    if (fichier->eof())
-                    {
-                        console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
-                        caractere='$';
-                        m_caracteristique.maxVie=0;
-                    }
-                }
-                while (caractere!='$');
-
-                fichier->get(caractere);
-            }
-
-            if (fichier->eof())
+            if (fichier.eof())
             {
                 console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                 caractere='$';
@@ -267,28 +211,28 @@ bool Modele_Monstre::Charger(string chemin)
         do
         {
             //Chargement de la lumière ambiante
-            fichier->get(caractere);
+            fichier.get(caractere);
             if (caractere=='*')
             {
                 do
                 {
-                    fichier->get(caractere);
+                    fichier.get(caractere);
                     switch (caractere)
                     {
                     case 'r':
-                        *fichier>>m_porteeLumineuse.rouge;
+                        fichier>>m_porteeLumineuse.rouge;
                         break;
                     case 'v':
-                        *fichier>>m_porteeLumineuse.vert;
+                        fichier>>m_porteeLumineuse.vert;
                         break;
                     case 'b':
-                        *fichier>>m_porteeLumineuse.bleu;
+                        fichier>>m_porteeLumineuse.bleu;
                         break;
                     case 'i':
-                        *fichier>>m_porteeLumineuse.intensite;
+                        fichier>>m_porteeLumineuse.intensite;
                         break;
                     }
-                    if (fichier->eof())
+                    if (fichier.eof())
                     {
                         console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                         caractere='$';
@@ -296,15 +240,15 @@ bool Modele_Monstre::Charger(string chemin)
                     }
                 }
                 while (caractere!='$');
-                fichier->get(caractere);
-                if (fichier->eof())
+                fichier.get(caractere);
+                if (fichier.eof())
                 {
                     console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                     caractere='$';
                     m_caracteristique.maxVie=0;
                 }
             }
-            if (fichier->eof())
+            if (fichier.eof())
             {
                 console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                 caractere='$';
@@ -317,51 +261,34 @@ bool Modele_Monstre::Charger(string chemin)
         do
         {
             //Chargement du nom
-            fichier->get(caractere);
+            fichier.get(caractere);
             if (caractere=='*')
             {
                 do
                 {
                     //Chargement du nom
-                    fichier->get(caractere);
+                    fichier.get(caractere);
                     if (caractere=='n')
                     {
                         int no;
-                        *fichier>>no;
+                        fichier>>no;
                         m_caracteristique.nom = configuration->getText(3, no);
                     }
                 }
                 while (caractere!='$');
-                fichier->get(caractere);
+                fichier.get(caractere);
             }
         }
         while (caractere!='$');
 
-       /* do
-        {
-            fichier->get(caractere);
-            if (caractere=='*')
-            {
-                getline(*fichier,m_caracteristique.nom);
-                // *fichier>>m_caracteristique.nom;
-            }
-            if (fichier->eof())
-            {
-                console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
-                caractere='$';
-            }
-
-        }
-        while (caractere!='$');*/
-
         do
         {
-            fichier->get(caractere);
+            fichier.get(caractere);
             if (caractere=='*')
             {
-                *fichier>>m_caracteristique.rang;
+                fichier>>m_caracteristique.rang;
             }
-            if (fichier->eof())
+            if (fichier.eof())
             {
                 console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                 caractere='$';
@@ -381,64 +308,64 @@ bool Modele_Monstre::Charger(string chemin)
                 m_collision = true;
                 do
                 {
-                    fichier->get(caractere);
+                    fichier.get(caractere);
                     switch (caractere)
                     {
                     case 'v':
-                        *fichier>>m_caracteristique.maxVie;
+                        fichier>>m_caracteristique.maxVie;
                         break;
                     case 'd':
-                        fichier->get(caractere);
-                        if (caractere=='i') *fichier>>m_caracteristique.degatsMin;
-                        else *fichier>>m_caracteristique.degatsMax ;
+                        fichier.get(caractere);
+                        if (caractere=='i') fichier>>m_caracteristique.degatsMin;
+                        else fichier>>m_caracteristique.degatsMax ;
                         break;
                     case 'm':
-                        *fichier>>m_caracteristique.vitesse;
+                        fichier>>m_caracteristique.vitesse;
                         break;
                     case 'o':
-                        *fichier>>m_ombre;
+                        fichier>>m_ombre;
                         break;
                     case 'a':
-                        *fichier>>m_caracteristique.pointAme;
+                        fichier>>m_caracteristique.pointAme;
                         break;
                     case 'n':
-                        *fichier>>m_caracteristique.niveau;
+                        fichier>>m_caracteristique.niveau;
                         break;
 
                     case 's':
-                        *fichier>>m_caracteristique.sang;
+                        fichier>>m_caracteristique.sang;
                         break;
 
                     case 't':
-                        *fichier>>m_caracteristique.modificateurTaille;
+                        fichier>>m_caracteristique.modificateurTaille;
                         break;
 
                     case 'i':
-                        *fichier>>m_minimap;
+                        fichier>>m_minimap;
                         break;
 
                     case 'f':
-                        *fichier>>m_friendly;
+                        fichier>>m_friendly;
                         break;
 
                     case 'x':
-                        *fichier>>m_caracteristique.dexterite;
+                        fichier>>m_caracteristique.dexterite;
                         break;
 
                     case 'p':
-                        *fichier>>m_impenetrable;
+                        fichier>>m_impenetrable;
                         break;
 
                     case 'u':
-                        *fichier>>m_impoussable;
+                        fichier>>m_impoussable;
                         break;
 
                     case 'c':
-                        *fichier>>m_collision;
+                        fichier>>m_collision;
                         break;
 
                     }
-                    if (fichier->eof())
+                    if (fichier.eof())
                     {
                         console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                         caractere='$';
@@ -450,16 +377,16 @@ bool Modele_Monstre::Charger(string chemin)
 
                 m_caracteristique.vie=m_caracteristique.maxVie;
 
-                fichier->get(caractere);
-                if (fichier->eof())
+                fichier.get(caractere);
+                if (fichier.eof())
                 {
                     console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                     caractere='$';
                     m_caracteristique.maxVie=0;
                 }
             }
-            fichier->get(caractere);
-            if (fichier->eof())
+            fichier.get(caractere);
+            if (fichier.eof())
             {
                 console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                 caractere='$';
@@ -470,17 +397,17 @@ bool Modele_Monstre::Charger(string chemin)
 
         do
         {
-            fichier->get(caractere);
+            fichier.get(caractere);
             if (caractere=='*')
             {
                 string temp;
-                *fichier>>temp;
+                fichier>>temp;
                 //getline(fichier, temp);
 
                 m_scriptAI.Charger(temp);
             }
 
-            if (fichier->eof())
+            if (fichier.eof())
             {
                 console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                 caractere='$';
@@ -492,17 +419,17 @@ bool Modele_Monstre::Charger(string chemin)
 
         do
         {
-            fichier->get(caractere);
+            fichier.get(caractere);
             if (caractere=='*')
             {
                 Objet tempModeleObjet;
                 do
                 {
-                    fichier->get(caractere);
+                    fichier.get(caractere);
                     if (caractere=='r')
                     {
                         int temp2;
-                        *fichier>>temp2;
+                        fichier>>temp2;
                         tempModeleObjet.setChanceTrouver(temp2);
                     }
 
@@ -510,11 +437,11 @@ bool Modele_Monstre::Charger(string chemin)
                     {
                         string temp2;
                         //getline(fichier, temp2);
-                        *fichier>>temp2;
+                        fichier>>temp2;
                         tempModeleObjet.Charger(temp2,m_caracteristique);
                     }
 
-                    if (fichier->eof())
+                    if (fichier.eof())
                     {
                         console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                         caractere='$';
@@ -522,9 +449,9 @@ bool Modele_Monstre::Charger(string chemin)
                 }
                 while (caractere!='$');
                 m_objets.push_back(tempModeleObjet);
-                fichier->get(caractere);
+                fichier.get(caractere);
             }
-            if (fichier->eof())
+            if (fichier.eof())
             {
                 console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                 caractere='$';
@@ -535,16 +462,16 @@ bool Modele_Monstre::Charger(string chemin)
 
         do
         {
-            fichier->get(caractere);
+            fichier.get(caractere);
             if (caractere=='*')
             {
                 string temp;
                 //getline(fichier, temp);
-                *fichier>>temp;
+                fichier>>temp;
                 m_particules=moteurGraphique->AjouterModeleSystemeParticules(temp);
             }
 
-            if (fichier->eof())
+            if (fichier.eof())
             {
                 console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                 caractere='$';
@@ -556,15 +483,15 @@ bool Modele_Monstre::Charger(string chemin)
 
         do
         {
-            fichier->get(caractere);
+            fichier.get(caractere);
             if (caractere=='*')
             {
                 string temp;
-                *fichier>>temp;
+                fichier>>temp;
                 m_miracles.push_back(Miracle (temp, m_caracteristique, 1));
             }
 
-            if (fichier->eof())
+            if (fichier.eof())
             {
                 console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
                 caractere='$';
@@ -573,14 +500,11 @@ bool Modele_Monstre::Charger(string chemin)
         }
         while (caractere!='$');
 
-        ChargerPose(fichier);
-
-        fichier->close();
+        fichier.close();
     }
     else
         console->Ajouter("Impossible d'ouvrir : "+chemin,1);
 
-    delete fichier;
 
     return 1;
 }
@@ -603,7 +527,7 @@ void Monstre::TesterVision(coordonnee positionHero)
         {
             if (m_vu)
                 setDepart();
-            m_vu=0,m_etat=0,m_poseEnCours=0;
+            m_vu=0,m_etat=0,m_entite_graphique.m_noAnimation=0;
 
             m_cible = NULL;
         }

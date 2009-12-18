@@ -30,7 +30,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "../constantes.h"
 #include "objet.h"
 #include "liste_case.h"
-#include "pose.h"
 #include "../Moteurs/lightManager.h"
 #include "miracle.h"
 #include "script.h"
@@ -42,24 +41,23 @@ public:
     Modele_Personnage();
     ~Modele_Personnage();
     bool Charger(std::string chemin);
-    void ChargerPose(std::ifstream *fichier);
 
     void Reinitialiser();
 
-    void JouerSon(int numeroSon,coordonnee position,coordonnee positionHero, bool uniqueSound=false);
+    //void JouerSon(int numeroSon,coordonnee position,coordonnee positionHero, bool uniqueSound=false);
 
     const Lumiere &getPorteeLumineuse();
-    int getNombreSons();
-    int getNombreSonsTouche();
-    int getSonTouche(int);
+    //int getNombreSons();
+    //int getNombreSonsTouche();
+    //int getSonTouche(int);
     const Caracteristique &getCaracteristique();
 
     void setPorteeLumineuse(Lumiere  lumiere);
 
+    std::vector<std::vector<Tileset> > m_tileset;
 
-
-    std::vector <std::vector<std::vector<Pose> > > m_pose;
-    std::vector <int> m_image;
+    //std::vector <std::vector<std::vector<Pose> > > m_pose;
+    //std::vector <int> m_image;
 
     std::vector<Miracle> m_miracles;
 
@@ -71,8 +69,8 @@ public:
 protected:
     Caracteristique m_caracteristique;
     Lumiere m_porteeLumineuse;
-    std::vector <int> m_sons;
-    std::vector <int> m_sons_touche;
+    //std::vector <int> m_sons;
+    //std::vector <int> m_sons_touche;
 };
 
 class Personnage
@@ -154,7 +152,7 @@ public:
     bool m_touche;
     int m_nombreInvocation;
 
-    Light_Entity m_light;
+    //Light_Entity m_light;
 
     int m_miracleALancer;
     std::vector <EntiteMiracle> m_miracleEnCours;
@@ -179,9 +177,10 @@ public:
     bool m_etatForce;
     bool m_miracleBloquant;
 
+    Entite_graphique m_entite_graphique;
+
 protected:
-    int m_etat,m_poseEnCours,m_angle;
-    float m_animation;
+    int m_etat,m_angle;
     bool m_erreurPathfinding;
     Caracteristique m_caracteristique;
     coordonnee m_cheminFinal,m_arrivee,m_ancienneArrivee,m_mauvaiseArrivee, m_positionCase,m_positionAffichage,m_positionPixelPrecedente;

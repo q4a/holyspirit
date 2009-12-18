@@ -27,28 +27,18 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <SFML/Graphics.hpp>
 #include "../constantes.h"
 
-class Pose
+class Pose : public Tile
 {
 public:
     Pose operator=(const Pose &Pose);
     void setPose(coordonnee positionDansLImage,coordonnee centre,int animation,int son,int image,int attaque,int lum_intensite,float tempsAnimation,int ordre,int couche);
-    coordonnee getCoordonnee();
-    coordonnee getCentre();
-    int getAnimation();
-    int getSon();
-    int getImage();
+
     int getAttaque();
-    int getLumiereIntensite();
     int getOrdre();
-    int getCouche();
-    float getTempsAnimation();
 
 private:
-    coordonnee m_positionDansLImage,m_centre; // Position du tile dans le tileset
-    int m_son,m_animation,m_image,m_attaque,m_lumiere_intensite;
-    float m_tempsAnimation;
     int m_ordre;
-    int m_couche;
+    int m_attaque;
 };
 
 #endif

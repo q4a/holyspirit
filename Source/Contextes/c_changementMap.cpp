@@ -166,7 +166,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         jeu->map=new Map();
 
-        jeu->hero.m_personnage.m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,384,12,sf::Color(255,255,255));
+        jeu->hero.m_personnage.m_entite_graphique.m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,384,12,sf::Color(255,255,255));
 
         jeu->hero.ChargerModele(true);
         jeu->hero.m_minimap.clear();
@@ -242,11 +242,12 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         configuration->RafraichirLumiere=true;
 
-        sf::Vector2f pos;
+        coordonnee pos;
         pos.x=(((jeu->hero.m_personnage.getCoordonneePixel().x-jeu->hero.m_personnage.getCoordonneePixel().y)*64/COTE_TILE));
         pos.y=(((jeu->hero.m_personnage.getCoordonneePixel().x+jeu->hero.m_personnage.getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
 
-        moteurGraphique->LightManager->SetPosition(jeu->hero.m_personnage.m_light,pos);
+        jeu->hero.m_personnage.m_entite_graphique.Initialiser(pos);
+
         allerVersImageChargement=false;
 
         jeu->hero.PlacerCamera();
@@ -258,7 +259,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         {
             configuration->RafraichirLumiere=true;
 
-            moteurGraphique->LightManager->Generate(jeu->hero.m_personnage.m_light);
+           // moteurGraphique->LightManager->Generate(jeu->hero.m_personnage.m_light);
         }
 
         jeu->map->Animer(&jeu->hero,1,&jeu->menu);

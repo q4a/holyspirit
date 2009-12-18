@@ -49,53 +49,19 @@ Tileset::~Tileset()
     m_image.clear();
 }
 
-Tileset Tileset::operator=(const Tileset &tileset)
+/*Tileset Tileset::operator=(const Tileset &tileset)
 {
     m_image = tileset.m_image;
     m_tile=tileset.m_tile;
 
     return *this;
-}
+}*/
 
-void Tileset::Charger(ifstream &fichier)
+void Tileset::ChargerTiles(ifstream &fichier)
 {
     if (fichier)
     {
         char caractere;
-
-        do
-        {
-            fichier.get(caractere);
-            if (caractere=='*')
-            {
-                string cheminImage;
-                fichier>>cheminImage;
-                m_image.push_back(moteurGraphique->AjouterImage(cheminImage));
-            }
-            if (fichier.eof())
-            {
-                console->Ajouter("Erreur : Tileset \" "+m_chemin+" \" Invalide",1);
-                caractere='$';
-            }
-        }
-        while (caractere!='$');
-
-        do
-        {
-            fichier.get(caractere);
-            if (caractere=='*')
-            {
-                string cheminDuSon;
-                fichier>>cheminDuSon;
-                m_sons.push_back(moteurSons->AjouterBuffer(cheminDuSon));
-            }
-            if (fichier.eof())
-            {
-                console->Ajouter("Erreur : Tileset \" "+m_chemin+" \" Invalide",1);
-                caractere='$';
-            }
-        }
-        while (caractere!='$');
 
         do
         {
@@ -112,6 +78,8 @@ void Tileset::Charger(ifstream &fichier)
                 float tempsAnimation=0.075;
                 int opacity = 255;
                 int layer = 0;
+                int attaque = -1;
+                int ordre = 0;
 
                 do
                 {
@@ -156,6 +124,12 @@ void Tileset::Charger(ifstream &fichier)
                         break;
                     case 'p':
                         fichier>>opacity;
+                        break;
+                    case 'd':
+                        fichier>>attaque;
+                        break;
+                    case 'g':
+                        fichier>>ordre;
                         break;
 
                     case 'e':
@@ -229,7 +203,7 @@ void Tileset::Charger(ifstream &fichier)
                     centre.y=position.h-32;
 
                 m_tile.push_back(Tile ());
-                m_tile.back().setTile(position,image,collision,animation,son,lumiere,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer);
+                m_tile.back().setTile(position,image,collision,animation,son,lumiere,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer, attaque, ordre);
                 m_tile.back().m_tileMinimap = imageMM;
                 m_tile.back().m_coordMinimap = coordMinimap;
 
@@ -242,6 +216,80 @@ void Tileset::Charger(ifstream &fichier)
             }
         }
         while (caractere!='$');
+    }
+    else
+        console->Ajouter("Impossible d'ouvrir le fichier : "+m_chemin,1);
+}
+
+void Tileset::Charger(ifstream &fichier, cDAT *reader)
+{
+    if (fichier)
+    {
+        char caractere;
+
+        do
+        {
+            fichier.get(caractere);
+            if (caractere=='*')
+            {
+                string cheminImage;
+                fichier>>cheminImage;
+                if(reader == NULL)
+                    m_image.push_back(moteurGraphique->AjouterImage(cheminImage));
+                else
+                    m_image.push_back(moteurGraphique->AjouterImage(reader->GetFile(cheminImage), reader->GetFileSize(cheminImage), cheminImage));
+            }
+            if (fichier.eof())
+            {
+                console->Ajouter("Erreur : Tileset \" "+m_chemin+" \" Invalide",1);
+                caractere='$';
+            }
+        }
+        while (caractere!='$');
+
+        do
+        {
+            fichier.get(caractere);
+            if (caractere=='*')
+            {
+                do
+                {
+                    fichier.get(caractere);
+                    if (caractere=='m')
+                    {
+                        string cheminSon;
+                        fichier>>cheminSon;
+                        m_sons.push_back(moteurSons->AjouterBuffer(cheminSon));
+                    }
+                    else if (caractere=='t')
+                    {
+                        int temp;
+                        fichier>>temp;
+                        if(temp >= m_sonsSpecial.size())
+                            m_sonsSpecial.resize(temp + 1);
+
+                        m_sonsSpecial[temp].push_back(m_sons.size()-1);
+                    }
+                    if (fichier.eof())
+                    {
+                        console->Ajouter("Erreur : Monstre \" "+m_chemin+" \" Invalide",1);
+                        caractere='$';
+                    }
+                }
+                while (caractere!='$');
+
+                fichier.get(caractere);
+            }
+            if (fichier.eof())
+            {
+                console->Ajouter("Erreur : Tileset \" "+m_chemin+" \" Invalide",1);
+                caractere='$';
+            }
+        }
+        while (caractere!='$');
+
+
+        ChargerTiles(fichier);
     }
     else
         console->Ajouter("Impossible d'ouvrir le fichier : "+m_chemin,1);
@@ -358,6 +406,22 @@ int Tileset::getLayerDuTile(int tile)
     return 0;
 }
 
+int Tileset::getOrdreDuTile(int tile)
+{
+    if (tile>=0&&tile<(int)m_tile.size())
+        return m_tile[tile].getOrdre();
+
+    return 0;
+}
+
+int Tileset::getAttaqueDuTile(int tile)
+{
+    if (tile>=0&&tile<(int)m_tile.size())
+        return m_tile[tile].getAttaque();
+
+    return 0;
+}
+
 
 
 
@@ -393,7 +457,7 @@ const coordonnee &Tileset::getPositionMinimap(int tile)
         return m_tile[0].m_coordMinimap;
 }
 
-void Tileset::JouerSon(int numeroSon,coordonnee position)
+void Tileset::JouerSon(int numeroSon,coordonnee position, bool unique)
 {
     if (numeroSon>=0&&numeroSon<(int)m_sons.size())
     {
@@ -401,8 +465,31 @@ void Tileset::JouerSon(int numeroSon,coordonnee position)
         pos.x=-position.x;
         pos.y=position.y;
 
-        moteurSons->JouerSon(m_sons[numeroSon],pos,1);
+        moteurSons->JouerSon(m_sons[numeroSon],pos,unique);
     }
+}
+
+int getNombreSons();
+int getNombreSonsSpecial(int);
+int getSonSpecial(int, int);
+
+
+int Tileset::getNombreSons()
+{
+    return m_sons.size();
+}
+int Tileset::getNombreSonsSpecial(int no)
+{
+    if(m_sonsSpecial.size() > (unsigned)no)
+        return m_sonsSpecial[(unsigned)no].size();
+    return 0;
+}
+int Tileset::getSonSpecial(int no, int son)
+{
+    if(m_sonsSpecial.size() > (unsigned)no)
+        if(m_sonsSpecial[(unsigned)no].size() > (unsigned)son)
+            return m_sonsSpecial[(unsigned)no][(unsigned)son];
+    return -1;
 }
 
 void Tileset::DeleteTiles()

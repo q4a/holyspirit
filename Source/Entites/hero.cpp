@@ -178,7 +178,7 @@ Hero::Hero()
 
     m_contenuSave.push_back(configuration->chemin_temps+"hero.sav.txt");
 
-    m_personnage.m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(m_personnage.getCoordonnee().x,m_personnage.getCoordonnee().y),512,2048,16,sf::Color(255,255,255));
+    //m_personnage.m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(m_personnage.getCoordonnee().x,m_personnage.getCoordonnee().y),512,2048,16,sf::Color(255,255,255));
 
     m_defilement_trader=0;
 
@@ -438,7 +438,6 @@ void Hero::Charger()
     // closedir(repertoire);
 
     m_classe.Charger(m_cheminClasse, m_lvl_miracles, m_caracteristiques);
-
     m_lvl_miracles.resize(m_classe.miracles.size(),0);
 
     ChargerModele();

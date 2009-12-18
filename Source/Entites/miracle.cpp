@@ -71,8 +71,6 @@ void EffetGraphique::Animer(float temps)
             float tempsAnimation = m_tileset->getTempsDuTile(m_noAnimation);
             m_animation += temps;
 
-
-
                 if (m_tileset->getAnimationTile(m_noAnimation) >= 0)
                     while (m_animation>=tempsAnimation)
                     {
@@ -637,12 +635,15 @@ void Miracle::Charger(std::string chemin, const Caracteristique &caract, int lev
         }
         while (caractere!='$');
 
+        //int no = 0;
         do
         {
             fichier.get(caractere);
             if (caractere=='*')
             {
-                m_tileset.push_back(moteurGraphique->AjouterTileset(fichier));
+                std::ostringstream  buf;
+               // buf<<chemin<<no++<<endl;
+                m_tileset.push_back(moteurGraphique->AjouterTileset(fichier/*, buf.str()*/));
 
                 fichier.get(caractere);
             }

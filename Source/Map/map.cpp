@@ -1000,6 +1000,7 @@ void Map::Initialiser(Hero *hero)
 
                         position.x=(j-i)*64;
                         position.y=(j+i+1)*32;
+                        position.y=(j+i+1)*32;
 
                         if (couche==0)
                             position.y-=32;
@@ -1007,6 +1008,9 @@ void Map::Initialiser(Hero *hero)
 
                         m_decor[couche][i][j].m_entite_herbe = moteurGraphique->getEntiteGraphique(m_herbe[m_decor[couche][i][j].getHerbe()], numeroHerbe, 10);
                         m_decor[couche][i][j].m_entite_herbe.m_sprite.SetPosition(position.x, position.y);
+                        m_decor[couche][i][j].m_entite_herbe.m_sprite.SetScale((float)m_decor[couche][i][j].getTailleHerbe()/100,(float)m_decor[couche][i][j].getTailleHerbe()/100);
+                        m_decor[couche][i][j].m_entite_herbe.m_sprite.SetColor(m_decor[couche][i][j].getCouleurHerbe());
+
                         m_decor[couche][i][j].m_entite_herbe.Initialiser(coordonnee ());
                     }
                 }
@@ -1015,15 +1019,17 @@ void Map::Initialiser(Hero *hero)
     for (int i=0;i<(int)m_monstre.size();++i)
         if (m_monstre[i].getCaracteristique().rang>=0)
         {
-            m_monstre[i].m_light=moteurGraphique->LightManager->Add_Dynamic_Light();
-            moteurGraphique->LightManager->SetQuality(m_monstre[i].m_light,6);
+           // m_monstre[i].m_light=moteurGraphique->LightManager->Add_Dynamic_Light();
+          //  moteurGraphique->LightManager->SetQuality(m_monstre[i].m_light,6);
 
-            sf::Vector2f pos;
+            coordonnee pos;
             pos.x=(((m_monstre[i].getCoordonneePixel().x-m_monstre[i].getCoordonneePixel().y)*64/COTE_TILE));
             pos.y=(((m_monstre[i].getCoordonneePixel().x+m_monstre[i].getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
 
-            moteurGraphique->LightManager->SetPosition(m_monstre[i].m_light,pos);
-            moteurGraphique->LightManager->SetColor(m_monstre[i].m_light,sf::Color(m_monstre[i].getPorteeLumineuse().rouge,m_monstre[i].getPorteeLumineuse().vert,m_monstre[i].getPorteeLumineuse().bleu));
+            m_monstre[i].m_entite_graphique.Initialiser(pos);
+
+            //moteurGraphique->LightManager->SetPosition(m_monstre[i].m_light,pos);
+           // moteurGraphique->LightManager->SetColor(m_monstre[i].m_light,sf::Color(m_monstre[i].getPorteeLumineuse().rouge,m_monstre[i].getPorteeLumineuse().vert,m_monstre[i].getPorteeLumineuse().bleu));
         }
 
     sf::Vector2f pos;
@@ -1439,7 +1445,8 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
 
                     if (couche==1)
                     {
-                        moteurGraphique->AjouterEntiteGraphique(&m_decor[0][j][k].m_entite_herbe);
+                        if(configuration->Herbes)
+                            moteurGraphique->AjouterEntiteGraphique(&m_decor[0][j][k].m_entite_herbe);
 
                         for (unsigned o = 0 ; o < m_decor[1][j][k].getMonstre().size() ; ++o)
                             if (m_decor[1][j][k].getMonstre()[o]>=0&&m_decor[1][j][k].getMonstre()[o]<(int)m_monstre.size())
@@ -1449,7 +1456,8 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                         &&  (int)((hero->m_personnage.getCoordonneePixel().y + COTE_TILE * 0.5) / COTE_TILE) == j)
                                 hero->Afficher(getDimensions());
 
-                        moteurGraphique->AjouterEntiteGraphique(&m_decor[1][j][k].m_entite_herbe);
+                        if(configuration->Herbes)
+                            moteurGraphique->AjouterEntiteGraphique(&m_decor[1][j][k].m_entite_herbe);
 
                         for (unsigned o = 0 ; o < m_decor[1][j][k].getProjectile().size() ; ++o)
                             if (m_decor[1][j][k].getProjectile()[o]>=0&&m_decor[1][j][k].getProjectile()[o]<(int)m_projectile.size())
@@ -1795,7 +1803,7 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                 m_decor[i][j][k].m_entite_graphique.Animer(temps);
                 m_decor[i][j][k].m_entite_herbe.Animer(temps);
 
-                for(unsigned z = 0; z < m_decor[i][j][k].getNombreObjets() ; ++z)
+                for(int z = 0; z < m_decor[i][j][k].getNombreObjets() ; ++z)
                 {
                     m_decor[i][j][k].getObjet(z)->m_alpha -= temps*200;
                     if(m_decor[i][j][k].getObjet(z)->m_alpha < 0)
@@ -1810,8 +1818,8 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                         m_monstre[monstre].m_vientDeFrapper = NULL;
                         m_monstre[monstre].m_degatsInflige  = 0;
 
-                        if(configuration->Lumiere)
-                            moteurGraphique->LightManager->Generate(m_monstre[monstre].m_light);
+                        //if(configuration->Lumiere)
+                           // moteurGraphique->LightManager->Generate(m_monstre[monstre].m_entite_graphique.m_light);
 
                         int degats = m_monstre[monstre].Animer(&m_ModeleMonstre[m_monstre[monstre].getModele()],temps,positionHero);
                         if (degats>0)
@@ -2024,8 +2032,9 @@ bool Map::Miracle_Charme (Hero *hero, Personnage *personnage, Miracle &modele, E
 {
     if(info.m_IDObjet == -1)
     {
-        if (info.m_cible->getCaracteristique().maxVie <= effet.m_informations[0]
-                &&info.m_cible->getCaracteristique().niveau > 0 && info.m_cible->getCaracteristique().vitesse > 0)
+        if (info.m_cible->m_friendly != personnage->m_friendly
+            &&info.m_cible->getCaracteristique().maxVie <= effet.m_informations[0]
+            &&info.m_cible->getCaracteristique().niveau > 0 && info.m_cible->getCaracteristique().vitesse > 0)
         {
             info.m_cible->m_scriptAI     = Script (effet.m_chaine);
 
@@ -2260,8 +2269,8 @@ bool Map::Miracle_EffetGraphique(Hero *hero, Personnage *personnage, Miracle &mo
     {
         m_effets.push_back(EffetGraphique ());
 
-        m_effets.back().m_position.x = info.m_position.x;
-        m_effets.back().m_position.y = info.m_position.y;
+        m_effets.back().m_position.x = (int)info.m_position.x;
+        m_effets.back().m_position.y = (int)info.m_position.y;
 
         m_effets.back().m_compteur   = effet.m_informations[0];
 
@@ -2269,8 +2278,8 @@ bool Map::Miracle_EffetGraphique(Hero *hero, Personnage *personnage, Miracle &mo
 
         m_effets.back().m_tileset    = moteurGraphique->getTileset(modele.m_tileset[effet.m_sequence]);
         m_effets.back().m_couche     = 10;
-        m_effets.back().Initialiser(coordonnee((info.m_position.x - info.m_position.y) * 64 / COTE_TILE,
-                                               (info.m_position.x + info.m_position.y) * 64 / COTE_TILE));
+        m_effets.back().Initialiser(coordonnee((int)(((float)info.m_position.x - (float)info.m_position.y) * 64 / COTE_TILE),
+                                               (int)(((float)info.m_position.x + (float)info.m_position.y) * 64 / COTE_TILE)));
 
         /*if(m_effets.back().m_tiles.size() > 0)
         if (m_effets.back().m_tiles[0].getSon() >= 0)
@@ -2374,17 +2383,12 @@ bool Map::Miracle_Invocation(Hero *hero, Personnage *personnage, Miracle &modele
             m_monstre.back().Charger(numero,&m_ModeleMonstre[numero]);
             m_monstre.back().setCoordonnee(positionCase),m_monstre.back().setDepart();
 
-            m_monstre.back().m_light=moteurGraphique->LightManager->Add_Dynamic_Light();
-
-            moteurGraphique->LightManager->SetQuality(m_monstre.back().m_light,6);
-
-            sf::Vector2f pos;
+            coordonnee pos;
             pos.x=(((m_monstre.back().getCoordonneePixel().x-m_monstre.back().getCoordonneePixel().y)*64/COTE_TILE*64));
             pos.y=(((m_monstre.back().getCoordonneePixel().x+m_monstre.back().getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
 
-            moteurGraphique->LightManager->SetPosition(m_monstre.back().m_light,pos);
+            m_monstre.back().m_entite_graphique.Initialiser(pos);
 
-            moteurGraphique->LightManager->SetColor(m_monstre.back().m_light,sf::Color(m_monstre.back().getPorteeLumineuse().rouge,m_monstre.back().getPorteeLumineuse().vert,m_monstre.back().getPorteeLumineuse().bleu));
 
             m_decor[1][positionCase.y][positionCase.x].setMonstre(m_monstre.size()-1);
 
@@ -3080,11 +3084,9 @@ void Map::Script_PlaySound(Jeu *jeu,Script *script,int noInstruction,int monstre
         position.x=(m_monstre[monstre].getCoordonnee().x-m_monstre[monstre].getCoordonnee().y-1)/5;
         position.y=(m_monstre[monstre].getCoordonnee().x+m_monstre[monstre].getCoordonnee().y)/5;
 
-        coordonnee positionHero;
-        positionHero.x=(hero->m_personnage.getCoordonnee().x-hero->m_personnage.getCoordonnee().y-1)/5;
-        positionHero.y=(hero->m_personnage.getCoordonnee().x+hero->m_personnage.getCoordonnee().y)/5;
-
-        m_ModeleMonstre[m_monstre[monstre].getModele()].JouerSon(script->m_instructions[noInstruction].valeurs.at(0),position,positionHero,true);
+        if(!m_ModeleMonstre[m_monstre[monstre].getModele()].m_tileset.empty())
+        if(!m_ModeleMonstre[m_monstre[monstre].getModele()].m_tileset[0].empty())
+            m_ModeleMonstre[m_monstre[monstre].getModele()].m_tileset[0][0].JouerSon(script->m_instructions[noInstruction].valeurs.at(0),position,true);
     }
 }
 

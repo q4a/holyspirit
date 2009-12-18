@@ -32,6 +32,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "tile.h"
 
+
 class Tileset
 {
 	public:
@@ -39,12 +40,12 @@ class Tileset
 	Tileset(std::string chemin);
 	Tileset(std::ifstream &fichier);
 	~Tileset();
-	Tileset operator=(const Tileset &tileset);
 
 	void Charger(std::string chemin);
-	void Charger(std::ifstream &fichier);
+	void Charger(std::ifstream &fichier, cDAT *reader = NULL);
+	void ChargerTiles(std::ifstream &fichier);
 
-	void JouerSon(int numeroSon,coordonnee position);
+	void JouerSon(int numeroSon,coordonnee position, bool unique = true);
 	void DeleteTiles();
 
 	int getImage(int tile);
@@ -62,10 +63,16 @@ class Tileset
 	float getTempsDuTile(int tile);
 	int getOpacityDuTile(int tile);
 	int getLayerDuTile(int tile);
+	int getOrdreDuTile(int tile);
+	int getAttaqueDuTile(int tile);
 	int getTaille();
 
 	int getMinimap(int tile);
 	const coordonnee &getPositionMinimap(int tile);
+
+	int getNombreSons();
+    int getNombreSonsSpecial(int);
+    int getSonSpecial(int, int);
 
 	std::string m_chemin;
 
@@ -73,6 +80,7 @@ class Tileset
 	std::vector <int> m_image;
 	std::vector <Tile> m_tile;
 	std::vector <int> m_sons;
+	std::vector <std::vector <int> > m_sonsSpecial;
 
 };
 

@@ -242,7 +242,6 @@ void c_Jeu::Animation(Jeu *jeu)
     positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
     positionHero.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
 
-
     if (tempsDepuisDerniereAnimation >= 0.02)
     {
         jeu->map->TestEvenement(jeu,tempsDepuisDerniereAnimation); // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
@@ -329,7 +328,6 @@ void c_Jeu::Animation(Jeu *jeu)
     }
 
     jeu->map->GererMiracle(&jeu->hero.m_personnage,jeu->hero.m_classe.miracles,tempsEcoule,positionHero,&jeu->hero);
-
 }
 void c_Jeu::Lumieres(Jeu *jeu)
 {
@@ -346,7 +344,7 @@ void c_Jeu::Lumieres(Jeu *jeu)
         configuration->RafraichirLumiere=true;
         tempsEcouleDepuisDernierCalculLumiere=0;
 
-        moteurGraphique->LightManager->Generate(jeu->hero.m_personnage.m_light);
+        moteurGraphique->LightManager->Generate(jeu->hero.m_personnage.m_entite_graphique.m_light);
     }
 }
 

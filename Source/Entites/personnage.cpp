@@ -63,7 +63,6 @@ int calculerAngle(int x, int y)
 
 Personnage::Personnage()
 {
-    m_animation                         = 0;
     m_angle                             = 45;
     m_monstre                           = false;
     frappeEnCours                       = false;
@@ -90,7 +89,6 @@ Personnage::Personnage()
     m_cible                             = NULL;
 
     m_angle                             = 0;
-    m_poseEnCours                       = 0;
 
     m_pousse.x                          = 0;
     m_pousse.y                          = 0;
@@ -162,46 +160,18 @@ Modele_Personnage::Modele_Personnage()
 
 void Modele_Personnage::Reinitialiser()
 {
-    for (int i=0;i<(int)m_pose.size();i++)
-    {
-        for (int j=0;j<(int)m_pose[i].size();j++)
-            m_pose[i][j].clear();
-        m_pose[i].clear();
-    }
-    m_pose.clear();
-
-    m_image.clear();
-    m_sons.clear();
+    m_tileset.clear();
 }
 
 Modele_Personnage::~Modele_Personnage()
 {
-    for (int i=0;i<(int)m_pose.size();i++)
-    {
-        for (int j=0;j<(int)m_pose[i].size();j++)
-            m_pose[i][j].clear();
-        m_pose[i].clear();
-    }
-    m_pose.clear();
-
-    m_image.clear();
-    m_sons.clear();
+    m_tileset.clear();
 }
 
 
 bool Modele_Personnage::Charger(string chemin)
 {
-    for (unsigned i=0;i<m_pose.size();i++)
-    {
-        for (unsigned j=0;j<m_pose[i].size();j++)
-            m_pose[i][j].clear();
-        m_pose[i].clear();
-    }
-
-    m_pose.clear();
-
-    m_image.clear();
-    m_sons.clear();
+    m_tileset.clear();
 
     console->Ajouter("",0);
     console->Ajouter("Chargement du personnage : "+chemin,0);
@@ -215,112 +185,40 @@ bool Modele_Personnage::Charger(string chemin)
         if (fichier)
         {
             char caractere;
-            do
-            {
-                fichier->get(caractere);
-                if (caractere=='*')
-                {
-                    string cheminImage;
-                    *fichier>>cheminImage;
 
-                    m_image.push_back(moteurGraphique->AjouterImage(reader.GetFile(cheminImage), reader.GetFileSize(cheminImage), cheminImage));
-                }
-                if (fichier->eof())
-                {
-                    console->Ajouter("Erreur : Personnage \" "+chemin+" \" Invalide",1);
-                    caractere='$';
-                }
+            m_tileset.push_back(std::vector <Tileset> (8, Tileset ()));
+            m_tileset.back().front().Charger(*fichier, &reader);
+
+            for (int j=1;j<8;j++)
+            {
+                m_tileset.back()[j] = m_tileset.back()[0];
+                m_tileset.back()[j].DeleteTiles();
+                m_tileset.back()[j].ChargerTiles(*fichier);
             }
-            while (caractere!='$');
 
-            m_sons.clear();
+            int etat=-1;
+            caractere=' ';
+
             do
             {
                 fichier->get(caractere);
+
                 if (caractere=='*')
                 {
-                    do
-                    {
-                        fichier->get(caractere);
-                        if (caractere=='m')
-                        {
-                            string cheminSon;
-                            *fichier>>cheminSon;
-                            m_sons.push_back(moteurSons->AjouterBuffer(cheminSon));
-                        }
-                        else if (caractere=='t')
-                        {
-                            int temp;
-                            *fichier>>temp;
-                            if(temp == 0)
-                                m_sons_touche.push_back(m_sons.size()-1);
-                        }
-                        if (fichier->eof())
-                        {
-                            console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
-                            caractere='$';
-                            m_caracteristique.maxVie=0;
-                        }
-                    }
-                    while (caractere!='$');
+                    fichier->putback(caractere);
 
+                    m_tileset.push_back(m_tileset.front());
+                    for (int j=0;j<8;j++)
+                    {
+                        m_tileset.back()[j].DeleteTiles();
+                        m_tileset.back()[j].ChargerTiles(*fichier);
+                    }
+
+                    etat++;
                     fichier->get(caractere);
                 }
-
-                if (fichier->eof())
-                {
-                    console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
-                    caractere='$';
-                    m_caracteristique.maxVie=0;
-                }
             }
             while (caractere!='$');
-
-
-            do
-            {
-                fichier->get(caractere);
-                if (caractere=='*')
-                {
-                    do
-                    {
-                        fichier->get(caractere);
-                        switch (caractere)
-                        {
-                        case 'r' :
-                            *fichier>>m_porteeLumineuse.rouge;
-                            break;
-                        case 'v' :
-                            *fichier>>m_porteeLumineuse.vert;
-                            break;
-                        case 'b' :
-                            *fichier>>m_porteeLumineuse.bleu;
-                            break;
-                        case 'i' :
-                            *fichier>>m_porteeLumineuse.intensite;
-                            break;
-                        }
-
-                        if (fichier->eof())
-                        {
-                            console->Ajouter("Erreur : Personnage \" "+chemin+" \" Invalide",1);
-                            caractere='$';
-                        }
-
-                    }
-                    while (caractere!='$');
-                    fichier->get(caractere);
-                }
-                if (fichier->eof())
-                {
-                    console->Ajouter("Erreur : Personnage \" "+chemin+" \" Invalide",1);
-                    caractere='$';
-                }
-
-            }
-            while (caractere!='$');
-
-            ChargerPose(fichier);
 
             fichier->close();
         }
@@ -342,125 +240,6 @@ bool Modele_Personnage::Charger(string chemin)
 
 
     return true;
-}
-
-void Modele_Personnage::ChargerPose(ifstream *fichier)
-{
-    int etat=-1;
-    char caractere=' ';
-
-    do
-    {
-        fichier->get(caractere);
-
-        if (caractere=='*')
-        {
-            fichier->putback(caractere);
-
-            etat++;
-            m_pose.push_back(vector<vector<Pose> >(0,vector<Pose>(0,Pose ())));
-
-            fichier->get(caractere);
-
-            for (int j=0;j<8;j++)
-            {
-                m_pose[etat].push_back(vector<Pose> (0,Pose ()));
-                do
-                {
-                    if (caractere=='*')
-                    {
-                        coordonnee position(-1,-1,0,0),centre(-1000,-1000,-1,-1);
-                        int animation=0,son=-1,image=0,attaque=-1,lumiere=m_porteeLumineuse.intensite,ordre=0, couche = 0;
-                        float tempsAnimation=0.075;
-
-                        do
-                        {
-                            fichier->get(caractere);
-                            switch (caractere)
-                            {
-                            case 'x':
-                                *fichier>>position.x;
-                                break;
-                            case 'y':
-                                *fichier>>position.y;
-                                break;
-                            case 'w':
-                                *fichier>>position.w;
-                                break;
-                            case 'h':
-                                *fichier>>position.h;
-                                break;
-                            case 'a':
-                                *fichier>>animation;
-                                break;
-                            case 't':
-                                *fichier>>tempsAnimation;
-                                break;
-                            case 's':
-                                *fichier>>son;
-                                break;
-                            case 'i':
-                                *fichier>>image;
-                                break;
-                            case 'd':
-                                *fichier>>attaque;
-                                break;
-                            case 'l':
-                                *fichier>>lumiere;
-                                break;
-
-                            case 'o':
-                                *fichier>>ordre;
-                                break;
-
-                            case 'c':
-                                fichier->get(caractere);
-                                if (caractere=='x') *fichier>>centre.x;
-                                else *fichier>>centre.y;
-                                break;
-
-                            case 'u':
-                                *fichier>>couche;
-                                break;
-                            }
-                            if (fichier->eof())
-                            {
-                                console->Ajouter("Erreur : Entité Invalide",1);
-                                caractere='$';
-                                m_caracteristique.maxVie=0;
-                            }
-                        }
-                        while (caractere!='$');
-
-                        if (centre.x==-1000)
-                            centre.x=position.w/2;
-                        if (centre.y==-1000)
-                            centre.y=position.h-32;
-
-                        m_pose[etat][j].push_back(Pose ());
-                        m_pose[etat][j].back().setPose(position,centre,animation,son,image,attaque,lumiere,tempsAnimation,ordre,couche);
-                        fichier->get(caractere);
-                        if (fichier->eof())
-                        {
-                            console->Ajouter("Erreur : Entité Invalide",1);
-                            caractere='$';
-                            m_caracteristique.maxVie=0;
-                        }
-                    }
-                    fichier->get(caractere);
-                    if (fichier->eof())
-                    {
-                        console->Ajouter("Erreur : Entité Invalide",1);
-                        caractere='$';
-                        m_caracteristique.maxVie=0;
-                    }
-                }
-                while (caractere!='$');
-            }
-            fichier->get(caractere);
-        }
-    }
-    while (caractere!='$');
 }
 
 void Personnage::Sauvegarder(ofstream &fichier)
@@ -488,7 +267,7 @@ void Personnage::Sauvegarder(ofstream &fichier)
             <<" r"  <<m_caracteristique.rang
             <<" a"  <<m_caracteristique.pointAme
             <<" t"  <<m_caracteristique.modificateurTaille
-            <<" p"  <<m_poseEnCours
+            <<" p"  <<m_entite_graphique.m_noAnimation
             <<" e"  <<m_etat
             <<" g"  <<m_angle
             <<" lr" <<m_porteeLumineuse.rouge
@@ -522,11 +301,10 @@ void Personnage::Sauvegarder(ofstream &fichier)
 
 int Personnage::getOrdre(Modele_Personnage *modele)
 {
-    if (modele->m_pose.size()>0)
+    if (modele->m_tileset.size()>0)
         if (m_etat>=0&&m_etat<NOMBRE_ETAT)
-            if ((int)(m_angle/45)>=0&&(int)(m_angle/45)<(int)modele->m_pose[m_etat].size())
-                if (m_poseEnCours>=0&&m_poseEnCours<(int)modele->m_pose[m_etat][(int)(m_angle/45)].size())
-                    return modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getOrdre();
+            if ((int)(m_angle/45)>=0&&(int)(m_angle/45)<(int)modele->m_tileset[m_etat].size())
+                return modele->m_tileset[m_etat][(int)(m_angle/45)].getOrdreDuTile(m_entite_graphique.m_noAnimation);
 
     return -10;
 }
@@ -534,10 +312,13 @@ int Personnage::getOrdre(Modele_Personnage *modele)
 void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,bool surbrillance, bool sansEffet)
 {
     if (modele!=NULL)
-        if (modele->m_pose.size()>0)
+        if (modele->m_tileset.size()>0)
             if ((int)(m_angle/45)>=0&&(int)(m_angle/45)<8)
             {
-                Sprite sprite;
+                m_entite_graphique.m_sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
+                m_entite_graphique.m_sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
+                moteurGraphique->AjouterEntiteGraphique(&m_entite_graphique);
+                /*Sprite sprite;
 
                 if (configuration->Ombre&&modele->m_ombre)
                 {
@@ -584,7 +365,7 @@ void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,boo
                             sprite.FlipX(false);
 
 
-                            sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE/*+dimensionsMap.y*64*/));
+                            sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
                             sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
 
 
@@ -616,7 +397,7 @@ void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,boo
                                     moteurGraphique->AjouterCommande(&sprite,0,1);
                                 }
                             }
-                        }
+                        }*/
             }
 
     if(!sansEffet)
@@ -659,6 +440,15 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception, bool noD
         casesVisitee.setTailleListe(0);
 
         casesVisitee.AjouterCase(depart, -1);
+
+        if (arrivee.y < 0)
+            arrivee.y = depart.y - 1;
+        if (arrivee.x < 0)
+            arrivee.x = depart.x - 1;
+        if (arrivee.y >= 10)
+            arrivee.y = depart.y + 1;
+        if (arrivee.x >= 10)
+            arrivee.x = depart.x + 1;
 
         if (arrivee.y>=0&&arrivee.x>=0&&arrivee.y<10&&arrivee.x<10)
             if (map[arrivee.y][arrivee.x].collision)
@@ -772,20 +562,6 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception, bool noD
                 else
                     m_arrivee.y = m_positionCase.y;
 
-                /*float m = atan2(m_arrivee.y - m_positionCase.y, m_arrivee.x - m_positionCase.x);
-
-                if( m <= 3*M_PI/8 && m >= -3*M_PI/8 )
-                    m_arrivee.x = m_positionCase.x + 1;
-
-                if( m >= 5*M_PI/8 && m <= M_PI  ||  m <= -5*M_PI/8 && m >= -M_PI )
-                    m_arrivee.x = m_positionCase.x - 1;
-
-                if( m >= M_PI/8 && m <= 7*M_PI/8 )
-                    m_arrivee.y = m_positionCase.y + 1;
-
-                if( m <= -M_PI/8 && m >= -7*M_PI/8 )
-                    m_arrivee.y = m_positionCase.y - 1;*/
-
                 for(int i = 0 ; i < 10 ; ++i)
                 for(int j = 0 ; j < 10 ; ++j)
                     map[i][j].valeur = -1, map[i][j].dist = 3, map[i][j].cases = -1;
@@ -797,7 +573,7 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception, bool noD
                 m_arrivee=m_positionCase;
                 m_cheminFinal=m_positionCase;
                 if (m_etat!=0)
-                    m_etat=0,m_poseEnCours=0,frappeEnCours=0;
+                    m_etat=0,m_entite_graphique.m_noAnimation=0,frappeEnCours=0;
             }
         }
 
@@ -836,7 +612,7 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap)
     pos.x=((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE);
     pos.y=((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)+64;
 
-    moteurGraphique->LightManager->SetPosition(m_light,pos);
+    moteurGraphique->LightManager->SetPosition(m_entite_graphique.m_light,pos);
 
     if((m_pousse.x != 0 || m_pousse.y != 0))
     {
@@ -895,7 +671,7 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap)
             if (m_positionCase.y!=m_cheminFinal.y||m_positionCase.x!=m_cheminFinal.x)
             {
                 if (m_etat!=1 && !m_etatForce)
-                    m_etat=1,m_poseEnCours=0;
+                    m_etat=1,m_entite_graphique.m_noAnimation=0;
 
                 m_positionPixelPrecedente.x=(int)m_positionPixel.x;
                 m_positionPixelPrecedente.y=(int)m_positionPixel.y;
@@ -963,7 +739,7 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap)
             else if(!m_etatForce)
             {
                 if (m_etat!=0)
-                    m_poseEnCours=0;
+                    m_entite_graphique.m_noAnimation=0;
 
                 m_etat=0,frappeEnCours=0;
             }
@@ -995,18 +771,21 @@ void Personnage::InfligerDegats(float degats, Modele_Personnage *modele)
     m_cible = NULL;
 
     if(modele != NULL)
-        if(modele->getNombreSonsTouche() > 0)
+    if(!modele->m_tileset.empty())
+    if(!modele->m_tileset[0].empty())
+        if(modele->m_tileset[0][0].getNombreSonsSpecial(0) > 0)
         {
-            int random = rand()%modele->getNombreSonsTouche();
+            int random = rand()%modele->m_tileset[0][0].getNombreSonsSpecial(0);
+
             coordonnee position;
             position.x=(m_positionCase.x-m_positionCase.y-1)/5;
             position.y=(m_positionCase.x+m_positionCase.y)/5;
 
-            modele->JouerSon(modele->getSonTouche(random),position,coordonnee (1,1), true);
+            modele->m_tileset[0][0].JouerSon(modele->m_tileset[0][0].getSonSpecial(0, random),position, true);
         }
 
     if (m_caracteristique.vie<=0&&m_etat!=3)
-        m_poseEnCours=0,m_etat=3;
+        m_entite_graphique.m_noAnimation=0,m_etat=3;
 
     m_touche = true;
 }
@@ -1074,16 +853,22 @@ int Personnage::Animer(Modele_Personnage *modele,float temps,coordonnee position
     if(nombreInactif == (int)m_effets.size() || !EnVie())
         m_effets.clear();
 
-    m_animation+=temps;
-
-    float tempsAnimation=0.075;
-
     if(!m_stunned)
-    if(m_etat >= 0 && m_etat < (int)modele->m_pose.size())
-    if((int)(m_angle/45) >= 0 && (int)(m_angle/45) < (int)modele->m_pose[m_etat].size())
-    if(m_poseEnCours >= 0 && m_poseEnCours < (int)modele->m_pose[m_etat][(int)(m_angle/45)].size())
+    if(m_etat >= 0 && m_etat < (int)modele->m_tileset.size())
+    if((int)(m_angle/45) >= 0 && (int)(m_angle/45) < (int)modele->m_tileset[m_etat].size())
     {
-        if (modele->m_pose.size()>0)
+
+        m_entite_graphique.m_tileset    = &modele->m_tileset[m_etat][(int)(m_angle/45)];
+        m_entite_graphique.m_couche     = 10;
+        m_entite_graphique.Animer(temps);
+        m_entite_graphique.Generer();
+
+        m_entite_graphique.m_sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
+        if (m_porteeLumineuse.intensite>0)
+            m_entite_graphique.m_sprite.SetColor(sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu, 255));
+        else
+            m_entite_graphique.m_sprite.SetColor(sf::Color(255,255,255, 255));
+        /*if (modele->m_pose.size()>0)
             tempsAnimation = modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getTempsAnimation();
 
         if (modele->m_pose.size()>0&&tempsAnimation>0)
@@ -1134,7 +919,7 @@ int Personnage::Animer(Modele_Personnage *modele,float temps,coordonnee position
                     moteurGraphique->LightManager->SetIntensity(m_light,(int)inte);
                     moteurGraphique->LightManager->SetRadius(m_light,(int)m_porteeLumineuse.intensite*2);
                 }
-            }
+            }*/
     }
     return retour;
 }
@@ -1143,13 +928,13 @@ void Personnage::Frappe(coordonnee direction,coordonnee position)
 {
     if (m_etat<2)
     {
-        m_animation = 0;
+        m_entite_graphique.m_animation = 0;
         m_etat=2;
-        m_poseEnCours=0;
+        m_entite_graphique.m_noAnimation=0;
     }
 
     if(!frappeEnCours)
-        m_poseEnCours=0;
+        m_entite_graphique.m_noAnimation=0;
 
     frappeEnCours=1;
 
@@ -1193,8 +978,8 @@ int Personnage::AjouterEffet(Tileset *tileset, int type, int compteur, int info1
     m_effets.back().m_effet.m_compteur  = compteur;
     m_effets.back().m_effet.m_position  = m_positionPixel;
     m_effets.back().m_effet.m_couche    = 10;
-    m_effets.back().m_effet.Initialiser(coordonnee ((m_positionPixel.x - m_positionPixel.y) * 64 / COTE_TILE,
-                                                   ((m_positionPixel.x + m_positionPixel.y) * 64 / COTE_TILE) * 0.5));
+    m_effets.back().m_effet.Initialiser(coordonnee ((int)((m_positionPixel.x - m_positionPixel.y) * 64 / COTE_TILE),
+                                                    (int)((m_positionPixel.x + m_positionPixel.y) * 32 / COTE_TILE)));
 
     m_effets.back().m_type              = type;
     m_effets.back().m_info1             = info1;
@@ -1212,20 +997,6 @@ int Personnage::AjouterEffet(Tileset *tileset, int type, int compteur, int info1
 
     return m_effets.size() - 1;
 }
-
-
-void Modele_Personnage::JouerSon(int numeroSon,coordonnee position,coordonnee positionHero,bool uniqueSound)
-{
-    if (numeroSon>=0 && numeroSon<(int)m_sons.size())
-    {
-        coordonnee pos;
-        pos.x=-position.x;
-        pos.y=position.y;
-        moteurSons->JouerSon(m_sons[numeroSon],pos,uniqueSound);
-    }
-}
-
-
 
 void Modele_Personnage::setPorteeLumineuse(Lumiere  lumiere)
 {
@@ -1250,7 +1021,7 @@ void Personnage::setVitesse(float vitesse)
 
 void Personnage::setEtat(int etat)
 {
-    m_etat=etat,m_poseEnCours=0,frappeEnCours=false;
+    m_etat=etat,m_entite_graphique.m_noAnimation=0,frappeEnCours=false;
 }
 void Personnage::setJustEtat(int etat)
 {
@@ -1271,7 +1042,7 @@ void Personnage::addAngle(int angle)
 
 void Personnage::setPose(int pose)
 {
-    m_poseEnCours=pose;
+    m_entite_graphique.m_noAnimation=pose;
 }
 void Personnage::setAngle(int angle)
 {
@@ -1296,7 +1067,7 @@ void Personnage::setCoordonnee(coordonnee nouvellesCoordonnees)
     m_cheminFinal.y=m_positionCase.y;
 
     //m_angle=0;
-    m_poseEnCours=0;
+    m_entite_graphique.m_noAnimation=0;
 
     //moteurGraphique->LightManager->SetPosition(m_light,sf::Vector2f(m_positionPixel.x,m_positionPixel.y));
 
@@ -1382,24 +1153,6 @@ const coordonnee &Personnage::getDepart()
     return m_depart;
 }
 
-int Modele_Personnage::getNombreSons()
-{
-    return m_sons.size();
-}
-
-int Modele_Personnage::getNombreSonsTouche()
-{
-    return m_sons_touche.size();
-}
-
-int Modele_Personnage::getSonTouche(int son)
-{
-    if(son >= 0 && son < (int)m_sons_touche.size())
-        return m_sons_touche[son];
-
-    return -1;
-}
-
 const coordonnee &Personnage::getCoordonnee()
 {
     return m_positionCase;
@@ -1440,7 +1193,7 @@ int Personnage::getAngle()
 }
 int Personnage::getPose()
 {
-    return m_poseEnCours;
+    return m_entite_graphique.m_noAnimation;
 }
 bool Personnage::getErreurPathfinding()
 {

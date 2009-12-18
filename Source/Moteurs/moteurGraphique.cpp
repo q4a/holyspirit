@@ -632,9 +632,9 @@ int MoteurGraphique::AjouterTileset(std::ifstream &fichier, std::string chemin,i
     if(chemin != "")
         for (unsigned i=0; i < m_tileset.size(); i++)
         {
-            if (m_tileset[i].nom==chemin)
+            if (m_tileset[i].nom == chemin)
             {
-                m_tileset[i].importance=importance;
+                m_tileset[i].importance = importance;
                 return i;
             }
 
@@ -642,7 +642,7 @@ int MoteurGraphique::AjouterTileset(std::ifstream &fichier, std::string chemin,i
             {
                 m_tileset[i].nom = chemin;
                 m_tileset[i].tileset = new Tileset (fichier);
-                m_tileset[i].importance=importance;
+                m_tileset[i].importance = importance;
 
                 return i;
             }
@@ -653,7 +653,7 @@ int MoteurGraphique::AjouterTileset(std::ifstream &fichier, std::string chemin,i
     m_tileset.back().nom = chemin;
     m_tileset.back().tileset = new Tileset(fichier);
     m_tileset.back().tileset->m_chemin = chemin;
-    m_tileset.back().importance=importance;
+    m_tileset.back().importance = importance;
 
     return m_tileset.size()-1;
 }

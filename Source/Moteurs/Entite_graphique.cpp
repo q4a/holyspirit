@@ -85,6 +85,7 @@ void Entite_graphique::Initialiser(coordonnee pos)
         Generer();
 
         if(configuration->Lumiere)
+        if(m_tileset->getTaille() > 0)
         {
             if (m_tileset->getLumiereDuTile(m_noAnimation).intensite<0)
             {
@@ -113,16 +114,27 @@ void Entite_graphique::Initialiser(coordonnee pos)
             }
            else/* if (m_tileset->getLumiereDuTile(m_noAnimation).intensite > 0)*/
             {
-                sf::Vector2f position;
-                position.x = pos.x;
-                position.y = pos.y;
 
-                //if (m_tileset->getAnimationTile(m_noAnimation) != -1)
-                    m_light = moteurGraphique->LightManager->Add_Dynamic_Light(position,m_tileset->getLumiereDuTile(m_noAnimation).intensite,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,6,
-                                                                               sf::Color(m_tileset->getLumiereDuTile(m_noAnimation).rouge,m_tileset->getLumiereDuTile(m_noAnimation).vert,m_tileset->getLumiereDuTile(m_noAnimation).bleu));
-                //else
-                  //  m_light = moteurGraphique->LightManager->Add_Static_Light (position,m_tileset->getLumiereDuTile(m_noAnimation).intensite,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,6,
-                    //                                                            sf::Color(m_tileset->getLumiereDuTile(m_noAnimation).rouge,m_tileset->getLumiereDuTile(m_noAnimation).vert,m_tileset->getLumiereDuTile(m_noAnimation).bleu));
+                bool light = false;
+
+                for(int i = 0 ; i < m_tileset->getTaille(); ++i)
+                    if(m_tileset->getLumiereDuTile(i).intensite > 0)
+                        light = true;
+
+                if(light)
+                {
+
+                    sf::Vector2f position;
+                    position.x = pos.x;
+                    position.y = pos.y;
+
+                    //if (m_tileset->getAnimationTile(m_noAnimation) != -1)
+                        m_light = moteurGraphique->LightManager->Add_Dynamic_Light(position,m_tileset->getLumiereDuTile(m_noAnimation).intensite,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,6,
+                                                                                   sf::Color(m_tileset->getLumiereDuTile(m_noAnimation).rouge,m_tileset->getLumiereDuTile(m_noAnimation).vert,m_tileset->getLumiereDuTile(m_noAnimation).bleu));
+                    //else
+                      //  m_light = moteurGraphique->LightManager->Add_Static_Light (position,m_tileset->getLumiereDuTile(m_noAnimation).intensite,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,6,
+                        //                                                            sf::Color(m_tileset->getLumiereDuTile(m_noAnimation).rouge,m_tileset->getLumiereDuTile(m_noAnimation).vert,m_tileset->getLumiereDuTile(m_noAnimation).bleu));
+                }
             }
         }
     }
@@ -132,25 +144,28 @@ void Entite_graphique::Generer()
 {
     if(m_tileset != NULL)
     {
-        coordonnee positionPartieDecor = m_tileset->getPositionDuTile(m_noAnimation);
+        if(m_tileset->getTaille() > 0)
+        {
+            coordonnee positionPartieDecor = m_tileset->getPositionDuTile(m_noAnimation);
 
-        m_sprite.SetImage(*moteurGraphique->getImage(m_tileset->getImage(m_noAnimation)));
-        m_sprite.SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
+            m_sprite.SetImage(*moteurGraphique->getImage(m_tileset->getImage(m_noAnimation)));
+            m_sprite.SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
 
-        m_sprite.SetOrigin(m_tileset->getCentreDuTile(m_noAnimation).x,m_tileset->getCentreDuTile(m_noAnimation).y);
+            m_sprite.SetOrigin(m_tileset->getCentreDuTile(m_noAnimation).x,m_tileset->getCentreDuTile(m_noAnimation).y);
 
-        m_sprite.SetColor(sf::Color(255,255,255,m_tileset->getOpacityDuTile(m_noAnimation)));
+            m_sprite.SetColor(sf::Color(m_sprite.GetColor().r,m_sprite.GetColor().g,m_sprite.GetColor().b,m_tileset->getOpacityDuTile(m_noAnimation)));
 
-        m_decalCouche = m_tileset->getLayerDuTile(m_noAnimation);
+            m_decalCouche = m_tileset->getLayerDuTile(m_noAnimation);
 
-        m_shadow = false;
-        if (configuration->Ombre)
-            if (m_tileset->getOmbreDuTile(m_noAnimation))
-                m_shadow = true;
+            m_shadow = false;
+            if (configuration->Ombre)
+                if (m_tileset->getOmbreDuTile(m_noAnimation))
+                    m_shadow = true;
 
-        m_reflect = false;
-        if (configuration->Reflection)
-            if (m_tileset->getReflectionDuTile(m_noAnimation))
-                m_reflect = true;
+            m_reflect = false;
+            if (configuration->Reflection)
+                if (m_tileset->getReflectionDuTile(m_noAnimation))
+                    m_reflect = true;
+        }
     }
 }

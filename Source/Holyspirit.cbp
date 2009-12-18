@@ -167,8 +167,6 @@
 		<Unit filename="Entites\objet.h" />
 		<Unit filename="Entites\personnage.cpp" />
 		<Unit filename="Entites\personnage.h" />
-		<Unit filename="Entites\pose.cpp" />
-		<Unit filename="Entites\pose.h" />
 		<Unit filename="Entites\quete.cpp" />
 		<Unit filename="Entites\quete.h" />
 		<Unit filename="Entites\script.cpp" />
