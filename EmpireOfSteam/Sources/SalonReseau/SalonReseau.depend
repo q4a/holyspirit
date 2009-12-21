@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1261408351 source:e:\c++\shareware\empire of steam\sources\salonreseau\main.cpp
+1261409149 source:e:\c++\shareware\empire of steam\sources\salonreseau\main.cpp
 	<SFML/Network.hpp>
 	<iostream>
 	<SFML/Network.hpp>
