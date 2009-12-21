@@ -150,7 +150,7 @@ void ThreadConnectFunction(void* UserData)
     sf::SocketTCP Client;
 
     sf::SocketTCP Listener;
-    if (!Listener.Listen(4567))
+    if (!Listener.Listen(7777))
     {
         // Erreur...
     }
@@ -211,7 +211,7 @@ int main()
         std::vector <sf::IPAddress> ClientAddress;
 
         sf::SocketTCP Listener;
-        if (!Listener.Listen(4567))
+        if (!Listener.Listen(7777))
         {
             // Erreur...
         }
@@ -274,7 +274,7 @@ int main()
     else
     {
         sf::SocketTCP Client;
-        if (Client.Connect(4567, IPHost) != sf::Socket::Done)
+        if (Client.Connect(7777, IPHost) != sf::Socket::Done)
             cout << "Cannot connecting" << endl;
         else
             cout << "Connection estalished" << endl;
