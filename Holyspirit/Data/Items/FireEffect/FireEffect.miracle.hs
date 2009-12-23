@@ -3,12 +3,6 @@ $
 $
 $
 $
-//Images
-	*Data/Items/FireEffect/FireEffect.png
-$
-//Sons
-	*Data/Sounds/39016_wildweasel_DSFIRXPL.wav
-$
 //Effets
 	* t-1 l1 l3 $
 	* t2 l2 ia0 ib0 $
@@ -17,7 +11,13 @@ $
 $
 //Séquences
 	*
-	//Tiles de la séquence
+		//Images
+			*Data/Items/FireEffect/FireEffect.png
+		$
+		//Sons
+			* mData/Sounds/39016_wildweasel_DSFIRXPL.wav $
+		$
+		//Tiles de la séquence
 		* x0 y0 w128 h128 i0 a1 lr255 lv128 lb0 li0 n0.04 $
 		* x128 y0 w128 h128 i0 a2 lr255 lv128 lb0 li64 n0.04 $
 		* x256 y0 w128 h128 i0 a3 lr255 lv128 lb0 li96 n0.04 $

@@ -10,12 +10,6 @@ $
 $
 	* F%0 $
 $
-//Images
-	*Data/Entities/Heroes/Crusader/Miracles/Lazare/Lazare.png
-$
-//Sons
-	*Data/Sounds/39016_wildweasel_DSFIRXPL.wav
-$
 //Effets
 	* t8 l1 l4 ia-1 ib0 ic0 $
 	* t5 l2 ia3 $
@@ -27,7 +21,12 @@ $
 $
 //Séquences
 	*
-	//Tiles de la séquence
+		//Images
+		*Data/Entities/Heroes/Crusader/Miracles/Lazare/Lazare.png
+		$
+		//Sons
+		$
+			//Tiles de la séquence
 		* x0 y0 w128 h256 ey160 a1 i0 n0.04 p0 $
 		* x128 y0 w128 h256 ey160 a2 i0 n0.04 p16 $
 		* x256 y0 w128 h256 ey160 a3 i0 n0.04 p32 $
@@ -64,7 +63,12 @@ $
 	$
 	
 	*
-	//Tiles de la séquence
+		//Images
+			*Data/Entities/Heroes/Crusader/Miracles/Lazare/Lazare.png
+		$
+		//Sons
+		$
+		//Tiles de la séquence
 		* x896 y256 w128 h256 ey160 a15 i0 n0.04 p240 $	
 
 		* x0 y0 w128 h256 ey160 a1 i0 n0.04 p0 $

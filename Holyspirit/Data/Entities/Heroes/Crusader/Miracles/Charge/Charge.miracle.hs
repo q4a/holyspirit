@@ -18,19 +18,11 @@ $
 $
 	* f%0 e0 $
 $
-//Images
-	*Data/Entities/Heroes/Crusader/Miracles/Charge/Blast.png
-	*Data/Entities/Heroes/Crusader/Miracles/Charge/CineticEffect.png
-$
-//Sons
-	*Data/Sounds/9906__Snoman__grass3.wav
-	*Data/Sounds/12658__mich3d__Whoosh_Swish_03.wav
-$
 //Effets
-	* t3 s9 ia3 l1 $
+	* t3 s9 ia1 l1 $
 	
-	* t12 l5 l2 ia4 ib2 ic1 $
-
+	* t12 l5 ia4 ib2 ic10 $
+	
 	
 	* t10 l3 l4 l14  ia1 ib-1 $
 	* t7 ia8 ic1 id1 $
@@ -72,6 +64,10 @@ $
 $
 //Séquences
 	*
+		*Data/Entities/Heroes/Crusader/Miracles/Charge/Blast.png
+		$
+		//Sons
+		$
 		* x0 	y0 	w192 h128 ey32 i0 a1 n0.06 	$
 		* x192 	y0 	w192 h128 ey32 i0 a2 n0.06 	$
 		* x384 	y0 	w192 h128 ey32 i0 a3 n0.06 	$
@@ -84,89 +80,123 @@ $
 
 
 	*
-		* x0 y0 w128 h128 i1 a1 n0.03 	 p128 	ey88 $
-		* x0 y0 w128 h128 i1 a2 n0.03    p112 	ey88 $
-		* x0 y0 w128 h128 i1 a3 n0.03	 p96 	ey88 $
-		* x0 y0 w128 h128 i1 a4 n0.03	 p80 	ey88 $
-		* x0 y0 w128 h128 i1 a5 n0.03	 p64 	ey88 $
-		* x0 y0 w128 h128 i1 a6 n0.03 	 p48 	ey88 $
-		* x0 y0 w128 h128 i1 a7 n0.03    p32 	ey88 $
-		* x0 y0 w128 h128 i1 a7 n0.03    p16 	ey88 $
+		*Data/Entities/Heroes/Crusader/Miracles/Charge/CineticEffect.png
+		$
+		//Sons
+		$
+		* x0 y0 w128 h128 i0 a1 n0.03 	 p128 	ey88 $
+		* x0 y0 w128 h128 i0 a2 n0.03    p112 	ey88 $
+		* x0 y0 w128 h128 i0 a3 n0.03	 p96 	ey88 $
+		* x0 y0 w128 h128 i0 a4 n0.03	 p80 	ey88 $
+		* x0 y0 w128 h128 i0 a5 n0.03	 p64 	ey88 $
+		* x0 y0 w128 h128 i0 a6 n0.03 	 p48 	ey88 $
+		* x0 y0 w128 h128 i0 a7 n0.03    p32 	ey88 $
+		* x0 y0 w128 h128 i0 a7 n0.03    p16 	ey88 $
 	$
 	*
-		* x128 y0 w128 h128 i1 a1 n0.03  p128 	ey88 $
-		* x128 y0 w128 h128 i1 a2 n0.03  p112 	ey88 $
-		* x128 y0 w128 h128 i1 a3 n0.03	 p96 	ey88 $
-		* x128 y0 w128 h128 i1 a4 n0.03	 p80 	ey88 $
-		* x128 y0 w128 h128 i1 a5 n0.03	 p64 	ey88 $
-		* x128 y0 w128 h128 i1 a6 n0.03  p48 	ey88 $
-		* x128 y0 w128 h128 i1 a7 n0.03  p32 	ey88 $
-		* x128 y0 w128 h128 i1 a7 n0.03  p16 	ey88 $
+		*Data/Entities/Heroes/Crusader/Miracles/Charge/CineticEffect.png
+		$
+		//Sons
+		$
+		* x128 y0 w128 h128 i0 a1 n0.03  p128 	ey88 $
+		* x128 y0 w128 h128 i0 a2 n0.03  p112 	ey88 $
+		* x128 y0 w128 h128 i0 a3 n0.03	 p96 	ey88 $
+		* x128 y0 w128 h128 i0 a4 n0.03	 p80 	ey88 $
+		* x128 y0 w128 h128 i0 a5 n0.03	 p64 	ey88 $
+		* x128 y0 w128 h128 i0 a6 n0.03  p48 	ey88 $
+		* x128 y0 w128 h128 i0 a7 n0.03  p32 	ey88 $
+		* x128 y0 w128 h128 i0 a7 n0.03  p16 	ey88 $
 	$
 	*
-		* x256 y0 w128 h128 i1 a1 n0.03  p128 	ey88 $
-		* x256 y0 w128 h128 i1 a2 n0.03  p112 	ey88 $
-		* x256 y0 w128 h128 i1 a3 n0.03	 p96 	ey88 $
-		* x256 y0 w128 h128 i1 a4 n0.03	 p80 	ey88 $
-		* x256 y0 w128 h128 i1 a5 n0.03	 p64 	ey88 $
-		* x256 y0 w128 h128 i1 a6 n0.03  p48 	ey88 $
-		* x256 y0 w128 h128 i1 a7 n0.03  p32 	ey88 $
-		* x256 y0 w128 h128 i1 a7 n0.03  p16 	ey88 $
+		*Data/Entities/Heroes/Crusader/Miracles/Charge/CineticEffect.png
+		$
+		//Sons
+		$
+		* x256 y0 w128 h128 i0 a1 n0.03  p128 	ey88 $
+		* x256 y0 w128 h128 i0 a2 n0.03  p112 	ey88 $
+		* x256 y0 w128 h128 i0 a3 n0.03	 p96 	ey88 $
+		* x256 y0 w128 h128 i0 a4 n0.03	 p80 	ey88 $
+		* x256 y0 w128 h128 i0 a5 n0.03	 p64 	ey88 $
+		* x256 y0 w128 h128 i0 a6 n0.03  p48 	ey88 $
+		* x256 y0 w128 h128 i0 a7 n0.03  p32 	ey88 $
+		* x256 y0 w128 h128 i0 a7 n0.03  p16 	ey88 $
 	$
 	*
-		* x384 y0 w128 h128 i1 a1 n0.03  p128 	ey88 $
-		* x384 y0 w128 h128 i1 a2 n0.03  p112 	ey88 $
-		* x384 y0 w128 h128 i1 a3 n0.03	 p96 	ey88 $
-		* x384 y0 w128 h128 i1 a4 n0.03	 p80 	ey88 $
-		* x384 y0 w128 h128 i1 a5 n0.03	 p64 	ey88 $
-		* x384 y0 w128 h128 i1 a6 n0.03  p48 	ey88 $
-		* x384 y0 w128 h128 i1 a7 n0.03  p32 	ey88 $
-		* x384 y0 w128 h128 i1 a7 n0.03  p16 	ey88 $
+		*Data/Entities/Heroes/Crusader/Miracles/Charge/CineticEffect.png
+		$
+		//Sons
+		$
+		* x384 y0 w128 h128 i0 a1 n0.03  p128 	ey88 $
+		* x384 y0 w128 h128 i0 a2 n0.03  p112 	ey88 $
+		* x384 y0 w128 h128 i0 a3 n0.03	 p96 	ey88 $
+		* x384 y0 w128 h128 i0 a4 n0.03	 p80 	ey88 $
+		* x384 y0 w128 h128 i0 a5 n0.03	 p64 	ey88 $
+		* x384 y0 w128 h128 i0 a6 n0.03  p48 	ey88 $
+		* x384 y0 w128 h128 i0 a7 n0.03  p32 	ey88 $
+		* x384 y0 w128 h128 i0 a7 n0.03  p16 	ey88 $
 	$
 	*
-		* x512 y0 w128 h128 i1 a1 n0.03  p128 	ey88 $
-		* x512 y0 w128 h128 i1 a2 n0.03  p112 	ey88 $
-		* x512 y0 w128 h128 i1 a3 n0.03	 p96 	ey88 $
-		* x512 y0 w128 h128 i1 a4 n0.03	 p80 	ey88 $
-		* x512 y0 w128 h128 i1 a5 n0.03	 p64 	ey88 $
-		* x512 y0 w128 h128 i1 a6 n0.03  p48 	ey88 $
-		* x512 y0 w128 h128 i1 a7 n0.03  p32 	ey88 $
-		* x512 y0 w128 h128 i1 a7 n0.03  p16 	ey88 $
+		*Data/Entities/Heroes/Crusader/Miracles/Charge/CineticEffect.png
+		$
+		//Sons
+		$
+		* x512 y0 w128 h128 i0 a1 n0.03  p128 	ey88 $
+		* x512 y0 w128 h128 i0 a2 n0.03  p112 	ey88 $
+		* x512 y0 w128 h128 i0 a3 n0.03	 p96 	ey88 $
+		* x512 y0 w128 h128 i0 a4 n0.03	 p80 	ey88 $
+		* x512 y0 w128 h128 i0 a5 n0.03	 p64 	ey88 $
+		* x512 y0 w128 h128 i0 a6 n0.03  p48 	ey88 $
+		* x512 y0 w128 h128 i0 a7 n0.03  p32 	ey88 $
+		* x512 y0 w128 h128 i0 a7 n0.03  p16 	ey88 $
 	$
 	*
-		* x640 y0 w128 h128 i1 a1 n0.03  p128 	ey88 $
-		* x640 y0 w128 h128 i1 a2 n0.03  p112 	ey88 $
-		* x640 y0 w128 h128 i1 a3 n0.03	 p96 	ey88 $
-		* x640 y0 w128 h128 i1 a4 n0.03	 p80 	ey88 $
-		* x640 y0 w128 h128 i1 a5 n0.03	 p64 	ey88 $
-		* x640 y0 w128 h128 i1 a6 n0.03  p48 	ey88 $
-		* x640 y0 w128 h128 i1 a7 n0.03  p32 	ey88 $
-		* x640 y0 w128 h128 i1 a7 n0.03  p16 	ey88 $
+		*Data/Entities/Heroes/Crusader/Miracles/Charge/CineticEffect.png
+		$
+		//Sons
+		$
+		* x640 y0 w128 h128 i0 a1 n0.03  p128 	ey88 $
+		* x640 y0 w128 h128 i0 a2 n0.03  p112 	ey88 $
+		* x640 y0 w128 h128 i0 a3 n0.03	 p96 	ey88 $
+		* x640 y0 w128 h128 i0 a4 n0.03	 p80 	ey88 $
+		* x640 y0 w128 h128 i0 a5 n0.03	 p64 	ey88 $
+		* x640 y0 w128 h128 i0 a6 n0.03  p48 	ey88 $
+		* x640 y0 w128 h128 i0 a7 n0.03  p32 	ey88 $
+		* x640 y0 w128 h128 i0 a7 n0.03  p16 	ey88 $
 	$
 	*
-		* x768 y0 w128 h128 i1 a1 n0.03  p128 	ey88 $
-		* x768 y0 w128 h128 i1 a2 n0.03  p112 	ey88 $
-		* x768 y0 w128 h128 i1 a3 n0.03	 p96 	ey88 $
-		* x768 y0 w128 h128 i1 a4 n0.03	 p80 	ey88 $
-		* x768 y0 w128 h128 i1 a5 n0.03	 p64 	ey88 $
-		* x768 y0 w128 h128 i1 a6 n0.03  p48 	ey88 $
-		* x768 y0 w128 h128 i1 a7 n0.03  p32 	ey88 $
-		* x768 y0 w128 h128 i1 a7 n0.03  p16 	ey88 $
+		*Data/Entities/Heroes/Crusader/Miracles/Charge/CineticEffect.png
+		$
+		//Sons
+		$
+		* x768 y0 w128 h128 i0 a1 n0.03  p128 	ey88 $
+		* x768 y0 w128 h128 i0 a2 n0.03  p112 	ey88 $
+		* x768 y0 w128 h128 i0 a3 n0.03	 p96 	ey88 $
+		* x768 y0 w128 h128 i0 a4 n0.03	 p80 	ey88 $
+		* x768 y0 w128 h128 i0 a5 n0.03	 p64 	ey88 $
+		* x768 y0 w128 h128 i0 a6 n0.03  p48 	ey88 $
+		* x768 y0 w128 h128 i0 a7 n0.03  p32 	ey88 $
+		* x768 y0 w128 h128 i0 a7 n0.03  p16 	ey88 $
 	$
 	*
-		* x896 y0 w128 h128 i1 a1 n0.03  p128 	ey88 $
-		* x896 y0 w128 h128 i1 a2 n0.03  p112 	ey88 $
-		* x896 y0 w128 h128 i1 a3 n0.03	 p96 	ey88 $
-		* x896 y0 w128 h128 i1 a4 n0.03	 p80 	ey88 $
-		* x896 y0 w128 h128 i1 a5 n0.03	 p64 	ey88 $
-		* x896 y0 w128 h128 i1 a6 n0.03  p48 	ey88 $
-		* x896 y0 w128 h128 i1 a7 n0.03  p32 	ey88 $
-		* x896 y0 w128 h128 i1 a7 n0.03  p16 	ey88 $
+		*Data/Entities/Heroes/Crusader/Miracles/Charge/CineticEffect.png
+		$
+		//Sons
+		$
+		* x896 y0 w128 h128 i0 a1 n0.03  p128 	ey88 $
+		* x896 y0 w128 h128 i0 a2 n0.03  p112 	ey88 $
+		* x896 y0 w128 h128 i0 a3 n0.03	 p96 	ey88 $
+		* x896 y0 w128 h128 i0 a4 n0.03	 p80 	ey88 $
+		* x896 y0 w128 h128 i0 a5 n0.03	 p64 	ey88 $
+		* x896 y0 w128 h128 i0 a6 n0.03  p48 	ey88 $
+		* x896 y0 w128 h128 i0 a7 n0.03  p32 	ey88 $
+		* x896 y0 w128 h128 i0 a7 n0.03  p16 	ey88 $
 	$
 	*
-		*  s1 a1 n0 $
-		*     a2 n0 $
-		*     a3 n0 $
+		$
+		//Sons
+		* mData/Sounds/12658__mich3d__Whoosh_Swish_03.wav $
+		$
+		*  s0 a0 n0.1 $
 	$
 
 $

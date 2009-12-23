@@ -8,13 +8,6 @@ $
 $
 
 $
-//Images
-	*Data/Entities/Heroes/Concubine/Miracles/Toxic/Bolt.png
-	*Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic.png
-$
-//Sons
-	*Data/Sounds/Globe.wav
-$
 //Effets
 
 	* t-1 l1 l4  $ 
@@ -31,10 +24,22 @@ $
 $
 //Séquences
 	*
-	//Tiles de la séquence
+		//Images
+			*Data/Entities/Heroes/Concubine/Miracles/Toxic/Bolt.png
+		$
+		//Sons
+		$
+		//Tiles de la séquence
 		* x0 y0 w128 h128 i0 a0 ex64 ey64 $
 	$
 	*
+			//Images
+			*Data/Entities/Heroes/Concubine/Miracles/Toxic/Bolt.png
+			*Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic.png
+		$
+		//Sons
+			* mData/Sounds/Globe.wav $
+		$
 		* x768 y768 w256 h256 ey128 ex128 i1 a15 n0.1 lv255 li120 p0$		
 
 		* x0 y0 w256 h256 ey128 ex128 i1 a0 n0.1 lv255 li0 p240 $
@@ -54,6 +59,13 @@ $
 		* x512 y768 w256 h256 ey128 ex128 i1 a14 n0.1 lv255 li112 p16 s0  $
 	$
 	*
+		//Images
+			*Data/Entities/Heroes/Concubine/Miracles/Toxic/Bolt.png
+			*Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic.png
+		$
+		//Sons
+			* mData/Sounds/Globe.wav $
+		$
 		* x0 y0 w256 h256 ey128 ex128 i1 a1 n0.1 lv255 li128 $
 		* x256 y0 w256 h256 ey128 ex128 i1 a2 n0.1 lv255 li144 $
 		* x512 y0 w256 h256 ey128 ex128 i1 a3 n0.1 lv255 li128 $
@@ -72,6 +84,13 @@ $
 		* x768 y768 w256 h256 ey128 ex128 i1 a0 n0.1 lv255 l112 $
 	$
 	*
+		//Images
+			*Data/Entities/Heroes/Concubine/Miracles/Toxic/Bolt.png
+			*Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic.png
+		$
+		//Sons
+			* mData/Sounds/Globe.wav $
+		$
 		* x768 y768 w256 h256 ey128 ex128 i1 a15 n0.1 lv255 li120 p240 $		
 
 		* x0 y0 w256 h256 ey128 ex128 i1 a0 n0.1 lv255 li0 p0 $
@@ -91,6 +110,10 @@ $
 		* x512 y768 w256 h256 ey128 ex128 i1 a14 n0.1 lv255 li112 p224 $
 	$
 	*
+		//Images
+		$
+		//Sons
+		$
 		* t1 a0 $ 
 	$
 $

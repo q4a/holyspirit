@@ -3,11 +3,6 @@ $
 $
 $
 $
-//Images
-	*Data/Entities/Monsters/DemonicPriest/DemoniacSphere1.png
-$
-//Sons
-$
 //Effets
 	* t-1 l1 $ 
 	
@@ -21,7 +16,12 @@ $
 //Séquences
 
 	*
-	//Tiles de la séquence
+		//Images
+			*Data/Entities/Monsters/DemonicPriest/DemoniacSphere1.png
+		$
+		//Sons
+		$
+		//Tiles de la séquence
 		* x0 y256 w128 h128 i0 a1 lr128 lv255 lb128 li128  n0.25 $
 		* x128 y256 w128 h128 i0 a2 lr128 lv255 lb128 li256 n0.25 $
 		* x256 y256 w128 h128 i0 a3 lr128 lv255 lb128 li384 n0.25 $

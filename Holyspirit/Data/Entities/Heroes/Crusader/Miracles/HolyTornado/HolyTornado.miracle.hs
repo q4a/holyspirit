@@ -12,12 +12,6 @@ $
 $
 	* f%0 e2 $
 $
-//Images
-	*Data/Entities/Heroes/Crusader/Miracles/HolyTornado/HolyTornado.png
-$
-//Sons
-	*Data/Sounds/39016_wildweasel_DSFIRXPL.wav
-$
 //Effets
 	* t1 l1 l5 l26 ia2 $
 	* t3 l22 l2 l22 s0 ia8 $
@@ -62,7 +56,13 @@ $
 $
 //Séquences
 	*
-	//Tiles de la séquence
+		//Images
+			*Data/Entities/Heroes/Crusader/Miracles/HolyTornado/HolyTornado.png
+		$
+		//Sons
+			* mData/Sounds/39016_wildweasel_DSFIRXPL.wav  $
+		$
+			//Tiles de la séquence
 		* x0 y0 w256 h256 ey160 i0 a1 s0 n0.04 p0 $
 		* x256 y0 w256 h256 ey160 i0 a2 n0.04 p32 $
 		* x512 y0 w256 h256 ey160 i0 a3 n0.04 p64 $
@@ -73,7 +73,12 @@ $
 		* x768 y0 w256 h256 ey160 i0 a7 n0.04 p224 $
 	$
 	*
-	//Tiles de la séquence
+		//Tiles de la séquence
+		//Images
+			*Data/Entities/Heroes/Crusader/Miracles/HolyTornado/HolyTornado.png
+		$
+		//Sons
+		$
 		* x0 y0 w256 h256 ey160 i0 a1 n0.04 $
 		* x256 y0 w256 h256 ey160 i0 a2 n0.04 $
 		* x512 y0 w256 h256 ey160 i0 a3 n0.04 $
@@ -84,7 +89,12 @@ $
 		* x768 y0 w256 h256 ey160 i0 a7 n0.04 $
 	$
 	*
-	//Tiles de la séquence
+		//Tiles de la séquence
+		//Images
+			*Data/Entities/Heroes/Crusader/Miracles/HolyTornado/HolyTornado.png
+		$
+		//Sons
+		$
 		* x0 y0 w256 h256 ey160 i0 a1 n0.04 p224 $
 		* x256 y0 w256 h256 ey160 i0 a2 n0.04 p192 $
 		* x512 y0 w256 h256 ey160 i0 a3 n0.04 p160 $

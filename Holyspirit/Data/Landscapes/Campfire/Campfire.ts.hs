@@ -1,6 +1,6 @@
 *Data/Landscapes/Campfire/Campfire.png
 $
-*Data/Sounds/Feu.wav
+* mData/Sounds/Feu.wav $
 $
 Feu de camp
 *x0 y0 w128 h128 i0 c1 a1 s0 lr236 lv136 lb36 li255 lh0 $

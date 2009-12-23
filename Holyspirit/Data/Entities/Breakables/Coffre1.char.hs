@@ -1,0 +1,102 @@
+*Data/Entities/Breakables/Coffre1.rs.hs
+$
+	Portee lumineuse
+	* r255 v255 b255 i0 $
+$
+	* n1 $
+$
+	Rang du monstre
+	* 0
+$
+	Caracteristiques
+	Vie/DegatsMin/DegatsMax/Vitesse
+	*v1 di0 da0 m0 o0 a0 n0 f1 u1 $
+$
+	*Data/Scripts/AI/chess.script.hs
+$
+	*
+		*Armband.item.hs
+		r50000
+	$
+	*
+		*Armor.item.hs
+		r50000
+	$
+	*
+		*Boot.item.hs
+		r50000
+	$
+	*
+		*Chainmail.item.hs
+		r2000
+	$
+	*
+		*Great_shield.item.hs
+		r20000
+	$
+	*
+		*Helmet.item.hs
+		r5000
+	$
+	*
+		*Katzbalger.item.hs
+		r200
+	$
+	*
+		*Long_sword.item.hs
+		r2000
+	$
+	*
+		*Necklage.item.hs
+		r20000
+	$
+	*
+		*Ring.item.hs
+		r20000
+	$
+	*
+		*Small_shield.item.hs
+		r5000
+	$
+	*
+		*Small_sword.item.hs
+		r50000
+	$
+	*
+		*Ceremonial_dagger.item.hs
+		r50000
+	$
+	*
+		*Small_sword_divin.item.hs
+		r200
+	$
+	*
+		*Two_hand_sword.item.hs
+		r20000
+	$
+	*
+		*Unique_boot.item.hs
+		r200
+	$
+	*
+		*Unique_shield.item.hs
+		r200
+	$
+	*
+		*Unique_dagger.item.hs
+		r200
+	$
+	*
+		*Unique_long_sword.item.hs
+		r50
+	$
+	*
+		*Unique_gown.item.hs
+		r50
+	$
+
+
+$
+
+$
+$

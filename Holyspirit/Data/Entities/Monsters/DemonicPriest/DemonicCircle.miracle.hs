@@ -3,12 +3,6 @@ $
 $
 $
 $
-//Images
-	*Data/Entities/Monsters/DemonicPriest/DemoniacSphere1.png
-$
-//Sons
-	*Data/Sounds/47252__nthompson__rocketexpl.wav
-$
 //Effets
 	* t-1 l1 l2 l3 l4 l5 l6 l7 l8  $
 	
@@ -28,7 +22,12 @@ $
 $
 //Séquences
 	*
-	//Tiles de la séquence
+		//Images
+			*Data/Entities/Monsters/DemonicPriest/DemoniacSphere1.png
+		$
+		//Sons
+		$
+		//Tiles de la séquence
 		* x0 y0 w128 h128 i0 a1 lr255 lv128 lb128 li128 ex92 ey57 $
 		* x128 y0 w128 h128 i0 a2 lr255 lv128 lb128 li128 ex92 ey57 $
 		* x256 y0 w128 h128 i0 a3 lr255 lv128 lb128 li128 ex92 ey57 $
@@ -47,7 +46,13 @@ $
 		* x896 y128 w128 h128 i0 a0 lr255 lv128 lb128 li128 ex92 ey57 $
 	$
 	*
-	//Tiles de la séquence
+		//Images
+			*Data/Entities/Monsters/DemonicPriest/DemoniacSphere1.png
+		$
+		//Sons
+			* mData/Sounds/47252__nthompson__rocketexpl.wav  $
+		$
+		//Tiles de la séquence
 		* x0 y256 w128 h128 i0 a1 lr255 lv128 lb128 li144  n0.04 $
 		* x128 y256 w128 h128 i0 a2 lr255 lv128 lb128 li160 s0 n0.04 $
 		* x256 y256 w128 h128 i0 a3 lr255 lv128 lb128 li176 n0.04 $

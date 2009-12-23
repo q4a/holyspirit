@@ -13,12 +13,6 @@ $
 $
 	* f%0 u1 $
 $
-//Images
-	*Data/Items/PoisonEffect/PoisonEffect.png
-	*Data/Entities/Heroes/Concubine/Miracles/Venom/Venom.png
-$
-//Sons
-$
 //Effets
 	* t-1 l1 l4 l5 $
 
@@ -32,6 +26,11 @@ $
 $
 //Séquences
 	*
+		//Images
+			*Data/Items/PoisonEffect/PoisonEffect.png
+		$
+		//Sons
+		$
 	//Tiles de la séquence
 		* x0 y0 w128 h128 i0 a1 lr0 lv255 lb0 li0 s0 n0.04 $
 		* x128 y0 w128 h128 i0 a2 lr0 lv255 lb0 li64 n0.04 $
@@ -43,9 +42,18 @@ $
 		* x896 y0 w128 h128 i0 a7 lr0 lv255 lb0 li0 n0.04 $
 	$
 	*
+		//Images
+		$
+		//Sons
+		$
 		* n1 a0 $ 
 	$
 	*
-		* x0 y0 w128 h64 ey0 i1 n1 a0 $ 
+		//Images
+			*Data/Entities/Heroes/Concubine/Miracles/Venom/Venom.png
+		$
+		//Sons
+		$
+		* x0 y0 w128 h64 ey0 i0 n1 a0 u-2 $ 
 	$
 $

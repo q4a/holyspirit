@@ -8,14 +8,7 @@ $
 $
 
 $
-//Images
-
-$
-//Sons
-
-$
 //Effets
-
 	* t7 l1 ia2 ic0 id1 ie1 if1 $
 	* t11 ia0 ib16 $
 

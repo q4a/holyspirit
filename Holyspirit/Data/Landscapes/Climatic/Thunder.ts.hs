@@ -1,6 +1,6 @@
 *Data/Landscapes/Climatic/Thunder.png
 $
-*Data/Sounds/Thunder.wav
+* mData/Sounds/Thunder.wav $
 $
 *x0 y0 w0 h0 i0 a1 $
 *x0 y0 w0 h0 i0 a2 $

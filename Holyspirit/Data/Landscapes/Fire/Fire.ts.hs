@@ -1,6 +1,6 @@
 *Data/Landscapes/Fire/Fire.png
 $
-*Data/Sounds/Feu.wav
+* mData/Sounds/Feu.wav $
 $
 Feu de camp
 
