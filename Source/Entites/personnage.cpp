@@ -114,6 +114,9 @@ Personnage::Personnage()
     m_ID                                = 0;
     m_etatForce                         = false;
     m_miracleBloquant                   = false;
+
+    m_entite_graphique.option_sonUnique     = false;
+    m_entite_graphique.option_forcedLight   = true;
 }
 Modele_Personnage::Modele_Personnage()
 {
@@ -187,13 +190,15 @@ bool Modele_Personnage::Charger(string chemin)
             char caractere;
 
             m_tileset.push_back(std::vector <Tileset> (8, Tileset ()));
-            m_tileset.back().front().Charger(*fichier, &reader);
+            //m_tileset.back().front().option_forcedShadow    = m_ombre;
+            m_tileset.back().front().option_forcedReflect   = true;
+            m_tileset.back().front().Charger(*fichier, -1, &reader);
 
             for (int j=1;j<8;j++)
             {
                 m_tileset.back()[j] = m_tileset.back()[0];
                 m_tileset.back()[j].DeleteTiles();
-                m_tileset.back()[j].ChargerTiles(*fichier);
+                m_tileset.back()[j].ChargerTiles(*fichier, -1/*, m_porteeLumineuse*/);
             }
 
             int etat=-1;
@@ -211,7 +216,7 @@ bool Modele_Personnage::Charger(string chemin)
                     for (int j=0;j<8;j++)
                     {
                         m_tileset.back()[j].DeleteTiles();
-                        m_tileset.back()[j].ChargerTiles(*fichier);
+                        m_tileset.back()[j].ChargerTiles(*fichier, -1/*, m_porteeLumineuse*/);
                     }
 
                     etat++;
@@ -236,8 +241,6 @@ bool Modele_Personnage::Charger(string chemin)
         console->Ajouter("Impossible d'ouvrir : "+chemin,1);
         return 0;
     }
-
-
 
     return true;
 }
@@ -315,89 +318,14 @@ void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,boo
         if (modele->m_tileset.size()>0)
             if ((int)(m_angle/45)>=0&&(int)(m_angle/45)<8)
             {
+                m_entite_graphique.m_tileset = &modele->m_tileset[m_etat][(int)(m_angle/45)];
                 m_entite_graphique.m_sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
                 m_entite_graphique.m_sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
                 moteurGraphique->AjouterEntiteGraphique(&m_entite_graphique);
-                /*Sprite sprite;
 
-                if (configuration->Ombre&&modele->m_ombre)
-                {
-                    int angleOmbre=(int)((m_angle-moteurGraphique->m_angleOmbreSoleil)+22.5);
-
-                    while (angleOmbre<0)
-                        angleOmbre=360+angleOmbre;
-                    while (angleOmbre>=360)
-                        angleOmbre=angleOmbre-360;
-
-                    if ((int)(angleOmbre/45)>=0&&(int)(angleOmbre/45)<(int)modele->m_pose[m_etat].size())
-                        if (m_poseEnCours>=0&&m_poseEnCours<(int)modele->m_pose[m_etat][(int)(angleOmbre/45)].size())
-                            if (modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getImage()>=0&&modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getImage()<(int)modele->m_image.size())
-                            {
-                                sprite.SetImage(*moteurGraphique->getImage(modele->m_image[modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getImage()]));
-                                sprite.SetSubRect(IntRect(modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().x, modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().y, modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().x+modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().w, modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().y+modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().h));
-
-                                sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
-
-                                sprite.SetOrigin(modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCentre().x,modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCentre().y);
-
-                                sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
-                                sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+32 -m_positionPixel.h);
-
-                                sprite.SetScale(m_caracteristique.modificateurTaille, m_caracteristique.modificateurTaille*(100-(float)moteurGraphique->m_soleil.hauteur)/50);
-                                sprite.SetRotation(moteurGraphique->m_angleOmbreSoleil);
-                                moteurGraphique->AjouterCommande(&sprite,9,1);
-                                sprite.SetOrigin(0,0);
-                                sprite.SetScale(1, 1);
-                                sprite.SetRotation(0);
-                            }
-                }
-
-                if ((int)(m_angle/45)>=0&&(int)(m_angle/45)<(int)modele->m_pose[m_etat].size())
-                    if (m_poseEnCours>=0&&m_poseEnCours<(int)modele->m_pose[m_etat][(int)(m_angle/45)].size())
-                        if (modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()>=0&&modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()<(int)modele->m_image.size())
-                        {
-                            sprite.SetImage(*moteurGraphique->getImage(modele->m_image[modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()]));
-
-                            sprite.SetOrigin(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().x,modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().y);
-
-                            sprite.SetSubRect(IntRect(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h));
-
-                            sprite.FlipX(false);
-
-
-                            sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
-                            sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
-
-
-                            sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
-
-
-                            if (m_porteeLumineuse.intensite>0)
-                                sprite.SetColor(sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu, 255));
-                            else
-                                sprite.SetColor(sf::Color(255,255,255, 255));
-
-                            if(sprite.GetPosition().x+sprite.GetSize().x                                                    >= moteurGraphique->m_camera.GetRect().Left
-                            && sprite.GetPosition().x-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().x<  moteurGraphique->m_camera.GetRect().Right
-                            && sprite.GetPosition().y+sprite.GetSize().y                                                    >= moteurGraphique->m_camera.GetRect().Top
-                            && sprite.GetPosition().y                                                                       <  moteurGraphique->m_camera.GetRect().Bottom)
-                            {
-                                moteurGraphique->AjouterCommande(&sprite,10 + modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCouche(),1);
-
-                                if (surbrillance)
-                                {
-                                    sprite.SetBlendMode(sf::Blend::Add);
-                                    moteurGraphique->AjouterCommande(&sprite,10,1);
-                                }
-
-                                if(configuration->Reflection)
-                                {
-                                    sprite.FlipY(true);
-                                    sprite.SetOrigin(sprite.GetOrigin().x,sprite.GetSize().y-sprite.GetOrigin().y);
-                                    moteurGraphique->AjouterCommande(&sprite,0,1);
-                                }
-                            }
-                        }*/
+                m_entite_graphique_shadow.m_sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
+                m_entite_graphique_shadow.m_sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
+                moteurGraphique->AjouterEntiteGraphique(&m_entite_graphique_shadow);
             }
 
     if(!sansEffet)
@@ -770,18 +698,17 @@ void Personnage::InfligerDegats(float degats, Modele_Personnage *modele)
 
     m_cible = NULL;
 
-    if(modele != NULL)
-    if(!modele->m_tileset.empty())
-    if(!modele->m_tileset[0].empty())
-        if(modele->m_tileset[0][0].getNombreSonsSpecial(0) > 0)
+    if(degats > 0)
+    if(m_entite_graphique.m_tileset != NULL)
+        if(m_entite_graphique.m_tileset->getNombreSonsSpecial(0) > 0)
         {
-            int random = rand()%modele->m_tileset[0][0].getNombreSonsSpecial(0);
+            int random = rand()%m_entite_graphique.m_tileset->getNombreSonsSpecial(0);
 
             coordonnee position;
             position.x=(m_positionCase.x-m_positionCase.y-1)/5;
             position.y=(m_positionCase.x+m_positionCase.y)/5;
 
-            modele->m_tileset[0][0].JouerSon(modele->m_tileset[0][0].getSonSpecial(0, random),position, true);
+            m_entite_graphique.m_tileset->JouerSon(m_entite_graphique.m_tileset->getSonSpecial(0, random),position, true);
         }
 
     if (m_caracteristique.vie<=0&&m_etat!=3)
@@ -790,7 +717,7 @@ void Personnage::InfligerDegats(float degats, Modele_Personnage *modele)
     m_touche = true;
 }
 
-int Personnage::Animer(Modele_Personnage *modele,float temps,coordonnee positionHero)
+int Personnage::Animer(Modele_Personnage *modele,float temps)
 {
     int retour=-2;
 
@@ -853,74 +780,86 @@ int Personnage::Animer(Modele_Personnage *modele,float temps,coordonnee position
     if(nombreInactif == (int)m_effets.size() || !EnVie())
         m_effets.clear();
 
+    int pose = m_entite_graphique.m_noAnimation;
+
     if(!m_stunned)
     if(m_etat >= 0 && m_etat < (int)modele->m_tileset.size())
     if((int)(m_angle/45) >= 0 && (int)(m_angle/45) < (int)modele->m_tileset[m_etat].size())
     {
-
         m_entite_graphique.m_tileset    = &modele->m_tileset[m_etat][(int)(m_angle/45)];
         m_entite_graphique.m_couche     = 10;
         m_entite_graphique.Animer(temps);
-        m_entite_graphique.Generer();
 
         m_entite_graphique.m_sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
         if (m_porteeLumineuse.intensite>0)
             m_entite_graphique.m_sprite.SetColor(sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu, 255));
         else
             m_entite_graphique.m_sprite.SetColor(sf::Color(255,255,255, 255));
-        /*if (modele->m_pose.size()>0)
-            tempsAnimation = modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getTempsAnimation();
 
-        if (modele->m_pose.size()>0&&tempsAnimation>0)
-            while (m_animation>=tempsAnimation)
+        if(m_entite_graphique.attaque_touche)
+        {
+            if(m_monstre)
             {
-                coordonnee position;
-                position.x=(m_positionCase.x-m_positionCase.y-1)/5;
-                position.y=(m_positionCase.x+m_positionCase.y)/5;
-
-                m_poseEnCours=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAnimation();
-
-                if (m_poseEnCours>=(int)modele->m_pose[m_etat][(int)(m_angle/45)].size())
-                    m_poseEnCours=0;
-
-                modele->JouerSon(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getSon(),position,positionHero);
-
-                m_animation-=tempsAnimation;
-                tempsAnimation = modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getTempsAnimation();
-
-                if (m_monstre)
-                {
-                    if (modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==0)
-                    {
-                        if(m_miracleALancer >= 0)
-                            retour = 1;
-                        else
-                            retour+=(rand()%(m_caracteristique.degatsMax-m_caracteristique.degatsMin+1)+m_caracteristique.degatsMin);
-                    }
-                }
+                if(m_miracleALancer >= 0)
+                    retour = 1;
                 else
-                {
-                    if (modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()>retour)
-                        retour = modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque();
-                }
+                    retour+=(rand()%(m_caracteristique.degatsMax-m_caracteristique.degatsMin+1)+m_caracteristique.degatsMin);
+            }
+            else
+                retour = 0;
+        }
 
-                if (modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==1 && m_monstre)
-                    frappeEnCours=false, m_etatForce = false;
+        if(m_entite_graphique.attaque_stop)
+        {
+            if(m_monstre)
+                frappeEnCours=false, m_etatForce = false;
+            else
+                retour = 1;
+        }
 
-                if (m_monstre)
-                {
-                    if (modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite()!=-1&&m_caracteristique.rang==0)
-                        m_porteeLumineuse.intensite=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite();
+        if (m_monstre && m_entite_graphique.m_tileset != NULL)
+        {
+            if (m_entite_graphique.m_tileset->getLumiereDuTile(m_entite_graphique.m_noAnimation).intensite!=-1&&m_caracteristique.rang==0)
+                m_porteeLumineuse.intensite=m_entite_graphique.m_tileset->getLumiereDuTile(m_entite_graphique.m_noAnimation).intensite;
 
-                    float inte=m_porteeLumineuse.intensite;
-                    if (inte>255)
-                        inte=255;
+            float inte=m_porteeLumineuse.intensite;
+            if (inte>255)
+                inte=255;
 
-                    moteurGraphique->LightManager->SetIntensity(m_light,(int)inte);
-                    moteurGraphique->LightManager->SetRadius(m_light,(int)m_porteeLumineuse.intensite*2);
-                }
-            }*/
+            moteurGraphique->LightManager->SetIntensity(m_entite_graphique.m_light,(int)inte);
+            moteurGraphique->LightManager->SetRadius(m_entite_graphique.m_light,(int)m_porteeLumineuse.intensite*2);
+        }
     }
+
+    int angleOmbre=(int)((m_angle-moteurGraphique->m_angleOmbreSoleil)+22.5);
+
+    while (angleOmbre<0)
+        angleOmbre=360+angleOmbre;
+    while (angleOmbre>=360)
+        angleOmbre=angleOmbre-360;
+
+    if(!m_stunned && configuration->Ombre)
+    if(m_etat >= 0 && m_etat < (int)modele->m_tileset.size())
+    if((int)(angleOmbre/45) >= 0 && (int)(angleOmbre/45) < (int)modele->m_tileset[m_etat].size())
+    {
+        m_entite_graphique_shadow              = m_entite_graphique;
+
+        m_entite_graphique_shadow.m_tileset    = &modele->m_tileset[m_etat][(int)(angleOmbre/45)];
+        m_entite_graphique_shadow.m_couche     = 9;
+        m_entite_graphique_shadow.m_decalCouche= 0;
+
+        m_entite_graphique_shadow.Generer();
+
+        m_entite_graphique_shadow.option_forcedLight    = false;
+        m_entite_graphique_shadow.m_shadow              = false;
+        m_entite_graphique_shadow.m_reflect             = false;
+        m_entite_graphique_shadow.m_light               = Light_Entity();
+
+        m_entite_graphique_shadow.m_sprite.SetScale(m_caracteristique.modificateurTaille,
+                                                    m_caracteristique.modificateurTaille*(100-(float)moteurGraphique->m_soleil.hauteur)/50);
+        m_entite_graphique_shadow.m_sprite.SetRotation(moteurGraphique->m_angleOmbreSoleil);
+    }
+
     return retour;
 }
 

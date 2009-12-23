@@ -28,6 +28,7 @@ class Entite_graphique
         Entite_graphique();
         virtual ~Entite_graphique();
         void Animer(float temps);
+        void NextTile();
         void Initialiser(coordonnee position);
         void Generer();
    // protected:
@@ -49,6 +50,14 @@ class Entite_graphique
 
     Light_Entity m_light;
     Wall_Entity  m_light_wall;
+
+    bool attaque_touche;
+    bool attaque_stop;
+
+    bool option_sonUnique;
+    bool option_forcedLight;
+    bool option_forcedShadow;
+    bool option_forcedReflect;
 };
 
 #endif // ENTITE_GRAPHIQUE_H

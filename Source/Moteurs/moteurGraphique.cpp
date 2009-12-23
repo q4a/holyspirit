@@ -364,17 +364,11 @@ void MoteurGraphique::Afficher()
 
     for (int k=0;k<=20;k++)
     {
-        /*if (k==12 && configuration->postFX)
-        {
-            bufferImage.SetView(bufferImage.GetDefaultView());
-            bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectFiltre);
-        }*/
         if (k==12 && configuration->Lumiere)
         {
             sf::Sprite screen(m_light_screen.GetImage());
 
             screen.SetBlendMode(sf::Blend::Multiply);
-            screen.SetColor(sf::Color(255,255,255));
 
             screen.SetX(decalageLumiere.x-m_camera.GetCenter().x-32);
             screen.SetY(decalageLumiere.y-m_camera.GetCenter().y-32);
@@ -401,7 +395,7 @@ void MoteurGraphique::Afficher()
             if(configuration->postFX)
                 bufferImage.Draw(screen, EffectBlur2);
             else
-                bufferImage.Draw(screen, EffectBlur2);
+                bufferImage.Draw(screen);
         }
 
         if (k!=9)

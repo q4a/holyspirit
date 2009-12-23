@@ -36,7 +36,7 @@ Tile::~Tile()
 
 void Tile::setTile( coordonnee positionDansLImage,int image,bool collision,int animation,int son,Lumiere lumiere,bool ombre,
                     bool reflection,char orientation,bool transparent,coordonnee centre,float temps, int opacity, int layer,
-                    int ordre, int attaque)
+                    int attaque, int ordre)
 {
     m_positionDansLImage    = positionDansLImage;
     m_image                 = image;

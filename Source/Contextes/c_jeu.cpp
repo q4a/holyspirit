@@ -144,8 +144,8 @@ void c_Jeu::GererTemps(Jeu *jeu)
     jeu->hero.RecalculerCaracteristiques();
     if (jeu->hero.m_personnage.EnVie())
     {
-        jeu->hero.RegenererVie((float)jeu->hero.m_caracteristiques.maxVie*(float)(tempsEcoule/100));
-        jeu->hero.RegenererFoi((float)jeu->hero.m_caracteristiques.maxFoi*(float)(tempsEcoule/50));
+        jeu->hero.RegenererVie(tempsEcoule);
+        jeu->hero.RegenererFoi(tempsEcoule/*(float)jeu->hero.m_caracteristiques.maxFoi*(float)(tempsEcoule/50)*/);
     }
 
     jeu->Clock.Reset();
@@ -251,7 +251,7 @@ void c_Jeu::Animation(Jeu *jeu)
 
 
         int retour=-2;
-        retour = jeu->hero.m_personnage.Animer(&jeu->hero.m_modelePersonnage[0],tempsDepuisDerniereAnimation,positionHero);
+        retour = jeu->hero.m_personnage.Animer(&jeu->hero.m_modelePersonnage[0],tempsDepuisDerniereAnimation);
 
         jeu->hero.CalculerOrdreAffichage();
 

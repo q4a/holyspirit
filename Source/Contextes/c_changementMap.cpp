@@ -115,11 +115,11 @@ void c_Chargement::setC_Chargement(std::string prochaineMap,coordonnee coordonne
 void c_Chargement::Utiliser(Jeu *jeu)
 {
 
-        if(z==49)
-        {
-            configuration->RafraichirOmbre=0;
-            configuration->RafraichirLumiere=0;
-        }
+    if(z==49)
+    {
+        configuration->RafraichirOmbre=0;
+        configuration->RafraichirLumiere=0;
+    }
 
     jeu->m_display=true;
 
@@ -154,7 +154,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         }
 
         if (jeu->map!=NULL && !m_debut)
-           jeu->map->Sauvegarder(&jeu->hero);
+            jeu->map->Sauvegarder(&jeu->hero);
 
         jeu->hero.Sauvegarder();
 
@@ -166,7 +166,6 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         jeu->map=new Map();
 
-        jeu->hero.m_personnage.m_entite_graphique.m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,384,12,sf::Color(255,255,255));
 
         jeu->hero.ChargerModele(true);
         jeu->hero.m_minimap.clear();
@@ -194,16 +193,16 @@ void c_Chargement::Utiliser(Jeu *jeu)
             jeu->map->AjouterMonstre((Monstre) buffer[i]);
 
             for(unsigned j = 0 ; j < jeu->hero.m_personnage.m_miracleEnCours.size() ; ++j)
-            for(unsigned k = 0 ; k < jeu->hero.m_personnage.m_miracleEnCours[j].m_infos.size() ; ++k)
-            {
-                if(jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours[j].m_modele].m_effets[jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_effetEnCours].m_type == CHARME)
-                    if(jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible == jeu->hero.m_amis[i])
-                    {
-                       jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible = jeu->map->getEntiteMonstre(jeu->map->getNombreMonstres() - 1);
-                       jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible->setCoordonnee(jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible->getCoordonnee());
-                       jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible->setDepart();
-                    }
-            }
+                for(unsigned k = 0 ; k < jeu->hero.m_personnage.m_miracleEnCours[j].m_infos.size() ; ++k)
+                {
+                    if(jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours[j].m_modele].m_effets[jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_effetEnCours].m_type == CHARME)
+                        if(jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible == jeu->hero.m_amis[i])
+                        {
+                            jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible = jeu->map->getEntiteMonstre(jeu->map->getNombreMonstres() - 1);
+                            jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible->setCoordonnee(jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible->getCoordonnee());
+                            jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible->setDepart();
+                        }
+                }
 
             jeu->hero.m_amis[i] = jeu->map->getEntiteMonstre(jeu->map->getNombreMonstres() - 1);
         }
@@ -231,22 +230,32 @@ void c_Chargement::Utiliser(Jeu *jeu)
         position.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
         Listener::SetGlobalVolume((float)configuration->volume);
         Listener::SetPosition(-position.x, 0, position.y);
-        //Listener::SetTarget(0, 0, 1);
         Listener::SetDirection(0, 0, 1);
         jeu->map->MusiquePlay(position);
 
         if (configuration->Lumiere)
             jeu->map->CalculerOmbresEtLumieres();
 
+
         moteurGraphique->LightManager->GenerateWallShadow(moteurGraphique->m_angleOmbreSoleil,moteurGraphique->m_soleil);
 
         configuration->RafraichirLumiere=true;
 
         coordonnee pos;
-        pos.x=(((jeu->hero.m_personnage.getCoordonneePixel().x-jeu->hero.m_personnage.getCoordonneePixel().y)*64/COTE_TILE));
-        pos.y=(((jeu->hero.m_personnage.getCoordonneePixel().x+jeu->hero.m_personnage.getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
+        pos.x=(int)(((jeu->hero.m_personnage.getCoordonneePixel().x-jeu->hero.m_personnage.getCoordonneePixel().y)*64/COTE_TILE));
+        pos.y=(int)(((jeu->hero.m_personnage.getCoordonneePixel().x+jeu->hero.m_personnage.getCoordonneePixel().y)*32/COTE_TILE)/2+64);
 
+        jeu->hero.m_personnage.Animer(&jeu->hero.m_modelePersonnage[0], 0);
         jeu->hero.m_personnage.m_entite_graphique.Initialiser(pos);
+
+        moteurGraphique->LightManager->SetIntensity(jeu->hero.m_personnage.m_entite_graphique.m_light,jeu->hero.getPorteeLumineuse().intensite);
+        moteurGraphique->LightManager->SetRadius(jeu->hero.m_personnage.m_entite_graphique.m_light,jeu->hero.getPorteeLumineuse().intensite * 3);
+        moteurGraphique->LightManager->SetColor(jeu->hero.m_personnage.m_entite_graphique.m_light,sf::Color(
+                jeu->hero.getPorteeLumineuse().rouge,
+                jeu->hero.getPorteeLumineuse().vert,
+                jeu->hero.getPorteeLumineuse().bleu));
+
+        jeu->hero.m_personnage.SeDeplacer(0, coordonnee ());
 
         allerVersImageChargement=false;
 
@@ -258,8 +267,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         if (configuration->Lumiere)
         {
             configuration->RafraichirLumiere=true;
-
-           // moteurGraphique->LightManager->Generate(jeu->hero.m_personnage.m_light);
+            moteurGraphique->LightManager->Generate(jeu->hero.m_personnage.m_entite_graphique.m_light);
         }
 
         jeu->map->Animer(&jeu->hero,1,&jeu->menu);

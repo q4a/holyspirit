@@ -42,8 +42,8 @@ class Tileset
 	~Tileset();
 
 	void Charger(std::string chemin);
-	void Charger(std::ifstream &fichier, cDAT *reader = NULL);
-	void ChargerTiles(std::ifstream &fichier);
+	void Charger(std::ifstream &fichier, int lumiere_base = 0, cDAT *reader = NULL);
+	void ChargerTiles(std::ifstream &fichier, int lumiere_base = 0);
 
 	void JouerSon(int numeroSon,coordonnee position, bool unique = true);
 	void DeleteTiles();
@@ -75,6 +75,9 @@ class Tileset
     int getSonSpecial(int, int);
 
 	std::string m_chemin;
+
+	bool option_forcedShadow;
+    bool option_forcedReflect;
 
 	private:
 	std::vector <int> m_image;

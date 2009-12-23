@@ -81,7 +81,7 @@ public:
     void Sauvegarder(std::ofstream &fichier);
 
     bool EnVie();
-    int Animer(Modele_Personnage *modele,float temps,coordonnee positionHero);
+    int Animer(Modele_Personnage *modele,float temps);
 
     void Pousser(coordonneeDecimal vecteur);
 
@@ -178,6 +178,7 @@ public:
     bool m_miracleBloquant;
 
     Entite_graphique m_entite_graphique;
+    Entite_graphique m_entite_graphique_shadow;
 
 protected:
     int m_etat,m_angle;

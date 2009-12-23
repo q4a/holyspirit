@@ -32,13 +32,19 @@ using namespace sf;
 
 Tileset::Tileset()
 {
+    option_forcedShadow     = false;
+    option_forcedReflect    = false;
 }
 Tileset::Tileset(string chemin)
 {
+    option_forcedShadow     = false;
+    option_forcedReflect    = false;
     Charger(chemin);
 }
 Tileset::Tileset(ifstream &fichier)
 {
+    option_forcedShadow     = false;
+    option_forcedReflect    = false;
     Charger(fichier);
 }
 Tileset::~Tileset()
@@ -57,7 +63,7 @@ Tileset::~Tileset()
     return *this;
 }*/
 
-void Tileset::ChargerTiles(ifstream &fichier)
+void Tileset::ChargerTiles(ifstream &fichier, int lumiere_base)
 {
     if (fichier)
     {
@@ -71,9 +77,12 @@ void Tileset::ChargerTiles(ifstream &fichier)
                 coordonnee position,centre(-100,-100,-1,-1), coordMinimap(0,0,0,0);
                 int animation=m_tile.size(),son=-1,image=0,imageMM = 0;
                 Lumiere lumiere;
-                lumiere.intensite=0;
+                lumiere.intensite=lumiere_base;
+                lumiere.rouge = -1;
+                lumiere.vert = -1;
+                lumiere.bleu = -1;
                 lumiere.hauteur=0;
-                bool collision=0,ombre=0, reflection = 0,transparent=0;
+                bool collision=0,ombre=option_forcedShadow, reflection = option_forcedReflect,transparent=0;
                 char orientation=' ';
                 float tempsAnimation=0.075;
                 int opacity = 255;
@@ -221,7 +230,7 @@ void Tileset::ChargerTiles(ifstream &fichier)
         console->Ajouter("Impossible d'ouvrir le fichier : "+m_chemin,1);
 }
 
-void Tileset::Charger(ifstream &fichier, cDAT *reader)
+void Tileset::Charger(ifstream &fichier, int lumiere_base, cDAT *reader)
 {
     if (fichier)
     {
@@ -261,7 +270,7 @@ void Tileset::Charger(ifstream &fichier, cDAT *reader)
                         fichier>>cheminSon;
                         m_sons.push_back(moteurSons->AjouterBuffer(cheminSon));
                     }
-                    else if (caractere=='t')
+                    else if (caractere=='n')
                     {
                         int temp;
                         fichier>>temp;
@@ -289,7 +298,7 @@ void Tileset::Charger(ifstream &fichier, cDAT *reader)
         while (caractere!='$');
 
 
-        ChargerTiles(fichier);
+        ChargerTiles(fichier,lumiere_base);
     }
     else
         console->Ajouter("Impossible d'ouvrir le fichier : "+m_chemin,1);
@@ -495,10 +504,8 @@ int Tileset::getSonSpecial(int no, int son)
 void Tileset::DeleteTiles()
 {
     m_tile.clear();
-    m_sons.clear();
+    //m_sons.clear();
 }
-
-
 
 
 

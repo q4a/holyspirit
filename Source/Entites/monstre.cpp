@@ -152,7 +152,7 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
     }
 
 
-    for (unsigned i=0;i<modele->getObjets().size();i++)
+    for (unsigned i=0; i<modele->getObjets().size(); i++)
         if ((float)(rand()%1000000000)<=(float)(modele->getObjets()[i].getChanceTrouver()*0.5*(m_caracteristique.rang*3+1)))
         {
             m_objets.push_back(modele->getObjets()[i]);
@@ -181,10 +181,13 @@ bool Modele_Monstre::Charger(string chemin)
 
     //cDAT reader;
 
-   // reader.Read(chemin);
+    // reader.Read(chemin);
 
     ifstream fichier;
     fichier.open(chemin.c_str(), ios::in);
+
+    string cheminRessources;
+
 
     if (fichier)
     {
@@ -193,12 +196,8 @@ bool Modele_Monstre::Charger(string chemin)
         {
             fichier.get(caractere);
             if (caractere=='*')
-            {
+                fichier>>cheminRessources;
 
-                string cheminImage;
-                fichier>>cheminImage;
-                Modele_Personnage::Charger(cheminImage);
-            }
             if (fichier.eof())
             {
                 console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
@@ -499,6 +498,9 @@ bool Modele_Monstre::Charger(string chemin)
             }
         }
         while (caractere!='$');
+
+        if(!cheminRessources.empty())
+            Modele_Personnage::Charger(cheminRessources);
 
         fichier.close();
     }

@@ -643,8 +643,11 @@ void Hero::Afficher(coordonnee dimensionsMap)
 
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
         if (m_ordreAffichage[i]!=-1)
+        {
+            m_personnage.Animer(&m_modelePersonnage[m_ordreAffichage[i]], 0);
+            m_personnage.m_entite_graphique.Generer();
             m_personnage.Afficher(dimensionsMap,&m_modelePersonnage[m_ordreAffichage[i]], false, m_ordreAffichage[i]!=plusHaut);
-
+        }
     AfficherRaccourcis();
 }
 
@@ -2705,12 +2708,12 @@ void Hero::RegenererVie(float vie)
 
     if (temp.vie > temp.maxVie  - temp.reserveVie )
     {
-        temp.vie-=(temp.vie - temp.maxVie + temp.reserveVie)*vie/50;
+        temp.vie -= (temp.vie - temp.maxVie + temp.reserveVie)*vie/10;
         if (temp.vie < temp.maxVie - temp.reserveVie)
             temp.vie = temp.maxVie - temp.reserveVie;
     }
     else
-        temp.vie += vie + m_caracteristiques.regenVie * vie;
+        temp.vie += ((float)temp.maxVie*(vie/100)) + m_caracteristiques.regenVie * ((float)temp.maxVie*(vie/100));
 
     if (temp.vie > (temp.maxVie - temp.reserveVie) * 2)
         temp.vie = (temp.maxVie - temp.reserveVie) * 2;
@@ -2719,14 +2722,6 @@ void Hero::RegenererVie(float vie)
 
     m_caracteristiques.vie = temp.vie;
     m_caracteristiques.reserveVie = temp.reserveVie;
-
-    /*if (m_caracteristiques.vie > m_personnage.getCaracteristique().vie)
-        m_caracteristiques.vie += (m_personnage.getCaracteristique().vie-m_caracteristiques.vie)*(vie + m_caracteristiques.regenVie * vie)*5;
-    else if (m_caracteristiques.vie < m_personnage.getCaracteristique().vie)
-        m_caracteristiques.vie += (m_personnage.getCaracteristique().vie-m_caracteristiques.vie)*(vie + m_caracteristiques.regenVie * vie);*/
-
-    /*if (m_caracteristiques.vie > (m_caracteristiques.maxVie - m_caracteristiques.reserveVie) * 2)
-        m_caracteristiques.vie = (m_caracteristiques.maxVie - m_caracteristiques.reserveVie) * 2;*/
 
 }
 void Hero::RegenererFoi(float foi)
@@ -2743,7 +2738,7 @@ void Hero::RegenererFoi(float foi)
             temp.foi = temp.maxFoi - temp.reserveFoi;
     }
     else
-        temp.foi += foi + m_caracteristiques.regenFoi * foi;
+        temp.foi += ((float)temp.maxFoi*(foi/50)) + m_caracteristiques.regenFoi * ((float)temp.maxFoi*(foi/50));
 
     if (temp.foi > (temp.maxFoi - temp.reserveFoi) * 2)
         temp.foi = (temp.maxFoi - temp.reserveFoi) * 2;

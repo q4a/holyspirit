@@ -71,42 +71,24 @@ void EffetGraphique::Animer(float temps)
             float tempsAnimation = m_tileset->getTempsDuTile(m_noAnimation);
             m_animation += temps;
 
-                if (m_tileset->getAnimationTile(m_noAnimation) >= 0)
-                    while (m_animation>=tempsAnimation)
+            if (m_tileset->getAnimationTile(m_noAnimation) >= 0)
+                if (m_animation>=tempsAnimation)
+                {
+                    if (m_compteur > 0 || m_compteur == -100)
                     {
-                        if (m_compteur > 0 || m_compteur == -100)
-                        {
-                            if (m_compteur != -100)
-                                m_compteur--;
+                        if (m_compteur != -100)
+                            m_compteur--;
 
-                            m_noAnimation = m_tileset->getAnimationTile(m_noAnimation);
+                        NextTile();
+                        Generer();
 
-                            if (configuration->Lumiere)
-                            {
-                                moteurGraphique->LightManager->SetIntensity(m_light,m_tileset->getLumiereDuTile(m_noAnimation).intensite);
-                                moteurGraphique->LightManager->SetRadius(m_light,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3);
-                                moteurGraphique->LightManager->SetColor(m_light,sf::Color(m_tileset->getLumiereDuTile(m_noAnimation).rouge,m_tileset->getLumiereDuTile(m_noAnimation).vert,m_tileset->getLumiereDuTile(m_noAnimation).bleu));
-
-                                moteurGraphique->LightManager->Generate(m_light);
-
-                                moteurGraphique->LightManager->SetIntensity(m_light_wall,m_tileset->getLumiereDuTile(m_noAnimation).intensite);
-                            }
-
-                            coordonnee position;
-                            position.x = (int)(m_sprite.GetPosition().x/64/5);
-                            position.y = (int)(m_sprite.GetPosition().y/32/5);
-
-                            m_tileset->JouerSon(m_tileset->getSonTile(m_noAnimation),position);
-
-                            m_animation -= tempsAnimation;
-                            tempsAnimation = m_tileset->getTempsDuTile(m_noAnimation);
-
-                            Generer();
-                        }
+                        m_animation -= tempsAnimation;
+                        tempsAnimation = m_tileset->getTempsDuTile(m_noAnimation);
                     }
+                }
 
-                if (m_compteur <= 0 && m_compteur != -100)
-                    m_actif=false;
+            if (m_compteur <= 0 && m_compteur != -100)
+                m_actif=false;
         }
     }
     else
