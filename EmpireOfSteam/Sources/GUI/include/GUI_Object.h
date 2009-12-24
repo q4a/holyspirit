@@ -16,6 +16,10 @@ class GUI_Object
     private:
 
     sf::RenderImage m_render;
+
+    sf::Vector2f    m_position;
+    sf::Vector2f    m_dimensions;
+
 };
 
 #endif // GUI_OBJECT_H

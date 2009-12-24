@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="include\GUI_Object.h" open="1" top="0" tabpos="2">
-		<Cursor position="312" topLine="0" />
+	<File name="include\GUI_Button.h" open="1" top="0" tabpos="5">
+		<Cursor position="272" topLine="0" />
+	</File>
+	<File name="include\GUI_Object.h" open="1" top="1" tabpos="2">
+		<Cursor position="352" topLine="0" />
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="1">
 		<Cursor position="117" topLine="0" />
 	</File>
+	<File name="src\GUI_Button.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="416" topLine="0" />
+	</File>
 	<File name="src\GUI_Object.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="113" topLine="0" />
+		<Cursor position="163" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>
