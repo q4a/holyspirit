@@ -21,7 +21,7 @@ $
 		//Images
 		$
 		//Sons
-			*Data/Sounds/Kiss.wav
+			* mData/Sounds/Kiss.wav $
 		$
 		* i0 x0 y0 w0 h0 a1 $
 		* s0 i0 x0 y0 w0 h0 a2 $
