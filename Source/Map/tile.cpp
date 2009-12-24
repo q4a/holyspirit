@@ -59,11 +59,6 @@ void Tile::setTile( coordonnee positionDansLImage,int image,bool collision,int a
     m_attaque               = attaque;
 
     m_tileMinimap           = -1;
-
-    if (m_centre.x==-1)
-        m_centre.x=positionDansLImage.w/2;
-    if (m_centre.y==-1)
-        m_centre.y=positionDansLImage.h-32;
 }
 
 const coordonnee &Tile::getCoordonnee()

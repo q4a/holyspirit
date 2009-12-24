@@ -74,7 +74,7 @@ void Tileset::ChargerTiles(ifstream &fichier, int lumiere_base)
             fichier.get(caractere);
             if (caractere=='*')
             {
-                coordonnee position,centre(-100,-100,-1,-1), coordMinimap(0,0,0,0);
+                coordonnee position,centre(-100,-100,-100,-100), coordMinimap(0,0,0,0);
                 int animation=m_tile.size(),son=-1,image=0,imageMM = 0;
                 Lumiere lumiere;
                 lumiere.intensite=lumiere_base;

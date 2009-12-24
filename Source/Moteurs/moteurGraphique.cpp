@@ -86,6 +86,7 @@ void MoteurGraphique::CreateNewWindow()
     {
         EffectBlur.SetTexture("framebuffer", sf::Shader::CurrentTexture);
         EffectBlur2.SetTexture("framebuffer", sf::Shader::CurrentTexture);
+        EffectBlurScreen.SetTexture("framebuffer", sf::Shader::CurrentTexture);
         EffectNoir.SetTexture("framebuffer", sf::Shader::CurrentTexture);
         EffectMort.SetTexture("framebuffer", sf::Shader::CurrentTexture);
         EffectContrastes.SetTexture("framebuffer", sf::Shader::CurrentTexture);
@@ -115,6 +116,11 @@ void MoteurGraphique::Charger()
             console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetBlur,0);
 
         if (!EffectBlur2.LoadFromFile(configuration->chemin_fx+configuration->nom_effetBlur))
+            console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetBlur,1);
+        else
+            console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetBlur,0);
+
+        if (!EffectBlurScreen.LoadFromFile(configuration->chemin_fx+configuration->nom_effetBlur))
             console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetBlur,1);
         else
             console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetBlur,0);
@@ -474,8 +480,8 @@ void MoteurGraphique::Afficher()
             if (m_blur>0)
             {
                 bufferImage.SetView(bufferImage.GetDefaultView());
-                bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectBlur);
-                EffectBlur.SetParameter("offset",(float)m_blur);
+                bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectBlurScreen);
+                EffectBlurScreen.SetParameter("offset",(float)m_blur);
             }
             if (configuration->effetMort>0)
             {
@@ -484,19 +490,21 @@ void MoteurGraphique::Afficher()
             }
         }
 
+        if (configuration->effetNoir>0 && k == 18)
+        {
+            sf::Sprite sprite2;
+            sprite2.SetImage(*getImage(0));
+            sprite2.Resize(configuration->Resolution.w,configuration->Resolution.h);
+            sprite2.SetColor(sf::Color((int)(configuration->effetNoir*255),(int)(configuration->effetNoir*255),(int)(configuration->effetNoir*255),255));
+            sprite2.SetBlendMode(sf::Blend::Multiply);
+            bufferImage.Draw(sprite2);
+        }
+
         m_commandes[k].clear();
         m_textes[k].clear();
     }
 
-    if (configuration->effetNoir>0)
-    {
-        sf::Sprite sprite2;
-        sprite2.SetImage(*getImage(0));
-        sprite2.Resize(configuration->Resolution.w,configuration->Resolution.h);
-        sprite2.SetColor(sf::Color((int)(configuration->effetNoir*255),(int)(configuration->effetNoir*255),(int)(configuration->effetNoir*255),255));
-        sprite2.SetBlendMode(sf::Blend::Multiply);
-        bufferImage.Draw(sprite2);
-    }
+
 
     m_ecran.Clear();
     bufferImage.Display();

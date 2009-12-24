@@ -57,7 +57,7 @@ void Entite_graphique::Animer(float temps)
         m_animation += temps;
 
         if (m_tileset->getAnimationTile(m_noAnimation) >= 0)
-            if (m_animation >= tempsAnimation)
+            while (m_animation >= tempsAnimation && tempsAnimation > 0)
             {
                 NextTile();
                 Generer();
@@ -70,56 +70,61 @@ void Entite_graphique::Animer(float temps)
 
 void Entite_graphique::NextTile()
 {
-     m_noAnimation = m_tileset->getAnimationTile(m_noAnimation);
-
-    if (configuration->Lumiere && m_light.ID() != -1)
+    if(m_tileset != NULL)
     {
-        bool modif = false;
-        if(m_tileset->getLumiereDuTile(m_noAnimation).intensite >= 0)
-        {
-            if(m_tileset->getLumiereDuTile(m_noAnimation).intensite != moteurGraphique->LightManager->GetIntensity(m_light))
-                modif = true;
+        m_noAnimation = m_tileset->getAnimationTile(m_noAnimation);
 
-            moteurGraphique->LightManager->SetIntensity(m_light,m_tileset->getLumiereDuTile(m_noAnimation).intensite);
-            moteurGraphique->LightManager->SetRadius(m_light,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3);
-        }
-        if(m_tileset->getLumiereDuTile(m_noAnimation).rouge >= 0)
+        coordonnee position;
+        position.x = (int)(m_sprite.GetPosition().x/64/5);
+        position.y = (int)(m_sprite.GetPosition().y/32/5);
+
+        if(m_tileset->getSonTile(m_noAnimation) >= 0)
+            m_tileset->JouerSon(m_tileset->getSonTile(m_noAnimation),position,option_sonUnique);
+
+        if(m_tileset->getAttaqueDuTile(m_noAnimation) >= 0)
         {
-            if(m_tileset->getLumiereDuTile(m_noAnimation).rouge != moteurGraphique->LightManager->GetColor(m_light).r)
-                modif = true;
-            if(m_tileset->getLumiereDuTile(m_noAnimation).vert != moteurGraphique->LightManager->GetColor(m_light).g)
-                modif = true;
-            if(m_tileset->getLumiereDuTile(m_noAnimation).bleu != moteurGraphique->LightManager->GetColor(m_light).b)
-                modif = true;
-            moteurGraphique->LightManager->SetColor(m_light,sf::Color(m_tileset->getLumiereDuTile(m_noAnimation).rouge,m_tileset->getLumiereDuTile(m_noAnimation).vert,m_tileset->getLumiereDuTile(m_noAnimation).bleu));
+            if(m_tileset->getAttaqueDuTile(m_noAnimation) == 0)
+                attaque_touche  = true;
+            else if(m_tileset->getAttaqueDuTile(m_noAnimation) == 1)
+                attaque_stop    = true;
         }
 
-        if(modif)
-            moteurGraphique->LightManager->Generate(m_light);
+        if (configuration->Lumiere && m_light.ID() != -1)
+        {
+            bool modif = false;
+            if(m_tileset->getLumiereDuTile(m_noAnimation).intensite >= 0)
+            {
+                if(m_tileset->getLumiereDuTile(m_noAnimation).intensite != moteurGraphique->LightManager->GetIntensity(m_light))
+                    modif = true;
 
-        moteurGraphique->LightManager->SetIntensity(m_light_wall,m_tileset->getLumiereDuTile(m_noAnimation).intensite);
-    }
-    if(configuration->Lumiere && m_light.ID() == -1 && m_tileset->getLumiereDuTile(m_noAnimation).intensite >= 0)
-    {
-        sf::Vector2f position;
-        position.x = (int)(m_sprite.GetPosition().x);
-        position.y = (int)(m_sprite.GetPosition().y*2);
+                moteurGraphique->LightManager->SetIntensity(m_light,m_tileset->getLumiereDuTile(m_noAnimation).intensite);
+                moteurGraphique->LightManager->SetRadius(m_light,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3);
+            }
+            if(m_tileset->getLumiereDuTile(m_noAnimation).rouge >= 0)
+            {
+                if(m_tileset->getLumiereDuTile(m_noAnimation).rouge != moteurGraphique->LightManager->GetColor(m_light).r)
+                    modif = true;
+                if(m_tileset->getLumiereDuTile(m_noAnimation).vert != moteurGraphique->LightManager->GetColor(m_light).g)
+                    modif = true;
+                if(m_tileset->getLumiereDuTile(m_noAnimation).bleu != moteurGraphique->LightManager->GetColor(m_light).b)
+                    modif = true;
+                moteurGraphique->LightManager->SetColor(m_light,sf::Color(m_tileset->getLumiereDuTile(m_noAnimation).rouge,m_tileset->getLumiereDuTile(m_noAnimation).vert,m_tileset->getLumiereDuTile(m_noAnimation).bleu));
+            }
 
-        m_light = moteurGraphique->LightManager->Add_Dynamic_Light(position,m_tileset->getLumiereDuTile(m_noAnimation).intensite,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,6,
-                                                                   sf::Color(m_tileset->getLumiereDuTile(m_noAnimation).rouge,m_tileset->getLumiereDuTile(m_noAnimation).vert,m_tileset->getLumiereDuTile(m_noAnimation).bleu));
-    }
+            if(modif)
+                moteurGraphique->LightManager->Generate(m_light);
 
-    coordonnee position;
-    position.x = (int)(m_sprite.GetPosition().x/64/5);
-    position.y = (int)(m_sprite.GetPosition().y/32/5);
-    m_tileset->JouerSon(m_tileset->getSonTile(m_noAnimation),position,option_sonUnique);
+            moteurGraphique->LightManager->SetIntensity(m_light_wall,m_tileset->getLumiereDuTile(m_noAnimation).intensite);
+        }
+        if(configuration->Lumiere && m_light.ID() == -1 && m_tileset->getLumiereDuTile(m_noAnimation).intensite >= 0)
+        {
+            sf::Vector2f position;
+            position.x = (int)(m_sprite.GetPosition().x);
+            position.y = (int)(m_sprite.GetPosition().y*2);
 
-    if(m_tileset->getAttaqueDuTile(m_noAnimation) >= 0)
-    {
-        if(m_tileset->getAttaqueDuTile(m_noAnimation) == 0)
-            attaque_touche  = true;
-        else if(m_tileset->getAttaqueDuTile(m_noAnimation) == 1)
-            attaque_stop    = true;
+            m_light = moteurGraphique->LightManager->Add_Dynamic_Light(position,m_tileset->getLumiereDuTile(m_noAnimation).intensite,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,6,
+                                                                       sf::Color(m_tileset->getLumiereDuTile(m_noAnimation).rouge,m_tileset->getLumiereDuTile(m_noAnimation).vert,m_tileset->getLumiereDuTile(m_noAnimation).bleu));
+        }
     }
 }
 
