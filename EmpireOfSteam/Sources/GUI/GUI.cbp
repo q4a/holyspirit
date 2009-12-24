@@ -36,11 +36,19 @@
 		<Unit filename="include\GUI_Input.h" />
 		<Unit filename="include\GUI_Object.h" />
 		<Unit filename="include\GUI_Panel.h" />
+		<Unit filename="include\Pan_Admin.h" />
+		<Unit filename="include\Pan_Bejeweled.h" />
+		<Unit filename="include\Pan_Map.h" />
+		<Unit filename="include\Pan_Outpost.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src\GUI_Button.cpp" />
 		<Unit filename="src\GUI_Input.cpp" />
 		<Unit filename="src\GUI_Object.cpp" />
 		<Unit filename="src\GUI_Panel.cpp" />
+		<Unit filename="src\Pan_Admin.cpp" />
+		<Unit filename="src\Pan_Bejeweled.cpp" />
+		<Unit filename="src\Pan_Map.cpp" />
+		<Unit filename="src\Pan_Outpost.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
