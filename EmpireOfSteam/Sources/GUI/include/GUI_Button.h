@@ -10,7 +10,7 @@ class GUI_Button : public GUI_Object
         GUI_Button();
         virtual ~GUI_Button();
 
-        bool getState();
+        bool GetState();
 
     protected:
     private:

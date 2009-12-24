@@ -14,12 +14,13 @@ GUI_Button::~GUI_Button()
 void GUI_Button::Update()
 {
     m_is_clicked = false;
-    if(Event_manager -> getEvent(Event::Mouse, sf::Mouse::Left))
-        if(Collision(Event_manager -> getMousePosition(), getDimensions()))
+    if(Event_manager -> GetEvent(Event::Mouse, sf::Mouse::Left))
+        if(Collision(Event_manager -> GetMousePosition(), sf::Rect(m_position.x, m_position.x + m_dimensions.x
+                                                                  ,m_position.y, m_position.y + m_dimensions.y)))
             m_is_clicked = true;
 }
 
-bool GUI_Button::getState()
+bool GUI_Button::GetState()
 {
     return m_is_clicked;
 }
