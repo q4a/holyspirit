@@ -1,6 +1,7 @@
 #ifndef GUI_OBJECT_H
 #define GUI_OBJECT_H
 
+#include "Utils.h"
 
 class GUI_Object
 {
