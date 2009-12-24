@@ -16,6 +16,11 @@ void GUI_Object::Update(float time)
         iter->Update(time);
 }
 
+void GUI_Object::Add_Object(GUI_Object *object);
+{
+    m_objects.push_back(object);
+}
+
 const sf::Image &GUI_Object::GetImage()
 {
     for(std::list<GUI_Object*>::iterator iter = m_objects.begin() ; iter != m_objects.end() ; ++iter)

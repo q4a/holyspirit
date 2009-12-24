@@ -15,7 +15,7 @@ class GUI_Object
         const   sf::Vector2f   &GetPosition();
         const   sf::Vector2f   &GetDimensions();
 
-        void Add_Object(GUI_Object *object)
+                void            Add_Object(GUI_Object *object);
 
     protected:
     private:
