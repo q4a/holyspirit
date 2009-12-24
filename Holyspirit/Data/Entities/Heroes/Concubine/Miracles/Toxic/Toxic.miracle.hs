@@ -46,7 +46,7 @@ $
 			*Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic.png
 		$
 		//Sons
-			*Data/Sounds/Globe.wav
+			* mData/Sounds/Globe.wav $
 		$
 		* x768 y768 w256 h256 ey128 ex128 i0 a15 n0.1 lv255 li120 p0$		
 
@@ -71,7 +71,7 @@ $
 			*Data/Entities/Heroes/Concubine/Miracles/Toxic/Toxic.png
 		$
 		//Sons
-			*Data/Sounds/Globe.wav
+			* mData/Sounds/Globe.wav $
 		$
 		* x0 y0 w256 h256 ey128 ex128 i0 a1 n0.1 lv255 li128 $
 		* x256 y0 w256 h256 ey128 ex128 i0 a2 n0.1 lv255 li144 $
