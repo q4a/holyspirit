@@ -50,6 +50,7 @@ void Entite_graphique::Animer(float temps)
 {
     attaque_touche  = false;
     attaque_stop    = false;
+    attaque_pause   = false;
 
     if(m_tileset != NULL)
     {
@@ -87,6 +88,8 @@ void Entite_graphique::NextTile()
                 attaque_touche  = true;
             else if(m_tileset->getAttaqueDuTile(m_noAnimation) == 1)
                 attaque_stop    = true;
+            else if(m_tileset->getAttaqueDuTile(m_noAnimation) == 2)
+                attaque_pause   = true;
         }
 
         if (configuration->Lumiere && m_light.ID() != -1)

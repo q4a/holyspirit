@@ -825,6 +825,9 @@ int Personnage::Animer(Modele_Personnage *modele,float temps)
                 retour = 1;
         }
 
+        if(m_entite_graphique.attaque_pause)
+            retour = 2;
+
         if (m_monstre && m_entite_graphique.m_tileset != NULL)
         {
             if (m_entite_graphique.m_tileset->getLumiereDuTile(m_entite_graphique.m_noAnimation).intensite!=-1&&m_caracteristique.rang==0)
@@ -853,10 +856,11 @@ int Personnage::Animer(Modele_Personnage *modele,float temps)
         m_entite_graphique_shadow              = m_entite_graphique;
 
         m_entite_graphique_shadow.m_tileset    = &modele->m_tileset[m_etat][(int)(angleOmbre/45)];
-        m_entite_graphique_shadow.m_couche     = 9;
-        m_entite_graphique_shadow.m_decalCouche= 0;
 
         m_entite_graphique_shadow.Generer();
+
+        m_entite_graphique_shadow.m_couche     = 9;
+        m_entite_graphique_shadow.m_decalCouche= 0;
 
         m_entite_graphique_shadow.option_forcedLight    = false;
         m_entite_graphique_shadow.m_shadow              = false;

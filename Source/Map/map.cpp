@@ -1495,7 +1495,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                         }
                     }
                 }
-               /* else if (couche==0)
+                else if (couche==0)
                 {
 
                     int w=j,z=k;
@@ -1509,7 +1509,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                     if (k<0)
                         z=0;
 
-                    sf::Sprite buffer=m_decor[couche][w][z].m_sprite;
+                    sf::Sprite buffer=m_decor[couche][w][z].m_entite_graphique.m_sprite;
                     buffer.SetX(position.x+64-48);
                     buffer.SetY(position.y+32-16);
 
@@ -1518,23 +1518,8 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                                 &&buffer.GetPosition().x-buffer.GetOrigin().x<moteurGraphique->m_camera.GetRect().Right
                                 &&buffer.GetPosition().y+buffer.GetSize().y-buffer.GetOrigin().y>=moteurGraphique->m_camera.GetRect().Top
                                 &&buffer.GetPosition().y-buffer.GetOrigin().y<moteurGraphique->m_camera.GetRect().Bottom)
-                        {
-                            if (m_decor[couche][w][z].getTileset()>=0 && m_decor[couche][w][z].getTileset()<(int)m_tileset.size())
-                                if (m_tileset[m_decor[couche][w][z].getTileset()].getTransparentDuTile(m_decor[couche][w][z].getTile()))
-                                {
-                                    int alpha=(int)((positionHero.y)-position.y)+160;
-
-                                    if (alpha<configuration->alpha)
-                                        alpha=configuration->alpha;
-                                    if (alpha>255)
-                                        alpha=255;
-
-                                    buffer.SetColor(sf::Color(255,255,255,alpha));
-                                }
-
                             moteurGraphique->AjouterCommande(&buffer,m_decor[couche][w][z].getCouche(),1);
-                        }
-                }*/
+                }
             }
         }
     }

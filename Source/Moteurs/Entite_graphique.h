@@ -53,6 +53,7 @@ class Entite_graphique
 
     bool attaque_touche;
     bool attaque_stop;
+    bool attaque_pause;
 
     bool option_sonUnique;
     bool option_forcedLight;
