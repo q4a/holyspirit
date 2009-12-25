@@ -95,6 +95,8 @@
 		<Unit filename="Map\tile.h" />
 		<Unit filename="Map\tileset.cpp" />
 		<Unit filename="Map\tileset.h" />
+		<Unit filename="Moteurs\Entite_graphique.cpp" />
+		<Unit filename="Moteurs\Entite_graphique.h" />
 		<Unit filename="Moteurs\commande.h" />
 		<Unit filename="Moteurs\console.cpp" />
 		<Unit filename="Moteurs\console.h" />

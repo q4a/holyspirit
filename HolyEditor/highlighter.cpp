@@ -55,7 +55,8 @@
                      << "\\bnoTalk\\b"
                      << "\\bentity_variable\\b"
                      << "\\bsetTile\\b"
-                     << "\\baddCash\\b" ;
+                     << "\\baddCash\\b"
+                     << "\\bexist_item\\b" ;
      foreach (QString pattern, keywordPatterns2) {
          rule.pattern = QRegExp(pattern);
          rule.format = functionFormat;

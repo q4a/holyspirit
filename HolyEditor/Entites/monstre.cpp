@@ -111,47 +111,6 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
 
     m_friendly=modele->m_friendly;
 
-    if (m_caracteristique.rang==0&&m_caracteristique.pointAme>0)
-    {
-        int temp=rand()%(1000);
-        if (temp<20)
-            m_caracteristique.rang=1;
-        if (temp<5)
-            m_caracteristique.rang=2;
-
-        if (m_caracteristique.rang==1)
-        {
-            m_caracteristique.maxVie*=5;
-            m_caracteristique.vie*=5;
-            m_caracteristique.degatsMin=(int)((float)m_caracteristique.degatsMin*1.25);
-            m_caracteristique.degatsMax=(int)((float)m_caracteristique.degatsMax*1.25);
-            m_caracteristique.pointAme*=2;
-
-            m_caracteristique.modificateurTaille*=1.1;
-        }
-        if (m_caracteristique.rang==2)
-        {
-            m_caracteristique.maxVie*=10;
-            m_caracteristique.vie*=10;
-            m_caracteristique.degatsMin=(int)((float)m_caracteristique.degatsMin*1.5);
-            m_caracteristique.degatsMax=(int)((float)m_caracteristique.degatsMax*1.5);
-            m_caracteristique.pointAme*=4;
-
-            m_caracteristique.modificateurTaille*=1.2;
-        }
-
-        if (m_caracteristique.rang>0)
-        {
-            m_porteeLumineuse.intensite=255;
-            m_porteeLumineuse.rouge=rand()%255;
-            m_porteeLumineuse.vert=rand()%255;
-            m_porteeLumineuse.bleu=rand()%255;
-
-            m_porteeLumineuseBasique=m_porteeLumineuse;
-        }
-    }
-
-
     for (unsigned i=0; i<modele->getObjets().size(); i++)
         if ((float)(rand()%1000000000)<=(float)(modele->getObjets()[i].getChanceTrouver()*0.5*(m_caracteristique.rang*3+1)))
         {
@@ -427,7 +386,7 @@ bool Modele_Monstre::Charger(string chemin)
                     fichier.get(caractere);
                     if (caractere=='r')
                     {
-                        int temp2;
+                        float temp2;
                         fichier>>temp2;
                         tempModeleObjet.setChanceTrouver(temp2);
                     }

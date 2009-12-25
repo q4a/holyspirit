@@ -344,10 +344,7 @@ void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,boo
 
                             sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
 
-                            if (m_porteeLumineuse.intensite>0)
                                 sprite.SetColor(sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu, 255));
-                            else
-                                sprite.SetColor(sf::Color(255,255,255, 255));
 
                                 moteurGraphique->AjouterCommande(&sprite,10 ,1);
                         }

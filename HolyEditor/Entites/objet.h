@@ -75,7 +75,7 @@ public:
     const std::string &getNom();
     int getRarete();
     int getImage();
-    int getChanceTrouver();
+    float getChanceTrouver();
     int getPrix();
     coordonnee getPosition();
     coordonnee getTaille();
@@ -83,7 +83,7 @@ public:
 
     void setRarete(int);
     void setPosition(int, int);
-    void setChanceTrouver(int);
+    void setChanceTrouver(float);
 
     int m_type,m_equipe;
     std::vector <int> m_emplacement;
@@ -115,7 +115,8 @@ private:
 
     std::string m_nom,m_chemin;
     std::vector <std::string> m_description;
-    int m_rarete,m_image,m_son,m_chanceTrouver;
+    int m_rarete,m_image,m_son;
+    float m_chanceTrouver;
     coordonnee m_positionImage,m_taille,m_position;
     int ai,aa,dii,dia,dai,daa;
 };
