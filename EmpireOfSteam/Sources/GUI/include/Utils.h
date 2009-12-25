@@ -2,6 +2,6 @@
 #define UTILS_H
 
 #include <SFML/Graphics.hpp>
-#include <list>
+#include <vector>
 
 #endif

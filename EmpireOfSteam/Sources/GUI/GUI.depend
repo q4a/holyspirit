@@ -8,16 +8,46 @@
 1261738898 c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui\include\gui_button.h
 	"../include/GUI_Object.h"
 
-1261670155 c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui\include\gui_object.h
+1261739335 c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui\include\gui_object.h
 	"Utils.h"
 
-1261738859 c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui\include\utils.h
+1261739326 c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui\include\utils.h
 	<SFML/Graphics.hpp>
-	<list>
+	<vector>
 
 1261738649 source:c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui\src\gui_input.cpp
 	"../include/GUI_Input.h"
 
 1261738727 c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui\include\gui_input.h
 	"../include/GUI_Object.h"
+
+1261738655 source:c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui\src\gui_panel.cpp
+	"../include/GUI_Panel.h"
+
+1261738746 c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui\include\gui_panel.h
+	"../include/GUI_Object.h"
+
+1261738659 source:c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui\src\pan_admin.cpp
+	"../include/Pan_Admin.h"
+
+1261738763 c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui\include\pan_admin.h
+	"../include/GUI_Panel.h"
+
+1261738665 source:c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui\src\pan_bejeweled.cpp
+	"../include/Pan_Bejeweled.h"
+
+1261738772 c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui\include\pan_bejeweled.h
+	"../include/GUI_Panel.h"
+
+1261738669 source:c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui\src\pan_map.cpp
+	"../include/Pan_Map.h"
+
+1261738780 c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui\include\pan_map.h
+	"../include/GUI_Panel.h"
+
+1261738676 source:c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui\src\pan_outpost.cpp
+	"../include/Pan_Outpost.h"
+
+1261738799 c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui\include\pan_outpost.h
+	"../include/GUI_Panel.h"
 

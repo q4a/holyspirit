@@ -26,7 +26,7 @@ class GUI_Object
     sf::Vector2f                m_position;
     sf::Vector2f                m_dimensions;
 
-    std::list<GUI_Object*>      m_objects;
+    std::vector<GUI_Object*>      m_objects;
 };
 
 #endif // GUI_OBJECT_H

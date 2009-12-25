@@ -1,8 +1,10 @@
 #include "../include/GUI_Object.h"
 
+using namespace sf;
+
 GUI_Object::GUI_Object()
 {
-    //ctor
+    m_render.Create(800, 600, 32);
 }
 
 GUI_Object::~GUI_Object()
