@@ -1082,7 +1082,7 @@ void Hero::AfficherQuetes(float decalage)
     {
         sf::Text texte;
         texte.SetFont(moteurGraphique->m_font);
-        texte.SetCharacterSize(18 * configuration->Resolution.h/600);
+        texte.SetCharacterSize(14 * configuration->Resolution.h/600);
         texte.SetPosition(m_classe.position_contenu_description_quete.x * configuration->Resolution.w/800, m_classe.position_contenu_description_quete.y * configuration->Resolution.h/600 - decalage);
         texte.SetString(m_quetes[queteAffichee].m_nom);
 
@@ -2533,6 +2533,16 @@ void Hero::delObjet(int numero)
             }
         }
     }
+}
+
+const std::string &Hero::getNomObjet(int numero)
+{
+    if(numero >= 0 && numero < m_inventaire.size())
+        return m_inventaire[numero].getChemin();
+}
+int Hero::getNombreObjet()
+{
+    return m_inventaire.size();
 }
 
 bool Hero::UtiliserObjet(int numero)

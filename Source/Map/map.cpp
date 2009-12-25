@@ -3289,6 +3289,22 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                     if (((m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)*(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x) + (m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)*(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)) >= script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0)*script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0))
                         ok=false;
                 }
+                else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="exist_item")
+                {
+                    int nbr = 0;
+                    for(unsigned i = 0 ; i < hero->getNombreObjet() ; ++i)
+                        if(hero->getNomObjet(i) == script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurString)
+                            nbr++;
+
+
+                    if(nbr < script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0))
+                         ok = false;
+                    else if(script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(1))
+                        for(unsigned i = 0 ; i < hero->getNombreObjet() ; ++i)
+                            if(hero->getNomObjet(i) == script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurString)
+                                hero->delObjet(i), i--;
+
+                }
                 else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="rand")
                 {
                     if (rand() % 100 < script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0))

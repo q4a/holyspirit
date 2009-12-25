@@ -1499,12 +1499,12 @@ void Objet::JouerSon()
 }
 
 
-void Objet::setChanceTrouver(int chance)
+void Objet::setChanceTrouver(float chance)
 {
     m_chanceTrouver=chance;
 }
 
-int Objet::getChanceTrouver()
+float Objet::getChanceTrouver()
 {
     return m_chanceTrouver;
 }

@@ -76,6 +76,8 @@ public:
     bool Equiper(int numero, int emplacement);
     bool UtiliserObjet(int numero);
     void RangerObjet(int numero);
+    const std::string &getNomObjet(int numero);
+    int getNombreObjet();
 
     bool UtiliserMiracle(int, Personnage*, coordonnee );
     bool AjouterMiracleArme();
