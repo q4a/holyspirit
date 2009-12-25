@@ -1,4 +1,4 @@
-#include "GUI_Panel.h"
+#include "../include/GUI_Panel.h"
 
 GUI_Panel::GUI_Panel()
 {

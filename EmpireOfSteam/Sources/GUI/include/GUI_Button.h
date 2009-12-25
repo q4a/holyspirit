@@ -1,7 +1,7 @@
 #ifndef GUI_BUTTON_H
 #define GUI_BUTTON_H
 
-#include <GUI_Object.h>
+#include "../include/GUI_Object.h"
 
 
 class GUI_Button : public GUI_Object
@@ -11,6 +11,7 @@ class GUI_Button : public GUI_Object
         virtual ~GUI_Button();
 
         bool GetState();
+        void Update();
 
     protected:
     private:

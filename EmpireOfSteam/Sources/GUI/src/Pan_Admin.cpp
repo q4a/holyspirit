@@ -1,4 +1,4 @@
-#include "Pan_Admin.h"
+#include "../include/Pan_Admin.h"
 
 Pan_Admin::Pan_Admin()
 {

@@ -14,6 +14,11 @@
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
+				<Linker>
+					<Add library="..\..\..\..\..\..\..\Program Files\CodeBlocks\MinGW\lib\sfml2\libsfml-graphics-d.a" />
+					<Add library="..\..\..\..\..\..\..\Program Files\CodeBlocks\MinGW\lib\sfml2\libsfml-window-d.a" />
+					<Add library="..\..\..\..\..\..\..\Program Files\CodeBlocks\MinGW\lib\sfml2\libsfml-system-d.a" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin\GUI" prefix_auto="1" extension_auto="1" />
@@ -25,6 +30,9 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add library="..\..\..\..\..\..\..\Program Files\CodeBlocks\MinGW\lib\sfml2\libsfml-graphics.a" />
+					<Add library="..\..\..\..\..\..\..\Program Files\CodeBlocks\MinGW\lib\sfml2\libsfml-window.a" />
+					<Add library="..\..\..\..\..\..\..\Program Files\CodeBlocks\MinGW\lib\sfml2\libsfml-system.a" />
 				</Linker>
 			</Target>
 		</Build>
@@ -40,6 +48,7 @@
 		<Unit filename="include\Pan_Bejeweled.h" />
 		<Unit filename="include\Pan_Map.h" />
 		<Unit filename="include\Pan_Outpost.h" />
+		<Unit filename="include\Utils.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src\GUI_Button.cpp" />
 		<Unit filename="src\GUI_Input.cpp" />

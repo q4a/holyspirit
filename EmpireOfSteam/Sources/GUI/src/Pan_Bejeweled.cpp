@@ -1,4 +1,4 @@
-#include "Pan_Bejeweled.h"
+#include "../include/Pan_Bejeweled.h"
 
 Pan_Bejeweled::Pan_Bejeweled()
 {

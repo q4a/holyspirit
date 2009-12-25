@@ -1,7 +1,7 @@
 #ifndef PAN_ADMIN_H
 #define PAN_ADMIN_H
 
-#include <GUI_Panel.h>
+#include "../include/GUI_Panel.h"
 
 
 class Pan_Admin : public GUI_Panel

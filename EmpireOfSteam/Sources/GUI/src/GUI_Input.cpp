@@ -1,4 +1,4 @@
-#include "GUI_Input.h"
+#include "../include/GUI_Input.h"
 
 GUI_Input::GUI_Input()
 {

@@ -1,7 +1,7 @@
 #ifndef PAN_BEJEWELED_H
 #define PAN_BEJEWELED_H
 
-#include <GUI_Panel.h>
+#include "../include/GUI_Panel.h"
 
 
 class Pan_Bejeweled : public GUI_Panel

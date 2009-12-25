@@ -1,4 +1,4 @@
-#include "GUI_Object.h"
+#include "../include/GUI_Object.h"
 
 GUI_Object::GUI_Object()
 {
@@ -12,18 +12,18 @@ GUI_Object::~GUI_Object()
 
 void GUI_Object::Update(float time)
 {
-    for(std::list<GUI_Object*>::iterator iter = m_objects.begin() ; iter != m_objects.end() ; ++iter)
-        iter->Update(time);
+    //for(std::list<GUI_Object*>::iterator iter = m_objects.begin() ; iter != m_objects.end() ; ++iter)
+    //    iter->Update(time);
 }
 
-void GUI_Object::Add_Object(GUI_Object *object);
+void GUI_Object::Add_Object(GUI_Object *object)
 {
-    m_objects.push_back(object);
+    //m_objects.push_back(object);
 }
 
 const sf::Image &GUI_Object::GetImage()
 {
-    for(std::list<GUI_Object*>::iterator iter = m_objects.begin() ; iter != m_objects.end() ; ++iter)
+    /*for(std::list<GUI_Object*>::iterator iter = m_objects.begin() ; iter != m_objects.end() ; ++iter)
     {
         sf::Sprite sprite;
 
@@ -35,6 +35,6 @@ const sf::Image &GUI_Object::GetImage()
     }
 
     m_render.Display();
-    return m_render.GetImage();
+    return m_render.GetImage();*/
 }
 

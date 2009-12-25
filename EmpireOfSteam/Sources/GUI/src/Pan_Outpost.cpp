@@ -1,4 +1,4 @@
-#include "Pan_Outpost.h"
+#include "../include/Pan_Outpost.h"
 
 Pan_Outpost::Pan_Outpost()
 {

@@ -1,7 +1,7 @@
 #ifndef PAN_OUTPOST_H
 #define PAN_OUTPOST_H
 
-#include <GUI_Panel.h>
+#include "../include/GUI_Panel.h"
 
 
 class Pan_Outpost : public GUI_Panel

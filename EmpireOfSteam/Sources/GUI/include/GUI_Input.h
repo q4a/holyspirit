@@ -1,7 +1,7 @@
 #ifndef GUI_INPUT_H
 #define GUI_INPUT_H
 
-#include <GUI_Object.h>
+#include "../include/GUI_Object.h"
 
 
 class GUI_Input : public GUI_Object
