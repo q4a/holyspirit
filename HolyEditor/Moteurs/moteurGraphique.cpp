@@ -233,7 +233,10 @@ int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std
             m_images[i].importance=importance;
             return i;
         }
-        else if (m_images[i].img == NULL)
+    }
+    for (unsigned i=0; i < m_images.size(); i++)
+    {
+        if (m_images[i].img == NULL)
         {
             m_images[i].nom=nom;
 
@@ -286,7 +289,9 @@ int MoteurGraphique::AjouterImage(std::string chemin,int importance)
             m_images[i].importance=importance;
             return i;
         }
-
+    }
+    for (unsigned i=0; i < m_images.size(); i++)
+    {
         if (m_images[i].img == NULL)
         {
             m_images[i].nom=chemin;
@@ -331,6 +336,44 @@ int MoteurGraphique::AjouterImage(std::string chemin,int importance)
     return m_images.size()-1;
 }
 
+int MoteurGraphique::AjouterTileset(std::string chemin,int importance)
+{
+    std::ifstream fichier;
+    fichier.open(chemin.c_str(), std::ios::in);
+    int retour = AjouterTileset(fichier, chemin, importance);
+    console->Ajouter("Chargement de : "+chemin,0);
+    fichier.close();
+    return retour;
+}
+
+
+int MoteurGraphique::AjouterTileset(std::ifstream &fichier, std::string chemin,int importance)
+{
+    if(chemin != "")
+        for (unsigned i=0; i < m_tileset.size(); i++)
+        {
+            if (m_tileset[i].nom == chemin)
+            {
+                m_tileset[i].tileset->ChargerImages();
+                m_tileset[i].importance = importance;
+
+                Tileset buffer(fichier);
+
+                return i;
+            }
+        }
+
+    m_tileset.push_back(Tileset_moteur ());
+
+    m_tileset.back().nom = chemin;
+    m_tileset.back().tileset = new Tileset(fichier);
+    m_tileset.back().tileset->m_chemin = chemin;
+    m_tileset.back().importance = importance;
+
+    return m_tileset.size()-1;
+}
+
+
 void MoteurGraphique::DecrementerImportance()
 {
     for (unsigned i=0; i < m_images.size(); i++)
@@ -344,7 +387,74 @@ void MoteurGraphique::DecrementerImportance()
                 m_images[i].nom="",m_images[i].importance=0;
             }
         }
+
+    //m_tileset.clear();
 }
+
+
+void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
+{
+    if(entite->m_tileset != NULL)
+    {
+        if(entite->m_sprite.GetPosition().x + entite->m_sprite.GetSize().x - entite->m_sprite.GetOrigin().x     >= m_camera.GetRect().Left
+        && entite->m_sprite.GetPosition().x - entite->m_sprite.GetOrigin().x                                    <  m_camera.GetRect().Right
+        && entite->m_sprite.GetPosition().y + entite->m_sprite.GetSize().y - entite->m_sprite.GetOrigin().y     >= m_camera.GetRect().Top
+        && entite->m_sprite.GetPosition().y - entite->m_sprite.GetOrigin().y                                    <  m_camera.GetRect().Bottom)
+            AjouterCommande(&entite->m_sprite, entite->m_couche + entite->m_decalCouche, true);
+
+        if(entite->m_shadow)
+        {
+            sf::Sprite sprite;
+            sprite = entite->m_sprite;
+
+            sprite.SetScale(1, (100-(float)m_soleil.hauteur)/50);
+            sprite.SetRotation(m_angleOmbreSoleil);
+
+            AjouterCommande(&sprite, 9, true);
+        }
+
+        if(entite->m_reflect)
+        {
+            sf::Sprite sprite;
+            sprite = entite->m_sprite;
+
+            sprite.FlipY(true);
+            sprite.SetOrigin(sprite.GetOrigin().x, sprite.GetSize().y - sprite.GetOrigin().y);
+
+            if(sprite.GetPosition().x + sprite.GetSize().x - sprite.GetOrigin().x     >= m_camera.GetRect().Left
+            && sprite.GetPosition().x - sprite.GetOrigin().x                          <  m_camera.GetRect().Right
+            && sprite.GetPosition().y + sprite.GetSize().y - sprite.GetOrigin().y     >= m_camera.GetRect().Top
+            && sprite.GetPosition().y - sprite.GetOrigin().y                          <  m_camera.GetRect().Bottom)
+                AjouterCommande(&sprite, 0, true);
+        }
+    }
+}
+
+
+Tileset* MoteurGraphique::getTileset(int IDtileset)
+{
+    if (IDtileset>=0 && IDtileset<(int)m_tileset.size())
+        return m_tileset[(unsigned)IDtileset].tileset;
+    return m_tileset.front().tileset;
+}
+
+Entite_graphique MoteurGraphique::getEntiteGraphique(int noTileset, int noTile, int couche)
+{
+    Entite_graphique entite;
+
+    if(noTileset >= 0 && noTileset < (int)m_tileset.size())
+        entite.m_tileset    = m_tileset[noTileset].tileset;
+    else
+        entite.m_tileset    = NULL;
+
+    entite.m_noAnimation    = noTile;
+    entite.m_couche         = couche;
+    //entite.Generer();
+
+    return entite;
+}
+
+
 int MoteurGraphique::AjouterModeleSystemeParticules(std::string chemin)
 {
     for (unsigned i=0;i<m_modeleSystemeParticules.size();i++)
@@ -375,7 +485,7 @@ void MoteurGraphique::AjouterTexte(std::string txt, coordonnee pos, int couche, 
     temp.SetFont(m_font);
     temp.SetString(txt);
     temp.SetPosition(pos.x, pos.y);
-    temp.SetSize(size);
+    temp.SetCharacterSize(size);
     temp.SetColor(color);
 
     AjouterTexte(&temp, couche, titre);

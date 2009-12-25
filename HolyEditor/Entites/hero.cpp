@@ -88,10 +88,11 @@ Hero::Hero()
     ///Je donnes des valeur à mes variables juste pour les tests
     m_personnage.setEtat(ARRET);
 
-    if (rand()%2==1)
+   /* if (rand()%2==1)
         m_cheminClasse="Data/Entities/Heroes/Crusader.class.hs";
     else
-        m_cheminClasse="Data/Entities/Heroes/Concubine.class.hs";
+        m_cheminClasse="Data/Entities/Heroes/Concubine.class.hs";*/
+   // m_cheminClasse = configuration->player_class;
 
     m_chercherSac.x=-1;
     m_chercherSac.y=-1;
@@ -169,13 +170,15 @@ Hero::Hero()
 
     m_argent=0;
 
+    m_angleFleche = 0;
+
 
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
         m_cheminModeleNouveau[i]="",m_cheminModele[i]="";
 
     m_contenuSave.push_back(configuration->chemin_temps+"hero.sav.txt");
 
-    m_personnage.m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(m_personnage.getCoordonnee().x,m_personnage.getCoordonnee().y),512,2048,16,sf::Color(255,255,255));
+    //m_personnage.m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(m_personnage.getCoordonnee().x,m_personnage.getCoordonnee().y),512,2048,16,sf::Color(255,255,255));
 
     m_defilement_trader=0;
 
@@ -435,7 +438,6 @@ void Hero::Charger()
     // closedir(repertoire);
 
     m_classe.Charger(m_cheminClasse, m_lvl_miracles, m_caracteristiques);
-
     m_lvl_miracles.resize(m_classe.miracles.size(),0);
 
     ChargerModele();
@@ -634,13 +636,18 @@ void Hero::CalculerOrdreAffichage()
 
 void Hero::Afficher(coordonnee dimensionsMap)
 {
+    int plusHaut = 0;
+    for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
+        if(m_ordreAffichage[i] >= plusHaut)
+            plusHaut = m_ordreAffichage[i];
+
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
         if (m_ordreAffichage[i]!=-1)
         {
-            //m_personnage.setPorteeLumineuse(m_modelePersonnage[ordreAffichage[i]].getPorteeLumineuse());
-            m_personnage.Afficher(dimensionsMap,&m_modelePersonnage[m_ordreAffichage[i]]);
+            m_personnage.Animer(&m_modelePersonnage[m_ordreAffichage[i]], 0);
+            m_personnage.m_entite_graphique.Generer();
+            m_personnage.Afficher(dimensionsMap,&m_modelePersonnage[m_ordreAffichage[i]], false, m_ordreAffichage[i]!=plusHaut);
         }
-
     AfficherRaccourcis();
 }
 
@@ -654,7 +661,7 @@ void Hero::AfficherCaracteristiques(float decalage)
 
     sf::Text string;
     string.SetFont(moteurGraphique->m_font);
-    string.SetSize(16*configuration->Resolution.h/600);
+    string.SetCharacterSize(16*configuration->Resolution.h/600);
 
     string.SetColor(sf::Color(255,255,255));
 
@@ -679,13 +686,13 @@ void Hero::AfficherCaracteristiques(float decalage)
 
     {
         std::ostringstream  buf;
-        buf<<configuration->text_menus[3].c_str()<<" : "<<(int)m_caracteristiques.vie<<" / "<<(int)m_caracteristiques.maxVie;
+        buf<<configuration->getText(0,3)<<" : "<<(int)m_caracteristiques.vie<<" / "<<(int)m_caracteristiques.maxVie;
         string.SetString(buf.str());
     }
 
     if ((string.GetRect().Right-string.GetRect().Left)>104)
     {
-        string.SetSize(14*configuration->Resolution.h/600);
+        string.SetCharacterSize(14*configuration->Resolution.h/600);
         if ((string.GetRect().Right-string.GetRect().Left)>104)
         {
             std::ostringstream  buf;
@@ -702,18 +709,18 @@ void Hero::AfficherCaracteristiques(float decalage)
         string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
-    string.SetSize(16*configuration->Resolution.h/600);
+    string.SetCharacterSize(16*configuration->Resolution.h/600);
 
 
     {
         std::ostringstream  buf;
-        buf<<configuration->text_menus[4].c_str()<<" : "<<(int)m_caracteristiques.foi<<" / "<<(int)m_caracteristiques.maxFoi;
+        buf<<configuration->getText(0,4)<<" : "<<(int)m_caracteristiques.foi<<" / "<<(int)m_caracteristiques.maxFoi;
         string.SetString(buf.str());
     }
 
     if ((string.GetRect().Right-string.GetRect().Left)>104)
     {
-        string.SetSize(14*configuration->Resolution.h/600);
+        string.SetCharacterSize(14*configuration->Resolution.h/600);
         if ((string.GetRect().Right-string.GetRect().Left)>104)
         {
             std::ostringstream  buf;
@@ -731,7 +738,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
-    string.SetSize(16*configuration->Resolution.h/600);
+    string.SetCharacterSize(16*configuration->Resolution.h/600);
 
     {
         std::ostringstream  buf;
@@ -763,7 +770,11 @@ void Hero::AfficherCaracteristiques(float decalage)
         sprite.SetColor(sf::Color(255,255,255));
     }
 
-    string.SetString(configuration->text_menus[5].c_str());
+    if(configuration->text_menus.size() > 5)
+        string.SetString(configuration->text_menus[5].c_str());
+    else
+        string.SetString("Error");
+
     string.SetX(16*configuration->Resolution.w/800);
     string.SetY(311*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
@@ -797,7 +808,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         sprite.SetColor(sf::Color(255,255,255));
     }
 
-    string.SetString(configuration->text_menus[6].c_str());
+    string.SetString(configuration->getText(0,6).c_str());
     string.SetX(16*configuration->Resolution.w/800);
     string.SetY(338*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
@@ -832,7 +843,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         sprite.SetColor(sf::Color(255,255,255));
     }
 
-    string.SetString(configuration->text_menus[7].c_str());
+    string.SetString(configuration->getText(0,7).c_str());
     string.SetX(16*configuration->Resolution.w/800);
     string.SetY(365*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
@@ -867,7 +878,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         sprite.SetColor(sf::Color(255,255,255));
     }
 
-    string.SetString(configuration->text_menus[8].c_str());
+    string.SetString(configuration->getText(0,8).c_str());
     string.SetX(16*configuration->Resolution.w/800);
     string.SetY(392*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
@@ -902,13 +913,13 @@ void Hero::AfficherCaracteristiques(float decalage)
         sprite.SetColor(sf::Color(255,255,255));
     }
 
-    string.SetString(configuration->text_menus[9].c_str());
+    string.SetString(configuration->getText(0,9).c_str());
     string.SetX(16*configuration->Resolution.w/800);
     string.SetY(419*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
-    string.SetString(configuration->text_menus[12].c_str());
+    string.SetString(configuration->getText(0,12).c_str());
     string.SetX(16*configuration->Resolution.w/800);
     string.SetY(446*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
@@ -938,7 +949,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         moteurGraphique->AjouterTexte(&string,15);
     }
 
-    string.SetString(configuration->text_menus[10].c_str());
+    string.SetString(configuration->getText(0,10).c_str());
     string.SetX(234*configuration->Resolution.w/800);
     string.SetY(300*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
@@ -957,7 +968,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         moteurGraphique->AjouterTexte(&string,15);
     }
 
-    string.SetString(configuration->text_menus[11].c_str());
+    string.SetString(configuration->getText(0,11).c_str());
     string.SetX(234*configuration->Resolution.w/800);
     string.SetY(327*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
@@ -967,7 +978,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         std::ostringstream  buf;
         buf<<m_argent;
         string.SetString(buf.str());
-        string.SetSize(14*configuration->Resolution.h/600);
+        string.SetCharacterSize(14*configuration->Resolution.h/600);
         string.SetX((112*configuration->Resolution.w/800)+32*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
         string.SetY(218*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
         string.SetColor(sf::Color(255,255,255));
@@ -1013,13 +1024,13 @@ void Hero::AfficherAmis()
                     for(unsigned j = 0 ; j < m_personnage.m_miracleEnCours.size() ; ++j)
                         for(unsigned k = 0 ; k < m_personnage.m_miracleEnCours[j].m_infos.size() ; ++k)
                         {
-                            if(m_classe.miracles[m_personnage.m_miracleEnCours[j].m_modele].m_effets[m_personnage.m_miracleEnCours[j].m_infos[k].m_effetEnCours].m_type == CHARME)
-                                if(m_personnage.m_miracleEnCours[j].m_cible == m_amis[i])
+                            if(m_classe.miracles[m_personnage.m_miracleEnCours[j].m_modele].m_effets[m_personnage.m_miracleEnCours[j].m_infos[k]->m_effetEnCours].m_type == CHARME)
+                                if(m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible == m_amis[i])
                                    m_amis[i]->m_friendly = false, charme = true;
                         }
 
                     if(!charme)
-                        m_amis[i]->InfligerDegats(m_amis[i]->getCaracteristique().vie * 2);
+                        m_amis[i]->InfligerDegats(m_amis[i]->getCaracteristique().vie * 2, NULL);
 
                     m_amis.erase(m_amis.begin() + i);
                     i--;
@@ -1038,7 +1049,7 @@ void Hero::AfficherQuetes(float decalage)
     {
         sf::Text texte;
         texte.SetFont(moteurGraphique->m_font);
-        texte.SetSize(12 * configuration->Resolution.h/600);
+        texte.SetCharacterSize(12 * configuration->Resolution.h/600);
         texte.SetPosition(position.x * configuration->Resolution.w/800, (position.y - decalage) * configuration->Resolution.h/600);
         texte.SetString(m_quetes[i].m_nom);
 
@@ -1071,13 +1082,13 @@ void Hero::AfficherQuetes(float decalage)
     {
         sf::Text texte;
         texte.SetFont(moteurGraphique->m_font);
-        texte.SetSize(18 * configuration->Resolution.h/600);
+        texte.SetCharacterSize(18 * configuration->Resolution.h/600);
         texte.SetPosition(m_classe.position_contenu_description_quete.x * configuration->Resolution.w/800, m_classe.position_contenu_description_quete.y * configuration->Resolution.h/600 - decalage);
         texte.SetString(m_quetes[queteAffichee].m_nom);
 
         moteurGraphique->AjouterTexte(&texte,15,0);
 
-        texte.SetSize(12 * configuration->Resolution.h/600);
+        texte.SetCharacterSize(12 * configuration->Resolution.h/600);
         texte.SetPosition(m_classe.position_contenu_description_quete.x * configuration->Resolution.w/800, m_classe.position_contenu_description_quete.y * configuration->Resolution.h/600 - decalage + 64);
         texte.SetString(m_quetes[queteAffichee].m_description);
 
@@ -1085,12 +1096,54 @@ void Hero::AfficherQuetes(float decalage)
     }
 }
 
+void Hero::AfficherFlecheQuetes(const std::string &nomMap, float temps)
+{
+ /*  if(m_queteSelectionnee >= 0)
+    {
+        if(nomMap == m_quetes[m_queteSelectionnee].m_map)
+        {
+            coordonneeDecimal pos,dir;
+
+            pos.x = (m_personnage.getCoordonneePixel().x/COTE_TILE-m_personnage.getCoordonneePixel().y/COTE_TILE-1)*(64);
+            pos.y = (m_personnage.getCoordonneePixel().x/COTE_TILE+m_personnage.getCoordonneePixel().y/COTE_TILE)*(32);
+
+            dir.x = (m_quetes[m_queteSelectionnee].m_position.x-m_quetes[m_queteSelectionnee].m_position.y-1)*(64);
+            dir.y = (m_quetes[m_queteSelectionnee].m_position.x+m_quetes[m_queteSelectionnee].m_position.y)*(32);
+
+
+            float m=atan2((double)(pos.x-dir.x),(double)(pos.y-dir.y));
+            //m+=M_PI/3;
+
+            m_angleFleche=(int)(m*180/M_PI);
+        }
+        else
+            m_angleFleche += temps * 200;
+
+        if (m_angleFleche>=360)
+            m_angleFleche=0;
+        if (m_angleFleche<0)
+            m_angleFleche=360+m_angleFleche;
+
+        Sprite sprite;
+
+        sprite.SetImage(*moteurGraphique->getImage(m_classe.arrow.image));
+        sprite.SetX(m_classe.arrow.position.x*configuration->Resolution.x/800);
+        sprite.SetY(m_classe.arrow.position.y*configuration->Resolution.h/600);
+        sprite.Resize(m_classe.arrow.position.w*configuration->Resolution.w/800, m_classe.arrow.position.h*configuration->Resolution.h/600);
+        sprite.SetOrigin(m_classe.arrow.centre.x, m_classe.arrow.centre.y);
+        sprite.SetRotation(m_angleFleche);
+
+        moteurGraphique->AjouterCommande(&sprite,18,0);
+    }*/
+}
+
+
 
 bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
 {
     bool retour = false;
     sf::Text texte;
-    texte.SetSize(14 * configuration->Resolution.h/600);
+    texte.SetCharacterSize(14 * configuration->Resolution.h/600);
 
     std::ostringstream buf;
     buf<<m_personnage.getCaracteristique().miracles_restant<<endl;
@@ -1101,14 +1154,14 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
 
     moteurGraphique->AjouterTexte(&texte,15,0);
 
-    if (eventManager->getPositionSouris().x > m_classe.position_points_miracles.x*configuration->Resolution.w/800
+    if (eventManager->getPositionSouris().x >  m_classe.position_points_miracles.x * configuration->Resolution.w/800
      && eventManager->getPositionSouris().x < (m_classe.position_points_miracles.x + m_classe.position_points_miracles.w)*configuration->Resolution.w/800
-     && eventManager->getPositionSouris().y > m_classe.position_points_miracles.y*configuration->Resolution.h/600
+     && eventManager->getPositionSouris().y >  m_classe.position_points_miracles.y * configuration->Resolution.h/600
      && eventManager->getPositionSouris().y < (m_classe.position_points_miracles.y + m_classe.position_points_miracles.h)*configuration->Resolution.h/600)
-        moteurGraphique->AjouterTexte("Points de miracles restants", coordonnee(eventManager->getPositionSouris().x,
+        moteurGraphique->AjouterTexte(configuration->getText(0,12), coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),20,false,12,sf::Color(224,224,224),true);
 
-    texte.SetSize(12 * configuration->Resolution.h/600);
+    texte.SetCharacterSize(12 * configuration->Resolution.h/600);
 
     for (int i = 0;i < (int)m_classe.position_miracles.size(); ++i)
         if (m_classe.page_miracles[i] == fenetreEnCours)
@@ -1160,7 +1213,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
 
                 if (eventManager->getEvenement(Mouse::Right,"C") && m_miracleEnMain < 0)
                 {
-                    if (m_personnage.getCaracteristique().miracles_restant > 0 && !m_classe.miracles[i].m_max)
+                    if (m_personnage.getCaracteristique().miracles_restant > 0)
                         if (m_classe.miracles[i].m_buf == -1 || m_classe.miracles[i].m_buf != -1 && m_lvl_miracles[m_classe.miracles[i].m_buf] > 0)
                         {
 
@@ -1618,7 +1671,7 @@ void Hero::AfficherRaccourcis()
                     && eventManager->getPositionSouris().y < sprite.GetPosition().y + 20 * configuration->Resolution.h/600)
             {
                 std::ostringstream buf;
-                buf<<"Raccourci pour objets ("<<i+1<<")";
+                buf<<configuration->getText(0, 33)<<" ("<<i+1<<")";
                 moteurGraphique->AjouterTexte(buf.str(),coordonnee(eventManager->getPositionSouris().x,
                                               eventManager->getPositionSouris().y - 20),
                                               19,0,12,sf::Color(224,224,224),1);
@@ -1668,7 +1721,7 @@ void Hero::AfficherRaccourcis()
                     && eventManager->getPositionSouris().y < sprite.GetPosition().y + 20 * configuration->Resolution.h/600)
             {
                 std::ostringstream buf;
-                buf<<"Raccourci pour miracles (F"<<i+1<<")";
+                buf<<configuration->getText(0, 34)<<" (F"<<i+1<<")";
                 moteurGraphique->AjouterTexte(buf.str(),coordonnee(eventManager->getPositionSouris().x,
                                               eventManager->getPositionSouris().y - 20),
                                               19,0,12,sf::Color(224,224,224),1);
@@ -1740,7 +1793,7 @@ void Hero::AugmenterAme(float temps)
     if (temp.ancienPointAme > temp.pointAme)
         temp.ancienPointAme = temp.pointAme,temp.positionAncienAme=temp.ancienPointAme;
 
-    if (temp.ancienPointAme > CALCUL_PA_PROCHAIN_NIVEAU)
+    if (temp.ancienPointAme >= CALCUL_PA_PROCHAIN_NIVEAU)
     {
         temp.ancienPointAme = temp.pointAme;
 
@@ -1922,12 +1975,12 @@ bool Hero::AjouterMiracleArme()
     if (m_weaponMiracle>=0&&m_weaponMiracle<(int)m_classe.miracles.size())
     {
         m_personnage.m_miracleEnCours.push_back(EntiteMiracle ());
-        m_personnage.m_miracleEnCours.back().m_infos.push_back(InfosEntiteMiracle ());
+        m_personnage.m_miracleEnCours.back().m_infos.push_back(new InfosEntiteMiracle ());
 
         m_personnage.m_miracleEnCours.back().m_modele=m_weaponMiracle;
 
-        m_personnage.m_miracleEnCours.back().m_infos.back().m_position.x=m_personnage.getCoordonneePixel().x+cos(-(m_personnage.getAngle()+22.5)*M_PI/180)*96;
-        m_personnage.m_miracleEnCours.back().m_infos.back().m_position.y=m_personnage.getCoordonneePixel().y+sin(-(m_personnage.getAngle()+22.5)*M_PI/180)*96;
+        m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.x=m_personnage.getCoordonneePixel().x+cos(-(m_personnage.getAngle()+22.5)*M_PI/180)*96;
+        m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.y=m_personnage.getCoordonneePixel().y+sin(-(m_personnage.getAngle()+22.5)*M_PI/180)*96;
 
         return 1;
     }
@@ -1938,21 +1991,78 @@ void Hero::StopMiraclesFrappe()
 {
     for (int i = 0; i < (int)m_personnage.m_miracleEnCours.size(); ++i)
         for (int o = 0; o < (int) m_personnage.m_miracleEnCours[i].m_infos.size() ; ++o)
-            if (m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type == CORPS_A_CORPS)
+            if (m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type == CORPS_A_CORPS)
+            {
+                delete m_personnage.m_miracleEnCours[i].m_infos[i];
                 m_personnage.m_miracleEnCours[i].m_infos.erase(m_personnage.m_miracleEnCours[i].m_infos.begin()+i);
+            }
 }
 
 void Hero::StopMiraclesCharme()
 {
     for (int i = 0; i < (int)m_personnage.m_miracleEnCours.size(); ++i)
         for (int o = 0; o < (int) m_personnage.m_miracleEnCours[i].m_infos.size() ; ++o)
-            if (m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type == CHARME)
+            if (m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type == CHARME)
+            {
+                delete m_personnage.m_miracleEnCours[i].m_infos[i];
                 m_personnage.m_miracleEnCours[i].m_infos.erase(m_personnage.m_miracleEnCours[i].m_infos.begin()+i);
+            }
 }
 
+/*void Hero::DetruireMiracle(int i, int effet)
+{
+
+    for (int o = 0; o < (int) m_personnage.m_miracleEnCours[i].m_infos.size() ; ++o)
+        if (m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours == effet)
+        {
+            for (int p=0;p<(int)m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_lien.size();p++)
+                DetruireMiracle(i, m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_lien[p])
+
+            if(m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type == AURA)
+            {
+                DetruireMiracle(i, m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_informations[0]);
+
+                for (int p=0;p<(int)m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_lien.size();p++)
+                {
+                    m_personnage.m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
+                    m_personnage.m_miracleEnCours[i].m_infos.back()->m_effetEnCours=m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_lien[p];
+                    m_personnage.m_miracleEnCours[i].m_infos.back()->m_position=m_personnage.m_miracleEnCours[i].m_infos[o]->m_position;
+                    m_personnage.m_miracleEnCours[i].m_infos.back()->m_cible=m_personnage.m_miracleEnCours[i].m_infos[o]->m_cible;
+                }
+            }
+
+            if(m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type == EFFET)
+            {
+
+
+                for (int p=0;p<(int)m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_lien.size();p++)
+                {
+                    m_personnage.m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
+                    m_personnage.m_miracleEnCours[i].m_infos.back()->m_effetEnCours=m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_lien[p];
+                    m_personnage.m_miracleEnCours[i].m_infos.back()->m_position=m_personnage.m_miracleEnCours[i].m_infos[o]->m_position;
+                    m_personnage.m_miracleEnCours[i].m_infos.back()->m_cible=m_personnage.m_miracleEnCours[i].m_infos[o]->m_cible;
+                }
+            }
+
+            m_personnage.m_miracleEnCours[i].m_infos.erase(m_personnage.m_miracleEnCours[i].m_infos.begin() + o);
+        }
+
+}
+*/
 
 bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coord)
 {
+    float m=atan2((double)(m_personnage.getCoordonnee().x-cible_coord.x),(double)(m_personnage.getCoordonnee().y-cible_coord.y));
+    m+=M_PI/3;
+
+    m=(int)(m*180/M_PI);
+    if (m>=360)
+        m=0;
+    if (m<0)
+        m=360+m;
+    m_personnage.setAngle((int)m);
+
+    if(!m_personnage.m_miracleBloquant)
     if (miracle>=0&&miracle<(int)m_classe.miracles.size())
         if (m_lvl_miracles[miracle] > 0)
         {
@@ -1962,18 +2072,28 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                     bool retour = false;
                     for (int i = 0; i < (int)m_personnage.m_miracleEnCours.size(); ++i)
                         for (int o = 0; o < (int) m_personnage.m_miracleEnCours[i].m_infos.size() ; ++o)
-                            if (m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_type == AURA)
+                            if (m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type == AURA)
                             {
-                                m_personnage.m_effets[m_personnage.m_miracleEnCours[i].m_infos[o].m_IDObjet].m_effet.m_actif = false;
 
-                                for (int p=0;p<(int)m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien.size();p++)
+                                 for (int r = o; r < (int) m_personnage.m_miracleEnCours[i].m_infos.size() ; ++r)
+                                    if (m_personnage.m_miracleEnCours[i].m_infos[r]->m_effetEnCours == m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_informations[0])
+                                    {
+                                        if(m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[r]->m_effetEnCours].m_type == EFFET)
+                                            m_personnage.m_miracleEnCours[i].m_infos[r]->m_cible->m_effets[m_personnage.m_miracleEnCours[i].m_infos[r]->m_IDObjet].m_effet.m_actif = false;
+
+                                        m_personnage.m_miracleEnCours[i].m_infos.erase(m_personnage.m_miracleEnCours[i].m_infos.begin() + r);
+                                        r--;
+                                    }
+
+                                for (int p=0;p<(int)m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_lien.size();p++)
                                 {
-                                    m_personnage.m_miracleEnCours[i].m_infos.push_back(InfosEntiteMiracle ());
-                                    m_personnage.m_miracleEnCours[i].m_infos.back().m_effetEnCours=m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o].m_effetEnCours].m_lien[p];
-                                    m_personnage.m_miracleEnCours[i].m_infos.back().m_position=m_personnage.m_miracleEnCours[i].m_infos[o].m_position;
+                                    m_personnage.m_miracleEnCours[i].m_infos.push_back(new InfosEntiteMiracle ());
+                                    m_personnage.m_miracleEnCours[i].m_infos.back()->m_effetEnCours=m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_lien[p];
+                                    m_personnage.m_miracleEnCours[i].m_infos.back()->m_position=m_personnage.m_miracleEnCours[i].m_infos[o]->m_position;
+                                    m_personnage.m_miracleEnCours[i].m_infos.back()->m_cible=m_personnage.m_miracleEnCours[i].m_infos[o]->m_cible;
                                 }
 
-                                m_personnage.m_miracleEnCours[i].m_infos.erase(m_personnage.m_miracleEnCours[i].m_infos.begin()+i);
+                                m_personnage.m_miracleEnCours[i].m_infos.erase(m_personnage.m_miracleEnCours[i].m_infos.begin()+o);
 
                                 if (m_personnage.m_miracleEnCours[i].m_modele == miracle)
                                     retour = true;
@@ -1983,6 +2103,18 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                     if (retour)
                         return 1;
                 }
+            if(m_classe.miracles[miracle].m_unique)
+                for (int i = 0; i < (int)m_personnage.m_miracleEnCours.size(); ++i)
+                    if(m_personnage.m_miracleEnCours[i].m_modele == miracle)
+                    {
+                        for (int o = 0; o < (int) m_personnage.m_miracleEnCours[i].m_infos.size() ; ++o)
+                            if(m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type == EFFET)
+                                m_personnage.m_miracleEnCours[i].m_infos[o]->m_cible->m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_IDObjet].m_effet.m_actif = false;
+
+                        m_personnage.m_miracleEnCours.erase(m_personnage.m_miracleEnCours.begin()+i);
+                        i = -1;
+                    }
+
 
             if (m_classe.miracles[miracle].m_coutFoi + m_classe.miracles[miracle].m_reserveFoi <= m_caracteristiques.foi && m_classe.miracles[miracle].m_reserveFoi <= m_caracteristiques.maxFoi - m_caracteristiques.reserveFoi
                     && m_classe.miracles[miracle].m_coutVie + m_classe.miracles[miracle].m_reserveVie
@@ -2005,25 +2137,15 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                             m_personnage.m_miracleEnCours.back().m_dejaConsommeFoi = true;
                         }
 
-                        m_personnage.m_miracleEnCours.back().m_infos.push_back(InfosEntiteMiracle ());
+                        m_personnage.m_miracleEnCours.back().m_infos.push_back(new InfosEntiteMiracle ());
 
                         m_personnage.m_miracleEnCours.back().m_modele = miracle;
 
-                        m_personnage.m_miracleEnCours.back().m_infos.back().m_position.x=m_personnage.getCoordonneePixel().x;
-                        m_personnage.m_miracleEnCours.back().m_infos.back().m_position.y=m_personnage.getCoordonneePixel().y;
+                        m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.x=m_personnage.getCoordonneePixel().x;
+                        m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.y=m_personnage.getCoordonneePixel().y;
 
                         m_personnage.m_miracleEnCours.back().m_coordonneeCible  = cible_coord;
                         m_personnage.m_miracleEnCours.back().m_coordonneeDepart = m_personnage.getCoordonnee();
-
-                        float m=atan2((double)(m_personnage.getCoordonnee().x-cible_coord.x),(double)(m_personnage.getCoordonnee().y-cible_coord.y));
-                        m+=M_PI/3;
-
-                        m=(int)(m*180/M_PI);
-                        if (m>=360)
-                            m=0;
-                        if (m<0)
-                            m=360+m;
-                        m_personnage.setAngle((int)m);
 
                         return 1;
                     }
@@ -2133,8 +2255,8 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
             Caracteristique temp = m_personnage.getCaracteristique();
             temp.pts_restant--;
             temp.vitalite++;
-            temp.maxVie=temp.vitalite*10;
-            temp.vie=temp.maxVie;
+            //temp.maxVie=temp.vitalite*10;
+            //temp.vie=temp.maxVie;
             m_personnage.setCaracteristique(temp);
             RecalculerCaracteristiques();
             m_caracteristiques.vie+=10;
@@ -2144,8 +2266,8 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
             Caracteristique temp = m_personnage.getCaracteristique();
             temp.pts_restant--;
             temp.piete++;
-            temp.maxFoi=temp.piete*10;
-            temp.foi=temp.maxFoi;
+            //temp.maxFoi=temp.piete*10;
+            //temp.foi=temp.maxFoi;
             m_personnage.setCaracteristique(temp);
             RecalculerCaracteristiques();
             m_caracteristiques.foi+=10;
@@ -2432,12 +2554,12 @@ bool Hero::UtiliserObjet(int numero)
             m_classe.miracles.push_back(m_inventaire[numero].m_miracle);
 
             m_personnage.m_miracleEnCours.push_back(EntiteMiracle ());
-            m_personnage.m_miracleEnCours.back().m_infos.push_back(InfosEntiteMiracle ());
+            m_personnage.m_miracleEnCours.back().m_infos.push_back(new InfosEntiteMiracle ());
 
             m_personnage.m_miracleEnCours.back().m_modele = (int)m_classe.miracles.size()-1;
 
-            m_personnage.m_miracleEnCours.back().m_infos.back().m_position.x=m_personnage.getCoordonneePixel().x+cos(-(m_personnage.getAngle()+22.5)*M_PI/180)*96;
-            m_personnage.m_miracleEnCours.back().m_infos.back().m_position.y=m_personnage.getCoordonneePixel().y+sin(-(m_personnage.getAngle()+22.5)*M_PI/180)*96;
+            m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.x=m_personnage.getCoordonneePixel().x+cos(-(m_personnage.getAngle()+22.5)*M_PI/180)*96;
+            m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.y=m_personnage.getCoordonneePixel().y+sin(-(m_personnage.getAngle()+22.5)*M_PI/180)*96;
 
             delObjet(numero);
 
@@ -2586,12 +2708,12 @@ void Hero::RegenererVie(float vie)
 
     if (temp.vie > temp.maxVie  - temp.reserveVie )
     {
-        temp.vie-=(temp.vie - temp.maxVie + temp.reserveVie)*vie/50;
+        temp.vie -= (temp.vie - temp.maxVie + temp.reserveVie)*vie/10;
         if (temp.vie < temp.maxVie - temp.reserveVie)
             temp.vie = temp.maxVie - temp.reserveVie;
     }
     else
-        temp.vie += vie + m_caracteristiques.regenVie * vie;
+        temp.vie += ((float)temp.maxVie*(vie/100)) + m_caracteristiques.regenVie * ((float)temp.maxVie*(vie/100));
 
     if (temp.vie > (temp.maxVie - temp.reserveVie) * 2)
         temp.vie = (temp.maxVie - temp.reserveVie) * 2;
@@ -2600,14 +2722,6 @@ void Hero::RegenererVie(float vie)
 
     m_caracteristiques.vie = temp.vie;
     m_caracteristiques.reserveVie = temp.reserveVie;
-
-    /*if (m_caracteristiques.vie > m_personnage.getCaracteristique().vie)
-        m_caracteristiques.vie += (m_personnage.getCaracteristique().vie-m_caracteristiques.vie)*(vie + m_caracteristiques.regenVie * vie)*5;
-    else if (m_caracteristiques.vie < m_personnage.getCaracteristique().vie)
-        m_caracteristiques.vie += (m_personnage.getCaracteristique().vie-m_caracteristiques.vie)*(vie + m_caracteristiques.regenVie * vie);*/
-
-    /*if (m_caracteristiques.vie > (m_caracteristiques.maxVie - m_caracteristiques.reserveVie) * 2)
-        m_caracteristiques.vie = (m_caracteristiques.maxVie - m_caracteristiques.reserveVie) * 2;*/
 
 }
 void Hero::RegenererFoi(float foi)
@@ -2624,7 +2738,7 @@ void Hero::RegenererFoi(float foi)
             temp.foi = temp.maxFoi - temp.reserveFoi;
     }
     else
-        temp.foi += foi + m_caracteristiques.regenFoi * foi;
+        temp.foi += ((float)temp.maxFoi*(foi/50)) + m_caracteristiques.regenFoi * ((float)temp.maxFoi*(foi/50));
 
     if (temp.foi > (temp.maxFoi - temp.reserveFoi) * 2)
         temp.foi = (temp.maxFoi - temp.reserveFoi) * 2;

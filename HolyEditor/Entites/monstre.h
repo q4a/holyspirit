@@ -62,8 +62,6 @@ public:
     float m_attente;
     int m_compteur;
 
-    int m_ID;
-
 private:
     bool m_vu;
 };

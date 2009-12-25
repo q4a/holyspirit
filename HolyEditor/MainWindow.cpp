@@ -649,34 +649,34 @@ void MainWindow::paintEvent(QPaintEvent*)
                     if (map->m_decor[map->m_selectCouche][i][j][z].getHerbe()>=0
                      && map->m_decor[map->m_selectCouche][i][j][z].getHerbe()<(int)map->m_herbe.size())
                     {
-                        if (map->m_herbe[map->m_decor[map->m_selectCouche][i][j][z].getHerbe()].getTaille()>0)
+                        if (moteurGraphique->getTileset(map->m_herbe[map->m_decor[map->m_selectCouche][i][j][z].getHerbe()])->getTaille()>0)
                         {
                             coordonnee position,positionPartieDecor;
 
                             int numeroHerbe=0;
-                            if (map->m_herbe[map->m_decor[map->m_selectCouche][i][j][z].getHerbe()].getTaille()>0)
-                                numeroHerbe = (rand() % (map->m_herbe[map->m_decor[map->m_selectCouche][i][j][z].getHerbe()].getTaille()));
+                            if (moteurGraphique->getTileset(map->m_herbe[map->m_decor[map->m_selectCouche][i][j][z].getHerbe()])->getTaille()>0)
+                                numeroHerbe = (rand() % (moteurGraphique->getTileset(map->m_herbe[map->m_decor[map->m_selectCouche][i][j][z].getHerbe()])->getTaille()));
                             map->m_decor[map->m_selectCouche][i][j][z].setNumeroHerbe(numeroHerbe);
 
                             position.x=(j-i-1)*64;
                             position.y=(j+i)*32;
 
-                            positionPartieDecor=map->m_herbe[map->m_decor[map->m_selectCouche][i][j][z].getHerbe()].getPositionDuTile(map->m_decor[map->m_selectCouche][i][j][z].getNumeroHerbe());
+                            positionPartieDecor=moteurGraphique->getTileset(map->m_herbe[map->m_decor[map->m_selectCouche][i][j][z].getHerbe()])->getPositionDuTile(map->m_decor[map->m_selectCouche][i][j][z].getNumeroHerbe());
 
                             if (map->m_selectCouche==0)
                                 position.y-=32;
                             position.x+=map->m_decor[map->m_selectCouche][i][j][z].getDecalageHerbe().x;
 
-                            map->m_decor[map->m_selectCouche][i][j][z].m_spriteHerbe.SetImage(*moteurGraphique->getImage(map->m_herbe[map->m_decor[map->m_selectCouche][i][j][z].getHerbe()].getImage(map->m_decor[map->m_selectCouche][i][j][z].getNumeroHerbe())));
-                            map->m_decor[map->m_selectCouche][i][j][z].m_spriteHerbe.SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
-                            map->m_decor[map->m_selectCouche][i][j][z].m_spriteHerbe.SetScale((float)map->m_decor[map->m_selectCouche][i][j][z].getTailleHerbe()/100,(float)map->m_decor[map->m_selectCouche][i][j][z].getTailleHerbe()/100);
-                            map->m_decor[map->m_selectCouche][i][j][z].m_spriteHerbe.SetX(position.x+64-positionPartieDecor.w/2);
-                            map->m_decor[map->m_selectCouche][i][j][z].m_spriteHerbe.SetY(position.y-positionPartieDecor.h+64);
-                            map->m_decor[map->m_selectCouche][i][j][z].m_spriteHerbe.SetColor(map->m_decor[map->m_selectCouche][i][j][z].getCouleurHerbe());
+                            map->m_decor[map->m_selectCouche][i][j][z].m_entite_herbe.m_sprite.SetImage(*moteurGraphique->getImage(moteurGraphique->getTileset(map->m_herbe[map->m_decor[map->m_selectCouche][i][j][z].getHerbe()])->getImage(map->m_decor[map->m_selectCouche][i][j][z].getNumeroHerbe())));
+                            map->m_decor[map->m_selectCouche][i][j][z].m_entite_herbe.m_sprite.SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
+                            map->m_decor[map->m_selectCouche][i][j][z].m_entite_herbe.m_sprite.SetScale((float)map->m_decor[map->m_selectCouche][i][j][z].getTailleHerbe()/100,(float)map->m_decor[map->m_selectCouche][i][j][z].getTailleHerbe()/100);
+                            map->m_decor[map->m_selectCouche][i][j][z].m_entite_herbe.m_sprite.SetX(position.x+64-positionPartieDecor.w/2);
+                            map->m_decor[map->m_selectCouche][i][j][z].m_entite_herbe.m_sprite.SetY(position.y-positionPartieDecor.h+64);
+                            map->m_decor[map->m_selectCouche][i][j][z].m_entite_herbe.m_sprite.SetColor(map->m_decor[map->m_selectCouche][i][j][z].getCouleurHerbe());
                         }
                     }
                     else
-                        map->m_decor[map->m_selectCouche][i][j][z].m_spriteHerbe.SetSubRect(sf::IntRect(0,0,0,0));
+                        map->m_decor[map->m_selectCouche][i][j][z].m_entite_herbe.m_sprite.SetSubRect(sf::IntRect(0,0,0,0));
             }
 
             if (map->m_mode_brush)
@@ -895,13 +895,13 @@ void MainWindow::MettreListesAJour()
         if (k == 0)
             temp<<"Suppression tile";
         else
-            temp<<map->m_tileset[k-1].getChemin().c_str();
+            temp<<moteurGraphique->getTileset(map->m_tileset[k-1])->getChemin().c_str();
 
         QTreeWidgetItem *widget = new QTreeWidgetItem(temp, 0);
         widget ->setData (1, 0, QVariant(k));
 
         if (k > 0)
-            for (unsigned l = 0 ; l < map->m_tileset[k-1].m_tile.size() ; ++l)
+            for (unsigned l = 0 ; l < moteurGraphique->getTileset(map->m_tileset[k-1])->m_tile.size() ; ++l)
             {
                 std::ostringstream buf;
                 buf<<l;
@@ -925,7 +925,7 @@ void MainWindow::MettreListesAJour()
         if (k == 0)
             temp<<"Suppression herbe";
         else
-            temp<<map->m_herbe[k-1].getChemin().c_str();
+            temp<<moteurGraphique->getTileset(map->m_herbe[k-1])->getChemin().c_str();
 
         QTreeWidgetItem *widget = new QTreeWidgetItem(temp, 0);
         widget ->setData (1, 0, QVariant(k));
@@ -1290,7 +1290,7 @@ void MainWindow::redo()
 void MainWindow::importerTileset()
 {
     QStringList  cheminList;
-    cheminList = QFileDialog::getOpenFileNames(this, "Ouvrir un tileset", "Data", "Tileset (*.ts.hs )");
+    cheminList = QFileDialog::getOpenFileNames(this, "Ouvrir un tileset", "Data/Landscapes", "Tileset (*.ts.hs )");
 
     for (int j = 0; j < cheminList.size(); ++j)
         if (!cheminList.at(j).toStdString().empty())
@@ -1321,14 +1321,14 @@ void MainWindow::importerTileset()
             {
                 bool add = true;
                 for (unsigned i = 0 ; i < map->m_tileset.size() ; ++i)
-                    if (map->m_tileset[i].getChemin() == temp)
+                    if (moteurGraphique->getTileset(map->m_tileset[i])->getChemin() == temp)
                     {
                         add = false;
                         QMessageBox::information(this, "Tileset existant", "Ce tileset a déjà été ajouté à la map.");
                     }
                 if (add)
                 {
-                    map->m_tileset.push_back(Tileset (temp));
+                    map->m_tileset.push_back(moteurGraphique->AjouterTileset(temp));
                 }
             }
             else
@@ -1342,7 +1342,7 @@ void MainWindow::importerTileset()
 void MainWindow::importerHerbe()
 {
     QStringList  cheminList;
-    cheminList = QFileDialog::getOpenFileNames(this, "Ouvrir un tileset", "Data", "Tileset (*.ts.hs )");
+    cheminList = QFileDialog::getOpenFileNames(this, "Ouvrir un tileset", "Data/Landscapes", "Tileset (*.ts.hs )");
 
     for (int j = 0; j < cheminList.size(); ++j)
         if (!cheminList.at(j).toStdString().empty())
@@ -1373,15 +1373,14 @@ void MainWindow::importerHerbe()
             {
                 bool add = true;
                 for (unsigned i = 0 ; i < map->m_herbe.size() ; ++i)
-                    if (map->m_herbe[i].getChemin() == temp)
+                    if (moteurGraphique->getTileset(map->m_herbe[i])->getChemin() == temp)
                     {
                         add = false;
                         QMessageBox::information(this, "Tileset existant", "Ce tileset a déjà été ajouté à la map.");
                     }
                 if (add)
                 {
-                    map->m_herbe.push_back(Herbe ());
-                    map->m_herbe.back().Charger(temp);
+                    map->m_herbe.push_back(moteurGraphique->AjouterTileset (temp));
                 }
             }
             else
@@ -1396,7 +1395,7 @@ void MainWindow::importerHerbe()
 void MainWindow::importerEntite()
 {
     QStringList  cheminList;
-    cheminList = QFileDialog::getOpenFileNames(this, "Ouvrir une entite", "Data/Entities", "Entie (*.rs.hs )");
+    cheminList = QFileDialog::getOpenFileNames(this, "Ouvrir une entite", "Data/Entities", "Entite (*.char.hs )");
 
     for (int j = 0; j < cheminList.size(); ++j)
         if (!cheminList.at(j).toStdString().empty())

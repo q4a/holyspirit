@@ -45,10 +45,6 @@ Decor::Decor()
     m_projectile=-1;
     m_effet=-1;
 
-    m_sprite.SetSubRect(sf::IntRect(0,0,0,0));
-    m_spriteHerbe.SetSubRect(sf::IntRect(0,0,0,0));
-    m_spriteOmbre.SetSubRect(sf::IntRect(0,0,0,0));
-
     random_animation = 0;
     random_evenement = 0;
 }
@@ -71,9 +67,6 @@ Decor::Decor(int tileset,std::vector<int> tile,const std::vector<int> &evenement
     m_projectile=-1;
     m_effet=-1;
 
-    m_sprite.SetSubRect(sf::IntRect(0,0,0,0));
-    m_spriteHerbe.SetSubRect(sf::IntRect(0,0,0,0));
-    m_spriteOmbre.SetSubRect(sf::IntRect(0,0,0,0));
 
     random_animation = 0;
     random_evenement = 0;
@@ -96,9 +89,6 @@ Decor::Decor(int tileset,std::vector<int> tile,const std::vector<int> &evenement
     m_projectile=-1;
     m_effet=-1;
 
-    m_sprite.SetSubRect(sf::IntRect(0,0,0,0));
-    m_spriteHerbe.SetSubRect(sf::IntRect(0,0,0,0));
-    m_spriteOmbre.SetSubRect(sf::IntRect(0,0,0,0));
 
     random_animation = 0;
     random_evenement = 0;
@@ -110,42 +100,7 @@ Decor::~Decor()
     m_objets.clear();
 }
 
-Decor Decor::operator=(const Decor &Decor)
-{
-    m_tileset=Decor.m_tileset;
-    m_tile=Decor.m_tile;
-    m_monstre=Decor.m_monstre;
-    m_projectile=Decor.m_projectile;
-    m_effet=Decor.m_effet;
-    m_couche=Decor.m_couche;
-    m_animation=Decor.m_animation;
-    m_position=Decor.m_position;
-    m_herbe=Decor.m_herbe;
-    m_numeroHerbe=Decor.m_numeroHerbe;
-    m_herbe_taille=Decor.m_herbe_taille;
-    m_herbe_decalage=Decor.m_herbe_decalage;
-    m_herbe_couleur=Decor.m_herbe_couleur;
-    m_hauteur=Decor.m_hauteur;
 
-    m_evenement.resize((int)Decor.m_evenement.size(), 0);
-    for (int i=0;i<(int)Decor.m_evenement.size();++i)
-        m_evenement[i]=Decor.m_evenement[i];
-
-    m_objets.resize(Decor.m_objets.size(),Objet ());
-    for (int i=0;i<(int)Decor.m_objets.size();++i)
-        m_objets[i]=Decor.m_objets[i];
-
-
-    m_light=Decor.m_light;
-    color=Decor.color;
-    m_sprite=Decor.m_sprite;
-    m_spriteHerbe=Decor.m_spriteHerbe;
-    m_spriteOmbre=Decor.m_spriteOmbre;
-    m_herbe_couleur=Decor.m_herbe_couleur;
-    m_herbe_decalage=Decor.m_herbe_decalage;
-
-    return *this;
-}
 
 void Decor::setDecor(int tileset,std::vector<int> tile,const std::vector<int> &evenement,const std::vector<int> &monstre,int herbe, int couche,int hauteur)
 {
@@ -204,7 +159,7 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet, float *decalage)
         texte.SetFont(moteurGraphique->m_font);
 
         texte.SetString(m_objets[objet].getNom());
-        texte.SetSize(14*configuration->Resolution.w/800);
+        texte.SetCharacterSize(14*configuration->Resolution.w/800);
         texte.SetY((position.y-moteurGraphique->m_camera.GetRect().Top)/configuration->zoom*configuration->Resolution.h/600);
         texte.SetX((position.x-moteurGraphique->m_camera.GetRect().Left)/configuration->zoom*configuration->Resolution.w/800);
 

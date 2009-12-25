@@ -30,10 +30,10 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "../constantes.h"
 #include "objet.h"
 #include "liste_case.h"
-#include "pose.h"
 #include "../Moteurs/lightManager.h"
 #include "miracle.h"
 #include "script.h"
+#include "../Map/tileset.h"
 
 class Modele_Personnage
 {
@@ -41,33 +41,36 @@ public:
     Modele_Personnage();
     ~Modele_Personnage();
     bool Charger(std::string chemin);
-    void ChargerPose(std::ifstream *fichier);
 
     void Reinitialiser();
 
-    void JouerSon(int numeroSon,coordonnee position,coordonnee positionHero, bool uniqueSound=false);
+    //void JouerSon(int numeroSon,coordonnee position,coordonnee positionHero, bool uniqueSound=false);
 
     const Lumiere &getPorteeLumineuse();
-    int getNombreSons();
+    //int getNombreSons();
+    //int getNombreSonsTouche();
+    //int getSonTouche(int);
     const Caracteristique &getCaracteristique();
 
     void setPorteeLumineuse(Lumiere  lumiere);
 
+    std::vector<std::vector<Tileset> > m_tileset;
 
-
-    std::vector <std::vector<std::vector<Pose> > > m_pose;
-    std::vector <int> m_image;
+    //std::vector <std::vector<std::vector<Pose> > > m_pose;
+    //std::vector <int> m_image;
 
     std::vector<Miracle> m_miracles;
 
     bool m_ombre;
     bool m_impenetrable;
     bool m_impoussable;
+    bool m_collision;
 
 protected:
     Caracteristique m_caracteristique;
     Lumiere m_porteeLumineuse;
-    std::vector <int> m_sons;
+    //std::vector <int> m_sons;
+    //std::vector <int> m_sons_touche;
 };
 
 class Personnage
@@ -78,21 +81,21 @@ public:
     void Sauvegarder(std::ofstream &fichier);
 
     bool EnVie();
-    int Animer(Modele_Personnage *modele,float temps,coordonnee positionHero);
+    int Animer(Modele_Personnage *modele,float temps);
 
     void Pousser(coordonneeDecimal vecteur);
 
-    bool SeDeplacer(float,coordonnee dimensionsMap, bool pousserPossible = true);
+    bool SeDeplacer(float,coordonnee dimensionsMap);
 
-    void Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,bool surbrillance=false);
+    void Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,bool surbrillance=false, bool sansEffet=false);
 
     int Pathfinding(casePathfinding** map,coordonnee exception, bool noDelete = false);
 
     void Frappe(coordonnee direction,coordonnee position);
 
-    void InfligerDegats(float degats);
+    void InfligerDegats(float degats, Modele_Personnage *modele);
 
-    int AjouterEffet(std::vector<Tile> &tiles, int type, int compteur, int info1, int info2, int info3);
+    int AjouterEffet(Tileset *tileset, int type, int compteur, int info1, int info2, int info3);
     void DetruireEffets();
 
 
@@ -149,7 +152,7 @@ public:
     bool m_touche;
     int m_nombreInvocation;
 
-    Light_Entity m_light;
+    //Light_Entity m_light;
 
     int m_miracleALancer;
     std::vector <EntiteMiracle> m_miracleEnCours;
@@ -160,13 +163,25 @@ public:
     bool m_friendly;
 
     bool m_impenetrable;
+    bool m_collision;
     bool m_impoussable;
+    bool m_doitMourir;
+
+    Personnage* m_vientDeFrapper;
+    Personnage* m_vientDetreTouche;
+    int         m_degatsInflige;
 
     Personnage *m_cible;
 
+    int m_ID;
+    bool m_etatForce;
+    bool m_miracleBloquant;
+
+    Entite_graphique m_entite_graphique;
+    Entite_graphique m_entite_graphique_shadow;
+
 protected:
-    int m_etat,m_poseEnCours,m_angle;
-    float m_animation;
+    int m_etat,m_angle;
     bool m_erreurPathfinding;
     Caracteristique m_caracteristique;
     coordonnee m_cheminFinal,m_arrivee,m_ancienneArrivee,m_mauvaiseArrivee, m_positionCase,m_positionAffichage,m_positionPixelPrecedente;
@@ -179,6 +194,8 @@ protected:
 
     coordonneeDecimal  m_pousse;
     coordonnee m_depart;
+
+    bool m_stunned;
 };
 
 

@@ -28,19 +28,25 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
+#include <fstream>
+
 #include "tile.h"
+
 
 class Tileset
 {
 	public:
 	Tileset();
 	Tileset(std::string chemin);
+	Tileset(std::ifstream &fichier);
 	~Tileset();
-	Tileset operator=(const Tileset &tileset);
 
-	bool Charger(std::string chemin);
+	void Charger(std::string chemin);
+	void Charger(std::ifstream &fichier, int lumiere_base = 0, cDAT *reader = NULL);
+	void ChargerTiles(std::ifstream &fichier, int lumiere_base = 0);
+	void ChargerImages();
 
-	void JouerSon(int numeroSon,coordonnee position,coordonnee positionHero);
+	void JouerSon(int numeroSon,coordonnee position, bool unique = true);
 	void DeleteTiles();
 
 	int getImage(int tile);
@@ -50,19 +56,37 @@ class Tileset
 	int getSonTile(int tile);
 	const Lumiere &getLumiereDuTile(int tile);
 	bool getOmbreDuTile(int tile);
+	bool getReflectionDuTile(int tile);
 	bool getTransparentDuTile(int tile);
 	char getOrientationDuTile(int tile);
 	const coordonnee &getCentreDuTile(int tile);
 	const std::string &getChemin(){return m_chemin;}
 	float getTempsDuTile(int tile);
 	int getOpacityDuTile(int tile);
+	int getLayerDuTile(int tile);
+	int getOrdreDuTile(int tile);
+	int getAttaqueDuTile(int tile);
 	int getTaille();
 
+	int getMinimap(int tile);
+	const coordonnee &getPositionMinimap(int tile);
 
-	std::vector <int> m_image;
-	std::vector <Tile> m_tile;
-	std::vector <int> m_sons;
+	int getNombreSons();
+    int getNombreSonsSpecial(int);
+    int getSonSpecial(int, int);
+
 	std::string m_chemin;
+
+	bool option_forcedShadow;
+    bool option_forcedReflect;
+
+	//private:
+	std::vector <int>                   m_image;
+	std::vector <std::string>           m_image_chemin;
+	std::vector <Tile>                  m_tile;
+	std::vector <int>                   m_sons;
+	std::vector <std::vector <int> >    m_sonsSpecial;
+
 };
 
 class Herbe : public Tileset

@@ -40,7 +40,6 @@ public:
     Decor(int tileset,std::vector<int> tile,const std::vector<int> &evenement,const std::vector<int> &monstre,int herbe, int couche,int hauteur);
     Decor(int tileset,std::vector<int> tile,const std::vector<int> &evenement,const std::vector<int> &monstre,int herbe, int couche,int hauteur,std::vector <Objet> objets);
     ~Decor();
-    Decor operator=(const Decor &Decor);
 
     void AjouterObjet(Objet);
 
@@ -93,7 +92,8 @@ public:
 
     sf::Color color;
 
-    sf::Sprite m_sprite,m_spriteHerbe,m_spriteOmbre;
+    Entite_graphique m_entite_graphique;
+    Entite_graphique m_entite_herbe;
 
     int random_animation;
     int random_evenement;

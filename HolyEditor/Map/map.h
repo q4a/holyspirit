@@ -106,8 +106,8 @@ public:
 
     coordonnee m_sacPointe;
     Lumiere m_lumiere[24];
-    std::vector <Tileset> m_tileset;
-    std::vector <Herbe> m_herbe;
+    std::vector <int> m_tileset;
+    std::vector <int> m_herbe;
     //Decor ***m_decor;
     std::vector <std::vector <std::vector < Decor > > >  m_decor[NOMBRE_COUCHE_MAP];
     std::vector <Evenement> m_evenement;

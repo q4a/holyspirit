@@ -63,7 +63,6 @@ int calculerAngle(int x, int y)
 
 Personnage::Personnage()
 {
-    m_animation                         = 0;
     m_angle                             = 45;
     m_monstre                           = false;
     frappeEnCours                       = false;
@@ -90,7 +89,6 @@ Personnage::Personnage()
     m_cible                             = NULL;
 
     m_angle                             = 0;
-    m_poseEnCours                       = 0;
 
     m_pousse.x                          = 0;
     m_pousse.y                          = 0;
@@ -106,6 +104,19 @@ Personnage::Personnage()
 
     m_impenetrable                      = 0;
     m_impoussable                       = 0;
+    m_doitMourir                        = 0;
+    m_collision                         = 1;
+
+    m_vientDeFrapper                    = NULL;
+    m_vientDetreTouche                  = NULL;
+
+    m_stunned                           = false;
+    m_ID                                = 0;
+    m_etatForce                         = false;
+    m_miracleBloquant                   = false;
+
+    m_entite_graphique.option_sonUnique     = false;
+    m_entite_graphique.option_forcedLight   = true;
 }
 Modele_Personnage::Modele_Personnage()
 {
@@ -152,46 +163,18 @@ Modele_Personnage::Modele_Personnage()
 
 void Modele_Personnage::Reinitialiser()
 {
-    for (int i=0;i<(int)m_pose.size();i++)
-    {
-        for (int j=0;j<(int)m_pose[i].size();j++)
-            m_pose[i][j].clear();
-        m_pose[i].clear();
-    }
-    m_pose.clear();
-
-    m_image.clear();
-    m_sons.clear();
+    m_tileset.clear();
 }
 
 Modele_Personnage::~Modele_Personnage()
 {
-    for (int i=0;i<(int)m_pose.size();i++)
-    {
-        for (int j=0;j<(int)m_pose[i].size();j++)
-            m_pose[i][j].clear();
-        m_pose[i].clear();
-    }
-    m_pose.clear();
-
-    m_image.clear();
-    m_sons.clear();
+    m_tileset.clear();
 }
 
 
 bool Modele_Personnage::Charger(string chemin)
 {
-    for (unsigned i=0;i<m_pose.size();i++)
-    {
-        for (unsigned j=0;j<m_pose[i].size();j++)
-            m_pose[i][j].clear();
-        m_pose[i].clear();
-    }
-
-    m_pose.clear();
-
-    m_image.clear();
-    m_sons.clear();
+    m_tileset.clear();
 
     console->Ajouter("",0);
     console->Ajouter("Chargement du personnage : "+chemin,0);
@@ -205,87 +188,42 @@ bool Modele_Personnage::Charger(string chemin)
         if (fichier)
         {
             char caractere;
-            do
-            {
-                fichier->get(caractere);
-                if (caractere=='*')
-                {
-                    string cheminImage;
-                    *fichier>>cheminImage;
 
-                    m_image.push_back(moteurGraphique->AjouterImage(reader.GetFile(cheminImage), reader.GetFileSize(cheminImage), cheminImage));
-                }
-                if (fichier->eof())
-                {
-                    console->Ajouter("Erreur : Personnage \" "+chemin+" \" Invalide",1);
-                    caractere='$';
-                }
+            m_tileset.push_back(std::vector <Tileset> (8, Tileset ()));
+            //m_tileset.back().front().option_forcedShadow    = m_ombre;
+            m_tileset.back().front().option_forcedReflect   = true;
+            m_tileset.back().front().Charger(*fichier, -1, &reader);
+
+            for (int j=1;j<8;j++)
+            {
+                m_tileset.back()[j] = m_tileset.back()[0];
+                m_tileset.back()[j].DeleteTiles();
+                m_tileset.back()[j].ChargerTiles(*fichier, -1/*, m_porteeLumineuse*/);
             }
-            while (caractere!='$');
 
-            m_sons.clear();
-            do
-            {
-                fichier->get(caractere);
-                if (caractere=='*')
-                {
-                    string cheminSon;
-                    *fichier>>cheminSon;
-                    m_sons.push_back(moteurSons->AjouterBuffer(cheminSon));
-                }
-                if (fichier->eof())
-                {
-                    console->Ajouter("Erreur : Personnage \" "+chemin+" \" Invalide",1);
-                    caractere='$';
-                }
-            }
-            while (caractere!='$');
-
+            int etat=-1;
+            caractere=' ';
 
             do
             {
                 fichier->get(caractere);
+
                 if (caractere=='*')
                 {
-                    do
+                    fichier->putback(caractere);
+
+                    m_tileset.push_back(m_tileset.front());
+                    for (int j=0;j<8;j++)
                     {
-                        fichier->get(caractere);
-                        switch (caractere)
-                        {
-                        case 'r' :
-                            *fichier>>m_porteeLumineuse.rouge;
-                            break;
-                        case 'v' :
-                            *fichier>>m_porteeLumineuse.vert;
-                            break;
-                        case 'b' :
-                            *fichier>>m_porteeLumineuse.bleu;
-                            break;
-                        case 'i' :
-                            *fichier>>m_porteeLumineuse.intensite;
-                            break;
-                        }
-
-                        if (fichier->eof())
-                        {
-                            console->Ajouter("Erreur : Personnage \" "+chemin+" \" Invalide",1);
-                            caractere='$';
-                        }
-
+                        m_tileset.back()[j].DeleteTiles();
+                        m_tileset.back()[j].ChargerTiles(*fichier, -1/*, m_porteeLumineuse*/);
                     }
-                    while (caractere!='$');
+
+                    etat++;
                     fichier->get(caractere);
                 }
-                if (fichier->eof())
-                {
-                    console->Ajouter("Erreur : Personnage \" "+chemin+" \" Invalide",1);
-                    caractere='$';
-                }
-
             }
             while (caractere!='$');
-
-            ChargerPose(fichier);
 
             fichier->close();
         }
@@ -304,128 +242,7 @@ bool Modele_Personnage::Charger(string chemin)
         return 0;
     }
 
-
-
     return true;
-}
-
-void Modele_Personnage::ChargerPose(ifstream *fichier)
-{
-    int etat=-1;
-    char caractere=' ';
-
-    do
-    {
-        fichier->get(caractere);
-
-        if (caractere=='*')
-        {
-            fichier->putback(caractere);
-
-            etat++;
-            m_pose.push_back(vector<vector<Pose> >(0,vector<Pose>(0,Pose ())));
-
-            fichier->get(caractere);
-
-            for (int j=0;j<8;j++)
-            {
-                m_pose[etat].push_back(vector<Pose> (0,Pose ()));
-                do
-                {
-                    if (caractere=='*')
-                    {
-                        coordonnee position(-1,-1,0,0),centre(-1000,-1000,-1,-1);
-                        int animation=0,son=-1,image=0,attaque=-1,lumiere=m_porteeLumineuse.intensite,ordre=0, couche = 0;
-                        float tempsAnimation=0.075;
-
-                        do
-                        {
-                            fichier->get(caractere);
-                            switch (caractere)
-                            {
-                            case 'x':
-                                *fichier>>position.x;
-                                break;
-                            case 'y':
-                                *fichier>>position.y;
-                                break;
-                            case 'w':
-                                *fichier>>position.w;
-                                break;
-                            case 'h':
-                                *fichier>>position.h;
-                                break;
-                            case 'a':
-                                *fichier>>animation;
-                                break;
-                            case 't':
-                                *fichier>>tempsAnimation;
-                                break;
-                            case 's':
-                                *fichier>>son;
-                                break;
-                            case 'i':
-                                *fichier>>image;
-                                break;
-                            case 'd':
-                                *fichier>>attaque;
-                                break;
-                            case 'l':
-                                *fichier>>lumiere;
-                                break;
-
-                            case 'o':
-                                *fichier>>ordre;
-                                break;
-
-                            case 'c':
-                                fichier->get(caractere);
-                                if (caractere=='x') *fichier>>centre.x;
-                                else *fichier>>centre.y;
-                                break;
-
-                            case 'u':
-                                *fichier>>couche;
-                                break;
-                            }
-                            if (fichier->eof())
-                            {
-                                console->Ajouter("Erreur : Entité Invalide",1);
-                                caractere='$';
-                                m_caracteristique.maxVie=0;
-                            }
-                        }
-                        while (caractere!='$');
-
-                        if (centre.x==-1000)
-                            centre.x=position.w/2;
-                        if (centre.y==-1000)
-                            centre.y=position.h-32;
-
-                        m_pose[etat][j].push_back(Pose ());
-                        m_pose[etat][j].back().setPose(position,centre,animation,son,image,attaque,lumiere,tempsAnimation,ordre,couche);
-                        fichier->get(caractere);
-                        if (fichier->eof())
-                        {
-                            console->Ajouter("Erreur : Entité Invalide",1);
-                            caractere='$';
-                            m_caracteristique.maxVie=0;
-                        }
-                    }
-                    fichier->get(caractere);
-                    if (fichier->eof())
-                    {
-                        console->Ajouter("Erreur : Entité Invalide",1);
-                        caractere='$';
-                        m_caracteristique.maxVie=0;
-                    }
-                }
-                while (caractere!='$');
-            }
-            fichier->get(caractere);
-        }
-    }
-    while (caractere!='$');
 }
 
 void Personnage::Sauvegarder(ofstream &fichier)
@@ -453,13 +270,16 @@ void Personnage::Sauvegarder(ofstream &fichier)
             <<" r"  <<m_caracteristique.rang
             <<" a"  <<m_caracteristique.pointAme
             <<" t"  <<m_caracteristique.modificateurTaille
-            <<" p"  <<m_poseEnCours
+            <<" p"  <<m_entite_graphique.m_noAnimation
             <<" e"  <<m_etat
             <<" g"  <<m_angle
             <<" lr" <<m_porteeLumineuse.rouge
             <<" lv" <<m_porteeLumineuse.vert
             <<" lb" <<m_porteeLumineuse.bleu
             <<" li" <<m_porteeLumineuse.intensite;
+
+    for(int z = 0 ; z < 10 ; ++z)
+        fichier<<"s"<<z<<m_scriptAI.variables[z]<<" ";
 
     for (unsigned o=0;o < m_objets.size();o++)
             m_objets[o].SauvegarderTexte(&fichier);
@@ -484,106 +304,70 @@ void Personnage::Sauvegarder(ofstream &fichier)
 
 int Personnage::getOrdre(Modele_Personnage *modele)
 {
-    if (modele->m_pose.size()>0)
+    if (modele->m_tileset.size()>0)
         if (m_etat>=0&&m_etat<NOMBRE_ETAT)
-            if ((int)(m_angle/45)>=0&&(int)(m_angle/45)<(int)modele->m_pose[m_etat].size())
-                if (m_poseEnCours>=0&&m_poseEnCours<(int)modele->m_pose[m_etat][(int)(m_angle/45)].size())
-                    return modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getOrdre();
+            if ((int)(m_angle/45)>=0&&(int)(m_angle/45)<(int)modele->m_tileset[m_etat].size())
+                return modele->m_tileset[m_etat][(int)(m_angle/45)].getOrdreDuTile(m_entite_graphique.m_noAnimation);
 
     return -10;
 }
 
-void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,bool surbrillance)
+void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,bool surbrillance, bool sansEffet)
 {
-    for(int i = 0; i < (int)m_effets.size(); ++i)
-    {
-        m_effets[i].m_effet.m_position = m_positionPixel;
-        m_effets[i].m_effet.Afficher();
-    }
 
-    if (modele!=NULL)
-        if (modele->m_pose.size()>0)
+     if (modele!=NULL)
+        if (modele->m_tileset.size()>0)
             if ((int)(m_angle/45)>=0&&(int)(m_angle/45)<8)
             {
                 Sprite sprite;
 
-                if (configuration->Ombre&&modele->m_ombre)
-                {
-                    int angleOmbre=(int)((m_angle-moteurGraphique->m_angleOmbreSoleil)+22.5);
+                m_angle = 0;
+                m_etat = 0;
 
-                    while (angleOmbre<0)
-                        angleOmbre=360+angleOmbre;
-                    while (angleOmbre>=360)
-                        angleOmbre=angleOmbre-360;
-
-                    if ((int)(angleOmbre/45)>=0&&(int)(angleOmbre/45)<(int)modele->m_pose[m_etat].size())
-                        if (m_poseEnCours>=0&&m_poseEnCours<(int)modele->m_pose[m_etat][(int)(angleOmbre/45)].size())
-                            if (modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getImage()>=0&&modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getImage()<(int)modele->m_image.size())
-                            {
-                                sprite.SetImage(*moteurGraphique->getImage(modele->m_image[modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getImage()]));
-                                sprite.SetSubRect(IntRect(modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().x, modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().y, modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().x+modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().w, modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().y+modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCoordonnee().h));
-
-                                sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
-
-                                sprite.SetOrigin(modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCentre().x,modele->m_pose[m_etat][(int)(angleOmbre/45)][m_poseEnCours].getCentre().y);
-
-                                sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
-                                sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)/2+32 -m_positionPixel.h);
-
-                                sprite.SetScale(m_caracteristique.modificateurTaille, m_caracteristique.modificateurTaille*(100-(float)moteurGraphique->m_soleil.hauteur)/50);
-                                sprite.SetRotation(moteurGraphique->m_angleOmbreSoleil);
-                                moteurGraphique->AjouterCommande(&sprite,9,1);
-                                sprite.SetOrigin(0,0);
-                                sprite.SetScale(1, 1);
-                                sprite.SetRotation(0);
-                            }
-                }
-
-                if ((int)(m_angle/45)>=0&&(int)(m_angle/45)<(int)modele->m_pose[m_etat].size())
-                    if (m_poseEnCours>=0&&m_poseEnCours<(int)modele->m_pose[m_etat][(int)(m_angle/45)].size())
-                        if (modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()>=0&&modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()<(int)modele->m_image.size())
+             //   if ((int)(m_angle/45)>=0&&(int)(m_angle/45)<(int)modele->m_tileset[m_etat].size())
+                //    if (0>=0&&0<(int)modele->m_tileset[m_etat][(int)(m_angle/45)].getTaille())
+                       // if (modele->m_tileset[m_etat][(int)(m_angle/45)].getImage(0)>=0&&modele->m_tileset[m_etat][(int)(m_angle/45)].getImage(0)<(int)modele->m_tileset[m_etat][(int)(m_angle/45)].m_image.size())
                         {
-                            sprite.SetImage(*moteurGraphique->getImage(modele->m_image[modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getImage()]));
+                            sprite.SetImage(*moteurGraphique->getImage(modele->m_tileset[m_etat][(int)(m_angle/45)].getImage(0)));
 
-                            sprite.SetOrigin(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().x,modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().y);
+                            sprite.SetOrigin(modele->m_tileset[m_etat][(int)(m_angle/45)].getCentreDuTile(0).x,modele->m_tileset[m_etat][(int)(m_angle/45)].getCentreDuTile(0).y);
 
-                            sprite.SetSubRect(IntRect(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().x+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().w, modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().y+modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCoordonnee().h));
+                            sprite.SetSubRect(IntRect(modele->m_tileset[m_etat][(int)(m_angle/45)].getPositionDuTile(0).x,
+                                                       modele->m_tileset[m_etat][(int)(m_angle/45)].getPositionDuTile(0).y,
+                                                       modele->m_tileset[m_etat][(int)(m_angle/45)].getPositionDuTile(0).x+modele->m_tileset[m_etat][(int)(m_angle/45)].getPositionDuTile(0).w,
+                                                       modele->m_tileset[m_etat][(int)(m_angle/45)].getPositionDuTile(0).y+modele->m_tileset[m_etat][(int)(m_angle/45)].getPositionDuTile(0).h));
 
                             sprite.FlipX(false);
-
 
                             sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE/*+dimensionsMap.y*64*/));
                             sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
 
-
                             sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
-
 
                             if (m_porteeLumineuse.intensite>0)
                                 sprite.SetColor(sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu, 255));
                             else
                                 sprite.SetColor(sf::Color(255,255,255, 255));
 
-                          /*  if (sprite.GetPosition().x+sprite.GetSize().x>=moteurGraphique->m_camera.GetRect().Left
-                                    &&sprite.GetPosition().x-modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().x<moteurGraphique->m_camera.GetRect().Right
-                                    &&sprite.GetPosition().y+sprite.GetSize().y>=moteurGraphique->m_camera.GetRect().Top
-                                    &&sprite.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)*/
-                            {
-                                moteurGraphique->AjouterCommande(&sprite,10 + modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCouche(),1);
-
-                                if (surbrillance)
-                                {
-                                    sprite.SetBlendMode(sf::Blend::Add);
-                                    moteurGraphique->AjouterCommande(&sprite,10,1);
-                                }
-
-                                sprite.FlipY(true);
-                                sprite.Move(0,modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getCentre().y-sprite.GetSize().y*0.5);
-                                sprite.Scale(1,0.5);
-                                moteurGraphique->AjouterCommande(&sprite,0,1);
-                            }
+                                moteurGraphique->AjouterCommande(&sprite,10 ,1);
                         }
             }
+
+   /* if (modele!=NULL)
+        if (modele->m_tileset.size()>0)
+            if ((int)(m_angle/45)>=0&&(int)(m_angle/45)<8)
+            {
+                m_entite_graphique.m_sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
+                m_entite_graphique.m_sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
+                moteurGraphique->AjouterCommande(&m_entite_graphique.m_sprite, 10);
+            }
+
+    if(!sansEffet)
+        for(int i = 0; i < (int)m_effets.size(); ++i)
+        {
+            m_effets[i].m_effet.m_position = m_positionPixel;
+            m_effets[i].m_effet.Afficher();
+        }*/
 }
 void Personnage::regenererVie(float vie)
 {
@@ -595,7 +379,7 @@ void Personnage::regenererVie(float vie)
 int Personnage::Pathfinding(casePathfinding** map,coordonnee exception, bool noDelete)
 {
     //if(!(m_arrivee.x==m_mauvaiseArrivee.x&&m_arrivee.y==m_mauvaiseArrivee.y))
-    if (!(m_arrivee.x==m_positionCase.x&&m_arrivee.y==m_positionCase.y))
+  /*  if (!(m_arrivee.x==m_positionCase.x&&m_arrivee.y==m_positionCase.y))
     {
         bool retest = false;
         m_erreurPathfinding=false;
@@ -617,7 +401,16 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception, bool noD
 
         casesVisitee.setTailleListe(0);
 
-        casesVisitee.AjouterCase(depart);
+        casesVisitee.AjouterCase(depart, -1);
+
+        if (arrivee.y < 0)
+            arrivee.y = depart.y - 1;
+        if (arrivee.x < 0)
+            arrivee.x = depart.x - 1;
+        if (arrivee.y >= 10)
+            arrivee.y = depart.y + 1;
+        if (arrivee.x >= 10)
+            arrivee.x = depart.x + 1;
 
         if (arrivee.y>=0&&arrivee.x>=0&&arrivee.y<10&&arrivee.x<10)
             if (map[arrivee.y][arrivee.x].collision)
@@ -638,7 +431,7 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception, bool noD
                             temp.y=enCours.y,temp.x=enCours.x;
                 enCours.y=arrivee.y-1;
                 enCours.x=arrivee.x;
-                if (enCours.y>=0&&enCours.y<10&&enCours.x>=0&&enCours.x<10)
+      .          if (enCours.y>=0&&enCours.y<10&&enCours.x>=0&&enCours.x<10)
                     if (!map[enCours.y][enCours.x].collision&&!(enCours.x==depart.x&&enCours.y==depart.y))
                         if (((enCours.y-depart.y)*(enCours.y-depart.y)+(enCours.x-depart.x)*(enCours.x-depart.x)) < ((temp.y-depart.y)*(temp.y-depart.y)+(temp.x-depart.x)*(temp.x-depart.x)))
                             temp.y=enCours.y,temp.x=enCours.x;
@@ -678,15 +471,15 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception, bool noD
 
                 if (temp.y!=-100&&temp.x!=-100)
                     arrivee=temp, m_arrivee.x = temp.x + decalage.x,  m_arrivee.y = temp.y + decalage.y;
-                else
+                else.
                     m_erreurPathfinding=true;
             }
 
-        while (!casesVisitee.TesterCasesEnCours(arrivee)&&!m_erreurPathfinding)
+        casesVisitee.IncrementerDistanceEnCours();
+        while (!casesVisitee.AjouterCasesAdjacentes(map,&arrivee,depart)&&!m_erreurPathfinding)
         {
             casesVisitee.IncrementerDistanceEnCours();
-            casesVisitee.AjouterCasesAdjacentes(map,&arrivee,depart);
-            if (casesVisitee.getDistance()>15)
+            if (casesVisitee.getDistance()>10)
                 m_erreurPathfinding=true, retest = true;
         }
 
@@ -694,11 +487,15 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception, bool noD
         {
             m_cheminFinal=arrivee;
 
-            while (casesVisitee.getDistance()>1)
-            {
-                m_cheminFinal=casesVisitee.TrouverLeChemin(m_cheminFinal);
-                casesVisitee.DecrementerDistanceEnCours();
-            }
+            Case temp = casesVisitee.getCase(casesVisitee.getTailleListe() - 1);
+
+            if(temp.getParent() == -1)
+                temp = casesVisitee.getCase(temp.getParent());
+            else
+                while (casesVisitee.getCase(temp.getParent()).getParent() != -1)
+                    temp = casesVisitee.getCase(temp.getParent());
+
+            m_cheminFinal = temp.getPosition();
 
             m_arrivee.x=arrivee.x+decalage.x;
             m_arrivee.y=arrivee.y+decalage.y;
@@ -727,6 +524,10 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception, bool noD
                 else
                     m_arrivee.y = m_positionCase.y;
 
+                for(int i = 0 ; i < 10 ; ++i)
+                for(int j = 0 ; j < 10 ; ++j)
+                    map[i][j].valeur = -1, map[i][j].dist = 3, map[i][j].cases = -1;
+
                 Pathfinding(map, exception, true);
             }
             else
@@ -734,7 +535,7 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception, bool noD
                 m_arrivee=m_positionCase;
                 m_cheminFinal=m_positionCase;
                 if (m_etat!=0)
-                    m_etat=0,m_poseEnCours=0,frappeEnCours=0;
+                    m_etat=0,m_entite_graphique.m_noAnimation=0,frappeEnCours=0;
             }
         }
 
@@ -760,11 +561,11 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception, bool noD
     }
 
 
-    return 2;
+    return 2;*/
 }
 
 
-bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap, bool pousserPossible)
+bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap)
 {
     //int buf=(int)(tempsEcoule*1000);
     //tempsEcoule=(float)buf/1000;
@@ -773,59 +574,66 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap, bool pou
     pos.x=((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE);
     pos.y=((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)+64;
 
-    moteurGraphique->LightManager->SetPosition(m_light,pos);
+    moteurGraphique->LightManager->SetPosition(m_entite_graphique.m_light,pos);
 
-    if(!pousserPossible)
+    if((m_pousse.x != 0 || m_pousse.y != 0))
     {
-        m_pousse.x = 0;
-        m_pousse.y = 0;
-    }
+        m_positionPixel.x += m_pousse.x * tempsEcoule * COTE_TILE * 0.05;
+        m_positionPixel.y += m_pousse.y * tempsEcoule * COTE_TILE * 0.05;
 
-    if((m_pousse.x != 0 || m_pousse.y != 0) && pousserPossible)
-    {
-        if(pousserPossible)
+        bool xgrand = (m_pousse.x > 0);
+        bool ygrand = (m_pousse.y > 0);
+
+        m_pousse.x -= tempsEcoule * (-1 + xgrand * 2) * 0.025;
+        m_pousse.y -= tempsEcoule * (-1 + ygrand * 2) * 0.025;
+
+        if(xgrand && m_pousse.x < 0)
+            m_pousse.x = 0;
+        else if(!xgrand && m_pousse.x > 0)
+            m_pousse.x = 0;
+
+        if(ygrand && m_pousse.y < 0)
+            m_pousse.y = 0;
+        else if(!ygrand && m_pousse.y > 0)
+            m_pousse.y = 0;
+
+
+        m_positionCase.x    = (int)((m_positionPixel.x+COTE_TILE*0.25)/COTE_TILE);
+        m_positionCase.y    = (int)((m_positionPixel.y+COTE_TILE*0.25)/COTE_TILE);
+
+        if(m_pousse.x == 0 && m_pousse.y == 0)
         {
-            m_positionPixel.x += m_pousse.x * tempsEcoule * COTE_TILE * 0.05;
-            m_positionPixel.y += m_pousse.y * tempsEcoule * COTE_TILE * 0.05;
+            m_positionCase.x    = (int)((m_positionPixel.x)/COTE_TILE);
+            m_positionCase.y    = (int)((m_positionPixel.y)/COTE_TILE);
 
-            bool xgrand = (m_pousse.x > 0);
-            bool ygrand = (m_pousse.y > 0);
+            if(m_positionPixel.x > m_positionCase.x * COTE_TILE + COTE_TILE * 0.5)
+                m_arrivee.x = m_positionCase.x, m_positionCase.x ++;
+            else if(m_positionPixel.x < m_positionCase.x * COTE_TILE + COTE_TILE * 0.5)
+                m_arrivee.x = m_positionCase.x + 1;
 
-            m_pousse.x -= tempsEcoule * (-1 + xgrand * 2) * 0.025;
-            m_pousse.y -= tempsEcoule * (-1 + ygrand * 2) * 0.025;
+            if(m_positionPixel.y > m_positionCase.y * COTE_TILE + COTE_TILE * 0.5)
+                m_arrivee.y = m_positionCase.y, m_positionCase.y ++;
+            else if(m_positionPixel.y < m_positionCase.y * COTE_TILE + COTE_TILE * 0.5)
+                m_arrivee.y = m_positionCase.y + 1;
 
-            if(xgrand && m_pousse.x < 0)
-                m_pousse.x = 0;
-            else if(!xgrand && m_pousse.x > 0)
-                m_pousse.x = 0;
-
-            if(ygrand && m_pousse.y < 0)
-                m_pousse.y = 0;
-            else if(!ygrand && m_pousse.y > 0)
-                m_pousse.y = 0;
+            m_cheminFinal.x     = m_arrivee.x;
+            m_cheminFinal.y     = m_arrivee.y;
         }
-        else
-            m_pousse.y = 0, m_pousse.x = 0;
 
-        m_positionCase.x    = (int)((m_positionPixel.x+COTE_TILE*0.5)/COTE_TILE);
-        m_positionCase.y    = (int)((m_positionPixel.y+COTE_TILE*0.5)/COTE_TILE);
 
-        m_arrivee.x         = m_positionCase.x;
-        m_arrivee.y         = m_positionCase.y;
+        if(m_miracleALancer == -1)
+            frappeEnCours = 0;
 
-        m_cheminFinal.x     = m_positionCase.x;
-        m_cheminFinal.y     = m_positionCase.y;
-
-        frappeEnCours       = 0;
+        return 1;
     }
-    else if (m_caracteristique.vie > 0)
+    else if (m_caracteristique.vie > 0 && !m_stunned)
     {
         if (!frappeEnCours)
         {
             if (m_positionCase.y!=m_cheminFinal.y||m_positionCase.x!=m_cheminFinal.x)
             {
-                if (m_etat!=1)
-                    m_etat=1,m_poseEnCours=0;
+                if (m_etat!=1 && !m_etatForce)
+                    m_etat=1,m_entite_graphique.m_noAnimation=0;
 
                 m_positionPixelPrecedente.x=(int)m_positionPixel.x;
                 m_positionPixelPrecedente.y=(int)m_positionPixel.y;
@@ -870,11 +678,11 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap, bool pou
                 m_angle=calculerAngle(m_cheminFinal.x-m_positionCase.x,m_cheminFinal.y-m_positionCase.y);
 
                 if ((m_positionCase.x<m_cheminFinal.x&&m_positionPixel.x>=m_cheminFinal.x*COTE_TILE)
-                        ||(m_positionCase.x>m_cheminFinal.x&&m_positionPixel.x<=m_cheminFinal.x*COTE_TILE)
-                        ||m_positionCase.x==m_cheminFinal.x)
+                  ||(m_positionCase.x>m_cheminFinal.x&&m_positionPixel.x<=m_cheminFinal.x*COTE_TILE)
+                  || m_positionCase.x==m_cheminFinal.x)
                     if ((m_positionCase.y<m_cheminFinal.y&&m_positionPixel.y>=m_cheminFinal.y*COTE_TILE)
-                            ||(m_positionCase.y>m_cheminFinal.y&&m_positionPixel.y<=m_cheminFinal.y*COTE_TILE)
-                            ||m_positionCase.y==m_cheminFinal.y)
+                      ||(m_positionCase.y>m_cheminFinal.y&&m_positionPixel.y<=m_cheminFinal.y*COTE_TILE)
+                      || m_positionCase.y==m_cheminFinal.y)
                     {
                         m_positionPixel.x=(m_cheminFinal.x*COTE_TILE);
                         m_positionPixel.y=(m_cheminFinal.y*COTE_TILE);
@@ -890,10 +698,10 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap, bool pou
             }
             else if (m_arrivee.x!=m_positionCase.x||m_arrivee.y!=m_positionCase.y)
                 return 1;
-            else
+            else if(!m_etatForce)
             {
                 if (m_etat!=0)
-                    m_poseEnCours=0;
+                    m_entite_graphique.m_noAnimation=0;
 
                 m_etat=0,frappeEnCours=0;
             }
@@ -910,7 +718,7 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap, bool pou
     return 0;
 }
 
-void Personnage::InfligerDegats(float degats)
+void Personnage::InfligerDegats(float degats, Modele_Personnage *modele)
 {
     float temp = degats;
     degats -= (float)m_caracteristique.armure/50;
@@ -924,13 +732,26 @@ void Personnage::InfligerDegats(float degats)
 
     m_cible = NULL;
 
+    if(degats > 0)
+    if(m_entite_graphique.m_tileset != NULL)
+        if(m_entite_graphique.m_tileset->getNombreSonsSpecial(0) > 0)
+        {
+            int random = rand()%m_entite_graphique.m_tileset->getNombreSonsSpecial(0);
+
+            coordonnee position;
+            position.x=(m_positionCase.x-m_positionCase.y-1)/5;
+            position.y=(m_positionCase.x+m_positionCase.y)/5;
+
+            m_entite_graphique.m_tileset->JouerSon(m_entite_graphique.m_tileset->getSonSpecial(0, random),position, true);
+        }
+
     if (m_caracteristique.vie<=0&&m_etat!=3)
-        m_poseEnCours=0,m_etat=3;
+        m_entite_graphique.m_noAnimation=0,m_etat=3;
 
     m_touche = true;
 }
 
-int Personnage::Animer(Modele_Personnage *modele,float temps,coordonnee positionHero)
+int Personnage::Animer(Modele_Personnage *modele,float temps)
 {
     int retour=-2;
 
@@ -938,8 +759,12 @@ int Personnage::Animer(Modele_Personnage *modele,float temps,coordonnee position
         retour = 0;
 
     int nombreInactif = 0;
+    m_stunned = false;
     for(int i = 0; i < (int)m_effets.size(); ++i)
     {
+        if(m_caracteristique.vie <= 0)
+            m_effets[i].m_effet.m_actif = false;
+
         bool actif = m_effets[i].m_effet.m_actif;
         m_effets[i].m_effet.Animer(temps);
 
@@ -957,8 +782,10 @@ int Personnage::Animer(Modele_Personnage *modele,float temps,coordonnee position
 
         if(!m_effets[i].m_effet.m_actif)
             ++nombreInactif;
-        else
+        else if(!m_doitMourir)
         {
+            float viePrecedente = m_caracteristique.vie;
+
             if(m_effets[i].m_type == AURA_REGENERATION)
             {
                 if(m_effets[i].m_info3)
@@ -970,74 +797,108 @@ int Personnage::Animer(Modele_Personnage *modele,float temps,coordonnee position
                 }
             }
 
+            if(m_effets[i].m_type == AURA_STUNNED)
+                m_stunned = true;
+
             if(m_monstre)
                 if(m_caracteristique.vie > m_caracteristique.maxVie)
                     m_caracteristique.vie = m_caracteristique.maxVie;
+
+
+            if(m_caracteristique.vie <= 0 && viePrecedente >= 0)
+                m_caracteristique.vie = viePrecedente, m_doitMourir = true;
         }
     }
+
 
     if(nombreInactif == (int)m_effets.size() || !EnVie())
         m_effets.clear();
 
-    m_animation+=temps;
+    int pose = m_entite_graphique.m_noAnimation;
 
-    float tempsAnimation=0.075;
-
-    if (m_etat>=0&&m_etat<(int)modele->m_pose.size())
+    if(!m_stunned)
+    if(m_etat >= 0 && m_etat < (int)modele->m_tileset.size())
+    if((int)(m_angle/45) >= 0 && (int)(m_angle/45) < (int)modele->m_tileset[m_etat].size())
     {
-        if (modele->m_pose.size()>0)
-            tempsAnimation = modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getTempsAnimation();
+        m_entite_graphique.m_tileset    = &modele->m_tileset[m_etat][(int)(m_angle/45)];
+        m_entite_graphique.m_couche     = 10;
+        if(temps > 0)
+            m_entite_graphique.Animer(temps);
 
-        if (modele->m_pose.size()>0&&tempsAnimation>0)
-            while (m_animation>=tempsAnimation)
+        m_entite_graphique.m_sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
+        if (m_porteeLumineuse.intensite>0)
+            m_entite_graphique.m_sprite.SetColor(sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu, 255));
+        else
+            m_entite_graphique.m_sprite.SetColor(sf::Color(255,255,255, 255));
+
+        if(m_entite_graphique.attaque_touche)
+        {
+            if(m_monstre)
             {
-                coordonnee position;
-                position.x=(m_positionCase.x-m_positionCase.y-1)/5;
-                position.y=(m_positionCase.x+m_positionCase.y)/5;
-
-                m_poseEnCours=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAnimation();
-
-                if (m_poseEnCours>=(int)modele->m_pose[m_etat][(int)(m_angle/45)].size())
-                    m_poseEnCours=0;
-
-                modele->JouerSon(modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getSon(),position,positionHero);
-
-                m_animation-=tempsAnimation;
-                tempsAnimation = modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getTempsAnimation();
-
-                if (m_monstre)
-                {
-                    if (modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==0)
-                    {
-                        if(m_miracleALancer >= 0)
-                            retour = 1;
-                        else
-                            retour+=(rand()%(m_caracteristique.degatsMax-m_caracteristique.degatsMin+1)+m_caracteristique.degatsMin);
-                    }
-                }
+                if(m_miracleALancer >= 0)
+                    retour = 1;
                 else
-                {
-                    if (modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()>retour)
-                        retour=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque();
-                }
-
-                if (modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getAttaque()==1 && m_monstre)
-                    frappeEnCours=false,m_miracleALancer=-1;
-
-                if (m_monstre)
-                {
-                    if (modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite()!=-1&&m_caracteristique.rang==0)
-                        m_porteeLumineuse.intensite=modele->m_pose[m_etat][(int)(m_angle/45)][m_poseEnCours].getLumiereIntensite();
-
-                    float inte=m_porteeLumineuse.intensite;
-                    if (inte>255)
-                        inte=255;
-
-                    moteurGraphique->LightManager->SetIntensity(m_light,(int)inte);
-                    moteurGraphique->LightManager->SetRadius(m_light,(int)m_porteeLumineuse.intensite*2);
-                }
+                    retour+=(rand()%(m_caracteristique.degatsMax-m_caracteristique.degatsMin+1)+m_caracteristique.degatsMin);
             }
+            else
+                retour = 0;
+        }
+
+        if(m_entite_graphique.attaque_stop)
+        {
+            if(m_monstre)
+                frappeEnCours=false, m_etatForce = false;
+            else
+                retour = 1;
+        }
+
+        if(m_entite_graphique.attaque_pause)
+            retour = 2;
+
+        if (m_monstre && m_entite_graphique.m_tileset != NULL)
+        {
+            if (m_entite_graphique.m_tileset->getLumiereDuTile(m_entite_graphique.m_noAnimation).intensite!=-1&&m_caracteristique.rang==0)
+                m_porteeLumineuse.intensite=m_entite_graphique.m_tileset->getLumiereDuTile(m_entite_graphique.m_noAnimation).intensite;
+
+            float inte=m_porteeLumineuse.intensite;
+            if (inte>255)
+                inte=255;
+
+            moteurGraphique->LightManager->SetIntensity(m_entite_graphique.m_light,(int)inte);
+            moteurGraphique->LightManager->SetRadius(m_entite_graphique.m_light,(int)m_porteeLumineuse.intensite*2);
+        }
     }
+
+    int angleOmbre=(int)((m_angle-moteurGraphique->m_angleOmbreSoleil)+22.5);
+
+    while (angleOmbre<0)
+        angleOmbre=360+angleOmbre;
+    while (angleOmbre>=360)
+        angleOmbre=angleOmbre-360;
+
+    if(!m_stunned && configuration->Ombre)
+    if(m_etat >= 0 && m_etat < (int)modele->m_tileset.size())
+    if((int)(angleOmbre/45) >= 0 && (int)(angleOmbre/45) < (int)modele->m_tileset[m_etat].size())
+    {
+        m_entite_graphique_shadow              = m_entite_graphique;
+
+        m_entite_graphique_shadow.m_tileset    = &modele->m_tileset[m_etat][(int)(angleOmbre/45)];
+
+        m_entite_graphique_shadow.Generer();
+
+        m_entite_graphique_shadow.m_couche     = 9;
+        m_entite_graphique_shadow.m_decalCouche= 0;
+
+        m_entite_graphique_shadow.option_forcedLight    = false;
+        m_entite_graphique_shadow.m_shadow              = false;
+        m_entite_graphique_shadow.m_reflect             = false;
+        m_entite_graphique_shadow.m_light               = Light_Entity();
+
+        m_entite_graphique_shadow.m_sprite.SetScale(m_caracteristique.modificateurTaille,
+                                                    m_caracteristique.modificateurTaille*(100-(float)moteurGraphique->m_soleil.hauteur)/50);
+        m_entite_graphique_shadow.m_sprite.SetRotation(moteurGraphique->m_angleOmbreSoleil);
+    }
+
     return retour;
 }
 
@@ -1045,12 +906,13 @@ void Personnage::Frappe(coordonnee direction,coordonnee position)
 {
     if (m_etat<2)
     {
+        m_entite_graphique.m_animation = 0;
         m_etat=2;
-        m_poseEnCours=0;
+        m_entite_graphique.m_noAnimation=0;
     }
 
     if(!frappeEnCours)
-        m_poseEnCours=0;
+        m_entite_graphique.m_noAnimation=0;
 
     frappeEnCours=1;
 
@@ -1082,18 +944,20 @@ void Personnage::DetruireEffets()
                 }
             }
         }
+        m_effets[i].m_effet.m_actif = false;
     }
-
-    m_effets.clear();
 }
 
-int Personnage::AjouterEffet(std::vector<Tile> &tiles, int type, int compteur, int info1, int info2, int info3)
+int Personnage::AjouterEffet(Tileset *tileset, int type, int compteur, int info1, int info2, int info3)
 {
     m_effets.push_back(EffetPersonnage());
 
-    m_effets.back().m_effet.m_tiles     = tiles;
+    m_effets.back().m_effet.m_tileset = tileset;
     m_effets.back().m_effet.m_compteur  = compteur;
     m_effets.back().m_effet.m_position  = m_positionPixel;
+    m_effets.back().m_effet.m_couche    = 10;
+    m_effets.back().m_effet.Initialiser(coordonnee ((int)((m_positionPixel.x - m_positionPixel.y) * 64 / COTE_TILE),
+                                                    (int)((m_positionPixel.x + m_positionPixel.y) * 32 / COTE_TILE)));
 
     m_effets.back().m_type              = type;
     m_effets.back().m_info1             = info1;
@@ -1111,20 +975,6 @@ int Personnage::AjouterEffet(std::vector<Tile> &tiles, int type, int compteur, i
 
     return m_effets.size() - 1;
 }
-
-
-void Modele_Personnage::JouerSon(int numeroSon,coordonnee position,coordonnee positionHero,bool uniqueSound)
-{
-    if (numeroSon>=0&&numeroSon<(int)m_sons.size())
-    {
-        coordonnee pos;
-        pos.x=-position.x;
-        pos.y=position.y;
-        moteurSons->JouerSon(m_sons[numeroSon],pos,positionHero,uniqueSound);
-    }
-}
-
-
 
 void Modele_Personnage::setPorteeLumineuse(Lumiere  lumiere)
 {
@@ -1149,7 +999,7 @@ void Personnage::setVitesse(float vitesse)
 
 void Personnage::setEtat(int etat)
 {
-    m_etat=etat,m_poseEnCours=0,frappeEnCours=false;
+    m_etat=etat,m_entite_graphique.m_noAnimation=0,frappeEnCours=false;
 }
 void Personnage::setJustEtat(int etat)
 {
@@ -1170,7 +1020,7 @@ void Personnage::addAngle(int angle)
 
 void Personnage::setPose(int pose)
 {
-    m_poseEnCours=pose;
+    m_entite_graphique.m_noAnimation=pose;
 }
 void Personnage::setAngle(int angle)
 {
@@ -1195,7 +1045,7 @@ void Personnage::setCoordonnee(coordonnee nouvellesCoordonnees)
     m_cheminFinal.y=m_positionCase.y;
 
     //m_angle=0;
-    m_poseEnCours=0;
+    m_entite_graphique.m_noAnimation=0;
 
     //moteurGraphique->LightManager->SetPosition(m_light,sf::Vector2f(m_positionPixel.x,m_positionPixel.y));
 
@@ -1234,6 +1084,15 @@ void Personnage::setPousse(coordonneeDecimal pousse)
 {
     if(!m_impoussable)
     {
+        if(pousse.x == 0 && pousse.y == 0)
+            if(fabs(m_pousse.x) > 0 || fabs(m_pousse.y) > 0 )
+            {
+                    m_positionCase.x    = (int)((m_positionPixel.x+COTE_TILE*0.5)/COTE_TILE);
+                    m_positionCase.y    = (int)((m_positionPixel.y+COTE_TILE*0.5)/COTE_TILE);
+                    m_positionPixel.x    = m_positionCase.x*COTE_TILE;
+                    m_positionPixel.y    = m_positionCase.y*COTE_TILE;
+            }
+
         m_pousse.x = pousse.x;
         m_pousse.y = pousse.y;
     }
@@ -1248,6 +1107,8 @@ void Personnage::Pousser(coordonneeDecimal vecteur)
 
         if(fabs(vecteur.y) > fabs(m_pousse.y))
             m_pousse.y = vecteur.y;
+
+        frappeEnCours = false;
     }
 }
 
@@ -1260,8 +1121,9 @@ void Personnage::AjouterPointAme(int pointAme)
 
 bool Personnage::EnVie()
 {
-    if (m_caracteristique.vie>0) return 1;
-    else return 0;
+    if (m_caracteristique.vie>0)
+        return 1;
+    return 0;
 }
 
 const coordonnee &Personnage::getDepart()
@@ -1269,10 +1131,6 @@ const coordonnee &Personnage::getDepart()
     return m_depart;
 }
 
-int Modele_Personnage::getNombreSons()
-{
-    return m_sons.size();
-}
 const coordonnee &Personnage::getCoordonnee()
 {
     return m_positionCase;
@@ -1313,7 +1171,7 @@ int Personnage::getAngle()
 }
 int Personnage::getPose()
 {
-    return m_poseEnCours;
+    return m_entite_graphique.m_noAnimation;
 }
 bool Personnage::getErreurPathfinding()
 {

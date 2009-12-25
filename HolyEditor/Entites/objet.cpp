@@ -1206,7 +1206,7 @@ sf::Text Objet::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *d
 
     string.SetColor(color);
 
-    string.SetSize(12.f*(int)(configuration->Resolution.h/600));
+    string.SetCharacterSize(12.f*(int)(configuration->Resolution.h/600));
     string.SetString(chaine);
 
     if (tailleCadran->x<((int)string.GetRect().Right-(int)string.GetRect().Left))
@@ -1449,7 +1449,7 @@ bool Objet::Utilisable(Caracteristique caract,int IDClasse)
 
 void Objet::JouerSon()
 {
-    moteurSons->JouerSon(m_son,coordonnee (-1,-1,-1,-1),coordonnee (-1,-1,-1,-1));
+    moteurSons->JouerSon(m_son,coordonnee (-1,-1,-1,-1));
 }
 
 

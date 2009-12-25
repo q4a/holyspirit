@@ -25,6 +25,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include <iostream>
 #include <string>
+#include <list>
 
 #include "classe.h"
 #include "personnage.h"
@@ -48,6 +49,7 @@ public:
 
     bool AfficherInventaire(float,std::vector<Objet>);
     void AfficherQuetes(float);
+    void AfficherFlecheQuetes(const std::string &nomMap, float temps);
     bool AfficherMiracles(float , int );
     void AfficherCaracteristiques(float decalage);
     void AfficherRaccourcis();
@@ -115,6 +117,10 @@ public:
     std::vector<int> m_lvl_miracles;
 
     std::vector<Personnage *> m_amis;
+
+    float m_angleFleche;
+
+    std::list<sf::Sprite> m_minimap;
 
 private:
     int m_monstreVise;

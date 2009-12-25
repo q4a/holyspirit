@@ -395,8 +395,8 @@ bool Map::Charger(std::string nomMap)
 
                 m_cheminMusique.push_back(temp2);
 
-                m_musique[m_musiqueEnCours].SetLoop(false);
-                m_musique[m_musiqueEnCours].SetVolume(100);
+                //m_musique[m_musiqueEnCours].SetLoop(false);
+                //m_musique[m_musiqueEnCours].SetVolume(100);
 
 
                 m_musiqueEnCours++;
@@ -413,7 +413,7 @@ bool Map::Charger(std::string nomMap)
         if (configuration->debug)
             console->Ajouter("/Lectures des musiques.");
 
-        m_musique[0].Play();
+      //  m_musique[0].Play();
 
         m_musiqueEnCours=0;
 
@@ -486,13 +486,12 @@ bool Map::Charger(std::string nomMap)
             {
                 string cheminDuTileset;
                 *fichier>>cheminDuTileset;
-                m_tileset.push_back(Tileset (cheminDuTileset));
-
+                m_tileset.push_back(moteurGraphique->AjouterTileset(cheminDuTileset));
             }
             if (fichier->eof())
             {
                 console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                return 0;
+                throw ("Erreur : Map \" "+chemin+" \" Invalide");
             }
 
         }
@@ -509,15 +508,12 @@ bool Map::Charger(std::string nomMap)
             {
                 string cheminDuTileset;
                 *fichier>>cheminDuTileset;
-                m_herbe.push_back(Herbe ());
-                if (!m_herbe.back().Charger(cheminDuTileset))
-                    return 0;
-
+                m_herbe.push_back(moteurGraphique->AjouterTileset(cheminDuTileset));
             }
             if (fichier->eof())
             {
                 console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                return 0;
+                throw ("Erreur : Map \" "+chemin+" \" Invalide");
             }
 
         }
@@ -525,6 +521,7 @@ bool Map::Charger(std::string nomMap)
 
         if (configuration->debug)
             console->Ajouter("/Lectures des herbes.");
+
 
         do
         {
@@ -959,30 +956,30 @@ void Map::Initialiser()
             {
                 if (m_decor[couche][i][j][z].getHerbe()>=0&&m_decor[couche][i][j][z].getHerbe()<(int)m_herbe.size())
                 {
-                    if (m_herbe[m_decor[couche][i][j][z].getHerbe()].getTaille()>0)
+                    if (moteurGraphique->getTileset(m_herbe[m_decor[couche][i][j][z].getHerbe()])->getTaille()>0)
                     {
                         coordonnee position,positionPartieDecor;
 
                         int numeroHerbe=0;
-                        if (m_herbe[m_decor[couche][i][j][z].getHerbe()].getTaille()>0)
-                            numeroHerbe = (rand() % (m_herbe[m_decor[couche][i][j][z].getHerbe()].getTaille()));
+                        if (moteurGraphique->getTileset(m_herbe[m_decor[couche][i][j][z].getHerbe()])->getTaille()>0)
+                            numeroHerbe = (rand() % (moteurGraphique->getTileset(m_herbe[m_decor[couche][i][j][z].getHerbe()])->getTaille()));
                         m_decor[couche][i][j][z].setNumeroHerbe(numeroHerbe);
 
                         position.x=(j-i-1)*64;
                         position.y=(j+i)*32;
 
-                        positionPartieDecor=m_herbe[m_decor[couche][i][j][z].getHerbe()].getPositionDuTile(m_decor[couche][i][j][z].getNumeroHerbe());
+                        positionPartieDecor=moteurGraphique->getTileset(m_herbe[m_decor[couche][i][j][z].getHerbe()])->getPositionDuTile(m_decor[couche][i][j][z].getNumeroHerbe());
 
                         if (couche==0)
                             position.y-=32;
                         position.x+=m_decor[couche][i][j][z].getDecalageHerbe().x;
 
-                        m_decor[couche][i][j][z].m_spriteHerbe.SetImage(*moteurGraphique->getImage(m_herbe[m_decor[couche][i][j][z].getHerbe()].getImage(m_decor[couche][i][j][z].getNumeroHerbe())));
-                        m_decor[couche][i][j][z].m_spriteHerbe.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
-                        m_decor[couche][i][j][z].m_spriteHerbe.SetScale((float)m_decor[couche][i][j][z].getTailleHerbe()/100,(float)m_decor[couche][i][j][z].getTailleHerbe()/100);
-                        m_decor[couche][i][j][z].m_spriteHerbe.SetX(position.x+64-positionPartieDecor.w/2);
-                        m_decor[couche][i][j][z].m_spriteHerbe.SetY(position.y-positionPartieDecor.h+64);
-                        m_decor[couche][i][j][z].m_spriteHerbe.SetColor(m_decor[couche][i][j][z].getCouleurHerbe());
+                        m_decor[couche][i][j][z].m_entite_herbe.m_sprite.SetImage(*moteurGraphique->getImage(moteurGraphique->getTileset(m_herbe[m_decor[couche][i][j][z].getHerbe()])->getImage(m_decor[couche][i][j][z].getNumeroHerbe())));
+                        m_decor[couche][i][j][z].m_entite_herbe.m_sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
+                        m_decor[couche][i][j][z].m_entite_herbe.m_sprite.SetScale((float)m_decor[couche][i][j][z].getTailleHerbe()/100,(float)m_decor[couche][i][j][z].getTailleHerbe()/100);
+                        m_decor[couche][i][j][z].m_entite_herbe.m_sprite.SetX(position.x+64-positionPartieDecor.w/2);
+                        m_decor[couche][i][j][z].m_entite_herbe.m_sprite.SetY(position.y-positionPartieDecor.h+64);
+                        m_decor[couche][i][j][z].m_entite_herbe.m_sprite.SetColor(m_decor[couche][i][j][z].getCouleurHerbe());
                     }
                 }
             }
@@ -1024,18 +1021,17 @@ void Map::CreerSprite(sf::Vector3f position_case)
         position.x=((int)position_case.x-(int)position_case.y-1)*64;
         position.y=((int)position_case.x+(int)position_case.y)*32;
 
-        positionPartieDecor=m_tileset[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].getTileset()].getPositionDuTile(m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].getTile()[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].random_animation]);
+        positionPartieDecor=moteurGraphique->getTileset(m_tileset[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].getTileset()])->getPositionDuTile(m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].getTile()[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].random_animation]);
 
-        m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].m_sprite.SetImage(*moteurGraphique->getImage(m_tileset[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].getTileset()].getImage(m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].getTile()[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].random_animation])));
-        m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].m_sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
+        m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].m_entite_graphique.m_sprite.SetImage(*moteurGraphique->getImage(moteurGraphique->getTileset(m_tileset[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].getTileset()])->getImage(m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].getTile()[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].random_animation])));
+        m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].m_entite_graphique.m_sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
 
-        m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].m_sprite.SetOrigin(m_tileset[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].getTileset()].getCentreDuTile(m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].getTile()[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].random_animation]).x,
-                                                                                                     m_tileset[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].getTileset()].getCentreDuTile(m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].getTile()[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].random_animation]).y);
+        m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].m_entite_graphique.m_sprite.SetOrigin(moteurGraphique->getTileset(m_tileset[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].getTileset()])->getCentreDuTile(m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].getTile()[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].random_animation]).x,
+                                                                                                     moteurGraphique->getTileset(m_tileset[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].getTileset()])->getCentreDuTile(m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].getTile()[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].random_animation]).y);
 
-        m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].m_spriteOmbre.SetSubRect(sf::IntRect(0,0,0,0));
 
-        m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].m_sprite.SetX(position.x+64);
-        m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].m_sprite.SetY(position.y+32);
+        m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].m_entite_graphique.m_sprite.SetX(position.x+64);
+        m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].m_entite_graphique.m_sprite.SetY(position.y+32);
     }
 
     //m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].m_sprite.SetColor(sf::Color(255,255,255,m_tileset[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getTileset()].getOpacityDuTile(m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getTile()[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].random_animation])));
@@ -1072,12 +1068,12 @@ void Map::Sauvegarder(std::string chemin)
 
 
         for (int i=0;i<(int)m_tileset.size();++i)
-            fichier<<"*"<<m_tileset[i].getChemin()<<"\n";
+            fichier<<"*"<<moteurGraphique->getTileset(m_tileset[i])->getChemin()<<"\n";
 
         fichier<<"$\n";
 
         for (int i=0;i<(int)m_herbe.size();++i)
-            fichier<<"*"<<m_herbe[i].getChemin()<<"\n";
+            fichier<<"*"<<moteurGraphique->getTileset(m_herbe[i])->getChemin()<<"\n";
 
         fichier<<"$\n";
 
@@ -1292,38 +1288,38 @@ void Map::Afficher(bool alt,float alpha)
                 for (int z=0;z<(int) m_decor[couche][j][k].size();++z)
                 if( m_moduleAleatoireCur >= m_decor[couche][j][k][z].m_moduleAleatoireMin && m_moduleAleatoireCur <= m_decor[couche][j][k][z].m_moduleAleatoireMax)
                 {
-                    if (m_decor[couche][j][k][z].m_sprite.GetSize().x>0)
-                        if (m_decor[couche][j][k][z].m_sprite.GetPosition().x+m_decor[couche][j][k][z].m_sprite.GetSize().x-m_decor[couche][j][k][z].m_sprite.GetOrigin().x>=moteurGraphique->m_camera.GetRect().Left
-                                &&m_decor[couche][j][k][z].m_sprite.GetPosition().x-m_decor[couche][j][k][z].m_sprite.GetOrigin().x<moteurGraphique->m_camera.GetRect().Right
-                                &&m_decor[couche][j][k][z].m_sprite.GetPosition().y+m_decor[couche][j][k][z].m_sprite.GetSize().y-m_decor[couche][j][k][z].m_sprite.GetOrigin().y>=moteurGraphique->m_camera.GetRect().Top
-                                &&m_decor[couche][j][k][z].m_sprite.GetPosition().y-m_decor[couche][j][k][z].m_sprite.GetOrigin().y<moteurGraphique->m_camera.GetRect().Bottom)
+                    if (m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().x>0)
+                        if (m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x+m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().x-m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x>=moteurGraphique->m_camera.GetRect().Left
+                                &&m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x-m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x<moteurGraphique->m_camera.GetRect().Right
+                                &&m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y+m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().y-m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y>=moteurGraphique->m_camera.GetRect().Top
+                                &&m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y-m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y<moteurGraphique->m_camera.GetRect().Bottom)
                         {
-                            sf::IntRect rect = m_decor[couche][j][k][z].m_sprite.GetSubRect();
-                            sf::IntRect rectBuf = m_decor[couche][j][k][z].m_sprite.GetSubRect();
-                            sf::Vector2f pos = m_decor[couche][j][k][z].m_sprite.GetPosition();
+                            sf::IntRect rect = m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSubRect();
+                            sf::IntRect rectBuf = m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSubRect();
+                            sf::Vector2f pos = m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition();
 
-                            if (m_decor[couche][j][k][z].m_sprite.GetPosition().x + m_decor[couche][j][k][z].m_sprite.GetSize().x - m_decor[couche][j][k][z].m_sprite.GetOrigin().x > moteurGraphique->m_camera.GetRect().Right)
-                                rectBuf.Right -= (int)m_decor[couche][j][k][z].m_sprite.GetPosition().x + (int)m_decor[couche][j][k][z].m_sprite.GetSize().x - (int)m_decor[couche][j][k][z].m_sprite.GetOrigin().x - (int)moteurGraphique->m_camera.GetRect().Right;
-                            if (m_decor[couche][j][k][z].m_sprite.GetPosition().y + m_decor[couche][j][k][z].m_sprite.GetSize().y - m_decor[couche][j][k][z].m_sprite.GetOrigin().y > moteurGraphique->m_camera.GetRect().Bottom)
-                                rectBuf.Bottom -= (int)m_decor[couche][j][k][z].m_sprite.GetPosition().y + (int)m_decor[couche][j][k][z].m_sprite.GetSize().y - (int)m_decor[couche][j][k][z].m_sprite.GetOrigin().y - (int)moteurGraphique->m_camera.GetRect().Bottom;
+                            if (m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x + m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().x - m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x > moteurGraphique->m_camera.GetRect().Right)
+                                rectBuf.Right -= (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x + (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().x - (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x - (int)moteurGraphique->m_camera.GetRect().Right;
+                            if (m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y + m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().y - m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y > moteurGraphique->m_camera.GetRect().Bottom)
+                                rectBuf.Bottom -= (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y + (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().y - (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y - (int)moteurGraphique->m_camera.GetRect().Bottom;
 
-                            if (m_decor[couche][j][k][z].m_sprite.GetPosition().x - m_decor[couche][j][k][z].m_sprite.GetOrigin().x < moteurGraphique->m_camera.GetRect().Left)
+                            if (m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x - m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x < moteurGraphique->m_camera.GetRect().Left)
                             {
-                                rectBuf.Left += (int)moteurGraphique->m_camera.GetRect().Left - (int)m_decor[couche][j][k][z].m_sprite.GetPosition().x + (int)m_decor[couche][j][k][z].m_sprite.GetOrigin().x;
-                                m_decor[couche][j][k][z].m_sprite.Move(rectBuf.Left - rect.Left, 0);
+                                rectBuf.Left += (int)moteurGraphique->m_camera.GetRect().Left - (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x + (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x;
+                                m_decor[couche][j][k][z].m_entite_graphique.m_sprite.Move(rectBuf.Left - rect.Left, 0);
                             }
-                            if (m_decor[couche][j][k][z].m_sprite.GetPosition().y - m_decor[couche][j][k][z].m_sprite.GetOrigin().y < moteurGraphique->m_camera.GetRect().Top)
+                            if (m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y - m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y < moteurGraphique->m_camera.GetRect().Top)
                             {
-                                rectBuf.Top += (int)moteurGraphique->m_camera.GetRect().Top - (int)m_decor[couche][j][k][z].m_sprite.GetPosition().y + (int)m_decor[couche][j][k][z].m_sprite.GetOrigin().y;
-                                m_decor[couche][j][k][z].m_sprite.Move(0, rectBuf.Top - rect.Top);
+                                rectBuf.Top += (int)moteurGraphique->m_camera.GetRect().Top - (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y + (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y;
+                                m_decor[couche][j][k][z].m_entite_graphique.m_sprite.Move(0, rectBuf.Top - rect.Top);
                             }
 
-                            m_decor[couche][j][k][z].m_sprite.SetSubRect(rectBuf);
+                            m_decor[couche][j][k][z].m_entite_graphique.m_sprite.SetSubRect(rectBuf);
 
-                            moteurGraphique->AjouterCommande(&m_decor[couche][j][k][z].m_sprite,m_decor[couche][j][k][z].getCouche(),1);
+                            moteurGraphique->AjouterCommande(&m_decor[couche][j][k][z].m_entite_graphique.m_sprite,m_decor[couche][j][k][z].getCouche(),1);
 
-                            m_decor[couche][j][k][z].m_sprite.SetSubRect(rect);
-                            m_decor[couche][j][k][z].m_sprite.SetPosition(pos);
+                            m_decor[couche][j][k][z].m_entite_graphique.m_sprite.SetSubRect(rect);
+                            m_decor[couche][j][k][z].m_entite_graphique.m_sprite.SetPosition(pos);
                         }
 
                     if(k == 0 || j == 0 || k == (int)m_decor[couche][j].size() - 1 || j == (int)m_decor[couche].size() - 1)
@@ -1345,9 +1341,6 @@ void Map::Afficher(bool alt,float alpha)
                             moteurGraphique->AjouterCommande(&temp,15,1);
                         }
 
-                    if (m_decor[couche][j][k][z].m_spriteOmbre.GetSize().x>0)
-                        moteurGraphique->AjouterCommande(&m_decor[couche][j][k][z].m_spriteOmbre,9,1);
-
                     if(m_decor[couche][j][k][z].m_evenement.size() > 0)
                     {
                         sf::Sprite temp;
@@ -1367,12 +1360,12 @@ void Map::Afficher(bool alt,float alpha)
                             if(z == m_decor[couche][j][k].size() - 1)
                             for (int u=0;u<(int) m_decor[0][j][k].size();++u)
                             if( m_moduleAleatoireCur >= m_decor[0][j][k][u].m_moduleAleatoireMin && m_moduleAleatoireCur <= m_decor[0][j][k][u].m_moduleAleatoireMax)
-                            if (m_decor[0][j][k][u].m_spriteHerbe.GetSize().x>0)
-                                if (m_decor[0][j][k][u].m_spriteHerbe.GetPosition().x+m_decor[0][j][k][u].m_spriteHerbe.GetSize().x>=moteurGraphique->m_camera.GetRect().Left
-                                        &&m_decor[0][j][k][u].m_spriteHerbe.GetPosition().x<moteurGraphique->m_camera.GetRect().Right
-                                        &&m_decor[0][j][k][u].m_spriteHerbe.GetPosition().y+m_decor[0][j][k][u].m_spriteHerbe.GetSize().y>=moteurGraphique->m_camera.GetRect().Top
-                                        &&m_decor[0][j][k][u].m_spriteHerbe.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)
-                                    moteurGraphique->AjouterCommande(&m_decor[0][j][k][u].m_spriteHerbe,10,1);
+                            if (m_decor[0][j][k][u].m_entite_herbe.m_sprite.GetSize().x>0)
+                                if (m_decor[0][j][k][u].m_entite_herbe.m_sprite.GetPosition().x+m_decor[0][j][k][u].m_entite_herbe.m_sprite.GetSize().x>=moteurGraphique->m_camera.GetRect().Left
+                                        &&m_decor[0][j][k][u].m_entite_herbe.m_sprite.GetPosition().x<moteurGraphique->m_camera.GetRect().Right
+                                        &&m_decor[0][j][k][u].m_entite_herbe.m_sprite.GetPosition().y+m_decor[0][j][k][u].m_entite_herbe.m_sprite.GetSize().y>=moteurGraphique->m_camera.GetRect().Top
+                                        &&m_decor[0][j][k][u].m_entite_herbe.m_sprite.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)
+                                    moteurGraphique->AjouterCommande(&m_decor[0][j][k][u].m_entite_herbe.m_sprite,10,1);
 
                         for (unsigned o = 0 ; o < m_decor[1][j][k][z].getMonstre().size() ; ++o)
                         {
@@ -1398,12 +1391,12 @@ void Map::Afficher(bool alt,float alpha)
                             if(z == m_decor[couche][j][k].size() - 1)
                             for (int u=0;u<(int) m_decor[1][j][k].size();++u)
                             if( m_moduleAleatoireCur >= m_decor[1][j][k][u].m_moduleAleatoireMin && m_moduleAleatoireCur <= m_decor[1][j][k][u].m_moduleAleatoireMax)
-                            if (m_decor[1][j][k][u].m_spriteHerbe.GetSize().x>0)
-                                if (m_decor[1][j][k][u].m_spriteHerbe.GetPosition().x+m_decor[1][j][k][u].m_spriteHerbe.GetSize().x>=moteurGraphique->m_camera.GetRect().Left
-                                        &&m_decor[1][j][k][u].m_spriteHerbe.GetPosition().x<moteurGraphique->m_camera.GetRect().Right
-                                        &&m_decor[1][j][k][u].m_spriteHerbe.GetPosition().y+m_decor[1][j][k][u].m_spriteHerbe.GetSize().y>=moteurGraphique->m_camera.GetRect().Top
-                                        &&m_decor[1][j][k][u].m_spriteHerbe.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)
-                                    moteurGraphique->AjouterCommande(&m_decor[1][j][k][u].m_spriteHerbe,10,1);
+                            if (m_decor[1][j][k][u].m_entite_herbe.m_sprite.GetSize().x>0)
+                                if (m_decor[1][j][k][u].m_entite_herbe.m_sprite.GetPosition().x+m_decor[1][j][k][u].m_entite_herbe.m_sprite.GetSize().x>=moteurGraphique->m_camera.GetRect().Left
+                                        &&m_decor[1][j][k][u].m_entite_herbe.m_sprite.GetPosition().x<moteurGraphique->m_camera.GetRect().Right
+                                        &&m_decor[1][j][k][u].m_entite_herbe.m_sprite.GetPosition().y+m_decor[1][j][k][u].m_entite_herbe.m_sprite.GetSize().y>=moteurGraphique->m_camera.GetRect().Top
+                                        &&m_decor[1][j][k][u].m_entite_herbe.m_sprite.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)
+                                    moteurGraphique->AjouterCommande(&m_decor[1][j][k][u].m_entite_herbe.m_sprite,10,1);
 
 
                         if (m_decor[0][j][k][z].getProjectile()>=0&&m_decor[0][j][k][z].getProjectile()<(int)m_projectile.size())
@@ -1539,8 +1532,8 @@ void Map::Afficher(bool alt,float alpha)
 
      if(m_mode_brush)
     {
-        m_select_brush.m_sprite.Move(-64*(int)(m_taillePinceau * 0.5), -32*m_taillePinceau * 0.5);
-        m_select_brush.m_sprite.Move(+64*(int)(m_taillePinceau * 0.5), -32*m_taillePinceau * 0.5);
+        m_select_brush.m_entite_graphique.m_sprite.Move(-64*(int)(m_taillePinceau * 0.5), -32*m_taillePinceau * 0.5);
+        m_select_brush.m_entite_graphique.m_sprite.Move(+64*(int)(m_taillePinceau * 0.5), -32*m_taillePinceau * 0.5);
 
         for (unsigned o = 0 ; o < m_select_brush.getMonstre().size() ; ++o)
             if (m_select_brush.getMonstre()[o]>=0&&m_select_brush.getMonstre()[o]<(int)m_monstre.size())
@@ -1551,8 +1544,8 @@ void Map::Afficher(bool alt,float alpha)
         {
             for(int j = -(int)(m_taillePinceau * 0.5) ; j < m_taillePinceau * 0.5 ; ++j)
             {
-                moteurGraphique->AjouterCommande(&m_select_brush.m_sprite,15,1);
-                m_select_brush.m_sprite.Move(64,32);
+                moteurGraphique->AjouterCommande(&m_select_brush.m_entite_graphique.m_sprite,15,1);
+                m_select_brush.m_entite_graphique.m_sprite.Move(64,32);
 
                 for (unsigned o = 0 ; o < m_select_brush.getMonstre().size() ; ++o)
                     if (m_select_brush.getMonstre()[o]>=0&&m_select_brush.getMonstre()[o]<(int)m_monstre.size())
@@ -1564,15 +1557,15 @@ void Map::Afficher(bool alt,float alpha)
                                                                                             m_monstre[m_select_brush.getMonstre()[o]].getCoordonnee().y));
             }
 
-            m_select_brush.m_sprite.Move(-64*m_taillePinceau, -32*m_taillePinceau);
-            m_select_brush.m_sprite.Move(-64, 32);
+            m_select_brush.m_entite_graphique.m_sprite.Move(-64*m_taillePinceau, -32*m_taillePinceau);
+            m_select_brush.m_entite_graphique.m_sprite.Move(-64, 32);
 
             for (unsigned o = 0 ; o < m_select_brush.getMonstre().size() ; ++o)
                 if (m_select_brush.getMonstre()[o]>=0&&m_select_brush.getMonstre()[o]<(int)m_monstre.size())
                     m_monstre[m_select_brush.getMonstre()[o]].setCoordonnee(coordonnee( m_monstre[m_select_brush.getMonstre()[o]].getCoordonnee().x - m_taillePinceau,
                                                                                         m_monstre[m_select_brush.getMonstre()[o]].getCoordonnee().y + 1));
         }
-        m_select_brush.m_sprite.Move(+64*m_taillePinceau*0.5, -32*m_taillePinceau*0.5);
+        m_select_brush.m_entite_graphique.m_sprite.Move(+64*m_taillePinceau*0.5, -32*m_taillePinceau*0.5);
 
         for (unsigned o = 0 ; o < m_select_brush.getMonstre().size() ; ++o)
             if (m_select_brush.getMonstre()[o]>=0&&m_select_brush.getMonstre()[o]<(int)m_monstre.size())
@@ -1836,7 +1829,6 @@ void Map::Animer(float temps/*,Menu *menu*/)
                {
                 if (m_decor[i][j][k][z].getTileset()>=0&&m_decor[i][j][k][z].getTileset()<(int)m_tileset.size())
                 {
-
                     if(animer)
                     {
                         m_decor[i][j][k][z].random_animation++;
@@ -1852,7 +1844,7 @@ void Map::Animer(float temps/*,Menu *menu*/)
                     }
                 }
                 else
-                    m_decor[i][j][k][z].m_sprite.SetSubRect(sf::IntRect(0,0,0,0));
+                    m_decor[i][j][k][z].m_entite_graphique.m_sprite.SetSubRect(sf::IntRect(0,0,0,0));
                }
 
                CreerSprite(sf::Vector3f(k,j,i));
@@ -1865,12 +1857,13 @@ void Map::Animer(float temps/*,Menu *menu*/)
                 position.x=((int)eventManager->getCasePointee().x-(int)eventManager->getCasePointee().y-1)*64;
                 position.y=((int)eventManager->getCasePointee().x+(int)eventManager->getCasePointee().y)*32;
 
-                positionPartieDecor=m_tileset[m_selectTileset - 1].getPositionDuTile(m_selectTile);
+                positionPartieDecor=moteurGraphique->getTileset(m_tileset[m_selectTileset - 1])->getPositionDuTile(m_selectTile);
 
-                m_selectSprite.SetImage(*moteurGraphique->getImage(m_tileset[m_selectTileset - 1].getImage(m_selectTile)));
+                m_selectSprite.SetImage(*moteurGraphique->getImage(moteurGraphique->getTileset(m_tileset[m_selectTileset - 1])->getImage(m_selectTile)));
                 m_selectSprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
 
-                m_selectSprite.SetOrigin(m_tileset[m_selectTileset - 1].getCentreDuTile(m_selectTile).x, m_tileset[m_selectTileset - 1].getCentreDuTile(m_selectTile).y);
+                m_selectSprite.SetOrigin(moteurGraphique->getTileset(m_tileset[m_selectTileset - 1])->getCentreDuTile(m_selectTile).x,
+                                         moteurGraphique->getTileset(m_tileset[m_selectTileset - 1])->getCentreDuTile(m_selectTile).y);
 
                 m_selectSprite.SetX(position.x+64);
                 m_selectSprite.SetY(position.y+32);
@@ -1884,14 +1877,14 @@ void Map::Animer(float temps/*,Menu *menu*/)
                 position.x=((int)eventManager->getCasePointee().x-(int)eventManager->getCasePointee().y)*64;
                 position.y=((int)eventManager->getCasePointee().x+(int)eventManager->getCasePointee().y)*32;
 
-                m_selectSprite.SetImage(*moteurGraphique->getImage(m_ModeleMonstre[m_selectEntite - 1].m_image[m_ModeleMonstre[m_selectEntite - 1].m_pose[0][0][0].getImage()]));
+                m_selectSprite.SetImage(*moteurGraphique->getImage(m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][0].getImage(0)));
 
-                m_selectSprite.SetOrigin(m_ModeleMonstre[m_selectEntite - 1].m_pose[0][0][0].getCentre().x,m_ModeleMonstre[m_selectEntite - 1].m_pose[0][0][0].getCentre().y);
+                m_selectSprite.SetOrigin(m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][0].getCentreDuTile(0).x,m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][0].getCentreDuTile(0).y);
 
-                m_selectSprite.SetSubRect(IntRect(  m_ModeleMonstre[m_selectEntite - 1].m_pose[0][0][0].getCoordonnee().x,
-                                                    m_ModeleMonstre[m_selectEntite - 1].m_pose[0][0][0].getCoordonnee().y,
-                                                    m_ModeleMonstre[m_selectEntite - 1].m_pose[0][0][0].getCoordonnee().x+m_ModeleMonstre[m_selectEntite - 1].m_pose[0][0][0].getCoordonnee().w,
-                                                    m_ModeleMonstre[m_selectEntite - 1].m_pose[0][0][0].getCoordonnee().y+m_ModeleMonstre[m_selectEntite - 1].m_pose[0][0][0].getCoordonnee().h));
+                m_selectSprite.SetSubRect(IntRect(  m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][0].getPositionDuTile(0).x,
+                                                    m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][0].getPositionDuTile(0).y,
+                                                    m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][0].getPositionDuTile(0).x+m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][0].getPositionDuTile(0).w,
+                                                    m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][0].getPositionDuTile(0).y+m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][0].getPositionDuTile(0).h));
 
                 m_selectSprite.SetX(position.x);
                 m_selectSprite.SetY(position.y+32);
@@ -1915,21 +1908,20 @@ void Map::Animer(float temps/*,Menu *menu*/)
                         if(m_select_brush.random_animation >= m_select_brush.getTile().size())
                             m_select_brush.random_animation = 0;
 
-                        positionPartieDecor=m_tileset[m_select_brush.getTileset()].getPositionDuTile(m_select_brush.getTile()[m_select_brush.random_animation]);
+                        positionPartieDecor=moteurGraphique->getTileset(m_tileset[m_select_brush.getTileset()])->getPositionDuTile(m_select_brush.getTile()[m_select_brush.random_animation]);
 
-                        m_select_brush.m_sprite.SetImage(*moteurGraphique->getImage(m_tileset[m_select_brush.getTileset()].getImage(m_select_brush.getTile()[m_select_brush.random_animation])));
-                        m_select_brush.m_sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
+                        m_select_brush.m_entite_graphique.m_sprite.SetImage(*moteurGraphique->getImage(moteurGraphique->getTileset(m_tileset[m_select_brush.getTileset()])->getImage(m_select_brush.getTile()[m_select_brush.random_animation])));
+                        m_select_brush.m_entite_graphique.m_sprite.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
 
-                        m_select_brush.m_sprite.SetOrigin(m_tileset[m_select_brush.getTileset()].getCentreDuTile(m_select_brush.getTile()[m_select_brush.random_animation]).x,
-                                                                                                                     m_tileset[m_select_brush.getTileset()].getCentreDuTile(m_select_brush.getTile()[m_select_brush.random_animation]).y);
-                        m_select_brush.m_spriteOmbre.SetSubRect(sf::IntRect(0,0,0,0));
+                        m_select_brush.m_entite_graphique.m_sprite.SetOrigin(moteurGraphique->getTileset(m_tileset[m_select_brush.getTileset()])->getCentreDuTile(m_select_brush.getTile()[m_select_brush.random_animation]).x,
+                                                                                                                     moteurGraphique->getTileset(m_tileset[m_select_brush.getTileset()])->getCentreDuTile(m_select_brush.getTile()[m_select_brush.random_animation]).y);
                     }
 
                     position.x=((int)eventManager->getCasePointee().x-(int)eventManager->getCasePointee().y-1)*64;
                     position.y=((int)eventManager->getCasePointee().x+(int)eventManager->getCasePointee().y)*32;
 
-                    m_select_brush.m_sprite.SetX(position.x+64);
-                    m_select_brush.m_sprite.SetY(position.y+64);
+                    m_select_brush.m_entite_graphique.m_sprite.SetX(position.x+64);
+                    m_select_brush.m_entite_graphique.m_sprite.SetY(position.y+64);
                 }
 
                 for(int z = 0 ; z < m_select_brush.m_monstre.size() ; ++z)
@@ -2873,7 +2865,7 @@ void Map::Script_Trade(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
 std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)
 {
     sf::Text temp;
-    temp.SetSize(tailleTexte);
+    temp.SetCharacterSize(tailleTexte);
     temp.SetFont(moteurGraphique->m_font);
 
     std::string buf;
@@ -3650,7 +3642,7 @@ bool Map::getCollision(int positionX,int positionY, int exception)
     if(m_moduleAleatoireCur <= m_decor[i][positionY][positionX][z].m_moduleAleatoireMax)
     {
         if (m_decor[i][positionY][positionX][z].getTileset()>=0&&m_decor[i][positionY][positionX][z].getTileset()<(int)m_tileset.size())
-            if (m_tileset[m_decor[i][positionY][positionX][z].getTileset()].getCollisionTile(m_decor[i][positionY][positionX][z].getTile()[m_decor[i][positionY][positionX][z].random_animation]))
+            if (moteurGraphique->getTileset(m_tileset[m_decor[i][positionY][positionX][z].getTileset()])->getCollisionTile(m_decor[i][positionY][positionX][z].getTile()[m_decor[i][positionY][positionX][z].random_animation]))
                 return 1;
 
         if (i == 1)

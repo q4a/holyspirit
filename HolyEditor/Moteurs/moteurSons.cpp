@@ -73,7 +73,7 @@ void MoteurSons::StopAllSounds()
         m_sons[i].Stop();
 }
 
-void MoteurSons::JouerSon(int ID,coordonnee position,coordonnee positionHero,bool unique,int volume)
+void MoteurSons::JouerSon(int ID,coordonnee position,bool unique,int volume)
 {
 
     if (volume>100)
@@ -88,6 +88,10 @@ void MoteurSons::JouerSon(int ID,coordonnee position,coordonnee positionHero,boo
             for (int i=0;i<NOMBRE_SONS;i++)
                 if (m_IDSons[i]==ID)
                 {
+                    coordonnee positionHero;
+                    positionHero.x = (int)(sf::Listener::GetPosition().x);
+                    positionHero.y = (int)(sf::Listener::GetPosition().y);
+
                     m_sons[i].SetVolume(volume);
                     float x,y,z;
                     x=m_sons[i].GetPosition().x;

@@ -34,23 +34,9 @@ Tile::~Tile()
 {
 }
 
-Tile Tile::operator=(const Tile &tile)
-{
-    m_positionDansLImage=tile.m_positionDansLImage;
-    m_image=tile.m_image;
-    m_collision=tile.m_collision;
-    m_animation=tile.m_animation;
-    m_son=tile.m_son;
-    m_lumiere=tile.m_lumiere;
-    m_ombre=tile.m_ombre;
-    m_orientation=tile.m_orientation;
-    m_transparent=tile.m_transparent;
-    m_centre=tile.m_centre;
-    m_temps=tile.m_temps;
-    return *this;
-}
-
-void Tile::setTile(coordonnee positionDansLImage,int image,bool collision,int animation,int son,Lumiere lumiere,bool ombre,char orientation,bool transparent,coordonnee centre,float temps, int opacity)
+void Tile::setTile( coordonnee positionDansLImage,int image,bool collision,int animation,int son,Lumiere lumiere,bool ombre,
+                    bool reflection,char orientation,bool transparent,coordonnee centre,float temps, int opacity, int layer,
+                    int attaque, int ordre)
 {
     m_positionDansLImage    = positionDansLImage;
     m_image                 = image;
@@ -59,6 +45,7 @@ void Tile::setTile(coordonnee positionDansLImage,int image,bool collision,int an
     m_son                   = son;
     m_lumiere               = lumiere;
     m_ombre                 = ombre;
+    m_reflection            = reflection;
     m_orientation           = orientation;
     m_transparent           = transparent;
     m_opacity               = opacity;
@@ -67,10 +54,11 @@ void Tile::setTile(coordonnee positionDansLImage,int image,bool collision,int an
 
     m_centre                = centre;
 
-    if (m_centre.x==-1)
-        m_centre.x=positionDansLImage.w/2;
-    if (m_centre.y==-1)
-        m_centre.y=positionDansLImage.h-32;
+    m_layer                 = layer;
+    m_ordre                 = ordre;
+    m_attaque               = attaque;
+
+    m_tileMinimap           = -1;
 }
 
 const coordonnee &Tile::getCoordonnee()
@@ -101,6 +89,10 @@ bool Tile::getOmbre()
 {
     return m_ombre;
 }
+bool Tile::getReflection()
+{
+    return m_reflection;
+}
 bool Tile::getTransparent()
 {
     return m_transparent;
@@ -120,6 +112,18 @@ float Tile::getTemps()
 int Tile::getOpacity()
 {
     return m_opacity;
+}
+int Tile::getLayer()
+{
+    return m_layer;
+}
+int Tile::getOrdre()
+{
+    return m_ordre;
+}
+int Tile::getAttaque()
+{
+    return m_attaque;
 }
 
 void Tile::setImage(int image)

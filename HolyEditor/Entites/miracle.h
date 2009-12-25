@@ -20,7 +20,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "../constantes.h"
 #include "../Map/tile.h"
-#include "../Moteurs/light.h"
+#include "../Moteurs/Entite_graphique.h"
 
 
 #ifndef MIRACLEH
@@ -28,29 +28,25 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 class Personnage;
 
-enum  {PROJECTILE = 0,CORPS_A_CORPS = 1,DEGATS = 2,EFFET_GRAPHIQUE = 3,INVOCATION = 4,AURA = 5,EFFET = 6,M_EXPLOSION = 7,
-       REPETITION = 8,CHARME = 9,CHANGEMENT_POSE = 10,EFFET_ECRAN = 11,CHARGE = 12};
-enum  {AURA_REGENERATION, AURA_DEGATS, AURA_VOL, AURA_CARACTERISTIQUES};
+enum  {PROJECTILE = 0,CORPS_A_CORPS = 1,DEGATS = 2,EFFET_GRAPHIQUE = 3,INVOCATION = 4,AURA = 5,EFFET = 6,ZONE = 7,
+       REPETITION = 8,CHARME = 9,CHANGEMENT_POSE = 10,EFFET_ECRAN = 11,CHARGE = 12, SOUFFLE = 13, DECLENCHEUR = 14,
+       CONDITION = 15, BLOQUER = 16};
+enum  {AURA_REGENERATION, AURA_DEGATS, AURA_VOL, AURA_CARACTERISTIQUES, AURA_STUNNED};
 enum  {PHYSIQUE, FEU, CORROSION, FOI};
+enum  {D_PERMANENT, D_FRAPPE, D_TOUCHE};
+enum  {C_ANGLE};
 
-class EffetGraphique
+class EffetGraphique : public Entite_graphique
 {
 public:
     EffetGraphique();
-    void Afficher(float rotation = 0);
+    void Afficher();
     void Animer(float temps);
 
+    coordonnee m_position;
     bool m_actif;
-    coordonneeDecimal m_position;
-
-    std::vector <Tile> m_tiles;
 
     int m_compteur;
-    float m_animation;
-    int m_couche;
-    int m_tileEnCours;
-
-    Light_Entity m_light;
 };
 
 class EffetPersonnage
@@ -131,19 +127,14 @@ public:
 
     void Charger(std::string chemin, const Caracteristique &caract, int level);
     void Concatenencer(std::string chemin, const Caracteristique &caract, int level);
-    void JouerSon(int numeroSon,coordonnee position,coordonnee positionHero);
 
     void AfficherDescription(coordonnee position, bool suivant = true);
     sf::Text AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color=sf::Color(255,255,255));
 
-
-
-    std::vector < std::vector <Tile> > m_tile;
+    std::vector <int>           m_tileset;
 
     std::vector <Effet>         m_effets;
 
-    std::vector <int>           m_image;
-    std::vector <int>           m_sons;
     std::string                 m_chemin;
 
     int                         m_coutFoi;
@@ -161,7 +152,7 @@ public:
     std::vector<std::string>    m_description_effets;
     std::vector<std::string>    m_description_effets_suivant;
 
-    bool                        m_max;
+    bool                        m_unique;
     int                         m_cas;
 
     int                         m_buf;
@@ -186,23 +177,25 @@ struct InfosEntiteMiracle
         m_informations[3]=0;
         m_informations[4]=0;
         m_informations[5]=0;
+
+        m_cible = NULL;
     }
 
-    int        m_effetEnCours;
-    int        m_IDObjet;
+    int                 m_effetEnCours;
+    int                 m_IDObjet;
     float               m_informations[6];
 
     coordonneeDecimal   m_position;
+    Personnage         *m_cible;
 };
 
 class EntiteMiracle
 {
 public:
-    EntiteMiracle(){ m_cible = NULL; m_dejaConsommeFoi = false; }
+    EntiteMiracle(){ m_dejaConsommeFoi = false; }
 
-    std::vector<InfosEntiteMiracle>     m_infos;
+    std::vector<InfosEntiteMiracle*>    m_infos;
     int                                 m_modele;
-    Personnage                         *m_cible;
     coordonnee                          m_coordonneeCible;
     coordonnee                          m_coordonneeDepart;
     bool                                m_dejaConsommeFoi;

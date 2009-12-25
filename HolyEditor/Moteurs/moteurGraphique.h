@@ -20,15 +20,18 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <list>
 
 #ifndef MOTEURGRAPHIQUEH
 #define MOTEURGRAPHIQUEH
 
-#include "../SFMLCanvas.h"
-
 #include "commande.h"
 #include "moteurParticule.h"
 #include "lightManager.h"
+#include "entite_graphique.h"
+#include "../Map/tileset.h"
+
+#include "../SFMLCanvas.h"
 
 struct Image_moteur
 {
@@ -42,6 +45,20 @@ struct Image_moteur
     std::string nom;
     int importance;
 };
+
+struct Tileset_moteur
+{
+    Tileset_moteur()
+    {
+        importance  = 0;
+        nom         = "";
+        tileset     =  NULL;
+    }
+    Tileset *tileset;
+    std::string nom;
+    int importance;
+};
+
 enum  {TREMBLEMENT};
 
 struct Effet_ecran
@@ -73,14 +90,18 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	int AjouterImage(std::string,int importance = 5);
 	int AjouterImage(const char *Data, std::size_t SizeInBytes, std::string nom,int importance =5);
+	int AjouterTileset(std::string,int importance = 5);
+	int AjouterTileset(std::ifstream &fichier, std::string nom = "",int importance = 5);
 	int AjouterModeleSystemeParticules(std::string);
 
 	void AjouterSystemeParticules(int ID,coordonnee position,sf::Color color,float force,float angle);
 	void AjouterCommande(sf::Sprite*,int=0, bool=0);
+	void AjouterEntiteGraphique(Entite_graphique*);
 	void AjouterTexte(sf::Text*, int couche=0,bool titre=false);
 	void AjouterTexteNonChevauchable(sf::Text*, int couche=0,bool titre=false);
 	void AjouterTexte(std::string, coordonnee, int couche=0, bool titre=false, int size = 14, sf::Color color = sf::Color(224,224,224), bool fond = false);
 
+	Entite_graphique getEntiteGraphique(int noTileset, int noTile, int couche);
 
 	void DecrementerImportance();
 
@@ -95,12 +116,18 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	void Printscreen();
 	int GetFPS();
 
-	sf::Image* getImage(int IDimage);
+	sf::Image*  getImage(int);
+	Tileset*    getTileset(int );
+
 	ModeleParticuleSysteme* getModeleMoteurParticules(int ID);
 
 	std::string getCheminImage(int IDimage);
 
-	sf::Shader EffectBlur,EffectMort,EffectNoir,EffectContrastes,EffectFiltre;
+	sf::Shader  EffectBlur,EffectBlur2,EffectBlurScreen,EffectMort,EffectNoir,EffectContrastes,EffectFiltre, EffectShadow, EffectWater;
+	sf::RenderImage bufferImage;
+	sf::RenderImage m_water_screen;
+	sf::RenderImage m_light_screen;
+    sf::RenderImage m_light_screen2;
 
 	sf::Font m_font,m_font_titre;
 
@@ -112,28 +139,28 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
     Lumiere m_soleil;
     float m_angleOmbreSoleil;
 
-    int m_img_corner;
+    int m_img_corner, m_img_water;
 
-    sf::Image m_light_screen;
-    sf::Image m_light_screen2;
 
-    sf::RenderImage m_light_screen3;
+
+  //  sf::RenderImage m_light_screen3;
 
     std::vector <Effet_ecran> m_effetsEcran;
     std::vector <Effet_ecran>::iterator m_effetsEcran_iter;
 
-    coordonnee decalageCamera;
+    coordonneeDecimal decalageCamera, decalageCameraSouhaite;
+    bool cameraDecale;
+    coordonneeDecimal decalageReflection, m_transWater;
 
-    MyCanvas *m_ecran;
-
-	protected:
+	//protected:
 
 	MoteurGraphique();
 	~MoteurGraphique();
 
 	sf::Vector2f decalageLumiere,decalageOmbre;
 
-	std::vector <Image_moteur> m_images;
+	std::vector <Image_moteur>      m_images;
+	std::vector <Tileset_moteur>    m_tileset;
 
 	std::vector <ModeleParticuleSysteme> m_modeleSystemeParticules;
 
@@ -143,6 +170,9 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	std::vector <ParticuleSysteme>::iterator m_systemeParticules_iter;
 
 	std::vector <Commande>::iterator IterCommande;
+
+	MyCanvas *m_ecran;
+
 
 };
 
