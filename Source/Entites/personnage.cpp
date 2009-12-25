@@ -323,6 +323,13 @@ void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,boo
                 m_entite_graphique.m_sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
                 moteurGraphique->AjouterEntiteGraphique(&m_entite_graphique);
 
+                if(surbrillance)
+                {
+                    Entite_graphique temp = m_entite_graphique;
+                    temp.m_sprite.SetBlendMode(sf::Blend::Add);
+                    moteurGraphique->AjouterEntiteGraphique(&temp);
+                }
+
                 m_entite_graphique_shadow.m_sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
                 m_entite_graphique_shadow.m_sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
                 moteurGraphique->AjouterEntiteGraphique(&m_entite_graphique_shadow);

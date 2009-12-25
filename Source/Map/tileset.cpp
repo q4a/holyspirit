@@ -247,6 +247,8 @@ void Tileset::Charger(ifstream &fichier, int lumiere_base, cDAT *reader)
                     m_image.push_back(moteurGraphique->AjouterImage(cheminImage));
                 else
                     m_image.push_back(moteurGraphique->AjouterImage(reader->GetFile(cheminImage), reader->GetFileSize(cheminImage), cheminImage));
+
+                m_image_chemin.push_back(cheminImage);
             }
             if (fichier.eof())
             {
@@ -505,6 +507,12 @@ void Tileset::DeleteTiles()
 {
     m_tile.clear();
     //m_sons.clear();
+}
+
+void Tileset::ChargerImages()
+{
+    for(int i = 0 ; i < m_image_chemin.size() ; ++i)
+        moteurGraphique->AjouterImage(m_image_chemin[i]);
 }
 
 

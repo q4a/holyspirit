@@ -32,6 +32,7 @@ public:
     int getDistance();
     int getParent();
 
+    bool actif;
 private:
     coordonnee m_coordonnee;
     int m_distance;

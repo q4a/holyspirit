@@ -41,6 +41,7 @@ int liste_case::getTailleListe()
 void liste_case::AjouterCase(coordonnee coordonneeAjoutable, int parent)
 {
     Case caseTemp;
+    caseTemp.actif = true;
     m_liste.push_back(caseTemp);
     m_liste.back().setCoordonnee(coordonneeAjoutable,m_distanceEnCours, parent);
 }
@@ -63,171 +64,185 @@ void liste_case::Supprimer()
 bool liste_case::AjouterCasesAdjacentes(casePathfinding **grille,coordonnee *arrivee,coordonnee depart)
 {
     coordonnee enCours;
+    bool retour = false;
 
     //J'ajoute toutes les cases adjacentes à celle que j'ai déjà dans ma liste
     for (int i=m_liste.size()-1;i>=0;i--)
-        if (m_liste[i].getDistance()==m_distanceEnCours-1)
+        if(m_liste[i].actif)
         {
-            enCours.x=m_liste[i].getPosition().x+1;
-            enCours.y=m_liste[i].getPosition().y;
-            if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
-                if(!grille[enCours.y][enCours.x].collision
-                &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 1)
-                  ||grille[enCours.y][enCours.x].valeur == -1)
-                &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
-                {
-                    if(grille[enCours.y][enCours.x].cases >= 0)
-                        m_liste.erase(m_liste.begin() + grille[enCours.y][enCours.x].cases);
-                    AjouterCase(enCours, i);
-                    grille[enCours.y][enCours.x].valeur = m_distanceEnCours;
-                    grille[enCours.y][enCours.x].dist = 1;
-                    grille[enCours.y][enCours.x].cases = m_liste.size()-1;
-                }
+            if (m_liste[i].getDistance()==m_distanceEnCours-1)
+            {
+                enCours.x=m_liste[i].getPosition().x+1;
+                enCours.y=m_liste[i].getPosition().y;
+                if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
+                    if((enCours.x == arrivee->x && enCours.y == arrivee->y) || !retour)
+                    if(!grille[enCours.y][enCours.x].collision
+                    &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 1)
+                      ||grille[enCours.y][enCours.x].valeur == -1)
+                    &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+                    {
+                        if(grille[enCours.y][enCours.x].cases >= 0)
+                            m_liste[grille[enCours.y][enCours.x].cases].actif = false;
+                            //m_liste.erase(m_liste.begin() + grille[enCours.y][enCours.x].cases);
+                        AjouterCase(enCours, i);
+                        grille[enCours.y][enCours.x].valeur = m_distanceEnCours;
+                        //grille[enCours.y][enCours.x].dist = 1;
+                        grille[enCours.y][enCours.x].cases = m_liste.size()-1;
+                    }
 
-            if(enCours.x == arrivee->x && enCours.y == arrivee->y)
-                return 1;
+                if(enCours.x == arrivee->x && enCours.y == arrivee->y)
+                    retour = true;
 
-            enCours.x=m_liste[i].getPosition().x-1;
-            enCours.y=m_liste[i].getPosition().y;
-            if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
-                if(!grille[enCours.y][enCours.x].collision
-                &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 1)
-                  ||grille[enCours.y][enCours.x].valeur == -1)
-                &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
-                {
-                    if(grille[enCours.y][enCours.x].cases >= 0)
-                        m_liste.erase(m_liste.begin() + grille[enCours.y][enCours.x].cases);
-                    AjouterCase(enCours, i);
-                    grille[enCours.y][enCours.x].valeur = m_distanceEnCours;
-                    grille[enCours.y][enCours.x].dist = 1;
-                    grille[enCours.y][enCours.x].cases = m_liste.size()-1;
-                }
+                enCours.x=m_liste[i].getPosition().x-1;
+                enCours.y=m_liste[i].getPosition().y;
+                if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
+                    if((enCours.x == arrivee->x && enCours.y == arrivee->y) || !retour)
+                    if(!grille[enCours.y][enCours.x].collision
+                    &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 1)
+                      ||grille[enCours.y][enCours.x].valeur == -1)
+                    &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+                    {
+                        if(grille[enCours.y][enCours.x].cases >= 0)
+                            m_liste[grille[enCours.y][enCours.x].cases].actif = false;
+                        AjouterCase(enCours, i);
+                        grille[enCours.y][enCours.x].valeur = m_distanceEnCours;
+                        //grille[enCours.y][enCours.x].dist = 1;
+                        grille[enCours.y][enCours.x].cases = m_liste.size()-1;
+                    }
 
-            if(enCours.x == arrivee->x && enCours.y == arrivee->y)
-                return 1;
-
-
-            enCours.x=m_liste[i].getPosition().x;
-            enCours.y=m_liste[i].getPosition().y+1;
-            if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
-                if(!grille[enCours.y][enCours.x].collision
-                &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 1)
-                  ||grille[enCours.y][enCours.x].valeur == -1)
-                &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
-                {
-                    if(grille[enCours.y][enCours.x].cases >= 0)
-                        m_liste.erase(m_liste.begin() + grille[enCours.y][enCours.x].cases);
-                    AjouterCase(enCours, i);
-                    grille[enCours.y][enCours.x].valeur = m_distanceEnCours;
-                    grille[enCours.y][enCours.x].dist = 1;
-                    grille[enCours.y][enCours.x].cases = m_liste.size()-1;
-                }
-
-            if(enCours.x == arrivee->x && enCours.y == arrivee->y)
-                return 1;
+                if(enCours.x == arrivee->x && enCours.y == arrivee->y)
+                    retour = true;
 
 
-            enCours.x=m_liste[i].getPosition().x;
-            enCours.y=m_liste[i].getPosition().y-1;
-            if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
-                if(!grille[enCours.y][enCours.x].collision
-                &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 1)
-                  ||grille[enCours.y][enCours.x].valeur == -1)
-                &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
-                {
-                    if(grille[enCours.y][enCours.x].cases >= 0)
-                        m_liste.erase(m_liste.begin() + grille[enCours.y][enCours.x].cases);
-                    AjouterCase(enCours, i);
-                    grille[enCours.y][enCours.x].valeur = m_distanceEnCours;
-                    grille[enCours.y][enCours.x].dist = 1;
-                    grille[enCours.y][enCours.x].cases = m_liste.size()-1;
-                }
+                enCours.x=m_liste[i].getPosition().x;
+                enCours.y=m_liste[i].getPosition().y+1;
+                if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
+                    if((enCours.x == arrivee->x && enCours.y == arrivee->y) || !retour)
+                    if(!grille[enCours.y][enCours.x].collision
+                    &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 1)
+                      ||grille[enCours.y][enCours.x].valeur == -1)
+                    &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+                    {
+                        if(grille[enCours.y][enCours.x].cases >= 0)
+                            m_liste[grille[enCours.y][enCours.x].cases].actif = false;
+                        AjouterCase(enCours, i);
+                        grille[enCours.y][enCours.x].valeur = m_distanceEnCours;
+                        //grille[enCours.y][enCours.x].dist = 1;
+                        grille[enCours.y][enCours.x].cases = m_liste.size()-1;
+                    }
 
-            if(enCours.x == arrivee->x && enCours.y == arrivee->y)
-                return 1;
-
-
-            enCours.x=m_liste[i].getPosition().x+1;
-            enCours.y=m_liste[i].getPosition().y+1;
-            if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
-                if(!grille[enCours.y][enCours.x].collision
-                &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 2)
-                  ||grille[enCours.y][enCours.x].valeur == -1)
-                &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
-                {
-                    if(grille[enCours.y][enCours.x].cases >= 0)
-                        m_liste.erase(m_liste.begin() + grille[enCours.y][enCours.x].cases);
-                    AjouterCase(enCours, i);
-                    grille[enCours.y][enCours.x].valeur = m_distanceEnCours;
-                    grille[enCours.y][enCours.x].dist = 2;
-                    grille[enCours.y][enCours.x].cases = m_liste.size()-1;
-                }
-
-            if(enCours.x == arrivee->x && enCours.y == arrivee->y)
-                return 1;
+                if(enCours.x == arrivee->x && enCours.y == arrivee->y)
+                    retour = true;
 
 
-            enCours.x=m_liste[i].getPosition().x-1;
-            enCours.y=m_liste[i].getPosition().y-1;
-            if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
-                if(!grille[enCours.y][enCours.x].collision
-                &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 2)
-                  ||grille[enCours.y][enCours.x].valeur == -1)
-                &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
-                {
-                    if(grille[enCours.y][enCours.x].cases >= 0)
-                        m_liste.erase(m_liste.begin() + grille[enCours.y][enCours.x].cases);
-                    AjouterCase(enCours, i);
-                    grille[enCours.y][enCours.x].valeur = m_distanceEnCours;
-                    grille[enCours.y][enCours.x].dist = 2;
-                    grille[enCours.y][enCours.x].cases = m_liste.size()-1;
-                }
+                enCours.x=m_liste[i].getPosition().x;
+                enCours.y=m_liste[i].getPosition().y-1;
+                if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
+                    if((enCours.x == arrivee->x && enCours.y == arrivee->y) || !retour)
+                    if(!grille[enCours.y][enCours.x].collision
+                    &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 1)
+                      ||grille[enCours.y][enCours.x].valeur == -1)
+                    &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+                    {
+                        if(grille[enCours.y][enCours.x].cases >= 0)
+                            m_liste[grille[enCours.y][enCours.x].cases].actif = false;
+                        AjouterCase(enCours, i);
+                        grille[enCours.y][enCours.x].valeur = m_distanceEnCours;
+                        //grille[enCours.y][enCours.x].dist = 1;
+                        grille[enCours.y][enCours.x].cases = m_liste.size()-1;
+                    }
 
-            if(enCours.x == arrivee->x && enCours.y == arrivee->y)
-                return 1;
-
-            enCours.x=m_liste[i].getPosition().x-1;
-            enCours.y=m_liste[i].getPosition().y+1;
-            if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
-                if(!grille[enCours.y][enCours.x].collision
-                &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 2)
-                  ||grille[enCours.y][enCours.x].valeur == -1)
-                &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
-                {
-                    if(grille[enCours.y][enCours.x].cases >= 0)
-                        m_liste.erase(m_liste.begin() + grille[enCours.y][enCours.x].cases);
-                    AjouterCase(enCours, i);
-                    grille[enCours.y][enCours.x].valeur = m_distanceEnCours;
-                    grille[enCours.y][enCours.x].dist = 2;
-                    grille[enCours.y][enCours.x].cases = m_liste.size()-1;
-                }
-
-            if(enCours.x == arrivee->x && enCours.y == arrivee->y)
-                return 1;
+                if(enCours.x == arrivee->x && enCours.y == arrivee->y)
+                    retour = true;
 
 
-            enCours.x=m_liste[i].getPosition().x+1;
-            enCours.y=m_liste[i].getPosition().y-1;
-            if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
-                if(!grille[enCours.y][enCours.x].collision
-                &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 2)
-                  ||grille[enCours.y][enCours.x].valeur == -1)
-                &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
-                {
-                    if(grille[enCours.y][enCours.x].cases >= 0)
-                        m_liste.erase(m_liste.begin() + grille[enCours.y][enCours.x].cases);
-                    AjouterCase(enCours, i);
-                    grille[enCours.y][enCours.x].valeur = m_distanceEnCours;
-                    grille[enCours.y][enCours.x].dist = 2;
-                    grille[enCours.y][enCours.x].cases = m_liste.size()-1;
-                }
+                enCours.x=m_liste[i].getPosition().x+1;
+                enCours.y=m_liste[i].getPosition().y+1;
+                if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
+                    if((enCours.x == arrivee->x && enCours.y == arrivee->y) || !retour)
+                    if(!grille[enCours.y][enCours.x].collision
+                    &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 2)
+                      ||grille[enCours.y][enCours.x].valeur == -1)
+                    &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+                    {
+                        if(grille[enCours.y][enCours.x].cases >= 0)
+                            m_liste[grille[enCours.y][enCours.x].cases].actif = false;
+                        AjouterCase(enCours, i);
+                        grille[enCours.y][enCours.x].valeur = m_distanceEnCours;
+                        //grille[enCours.y][enCours.x].dist = 2;
+                        grille[enCours.y][enCours.x].cases = m_liste.size()-1;
+                    }
 
-            if(enCours.x == arrivee->x && enCours.y == arrivee->y)
-                return 1;
+                if(enCours.x == arrivee->x && enCours.y == arrivee->y)
+                    retour = true;
+
+
+                enCours.x=m_liste[i].getPosition().x-1;
+                enCours.y=m_liste[i].getPosition().y-1;
+                if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
+                    if((enCours.x == arrivee->x && enCours.y == arrivee->y) || !retour)
+                    if(!grille[enCours.y][enCours.x].collision
+                    &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 2)
+                      ||grille[enCours.y][enCours.x].valeur == -1)
+                    &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+                    {
+                        if(grille[enCours.y][enCours.x].cases >= 0)
+                            m_liste[grille[enCours.y][enCours.x].cases].actif = false;
+                        AjouterCase(enCours, i);
+                        grille[enCours.y][enCours.x].valeur = m_distanceEnCours;
+                        //grille[enCours.y][enCours.x].dist = 2;
+                        grille[enCours.y][enCours.x].cases = m_liste.size()-1;
+                    }
+
+                if(enCours.x == arrivee->x && enCours.y == arrivee->y)
+                    retour = true;
+
+                enCours.x=m_liste[i].getPosition().x-1;
+                enCours.y=m_liste[i].getPosition().y+1;
+                if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
+                    if((enCours.x == arrivee->x && enCours.y == arrivee->y) || !retour)
+                    if(!grille[enCours.y][enCours.x].collision
+                    &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 2)
+                      ||grille[enCours.y][enCours.x].valeur == -1)
+                    &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+                    {
+                        if(grille[enCours.y][enCours.x].cases >= 0)
+                            m_liste[grille[enCours.y][enCours.x].cases].actif = false;
+                        AjouterCase(enCours, i);
+                        grille[enCours.y][enCours.x].valeur = m_distanceEnCours;
+                        //grille[enCours.y][enCours.x].dist = 2;
+                        grille[enCours.y][enCours.x].cases = m_liste.size()-1;
+                    }
+
+                if(enCours.x == arrivee->x && enCours.y == arrivee->y)
+                    retour = true;
+
+
+                enCours.x=m_liste[i].getPosition().x+1;
+                enCours.y=m_liste[i].getPosition().y-1;
+                if (enCours.x>=0&&enCours.y>=0&&enCours.x<10&&enCours.y<10)
+                    if((enCours.x == arrivee->x && enCours.y == arrivee->y) || !retour)
+                    if(!grille[enCours.y][enCours.x].collision
+                    &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 2)
+                      ||grille[enCours.y][enCours.x].valeur == -1)
+                    &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+                    {
+                        if(grille[enCours.y][enCours.x].cases >= 0)
+                            m_liste[grille[enCours.y][enCours.x].cases].actif = false;
+                        AjouterCase(enCours, i);
+                        grille[enCours.y][enCours.x].valeur = m_distanceEnCours;
+                        //grille[enCours.y][enCours.x].dist = 2;
+                        grille[enCours.y][enCours.x].cases = m_liste.size()-1;
+                    }
+
+                if(enCours.x == arrivee->x && enCours.y == arrivee->y)
+                    retour = true;
+            }
+            else
+                return retour;
         }
-        else
-            return 0;
-    return 0;
+
+    return retour;
 }
 
 void liste_case::IncrementerDistanceEnCours()

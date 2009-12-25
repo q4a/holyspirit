@@ -521,7 +521,10 @@ int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std
             m_images[i].importance=importance;
             return i;
         }
-        else if (m_images[i].img == NULL)
+    }
+    for (unsigned i=0; i < m_images.size(); i++)
+    {
+        if (m_images[i].img == NULL)
         {
             m_images[i].nom=nom;
 
@@ -574,7 +577,9 @@ int MoteurGraphique::AjouterImage(std::string chemin,int importance)
             m_images[i].importance=importance;
             return i;
         }
-
+    }
+    for (unsigned i=0; i < m_images.size(); i++)
+    {
         if (m_images[i].img == NULL)
         {
             m_images[i].nom=chemin;
@@ -624,6 +629,7 @@ int MoteurGraphique::AjouterTileset(std::string chemin,int importance)
     std::ifstream fichier;
     fichier.open(chemin.c_str(), std::ios::in);
     int retour = AjouterTileset(fichier, chemin, importance);
+    console->Ajouter("Chargement de : "+chemin,0);
     fichier.close();
     return retour;
 }
@@ -636,15 +642,10 @@ int MoteurGraphique::AjouterTileset(std::ifstream &fichier, std::string chemin,i
         {
             if (m_tileset[i].nom == chemin)
             {
+                m_tileset[i].tileset->ChargerImages();
                 m_tileset[i].importance = importance;
-                return i;
-            }
 
-            if (m_tileset[i].tileset == NULL)
-            {
-                m_tileset[i].nom = chemin;
-                m_tileset[i].tileset = new Tileset (fichier);
-                m_tileset[i].importance = importance;
+                Tileset buffer(fichier);
 
                 return i;
             }
@@ -660,6 +661,7 @@ int MoteurGraphique::AjouterTileset(std::ifstream &fichier, std::string chemin,i
     return m_tileset.size()-1;
 }
 
+
 void MoteurGraphique::DecrementerImportance()
 {
     for (unsigned i=0; i < m_images.size(); i++)
@@ -673,6 +675,8 @@ void MoteurGraphique::DecrementerImportance()
                 m_images[i].nom="",m_images[i].importance=0;
             }
         }
+
+    //m_tileset.clear();
 }
 
 int MoteurGraphique::AjouterModeleSystemeParticules(std::string chemin)
