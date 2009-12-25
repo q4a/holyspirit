@@ -19,3 +19,5 @@ Marchand rare
 Le Grand Questeur
 Levier
 Zombie massier
+Suceur de cervelle
+Marchand zombifié

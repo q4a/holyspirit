@@ -24,3 +24,7 @@ Mais qu'est-ce que vous attendez ?\Allez les tuer bon sang !
 Quête terminée. J'ai tué les Errants des roches.
 Merci.\Voici votre du.\+2000 d'argent reçu.
 J'ai tué les Errants des roches, je dois aller récupérer ma récompense auprès du Questeur.
+Non ! Ne me tuez pas !\Je ne vous veux pas de mal. J'ai été zombifié par des suceurs de cervelle. Je me promenais tranquillement dans le cimetière quand ils me sont tombé dessus et m'ont volé mon cerveau. Si vous pouviez me le rapporter, je vous donnerais ma masse.
+Oh, merci. Tenez, prenez la !
+Quête terminée. J'ai tué les Suceurs de cervelle et j'ai recu une masse en échange.
+Qui a volé la cervelle du marchand ?

@@ -70,3 +70,5 @@ Hache_de_bucheron
 "Une_simple_hache_pour\couper_du_bois.\Elle_n'en_est_pas_moins\une_arme_mortelle."
 Masse_de_boucher
 "Cette_masse_a_pour_but\premier_de_tuer_les_cochons.\Mais_elle_se_révèle_aussi\très_éfficace_contre_les_démons."
+Morceau_de_cerveau
+"Mais_c'est_dégeulasse_!"
