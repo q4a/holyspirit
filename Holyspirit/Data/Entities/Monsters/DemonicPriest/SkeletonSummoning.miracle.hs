@@ -7,7 +7,7 @@ $
 //Effets
 	* t-1 l1 l1 $ 
 	
-	* t4 l2 l3 mData/Entities/Monsters/PantinMorbide/Guardian.rs.hs $
+	* t4 l2 l3 mData/Entities/Monsters/PantinMorbide/Guardian.char.hs $
 
 	* t3 s0 ia7 $
 

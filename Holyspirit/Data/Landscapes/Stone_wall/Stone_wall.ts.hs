@@ -3,7 +3,7 @@
 $
 $
 Mur de pierres
-*x0 y0 w128 h128 i0 c1 lr0 lv0 lb0 li-255 lh64 ry 		m i1 x0 y0 	w16 h16 $ $
+*x0 y0 w128 h128 i0 c1 lr0 lv0 lb0 li-255 lh64 ry 	m i1 x0 y0 	w16 h16 $ $
 *x128 y0 w128 h128 i0 c1 lr0 lv0 lb0 li-255 lh64 rx 	m i1 x16 y0 	w16 h16 $ $
 *x256 y0 w128 h128 i0 c1 lr0 lv0 lb0 li-255 lh64 rc 	m i1 x0 y16 	w16 h16 $ $
 

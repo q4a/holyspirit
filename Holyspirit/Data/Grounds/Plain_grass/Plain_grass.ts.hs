@@ -4,6 +4,7 @@
 *Data/Grounds/Plain_grass/hill3-1.png
 *Data/Grounds/Plain_grass/hill3-2.png
 *Data/Grounds/Plain_grass/hill3-3.png
+*Data/Grounds/Plain_grass/hill3-3.png
 
 $
 $

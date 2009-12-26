@@ -8,15 +8,15 @@ Dextérité
 Vitalité
 Piété
 Charisme
-Dégats
-Armures
+Dégâts
+Armure
 Points restants
 Afficher/Cacher carte (M)
 Inventaire (I)
 Quêtes (Q)
 Miracles (T)
 Menu (Echappe)
-Equipe :
+Equipé :
 Marchand :
 Inventaire :
 Dégats : 
