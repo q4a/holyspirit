@@ -697,6 +697,13 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                                 m_monstre.back().setCoordonnee(position),m_monstre.back().setDepart();
                                                 m_monstre.back().m_ID = id;
 
+                                                if(id >= 0)
+                                                {
+                                                    if(m_listID.size() <= id)
+                                                        m_listID.resize(id + 1);
+                                                    m_listID[id].push_back(m_monstre.size() - 1);
+                                                }
+
                                                 TrierInventaire(m_monstre.back().getPointeurObjets(),hero->m_classe.position_contenu_marchand.w);
 
                                                 monstreFinal.back()=m_monstre.size()-1;
@@ -869,6 +876,14 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                         m_monstre.back().setCoordonnee(position),m_monstre.back().setDepart();
                                         m_monstre.back().m_ID = id;
 
+                                        if(id >= 0)
+                                        {
+                                            if(m_listID.size() <= id)
+                                                m_listID.resize(id + 1);
+                                            m_listID[id].push_back(m_monstre.size() - 1);
+                                        }
+
+
                                         TrierInventaire(m_monstre.back().getPointeurObjets(),hero->m_classe.position_contenu_marchand.w);
 
                                         monstreFinal.back()=m_monstre.size()-1;
@@ -895,6 +910,13 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                         m_monstre[monstre[i]].setAngle(angle);
 
                                         m_monstre[monstre[i]].m_ID = id;
+
+                                        if(id >= 0)
+                                        {
+                                            if(m_listID.size() <= id)
+                                                m_listID.resize(id + 1);
+                                            m_listID[id].push_back(monstre[i]);
+                                        }
 
                                         monstreFinal.push_back(monstre[i]);
                                     }
@@ -1033,6 +1055,13 @@ void Map::Initialiser(Hero *hero)
             pos.y=(int)(((m_monstre[i].getCoordonneePixel().x+m_monstre[i].getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
 
             m_monstre[i].m_entite_graphique.Initialiser(pos);
+
+            if(m_monstre[i].m_entite_graphique.m_light.ID() == -1)
+            {
+                m_monstre[i].m_entite_graphique.m_light=moteurGraphique->LightManager->Add_Dynamic_Light();
+                moteurGraphique->LightManager->SetQuality(m_monstre[i].m_entite_graphique.m_light,6);
+            }
+
 
             //moteurGraphique->LightManager->SetPosition(m_monstre[i].m_light,pos);
             moteurGraphique->LightManager->SetColor(m_monstre[i].m_entite_graphique.m_light,sf::Color(m_monstre[i].getPorteeLumineuse().rouge,m_monstre[i].getPorteeLumineuse().vert,m_monstre[i].getPorteeLumineuse().bleu));
@@ -1353,7 +1382,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
     {
         sf::Sprite fond;
         fond.SetImage(*moteurGraphique->getImage(0));
-        fond.SetColor(sf::Color(0,0,0,(int)(alpha * 0.5)));
+        fond.SetColor(sf::Color(0,0,0,(int)(alpha * 0.25)));
         fond.Resize(configuration->Resolution.x,configuration->Resolution.y);
         moteurGraphique->AjouterCommande(&fond,12,0);
 
@@ -3223,9 +3252,9 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         }
         else if (script->m_instructions[noInstruction].nom=="entity_variable" && monstre == -1)
         {
-            for(unsigned i = 0 ; i < m_monstre.size() ; ++i)
-                if(m_monstre[i].m_ID == script->m_instructions[noInstruction].valeurs.at(0))
-                    m_monstre[i].m_scriptAI.variables[script->m_instructions[noInstruction].valeurs.at(1)]=script->m_instructions[noInstruction].valeurs.at(2);
+            if(script->m_instructions[noInstruction].valeurs.at(0) < m_listID.size())
+                for(unsigned i = 0 ; i < m_listID[script->m_instructions[noInstruction].valeurs.at(0)].size() ; ++i)
+                    m_monstre[m_listID[script->m_instructions[noInstruction].valeurs.at(0)][i]].m_scriptAI.variables[script->m_instructions[noInstruction].valeurs.at(1)]=script->m_instructions[noInstruction].valeurs.at(2);
         }
         else if (script->m_instructions[noInstruction].nom=="setTile" && monstre == -1)
         {
@@ -3344,18 +3373,26 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                 }
                 else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="entity_variable" && monstre == -1)
                 {
-                    for(unsigned i = 0 ; i < m_monstre.size() ; ++i)
-                        if(m_monstre[i].m_ID == script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs[0])
-                            if (m_monstre[i].m_scriptAI.variables[script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs[1]]!=script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs[2])
-                                ok=false;
+                    if(script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs[0] < m_listID.size())
+                    {
+                        for(unsigned i = 0 ; i < m_listID[script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs[0]].size() ; ++i)
+                            if (m_monstre[m_listID[script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs[0]][i]].m_scriptAI.variables[script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs[1]]!=script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs[2])
+                                ok = false;
+                    }
+                    else
+                        ok = false;
                 }
                 else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="entity_dead" && monstre == -1)
                 {
-                    for(unsigned i = 0 ; i < m_monstre.size() ; ++i)
-                        if(!m_monstre[i].m_friendly)
-                            if(m_monstre[i].m_ID == script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs[0])
-                                if (m_monstre[i].EnVie())
-                                    ok=false;
+                    if(script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs[0] < m_listID.size())
+                    {
+                        for(unsigned i = 0 ; i < m_listID[script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs[0]].size() ; ++i)
+                            if (m_monstre[m_listID[script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs[0]][i]].EnVie())
+                                if(!m_monstre[m_listID[script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs[0]][i]].m_friendly)
+                                    ok = false;
+                    }
+                    else
+                        ok = false;
                 }
             }
         }

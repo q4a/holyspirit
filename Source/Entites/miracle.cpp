@@ -360,6 +360,7 @@ void Miracle::Charger(std::string chemin, const Caracteristique &caract, int lev
             if (caractere=='*')
             {
                 int no;
+                fichier>>no;
                 description = configuration->getText(6, no);
             }
 

@@ -179,6 +179,8 @@ private:
     std::vector<Decor>::iterator IterY;
     std::vector<Decor>::iterator Iter;
 
+    std::vector< std::vector<int> > m_listID;
+
     Script m_script;
 };
 

@@ -76,6 +76,7 @@ struct Classe
 
     coordonnee position_contenu_dialogue;
     coordonnee position_contenu_quetes;
+    coordonnee position_bouton_dialogue;
     coordonnee position_contenu_description_quete;
 
     coordonnee position_points_miracles;

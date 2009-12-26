@@ -472,6 +472,12 @@ void MoteurGraphique::Afficher()
                 bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectContrastes);
                 EffectContrastes.SetParameter("color", configuration->contrastes-1, configuration->contrastes-1, configuration->contrastes-1);
             }
+
+            if (configuration->effetMort>0 && configuration->postFX)
+            {
+                bufferImage.SetView(bufferImage.GetDefaultView());
+                bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectMort);
+            }
         }
 
 
@@ -482,11 +488,6 @@ void MoteurGraphique::Afficher()
                 bufferImage.SetView(bufferImage.GetDefaultView());
                 bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectBlurScreen);
                 EffectBlurScreen.SetParameter("offset",(float)m_blur);
-            }
-            if (configuration->effetMort>0)
-            {
-                bufferImage.SetView(bufferImage.GetDefaultView());
-                bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectMort);
             }
         }
 

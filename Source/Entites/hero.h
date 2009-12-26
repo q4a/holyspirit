@@ -79,6 +79,8 @@ public:
     const std::string &getNomObjet(int numero);
     int getNombreObjet();
 
+    void UpdateRaccourcis();
+
     bool UtiliserMiracle(int, Personnage*, coordonnee );
     bool AjouterMiracleArme();
     void StopMiraclesFrappe();
@@ -111,6 +113,7 @@ public:
 
     int m_defilement_trader,m_max_defilement_trader,m_buttonPointe;
     int m_objets_raccourcis[4];
+    int m_nbr_objets_raccourcis[4];
     int m_miracles_raccourcis[4];
 
     int m_quetePointee, m_queteSelectionnee;

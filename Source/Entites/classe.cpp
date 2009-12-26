@@ -460,6 +460,7 @@ void Classe::Charger(string chemin, const std::vector<int> &lvl_miracles, const 
         ChargerCoordonneeInterface(fichier, position_contenu_inventaire);
         ChargerCoordonneeInterface(fichier, position_contenu_marchand);
         ChargerCoordonneeInterface(fichier, position_contenu_dialogue);
+        ChargerCoordonneeInterface(fichier, position_bouton_dialogue);
         ChargerCoordonneeInterface(fichier, position_contenu_quetes);
         ChargerCoordonneeInterface(fichier, position_contenu_description_quete);
 

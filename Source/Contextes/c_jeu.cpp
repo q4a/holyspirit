@@ -628,6 +628,23 @@ int GestionBoutons(Jeu *jeu)
         moteurGraphique->AjouterCommande(&buf, 18, 0);
     }
 
+    if (eventManager->getEvenement(Key::Return,"ET")
+     || eventManager->getPositionSouris().x > jeu->hero.m_classe.position_bouton_dialogue.x * configuration->Resolution.x/800
+     && eventManager->getPositionSouris().x < (jeu->hero.m_classe.position_bouton_dialogue.x + jeu->hero.m_classe.position_bouton_dialogue.w) * configuration->Resolution.x/800
+     && eventManager->getPositionSouris().y > jeu->hero.m_classe.position_bouton_dialogue.y * configuration->Resolution.y/600
+     && eventManager->getPositionSouris().y < (jeu->hero.m_classe.position_bouton_dialogue.y + jeu->hero.m_classe.position_bouton_dialogue.h) * configuration->Resolution.y/600
+     && eventManager->getEvenement(Mouse::Left,"CA"))
+    {
+        if(jeu->menu.m_dialogue != " ")
+        {
+            eventManager->StopEvenement(Key::Escape,"ET");
+            eventManager->StopEvenement(Mouse::Left,"CA");
+            eventManager->StopEvenement(Mouse::Left,"C");
+            jeu->menu.m_dialogue = " ";
+            jeu->hero.setMonstreVise(-1);
+        }
+    }
+
     return -1;
 }
 
@@ -635,6 +652,7 @@ int GestionBoutons(Jeu *jeu)
 void c_Jeu::Evenements(Jeu *jeu)
 {
     if (eventManager->getPositionSouris().y < 492 * configuration->Resolution.h/600)
+    if(jeu->menu.m_dialogue == " ")
     {
         if (!eventManager->getEvenement(Mouse::Left,"C"))
             jeu->map->getMonstre(&jeu->hero,eventManager->getPositionSouris(),eventManager->getCasePointee());
@@ -674,13 +692,7 @@ void c_Jeu::Evenements(Jeu *jeu)
             {
                 if (jeu->hero.getMonstreVise()==-1)
                 {
-                    if(jeu->menu.m_dialogue == " ")
-                        jeu->hero.m_personnage.setArrivee(eventManager->getCasePointee());
-                    else
-                        eventManager->StopEvenement(Mouse::Left,"C");
-
-                    jeu->menu.m_dialogue = " ";
-
+                    jeu->hero.m_personnage.setArrivee(eventManager->getCasePointee());
                     jeu->hero.setSacVise(coordonnee (-1,-1,-1,-1));
                 }
             }
@@ -706,8 +718,12 @@ void c_Jeu::Evenements(Jeu *jeu)
 
         if (jeu->hero.getSacVise().x!=-1)
         {
-            if (jeu->hero.getSacVise().x==jeu->hero.m_personnage.getCoordonnee().x&&jeu->hero.getSacVise().y==jeu->hero.m_personnage.getCoordonnee().y)
+            if (fabs(jeu->hero.getSacVise().x - jeu->hero.m_personnage.getCoordonnee().x) <= 1
+            &&  fabs(jeu->hero.getSacVise().y - jeu->hero.m_personnage.getCoordonnee().y) <= 1)
+            {
                 jeu->hero.setChercherSac(jeu->hero.getSacVise());
+                jeu->hero.m_personnage.setArrivee(jeu->hero.m_personnage.getProchaineCase());
+            }
             else
                 jeu->hero.setChercherSac(coordonnee (-1,-1,-1,-1));
         }
@@ -740,9 +756,6 @@ void c_Jeu::Evenements(Jeu *jeu)
                         coordonnee positionHero;
                         positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
                         positionHero.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
-
-                       // jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),cible,1);
-                        //jeu->map->GererMiracle(&jeu->hero.m_personnage,jeu->hero.m_classe.miracles,tempsDepuisDerniereAnimation,positionHero,&jeu->hero);
                     }
                     else
                         jeu->hero.m_personnage.setArrivee(eventManager->getCasePointee());
@@ -752,14 +765,6 @@ void c_Jeu::Evenements(Jeu *jeu)
 
     }
 
-    /*if (alpha_sac>128)
-    {
-        if (eventManager->getEvenement(Mouse::Left,"C")&&eventManager->getPositionSouris().x>configuration->Resolution.w-configuration->Resolution.w*0.25&&eventManager->getPositionSouris().y>configuration->Resolution.w*0.265+10*20*configuration->Resolution.w/800+20*configuration->Resolution.w/800&&eventManager->getPositionSouris().y<configuration->Resolution.w*0.265+11*20*configuration->Resolution.w/800+20*configuration->Resolution.w/800)
-            jeu->map->m_defilerObjets++,eventManager->StopEvenement(Mouse::Left,"C");
-
-        if (eventManager->getEvenement(Mouse::Left,"C")&&eventManager->getPositionSouris().x>configuration->Resolution.w-configuration->Resolution.w*0.25&&eventManager->getPositionSouris().y>configuration->Resolution.w*0.265&&eventManager->getPositionSouris().y<configuration->Resolution.w*0.265+20*configuration->Resolution.w/800)
-            jeu->map->m_defilerObjets--,eventManager->StopEvenement(Mouse::Left,"C");
-    }*/
     GestionRaccourcisObjets(jeu);
     GestionRaccourcisMiracles(jeu);
     jeu->next_screen = GestionBoutons(jeu);

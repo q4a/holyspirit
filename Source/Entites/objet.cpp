@@ -1252,7 +1252,7 @@ sf::Text Objet::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *d
 
     string.SetColor(color);
 
-    string.SetCharacterSize(12*(int)(configuration->Resolution.h/600));
+    string.SetCharacterSize(11*(int)(configuration->Resolution.h/600));
     string.SetString(chaine);
 
     if (tailleCadran->x<((int)string.GetRect().Right-(int)string.GetRect().Left))
@@ -1293,7 +1293,11 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
     temp.back().SetColor(GetItemColor(m_rarete));
 
     for (int i=0;i<(int)m_description.size();i++)
+    {
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_description[i].c_str()));
+        temp.back().SetStyle(2);
+    }
+
 
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
 
@@ -1399,6 +1403,9 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
     {
         std::ostringstream buf;
         buf<<configuration->getText(0,28)<<(int)((float)m_prix*modPrix);
+
+        if(modPrix != 1)
+            buf<<" ("<< m_prix <<")";
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
     }
 

@@ -426,7 +426,7 @@ void Hero::Charger()
             if (configuration->debug)
                 console->Ajouter("/Lectures des quêtes.");
 
-
+            UpdateRaccourcis();
 
             m_personnage.setCaracteristique(charTemp);
             nouveau=false;
@@ -1652,6 +1652,20 @@ void Hero::AfficherRaccourcis()
 
             moteurGraphique->AjouterCommande(&sprite,18,0);
 
+            if(m_nbr_objets_raccourcis[i] > 0)
+            {
+                sf::Text text;
+                std::ostringstream buf;
+                buf<<m_nbr_objets_raccourcis[i];
+                text.SetString(buf.str());
+                text.SetCharacterSize(10);
+
+                text.SetX(16 - text.GetRect().Right  + text.GetRect().Left + 255 * configuration->Resolution.x/800 + 32*i*configuration->Resolution.x/800);
+                text.SetY(18 - text.GetRect().Bottom + text.GetRect().Top  + 492 * configuration->Resolution.h/600);
+
+                moteurGraphique->AjouterTexte(&text,18);
+            }
+
             if (eventManager->getPositionSouris().x > sprite.GetPosition().x
                     && eventManager->getPositionSouris().x < sprite.GetPosition().x + 20 * configuration->Resolution.x/800
                     && eventManager->getPositionSouris().y > sprite.GetPosition().y
@@ -2190,6 +2204,8 @@ bool Hero::AjouterObjet(Objet objet,bool enMain)
         ramasser = true;
     }
 
+    UpdateRaccourcis();
+
     return ramasser;
 }
 
@@ -2319,6 +2335,8 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
             RangerObjet(m_objetEnMain);
             m_objetEnMain = -1;
         }
+
+        UpdateRaccourcis();
     }
 
     m_objetADeposer=-1;
@@ -2531,6 +2549,23 @@ void Hero::delObjet(int numero)
                 if (continuer)
                     m_objets_raccourcis[i] = -1;
             }
+        }
+
+        UpdateRaccourcis();
+    }
+}
+
+void Hero::UpdateRaccourcis()
+{
+    for (int i=0;i<4;++i)
+    {
+        m_nbr_objets_raccourcis[i] = 0;
+        if (m_objets_raccourcis[i] >= 0)
+        if(m_inventaire[m_objets_raccourcis[i]].m_type == CONSOMMABLE)
+        {
+            for (int j=0;j<(int)m_inventaire.size();j++)
+                if (m_inventaire[j].getChemin() == m_inventaire[m_objets_raccourcis[i]].getChemin())
+                    m_nbr_objets_raccourcis[i] ++;
         }
     }
 }
