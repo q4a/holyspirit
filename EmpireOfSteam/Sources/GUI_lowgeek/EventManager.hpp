@@ -3,7 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 #include "Global.hpp"
-//#include "Singleton.hpp"
 
 class EventManager : public CSingleton<EventManager>
 {
