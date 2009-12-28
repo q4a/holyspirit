@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1262005899 source:c:\users\lowgeek\documents\projet_cpp\7kingdomofsteam\realese\gui\gui\windowgame.cpp
+	"WindowGame.hpp"
+
+1262005469 c:\users\lowgeek\documents\projet_cpp\7kingdomofsteam\realese\gui\gui\windowgame.hpp
+	"Global.hpp"
+
+1262006255 c:\users\lowgeek\documents\projet_cpp\7kingdomofsteam\realese\gui\gui\global.hpp
+	<SFML/Graphics.hpp>
+	"Singleton.hpp"
+	"EventManager.hpp"
+
+1262004851 c:\users\lowgeek\documents\projet_cpp\7kingdomofsteam\realese\gui\gui\singleton.hpp
+
+1262005716 c:\users\lowgeek\documents\projet_cpp\7kingdomofsteam\realese\gui\gui\eventmanager.hpp
+	"Global.hpp"
+
+1262006224 source:c:\users\lowgeek\documents\projet_cpp\7kingdomofsteam\realese\gui\gui\main.cpp
+	<iostream>
+	"WindowGame.hpp"
+
+1262006255 source:c:\users\lowgeek\documents\projet_cpp\7kingdomofsteam\realese\gui\gui\eventmanager.cpp
+	"EventManager.hpp"
+
