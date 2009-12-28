@@ -1,7 +1,8 @@
 #ifndef EVENTMANAGER_HPP
 #define EVENTMANAGER_HPP
 
-#include "Global.hpp"
+#include <SFML/Graphics.hpp>
+#include "Singleton.hpp"
 
 class EventManager : public CSingleton<EventManager>
 {
