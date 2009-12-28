@@ -7,6 +7,13 @@ class Bejeweled
     public:
         Bejeweled();
         virtual ~Bejeweled();
+
+        void Update();
+
+        void Generate(sf::vector2 size);
+
+        const sf::Image &GetImage();
+
     protected:
     private:
 };
