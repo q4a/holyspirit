@@ -12,7 +12,7 @@ EventManager::~EventManager()
 
 }
 
-Event EventManager::GetEvent()
+Event& EventManager::GetEvent()
 {
     return m_event;
 }

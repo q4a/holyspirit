@@ -5,6 +5,6 @@
 #include "Singleton.hpp"
 #include "EventManager.hpp"
 
-
+extern EventManager *mainEventManager;
 
 #endif

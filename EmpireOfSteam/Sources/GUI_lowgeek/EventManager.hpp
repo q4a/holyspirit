@@ -10,7 +10,7 @@ class EventManager : public CSingleton<EventManager>
         friend void CSingleton<EventManager>::Kill();
         EventManager();
         ~EventManager();
-        sf::Event GetEvent();
+        sf::Event& GetEvent();
 
     protected:
 
