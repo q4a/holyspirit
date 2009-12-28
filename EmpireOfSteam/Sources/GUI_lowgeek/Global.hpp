@@ -7,4 +7,10 @@
 
 extern EventManager *mainEventManager;
 
+typedef struct Coordonees
+{
+    int x;
+    int y;
+};
+
 #endif

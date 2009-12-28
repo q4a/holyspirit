@@ -13,7 +13,7 @@ class WindowGame
     protected:
 
     private:
-    sf::RenderWindow m_window;
+        sf::RenderWindow m_window;
 
 };
 

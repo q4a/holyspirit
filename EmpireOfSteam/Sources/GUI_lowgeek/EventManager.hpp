@@ -2,7 +2,8 @@
 #define EVENTMANAGER_HPP
 
 #include <SFML/Graphics.hpp>
-#include "Singleton.hpp"
+#include "Global.hpp"
+//#include "Singleton.hpp"
 
 class EventManager : public CSingleton<EventManager>
 {
@@ -12,6 +13,7 @@ class EventManager : public CSingleton<EventManager>
         EventManager();
         ~EventManager();
         sf::Event& GetEvent();
+        Coordonees GetMousePosition();
 
     protected:
 

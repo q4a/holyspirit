@@ -13,5 +13,6 @@ int main()
 
     game.Run();
 
+    EventManager::Kill();
     return 0;
 }
