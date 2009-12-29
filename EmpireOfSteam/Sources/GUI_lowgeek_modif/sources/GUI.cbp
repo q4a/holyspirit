@@ -7,7 +7,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug_gregouar">
-				<Option output="bin\Debug\GUI" prefix_auto="1" extension_auto="1" />
+				<Option output="..\bin\Debug\GUI" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj\Debug\" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -24,7 +24,7 @@
 				</Linker>
 			</Target>
 			<Target title="Release_gregouar">
-				<Option output="bin\Release\GUI" prefix_auto="1" extension_auto="1" />
+				<Option output="..\bin\Release\GUI" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj\Release\" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -42,7 +42,7 @@
 				</Linker>
 			</Target>
 			<Target title="Debug_loic">
-				<Option output="bin\Debug\GUI" prefix_auto="1" extension_auto="1" />
+				<Option output="..\bin\Debug\GUI" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj\Debug\" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -59,7 +59,7 @@
 				</Linker>
 			</Target>
 			<Target title="Release_loic">
-				<Option output="bin\Release\GUI" prefix_auto="1" extension_auto="1" />
+				<Option output="..\bin\Release\GUI" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj\Release\" />
 				<Option type="1" />
 				<Option compiler="gcc" />
