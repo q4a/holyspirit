@@ -303,3 +303,35 @@
 1262084237 source:e:\c++\shareware\empire of steam\sources\gui_lowgeek_modif\eventmanager.cpp
 	"EventManager.hpp"
 
+1262087797 source:c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui_lowgeek_modif\main.cpp
+	<iostream>
+	"WindowGame.hpp"
+
+1262087797 c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui_lowgeek_modif\windowgame.hpp
+	"Global.hpp"
+
+1262089883 c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui_lowgeek_modif\global.hpp
+	<SFML/Graphics.hpp>
+	"Engines/EventManager.hpp"
+
+1262087797 c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui_lowgeek_modif\eventmanager.hpp
+	<SFML/Graphics.hpp>
+	<SFML/System.hpp>
+	"Singleton.hpp"
+
+1262087797 c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui_lowgeek_modif\singleton.hpp
+
+1262087797 source:c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui_lowgeek_modif\eventmanager.cpp
+	"EventManager.hpp"
+
+1262089287 source:c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui_lowgeek_modif\windowgame.cpp
+	"WindowGame.hpp"
+	<iostream>
+
+1262089883 c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui_lowgeek_modif\engines\eventmanager.hpp
+	<SFML/Graphics.hpp>
+	<SFML/System.hpp>
+	"../Utils/Singleton.hpp"
+
+1262087797 c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui_lowgeek_modif\utils\singleton.hpp
+

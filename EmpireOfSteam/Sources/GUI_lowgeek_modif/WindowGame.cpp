@@ -1,10 +1,12 @@
 #include "WindowGame.hpp"
+#include <iostream>
 
+using namespace std;
 using namespace sf;
 
 WindowGame::WindowGame()
 {
-    m_window.Create(VideoMode(800, 600, 32), "LOS", sf::Style::Titlebar);
+    m_window.Create(VideoMode(800, 600, 32), "LOS", Style::Titlebar);
 }
 
 WindowGame::~WindowGame()
@@ -20,8 +22,8 @@ void WindowGame::Run()
 
         if(mainEventManager->GetEvent(EventKey, sf::Key::Escape))
             m_window.Close();
-
-
+        if(mainEventManager->GetEvent(EventKey, sf::Key::A))
+            cout<<"Position X : "<<mainEventManager->GetMousePosition().x<<"Position Y : "<<mainEventManager->GetMousePosition().y<<endl;
 
         m_window.Clear();
 

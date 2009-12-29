@@ -81,10 +81,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="EventManager.cpp" />
-		<Unit filename="EventManager.hpp" />
+		<Unit filename="Engines\EventManager.cpp" />
+		<Unit filename="Engines\EventManager.hpp" />
 		<Unit filename="Global.hpp" />
-		<Unit filename="Singleton.hpp" />
+		<Unit filename="Utils\Singleton.hpp" />
 		<Unit filename="WindowGame.cpp" />
 		<Unit filename="WindowGame.hpp" />
 		<Unit filename="main.cpp" />

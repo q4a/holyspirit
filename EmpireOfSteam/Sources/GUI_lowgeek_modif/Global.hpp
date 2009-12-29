@@ -2,7 +2,7 @@
 #define GLOBAL_HPP
 
 #include <SFML/Graphics.hpp>
-#include "EventManager.hpp"
+#include "Engines/EventManager.hpp"
 
 extern EventManager *mainEventManager;
 
