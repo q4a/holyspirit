@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1262106722 source:c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui\gui\gui\button.cpp
+	"Button.hpp"
+
+1262106723 c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui\gui\gui\button.hpp
+	"Widget.hpp"
+
+1262106723 c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui\gui\gui\widget.hpp
+	<SFML/Graphics.hpp>
+	"../Global.hpp"
+
+1262106723 c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui\gui\global.hpp
+	<SFML/Graphics.hpp>
+	"Engines/EventManager.hpp"
+
+1262106722 c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui\gui\engines\eventmanager.hpp
+	<SFML/Graphics.hpp>
+	<SFML/System.hpp>
+	"../Utils/Singleton.hpp"
+
+1262106723 c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui\gui\utils\singleton.hpp
+
+1262106723 source:c:\users\lowgeek\documents\projet_cpp\empireofsteam\sources\gui\gui\gui\widget.cpp
+	"Widget.hpp"
+
