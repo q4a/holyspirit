@@ -111,7 +111,7 @@ Personnage::Personnage()
     m_vientDetreTouche                  = NULL;
 
     m_stunned                           = false;
-    m_ID                                = 0;
+    m_ID                                = -1;
     m_etatForce                         = false;
     m_miracleBloquant                   = false;
 

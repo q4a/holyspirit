@@ -45,6 +45,7 @@ EventManager::EventManager()
     idcurseur=moteurGraphique->AjouterImage(configuration->chemin_curseurs+configuration->nom_curseur_base,-1);
 
     m_img_select=moteurGraphique->AjouterImage("Data/Editeur/Menus/selection.png",-1);
+    m_img_select2=moteurGraphique->AjouterImage("Data/Editeur/Menus/selection_2.png",-1);
 
 
     m_molette = 0;

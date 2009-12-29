@@ -89,7 +89,7 @@ Monstre::Monstre(Personnage &personnage)
     m_porteeLumineuse           = personnage.getPorteeLumineuse();
     m_porteeLumineuseBasique    = personnage.getPorteeLumineuse();
     m_depart                    = personnage.getDepart();
-
+    m_ID                                = -1;
     m_angle                     = 0;
     m_etat                      = 0;
 }

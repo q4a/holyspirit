@@ -180,7 +180,7 @@ public:
     Entite_graphique m_entite_graphique;
     Entite_graphique m_entite_graphique_shadow;
 
-protected:
+//protected:
     int m_etat,m_angle;
     bool m_erreurPathfinding;
     Caracteristique m_caracteristique;

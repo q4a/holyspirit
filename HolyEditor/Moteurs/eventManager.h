@@ -50,6 +50,7 @@ class EventManager : public CSingleton<EventManager>
 	sf::Clock m_clock;
 
 	int m_img_select;
+	int m_img_select2;
 
 	private:
 	bool m_EventTableau[500],m_Clic[5],m_ClicAncien[5];

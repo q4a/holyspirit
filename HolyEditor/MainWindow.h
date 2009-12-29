@@ -107,6 +107,7 @@ class MainWindow : public QWidget // On hérite de QWidget (IMPORTANT)
     QRadioButton    *couche1;
 
     QCheckBox       *afficherCollisions;
+    QCheckBox       *afficherRelief;
     QCheckBox       *afficherMurLumiere;
 
     QCheckBox       *afficherCouche0;

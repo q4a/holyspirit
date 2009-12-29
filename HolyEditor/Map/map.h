@@ -138,6 +138,7 @@ public:
     Decor m_select_brush;
 
     bool m_afficher_collision;
+    bool m_afficher_relief;
     bool m_afficher_murLumiere;
     bool m_afficher_couche0;
     bool m_afficher_couche1;

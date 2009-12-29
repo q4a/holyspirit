@@ -154,6 +154,8 @@ MainWindow::MainWindow() : QWidget()
     afficherCouche1->move(4,120);
     afficherCouche1->setChecked(true);
 
+    afficherRelief = new QCheckBox("Afficher le relief", menuInfos);
+    afficherRelief->move(204,80);
 
     modifLayer = new QSpinBox(menuInfos);
     modifLayer->setGeometry(4,40,200,18);
@@ -254,6 +256,7 @@ MainWindow::~MainWindow()
     delete couche1;
 
     delete afficherCollisions;
+    delete afficherRelief;
     delete afficherMurLumiere;
     delete afficherCouche0;
     delete afficherCouche1;
@@ -401,7 +404,7 @@ void MainWindow::paintEvent(QPaintEvent*)
         }
     }
 
-    if (eventManager->getEvenement(sf::Mouse::Middle, "C"))
+    /*if (eventManager->getEvenement(sf::Mouse::Middle, "C"))
     {
         if (m_dejaWheel)
         {
@@ -417,7 +420,7 @@ void MainWindow::paintEvent(QPaintEvent*)
         m_dejaWheel = true;
     }
     else
-        m_dejaWheel = false;
+        m_dejaWheel = false;*/
 
     if (eventManager->m_coordonnee.x < 0)
         eventManager->m_coordonnee.x = 0;
@@ -457,6 +460,11 @@ void MainWindow::paintEvent(QPaintEvent*)
             map->m_afficher_collision = true;
         else
             map->m_afficher_collision = false;
+
+        if (afficherRelief->isChecked())
+            map->m_afficher_relief = true;
+        else
+            map->m_afficher_relief = false;
 
         if (afficherMurLumiere->isChecked())
             map->m_afficher_murLumiere = true;
@@ -801,7 +809,6 @@ void MainWindow::paintEvent(QPaintEvent*)
             }
             else
             {
-                std::cout<<"caca"<<std::endl;
                 int no = QInputDialog::getInteger(this, "Nombre", "ID du/des entités(s)");
 
                 for(int i = eventManager->getCasePointee().y - (int)(taillePinceau->value()*0.5) ; i < eventManager->getCasePointee().y + taillePinceau->value()*0.5 ; ++i)
@@ -814,6 +821,26 @@ void MainWindow::paintEvent(QPaintEvent*)
                         {
                             for(int p = 0 ; p < map->m_decor[1][i][j][k].m_monstre.size() ; ++p)
                                 map->m_monstre[map->m_decor[1][i][j][k].m_monstre[p]].m_ID = no;
+                        }
+                }
+            }
+        }
+
+        if(eventManager->getEvenement(sf::Mouse::Middle, "C"))
+        {
+            eventManager->StopEvenement(sf::Mouse::Middle, "C");
+            {
+                int no = QInputDialog::getInteger(this, "Nombre", "Hauteur de la case");
+
+                for(int i = eventManager->getCasePointee().y - (int)(taillePinceau->value()*0.5) ; i < eventManager->getCasePointee().y + taillePinceau->value()*0.5 ; ++i)
+                for(int j = eventManager->getCasePointee().x - (int)(taillePinceau->value()*0.5) ; j < eventManager->getCasePointee().x + taillePinceau->value()*0.5 ; ++j)
+                if(i >= 0 && j >= 0 && i < map->getDimensions().y && j < map->getDimensions().x)
+                {
+                    for (unsigned k = 0 ; k < map->m_decor[0][i][j].size() ; ++k)
+                        if (map->m_decor[0][i][j][k].m_moduleAleatoireMin == map->m_moduleAleatoireMin
+                          &&map->m_decor[0][i][j][k].m_moduleAleatoireMax == map->m_moduleAleatoireMax)
+                        {
+                            map->m_decor[0][i][j][k].m_hauteur = no;
                         }
                 }
             }

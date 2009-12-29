@@ -1341,6 +1341,26 @@ void Map::Afficher(bool alt,float alpha)
                             moteurGraphique->AjouterCommande(&temp,15,1);
                         }
 
+                    if(m_afficher_relief && couche == 0)
+                    {
+                        for(int l = 0 ; l < m_decor[couche][j][k][z].getHauteur(); l++)
+                        {
+                            sf::Sprite temp;
+                            temp.SetImage(*moteurGraphique->getImage(eventManager->m_img_select));
+                            temp.SetPosition(position.x-48, position.y-16 - l);
+                            temp.SetColor(sf::Color(128,128,128,16));
+                            moteurGraphique->AjouterCommande(&temp,15,1);
+                        }
+
+                        sf::Sprite temp;
+                        temp.SetImage(*moteurGraphique->getImage(eventManager->m_img_select2));
+                        temp.SetPosition(position.x-48, position.y-16 - m_decor[couche][j][k][z].getHauteur());
+                        temp.SetColor(sf::Color(255,255,255,64));
+                        if(m_decor[couche][j][k][z].getHauteur() > 0)
+                        moteurGraphique->AjouterCommande(&temp,15,1);
+
+                    }
+
                     if(m_decor[couche][j][k][z].m_evenement.size() > 0)
                     {
                         sf::Sprite temp;
@@ -1383,7 +1403,10 @@ void Map::Afficher(bool alt,float alpha)
                             }
 
                             if (m_decor[1][j][k][z].getMonstre()[o]>=0&&m_decor[1][j][k][z].getMonstre()[o]<(int)m_monstre.size())
+                            {
+                                m_monstre[m_decor[1][j][k][z].getMonstre()[o]].m_positionPixel.h = m_decor[0][j][k][0].getHauteur();
                                 m_monstre[m_decor[1][j][k][z].getMonstre()[o]].Afficher(getDimensions(),&m_ModeleMonstre[m_monstre[m_decor[1][j][k][z].getMonstre()[o]].getModele()],m_decor[1][j][k][z].getMonstre()[o]==m_monstreIllumine);
+                            }
                         }
 
 
