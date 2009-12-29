@@ -72,3 +72,4 @@ Masse_de_boucher
 Cette_masse_a_pour_but\premier_de_tuer_les_cochons.\Mais_elle_se_révèle_aussi\très_éfficace_contre_les_démons.\\Arme_à_deux_mains.
 Morceau_de_cerveau
 Mais_c'est_dégeulasse_!
+

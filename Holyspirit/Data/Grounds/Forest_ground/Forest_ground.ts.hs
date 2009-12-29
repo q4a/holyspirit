@@ -2,6 +2,5 @@
 $
 $
 Herbe
-*x0 y0 i0 w180 h96 $
-*x0 y0 i0 w180 h96 $
+*x0 y0 w180 h80 i0 ey40 $
 $

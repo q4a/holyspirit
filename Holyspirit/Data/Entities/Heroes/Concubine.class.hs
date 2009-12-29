@@ -40,6 +40,8 @@ $
 $
 	* x400 y557 w35 h64 cx17 cy50 m Data/Menus/Arrow.png $
 $
+	* x0 y72 w16 h16 m Data/Menus/MinimapIcones.png $
+$
 	* x436 y390 h4 w320 $
 $
 	* x436 y60 w10 h10 $
