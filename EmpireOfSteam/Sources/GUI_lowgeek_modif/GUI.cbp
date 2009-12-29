@@ -15,9 +15,10 @@
 					<Add option="-g" />
 				</Compiler>
 				<Linker>
-					<Add library="..\..\..\..\..\..\..\..\Program Files\CodeBlocks\MinGW\lib\sfml2\libsfml-graphics-d.a" />
-					<Add library="..\..\..\..\..\..\..\..\Program Files\CodeBlocks\MinGW\lib\sfml2\libsfml-window-d.a" />
-					<Add library="..\..\..\..\..\..\..\..\Program Files\CodeBlocks\MinGW\lib\sfml2\libsfml-system-d.a" />
+					<Add option="-lsfml-audio-s-d" />
+					<Add option="-lsfml-graphics-s-d" />
+					<Add option="-lsfml-window-s-d" />
+					<Add option="-lsfml-system-s-d" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -27,7 +28,6 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
-					<Add directory="..\..\..\..\SFML_SVN\branches\sfml2\include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -35,14 +35,17 @@
 					<Add option="-lsfml-graphics-s" />
 					<Add option="-lsfml-window-s" />
 					<Add option="-lsfml-system-s" />
-					<Add directory="..\..\..\..\SFML_SVN\branches\sfml2\lib\mingw" />
 				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
+			<Add directory="..\..\..\..\SFML_SVN\branches\sfml2\include" />
 		</Compiler>
+		<Linker>
+			<Add directory="..\..\..\..\SFML_SVN\branches\sfml2\lib\mingw" />
+		</Linker>
 		<Unit filename="EventManager.cpp" />
 		<Unit filename="EventManager.hpp" />
 		<Unit filename="Global.hpp" />

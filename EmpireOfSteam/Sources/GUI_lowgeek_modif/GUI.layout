@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="Release" />
+	<ActiveTarget name="Debug" />
 	<File name="EventManager.cpp" open="1" top="0" tabpos="4">
 		<Cursor position="334" topLine="8" />
 	</File>
 	<File name="EventManager.hpp" open="1" top="0" tabpos="5">
 		<Cursor position="544" topLine="6" />
 	</File>
-	<File name="Global.hpp" open="1" top="0" tabpos="6">
-		<Cursor position="70" topLine="0" />
+	<File name="Global.hpp" open="1" top="1" tabpos="6">
+		<Cursor position="153" topLine="0" />
 	</File>
 	<File name="Singleton.hpp" open="1" top="0" tabpos="7">
 		<Cursor position="359" topLine="0" />
 	</File>
-	<File name="WindowGame.cpp" open="1" top="1" tabpos="2">
+	<File name="WindowGame.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="133" topLine="0" />
 	</File>
 	<File name="WindowGame.hpp" open="1" top="0" tabpos="3">
