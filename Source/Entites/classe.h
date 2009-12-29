@@ -66,6 +66,7 @@ struct Classe
     Image_interface talk;
     Image_interface quest;
     Image_interface arrow;
+    Image_interface icone_mm;
     std::vector<Image_interface> interface_miracles;
 
     std::vector<Bouton> boutons_miracles;

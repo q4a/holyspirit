@@ -153,7 +153,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
     && eventManager->getPositionSouris().y < (classe->orbe_vie.position.y + classe->orbe_vie.position.h)*configuration->Resolution.h/600)
     {
         std::ostringstream buf;
-        buf<<(int)caracteristique.vie<<" / "<<caracteristique.maxVie;
+        buf<<configuration->getText(0,3)<<" : "<<(int)caracteristique.vie<<" / "<<caracteristique.maxVie;
 
         moteurGraphique->AjouterTexte(buf.str(),coordonnee(eventManager->getPositionSouris().x,
                                                                          eventManager->getPositionSouris().y - 20),
@@ -205,7 +205,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
     && eventManager->getPositionSouris().y < (classe->orbe_foi.position.y + classe->orbe_foi.position.h)*configuration->Resolution.h/600)
     {
         std::ostringstream buf;
-        buf<<(int)caracteristique.foi<<" / "<<caracteristique.maxFoi;
+        buf<<configuration->getText(0,4)<<" : "<<(int)caracteristique.foi<<" / "<<caracteristique.maxFoi;
 
         moteurGraphique->AjouterTexte(buf.str(),coordonnee(eventManager->getPositionSouris().x,
                                                                          eventManager->getPositionSouris().y - 20),
@@ -301,7 +301,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         }
     }
 
-    if (type==1)
+    if (type==1 && caracteristiqueMonstre.vie > 0)
     {
         Sprite sprite,sprite2;
 

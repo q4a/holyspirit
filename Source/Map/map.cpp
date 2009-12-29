@@ -1032,7 +1032,7 @@ void Map::Initialiser(Hero *hero)
                         position.x+=m_decor[0][i][j].getDecalageHerbe().x;
 
                         m_decor[couche][i][j].m_entite_herbe = moteurGraphique->getEntiteGraphique(m_herbe[m_decor[couche][i][j].getHerbe()], numeroHerbe, 10);
-                        m_decor[couche][i][j].m_entite_herbe.m_sprite.SetPosition(position.x, position.y);
+                        m_decor[couche][i][j].m_entite_herbe.m_sprite.SetPosition(position.x, position.y - m_decor[0][i][j].getHauteur());
                         m_decor[couche][i][j].m_entite_herbe.m_sprite.SetScale((float)m_decor[couche][i][j].getTailleHerbe()/100,(float)m_decor[couche][i][j].getTailleHerbe()/100);
                         m_decor[couche][i][j].m_entite_herbe.m_sprite.SetColor(m_decor[couche][i][j].getCouleurHerbe());
 
@@ -1396,6 +1396,18 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
 
             moteurGraphique->AjouterCommande(&minimap,12,0);
         }
+
+        sf::Sprite minimap;
+        minimap.SetImage(*moteurGraphique->getImage(hero->m_classe.icone_mm.image));
+        minimap.SetSubRect(sf::IntRect(hero->m_classe.icone_mm.position.x, hero->m_classe.icone_mm.position.y,
+                                       hero->m_classe.icone_mm.position.x + hero->m_classe.icone_mm.position.w,
+                                       hero->m_classe.icone_mm.position.y + hero->m_classe.icone_mm.position.h));
+        minimap.SetColor(sf::Color(255,255,255,(int)(alpha * 0.5)));
+        minimap.SetPosition(configuration->Resolution.x*0.5 ,
+                            configuration->Resolution.y*0.5);
+
+        moteurGraphique->AjouterCommande(&minimap,12,0);
+
     }
 
     sf::Sprite sky;
@@ -1781,6 +1793,9 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                         }
 
                 m_decor[i][j][k].m_entite_graphique.Animer(temps);
+
+                //if(i == 1)
+                   // m_decor[i][j][k].m_entite_graphique.m_sprite.Move(0,-m_decor[0][j][k].getHauteur());
                 //m_decor[i][j][k].m_entite_herbe.Animer(temps);
 
                 for(int z = 0; z < m_decor[i][j][k].getNombreObjets() ; ++z)

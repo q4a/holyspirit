@@ -785,7 +785,7 @@ void Miracle::AfficherDescription(coordonnee position, bool suivant)
 
     if (suivant)
     {
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"Niveau suivant :"));
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,configuration->getText(0,41).c_str()));
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
 
         for (int i=0;i<(int)m_description_effets_suivant.size();i++)
@@ -816,6 +816,9 @@ void Miracle::AfficherDescription(coordonnee position, bool suivant)
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
         }
     }
+
+    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,configuration->getText(0,42).c_str()));
 
     if (position.x-10<0)
         position.x=10;

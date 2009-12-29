@@ -455,6 +455,7 @@ void Classe::Charger(string chemin, const std::vector<int> &lvl_miracles, const 
         ChargerImageInterface(fichier, talk);
         ChargerImageInterface(fichier, quest);
         ChargerImageInterface(fichier, arrow);
+        ChargerImageInterface(fichier, icone_mm);
 
         ChargerCoordonneeInterface(fichier, position_sac_inventaire);
         ChargerCoordonneeInterface(fichier, position_contenu_inventaire);

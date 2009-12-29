@@ -156,7 +156,7 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
         if ((float)(rand()%1000000000)<=(float)(modele->getObjets()[i].getChanceTrouver()*0.5*(m_caracteristique.rang*3+1)))
         {
             m_objets.push_back(modele->getObjets()[i]);
-            m_objets.back().Generer((m_caracteristique.rang*5+1));
+            m_objets.back().Generer((m_caracteristique.rang*10+1));
         }
 
     m_caracteristique.maxVie = m_caracteristique.vie;

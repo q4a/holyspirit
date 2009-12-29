@@ -1178,16 +1178,6 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
     for (int i = 0;i < (int)m_classe.miracles.size(); ++i)
         if (m_classe.page_miracles[i] == fenetreEnCours)
         {
-            /*if (m_lvl_miracles[i] <= 0)
-            {
-                sf::Sprite temp;
-                temp.SetImage(*moteurGraphique->getImage(0));
-                temp.SetPosition(m_classe.position_miracles[i].x*configuration->Resolution.w/800, (m_classe.position_miracles[i].y - decalage)*configuration->Resolution.h/600);
-                temp.Resize(m_classe.position_miracles[i].w*configuration->Resolution.w/800, m_classe.position_miracles[i].h*configuration->Resolution.h/600);
-                temp.SetColor(sf::Color(32,32,32));
-                temp.SetBlendMode(sf::Blend::Multiply);
-                moteurGraphique->AjouterCommande(&temp, 15, 0);
-            }*/
 
             if (eventManager->getPositionSouris().x > m_classe.position_miracles[i].x*configuration->Resolution.w/800
                     &&eventManager->getPositionSouris().x < (m_classe.position_miracles[i].x + m_classe.position_miracles[i].w)*configuration->Resolution.w/800
