@@ -75,7 +75,7 @@ void WindowGame::Run()
             m_button_in->SetPosition(m_button_in->GetPosition().x + 2 , m_button_in->GetPosition().y + 1);
 
         if(m_button_in->Released())
-            m_button_in_in->SetPosition(m_button_in_in->GetPosition().x + 1 , m_button_in_in->GetPosition().y);
+            m_button_in_in->SetPosition(m_button_in_in->GetPosition().x + 5 , m_button_in_in->GetPosition().y);
 
 
 

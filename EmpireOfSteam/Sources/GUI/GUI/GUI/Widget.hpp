@@ -20,20 +20,16 @@ class Widget
         virtual void SetPosition(int x, int y);
         virtual void SetGlobalPosition(int x, int y);
 
-        virtual const sf::Vector2f &GetSize();
-        virtual const sf::Vector2f &GetPosition();
+        virtual const sf::Vector2i &GetSize();
+        virtual const sf::Vector2i &GetPosition();
 
         void AddWidget(Widget *widget);
 
     protected:
 
-
-
-
-
-        sf::Vector2f m_position;
-        sf::Vector2f m_position_global;
-        sf::Vector2f m_size;
+        sf::Vector2i m_position;
+        sf::Vector2i m_position_global;
+        sf::Vector2i m_size;
 
         std::vector <Widget *> m_widgets;
 

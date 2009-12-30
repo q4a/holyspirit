@@ -4,17 +4,17 @@ using namespace sf;
 
 Button::Button() :  m_hover(false), m_clicked(false), m_released(false)
 {
-    m_position  = sf::Vector2f(0,0);
-    m_size      = sf::Vector2f(0,0);
+    m_position  = sf::Vector2i(0,0);
+    m_size      = sf::Vector2i(0,0);
     m_IbuttonForm.LoadFromFile("pictures/GUI/buttonForm.png");
     m_sprite.SetImage(m_IbuttonForm);
-    m_size      = m_sprite.GetSize();
+    m_size      = sf::Vector2i((int)m_sprite.GetSize().x, (int)m_sprite.GetSize().y);
 }
 Button::Button(int x, int y) :  m_hover(false), m_clicked(false), m_released(false)
 {
     m_IbuttonForm.LoadFromFile("pictures/GUI/buttonForm.png");
     m_sprite.SetImage(m_IbuttonForm);
-    m_size          = m_sprite.GetSize();
+    m_size      = sf::Vector2i((int)m_sprite.GetSize().x, (int)m_sprite.GetSize().y);
     SetPosition(x, y);
 }
 Button::Button(int x, int y, int w, int h) :    m_hover(false), m_clicked(false), m_released(false)
@@ -79,8 +79,7 @@ sf::Sprite Button::Show()
 
     sf::Sprite temp;
     temp.SetImage(m_IbuttonForm);
-    temp.SetPosition(0, 0);
-    temp.Resize(m_size);
+    temp.Resize(m_size.x, m_size.y);
     m_image.Draw(temp);
 
     for( std::vector<Widget*>::iterator i = m_widgets.begin();
@@ -92,7 +91,7 @@ sf::Sprite Button::Show()
 
 
     m_sprite.SetImage(m_image.GetImage());
-    m_sprite.Resize(m_size);
+    m_sprite.Resize(m_size.x, m_size.y);
     return  (m_sprite);
 }
 

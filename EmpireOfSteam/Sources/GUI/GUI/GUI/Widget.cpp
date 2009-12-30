@@ -31,7 +31,6 @@ sf::Sprite Widget::Show()
 
     m_sprite.SetImage(m_image.GetImage());
     return  (m_sprite);
-    //window.Draw(m_buttonForm);
 }
 
 void Widget::Update()
@@ -55,7 +54,6 @@ void Widget::SetGeometry(int x, int y, int w, int h)
 {
     m_position.x        = x;
     m_position.y        = y;
-    //m_position_global   = m_position;
     m_size.x            = w;
     m_size.y            = h;
 
@@ -69,7 +67,6 @@ void Widget::SetPosition(int x, int y)
 {
     m_position.x        = x;
     m_position.y        = y;
-    //m_position_global   = m_position;
 
     m_sprite.SetPosition(x, y);
 
@@ -85,12 +82,12 @@ void Widget::SetGlobalPosition(int x, int y)
 }
 
 
-const sf::Vector2f &Widget::GetSize()
+const sf::Vector2i &Widget::GetSize()
 {
     return (m_size);
 }
 
-const sf::Vector2f &Widget::GetPosition()
+const sf::Vector2i &Widget::GetPosition()
 {
     return (m_position);
 }
