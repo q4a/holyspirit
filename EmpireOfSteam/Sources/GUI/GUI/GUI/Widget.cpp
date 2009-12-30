@@ -41,15 +41,6 @@ void Widget::Update()
             (*i)->Update();
 }
 
-/*void Widget::UpdateGlobalPosition()
-{
-    for( std::vector<Widget*>::iterator i = m_widgets.begin();
-         i != m_widgets.end();
-         ++i )
-            (*i)->SetGlobalPosition(m_position_global.x + (*i)->GetPosition().x,
-                                    m_position_global.y + (*i)->GetPosition().y);
-}
-*/
 void Widget::SetGeometry(int x, int y, int w, int h)
 {
     m_position.x        = x;
@@ -59,8 +50,6 @@ void Widget::SetGeometry(int x, int y, int w, int h)
 
     m_sprite.SetPosition(x, y);
     m_sprite.Resize(w, h);
-
-    //UpdateGlobalPosition();
 }
 
 void Widget::SetPosition(int x, int y)
@@ -69,18 +58,7 @@ void Widget::SetPosition(int x, int y)
     m_position.y        = y;
 
     m_sprite.SetPosition(x, y);
-
-    //UpdateGlobalPosition();
 }
-
-/*void Widget::SetGlobalPosition(int x, int y)
-{
-    m_position_global.x = x;
-    m_position_global.y = y;
-
-    //UpdateGlobalPosition();
-}
-*/
 
 const sf::Vector2i &Widget::GetSize()
 {

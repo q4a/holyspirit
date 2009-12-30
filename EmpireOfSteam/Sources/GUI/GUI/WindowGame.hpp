@@ -3,16 +3,14 @@
 
 #include "Global.hpp"
 #include "GUI/Button.hpp"
+#include "GUI/GUIWindow.hpp"
 
-class WindowGame
+class WindowGame : public GUIWindow
 {
     public:
         WindowGame();
         ~WindowGame();
-        void AddWidget(Widget *widget);
-        void Run();
-        void Show();
-        void Update();
+        virtual void Run();
 
     protected:
 

@@ -6,7 +6,7 @@ using namespace sf;
 
 WindowGame::WindowGame()
 {
-    m_window.Create(VideoMode(800, 600, 32), "LOS", Style::Titlebar);
+    m_window.Create(VideoMode(800, 600, 32), "Window", Style::Titlebar);
 
     m_button        = new Button(50,50,200,100);
     m_button_in     = new Button(25,50,100,25);
@@ -31,24 +31,6 @@ WindowGame::~WindowGame()
     delete m_button;
     delete m_button_2;
     delete m_button_3;
-}
-
-void WindowGame::AddWidget(Widget *widget)
-{
-    m_widgets.push_back(widget);
-    //m_widgets.back()->SetGlobalPosition(m_widgets.back()->GetPosition().x, m_widgets.back()->GetPosition().y);
-}
-
-void WindowGame::Update()
-{
-    for( std::vector<Widget*>::iterator i = m_widgets.begin();
-         i != m_widgets.end();
-         ++i )
-         {
-            // (*i)->SetGlobalPosition((*i)->GetPosition().x, (*i)->GetPosition().y);
-             (*i)->Update();
-         }
-
 }
 
 void WindowGame::Run()
@@ -77,21 +59,8 @@ void WindowGame::Run()
         if(m_button_in->Released())
             m_button_in_in->SetPosition(m_button_in_in->GetPosition().x + 5 , m_button_in_in->GetPosition().y);
 
-
-
         Show();
     }
 }
 
-void WindowGame::Show()
-{
-    m_window.Clear();
-
-    for( std::vector<Widget*>::iterator i = m_widgets.begin();
-         i != m_widgets.end();
-         ++i )
-            m_window.Draw((*i)->Show());
-
-    m_window.Display();
-}
 
