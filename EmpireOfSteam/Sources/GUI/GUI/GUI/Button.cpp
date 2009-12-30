@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace sf;
 
-Button::Button()
+Button::Button() :  m_hover(false), m_clicked(false), m_released(false)
 {
     m_position  = sf::Vector2f(0,0);
     m_size      = sf::Vector2f(0,0);
@@ -10,14 +10,14 @@ Button::Button()
     m_sprite.SetImage(m_IbuttonForm);
     m_size      = m_sprite.GetSize();
 }
-Button::Button(int x, int y)
+Button::Button(int x, int y) :  m_hover(false), m_clicked(false), m_released(false)
 {
     m_IbuttonForm.LoadFromFile("pictures/GUI/buttonForm.png");
     m_sprite.SetImage(m_IbuttonForm);
     m_size          = m_sprite.GetSize();
     SetPosition(x, y);
 }
-Button::Button(int x, int y, int w, int h)
+Button::Button(int x, int y, int w, int h) :    m_hover(false), m_clicked(false), m_released(false)
 {
     m_IbuttonForm.LoadFromFile("pictures/GUI/buttonForm.png");
     SetGeometry(x ,y, w, h);
@@ -35,6 +35,43 @@ void Button::SetGeometry(int x, int y, int w, int h)
     m_image.Create(m_size.x, m_size.y, true);
 }
 
+void Button::Update()
+{
+    Widget::Update();
+
+    if(!mainEventManager->GetEvent(EventMouse, Mouse::Left))
+    {
+        if(  mainEventManager->GetMousePosition().x > m_position_global.x
+         &&  mainEventManager->GetMousePosition().x < m_position_global.x + m_size.x
+         &&  mainEventManager->GetMousePosition().y > m_position_global.y
+         &&  mainEventManager->GetMousePosition().y < m_position_global.y + m_size.y
+         && !mainEventManager->GetEvent(EventMouse, Mouse::Left))
+        {
+            m_hover = true;
+        }
+        else
+        {
+            m_hover     = false;
+            m_clicked   = false;
+            m_released  = false;
+        }
+    }
+
+
+    if(m_hover)
+    {
+        if(mainEventManager->GetEvent(EventMouse, Mouse::Left))
+            m_clicked = true;
+        else
+        {
+            if(m_clicked)
+                m_released = true;
+            else
+                m_released = false;
+            m_clicked = false;
+        }
+    }
+}
 
 sf::Sprite Button::Show()
 {
@@ -59,14 +96,17 @@ sf::Sprite Button::Show()
     return  (m_sprite);
 }
 
+bool Button::Hover()
+{
+    return (m_hover);
+}
+
 bool Button::Clicked()
 {
-    if(     mainEventManager->GetMousePosition().x > m_position_global.x
-       &&   mainEventManager->GetMousePosition().x < m_position_global.x + m_size.x
-       &&   mainEventManager->GetMousePosition().y > m_position_global.y
-       &&   mainEventManager->GetMousePosition().y < m_position_global.y + m_size.y
-       &&   mainEventManager->GetEvent(EventMouse, Mouse::Left))
-       return true;
-    else
-        return false;
+    return (m_clicked);
+}
+
+bool Button::Released()
+{
+    return (m_released);
 }

@@ -12,11 +12,13 @@ class Widget
         Widget(int, int, int, int);
         virtual ~Widget();
         virtual sf::Sprite Show();
+        virtual void Update();
 
         void UpdateGlobalPosition();
 
         virtual void SetGeometry(int x, int y, int w, int h);
         virtual void SetPosition(int x, int y);
+        virtual void SetGlobalPosition(int x, int y);
 
         virtual const sf::Vector2f &GetSize();
         virtual const sf::Vector2f &GetPosition();
@@ -25,7 +27,7 @@ class Widget
 
     protected:
 
-        virtual void SetGlobalPosition(int x, int y);
+
 
 
 

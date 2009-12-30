@@ -34,6 +34,14 @@ sf::Sprite Widget::Show()
     //window.Draw(m_buttonForm);
 }
 
+void Widget::Update()
+{
+    for( std::vector<Widget*>::iterator i = m_widgets.begin();
+         i != m_widgets.end();
+         ++i )
+            (*i)->Update();
+}
+
 void Widget::UpdateGlobalPosition()
 {
     for( std::vector<Widget*>::iterator i = m_widgets.begin();
@@ -47,7 +55,7 @@ void Widget::SetGeometry(int x, int y, int w, int h)
 {
     m_position.x        = x;
     m_position.y        = y;
-    m_position_global   = m_position;
+    //m_position_global   = m_position;
     m_size.x            = w;
     m_size.y            = h;
 
@@ -61,7 +69,7 @@ void Widget::SetPosition(int x, int y)
 {
     m_position.x        = x;
     m_position.y        = y;
-    m_position_global = m_position;
+    //m_position_global   = m_position;
 
     m_sprite.SetPosition(x, y);
 
