@@ -9,13 +9,17 @@ class WindowGame
     public:
         WindowGame();
         ~WindowGame();
+        void AddWidget(Widget *widget);
         void Run();
+        void Show();
 
     protected:
 
     private:
         sf::RenderWindow m_window;
-        Button m_button;
+        Button *m_button, *m_button_in,  *m_button_in_in;
+
+        std::vector <Widget *> m_widgets;
 };
 
 #endif

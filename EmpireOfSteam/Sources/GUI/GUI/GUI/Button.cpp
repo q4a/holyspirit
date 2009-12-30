@@ -1,13 +1,27 @@
 #include "Button.hpp"
-
+#include <iostream>
 using namespace sf;
 
 Button::Button()
 {
+    m_position  = sf::Vector2f(0,0);
+    m_size      = sf::Vector2f(0,0);
     m_IbuttonForm.LoadFromFile("pictures/GUI/buttonForm.png");
-    m_buttonForm.SetImage(m_IbuttonForm);
-    m_width = m_buttonForm.GetSize().x;
-    m_height = m_buttonForm.GetSize().y;
+    m_sprite.SetImage(m_IbuttonForm);
+    m_size      = m_sprite.GetSize();
+}
+Button::Button(int x, int y)
+{
+    m_IbuttonForm.LoadFromFile("pictures/GUI/buttonForm.png");
+    m_sprite.SetImage(m_IbuttonForm);
+    m_size          = m_sprite.GetSize();
+    SetPosition(x, y);
+}
+Button::Button(int x, int y, int w, int h)
+{
+    m_IbuttonForm.LoadFromFile("pictures/GUI/buttonForm.png");
+    SetGeometry(x ,y, w, h);
+
 }
 
 Button::~Button()
@@ -15,31 +29,43 @@ Button::~Button()
 
 }
 
-void Button::Show(RenderWindow &window)
-{
-    window.Draw(m_buttonForm);
-}
-
 void Button::SetGeometry(int x, int y, int w, int h)
 {
     Widget::SetGeometry(x, y, w, h);
-
-    m_buttonForm.SetScale(w, h);
-    m_buttonForm.SetPosition(x, y);
+    m_image.Create(m_size.x, m_size.y, true);
 }
 
-void Button::SetPosition(int x, int y)
-{
-    Widget::SetPosition(x, y);
 
-    m_buttonForm.SetPosition(x, y);
+sf::Sprite Button::Show()
+{
+    m_image.Clear();
+
+    sf::Sprite temp;
+    temp.SetImage(m_IbuttonForm);
+    temp.SetPosition(0, 0);
+    temp.Resize(m_size);
+    m_image.Draw(temp);
+
+    for( std::vector<Widget*>::iterator i = m_widgets.begin();
+         i != m_widgets.end();
+         ++i )
+            m_image.Draw((*i)->Show());
+
+    m_image.Display();
+
+
+    m_sprite.SetImage(m_image.GetImage());
+    m_sprite.Resize(m_size);
+    return  (m_sprite);
 }
 
 bool Button::Clicked()
 {
-    if(mainEventManager->GetMousePosition().x > m_x && mainEventManager->GetMousePosition().x < m_x + m_width &&
-       mainEventManager->GetMousePosition().y > m_y && mainEventManager->GetMousePosition().y < m_y + m_height &&
-       mainEventManager->GetEvent(EventMouse, Mouse::Left))
+    if(     mainEventManager->GetMousePosition().x > m_position_global.x
+       &&   mainEventManager->GetMousePosition().x < m_position_global.x + m_size.x
+       &&   mainEventManager->GetMousePosition().y > m_position_global.y
+       &&   mainEventManager->GetMousePosition().y < m_position_global.y + m_size.y
+       &&   mainEventManager->GetEvent(EventMouse, Mouse::Left))
        return true;
     else
         return false;

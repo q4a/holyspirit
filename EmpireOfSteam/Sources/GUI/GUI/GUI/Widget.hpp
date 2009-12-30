@@ -8,16 +8,35 @@ class Widget
 {
     public:
         Widget();
+        Widget(int, int);
+        Widget(int, int, int, int);
         virtual ~Widget();
-        virtual void Show(sf::RenderWindow &window) = 0;
+        virtual sf::Sprite Show();
+
+        void UpdateGlobalPosition();
+
         virtual void SetGeometry(int x, int y, int w, int h);
         virtual void SetPosition(int x, int y);
 
+        virtual const sf::Vector2f &GetSize();
+        virtual const sf::Vector2f &GetPosition();
+
+        void AddWidget(Widget *widget);
+
     protected:
-        int m_x;
-        int m_y;
-        int m_width;
-        int m_height;
+
+        virtual void SetGlobalPosition(int x, int y);
+
+
+
+        sf::Vector2f m_position;
+        sf::Vector2f m_position_global;
+        sf::Vector2f m_size;
+
+        std::vector <Widget *> m_widgets;
+
+        sf::RenderImage m_image;
+        sf::Sprite      m_sprite;
 
     private:
 
