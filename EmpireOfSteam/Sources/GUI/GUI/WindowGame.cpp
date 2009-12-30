@@ -36,7 +36,7 @@ WindowGame::~WindowGame()
 void WindowGame::AddWidget(Widget *widget)
 {
     m_widgets.push_back(widget);
-    m_widgets.back()->SetGlobalPosition(m_widgets.back()->GetPosition().x, m_widgets.back()->GetPosition().y);
+    //m_widgets.back()->SetGlobalPosition(m_widgets.back()->GetPosition().x, m_widgets.back()->GetPosition().y);
 }
 
 void WindowGame::Update()
@@ -45,7 +45,7 @@ void WindowGame::Update()
          i != m_widgets.end();
          ++i )
          {
-             (*i)->SetGlobalPosition((*i)->GetPosition().x, (*i)->GetPosition().y);
+            // (*i)->SetGlobalPosition((*i)->GetPosition().x, (*i)->GetPosition().y);
              (*i)->Update();
          }
 

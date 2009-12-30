@@ -2,9 +2,9 @@
 
 using namespace sf;
 
-Widget::Widget() : m_position(0,0), m_position_global(0,0), m_size(0,0)
+Widget::Widget() : m_position(0,0), m_size(0,0)
 {
-
+    m_parent = NULL;
 }
 
 Widget::~Widget()
@@ -15,7 +15,7 @@ Widget::~Widget()
 void Widget::AddWidget(Widget *widget)
 {
     m_widgets.push_back(widget);
-    UpdateGlobalPosition();
+    m_widgets.back()->m_parent = this;
 }
 
 sf::Sprite Widget::Show()
@@ -41,7 +41,7 @@ void Widget::Update()
             (*i)->Update();
 }
 
-void Widget::UpdateGlobalPosition()
+/*void Widget::UpdateGlobalPosition()
 {
     for( std::vector<Widget*>::iterator i = m_widgets.begin();
          i != m_widgets.end();
@@ -49,7 +49,7 @@ void Widget::UpdateGlobalPosition()
             (*i)->SetGlobalPosition(m_position_global.x + (*i)->GetPosition().x,
                                     m_position_global.y + (*i)->GetPosition().y);
 }
-
+*/
 void Widget::SetGeometry(int x, int y, int w, int h)
 {
     m_position.x        = x;
@@ -60,7 +60,7 @@ void Widget::SetGeometry(int x, int y, int w, int h)
     m_sprite.SetPosition(x, y);
     m_sprite.Resize(w, h);
 
-    UpdateGlobalPosition();
+    //UpdateGlobalPosition();
 }
 
 void Widget::SetPosition(int x, int y)
@@ -70,17 +70,17 @@ void Widget::SetPosition(int x, int y)
 
     m_sprite.SetPosition(x, y);
 
-    UpdateGlobalPosition();
+    //UpdateGlobalPosition();
 }
 
-void Widget::SetGlobalPosition(int x, int y)
+/*void Widget::SetGlobalPosition(int x, int y)
 {
     m_position_global.x = x;
     m_position_global.y = y;
 
-    UpdateGlobalPosition();
+    //UpdateGlobalPosition();
 }
-
+*/
 
 const sf::Vector2i &Widget::GetSize()
 {
@@ -90,4 +90,17 @@ const sf::Vector2i &Widget::GetSize()
 const sf::Vector2i &Widget::GetPosition()
 {
     return (m_position);
+}
+
+sf::Vector2i Widget::GetGlobalPosition()
+{
+    sf::Vector2i pos = m_position;
+
+    if(m_parent != NULL)
+    {
+        pos.x   = m_position.x + m_parent->GetGlobalPosition().x;
+        pos.y   = m_position.y + m_parent->GetGlobalPosition().y;
+    }
+
+    return (pos);
 }

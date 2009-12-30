@@ -41,10 +41,17 @@ void Button::Update()
 
     if(!mainEventManager->GetEvent(EventMouse, Mouse::Left))
     {
-        if(  mainEventManager->GetMousePosition().x > m_position_global.x
-         &&  mainEventManager->GetMousePosition().x < m_position_global.x + m_size.x
-         &&  mainEventManager->GetMousePosition().y > m_position_global.y
-         &&  mainEventManager->GetMousePosition().y < m_position_global.y + m_size.y
+        sf::Vector2i pos = m_position;
+        if(m_parent != NULL)
+        {
+            pos.x   = m_position.x + m_parent->GetGlobalPosition().x;
+            pos.y   = m_position.y + m_parent->GetGlobalPosition().y;
+        }
+
+        if(  mainEventManager->GetMousePosition().x > pos.x
+         &&  mainEventManager->GetMousePosition().x < pos.x + m_size.x
+         &&  mainEventManager->GetMousePosition().y > pos.y
+         &&  mainEventManager->GetMousePosition().y < pos.y + m_size.y
          && !mainEventManager->GetEvent(EventMouse, Mouse::Left))
         {
             m_hover = true;
