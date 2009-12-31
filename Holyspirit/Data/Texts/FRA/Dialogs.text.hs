@@ -28,3 +28,6 @@ Non ! Ne me tuez pas !\Je ne vous veux pas de mal. J'ai été zombifié par des suc
 Oh, merci. Tenez, prenez la !
 Quête terminée. J'ai tué les Suceurs de cervelle et j'ai recu une masse en échange.
 Qui a volé la cervelle du marchand ?
+In nomine Patris et Filii et Spiritus Sancti.
+Pater noster, qui es in caelis Sanctificetur nomen tuum;\Adveniat regnum tuum;\Fiat voluntas tua sicut in caelo et in terra.\Panem nostrum quotidianum da nobis hodie,\et dimitte nobis debita nostra\sicut et nos dimittimus debitoribus nostris\et ne nos inducas in tentationem\sed libera nos a malo.\Amen
+

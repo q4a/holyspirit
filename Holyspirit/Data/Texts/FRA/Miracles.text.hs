@@ -28,3 +28,4 @@ Venin
 La courtisane empoisonne son arme pendant un certain laps de temps.
 Durée : %1 secondes
 Dégats de poison : %4 sur 2 secondes.
+

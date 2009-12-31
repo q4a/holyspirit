@@ -24,3 +24,4 @@ Marchand zombifié
 Chef de meute
 Martelleur de crânes
 Molosse infernal
+Abbé Chamel

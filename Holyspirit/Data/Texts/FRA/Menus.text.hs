@@ -41,3 +41,4 @@ La voie de l'Assassin
 La voie de la Séductrice
 Niveau suivant :
 Clic gauche : Sélectionner / Clic droit : Apprendre
+

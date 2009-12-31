@@ -8,3 +8,4 @@ Vie accrue :
 Foi accrue : 
 Dégats de feu : 
 Dégats de foi : 
+
