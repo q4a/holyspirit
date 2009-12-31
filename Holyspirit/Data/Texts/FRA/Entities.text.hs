@@ -23,3 +23,4 @@ Suceur de cervelle
 Marchand zombifié
 Chef de meute
 Martelleur de crânes
+Molosse infernal

@@ -29,5 +29,5 @@ $
 *Data/Particule_system/human_blood.ps.hs
 $
 *Data/Entities/Monsters/Zombies/Poison.miracle.hs
-*Data/Entities/Monsters/Zombies/Nuage.miracle.hs
+*Data/Entities/Monsters/Zombies/Zombie_dog_infernal_invocation.miracle.hs
 $
