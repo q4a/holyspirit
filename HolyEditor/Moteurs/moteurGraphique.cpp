@@ -349,20 +349,6 @@ int MoteurGraphique::AjouterTileset(std::string chemin,int importance)
 
 int MoteurGraphique::AjouterTileset(std::ifstream &fichier, std::string chemin,int importance)
 {
-    if(chemin != "")
-        for (unsigned i=0; i < m_tileset.size(); i++)
-        {
-            if (m_tileset[i].nom == chemin)
-            {
-                m_tileset[i].tileset->ChargerImages();
-                m_tileset[i].importance = importance;
-
-                Tileset buffer(fichier);
-
-                return i;
-            }
-        }
-
     m_tileset.push_back(Tileset_moteur ());
 
     m_tileset.back().nom = chemin;

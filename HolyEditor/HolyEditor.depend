@@ -1515,7 +1515,7 @@
 	"../globale.h"
 	<fstream>
 
-1261753430 source:e:\c++\holyspirit\holyeditor\moteurs\moteurgraphique.cpp
+1262266270 source:e:\c++\holyspirit\holyeditor\moteurs\moteurgraphique.cpp
 	"moteurGraphique.h"
 	"../globale.h"
 	<iostream>
