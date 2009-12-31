@@ -4,7 +4,7 @@
 using namespace std;
 using namespace sf;
 
-WindowGame::WindowGame() : GUIWindow()
+WindowGame::WindowGame() : GUIWindow(800,600,"LoS")
 {
     m_button        = new Button(50,50,200,100);
     m_button_in     = new Button(25,50,100,25);
