@@ -1414,14 +1414,14 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
     sky.SetImage(*moteurGraphique->getImage(m_img_sky));
     moteurGraphique->AjouterCommande(&sky,0,0);
 
-    int maxY = hero->m_personnage.getCoordonnee().y + (int)(13 * configuration->zoom);
-    int maxX = hero->m_personnage.getCoordonnee().x + (int)(13 * configuration->zoom);
+    int maxY = hero->m_personnage.getCoordonnee().y + (int)(17 * configuration->zoom);
+    int maxX = hero->m_personnage.getCoordonnee().x + (int)(17 * configuration->zoom);
 
     for (int couche=0;couche<NOMBRE_COUCHE_MAP;couche++)
     {
-        for (int j=hero->m_personnage.getCoordonnee().y - (int)(13 * configuration->zoom) ;j<maxY;++j)
+        for (int j=hero->m_personnage.getCoordonnee().y - (int)(12 * configuration->zoom) ;j<maxY;++j)
         {
-            for (int k=hero->m_personnage.getCoordonnee().x - (int)(13 * configuration->zoom) ;k<maxX ;++k)
+            for (int k=hero->m_personnage.getCoordonnee().x - (int)(12 * configuration->zoom) ;k<maxX ;++k)
             {
                 if (j>=0&&j<m_dimensions.y&&k>=0&&k<m_dimensions.x)
                 {
@@ -3140,6 +3140,8 @@ void Map::Script_Trade(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
 {
     hero->setMonstreVise(-1);
     jeu->m_inventaire->setTrader(m_monstre[monstre].getPointeurObjets(),&hero->m_classe);
+    eventManager->StopEvenement(sf::Mouse::Left, EventClic);
+    eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
     jeu->Clock.Reset();
     jeu->m_contexte=jeu->m_inventaire;
 }
@@ -3219,6 +3221,8 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                 jeu->menu.m_dialogue = DecouperTexte(configuration->getText(4, script->m_instructions[noInstruction].valeurs.at(0)), hero->m_classe.position_contenu_dialogue.w, 14);
                 eventManager->StopEvenement(Mouse::Left,EventClic);
                 hero->m_personnage.setArrivee(hero->m_personnage.getProchaineCase());
+
+                m_monstre[monstre].setArrivee(m_monstre[monstre].getProchaineCase());
             }
         }
         else if (script->m_instructions[noInstruction].nom=="newQuest")
@@ -3607,6 +3611,13 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                         TesterPoussable(m_monstre[monstre], temps, monstre);
 
                         bool seDeplacer = m_monstre[monstre].SeDeplacer(temps*100,getDimensions());
+
+                        if (seDeplacer)
+                        {
+                            coordonnee tempCoord(hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1);
+                            m_monstre[monstre].Pathfinding(getAlentourDuPersonnage(m_monstre[monstre].getCoordonnee()),tempCoord);
+                        }
+
                         //if (m_monstre[monstre].getPousse().x == 0 && m_monstre[monstre].getPousse().y == 0)
                         {
                             Script *script=&m_monstre[monstre].m_scriptAI;

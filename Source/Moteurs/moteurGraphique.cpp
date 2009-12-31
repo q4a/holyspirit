@@ -704,7 +704,8 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
         if(entite->m_sprite.GetPosition().x + entite->m_sprite.GetSize().x - entite->m_sprite.GetOrigin().x     >= m_camera.GetRect().Left
         && entite->m_sprite.GetPosition().x - entite->m_sprite.GetOrigin().x                                    <  m_camera.GetRect().Right
         && entite->m_sprite.GetPosition().y + entite->m_sprite.GetSize().y - entite->m_sprite.GetOrigin().y     >= m_camera.GetRect().Top
-        && entite->m_sprite.GetPosition().y - entite->m_sprite.GetOrigin().y                                    <  m_camera.GetRect().Bottom)
+        && entite->m_sprite.GetPosition().y - entite->m_sprite.GetOrigin().y                                    <  m_camera.GetRect().Bottom
+        || entite->m_sprite.GetRotation() != 0)
             AjouterCommande(&entite->m_sprite, entite->m_couche + entite->m_decalCouche, true);
 
         if(entite->m_shadow)
