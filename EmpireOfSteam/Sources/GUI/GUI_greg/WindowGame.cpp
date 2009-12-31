@@ -6,8 +6,6 @@ using namespace sf;
 
 WindowGame::WindowGame() : GUIWindow()
 {
-   // m_window.Create(VideoMode(800, 600, 32), "Window", Style::Titlebar);
-
     m_button        = new Button(50,50,200,100);
     m_button_in     = new Button(25,50,100,25);
     m_button_in_in  = new Button(25,5,25,10);

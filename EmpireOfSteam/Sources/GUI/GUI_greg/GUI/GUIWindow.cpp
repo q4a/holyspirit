@@ -41,5 +41,7 @@ sf::Sprite GUIWindow::Show()
             m_window.Draw((*i)->Show());
 
     m_window.Display();
+
+    return m_sprite;
 }
 
