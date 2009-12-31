@@ -87,7 +87,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
     {
         if (m_thread_sauvegarde)
         {
-            m_thread_sauvegarde->Wait();
+            m_thread_sauvegarde->Terminate();
             delete m_thread_sauvegarde;
         }
 
@@ -176,8 +176,9 @@ void c_Jeu::IA(Jeu *jeu)
 }
 void c_Jeu::Deplacements(Jeu *jeu)
 {
-    if (tempsEcouleDepuisDernierDeplacement >= 0.0)
+   // if (tempsEcouleDepuisDernierDeplacement >= 0.0)
     {
+
         coordonnee temp(-1 ,-1 ,-1 ,-1);
         if (jeu->hero.getMonstreVise()==-1)
             temp.x=jeu->hero.m_personnage.getCoordonnee().x,temp.y=jeu->hero.m_personnage.getCoordonnee().y;
@@ -201,7 +202,7 @@ void c_Jeu::Deplacements(Jeu *jeu)
             if (ok)
                 jeu->hero.m_personnage.Pathfinding(jeu->map->getAlentourDuPersonnage(jeu->hero.m_personnage.getCoordonnee()),temp); // Recherche du chemin
 
-            if (eventManager->getEvenement(Mouse::Left,"CA")&&eventManager->getEvenement(Key::LShift,"ET"))
+            if (eventManager->getEvenement(Mouse::Left,EventClicA)&&eventManager->getEvenement(Key::LShift,EventKey))
             {
                 coordonnee temp((int)(eventManager->getCasePointee().x*COTE_TILE),(int)(eventManager->getCasePointee().y*COTE_TILE));
                 jeu->hero.m_personnage.Frappe(jeu->hero.m_personnage.getCoordonneePixel(),temp);
@@ -242,7 +243,7 @@ void c_Jeu::Animation(Jeu *jeu)
     positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
     positionHero.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
 
-    if (tempsDepuisDerniereAnimation >= 0.02)
+    //if (tempsDepuisDerniereAnimation >= 0.02)
     {
         jeu->map->TestEvenement(jeu,tempsDepuisDerniereAnimation); // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
 
@@ -305,12 +306,12 @@ void c_Jeu::Animation(Jeu *jeu)
         }
 
         if (retour==2)
-            if (!eventManager->getEvenement(Mouse::Left,"C") || !jeu->map->getMonstreEnVie(jeu->hero.getMonstreVise()) )
+            if (!eventManager->getEvenement(Mouse::Left,EventClic) || !jeu->map->getMonstreEnVie(jeu->hero.getMonstreVise()) )
                 jeu->hero.setMonstreVise(-1),jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
 
         if (retour==1)
         {
-            if (!eventManager->getEvenement(Mouse::Left,"C") || !jeu->map->getMonstreEnVie(jeu->hero.getMonstreVise()))
+            if (!eventManager->getEvenement(Mouse::Left,EventClic) || !jeu->map->getMonstreEnVie(jeu->hero.getMonstreVise()))
                 jeu->hero.setMonstreVise(-1),jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
             if (jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise()) != NULL)
                 if (fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().x - jeu->hero.m_personnage.getCoordonnee().x) > 1
@@ -351,60 +352,60 @@ void c_Jeu::Lumieres(Jeu *jeu)
 
 void GestionRaccourcisObjets(Jeu *jeu)
 {
-    if (eventManager->getEvenement('1',"ET")
-            || eventManager->getEvenement(Mouse::Left,"CA")
+    if (eventManager->getEvenement('1',EventKey)
+            || eventManager->getEvenement(Mouse::Left,EventClicA)
             && eventManager->getPositionSouris().x > 255 * configuration->Resolution.w/800
             && eventManager->getPositionSouris().x < 275 * configuration->Resolution.w/800
             && eventManager->getPositionSouris().y > 492 * configuration->Resolution.y/600
             && eventManager->getPositionSouris().y < 512 * configuration->Resolution.y/600)
     {
-        if(eventManager->getEvenement('1',"ET"))
-            eventManager->StopEvenement('1',"ET");
+        if(eventManager->getEvenement('1',EventKey))
+            eventManager->StopEvenement('1',EventKey);
         else
-            eventManager->StopEvenement(Mouse::Left,"CA");
+            eventManager->StopEvenement(Mouse::Left,EventClicA);
 
         jeu->hero.UtiliserObjet(jeu->hero.m_objets_raccourcis[0]);
            //jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),eventManager->getCasePointee(),1);
     }
-    if (eventManager->getEvenement('2',"ET")
-            || eventManager->getEvenement(Mouse::Left,"CA")
+    if (eventManager->getEvenement('2',EventKey)
+            || eventManager->getEvenement(Mouse::Left,EventClicA)
             && eventManager->getPositionSouris().x > 287 * configuration->Resolution.w/800
             && eventManager->getPositionSouris().x < 307 * configuration->Resolution.w/800
             && eventManager->getPositionSouris().y > 492 * configuration->Resolution.y/600
             && eventManager->getPositionSouris().y < 512 * configuration->Resolution.y/600)
     {
-        if(eventManager->getEvenement('2',"ET"))
-            eventManager->StopEvenement('2',"ET");
+        if(eventManager->getEvenement('2',EventKey))
+            eventManager->StopEvenement('2',EventKey);
         else
-            eventManager->StopEvenement(Mouse::Left,"CA");
+            eventManager->StopEvenement(Mouse::Left,EventClicA);
         jeu->hero.UtiliserObjet(jeu->hero.m_objets_raccourcis[1]);
           //  jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),eventManager->getCasePointee(),1);
     }
-    if (eventManager->getEvenement('3',"ET")
-            || eventManager->getEvenement(Mouse::Left,"CA")
+    if (eventManager->getEvenement('3',EventKey)
+            || eventManager->getEvenement(Mouse::Left,EventClicA)
             && eventManager->getPositionSouris().x > 319 * configuration->Resolution.w/800
             && eventManager->getPositionSouris().x < 339 * configuration->Resolution.w/800
             && eventManager->getPositionSouris().y > 492 * configuration->Resolution.y/600
             && eventManager->getPositionSouris().y < 512 * configuration->Resolution.y/600)
     {
-        if(eventManager->getEvenement('3',"ET"))
-            eventManager->StopEvenement('3',"ET");
+        if(eventManager->getEvenement('3',EventKey))
+            eventManager->StopEvenement('3',EventKey);
         else
-            eventManager->StopEvenement(Mouse::Left,"CA");
+            eventManager->StopEvenement(Mouse::Left,EventClicA);
         jeu->hero.UtiliserObjet(jeu->hero.m_objets_raccourcis[2]);
           //  jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),eventManager->getCasePointee(),1);
     }
-    if (eventManager->getEvenement('4',"ET")
-            || eventManager->getEvenement(Mouse::Left,"CA")
+    if (eventManager->getEvenement('4',EventKey)
+            || eventManager->getEvenement(Mouse::Left,EventClicA)
             && eventManager->getPositionSouris().x > 351 * configuration->Resolution.w/800
             && eventManager->getPositionSouris().x < 371 * configuration->Resolution.w/800
             && eventManager->getPositionSouris().y > 492 * configuration->Resolution.y/600
             && eventManager->getPositionSouris().y < 512 * configuration->Resolution.y/600)
     {
-        if(eventManager->getEvenement('4',"ET"))
-            eventManager->StopEvenement('4',"ET");
+        if(eventManager->getEvenement('4',EventKey))
+            eventManager->StopEvenement('4',EventKey);
         else
-            eventManager->StopEvenement(Mouse::Left,"CA");
+            eventManager->StopEvenement(Mouse::Left,EventClicA);
         jeu->hero.UtiliserObjet(jeu->hero.m_objets_raccourcis[3]);
           //  jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),eventManager->getCasePointee(),1);
     }
@@ -412,80 +413,80 @@ void GestionRaccourcisObjets(Jeu *jeu)
 
 void GestionRaccourcisMiracles(Jeu *jeu)
 {
-    if (eventManager->getEvenement(Key::F1,"ET")
-            || eventManager->getEvenement(Mouse::Left,"CA")
+    if (eventManager->getEvenement(Key::F1,EventKey)
+            || eventManager->getEvenement(Mouse::Left,EventClicA)
             && eventManager->getPositionSouris().x > 432 * configuration->Resolution.w/800
             && eventManager->getPositionSouris().x < 452 * configuration->Resolution.w/800
             && eventManager->getPositionSouris().y > 492 * configuration->Resolution.h/600
             && eventManager->getPositionSouris().y < 512 * configuration->Resolution.h/600)
     {
-        if(eventManager->getEvenement(Key::F1,"ET"))
-            eventManager->StopEvenement(Key::F1,"ET");
+        if(eventManager->getEvenement(Key::F1,EventKey))
+            eventManager->StopEvenement(Key::F1,EventKey);
         else
-            eventManager->StopEvenement(Mouse::Left,"CA");
+            eventManager->StopEvenement(Mouse::Left,EventClicA);
         jeu->hero.m_personnage.m_miracleALancer = jeu->hero.m_miracles_raccourcis[0];
     }
-    if (eventManager->getEvenement(Key::F2,"ET")
-            || eventManager->getEvenement(Mouse::Left,"CA")
+    if (eventManager->getEvenement(Key::F2,EventKey)
+            || eventManager->getEvenement(Mouse::Left,EventClicA)
             && eventManager->getPositionSouris().x > 464 * configuration->Resolution.w/800
             && eventManager->getPositionSouris().x < 484 * configuration->Resolution.w/800
             && eventManager->getPositionSouris().y > 492 * configuration->Resolution.y/600
             && eventManager->getPositionSouris().y < 512 * configuration->Resolution.y/600)
     {
-        if(eventManager->getEvenement(Key::F2,"ET"))
-            eventManager->StopEvenement(Key::F2,"ET");
+        if(eventManager->getEvenement(Key::F2,EventKey))
+            eventManager->StopEvenement(Key::F2,EventKey);
         else
-            eventManager->StopEvenement(Mouse::Left,"CA");
+            eventManager->StopEvenement(Mouse::Left,EventClicA);
         jeu->hero.m_personnage.m_miracleALancer = jeu->hero.m_miracles_raccourcis[1];
     }
-    if (eventManager->getEvenement(Key::F3,"ET")
-            || eventManager->getEvenement(Mouse::Left,"CA")
+    if (eventManager->getEvenement(Key::F3,EventKey)
+            || eventManager->getEvenement(Mouse::Left,EventClicA)
             && eventManager->getPositionSouris().x > 496 * configuration->Resolution.w/800
             && eventManager->getPositionSouris().x < 516 * configuration->Resolution.w/800
             && eventManager->getPositionSouris().y > 492 * configuration->Resolution.y/600
             && eventManager->getPositionSouris().y < 512 * configuration->Resolution.y/600)
     {
-        if(eventManager->getEvenement(Key::F3,"ET"))
-            eventManager->StopEvenement(Key::F3,"ET");
+        if(eventManager->getEvenement(Key::F3,EventKey))
+            eventManager->StopEvenement(Key::F3,EventKey);
         else
-            eventManager->StopEvenement(Mouse::Left,"C");
+            eventManager->StopEvenement(Mouse::Left,EventClic);
         jeu->hero.m_personnage.m_miracleALancer = jeu->hero.m_miracles_raccourcis[2];
     }
-    if (eventManager->getEvenement(Key::F4,"ET")
-            || eventManager->getEvenement(Mouse::Left,"CA")
+    if (eventManager->getEvenement(Key::F4,EventKey)
+            || eventManager->getEvenement(Mouse::Left,EventClicA)
             && eventManager->getPositionSouris().x > 528 * configuration->Resolution.w/800
             && eventManager->getPositionSouris().x < 548 * configuration->Resolution.w/800
             && eventManager->getPositionSouris().y > 492 * configuration->Resolution.y/600
             && eventManager->getPositionSouris().y < 512 * configuration->Resolution.y/600)
     {
-        if(eventManager->getEvenement(Key::F4,"ET"))
-            eventManager->StopEvenement(Key::F4,"ET");
+        if(eventManager->getEvenement(Key::F4,EventKey))
+            eventManager->StopEvenement(Key::F4,EventKey);
         else
-            eventManager->StopEvenement(Mouse::Left,"CA");
+            eventManager->StopEvenement(Mouse::Left,EventClicA);
         jeu->hero.m_personnage.m_miracleALancer = jeu->hero.m_miracles_raccourcis[3];
     }
 }
 
 int GestionBoutons(Jeu *jeu)
 {
-    if (eventManager->getEvenement(Key::M,"ET")
+    if (eventManager->getEvenement(Key::M,EventKey)
         || eventManager->getPositionSouris().x > 264 * configuration->Resolution.x/800
         && eventManager->getPositionSouris().x < 283 * configuration->Resolution.x/800
         && eventManager->getPositionSouris().y > 533 * configuration->Resolution.y/600
         && eventManager->getPositionSouris().y < 552 * configuration->Resolution.y/600)
     {
-        if(!eventManager->getEvenement(Key::M,"ET"))
+        if(!eventManager->getEvenement(Key::M,EventKey))
          moteurGraphique->AjouterTexte(configuration->getText(0,13),coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),
                                       19,0,12,sf::Color(224,224,224),1);
 
-        if (eventManager->getEvenement(Key::M,"ET")
-         || eventManager->getEvenement(Mouse::Left,"C"))
+        if (eventManager->getEvenement(Key::M,EventKey)
+         || eventManager->getEvenement(Mouse::Left,EventClic))
         {
-            if(eventManager->getEvenement(Key::M,"ET"))
-                eventManager->StopEvenement(Key::M,"ET");
+            if(eventManager->getEvenement(Key::M,EventKey))
+                eventManager->StopEvenement(Key::M,EventKey);
             else
-                eventManager->StopEvenement(Mouse::Left,"C");
+                eventManager->StopEvenement(Mouse::Left,EventClic);
 
             if (!configuration->Minimap)
                 configuration->Minimap=true;
@@ -503,23 +504,23 @@ int GestionBoutons(Jeu *jeu)
         moteurGraphique->AjouterCommande(&buf, 18, 0);
     }
 
-    if (eventManager->getEvenement(Key::I,"ET")
+    if (eventManager->getEvenement(Key::I,EventKey)
         || eventManager->getPositionSouris().x > 302 * configuration->Resolution.x/800
         && eventManager->getPositionSouris().x < 321 * configuration->Resolution.x/800
         && eventManager->getPositionSouris().y > 533 * configuration->Resolution.y/600
         && eventManager->getPositionSouris().y < 552 * configuration->Resolution.y/600)
     {
-        if(!eventManager->getEvenement(Key::I,"ET"))
+        if(!eventManager->getEvenement(Key::I,EventKey))
         moteurGraphique->AjouterTexte(configuration->getText(0,14),coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),
                                       19,0,12,sf::Color(224,224,224),1);
 
-        if (eventManager->getEvenement(Key::I,"ET")
-         || eventManager->getEvenement(Mouse::Left,"CA"))
+        if (eventManager->getEvenement(Key::I,EventKey)
+         || eventManager->getEvenement(Mouse::Left,EventClicA))
         {
-            eventManager->StopEvenement(Key::I,"ET");
-            eventManager->StopEvenement(Mouse::Left,"CA");
-            eventManager->StopEvenement(Mouse::Left,"C");
+            eventManager->StopEvenement(Key::I,EventKey);
+            eventManager->StopEvenement(Mouse::Left,EventClicA);
+            eventManager->StopEvenement(Mouse::Left,EventClic);
             jeu->map->m_defilerObjets=0;
 
             return 2;
@@ -535,23 +536,23 @@ int GestionBoutons(Jeu *jeu)
         moteurGraphique->AjouterCommande(&buf, 18, 0);
     }
 
-    if (eventManager->getEvenement(Key::Q,"ET")
+    if (eventManager->getEvenement(Key::Q,EventKey)
         || eventManager->getPositionSouris().x > 264 * configuration->Resolution.x/800
         && eventManager->getPositionSouris().x < 283 * configuration->Resolution.x/800
         && eventManager->getPositionSouris().y > 565 * configuration->Resolution.y/600
         && eventManager->getPositionSouris().y < 584 * configuration->Resolution.y/600)
     {
-        if(!eventManager->getEvenement(Key::Q,"ET"))
+        if(!eventManager->getEvenement(Key::Q,EventKey))
         moteurGraphique->AjouterTexte(configuration->getText(0,15),coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),
                                       19,0,12,sf::Color(224,224,224),1);
 
-        if (eventManager->getEvenement(Key::Q,"ET")
-         || eventManager->getEvenement(Mouse::Left,"CA"))
+        if (eventManager->getEvenement(Key::Q,EventKey)
+         || eventManager->getEvenement(Mouse::Left,EventClicA))
         {
-            eventManager->StopEvenement(Key::Q,"ET");
-            eventManager->StopEvenement(Mouse::Left,"CA");
-            eventManager->StopEvenement(Mouse::Left,"C");
+            eventManager->StopEvenement(Key::Q,EventKey);
+            eventManager->StopEvenement(Mouse::Left,EventClicA);
+            eventManager->StopEvenement(Mouse::Left,EventClic);
 
             return 6;
         }
@@ -566,23 +567,23 @@ int GestionBoutons(Jeu *jeu)
         moteurGraphique->AjouterCommande(&buf, 18, 0);
     }
 
-    if (eventManager->getEvenement(Key::T,"ET")
+    if (eventManager->getEvenement(Key::T,EventKey)
         || eventManager->getPositionSouris().x > 302 * configuration->Resolution.x/800
         && eventManager->getPositionSouris().x < 321 * configuration->Resolution.x/800
         && eventManager->getPositionSouris().y > 565 * configuration->Resolution.y/600
         && eventManager->getPositionSouris().y < 584 * configuration->Resolution.y/600)
     {
-        if(!eventManager->getEvenement(Key::T,"ET"))
+        if(!eventManager->getEvenement(Key::T,EventKey))
         moteurGraphique->AjouterTexte(configuration->getText(0,16),coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),
                                       19,0,12,sf::Color(224,224,224),1);
 
-        if (eventManager->getEvenement(Key::T,"ET")
-         || eventManager->getEvenement(Mouse::Left,"CA"))
+        if (eventManager->getEvenement(Key::T,EventKey)
+         || eventManager->getEvenement(Mouse::Left,EventClicA))
         {
-            eventManager->StopEvenement(Key::T,"ET");
-            eventManager->StopEvenement(Mouse::Left,"CA");
-            eventManager->StopEvenement(Mouse::Left,"C");
+            eventManager->StopEvenement(Key::T,EventKey);
+            eventManager->StopEvenement(Mouse::Left,EventClicA);
+            eventManager->StopEvenement(Mouse::Left,EventClic);
 
             return 5;
         }
@@ -597,24 +598,24 @@ int GestionBoutons(Jeu *jeu)
         moteurGraphique->AjouterCommande(&buf, 18, 0);
     }
 
-    if (eventManager->getEvenement(Key::Escape,"ET")
+    if (eventManager->getEvenement(Key::Escape,EventKey)
      || eventManager->getPositionSouris().x > 333 * configuration->Resolution.x/800
      && eventManager->getPositionSouris().x < 352 * configuration->Resolution.x/800
      && eventManager->getPositionSouris().y > 577 * configuration->Resolution.y/600
      && eventManager->getPositionSouris().y < 596 * configuration->Resolution.y/600)
     {
-        if(!eventManager->getEvenement(Key::Escape,"ET"))
+        if(!eventManager->getEvenement(Key::Escape,EventKey))
         moteurGraphique->AjouterTexte(configuration->getText(0,17),coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),
                                       19,0,12,sf::Color(224,224,224),1);
 
-        if (eventManager->getEvenement(Key::Escape,"ET")
-         || eventManager->getEvenement(Mouse::Left,"CA"))
+        if (eventManager->getEvenement(Key::Escape,EventKey)
+         || eventManager->getEvenement(Mouse::Left,EventClicA))
         {
 
-            eventManager->StopEvenement(Key::Escape,"ET");
-            eventManager->StopEvenement(Mouse::Left,"CA");
-            eventManager->StopEvenement(Mouse::Left,"C");
+            eventManager->StopEvenement(Key::Escape,EventKey);
+            eventManager->StopEvenement(Mouse::Left,EventClicA);
+            eventManager->StopEvenement(Mouse::Left,EventClic);
             return 4;
         }
     }
@@ -628,18 +629,18 @@ int GestionBoutons(Jeu *jeu)
         moteurGraphique->AjouterCommande(&buf, 18, 0);
     }
 
-    if (eventManager->getEvenement(Key::Return,"ET")
+    if (eventManager->getEvenement(Key::Return,EventKey)
      || eventManager->getPositionSouris().x > jeu->hero.m_classe.position_bouton_dialogue.x * configuration->Resolution.x/800
      && eventManager->getPositionSouris().x < (jeu->hero.m_classe.position_bouton_dialogue.x + jeu->hero.m_classe.position_bouton_dialogue.w) * configuration->Resolution.x/800
      && eventManager->getPositionSouris().y > jeu->hero.m_classe.position_bouton_dialogue.y * configuration->Resolution.y/600
      && eventManager->getPositionSouris().y < (jeu->hero.m_classe.position_bouton_dialogue.y + jeu->hero.m_classe.position_bouton_dialogue.h) * configuration->Resolution.y/600
-     && eventManager->getEvenement(Mouse::Left,"CA"))
+     && eventManager->getEvenement(Mouse::Left,EventClicA))
     {
         if(jeu->menu.m_dialogue != " ")
         {
-            eventManager->StopEvenement(Key::Escape,"ET");
-            eventManager->StopEvenement(Mouse::Left,"CA");
-            eventManager->StopEvenement(Mouse::Left,"C");
+            eventManager->StopEvenement(Key::Escape,EventKey);
+            eventManager->StopEvenement(Mouse::Left,EventClicA);
+            eventManager->StopEvenement(Mouse::Left,EventClic);
             jeu->menu.m_dialogue = " ";
             jeu->hero.setMonstreVise(-1);
         }
@@ -654,17 +655,17 @@ void c_Jeu::Evenements(Jeu *jeu)
     if (eventManager->getPositionSouris().y < 492 * configuration->Resolution.h/600)
     if(jeu->menu.m_dialogue == " ")
     {
-        if (!eventManager->getEvenement(Mouse::Left,"C"))
+        if (!eventManager->getEvenement(Mouse::Left,EventClic))
             jeu->map->getMonstre(&jeu->hero,eventManager->getPositionSouris(),eventManager->getCasePointee());
 
-        if (eventManager->getEvenement(Key::LAlt,"ET"))
+        if (eventManager->getEvenement(Key::LAlt,EventKey))
             jeu->map->m_monstreIllumine = -1;
 
         if(jeu->map->getEntiteMonstre(jeu->map->m_monstreIllumine) != NULL)
             if(!jeu->map->getEntiteMonstre(jeu->map->m_monstreIllumine)->EnVie())
-                jeu->map->m_monstreIllumine = -1, eventManager->StopEvenement(Mouse::Left,"C");
+                jeu->map->m_monstreIllumine = -1, eventManager->StopEvenement(Mouse::Left,EventClic);
 
-        if (eventManager->getEvenement(Mouse::Left,"C")&&eventManager->getEvenement(Mouse::Left,"CA"))
+        if (eventManager->getEvenement(Mouse::Left,EventClic)&&eventManager->getEvenement(Mouse::Left,EventClicA))
         {
             jeu->hero.StopMiraclesFrappe();
             if (jeu->map->getMonstreIllumine()!=-1)
@@ -673,7 +674,7 @@ void c_Jeu::Evenements(Jeu *jeu)
                 if (jeu->hero.getMonstreVise()>-1&&jeu->hero.m_personnage.getArrivee().x==jeu->hero.m_personnage.getCoordonnee().x&&jeu->hero.m_personnage.getArrivee().y==jeu->hero.m_personnage.getCoordonnee().y)
                     test=true;
 
-                eventManager->StopEvenement(Mouse::Left,"CA");
+                eventManager->StopEvenement(Mouse::Left,EventClicA);
                 jeu->hero.setMonstreVise(jeu->map->getMonstreIllumine());
                 if (test)
                     jeu->hero.TestMonstreVise(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise()));
@@ -683,7 +684,7 @@ void c_Jeu::Evenements(Jeu *jeu)
         }
 
 
-        if (eventManager->getEvenement(Mouse::Left,"C")&&!eventManager->getEvenement(Key::LShift,"ET"))
+        if (eventManager->getEvenement(Mouse::Left,EventClic)&&!eventManager->getEvenement(Key::LShift,EventKey))
         {
             jeu->hero.StopMiraclesFrappe();
             if (!(eventManager->getPositionSouris().x>configuration->Resolution.w-configuration->Resolution.w*0.25
@@ -699,21 +700,21 @@ void c_Jeu::Evenements(Jeu *jeu)
             else if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getObjetPointe()!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())>4)
             {
                 jeu->map->RamasserObjet(&jeu->hero);
-                eventManager->StopEvenement(Mouse::Left,"CA");
-                eventManager->StopEvenement(Mouse::Left,"C");
+                eventManager->StopEvenement(Mouse::Left,EventClicA);
+                eventManager->StopEvenement(Mouse::Left,EventClic);
             }
 
-            eventManager->StopEvenement(Mouse::Left,"CA");
+            eventManager->StopEvenement(Mouse::Left,EventClicA);
         }
 
-        if (eventManager->getEvenement(Mouse::Left,"C")/*&&eventManager->getEvenement(Mouse::Left,"CA")*/)
+        if (eventManager->getEvenement(Mouse::Left,EventClic)/*&&eventManager->getEvenement(Mouse::Left,EventClicA)*/)
         {
             jeu->hero.setSacVise(jeu->map->getSacPointe());
 
             jeu->hero.m_objetVise=jeu->map->m_objetPointe;
 
             if (jeu->map->getSacPointe().x!=-1)
-                eventManager->StopEvenement(Mouse::Left,"C"),jeu->hero.m_personnage.setArrivee(jeu->map->getSacPointe());
+                eventManager->StopEvenement(Mouse::Left,EventClic),jeu->hero.m_personnage.setArrivee(jeu->map->getSacPointe());
         }
 
         if (jeu->hero.getSacVise().x!=-1)
@@ -730,15 +731,15 @@ void c_Jeu::Evenements(Jeu *jeu)
         else
             jeu->hero.setChercherSac(coordonnee (-1,-1,-1,-1));
 
-        if (eventManager->getEvenement(Mouse::Right,"C"))
+        if (eventManager->getEvenement(Mouse::Right,EventClic))
         {
-            if (eventManager->getEvenement(Mouse::Left,"C"))
-                eventManager->StopEvenement(Mouse::Left,"C");
+            if (eventManager->getEvenement(Mouse::Left,EventClic))
+                eventManager->StopEvenement(Mouse::Left,EventClic);
             else
             {
                 if (!jeu->hero.m_personnage.frappeEnCours)
                 {
-                    eventManager->StopEvenement(Mouse::Right,"C");
+                    eventManager->StopEvenement(Mouse::Right,EventClic);
 
                     jeu->hero.StopMiraclesFrappe();
 
@@ -780,7 +781,7 @@ void c_Jeu::Affichage(Jeu *jeu)
 {
     moteurGraphique->Gerer(tempsEcouleDepuisDernierAffichage,jeu->map->getDimensions().y);
 
-    jeu->map->Afficher(&jeu->hero,eventManager->getEvenement(Key::LAlt,"ET"),alpha_map);//Affichage de la jeu->map
+    jeu->map->Afficher(&jeu->hero,eventManager->getEvenement(Key::LAlt,EventKey),alpha_map);//Affichage de la jeu->map
 
     jeu->hero.AfficherAmis();
 

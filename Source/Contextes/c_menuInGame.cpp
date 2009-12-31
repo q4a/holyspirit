@@ -69,10 +69,10 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
             m_alpha=255;
     }
 
-   // if (eventManager->getEvenement(Key::Escape,"ET")&&m_alpha==255)
-        //eventManager->StopEvenement(Key::I,"ET"),retour=1;
+   // if (eventManager->getEvenement(Key::Escape,EventKey)&&m_alpha==255)
+        //eventManager->StopEvenement(Key::I,EventKey),retour=1;
 
- //   if (eventManager->getEvenement(Key::Space,"ET"))
+ //   if (eventManager->getEvenement(Key::Space,EventKey))
      //   jeu->m_run=false;
 
     int temp = GestionBoutons(jeu);
@@ -108,7 +108,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     if (eventManager->getPositionSouris().y>configuration->Resolution.y/2-texte.GetRect().GetSize().y&&eventManager->getPositionSouris().y<configuration->Resolution.y/2)
     {
         texte.SetColor(Color(100,50,0,(int)m_alpha));
-        if (eventManager->getEvenement(Mouse::Left,"C"))
+        if (eventManager->getEvenement(Mouse::Left,EventClic))
             retour=1, jeu->next_screen = 3;
 
     }
@@ -122,7 +122,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     if (eventManager->getPositionSouris().y>configuration->Resolution.y/2&&eventManager->getPositionSouris().y<configuration->Resolution.y/2+texte.GetRect().GetSize().y)
     {
         texte.SetColor(Color(100,50,0,(int)m_alpha));
-        if (eventManager->getEvenement(Mouse::Left,"C"))
+        if (eventManager->getEvenement(Mouse::Left,EventClic))
             jeu->m_run=false;
     }
     else
@@ -135,7 +135,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     if (eventManager->getPositionSouris().y>configuration->Resolution.y/2+texte.GetRect().GetSize().y&&eventManager->getPositionSouris().y<configuration->Resolution.y/2+texte.GetRect().GetSize().y*2)
     {
         texte.SetColor(Color(100,50,0,(int)m_alpha));
-        if (eventManager->getEvenement(Mouse::Left,"C"))
+        if (eventManager->getEvenement(Mouse::Left,EventClic))
             jeu->m_reset=true,jeu->m_run=false;
     }
     else

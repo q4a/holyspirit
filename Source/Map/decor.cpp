@@ -161,7 +161,7 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet, float *decalage)
         sprite.SetColor(sf::Color(0,0,0,(int)(224.0f*alpha)));
         sprite.Resize(texte.GetRect().Right-texte.GetRect().Left +8 , texte.GetRect().Bottom-texte.GetRect().Top+4);
 
-        if(eventManager->getEvenement(sf::Key::LAlt,"ET"))
+        if(eventManager->getEvenement(sf::Key::LAlt,EventKey))
             if(eventManager->getPositionSouris().x>sprite.GetPosition().x
              &&eventManager->getPositionSouris().y>sprite.GetPosition().y
              &&eventManager->getPositionSouris().x<sprite.GetPosition().x+texte.GetRect().Right-texte.GetRect().Left +8

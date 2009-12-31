@@ -30,7 +30,7 @@ public:
     Modele_Monstre();
     ~Modele_Monstre();
 
-    bool Charger(std::string chemin);
+    bool Charger(const std::string &chemin);
     std::vector<Objet> getObjets();
 
     std::string m_chemin;

@@ -246,7 +246,7 @@ void                ChargerCoordonneeInterface(ifstream &fichier, coordonnee &co
 
 
 
-void Classe::Charger(string chemin, const std::vector<int> &lvl_miracles, const Caracteristique &caract)
+void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_miracles, const Caracteristique &caract)
 {
     emplacements.clear();
     equipementParDefaut.clear();

@@ -114,7 +114,7 @@ Miracle::Miracle()
 {
 }
 
-Miracle::Miracle(std::string chemin, const Caracteristique &caract, int level)
+Miracle::Miracle(const std::string &chemin, const Caracteristique &caract, int level)
 {
     Charger(chemin, caract, level);
 }
@@ -312,7 +312,7 @@ float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int leve
     return valeur;
 }
 
-void Miracle::Charger(std::string chemin, const Caracteristique &caract, int level)
+void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, int level)
 {
     console->Ajouter("Chargement du miracle : "+chemin);
 
@@ -644,20 +644,7 @@ void Miracle::Charger(std::string chemin, const Caracteristique &caract, int lev
         console->Ajouter("Impossible d'ouvrir le fichier : "+chemin,1);
 }
 
-
-/*void Miracle::JouerSon(int numeroSon,coordonnee position,coordonnee positionHero)
-{
-    if (numeroSon>=0&&numeroSon<(int)m_sons.size())
-    {
-        coordonnee pos;
-        pos.x=-position.x;
-        pos.y=position.y;
-
-        moteurSons->JouerSon(m_sons[numeroSon],pos,0);
-    }
-}*/
-
-void Miracle::Concatenencer(std::string chemin, const Caracteristique &caract, int level)
+void Miracle::Concatenencer(const std::string &chemin, const Caracteristique &caract, int level)
 {
     Miracle miracle(chemin, caract, level) ;
     m_effets.back().m_lien.push_back((int)m_effets.size());
@@ -666,21 +653,7 @@ void Miracle::Concatenencer(std::string chemin, const Caracteristique &caract, i
     int tailleTileset   = m_tileset.size();
 
     for (int i=0;i<(int)miracle.m_tileset.size();i++)
-    {
         m_tileset.push_back(miracle.m_tileset[i]);
-
-        /*for (int j=0;j<(int)m_tile.back().size();j++)
-        {
-            m_tile.back()[j].setImage(m_tile.back()[j].getImage());
-            if (m_tile.back()[j].getSon()!=-1)
-                m_tile.back()[j].setSon(m_tile.back()[j].getSon()+tailleSon);
-        }*/
-    }
-
-   /* for (int i=0;i<(int)miracle.m_image.size();i++)
-        m_image.push_back(miracle.m_image[i]);
-    for (int i=0;i<(int)miracle.m_sons.size();i++)
-        m_sons.push_back(miracle.m_sons[i]);*/
 
     for (int i=0;i<(int)miracle.m_effets.size();i++)
     {

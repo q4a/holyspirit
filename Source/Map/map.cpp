@@ -1414,21 +1414,24 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
     sky.SetImage(*moteurGraphique->getImage(m_img_sky));
     moteurGraphique->AjouterCommande(&sky,0,0);
 
+    int maxY = hero->m_personnage.getCoordonnee().y + (int)(13 * configuration->zoom);
+    int maxX = hero->m_personnage.getCoordonnee().x + (int)(13 * configuration->zoom);
+
     for (int couche=0;couche<NOMBRE_COUCHE_MAP;couche++)
     {
-        for (int j=hero->m_personnage.getCoordonnee().y - (int)(13 * configuration->zoom) ;j<hero->m_personnage.getCoordonnee().y + (int)(13 * configuration->zoom) ;++j)
+        for (int j=hero->m_personnage.getCoordonnee().y - (int)(13 * configuration->zoom) ;j<maxY;++j)
         {
-            for (int k=hero->m_personnage.getCoordonnee().x - (int)(13 * configuration->zoom) ;k<hero->m_personnage.getCoordonnee().x + (int)(13 * configuration->zoom) ;++k)
+            for (int k=hero->m_personnage.getCoordonnee().x - (int)(13 * configuration->zoom) ;k<maxX ;++k)
             {
-                position.x=(k-j-1)*64+48;
-                position.y=(k+j)*32+16;
-
                 if (j>=0&&j<m_dimensions.y&&k>=0&&k<m_dimensions.x)
                 {
                     if(m_decor[couche][j][k].m_entite_graphique.m_tileset != NULL)
                     {
                         if (m_decor[couche][j][k].m_entite_graphique.m_tileset->getTransparentDuTile(m_decor[couche][j][k].m_entite_graphique.m_noAnimation))
                         {
+                            position.x=(k-j-1)*64+48;
+                            position.y=(k+j)*32+16;
+
                             int alpha=(int)((positionHero.y)-position.y)+160;
 
                             if (alpha<configuration->alpha)
@@ -1477,6 +1480,9 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
 
                         if (m_decor[1][j][k].getNombreObjets()>0&&couche==1)
                         {
+                            position.x=(k-j-1)*64+48;
+                            position.y=(k+j)*32+16;
+
                             if (m_decor[1][j][k].getNombreObjets()<=4)
                             {
                                 for (int o=0;o<m_decor[1][j][k].getNombreObjets();o++)
@@ -1523,12 +1529,12 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
 
                             objetPointe=m_decor[1][j][k].AfficherTexteObjets(position,m_objetPointe);
 
-                            if (objetPointe>=0&&!eventManager->getEvenement(sf::Mouse::Left,"CA") && alt)
+                            if (objetPointe>=0&&!eventManager->getEvenement(sf::Mouse::Left,EventClicA) && alt)
                             {
                                 m_sacPointe.x=k;
                                 m_sacPointe.y=j;
 
-                                if (eventManager->getEvenement(sf::Key::LControl,"ET"))
+                                if (eventManager->getEvenement(sf::Key::LControl,EventKey))
                                     m_decor[1][j][k].getObjet(objetPointe)->AfficherCaracteristiques(eventManager->getPositionSouris(),hero->m_caracteristiques);
 
                                 m_objetPointe=objetPointe;
@@ -1551,8 +1557,9 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                         z=0;
 
                     sf::Sprite buffer=m_decor[couche][w][z].m_entite_graphique.m_sprite;
-                    buffer.SetX(position.x+64-48);
-                    buffer.SetY(position.y+32-16);
+
+                    buffer.SetX((k-j)*64);
+                    buffer.SetY((k+j+1)*32);
 
                     if (buffer.GetSize().x>0)
                         if (buffer.GetPosition().x+buffer.GetSize().x-buffer.GetOrigin().x>=moteurGraphique->m_camera.GetRect().Left
@@ -3210,7 +3217,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             if (jeu->menu.m_dialogue == " ")
             {
                 jeu->menu.m_dialogue = DecouperTexte(configuration->getText(4, script->m_instructions[noInstruction].valeurs.at(0)), hero->m_classe.position_contenu_dialogue.w, 14);
-                eventManager->StopEvenement(Mouse::Left,"C");
+                eventManager->StopEvenement(Mouse::Left,EventClic);
                 hero->m_personnage.setArrivee(hero->m_personnage.getProchaineCase());
             }
         }
@@ -3957,7 +3964,7 @@ Monstre *Map::getEntiteMonstre(int numeroMonstre)
         return (NULL);
 }
 
-Modele_Monstre Map::getModeleMonstre(int numeroMonstre)
+const Modele_Monstre &Map::getModeleMonstre(int numeroMonstre)
 {
     if (numeroMonstre>=0&&numeroMonstre<(int)m_ModeleMonstre.size())
         return m_ModeleMonstre[numeroMonstre];

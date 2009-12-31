@@ -473,7 +473,7 @@ void Objet::ChargerTexte(std::ifstream *fichier, const Caracteristique &caract, 
 }
 
 
-void Objet::Charger(std::string chemin, const Caracteristique &caract,bool NePasAjouterBenedictions)
+void Objet::Charger(const std::string &chemin, const Caracteristique &caract,bool NePasAjouterBenedictions)
 {
     console->Ajouter("",0);
     console->Ajouter("Chargement de l'objet : "+chemin,0);
@@ -1483,7 +1483,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
 
 }
 
-bool Objet::Utilisable(Caracteristique caract,int IDClasse)
+bool Objet::Utilisable(const Caracteristique &caract,int IDClasse)
 {
     if (m_requirement.force<=caract.force)
         if (m_requirement.dexterite<=caract.dexterite)

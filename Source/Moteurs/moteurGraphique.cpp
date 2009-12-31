@@ -246,11 +246,11 @@ void MoteurGraphique::Gerer(float temps,int tailleMapY)
 
                 m_effetsEcran_iter->temps   = 0;
 
-                int valeur = (int)m_effetsEcran_iter->info1 /* * (1 - 2 * (rand()%2))*/;
+                int valeur = (int)m_effetsEcran_iter->info1 ;
                 if(decalage && (fabs(decalageCameraSouhaite.x) < fabs(valeur) && fabs(valeur) != m_effetsEcran_iter->info1 || fabs(valeur) == m_effetsEcran_iter->info1) || !decalage)
                         decalageCameraSouhaite.x = (1 - 2 * (rand()%100<50))*valeur;
 
-                valeur = (int)m_effetsEcran_iter->info1 /* (1 - 2 * (rand()%2))*/;
+                valeur = (int)m_effetsEcran_iter->info1 ;
                 if(decalage && (fabs(decalageCameraSouhaite.y) < fabs(valeur) && fabs(valeur) != m_effetsEcran_iter->info1 || fabs(valeur) == m_effetsEcran_iter->info1) || !decalage)
                         decalageCameraSouhaite.y = (1 - 2 * (rand()%100<50))*valeur;
 
@@ -338,7 +338,6 @@ void MoteurGraphique::Afficher()
         m_light_screen2.Draw(sprite3);
 
         m_light_screen2.Display();
-
 
         if(configuration->postFX)
             EffectShadow.SetTexture("shadow_map", m_light_screen2.GetImage());
@@ -507,7 +506,7 @@ void MoteurGraphique::Afficher()
 
 
 
-    m_ecran.Clear();
+   // m_ecran.Clear();
     bufferImage.Display();
     m_ecran.Draw(sf::Sprite(bufferImage.GetImage()));
     m_ecran.Display();

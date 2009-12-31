@@ -759,7 +759,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     {
         sprite.SetY(string.GetPosition().y);
 
-        if (eventManager->getEvenement(Mouse::Left,"CA"))
+        if (eventManager->getEvenement(Mouse::Left,EventClicA))
             if (eventManager->getPositionSouris().x > sprite.GetPosition().x
                     &&eventManager->getPositionSouris().x < sprite.GetPosition().x+sprite.GetSize().x
                     &&eventManager->getPositionSouris().y > sprite.GetPosition().y
@@ -797,7 +797,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     {
         sprite.SetY(string.GetPosition().y);
 
-        if (eventManager->getEvenement(Mouse::Left,"CA"))
+        if (eventManager->getEvenement(Mouse::Left,EventClicA))
             if (eventManager->getPositionSouris().x > sprite.GetPosition().x
                     &&eventManager->getPositionSouris().x < sprite.GetPosition().x+sprite.GetSize().x
                     &&eventManager->getPositionSouris().y > sprite.GetPosition().y
@@ -832,7 +832,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     {
         sprite.SetY(string.GetPosition().y);
 
-        if (eventManager->getEvenement(Mouse::Left,"CA"))
+        if (eventManager->getEvenement(Mouse::Left,EventClicA))
             if (eventManager->getPositionSouris().x > sprite.GetPosition().x
                     &&eventManager->getPositionSouris().x < sprite.GetPosition().x+sprite.GetSize().x
                     &&eventManager->getPositionSouris().y > sprite.GetPosition().y
@@ -867,7 +867,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     {
         sprite.SetY(string.GetPosition().y);
 
-        if (eventManager->getEvenement(Mouse::Left,"CA"))
+        if (eventManager->getEvenement(Mouse::Left,EventClicA))
             if (eventManager->getPositionSouris().x > sprite.GetPosition().x
                     &&eventManager->getPositionSouris().x < sprite.GetPosition().x+sprite.GetSize().x
                     &&eventManager->getPositionSouris().y > sprite.GetPosition().y
@@ -902,7 +902,7 @@ void Hero::AfficherCaracteristiques(float decalage)
     {
         sprite.SetY(string.GetPosition().y);
 
-        if (eventManager->getEvenement(Mouse::Left,"CA"))
+        if (eventManager->getEvenement(Mouse::Left,EventClicA))
             if (eventManager->getPositionSouris().x > sprite.GetPosition().x
                     &&eventManager->getPositionSouris().x < sprite.GetPosition().x+sprite.GetSize().x
                     &&eventManager->getPositionSouris().y > sprite.GetPosition().y
@@ -1016,11 +1016,11 @@ void Hero::AfficherAmis()
             {
                 temp.SetColor(sf::Color(64,32,32));
 
-                if(eventManager->getEvenement(Mouse::Left,"CA"))
+                if(eventManager->getEvenement(Mouse::Left,EventClicA))
                 {
                     bool charme = false;
-                    eventManager->StopEvenement(Mouse::Left,"C");
-                    eventManager->StopEvenement(Mouse::Left,"CA");
+                    eventManager->StopEvenement(Mouse::Left,EventClic);
+                    eventManager->StopEvenement(Mouse::Left,EventClicA);
                     for(unsigned j = 0 ; j < m_personnage.m_miracleEnCours.size() ; ++j)
                         for(unsigned k = 0 ; k < m_personnage.m_miracleEnCours[j].m_infos.size() ; ++k)
                         {
@@ -1189,19 +1189,19 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
 
                 retour = true;
 
-                if (eventManager->getEvenement(Mouse::Left,"C"))
+                if (eventManager->getEvenement(Mouse::Left,EventClic))
                     if (m_lvl_miracles[i] > 0)
                     {
                         if (m_classe.miracles[i].m_buf != -1)
                             m_personnage.m_miracleALancer = m_classe.miracles[i].m_buf;
                         else
                             m_personnage.m_miracleALancer = i;
-                        eventManager->StopEvenement(Mouse::Left,"C");
+                        eventManager->StopEvenement(Mouse::Left,EventClic);
 
                         m_miracleEnMain = m_personnage.m_miracleALancer;
                     }
 
-                if (eventManager->getEvenement(Mouse::Right,"C") && m_miracleEnMain < 0)
+                if (eventManager->getEvenement(Mouse::Right,EventClic) && m_miracleEnMain < 0)
                 {
                     if (m_personnage.getCaracteristique().miracles_restant > 0)
                         if (m_classe.miracles[i].m_buf == -1 || m_classe.miracles[i].m_buf != -1 && m_lvl_miracles[m_classe.miracles[i].m_buf] > 0)
@@ -1212,14 +1212,14 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                             m_lvl_miracles[i]++;
                             m_personnage.setCaracteristique(temp);
                         }
-                    eventManager->StopEvenement(Mouse::Right,"C");
+                    eventManager->StopEvenement(Mouse::Right,EventClic);
 
                     ChargerModele();
                 }
             }
         }
 
-    if (eventManager->getEvenement(Mouse::Left,"C"))
+    if (eventManager->getEvenement(Mouse::Left,EventClic))
     {
         if (eventManager->getPositionSouris().x > 432 * configuration->Resolution.w/800
                 &&eventManager->getPositionSouris().x < 452 * configuration->Resolution.w/800
@@ -1234,7 +1234,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
             else
                 m_miracleEnMain = m_miracles_raccourcis[0], m_miracles_raccourcis[0] = -1;
 
-            eventManager->StopEvenement(Mouse::Left,"C");
+            eventManager->StopEvenement(Mouse::Left,EventClic);
         }
         else if (eventManager->getPositionSouris().x > 464 * configuration->Resolution.w/800
                  &&eventManager->getPositionSouris().x < 484 * configuration->Resolution.w/800
@@ -1249,7 +1249,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
             else
                 m_miracleEnMain = m_miracles_raccourcis[1], m_miracles_raccourcis[1] = -1;
 
-            eventManager->StopEvenement(Mouse::Left,"C");
+            eventManager->StopEvenement(Mouse::Left,EventClic);
         }
         else if (eventManager->getPositionSouris().x > 496 * configuration->Resolution.w/800
                  &&eventManager->getPositionSouris().x < 516 * configuration->Resolution.w/800
@@ -1264,7 +1264,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
             else
                 m_miracleEnMain = m_miracles_raccourcis[2], m_miracles_raccourcis[2] = -1;
 
-            eventManager->StopEvenement(Mouse::Left,"C");
+            eventManager->StopEvenement(Mouse::Left,EventClic);
         }
         else if (eventManager->getPositionSouris().x > 528 * configuration->Resolution.w/800
                  &&eventManager->getPositionSouris().x < 548 * configuration->Resolution.w/800
@@ -1279,7 +1279,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
             else
                 m_miracleEnMain = m_miracles_raccourcis[3], m_miracles_raccourcis[3] = -1;
 
-            eventManager->StopEvenement(Mouse::Left,"C");
+            eventManager->StopEvenement(Mouse::Left,EventClic);
         }
     }
 
@@ -1300,13 +1300,13 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
         moteurGraphique->AjouterCommande(&sprite,19,0);
     }
 
-    if (eventManager->getEvenement(Mouse::Right,"C"))
+    if (eventManager->getEvenement(Mouse::Right,EventClic))
         m_miracleEnMain = -1;
 
     return (retour);
 }
 
-bool Hero::AfficherInventaire(float decalage,std::vector<Objet> trader)
+bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader)
 {
     bool retour = false;
     m_objetVise = -1;
@@ -1759,8 +1759,8 @@ void Hero::AfficherRaccourcis()
 
 void Hero::PlacerCamera()
 {
-    moteurGraphique->m_camera.SetCenter((m_personnage.getCoordonneePixel().x - m_personnage.getCoordonneePixel().y) * 64.0f * DIVISEUR_COTE_TILE,
-                                        (m_personnage.getCoordonneePixel().x + m_personnage.getCoordonneePixel().y) * 32.0f * DIVISEUR_COTE_TILE + 32.0f);
+    moteurGraphique->m_camera.SetCenter(((m_personnage.getCoordonneePixel().x - m_personnage.getCoordonneePixel().y) * 64.0f * DIVISEUR_COTE_TILE),
+                                        ((m_personnage.getCoordonneePixel().x + m_personnage.getCoordonneePixel().y) * 32.0f * DIVISEUR_COTE_TILE + 32.0f));
     moteurGraphique->m_camera.SetSize(800, 600);
     moteurGraphique->m_camera.Zoom(configuration->zoom);
 
@@ -2392,7 +2392,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
                     if (caseVisee.x>=m_inventaire[z].getPosition().x&&caseVisee.x<m_inventaire[z].getPosition().x+m_inventaire[z].getTaille().x
                             &&caseVisee.y>=m_inventaire[z].getPosition().y&&caseVisee.y<m_inventaire[z].getPosition().y+m_inventaire[z].getTaille().y)
                     {
-                        if (eventManager->getEvenement(Key::LControl,"ET"))
+                        if (eventManager->getEvenement(Key::LControl,EventKey))
                         {
                             m_inventaire[z].JouerSon();
                             m_argent+=m_inventaire[z].getPrix();
@@ -2446,7 +2446,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
                     {
                         m_achat=true;
 
-                        if (AjouterObjet((*trader)[z],!eventManager->getEvenement(Key::LControl,"ET")));
+                        if (AjouterObjet((*trader)[z],!eventManager->getEvenement(Key::LControl,EventKey)));
                         {
                             m_argent-=(int)((float)(*trader)[z].getPrix()*(5-(float)m_caracteristiques.charisme/100));
                             if ((*trader)[z].m_type!=CONSOMMABLE)

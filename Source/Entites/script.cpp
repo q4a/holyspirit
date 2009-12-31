@@ -32,7 +32,7 @@ Script::Script()
 }
 
 
-Script::Script(std::string chemin)
+Script::Script(const std::string &chemin)
 {
     Charger(chemin);
 }
@@ -176,7 +176,7 @@ void Script::Charger(ifstream &fichier)
 
 }
 
-void Script::Charger(std::string chemin)
+void Script::Charger(const std::string &chemin)
 {
     ifstream fichier;
     fichier.open(chemin.c_str(), ios::in);

@@ -97,10 +97,10 @@ void c_Miracles::Utiliser(Jeu *jeu)
             buf.y -= 20;
             moteurGraphique->AjouterTexte(jeu->hero.m_classe.boutons_miracles[i].nom, buf, 17,0,14);
 
-            if (eventManager->getEvenement(Mouse::Left,"C"))
+            if (eventManager->getEvenement(Mouse::Left,EventClic))
             {
                 m_fenetre = jeu->hero.m_classe.boutons_miracles[i].lien;
-                eventManager->StopEvenement(Mouse::Left,"C");
+                eventManager->StopEvenement(Mouse::Left,EventClic);
             }
         }
 }

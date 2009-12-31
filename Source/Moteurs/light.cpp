@@ -140,16 +140,16 @@ bool Light::CollisionWithPoint(sf::Vector2f &p,sf::Vector2f &pt1,sf::Vector2f &p
 bool Light::CollisionWithLine(sf::Vector2f &l1, sf::Vector2f &l2,sf::Vector2f &pt1,sf::Vector2f &pt2)
 {
     // On regarde si le mur traverse le triangle, j'ai laissé les 0 pour pouvoir mieux cerner la formule.
-    float r = ((l1.y-pt1.y)*(0-pt1.x)-(l1.x-pt1.x)*(0-pt1.y))/((l2.x-l1.x)*(0-pt1.y)-(l2.y-l1.y)*(0-pt1.x));
-    float s = ((l1.y-pt1.y)*(l2.x-l1.x)-(l1.x-pt1.x)*(l2.y-l1.y))/((l2.x-l1.x)*(0-pt1.y)-(l2.y-l1.y)*(0-pt1.x));
+    float r = ((l1.y-pt1.y)*(-pt1.x)-(l1.x-pt1.x)*(-pt1.y))/((l2.x-l1.x)*(-pt1.y)-(l2.y-l1.y)*(-pt1.x));
+    float s = ((l1.y-pt1.y)*(l2.x-l1.x)-(l1.x-pt1.x)*(l2.y-l1.y))/((l2.x-l1.x)*(-pt1.y)-(l2.y-l1.y)*(-pt1.x));
 
     // r et s représente ou l'on se trouve dans les deux segment à l'intersection. 0 est une extrémité du segment, 1 l'autre, r et s doivent donc être tout deux entre
     // 0 et 1 pour que le point d'intersection des deux droites soit un point des deux segments.
     if (0.0001<=r && r<=1.0001 && 0<s && s<1)
         return 1;
 
-    r = ((l1.y-0)*(pt2.x-0)-(l1.x-0)*(pt2.y-0))/((l2.x-l1.x)*(pt2.y-0)-(l2.y-l1.y)*(pt2.x-0));
-    s = ((l1.y-0)*(l2.x-l1.x)-(l1.x-0)*(l2.y-l1.y))/((l2.x-l1.x)*(pt2.y-0)-(l2.y-l1.y)*(pt2.x-0));
+    r = ((l1.y)*(pt2.x)-(l1.x)*(pt2.y))/((l2.x-l1.x)*(pt2.y)-(l2.y-l1.y)*(pt2.x));
+    s = ((l1.y)*(l2.x-l1.x)-(l1.x)*(l2.y-l1.y))/((l2.x-l1.x)*(pt2.y)-(l2.y-l1.y)*(pt2.x));
 
     if (0.0001<=r && r<=1.0001 && 0<s && s<1)
         return 1;
@@ -410,9 +410,7 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std
 
             m_shape.back().SetBlendMode(sf::Blend::Add);
             m_shape.back().SetPosition(m_position.x,m_position.y/2);
-
         }
-
 }
 
 void Light::Generate( std::vector <Wall> &m_wall)

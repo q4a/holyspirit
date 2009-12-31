@@ -84,10 +84,10 @@ void Jeu::Demarrer()
             eventManager->GererLesEvenements(&m_run,Clock.GetElapsedTime(),buf);
         }
 
-        if (eventManager->getEvenement(Key::P,"ET"))
+        if (eventManager->getEvenement(Key::P,EventKey))
         {
             moteurGraphique->Printscreen();
-            eventManager->StopEvenement(Key::P,"ET");
+            eventManager->StopEvenement(Key::P,EventKey);
         }
 
         m_contexte->Utiliser(this);

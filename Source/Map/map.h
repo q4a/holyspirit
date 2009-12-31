@@ -139,7 +139,7 @@ public:
     void    TesterPoussable(Personnage &, float temps, int id = -1);
 
     Monstre *getEntiteMonstre (int numeroMonstre);
-    Modele_Monstre getModeleMonstre(int numeroMonstre);
+    const Modele_Monstre &getModeleMonstre(int numeroMonstre);
     const coordonnee &getPositionMonstre(int numeroMonstre);
     casePathfinding ** getAlentourDuPersonnage(coordonnee positionPersonnage); // Retourne un tableau de bool contenant toutes les collitions dans les alentour du héro, pour le pathfinding
 

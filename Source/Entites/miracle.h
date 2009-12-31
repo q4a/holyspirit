@@ -122,11 +122,11 @@ class Miracle
 {
 public:
     Miracle();
-    Miracle(std::string chemin, const Caracteristique &caract, int level);
+    Miracle(const std::string &chemin, const Caracteristique &caract, int level);
     ~Miracle();
 
-    void Charger(std::string chemin, const Caracteristique &caract, int level);
-    void Concatenencer(std::string chemin, const Caracteristique &caract, int level);
+    void Charger(const std::string &chemin, const Caracteristique &caract, int level);
+    void Concatenencer(const std::string &chemin, const Caracteristique &caract, int level);
 
     void AfficherDescription(coordonnee position, bool suivant = true);
     sf::Text AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color=sf::Color(255,255,255));

@@ -163,7 +163,7 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
 }
 
 
-bool Modele_Monstre::Charger(string chemin)
+bool Modele_Monstre::Charger(const std::string &chemin)
 {
     console->Ajouter("",0);
     console->Ajouter("Chargement du monstre : "+chemin,0);
@@ -178,10 +178,6 @@ bool Modele_Monstre::Charger(string chemin)
 
     m_chemin=chemin;
     m_particules=-1;
-
-    //cDAT reader;
-
-    // reader.Read(chemin);
 
     ifstream fichier;
     fichier.open(chemin.c_str(), ios::in);

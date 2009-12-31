@@ -35,8 +35,8 @@ class Script
 {
 public:
     Script();
-    Script(std::string chemin);
-    void Charger(std::string chemin);
+    Script(const std::string &chemin);
+    void Charger(const std::string &chemin);
     void Charger(std::ifstream &fichier);
 
     void Sauvegarder(std::ofstream &fichier);

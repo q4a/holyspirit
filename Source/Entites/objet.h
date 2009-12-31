@@ -55,7 +55,7 @@ public:
      Objet operator=(const Objet &objet);
 
     int AfficherCaracteristiques(coordonnee position,Caracteristique caract,float modPrix = 1, bool compare = false, bool = false, bool = false);
-    void Charger(std::string chemin, const Caracteristique &caract,bool NePasAjouterBenedictions=false);
+    void Charger(const std::string &chemin, const Caracteristique &caract,bool NePasAjouterBenedictions=false);
     void ChargerCaracteristiques(std::ifstream *fichier);
 
     void Sauvegarder(std::ofstream *fichier);
@@ -67,7 +67,7 @@ public:
 
     void Generer(int bonus);
 
-    bool Utilisable(Caracteristique caract,int IDClasse);
+    bool Utilisable(const Caracteristique &caract,int IDClasse);
 
     void JouerSon();
 

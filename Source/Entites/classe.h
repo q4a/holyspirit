@@ -42,7 +42,7 @@ struct Emplacement_inventaire
 
 struct Classe
 {
-    void Charger(std::string chemin, const std::vector<int> &lvl_miracles, const Caracteristique &caract);
+    void Charger(const std::string &chemin, const std::vector<int> &lvl_miracles, const Caracteristique &caract);
 
     int ID;
 

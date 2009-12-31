@@ -7,7 +7,7 @@
 #include "globale.h"
 
 /*
-extern "C"
+extern EventClic
 {
   #include <libavformat/avformat.h>
   #include <libavcodec/avcodec.h>

@@ -37,11 +37,11 @@ class Tileset
 {
 	public:
 	Tileset();
-	Tileset(std::string chemin);
+	Tileset(const std::string &chemin);
 	Tileset(std::ifstream &fichier);
 	~Tileset();
 
-	void Charger(std::string chemin);
+	void Charger(const std::string &chemin);
 	void Charger(std::ifstream &fichier, int lumiere_base = 0, cDAT *reader = NULL);
 	void ChargerTiles(std::ifstream &fichier, int lumiere_base = 0);
 	void ChargerImages();

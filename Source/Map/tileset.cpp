@@ -35,7 +35,7 @@ Tileset::Tileset()
     option_forcedShadow     = false;
     option_forcedReflect    = false;
 }
-Tileset::Tileset(string chemin)
+Tileset::Tileset(const std::string &chemin)
 {
     option_forcedShadow     = false;
     option_forcedReflect    = false;
@@ -306,7 +306,7 @@ void Tileset::Charger(ifstream &fichier, int lumiere_base, cDAT *reader)
         console->Ajouter("Impossible d'ouvrir le fichier : "+m_chemin,1);
 }
 
-void Tileset::Charger(std::string chemin)
+void Tileset::Charger(const std::string &chemin)
 {
     m_chemin=chemin;
 

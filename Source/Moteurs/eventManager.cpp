@@ -207,34 +207,34 @@ void EventManager::AfficherCurseur(bool transparent)
     moteurGraphique->AjouterCommande(&Sprite,20,0);
 }
 
-bool EventManager::getEvenement(int numeroEvenement,std::string evenement)
+bool EventManager::getEvenement(int numeroEvenement, int type)
 {
-    if (evenement=="ET")
+    if (type==EventKey)
         if (numeroEvenement>=0&&numeroEvenement<500)
             return m_EventTableau[numeroEvenement];
 
-    if (evenement=="C")
+    if (type==EventClic)
         if (numeroEvenement>=0&&numeroEvenement<=5)
             return m_Clic[numeroEvenement];
 
-    if (evenement=="CA")
+    if (type==EventClicA)
         if (numeroEvenement>=0&&numeroEvenement<=5)
             return m_ClicAncien[numeroEvenement];
 
     return 0;
 }
 
-void EventManager::StopEvenement(int numeroEvenement,std::string evenement)
+void EventManager::StopEvenement(int numeroEvenement,int type)
 {
-    if (evenement=="ET")
+    if (type==EventKey)
         if (numeroEvenement>=0&&numeroEvenement<500)
             m_EventTableau[numeroEvenement]=0;
 
-    if (evenement=="C")
+    if (type==EventClic)
         if (numeroEvenement>=0&&numeroEvenement<=5)
             m_Clic[numeroEvenement]=0;
 
-    if (evenement=="CA")
+    if (type==EventClicA)
         if (numeroEvenement>=0&&numeroEvenement<=5)
             m_ClicAncien[numeroEvenement]=0;
 }

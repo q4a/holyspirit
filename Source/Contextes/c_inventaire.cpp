@@ -129,33 +129,33 @@ void c_Inventaire::Utiliser(Jeu *jeu)
     jeu->menu.Afficher(1,255,&jeu->hero.m_classe);
     jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,-1,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
 
-    if (eventManager->getEvenement(Mouse::Left,"C"))
+    if (eventManager->getEvenement(Mouse::Left,EventClic))
     {
         if (jeu->hero.m_objetEnMain==-1&&jeu->map->getObjetPointe()==-1&&eventManager->getPositionSouris().x>jeu->hero.m_classe.position_sac_inventaire.x*configuration->Resolution.x/800&&eventManager->getPositionSouris().x<(jeu->hero.m_classe.position_sac_inventaire.x+jeu->hero.m_classe.position_sac_inventaire.w)*configuration->Resolution.x/800&&eventManager->getPositionSouris().y>jeu->hero.m_classe.position_sac_inventaire.y*configuration->Resolution.y/600&&eventManager->getPositionSouris().y<jeu->hero.m_classe.position_sac_inventaire.y*configuration->Resolution.y/600+20*configuration->Resolution.x/800)
-            jeu->map->m_defilerObjets--,eventManager->StopEvenement(Mouse::Left,"C");
+            jeu->map->m_defilerObjets--,eventManager->StopEvenement(Mouse::Left,EventClic);
 
         if (jeu->hero.m_objetEnMain==-1&&jeu->map->getObjetPointe()==-1&&eventManager->getPositionSouris().x>jeu->hero.m_classe.position_sac_inventaire.x*configuration->Resolution.x/800&&eventManager->getPositionSouris().x<(jeu->hero.m_classe.position_sac_inventaire.x+jeu->hero.m_classe.position_sac_inventaire.w)*configuration->Resolution.x/800&&eventManager->getPositionSouris().y>jeu->hero.m_classe.position_sac_inventaire.y*configuration->Resolution.y/600+(jeu->hero.m_classe.position_sac_inventaire.h-1)*20*configuration->Resolution.x/800&&eventManager->getPositionSouris().y<jeu->hero.m_classe.position_sac_inventaire.y*configuration->Resolution.y/600+jeu->hero.m_classe.position_sac_inventaire.h*20*configuration->Resolution.x/800)
-            jeu->map->m_defilerObjets++,eventManager->StopEvenement(Mouse::Left,"C");
+            jeu->map->m_defilerObjets++,eventManager->StopEvenement(Mouse::Left,EventClic);
     }
 
-    if (eventManager->getEvenement(Mouse::Left,"C"))
+    if (eventManager->getEvenement(Mouse::Left,EventClic))
     {
         if (jeu->map->RamasserObjet(&jeu->hero,1))
-            eventManager->StopEvenement(Mouse::Left,"C");
+            eventManager->StopEvenement(Mouse::Left,EventClic);
     }
 
-    if (eventManager->getEvenement(Mouse::Left,"C"))
+    if (eventManager->getEvenement(Mouse::Left,EventClic))
     {
         if (jeu->hero.PrendreEnMain(m_trader))
             if (jeu->hero.m_objetADeposer>=0)
                 jeu->map->AjouterObjet(jeu->hero.DeposerObjet());
-        eventManager->StopEvenement(Mouse::Left,"C");
+        eventManager->StopEvenement(Mouse::Left,EventClic);
     }
 
-    if (eventManager->getEvenement(Mouse::Right,"C"))
+    if (eventManager->getEvenement(Mouse::Right,EventClic))
     {
         jeu->hero.UtiliserObjet(jeu->hero.m_objetVise);
-        eventManager->StopEvenement(Mouse::Right,"C");
+        eventManager->StopEvenement(Mouse::Right,EventClic);
     }
 
     int temp = GestionBoutons(jeu);
@@ -168,7 +168,7 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         jeu->hero.ChargerModele();
         m_afficher=0;
         jeu->Clock.Reset();
-        eventManager->StopEvenement(Key::I,"ET");
+        eventManager->StopEvenement(Key::I,EventKey);
 
         if (jeu->hero.m_objetEnMain>=0)
         {
@@ -182,7 +182,7 @@ void c_Inventaire::Utiliser(Jeu *jeu)
 
     jeu->hero.m_defilement_trader -= eventManager->getMolette();
 
-    if(eventManager->getEvenement(Mouse::Left,"CA"))
+    if(eventManager->getEvenement(Mouse::Left,EventClicA))
         if (eventManager->getPositionSouris().x>jeu->hero.m_classe.scroll_button.position.x*configuration->Resolution.x/800
         &&eventManager->getPositionSouris().x<(jeu->hero.m_classe.scroll_button.position.x+jeu->hero.m_classe.scroll_button.position.w)*configuration->Resolution.x/800
         &&eventManager->getPositionSouris().y>jeu->hero.m_classe.scroll_button.position.y*configuration->Resolution.h/600

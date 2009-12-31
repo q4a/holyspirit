@@ -73,9 +73,9 @@ void c_Quetes::Utiliser(Jeu *jeu)
 
     eventManager->AfficherCurseur();
 
-    if (eventManager->getEvenement(Mouse::Left,"C"))
+    if (eventManager->getEvenement(Mouse::Left,EventClic))
     {
-        eventManager->StopEvenement(Mouse::Left,"C");
+        eventManager->StopEvenement(Mouse::Left,EventClic);
         jeu->hero.m_queteSelectionnee = jeu->hero.m_quetePointee;
     }
 

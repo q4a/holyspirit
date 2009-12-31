@@ -26,6 +26,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <iostream>
 #include "../constantes.h"
 
+enum {EventKey, EventClic, EventClicA};
+
 class EventManager : public CSingleton<EventManager>
 {
 	public:
@@ -37,9 +39,9 @@ class EventManager : public CSingleton<EventManager>
 	void GererLesEvenements(bool *continuer,float temps,coordonnee tailleMap);
 	void AfficherCurseur(bool transparent = false);
 
-	void StopEvenement(int numeroEvenement,std::string evenement);
+	void StopEvenement(int numeroEvenement, int type);
 
-	bool getEvenement(int numeroEvenement,std::string evenement);
+	bool getEvenement(int numeroEvenement, int type);
 	coordonnee getCasePointee();
 	coordonnee getPositionSouris();
 	int getMolette();
