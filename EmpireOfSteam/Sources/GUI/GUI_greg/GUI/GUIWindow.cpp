@@ -20,24 +20,6 @@ GUIWindow::~GUIWindow()
 {
 }
 
-/*void GUIWindow::AddWidget(Widget *widget)
-{
-    m_widgets.push_back(widget);
-    //m_widgets.back()->SetGlobalPosition(m_widgets.back()->GetPosition().x, m_widgets.back()->GetPosition().y);
-}
-
-void GUIWindow::Update()
-{
-    for( std::vector<Widget*>::iterator i = m_widgets.begin();
-         i != m_widgets.end();
-         ++i )
-         {
-            // (*i)->SetGlobalPosition((*i)->GetPosition().x, (*i)->GetPosition().y);
-             (*i)->Update();
-         }
-
-}
-*/
 void GUIWindow::Run()
 {
     while(m_window.IsOpened())

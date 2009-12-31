@@ -7,14 +7,14 @@
 	<File name="GUI\Button.hpp" open="1" top="0" tabpos="3">
 		<Cursor position="573" topLine="2" />
 	</File>
-	<File name="GUI\GUIWindow.cpp" open="1" top="1" tabpos="9">
-		<Cursor position="1256" topLine="31" />
+	<File name="GUI\GUIWindow.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="263" topLine="0" />
 	</File>
-	<File name="GUI\GUIWindow.hpp" open="1" top="0" tabpos="10">
-		<Cursor position="455" topLine="0" />
+	<File name="GUI\GUIWindow.hpp" open="1" top="1" tabpos="10">
+		<Cursor position="285" topLine="0" />
 	</File>
 	<File name="GUI\Widget.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="520" topLine="21" />
+		<Cursor position="612" topLine="0" />
 	</File>
 	<File name="GUI\Widget.hpp" open="1" top="0" tabpos="1">
 		<Cursor position="881" topLine="12" />
@@ -23,10 +23,10 @@
 		<Cursor position="161" topLine="0" />
 	</File>
 	<File name="WindowGame.cpp" open="1" top="0" tabpos="7">
-		<Cursor position="659" topLine="29" />
+		<Cursor position="575" topLine="0" />
 	</File>
 	<File name="WindowGame.hpp" open="1" top="0" tabpos="5">
-		<Cursor position="248" topLine="0" />
+		<Cursor position="378" topLine="0" />
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="177" topLine="0" />
