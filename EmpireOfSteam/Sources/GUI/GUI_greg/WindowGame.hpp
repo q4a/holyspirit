@@ -3,6 +3,7 @@
 
 #include "Global.hpp"
 #include "GUI/Button.hpp"
+#include "GUI/Label.hpp"
 #include "GUI/GUIWindow.hpp"
 
 class WindowGame : public GUIWindow
@@ -16,6 +17,7 @@ class WindowGame : public GUIWindow
 
     private:
         Button *m_button, *m_button_2, *m_button_3, *m_button_in,  *m_button_in_in;
+        Label *m_label;
 };
 
 #endif

@@ -60,7 +60,7 @@
 1253953329 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\lock.hpp
 	<SFML/System/NonCopyable.hpp>
 
-1253953329 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\noncopyable.hpp
+1262342039 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\noncopyable.hpp
 	<SFML/Config.hpp>
 
 1255974734 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\mutex.hpp
@@ -200,7 +200,7 @@
 	<SFML/Graphics/Image.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 
-1257246771 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\rendertarget.hpp
+1262342039 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\rendertarget.hpp
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/RenderQueue.hpp>
@@ -331,16 +331,17 @@
 	<SFML/Graphics.hpp>
 	"../Global.hpp"
 
-1262253085 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\widget.cpp
+1262365692 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\widget.cpp
 	"Widget.hpp"
 
-1262262723 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.cpp
+1262365644 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.cpp
 	"WindowGame.hpp"
 	<iostream>
 
-1262261869 e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.hpp
+1262364925 e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.hpp
 	"Global.hpp"
 	"GUI/Button.hpp"
+	"GUI/Label.hpp"
 	"GUI/GUIWindow.hpp"
 
 1262252750 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\button.hpp
@@ -353,7 +354,14 @@
 1262107435 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\engines\eventmanager.cpp
 	"EventManager.hpp"
 
-1262252750 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\button.cpp
+1262365692 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\button.cpp
 	"Button.hpp"
 	<iostream>
+
+1262365644 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\label.cpp
+	"Label.hpp"
+	<iostream>
+
+1262365644 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\label.hpp
+	"Widget.hpp"
 

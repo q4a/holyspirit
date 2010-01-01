@@ -52,6 +52,8 @@
 		<Unit filename="GUI\Button.hpp" />
 		<Unit filename="GUI\GUIWindow.cpp" />
 		<Unit filename="GUI\GUIWindow.hpp" />
+		<Unit filename="GUI\Label.cpp" />
+		<Unit filename="GUI\Label.hpp" />
 		<Unit filename="GUI\Widget.cpp" />
 		<Unit filename="GUI\Widget.hpp" />
 		<Unit filename="Global.hpp" />

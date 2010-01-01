@@ -7,6 +7,18 @@ Widget::Widget() : m_position(0,0), m_size(0,0)
     m_parent = NULL;
 }
 
+Widget::Widget(int x, int y) : m_position(x,y), m_size(0,0)
+{
+    m_parent = NULL;
+}
+
+Widget::Widget(int x, int y, int w, int h) : m_position(x,y), m_size(w,h)
+{
+    m_parent = NULL;
+
+    m_image.Create(m_size.x, m_size.y, true);
+}
+
 Widget::~Widget()
 {
     for( std::vector<Widget*>::iterator i = m_widgets.begin();
@@ -61,6 +73,8 @@ void Widget::SetGeometry(int x, int y, int w, int h)
 
     m_sprite.SetPosition(x, y);
     m_sprite.Resize(w, h);
+
+    m_image.Create(m_size.x, m_size.y, true);
 }
 
 void Widget::SetPosition(int x, int y)

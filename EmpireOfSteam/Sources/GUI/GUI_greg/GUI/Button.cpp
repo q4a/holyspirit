@@ -42,7 +42,6 @@ Button::~Button()
 void Button::SetGeometry(int x, int y, int w, int h)
 {
     Widget::SetGeometry(x, y, w, h);
-    m_image.Create(m_size.x, m_size.y, true);
 }
 
 void Button::SetImage(const sf::Image &img, int type)
