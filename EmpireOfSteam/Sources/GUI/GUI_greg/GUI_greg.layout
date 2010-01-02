@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Release" />
-	<File name="GUI\Button.cpp" open="1" top="1" tabpos="4">
-		<Cursor position="3694" topLine="2" />
+	<File name="GUI\Button.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="681" topLine="0" />
 	</File>
 	<File name="GUI\Button.hpp" open="1" top="0" tabpos="3">
 		<Cursor position="744" topLine="8" />
 	</File>
+	<File name="GUI\GUIImage.cpp" open="1" top="0" tabpos="13">
+		<Cursor position="862" topLine="0" />
+	</File>
 	<File name="GUI\GUIWindow.cpp" open="1" top="0" tabpos="9">
-		<Cursor position="769" topLine="18" />
+		<Cursor position="769" topLine="0" />
 	</File>
 	<File name="GUI\GUIWindow.hpp" open="1" top="0" tabpos="10">
 		<Cursor position="259" topLine="0" />
@@ -17,7 +20,7 @@
 		<Cursor position="878" topLine="24" />
 	</File>
 	<File name="GUI\Label.hpp" open="1" top="0" tabpos="12">
-		<Cursor position="262" topLine="1" />
+		<Cursor position="13" topLine="0" />
 	</File>
 	<File name="GUI\Widget.cpp" open="1" top="0" tabpos="6">
 		<Cursor position="1155" topLine="29" />
@@ -28,11 +31,11 @@
 	<File name="Global.hpp" open="1" top="0" tabpos="8">
 		<Cursor position="161" topLine="0" />
 	</File>
-	<File name="WindowGame.cpp" open="1" top="0" tabpos="7">
-		<Cursor position="440" topLine="0" />
+	<File name="WindowGame.cpp" open="1" top="1" tabpos="7">
+		<Cursor position="1277" topLine="6" />
 	</File>
 	<File name="WindowGame.hpp" open="1" top="0" tabpos="5">
-		<Cursor position="256" topLine="0" />
+		<Cursor position="818" topLine="6" />
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="21" topLine="0" />

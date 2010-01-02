@@ -50,6 +50,8 @@
 		<Unit filename="Engines\EventManager.hpp" />
 		<Unit filename="GUI\Button.cpp" />
 		<Unit filename="GUI\Button.hpp" />
+		<Unit filename="GUI\GUIImage.cpp" />
+		<Unit filename="GUI\GUIImage.hpp" />
 		<Unit filename="GUI\GUIWindow.cpp" />
 		<Unit filename="GUI\GUIWindow.hpp" />
 		<Unit filename="GUI\Label.cpp" />
