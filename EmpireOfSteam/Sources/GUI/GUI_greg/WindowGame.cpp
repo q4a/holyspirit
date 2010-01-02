@@ -13,8 +13,8 @@ WindowGame::WindowGame() : GUIWindow(800,600,"LoS")
     m_button_2      = new Button(400,300,200,65);
     m_button_3      = new Button(200,300,50,65);
 
-    m_label         = new Label(100, 100, 200, 50, "Test");
-    m_label->SetColor(sf::Color(255, 255, 255));
+    m_label         = new Label(100,25,"Test");
+    m_label->SetColor(sf::Color(255, 0, 0));
     m_label->SetCharacterSize(18);
 
     m_button_2->SetImage("pictures/GUI/button1.png", Button_released);

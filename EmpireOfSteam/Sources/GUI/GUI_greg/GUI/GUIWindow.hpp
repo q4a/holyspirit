@@ -10,7 +10,7 @@ class GUIWindow : public Widget
         GUIWindow();
         GUIWindow(int , int , std::string title = "");
         virtual ~GUIWindow();
-        virtual sf::Sprite Show();
+        void Show();
         virtual void Run();
 
     protected:

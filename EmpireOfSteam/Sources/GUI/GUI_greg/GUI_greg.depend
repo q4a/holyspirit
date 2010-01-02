@@ -308,11 +308,11 @@
 	"../Global.hpp"
 	"Widget.hpp"
 
-1262262803 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guiwindow.cpp
+1262426857 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guiwindow.cpp
 	"GUIWindow.hpp"
 	<iostream>
 
-1262261915 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guiwindow.hpp
+1262425952 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guiwindow.hpp
 	"../Global.hpp"
 	"Widget.hpp"
 
@@ -327,14 +327,15 @@
 
 1262107435 e:\c++\petits jeux\eos\sources\gui\gui_greg\utils\singleton.hpp
 
-1262253085 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\widget.hpp
+1262425989 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\widget.hpp
 	<SFML/Graphics.hpp>
 	"../Global.hpp"
+	<list>
 
-1262365692 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\widget.cpp
+1262427473 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\widget.cpp
 	"Widget.hpp"
 
-1262365644 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.cpp
+1262365718 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.cpp
 	"WindowGame.hpp"
 	<iostream>
 
@@ -344,7 +345,7 @@
 	"GUI/Label.hpp"
 	"GUI/GUIWindow.hpp"
 
-1262252750 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\button.hpp
+1262426737 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\button.hpp
 	"Widget.hpp"
 
 1262107437 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\main.cpp
@@ -354,14 +355,14 @@
 1262107435 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\engines\eventmanager.cpp
 	"EventManager.hpp"
 
-1262365692 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\button.cpp
+1262427541 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\button.cpp
 	"Button.hpp"
 	<iostream>
 
-1262365644 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\label.cpp
+1262427541 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\label.cpp
 	"Label.hpp"
 	<iostream>
 
-1262365644 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\label.hpp
+1262426857 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\label.hpp
 	"Widget.hpp"
 

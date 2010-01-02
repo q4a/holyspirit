@@ -12,7 +12,8 @@ class Label : public Widget
         Label(int, int, int, int, std::string);
         virtual ~Label();
 
-        virtual sf::Sprite Show();
+        void Update();
+        virtual void Show(std::list<sf::Drawable*> &drawables);
 
         void SetText            (std::string);
         void SetColor           (sf::Color);
@@ -26,6 +27,8 @@ class Label : public Widget
         std::string     m_text;
         sf::Color       m_color;
         int             m_size;
+
+        sf::Text       *m_drawable;
 
     private:
 };

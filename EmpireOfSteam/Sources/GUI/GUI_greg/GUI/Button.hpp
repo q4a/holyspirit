@@ -13,8 +13,8 @@ class Button : public Widget
         Button(int, int, int, int);
         virtual ~Button();
 
-        virtual sf::Sprite Show();
         virtual void Update();
+        virtual void Show(std::list<sf::Drawable*> &drawables);
 
         virtual void SetGeometry(int x, int y, int w, int h);
         virtual void SetImage(const sf::Image &, int type = Button_released);
@@ -28,6 +28,8 @@ class Button : public Widget
         bool m_hover;
         bool m_clicked;
         bool m_released;
+
+        sf::Sprite *m_drawable;
 
     private:
         sf::Image m_img_hover;

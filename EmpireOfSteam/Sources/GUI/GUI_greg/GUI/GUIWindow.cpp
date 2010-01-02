@@ -31,17 +31,20 @@ void GUIWindow::Run()
     }
 }
 
-sf::Sprite GUIWindow::Show()
+void GUIWindow::Show()
 {
     m_window.Clear();
+
+    std::list<sf::Drawable *> drawables;
 
     for( std::vector<Widget*>::iterator i = m_widgets.begin();
          i != m_widgets.end();
          ++i )
-            m_window.Draw((*i)->Show());
+            (*i)->Show(drawables);
+
+    for(std::list<sf::Drawable*>::iterator i = drawables.begin() ; i != drawables.end() ; ++i)
+        m_window.Draw(**i);
 
     m_window.Display();
-
-    return m_sprite;
 }
 

@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "../Global.hpp"
+#include <list>
 
 class Widget
 {
@@ -12,8 +13,8 @@ class Widget
         Widget(int, int, int, int);
         virtual ~Widget();
 
-        virtual sf::Sprite  Show();
-        virtual void        Update();
+        virtual void Show(std::list<sf::Drawable*> &drawables);
+        virtual void            Update();
 
         virtual void SetGeometry(int x, int y, int w, int h);
         virtual void SetPosition(int x, int y);
@@ -38,8 +39,7 @@ class Widget
 
         Widget*         m_parent;
 
-        sf::RenderImage m_image;
-        sf::Sprite      m_sprite;
+        sf::Drawable   *m_drawable;
 
     private:
 

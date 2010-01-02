@@ -6,48 +6,51 @@ using namespace sf;
 
 Label::Label() : Widget(), m_size(12)
 {
+    m_drawable = new sf::Text;
 }
 
 Label::Label(std::string text) : Widget(), m_size(12)
 {
+    m_drawable = new sf::Text;
     m_text = text;
 }
 
 Label::Label(int x, int y, std::string text) : Widget(x, y), m_size(12)
 {
+    m_drawable = new sf::Text;
     m_text = text;
 }
 
 Label::Label(int x, int y, int w, int h, std::string text) : Widget(x, y, w, h), m_size(12)
 {
+    m_drawable = new sf::Text;
     m_text = text;
 }
 
 Label::~Label()
 {
+    delete m_drawable;
 }
 
-sf::Sprite Label::Show()
+void Label::Update()
 {
-    m_image.Clear();
+    sf::Vector2i pos = m_position;
+    if(m_parent != NULL)
+    {
+        pos.x   = m_position.x + m_parent->GetGlobalPosition().x;
+        pos.y   = m_position.y + m_parent->GetGlobalPosition().y;
+    }
 
-    for( std::vector<Widget*>::iterator i = m_widgets.begin();
-         i != m_widgets.end();
-         ++i )
-            m_image.Draw((*i)->Show());
+    m_drawable->SetPosition(pos.x, pos.y);
+    m_drawable->SetString          (m_text);
+    m_drawable->SetCharacterSize   (m_size);
+    m_drawable->SetColor           (m_color);
+}
 
-    sf::Text text;
-
-    text.SetString          (m_text);
-    text.SetCharacterSize   (m_size);
-    text.SetColor           (m_color);
-
-    m_image.Draw(text);
-
-    m_image.Display();
-
-    m_sprite.SetImage(m_image.GetImage());
-    return  (m_sprite);
+void Label::Show(std::list<sf::Drawable *> &drawables)
+{
+    drawables.push_back(m_drawable);
+    Widget::Show(drawables);
 }
 
 void Label::SetText(std::string text)
