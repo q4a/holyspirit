@@ -85,13 +85,8 @@ bool AjouterObjetInventaire(Objet newObj, std::vector<Objet>* inventaire, coordo
 
 Hero::Hero()
 {
-    ///Je donnes des valeur à mes variables juste pour les tests
     m_personnage.setEtat(ARRET);
 
-   /* if (rand()%2==1)
-        m_cheminClasse="Data/Entities/Heroes/Crusader.class.hs";
-    else
-        m_cheminClasse="Data/Entities/Heroes/Concubine.class.hs";*/
     m_cheminClasse = configuration->player_class;
 
     m_chercherSac.x=-1;
@@ -140,7 +135,7 @@ Hero::Hero()
     temp.ancienPointAme     = 0;
     temp.positionAncienAme  = 0;
     temp.niveau             = 1;
-    temp.nom                = "Héro";
+    temp.nom                = "Héros";
 
     temp.force              = 4;
     temp.dexterite          = 4;

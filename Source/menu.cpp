@@ -51,57 +51,104 @@ Menu::Menu()
     m_barreVieVide=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_barre_vie_vide,-1);
 
     m_dialogue = " ";
+    m_speak_choice = -1;
 }
 
-void Menu::Afficher(int type,float alpha,Classe *classe)
+void Menu::AfficherHUD(Classe *classe)
 {
-    Sprite sprite,sprite2;
+    Sprite sprite2;
 
-    if (type==1)
+    //On affiche l'HUD
+    sprite2.SetImage(*moteurGraphique->getImage(classe->hud.image));
+    sprite2.SetX(classe->hud.position.x*configuration->Resolution.x/800);
+    sprite2.SetY(classe->hud.position.y*configuration->Resolution.h/600);
+    sprite2.Resize(classe->hud.position.w*configuration->Resolution.w/800, classe->hud.position.h*configuration->Resolution.h/600);
+    moteurGraphique->AjouterCommande(&sprite2,17,0);
+
+    Sprite sprite3;
+
+    sprite3.SetImage(*moteurGraphique->getImage(classe->cache_vie.image));
+    sprite3.SetX(classe->cache_vie.position.x*configuration->Resolution.x/800);
+    sprite3.SetY(classe->cache_vie.position.y*configuration->Resolution.h/600);
+    sprite3.Resize(classe->cache_vie.position.w*configuration->Resolution.w/800, classe->cache_vie.position.h*configuration->Resolution.h/600);
+    moteurGraphique->AjouterCommande(&sprite3,18,0);
+
+    sprite3.SetImage(*moteurGraphique->getImage(classe->cache_foi.image));
+    sprite3.SetX(classe->cache_foi.position.x*configuration->Resolution.x/800);
+    sprite3.SetY(classe->cache_foi.position.y*configuration->Resolution.h/600);
+    sprite3.Resize(classe->cache_foi.position.w*configuration->Resolution.w/800, classe->cache_foi.position.h*configuration->Resolution.h/600);
+    moteurGraphique->AjouterCommande(&sprite3,18,0);
+}
+
+void Menu::AfficherDialogue(int alpha,Classe *classe)
+{
+    Sprite sprite2;
+
+    sprite2.SetImage(*moteurGraphique->getImage(classe->talk.image));
+    sprite2.SetX(classe->talk.position.x*configuration->Resolution.x/800);
+    sprite2.SetY(classe->talk.position.y*configuration->Resolution.h/600 + classe->talk.position.h*configuration->Resolution.h/600 - classe->talk.position.h*configuration->Resolution.h/600*alpha/255);
+    sprite2.Resize(classe->talk.position.w*configuration->Resolution.w/800, classe->talk.position.h*configuration->Resolution.h/600);
+    moteurGraphique->AjouterCommande(&sprite2,16,0);
+
+    sf::Text texte;
+    texte.SetCharacterSize(11 * configuration->Resolution.h/600);
+    texte.SetFont(moteurGraphique->m_font);
+    texte.SetString(m_dialogue);
+    texte.SetPosition(classe->position_contenu_dialogue.x * configuration->Resolution.w/800 + classe->position_contenu_dialogue.w * configuration->Resolution.w/800/2 - (texte.GetRect().Right-texte.GetRect().Left)/2,
+                      classe->position_contenu_dialogue.y  * configuration->Resolution.h/600 + classe->talk.position.h*configuration->Resolution.h/600 - classe->talk.position.h*configuration->Resolution.h/600*alpha/255);
+
+    moteurGraphique->AjouterTexte(&texte,16,0);
+
+    float pos = texte.GetRect().Bottom;
+
+    for(int i = 0 ; i < m_choices.size() ; ++i)
     {
-        //On affiche l'HUD
-        sprite2.SetImage(*moteurGraphique->getImage(classe->hud.image));
-        sprite2.SetX(classe->hud.position.x*configuration->Resolution.x/800);
-        sprite2.SetY(classe->hud.position.y*configuration->Resolution.h/600);
-        sprite2.Resize(classe->hud.position.w*configuration->Resolution.w/800, classe->hud.position.h*configuration->Resolution.h/600);
-        sprite.SetColor(sf::Color(255,255,255,(int)alpha));
-        moteurGraphique->AjouterCommande(&sprite2,17,0);
+        texte.SetString(m_choices[i].text);
+        texte.SetPosition(texte.GetPosition().x, pos);
 
-        Sprite sprite3;
+        pos = texte.GetRect().Bottom;
 
-        sprite3.SetImage(*moteurGraphique->getImage(classe->cache_vie.image));
-        sprite3.SetX(classe->cache_vie.position.x*configuration->Resolution.x/800);
-        sprite3.SetY(classe->cache_vie.position.y*configuration->Resolution.h/600);
-        sprite3.Resize(classe->cache_vie.position.w*configuration->Resolution.w/800, classe->cache_vie.position.h*configuration->Resolution.h/600);
-        moteurGraphique->AjouterCommande(&sprite3,18,0);
+        if(eventManager->getPositionSouris().x > texte.GetRect().Left
+         &&eventManager->getPositionSouris().x < texte.GetRect().Right
+         &&eventManager->getPositionSouris().y > texte.GetRect().Top
+         &&eventManager->getPositionSouris().y < texte.GetRect().Bottom)
+         {
+             sf::Sprite background;
+             background.SetImage(*moteurGraphique->getImage(0));
+             background.Resize(texte.GetRect().Right - texte.GetRect().Left + 4, texte.GetRect().Bottom - texte.GetRect().Top + 4);
+             background.SetPosition(texte.GetRect().Left - 2, texte.GetRect().Top - 2);
+             background.SetColor(sf::Color(64,64,64));
+             moteurGraphique->AjouterCommande(&background, 16, 0);
 
-        sprite3.SetImage(*moteurGraphique->getImage(classe->cache_foi.image));
-        sprite3.SetX(classe->cache_foi.position.x*configuration->Resolution.x/800);
-        sprite3.SetY(classe->cache_foi.position.y*configuration->Resolution.h/600);
-        sprite3.Resize(classe->cache_foi.position.w*configuration->Resolution.w/800, classe->cache_foi.position.h*configuration->Resolution.h/600);
-        moteurGraphique->AjouterCommande(&sprite3,18,0);
-    }
+            if(eventManager->getEvenement(sf::Mouse::Left, EventClic))
+            {
+                m_speak_choice = m_choices[i].no;
+                eventManager->StopEvenement(sf::Mouse::Left, EventClic);
+            }
 
+         }
 
-    if (type==4)
-    {
-        sprite2.SetImage(*moteurGraphique->getImage(classe->talk.image));
-        sprite2.SetX(classe->talk.position.x*configuration->Resolution.x/800);
-        sprite2.SetY(classe->talk.position.y*configuration->Resolution.h/600 + classe->talk.position.h*configuration->Resolution.h/600 - classe->talk.position.h*configuration->Resolution.h/600*alpha/255);
-        sprite2.Resize(classe->talk.position.w*configuration->Resolution.w/800, classe->talk.position.h*configuration->Resolution.h/600);
-        sprite.SetColor(sf::Color(255,255,255));
-        moteurGraphique->AjouterCommande(&sprite2,16,0);
-
-        sf::Text texte;
-        texte.SetCharacterSize(11 * configuration->Resolution.h/600);
-        texte.SetFont(moteurGraphique->m_font);
-        texte.SetString(m_dialogue);
-        texte.SetPosition(classe->position_contenu_dialogue.x * configuration->Resolution.w/800 + classe->position_contenu_dialogue.w * configuration->Resolution.w/800/2 - (texte.GetRect().Right-texte.GetRect().Left)/2, classe->position_contenu_dialogue.y  * configuration->Resolution.h/600 + classe->talk.position.h*configuration->Resolution.h/600 - classe->talk.position.h*configuration->Resolution.h/600*alpha/255);
-
-        moteurGraphique->AjouterTexte(&texte,16,0);
+         moteurGraphique->AjouterTexte(&texte,16,0);
     }
 }
 
+
+void Menu::AddSpeakChoice(const std::string &text, int no)
+{
+    m_choices.push_back(Speak_choice ());
+    m_choices.back().text   = text;
+    m_choices.back().no     = no;
+}
+void Menu::ClearSpeakChoice()
+{
+    m_speak_choice = -1;
+    m_choices.clear();
+}
+int  Menu::getSpeakChoice()
+{
+    console->Ajouter(m_speak_choice);
+    return m_speak_choice;
+}
 
 void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteristique caracteristiqueMonstre,Classe *classe)
 {
@@ -455,6 +502,9 @@ void Menu::AjouterAme(coordonneeDecimal position,int pointAme)
     Ame temp(position,pointAme);
     m_ame.push_back(temp);
 }
+
+
+
 int Menu::GererDynamique(float temps)
 {
     int retour=0,k=0;

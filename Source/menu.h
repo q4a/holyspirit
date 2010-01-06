@@ -23,7 +23,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-
 #ifndef MENUH
 #define MENUH
 
@@ -66,12 +65,19 @@ class Sang
     int m_numero;
 };
 
+struct Speak_choice
+{
+    int no;
+    std::string text;
+};
+
 class Menu
 {
 	public:
 	Menu();
 	~Menu();
-	void Afficher(int type,float alpha,Classe *classe);
+	void AfficherHUD(Classe *classe);
+	void AfficherDialogue(int, Classe *classe);
 	void AfficherDynamique(Caracteristique caracteristique,int type,Caracteristique caracteristiqueMonstre,Classe *classe);
 	void AfficherChargement(std::string nom,int fond,int z);
 	void AfficherInventaire(float,Classe *classe,bool);
@@ -83,12 +89,19 @@ class Menu
 	void AjouterAme(coordonneeDecimal position,int pointAme);
 	int GererDynamique(float temps);
 
+	void AddSpeakChoice(const std::string &text, int no);
+	void ClearSpeakChoice();
+	int getSpeakChoice();
+
 	std::string m_dialogue;
 
 	private:
 	int m_fondMiniMap,m_imageAme,m_imageSang,m_barrePointAme,m_barreVie,m_barreVieVide/*,m_inventaire*/;
 
 	sf::Text texte;
+
+	int m_speak_choice;
+	std::vector <Speak_choice> m_choices;
 
 	float m_alphaSang;
 

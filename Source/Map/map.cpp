@@ -3207,7 +3207,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             GererConditions(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="variable")
             script->variables[script->m_instructions[noInstruction].valeurs.at(0)]=script->m_instructions[noInstruction].valeurs.at(1);
-        else if (script->m_instructions[noInstruction].nom=="incrementeVariable")
+        else if (script->m_instructions[noInstruction].nom=="incrementVariable")
             script->variables[script->m_instructions[noInstruction].valeurs.at(0)]+=script->m_instructions[noInstruction].valeurs.at(1);
         else if (script->m_instructions[noInstruction].nom=="setCollision")
         {
@@ -3224,6 +3224,20 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
 
                 m_monstre[monstre].setArrivee(m_monstre[monstre].getProchaineCase());
             }
+        }
+        else if (script->m_instructions[noInstruction].nom=="stop_speak")
+        {
+            jeu->menu.m_dialogue = " ";
+            jeu->menu.ClearSpeakChoice();
+        }
+        else if (script->m_instructions[noInstruction].nom=="speak_choice")
+        {
+            jeu->menu.AddSpeakChoice(   DecouperTexte(configuration->getText(4, script->m_instructions[noInstruction].valeurs.at(0)), hero->m_classe.position_contenu_dialogue.w, 14),
+                                        script->m_instructions[noInstruction].valeurs.at(1));
+            eventManager->StopEvenement(Mouse::Left,EventClic);
+            hero->m_personnage.setArrivee(hero->m_personnage.getProchaineCase());
+
+            m_monstre[monstre].setArrivee(m_monstre[monstre].getProchaineCase());
         }
         else if (script->m_instructions[noInstruction].nom=="newQuest")
         {
@@ -3373,6 +3387,11 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                 else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="talk" && monstre != -1)
                 {
                     if (!(hero->getMonstreVise()==monstre&&fabs(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)<=1&&fabs(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)<=1))
+                        ok=false;
+                }
+                else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="speak_choice" && monstre != -1)
+                {
+                    if (menu->getSpeakChoice() != script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].valeurs.at(0))
                         ok=false;
                 }
                 else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="no_speak")

@@ -644,6 +644,7 @@ int GestionBoutons(Jeu *jeu)
             jeu->menu.m_dialogue = " ";
             jeu->hero.setMonstreVise(-1);
         }
+        jeu->menu.ClearSpeakChoice();
     }
 
     return -1;
@@ -799,10 +800,10 @@ void c_Jeu::Affichage(Jeu *jeu)
         if (alpha_map<0)
             alpha_map=0;
     }
-    if (alpha_map>0)
-        jeu->menu.Afficher(2,alpha_map,&jeu->hero.m_classe);//On affiche la mini-map
+   // if (alpha_map>0)
+       // jeu->menu.Afficher(2,alpha_map,&jeu->hero.m_classe);//On affiche la mini-map
     if (alpha_dialog>0)
-        jeu->menu.Afficher(4,alpha_dialog,&jeu->hero.m_classe);//On affiche la mini-map
+        jeu->menu.AfficherDialogue(alpha_dialog,&jeu->hero.m_classe);//On affiche la mini-map
 
 
     if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())>4)
@@ -840,15 +841,15 @@ void c_Jeu::Affichage(Jeu *jeu)
         jeu->hero.setSacVise(coordonnee (-1,-1,-1,-1));
     }
 
-    if (alpha_sac>0)
+    /*if (alpha_sac>0)
     {
-        jeu->menu.Afficher(3,alpha_sac,&jeu->hero.m_classe);
+        //jeu->menu.Afficher(3,alpha_sac,&jeu->hero.m_classe);
         jeu->map->AfficherSac(jeu->hero.getChercherSac(),0,
                               coordonnee (600,(int)((float)configuration->Resolution.w*0.265),200,10),
                               jeu->hero.m_caracteristiques);
-    }
+    }*/
 
-    jeu->menu.Afficher(1,255,&jeu->hero.m_classe); // On affiche le hud
+    jeu->menu.AfficherHUD(&jeu->hero.m_classe); // On affiche le hud
 
     if (jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())!=NULL)
         jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,1,jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())->getCaracteristique(),&jeu->hero.m_classe);

@@ -87,16 +87,16 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     }
 
     jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
-    jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);
+  //  jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);
 
-    if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())>0)
+   /* if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())>0)
     {
         jeu->menu.Afficher(3,255,&jeu->hero.m_classe);
         jeu->map->AfficherSac(jeu->hero.getChercherSac(),0,
                               coordonnee (600,(int)((float)configuration->Resolution.w*0.265),200,10),
                               jeu->hero.m_caracteristiques);
-    }
-    jeu->menu.Afficher(1,255,&jeu->hero.m_classe);
+    }*/
+    jeu->menu.AfficherHUD(&jeu->hero.m_classe);
     jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,0,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
 
 

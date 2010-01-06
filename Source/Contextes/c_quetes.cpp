@@ -49,7 +49,7 @@ void c_Quetes::Utiliser(Jeu *jeu)
     jeu->Clock.Reset();
 
     jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
-    jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);
+    //jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);
 
     if (m_afficher)
         m_decalage+=temps_ecoule*2000;
@@ -68,7 +68,7 @@ void c_Quetes::Utiliser(Jeu *jeu)
 
     jeu->hero.AfficherQuetes(m_decalage);
 
-    jeu->menu.Afficher(1,255,&jeu->hero.m_classe);
+    jeu->menu.AfficherHUD(&jeu->hero.m_classe);
     jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,-1,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
 
     eventManager->AfficherCurseur();
