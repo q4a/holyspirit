@@ -25,3 +25,5 @@ Chef de meute
 Martelleur de crânes
 Molosse infernal
 Abbé Chamel
+Potale de l'Abbaye
+Potale des terres agraires

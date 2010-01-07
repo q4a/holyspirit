@@ -34,3 +34,5 @@ Bien le bonjour mon ami.\Que voulez-vous ?\
 -Commercer
 -Discuter
 J'ai entendu des drôles de bruits venant des catacombes cette nuit. J'ai bien peur qu'il s'y passe quelque chose.
+L'Abbaye
+Les terres agraires
