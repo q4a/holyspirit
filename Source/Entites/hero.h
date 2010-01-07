@@ -34,6 +34,13 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 bool AjouterObjetInventaire(Objet newObj, std::vector<Objet>* inventaire, coordonnee taille, bool infini);
 
+struct Potale
+{
+    coordonnee position;
+    std::string chemin;
+    int nom;
+};
+
 class Hero
 {
 public:
@@ -49,6 +56,7 @@ public:
 
     bool AfficherInventaire(float, std::vector<Objet> &);
     void AfficherQuetes(float);
+    void AfficherPotales(float);
     void AfficherFlecheQuetes(const std::string &nomMap, float temps);
     bool AfficherMiracles(float , int );
     void AfficherCaracteristiques(float decalage);
@@ -65,6 +73,8 @@ public:
     //void InfligerDegats(float degats);
     void RegenererVie(float vie);
     void RegenererFoi(float foi);
+
+    void addPotale(int x, int y, int nom, const std::string &chemin);
 
     bool AjouterObjet(Objet objet,bool enMain=false);
 
@@ -117,8 +127,10 @@ public:
     int m_miracles_raccourcis[4];
 
     int m_quetePointee, m_queteSelectionnee;
+    int m_potale_selectionnee;
 
-    std::vector<Quete> m_quetes;
+    std::vector<Quete>  m_quetes;
+    std::vector<Potale> m_potales;
     std::vector<int> m_lvl_miracles;
 
     std::vector<Personnage *> m_amis;

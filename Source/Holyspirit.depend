@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1262787120 source:e:\c++\holyspirit\source\contextes\c_changementmap.cpp
+1262890567 source:e:\c++\holyspirit\source\contextes\c_changementmap.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -441,7 +441,7 @@
 
 1244286756 s.h"
 
-1251373598 e:\c++\holyspirit\source\jeu.h
+1262888121 e:\c++\holyspirit\source\jeu.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"constantes.h"
@@ -452,13 +452,14 @@
 	"Contextes/c_changementMap.h"
 	"Contextes/c_inventaire.h"
 	"Contextes/c_quetes.h"
+	"Contextes/c_potales.h"
 	"Contextes/c_miracles.h"
 	"Contextes/c_menuInGame.h"
 	"Contextes/c_demarrage.h"
 
 1251377198 /c_demarrage.h"
 
-1262176546 e:\c++\holyspirit\source\map\map.h
+1262883829 e:\c++\holyspirit\source\map\map.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -471,7 +472,7 @@
 
 1252149603 .h"
 
-1262176627 e:\c++\holyspirit\source\entites\hero.h
+1262888928 e:\c++\holyspirit\source\entites\hero.h
 	<iostream>
 	<string>
 	<list>
@@ -612,7 +613,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1262787137 source:e:\c++\holyspirit\source\contextes\c_inventaire.cpp
+1262888595 source:e:\c++\holyspirit\source\contextes\c_inventaire.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -622,7 +623,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1262792679 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
+1262792838 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -673,7 +674,7 @@
 	"../globale.h"
 	<sstream>
 
-1262514818 source:e:\c++\holyspirit\source\entites\hero.cpp
+1262889919 source:e:\c++\holyspirit\source\entites\hero.cpp
 	"../constantes.h"
 	"hero.h"
 	"../globale.h"
@@ -739,7 +740,7 @@
 	"script.h"
 	"../globale.h"
 
-1262175968 source:e:\c++\holyspirit\source\map\decor.cpp
+1262798798 source:e:\c++\holyspirit\source\map\decor.cpp
 	"decor.h"
 	"../globale.h"
 
@@ -747,7 +748,7 @@
 	"evenement.h"
 	<iostream>
 
-1262792088 source:e:\c++\holyspirit\source\map\map.cpp
+1262888595 source:e:\c++\holyspirit\source\map\map.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -827,7 +828,7 @@
 	<stdio.h>
 	<string.h>
 
-1262175968 source:e:\c++\holyspirit\source\jeu.cpp
+1262889150 source:e:\c++\holyspirit\source\jeu.cpp
 	"constantes.h"
 	"globale.h"
 	"jeu.h"
@@ -843,7 +844,7 @@
 	"jeu.h"
 	"constantes.h"
 
-1262792088 source:e:\c++\holyspirit\source\menu.cpp
+1262799378 source:e:\c++\holyspirit\source\menu.cpp
 	"menu.h"
 	"globale.h"
 	<iostream>
@@ -4011,4 +4012,20 @@
 1261749178 source:e:\c++\holyspirit\source\moteurs\entite_graphique.cpp
 	"Entite_graphique.h"
 	"../globale.h"
+
+1262890432 e:\c++\holyspirit\source\contextes\c_potales.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"contexte.h"
+
+1262890788 source:e:\c++\holyspirit\source\contextes\c_potales.cpp
+	"c_jeu.h"
+	"../jeu.h"
+	"c_potales.h"
+	"../globale.h"
+	<iostream>
+	<fstream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
 

@@ -54,13 +54,14 @@ void Jeu::Demarrer()
                     reader.ExportFile(i),hero.m_contenuSave.push_back(reader.GetFileName(i));
     }
 
-    m_jeu = new c_Jeu;
-    m_demarrage = new c_Demarrage;
-    m_chargement = new c_Chargement;
-    m_inventaire = new c_Inventaire;
-    m_quetes = new c_Quetes;
-    m_miracles = new c_Miracles;
-    m_menuInGame = new c_MenuInGame;
+    m_jeu           = new c_Jeu;
+    m_demarrage     = new c_Demarrage;
+    m_chargement    = new c_Chargement;
+    m_inventaire    = new c_Inventaire;
+    m_quetes        = new c_Quetes;
+    m_potales       = new c_Potales;
+    m_miracles      = new c_Miracles;
+    m_menuInGame    = new c_MenuInGame;
 
     coordonnee temp(0,0,-1,-1);
     m_chargement->setC_Chargement("Begin.map.hs",temp,1);
@@ -117,6 +118,7 @@ void Jeu::Demarrer()
     delete m_chargement;
     delete m_inventaire;
     delete m_quetes;
+    delete m_potales;
     delete m_miracles;
     delete m_menuInGame;
 
@@ -154,6 +156,10 @@ void Jeu::Next()
         m_contexte = m_miracles;
     else if(next_screen == 6)
         m_contexte = m_quetes;
+    else if(next_screen == 7)
+        m_contexte = m_potales;
+    else if(next_screen == 8)
+        m_contexte = m_chargement;
 }
 
 

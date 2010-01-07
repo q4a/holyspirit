@@ -2959,14 +2959,14 @@ void Map::Script_RandomDisplace(Jeu *jeu,Script *script,int noInstruction,int mo
             arrivee.y+=(3-rand()%(6));
             m_monstre[monstre].setArrivee(arrivee);
         }
-        else
+      /*  else
         {
             if (seDeplacer)
             {
-                coordonnee tempCoord(hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1);
-                m_monstre[monstre].Pathfinding(getAlentourDuPersonnage(m_monstre[monstre].getCoordonnee()),tempCoord);
+                //coordonnee tempCoord(hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1);
+               // m_monstre[monstre].Pathfinding(getAlentourDuPersonnage(m_monstre[monstre].getCoordonnee()),tempCoord);
             }
-        }
+        }*/
     }
 }
 
@@ -2984,14 +2984,14 @@ void Map::Script_Evasion(Jeu *jeu,Script *script,int noInstruction,int monstre,H
                 arrivee.y+=m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y;
                 m_monstre[monstre].setArrivee(arrivee);
             }
-            else
+            /*else
             {
                 if (seDeplacer)
                 {
                     coordonnee tempCoord(hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1);
                     m_monstre[monstre].Pathfinding(getAlentourDuPersonnage(m_monstre[monstre].getCoordonnee()),tempCoord);
                 }
-            }
+            }*/
         }
     }
 }
@@ -3008,14 +3008,14 @@ void Map::Script_Follow(Jeu *jeu,Script *script,int noInstruction,int monstre,He
             {
                 m_monstre[monstre].setDepart();
             }
-            else
+            /*else
             {
                 if (seDeplacer)
                 {
                     coordonnee tempCoord(hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1);
                     m_monstre[monstre].Pathfinding(getAlentourDuPersonnage(m_monstre[monstre].getCoordonnee()),tempCoord);
                 }
-            }
+            }*/
         }
     }
 }
@@ -3109,8 +3109,8 @@ void Map::Script_Fight(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
                 {
                     m_monstre[monstre].setArrivee(m_monstre[monstre].m_cible->getProchaineCase());
 
-                    coordonnee tempCoord(hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1);
-                    m_monstre[monstre].Pathfinding(getAlentourDuPersonnage(m_monstre[monstre].getCoordonnee()),tempCoord);
+                    //coordonnee tempCoord(hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1);
+                    //m_monstre[monstre].Pathfinding(getAlentourDuPersonnage(m_monstre[monstre].getCoordonnee()),tempCoord);
                 }
                 else
                 {
@@ -3144,6 +3144,16 @@ void Map::Script_Trade(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
     eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
     jeu->Clock.Reset();
     jeu->m_contexte=jeu->m_inventaire;
+}
+
+void Map::Script_Potale(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer)
+{
+    hero->setMonstreVise(-1);
+   // jeu->m_inventaire->setTrader(m_monstre[monstre].getPointeurObjets(),&hero->m_classe);
+    eventManager->StopEvenement(sf::Mouse::Left, EventClic);
+    eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
+    jeu->Clock.Reset();
+    jeu->m_contexte=jeu->m_potales;
 }
 
 std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)
@@ -3203,6 +3213,15 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             Script_PlaySound(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer); //PLAYSOUND(script->m_instructions[noInstruction].valeurs.at(0))
         else if (script->m_instructions[noInstruction].nom=="trade" && monstre != -1)
             Script_Trade(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
+        else if (script->m_instructions[noInstruction].nom=="teleportation_menu")
+            Script_Potale(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
+        else if (script->m_instructions[noInstruction].nom=="add_checkpoint")
+        {
+            hero->addPotale(script->m_instructions[noInstruction].valeurs.at(0),
+                            script->m_instructions[noInstruction].valeurs.at(1),
+                            script->m_instructions[noInstruction].valeurs.at(2),
+                            script->m_instructions[noInstruction].valeurString);
+        }
         else if (script->m_instructions[noInstruction].nom=="if")
             GererConditions(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="variable")
@@ -3631,11 +3650,7 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
 
                         bool seDeplacer = m_monstre[monstre].SeDeplacer(temps*100,getDimensions());
 
-                        if (seDeplacer)
-                        {
-                            coordonnee tempCoord(hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1);
-                            m_monstre[monstre].Pathfinding(getAlentourDuPersonnage(m_monstre[monstre].getCoordonnee()),tempCoord);
-                        }
+
 
                         //if (m_monstre[monstre].getPousse().x == 0 && m_monstre[monstre].getPousse().y == 0)
                         {
@@ -3647,6 +3662,12 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
 
                             if (m_monstre[monstre].getErreurPathfinding())
                                 Script_RandomDisplace(jeu,script,0,monstre,hero,temps,menu,seDeplacer);
+                        }
+
+                        if (seDeplacer)
+                        {
+                            coordonnee tempCoord(hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1);
+                             m_monstre[monstre].Pathfinding(getAlentourDuPersonnage(m_monstre[monstre].getCoordonnee()),tempCoord);
                         }
 
                         m_monstre[monstre].m_touche = false;

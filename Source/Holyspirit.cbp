@@ -150,6 +150,8 @@
 		<Unit filename="Contextes\c_menuInGame.h" />
 		<Unit filename="Contextes\c_miracles.cpp" />
 		<Unit filename="Contextes\c_miracles.h" />
+		<Unit filename="Contextes\c_potales.cpp" />
+		<Unit filename="Contextes\c_potales.h" />
 		<Unit filename="Contextes\c_quetes.cpp" />
 		<Unit filename="Contextes\c_quetes.h" />
 		<Unit filename="Contextes\contexte.cpp" />

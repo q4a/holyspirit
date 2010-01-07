@@ -99,14 +99,14 @@ void Menu::AfficherDialogue(int alpha,Classe *classe)
 
     moteurGraphique->AjouterTexte(&texte,16,0);
 
-    float pos = texte.GetRect().Bottom;
+    float pos = texte.GetRect().Bottom + 16;
 
     for(int i = 0 ; i < m_choices.size() ; ++i)
     {
         texte.SetString(m_choices[i].text);
         texte.SetPosition(texte.GetPosition().x, pos);
 
-        pos = texte.GetRect().Bottom;
+        pos = texte.GetRect().Bottom + 4;
 
         if(eventManager->getPositionSouris().x > texte.GetRect().Left
          &&eventManager->getPositionSouris().x < texte.GetRect().Right

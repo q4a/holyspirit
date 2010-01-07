@@ -274,6 +274,24 @@ void Hero::Sauvegarder()
 
         fichier<<'$'<<endl;
 
+        for (int i=0;i<(int)m_potales.size();++i)
+        {
+            fichier<<" p ";
+
+            fichier<<" x"<<m_potales[i].position.x;
+            fichier<<" y"<<m_potales[i].position.y;
+            fichier<<" t"<<m_potales[i].nom;
+            fichier<<" m"<<m_potales[i].chemin;
+
+            fichier<<" $ ";
+        }
+
+
+        if (configuration->debug)
+            console->Ajouter("/Ecriture des potales.");
+
+        fichier<<'$'<<endl;
+
         fichier.close();
 
         console->Ajouter("Sauvegarde du héro terminée !");
@@ -417,6 +435,44 @@ void Hero::Charger()
                     throw "Impossible de charger la sauvegarde";
             }
             while (caractere!='$');
+
+            if (configuration->debug)
+                console->Ajouter("/Lectures des potales.");
+
+            do
+            {
+                fichier->get(caractere);
+                if (caractere=='p')
+                {
+                    m_potales.push_back(Potale ());
+                    do
+                    {
+                        fichier->get(caractere);
+                        if (caractere=='m')
+                            *fichier>>m_potales.back().chemin;
+
+                        else if (caractere=='t')
+                            *fichier>>m_potales.back().nom;
+
+                        else if (caractere=='x')
+                            *fichier>>m_potales.back().position.x;
+                        else if (caractere=='y')
+                            *fichier>>m_potales.back().position.y;
+
+
+                        if (fichier->eof())
+                        {
+                            throw "Impossible de charger la potale";
+                        }
+                    }
+                    while (caractere!='$');
+                    fichier->get(caractere);
+                }
+                if (fichier->eof())
+                    throw "Impossible de charger la sauvegarde";
+            }
+            while (caractere!='$');
+
 
             if (configuration->debug)
                 console->Ajouter("/Lectures des quêtes.");
@@ -1088,6 +1144,45 @@ void Hero::AfficherQuetes(float decalage)
         texte.SetString(m_quetes[queteAffichee].m_description);
 
         moteurGraphique->AjouterTexte(&texte,15,0);
+    }
+}
+
+void Hero::AfficherPotales(float decalage)
+{
+    coordonnee position = m_classe.position_contenu_description_quete;
+    m_potale_selectionnee = -1;
+
+    for (int i = 0;i < (int)m_potales.size();++i)
+    {
+        sf::Text texte;
+        texte.SetFont(moteurGraphique->m_font);
+        texte.SetCharacterSize(12 * configuration->Resolution.h/600);
+        texte.SetPosition(position.x * configuration->Resolution.w/800, (position.y - decalage) * configuration->Resolution.h/600);
+        texte.SetString(configuration->getText(4,m_potales[i].nom));
+
+        moteurGraphique->AjouterTexte(&texte,15);
+
+        if (eventManager->getPositionSouris().x > m_classe.position_contenu_description_quete.x * configuration->Resolution.w/800
+                &&eventManager->getPositionSouris().x < (m_classe.position_contenu_description_quete.x + m_classe.position_contenu_description_quete.w) * configuration->Resolution.w/800
+                &&eventManager->getPositionSouris().y > texte.GetRect().Top
+                &&eventManager->getPositionSouris().y < texte.GetRect().Bottom)
+        {
+            sf::Sprite sprite;
+            sprite.SetImage(*moteurGraphique->getImage(0));
+            sprite.Resize(m_classe.position_contenu_description_quete.w * configuration->Resolution.w/800, texte.GetRect().Bottom - texte.GetRect().Top+4);
+            sprite.SetPosition(position.x * configuration->Resolution.w/800, (position.y - decalage) * configuration->Resolution.h/600);
+            sprite.SetColor(sf::Color(255, 255, 255, 128));
+
+            if(eventManager->getEvenement(sf::Mouse::Left, EventClic))
+            {
+                eventManager->StopEvenement(sf::Mouse::Left, EventClic);
+                m_potale_selectionnee = i;
+            }
+
+            moteurGraphique->AjouterCommande(&sprite,15,0);
+        }
+
+        position.y += (int)texte.GetRect().Bottom - (int)texte.GetRect().Top;
     }
 }
 
@@ -2150,6 +2245,24 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                     }
         }
     return 0;
+}
+
+void Hero::addPotale(int x, int y, int nom, const std::string &chemin)
+{
+    bool add = true;
+    for(unsigned i = 0 ; i < m_potales.size() ; ++i)
+        if(m_potales[i].position.x == x)
+            if(m_potales[i].position.y == y)
+                if(m_potales[i].chemin == chemin)
+                    add = false;
+    if(add)
+    {
+        m_potales.push_back(Potale ());
+        m_potales.back().chemin = chemin;
+        m_potales.back().position.x = x;
+        m_potales.back().position.y = y;
+        m_potales.back().nom = nom;
+    }
 }
 
 bool Hero::AjouterObjet(Objet objet,bool enMain)

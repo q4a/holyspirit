@@ -222,7 +222,7 @@ void Decor::delMonstre(int monstre)
 {
     for(int i = 0 ; i < (int)m_monstre.size() ; ++i)
         if(m_monstre[i]==monstre)
-            m_monstre.erase(m_monstre.begin() + i), i = -1;
+            m_monstre.erase(m_monstre.begin() + i), i --;
 }
 
 void Decor::setEffetGraphique(int monstre)
