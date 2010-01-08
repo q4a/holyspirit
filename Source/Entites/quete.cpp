@@ -124,5 +124,4 @@ void    Quete::    ChargerTexte(std::ifstream *fichier)
                 m_nom[i]=' ';
     }
 
-    cout<<m_nom<<endl;
 }

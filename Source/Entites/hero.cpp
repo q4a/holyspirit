@@ -257,6 +257,14 @@ void Hero::Sauvegarder()
 
         fichier<<'$'<<endl;
 
+        for (int i=0;i<(int)m_coffre.size();++i)
+            m_coffre[i].SauvegarderTexte(&fichier);
+
+        if (configuration->debug)
+            console->Ajouter("/Ecriture des objets du coffre.");
+
+        fichier<<'$'<<endl;
+
 
         for (int i=0;i<(int)m_lvl_miracles.size();++i)
             fichier<<"* l"<<m_lvl_miracles[i]<<" $ ";
@@ -400,6 +408,29 @@ void Hero::Charger()
             do
             {
                 fichier->get(caractere);
+                if (caractere=='o')
+                {
+                    int pos=fichier->tellg();
+                    m_coffre.push_back(Objet ());
+                    m_coffre.back().ChargerTexte(fichier,m_caracteristiques,true);
+                    m_coffre.back().Charger(m_coffre.back().getChemin(),m_caracteristiques,true);
+                    fichier->seekg(pos, ios::beg);
+                    m_coffre.back().m_benedictions.clear();
+                    m_coffre.back().ChargerTexte(fichier,m_caracteristiques);
+
+                    fichier->get(caractere);
+                }
+                if (fichier->eof())
+                    throw "Impossible de charger la sauvegarde";
+            }
+            while (caractere!='$');
+
+            if (configuration->debug)
+                console->Ajouter("/Lectures des objets du coffre.");
+
+            do
+            {
+                fichier->get(caractere);
                 if (caractere=='*')
                 {
                     m_lvl_miracles.push_back(0);
@@ -420,7 +451,7 @@ void Hero::Charger()
             while (caractere!='$');
 
             if (configuration->debug)
-                console->Ajouter("/Lectures des quêtes.");
+                console->Ajouter("/Lectures des miracles.");
 
             do
             {
@@ -437,7 +468,7 @@ void Hero::Charger()
             while (caractere!='$');
 
             if (configuration->debug)
-                console->Ajouter("/Lectures des potales.");
+                console->Ajouter("/Lectures des quêtes.");
 
             do
             {
@@ -475,7 +506,7 @@ void Hero::Charger()
 
 
             if (configuration->debug)
-                console->Ajouter("/Lectures des quêtes.");
+                console->Ajouter("/Lectures des potales.");
 
             UpdateRaccourcis();
 
@@ -2493,7 +2524,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
                 m_achat=false;
             }
         }
-        else
+        else if(trader)
         {
             for (int z=0;z<(int)m_inventaire.size();z++)
                 if (m_inventaire[z].m_equipe==-1)
@@ -2503,7 +2534,8 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
                         if (eventManager->getEvenement(Key::LControl,EventKey))
                         {
                             m_inventaire[z].JouerSon();
-                            m_argent+=m_inventaire[z].getPrix();
+                            if(trader != &m_coffre)
+                                m_argent+=m_inventaire[z].getPrix();
                             m_inventaire[z].m_equipe=-1;
                             AjouterObjetInventaire(m_inventaire[z],trader,m_classe.position_contenu_marchand,true);
                             delObjet(z);
@@ -2535,10 +2567,15 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
         {
 
             m_inventaire[m_objetEnMain].JouerSon();
-            if (m_achat)
-                m_argent+=(int)((float)m_inventaire[m_objetEnMain].getPrix()*(5-(float)m_caracteristiques.charisme/100));
-            else
-                m_argent+=m_inventaire[m_objetEnMain].getPrix();
+
+            if(trader != &m_coffre)
+            {
+                if (m_achat)
+                    m_argent+=(int)((float)m_inventaire[m_objetEnMain].getPrix()*(5-(float)m_caracteristiques.charisme/100));
+                else
+                    m_argent+=m_inventaire[m_objetEnMain].getPrix();
+            }
+
             m_inventaire[m_objetEnMain].m_equipe=-1;
             AjouterObjetInventaire(m_inventaire[m_objetEnMain],trader,m_classe.position_contenu_marchand,true);
             delObjet(m_objetEnMain);
@@ -2550,14 +2587,15 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
             for (int z=0;z<(int)trader->size();z++)
                 if (caseVisee.x>=(*trader)[z].getPosition().x&&caseVisee.x<(*trader)[z].getPosition().x+(*trader)[z].getTaille().x
                         &&caseVisee.y>=(*trader)[z].getPosition().y&&caseVisee.y<(*trader)[z].getPosition().y+(*trader)[z].getTaille().y)
-                    if ((int)((float)(*trader)[z].getPrix()*(5-(float)m_caracteristiques.charisme/100))<=m_argent)
+                    if ((int)((float)(*trader)[z].getPrix()*(5-(float)m_caracteristiques.charisme/100))<=m_argent || trader == &m_coffre)
                     {
                         m_achat=true;
 
                         if (AjouterObjet((*trader)[z],!eventManager->getEvenement(Key::LControl,EventKey)));
                         {
-                            m_argent-=(int)((float)(*trader)[z].getPrix()*(5-(float)m_caracteristiques.charisme/100));
-                            if ((*trader)[z].m_type!=CONSOMMABLE)
+                            if(trader != &m_coffre)
+                                m_argent-=(int)((float)(*trader)[z].getPrix()*(5-(float)m_caracteristiques.charisme/100));
+                            if ((*trader)[z].m_type!=CONSOMMABLE || trader == &m_coffre)
                                 trader->erase(trader->begin()+z);
                         }
                     }

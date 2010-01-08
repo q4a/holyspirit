@@ -3139,11 +3139,17 @@ void Map::Script_Fight(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
 void Map::Script_Trade(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer)
 {
     hero->setMonstreVise(-1);
+
     jeu->m_inventaire->setTrader(m_monstre[monstre].getPointeurObjets(),&hero->m_classe);
+    if(!script->m_instructions[noInstruction].valeurs.empty())
+        if(script->m_instructions[noInstruction].valeurs.at(0) == 1)
+            jeu->m_inventaire->setTrader(&hero->m_coffre,&hero->m_classe);
+
     eventManager->StopEvenement(sf::Mouse::Left, EventClic);
     eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
     jeu->Clock.Reset();
     jeu->m_contexte=jeu->m_inventaire;
+    jeu->m_jeu->alpha_dialog = 0;
 }
 
 void Map::Script_Potale(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer)
@@ -3154,6 +3160,7 @@ void Map::Script_Potale(Jeu *jeu,Script *script,int noInstruction,int monstre,He
     eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
     jeu->Clock.Reset();
     jeu->m_contexte=jeu->m_potales;
+    jeu->m_jeu->alpha_dialog = 0;
 }
 
 std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)

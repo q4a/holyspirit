@@ -239,14 +239,13 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         moteurGraphique->LightManager->GenerateWallShadow(moteurGraphique->m_angleOmbreSoleil,moteurGraphique->m_soleil);
 
-        configuration->RafraichirLumiere=true;
-
         coordonnee pos;
         pos.x=(int)(((jeu->hero.m_personnage.getCoordonneePixel().x-jeu->hero.m_personnage.getCoordonneePixel().y)*64/COTE_TILE));
         pos.y=(int)(((jeu->hero.m_personnage.getCoordonneePixel().x+jeu->hero.m_personnage.getCoordonneePixel().y)*32/COTE_TILE)/2+64);
 
         jeu->hero.m_personnage.Animer(&jeu->hero.m_modelePersonnage[0], 0);
         jeu->hero.m_personnage.m_entite_graphique.Initialiser(pos);
+        jeu->map->Animer(&jeu->hero,0,&jeu->menu);
 
         moteurGraphique->LightManager->SetIntensity(jeu->hero.m_personnage.m_entite_graphique.m_light,jeu->hero.getPorteeLumineuse().intensite);
         moteurGraphique->LightManager->SetRadius(jeu->hero.m_personnage.m_entite_graphique.m_light,jeu->hero.getPorteeLumineuse().intensite * 3);
@@ -274,6 +273,8 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         jeu->Clock.Reset();
     }
+
+    configuration->RafraichirOmbre=1;
 
 
     if (z<=1&&augmenterNoir)

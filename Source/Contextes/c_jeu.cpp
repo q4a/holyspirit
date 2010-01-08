@@ -803,7 +803,7 @@ void c_Jeu::Affichage(Jeu *jeu)
    // if (alpha_map>0)
        // jeu->menu.Afficher(2,alpha_map,&jeu->hero.m_classe);//On affiche la mini-map
     if (alpha_dialog>0)
-        jeu->menu.AfficherDialogue(alpha_dialog,&jeu->hero.m_classe);//On affiche la mini-map
+        jeu->menu.AfficherDialogue((int)alpha_dialog,&jeu->hero.m_classe);//On affiche la mini-map
 
 
     if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())>4)

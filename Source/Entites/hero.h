@@ -135,6 +135,8 @@ public:
 
     std::vector<Personnage *> m_amis;
 
+    std::vector<Objet> m_coffre;
+
     float m_angleFleche;
 
     std::list<sf::Sprite> m_minimap;
