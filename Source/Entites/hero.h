@@ -59,7 +59,7 @@ public:
     void AfficherPotales(float);
     void AfficherFlecheQuetes(const std::string &nomMap, float temps);
     bool AfficherMiracles(float , int );
-    void AfficherCaracteristiques(float decalage);
+    void AfficherCaracteristiques(float decalage, bool trader);
     void AfficherRaccourcis();
     void AfficherAmis();
 

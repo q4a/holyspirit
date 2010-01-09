@@ -516,7 +516,7 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception, bool noD
             {
                 m_arrivee=m_positionCase;
                 m_cheminFinal=m_positionCase;
-                if (m_etat!=0)
+                if (m_etat!=0 && m_caracteristique.vie > 0)
                     m_etat=0,m_entite_graphique.m_noAnimation=0,frappeEnCours=0;
             }
         }
@@ -685,7 +685,8 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap)
                 if (m_etat!=0)
                     m_entite_graphique.m_noAnimation=0;
 
-                m_etat=0,frappeEnCours=0;
+                if(m_caracteristique.vie > 0)
+                    m_etat=0,frappeEnCours=0;
             }
         }
         if (m_etat==2||m_arrivee.x==m_positionCase.x&&m_arrivee.y==m_positionCase.y)
@@ -1020,7 +1021,8 @@ void Personnage::setErreurPathfinding(bool erreur)
 void Personnage::setCoordonnee(coordonnee nouvellesCoordonnees)
 {
     m_positionCase=nouvellesCoordonnees;
-    m_etat=ARRET;
+    if(m_caracteristique.vie > 0)
+        m_etat=ARRET;
 
     m_positionPixel.x=(float)nouvellesCoordonnees.x*COTE_TILE;
     m_positionPixel.y=(float)nouvellesCoordonnees.y*COTE_TILE;
