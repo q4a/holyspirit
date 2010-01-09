@@ -13,7 +13,7 @@ $
 	* t11 ia0 ib16 $
 
 	* t-1 l3 l4 $
-	* t2  ia5 ib25 $
+	* t2  ia5 ib25 ic1 $
 	* t13 ia1 $
 $
 //Séquences

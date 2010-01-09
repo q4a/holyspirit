@@ -20,7 +20,7 @@ $
 
 	* t7 ia6 ic0 id1 $
 
-	* t2 ia5 ib20 $
+	* t2 ia5 ib20 ic3 $
 $
 //Séquences
 	*

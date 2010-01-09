@@ -22,6 +22,8 @@ $
 $
 	* x0 y472 w800 h128 m Data/Menus/Hud.png $
 $
+	* x0 y472 w96 h128 m Data/Menus/Hud_newlevel.png $
+$
 	* x114 y484 w96 h68 m Data/Menus/Life_orb.png $
 $
 	* x588 y484 w96 h68 m Data/Menus/Faith_orb.png $

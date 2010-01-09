@@ -18,7 +18,7 @@ $
 	* t5 l7 ia6 $
 
 	* t14 ia1 ib-100 ic0 id4 $
-	* t2 l5 ia%1 ib%2 $
+	* t2 l5 ia%1 ib%2 ic1 $
 	* t3 s2 ia8 $
 
 	* t6 s0 ia1 ib-1 ic-100 $

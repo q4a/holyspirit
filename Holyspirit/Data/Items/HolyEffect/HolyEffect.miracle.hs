@@ -6,7 +6,7 @@ $
 
 //Effets
 	* t-1 l1 l3 $
-	* t2 l2 ia0 ib0 $
+	* t2 l2 ia0 ib0 ic2 $
 	* t3 s0 ia8 $
 	* t-1 $
 $

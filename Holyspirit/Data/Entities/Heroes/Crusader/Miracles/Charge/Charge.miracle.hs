@@ -33,11 +33,11 @@ $
 	* t7 ia11 ic1 id1 $
 
 	* t-1 l9 l10 $
-	* t2  ia%1 ib%2 $
+	* t2  ia%1 ib%2 ic0 $
 	* t13 ia1 $
 
 	* t-1 l12 l13 $
-	* t2  ia%3 ib%4 $
+	* t2  ia%3 ib%4 ic0 $
 	* t13 ia1 $
 
 	* t15 l15 ia22 ib0 ic0 $

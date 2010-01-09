@@ -41,4 +41,11 @@ La voie de l'Assassin
 La voie de la Séductrice
 Niveau suivant :
 Clic gauche : Sélectionner / Clic droit : Apprendre
-
+Vous avez changer de niveau ! Cliquez ici pour dépenser vos points.
+Physique
+Feu
+Foi
+Corrosion
+Argent
+Niveau
+Nom

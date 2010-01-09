@@ -23,7 +23,7 @@ $
 	* t0 l17 s0 ia10 ib315 $
 	* t0 l17 s0 ia10 ib337,5 $
 
-	* t2 ia50 ib100 $
+	* t2 ia50 ib100 ic0 $
 $
 //Séquences
 	*

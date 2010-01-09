@@ -27,7 +27,7 @@ $
 
 	* t7 ia9 ic0 id1 $
 
-	* t2  ia1 ib%2 $
+	* t2  ia1 ib%2 ic3 ic3 $
 
 	* t6  s4 ia0 ib0 ic5 id0 ie%2 if1 $
 $

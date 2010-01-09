@@ -48,7 +48,7 @@ $
 	* t11 ia0 ib8 $
 
 	* t-1 l24 l25 $
-	* t2  ia%2 ib%3 $
+	* t2  ia%2 ib%3 ic0 $
 	* t13 ia1 $
 
 	* t16 ia1 $
