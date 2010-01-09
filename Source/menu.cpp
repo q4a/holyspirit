@@ -146,7 +146,6 @@ void Menu::ClearSpeakChoice()
 }
 int  Menu::getSpeakChoice()
 {
-    console->Ajouter(m_speak_choice);
     return m_speak_choice;
 }
 
@@ -309,6 +308,20 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
 
     moteurGraphique->AjouterTexte(&texte,18);
     //ecran->Draw(texte);
+
+    if(caracteristique.pts_restant > 0 || caracteristique.miracles_restant > 0 )
+    {
+        Sprite sprite;
+
+        sprite.SetImage(*moteurGraphique->getImage(classe->hud_newlevel.image));
+        sprite.Resize(classe->hud_newlevel.position.w*configuration->Resolution.w/800,
+                      classe->hud_newlevel.position.h*configuration->Resolution.w/800);
+
+        sprite.SetX(classe->hud_newlevel.position.x*configuration->Resolution.w/800);
+        sprite.SetY(classe->hud_newlevel.position.y*configuration->Resolution.h/600);
+
+        moteurGraphique->AjouterCommande(&sprite,17,0);
+    }
 
     if (type!=-1)
     {

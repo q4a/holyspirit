@@ -57,6 +57,7 @@ struct Classe
     Image_interface inventaire;
     Image_interface menu_marchand;
     Image_interface hud;
+    Image_interface hud_newlevel;
     Image_interface orbe_vie;
     Image_interface orbe_foi;
     Image_interface cache_vie;

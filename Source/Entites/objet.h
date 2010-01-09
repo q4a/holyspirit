@@ -34,6 +34,7 @@ struct benediction
     int type;
     int info1;
     int info2;
+    int info3;
 };
 
 struct Requirement

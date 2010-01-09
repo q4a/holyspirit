@@ -152,9 +152,18 @@ Modele_Personnage::Modele_Personnage()
 
     m_caracteristique.modificateurTaille = 1;
 
-    m_caracteristique.degatsMin          = 0;
-    m_caracteristique.degatsMax          = 0;
-    m_caracteristique.armure             = 0;
+    m_caracteristique.degatsMin      [0] = 0;
+    m_caracteristique.degatsMax      [0] = 0;
+    m_caracteristique.armure         [0] = 0;
+    m_caracteristique.degatsMin      [1] = 0;
+    m_caracteristique.degatsMax      [1] = 0;
+    m_caracteristique.armure         [1] = 0;
+    m_caracteristique.degatsMin      [2] = 0;
+    m_caracteristique.degatsMax      [2] = 0;
+    m_caracteristique.armure         [2] = 0;
+    m_caracteristique.degatsMin      [3] = 0;
+    m_caracteristique.degatsMax      [3] = 0;
+    m_caracteristique.armure         [3] = 0;
 
     m_impenetrable                       = 0;
     m_impoussable                        = 0;
@@ -265,8 +274,8 @@ void Personnage::Sauvegarder(ofstream &fichier)
     fichier <<"* m" <<m_modele
             <<" vi" <<m_caracteristique.vie
             <<" va" <<m_caracteristique.maxVie
-            <<" di" <<m_caracteristique.degatsMin
-            <<" da" <<m_caracteristique.degatsMax
+            <<" di" <<m_caracteristique.degatsMin[PHYSIQUE]
+            <<" da" <<m_caracteristique.degatsMax[PHYSIQUE]
             <<" r"  <<m_caracteristique.rang
             <<" a"  <<m_caracteristique.pointAme
             <<" t"  <<m_caracteristique.modificateurTaille
@@ -691,10 +700,11 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap)
     return 0;
 }
 
-void Personnage::InfligerDegats(float degats, Modele_Personnage *modele)
+void Personnage::InfligerDegats(float degats, int type, Modele_Personnage *modele)
 {
     float temp = degats;
-    degats -= (float)m_caracteristique.armure/50;
+    if(type < 4 && type >= 0)
+        degats -= (float)m_caracteristique.armure[type]/50;
 
     if (degats < 0)
         degats = 0;
@@ -815,7 +825,7 @@ int Personnage::Animer(Modele_Personnage *modele,float temps)
                 if(m_miracleALancer >= 0)
                     retour = 1;
                 else
-                    retour+=(rand()%(m_caracteristique.degatsMax-m_caracteristique.degatsMin+1)+m_caracteristique.degatsMin);
+                    retour+=(rand()%(m_caracteristique.degatsMax[PHYSIQUE]-m_caracteristique.degatsMin[PHYSIQUE]+1)+m_caracteristique.degatsMin[PHYSIQUE]);
             }
             else
                 retour = 0;

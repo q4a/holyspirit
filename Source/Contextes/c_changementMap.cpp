@@ -147,7 +147,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         {
             buffer.push_back(*jeu->hero.m_amis[i]);
             bufferModele.push_back(jeu->map->getModeleMonstre(jeu->hero.m_amis[i]->getModele()));
-            jeu->hero.m_amis[i]->InfligerDegats(jeu->hero.m_amis[i]->getCaracteristique().vie * 2, &bufferModele.back());
+            jeu->hero.m_amis[i]->InfligerDegats(jeu->hero.m_amis[i]->getCaracteristique().vie * 2,4, &bufferModele.back());
         }
 
         if (jeu->map!=NULL && !m_debut)

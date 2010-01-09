@@ -286,6 +286,12 @@ void Objet::Sauvegarder(std::ofstream *fichier)
         caractere='2';
         fichier->write((char*)&caractere, sizeof(char));
         fichier->write((char*)&m_benedictions[i].info2, sizeof(int));
+
+        caractere='i';
+        fichier->write((char*)&caractere, sizeof(char));
+        caractere='3';
+        fichier->write((char*)&caractere, sizeof(char));
+        fichier->write((char*)&m_benedictions[i].info2, sizeof(int));
         //fichier->write((char*)&espace, sizeof(char));
 
         caractere='$';
@@ -332,6 +338,7 @@ void Objet::SauvegarderTexte(std::ofstream *fichier)
 
         *fichier<<" i1"<<m_benedictions[i].info1;
         *fichier<<" i2"<<m_benedictions[i].info2;
+        *fichier<<" i3"<<m_benedictions[i].info3;
 
         *fichier<<" $ ";
     }
@@ -413,7 +420,7 @@ void Objet::ChargerTexte(std::ifstream *fichier, const Caracteristique &caract, 
         else if (caractere=='b')
         {
 
-            int type=0,info1=0,info2=0;
+            int type=0,info1=0,info2=0,info3=0;
 
             *fichier>>type;
 
@@ -427,6 +434,8 @@ void Objet::ChargerTexte(std::ifstream *fichier, const Caracteristique &caract, 
                         *fichier>>info1;
                     if (caractere=='2')
                         *fichier>>info2;
+                    if (caractere=='3')
+                        *fichier>>info3;
                 }
                 if (fichier->eof())
                 {
@@ -441,23 +450,35 @@ void Objet::ChargerTexte(std::ifstream *fichier, const Caracteristique &caract, 
                 m_benedictions.back().type=type;
                 m_benedictions.back().info1=info1;
                 m_benedictions.back().info2=info2;
+                m_benedictions.back().info3=info3;
 
 
-                if (m_benedictions.back().type==DEGATS_FEU)
+                if (m_benedictions.back().type==DEGATS_SUPP)
                 {
-                    m_chemin_miracles.push_back("Data/Items/FireEffect/FireEffect.miracle.hs");
-                    if (!m_useMiracle)
-                        m_miracle.Charger("Data/Items/FireEffect/FireEffect.miracle.hs",caract,0),m_useMiracle=true;
-                    else
-                        m_miracle.Concatenencer("Data/Items/FireEffect/FireEffect.miracle.hs",caract,0);
-                }
-                if (m_benedictions.back().type==DEGATS_FOI)
-                {
-                    m_chemin_miracles.push_back("Data/Items/HolyEffect/HolyEffect.miracle.hs");
-                    if (!m_useMiracle)
-                        m_miracle.Charger("Data/Items/HolyEffect/HolyEffect.miracle.hs",caract,0),m_useMiracle=true;
-                    else
-                        m_miracle.Concatenencer("Data/Items/HolyEffect/HolyEffect.miracle.hs",caract,0);
+                    if(info1 == FEU)
+                    {
+                        m_chemin_miracles.push_back("Data/Items/FireEffect/FireEffect.miracle.hs");
+                        if (!m_useMiracle)
+                            m_miracle.Charger("Data/Items/FireEffect/FireEffect.miracle.hs",caract,0),m_useMiracle=true;
+                        else
+                            m_miracle.Concatenencer("Data/Items/FireEffect/FireEffect.miracle.hs",caract,0);
+                    }
+                    if(info1 == FOI)
+                    {
+                        m_chemin_miracles.push_back("Data/Items/HolyEffect/HolyEffect.miracle.hs");
+                        if (!m_useMiracle)
+                            m_miracle.Charger("Data/Items/HolyEffect/HolyEffect.miracle.hs",caract,0),m_useMiracle=true;
+                        else
+                            m_miracle.Concatenencer("Data/Items/HolyEffect/HolyEffect.miracle.hs",caract,0);
+                    }
+                    if(info1 == CORROSION)
+                    {
+                        m_chemin_miracles.push_back("Data/Items/PoisonEffect/PoisonEffect.miracle.hs");
+                        if (!m_useMiracle)
+                            m_miracle.Charger("Data/Items/PoisonEffect/PoisonEffect.miracle.hs",caract,0),m_useMiracle=true;
+                        else
+                            m_miracle.Concatenencer("Data/Items/PoisonEffect/PoisonEffect.miracle.hs",caract,0);
+                    }
                 }
             }
             caractere='_';
@@ -918,7 +939,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
             fichier->get(caractere);
             if (caractere=='*')
             {
-                int b=-1,ia=-1,ib=-1;
+                int b=-1,ia=-1,ib=-1, ic=-1;
                 do
                 {
                     fichier->get(caractere);
@@ -933,6 +954,8 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
                             *fichier>>ia;
                         if (caractere=='2')
                             *fichier>>ib;
+                        if (caractere=='3')
+                            *fichier>>ic;
                         break;
                     }
 
@@ -951,9 +974,37 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
                     m_benedictions.back().type=b;
                     m_benedictions.back().info1=ia;
                     m_benedictions.back().info2=ib;
+                    m_benedictions.back().info3=ic;
 
+                    if (m_benedictions.back().type==DEGATS_SUPP)
+                    {
+                        if(ia == FEU)
+                        {
+                            m_chemin_miracles.push_back("Data/Items/FireEffect/FireEffect.miracle.hs");
+                            if (!m_useMiracle)
+                                m_miracle.Charger("Data/Items/FireEffect/FireEffect.miracle.hs",caract,0),m_useMiracle=true;
+                            else
+                                m_miracle.Concatenencer("Data/Items/FireEffect/FireEffect.miracle.hs",caract,0);
+                        }
+                        if(ia == FOI)
+                        {
+                            m_chemin_miracles.push_back("Data/Items/HolyEffect/HolyEffect.miracle.hs");
+                            if (!m_useMiracle)
+                                m_miracle.Charger("Data/Items/HolyEffect/HolyEffect.miracle.hs",caract,0),m_useMiracle=true;
+                            else
+                                m_miracle.Concatenencer("Data/Items/HolyEffect/HolyEffect.miracle.hs",caract,0);
+                        }
+                        if(ia == CORROSION)
+                        {
+                            m_chemin_miracles.push_back("Data/Items/PoisonEffect/PoisonEffect.miracle.hs");
+                            if (!m_useMiracle)
+                                m_miracle.Charger("Data/Items/PoisonEffect/PoisonEffect.miracle.hs",caract,0),m_useMiracle=true;
+                            else
+                                m_miracle.Concatenencer("Data/Items/PoisonEffect/PoisonEffect.miracle.hs",caract,0);
+                        }
+                    }
 
-                    if (m_benedictions.back().type==DEGATS_FEU)
+                   /* if (m_benedictions.back().type==DEGATS_FEU)
                     {
                         m_chemin_miracles.push_back("Data/Items/FireEffect/FireEffect.miracle.hs");
                         if (!m_useMiracle)
@@ -968,7 +1019,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
                             m_miracle.Charger("Data/Items/HolyEffect/HolyEffect.miracle.hs", caract, 0),m_useMiracle=true;
                         else
                             m_miracle.Concatenencer("Data/Items/HolyEffect/HolyEffect.miracle.hs", caract, 0);
-                    }
+                    }*/
                 }
 
                 fichier->get(caractere);
@@ -1065,26 +1116,70 @@ void Objet::Generer(int bonus)
 
                 temp.info1=0;
                 temp.info2=0;
+                temp.info3=0;
 
-                if (temp.type==VIE_SUPP||temp.type==FOI_SUPP)
+                if (temp.type==POINTS_SUPP)
                 {
-                    temp.info1=rand()%(m_capaciteBenediction*10 - (int)(m_capaciteBenediction*3) + 1)+m_capaciteBenediction*3;
-                    m_prix += (int)((float)m_prix*0.5*(temp.info1)/(m_capaciteBenediction*10 - m_capaciteBenediction*3));
+                    if(rand()%100 < 50)
+                        temp.info1 = PT_VIE;
+                    else
+                        temp.info1 = PT_FOI;
+
+                    temp.info2=rand()%(m_capaciteBenediction*10 - (int)(m_capaciteBenediction*3) + 1)+m_capaciteBenediction*3;
+                    m_prix += (int)((float)m_prix*0.5*(temp.info2)/(m_capaciteBenediction*10 - m_capaciteBenediction*3));
                 }
                 else if (temp.type==EFFICACITE_ACCRUE&&(m_type==ARME||m_type==ARMURE))
                 {
                     temp.info1=(int)(rand()%(m_capaciteBenediction*10 - (int)((float)m_capaciteBenediction*2.5) + 1)+(float)m_capaciteBenediction*2.5);
                     m_prix += (int)((float)m_prix*0.5*(temp.info1)/(m_capaciteBenediction*10 - m_capaciteBenediction*2.5));
                 }
-                else if (temp.type==DEGATS_FEU&&m_type==ARME)
+                else if (temp.type==DEGATS_SUPP&&m_type==ARME)
                 {
-                    temp.info1=(int)(rand()%(m_capaciteBenediction*2 - (int)((float)m_capaciteBenediction*0.5) + 1)+(float)m_capaciteBenediction*0.5);
-                    m_prix += (int)((float)m_prix*0.5*(temp.info1)/(m_capaciteBenediction*2 - m_capaciteBenediction*0.5));
+                    int random = rand()%100;
+                    if(random < 25)
+                        temp.info1 = PHYSIQUE;
+                    if(random >= 25 && random < 50)
+                        temp.info1 = FEU;
+                    if(random >= 50 && random < 75)
+                        temp.info1 = FOI;
+                    if(random >= 75)
+                        temp.info1 = CORROSION;
+
+                    temp.info2=(int)(rand()%((int)((float)m_capaciteBenediction*1.5) - (int)((float)m_capaciteBenediction*0.5) + 1)+(float)m_capaciteBenediction*0.5);
+                    temp.info3=(int)(rand()%((int)((float)m_capaciteBenediction*2.5) - (int)((float)m_capaciteBenediction*1.5) + 1)+(float)m_capaciteBenediction*1.5);
+                    m_prix += (int)((float)m_prix*0.5*(temp.info2+temp.info3)/(m_capaciteBenediction*2 - m_capaciteBenediction*0.5));
                 }
-                else if (temp.type==DEGATS_FOI&&m_type==ARME)
+                else if (temp.type==ARMURE_SUPP&&m_type==ARMURE)
                 {
-                    temp.info1=(int)(rand()%(m_capaciteBenediction*2 - (int)((float)m_capaciteBenediction*0.5) + 1)+(float)m_capaciteBenediction*0.5);
-                    m_prix += (int)((float)m_prix*0.5*(temp.info1)/(m_capaciteBenediction*2 - m_capaciteBenediction*0.5));
+                    int random = rand()%100;
+                    if(random < 25)
+                        temp.info1 = PHYSIQUE;
+                    if(random >= 25 && random < 50)
+                        temp.info1 = FEU;
+                    if(random >= 50 && random < 75)
+                        temp.info1 = FOI;
+                    if(random >= 75)
+                        temp.info1 = CORROSION;
+
+                    temp.info2=(int)(rand()%((int)((float)m_capaciteBenediction*10) - (int)((float)m_capaciteBenediction*5) + 1)+(float)m_capaciteBenediction*5);
+                    m_prix += (int)((float)m_prix*0.1*(temp.info2)/(m_capaciteBenediction*2 - m_capaciteBenediction*0.5));
+                }
+                else if (temp.type==CARACT_SUPP)
+                {
+                    int random = rand()%100;
+                    if(random < 20)
+                        temp.info1 = FORCE;
+                    if(random >= 20 && random < 40)
+                        temp.info1 = DEXTERITE;
+                    if(random >= 40 && random < 60)
+                        temp.info1 = VITALITE;
+                    if(random >= 60 && random < 80)
+                        temp.info1 = PIETE;
+                    if(random >= 80)
+                        temp.info1 = CHARISME;
+
+                    temp.info2=(int)(rand()%(m_capaciteBenediction - (int)((float)m_capaciteBenediction*0.25) + 1)+(float)m_capaciteBenediction*0.25);
+                    m_prix += (int)((float)m_prix*0.5*(temp.info2)/(m_capaciteBenediction - m_capaciteBenediction*0.25));
                 }
                 else
                 {
@@ -1093,16 +1188,19 @@ void Objet::Generer(int bonus)
                 }
 
                 if ((temp.type==EFFICACITE_ACCRUE&&!(m_type==ARME||m_type==ARMURE))||
-                    (temp.type==DEGATS_FEU&&m_type!=ARME)||
-                    (temp.type==DEGATS_FOI&&m_type!=ARME))
+                    (temp.type==DEGATS_SUPP&&m_type!=ARME)||
+                    (temp.type==ARMURE_SUPP&&m_type!=ARMURE))
                     ajouter=false,i--;
-
-                if(temp.info1 <= 0)
-                    temp.info1 = 1;
 
                 for (int j=0;j<(int)m_benedictions.size();j++)
                     if (m_benedictions[j].type==temp.type)
-                        m_benedictions[j].info1+=temp.info1,ajouter=false;
+                    {
+                        if(m_benedictions[j].info1==temp.info1 && temp.type != EFFICACITE_ACCRUE)
+                            m_benedictions[j].info2+=temp.info2,m_benedictions[j].info3+=temp.info3,ajouter=false;
+                        if(temp.type == EFFICACITE_ACCRUE)
+                            m_benedictions[j].info1+=temp.info1,ajouter=false;
+                    }
+
 
                 if (ajouter)
                 {
@@ -1110,28 +1208,54 @@ void Objet::Generer(int bonus)
                     m_benedictions.push_back(benediction ());
                     m_benedictions.back()=temp;
 
-                    if (temp.type==DEGATS_FEU)
+                    if (temp.type==DEGATS_SUPP)
                     {
-                        m_color.r=255;
-                        m_color.g=64;
-                        m_color.b=64;
-
-                        m_chemin_miracles.push_back("Data/Items/FireEffect/FireEffect.miracle.hs");
-                        if (!m_useMiracle)
-                            m_miracle.Charger("Data/Items/FireEffect/FireEffect.miracle.hs", temp2, 0),m_useMiracle=true;
-                        else
-                            m_miracle.Concatenencer("Data/Items/FireEffect/FireEffect.miracle.hs", temp2, 0);
+                        if(temp.info1 == FEU)
+                        {
+                            m_chemin_miracles.push_back("Data/Items/FireEffect/FireEffect.miracle.hs");
+                            if (!m_useMiracle)
+                                m_miracle.Charger("Data/Items/FireEffect/FireEffect.miracle.hs", temp2, 0),m_useMiracle=true;
+                            else
+                                m_miracle.Concatenencer("Data/Items/FireEffect/FireEffect.miracle.hs", temp2, 0);
+                        }
+                        if(temp.info1 == FOI)
+                        {
+                            m_chemin_miracles.push_back("Data/Items/HolyEffect/HolyEffect.miracle.hs");
+                            if (!m_useMiracle)
+                                m_miracle.Charger("Data/Items/HolyEffect/HolyEffect.miracle.hs", temp2, 0),m_useMiracle=true;
+                            else
+                                m_miracle.Concatenencer("Data/Items/HolyEffect/HolyEffect.miracle.hs", temp2, 0);
+                        }
+                        if(temp.info1 == CORROSION)
+                        {
+                            m_chemin_miracles.push_back("Data/Items/PoisonEffect/PoisonEffect.miracle.hs");
+                            if (!m_useMiracle)
+                                m_miracle.Charger("Data/Items/PoisonEffect/PoisonEffect.miracle.hs", temp2, 0),m_useMiracle=true;
+                            else
+                                m_miracle.Concatenencer("Data/Items/PoisonEffect/PoisonEffect.miracle.hs", temp2, 0);
+                        }
                     }
-                    if (temp.type==DEGATS_FOI)
+
+                    if (temp.type==ARMURE_SUPP || temp.type==DEGATS_SUPP)
                     {
-                        m_color.r=64;
-                        m_color.g=64;
-                        m_color.b=255;
-                        m_chemin_miracles.push_back("Data/Items/HolyEffect/HolyEffect.miracle.hs");
-                        if (!m_useMiracle)
-                            m_miracle.Charger("Data/Items/HolyEffect/HolyEffect.miracle.hs", temp2, 0),m_useMiracle=true;
-                        else
-                            m_miracle.Concatenencer("Data/Items/HolyEffect/HolyEffect.miracle.hs", temp2, 0);
+                        if(temp.info1 == FEU)
+                        {
+                            m_color.r=255;
+                            m_color.g=64;
+                            m_color.b=64;
+                        }
+                        if(temp.info1 == FOI)
+                        {
+                            m_color.r=64;
+                            m_color.g=64;
+                            m_color.b=255;
+                        }
+                        if(temp.info1 == CORROSION)
+                        {
+                            m_color.r=64;
+                            m_color.g=255;
+                            m_color.b=64;
+                        }
                     }
                 }
             }
@@ -1386,16 +1510,46 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
 
     for (int i=0;i<(int)m_benedictions.size();i++)
     {
-        if (m_benedictions[i].type>=0&&m_benedictions[i].type<NOMBRE_BENEDICTION)
+        std::ostringstream buf;
+        if(m_benedictions[i].type == EFFICACITE_ACCRUE)
         {
-            std::ostringstream buf;
-            buf<<configuration->text_benedictions[m_benedictions[i].type];
-            if (m_benedictions[i].info1>0||m_benedictions[i].info2>0)
-                buf<<m_benedictions[i].info1;
-            if (m_benedictions[i].info2>0)
-                buf<<m_benedictions[i].info2;
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(0,64,128)));
+            buf<<configuration->getText(1,0);
+            buf<<" "<<m_benedictions[i].info1<<" %";
         }
+        if(m_benedictions[i].type == CARACT_SUPP)
+        {
+            if(m_benedictions[i].info1 == FORCE)
+                buf<<configuration->getText(1,1);
+            if(m_benedictions[i].info1 == DEXTERITE)
+                buf<<configuration->getText(1,2);
+            if(m_benedictions[i].info1 == VITALITE)
+                buf<<configuration->getText(1,3);
+            if(m_benedictions[i].info1 == PIETE)
+                buf<<configuration->getText(1,4);
+            if(m_benedictions[i].info1 == CHARISME)
+                buf<<configuration->getText(1,5);
+            buf<<" "<<m_benedictions[i].info2;
+        }
+        if(m_benedictions[i].type == POINTS_SUPP)
+        {
+            if(m_benedictions[i].info1 == PT_VIE)
+                buf<<configuration->getText(1,6);
+            if(m_benedictions[i].info1 == PT_FOI)
+                buf<<configuration->getText(1,7);
+            buf<<" "<<m_benedictions[i].info2;
+        }
+        if(m_benedictions[i].type == DEGATS_SUPP)
+        {
+            buf<<configuration->getText(1,8 + m_benedictions[i].info1);
+            buf<<" "<<m_benedictions[i].info2<<" - "<<m_benedictions[i].info3;
+        }
+        if(m_benedictions[i].type == ARMURE_SUPP)
+        {
+            buf<<configuration->getText(1,12 + m_benedictions[i].info1);
+            buf<<" "<<m_benedictions[i].info2;
+        }
+
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(0,64,128)));
     }
 
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));

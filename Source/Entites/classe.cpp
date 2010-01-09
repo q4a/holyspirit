@@ -446,6 +446,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
         ChargerImageInterface(fichier, inventaire);
         ChargerImageInterface(fichier, menu_marchand);
         ChargerImageInterface(fichier, hud);
+        ChargerImageInterface(fichier, hud_newlevel);
         ChargerImageInterface(fichier, orbe_vie);
         ChargerImageInterface(fichier, orbe_foi);
         ChargerImageInterface(fichier, cache_vie);

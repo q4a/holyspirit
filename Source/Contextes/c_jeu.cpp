@@ -271,15 +271,15 @@ void c_Jeu::Animation(Jeu *jeu)
                             if (rand() % 100 < (float)((float)jeu->hero.m_caracteristiques.dexterite / ((float)jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCaracteristique().dexterite+1))*75 )
                                 if (!jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->m_friendly && jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->EnVie())
                                 {
-                                    int degats = (rand()%(jeu->hero.m_caracteristiques.degatsMax - jeu->hero.m_caracteristiques.degatsMin+1))+jeu->hero.m_caracteristiques.degatsMin;
-                                    toucher=true,jeu->map->InfligerDegats(jeu->hero.getMonstreVise(),degats,&jeu->hero,1);
+                                    int degats = (rand()%(jeu->hero.m_caracteristiques.degatsMax[PHYSIQUE] - jeu->hero.m_caracteristiques.degatsMin[PHYSIQUE]+1))+jeu->hero.m_caracteristiques.degatsMin[PHYSIQUE];
+                                    toucher=true,jeu->map->InfligerDegats(jeu->hero.getMonstreVise(),degats,PHYSIQUE,&jeu->hero,1);
 
                                     jeu->hero.m_personnage.m_vientDeFrapper = jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise());
                                     jeu->hero.m_personnage.m_degatsInflige  = degats;
 
                                     jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->m_vientDetreTouche = &jeu->hero.m_personnage;
 
-                                    jeu->hero.m_personnage.InfligerDegats(-degats * jeu->hero.m_caracteristiques.volVie, NULL);
+                                    jeu->hero.m_personnage.InfligerDegats(-degats * jeu->hero.m_caracteristiques.volVie, 4, NULL);
                                     jeu->hero.m_caracteristiques.foi += degats *jeu->hero.m_caracteristiques.volFoi;
                                 }
 
@@ -645,6 +645,29 @@ int GestionBoutons(Jeu *jeu)
             jeu->hero.setMonstreVise(-1);
         }
         jeu->menu.ClearSpeakChoice();
+    }
+
+    if(jeu->hero.m_caracteristiques.miracles_restant > 0 || jeu->hero.m_caracteristiques.pts_restant > 0)
+    if (eventManager->getPositionSouris().x >  jeu->hero.m_classe.hud_newlevel.position.x * configuration->Resolution.x/800
+     && eventManager->getPositionSouris().x < (jeu->hero.m_classe.hud_newlevel.position.x +
+                                               jeu->hero.m_classe.hud_newlevel.position.w) * configuration->Resolution.x/800
+     && eventManager->getPositionSouris().y >  jeu->hero.m_classe.hud_newlevel.position.y * configuration->Resolution.y/600
+     && eventManager->getPositionSouris().y < (jeu->hero.m_classe.hud_newlevel.position.y +
+                                               jeu->hero.m_classe.hud_newlevel.position.h) * configuration->Resolution.y/600)
+    {
+        if(eventManager->getEvenement(Mouse::Left,EventClicA))
+        {
+            eventManager->StopEvenement(Mouse::Left,EventClicA);
+            eventManager->StopEvenement(Mouse::Left,EventClic);
+            if(jeu->hero.m_caracteristiques.miracles_restant > 0)
+                return 5;
+            else if(jeu->hero.m_caracteristiques.pts_restant > 0)
+                return 2;
+        }
+
+        moteurGraphique->AjouterTexte(configuration->getText(0,43),coordonnee(eventManager->getPositionSouris().x,
+                                      eventManager->getPositionSouris().y - 20),
+                                      19,0,12,sf::Color(224,224,224),1);
     }
 
     return -1;

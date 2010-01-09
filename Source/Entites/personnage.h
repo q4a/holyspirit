@@ -93,7 +93,7 @@ public:
 
     void Frappe(coordonnee direction,coordonnee position);
 
-    void InfligerDegats(float degats, Modele_Personnage *modele);
+    void InfligerDegats(float degats, int type, Modele_Personnage *modele);
 
     int AjouterEffet(Tileset *tileset, int type, int compteur, int info1, int info2, int info3);
     void DetruireEffets();

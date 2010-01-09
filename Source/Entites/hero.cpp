@@ -756,6 +756,14 @@ void Hero::AfficherCaracteristiques(float decalage)
         string.SetY(263*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
         string.SetColor(sf::Color(255,255,255));
         moteurGraphique->AjouterTexte(&string,15);
+
+        if(eventManager->getPositionSouris().x > string.GetRect().Left
+         &&eventManager->getPositionSouris().x < string.GetRect().Right
+         &&eventManager->getPositionSouris().y > string.GetRect().Top
+         &&eventManager->getPositionSouris().y < string.GetRect().Bottom)
+            moteurGraphique->AjouterTexte(configuration->getText(0,49),coordonnee(  eventManager->getPositionSouris().x,
+                                                                                    eventManager->getPositionSouris().y - 20),
+                                          19,0,12,sf::Color(224,224,224),1);
     }
 
     {
@@ -764,6 +772,14 @@ void Hero::AfficherCaracteristiques(float decalage)
         string.SetY(263*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
         string.SetColor(sf::Color(255,255,255));
         moteurGraphique->AjouterTexte(&string,15);
+
+        if(eventManager->getPositionSouris().x > string.GetRect().Left
+         &&eventManager->getPositionSouris().x < string.GetRect().Right
+         &&eventManager->getPositionSouris().y > string.GetRect().Top
+         &&eventManager->getPositionSouris().y < string.GetRect().Bottom)
+            moteurGraphique->AjouterTexte(configuration->getText(0,50),coordonnee(  eventManager->getPositionSouris().x,
+                                                                                    eventManager->getPositionSouris().y - 20),
+                                          19,0,12,sf::Color(224,224,224),1);
     }
 
     {
@@ -790,6 +806,14 @@ void Hero::AfficherCaracteristiques(float decalage)
     else
         string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
+
+    if(eventManager->getPositionSouris().x > string.GetRect().Left
+     &&eventManager->getPositionSouris().x < string.GetRect().Right
+     &&eventManager->getPositionSouris().y > string.GetRect().Top
+     &&eventManager->getPositionSouris().y < string.GetRect().Bottom)
+        moteurGraphique->AjouterTexte(configuration->getText(0,3),coordonnee(   eventManager->getPositionSouris().x,
+                                                                                eventManager->getPositionSouris().y - 20),
+                                      19,0,12,sf::Color(224,224,224),1);
 
     string.SetCharacterSize(16*configuration->Resolution.h/600);
 
@@ -820,14 +844,22 @@ void Hero::AfficherCaracteristiques(float decalage)
         string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
-    string.SetCharacterSize(16*configuration->Resolution.h/600);
+    if(eventManager->getPositionSouris().x > string.GetRect().Left
+     &&eventManager->getPositionSouris().x < string.GetRect().Right
+     &&eventManager->getPositionSouris().y > string.GetRect().Top
+     &&eventManager->getPositionSouris().y < string.GetRect().Bottom)
+        moteurGraphique->AjouterTexte(configuration->getText(0,4),coordonnee(   eventManager->getPositionSouris().x,
+                                                                                eventManager->getPositionSouris().y - 20),
+                                      19,0,12,sf::Color(224,224,224),1);
+
+    string.SetCharacterSize(14*configuration->Resolution.h/600);
 
     {
         std::ostringstream  buf;
         buf<<m_caracteristiques.force;
         string.SetString(buf.str());
         string.SetX((129*configuration->Resolution.w/800)+21*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
-        string.SetY(311*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+        string.SetY(313*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
         if (m_caracteristiques.force!=m_personnage.getCaracteristique().force)
             string.SetColor(sf::Color(0,128,255));
         else
@@ -867,7 +899,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         buf<<m_caracteristiques.dexterite;
         string.SetString(buf.str());
         string.SetX((129*configuration->Resolution.w/800)+21*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
-        string.SetY(338*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+        string.SetY(341*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
         if (m_caracteristiques.dexterite!=m_personnage.getCaracteristique().dexterite)
             string.SetColor(sf::Color(0,128,255));
         else
@@ -902,7 +934,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         buf<<m_caracteristiques.vitalite;
         string.SetString(buf.str());
         string.SetX((129*configuration->Resolution.w/800)+21*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
-        string.SetY(365*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+        string.SetY(367*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
         if (m_caracteristiques.vitalite!=m_personnage.getCaracteristique().vitalite)
             string.SetColor(sf::Color(0,128,255));
         else
@@ -937,7 +969,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         buf<<m_caracteristiques.piete;
         string.SetString(buf.str());
         string.SetX((129*configuration->Resolution.w/800)+21*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
-        string.SetY(392*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+        string.SetY(394*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
         if (m_caracteristiques.piete!=m_personnage.getCaracteristique().piete)
             string.SetColor(sf::Color(0,128,255));
         else
@@ -972,7 +1004,7 @@ void Hero::AfficherCaracteristiques(float decalage)
         buf<<m_caracteristiques.charisme;
         string.SetString(buf.str());
         string.SetX((129*configuration->Resolution.w/800)+21*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
-        string.SetY(419*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+        string.SetY(421*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
         if (m_caracteristiques.charisme!=m_personnage.getCaracteristique().charisme)
             string.SetColor(sf::Color(0,128,255));
         else
@@ -1003,7 +1035,7 @@ void Hero::AfficherCaracteristiques(float decalage)
 
     string.SetString(configuration->getText(0,12).c_str());
     string.SetX(16*configuration->Resolution.w/800);
-    string.SetY(446*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+    string.SetY(448*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
@@ -1018,43 +1050,125 @@ void Hero::AfficherCaracteristiques(float decalage)
     }
 
 
+    string.SetCharacterSize(12*configuration->Resolution.h/600);
     {
         std::ostringstream  buf;
-        buf<<m_caracteristiques.degatsMin<<" - "<<m_caracteristiques.degatsMax;
+        buf<<m_caracteristiques.degatsMin[PHYSIQUE]<<" - "<<m_caracteristiques.degatsMax[PHYSIQUE];
         string.SetString(buf.str());
-        string.SetX((314*configuration->Resolution.w/800)+32*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
-        string.SetY(300*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
-        if (m_caracteristiques.degatsMin!=m_personnage.getCaracteristique().degatsMin||m_caracteristiques.degatsMax!=m_personnage.getCaracteristique().degatsMax)
+        string.SetX((237*configuration->Resolution.w/800)+32*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
+        string.SetY(343*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+        if (m_caracteristiques.degatsMin[PHYSIQUE] != m_personnage.getCaracteristique().degatsMin[PHYSIQUE]
+          ||m_caracteristiques.degatsMax[PHYSIQUE] != m_personnage.getCaracteristique().degatsMax[PHYSIQUE])
             string.SetColor(sf::Color(0,128,255));
         else
             string.SetColor(sf::Color(255,255,255));
+        moteurGraphique->AjouterTexte(&string,15);
+    }
+    {
+        std::ostringstream  buf;
+        buf<<m_caracteristiques.degatsMin[FEU]<<" - "<<m_caracteristiques.degatsMax[FEU];
+        string.SetString(buf.str());
+        string.SetX((237*configuration->Resolution.w/800)+32*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
+        string.SetY(380*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+        string.SetColor(sf::Color(255,128,128));
+        moteurGraphique->AjouterTexte(&string,15);
+    }
+    {
+        std::ostringstream  buf;
+        buf<<m_caracteristiques.degatsMin[FOI]<<" - "<<m_caracteristiques.degatsMax[FOI];
+        string.SetString(buf.str());
+        string.SetX((237*configuration->Resolution.w/800)+32*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
+        string.SetY(417*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+        string.SetColor(sf::Color(128,128,255));
+        moteurGraphique->AjouterTexte(&string,15);
+    }
+    {
+        std::ostringstream  buf;
+        buf<<m_caracteristiques.degatsMin[CORROSION]<<" - "<<m_caracteristiques.degatsMax[CORROSION];
+        string.SetString(buf.str());
+        string.SetX((237*configuration->Resolution.w/800)+32*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
+        string.SetY(454*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+        string.SetColor(sf::Color(128,255,128));
         moteurGraphique->AjouterTexte(&string,15);
     }
 
     string.SetString(configuration->getText(0,10).c_str());
-    string.SetX(234*configuration->Resolution.w/800);
-    string.SetY(300*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+    string.SetX(240*configuration->Resolution.w/800);
+    string.SetY(324*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
     {
         std::ostringstream  buf;
-        buf<<m_caracteristiques.armure;
+        buf<<m_caracteristiques.armure[PHYSIQUE];
         string.SetString(buf.str());
-        string.SetX((314*configuration->Resolution.w/800)+32*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
-        string.SetY(327*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
-        if (m_caracteristiques.armure!=m_personnage.getCaracteristique().armure)
+        string.SetX((344*configuration->Resolution.w/800)+21*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
+        string.SetY(342*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+        if (m_caracteristiques.armure[PHYSIQUE]!=m_personnage.getCaracteristique().armure[PHYSIQUE])
             string.SetColor(sf::Color(0,128,255));
         else
             string.SetColor(sf::Color(255,255,255));
         moteurGraphique->AjouterTexte(&string,15);
     }
+    {
+        std::ostringstream  buf;
+        buf<<m_caracteristiques.armure[FEU];
+        string.SetString(buf.str());
+        string.SetX((344*configuration->Resolution.w/800)+21*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
+        string.SetY(379*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+        string.SetColor(sf::Color(255,128,128));
+        moteurGraphique->AjouterTexte(&string,15);
+    }
+    {
+        std::ostringstream  buf;
+        buf<<m_caracteristiques.armure[FOI];
+        string.SetString(buf.str());
+        string.SetX((344*configuration->Resolution.w/800)+21*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
+        string.SetY(416*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+        string.SetColor(sf::Color(128,128,255));
+        moteurGraphique->AjouterTexte(&string,15);
+    }
+    {
+        std::ostringstream  buf;
+        buf<<m_caracteristiques.armure[CORROSION];
+        string.SetString(buf.str());
+        string.SetX((344*configuration->Resolution.w/800)+21*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
+        string.SetY(453*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+        string.SetColor(sf::Color(128,255,128));
+        moteurGraphique->AjouterTexte(&string,15);
+    }
 
     string.SetString(configuration->getText(0,11).c_str());
-    string.SetX(234*configuration->Resolution.w/800);
-    string.SetY(327*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+    string.SetX(340*configuration->Resolution.w/800);
+    string.SetY(324*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
+
+
+    if(eventManager->getPositionSouris().x > 233
+     &&eventManager->getPositionSouris().x < 233 + 157)
+    {
+        if(eventManager->getPositionSouris().y > 339
+         &&eventManager->getPositionSouris().y < 339 + 21)
+            moteurGraphique->AjouterTexte(configuration->getText(0,44),coordonnee(  eventManager->getPositionSouris().x,
+                                                                                    eventManager->getPositionSouris().y - 20),
+                                          19,0,12,sf::Color(224,224,224),1);
+        if(eventManager->getPositionSouris().y > 376
+         &&eventManager->getPositionSouris().y < 376 + 21)
+            moteurGraphique->AjouterTexte(configuration->getText(0,45),coordonnee(  eventManager->getPositionSouris().x,
+                                                                                    eventManager->getPositionSouris().y - 20),
+                                          19,0,12,sf::Color(224,224,224),1);
+        if(eventManager->getPositionSouris().y > 415
+         &&eventManager->getPositionSouris().y < 415 + 21)
+            moteurGraphique->AjouterTexte(configuration->getText(0,46),coordonnee(  eventManager->getPositionSouris().x,
+                                                                                    eventManager->getPositionSouris().y - 20),
+                                          19,0,12,sf::Color(224,224,224),1);
+        if(eventManager->getPositionSouris().y > 452
+         &&eventManager->getPositionSouris().y < 452 + 21)
+            moteurGraphique->AjouterTexte(configuration->getText(0,47),coordonnee(  eventManager->getPositionSouris().x,
+                                                                                    eventManager->getPositionSouris().y - 20),
+                                          19,0,12,sf::Color(224,224,224),1);
+    }
 
     {
         std::ostringstream  buf;
@@ -1062,10 +1176,16 @@ void Hero::AfficherCaracteristiques(float decalage)
         string.SetString(buf.str());
         string.SetCharacterSize(14*configuration->Resolution.h/600);
         string.SetX((112*configuration->Resolution.w/800)+32*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
-        string.SetY(218*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+        string.SetY(219*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
         string.SetColor(sf::Color(255,255,255));
         moteurGraphique->AjouterTexte(&string,15);
     }
+
+    string.SetString(configuration->getText(0,48).c_str());
+    string.SetX(32*configuration->Resolution.w/800);
+    string.SetY(220*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+    string.SetColor(sf::Color(255,255,255));
+    moteurGraphique->AjouterTexte(&string,15);
 }
 
 void Hero::AfficherAmis()
@@ -1112,7 +1232,7 @@ void Hero::AfficherAmis()
                         }
 
                     if(!charme)
-                        m_amis[i]->InfligerDegats(m_amis[i]->getCaracteristique().vie * 2, NULL);
+                        m_amis[i]->InfligerDegats(m_amis[i]->getCaracteristique().vie * 2, 4, NULL);
 
                     m_amis.erase(m_amis.begin() + i);
                     i--;
@@ -1193,10 +1313,10 @@ void Hero::AfficherPotales(float decalage)
 
         moteurGraphique->AjouterTexte(&texte,15);
 
-        if (eventManager->getPositionSouris().x > m_classe.position_contenu_description_quete.x * configuration->Resolution.w/800
-                &&eventManager->getPositionSouris().x < (m_classe.position_contenu_description_quete.x + m_classe.position_contenu_description_quete.w) * configuration->Resolution.w/800
-                &&eventManager->getPositionSouris().y > texte.GetRect().Top
-                &&eventManager->getPositionSouris().y < texte.GetRect().Bottom)
+        if(eventManager->getPositionSouris().x > m_classe.position_contenu_description_quete.x * configuration->Resolution.w/800
+        && eventManager->getPositionSouris().x < (m_classe.position_contenu_description_quete.x + m_classe.position_contenu_description_quete.w) * configuration->Resolution.w/800
+        && eventManager->getPositionSouris().y > texte.GetRect().Top
+        && eventManager->getPositionSouris().y < texte.GetRect().Bottom)
         {
             sf::Sprite sprite;
             sprite.SetImage(*moteurGraphique->getImage(0));
@@ -1981,36 +2101,44 @@ void Hero::RecalculerCaracteristiques(bool bis)
                 for (int j=0;j<(int)m_inventaire[i].m_benedictions.size();++j)
                     switch (m_inventaire[i].m_benedictions[j].type)
                     {
-                    case FO_SUPP:
-                        m_caracteristiques.force+=m_inventaire[i].m_benedictions[j].info1;
-                        break;
-                    case VIT_SUPP:
-                        m_caracteristiques.vitalite+=m_inventaire[i].m_benedictions[j].info1;
-                        break;
-                    case PI_SUPP:
-                        m_caracteristiques.piete+=m_inventaire[i].m_benedictions[j].info1;
-                        break;
-                    case DEX_SUPP:
-                        m_caracteristiques.dexterite+=m_inventaire[i].m_benedictions[j].info1;
-                        break;
-                    case CH_SUPP:
-                        m_caracteristiques.charisme+=m_inventaire[i].m_benedictions[j].info1;
-                        break;
-                    case VIE_SUPP:
-                        m_caracteristiques.maxVie+=m_inventaire[i].m_benedictions[j].info1;
-                        break;
-                    case FOI_SUPP:
-                        m_caracteristiques.maxFoi+=m_inventaire[i].m_benedictions[j].info1;
-                        break;
+                        case CARACT_SUPP:
+                            if(m_inventaire[i].m_benedictions[j].info1 == FORCE)
+                                m_caracteristiques.force    += m_inventaire[i].m_benedictions[j].info2;
+                            if(m_inventaire[i].m_benedictions[j].info1 == DEXTERITE)
+                                m_caracteristiques.dexterite+= m_inventaire[i].m_benedictions[j].info2;
+                            if(m_inventaire[i].m_benedictions[j].info1 == VITALITE)
+                                m_caracteristiques.vitalite += m_inventaire[i].m_benedictions[j].info2;
+                            if(m_inventaire[i].m_benedictions[j].info1 == PIETE)
+                                m_caracteristiques.piete    += m_inventaire[i].m_benedictions[j].info2;
+                            if(m_inventaire[i].m_benedictions[j].info1 == CHARISME)
+                                m_caracteristiques.charisme += m_inventaire[i].m_benedictions[j].info2;
+                            break;
+                        case POINTS_SUPP:
+                            if(m_inventaire[i].m_benedictions[j].info1 == PT_VIE)
+                                m_caracteristiques.maxVie   += m_inventaire[i].m_benedictions[j].info2;
+                            if(m_inventaire[i].m_benedictions[j].info1 == PT_FOI)
+                                m_caracteristiques.maxFoi   += m_inventaire[i].m_benedictions[j].info2;
+                            break;
                     }
 
-    m_caracteristiques.degatsMin=0/*m_caracteristiques.force/3*/;
-    m_caracteristiques.degatsMax=0/*(int)(m_caracteristiques.force)/2*/;
-    m_caracteristiques.armure=m_caracteristiques.dexterite;
+    for(int i = 0 ; i < 4 ; ++i)
+    {
+        m_caracteristiques.degatsMin[i]=0;
+        m_caracteristiques.degatsMax[i]=0;
 
-    temp.degatsMin=0/*m_caracteristiques.force/3*/;
-    temp.degatsMax=0/*(int)(m_caracteristiques.force)/2*/;
-    temp.armure=m_caracteristiques.dexterite;
+        temp.degatsMin[i]=0;
+        temp.degatsMax[i]=0;
+    }
+
+    m_caracteristiques.armure[PHYSIQUE] = m_caracteristiques.dexterite*2;
+    temp.armure[PHYSIQUE]               = m_caracteristiques.dexterite*2;
+
+    m_caracteristiques.armure[FEU] = 0;
+    temp.armure[FEU]               = 0;
+    m_caracteristiques.armure[FOI] = 0;
+    temp.armure[FOI]               = 0;
+    m_caracteristiques.armure[CORROSION] = 0;
+    temp.armure[CORROSION]               = 0;
 
     m_caracteristiques.maxVie+=m_caracteristiques.vitalite*10;
     m_caracteristiques.maxFoi+=m_caracteristiques.piete*10;
@@ -2025,17 +2153,28 @@ void Hero::RecalculerCaracteristiques(bool bis)
                     if (m_inventaire[i].m_benedictions[j].type==EFFICACITE_ACCRUE)
                         accru+=m_inventaire[i].m_benedictions[j].info1;
 
-                m_caracteristiques.degatsMin+=m_inventaire[i].m_degatsMin*(m_caracteristiques.force + 100)/100*accru/100;
-                m_caracteristiques.degatsMax+=m_inventaire[i].m_degatsMax*(m_caracteristiques.force + 100)/100*accru/100;
-                m_caracteristiques.armure+=m_inventaire[i].m_armure*accru/100;
+                m_caracteristiques.degatsMin[PHYSIQUE]  +=m_inventaire[i].m_degatsMin*(m_caracteristiques.force + 100)/100*accru/100;
+                m_caracteristiques.degatsMax[PHYSIQUE]  +=m_inventaire[i].m_degatsMax*(m_caracteristiques.force + 100)/100*accru/100;
+                m_caracteristiques.armure[PHYSIQUE]     +=m_inventaire[i].m_armure*accru/100;
 
                 for (int j=0;j<(int)m_inventaire[i].m_benedictions.size();++j)
-                    if (m_inventaire[i].m_benedictions[j].type==DEGATS_FEU||m_inventaire[i].m_benedictions[j].type==DEGATS_FOI)
-                        m_caracteristiques.degatsMin+=m_inventaire[i].m_benedictions[j].info1,m_caracteristiques.degatsMax+=m_inventaire[i].m_benedictions[j].info1;
+                {
+                     if (m_inventaire[i].m_benedictions[j].type==DEGATS_SUPP)
+                     {
+                        m_caracteristiques.degatsMin[m_inventaire[i].m_benedictions[j].info1]+=m_inventaire[i].m_benedictions[j].info2;
+                        m_caracteristiques.degatsMax[m_inventaire[i].m_benedictions[j].info1]+=m_inventaire[i].m_benedictions[j].info3;
+                     }
 
-                temp.degatsMin+=m_inventaire[i].m_degatsMin*(m_caracteristiques.force + 100)/100;
-                temp.degatsMax+=m_inventaire[i].m_degatsMax*(m_caracteristiques.force + 100)/100;
-                temp.armure+=m_inventaire[i].m_armure;
+                     if (m_inventaire[i].m_benedictions[j].type==ARMURE_SUPP)
+                     {
+                        m_caracteristiques.armure[m_inventaire[i].m_benedictions[j].info1]+=m_inventaire[i].m_benedictions[j].info2;
+                     }
+                }
+
+
+                temp.degatsMin[PHYSIQUE]  += m_inventaire[i].m_degatsMin*(m_caracteristiques.force + 100)/100;
+                temp.degatsMax[PHYSIQUE]  += m_inventaire[i].m_degatsMax*(m_caracteristiques.force + 100)/100;
+                temp.armure[PHYSIQUE]     += m_inventaire[i].m_armure;
             }
 
     for (int i = 0; i < (int)m_personnage.m_effets.size(); ++i)
@@ -2043,8 +2182,9 @@ void Hero::RecalculerCaracteristiques(bool bis)
         {
             if (m_personnage.m_effets[i].m_type == AURA_DEGATS)
             {
-                m_caracteristiques.degatsMin += (int)m_personnage.m_effets[i].m_info2;
-                m_caracteristiques.degatsMax += (int)m_personnage.m_effets[i].m_info3;
+                console->Ajouter("JE SUIS DANS HEROS LIGNE 2065, AURA DEGATS !!!!!!!!!");
+               // m_caracteristiques.degatsMin += (int)m_personnage.m_effets[i].m_info2;
+                //m_caracteristiques.degatsMax += (int)m_personnage.m_effets[i].m_info3;
             }
 
             if (m_personnage.m_effets[i].m_type == AURA_REGENERATION)
@@ -2524,7 +2664,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
                 m_achat=false;
             }
         }
-        else if(trader)
+        else
         {
             for (int z=0;z<(int)m_inventaire.size();z++)
                 if (m_inventaire[z].m_equipe==-1)

@@ -123,8 +123,8 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
         {
             m_caracteristique.maxVie*=5;
             m_caracteristique.vie*=5;
-            m_caracteristique.degatsMin=(int)((float)m_caracteristique.degatsMin*1.25);
-            m_caracteristique.degatsMax=(int)((float)m_caracteristique.degatsMax*1.25);
+            m_caracteristique.degatsMin[PHYSIQUE]=(int)((float)m_caracteristique.degatsMin[PHYSIQUE]*1.25);
+            m_caracteristique.degatsMax[PHYSIQUE]=(int)((float)m_caracteristique.degatsMax[PHYSIQUE]*1.25);
             m_caracteristique.pointAme*=2;
 
             m_caracteristique.modificateurTaille*=1.1;
@@ -133,8 +133,8 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
         {
             m_caracteristique.maxVie*=10;
             m_caracteristique.vie*=10;
-            m_caracteristique.degatsMin=(int)((float)m_caracteristique.degatsMin*1.5);
-            m_caracteristique.degatsMax=(int)((float)m_caracteristique.degatsMax*1.5);
+            m_caracteristique.degatsMin[PHYSIQUE]=(int)((float)m_caracteristique.degatsMin[PHYSIQUE]*1.5);
+            m_caracteristique.degatsMax[PHYSIQUE]=(int)((float)m_caracteristique.degatsMax[PHYSIQUE]*1.5);
             m_caracteristique.pointAme*=4;
 
             m_caracteristique.modificateurTaille*=1.2;
@@ -170,8 +170,14 @@ bool Modele_Monstre::Charger(const std::string &chemin)
 
     m_caracteristique.vitesse=0;
     m_caracteristique.vie=0;
-    m_caracteristique.degatsMin=0;
-    m_caracteristique.degatsMax=0;
+
+    for(int i = 0 ; i < 4 ; ++i)
+    {
+        m_caracteristique.degatsMin[i]=0;
+        m_caracteristique.degatsMax[i]=0;
+        m_caracteristique.armure[i]=0;
+    }
+
     m_caracteristique.rang=0;
 
     m_caracteristique.dexterite=0;
@@ -311,8 +317,8 @@ bool Modele_Monstre::Charger(const std::string &chemin)
                         break;
                     case 'd':
                         fichier.get(caractere);
-                        if (caractere=='i') fichier>>m_caracteristique.degatsMin;
-                        else fichier>>m_caracteristique.degatsMax ;
+                        if (caractere=='i') fichier>>m_caracteristique.degatsMin[PHYSIQUE];
+                        else fichier>>m_caracteristique.degatsMax[PHYSIQUE] ;
                         break;
                     case 'm':
                         fichier>>m_caracteristique.vitesse;

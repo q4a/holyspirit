@@ -542,8 +542,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                             Caracteristique caracteristique = m_monstre.back().getCaracteristique();
                             caracteristique.vie=vieMin;
                             caracteristique.maxVie=vieMax;
-                            caracteristique.degatsMin=degatsMin;
-                            caracteristique.degatsMax=degatsMax;
+                            caracteristique.degatsMin[PHYSIQUE]=degatsMin;
+                            caracteristique.degatsMax[PHYSIQUE]=degatsMax;
                             caracteristique.rang=rang;
                             caracteristique.pointAme=ame;
                             caracteristique.modificateurTaille=taille;
@@ -1692,7 +1692,8 @@ bool Map::TestEvenement(Jeu *jeu,float temps)
 
                 if (m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getType()==INFLIGER_DEGATS)
                 {
-                    jeu->hero.m_personnage.InfligerDegats(m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(0)*temps*10, NULL);
+                    jeu->hero.m_personnage.InfligerDegats(m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(0)*temps*50,
+                                                          m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(1), NULL);
                 }
             }
     return 1;
@@ -1834,9 +1835,9 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                                             m_monstre[monstre].m_degatsInflige  = degats;
 
                                             m_monstre[monstre].m_cible->m_vientDetreTouche = &m_monstre[monstre];
-                                            InfligerDegats(m_monstre[monstre].m_cible, degats, hero, 0);
+                                            InfligerDegats(m_monstre[monstre].m_cible, degats, 0, hero, 0);
 
-                                            m_monstre[monstre].InfligerDegats(-degats * m_monstre[monstre].getCaracteristique().volVie, NULL);
+                                            m_monstre[monstre].InfligerDegats(-degats * m_monstre[monstre].getCaracteristique().volVie, 4, NULL);
                                         }
                                 }
                             }
@@ -1865,7 +1866,7 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                         GererMiracle(&m_monstre[monstre],m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles,temps,positionHero,hero);
 
                         if(m_monstre[monstre].m_doitMourir && m_monstre[monstre].EnVie() )
-                            InfligerDegats(&m_monstre[monstre], m_monstre[monstre].getCaracteristique().vie, hero, 0);
+                            InfligerDegats(&m_monstre[monstre], m_monstre[monstre].getCaracteristique().vie, 4, hero, 0);
                     }
                 }
             }
@@ -2553,7 +2554,7 @@ bool Map::Miracle_Degats(Hero *hero, Personnage *personnage, Miracle &modele, Ef
             {
                 info.m_position = info.m_cible->getCoordonneePixel();
                 if(deg != 0)
-                    InfligerDegats(info.m_cible, deg, hero, 0);
+                    InfligerDegats(info.m_cible, deg, effet.m_informations[2], hero, 0);
             }
     }
 
@@ -3211,7 +3212,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         else if (script->m_instructions[noInstruction].nom=="setState" && monstre != -1)
             Script_SetState(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="dammages" && monstre != -1)
-            InfligerDegats(monstre, script->m_instructions[noInstruction].valeurs.at(0), hero, false);
+            InfligerDegats(monstre, script->m_instructions[noInstruction].valeurs.at(0), 4, hero, false);
         else if (script->m_instructions[noInstruction].nom=="shoot" && monstre != -1)
             Script_Shoot(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="randomDisplace" && monstre != -1)
@@ -3695,7 +3696,8 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                                 if (m_decor[l][m_monstre[monstre].getCoordonnee().y][m_monstre[monstre].getCoordonnee().x].getEvenement()[z]>=0&&m_decor[l][m_monstre[monstre].getCoordonnee().y][m_monstre[monstre].getCoordonnee().x].getEvenement()[z]<(int)m_evenement.size())
                                     if (m_evenement[m_decor[l][m_monstre[monstre].getCoordonnee().y][m_monstre[monstre].getCoordonnee().x].getEvenement()[z]].getType()==INFLIGER_DEGATS)
                                         if (m_monstre[monstre].EnVie())
-                                            InfligerDegats(monstre,m_evenement[m_decor[l][m_monstre[monstre].getCoordonnee().y][m_monstre[monstre].getCoordonnee().x].getEvenement()[z]].getInformation(0)*temps*10,hero,0);
+                                            InfligerDegats(monstre,m_evenement[m_decor[l][m_monstre[monstre].getCoordonnee().y][m_monstre[monstre].getCoordonnee().x].getEvenement()[z]].getInformation(0)*temps*10,
+                                                                   m_evenement[m_decor[l][m_monstre[monstre].getCoordonnee().y][m_monstre[monstre].getCoordonnee().x].getEvenement()[z]].getInformation(1),hero,0);
 
                     if (m_monstre[monstre].EnVie())
                         if (m_monstre[monstre].getCoordonnee().y!=j || m_monstre[monstre].getCoordonnee().x != k)
@@ -3798,11 +3800,11 @@ bool Map::TileVisible(int x,int y, coordonnee pos)
     return true;
 }
 
-bool Map::InfligerDegats(int numero, float degats, Hero *hero,bool pousser)
+bool Map::InfligerDegats(int numero, float degats, int type, Hero *hero,bool pousser)
 {
     if (numero >= 0 && numero < (int)m_monstre.size())
     {
-        return InfligerDegats(&m_monstre[numero], degats, hero, pousser);
+        return InfligerDegats(&m_monstre[numero], degats, type, hero, pousser);
 
         if (!m_monstre[numero].EnVie())
             if (m_monstreIllumine == numero || hero->getMonstreVise() == numero)
@@ -3811,7 +3813,7 @@ bool Map::InfligerDegats(int numero, float degats, Hero *hero,bool pousser)
     return (false);
 }
 
-bool Map::InfligerDegats(Personnage *monstre, float degats, Hero *hero,bool pousser)
+bool Map::InfligerDegats(Personnage *monstre, float degats, int type, Hero *hero,bool pousser)
 {
     /*if (configuration->sang&&monstre->EnVie())
         for (int i=0;i<5;++i)
@@ -3846,9 +3848,9 @@ bool Map::InfligerDegats(Personnage *monstre, float degats, Hero *hero,bool pous
 
 
         if(monstre != &hero->m_personnage)
-            monstre->InfligerDegats(degats, &m_ModeleMonstre[monstre->getModele()]);
+            monstre->InfligerDegats(degats, type, &m_ModeleMonstre[monstre->getModele()]);
         else
-            monstre->InfligerDegats(degats, &hero->m_modelePersonnage[0]);
+            monstre->InfligerDegats(degats, type, &hero->m_modelePersonnage[0]);
 
         /*hero->m_personnage.InfligerDegats(-degats * hero->m_caracteristiques.volVie, NULL);
         hero->m_caracteristiques.foi += degats * hero->m_caracteristiques.volFoi;*/
@@ -3868,7 +3870,7 @@ bool Map::InfligerDegats(Personnage *monstre, float degats, Hero *hero,bool pous
                 if (monstre->m_miracleEnCours[i].m_infos[o]->m_effetEnCours>=0)
                     if (m_ModeleMonstre[monstre->getModele()].m_miracles[monstre->m_miracleEnCours[i].m_modele].m_effets[monstre->m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type==INVOCATION)
                         if (monstre->m_miracleEnCours[i].m_infos[o]->m_IDObjet>=0&&monstre->m_miracleEnCours[i].m_infos[o]->m_IDObjet<(int)m_monstre.size())
-                            InfligerDegats(monstre->m_miracleEnCours[i].m_infos[o]->m_IDObjet, m_monstre[monstre->m_miracleEnCours[i].m_infos[o]->m_IDObjet].getCaracteristique().vie ,hero,false);
+                            InfligerDegats(monstre->m_miracleEnCours[i].m_infos[o]->m_IDObjet, m_monstre[monstre->m_miracleEnCours[i].m_infos[o]->m_IDObjet].getCaracteristique().vie, 4,hero,false);
         }
 
         if (monstre->getCaracteristique().pointAme>0)

@@ -21,7 +21,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "singleton.h"
 #include "constantes.h"
 
-#define NOMBRE_BENEDICTION 10
 
 class Configuration : public CSingleton<Configuration>
 {

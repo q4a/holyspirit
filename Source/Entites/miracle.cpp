@@ -294,12 +294,12 @@ float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int leve
             valeur = level;
 
         else if (caractere == 'i')
-            valeur = caract.degatsMin;
+            valeur = caract.degatsMin[PHYSIQUE];
         else if (caractere == 'a')
-            valeur = caract.degatsMax;
+            valeur = caract.degatsMax[PHYSIQUE];
 
         else if (caractere == 'b')
-            valeur = caract.armure;
+            valeur = caract.armure[PHYSIQUE];
 
         else if (caractere == '(')
             valeur = ChargerEquation(fichier, caract, level, '+', continuer);
