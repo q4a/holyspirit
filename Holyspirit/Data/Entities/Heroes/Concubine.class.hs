@@ -36,7 +36,7 @@ $
 $
 	* x8 y278 w32 h32 m Data/Menus/Scroll_button.png $
 $
-	* x0 y344 w800 h256 m Data/Menus/Talks.png $
+	* x0 y312 w800 h288 m Data/Menus/Talks.png $
 $
 	* x0 y0 w800 h600 m Data/Menus/Quest.png $
 $
