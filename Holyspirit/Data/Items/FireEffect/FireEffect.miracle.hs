@@ -1,11 +1,13 @@
 $
 $
+	* i1 $
+	* a1 $
 $
 $
 $
 //Effets
 	* t-1 l1 l3 $
-	* t2 l2 ia0 ib0 ic1 $
+	* t2 l2 ia%0 ib%1 ic1 $
 	* t3 s0 ia8 $
 	* t-1 $
 $
