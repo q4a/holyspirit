@@ -8,11 +8,13 @@ using namespace sf;
 GUIWindow::GUIWindow()
 {
     m_window.Create(VideoMode(800, 600, 32), "Window", Style::Titlebar);
+    m_window.UseVerticalSync(true);
 }
 
 GUIWindow::GUIWindow(int x, int y, std::string title)
 {
     m_window.Create(VideoMode(x, y, 32), title, Style::Titlebar);
+    m_window.UseVerticalSync(true);
 }
 
 

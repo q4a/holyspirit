@@ -16,8 +16,7 @@ Bejeweled::Bejeweled(int x, int y) : Widget(x, y)
 
     m_gear.LoadFromFile("pictures/Bejeweled/gear.png");
     m_sprite_gear.SetImage(m_gear);
-    m_sprite_gear.SetOrigin(m_sprite_gear.GetSize().x * 0.5,
-                            m_sprite_gear.GetSize().y * 0.5);
+    m_sprite_gear.SetOrigin(45,45);
 
     m_go_rotation   = false;
     m_gear_rotation  = 0;
@@ -62,8 +61,7 @@ Bejeweled::Bejeweled(int x, int y, int w, int h) : Widget(x, y, w, h)
         }
     m_gear.LoadFromFile("pictures/Bejeweled/gear.png");
     m_sprite_gear.SetImage(m_gear);
-    m_sprite_gear.SetOrigin(m_sprite_gear.GetSize().x * 0.5,
-                            m_sprite_gear.GetSize().y * 0.5);
+    m_sprite_gear.SetOrigin(45,45);
 
     m_drawable = new sf::Sprite();
 }
@@ -126,22 +124,29 @@ void Bejeweled::Update()
     if(mainEventManager->GetMousePosition().x >= pos.x
     && mainEventManager->GetMousePosition().y >= pos.y
     && mainEventManager->GetMousePosition().x <= pos.x + m_size.x
-    && mainEventManager->GetMousePosition().y <= pos.y + m_size.y
-    && mainEventManager->GetEvent(EventMouse, sf::Mouse::Left))
+    && mainEventManager->GetMousePosition().y <= pos.y + m_size.y)
     {
-        if(!m_go_rotation)
+        mainEventManager->ShowCursor(false);
+        if(mainEventManager->GetEvent(EventMouse, sf::Mouse::Left))
         {
-            Jeweld buf = m_tab_jewelds[m_position_gear.x][m_position_gear.y];
+            if(!m_go_rotation)
+            {
+                Jeweld buf = m_tab_jewelds[m_position_gear.x][m_position_gear.y];
 
-            m_tab_jewelds[m_position_gear.x]     [m_position_gear.y]         = m_tab_jewelds[m_position_gear.x]    [m_position_gear.y + 1];
+                m_tab_jewelds[m_position_gear.x]     [m_position_gear.y]         = m_tab_jewelds[m_position_gear.x]    [m_position_gear.y + 1];
 
-            m_tab_jewelds[m_position_gear.x]     [m_position_gear.y + 1]     = m_tab_jewelds[m_position_gear.x + 1][m_position_gear.y + 1];
+                m_tab_jewelds[m_position_gear.x]     [m_position_gear.y + 1]     = m_tab_jewelds[m_position_gear.x + 1][m_position_gear.y + 1];
 
-            m_tab_jewelds[m_position_gear.x + 1] [m_position_gear.y + 1]     = m_tab_jewelds[m_position_gear.x + 1][m_position_gear.y];
+                m_tab_jewelds[m_position_gear.x + 1] [m_position_gear.y + 1]     = m_tab_jewelds[m_position_gear.x + 1][m_position_gear.y];
 
-            m_tab_jewelds[m_position_gear.x + 1] [m_position_gear.y]         = buf;
+                m_tab_jewelds[m_position_gear.x + 1] [m_position_gear.y]         = buf;
+            }
+            m_go_rotation = true;
         }
-        m_go_rotation = true;
+    }
+    else
+    {
+        mainEventManager->ShowCursor(true);
     }
 
 
@@ -228,8 +233,8 @@ void Bejeweled::Update()
                 }
             }
 
-            m_tab_jewelds[x][y].m_sprite.SetPosition(m_tab_jewelds[x][y].m_position.x + pos.x + 16,
-                                                    m_tab_jewelds[x][y].m_position.y + pos.y + 16);
+            m_tab_jewelds[x][y].m_sprite.SetPosition(   m_tab_jewelds[x][y].m_position.x + (float)pos.x + 16.0f,
+                                                        m_tab_jewelds[x][y].m_position.y + (float)pos.y + 16.0f);
 
             if(m_tab_jewelds[x][y].m_position.x == x * 32
              &&m_tab_jewelds[x][y].m_position.y == y * 32)
@@ -276,12 +281,12 @@ void Bejeweled::Update()
         for(std::vector<sf::Sprite>::iterator i = m_jeweleds_destruction.begin();
             i != m_jeweleds_destruction.end() ; ++i)
         {
-            if(i->GetColor().a-mainEventManager->GetTime() * 100 < 0)
+            if(i->GetColor().a-mainEventManager->GetTime() * 200 < 0)
                 m_jeweleds_destruction.erase(i), i--;
             else
             {
                 i->Scale(1+mainEventManager->GetTime(),1+mainEventManager->GetTime());
-                i->SetColor(sf::Color(255,255,255,i->GetColor().a-mainEventManager->GetTime() * 100));
+                i->SetColor(sf::Color(255,255,255,(int)((float)i->GetColor().a-mainEventManager->GetTime() * 200)));
             }
         }
 }

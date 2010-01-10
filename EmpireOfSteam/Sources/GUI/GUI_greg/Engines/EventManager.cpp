@@ -15,6 +15,8 @@ EventManager::EventManager()
 
     m_time  = 0;
     m_clock.Reset();
+
+    m_show_cursor = true;
 }
 
 EventManager::~EventManager()
@@ -86,4 +88,13 @@ float EventManager::GetTime()
 const sf::Vector2i &EventManager::GetMousePosition()
 {
     return m_mouse_pos;
+}
+
+void EventManager::ShowCursor(bool show)
+{
+    m_show_cursor = show;
+}
+bool EventManager::GetShowCursor()
+{
+    return (m_show_cursor);
 }

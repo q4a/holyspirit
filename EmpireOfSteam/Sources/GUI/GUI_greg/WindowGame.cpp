@@ -26,7 +26,7 @@ WindowGame::WindowGame() : GUIWindow(1024,768,"Steam Empire")
     m_cadran_map                = new GUIImage("pictures/GUI/laitonMap.png");
     m_map                       = new GUIImage(16,12,480,360,"pictures/GUI/map.png");
 
-    m_bejeweled                 = new Bejeweled(96,32,320,320);
+    m_bejeweled                 = new Bejeweled(94,32,320,320);
 
     AddWidget(m_panel_ressources);
     AddWidget(m_panel_map);
@@ -82,6 +82,8 @@ void WindowGame::Run()
     {
         mainEventManager->Update(m_window);
         Update();
+
+        m_window.ShowMouseCursor(mainEventManager->GetShowCursor());
 
         if(mainEventManager->GetEvent(EventKey, sf::Key::Escape))
             m_window.Close();

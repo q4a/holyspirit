@@ -23,6 +23,9 @@ class EventManager : public CSingleton<EventManager>
 
                 float           GetTime();
 
+                void            ShowCursor(bool);
+                bool            GetShowCursor();
+
     protected:
 
     private:
@@ -37,6 +40,8 @@ class EventManager : public CSingleton<EventManager>
 
         float           m_time;
         sf::Clock       m_clock;
+
+        bool            m_show_cursor;
 
 };
 
