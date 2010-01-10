@@ -21,6 +21,8 @@ class EventManager : public CSingleton<EventManager>
                 bool            GetEvent(int, int);
         const   sf::Vector2i   &GetMousePosition();
 
+                float           GetTime();
+
     protected:
 
     private:
@@ -32,6 +34,9 @@ class EventManager : public CSingleton<EventManager>
 
         int             m_wheel;
         sf::Vector2i    m_mouse_pos;
+
+        float           m_time;
+        sf::Clock       m_clock;
 
 };
 

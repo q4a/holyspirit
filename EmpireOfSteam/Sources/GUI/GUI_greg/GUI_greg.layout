@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Release" />
+	<File name="Bejeweled.cpp" open="1" top="1" tabpos="15">
+		<Cursor position="10698" topLine="256" />
+	</File>
+	<File name="Bejeweled.hpp" open="1" top="0" tabpos="14">
+		<Cursor position="913" topLine="18" />
+	</File>
+	<File name="Engines\EventManager.cpp" open="1" top="0" tabpos="17">
+		<Cursor position="2087" topLine="57" />
+	</File>
+	<File name="Engines\EventManager.hpp" open="1" top="0" tabpos="18">
+		<Cursor position="713" topLine="0" />
+	</File>
 	<File name="GUI\Button.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="681" topLine="0" />
+		<Cursor position="2599" topLine="81" />
 	</File>
 	<File name="GUI\Button.hpp" open="1" top="0" tabpos="3">
 		<Cursor position="744" topLine="8" />
 	</File>
 	<File name="GUI\GUIImage.cpp" open="1" top="0" tabpos="13">
-		<Cursor position="862" topLine="0" />
+		<Cursor position="268" topLine="0" />
+	</File>
+	<File name="GUI\GUIImage.hpp" open="1" top="0" tabpos="16">
+		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="GUI\GUIWindow.cpp" open="1" top="0" tabpos="9">
 		<Cursor position="769" topLine="0" />
@@ -23,19 +38,19 @@
 		<Cursor position="13" topLine="0" />
 	</File>
 	<File name="GUI\Widget.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="1155" topLine="29" />
+		<Cursor position="1883" topLine="72" />
 	</File>
 	<File name="GUI\Widget.hpp" open="1" top="0" tabpos="1">
-		<Cursor position="1013" topLine="11" />
+		<Cursor position="0" topLine="11" />
 	</File>
 	<File name="Global.hpp" open="1" top="0" tabpos="8">
 		<Cursor position="161" topLine="0" />
 	</File>
-	<File name="WindowGame.cpp" open="1" top="1" tabpos="7">
-		<Cursor position="1277" topLine="6" />
+	<File name="WindowGame.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="1424" topLine="13" />
 	</File>
 	<File name="WindowGame.hpp" open="1" top="0" tabpos="5">
-		<Cursor position="818" topLine="6" />
+		<Cursor position="881" topLine="10" />
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="21" topLine="0" />

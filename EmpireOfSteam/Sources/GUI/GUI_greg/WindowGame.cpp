@@ -26,12 +26,16 @@ WindowGame::WindowGame() : GUIWindow(1024,768,"Steam Empire")
     m_cadran_map                = new GUIImage("pictures/GUI/laitonMap.png");
     m_map                       = new GUIImage(16,12,480,360,"pictures/GUI/map.png");
 
+    m_bejeweled                 = new Bejeweled(96,32,320,320);
+
     AddWidget(m_panel_ressources);
     AddWidget(m_panel_map);
     AddWidget(m_panel_bejeweled);
     AddWidget(m_panel_city);
 
+    m_panel_bejeweled->AddWidget(m_bejeweled);
     m_panel_bejeweled->AddWidget(m_cadran_bejeweled);
+
     m_panel_map->AddWidget(m_map);
     m_panel_map->AddWidget(m_cadran_map);
 
@@ -68,6 +72,8 @@ WindowGame::~WindowGame()
     delete m_map;
 
     delete m_label;
+
+    delete m_bejeweled;
 }
 
 void WindowGame::Run()

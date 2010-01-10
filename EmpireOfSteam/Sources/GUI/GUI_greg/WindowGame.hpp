@@ -2,6 +2,7 @@
 #define WINDOWGAME_HPP
 
 #include "Global.hpp"
+#include "Bejeweled.hpp"
 #include "GUI/Button.hpp"
 #include "GUI/Label.hpp"
 #include "GUI/GUIImage.hpp"
@@ -33,6 +34,8 @@ class WindowGame : public GUIWindow
         GUIImage    *m_cadran_bejeweled,
                     *m_cadran_map,
                     *m_map;
+
+        Bejeweled   *m_bejeweled;
 
 };
 

@@ -46,6 +46,8 @@
 		<Linker>
 			<Add directory="..\..\..\..\..\SFML_SVN\branches\sfml2\lib\mingw" />
 		</Linker>
+		<Unit filename="Bejeweled.cpp" />
+		<Unit filename="Bejeweled.hpp" />
 		<Unit filename="Engines\EventManager.cpp" />
 		<Unit filename="Engines\EventManager.hpp" />
 		<Unit filename="GUI\Button.cpp" />

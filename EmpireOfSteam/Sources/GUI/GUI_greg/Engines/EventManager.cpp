@@ -12,6 +12,9 @@ EventManager::EventManager()
 
     i = 0;
     while(i < 5) m_mouse_events_tab[i++] = false;
+
+    m_time  = 0;
+    m_clock.Reset();
 }
 
 EventManager::~EventManager()
@@ -21,6 +24,9 @@ EventManager::~EventManager()
 
 void EventManager::Update(sf::RenderWindow &window)
 {
+    m_time = m_clock.GetElapsedTime();
+    m_clock.Reset();
+
     while (window.GetEvent(m_event))
     {
         switch (m_event.Type)
@@ -70,6 +76,11 @@ bool EventManager::GetEvent(int type_event, int no_event)
     }
 
     return false;
+}
+
+float EventManager::GetTime()
+{
+    return m_time;
 }
 
 const sf::Vector2i &EventManager::GetMousePosition()

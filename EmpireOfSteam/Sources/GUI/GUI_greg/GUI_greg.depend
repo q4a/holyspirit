@@ -123,7 +123,7 @@
 1256742579 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\event.hpp
 	<SFML/Config.hpp>
 
-1255764858 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\input.hpp
+1262781318 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\input.hpp
 	<SFML/Config.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<SFML/Window/Event.hpp>
@@ -206,7 +206,7 @@
 	<SFML/Graphics/RenderQueue.hpp>
 	<SFML/Graphics/View.hpp>
 
-1259857134 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderqueue.hpp
+1263054391 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderqueue.hpp
 	<SFML/Config.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<SFML/Graphics/Drawable.hpp>
@@ -320,7 +320,7 @@
 	<SFML/Graphics.hpp>
 	"Engines/EventManager.hpp"
 
-1262107435 e:\c++\petits jeux\eos\sources\gui\gui_greg\engines\eventmanager.hpp
+1263132244 e:\c++\petits jeux\eos\sources\gui\gui_greg\engines\eventmanager.hpp
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
 	"../Utils/Singleton.hpp"
@@ -335,12 +335,13 @@
 1262427473 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\widget.cpp
 	"Widget.hpp"
 
-1262450225 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.cpp
+1263130825 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.cpp
 	"WindowGame.hpp"
 	<iostream>
 
-1262450159 e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.hpp
+1263129900 e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.hpp
 	"Global.hpp"
+	"Bejeweled.hpp"
 	"GUI/Button.hpp"
 	"GUI/Label.hpp"
 	"GUI/GUIImage.hpp"
@@ -353,7 +354,7 @@
 	<iostream>
 	"WindowGame.hpp"
 
-1262107435 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\engines\eventmanager.cpp
+1263132244 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\engines\eventmanager.cpp
 	"EventManager.hpp"
 
 1262427541 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\button.cpp
@@ -373,4 +374,12 @@
 
 1262447898 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guiimage.hpp
 	"Widget.hpp"
+
+1263133765 e:\c++\petits jeux\eos\sources\gui\gui_greg\bejeweled.hpp
+	"GUI/Widget.hpp"
+
+1263134069 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\bejeweled.cpp
+	"Bejeweled.hpp"
+	<iostream>
+	<sstream>
 
