@@ -1064,13 +1064,6 @@ void Objet::Generer(int bonus)
     m_color.b=255;
     m_color.a=255;
 
-    if(aa - ai != 0)
-        m_prix += m_prix * (m_armure - aa + ai)/(aa - ai)/2;
-    if(dia - dii != 0)
-        m_prix += m_prix * (m_degatsMin - dia + dii)/(dia - dii)/4;
-    if(daa - dai != 0)
-        m_prix += m_prix * (m_degatsMax - daa + dai)/(daa - dai)/4;
-
     if (m_type != CONSOMMABLE)
         if (m_rarete<DIVIN)
         {
@@ -1106,6 +1099,8 @@ void Objet::Generer(int bonus)
             if (m_rarete==SANCTIFIE)
                 nbrBene=rand()%(15-10)+10;
 
+            int accru = 0;
+
             for (int i=0;i<nbrBene;i++)
             {
 
@@ -1125,13 +1120,13 @@ void Objet::Generer(int bonus)
                     else
                         temp.info1 = PT_FOI;
 
-                    temp.info2=rand()%(m_capaciteBenediction*10 - (int)(m_capaciteBenediction*3) + 1)+m_capaciteBenediction*3;
-                    m_prix += (int)((float)m_prix*0.5*(temp.info2)/(m_capaciteBenediction*10 - m_capaciteBenediction*3));
+                    temp.info2=rand()%(m_capaciteBenediction*15 - (int)(m_capaciteBenediction*5) + 1)+m_capaciteBenediction*5;
+                    //m_prix += (int)((float)prixor*0.5*(temp.info2)/(m_capaciteBenediction*10 - m_capaciteBenediction*3));
                 }
                 else if (temp.type==EFFICACITE_ACCRUE&&(m_type==ARME||m_type==ARMURE))
                 {
                     temp.info1=(int)(rand()%(m_capaciteBenediction*10 - (int)((float)m_capaciteBenediction*2.5) + 1)+(float)m_capaciteBenediction*2.5);
-                    m_prix += (int)((float)m_prix*0.5*(temp.info1)/(m_capaciteBenediction*10 - m_capaciteBenediction*2.5));
+                    //m_prix += (int)((float)prixor*0.5*(temp.info1)/(m_capaciteBenediction*10 - m_capaciteBenediction*2.5));
                 }
                 else if (temp.type==DEGATS_SUPP&&m_type==ARME)
                 {
@@ -1147,7 +1142,7 @@ void Objet::Generer(int bonus)
 
                     temp.info2=(int)(rand()%((int)((float)m_capaciteBenediction*1.5) - (int)((float)m_capaciteBenediction*0.5) + 1)+(float)m_capaciteBenediction*0.5);
                     temp.info3=(int)(rand()%((int)((float)m_capaciteBenediction*2.5) - (int)((float)m_capaciteBenediction*1.5) + 1)+(float)m_capaciteBenediction*1.5);
-                    m_prix += (int)((float)m_prix*0.5*(temp.info2+temp.info3)/(m_capaciteBenediction*2 - m_capaciteBenediction*0.5));
+                   // m_prix += (int)((float)prixor*0.5*(temp.info2+temp.info3)/(m_capaciteBenediction*2 - m_capaciteBenediction*0.5));
                 }
                 else if (temp.type==ARMURE_SUPP&&m_type==ARMURE)
                 {
@@ -1162,7 +1157,7 @@ void Objet::Generer(int bonus)
                         temp.info1 = CORROSION;
 
                     temp.info2=(int)(rand()%((int)((float)m_capaciteBenediction*10) - (int)((float)m_capaciteBenediction*5) + 1)+(float)m_capaciteBenediction*5);
-                    m_prix += (int)((float)m_prix*0.1*(temp.info2)/(m_capaciteBenediction*2 - m_capaciteBenediction*0.5));
+                    //m_prix += (int)((float)prixor*0.1*(temp.info2)/(m_capaciteBenediction*2 - m_capaciteBenediction*0.5));
                 }
                 else if (temp.type==CARACT_SUPP)
                 {
@@ -1179,12 +1174,14 @@ void Objet::Generer(int bonus)
                         temp.info1 = CHARISME;
 
                     temp.info2=(int)(rand()%(m_capaciteBenediction - (int)((float)m_capaciteBenediction*0.25) + 1)+(float)m_capaciteBenediction*0.25);
-                    m_prix += (int)((float)m_prix*0.5*(temp.info2)/(m_capaciteBenediction - m_capaciteBenediction*0.25));
+                    if(temp.info2 <= 0)
+                        temp.info2 = 1;
+                    //m_prix += (int)((float)prixor*0.5*(temp.info2)/(m_capaciteBenediction - m_capaciteBenediction*0.25));
                 }
                 else
                 {
                     temp.info1=(int)(rand()%(m_capaciteBenediction - (int)((float)m_capaciteBenediction*0.25) + 1)+(float)m_capaciteBenediction*0.25);
-                    m_prix += (int)((float)m_prix*0.5*(temp.info1)/(m_capaciteBenediction - m_capaciteBenediction*0.25));
+                    //m_prix += (int)((float)prixor*0.5*(temp.info1)/(m_capaciteBenediction - m_capaciteBenediction*0.25));
                 }
 
                 if ((temp.type==EFFICACITE_ACCRUE&&!(m_type==ARME||m_type==ARMURE))||
@@ -1198,7 +1195,7 @@ void Objet::Generer(int bonus)
                         if(m_benedictions[j].info1==temp.info1 && temp.type != EFFICACITE_ACCRUE)
                             m_benedictions[j].info2+=temp.info2,m_benedictions[j].info3+=temp.info3,ajouter=false;
                         if(temp.type == EFFICACITE_ACCRUE)
-                            m_benedictions[j].info1+=temp.info1,ajouter=false;
+                            m_benedictions[j].info1+=temp.info1,ajouter=false,accru=m_benedictions[j].info1;
                     }
 
 
@@ -1258,6 +1255,34 @@ void Objet::Generer(int bonus)
                         }
                     }
                 }
+            }
+
+            m_prix = 0;
+
+            if(aa - ai != 0)
+                m_prix += ((m_armure + accru * m_armure / 100) * 2/*- aa + ai)/(aa - ai)/2*/);
+            if(dia - dii != 0)
+                m_prix += ((m_degatsMin + accru * m_degatsMin / 100) * 10 /*- dia + dii)/(dia - dii)/4*/);
+            if(daa - dai != 0)
+                m_prix += ((m_degatsMax + accru * m_degatsMax / 100) * 10 /*- daa + dai)/(daa - dai)/4*/);
+
+            if(m_prix == 0)
+                m_prix = 50;
+
+            for (int j=0;j<(int)m_benedictions.size();j++)
+            {
+                if(m_benedictions[j].type == DEGATS_SUPP)
+                    m_prix += (int)((float)50*(m_benedictions[j].info2+m_benedictions[j].info3)/*/(m_capaciteBenediction*2 - m_capaciteBenediction*0.5)*/);
+                if(m_benedictions[j].type == ARMURE_SUPP)
+                    m_prix += (int)((float)10*(m_benedictions[j].info2)/*/(m_capaciteBenediction*2 - m_capaciteBenediction*0.5)*/);
+            }
+
+            for (int j=0;j<(int)m_benedictions.size();j++)
+            {
+                if(m_benedictions[j].type == CARACT_SUPP)
+                    m_prix += (int)((float)m_prix*1*(m_benedictions[j].info2)/*/(m_capaciteBenediction - m_capaciteBenediction*0.25)*/);
+                if(m_benedictions[j].type == POINTS_SUPP)
+                    m_prix += (int)((float)m_prix*0.1*(m_benedictions[j].info2)/*/(m_capaciteBenediction*10 - m_capaciteBenediction*3)*/);
             }
         }
 }

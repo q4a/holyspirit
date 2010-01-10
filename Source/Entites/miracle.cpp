@@ -294,10 +294,19 @@ float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int leve
             valeur = level;
 
         else if (caractere == 'i')
-            valeur = caract.degatsMin[PHYSIQUE];
+        {
+            int no = 0;
+            fichier>>no;
+            if(no >=0 && no < 4)
+                valeur = caract.degatsMin[no];
+        }
         else if (caractere == 'a')
-            valeur = caract.degatsMax[PHYSIQUE];
-
+        {
+            int no = 0;
+            fichier>>no;
+            if(no >=0 && no < 4)
+                valeur = caract.degatsMax[no];
+        }
         else if (caractere == 'b')
             valeur = caract.armure[PHYSIQUE];
 

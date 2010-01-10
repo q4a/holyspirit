@@ -154,8 +154,8 @@ void c_Jeu::GererTemps(Jeu *jeu)
     {
         if (jeu->hero.m_caracteristiques.maxVie!=0)
         {
-            if (jeu->hero.m_caracteristiques.vie/(float)jeu->hero.m_caracteristiques.maxVie<0.5)
-                configuration->effetMort=150-(jeu->hero.m_caracteristiques.vie*300/jeu->hero.m_caracteristiques.maxVie),jeu->sonMort.SetVolume(configuration->effetMort);
+            if (jeu->hero.m_caracteristiques.vie/(float)jeu->hero.m_caracteristiques.maxVie<0.25)
+                configuration->effetMort=150-(jeu->hero.m_caracteristiques.vie*600/jeu->hero.m_caracteristiques.maxVie),jeu->sonMort.SetVolume(configuration->effetMort);
             else
                 configuration->effetMort=0,jeu->sonMort.SetVolume(0);
         }

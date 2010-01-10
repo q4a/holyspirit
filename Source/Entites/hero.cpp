@@ -1172,15 +1172,16 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         std::ostringstream  buf;
         buf<<m_argent;
         string.SetString(buf.str());
-        string.SetCharacterSize(14*configuration->Resolution.h/600);
+        string.SetCharacterSize(12*configuration->Resolution.h/600);
         string.SetX((112*configuration->Resolution.w/800)+32*configuration->Resolution.w/800-(string.GetRect().Right-string.GetRect().Left)/2);
-        string.SetY(219*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+        string.SetY(221*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
         string.SetColor(sf::Color(255,255,255));
         moteurGraphique->AjouterTexte(&string,15);
     }
 
+    string.SetCharacterSize(14*configuration->Resolution.h/600);
     string.SetString(configuration->getText(0,48).c_str());
-    string.SetX(32*configuration->Resolution.w/800);
+    string.SetX(8*configuration->Resolution.w/800);
     string.SetY(220*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
@@ -1810,20 +1811,22 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader)
         caseVisee.y=(eventManager->getPositionSouris().y-(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600)/(32*configuration->Resolution.y/600);
 
         for (int i=0;i<(int)m_inventaire.size();++i)
-            if (caseVisee.x>=m_inventaire[i].getPosition().x&&caseVisee.x<=m_inventaire[i].getPosition().x+m_inventaire[i].getTaille().x-1
-                    &&caseVisee.y>=m_inventaire[i].getPosition().y&&caseVisee.y<=m_inventaire[i].getPosition().y+m_inventaire[i].getTaille().y-1)
+            if (caseVisee.x>=m_inventaire[i].getPosition().x
+             && caseVisee.x<=m_inventaire[i].getPosition().x+m_inventaire[i].getTaille().x-1
+             && caseVisee.y>=m_inventaire[i].getPosition().y
+             && caseVisee.y<=m_inventaire[i].getPosition().y+m_inventaire[i].getTaille().y-1)
                 if (m_inventaire[i].m_equipe==-1)
                 {
                     m_objetVise = i;
                     coordonnee temp=eventManager->getPositionSouris();
                     // temp.y-=32*configuration->Resolution.h/600;
                     temp.y+=48;
-                    temp.x+=128;
+                    temp.x+=192;
                     int decalage = m_inventaire[i].AfficherCaracteristiques(temp,m_caracteristiques,1,1,0);
                     retour = true;
 
                     for (int j=0;j<(int)m_inventaire.size();j++)
-                        if (m_inventaire[j].m_equipe>=0/*&&m_inventaire[j].m_type==m_inventaire[i].m_type*/)
+                        if (m_inventaire[j].m_equipe>=0)
                             for (int k=0;k<(int)m_inventaire[i].m_emplacement.size();k++)
                                 for (int l=0;l<(int)m_inventaire[j].m_emplacement.size();l++)
                                     if (m_inventaire[i].m_emplacement[k]==m_inventaire[j].m_emplacement[l])
@@ -1837,12 +1840,12 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader)
         caseVisee.y=m_defilement_trader+(eventManager->getPositionSouris().y-(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600)/(32*configuration->Resolution.y/600);
 
         for (int i=0;i<(int)trader.size();++i)
-            if (caseVisee.x>=trader[i].getPosition().x&&caseVisee.x<=trader[i].getPosition().x+trader[i].getTaille().x-1
-                    &&caseVisee.y>=trader[i].getPosition().y&&caseVisee.y<=trader[i].getPosition().y+trader[i].getTaille().y-1)
+            if (caseVisee.x>=trader[i].getPosition().x && caseVisee.x<=trader[i].getPosition().x+trader[i].getTaille().x-1
+              &&caseVisee.y>=trader[i].getPosition().y && caseVisee.y<=trader[i].getPosition().y+trader[i].getTaille().y-1)
             {
                 coordonnee temp=eventManager->getPositionSouris();
                 temp.y+=48;
-                temp.x-=96;
+                temp.x-=192;
                 int decalage=trader[i].AfficherCaracteristiques(temp,m_caracteristiques,(5-(float)m_caracteristiques.charisme/100),1,1);
                 retour = true;
 
@@ -2825,24 +2828,17 @@ void Hero::delObjet(int numero)
             if (numero < m_objets_raccourcis[i] && m_objets_raccourcis[i] >= 0)
                 m_objets_raccourcis[i] --;
 
-            if (numero == m_objets_raccourcis[i])
+            else if (numero == m_objets_raccourcis[i])
             {
-                bool continuer=true;
+                m_objets_raccourcis[i] = -1;
 
-                for (int j=0;j<(int)m_inventaire.size() && continuer;j++)
+                for (int j=0;j<(int)m_inventaire.size();j++)
                     if (m_inventaire[j].getNom()==temp)
-                    {
                         m_objets_raccourcis[i] = j;
-                        continuer=false;
-                    }
-
-                if (continuer)
-                    m_objets_raccourcis[i] = -1;
             }
         }
-
-        UpdateRaccourcis();
     }
+    UpdateRaccourcis();
 }
 
 void Hero::UpdateRaccourcis()
