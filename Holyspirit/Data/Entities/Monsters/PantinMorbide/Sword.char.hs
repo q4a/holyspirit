@@ -21,6 +21,11 @@ r1000
 $
 
 *
+*Faith_potion.item.hs
+r1000
+$
+
+*
 *Small_sword.item.hs
 r10000
 $

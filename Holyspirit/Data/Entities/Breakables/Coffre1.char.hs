@@ -94,6 +94,10 @@ $
 		*Unique_gown.item.hs
 		r50
 	$
+		*
+		*Unique_necklage.item.hs
+		r100
+	$
 
 
 $

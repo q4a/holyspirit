@@ -100,6 +100,10 @@ Objets du monstre
 		*Unique_dagger.item.hs
 		r100
 	$
+	*
+		*Unique_necklage.item.hs
+		r100
+	$
 
 $
 *Data/Particule_system/human_bones.ps.hs

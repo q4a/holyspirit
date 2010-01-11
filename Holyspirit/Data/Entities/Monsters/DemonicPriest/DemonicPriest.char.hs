@@ -17,12 +17,21 @@ $
 Objets du monstre
 *
 	*Heal_potion.item.hs
-	r100000
+	r10000
 $
 *
 	*Heal_potion.item.hs
-	r100000
+	r10000
 $
+*
+	*Faith_potion.item.hs
+	r10000
+$
+*
+	*Heal_potion.item.hs
+	r10000
+$
+
 *
 	*Gown.item.hs
 	r10000
@@ -36,6 +45,11 @@ $
 *
 	*Necklage.item.hs
 	r2000
+$
+
+*
+	*Unique_necklage.item.hs
+	r100
 $
 
 *

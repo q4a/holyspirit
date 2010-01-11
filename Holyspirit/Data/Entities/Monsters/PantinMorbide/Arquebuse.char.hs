@@ -22,6 +22,11 @@ r5000
 $
 
 *
+*Faith_potion.item.hs
+r10000
+$
+
+*
 *Arquebuse.item.hs
 r10000
 $

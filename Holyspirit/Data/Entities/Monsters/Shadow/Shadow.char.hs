@@ -20,15 +20,24 @@ Objets du monstre
 r10000
 $
 *
+*Faith_potion.item.hs
+r10000
+$
+
+*
 *Ring.item.hs
-r5000
+r2000
 $
 
 *
 *Necklage.item.hs
-r5000
+r2000
 $
 
+*
+*Unique_necklage.item.hs
+r50
+$
 
 $
 $

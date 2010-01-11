@@ -65,12 +65,13 @@ Une_masse_à_ailettes_fort_rouillée.\Elle_doit_être_très_ancienne.\\Arme_à_une_ma
 Fracasseuse
 Une_arme_redoutable_capable_d'écraser\un_crâne_humain_en_un_seul_coup.\\Arme_à_une_main.
 Flamboyante
-Epée_forgée_dans_les_flammes_de_l'enfers,\elle_appartenut_au_démon_avant\d'être_dérobée_par_l'Archange_Michel.\Celui-ci_la_perdit_une_fois_en_s'incarnant_sur_Terre\et_on_le_crut_disparue_à_jamais.\\Arme_à_une_main.
+Epée_forgée_dans_les_flammes\de_l'enfers,_elle_appartenut_au\démon_avant_d'être_dérobée_par\l'Archange_Michel._Celui-ci_la\perdit_une_fois_en_s'incarnant\sur_Terre_et_on_le_crut\disparue_à_jamais.\\Arme_à_une_main.
 Hache_de_bucheron
 Une_simple_hache_pour\couper_du_bois.\Elle_n'en_est_pas_moins\une_arme_mortelle.\\Arme_à_deux_mains.
 Masse_de_boucher
 Cette_masse_a_pour_but\premier_de_tuer_les_cochons.\Mais_elle_se_révèle_aussi\très_éfficace_contre_les_démons.\\Arme_à_deux_mains.
 Morceau_de_cerveau
 Mais_c'est_dégeulasse_!
-
+Larme_de_la_Veuve_Eplorée
+Un_bijou_qui_sied_à_ravir_pour_une_femme_en_deuil.
 

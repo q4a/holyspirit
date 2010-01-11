@@ -22,6 +22,12 @@ r1000
 $
 
 *
+*Faith_potion.item.hs
+r1000
+$
+
+
+*
 *Armor.item.hs
 r10000
 $
@@ -46,6 +52,10 @@ $
 r2000
 $
 
+*
+*Unique_necklage.item.hs
+r10
+$
 
 *
 *Long_sword.item.hs

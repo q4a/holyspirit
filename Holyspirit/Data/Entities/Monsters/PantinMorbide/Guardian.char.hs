@@ -23,6 +23,16 @@ $
 *Heal_potion.item.hs
 r10000
 $
+
+*
+*Faith_potion.item.hs
+r10000
+$
+*
+*Faith_potion.item.hs
+r10000
+$
+
 *
 *Two_hand_sword.item.hs
 r10000
