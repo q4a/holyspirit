@@ -43,7 +43,9 @@ class Bejeweled : public Widget
         sf::Vector2i m_position_gear;
 
         bool        m_go_rotation;
+        bool        m_right_rotation;
         float       m_gear_rotation;
+        float       m_gear_rotation_total;
 
     private:
 

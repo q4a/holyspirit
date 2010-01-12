@@ -18,8 +18,9 @@ Bejeweled::Bejeweled(int x, int y) : Widget(x, y)
     m_sprite_gear.SetImage(m_gear);
     m_sprite_gear.SetOrigin(45,45);
 
-    m_go_rotation   = false;
-    m_gear_rotation  = 0;
+    m_go_rotation           = false;
+    m_gear_rotation         = 0;
+    m_gear_rotation_total   = 0;
 
     for(int x = 0 ; x < TAB_WIDTH ; ++x)
         for(int y = 0 ; y < TAB_HEIGHT ; ++y)
@@ -44,9 +45,9 @@ Bejeweled::Bejeweled(int x, int y, int w, int h) : Widget(x, y, w, h)
         m_jewelds[i-1].LoadFromFile(buf.str());
     }
 
-    m_go_rotation   = false;
-    m_gear_rotation  = 0;
-
+    m_go_rotation           = false;
+    m_gear_rotation         = 0;
+    m_gear_rotation_total   = 0;
 
     for(int x = 0 ; x < TAB_WIDTH ; ++x)
         for(int y = 0 ; y < TAB_HEIGHT ; ++y)
@@ -119,7 +120,7 @@ void Bejeweled::Update()
         m_position_gear.y = TAB_HEIGHT - 3;
 
     m_sprite_gear.SetPosition(m_position_gear.x * 32 + pos.x + 32, m_position_gear.y * 32 + pos.y + 32);
-    m_sprite_gear.SetRotation(m_gear_rotation);
+    m_sprite_gear.SetRotation(m_gear_rotation_total + m_gear_rotation);
 
     if(mainEventManager->GetMousePosition().x >= pos.x
     && mainEventManager->GetMousePosition().y >= pos.y
@@ -142,6 +143,24 @@ void Bejeweled::Update()
                 m_tab_jewelds[m_position_gear.x + 1] [m_position_gear.y]         = buf;
             }
             m_go_rotation = true;
+            m_right_rotation = false;
+        }
+        else if(mainEventManager->GetEvent(EventMouse, sf::Mouse::Right))
+        {
+            if(!m_go_rotation)
+            {
+                Jeweld buf = m_tab_jewelds[m_position_gear.x][m_position_gear.y];
+
+                m_tab_jewelds[m_position_gear.x]     [m_position_gear.y]         = m_tab_jewelds[m_position_gear.x + 1]    [m_position_gear.y];
+
+                m_tab_jewelds[m_position_gear.x + 1]     [m_position_gear.y]     = m_tab_jewelds[m_position_gear.x + 1][m_position_gear.y + 1];
+
+                m_tab_jewelds[m_position_gear.x + 1] [m_position_gear.y + 1]     = m_tab_jewelds[m_position_gear.x][m_position_gear.y + 1];
+
+                m_tab_jewelds[m_position_gear.x] [m_position_gear.y + 1]         = buf;
+            }
+            m_go_rotation = true;
+            m_right_rotation = true;
         }
     }
     else
@@ -152,9 +171,17 @@ void Bejeweled::Update()
 
     if(m_go_rotation)
     {
-        m_gear_rotation -= mainEventManager->GetTime() * 300;
-        if(m_gear_rotation < -90)
-            m_gear_rotation = 0, m_go_rotation = false;
+        if(m_right_rotation)
+            m_gear_rotation += mainEventManager->GetTime() * 300;
+        else
+            m_gear_rotation -= mainEventManager->GetTime() * 300;
+
+        if(fabs(m_gear_rotation) > 90)
+            m_gear_rotation_total += m_gear_rotation, m_gear_rotation = 0, m_go_rotation = false;
+        if(m_gear_rotation_total < -360)
+            m_gear_rotation_total += 360;
+        if(m_gear_rotation_total > 360)
+            m_gear_rotation_total -= 360;
     }
 
     for(int x = 0 ; x < TAB_WIDTH ; ++x)

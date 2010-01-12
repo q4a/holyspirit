@@ -26,7 +26,9 @@ class Widget
         virtual const sf::Vector2i &GetPosition();
         virtual       sf::Vector2i  GetGlobalPosition();
 
-                       void         AddWidget(Widget *widget);
+                       void         SetParent(Widget *widget);
+
+        virtual        void         AddWidget(Widget *widget);
 
     protected:
 

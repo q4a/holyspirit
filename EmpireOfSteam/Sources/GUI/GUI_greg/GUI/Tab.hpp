@@ -1,17 +1,15 @@
-#ifndef BUTTON_HPP
-#define BUTTON_HPP
+#ifndef TAB_HPP
+#define TAB_HPP
 
-#include "Widget.hpp"
+#include "Button.hpp"
 
-enum{Button_released, Button_hover, Button_clicked};
-
-class Button : public Widget
+class Tab : public Button
 {
     public:
-        Button();
-        Button(int, int);
-        Button(int, int, int, int);
-        virtual ~Button();
+        Tab();
+        Tab(int, int);
+        Tab(int, int, int, int);
+        virtual ~Tab();
 
         virtual void Update();
         virtual void Show(std::list<sf::Drawable*> &drawables);
@@ -20,19 +18,9 @@ class Button : public Widget
         virtual void SetImage(const sf::Image &, int type = Button_released);
         virtual void SetImage(const std::string &, int type = Button_released);
 
-
         virtual void SetState(int type);
 
-        bool Hover();
-        bool Clicked();
-        bool Released();
-
     protected:
-        bool m_hover;
-        bool m_clicked;
-        bool m_released;
-
-        sf::Sprite *m_drawable;
 
     private:
         sf::Image m_img_hover;

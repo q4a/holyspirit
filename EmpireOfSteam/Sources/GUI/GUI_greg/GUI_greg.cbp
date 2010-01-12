@@ -58,6 +58,10 @@
 		<Unit filename="GUI\GUIWindow.hpp" />
 		<Unit filename="GUI\Label.cpp" />
 		<Unit filename="GUI\Label.hpp" />
+		<Unit filename="GUI\Tab.cpp" />
+		<Unit filename="GUI\Tab.hpp" />
+		<Unit filename="GUI\TabBar.cpp" />
+		<Unit filename="GUI\TabBar.hpp" />
 		<Unit filename="GUI\Widget.cpp" />
 		<Unit filename="GUI\Widget.hpp" />
 		<Unit filename="Global.hpp" />
