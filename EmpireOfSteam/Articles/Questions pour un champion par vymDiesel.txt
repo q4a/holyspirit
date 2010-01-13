@@ -1,0 +1,13 @@
+Suite à la lecture du document "article programmation et gdd par gregouar" plusieures questions m'interpellent.
+
+Peut être pourra tu m'éclairer.
+
+J'aimerai savoir comment se passera la gestion réseau
+1) as t'on les connaiscances néscésaire à 3 pour la réaliser ?
+2) quel type de site utiliserai t'on pour la création de compte joueur ? 
+(wordpress permet l'imprémentation de plugin personalisé donc pk pas ?)
+
+Je sais qu'on est encore loin de la mais bon ^^
+
+Je propose de rajouter vos questions dans un fichier similaire portant votre nom ^^
+
