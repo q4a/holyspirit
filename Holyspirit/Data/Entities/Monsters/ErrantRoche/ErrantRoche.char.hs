@@ -10,7 +10,7 @@ Rang du monstre
 $
 Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse/Ombre/PointAme
-*v50 di30 da60 m0.2 o1 a25 n2 x40 t1.25 $
+*v50 di30 da60 m0.2 o1 a10 n2 x40 t1.25 $
 $
 *Data/Scripts/AI/ErrantRoches.script.hs
 $

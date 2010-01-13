@@ -10,7 +10,7 @@ Rang du monstre
 $
 Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse
-*v10 di5 da20 m0.35 o1 a3 n2 t1 x30 $
+*v10 di5 da20 m0.35 o1 a5 n2 t1 x30 $
 $
 *Data/Scripts/AI/shooter.script.hs
 $
