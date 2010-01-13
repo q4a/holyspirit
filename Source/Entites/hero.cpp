@@ -189,6 +189,8 @@ Hero::Hero()
 
     m_queteSelectionnee = -1;
     m_personnage.m_miracleALancer = -1;
+
+    m_last_potale = 0;
 }
 
 Hero::~Hero()
@@ -1674,7 +1676,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader)
                     sprite.SetX((m_classe.emplacements[trader[i].m_equipe].position.x)*configuration->Resolution.w/800);
                     sprite.SetY((m_classe.emplacements[trader[i].m_equipe].position.y)*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
                     if (m_objetEnMain==-1&&eventManager->getPositionSouris().x>m_classe.emplacements[trader[i].m_equipe].position.x*configuration->Resolution.x/800&&eventManager->getPositionSouris().x<(m_classe.emplacements[trader[i].m_equipe].position.x+m_classe.emplacements[trader[i].m_equipe].position.w)*configuration->Resolution.x/800&&eventManager->getPositionSouris().y>m_classe.emplacements[trader[i].m_equipe].position.y*configuration->Resolution.y/600&&eventManager->getPositionSouris().y<(m_classe.emplacements[trader[i].m_equipe].position.y+m_classe.emplacements[trader[i].m_equipe].position.h)*configuration->Resolution.y/600)
-                        trader[i].AfficherCaracteristiques(eventManager->getPositionSouris(),m_caracteristiques,(5-(float)m_caracteristiques.charisme/100)), retour = true;
+                        trader[i].AfficherCaracteristiques(eventManager->getPositionSouris(),m_caracteristiques,(10-(float)m_caracteristiques.charisme/100)), retour = true;
                 }
             }
 
@@ -1846,7 +1848,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader)
                 coordonnee temp=eventManager->getPositionSouris();
                 temp.y+=48;
                 temp.x-=192;
-                int decalage=trader[i].AfficherCaracteristiques(temp,m_caracteristiques,(5-(float)m_caracteristiques.charisme/100),1,1);
+                int decalage=trader[i].AfficherCaracteristiques(temp,m_caracteristiques,(10-(float)m_caracteristiques.charisme/100),1,1);
                 retour = true;
 
                 for (int j=0;j<(int)m_inventaire.size();j++)
@@ -2728,7 +2730,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
             if(trader != &m_coffre)
             {
                 if (m_achat)
-                    m_argent+=(int)((float)m_inventaire[m_objetEnMain].getPrix()*(5-(float)m_caracteristiques.charisme/100));
+                    m_argent+=(int)((float)m_inventaire[m_objetEnMain].getPrix()*(10-(float)m_caracteristiques.charisme/100));
                 else
                     m_argent+=m_inventaire[m_objetEnMain].getPrix();
             }
@@ -2744,14 +2746,14 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
             for (int z=0;z<(int)trader->size();z++)
                 if (caseVisee.x>=(*trader)[z].getPosition().x&&caseVisee.x<(*trader)[z].getPosition().x+(*trader)[z].getTaille().x
                         &&caseVisee.y>=(*trader)[z].getPosition().y&&caseVisee.y<(*trader)[z].getPosition().y+(*trader)[z].getTaille().y)
-                    if ((int)((float)(*trader)[z].getPrix()*(5-(float)m_caracteristiques.charisme/100))<=m_argent || trader == &m_coffre)
+                    if ((int)((float)(*trader)[z].getPrix()*(10-(float)m_caracteristiques.charisme/100))<=m_argent || trader == &m_coffre)
                     {
                         m_achat=true;
 
                         if (AjouterObjet((*trader)[z],!eventManager->getEvenement(Key::LControl,EventKey)));
                         {
                             if(trader != &m_coffre)
-                                m_argent-=(int)((float)(*trader)[z].getPrix()*(5-(float)m_caracteristiques.charisme/100));
+                                m_argent-=(int)((float)(*trader)[z].getPrix()*(10-(float)m_caracteristiques.charisme/100));
                             if ((*trader)[z].m_type!=CONSOMMABLE || trader == &m_coffre)
                                 trader->erase(trader->begin()+z);
                         }

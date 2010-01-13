@@ -89,7 +89,6 @@ void c_Potales::Utiliser(Jeu *jeu)
 
         jeu->m_chargement->setC_Chargement(nomMap,coordonneePerso);
         temp = 8;
-       // jeu->m_contexte = jeu->m_chargement;
     }
 
     jeu->menu.AfficherHUD(&jeu->hero.m_classe);

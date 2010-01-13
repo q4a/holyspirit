@@ -150,6 +150,14 @@ void c_Chargement::Utiliser(Jeu *jeu)
             jeu->hero.m_amis[i]->InfligerDegats(jeu->hero.m_amis[i]->getCaracteristique().vie * 2,4, &bufferModele.back());
         }
 
+        if (!jeu->hero.m_personnage.EnVie())
+        {
+            mort = true;
+            jeu->hero.m_personnage.InfligerDegats(-jeu->hero.m_caracteristiques.maxVie*0.5,4,&jeu->hero.m_modelePersonnage[0]);
+        }
+        else
+            mort = false;
+
         if (jeu->map!=NULL && !m_debut)
             jeu->map->Sauvegarder(&jeu->hero);
 
@@ -308,6 +316,8 @@ void c_Chargement::Utiliser(Jeu *jeu)
             jeu->menu.AfficherHUD(&jeu->hero.m_classe);
             jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,0,jeu->hero.m_personnage.getCaracteristique(),&jeu->hero.m_classe);
         }
+        if(mort)
+            configuration->effetMort = z*3;
     }
     else
         jeu->menu.AfficherChargement(nomMap,m_fond,50);
@@ -316,6 +326,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
     if ((z>=49&&!augmenterNoir&&!allerVersImageChargement)||(m_debut))
     {
+        mort = false;
         z = 0;
         configuration->effetNoir=0;
         jeu->Clock.Reset();

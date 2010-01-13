@@ -161,7 +161,27 @@ void c_Jeu::GererTemps(Jeu *jeu)
         }
     }
     else
+    {
         configuration->effetMort=150;
+
+        std::string nomMap=jeu->hero.m_potales[jeu->hero.m_last_potale].chemin;
+
+        console->Ajouter("",0);
+        console->Ajouter("---------------------------------------------------------------------------------",0);
+        console->Ajouter("EVENEMENT : Changement de map",0);
+        console->Ajouter("---------------------------------------------------------------------------------",0);
+
+        coordonnee coordonneePerso;
+        coordonneePerso.x=jeu->hero.m_potales[jeu->hero.m_last_potale].position.x;
+        coordonneePerso.y=jeu->hero.m_potales[jeu->hero.m_last_potale].position.y;
+
+        jeu->m_chargement->setC_Chargement(nomMap,coordonneePerso);
+
+        jeu->next_screen = 8;
+        jeu->Next();
+    }
+
+
 }
 void c_Jeu::IA(Jeu *jeu)
 {
@@ -268,7 +288,7 @@ void c_Jeu::Animation(Jeu *jeu)
                 {
                     if (jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())!=NULL)
                         if (fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().x)<=2&&fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().y-jeu->hero.m_personnage.getCoordonnee().y)<=2)
-                            if (rand() % 100 < (float)((float)jeu->hero.m_caracteristiques.dexterite / ((float)jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCaracteristique().dexterite+1))*75 )
+                            if (rand() % 100 < (float)((float)(jeu->hero.m_caracteristiques.dexterite + 100) / ((float)(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCaracteristique().dexterite + 100)))*75 )
                                 if (!jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->m_friendly && jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->EnVie())
                                 {
                                     int degats = (rand()%(jeu->hero.m_caracteristiques.degatsMax[PHYSIQUE] - jeu->hero.m_caracteristiques.degatsMin[PHYSIQUE]+1))+jeu->hero.m_caracteristiques.degatsMin[PHYSIQUE];
@@ -796,8 +816,6 @@ void c_Jeu::Evenements(Jeu *jeu)
 
     if (jeu->next_screen >=0 )
         jeu->Next();
-
-
 }
 
 
@@ -887,6 +905,7 @@ void c_Jeu::Affichage(Jeu *jeu)
     {
         moteurGraphique->EffectMort.SetParameter("offset", 0.003*configuration->effetMort/100*(0.6+tempsEffetMort/10));
         moteurGraphique->EffectMort.SetParameter("color",1+0.5*configuration->effetMort/100*tempsEffetMort, 1-1*configuration->effetMort/100*tempsEffetMort, 1-1*configuration->effetMort/100*tempsEffetMort);
+        moteurGraphique->EffectMort.SetParameter("black",1-configuration->effetMort/150);
     }
 
     if (configuration->console)

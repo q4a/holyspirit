@@ -1103,7 +1103,6 @@ void Objet::Generer(int bonus)
 
             for (int i=0;i<nbrBene;i++)
             {
-
                 bool ajouter=true;
 
                 benediction temp;
@@ -1267,7 +1266,7 @@ void Objet::Generer(int bonus)
                 m_prix += ((m_degatsMax + accru * m_degatsMax / 100) * 10 /*- daa + dai)/(daa - dai)/4*/);
 
             if(m_prix == 0)
-                m_prix = 50;
+                m_prix = 200;
 
             for (int j=0;j<(int)m_benedictions.size();j++)
             {
@@ -1277,13 +1276,17 @@ void Objet::Generer(int bonus)
                     m_prix += (int)((float)10*(m_benedictions[j].info2)/*/(m_capaciteBenediction*2 - m_capaciteBenediction*0.5)*/);
             }
 
+            float multiplicateur_car = 1;
+
             for (int j=0;j<(int)m_benedictions.size();j++)
             {
                 if(m_benedictions[j].type == CARACT_SUPP)
-                    m_prix += (int)((float)m_prix*1*(m_benedictions[j].info2)/*/(m_capaciteBenediction - m_capaciteBenediction*0.25)*/);
+                    multiplicateur_car += (float)m_benedictions[j].info2 * 0.5;
                 if(m_benedictions[j].type == POINTS_SUPP)
-                    m_prix += (int)((float)m_prix*0.1*(m_benedictions[j].info2)/*/(m_capaciteBenediction*10 - m_capaciteBenediction*3)*/);
+                    m_prix += (float)m_benedictions[j].info2 * 0.1;
             }
+
+            m_prix *= multiplicateur_car;
         }
 }
 

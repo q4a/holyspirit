@@ -70,6 +70,7 @@ private:
     coordonnee m_coordonneePerso;
     int m_fond;
     float m_tempsChargement;
+    bool mort;
 
 };
 

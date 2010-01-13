@@ -128,6 +128,7 @@ public:
 
     int m_quetePointee, m_queteSelectionnee;
     int m_potale_selectionnee;
+    int m_last_potale;
 
     std::vector<Quete>  m_quetes;
     std::vector<Potale> m_potales;

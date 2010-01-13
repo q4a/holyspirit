@@ -46,6 +46,7 @@
 				<Option working_dir="..\Holyspirit" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option projectCompilerOptionsRelation="2" />
 				<Option projectResourceIncludeDirsRelation="1" />
 				<Compiler>
 					<Add option="-g" />

@@ -1829,7 +1829,7 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                                 if (m_monstre[monstre].m_cible != NULL)
                                 {
                                     if (m_monstre[monstre].m_shooter||!m_monstre[monstre].m_shooter&&fabs(m_monstre[monstre].getCoordonnee().x-m_monstre[monstre].m_cible->getCoordonnee().x)<=1&&fabs(m_monstre[monstre].getCoordonnee().y-m_monstre[monstre].m_cible->getCoordonnee().y)<=1)
-                                        if (rand() % 100 < (float)((float)m_monstre[monstre].getCaracteristique().dexterite/(float)m_monstre[monstre].m_cible->getCaracteristique().dexterite)*75 )
+                                        if (rand() % 100 < (float)((float)(m_monstre[monstre].getCaracteristique().dexterite + 100)/(float)(m_monstre[monstre].m_cible->getCaracteristique().dexterite + 100))*25 )
                                         {
                                             m_monstre[monstre].m_vientDeFrapper = m_monstre[monstre].m_cible;
                                             m_monstre[monstre].m_degatsInflige  = degats;
