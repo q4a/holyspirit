@@ -39,10 +39,11 @@ void TabBar::Update()
     Widget::Update();
 
     if(m_choose >= 0)
+    {
         m_tabs_widgets[m_choose]->Update();
-
-    if(m_choose >= 0)
         m_tabs[m_choose]->SetState(Button_clicked);
+    }
+
 
     int no = 0;
     for( std::vector<Tab*>::iterator i = m_tabs.begin();

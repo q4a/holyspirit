@@ -11,3 +11,5 @@ Je sais qu'on est encore loin de la mais bon ^^
 
 Je propose de rajouter vos questions dans un fichier similaire portant votre nom ^^
 
+1) Ne t'en fais pas, je maitrise. (Même si je n'ai jamais fait ça, ça devrait aller ^^ )
+2) Il nous faudra un serveur qui accepte les connexions mysql distantes.
