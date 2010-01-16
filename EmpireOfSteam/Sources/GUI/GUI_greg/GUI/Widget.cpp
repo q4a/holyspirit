@@ -45,16 +45,6 @@ void Widget::Show(std::list<sf::Drawable *> &drawables)
 
 void Widget::Update()
 {
-   /* sf::Vector2i pos = m_position;
-    if(m_parent != NULL)
-    {
-        pos.x   = m_position.x + m_parent->GetGlobalPosition().x;
-        pos.y   = m_position.y + m_parent->GetGlobalPosition().y;
-    }
-
-    if(m_drawable != NULL)
-        m_drawable->SetPosition(pos.x, pos.y);
-*/
     for( std::vector<Widget*>::iterator i = m_widgets.begin();
          i != m_widgets.end();
          ++i )

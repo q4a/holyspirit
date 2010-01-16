@@ -6,13 +6,12 @@
 class Tab : public Button
 {
     public:
-        Tab();
-        Tab(int, int);
-        Tab(int, int, int, int);
+        Tab(std::string label = "");
+        Tab(int, int, std::string label = "");
+        Tab(int, int, int, int, std::string label = "");
         virtual ~Tab();
 
         virtual void Update();
-        virtual void Show(std::list<sf::Drawable*> &drawables);
 
         virtual void SetGeometry(int x, int y, int w, int h);
         virtual void SetImage(const sf::Image &, int type = Button_released);

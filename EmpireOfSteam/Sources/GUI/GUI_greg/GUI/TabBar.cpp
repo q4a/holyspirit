@@ -44,7 +44,6 @@ void TabBar::Update()
         m_tabs[m_choose]->SetState(Button_clicked);
     }
 
-
     int no = 0;
     for( std::vector<Tab*>::iterator i = m_tabs.begin();
          i != m_tabs.end();

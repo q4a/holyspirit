@@ -10,7 +10,7 @@
 	<SFML/Graphics.hpp>
 	"../Global.hpp"
 
-1259239264 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics.hpp
+1263495650 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Font.hpp>
@@ -25,7 +25,7 @@
 	<SFML/Graphics/Text.hpp>
 	<SFML/Graphics/View.hpp>
 
-1258888996 e:\c++\sfml_svn\branches\sfml2\include\sfml\window.hpp
+1263495650 e:\c++\sfml_svn\branches\sfml2\include\sfml\window.hpp
 	<SFML/System.hpp>
 	<SFML/Window/Context.hpp>
 	<SFML/Window/ContextSettings.hpp>
@@ -36,7 +36,7 @@
 	<SFML/Window/WindowListener.hpp>
 	<SFML/Window/WindowStyle.hpp>
 
-1259239264 e:\c++\sfml_svn\branches\sfml2\include\sfml\system.hpp
+1263495650 e:\c++\sfml_svn\branches\sfml2\include\sfml\system.hpp
 	<SFML/Config.hpp>
 	<SFML/System/Clock.hpp>
 	<SFML/System/Lock.hpp>
@@ -51,50 +51,50 @@
 	<SFML/System/Vector2.hpp>
 	<SFML/System/Vector3.hpp>
 
-1253953329 e:\c++\sfml_svn\branches\sfml2\include\sfml\config.hpp
+1263495650 e:\c++\sfml_svn\branches\sfml2\include\sfml\config.hpp
 	<climits>
 
-1253953329 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\clock.hpp
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\clock.hpp
 	<SFML/Config.hpp>
 
-1253953329 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\lock.hpp
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\lock.hpp
 	<SFML/System/NonCopyable.hpp>
 
-1262342039 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\noncopyable.hpp
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\noncopyable.hpp
 	<SFML/Config.hpp>
 
-1255974734 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\mutex.hpp
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\mutex.hpp
 	<SFML/Config.hpp>
 	<SFML/System/NonCopyable.hpp>
 
-1253953329 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\randomizer.hpp
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\randomizer.hpp
 	<SFML/Config.hpp>
 
-1253953329 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\sleep.hpp
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\sleep.hpp
 	<SFML/Config.hpp>
 
-1259239264 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\string.hpp
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\string.hpp
 	<SFML/Config.hpp>
 	<locale>
 	<string>
 
-1256928506 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\thread.hpp
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\thread.hpp
 	<SFML/Config.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<cstdlib>
 
-1255764857 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\threadlocal.hpp
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\threadlocal.hpp
 	<SFML/Config.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<cstdlib>
 
-1255974734 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\threadlocalptr.hpp
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\threadlocalptr.hpp
 	<SFML/System/ThreadLocal.hpp>
 	<SFML/System/ThreadLocalPtr.inl>
 
-1255974734 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\threadlocalptr.inl
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\threadlocalptr.inl
 
-1259239264 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\utf.hpp
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\utf.hpp
 	<SFML/Config.hpp>
 	<algorithm>
 	<locale>
@@ -102,41 +102,41 @@
 	<stdlib.h>
 	<SFML/System/Utf.inl>
 
-1259239264 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\utf.inl
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\utf.inl
 
-1255517226 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\vector2.hpp
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\vector2.hpp
 	<SFML/System/Vector2.inl>
 
-1255517226 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\vector2.inl
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\vector2.inl
 
-1255517226 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\vector3.hpp
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\vector3.hpp
 	<SFML/System/Vector3.inl>
 
-1255517226 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\vector3.inl
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\vector3.inl
 
-1256742579 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\context.hpp
+1263495650 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\context.hpp
 	<SFML/Config.hpp>
 	<SFML/System/NonCopyable.hpp>
 
-1257335601 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\contextsettings.hpp
+1263495650 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\contextsettings.hpp
 
-1256742579 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\event.hpp
+1263495650 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\event.hpp
 	<SFML/Config.hpp>
 
-1262781318 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\input.hpp
+1263495650 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\input.hpp
 	<SFML/Config.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<SFML/Window/Event.hpp>
 	<SFML/Window/WindowListener.hpp>
 
-1255764858 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\windowlistener.hpp
+1263495650 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\windowlistener.hpp
 	<SFML/Config.hpp>
 
-1255974734 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\videomode.hpp
+1263495650 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\videomode.hpp
 	<SFML/Config.hpp>
 	<cstdlib>
 
-1260013483 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\window.hpp
+1263495650 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\window.hpp
 	<SFML/Window/Event.hpp>
 	<SFML/Window/Input.hpp>
 	<SFML/Window/VideoMode.hpp>
@@ -149,15 +149,15 @@
 	<queue>
 	<string>
 
-1253953329 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\windowhandle.hpp
+1263495650 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\windowhandle.hpp
 	<SFML/Config.hpp>
 
-1255764858 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\windowstyle.hpp
+1263495650 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\windowstyle.hpp
 
-1260013483 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\color.hpp
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\color.hpp
 	<SFML/Config.hpp>
 
-1260873400 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\font.hpp
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\font.hpp
 	<SFML/System/Resource.hpp>
 	<SFML/System/Vector2.hpp>
 	<SFML/System/String.hpp>
@@ -168,45 +168,45 @@
 	<string>
 	<vector>
 
-1253953329 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\resource.hpp
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\resource.hpp
 	<set>
 	<SFML/System/Resource.inl>
 	<SFML/System/ResourcePtr.inl>
 
-1253953329 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\resource.inl
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\resource.inl
 
-1253953329 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\resourceptr.inl
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\resourceptr.inl
 
-1260724116 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\glyph.hpp
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\glyph.hpp
 	<SFML/Config.hpp>
 	<SFML/Graphics/Rect.hpp>
 
-1253953328 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\rect.hpp
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\rect.hpp
 	<SFML/System/Vector2.hpp>
 	<algorithm>
 	<SFML/Graphics/Rect.inl>
 
-1253953328 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\rect.inl
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\rect.inl
 
-1260724116 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\image.hpp
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\image.hpp
 	<SFML/System/Resource.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<string>
 	<vector>
 
-1259857134 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderimage.hpp
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderimage.hpp
 	<SFML/System/NonCopyable.hpp>
 	<SFML/Graphics/Image.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 
-1262342039 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\rendertarget.hpp
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\rendertarget.hpp
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/RenderQueue.hpp>
 	<SFML/Graphics/View.hpp>
 
-1263054391 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderqueue.hpp
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderqueue.hpp
 	<SFML/Config.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<SFML/Graphics/Drawable.hpp>
@@ -214,33 +214,33 @@
 	<SFML/Graphics/Rect.hpp>
 	<vector>
 
-1255764857 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\drawable.hpp
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\drawable.hpp
 	<SFML/System/Vector2.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Matrix3.hpp>
 
-1253953328 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\matrix3.hpp
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\matrix3.hpp
 	<SFML/Config.hpp>
 	<SFML/System/Vector2.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<math.h>
 	<SFML/Graphics/Matrix3.inl>
 
-1253953328 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\matrix3.inl
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\matrix3.inl
 
-1257418521 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\view.hpp
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\view.hpp
 	<SFML/Config.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Matrix3.hpp>
 	<SFML/System/Vector2.hpp>
 
-1260013483 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderwindow.hpp
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderwindow.hpp
 	<SFML/Graphics/Image.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 	<SFML/Window/Window.hpp>
 	<string>
 
-1257335599 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\shader.hpp
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\shader.hpp
 	<SFML/Config.hpp>
 	<SFML/Graphics/Image.hpp>
 	<SFML/System/Vector2.hpp>
@@ -248,17 +248,17 @@
 	<map>
 	<string>
 
-1255764857 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\shape.hpp
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\shape.hpp
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/System/Vector2.hpp>
 	<vector>
 
-1255764857 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\sprite.hpp
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\sprite.hpp
 	<SFML/System/Resource.hpp>
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Rect.hpp>
 
-1260724116 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\text.hpp
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\text.hpp
 	<SFML/System/Resource.hpp>
 	<SFML/System/String.hpp>
 	<SFML/Graphics/Drawable.hpp>
@@ -332,10 +332,10 @@
 	"../Global.hpp"
 	<list>
 
-1263326212 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\widget.cpp
+1263642375 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\widget.cpp
 	"Widget.hpp"
 
-1263398373 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.cpp
+1263643644 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.cpp
 	"WindowGame.hpp"
 	<iostream>
 
@@ -348,8 +348,9 @@
 	"GUI/GUIImage.hpp"
 	"GUI/GUIWindow.hpp"
 
-1263322403 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\button.hpp
+1263642783 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\button.hpp
 	"Widget.hpp"
+	"Label.hpp"
 
 1262107437 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\main.cpp
 	<iostream>
@@ -358,15 +359,15 @@
 1263134933 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\engines\eventmanager.cpp
 	"EventManager.hpp"
 
-1263322403 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\button.cpp
+1263643371 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\button.cpp
 	"Button.hpp"
 	<iostream>
 
-1262427541 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\label.cpp
+1263643242 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\label.cpp
 	"Label.hpp"
 	<iostream>
 
-1262426857 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\label.hpp
+1263643265 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\label.hpp
 	"Widget.hpp"
 
 1263398077 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guiimage.cpp
@@ -379,19 +380,19 @@
 1263236447 e:\c++\petits jeux\eos\sources\gui\gui_greg\bejeweled.hpp
 	"GUI/Widget.hpp"
 
-1263236447 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\bejeweled.cpp
+1263642375 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\bejeweled.cpp
 	"Bejeweled.hpp"
 	<iostream>
 	<sstream>
 
-1263326059 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\tab.cpp
+1263643585 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\tab.cpp
 	"Tab.hpp"
 	<iostream>
 
-1263323516 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\tab.hpp
+1263642976 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\tab.hpp
 	"Button.hpp"
 
-1263398293 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\tabbar.cpp
+1263642650 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\tabbar.cpp
 	"TabBar.hpp"
 	<iostream>
 

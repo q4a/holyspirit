@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace sf;
 
-Button::Button() :  m_hover(false), m_clicked(false), m_released(false)
+Button::Button(std::string label) :  Widget(), m_hover(false), m_clicked(false), m_released(false)
 {
     m_position  = sf::Vector2i(0,0);
     m_size      = sf::Vector2i(0,0);
@@ -15,8 +15,11 @@ Button::Button() :  m_hover(false), m_clicked(false), m_released(false)
 
     m_drawable->SetImage(m_img_released);
     m_size      = sf::Vector2i((int)m_drawable->GetSize().x, (int)m_drawable->GetSize().y);
+
+    m_label.SetText(label);
+    m_label.SetParent(this);
 }
-Button::Button(int x, int y) :  m_hover(false), m_clicked(false), m_released(false)
+Button::Button(int x, int y, std::string label ) : Widget(x, y), m_hover(false), m_clicked(false), m_released(false)
 {
     m_img_hover.LoadFromFile("pictures/GUI/buttonForm_h.png");
     m_img_clicked.LoadFromFile("pictures/GUI/buttonForm_c.png");
@@ -26,9 +29,11 @@ Button::Button(int x, int y) :  m_hover(false), m_clicked(false), m_released(fal
 
     m_drawable->SetImage(m_img_released);
     m_size      = sf::Vector2i((int)m_drawable->GetSize().x, (int)m_drawable->GetSize().y);
-    SetPosition(x, y);
+
+    m_label.SetText(label);
+    m_label.SetParent(this);
 }
-Button::Button(int x, int y, int w, int h) :    m_hover(false), m_clicked(false), m_released(false)
+Button::Button(int x, int y, int w, int h, std::string label) :  Widget(x, y, w, h), m_hover(false), m_clicked(false), m_released(false)
 {
     m_img_hover.LoadFromFile("pictures/GUI/buttonForm_h.png");
     m_img_clicked.LoadFromFile("pictures/GUI/buttonForm_c.png");
@@ -37,7 +42,8 @@ Button::Button(int x, int y, int w, int h) :    m_hover(false), m_clicked(false)
     m_drawable = new sf::Sprite();
     m_drawable->SetImage(m_img_released);
 
-    SetGeometry(x ,y, w, h);
+    m_label.SetText(label);
+    m_label.SetParent(this);
 }
 
 Button::~Button()
@@ -48,6 +54,7 @@ Button::~Button()
 void Button::Show(std::list<sf::Drawable *> &drawables)
 {
     drawables.push_back(m_drawable);
+    m_label.Show(drawables);
     Widget::Show(drawables);
 }
 
@@ -90,6 +97,9 @@ void Button::SetState(int type)
 void Button::Update()
 {
     Widget::Update();
+    m_label.SetPosition(m_size.x / 2 - m_label.GetTextSize().x / 2,
+                        m_size.y / 2 - m_label.GetTextSize().y / 2);
+    m_label.Update();
 
     sf::Vector2i pos = m_position;
     if(m_parent != NULL)

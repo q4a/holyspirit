@@ -2,15 +2,16 @@
 #define BUTTON_HPP
 
 #include "Widget.hpp"
+#include "Label.hpp"
 
 enum{Button_released, Button_hover, Button_clicked};
 
 class Button : public Widget
 {
     public:
-        Button();
-        Button(int, int);
-        Button(int, int, int, int);
+        Button(std::string label = "");
+        Button(int, int, std::string label = "");
+        Button(int, int, int, int, std::string label = "");
         virtual ~Button();
 
         virtual void Update();
@@ -20,12 +21,13 @@ class Button : public Widget
         virtual void SetImage(const sf::Image &, int type = Button_released);
         virtual void SetImage(const std::string &, int type = Button_released);
 
-
         virtual void SetState(int type);
 
         bool Hover();
         bool Clicked();
         bool Released();
+
+        Label m_label;
 
     protected:
         bool m_hover;
@@ -33,7 +35,6 @@ class Button : public Widget
         bool m_released;
 
         sf::Sprite *m_drawable;
-
     private:
         sf::Image m_img_hover;
         sf::Image m_img_clicked;

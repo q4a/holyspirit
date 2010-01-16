@@ -84,3 +84,10 @@ const int &Label::GetCharacterSize()
     return (m_size);
 }
 
+sf::Vector2i Label::GetTextSize()
+{
+    sf::Vector2i temp;
+    temp.x = m_drawable->GetRect().Right    - m_drawable->GetRect().Left;
+    temp.y = m_drawable->GetRect().Bottom   - m_drawable->GetRect().Top;
+    return (temp);
+}

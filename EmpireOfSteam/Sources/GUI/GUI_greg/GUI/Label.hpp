@@ -22,6 +22,7 @@ class Label : public Widget
         const std::string   &GetText();
         const sf::Color     &GetColor();
         const int           &GetCharacterSize();
+              sf::Vector2i   GetTextSize();
 
     protected:
         std::string     m_text;

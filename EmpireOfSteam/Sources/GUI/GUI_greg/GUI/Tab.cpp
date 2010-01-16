@@ -2,39 +2,33 @@
 #include <iostream>
 using namespace sf;
 
-Tab::Tab() :  Button()
+Tab::Tab(std::string label) :  Button(label)
 {
-    m_position  = sf::Vector2i(0,0);
-    m_size      = sf::Vector2i(0,0);
-
     m_img_hover.LoadFromFile("pictures/GUI/onglet_h.png");
     m_img_clicked.LoadFromFile("pictures/GUI/onglet_c.png");
     m_img_released.LoadFromFile("pictures/GUI/onglet.png");
 
-    m_drawable = new sf::Sprite();
-
+    (*m_drawable) = sf::Sprite();
     m_drawable->SetImage(m_img_released);
     m_size      = sf::Vector2i((int)m_drawable->GetSize().x, (int)m_drawable->GetSize().y);
 }
-Tab::Tab(int x, int y) :  Button()
+Tab::Tab(int x, int y, std::string label) :  Button(x, y, label)
 {
     m_img_hover.LoadFromFile("pictures/GUI/onglet_h.png");
     m_img_clicked.LoadFromFile("pictures/GUI/onglet_c.png");
     m_img_released.LoadFromFile("pictures/GUI/onglet.png");
 
-    m_drawable = new sf::Sprite();
-
+    (*m_drawable) = sf::Sprite();
     m_drawable->SetImage(m_img_released);
     m_size      = sf::Vector2i((int)m_drawable->GetSize().x, (int)m_drawable->GetSize().y);
-    SetPosition(x, y);
 }
-Tab::Tab(int x, int y, int w, int h) :  Button()
+Tab::Tab(int x, int y, int w, int h, std::string label) :  Button(x, y, w, h, label)
 {
     m_img_hover.LoadFromFile("pictures/GUI/onglet_h.png");
     m_img_clicked.LoadFromFile("pictures/GUI/onglet_c.png");
     m_img_released.LoadFromFile("pictures/GUI/onglet.png");
 
-    m_drawable = new sf::Sprite();
+    (*m_drawable) = sf::Sprite();
     m_drawable->SetImage(m_img_released);
 
     SetGeometry(x ,y, w, h);
@@ -42,13 +36,6 @@ Tab::Tab(int x, int y, int w, int h) :  Button()
 
 Tab::~Tab()
 {
-    delete m_drawable;
-}
-
-void Tab::Show(std::list<sf::Drawable *> &drawables)
-{
-    drawables.push_back(m_drawable);
-    Widget::Show(drawables);
 }
 
 void Tab::SetGeometry(int x, int y, int w, int h)
@@ -90,6 +77,13 @@ void Tab::SetState(int type)
 void Tab::Update()
 {
     Widget::Update();
+    if(m_clicked)
+        m_label.SetPosition(m_size.x / 16,
+                            m_size.y / 2);
+    else
+        m_label.SetPosition(m_size.x / 16,
+                            m_size.y / 16);
+    m_label.Update();
 
     sf::Vector2i pos = m_position;
     if(m_parent != NULL)

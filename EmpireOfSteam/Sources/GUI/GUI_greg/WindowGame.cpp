@@ -8,17 +8,28 @@ WindowGame::WindowGame() : GUIWindow(1024,768,"Empire of Steam")
 {
     m_tab_resources = new TabBar(0,0,512,384);
 
-    m_tab_food     = new Tab(20,16,92,48);
-    m_tab_material = new Tab(114,16,92,48);
-    m_tab_science  = new Tab(208,16,92,48);
-    m_tab_army     = new Tab(302,16,92,48);
-    m_tab_religion = new Tab(396,16,92,48);
+    m_tab_food     = new Tab(20 ,16,92,48, "Nourriture");
+    m_tab_material = new Tab(114,16,92,48, "Matériaux");
+    m_tab_science  = new Tab(208,16,92,48, "Science");
+    m_tab_army     = new Tab(302,16,92,48, "Armées");
+    m_tab_religion = new Tab(396,16,92,48, "Religion");
 
-    m_panel_food        = new Widget(512,384);
-    m_panel_material    = new Widget(512,384);
-    m_panel_science     = new Widget(512,384);
-    m_panel_army        = new Widget(512,384);
-    m_panel_religion    = new Widget(512,384);
+    m_tab_food      ->m_label.SetCharacterSize(14);
+    m_tab_food      ->m_label.SetColor(sf::Color(224, 224, 224));
+    m_tab_material  ->m_label.SetCharacterSize(14);
+    m_tab_material  ->m_label.SetColor(sf::Color(224, 224, 224));
+    m_tab_science   ->m_label.SetCharacterSize(14);
+    m_tab_science   ->m_label.SetColor(sf::Color(224, 224, 224));
+    m_tab_army      ->m_label.SetCharacterSize(14);
+    m_tab_army      ->m_label.SetColor(sf::Color(224, 224, 224));
+    m_tab_religion  ->m_label.SetCharacterSize(14);
+    m_tab_religion  ->m_label.SetColor(sf::Color(224, 224, 224));
+
+    m_panel_food        = new Widget(0,0,512,384);
+    m_panel_material    = new Widget(0,0,512,384);
+    m_panel_science     = new Widget(0,0,512,384);
+    m_panel_army        = new Widget(0,0,512,384);
+    m_panel_religion    = new Widget(0,0,512,384);
 
     m_label         = new Label(100,25,"Test");
     m_label->SetColor(sf::Color(255, 0, 0));
@@ -64,15 +75,15 @@ WindowGame::WindowGame() : GUIWindow(1024,768,"Empire of Steam")
 
 WindowGame::~WindowGame()
 {
-    delete m_tab_resources;
-
-    delete m_panel_army_deco;
-
     delete m_tab_food;
     delete m_tab_material;
     delete m_tab_science;
     delete m_tab_army;
     delete m_tab_religion;
+
+    delete m_tab_resources;
+
+    delete m_panel_army_deco;
 
     delete m_panel_food;
     delete m_panel_material;
