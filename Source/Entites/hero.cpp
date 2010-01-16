@@ -191,6 +191,9 @@ Hero::Hero()
     m_personnage.m_miracleALancer = -1;
 
     m_last_potale = 0;
+
+    m_no_schema = -1;
+    m_no_result = -1;
 }
 
 Hero::~Hero()
@@ -1548,12 +1551,12 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
     return (retour);
 }
 
-bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader)
+bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool hideLeft)
 {
     bool retour = false;
     m_objetVise = -1;
     for (int i=0;i<(int)m_inventaire.size();++i)
-        if (i!=m_objetEnMain)
+        if (i!=m_objetEnMain && (m_inventaire[i].m_equipe==-1 || m_inventaire[i].m_equipe>=0 && !hideLeft))
         {
             coordonneeDecimal position(0,0,0,0);
             sf::Sprite sprite;
@@ -1567,7 +1570,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader)
 
             sprite.Resize(m_inventaire[i].getTaille().x*32*configuration->Resolution.w/800,m_inventaire[i].getTaille().y*32*configuration->Resolution.h/600);
 
-            if (m_inventaire[i].m_equipe==-1)
+            if (m_inventaire[i].m_equipe==-1 && i != m_no_schema && i != m_no_result)
             {
                 sprite.SetX((m_inventaire[i].getPosition().x*32+m_classe.position_contenu_inventaire.x)*configuration->Resolution.w/800);
                 sprite.SetY(((m_inventaire[i].getPosition().y-1)*32+(m_classe.position_contenu_inventaire.y))*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
@@ -1578,9 +1581,8 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader)
                 position.h=m_inventaire[i].getTaille().y*32*configuration->Resolution.h/600;
                 position.w=m_inventaire[i].getTaille().x*32*configuration->Resolution.w/800;
             }
-            else
+            else if(i != m_no_schema && i != m_no_result)
             {
-
                 if (m_inventaire[i].m_equipe>=0&&m_inventaire[i].m_equipe<(int)m_classe.emplacements.size())
                 {
                     sprite.Resize(m_classe.emplacements[m_inventaire[i].m_equipe].position.w*configuration->Resolution.w/800,m_classe.emplacements[m_inventaire[i].m_equipe].position.h*configuration->Resolution.h/600);
@@ -1597,6 +1599,44 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader)
                     if (m_objetEnMain==-1&&eventManager->getPositionSouris().x>m_classe.emplacements[m_inventaire[i].m_equipe].position.x*configuration->Resolution.x/800&&eventManager->getPositionSouris().x<(m_classe.emplacements[m_inventaire[i].m_equipe].position.x+m_classe.emplacements[m_inventaire[i].m_equipe].position.w)*configuration->Resolution.x/800&&eventManager->getPositionSouris().y>m_classe.emplacements[m_inventaire[i].m_equipe].position.y*configuration->Resolution.y/600&&eventManager->getPositionSouris().y<(m_classe.emplacements[m_inventaire[i].m_equipe].position.y+m_classe.emplacements[m_inventaire[i].m_equipe].position.h)*configuration->Resolution.y/600)
                         m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+ m_classe.emplacements[m_inventaire[i].m_equipe].position.w),(int)(position.y+position.h),0,0),m_caracteristiques), retour = true;
                 }
+            }
+            else if(i != m_no_result)
+            {
+                position.x= 56 * configuration->Resolution.w/800;
+                position.y= 88 * configuration->Resolution.h/600-decalage*configuration->Resolution.h/600;
+
+                position.h=m_inventaire[i].getTaille().y*32*configuration->Resolution.h/600;
+                position.w=m_inventaire[i].getTaille().x*32*configuration->Resolution.w/800;
+
+                sprite.SetX((56)*configuration->Resolution.w/800);
+                sprite.SetY((88)*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+
+                if (m_objetEnMain==-1
+                    &&eventManager->getPositionSouris().x>56*configuration->Resolution.x/800
+                    &&eventManager->getPositionSouris().x<120*configuration->Resolution.x/800
+                    &&eventManager->getPositionSouris().y>88*configuration->Resolution.y/600
+                    &&eventManager->getPositionSouris().y<151*configuration->Resolution.y/600)
+                    m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+64),(int)(position.y+position.h),0,0),m_caracteristiques), retour = true;
+            }
+            else
+            {
+                sprite.Resize(96*configuration->Resolution.w/800, 160*configuration->Resolution.h/600);
+
+                position.x=(251 + 96/2  - m_inventaire[i].getPositionImage().w/2 )*configuration->Resolution.w/800;
+                position.y=(43  + 160/2 - m_inventaire[i].getPositionImage().h/2 )*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600;
+
+                position.h=160*configuration->Resolution.h/600;
+                position.w=96*configuration->Resolution.w/800;
+
+                sprite.SetX((251)*configuration->Resolution.w/800);
+                sprite.SetY((43)*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+
+                if (m_objetEnMain==-1
+                    &&eventManager->getPositionSouris().x>251*configuration->Resolution.x/800
+                    &&eventManager->getPositionSouris().x<345*configuration->Resolution.x/800
+                    &&eventManager->getPositionSouris().y>43*configuration->Resolution.y/600
+                    &&eventManager->getPositionSouris().y<203*configuration->Resolution.y/600)
+                    m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+160),(int)(position.y+position.h),0,0),m_caracteristiques), retour = true;
             }
 
             moteurGraphique->AjouterCommande(&sprite,16,0);
@@ -1661,7 +1701,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader)
                 position.h=trader[i].getTaille().y*32*configuration->Resolution.h/600;
                 position.w=trader[i].getTaille().x*32*configuration->Resolution.w/800;
             }
-            else
+            else if(!hideLeft)
             {
                 if (trader[i].m_equipe>=0&&trader[i].m_equipe<(int)m_classe.emplacements.size())
                 {
@@ -1776,7 +1816,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader)
             if (eventManager->getPositionSouris().x>m_classe.emplacements[k].position.x*configuration->Resolution.x/800&&eventManager->getPositionSouris().x<(m_classe.emplacements[k].position.x+m_classe.emplacements[k].position.w)*configuration->Resolution.x/800&&eventManager->getPositionSouris().y>m_classe.emplacements[k].position.y*configuration->Resolution.y/600&&eventManager->getPositionSouris().y<(m_classe.emplacements[k].position.y+m_classe.emplacements[k].position.h)*configuration->Resolution.y/600)
                 emplacement=k;
 
-        if (!PossibleEquiper(m_objetEnMain, emplacement))
+        if (!PossibleEquiper(m_objetEnMain, emplacement) || hideLeft)
             sprite.SetColor(sf::Color((int)(sprite.GetColor().r*0.25),(int)(sprite.GetColor().g*0.25),(int)(sprite.GetColor().b*0.25),128));
 
         if (eventManager->getPositionSouris().x<m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800||eventManager->getPositionSouris().x>m_classe.position_contenu_inventaire.x*configuration->Resolution.x/800+32*m_classe.position_contenu_inventaire.w*configuration->Resolution.x/800||eventManager->getPositionSouris().y<(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600||eventManager->getPositionSouris().y>(m_classe.position_contenu_inventaire.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_inventaire.h*configuration->Resolution.y/600)
@@ -1860,7 +1900,8 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader)
             }
     }
 
-    AfficherCaracteristiques(decalage, !trader.empty());
+    if(!hideLeft)
+        AfficherCaracteristiques(decalage, !trader.empty());
 
     return (retour);
 }
@@ -2519,7 +2560,7 @@ Objet Hero::DeposerObjet()
     return temp;
 }
 
-bool Hero::PrendreEnMain(std::vector<Objet> *trader)
+bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft)
 {
     if (trader)
     {
@@ -2536,7 +2577,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
             m_defilement_trader++;
     }
 
-    if (m_buttonPointe>0)
+    if (m_buttonPointe>0 && !craft)
     {
         if (m_buttonPointe==1&&m_caracteristiques.pts_restant>0)
         {
@@ -2585,12 +2626,86 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
             RecalculerCaracteristiques();
         }
     }
+
+    if(craft)
+    {
+        if (eventManager->getPositionSouris().x > 53 * configuration->Resolution.w/800
+            &&eventManager->getPositionSouris().x < 123 * configuration->Resolution.w/800
+            &&eventManager->getPositionSouris().y > 85 * configuration->Resolution.h/600
+            &&eventManager->getPositionSouris().y < 154 * configuration->Resolution.h/600)
+            {
+                if(m_objetEnMain >= 0)
+                {
+                    if(m_inventaire[m_objetEnMain].m_type == SCHEMA)
+                    {
+                        int buf = m_no_schema;
+                        m_no_schema = m_objetEnMain;
+                        m_objetEnMain = buf;
+                    }
+                }
+                else
+                     m_objetEnMain = m_no_schema, m_no_schema = -1;
+            }
+
+        if (eventManager->getPositionSouris().x > 250 * configuration->Resolution.w/800
+            &&eventManager->getPositionSouris().x < 345 * configuration->Resolution.w/800
+            &&eventManager->getPositionSouris().y > 43 * configuration->Resolution.h/600
+            &&eventManager->getPositionSouris().y < 203 * configuration->Resolution.h/600)
+            {
+                if(m_objetEnMain < 0 && m_no_result >= 0)
+                    m_objetEnMain = m_no_result, m_no_result = -1;
+            }
+
+        if (eventManager->getPositionSouris().x > 159 * configuration->Resolution.w/800
+            &&eventManager->getPositionSouris().x < 210 * configuration->Resolution.w/800
+            &&eventManager->getPositionSouris().y > 94 * configuration->Resolution.h/600
+            &&eventManager->getPositionSouris().y < 145 * configuration->Resolution.h/600
+            &&m_no_schema >= 0)
+            {
+                bool ok = true;
+
+                for(unsigned i = 0 ; i < m_inventaire[m_no_schema].m_craft_ingredients.size() ; ++i)
+                {
+                    int nbr = 0;
+                    for(unsigned j = 0 ; j < trader->size() ; ++j)
+                        if((*trader)[j].getChemin() == m_inventaire[m_no_schema].m_craft_ingredients[i].nom)
+                            nbr ++;
+
+                    if(nbr < m_inventaire[m_no_schema].m_craft_ingredients[i].nombre)
+                        ok = false;
+                }
+
+                if(ok)
+                {
+                    for(unsigned i = 0 ; i < m_inventaire[m_no_schema].m_craft_ingredients.size() ; ++i)
+                    for(unsigned k = 0 ; k < m_inventaire[m_no_schema].m_craft_ingredients[i].nombre ; ++k)
+                    {
+                        for(unsigned j = 0 ; j < (*trader).size() ; ++j)
+                            if((*trader)[j].getChemin() == m_inventaire[m_no_schema].m_craft_ingredients[i].nom)
+                                trader->erase(trader->begin() + j), j = trader->size();
+                    }
+
+                    Objet result;
+                    result.Charger(m_inventaire[m_no_schema].m_craft_result, m_caracteristiques);
+                    result.Generer(0);
+
+                    delObjet(m_no_schema);
+                    m_no_schema = -1;
+
+                    m_inventaire.push_back(result);
+                    m_no_result = m_inventaire.size() - 1;
+                }
+            }
+    }
+
+
+
     if (m_objetEnMain >= 0)
     {
         if (eventManager->getPositionSouris().x > 255 * configuration->Resolution.w/800
-                &&eventManager->getPositionSouris().x < 275 * configuration->Resolution.w/800
-                &&eventManager->getPositionSouris().y > 492 * configuration->Resolution.h/600
-                &&eventManager->getPositionSouris().y < 512 * configuration->Resolution.h/600)
+            &&eventManager->getPositionSouris().x < 275 * configuration->Resolution.w/800
+            &&eventManager->getPositionSouris().y > 492 * configuration->Resolution.h/600
+            &&eventManager->getPositionSouris().y < 512 * configuration->Resolution.h/600)
         {
             m_objets_raccourcis[0] = m_objetEnMain;
             RangerObjet(m_objetEnMain);
@@ -2693,7 +2808,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
                         if (eventManager->getEvenement(Key::LControl,EventKey))
                         {
                             m_inventaire[z].JouerSon();
-                            if(trader != &m_coffre)
+                            if(trader != &m_coffre && !craft)
                                 m_argent+=m_inventaire[z].getPrix();
                             m_inventaire[z].m_equipe=-1;
                             AjouterObjetInventaire(m_inventaire[z],trader,m_classe.position_contenu_marchand,true);
@@ -2727,7 +2842,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
 
             m_inventaire[m_objetEnMain].JouerSon();
 
-            if(trader != &m_coffre)
+            if(trader != &m_coffre && !craft)
             {
                 if (m_achat)
                     m_argent+=(int)((float)m_inventaire[m_objetEnMain].getPrix()*(10-(float)m_caracteristiques.charisme/100));
@@ -2746,13 +2861,13 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
             for (int z=0;z<(int)trader->size();z++)
                 if (caseVisee.x>=(*trader)[z].getPosition().x&&caseVisee.x<(*trader)[z].getPosition().x+(*trader)[z].getTaille().x
                         &&caseVisee.y>=(*trader)[z].getPosition().y&&caseVisee.y<(*trader)[z].getPosition().y+(*trader)[z].getTaille().y)
-                    if ((int)((float)(*trader)[z].getPrix()*(10-(float)m_caracteristiques.charisme/100))<=m_argent || trader == &m_coffre)
+                    if ((int)((float)(*trader)[z].getPrix()*(10-(float)m_caracteristiques.charisme/100))<=m_argent || trader == &m_coffre || craft)
                     {
                         m_achat=true;
 
                         if (AjouterObjet((*trader)[z],!eventManager->getEvenement(Key::LControl,EventKey)));
                         {
-                            if(trader != &m_coffre)
+                            if(trader != &m_coffre && !craft)
                                 m_argent-=(int)((float)(*trader)[z].getPrix()*(10-(float)m_caracteristiques.charisme/100));
                             if ((*trader)[z].m_type!=CONSOMMABLE || trader == &m_coffre)
                                 trader->erase(trader->begin()+z);
@@ -2780,7 +2895,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader)
                 return 1;
             }
         }
-        else
+        else if (!craft)
         {
             bool equipe=false;
 
@@ -2824,6 +2939,11 @@ void Hero::delObjet(int numero)
     {
         string temp = m_inventaire[numero].getNom();
         m_inventaire.erase(m_inventaire.begin()+numero);
+
+        if(m_no_schema > numero)
+            m_no_schema--;
+        if(m_no_result > numero)
+            m_no_result--;
 
         for (int i=0;i<4;++i)
         {

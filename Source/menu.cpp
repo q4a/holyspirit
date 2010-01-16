@@ -466,6 +466,19 @@ void Menu::AfficherQuetes(float decalage,Classe *classe)
     moteurGraphique->AjouterCommande(&sprite,15,0);
 }
 
+
+void Menu::AfficherCraft(float decalage,Classe *classe)
+{
+    Sprite sprite;
+
+    sprite.SetImage(*moteurGraphique->getImage(classe->craft.image));
+    sprite.SetX(classe->craft.position.x*configuration->Resolution.x/800);
+    sprite.SetY(classe->craft.position.y*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+    sprite.Resize(classe->craft.position.w*configuration->Resolution.w/800, classe->craft.position.h*configuration->Resolution.h/600);
+
+    moteurGraphique->AjouterCommande(&sprite,15,0);
+}
+
 void Menu::AfficherMiracles(float decalage, Classe *classe, int fenetreEnCours)
 {
     if(fenetreEnCours >= 0 && fenetreEnCours < (int)classe->interface_miracles.size())

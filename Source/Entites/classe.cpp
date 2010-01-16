@@ -455,6 +455,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
         ChargerImageInterface(fichier, scroll_button);
         ChargerImageInterface(fichier, talk);
         ChargerImageInterface(fichier, quest);
+        ChargerImageInterface(fichier, craft);
         ChargerImageInterface(fichier, arrow);
         ChargerImageInterface(fichier, icone_mm);
 

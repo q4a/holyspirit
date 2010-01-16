@@ -149,6 +149,8 @@
 		</Linker>
 		<Unit filename="Contextes\c_changementMap.cpp" />
 		<Unit filename="Contextes\c_changementMap.h" />
+		<Unit filename="Contextes\c_craft.cpp" />
+		<Unit filename="Contextes\c_craft.h" />
 		<Unit filename="Contextes\c_demarrage.cpp" />
 		<Unit filename="Contextes\c_demarrage.h" />
 		<Unit filename="Contextes\c_inventaire.cpp" />

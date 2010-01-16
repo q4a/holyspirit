@@ -107,51 +107,6 @@ Objet::~Objet()
     m_cheminImageHero.clear();
 }
 
-Objet Objet::operator=(const Objet &objet)
-{
-    m_type                  = objet.m_type;
-
-    m_equipe                = objet.m_equipe;
-    m_emplacement           = objet.m_emplacement;
-    m_emplacementImpossible = objet.m_emplacementImpossible;
-    m_degatsMin             = objet.m_degatsMin;
-    m_degatsMax             = objet.m_degatsMax;
-    m_armure                = objet.m_armure;
-    m_capaciteBenediction   = objet.m_capaciteBenediction;
-    m_emplacementImageHero  = objet.m_emplacementImageHero;
-    m_cheminImageHero       = objet.m_cheminImageHero;
-    m_benedictions          = objet.m_benedictions;
-    m_color                 = objet.m_color;
-    m_nom                   = objet.m_nom;
-    m_chemin                = objet.m_chemin;
-    m_description           = objet.m_description;
-    m_rarete                = objet.m_rarete;
-    m_image                 = objet.m_image;
-    m_son                   = objet.m_son;
-    m_chanceTrouver         = objet.m_chanceTrouver;
-    m_positionImage         = objet.m_positionImage;
-    m_taille                = objet.m_taille;
-    m_position              = objet.m_position;
-    ai                      = objet.ai;
-    aa                      = objet.aa;
-    dii                     = objet.dii;
-    dia                     = objet.dia;
-    dai                     = objet.dai;
-    daa                     = objet.daa;
-
-    m_requirement           = objet.m_requirement;
-    m_prix                  = objet.m_prix;
-
-    m_IDClasse              = objet.m_IDClasse;
-    m_shoot_weapon          = objet.m_shoot_weapon;
-    m_useMiracle            = objet.m_useMiracle;
-    m_miracle               = objet.m_miracle;
-
-    m_chemin_miracles       = objet.m_chemin_miracles;
-
-    return *this;
-}
-
 const std::string &Objet::getChemin()
 {
     return m_chemin;
@@ -1069,21 +1024,25 @@ void Objet::Generer(int bonus)
         {
             int nbrBene=0;
             int rarete=NORMAL;
-            int random=rand()%10000 / bonus;
-            if (random<=900)
-                rarete=BONNEFACTURE;
 
-            if (random<=300)
-                rarete=BENI;
+            if(bonus != 0)
+            {
+                int random=rand()%10000 / bonus;
+                if (random<=900)
+                    rarete=BONNEFACTURE;
 
-            if (random<=30)
-                rarete=SACRE;
+                if (random<=300)
+                    rarete=BENI;
 
-            if (random<3)
-                rarete=SANCTIFIE;
+                if (random<=30)
+                    rarete=SACRE;
 
-            if (rarete<m_rarete)
-                rarete=m_rarete;
+                if (random<3)
+                    rarete=SANCTIFIE;
+
+                if (rarete<m_rarete)
+                    rarete=m_rarete;
+            }
 
             m_rarete=rarete;
 
@@ -1283,10 +1242,10 @@ void Objet::Generer(int bonus)
                 if(m_benedictions[j].type == CARACT_SUPP)
                     multiplicateur_car += (float)m_benedictions[j].info2 * 0.5;
                 if(m_benedictions[j].type == POINTS_SUPP)
-                    m_prix += (float)m_benedictions[j].info2 * 0.1;
+                    m_prix += (int)((float)m_benedictions[j].info2 * 0.1);
             }
 
-            m_prix *= multiplicateur_car;
+            m_prix = (int)((float)m_prix * multiplicateur_car);
         }
 }
 
@@ -1393,6 +1352,90 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
         }
         while (caractere!='$');
     }
+
+    if (m_type==SCHEMA)
+    {
+        char caractere;
+        do
+        {
+            fichier->get(caractere);
+            if (caractere=='*')
+            {
+                m_craft_ingredients.push_back(Ingredient ());
+                do
+                {
+                    fichier->get(caractere);
+                    switch (caractere)
+                    {
+                        case 'm' :
+                            (*fichier)>>m_craft_ingredients.back().nom;
+                        break;
+
+                        case 'n' :
+                            (*fichier)>>m_craft_ingredients.back().nombre;
+                        break;
+                    }
+
+                    if (fichier->eof())
+                    {
+                        console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                        caractere='$';
+                    }
+
+                }
+                while (caractere!='$');
+
+                Objet temp;
+                Caracteristique temp2;
+                temp.Charger(m_craft_ingredients.back().nom, temp2, true);
+                m_craft_ingredients.back().text_nom = temp.m_nom;
+
+                fichier->get(caractere);
+            }
+            if (fichier->eof())
+            {
+                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                caractere='$';
+            }
+
+        }
+        while (caractere!='$');
+
+        do
+        {
+            fichier->get(caractere);
+            if (caractere=='*')
+            {
+                do
+                {
+                    fichier->get(caractere);
+                    switch (caractere)
+                    {
+                        case 'm' :
+                            (*fichier)>>m_craft_result;
+                        break;
+                    }
+
+                    if (fichier->eof())
+                    {
+                        console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                        caractere='$';
+                    }
+
+                }
+                while (caractere!='$');
+
+                fichier->get(caractere);
+            }
+            if (fichier->eof())
+            {
+                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                caractere='$';
+            }
+
+        }
+        while (caractere!='$');
+    }
 }
 
 
@@ -1450,8 +1493,21 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
         temp.back().SetStyle(2);
     }
 
-
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+
+    if(!m_craft_ingredients.empty())
+    {
+        for (int i=0;i<(int)m_craft_ingredients.size();i++)
+        {
+            std::ostringstream buf;
+            buf<<"- "<<m_craft_ingredients[i].nombre<<" "<<m_craft_ingredients[i].text_nom;
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+            //temp.back().SetStyle(2);
+        }
+
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+    }
+
 
     float multiplieurEfficacite=100;
 

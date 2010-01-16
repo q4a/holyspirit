@@ -1562,10 +1562,10 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                     buffer.SetY((k+j+1)*32);
 
                     if (buffer.GetSize().x>0)
-                        if (buffer.GetPosition().x+buffer.GetSize().x-buffer.GetOrigin().x>=moteurGraphique->m_camera.GetRect().Left
-                                &&buffer.GetPosition().x-buffer.GetOrigin().x<moteurGraphique->m_camera.GetRect().Right
-                                &&buffer.GetPosition().y+buffer.GetSize().y-buffer.GetOrigin().y>=moteurGraphique->m_camera.GetRect().Top
-                                &&buffer.GetPosition().y-buffer.GetOrigin().y<moteurGraphique->m_camera.GetRect().Bottom)
+                        if (buffer.GetPosition().x+buffer.GetSize().x-buffer.GetOrigin().x>=GetViewRect(moteurGraphique->m_camera).Left
+                                &&buffer.GetPosition().x-buffer.GetOrigin().x<GetViewRect(moteurGraphique->m_camera).Right
+                                &&buffer.GetPosition().y+buffer.GetSize().y-buffer.GetOrigin().y>=GetViewRect(moteurGraphique->m_camera).Top
+                                &&buffer.GetPosition().y-buffer.GetOrigin().y<GetViewRect(moteurGraphique->m_camera).Bottom)
                             moteurGraphique->AjouterCommande(&buffer,m_decor[couche][w][z].getCouche(),1);
                 }
             }
@@ -3164,6 +3164,17 @@ void Map::Script_Potale(Jeu *jeu,Script *script,int noInstruction,int monstre,He
     jeu->m_jeu->alpha_dialog = 0;
 }
 
+void Map::Script_Craft(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer)
+{
+    hero->setMonstreVise(-1);
+   // jeu->m_inventaire->setTrader(m_monstre[monstre].getPointeurObjets(),&hero->m_classe);
+    eventManager->StopEvenement(sf::Mouse::Left, EventClic);
+    eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
+    jeu->Clock.Reset();
+    jeu->m_contexte=jeu->m_craft;
+    jeu->m_jeu->alpha_dialog = 0;
+}
+
 std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)
 {
     sf::Text temp;
@@ -3221,6 +3232,8 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             Script_PlaySound(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer); //PLAYSOUND(script->m_instructions[noInstruction].valeurs.at(0))
         else if (script->m_instructions[noInstruction].nom=="trade" && monstre != -1)
             Script_Trade(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
+        else if (script->m_instructions[noInstruction].nom=="craft" && monstre != -1)
+            Script_Craft(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="teleportation_menu")
             Script_Potale(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="add_checkpoint")
@@ -3876,8 +3889,8 @@ bool Map::InfligerDegats(Personnage *monstre, float degats, int type, Hero *hero
         if (monstre->getCaracteristique().pointAme>0)
         {
             /*coordonneeDecimal position;
-            position.x=(((monstre->getCoordonnee().x-monstre->getCoordonnee().y-1)*64)-moteurGraphique->m_camera.GetRect().Left+48-(configuration->Resolution.w/configuration->zoom/2-400));
-            position.y=(((monstre->getCoordonnee().x+monstre->getCoordonnee().y)*32)-moteurGraphique->m_camera.GetRect().Top-96);
+            position.x=(((monstre->getCoordonnee().x-monstre->getCoordonnee().y-1)*64)-GetViewRect(moteurGraphique->m_camera).Left+48-(configuration->Resolution.w/configuration->zoom/2-400));
+            position.y=(((monstre->getCoordonnee().x+monstre->getCoordonnee().y)*32)-GetViewRect(moteurGraphique->m_camera).Top-96);
             menu->AjouterAme(position,monstre->getCaracteristique().pointAme);*/
             hero->m_personnage.AjouterPointAme(monstre->getCaracteristique().pointAme);
         }

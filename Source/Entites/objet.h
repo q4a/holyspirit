@@ -46,14 +46,25 @@ struct Requirement
     int charisme;
 };
 
+struct Ingredient
+{
+    Ingredient()
+    {
+        nom = "";
+        nombre = 0;
+        text_nom = "";
+    }
+    std::string nom;
+    std::string text_nom;
+    int nombre;
+};
+
 class Objet
 {
 public:
     Objet();
     Objet(std::string nom,int rarete);
     ~Objet();
-
-     Objet operator=(const Objet &objet);
 
     int AfficherCaracteristiques(coordonnee position,Caracteristique caract,float modPrix = 1, bool compare = false, bool = false, bool = false);
     void Charger(const std::string &chemin, const Caracteristique &caract,bool NePasAjouterBenedictions=false);
@@ -110,6 +121,9 @@ public:
     std::vector<std::string> m_chemin_miracles;
 
     float m_alpha;
+
+    std::vector<Ingredient> m_craft_ingredients;
+    std::string             m_craft_result;
 
 private:
     sf::Text AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color=sf::Color(255,255,255));

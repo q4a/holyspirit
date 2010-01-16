@@ -149,8 +149,8 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet, float *decalage)
 
         texte.SetString(m_objets[objet].getNom());
         texte.SetCharacterSize(14*configuration->Resolution.w/800);
-        texte.SetY((position.y-moteurGraphique->m_camera.GetRect().Top)/configuration->zoom*configuration->Resolution.h/600);
-        texte.SetX((position.x-moteurGraphique->m_camera.GetRect().Left)/configuration->zoom*configuration->Resolution.w/800);
+        texte.SetY((position.y-GetViewRect(moteurGraphique->m_camera).Top)/configuration->zoom*configuration->Resolution.h/600);
+        texte.SetX((position.x-GetViewRect(moteurGraphique->m_camera).Left)/configuration->zoom*configuration->Resolution.w/800);
 
         moteurGraphique->AjouterTexteNonChevauchable(&texte,12);
 
@@ -171,7 +171,7 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet, float *decalage)
         moteurGraphique->AjouterCommande(&sprite,12,0);
 
         if(decalage != NULL)
-            *decalage = (sprite.GetPosition().y*configuration->zoom + moteurGraphique->m_camera.GetRect().Top) - sprite.GetSize().y;
+            *decalage = (sprite.GetPosition().y*configuration->zoom + GetViewRect(moteurGraphique->m_camera).Top) - sprite.GetSize().y;
     }
     return (retour);
 }

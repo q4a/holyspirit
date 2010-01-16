@@ -167,17 +167,10 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
         m_EventTableau[Key::Tab]=false;
     }
 
-    //FloatRect ViewRect = moteurGraphique->m_camera.GetRect();
+
 
     coordonnee positionSourisTotale=moteurGraphique->getPositionSouris();
-
     //Conversion des coord cartésienne en coord iso
-    /*if ((float)((positionSourisTotale.y*2-positionSourisTotale.x)/2)/64+tailleMap.y/2<(float)tailleMap.y/2)
-        m_casePointee.y=((positionSourisTotale.y*2-positionSourisTotale.x)/2)/64-1;
-    else
-        m_casePointee.y=((positionSourisTotale.y*2-positionSourisTotale.x)/2)/64;*/
-
-    //m_casePointee.x=(positionSourisTotale.x+((positionSourisTotale.y*2-positionSourisTotale.x)/2))/64;
 
     m_casePointee.x = (positionSourisTotale.y * 2 + positionSourisTotale.x) / 128;
     m_casePointee.y = (positionSourisTotale.y * 2 - positionSourisTotale.x) / 128;
@@ -190,6 +183,7 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
         m_casePointee.x=tailleMap.x;
     if (m_casePointee.y>tailleMap.y)
         m_casePointee.y=tailleMap.y;
+
 }
 
 void EventManager::AfficherCurseur(bool transparent)

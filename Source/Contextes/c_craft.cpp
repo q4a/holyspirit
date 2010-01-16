@@ -35,55 +35,12 @@ using namespace std;
 int GestionBoutons(Jeu *jeu);
 void GestionRaccourcisMiracles(Jeu *jeu);
 
-c_Inventaire::c_Inventaire()
+c_Craft::c_Craft()
 {
     m_decalage=-600;
-    m_trader=NULL;
 }
 
-void TrierInventaire(std::vector<Objet> *trade, int largeur)
-{
-    bool continuer=true;
-
-    for(unsigned i=0;i<trade->size();++i)
-    if(!(*trade)[i].m_dejaTrie)
-    {
-        continuer = true;
-        for (int y=0;continuer;y++)
-            for (int x=0;x<largeur&continuer;x++)
-            {
-                bool ajouter=true;
-                for (int h=0;h<(*trade)[i].getTaille().y;h++)
-                    for (int w=0;w<(*trade)[i].getTaille().x;w++)
-                        if (x+w<largeur)
-                        {
-                            for (unsigned j=0;j<i;j++)
-                                for (int Y=0;Y<(*trade)[j].getTaille().y;Y++)
-                                    for (int X=0;X<(*trade)[j].getTaille().x;X++)
-                                        if ((*trade)[j].getPosition().x+X==x+w && (*trade)[j].getPosition().y+Y==y+h)
-                                            ajouter=false;
-                        }
-                        else
-                            ajouter=false;
-
-                if (ajouter)
-                {
-                    continuer=false;
-                    (*trade)[i].setPosition(x,y);
-                    (*trade)[i].m_dejaTrie = true;
-                }
-            }
-    }
-}
-
-void c_Inventaire::setTrader(std::vector<Objet> *trade,Classe *classe)
-{
-    m_trader = trade;
-}
-
-
-
-void c_Inventaire::Utiliser(Jeu *jeu)
+void c_Craft::Utiliser(Jeu *jeu)
 {
     if (m_decalage<=-600)
         m_afficher=1;
@@ -104,25 +61,27 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         m_decalage=0;
     if (m_decalage<-600)
     {
+        for(unsigned i = 0 ; i < m_trader.size() ; ++i)
+        {
+            m_trader[i].setPosition(jeu->hero.m_personnage.getCoordonnee().x,
+                                    jeu->hero.m_personnage.getCoordonnee().y);
+            jeu->map->AjouterObjet(m_trader[i]);
+        }
+        m_trader.clear();
         m_decalage=-600;
+        jeu->hero.m_no_schema = -1;
         jeu->Next();
     }
 
-    jeu->menu.AfficherInventaire(m_decalage,&jeu->hero.m_classe,m_trader==NULL);
+    jeu->menu.AfficherInventaire(m_decalage,&jeu->hero.m_classe,false);
+    jeu->menu.AfficherCraft(m_decalage,&jeu->hero.m_classe);
 
-    if(m_trader!=NULL)
     {
-        jeu->hero.AfficherInventaire(m_decalage,*m_trader, false);
-    }
-    else
-    {
-        std::vector<Objet> temp;
-        jeu->hero.AfficherInventaire(m_decalage,temp,false);
+        jeu->hero.AfficherInventaire(m_decalage,m_trader,true);
     }
 
     if(jeu->hero.m_objetEnMain == -1)
         eventManager->AfficherCurseur();
-
 
     jeu->map->AfficherSac(jeu->hero.m_personnage.getCoordonnee(),m_decalage,jeu->hero.m_classe.position_sac_inventaire,jeu->hero.m_caracteristiques);
 
@@ -146,16 +105,10 @@ void c_Inventaire::Utiliser(Jeu *jeu)
 
     if (eventManager->getEvenement(Mouse::Left,EventClic))
     {
-        if (jeu->hero.PrendreEnMain(m_trader))
+        if (jeu->hero.PrendreEnMain(&m_trader, true))
             if (jeu->hero.m_objetADeposer>=0)
                 jeu->map->AjouterObjet(jeu->hero.DeposerObjet());
         eventManager->StopEvenement(Mouse::Left,EventClic);
-    }
-
-    if (eventManager->getEvenement(Mouse::Right,EventClic))
-    {
-        jeu->hero.UtiliserObjet(jeu->hero.m_objetVise);
-        eventManager->StopEvenement(Mouse::Right,EventClic);
     }
 
     int temp = GestionBoutons(jeu);
@@ -164,8 +117,6 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         jeu->next_screen = temp;
         jeu->hero.m_defilement_trader=0;
         jeu->hero.m_max_defilement_trader=0;
-        m_trader=NULL;
-        jeu->hero.ChargerModele();
         m_afficher=0;
         jeu->Clock.Reset();
         eventManager->StopEvenement(Key::I,EventKey);
@@ -180,7 +131,7 @@ void c_Inventaire::Utiliser(Jeu *jeu)
             jeu->next_screen = 3;
     }
 
-    jeu->hero.m_defilement_trader -= eventManager->getMolette();
+     jeu->hero.m_defilement_trader -= eventManager->getMolette();
 
     if(eventManager->getEvenement(Mouse::Left,EventClicA))
         if (eventManager->getPositionSouris().x>jeu->hero.m_classe.scroll_button.position.x*configuration->Resolution.x/800

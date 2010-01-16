@@ -54,7 +54,7 @@ public:
     void Afficher(coordonnee dimensionsMap);
     void CalculerOrdreAffichage();
 
-    bool AfficherInventaire(float, std::vector<Objet> &);
+    bool AfficherInventaire(float, std::vector<Objet> &, bool hideLeft);
     void AfficherQuetes(float);
     void AfficherPotales(float);
     void AfficherFlecheQuetes(const std::string &nomMap, float temps);
@@ -79,7 +79,7 @@ public:
     bool AjouterObjet(Objet objet,bool enMain=false);
 
     Objet DeposerObjet();
-    bool PrendreEnMain(std::vector<Objet>*);
+    bool PrendreEnMain(std::vector<Objet>*, bool craft = false);
     void delObjet(int numero);
 
     bool PossibleEquiper(int numero, int emplacement);
@@ -141,6 +141,9 @@ public:
     float m_angleFleche;
 
     std::list<sf::Sprite> m_minimap;
+
+    int m_no_schema;
+    int m_no_result;
 
 private:
     int m_monstreVise;

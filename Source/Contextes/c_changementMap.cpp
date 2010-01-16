@@ -111,7 +111,6 @@ void c_Chargement::setC_Chargement(std::string prochaineMap,coordonnee coordonne
 
 void c_Chargement::Utiliser(Jeu *jeu)
 {
-
     if(z==49)
     {
         configuration->RafraichirOmbre=0;

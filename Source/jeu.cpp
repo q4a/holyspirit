@@ -60,6 +60,7 @@ void Jeu::Demarrer()
     m_inventaire    = new c_Inventaire;
     m_quetes        = new c_Quetes;
     m_potales       = new c_Potales;
+    m_craft         = new c_Craft;
     m_miracles      = new c_Miracles;
     m_menuInGame    = new c_MenuInGame;
 
@@ -119,6 +120,7 @@ void Jeu::Demarrer()
     delete m_inventaire;
     delete m_quetes;
     delete m_potales;
+    delete m_craft;
     delete m_miracles;
     delete m_menuInGame;
 
