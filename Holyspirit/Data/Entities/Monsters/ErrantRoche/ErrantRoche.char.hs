@@ -14,10 +14,22 @@ Vie/DegatsMin/DegatsMax/Vitesse/Ombre/PointAme
 $
 *Data/Scripts/AI/ErrantRoches.script.hs
 $
+
 *
-*Ore.item.hs
+*Ore_iron.item.hs
 r1000
 $
+
+*
+*Ore_copper.item.hs
+r1000
+$
+
+*
+*Ruby.item.hs
+r100
+$
+
 $
 
 $

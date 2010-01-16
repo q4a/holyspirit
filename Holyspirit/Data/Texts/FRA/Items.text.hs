@@ -32,8 +32,8 @@ Epée_longue
 Une_épée_longue,\parfaite_pour_la_guerre.\\Arme_à_une_main.
 Pendentif_azur
 Un_joli_petit_pendentif.
-Minerai
-Le_minerai_est_un matériau\de_base_pour_la_fabrication\d'arme_et_armures.
+Minerai_de_fer
+Le_minerai_de_fer_est_un matériau\de_base_pour_la_fabrication\d'arme_et_armures.
 Anneau
 Un_petit_anneau.
 Tiare_sacrée
@@ -74,4 +74,11 @@ Morceau_de_cerveau
 Mais_c'est_dégeulasse_!
 Larme_de_la_Veuve_Eplorée
 Un_bijou_qui_sied_à_ravir_pour_une_femme_en_deuil.
-
+Barbute_à_cornes
+Un_casque_de_barbare\extrèmement_résistant.\Introuvable_dans_le_commerce.
+Minerai_de_cuivre
+Le_minerai_de_cuivre_est_un matériau\de_base_pour_la_fabrication\d'arme_et_armures.
+Rubis
+Un_magnifique_joyau.
+Schéma_:_Barbute_à_cornes
+Schéma_expliquant_la_conception_d'un_barbute_à_cornes.

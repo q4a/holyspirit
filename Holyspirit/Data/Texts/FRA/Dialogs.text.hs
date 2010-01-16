@@ -39,3 +39,4 @@ Les terres agraires
 Que souhaitez-vous faire ?\\
 -Se téléporter
 -Aller dans mon coffre
+-Fabriquer un objet

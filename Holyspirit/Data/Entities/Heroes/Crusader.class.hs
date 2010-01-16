@@ -37,6 +37,8 @@ $
 $
 	* x0 y0 w800 h600 m Data/Menus/Quest.png $
 $
+	* x0 y0 w800 h600 m Data/Menus/Craft.png $
+$
 	* x400 y557 w35 h64 cx17 cy50 m Data/Menus/Arrow.png $
 $
 	* x0 y72 w16 h16 m Data/Menus/MinimapIcones.png $

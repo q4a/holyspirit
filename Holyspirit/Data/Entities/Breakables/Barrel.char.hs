@@ -20,14 +20,25 @@ $
 		r1000
 	$
 	*
-		*Small_axe.item.hs
-		r5000
+		*Faith_potion.item.hs
+		r1000
 	$
 
-	*
-		*Armor.item.hs
-		r5000
-	$
+*
+*Ore_iron.item.hs
+r1000
+$
+
+*
+*Ore_copper.item.hs
+r1000
+$
+
+*
+*Ruby.item.hs
+r100
+$
+
 $
 	*Data/Particule_system/wood_barrel.ps.hs
 $
