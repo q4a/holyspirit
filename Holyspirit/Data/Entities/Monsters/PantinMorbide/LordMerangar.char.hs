@@ -1,0 +1,112 @@
+*Data/Entities/Monsters/PantinMorbide/Guardian.rs.hs
+$
+Portee lumineuse
+* r255 v255 b255 i0 $
+$
+* n12 $
+$
+Rang du monstre
+* 4
+$
+Caracteristiques
+Vie/DegatsMin/DegatsMax/Vitesse
+*v5000 di50 da100 m0.35 o1 a250 n2 t1.5 x40 $
+$
+*Data/Scripts/AI/LordMerangar.script.hs
+$
+Objets du monstre
+
+	*
+		*Armband.item.hs
+		r10000
+	$
+	*
+		*Armor.item.hs
+		r10000
+	$
+	*
+		*Boot.item.hs
+		r10000
+	$
+	*
+		*Ceremonial_dagger.item.hs
+		r10000
+	$
+	*
+		*Chainmail.item.hs
+		r10000
+	$
+	*
+		*Crossbow.item.hs
+		r10000
+	$
+	*
+		*Dagger.item.hs
+		r10000
+	$
+	*
+		*Gown.item.hs
+		r10000
+	$
+	*
+		*Great_shield.item.hs
+		r10000
+	$
+	*
+		*Helmet.item.hs
+		r10000
+	$
+	*
+		*Katzbalger.item.hs
+		r100
+	$
+	*
+		*Long_sword.item.hs
+		r10000
+	$
+	*
+		*Necklage.item.hs
+		r10000
+	$
+	*
+		*Ring.item.hs
+		r10000
+	$
+	*
+		*Small_shield.item.hs
+		r10000
+	$
+	*
+		*Small_sword.item.hs
+		r10000
+	$
+	*
+		*Small_sword_divin.item.hs
+		r100
+	$
+	*
+		*Two_hand_sword.item.hs
+		r10000
+	$
+	*
+		*Unique_boot.item.hs
+		r100
+	$
+	*
+		*Unique_shield.item.hs
+		r100
+	$
+	*
+		*Unique_dagger.item.hs
+		r100
+	$
+	*
+		*Unique_necklage.item.hs
+		r100
+	$
+
+$
+*Data/Particule_system/human_bones.ps.hs
+$
+*Data/Entities/Monsters/PantinMorbide/Charge.miracle.hs
+$
