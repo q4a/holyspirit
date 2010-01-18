@@ -17,3 +17,5 @@ La police de caractère n'est pas définitive, avez vous une préférence ?
 
 Greg : Oui, tout est possible.
 
+Comment ferai on ? aurai tu quelques liens utile pour moi ? 
+(je ne sais meme pas quel librairie on utilise donc voila, je pourrai aller voir dans la doc :))
