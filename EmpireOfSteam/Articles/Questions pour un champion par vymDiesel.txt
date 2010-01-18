@@ -15,3 +15,5 @@ Je propose de rajouter vos questions dans un fichier similaire portant votre nom
 2) Il nous faudra un serveur qui accepte les connexions mysql distantes.
 
 D'accord, je suis intéressé de comprendre la programmation de notre jeu donc voila x)
+
+Okey, si tu veux, tu peux jeter un oeil sur les sources actuelles et poser toutes les questions que tu veux. Par contre, faut avoir des notions de POO et polymorhisme.

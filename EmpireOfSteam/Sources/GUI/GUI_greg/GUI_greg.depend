@@ -335,11 +335,11 @@
 1263642375 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\widget.cpp
 	"Widget.hpp"
 
-1263643644 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.cpp
+1263644778 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.cpp
 	"WindowGame.hpp"
 	<iostream>
 
-1263325308 e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.hpp
+1263644778 e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.hpp
 	"Global.hpp"
 	"Bejeweled.hpp"
 	"GUI/Button.hpp"
@@ -385,7 +385,7 @@
 	<iostream>
 	<sstream>
 
-1263643585 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\tab.cpp
+1263643696 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\tab.cpp
 	"Tab.hpp"
 	<iostream>
 

@@ -46,6 +46,7 @@ WindowGame::WindowGame() : GUIWindow(1024,768,"Empire of Steam")
     m_map                       = new GUIImage(16,12,480,360,"pictures/GUI/map.png");
 
     m_panel_army_deco           = new GUIImage(0,0,512,384,"pictures/GUI/armyPanel.png");
+    m_compteur                  = new GUIImage(0,0,512,384,"pictures/GUI/compteur.png");
 
     m_bejeweled                 = new Bejeweled(94,32,320,320);
 
@@ -63,6 +64,7 @@ WindowGame::WindowGame() : GUIWindow(1024,768,"Empire of Steam")
     m_tab_resources->AddTab(m_tab_religion  , m_panel_religion);
 
     m_panel_army->AddWidget(m_panel_army_deco);
+    m_panel_army->AddWidget(m_compteur);
 
     m_panel_ressources->AddWidget(m_cadran_resources);
 
@@ -84,6 +86,7 @@ WindowGame::~WindowGame()
     delete m_tab_resources;
 
     delete m_panel_army_deco;
+    delete m_compteur;
 
     delete m_panel_food;
     delete m_panel_material;

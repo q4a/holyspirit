@@ -46,7 +46,8 @@ class WindowGame : public GUIWindow
                     *m_panel_army,
                     *m_panel_religion;
 
-        GUIImage    *m_panel_army_deco;
+        GUIImage    *m_panel_army_deco,
+                    *m_compteur;
 
         Bejeweled   *m_bejeweled;
 
