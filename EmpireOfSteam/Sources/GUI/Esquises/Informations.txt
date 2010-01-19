@@ -19,3 +19,8 @@ Greg : Oui, tout est possible.
 
 Comment ferai on ? aurai tu quelques liens utile pour moi ? 
 (je ne sais meme pas quel librairie on utilise donc voila, je pourrai aller voir dans la doc :))
+
+Greg : Pour animer ? Tu va me faire une joli petite séquence de png qui tourne en loop...
+
+Nop, je ne vois pas de lien. 
+On utilise la SFML.
