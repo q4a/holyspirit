@@ -2,7 +2,7 @@
 #define BEJEWELED_HPP
 
 
-#define NBR_JEWELS 7
+#define NBR_JEWELS 8
 #define TAB_WIDTH 10
 #define TAB_HEIGHT 10
 
