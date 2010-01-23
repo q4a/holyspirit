@@ -100,7 +100,7 @@ $
 	$
 		*
 		*Drawing_barbute.item.hs
-		r200
+		r500
 	$
 
 $

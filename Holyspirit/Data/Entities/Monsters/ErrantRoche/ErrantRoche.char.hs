@@ -17,17 +17,17 @@ $
 
 *
 *Ore_iron.item.hs
-r1000
+r1500
 $
 
 *
 *Ore_copper.item.hs
-r1000
+r1500
 $
 
 *
 *Ruby.item.hs
-r100
+r500
 $
 
 $

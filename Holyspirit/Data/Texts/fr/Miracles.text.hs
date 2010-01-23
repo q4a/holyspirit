@@ -9,7 +9,7 @@ Tornade divine
 Le croise fait tournoyer son épée\repoussant les ennemis en contact avec lui.\Utilisable uniquement avec des épées à deux mains.
 Dégats : %1 \% de l'arme
 Incarnation de Saint Lazare : Vampirisme
-En plus de soigner le croisé, Saint Lazare\lui permet de voler la vie de ses adversaires.
+En plus de soigner le croisé, Saint Lazare\lui permet de voler la vie de ses adversaires.\Requiert le miracle Saint Lazare.
 Vol de vie : %1\%
 Incarnation de Saint Lazare
 Le croise appelle Saint Lazare pour venir à son aide.\Celui-ci améliore la régénération de santé du croisé.
