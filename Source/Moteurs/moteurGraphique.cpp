@@ -105,12 +105,15 @@ void MoteurGraphique::CreateNewWindow()
         EffectFiltre.SetTexture("framebuffer", sf::Shader::CurrentTexture);
         EffectShadow.SetTexture("framebuffer", sf::Shader::CurrentTexture);
         EffectWater.SetTexture("framebuffer", sf::Shader::CurrentTexture);
+        EffectDistortion.SetTexture("framebuffer", sf::Shader::CurrentTexture);
+        EffectDistortion.SetTexture("distortion_map",m_distortion_screen.GetImage());
     }
 
     m_ecran.SetActive();
 
     bufferImage.Create(m_ecran.GetWidth(), m_ecran.GetHeight());
     m_water_screen.Create(m_ecran.GetWidth(), m_ecran.GetHeight());
+    m_distortion_screen.Create(m_ecran.GetWidth(), m_ecran.GetHeight());
     m_light_screen.Create(m_ecran.GetWidth()+64, m_ecran.GetHeight()+64);
     m_light_screen2.Create(m_ecran.GetWidth()+64, m_ecran.GetHeight()+64);
 }
@@ -180,6 +183,11 @@ void MoteurGraphique::Charger()
             console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetWater,1);
         else
             console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetWater,0);
+
+        if (!EffectDistortion.LoadFromFile(configuration->chemin_fx+configuration->nom_effetDistortion))
+            console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetDistortion,1);
+        else
+            console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetDistortion,0);
 
         m_img_water = AjouterImage(configuration->water_map,-1);
         EffectWater.SetTexture("water_map", *getImage(m_img_water));
@@ -378,6 +386,22 @@ void MoteurGraphique::Afficher()
 
     bufferImage.Clear();
     m_water_screen.Clear();
+    m_distortion_screen.Clear();
+
+
+    if(configuration->postFX && configuration->Distortion)
+    for (IterCommande=m_distortion_commandes.begin();IterCommande!=m_distortion_commandes.end();++IterCommande)
+    {
+        if (IterCommande->m_utiliserCamera)
+            m_distortion_screen.SetView(m_camera);
+        else
+            m_distortion_screen.SetView(m_distortion_screen.GetDefaultView());
+
+        m_distortion_screen.Draw(IterCommande->m_sprite);
+    }
+    m_distortion_commandes.clear();
+
+
 
     for (int k=0;k<=20;k++)
     {
@@ -415,12 +439,27 @@ void MoteurGraphique::Afficher()
                 bufferImage.Draw(screen);
         }
 
+        if (k==12 && configuration->postFX && configuration->Distortion)
+        {
+            bufferImage.SetView(bufferImage.GetDefaultView());
+
+            m_distortion_screen.Display();
+
+            EffectDistortion.SetParameter("offset", 1, 1 );
+            EffectDistortion.SetTexture("distortion_map", m_distortion_screen.GetImage());
+
+            bufferImage.Display();
+
+            bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectDistortion);
+        }
+
+
         if (k!=9)
         {
             for (IterCommande=m_commandes[k].begin();IterCommande!=m_commandes[k].end();++IterCommande)
             {
                 if(k==0)
-                    IterCommande->m_sprite.SetColor(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
+                    IterCommande->m_sprite.SetColor(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255,255));
 
                 if(k == 0 && configuration->postFX && configuration->Reflection)
                 {
@@ -442,11 +481,6 @@ void MoteurGraphique::Afficher()
                         bufferImage.Draw(IterCommande->m_sprite,EffectFiltre);
                     else
                         bufferImage.Draw(IterCommande->m_sprite);
-                    /*EffectShadow.SetParameter("coord", IterCommande->m_sprite.TransformToGlobal(sf::Vector2f(0,0)).x/configuration->Resolution.x
-                                                     , IterCommande->m_sprite.TransformToGlobal(sf::Vector2f(0,0)).y/configuration->Resolution.y);
-                    EffectShadow.SetParameter("size" , IterCommande->m_sprite.GetSize().x/configuration->Resolution.x
-                                                     , IterCommande->m_sprite.GetSize().y/configuration->Resolution.y);
-                    bufferImage.Draw(IterCommande->m_sprite,EffectShadow);*/
                 }
             }
         }
@@ -479,14 +513,16 @@ void MoteurGraphique::Afficher()
 
             if (configuration->contrastes>1 && configuration->postFX)
             {
+                EffectContrastes.SetParameter("color", configuration->contrastes-1, configuration->contrastes-1, configuration->contrastes-1);
+                bufferImage.Display();
                 bufferImage.SetView(bufferImage.GetDefaultView());
                 bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectContrastes);
-                EffectContrastes.SetParameter("color", configuration->contrastes-1, configuration->contrastes-1, configuration->contrastes-1);
             }
 
             if (configuration->effetMort>0 && configuration->postFX)
             {
                 bufferImage.SetView(bufferImage.GetDefaultView());
+                bufferImage.Display();
                 bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectMort);
             }
         }
@@ -497,8 +533,9 @@ void MoteurGraphique::Afficher()
             if (m_blur>0)
             {
                 bufferImage.SetView(bufferImage.GetDefaultView());
-                bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectBlurScreen);
                 EffectBlurScreen.SetParameter("offset",(float)m_blur);
+                bufferImage.Display();
+                bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectBlurScreen);
             }
         }
 
@@ -518,7 +555,7 @@ void MoteurGraphique::Afficher()
 
 
 
-   // m_ecran.Clear();
+    //m_ecran.Clear();
     bufferImage.Display();
     m_ecran.Draw(sf::Sprite(bufferImage.GetImage()));
     m_ecran.Display();

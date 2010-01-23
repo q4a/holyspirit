@@ -75,6 +75,8 @@ void Configuration::ChargerConf()
                 fichier>>Ombre;
             if (chaine== "reflection:")
                 fichier>>Reflection;
+            if (chaine== "distortion:")
+                fichier>>Distortion;
             if (chaine== "light_quality:")
                 fichier>>Lumiere;
             if (chaine== "grass:")
@@ -98,6 +100,8 @@ void Configuration::ChargerConf()
                 fichier>>debug;
             if (chaine== "desactivate_console:")
                 fichier>>desactivate_console;
+            if (chaine== "language:")
+                fichier>>language;
         }
         fichier.close();
     }
@@ -153,6 +157,8 @@ void Configuration::ChargerInit()
                 fichier>>nom_effetShadow;
             if (chaine== "fxWater:")
                 fichier>>nom_effetWater;
+            if (chaine== "fxDistortion:")
+                fichier>>nom_effetDistortion;
 
             if (chaine== "fxWater_image:")
                 fichier>>water_map;
@@ -213,7 +219,7 @@ void Configuration::ChargerInit()
 void Configuration::ChargerTxt()
 {
     std::ifstream fichier;
-    fichier.open((chemin_localisation+chemin_text_benedictions).c_str(), std::ios::in);
+    fichier.open((chemin_localisation+language+"/"+chemin_text_benedictions).c_str(), std::ios::in);
     if (fichier)
     {
         std::string chaine;
@@ -226,7 +232,7 @@ void Configuration::ChargerTxt()
     }
 
     std::ifstream fichier2;
-    fichier2.open((chemin_localisation+chemin_text_menus).c_str(), std::ios::in);
+    fichier2.open((chemin_localisation+language+"/"+chemin_text_menus).c_str(), std::ios::in);
     if (fichier2)
     {
         std::string chaine;
@@ -240,7 +246,7 @@ void Configuration::ChargerTxt()
 
 
     std::ifstream fichier3;
-    fichier3.open((chemin_localisation+chemin_text_items).c_str(), std::ios::in);
+    fichier3.open((chemin_localisation+language+"/"+chemin_text_items).c_str(), std::ios::in);
     if (fichier3)
     {
         std::string chaine;
@@ -253,7 +259,7 @@ void Configuration::ChargerTxt()
     }
 
     std::ifstream fichier4;
-    fichier4.open((chemin_localisation+chemin_text_entities).c_str(), std::ios::in);
+    fichier4.open((chemin_localisation+language+"/"+chemin_text_entities).c_str(), std::ios::in);
     if (fichier4)
     {
         std::string chaine;
@@ -266,7 +272,7 @@ void Configuration::ChargerTxt()
     }
 
     std::ifstream fichier5;
-    fichier5.open((chemin_localisation+chemin_text_dialogs).c_str(), std::ios::in);
+    fichier5.open((chemin_localisation+language+"/"+chemin_text_dialogs).c_str(), std::ios::in);
     if (fichier5)
     {
         std::string chaine;
@@ -279,7 +285,7 @@ void Configuration::ChargerTxt()
     }
 
     std::ifstream fichier6;
-    fichier6.open((chemin_localisation+chemin_text_maps).c_str(), std::ios::in);
+    fichier6.open((chemin_localisation+language+"/"+chemin_text_maps).c_str(), std::ios::in);
     if (fichier6)
     {
         std::string chaine;
@@ -292,7 +298,7 @@ void Configuration::ChargerTxt()
     }
 
     std::ifstream fichier7;
-    fichier7.open((chemin_localisation+chemin_text_miracles).c_str(), std::ios::in);
+    fichier7.open((chemin_localisation+language+"/"+chemin_text_miracles).c_str(), std::ios::in);
     if (fichier7)
     {
         std::string chaine;
@@ -366,6 +372,7 @@ void Configuration::Sauvegarder()
         fichier<< "light_refresh_rate: " <<frequence_lumiere<<std::endl;
         fichier<< "shadows: " <<Ombre<<std::endl;
         fichier<< "reflection: " <<Reflection<<std::endl;
+        fichier<< "distortion: " <<Distortion<<std::endl;
         fichier<< "videos: " <<video<<std::endl;
         fichier<< "postFX: " <<postFX<<std::endl;
         fichier<< "alpha_opacity: "<<alpha<<std::endl;
@@ -388,6 +395,7 @@ void Configuration::Sauvegarder()
         fichier<< "saving_frequency: " <<frequence_sauvegarde<<std::endl;
         fichier<<"debug_mod: "<<debug<<std::endl;
         fichier<<"desactivate_console: "<<desactivate_console<<std::endl;
+        fichier<<"language: "<<language<<std::endl;
 
 
         fichier.close();

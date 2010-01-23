@@ -21,6 +21,7 @@
 					<Add option="-O2" />
 					<Add option="-O1" />
 					<Add option="-O" />
+					<Add option="-g" />
 					<Add option="-DWIN32" />
 					<Add option="-DNDEBUG" />
 					<Add option="-D_WINDOWS" />
@@ -46,17 +47,17 @@
 				<Option working_dir="..\Holyspirit" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option projectCompilerOptionsRelation="2" />
+				<Option projectCompilerOptionsRelation="1" />
 				<Option projectResourceIncludeDirsRelation="1" />
 				<Compiler>
 					<Add option="-g" />
 					<Add directory="..\..\SFML_SVN\branches\sfml2\include" />
 				</Compiler>
 				<Linker>
-					<Add option="-lsfml-audio-s" />
-					<Add option="-lsfml-graphics-s" />
-					<Add option="-lsfml-window-s" />
-					<Add option="-lsfml-system-s" />
+					<Add option="-lsfml-audio-s-d" />
+					<Add option="-lsfml-graphics-s-d" />
+					<Add option="-lsfml-window-s-d" />
+					<Add option="-lsfml-system-s-d" />
 					<Add directory="..\..\SFML_SVN\branches\sfml2\lib\mingw" />
 				</Linker>
 			</Target>

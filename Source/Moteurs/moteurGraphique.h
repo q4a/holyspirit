@@ -121,9 +121,10 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	std::string getCheminImage(int IDimage);
 
-	sf::Shader  EffectBlur,EffectBlur2,EffectBlurScreen,EffectMort,EffectNoir,EffectContrastes,EffectFiltre, EffectShadow, EffectWater;
+	sf::Shader  EffectBlur,EffectBlur2,EffectBlurScreen,EffectMort,EffectNoir,EffectContrastes,EffectFiltre, EffectShadow, EffectWater, EffectDistortion;
 	sf::RenderImage bufferImage;
 	sf::RenderImage m_water_screen;
+	sf::RenderImage m_distortion_screen;
 	sf::RenderImage m_light_screen;
     sf::RenderImage m_light_screen2;
 
@@ -164,6 +165,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	std::vector <sf::Text> m_textes[21];
 	std::vector <Commande> m_commandes[21];
+	std::vector <Commande> m_distortion_commandes;
 	std::vector <ParticuleSysteme> m_systemeParticules;
 	std::vector <ParticuleSysteme>::iterator m_systemeParticules_iter;
 

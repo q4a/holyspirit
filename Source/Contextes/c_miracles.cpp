@@ -103,5 +103,15 @@ void c_Miracles::Utiliser(Jeu *jeu)
                 eventManager->StopEvenement(Mouse::Left,EventClic);
             }
         }
+
+    coordonnee position;
+    position.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
+    position.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
+
+    Listener::SetGlobalVolume((float)configuration->volume);
+    Listener::SetPosition(-position.x, 0, position.y);
+    Listener::SetDirection(0, 0, 1);
+    jeu->map->MusiquePlay(position);
+    jeu->sonMort.SetPosition(position.x,0,position.y);
 }
 

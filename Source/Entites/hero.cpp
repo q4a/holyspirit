@@ -723,6 +723,9 @@ void Hero::CalculerOrdreAffichage()
 
 void Hero::Afficher(coordonnee dimensionsMap)
 {
+    if(m_personnage.getEtat() == 3)
+        m_personnage.setEtat(0);
+
     int plusHaut = 0;
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
         if(m_ordreAffichage[i] >= plusHaut)

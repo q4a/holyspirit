@@ -195,4 +195,15 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         jeu->hero.m_defilement_trader=jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h;
 
     GestionRaccourcisMiracles(jeu);
+
+
+    coordonnee position;
+    position.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
+    position.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
+
+    Listener::SetGlobalVolume((float)configuration->volume);
+    Listener::SetPosition(-position.x, 0, position.y);
+    Listener::SetDirection(0, 0, 1);
+    jeu->map->MusiquePlay(position);
+    jeu->sonMort.SetPosition(position.x,0,position.y);
 }
