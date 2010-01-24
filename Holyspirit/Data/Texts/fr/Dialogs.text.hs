@@ -40,3 +40,4 @@ Que souhaitez-vous faire ?\\
 -Se téléporter
 -Aller dans mon coffre
 -Fabriquer un objet
+L'orée de la foret
