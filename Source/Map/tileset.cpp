@@ -89,6 +89,7 @@ void Tileset::ChargerTiles(ifstream &fichier, int lumiere_base)
                 int layer = 0;
                 int attaque = -1;
                 int ordre = 0;
+                std::string nom;
 
                 do
                 {
@@ -139,6 +140,11 @@ void Tileset::ChargerTiles(ifstream &fichier, int lumiere_base)
                         break;
                     case 'g':
                         fichier>>ordre;
+                        break;
+
+                    case 'v':
+
+                        fichier>>nom;
                         break;
 
                     case 'e':

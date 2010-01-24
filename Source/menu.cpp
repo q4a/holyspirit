@@ -50,7 +50,7 @@ Menu::Menu()
     m_barreVie=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_barre_vie,-1);
     m_barreVieVide=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_barre_vie_vide,-1);
 
-    m_dialogue = " ";
+    m_dialogue.clear();
     m_speak_choice = -1;
 }
 

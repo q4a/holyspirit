@@ -3256,7 +3256,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         }
         else if (script->m_instructions[noInstruction].nom=="speak")
         {
-            if (jeu->menu.m_dialogue == " ")
+            if (jeu->menu.m_dialogue.empty())
             {
                 jeu->menu.m_dialogue = DecouperTexte(configuration->getText(4, script->m_instructions[noInstruction].valeurs.at(0)), hero->m_classe.position_contenu_dialogue.w, 14);
                 eventManager->StopEvenement(Mouse::Left,EventClic);
@@ -3267,7 +3267,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         }
         else if (script->m_instructions[noInstruction].nom=="stop_speak")
         {
-            jeu->menu.m_dialogue = " ";
+            jeu->menu.m_dialogue.clear();
             jeu->menu.ClearSpeakChoice();
         }
         else if (script->m_instructions[noInstruction].nom=="speak_choice")
@@ -3436,7 +3436,7 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                 }
                 else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="no_speak")
                 {
-                    if (jeu->menu.m_dialogue != " ")
+                    if (!jeu->menu.m_dialogue.empty())
                         ok=false;
                 }
                 else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="quest")

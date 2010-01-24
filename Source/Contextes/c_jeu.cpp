@@ -656,12 +656,12 @@ int GestionBoutons(Jeu *jeu)
      && eventManager->getPositionSouris().y < (jeu->hero.m_classe.position_bouton_dialogue.y + jeu->hero.m_classe.position_bouton_dialogue.h) * configuration->Resolution.y/600
      && eventManager->getEvenement(Mouse::Left,EventClicA))
     {
-        if(jeu->menu.m_dialogue != " ")
+        if(!jeu->menu.m_dialogue.empty())
         {
             eventManager->StopEvenement(Key::Escape,EventKey);
             eventManager->StopEvenement(Mouse::Left,EventClicA);
             eventManager->StopEvenement(Mouse::Left,EventClic);
-            jeu->menu.m_dialogue = " ";
+            jeu->menu.m_dialogue.clear();
             jeu->hero.setMonstreVise(-1);
         }
         jeu->menu.ClearSpeakChoice();
@@ -697,7 +697,7 @@ int GestionBoutons(Jeu *jeu)
 void c_Jeu::Evenements(Jeu *jeu)
 {
     if (eventManager->getPositionSouris().y < 492 * configuration->Resolution.h/600)
-    if(jeu->menu.m_dialogue == " ")
+    if(jeu->menu.m_dialogue.empty())
     {
         if (!eventManager->getEvenement(Mouse::Left,EventClic))
             jeu->map->getMonstre(&jeu->hero,eventManager->getPositionSouris(),eventManager->getCasePointee());
@@ -860,7 +860,7 @@ void c_Jeu::Affichage(Jeu *jeu)
             alpha_sac=0;
     }
 
-    if (jeu->menu.m_dialogue != " ")
+    if (!jeu->menu.m_dialogue.empty())
     {
         alpha_dialog+=tempsEcoule*1000;
         if (alpha_dialog>255)
