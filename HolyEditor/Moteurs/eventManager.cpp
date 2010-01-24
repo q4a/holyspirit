@@ -98,10 +98,11 @@ void EventManager::GererLesEvenements(coordonnee tailleMap)
             break;
         }
 
-        if (Event.Type == sf::Event::Resized)
+        /*if (Event.Type == sf::Event::Resized)
         {
-            moteurGraphique->m_ecran->GetDefaultView().Reset(sf::FloatRect(0, 0, Event.Size.Width, Event.Size.Height));
-        }
+            sf::FloatRect temp(0, 0, Event.Size.Width, Event.Size.Height);
+            moteurGraphique->m_ecran->GetDefaultView().Reset(temp);
+        }*/
     }
 
     if (m_EventTableau[Key::PageDown])
@@ -156,7 +157,7 @@ void EventManager::GererLesEvenements(coordonnee tailleMap)
         m_EventTableau[Key::Tab]=false;
     }
 
-    FloatRect ViewRect = moteurGraphique->m_camera.GetRect();
+    FloatRect ViewRect = GetViewRect(moteurGraphique->m_camera);
 
     coordonnee positionSourisTotale=moteurGraphique->getPositionSouris();
 

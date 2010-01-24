@@ -931,7 +931,10 @@ void MainWindow::MettreListesAJour()
             for (unsigned l = 0 ; l < moteurGraphique->getTileset(map->m_tileset[k-1])->m_tile.size() ; ++l)
             {
                 std::ostringstream buf;
-                buf<<l;
+                if(!moteurGraphique->getTileset(map->m_tileset[k-1])->m_tile[l].m_nom.empty())
+                    buf<<moteurGraphique->getTileset(map->m_tileset[k-1])->m_tile[l].m_nom;
+                else
+                    buf<<l;
                 QStringList temp;
                 temp<<buf.str().c_str();
                 QTreeWidgetItem *widget2 = new QTreeWidgetItem(temp, 0);

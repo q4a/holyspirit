@@ -96,6 +96,8 @@ void Configuration::ChargerConf()
                 fichier>>debug;
             if (chaine== "desactivate_console:")
                 fichier>>desactivate_console;
+            if (chaine== "language:")
+                fichier>>language;
         }
         fichier.close();
     }
@@ -203,7 +205,7 @@ void Configuration::ChargerInit()
 void Configuration::ChargerTxt()
 {
     std::ifstream fichier;
-    fichier.open((chemin_localisation+chemin_text_benedictions).c_str(), std::ios::in);
+    fichier.open((chemin_localisation+language+"/"+chemin_text_benedictions).c_str(), std::ios::in);
     if (fichier)
     {
         std::string chaine;
@@ -216,7 +218,7 @@ void Configuration::ChargerTxt()
     }
 
     std::ifstream fichier2;
-    fichier2.open((chemin_localisation+chemin_text_menus).c_str(), std::ios::in);
+    fichier2.open((chemin_localisation+language+"/"+chemin_text_menus).c_str(), std::ios::in);
     if (fichier2)
     {
         std::string chaine;
@@ -230,7 +232,7 @@ void Configuration::ChargerTxt()
 
 
     std::ifstream fichier3;
-    fichier3.open((chemin_localisation+chemin_text_items).c_str(), std::ios::in);
+    fichier3.open((chemin_localisation+language+"/"+chemin_text_items).c_str(), std::ios::in);
     if (fichier3)
     {
         std::string chaine;
@@ -243,7 +245,7 @@ void Configuration::ChargerTxt()
     }
 
     std::ifstream fichier4;
-    fichier4.open((chemin_localisation+chemin_text_entities).c_str(), std::ios::in);
+    fichier4.open((chemin_localisation+language+"/"+chemin_text_entities).c_str(), std::ios::in);
     if (fichier4)
     {
         std::string chaine;
@@ -256,7 +258,7 @@ void Configuration::ChargerTxt()
     }
 
     std::ifstream fichier5;
-    fichier5.open((chemin_localisation+chemin_text_dialogs).c_str(), std::ios::in);
+    fichier5.open((chemin_localisation+language+"/"+chemin_text_dialogs).c_str(), std::ios::in);
     if (fichier5)
     {
         std::string chaine;
@@ -269,7 +271,7 @@ void Configuration::ChargerTxt()
     }
 
     std::ifstream fichier6;
-    fichier6.open((chemin_localisation+chemin_text_maps).c_str(), std::ios::in);
+    fichier6.open((chemin_localisation+language+"/"+chemin_text_maps).c_str(), std::ios::in);
     if (fichier6)
     {
         std::string chaine;
@@ -282,7 +284,7 @@ void Configuration::ChargerTxt()
     }
 
     std::ifstream fichier7;
-    fichier7.open((chemin_localisation+chemin_text_miracles).c_str(), std::ios::in);
+    fichier7.open((chemin_localisation+language+"/"+chemin_text_miracles).c_str(), std::ios::in);
     if (fichier7)
     {
         std::string chaine;
@@ -342,7 +344,7 @@ void Configuration::Sauvegarder()
     ///Chargement de la configuration
 
     std::fstream fichier;
-    fichier.open((chemin_localisation+chemin_text_benedictions).c_str(), std::ios::in | std::ios::out | std::ios::trunc);
+    fichier.open((chemin_localisation+language+"/"+chemin_text_benedictions).c_str(), std::ios::in | std::ios::out | std::ios::trunc);
     if (fichier)
     {
         for(unsigned i = 0 ; i < text_benedictions.size() ; ++i)
@@ -351,7 +353,7 @@ void Configuration::Sauvegarder()
     }
 
     std::fstream fichier2;
-    fichier2.open((chemin_localisation+chemin_text_menus).c_str(), std::ios::in | std::ios::out | std::ios::trunc);
+    fichier2.open((chemin_localisation+language+"/"+chemin_text_menus).c_str(), std::ios::in | std::ios::out | std::ios::trunc);
     if (fichier2)
     {
         for(unsigned i = 0 ; i < text_menus.size() ; ++i)
@@ -361,7 +363,7 @@ void Configuration::Sauvegarder()
 
 
     std::fstream fichier3;
-    fichier3.open((chemin_localisation+chemin_text_items).c_str(), std::ios::in | std::ios::out | std::ios::trunc);
+    fichier3.open((chemin_localisation+language+"/"+chemin_text_items).c_str(), std::ios::in | std::ios::out | std::ios::trunc);
     if (fichier3)
     {
         for(unsigned i = 0 ; i < text_items.size() ; ++i)
@@ -370,7 +372,7 @@ void Configuration::Sauvegarder()
     }
 
     std::fstream fichier4;
-    fichier4.open((chemin_localisation+chemin_text_entities).c_str(), std::ios::in | std::ios::out | std::ios::trunc);
+    fichier4.open((chemin_localisation+language+"/"+chemin_text_entities).c_str(), std::ios::in | std::ios::out | std::ios::trunc);
     if (fichier4)
     {
         for(unsigned i = 0 ; i < text_entities.size() ; ++i)
@@ -379,7 +381,7 @@ void Configuration::Sauvegarder()
     }
 
     std::fstream fichier5;
-    fichier5.open((chemin_localisation+chemin_text_dialogs).c_str(), std::ios::in | std::ios::out | std::ios::trunc);
+    fichier5.open((chemin_localisation+language+"/"+chemin_text_dialogs).c_str(), std::ios::in | std::ios::out | std::ios::trunc);
     if (fichier5)
     {
         for(unsigned i = 0 ; i < text_dialogs.size() ; ++i)
@@ -388,7 +390,7 @@ void Configuration::Sauvegarder()
     }
 
     std::fstream fichier6;
-    fichier6.open((chemin_localisation+chemin_text_maps).c_str(), std::ios::in | std::ios::out | std::ios::trunc);
+    fichier6.open((chemin_localisation+language+"/"+chemin_text_maps).c_str(), std::ios::in | std::ios::out | std::ios::trunc);
     if (fichier6)
     {
         for(unsigned i = 0 ; i < text_maps.size() ; ++i)
@@ -397,7 +399,7 @@ void Configuration::Sauvegarder()
     }
 
     std::fstream fichier7;
-    fichier7.open((chemin_localisation+chemin_text_miracles).c_str(), std::ios::in | std::ios::out | std::ios::trunc);
+    fichier7.open((chemin_localisation+language+"/"+chemin_text_miracles).c_str(), std::ios::in | std::ios::out | std::ios::trunc);
     if (fichier7)
     {
         for(unsigned i = 0 ; i < text_miracles.size() ; ++i)
@@ -441,6 +443,7 @@ void Configuration::Sauvegarder()
         fichiera<< "saving_frequency: " <<frequence_sauvegarde<<std::endl;
         fichiera<<"debug_mod: "<<debug<<std::endl;
         fichiera<<"desactivate_console: "<<desactivate_console<<std::endl;
+        fichier<<"language: "<<language<<std::endl;
 
         fichiera.close();
     }

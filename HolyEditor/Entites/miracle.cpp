@@ -114,7 +114,7 @@ Miracle::Miracle()
 {
 }
 
-Miracle::Miracle(std::string chemin, const Caracteristique &caract, int level)
+Miracle::Miracle(const std::string &chemin, const Caracteristique &caract, int level)
 {
     Charger(chemin, caract, level);
 }
@@ -294,12 +294,21 @@ float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int leve
             valeur = level;
 
         else if (caractere == 'i')
-            valeur = caract.degatsMin;
+        {
+            int no = 0;
+            fichier>>no;
+            if(no >=0 && no < 4)
+                valeur = caract.degatsMin[no];
+        }
         else if (caractere == 'a')
-            valeur = caract.degatsMax;
-
+        {
+            int no = 0;
+            fichier>>no;
+            if(no >=0 && no < 4)
+                valeur = caract.degatsMax[no];
+        }
         else if (caractere == 'b')
-            valeur = caract.armure;
+            valeur = caract.armure[PHYSIQUE];
 
         else if (caractere == '(')
             valeur = ChargerEquation(fichier, caract, level, '+', continuer);
@@ -312,7 +321,7 @@ float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int leve
     return valeur;
 }
 
-void Miracle::Charger(std::string chemin, const Caracteristique &caract, int level)
+void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, int level)
 {
     console->Ajouter("Chargement du miracle : "+chemin);
 
@@ -360,6 +369,7 @@ void Miracle::Charger(std::string chemin, const Caracteristique &caract, int lev
             if (caractere=='*')
             {
                 int no;
+                fichier>>no;
                 description = configuration->getText(6, no);
             }
 
@@ -643,20 +653,7 @@ void Miracle::Charger(std::string chemin, const Caracteristique &caract, int lev
         console->Ajouter("Impossible d'ouvrir le fichier : "+chemin,1);
 }
 
-
-/*void Miracle::JouerSon(int numeroSon,coordonnee position,coordonnee positionHero)
-{
-    if (numeroSon>=0&&numeroSon<(int)m_sons.size())
-    {
-        coordonnee pos;
-        pos.x=-position.x;
-        pos.y=position.y;
-
-        moteurSons->JouerSon(m_sons[numeroSon],pos,0);
-    }
-}*/
-
-void Miracle::Concatenencer(std::string chemin, const Caracteristique &caract, int level)
+void Miracle::Concatenencer(const std::string &chemin, const Caracteristique &caract, int level)
 {
     Miracle miracle(chemin, caract, level) ;
     m_effets.back().m_lien.push_back((int)m_effets.size());
@@ -665,21 +662,7 @@ void Miracle::Concatenencer(std::string chemin, const Caracteristique &caract, i
     int tailleTileset   = m_tileset.size();
 
     for (int i=0;i<(int)miracle.m_tileset.size();i++)
-    {
         m_tileset.push_back(miracle.m_tileset[i]);
-
-        /*for (int j=0;j<(int)m_tile.back().size();j++)
-        {
-            m_tile.back()[j].setImage(m_tile.back()[j].getImage());
-            if (m_tile.back()[j].getSon()!=-1)
-                m_tile.back()[j].setSon(m_tile.back()[j].getSon()+tailleSon);
-        }*/
-    }
-
-   /* for (int i=0;i<(int)miracle.m_image.size();i++)
-        m_image.push_back(miracle.m_image[i]);
-    for (int i=0;i<(int)miracle.m_sons.size();i++)
-        m_sons.push_back(miracle.m_sons[i]);*/
 
     for (int i=0;i<(int)miracle.m_effets.size();i++)
     {
@@ -784,7 +767,7 @@ void Miracle::AfficherDescription(coordonnee position, bool suivant)
 
     if (suivant)
     {
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"Niveau suivant :"));
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,configuration->getText(0,41).c_str()));
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
 
         for (int i=0;i<(int)m_description_effets_suivant.size();i++)
@@ -814,6 +797,11 @@ void Miracle::AfficherDescription(coordonnee position, bool suivant)
             buf<<configuration->getText(0,32)<<m_reserveVie_suivant;
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
         }
+    }
+    if(suivant)
+    {
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,configuration->getText(0,42).c_str()));
     }
 
     if (position.x-10<0)

@@ -42,6 +42,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #define NOMBRE_MORCEAU_PERSONNAGE 8
 
+#define NOMBRE_BENEDICTION 5
+
 #include <cmath>
 #include <utility>
 #include <iostream>
@@ -59,9 +61,13 @@ enum {NORMAL,BONNEFACTURE,BENI,SACRE,SANCTIFIE,DIVIN,INFERNAL,CRAFT,QUETE};
 
 enum {AUCUN_EMPLACEMENT,ARME_PRINCIPAL,BOUCLIER,ARMURE_CORPS,ARMURE_CORPS2,CASQUE,BOTTES,GANT,ANNEAU,PENDENTIF};
 
-enum {AUCUN,ARME,ARMURE,CONSOMMABLE};
+enum {AUCUN,ARME,ARMURE,CONSOMMABLE,SCHEMA};
 
-enum {EFFICACITE_ACCRUE,FO_SUPP,DEX_SUPP,VIT_SUPP,PI_SUPP,CH_SUPP,VIE_SUPP,FOI_SUPP,DEGATS_FEU,DEGATS_FOI};
+enum {EFFICACITE_ACCRUE,CARACT_SUPP,POINTS_SUPP,DEGATS_SUPP, ARMURE_SUPP};
+
+enum {FORCE, DEXTERITE, VITALITE, PIETE, CHARISME};
+enum {PT_VIE, PT_FOI};
+enum {PHYSIQUE, FEU, FOI, CORROSION};
 
 /// http://www.sfml-dev.org/wiki/fr/sources/fonctions_maths
 /// Par hiura
@@ -221,9 +227,9 @@ struct Caracteristique
     float volVie;
     float volFoi;
 
-    int degatsMin;
-    int degatsMax;
-    int armure;
+    int degatsMin[4];
+    int degatsMax[4];
+    int armure[4];
 
     int niveau;
     int rang;
@@ -241,6 +247,7 @@ struct Caracteristique
     bool sang;
 };
 
+sf::FloatRect GetViewRect(const sf::View& view);
 
 
 

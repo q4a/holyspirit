@@ -34,6 +34,13 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 bool AjouterObjetInventaire(Objet newObj, std::vector<Objet>* inventaire, coordonnee taille, bool infini);
 
+struct Potale
+{
+    coordonnee position;
+    std::string chemin;
+    int nom;
+};
+
 class Hero
 {
 public:
@@ -47,11 +54,12 @@ public:
     void Afficher(coordonnee dimensionsMap);
     void CalculerOrdreAffichage();
 
-    bool AfficherInventaire(float,std::vector<Objet>);
+    bool AfficherInventaire(float, std::vector<Objet> &, bool hideLeft);
     void AfficherQuetes(float);
+    void AfficherPotales(float);
     void AfficherFlecheQuetes(const std::string &nomMap, float temps);
     bool AfficherMiracles(float , int );
-    void AfficherCaracteristiques(float decalage);
+    void AfficherCaracteristiques(float decalage, bool trader);
     void AfficherRaccourcis();
     void AfficherAmis();
 
@@ -66,16 +74,22 @@ public:
     void RegenererVie(float vie);
     void RegenererFoi(float foi);
 
+    void addPotale(int x, int y, int nom, const std::string &chemin);
+
     bool AjouterObjet(Objet objet,bool enMain=false);
 
     Objet DeposerObjet();
-    bool PrendreEnMain(std::vector<Objet>*);
+    bool PrendreEnMain(std::vector<Objet>*, bool craft = false);
     void delObjet(int numero);
 
     bool PossibleEquiper(int numero, int emplacement);
     bool Equiper(int numero, int emplacement);
     bool UtiliserObjet(int numero);
     void RangerObjet(int numero);
+    const std::string &getNomObjet(int numero);
+    int getNombreObjet();
+
+    void UpdateRaccourcis();
 
     bool UtiliserMiracle(int, Personnage*, coordonnee );
     bool AjouterMiracleArme();
@@ -109,18 +123,27 @@ public:
 
     int m_defilement_trader,m_max_defilement_trader,m_buttonPointe;
     int m_objets_raccourcis[4];
+    int m_nbr_objets_raccourcis[4];
     int m_miracles_raccourcis[4];
 
     int m_quetePointee, m_queteSelectionnee;
+    int m_potale_selectionnee;
+    int m_last_potale;
 
-    std::vector<Quete> m_quetes;
+    std::vector<Quete>  m_quetes;
+    std::vector<Potale> m_potales;
     std::vector<int> m_lvl_miracles;
 
     std::vector<Personnage *> m_amis;
 
+    std::vector<Objet> m_coffre;
+
     float m_angleFleche;
 
     std::list<sf::Sprite> m_minimap;
+
+    int m_no_schema;
+    int m_no_result;
 
 private:
     int m_monstreVise;

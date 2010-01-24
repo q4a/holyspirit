@@ -24,6 +24,19 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <iostream>
 #include <sstream>
 
+sf::FloatRect GetViewRect(const sf::View& view)
+{
+    sf::FloatRect temp;
+
+    temp.Left   = view.GetCenter().x - view.GetSize().x * 0.5;
+    temp.Right  = view.GetCenter().x + view.GetSize().x * 0.5;
+    temp.Top    = view.GetCenter().y - view.GetSize().y * 0.5;
+    temp.Bottom = view.GetCenter().y + view.GetSize().y * 0.5;
+
+    return temp;
+};
+
+
 MoteurGraphique::MoteurGraphique()
 {
     LightManager = Light_Manager::GetInstance();
@@ -382,10 +395,10 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
 {
     if(entite->m_tileset != NULL)
     {
-        if(entite->m_sprite.GetPosition().x + entite->m_sprite.GetSize().x - entite->m_sprite.GetOrigin().x     >= m_camera.GetRect().Left
-        && entite->m_sprite.GetPosition().x - entite->m_sprite.GetOrigin().x                                    <  m_camera.GetRect().Right
-        && entite->m_sprite.GetPosition().y + entite->m_sprite.GetSize().y - entite->m_sprite.GetOrigin().y     >= m_camera.GetRect().Top
-        && entite->m_sprite.GetPosition().y - entite->m_sprite.GetOrigin().y                                    <  m_camera.GetRect().Bottom)
+        if(entite->m_sprite.GetPosition().x + entite->m_sprite.GetSize().x - entite->m_sprite.GetOrigin().x     >= GetViewRect(m_camera).Left
+        && entite->m_sprite.GetPosition().x - entite->m_sprite.GetOrigin().x                                    <  GetViewRect(m_camera).Right
+        && entite->m_sprite.GetPosition().y + entite->m_sprite.GetSize().y - entite->m_sprite.GetOrigin().y     >= GetViewRect(m_camera).Top
+        && entite->m_sprite.GetPosition().y - entite->m_sprite.GetOrigin().y                                    <  GetViewRect(m_camera).Bottom)
             AjouterCommande(&entite->m_sprite, entite->m_couche + entite->m_decalCouche, true);
 
         if(entite->m_shadow)
@@ -407,10 +420,10 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
             sprite.FlipY(true);
             sprite.SetOrigin(sprite.GetOrigin().x, sprite.GetSize().y - sprite.GetOrigin().y);
 
-            if(sprite.GetPosition().x + sprite.GetSize().x - sprite.GetOrigin().x     >= m_camera.GetRect().Left
-            && sprite.GetPosition().x - sprite.GetOrigin().x                          <  m_camera.GetRect().Right
-            && sprite.GetPosition().y + sprite.GetSize().y - sprite.GetOrigin().y     >= m_camera.GetRect().Top
-            && sprite.GetPosition().y - sprite.GetOrigin().y                          <  m_camera.GetRect().Bottom)
+            if(sprite.GetPosition().x + sprite.GetSize().x - sprite.GetOrigin().x     >= GetViewRect(m_camera).Left
+            && sprite.GetPosition().x - sprite.GetOrigin().x                          <  GetViewRect(m_camera).Right
+            && sprite.GetPosition().y + sprite.GetSize().y - sprite.GetOrigin().y     >= GetViewRect(m_camera).Top
+            && sprite.GetPosition().y - sprite.GetOrigin().y                          <  GetViewRect(m_camera).Bottom)
                 AjouterCommande(&sprite, 0, true);
         }
     }

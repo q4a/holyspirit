@@ -46,7 +46,7 @@
                      << "\\bquest\\b"
                      << "\\bentity_dead\\b"
                      << "\\bvariable\\b"
-                     << "\\bincrementeVariable\\b"
+                     << "\\bincrementVariable\\b"
                      << "\\bspeak\\b"
                      << "\\bnewQuest\\b"
                      << "\\bsetQuestName\\b"
@@ -56,7 +56,8 @@
                      << "\\bentity_variable\\b"
                      << "\\bsetTile\\b"
                      << "\\baddCash\\b"
-                     << "\\bexist_item\\b" ;
+                     << "\\bexist_item\\b"
+                     << "\\badd_checkpoint\\b" ;
      foreach (QString pattern, keywordPatterns2) {
          rule.pattern = QRegExp(pattern);
          rule.format = functionFormat;

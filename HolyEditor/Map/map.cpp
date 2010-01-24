@@ -1289,28 +1289,28 @@ void Map::Afficher(bool alt,float alpha)
                 if( m_moduleAleatoireCur >= m_decor[couche][j][k][z].m_moduleAleatoireMin && m_moduleAleatoireCur <= m_decor[couche][j][k][z].m_moduleAleatoireMax)
                 {
                     if (m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().x>0)
-                        if (m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x+m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().x-m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x>=moteurGraphique->m_camera.GetRect().Left
-                                &&m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x-m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x<moteurGraphique->m_camera.GetRect().Right
-                                &&m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y+m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().y-m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y>=moteurGraphique->m_camera.GetRect().Top
-                                &&m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y-m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y<moteurGraphique->m_camera.GetRect().Bottom)
+                        if (m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x+m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().x-m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x>=GetViewRect(moteurGraphique->m_camera).Left
+                                &&m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x-m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x<GetViewRect(moteurGraphique->m_camera).Right
+                                &&m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y+m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().y-m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y>=GetViewRect(moteurGraphique->m_camera).Top
+                                &&m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y-m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y<GetViewRect(moteurGraphique->m_camera).Bottom)
                         {
                             sf::IntRect rect = m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSubRect();
                             sf::IntRect rectBuf = m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSubRect();
                             sf::Vector2f pos = m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition();
 
-                            if (m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x + m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().x - m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x > moteurGraphique->m_camera.GetRect().Right)
-                                rectBuf.Right -= (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x + (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().x - (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x - (int)moteurGraphique->m_camera.GetRect().Right;
-                            if (m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y + m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().y - m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y > moteurGraphique->m_camera.GetRect().Bottom)
-                                rectBuf.Bottom -= (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y + (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().y - (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y - (int)moteurGraphique->m_camera.GetRect().Bottom;
+                            if (m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x + m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().x - m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x > GetViewRect(moteurGraphique->m_camera).Right)
+                                rectBuf.Right -= (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x + (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().x - (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x - (int)GetViewRect(moteurGraphique->m_camera).Right;
+                            if (m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y + m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().y - m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y > GetViewRect(moteurGraphique->m_camera).Bottom)
+                                rectBuf.Bottom -= (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y + (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().y - (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y - (int)GetViewRect(moteurGraphique->m_camera).Bottom;
 
-                            if (m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x - m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x < moteurGraphique->m_camera.GetRect().Left)
+                            if (m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x - m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x < GetViewRect(moteurGraphique->m_camera).Left)
                             {
-                                rectBuf.Left += (int)moteurGraphique->m_camera.GetRect().Left - (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x + (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x;
+                                rectBuf.Left += (int)GetViewRect(moteurGraphique->m_camera).Left - (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x + (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x;
                                 m_decor[couche][j][k][z].m_entite_graphique.m_sprite.Move(rectBuf.Left - rect.Left, 0);
                             }
-                            if (m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y - m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y < moteurGraphique->m_camera.GetRect().Top)
+                            if (m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y - m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y < GetViewRect(moteurGraphique->m_camera).Top)
                             {
-                                rectBuf.Top += (int)moteurGraphique->m_camera.GetRect().Top - (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y + (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y;
+                                rectBuf.Top += (int)GetViewRect(moteurGraphique->m_camera).Top - (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y + (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y;
                                 m_decor[couche][j][k][z].m_entite_graphique.m_sprite.Move(0, rectBuf.Top - rect.Top);
                             }
 
@@ -1371,7 +1371,7 @@ void Map::Afficher(bool alt,float alpha)
 
                         std::ostringstream buf;
                         buf<<m_decor[couche][j][k][z].m_evenement[m_decor[couche][j][k][z].random_evenement];
-                        moteurGraphique->AjouterTexte(buf.str(), coordonnee(((float)position.x - (float)moteurGraphique->m_camera.GetRect().Left)/configuration->zoom , ((float)position.y - (float)moteurGraphique->m_camera.GetRect().Top - 16 + ( 24 * (couche == 1)))/configuration->zoom  ), 15,0,24/configuration->zoom,sf::Color(0,0,255));
+                        moteurGraphique->AjouterTexte(buf.str(), coordonnee(((float)position.x - (float)GetViewRect(moteurGraphique->m_camera).Left)/configuration->zoom , ((float)position.y - (float)GetViewRect(moteurGraphique->m_camera).Top - 16 + ( 24 * (couche == 1)))/configuration->zoom  ), 15,0,24/configuration->zoom,sf::Color(0,0,255));
                     }
 
                     if (couche==1)
@@ -1381,10 +1381,10 @@ void Map::Afficher(bool alt,float alpha)
                             for (int u=0;u<(int) m_decor[0][j][k].size();++u)
                             if( m_moduleAleatoireCur >= m_decor[0][j][k][u].m_moduleAleatoireMin && m_moduleAleatoireCur <= m_decor[0][j][k][u].m_moduleAleatoireMax)
                             if (m_decor[0][j][k][u].m_entite_herbe.m_sprite.GetSize().x>0)
-                                if (m_decor[0][j][k][u].m_entite_herbe.m_sprite.GetPosition().x+m_decor[0][j][k][u].m_entite_herbe.m_sprite.GetSize().x>=moteurGraphique->m_camera.GetRect().Left
-                                        &&m_decor[0][j][k][u].m_entite_herbe.m_sprite.GetPosition().x<moteurGraphique->m_camera.GetRect().Right
-                                        &&m_decor[0][j][k][u].m_entite_herbe.m_sprite.GetPosition().y+m_decor[0][j][k][u].m_entite_herbe.m_sprite.GetSize().y>=moteurGraphique->m_camera.GetRect().Top
-                                        &&m_decor[0][j][k][u].m_entite_herbe.m_sprite.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)
+                                if (m_decor[0][j][k][u].m_entite_herbe.m_sprite.GetPosition().x+m_decor[0][j][k][u].m_entite_herbe.m_sprite.GetSize().x>=GetViewRect(moteurGraphique->m_camera).Left
+                                        &&m_decor[0][j][k][u].m_entite_herbe.m_sprite.GetPosition().x<GetViewRect(moteurGraphique->m_camera).Right
+                                        &&m_decor[0][j][k][u].m_entite_herbe.m_sprite.GetPosition().y+m_decor[0][j][k][u].m_entite_herbe.m_sprite.GetSize().y>=GetViewRect(moteurGraphique->m_camera).Top
+                                        &&m_decor[0][j][k][u].m_entite_herbe.m_sprite.GetPosition().y<GetViewRect(moteurGraphique->m_camera).Bottom)
                                     moteurGraphique->AjouterCommande(&m_decor[0][j][k][u].m_entite_herbe.m_sprite,10,1);
 
                         for (unsigned o = 0 ; o < m_decor[1][j][k][z].getMonstre().size() ; ++o)
@@ -1399,7 +1399,7 @@ void Map::Afficher(bool alt,float alpha)
                             {
                                 std::ostringstream buf;
                                 buf<<m_monstre[m_decor[1][j][k][z].getMonstre()[o]].m_ID;
-                                moteurGraphique->AjouterTexte(buf.str(), coordonnee(((float)position.x - (float)moteurGraphique->m_camera.GetRect().Left)/configuration->zoom , ((float)position.y - (float)moteurGraphique->m_camera.GetRect().Top)/configuration->zoom  ), 15,0,24/configuration->zoom,sf::Color(0,255,0));
+                                moteurGraphique->AjouterTexte(buf.str(), coordonnee(((float)position.x - (float)GetViewRect(moteurGraphique->m_camera).Left)/configuration->zoom , ((float)position.y - (float)GetViewRect(moteurGraphique->m_camera).Top)/configuration->zoom  ), 15,0,24/configuration->zoom,sf::Color(0,255,0));
                             }
 
                             if (m_decor[1][j][k][z].getMonstre()[o]>=0&&m_decor[1][j][k][z].getMonstre()[o]<(int)m_monstre.size())
@@ -1415,10 +1415,10 @@ void Map::Afficher(bool alt,float alpha)
                             for (int u=0;u<(int) m_decor[1][j][k].size();++u)
                             if( m_moduleAleatoireCur >= m_decor[1][j][k][u].m_moduleAleatoireMin && m_moduleAleatoireCur <= m_decor[1][j][k][u].m_moduleAleatoireMax)
                             if (m_decor[1][j][k][u].m_entite_herbe.m_sprite.GetSize().x>0)
-                                if (m_decor[1][j][k][u].m_entite_herbe.m_sprite.GetPosition().x+m_decor[1][j][k][u].m_entite_herbe.m_sprite.GetSize().x>=moteurGraphique->m_camera.GetRect().Left
-                                        &&m_decor[1][j][k][u].m_entite_herbe.m_sprite.GetPosition().x<moteurGraphique->m_camera.GetRect().Right
-                                        &&m_decor[1][j][k][u].m_entite_herbe.m_sprite.GetPosition().y+m_decor[1][j][k][u].m_entite_herbe.m_sprite.GetSize().y>=moteurGraphique->m_camera.GetRect().Top
-                                        &&m_decor[1][j][k][u].m_entite_herbe.m_sprite.GetPosition().y<moteurGraphique->m_camera.GetRect().Bottom)
+                                if (m_decor[1][j][k][u].m_entite_herbe.m_sprite.GetPosition().x+m_decor[1][j][k][u].m_entite_herbe.m_sprite.GetSize().x>=GetViewRect(moteurGraphique->m_camera).Left
+                                        &&m_decor[1][j][k][u].m_entite_herbe.m_sprite.GetPosition().x<GetViewRect(moteurGraphique->m_camera).Right
+                                        &&m_decor[1][j][k][u].m_entite_herbe.m_sprite.GetPosition().y+m_decor[1][j][k][u].m_entite_herbe.m_sprite.GetSize().y>=GetViewRect(moteurGraphique->m_camera).Top
+                                        &&m_decor[1][j][k][u].m_entite_herbe.m_sprite.GetPosition().y<GetViewRect(moteurGraphique->m_camera).Bottom)
                                     moteurGraphique->AjouterCommande(&m_decor[1][j][k][u].m_entite_herbe.m_sprite,10,1);
 
 
@@ -1518,10 +1518,10 @@ void Map::Afficher(bool alt,float alpha)
                     buffer.SetY(position.y+32-16);
 
                     if (buffer.GetSize().x>0)
-                        if (buffer.GetPosition().x+buffer.GetSize().x-buffer.GetOrigin().x>=moteurGraphique->m_camera.GetRect().Left
-                                &&buffer.GetPosition().x-buffer.GetOrigin().x<moteurGraphique->m_camera.GetRect().Right
-                                &&buffer.GetPosition().y+buffer.GetSize().y-buffer.GetOrigin().y>=moteurGraphique->m_camera.GetRect().Top
-                                &&buffer.GetPosition().y-buffer.GetOrigin().y<moteurGraphique->m_camera.GetRect().Bottom)
+                        if (buffer.GetPosition().x+buffer.GetSize().x-buffer.GetOrigin().x>=GetViewRect(moteurGraphique->m_camera).Left
+                                &&buffer.GetPosition().x-buffer.GetOrigin().x<GetViewRect(moteurGraphique->m_camera).Right
+                                &&buffer.GetPosition().y+buffer.GetSize().y-buffer.GetOrigin().y>=GetViewRect(moteurGraphique->m_camera).Top
+                                &&buffer.GetPosition().y-buffer.GetOrigin().y<GetViewRect(moteurGraphique->m_camera).Bottom)
                         {
                             if (m_decor[couche][w][z].getTileset()>=0 && m_decor[couche][w][z].getTileset()<(int)m_tileset.size())
                                 if (m_tileset[m_decor[couche][w][z].getTileset()].getTransparentDuTile(m_decor[couche][w][z].getTile()))

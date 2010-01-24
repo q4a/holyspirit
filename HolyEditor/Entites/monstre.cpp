@@ -129,8 +129,8 @@ bool Modele_Monstre::Charger(string chemin)
 
     m_caracteristique.vitesse=0;
     m_caracteristique.vie=0;
-    m_caracteristique.degatsMin=0;
-    m_caracteristique.degatsMax=0;
+ //   m_caracteristique.degatsMin=0;
+  //  m_caracteristique.degatsMax=0;
     m_caracteristique.rang=0;
 
     m_caracteristique.dexterite=0;
@@ -274,8 +274,8 @@ bool Modele_Monstre::Charger(string chemin)
                         break;
                     case 'd':
                         fichier.get(caractere);
-                        if (caractere=='i') fichier>>m_caracteristique.degatsMin;
-                        else fichier>>m_caracteristique.degatsMax ;
+                        if (caractere=='i') fichier>>m_caracteristique.degatsMin[0];
+                        else fichier>>m_caracteristique.degatsMax[0] ;
                         break;
                     case 'm':
                         fichier>>m_caracteristique.vitesse;

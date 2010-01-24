@@ -32,7 +32,6 @@ enum  {PROJECTILE = 0,CORPS_A_CORPS = 1,DEGATS = 2,EFFET_GRAPHIQUE = 3,INVOCATIO
        REPETITION = 8,CHARME = 9,CHANGEMENT_POSE = 10,EFFET_ECRAN = 11,CHARGE = 12, SOUFFLE = 13, DECLENCHEUR = 14,
        CONDITION = 15, BLOQUER = 16};
 enum  {AURA_REGENERATION, AURA_DEGATS, AURA_VOL, AURA_CARACTERISTIQUES, AURA_STUNNED};
-enum  {PHYSIQUE, FEU, CORROSION, FOI};
 enum  {D_PERMANENT, D_FRAPPE, D_TOUCHE};
 enum  {C_ANGLE};
 
@@ -122,11 +121,11 @@ class Miracle
 {
 public:
     Miracle();
-    Miracle(std::string chemin, const Caracteristique &caract, int level);
+    Miracle(const std::string &chemin, const Caracteristique &caract, int level);
     ~Miracle();
 
-    void Charger(std::string chemin, const Caracteristique &caract, int level);
-    void Concatenencer(std::string chemin, const Caracteristique &caract, int level);
+    void Charger(const std::string &chemin, const Caracteristique &caract, int level);
+    void Concatenencer(const std::string &chemin, const Caracteristique &caract, int level);
 
     void AfficherDescription(coordonnee position, bool suivant = true);
     sf::Text AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color=sf::Color(255,255,255));
