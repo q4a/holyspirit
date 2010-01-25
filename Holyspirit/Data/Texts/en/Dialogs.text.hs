@@ -1,4 +1,4 @@
-Welcome into the Holyspirit's tutorial !\Vous allez y apprendre les bases du jeu.\Cliquez avec le bouton gauche de la souris pour vous déplacer.
+Bienvenue dans le tutoriel d'Holyspirit !\Vous allez y apprendre les bases du jeu.\Cliquez avec le bouton gauche de la souris pour vous déplacer.
 Vous allez combattre votre premier ennemi.\Cliquez dessus avec le bouton gauche de la souris pour le frapper.
 Vous allez maintenant combattre un petit groupe d'ennemis qui protège un coffre. Il vous suffit de cliquer dessus pour l'ouvrir.\Maintenez 'Alt' enfoncé pour voir les objets au sol. Ensuite, faites un clic gauche sur le nom de l'objet que vous souhaitez ramasser.
 Maintenant que vous avez ramassé des objets, ouvrez votre inventaire avec le bouton en forme de casque en bas à gauche, ou bien appuyez sur 'I'.\Pour prendre un objet en main, faites un clic gauche dessus, vous le déposerez en refaisant un clic gauche.\Pour équiper un objet, placez-le dans la case correspondante à gauche.\Vous pouvez aussi mettre des objets en raccourcis en les déposant dans la barre de raccourcis, en bas à gauche. Vous y accéderez en jeu en appuyant sur les touches 1 à 4.
@@ -40,3 +40,4 @@ Que souhaitez-vous faire ?\\
 -Se téléporter
 -Aller dans mon coffre
 -Fabriquer un objet
+L'orée de la foret
