@@ -1,16 +1,16 @@
-Efficacite accrue de : 
-Force accrue : 
-Dexterité accrue : 
-Vitalité accrue : 
-Piété accrue : 
-Charisme accru : 
-Vie accrue : 
-Foi accrue : 
-Dégats accrus :
-Dégats par le feu : 
-Dégats par la foi : 
-Dégats par la corrosion :
-Armure accrue :
-Résistance au feu :
-Résistance à la foi :
-Résistance à la corrosion :
+Increased efficiency : 
+Strength increased : 
+Dexterity increased : 
+Vitality increased : 
+Piety increased : 
+Charisma increased : 
+Health increased : 
+Faith increased : 
+Damages increased :
+Fire damages : 
+Faith damages : 
+Corrosion damages :
+Armor increased :
+Fire resistance :
+Faith resistance :
+Corrosion resistance :

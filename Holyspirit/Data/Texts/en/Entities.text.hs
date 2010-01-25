@@ -1,30 +1,30 @@
-Tonneau
-Coffre
-Urne
-Porte
-Arquebusier morbide
-Pantin morbide
-Gardien squelette
-Ombre ténébreuse
-Prêtre démoniaque
-Milice Corrompue : Brute
-Errant des roches
-Golem de quartz
-Seigneur Merengar
-Molosse décharné
-Zombie paysan
-Dépouille putride
-Marchand commun
-Marchand rare
-Le Grand Questeur
-Levier
-Zombie massier
-Suceur de cervelle
-Marchand zombifié
-Chef de meute
-Martelleur de crânes
-Molosse infernal
-Abbé Chamel
-Potale de l'Abbaye
-Potale des terres agraires
-Potale de l'orée de la forêt
+Barrel
+Chest
+Urn
+Door
+Morbid Arquebuser 
+Morbid Puppet
+Skeletton Guardian
+Dark Shadow
+Demonic Priest
+Tainted Militia : Bully
+Wandering Stones
+Quartz Golem
+Lord Merengar
+Gaunt 
+Zombified Peasant 
+Putrid remains
+Common Trader
+Rare Trader
+The Great Questor
+Lever
+Zombie macer
+Brainsuckers
+Zombified Trader
+Pack Chief
+Skulls Beater
+Infernal Dog
+Abbot Chamel
+Abbey Shrine
+Agrarian Lands Shrine
+Edge of the forest Shrine

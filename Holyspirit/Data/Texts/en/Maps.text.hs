@@ -1,11 +1,11 @@
-Les terres agraires
-Les terres agraires
-Les terres agraires
-Chargement
-Le cimetière
-Le donjon de la peur
-Tutoriel
-La caverne aux mille et un pièges
-Foret de Malemort
+Agrarian Lands
+Agrarian Lands
+Agrarian Lands
+Loading
+The Graveyard
+The Dungeon Of Fear
+Tutorial
+The One Thousand and One Traps Cavern
+Malemort Forest
 
-L'Abbaye
+The Abbey
