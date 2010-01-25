@@ -141,7 +141,7 @@ void MoteurGraphique::Charger()
             console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetBlur,0);
 
         EffectBlur.SetParameter("offset",0.02);
-        EffectBlur2.SetParameter("offset",0.0075);
+        EffectBlur2.SetParameter("offset",0.0025);
 
         if (!EffectMort.LoadFromFile(configuration->chemin_fx+configuration->nom_effetMort))
             console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetMort,1);

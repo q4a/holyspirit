@@ -82,6 +82,15 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
             *continuer = false;
             break;
 
+        case Event::GainedFocus:
+            for (int i=0;i<500;i++)
+                m_EventTableau[i]=0;
+            for (int i=0;i<5;i++)
+                m_Clic[i]=0;
+            for (int i=0;i<5;i++)
+                m_ClicAncien[i]=0;
+            break;
+
         case Event::Resized:
             configuration->Redimensionnement.w=(float)configuration->Resolution.w*0.00125;
             configuration->Redimensionnement.h=(float)configuration->Resolution.h*0.00167;

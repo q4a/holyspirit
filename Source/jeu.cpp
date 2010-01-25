@@ -46,13 +46,19 @@ void Jeu::Demarrer()
 
     hero.Charger();
 
+    std::vector<std::string> contenuSave;
     {
         cDAT reader;
         if (reader.Read(configuration->chemin_saves+"hero.sav.hs"))
             for (int i=0;i<(int)reader.GetNumberFile();i++)
                 if (reader.GetFileName(i)!=configuration->chemin_temps+"hero.sav.txt")
-                    reader.ExportFile(i),hero.m_contenuSave.push_back(reader.GetFileName(i));
+                    reader.ExportFile(i),contenuSave.push_back(reader.GetFileName(i));
     }
+
+    hero.Sauvegarder();
+
+    for(int i = 0 ; i < contenuSave.size() ; ++i)
+        hero.m_contenuSave.push_back(contenuSave[i]);
 
     m_jeu           = new c_Jeu;
     m_demarrage     = new c_Demarrage;

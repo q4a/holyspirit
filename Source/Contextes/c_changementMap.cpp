@@ -126,7 +126,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
     if ((z>=49 && !augmenterNoir && allerVersImageChargement) || m_debut)
     {
-        if(jeu->m_jeu->m_thread_sauvegarde)
+        if(jeu->m_jeu->m_thread_sauvegarde && ! m_debut)
         {
             jeu->m_jeu->m_thread_sauvegarde->Wait();
             delete jeu->m_jeu->m_thread_sauvegarde;
@@ -160,7 +160,9 @@ void c_Chargement::Utiliser(Jeu *jeu)
         if (jeu->map!=NULL && !m_debut)
             jeu->map->Sauvegarder(&jeu->hero);
 
-        jeu->hero.Sauvegarder();
+
+        if(m_nomProchaineMap!="Tutorial.map.hs" && m_nomProchaineMap!="Begin.map.hs")
+            jeu->hero.Sauvegarder();
 
         if (jeu->map!=NULL)
         {
