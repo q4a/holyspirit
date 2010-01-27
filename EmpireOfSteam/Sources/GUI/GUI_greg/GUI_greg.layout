@@ -2,10 +2,10 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
 	<File name="Bejeweled.cpp" open="1" top="0" tabpos="12">
-		<Cursor position="4165" topLine="41" />
+		<Cursor position="3919" topLine="104" />
 	</File>
-	<File name="Bejeweled.hpp" open="1" top="1" tabpos="18">
-		<Cursor position="912" topLine="8" />
+	<File name="Bejeweled.hpp" open="1" top="0" tabpos="18">
+		<Cursor position="349" topLine="0" />
 	</File>
 	<File name="Engines\EventManager.cpp" open="0" top="0" tabpos="17">
 		<Cursor position="2328" topLine="68" />
@@ -14,16 +14,22 @@
 		<Cursor position="1053" topLine="16" />
 	</File>
 	<File name="GUI\Button.cpp" open="1" top="0" tabpos="13">
-		<Cursor position="418" topLine="0" />
+		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="GUI\Button.hpp" open="1" top="0" tabpos="9">
 		<Cursor position="599" topLine="9" />
 	</File>
+	<File name="GUI\GUIAnimatedImage.cpp" open="1" top="1" tabpos="19">
+		<Cursor position="1460" topLine="37" />
+	</File>
+	<File name="GUI\GUIAnimatedImage.hpp" open="1" top="0" tabpos="20">
+		<Cursor position="626" topLine="0" />
+	</File>
 	<File name="GUI\GUIImage.cpp" open="1" top="0" tabpos="11">
-		<Cursor position="828" topLine="0" />
+		<Cursor position="867" topLine="1" />
 	</File>
 	<File name="GUI\GUIImage.hpp" open="1" top="0" tabpos="14">
-		<Cursor position="651" topLine="0" />
+		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="GUI\GUIWindow.cpp" open="1" top="0" tabpos="10">
 		<Cursor position="594" topLine="20" />
@@ -32,7 +38,7 @@
 		<Cursor position="384" topLine="0" />
 	</File>
 	<File name="GUI\Label.cpp" open="1" top="0" tabpos="15">
-		<Cursor position="1599" topLine="61" />
+		<Cursor position="1639" topLine="61" />
 	</File>
 	<File name="GUI\Label.hpp" open="1" top="0" tabpos="16">
 		<Cursor position="662" topLine="0" />
@@ -59,10 +65,10 @@
 		<Cursor position="161" topLine="0" />
 	</File>
 	<File name="WindowGame.cpp" open="1" top="0" tabpos="7">
-		<Cursor position="3314" topLine="75" />
+		<Cursor position="3318" topLine="60" />
 	</File>
 	<File name="WindowGame.hpp" open="1" top="0" tabpos="8">
-		<Cursor position="1234" topLine="20" />
+		<Cursor position="315" topLine="0" />
 	</File>
 	<File name="main.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="21" topLine="0" />

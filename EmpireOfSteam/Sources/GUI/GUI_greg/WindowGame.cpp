@@ -73,10 +73,16 @@ WindowGame::WindowGame() : GUIWindow(1024,768,"Empire of Steam")
 
     m_panel_map->AddWidget(m_map);
     m_panel_map->AddWidget(m_cadran_map);
+
+
+    m_test_animation = new GUIAnimatedImage (0,0,800,600,24,"pictures/Animations/RotationLiquide/rotation.png");
+    AddWidget(m_test_animation);
 }
 
 WindowGame::~WindowGame()
 {
+    delete m_test_animation;
+
     delete m_tab_food;
     delete m_tab_material;
     delete m_tab_science;

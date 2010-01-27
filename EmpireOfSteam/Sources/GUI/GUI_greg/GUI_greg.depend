@@ -10,14 +10,14 @@
 	<SFML/Graphics.hpp>
 	"../Global.hpp"
 
-1263991013 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics.hpp
+1264264656 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Font.hpp>
 	<SFML/Graphics/Glyph.hpp>
 	<SFML/Graphics/Image.hpp>
-	<SFML/Graphics/Renderer.hpp>
 	<SFML/Graphics/RenderImage.hpp>
+	<SFML/Graphics/RenderQueue.hpp>
 	<SFML/Graphics/RenderWindow.hpp>
 	<SFML/Graphics/Shader.hpp>
 	<SFML/Graphics/Shape.hpp>
@@ -136,7 +136,7 @@
 	<SFML/Config.hpp>
 	<cstdlib>
 
-1263991012 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\window.hpp
+1264264656 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\window.hpp
 	<SFML/Window/Event.hpp>
 	<SFML/Window/Input.hpp>
 	<SFML/Window/VideoMode.hpp>
@@ -200,13 +200,13 @@
 	<SFML/Graphics/Image.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 
-1263991012 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\rendertarget.hpp
+1264264655 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\rendertarget.hpp
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Rect.hpp>
-	<SFML/Graphics/Renderer.hpp>
+	<SFML/Graphics/RenderQueue.hpp>
 	<SFML/Graphics/View.hpp>
 
-1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderqueue.hpp
+1264264655 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderqueue.hpp
 	<SFML/Config.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<SFML/Graphics/Drawable.hpp>
@@ -214,7 +214,7 @@
 	<SFML/Graphics/Rect.hpp>
 	<vector>
 
-1263991012 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\drawable.hpp
+1264264655 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\drawable.hpp
 	<SFML/System/Vector2.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Matrix3.hpp>
@@ -234,7 +234,7 @@
 	<SFML/Graphics/Matrix3.hpp>
 	<SFML/System/Vector2.hpp>
 
-1263991012 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderwindow.hpp
+1264264655 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderwindow.hpp
 	<SFML/Graphics/Image.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 	<SFML/Window/Window.hpp>
@@ -248,17 +248,17 @@
 	<map>
 	<string>
 
-1263991012 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\shape.hpp
+1264264655 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\shape.hpp
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/System/Vector2.hpp>
 	<vector>
 
-1263991012 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\sprite.hpp
+1264264655 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\sprite.hpp
 	<SFML/System/Resource.hpp>
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Rect.hpp>
 
-1263991012 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\text.hpp
+1264264655 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\text.hpp
 	<SFML/System/Resource.hpp>
 	<SFML/System/String.hpp>
 	<SFML/Graphics/Drawable.hpp>
@@ -335,17 +335,18 @@
 1263642375 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\widget.cpp
 	"Widget.hpp"
 
-1263644778 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.cpp
+1264614782 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.cpp
 	"WindowGame.hpp"
 	<iostream>
 
-1263644778 e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.hpp
+1264614527 e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.hpp
 	"Global.hpp"
 	"Bejeweled.hpp"
 	"GUI/Button.hpp"
 	"GUI/TabBar.hpp"
 	"GUI/Label.hpp"
 	"GUI/GUIImage.hpp"
+	"GUI/GUIAnimatedImage.hpp"
 	"GUI/GUIWindow.hpp"
 
 1263642783 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\button.hpp
@@ -380,7 +381,7 @@
 1264187534 e:\c++\petits jeux\eos\sources\gui\gui_greg\bejeweled.hpp
 	"GUI/Widget.hpp"
 
-1263642375 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\bejeweled.cpp
+1264613356 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\bejeweled.cpp
 	"Bejeweled.hpp"
 	<iostream>
 	<sstream>
@@ -405,4 +406,12 @@
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Matrix3.hpp>
+
+1264614696 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guianimatedimage.cpp
+	"GUIAnimatedImage.hpp"
+	<iostream>
+	<sstream>
+
+1264614316 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guianimatedimage.hpp
+	"GUIImage.hpp"
 

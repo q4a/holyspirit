@@ -7,6 +7,7 @@
 #include "GUI/TabBar.hpp"
 #include "GUI/Label.hpp"
 #include "GUI/GUIImage.hpp"
+#include "GUI/GUIAnimatedImage.hpp"
 #include "GUI/GUIWindow.hpp"
 
 class WindowGame : public GUIWindow
@@ -50,6 +51,8 @@ class WindowGame : public GUIWindow
                     *m_compteur;
 
         Bejeweled   *m_bejeweled;
+
+        GUIAnimatedImage *m_test_animation;
 
 };
 
