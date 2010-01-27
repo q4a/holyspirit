@@ -1,6 +1,6 @@
 Retour
 Sauvegarder et quitter
-Reinitialiser la partie et quitter
+Réinitialiser la partie et quitter
 Vie
 Foi
 Force
@@ -16,10 +16,10 @@ Inventaire (I)
 Quêtes (Q)
 Miracles (T)
 Menu (Echappe)
-Equipé :
+Équipé :
 Marchand :
 Inventaire :
-Dégats : 
+Dégâts : 
 Armure : 
 Force requise : 
 Dextérité requise : 
@@ -36,12 +36,12 @@ Raccourci pour miracles
 La voie du Persécuteur
 La voie du Protecteur
 La voie du Pieux
-La voie de l'Empoisoneuse
+La voie de l'Empoisonneuse
 La voie de l'Assassin
 La voie de la Séductrice
 Niveau suivant :
 Clic gauche : Sélectionner / Clic droit : Apprendre
-Vous avez changer de niveau ! Cliquez ici pour dépenser vos points.
+Vous avez changé de niveau ! Cliquez ici pour dépenser vos points.
 Physique
 Feu
 Foi
@@ -49,3 +49,4 @@ Corrosion
 Argent
 Niveau
 Nom
+
