@@ -75,6 +75,7 @@ void MoteurSons::StopAllSounds()
 
 void MoteurSons::JouerSon(int ID,coordonnee position,bool unique,int volume)
 {
+    m_music.SetPosition(sf::Listener::GetPosition());
 
     if (volume>100)
         volume=100;
@@ -134,6 +135,28 @@ void MoteurSons::JouerSon(int ID,coordonnee position,bool unique,int volume)
     }
 }
 
+void MoteurSons::PlayNewMusic(std::string chemin)
+{
+    m_music.Stop();
 
+    m_music.SetLoop(false);
+    m_music.SetVolume(100);
 
+    if (!m_music.OpenFromFile(chemin.c_str()))
+        console->Ajouter("Impossible de charger : "+chemin,1);
+    else
+        console->Ajouter("Chargement de : "+chemin,0);
+
+    m_music.Play();
+}
+
+const sf::Sound::Status &MoteurSons::GetMusicStatus()
+{
+    return m_music.GetStatus();
+}
+
+void MoteurSons::setVolumeMusique(int volume)
+{
+    m_music.SetVolume(volume);
+}
 

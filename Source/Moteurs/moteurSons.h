@@ -40,6 +40,12 @@ class MoteurSons : public CSingleton<MoteurSons>
 	void JouerSon(int ID,coordonnee position,bool unique=0,int volume=100);
 	void StopAllSounds();
 
+	void PlayNewMusic(std::string chemin);
+
+	void setVolumeMusique(int volume);
+
+	const sf::Sound::Status &GetMusicStatus();
+
 	std::string getCheminSon(int IDimage);
 
 	protected:
@@ -52,6 +58,8 @@ class MoteurSons : public CSingleton<MoteurSons>
 	int m_IDSons[NOMBRE_SONS];
 	std::vector <sf::SoundBuffer> m_buffers;
 	std::vector <std::string> m_cheminsSons;//Permet de s'assurer d'avoir des singletons
+
+	sf::Music m_music;
 };
 
 #endif

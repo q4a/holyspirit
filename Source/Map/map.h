@@ -145,14 +145,14 @@ public:
     const coordonnee &getPositionMonstre(int numeroMonstre);
     casePathfinding ** getAlentourDuPersonnage(coordonnee positionPersonnage); // Retourne un tableau de bool contenant toutes les collitions dans les alentour du héro, pour le pathfinding
 
-    void setVolumeMusique(int volume);
-
-
-
     int m_defilerObjets,m_objetPointe,m_monstreIllumine;
+    /*sf::Music m_musique[MAX_MUSIQUE];
+    int m_musiqueEnCours,m_nombreMusique;*/
+    std::vector<std::string> m_musiques;
+    int m_musiqueEnCours;
 
 private:
-    int IDImageSac,m_calculLumiere,m_musiqueEnCours,m_nombreMusique;
+    int IDImageSac,m_calculLumiere;
     std::string m_nom_fichier;
 
     coordonnee m_dimensions;
@@ -164,14 +164,14 @@ private:
     std::vector <std::vector < Decor > >  m_decor[NOMBRE_COUCHE_MAP];
     std::vector <Evenement> m_evenement;
 
-    sf::Music m_musique[MAX_MUSIQUE];
+
     std::string m_nom;
     int m_no_nom;
 
     int m_img_sky;
     std::string m_nom_img_sky;
 
-    std::vector <std::string> m_fond,m_cheminMusique;
+    std::vector <std::string> m_fond;
 
     std::vector <Modele_Monstre> m_ModeleMonstre;
     std::vector <Monstre> m_monstre;

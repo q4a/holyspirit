@@ -105,14 +105,11 @@ void Map::Detruire()
     if (configuration->debug)
         console->Ajouter("Evénements détruits !");
 
-    for (int i=0;i<MAX_MUSIQUE;++i)
-        m_musique[i].Stop();
-
     m_fond.clear();
     if (configuration->debug)
         console->Ajouter("Fonds détruits !");
 
-    m_cheminMusique.clear();
+    m_musiques.clear();
     if (configuration->debug)
         console->Ajouter("Chemins musiques détruits !");
 
@@ -231,33 +228,16 @@ bool Map::Charger(std::string nomMap,Hero *hero)
         if (configuration->debug)
             console->Ajouter("/Lectures des fonds.");
 
-        for (int i=0;i<MAX_MUSIQUE;++i)
-            m_musique[i].Stop();
-
-        m_nombreMusique=0;
+        m_musiqueEnCours = 0;
         do
         {
             //Chargement des musiques
             fichier->get(caractere);
-            if (caractere=='*'&&m_musiqueEnCours<MAX_MUSIQUE)
+            if (caractere=='*')
             {
                 std::string temp2;
-
                 *fichier>>temp2;
-
-                if (!m_musique[m_musiqueEnCours].OpenFromFile(temp2.c_str()))
-                    console->Ajouter("Impossible de charger : "+temp2,1);
-                else
-                    console->Ajouter("Chargement de : "+temp2,0);
-
-                m_cheminMusique.push_back(temp2);
-
-                m_musique[m_musiqueEnCours].SetLoop(false);
-                m_musique[m_musiqueEnCours].SetVolume(100);
-
-
-                m_musiqueEnCours++;
-                m_nombreMusique++;
+                m_musiques.push_back(temp2);
             }
             if (fichier->eof())
             {
@@ -269,10 +249,6 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
         if (configuration->debug)
             console->Ajouter("/Lectures des musiques.");
-
-        m_musique[0].Play();
-
-        m_musiqueEnCours=0;
 
         int heureEnCours=0;
         do
@@ -1153,8 +1129,8 @@ void Map::Sauvegarder(Hero *hero)
         for (int i=0;i<(int)m_fond.size();++i)
             fichier<<"*"<<m_fond[i]<<"\n";
         fichier<<"$\n";
-        for (int i=0;i<(int)m_cheminMusique.size();++i)
-            fichier<<"*"<<m_cheminMusique[i]<<"\n";
+        for (int i=0;i<(int)m_musiques.size();++i)
+            fichier<<"*"<<m_musiques[i]<<"\n";
         fichier<<"$\n";
 
         for (int i=0;i<24;++i)
@@ -2924,27 +2900,22 @@ void Map::VerifierDeclencheursDegats(int i, int j)
 
 void Map::MusiquePlay(coordonnee position)
 {
-    if (m_nombreMusique>0)
-        if (m_musiqueEnCours>=0&&m_musiqueEnCours<MAX_MUSIQUE)
+    if (m_musiqueEnCours>=0&&m_musiqueEnCours<m_musiques.size())
+    {
+        Sound::Status Status = moteurSons->GetMusicStatus();
+
+        if (Status==0)
         {
-            Sound::Status Status = m_musique[m_musiqueEnCours].GetStatus();
+            m_musiqueEnCours++;
+            if (m_musiqueEnCours>=m_musiques.size())
+                m_musiqueEnCours=0;
 
-            if (Status==0)
-            {
-                m_musiqueEnCours++;
-                if (m_musiqueEnCours>=m_nombreMusique)
-                    m_musiqueEnCours=0;
-
-                if (m_musiqueEnCours>=0&&m_musiqueEnCours<MAX_MUSIQUE&&m_musiqueEnCours<m_nombreMusique)
-                    if (m_musique[m_musiqueEnCours].GetDuration()>0)
-                        m_musique[m_musiqueEnCours].Play();
-            }
-
-            if (m_musiqueEnCours>=0&&m_musiqueEnCours<MAX_MUSIQUE&&m_musiqueEnCours<m_nombreMusique)
-                m_musique[m_musiqueEnCours].SetPosition(-position.x, 0, position.y);
+            if (m_musiqueEnCours>=0&&m_musiqueEnCours<m_musiques.size())
+                moteurSons->PlayNewMusic(m_musiques[m_musiqueEnCours]);
         }
-        else
-            m_musiqueEnCours=0;
+    }
+    else
+        m_musiqueEnCours=0;
 }
 
 
@@ -3986,12 +3957,6 @@ void Map::AjouterMonstre(Monstre monstre)
 void Map::AjouterModeleMonstre(Modele_Monstre monstre)
 {
     m_ModeleMonstre.push_back(monstre);
-}
-
-void Map::setVolumeMusique(int volume)
-{
-    for (int i=0;i<MAX_MUSIQUE;++i)
-        m_musique[i].SetVolume(volume);
 }
 
 const coordonnee &Map::getSacPointe()

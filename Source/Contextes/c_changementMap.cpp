@@ -161,6 +161,11 @@ void c_Chargement::Utiliser(Jeu *jeu)
             jeu->map->Sauvegarder(&jeu->hero);
 
 
+        std::string musicEnCours;
+        if(jeu->map!=NULL)
+            if(jeu->map->m_musiqueEnCours < jeu->map->m_musiques.size())
+                musicEnCours = jeu->map->m_musiques[jeu->map->m_musiqueEnCours];
+
         if(m_nomProchaineMap!="Tutorial.map.hs" && m_nomProchaineMap!="Begin.map.hs")
             jeu->hero.Sauvegarder();
 
@@ -173,7 +178,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         jeu->map=new Map();
 
          moteurGraphique->LightManager->Delete_All_Light();
-            moteurGraphique->LightManager->Delete_All_Wall();
+        moteurGraphique->LightManager->Delete_All_Wall();
 
 
         jeu->hero.ChargerModele(true);
@@ -181,6 +186,13 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         if (!jeu->map->Charger(m_nomProchaineMap,&jeu->hero))
             console->Ajouter("CRITICAL ERROR"), throw  "CRITICAL ERROR";
+
+        bool newMusic = true;
+        for(int i = 0 ; i < jeu->map->m_musiques.size() ; ++i)
+            if(musicEnCours == jeu->map->m_musiques[i])
+                jeu->map->m_musiqueEnCours = i, newMusic = false;
+        if(newMusic && !jeu->map->m_musiques.empty())
+            moteurSons->PlayNewMusic(jeu->map->m_musiques[jeu->map->m_musiqueEnCours]);
 
         for(unsigned i = 0 ; i < jeu->hero.m_amis.size() ; ++i)
         {
@@ -305,7 +317,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
     if ((allerVersImageChargement&&z<49&&augmenterNoir)||(!allerVersImageChargement&&z>0&&!augmenterNoir))
     {
         if(jeu->map!=NULL)
-            jeu->map->setVolumeMusique((int)(z*(float)configuration->volume/50));
+            moteurSons->setVolumeMusique((int)(z*(float)configuration->volume/50));
         if ((!m_debut&&augmenterNoir)||(!augmenterNoir))
         {
             if(jeu->map!=NULL)
