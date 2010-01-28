@@ -90,6 +90,7 @@ void Tileset::ChargerTiles(ifstream &fichier, int lumiere_base)
                 int attaque = -1;
                 int ordre = 0;
                 std::string nom;
+                int couche_editeur = -1;
 
                 do
                 {
@@ -172,6 +173,9 @@ void Tileset::ChargerTiles(ifstream &fichier, int lumiere_base)
                     case 'v':
                         fichier>>nom;
                         break;
+                    case 'z':
+                        fichier>>couche_editeur;
+                        break;
 
                     case 'm':
                         do
@@ -220,6 +224,7 @@ void Tileset::ChargerTiles(ifstream &fichier, int lumiere_base)
                 m_tile.back().m_tileMinimap = imageMM;
                 m_tile.back().m_coordMinimap = coordMinimap;
                 m_tile.back().m_nom = nom;
+                m_tile.back().m_couche_editeur = couche_editeur;
 
                 fichier.get(caractere);
             }

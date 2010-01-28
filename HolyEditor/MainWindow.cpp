@@ -1508,6 +1508,19 @@ void MainWindow::selectTileset(QTreeWidgetItem *item, int column)
         map->m_selectTile = 0;
     }
 
+    if(map->m_selectTile<moteurGraphique->getTileset(map->m_tileset[map->m_selectTileset-1])->m_tile.size())
+     if(moteurGraphique->getTileset(map->m_tileset[map->m_selectTileset-1])->m_tile[map->m_selectTile].m_couche_editeur >= 0
+      &&moteurGraphique->getTileset(map->m_tileset[map->m_selectTileset-1])->m_tile[map->m_selectTile].m_couche_editeur < 2)
+     {
+        map->m_selectCouche = moteurGraphique->getTileset(map->m_tileset[map->m_selectTileset-1])->m_tile[map->m_selectTile].m_couche_editeur;
+        couche0->setChecked(false);
+        couche1->setChecked(false);
+        if(map->m_selectCouche == 0)
+            couche0->setChecked(true);
+        if(map->m_selectCouche == 1)
+            couche1->setChecked(true);
+     }
+
     map->m_mode_brush       = false;
 
     SFMLView->setFocus(Qt::MouseFocusReason);

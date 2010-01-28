@@ -61,6 +61,7 @@ class Tile
 	coordonnee m_coordMinimap;
 
 	std::string m_nom;
+	int m_couche_editeur;
 
 	private:
 	coordonnee m_positionDansLImage,m_centre;
