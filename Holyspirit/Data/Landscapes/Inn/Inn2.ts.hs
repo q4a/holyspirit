@@ -5,9 +5,9 @@
 $
 $
 Taverne
-*x0 y0 w0 h0 i0 c1 lr0 lv0 lb0 li-255 lh512 ry $
-*x0 y0 w0 h0 i0 c1 lr0 lv0 lb0 li-255 lh512 rx $
-*x0 y0 w0 h0 i0 c1 lr0 lv0 lb0 li-255 lh512 rh $
+*x0 y0 w0 h0 i0 c1 lr0 lv0 lb0 li-255 lh512 ry  z1 vCollisionY $
+*x0 y0 w0 h0 i0 c1 lr0 lv0 lb0 li-255 lh512 rx  z1 vCollisionX $
+*x0 y0 w0 h0 i0 c1 lr0 lv0 lb0 li-255 lh512 rh  z1 vCollisionHaut $
 
 *x0 y0 w192 h512   ex112 ey448 i0 c1 f1 lr0 lv0 lb0 t1 li-255 lh512 rg $
 *x192 y0 w192 h544 ex112 ey480 i0 c1 f1 lr0 lv0 lb0 t1 li-255 lh512 rx $

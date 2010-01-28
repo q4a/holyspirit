@@ -12,6 +12,6 @@ Abbaye
 * x0 y0 w1024 h910 i3 c1  ey768 ex928 $
 * x0 y0 w1024 h910 i4 c1  ey800 ex-32  $
 
-* x0 y0 w0 h0 i0 c1 $
+* x0 y0 w0 h0 i0 c1 z1 vCollision $
 
 $
