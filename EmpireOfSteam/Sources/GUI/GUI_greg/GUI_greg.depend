@@ -407,7 +407,7 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Matrix3.hpp>
 
-1264614696 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guianimatedimage.cpp
+1264614865 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guianimatedimage.cpp
 	"GUIAnimatedImage.hpp"
 	<iostream>
 	<sstream>
