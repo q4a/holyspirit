@@ -2,6 +2,8 @@
 *Data/Grounds/Plain_grass/hill.png
 *Data/Grounds/Plain_grass/hill2.png
 *Data/Grounds/Plain_grass/hill3.png
+*Data/Menus/MinimapIcones.png
+
 
 $
 $
@@ -23,5 +25,11 @@ Hill
 *x160 y96 w160 h96 i0 ey48 vColline2 z0 $
 *x160 y192 w160 h96 i0 ey48 vColline3 z0 $
 *x160 y288 w160 h96 i0 ey48 vColline4 z0 $
+
+*x330 y96 w180 h96 i0 ey48 vTerre2 z0 $
+*x330 y192 w180 h96 i0 ey48 vTerre2 z0 $
+
+*x330 y0 w180 h96 i0 ey48 vTerreChemin z0 m i4 x80 y16 	w16 h16 $ $
+
 
 $
