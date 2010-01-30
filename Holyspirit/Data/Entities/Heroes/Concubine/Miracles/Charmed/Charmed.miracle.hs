@@ -11,10 +11,13 @@ $
 	* F%0 f%1 $
 $
 //Effets
-	* t1 l1 l2 ia2 $
+	* t15 ia1 ib1 ic%2 $
+	* t-1 l2 l5 $
+	* t1 l3 l4 l6 ia2 $
 	* t3 ia2 s0 $
-	* t9 mData/Scripts/AI/Charmed.script.hs ia%2  $
-	
+	* t9 mData/Scripts/AI/Charmed.script.hs $
+	* t16 ia1 $
+	* t16 ia0 $
 $
 //Séquences
 	*

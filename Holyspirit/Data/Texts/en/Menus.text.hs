@@ -46,6 +46,6 @@ Physic
 Fire
 Faith
 Corrosion
-Monney
+Money
 Level
 Name
