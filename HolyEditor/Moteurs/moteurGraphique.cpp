@@ -223,12 +223,9 @@ void MoteurGraphique::Afficher()
         }
 
 
+        m_ecran->SetView(m_ecran->GetDefaultView());
         for (unsigned i=0;i<m_textes[k].size();i++)
-        {
-            m_ecran->SetView(m_ecran->GetDefaultView());
             m_ecran->Draw(m_textes[k][i]);
-        }
-
 
     }
 
@@ -481,7 +478,6 @@ void MoteurGraphique::AjouterCommande(sf::Sprite *sprite, int couche, bool camer
 void MoteurGraphique::AjouterTexte(std::string txt, coordonnee pos, int couche, bool titre, int size, sf::Color color, bool fond)
 {
     sf::Text temp;
-    temp.SetFont(m_font);
     temp.SetString(txt);
     temp.SetPosition(pos.x, pos.y);
     temp.SetCharacterSize(size);

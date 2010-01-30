@@ -455,6 +455,23 @@ void MainWindow::paintEvent(QPaintEvent*)
         else if (couche1->isChecked())
             map->m_selectCouche = 1;
 
+        if(eventManager->getMolette() != 0)
+        {
+            if (couche1->isChecked())
+            {
+                map->m_selectCouche = 0;
+                couche0->setChecked(true);
+                couche1->setChecked(false);
+            }
+            else
+            {
+                map->m_selectCouche = 1;
+                couche1->setChecked(true);
+                couche0->setChecked(false);
+            }
+            //eventManager->StopEvenement(sf::Key::C, "ET");
+        }
+
 
         if (afficherCollisions->isChecked())
             map->m_afficher_collision = true;
@@ -659,7 +676,30 @@ void MainWindow::paintEvent(QPaintEvent*)
                     {
                         if (moteurGraphique->getTileset(map->m_herbe[map->m_decor[map->m_selectCouche][i][j][z].getHerbe()])->getTaille()>0)
                         {
+
                             coordonnee position,positionPartieDecor;
+
+                            int numeroHerbe=0;
+                            if (moteurGraphique->getTileset(map->m_herbe[map->m_decor[map->m_selectCouche][i][j][z].getHerbe()])->getTaille()>0)
+                                numeroHerbe = (rand() % (moteurGraphique->getTileset(map->m_herbe[map->m_decor[map->m_selectCouche][i][j][z].getHerbe()])->getTaille()));
+                            map->m_decor[map->m_selectCouche][i][j][z].setNumeroHerbe(numeroHerbe);
+
+                            position.x=(j-i)*64;
+                            position.y=(j+i+1)*32;
+
+                            if (map->m_selectCouche==0)
+                                position.y-=32;
+                            position.x+=map->m_decor[0][i][j][z].getDecalageHerbe().x;
+
+                            map->m_decor[map->m_selectCouche][i][j][z].m_entite_herbe = moteurGraphique->getEntiteGraphique(map->m_herbe[map->m_decor[map->m_selectCouche][i][j][z].getHerbe()], numeroHerbe, 10);
+                            map->m_decor[map->m_selectCouche][i][j][z].m_entite_herbe.m_sprite.SetPosition(position.x, position.y - map->m_decor[0][i][j][z].getHauteur());
+                            map->m_decor[map->m_selectCouche][i][j][z].m_entite_herbe.m_sprite.SetScale((float)map->m_decor[map->m_selectCouche][i][j][z].getTailleHerbe()/100,(float)map->m_decor[map->m_selectCouche][i][j][z].getTailleHerbe()/100);
+                            map->m_decor[map->m_selectCouche][i][j][z].m_entite_herbe.m_sprite.SetColor(map->m_decor[map->m_selectCouche][i][j][z].getCouleurHerbe());
+
+                            map->m_decor[map->m_selectCouche][i][j][z].m_entite_herbe.Initialiser(coordonnee ());
+
+
+                           /* coordonnee position,positionPartieDecor;
 
                             int numeroHerbe=0;
                             if (moteurGraphique->getTileset(map->m_herbe[map->m_decor[map->m_selectCouche][i][j][z].getHerbe()])->getTaille()>0)
@@ -680,7 +720,7 @@ void MainWindow::paintEvent(QPaintEvent*)
                             map->m_decor[map->m_selectCouche][i][j][z].m_entite_herbe.m_sprite.SetScale((float)map->m_decor[map->m_selectCouche][i][j][z].getTailleHerbe()/100,(float)map->m_decor[map->m_selectCouche][i][j][z].getTailleHerbe()/100);
                             map->m_decor[map->m_selectCouche][i][j][z].m_entite_herbe.m_sprite.SetX(position.x+64-positionPartieDecor.w/2);
                             map->m_decor[map->m_selectCouche][i][j][z].m_entite_herbe.m_sprite.SetY(position.y-positionPartieDecor.h+64);
-                            map->m_decor[map->m_selectCouche][i][j][z].m_entite_herbe.m_sprite.SetColor(map->m_decor[map->m_selectCouche][i][j][z].getCouleurHerbe());
+                            map->m_decor[map->m_selectCouche][i][j][z].m_entite_herbe.m_sprite.SetColor(map->m_decor[map->m_selectCouche][i][j][z].getCouleurHerbe());*/
                         }
                     }
                     else

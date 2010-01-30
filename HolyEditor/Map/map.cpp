@@ -965,8 +965,34 @@ void Map::Initialiser()
                             numeroHerbe = (rand() % (moteurGraphique->getTileset(m_herbe[m_decor[couche][i][j][z].getHerbe()])->getTaille()));
                         m_decor[couche][i][j][z].setNumeroHerbe(numeroHerbe);
 
+                        position.x=(j-i)*64;
+                        position.y=(j+i+1)*32;
+
+                        if (couche==0)
+                            position.y-=32;
+                        position.x+=m_decor[0][i][j][z].getDecalageHerbe().x;
+
+                        m_decor[couche][i][j][z].m_entite_herbe = moteurGraphique->getEntiteGraphique(m_herbe[m_decor[couche][i][j][z].getHerbe()], numeroHerbe, 10);
+                        m_decor[couche][i][j][z].m_entite_herbe.m_sprite.SetPosition(position.x, position.y - m_decor[0][i][j][z].getHauteur());
+                        m_decor[couche][i][j][z].m_entite_herbe.m_sprite.SetScale((float)m_decor[couche][i][j][z].getTailleHerbe()/100,(float)m_decor[couche][i][j][z].getTailleHerbe()/100);
+                        m_decor[couche][i][j][z].m_entite_herbe.m_sprite.SetColor(m_decor[couche][i][j][z].getCouleurHerbe());
+
+                        m_decor[couche][i][j][z].m_entite_herbe.Initialiser(coordonnee ());
+
+
+
+
+                      /*  coordonnee position,positionPartieDecor;
+
+                        int numeroHerbe=0;
+                        if (moteurGraphique->getTileset(m_herbe[m_decor[couche][i][j][z].getHerbe()])->getTaille()>0)
+                            numeroHerbe = (rand() % (moteurGraphique->getTileset(m_herbe[m_decor[couche][i][j][z].getHerbe()])->getTaille()));
+                        m_decor[couche][i][j][z].setNumeroHerbe(numeroHerbe);
+
                         position.x=(j-i-1)*64;
                         position.y=(j+i)*32;
+
+
 
                         positionPartieDecor=moteurGraphique->getTileset(m_herbe[m_decor[couche][i][j][z].getHerbe()])->getPositionDuTile(m_decor[couche][i][j][z].getNumeroHerbe());
 
@@ -979,7 +1005,7 @@ void Map::Initialiser()
                         m_decor[couche][i][j][z].m_entite_herbe.m_sprite.SetScale((float)m_decor[couche][i][j][z].getTailleHerbe()/100,(float)m_decor[couche][i][j][z].getTailleHerbe()/100);
                         m_decor[couche][i][j][z].m_entite_herbe.m_sprite.SetX(position.x+64-positionPartieDecor.w/2);
                         m_decor[couche][i][j][z].m_entite_herbe.m_sprite.SetY(position.y-positionPartieDecor.h+64);
-                        m_decor[couche][i][j][z].m_entite_herbe.m_sprite.SetColor(m_decor[couche][i][j][z].getCouleurHerbe());
+                        m_decor[couche][i][j][z].m_entite_herbe.m_sprite.SetColor(m_decor[couche][i][j][z].getCouleurHerbe());*/
                     }
                 }
             }
@@ -1371,7 +1397,7 @@ void Map::Afficher(bool alt,float alpha)
 
                         std::ostringstream buf;
                         buf<<m_decor[couche][j][k][z].m_evenement[m_decor[couche][j][k][z].random_evenement];
-                        moteurGraphique->AjouterTexte(buf.str(), coordonnee(((float)position.x - (float)GetViewRect(moteurGraphique->m_camera).Left)/configuration->zoom , ((float)position.y - (float)GetViewRect(moteurGraphique->m_camera).Top - 16 + ( 24 * (couche == 1)))/configuration->zoom  ), 15,0,24/configuration->zoom,sf::Color(0,0,255));
+                        moteurGraphique->AjouterTexte(buf.str(), coordonnee(((int)position.x - (int)GetViewRect(moteurGraphique->m_camera).Left)/configuration->zoom , ((int)position.y - (float)GetViewRect(moteurGraphique->m_camera).Top - 16 + ( 24 * (couche == 1)))/configuration->zoom  ), 15,0,24/configuration->zoom,sf::Color(0,0,255));
                     }
 
                     if (couche==1)
