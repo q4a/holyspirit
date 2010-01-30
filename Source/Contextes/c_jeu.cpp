@@ -711,6 +711,7 @@ void c_Jeu::Evenements(Jeu *jeu)
 
         if (eventManager->getEvenement(Mouse::Left,EventClic)&&eventManager->getEvenement(Mouse::Left,EventClicA))
         {
+            jeu->hero.m_personnage.m_miracleBloquant = false;
             jeu->hero.StopMiraclesFrappe();
             if (jeu->map->getMonstreIllumine()!=-1)
             {
@@ -785,7 +786,7 @@ void c_Jeu::Evenements(Jeu *jeu)
                 {
                     eventManager->StopEvenement(Mouse::Right,EventClic);
 
-                    jeu->hero.StopMiraclesFrappe();
+                   // jeu->hero.StopMiraclesFrappe();
 
                     coordonnee cible;
 

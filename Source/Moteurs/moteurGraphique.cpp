@@ -335,7 +335,7 @@ void MoteurGraphique::Afficher()
 
         m_light_screen2.SetView(temp);
 
-        m_light_screen2.Clear(sf::Color(255,255,255));
+        m_light_screen2.Clear(sf::Color(255,255,255,255));
 
         LightManager->DrawWallShadow(&m_light_screen2,&temp);
 
@@ -375,7 +375,7 @@ void MoteurGraphique::Afficher()
 
         m_light_screen.SetView(temp);
 
-        m_light_screen.Clear(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255));
+        m_light_screen.Clear(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255,255));
 
         LightManager->Draw(&m_light_screen,&temp);
 
@@ -384,9 +384,9 @@ void MoteurGraphique::Afficher()
         configuration->RafraichirLumiere=false;
     }
 
-    bufferImage.Clear();
-    m_water_screen.Clear();
-    m_distortion_screen.Clear();
+    bufferImage.Clear(sf::Color(0,0,0,255));
+    m_water_screen.Clear(sf::Color(0,0,0,255));
+    m_distortion_screen.Clear(sf::Color(0,0,0,255));
 
 
     if(configuration->postFX && configuration->Distortion)

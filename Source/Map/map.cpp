@@ -1001,7 +1001,6 @@ void Map::Initialiser(Hero *hero)
 
                         position.x=(j-i)*64;
                         position.y=(j+i+1)*32;
-                        position.y=(j+i+1)*32;
 
                         if (couche==0)
                             position.y-=32;
@@ -2012,7 +2011,6 @@ bool Map::Miracle_Charme (Hero *hero, Personnage *personnage, Miracle &modele, E
     if(info.m_IDObjet == -1)
     {
         if (info.m_cible->m_friendly != personnage->m_friendly
-            &&info.m_cible->getCaracteristique().maxVie <= effet.m_informations[0]
             &&info.m_cible->getCaracteristique().niveau > 0 && info.m_cible->getCaracteristique().vitesse > 0)
         {
             info.m_cible->m_scriptAI     = Script (effet.m_chaine);
@@ -2021,6 +2019,7 @@ bool Map::Miracle_Charme (Hero *hero, Personnage *personnage, Miracle &modele, E
 
             info.m_cible->m_cible        = NULL;
             info.m_cible->frappeEnCours  = false;
+            info.m_cible->setEtat(0);
 
             info.m_IDObjet    = 1;
 
@@ -2075,6 +2074,10 @@ bool Map::Miracle_Charme (Hero *hero, Personnage *personnage, Miracle &modele, E
             info.m_cible->DetruireEffets();
             info.m_cible->m_scriptAI = m_ModeleMonstre[info.m_cible->getModele()].m_scriptAI;
             info.m_cible->setDepart();
+
+            Lumiere temp;
+            temp = m_ModeleMonstre[info.m_cible->getModele()].getPorteeLumineuse();
+            info.m_cible->setPorteeLumineuse(temp);
 
             miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
 
@@ -2647,8 +2650,25 @@ bool Map::Miracle_Conditions(Hero *hero, Personnage *personnage, Miracle &modele
         if((int)(personnage->getAngle()/45) == effet.m_informations[2])
             oui = true;
 
+    if(effet.m_informations[1] == C_CIBLELIFE)
+        if(info.m_cible != NULL)
+            if(info.m_cible->getCaracteristique().maxVie <= effet.m_informations[2])
+                oui = true;
+
     if(oui)
     {
+        if (info.m_effetEnCours == 0)
+        {
+            Caracteristique temp = personnage->getCaracteristique();
+            temp.foi        -= modele.m_coutFoi + modele.m_reserveFoi;
+            temp.vie        -= modele.m_coutVie + modele.m_reserveVie;
+            temp.reserveFoi += modele.m_reserveFoi;
+            temp.reserveVie += modele.m_reserveVie;
+            personnage->setCaracteristique(temp);
+
+            miracleEnCours.m_dejaConsommeFoi = true;
+        }
+
         miracleEnCours.m_infos.push_back(new InfosEntiteMiracle ());
         miracleEnCours.m_infos.back()->m_effetEnCours    =  effet.m_informations[0];
         miracleEnCours.m_infos.back()->m_position        =  info.m_position;
@@ -3220,7 +3240,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             script->variables[script->m_instructions[noInstruction].valeurs.at(0)]=script->m_instructions[noInstruction].valeurs.at(1);
         else if (script->m_instructions[noInstruction].nom=="incrementVariable")
             script->variables[script->m_instructions[noInstruction].valeurs.at(0)]+=script->m_instructions[noInstruction].valeurs.at(1);
-        else if (script->m_instructions[noInstruction].nom=="setCollision")
+        else if (script->m_instructions[noInstruction].nom=="setCollision" && monstre != -1)
         {
             m_monstre[monstre].m_collision = script->m_instructions[noInstruction].valeurs.at(0);
             m_monstre[monstre].m_impenetrable = script->m_instructions[noInstruction].valeurs.at(0);

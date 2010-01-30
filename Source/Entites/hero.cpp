@@ -1566,10 +1566,10 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
 
             sprite.SetImage(*moteurGraphique->getImage(0));
             sprite.SetColor(GetItemColor(m_inventaire[i].getRarete()));
-            sprite.SetColor(sf::Color(sprite.GetColor().r,sprite.GetColor().g,sprite.GetColor().b,96));
+            sprite.SetColor(sf::Color(sprite.GetColor().r,sprite.GetColor().g,sprite.GetColor().b,64));
 
             if (!m_inventaire[i].Utilisable(m_caracteristiques,m_classe.ID))
-                sprite.SetColor(sf::Color((int)(sprite.GetColor().r*0.5),(int)(sprite.GetColor().g*0.5),(int)(sprite.GetColor().b*0.5),32));
+                sprite.SetColor(sf::Color((int)(sprite.GetColor().r*0.25),(int)(sprite.GetColor().g*0.25),(int)(sprite.GetColor().b*0.25),64));
 
             sprite.Resize(m_inventaire[i].getTaille().x*32*configuration->Resolution.w/800,m_inventaire[i].getTaille().y*32*configuration->Resolution.h/600);
 
@@ -2322,7 +2322,8 @@ void Hero::StopMiraclesFrappe()
             if (m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type == CORPS_A_CORPS)
             {
                 delete m_personnage.m_miracleEnCours[i].m_infos[i];
-                m_personnage.m_miracleEnCours[i].m_infos.erase(m_personnage.m_miracleEnCours[i].m_infos.begin()+i);
+                m_personnage.m_miracleEnCours[i].m_infos.erase(m_personnage.m_miracleEnCours[i].m_infos.begin()+o);
+                o--;
             }
 }
 
@@ -2453,7 +2454,8 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                         m_personnage.m_lancementMiracleEnCours = true;
                         m_personnage.m_miracleEnCours.push_back(EntiteMiracle ());
 
-                        if (m_classe.miracles[miracle].m_effets[0].m_type != CORPS_A_CORPS)
+                        if (m_classe.miracles[miracle].m_effets[0].m_type != CORPS_A_CORPS
+                        &&  m_classe.miracles[miracle].m_effets[0].m_type != CONDITION)
                         {
                             Caracteristique temp = m_personnage.getCaracteristique();
                             temp.foi        -= m_classe.miracles[miracle].m_coutFoi + m_classe.miracles[miracle].m_reserveFoi;
