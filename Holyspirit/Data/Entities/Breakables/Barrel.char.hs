@@ -26,17 +26,17 @@ $
 
 *
 *Ore_iron.item.hs
-r1000
+r2000
 $
 
 *
 *Ore_copper.item.hs
-r1000
+r2000
 $
 
 *
 *Ruby.item.hs
-r100
+r500
 $
 
 $
