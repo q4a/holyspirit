@@ -1787,14 +1787,17 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
 
     if (!trader.empty())
     {
-        sf::Sprite sprite;
+        if(m_max_defilement_trader-m_classe.position_contenu_marchand.h > 0)
+        {
+             sf::Sprite sprite;
 
-        sprite.SetImage(*moteurGraphique->getImage(m_classe.scroll_button.image));
-        sprite.SetX(m_classe.scroll_button.position.x*configuration->Resolution.x/800);
-        sprite.SetY((m_classe.scroll_button.position.y+(m_defilement_trader*m_classe.position_contenu_marchand.h*24)/(m_max_defilement_trader-m_classe.position_contenu_marchand.h))*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
-        sprite.Resize(m_classe.scroll_button.position.w*configuration->Resolution.w/800, m_classe.scroll_button.position.h*configuration->Resolution.h/600);
+            sprite.SetImage(*moteurGraphique->getImage(m_classe.scroll_button.image));
+            sprite.SetX(m_classe.scroll_button.position.x*configuration->Resolution.x/800);
+            sprite.SetY((m_classe.scroll_button.position.y+(m_defilement_trader*m_classe.position_contenu_marchand.h*24)/(m_max_defilement_trader-m_classe.position_contenu_marchand.h))*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+            sprite.Resize(m_classe.scroll_button.position.w*configuration->Resolution.w/800, m_classe.scroll_button.position.h*configuration->Resolution.h/600);
 
-        moteurGraphique->AjouterCommande(&sprite,18,0);
+            moteurGraphique->AjouterCommande(&sprite,18,0);
+        }
     }
 
     if (m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())

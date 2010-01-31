@@ -183,6 +183,7 @@ void c_Inventaire::Utiliser(Jeu *jeu)
     jeu->hero.m_defilement_trader -= eventManager->getMolette();
 
     if(eventManager->getEvenement(Mouse::Left,EventClicA))
+    if(jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h != 0)
         if (eventManager->getPositionSouris().x>jeu->hero.m_classe.scroll_button.position.x*configuration->Resolution.x/800
         &&eventManager->getPositionSouris().x<(jeu->hero.m_classe.scroll_button.position.x+jeu->hero.m_classe.scroll_button.position.w)*configuration->Resolution.x/800
         &&eventManager->getPositionSouris().y>jeu->hero.m_classe.scroll_button.position.y*configuration->Resolution.h/600

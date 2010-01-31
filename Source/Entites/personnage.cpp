@@ -554,7 +554,7 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap)
 
     sf::Vector2f pos;
     pos.x=((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE);
-    pos.y=((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)+64;
+    pos.y=((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)+64+1;
 
     moteurGraphique->LightManager->SetPosition(m_entite_graphique.m_light,pos);
 

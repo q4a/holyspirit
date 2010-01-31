@@ -206,7 +206,7 @@ void Decor::setNumeroHerbe(int numero)
     m_herbe_decalage.x = 16 - (rand()%32);
     m_herbe_decalage.y = 0/*16 - (rand()%32)*/;
 
-    int randomIntensite=rand() % ( 255 - 128 +1 ) + 128;
+    int randomIntensite=(int)((float)(rand() % 128) + 128);
     int rougatre=rand() % (32);
 
     m_herbe_couleur.r=randomIntensite;
