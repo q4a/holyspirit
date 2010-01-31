@@ -17,13 +17,14 @@ $
 Objets du monstre
 *
 *Heal_potion.item.hs
-r10000
+r2000
 $
 
 *
-*Heal_potion.item.hs
-r10000
+*Faith_potion.item.hs
+r2000
 $
+
 
 $
 *Data/Particule_system/human_blood.ps.hs
