@@ -1181,7 +1181,7 @@ void Map::Sauvegarder(Hero *hero)
                         fichier<<"e"<<m_decor[couche][i][j].getEvenement()[k]<<" ";
 
                     if(m_decor[couche][i][j].added_minimap)
-                        fichier<<"p1"<<endl;
+                        fichier<<"p1";
 
                     for (unsigned k = 0 ; k < m_decor[couche][i][j].getMonstre().size() ; ++k)
                         if (m_decor[couche][i][j].getMonstre()[k] >= 0 && m_decor[couche][i][j].getMonstre()[k] < (int)m_monstre.size())
@@ -2066,50 +2066,53 @@ bool Map::Miracle_Charme (Hero *hero, Personnage *personnage, Miracle &modele, E
         if (fabs(info.m_cible->getCoordonnee().x - personnage->getCoordonnee().x) > 10 || fabs(info.m_cible->getCoordonnee().y - personnage->getCoordonnee().y) > 10)
         {
             coordonnee temp;
+            bool ok = false;
             int id = -1;
             for(int i = 0 ; i < m_monstre.size() ; ++i)
                 if(&m_monstre[i] == info.m_cible)
                     id = i, m_decor[1][m_monstre[i].getCoordonnee().y][m_monstre[i].getCoordonnee().x].delMonstre(i);
 
-            temp.x = personnage->getCoordonnee().x;
+           /* temp.x = personnage->getCoordonnee().x;
             temp.y = personnage->getCoordonnee().y;
             if(!getCollision(temp.x, temp.y))
-                info.m_cible->setCoordonnee(temp);
-            temp.x = personnage->getCoordonnee().x - 1;
-            temp.y = personnage->getCoordonnee().y - 1;
+                info.m_cible->setCoordonnee(temp);*/
+            temp.x = personnage->getProchaineCase().x - 1;
+            temp.y = personnage->getProchaineCase().y - 1;
             if(!getCollision(temp.x, temp.y))
-                info.m_cible->setCoordonnee(temp);
-            temp.x = personnage->getCoordonnee().x - 1;
-            temp.y = personnage->getCoordonnee().y;
+                info.m_cible->setCoordonnee(temp), ok = true;
+            temp.x = personnage->getProchaineCase().x - 1;
+            temp.y = personnage->getProchaineCase().y;
             if(!getCollision(temp.x, temp.y))
-                info.m_cible->setCoordonnee(temp);
-            temp.x = personnage->getCoordonnee().x - 1;
-            temp.y = personnage->getCoordonnee().y + 1;
+                info.m_cible->setCoordonnee(temp), ok = true;
+            temp.x = personnage->getProchaineCase().x - 1;
+            temp.y = personnage->getProchaineCase().y + 1;
             if(!getCollision(temp.x, temp.y))
-                info.m_cible->setCoordonnee(temp);
-            temp.x = personnage->getCoordonnee().x;
-            temp.y = personnage->getCoordonnee().y - 1;
+                info.m_cible->setCoordonnee(temp), ok = true;
+            temp.x = personnage->getProchaineCase().x;
+            temp.y = personnage->getProchaineCase().y - 1;
             if(!getCollision(temp.x, temp.y))
-                info.m_cible->setCoordonnee(temp);
-            temp.x = personnage->getCoordonnee().x;
-            temp.y = personnage->getCoordonnee().y + 1;
+                info.m_cible->setCoordonnee(temp), ok = true;
+            temp.x = personnage->getProchaineCase().x;
+            temp.y = personnage->getProchaineCase().y + 1;
             if(!getCollision(temp.x, temp.y))
-                info.m_cible->setCoordonnee(temp);
-            temp.x = personnage->getCoordonnee().x + 1;
-            temp.y = personnage->getCoordonnee().y - 1;
+                info.m_cible->setCoordonnee(temp), ok = true;
+            temp.x = personnage->getProchaineCase().x + 1;
+            temp.y = personnage->getProchaineCase().y - 1;
             if(!getCollision(temp.x, temp.y))
-                info.m_cible->setCoordonnee(temp);
-            temp.x = personnage->getCoordonnee().x + 1;
-            temp.y = personnage->getCoordonnee().y + 1;
+                info.m_cible->setCoordonnee(temp), ok = true;
+            temp.x = personnage->getProchaineCase().x + 1;
+            temp.y = personnage->getProchaineCase().y + 1;
             if(!getCollision(temp.x, temp.y))
-                info.m_cible->setCoordonnee(temp);
+                info.m_cible->setCoordonnee(temp), ok = true;
 
 
-            info.m_cible->setCoordonnee(temp);
-            m_decor[1][info.m_cible->getCoordonnee().y][info.m_cible->getCoordonnee().x].setMonstre(id);
+            if(ok)
+            {
+                m_decor[1][info.m_cible->getCoordonnee().y][info.m_cible->getCoordonnee().x].setMonstre(id);
 
-            info.m_cible->setDepart();
-
+                info.m_cible->setDepart();
+                info.m_cible->frappeEnCours = false;
+            }
         }
 
         if (!info.m_cible->m_friendly)
@@ -2695,7 +2698,9 @@ bool Map::Miracle_Conditions(Hero *hero, Personnage *personnage, Miracle &modele
 
     if(effet.m_informations[1] == C_CIBLELIFE)
         if(info.m_cible != NULL)
-            if(info.m_cible->getCaracteristique().maxVie <= effet.m_informations[2])
+            if(info.m_cible->getCaracteristique().maxVie <= effet.m_informations[2]
+            && info.m_cible->getCaracteristique().niveau > 0 && info.m_cible->getCaracteristique().vitesse > 0
+            && info.m_cible->m_friendly != personnage->m_friendly)
                 oui = true;
 
     if(oui)

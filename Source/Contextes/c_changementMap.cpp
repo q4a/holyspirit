@@ -196,13 +196,11 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         for(unsigned i = 0 ; i < jeu->hero.m_amis.size() ; ++i)
         {
-            //buffer[i].setCoordonnee(jeu->hero.m_personnage.getCoordonnee());
-
             coordonnee temp;
 
             temp.x = jeu->hero.m_personnage.getCoordonnee().x;
             temp.y = jeu->hero.m_personnage.getCoordonnee().y;
-            if(!jeu->map->getCollision(temp.x, temp.y))
+            //if(!jeu->map->getCollision(temp.x, temp.y))
                 buffer[i].setCoordonnee(temp);
             temp.x = jeu->hero.m_personnage.getCoordonnee().x - 1;
             temp.y = jeu->hero.m_personnage.getCoordonnee().y - 1;
@@ -232,8 +230,6 @@ void c_Chargement::Utiliser(Jeu *jeu)
             temp.y = jeu->hero.m_personnage.getCoordonnee().y + 1;
             if(!jeu->map->getCollision(temp.x, temp.y))
                 buffer[i].setCoordonnee(temp);
-
-            buffer[i].setCoordonnee(temp);
 
             bool ajouter = true;
             for(int j = 0 ; j < jeu->map->getNombreModeleMonstres() && ajouter ; ++j)
@@ -247,6 +243,8 @@ void c_Chargement::Utiliser(Jeu *jeu)
                 jeu->map->AjouterModeleMonstre(bufferModele[i]);
                 buffer[i].setModele(jeu->map->getNombreModeleMonstres() - 1);
             }
+
+            buffer[i].frappeEnCours = false;
 
             jeu->map->AjouterMonstre((Monstre) buffer[i]);
 

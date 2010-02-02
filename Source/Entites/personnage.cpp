@@ -324,8 +324,8 @@ int Personnage::getOrdre(Modele_Personnage *modele)
 void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,bool surbrillance, bool sansEffet)
 {
     if (modele!=NULL)
-        if (modele->m_tileset.size()>0)
-            if ((int)(m_angle/45)>=0&&(int)(m_angle/45)<8)
+        if (modele->m_tileset.size()>0 && m_etat>=0 && m_etat < modele->m_tileset.size())
+            if ((int)(m_angle/45)>=0&&(int)(m_angle/45)<modele->m_tileset[m_etat].size())
             {
                 m_entite_graphique.m_tileset = &modele->m_tileset[m_etat][(int)(m_angle/45)];
                 m_entite_graphique.m_sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
@@ -814,6 +814,9 @@ int Personnage::Animer(Modele_Personnage *modele,float temps)
         {
             m_entite_graphique.m_sprite.SetColor(sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu, 255));
             moteurGraphique->LightManager->SetColor(m_entite_graphique.m_light,sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu));
+
+            if (m_caracteristique.rang==0)
+                m_porteeLumineuse.intensite=m_entite_graphique.m_tileset->getLumiereDuTile(m_entite_graphique.m_noAnimation).intensite;
             moteurGraphique->LightManager->SetIntensity(m_entite_graphique.m_light,m_porteeLumineuse.intensite);
         }
         else
