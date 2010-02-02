@@ -2065,8 +2065,51 @@ bool Map::Miracle_Charme (Hero *hero, Personnage *personnage, Miracle &modele, E
 
         if (fabs(info.m_cible->getCoordonnee().x - personnage->getCoordonnee().x) > 10 || fabs(info.m_cible->getCoordonnee().y - personnage->getCoordonnee().y) > 10)
         {
-            info.m_cible->setCoordonnee(personnage->getCoordonnee());
+            coordonnee temp;
+            int id = -1;
+            for(int i = 0 ; i < m_monstre.size() ; ++i)
+                if(&m_monstre[i] == info.m_cible)
+                    id = i, m_decor[1][m_monstre[i].getCoordonnee().y][m_monstre[i].getCoordonnee().x].delMonstre(i);
+
+            temp.x = personnage->getCoordonnee().x;
+            temp.y = personnage->getCoordonnee().y;
+            if(!getCollision(temp.x, temp.y))
+                info.m_cible->setCoordonnee(temp);
+            temp.x = personnage->getCoordonnee().x - 1;
+            temp.y = personnage->getCoordonnee().y - 1;
+            if(!getCollision(temp.x, temp.y))
+                info.m_cible->setCoordonnee(temp);
+            temp.x = personnage->getCoordonnee().x - 1;
+            temp.y = personnage->getCoordonnee().y;
+            if(!getCollision(temp.x, temp.y))
+                info.m_cible->setCoordonnee(temp);
+            temp.x = personnage->getCoordonnee().x - 1;
+            temp.y = personnage->getCoordonnee().y + 1;
+            if(!getCollision(temp.x, temp.y))
+                info.m_cible->setCoordonnee(temp);
+            temp.x = personnage->getCoordonnee().x;
+            temp.y = personnage->getCoordonnee().y - 1;
+            if(!getCollision(temp.x, temp.y))
+                info.m_cible->setCoordonnee(temp);
+            temp.x = personnage->getCoordonnee().x;
+            temp.y = personnage->getCoordonnee().y + 1;
+            if(!getCollision(temp.x, temp.y))
+                info.m_cible->setCoordonnee(temp);
+            temp.x = personnage->getCoordonnee().x + 1;
+            temp.y = personnage->getCoordonnee().y - 1;
+            if(!getCollision(temp.x, temp.y))
+                info.m_cible->setCoordonnee(temp);
+            temp.x = personnage->getCoordonnee().x + 1;
+            temp.y = personnage->getCoordonnee().y + 1;
+            if(!getCollision(temp.x, temp.y))
+                info.m_cible->setCoordonnee(temp);
+
+
+            info.m_cible->setCoordonnee(temp);
+            m_decor[1][info.m_cible->getCoordonnee().y][info.m_cible->getCoordonnee().x].setMonstre(id);
+
             info.m_cible->setDepart();
+
         }
 
         if (!info.m_cible->m_friendly)
@@ -3527,7 +3570,7 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
                             {
                                 bool collision = false;
                                 for (unsigned o = 0 ; o < m_decor[1][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre().size() && !collision ; ++o)
-                                    if ( m_decor[1][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()[o] < (int)m_monstre.size()&&!m_projectile[temp].m_monstre)
+                                    if ( m_decor[1][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()[o] < (int)m_monstre.size())
                                         if (m_monstre[m_decor[1][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()[o]].EnVie())
                                         if(m_monstre[m_decor[1][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()[o]].m_friendly == m_projectile[temp].m_monstre)
                                         {

@@ -53,10 +53,10 @@
 					<Add directory="..\..\SFML_SVN\branches\sfml2\include" />
 				</Compiler>
 				<Linker>
-					<Add option="-lsfml-audio-s-d" />
-					<Add option="-lsfml-graphics-s-d" />
-					<Add option="-lsfml-window-s-d" />
-					<Add option="-lsfml-system-s-d" />
+					<Add option="-lsfml-audio-s" />
+					<Add option="-lsfml-graphics-s" />
+					<Add option="-lsfml-window-s" />
+					<Add option="-lsfml-system-s" />
 					<Add directory="..\..\SFML_SVN\branches\sfml2\lib\mingw" />
 				</Linker>
 			</Target>
@@ -135,18 +135,6 @@
 		<VirtualTargets>
 			<Add alias="All" targets="Release;" />
 		</VirtualTargets>
-		<Compiler>
-			<Add option="-fomit-frame-pointer" />
-			<Add option="-fexpensive-optimizations" />
-			<Add option="-Os" />
-			<Add option="-O3" />
-			<Add option="-O2" />
-			<Add option="-O1" />
-			<Add option="-O" />
-		</Compiler>
-		<Linker>
-			<Add option="-s" />
-		</Linker>
 		<Unit filename="Contextes\c_changementMap.cpp" />
 		<Unit filename="Contextes\c_changementMap.h" />
 		<Unit filename="Contextes\c_craft.cpp" />
