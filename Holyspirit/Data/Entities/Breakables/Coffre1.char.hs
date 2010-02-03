@@ -16,27 +16,27 @@ $
 $
 	*
 		*Armband.item.hs
-		r50000
+		r10000
 	$
 	*
 		*Armor.item.hs
-		r50000
+		r10000
 	$
 	*
 		*Boot.item.hs
-		r50000
+		r10000
 	$
 	*
 		*Chainmail.item.hs
-		r2000
+		r4000
 	$
 	*
 		*Great_shield.item.hs
-		r20000
+		r4000
 	$
 	*
 		*Helmet.item.hs
-		r5000
+		r10000
 	$
 	*
 		*Katzbalger.item.hs
@@ -44,27 +44,27 @@ $
 	$
 	*
 		*Long_sword.item.hs
-		r2000
+		r10000
 	$
 	*
 		*Necklage.item.hs
-		r20000
-	$
-	*
-		*Ring.item.hs
-		r20000
-	$
-	*
-		*Small_shield.item.hs
 		r5000
 	$
 	*
+		*Ring.item.hs
+		r10000
+	$
+	*
+		*Small_shield.item.hs
+		r1000
+	$
+	*
 		*Small_sword.item.hs
-		r50000
+		r1000
 	$
 	*
 		*Ceremonial_dagger.item.hs
-		r50000
+		r1000
 	$
 	*
 		*Small_sword_divin.item.hs
@@ -72,7 +72,7 @@ $
 	$
 	*
 		*Two_hand_sword.item.hs
-		r20000
+		r5000
 	$
 	*
 		*Unique_boot.item.hs
@@ -100,8 +100,18 @@ $
 	$
 		*
 		*Drawing_barbute.item.hs
-		r1000
+		r2000
 	$
+		*
+		*Drawing_chainmail.item.hs
+		r2000
+	$
+		*
+		*Drawing_necklage.item.hs
+		r2000
+	$
+
+
 
 $
 

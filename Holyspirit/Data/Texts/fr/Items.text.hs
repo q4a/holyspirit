@@ -82,3 +82,7 @@ Rubis
 Un_magnifique_joyau.
 Schéma_:_Barbute_à_cornes
 Schéma_expliquant_la_conception_d'un_barbute_à_cornes.
+Schéma_:_Cotte_de_maille
+Schéma_expliquant_la_conception_d'une_cotte_de_maille.
+Schéma_:_Pendentif
+Schéma_expliquant_la_conception_d'un_pendantif.
