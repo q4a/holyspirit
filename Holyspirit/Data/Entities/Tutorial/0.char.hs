@@ -8,7 +8,7 @@ $
 Rang du monstre
 * -1
 $
-*v1 i0 c0 $
+*v1 i0 c0 n-1 $
 $
 *Data/Entities/Tutorial/0.script.hs
 $

@@ -2,32 +2,50 @@
 main
 	if alive
 	then
-		if distance * 9
+		if clicOver
 		then
-			if distance * 7 
+			variable * 3 * 1
+			variable * 4 * 0
+			noTalk
+		end
+		
+		if variable * 3 * 1
+		then
+			incrementVariable * 4 * 1
+			if variable * 4 * 50
 			then
-				if see
+				variable * 3 * 0
+			end
+			evasion
+		else
+			if distance * 9
+			then
+				if distance * 7 
 				then
-					if shooter
+					if see
 					then
-						shoot
+						if shooter
+						then
+							shoot
+						else
+							fight
+						end
 					else
-						fight
+						if distance * 2
+						then
+							randomDisplace
+						else
+							followHero
+						end
 					end
 				else
-					if distance * 2
-					then
-						randomDisplace
-					else
-						followHero
-					end
+					followHero
 				end
 			else
 				followHero
+				teleport
 			end
-		else
-			followHero
-			teleport
 		end
+		
 	end
 end
