@@ -1380,8 +1380,20 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
         minimap.SetColor(sf::Color(255,255,255,(int)(alpha * 0.5)));
         minimap.SetPosition(configuration->Resolution.x*0.5 ,
                             configuration->Resolution.y*0.5);
-
         moteurGraphique->AjouterCommande(&minimap,12,0);
+
+        for(int i = 0 ; i < hero->m_amis.size() ; ++i)
+        {
+            coordonnee pos;
+
+            pos.y=(int)((hero->m_amis[i]->getCoordonneePixel().x+hero->m_amis[i]->getCoordonneePixel().y)*DIVISEUR_COTE_TILE*32);
+            pos.x=(int)(((hero->m_amis[i]->getCoordonneePixel().x-hero->m_amis[i]->getCoordonneePixel().y)*DIVISEUR_COTE_TILE-1)*64);
+
+            minimap.SetColor(sf::Color(255,0,192));
+            minimap.SetPosition(configuration->Resolution.x*0.5 + (pos.x - positionHero.x) * 0.125,
+                                configuration->Resolution.y*0.5 + (pos.y - positionHero.y) * 0.125);
+            moteurGraphique->AjouterCommande(&minimap,12,0);
+        }
 
     }
 
@@ -3466,6 +3478,11 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                 else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="talk" && monstre != -1)
                 {
                     if (!(hero->getMonstreVise()==monstre&&fabs(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)<=1&&fabs(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)<=1))
+                        ok=false;
+                }
+                else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="clicOver" && monstre != -1)
+                {
+                    if (!(hero->getMonstreVise()==monstre))
                         ok=false;
                 }
                 else if (script->m_instructions[script->m_instructions[noInstruction].valeurs[b]].nom=="speak_choice" && monstre != -1)

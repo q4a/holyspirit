@@ -76,8 +76,8 @@
 	<File name="Entites\hero.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="81920" topLine="1777" />
 	</File>
-	<File name="Entites\hero.h" open="0" top="0" tabpos="6">
-		<Cursor position="3421" topLine="105" />
+	<File name="Entites\hero.h" open="1" top="0" tabpos="17">
+		<Cursor position="3891" topLine="124" />
 	</File>
 	<File name="Entites\liste_case.cpp" open="0" top="0" tabpos="30">
 		<Cursor position="12493" topLine="231" />
@@ -134,7 +134,7 @@
 		<Cursor position="1602" topLine="26" />
 	</File>
 	<File name="Map\map.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="90793" topLine="2061" />
+		<Cursor position="155142" topLine="3360" />
 	</File>
 	<File name="Map\map.h" open="1" top="0" tabpos="16">
 		<Cursor position="1027" topLine="10" />
