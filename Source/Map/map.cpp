@@ -405,6 +405,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                         int variables[10];
                         m_monstre.push_back(Monstre ());
 
+                        int pos;
+
 
                         char caractere;
                         do
@@ -478,7 +480,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                 break;
 
                             case 'o':
-                                int pos=fichier2->tellg();
+                                pos=fichier2->tellg();
                                 objets.push_back(Objet ());
                                 objets.back().ChargerTexte(fichier2,tempCaract,true);
                                 objets.back().Charger(objets.back().getChemin(),tempCaract,true);
@@ -486,6 +488,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                 objets.back().m_benedictions.clear();
                                 objets.back().ChargerTexte(fichier2,tempCaract);
                                 break;
+
                             case 's':
                                 fichier2->get(caractere);
                                 if(caractere == '0') *fichier2>>variables[0];

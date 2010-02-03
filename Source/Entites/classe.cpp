@@ -527,7 +527,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
                 int buf = -1;
                 std::string temp;
                 position_miracles.push_back(coordonnee ());
-                page_miracles.push_back(0);
+                page_miracles.push_back(-1);
 
                 do
                 {

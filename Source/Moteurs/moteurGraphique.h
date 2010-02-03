@@ -28,7 +28,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "commande.h"
 #include "moteurParticule.h"
 #include "lightManager.h"
-#include "entite_graphique.h"
+#include "Entite_graphique.h"
 #include "../Map/tileset.h"
 
 struct Image_moteur
