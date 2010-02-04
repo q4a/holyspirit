@@ -3598,6 +3598,7 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
                                     if ( m_decor[1][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()[o] < (int)m_monstre.size())
                                         if (m_monstre[m_decor[1][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()[o]].EnVie())
                                         if(m_monstre[m_decor[1][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()[o]].m_friendly == m_projectile[temp].m_monstre)
+                                        if(m_monstre[m_decor[1][(int)(m_projectile[temp].m_positionCase.y)][(int)(m_projectile[temp].m_positionCase.x)].getMonstre()[o]].getCaracteristique().niveau >= 0)
                                         {
                                             collision                         = true;
                                             m_projectile[temp].m_actif        = false;

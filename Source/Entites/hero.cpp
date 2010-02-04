@@ -1423,7 +1423,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
             moteurGraphique->AjouterTexte(&texte,15,0);
         }
 
-    for (int i = 0;i < (int)m_classe.miracles.size(); ++i)
+    for (int i = 0;i < (int)m_lvl_miracles.size(); ++i)
         if (m_classe.page_miracles[i] == fenetreEnCours)
         {
 
@@ -1433,7 +1433,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                     &&eventManager->getPositionSouris().y < (m_classe.position_miracles[i].y + m_classe.position_miracles[i].h)*configuration->Resolution.h/600)
             {
                 m_classe.miracles[i].AfficherDescription(coordonnee((m_classe.position_miracles[i].x + m_classe.position_miracles[i].w)*configuration->Resolution.w/800,
-                        m_classe.position_miracles[i].y*configuration->Resolution.h/600));
+                m_classe.position_miracles[i].y*configuration->Resolution.h/600));
 
                 retour = true;
 
@@ -1441,12 +1441,10 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                     if (m_lvl_miracles[i] > 0)
                     {
                         if (m_classe.miracles[i].m_buf != -1)
-                            m_personnage.m_miracleALancer = m_classe.miracles[i].m_buf;
+                            m_miracleEnMain = m_classe.miracles[i].m_buf;
                         else
-                            m_personnage.m_miracleALancer = i;
+                            m_miracleEnMain = i;
                         eventManager->StopEvenement(Mouse::Left,EventClic);
-
-                        m_miracleEnMain = m_personnage.m_miracleALancer;
                     }
 
                 if (eventManager->getEvenement(Mouse::Right,EventClic) && m_miracleEnMain < 0)
@@ -1459,6 +1457,21 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                             temp.miracles_restant--;
                             m_lvl_miracles[i]++;
                             m_personnage.setCaracteristique(temp);
+
+                            if(m_lvl_miracles[i] == 1 && m_classe.miracles[i].m_buf == -1)
+                            {
+                                if(m_miracles_raccourcis[0] == -1)
+                                    m_miracles_raccourcis[0] = i;
+                                else if(m_miracles_raccourcis[1] == -1)
+                                    m_miracles_raccourcis[1] = i;
+                                else if(m_miracles_raccourcis[2] == -1)
+                                    m_miracles_raccourcis[2] = i;
+                                else if(m_miracles_raccourcis[3] == -1)
+                                    m_miracles_raccourcis[3] = i;
+
+                                if(m_personnage.m_miracleALancer == -1)
+                                    m_personnage.m_miracleALancer = i;
+                            }
                         }
                     eventManager->StopEvenement(Mouse::Right,EventClic);
 
@@ -2695,7 +2708,8 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft)
 
                     Objet result;
                     result.Charger(m_inventaire[m_no_schema].m_craft_result, m_caracteristiques);
-                    result.Generer(0);
+                    //result.Generer(0); POUR NE PAS AVOIR DE BENEDICTIONS
+                    result.Generer(3);
 
                     delObjet(m_no_schema);
                     m_no_schema = -1;
