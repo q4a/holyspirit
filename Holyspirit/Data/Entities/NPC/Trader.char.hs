@@ -231,6 +231,10 @@ $
 		*Drawing_necklage.item.hs
 		r1000
 	$
+		*
+		*Drawing_necklage.item.hs
+		r2000
+	$
 	
 	
 

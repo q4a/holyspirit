@@ -6,7 +6,7 @@ $
 	* n1 $
 $
 	Rang du monstre
-	* 0
+	* 5
 $
 	Caracteristiques
 	Vie/DegatsMin/DegatsMax/Vitesse
@@ -111,7 +111,7 @@ $
 		r2000
 	$
 		*
-		*Drawing_tiare.item.hs
+		*Drawing_necklage.item.hs
 		r2000
 	$
 

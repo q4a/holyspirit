@@ -86,3 +86,7 @@ Schéma_:_Cotte_de_maille
 Schéma_expliquant_la_conception_d'une_cotte_de_maille.
 Schéma_:_Pendentif
 Schéma_expliquant_la_conception_d'un_pendantif.
+Schéma_:_Tiare
+Schéma_expliquant_la_conception_d'une_tiare.
+Tiare
+Magnifique_tiare_sertie_d'une_emeraude.

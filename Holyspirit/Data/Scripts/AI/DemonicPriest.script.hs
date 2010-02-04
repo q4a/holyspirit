@@ -6,7 +6,12 @@ main
 		variable * 0 * -1
 
 		if getState * 4 
-			useMiracle * 2
+			if see
+			then
+				useMiracle * 2
+			else
+				setState * 0
+			end
 		then
 		else
 			if see
@@ -51,31 +56,31 @@ main
 					end
 				end
 			
-				else
-					variable * 0 * -1
-					randomDisplace  
-				end
+			else
+				variable * 0 * -1
+				randomDisplace  
+			end
 		
-				if variable * 0 * 0
+			if variable * 0 * 0
+			then
+				if rand * 35
 				then
-					if rand * 35
+					if rand * 50
 					then
-						if rand * 50
-						then
-							useMiracle * 3
-						else
-							useMiracle * 1
-						end
+						useMiracle * 3
 					else
-						useMiracle * 0
+						useMiracle * 1
 					end
+				else
+					useMiracle * 0
 				end
-		
-				if variable * 0 * 1
-				then
-					useMiracle * 2
-					setState * 4
-				end
+			end
+	
+			if variable * 0 * 1
+			then
+				useMiracle * 2
+				setState * 4
+			end
 		end
 	end
 end 
