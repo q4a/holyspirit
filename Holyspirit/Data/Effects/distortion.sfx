@@ -1,10 +1,11 @@
-uniform sampler2D framebuffer;
 uniform sampler2D distortion_map;
-uniform vec2 offset;
+uniform sampler2D framebuffer;
 
 void main()
 {
 	vec2 texoffset = vec2(texture2D(distortion_map, gl_TexCoord[0].xy));
+	texoffset -= vec2(0.5, 0.5);
+	texoffset *= 0.015;
 
 	gl_FragColor = texture2D(framebuffer, gl_TexCoord[0].xy + texoffset) * gl_Color;
 }
