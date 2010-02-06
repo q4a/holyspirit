@@ -2091,32 +2091,32 @@ bool Map::Miracle_Charme (Hero *hero, Personnage *personnage, Miracle &modele, E
             temp.y = personnage->getCoordonnee().y;
             if(!getCollision(temp.x, temp.y))
                 info.m_cible->setCoordonnee(temp);*/
-            temp.x = personnage->getProchaineCase().x - 1;
-            temp.y = personnage->getProchaineCase().y - 1;
+            temp.x = personnage->getCoordonnee().x - 1;
+            temp.y = personnage->getCoordonnee().y - 1;
             if(!getCollision(temp.x, temp.y))
                 info.m_cible->setCoordonnee(temp), ok = true;
-            temp.x = personnage->getProchaineCase().x - 1;
-            temp.y = personnage->getProchaineCase().y;
+            temp.x = personnage->getCoordonnee().x - 1;
+            temp.y = personnage->getCoordonnee().y;
             if(!getCollision(temp.x, temp.y))
                 info.m_cible->setCoordonnee(temp), ok = true;
-            temp.x = personnage->getProchaineCase().x - 1;
-            temp.y = personnage->getProchaineCase().y + 1;
+            temp.x = personnage->getCoordonnee().x - 1;
+            temp.y = personnage->getCoordonnee().y + 1;
             if(!getCollision(temp.x, temp.y))
                 info.m_cible->setCoordonnee(temp), ok = true;
-            temp.x = personnage->getProchaineCase().x;
-            temp.y = personnage->getProchaineCase().y - 1;
+            temp.x = personnage->getCoordonnee().x;
+            temp.y = personnage->getCoordonnee().y - 1;
             if(!getCollision(temp.x, temp.y))
                 info.m_cible->setCoordonnee(temp), ok = true;
-            temp.x = personnage->getProchaineCase().x;
-            temp.y = personnage->getProchaineCase().y + 1;
+            temp.x = personnage->getCoordonnee().x;
+            temp.y = personnage->getCoordonnee().y + 1;
             if(!getCollision(temp.x, temp.y))
                 info.m_cible->setCoordonnee(temp), ok = true;
-            temp.x = personnage->getProchaineCase().x + 1;
-            temp.y = personnage->getProchaineCase().y - 1;
+            temp.x = personnage->getCoordonnee().x + 1;
+            temp.y = personnage->getCoordonnee().y - 1;
             if(!getCollision(temp.x, temp.y))
                 info.m_cible->setCoordonnee(temp), ok = true;
-            temp.x = personnage->getProchaineCase().x + 1;
-            temp.y = personnage->getProchaineCase().y + 1;
+            temp.x = personnage->getCoordonnee().x + 1;
+            temp.y = personnage->getCoordonnee().y + 1;
             if(!getCollision(temp.x, temp.y))
                 info.m_cible->setCoordonnee(temp), ok = true;
 

@@ -163,13 +163,14 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	std::vector <ModeleParticuleSysteme> m_modeleSystemeParticules;
 
-	std::vector <sf::Text> m_textes[21];
-	std::vector <Commande> m_commandes[21];
-	std::vector <Commande> m_distortion_commandes;
+	std::list <sf::Text> m_textes[21];
+	std::list <Commande> m_commandes[21];
+	std::list <Commande> m_distortion_commandes;
 	std::vector <ParticuleSysteme> m_systemeParticules;
 	std::vector <ParticuleSysteme>::iterator m_systemeParticules_iter;
 
-	std::vector <Commande>::iterator IterCommande;
+	std::list <Commande>::iterator IterCommande;
+	std::list <sf::Text>::iterator IterTextes;
 
 	sf::RenderWindow m_ecran;
 

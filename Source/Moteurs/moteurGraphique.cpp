@@ -96,9 +96,9 @@ void MoteurGraphique::CreateNewWindow()
 
     if (configuration->postFX)
     {
-        EffectBlur.SetTexture("framebuffer", sf::Shader::CurrentTexture);
-        EffectBlur2.SetTexture("framebuffer", sf::Shader::CurrentTexture);
-        EffectBlurScreen.SetTexture("framebuffer", sf::Shader::CurrentTexture);
+        EffectBlur.SetTexture("texture", sf::Shader::CurrentTexture);
+        EffectBlur2.SetTexture("texture", sf::Shader::CurrentTexture);
+        EffectBlurScreen.SetTexture("texture", sf::Shader::CurrentTexture);
         EffectNoir.SetTexture("framebuffer", sf::Shader::CurrentTexture);
         EffectMort.SetTexture("framebuffer", sf::Shader::CurrentTexture);
         EffectContrastes.SetTexture("framebuffer", sf::Shader::CurrentTexture);
@@ -495,8 +495,8 @@ void MoteurGraphique::Afficher()
             bufferImage.Draw(sf::Sprite (m_water_screen.GetImage()), EffectWater);
         }
 
-        for (unsigned i=0;i<m_textes[k].size();i++)
-            bufferImage.Draw(m_textes[k][i]);
+        for (IterTextes=m_textes[k].begin();IterTextes!=m_textes[k].end();++IterTextes)
+            bufferImage.Draw(*IterTextes);
 
 
         if (k==13)
@@ -818,13 +818,13 @@ void MoteurGraphique::AjouterTexteNonChevauchable(sf::Text* string, int couche, 
 {
     if (couche>=0&&couche<=20)
     {
-        for (int i=0;i<(int)m_textes[couche].size();i++)
+        for (IterTextes=m_textes[couche].begin();IterTextes!=m_textes[couche].end();++IterTextes)
         {
-            if(string->GetRect().Right  > m_textes[couche][i].GetRect().Left
-            && string->GetRect().Left   < m_textes[couche][i].GetRect().Right
-            && string->GetRect().Bottom > m_textes[couche][i].GetRect().Top - 3
-            && string->GetRect().Top    < m_textes[couche][i].GetRect().Bottom)
-                string->SetPosition(string->GetPosition().x, m_textes[couche][i].GetRect().Top - string->GetRect().Bottom + string->GetRect().Top - 5), i = -1;
+            if(string->GetRect().Right  > IterTextes->GetRect().Left
+            && string->GetRect().Left   < IterTextes->GetRect().Right
+            && string->GetRect().Bottom > IterTextes->GetRect().Top - 3
+            && string->GetRect().Top    < IterTextes->GetRect().Bottom)
+                string->SetPosition(string->GetPosition().x, IterTextes->GetRect().Top - string->GetRect().Bottom + string->GetRect().Top - 5), IterTextes=m_textes[couche].begin();
         }
 
         AjouterTexte(string, couche, titre);
