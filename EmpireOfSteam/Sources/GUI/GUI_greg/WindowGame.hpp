@@ -37,6 +37,7 @@ class WindowGame : public GUIWindow
         GUIImage    *m_cadran_bejeweled,
                     *m_cadran_map,
                     *m_cadran_resources,
+                    *m_cadran_resources2,
                     *m_map;
 
         TabBar      *m_tab_resources;
@@ -48,11 +49,14 @@ class WindowGame : public GUIWindow
                     *m_panel_religion;
 
         GUIImage    *m_panel_army_deco,
-                    *m_compteur;
+                    *m_panel_ressources_deco;
 
         Bejeweled   *m_bejeweled;
 
-        GUIAnimatedImage *m_test_animation;
+        GUIAnimatedImage    *m_animated_tab_food_off,
+                            *m_animated_tab_food_on,
+                            *m_animated_tab_material_off,
+                            *m_animated_tab_material_on;
 
 };
 

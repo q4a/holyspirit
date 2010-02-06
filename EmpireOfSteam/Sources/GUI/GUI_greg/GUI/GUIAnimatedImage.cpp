@@ -57,7 +57,7 @@ void GUIAnimatedImage::SetImage(int nbr, const std::string &img)
     {
         std::ostringstream buf;
 
-        for(int j = 0 ; j < img.size() ; ++j)
+        for(unsigned j = 0 ; j < img.size() ; ++j)
         {
             if(img[j] == '.')
                 buf<<i;
@@ -67,7 +67,11 @@ void GUIAnimatedImage::SetImage(int nbr, const std::string &img)
         m_list_img.push_back(sf::Image ());
         m_list_img.back().LoadFromFile(buf.str());
     }
+}
 
+void GUIAnimatedImage::SetRate(float rate)
+{
+    m_framerate = rate;
 }
 
 void GUIAnimatedImage::Update()
@@ -86,7 +90,7 @@ void GUIAnimatedImage::Update()
     if(m_time_frame >= m_framerate)
     {
         m_number_frame++;
-        if(m_number_frame >= m_list_img.size())
+        if(m_number_frame >= (int)m_list_img.size())
             m_number_frame = 0;
         m_time_frame = 0;
         m_drawable->SetImage(m_list_img[m_number_frame]);

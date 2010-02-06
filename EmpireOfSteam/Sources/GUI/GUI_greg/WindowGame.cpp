@@ -8,8 +8,8 @@ WindowGame::WindowGame() : GUIWindow(1024,768,"Empire of Steam")
 {
     m_tab_resources = new TabBar(0,0,512,384);
 
-    m_tab_food     = new Tab(20 ,16,92,48, "Nourriture");
-    m_tab_material = new Tab(114,16,92,48, "Matériaux");
+    m_tab_food     = new Tab(8 ,32,118,35, "");
+    m_tab_material = new Tab(8 ,67,118,35, "");
     m_tab_science  = new Tab(208,16,92,48, "Science");
     m_tab_army     = new Tab(302,16,92,48, "Armées");
     m_tab_religion = new Tab(396,16,92,48, "Religion");
@@ -40,13 +40,14 @@ WindowGame::WindowGame() : GUIWindow(1024,768,"Empire of Steam")
     m_panel_bejeweled           = new GUIImage(0    , 384   ,   "pictures/GUI/reliefBejeweld.png");
     m_panel_city                = new GUIImage(512  , 384   ,   "pictures/GUI/relief.png");
 
-    m_cadran_bejeweled          = new GUIImage("pictures/GUI/laitonBejeweld.png");
+    m_cadran_bejeweled          = new GUIImage(0,-384,"pictures/GUI/laitonBejeweld.png");
     m_cadran_map                = new GUIImage("pictures/GUI/laitonMap.png");
     m_cadran_resources          = new GUIImage("pictures/GUI/vitrageRessources.png");
+    m_cadran_resources2         = new GUIImage("pictures/GUI/ressourcesBackground.png");
     m_map                       = new GUIImage(16,12,480,360,"pictures/GUI/map.png");
 
     m_panel_army_deco           = new GUIImage(0,0,512,384,"pictures/GUI/armyPanel.png");
-    m_compteur                  = new GUIImage(0,0,512,384,"pictures/GUI/compteur.png");
+    m_panel_ressources_deco     = new GUIImage(0,0,512,384,"pictures/GUI/ressourcesPanel.png");
 
     m_bejeweled                 = new Bejeweled(94,32,320,320);
 
@@ -55,7 +56,28 @@ WindowGame::WindowGame() : GUIWindow(1024,768,"Empire of Steam")
     AddWidget(m_panel_bejeweled);
     AddWidget(m_panel_city);
 
-    m_panel_ressources->AddWidget(m_tab_resources);
+
+    m_panel_ressources->AddWidget(m_cadran_resources2);
+
+    m_animated_tab_food_off = new GUIAnimatedImage (0,0,118,35,9,"pictures/GUI/ongletNourritureOff/OngletAnimation-.png");
+    m_animated_tab_food_off->SetRate(0.3);
+
+    m_animated_tab_food_on  = new GUIAnimatedImage (0,0,118,35,9,"pictures/GUI/ongletNourritureOn/OngletAnimation-.png");
+    m_animated_tab_food_on->SetRate(0.3);
+
+    m_animated_tab_material_off = new GUIAnimatedImage (0,0,118,35,7,"pictures/GUI/ongletMaterielOff/OngletAnimation-.png");
+    m_animated_tab_material_off->SetRate(0.3);
+
+    m_animated_tab_material_on  = new GUIAnimatedImage (0,0,118,35,7,"pictures/GUI/ongletMaterielOn/OngletAnimation-.png");
+    m_animated_tab_material_on->SetRate(0.3);
+
+    m_tab_food->SetImage(m_animated_tab_food_off);
+    m_tab_food->SetImage(m_animated_tab_food_off,Button_hover);
+    m_tab_food->SetImage(m_animated_tab_food_on ,Button_clicked);
+
+    m_tab_material->SetImage(m_animated_tab_material_off);
+    m_tab_material->SetImage(m_animated_tab_material_off,Button_hover);
+    m_tab_material->SetImage(m_animated_tab_material_on ,Button_clicked);
 
     m_tab_resources->AddTab(m_tab_food      , m_panel_food);
     m_tab_resources->AddTab(m_tab_material  , m_panel_material);
@@ -64,7 +86,13 @@ WindowGame::WindowGame() : GUIWindow(1024,768,"Empire of Steam")
     m_tab_resources->AddTab(m_tab_religion  , m_panel_religion);
 
     m_panel_army->AddWidget(m_panel_army_deco);
-    m_panel_army->AddWidget(m_compteur);
+
+    m_panel_food    ->AddWidget(m_panel_ressources_deco);
+    m_panel_material->AddWidget(m_panel_ressources_deco);
+    m_panel_science ->AddWidget(m_panel_ressources_deco);
+    m_panel_religion->AddWidget(m_panel_ressources_deco);
+
+    m_panel_ressources->AddWidget(m_tab_resources);
 
     m_panel_ressources->AddWidget(m_cadran_resources);
 
@@ -73,15 +101,14 @@ WindowGame::WindowGame() : GUIWindow(1024,768,"Empire of Steam")
 
     m_panel_map->AddWidget(m_map);
     m_panel_map->AddWidget(m_cadran_map);
-
-
-    m_test_animation = new GUIAnimatedImage (0,0,800,600,24,"pictures/Animations/RotationLiquide/rotation.png");
-    AddWidget(m_test_animation);
 }
 
 WindowGame::~WindowGame()
 {
-    delete m_test_animation;
+    delete m_animated_tab_food_off;
+    delete m_animated_tab_food_on;
+    delete m_animated_tab_material_off;
+    delete m_animated_tab_material_on;
 
     delete m_tab_food;
     delete m_tab_material;
@@ -92,7 +119,7 @@ WindowGame::~WindowGame()
     delete m_tab_resources;
 
     delete m_panel_army_deco;
-    delete m_compteur;
+    delete m_panel_ressources_deco;
 
     delete m_panel_food;
     delete m_panel_material;
@@ -108,6 +135,7 @@ WindowGame::~WindowGame()
     delete m_cadran_bejeweled;
     delete m_cadran_map;
     delete m_cadran_resources;
+    delete m_cadran_resources2;
     delete m_map;
 
     delete m_label;

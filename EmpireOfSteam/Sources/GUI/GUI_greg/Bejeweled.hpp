@@ -29,6 +29,8 @@ class Bejeweled : public Widget
 
         virtual void SetGeometry(int x, int y, int w, int h);
 
+        void CheckAlign(bool no_destruction = false);
+
     protected:
         sf::Sprite *m_drawable;
 

@@ -21,7 +21,7 @@ void TabBar::Show(std::list<sf::Drawable *> &drawables)
     Widget::Show(drawables);
 
     if(m_choose >= 0)
-        m_tabs_widgets[m_choose]->Show(drawables);
+        m_tabs_widgets[m_choose]->Show(drawables), m_tabs[m_choose]->SetState(Button_clicked);
 
     for( std::vector<Tab*>::iterator i = m_tabs.begin();
          i != m_tabs.end();

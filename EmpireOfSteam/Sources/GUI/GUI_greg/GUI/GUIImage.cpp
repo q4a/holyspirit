@@ -7,21 +7,24 @@ GUIImage::GUIImage(std::string chemin) : Widget()
     m_position  = sf::Vector2i(0,0);
     m_size      = sf::Vector2i(0,0);
 
-    m_img.LoadFromFile(chemin);
+    if(!chemin.empty())
+        m_img.LoadFromFile(chemin);
     m_drawable = new sf::Sprite();
     m_drawable->SetImage(m_img);
     m_size     = sf::Vector2i((int)m_drawable->GetSize().x, (int)m_drawable->GetSize().y);
 }
 GUIImage::GUIImage(int x, int y, std::string chemin) : Widget(x, y)
 {
-    m_img.LoadFromFile(chemin);
+    if(!chemin.empty())
+        m_img.LoadFromFile(chemin);
     m_drawable = new sf::Sprite();
     m_drawable->SetImage(m_img);
     m_size     = sf::Vector2i((int)m_drawable->GetSize().x, (int)m_drawable->GetSize().y);
 }
 GUIImage::GUIImage(int x, int y, int w, int h, std::string chemin) : Widget(x, y, w, h)
 {
-    m_img.LoadFromFile(chemin);
+    if(!chemin.empty())
+        m_img.LoadFromFile(chemin);
     m_drawable = new sf::Sprite();
     m_drawable->SetImage(m_img);
 }
@@ -49,7 +52,8 @@ void GUIImage::SetImage(const sf::Image &img)
 
 void GUIImage::SetImage(const std::string &img)
 {
-    m_img.LoadFromFile(img);
+    if(!img.empty())
+        m_img.LoadFromFile(img);
 }
 void GUIImage::Update()
 {

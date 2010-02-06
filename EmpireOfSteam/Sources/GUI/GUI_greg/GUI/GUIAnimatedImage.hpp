@@ -17,6 +17,8 @@ class GUIAnimatedImage : public GUIImage
 
         virtual void SetImage(int, const std::string &);
 
+        virtual void SetRate(float rate);
+
     protected:
         sf::Sprite *m_drawable;
         std::vector <sf::Image> m_list_img;

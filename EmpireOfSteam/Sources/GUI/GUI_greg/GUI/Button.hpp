@@ -1,7 +1,7 @@
 #ifndef BUTTON_HPP
 #define BUTTON_HPP
 
-#include "Widget.hpp"
+#include "GUIImage.hpp"
 #include "Label.hpp"
 
 enum{Button_released, Button_hover, Button_clicked};
@@ -20,6 +20,7 @@ class Button : public Widget
         virtual void SetGeometry(int x, int y, int w, int h);
         virtual void SetImage(const sf::Image &, int type = Button_released);
         virtual void SetImage(const std::string &, int type = Button_released);
+        virtual void SetImage(GUIImage *, int type = Button_released);
 
         virtual void SetState(int type);
 
@@ -34,11 +35,17 @@ class Button : public Widget
         bool m_clicked;
         bool m_released;
 
-        sf::Sprite *m_drawable;
+        GUIImage *m_img_hover;
+        GUIImage *m_img_clicked;
+        GUIImage *m_img_released;
+
+        bool m_my_img_hover;
+        bool m_my_img_clicked;
+        bool m_my_img_released;
+
+        //sf::Sprite *m_drawable;
     private:
-        sf::Image m_img_hover;
-        sf::Image m_img_clicked;
-        sf::Image m_img_released;
+
 };
 
 #endif

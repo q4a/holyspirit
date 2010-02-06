@@ -7,40 +7,39 @@ Button::Button(std::string label) :  Widget(), m_hover(false), m_clicked(false),
     m_position  = sf::Vector2i(0,0);
     m_size      = sf::Vector2i(0,0);
 
-    m_img_hover.LoadFromFile("pictures/GUI/buttonForm_h.png");
-    m_img_clicked.LoadFromFile("pictures/GUI/buttonForm_c.png");
-    m_img_released.LoadFromFile("pictures/GUI/buttonForm.png");
+    m_img_hover     = NULL;
+    m_img_clicked   = NULL;
+    m_img_released  = NULL;
 
-    m_drawable = new sf::Sprite();
-
-    m_drawable->SetImage(m_img_released);
-    m_size      = sf::Vector2i((int)m_drawable->GetSize().x, (int)m_drawable->GetSize().y);
+    m_my_img_hover      = false;
+    m_my_img_clicked    = false;
+    m_my_img_released   = false;
 
     m_label.SetText(label);
     m_label.SetParent(this);
 }
 Button::Button(int x, int y, std::string label ) : Widget(x, y), m_hover(false), m_clicked(false), m_released(false)
 {
-    m_img_hover.LoadFromFile("pictures/GUI/buttonForm_h.png");
-    m_img_clicked.LoadFromFile("pictures/GUI/buttonForm_c.png");
-    m_img_released.LoadFromFile("pictures/GUI/buttonForm.png");
+    m_img_hover     = NULL;
+    m_img_clicked   = NULL;
+    m_img_released  = NULL;
 
-    m_drawable = new sf::Sprite();
-
-    m_drawable->SetImage(m_img_released);
-    m_size      = sf::Vector2i((int)m_drawable->GetSize().x, (int)m_drawable->GetSize().y);
+    m_my_img_hover      = false;
+    m_my_img_clicked    = false;
+    m_my_img_released   = false;
 
     m_label.SetText(label);
     m_label.SetParent(this);
 }
 Button::Button(int x, int y, int w, int h, std::string label) :  Widget(x, y, w, h), m_hover(false), m_clicked(false), m_released(false)
 {
-    m_img_hover.LoadFromFile("pictures/GUI/buttonForm_h.png");
-    m_img_clicked.LoadFromFile("pictures/GUI/buttonForm_c.png");
-    m_img_released.LoadFromFile("pictures/GUI/buttonForm.png");
+    m_img_hover     = NULL;
+    m_img_clicked   = NULL;
+    m_img_released  = NULL;
 
-    m_drawable = new sf::Sprite();
-    m_drawable->SetImage(m_img_released);
+    m_my_img_hover      = false;
+    m_my_img_clicked    = false;
+    m_my_img_released   = false;
 
     m_label.SetText(label);
     m_label.SetParent(this);
@@ -48,12 +47,24 @@ Button::Button(int x, int y, int w, int h, std::string label) :  Widget(x, y, w,
 
 Button::~Button()
 {
-    delete m_drawable;
+    //delete m_drawable;
+    if(m_my_img_hover && m_img_hover != NULL)
+        delete m_img_hover;
+    if(m_my_img_clicked && m_img_clicked != NULL)
+        delete m_img_clicked;
+    if(m_my_img_released && m_img_released != NULL)
+        delete m_img_released;
 }
 
 void Button::Show(std::list<sf::Drawable *> &drawables)
 {
-    drawables.push_back(m_drawable);
+    if(m_clicked && m_img_clicked != NULL)
+        m_img_clicked->Show(drawables);
+    else if(m_hover && m_img_hover != NULL)
+        m_img_hover->Show(drawables);
+    else if(m_img_released != NULL)
+        m_img_released->Show(drawables);
+
     m_label.Show(drawables);
     Widget::Show(drawables);
 }
@@ -66,21 +77,89 @@ void Button::SetGeometry(int x, int y, int w, int h)
 void Button::SetImage(const sf::Image &img, int type)
 {
     if(type == Button_released)
-        m_img_released = img;
+    {
+        if(m_my_img_released && m_img_released != NULL)
+            delete m_img_released;
+        m_img_released = new GUIImage(0,0,m_size.x,m_size.y);
+        m_img_released->SetImage(img);
+        m_img_released->SetParent(this);
+        m_my_img_released = true;
+    }
     if(type == Button_hover)
-        m_img_hover = img;
+    {
+        if(m_my_img_hover && m_img_hover != NULL)
+            delete m_img_hover;
+        m_img_hover = new GUIImage(0,0,m_size.x,m_size.y);
+        m_img_hover->SetImage(img);
+        m_img_hover->SetParent(this);
+        m_my_img_hover = true;
+    }
     if(type == Button_clicked)
-        m_img_clicked = img;
+    {
+        if(m_my_img_clicked && m_img_clicked != NULL)
+            delete m_img_clicked;
+        m_img_clicked = new GUIImage(0,0,m_size.x,m_size.y);
+        m_img_clicked->SetImage(img);
+        m_img_clicked->SetParent(this);
+        m_my_img_clicked = true;
+    }
 }
 
 void Button::SetImage(const std::string &img, int type)
 {
     if(type == Button_released)
-        m_img_released.LoadFromFile(img);
+    {
+        if(m_my_img_released && m_img_released != NULL)
+            delete m_img_released;
+        m_img_released = new GUIImage(0,0,m_size.x,m_size.y,img);
+        m_img_released->SetParent(this);
+        m_my_img_released = true;
+    }
     if(type == Button_hover)
-        m_img_hover.LoadFromFile(img);
+    {
+        if(m_my_img_hover && m_img_hover != NULL)
+            delete m_img_hover;
+        m_img_hover = new GUIImage(0,0,m_size.x,m_size.y,img);
+        m_img_hover->SetParent(this);
+        m_my_img_hover = true;
+    }
     if(type == Button_clicked)
-        m_img_clicked.LoadFromFile(img);
+    {
+        if(m_my_img_released && m_img_clicked != NULL)
+            delete m_img_clicked;
+        m_img_clicked = new GUIImage(0,0,m_size.x,m_size.y,img);
+        m_img_clicked->SetParent(this);
+        m_my_img_clicked = true;
+    }
+}
+
+
+void Button::SetImage(GUIImage *img, int type)
+{
+    if(type == Button_released)
+    {
+        if(m_my_img_released && m_img_released != NULL)
+            delete m_img_released;
+        m_img_released = img;
+        m_img_released->SetParent(this);
+        m_my_img_released = false;
+    }
+    if(type == Button_hover)
+    {
+        if(m_my_img_hover && m_img_hover != NULL)
+            delete m_img_hover;
+        m_img_hover = img;
+        m_img_hover->SetParent(this);
+        m_my_img_hover = false;
+    }
+    if(type == Button_clicked)
+    {
+        if(m_my_img_clicked && m_img_clicked != NULL)
+            delete m_img_clicked;
+        m_img_clicked = img;
+        m_img_clicked->SetParent(this);
+        m_my_img_clicked = false;
+    }
 }
 
 void Button::SetState(int type)
@@ -100,6 +179,13 @@ void Button::Update()
     m_label.SetPosition(m_size.x / 2 - m_label.GetTextSize().x / 2,
                         m_size.y / 2 - m_label.GetTextSize().y / 2);
     m_label.Update();
+
+    if(m_img_released != NULL)
+        m_img_released->Update();
+    if(m_img_hover != NULL)
+        m_img_hover->Update();
+    if(m_img_clicked != NULL)
+        m_img_clicked->Update();
 
     sf::Vector2i pos = m_position;
     if(m_parent != NULL)
@@ -141,14 +227,14 @@ void Button::Update()
         }
     }
 
-    if(m_clicked)
+    /*if(m_clicked)
         m_drawable->SetImage(m_img_clicked);
     else if(m_hover)
         m_drawable->SetImage(m_img_hover);
     else
         m_drawable->SetImage(m_img_released);
     m_drawable->Resize(m_size.x, m_size.y);
-    m_drawable->SetPosition(pos.x, pos.y);
+    m_drawable->SetPosition(pos.x, pos.y);*/
 }
 
 bool Button::Hover()
