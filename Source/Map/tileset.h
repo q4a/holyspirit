@@ -44,29 +44,31 @@ class Tileset
 	void Charger(const std::string &chemin);
 	void Charger(std::ifstream &fichier, int lumiere_base = 0, cDAT *reader = NULL);
 	void ChargerTiles(std::ifstream &fichier, int lumiere_base = 0);
+	void ChargerInfosTile(std::ifstream &fichier, int lumiere_base = 0, bool distortion = false);
 	void ChargerImages();
 
 	void JouerSon(int numeroSon,coordonnee position, bool unique = true);
 	void DeleteTiles();
 
-	int getImage(int tile);
-	const coordonnee &getPositionDuTile(int tile);
-	bool getCollisionTile(int tile);
-	int getAnimationTile(int tile);
-	int getSonTile(int tile);
-	const Lumiere &getLumiereDuTile(int tile);
-	bool getOmbreDuTile(int tile);
-	bool getReflectionDuTile(int tile);
-	bool getTransparentDuTile(int tile);
-	char getOrientationDuTile(int tile);
-	const coordonnee &getCentreDuTile(int tile);
-	const std::string &getChemin(){return m_chemin;}
-	float getTempsDuTile(int tile);
-	int getOpacityDuTile(int tile);
-	int getLayerDuTile(int tile);
-	int getOrdreDuTile(int tile);
-	int getAttaqueDuTile(int tile);
-	int getTaille();
+	int     getImage(int tile, bool distortion = false);
+	const   coordonnee &getPositionDuTile(int tile, bool distortion = false);
+	bool    getCollisionTile(int tile);
+	int     getAnimationTile(int tile, bool distortion = false);
+	int     getSonTile(int tile);
+	const   Lumiere &getLumiereDuTile(int tile);
+	bool    getOmbreDuTile(int tile);
+	bool    getReflectionDuTile(int tile);
+	bool    getTransparentDuTile(int tile);
+	char    getOrientationDuTile(int tile);
+	const   coordonnee &getCentreDuTile(int tile, bool distortion = false);
+	const   std::string &getChemin(){return m_chemin;}
+	float   getTempsDuTile(int tile, bool distortion = false);
+	int     getOpacityDuTile(int tile, bool distortion = false);
+	int     getLayerDuTile(int tile);
+	int     getOrdreDuTile(int tile);
+	int     getAttaqueDuTile(int tile);
+	int     getTaille(bool distortion = false);
+	int     getDistortionDuTile(int tile);
 
 	int getMinimap(int tile);
 	const coordonnee &getPositionMinimap(int tile);
@@ -84,6 +86,7 @@ class Tileset
 	std::vector <int>                   m_image;
 	std::vector <std::string>           m_image_chemin;
 	std::vector <Tile>                  m_tile;
+	std::vector <Tile>                  m_tile_distortion;
 	std::vector <int>                   m_sons;
 	std::vector <std::vector <int> >    m_sonsSpecial;
 

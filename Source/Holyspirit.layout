@@ -88,7 +88,7 @@
 	<File name="Entites\miracle.cpp" open="0" top="0" tabpos="31">
 		<Cursor position="0" topLine="283" />
 	</File>
-	<File name="Entites\miracle.h" open="1" top="0" tabpos="4">
+	<File name="Entites\miracle.h" open="0" top="0" tabpos="4">
 		<Cursor position="739" topLine="3" />
 	</File>
 	<File name="Entites\monstre.cpp" open="0" top="0" tabpos="23">
@@ -103,7 +103,7 @@
 	<File name="Entites\objet.h" open="0" top="0" tabpos="9">
 		<Cursor position="0" topLine="60" />
 	</File>
-	<File name="Entites\personnage.cpp" open="1" top="0" tabpos="5">
+	<File name="Entites\personnage.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="20700" topLine="561" />
 	</File>
 	<File name="Entites\personnage.h" open="0" top="0" tabpos="9">
@@ -133,29 +133,29 @@
 	<File name="Map\evenement.h" open="0" top="0" tabpos="62">
 		<Cursor position="1602" topLine="26" />
 	</File>
-	<File name="Map\map.cpp" open="1" top="0" tabpos="3">
+	<File name="Map\map.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="114875" topLine="2652" />
 	</File>
 	<File name="Map\map.h" open="0" top="0" tabpos="16">
 		<Cursor position="1027" topLine="10" />
 	</File>
 	<File name="Map\tile.cpp" open="0" top="0" tabpos="10">
-		<Cursor position="0" topLine="43" />
+		<Cursor position="1811" topLine="43" />
 	</File>
 	<File name="Map\tile.h" open="0" top="0" tabpos="64">
-		<Cursor position="1245" topLine="49" />
+		<Cursor position="1707" topLine="40" />
 	</File>
-	<File name="Map\tileset.cpp" open="0" top="0" tabpos="38">
-		<Cursor position="5138" topLine="135" />
+	<File name="Map\tileset.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="13444" topLine="502" />
 	</File>
-	<File name="Map\tileset.h" open="0" top="0" tabpos="63">
-		<Cursor position="1002" topLine="32" />
+	<File name="Map\tileset.h" open="1" top="0" tabpos="5">
+		<Cursor position="2372" topLine="46" />
 	</File>
-	<File name="Moteurs\Entite_graphique.cpp" open="0" top="0" tabpos="15">
-		<Cursor position="1467" topLine="81" />
+	<File name="Moteurs\Entite_graphique.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="11437" topLine="215" />
 	</File>
-	<File name="Moteurs\Entite_graphique.h" open="0" top="0" tabpos="14">
-		<Cursor position="1193" topLine="30" />
+	<File name="Moteurs\Entite_graphique.h" open="1" top="0" tabpos="2">
+		<Cursor position="1187" topLine="21" />
 	</File>
 	<File name="Moteurs\commande.h" open="0" top="0" tabpos="66">
 		<Cursor position="958" topLine="15" />
@@ -190,11 +190,11 @@
 	<File name="Moteurs\modeleMoteurParticule.h" open="0" top="0" tabpos="70">
 		<Cursor position="926" topLine="19" />
 	</File>
-	<File name="Moteurs\moteurGraphique.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="3165" topLine="80" />
+	<File name="Moteurs\moteurGraphique.cpp" open="1" top="1" tabpos="3">
+		<Cursor position="23404" topLine="457" />
 	</File>
-	<File name="Moteurs\moteurGraphique.h" open="1" top="0" tabpos="2">
-		<Cursor position="4684" topLine="150" />
+	<File name="Moteurs\moteurGraphique.h" open="1" top="0" tabpos="4">
+		<Cursor position="4489" topLine="152" />
 	</File>
 	<File name="Moteurs\moteurParticule.cpp" open="0" top="0" tabpos="42">
 		<Cursor position="3934" topLine="64" />

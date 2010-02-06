@@ -386,7 +386,7 @@ void MoteurGraphique::Afficher()
 
     bufferImage.Clear(sf::Color(0,0,0,255));
     m_water_screen.Clear(sf::Color(0,0,0,255));
-    m_distortion_screen.Clear(sf::Color(0,0,0,255));
+    m_distortion_screen.Clear(sf::Color(128,128,128,255));
 
 
     if(configuration->postFX && configuration->Distortion)
@@ -445,7 +445,7 @@ void MoteurGraphique::Afficher()
 
             m_distortion_screen.Display();
 
-            EffectDistortion.SetParameter("offset", 1, 1 );
+            EffectDistortion.SetTexture("framebuffer", sf::Shader::CurrentTexture);
             EffectDistortion.SetTexture("distortion_map", m_distortion_screen.GetImage());
 
             bufferImage.Display();
@@ -781,6 +781,16 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
             && sprite.GetPosition().y + sprite.GetSize().y - sprite.GetOrigin().y     >= GetViewRect(m_camera).Top
             && sprite.GetPosition().y - sprite.GetOrigin().y                          <  GetViewRect(m_camera).Bottom)
                 AjouterCommande(&sprite, 0, true);
+        }
+
+        if(entite->m_distort)
+        {
+           if (entite->m_sprite_distortion.GetPosition().x + entite->m_sprite_distortion.GetSize().x - entite->m_sprite_distortion.GetOrigin().x    >= GetViewRect(m_camera).Left
+            && entite->m_sprite_distortion.GetPosition().x - entite->m_sprite_distortion.GetOrigin().x                                              <  GetViewRect(m_camera).Right
+            && entite->m_sprite_distortion.GetPosition().y + entite->m_sprite_distortion.GetSize().y - entite->m_sprite_distortion.GetOrigin().y    >= GetViewRect(m_camera).Top
+            && entite->m_sprite_distortion.GetPosition().y - entite->m_sprite_distortion.GetOrigin().y                                              <  GetViewRect(m_camera).Bottom
+            || entite->m_sprite_distortion.GetRotation() != 0)
+                m_distortion_commandes.push_back(Commande (&entite->m_sprite_distortion, true));
         }
     }
 }

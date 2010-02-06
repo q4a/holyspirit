@@ -59,6 +59,7 @@ class Tile
 
     int m_tileMinimap;
 	coordonnee m_coordMinimap;
+	int m_distortion;
 
 	private:
 	coordonnee m_positionDansLImage,m_centre;

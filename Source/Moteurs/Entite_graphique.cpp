@@ -206,7 +206,10 @@ void Entite_graphique::Generer()
 
             m_sprite.SetOrigin(m_tileset->getCentreDuTile(m_noAnimation).x,m_tileset->getCentreDuTile(m_noAnimation).y);
 
-            m_sprite.SetColor(sf::Color(m_sprite.GetColor().r,m_sprite.GetColor().g,m_sprite.GetColor().b,m_tileset->getOpacityDuTile(m_noAnimation)));
+            m_sprite.SetColor(sf::Color(m_sprite.GetColor().r,
+                                        m_sprite.GetColor().g,
+                                        m_sprite.GetColor().b,
+                                        m_tileset->getOpacityDuTile(m_noAnimation)));
 
             m_decalCouche = m_tileset->getLayerDuTile(m_noAnimation);
 
@@ -219,6 +222,27 @@ void Entite_graphique::Generer()
             if (configuration->Reflection)
                 if (m_tileset->getReflectionDuTile(m_noAnimation)|| option_forcedReflect)
                     m_reflect = true;
+
+            if(m_tileset->getDistortionDuTile(m_noAnimation) >= 0 && configuration->Distortion)
+            {
+                coordonnee positionPartieDecor = m_tileset->getPositionDuTile(m_tileset->getDistortionDuTile(m_noAnimation), true);
+
+                m_sprite_distortion.SetImage(*moteurGraphique->getImage(m_tileset->getImage(m_tileset->getDistortionDuTile(m_noAnimation), true)));
+                m_sprite_distortion.SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
+
+                m_sprite_distortion.SetOrigin(m_tileset->getCentreDuTile(m_tileset->getDistortionDuTile(m_noAnimation), true).x,m_tileset->getCentreDuTile(m_tileset->getDistortionDuTile(m_noAnimation), true).y);
+
+                m_sprite_distortion.SetColor(sf::Color(m_sprite_distortion.GetColor().r,
+                                                       m_sprite_distortion.GetColor().g,
+                                                       m_sprite_distortion.GetColor().b,
+                                                       m_tileset->getOpacityDuTile(m_tileset->getDistortionDuTile(m_noAnimation), true)));
+
+                m_sprite_distortion.SetPosition(m_sprite.GetPosition());
+
+                m_distort = true;
+            }
+            else
+                m_distort = false;
         }
     }
 }

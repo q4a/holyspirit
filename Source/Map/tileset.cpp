@@ -74,155 +74,7 @@ void Tileset::ChargerTiles(ifstream &fichier, int lumiere_base)
             fichier.get(caractere);
             if (caractere=='*')
             {
-                coordonnee position,centre(-100,-100,-100,-100), coordMinimap(0,0,0,0);
-                int animation=m_tile.size(),son=-1,image=0,imageMM = 0;
-                Lumiere lumiere;
-                lumiere.intensite=lumiere_base;
-                lumiere.rouge = -1;
-                lumiere.vert = -1;
-                lumiere.bleu = -1;
-                lumiere.hauteur=0;
-                bool collision=0,ombre=option_forcedShadow, reflection = option_forcedReflect,transparent=0;
-                char orientation=' ';
-                float tempsAnimation=0.075;
-                int opacity = 255;
-                int layer = 0;
-                int attaque = -1;
-                int ordre = 0;
-                std::string nom;
-
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                    case 'x':
-                        fichier>>position.x;
-                        break;
-                    case 'y':
-                        fichier>>position.y;
-                        break;
-                    case 'w':
-                        fichier>>position.w;
-                        break;
-                    case 'h':
-                        fichier>>position.h;
-                        break;
-                    case 'i':
-                        fichier>>image;
-                        break;
-                    case 'c':
-                        fichier>>collision;
-                        break;
-                    case 'a':
-                        fichier>>animation;
-                        break;
-                    case 's':
-                        fichier>>son;
-                        break;
-                    case 'o':
-                        fichier>>ombre;
-                        break;
-                    case 'f':
-                        fichier>>reflection;
-                        break;
-                    case 't':
-                        fichier>>transparent;
-                        break;
-                    case 'n':
-                        fichier>>tempsAnimation;
-                        break;
-                    case 'p':
-                        fichier>>opacity;
-                        break;
-                    case 'd':
-                        fichier>>attaque;
-                        break;
-                    case 'g':
-                        fichier>>ordre;
-                        break;
-
-                    case 'v':
-
-                        fichier>>nom;
-                        break;
-
-                    case 'e':
-                        fichier.get(caractere);
-                        if (caractere=='y')
-                            fichier>>centre.y;
-                        if (caractere=='x')
-                            fichier>>centre.x;
-                        break;
-
-                    case 'l':
-                        fichier.get(caractere);
-                        if (caractere=='r')
-                            fichier>>lumiere.rouge;
-                        if (caractere=='v')
-                            fichier>>lumiere.vert;
-                        if (caractere=='b')
-                            fichier>>lumiere.bleu;
-                        if (caractere=='i')
-                            fichier>>lumiere.intensite;
-                        if (caractere=='h')
-                            fichier>>lumiere.hauteur;
-                        break;
-                    case 'r':
-                        fichier>>orientation;
-                        break;
-                    case 'u':
-                        fichier>>layer;
-                        break;
-
-                    case 'm':
-                        do
-                        {
-                            fichier.get(caractere);
-                            switch (caractere)
-                            {
-                                case 'x':
-                                    fichier>>coordMinimap.x;
-                                    break;
-                                case 'y':
-                                    fichier>>coordMinimap.y;
-                                    break;
-                                case 'w':
-                                    fichier>>coordMinimap.w;
-                                    break;
-                                case 'h':
-                                    fichier>>coordMinimap.h;
-                                    break;
-                                case 'i':
-                                    fichier>>imageMM;
-                                    break;
-                            }
-                        }
-                        while (caractere!='$');
-                        fichier.get(caractere);
-
-                        break;
-                    }
-                    if (fichier.eof())
-                    {
-                        console->Ajouter("Erreur : Tileset \" "+m_chemin+" \" Invalide",1);
-                        caractere='$';
-                    }
-                }
-                while (caractere!='$');
-                //AjouterTile(position,collision,animation,son,lumiere,ombre,orientation);
-
-                if (centre.x==-100)
-                    centre.x=position.w/2;
-                if (centre.y==-100)
-                    centre.y=position.h-32;
-
-                m_tile.push_back(Tile ());
-                m_tile.back().setTile(position,image,collision,animation,son,lumiere,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer, attaque, ordre);
-                m_tile.back().m_tileMinimap = imageMM;
-                m_tile.back().m_coordMinimap = coordMinimap;
-
-                fichier.get(caractere);
+                ChargerInfosTile(fichier,lumiere_base);
             }
             if (fichier.eof())
             {
@@ -234,6 +86,177 @@ void Tileset::ChargerTiles(ifstream &fichier, int lumiere_base)
     }
     else
         console->Ajouter("Impossible d'ouvrir le fichier : "+m_chemin,1);
+}
+
+void Tileset::ChargerInfosTile(ifstream &fichier, int lumiere_base, bool distortion)
+{
+    coordonnee position,centre(-100,-100,-100,-100), coordMinimap(0,0,0,0);
+    int animation=m_tile.size(),son=-1,image=0,imageMM = 0;
+    Lumiere lumiere;
+    lumiere.intensite=lumiere_base;
+    lumiere.rouge = -1;
+    lumiere.vert = -1;
+    lumiere.bleu = -1;
+    lumiere.hauteur=0;
+    bool collision=0,ombre=option_forcedShadow, reflection = option_forcedReflect,transparent=0;
+    char orientation=' ';
+    float tempsAnimation=0.075;
+    int opacity = 255;
+    int layer = 0;
+    int attaque = -1;
+    int ordre = 0;
+    std::string nom;
+    int distortionTile = -1;
+
+
+    char caractere;
+    do
+    {
+        fichier.get(caractere);
+        switch (caractere)
+        {
+        case 'x':
+            fichier>>position.x;
+            break;
+        case 'y':
+            fichier>>position.y;
+            break;
+        case 'w':
+            fichier>>position.w;
+            break;
+        case 'h':
+            fichier>>position.h;
+            break;
+        case 'i':
+            fichier>>image;
+            break;
+        case 'c':
+            fichier>>collision;
+            break;
+        case 'a':
+            fichier>>animation;
+            break;
+        case 's':
+            fichier>>son;
+            break;
+        case 'o':
+            fichier>>ombre;
+            break;
+        case 'f':
+            fichier>>reflection;
+            break;
+        case 't':
+            fichier>>transparent;
+            break;
+        case 'n':
+            fichier>>tempsAnimation;
+            break;
+        case 'p':
+            fichier>>opacity;
+            break;
+        case 'd':
+            fichier>>attaque;
+            break;
+        case 'g':
+            fichier>>ordre;
+            break;
+
+        case 'v':
+
+            fichier>>nom;
+            break;
+
+        case 'e':
+            fichier.get(caractere);
+            if (caractere=='y')
+                fichier>>centre.y;
+            if (caractere=='x')
+                fichier>>centre.x;
+            break;
+
+        case 'l':
+            fichier.get(caractere);
+            if (caractere=='r')
+                fichier>>lumiere.rouge;
+            if (caractere=='v')
+                fichier>>lumiere.vert;
+            if (caractere=='b')
+                fichier>>lumiere.bleu;
+            if (caractere=='i')
+                fichier>>lumiere.intensite;
+            if (caractere=='h')
+                fichier>>lumiere.hauteur;
+            break;
+        case 'r':
+            fichier>>orientation;
+            break;
+        case 'u':
+            fichier>>layer;
+            break;
+
+        case 'm':
+            do
+            {
+                fichier.get(caractere);
+                switch (caractere)
+                {
+                    case 'x':
+                        fichier>>coordMinimap.x;
+                        break;
+                    case 'y':
+                        fichier>>coordMinimap.y;
+                        break;
+                    case 'w':
+                        fichier>>coordMinimap.w;
+                        break;
+                    case 'h':
+                        fichier>>coordMinimap.h;
+                        break;
+                    case 'i':
+                        fichier>>imageMM;
+                        break;
+                }
+            }
+            while (caractere!='$');
+            fichier.get(caractere);
+            break;
+
+        case 'j':
+            ChargerInfosTile(fichier, lumiere_base, true);
+            distortionTile = m_tile_distortion.size() - 1;
+            break;
+
+        }
+        if (fichier.eof())
+        {
+            console->Ajouter("Erreur : Tileset \" "+m_chemin+" \" Invalide",1);
+            caractere='$';
+        }
+    }
+    while (caractere!='$');
+    //AjouterTile(position,collision,animation,son,lumiere,ombre,orientation);
+
+    if (centre.x==-100)
+        centre.x=position.w/2;
+    if (centre.y==-100)
+        centre.y=position.h-32;
+
+    if(distortion)
+    {
+        m_tile_distortion.push_back(Tile ());
+        m_tile_distortion.back().setTile(position,image,collision,animation,son,lumiere,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer, attaque, ordre);
+    }
+    else
+    {
+        m_tile.push_back(Tile ());
+        m_tile.back().setTile(position,image,collision,animation,son,lumiere,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer, attaque, ordre);
+        m_tile.back().m_tileMinimap = imageMM;
+        m_tile.back().m_coordMinimap = coordMinimap;
+        m_tile.back().m_distortion = distortionTile;
+    }
+
+
+  //  fichier.get(caractere);
 }
 
 void Tileset::Charger(ifstream &fichier, int lumiere_base, cDAT *reader)
@@ -322,21 +345,40 @@ void Tileset::Charger(const std::string &chemin)
     fichier.close();
 }
 
-int Tileset::getImage(int tile)
+int Tileset::getImage(int tile, bool distortion)
 {
-    if (tile>=0&&tile<(int)m_tile.size())
-        if (m_tile[tile].getImage()>=0&&m_tile[tile].getImage()<(int)m_image.size())
-            return m_image[m_tile[tile].getImage()];
+    if(distortion)
+    {
+        if (tile>=0&&tile<(int)m_tile_distortion.size())
+            if (m_tile_distortion[tile].getImage()>=0&&m_tile_distortion[tile].getImage()<(int)m_image.size())
+                return m_image[m_tile_distortion[tile].getImage()];
+    }
+    else
+    {
+        if (tile>=0&&tile<(int)m_tile.size())
+            if (m_tile[tile].getImage()>=0&&m_tile[tile].getImage()<(int)m_image.size())
+                return m_image[m_tile[tile].getImage()];
+    }
 
     return 0;
 }
 
-const coordonnee &Tileset::getPositionDuTile(int tile)
+const coordonnee &Tileset::getPositionDuTile(int tile, bool distortion)
 {
-    if (tile>=0&&tile<(int)m_tile.size())
-        return m_tile[tile].getCoordonnee();
+    if(distortion)
+    {
+        if (tile>=0&&tile<(int)m_tile_distortion.size())
+            return m_tile_distortion[tile].getCoordonnee();
+        else
+            return m_tile_distortion[0].getCoordonnee();
+    }
     else
-        return m_tile[0].getCoordonnee();
+    {
+        if (tile>=0&&tile<(int)m_tile.size())
+            return m_tile[tile].getCoordonnee();
+        else
+            return m_tile[0].getCoordonnee();
+    }
 }
 
 bool Tileset::getCollisionTile(int tile)
@@ -347,10 +389,16 @@ bool Tileset::getCollisionTile(int tile)
     return 0;
 }
 
-int Tileset::getAnimationTile(int tile)
+int Tileset::getAnimationTile(int tile, bool distortion)
 {
-    if (tile>=0&&tile<(int)m_tile.size())
-        return m_tile[tile].getAnimation();
+    if(distortion)
+    {
+        if (tile>=0&&tile<(int)m_tile_distortion.size())
+            return m_tile_distortion[tile].getAnimation();
+    }
+    else
+        if (tile>=0&&tile<(int)m_tile.size())
+            return m_tile[tile].getAnimation();
 
     return 0;
 }
@@ -363,9 +411,12 @@ int Tileset::getSonTile(int tile)
     return 0;
 }
 
-int Tileset::getTaille()
+int Tileset::getTaille(bool distortion)
 {
-    return m_tile.size();
+    if(distortion)
+        return m_tile_distortion.size();
+    else
+        return m_tile.size();
 }
 
 const Lumiere &Tileset::getLumiereDuTile(int tile)
@@ -399,18 +450,34 @@ bool Tileset::getTransparentDuTile(int tile)
 
     return 0;
 }
-float Tileset::getTempsDuTile(int tile)
+float Tileset::getTempsDuTile(int tile, bool distortion)
 {
-    if (tile>=0&&tile<(int)m_tile.size())
-        return m_tile[tile].getTemps();
+    if(distortion)
+    {
+        if (tile>=0&&tile<(int)m_tile_distortion.size())
+            return m_tile_distortion[tile].getTemps();
+    }
+    else
+    {
+        if (tile>=0&&tile<(int)m_tile.size())
+            return m_tile[tile].getTemps();
+    }
 
     return 0;
 }
 
-int Tileset::getOpacityDuTile(int tile)
+int Tileset::getOpacityDuTile(int tile, bool distortion)
 {
-    if (tile>=0&&tile<(int)m_tile.size())
-        return m_tile[tile].getOpacity();
+    if(distortion)
+    {
+        if (tile>=0&&tile<(int)m_tile_distortion.size())
+            return m_tile_distortion[tile].getOpacity();
+    }
+    else
+    {
+        if (tile>=0&&tile<(int)m_tile.size())
+            return m_tile[tile].getOpacity();
+    }
 
     return 255;
 }
@@ -439,7 +506,13 @@ int Tileset::getAttaqueDuTile(int tile)
     return 0;
 }
 
+int Tileset::getDistortionDuTile(int tile)
+{
+    if (tile>=0&&tile<(int)m_tile.size())
+        return m_tile[tile].m_distortion;
 
+    return 0;
+}
 
 
 char Tileset::getOrientationDuTile(int tile)
@@ -449,12 +522,24 @@ char Tileset::getOrientationDuTile(int tile)
     return 0;
 }
 
-const coordonnee &Tileset::getCentreDuTile(int tile)
+const coordonnee &Tileset::getCentreDuTile(int tile, bool distortion)
 {
-    if (tile>=0&&tile<(int)m_tile.size())
-        return m_tile[tile].getCentre();
+    if(distortion)
+    {
+        if (tile>=0&&tile<(int)m_tile_distortion.size())
+            return m_tile_distortion[tile].getCentre();
+        else
+            return m_tile_distortion[0].getCentre();
+    }
     else
-        return m_tile[0].getCentre();;
+    {
+        if (tile>=0&&tile<(int)m_tile.size())
+            return m_tile[tile].getCentre();
+        else
+            return m_tile[0].getCentre();
+    }
+
+
 }
 
 int Tileset::getMinimap(int tile)

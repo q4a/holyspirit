@@ -35,6 +35,7 @@ class Entite_graphique
     //private:
 
     sf::Sprite m_sprite;
+    sf::Sprite m_sprite_distortion;
 
     bool m_reflect;
     bool m_shadow;
