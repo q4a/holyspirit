@@ -427,7 +427,8 @@
 1265543996 e:\c++\petits jeux\eos\sources\gui\gui_greg\ressourcebar.hpp
 	"GUI/GUIProgressBar.hpp"
 
-1265545890 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\ressourcebar.cpp
+1265546315 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\ressourcebar.cpp
 	"RessourceBar.hpp"
 	<iostream>
+	<sstream>
 

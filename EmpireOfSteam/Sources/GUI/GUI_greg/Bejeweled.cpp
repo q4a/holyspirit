@@ -310,13 +310,13 @@ void Bejeweled::CheckAlign(bool no_destruction)
             m_tab_jewelds[x][y].m_sprite.SetPosition(   m_tab_jewelds[x][y].m_position.x + (float)pos.x + 16.0f,
                                                         m_tab_jewelds[x][y].m_position.y + (float)pos.y + 16.0f);
 
-            if(m_tab_jewelds[x][y].m_position.x == x * 32
-             &&m_tab_jewelds[x][y].m_position.y == y * 32)
+            if( fabs(m_tab_jewelds[x][y].m_position.x - x * 32) <= 4
+             && fabs(m_tab_jewelds[x][y].m_position.y - y * 32) <= 4)
              {
                  int chain = 1;
                  for(int X = x + 1 ; X < TAB_WIDTH ; ++X)
                  {
-                    if(m_tab_jewelds[X][y].m_position.x != X *32 || m_tab_jewelds[X][y].m_position.y != y *32)
+                    if(fabs(m_tab_jewelds[X][y].m_position.x - X *32) > 4 || fabs(m_tab_jewelds[X][y].m_position.y - y *32) > 4)
                         X = TAB_WIDTH, chain = 0;
 
                     if(m_tab_jewelds[X][y].m_type == m_tab_jewelds[x][y].m_type)
@@ -339,7 +339,7 @@ void Bejeweled::CheckAlign(bool no_destruction)
                  chain = 1;
                  for(int Y = y + 1 ; Y < TAB_HEIGHT ; ++Y)
                  {
-                    if(m_tab_jewelds[x][Y].m_position.x != x *32 || m_tab_jewelds[x][Y].m_position.y != Y *32)
+                    if(fabs(m_tab_jewelds[x][Y].m_position.x - x *32) > 4 || fabs(m_tab_jewelds[x][Y].m_position.y - Y *32) > 4)
                         Y = TAB_HEIGHT, chain = 0;
 
                     if(m_tab_jewelds[x][Y].m_type == m_tab_jewelds[x][y].m_type)
