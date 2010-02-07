@@ -85,16 +85,60 @@ WindowGame::WindowGame() : GUIWindow(1024,768,"Empire of Steam")
     m_tab_resources->AddTab(m_tab_army      , m_panel_army);
     m_tab_resources->AddTab(m_tab_religion  , m_panel_religion);
 
-    m_panel_army->AddWidget(m_panel_army_deco);
+
+
+    m_panel_army    ->AddWidget(m_panel_army_deco);
 
     m_panel_food    ->AddWidget(m_panel_ressources_deco);
     m_panel_material->AddWidget(m_panel_ressources_deco);
     m_panel_science ->AddWidget(m_panel_ressources_deco);
     m_panel_religion->AddWidget(m_panel_ressources_deco);
 
+
+    m_fish_ressources   = new RessourceBar(230,64,126,22,"Poisson");
+    m_fish_ressources   ->m_label.SetColor(sf::Color(255, 255, 255));
+    m_fish_ressources   ->SetImage("pictures/GUI/jaugeV2.png",Img_Background);
+    m_fish_ressources   ->SetImage("pictures/GUI/liquideV2.png",Img_Bar);
+    m_fish_ressources   ->SetValue(0);
+
+    m_weath_ressources   = new RessourceBar(230,96,126,22,"Blé");
+    m_weath_ressources   ->m_label.SetColor(sf::Color(255, 255, 255));
+    m_weath_ressources   ->SetImage("pictures/GUI/jaugeV2.png",Img_Background);
+    m_weath_ressources   ->SetImage("pictures/GUI/liquideV2.png",Img_Bar);
+    m_weath_ressources   ->SetValue(32);
+
+    m_meat_ressources   = new RessourceBar(230,128,126,22,"Viande");
+    m_meat_ressources   ->m_label.SetColor(sf::Color(255, 255, 255));
+    m_meat_ressources   ->SetImage("pictures/GUI/jaugeV2.png",Img_Background);
+    m_meat_ressources   ->SetImage("pictures/GUI/liquideV2.png",Img_Bar);
+    m_meat_ressources   ->SetValue(0);
+
+    m_panel_food    ->AddWidget(m_fish_ressources);
+    m_panel_food    ->AddWidget(m_weath_ressources);
+    m_panel_food    ->AddWidget(m_meat_ressources);
+
+
+    m_rock_ressources   = new RessourceBar(230,64,126,22,"Pierre");
+    m_rock_ressources   ->m_label.SetColor(sf::Color(255, 255, 255));
+    m_rock_ressources   ->SetImage("pictures/GUI/jaugeV2.png",Img_Background);
+    m_rock_ressources   ->SetImage("pictures/GUI/liquideV2.png",Img_Bar);
+    m_rock_ressources   ->SetValue(50);
+
+    m_wood_ressources   = new RessourceBar(230,96,126,22,"Bois");
+    m_wood_ressources   ->m_label.SetColor(sf::Color(255, 255, 255));
+    m_wood_ressources   ->SetImage("pictures/GUI/jaugeV2.png",Img_Background);
+    m_wood_ressources   ->SetImage("pictures/GUI/liquideV2.png",Img_Bar);
+    m_wood_ressources   ->SetValue(0);
+
+    m_panel_material    ->AddWidget(m_rock_ressources);
+    m_panel_material    ->AddWidget(m_wood_ressources);
+
+
     m_panel_ressources->AddWidget(m_tab_resources);
 
     m_panel_ressources->AddWidget(m_cadran_resources);
+
+
 
     m_panel_bejeweled->AddWidget(m_bejeweled);
     m_panel_bejeweled->AddWidget(m_cadran_bejeweled);
@@ -105,6 +149,9 @@ WindowGame::WindowGame() : GUIWindow(1024,768,"Empire of Steam")
 
 WindowGame::~WindowGame()
 {
+    delete m_fish_ressources;
+    delete m_rock_ressources;
+
     delete m_animated_tab_food_off;
     delete m_animated_tab_food_on;
     delete m_animated_tab_material_off;
@@ -154,6 +201,28 @@ void WindowGame::Run()
 
         if(mainEventManager->GetEvent(EventKey, sf::Key::Escape))
             m_window.Close();
+
+        switch (m_bejeweled->GetLastJeweld())
+        {
+            case 3:
+                m_rock_ressources->SetValue(m_rock_ressources->GetValue() + 1);
+                break;
+            case 4:
+                m_fish_ressources->SetValue(m_fish_ressources->GetValue() + 1);
+                break;
+            case 5:
+                m_weath_ressources->SetValue(m_weath_ressources->GetValue() + 1);
+                break;
+            case 6:
+                m_meat_ressources->SetValue(m_meat_ressources->GetValue() + 1);
+                break;
+            case 7:
+                m_wood_ressources->SetValue(m_wood_ressources->GetValue() + 1);
+                break;
+            default:
+                break;
+        }
+
 
         Show();
     }

@@ -16,8 +16,9 @@ class Widget
         virtual void Show(std::list<sf::Drawable*> &drawables);
         virtual void            Update();
 
-        virtual void SetGeometry(int x, int y, int w, int h);
-        virtual void SetPosition(int x, int y);
+        virtual void SetGeometry    (int x, int y, int w, int h);
+        virtual void SetSubGeometry (int x, int y, int w, int h);
+        virtual void SetPosition    (int x, int y);
 
         virtual void SetImage(const sf::Image &);
         virtual void SetImage(const std::string &);
@@ -34,6 +35,9 @@ class Widget
 
         sf::Vector2i m_position;
         sf::Vector2i m_size;
+
+        sf::Vector2i m_subPosition;
+        sf::Vector2i m_subSize;
 
         sf::Image m_background;
 

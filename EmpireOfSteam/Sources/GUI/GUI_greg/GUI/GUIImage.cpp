@@ -66,8 +66,12 @@ void GUIImage::Update()
         pos.y   = m_position.y + m_parent->GetGlobalPosition().y;
     }
     m_drawable->SetImage(m_img);
-    m_drawable->Resize(m_size.x, m_size.y);
+    m_drawable->Resize(m_size.x * m_subSize.x / 100, m_size.y * m_subSize.y / 100);
     m_drawable->SetPosition(pos.x, pos.y);
+    m_drawable->SetSubRect(sf::IntRect( m_subPosition.x * m_drawable->GetImage()->GetWidth()  / 100,
+                                        m_subPosition.y * m_drawable->GetImage()->GetHeight() / 100,
+                                       (m_subPosition.x + m_subSize.x) * m_drawable->GetImage()->GetWidth()  / 100,
+                                       (m_subPosition.y + m_subSize.y) * m_drawable->GetImage()->GetHeight() / 100));
 }
 
 

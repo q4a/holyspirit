@@ -4,6 +4,7 @@
 #include "Global.hpp"
 #include "Bejeweled.hpp"
 #include "GUI/Button.hpp"
+#include "RessourceBar.hpp"
 #include "GUI/TabBar.hpp"
 #include "GUI/Label.hpp"
 #include "GUI/GUIImage.hpp"
@@ -57,6 +58,13 @@ class WindowGame : public GUIWindow
                             *m_animated_tab_food_on,
                             *m_animated_tab_material_off,
                             *m_animated_tab_material_on;
+
+
+        RessourceBar        *m_fish_ressources,
+                            *m_weath_ressources,
+                            *m_meat_ressources,
+                            *m_wood_ressources,
+                            *m_rock_ressources;
 
 };
 

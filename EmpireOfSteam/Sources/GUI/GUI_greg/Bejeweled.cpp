@@ -96,6 +96,18 @@ void Bejeweled::SetGeometry(int x, int y, int w, int h)
     Widget::SetGeometry(x, y, w, h);
 }
 
+int Bejeweled::GetLastJeweld()
+{
+    int value = -1;
+
+    if(!m_lasts_jewelds.empty())
+    {
+        value = m_lasts_jewelds.front();
+        m_lasts_jewelds.erase(m_lasts_jewelds.begin());
+    }
+
+    return (value);
+}
 
 void Bejeweled::Update()
 {
@@ -188,7 +200,7 @@ void Bejeweled::Update()
             m_gear_rotation -= mainEventManager->GetTime() * 300;
 
         if(fabs(m_gear_rotation) > 90)
-            m_gear_rotation_total += m_gear_rotation, m_gear_rotation = 0, m_go_rotation = false;
+            m_gear_rotation_total += 90 * (1-2*(m_gear_rotation < 0)), m_gear_rotation = 0, m_go_rotation = false;
         if(m_gear_rotation_total < -360)
             m_gear_rotation_total += 360;
         if(m_gear_rotation_total > 360)
@@ -315,10 +327,14 @@ void Bejeweled::CheckAlign(bool no_destruction)
                  if(chain >= 3)
                     for(int X = x ; X < x + chain ; ++X)
                     {
-                        m_tab_jewelds[X][y].m_type = -1;
                         if(!no_destruction)
+                        {
                             m_jeweleds_destruction.push_back(m_tab_jewelds[X][y].m_sprite);
+                            m_lasts_jewelds.push_back(m_tab_jewelds[X][y].m_type);
+                        }
+                        m_tab_jewelds[X][y].m_type = -1;
                     }
+
 
                  chain = 1;
                  for(int Y = y + 1 ; Y < TAB_HEIGHT ; ++Y)
@@ -331,14 +347,17 @@ void Bejeweled::CheckAlign(bool no_destruction)
                     else
                         Y = TAB_HEIGHT;
                  }
+
                  if(chain >= 3)
                     for(int Y = y ; Y < y + chain ; ++Y)
                     {
-                        m_tab_jewelds[x][Y].m_type = -1;
                         if(!no_destruction)
+                        {
+                            m_lasts_jewelds.push_back(m_tab_jewelds[x][Y].m_type);
                             m_jeweleds_destruction.push_back(m_tab_jewelds[x][Y].m_sprite);
+                        }
+                        m_tab_jewelds[x][Y].m_type = -1;
                     }
-
              }
         }
 }

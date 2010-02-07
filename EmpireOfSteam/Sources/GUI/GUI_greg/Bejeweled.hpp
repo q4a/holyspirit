@@ -29,6 +29,8 @@ class Bejeweled : public Widget
 
         virtual void SetGeometry(int x, int y, int w, int h);
 
+        virtual int  GetLastJeweld();
+
         void CheckAlign(bool no_destruction = false);
 
     protected:
@@ -41,6 +43,7 @@ class Bejeweled : public Widget
         sf::Sprite  m_sprite_gear;
 
         std::vector<sf::Sprite> m_jeweleds_destruction;
+        std::vector<int>        m_lasts_jewelds;
 
         sf::Vector2i m_position_gear;
 

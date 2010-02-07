@@ -45,6 +45,7 @@ void Label::Update()
     m_drawable->SetString          (m_text);
     m_drawable->SetCharacterSize   (m_size);
     m_drawable->SetColor           (m_color);
+    m_drawable->SetStyle           (1);
 }
 
 void Label::Show(std::list<sf::Drawable *> &drawables)

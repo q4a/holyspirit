@@ -2,19 +2,20 @@
 
 using namespace sf;
 
-Widget::Widget() : m_position(0,0), m_size(0,0)
+Widget::Widget() : m_position(0,0), m_size(0,0), m_subPosition(0,0), m_subSize(100,100)
+{
+    m_parent    = NULL;
+    m_drawable  = NULL;
+
+}
+
+Widget::Widget(int x, int y) : m_position(x,y), m_size(0,0), m_subPosition(0,0), m_subSize(100,100)
 {
     m_parent    = NULL;
     m_drawable  = NULL;
 }
 
-Widget::Widget(int x, int y) : m_position(x,y), m_size(0,0)
-{
-    m_parent    = NULL;
-    m_drawable  = NULL;
-}
-
-Widget::Widget(int x, int y, int w, int h) : m_position(x,y), m_size(w,h)
+Widget::Widget(int x, int y, int w, int h) : m_position(x,y), m_size(w,h), m_subPosition(0,0), m_subSize(100,100)
 {
     m_parent    = NULL;
     m_drawable  = NULL;
@@ -57,6 +58,14 @@ void Widget::SetGeometry(int x, int y, int w, int h)
     m_position.y        = y;
     m_size.x            = w;
     m_size.y            = h;
+}
+
+void Widget::SetSubGeometry(int x, int y, int w, int h)
+{
+    m_subPosition.x     = x;
+    m_subPosition.y     = y;
+    m_subSize.x         = w;
+    m_subSize.y         = h;
 }
 
 void Widget::SetPosition(int x, int y)

@@ -327,22 +327,23 @@
 
 1262107435 e:\c++\petits jeux\eos\sources\gui\gui_greg\utils\singleton.hpp
 
-1263326276 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\widget.hpp
+1265539324 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\widget.hpp
 	<SFML/Graphics.hpp>
 	"../Global.hpp"
 	<list>
 
-1263642375 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\widget.cpp
+1265539408 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\widget.cpp
 	"Widget.hpp"
 
-1265460764 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.cpp
+1265545965 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.cpp
 	"WindowGame.hpp"
 	<iostream>
 
-1265460261 e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.hpp
+1265543996 e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.hpp
 	"Global.hpp"
 	"Bejeweled.hpp"
 	"GUI/Button.hpp"
+	"RessourceBar.hpp"
 	"GUI/TabBar.hpp"
 	"GUI/Label.hpp"
 	"GUI/GUIImage.hpp"
@@ -360,28 +361,28 @@
 1263134933 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\engines\eventmanager.cpp
 	"EventManager.hpp"
 
-1265460044 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\button.cpp
+1265460877 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\button.cpp
 	"Button.hpp"
 	<iostream>
 
-1263643242 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\label.cpp
+1265542507 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\label.cpp
 	"Label.hpp"
 	<iostream>
 
 1263643265 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\label.hpp
 	"Widget.hpp"
 
-1265460824 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guiimage.cpp
+1265542447 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guiimage.cpp
 	"GUIImage.hpp"
 	<iostream>
 
 1262447898 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guiimage.hpp
 	"Widget.hpp"
 
-1265460630 e:\c++\petits jeux\eos\sources\gui\gui_greg\bejeweled.hpp
+1265540932 e:\c++\petits jeux\eos\sources\gui\gui_greg\bejeweled.hpp
 	"GUI/Widget.hpp"
 
-1265460646 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\bejeweled.cpp
+1265542901 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\bejeweled.cpp
 	"Bejeweled.hpp"
 	<iostream>
 	<sstream>
@@ -407,11 +408,26 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Matrix3.hpp>
 
-1265457631 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guianimatedimage.cpp
+1265460877 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guianimatedimage.cpp
 	"GUIAnimatedImage.hpp"
 	<iostream>
 	<sstream>
 
 1265457578 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guianimatedimage.hpp
 	"GUIImage.hpp"
+
+1265542630 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guiprogressbar.cpp
+	"GUIProgressBar.hpp"
+	<iostream>
+
+1265545649 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guiprogressbar.hpp
+	"GUIImage.hpp"
+	"Label.hpp"
+
+1265543996 e:\c++\petits jeux\eos\sources\gui\gui_greg\ressourcebar.hpp
+	"GUI/GUIProgressBar.hpp"
+
+1265545890 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\ressourcebar.cpp
+	"RessourceBar.hpp"
+	<iostream>
 
