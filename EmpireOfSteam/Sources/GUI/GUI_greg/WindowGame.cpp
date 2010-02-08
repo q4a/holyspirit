@@ -49,7 +49,7 @@ WindowGame::WindowGame() : GUIWindow(1024,768,"Empire of Steam")
     m_panel_army_deco           = new GUIImage(0,0,512,384,"pictures/GUI/armyPanel.png");
     m_panel_ressources_deco     = new GUIImage(0,0,512,384,"pictures/GUI/ressourcesPanel.png");
 
-    m_bejeweled                 = new Bejeweled(94,32,320,320);
+    m_bejeweled                 = new Bejeweled(128,64,256,256);
 
     AddWidget(m_panel_ressources);
     AddWidget(m_panel_map);

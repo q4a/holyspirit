@@ -3,8 +3,8 @@
 
 
 #define NBR_JEWELS 8
-#define TAB_WIDTH 10
-#define TAB_HEIGHT 10
+#define TAB_WIDTH 8
+#define TAB_HEIGHT 8
 
 #include "GUI/Widget.hpp"
 

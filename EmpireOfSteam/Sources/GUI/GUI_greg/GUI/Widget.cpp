@@ -33,6 +33,7 @@ void Widget::AddWidget(Widget *widget)
 {
     m_widgets.push_back(widget);
     m_widgets.back()->m_parent = this;
+    m_widgets.back()->Update();
 }
 
 

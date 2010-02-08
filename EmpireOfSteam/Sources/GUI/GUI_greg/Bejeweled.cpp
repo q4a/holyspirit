@@ -126,14 +126,14 @@ void Bejeweled::Update()
         m_position_gear.y = (mainEventManager->GetMousePosition().y - pos.y - 12 ) / 32;
     }
 
-    if(m_position_gear.x < 1)
-        m_position_gear.x = 1;
-    if(m_position_gear.y < 1)
-        m_position_gear.y = 1;
-    if(m_position_gear.x > TAB_WIDTH - 3)
-        m_position_gear.x = TAB_WIDTH - 3;
-    if(m_position_gear.y > TAB_HEIGHT - 3)
-        m_position_gear.y = TAB_HEIGHT - 3;
+    if(m_position_gear.x < 0)
+        m_position_gear.x = 0;
+    if(m_position_gear.y < 0)
+        m_position_gear.y = 0;
+    if(m_position_gear.x > TAB_WIDTH - 2)
+        m_position_gear.x = TAB_WIDTH - 2;
+    if(m_position_gear.y > TAB_HEIGHT - 2)
+        m_position_gear.y = TAB_HEIGHT - 2;
 
 
     m_sprite_gear.SetRotation(m_gear_rotation_total + m_gear_rotation);
