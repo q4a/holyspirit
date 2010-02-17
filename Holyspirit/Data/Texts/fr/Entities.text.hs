@@ -12,7 +12,7 @@ Errant des roches
 Golem de quartz
 Seigneur Merengar
 Molosse décharné
-Zombie paysan
+Paysan zombie
 Dépouille putride
 Marchand commun
 Marchand rare
