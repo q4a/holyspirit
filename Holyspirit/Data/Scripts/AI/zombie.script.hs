@@ -9,10 +9,10 @@ main
 				then
 					if rand * 1
 					then
-						playSound * 3
-					else
-						if rand * 1 
-						then
+						if rand * 50 
+						then 
+							playSound * 3
+						else
 							playSound * 4
 						end
 					end

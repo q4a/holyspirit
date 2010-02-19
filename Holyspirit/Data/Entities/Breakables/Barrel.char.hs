@@ -39,6 +39,16 @@ $
 r500
 $
 
+*
+*Emerald.item.hs
+r500
+$
+
+*
+*Ore_gold.item.hs
+r500
+$
+
 
 $
 	*Data/Particule_system/wood_barrel.ps.hs

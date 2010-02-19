@@ -41,3 +41,13 @@ Que souhaitez-vous faire ?\\
 -Aller dans mon coffre
 -Fabriquer un objet
 L'orée de la foret
+Psssst !\Hey, vous !\Venez m'aider !\Je me suis enfermé dans mon auberge quand ces démons m'ont attaqués.
+-Bien entendu.
+-Restez ici, c'est plus prudent.
+Merci de m'avoir aidé.
+Défense d'entrer !
+Je dois défendre l'auberge de ces attaques de mort-vivants !
+J'ai résisté à l'attaque !\Je dois encore aller chercher ma récompense.
+J'ai échoué, les démons ont réussis à détruire la porte et à tuer le tavernier.
+J'ai résisté à l'attaque !\Et j'ai recu mon argent.
+Merci.\Voici votre dû.\+1000 d'argent reçu.

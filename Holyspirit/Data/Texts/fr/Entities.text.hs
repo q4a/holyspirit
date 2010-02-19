@@ -28,3 +28,4 @@ Abbé Chamel
 Potale de l'Abbaye
 Potale des terres agraires
 Potale de l'orée de la forêt
+Tenancier derrière la porte

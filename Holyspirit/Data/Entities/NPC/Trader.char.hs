@@ -232,7 +232,11 @@ $
 		r1000
 	$
 		*
-		*Drawing_necklage.item.hs
+		*Drawing_tiare.item.hs
+		r2000
+	$
+		*
+		*Drawing_shield_bronze.item.hs
 		r2000
 	$
 	

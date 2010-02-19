@@ -30,6 +30,16 @@ $
 r2000
 $
 
+*
+*Emerald.item.hs
+r2000
+$
+
+*
+*Ore_gold.item.hs
+r2000
+$
+
 $
 
 $

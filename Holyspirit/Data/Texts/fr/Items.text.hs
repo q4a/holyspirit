@@ -1,92 +1,102 @@
 Brassards
-Des_brassards_basiques_en_cuir.
-Armure_matelassée
-Une_armure_légère_n'offrant_pas\beaucoup_de_protection.
+Des brassards basiques en cuir.
+Armure matelassée
+Une armure légère n'offrant pas\beaucoup de protection.
 Arquebuse
-Une_arquebuse_comme_on\en_faisait_à_l'ancienne.\Vous_ne_pouvez_pas_l'utiliser.
+Une arquebuse comme on\en faisait à l'ancienne.\Vous ne pouvez pas l'utiliser.
 Bottes
-Des_bottes_basiques.
-Dague_de_cérémonie
-Une_dague_de_cérémonie.\\Arme_à_une_main.
-Cotte_de_mailles
-Une_cotte_de_mailles_toute_simple.
+Des bottes basiques.
+Dague de cérémonie
+Une dague de cérémonie.\\Arme à une main.
+Cotte de mailles
+Une cotte de mailles toute simple.
 Charbon
-Le_charbon_est_un_matériau\de_base_pour_la_fabrication\de_munitions.
-Arbalète_de_poing
-Une_arbalète_légère.\\Arme_à_une_main.
+Le charbon est un matériau\de base pour la fabrication\de munitions.
+Arbalète de poing
+Une arbalète légère.\\Arme à une main.
 Poignard
-Un_petit_poignard.\\Arme_à_une_main.
-Potion_de_foi
-Une_potion_permettant\de_vous_régénérer_de\150_PF.
+Un petit poignard.\\Arme à une main.
+Potion de foi
+Une potion permettant\de vous régénérer de\150 PF.
 Bure
-Une_bure_de_moine.
-Grand_bouclier
-Un_grand_bouclier.
-Potion_de_soins
-Une_potion_permettant\de_vous_soigner_de\150_PV.
+Une bure de moine.
+Grand bouclier
+Un grand bouclier.
+Potion de soins
+Une potion permettant\de vous soigner de\150 PV.
 Cervelière
-Une_cervelière_basique.
+Une cervelière basique.
 Katzbalger
-Une_épée_à_deux_mains_unique.\\Arme_à_deux_mains.
-Epée_longue
-Une_épée_longue,\parfaite_pour_la_guerre.\\Arme_à_une_main.
-Pendentif_azur
-Un_joli_petit_pendentif.
-Minerai_de_fer
-Le_minerai_de_fer_est_un matériau\de_base_pour_la_fabrication\d'arme_et_armures.
+Une épée à deux mains unique.\\Arme à deux mains.
+Epée longue
+Une épée longue,\parfaite pour la guerre.\\Arme à une main.
+Pendentif azur
+Un joli petit pendentif.
+Minerai de fer
+Le minerai de fer est un matériau\de base pour la fabrication\d'arme et armures.
 Anneau
-Un_petit_anneau.
-Tiare_sacrée
-Objet_de_quête.
-Petite_hache_en_cuivre
-Une_petite_hache_rouillée.
-Petit_bouclier
-Un_petit_bouclier.
-Petite_épée
-Une_petite_épée_rouillée.\\Arme_à_une_main.
-Tueuse_divine
-La_terrible_épée_de\l'archange_Gabrielle.\\Arme_à_une_main.
-Épée_à_deux_mains
-Une_épée_à_deux_mains.\\Arme_à_deux_mains.
+Un petit anneau.
+Tiare sacrée
+Objet de quête.
+Petite hache en cuivre
+Une petite hache rouillée.
+Petit bouclier
+Un petit bouclier.
+Petite épée
+Une petite épée rouillée.\\Arme à une main.
+Tueuse divine
+La terrible épée de\l'archange Gabrielle.\\Arme à une main.
+Épée à deux mains
+Une épée à deux mains.\\Arme à deux mains.
 Bottes
-Des_bottes_divines.
+Des bottes divines.
 Scarificateur
-Scarificateur_est_une_dague\_de cérémonie_qui_fut_utilisée_par\la_terrible_tueuse_Lavoisin.\\Arme_à_une_main.
-La_Damnation_d'Harold
-Ce_bouclier_a_appartenu\_au_grand_roi_Harold.
-Gants_renforcés
-Des_solides_gants_en_cuir\renforcé_par_des_plaques_en_métal.
-Capuche_de_cuir
-Une_simple_capuche_en_cuir\offrant_peu_de_protection.
-Robe_en_satin_de_la_Veuve_Éplorée
-Une_robe_noir_qui_sied_à_ravir_pour_une_femme_en_deuil.
-Masse_à_ailettes
-Une_masse_à_ailettes_fort_rouillée.\Elle_doit_être_très_ancienne.\\Arme_à_une_main.
+Scarificateur est une dague\ de cérémonie qui fut utilisée par\la terrible tueuse Lavoisin.\\Arme à une main.
+La Damnation d'Harold
+Ce bouclier a appartenu\ au grand roi Harold.
+Gants renforcés
+Des solides gants en cuir\renforcé par des plaques en métal.
+Capuche de cuir
+Une simple capuche en cuir\offrant peu de protection.
+Robe en satin de la Veuve Éplorée
+Une robe noir qui sied à ravir pour une femme en deuil.
+Masse à ailettes
+Une masse à ailettes fort rouillée.\Elle doit être très ancienne.\\Arme à une main.
 Fracasseuse
-Une_arme_redoutable_capable_d'écraser\un_crâne_humain_en_un_seul_coup.\\Arme_à_une_main.
+Une arme redoutable capable d'écraser\un crâne humain en un seul coup.\\Arme à une main.
 Flamboyante
-Épée_forgée_dans_les_flammes\de_l'enfer,_elle_appartenu_au\démon_avant_d'être_dérobée_par\l'Archange_Michel._Celui-ci_la\perdit_une_fois_en_s'incarnant\sur_Terre_et_on_le_cru\disparu_à_jamais.\\Arme_à_une_main.
-Hache_de_bucheron
-Une_simple_hache_pour\couper_du_bois.\Elle_n'en_est_pas_moins\une_arme_mortelle.\\Arme_à_deux_mains.
-Masse_de_boucher
-Cette_masse_a_pour_but\premier_de_tuer_les_cochons.\Mais_elle_se_révèle_aussi\très_efficace_contre_les_démons.\\Arme_à_deux_mains.
-Morceau_de_cerveau
-Mais_c'est_dégueulasse_!
-Larme_de_la_Veuve_Éplorée
-Un_bijou_qui_sied_à_ravir_pour_une_femme_en_deuil.
-Barbute_à_cornes
-Un_casque_de_barbare\extrêmement_résistant.\Introuvable_dans_le_commerce.
-Minerai_de_cuivre
-Le_minerai_de_cuivre_est_un matériau\de_base_pour_la_fabrication\d'arme_et_armures.
+Épée forgée dans les flammes\de l'enfer, elle appartenu au\démon avant d'être dérobée par\l'Archange Michel. Celui-ci la\perdit une fois en s'incarnant\sur Terre et on le cru\disparu à jamais.\\Arme à une main.
+Hache de bucheron
+Une simple hache pour\couper du bois.\Elle n'en est pas moins\une arme mortelle.\\Arme à deux mains.
+Masse de boucher
+Cette masse a pour but\premier de tuer les cochons.\Mais elle se révèle aussi\très efficace contre les démons.\\Arme à deux mains.
+Morceau de cerveau
+Mais c'est dégueulasse !
+Larme de la Veuve Éplorée
+Un bijou qui sied à ravir pour une femme en deuil.
+Barbute à cornes
+Un casque de barbare\extrêmement résistant.\Introuvable dans le commerce.
+Minerai de cuivre
+Le minerai de cuivre est un matériau\de base pour la fabrication\d'arme et armures.
 Rubis
-Un_magnifique_joyau.
-Schéma_:_Barbute_à_cornes
-Schéma_expliquant_la_conception_d'un_barbute_à_cornes.
-Schéma_:_Cotte_de_maille
-Schéma_expliquant_la_conception_d'une_cotte_de_maille.
-Schéma_:_Pendentif
-Schéma_expliquant_la_conception_d'un_pendantif.
-Schéma_:_Tiare
-Schéma_expliquant_la_conception_d'une_tiare.
+Un magnifique joyau.
+Schéma : Barbute à cornes
+Schéma expliquant la conception d'un barbute à cornes.
+Schéma : Cotte de maille
+Schéma expliquant la conception d'une cotte de maille.
+Schéma : Pendentif
+Schéma expliquant la conception d'un pendantif.
+Schéma : Tiare
+Schéma expliquant la conception d'une tiare.
 Tiare
-Magnifique_tiare_sertie_d'une_emeraude.
+Magnifique tiare sertie d'une emeraude.
+Couperet
+Couteau utilisé par les bouchers,\il a pour fonction de trancher les chères.
+Emeraude
+Un magnifique joyau.
+Minerai d'or
+Materiau précieux,\l'or est utilisé dans la confection\de bijoux.
+Bouclier en bronze
+Bouclier intégralement forgé\en bronze. Il est très solide.
+Schéma : Bouclier de bronze
+Schéma expliquant la conception d'un bouclier en bronze.

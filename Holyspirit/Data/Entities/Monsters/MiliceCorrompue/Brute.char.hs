@@ -30,6 +30,11 @@ $
 r2000
 $
 
+*
+*Cleaver.item.hs
+r2000
+$
+
 $
 *Data/Particule_system/human_guts.ps.hs
 $

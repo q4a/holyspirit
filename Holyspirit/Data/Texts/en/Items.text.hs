@@ -1,84 +1,84 @@
 Armband
-Simple_leather_armband.
-Quilted_armor
-A_light_armor_that_doesn't_offer\much_protection.
+Simple leather armband.
+Quilted armor
+A light armor that doesn't offer\much protection.
 Arquebus
-An_old_made_arquebus.\You_can't_use_it.
+An old made arquebus.\You can't use it.
 Boots
-Simple_boots.
-Ceremonial_dagger
-A_ceremonial_dagger_used_in_paian_ritual.\\One-handed_weapon.
+Simple boots.
+Ceremonial dagger
+A ceremonial dagger used in paian ritual.\\One-handed weapon.
 Chainmail
-An_armor_made_of_many_steel_rings.
+An armor made of many steel rings.
 Coal
-Coal_is_a_basic_material\for_ammunition_crafting.
-Hand_crossbow
-A_light_crossbow.\\One-handed_weapon.
+Coal is a basic material\for ammunition crafting.
+Hand crossbow
+A light crossbow.\\One-handed weapon.
 Dagger
-A_small_dagger.\\One-handed_weapon.
-Faith_potion
-A_potion_that_restores\150_PF.
+A small dagger.\\One-handed weapon.
+Faith potion
+A potion that restores\150 PF.
 Frock
-A_monk's_robe.
-Great_shield
-Offer_much_more_protection_than_a_buckler.
-Health_potion
-A_potion_that_heal\up_to\150_PV.
+A monk's robe.
+Great shield
+Offer much more protection than a buckler.
+Health potion
+A potion that heal\up to\150 PV.
 Cervelière
-A_cervelière_made_of_hard_steel.
+A cervelière made of hard steel.
 Katzbalger
-It's_name_meant_:_The_cat_disemboweler.\But_it_may_be_as_good_for_demons_killing\as_for_cat_cutting_open.\\Two-handed_weapon.
-Long_sword
-A_traditionnakl_long_sword,\perfect_to_make_war.\\One-handed_weapon.
-Azure_pendant
-A_pretty_small_pendant.
-Iron_ore
-A_basic_material_for\weapons_and_armors_crafting.
+It's name meant : The cat disemboweler.\But it may be as good for demons killing\as for cat cutting open.\\Two-handed weapon.
+Long sword
+A traditionnakl long sword,\perfect to make war.\\One-handed weapon.
+Azure pendant
+A pretty small pendant.
+Iron ore
+A basic material for\weapons and armors crafting.
 Ring
-A_small_ring.
-Sacred_tiara
-Quest_object.
-Petite_hache_en_cuivre
-Une_petite_hache_rouillée.
+A small ring.
+Sacred tiara
+Quest object.
+Petite hache en cuivre
+Une petite hache rouillée.
 Buckler
-A_small_shield.
-Short_sword
-A_rusty_short_sword.\\One-handed_weapon.
-Divine_killer
-The_famous_sword_of\the_archangel_Gabrielle.\\One-handed_weapon.
-Two_handed_sword
-A_simple_but_threatening_great_sword.\\Two-handed_weapon.
+A small shield.
+Short sword
+A rusty short sword.\\One-handed weapon.
+Divine killer
+The famous sword of\the archangel Gabrielle.\\One-handed weapon.
+Two handed sword
+A simple but threatening great sword.\\Two-handed weapon.
 Boots
-Unique_boots.
+Unique boots.
 Scarifier
-Scarifier_is_a_ceremonial_dagger\used_by_the_fearful_poisonner_Lavoisin.\\One-handed_weapon.
-Harold's_damnation
-This_shield_once_belonged_to\the_great_king_Harold.
-Reinforced_gloves
-Sturdy_leather_gloves\reinforced_by_metal_plates.
-Leather_hood
-A_basic_leather_hood\which_doesn't_offer_much_protection.
-Satin_robe_of_the_Tearful_Widow.
-A_black_robe_which_suit_perfectly_to_a_woman_in_mourning.
-Winged_mace
-A_very_rusty_mace.\It_shall_be_very_ancient.\\One-handed_weapon.
+Scarifier is a ceremonial dagger\used by the fearful poisonner Lavoisin.\\One-handed weapon.
+Harold's damnation
+This shield once belonged to\the great king Harold.
+Reinforced gloves
+Sturdy leather gloves\reinforced by metal plates.
+Leather hood
+A basic leather hood\which doesn't offer much protection.
+Satin robe of the Tearful Widow.
+A black robe which suit perfectly to a woman in mourning.
+Winged mace
+A very rusty mace.\It shall be very ancient.\\One-handed weapon.
 Smasher
-A_fearful_weapon_capable_of\shattering_a_human_skull_in_one_blow.\\One-handed_weapon.
+A fearful weapon capable of\shattering a human skull in one blow.\\One-handed weapon.
 Flamboyant
-Sword_forged_in_the_Hell's_flammes\which_belonged_to_the_demon\before_being_stole_by\the_archangel_Michel._This_one_lose_it\by_becoming_incarnate\on_Earth.\\One-handed_weapon.
-Timber_axe
-A_simple_axe_for\cutting_wood.\But_it's_no_toy.\\Two-handed_weapon.
-Butcher's_mace
-This_mace_has_pig_killing_for_first_goal.\But_it's_also_very_efficient_against_demons.\\Two-handed_weapon.
-Chunk_of_brain
-Disgusting_!
-Tears_of_the_Tearful_Widow
-A_jewel_which_suit_perfectly_to_a_woman_in_mourning.
-Horned_barbute
-A_barbarian_helmet\extremely_resilient.\Unavailable_in_the_shops.
-Copper_ore
-A_basic_material_for\weapons_and_armors_crafting.
+Sword forged in the Hell's flammes\which belonged to the demon\before being stole by\the archangel Michel. This one lose it\by becoming incarnate\on Earth.\\One-handed weapon.
+Timber axe
+A simple axe for\cutting wood.\But it's no toy.\\Two-handed weapon.
+Butcher's mace
+This mace has pig killing for first goal.\But it's also very efficient against demons.\\Two-handed weapon.
+Chunk of brain
+Disgusting !
+Tears of the Tearful Widow
+A jewel which suit perfectly to a woman in mourning.
+Horned barbute
+A barbarian helmet\extremely resilient.\Unavailable in the shops.
+Copper ore
+A basic material for\weapons and armors crafting.
 Ruby
-A_beautiful_precious_stone.
-Blueprint_:_Horned_barbute
-Blueprint_explaining_the_construction_of_a_horned_barbute.
+A beautiful precious stone.
+Blueprint : Horned barbute
+Blueprint explaining the construction of a horned barbute.

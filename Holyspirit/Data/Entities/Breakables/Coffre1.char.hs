@@ -114,6 +114,10 @@ $
 		*Drawing_tiare.item.hs
 		r2000
 	$
+		*
+		*Drawing_shield_bronze.item.hs
+		r2000
+	$
 
 
 
