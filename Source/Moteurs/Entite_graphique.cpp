@@ -73,15 +73,6 @@ void Entite_graphique::NextTile()
 {
     if(m_tileset != NULL)
     {
-        m_noAnimation = m_tileset->getAnimationTile(m_noAnimation);
-
-        coordonnee position;
-        position.x = (int)(m_sprite.GetPosition().x/64/5);
-        position.y = (int)(m_sprite.GetPosition().y/32/5);
-
-        if(m_tileset->getSonTile(m_noAnimation) >= 0)
-            m_tileset->JouerSon(m_tileset->getSonTile(m_noAnimation),position,option_sonUnique);
-
         if(m_tileset->getAttaqueDuTile(m_noAnimation) >= 0)
         {
             if(m_tileset->getAttaqueDuTile(m_noAnimation) == 0)
@@ -91,6 +82,15 @@ void Entite_graphique::NextTile()
             else if(m_tileset->getAttaqueDuTile(m_noAnimation) == 2)
                 attaque_pause   = true;
         }
+
+        m_noAnimation = m_tileset->getAnimationTile(m_noAnimation);
+
+        coordonnee position;
+        position.x = (int)(m_sprite.GetPosition().x/64/5);
+        position.y = (int)(m_sprite.GetPosition().y/32/5);
+
+        if(m_tileset->getSonTile(m_noAnimation) >= 0)
+            m_tileset->JouerSon(m_tileset->getSonTile(m_noAnimation),position,option_sonUnique);
 
         if (configuration->Lumiere && m_light.ID() != -1)
         {
@@ -202,7 +202,7 @@ void Entite_graphique::Generer()
             coordonnee positionPartieDecor = m_tileset->getPositionDuTile(m_noAnimation);
 
             m_sprite.SetImage(*moteurGraphique->getImage(m_tileset->getImage(m_noAnimation)));
-            m_sprite.SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
+            m_sprite.SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h-1));
 
             m_sprite.SetOrigin(m_tileset->getCentreDuTile(m_noAnimation).x,m_tileset->getCentreDuTile(m_noAnimation).y);
 

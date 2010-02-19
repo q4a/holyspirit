@@ -150,7 +150,7 @@ void MoteurSons::PlayNewMusic(std::string chemin)
     m_music.Play();
 }
 
-const sf::Sound::Status &MoteurSons::GetMusicStatus()
+sf::Sound::Status MoteurSons::GetMusicStatus()
 {
     return m_music.GetStatus();
 }

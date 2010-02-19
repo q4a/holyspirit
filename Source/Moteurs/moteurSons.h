@@ -44,7 +44,7 @@ class MoteurSons : public CSingleton<MoteurSons>
 
 	void setVolumeMusique(int volume);
 
-	const sf::Sound::Status &GetMusicStatus();
+	sf::Sound::Status GetMusicStatus();
 
 	std::string getCheminSon(int IDimage);
 

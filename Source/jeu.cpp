@@ -99,6 +99,7 @@ void Jeu::Demarrer()
         }
 
         m_contexte->Utiliser(this);
+
         if(m_display)
             moteurGraphique->Afficher();
     }

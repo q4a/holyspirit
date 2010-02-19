@@ -24,11 +24,17 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <iostream>
 #include "../constantes.h"
 
-struct Instruction
+
+
+class Instruction
 {
+    public:
+
     std::string nom;
-    std::vector < int > valeurs;
     std::string valeurString;
+
+    std::vector < int > m_valeurs;
+    std::vector < int > m_var_valeurs;
 };
 
 class Script
@@ -42,14 +48,22 @@ public:
     void Sauvegarder(std::ofstream &fichier);
     void Sauvegarder_instruction(std::ofstream &fichier , int no);
 
+    void setVariable(int i, int val);
+    int  getVariable(int i);
+    int  getNbrVariable();
+
+    void setValeur(int no, int i, int val);
+    int  getValeur(int no, int i);
+
     void AjouterCondition(std::ifstream *fichier);
     int Lire(std::ifstream *fichier);
 
     std::vector<Instruction> m_instructions;
 
-    int variables[10];
-
     std::vector<std::string> m_text;
+
+protected:
+    std::vector <int> m_variables;
 };
 
 #endif

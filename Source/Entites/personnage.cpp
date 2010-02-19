@@ -287,8 +287,8 @@ void Personnage::Sauvegarder(ofstream &fichier)
             <<" lb" <<m_porteeLumineuse.bleu
             <<" li" <<m_porteeLumineuse.intensite;
 
-    for(int z = 0 ; z < 10 ; ++z)
-        fichier<<"s"<<z<<m_scriptAI.variables[z]<<" ";
+    for(int z = 0 ; z < m_scriptAI.getNbrVariable() ; ++z)
+        fichier<<"s "<<z<<" "<<m_scriptAI.getVariable(z)<<" ";
 
     for (unsigned o=0;o < m_objets.size();o++)
             m_objets[o].SauvegarderTexte(&fichier);

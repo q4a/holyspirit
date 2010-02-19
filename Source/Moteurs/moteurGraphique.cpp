@@ -89,7 +89,7 @@ void MoteurGraphique::CreateNewWindow()
     else
         m_ecran.Create(sf::VideoMode(configuration->Resolution.x, configuration->Resolution.y),"HolySpirit : Act of Faith",sf::Style::Titlebar);
 
-    if (configuration->syncronisation_verticale)
+   if (configuration->syncronisation_verticale)
         m_ecran.SetFramerateLimit(60);
 
     m_ecran.ShowMouseCursor(false);
@@ -362,7 +362,7 @@ void MoteurGraphique::Afficher()
         if(configuration->postFX)
             EffectShadow.SetTexture("shadow_map", m_light_screen2.GetImage());
 
-        configuration->RafraichirOmbre=2;
+        //configuration->RafraichirOmbre = 0;
     }
 
     if (configuration->Lumiere && configuration->RafraichirLumiere)
@@ -381,7 +381,7 @@ void MoteurGraphique::Afficher()
 
         m_light_screen.Display();
 
-        configuration->RafraichirLumiere=false;
+        //configuration->RafraichirLumiere=false;
     }
 
     bufferImage.Clear(sf::Color(0,0,0,255));

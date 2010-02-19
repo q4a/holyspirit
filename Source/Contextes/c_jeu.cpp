@@ -352,7 +352,7 @@ void c_Jeu::Animation(Jeu *jeu)
 }
 void c_Jeu::Lumieres(Jeu *jeu)
 {
-    if (configuration->Lumiere&&tempsEcouleDepuisDernierCalculLumiere>configuration->frequence_lumiere/2&&configuration->RafraichirOmbre==0)
+    /*if (configuration->Lumiere&&tempsEcouleDepuisDernierCalculLumiere>configuration->frequence_lumiere/2&&configuration->RafraichirOmbre==0)
         configuration->RafraichirOmbre=1;
 
     if (configuration->Lumiere&&tempsEcouleDepuisDernierCalculLumiere>configuration->frequence_lumiere)
@@ -366,6 +366,22 @@ void c_Jeu::Lumieres(Jeu *jeu)
         tempsEcouleDepuisDernierCalculLumiere=0;
 
         moteurGraphique->LightManager->Generate(jeu->hero.m_personnage.m_entite_graphique.m_light);
+    }*/
+
+    if(configuration->RafraichirOmbre > 0)
+    {
+        jeu->map->CalculerOmbresEtLumieres();
+
+        configuration->RafraichirLumiere = true;
+        configuration->RafraichirOmbre = false;
+        tempsEcouleDepuisDernierCalculLumiere=0;
+
+        moteurGraphique->LightManager->Generate(jeu->hero.m_personnage.m_entite_graphique.m_light);
+    }
+    else
+    {
+        configuration->RafraichirLumiere = false;
+        configuration->RafraichirOmbre = true;
     }
 }
 

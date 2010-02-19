@@ -27,8 +27,6 @@ using namespace std;
 
 Script::Script()
 {
-    for (int i=0;i<10;i++)
-        variables[i]=0;
 }
 
 
@@ -57,7 +55,10 @@ void Script::AjouterCondition(ifstream *fichier)
         if (temp==-1)
             OK=false;
         else
-            m_instructions.at(noCondition).valeurs.push_back(temp);
+        {
+            m_instructions[noCondition].m_valeurs.push_back(temp);
+            m_instructions[noCondition].m_var_valeurs.push_back(-1);
+        }
     }
 }
 
@@ -79,8 +80,24 @@ int Script::Lire(ifstream *fichier)
     else if (temp=="*")
     {
         int valeur;
+
         *fichier>>valeur;
-        m_instructions.back().valeurs.push_back(valeur);
+
+
+        m_instructions.back().m_valeurs.push_back(valeur);
+        m_instructions.back().m_var_valeurs.push_back(-1);
+
+        retour = -4;
+    }
+    else if (temp=="$")
+    {
+        int valeur;
+
+        *fichier>>valeur;
+
+        m_instructions.back().m_valeurs.push_back(-1);
+        m_instructions.back().m_var_valeurs.push_back(valeur);
+
         retour = -4;
     }
     else if (temp=="\"")
@@ -126,18 +143,21 @@ void Script::Sauvegarder_instruction(ofstream &fichier , int no)
         {
             if(m_instructions[no].nom == "main")
             {
-                for(int i = 0 ; i < 10 ; ++i)
-                    fichier<<endl<<"variable * "<<i<<" * "<<variables[i]<<endl;
+                for(int i = 0 ; i < m_variables.size() ; ++i)
+                    fichier<<endl<<"variable * "<<i<<" * "<<m_variables[i]<<endl;
             }
-            for(unsigned i = 0 ; i < m_instructions[no].valeurs.size() ; ++i)
-                Sauvegarder_instruction(fichier ,m_instructions[no].valeurs[i]);
+            for(unsigned i = 0 ; i < m_instructions[no].m_valeurs.size() ; ++i)
+                Sauvegarder_instruction(fichier ,m_instructions[no].m_valeurs[i]);
 
             fichier<<"end"<<endl;
         }
         else
         {
-            for(unsigned i = 0 ; i < m_instructions[no].valeurs.size() ; ++i)
-                fichier<<"* "<<m_instructions[no].valeurs[i]<<" ";
+            for(unsigned i = 0 ; i < m_instructions[no].m_valeurs.size() ; ++i)
+                if(m_instructions[no].m_var_valeurs[i] >= 0)
+                    fichier<<"$ "<<m_instructions[no].m_var_valeurs[i]<<" ";
+                else
+                    fichier<<"* "<<m_instructions[no].m_valeurs[i]<<" ";
         }
         fichier<<endl;
     }
@@ -169,7 +189,11 @@ void Script::Charger(ifstream &fichier)
             if (temp==-1)
                 OK=false;
             else
-                m_instructions[0].valeurs.push_back(temp);
+            {
+                m_instructions[0].m_valeurs.push_back(temp);
+                m_instructions[0].m_var_valeurs.push_back(-1);
+            }
+
         }
         fichier.close();
     }
@@ -184,4 +208,57 @@ void Script::Charger(const std::string &chemin)
     Charger(fichier);
 
     console->Ajouter("Chargement du script : \" "+chemin+" \"");
+}
+
+void Script::setVariable(int i, int val)
+{
+    if(i >= m_variables.size())
+        m_variables.resize(i + 1);
+
+    m_variables[i] = val;
+}
+
+int Script::getVariable(int i)
+{
+    if(i >= m_variables.size())
+        m_variables.resize(i + 1, 0);
+
+    return m_variables[i];
+}
+
+int Script::getNbrVariable()
+{
+    return m_variables.size();
+}
+
+void Script::setValeur(int no, int i, int val)
+{
+    if( no >= 0 && no < m_instructions.size())
+    {
+        if(i >= m_instructions[no].m_valeurs.size())
+            m_instructions[no].m_valeurs.resize(i + 1, 0), m_instructions[no].m_var_valeurs.resize(i + 1, -1);
+
+        m_instructions[no].m_valeurs[i] = val;
+    }
+}
+
+int Script::getValeur(int no, int i)
+{
+    if( no >= 0 && no < m_instructions.size())
+    {
+        if(i >= m_instructions[no].m_valeurs.size())
+            m_instructions[no].m_valeurs.resize(i + 1, 0), m_instructions[no].m_var_valeurs.resize(i + 1, -1);
+
+        if(m_instructions[no].m_var_valeurs[i] >= 0)
+        {
+            if(m_instructions[no].m_var_valeurs[i] < m_variables.size())
+                return m_variables[m_instructions[no].m_var_valeurs[i]];
+            else
+                return (0);
+        }
+        else
+            return m_instructions[no].m_valeurs[i];
+    }
+
+    return (0);
 }
