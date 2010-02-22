@@ -40,23 +40,23 @@ $
 		//Sons
 			* mData/Sounds/Globe.wav $
 		$
-		* x768 y768 w256 h256 ey128 ex128 i1 a15 n0.1 lv255 li120 p0$		
+		* x768 y768 w256 h256 ey128 ex128 i1 a15 n0.1 lv255 li120 p0 u1 $		
 
-		* x0 y0 w256 h256 ey128 ex128 i1 a0 n0.1 lv255 li0 p240 $
-		* x256 y0 w256 h256 ey128 ex128 i1 a1 n0.1 lv255 li8 p224 $
-		* x512 y0 w256 h256 ey128 ex128 i1 a2 n0.1 lv255 li16 p208 $
-		* x768 y0 w256 h256 ey128 ex128 i1 a3 n0.1 lv255 li24 p192 $
-		* x0 y256 w256 h256 ey128 ex128 i1 a4 n0.1 lv255 li32 p176 $
-		* x256 y256 w256 h256 ey128 ex128 i1 a5 n0.1 lv255 li40 p160 $
-		* x512 y256 w256 h256 ey128 ex128 i1 a6 n0.1 lv255 li48 p144 $
-		* x768 y256 w256 h256 ey128 ex128 i1 a7 n0.1 lv255 li56 p128 $
-		* x0 y512 w256 h256 ey128 ex128 i1 a8 n0.1 lv255 li64 p112 $
-		* x256 y512 w256 h256 ey128 ex128 i1 a9 n0.1 lv255 li72 p96 $
-		* x512 y512 w256 h256 ey128 ex128 i1 a10 n0.1 lv255 li80 p80 $
-		* x768 y512 w256 h256 ey128 ex128 i1 a11 n0.1 lv255 li88 p64 $
-		* x0 y768 w256 h256 ey128 ex128 i1 a12 n0.1 lv255 li96 p48 $
-		* x256 y768 w256 h256 ey128 ex128 i1 a13 n0.1 lv255 li104 p32 $
-		* x512 y768 w256 h256 ey128 ex128 i1 a14 n0.1 lv255 li112 p16 s0  $
+		* x0 y0 w256 h256 ey128 ex128 i1 a0 n0.1 lv255 li0 p240 u1  $
+		* x256 y0 w256 h256 ey128 ex128 i1 a1 n0.1 lv255 li8 p224 u1  $
+		* x512 y0 w256 h256 ey128 ex128 i1 a2 n0.1 lv255 li16 p208 u1  $
+		* x768 y0 w256 h256 ey128 ex128 i1 a3 n0.1 lv255 li24 p192 u1  $
+		* x0 y256 w256 h256 ey128 ex128 i1 a4 n0.1 lv255 li32 p176 u1  $
+		* x256 y256 w256 h256 ey128 ex128 i1 a5 n0.1 lv255 li40 p160 u1  $
+		* x512 y256 w256 h256 ey128 ex128 i1 a6 n0.1 lv255 li48 p144 u1  $
+		* x768 y256 w256 h256 ey128 ex128 i1 a7 n0.1 lv255 li56 p128 u1  $
+		* x0 y512 w256 h256 ey128 ex128 i1 a8 n0.1 lv255 li64 p112 u1  $
+		* x256 y512 w256 h256 ey128 ex128 i1 a9 n0.1 lv255 li72 p96 u1  $
+		* x512 y512 w256 h256 ey128 ex128 i1 a10 n0.1 lv255 li80 p80 u1  $
+		* x768 y512 w256 h256 ey128 ex128 i1 a11 n0.1 lv255 li88 p64 u1  $
+		* x0 y768 w256 h256 ey128 ex128 i1 a12 n0.1 lv255 li96 p48 u1  $
+		* x256 y768 w256 h256 ey128 ex128 i1 a13 n0.1 lv255 li104 p32 u1  $
+		* x512 y768 w256 h256 ey128 ex128 i1 a14 n0.1 lv255 li112 p16 s0 u1   $
 	$
 	*
 		//Images
@@ -66,22 +66,22 @@ $
 		//Sons
 			* mData/Sounds/Globe.wav $
 		$
-		* x0 y0 w256 h256 ey128 ex128 i1 a1 n0.1 lv255 li128 $
-		* x256 y0 w256 h256 ey128 ex128 i1 a2 n0.1 lv255 li144 $
-		* x512 y0 w256 h256 ey128 ex128 i1 a3 n0.1 lv255 li128 $
-		* x768 y0 w256 h256 ey128 ex128 i1 a4 n0.1 lv255 li112 $
-		* x0 y256 w256 h256 ey128 ex128 i1 a5 n0.1 lv255 li128 $
-		* x256 y256 w256 h256 ey128 ex128 i1 a6 n0.1 lv255 li144 $
-		* x512 y256 w256 h256 ey128 ex128 i1 a7 n0.1 lv255 li128 $
-		* x768 y256 w256 h256 ey128 ex128 i1 a8 n0.1 lv255 li112 $
-		* x0 y512 w256 h256 ey128 ex128 i1 a9 n0.1 lv255 li128 $
-		* x256 y512 w256 h256 ey128 ex128 i1 a10 n0.1 lv255 li144 $
-		* x512 y512 w256 h256 ey128 ex128 i1 a11 n0.1 lv255 li128 $
-		* x768 y512 w256 h256 ey128 ex128 i1 a12 n0.1 lv255 li112 $
-		* x0 y768 w256 h256 ey128 ex128 i1 a13 n0.1 lv255 li128 $
-		* x256 y768 w256 h256 ey128 ex128 i1 a14 n0.1 lv255 li144 $
-		* x512 y768 w256 h256 ey128 ex128 i1 a15 n0.1 lv255 li128 $
-		* x768 y768 w256 h256 ey128 ex128 i1 a0 n0.1 lv255 l112 $
+		* x0 y0 w256 h256 ey128 ex128 i1 a1 n0.1 lv255 li128 u1  $
+		* x256 y0 w256 h256 ey128 ex128 i1 a2 n0.1 lv255 li144 u1  $
+		* x512 y0 w256 h256 ey128 ex128 i1 a3 n0.1 lv255 li128 u1  $
+		* x768 y0 w256 h256 ey128 ex128 i1 a4 n0.1 lv255 li112 u1  $
+		* x0 y256 w256 h256 ey128 ex128 i1 a5 n0.1 lv255 li128 u1  $
+		* x256 y256 w256 h256 ey128 ex128 i1 a6 n0.1 lv255 li144 u1  $
+		* x512 y256 w256 h256 ey128 ex128 i1 a7 n0.1 lv255 li128 u1  $
+		* x768 y256 w256 h256 ey128 ex128 i1 a8 n0.1 lv255 li112 u1  $
+		* x0 y512 w256 h256 ey128 ex128 i1 a9 n0.1 lv255 li128 u1  $
+		* x256 y512 w256 h256 ey128 ex128 i1 a10 n0.1 lv255 li144 u1  $
+		* x512 y512 w256 h256 ey128 ex128 i1 a11 n0.1 lv255 li128 u1  $
+		* x768 y512 w256 h256 ey128 ex128 i1 a12 n0.1 lv255 li112 u1  $
+		* x0 y768 w256 h256 ey128 ex128 i1 a13 n0.1 lv255 li128 u1  $
+		* x256 y768 w256 h256 ey128 ex128 i1 a14 n0.1 lv255 li144 u1  $
+		* x512 y768 w256 h256 ey128 ex128 i1 a15 n0.1 lv255 li128 u1  $
+		* x768 y768 w256 h256 ey128 ex128 i1 a0 n0.1 lv255 l112 u1  $
 	$
 	*
 		//Images
@@ -93,21 +93,21 @@ $
 		$
 		* x768 y768 w256 h256 ey128 ex128 i1 a15 n0.1 lv255 li120 p240 $		
 
-		* x0 y0 w256 h256 ey128 ex128 i1 a0 n0.1 lv255 li0 p0 $
-		* x256 y0 w256 h256 ey128 ex128 i1 a1 n0.1 lv255 li8 p16 $
-		* x512 y0 w256 h256 ey128 ex128 i1 a2 n0.1 lv255 li16 p32 $
-		* x768 y0 w256 h256 ey128 ex128 i1 a3 n0.1 lv255 li24 p48 $
-		* x0 y256 w256 h256 ey128 ex128 i1 a4 n0.1 lv255 li32 p64 $
-		* x256 y256 w256 h256 ey128 ex128 i1 a5 n0.1 lv255 li40 p80 $
-		* x512 y256 w256 h256 ey128 ex128 i1 a6 n0.1 lv255 li48 p96 $
-		* x768 y256 w256 h256 ey128 ex128 i1 a7 n0.1 lv255 li56 p112 $
-		* x0 y512 w256 h256 ey128 ex128 i1 a8 n0.1 lv255 li64 p128 $
-		* x256 y512 w256 h256 ey128 ex128 i1 a9 n0.1 lv255 li72 p144 $
-		* x512 y512 w256 h256 ey128 ex128 i1 a10 n0.1 lv255 li80 p160 $
-		* x768 y512 w256 h256 ey128 ex128 i1 a11 n0.1 lv255 li88 p176 $
-		* x0 y768 w256 h256 ey128 ex128 i1 a12 n0.1 lv255 li96 p192 $
-		* x256 y768 w256 h256 ey128 ex128 i1 a13 n0.1 lv255 li104 p208 $
-		* x512 y768 w256 h256 ey128 ex128 i1 a14 n0.1 lv255 li112 p224 $
+		* x0 y0 w256 h256 ey128 ex128 i1 a0 n0.1 lv255 li0 p0 u1  $
+		* x256 y0 w256 h256 ey128 ex128 i1 a1 n0.1 lv255 li8 p16 u1  $
+		* x512 y0 w256 h256 ey128 ex128 i1 a2 n0.1 lv255 li16 p32 u1  $
+		* x768 y0 w256 h256 ey128 ex128 i1 a3 n0.1 lv255 li24 p48 u1  $
+		* x0 y256 w256 h256 ey128 ex128 i1 a4 n0.1 lv255 li32 p64 u1  $
+		* x256 y256 w256 h256 ey128 ex128 i1 a5 n0.1 lv255 li40 p80 u1  $
+		* x512 y256 w256 h256 ey128 ex128 i1 a6 n0.1 lv255 li48 p96 u1  $
+		* x768 y256 w256 h256 ey128 ex128 i1 a7 n0.1 lv255 li56 p112 u1  $
+		* x0 y512 w256 h256 ey128 ex128 i1 a8 n0.1 lv255 li64 p128 u1  $
+		* x256 y512 w256 h256 ey128 ex128 i1 a9 n0.1 lv255 li72 p144 u1  $
+		* x512 y512 w256 h256 ey128 ex128 i1 a10 n0.1 lv255 li80 p160 u1  $
+		* x768 y512 w256 h256 ey128 ex128 i1 a11 n0.1 lv255 li88 p176 u1  $
+		* x0 y768 w256 h256 ey128 ex128 i1 a12 n0.1 lv255 li96 p192 u1  $
+		* x256 y768 w256 h256 ey128 ex128 i1 a13 n0.1 lv255 li104 p208 u1  $
+		* x512 y768 w256 h256 ey128 ex128 i1 a14 n0.1 lv255 li112 p224 u1  $
 	$
 	*
 		//Images
