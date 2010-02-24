@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="GUI" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin\Debug\GUI" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add option="-lsfml-audio-s-d" />
+					<Add option="-lsfml-graphics-s-d" />
+					<Add option="-lsfml-window-s-d" />
+					<Add option="-lsfml-system-s-d" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin\Release\GUI" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-lsfml-audio-s" />
+					<Add option="-lsfml-graphics-s" />
+					<Add option="-lsfml-window-s" />
+					<Add option="-lsfml-system-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add directory="..\..\..\..\..\SFML_SVN\branches\sfml2\include" />
+		</Compiler>
+		<Linker>
+			<Add directory="..\..\..\..\..\SFML_SVN\branches\sfml2\lib\mingw" />
+		</Linker>
+		<Unit filename="Bejeweled.cpp" />
+		<Unit filename="Bejeweled.hpp" />
+		<Unit filename="CustomisationPanel.cpp" />
+		<Unit filename="CustomisationPanel.hpp" />
+		<Unit filename="Engines\EventManager.cpp" />
+		<Unit filename="Engines\EventManager.hpp" />
+		<Unit filename="GUI\Button.cpp" />
+		<Unit filename="GUI\Button.hpp" />
+		<Unit filename="GUI\GUIAnimatedImage.cpp" />
+		<Unit filename="GUI\GUIAnimatedImage.hpp" />
+		<Unit filename="GUI\GUIImage.cpp" />
+		<Unit filename="GUI\GUIImage.hpp" />
+		<Unit filename="GUI\GUIInput.cpp" />
+		<Unit filename="GUI\GUIInput.hpp" />
+		<Unit filename="GUI\GUIProgressBar.cpp" />
+		<Unit filename="GUI\GUIProgressBar.hpp" />
+		<Unit filename="GUI\GUIWindow.cpp" />
+		<Unit filename="GUI\GUIWindow.hpp" />
+		<Unit filename="GUI\Label.cpp" />
+		<Unit filename="GUI\Label.hpp" />
+		<Unit filename="GUI\Tab.cpp" />
+		<Unit filename="GUI\Tab.hpp" />
+		<Unit filename="GUI\TabBar.cpp" />
+		<Unit filename="GUI\TabBar.hpp" />
+		<Unit filename="GUI\Widget.cpp" />
+		<Unit filename="GUI\Widget.hpp" />
+		<Unit filename="GamePanel.cpp" />
+		<Unit filename="GamePanel.hpp" />
+		<Unit filename="Global.hpp" />
+		<Unit filename="MenuPanel.cpp" />
+		<Unit filename="MenuPanel.hpp" />
+		<Unit filename="OptionPanel.cpp" />
+		<Unit filename="OptionPanel.hpp" />
+		<Unit filename="RessourceBar.cpp" />
+		<Unit filename="RessourceBar.hpp" />
+		<Unit filename="Utils\Singleton.hpp" />
+		<Unit filename="WindowGame.cpp" />
+		<Unit filename="WindowGame.hpp" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

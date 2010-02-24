@@ -1,0 +1,608 @@
+# depslib dependency file v1.0
+1262178308 source:e:\c++\petits jeux\eos\sources\gui\gui\gui\button.cpp
+	"Button.hpp"
+	<iostream>
+
+1262172792 e:\c++\petits jeux\eos\sources\gui\gui\gui\button.hpp
+	"Widget.hpp"
+
+1262179505 e:\c++\petits jeux\eos\sources\gui\gui\gui\widget.hpp
+	<SFML/Graphics.hpp>
+	"../Global.hpp"
+
+1266431856 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics.hpp
+	<SFML/Window.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Font.hpp>
+	<SFML/Graphics/Glyph.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Graphics/RenderImage.hpp>
+	<SFML/Graphics/RenderQueue.hpp>
+	<SFML/Graphics/RenderWindow.hpp>
+	<SFML/Graphics/Shader.hpp>
+	<SFML/Graphics/Shape.hpp>
+	<SFML/Graphics/Sprite.hpp>
+	<SFML/Graphics/Text.hpp>
+	<SFML/Graphics/View.hpp>
+
+1263495650 e:\c++\sfml_svn\branches\sfml2\include\sfml\window.hpp
+	<SFML/System.hpp>
+	<SFML/Window/Context.hpp>
+	<SFML/Window/ContextSettings.hpp>
+	<SFML/Window/Event.hpp>
+	<SFML/Window/Input.hpp>
+	<SFML/Window/VideoMode.hpp>
+	<SFML/Window/Window.hpp>
+	<SFML/Window/WindowListener.hpp>
+	<SFML/Window/WindowStyle.hpp>
+
+1263495650 e:\c++\sfml_svn\branches\sfml2\include\sfml\system.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Clock.hpp>
+	<SFML/System/Lock.hpp>
+	<SFML/System/Mutex.hpp>
+	<SFML/System/Randomizer.hpp>
+	<SFML/System/Sleep.hpp>
+	<SFML/System/String.hpp>
+	<SFML/System/Thread.hpp>
+	<SFML/System/ThreadLocal.hpp>
+	<SFML/System/ThreadLocalPtr.hpp>
+	<SFML/System/Utf.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Vector3.hpp>
+
+1263495650 e:\c++\sfml_svn\branches\sfml2\include\sfml\config.hpp
+	<climits>
+
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\clock.hpp
+	<SFML/Config.hpp>
+
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\lock.hpp
+	<SFML/System/NonCopyable.hpp>
+
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\noncopyable.hpp
+	<SFML/Config.hpp>
+
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\mutex.hpp
+	<SFML/Config.hpp>
+	<SFML/System/NonCopyable.hpp>
+
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\randomizer.hpp
+	<SFML/Config.hpp>
+
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\sleep.hpp
+	<SFML/Config.hpp>
+
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\string.hpp
+	<SFML/Config.hpp>
+	<locale>
+	<string>
+
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\thread.hpp
+	<SFML/Config.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<cstdlib>
+
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\threadlocal.hpp
+	<SFML/Config.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<cstdlib>
+
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\threadlocalptr.hpp
+	<SFML/System/ThreadLocal.hpp>
+	<SFML/System/ThreadLocalPtr.inl>
+
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\threadlocalptr.inl
+
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\utf.hpp
+	<SFML/Config.hpp>
+	<algorithm>
+	<locale>
+	<string>
+	<stdlib.h>
+	<SFML/System/Utf.inl>
+
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\utf.inl
+
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\vector2.hpp
+	<SFML/System/Vector2.inl>
+
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\vector2.inl
+
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\vector3.hpp
+	<SFML/System/Vector3.inl>
+
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\vector3.inl
+
+1263495650 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\context.hpp
+	<SFML/Config.hpp>
+	<SFML/System/NonCopyable.hpp>
+
+1263495650 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\contextsettings.hpp
+
+1263495650 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\event.hpp
+	<SFML/Config.hpp>
+
+1263495650 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\input.hpp
+	<SFML/Config.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/Window/Event.hpp>
+	<SFML/Window/WindowListener.hpp>
+
+1263495650 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\windowlistener.hpp
+	<SFML/Config.hpp>
+
+1263495650 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\videomode.hpp
+	<SFML/Config.hpp>
+	<cstdlib>
+
+1266431855 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\window.hpp
+	<SFML/Window/Event.hpp>
+	<SFML/Window/Input.hpp>
+	<SFML/Window/VideoMode.hpp>
+	<SFML/Window/WindowHandle.hpp>
+	<SFML/Window/WindowListener.hpp>
+	<SFML/Window/ContextSettings.hpp>
+	<SFML/Window/WindowStyle.hpp>
+	<SFML/System/Clock.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<queue>
+	<string>
+
+1263495650 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\windowhandle.hpp
+	<SFML/Config.hpp>
+
+1263495650 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\windowstyle.hpp
+
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\color.hpp
+	<SFML/Config.hpp>
+
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\font.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/String.hpp>
+	<SFML/Graphics/Glyph.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<map>
+	<string>
+	<vector>
+
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\resource.hpp
+	<set>
+	<SFML/System/Resource.inl>
+	<SFML/System/ResourcePtr.inl>
+
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\resource.inl
+
+1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\resourceptr.inl
+
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\glyph.hpp
+	<SFML/Config.hpp>
+	<SFML/Graphics/Rect.hpp>
+
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\rect.hpp
+	<SFML/System/Vector2.hpp>
+	<algorithm>
+	<SFML/Graphics/Rect.inl>
+
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\rect.inl
+
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\image.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<string>
+	<vector>
+
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderimage.hpp
+	<SFML/System/NonCopyable.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+
+1266431855 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\rendertarget.hpp
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/RenderQueue.hpp>
+	<SFML/Graphics/View.hpp>
+
+1266431855 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderqueue.hpp
+	<SFML/Config.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Matrix3.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<vector>
+
+1266431855 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\drawable.hpp
+	<SFML/System/Vector2.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Matrix3.hpp>
+
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\matrix3.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<math.h>
+	<SFML/Graphics/Matrix3.inl>
+
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\matrix3.inl
+
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\view.hpp
+	<SFML/Config.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Matrix3.hpp>
+	<SFML/System/Vector2.hpp>
+
+1266431855 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderwindow.hpp
+	<SFML/Graphics/Image.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/Window/Window.hpp>
+	<string>
+
+1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\shader.hpp
+	<SFML/Config.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Vector3.hpp>
+	<map>
+	<string>
+
+1266431855 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\shape.hpp
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/System/Vector2.hpp>
+	<vector>
+
+1266431855 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\sprite.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Rect.hpp>
+
+1266431855 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\text.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/System/String.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Font.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<string>
+
+1262107437 e:\c++\petits jeux\eos\sources\gui\gui\global.hpp
+	<SFML/Graphics.hpp>
+	"Engines/EventManager.hpp"
+
+1262107435 e:\c++\petits jeux\eos\sources\gui\gui\engines\eventmanager.hpp
+	<SFML/Graphics.hpp>
+	<SFML/System.hpp>
+	"../Utils/Singleton.hpp"
+
+1262107435 e:\c++\petits jeux\eos\sources\gui\gui\utils\singleton.hpp
+
+1262179505 source:e:\c++\petits jeux\eos\sources\gui\gui\gui\widget.cpp
+	"Widget.hpp"
+
+1262179441 source:e:\c++\petits jeux\eos\sources\gui\gui\windowgame.cpp
+	"WindowGame.hpp"
+	<iostream>
+
+1262179349 e:\c++\petits jeux\eos\sources\gui\gui\windowgame.hpp
+	"Global.hpp"
+	"GUI/Button.hpp"
+	"GUI/GUIWindow.hpp"
+
+1262107437 source:e:\c++\petits jeux\eos\sources\gui\gui\main.cpp
+	<iostream>
+	"WindowGame.hpp"
+
+1262107435 source:e:\c++\petits jeux\eos\sources\gui\gui\engines\eventmanager.cpp
+	"EventManager.hpp"
+
+1262178902 e:\c++\petits jeux\eos\sources\gui\gui\gui\window.hpp
+	"../Global.hpp"
+	"Widget.hpp"
+
+1262179293 source:e:\c++\petits jeux\eos\sources\gui\gui\gui\guiwindow.cpp
+	"GUIWindow.hpp"
+	<iostream>
+
+1262179467 e:\c++\petits jeux\eos\sources\gui\gui\gui\guiwindow.hpp
+	"../Global.hpp"
+	"Widget.hpp"
+
+1263135088 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guiwindow.cpp
+	"GUIWindow.hpp"
+	<iostream>
+
+1262425952 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guiwindow.hpp
+	"../Global.hpp"
+	"Widget.hpp"
+
+1262107437 e:\c++\petits jeux\eos\sources\gui\gui_greg\global.hpp
+	<SFML/Graphics.hpp>
+	"Engines/EventManager.hpp"
+
+1263134933 e:\c++\petits jeux\eos\sources\gui\gui_greg\engines\eventmanager.hpp
+	<SFML/Graphics.hpp>
+	<SFML/System.hpp>
+	"../Utils/Singleton.hpp"
+
+1262107435 e:\c++\petits jeux\eos\sources\gui\gui_greg\utils\singleton.hpp
+
+1265539324 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\widget.hpp
+	<SFML/Graphics.hpp>
+	"../Global.hpp"
+	<list>
+
+1265659937 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\widget.cpp
+	"Widget.hpp"
+
+1265663169 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.cpp
+	"WindowGame.hpp"
+	<iostream>
+
+1265543996 e:\c++\petits jeux\eos\sources\gui\gui_greg\windowgame.hpp
+	"Global.hpp"
+	"Bejeweled.hpp"
+	"GUI/Button.hpp"
+	"RessourceBar.hpp"
+	"GUI/TabBar.hpp"
+	"GUI/Label.hpp"
+	"GUI/GUIImage.hpp"
+	"GUI/GUIAnimatedImage.hpp"
+	"GUI/GUIWindow.hpp"
+
+1265459251 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\button.hpp
+	"GUIImage.hpp"
+	"Label.hpp"
+
+1262107437 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\main.cpp
+	<iostream>
+	"WindowGame.hpp"
+
+1263134933 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\engines\eventmanager.cpp
+	"EventManager.hpp"
+
+1265460877 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\button.cpp
+	"Button.hpp"
+	<iostream>
+
+1265542507 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\label.cpp
+	"Label.hpp"
+	<iostream>
+
+1263643265 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\label.hpp
+	"Widget.hpp"
+
+1265542447 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guiimage.cpp
+	"GUIImage.hpp"
+	<iostream>
+
+1262447898 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guiimage.hpp
+	"Widget.hpp"
+
+1265663169 e:\c++\petits jeux\eos\sources\gui\gui_greg\bejeweled.hpp
+	"GUI/Widget.hpp"
+
+1265663169 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\bejeweled.cpp
+	"Bejeweled.hpp"
+	<iostream>
+	<sstream>
+
+1265459342 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\tab.cpp
+	"Tab.hpp"
+	<iostream>
+
+1265459364 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\tab.hpp
+	"Button.hpp"
+
+1265459722 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\tabbar.cpp
+	"TabBar.hpp"
+	<iostream>
+
+1263325022 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\tabbar.hpp
+	"Tab.hpp"
+
+1265658516 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderer.hpp
+	<SFML/Config.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Matrix3.hpp>
+
+1265460877 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guianimatedimage.cpp
+	"GUIAnimatedImage.hpp"
+	<iostream>
+	<sstream>
+
+1265457578 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guianimatedimage.hpp
+	"GUIImage.hpp"
+
+1265542630 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guiprogressbar.cpp
+	"GUIProgressBar.hpp"
+	<iostream>
+
+1265545649 e:\c++\petits jeux\eos\sources\gui\gui_greg\gui\guiprogressbar.hpp
+	"GUIImage.hpp"
+	"Label.hpp"
+
+1265543996 e:\c++\petits jeux\eos\sources\gui\gui_greg\ressourcebar.hpp
+	"GUI/GUIProgressBar.hpp"
+
+1265546315 source:e:\c++\petits jeux\eos\sources\gui\gui_greg\ressourcebar.cpp
+	"RessourceBar.hpp"
+	<iostream>
+	<sstream>
+
+1266945339 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\bejeweled.cpp
+	"Bejeweled.hpp"
+	<iostream>
+	<sstream>
+
+1265663169 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\bejeweled.hpp
+	"GUI/Widget.hpp"
+
+1265539324 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\widget.hpp
+	<SFML/Graphics.hpp>
+	"../Global.hpp"
+	<list>
+
+1262107437 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\global.hpp
+	<SFML/Graphics.hpp>
+	"Engines/EventManager.hpp"
+
+1267019649 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\engines\eventmanager.hpp
+	<SFML/Graphics.hpp>
+	<SFML/System.hpp>
+	"../Utils/Singleton.hpp"
+
+1262107435 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\utils\singleton.hpp
+
+1267019628 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\engines\eventmanager.cpp
+	"EventManager.hpp"
+
+1267020416 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\button.cpp
+	"Button.hpp"
+	<iostream>
+
+1265459251 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\button.hpp
+	"GUIImage.hpp"
+	"Label.hpp"
+
+1262447898 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guiimage.hpp
+	"Widget.hpp"
+
+1263643265 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\label.hpp
+	"Widget.hpp"
+
+1265460877 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guianimatedimage.cpp
+	"GUIAnimatedImage.hpp"
+	<iostream>
+	<sstream>
+
+1265457578 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guianimatedimage.hpp
+	"GUIImage.hpp"
+
+1267016474 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guiimage.cpp
+	"GUIImage.hpp"
+	<iostream>
+
+1265542630 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guiprogressbar.cpp
+	"GUIProgressBar.hpp"
+	<iostream>
+
+1265545649 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guiprogressbar.hpp
+	"GUIImage.hpp"
+	"Label.hpp"
+
+1267019920 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guiwindow.cpp
+	"GUIWindow.hpp"
+	<iostream>
+
+1267019920 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guiwindow.hpp
+	"../Global.hpp"
+	"Widget.hpp"
+
+1265542507 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\label.cpp
+	"Label.hpp"
+	<iostream>
+
+1267020467 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\tab.cpp
+	"Tab.hpp"
+	<iostream>
+
+1265459364 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\tab.hpp
+	"Button.hpp"
+
+1265459722 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\tabbar.cpp
+	"TabBar.hpp"
+	<iostream>
+
+1263325022 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\tabbar.hpp
+	"Tab.hpp"
+
+1267019836 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\widget.cpp
+	"Widget.hpp"
+
+1265546315 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\ressourcebar.cpp
+	"RessourceBar.hpp"
+	<iostream>
+	<sstream>
+
+1265543996 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\ressourcebar.hpp
+	"GUI/GUIProgressBar.hpp"
+
+1262107437 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\main.cpp
+	<iostream>
+	"WindowGame.hpp"
+
+1266946130 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\windowgame.hpp
+	"GamePanel.hpp"
+	"MenuPanel.hpp"
+	"OptionPanel.hpp"
+	"CustomisationPanel.hpp"
+
+1267020332 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\windowgame.cpp
+	"WindowGame.hpp"
+	<iostream>
+
+1266942834 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gamepanel.hpp
+	"Global.hpp"
+	"Bejeweled.hpp"
+	"GUI/Button.hpp"
+	"GUI/GUIProgressBar.hpp"
+	"GUI/TabBar.hpp"
+	"GUI/Label.hpp"
+	"GUI/GUIImage.hpp"
+	"GUI/GUIAnimatedImage.hpp"
+	"GUI/GUIWindow.hpp"
+
+1266944200 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gamepanel.cpp
+	"GamePanel.hpp"
+
+1267020567 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\menupanel.hpp
+	"Global.hpp"
+	"GUI/Button.hpp"
+	"GUI/GUIProgressBar.hpp"
+	"GUI/TabBar.hpp"
+	"GUI/Label.hpp"
+	"GUI/GUIImage.hpp"
+	"GUI/GUIAnimatedImage.hpp"
+	"GUI/GUIWindow.hpp"
+	"GUI/GUIInput.hpp"
+
+1267020577 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\menupanel.cpp
+	"MenuPanel.hpp"
+
+1266946381 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\optionpanel.hpp
+	"Global.hpp"
+	"GUI/Button.hpp"
+	"GUI/GUIProgressBar.hpp"
+	"GUI/TabBar.hpp"
+	"GUI/Label.hpp"
+	"GUI/GUIImage.hpp"
+	"GUI/GUIAnimatedImage.hpp"
+	"GUI/GUIWindow.hpp"
+
+1266945698 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\customisationpanel.hpp
+	"Global.hpp"
+	"GUI/Button.hpp"
+	"GUI/GUIProgressBar.hpp"
+	"GUI/TabBar.hpp"
+	"GUI/Label.hpp"
+	"GUI/GUIImage.hpp"
+	"GUI/GUIAnimatedImage.hpp"
+	"GUI/GUIWindow.hpp"
+
+1266945744 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\customisationpanel.cpp
+	"CustomisationPanel.hpp"
+
+1266946481 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\optionpanel.cpp
+	"OptionPanel.hpp"
+
+1267020642 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guiinput.cpp
+	"GUIInput.hpp"
+	<iostream>
+
+1267018560 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guiinput.hpp
+	"GUIImage.hpp"
+	"Label.hpp"
+
