@@ -1,5 +1,6 @@
 
 main
+	setActif * 0
 	if variable * 9 * 0 
 	then
 		if alive
@@ -16,6 +17,7 @@ main
 
 				if variable * 2 * 1
 				then
+					setActif * 1
 					if getState * 4 
 					then
 					else
