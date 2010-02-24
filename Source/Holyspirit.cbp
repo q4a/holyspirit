@@ -12,9 +12,9 @@
 				<Option working_dir="..\Holyspirit" />
 				<Option type="0" />
 				<Option compiler="gcc" />
+				<Option projectCompilerOptionsRelation="1" />
 				<Option projectResourceIncludeDirsRelation="1" />
 				<Compiler>
-					<Add option="-O1" />
 					<Add option="-O1 -fomit-frame-pointer -frerun-loop-opt -fgcse" />
 					<Add option="-DWIN32" />
 					<Add option="-DNDEBUG" />

@@ -46,6 +46,12 @@ c_Jeu::c_Jeu()
     tempsActuel=0,tempsPrecedent=0,tempsDepuisDerniereAnimation=0,tempsEcoule=0,tempsNbrTourBoucle=0,tempsEcouleDepuisDernierCalculLumiere=0.005,tempsEcouleDepuisDernierCalculOmbre=0,tempsEcouleDepuisDernierDeplacement=0,tempsEcouleDepuisDernierIA=0,tempsEcouleDepuisDernierAffichage=0,tempsEcouleDepuisFPS=0,tempsEffetMort=0,tempsSauvergarde=0;
     nbrTourBoucle=0;
 
+    temps[0] = 0;
+    temps[1] = 0;
+    temps[2] = 0;
+    temps[3] = 0;
+    temps[4] = 0;
+
     configuration->heure=(rand() % (24));
     configuration->minute=0;
 
@@ -76,7 +82,14 @@ c_Jeu::c_Jeu()
 void c_Jeu::Utiliser(Jeu *jeu)
 {
     //Gestion du temps
-    tempsEcoule = jeu->Clock.GetElapsedTime();
+    temps[4] = temps[3];
+    temps[3] = temps[2];
+    temps[2] = temps[1];
+    temps[1] = temps[0];
+    temps[0] = jeu->Clock.GetElapsedTime();
+
+    tempsEcoule = (temps[0] + temps[1] + temps[2] + temps[3] + temps[4]) / 5;
+
     if (tempsEcoule>0.1)
         tempsEcoule=0.1;
 

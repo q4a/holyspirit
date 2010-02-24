@@ -115,6 +115,8 @@ Personnage::Personnage()
     m_etatForce                         = false;
     m_miracleBloquant                   = false;
 
+    m_actif                             = true;
+
     m_entite_graphique.option_sonUnique     = false;
     m_entite_graphique.option_forcedLight   = true;
 }
@@ -844,6 +846,7 @@ int Personnage::Animer(Modele_Personnage *modele,float temps)
                 frappeEnCours=false, m_etatForce = false;
             else
                 retour = 1;
+            m_cible = NULL;
         }
 
         if(m_entite_graphique.attaque_pause)

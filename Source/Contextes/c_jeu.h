@@ -119,6 +119,7 @@ private:
     sf::Text Version,Temps,fps,TourBoucle;
     coordonneeDecimal oldHeroPos;
 
+    float temps[5];
     float tempsActuel,tempsPrecedent,tempsDepuisDerniereAnimation,tempsEcoule,tempsNbrTourBoucle,tempsEcouleDepuisDernierCalculLumiere,tempsEcouleDepuisDernierCalculOmbre,tempsEcouleDepuisDernierDeplacement,tempsEcouleDepuisDernierIA,tempsEcouleDepuisDernierAffichage,tempsEcouleDepuisFPS,tempsEffetMort,tempsSauvergarde;
 
     float lowFPS;

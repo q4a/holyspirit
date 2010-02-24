@@ -3278,6 +3278,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             Script_RandomDisplace(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="setInvocationID" && monstre != -1)
         {
+            if(script->getValeur(noInstruction, 0) >= 0)
             for (int i=0;i<(int)m_monstre[monstre].m_miracleEnCours.size();++i)
             {
                 for (int o=0;o<(int)m_monstre[monstre].m_miracleEnCours[i].m_infos.size();o++)
@@ -3290,6 +3291,15 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                                 m_listID[script->getValeur(noInstruction, 0)].push_back(m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_IDObjet);
                             }
             }
+        }
+        else if (script->m_instructions[noInstruction].nom=="setActif" && monstre != -1)
+        {
+            m_monstre[monstre].m_actif = script->getValeur(noInstruction, 0);
+        }
+        else if (script->m_instructions[noInstruction].nom=="set_entityActif" && monstre == -1)
+        {
+            if(script->getValeur(noInstruction, 0) >= 0 && script->getValeur(noInstruction, 0) < m_monstre.size())
+                m_monstre[script->getValeur(noInstruction, 0)].m_actif = script->getValeur(noInstruction, 1);
         }
         else if (script->m_instructions[noInstruction].nom=="playSound" && monstre != -1)
             Script_PlaySound(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer); //PLAYSOUND(script->getValeur(noInstruction, 0))
@@ -3812,13 +3822,15 @@ void Map::TestVisionMonstre(int numero, Hero *hero)
                     x < m_monstre[numero].getCoordonnee().x + 5 ; ++x)
                 if (y >= 0 && x >= 0 && y < (int)m_decor[0].size() && x < (int)m_decor[0][0].size())
                 {
-
                     if (m_monstre[numero].m_friendly)
                     {
                         for (unsigned o = 0 ; o < m_decor[1][y][x].getMonstre().size() ; ++o )
                         {
                             if (m_decor[1][y][x].getMonstre()[o] >= 0)
-                                if (!m_monstre[m_decor[1][y][x].getMonstre()[o]].m_friendly && m_monstre[m_decor[1][y][x].getMonstre()[o]].EnVie() && m_monstre[m_decor[1][y][x].getMonstre()[o]].getCaracteristique().niveau > 0)
+                                if (!m_monstre[m_decor[1][y][x].getMonstre()[o]].m_friendly
+                                    && m_monstre[m_decor[1][y][x].getMonstre()[o]].EnVie()
+                                    && m_monstre[m_decor[1][y][x].getMonstre()[o]].getCaracteristique().niveau > 0
+                                    && m_monstre[m_decor[1][y][x].getMonstre()[o]].m_actif)
                                 {
                                     if (m_monstre[numero].m_cible == NULL)
                                         m_monstre[numero].m_cible = &m_monstre[m_decor[1][y][x].getMonstre()[o]];
@@ -3857,7 +3869,10 @@ void Map::TestVisionMonstre(int numero, Hero *hero)
                         for (unsigned o = 0 ; o < m_decor[1][y][x].getMonstre().size() ; ++o )
                         {
                             if (m_decor[1][y][x].getMonstre()[o] >= 0)
-                                if (m_monstre[m_decor[1][y][x].getMonstre()[o]].m_friendly  && m_monstre[m_decor[1][y][x].getMonstre()[o]].EnVie() && m_monstre[m_decor[1][y][x].getMonstre()[o]].getCaracteristique().niveau > 0)
+                                if (m_monstre[m_decor[1][y][x].getMonstre()[o]].m_friendly
+                                    && m_monstre[m_decor[1][y][x].getMonstre()[o]].EnVie()
+                                    && m_monstre[m_decor[1][y][x].getMonstre()[o]].getCaracteristique().niveau > 0
+                                    && m_monstre[m_decor[1][y][x].getMonstre()[o]].m_actif)
                                 {
                                     if (m_monstre[numero].m_cible == NULL)
                                         m_monstre[numero].m_cible = &m_monstre[m_decor[1][y][x].getMonstre()[o]];
@@ -4413,7 +4428,9 @@ int Map::getMonstre(Hero *hero,coordonnee positionSouris,coordonnee casePointee)
             {
                 for (unsigned o = 0 ; o < m_decor[1][j][k].getMonstre().size() ; ++o)
                     if (m_decor[1][j][k].getMonstre()[o]>=0&&m_decor[1][j][k].getMonstre()[o]<(int)m_monstre.size())
-                        if (m_monstre[m_decor[1][j][k].getMonstre()[o]].EnVie()&&m_monstre[m_decor[1][j][k].getMonstre()[o]].getCaracteristique().rang>=0)
+                        if (m_monstre[m_decor[1][j][k].getMonstre()[o]].EnVie()
+                            &&m_monstre[m_decor[1][j][k].getMonstre()[o]].getCaracteristique().rang>=0
+                            &&m_monstre[m_decor[1][j][k].getMonstre()[o]].m_actif)
                         {
                             coordonneeDecimal temp;
                             temp.x=(((m_monstre[m_decor[1][j][k].getMonstre()[o]].getCoordonneePixel().x-m_monstre[m_decor[1][j][k].getMonstre()[o]].getCoordonneePixel().y)*64/COTE_TILE));

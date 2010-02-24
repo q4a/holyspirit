@@ -11,7 +11,7 @@
 
 1264950284 o.hpp>
 
-1260964553 e:\c++\holyspirit\source\contextes\c_jeu.h
+1266947828 e:\c++\holyspirit\source\contextes\c_jeu.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"contexte.h"
@@ -504,7 +504,7 @@
 	<SFML/Graphics.hpp>
 	"../constantes.h"
 
-1263045097 e:\c++\holyspirit\source\entites\personnage.h
+1267040660 e:\c++\holyspirit\source\entites\personnage.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -628,7 +628,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1265554766 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
+1266947828 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -716,7 +716,7 @@
 	<fstream>
 	<sstream>
 
-1266583271 source:e:\c++\holyspirit\source\entites\personnage.cpp
+1267040660 source:e:\c++\holyspirit\source\entites\personnage.cpp
 	"personnage.h"
 	"../globale.h"
 	<iostream>
@@ -745,7 +745,7 @@
 	"script.h"
 	"../globale.h"
 
-1264956746 source:e:\c++\holyspirit\source\map\decor.cpp
+1266756037 source:e:\c++\holyspirit\source\map\decor.cpp
 	"decor.h"
 	"../globale.h"
 
@@ -753,7 +753,7 @@
 	"evenement.h"
 	<iostream>
 
-1266586623 source:e:\c++\holyspirit\source\map\map.cpp
+1266761025 source:e:\c++\holyspirit\source\map\map.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -5047,9 +5047,10 @@
 	<SFML/System/Thread.hpp>
 	<vector>
 
-1264595381 e:\c++\sfml_svnne\branches\sfml2\include\sfml\system.hpp
+1266854488 e:\c++\sfml_svnne\branches\sfml2\include\sfml\system.hpp
 	<SFML/Config.hpp>
 	<SFML/System/Clock.hpp>
+	<SFML/System/Err.hpp>
 	<SFML/System/Lock.hpp>
 	<SFML/System/Mutex.hpp>
 	<SFML/System/Randomizer.hpp>
@@ -5248,13 +5249,13 @@
 	<math.h>
 	<SFML/Graphics/Matrix3.inl>
 
-1266403221 e:\c++\sfml_svnne\branches\sfml2\include\sfml\graphics\matrix3.inl
+1266854488 e:\c++\sfml_svnne\branches\sfml2\include\sfml\graphics\matrix3.inl
 
-1266494415 e:\c++\sfml_svnne\branches\sfml2\include\sfml\graphics\renderimage.hpp
+1266661728 e:\c++\sfml_svnne\branches\sfml2\include\sfml\graphics\renderimage.hpp
 	<SFML/Graphics/Image.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 
-1266494415 e:\c++\sfml_svnne\branches\sfml2\include\sfml\graphics\rendertarget.hpp
+1266661728 e:\c++\sfml_svnne\branches\sfml2\include\sfml\graphics\rendertarget.hpp
 	<SFML/System/NonCopyable.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Rect.hpp>
@@ -5267,7 +5268,7 @@
 	<SFML/Graphics/Matrix3.hpp>
 	<SFML/System/Vector2.hpp>
 
-1266403220 e:\c++\sfml_svnne\branches\sfml2\include\sfml\graphics\renderwindow.hpp
+1266661728 e:\c++\sfml_svnne\branches\sfml2\include\sfml\graphics\renderwindow.hpp
 	<SFML/Graphics/Image.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 	<SFML/Window/Window.hpp>
@@ -5348,4 +5349,8 @@
 1264595380 e:\c++\sfml_svnne\branches\sfml2\include\sfml\audio\soundrecorder.hpp
 	<SFML/System/Thread.hpp>
 	<vector>
+
+1266854488 e:\c++\sfml_svnne\branches\sfml2\include\sfml\system\err.hpp
+	<SFML/Config.hpp>
+	<ostream>
 

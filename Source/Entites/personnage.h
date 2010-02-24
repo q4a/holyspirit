@@ -161,6 +161,7 @@ public:
 
     Script m_scriptAI;
     bool m_friendly;
+    bool m_actif;
 
     bool m_impenetrable;
     bool m_collision;
