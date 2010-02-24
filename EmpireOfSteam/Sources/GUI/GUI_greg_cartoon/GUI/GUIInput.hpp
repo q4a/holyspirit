@@ -18,6 +18,8 @@ class GUIInput : public Widget
 
                 void SetMax (int );
 
+                void SetPass(bool );
+
         Label m_label;
 
     protected:
@@ -29,6 +31,8 @@ class GUIInput : public Widget
 
         float   m_cur_time;
         int     m_cur_pos;
+
+        bool    m_pass;
 
         std::string m_text;
 

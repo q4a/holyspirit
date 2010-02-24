@@ -15,6 +15,8 @@ GUIInput::GUIInput(std::string label) :  Widget()
     m_cur_time          = 0;
     m_cur_pos           = m_text.size();
 
+    m_pass              = false;
+
     m_max = 255;
 }
 GUIInput::GUIInput(int x, int y, std::string label ) : Widget(x, y)
@@ -30,6 +32,8 @@ GUIInput::GUIInput(int x, int y, std::string label ) : Widget(x, y)
     m_cur_time          = 0;
     m_cur_pos           = m_text.size();
 
+    m_pass              = false;
+
     m_max = 255;
 }
 GUIInput::GUIInput(int x, int y, int w, int h, std::string label) :  Widget(x, y, w, h)
@@ -44,6 +48,8 @@ GUIInput::GUIInput(int x, int y, int w, int h, std::string label) :  Widget(x, y
     m_repetition_time   = 0;
     m_cur_time          = 0;
     m_cur_pos           = m_text.size();
+
+    m_pass              = false;
 
     m_max = 255;
 }
@@ -163,14 +169,40 @@ void GUIInput::Update()
         if(m_cur_time > 0.4)
         {
             std::string temp = m_text;
+
+            if(m_pass)
+            {
+                temp.clear();
+                for(unsigned i = 0 ; i < m_text.size() ; ++i)
+                    temp.push_back('*');
+            }
+
             temp.insert(m_cur_pos,1,'|');
             m_label.SetText(temp);
         }
         else
-            m_label.SetText(m_text);
+        {
+             std::string temp = m_text;
+            if(m_pass)
+            {
+                temp.clear();
+                for(unsigned i = 0 ; i < m_text.size() ; ++i)
+                    temp.push_back('*');
+            }
+            m_label.SetText(temp);
+        }
     }
     else
-        m_label.SetText(m_text);
+    {
+        std::string temp = m_text;
+        if(m_pass)
+        {
+            temp.clear();
+            for(unsigned i = 0 ; i < m_text.size() ; ++i)
+                temp.push_back('*');
+        }
+        m_label.SetText(temp);
+    }
 }
 
 void GUIInput::SetText(std::string text)
@@ -182,4 +214,9 @@ void GUIInput::SetMax(int max)
 {
     if(max >= 0)
         m_max = max;
+}
+
+void GUIInput::SetPass(bool pass)
+{
+    m_pass = pass;
 }

@@ -25,6 +25,8 @@ class MenuPanel : public Widget
                  *m_iris_open,
                  *m_login;
 
+        GUIAnimatedImage    *m_animated_iris;
+
         Button   *m_iris_button;
 
         GUIInput *m_login_input,

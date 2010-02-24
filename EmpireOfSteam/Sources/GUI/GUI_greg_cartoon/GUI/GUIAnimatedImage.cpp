@@ -17,6 +17,8 @@ GUIAnimatedImage::GUIAnimatedImage(int nbr, std::string chemin) : GUIImage()
     m_number_frame = 0;
     m_time_frame   = 0;
     m_framerate    = 0.1;
+
+    m_loop         = true;
 }
 GUIAnimatedImage::GUIAnimatedImage(int x, int y, int nbr, std::string chemin) : GUIImage(x, y)
 {
@@ -28,6 +30,8 @@ GUIAnimatedImage::GUIAnimatedImage(int x, int y, int nbr, std::string chemin) : 
     m_number_frame = 0;
     m_time_frame   = 0;
     m_framerate    = 0.1;
+
+    m_loop         = true;
 }
 GUIAnimatedImage::GUIAnimatedImage(int x, int y, int w, int h, int nbr, std::string chemin) : GUIImage(x, y, w, h)
 {
@@ -38,6 +42,8 @@ GUIAnimatedImage::GUIAnimatedImage(int x, int y, int w, int h, int nbr, std::str
     m_number_frame = 0;
     m_time_frame   = 0;
     m_framerate    = 0.1;
+
+    m_loop         = true;
 }
 
 GUIAnimatedImage::~GUIAnimatedImage()
@@ -91,13 +97,23 @@ void GUIAnimatedImage::Update()
     {
         m_number_frame++;
         if(m_number_frame >= (int)m_list_img.size())
-            m_number_frame = 0;
+        {
+            if(m_loop)
+                m_number_frame = 0;
+            else
+                m_number_frame = m_list_img.size() - 1;
+        }
+
         m_time_frame = 0;
-        m_drawable->SetImage(m_list_img[m_number_frame]);
     }
 
+    m_drawable->SetImage(m_list_img[m_number_frame]);
     m_drawable->Resize(m_size.x, m_size.y);
     m_drawable->SetPosition(pos.x, pos.y);
 }
 
+void GUIAnimatedImage::SetLoop(bool loop)
+{
+    m_loop = loop;
+}
 

@@ -8,6 +8,10 @@ MenuPanel::MenuPanel()
     m_iris          = new GUIImage("pictures/GUI/irisClosed.png");
     m_iris_open     = new GUIImage("pictures/GUI/irisOpen.png");
 
+    m_animated_iris = new GUIAnimatedImage (0,0,450,439,24,"pictures/GUI/animationIris/iris-.png");
+    m_animated_iris->SetRate(0.05);
+    m_animated_iris->SetLoop(false);
+
     m_iris_button   = new Button(280,64,450,439);
     m_iris_button->SetImage(m_iris);
 
@@ -18,6 +22,7 @@ MenuPanel::MenuPanel()
     m_pass_input    = new GUIInput(656,576,256,32, "Motdepasse");
     m_pass_input->m_label.SetCharacterSize(24);
     m_pass_input->SetMax(16);
+    m_pass_input->SetPass(true);
 
     AddWidget(m_background);
     AddWidget(m_deco);
@@ -37,6 +42,8 @@ MenuPanel::~MenuPanel()
     delete m_iris;
     delete m_iris_open;
 
+    delete m_animated_iris;
+
     delete m_iris_button;
 
     delete m_login_input;
@@ -46,7 +53,7 @@ MenuPanel::~MenuPanel()
 void MenuPanel::Update()
 {
     if(m_iris_button->Released())
-        m_iris_button->SetImage(m_iris_open, Button_released);
+        m_iris_button->SetImage(m_animated_iris);
 
     Widget::Update();
 }

@@ -473,12 +473,12 @@
 1263643265 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\label.hpp
 	"Widget.hpp"
 
-1265460877 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guianimatedimage.cpp
+1267030840 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guianimatedimage.cpp
 	"GUIAnimatedImage.hpp"
 	<iostream>
 	<sstream>
 
-1265457578 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guianimatedimage.hpp
+1267030763 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guianimatedimage.hpp
 	"GUIImage.hpp"
 
 1267016474 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guiimage.cpp
@@ -493,7 +493,7 @@
 	"GUIImage.hpp"
 	"Label.hpp"
 
-1267019920 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guiwindow.cpp
+1267027716 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guiwindow.cpp
 	"GUIWindow.hpp"
 	<iostream>
 
@@ -555,10 +555,10 @@
 	"GUI/GUIAnimatedImage.hpp"
 	"GUI/GUIWindow.hpp"
 
-1266944200 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gamepanel.cpp
+1267020793 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gamepanel.cpp
 	"GamePanel.hpp"
 
-1267020567 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\menupanel.hpp
+1267030242 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\menupanel.hpp
 	"Global.hpp"
 	"GUI/Button.hpp"
 	"GUI/GUIProgressBar.hpp"
@@ -569,7 +569,7 @@
 	"GUI/GUIWindow.hpp"
 	"GUI/GUIInput.hpp"
 
-1267020577 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\menupanel.cpp
+1267030790 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\menupanel.cpp
 	"MenuPanel.hpp"
 
 1266946381 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\optionpanel.hpp
@@ -598,11 +598,11 @@
 1266946481 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\optionpanel.cpp
 	"OptionPanel.hpp"
 
-1267020642 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guiinput.cpp
+1267027977 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guiinput.cpp
 	"GUIInput.hpp"
 	<iostream>
 
-1267018560 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guiinput.hpp
+1267026395 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guiinput.hpp
 	"GUIImage.hpp"
 	"Label.hpp"
 
