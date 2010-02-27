@@ -503,7 +503,7 @@
 	<SFML/Graphics.hpp>
 	"../constantes.h"
 
-1267040660 e:\c++\holyspirit\source\entites\personnage.h
+1267273638 e:\c++\holyspirit\source\entites\personnage.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -627,7 +627,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1266947828 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
+1267272555 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -715,7 +715,7 @@
 	<fstream>
 	<sstream>
 
-1267040660 source:e:\c++\holyspirit\source\entites\personnage.cpp
+1267273638 source:e:\c++\holyspirit\source\entites\personnage.cpp
 	"personnage.h"
 	"../globale.h"
 	<iostream>
@@ -752,7 +752,7 @@
 	"evenement.h"
 	<iostream>
 
-1267040734 source:e:\c++\holyspirit\source\map\map.cpp
+1267273364 source:e:\c++\holyspirit\source\map\map.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -4327,7 +4327,7 @@
 	<map>
 	<string>
 
-1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\string.hpp
+1267203580 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\string.hpp
 	<SFML/Config.hpp>
 	<locale>
 	<string>

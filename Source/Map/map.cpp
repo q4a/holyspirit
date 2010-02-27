@@ -2483,19 +2483,19 @@ bool Map::Miracle_Charge(Hero *hero, Personnage *personnage, Miracle &modele, Ef
 
     if (info.m_IDObjet == 1)
     {
+
         if(miracleEnCours.m_coordonneeDepart.x != miracleEnCours.m_coordonneeCible.x && personnage->getPousse().x == 0)
         {
+            std::cout<<"tyest"<<std::endl;
             miracleEnCours.m_coordonneeDepart.x = personnage->getCoordonnee().x;
             miracleEnCours.m_coordonneeCible.x  = personnage->getCoordonnee().x;
-           // personnage->setPousse(coordonneeDecimal  (0,0));
         }
         if(miracleEnCours.m_coordonneeDepart.y != miracleEnCours.m_coordonneeCible.y && personnage->getPousse().y == 0)
         {
+            std::cout<<"tyest2"<<std::endl;
             miracleEnCours.m_coordonneeDepart.y = personnage->getCoordonnee().y;
             miracleEnCours.m_coordonneeCible.y  = personnage->getCoordonnee().y;
-           // personnage->setPousse(coordonneeDecimal  (0,0));
         }
-
 
         if (((  miracleEnCours.m_coordonneeDepart.x  < miracleEnCours.m_coordonneeCible.x&&personnage->getCoordonneePixel().x>miracleEnCours.m_coordonneeCible.x*COTE_TILE)
             ||( miracleEnCours.m_coordonneeDepart.x  > miracleEnCours.m_coordonneeCible.x&&personnage->getCoordonneePixel().x<miracleEnCours.m_coordonneeCible.x*COTE_TILE)
@@ -2508,10 +2508,10 @@ bool Map::Miracle_Charge(Hero *hero, Personnage *personnage, Miracle &modele, Ef
             ||(personnage->getPousse().x == 0 && personnage->getPousse().y == 0))
         {
 
-            if(personnage->getCoordonnee().x == miracleEnCours.m_coordonneeCible.x
+          /*  if(personnage->getCoordonnee().x == miracleEnCours.m_coordonneeCible.x
             && personnage->getCoordonnee().y == miracleEnCours.m_coordonneeCible.y )
                 personnage->setCoordonnee(coordonnee (miracleEnCours.m_coordonneeCible.x,
-                                                      miracleEnCours.m_coordonneeCible.y));
+                                                      miracleEnCours.m_coordonneeCible.y));*/
 
             personnage->setPousse(coordonneeDecimal  (0,0));
 
@@ -4357,8 +4357,9 @@ void Map::TesterPoussable(Personnage &personnage, float temps, int id)
 {
     bool pousser = true;
 
-    if(getCollisionPousse((int)((personnage.getCoordonneePixel().x + personnage.getPousse().x * temps * COTE_TILE * 5 + COTE_TILE * 0.5 * (personnage.getPousse().x >= 0))/COTE_TILE),
-                          (int)((personnage.getCoordonneePixel().y + personnage.getPousse().y * temps * COTE_TILE * 5 + COTE_TILE * 0.5 * (personnage.getPousse().y >= 0))/COTE_TILE),
+    if(personnage.getPousse().x != 0 || personnage.getPousse().y != 0)
+    if(getCollisionPousse((int)((personnage.getCoordonneePixel().x + personnage.getPousse().x * temps * COTE_TILE * 5 + COTE_TILE * 0.5 * (personnage.getPousse().x >= 0) - COTE_TILE * 0.25 * (personnage.getPousse().x <= 0))/COTE_TILE),
+                          (int)((personnage.getCoordonneePixel().y + personnage.getPousse().y * temps * COTE_TILE * 5 + COTE_TILE * 0.5 * (personnage.getPousse().y >= 0) - COTE_TILE * 0.25 * (personnage.getPousse().y <= 0))/COTE_TILE),
                            id))
     {
         pousser = false;
@@ -4369,7 +4370,7 @@ void Map::TesterPoussable(Personnage &personnage, float temps, int id)
             pousser = true, personnage.setPousse(coordonneeDecimal(personnage.getPousse().x, 0));
         else if(personnage.getPousse().y != 0
              && !getCollisionPousse((int)((personnage.getCoordonneePixel().x + COTE_TILE * 0.5 * (personnage.getPousse().x >= 0))/COTE_TILE),
-                                    (int)((personnage.getCoordonneePixel().y + personnage.getPousse().y * temps * COTE_TILE * 5 + COTE_TILE * 0.5 * (personnage.getPousse().y >= 0))/COTE_TILE),
+                                    (int)((personnage.getCoordonneePixel().y + personnage.getPousse().y * temps * COTE_TILE * 5 + COTE_TILE * 0.5 * (personnage.getPousse().y >= 0) )/COTE_TILE),
                                     id))
             pousser = true, personnage.setPousse(coordonneeDecimal(0, personnage.getPousse().y));
         else if(personnage.getPousse().x != 0)

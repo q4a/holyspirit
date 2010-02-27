@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="Debug" />
+	<ActiveTarget name="Release" />
 	<File name="Contextes\c_changementMap.cpp" open="0" top="0" tabpos="13">
 		<Cursor position="8571" topLine="237" />
 	</File>
@@ -25,8 +25,8 @@
 	<File name="Contextes\c_inventaire.h" open="0" top="0" tabpos="3">
 		<Cursor position="2567" topLine="38" />
 	</File>
-	<File name="Contextes\c_jeu.cpp" open="0" top="0" tabpos="7">
-		<Cursor position="2490" topLine="69" />
+	<File name="Contextes\c_jeu.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="2343" topLine="78" />
 	</File>
 	<File name="Contextes\c_jeu.h" open="0" top="0" tabpos="24">
 		<Cursor position="4048" topLine="98" />
@@ -103,11 +103,11 @@
 	<File name="Entites\objet.h" open="0" top="0" tabpos="9">
 		<Cursor position="0" topLine="60" />
 	</File>
-	<File name="Entites\personnage.cpp" open="0" top="0" tabpos="18">
-		<Cursor position="3261" topLine="105" />
+	<File name="Entites\personnage.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="40081" topLine="1076" />
 	</File>
-	<File name="Entites\personnage.h" open="0" top="0" tabpos="20">
-		<Cursor position="4504" topLine="157" />
+	<File name="Entites\personnage.h" open="1" top="0" tabpos="4">
+		<Cursor position="5040" topLine="166" />
 	</File>
 	<File name="Entites\quete.cpp" open="0" top="0" tabpos="34">
 		<Cursor position="2915" topLine="82" />
@@ -133,8 +133,8 @@
 	<File name="Map\evenement.h" open="0" top="0" tabpos="62">
 		<Cursor position="1602" topLine="26" />
 	</File>
-	<File name="Map\map.cpp" open="0" top="0" tabpos="14">
-		<Cursor position="148636" topLine="3276" />
+	<File name="Map\map.cpp" open="1" top="1" tabpos="3">
+		<Cursor position="108843" topLine="2499" />
 	</File>
 	<File name="Map\map.h" open="0" top="0" tabpos="15">
 		<Cursor position="9343" topLine="159" />

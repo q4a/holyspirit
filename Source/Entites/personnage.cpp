@@ -119,6 +119,8 @@ Personnage::Personnage()
 
     m_entite_graphique.option_sonUnique     = false;
     m_entite_graphique.option_forcedLight   = true;
+
+    m_pousseEnCours = false;
 }
 Modele_Personnage::Modele_Personnage()
 {
@@ -560,7 +562,7 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap)
 
     moteurGraphique->LightManager->SetPosition(m_entite_graphique.m_light,pos);
 
-    if((m_pousse.x != 0 || m_pousse.y != 0))
+    if(m_pousseEnCours)
     {
         m_positionPixel.x += m_pousse.x * tempsEcoule * COTE_TILE * 0.05;
         m_positionPixel.y += m_pousse.y * tempsEcoule * COTE_TILE * 0.05;
@@ -582,8 +584,8 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap)
             m_pousse.y = 0;
 
 
-        m_positionCase.x    = (int)((m_positionPixel.x+COTE_TILE*0.25)/COTE_TILE);
-        m_positionCase.y    = (int)((m_positionPixel.y+COTE_TILE*0.25)/COTE_TILE);
+        m_positionCase.x    = (int)((m_positionPixel.x+COTE_TILE*0.5)/COTE_TILE);
+        m_positionCase.y    = (int)((m_positionPixel.y+COTE_TILE*0.5)/COTE_TILE);
 
         if(m_pousse.x == 0 && m_pousse.y == 0)
         {
@@ -605,6 +607,8 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap)
 
             m_cheminFinal.x     = m_arrivee.x;
             m_cheminFinal.y     = m_arrivee.y;
+
+            m_pousseEnCours = false;
         }
 
 
@@ -1085,12 +1089,14 @@ void Personnage::setPousse(coordonneeDecimal pousse)
         if(pousse.x == 0 && pousse.y == 0)
             if(fabs(m_pousse.x) > 0 || fabs(m_pousse.y) > 0 )
             {
+                    m_pousseEnCours = true;
                     m_positionCase.x    = (int)((m_positionPixel.x+COTE_TILE*0.5)/COTE_TILE);
                     m_positionCase.y    = (int)((m_positionPixel.y+COTE_TILE*0.5)/COTE_TILE);
                     m_positionPixel.x    = m_positionCase.x*COTE_TILE;
                     m_positionPixel.y    = m_positionCase.y*COTE_TILE;
             }
 
+        m_pousseEnCours = true;
         m_pousse.x = pousse.x;
         m_pousse.y = pousse.y;
     }
@@ -1106,6 +1112,8 @@ void Personnage::Pousser(coordonneeDecimal vecteur)
         if(fabs(vecteur.y) > fabs(m_pousse.y))
             m_pousse.y = vecteur.y;
 
+
+        m_pousseEnCours = true;
         frappeEnCours = false;
     }
 }
