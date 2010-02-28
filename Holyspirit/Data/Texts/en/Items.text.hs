@@ -82,3 +82,21 @@ Ruby
 A beautiful precious stone.
 Blueprint : Horned barbute
 Blueprint explaining the construction of a horned barbute.
+Blueprint : Chainmail
+Blueprint explaining the construction of a chainmail.
+Blueprint : Pendant
+Blueprint explaining the construction of a pendant.
+Blueprint : Tiara
+Blueprint explaining the construction of a tiara.
+Tiara
+Beautiful tiara orned with an emerald.
+Cleaver
+Butcher's knife,\it's made to cut trough flesh and bones.
+Emerald
+A beautiful precious stone.
+Gold ore
+Precious metal,\gold is mainly used in jewelry.
+Bronze shield
+A buckler forged entirely in bronze. \Very tough.
+Blueprint : Bronze shield
+Blueprint explaining the construction of a bronze shield.
