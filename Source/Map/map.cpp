@@ -2486,13 +2486,11 @@ bool Map::Miracle_Charge(Hero *hero, Personnage *personnage, Miracle &modele, Ef
 
         if(miracleEnCours.m_coordonneeDepart.x != miracleEnCours.m_coordonneeCible.x && personnage->getPousse().x == 0)
         {
-            std::cout<<"tyest"<<std::endl;
             miracleEnCours.m_coordonneeDepart.x = personnage->getCoordonnee().x;
             miracleEnCours.m_coordonneeCible.x  = personnage->getCoordonnee().x;
         }
         if(miracleEnCours.m_coordonneeDepart.y != miracleEnCours.m_coordonneeCible.y && personnage->getPousse().y == 0)
         {
-            std::cout<<"tyest2"<<std::endl;
             miracleEnCours.m_coordonneeDepart.y = personnage->getCoordonnee().y;
             miracleEnCours.m_coordonneeCible.y  = personnage->getCoordonnee().y;
         }
@@ -4358,8 +4356,8 @@ void Map::TesterPoussable(Personnage &personnage, float temps, int id)
     bool pousser = true;
 
     if(personnage.getPousse().x != 0 || personnage.getPousse().y != 0)
-    if(getCollisionPousse((int)((personnage.getCoordonneePixel().x + personnage.getPousse().x * temps * COTE_TILE * 5 + COTE_TILE * 0.5 * (personnage.getPousse().x >= 0) - COTE_TILE * 0.25 * (personnage.getPousse().x <= 0))/COTE_TILE),
-                          (int)((personnage.getCoordonneePixel().y + personnage.getPousse().y * temps * COTE_TILE * 5 + COTE_TILE * 0.5 * (personnage.getPousse().y >= 0) - COTE_TILE * 0.25 * (personnage.getPousse().y <= 0))/COTE_TILE),
+    if(getCollisionPousse((int)((personnage.getCoordonneePixel().x + personnage.getPousse().x * temps * COTE_TILE * 5 + COTE_TILE * 0.5 * (personnage.getPousse().x >= 0))/COTE_TILE),
+                          (int)((personnage.getCoordonneePixel().y + personnage.getPousse().y * temps * COTE_TILE * 5 + COTE_TILE * 0.5 * (personnage.getPousse().y >= 0))/COTE_TILE),
                            id))
     {
         pousser = false;

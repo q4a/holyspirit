@@ -584,8 +584,8 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap)
             m_pousse.y = 0;
 
 
-        m_positionCase.x    = (int)((m_positionPixel.x+COTE_TILE*0.5)/COTE_TILE);
-        m_positionCase.y    = (int)((m_positionPixel.y+COTE_TILE*0.5)/COTE_TILE);
+        m_positionCase.x    = (int)((m_positionPixel.x+COTE_TILE*0.25)/COTE_TILE);
+        m_positionCase.y    = (int)((m_positionPixel.y+COTE_TILE*0.25)/COTE_TILE);
 
         if(m_pousse.x == 0 && m_pousse.y == 0)
         {
@@ -1089,7 +1089,6 @@ void Personnage::setPousse(coordonneeDecimal pousse)
         if(pousse.x == 0 && pousse.y == 0)
             if(fabs(m_pousse.x) > 0 || fabs(m_pousse.y) > 0 )
             {
-                    m_pousseEnCours = true;
                     m_positionCase.x    = (int)((m_positionPixel.x+COTE_TILE*0.5)/COTE_TILE);
                     m_positionCase.y    = (int)((m_positionPixel.y+COTE_TILE*0.5)/COTE_TILE);
                     m_positionPixel.x    = m_positionCase.x*COTE_TILE;
