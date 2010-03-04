@@ -94,9 +94,13 @@ $
 		*Unique_gown.item.hs
 		r50
 	$
-		*
+	*
+		*TearfulWidow_tiare.item.hs
+		r50
+	$
+	*
 		*Unique_necklage.item.hs
-		r100
+		r50
 	$
 		*
 		*Drawing_barbute.item.hs

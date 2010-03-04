@@ -100,3 +100,6 @@ Bouclier en bronze
 Bouclier intégralement forgé\en bronze. Il est très solide.
 Schéma : Bouclier de bronze
 Schéma expliquant la conception d'un bouclier en bronze.
+Diadème de la Veuve Eplorée
+Diadème qui sied à ravir pour une dame en deuil.
+Set de la Veuve Eplorée
