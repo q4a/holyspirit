@@ -458,7 +458,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
     reader.Read(configuration->chemin_items);
 
     ifstream *fichier=reader.GetInfos(chemin);
-    //fichier.open(chemin.c_str(), ios::in);
+
     if (fichier)
     {
         char caractere;
@@ -845,6 +845,9 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
                     case 'b' :
                         *fichier>>m_capaciteBenediction;
                         break;
+                    case 's' :
+                        *fichier>>m_chemin_set;
+                        break;
                     }
 
                     if (fichier->eof())
@@ -865,6 +868,10 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
 
         }
         while (caractere!='$');
+
+        m_set = Set ();
+        if(!m_chemin_set.empty())
+            m_set.Charger(m_chemin_set, caract);
 
         this->ChargerCaracteristiques(fichier);
 
@@ -987,6 +994,198 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
 
         }
         while (caractere!='$');
+
+        fichier->close();
+    }
+    else
+        console->Ajouter("Impossible d'ouvrir : "+chemin,1);
+
+    delete fichier;
+}
+
+void Set::Charger(std::string chemin, Caracteristique caract)
+{
+    m_chemin = chemin;
+
+    cDAT reader;
+    reader.Read(configuration->chemin_items);
+
+    ifstream *fichier=reader.GetInfos(chemin);
+
+    if (fichier)
+    {
+        char caractere;
+
+        do
+        {
+            fichier->get(caractere);
+            if (caractere=='*')
+            {
+                int no;
+                do
+                {
+                    fichier->get(caractere);
+                    switch (caractere)
+                    {
+                        case 'n' :
+                            *fichier>>no;
+                            m_nom       = configuration->getText(2,no);
+                            break;
+                    }
+
+                    if (fichier->eof())
+                    {
+                        console->Ajouter("Erreur : Objet \" "+chemin+" \" Invalide",1);
+                        caractere='$';
+                    }
+
+                }
+                while (caractere!='$');
+                fichier->get(caractere);
+            }
+            if (fichier->eof())
+            {
+                console->Ajouter("Erreur : Objet \" "+chemin+" \" Invalide",1);
+                caractere='$';
+            }
+        }
+        while (caractere!='$');
+
+        do
+        {
+            fichier->get(caractere);
+            if (caractere=='*')
+            {
+                m_items.push_back("");
+                *fichier>>m_items.back();
+            }
+            if (fichier->eof())
+            {
+                console->Ajouter("Erreur : Objet \" "+chemin+" \" Invalide",1);
+                caractere='$';
+            }
+        }
+        while (caractere!='$');
+
+        do
+        {
+            fichier->get(caractere);
+            if (caractere=='*')
+            {
+                m_benedictions.push_back(std::vector<benediction> ());
+                m_chemin_miracles.push_back(std::vector<std::string> ());
+                m_miracle.push_back(Miracle ());
+                m_useMiracle.push_back(false);
+
+                do
+                {
+                    fichier->get(caractere);
+                    if (caractere=='*')
+                    {
+                        string temp;
+                        *fichier>>temp;
+                        m_miracle.back().Charger(temp, caract, 0);
+                        m_chemin_miracles.back().push_back(temp);
+                        m_useMiracle.back()=true;
+                    }
+                    if (fichier->eof())
+                    {
+                        console->Ajouter("Erreur : Objet \" "+chemin+" \" Invalide",1);
+                        caractere='$';
+                    }
+                }
+                while (caractere!='$');
+
+
+                do
+                {
+
+                    fichier->get(caractere);
+                    if (caractere=='*')
+                    {
+                        int b=-1,ia=-1,ib=-1, ic=-1;
+                        do
+                        {
+                            fichier->get(caractere);
+                            switch (caractere)
+                            {
+                            case 'b' :
+                                *fichier>>b;
+                                break;
+                            case 'i' :
+                                fichier->get(caractere);
+                                if (caractere=='1')
+                                    *fichier>>ia;
+                                if (caractere=='2')
+                                    *fichier>>ib;
+                                if (caractere=='3')
+                                    *fichier>>ic;
+                                break;
+                            }
+
+                            if (fichier->eof())
+                            {
+                                console->Ajouter("Erreur : Objet \" "+chemin+" \" Invalide",1);
+                                caractere='$';
+                            }
+
+                        }
+                        while (caractere!='$');
+
+
+                        m_benedictions.back().push_back(benediction ());
+                        m_benedictions.back().back().type=b;
+                        m_benedictions.back().back().info1=ia;
+                        m_benedictions.back().back().info2=ib;
+                        m_benedictions.back().back().info3=ic;
+
+                        if (m_benedictions.back().back().type==DEGATS_SUPP)
+                        {
+                            if(ia == FEU)
+                            {
+                                m_chemin_miracles.back().push_back("Data/Items/FireEffect/FireEffect.miracle.hs");
+                                if (!m_useMiracle.back())
+                                    m_miracle.back().Charger("Data/Items/FireEffect/FireEffect.miracle.hs",caract,0),m_useMiracle.back()=true;
+                                else
+                                    m_miracle.back().Concatenencer("Data/Items/FireEffect/FireEffect.miracle.hs",caract,0);
+                            }
+                            if(ia == FOI)
+                            {
+                                m_chemin_miracles.back().push_back("Data/Items/HolyEffect/HolyEffect.miracle.hs");
+                                if (!m_useMiracle.back())
+                                    m_miracle.back().Charger("Data/Items/HolyEffect/HolyEffect.miracle.hs",caract,0),m_useMiracle.back()=true;
+                                else
+                                    m_miracle.back().Concatenencer("Data/Items/HolyEffect/HolyEffect.miracle.hs",caract,0);
+                            }
+                            if(ia == CORROSION)
+                            {
+                                m_chemin_miracles.back().push_back("Data/Items/PoisonEffect/PoisonEffect.miracle.hs");
+                                if (!m_useMiracle.back())
+                                    m_miracle.back().Charger("Data/Items/PoisonEffect/PoisonEffect.miracle.hs",caract,0),m_useMiracle.back()=true;
+                                else
+                                    m_miracle.back().Concatenencer("Data/Items/PoisonEffect/PoisonEffect.miracle.hs",caract,0);
+                            }
+                        }
+
+                        fichier->get(caractere);
+                    }
+
+                    if (fichier->eof())
+                    {
+                        caractere='$';
+                    }
+                }
+                while (caractere!='$');
+                fichier->get(caractere);
+            }
+            if (fichier->eof())
+            {
+                console->Ajouter("Erreur : Objet \" "+chemin+" \" Invalide",1);
+                caractere='$';
+            }
+        }
+        while (caractere!='$');
+
 
         fichier->close();
     }
@@ -1458,8 +1657,51 @@ sf::Text Objet::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *d
     return string;
 }
 
+std::string getTextBenediction(const benediction &bene)
+{
+    std::ostringstream buf;
+    if(bene.type == EFFICACITE_ACCRUE)
+    {
+        buf<<configuration->getText(1,0);
+        buf<<" "<<bene.info1<<" %";
+    }
+    if(bene.type == CARACT_SUPP)
+    {
+        if(bene.info1 == FORCE)
+            buf<<configuration->getText(1,1);
+        if(bene.info1 == DEXTERITE)
+            buf<<configuration->getText(1,2);
+        if(bene.info1 == VITALITE)
+            buf<<configuration->getText(1,3);
+        if(bene.info1 == PIETE)
+            buf<<configuration->getText(1,4);
+        if(bene.info1 == CHARISME)
+            buf<<configuration->getText(1,5);
+        buf<<" "<<bene.info2;
+    }
+    if(bene.type == POINTS_SUPP)
+    {
+        if(bene.info1 == PT_VIE)
+            buf<<configuration->getText(1,6);
+        if(bene.info1 == PT_FOI)
+            buf<<configuration->getText(1,7);
+        buf<<" "<<bene.info2;
+    }
+    if(bene.type == DEGATS_SUPP)
+    {
+        buf<<configuration->getText(1,8 + bene.info1);
+        buf<<" "<<bene.info2<<" - "<<bene.info3;
+    }
+    if(bene.type == ARMURE_SUPP)
+    {
+        buf<<configuration->getText(1,12 + bene.info1);
+        buf<<" "<<bene.info2;
+    }
+    return buf.str();
+}
 
-int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,float modPrix,bool compare,bool decalageDroite, bool surbrillance)
+
+int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, std::vector<Objet> *items,float modPrix,bool compare,bool decalageDroite, bool surbrillance)
 {
     std::vector <sf::Text> temp;
 
@@ -1486,6 +1728,33 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
 
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_nom.c_str()));
     temp.back().SetColor(GetItemColor(m_rarete));
+    if(!m_chemin_set.empty())
+    {
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_set.m_nom.c_str()));
+        temp.back().SetColor(GetItemColor(m_rarete));
+
+        m_set.m_nombre = -1;
+
+        for(unsigned i = 0 ; i < m_set.m_items.size() ; ++i)
+        {
+            Objet tempobj;
+            tempobj.Charger(m_set.m_items[i], caract);
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,tempobj.m_nom.c_str()));
+            temp.back().SetStyle(2);
+
+            bool ok = false;
+            if(items != NULL)
+                for(unsigned j = 0 ; j < items->size() ; ++j)
+                    if((*items)[j].m_chemin == m_set.m_items[i] && (*items)[j].m_equipe >= 0)
+                        ok = true;
+            if(ok)
+                temp.back().SetColor(GetItemColor(tempobj.m_rarete)), m_set.m_nombre++;
+            else
+                temp.back().SetColor(sf::Color(128,128,128));
+        }
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+    }
+
 
     for (int i=0;i<(int)m_description.size();i++)
     {
@@ -1517,28 +1786,28 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
 
     switch (m_type)
     {
-    case ARME:
-    {
-        std::ostringstream buf;
-        buf<<configuration->getText(0,21)<<(int)(m_degatsMin*multiplieurEfficacite/100)<<" - "<<(int)(m_degatsMax*multiplieurEfficacite/100);
+        case ARME:
+        {
+            std::ostringstream buf;
+            buf<<configuration->getText(0,21)<<(int)(m_degatsMin*multiplieurEfficacite/100)<<" - "<<(int)(m_degatsMax*multiplieurEfficacite/100);
 
-        if (multiplieurEfficacite!=100)
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(0,64,128)));
-        else
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
-    }
-    break;
-    case ARMURE:
-    {
-        std::ostringstream buf;
-        buf<<configuration->getText(0,22)<<(int)(m_armure*multiplieurEfficacite/100);
+            if (multiplieurEfficacite!=100)
+                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(0,64,128)));
+            else
+                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+        }
+        break;
+        case ARMURE:
+        {
+            std::ostringstream buf;
+            buf<<configuration->getText(0,22)<<(int)(m_armure*multiplieurEfficacite/100);
 
-        if (multiplieurEfficacite!=100)
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(0,64,128)));
-        else
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
-    }
-    break;
+            if (multiplieurEfficacite!=100)
+                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(0,64,128)));
+            else
+                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+        }
+        break;
     }
 
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran," "));
@@ -1593,47 +1862,15 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract,f
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
 
     for (int i=0;i<(int)m_benedictions.size();i++)
-    {
-        std::ostringstream buf;
-        if(m_benedictions[i].type == EFFICACITE_ACCRUE)
-        {
-            buf<<configuration->getText(1,0);
-            buf<<" "<<m_benedictions[i].info1<<" %";
-        }
-        if(m_benedictions[i].type == CARACT_SUPP)
-        {
-            if(m_benedictions[i].info1 == FORCE)
-                buf<<configuration->getText(1,1);
-            if(m_benedictions[i].info1 == DEXTERITE)
-                buf<<configuration->getText(1,2);
-            if(m_benedictions[i].info1 == VITALITE)
-                buf<<configuration->getText(1,3);
-            if(m_benedictions[i].info1 == PIETE)
-                buf<<configuration->getText(1,4);
-            if(m_benedictions[i].info1 == CHARISME)
-                buf<<configuration->getText(1,5);
-            buf<<" "<<m_benedictions[i].info2;
-        }
-        if(m_benedictions[i].type == POINTS_SUPP)
-        {
-            if(m_benedictions[i].info1 == PT_VIE)
-                buf<<configuration->getText(1,6);
-            if(m_benedictions[i].info1 == PT_FOI)
-                buf<<configuration->getText(1,7);
-            buf<<" "<<m_benedictions[i].info2;
-        }
-        if(m_benedictions[i].type == DEGATS_SUPP)
-        {
-            buf<<configuration->getText(1,8 + m_benedictions[i].info1);
-            buf<<" "<<m_benedictions[i].info2<<" - "<<m_benedictions[i].info3;
-        }
-        if(m_benedictions[i].type == ARMURE_SUPP)
-        {
-            buf<<configuration->getText(1,12 + m_benedictions[i].info1);
-            buf<<" "<<m_benedictions[i].info2;
-        }
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,getTextBenediction(m_benedictions[i]).c_str(),sf::Color(0,64,128)));
 
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(0,64,128)));
+    if(!m_set.m_chemin.empty())
+    {
+        for(int k = 0 ; k < m_set.m_nombre ; ++k)
+            for (int i=0;i<(int)m_set.m_benedictions[k].size();i++)
+                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,getTextBenediction(m_set.m_benedictions[k][i]).c_str(),GetItemColor(5)));
+
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
     }
 
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));

@@ -1613,7 +1613,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
                     sprite.SetY((m_classe.emplacements[m_inventaire[i].m_equipe].position.y)*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
 
                     if (m_objetEnMain==-1&&eventManager->getPositionSouris().x>m_classe.emplacements[m_inventaire[i].m_equipe].position.x*configuration->Resolution.x/800&&eventManager->getPositionSouris().x<(m_classe.emplacements[m_inventaire[i].m_equipe].position.x+m_classe.emplacements[m_inventaire[i].m_equipe].position.w)*configuration->Resolution.x/800&&eventManager->getPositionSouris().y>m_classe.emplacements[m_inventaire[i].m_equipe].position.y*configuration->Resolution.y/600&&eventManager->getPositionSouris().y<(m_classe.emplacements[m_inventaire[i].m_equipe].position.y+m_classe.emplacements[m_inventaire[i].m_equipe].position.h)*configuration->Resolution.y/600)
-                        m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+ m_classe.emplacements[m_inventaire[i].m_equipe].position.w),(int)(position.y+position.h),0,0),m_caracteristiques), retour = true;
+                        m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+ m_classe.emplacements[m_inventaire[i].m_equipe].position.w),(int)(position.y+position.h),0,0),m_caracteristiques,&m_inventaire), retour = true;
                 }
             }
             else if(i != m_no_result)
@@ -1632,7 +1632,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
                     &&eventManager->getPositionSouris().x<120*configuration->Resolution.x/800
                     &&eventManager->getPositionSouris().y>88*configuration->Resolution.y/600
                     &&eventManager->getPositionSouris().y<151*configuration->Resolution.y/600)
-                    m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+64),(int)(position.y+position.h),0,0),m_caracteristiques), retour = true;
+                    m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+64),(int)(position.y+position.h),0,0),m_caracteristiques,&m_inventaire), retour = true;
             }
             else
             {
@@ -1652,7 +1652,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
                     &&eventManager->getPositionSouris().x<345*configuration->Resolution.x/800
                     &&eventManager->getPositionSouris().y>43*configuration->Resolution.y/600
                     &&eventManager->getPositionSouris().y<203*configuration->Resolution.y/600)
-                    m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+160),(int)(position.y+position.h),0,0),m_caracteristiques), retour = true;
+                    m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+160),(int)(position.y+position.h),0,0),m_caracteristiques,&m_inventaire), retour = true;
             }
 
             moteurGraphique->AjouterCommande(&sprite,16,0);
@@ -1732,7 +1732,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
                     sprite.SetX((m_classe.emplacements[trader[i].m_equipe].position.x)*configuration->Resolution.w/800);
                     sprite.SetY((m_classe.emplacements[trader[i].m_equipe].position.y)*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
                     if (m_objetEnMain==-1&&eventManager->getPositionSouris().x>m_classe.emplacements[trader[i].m_equipe].position.x*configuration->Resolution.x/800&&eventManager->getPositionSouris().x<(m_classe.emplacements[trader[i].m_equipe].position.x+m_classe.emplacements[trader[i].m_equipe].position.w)*configuration->Resolution.x/800&&eventManager->getPositionSouris().y>m_classe.emplacements[trader[i].m_equipe].position.y*configuration->Resolution.y/600&&eventManager->getPositionSouris().y<(m_classe.emplacements[trader[i].m_equipe].position.y+m_classe.emplacements[trader[i].m_equipe].position.h)*configuration->Resolution.y/600)
-                        trader[i].AfficherCaracteristiques(eventManager->getPositionSouris(),m_caracteristiques,(10-(float)m_caracteristiques.charisme/100)), retour = true;
+                        trader[i].AfficherCaracteristiques(eventManager->getPositionSouris(),m_caracteristiques,&m_inventaire,(10-(float)m_caracteristiques.charisme/100)), retour = true;
                 }
             }
 
@@ -1883,7 +1883,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
                     // temp.y-=32*configuration->Resolution.h/600;
                     temp.y+=48;
                     temp.x+=192;
-                    int decalage = m_inventaire[i].AfficherCaracteristiques(temp,m_caracteristiques,1,1,0);
+                    int decalage = m_inventaire[i].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,1,1,0);
                     retour = true;
 
                     for (int j=0;j<(int)m_inventaire.size();j++)
@@ -1891,7 +1891,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
                             for (int k=0;k<(int)m_inventaire[i].m_emplacement.size();k++)
                                 for (int l=0;l<(int)m_inventaire[j].m_emplacement.size();l++)
                                     if (m_inventaire[i].m_emplacement[k]==m_inventaire[j].m_emplacement[l])
-                                        temp.x=decalage-4,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,1,1,0,1),l=(int)m_inventaire[j].m_emplacement.size(),k=(int)m_inventaire[i].m_emplacement.size();
+                                        temp.x=decalage-4,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,1,1,0,1),l=(int)m_inventaire[j].m_emplacement.size(),k=(int)m_inventaire[i].m_emplacement.size();
                 }
     }
     else if (eventManager->getPositionSouris().x>m_classe.position_contenu_marchand.x*configuration->Resolution.x/800&&eventManager->getPositionSouris().x<m_classe.position_contenu_marchand.x*configuration->Resolution.x/800+32*m_classe.position_contenu_marchand.w*configuration->Resolution.x/800&&eventManager->getPositionSouris().y>(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600&&eventManager->getPositionSouris().y<(m_classe.position_contenu_marchand.y-32)*configuration->Resolution.y/600+32*m_classe.position_contenu_marchand.h*configuration->Resolution.y/600)
@@ -1907,7 +1907,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
                 coordonnee temp=eventManager->getPositionSouris();
                 temp.y+=48;
                 temp.x-=192;
-                int decalage=trader[i].AfficherCaracteristiques(temp,m_caracteristiques,(10-(float)m_caracteristiques.charisme/100),1,1);
+                int decalage=trader[i].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,(10-(float)m_caracteristiques.charisme/100),1,1);
                 retour = true;
 
                 for (int j=0;j<(int)m_inventaire.size();j++)
@@ -1915,7 +1915,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
                         for (int k=0;k<(int)trader[i].m_emplacement.size();k++)
                             for (int l=0;l<(int)m_inventaire[j].m_emplacement.size();l++)
                                 if (trader[i].m_emplacement[k]==m_inventaire[j].m_emplacement[l])
-                                    temp.x=decalage+12,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,1,1,1,1),l=(int)m_inventaire[j].m_emplacement.size(),k=(int)trader[i].m_emplacement.size();
+                                    temp.x=decalage+12,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,1,1,1,1),l=(int)m_inventaire[j].m_emplacement.size(),k=(int)trader[i].m_emplacement.size();
             }
     }
 
@@ -1964,7 +1964,7 @@ void Hero::AfficherRaccourcis()
                     && eventManager->getPositionSouris().x < sprite.GetPosition().x + 20 * configuration->Resolution.x/800
                     && eventManager->getPositionSouris().y > sprite.GetPosition().y
                     && eventManager->getPositionSouris().y < sprite.GetPosition().y + 20 * configuration->Resolution.h/600 && m_objetEnMain < 0)
-                m_inventaire[m_objets_raccourcis[i]].AfficherCaracteristiques(eventManager->getPositionSouris(), m_caracteristiques);
+                m_inventaire[m_objets_raccourcis[i]].AfficherCaracteristiques(eventManager->getPositionSouris(), m_caracteristiques,&m_inventaire);
         }
         else
         {
@@ -2158,9 +2158,23 @@ void Hero::RecalculerCaracteristiques(bool bis)
     m_caracteristiques.maxVie   = 0;
     m_caracteristiques.maxFoi   = 0;
 
+    std::vector<Set> liste_set;
+
     for (int i=0;i<(int)m_inventaire.size();++i)
         if (m_inventaire[i].m_equipe>=0)
             if (m_inventaire[i].Utilisable(buf,m_classe.ID))
+            {
+                if(!m_inventaire[i].m_chemin_set.empty())
+                {
+                    bool ajouter = true;
+                    for(unsigned j = 0 ; j < liste_set.size(); ++j)
+                        if(liste_set[j].m_chemin == m_inventaire[i].m_chemin_set)
+                            ajouter = false, liste_set[j].m_nombre++;
+
+                    if(ajouter)
+                        liste_set.push_back(m_inventaire[i].m_set), liste_set.back().m_nombre = 0;
+                }
+
                 for (int j=0;j<(int)m_inventaire[i].m_benedictions.size();++j)
                     switch (m_inventaire[i].m_benedictions[j].type)
                     {
@@ -2183,6 +2197,35 @@ void Hero::RecalculerCaracteristiques(bool bis)
                                 m_caracteristiques.maxFoi   += m_inventaire[i].m_benedictions[j].info2;
                             break;
                     }
+            }
+
+    for (unsigned i=0;i<liste_set.size();++i)
+        for (unsigned k=0;k<liste_set[i].m_nombre;++k)
+        {
+            for (int j=0;j<(int)liste_set[i].m_benedictions[k].size();++j)
+                switch (liste_set[i].m_benedictions[k][j].type)
+                {
+                    case CARACT_SUPP:
+                        if(liste_set[i].m_benedictions[k][j].info1 == FORCE)
+                            m_caracteristiques.force    += liste_set[i].m_benedictions[k][j].info2;
+                        if(liste_set[i].m_benedictions[k][j].info1 == DEXTERITE)
+                            m_caracteristiques.dexterite+= liste_set[i].m_benedictions[k][j].info2;
+                        if(liste_set[i].m_benedictions[k][j].info1 == VITALITE)
+                            m_caracteristiques.vitalite += liste_set[i].m_benedictions[k][j].info2;
+                        if(liste_set[i].m_benedictions[k][j].info1 == PIETE)
+                            m_caracteristiques.piete    += liste_set[i].m_benedictions[k][j].info2;
+                        if(liste_set[i].m_benedictions[k][j].info1 == CHARISME)
+                            m_caracteristiques.charisme += liste_set[i].m_benedictions[k][j].info2;
+                        break;
+                    case POINTS_SUPP:
+                        if(liste_set[i].m_benedictions[k][j].info1 == PT_VIE)
+                            m_caracteristiques.maxVie   += liste_set[i].m_benedictions[k][j].info2;
+                        if(liste_set[i].m_benedictions[k][j].info1 == PT_FOI)
+                            m_caracteristiques.maxFoi   += liste_set[i].m_benedictions[k][j].info2;
+                        break;
+                }
+        }
+
 
     for(int i = 0 ; i < 4 ; ++i)
     {
@@ -2256,15 +2299,29 @@ void Hero::RecalculerCaracteristiques(bool bis)
                 temp.armure[PHYSIQUE]     += m_inventaire[i].m_armure;
             }
 
+    for (unsigned i=0;i<liste_set.size();++i)
+        for (unsigned k=0;k<liste_set[i].m_nombre;++k)
+            for (int j=0;j<(int)liste_set[i].m_benedictions[k].size();++j)
+                switch (liste_set[i].m_benedictions[k][j].type)
+                {
+                    case DEGATS_SUPP:
+                        m_caracteristiques.degatsMin[liste_set[i].m_benedictions[k][j].info1]+=liste_set[i].m_benedictions[k][j].info2;
+                        m_caracteristiques.degatsMax[liste_set[i].m_benedictions[k][j].info1]+=liste_set[i].m_benedictions[k][j].info3;
+                        break;
+                    case ARMURE_SUPP:
+                        m_caracteristiques.armure[liste_set[i].m_benedictions[k][j].info1]+=liste_set[i].m_benedictions[k][j].info2;
+                        break;
+                }
+
     for (int i = 0; i < (int)m_personnage.m_effets.size(); ++i)
         if (m_personnage.m_effets[i].m_effet.m_actif)
         {
-            if (m_personnage.m_effets[i].m_type == AURA_DEGATS)
+           /* if (m_personnage.m_effets[i].m_type == AURA_DEGATS)
             {
                 console->Ajouter("JE SUIS DANS HEROS LIGNE 2065, AURA DEGATS !!!!!!!!!");
                // m_caracteristiques.degatsMin += (int)m_personnage.m_effets[i].m_info2;
                 //m_caracteristiques.degatsMax += (int)m_personnage.m_effets[i].m_info3;
-            }
+            }*/
 
             if (m_personnage.m_effets[i].m_type == AURA_REGENERATION)
             {
