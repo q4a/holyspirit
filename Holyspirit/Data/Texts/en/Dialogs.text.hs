@@ -41,3 +41,13 @@ What do you want to do ?\\
 -Reach the chest
 -Crafting
 The edge of the wood
+Psssst !\Hey, you !\I need some help !\I lock myself in my INN when these demons assaulted me.
+-No problem, let's them fight.
+-Stay here, be careful.
+Thank you for helping me.
+No entry !
+I must keep this INN clear of these undeads !
+I standed against the attack !\I must get my reward.
+I failed, demons overwhelmed my defense, crushed the door and killed the barkeeper.
+I standed against the attack !\And I got my money.
+Thanks.\Here is your gold.\+1000 money received.

@@ -28,3 +28,4 @@ Abbot Chamel
 Abbey Shrine
 Agrarian Lands Shrine
 Edge of the forest Shrine
+Barkeeper behind the door

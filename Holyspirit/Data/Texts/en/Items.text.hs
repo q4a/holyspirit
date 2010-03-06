@@ -100,3 +100,6 @@ Bronze shield
 A buckler forged entirely in bronze. \Very tough.
 Blueprint : Bronze shield
 Blueprint explaining the construction of a bronze shield.
+Diadem of the tearful widow.
+A diadem which suit perfectly to a woman in mourning.
+Set of the Tearful Widow
