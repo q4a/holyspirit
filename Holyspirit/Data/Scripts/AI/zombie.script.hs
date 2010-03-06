@@ -7,9 +7,9 @@ main
 
 				if see
 				then
-					if rand * 1
+					if rand * 99
 					then
-						if rand * 50 
+						if rand * 25 
 						then 
 							playSound * 3
 						else

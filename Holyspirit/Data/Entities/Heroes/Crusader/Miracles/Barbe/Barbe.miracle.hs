@@ -9,7 +9,7 @@ $
 $
 	*2
 $
-	* F%0 $
+	* F%0 d1 $
 $
 //Effets
 	* t8 l1 l2 l8 ia-1 ib0 ic0 $
