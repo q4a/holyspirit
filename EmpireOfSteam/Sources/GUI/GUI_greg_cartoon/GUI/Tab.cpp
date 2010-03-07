@@ -79,9 +79,7 @@ void Tab::Update()
                 m_clicked = true;
             else
             {
-                if(mainEventManager->GetFocus() == this)
-                    mainEventManager->SetFocus(NULL);
-
+                mainEventManager->SetFocus(NULL);
                 m_clicked = false;
             }
         }

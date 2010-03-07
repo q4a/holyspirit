@@ -39,7 +39,7 @@ class Widget
         sf::Vector2i m_subPosition;
         sf::Vector2i m_subSize;
 
-        sf::Image m_background;
+        sf::Image    m_background;
 
         std::vector <Widget *> m_widgets;
 

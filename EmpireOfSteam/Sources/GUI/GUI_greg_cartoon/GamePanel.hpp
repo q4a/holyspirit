@@ -49,7 +49,13 @@ class GamePanel : public Widget
 
         Bejeweled   *m_bejeweled;
 
-        GUIAnimatedImage    *m_animated_tab_food_off,
+        GUIAnimatedImage    *m_animated_tab_army_off,
+                            *m_animated_tab_army_on,
+                            *m_animated_tab_religion_off,
+                            *m_animated_tab_religion_on,
+                            *m_animated_tab_science_off,
+                            *m_animated_tab_science_on,
+                            *m_animated_tab_food_off,
                             *m_animated_tab_food_on,
                             *m_animated_tab_material_off,
                             *m_animated_tab_material_on;

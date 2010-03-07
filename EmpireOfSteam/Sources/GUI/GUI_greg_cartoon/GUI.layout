@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Release" />
-	<File name="Engines\EventManager.cpp" open="1" top="0" tabpos="6">
+	<File name="Engines\EventManager.cpp" open="1" top="0" tabpos="31">
 		<Cursor position="2014" topLine="46" />
 	</File>
-	<File name="Engines\EventManager.hpp" open="1" top="0" tabpos="7">
+	<File name="Engines\EventManager.hpp" open="1" top="0" tabpos="32">
 		<Cursor position="644" topLine="3" />
 	</File>
-	<File name="GUI\Button.cpp" open="1" top="0" tabpos="9">
+	<File name="GUI\Button.cpp" open="1" top="0" tabpos="34">
 		<Cursor position="482" topLine="15" />
 	</File>
-	<File name="GUI\Button.hpp" open="1" top="0" tabpos="11">
+	<File name="GUI\Button.hpp" open="1" top="0" tabpos="36">
 		<Cursor position="502" topLine="0" />
 	</File>
-	<File name="GUI\Widget.cpp" open="1" top="0" tabpos="8">
+	<File name="GUI\Widget.cpp" open="1" top="0" tabpos="33">
 		<Cursor position="348" topLine="0" />
 	</File>
-	<File name="GUI\Widget.hpp" open="1" top="1" tabpos="10">
-		<Cursor position="42" topLine="0" />
+	<File name="GUI\Widget.hpp" open="1" top="1" tabpos="35">
+		<Cursor position="661" topLine="0" />
 	</File>
-	<File name="Global.hpp" open="1" top="0" tabpos="3">
+	<File name="Global.hpp" open="1" top="0" tabpos="28">
 		<Cursor position="161" topLine="0" />
 	</File>
-	<File name="Utils\Singleton.hpp" open="1" top="0" tabpos="5">
+	<File name="Utils\Singleton.hpp" open="1" top="0" tabpos="30">
 		<Cursor position="765" topLine="6" />
 	</File>
-	<File name="WindowGame.cpp" open="1" top="0" tabpos="2">
+	<File name="WindowGame.cpp" open="1" top="0" tabpos="27">
 		<Cursor position="270" topLine="0" />
 	</File>
-	<File name="WindowGame.hpp" open="1" top="0" tabpos="4">
+	<File name="WindowGame.hpp" open="1" top="0" tabpos="29">
 		<Cursor position="202" topLine="0" />
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1">
+	<File name="main.cpp" open="1" top="0" tabpos="26">
 		<Cursor position="267" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

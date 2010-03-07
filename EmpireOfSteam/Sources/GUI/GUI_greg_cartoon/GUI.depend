@@ -318,3 +318,119 @@
 1262107435 source:e:\c++\shareware\eos\sources\gui\gui\engines\eventmanager.cpp
 	"EventManager.hpp"
 
+1267020416 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\button.cpp
+	"Button.hpp"
+	<iostream>
+
+1265459251 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\button.hpp
+	"GUIImage.hpp"
+	"Label.hpp"
+
+1262447898 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guiimage.hpp
+	"Widget.hpp"
+
+1267035863 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\widget.hpp
+	<SFML/Graphics.hpp>
+	"../Global.hpp"
+	<list>
+
+1262107437 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\global.hpp
+	<SFML/Graphics.hpp>
+	"Engines/EventManager.hpp"
+
+1267019649 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\engines\eventmanager.hpp
+	<SFML/Graphics.hpp>
+	<SFML/System.hpp>
+	"../Utils/Singleton.hpp"
+
+1262107435 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\utils\singleton.hpp
+
+1263643265 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\label.hpp
+	"Widget.hpp"
+
+1267019836 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\widget.cpp
+	"Widget.hpp"
+
+1267020332 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\windowgame.cpp
+	"WindowGame.hpp"
+	<iostream>
+
+1266946130 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\windowgame.hpp
+	"GamePanel.hpp"
+	"MenuPanel.hpp"
+	"OptionPanel.hpp"
+	"CustomisationPanel.hpp"
+
+1266942834 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gamepanel.hpp
+	"Global.hpp"
+	"Bejeweled.hpp"
+	"GUI/Button.hpp"
+	"GUI/GUIProgressBar.hpp"
+	"GUI/TabBar.hpp"
+	"GUI/Label.hpp"
+	"GUI/GUIImage.hpp"
+	"GUI/GUIAnimatedImage.hpp"
+	"GUI/GUIWindow.hpp"
+
+1265663169 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\bejeweled.hpp
+	"GUI/Widget.hpp"
+
+1265545649 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guiprogressbar.hpp
+	"GUIImage.hpp"
+	"Label.hpp"
+
+1263325022 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\tabbar.hpp
+	"Tab.hpp"
+
+1265459364 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\tab.hpp
+	"Button.hpp"
+
+1267030763 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guianimatedimage.hpp
+	"GUIImage.hpp"
+
+1267019920 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guiwindow.hpp
+	"../Global.hpp"
+	"Widget.hpp"
+
+1267030242 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\menupanel.hpp
+	"Global.hpp"
+	"GUI/Button.hpp"
+	"GUI/GUIProgressBar.hpp"
+	"GUI/TabBar.hpp"
+	"GUI/Label.hpp"
+	"GUI/GUIImage.hpp"
+	"GUI/GUIAnimatedImage.hpp"
+	"GUI/GUIWindow.hpp"
+	"GUI/GUIInput.hpp"
+
+1267026395 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\gui\guiinput.hpp
+	"GUIImage.hpp"
+	"Label.hpp"
+
+1266946381 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\optionpanel.hpp
+	"Global.hpp"
+	"GUI/Button.hpp"
+	"GUI/GUIProgressBar.hpp"
+	"GUI/TabBar.hpp"
+	"GUI/Label.hpp"
+	"GUI/GUIImage.hpp"
+	"GUI/GUIAnimatedImage.hpp"
+	"GUI/GUIWindow.hpp"
+
+1266945698 e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\customisationpanel.hpp
+	"Global.hpp"
+	"GUI/Button.hpp"
+	"GUI/GUIProgressBar.hpp"
+	"GUI/TabBar.hpp"
+	"GUI/Label.hpp"
+	"GUI/GUIImage.hpp"
+	"GUI/GUIAnimatedImage.hpp"
+	"GUI/GUIWindow.hpp"
+
+1262107437 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\main.cpp
+	<iostream>
+	"WindowGame.hpp"
+
+1267019628 source:e:\c++\petits jeux\eos\sources\gui\gui_greg_cartoon\engines\eventmanager.cpp
+	"EventManager.hpp"
+

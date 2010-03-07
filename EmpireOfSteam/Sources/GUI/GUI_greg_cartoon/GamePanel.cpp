@@ -4,11 +4,11 @@ GamePanel::GamePanel()
 {
     m_tab_resources = new TabBar(0,0,512,384);
 
-    m_tab_food     = new Tab(12 ,64,118,35, "");
-    m_tab_material = new Tab(12 ,99,118,35, "");
-    m_tab_science  = new Tab(16 ,134,92,48, "Science");
-    m_tab_army     = new Tab(16 ,169,92,48, "Armées");
-    m_tab_religion = new Tab(16 ,204,92,48, "Religion");
+    m_tab_food     = new Tab(12 ,48,118,35, "");
+    m_tab_material = new Tab(12 ,83,118,35, "");
+    m_tab_science  = new Tab(12 ,118,118,35, "");
+    m_tab_army     = new Tab(12 ,153,118,35, "");
+    m_tab_religion = new Tab(12 ,188,118,35, "");
 
     m_tab_food      ->m_label.SetCharacterSize(14);
     m_tab_food      ->m_label.SetColor(sf::Color(224, 224, 224));
@@ -53,17 +53,47 @@ GamePanel::GamePanel()
 
     m_panel_ressources->AddWidget(m_cadran_resources);
 
+    m_animated_tab_army_off = new GUIAnimatedImage (0,0,118,35,7,"pictures/GUI/ongletArmeeOff/OngletAnimation-.png");
+    m_animated_tab_army_off->SetRate(0.5);
+
+    m_animated_tab_army_on  = new GUIAnimatedImage (0,0,118,35,7,"pictures/GUI/ongletArmeeOn/OngletAnimation-.png");
+    m_animated_tab_army_on->SetRate(0.5);
+
+    m_animated_tab_religion_off = new GUIAnimatedImage (0,0,118,35,8,"pictures/GUI/ongletReligionOff/OngletAnimation-.png");
+    m_animated_tab_religion_off->SetRate(0.5);
+
+    m_animated_tab_religion_on  = new GUIAnimatedImage (0,0,118,35,8,"pictures/GUI/ongletReligionOn/OngletAnimation-.png");
+    m_animated_tab_religion_on->SetRate(0.5);
+
+    m_animated_tab_science_off = new GUIAnimatedImage (0,0,118,35,8,"pictures/GUI/ongletScienceOff/OngletAnimation-.png");
+    m_animated_tab_science_off->SetRate(0.5);
+
+    m_animated_tab_science_on  = new GUIAnimatedImage (0,0,118,35,8,"pictures/GUI/ongletScienceOn/OngletAnimation-.png");
+    m_animated_tab_science_on->SetRate(0.5);
+
     m_animated_tab_food_off = new GUIAnimatedImage (0,0,118,35,9,"pictures/GUI/ongletNourritureOff/OngletAnimation-.png");
-    m_animated_tab_food_off->SetRate(0.3);
+    m_animated_tab_food_off->SetRate(0.5);
 
     m_animated_tab_food_on  = new GUIAnimatedImage (0,0,118,35,9,"pictures/GUI/ongletNourritureOn/OngletAnimation-.png");
-    m_animated_tab_food_on->SetRate(0.3);
+    m_animated_tab_food_on->SetRate(0.5);
 
     m_animated_tab_material_off = new GUIAnimatedImage (0,0,118,35,7,"pictures/GUI/ongletMaterielOff/OngletAnimation-.png");
-    m_animated_tab_material_off->SetRate(0.3);
+    m_animated_tab_material_off->SetRate(0.5);
 
     m_animated_tab_material_on  = new GUIAnimatedImage (0,0,118,35,7,"pictures/GUI/ongletMaterielOn/OngletAnimation-.png");
-    m_animated_tab_material_on->SetRate(0.3);
+    m_animated_tab_material_on->SetRate(0.5);
+
+    m_tab_army->SetImage(m_animated_tab_army_off);
+    m_tab_army->SetImage(m_animated_tab_army_off,Button_hover);
+    m_tab_army->SetImage(m_animated_tab_army_on ,Button_clicked);
+
+    m_tab_religion->SetImage(m_animated_tab_religion_off);
+    m_tab_religion->SetImage(m_animated_tab_religion_off,Button_hover);
+    m_tab_religion->SetImage(m_animated_tab_religion_on ,Button_clicked);
+
+    m_tab_science->SetImage(m_animated_tab_science_off);
+    m_tab_science->SetImage(m_animated_tab_science_off,Button_hover);
+    m_tab_science->SetImage(m_animated_tab_science_on ,Button_clicked);
 
     m_tab_food->SetImage(m_animated_tab_food_off);
     m_tab_food->SetImage(m_animated_tab_food_off,Button_hover);
@@ -133,6 +163,12 @@ GamePanel::~GamePanel()
     delete m_fish_ressources;
     delete m_rock_ressources;
 
+    delete m_animated_tab_army_off;
+    delete m_animated_tab_army_on;
+    delete m_animated_tab_religion_off;
+    delete m_animated_tab_religion_on;
+    delete m_animated_tab_science_off;
+    delete m_animated_tab_science_on;
     delete m_animated_tab_food_off;
     delete m_animated_tab_food_on;
     delete m_animated_tab_material_off;

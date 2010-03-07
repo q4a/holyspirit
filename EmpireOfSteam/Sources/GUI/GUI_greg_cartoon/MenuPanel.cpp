@@ -9,7 +9,7 @@ MenuPanel::MenuPanel()
     m_iris_open     = new GUIImage("pictures/GUI/irisOpen.png");
 
     m_animated_iris = new GUIAnimatedImage (0,0,450,439,24,"pictures/GUI/animationIris/iris-.png");
-    m_animated_iris->SetRate(0.05);
+    m_animated_iris->SetRate(0.025);
     m_animated_iris->SetLoop(false);
 
     m_iris_button   = new Button(280,64,450,439);
