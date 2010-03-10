@@ -326,6 +326,7 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
     console->Ajouter("Chargement du miracle : "+chemin);
 
     m_unique     =  false;
+    m_direct     =  false;
     m_chemin     =  chemin;
     m_cas        =  -1;
     m_reserveFoi =  0;
@@ -539,6 +540,10 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
 
                     case 'e':
                         fichier>>m_cas;
+                        break;
+
+                    case 'd':
+                        fichier>>m_direct;
                         break;
 
                     }

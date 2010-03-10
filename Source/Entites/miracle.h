@@ -152,6 +152,7 @@ public:
     std::vector<std::string>    m_description_effets_suivant;
 
     bool                        m_unique;
+    bool                        m_direct;
     int                         m_cas;
 
     int                         m_buf;

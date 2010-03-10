@@ -38,6 +38,7 @@ struct Emplacement_inventaire
 {
     coordonnee position;
     int emplacement;
+    int image;
 };
 
 struct Classe
@@ -57,11 +58,8 @@ struct Classe
     Image_interface inventaire;
     Image_interface menu_marchand;
     Image_interface hud;
-    Image_interface hud_newlevel;
     Image_interface orbe_vie;
     Image_interface orbe_foi;
-    Image_interface cache_vie;
-    Image_interface cache_foi;
     Image_interface plus_button;
     Image_interface scroll_button;
     Image_interface talk;
@@ -69,9 +67,14 @@ struct Classe
     Image_interface craft;
     Image_interface arrow;
     Image_interface icone_mm;
+    Image_interface soul_bar;
+    Image_interface hud_pt_caract_rest;
+    Image_interface hud_pt_miracle_rest;
     std::vector<Image_interface> interface_miracles;
 
     std::vector<Bouton> boutons_miracles;
+
+    coordonnee position_raccourcis[8];
 
     coordonnee position_sac_inventaire;
     coordonnee position_contenu_inventaire;

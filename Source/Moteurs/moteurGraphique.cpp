@@ -209,6 +209,8 @@ void MoteurGraphique::Charger()
 
 
     m_img_corner = AjouterImage(configuration->chemin_menus + configuration->nom_corner,-1);
+    m_img_item_background = AjouterImage(configuration->chemin_menus + configuration->nom_item_background,-1);
+    m_img_item_unusable = AjouterImage(configuration->chemin_menus + configuration->nom_item_unusable,-1);
 }
 
 void MoteurGraphique::Gerer(float temps,int tailleMapY)

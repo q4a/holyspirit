@@ -73,12 +73,6 @@ void c_Quetes::Utiliser(Jeu *jeu)
 
     eventManager->AfficherCurseur();
 
-    if (eventManager->getEvenement(Mouse::Left,EventClic))
-    {
-        eventManager->StopEvenement(Mouse::Left,EventClic);
-        jeu->hero.m_queteSelectionnee = jeu->hero.m_quetePointee;
-    }
-
     int temp = GestionBoutons(jeu);
     if(temp >= 0)
     {
@@ -88,6 +82,12 @@ void c_Quetes::Utiliser(Jeu *jeu)
 
         if(jeu->next_screen == 6 || jeu->next_screen == 4)
             jeu->next_screen = 3;
+    }
+
+    if (eventManager->getEvenement(Mouse::Left,EventClic))
+    {
+        eventManager->StopEvenement(Mouse::Left,EventClic);
+        jeu->hero.m_queteSelectionnee = jeu->hero.m_quetePointee;
     }
 }
 

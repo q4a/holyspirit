@@ -41,6 +41,13 @@ struct Potale
     int nom;
 };
 
+struct Raccourci
+{
+    bool miracle;
+    int no;
+    int nbr;
+};
+
 class Hero
 {
 public:
@@ -117,14 +124,13 @@ public:
 
     int miracleEnCours,frappeEnCours,m_objetEnMain,m_objetADeposer,m_objetVise,m_miracleEnMain;
     int m_argent;
+    int m_holywater;
 
     //cDAT m_fichierSave;
     std::vector<std::string> m_contenuSave;
 
     int m_defilement_trader,m_max_defilement_trader,m_buttonPointe;
-    int m_objets_raccourcis[4];
-    int m_nbr_objets_raccourcis[4];
-    int m_miracles_raccourcis[4];
+    Raccourci m_raccourcis[8];
 
     int m_quetePointee, m_queteSelectionnee;
     int m_potale_selectionnee;

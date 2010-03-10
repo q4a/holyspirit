@@ -164,7 +164,7 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
     if (m_EventTableau[Key::Space])
         configuration->minute+=200*temps;
 
-    if (m_EventTableau[Key::Tab])
+    /*if (m_EventTableau[Key::Tab])
     {
         if (configuration->console==0)
             configuration->console=1;
@@ -174,7 +174,7 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
             configuration->console=0;
 
         m_EventTableau[Key::Tab]=false;
-    }
+    }*/
 
 
 
@@ -200,9 +200,9 @@ void EventManager::AfficherCurseur(bool transparent)
     Sprite Sprite;
     Sprite.SetImage(*moteurGraphique->getImage(idcurseur));
     if (configuration->Resolution.x > 0)
-        Sprite.SetX(m_positionSouris.x*configuration->Resolution.w/configuration->Resolution.x);
+        Sprite.SetX(m_positionSouris.x*configuration->Resolution.w/configuration->Resolution.x-2);
     if (configuration->Resolution.y > 0)
-        Sprite.SetY(m_positionSouris.y*configuration->Resolution.h/configuration->Resolution.y);
+        Sprite.SetY(m_positionSouris.y*configuration->Resolution.h/configuration->Resolution.y-2);
 
     if(transparent)
         Sprite.SetColor(sf::Color(255,255,255,64));

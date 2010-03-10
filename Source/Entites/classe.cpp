@@ -446,11 +446,8 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
         ChargerImageInterface(fichier, inventaire);
         ChargerImageInterface(fichier, menu_marchand);
         ChargerImageInterface(fichier, hud);
-        ChargerImageInterface(fichier, hud_newlevel);
         ChargerImageInterface(fichier, orbe_vie);
         ChargerImageInterface(fichier, orbe_foi);
-        ChargerImageInterface(fichier, cache_vie);
-        ChargerImageInterface(fichier, cache_foi);
         ChargerImageInterface(fichier, plus_button);
         ChargerImageInterface(fichier, scroll_button);
         ChargerImageInterface(fichier, talk);
@@ -458,6 +455,9 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
         ChargerImageInterface(fichier, craft);
         ChargerImageInterface(fichier, arrow);
         ChargerImageInterface(fichier, icone_mm);
+        ChargerImageInterface(fichier, soul_bar);
+        ChargerImageInterface(fichier, hud_pt_caract_rest);
+        ChargerImageInterface(fichier, hud_pt_miracle_rest);;
 
         ChargerCoordonneeInterface(fichier, position_sac_inventaire);
         ChargerCoordonneeInterface(fichier, position_contenu_inventaire);
@@ -466,6 +466,9 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
         ChargerCoordonneeInterface(fichier, position_bouton_dialogue);
         ChargerCoordonneeInterface(fichier, position_contenu_quetes);
         ChargerCoordonneeInterface(fichier, position_contenu_description_quete);
+
+        for(int i = 0 ; i < 8 ; ++i)
+            ChargerCoordonneeInterface(fichier, position_raccourcis[i]);
 
         do
         {
@@ -492,6 +495,11 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
                         break;
                     case 'h' :
                         fichier>>emplacements.back().position.h;
+                        break;
+                    case 'm' :
+                        std::string buf;
+                        fichier>>buf;
+                        emplacements.back().image = moteurGraphique->AjouterImage(buf,-1);
                         break;
                     }
 

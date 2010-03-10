@@ -164,11 +164,6 @@ void Configuration::ChargerInit()
                 fichier>>water_map;
 
 
-
-            if (chaine== "menu_soul:")
-                fichier>>nom_ame;
-            if (chaine== "menu_soul_orb:")
-                fichier>>nom_barre_ame;
             if (chaine== "menu_life_monster:")
                 fichier>>nom_barre_vie;
             if (chaine== "menu_life_monster_blank:")
@@ -177,6 +172,10 @@ void Configuration::ChargerInit()
                 fichier>>nom_sac;
             if (chaine== "menu_corner:")
                 fichier>>nom_corner;
+            if (chaine== "menu_item_background:")
+                fichier>>nom_item_background;
+            if (chaine== "menu_item_unusable:")
+                fichier>>nom_item_unusable;
 
             if (chaine== "localisation:")
                 fichier>>chemin_localisation;

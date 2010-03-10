@@ -33,7 +33,7 @@ using namespace sf;
 using namespace std;
 
 int GestionBoutons(Jeu *jeu);
-void GestionRaccourcisMiracles(Jeu *jeu);
+void GestionRaccourcis(Jeu *jeu);
 
 c_Inventaire::c_Inventaire()
 {
@@ -138,27 +138,8 @@ void c_Inventaire::Utiliser(Jeu *jeu)
             jeu->map->m_defilerObjets++,eventManager->StopEvenement(Mouse::Left,EventClic);
     }
 
-    if (eventManager->getEvenement(Mouse::Left,EventClic))
-    {
-        if (jeu->map->RamasserObjet(&jeu->hero,1))
-            eventManager->StopEvenement(Mouse::Left,EventClic);
-    }
-
-    if (eventManager->getEvenement(Mouse::Left,EventClic))
-    {
-        if (jeu->hero.PrendreEnMain(m_trader))
-            if (jeu->hero.m_objetADeposer>=0)
-                jeu->map->AjouterObjet(jeu->hero.DeposerObjet());
-        eventManager->StopEvenement(Mouse::Left,EventClic);
-    }
-
-    if (eventManager->getEvenement(Mouse::Right,EventClic))
-    {
-        jeu->hero.UtiliserObjet(jeu->hero.m_objetVise);
-        eventManager->StopEvenement(Mouse::Right,EventClic);
-    }
-
     int temp = GestionBoutons(jeu);
+
     if(temp >= 0)
     {
         jeu->next_screen = temp;
@@ -180,6 +161,27 @@ void c_Inventaire::Utiliser(Jeu *jeu)
             jeu->next_screen = 3;
     }
 
+    if (eventManager->getEvenement(Mouse::Left,EventClic))
+    {
+        if (jeu->map->RamasserObjet(&jeu->hero,1))
+            eventManager->StopEvenement(Mouse::Left,EventClic);
+    }
+
+    if (eventManager->getEvenement(Mouse::Left,EventClic))
+    {
+        if (jeu->hero.PrendreEnMain(m_trader))
+            if (jeu->hero.m_objetADeposer>=0)
+                jeu->map->AjouterObjet(jeu->hero.DeposerObjet());
+        eventManager->StopEvenement(Mouse::Left,EventClic);
+    }
+
+    if (eventManager->getEvenement(Mouse::Right,EventClic))
+    {
+        jeu->hero.UtiliserObjet(jeu->hero.m_objetVise);
+        eventManager->StopEvenement(Mouse::Right,EventClic);
+    }
+
+
     jeu->hero.m_defilement_trader -= eventManager->getMolette();
 
     if(eventManager->getEvenement(Mouse::Left,EventClicA))
@@ -188,14 +190,14 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         &&eventManager->getPositionSouris().x<(jeu->hero.m_classe.scroll_button.position.x+jeu->hero.m_classe.scroll_button.position.w)*configuration->Resolution.x/800
         &&eventManager->getPositionSouris().y>jeu->hero.m_classe.scroll_button.position.y*configuration->Resolution.h/600
         &&eventManager->getPositionSouris().y-jeu->hero.m_classe.scroll_button.position.h<(jeu->hero.m_classe.scroll_button.position.y+jeu->hero.m_classe.position_contenu_marchand.h*24)*configuration->Resolution.h/600)
-            jeu->hero.m_defilement_trader = (int)((((float)eventManager->getPositionSouris().y-jeu->hero.m_classe.scroll_button.position.h*0.25-(float)jeu->hero.m_classe.scroll_button.position.y)/((float)jeu->hero.m_classe.position_contenu_marchand.h*24))*(float)(jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h));
+            jeu->hero.m_defilement_trader = (int)((((float)eventManager->getPositionSouris().y-jeu->hero.m_classe.scroll_button.position.h*0.5-(float)jeu->hero.m_classe.scroll_button.position.y)/((float)jeu->hero.m_classe.position_contenu_marchand.h*28))*(float)(jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h));
 
     if (jeu->hero.m_defilement_trader<0)
         jeu->hero.m_defilement_trader=0;
     if (jeu->hero.m_defilement_trader>jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h)
         jeu->hero.m_defilement_trader=jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h;
 
-    GestionRaccourcisMiracles(jeu);
+  //  GestionRaccourcis(jeu);
 
 
     coordonnee position;

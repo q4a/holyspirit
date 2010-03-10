@@ -43,9 +43,7 @@ Menu::Menu()
     m_alphaSang=0;
     console->Ajouter("",0);
     console->Ajouter("Chargement des menus :",0);
-    m_imageAme=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_ame,-1);
     m_imageSang=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_sang,-1);
-    m_barrePointAme=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_barre_ame,-1);
 
     m_barreVie=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_barre_vie,-1);
     m_barreVieVide=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_barre_vie_vide,-1);
@@ -64,20 +62,6 @@ void Menu::AfficherHUD(Classe *classe)
     sprite2.SetY(classe->hud.position.y*configuration->Resolution.h/600);
     sprite2.Resize(classe->hud.position.w*configuration->Resolution.w/800, classe->hud.position.h*configuration->Resolution.h/600);
     moteurGraphique->AjouterCommande(&sprite2,17,0);
-
-    Sprite sprite3;
-
-    sprite3.SetImage(*moteurGraphique->getImage(classe->cache_vie.image));
-    sprite3.SetX(classe->cache_vie.position.x*configuration->Resolution.x/800);
-    sprite3.SetY(classe->cache_vie.position.y*configuration->Resolution.h/600);
-    sprite3.Resize(classe->cache_vie.position.w*configuration->Resolution.w/800, classe->cache_vie.position.h*configuration->Resolution.h/600);
-    moteurGraphique->AjouterCommande(&sprite3,18,0);
-
-    sprite3.SetImage(*moteurGraphique->getImage(classe->cache_foi.image));
-    sprite3.SetX(classe->cache_foi.position.x*configuration->Resolution.x/800);
-    sprite3.SetY(classe->cache_foi.position.y*configuration->Resolution.h/600);
-    sprite3.Resize(classe->cache_foi.position.w*configuration->Resolution.w/800, classe->cache_foi.position.h*configuration->Resolution.h/600);
-    moteurGraphique->AjouterCommande(&sprite3,18,0);
 }
 
 void Menu::AfficherDialogue(int alpha,Classe *classe)
@@ -157,39 +141,41 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         Sprite sprite;
         sprite.SetImage(*moteurGraphique->getImage(classe->orbe_vie.image));
 
-        sprite.SetX(classe->orbe_vie.position.x*configuration->Resolution.x/800);
+        sprite.SetY(classe->orbe_vie.position.y*configuration->Resolution.h/600);
 
         if(caracteristique.vie<=(caracteristique.maxVie - caracteristique.reserveVie))
-            sprite.SetY(classe->orbe_vie.position.y*configuration->Resolution.h/600+(int)((caracteristique.maxVie-caracteristique.vie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.h*configuration->Resolution.h/600));
+            sprite.SetX((classe->orbe_vie.position.x+(int)((caracteristique.maxVie-caracteristique.vie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w))*configuration->Resolution.w/800);
         else
-            sprite.SetY(classe->orbe_vie.position.y*configuration->Resolution.h/600);
+            sprite.SetX(classe->orbe_vie.position.x*configuration->Resolution.h/600);
+
         sprite.Resize(classe->orbe_vie.position.w*configuration->Resolution.w/800, classe->orbe_vie.position.h*configuration->Resolution.h/600);
 
         if(caracteristique.vie<=(caracteristique.maxVie - caracteristique.reserveVie))
-            sprite.SetSubRect(sf::IntRect(0, (int)(classe->orbe_vie.position.h-(caracteristique.vie + caracteristique.reserveVie)*classe->orbe_vie.position.h/(caracteristique.maxVie)), classe->orbe_vie.position.w, (int)((caracteristique.maxVie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.h)));
+            sprite.SetSubRect(sf::IntRect((int)((caracteristique.maxVie-caracteristique.vie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w), 0, classe->orbe_vie.position.w, classe->orbe_vie.position.h));
         else
-            sprite.SetSubRect(sf::IntRect(0, 0, classe->orbe_vie.position.w, (int)((caracteristique.maxVie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.h)));
+            sprite.SetSubRect(sf::IntRect(0, 0, classe->orbe_vie.position.w, classe->orbe_vie.position.h));
 
         moteurGraphique->AjouterCommande(&sprite,17,0);
 
         if(caracteristique.reserveVie > 0)
         {
-            sprite.SetY(classe->orbe_vie.position.y*configuration->Resolution.h/600+(int)((caracteristique.maxVie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.h*configuration->Resolution.h/600));
-            sprite.SetSubRect(sf::IntRect(0, (int)(classe->orbe_vie.position.h-caracteristique.reserveVie*classe->orbe_vie.position.h/(caracteristique.maxVie)), classe->orbe_vie.position.w, classe->orbe_vie.position.h));
+            sprite.SetX((classe->orbe_vie.position.x+(int)((caracteristique.maxVie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w))*configuration->Resolution.w/800);
+            sprite.SetSubRect(sf::IntRect((int)((caracteristique.maxVie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w), 0, classe->orbe_vie.position.w, classe->orbe_vie.position.h));
 
-            sprite.SetColor(sf::Color(64,64,64,255));
+            sprite.SetColor(sf::Color(32,32,32,255));
 
             moteurGraphique->AjouterCommande(&sprite,18,0);
         }
 
         if(caracteristique.vie > caracteristique.maxVie - caracteristique.reserveVie)
         {
-            sprite.SetY(classe->orbe_vie.position.y*configuration->Resolution.h/600+(int)((caracteristique.maxVie*2-caracteristique.vie-caracteristique.reserveVie*2)/caracteristique.maxVie*classe->orbe_vie.position.h*configuration->Resolution.h/600));
-            sprite.SetSubRect(sf::IntRect(0, (int)(classe->orbe_vie.position.h-(caracteristique.vie - caracteristique.maxVie + caracteristique.reserveVie*2)*classe->orbe_vie.position.h/(caracteristique.maxVie)),
-                                          classe->orbe_vie.position.w, (int)((caracteristique.maxVie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.h)));
+            sprite.SetX((classe->orbe_vie.position.x+(int)((caracteristique.maxVie*2-caracteristique.vie-caracteristique.reserveVie*2)/caracteristique.maxVie*classe->orbe_vie.position.w))*configuration->Resolution.w/800);
+            sprite.SetSubRect(sf::IntRect((int)((caracteristique.maxVie*2-caracteristique.vie-caracteristique.reserveVie*2)/caracteristique.maxVie*classe->orbe_vie.position.w), 0, classe->orbe_vie.position.w, classe->orbe_vie.position.h));
 
             sprite.SetBlendMode(Blend::Add);
             sprite.SetColor(sf::Color(255,255,255));
+            moteurGraphique->AjouterCommande(&sprite,17,0);
+            moteurGraphique->AjouterCommande(&sprite,17,0);
             moteurGraphique->AjouterCommande(&sprite,17,0);
         }
     }
@@ -212,40 +198,35 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         Sprite sprite;
         sprite.SetImage(*moteurGraphique->getImage(classe->orbe_foi.image));
 
-        sprite.SetX(classe->orbe_foi.position.x*configuration->Resolution.x/800);
+        sprite.SetY(classe->orbe_foi.position.y*configuration->Resolution.h/600);
+        sprite.SetX(classe->orbe_foi.position.x*configuration->Resolution.w/800);
 
-        if(caracteristique.foi<=(caracteristique.maxFoi - caracteristique.reserveFoi))
-            sprite.SetY(classe->orbe_foi.position.y*configuration->Resolution.h/600+(int)((caracteristique.maxFoi-caracteristique.foi-caracteristique.reserveFoi)/caracteristique.maxFoi*classe->orbe_foi.position.h*configuration->Resolution.h/600));
-        else
-            sprite.SetY(classe->orbe_foi.position.y*configuration->Resolution.h/600);
         sprite.Resize(classe->orbe_foi.position.w*configuration->Resolution.w/800, classe->orbe_foi.position.h*configuration->Resolution.h/600);
 
         if(caracteristique.foi <= (caracteristique.maxFoi - caracteristique.reserveFoi))
-            sprite.SetSubRect(sf::IntRect(0, (int)(classe->orbe_foi.position.h-(caracteristique.foi + caracteristique.reserveFoi)*classe->orbe_foi.position.h/(caracteristique.maxFoi)),
-                                          classe->orbe_foi.position.w, (int)((caracteristique.maxFoi-caracteristique.reserveFoi)/caracteristique.maxFoi*classe->orbe_foi.position.h)));
+            sprite.SetSubRect(sf::IntRect(0, 0, (int)((caracteristique.foi+caracteristique.reserveFoi)/caracteristique.maxFoi*classe->orbe_foi.position.w), classe->orbe_foi.position.h));
         else
-            sprite.SetSubRect(sf::IntRect(0, 0, classe->orbe_foi.position.w, (int)((caracteristique.maxFoi-caracteristique.reserveFoi)/caracteristique.maxFoi*classe->orbe_foi.position.h)));
+            sprite.SetSubRect(sf::IntRect(0, 0, classe->orbe_foi.position.w, classe->orbe_foi.position.h));
 
         moteurGraphique->AjouterCommande(&sprite,17,0);
 
         if(caracteristique.reserveFoi > 0)
         {
-            sprite.SetY(classe->orbe_foi.position.y*configuration->Resolution.h/600+(int)((caracteristique.maxFoi-caracteristique.reserveFoi)/caracteristique.maxFoi*classe->orbe_foi.position.h*configuration->Resolution.h/600));
-            sprite.SetSubRect(sf::IntRect(0, (int)(classe->orbe_foi.position.h-caracteristique.reserveFoi*classe->orbe_foi.position.h/(caracteristique.maxFoi)), classe->orbe_foi.position.w, classe->orbe_foi.position.h));
+            sprite.SetSubRect(sf::IntRect(0, 0, (int)(caracteristique.reserveFoi/caracteristique.maxFoi*classe->orbe_foi.position.w), classe->orbe_foi.position.h));
 
-            sprite.SetColor(sf::Color(64,64,64,255));
+            sprite.SetColor(sf::Color(32,32,32,255));
 
             moteurGraphique->AjouterCommande(&sprite,18,0);
         }
 
         if(caracteristique.foi > caracteristique.maxFoi - caracteristique.reserveFoi)
         {
-            sprite.SetY(classe->orbe_foi.position.y*configuration->Resolution.h/600+(int)((caracteristique.maxFoi*2-caracteristique.foi-caracteristique.reserveFoi*2)/caracteristique.maxFoi*classe->orbe_foi.position.h*configuration->Resolution.h/600));
-            sprite.SetSubRect(sf::IntRect(0, (int)(classe->orbe_foi.position.h-(caracteristique.foi - caracteristique.maxFoi + caracteristique.reserveFoi*2)*classe->orbe_foi.position.h/(caracteristique.maxFoi)),
-                                                   classe->orbe_foi.position.w, (int)((caracteristique.maxFoi-caracteristique.reserveFoi)/caracteristique.maxFoi*classe->orbe_foi.position.h)));
+            sprite.SetSubRect(sf::IntRect(0, 0, (int)((caracteristique.foi-caracteristique.maxFoi+caracteristique.reserveFoi*2)/caracteristique.maxFoi*classe->orbe_foi.position.w), classe->orbe_foi.position.h));
 
             sprite.SetBlendMode(Blend::Add);
             sprite.SetColor(sf::Color(255,255,255));
+            moteurGraphique->AjouterCommande(&sprite,17,0);
+            moteurGraphique->AjouterCommande(&sprite,17,0);
             moteurGraphique->AjouterCommande(&sprite,17,0);
         }
     }
@@ -269,25 +250,25 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
     {
         Sprite sprite;
 
-        sprite.SetImage(*moteurGraphique->getImage(m_barrePointAme));
-        sprite.Resize(90*configuration->Resolution.w/800, 88*configuration->Resolution.w/800);
+        sprite.SetImage(*moteurGraphique->getImage(classe->soul_bar.image));
+       // sprite.Resize(344*configuration->Resolution.w/800, 16*configuration->Resolution.w/800);
 
-        int temp= (int) ( (caracteristique.ancienPointAme-((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10)) * 88 / (((caracteristique.niveau)*(caracteristique.niveau)*(caracteristique.niveau)*10) - ((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10)));
+        int temp= (int) ( (caracteristique.ancienPointAme-((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10)) * 344 / (((caracteristique.niveau)*(caracteristique.niveau)*(caracteristique.niveau)*10) - ((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10)));
 
-        sprite.SetSubRect(sf::IntRect(0,88-temp, 90, 88));
+        sprite.SetSubRect(sf::IntRect(0,0, temp, 16));
 
-        sprite.SetX(configuration->Resolution.w/2-46*configuration->Resolution.w/800);
-        sprite.SetY(configuration->Resolution.h-(temp)*configuration->Resolution.h/600);
+        sprite.SetX(classe->soul_bar.position.x*configuration->Resolution.w/800);
+        sprite.SetY(classe->soul_bar.position.y*configuration->Resolution.h/600);
 
         moteurGraphique->AjouterCommande(&sprite,17,0);
     }
 
 
 
-    if(eventManager->getPositionSouris().x > configuration->Resolution.w/2-46*configuration->Resolution.w/800
-    && eventManager->getPositionSouris().x < configuration->Resolution.w/2+46*configuration->Resolution.w/800
-    && eventManager->getPositionSouris().y > configuration->Resolution.h-88*configuration->Resolution.h/600
-    && eventManager->getPositionSouris().y < configuration->Resolution.h)
+    if(eventManager->getPositionSouris().x > classe->soul_bar.position.x*configuration->Resolution.w/800
+    && eventManager->getPositionSouris().x < classe->soul_bar.position.x*configuration->Resolution.w/800 + classe->soul_bar.position.w
+    && eventManager->getPositionSouris().y > classe->soul_bar.position.y*configuration->Resolution.h/600
+    && eventManager->getPositionSouris().y < classe->soul_bar.position.y*configuration->Resolution.h/600 + classe->soul_bar.position.h)
     {
         std::ostringstream buf;
         buf<<(int)caracteristique.ancienPointAme<<" / "<<((caracteristique.niveau)*(caracteristique.niveau)*(caracteristique.niveau)*10);
@@ -298,7 +279,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
     }
 
 
-    texte.SetCharacterSize(16*configuration->Resolution.y/600);
+    /*texte.SetCharacterSize(16*configuration->Resolution.y/600);
 
 
     texte.SetColor(Color(255,255,255,255));
@@ -311,19 +292,33 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
     texte.SetX(configuration->Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
     texte.SetY(configuration->Resolution.h-52*configuration->Resolution.h/600);
 
-    moteurGraphique->AjouterTexte(&texte,18);
+    moteurGraphique->AjouterTexte(&texte,18);*/
     //ecran->Draw(texte);
 
-    if(caracteristique.pts_restant > 0 || caracteristique.miracles_restant > 0 )
+    if(caracteristique.pts_restant > 0)
     {
         Sprite sprite;
 
-        sprite.SetImage(*moteurGraphique->getImage(classe->hud_newlevel.image));
-        sprite.Resize(classe->hud_newlevel.position.w*configuration->Resolution.w/800,
-                      classe->hud_newlevel.position.h*configuration->Resolution.w/800);
+        sprite.SetImage(*moteurGraphique->getImage(classe->hud_pt_caract_rest.image));
+        sprite.Resize(classe->hud_pt_caract_rest.position.w*configuration->Resolution.w/800,
+                      classe->hud_pt_caract_rest.position.h*configuration->Resolution.w/800);
 
-        sprite.SetX(classe->hud_newlevel.position.x*configuration->Resolution.w/800);
-        sprite.SetY(classe->hud_newlevel.position.y*configuration->Resolution.h/600);
+        sprite.SetX(classe->hud_pt_caract_rest.position.x*configuration->Resolution.w/800);
+        sprite.SetY(classe->hud_pt_caract_rest.position.y*configuration->Resolution.h/600);
+
+        moteurGraphique->AjouterCommande(&sprite,17,0);
+    }
+
+    if(caracteristique.miracles_restant > 0 )
+    {
+        Sprite sprite;
+
+        sprite.SetImage(*moteurGraphique->getImage(classe->hud_pt_miracle_rest.image));
+        sprite.Resize(classe->hud_pt_miracle_rest.position.w*configuration->Resolution.w/800,
+                      classe->hud_pt_miracle_rest.position.h*configuration->Resolution.w/800);
+
+        sprite.SetX(classe->hud_pt_miracle_rest.position.x*configuration->Resolution.w/800);
+        sprite.SetY(classe->hud_pt_miracle_rest.position.y*configuration->Resolution.h/600);
 
         moteurGraphique->AjouterCommande(&sprite,17,0);
     }
@@ -371,7 +366,6 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         Sprite sprite,sprite2;
 
         sprite.SetImage(*moteurGraphique->getImage(m_barreVieVide));
-        sprite.Resize(configuration->Resolution.w/2, 32*configuration->Resolution.w/800);
         sprite.SetX(configuration->Resolution.w/2-sprite.GetSize().x/2);
         sprite.SetY(8);
 
@@ -379,15 +373,11 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
 
         sprite2.SetImage(*moteurGraphique->getImage(m_barreVie));
         if (caracteristiqueMonstre.rang==1)
-        {
             sprite2.SetColor(Color(128,64,255,255));
-        }
         if (caracteristiqueMonstre.rang==2)
-        {
             sprite2.SetColor(Color(32,32,255,255));
-        }
-        sprite2.Resize(configuration->Resolution.w/2, 32*configuration->Resolution.w/800);
-        sprite2.SetSubRect(sf::IntRect(0, 0, (int)(caracteristiqueMonstre.vie/caracteristiqueMonstre.maxVie*400), 32));
+
+        sprite2.SetSubRect(sf::IntRect(0, 0, (int)(caracteristiqueMonstre.vie/caracteristiqueMonstre.maxVie*moteurGraphique->getImage(m_barreVieVide)->GetWidth()), 32));
         sprite2.SetX(configuration->Resolution.w/2-sprite.GetSize().x/2);
         sprite2.SetY(8);
 
@@ -398,7 +388,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
 
         //char chaine[255];
 
-        texte.SetCharacterSize(16*configuration->Resolution.h/600);
+        texte.SetCharacterSize(14*configuration->Resolution.h/600);
         //texte.SetStyle(1);
 
         {
@@ -429,7 +419,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
             texte.SetColor(Color(224,0,0,255));
 
         texte.SetX(configuration->Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
-        texte.SetY(16*configuration->Resolution.h/600);
+        texte.SetY(32*configuration->Resolution.h/600);
         moteurGraphique->AjouterTexte(&texte,18);
 
         texte.SetStyle(0);
@@ -512,12 +502,13 @@ void Menu::AfficherInventaire(float decalage,Classe *classe,bool noTrader)
 
     if (!noTrader)
     {
-        sprite.SetImage(*moteurGraphique->getImage(classe->menu_marchand.image));
-        sprite.SetX(classe->menu_marchand.position.x*configuration->Resolution.x/800);
-        sprite.SetY(classe->menu_marchand.position.y*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
-        sprite.Resize(classe->menu_marchand.position.w*configuration->Resolution.w/800, classe->menu_marchand.position.h*configuration->Resolution.h/600);
+        Sprite sprite2;
+        sprite2.SetImage(*moteurGraphique->getImage(classe->menu_marchand.image));
+        sprite2.SetX(classe->menu_marchand.position.x*configuration->Resolution.x/800);
+        sprite2.SetY(classe->menu_marchand.position.y*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+        sprite2.Resize(classe->menu_marchand.position.w*configuration->Resolution.w/800, classe->menu_marchand.position.h*configuration->Resolution.h/600);
 
-        moteurGraphique->AjouterCommande(&sprite,16,0);
+        moteurGraphique->AjouterCommande(&sprite2,16,0);
     }
 }
 

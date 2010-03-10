@@ -33,7 +33,7 @@ using namespace sf;
 using namespace std;
 
 int GestionBoutons(Jeu *jeu);
-void GestionRaccourcisMiracles(Jeu *jeu);
+void GestionRaccourcis(Jeu *jeu);
 
 c_Craft::c_Craft()
 {
@@ -88,6 +88,26 @@ void c_Craft::Utiliser(Jeu *jeu)
     jeu->menu.AfficherHUD(&jeu->hero.m_classe);
     jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,-1,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
 
+    int temp = GestionBoutons(jeu);
+    if(temp >= 0)
+    {
+        jeu->next_screen = temp;
+        jeu->hero.m_defilement_trader=0;
+        jeu->hero.m_max_defilement_trader=0;
+        m_afficher=0;
+        jeu->Clock.Reset();
+        eventManager->StopEvenement(Key::I,EventKey);
+
+        if (jeu->hero.m_objetEnMain>=0)
+        {
+            jeu->hero.m_objetADeposer=jeu->hero.m_objetEnMain;
+            jeu->map->AjouterObjet(jeu->hero.DeposerObjet());
+        }
+
+        if(jeu->next_screen == 2 || jeu->next_screen == 4)
+            jeu->next_screen = 3;
+    }
+
     if (eventManager->getEvenement(Mouse::Left,EventClic))
     {
         if (jeu->hero.m_objetEnMain==-1&&jeu->map->getObjetPointe()==-1&&eventManager->getPositionSouris().x>jeu->hero.m_classe.position_sac_inventaire.x*configuration->Resolution.x/800&&eventManager->getPositionSouris().x<(jeu->hero.m_classe.position_sac_inventaire.x+jeu->hero.m_classe.position_sac_inventaire.w)*configuration->Resolution.x/800&&eventManager->getPositionSouris().y>jeu->hero.m_classe.position_sac_inventaire.y*configuration->Resolution.y/600&&eventManager->getPositionSouris().y<jeu->hero.m_classe.position_sac_inventaire.y*configuration->Resolution.y/600+20*configuration->Resolution.x/800)
@@ -111,25 +131,7 @@ void c_Craft::Utiliser(Jeu *jeu)
         eventManager->StopEvenement(Mouse::Left,EventClic);
     }
 
-    int temp = GestionBoutons(jeu);
-    if(temp >= 0)
-    {
-        jeu->next_screen = temp;
-        jeu->hero.m_defilement_trader=0;
-        jeu->hero.m_max_defilement_trader=0;
-        m_afficher=0;
-        jeu->Clock.Reset();
-        eventManager->StopEvenement(Key::I,EventKey);
 
-        if (jeu->hero.m_objetEnMain>=0)
-        {
-            jeu->hero.m_objetADeposer=jeu->hero.m_objetEnMain;
-            jeu->map->AjouterObjet(jeu->hero.DeposerObjet());
-        }
-
-        if(jeu->next_screen == 2 || jeu->next_screen == 4)
-            jeu->next_screen = 3;
-    }
 
      jeu->hero.m_defilement_trader -= eventManager->getMolette();
 
@@ -146,5 +148,5 @@ void c_Craft::Utiliser(Jeu *jeu)
     if (jeu->hero.m_defilement_trader>jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h)
         jeu->hero.m_defilement_trader=jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h;
 
-    GestionRaccourcisMiracles(jeu);
+   // GestionRaccourcis(jeu);
 }
