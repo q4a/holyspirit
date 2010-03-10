@@ -10,7 +10,7 @@ Piété
 Charisme
 Dégâts
 Armure
-Points restants
+Restants
 Afficher/Cacher carte (M)
 Inventaire (I)
 Quêtes (Q)
@@ -31,8 +31,8 @@ Cout en foi :
 Réserve en foi : 
 Cout en vie : 
 Réserve en vie : 
-Raccourci pour objets
-Raccourci pour miracles
+Raccourci
+Eau bénite
 La voie du Persécuteur
 La voie du Protecteur
 La voie du Pieux
@@ -49,4 +49,5 @@ Corrosion
 Argent
 Niveau
 Nom
+Console (Tab)
 
