@@ -1646,7 +1646,7 @@ sf::Text Objet::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *d
 
     string.SetColor(color);
 
-    string.SetCharacterSize(11*(int)(configuration->Resolution.h/600));
+    string.SetCharacterSize(14);
     string.SetString(chaine);
 
     if (tailleCadran->x<((int)string.GetRect().Right-(int)string.GetRect().Left))

@@ -776,20 +776,29 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
                                           19,0,12,sf::Color(224,224,224),1);
     }
 
+    string.SetString(configuration->getText(0,3));
+    string.SetCharacterSize(14);
+    string.SetX(230);
+    string.SetY(321*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+    moteurGraphique->AjouterTexte(&string,15);
+
     {
         std::ostringstream  buf;
-        buf<<configuration->getText(0,3)<<" : "<<(int)m_caracteristiques.vie<<" / "<<(int)m_caracteristiques.maxVie;
+        buf/*<<configuration->getText(0,3)<<" : "*/<<(int)m_caracteristiques.vie<<" / "<<(int)m_caracteristiques.maxVie;
         string.SetString(buf.str());
     }
 
+    string.SetCharacterSize(14);
+
     if ((string.GetRect().Right-string.GetRect().Left)>94)
     {
-        string.SetCharacterSize(14*configuration->Resolution.h/600);
+        string.SetCharacterSize(13);
         if ((string.GetRect().Right-string.GetRect().Left)>94)
         {
-            std::ostringstream  buf;
+            string.SetCharacterSize(12);
+            /*std::ostringstream  buf;
             buf<<(int)m_caracteristiques.vie<<" / "<<(int)m_caracteristiques.maxVie;
-            string.SetString(buf.str());
+            string.SetString(buf.str());*/
         }
     }
 
@@ -810,23 +819,31 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
                                                                                 eventManager->getPositionSouris().y - 20),
                                       19,0,12,sf::Color(224,224,224),1);
 
-    string.SetCharacterSize(16*configuration->Resolution.h/600);
+    string.SetString(configuration->getText(0,4));
+    string.SetCharacterSize(14);
+    string.SetX(230);
+    string.SetY(349*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+    moteurGraphique->AjouterTexte(&string,15);
+
+    string.SetCharacterSize(14);
 
 
     {
         std::ostringstream  buf;
-        buf<<configuration->getText(0,4)<<" : "<<(int)m_caracteristiques.foi<<" / "<<(int)m_caracteristiques.maxFoi;
+        buf/*<<configuration->getText(0,4)<<" : "*/<<(int)m_caracteristiques.foi<<" / "<<(int)m_caracteristiques.maxFoi;
         string.SetString(buf.str());
     }
 
     if ((string.GetRect().Right-string.GetRect().Left)>94)
     {
-        string.SetCharacterSize(14*configuration->Resolution.h/600);
+        string.SetCharacterSize(13);
         if ((string.GetRect().Right-string.GetRect().Left)>94)
         {
-            std::ostringstream  buf;
+            string.SetCharacterSize(12);
+         /*  std::ostringstream  buf;
             buf<<(int)m_caracteristiques.foi<<" / "<<(int)m_caracteristiques.maxFoi;
-            string.SetString(buf.str());
+            string.SetString(buf.str());*/
+
         }
     }
 
@@ -848,7 +865,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
                                                                                 eventManager->getPositionSouris().y - 20),
                                       19,0,12,sf::Color(224,224,224),1);
 
-    string.SetCharacterSize(14*configuration->Resolution.h/600);
+    string.SetCharacterSize(14);
 
     {
         std::ostringstream  buf;
@@ -1046,7 +1063,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
     }
 
 
-    string.SetCharacterSize(12*configuration->Resolution.h/600);
+    string.SetCharacterSize(12);
     {
         std::ostringstream  buf;
         buf<<m_caracteristiques.degatsMin[PHYSIQUE]<<" - "<<m_caracteristiques.degatsMax[PHYSIQUE];
@@ -1142,29 +1159,29 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
          &&eventManager->getPositionSouris().y < 422)
             moteurGraphique->AjouterTexte(configuration->getText(0,44),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
-                                          19,0,12,sf::Color(224,224,224),1);
+                                          19,0,14,sf::Color(224,224,224),1);
         if(eventManager->getPositionSouris().y > 432
          &&eventManager->getPositionSouris().y < 450)
             moteurGraphique->AjouterTexte(configuration->getText(0,45),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
-                                          19,0,12,sf::Color(224,224,224),1);
+                                          19,0,14,sf::Color(224,224,224),1);
         if(eventManager->getPositionSouris().y > 460
          &&eventManager->getPositionSouris().y < 478)
             moteurGraphique->AjouterTexte(configuration->getText(0,46),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
-                                          19,0,12,sf::Color(224,224,224),1);
+                                          19,0,14,sf::Color(224,224,224),1);
         if(eventManager->getPositionSouris().y > 488
          &&eventManager->getPositionSouris().y < 506)
             moteurGraphique->AjouterTexte(configuration->getText(0,47),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
-                                          19,0,12,sf::Color(224,224,224),1);
+                                          19,0,14,sf::Color(224,224,224),1);
     }
 
     {
         std::ostringstream  buf;
         buf<<m_argent;
         string.SetString(buf.str());
-        string.SetCharacterSize(12*configuration->Resolution.h/600);
+        string.SetCharacterSize(12);
         string.SetX((732*configuration->Resolution.w/800)-(string.GetRect().Right-string.GetRect().Left));
         string.SetY(508*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
         string.SetColor(sf::Color(255,255,255));
@@ -1176,7 +1193,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
              &&eventManager->getPositionSouris().y < string.GetRect().Bottom)
                 moteurGraphique->AjouterTexte(configuration->getText(0,48),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
-                                          19,0,12,sf::Color(224,224,224),1);
+                                          19,0,14,sf::Color(224,224,224),1);
     }
 
     {
@@ -1266,7 +1283,7 @@ void Hero::AfficherQuetes(float decalage)
     {
         sf::Text texte;
         texte.SetFont(moteurGraphique->m_font);
-        texte.SetCharacterSize(12 * configuration->Resolution.h/600);
+        texte.SetCharacterSize(14);
         texte.SetPosition(position.x * configuration->Resolution.w/800, (position.y - decalage) * configuration->Resolution.h/600);
         texte.SetString(m_quetes[i].m_nom);
 
@@ -1279,7 +1296,7 @@ void Hero::AfficherQuetes(float decalage)
         {
             sf::Sprite sprite;
             sprite.SetImage(*moteurGraphique->getImage(0));
-            sprite.Resize(m_classe.position_contenu_quetes.w * configuration->Resolution.w/800, texte.GetRect().Bottom - texte.GetRect().Top+4);
+            sprite.Resize(m_classe.position_contenu_quetes.w * configuration->Resolution.w/800, texte.GetRect().Bottom - texte.GetRect().Top+2);
             sprite.SetPosition(position.x * configuration->Resolution.w/800, (position.y - decalage) * configuration->Resolution.h/600);
             sprite.SetColor(sf::Color(255, 255, 255, 128));
 
@@ -1299,13 +1316,13 @@ void Hero::AfficherQuetes(float decalage)
     {
         sf::Text texte;
         texte.SetFont(moteurGraphique->m_font);
-        texte.SetCharacterSize(14 * configuration->Resolution.h/600);
+        texte.SetCharacterSize(16);
         texte.SetPosition(m_classe.position_contenu_description_quete.x * configuration->Resolution.w/800, m_classe.position_contenu_description_quete.y * configuration->Resolution.h/600 - decalage);
         texte.SetString(m_quetes[queteAffichee].m_nom);
 
         moteurGraphique->AjouterTexte(&texte,15,0);
 
-        texte.SetCharacterSize(12 * configuration->Resolution.h/600);
+        texte.SetCharacterSize(14);
         texte.SetPosition(m_classe.position_contenu_description_quete.x * configuration->Resolution.w/800, m_classe.position_contenu_description_quete.y * configuration->Resolution.h/600 - decalage + 64);
         texte.SetString(m_quetes[queteAffichee].m_description);
 
@@ -1322,7 +1339,7 @@ void Hero::AfficherPotales(float decalage)
     {
         sf::Text texte;
         texte.SetFont(moteurGraphique->m_font);
-        texte.SetCharacterSize(12 * configuration->Resolution.h/600);
+        texte.SetCharacterSize(14 * configuration->Resolution.h/600);
         texte.SetPosition(position.x * configuration->Resolution.w/800, (position.y - decalage) * configuration->Resolution.h/600);
         texte.SetString(configuration->getText(4,m_potales[i].nom));
 
@@ -1335,7 +1352,7 @@ void Hero::AfficherPotales(float decalage)
         {
             sf::Sprite sprite;
             sprite.SetImage(*moteurGraphique->getImage(0));
-            sprite.Resize(m_classe.position_contenu_description_quete.w * configuration->Resolution.w/800, texte.GetRect().Bottom - texte.GetRect().Top+4);
+            sprite.Resize(m_classe.position_contenu_description_quete.w * configuration->Resolution.w/800, texte.GetRect().Bottom - texte.GetRect().Top+2);
             sprite.SetPosition(position.x * configuration->Resolution.w/800, (position.y - decalage) * configuration->Resolution.h/600);
             sprite.SetColor(sf::Color(255, 255, 255, 128));
 

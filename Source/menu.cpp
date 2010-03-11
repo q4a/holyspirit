@@ -75,7 +75,7 @@ void Menu::AfficherDialogue(int alpha,Classe *classe)
     moteurGraphique->AjouterCommande(&sprite2,16,0);
 
     sf::Text texte;
-    texte.SetCharacterSize(11 * configuration->Resolution.h/600);
+    texte.SetCharacterSize(14 * configuration->Resolution.h/600);
     texte.SetFont(moteurGraphique->m_font);
     texte.SetString(m_dialogue);
     texte.SetPosition(classe->position_contenu_dialogue.x * configuration->Resolution.w/800 + classe->position_contenu_dialogue.w * configuration->Resolution.w/800/2 - (texte.GetRect().Right-texte.GetRect().Left)/2,

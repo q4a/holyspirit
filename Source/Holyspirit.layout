@@ -50,7 +50,7 @@
 		<Cursor position="910" topLine="8" />
 	</File>
 	<File name="Contextes\c_quetes.cpp" open="1" top="0" tabpos="19">
-		<Cursor position="2419" topLine="61" />
+		<Cursor position="2038" topLine="55" />
 	</File>
 	<File name="Contextes\c_quetes.h" open="0" top="0" tabpos="54">
 		<Cursor position="601" topLine="14" />
@@ -68,13 +68,13 @@
 		<Cursor position="991" topLine="13" />
 	</File>
 	<File name="Entites\classe.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="13533" topLine="412" />
+		<Cursor position="13822" topLine="436" />
 	</File>
 	<File name="Entites\classe.h" open="1" top="0" tabpos="4">
 		<Cursor position="1925" topLine="44" />
 	</File>
-	<File name="Entites\hero.cpp" open="1" top="1" tabpos="3">
-		<Cursor position="55887" topLine="1350" />
+	<File name="Entites\hero.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="54836" topLine="1327" />
 	</File>
 	<File name="Entites\hero.h" open="1" top="0" tabpos="6">
 		<Cursor position="4304" topLine="126" />
@@ -97,8 +97,8 @@
 	<File name="Entites\monstre.h" open="0" top="0" tabpos="19">
 		<Cursor position="1487" topLine="36" />
 	</File>
-	<File name="Entites\objet.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="55121" topLine="1650" />
+	<File name="Entites\objet.cpp" open="1" top="0" tabpos="22">
+		<Cursor position="54400" topLine="1627" />
 	</File>
 	<File name="Entites\objet.h" open="0" top="0" tabpos="3">
 		<Cursor position="1715" topLine="60" />
@@ -134,7 +134,7 @@
 		<Cursor position="1602" topLine="26" />
 	</File>
 	<File name="Map\map.cpp" open="1" top="0" tabpos="21">
-		<Cursor position="211056" topLine="4316" />
+		<Cursor position="151079" topLine="3315" />
 	</File>
 	<File name="Map\map.h" open="0" top="0" tabpos="15">
 		<Cursor position="9343" topLine="159" />
@@ -167,7 +167,7 @@
 		<Cursor position="1282" topLine="33" />
 	</File>
 	<File name="Moteurs\eventManager.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="5653" topLine="173" />
+		<Cursor position="5790" topLine="149" />
 	</File>
 	<File name="Moteurs\eventManager.h" open="0" top="0" tabpos="23">
 		<Cursor position="1555" topLine="27" />
@@ -238,8 +238,8 @@
 	<File name="main.h" open="0" top="0" tabpos="77">
 		<Cursor position="445" topLine="0" />
 	</File>
-	<File name="menu.cpp" open="1" top="0" tabpos="13">
-		<Cursor position="23296" topLine="487" />
+	<File name="menu.cpp" open="1" top="1" tabpos="13">
+		<Cursor position="3940" topLine="62" />
 	</File>
 	<File name="menu.h" open="0" top="0" tabpos="47">
 		<Cursor position="2797" topLine="74" />
