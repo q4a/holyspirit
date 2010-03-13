@@ -388,7 +388,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
 
         //char chaine[255];
 
-        texte.SetCharacterSize(14*configuration->Resolution.h/600);
+        texte.SetCharacterSize(16*configuration->Resolution.h/600);
         //texte.SetStyle(1);
 
         {
@@ -476,7 +476,7 @@ void Menu::AfficherCraft(float decalage,Classe *classe)
 
 void Menu::AfficherMiracles(float decalage, Classe *classe, int fenetreEnCours)
 {
-    if(fenetreEnCours >= 0 && fenetreEnCours < (int)classe->interface_miracles.size())
+    /*if(fenetreEnCours >= 0 && fenetreEnCours < (int)classe->interface_miracles.size())
     {
         Sprite sprite;
 
@@ -486,7 +486,16 @@ void Menu::AfficherMiracles(float decalage, Classe *classe, int fenetreEnCours)
         sprite.Resize(classe->interface_miracles[fenetreEnCours].position.w*configuration->Resolution.w/800, classe->interface_miracles[fenetreEnCours].position.h*configuration->Resolution.h/600);
 
         moteurGraphique->AjouterCommande(&sprite,15,0);
-    }
+    }*/
+
+    Sprite sprite;
+
+    sprite.SetImage(*moteurGraphique->getImage(classe->interface_miracles.image));
+    sprite.SetX(classe->interface_miracles.position.x*configuration->Resolution.x/800);
+    sprite.SetY(classe->interface_miracles.position.y*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
+    sprite.Resize(classe->interface_miracles.position.w*configuration->Resolution.w/800, classe->interface_miracles.position.h*configuration->Resolution.h/600);
+
+    moteurGraphique->AjouterCommande(&sprite,15,0);
 }
 
 void Menu::AfficherInventaire(float decalage,Classe *classe,bool noTrader)

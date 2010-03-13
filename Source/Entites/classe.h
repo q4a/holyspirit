@@ -32,6 +32,7 @@ struct Bouton
     coordonnee position;
     std::string nom;
     int lien;
+    Image_interface image;
 };
 
 struct Emplacement_inventaire
@@ -56,6 +57,7 @@ struct Classe
     std::string modeleNu[NOMBRE_MORCEAU_PERSONNAGE][3];
 
     Image_interface inventaire;
+    Image_interface interface_miracles;
     Image_interface menu_marchand;
     Image_interface hud;
     Image_interface orbe_vie;
@@ -70,7 +72,9 @@ struct Classe
     Image_interface soul_bar;
     Image_interface hud_pt_caract_rest;
     Image_interface hud_pt_miracle_rest;
-    std::vector<Image_interface> interface_miracles;
+    Image_interface miracles_plus_button;
+    Image_interface miracles_cadre;
+    //std::vector<Image_interface> interface_miracles;
 
     std::vector<Bouton> boutons_miracles;
 
@@ -92,5 +96,6 @@ struct Classe
     std::vector<Miracle> miracles;
     std::vector<coordonnee> position_miracles;
     std::vector<int> page_miracles;
+    std::vector<Image_interface> icone_miracles;
 };
 #endif

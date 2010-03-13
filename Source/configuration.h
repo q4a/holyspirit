@@ -54,6 +54,7 @@ class Configuration : public CSingleton<Configuration>
     int Lumiere,console;
     float effetMort,effetNoir,volume,minute,zoom,frequence_sauvegarde,frequence_lumiere,luminosite,contrastes;
     int heure,cache,alpha;
+    bool item_background;
     std::string version,chemin_maps,chemin_items,chemin_temps,chemin_saves,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,nom_barre_vie,nom_barre_vie_vide,nom_sang,chemin_son_mort;
     std::string nom_item_background, nom_item_unusable;
     std::string nom_effetNoir,nom_effetMort,nom_effetContrastes,nom_effetBlur,nom_effetFiltre, nom_effetShadow, nom_effetWater, nom_effetDistortion;

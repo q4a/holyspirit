@@ -93,6 +93,8 @@ void Configuration::ChargerConf()
                 fichier>>frequence_lumiere;
             if (chaine== "console:")
                 fichier>>console;
+            if (chaine== "item_background:")
+                fichier>>item_background;
 
             if (chaine== "saving_frequency:")
                 fichier>>frequence_sauvegarde;
@@ -388,6 +390,7 @@ void Configuration::Sauvegarder()
         fichier<<"INTERFACE"<<std::endl;
         fichier<< "minimap: " <<Minimap<<std::endl;
         fichier<< "console: " <<console<<std::endl;
+        fichier<< "item_background: " <<item_background<<std::endl;
         fichier<<std::endl;
         fichier<<std::endl;
         fichier<<"OTHERS"<<std::endl;

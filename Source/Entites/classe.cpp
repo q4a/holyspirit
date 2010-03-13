@@ -174,6 +174,11 @@ void                ChargerBouton(ifstream &fichier, std::vector <Bouton> &bouto
                 case 'h' :
                     fichier>>bouton.back().position.h;
                     break;
+                case 'i' :
+                        ChargerImageInterface(fichier, bouton.back().image);
+                        fichier.get(caractere);
+                    break;
+
                 }
 
                 if (fichier.eof())
@@ -251,7 +256,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
     emplacements.clear();
     equipementParDefaut.clear();
 
-    interface_miracles.clear();
+  //  interface_miracles.clear();
 
     boutons_miracles.clear();
 
@@ -444,6 +449,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
         }
 
         ChargerImageInterface(fichier, inventaire);
+        ChargerImageInterface(fichier, interface_miracles);
         ChargerImageInterface(fichier, menu_marchand);
         ChargerImageInterface(fichier, hud);
         ChargerImageInterface(fichier, orbe_vie);
@@ -457,7 +463,9 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
         ChargerImageInterface(fichier, icone_mm);
         ChargerImageInterface(fichier, soul_bar);
         ChargerImageInterface(fichier, hud_pt_caract_rest);
-        ChargerImageInterface(fichier, hud_pt_miracle_rest);;
+        ChargerImageInterface(fichier, hud_pt_miracle_rest);
+        ChargerImageInterface(fichier, miracles_plus_button);
+        ChargerImageInterface(fichier, miracles_cadre);
 
         ChargerCoordonneeInterface(fichier, position_sac_inventaire);
         ChargerCoordonneeInterface(fichier, position_contenu_inventaire);
@@ -525,7 +533,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
         ChargerCoordonneeInterface(fichier, position_points_miracles);
 
         ChargerBouton(fichier, boutons_miracles);
-        ChargerImageInterface(fichier, interface_miracles);
+      //  ChargerImageInterface(fichier, interface_miracles);
 
         do
         {
@@ -536,6 +544,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
                 std::string temp;
                 position_miracles.push_back(coordonnee ());
                 page_miracles.push_back(-1);
+                icone_miracles.push_back(Image_interface());
 
                 do
                 {
@@ -576,6 +585,13 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
 
                     if(caractere == 'e')
                         fichier>>page_miracles.back();
+
+                    if(caractere == 'i')
+                    {
+                        ChargerImageInterface(fichier, icone_miracles.back());
+                        fichier.get(caractere);
+                    }
+
 
                     if(caractere == 'b')
                         fichier>>buf;

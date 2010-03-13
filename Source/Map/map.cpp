@@ -1478,7 +1478,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                                     sprite.SetX(position.x-32+m_decor[1][j][k].getObjet(o)->getPosition().x*32+16-(m_decor[1][j][k].getObjet(o)->getPositionImage().w*0.8)/2);
                                     sprite.SetY(position.y+m_decor[1][j][k].getObjet(o)->getPosition().y*32);
 
-                                    sprite.SetColor(m_decor[1][j][k].getObjet(o)->m_color);
+                                    //sprite.SetColor(m_decor[1][j][k].getObjet(o)->m_color);
 
                                     moteurGraphique->AjouterCommande(&sprite,8,1);
 
@@ -3366,14 +3366,14 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         {
             for (int i = 0;i < (int)hero->m_quetes.size(); ++i)
                 if (hero->m_quetes[i].m_id == script->getValeur(noInstruction, 0))
-                    hero->m_quetes[i].m_nom = DecouperTexte(configuration->getText(4, script->getValeur(noInstruction, 1)), hero->m_classe.position_contenu_quetes.w, 12);
+                    hero->m_quetes[i].m_nom = DecouperTexte(configuration->getText(4, script->getValeur(noInstruction, 1)), hero->m_classe.position_contenu_quetes.w, 16);
         }
         else if (script->m_instructions[noInstruction].nom=="setQuestState")
         {
             for (int i = 0;i < (int)hero->m_quetes.size(); ++i)
                 if (hero->m_quetes[i].m_id == script->getValeur(noInstruction, 0))
                 {
-                    hero->m_quetes[i].m_description = DecouperTexte(configuration->getText(4, script->getValeur(noInstruction, 2)), hero->m_classe.position_contenu_description_quete.w, 12);
+                    hero->m_quetes[i].m_description = DecouperTexte(configuration->getText(4, script->getValeur(noInstruction, 2)), hero->m_classe.position_contenu_description_quete.w, 14);
                     hero->m_quetes[i].m_statut = script->getValeur(noInstruction, 1);
                 }
         }

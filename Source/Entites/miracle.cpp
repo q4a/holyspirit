@@ -705,13 +705,13 @@ sf::Text Miracle::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee 
 
     string.SetColor(color);
 
-    string.SetCharacterSize(12*(int)(configuration->Resolution.h/600));
+    string.SetCharacterSize(14*(int)(configuration->Resolution.h/600));
     string.SetString(chaine);
 
     if (tailleCadran->x<((int)string.GetRect().Right-(int)string.GetRect().Left))
         tailleCadran->x=((int)string.GetRect().Right-(int)string.GetRect().Left);
 
-    decalage->y+=(int)string.GetRect().Bottom-(int)string.GetRect().Top+5;
+    decalage->y+=(int)string.GetRect().Bottom-(int)string.GetRect().Top+2;
 
     return string;
 }
@@ -824,7 +824,7 @@ void Miracle::AfficherDescription(coordonnee position, bool suivant)
         temp[i].SetY((position.y+decalY+10));
         temp[i].SetX(position.x+20+(tailleCadran.x/2-((int)temp[i].GetRect().Right-(int)temp[i].GetRect().Left)/2)/*-tailleCadran.x*/);
 
-        decalY+=(int)temp[i].GetRect().Bottom-(int)temp[i].GetRect().Top+5;
+        decalY+=(int)temp[i].GetRect().Bottom-(int)temp[i].GetRect().Top+2;
 
         moteurGraphique->AjouterTexte(&temp[i],19);
     }

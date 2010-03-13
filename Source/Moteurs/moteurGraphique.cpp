@@ -862,9 +862,9 @@ void MoteurGraphique::AjouterTexte(sf::Text* string, int couche,bool titre)
 
             temp.SetColor(sf::Color((int)(string->GetColor().r*0.15),(int)(string->GetColor().g*0.15),(int)(string->GetColor().b*0.15),string->GetColor().a));
             temp.SetStyle(sf::Text::Regular);*/
-            m_textes[couche].push_back(temp);
+            //m_textes[couche].push_back(temp);
         }
-        else
+      //  else
         {
             temp.Move(1,1);
             temp.SetColor(sf::Color((int)(string->GetColor().r*0.05),(int)(string->GetColor().g*0.05),(int)(string->GetColor().b*0.05),string->GetColor().a));

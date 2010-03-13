@@ -1652,7 +1652,7 @@ sf::Text Objet::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *d
     if (tailleCadran->x<((int)string.GetRect().Right-(int)string.GetRect().Left))
         tailleCadran->x=((int)string.GetRect().Right-(int)string.GetRect().Left);
 
-    decalage->y+=(int)string.GetRect().Bottom-(int)string.GetRect().Top+5;
+    decalage->y+=(int)string.GetRect().Bottom-(int)string.GetRect().Top+2;
 
     return string;
 }
@@ -1902,7 +1902,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
         temp[i].SetY((position.y+decalY+10));
         temp[i].SetX(position.x+(tailleCadran.x/2-((int)temp[i].GetRect().Right-(int)temp[i].GetRect().Left)/2)-tailleCadran.x);
 
-        decalY+=(int)temp[i].GetRect().Bottom-(int)temp[i].GetRect().Top+5;
+        decalY+=(int)temp[i].GetRect().Bottom-(int)temp[i].GetRect().Top+2;
 
         moteurGraphique->AjouterTexte(&temp[i],19);
     }

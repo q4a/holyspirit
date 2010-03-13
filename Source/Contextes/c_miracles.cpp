@@ -95,7 +95,7 @@ void c_Miracles::Utiliser(Jeu *jeu)
         {
             coordonnee buf = eventManager->getPositionSouris();
             buf.y -= 20;
-            moteurGraphique->AjouterTexte(jeu->hero.m_classe.boutons_miracles[i].nom, buf, 17,0,14);
+            moteurGraphique->AjouterTexte(jeu->hero.m_classe.boutons_miracles[i].nom, buf, 17,0,14,sf::Color(224,224,224),true);
 
             if (eventManager->getEvenement(Mouse::Left,EventClic))
             {
