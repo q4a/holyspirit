@@ -34,11 +34,11 @@ sf::Color GetItemColor(int rarete)
     if (rarete==BONNEFACTURE)
         return (sf::Color(96,0,96,255));
     if (rarete==BENI)
-        return (sf::Color(0,64,128,255));
+        return (sf::Color(0,48,128,255));
     if (rarete==SACRE)
         return (sf::Color(255,255,128,255));
     if (rarete==SANCTIFIE)
-        return (sf::Color(128,255,255,255));
+        return (sf::Color(160,255,255,255));
     if (rarete==DIVIN)
         return (sf::Color(255,164,32,255));
     if (rarete==INFERNAL)

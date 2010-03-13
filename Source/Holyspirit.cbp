@@ -19,7 +19,7 @@
 					<Add option="-DWIN32" />
 					<Add option="-DNDEBUG" />
 					<Add option="-D_WINDOWS" />
-					<Add directory="..\..\SFML_SVN\branches\sfml2\include" />
+					<Add directory="..\..\SFML_SVNNE\branches\sfml2\include" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="..\..\SFML_SVN\branches\sfml2\extlibs" />
@@ -31,7 +31,7 @@
 					<Add option="-lsfml-system-s" />
 					<Add library="opengl32" />
 					<Add library="glu32" />
-					<Add directory="..\..\SFML_SVN\branches\sfml2\lib\mingw" />
+					<Add directory="..\..\SFML_SVNNE\branches\sfml2\lib\mingw" />
 				</Linker>
 			</Target>
 			<Target title="Debug">

@@ -37,7 +37,7 @@
 	<File name="Contextes\c_menuInGame.h" open="0" top="0" tabpos="52">
 		<Cursor position="817" topLine="13" />
 	</File>
-	<File name="Contextes\c_miracles.cpp" open="1" top="1" tabpos="10">
+	<File name="Contextes\c_miracles.cpp" open="1" top="0" tabpos="10">
 		<Cursor position="3271" topLine="78" />
 	</File>
 	<File name="Contextes\c_miracles.h" open="0" top="0" tabpos="53">
@@ -71,10 +71,10 @@
 		<Cursor position="15492" topLine="489" />
 	</File>
 	<File name="Entites\classe.h" open="1" top="0" tabpos="6">
-		<Cursor position="2175" topLine="57" />
+		<Cursor position="1070" topLine="24" />
 	</File>
-	<File name="Entites\hero.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="66947" topLine="1563" />
+	<File name="Entites\hero.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="21626" topLine="637" />
 	</File>
 	<File name="Entites\hero.h" open="0" top="0" tabpos="6">
 		<Cursor position="4304" topLine="126" />
@@ -98,7 +98,7 @@
 		<Cursor position="1487" topLine="36" />
 	</File>
 	<File name="Entites\objet.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="1181" topLine="24" />
+		<Cursor position="1186" topLine="24" />
 	</File>
 	<File name="Entites\objet.h" open="0" top="0" tabpos="3">
 		<Cursor position="1715" topLine="60" />
@@ -212,10 +212,10 @@
 		<Cursor position="12137" topLine="367" />
 	</File>
 	<File name="configuration.h" open="1" top="0" tabpos="3">
-		<Cursor position="1725" topLine="42" />
+		<Cursor position="1725" topLine="0" />
 	</File>
 	<File name="constantes.h" open="1" top="0" tabpos="9">
-		<Cursor position="4817" topLine="220" />
+		<Cursor position="1719" topLine="45" />
 	</File>
 	<File name="datFile.cpp" open="0" top="0" tabpos="44">
 		<Cursor position="428" topLine="106" />
