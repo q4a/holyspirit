@@ -18,74 +18,96 @@ $
 $
 	* x0 y0 w800 h600 m Data/Menus/Inventory.png $
 $
-	* x0 y0 w800 h600 m Data/Menus/Trader.png $
+	* x0 y0 w800 h600 m Data/Menus/Skill.png $
 $
-	* x0 y472 w800 h128 m Data/Menus/Hud.png $
+	* x0 y300 w400 h300 m Data/Menus/Trader.png $
 $
-	* x0 y472 w96 h128 m Data/Menus/Hud_newlevel.png $
+	* x0 y504 w800 h96 m Data/Menus/Hud.png $
 $
-	* x114 y484 w96 h68 m Data/Menus/Life_orb.png $
+	* x22 y573 w155 h27 m Data/Menus/Life_bar.png $
 $
-	* x588 y484 w96 h68 m Data/Menus/Faith_orb.png $
+	* x623 y573 w155 h27 m Data/Menus/Faith_bar.png $
 $
-	* x108 y481 w112 h123 m Data/Menus/Coupe2.png $
+	* x174 y0 w25 h25 m Data/Menus/Plus_button.png $
 $
-	* x582 y481 w112 h123 m Data/Menus/Coupe2.png $
+	* x14 y336 w32 h32 m Data/Menus/Scroll_button.png $
 $
-	* x180 y0 w20 h20 m Data/Menus/Plus_button.png $
-$
-	* x8 y278 w32 h32 m Data/Menus/Scroll_button.png $
-$
-	* x0 y312 w800 h288 m Data/Menus/Talks.png $
+	* x0 y334 w800 h288 m Data/Menus/Talks.png $
 $
 	* x0 y0 w800 h600 m Data/Menus/Quest.png $
 $
-	* x0 y0 w800 h600 m Data/Menus/Craft.png $
+	* x0 y0 w400 h300 m Data/Menus/Craft.png $
 $
 	* x400 y557 w35 h64 cx17 cy50 m Data/Menus/Arrow.png $
 $
 	* x0 y72 w16 h16 m Data/Menus/MinimapIcones.png $
 $
-	* x436 y390 h4 w320 $
+	* x228 y536 w344 h16 m Data/Menus/Soul_bar.png $
 $
-	* x436 y60 w10 h10 $
+	* x146 y548 w27 h24 m Data/Menus/PointsCRest.png $
 $
-	* x58 y300 w10 h6 $
+	* x627 y548 w27 h24 m Data/Menus/PointsMRest.png $
 $
-	* x96 y360 w608 h128 $
+	* x-12 y-6 w27 h24 m Data/Menus/PlusMiracle.png $
 $
-	* x300 y324 w200 h24 $
+	* x-16 y-8 w68 h70 m Data/Menus/Slot_miracle.png $
 $
-	* x48 y32 w316 h10 $
+	* x436 y385 h5 w326 $
 $
-	* x48 y256 w320 h150 $
+	* x439 y72 w10 h10 $
+$	
+	* x39 y373 w10 h5 $
 $
-	* e1 x20 y20 w64 h160 $
-	* e2 x94 y40 w96 h96 $
-	* e3 x222 y83 w64 h96 $
+	* x150 y370 w500 h128 $
+$
+	* x300 y344 w200 h24 $
+$
+	* x40 y40 w316 h10 $
+$
+	* x40 y264 w320 h150 $
+$
+	* x249 y556 w30 h30 $
+$
+	* x288 y556 w30 h30 $
+$
+	* x327 y556 w30 h30 $
+$
+	* x366 y556 w30 h30 $
+$
+	* x405 y556 w30 h30 $
+$
+	* x444 y556 w30 h30 $
+$
+	* x483 y556 w30 h30 $
+$
+	* x522 y556 w30 h30 $
+$
+	* e1 x48 y56 w64 h160 m Data/Menus/Slot2x5.png $
+	* e2 x118 y120 w96 h96 m Data/Menus/Slot3x3.png $
+	* e3 x224 y120 w64 h96 m Data/Menus/Slot2x3.png $
 
-	* e4 x301 y83 w64 h96 $
-	* e5 x262 y14 w64 h64 $
-	* e6 x301 y184 w64 h64 $
-	* e7 x222 y184 w64 h64 $
-	* e8 x104 y148 w32 h32 $
-	* e8 x153 y148 w32 h32 $
-	* e9 x210 y37 w32 h32 $
+	* e4 x296 y120 w64 h96 m Data/Menus/Slot2x3.png $
+	* e5 x296 y48 w64 h64 m Data/Menus/Slot2x2.png $
+	* e6 x296 y224 w64 h64 m Data/Menus/Slot2x2.png $
+	* e7 x48 y224 w64 h64 m Data/Menus/Slot2x2.png $
+	* e8 x118 y224 w32 h32 m Data/Menus/Slot1x1.png $
+	* e8 x184 y224 w32 h32 m Data/Menus/Slot1x1.png $
+	* e9 x256 y80 w32 h32 m Data/Menus/Slot1x1.png $
 $
-	* x52 y24 w32 h32 $
+	* x738 y60 w24 h32 $
 $
-	* e0 x0 y64 w140 h128 m38 $
-	* e1 x0 y196 w140 h128 m39 $
-	* e2 x0 y324 w140 h128 m40 $
+	* e0 x58 y46 w42 h42 m38 	i * mData/Menus/Concubine/ConcubinePath1.png x0 y0 w32 h32 $ $ $
+	* e1 x124 y46 w42 h42 m39	i * mData/Menus/Concubine/ConcubinePath2.png x0 y0 w32 h32 $ $ $
+	* e2 x186 y46 w42 h42 m40	i * mData/Menus/Concubine/ConcubinePath3.png x0 y0 w32 h32 $ $ $
 $
-	* x0 y0 w800 h600 m Data/Menus/Concubine/CourtisanePoison.png $
-	* x0 y0 w800 h600 m Data/Menus/Concubine/CourtisaneAssassin.png $
-	* x0 y0 w800 h600 m Data/Menus/Concubine/CourtisaneCharme.png $
-$
-	* e0 b-1 x215 y99 w32 h32 mData/Entities/Heroes/Concubine/Miracles/Toxic/Toxic.miracle.hs $
+	* e0 b-1 x115 y199 w38 h38 mData/Entities/Heroes/Concubine/Miracles/Toxic/Toxic.miracle.hs i * mData/Menus/Concubine/ConcubinePath1.png x0 y0 w32 h32 $ $ $
 
-	* e2 b-1 x215 y99 w32 h32 mData/Entities/Heroes/Concubine/Miracles/Charmed/Charmed.miracle.hs $
-	* e2 b1 x297 y99 w32 h32 mData/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife.miracle.hs $
+	* e2 b-1 x115 y199 w38 h38 mData/Entities/Heroes/Concubine/Miracles/Charmed/Charmed.miracle.hs i * mData/Menus/Concubine/ConcubinePath3.png x0 y0 w32 h32 $ $ $
+	* e2 b1 x197 y199 w38 h38 mData/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife.miracle.hs i * mData/Menus/Concubine/ConcubinePath3.png x32 y0 w32 h32 $ $ $
 
-	* e0 b-1 x215 y339 w32 h32 mData/Entities/Heroes/Concubine/Miracles/Venom/Venom.miracle.hs $
+	* e0 b-1 x115 y439 w38 h38 mData/Entities/Heroes/Concubine/Miracles/Venom/Venom.miracle.hs i * mData/Menus/Concubine/ConcubinePath1.png x96 y0 w32 h32 $ $ $
 $
+
+
+
+

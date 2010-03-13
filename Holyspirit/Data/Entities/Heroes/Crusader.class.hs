@@ -15,6 +15,8 @@ $
 $
 	* x0 y0 w800 h600 m Data/Menus/Inventory.png $
 $
+	* x0 y0 w800 h600 m Data/Menus/Skill.png $
+$
 	* x0 y300 w400 h300 m Data/Menus/Trader.png $
 $
 	* x0 y504 w800 h96 m Data/Menus/Hud.png $
@@ -42,6 +44,10 @@ $
 	* x146 y548 w27 h24 m Data/Menus/PointsCRest.png $
 $
 	* x627 y548 w27 h24 m Data/Menus/PointsMRest.png $
+$
+	* x-12 y-6 w27 h24 m Data/Menus/PlusMiracle.png $
+$
+	* x-16 y-8 w68 h70 m Data/Menus/Slot_miracle.png $
 $
 	* x436 y385 h5 w326 $
 $
@@ -85,22 +91,18 @@ $
 	* e8 x184 y224 w32 h32 m Data/Menus/Slot1x1.png $
 	* e9 x256 y80 w32 h32 m Data/Menus/Slot1x1.png $
 $
-	* x52 y20 w32 h32 $
+	* x738 y60 w24 h32 $
 $
-	* e0 x0 y64 w140 h128 m35 $
-	* e1 x0 y196 w140 h128 m36 $
-	* e2 x0 y324 w140 h128 m37 $
+	* e0 x58 y46 w42 h42 m35 	i * mData/Menus/Crusader/CrusaderPath1.png x0 y0 w32 h32 $ $ $
+	* e1 x124 y46 w42 h42 m36	i * mData/Menus/Crusader/CrusaderPath2.png x0 y0 w32 h32 $ $ $
+	* e2 x190 y46 w42 h42 m37	i * mData/Menus/Crusader/CrusaderPath3.png x0 y0 w32 h32 $ $ $
 $
-	* x0 y0 w800 h600 m Data/Menus/Crusader/CroisePersecuteur.png $
-	* x0 y0 w800 h600 m Data/Menus/Crusader/CroiseProtecteur.png $
-	* x0 y0 w800 h600 m Data/Menus/Crusader/CroiseIncarnation.png $
-$
-	* e0 b-1 x215 y99 w32 h32 mData/Entities/Heroes/Crusader/Miracles/HolyTornado/HolyTornado.miracle.hs $
+	* e0 b-1 x115 y199 w38 h38 mData/Entities/Heroes/Crusader/Miracles/HolyTornado/HolyTornado.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x0 y0 w32 h32 $ $ $
 
-	* e2 b-1 x215 y339 w32 h32 mData/Entities/Heroes/Crusader/Miracles/Lazare/Lazare.miracle.hs $
-	* e2 b1 x297 y339 w32 h32 mData/Entities/Heroes/Crusader/Miracles/Lazare/LazareVampirism.miracle.hs $
+	* e2 b-1 x115 y439 w38 h38 mData/Entities/Heroes/Crusader/Miracles/Lazare/Lazare.miracle.hs i * mData/Menus/Crusader/CrusaderPath3.png x32 y0 w32 h32 $ $ $
+	* e2 b1 x197 y439 w38 h38 mData/Entities/Heroes/Crusader/Miracles/Lazare/LazareVampirism.miracle.hs i * mData/Menus/Crusader/CrusaderPath3.png x64 y0 w32 h32 $ $ $
 
-	* e2 b-1 x215 y99 w32 h32 mData/Entities/Heroes/Crusader/Miracles/Barbe/Barbe.miracle.hs $
+	* e2 b-1 x115 y199 w38 h38 mData/Entities/Heroes/Crusader/Miracles/Barbe/Barbe.miracle.hs i * mData/Menus/Crusader/CrusaderPath3.png x0 y0 w32 h32 $ $ $
 
-	* e1 b-1 x215 y339 w32 h32 mData/Entities/Heroes/Crusader/Miracles/Charge/Charge.miracle.hs $
+	* e1 b-1 x115 y439 w38 h38 mData/Entities/Heroes/Crusader/Miracles/Charge/Charge.miracle.hs i * mData/Menus/Crusader/CrusaderPath2.png x0 y0 w32 h32 $ $ $
 $
