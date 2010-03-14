@@ -23,7 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define CONSTANTEH
 
 #define COTE_TILE 71.5542f
-#define DIVISEUR_COTE_TILE 0.013975420031249039189872851628556
+#define DIVISEUR_COTE_TILE 0.013975420031249039189872851628556f
 
 #define NOMBRE_ETAT 4
 #define CALCUL_PA_PROCHAIN_NIVEAU temp.niveau*temp.niveau*temp.niveau*10
@@ -105,6 +105,7 @@ inline T valeurAbsolue(T valeur)
         valeur = - valeur;
     return valeur;
 }
+
 struct coordonneeDecimal
 {
     coordonneeDecimal()

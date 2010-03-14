@@ -58,9 +58,9 @@ void Menu::AfficherHUD(Classe *classe)
 
     //On affiche l'HUD
     sprite2.SetImage(*moteurGraphique->getImage(classe->hud.image));
-    sprite2.SetX(classe->hud.position.x*configuration->Resolution.x/800);
-    sprite2.SetY(classe->hud.position.y*configuration->Resolution.h/600);
-    sprite2.Resize(classe->hud.position.w*configuration->Resolution.w/800, classe->hud.position.h*configuration->Resolution.h/600);
+    sprite2.SetX(classe->hud.position.x + (configuration->Resolution.x - 800) * 0.5);
+    sprite2.SetY(classe->hud.position.y + (configuration->Resolution.y - 600));
+    sprite2.Resize(classe->hud.position.w, classe->hud.position.h);
     moteurGraphique->AjouterCommande(&sprite2,17,0);
 }
 
@@ -69,17 +69,17 @@ void Menu::AfficherDialogue(int alpha,Classe *classe)
     Sprite sprite2;
 
     sprite2.SetImage(*moteurGraphique->getImage(classe->talk.image));
-    sprite2.SetX(classe->talk.position.x*configuration->Resolution.x/800);
-    sprite2.SetY(classe->talk.position.y*configuration->Resolution.h/600 + classe->talk.position.h*configuration->Resolution.h/600 - classe->talk.position.h*configuration->Resolution.h/600*alpha/255);
-    sprite2.Resize(classe->talk.position.w*configuration->Resolution.w/800, classe->talk.position.h*configuration->Resolution.h/600);
+    sprite2.SetX(classe->talk.position.x + (configuration->Resolution.x - 800) * 0.5);
+    sprite2.SetY(classe->talk.position.y + (configuration->Resolution.y - 600) + classe->talk.position.h*configuration->Resolution.h/600 - classe->talk.position.h*configuration->Resolution.h/600*alpha/255);
+    sprite2.Resize(classe->talk.position.w, classe->talk.position.h);
     moteurGraphique->AjouterCommande(&sprite2,16,0);
 
     sf::Text texte;
-    texte.SetCharacterSize(14 * configuration->Resolution.h/600);
+    texte.SetCharacterSize(14);
     texte.SetFont(moteurGraphique->m_font);
     texte.SetString(m_dialogue);
-    texte.SetPosition(classe->position_contenu_dialogue.x * configuration->Resolution.w/800 + classe->position_contenu_dialogue.w * configuration->Resolution.w/800/2 - (texte.GetRect().Right-texte.GetRect().Left)/2,
-                      classe->position_contenu_dialogue.y  * configuration->Resolution.h/600 + classe->talk.position.h*configuration->Resolution.h/600 - classe->talk.position.h*configuration->Resolution.h/600*alpha/255);
+    texte.SetPosition(classe->position_contenu_dialogue.x  + (configuration->Resolution.x - 800) * 0.5 + classe->position_contenu_dialogue.w * 0.5 - (texte.GetRect().Right-texte.GetRect().Left) * 0.5,
+                      classe->position_contenu_dialogue.y  + (configuration->Resolution.y - 600)       + classe->talk.position.h*configuration->Resolution.h/600 - classe->talk.position.h*configuration->Resolution.h/600*alpha/255);
 
     moteurGraphique->AjouterTexte(&texte,16,0);
 
@@ -141,14 +141,14 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         Sprite sprite;
         sprite.SetImage(*moteurGraphique->getImage(classe->orbe_vie.image));
 
-        sprite.SetY(classe->orbe_vie.position.y*configuration->Resolution.h/600);
+        sprite.SetY(classe->orbe_vie.position.y + (configuration->Resolution.y - 600));
 
         if(caracteristique.vie<=(caracteristique.maxVie - caracteristique.reserveVie))
-            sprite.SetX((classe->orbe_vie.position.x+(int)((caracteristique.maxVie-caracteristique.vie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w))*configuration->Resolution.w/800);
+            sprite.SetX((classe->orbe_vie.position.x+(int)((caracteristique.maxVie-caracteristique.vie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w)) + (configuration->Resolution.x - 800) * 0.5);
         else
-            sprite.SetX(classe->orbe_vie.position.x*configuration->Resolution.h/600);
+            sprite.SetX(classe->orbe_vie.position.x + (configuration->Resolution.x - 800) * 0.5);
 
-        sprite.Resize(classe->orbe_vie.position.w*configuration->Resolution.w/800, classe->orbe_vie.position.h*configuration->Resolution.h/600);
+        sprite.Resize(classe->orbe_vie.position.w, classe->orbe_vie.position.h);
 
         if(caracteristique.vie<=(caracteristique.maxVie - caracteristique.reserveVie))
             sprite.SetSubRect(sf::IntRect((int)((caracteristique.maxVie-caracteristique.vie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w), 0, classe->orbe_vie.position.w, classe->orbe_vie.position.h));
@@ -159,7 +159,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
 
         if(caracteristique.reserveVie > 0)
         {
-            sprite.SetX((classe->orbe_vie.position.x+(int)((caracteristique.maxVie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w))*configuration->Resolution.w/800);
+            sprite.SetX((classe->orbe_vie.position.x+(int)((caracteristique.maxVie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w)) + (configuration->Resolution.x - 800) * 0.5);
             sprite.SetSubRect(sf::IntRect((int)((caracteristique.maxVie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w), 0, classe->orbe_vie.position.w, classe->orbe_vie.position.h));
 
             sprite.SetColor(sf::Color(32,32,32,255));
@@ -169,7 +169,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
 
         if(caracteristique.vie > caracteristique.maxVie - caracteristique.reserveVie)
         {
-            sprite.SetX((classe->orbe_vie.position.x+(int)((caracteristique.maxVie*2-caracteristique.vie-caracteristique.reserveVie*2)/caracteristique.maxVie*classe->orbe_vie.position.w))*configuration->Resolution.w/800);
+            sprite.SetX((classe->orbe_vie.position.x+(int)((caracteristique.maxVie*2-caracteristique.vie-caracteristique.reserveVie*2)/caracteristique.maxVie*classe->orbe_vie.position.w)) + (configuration->Resolution.x - 800) * 0.5);
             sprite.SetSubRect(sf::IntRect((int)((caracteristique.maxVie*2-caracteristique.vie-caracteristique.reserveVie*2)/caracteristique.maxVie*classe->orbe_vie.position.w), 0, classe->orbe_vie.position.w, classe->orbe_vie.position.h));
 
             sprite.SetBlendMode(Blend::Add);
@@ -180,10 +180,10 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         }
     }
 
-    if(eventManager->getPositionSouris().x > classe->orbe_vie.position.x*configuration->Resolution.w/800
-    && eventManager->getPositionSouris().x < (classe->orbe_vie.position.x + classe->orbe_vie.position.w)*configuration->Resolution.w/800
-    && eventManager->getPositionSouris().y > classe->orbe_vie.position.y*configuration->Resolution.h/600
-    && eventManager->getPositionSouris().y < (classe->orbe_vie.position.y + classe->orbe_vie.position.h)*configuration->Resolution.h/600)
+    if(eventManager->getPositionSouris().x > classe->orbe_vie.position.x + (configuration->Resolution.x - 800) * 0.5
+    && eventManager->getPositionSouris().x < (classe->orbe_vie.position.x + classe->orbe_vie.position.w) + (configuration->Resolution.x - 800) * 0.5
+    && eventManager->getPositionSouris().y > classe->orbe_vie.position.y + (configuration->Resolution.y - 600)
+    && eventManager->getPositionSouris().y < (classe->orbe_vie.position.y + classe->orbe_vie.position.h) + (configuration->Resolution.x - 600))
     {
         std::ostringstream buf;
         buf<<configuration->getText(0,3)<<" : "<<(int)caracteristique.vie<<" / "<<caracteristique.maxVie;
@@ -198,10 +198,10 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         Sprite sprite;
         sprite.SetImage(*moteurGraphique->getImage(classe->orbe_foi.image));
 
-        sprite.SetY(classe->orbe_foi.position.y*configuration->Resolution.h/600);
-        sprite.SetX(classe->orbe_foi.position.x*configuration->Resolution.w/800);
+        sprite.SetY(classe->orbe_foi.position.y + (configuration->Resolution.y - 600));
+        sprite.SetX(classe->orbe_foi.position.x + (configuration->Resolution.x - 800) * 0.5);
 
-        sprite.Resize(classe->orbe_foi.position.w*configuration->Resolution.w/800, classe->orbe_foi.position.h*configuration->Resolution.h/600);
+        sprite.Resize(classe->orbe_foi.position.w, classe->orbe_foi.position.h);
 
         if(caracteristique.foi <= (caracteristique.maxFoi - caracteristique.reserveFoi))
             sprite.SetSubRect(sf::IntRect(0, 0, (int)((caracteristique.foi+caracteristique.reserveFoi)/caracteristique.maxFoi*classe->orbe_foi.position.w), classe->orbe_foi.position.h));
@@ -231,10 +231,10 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         }
     }
 
-    if(eventManager->getPositionSouris().x > classe->orbe_foi.position.x*configuration->Resolution.w/800
-    && eventManager->getPositionSouris().x < (classe->orbe_foi.position.x + classe->orbe_foi.position.w)*configuration->Resolution.w/800
-    && eventManager->getPositionSouris().y > classe->orbe_foi.position.y*configuration->Resolution.h/600
-    && eventManager->getPositionSouris().y < (classe->orbe_foi.position.y + classe->orbe_foi.position.h)*configuration->Resolution.h/600)
+    if(eventManager->getPositionSouris().x > classe->orbe_foi.position.x + (configuration->Resolution.x - 800) * 0.5
+    && eventManager->getPositionSouris().x < (classe->orbe_foi.position.x + classe->orbe_foi.position.w) + (configuration->Resolution.x - 800) * 0.5
+    && eventManager->getPositionSouris().y > classe->orbe_foi.position.y + (configuration->Resolution.y - 600)
+    && eventManager->getPositionSouris().y < (classe->orbe_foi.position.y + classe->orbe_foi.position.h) + (configuration->Resolution.y - 600))
     {
         std::ostringstream buf;
         buf<<configuration->getText(0,4)<<" : "<<(int)caracteristique.foi<<" / "<<caracteristique.maxFoi;
@@ -257,18 +257,18 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
 
         sprite.SetSubRect(sf::IntRect(0,0, temp, 16));
 
-        sprite.SetX(classe->soul_bar.position.x*configuration->Resolution.w/800);
-        sprite.SetY(classe->soul_bar.position.y*configuration->Resolution.h/600);
+        sprite.SetX(classe->soul_bar.position.x + (configuration->Resolution.x - 800) * 0.5);
+        sprite.SetY(classe->soul_bar.position.y + (configuration->Resolution.y - 600));
 
         moteurGraphique->AjouterCommande(&sprite,17,0);
     }
 
 
 
-    if(eventManager->getPositionSouris().x > classe->soul_bar.position.x*configuration->Resolution.w/800
-    && eventManager->getPositionSouris().x < classe->soul_bar.position.x*configuration->Resolution.w/800 + classe->soul_bar.position.w
-    && eventManager->getPositionSouris().y > classe->soul_bar.position.y*configuration->Resolution.h/600
-    && eventManager->getPositionSouris().y < classe->soul_bar.position.y*configuration->Resolution.h/600 + classe->soul_bar.position.h)
+    if(eventManager->getPositionSouris().x > classe->soul_bar.position.x + (configuration->Resolution.x - 800) * 0.5
+    && eventManager->getPositionSouris().x < classe->soul_bar.position.x + (configuration->Resolution.x - 800) * 0.5 + classe->soul_bar.position.w
+    && eventManager->getPositionSouris().y > classe->soul_bar.position.y + (configuration->Resolution.y - 600)
+    && eventManager->getPositionSouris().y < classe->soul_bar.position.y + (configuration->Resolution.y - 600) + classe->soul_bar.position.h)
     {
         std::ostringstream buf;
         buf<<(int)caracteristique.ancienPointAme<<" / "<<((caracteristique.niveau)*(caracteristique.niveau)*(caracteristique.niveau)*10);
@@ -279,32 +279,16 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
     }
 
 
-    /*texte.SetCharacterSize(16*configuration->Resolution.y/600);
-
-
-    texte.SetColor(Color(255,255,255,255));
-    {
-        std::ostringstream buf;
-        buf<<caracteristique.niveau;
-        texte.SetString(buf.str());
-    }
-
-    texte.SetX(configuration->Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
-    texte.SetY(configuration->Resolution.h-52*configuration->Resolution.h/600);
-
-    moteurGraphique->AjouterTexte(&texte,18);*/
-    //ecran->Draw(texte);
-
     if(caracteristique.pts_restant > 0)
     {
         Sprite sprite;
 
         sprite.SetImage(*moteurGraphique->getImage(classe->hud_pt_caract_rest.image));
-        sprite.Resize(classe->hud_pt_caract_rest.position.w*configuration->Resolution.w/800,
-                      classe->hud_pt_caract_rest.position.h*configuration->Resolution.w/800);
+        sprite.Resize(classe->hud_pt_caract_rest.position.w,
+                      classe->hud_pt_caract_rest.position.h);
 
-        sprite.SetX(classe->hud_pt_caract_rest.position.x*configuration->Resolution.w/800);
-        sprite.SetY(classe->hud_pt_caract_rest.position.y*configuration->Resolution.h/600);
+        sprite.SetX(classe->hud_pt_caract_rest.position.x + (configuration->Resolution.x - 800) * 0.5);
+        sprite.SetY(classe->hud_pt_caract_rest.position.y + (configuration->Resolution.y - 600));
 
         moteurGraphique->AjouterCommande(&sprite,17,0);
     }
@@ -314,11 +298,11 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         Sprite sprite;
 
         sprite.SetImage(*moteurGraphique->getImage(classe->hud_pt_miracle_rest.image));
-        sprite.Resize(classe->hud_pt_miracle_rest.position.w*configuration->Resolution.w/800,
-                      classe->hud_pt_miracle_rest.position.h*configuration->Resolution.w/800);
+        sprite.Resize(classe->hud_pt_miracle_rest.position.w,
+                      classe->hud_pt_miracle_rest.position.h);
 
-        sprite.SetX(classe->hud_pt_miracle_rest.position.x*configuration->Resolution.w/800);
-        sprite.SetY(classe->hud_pt_miracle_rest.position.y*configuration->Resolution.h/600);
+        sprite.SetX(classe->hud_pt_miracle_rest.position.x + (configuration->Resolution.x - 800) * 0.5);
+        sprite.SetY(classe->hud_pt_miracle_rest.position.y + (configuration->Resolution.y - 600));
 
         moteurGraphique->AjouterCommande(&sprite,17,0);
     }
@@ -388,7 +372,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
 
         //char chaine[255];
 
-        texte.SetCharacterSize(16*configuration->Resolution.h/600);
+        texte.SetCharacterSize(16);
         //texte.SetStyle(1);
 
         {
@@ -419,7 +403,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
             texte.SetColor(Color(224,0,0,255));
 
         texte.SetX(configuration->Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
-        texte.SetY(32*configuration->Resolution.h/600);
+        texte.SetY(32);
         moteurGraphique->AjouterTexte(&texte,18);
 
         texte.SetStyle(0);
@@ -454,11 +438,17 @@ void Menu::AfficherQuetes(float decalage,Classe *classe)
     Sprite sprite;
 
     sprite.SetImage(*moteurGraphique->getImage(classe->quest.image));
-    sprite.SetX(classe->quest.position.x*configuration->Resolution.x/800);
-    sprite.SetY(classe->quest.position.y*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
-    sprite.Resize(classe->quest.position.w*configuration->Resolution.w/800, classe->quest.position.h*configuration->Resolution.h/600);
+    sprite.SetX(classe->quest.position.x + (configuration->Resolution.x - 800) * 0.5);
+    sprite.SetY(classe->quest.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
+    sprite.Resize(classe->quest.position.w, classe->quest.position.h);
 
     moteurGraphique->AjouterCommande(&sprite,15,0);
+
+    sprite.SetColor(sf::Color(0,0,0,(int)((600+decalage)*254/600)));
+    sprite.SetX(0);
+    sprite.SetY(0);
+    sprite.Resize(configuration->Resolution.w, configuration->Resolution.h);
+    moteurGraphique->AjouterCommande(&sprite,14,0);
 }
 
 
@@ -467,35 +457,35 @@ void Menu::AfficherCraft(float decalage,Classe *classe)
     Sprite sprite;
 
     sprite.SetImage(*moteurGraphique->getImage(classe->craft.image));
-    sprite.SetX(classe->craft.position.x*configuration->Resolution.x/800);
-    sprite.SetY(classe->craft.position.y*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
-    sprite.Resize(classe->craft.position.w*configuration->Resolution.w/800, classe->craft.position.h*configuration->Resolution.h/600);
+    sprite.SetX(classe->craft.position.x + (configuration->Resolution.x - 800) * 0.5);
+    sprite.SetY(classe->craft.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
+    sprite.Resize(classe->craft.position.w, classe->craft.position.h);
 
     moteurGraphique->AjouterCommande(&sprite,15,0);
+
+    sprite.SetColor(sf::Color(0,0,0,(int)((600+decalage)*254/600)));
+    sprite.SetX(0);
+    sprite.SetY(0);
+    sprite.Resize(configuration->Resolution.w, configuration->Resolution.h);
+    moteurGraphique->AjouterCommande(&sprite,14,0);
 }
 
 void Menu::AfficherMiracles(float decalage, Classe *classe, int fenetreEnCours)
 {
-    /*if(fenetreEnCours >= 0 && fenetreEnCours < (int)classe->interface_miracles.size())
-    {
-        Sprite sprite;
-
-        sprite.SetImage(*moteurGraphique->getImage(classe->interface_miracles[fenetreEnCours].image));
-        sprite.SetX(classe->interface_miracles[fenetreEnCours].position.x*configuration->Resolution.x/800);
-        sprite.SetY(classe->interface_miracles[fenetreEnCours].position.y*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
-        sprite.Resize(classe->interface_miracles[fenetreEnCours].position.w*configuration->Resolution.w/800, classe->interface_miracles[fenetreEnCours].position.h*configuration->Resolution.h/600);
-
-        moteurGraphique->AjouterCommande(&sprite,15,0);
-    }*/
-
     Sprite sprite;
 
     sprite.SetImage(*moteurGraphique->getImage(classe->interface_miracles.image));
-    sprite.SetX(classe->interface_miracles.position.x*configuration->Resolution.x/800);
-    sprite.SetY(classe->interface_miracles.position.y*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
-    sprite.Resize(classe->interface_miracles.position.w*configuration->Resolution.w/800, classe->interface_miracles.position.h*configuration->Resolution.h/600);
+    sprite.SetX(classe->interface_miracles.position.x + (configuration->Resolution.x - 800) * 0.5);
+    sprite.SetY(classe->interface_miracles.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
+    sprite.Resize(classe->interface_miracles.position.w, classe->interface_miracles.position.h);
 
     moteurGraphique->AjouterCommande(&sprite,15,0);
+
+    sprite.SetColor(sf::Color(0,0,0,(int)((600+decalage)*254/600)));
+    sprite.SetX(0);
+    sprite.SetY(0);
+    sprite.Resize(configuration->Resolution.w, configuration->Resolution.h);
+    moteurGraphique->AjouterCommande(&sprite,14,0);
 }
 
 void Menu::AfficherInventaire(float decalage,Classe *classe,bool noTrader)
@@ -503,19 +493,25 @@ void Menu::AfficherInventaire(float decalage,Classe *classe,bool noTrader)
     Sprite sprite;
 
     sprite.SetImage(*moteurGraphique->getImage(classe->inventaire.image));
-    sprite.SetX(classe->inventaire.position.x*configuration->Resolution.x/800);
-    sprite.SetY(classe->inventaire.position.y*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
-    sprite.Resize(classe->inventaire.position.w*configuration->Resolution.w/800, classe->inventaire.position.h*configuration->Resolution.h/600);
+    sprite.SetX(classe->inventaire.position.x + (configuration->Resolution.x - 800) * 0.5);
+    sprite.SetY(classe->inventaire.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
+    sprite.Resize(classe->inventaire.position.w, classe->inventaire.position.h);
 
     moteurGraphique->AjouterCommande(&sprite,15,0);
+
+    sprite.SetColor(sf::Color(0,0,0,(int)((600+decalage)*254/600)));
+    sprite.SetX(0);
+    sprite.SetY(0);
+    sprite.Resize(configuration->Resolution.w, configuration->Resolution.h);
+    moteurGraphique->AjouterCommande(&sprite,14,0);
 
     if (!noTrader)
     {
         Sprite sprite2;
         sprite2.SetImage(*moteurGraphique->getImage(classe->menu_marchand.image));
-        sprite2.SetX(classe->menu_marchand.position.x*configuration->Resolution.x/800);
-        sprite2.SetY(classe->menu_marchand.position.y*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
-        sprite2.Resize(classe->menu_marchand.position.w*configuration->Resolution.w/800, classe->menu_marchand.position.h*configuration->Resolution.h/600);
+        sprite2.SetX(classe->menu_marchand.position.x + (configuration->Resolution.x - 800) * 0.5);
+        sprite2.SetY(classe->menu_marchand.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
+        sprite2.Resize(classe->menu_marchand.position.w, classe->menu_marchand.position.h);
 
         moteurGraphique->AjouterCommande(&sprite2,16,0);
     }

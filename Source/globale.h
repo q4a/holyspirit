@@ -27,3 +27,5 @@ extern Console *console;
 extern MoteurGraphique *moteurGraphique;
 extern MoteurSons *moteurSons;
 extern EventManager *eventManager;
+
+

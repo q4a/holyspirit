@@ -44,14 +44,14 @@
 				<Option projectResourceIncludeDirsRelation="1" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="..\..\SFML_SVN\branches\sfml2\include" />
+					<Add directory="..\..\SFML_SVNNE\branches\sfml2\include" />
 				</Compiler>
 				<Linker>
 					<Add option="-lsfml-audio-s" />
 					<Add option="-lsfml-graphics-s" />
 					<Add option="-lsfml-window-s" />
 					<Add option="-lsfml-system-s" />
-					<Add directory="..\..\SFML_SVN\branches\sfml2\lib\mingw" />
+					<Add directory="..\..\SFML_SVNNE\branches\sfml2\lib\mingw" />
 				</Linker>
 			</Target>
 			<Target title="FullDebug">

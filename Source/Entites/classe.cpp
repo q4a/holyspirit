@@ -474,9 +474,14 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
         ChargerCoordonneeInterface(fichier, position_bouton_dialogue);
         ChargerCoordonneeInterface(fichier, position_contenu_quetes);
         ChargerCoordonneeInterface(fichier, position_contenu_description_quete);
+        ChargerCoordonneeInterface(fichier, position_schema_craft);
+        ChargerCoordonneeInterface(fichier, position_result_craft);
+        ChargerCoordonneeInterface(fichier, position_button_craft);
 
         for(int i = 0 ; i < 8 ; ++i)
             ChargerCoordonneeInterface(fichier, position_raccourcis[i]);
+
+        ChargerCoordonneeInterface(fichier, position_miracleALancer);
 
         do
         {

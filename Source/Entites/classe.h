@@ -79,10 +79,15 @@ struct Classe
     std::vector<Bouton> boutons_miracles;
 
     coordonnee position_raccourcis[8];
+    coordonnee position_miracleALancer;
 
     coordonnee position_sac_inventaire;
     coordonnee position_contenu_inventaire;
     coordonnee position_contenu_marchand;
+
+    coordonnee position_schema_craft;
+    coordonnee position_result_craft;
+    coordonnee position_button_craft;
 
     coordonnee position_contenu_dialogue;
     coordonnee position_contenu_quetes;

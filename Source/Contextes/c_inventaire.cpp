@@ -35,6 +35,14 @@ using namespace std;
 int GestionBoutons(Jeu *jeu);
 void GestionRaccourcis(Jeu *jeu);
 
+inline sf::Vector2f AutoScreenAdjust(float x, float y, float decalage = 0)
+{
+    sf::Vector2f temp;
+    temp.x = x + (configuration->Resolution.x - 800) * 0.5;
+    temp.y = y + (configuration->Resolution.y - 600) - decalage * configuration->Resolution.h/600;
+    return temp;
+}
+
 c_Inventaire::c_Inventaire()
 {
     m_decalage=-600;
@@ -92,6 +100,8 @@ void c_Inventaire::Utiliser(Jeu *jeu)
     jeu->m_display=true;
     jeu->Clock.Reset();
 
+    moteurGraphique->Gerer(0,jeu->map->getDimensions().y);
+
     jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
    // jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);
 
@@ -131,10 +141,20 @@ void c_Inventaire::Utiliser(Jeu *jeu)
 
     if (eventManager->getEvenement(Mouse::Left,EventClic))
     {
-        if (jeu->hero.m_objetEnMain==-1&&jeu->map->getObjetPointe()==-1&&eventManager->getPositionSouris().x>jeu->hero.m_classe.position_sac_inventaire.x*configuration->Resolution.x/800&&eventManager->getPositionSouris().x<(jeu->hero.m_classe.position_sac_inventaire.x+jeu->hero.m_classe.position_sac_inventaire.w)*configuration->Resolution.x/800&&eventManager->getPositionSouris().y>jeu->hero.m_classe.position_sac_inventaire.y*configuration->Resolution.y/600&&eventManager->getPositionSouris().y<jeu->hero.m_classe.position_sac_inventaire.y*configuration->Resolution.y/600+20*configuration->Resolution.x/800)
+        if (jeu->hero.m_objetEnMain==-1
+          &&jeu->map->getObjetPointe()==-1
+          &&eventManager->getPositionSouris().x > AutoScreenAdjust(jeu->hero.m_classe.position_sac_inventaire.x,0).x
+          &&eventManager->getPositionSouris().x < AutoScreenAdjust(jeu->hero.m_classe.position_sac_inventaire.x + jeu->hero.m_classe.position_sac_inventaire.w,0).x
+          &&eventManager->getPositionSouris().y > AutoScreenAdjust(0,jeu->hero.m_classe.position_sac_inventaire.y).y
+          &&eventManager->getPositionSouris().y < AutoScreenAdjust(0,jeu->hero.m_classe.position_sac_inventaire.y + 20).y)
             jeu->map->m_defilerObjets--,eventManager->StopEvenement(Mouse::Left,EventClic);
 
-        if (jeu->hero.m_objetEnMain==-1&&jeu->map->getObjetPointe()==-1&&eventManager->getPositionSouris().x>jeu->hero.m_classe.position_sac_inventaire.x*configuration->Resolution.x/800&&eventManager->getPositionSouris().x<(jeu->hero.m_classe.position_sac_inventaire.x+jeu->hero.m_classe.position_sac_inventaire.w)*configuration->Resolution.x/800&&eventManager->getPositionSouris().y>jeu->hero.m_classe.position_sac_inventaire.y*configuration->Resolution.y/600+(jeu->hero.m_classe.position_sac_inventaire.h-1)*20*configuration->Resolution.x/800&&eventManager->getPositionSouris().y<jeu->hero.m_classe.position_sac_inventaire.y*configuration->Resolution.y/600+jeu->hero.m_classe.position_sac_inventaire.h*20*configuration->Resolution.x/800)
+        if (jeu->hero.m_objetEnMain==-1
+          &&jeu->map->getObjetPointe()==-1
+          &&eventManager->getPositionSouris().x > AutoScreenAdjust(jeu->hero.m_classe.position_sac_inventaire.x,0).x
+          &&eventManager->getPositionSouris().x < AutoScreenAdjust(jeu->hero.m_classe.position_sac_inventaire.x + jeu->hero.m_classe.position_sac_inventaire.w,0).x
+          &&eventManager->getPositionSouris().y > AutoScreenAdjust(0,jeu->hero.m_classe.position_sac_inventaire.y + jeu->hero.m_classe.position_sac_inventaire.h * 20 - 20).y
+          &&eventManager->getPositionSouris().y < AutoScreenAdjust(0,jeu->hero.m_classe.position_sac_inventaire.y + jeu->hero.m_classe.position_sac_inventaire.h * 20).y)
             jeu->map->m_defilerObjets++,eventManager->StopEvenement(Mouse::Left,EventClic);
     }
 

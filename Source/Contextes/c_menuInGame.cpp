@@ -86,6 +86,8 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
             jeu->next_screen = 3;
     }
 
+    moteurGraphique->Gerer(0,jeu->map->getDimensions().y);
+
     jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
   //  jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);
 
@@ -100,7 +102,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,0,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
 
 
-    texte.SetCharacterSize(56*configuration->Resolution.h/600);
+    texte.SetCharacterSize(56);
 
     texte.SetString(configuration->getText(0,0));
     texte.SetY(configuration->Resolution.h/2-texte.GetRect().GetSize().y);

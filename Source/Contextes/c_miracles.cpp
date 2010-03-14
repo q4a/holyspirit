@@ -35,11 +35,21 @@ using namespace std;
 
 int GestionBoutons(Jeu *jeu);
 
+inline sf::Vector2f AutoScreenAdjust(float x, float y, float decalage = 0)
+{
+    sf::Vector2f temp;
+    temp.x = x + (configuration->Resolution.x - 800) * 0.5;
+    temp.y = y + (configuration->Resolution.y - 600) - decalage * configuration->Resolution.h/600;
+    return temp;
+}
+
+
 c_Miracles::c_Miracles()
 {
     m_decalage = -600;
     m_fenetre = 0;
 }
+
 
 void c_Miracles::Utiliser(Jeu *jeu)
 {
@@ -50,6 +60,7 @@ void c_Miracles::Utiliser(Jeu *jeu)
     jeu->m_display=true;
     jeu->Clock.Reset();
 
+    moteurGraphique->Gerer(0,jeu->map->getDimensions().y);
     jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
     //jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);
 
@@ -88,10 +99,10 @@ void c_Miracles::Utiliser(Jeu *jeu)
     }
 
     for(int i = 0;i < (int)jeu->hero.m_classe.boutons_miracles.size(); ++i)
-        if(eventManager->getPositionSouris().x >  jeu->hero.m_classe.boutons_miracles[i].position.x * configuration->Resolution.w/800
-         &&eventManager->getPositionSouris().x < (jeu->hero.m_classe.boutons_miracles[i].position.x + jeu->hero.m_classe.boutons_miracles[i].position.w) * configuration->Resolution.w/800
-         &&eventManager->getPositionSouris().y >  jeu->hero.m_classe.boutons_miracles[i].position.y * configuration->Resolution.h/600
-         &&eventManager->getPositionSouris().y < (jeu->hero.m_classe.boutons_miracles[i].position.y + jeu->hero.m_classe.boutons_miracles[i].position.h) * configuration->Resolution.h/600)
+        if(eventManager->getPositionSouris().x >  AutoScreenAdjust(jeu->hero.m_classe.boutons_miracles[i].position.x,0).x
+         &&eventManager->getPositionSouris().x <  AutoScreenAdjust(jeu->hero.m_classe.boutons_miracles[i].position.x,0).x + jeu->hero.m_classe.boutons_miracles[i].position.w
+         &&eventManager->getPositionSouris().y >  AutoScreenAdjust(0,jeu->hero.m_classe.boutons_miracles[i].position.y).y
+         &&eventManager->getPositionSouris().y <  AutoScreenAdjust(0,jeu->hero.m_classe.boutons_miracles[i].position.y).y + jeu->hero.m_classe.boutons_miracles[i].position.h)
         {
             coordonnee buf = eventManager->getPositionSouris();
             buf.y -= 20;

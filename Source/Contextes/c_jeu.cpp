@@ -40,6 +40,15 @@ void Sauvegarder(void* UserData)
     moteurGraphique->LightManager->GenerateWallShadow(moteurGraphique->m_angleOmbreSoleil,moteurGraphique->m_soleil);
 }
 
+inline sf::Vector2f AutoScreenAdjust(float x, float y, float decalage = 0)
+{
+    sf::Vector2f temp;
+    temp.x = x + (configuration->Resolution.x - 800) * 0.5;
+    temp.y = y + (configuration->Resolution.y - 600) - decalage * configuration->Resolution.h/600;
+    return temp;
+}
+
+
 c_Jeu::c_Jeu()
 {
     continuer=true,lumiere=false,augmenter=false;
@@ -90,8 +99,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
     tempsEcoule = (temps[0] + temps[1] + temps[2] + temps[3] + temps[4]) / 5;
 
-    if (tempsEcoule>0.1)
-        tempsEcoule=0.1;
+    if (tempsEcoule>0.1f)
+        tempsEcoule=0.1f;
 
 
     jeu->m_display=false;
@@ -113,7 +122,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
     Animation(jeu);
     Lumieres(jeu);
 
-    if ((tempsEcouleDepuisDernierAffichage>0.012&&configuration->syncronisation_verticale)||(!configuration->syncronisation_verticale))
+    if ((tempsEcouleDepuisDernierAffichage>0.012f&&configuration->syncronisation_verticale)||(!configuration->syncronisation_verticale))
     {
         jeu->hero.PlacerCamera();
 
@@ -198,7 +207,7 @@ void c_Jeu::GererTemps(Jeu *jeu)
 }
 void c_Jeu::IA(Jeu *jeu)
 {
-    if (tempsEcouleDepuisDernierIA>=0.027)
+    if (tempsEcouleDepuisDernierIA>=0.027f)
     {
         jeu->map->GererMonstres(jeu,&jeu->hero,tempsEcouleDepuisDernierIA,&jeu->menu);
         jeu->map->GererProjectilesEtEffets(&jeu->hero,tempsEcouleDepuisDernierIA);
@@ -280,8 +289,8 @@ void c_Jeu::Animation(Jeu *jeu)
     {
         jeu->map->TestEvenement(jeu,tempsDepuisDerniereAnimation); // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
 
-        if (tempsDepuisDerniereAnimation>0.12)
-            tempsDepuisDerniereAnimation=0.12;
+        if (tempsDepuisDerniereAnimation>0.12f)
+            tempsDepuisDerniereAnimation=0.12f;
 
 
         int retour=-2;
@@ -407,10 +416,10 @@ void GestionRaccourcis(Jeu *jeu)
     {
         if (eventManager->getEvenement('1'+i,EventKey)
             || eventManager->getEvenement(Mouse::Left,EventClicA)
-            && eventManager->getPositionSouris().x > jeu->hero.m_classe.position_raccourcis[i].x * configuration->Resolution.w/800
-            && eventManager->getPositionSouris().x < jeu->hero.m_classe.position_raccourcis[i].x * configuration->Resolution.w/800 + jeu->hero.m_classe.position_raccourcis[i].w
-            && eventManager->getPositionSouris().y > jeu->hero.m_classe.position_raccourcis[i].y * configuration->Resolution.y/600
-            && eventManager->getPositionSouris().y < jeu->hero.m_classe.position_raccourcis[i].y * configuration->Resolution.y/600 + jeu->hero.m_classe.position_raccourcis[i].h)
+            && eventManager->getPositionSouris().x > AutoScreenAdjust(jeu->hero.m_classe.position_raccourcis[i].x,0).x
+            && eventManager->getPositionSouris().x < AutoScreenAdjust(jeu->hero.m_classe.position_raccourcis[i].x,0).x + jeu->hero.m_classe.position_raccourcis[i].w
+            && eventManager->getPositionSouris().y > AutoScreenAdjust(0,jeu->hero.m_classe.position_raccourcis[i].y).y
+            && eventManager->getPositionSouris().y < AutoScreenAdjust(0,jeu->hero.m_classe.position_raccourcis[i].y).y + jeu->hero.m_classe.position_raccourcis[i].h)
         {
             if(eventManager->getEvenement('1'+i,EventKey))
                 eventManager->StopEvenement('1'+i,EventKey);
@@ -426,136 +435,6 @@ void GestionRaccourcis(Jeu *jeu)
             }
         }
     }
-
-    /*if (eventManager->getEvenement('2',EventKey)
-            || eventManager->getEvenement(Mouse::Left,EventClicA)
-            && eventManager->getPositionSouris().x > 287 * configuration->Resolution.w/800
-            && eventManager->getPositionSouris().x < 307 * configuration->Resolution.w/800
-            && eventManager->getPositionSouris().y > 492 * configuration->Resolution.y/600
-            && eventManager->getPositionSouris().y < 512 * configuration->Resolution.y/600)
-    {
-        if(eventManager->getEvenement('2',EventKey))
-            eventManager->StopEvenement('2',EventKey);
-        else
-            eventManager->StopEvenement(Mouse::Left,EventClicA);
-
-        if(jeu->hero.m_objets_raccourcis[1].no >= 0)
-        {
-            if(jeu->hero.m_objets_raccourcis[1].miracle)
-                newmiracle = jeu->hero.m_raccourcis[1];
-            else
-                jeu->hero.UtiliserObjet(jeu->hero.m_raccourcis[1]);
-        }
-    }
-    if (eventManager->getEvenement('3',EventKey)
-            || eventManager->getEvenement(Mouse::Left,EventClicA)
-            && eventManager->getPositionSouris().x > 319 * configuration->Resolution.w/800
-            && eventManager->getPositionSouris().x < 339 * configuration->Resolution.w/800
-            && eventManager->getPositionSouris().y > 492 * configuration->Resolution.y/600
-            && eventManager->getPositionSouris().y < 512 * configuration->Resolution.y/600)
-    {
-        if(eventManager->getEvenement('3',EventKey))
-            eventManager->StopEvenement('3',EventKey);
-        else
-            eventManager->StopEvenement(Mouse::Left,EventClicA);
-
-        if(jeu->hero.m_objets_raccourcis[2].no >= 0)
-        {
-            if(jeu->hero.m_objets_raccourcis[2].miracle)
-                newmiracle = jeu->hero.m_raccourcis[2];
-            else
-                jeu->hero.UtiliserObjet(jeu->hero.m_raccourcis[2]);
-        }
-    }
-    if (eventManager->getEvenement('4',EventKey)
-            || eventManager->getEvenement(Mouse::Left,EventClicA)
-            && eventManager->getPositionSouris().x > 351 * configuration->Resolution.w/800
-            && eventManager->getPositionSouris().x < 371 * configuration->Resolution.w/800
-            && eventManager->getPositionSouris().y > 492 * configuration->Resolution.y/600
-            && eventManager->getPositionSouris().y < 512 * configuration->Resolution.y/600)
-    {
-        if(eventManager->getEvenement('4',EventKey))
-            eventManager->StopEvenement('4',EventKey);
-        else
-            eventManager->StopEvenement(Mouse::Left,EventClicA);
-
-        if(jeu->hero.m_objets_raccourcis[3].no >= 0)
-        {
-            if(jeu->hero.m_objets_raccourcis[3].miracle)
-                newmiracle = jeu->hero.m_raccourcis[3];
-            else
-                jeu->hero.UtiliserObjet(jeu->hero.m_raccourcis[3]);
-        }
-    }
-
-    if (eventManager->getEvenement('5',EventKey)
-            || eventManager->getEvenement(Mouse::Left,EventClicA)
-            && eventManager->getPositionSouris().x > 249 * configuration->Resolution.w/800
-            && eventManager->getPositionSouris().x < 288 * configuration->Resolution.w/800
-            && eventManager->getPositionSouris().y > 556 * configuration->Resolution.h/600
-            && eventManager->getPositionSouris().y < 512 * configuration->Resolution.h/600)
-    {
-        if(eventManager->getEvenement('5',EventKey))
-            eventManager->StopEvenement('5',EventKey);
-        else
-            eventManager->StopEvenement(Mouse::Left,EventClicA);
-
-        if(jeu->hero.m_objets_raccourcis[4].no >= 0)
-        {
-            if(jeu->hero.m_objets_raccourcis[4].miracle)
-                newmiracle = jeu->hero.m_raccourcis[4];
-            else
-                jeu->hero.UtiliserObjet(jeu->hero.m_raccourcis[4]);
-        }
-    }
-    if (eventManager->getEvenement('6',EventKey)
-            || eventManager->getEvenement(Mouse::Left,EventClicA)
-            && eventManager->getPositionSouris().x > 464 * configuration->Resolution.w/800
-            && eventManager->getPositionSouris().x < 484 * configuration->Resolution.w/800
-            && eventManager->getPositionSouris().y > 492 * configuration->Resolution.y/600
-            && eventManager->getPositionSouris().y < 512 * configuration->Resolution.y/600)
-    {
-        if(eventManager->getEvenement('6',EventKey))
-            eventManager->StopEvenement('6',EventKey);
-        else
-            eventManager->StopEvenement(Mouse::Left,EventClicA);
-
-        if(jeu->hero.m_objets_raccourcis[5].no >= 0)
-        {
-            if(jeu->hero.m_objets_raccourcis[5].miracle)
-                newmiracle = jeu->hero.m_raccourcis[5];
-            else
-                jeu->hero.UtiliserObjet(jeu->hero.m_raccourcis[5]);
-        }
-    }
-    if (eventManager->getEvenement('7',EventKey)
-            || eventManager->getEvenement(Mouse::Left,EventClicA)
-            && eventManager->getPositionSouris().x > 496 * configuration->Resolution.w/800
-            && eventManager->getPositionSouris().x < 516 * configuration->Resolution.w/800
-            && eventManager->getPositionSouris().y > 492 * configuration->Resolution.y/600
-            && eventManager->getPositionSouris().y < 512 * configuration->Resolution.y/600)
-    {
-        if(eventManager->getEvenement('7',EventKey))
-            eventManager->StopEvenement('7',EventKey);
-        else
-            eventManager->StopEvenement(Mouse::Left,EventClic);
-
-        newmiracle = jeu->hero.m_miracles_raccourcis[2];
-    }
-    if (eventManager->getEvenement('8',EventKey)
-            || eventManager->getEvenement(Mouse::Left,EventClicA)
-            && eventManager->getPositionSouris().x > 528 * configuration->Resolution.w/800
-            && eventManager->getPositionSouris().x < 548 * configuration->Resolution.w/800
-            && eventManager->getPositionSouris().y > 492 * configuration->Resolution.y/600
-            && eventManager->getPositionSouris().y < 512 * configuration->Resolution.y/600)
-    {
-        if(eventManager->getEvenement('8',EventKey))
-            eventManager->StopEvenement('8',EventKey);
-        else
-            eventManager->StopEvenement(Mouse::Left,EventClicA);
-
-        newmiracle = jeu->hero.m_miracles_raccourcis[3];
-    }*/
 
     if(newmiracle >= 0 && newmiracle < jeu->hero.m_classe.miracles.size())
     {
@@ -591,8 +470,8 @@ void GestionRaccourcis(Jeu *jeu)
 
 int GestionBoutons(Jeu *jeu)
 {
-    if (   eventManager->getPositionSouris().x > 750 * configuration->Resolution.x/800
-        && eventManager->getPositionSouris().y < 50 * configuration->Resolution.y/600
+    if (   eventManager->getPositionSouris().x > AutoScreenAdjust(750,0).x
+        && eventManager->getPositionSouris().y < AutoScreenAdjust(0,50).y
         && eventManager->getEvenement(Mouse::Left,EventClic))
         {
             eventManager->StopEvenement(Mouse::Left,EventClic);
@@ -600,10 +479,10 @@ int GestionBoutons(Jeu *jeu)
         }
 
     if (eventManager->getEvenement(Key::M,EventKey)
-        || eventManager->getPositionSouris().x > 459 * configuration->Resolution.x/800
-        && eventManager->getPositionSouris().x < 487 * configuration->Resolution.x/800
-        && eventManager->getPositionSouris().y > 522 * configuration->Resolution.y/600
-        && eventManager->getPositionSouris().y < 537 * configuration->Resolution.y/600)
+        || eventManager->getPositionSouris().x > AutoScreenAdjust(459,0).x
+        && eventManager->getPositionSouris().x < AutoScreenAdjust(487,0).x
+        && eventManager->getPositionSouris().y > AutoScreenAdjust(0,522).y
+        && eventManager->getPositionSouris().y < AutoScreenAdjust(0,537).y)
     {
         if(!eventManager->getEvenement(Key::M,EventKey))
          moteurGraphique->AjouterTexte(configuration->getText(0,13),coordonnee(eventManager->getPositionSouris().x,
@@ -627,10 +506,10 @@ int GestionBoutons(Jeu *jeu)
 
 
     if (eventManager->getEvenement(Key::Tab,EventKey)
-        || eventManager->getPositionSouris().x > 314 * configuration->Resolution.x/800
-        && eventManager->getPositionSouris().x < 342 * configuration->Resolution.x/800
-        && eventManager->getPositionSouris().y > 522 * configuration->Resolution.y/600
-        && eventManager->getPositionSouris().y < 537 * configuration->Resolution.y/600)
+        || eventManager->getPositionSouris().x > AutoScreenAdjust(314,0).x
+        && eventManager->getPositionSouris().x < AutoScreenAdjust(342,0).x
+        && eventManager->getPositionSouris().y > AutoScreenAdjust(0,522).y
+        && eventManager->getPositionSouris().y < AutoScreenAdjust(0,537).y)
     {
         if(!eventManager->getEvenement(Key::Tab,EventKey))
          moteurGraphique->AjouterTexte(configuration->getText(0,51),coordonnee(eventManager->getPositionSouris().x,
@@ -653,21 +532,12 @@ int GestionBoutons(Jeu *jeu)
                 configuration->console=0;
         }
     }
-    /*if(configuration->Minimap)
-    {
-        sf::Sprite buf;
-        buf.SetImage(*moteurGraphique->getImage(0));
-        buf.SetPosition(264 * configuration->Resolution.x/800, 533 * configuration->Resolution.y/600);
-        buf.Resize(20 * configuration->Resolution.x/800,20 * configuration->Resolution.y/600);
-        buf.SetColor(sf::Color(0,0,0,128));
-        moteurGraphique->AjouterCommande(&buf, 18, 0);
-    }*/
 
     if (eventManager->getEvenement(Key::I,EventKey)
-        || eventManager->getPositionSouris().x > 372 * configuration->Resolution.x/800
-        && eventManager->getPositionSouris().x < 400 * configuration->Resolution.x/800
-        && eventManager->getPositionSouris().y > 522 * configuration->Resolution.y/600
-        && eventManager->getPositionSouris().y < 537 * configuration->Resolution.y/600)
+        || eventManager->getPositionSouris().x > AutoScreenAdjust(372,0).x
+        && eventManager->getPositionSouris().x < AutoScreenAdjust(400,0).x
+        && eventManager->getPositionSouris().y > AutoScreenAdjust(0,522).y
+        && eventManager->getPositionSouris().y < AutoScreenAdjust(0,537).y)
     {
         if(!eventManager->getEvenement(Key::I,EventKey))
         moteurGraphique->AjouterTexte(configuration->getText(0,14),coordonnee(eventManager->getPositionSouris().x,
@@ -685,21 +555,13 @@ int GestionBoutons(Jeu *jeu)
             return 2;
         }
     }
-    /*if(jeu->next_screen == 2)
-    {
-        sf::Sprite buf;
-        buf.SetImage(*moteurGraphique->getImage(0));
-        buf.SetPosition(302 * configuration->Resolution.x/800, 533 * configuration->Resolution.y/600);
-        buf.Resize(20 * configuration->Resolution.x/800,20 * configuration->Resolution.y/600);
-        buf.SetColor(sf::Color(0,0,0,128));
-        moteurGraphique->AjouterCommande(&buf, 18, 0);
-    }*/
+
 
     if (eventManager->getEvenement(Key::Q,EventKey)
-        || eventManager->getPositionSouris().x > 401 * configuration->Resolution.x/800
-        && eventManager->getPositionSouris().x < 429 * configuration->Resolution.x/800
-        && eventManager->getPositionSouris().y > 522 * configuration->Resolution.y/600
-        && eventManager->getPositionSouris().y < 537 * configuration->Resolution.y/600)
+        || eventManager->getPositionSouris().x > AutoScreenAdjust(401,0).x
+        && eventManager->getPositionSouris().x < AutoScreenAdjust(429,0).x
+        && eventManager->getPositionSouris().y > AutoScreenAdjust(0,522).y
+        && eventManager->getPositionSouris().y < AutoScreenAdjust(0,537).y)
     {
         if(!eventManager->getEvenement(Key::Q,EventKey))
         moteurGraphique->AjouterTexte(configuration->getText(0,15),coordonnee(eventManager->getPositionSouris().x,
@@ -716,21 +578,12 @@ int GestionBoutons(Jeu *jeu)
             return 6;
         }
     }
-    /*if(jeu->next_screen == 6)
-    {
-        sf::Sprite buf;
-        buf.SetImage(*moteurGraphique->getImage(0));
-        buf.SetPosition(264 * configuration->Resolution.x/800, 565 * configuration->Resolution.y/600);
-        buf.Resize(20 * configuration->Resolution.x/800,20 * configuration->Resolution.y/600);
-        buf.SetColor(sf::Color(0,0,0,128));
-        moteurGraphique->AjouterCommande(&buf, 18, 0);
-    }*/
 
     if (eventManager->getEvenement(Key::T,EventKey)
-        || eventManager->getPositionSouris().x > 343 * configuration->Resolution.x/800
-        && eventManager->getPositionSouris().x < 371 * configuration->Resolution.x/800
-        && eventManager->getPositionSouris().y > 522 * configuration->Resolution.y/600
-        && eventManager->getPositionSouris().y < 537 * configuration->Resolution.y/600)
+        || eventManager->getPositionSouris().x > AutoScreenAdjust(343,0).x
+        && eventManager->getPositionSouris().x < AutoScreenAdjust(371,0).x
+        && eventManager->getPositionSouris().y > AutoScreenAdjust(0,522).y
+        && eventManager->getPositionSouris().y < AutoScreenAdjust(0,537).y)
     {
         if(!eventManager->getEvenement(Key::T,EventKey))
         moteurGraphique->AjouterTexte(configuration->getText(0,16),coordonnee(eventManager->getPositionSouris().x,
@@ -747,21 +600,11 @@ int GestionBoutons(Jeu *jeu)
             return 5;
         }
     }
-    /*if(jeu->next_screen == 5)
-    {
-        sf::Sprite buf;
-        buf.SetImage(*moteurGraphique->getImage(0));
-        buf.SetPosition(302 * configuration->Resolution.x/800, 565 * configuration->Resolution.y/600);
-        buf.Resize(20 * configuration->Resolution.x/800,20 * configuration->Resolution.y/600);
-        buf.SetColor(sf::Color(0,0,0,128));
-        moteurGraphique->AjouterCommande(&buf, 18, 0);
-    }*/
-
     if (eventManager->getEvenement(Key::Escape,EventKey)
-     || eventManager->getPositionSouris().x > 430 * configuration->Resolution.x/800
-     && eventManager->getPositionSouris().x < 458 * configuration->Resolution.x/800
-     && eventManager->getPositionSouris().y > 522 * configuration->Resolution.y/600
-     && eventManager->getPositionSouris().y < 537 * configuration->Resolution.y/600)
+     || eventManager->getPositionSouris().x > AutoScreenAdjust(430,0).x
+     && eventManager->getPositionSouris().x < AutoScreenAdjust(458,0).x
+     && eventManager->getPositionSouris().y > AutoScreenAdjust(0,522).y
+     && eventManager->getPositionSouris().y < AutoScreenAdjust(0,537).y)
     {
         if(!eventManager->getEvenement(Key::Escape,EventKey))
         moteurGraphique->AjouterTexte(configuration->getText(0,17),coordonnee(eventManager->getPositionSouris().x,
@@ -778,21 +621,14 @@ int GestionBoutons(Jeu *jeu)
             return 4;
         }
     }
-    /*if(jeu->next_screen == 4)
-    {
-        sf::Sprite buf;
-        buf.SetImage(*moteurGraphique->getImage(0));
-        buf.SetPosition(333 * configuration->Resolution.x/800, 577 * configuration->Resolution.y/600);
-        buf.Resize(20 * configuration->Resolution.x/800,20 * configuration->Resolution.y/600);
-        buf.SetColor(sf::Color(0,0,0,128));
-        moteurGraphique->AjouterCommande(&buf, 18, 0);
-    }*/
+
+
 
     if (eventManager->getEvenement(Key::Return,EventKey)
-     || eventManager->getPositionSouris().x > jeu->hero.m_classe.position_bouton_dialogue.x * configuration->Resolution.x/800
-     && eventManager->getPositionSouris().x < (jeu->hero.m_classe.position_bouton_dialogue.x + jeu->hero.m_classe.position_bouton_dialogue.w) * configuration->Resolution.x/800
-     && eventManager->getPositionSouris().y > jeu->hero.m_classe.position_bouton_dialogue.y * configuration->Resolution.y/600
-     && eventManager->getPositionSouris().y < (jeu->hero.m_classe.position_bouton_dialogue.y + jeu->hero.m_classe.position_bouton_dialogue.h) * configuration->Resolution.y/600
+     || eventManager->getPositionSouris().x > AutoScreenAdjust(jeu->hero.m_classe.position_bouton_dialogue.x,0).x
+     && eventManager->getPositionSouris().x < AutoScreenAdjust(jeu->hero.m_classe.position_bouton_dialogue.x + jeu->hero.m_classe.position_bouton_dialogue.w,0).x
+     && eventManager->getPositionSouris().y > AutoScreenAdjust(0,jeu->hero.m_classe.position_bouton_dialogue.y).y
+     && eventManager->getPositionSouris().y < AutoScreenAdjust(0,jeu->hero.m_classe.position_bouton_dialogue.y + jeu->hero.m_classe.position_bouton_dialogue.h).y
      && eventManager->getEvenement(Mouse::Left,EventClicA))
     {
         if(!jeu->menu.m_dialogue.empty())
@@ -807,12 +643,12 @@ int GestionBoutons(Jeu *jeu)
     }
 
     if(jeu->hero.m_caracteristiques.pts_restant > 0)
-    if (eventManager->getPositionSouris().x >  jeu->hero.m_classe.hud_pt_caract_rest.position.x * configuration->Resolution.x/800
-     && eventManager->getPositionSouris().x < (jeu->hero.m_classe.hud_pt_caract_rest.position.x +
-                                               jeu->hero.m_classe.hud_pt_caract_rest.position.w) * configuration->Resolution.x/800
-     && eventManager->getPositionSouris().y >  jeu->hero.m_classe.hud_pt_caract_rest.position.y * configuration->Resolution.y/600
-     && eventManager->getPositionSouris().y < (jeu->hero.m_classe.hud_pt_caract_rest.position.y +
-                                               jeu->hero.m_classe.hud_pt_caract_rest.position.h) * configuration->Resolution.y/600)
+    if (eventManager->getPositionSouris().x > AutoScreenAdjust(jeu->hero.m_classe.hud_pt_caract_rest.position.x,0).x
+     && eventManager->getPositionSouris().x < AutoScreenAdjust(jeu->hero.m_classe.hud_pt_caract_rest.position.x
+                                                             + jeu->hero.m_classe.hud_pt_caract_rest.position.w,0).x
+     && eventManager->getPositionSouris().y > AutoScreenAdjust(0,jeu->hero.m_classe.hud_pt_caract_rest.position.y).y
+     && eventManager->getPositionSouris().y < AutoScreenAdjust(0,jeu->hero.m_classe.hud_pt_caract_rest.position.y
+                                                               + jeu->hero.m_classe.hud_pt_caract_rest.position.h).y)
     {
         if(eventManager->getEvenement(Mouse::Left,EventClicA))
         {
@@ -827,12 +663,12 @@ int GestionBoutons(Jeu *jeu)
     }
 
     if(jeu->hero.m_caracteristiques.miracles_restant > 0)
-    if (eventManager->getPositionSouris().x >  jeu->hero.m_classe.hud_pt_miracle_rest.position.x * configuration->Resolution.x/800
-     && eventManager->getPositionSouris().x < (jeu->hero.m_classe.hud_pt_miracle_rest.position.x +
-                                               jeu->hero.m_classe.hud_pt_miracle_rest.position.w) * configuration->Resolution.x/800
-     && eventManager->getPositionSouris().y >  jeu->hero.m_classe.hud_pt_miracle_rest.position.y * configuration->Resolution.y/600
-     && eventManager->getPositionSouris().y < (jeu->hero.m_classe.hud_pt_miracle_rest.position.y +
-                                               jeu->hero.m_classe.hud_pt_miracle_rest.position.h) * configuration->Resolution.y/600)
+    if (eventManager->getPositionSouris().x > AutoScreenAdjust(jeu->hero.m_classe.hud_pt_miracle_rest.position.x,0).x
+     && eventManager->getPositionSouris().x < AutoScreenAdjust(jeu->hero.m_classe.hud_pt_miracle_rest.position.x
+                                                             + jeu->hero.m_classe.hud_pt_miracle_rest.position.w,0).x
+     && eventManager->getPositionSouris().y > AutoScreenAdjust(0,jeu->hero.m_classe.hud_pt_miracle_rest.position.y).y
+     && eventManager->getPositionSouris().y < AutoScreenAdjust(0,jeu->hero.m_classe.hud_pt_miracle_rest.position.y
+                                                               + jeu->hero.m_classe.hud_pt_miracle_rest.position.h).y)
     {
         if(eventManager->getEvenement(Mouse::Left,EventClicA))
         {
@@ -981,7 +817,7 @@ void c_Jeu::Affichage(Jeu *jeu)
 
     jeu->hero.AfficherAmis();
 
-    jeu->hero.AfficherFlecheQuetes(jeu->map->getNom(), tempsEcoule);
+   // jeu->hero.AfficherFlecheQuetes(jeu->map->getNom(), tempsEcoule);
 
     if (configuration->Minimap)
     {
@@ -1036,14 +872,6 @@ void c_Jeu::Affichage(Jeu *jeu)
         jeu->hero.setSacVise(coordonnee (-1,-1,-1,-1));
     }
 
-    /*if (alpha_sac>0)
-    {
-        //jeu->menu.Afficher(3,alpha_sac,&jeu->hero.m_classe);
-        jeu->map->AfficherSac(jeu->hero.getChercherSac(),0,
-                              coordonnee (600,(int)((float)configuration->Resolution.w*0.265),200,10),
-                              jeu->hero.m_caracteristiques);
-    }*/
-
     jeu->menu.AfficherHUD(&jeu->hero.m_classe); // On affiche le hud
 
     if (jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())!=NULL)
@@ -1055,7 +883,7 @@ void c_Jeu::Affichage(Jeu *jeu)
     if (jeu->map->getEvenement(eventManager->getCasePointee())>=0)
         jeu->map->AfficherNomEvenement(eventManager->getCasePointee(),eventManager->getPositionSouris());
 
-    if (configuration->effetMort/*&& sf::Shader::CanUseShader() == true*/&&configuration->postFX&&tempsEffetMort!=0)
+    if (configuration->effetMort&&configuration->postFX&&tempsEffetMort!=0)
     {
         moteurGraphique->EffectMort.SetParameter("offset", 0.003*configuration->effetMort/100*(0.6+tempsEffetMort/10));
         moteurGraphique->EffectMort.SetParameter("color",1+0.5*configuration->effetMort/100*tempsEffetMort, 1-1*configuration->effetMort/100*tempsEffetMort, 1-1*configuration->effetMort/100*tempsEffetMort);
@@ -1081,7 +909,7 @@ void c_Jeu::Affichage(Jeu *jeu)
         lowFPS=moteurGraphique->GetFPS();
 
     if (configuration->console)
-        if (tempsEcouleDepuisFPS>1)
+        if (tempsEcouleDepuisFPS>1.0f)
         {
             {
                 std::ostringstream  buf;
@@ -1106,7 +934,7 @@ void c_Jeu::FPS(Jeu *jeu)
 {
     nbrTourBoucle++;
 
-    if (tempsNbrTourBoucle>1)
+    if (tempsNbrTourBoucle>1.0f)
     {
         lowFPS=-1;
         std::ostringstream  buf;
