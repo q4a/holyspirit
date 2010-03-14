@@ -63,6 +63,12 @@ $
 $
 	* x40 y264 w320 h150 $
 $
+	* x56 y88 w64 h64 $
+$
+	* x251 y43 w96 h160 $
+$
+	* x159 y94 w64 h64 $
+$
 	* x249 y556 w30 h30 $
 $
 	* x288 y556 w30 h30 $
@@ -78,6 +84,8 @@ $
 	* x483 y556 w30 h30 $
 $
 	* x522 y556 w30 h30 $
+$
+	* x576 y548 w44 h44 $
 $
 	* e1 x48 y56 w64 h160 m Data/Menus/Slot2x5.png $
 	* e2 x118 y120 w96 h96 m Data/Menus/Slot3x3.png $
