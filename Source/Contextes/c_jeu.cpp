@@ -98,6 +98,17 @@ void c_Jeu::Utiliser(Jeu *jeu)
     temps[0] = jeu->Clock.GetElapsedTime();
 
     tempsEcoule = (temps[0] + temps[1] + temps[2] + temps[3] + temps[4]) / 5;
+    if(temps[0] - tempsEcoule > 0.01)
+    {
+        if(temps[1] - tempsEcoule > 0.01)
+            tempsEcoule = temps[1];
+        else if(temps[2] - tempsEcoule > 0.01)
+            tempsEcoule = temps[2];
+        else if(temps[3] - tempsEcoule > 0.01)
+            tempsEcoule = temps[3];
+        else
+            tempsEcoule = temps[4];
+    }
 
     if (tempsEcoule>0.1f)
         tempsEcoule=0.1f;

@@ -216,7 +216,7 @@ void MoteurGraphique::Charger()
 void MoteurGraphique::Gerer(float temps,int tailleMapY)
 {
     m_transWater.x += temps*0.005;
-    m_transWater.x += decalageReflection.x / 800 / configuration->zoom * 0.014 * 0.5;
+    m_transWater.x += decalageReflection.x / configuration->Resolution.x / configuration->zoom * 0.014 * 0.5;
     decalageReflection.x = 0;
     if(m_transWater.x > 0.5)
         m_transWater.x = 0;
@@ -224,7 +224,7 @@ void MoteurGraphique::Gerer(float temps,int tailleMapY)
         m_transWater.x = 0.5;
 
     m_transWater.y += temps*0.005;
-    m_transWater.y -= decalageReflection.y / 600 / configuration->zoom * 0.014 * 0.5;
+    m_transWater.y -= decalageReflection.y / configuration->Resolution.y / configuration->zoom * 0.014 * 0.5;
     decalageReflection.y = 0;
     if(m_transWater.y > 0.5)
         m_transWater.y = 0;
@@ -330,7 +330,7 @@ void MoteurGraphique::Afficher()
     if (configuration->RafraichirOmbre==1&&configuration->Ombre&&m_soleil.intensite>32)
     {
         sf::View temp = m_camera;
-        temp.SetSize(864, 664);
+        temp.SetSize(configuration->Resolution.x + 64, configuration->Resolution.y + 64);
         temp.Zoom(configuration->zoom);
 
         decalageOmbre=temp.GetCenter();
@@ -370,7 +370,7 @@ void MoteurGraphique::Afficher()
     if (configuration->Lumiere && configuration->RafraichirLumiere)
     {
         sf::View temp = m_camera;
-        temp.SetSize(864, 664);
+        temp.SetSize(configuration->Resolution.x + 64, configuration->Resolution.y + 64);
         temp.Zoom(configuration->zoom);
 
         decalageLumiere=temp.GetCenter();

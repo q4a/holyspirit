@@ -1402,14 +1402,14 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
     sky.SetImage(*moteurGraphique->getImage(m_img_sky));
     moteurGraphique->AjouterCommande(&sky,0,0);
 
-    int maxY = hero->m_personnage.getCoordonnee().y + (int)(17 * configuration->zoom);
-    int maxX = hero->m_personnage.getCoordonnee().x + (int)(17 * configuration->zoom);
+    int maxY = hero->m_personnage.getCoordonnee().y + (int)(17 * configuration->zoom * configuration->Resolution.x/800);
+    int maxX = hero->m_personnage.getCoordonnee().x + (int)(17 * configuration->zoom * configuration->Resolution.x/800);
 
     for (int couche=0;couche<NOMBRE_COUCHE_MAP;couche++)
     {
-        for (int j=hero->m_personnage.getCoordonnee().y - (int)(12 * configuration->zoom) ;j<maxY;++j)
+        for (int j=hero->m_personnage.getCoordonnee().y - (int)(12 * configuration->zoom * configuration->Resolution.x/800) ;j<maxY;++j)
         {
-            for (int k=hero->m_personnage.getCoordonnee().x - (int)(12 * configuration->zoom) ;k<maxX ;++k)
+            for (int k=hero->m_personnage.getCoordonnee().x - (int)(12 * configuration->zoom * configuration->Resolution.x/800) ;k<maxX ;++k)
             {
                 if (j>=0&&j<m_dimensions.y&&k>=0&&k<m_dimensions.x)
                 {
@@ -1759,10 +1759,10 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
 
     coordonnee vueMin,vueMax;
 
-    vueMin.x=hero->m_personnage.getCoordonnee().x-10;
-    vueMin.y=hero->m_personnage.getCoordonnee().y-10;
-    vueMax.x=hero->m_personnage.getCoordonnee().x+10;
-    vueMax.y=hero->m_personnage.getCoordonnee().y+10;
+    vueMin.x=hero->m_personnage.getCoordonnee().x-15;
+    vueMin.y=hero->m_personnage.getCoordonnee().y-15;
+    vueMax.x=hero->m_personnage.getCoordonnee().x+15;
+    vueMax.y=hero->m_personnage.getCoordonnee().y+15;
 
     if (vueMin.x<0)
         vueMin.x=0;

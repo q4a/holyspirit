@@ -107,10 +107,10 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
     if (m_EventTableau[Key::PageUp])
         configuration->zoom*=((1-(0.5*temps)));
 
-    if (configuration->zoom<0.75+((float)configuration->Resolution.x/800-1)/2)
-        configuration->zoom=0.75+((float)configuration->Resolution.x/800-1)/2;
-    if (configuration->zoom>1.5+((float)configuration->Resolution.x/800-1))
-        configuration->zoom=1.5+((float)configuration->Resolution.x/800-1);
+    if (configuration->zoom<0.75-((float)configuration->Resolution.x/800-1)/2)
+        configuration->zoom=0.75-((float)configuration->Resolution.x/800-1)/2;
+    if (configuration->zoom>1.5-((float)configuration->Resolution.x/800-1))
+        configuration->zoom=1.5-((float)configuration->Resolution.x/800-1);
 
     if (m_EventTableau[Key::Add])
     {

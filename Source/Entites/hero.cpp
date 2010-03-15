@@ -2161,7 +2161,7 @@ void Hero::PlacerCamera()
 {
     moteurGraphique->m_camera.SetCenter(((m_personnage.getCoordonneePixel().x - m_personnage.getCoordonneePixel().y) * 64.0f * DIVISEUR_COTE_TILE),
                                         ((m_personnage.getCoordonneePixel().x + m_personnage.getCoordonneePixel().y) * 32.0f * DIVISEUR_COTE_TILE + 32.0f));
-    moteurGraphique->m_camera.SetSize(800, 600);
+    moteurGraphique->m_camera.SetSize(configuration->Resolution.x, configuration->Resolution.y);
     moteurGraphique->m_camera.Zoom(configuration->zoom);
 
     moteurGraphique->m_camera.Move(moteurGraphique->decalageCamera.x, moteurGraphique->decalageCamera.y);
