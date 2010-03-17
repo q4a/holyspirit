@@ -31,6 +31,10 @@ class Entite_graphique
         void NextTile();
         void Initialiser(coordonnee position);
         void Generer();
+
+        void SaveParameters(std::ofstream &fichier);
+        void LoadParameters(std::ifstream &fichier);
+        void SetParameters (Entite_graphique &entite);
    // protected:
     //private:
 
@@ -60,6 +64,11 @@ class Entite_graphique
     bool option_forcedLight;
     bool option_forcedShadow;
     bool option_forcedReflect;
+
+    sf::Vector2f m_decalage;
+    sf::Vector2f m_scale;
+    float m_rotation;
+    sf::Color  m_color;
 };
 
 #endif // ENTITE_GRAPHIQUE_H

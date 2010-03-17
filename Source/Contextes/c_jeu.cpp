@@ -266,7 +266,7 @@ void c_Jeu::Deplacements(Jeu *jeu)
             jeu->hero.setMonstreVise(-1),jeu->hero.m_personnage.frappeEnCours=false;
 
         coordonneeDecimal old, heroPos;
-        old.x = (oldHeroPos.x-oldHeroPos.y-1)*64;;
+        old.x = (oldHeroPos.x-oldHeroPos.y-1)*64;
         old.y = (oldHeroPos.x+oldHeroPos.y)*32;
 
         heroPos.x = (jeu->hero.m_personnage.getCoordonneePixel().x-jeu->hero.m_personnage.getCoordonneePixel().y-1)*64;;

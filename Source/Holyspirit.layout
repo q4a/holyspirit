@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Release" />
-	<File name="Contextes\c_changementMap.cpp" open="0" top="0" tabpos="11">
-		<Cursor position="10359" topLine="271" />
+	<File name="Contextes\c_changementMap.cpp" open="1" top="0" tabpos="20">
+		<Cursor position="14007" topLine="328" />
 	</File>
 	<File name="Contextes\c_changementMap.h" open="0" top="0" tabpos="1">
 		<Cursor position="2521" topLine="47" />
@@ -26,7 +26,7 @@
 		<Cursor position="2567" topLine="38" />
 	</File>
 	<File name="Contextes\c_jeu.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="27147" topLine="620" />
+		<Cursor position="3215" topLine="84" />
 	</File>
 	<File name="Contextes\c_jeu.h" open="0" top="0" tabpos="24">
 		<Cursor position="3777" topLine="5" />
@@ -74,7 +74,7 @@
 		<Cursor position="2508" topLine="74" />
 	</File>
 	<File name="Entites\hero.cpp" open="1" top="0" tabpos="9">
-		<Cursor position="142842" topLine="3038" />
+		<Cursor position="96429" topLine="2104" />
 	</File>
 	<File name="Entites\hero.h" open="0" top="0" tabpos="6">
 		<Cursor position="4304" topLine="126" />
@@ -121,8 +121,8 @@
 	<File name="Entites\script.h" open="0" top="0" tabpos="17">
 		<Cursor position="1394" topLine="41" />
 	</File>
-	<File name="Map\decor.cpp" open="1" top="1" tabpos="16">
-		<Cursor position="4758" topLine="101" />
+	<File name="Map\decor.cpp" open="1" top="0" tabpos="16">
+		<Cursor position="3806" topLine="116" />
 	</File>
 	<File name="Map\decor.h" open="0" top="0" tabpos="61">
 		<Cursor position="3823" topLine="31" />
@@ -134,7 +134,7 @@
 		<Cursor position="1602" topLine="26" />
 	</File>
 	<File name="Map\map.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="64389" topLine="1495" />
+		<Cursor position="174129" topLine="3705" />
 	</File>
 	<File name="Map\map.h" open="1" top="0" tabpos="7">
 		<Cursor position="9535" topLine="159" />
@@ -166,8 +166,8 @@
 	<File name="Moteurs\console.h" open="0" top="0" tabpos="67">
 		<Cursor position="1282" topLine="33" />
 	</File>
-	<File name="Moteurs\eventManager.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="5790" topLine="149" />
+	<File name="Moteurs\eventManager.cpp" open="1" top="0" tabpos="19">
+		<Cursor position="3570" topLine="110" />
 	</File>
 	<File name="Moteurs\eventManager.h" open="0" top="0" tabpos="23">
 		<Cursor position="1555" topLine="27" />
@@ -190,13 +190,13 @@
 	<File name="Moteurs\modeleMoteurParticule.h" open="0" top="0" tabpos="70">
 		<Cursor position="926" topLine="19" />
 	</File>
-	<File name="Moteurs\moteurGraphique.cpp" open="0" top="0" tabpos="16">
-		<Cursor position="32558" topLine="844" />
+	<File name="Moteurs\moteurGraphique.cpp" open="1" top="0" tabpos="17">
+		<Cursor position="2777" topLine="71" />
 	</File>
 	<File name="Moteurs\moteurGraphique.h" open="0" top="0" tabpos="15">
 		<Cursor position="3669" topLine="122" />
 	</File>
-	<File name="Moteurs\moteurParticule.cpp" open="0" top="0" tabpos="42">
+	<File name="Moteurs\moteurParticule.cpp" open="1" top="0" tabpos="18">
 		<Cursor position="3934" topLine="64" />
 	</File>
 	<File name="Moteurs\moteurParticule.h" open="0" top="0" tabpos="72">

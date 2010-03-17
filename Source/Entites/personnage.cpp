@@ -283,13 +283,15 @@ void Personnage::Sauvegarder(ofstream &fichier)
             <<" r"  <<m_caracteristique.rang
             <<" a"  <<m_caracteristique.pointAme
             <<" t"  <<m_caracteristique.modificateurTaille
-            <<" p"  <<m_entite_graphique.m_noAnimation
+            <<" i"  <<m_entite_graphique.m_noAnimation
             <<" e"  <<m_etat
             <<" g"  <<m_angle
             <<" lr" <<m_porteeLumineuse.rouge
             <<" lv" <<m_porteeLumineuse.vert
             <<" lb" <<m_porteeLumineuse.bleu
             <<" li" <<m_porteeLumineuse.intensite;
+
+    m_entite_graphique.SaveParameters(fichier);
 
     for(int z = 0 ; z < m_scriptAI.getNbrVariable() ; ++z)
         fichier<<"s "<<z<<" "<<m_scriptAI.getVariable(z)<<" ";
@@ -334,6 +336,14 @@ void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,boo
                 m_entite_graphique.m_tileset = &modele->m_tileset[m_etat][(int)(m_angle/45)];
                 m_entite_graphique.m_sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
                 m_entite_graphique.m_sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
+
+                m_entite_graphique.m_sprite.Move(m_entite_graphique.m_decalage);
+                m_entite_graphique.m_sprite.Scale((float)m_entite_graphique.m_scale.x*0.01, (float)m_entite_graphique.m_scale.y*0.01);
+                m_entite_graphique.m_sprite.SetColor(sf::Color( m_entite_graphique.m_sprite.GetColor().r * m_entite_graphique.m_color.r / 255,
+                                                                m_entite_graphique.m_sprite.GetColor().g * m_entite_graphique.m_color.g / 255,
+                                                                m_entite_graphique.m_sprite.GetColor().b * m_entite_graphique.m_color.b / 255,
+                                                                m_entite_graphique.m_sprite.GetColor().a * m_entite_graphique.m_color.a / 255));
+
                 moteurGraphique->AjouterEntiteGraphique(&m_entite_graphique);
 
                 if(surbrillance)

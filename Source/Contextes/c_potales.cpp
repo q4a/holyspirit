@@ -51,6 +51,7 @@ void c_Potales::Utiliser(Jeu *jeu)
     jeu->m_display=true;
     jeu->Clock.Reset();
 
+    jeu->map->Animer(&jeu->hero,0,&jeu->menu);
     jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
     //jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);
 

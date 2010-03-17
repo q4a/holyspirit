@@ -88,6 +88,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
 
     moteurGraphique->Gerer(0,jeu->map->getDimensions().y);
 
+    jeu->map->Animer(&jeu->hero,0,&jeu->menu);
     jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
   //  jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);
 

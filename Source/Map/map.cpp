@@ -458,7 +458,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                 *fichier2>>taille;
                                 break;
 
-                            case 'p':
+                            case 'i':
                                 *fichier2>>pose;
                                 break;
                             case 'e':
@@ -485,6 +485,10 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                     *fichier2>>lumiere.intensite;
                                     break;
                                 }
+                                break;
+
+                            case 'p':
+                                m_monstre.back().m_entite_graphique.LoadParameters(*fichier2);
                                 break;
 
                             case 'o':
@@ -648,6 +652,11 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                         vector <Objet> objets;
                         bool added_minimap = false;
 
+                        Entite_graphique entite_decor;
+                        vector <Entite_graphique> entite_monstre;
+                        Entite_graphique entite_monstre_final;
+                        bool dernierEtaitMonstre = false;
+
                         do
                         {
 
@@ -664,9 +673,10 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                         {
                                             int random = rand() % (int)monstre.size();
                                             if (random>=0&&random<(int)monstre.size())
-                                                monstreFinal.push_back(monstre[random]);
+                                                monstreFinal.push_back(monstre[random]), entite_monstre_final = entite_monstre[random];
 
                                             monstre.clear();
+                                            entite_monstre.clear();
                                         }
 
                                         if (!monstreFinal.empty())
@@ -677,6 +687,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                                 m_monstre.back().Charger(monstreFinal.back(),&m_ModeleMonstre[monstreFinal.back()]);
                                                 m_monstre.back().setCoordonnee(position),m_monstre.back().setDepart();
                                                 m_monstre.back().m_ID = id;
+                                                m_monstre.back().m_entite_graphique = entite_monstre_final;
 
                                                 if(id >= 0)
                                                 {
@@ -699,6 +710,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                     int temp3;
                                     *fichier>>temp3;
                                     monstre.push_back(temp3);
+                                    entite_monstre.push_back(Entite_graphique ());
+                                    dernierEtaitMonstre = true;
                                 }
                                 break;
 
@@ -708,6 +721,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                             case 't':
                                 *fichier>>temp;
                                 tile.push_back(temp);
+                                dernierEtaitMonstre = false;
                                 break;
                             case 'e':
                                 int temp2;
@@ -717,6 +731,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                             case 'm':
                                 *fichier>>temp;
                                 monstre.push_back(temp);
+                                entite_monstre.push_back(Entite_graphique ());
+                                dernierEtaitMonstre = true;
                                 break;
                             case 'd':
                                *fichier>>id;
@@ -730,8 +746,14 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                             case 'i':
                                 *fichier>>hauteur;
                                 break;
-                            case 'p':
+                            case 'c':
                                 *fichier>>added_minimap;
+                                break;
+                            case 'p':
+                                if(dernierEtaitMonstre)
+                                    entite_monstre.back().LoadParameters(*fichier);
+                                else
+                                    entite_decor.LoadParameters(*fichier);
                                 break;
 
 
@@ -769,6 +791,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                                 case 't':
                                                     *fichier>>temp;
                                                     tile.push_back(temp);
+                                                    dernierEtaitMonstre = false;
                                                     break;
                                                 case 'e':
                                                     int temp2;
@@ -778,6 +801,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                                 case 'm':
                                                     *fichier>>temp;
                                                     monstre.push_back(temp);
+                                                    entite_monstre.push_back(Entite_graphique ());
+                                                    dernierEtaitMonstre = true;
                                                     break;
                                                 case 'd':
                                                    *fichier>>id;
@@ -790,6 +815,12 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                                     break;
                                                 case 'i':
                                                     *fichier>>hauteur;
+                                                    break;
+                                                case 'p':
+                                                    if(dernierEtaitMonstre)
+                                                        entite_monstre.back().LoadParameters(*fichier);
+                                                    else
+                                                        entite_decor.LoadParameters(*fichier);
                                                     break;
 
                                                 case 'o':
@@ -843,9 +874,10 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                 {
                                     int random = rand() % (int)monstre.size();
                                     if (random>=0&&random<(int)monstre.size())
-                                        monstreFinal.push_back(monstre[random]);
+                                        monstreFinal.push_back(monstre[random]), entite_monstre_final = entite_monstre[random];
 
                                     monstre.clear();
+                                    entite_monstre.clear();
                                 }
 
                                 if (!monstreFinal.empty())
@@ -856,6 +888,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                         m_monstre.back().Charger(monstreFinal.back(),&m_ModeleMonstre[monstreFinal.back()]);
                                         m_monstre.back().setCoordonnee(position),m_monstre.back().setDepart();
                                         m_monstre.back().m_ID = id;
+                                        m_monstre.back().m_entite_graphique = entite_monstre_final;
 
                                         if(id >= 0)
                                         {
@@ -926,6 +959,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
                             m_decor[couche][position.y].push_back(Decor (tileset,tileFinal,evenement,monstreFinal,herbe,layer,hauteur,objets));
                             m_decor[couche][position.y].back().added_minimap = added_minimap;
+                            m_decor[couche][position.y].back().m_entite_graphique = entite_decor;
+
 
                             tileset=-1,tile.clear(),tileFinal=-1,evenement.clear(),monstreFinal.clear(),herbe=-1,layer=0,hauteur=0;
                             objets.clear();
@@ -1065,9 +1100,18 @@ void Map::Initialiser(Hero *hero)
                     pos.x = (int)(((k*COTE_TILE-j*COTE_TILE)*64/COTE_TILE));
                     pos.y = (int)(((k*COTE_TILE+j*COTE_TILE)*64/COTE_TILE)+64);
 
+                    Entite_graphique temp = m_decor[i][j][k].m_entite_graphique;
                     m_decor[i][j][k].m_entite_graphique = moteurGraphique->getEntiteGraphique(m_tileset[m_decor[i][j][k].getTileset()], m_decor[i][j][k].getTile(), m_decor[i][j][k].getCouche());
                     m_decor[i][j][k].m_entite_graphique.m_sprite.SetPosition(position.x, position.y);
+                    m_decor[i][j][k].m_entite_graphique.m_sprite.Move(m_decor[i][j][k].m_entite_graphique.m_decalage.x,
+                                                                      m_decor[i][j][k].m_entite_graphique.m_decalage.y);
+                    m_decor[i][j][k].m_entite_graphique.m_sprite.SetColor(
+                            sf::Color(m_decor[i][j][k].m_entite_graphique.m_sprite.GetColor().r * m_decor[i][j][k].m_entite_graphique.m_color.r / 255,
+                                      m_decor[i][j][k].m_entite_graphique.m_sprite.GetColor().g * m_decor[i][j][k].m_entite_graphique.m_color.g / 255,
+                                      m_decor[i][j][k].m_entite_graphique.m_sprite.GetColor().b * m_decor[i][j][k].m_entite_graphique.m_color.b / 255,
+                                      m_decor[i][j][k].m_entite_graphique.m_sprite.GetColor().a * m_decor[i][j][k].m_entite_graphique.m_color.a / 255));
                     m_decor[i][j][k].m_entite_graphique.Initialiser(pos);
+                    m_decor[i][j][k].m_entite_graphique.SetParameters(temp);
 
                     CreerSprite(sf::Vector3f(k,j,i));
                 }
@@ -1182,11 +1226,14 @@ void Map::Sauvegarder(Hero *hero)
                 {
                     fichier<<" s"<<m_decor[couche][i][j].getTileset()<<" ";
                     fichier<<"t"<<m_decor[couche][i][j].getTile()<<" ";
+
+                    m_decor[couche][i][j].m_entite_graphique.SaveParameters(fichier);
+
                     for (unsigned k = 0 ; k < m_decor[couche][i][j].getEvenement().size() ; ++k)
                         fichier<<"e"<<m_decor[couche][i][j].getEvenement()[k]<<" ";
 
                     if(m_decor[couche][i][j].added_minimap)
-                        fichier<<"p1";
+                        fichier<<"c1";
 
                     for (unsigned k = 0 ; k < m_decor[couche][i][j].getMonstre().size() ; ++k)
                         if (m_decor[couche][i][j].getMonstre()[k] >= 0 && m_decor[couche][i][j].getMonstre()[k] < (int)m_monstre.size())
@@ -1546,7 +1593,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                     if (k<0)
                         z=0;
 
-                    sf::Sprite buffer=m_decor[couche][w][z].m_entite_graphique.m_sprite;
+                    sf::Sprite buffer(m_decor[couche][w][z].m_entite_graphique.m_sprite);
 
                     buffer.SetX((k-j)*64);
                     buffer.SetY((k+j+1)*32);
