@@ -88,6 +88,16 @@ c_Jeu::c_Jeu()
     m_thread_sauvegarde = NULL;
 }
 
+/*c_Jeu::~c_Jeu()
+{
+    if(m_thread_sauvegarde)
+    {
+        m_thread_sauvegarde->Wait();
+        delete m_thread_sauvegarde;
+        m_thread_sauvegarde = NULL;
+    }
+}*/
+
 void c_Jeu::Utiliser(Jeu *jeu)
 {
     //Gestion du temps
@@ -700,6 +710,9 @@ int GestionBoutons(Jeu *jeu)
 
 void c_Jeu::Evenements(Jeu *jeu)
 {
+    if(!configuration->error_message.empty())
+        jeu->menu.m_dialogue = configuration->error_message,configuration->error_message.clear();
+
     if (eventManager->getPositionSouris().y < 492 * configuration->Resolution.h/600)
     if(jeu->menu.m_dialogue.empty())
     {

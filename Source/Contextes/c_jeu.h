@@ -42,6 +42,7 @@ public:
     Initialise les écritures pour les FPS
     */
     c_Jeu();
+  //  ~c_Jeu();
 
     //! Utilise le contexte.
     /**

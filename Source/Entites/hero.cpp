@@ -226,8 +226,11 @@ void Hero::Sauvegarder()
         if (configuration->debug)
             console->Ajouter("Ouverture du fichier.");
 
+        fichier<<VERSION_SAVE<<endl;
+
         fichier<<m_personnage.getNom().c_str()<<" "<<endl;
         fichier<<m_cheminClasse<<" "<<endl;
+
 
         fichier<<m_personnage.getCaracteristique().vitesse<<endl;
         fichier<<m_personnage.getCaracteristique().pointAme<<endl;
@@ -340,6 +343,11 @@ void Hero::Charger()
             char caractere;
             Caracteristique charTemp;
             charTemp=m_personnage.getCaracteristique();
+
+            int temp = 0;
+            *fichier>>temp;
+            if(temp != VERSION_SAVE)
+                configuration->error_message = "Warning ! Incompatible Save, please delete your save into \"Data/Saves\" ";
 
             *fichier>>charTemp.nom;
 

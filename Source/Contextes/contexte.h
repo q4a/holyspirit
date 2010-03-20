@@ -31,7 +31,7 @@ class c_Jeu;
 class Contexte
 {
 public:
-    virtual ~Contexte();
+    //~Contexte();
 
     virtual void Utiliser(Jeu *jeu) = 0;
 

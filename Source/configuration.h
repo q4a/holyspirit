@@ -66,6 +66,7 @@ class Configuration : public CSingleton<Configuration>
     std::string player_class;
 
     std::string language;
+    std::string error_message;
 
     std::string error;
     std::vector<std::string> text_menus;
