@@ -52,6 +52,10 @@ $
 $
 	* x-16 y-8 w68 h70 m Data/Menus/Slot_miracle.png $
 $
+	* x-144 y8 w288 h32 m Data/Menus/Life_monster.png $
+$
+	* x-144 y8 w288 h32 m Data/Menus/Life_monster_blank.png $
+$
 	* x436 y385 h5 w326 $
 $
 	* x439 y72 w10 h10 $
@@ -72,23 +76,23 @@ $
 $
 	* x159 y94 w64 h64 $
 $
-	* x249 y556 w30 h30 $
+	* x247 y554 w33 h33 $
 $
-	* x288 y556 w30 h30 $
+	* x286 y554 w33 h33 $
 $
-	* x327 y556 w30 h30 $
+	* x325 y554 w33 h33 $
 $
-	* x366 y556 w30 h30 $
+	* x364 y554 w33 h33 $
 $
-	* x405 y556 w30 h30 $
+	* x403 y554 w33 h33 $
 $
-	* x444 y556 w30 h30 $
+	* x442 y554 w33 h33 $
 $
-	* x483 y556 w30 h30 $
+	* x481 y554 w33 h33 $
 $
-	* x522 y556 w30 h30 $
+	* x520 y554 w33 h33 $
 $
-	* x576 y548 w44 h44 $
+	* x577 y550 w41 h41 $
 $
 	* e1 x48 y56 w64 h160 m Data/Menus/Slot2x5.png $
 	* e2 x118 y120 w96 h96 m Data/Menus/Slot3x3.png $

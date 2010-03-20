@@ -8,14 +8,14 @@ $
 $
 	*18
 $
-	* F%0 f%1 $
+	* F%0 c10 $
 $
 //Effets
 	* t15 ia1 ib1 ic%2 $
 	* t-1 l2 l5 $
 	* t1 l3 l4 l6 ia2 $
 	* t3 ia2 s0 $
-	* t9 mData/Scripts/AI/Charmed.script.hs $
+	* t9 mData/Scripts/AI/Charmed.script.hs c $
 	* t16 ia1 $
 	* t16 ia0 $
 $
