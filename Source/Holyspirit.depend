@@ -179,7 +179,7 @@
 1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\color.hpp
 	<SFML/Config.hpp>
 
-1267640326 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\font.hpp
+1269083245 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\font.hpp
 	<SFML/System/Resource.hpp>
 	<SFML/System/Vector2.hpp>
 	<SFML/System/String.hpp>
@@ -203,7 +203,7 @@
 
 1263495649 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\resourceptr.inl
 
-1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\glyph.hpp
+1269083245 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\glyph.hpp
 	<SFML/Config.hpp>
 	<SFML/Graphics/Rect.hpp>
 
@@ -218,7 +218,7 @@
 
 1263495646 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\rect.inl
 
-1267640326 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\image.hpp
+1269083245 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\image.hpp
 	<SFML/System/Resource.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Rect.hpp>
@@ -848,7 +848,7 @@
 	"jeu.h"
 	"constantes.h"
 
-1269077147 source:e:\c++\holyspirit\source\menu.cpp
+1269082575 source:e:\c++\holyspirit\source\menu.cpp
 	"menu.h"
 	"globale.h"
 	<iostream>

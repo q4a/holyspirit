@@ -177,8 +177,9 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         jeu->map=new Map();
 
-         moteurGraphique->LightManager->Delete_All_Light();
+        moteurGraphique->LightManager->Delete_All_Light();
         moteurGraphique->LightManager->Delete_All_Wall();
+        moteurGraphique->DecrementerImportance();
 
 
         jeu->hero.ChargerModele(true);
@@ -278,8 +279,6 @@ void c_Chargement::Utiliser(Jeu *jeu)
         jeu->hero.m_personnage.setPousse(coordonneeDecimal(0,0));
         jeu->hero.m_personnage.frappeEnCours = false;
         jeu->hero.m_personnage.m_lancementMiracleEnCours = false;
-
-        moteurGraphique->DecrementerImportance();
 
         coordonnee position;
         position.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
