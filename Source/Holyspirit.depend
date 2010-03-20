@@ -436,7 +436,7 @@
 	<iostream>
 	"../constantes.h"
 
-1268418338 e:\c++\holyspirit\source\configuration.h
+1269076840 e:\c++\holyspirit\source\configuration.h
 	"singleton.h"
 	"constantes.h"
 
@@ -474,7 +474,7 @@
 
 1255858463 .h"
 
-1268157371 e:\c++\holyspirit\source\entites\hero.h
+1269078284 e:\c++\holyspirit\source\entites\hero.h
 	<iostream>
 	<string>
 	<list>
@@ -483,12 +483,12 @@
 	"monstre.h"
 	"quete.h"
 
-1268579029 e:\c++\holyspirit\source\entites\classe.h
+1269076840 e:\c++\holyspirit\source\entites\classe.h
 	"miracle.h"
 
 1251709376 "
 
-1267883307 e:\c++\holyspirit\source\entites\miracle.h
+1269081573 e:\c++\holyspirit\source\entites\miracle.h
 	"../constantes.h"
 	"../Map/tile.h"
 	"../Moteurs/Entite_graphique.h"
@@ -563,7 +563,7 @@
 	"../Entites/objet.h"
 	"../Moteurs/Entite_graphique.h"
 
-1263574780 e:\c++\holyspirit\source\menu.h
+1269077147 e:\c++\holyspirit\source\menu.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -627,7 +627,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1268841098 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
+1269082260 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -673,12 +673,12 @@
 	"case.h"
 	<iostream>
 
-1268579029 source:e:\c++\holyspirit\source\entites\classe.cpp
+1269076840 source:e:\c++\holyspirit\source\entites\classe.cpp
 	"classe.h"
 	"../globale.h"
 	<sstream>
 
-1268673345 source:e:\c++\holyspirit\source\entites\hero.cpp
+1269081572 source:e:\c++\holyspirit\source\entites\hero.cpp
 	"../constantes.h"
 	"hero.h"
 	"../globale.h"
@@ -695,7 +695,7 @@
 	"../globale.h"
 	<iostream>
 
-1268335974 source:e:\c++\holyspirit\source\entites\miracle.cpp
+1269081572 source:e:\c++\holyspirit\source\entites\miracle.cpp
 	"miracle.h"
 	"../globale.h"
 	<iostream>
@@ -752,7 +752,7 @@
 	"evenement.h"
 	<iostream>
 
-1268847163 source:e:\c++\holyspirit\source\map\map.cpp
+1269081573 source:e:\c++\holyspirit\source\map\map.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -824,7 +824,7 @@
 	"../globale.h"
 	<iostream>
 
-1268418338 source:e:\c++\holyspirit\source\configuration.cpp
+1269076840 source:e:\c++\holyspirit\source\configuration.cpp
 	"configuration.h"
 
 1244283156 source:e:\c++\holyspirit\source\datfile.cpp
@@ -848,7 +848,7 @@
 	"jeu.h"
 	"constantes.h"
 
-1268570700 source:e:\c++\holyspirit\source\menu.cpp
+1269077147 source:e:\c++\holyspirit\source\menu.cpp
 	"menu.h"
 	"globale.h"
 	<iostream>

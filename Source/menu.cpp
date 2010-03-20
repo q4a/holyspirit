@@ -30,23 +30,18 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 using namespace std;
 using namespace sf;
 
+sf::Color GetItemColor(int rarete);
+
 Menu::~Menu()
 {
     if (configuration->debug)
         console->Ajouter("Destruction du menu ...");
-    m_sang.clear();
-    m_ame.clear();
 }
 
 Menu::Menu()
 {
-    m_alphaSang=0;
     console->Ajouter("",0);
     console->Ajouter("Chargement des menus :",0);
-    m_imageSang=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_sang,-1);
-
-    m_barreVie=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_barre_vie,-1);
-    m_barreVieVide=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_barre_vie_vide,-1);
 
     m_dialogue.clear();
     m_speak_choice = -1;
@@ -307,100 +302,40 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         moteurGraphique->AjouterCommande(&sprite,17,0);
     }
 
-    if (type!=-1)
-    {
-        for (Iter = m_ame.begin(); Iter != m_ame.end(); ++Iter)
-        {
-            if (Iter->m_mode<3)
-            {
-                Sprite sprite;
-
-                sprite.SetImage(*moteurGraphique->getImage(m_imageAme));
-                sprite.SetOrigin(16,16);
-                sprite.Resize(32*configuration->Resolution.w/800*Iter->m_taille, 32*configuration->Resolution.w/800*Iter->m_taille);
-                sprite.SetColor(sf::Color(255,255,255,(int)Iter->m_alpha));
-                sprite.SetX((Iter->m_position.x+16)*configuration->Resolution.w/800);
-                sprite.SetY((Iter->m_position.y+16)*configuration->Resolution.h/600);
-
-                sprite.SetRotation(Iter->m_rotation);
-                moteurGraphique->AjouterCommande(&sprite,17,0);
-            }
-        }
-
-        for (IterSang = m_sang.begin(); IterSang != m_sang.end(); ++IterSang )
-        {
-            Sprite sprite;
-
-            sprite.SetImage(*moteurGraphique->getImage(m_imageSang));
-            sprite.SetOrigin(200*IterSang->m_taille,200*IterSang->m_taille);
-            sprite.SetRotation(IterSang->m_rotation);
-            sprite.SetOrigin(0,0);
-            sprite.SetSubRect(sf::IntRect(200*IterSang->m_numero, 0,300+300*IterSang->m_numero, 200));
-            sprite.Resize(300*configuration->Resolution.x/800*IterSang->m_taille, 200*configuration->Resolution.y/600*IterSang->m_taille);
-            sprite.SetColor(sf::Color(255,255,255,(int)IterSang->m_alpha));
-            sprite.SetX(IterSang->m_position.x*configuration->Resolution.x/800);
-            sprite.SetY(IterSang->m_position.y*configuration->Resolution.y/600);
-
-            moteurGraphique->AjouterCommande(&sprite,17,0);
-        }
-    }
-
     if (type==1 && caracteristiqueMonstre.vie > 0)
     {
         Sprite sprite,sprite2;
 
-        sprite.SetImage(*moteurGraphique->getImage(m_barreVieVide));
-        sprite.SetX(configuration->Resolution.w/2-sprite.GetSize().x/2);
-        sprite.SetY(8);
+        sprite.SetImage(*moteurGraphique->getImage(classe->barre_vie_monstre_vide.image));
+        sprite.SetX(configuration->Resolution.w/2+classe->barre_vie_monstre_vide.position.x);
+        sprite.SetY(classe->barre_vie_monstre_vide.position.y);
 
         moteurGraphique->AjouterCommande(&sprite,16,0);
 
-        sprite2.SetImage(*moteurGraphique->getImage(m_barreVie));
-        if (caracteristiqueMonstre.rang==1)
-            sprite2.SetColor(Color(128,64,255,255));
-        if (caracteristiqueMonstre.rang==2)
-            sprite2.SetColor(Color(32,32,255,255));
+        sprite2.SetImage(*moteurGraphique->getImage(classe->barre_vie_monstre.image));
 
-        sprite2.SetSubRect(sf::IntRect(0, 0, (int)(caracteristiqueMonstre.vie/caracteristiqueMonstre.maxVie*moteurGraphique->getImage(m_barreVieVide)->GetWidth()), 32));
-        sprite2.SetX(configuration->Resolution.w/2-sprite.GetSize().x/2);
-        sprite2.SetY(8);
+        sprite2.SetSubRect(sf::IntRect(0, 0, (int)(caracteristiqueMonstre.vie/caracteristiqueMonstre.maxVie*moteurGraphique->getImage(classe->barre_vie_monstre.image)->GetWidth()), 32));
+        sprite2.SetX(configuration->Resolution.w/2 + classe->barre_vie_monstre.position.x);
+        sprite2.SetY(classe->barre_vie_monstre.position.y);
 
 
         moteurGraphique->AjouterCommande(&sprite2,17,0);
 
         texte.SetFont(moteurGraphique->m_font);
 
-        //char chaine[255];
 
         texte.SetCharacterSize(16);
-        //texte.SetStyle(1);
 
         {
             std::ostringstream buf;
             buf<<caracteristiqueMonstre.nom;
-            /*if (caracteristiqueMonstre.rang==1)
-                buf<<"Champion : "<<buf;
-            if (caracteristiqueMonstre.rang==2)
-                buf<<"Chef : "<<buf;*/
 
             buf << "( "<<(int)caracteristiqueMonstre.vie<<" / "<<caracteristiqueMonstre.maxVie<<" )";
 
             texte.SetString(buf.str());
         }
 
-        texte.SetColor(Color(224,224,224,255));
-        if (caracteristiqueMonstre.rang==1)
-            texte.SetColor(Color(100,50,200,255));
-        else if (caracteristiqueMonstre.rang==2)
-            texte.SetColor(Color(32,32,128,255));
-        else if (caracteristiqueMonstre.rang==3)
-            texte.SetColor(Color(255,255,128,255));
-        else if (caracteristiqueMonstre.rang==4)
-            texte.SetColor(Color(128,255,255,255));
-        else if (caracteristiqueMonstre.rang==5)
-            texte.SetColor(Color(255,164,32,255));
-        else if (caracteristiqueMonstre.rang==6)
-            texte.SetColor(Color(224,0,0,255));
+        texte.SetColor(GetItemColor(caracteristiqueMonstre.rang));
 
         texte.SetX(configuration->Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
         texte.SetY(32);
@@ -517,120 +452,4 @@ void Menu::AfficherInventaire(float decalage,Classe *classe,bool noTrader)
     }
 }
 
-void Menu::AjouterSang(coordonneeDecimal position)
-{
-    m_sang.push_back(position);
-    /*m_alphaSang+=64;
-    if(m_alphaSang>255)
-        m_alphaSang=255;*/
-}
-void Menu::AjouterAme(coordonneeDecimal position,int pointAme)
-{
-    Ame temp(position,pointAme);
-    m_ame.push_back(temp);
-}
-
-
-
-int Menu::GererDynamique(float temps)
-{
-    int retour=0,k=0;
-    for (Iter = m_ame.begin(); Iter != m_ame.end(); ++Iter,++k)
-    {
-        if (Iter->m_mode==-1)
-        {
-            Iter->m_taille+=5*temps;
-            Iter->m_alpha+=500*temps;
-
-            if (Iter->m_alpha>=128)
-                Iter->m_alpha=128;
-
-            if (Iter->m_taille>=1.5)
-                Iter->m_taille=1.5;
-
-            if (Iter->m_alpha>=128&&Iter->m_taille>=1)
-            {
-                Iter->m_alpha=128;
-                Iter->m_taille=1;
-                Iter->m_mode=0;
-            }
-        }
-        if (Iter->m_mode==0)
-        {
-            if (Iter->m_depart.x<=400&&Iter->m_position.x>=383&&Iter->m_position.y>=540||Iter->m_depart.x>400&&Iter->m_position.x<=384&&Iter->m_position.y>=540)
-            {
-                Iter->m_position.x=384;
-                Iter->m_position.y=540;
-                Iter->m_mode=1,retour+=Iter->m_pointAme;
-            }
-            else
-            {
-                Iter->m_rotation-=200*temps;
-                Iter->m_position.x+=(384-Iter->m_depart.x)*temps*0.5;
-                Iter->m_position.y+=(540-Iter->m_depart.y)*temps*0.5;
-
-                if (Iter->m_taille>1.5)
-                    Iter->augmenter=false;
-                if (Iter->m_taille<0.75)
-                    Iter->augmenter=true;
-
-                if (Iter->augmenter)
-                    Iter->m_taille+=3*temps;
-                else
-                    Iter->m_taille-=3*temps;
-
-            }
-        }
-        if (Iter->m_mode==1)
-        {
-            if (Iter->m_taille<2)
-            {
-                Iter->m_taille+=2*temps;
-                Iter->m_alpha+=200*temps;
-                Iter->m_rotation-=300*temps;
-            }
-            else
-                Iter->m_mode=2;
-        }
-        if (Iter->m_mode==2)
-        {
-            if (Iter->m_taille>0.1)
-            {
-                Iter->m_taille-=1*temps*2;
-                Iter->m_alpha-=200*temps;
-                Iter->m_rotation-=500*temps;
-            }
-            else
-                Iter->m_mode=3;
-        }
-        if (Iter->m_mode==3)
-        {
-            m_ame.erase (Iter);
-
-            if ((int)m_ame.size()>0)
-                Iter=m_ame.begin()+k;
-            else
-                break;
-        }
-    }
-    k=0;
-    for (IterSang = m_sang.begin(); IterSang != m_sang.end(); ++IterSang,++k )
-    {
-        IterSang->m_alpha-=temps*300;
-
-        if (IterSang->m_alpha<0)
-            IterSang->m_alpha=0;
-        if (IterSang->m_alpha==0)
-        {
-            m_sang.erase(IterSang);
-
-            if ((int)m_sang.size()>0)
-                IterSang=m_sang.begin()+k;
-            else
-                break;
-        }
-    }
-
-    return retour;
-}
 

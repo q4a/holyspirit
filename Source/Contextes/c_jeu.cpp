@@ -178,7 +178,8 @@ void c_Jeu::GererTemps(Jeu *jeu)
     if (jeu->hero.m_personnage.EnVie())
     {
         jeu->hero.RegenererVie(tempsEcoule);
-        jeu->hero.RegenererFoi(tempsEcoule/*(float)jeu->hero.m_caracteristiques.maxFoi*(float)(tempsEcoule/50)*/);
+        jeu->hero.RegenererFoi(tempsEcoule);
+        jeu->hero.RegenererMiracles(tempsEcoule);
     }
 
     jeu->Clock.Reset();
@@ -804,8 +805,10 @@ void c_Jeu::Evenements(Jeu *jeu)
                         positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
                         positionHero.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
                     }
-                    else
+                    else if(!eventManager->getEvenement(Key::LShift,EventKey))
                         jeu->hero.m_personnage.setArrivee(eventManager->getCasePointee());
+                    else
+                        jeu->hero.m_personnage.setArrivee(jeu->hero.m_personnage.getProchaineCase());
                 }
             }
         }

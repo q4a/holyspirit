@@ -154,6 +154,10 @@ public:
     bool                        m_unique;
     bool                        m_direct;
     int                         m_cas;
+    float                       m_cooldown;
+    float                       m_cur_time;
+    int                         m_consommer;
+
 
     int                         m_buf;
     int                         m_level;

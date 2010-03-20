@@ -85,11 +85,6 @@ class Menu
 	void AfficherCraft(float,Classe *classe);
 	void AfficherMiracles(float,Classe *classe, int );
 
-	void AjouterSang(coordonneeDecimal position);
-
-	void AjouterAme(coordonneeDecimal position,int pointAme);
-	int GererDynamique(float temps);
-
 	void AddSpeakChoice(const std::string &text, int no);
 	void ClearSpeakChoice();
 	int getSpeakChoice();
@@ -97,22 +92,10 @@ class Menu
 	std::string m_dialogue;
 
 	private:
-	int m_fondMiniMap,m_imageAme,m_imageSang,m_barrePointAme,m_barreVie,m_barreVieVide/*,m_inventaire*/;
-
 	sf::Text texte;
 
 	int m_speak_choice;
 	std::vector <Speak_choice> m_choices;
-
-	float m_alphaSang;
-
-	int m_imageMiniMap;
-
-	std::vector <Sang> m_sang;
-	std::vector <Sang>::iterator IterSang;
-
-	std::vector <Ame> m_ame;
-	std::vector<Ame>::iterator Iter;
 };
 
 #endif

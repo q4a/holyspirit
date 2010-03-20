@@ -1236,29 +1236,26 @@ void Hero::AfficherAmis()
 {
     for(unsigned i = 0 ; i < m_amis.size() ; ++i)
     {
-        moteurGraphique->AjouterTexte(m_amis[i]->getCaracteristique().nom, coordonnee(8, 64 + i * 26), 14, 0, 14);
+        moteurGraphique->AjouterTexte(m_amis[i]->getCaracteristique().nom, coordonnee(32, 64 + i * 26), 14, 0, 14);
 
         sf::Sprite temp;
-        temp.SetImage(*moteurGraphique->getImage(0));
-        temp.SetColor(sf::Color(32,32,32));
+        temp.SetImage(*moteurGraphique->getImage(m_classe.barre_vie_monstre_vide.image));
+        //temp.SetColor(sf::Color(32,32,32));
         temp.SetPosition(12,82 + i * 26);
-        temp.Resize(142,8);
+        temp.Resize(144,16);
         moteurGraphique->AjouterCommande(&temp, 14, 0);
 
-        temp.Resize(m_amis[i]->getCaracteristique().vie/m_amis[i]->getCaracteristique().maxVie * 140,6);
-        temp.Move(1,1);
-        temp.SetColor(sf::Color(224,32,32));
+        temp.SetImage(*moteurGraphique->getImage(m_classe.barre_vie_monstre.image));
+        temp.Resize(m_amis[i]->getCaracteristique().vie/m_amis[i]->getCaracteristique().maxVie * 140,16);
         moteurGraphique->AjouterCommande(&temp, 14, 0);
 
-        temp.Resize(8,8);
-        temp.SetPosition(162,82 + i * 26);
-        temp.SetColor(sf::Color(164,32,32));
+      //  temp.SetColor(sf::Color(164,32,32));
 
 
         if(    eventManager->getPositionSouris().x > temp.GetPosition().x
-            && eventManager->getPositionSouris().x < temp.GetPosition().x + 8
+            && eventManager->getPositionSouris().x < temp.GetPosition().x + 144
             && eventManager->getPositionSouris().y > temp.GetPosition().y
-            && eventManager->getPositionSouris().y < temp.GetPosition().y + 8)
+            && eventManager->getPositionSouris().y < temp.GetPosition().y + 16)
             {
                 temp.SetColor(sf::Color(64,32,32));
 
@@ -2055,6 +2052,9 @@ void Hero::AfficherRaccourcis()
             && (m_raccourcis[i].no < (int)m_classe.position_miracles.size() && m_raccourcis[i].miracle
              || m_raccourcis[i].no < (int)m_inventaire.size() && !m_raccourcis[i].miracle))
         {
+            sprite.SetPosition(AutoScreenAdjust(m_classe.position_raccourcis[i].x,
+                                                m_classe.position_raccourcis[i].y));
+
             if(m_raccourcis[i].miracle)
             {
                 sprite.SetImage(*moteurGraphique->getImage(m_classe.icone_miracles[m_raccourcis[i].no].image));
@@ -2064,7 +2064,6 @@ void Hero::AfficherRaccourcis()
                                           + m_classe.icone_miracles[m_raccourcis[i].no].position.w,
                                             m_classe.icone_miracles[m_raccourcis[i].no].position.y
                                           + m_classe.icone_miracles[m_raccourcis[i].no].position.h));
-                //sprite.SetBlendMode(sf::Blend::Add);
             }
 
             else
@@ -2076,9 +2075,6 @@ void Hero::AfficherRaccourcis()
                                         m_inventaire[m_raccourcis[i].no].getPositionImage().x+m_inventaire[m_raccourcis[i].no].getPositionImage().w,
                                         m_inventaire[m_raccourcis[i].no].getPositionImage().y+m_inventaire[m_raccourcis[i].no].getPositionImage().h));
             }
-
-            sprite.SetPosition(AutoScreenAdjust(m_classe.position_raccourcis[i].x,
-                                                m_classe.position_raccourcis[i].y));
 
             sprite.Resize(m_classe.position_raccourcis[i].w, m_classe.position_raccourcis[i].h);
 
@@ -2109,6 +2105,25 @@ void Hero::AfficherRaccourcis()
                     m_classe.miracles[m_raccourcis[i].no].AfficherDescription(eventManager->getPositionSouris(), false);
                 else
                      m_inventaire[m_raccourcis[i].no].AfficherCaracteristiques(eventManager->getPositionSouris(), m_caracteristiques,&m_inventaire);
+            }
+
+
+            if(m_raccourcis[i].miracle)
+            {
+                if(m_classe.miracles[m_raccourcis[i].no].m_cooldown > 0
+                && m_classe.miracles[m_raccourcis[i].no].m_cooldown != m_classe.miracles[m_raccourcis[i].no].m_cur_time)
+                {
+                    float temp = (float)m_classe.icone_miracles[m_raccourcis[i].no].position.h
+                                 *(m_classe.miracles[m_raccourcis[i].no].m_cooldown
+                                   - m_classe.miracles[m_raccourcis[i].no].m_cur_time)
+                                 / m_classe.miracles[m_raccourcis[i].no].m_cooldown;
+
+                    sprite.SetImage(*moteurGraphique->getImage(0));
+                    sprite.Resize(m_classe.position_raccourcis[i].w,temp);
+
+                    sprite.SetColor(sf::Color(0,0,0,240));
+                    moteurGraphique->AjouterCommande(&sprite,18,0);
+                }
             }
 
         }
@@ -2154,6 +2169,22 @@ void Hero::AfficherRaccourcis()
         && eventManager->getPositionSouris().y > sprite.GetPosition().y
         && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
             m_classe.miracles[m_personnage.m_miracleALancer].AfficherDescription(eventManager->getPositionSouris(), false);
+
+
+        if(m_classe.miracles[m_personnage.m_miracleALancer].m_cooldown > 0
+        && m_classe.miracles[m_personnage.m_miracleALancer].m_cooldown != m_classe.miracles[m_personnage.m_miracleALancer].m_cur_time)
+        {
+            float temp = (float)m_classe.position_miracleALancer.h
+                         *(m_classe.miracles[m_personnage.m_miracleALancer].m_cooldown
+                           - m_classe.miracles[m_personnage.m_miracleALancer].m_cur_time)
+                         / m_classe.miracles[m_personnage.m_miracleALancer].m_cooldown;
+
+            sprite.SetImage(*moteurGraphique->getImage(0));
+            sprite.Resize(m_classe.position_miracleALancer.w,temp);
+
+            sprite.SetColor(sf::Color(0,0,0,240));
+            moteurGraphique->AjouterCommande(&sprite,18,0);
+        }
     }
 }
 
@@ -2572,7 +2603,7 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                         i = -1;
                     }
 
-
+            if(m_classe.miracles[miracle].m_cur_time == m_classe.miracles[miracle].m_cooldown)
             if (m_classe.miracles[miracle].m_coutFoi + m_classe.miracles[miracle].m_reserveFoi <= m_caracteristiques.foi && m_classe.miracles[miracle].m_reserveFoi <= m_caracteristiques.maxFoi - m_caracteristiques.reserveFoi
                     && m_classe.miracles[miracle].m_coutVie + m_classe.miracles[miracle].m_reserveVie
                     <= m_caracteristiques.vie && m_classe.miracles[miracle].m_reserveVie <= m_caracteristiques.maxVie - m_caracteristiques.reserveVie)
@@ -2582,7 +2613,7 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                         m_personnage.m_lancementMiracleEnCours = true;
                         m_personnage.m_miracleEnCours.push_back(EntiteMiracle ());
 
-                        if (m_classe.miracles[miracle].m_effets[0].m_type != CORPS_A_CORPS
+                       /* if (m_classe.miracles[miracle].m_effets[0].m_type != CORPS_A_CORPS
                         &&  m_classe.miracles[miracle].m_effets[0].m_type != CONDITION)
                         {
                             Caracteristique temp = m_personnage.getCaracteristique();
@@ -2591,9 +2622,10 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                             temp.reserveFoi += m_classe.miracles[miracle].m_reserveFoi;
                             temp.reserveVie += m_classe.miracles[miracle].m_reserveVie;
                             m_personnage.setCaracteristique(temp);
+                            m_classe.miracles[miracle].m_cur_time = 0;
 
                             m_personnage.m_miracleEnCours.back().m_dejaConsommeFoi = true;
-                        }
+                        }*/
 
                         m_personnage.m_miracleEnCours.back().m_infos.push_back(new InfosEntiteMiracle ());
 
@@ -3373,6 +3405,15 @@ void Hero::RegenererFoi(float foi)
 
     m_caracteristiques.foi = temp.foi;
     m_caracteristiques.reserveFoi = temp.reserveFoi;
+}
+void Hero::RegenererMiracles(float time)
+{
+    for(unsigned i = 0 ; i < m_classe.miracles.size() ; ++i)
+    {
+        m_classe.miracles[i].m_cur_time += time;
+        if(m_classe.miracles[i].m_cur_time > m_classe.miracles[i].m_cooldown)
+            m_classe.miracles[i].m_cur_time = m_classe.miracles[i].m_cooldown;
+    }
 }
 
 void Hero::setMonstreVise(int monstre)

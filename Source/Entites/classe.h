@@ -74,6 +74,8 @@ struct Classe
     Image_interface hud_pt_miracle_rest;
     Image_interface miracles_plus_button;
     Image_interface miracles_cadre;
+    Image_interface barre_vie_monstre;
+    Image_interface barre_vie_monstre_vide;
     //std::vector<Image_interface> interface_miracles;
 
     std::vector<Bouton> boutons_miracles;

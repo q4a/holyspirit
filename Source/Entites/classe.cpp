@@ -466,6 +466,8 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
         ChargerImageInterface(fichier, hud_pt_miracle_rest);
         ChargerImageInterface(fichier, miracles_plus_button);
         ChargerImageInterface(fichier, miracles_cadre);
+        ChargerImageInterface(fichier, barre_vie_monstre);
+        ChargerImageInterface(fichier, barre_vie_monstre_vide);
 
         ChargerCoordonneeInterface(fichier, position_sac_inventaire);
         ChargerCoordonneeInterface(fichier, position_contenu_inventaire);

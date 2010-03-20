@@ -69,8 +69,6 @@ void Configuration::ChargerConf()
                 fichier>>postFX;
             if (chaine== "smooth:")
                 fichier>>lissage;
-            if (chaine== "blood:")
-                fichier>>sang;
             if (chaine== "shadows:")
                 fichier>>Ombre;
             if (chaine== "reflection:")
@@ -165,11 +163,6 @@ void Configuration::ChargerInit()
             if (chaine== "fxWater_image:")
                 fichier>>water_map;
 
-
-            if (chaine== "menu_life_monster:")
-                fichier>>nom_barre_vie;
-            if (chaine== "menu_life_monster_blank:")
-                fichier>>nom_barre_vie_vide;
             if (chaine== "menu_bag:")
                 fichier>>nom_sac;
             if (chaine== "menu_corner:")
@@ -200,8 +193,6 @@ void Configuration::ChargerInit()
                 fichier>>font_titre;
             if (chaine== "font:")
                 fichier>>font;
-            if (chaine== "menu_blood:")
-                fichier>>nom_sang;
             if (chaine== "cache: ")
                 fichier>>cache;
             if (chaine== "death_sound:")
@@ -377,7 +368,6 @@ void Configuration::Sauvegarder()
         fichier<< "videos: " <<video<<std::endl;
         fichier<< "postFX: " <<postFX<<std::endl;
         fichier<< "alpha_opacity: "<<alpha<<std::endl;
-        fichier<< "blood: " <<sang<<std::endl;
         fichier<< "grass: " <<Herbes<<std::endl;
         fichier<< "particules: " <<particules<<std::endl;
         fichier<< "smooth: " <<lissage<<std::endl;
@@ -394,7 +384,7 @@ void Configuration::Sauvegarder()
         fichier<<std::endl;
         fichier<<std::endl;
         fichier<<"OTHERS"<<std::endl;
-        fichier<< "saving_frequency: " <<frequence_sauvegarde<<std::endl;
+        fichier<<"saving_frequency: " <<frequence_sauvegarde<<std::endl;
         fichier<<"debug_mod: "<<debug<<std::endl;
         fichier<<"desactivate_console: "<<desactivate_console<<std::endl;
         fichier<<"language: "<<language<<std::endl;

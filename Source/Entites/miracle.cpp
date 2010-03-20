@@ -338,6 +338,10 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
 
     std::vector<float> valeurs;
 
+    m_cooldown = 0;
+    m_cur_time = 0;
+    m_consommer = 0;
+
     ifstream fichier;
     fichier.open(m_chemin.c_str(), ios::in);
     if (fichier)
@@ -546,6 +550,11 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
                         fichier>>m_direct;
                         break;
 
+                    case 'c':
+                        m_cooldown = (int)lireValeur(fichier, valeurs);
+                        m_cur_time = m_cooldown;
+                        break;
+
                     }
                     if (fichier.eof())
                     {
@@ -594,6 +603,10 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
 
                     case 's':
                         m_effets.back().m_sequence = (int)lireValeur(fichier, valeurs);
+                        break;
+
+                    case 'c':
+                        m_consommer = m_effets.size() - 1;
                         break;
 
                     case 'i':

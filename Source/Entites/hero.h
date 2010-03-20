@@ -80,6 +80,7 @@ public:
     //void InfligerDegats(float degats);
     void RegenererVie(float vie);
     void RegenererFoi(float foi);
+    void RegenererMiracles(float time);
 
     void addPotale(int x, int y, int nom, const std::string &chemin);
 
