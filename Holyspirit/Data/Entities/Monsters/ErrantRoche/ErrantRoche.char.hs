@@ -15,30 +15,30 @@ $
 *Data/Scripts/AI/ErrantRoches.script.hs
 $
 
-*
-*Ore_iron.item.hs
-r5000
-$
+	*
+		*Ore_iron.item.hs
+		r5000
+	$
 
-*
-*Ore_copper.item.hs
-r5000
-$
+	*
+		*Ore_copper.item.hs
+		r5000
+	$
 
-*
-*Ruby.item.hs
-r2000
-$
+	*
+		*Ruby.item.hs
+		r2000
+	$
 
-*
-*Emerald.item.hs
-r2000
-$
+	*
+		*Emerald.item.hs
+		r2000
+	$
 
-*
-*Ore_gold.item.hs
-r2000
-$
+	*
+		*Ore_gold.item.hs
+		r2000
+	$
 
 $
 

@@ -50,3 +50,4 @@ Argent
 Niveau
 Nom
 Console (Tab)
+Uniquement pour : 

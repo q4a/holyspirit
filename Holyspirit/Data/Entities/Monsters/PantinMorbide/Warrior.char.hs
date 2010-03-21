@@ -16,89 +16,89 @@ $
 $
 Objets du monstre
 
-*
-*Heal_potion.item.hs
-r1000
-$
+	*
+		*Heal_potion.item.hs
+		r1000
+	$
 
-*
-*Faith_potion.item.hs
-r1000
-$
-
-
-*
-*Armor.item.hs
-r10000
-$
-
-*
-*Boot.item.hs
-r10000
-$
-
-*
-*Unique_boot.item.hs
-r15
-$
-
-*
-*Ring.item.hs
-r2000
-$
-
-*
-*Necklage.item.hs
-r2000
-$
-
-*
-*Unique_necklage.item.hs
-r10
-$
-
-*
-*Long_sword.item.hs
-r2000
-$
+	*
+		*Faith_potion.item.hs
+		r1000
+	$
 
 
-*
-*Small_sword.item.hs
-r3000
-$
+	*
+		*Armor.item.hs
+		r10000
+	$
 
-*
-*Armband.item.hs
-r10000
-$
+	*
+		*Boot.item.hs
+		r10000
+	$
+
+	*
+		*Unique_boot.item.hs
+		r15
+	$
+
+	*
+		*Ring.item.hs
+		r2000
+	$
+
+	*
+		*Necklage.item.hs
+		r2000
+	$
+
+	*
+		*Unique_necklage.item.hs
+		r10
+	$
+
+	*
+		*Long_sword.item.hs
+		r2000
+	$
 
 
-*
-*Small_sword_divin.item.hs
-r20
-$
+	*
+		*Small_sword.item.hs
+		r3000
+	$
 
-*
-*Unique_long_sword.item.hs
-r10
-$
+	*
+		*Armband.item.hs
+		r10000
+	$
 
 
-*
-*Great_shield.item.hs
-r10000
-$
+	*
+		*Small_sword_divin.item.hs
+		r20
+	$
 
-*
-*Unique_shield.item.hs
-r15
-$
+	*
+		*Unique_long_sword.item.hs
+		r10
+	$
 
-*
-*Dagger.item.hs
-r2000
-$
+
+	*
+		*Great_shield.item.hs
+		r10000
+	$
+
+	*
+		*Unique_shield.item.hs
+		r15
+	$
+
+	*
+		*Dagger.item.hs
+		r2000
+	$
 
 
 $

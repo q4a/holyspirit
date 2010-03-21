@@ -102,23 +102,19 @@ $
 		*Unique_necklage.item.hs
 		r50
 	$
-		*
+	*
 		*Drawing_barbute.item.hs
 		r2000
-	$
-		*
+
 		*Drawing_chainmail.item.hs
 		r2000
-	$
-		*
+
 		*Drawing_necklage.item.hs
 		r2000
-	$
-		*
+
 		*Drawing_tiare.item.hs
 		r2000
-	$
-		*
+
 		*Drawing_shield_bronze.item.hs
 		r2000
 	$

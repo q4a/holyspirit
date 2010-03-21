@@ -15,29 +15,29 @@ $
 *Data/Scripts/AI/shadow.script.hs
 $
 Objets du monstre
-*
-*Heal_potion.item.hs
-r10000
-$
-*
-*Faith_potion.item.hs
-r10000
-$
+	*
+		*Heal_potion.item.hs
+		r10000
+	$
+	*
+		*Faith_potion.item.hs
+		r10000
+	$
 
-*
-*Ring.item.hs
-r2000
-$
+	*
+		*Ring.item.hs
+		r2000
+	$
 
-*
-*Necklage.item.hs
-r2000
-$
+	*
+		*Necklage.item.hs
+		r2000
+	$
 
-*
-*Unique_necklage.item.hs
-r50
-$
+	*
+		*Unique_necklage.item.hs
+		r50
+	$
 
 $
 $

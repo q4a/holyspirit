@@ -14,31 +14,31 @@ Vie/DegatsMin/DegatsMax/Vitesse
 $
 *Data/Scripts/AI/standard.script.hs
 $
-Objets du monstre
-*
-*Heal_potion.item.hs
-r1000
-$
+	Objets du monstre
+	*
+		*Heal_potion.item.hs
+		r1000
+	$
 
-*
-*Faith_potion.item.hs
-r1000
-$
+	*
+		*Faith_potion.item.hs
+		r1000
+	$
 
-*
-*Small_sword.item.hs
-r10000
-$
+	*
+		*Small_sword.item.hs
+		r10000
+	$
 
-*
-*Small_shield.item.hs
-r10000
-$
+	*
+		*Small_shield.item.hs
+		r10000
+	$
 
-*
-*Small_sword_divin.item.hs
-r25
-$
+	*
+		*Small_sword_divin.item.hs
+		r25
+	$
 
 $
 *Data/Particule_system/human_bones.ps.hs

@@ -14,63 +14,63 @@ Vie/DegatsMin/DegatsMax/Vitesse
 $
 *Data/Scripts/AI/DemonicPriest.script.hs
 $
-Objets du monstre
-*
-	*Heal_potion.item.hs
-	r10000
-$
-*
-	*Heal_potion.item.hs
-	r10000
-$
-*
-	*Faith_potion.item.hs
-	r10000
-$
-*
-	*Heal_potion.item.hs
-	r10000
-$
+	Objets du monstre
+	*
+		*Heal_potion.item.hs
+		r10000
+	$
+	*
+		*Heal_potion.item.hs
+		r10000
+	$
+	*
+		*Faith_potion.item.hs
+		r10000
+	$
+	*
+		*Heal_potion.item.hs
+		r10000
+	$
 
-*
-	*Gown.item.hs
-	r10000
-$
+	*
+		*Gown.item.hs
+		r10000
+	$
 
-*
-	*Ring.item.hs
-	r2000
-$
+	*
+		*Ring.item.hs
+		r2000
+	$
 
-*
-	*Necklage.item.hs
-	r2000
-$
+	*
+		*Necklage.item.hs
+		r2000
+	$
 
-*
-	*Unique_necklage.item.hs
-	r100
-$
+	*
+		*Unique_necklage.item.hs
+		r100
+	$
 
-*
-	*Unique_boot.item.hs
-	r100
-$
+	*
+		*Unique_boot.item.hs
+		r100
+	$
 
-*
-	*Ceremonial_dagger.item.hs
-	r10000
-$
+	*
+		*Ceremonial_dagger.item.hs
+		r10000
+	$
 
-*
-	*Unique_dagger.item.hs
-	r100
-$
+	*
+		*Unique_dagger.item.hs
+		r100
+	$
 
-*
-	*Unique_gown.item.hs
-	r100
-$
+	*
+		*Unique_gown.item.hs
+		r100
+	$
 
 
 

@@ -14,45 +14,45 @@ Vie/DegatsMin/DegatsMax/Vitesse
 $
 *Data/Scripts/AI/standard.script.hs
 $
-Objets du monstre
-*
-*Heal_potion.item.hs
-r10000
-$
-*
-*Heal_potion.item.hs
-r10000
-$
+	Objets du monstre
+	*
+		*Heal_potion.item.hs
+		r1000
+	$
+	*
+		*Heal_potion.item.hs
+		r1000
+	$
 
-*
-*Faith_potion.item.hs
-r10000
-$
-*
-*Faith_potion.item.hs
-r10000
-$
+	*
+		*Faith_potion.item.hs
+		r1000
+	$
+	*
+		*Faith_potion.item.hs
+		r1000
+	$
 
-*
-*Two_hand_sword.item.hs
-r10000
-$
+	*
+		*Two_hand_sword.item.hs
+		r10000
+	$
 
-*
-*Katzbalger.item.hs
-r25
-$
+	*
+		*Katzbalger.item.hs
+		r25
+	$
 
 
-*
-*Helmet.item.hs
-r10000
-$
+	*
+		*Helmet.item.hs
+		r10000
+	$
 
-*
-*Chainmail.item.hs
-r1000
-$
+	*
+		*Chainmail.item.hs
+		r1000
+	$
 
 $
 *Data/Particule_system/human_bones.ps.hs

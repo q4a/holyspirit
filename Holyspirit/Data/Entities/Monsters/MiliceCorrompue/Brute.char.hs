@@ -15,25 +15,25 @@ $
 *Data/Scripts/AI/standard.script.hs
 $
 Objets du monstre
-*
-*Heal_potion.item.hs
-r10000
-$
+	*
+		*Heal_potion.item.hs
+		r5000
+	$
 
-*
-*Heal_potion.item.hs
-r10000
-$
+	*
+		*Heal_potion.item.hs
+		r5000
+	$
 
-*
-*Butcher_mace.item.hs
-r2000
-$
+	*
+		*Butcher_mace.item.hs
+		r2000
+	$
 
-*
-*Cleaver.item.hs
-r2000
-$
+	*
+		*Cleaver.item.hs
+		r2000
+	$
 
 $
 *Data/Particule_system/human_guts.ps.hs

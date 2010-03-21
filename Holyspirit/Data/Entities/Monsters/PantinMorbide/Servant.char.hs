@@ -16,10 +16,10 @@ $
 $
 Objets du monstre
 
-*
-*Small_axe.item.hs
-r10000
-$
+	*
+		*Small_axe.item.hs
+		r10000
+	$
 
 $
 *Data/Particule_system/human_bones.ps.hs

@@ -16,25 +16,25 @@ $
 $
 Objets du monstre
 
-*
-*Heal_potion.item.hs
-r5000
-$
+	*
+		*Heal_potion.item.hs
+		r1000
+	$
 
-*
-*Faith_potion.item.hs
-r10000
-$
+	*
+		*Faith_potion.item.hs
+		r1000
+	$
 
-*
-*Arquebuse.item.hs
-r10000
-$
+	*
+		*Arquebuse.item.hs
+		r5000
+	$
 
-*
-*Coal.item.hs
-r10000
-$
+	*
+		*Coal.item.hs
+		r2000
+	$
 
 $
 *Data/Particule_system/human_bones.ps.hs

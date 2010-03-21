@@ -16,20 +16,20 @@ $
 $
 Objets du monstre
 
-*
-*Heal_potion.item.hs
-r1000
-$
+	*
+		*Heal_potion.item.hs
+		r1000
+	$
 
-*
-*Faith_potion.item.hs
-r1000
-$
+	*
+		*Faith_potion.item.hs
+		r1000
+	$
 
-*
-*Small_axe.item.hs
-r10000
-$
+	*
+		*Small_axe.item.hs
+		r5000
+	$
 
 
 $

@@ -14,21 +14,21 @@ Vie/DegatsMin/DegatsMax/Vitesse
 $
 *Data/Scripts/AI/zombie.script.hs
 $
-Objets du monstre
-*
-*Heal_potion.item.hs
-r10000
-$
 
-*
-*Heal_potion.item.hs
-r10000
-$
+	*
+		*Heal_potion.item.hs
+		r10000
+	$
 
-*
-*Brain.item.hs
-r1000000000
-$
+	*
+		*Heal_potion.item.hs
+		r10000
+	$
+
+	*
+		*Brain.item.hs
+		r1000000000
+	$
 
 $
 *Data/Particule_system/human_blood.ps.hs

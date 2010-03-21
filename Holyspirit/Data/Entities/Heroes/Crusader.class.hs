@@ -1,6 +1,6 @@
-	*Croisé
+	*31
 $
-	* f20 v20 p10 d15 c5 i0 $
+	* f20 v20 p10 d15 c5 $
 $
 	* mSmall_sword.item.hs $
 	* mSmall_shield.item.hs $

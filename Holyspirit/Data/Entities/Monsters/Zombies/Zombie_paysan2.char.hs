@@ -15,15 +15,15 @@ $
 *Data/Scripts/AI/zombie.script.hs
 $
 Objets du monstre
-*
-*Heal_potion.item.hs
-r2000
-$
+	*
+		*Heal_potion.item.hs
+		r2000
+	$
 
-*
-*Faith_potion.item.hs
-r2000
-$
+	*
+		*Faith_potion.item.hs
+		r2000
+	$
 
 
 $

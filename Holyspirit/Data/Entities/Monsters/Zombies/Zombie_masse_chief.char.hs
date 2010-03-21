@@ -14,43 +14,43 @@ Vie/DegatsMin/DegatsMax/Vitesse
 $
 *Data/Scripts/AI/standard.script.hs
 $
-Objets du monstre
-*
-*Heal_potion.item.hs
-r2000
-$
+	Objets du monstre
+	*
+		*Heal_potion.item.hs
+		r2000
+	$
 
-*
-*Faith_potion.item.hs
-r2000
-$
-
-
-*
-*Leather_Helmet.item.hs
-r2000
-$
-
-*
-*Gauntlet.item.hs
-r2000
-$
+	*
+		*Faith_potion.item.hs
+		r2000
+	$
 
 
-*
-*Armor.item.hs
-r2000
-$
+	*
+		*Leather_Helmet.item.hs
+		r2000
+	$
 
-*
-*Mace.item.hs
-r2000
-$
+	*
+		*Gauntlet.item.hs
+		r2000
+	$
 
-*
-*Unique_mace.item.hs
-r50
-$
+
+	*
+		*Armor.item.hs
+		r2000
+	$
+
+	*
+		*Mace.item.hs
+		r2000
+	$
+
+	*
+		*Unique_mace.item.hs
+		r50
+	$
 
 
 $

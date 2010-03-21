@@ -24,30 +24,30 @@ $
 		r1000
 	$
 
-*
-*Ore_iron.item.hs
-r2000
-$
+	*
+		*Ore_iron.item.hs
+		r2000
+	$
 
-*
-*Ore_copper.item.hs
-r2000
-$
+	*
+		*Ore_copper.item.hs
+		r2000
+	$
 
-*
-*Ruby.item.hs
-r500
-$
+	*
+		*Ruby.item.hs
+		r500
+	$
 
-*
-*Emerald.item.hs
-r500
-$
+	*
+		*Emerald.item.hs
+		r500
+	$
 
-*
-*Ore_gold.item.hs
-r500
-$
+	*
+		*Ore_gold.item.hs
+		r500
+	$
 
 
 $

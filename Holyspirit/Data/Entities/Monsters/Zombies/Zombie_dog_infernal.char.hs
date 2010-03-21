@@ -14,16 +14,16 @@ Vie/DegatsMin/DegatsMax/Vitesse
 $
 *Data/Scripts/AI/zombie_dog.script.hs
 $
-Objets du monstre
-*
-*Heal_potion.item.hs
-r2000
-$
+	Objets du monstre
+	*
+		*Heal_potion.item.hs
+		r2000
+	$
 
-*
-*Faith_potion.item.hs
-r2000
-$
+	*
+		*Faith_potion.item.hs
+		r2000
+	$
 
 
 $

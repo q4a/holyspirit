@@ -1,6 +1,6 @@
-	*Courtisane
+	*32
 $
-	* f10 v10 p15 d25 c20 i3 $
+	* f10 v10 p15 d25 c20 $
 $
 	* mDagger.item.hs $
 	* mCrossbow.item.hs $
