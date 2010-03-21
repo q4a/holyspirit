@@ -96,7 +96,7 @@ Hero::Hero()
 {
     m_personnage.setEtat(ARRET);
 
-    m_cheminClasse = configuration->player_class;
+    //m_cheminClasse = configuration->player_class;
 
     m_chercherSac.x=-1;
     m_chercherSac.y=-1;
@@ -181,7 +181,7 @@ Hero::Hero()
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
         m_cheminModeleNouveau[i]="",m_cheminModele[i]="";
 
-    m_contenuSave.push_back(configuration->chemin_temps+"hero.sav.txt");
+    //m_contenuSave.push_back(configuration->chemin_temps+m_chemin_save);
 
     //m_personnage.m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(m_personnage.getCoordonnee().x,m_personnage.getCoordonnee().y),512,2048,16,sf::Color(255,255,255));
 
@@ -219,7 +219,7 @@ void Hero::Sauvegarder()
     console->Ajouter("");
     console->Ajouter("Sauvegarde du héro...");
 
-    ofstream fichier((configuration->chemin_temps+"hero.sav.txt").c_str(), ios::out | ios::trunc | ios::binary);
+    ofstream fichier((configuration->chemin_temps+m_chemin_save).c_str(), ios::out | ios::trunc | ios::binary);
 
     if (fichier)
     {
@@ -228,7 +228,7 @@ void Hero::Sauvegarder()
 
         fichier<<VERSION_SAVE<<endl;
 
-        fichier<<m_personnage.getNom().c_str()<<" "<<endl;
+        fichier<<m_caracteristiques.nom.c_str()<<" "<<endl;
         fichier<<m_cheminClasse<<" "<<endl;
 
 
@@ -315,8 +315,8 @@ void Hero::Sauvegarder()
 
     cDAT fichierSave;
 
-    fichierSave.Create(m_contenuSave, configuration->chemin_saves+"hero.sav.hs");
-    string buffer=configuration->chemin_temps+"hero.sav.txt";
+    fichierSave.Create(m_contenuSave, configuration->chemin_saves+m_chemin_save);
+    string buffer=configuration->chemin_temps+m_chemin_save;
     //remove(buffer.c_str());
     //m_contenuSave.clear();
 
@@ -324,7 +324,7 @@ void Hero::Sauvegarder()
 
 
 
-void Hero::Charger()
+void Hero::Charger(std::string chemin_save)
 {
     console->Ajouter("Chargement du hero.");
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
@@ -333,10 +333,12 @@ void Hero::Charger()
     bool nouveau=true;
     string chemin;
 
+    m_chemin_save = chemin_save;
+
     cDAT reader;
-    if (reader.Read(configuration->chemin_saves+"hero.sav.hs"))
+    if (reader.Read(configuration->chemin_saves+m_chemin_save))
     {
-        ifstream* fichier=reader.GetInfos(configuration->chemin_temps+"hero.sav.txt");
+        ifstream* fichier=reader.GetInfos(configuration->chemin_temps+m_chemin_save);
         //fichier.open((configuration->chemin_saves+"hero.sav.hs").c_str(), ios::in | ios::binary);
         if (fichier)
         {
@@ -349,7 +351,7 @@ void Hero::Charger()
             if(temp != VERSION_SAVE)
                 configuration->error_message = "Warning ! Incompatible Save, please delete your save into \"Data/Saves\" ";
 
-            *fichier>>charTemp.nom;
+            *fichier>>m_caracteristiques.nom;
 
             *fichier>>m_cheminClasse;
 

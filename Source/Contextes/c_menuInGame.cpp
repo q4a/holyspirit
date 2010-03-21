@@ -126,7 +126,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     {
         texte.SetColor(Color(100,50,0,(int)m_alpha));
         if (eventManager->getEvenement(Mouse::Left,EventClic))
-            jeu->m_run=false;
+            jeu->m_mainMenu->m_save=true, jeu->m_contexte = jeu->m_mainMenu;
     }
     else
         texte.SetColor(Color(150,100,50,(int)m_alpha));
@@ -139,7 +139,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     {
         texte.SetColor(Color(100,50,0,(int)m_alpha));
         if (eventManager->getEvenement(Mouse::Left,EventClic))
-            jeu->m_reset=true,jeu->m_run=false;
+            jeu->m_mainMenu->m_reset=true,jeu->m_mainMenu->m_save=true, jeu->m_contexte = jeu->m_mainMenu;
     }
     else
         texte.SetColor(Color(150,100,50,(int)m_alpha));

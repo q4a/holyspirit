@@ -103,7 +103,6 @@ void MoteurGraphique::CreateNewWindow()
         EffectMort.SetTexture("framebuffer", sf::Shader::CurrentTexture);
         EffectContrastes.SetTexture("framebuffer", sf::Shader::CurrentTexture);
         EffectFiltre.SetTexture("framebuffer", sf::Shader::CurrentTexture);
-        EffectShadow.SetTexture("framebuffer", sf::Shader::CurrentTexture);
         EffectWater.SetTexture("framebuffer", sf::Shader::CurrentTexture);
         EffectDistortion.SetTexture("framebuffer", sf::Shader::CurrentTexture);
         EffectDistortion.SetTexture("distortion_map",m_distortion_screen.GetImage());
@@ -173,11 +172,6 @@ void MoteurGraphique::Charger()
             console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetFiltre,1);
         else
             console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetFiltre,0);
-
-         if (!EffectShadow.LoadFromFile(configuration->chemin_fx+configuration->nom_effetShadow))
-            console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetShadow,1);
-        else
-            console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetShadow,0);
 
         if (!EffectWater.LoadFromFile(configuration->chemin_fx+configuration->nom_effetWater))
             console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetWater,1);
@@ -360,9 +354,6 @@ void MoteurGraphique::Afficher()
         m_light_screen2.Draw(sprite3);
 
         m_light_screen2.Display();
-
-        if(configuration->postFX)
-            EffectShadow.SetTexture("shadow_map", m_light_screen2.GetImage());
 
         //configuration->RafraichirOmbre = 0;
     }

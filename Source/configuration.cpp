@@ -140,6 +140,8 @@ void Configuration::ChargerInit()
                 fichier>>chemin_fx;
             if (chaine== "alpha_arts:")
                 fichier>>chemin_aa;
+            if (chaine== "music_menu:")
+                fichier>>music_menu;
 
             if (chaine== "basic_cursor:")
                 fichier>>nom_curseur_base;
@@ -153,8 +155,6 @@ void Configuration::ChargerInit()
                 fichier>>nom_effetBlur;
             if (chaine== "fxFilter:")
                 fichier>>nom_effetFiltre;
-            if (chaine== "fxShadow:")
-                fichier>>nom_effetShadow;
             if (chaine== "fxWater:")
                 fichier>>nom_effetWater;
             if (chaine== "fxDistortion:")
@@ -199,7 +199,10 @@ void Configuration::ChargerInit()
                 fichier>>chemin_son_mort;
 
             if (chaine== "player_class:")
-                fichier>>player_class;
+            {
+                player_class.push_back("");
+                fichier>>player_class.back();
+            }
 
         }
         fichier.close();

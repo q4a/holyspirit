@@ -156,7 +156,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
     cDAT reader,reader2;
 
-    reader.Read(configuration->chemin_saves+"hero.sav.hs");
+    reader.Read(configuration->chemin_saves+hero->m_chemin_save);
 
     if (reader.IsFileExist(configuration->chemin_temps+nomMap))
         mapExistante=true,entite_map_existante=true,console->Ajouter("Map sauvée existante.");

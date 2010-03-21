@@ -45,6 +45,7 @@ EventManager::EventManager()
     idcurseur=moteurGraphique->AjouterImage(configuration->chemin_curseurs+configuration->nom_curseur_base,-1);
 
     m_molette = 0;
+    m_char = -1;
 }
 
 void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tailleMap)
@@ -58,10 +59,17 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
         case Event::KeyPressed:
             if (Event.Key.Code>=0&&Event.Key.Code<500)
                 m_EventTableau[Event.Key.Code] = 1;
+
+            if(Event.Key.Code >= 0 && Event.Key.Code < 128)
+                    m_char = Event.Key.Code;
+
             break;
         case Event::KeyReleased:
             if (Event.Key.Code>=0&&Event.Key.Code<500)
                 m_EventTableau[Event.Key.Code] = 0;
+
+            if(m_char == Event.Key.Code)
+                    m_char = -1;
             break;
         case Event::MouseMoved:
             m_positionSouris.x=Event.MouseMove.X;
@@ -263,5 +271,17 @@ void EventManager::arreterClique()
     m_Clic[Mouse::Left]=false;
 }
 
+char EventManager::getChar()
+{
+    if(m_EventTableau[sf::Key::LShift])
+        return (m_char - 32);
+    else
+        return (m_char);
+}
+
+char EventManager::stopChar()
+{
+    m_char = -1;
+}
 
 

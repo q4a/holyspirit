@@ -70,7 +70,7 @@ void c_Demarrage::Utiliser(Jeu *jeu)
         m_augmenter=false;
 
     if (m_alpha<0)
-        jeu->m_contexte=jeu->m_chargement;
+        jeu->m_contexte=jeu->m_mainMenu;
 
     jeu->m_display=true;
 }

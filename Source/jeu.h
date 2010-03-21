@@ -39,6 +39,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Contextes/c_miracles.h"
 #include "Contextes/c_menuInGame.h"
 #include "Contextes/c_demarrage.h"
+#include "Contextes/c_mainMenu.h"
 
 class Jeu
 {
@@ -46,7 +47,6 @@ class Jeu
 
     Jeu();
     void Demarrer();
-    void Reset();
     void Next();
 
     Menu menu;
@@ -56,7 +56,7 @@ class Jeu
     sf::SoundBuffer bufferSonMort;
 	sf::Sound  sonMort;
 
-	bool m_run,m_display,m_reset;
+	bool m_run,m_display;
 
 	c_Demarrage     *m_demarrage;
     c_Jeu           *m_jeu;
@@ -67,6 +67,7 @@ class Jeu
     c_Craft         *m_craft;
     c_Miracles      *m_miracles;
     c_MenuInGame    *m_menuInGame;
+    c_MainMenu      *m_mainMenu;
     Contexte        *m_contexte;
 
     int next_screen;

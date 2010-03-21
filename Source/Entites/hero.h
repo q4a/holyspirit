@@ -55,7 +55,7 @@ public:
     ~Hero();
 
     void Sauvegarder();
-    void Charger();
+    void Charger(std::string chemin);
     void ChargerModele(bool tout=false);
 
     void Afficher(coordonnee dimensionsMap);
@@ -115,6 +115,7 @@ public:
     Lumiere getPorteeLumineuse();
 
     std::string m_cheminClasse;
+    std::string m_chemin_save;
     Classe m_classe;
 
     Personnage m_personnage;

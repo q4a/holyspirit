@@ -33,32 +33,23 @@ using namespace sf;
 
 Jeu::Jeu()
 {
-    m_reset     = false;
     map         = NULL;
     next_screen = 0;
+
+    m_jeu           = NULL;
+    m_demarrage     = NULL;
+    m_chargement    = NULL;
+    m_inventaire    = NULL;
+    m_quetes        = NULL;
+    m_potales       = NULL;
+    m_craft         = NULL;
+    m_miracles      = NULL;
+    m_menuInGame    = NULL;
+    m_mainMenu      = NULL;
 }
 
 void Jeu::Demarrer()
 {
-    //map=new Map();
-
-    //lireVideo("Data/Menus/Videos/Cinematique test 1-2");
-
-    hero.Charger();
-
-    std::vector<std::string> contenuSave;
-    {
-        cDAT reader;
-        if (reader.Read(configuration->chemin_saves+"hero.sav.hs"))
-            for (int i=0;i<(int)reader.GetNumberFile();i++)
-                if (reader.GetFileName(i)!=configuration->chemin_temps+"hero.sav.txt")
-                    reader.ExportFile(i),contenuSave.push_back(reader.GetFileName(i));
-    }
-
-    hero.Sauvegarder();
-
-    for(int i = 0 ; i < contenuSave.size() ; ++i)
-        hero.m_contenuSave.push_back(contenuSave[i]);
 
     m_jeu           = new c_Jeu;
     m_demarrage     = new c_Demarrage;
@@ -69,9 +60,8 @@ void Jeu::Demarrer()
     m_craft         = new c_Craft;
     m_miracles      = new c_Miracles;
     m_menuInGame    = new c_MenuInGame;
+    m_mainMenu      = new c_MainMenu;
 
-    coordonnee temp(0,0,-1,-1);
-    m_chargement->setC_Chargement("Begin.map.hs",temp,1);
     m_contexte = m_demarrage;
 
     Clock.Reset();
@@ -81,7 +71,6 @@ void Jeu::Demarrer()
     m_display = true;
     while (m_run)
     {
-
         while(configuration->syncronisation_verticale && Clock.GetElapsedTime() < 0.012){}
 
         if(map != NULL)
@@ -107,14 +96,14 @@ void Jeu::Demarrer()
     if(m_jeu->m_thread_sauvegarde)
         m_jeu->m_thread_sauvegarde->Wait(),delete m_jeu->m_thread_sauvegarde;
 
-    if (m_reset)
+    /*if (m_reset)
         Reset(), hero.m_quetes.clear();
-    else
+    else if(map)
         map->Sauvegarder(&hero);
 
     hero.Sauvegarder();
 
-    Reset();
+    Reset();*/
 
     m_contexte=NULL;
 
@@ -130,28 +119,13 @@ void Jeu::Demarrer()
     delete m_craft;
     delete m_miracles;
     delete m_menuInGame;
+    delete m_mainMenu;
 
     console->Ajouter("");
     console->Ajouter("Fermeture des contextes effectuée avec succès.");
 }
 
 
-void Jeu::Reset()
-{
-    struct dirent *lecture;
-
-    DIR *repertoire;
-    repertoire = opendir(configuration->chemin_temps.c_str());
-    while ((lecture = readdir(repertoire)))
-    {
-        std::string temp=configuration->chemin_temps+lecture->d_name;
-        remove(temp.c_str());
-    }
-    closedir(repertoire);
-
-    hero.m_contenuSave.clear();
-    hero.m_contenuSave.push_back(configuration->chemin_temps+"hero.sav.txt");
-}
 
 void Jeu::Next()
 {

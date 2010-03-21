@@ -152,7 +152,7 @@ void cDAT::ExportFile(int ID)
                 //   fichier<<
                 //Reading
                 datfile.read (m_buffer, m_entries[ID].size);
-                fichier<<m_buffer;
+                fichier.write(m_buffer, m_entries[ID].size);
                 //We can close the DAT file
                 datfile.close();
             }

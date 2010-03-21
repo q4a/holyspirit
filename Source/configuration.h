@@ -57,13 +57,14 @@ class Configuration : public CSingleton<Configuration>
     bool item_background;
     std::string version,chemin_maps,chemin_items,chemin_temps,chemin_saves,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,chemin_son_mort;
     std::string nom_item_background, nom_item_unusable;
-    std::string nom_effetNoir,nom_effetMort,nom_effetContrastes,nom_effetBlur,nom_effetFiltre, nom_effetShadow, nom_effetWater, nom_effetDistortion;
+    std::string nom_effetNoir,nom_effetMort,nom_effetContrastes,nom_effetBlur,nom_effetFiltre, nom_effetWater, nom_effetDistortion;
     std::string water_map;
+    std::string music_menu;
 
     std::string font_titre,font,chemin_video_developpeur,nom_video_developpeur,nom_sac,nom_corner,chemin_aa;
 
     std::string chemin_localisation,chemin_text_benedictions,chemin_text_menus,chemin_text_items,chemin_text_entities,chemin_text_dialogs,chemin_text_maps,chemin_text_miracles;
-    std::string player_class;
+    std::vector<std::string> player_class;
 
     std::string language;
     std::string error_message;
