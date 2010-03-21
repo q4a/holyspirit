@@ -23,7 +23,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "personnage.h"
 #include "../constantes.h"
 
-
 class Modele_Monstre : public Modele_Personnage
 {
 public:
@@ -31,7 +30,7 @@ public:
     ~Modele_Monstre();
 
     bool Charger(const std::string &chemin);
-    std::vector<Objet> getObjets();
+    std::vector <std::vector<Objet> > getObjets();
 
     std::string m_chemin;
 
@@ -41,7 +40,7 @@ public:
     bool m_friendly;
 
 private:
-    std::vector<Objet> m_objets;
+    std::vector <std::vector<Objet> > m_objets;
 };
 
 

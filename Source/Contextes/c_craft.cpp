@@ -35,6 +35,13 @@ using namespace std;
 int GestionBoutons(Jeu *jeu);
 void GestionRaccourcis(Jeu *jeu);
 
+inline sf::Vector2f AutoScreenAdjust(float x, float y, float decalage = 0)
+{
+    sf::Vector2f temp;
+    temp.x = x + (configuration->Resolution.x - 800) * 0.5;
+    temp.y = y + (configuration->Resolution.y - 600) - decalage * configuration->Resolution.h/600;
+    return temp;
+}
 c_Craft::c_Craft()
 {
     m_decalage=-600;
@@ -84,7 +91,7 @@ void c_Craft::Utiliser(Jeu *jeu)
     if(jeu->hero.m_objetEnMain == -1)
         eventManager->AfficherCurseur();
 
-    jeu->map->AfficherSac(jeu->hero.m_personnage.getCoordonnee(),m_decalage,jeu->hero.m_classe.position_sac_inventaire,jeu->hero.m_caracteristiques);
+    jeu->map->AfficherSac(jeu->hero.m_personnage.getCoordonnee(),m_decalage,jeu->hero.m_classe.position_sac_inventaire,jeu->hero.m_caracteristiques, jeu->hero.m_cheminClasse);
 
     jeu->menu.AfficherHUD(&jeu->hero.m_classe);
     jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,-1,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
@@ -137,12 +144,12 @@ void c_Craft::Utiliser(Jeu *jeu)
      jeu->hero.m_defilement_trader -= eventManager->getMolette();
 
     if(eventManager->getEvenement(Mouse::Left,EventClicA))
-        if(jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h != 0)
-        if (eventManager->getPositionSouris().x>jeu->hero.m_classe.scroll_button.position.x*configuration->Resolution.x/800
-        &&eventManager->getPositionSouris().x<(jeu->hero.m_classe.scroll_button.position.x+jeu->hero.m_classe.scroll_button.position.w)*configuration->Resolution.x/800
-        &&eventManager->getPositionSouris().y>jeu->hero.m_classe.scroll_button.position.y*configuration->Resolution.h/600
-        &&eventManager->getPositionSouris().y-jeu->hero.m_classe.scroll_button.position.h<(jeu->hero.m_classe.scroll_button.position.y+jeu->hero.m_classe.position_contenu_marchand.h*24)*configuration->Resolution.h/600)
-            jeu->hero.m_defilement_trader = (int)((((float)eventManager->getPositionSouris().y-jeu->hero.m_classe.scroll_button.position.h*0.25-(float)jeu->hero.m_classe.scroll_button.position.y)/((float)jeu->hero.m_classe.position_contenu_marchand.h*24))*(float)(jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h));
+    if(jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h != 0)
+      if (eventManager->getPositionSouris().x > AutoScreenAdjust(jeu->hero.m_classe.scroll_button.position.x,0).x
+        &&eventManager->getPositionSouris().x < AutoScreenAdjust(jeu->hero.m_classe.scroll_button.position.x+jeu->hero.m_classe.scroll_button.position.w,0).x
+        &&eventManager->getPositionSouris().y > AutoScreenAdjust(0,jeu->hero.m_classe.scroll_button.position.y).y
+        &&eventManager->getPositionSouris().y < AutoScreenAdjust(0,jeu->hero.m_classe.scroll_button.position.y+jeu->hero.m_classe.position_contenu_marchand.h*32).y)
+            jeu->hero.m_defilement_trader = (int)((((float)eventManager->getPositionSouris().y-jeu->hero.m_classe.scroll_button.position.h*0.5-(float)AutoScreenAdjust(0,jeu->hero.m_classe.scroll_button.position.y).y)/((float)jeu->hero.m_classe.position_contenu_marchand.h*28))*(float)(jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h));
 
     if (jeu->hero.m_defilement_trader<0)
         jeu->hero.m_defilement_trader=0;

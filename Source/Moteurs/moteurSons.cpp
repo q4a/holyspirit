@@ -127,6 +127,7 @@ void MoteurSons::JouerSon(int ID,coordonnee position,bool unique,int volume)
                 m_sons[sonEnCours].Play();
 
             m_sons[sonEnCours].SetPosition(position.x,0,position.y);
+            m_sons[sonEnCours].SetLoop(false);
 
             sonEnCours++;
             if (sonEnCours>=NOMBRE_SONS)

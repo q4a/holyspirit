@@ -798,6 +798,24 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
                                           19,0,12,sf::Color(224,224,224),1);
     }
 
+     {
+
+        string.SetCharacterSize(14);
+        string.SetString(configuration->getText(3,m_classe.nom).c_str());
+        string.SetPosition(AutoScreenAdjust(44,350,decalage));
+        string.SetColor(sf::Color(255,255,255));
+        moteurGraphique->AjouterTexte(&string,15);
+
+        if(!trader
+         &&eventManager->getPositionSouris().x > string.GetRect().Left
+         &&eventManager->getPositionSouris().x < string.GetRect().Right
+         &&eventManager->getPositionSouris().y > string.GetRect().Top
+         &&eventManager->getPositionSouris().y < string.GetRect().Bottom)
+            moteurGraphique->AjouterTexte(configuration->getText(0,50),coordonnee(  eventManager->getPositionSouris().x,
+                                                                                    eventManager->getPositionSouris().y - 20),
+                                          19,0,12,sf::Color(224,224,224),1);
+    }
+
     string.SetString(configuration->getText(0,3));
     string.SetCharacterSize(14);
     string.SetPosition(AutoScreenAdjust(224,321,decalage));
@@ -1684,7 +1702,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
                                     if (m_inventaire[i].m_emplacement[k]==m_inventaire[j].m_emplacement[l])
                                         temp.x+=96;
 
-                    int decalage = m_inventaire[i].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,1,1,0);
+                    int decalage = m_inventaire[i].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,0);
                     retour = true;
 
                     for (int j=0;j<(int)m_inventaire.size();j++)
@@ -1692,7 +1710,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
                             for (int k=0;k<(int)m_inventaire[i].m_emplacement.size();k++)
                                 for (int l=0;l<(int)m_inventaire[j].m_emplacement.size();l++)
                                     if (m_inventaire[i].m_emplacement[k]==m_inventaire[j].m_emplacement[l])
-                                        temp.x=decalage-4,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,1,1,0,1),l=(int)m_inventaire[j].m_emplacement.size(),k=(int)m_inventaire[i].m_emplacement.size();
+                                        temp.x=decalage-4,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,0,1),l=(int)m_inventaire[j].m_emplacement.size(),k=(int)m_inventaire[i].m_emplacement.size();
                 }
             }
             else if(i != m_no_schema && i != m_no_result)
@@ -1719,7 +1737,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
                     && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
                     && eventManager->getPositionSouris().y > sprite.GetPosition().y
                     && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
-                        m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+ m_classe.emplacements[m_inventaire[i].m_equipe].position.w),(int)(position.y+position.h),0,0),m_caracteristiques,&m_inventaire), retour = true;
+                        m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+ m_classe.emplacements[m_inventaire[i].m_equipe].position.w),(int)(position.y+position.h),0,0),m_caracteristiques,&m_inventaire,m_cheminClasse), retour = true;
                 }
             }
             else if(i != m_no_result)
@@ -1737,7 +1755,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
                 && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
                 && eventManager->getPositionSouris().y > sprite.GetPosition().y
                 && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
-                    m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+64),(int)(position.y+position.h),0,0),m_caracteristiques,&m_inventaire), retour = true;
+                    m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+64),(int)(position.y+position.h),0,0),m_caracteristiques,&m_inventaire,m_cheminClasse), retour = true;
             }
             else
             {
@@ -1760,14 +1778,14 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
                 && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
                 && eventManager->getPositionSouris().y > sprite.GetPosition().y
                 && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
-                    m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+160),(int)(position.y+position.h),0,0),m_caracteristiques,&m_inventaire), retour = true;
+                    m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+160),(int)(position.y+position.h),0,0),m_caracteristiques,&m_inventaire,m_cheminClasse), retour = true;
             }
 
             moteurGraphique->AjouterCommande(&sprite,16,0);
 
             sprite.SetBlendMode(sf::Blend::Alpha);
 
-            if (!m_inventaire[i].Utilisable(m_caracteristiques,m_classe.ID))
+            if (!m_inventaire[i].Utilisable(m_caracteristiques,m_cheminClasse))
             {
                 sf::Sprite sprite2;
                 sprite2.SetImage(*moteurGraphique->getImage(moteurGraphique->m_img_item_unusable));
@@ -1822,7 +1840,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
             else
                 sprite.SetRotation(0);
 
-            if (!m_inventaire[i].Utilisable(m_caracteristiques,m_classe.ID))
+            if (!m_inventaire[i].Utilisable(m_caracteristiques,m_cheminClasse))
                 sprite.SetColor(sf::Color((int)(sprite.GetColor().r*0.5),(int)(sprite.GetColor().g*0.5),(int)(sprite.GetColor().b*0.5),255));
 
             moteurGraphique->AjouterCommande(&sprite,17,0);
@@ -1884,7 +1902,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
                 temp.y+=48;
                 temp.x-=192;
 
-                int decalage=trader[i].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,(10-(float)m_caracteristiques.charisme/100),1,1);
+                int decalage=trader[i].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,m_cheminClasse,(10-(float)m_caracteristiques.charisme/100),1,1);
                 retour = true;
 
                 for (int j=0;j<(int)m_inventaire.size();j++)
@@ -1892,11 +1910,11 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
                         for (int k=0;k<(int)trader[i].m_emplacement.size();k++)
                             for (int l=0;l<(int)m_inventaire[j].m_emplacement.size();l++)
                                 if (trader[i].m_emplacement[k]==m_inventaire[j].m_emplacement[l])
-                                    temp.x=decalage+12,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,1,1,1,1),l=(int)m_inventaire[j].m_emplacement.size(),k=(int)trader[i].m_emplacement.size();
+                                    temp.x=decalage+12,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,1,1),l=(int)m_inventaire[j].m_emplacement.size(),k=(int)trader[i].m_emplacement.size();
             }
 
 
-            if (!trader[i].Utilisable(m_caracteristiques,m_classe.ID))
+            if (!trader[i].Utilisable(m_caracteristiques,m_cheminClasse))
             {
                 sf::Sprite sprite2;
                 sprite2.SetImage(*moteurGraphique->getImage(moteurGraphique->m_img_item_unusable));
@@ -1958,7 +1976,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
             else
                 sprite.SetRotation(0);
 
-            if (!trader[i].Utilisable(m_caracteristiques,m_classe.ID))
+            if (!trader[i].Utilisable(m_caracteristiques,m_cheminClasse))
                 sprite.SetColor(sf::Color((int)(sprite.GetColor().r*0.5),(int)(sprite.GetColor().g*0.5),(int)(sprite.GetColor().b*0.5),255));
 
             moteurGraphique->AjouterCommande(&sprite,17,0);
@@ -2072,6 +2090,13 @@ void Hero::AfficherRaccourcis()
                                           + m_classe.icone_miracles[m_raccourcis[i].no].position.w,
                                             m_classe.icone_miracles[m_raccourcis[i].no].position.y
                                           + m_classe.icone_miracles[m_raccourcis[i].no].position.h));
+
+                if (m_classe.miracles[m_raccourcis[i].no].m_coutFoi + m_classe.miracles[m_raccourcis[i].no].m_reserveFoi > m_caracteristiques.foi
+                 || m_classe.miracles[m_raccourcis[i].no].m_reserveFoi > m_caracteristiques.maxFoi - m_caracteristiques.reserveFoi
+                 || m_classe.miracles[m_raccourcis[i].no].m_coutVie + m_classe.miracles[m_raccourcis[i].no].m_reserveVie > m_caracteristiques.vie
+                 || m_classe.miracles[m_raccourcis[i].no].m_reserveVie > m_caracteristiques.maxVie - m_caracteristiques.reserveVie)
+                    sprite.SetColor(sf::Color(64,64,64));
+
             }
 
             else
@@ -2112,7 +2137,7 @@ void Hero::AfficherRaccourcis()
                 if(m_raccourcis[i].miracle)
                     m_classe.miracles[m_raccourcis[i].no].AfficherDescription(eventManager->getPositionSouris(), false);
                 else
-                     m_inventaire[m_raccourcis[i].no].AfficherCaracteristiques(eventManager->getPositionSouris(), m_caracteristiques,&m_inventaire);
+                     m_inventaire[m_raccourcis[i].no].AfficherCaracteristiques(eventManager->getPositionSouris(), m_caracteristiques,&m_inventaire,m_cheminClasse);
             }
 
 
@@ -2168,6 +2193,12 @@ void Hero::AfficherRaccourcis()
         sprite.SetBlendMode(sf::Blend::Alpha);
 
         sprite.Resize(m_classe.position_miracleALancer.w,m_classe.position_miracleALancer.h);
+
+        if (m_classe.miracles[m_personnage.m_miracleALancer].m_coutFoi + m_classe.miracles[m_personnage.m_miracleALancer].m_reserveFoi > m_caracteristiques.foi
+         || m_classe.miracles[m_personnage.m_miracleALancer].m_reserveFoi > m_caracteristiques.maxFoi - m_caracteristiques.reserveFoi
+         || m_classe.miracles[m_personnage.m_miracleALancer].m_coutVie + m_classe.miracles[m_personnage.m_miracleALancer].m_reserveVie > m_caracteristiques.vie
+         || m_classe.miracles[m_personnage.m_miracleALancer].m_reserveVie > m_caracteristiques.maxVie - m_caracteristiques.reserveVie)
+            sprite.SetColor(sf::Color(64,64,64));
 
         moteurGraphique->AjouterCommande(&sprite,18,0);
 
@@ -2297,7 +2328,7 @@ void Hero::RecalculerCaracteristiques(bool bis)
 
     for (int i=0;i<(int)m_inventaire.size();++i)
         if (m_inventaire[i].m_equipe>=0)
-            if (m_inventaire[i].Utilisable(buf,m_classe.ID))
+            if (m_inventaire[i].Utilisable(buf,m_cheminClasse))
             {
                 if(!m_inventaire[i].m_chemin_set.empty())
                 {
@@ -2403,7 +2434,7 @@ void Hero::RecalculerCaracteristiques(bool bis)
 
     for (int i=0;i<(int)m_inventaire.size();++i)
         if (m_inventaire[i].m_equipe>=0)
-            if (m_inventaire[i].Utilisable(buf,m_classe.ID))
+            if (m_inventaire[i].Utilisable(buf,m_cheminClasse))
             {
                 int accru=100;
                 for (int j=0;j<(int)m_inventaire[i].m_benedictions.size();++j)
@@ -3041,12 +3072,12 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft)
         if (m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
         {
             caseVisee.x=(int)(((eventManager->getPositionSouris().x+8)-AutoScreenAdjust(m_classe.position_contenu_marchand.x,0).x)/32 - m_inventaire[m_objetEnMain].getTaille().x/2);
-            caseVisee.y=(int)(((eventManager->getPositionSouris().y+8)-AutoScreenAdjust(0,m_classe.position_contenu_marchand.y-32).y)/32 - m_inventaire[m_objetEnMain].getTaille().y/2);
+            caseVisee.y=(int)(((eventManager->getPositionSouris().y+8)-AutoScreenAdjust(0,m_classe.position_contenu_marchand.y-32).y)/32 - m_inventaire[m_objetEnMain].getTaille().y/2) + m_defilement_trader;
         }
         else
         {
             caseVisee.x=(int)(((eventManager->getPositionSouris().x)-AutoScreenAdjust(m_classe.position_contenu_marchand.x,0).x)/32);
-            caseVisee.y=(int)(((eventManager->getPositionSouris().y)-AutoScreenAdjust(0,m_classe.position_contenu_marchand.y-32).y)/32);
+            caseVisee.y=(int)(((eventManager->getPositionSouris().y + 32)-AutoScreenAdjust(0,m_classe.position_contenu_marchand.y).y)/32) + m_defilement_trader;
         }
 
 
@@ -3138,7 +3169,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft)
 bool Hero::PossibleEquiper(int numero, int emplacement)
 {
     if (numero >= 0 && numero < (int)m_inventaire.size())
-        if (m_inventaire[ numero].Utilisable(m_caracteristiques,m_classe.ID))
+        if (m_inventaire[ numero].Utilisable(m_caracteristiques,m_cheminClasse))
             for (int i=0;i<(int)m_inventaire[ numero].m_emplacement.size();++i)
                 if (m_inventaire[ numero].m_emplacement[i]==m_classe.emplacements[emplacement].emplacement)
                     return true;

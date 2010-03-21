@@ -80,17 +80,10 @@ bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps,int 
 
             if (Iter->position.z<=1&&Iter->vie==100&&((i-1)%5==0))
             {
-                coordonnee position,positionCase;
+                coordonnee position;
 
-                if ((float)((Iter->position.y*2-Iter->position.x)/2)/64+tailleMapY/2<(float)tailleMapY/2)
-                    positionCase.y=(int)((Iter->position.y*2-Iter->position.x)/2)/64+tailleMapY/2-1;
-                else
-                    positionCase.y=(int)((Iter->position.y*2-Iter->position.x)/2)/64+tailleMapY/2;
-
-                positionCase.x=(int)(Iter->position.x+((Iter->position.y*2-Iter->position.x)/2))/64-tailleMapY/2;
-
-                position.x=-(positionCase.x-positionCase.y-1+tailleMapY)/5;
-                position.y=(positionCase.x+positionCase.y)/5;
+                position.x = -(int)(Iter->position.x/64/5);
+                position.y =  (int)(Iter->position.y/32/5);
 
                 if ((int)fabs(Iter->vecteur.z*3)>10)
                     moteurSons->JouerSon(m_son,position,0,(int)fabs(Iter->vecteur.z*3));

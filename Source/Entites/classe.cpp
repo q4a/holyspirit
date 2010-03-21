@@ -310,9 +310,6 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
                     case 'c' :
                         fichier>>caracteristique.charisme;
                         break;
-                    case 'i' :
-                        fichier>>ID;
-                        break;
                     }
 
                     if (fichier.eof())

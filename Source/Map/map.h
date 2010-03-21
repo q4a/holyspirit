@@ -48,7 +48,7 @@ public:
     void Sauvegarder(Hero *hero);
 
     void Afficher(Hero *hero,bool alt,float alpha=255);
-    void AfficherSac(coordonnee positionSac,float decalage,coordonnee positionEcranSac,Caracteristique caract);
+    void AfficherSac(coordonnee ,float ,coordonnee ,Caracteristique , std::string);
     void AfficherMinimap(coordonnee position,int typeCase,float alpha);
     void AfficherNomEvenement(coordonnee casePointee,coordonnee positionSouris);
 

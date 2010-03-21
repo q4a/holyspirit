@@ -826,6 +826,7 @@ int Personnage::Animer(Modele_Personnage *modele,float temps)
     {
         m_entite_graphique.m_tileset    = &modele->m_tileset[m_etat][(int)(m_angle/45)];
         m_entite_graphique.m_couche     = 10;
+        m_entite_graphique.option_sonUnique = false;
         if(temps > 0)
             m_entite_graphique.Animer(temps);
 

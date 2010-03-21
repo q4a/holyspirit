@@ -85,7 +85,7 @@ public:
     Objet(std::string nom,int rarete);
     ~Objet();
 
-    int AfficherCaracteristiques(coordonnee position,Caracteristique caract, std::vector<Objet> *items,float modPrix = 1, bool compare = false, bool = false, bool = false);
+    int AfficherCaracteristiques(coordonnee position,Caracteristique caract, std::vector<Objet> *items, std::string nom_classe,float modPrix = 1, bool compare = false, bool = false, bool = false);
     void Charger(const std::string &chemin, const Caracteristique &caract,bool NePasAjouterBenedictions=false);
     void ChargerCaracteristiques(std::ifstream *fichier);
 
@@ -98,7 +98,7 @@ public:
 
     void Generer(int bonus);
 
-    bool Utilisable(const Caracteristique &caract,int IDClasse);
+    bool Utilisable(const Caracteristique &caract,std::string IDClasse);
 
     void JouerSon();
 
@@ -119,7 +119,8 @@ public:
     int m_type,m_equipe;
     std::vector <int> m_emplacement;
     std::vector <int> m_emplacementImpossible;
-    std::vector <int> m_IDClasse;
+    std::vector <std::string> m_IDClasse;
+    std::vector <int> m_nom_IDClasse;
 
     int m_degatsMin, m_degatsMax,m_armure;
     int m_capaciteBenediction;

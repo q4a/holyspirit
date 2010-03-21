@@ -462,6 +462,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
     if (fichier)
     {
         char caractere;
+        ifstream fichier2;
 
         do
         {
@@ -486,9 +487,27 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
                         m_emplacementImpossible.push_back(temp);
                         break;
                     case 'c' :
-                        *fichier>>temp;
-                        m_IDClasse.push_back(temp);
+                        m_IDClasse.push_back("");
+                        m_nom_IDClasse.push_back(0);
+                        *fichier>>m_IDClasse.back();
+
+                        fichier2.open(m_IDClasse.back().c_str(),ios::in);
+                        if(fichier2)
+                        {
+                            char caractere2;
+                            do
+                            {
+                                fichier2.get(caractere2);
+                                if (caractere2=='*')
+                                    fichier2>>m_nom_IDClasse.back();
+                                if (fichier2.eof())
+                                    caractere2='$';
+                            }
+                            while (caractere2!='$');
+                        }
+                        fichier2.close();
                         break;
+
                     case 's' :
                         *fichier>>m_shoot_weapon;
                         break;
@@ -1701,7 +1720,7 @@ std::string getTextBenediction(const benediction &bene)
 }
 
 
-int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, std::vector<Objet> *items,float modPrix,bool compare,bool decalageDroite, bool surbrillance)
+int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, std::vector<Objet> *items, std::string nom_classe,float modPrix,bool compare,bool decalageDroite, bool surbrillance)
 {
     std::vector <sf::Text> temp;
 
@@ -1764,6 +1783,26 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
 
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
 
+    if(!m_nom_IDClasse.empty())
+    {
+        bool mauvais = true;
+        for(int i = 0 ; i < m_nom_IDClasse.size() ; ++i)
+        {
+            std::string buf;
+            buf = configuration->getText(0,52) + configuration->getText(3, m_nom_IDClasse[i]);
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.c_str()));
+            if(m_IDClasse[i] == nom_classe)
+                mauvais = false;
+        }
+
+        if(mauvais)
+            for(int i = 1 ; i <= m_nom_IDClasse.size() ; ++i)
+                temp[temp.size() - i].SetColor(sf::Color(192,0,0));
+
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+    }
+
+
     if(!m_craft_ingredients.empty())
     {
         for (int i=0;i<(int)m_craft_ingredients.size();i++)
@@ -1791,10 +1830,9 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
             std::ostringstream buf;
             buf<<configuration->getText(0,21)<<(int)(m_degatsMin*multiplieurEfficacite/100)<<" - "<<(int)(m_degatsMax*multiplieurEfficacite/100);
 
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
             if (multiplieurEfficacite!=100)
-                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(0,64,128)));
-            else
-                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+                temp.back().SetColor(sf::Color(0,64,128));
         }
         break;
         case ARMURE:
@@ -1802,10 +1840,11 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
             std::ostringstream buf;
             buf<<configuration->getText(0,22)<<(int)(m_armure*multiplieurEfficacite/100);
 
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+
             if (multiplieurEfficacite!=100)
-                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(0,64,128)));
-            else
-                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+                temp.back().SetColor(sf::Color(0,64,128));
+
         }
         break;
     }
@@ -1817,46 +1856,46 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
     {
         std::ostringstream buf;
         buf<<configuration->getText(0,23)<<m_requirement.force;
+
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
         if (caract.force<m_requirement.force)
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(192,0,0)));
-        else
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+            temp.back().SetColor(sf::Color(192,0,0));
     }
     if (m_requirement.dexterite>0)
     {
         std::ostringstream buf;
         buf<<configuration->getText(0,24)<<m_requirement.dexterite;
+
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
         if (caract.dexterite<m_requirement.dexterite)
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(192,0,0)));
-        else
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+            temp.back().SetColor(sf::Color(192,0,0));
     }
     if (m_requirement.charisme>0)
     {
         std::ostringstream buf;
         buf<<configuration->getText(0,25)<<m_requirement.charisme;
+
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
         if (caract.charisme<m_requirement.charisme)
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(192,0,0)));
-        else
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+            temp.back().SetColor(sf::Color(192,0,0));
     }
     if (m_requirement.vitalite>0)
     {
         std::ostringstream buf;
         buf<<configuration->getText(0,26)<<m_requirement.vitalite;
+
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
         if (caract.vitalite<m_requirement.vitalite)
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(192,0,0)));
-        else
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+            temp.back().SetColor(sf::Color(192,0,0));
     }
     if (m_requirement.piete>0)
     {
         std::ostringstream buf;
         buf<<configuration->getText(0,27)<<m_requirement.piete;
+
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
         if (caract.piete<m_requirement.piete)
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str(),sf::Color(192,0,0)));
-        else
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+            temp.back().SetColor(sf::Color(192,0,0));
     }
 
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
@@ -1958,7 +1997,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
 
 }
 
-bool Objet::Utilisable(const Caracteristique &caract,int IDClasse)
+bool Objet::Utilisable(const Caracteristique &caract,std::string IDClasse)
 {
     if (m_requirement.force<=caract.force)
         if (m_requirement.dexterite<=caract.dexterite)

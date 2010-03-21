@@ -1329,7 +1329,7 @@ void Map::CalculerOmbresEtLumieres()
 
 }
 
-void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_sac_inventaire,Caracteristique caract)
+void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_sac_inventaire,Caracteristique caract, std::string cheminClasse)
 {
     Sprite Sprite;
     Text texte;
@@ -1365,7 +1365,7 @@ void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_
                     if (!(z-m_defilerObjets==0&&m_defilerObjets>0)&&!((z-m_defilerObjets==position_sac_inventaire.h-1&&z+m_defilerObjets<=m_decor[1][positionSac.y][positionSac.x].getNombreObjets()+1)))
                     {
                         m_objetPointe=z;
-                        m_decor[1][positionSac.y][positionSac.x].getObjet(z)->AfficherCaracteristiques(eventManager->getPositionSouris(),caract,NULL);
+                        m_decor[1][positionSac.y][positionSac.x].getObjet(z)->AfficherCaracteristiques(eventManager->getPositionSouris(),caract,NULL,cheminClasse);
                     }
                 }
 
@@ -1572,7 +1572,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                                 m_sacPointe.y=j;
 
                                 if (eventManager->getEvenement(sf::Key::LControl,EventKey))
-                                    m_decor[1][j][k].getObjet(objetPointe)->AfficherCaracteristiques(eventManager->getPositionSouris(),hero->m_caracteristiques,&hero->m_coffre);
+                                    m_decor[1][j][k].getObjet(objetPointe)->AfficherCaracteristiques(eventManager->getPositionSouris(),hero->m_caracteristiques,&hero->m_coffre,hero->m_cheminClasse);
 
                                 m_objetPointe=objetPointe;
                             }

@@ -492,8 +492,10 @@ void GestionRaccourcis(Jeu *jeu)
 
 int GestionBoutons(Jeu *jeu)
 {
-    if (   eventManager->getPositionSouris().x > AutoScreenAdjust(750,0).x
-        && eventManager->getPositionSouris().y < AutoScreenAdjust(0,50).y
+    if (   eventManager->getPositionSouris().x > AutoScreenAdjust(775,0).x
+        && eventManager->getPositionSouris().x < AutoScreenAdjust(800,0).x
+        && eventManager->getPositionSouris().y > AutoScreenAdjust(0,0).y
+        && eventManager->getPositionSouris().y < AutoScreenAdjust(0,25).y
         && eventManager->getEvenement(Mouse::Left,EventClic))
         {
             eventManager->StopEvenement(Mouse::Left,EventClic);
