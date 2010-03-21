@@ -51,3 +51,10 @@ Niveau
 Nom
 Console (Tab)
 Uniquement pour : 
+Continuer une partie
+Nouvelle partie
+Options
+Quitter
+Retour
+Votre nom :
+Commencer
