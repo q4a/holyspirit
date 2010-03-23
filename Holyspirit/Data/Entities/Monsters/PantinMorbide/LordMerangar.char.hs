@@ -59,8 +59,7 @@ Objets du monstre
 	*
 		*Katzbalger.item.hs
 		r100
-	$
-	*
+		
 		*Long_sword.item.hs
 		r10000
 	$

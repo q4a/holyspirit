@@ -43,14 +43,13 @@ $
 	$
 
 	*
+		*Unique_mace.item.hs
+		r50
+		
 		*Mace.item.hs
 		r2000
 	$
 
-	*
-		*Unique_mace.item.hs
-		r20
-	$
 
 
 $

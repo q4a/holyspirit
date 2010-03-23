@@ -39,10 +39,6 @@ $
 		r10000
 	$
 	*
-		*Katzbalger.item.hs
-		r200
-	$
-	*
 		*Long_sword.item.hs
 		r10000
 	$
@@ -75,50 +71,43 @@ $
 		r5000
 	$
 	*
+		*Katzbalger.item.hs
+		r50
+
 		*Unique_boot.item.hs
-		r200
-	$
-	*
+		r50
+
 		*Unique_shield.item.hs
-		r200
-	$
-	*
+		r50
+
 		*Unique_dagger.item.hs
-		r200
-	$
-	*
+		r50
+
 		*Unique_long_sword.item.hs
 		r50
-	$
-	*
+
 		*Unique_gown.item.hs
 		r50
-	$
-	*
+
 		*TearfulWidow_tiare.item.hs
 		r50
-	$
-	*
+
 		*Unique_necklage.item.hs
 		r50
 	$
 		*
 		*Drawing_barbute.item.hs
 		r2000
-	$
-		*
+
 		*Drawing_chainmail.item.hs
 		r2000
-	$
-		*
+
 		*Drawing_necklage.item.hs
 		r2000
-	$
-		*
+
 		*Drawing_tiare.item.hs
 		r2000
-	$
-		*
+
 		*Drawing_shield_bronze.item.hs
 		r2000
 	$

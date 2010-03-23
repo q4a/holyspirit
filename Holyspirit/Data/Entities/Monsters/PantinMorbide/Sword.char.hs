@@ -26,6 +26,9 @@ $
 	$
 
 	*
+		*Small_sword_divin.item.hs
+		r50
+		
 		*Small_sword.item.hs
 		r10000
 	$
@@ -33,11 +36,6 @@ $
 	*
 		*Small_shield.item.hs
 		r10000
-	$
-
-	*
-		*Small_sword_divin.item.hs
-		r25
 	$
 
 $

@@ -33,13 +33,11 @@ Objets du monstre
 	$
 
 	*
+		*Unique_boot.item.hs
+		r50
+		
 		*Boot.item.hs
 		r10000
-	$
-
-	*
-		*Unique_boot.item.hs
-		r15
 	$
 
 	*
@@ -48,22 +46,26 @@ Objets du monstre
 	$
 
 	*
+		*Unique_necklage.item.hs
+		r50
+		
 		*Necklage.item.hs
 		r2000
 	$
 
 	*
-		*Unique_necklage.item.hs
-		r10
-	$
-
-	*
+		*Unique_long_sword.item.hs
+		r50
+		
 		*Long_sword.item.hs
 		r2000
 	$
 
 
 	*
+		*Small_sword_divin.item.hs
+		r50
+		
 		*Small_sword.item.hs
 		r3000
 	$
@@ -75,25 +77,13 @@ Objets du monstre
 
 
 	*
-		*Small_sword_divin.item.hs
-		r20
-	$
-
-	*
-		*Unique_long_sword.item.hs
-		r10
-	$
-
-
-	*
+		*Unique_shield.item.hs
+		r50
+		
 		*Great_shield.item.hs
 		r10000
 	$
 
-	*
-		*Unique_shield.item.hs
-		r15
-	$
 
 	*
 		*Dagger.item.hs

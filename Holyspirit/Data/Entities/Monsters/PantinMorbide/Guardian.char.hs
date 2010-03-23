@@ -34,15 +34,12 @@ $
 	$
 
 	*
+		*Katzbalger.item.hs
+		r50
+		
 		*Two_hand_sword.item.hs
 		r10000
 	$
-
-	*
-		*Katzbalger.item.hs
-		r25
-	$
-
 
 	*
 		*Helmet.item.hs

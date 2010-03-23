@@ -30,13 +30,11 @@ Objets du monstre
 	$
 
 	*
-		*Necklage.item.hs
-		r2000
-	$
-
-	*
 		*Unique_necklage.item.hs
 		r50
+		
+		*Necklage.item.hs
+		r2000
 	$
 
 $

@@ -12,7 +12,7 @@ $
 $
 	*
 		*Sacred_tiare.item.hs
-		r1000000
+		r-1
 	$
 $
 $
