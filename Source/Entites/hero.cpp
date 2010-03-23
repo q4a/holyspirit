@@ -326,10 +326,7 @@ void Hero::Sauvegarder()
     m_personnage.setPose(0);
     m_personnage.setAngle(315);
 
-    int plusHaut = 0;
-    for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
-        if(m_ordreAffichage[i] >= plusHaut)
-            plusHaut = m_ordreAffichage[i];
+    CalculerOrdreAffichage();
 
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
         if (m_ordreAffichage[i]!=-1)
@@ -356,13 +353,10 @@ void Hero::Sauvegarder()
 
     render.GetImage().SaveToFile(configuration->chemin_temps + chemin_image);
 
-   // m_contenuSave.push_back(configuration->chemin_temps + chemin_image);
-
     cDAT fichierSave;
 
     fichierSave.Create(m_contenuSave, configuration->chemin_saves+m_chemin_save);
 
-    //m_contenuSave.pop_back();
 }
 
 

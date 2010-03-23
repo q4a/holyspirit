@@ -71,6 +71,8 @@ void EffetGraphique::Animer(float temps)
             float tempsAnimation = m_tileset->getTempsDuTile(m_noAnimation);
             m_animation += temps;
 
+            option_sonUnique = false;
+
             if (m_tileset->getAnimationTile(m_noAnimation) >= 0)
                 if (m_animation>=tempsAnimation)
                 {
