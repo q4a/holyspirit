@@ -87,7 +87,7 @@ public:
 
     bool SeDeplacer(float,coordonnee dimensionsMap);
 
-    void Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,bool surbrillance=false, bool sansEffet=false);
+    void Afficher(Modele_Personnage *modele,bool surbrillance=false, bool sansEffet=false);
 
     int Pathfinding(casePathfinding** map,coordonnee exception, bool noDelete = false);
 

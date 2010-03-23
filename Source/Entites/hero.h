@@ -57,8 +57,9 @@ public:
     void Sauvegarder();
     void Charger(std::string chemin);
     void ChargerModele(bool tout=false);
+    sf::Sprite ChargerPresentation(std::string chemin);
 
-    void Afficher(coordonnee dimensionsMap);
+    void Afficher();
     void CalculerOrdreAffichage();
 
     bool AfficherInventaire(float, std::vector<Objet> &, bool hideLeft);

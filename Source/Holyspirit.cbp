@@ -8,8 +8,8 @@
 		<Build>
 			<Target title="Release">
 				<Option platforms="Windows;" />
-				<Option output="..\Holyspirit\Holyspirit" prefix_auto="0" extension_auto="1" />
-				<Option working_dir="..\Holyspirit" />
+				<Option output="../Holyspirit/Holyspirit" prefix_auto="0" extension_auto="1" />
+				<Option working_dir="../Holyspirit" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Option projectCompilerOptionsRelation="1" />
@@ -19,10 +19,10 @@
 					<Add option="-DWIN32" />
 					<Add option="-DNDEBUG" />
 					<Add option="-D_WINDOWS" />
-					<Add directory="..\..\SFML_SVNNE\branches\sfml2\include" />
+					<Add directory="../../SFML_SVNNE/branches/sfml2/include" />
 				</Compiler>
 				<ResourceCompiler>
-					<Add directory="..\..\SFML_SVN\branches\sfml2\extlibs" />
+					<Add directory="../../SFML_SVN/branches/sfml2/extlibs" />
 				</ResourceCompiler>
 				<Linker>
 					<Add option="-lsfml-audio-s" />
@@ -31,51 +31,51 @@
 					<Add option="-lsfml-system-s" />
 					<Add library="opengl32" />
 					<Add library="glu32" />
-					<Add directory="..\..\SFML_SVNNE\branches\sfml2\lib\mingw" />
+					<Add directory="../../SFML_SVNNE/branches/sfml2/lib/mingw" />
 				</Linker>
 			</Target>
 			<Target title="Debug">
 				<Option platforms="Windows;" />
-				<Option output="..\Holyspirit\Holyspirit_debug" prefix_auto="0" extension_auto="1" />
-				<Option working_dir="..\Holyspirit" />
+				<Option output="../Holyspirit/Holyspirit_debug" prefix_auto="0" extension_auto="1" />
+				<Option working_dir="../Holyspirit" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option projectCompilerOptionsRelation="1" />
 				<Option projectResourceIncludeDirsRelation="1" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="..\..\SFML_SVNNE\branches\sfml2\include" />
+					<Add directory="../../SFML_SVNNE/branches/sfml2/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-lsfml-audio-s" />
 					<Add option="-lsfml-graphics-s" />
 					<Add option="-lsfml-window-s" />
 					<Add option="-lsfml-system-s" />
-					<Add directory="..\..\SFML_SVNNE\branches\sfml2\lib\mingw" />
+					<Add directory="../../SFML_SVNNE/branches/sfml2/lib/mingw" />
 				</Linker>
 			</Target>
 			<Target title="FullDebug">
-				<Option output="..\Holyspirit\Holyspirit_fulldebug" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="..\Holyspirit" />
+				<Option output="../Holyspirit/Holyspirit_fulldebug" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="../Holyspirit" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option use_console_runner="0" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="..\..\SFML_SVN\branches\sfml2\include" />
+					<Add directory="../../SFML_SVN/branches/sfml2/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-lsfml-audio-s-d" />
 					<Add option="-lsfml-graphics-s-d" />
 					<Add option="-lsfml-window-s-d" />
 					<Add option="-lsfml-system-s-d" />
-					<Add directory="..\..\SFML_SVN\branches\sfml2\lib\mingw" />
+					<Add directory="../../SFML_SVN/branches/sfml2/lib/mingw" />
 				</Linker>
 			</Target>
 			<Target title="Linux">
 				<Option platforms="Unix;" />
-				<Option output="..\Holyspirit\Holyspirit_Linux" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="..\Holyspirit" />
+				<Option output="../Holyspirit/Holyspirit_Linux" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="../Holyspirit" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -90,8 +90,8 @@
 			</Target>
 			<Target title="Copy of Release">
 				<Option platforms="Windows;" />
-				<Option output="..\Holyspirit\Holyspirit" prefix_auto="0" extension_auto="1" />
-				<Option working_dir="..\Holyspirit" />
+				<Option output="../Holyspirit/Holyspirit" prefix_auto="0" extension_auto="1" />
+				<Option working_dir="../Holyspirit" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Option projectResourceIncludeDirsRelation="1" />
@@ -109,10 +109,10 @@
 					<Add option="-DWIN32" />
 					<Add option="-DNDEBUG" />
 					<Add option="-D_WINDOWS" />
-					<Add directory="..\..\SFML-1.5-sdk-windows-mingw\SFML-1.5\include" />
+					<Add directory="../../SFML-1.5-sdk-windows-mingw/SFML-1.5/include" />
 				</Compiler>
 				<ResourceCompiler>
-					<Add directory="..\..\SFML_SVN\branches\sfml2\extlibs" />
+					<Add directory="../../SFML_SVN/branches/sfml2/extlibs" />
 				</ResourceCompiler>
 				<Linker>
 					<Add option="-s" />
@@ -123,82 +123,84 @@
 					<Add option="-lsfml-system-s" />
 					<Add library="opengl32" />
 					<Add library="glu32" />
-					<Add directory="..\..\SFML-1.5-sdk-windows-mingw\SFML-1.5\lib\mingw" />
+					<Add directory="../../SFML-1.5-sdk-windows-mingw/SFML-1.5/lib/mingw" />
 				</Linker>
 			</Target>
 		</Build>
 		<VirtualTargets>
 			<Add alias="All" targets="Release;" />
 		</VirtualTargets>
-		<Unit filename="Contextes\c_changementMap.cpp" />
-		<Unit filename="Contextes\c_changementMap.h" />
-		<Unit filename="Contextes\c_craft.cpp" />
-		<Unit filename="Contextes\c_craft.h" />
-		<Unit filename="Contextes\c_demarrage.cpp" />
-		<Unit filename="Contextes\c_demarrage.h" />
-		<Unit filename="Contextes\c_inventaire.cpp" />
-		<Unit filename="Contextes\c_inventaire.h" />
-		<Unit filename="Contextes\c_jeu.cpp" />
-		<Unit filename="Contextes\c_jeu.h" />
-		<Unit filename="Contextes\c_menuInGame.cpp" />
-		<Unit filename="Contextes\c_menuInGame.h" />
-		<Unit filename="Contextes\c_miracles.cpp" />
-		<Unit filename="Contextes\c_miracles.h" />
-		<Unit filename="Contextes\c_potales.cpp" />
-		<Unit filename="Contextes\c_potales.h" />
-		<Unit filename="Contextes\c_quetes.cpp" />
-		<Unit filename="Contextes\c_quetes.h" />
-		<Unit filename="Contextes\contexte.cpp" />
-		<Unit filename="Contextes\contexte.h" />
-		<Unit filename="Entites\case.cpp" />
-		<Unit filename="Entites\case.h" />
-		<Unit filename="Entites\classe.cpp" />
-		<Unit filename="Entites\classe.h" />
-		<Unit filename="Entites\hero.cpp" />
-		<Unit filename="Entites\hero.h" />
-		<Unit filename="Entites\liste_case.cpp" />
-		<Unit filename="Entites\liste_case.h" />
-		<Unit filename="Entites\miracle.cpp" />
-		<Unit filename="Entites\miracle.h" />
-		<Unit filename="Entites\monstre.cpp" />
-		<Unit filename="Entites\monstre.h" />
-		<Unit filename="Entites\objet.cpp" />
-		<Unit filename="Entites\objet.h" />
-		<Unit filename="Entites\personnage.cpp" />
-		<Unit filename="Entites\personnage.h" />
-		<Unit filename="Entites\quete.cpp" />
-		<Unit filename="Entites\quete.h" />
-		<Unit filename="Entites\script.cpp" />
-		<Unit filename="Entites\script.h" />
-		<Unit filename="Map\decor.cpp" />
-		<Unit filename="Map\decor.h" />
-		<Unit filename="Map\evenement.cpp" />
-		<Unit filename="Map\evenement.h" />
-		<Unit filename="Map\map.cpp" />
-		<Unit filename="Map\map.h" />
-		<Unit filename="Map\tile.cpp" />
-		<Unit filename="Map\tile.h" />
-		<Unit filename="Map\tileset.cpp" />
-		<Unit filename="Map\tileset.h" />
-		<Unit filename="Moteurs\Entite_graphique.cpp" />
-		<Unit filename="Moteurs\Entite_graphique.h" />
-		<Unit filename="Moteurs\commande.h" />
-		<Unit filename="Moteurs\console.cpp" />
-		<Unit filename="Moteurs\console.h" />
-		<Unit filename="Moteurs\eventManager.cpp" />
-		<Unit filename="Moteurs\eventManager.h" />
-		<Unit filename="Moteurs\light.cpp" />
-		<Unit filename="Moteurs\light.h" />
-		<Unit filename="Moteurs\lightManager.cpp" />
-		<Unit filename="Moteurs\lightManager.h" />
-		<Unit filename="Moteurs\modeleMoteurParticule.cpp" />
-		<Unit filename="Moteurs\modeleMoteurParticule.h" />
-		<Unit filename="Moteurs\moteurGraphique.cpp" />
-		<Unit filename="Moteurs\moteurGraphique.h" />
-		<Unit filename="Moteurs\moteurParticule.cpp" />
-		<Unit filename="Moteurs\moteurParticule.h" />
-		<Unit filename="Moteurs\moteurSons.cpp" />
-		<Unit filename="Moteurs\moteurSons.h" />
+		<Unit filename="Contextes/c_changementMap.cpp" />
+		<Unit filename="Contextes/c_changementMap.h" />
+		<Unit filename="Contextes/c_craft.cpp" />
+		<Unit filename="Contextes/c_craft.h" />
+		<Unit filename="Contextes/c_demarrage.cpp" />
+		<Unit filename="Contextes/c_demarrage.h" />
+		<Unit filename="Contextes/c_inventaire.cpp" />
+		<Unit filename="Contextes/c_inventaire.h" />
+		<Unit filename="Contextes/c_jeu.cpp" />
+		<Unit filename="Contextes/c_jeu.h" />
+		<Unit filename="Contextes/c_mainMenu.cpp" />
+		<Unit filename="Contextes/c_mainMenu.h" />
+		<Unit filename="Contextes/c_menuInGame.cpp" />
+		<Unit filename="Contextes/c_menuInGame.h" />
+		<Unit filename="Contextes/c_miracles.cpp" />
+		<Unit filename="Contextes/c_miracles.h" />
+		<Unit filename="Contextes/c_potales.cpp" />
+		<Unit filename="Contextes/c_potales.h" />
+		<Unit filename="Contextes/c_quetes.cpp" />
+		<Unit filename="Contextes/c_quetes.h" />
+		<Unit filename="Contextes/contexte.cpp" />
+		<Unit filename="Contextes/contexte.h" />
+		<Unit filename="Entites/case.cpp" />
+		<Unit filename="Entites/case.h" />
+		<Unit filename="Entites/classe.cpp" />
+		<Unit filename="Entites/classe.h" />
+		<Unit filename="Entites/hero.cpp" />
+		<Unit filename="Entites/hero.h" />
+		<Unit filename="Entites/liste_case.cpp" />
+		<Unit filename="Entites/liste_case.h" />
+		<Unit filename="Entites/miracle.cpp" />
+		<Unit filename="Entites/miracle.h" />
+		<Unit filename="Entites/monstre.cpp" />
+		<Unit filename="Entites/monstre.h" />
+		<Unit filename="Entites/objet.cpp" />
+		<Unit filename="Entites/objet.h" />
+		<Unit filename="Entites/personnage.cpp" />
+		<Unit filename="Entites/personnage.h" />
+		<Unit filename="Entites/quete.cpp" />
+		<Unit filename="Entites/quete.h" />
+		<Unit filename="Entites/script.cpp" />
+		<Unit filename="Entites/script.h" />
+		<Unit filename="Map/decor.cpp" />
+		<Unit filename="Map/decor.h" />
+		<Unit filename="Map/evenement.cpp" />
+		<Unit filename="Map/evenement.h" />
+		<Unit filename="Map/map.cpp" />
+		<Unit filename="Map/map.h" />
+		<Unit filename="Map/tile.cpp" />
+		<Unit filename="Map/tile.h" />
+		<Unit filename="Map/tileset.cpp" />
+		<Unit filename="Map/tileset.h" />
+		<Unit filename="Moteurs/Entite_graphique.cpp" />
+		<Unit filename="Moteurs/Entite_graphique.h" />
+		<Unit filename="Moteurs/commande.h" />
+		<Unit filename="Moteurs/console.cpp" />
+		<Unit filename="Moteurs/console.h" />
+		<Unit filename="Moteurs/eventManager.cpp" />
+		<Unit filename="Moteurs/eventManager.h" />
+		<Unit filename="Moteurs/light.cpp" />
+		<Unit filename="Moteurs/light.h" />
+		<Unit filename="Moteurs/lightManager.cpp" />
+		<Unit filename="Moteurs/lightManager.h" />
+		<Unit filename="Moteurs/modeleMoteurParticule.cpp" />
+		<Unit filename="Moteurs/modeleMoteurParticule.h" />
+		<Unit filename="Moteurs/moteurGraphique.cpp" />
+		<Unit filename="Moteurs/moteurGraphique.h" />
+		<Unit filename="Moteurs/moteurParticule.cpp" />
+		<Unit filename="Moteurs/moteurParticule.h" />
+		<Unit filename="Moteurs/moteurSons.cpp" />
+		<Unit filename="Moteurs/moteurSons.h" />
 		<Unit filename="configuration.cpp" />
 		<Unit filename="configuration.h" />
 		<Unit filename="constantes.h" />

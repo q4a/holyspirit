@@ -313,13 +313,56 @@ void Hero::Sauvegarder()
     else
         console->Ajouter("Impossible de sauvegarder le héro !",1);
 
+
+    sf::RenderImage render;
+    render.Create(256,256);
+
+
+    int etat = m_personnage.getEtat();
+    int pose = m_personnage.getPose();
+    int angle = m_personnage.getAngle();
+
+    m_personnage.setJustEtat(0);
+    m_personnage.setPose(0);
+    m_personnage.setAngle(315);
+
+    int plusHaut = 0;
+    for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
+        if(m_ordreAffichage[i] >= plusHaut)
+            plusHaut = m_ordreAffichage[i];
+
+    for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
+        if (m_ordreAffichage[i]!=-1)
+        {
+            m_personnage.m_entite_graphique.m_tileset = &m_modelePersonnage[m_ordreAffichage[i]].m_tileset[0][5];
+            m_personnage.Animer(&m_modelePersonnage[m_ordreAffichage[i]], 0);
+            m_personnage.m_entite_graphique.Generer();
+
+            m_personnage.m_entite_graphique.m_sprite.SetX(128);
+            m_personnage.m_entite_graphique.m_sprite.SetY(128);
+
+            render.Draw(m_personnage.m_entite_graphique.m_sprite);
+        }
+
+    m_personnage.setJustEtat(etat);
+    m_personnage.setPose(pose);
+    m_personnage.setAngle(angle);
+
+    render.Display();
+    std::string chemin_image;
+    for(int i = 0  ; i < m_chemin_save.size() - 7 ; ++i)
+        chemin_image.push_back(m_chemin_save[i]);
+    chemin_image += ".png";
+
+    render.GetImage().SaveToFile(configuration->chemin_temps + chemin_image);
+
+   // m_contenuSave.push_back(configuration->chemin_temps + chemin_image);
+
     cDAT fichierSave;
 
     fichierSave.Create(m_contenuSave, configuration->chemin_saves+m_chemin_save);
-    string buffer=configuration->chemin_temps+m_chemin_save;
-    //remove(buffer.c_str());
-    //m_contenuSave.clear();
 
+    //m_contenuSave.pop_back();
 }
 
 
@@ -582,6 +625,238 @@ void Hero::Charger(std::string chemin_save)
         console->Ajouter("/Chargement du héro terminé");
 }
 
+sf::Sprite Hero::ChargerPresentation(std::string chemin_save)
+{
+    console->Ajouter("Chargement du hero.");
+    for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
+        m_cheminModele[i]="";
+
+    m_chemin_save = chemin_save;
+
+    cDAT reader;
+    if (reader.Read(configuration->chemin_saves+m_chemin_save))
+    {
+        ifstream* fichier=reader.GetInfos(configuration->chemin_temps+m_chemin_save);
+        //fichier.open((configuration->chemin_saves+"hero.sav.hs").c_str(), ios::in | ios::binary);
+        if (fichier)
+        {
+            char caractere;
+            Caracteristique charTemp;
+            charTemp=m_personnage.getCaracteristique();
+
+            int temp = 0;
+            *fichier>>temp;
+            if(temp != VERSION_SAVE)
+                configuration->error_message = "Warning ! Incompatible Save, please delete your save into \"Data/Saves\" ";
+
+            *fichier>>m_caracteristiques.nom;
+
+            *fichier>>m_cheminClasse;
+
+            *fichier>>charTemp.vitesse;
+            *fichier>>charTemp.pointAme;
+            *fichier>>charTemp.niveau;
+
+            *fichier>>charTemp.force;
+            *fichier>>charTemp.dexterite;
+            *fichier>>charTemp.vitalite;
+            *fichier>>charTemp.piete;
+            *fichier>>charTemp.charisme;
+            *fichier>>charTemp.pts_restant;
+            *fichier>>charTemp.miracles_restant;
+
+            *fichier>>m_argent;
+            *fichier>>m_holywater;
+
+            for(int i = 0 ; i < 8 ; ++i)
+                *fichier>>m_raccourcis[i].miracle>>m_raccourcis[i].no;
+
+            *fichier>>m_personnage.m_miracleALancer;
+
+            charTemp.ancienPointAme=charTemp.pointAme,charTemp.positionAncienAme=charTemp.pointAme;
+
+            if (configuration->debug)
+                console->Ajouter("/Lectures des caracteristiques.");
+
+            do
+            {
+                fichier->get(caractere);
+                if (caractere=='o')
+                {
+                    int pos=fichier->tellg();
+                    m_inventaire.push_back(Objet ());
+                    m_inventaire.back().ChargerTexte(fichier,m_caracteristiques,true);
+                    m_inventaire.back().Charger(m_inventaire.back().getChemin(),m_caracteristiques,true);
+                    fichier->seekg(pos, ios::beg);
+                    m_inventaire.back().m_benedictions.clear();
+                    m_inventaire.back().ChargerTexte(fichier,m_caracteristiques);
+
+                    if (m_inventaire.back().m_equipe>=0&&m_inventaire.back().m_type==ARME)
+                    {
+                        if (m_inventaire.back().m_shoot_weapon)
+                            m_personnage.m_shooter=true;
+                        else
+                            m_personnage.m_shooter=false;
+                    }
+
+                    fichier->get(caractere);
+                }
+                if (fichier->eof())
+                    throw "Impossible de charger la sauvegarde";
+            }
+            while (caractere!='$');
+
+            if (configuration->debug)
+                console->Ajouter("/Lectures des objets.");
+
+            do
+            {
+                fichier->get(caractere);
+                if (caractere=='o')
+                {
+                    int pos=fichier->tellg();
+                    m_coffre.push_back(Objet ());
+                    m_coffre.back().ChargerTexte(fichier,m_caracteristiques,true);
+                    m_coffre.back().Charger(m_coffre.back().getChemin(),m_caracteristiques,true);
+                    fichier->seekg(pos, ios::beg);
+                    m_coffre.back().m_benedictions.clear();
+                    m_coffre.back().ChargerTexte(fichier,m_caracteristiques);
+
+                    fichier->get(caractere);
+                }
+                if (fichier->eof())
+                    throw "Impossible de charger la sauvegarde";
+            }
+            while (caractere!='$');
+
+            if (configuration->debug)
+                console->Ajouter("/Lectures des objets du coffre.");
+
+            do
+            {
+                fichier->get(caractere);
+                if (caractere=='*')
+                {
+                    m_lvl_miracles.push_back(0);
+                    do
+                    {
+                        fichier->get(caractere);
+                        if (caractere=='l')
+                            *fichier>>m_lvl_miracles.back();
+                        if (fichier->eof())
+                            throw "Impossible de charger la sauvegarde";
+                    }
+                    while (caractere!='$');
+                    fichier->get(caractere);
+                }
+                if (fichier->eof())
+                    throw "Impossible de charger la sauvegarde";
+            }
+            while (caractere!='$');
+
+            if (configuration->debug)
+                console->Ajouter("/Lectures des miracles.");
+
+            do
+            {
+                fichier->get(caractere);
+                if (caractere=='q')
+                {
+                    m_quetes.push_back(Quete ());
+                    m_quetes.back().ChargerTexte(fichier);
+                    fichier->get(caractere);
+                }
+                if (fichier->eof())
+                    throw "Impossible de charger la sauvegarde";
+            }
+            while (caractere!='$');
+
+            if (configuration->debug)
+                console->Ajouter("/Lectures des quêtes.");
+
+            do
+            {
+                fichier->get(caractere);
+                if (caractere=='p')
+                {
+                    m_potales.push_back(Potale ());
+                    do
+                    {
+                        fichier->get(caractere);
+                        if (caractere=='m')
+                            *fichier>>m_potales.back().chemin;
+
+                        else if (caractere=='t')
+                            *fichier>>m_potales.back().nom;
+
+                        else if (caractere=='x')
+                            *fichier>>m_potales.back().position.x;
+                        else if (caractere=='y')
+                            *fichier>>m_potales.back().position.y;
+
+
+                        if (fichier->eof())
+                        {
+                            throw "Impossible de charger la potale";
+                        }
+                    }
+                    while (caractere!='$');
+                    fichier->get(caractere);
+                }
+                if (fichier->eof())
+                    throw "Impossible de charger la sauvegarde";
+            }
+            while (caractere!='$');
+
+
+            if (configuration->debug)
+                console->Ajouter("/Lectures des potales.");
+
+            UpdateRaccourcis();
+
+            m_personnage.setCaracteristique(charTemp);
+        }
+        fichier->close();
+    }
+
+    m_classe.Charger(m_cheminClasse, m_lvl_miracles, m_caracteristiques);
+    m_lvl_miracles.resize(m_classe.miracles.size(),0);
+
+    ChargerModele();
+
+    sf::RenderImage render;
+    render.Create(256,256);
+
+    m_personnage.setEtat(0);
+    m_personnage.setAngle(315);
+
+    int plusHaut = 0;
+    for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
+        if(m_ordreAffichage[i] >= plusHaut)
+            plusHaut = m_ordreAffichage[i];
+
+    for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
+        if (m_ordreAffichage[i]!=-1)
+        {
+            m_personnage.m_entite_graphique.m_tileset = &m_modelePersonnage[m_ordreAffichage[i]].m_tileset[0][5];
+            m_personnage.Animer(&m_modelePersonnage[m_ordreAffichage[i]], 0);
+            m_personnage.m_entite_graphique.Generer();
+
+            m_personnage.m_entite_graphique.m_sprite.SetX(128);
+            m_personnage.m_entite_graphique.m_sprite.SetY(128);
+
+            render.Draw(m_personnage.m_entite_graphique.m_sprite);
+        }
+
+    render.Display();
+    int image = moteurGraphique->AjouterImage(render.GetImage(), 1);
+
+    sf::Sprite sprite;
+    sprite.SetImage(*moteurGraphique->getImage(image));
+    sprite.Resize(255,255);
+
+    return sprite;
+}
 
 
 void Hero::ChargerModele(bool tout)
@@ -728,7 +1003,7 @@ void Hero::CalculerOrdreAffichage()
 
 }
 
-void Hero::Afficher(coordonnee dimensionsMap)
+void Hero::Afficher()
 {
     if(m_personnage.getEtat() == 3)
         m_personnage.setEtat(0);
@@ -743,7 +1018,7 @@ void Hero::Afficher(coordonnee dimensionsMap)
         {
             m_personnage.Animer(&m_modelePersonnage[m_ordreAffichage[i]], 0);
             m_personnage.m_entite_graphique.Generer();
-            m_personnage.Afficher(dimensionsMap,&m_modelePersonnage[m_ordreAffichage[i]], false, m_ordreAffichage[i]!=plusHaut);
+            m_personnage.Afficher(&m_modelePersonnage[m_ordreAffichage[i]], false, m_ordreAffichage[i]!=plusHaut);
         }
     AfficherRaccourcis();
 }

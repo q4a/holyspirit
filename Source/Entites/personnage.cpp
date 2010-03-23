@@ -327,7 +327,7 @@ int Personnage::getOrdre(Modele_Personnage *modele)
     return -10;
 }
 
-void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,bool surbrillance, bool sansEffet)
+void Personnage::Afficher(Modele_Personnage *modele,bool surbrillance, bool sansEffet)
 {
     if (modele!=NULL)
         if (modele->m_tileset.size()>0 && m_etat>=0 && m_etat < modele->m_tileset.size())

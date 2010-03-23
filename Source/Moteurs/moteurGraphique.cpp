@@ -666,6 +666,23 @@ int MoteurGraphique::AjouterImage(std::string chemin,int importance)
     return m_images.size()-1;
 }
 
+
+int MoteurGraphique::AjouterImage(const sf::Image &img,int importance)
+{
+    m_images.push_back(Image_moteur ());
+    m_images.back().nom="";
+
+    m_images.back().img = new sf::Image();
+    (*m_images.back().img) = img;
+
+    if (!configuration->lissage)
+        m_images.back().img->SetSmooth(false);
+
+    m_images.back().importance=importance;
+
+    return m_images.size()-1;
+}
+
 int MoteurGraphique::AjouterTileset(std::string chemin,int importance)
 {
     std::ifstream fichier;
