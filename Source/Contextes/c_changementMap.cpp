@@ -138,6 +138,9 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         moteurGraphique->ViderParticules();
         moteurSons->StopAllSounds();
+        moteurGraphique->LightManager->Delete_All_Light();
+        moteurGraphique->LightManager->Delete_All_Wall();
+        moteurGraphique->DecrementerImportance();
 
         std::vector<Personnage> buffer;
         std::vector<Modele_Monstre> bufferModele;
@@ -176,11 +179,6 @@ void c_Chargement::Utiliser(Jeu *jeu)
         }
 
         jeu->map=new Map();
-
-        moteurGraphique->LightManager->Delete_All_Light();
-        moteurGraphique->LightManager->Delete_All_Wall();
-        moteurGraphique->DecrementerImportance();
-
 
         jeu->hero.ChargerModele(true);
         jeu->hero.m_minimap.clear();

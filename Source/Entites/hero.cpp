@@ -181,10 +181,6 @@ Hero::Hero()
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
         m_cheminModeleNouveau[i]="",m_cheminModele[i]="";
 
-    //m_contenuSave.push_back(configuration->chemin_temps+m_chemin_save);
-
-    //m_personnage.m_light=moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(m_personnage.getCoordonnee().x,m_personnage.getCoordonnee().y),512,2048,16,sf::Color(255,255,255));
-
     m_defilement_trader=0;
 
     for(int i = 0 ; i < 8 ; ++i)

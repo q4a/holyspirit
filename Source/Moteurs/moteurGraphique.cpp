@@ -555,7 +555,7 @@ int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std
 {
     for (unsigned i=0; i < m_images.size(); i++)
     {
-        if (m_images[i].nom==nom)
+        if (m_images[i].nom==nom && m_images[i].img != NULL)
         {
             m_images[i].importance=importance;
             return i;
@@ -609,9 +609,9 @@ int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std
 
 int MoteurGraphique::AjouterImage(std::string chemin,int importance)
 {
-    for (unsigned i=0; i < m_images.size(); i++)
+     for (unsigned i=0; i < m_images.size(); i++)
     {
-        if (m_images[i].nom==chemin)
+        if (m_images[i].nom==chemin && m_images[i].img != NULL)
         {
             m_images[i].importance=importance;
             return i;
@@ -698,10 +698,10 @@ int MoteurGraphique::AjouterTileset(std::ifstream &fichier, std::string chemin,i
         {
             if (m_tileset[i].nom == chemin)
             {
-                m_tileset[i].tileset->ChargerImages();
+                m_tileset[i].tileset->Charger(fichier);
                 m_tileset[i].importance = importance;
 
-                Tileset buffer(fichier);
+               // Tileset buffer(fichier);
 
                 return i;
             }
@@ -721,7 +721,7 @@ int MoteurGraphique::AjouterTileset(std::ifstream &fichier, std::string chemin,i
 void MoteurGraphique::DecrementerImportance()
 {
     for (unsigned i=0; i < m_images.size(); i++)
-        if (m_images[i].importance!=-1)
+        if (m_images[i].importance!=-1 && m_images[i].img != NULL)
         {
             m_images[i].importance--;
             if (m_images[i].importance<=0)
@@ -732,7 +732,7 @@ void MoteurGraphique::DecrementerImportance()
             }
         }
 
-    //m_tileset.clear();
+    m_tileset.clear();
 }
 
 int MoteurGraphique::AjouterModeleSystemeParticules(std::string chemin)
