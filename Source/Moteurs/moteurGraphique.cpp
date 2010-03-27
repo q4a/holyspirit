@@ -90,7 +90,7 @@ void MoteurGraphique::CreateNewWindow()
         m_ecran.Create(sf::VideoMode(configuration->Resolution.x, configuration->Resolution.y),"HolySpirit : Act of Faith",sf::Style::Titlebar);
 
    if (configuration->syncronisation_verticale)
-        m_ecran.SetFramerateLimit(60);
+        m_ecran.UseVerticalSync(true);
 
     m_ecran.ShowMouseCursor(false);
 
@@ -335,13 +335,10 @@ void MoteurGraphique::Afficher()
 
         LightManager->DrawWallShadow(&m_light_screen2,&temp);
 
-        sprite.SetBlendMode(sf::Blend::Alpha);
-
         for (IterCommande=m_commandes[9].begin();IterCommande!=m_commandes[9].end();++IterCommande)
         {
-            sprite=IterCommande->m_sprite;
-            sprite.SetColor(sf::Color(0,0,0,sprite.GetColor().a));
-            m_light_screen2.Draw(sprite);
+            IterCommande->m_sprite.SetColor(sf::Color(0,0,0,sprite.GetColor().a));
+            m_light_screen2.Draw(IterCommande->m_sprite);
         }
 
         m_light_screen2.SetView(m_light_screen2.GetDefaultView());
@@ -811,7 +808,7 @@ void MoteurGraphique::AjouterCommande(sf::Sprite *sprite, int couche, bool camer
         m_commandes[couche].push_back(Commande (sprite,camera));
 }
 
-void MoteurGraphique::AjouterTexte(std::string txt, coordonnee pos, int couche, bool titre, int size, sf::Color color, bool fond)
+void MoteurGraphique::AjouterTexte(const std::string &txt, coordonnee pos, int couche, bool titre, int size, sf::Color color, bool fond)
 {
     sf::Text temp;
     temp.SetFont(m_font);
@@ -898,7 +895,7 @@ void MoteurGraphique::ViderParticules()
     m_systemeParticules.clear();
 }
 
-Entite_graphique MoteurGraphique::getEntiteGraphique(int noTileset, int noTile, int couche)
+Entite_graphique &MoteurGraphique::getEntiteGraphique(int noTileset, int noTile, int couche)
 {
     Entite_graphique entite;
 
@@ -936,7 +933,7 @@ ModeleParticuleSysteme* MoteurGraphique::getModeleMoteurParticules(int ID)
         return &m_modeleSystemeParticules[0];
 }
 
-std::string MoteurGraphique::getCheminImage(int IDimage)
+const std::string &MoteurGraphique::getCheminImage(int IDimage)
 {
     if (IDimage>=0&&IDimage<(int)m_images.size())
         return m_images[(unsigned)IDimage].nom;

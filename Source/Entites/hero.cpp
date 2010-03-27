@@ -2939,20 +2939,6 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                         m_personnage.m_lancementMiracleEnCours = true;
                         m_personnage.m_miracleEnCours.push_back(EntiteMiracle ());
 
-                       /* if (m_classe.miracles[miracle].m_effets[0].m_type != CORPS_A_CORPS
-                        &&  m_classe.miracles[miracle].m_effets[0].m_type != CONDITION)
-                        {
-                            Caracteristique temp = m_personnage.getCaracteristique();
-                            temp.foi        -= m_classe.miracles[miracle].m_coutFoi + m_classe.miracles[miracle].m_reserveFoi;
-                            temp.vie        -= m_classe.miracles[miracle].m_coutVie + m_classe.miracles[miracle].m_reserveVie;
-                            temp.reserveFoi += m_classe.miracles[miracle].m_reserveFoi;
-                            temp.reserveVie += m_classe.miracles[miracle].m_reserveVie;
-                            m_personnage.setCaracteristique(temp);
-                            m_classe.miracles[miracle].m_cur_time = 0;
-
-                            m_personnage.m_miracleEnCours.back().m_dejaConsommeFoi = true;
-                        }*/
-
                         m_personnage.m_miracleEnCours.back().m_infos.push_back(new InfosEntiteMiracle ());
 
                         m_personnage.m_miracleEnCours.back().m_modele = miracle;

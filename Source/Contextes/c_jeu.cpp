@@ -143,7 +143,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
     Animation(jeu);
     Lumieres(jeu);
 
-    if ((tempsEcouleDepuisDernierAffichage>0.012f&&configuration->syncronisation_verticale)||(!configuration->syncronisation_verticale))
+  //  if ((tempsEcouleDepuisDernierAffichage>0.012f&&configuration->syncronisation_verticale)||(!configuration->syncronisation_verticale))
     {
         jeu->hero.PlacerCamera();
 
@@ -347,6 +347,8 @@ void c_Jeu::Animation(Jeu *jeu)
 
                                     jeu->hero.m_personnage.InfligerDegats(-degats * jeu->hero.m_caracteristiques.volVie, 4, NULL);
                                     jeu->hero.m_caracteristiques.foi += degats *jeu->hero.m_caracteristiques.volFoi;
+
+                                    jeu->hero.m_personnage.m_miracleFrappeEnCours = false;
                                 }
 
                 }
@@ -817,6 +819,7 @@ void c_Jeu::Evenements(Jeu *jeu)
                     if (jeu->hero.UtiliserMiracle(jeu->hero.m_personnage.m_miracleALancer, jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible))
                     {
                         jeu->hero.m_personnage.m_miracleEnCours.back().m_infos.back()->m_cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine());
+                        jeu->hero.setMonstreVise(jeu->map->getMonstreIllumine());
 
                         coordonnee positionHero;
                         positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
