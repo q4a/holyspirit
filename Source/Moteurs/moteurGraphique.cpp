@@ -895,7 +895,7 @@ void MoteurGraphique::ViderParticules()
     m_systemeParticules.clear();
 }
 
-Entite_graphique &MoteurGraphique::getEntiteGraphique(int noTileset, int noTile, int couche)
+Entite_graphique MoteurGraphique::getEntiteGraphique(int noTileset, int noTile, int couche)
 {
     Entite_graphique entite;
 
@@ -933,7 +933,7 @@ ModeleParticuleSysteme* MoteurGraphique::getModeleMoteurParticules(int ID)
         return &m_modeleSystemeParticules[0];
 }
 
-const std::string &MoteurGraphique::getCheminImage(int IDimage)
+std::string MoteurGraphique::getCheminImage(int IDimage)
 {
     if (IDimage>=0&&IDimage<(int)m_images.size())
         return m_images[(unsigned)IDimage].nom;

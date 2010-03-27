@@ -100,7 +100,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	void AjouterTexteNonChevauchable(sf::Text*, int couche=0,bool titre=false);
 	void AjouterTexte(const std::string &, coordonnee, int couche=0, bool titre=false, int size = 14, sf::Color color = sf::Color(224,224,224), bool fond = false);
 
-	Entite_graphique &getEntiteGraphique(int noTileset, int noTile, int couche);
+	Entite_graphique getEntiteGraphique(int noTileset, int noTile, int couche);
 
 	void DecrementerImportance();
 
@@ -120,7 +120,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	ModeleParticuleSysteme* getModeleMoteurParticules(int ID);
 
-	const std::string &getCheminImage(int IDimage);
+	std::string getCheminImage(int IDimage);
 
 	sf::Shader  EffectBlur,EffectBlur2,EffectBlurScreen,EffectMort,EffectNoir,EffectContrastes,EffectFiltre, EffectWater, EffectDistortion;
 	sf::RenderImage bufferImage;

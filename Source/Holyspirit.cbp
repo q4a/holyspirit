@@ -44,6 +44,9 @@
 				<Option projectResourceIncludeDirsRelation="1" />
 				<Compiler>
 					<Add option="-g" />
+					<Add option="-DWIN32" />
+					<Add option="-DDEBUG" />
+					<Add option="-D_WINDOWS" />
 					<Add directory="..\..\SFML_SVNNE\branches\sfml2\include" />
 				</Compiler>
 				<Linker>
