@@ -55,6 +55,7 @@ public:
     ~Hero();
 
     void Sauvegarder();
+    void SauvegarderApercu();
     void Charger(std::string chemin);
     void ChargerModele(bool tout=false);
     sf::Sprite ChargerPresentation(std::string chemin);

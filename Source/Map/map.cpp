@@ -1447,6 +1447,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
 
     sf::Sprite sky;
     sky.SetImage(*moteurGraphique->getImage(m_img_sky));
+    sky.Resize(configuration->Resolution.x,configuration->Resolution.y);
     moteurGraphique->AjouterCommande(&sky,0,0);
 
     int maxY = hero->m_personnage.getCoordonnee().y + (int)(17 * configuration->zoom * configuration->Resolution.x/800);
@@ -2213,6 +2214,8 @@ bool Map::Miracle_CorpsACorps (Hero *hero, Personnage *personnage, Miracle &mode
              && personnage->getArrivee().y == personnage->getCoordonnee().y)
             {
                 personnage->Frappe(personnage->getCoordonneePixel(),info.m_cible->getCoordonneePixel());
+                if(effet.m_informations[1])
+                    personnage->m_miracleFrappeEnCours = true;
                 for (int p=0;p<(int)effet.m_lien.size();p++)
                 {
                     miracleEnCours.m_infos.push_back(new InfosEntiteMiracle ());
@@ -3339,6 +3342,15 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         {
             m_monstre[monstre].m_actif = script->getValeur(noInstruction, 0);
         }
+        else if (script->m_instructions[noInstruction].nom=="gift_all_items" && monstre != -1)
+        {
+            if (m_monstre[monstre].getCoordonnee().x>=0
+              &&m_monstre[monstre].getCoordonnee().x<m_dimensions.x
+              &&m_monstre[monstre].getCoordonnee().y>=0
+              &&m_monstre[monstre].getCoordonnee().y<m_dimensions.y)
+                for (int i=0;i<(int)m_monstre[monstre].getObjets().size();++i)
+                    m_decor[1][m_monstre[monstre].getCoordonnee().y][m_monstre[monstre].getCoordonnee().x].AjouterObjet(m_monstre[monstre].getObjets()[i]);
+        }
         else if (script->m_instructions[noInstruction].nom=="set_entityActif" && monstre == -1)
         {
             if(script->getValeur(noInstruction, 0) >= 0 && script->getValeur(noInstruction, 0) < m_monstre.size())
@@ -3957,52 +3969,19 @@ bool Map::InfligerDegats(int numero, float degats, int type, Hero *hero,bool pou
 
 bool Map::InfligerDegats(Personnage *monstre, float degats, int type, Hero *hero,bool pousser)
 {
-    /*if (configuration->sang&&monstre->EnVie())
-        for (int i=0;i<5;++i)
-            if (rand()%(100)>25&&monstre->getCaracteristique().sang)
-            {
-                coordonneeDecimal position;
-                position.x=rand()%(600 - 100) + 100;
-                position.y=rand()%(400 - 100 ) + 100;
-
-                menu->AjouterSang(position);
-            }*/
-
     float viePrecedente = monstre->getCaracteristique().vie;
 
-    /*if(monstre->EnVie()&&pousser)
-    {
-        double m=atan(((double)hero->m_personnage.getCoordonnee().y-(double)monstre->getCoordonnee().y)/(double)((double)hero->m_personnage.getCoordonnee().x-(double)monstre->getCoordonnee().x));
-        if(hero->m_personnage.getCoordonnee().x-monstre->getCoordonnee().x<0)
-            m-=M_PI;
-        coordonnee vecteur;
-        vecteur.x=(int)(-cos(m)*20);
-        vecteur.y=(int)(-sin(m)*20);
-        PousserMonstre(numeroMonstre,vecteur);
+    if(monstre != &hero->m_personnage)
+        monstre->InfligerDegats(degats, type, &m_ModeleMonstre[monstre->getModele()]);
+    else
+        monstre->InfligerDegats(degats, type, &hero->m_modelePersonnage[0]);
 
-        for(int o=0;o<2;o++)
-            for(int x=0;x<10;x++)
-                for(int y=0;y<10;y++)
-                    if(x>=0&&y>=0&&x<m_dimensions.x&&y<m_dimensions.y)
-                        if(m_decor[o][y][x].getMonstre()>=0&&m_decor[o][y][x].getMonstre()<m_monstre.size())
-                            m_monstre[m_decor[o][y][x].getMonstre()].setVu(1);
-    }*/
-
-
-        if(monstre != &hero->m_personnage)
-            monstre->InfligerDegats(degats, type, &m_ModeleMonstre[monstre->getModele()]);
-        else
-            monstre->InfligerDegats(degats, type, &hero->m_modelePersonnage[0]);
-
-        /*hero->m_personnage.InfligerDegats(-degats * hero->m_caracteristiques.volVie, NULL);
-        hero->m_caracteristiques.foi += degats * hero->m_caracteristiques.volFoi;*/
-
-        for (int x=monstre->getCoordonnee().x;x<10+monstre->getCoordonnee().x;x++)
-            for (int y=monstre->getCoordonnee().y;y<10+monstre->getCoordonnee().y;y++)
-                if (x>=0&&y>=0&&x<m_dimensions.x&&y<m_dimensions.y)
-                    for (unsigned o = 0 ; o < m_decor[1][y][x].getMonstre().size() ; ++o)
-                        if (m_decor[1][y][x].getMonstre()[o]>=0&&m_decor[1][y][x].getMonstre()[o]<(int)m_monstre.size())
-                            m_monstre[m_decor[1][y][x].getMonstre()[o]].setVu(1);
+    for (int x=monstre->getCoordonnee().x;x<10+monstre->getCoordonnee().x;x++)
+        for (int y=monstre->getCoordonnee().y;y<10+monstre->getCoordonnee().y;y++)
+            if (x>=0&&y>=0&&x<m_dimensions.x&&y<m_dimensions.y)
+                for (unsigned o = 0 ; o < m_decor[1][y][x].getMonstre().size() ; ++o)
+                    if (m_decor[1][y][x].getMonstre()[o]>=0&&m_decor[1][y][x].getMonstre()[o]<(int)m_monstre.size())
+                        m_monstre[m_decor[1][y][x].getMonstre()[o]].setVu(1);
 
     if (!monstre->EnVie() && viePrecedente > 0 && monstre != &hero->m_personnage)
     {
@@ -4016,13 +3995,7 @@ bool Map::InfligerDegats(Personnage *monstre, float degats, int type, Hero *hero
         }
 
         if (monstre->getCaracteristique().pointAme>0)
-        {
-            /*coordonneeDecimal position;
-            position.x=(((monstre->getCoordonnee().x-monstre->getCoordonnee().y-1)*64)-GetViewRect(moteurGraphique->m_camera).Left+48-(configuration->Resolution.w/configuration->zoom/2-400));
-            position.y=(((monstre->getCoordonnee().x+monstre->getCoordonnee().y)*32)-GetViewRect(moteurGraphique->m_camera).Top-96);
-            menu->AjouterAme(position,monstre->getCaracteristique().pointAme);*/
             hero->m_personnage.AjouterPointAme(monstre->getCaracteristique().pointAme);
-        }
 
         float force=((degats*2)/monstre->getCaracteristique().maxVie)*10,angle;
 

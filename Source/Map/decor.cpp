@@ -149,8 +149,8 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet, float *decalage)
 
         texte.SetString(m_objets[objet].getNom());
         texte.SetCharacterSize(14*configuration->Resolution.w/800);
-        texte.SetY(((position.y-GetViewRect(moteurGraphique->m_camera).Top)/configuration->zoom*configuration->Resolution.x/800));
-        texte.SetX(((position.x-GetViewRect(moteurGraphique->m_camera).Left)/configuration->zoom*configuration->Resolution.y/600));
+        texte.SetY(((position.y-GetViewRect(moteurGraphique->m_camera).Top)/configuration->zoom));
+        texte.SetX(((position.x-GetViewRect(moteurGraphique->m_camera).Left)/configuration->zoom));
 
         moteurGraphique->AjouterTexteNonChevauchable(&texte,12);
 

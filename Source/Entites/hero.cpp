@@ -313,9 +313,19 @@ void Hero::Sauvegarder()
     else
         console->Ajouter("Impossible de sauvegarder le héro !",1);
 
+    cDAT fichierSave;
 
+    fichierSave.Create(m_contenuSave, configuration->chemin_saves+m_chemin_save);
+}
+
+void Hero::SauvegarderApercu()
+{
     sf::RenderImage render;
     render.Create(256,256);
+    render.Clear();
+
+    if (configuration->debug)
+            console->Ajouter("/Génération de l'image...");
 
 
     int etat = m_personnage.getEtat();
@@ -345,6 +355,9 @@ void Hero::Sauvegarder()
     m_personnage.setPose(pose);
     m_personnage.setAngle(angle);
 
+    if (configuration->debug)
+            console->Ajouter("/Image affichée.");
+
     render.Display();
     std::string chemin_image;
     for(int i = 0  ; i < m_chemin_save.size() - 7 ; ++i)
@@ -353,14 +366,13 @@ void Hero::Sauvegarder()
 
     render.GetImage().SaveToFile(configuration->chemin_temps + chemin_image);
 
-    cDAT fichierSave;
+ //   cDAT fichierSave;
 
-    fichierSave.Create(m_contenuSave, configuration->chemin_saves+m_chemin_save);
+   // fichierSave.Create(m_contenuSave, configuration->chemin_saves+m_chemin_save);
 
+    if (configuration->debug)
+            console->Ajouter("/Image générée.");
 }
-
-
-
 void Hero::Charger(std::string chemin_save)
 {
     console->Ajouter("Chargement du hero.");
@@ -902,8 +914,11 @@ void Hero::ChargerModele(bool tout)
     bool pasEquipe[NOMBRE_MORCEAU_PERSONNAGE];
     int ordre[NOMBRE_MORCEAU_PERSONNAGE];
 
+    int priorite[NOMBRE_MORCEAU_PERSONNAGE];
+
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
     {
+        priorite[i] = -1;
         pasEquipe[i]=true,m_cheminModeleNouveau[i]="";
         if (tout)
             m_cheminModele[i]="";
@@ -929,10 +944,11 @@ void Hero::ChargerModele(bool tout)
 
                 if (m_inventaire[i].m_emplacementImageHero[temp]>=0&&m_inventaire[i].m_emplacementImageHero[temp]<NOMBRE_MORCEAU_PERSONNAGE)
                 {
-                    if(m_cheminModeleNouveau[m_inventaire[i].m_emplacementImageHero[temp]].empty() || temp > ordre[m_inventaire[i].m_emplacementImageHero[temp]] )
+                    if(m_cheminModeleNouveau[m_inventaire[i].m_emplacementImageHero[temp]].empty() || m_inventaire[i].m_equipe > priorite[m_inventaire[i].m_emplacementImageHero[temp]])
                     {
                         m_cheminModeleNouveau[m_inventaire[i].m_emplacementImageHero[temp]]=m_inventaire[i].m_cheminImageHero[temp];
                         ordre[m_inventaire[i].m_emplacementImageHero[temp]] = temp;
+                        priorite[m_inventaire[i].m_emplacementImageHero[temp]] = m_inventaire[i].m_equipe;
                     }
 
                     color[m_inventaire[i].m_emplacementImageHero[temp]].rouge=m_inventaire[i].m_color.r;

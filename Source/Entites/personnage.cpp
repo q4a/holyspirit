@@ -95,6 +95,7 @@ Personnage::Personnage()
     m_pousse.w                          = 0;
 
     m_miracleALancer                    = -1;
+    m_miracleFrappeEnCours              = false;
 
     m_positionPixel.h                   = 0;
     m_cheminFinal.h                     = 0;
@@ -925,7 +926,7 @@ void Personnage::Frappe(coordonnee direction,coordonnee position)
     }
 
     if(!frappeEnCours)
-        m_entite_graphique.m_noAnimation=0;
+        m_entite_graphique.m_noAnimation=0, m_miracleFrappeEnCours = false;
 
     frappeEnCours=1;
 

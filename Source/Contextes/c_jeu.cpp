@@ -325,13 +325,15 @@ void c_Jeu::Animation(Jeu *jeu)
 
         if (retour==0) //Animation du héro
         {
-            if (jeu->hero.m_personnage.frappeEnCours && !jeu->hero.m_personnage.m_lancementMiracleEnCours)
+            if (jeu->hero.m_personnage.frappeEnCours
+            && (!jeu->hero.m_personnage.m_lancementMiracleEnCours || jeu->hero.m_personnage.m_miracleFrappeEnCours) )
             {
                 bool toucher=false;
                 if (!jeu->hero.m_personnage.m_shooter)
                 {
                     if (jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())!=NULL)
-                        if (fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().x)<=2&&fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().y-jeu->hero.m_personnage.getCoordonnee().y)<=2)
+                        if (fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().x)<=2
+                          &&fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().y-jeu->hero.m_personnage.getCoordonnee().y)<=2)
                             if (rand() % 100 < (float)((float)(jeu->hero.m_caracteristiques.dexterite + 100) / ((float)(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCaracteristique().dexterite + 100)))*75 )
                                 if (!jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->m_friendly && jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->EnVie())
                                 {
