@@ -105,7 +105,7 @@ $
 $
 	* x738 y60 w24 h32 $
 $
-	* e0 x58 y46 w42 h42 m35 	i * mData/Menus/Crusader/CrusaderPath1.png x0 y0 w32 h32 $ $ $
+	* e0 x58 y46 w42 h42 m35 	i * mData/Menus/Crusader/CrusaderPath1.png x96 y0 w32 h32 $ $ $
 	* e1 x124 y46 w42 h42 m36	i * mData/Menus/Crusader/CrusaderPath2.png x0 y0 w32 h32 $ $ $
 	* e2 x190 y46 w42 h42 m37	i * mData/Menus/Crusader/CrusaderPath3.png x0 y0 w32 h32 $ $ $
 $
@@ -117,4 +117,6 @@ $
 	* e2 b-1 x115 y199 w38 h38 mData/Entities/Heroes/Crusader/Miracles/Barbe/Barbe.miracle.hs i * mData/Menus/Crusader/CrusaderPath3.png x0 y0 w32 h32 $ $ $
 
 	* e1 b-1 x115 y439 w38 h38 mData/Entities/Heroes/Crusader/Miracles/Charge/Charge.miracle.hs i * mData/Menus/Crusader/CrusaderPath2.png x0 y0 w32 h32 $ $ $
+	
+	* e0 b-1 x115 y439 w38 h38 mData/Entities/Heroes/Crusader/Miracles/PowerfulSlash/PowerfulSlash.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x96 y0 w32 h32 $ $ $
 $

@@ -28,4 +28,6 @@ Venin
 La courtisane empoisonne son arme pendant un certain laps de temps.
 Durée : %1 secondes
 Dégâts de poison : %4 sur 2 secondes.
-
+Coup puissant
+Le croisé donne une violent coup\pouvant repousser un adversaire.
+Dégats : +%1 à %2
