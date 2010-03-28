@@ -43,7 +43,7 @@ Menu::Menu()
     console->Ajouter("",0);
     console->Ajouter("Chargement des menus :",0);
 
-    m_dialogue.clear();
+    //m_dialogue.clear();
     m_speak_choice = -1;
 }
 

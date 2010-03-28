@@ -1087,9 +1087,9 @@ void Map::Initialiser(Hero *hero)
 
     sf::Vector2f pos;
 
-    for (int i=0;i<NOMBRE_COUCHE_MAP;++i)
-        for (int j=0;j<m_dimensions.y;j++)
-            for (int k=0;k<m_dimensions.x;k++)
+    for (unsigned i=0;i<NOMBRE_COUCHE_MAP;++i)
+        for (unsigned j=0;j<m_decor[i].size();j++)
+            for (unsigned k=0;k<m_decor[i][j].size();k++)
                 if (m_decor[i][j][k].getTileset()>=0&&m_decor[i][j][k].getTileset()<(int)m_tileset.size())
                 {
                     coordonnee position, pos;
@@ -1143,7 +1143,8 @@ void Map::CreerSprite(sf::Vector3f position_case)
     position.x=(x-y-1)*64;
     position.y=(x+y)*32;
 
-    if(m_decor[z][y][x].getTileset() != -1)
+    if(m_decor[z][y][x].getTileset() >= 0
+     &&m_decor[z][y][x].getTileset() < (int)m_tileset.size())
     {
         positionPartieDecor=moteurGraphique->getTileset(m_tileset[m_decor[z][y][x].getTileset()])->getPositionMinimap(m_decor[z][y][x].getTile());
         m_decor[z][y][x].m_spriteMinimap.SetImage(*moteurGraphique->getImage(moteurGraphique->getTileset(m_tileset[m_decor[z][y][x].getTileset()])->getMinimap(m_decor[z][y][x].getTile())));
