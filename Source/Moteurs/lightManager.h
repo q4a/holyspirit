@@ -95,6 +95,7 @@ class Light_Manager : public CSingleton<Light_Manager>
     sf::Vector2f GetPosition(Light_Entity);
 
 
+    sf::Vector2f GetPt(Wall_Entity, int );
     void SetPosition(Wall_Entity, sf::Vector2f );
 
     private :

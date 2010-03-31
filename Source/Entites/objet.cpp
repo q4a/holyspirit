@@ -902,6 +902,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
             {
                 string temp;
                 *fichier>>temp;
+                m_miracle = Miracle ();
                 m_miracle.Charger(temp, caract, 0);
                 m_chemin_miracles.push_back(temp);
                 m_useMiracle=true;

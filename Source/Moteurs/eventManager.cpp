@@ -148,16 +148,6 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
         configuration->luminosite=0;
     if (configuration->luminosite>64)
         configuration->luminosite=64;
-
-   /* if (m_EventTableau[Key::M])
-    {
-        if (!configuration->Minimap)
-            configuration->Minimap=true;
-        else
-            configuration->Minimap=false;
-        m_EventTableau[Key::M]=false;
-    }*/
-
     if (m_EventTableau[Key::Up])
     {
         console->Defiler(0);
@@ -171,20 +161,6 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
 
     if (m_EventTableau[Key::Space])
         configuration->minute+=200*temps;
-
-    /*if (m_EventTableau[Key::Tab])
-    {
-        if (configuration->console==0)
-            configuration->console=1;
-        else if (configuration->console==1)
-            configuration->console=2;
-        else
-            configuration->console=0;
-
-        m_EventTableau[Key::Tab]=false;
-    }*/
-
-
 
     coordonnee positionSourisTotale=moteurGraphique->getPositionSouris();
     //Conversion des coord cartésienne en coord iso

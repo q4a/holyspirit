@@ -35,7 +35,7 @@ class Tile
 	~Tile();
 	void setTile(   coordonnee positionDansLImage,int image,bool collision,int animation,int son,Lumiere lumiere,bool ombre,
                     bool reflection,char orientation,bool transparent,coordonnee centre,float temps, int opacity, int layer,
-                    int attaque, int ordre);
+                    int attaque, int ordre, int angle);
 
 	const coordonnee &getCoordonnee();
 	bool getCollision();
@@ -53,6 +53,7 @@ class Tile
 	int getLayer();
 	int getAttaque();
     int getOrdre();
+    int getAngle();
 
 	void setImage(int);
 	void setSon(int);
@@ -60,6 +61,7 @@ class Tile
     int m_tileMinimap;
 	coordonnee m_coordMinimap;
 	int m_distortion;
+	std::vector<int> m_shadowMap;
 
 	private:
 	coordonnee m_positionDansLImage,m_centre;
@@ -74,6 +76,7 @@ class Tile
 
     int m_ordre;
     int m_attaque;
+    int m_angle;
 
 };
 

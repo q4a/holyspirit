@@ -221,13 +221,8 @@ void Entite_graphique::Generer()
                                         m_sprite.GetColor().b,
                                         m_tileset->getOpacityDuTile(m_noAnimation)));
 
-            //m_sprite.Move(m_decalage.x, m_decalage.y);
             m_sprite.SetScale((float)m_scale.x*0.01, (float)m_scale.y*0.01);
             m_sprite.SetRotation(m_rotation);
-            /*m_sprite.SetColor(sf::Color(m_sprite.GetColor().r * m_color.r / 255,
-                                        m_sprite.GetColor().g * m_color.g / 255,
-                                        m_sprite.GetColor().b * m_color.b / 255,
-                                        m_sprite.GetColor().a * m_color.a / 255));*/
 
             m_decalCouche = m_tileset->getLayerDuTile(m_noAnimation);
 
@@ -243,17 +238,17 @@ void Entite_graphique::Generer()
 
             if(m_tileset->getDistortionDuTile(m_noAnimation) >= 0 && configuration->Distortion)
             {
-                coordonnee positionPartieDecor = m_tileset->getPositionDuTile(m_tileset->getDistortionDuTile(m_noAnimation), true);
+                coordonnee positionPartieDecor = m_tileset->getPositionDuTile(m_tileset->getDistortionDuTile(m_noAnimation), 1);
 
-                m_sprite_distortion.SetImage(*moteurGraphique->getImage(m_tileset->getImage(m_tileset->getDistortionDuTile(m_noAnimation), true)));
+                m_sprite_distortion.SetImage(*moteurGraphique->getImage(m_tileset->getImage(m_tileset->getDistortionDuTile(m_noAnimation), 1)));
                 m_sprite_distortion.SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
 
-                m_sprite_distortion.SetOrigin(m_tileset->getCentreDuTile(m_tileset->getDistortionDuTile(m_noAnimation), true).x,m_tileset->getCentreDuTile(m_tileset->getDistortionDuTile(m_noAnimation), true).y);
+                m_sprite_distortion.SetOrigin(m_tileset->getCentreDuTile(m_tileset->getDistortionDuTile(m_noAnimation), 1).x,m_tileset->getCentreDuTile(m_tileset->getDistortionDuTile(m_noAnimation), 1).y);
 
                 m_sprite_distortion.SetColor(sf::Color(m_sprite_distortion.GetColor().r,
                                                        m_sprite_distortion.GetColor().g,
                                                        m_sprite_distortion.GetColor().b,
-                                                       m_tileset->getOpacityDuTile(m_tileset->getDistortionDuTile(m_noAnimation), true)));
+                                                       m_tileset->getOpacityDuTile(m_tileset->getDistortionDuTile(m_noAnimation), 1)));
 
                 m_sprite_distortion.SetPosition(m_sprite.GetPosition());
 
@@ -261,6 +256,31 @@ void Entite_graphique::Generer()
             }
             else
                 m_distort = false;
+
+            m_sprite_shadowmap.clear();
+            m_angle_shadowmap.clear();
+
+            for(unsigned i = 0 ; i < m_tileset->getShadowmapDuTile(m_noAnimation).size() ; ++i)
+            {
+                m_sprite_shadowmap.push_back(sf::Sprite ());
+                coordonnee positionPartieDecor = m_tileset->m_tile_shadowmap[m_tileset->getShadowmapDuTile(m_noAnimation)[i]].getCoordonnee();
+
+
+                m_sprite_shadowmap.back().SetImage(*moteurGraphique->getImage(m_tileset->getImageShadowmap(m_noAnimation,i)));
+                m_sprite_shadowmap.back().SetSubRect(sf::IntRect(positionPartieDecor.x,
+                                                                 positionPartieDecor.y,
+                                                                 positionPartieDecor.x+positionPartieDecor.w,
+                                                                 positionPartieDecor.y+positionPartieDecor.h));
+
+                m_sprite_shadowmap.back().SetOrigin(m_tileset->m_tile_shadowmap[m_tileset->getShadowmapDuTile(m_noAnimation)[i]].getCentre().x,
+                                                    m_tileset->m_tile_shadowmap[m_tileset->getShadowmapDuTile(m_noAnimation)[i]].getCentre().y);
+
+                m_sprite_shadowmap.back().SetPosition(m_sprite.GetPosition());
+
+                m_angle_shadowmap.push_back(m_tileset->m_tile_shadowmap[m_tileset->getShadowmapDuTile(m_noAnimation)[i]].getAngle());
+            }
+
+
         }
     }
 }

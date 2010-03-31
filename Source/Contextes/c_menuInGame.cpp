@@ -42,7 +42,7 @@ c_MenuInGame::c_MenuInGame()
 
 void c_MenuInGame::Utiliser(Jeu *jeu)
 {
-    moteurGraphique->m_blur=0.005*m_alpha/255;
+    moteurGraphique->m_blur=0.0025*m_alpha/255;
     configuration->effetNoir = 1 - m_alpha/255*0.5;
 
     jeu->m_display=true;

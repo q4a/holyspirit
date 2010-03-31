@@ -245,6 +245,8 @@ void Light_Manager::GenerateWallShadow(float angle,Lumiere soleil)
         IterWall->m_shadow.AddPoint(sf::Vector2f(IterWall->pt1.x-(100-soleil.hauteur)*0.02*IterWall->hauteur*cos(angle*M_PI/180),IterWall->pt1.y*0.5+(100-soleil.hauteur)*0.015*IterWall->hauteur*sin(angle*M_PI/180)),sf::Color(0,0,0,(int)(255)));
         IterWall->m_shadow.AddPoint(sf::Vector2f(IterWall->pt2.x-(100-soleil.hauteur)*0.02*IterWall->hauteur*cos(angle*M_PI/180),IterWall->pt2.y*0.5+(100-soleil.hauteur)*0.015*IterWall->hauteur*sin(angle*M_PI/180)),sf::Color(0,0,0,(int)(255)));
     }
+
+
 }
 
 // On affiche toutes les lumières actives
@@ -385,6 +387,17 @@ void Light_Manager::SetPosition(Wall_Entity e, sf::Vector2f p)
         m_wall[e.ID()].pt1=p;
         m_wall[e.ID()].pt2.x= m_wall[e.ID()].pt2.x + (p.x-buffer.x);
         m_wall[e.ID()].pt2.y= m_wall[e.ID()].pt2.y + (p.y-buffer.y);
+    }
+}
+
+sf::Vector2f Light_Manager::GetPt(Wall_Entity e, int nbr)
+{
+    if (e.ID()>=0&&e.ID()<(int)m_wall.size())
+    {
+        if(nbr == 2)
+            m_wall[e.ID()].pt2;
+        else
+            m_wall[e.ID()].pt1;
     }
 }
 

@@ -40,6 +40,8 @@ class Entite_graphique
 
     sf::Sprite m_sprite;
     sf::Sprite m_sprite_distortion;
+    std::vector <sf::Sprite> m_sprite_shadowmap;
+    std::vector <int> m_angle_shadowmap;
 
     bool m_reflect;
     bool m_shadow;

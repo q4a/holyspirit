@@ -799,6 +799,27 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
             || entite->m_sprite_distortion.GetRotation() != 0)
                 m_distortion_commandes.push_back(Commande (&entite->m_sprite_distortion, true));
         }
+
+
+
+        for(unsigned i = 0 ; i < entite->m_sprite_shadowmap.size() ; ++i)
+        {
+            if(fabs((float)entite->m_angle_shadowmap[i] - m_angleOmbreSoleil + 135) > 90)
+            {
+                sf::Sprite sprite = entite->m_sprite_shadowmap[i];
+                float intensity = (fabs((float)entite->m_angle_shadowmap[i] - m_angleOmbreSoleil + 135) - 90)/45 * 96;
+
+                if(fabs((float)entite->m_angle_shadowmap[i] - m_angleOmbreSoleil + 135) > 135)
+                    intensity = 96;
+
+                if(m_soleil.intensite < 128)
+                     intensity *= (float)m_soleil.intensite / 128;
+
+                sprite.SetColor(sf::Color(255,255,255,(int)intensity));
+                AjouterCommande(&sprite, entite->m_couche + entite->m_decalCouche, true);
+            }
+
+        }
     }
 }
 

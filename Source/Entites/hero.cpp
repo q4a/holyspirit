@@ -3517,7 +3517,7 @@ bool Hero::UtiliserObjet(int numero)
         }
         else if (m_inventaire[numero].m_type == CONSOMMABLE)
         {
-            m_classe.miracles.push_back(m_inventaire[numero].m_miracle);
+            m_classe.miracles.push_back(Miracle (m_inventaire[numero].m_miracle.m_chemin,m_caracteristiques,0));
 
             m_personnage.m_miracleEnCours.push_back(EntiteMiracle ());
             m_personnage.m_miracleEnCours.back().m_infos.push_back(new InfosEntiteMiracle ());

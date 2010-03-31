@@ -44,31 +44,34 @@ class Tileset
 	void Charger(const std::string &chemin);
 	void Charger(std::ifstream &fichier, int lumiere_base = 0, cDAT *reader = NULL);
 	void ChargerTiles(std::ifstream &fichier, int lumiere_base = 0);
-	void ChargerInfosTile(std::ifstream &fichier, int lumiere_base = 0, bool distortion = false);
+	void ChargerInfosTile(std::ifstream &fichier, int lumiere_base = 0, int type = 0);
 	void ChargerImages();
 
 	void JouerSon(int numeroSon,coordonnee position, bool unique = true);
 	void DeleteTiles();
 
-	int     getImage(int tile, bool distortion = false);
-	const   coordonnee &getPositionDuTile(int tile, bool distortion = false);
+	int     getImage(int tile, int type = 0);
+	int     getImageShadowmap(int tile, int no);
+	const   coordonnee &getPositionDuTile(int tile, int type = 0);
 	bool    getCollisionTile(int tile);
-	int     getAnimationTile(int tile, bool distortion = false);
+	int     getAnimationTile(int tile, int type = 0);
 	int     getSonTile(int tile);
 	const   Lumiere &getLumiereDuTile(int tile);
 	bool    getOmbreDuTile(int tile);
 	bool    getReflectionDuTile(int tile);
 	bool    getTransparentDuTile(int tile);
 	char    getOrientationDuTile(int tile);
-	const   coordonnee &getCentreDuTile(int tile, bool distortion = false);
+	const   coordonnee &getCentreDuTile(int tile, int type = 0);
 	const   std::string &getChemin(){return m_chemin;}
-	float   getTempsDuTile(int tile, bool distortion = false);
-	int     getOpacityDuTile(int tile, bool distortion = false);
+	float   getTempsDuTile(int tile, int type = 0);
+	int     getOpacityDuTile(int tile, int type = 0);
 	int     getLayerDuTile(int tile);
 	int     getOrdreDuTile(int tile);
 	int     getAttaqueDuTile(int tile);
-	int     getTaille(bool distortion = false);
+	int     getTaille(int type = 0);
+	int     getAngle(int type = 0);
 	int     getDistortionDuTile(int tile);
+	std::vector<int>     getShadowmapDuTile(int tile);
 
 	int getMinimap(int tile);
 	const coordonnee &getPositionMinimap(int tile);
@@ -81,6 +84,8 @@ class Tileset
 
 	bool option_forcedShadow;
     bool option_forcedReflect;
+
+    std::vector <Tile>                  m_tile_shadowmap;
 
 	private:
 	std::vector <int>                   m_image;

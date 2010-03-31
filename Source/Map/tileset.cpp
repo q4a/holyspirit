@@ -88,7 +88,7 @@ void Tileset::ChargerTiles(ifstream &fichier, int lumiere_base)
         console->Ajouter("Impossible d'ouvrir le fichier : "+m_chemin,1);
 }
 
-void Tileset::ChargerInfosTile(ifstream &fichier, int lumiere_base, bool distortion)
+void Tileset::ChargerInfosTile(ifstream &fichier, int lumiere_base,int type)
 {
     coordonnee position,centre(-100,-100,-100,-100), coordMinimap(0,0,0,0);
     int animation=m_tile.size(),son=-1,image=0,imageMM = 0;
@@ -105,8 +105,10 @@ void Tileset::ChargerInfosTile(ifstream &fichier, int lumiere_base, bool distort
     int layer = 0;
     int attaque = -1;
     int ordre = 0;
+    int angle = 0;
     std::string nom;
     int distortionTile = -1;
+    std::vector <int> shadowmapTile;
 
 
     char caractere;
@@ -193,6 +195,9 @@ void Tileset::ChargerInfosTile(ifstream &fichier, int lumiere_base, bool distort
         case 'u':
             fichier>>layer;
             break;
+        case 'b':
+            fichier>>angle;
+            break;
 
         case 'm':
             do
@@ -222,8 +227,13 @@ void Tileset::ChargerInfosTile(ifstream &fichier, int lumiere_base, bool distort
             break;
 
         case 'j':
-            ChargerInfosTile(fichier, lumiere_base, true);
+            ChargerInfosTile(fichier, lumiere_base, 1);
             distortionTile = m_tile_distortion.size() - 1;
+            break;
+
+        case 'k':
+            ChargerInfosTile(fichier, lumiere_base, 2);
+            shadowmapTile.push_back(m_tile_shadowmap.size() - 1);
             break;
 
         }
@@ -241,22 +251,25 @@ void Tileset::ChargerInfosTile(ifstream &fichier, int lumiere_base, bool distort
     if (centre.y==-100)
         centre.y=position.h-32;
 
-    if(distortion)
+    if(type == 1)
     {
         m_tile_distortion.push_back(Tile ());
-        m_tile_distortion.back().setTile(position,image,collision,animation,son,lumiere,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer, attaque, ordre);
+        m_tile_distortion.back().setTile(position,image,collision,animation,son,lumiere,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer, attaque, ordre, angle);
+    }
+    else if(type == 2)
+    {
+        m_tile_shadowmap.push_back(Tile ());
+        m_tile_shadowmap.back().setTile(position,image,collision,animation,son,lumiere,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer, attaque, ordre, angle);
     }
     else
     {
         m_tile.push_back(Tile ());
-        m_tile.back().setTile(position,image,collision,animation,son,lumiere,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer, attaque, ordre);
+        m_tile.back().setTile(position,image,collision,animation,son,lumiere,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer, attaque, ordre, angle);
         m_tile.back().m_tileMinimap = imageMM;
         m_tile.back().m_coordMinimap = coordMinimap;
         m_tile.back().m_distortion = distortionTile;
+        m_tile.back().m_shadowMap = shadowmapTile;
     }
-
-
-  //  fichier.get(caractere);
 }
 
 void Tileset::Charger(ifstream &fichier, int lumiere_base, cDAT *reader)
@@ -345,9 +358,9 @@ void Tileset::Charger(const std::string &chemin)
     fichier.close();
 }
 
-int Tileset::getImage(int tile, bool distortion)
+int Tileset::getImage(int tile,int type)
 {
-    if(distortion)
+    if(type == 1)
     {
         if (tile>=0&&tile<(int)m_tile_distortion.size())
             if (m_tile_distortion[tile].getImage()>=0&&m_tile_distortion[tile].getImage()<(int)m_image.size())
@@ -363,9 +376,23 @@ int Tileset::getImage(int tile, bool distortion)
     return 0;
 }
 
-const coordonnee &Tileset::getPositionDuTile(int tile, bool distortion)
+int Tileset::getImageShadowmap(int tile,int no)
 {
-    if(distortion)
+    if (tile>=0&&tile<(int)m_tile.size())
+    {
+        if (no>=0&&no<(int)m_tile[tile].m_shadowMap.size())
+        if (m_tile_shadowmap[m_tile[tile].m_shadowMap[no]].getImage()>=0
+          &&m_tile_shadowmap[m_tile[tile].m_shadowMap[no]].getImage()<(int)m_image.size())
+            return m_image[m_tile_shadowmap[m_tile[tile].m_shadowMap[no]].getImage()];
+    }
+
+
+    return 0;
+}
+
+const coordonnee &Tileset::getPositionDuTile(int tile,int type)
+{
+    if(type == 1)
     {
         if (tile>=0&&tile<(int)m_tile_distortion.size())
             return m_tile_distortion[tile].getCoordonnee();
@@ -389,9 +416,9 @@ bool Tileset::getCollisionTile(int tile)
     return 0;
 }
 
-int Tileset::getAnimationTile(int tile, bool distortion)
+int Tileset::getAnimationTile(int tile,int type)
 {
-    if(distortion)
+    if(type == 1)
     {
         if (tile>=0&&tile<(int)m_tile_distortion.size())
             return m_tile_distortion[tile].getAnimation();
@@ -411,9 +438,9 @@ int Tileset::getSonTile(int tile)
     return 0;
 }
 
-int Tileset::getTaille(bool distortion)
+int Tileset::getTaille(int type)
 {
-    if(distortion)
+    if(type == 1)
         return m_tile_distortion.size();
     else
         return m_tile.size();
@@ -450,9 +477,9 @@ bool Tileset::getTransparentDuTile(int tile)
 
     return 0;
 }
-float Tileset::getTempsDuTile(int tile, bool distortion)
+float Tileset::getTempsDuTile(int tile,int type)
 {
-    if(distortion)
+    if(type == 1)
     {
         if (tile>=0&&tile<(int)m_tile_distortion.size())
             return m_tile_distortion[tile].getTemps();
@@ -466,9 +493,9 @@ float Tileset::getTempsDuTile(int tile, bool distortion)
     return 0;
 }
 
-int Tileset::getOpacityDuTile(int tile, bool distortion)
+int Tileset::getOpacityDuTile(int tile,int type)
 {
-    if(distortion)
+    if(type == 1)
     {
         if (tile>=0&&tile<(int)m_tile_distortion.size())
             return m_tile_distortion[tile].getOpacity();
@@ -514,6 +541,12 @@ int Tileset::getDistortionDuTile(int tile)
     return 0;
 }
 
+std::vector <int> Tileset::getShadowmapDuTile(int tile)
+{
+    if (tile>=0&&tile<(int)m_tile.size())
+        return m_tile[tile].m_shadowMap;
+}
+
 
 char Tileset::getOrientationDuTile(int tile)
 {
@@ -522,9 +555,9 @@ char Tileset::getOrientationDuTile(int tile)
     return 0;
 }
 
-const coordonnee &Tileset::getCentreDuTile(int tile, bool distortion)
+const coordonnee &Tileset::getCentreDuTile(int tile,int type)
 {
-    if(distortion)
+    if(type == 1)
     {
         if (tile>=0&&tile<(int)m_tile_distortion.size())
             return m_tile_distortion[tile].getCentre();
