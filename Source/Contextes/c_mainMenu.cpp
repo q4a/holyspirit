@@ -300,6 +300,7 @@ void c_MainMenu::Utiliser(Jeu *jeu)
 
             m_images_saves[i].SetPosition(configuration->Resolution.w/2 - 384 + 160 * ((i-2 - defilement_saves)%4 == 1) + 320 * ((i-2 - defilement_saves)%4 == 2)  + 480 * ((i-2 - defilement_saves)%4 == 3),
                                           configuration->Resolution.h/2 - 256 + ((int)((i-2 - defilement_saves)/4)) * 192);
+            m_images_saves[i].Resize(256,256);
             moteurGraphique->AjouterCommande(&m_images_saves[i],19,0);
 
             if ((eventManager->getPositionSouris().y > texte.GetRect().Top
@@ -316,7 +317,6 @@ void c_MainMenu::Utiliser(Jeu *jeu)
                 if(eventManager->getEvenement(Mouse::Left,EventClic))
                 {
                     coordonnee temp(0,0,-1,-1);
-                    jeu->m_chargement->setC_Chargement("Begin.map.hs",temp,1);
 
                     jeu->hero.Charger(m_chemin_saves[i]);
 
@@ -326,6 +326,21 @@ void c_MainMenu::Utiliser(Jeu *jeu)
                             for (int k=0;k<(int)reader.GetNumberFile();k++)
                                 reader.ExportFile(k),jeu->hero.m_contenuSave.push_back(reader.GetFileName(k)),std::cout<<reader.GetFileName(k)<<std::endl;
                     }
+
+
+                    if(jeu->hero.m_last_potale >= 0 && jeu->hero.m_last_potale < (int)jeu->hero.m_potales.size() )
+                    {
+                        std::string nomMap=jeu->hero.m_potales[jeu->hero.m_last_potale].chemin;
+
+                        coordonnee coordonneePerso;
+                        coordonneePerso.x=jeu->hero.m_potales[jeu->hero.m_last_potale].position.x;
+                        coordonneePerso.y=jeu->hero.m_potales[jeu->hero.m_last_potale].position.y;
+
+                        jeu->m_chargement->setC_Chargement(nomMap,coordonneePerso);
+                    }
+                    else
+                        jeu->m_chargement->setC_Chargement("Begin.map.hs",temp,1);
+
 
                     jeu->hero.Sauvegarder();
 

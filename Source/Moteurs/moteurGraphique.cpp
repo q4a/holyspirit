@@ -491,23 +491,8 @@ void MoteurGraphique::Afficher()
 
         if (k==13)
         {
-            if (configuration->luminosite>0)
-            {
-                sf::Sprite sprite2;
-                sprite2.SetImage(*getImage(0));
-                sprite2.Resize(configuration->Resolution.w,configuration->Resolution.h);
-                sprite2.SetColor(sf::Color((int)configuration->luminosite*2,(int)configuration->luminosite*2,(int)configuration->luminosite*2,255));
-                sprite2.SetBlendMode(sf::Blend::Add);
-                bufferImage.Draw(sprite2);
-            }
-
-            if (configuration->contrastes>1 && configuration->postFX)
-            {
-                EffectContrastes.SetParameter("color", configuration->contrastes-1, configuration->contrastes-1, configuration->contrastes-1);
-                bufferImage.Display();
-                bufferImage.SetView(bufferImage.GetDefaultView());
-                bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectContrastes);
-            }
+            EffectFiltre.SetParameter("color", configuration->contrastes-1, configuration->contrastes-1, configuration->contrastes-1);
+            EffectFiltre.SetParameter("luminosity", configuration->luminosite/128);
 
             if (configuration->effetMort>0 && configuration->postFX)
             {

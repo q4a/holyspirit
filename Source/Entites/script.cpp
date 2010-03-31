@@ -141,11 +141,11 @@ void Script::Sauvegarder_instruction(ofstream &fichier , int no)
         fichier<<m_instructions[no].nom<<" ";
         if(m_instructions[no].nom == "if" || m_instructions[no].nom == "main")
         {
-            if(m_instructions[no].nom == "main")
+            /*if(m_instructions[no].nom == "main")
             {
                 for(int i = 0 ; i < m_variables.size() ; ++i)
                     fichier<<endl<<"variable * "<<i<<" * "<<m_variables[i]<<endl;
-            }
+            }*/
             for(unsigned i = 0 ; i < m_instructions[no].m_valeurs.size() ; ++i)
                 Sauvegarder_instruction(fichier ,m_instructions[no].m_valeurs[i]);
 
@@ -165,6 +165,8 @@ void Script::Sauvegarder_instruction(ofstream &fichier , int no)
 
 void Script::Sauvegarder(ofstream &fichier)
 {
+    for(int i = 0 ; i < m_variables.size() ; ++i)
+        fichier<<endl<<"variable "<<i<<" "<<m_variables[i]<<endl;
     Sauvegarder_instruction(fichier , 0);
 }
 
@@ -176,9 +178,21 @@ void Script::Charger(ifstream &fichier)
         while (!fichier.eof()&&temp!="main")
         {
             fichier>>temp;
-            Instruction instructionBuffer;
-            instructionBuffer.nom="main";
-            m_instructions.push_back(instructionBuffer);
+            if(temp == "main")
+            {
+                Instruction instructionBuffer;
+                instructionBuffer.nom="main";
+                m_instructions.push_back(instructionBuffer);
+            }
+            else if(temp == "variable")
+            {
+                int no = 0, val = 0;
+                fichier>>no>>val;
+                 if(no >= m_variables.size())
+                    m_variables.resize(no + 1);
+                m_variables[no] = val;
+            }
+
         }
 
         bool OK=true;
