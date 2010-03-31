@@ -32,3 +32,4 @@ Tenancier derrière la porte
 Croisé
 Courtisane
 Pistolero
+Seigneur squelette

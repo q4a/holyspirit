@@ -5,6 +5,10 @@ void main()
 {
 	vec2 offx = vec2(offset, 0.0);
 	vec2 offy = vec2(0.0, offset);
+	vec2 offx2 = vec2(offset * 0.6, 0.0);
+	vec2 offy2 = vec2(0.0, offset * 0.6);
+	vec2 offx3 = vec2(offset * 0.3, 0.0);
+	vec2 offy3 = vec2(0.0, offset * 0.3);
 
 	vec4 pixel = texture2D(texture, gl_TexCoord[0].xy)               * 1 +
                  texture2D(texture, gl_TexCoord[0].xy - offx)        * 2 +
