@@ -10,7 +10,7 @@ Rang du monstre
 $
 Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse
-*v750 di50 da100 m0.35 o1 a15 n2 t1 x100 $
+*v750 di50 da100 m0.45 o1 a15 n2 t1 x100 $
 $
 *Data/Scripts/AI/standard.script.hs
 $
