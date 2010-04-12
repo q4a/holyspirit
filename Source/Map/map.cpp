@@ -1868,7 +1868,8 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                                 if (m_monstre[monstre].m_cible != NULL)
                                 {
                                     if (m_monstre[monstre].m_shooter||!m_monstre[monstre].m_shooter&&fabs(m_monstre[monstre].getCoordonnee().x-m_monstre[monstre].m_cible->getCoordonnee().x)<=1&&fabs(m_monstre[monstre].getCoordonnee().y-m_monstre[monstre].m_cible->getCoordonnee().y)<=1)
-                                        if (rand() % 100 < (float)((float)(m_monstre[monstre].getCaracteristique().dexterite + 100)/(float)(m_monstre[monstre].m_cible->getCaracteristique().dexterite + 100))*25 )
+                                        if ((!m_monstre[monstre].m_friendly && rand() % 100 < (float)((float)(m_monstre[monstre].getCaracteristique().dexterite + 100)/(float)(m_monstre[monstre].m_cible->getCaracteristique().dexterite + 100))*25 )
+                                        ||  ( m_monstre[monstre].m_friendly && rand() % 100 < (float)((float)(m_monstre[monstre].getCaracteristique().dexterite + 100)/(float)(m_monstre[monstre].m_cible->getCaracteristique().dexterite + 100))*50 ))
                                         {
                                             m_monstre[monstre].m_vientDeFrapper = m_monstre[monstre].m_cible;
                                             m_monstre[monstre].m_degatsInflige  = degats;
@@ -2286,6 +2287,13 @@ bool Map::Miracle_Projectile(Hero *hero, Personnage *personnage, Miracle &modele
             m_projectile[info.m_IDObjet].m_supprime = true;
             info.m_cible = m_projectile[info.m_IDObjet].m_entite_cible;
 
+            if(miracleEnCours.m_miracleArme)
+            {
+                personnage->m_vientDeToucher = info.m_cible;
+                miracleEnCours.m_miracleArme = false;
+            }
+
+
             for (int p=0;p<(int)effet.m_lien.size();p++)
             {
                 miracleEnCours.m_infos.push_back(new InfosEntiteMiracle ());
@@ -2313,7 +2321,7 @@ bool Map::Miracle_Projectile(Hero *hero, Personnage *personnage, Miracle &modele
 
 
         info.m_IDObjet = AjouterProjectile( info.m_position,
-                                            cible,personnage->getCoordonnee(),1,effet.m_informations[0],
+                                            cible,personnage->getCoordonnee(),10,effet.m_informations[0],
                                             (float)effet.m_informations[1]*M_PI/180,!personnage->m_friendly,
                                             moteurGraphique->getTileset(modele.m_tileset[effet.m_sequence]));
 

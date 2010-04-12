@@ -256,6 +256,7 @@ void Objet::SauvegarderTexte(std::ofstream *fichier)
     *fichier<<" di"<<m_degatsMin;
     *fichier<<" da"<<m_degatsMax;
     *fichier<<" a"<<m_armure;
+    *fichier<<" s"<<m_nbr_bless;
 
     *fichier<<" x"<<m_position.x;
     *fichier<<" y"<<m_position.y;
@@ -332,6 +333,8 @@ void Objet::ChargerTexte(std::ifstream *fichier, const Caracteristique &caract, 
 
         else if (caractere=='a')
             *fichier>>m_armure;
+        else if (caractere=='n')
+            *fichier>>m_nbr_bless;
         else if (caractere=='l')
         {
             sf::Color m_color;

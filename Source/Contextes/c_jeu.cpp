@@ -139,8 +139,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
         tempsSauvergarde=0;
     }
     IA(jeu);
-    Deplacements(jeu);
     Animation(jeu);
+    Deplacements(jeu);
     Lumieres(jeu);
 
   //  if ((tempsEcouleDepuisDernierAffichage>0.012f&&configuration->syncronisation_verticale)||(!configuration->syncronisation_verticale))
@@ -319,7 +319,6 @@ void c_Jeu::Animation(Jeu *jeu)
         retour = jeu->hero.m_personnage.Animer(&jeu->hero.m_modelePersonnage[0],tempsDepuisDerniereAnimation);
 
         jeu->hero.CalculerOrdreAffichage();
-
         jeu->hero.m_personnage.m_vientDeFrapper = NULL;
         jeu->hero.m_personnage.m_degatsInflige  = 0;
 
@@ -367,6 +366,7 @@ void c_Jeu::Animation(Jeu *jeu)
 
                         jeu->hero.m_personnage.m_miracleEnCours.back().m_infos.back()->m_cible   = jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise());
                         jeu->hero.m_personnage.m_miracleEnCours.back().m_coordonneeCible        = cible;
+                        jeu->hero.m_personnage.m_miracleEnCours.back().m_miracleArme            = true;
                         //jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),cible,1);
                     }
             }
@@ -395,7 +395,8 @@ void c_Jeu::Animation(Jeu *jeu)
 
         tempsDepuisDerniereAnimation=0;
     }
-
+    if(jeu->hero.m_personnage.m_vientDeToucher != NULL)
+        jeu->hero.m_personnage.m_vientDeFrapper = jeu->hero.m_personnage.m_vientDeToucher, jeu->hero.m_personnage.m_vientDeToucher = NULL;
     jeu->map->GererMiracle(&jeu->hero.m_personnage,jeu->hero.m_classe.miracles,tempsEcoule,positionHero,&jeu->hero);
 }
 void c_Jeu::Lumieres(Jeu *jeu)
@@ -824,6 +825,8 @@ void c_Jeu::Evenements(Jeu *jeu)
                         coordonnee positionHero;
                         positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
                         positionHero.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
+
+                        jeu->hero.m_personnage.setArrivee(jeu->hero.m_personnage.getProchaineCase());
                     }
                     else if(!eventManager->getEvenement(Key::LShift,EventKey))
                         jeu->hero.m_personnage.setArrivee(eventManager->getCasePointee());

@@ -196,13 +196,14 @@ struct InfosEntiteMiracle
 class EntiteMiracle
 {
 public:
-    EntiteMiracle(){ m_dejaConsommeFoi = false; }
+    EntiteMiracle(){ m_dejaConsommeFoi = false; m_miracleArme = false; }
 
     std::vector<InfosEntiteMiracle*>    m_infos;
     int                                 m_modele;
     coordonnee                          m_coordonneeCible;
     coordonnee                          m_coordonneeDepart;
     bool                                m_dejaConsommeFoi;
+    bool                                m_miracleArme;
 };
 
 #endif

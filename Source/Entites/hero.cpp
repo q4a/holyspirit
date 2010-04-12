@@ -2830,8 +2830,8 @@ bool Hero::AjouterMiracleArme()
 
         m_personnage.m_miracleEnCours.back().m_modele=m_weaponMiracle;
 
-        m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.x=m_personnage.getCoordonneePixel().x+cos(-(m_personnage.getAngle()+22.5)*M_PI/180)*96;
-        m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.y=m_personnage.getCoordonneePixel().y+sin(-(m_personnage.getAngle()+22.5)*M_PI/180)*96;
+        m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.x=m_personnage.getCoordonneePixel().x/*+cos(-(m_personnage.getAngle()+22.5)*M_PI/180)*96*/;
+        m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.y=m_personnage.getCoordonneePixel().y/*+sin(-(m_personnage.getAngle()+22.5)*M_PI/180)*96*/;
 
         return 1;
     }

@@ -110,6 +110,7 @@ Personnage::Personnage()
 
     m_vientDeFrapper                    = NULL;
     m_vientDetreTouche                  = NULL;
+    m_vientDeToucher                    = false;
 
     m_stunned                           = false;
     m_ID                                = 0;
@@ -678,7 +679,7 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap)
                         m_positionPixel.y-=(float)4*tempsEcoule*m_caracteristique.vitesse;
                 }
 
-                m_angle=calculerAngle(m_cheminFinal.x-m_positionCase.x,m_cheminFinal.y-m_positionCase.y);
+                m_angle = calculerAngle(m_cheminFinal.x-m_positionCase.x,m_cheminFinal.y-m_positionCase.y);
 
                 if ((m_positionCase.x<m_cheminFinal.x&&m_positionPixel.x>=m_cheminFinal.x*COTE_TILE)
                   ||(m_positionCase.x>m_cheminFinal.x&&m_positionPixel.x<=m_cheminFinal.x*COTE_TILE)

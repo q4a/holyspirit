@@ -170,6 +170,7 @@ public:
     bool m_doitMourir;
 
     Personnage* m_vientDeFrapper;
+    Personnage* m_vientDeToucher;
     Personnage* m_vientDetreTouche;
     int         m_degatsInflige;
 
