@@ -75,13 +75,14 @@ Objet::Objet()
 
     m_prix=0;
 
-    ai=0,aa=0,dii=0,dia=0,dai=0,daa=0;
+    ai=0,aa=0,dii=0,dia=0,dai=0,daa=0,bi=0,ba=0;
     m_shoot_weapon=0;
 
     m_useMiracle = false;
     m_alpha = 0;
 
     m_dejaTrie = false;
+    m_nbr_bless = 0;
 }
 
 Objet::Objet(std::string nom, int rarete)
@@ -95,6 +96,7 @@ Objet::Objet(std::string nom, int rarete)
 
     m_useMiracle = false;
     m_alpha = 0;
+    m_nbr_bless = 0;
 }
 
 Objet::~Objet()
@@ -194,27 +196,6 @@ void Objet::Sauvegarder(std::ofstream *fichier)
     //fichier->write((char*)&espace, sizeof(char));
 
 
-    caractere='l';
-    fichier->write((char*)&caractere, sizeof(char));
-    caractere='r';
-    fichier->write((char*)&caractere, sizeof(char));
-    fichier->write((char*)&m_color.r, sizeof(Uint8));
-    //fichier->write((char*)&espace, sizeof(char));
-
-    caractere='l';
-    fichier->write((char*)&caractere, sizeof(char));
-    caractere='g';
-    fichier->write((char*)&caractere, sizeof(char));
-    fichier->write((char*)&m_color.g, sizeof(Uint8));
-    //fichier->write((char*)&espace, sizeof(char));
-
-    caractere='l';
-    fichier->write((char*)&caractere, sizeof(char));
-    caractere='b';
-    fichier->write((char*)&caractere, sizeof(char));
-    fichier->write((char*)&m_color.b, sizeof(Uint8));
-    // fichier->write((char*)&espace, sizeof(char));
-
     caractere='m';
     fichier->write((char*)&caractere, sizeof(char));
     int n=m_chemin.size()+1;
@@ -275,10 +256,6 @@ void Objet::SauvegarderTexte(std::ofstream *fichier)
     *fichier<<" di"<<m_degatsMin;
     *fichier<<" da"<<m_degatsMax;
     *fichier<<" a"<<m_armure;
-
-    *fichier<<" lr"<<m_color.r;
-    *fichier<<" lg"<<m_color.g;
-    *fichier<<" lb"<<m_color.b;
 
     *fichier<<" x"<<m_position.x;
     *fichier<<" y"<<m_position.y;
@@ -355,9 +332,9 @@ void Objet::ChargerTexte(std::ifstream *fichier, const Caracteristique &caract, 
 
         else if (caractere=='a')
             *fichier>>m_armure;
-
         else if (caractere=='l')
         {
+            sf::Color m_color;
             fichier->get(caractere);
             if (caractere=='r')
                 *fichier>>m_color.r;
@@ -366,6 +343,7 @@ void Objet::ChargerTexte(std::ifstream *fichier, const Caracteristique &caract, 
             else if (caractere=='b')
                 *fichier>>m_color.b;
         }
+
         else if (caractere=='t')
             *fichier>>m_dejaTrie;
         else if (caractere=='m')
@@ -408,7 +386,7 @@ void Objet::ChargerTexte(std::ifstream *fichier, const Caracteristique &caract, 
                 m_benedictions.back().info3=info3;
 
 
-                if (m_benedictions.back().type==DEGATS_SUPP)
+                if (m_benedictions.back().type==DEGATS_SUPP && m_type!=LITANIE)
                 {
                     if(info1 == FEU)
                     {
@@ -958,7 +936,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
                     m_benedictions.back().info2=ib;
                     m_benedictions.back().info3=ic;
 
-                    if (m_benedictions.back().type==DEGATS_SUPP)
+                    if (m_benedictions.back().type==DEGATS_SUPP && m_type!=LITANIE)
                     {
                         if(ia == FEU)
                         {
@@ -985,23 +963,6 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
                                 m_miracle.Concatenencer("Data/Items/PoisonEffect/PoisonEffect.miracle.hs",caract,0);
                         }
                     }
-
-                   /* if (m_benedictions.back().type==DEGATS_FEU)
-                    {
-                        m_chemin_miracles.push_back("Data/Items/FireEffect/FireEffect.miracle.hs");
-                        if (!m_useMiracle)
-                            m_miracle.Charger("Data/Items/FireEffect/FireEffect.miracle.hs", caract, 0),m_useMiracle=true;
-                        else
-                            m_miracle.Concatenencer("Data/Items/FireEffect/FireEffect.miracle.hs", caract, 0);
-                    }
-                    if (m_benedictions.back().type==DEGATS_FOI)
-                    {
-                        m_chemin_miracles.push_back("Data/Items/HolyEffect/HolyEffect.miracle.hs");
-                        if (!m_useMiracle)
-                            m_miracle.Charger("Data/Items/HolyEffect/HolyEffect.miracle.hs", caract, 0),m_useMiracle=true;
-                        else
-                            m_miracle.Concatenencer("Data/Items/HolyEffect/HolyEffect.miracle.hs", caract, 0);
-                    }*/
                 }
 
                 fichier->get(caractere);
@@ -1233,13 +1194,12 @@ void Objet::Generer(int bonus)
     m_armure=(rand() % (aa - ai + 1)) + ai;
     m_degatsMin=(rand() % (dia - dii + 1)) + dii;
     m_degatsMax=(rand() % (daa - dai + 1)) + dai;
-    m_color.r=255;
-    m_color.g=255;
-    m_color.b=255;
-    m_color.a=255;
+
+    if(ba > bi)
+        m_nbr_bless = (rand() % (ba - bi + 1)) + bi;
 
     if (m_type != CONSOMMABLE)
-        if (m_rarete<DIVIN)
+        if (m_rarete<DIVIN || m_type == LITANIE)
         {
             int nbrBene=0;
             int rarete=NORMAL;
@@ -1263,19 +1223,24 @@ void Objet::Generer(int bonus)
                     rarete=m_rarete;
             }
 
-            m_rarete=rarete;
+            if(m_type != LITANIE)
+            {
+                m_rarete=rarete;
 
-            if (m_rarete==BONNEFACTURE)
-                nbrBene=1;
+                if (m_rarete==BONNEFACTURE)
+                    nbrBene=1;
 
-            if (m_rarete==BENI)
-                nbrBene=rand()%(4-2)+2;
+                if (m_rarete==BENI)
+                    nbrBene=rand()%(4-2)+2;
 
-            if (m_rarete==SACRE)
-                nbrBene=rand()%(9-5)+5;
+                if (m_rarete==SACRE)
+                    nbrBene=rand()%(9-5)+5;
 
-            if (m_rarete==SANCTIFIE)
-                nbrBene=rand()%(15-10)+10;
+                if (m_rarete==SANCTIFIE)
+                    nbrBene=rand()%(15-10)+10;
+            }
+            else
+                nbrBene = 1;
 
             int accru = 0;
 
@@ -1300,12 +1265,12 @@ void Objet::Generer(int bonus)
                     temp.info2=rand()%(m_capaciteBenediction*15 - (int)(m_capaciteBenediction*5) + 1)+m_capaciteBenediction*5;
                     //m_prix += (int)((float)prixor*0.5*(temp.info2)/(m_capaciteBenediction*10 - m_capaciteBenediction*3));
                 }
-                else if (temp.type==EFFICACITE_ACCRUE&&(m_type==ARME||m_type==ARMURE))
+                else if (temp.type==EFFICACITE_ACCRUE&&(m_type==ARME||m_type==ARMURE||m_type==LITANIE))
                 {
                     temp.info1=(int)(rand()%(m_capaciteBenediction*10 - (int)((float)m_capaciteBenediction*2.5) + 1)+(float)m_capaciteBenediction*2.5);
                     //m_prix += (int)((float)prixor*0.5*(temp.info1)/(m_capaciteBenediction*10 - m_capaciteBenediction*2.5));
                 }
-                else if (temp.type==DEGATS_SUPP&&m_type==ARME)
+                else if (temp.type==DEGATS_SUPP&&(m_type==ARME||m_type==LITANIE))
                 {
                     int random = rand()%100;
                     if(random < 25)
@@ -1321,7 +1286,7 @@ void Objet::Generer(int bonus)
                     temp.info3=(int)(rand()%((int)((float)m_capaciteBenediction*2.5) - (int)((float)m_capaciteBenediction*1.5) + 1)+(float)m_capaciteBenediction*1.5);
                    // m_prix += (int)((float)prixor*0.5*(temp.info2+temp.info3)/(m_capaciteBenediction*2 - m_capaciteBenediction*0.5));
                 }
-                else if (temp.type==ARMURE_SUPP&&m_type==ARMURE)
+                else if (temp.type==ARMURE_SUPP&&(m_type==ARMURE||m_type==LITANIE))
                 {
                     int random = rand()%100;
                     if(random < 25)
@@ -1361,77 +1326,12 @@ void Objet::Generer(int bonus)
                     //m_prix += (int)((float)prixor*0.5*(temp.info1)/(m_capaciteBenediction - m_capaciteBenediction*0.25));
                 }
 
-                if ((temp.type==EFFICACITE_ACCRUE&&!(m_type==ARME||m_type==ARMURE))||
-                    (temp.type==DEGATS_SUPP&&m_type!=ARME)||
-                    (temp.type==ARMURE_SUPP&&m_type!=ARMURE))
-                    ajouter=false,i--;
-
-                for (int j=0;j<(int)m_benedictions.size();j++)
-                    if (m_benedictions[j].type==temp.type)
-                    {
-                        if(m_benedictions[j].info1==temp.info1 && temp.type != EFFICACITE_ACCRUE)
-                            m_benedictions[j].info2+=temp.info2,m_benedictions[j].info3+=temp.info3,ajouter=false;
-                        if(temp.type == EFFICACITE_ACCRUE)
-                            m_benedictions[j].info1+=temp.info1,ajouter=false,accru=m_benedictions[j].info1;
-                    }
-
-
-                if (ajouter)
-                {
-                    Caracteristique temp2;
-                    m_benedictions.push_back(benediction ());
-                    m_benedictions.back()=temp;
-
-                    if (temp.type==DEGATS_SUPP)
-                    {
-                        if(temp.info1 == FEU)
-                        {
-                            m_chemin_miracles.push_back("Data/Items/FireEffect/FireEffect.miracle.hs");
-                            if (!m_useMiracle)
-                                m_miracle.Charger("Data/Items/FireEffect/FireEffect.miracle.hs", temp2, 0),m_useMiracle=true;
-                            else
-                                m_miracle.Concatenencer("Data/Items/FireEffect/FireEffect.miracle.hs", temp2, 0);
-                        }
-                        if(temp.info1 == FOI)
-                        {
-                            m_chemin_miracles.push_back("Data/Items/HolyEffect/HolyEffect.miracle.hs");
-                            if (!m_useMiracle)
-                                m_miracle.Charger("Data/Items/HolyEffect/HolyEffect.miracle.hs", temp2, 0),m_useMiracle=true;
-                            else
-                                m_miracle.Concatenencer("Data/Items/HolyEffect/HolyEffect.miracle.hs", temp2, 0);
-                        }
-                        if(temp.info1 == CORROSION)
-                        {
-                            m_chemin_miracles.push_back("Data/Items/PoisonEffect/PoisonEffect.miracle.hs");
-                            if (!m_useMiracle)
-                                m_miracle.Charger("Data/Items/PoisonEffect/PoisonEffect.miracle.hs", temp2, 0),m_useMiracle=true;
-                            else
-                                m_miracle.Concatenencer("Data/Items/PoisonEffect/PoisonEffect.miracle.hs", temp2, 0);
-                        }
-                    }
-
-                    if (temp.type==ARMURE_SUPP || temp.type==DEGATS_SUPP)
-                    {
-                        if(temp.info1 == FEU)
-                        {
-                            m_color.r=255;
-                            m_color.g=64;
-                            m_color.b=64;
-                        }
-                        if(temp.info1 == FOI)
-                        {
-                            m_color.r=64;
-                            m_color.g=64;
-                            m_color.b=255;
-                        }
-                        if(temp.info1 == CORROSION)
-                        {
-                            m_color.r=64;
-                            m_color.g=255;
-                            m_color.b=64;
-                        }
-                    }
-                }
+                if ((temp.type==EFFICACITE_ACCRUE&&!(m_type==ARME||m_type==ARMURE||m_type==LITANIE))||
+                    (temp.type==DEGATS_SUPP&&(m_type!=ARME&&m_type!=LITANIE))||
+                    (temp.type==ARMURE_SUPP&&(m_type!=ARMURE&&m_type!=LITANIE)))
+                    i--;
+                else
+                    accru += AddBenediction(temp);
             }
 
             m_prix = 0;
@@ -1468,6 +1368,59 @@ void Objet::Generer(int bonus)
         }
 }
 
+int Objet::AddBenediction(benediction temp)
+{
+    bool ajouter = true;
+    int accru = 0;
+
+    for (int j=0;j<(int)m_benedictions.size();j++)
+        if (m_benedictions[j].type==temp.type)
+        {
+            if(m_benedictions[j].info1==temp.info1 && temp.type != EFFICACITE_ACCRUE)
+                m_benedictions[j].info2+=temp.info2,m_benedictions[j].info3+=temp.info3,ajouter=false;
+            if(temp.type == EFFICACITE_ACCRUE)
+                m_benedictions[j].info1+=temp.info1,ajouter=false,accru=m_benedictions[j].info1;
+        }
+
+
+    if (ajouter)
+    {
+        Caracteristique temp2;
+        m_benedictions.push_back(benediction ());
+        m_benedictions.back()=temp;
+
+        if (temp.type==DEGATS_SUPP && m_type!=LITANIE)
+        {
+            if(temp.info1 == FEU)
+            {
+                m_chemin_miracles.push_back("Data/Items/FireEffect/FireEffect.miracle.hs");
+                if (!m_useMiracle)
+                    m_miracle.Charger("Data/Items/FireEffect/FireEffect.miracle.hs", temp2, 0),m_useMiracle=true;
+                else
+                    m_miracle.Concatenencer("Data/Items/FireEffect/FireEffect.miracle.hs", temp2, 0);
+            }
+            if(temp.info1 == FOI)
+            {
+                m_chemin_miracles.push_back("Data/Items/HolyEffect/HolyEffect.miracle.hs");
+                if (!m_useMiracle)
+                    m_miracle.Charger("Data/Items/HolyEffect/HolyEffect.miracle.hs", temp2, 0),m_useMiracle=true;
+                else
+                    m_miracle.Concatenencer("Data/Items/HolyEffect/HolyEffect.miracle.hs", temp2, 0);
+            }
+            if(temp.info1 == CORROSION)
+            {
+                m_chemin_miracles.push_back("Data/Items/PoisonEffect/PoisonEffect.miracle.hs");
+                if (!m_useMiracle)
+                    m_miracle.Charger("Data/Items/PoisonEffect/PoisonEffect.miracle.hs", temp2, 0),m_useMiracle=true;
+                else
+                    m_miracle.Concatenencer("Data/Items/PoisonEffect/PoisonEffect.miracle.hs", temp2, 0);
+            }
+        }
+    }
+
+    return (accru);
+}
+
 void Objet::ChargerCaracteristiques(std::ifstream *fichier)
 {
     if (m_type==ARME)
@@ -1483,25 +1436,32 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
                     fichier->get(caractere);
                     switch (caractere)
                     {
-                    case 'd' :
-                        fichier->get(caractere);
-                        if (caractere=='i')
-                        {
+                        case 'd' :
                             fichier->get(caractere);
                             if (caractere=='i')
-                                *fichier>>dii;
-                            if (caractere=='a')
-                                *fichier>>dia;
-                        }
-                        else if (caractere=='a')
-                        {
+                            {
+                                fichier->get(caractere);
+                                if (caractere=='i')
+                                    *fichier>>dii;
+                                if (caractere=='a')
+                                    *fichier>>dia;
+                            }
+                            else if (caractere=='a')
+                            {
+                                fichier->get(caractere);
+                                if (caractere=='i')
+                                    *fichier>>dai;
+                                if (caractere=='a')
+                                    *fichier>>daa;
+                            }
+                            break;
+                        case 'b' :
                             fichier->get(caractere);
                             if (caractere=='i')
-                                *fichier>>dai;
+                                *fichier>>bi;
                             if (caractere=='a')
-                                *fichier>>daa;
-                        }
-                        break;
+                                *fichier>>ba;
+                            break;
                     }
 
                     if (fichier->eof())
@@ -1540,15 +1500,21 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
                     fichier->get(caractere);
                     switch (caractere)
                     {
-                    case 'a' :
+                        case 'a' :
+                            fichier->get(caractere);
+                            if (caractere=='i')
+                                *fichier>>ai;
+                            if (caractere=='a')
+                                *fichier>>aa;
+                            break;
 
-                        fichier->get(caractere);
-                        if (caractere=='i')
-                            *fichier>>ai;
-                        if (caractere=='a')
-                            *fichier>>aa;
-
-                        break;
+                        case 'b' :
+                            fichier->get(caractere);
+                            if (caractere=='i')
+                                *fichier>>bi;
+                            if (caractere=='a')
+                                *fichier>>ba;
+                            break;
                     }
 
                     if (fichier->eof())
@@ -1721,7 +1687,7 @@ std::string getTextBenediction(const benediction &bene)
 }
 
 
-int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, std::vector<Objet> *items, std::string nom_classe,float modPrix,bool compare,bool decalageDroite, bool surbrillance)
+int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, std::vector<Objet> *items, std::string nom_classe,float modPrix,bool compare,bool decalageDroite, bool surbrillance, bool orientationHaut)
 {
     std::vector <sf::Text> temp;
 
@@ -1915,6 +1881,17 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
 
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
 
+    for(int i = 0 ; i < m_nbr_bless ; ++i)
+    {
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,configuration->getText(0,60).c_str()));
+        temp.back().SetColor(sf::Color(128,128,128));
+        temp.back().SetStyle(2);
+    }
+
+
+    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+
+
     {
         std::ostringstream buf;
         buf<<configuration->getText(0,28)<<(int)((float)m_prix*modPrix);
@@ -1930,24 +1907,45 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
     if (position.x-tailleCadran.x-10<0)
         position.x=tailleCadran.x+10;
 
-    if (position.y+decalage.y+20>configuration->Resolution.h)
+    if (position.y+decalage.y+20>configuration->Resolution.h && !orientationHaut)
         position.y=configuration->Resolution.h-decalage.y-20;
 
     if (position.x+decalage.x+20>configuration->Resolution.w)
         position.x=configuration->Resolution.w-decalage.x-20;
 
-    int decalY=0;
-    for (int i=0;i<(int)temp.size();i++)
+
+    if(orientationHaut)
     {
-        temp[i].SetY((position.y+decalY+10));
-        temp[i].SetX(position.x+(tailleCadran.x/2-((int)temp[i].GetRect().Right-(int)temp[i].GetRect().Left)/2)-tailleCadran.x);
+        int decalY=0;
+        int decalY2=20;
+        for (int i=0;i<(int)temp.size();i++)
+            decalY2+=(int)temp[i].GetRect().Bottom-(int)temp[i].GetRect().Top+2;
 
-        decalY+=(int)temp[i].GetRect().Bottom-(int)temp[i].GetRect().Top+2;
+        position.y -= decalY2;
 
-        moteurGraphique->AjouterTexte(&temp[i],19);
+        for (int i=0;i<(int)temp.size();i++)
+        {
+            temp[i].SetY((position.y+decalY+10));
+            temp[i].SetX(position.x+(tailleCadran.x/2-((int)temp[i].GetRect().Right-(int)temp[i].GetRect().Left)/2)-tailleCadran.x);
+
+            decalY+=(int)temp[i].GetRect().Bottom-(int)temp[i].GetRect().Top+2;
+
+            moteurGraphique->AjouterTexte(&temp[i],19);
+        }
     }
+    else
+    {
+        int decalY=0;
+        for (int i=0;i<(int)temp.size();i++)
+        {
+            temp[i].SetY((position.y+decalY+10));
+            temp[i].SetX(position.x+(tailleCadran.x/2-((int)temp[i].GetRect().Right-(int)temp[i].GetRect().Left)/2)-tailleCadran.x);
 
+            decalY+=(int)temp[i].GetRect().Bottom-(int)temp[i].GetRect().Top+2;
 
+            moteurGraphique->AjouterTexte(&temp[i],19);
+        }
+    }
     tailleCadran.y=decalage.y;
 
     tailleCadran.y+=20;

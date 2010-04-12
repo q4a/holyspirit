@@ -36,6 +36,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Contextes/c_quetes.h"
 #include "Contextes/c_potales.h"
 #include "Contextes/c_craft.h"
+#include "Contextes/c_bless.h"
 #include "Contextes/c_miracles.h"
 #include "Contextes/c_menuInGame.h"
 #include "Contextes/c_demarrage.h"
@@ -65,6 +66,7 @@ class Jeu
     c_Quetes        *m_quetes;
     c_Potales       *m_potales;
     c_Craft         *m_craft;
+    c_Bless         *m_bless;
     c_Miracles      *m_miracles;
     c_MenuInGame    *m_menuInGame;
     c_MainMenu      *m_mainMenu;

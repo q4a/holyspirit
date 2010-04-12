@@ -255,7 +255,7 @@ char EventManager::getChar()
         return (m_char);
 }
 
-char EventManager::stopChar()
+void EventManager::stopChar()
 {
     m_char = -1;
 }

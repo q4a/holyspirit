@@ -133,6 +133,8 @@
 		<VirtualTargets>
 			<Add alias="All" targets="Release;" />
 		</VirtualTargets>
+		<Unit filename="Contextes\c_bless.cpp" />
+		<Unit filename="Contextes\c_bless.h" />
 		<Unit filename="Contextes\c_changementMap.cpp" />
 		<Unit filename="Contextes\c_changementMap.h" />
 		<Unit filename="Contextes\c_craft.cpp" />

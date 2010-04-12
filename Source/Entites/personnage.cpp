@@ -726,7 +726,7 @@ void Personnage::InfligerDegats(float degats, int type, Modele_Personnage *model
 {
     float temp = degats;
     if(type < 4 && type >= 0)
-        degats -= (float)m_caracteristique.armure[type]/50;
+        degats -= (float)m_caracteristique.armure[type]/25;
 
     if (degats < 0)
         degats = 0;

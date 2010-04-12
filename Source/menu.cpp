@@ -330,7 +330,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
             std::ostringstream buf;
             buf<<caracteristiqueMonstre.nom;
 
-            buf << "( "<<(int)caracteristiqueMonstre.vie<<" / "<<caracteristiqueMonstre.maxVie<<" )";
+            buf << " ("<<(int)caracteristiqueMonstre.vie<<" / "<<caracteristiqueMonstre.maxVie<<")";
 
             texte.SetString(buf.str());
         }
@@ -403,6 +403,10 @@ void Menu::AfficherCraft(float decalage,Classe *classe)
     sprite.SetY(0);
     sprite.Resize(configuration->Resolution.w, configuration->Resolution.h);
     moteurGraphique->AjouterCommande(&sprite,14,0);
+
+    classe->schema_craft.Afficher(decalage);
+    classe->result_craft.Afficher(decalage);
+    classe->button_craft.Afficher(decalage);
 }
 
 void Menu::AfficherMiracles(float decalage, Classe *classe, int fenetreEnCours)

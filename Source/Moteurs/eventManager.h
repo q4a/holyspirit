@@ -46,7 +46,7 @@ class EventManager : public CSingleton<EventManager>
 	coordonnee getPositionSouris();
 	int getMolette();
 	char getChar();
-	char stopChar();
+	void stopChar();
 
 	void arreterClique();
 

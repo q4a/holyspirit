@@ -829,6 +829,7 @@ void c_Jeu::Evenements(Jeu *jeu)
                         jeu->hero.m_personnage.setArrivee(eventManager->getCasePointee());
                     else
                         jeu->hero.m_personnage.setArrivee(jeu->hero.m_personnage.getProchaineCase());
+                    jeu->hero.setMonstreVise(-1);
                 }
             }
         }

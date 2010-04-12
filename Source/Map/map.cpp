@@ -3270,6 +3270,17 @@ void Map::Script_Craft(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
     jeu->m_jeu->alpha_dialog = 0;
 }
 
+void Map::Script_Bless(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer)
+{
+    hero->setMonstreVise(-1);
+   // jeu->m_inventaire->setTrader(m_monstre[monstre].getPointeurObjets(),&hero->m_classe);
+    eventManager->StopEvenement(sf::Mouse::Left, EventClic);
+    eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
+    jeu->Clock.Reset();
+    jeu->m_contexte=jeu->m_bless;
+    jeu->m_jeu->alpha_dialog = 0;
+}
+
 std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)
 {
     sf::Text temp;
@@ -3363,6 +3374,8 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             Script_Trade(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="craft" && monstre != -1)
             Script_Craft(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
+        else if (script->m_instructions[noInstruction].nom=="bless" && monstre != -1)
+            Script_Bless(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="teleportation_menu")
             Script_Potale(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="add_checkpoint")

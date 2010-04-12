@@ -22,6 +22,13 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 using namespace std;
 
+inline sf::Vector2f AutoScreenAdjust(float x, float y, float decalage = 0)
+{
+    sf::Vector2f temp;
+    temp.x = x + (configuration->Resolution.x - 800) * 0.5;
+    temp.y = y + (configuration->Resolution.y - 600) - decalage * configuration->Resolution.h/600;
+    return temp;
+}
 
 void                ChargerImageInterface(ifstream &fichier, Image_interface &image_interface)
 {
@@ -248,7 +255,64 @@ void                ChargerCoordonneeInterface(ifstream &fichier, coordonnee &co
     while (caractere!='$');
 }
 
+void Emplacement_inventaire::Charger(ifstream &fichier)
+{
+    char caractere;
+    std::string buf;
+    do
+    {
+        fichier.get(caractere);
+        switch (caractere)
+        {
+        case 'e' :
+            fichier>>emplacement;
+            break;
+        case 'x' :
+            fichier>>position.x;
+            break;
+        case 'y' :
+            fichier>>position.y;
+            break;
+        case 'w' :
+            fichier>>position.w;
+            break;
+        case 'h' :
+            fichier>>position.h;
+            break;
+        case 'n' :
+            fichier>>buf;
+            image_empty = moteurGraphique->AjouterImage(buf,-1);
+            break;
+        case 'm' :
+            fichier>>buf;
+            image = moteurGraphique->AjouterImage(buf,-1);
+            break;
+        }
 
+        if (fichier.eof())
+        {
+            console->Ajouter("Erreur : Classe Invalide",1);
+            caractere='$';
+        }
+
+    }
+    while (caractere!='$');
+}
+
+void Emplacement_inventaire::Afficher(float decalage)
+{
+    sf::Sprite sprite;
+    sprite.SetImage(*moteurGraphique->getImage(image));
+    sprite.SetPosition(AutoScreenAdjust(position.x-2,
+                                        position.y-2, decalage));
+    moteurGraphique->AjouterCommande(&sprite, 15, 0);
+
+    if(empty)
+    {
+        sprite.SetImage(*moteurGraphique->getImage(image_empty));
+        moteurGraphique->AjouterCommande(&sprite, 15, 0);
+    }
+}
 
 
 void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_miracles, const Caracteristique &caract)
@@ -473,9 +537,6 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
         ChargerCoordonneeInterface(fichier, position_bouton_dialogue);
         ChargerCoordonneeInterface(fichier, position_contenu_quetes);
         ChargerCoordonneeInterface(fichier, position_contenu_description_quete);
-        ChargerCoordonneeInterface(fichier, position_schema_craft);
-        ChargerCoordonneeInterface(fichier, position_result_craft);
-        ChargerCoordonneeInterface(fichier, position_button_craft);
 
         for(int i = 0 ; i < 8 ; ++i)
             ChargerCoordonneeInterface(fichier, position_raccourcis[i]);
@@ -487,42 +548,53 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
             fichier.get(caractere);
             if (caractere=='*')
             {
+                schema_craft.Charger(fichier);
+            }
+            if (fichier.eof())
+            {
+                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                caractere='$';
+            }
+        }
+        while (caractere!='$');
+
+        do
+        {
+            fichier.get(caractere);
+            if (caractere=='*')
+            {
+                result_craft.Charger(fichier);
+            }
+            if (fichier.eof())
+            {
+                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                caractere='$';
+            }
+        }
+        while (caractere!='$');
+
+        do
+        {
+            fichier.get(caractere);
+            if (caractere=='*')
+            {
+                button_craft.Charger(fichier);
+            }
+            if (fichier.eof())
+            {
+                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                caractere='$';
+            }
+        }
+        while (caractere!='$');
+
+        do
+        {
+            fichier.get(caractere);
+            if (caractere=='*')
+            {
                 emplacements.push_back(Emplacement_inventaire ());
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                    case 'e' :
-                        fichier>>emplacements.back().emplacement;
-                        break;
-                    case 'x' :
-                        fichier>>emplacements.back().position.x;
-                        break;
-                    case 'y' :
-                        fichier>>emplacements.back().position.y;
-                        break;
-                    case 'w' :
-                        fichier>>emplacements.back().position.w;
-                        break;
-                    case 'h' :
-                        fichier>>emplacements.back().position.h;
-                        break;
-                    case 'm' :
-                        std::string buf;
-                        fichier>>buf;
-                        emplacements.back().image = moteurGraphique->AjouterImage(buf,-1);
-                        break;
-                    }
-
-                    if (fichier.eof())
-                    {
-                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
-                        caractere='$';
-                    }
-
-                }
-                while (caractere!='$');
+                emplacements.back().Charger(fichier);
                 fichier.get(caractere);
             }
             if (fichier.eof())
@@ -537,7 +609,6 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
         ChargerCoordonneeInterface(fichier, position_points_miracles);
 
         ChargerBouton(fichier, boutons_miracles);
-      //  ChargerImageInterface(fichier, interface_miracles);
 
         do
         {

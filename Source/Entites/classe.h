@@ -40,6 +40,11 @@ struct Emplacement_inventaire
     coordonnee position;
     int emplacement;
     int image;
+    int image_empty;
+    bool empty;
+
+    void Charger(std::ifstream &fichier);
+    void Afficher(float);
 };
 
 struct Classe
@@ -85,9 +90,9 @@ struct Classe
     coordonnee position_contenu_inventaire;
     coordonnee position_contenu_marchand;
 
-    coordonnee position_schema_craft;
-    coordonnee position_result_craft;
-    coordonnee position_button_craft;
+    Emplacement_inventaire schema_craft;
+    Emplacement_inventaire result_craft;
+    Emplacement_inventaire button_craft;
 
     coordonnee position_contenu_dialogue;
     coordonnee position_contenu_quetes;

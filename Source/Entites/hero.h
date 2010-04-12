@@ -89,8 +89,11 @@ public:
     bool AjouterObjet(Objet objet,bool enMain=false);
 
     Objet DeposerObjet();
-    bool PrendreEnMain(std::vector<Objet>*, bool craft = false);
+    bool PrendreEnMain(std::vector<Objet>*, bool craft = false, bool bless = false);
     void delObjet(int numero);
+
+    void GererBless(std::vector<Objet>*);
+    void GererCraft(std::vector<Objet>*);
 
     bool PossibleEquiper(int numero, int emplacement);
     bool Equiper(int numero, int emplacement);

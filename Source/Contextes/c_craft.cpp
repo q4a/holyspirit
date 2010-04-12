@@ -78,6 +78,7 @@ void c_Craft::Utiliser(Jeu *jeu)
         m_trader.clear();
         m_decalage=-600;
         jeu->hero.m_no_schema = -1;
+        //jeu->hero.m_no_result = -1;
         jeu->Next();
     }
 
@@ -115,6 +116,8 @@ void c_Craft::Utiliser(Jeu *jeu)
         if(jeu->next_screen == 2 || jeu->next_screen == 4)
             jeu->next_screen = 3;
     }
+
+    jeu->hero.GererCraft(&m_trader);
 
     if (eventManager->getEvenement(Mouse::Left,EventClic))
     {

@@ -43,6 +43,7 @@ Jeu::Jeu()
     m_quetes        = NULL;
     m_potales       = NULL;
     m_craft         = NULL;
+    m_bless         = NULL;
     m_miracles      = NULL;
     m_menuInGame    = NULL;
     m_mainMenu      = NULL;
@@ -58,6 +59,7 @@ void Jeu::Demarrer()
     m_quetes        = new c_Quetes;
     m_potales       = new c_Potales;
     m_craft         = new c_Craft;
+    m_bless         = new c_Bless;
     m_miracles      = new c_Miracles;
     m_menuInGame    = new c_MenuInGame;
     m_mainMenu      = new c_MainMenu;
@@ -117,6 +119,7 @@ void Jeu::Demarrer()
     delete m_quetes;
     delete m_potales;
     delete m_craft;
+    delete m_bless;
     delete m_miracles;
     delete m_menuInGame;
     delete m_mainMenu;

@@ -822,7 +822,6 @@ void MoteurGraphique::AjouterTexte(const std::string &txt, coordonnee pos, int c
     temp.SetPosition(pos.x, pos.y);
     temp.SetCharacterSize(size);
     temp.SetColor(color);
-
     AjouterTexte(&temp, couche, titre);
 
     if(fond)
@@ -877,7 +876,7 @@ void MoteurGraphique::AjouterTexte(sf::Text* string, int couche,bool titre)
         }
       //  else
         {
-            temp.Move(1,1);
+            temp.Move(2,2);
             temp.SetColor(sf::Color((int)(string->GetColor().r*0.05),(int)(string->GetColor().g*0.05),(int)(string->GetColor().b*0.05),string->GetColor().a));
             m_textes[couche].push_back(temp);
             temp.Move(-1,-1);

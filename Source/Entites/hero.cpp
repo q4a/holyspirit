@@ -866,8 +866,6 @@ void Hero::ChargerModele(bool tout)
     m_personnage.setPose(0);
     m_cas=0;
 
-    Lumiere color[NOMBRE_MORCEAU_PERSONNAGE];
-
     int nombreArme=0;
     m_weaponMiracle=-1;
 
@@ -946,11 +944,6 @@ void Hero::ChargerModele(bool tout)
                         ordre[m_inventaire[i].m_emplacementImageHero[temp]] = temp;
                         priorite[m_inventaire[i].m_emplacementImageHero[temp]] = m_inventaire[i].m_equipe;
                     }
-
-                    color[m_inventaire[i].m_emplacementImageHero[temp]].rouge=m_inventaire[i].m_color.r;
-                    color[m_inventaire[i].m_emplacementImageHero[temp]].vert=m_inventaire[i].m_color.g;
-                    color[m_inventaire[i].m_emplacementImageHero[temp]].bleu=m_inventaire[i].m_color.b;
-                    color[m_inventaire[i].m_emplacementImageHero[temp]].intensite=255;
                     pasEquipe[m_inventaire[i].m_emplacementImageHero[temp]]=false;
                 }
             }
@@ -959,7 +952,7 @@ void Hero::ChargerModele(bool tout)
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
     {
         if (m_cheminModeleNouveau[i]!="" && m_cheminModeleNouveau[i]!=m_cheminModele[i])
-            m_modelePersonnage[i].Charger(m_classe.chemin_modele+m_cheminModeleNouveau[i]),m_modelePersonnage[i].setPorteeLumineuse(color[i]);
+            m_modelePersonnage[i].Charger(m_classe.chemin_modele+m_cheminModeleNouveau[i]);
         else if (m_cheminModeleNouveau[i]=="")
             m_modelePersonnage[i].Reinitialiser();
 
@@ -1824,14 +1817,16 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
             sprite.SetColor(sf::Color(0,0,0));
             moteurGraphique->AjouterCommande(&sprite, 15,0);
 
-            if(m_caracteristiques.miracles_restant > 0)
-            {
-                sf::Sprite sprite2;
-                sprite2.SetImage(*moteurGraphique->getImage(m_classe.miracles_plus_button.image));
-                sprite2.SetPosition(AutoScreenAdjust(m_classe.position_miracles[i].x + m_classe.miracles_plus_button.position.x,
-                                                     m_classe.position_miracles[i].y + m_classe.miracles_plus_button.position.y,decalage));
-                moteurGraphique->AjouterCommande(&sprite2, 17,0);
-            }
+            if (m_personnage.getCaracteristique().miracles_restant > 0)
+                if (m_classe.miracles[i].m_buf == -1 || m_classe.miracles[i].m_buf != -1 && m_lvl_miracles[m_classe.miracles[i].m_buf] > 0)
+                {
+                    sf::Sprite sprite2;
+                    sprite2.SetImage(*moteurGraphique->getImage(m_classe.miracles_plus_button.image));
+                    sprite2.SetPosition(AutoScreenAdjust(m_classe.position_miracles[i].x + m_classe.miracles_plus_button.position.x,
+                                                         m_classe.position_miracles[i].y + m_classe.miracles_plus_button.position.y,decalage));
+
+                    moteurGraphique->AjouterCommande(&sprite2, 17,0);
+                }
 
             if (  eventManager->getPositionSouris().x > m_classe.position_miracles[i].x + m_classe.miracles_cadre.position.x + (configuration->Resolution.x - 800) * 0.5
                 &&eventManager->getPositionSouris().x < m_classe.position_miracles[i].x + m_classe.miracles_cadre.position.w + m_classe.miracles_cadre.position.x + (configuration->Resolution.x - 800) * 0.5
@@ -1858,7 +1853,6 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                     if (m_personnage.getCaracteristique().miracles_restant > 0)
                         if (m_classe.miracles[i].m_buf == -1 || m_classe.miracles[i].m_buf != -1 && m_lvl_miracles[m_classe.miracles[i].m_buf] > 0)
                         {
-
                             Caracteristique temp = m_personnage.getCaracteristique();
                             temp.miracles_restant--;
                             m_lvl_miracles[i]++;
@@ -1870,7 +1864,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                                     if(m_raccourcis[k].no == -1)
                                         m_raccourcis[k].no = i, m_raccourcis[k].miracle = true, k=0;
 
-                                if(m_personnage.m_miracleALancer == -1)
+                                if(m_personnage.m_miracleALancer == -1 && !m_classe.miracles[i].m_direct)
                                     m_personnage.m_miracleALancer = i;
                             }
                         }
@@ -1932,11 +1926,8 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
 
     for(unsigned i = 0 ; i < m_classe.emplacements.size() && !hideLeft ; ++i)
     {
-        sf::Sprite sprite;
-        sprite.SetImage(*moteurGraphique->getImage(m_classe.emplacements[i].image));
-        sprite.SetPosition(AutoScreenAdjust(m_classe.emplacements[i].position.x-2,
-                                            m_classe.emplacements[i].position.y-2, decalage));
-        moteurGraphique->AjouterCommande(&sprite, 15, 0);
+        m_classe.emplacements[i].Afficher(decalage);
+        m_classe.emplacements[i].empty = true;
     }
 
     for (int i=0;i<(int)m_inventaire.size();++i)
@@ -1983,7 +1974,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
                             for (int k=0;k<(int)m_inventaire[i].m_emplacement.size();k++)
                                 for (int l=0;l<(int)m_inventaire[j].m_emplacement.size();l++)
                                     if (m_inventaire[i].m_emplacement[k]==m_inventaire[j].m_emplacement[l])
-                                        temp.x+=96;
+                                        temp.x+=64;
 
                     int decalage = m_inventaire[i].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,0);
                     retour = true;
@@ -2000,6 +1991,8 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
             {
                 if (m_inventaire[i].m_equipe>=0&&m_inventaire[i].m_equipe<(int)m_classe.emplacements.size())
                 {
+                    m_classe.emplacements[m_inventaire[i].m_equipe].empty = false;
+
                     sprite.Resize(m_classe.emplacements[m_inventaire[i].m_equipe].position.w,
                                   m_classe.emplacements[m_inventaire[i].m_equipe].position.h);
 
@@ -2025,8 +2018,8 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
             }
             else if(i != m_no_result)
             {
-                position.x = AutoScreenAdjust(m_classe.position_schema_craft.x, 0).x;
-                position.y = AutoScreenAdjust(0, m_classe.position_schema_craft.y, decalage).y;
+                position.x = AutoScreenAdjust(m_classe.schema_craft.position.x, 0).x;
+                position.y = AutoScreenAdjust(0, m_classe.schema_craft.position.y, decalage).y;
 
                 position.h = m_inventaire[i].getTaille().y*32;
                 position.w = m_inventaire[i].getTaille().x*32;
@@ -2042,19 +2035,19 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
             }
             else
             {
-                sprite.Resize(m_classe.position_result_craft.w,
-                              m_classe.position_result_craft.h);
+                sprite.Resize(m_classe.result_craft.position.w,
+                              m_classe.result_craft.position.h);
 
-                position.x = AutoScreenAdjust(m_classe.position_result_craft.x + (m_classe.position_result_craft.w - m_inventaire[i].getPositionImage().w) * 0.5, 0).x;
-                position.y = AutoScreenAdjust(0, m_classe.position_result_craft.y + (m_classe.position_result_craft.h - m_inventaire[i].getPositionImage().h) * 0.5, decalage).y;
+                position.x = AutoScreenAdjust(m_classe.result_craft.position.x + (m_classe.result_craft.position.w - m_inventaire[i].getPositionImage().w) * 0.5, 0).x;
+                position.y = AutoScreenAdjust(0, m_classe.result_craft.position.y + (m_classe.result_craft.position.h - m_inventaire[i].getPositionImage().h) * 0.5, decalage).y;
 
-                position.h=m_classe.position_result_craft.h;
-                position.w=m_classe.position_result_craft.w;
+                position.h=m_classe.result_craft.position.h;
+                position.w=m_classe.result_craft.position.w;
 
                 sprite.SetX((251)*configuration->Resolution.w/800);
                 sprite.SetY((43)*configuration->Resolution.h/600-decalage*configuration->Resolution.h/600);
-                sprite.SetPosition(AutoScreenAdjust(m_classe.position_result_craft.x ,
-                                                    m_classe.position_result_craft.y , decalage));
+                sprite.SetPosition(AutoScreenAdjust(m_classe.result_craft.position.x ,
+                                                    m_classe.result_craft.position.y , decalage));
 
                 if(m_objetEnMain==-1
                 && eventManager->getPositionSouris().x > sprite.GetPosition().x
@@ -2182,10 +2175,10 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
             && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
             {
                 coordonnee temp=eventManager->getPositionSouris();
-                temp.y+=48;
-                temp.x-=192;
+                //temp.y-=256;
+                temp.x-=196;
 
-                int decalage=trader[i].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,m_cheminClasse,(10-(float)m_caracteristiques.charisme/100),1,1);
+                int decalage=trader[i].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,m_cheminClasse,(10-(float)m_caracteristiques.charisme/100),1,1,0,1);
                 retour = true;
 
                 for (int j=0;j<(int)m_inventaire.size();j++)
@@ -2193,7 +2186,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
                         for (int k=0;k<(int)trader[i].m_emplacement.size();k++)
                             for (int l=0;l<(int)m_inventaire[j].m_emplacement.size();l++)
                                 if (trader[i].m_emplacement[k]==m_inventaire[j].m_emplacement[l])
-                                    temp.x=decalage+12,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,1,1),l=(int)m_inventaire[j].m_emplacement.size(),k=(int)trader[i].m_emplacement.size();
+                                    temp.x=decalage+12,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,1,1,1),l=(int)m_inventaire[j].m_emplacement.size(),k=(int)trader[i].m_emplacement.size();
             }
 
 
@@ -2329,7 +2322,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
 
         moteurGraphique->AjouterCommande(&sprite,18,0);
 
-        sprite.SetColor(m_inventaire[m_objetEnMain].m_color);
+        sprite.SetColor(sf::Color(255,255,255,255));
 
         sprite.SetImage(*moteurGraphique->getImage(m_inventaire[m_objetEnMain].getImage()));
         sprite.SetSubRect(IntRect(m_inventaire[m_objetEnMain].getPositionImage().x,
@@ -2420,7 +2413,7 @@ void Hero::AfficherRaccourcis()
                 if(m_raccourcis[i].miracle)
                     m_classe.miracles[m_raccourcis[i].no].AfficherDescription(eventManager->getPositionSouris(), false);
                 else
-                     m_inventaire[m_raccourcis[i].no].AfficherCaracteristiques(eventManager->getPositionSouris(), m_caracteristiques,&m_inventaire,m_cheminClasse);
+                     m_inventaire[m_raccourcis[i].no].AfficherCaracteristiques(eventManager->getPositionSouris(), m_caracteristiques,&m_inventaire,m_cheminClasse,1,0,0,0,1);
             }
 
 
@@ -2797,6 +2790,14 @@ void Hero::RecalculerCaracteristiques(bool bis)
     temp.reserveVie  = reserveVie;
     temp.reserveFoi  = reserveFoi;
 
+    for(int i = 0 ; i < 4 ; ++i)
+    {
+       temp.degatsMin[i] = m_caracteristiques.degatsMin[i];
+       temp.degatsMax[i] = m_caracteristiques.degatsMax[i];
+       temp.armure[i] = m_caracteristiques.armure[i];
+    }
+
+
     m_personnage.setCaracteristique(temp);
 
     m_caracteristiques.reserveVie  = reserveVie;
@@ -3044,7 +3045,7 @@ Objet Hero::DeposerObjet()
     return temp;
 }
 
-bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft)
+bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
 {
     if (trader)
     {
@@ -3061,7 +3062,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft)
             m_defilement_trader++;
     }
 
-    if (m_buttonPointe>0 && !craft)
+    if (m_buttonPointe>0 && !craft && !bless )
     {
         if (m_buttonPointe==1&&m_caracteristiques.pts_restant>0)
         {
@@ -3160,81 +3161,6 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft)
         }
     }
 
-    if(craft)
-    {
-        if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.position_schema_craft.x,0).x
-        && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.position_schema_craft.x + m_classe.position_schema_craft.w,0).x
-        && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.position_schema_craft.y).y
-        && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.position_schema_craft.y + m_classe.position_schema_craft.h).y)
-        {
-            if(m_objetEnMain >= 0)
-            {
-                if(m_inventaire[m_objetEnMain].m_type == SCHEMA)
-                {
-                    int buf = m_no_schema;
-                    m_no_schema = m_objetEnMain;
-                    m_objetEnMain = buf;
-                }
-            }
-            else
-                 m_objetEnMain = m_no_schema, m_no_schema = -1;
-        }
-
-        if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.position_result_craft.x,0).x
-        && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.position_result_craft.x + m_classe.position_result_craft.w,0).x
-        && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.position_result_craft.y).y
-        && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.position_result_craft.y + m_classe.position_result_craft.h).y)
-        {
-            if(m_objetEnMain < 0 && m_no_result >= 0)
-                m_objetEnMain = m_no_result, m_no_result = -1;
-        }
-
-
-        if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.position_button_craft.x,0).x
-        && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.position_button_craft.x + m_classe.position_button_craft.w,0).x
-        && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.position_button_craft.y).y
-        && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.position_button_craft.y + m_classe.position_button_craft.h).y
-        && m_no_schema >= 0)
-        {
-            bool ok = true;
-
-            for(unsigned i = 0 ; i < m_inventaire[m_no_schema].m_craft_ingredients.size() ; ++i)
-            {
-                int nbr = 0;
-                for(unsigned j = 0 ; j < trader->size() ; ++j)
-                    if((*trader)[j].getChemin() == m_inventaire[m_no_schema].m_craft_ingredients[i].nom)
-                        nbr ++;
-
-                if(nbr < m_inventaire[m_no_schema].m_craft_ingredients[i].nombre)
-                    ok = false;
-            }
-
-            if(ok)
-            {
-                for(unsigned i = 0 ; i < m_inventaire[m_no_schema].m_craft_ingredients.size() ; ++i)
-                for(unsigned k = 0 ; k < m_inventaire[m_no_schema].m_craft_ingredients[i].nombre ; ++k)
-                {
-                    for(unsigned j = 0 ; j < (*trader).size() ; ++j)
-                        if((*trader)[j].getChemin() == m_inventaire[m_no_schema].m_craft_ingredients[i].nom)
-                            trader->erase(trader->begin() + j), j = trader->size();
-                }
-
-                Objet result;
-                result.Charger(m_inventaire[m_no_schema].m_craft_result, m_caracteristiques);
-                //result.Generer(0); POUR NE PAS AVOIR DE BENEDICTIONS
-                result.Generer(3);
-
-                delObjet(m_no_schema);
-                m_no_schema = -1;
-
-                m_inventaire.push_back(result);
-                m_no_result = m_inventaire.size() - 1;
-            }
-        }
-    }
-
-
-
     if (m_objetEnMain >= 0)
     {
         for(int i = 0 ; i < 8 ; ++i)
@@ -3318,12 +3244,16 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft)
                     {
                         if (eventManager->getEvenement(Key::LControl,EventKey))
                         {
-                            m_inventaire[z].JouerSon();
-                            if(trader != &m_coffre && !craft)
-                                m_argent+=m_inventaire[z].getPrix();
-                            m_inventaire[z].m_equipe=-1;
-                            AjouterObjetInventaire(m_inventaire[z],trader,m_classe.position_contenu_marchand,true);
-                            delObjet(z);
+                            if(trader)
+                            if(trader->empty() && (trader == &m_coffre || craft || bless) || !trader->empty())
+                            {
+                                m_inventaire[z].JouerSon();
+                                if(trader != &m_coffre && !craft && !bless)
+                                    m_argent+=m_inventaire[z].getPrix();
+                                m_inventaire[z].m_equipe=-1;
+                                AjouterObjetInventaire(m_inventaire[z],trader,m_classe.position_contenu_marchand,true);
+                                delObjet(z);
+                            }
                         }
                         else
                             m_objetEnMain=z,m_achat=false;
@@ -3354,7 +3284,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft)
         {
             m_inventaire[m_objetEnMain].JouerSon();
 
-            if(trader != &m_coffre && !craft)
+            if(trader != &m_coffre && !craft && !bless)
             {
                 if (m_achat)
                     m_argent+=(int)((float)m_inventaire[m_objetEnMain].getPrix()*(10-(float)m_caracteristiques.charisme/100));
@@ -3375,13 +3305,13 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft)
                   &&caseVisee.x <  (*trader)[z].getPosition().x+(*trader)[z].getTaille().x
                   &&caseVisee.y >= (*trader)[z].getPosition().y
                   &&caseVisee.y <  (*trader)[z].getPosition().y+(*trader)[z].getTaille().y)
-                    if ((int)((float)(*trader)[z].getPrix()*(10-(float)m_caracteristiques.charisme/100))<=m_argent || trader == &m_coffre || craft)
+                    if ((int)((float)(*trader)[z].getPrix()*(10-(float)m_caracteristiques.charisme/100))<=m_argent || trader == &m_coffre || craft || bless)
                     {
                         m_achat=true;
 
                         if (AjouterObjet((*trader)[z],!eventManager->getEvenement(Key::LControl,EventKey)));
                         {
-                            if(trader != &m_coffre && !craft)
+                            if(trader != &m_coffre && !craft && !bless)
                                 m_argent-=(int)((float)(*trader)[z].getPrix()*(10-(float)m_caracteristiques.charisme/100));
                             if ((*trader)[z].m_type!=CONSOMMABLE || trader == &m_coffre)
                                 trader->erase(trader->begin()+z);
@@ -3408,7 +3338,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft)
                 return 1;
             }
         }
-        else if (!craft)
+        else if (!craft && !bless)
         {
             bool equipe=false;
 
@@ -3433,6 +3363,202 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft)
 
     RecalculerCaracteristiques();
     return 0;
+}
+
+void Hero::GererCraft(std::vector<Objet> *trader)
+{
+    if(m_no_schema >= 0)
+        m_classe.schema_craft.empty = false;
+    else
+        m_classe.schema_craft.empty = true;
+
+     if(m_no_result >= 0)
+        m_classe.result_craft.empty = false;
+    else
+        m_classe.result_craft.empty = true;
+
+    if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.schema_craft.position.x,0).x
+    && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.schema_craft.position.x + m_classe.schema_craft.position.w,0).x
+    && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.schema_craft.position.y).y
+    && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.schema_craft.position.y + m_classe.schema_craft.position.h).y
+    && eventManager->getEvenement(Mouse::Left,EventClic))
+    {
+        if(m_objetEnMain >= 0)
+        {
+            if(m_inventaire[m_objetEnMain].m_type == SCHEMA)
+            {
+                int buf = m_no_schema;
+                m_no_schema = m_objetEnMain;
+                m_objetEnMain = buf;
+            }
+        }
+        else
+             m_objetEnMain = m_no_schema, m_no_schema = -1;
+    }
+
+    if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.result_craft.position.x,0).x
+    && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.result_craft.position.x + m_classe.result_craft.position.w,0).x
+    && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.result_craft.position.y).y
+    && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.result_craft.position.y + m_classe.result_craft.position.h).y
+    && eventManager->getEvenement(Mouse::Left,EventClic))
+    {
+        if(m_objetEnMain < 0 && m_no_result >= 0)
+            m_objetEnMain = m_no_result, m_no_result = -1;
+    }
+
+
+
+    if(m_no_schema >= 0)
+    {
+        bool ok = true;
+
+        for(unsigned i = 0 ; i < m_inventaire[m_no_schema].m_craft_ingredients.size() ; ++i)
+        {
+            int nbr = 0;
+            for(unsigned j = 0 ; j < trader->size() ; ++j)
+                if((*trader)[j].getChemin() == m_inventaire[m_no_schema].m_craft_ingredients[i].nom)
+                    nbr ++;
+
+            if(nbr < m_inventaire[m_no_schema].m_craft_ingredients[i].nombre)
+                ok = false;
+        }
+
+        if(ok)
+        {
+            m_classe.button_craft.empty = true;
+            if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.button_craft.position.x,0).x
+            && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.button_craft.position.x + m_classe.button_craft.position.w,0).x
+            && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.button_craft.position.y).y
+            && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.button_craft.position.y + m_classe.button_craft.position.h).y
+            && eventManager->getEvenement(Mouse::Left,EventClic))
+            {
+                for(unsigned i = 0 ; i < m_inventaire[m_no_schema].m_craft_ingredients.size() ; ++i)
+                    for(unsigned k = 0 ; k < m_inventaire[m_no_schema].m_craft_ingredients[i].nombre ; ++k)
+                    {
+                        for(unsigned j = 0 ; j < (*trader).size() ; ++j)
+                            if((*trader)[j].getChemin() == m_inventaire[m_no_schema].m_craft_ingredients[i].nom)
+                                trader->erase(trader->begin() + j), j = trader->size();
+                    }
+
+                Objet result;
+                result.Charger(m_inventaire[m_no_schema].m_craft_result, m_caracteristiques);
+                result.Generer(0);
+
+                delObjet(m_no_schema);
+                m_no_schema = -1;
+
+                m_inventaire.push_back(result);
+                m_no_result = m_inventaire.size() - 1;
+            }
+        }
+        else
+            m_classe.button_craft.empty = false;
+    }
+    else
+        m_classe.button_craft.empty = false;
+}
+
+void Hero::GererBless(std::vector<Objet> *trader)
+{
+    if(m_no_schema >= 0)
+        m_classe.schema_craft.empty = false;
+    else
+        m_classe.schema_craft.empty = true;
+
+     if(m_no_result >= 0)
+        m_classe.result_craft.empty = false;
+    else
+        m_classe.result_craft.empty = true;
+
+    if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.schema_craft.position.x,0).x
+    && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.schema_craft.position.x + m_classe.schema_craft.position.w,0).x
+    && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.schema_craft.position.y).y
+    && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.schema_craft.position.y + m_classe.schema_craft.position.h).y
+    && eventManager->getEvenement(Mouse::Left,EventClic))
+    {
+        if(m_objetEnMain >= 0)
+        {
+            if(m_inventaire[m_objetEnMain].m_type == LITANIE)
+            {
+                int buf = m_no_schema;
+                m_no_schema = m_objetEnMain;
+                m_objetEnMain = buf;
+            }
+        }
+        else
+             m_objetEnMain = m_no_schema, m_no_schema = -1;
+    }
+
+    if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.result_craft.position.x,0).x
+    && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.result_craft.position.x + m_classe.result_craft.position.w,0).x
+    && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.result_craft.position.y).y
+    && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.result_craft.position.y + m_classe.result_craft.position.h).y
+    && eventManager->getEvenement(Mouse::Left,EventClic))
+    {
+        if(m_objetEnMain >= 0)
+        {
+            if(m_inventaire[m_objetEnMain].m_type == ARME
+            || m_inventaire[m_objetEnMain].m_type == ARMURE)
+            {
+                int buf = m_no_result;
+                m_no_result = m_objetEnMain;
+                m_objetEnMain = buf;
+            }
+        }
+        else
+             m_objetEnMain = m_no_result, m_no_result = -1;
+    }
+
+
+    if( m_no_schema >= 0 && m_no_result >= 0)
+    {
+        bool ok = true;
+
+        for(unsigned i = 0 ; i < m_inventaire[m_no_schema].m_benedictions.size() ; ++i)
+        {
+            if(m_inventaire[m_no_schema].m_benedictions[i].type == DEGATS_SUPP
+            && m_inventaire[m_no_result].m_type != ARME)
+                ok = false;
+            if(m_inventaire[m_no_schema].m_benedictions[i].type == ARMURE_SUPP
+            && m_inventaire[m_no_result].m_type != ARMURE)
+                ok = false;
+        }
+
+        if(m_inventaire[m_no_result].m_nbr_bless <= 0)
+            ok = false;
+
+
+        if(ok)
+        {
+            m_classe.button_craft.empty = true;
+            if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.button_craft.position.x,0).x
+            && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.button_craft.position.x + m_classe.button_craft.position.w,0).x
+            && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.button_craft.position.y).y
+            && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.button_craft.position.y + m_classe.button_craft.position.h).y
+            && eventManager->getEvenement(Mouse::Left,EventClic))
+            {
+                for(unsigned i = 0 ; i < m_inventaire[m_no_schema].m_benedictions.size() ; ++i)
+                    m_inventaire[m_no_result].AddBenediction(m_inventaire[m_no_schema].m_benedictions[i]);
+
+                if(m_inventaire[m_no_result].m_benedictions.size() >= 10 && m_inventaire[m_no_result].getRarete() < SANCTIFIE)
+                    m_inventaire[m_no_result].setRarete(SANCTIFIE);
+                if(m_inventaire[m_no_result].m_benedictions.size() >= 5 && m_inventaire[m_no_result].getRarete() < SACRE)
+                    m_inventaire[m_no_result].setRarete(SACRE);
+                if(m_inventaire[m_no_result].m_benedictions.size() >= 2 && m_inventaire[m_no_result].getRarete() < BENI)
+                    m_inventaire[m_no_result].setRarete(BENI);
+                if(m_inventaire[m_no_result].m_benedictions.size() >= 1 && m_inventaire[m_no_result].getRarete() < BONNEFACTURE)
+                    m_inventaire[m_no_result].setRarete(BONNEFACTURE);
+
+                delObjet(m_no_schema);
+                m_no_schema = -1;
+                m_inventaire[m_no_result].m_nbr_bless --;
+            }
+        }
+        else
+            m_classe.button_craft.empty = false;
+    }
+    else
+        m_classe.button_craft.empty = false;
 }
 
 bool Hero::PossibleEquiper(int numero, int emplacement)
