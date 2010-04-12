@@ -118,6 +118,10 @@ $
 		*Drawing_shield_bronze.item.hs
 		r2000
 	$
+	*
+		*Litanie_0.item.hs
+		r3000
+	$
 
 
 

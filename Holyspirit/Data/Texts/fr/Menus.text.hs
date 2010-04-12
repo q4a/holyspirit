@@ -15,7 +15,7 @@ Afficher/Cacher carte (M)
 Inventaire (I)
 Quêtes (Q)
 Miracles (T)
-Menu (Echappe)
+Menu (Echap)
 Équipé :
 Marchand :
 Inventaire :
@@ -58,3 +58,4 @@ Quitter
 Retour
 Votre nom :
 Commencer
+Emplacement libre

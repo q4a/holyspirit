@@ -51,3 +51,6 @@ J'ai résisté à l'attaque !\Je dois encore aller chercher ma récompense.
 J'ai échoué, les démons ont réussis à détruire la porte et à tuer le tavernier.
 J'ai résisté à l'attaque !\Et j'ai recu mon argent.
 Merci.\Voici votre dû.\+1000 d'argent reçu.
+Que la paix soit sur vous mon fils.\ Que souhaitez-vous de moi ?\
+-Prier
+-Bénir un objet

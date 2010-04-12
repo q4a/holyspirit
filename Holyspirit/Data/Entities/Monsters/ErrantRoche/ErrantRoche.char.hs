@@ -17,27 +17,27 @@ $
 
 	*
 		*Ore_iron.item.hs
-		r5000
+		r500000
 	$
 
 	*
 		*Ore_copper.item.hs
-		r5000
+		r500000
 	$
 
 	*
 		*Ruby.item.hs
-		r2000
+		r200000
 	$
 
 	*
 		*Emerald.item.hs
-		r2000
+		r200000
 	$
 
 	*
 		*Ore_gold.item.hs
-		r2000
+		r200000
 	$
 
 $

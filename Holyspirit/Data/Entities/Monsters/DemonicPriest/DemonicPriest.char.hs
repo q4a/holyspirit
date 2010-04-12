@@ -71,6 +71,10 @@ $
 		*Unique_gown.item.hs
 		r100
 	$
+	*
+		*Litanie_0.item.hs
+		r1000000
+	$
 
 
 

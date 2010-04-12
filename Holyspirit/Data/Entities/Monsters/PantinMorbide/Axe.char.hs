@@ -30,8 +30,6 @@ Objets du monstre
 		*Small_axe.item.hs
 		r5000
 	$
-
-
 $
 *Data/Particule_system/human_bones.ps.hs
 $
