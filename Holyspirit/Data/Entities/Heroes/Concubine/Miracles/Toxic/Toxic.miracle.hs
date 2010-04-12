@@ -29,7 +29,7 @@ $
 
 	* t2  ia1 ib%2 ic3 ic3 $
 
-	* t6  s4 ia0 ib0 ic5 id0 ie%2 if1 $
+	* t6 s4 ia0 ib0 ic5 id0 ie%2 if1 $
 $
 //Séquences
 	*
