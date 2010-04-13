@@ -85,6 +85,13 @@ $
 $
 	* x577 y550 w41 h41 $
 $
+	* e0 x314 y522 w29 h15 m51 	i * mData/Menus/hud_button.png x0 y0 w29 h15 $ $ $
+	* e1 x343 y522 w29 h15 m16 	i * mData/Menus/hud_button.png x29 y0 w29 h15 $ $ $
+	* e2 x372 y522 w29 h15 m14 	i * mData/Menus/hud_button.png x58 y0 w29 h15 $ $ $
+	* e3 x401 y522 w29 h15 m15 	i * mData/Menus/hud_button.png x87 y0 w29 h15 $ $ $
+	* e4 x430 y522 w29 h15 m17 	i * mData/Menus/hud_button.png x116 y0 w29 h15 $ $ $
+	* e5 x459 y522 w29 h15 m13 	i * mData/Menus/hud_button.png x145 y0 w29 h15 $ $ $
+$
 	* x56 y88 w64 h64 m Data/Menus/Slot2x2.png n Data/Menus/Slot_scroll.png $
 $
 	* x258 y45 w96 h160 m Data/Menus/Slot3x5.png n Data/Menus/Slot_craft.png $
@@ -118,4 +125,6 @@ $
 	* e1 b-1 x115 y439 w38 h38 mData/Entities/Heroes/Crusader/Miracles/Charge/Charge.miracle.hs i * mData/Menus/Crusader/CrusaderPath2.png x0 y0 w32 h32 $ $ $
 	
 	* e0 b-1 x115 y439 w38 h38 mData/Entities/Heroes/Crusader/Miracles/PowerfulSlash/PowerfulSlash.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x96 y0 w32 h32 $ $ $
+	
+	* e0 b0 x197 y199 w38 h38 mData/Entities/Heroes/Crusader/Miracles/HolyTornado/Projection.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x32 y0 w32 h32 $ $ $
 $

@@ -1,0 +1,53 @@
+	*33
+$
+	*34
+$
+	* l * 10 $
+	* l * 3 $
+	* l * 5 $
+$
+	*35
+$
+	* f%0 e2 c2 $
+$
+//Effets
+	* t0 l3 s0 ia2 id1 ie100 if1 ig10 ih75 $
+	* t7 ia2 id1 $
+	* t2 l4 ia%1 ib%2 ic0 $
+	* t3 s1 ia8 $
+	* t13 ia1 $
+$
+//Séquences
+	*
+		//Tiles de la séquence
+		//Images
+			*Data/Entities/Heroes/Crusader/Miracles/HolyTornado/HolyTornado.png
+		$
+		//Sons
+		$
+		* x0 y0 w256 h256 ey160 i0 a1 n0.04 $
+		* x256 y0 w256 h256 ey160 i0 a2 n0.04 $
+		* x512 y0 w256 h256 ey160 i0 a3 n0.04 $
+		* x768 y0 w256 h256 ey160 i0 a4 n0.04 $
+		* x0 y0 w256 h256 ey160 i0 a5 n0.04 $
+		* x256 y0 w256 h256 ey160 i0 a6 n0.04 $
+		* x512 y0 w256 h256 ey160 i0 a7 n0.04 $
+		* x768 y0 w256 h256 ey160 i0 a0 n0.04 $
+	$
+	*
+		//Tiles de la séquence
+		//Images
+			*Data/Entities/Heroes/Crusader/Miracles/HolyTornado/HolyTornado.png
+		$
+		//Sons
+		$
+		* x0 y0 w256 h256 ey160 i0 a1 n0.04 p224 $
+		* x256 y0 w256 h256 ey160 i0 a2 n0.04 p192 $
+		* x512 y0 w256 h256 ey160 i0 a3 n0.04 p160 $
+		* x768 y0 w256 h256 ey160 i0 a4 n0.04 p128 $
+		* x0 y0 w256 h256 ey160 i0 a5 n0.04 p96 $
+		* x256 y0 w256 h256 ey160 i0 a6 n0.04 p64 $
+		* x512 y0 w256 h256 ey160 i0 a7 n0.04 p32 $
+		* x768 y0 w256 h256 ey160 i0 a7 n0.04 p0 $
+	$
+$

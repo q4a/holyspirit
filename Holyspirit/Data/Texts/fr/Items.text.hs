@@ -85,7 +85,7 @@ Schéma expliquant la conception d'un barbute à cornes.
 Schéma : Cotte de maille
 Schéma expliquant la conception d'une cotte de maille.
 Schéma : Pendentif
-Schéma expliquant la conception d'un pendantif.
+Schéma expliquant la conception d'un pendentif.
 Schéma : Tiare
 Schéma expliquant la conception d'une tiare.
 Tiare

@@ -88,6 +88,13 @@ $
 $
 	* x577 y550 w41 h41 $
 $
+	* e0 x314 y522 w29 h15 m51 	i * mData/Menus/hud_button.png x0 y0 w29 h15 $ $ $
+	* e1 x343 y522 w29 h15 m16 	i * mData/Menus/hud_button.png x29 y0 w29 h15 $ $ $
+	* e2 x372 y522 w29 h15 m14 	i * mData/Menus/hud_button.png x58 y0 w29 h15 $ $ $
+	* e3 x401 y522 w29 h15 m15 	i * mData/Menus/hud_button.png x87 y0 w29 h15 $ $ $
+	* e4 x430 y522 w29 h15 m17 	i * mData/Menus/hud_button.png x116 y0 w29 h15 $ $ $
+	* e5 x459 y522 w29 h15 m13 	i * mData/Menus/hud_button.png x145 y0 w29 h15 $ $ $
+$
 	* x56 y88 w64 h64 m Data/Menus/Slot2x2.png n Data/Menus/Slot_scroll.png $
 $
 	* x258 y45 w64 h64 m Data/Menus/Slot3x5.png n Data/Menus/Slot_craft.png $

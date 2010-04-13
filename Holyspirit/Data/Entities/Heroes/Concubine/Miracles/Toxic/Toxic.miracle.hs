@@ -17,7 +17,7 @@ $
 
 	* t8 l2 ia-1 ib1 ic25 $
 
-	* t0 l3 l6 s0 ia15 ib1 $ // ia = vitesse, ib = projectile s'arrete à une case précise
+	* t0 l3 l6 s0 ia15 ic1 $ // ia = vitesse, ib = projectile s'arrete à une case précise
 
 	* t3 l4 s1 ia15 $
 	* t3 l5 s2 ia15 $
