@@ -2277,6 +2277,22 @@ bool Map::Miracle_Projectile(Hero *hero, Personnage *personnage, Miracle &modele
 {
     if (info.m_IDObjet >= 0 && info.m_IDObjet < (int)m_projectile.size())
     {
+        if (effet.m_informations[5] > 0)
+        {
+            info.m_informations[6] += temps * 100;
+            if (info.m_informations[6] > effet.m_informations[6])
+            {
+                if (effet.m_informations[5] >= 0)
+                {
+                    miracleEnCours.m_infos.push_back(new InfosEntiteMiracle ());
+                    miracleEnCours.m_infos.back()->m_effetEnCours    = effet.m_informations[5];
+                    miracleEnCours.m_infos.back()->m_position        = m_projectile[info.m_IDObjet].m_position;
+                    miracleEnCours.m_infos.back()->m_cible           = info.m_cible;
+                }
+                info.m_informations[6] = 0;
+            }
+        }
+
         if (!m_projectile[info.m_IDObjet].m_effet.m_actif)
             m_projectile[info.m_IDObjet].m_actif = false;
 
@@ -2325,10 +2341,20 @@ bool Map::Miracle_Projectile(Hero *hero, Personnage *personnage, Miracle &modele
                                             (float)effet.m_informations[1]*M_PI/180,!personnage->m_friendly,
                                             moteurGraphique->getTileset(modele.m_tileset[effet.m_sequence]));
 
-        if (effet.m_informations[1])
+        if (effet.m_informations[2])
             m_projectile.back().m_cible = cible;
         else
             m_projectile.back().m_cible = coordonnee (-1, -1);
+
+        if (effet.m_informations[3])
+            m_projectile.back().m_rotation = 0;
+
+        m_projectile.back().m_transperce = effet.m_informations[4];
+
+        if (effet.m_informations[7] > 0)
+            m_projectile.back().m_effet.m_compteur = effet.m_informations[7];
+
+
     }
 
     return 1;
@@ -3699,8 +3725,9 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
                                         if(m_monstre[m_decor[1][(int)(projectile->m_positionCase.y)][(int)(projectile->m_positionCase.x)].getMonstre()[o]].m_friendly == projectile->m_monstre)
                                         if(m_monstre[m_decor[1][(int)(projectile->m_positionCase.y)][(int)(projectile->m_positionCase.x)].getMonstre()[o]].getCaracteristique().niveau >= 0)
                                         {
-                                            collision                         = true;
-                                            projectile->m_actif        = false;
+                                            collision = true;
+                                            if(rand()%100 > projectile->m_transperce)
+                                                projectile->m_actif=false;
                                             projectile->m_entite_cible = &m_monstre[m_decor[1][(int)(projectile->m_positionCase.y)][(int)(projectile->m_positionCase.x)].getMonstre()[o]];
                                            // InfligerDegats(m_decor[1][(int)(projectile->m_positionCase.y)][(int)(projectile->m_positionCase.x)].getMonstre()[o],projectile->m_degats,hero,false);
                                         }
@@ -3708,7 +3735,8 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
 
                             if (hero->m_personnage.getCoordonnee().x==(int)((projectile->m_position.x+32)/COTE_TILE)&&hero->m_personnage.getCoordonnee().y==(int)((projectile->m_position.y+32)/COTE_TILE)&&projectile->m_monstre)
                             {
-                                projectile->m_actif=false;
+                                if(rand()%100 > projectile->m_transperce)
+                                    projectile->m_actif=false;
                                 projectile->m_entite_cible = &hero->m_personnage;
                                // hero->m_personnage.InfligerDegats(projectile->m_degats);
                             }

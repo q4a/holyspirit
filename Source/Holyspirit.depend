@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1271080537 source:e:\c++\holyspirit\source\contextes\c_changementmap.cpp
+1271159097 source:e:\c++\holyspirit\source\contextes\c_changementmap.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -489,12 +489,12 @@
 	"monstre.h"
 	"quete.h"
 
-1271068942 e:\c++\holyspirit\source\entites\classe.h
+1271155235 e:\c++\holyspirit\source\entites\classe.h
 	"miracle.h"
 
 1263653913 "
 
-1271081768 e:\c++\holyspirit\source\entites\miracle.h
+1271160187 e:\c++\holyspirit\source\entites\miracle.h
 	"../constantes.h"
 	"../Map/tile.h"
 	"../Moteurs/Entite_graphique.h"
@@ -633,7 +633,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1271082755 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
+1271156364 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -679,7 +679,7 @@
 	"case.h"
 	<iostream>
 
-1271069449 source:e:\c++\holyspirit\source\entites\classe.cpp
+1271155321 source:e:\c++\holyspirit\source\entites\classe.cpp
 	"classe.h"
 	"../globale.h"
 	<sstream>
@@ -701,7 +701,7 @@
 	"../globale.h"
 	<iostream>
 
-1269358905 source:e:\c++\holyspirit\source\entites\miracle.cpp
+1271160187 source:e:\c++\holyspirit\source\entites\miracle.cpp
 	"miracle.h"
 	"../globale.h"
 	<iostream>
@@ -715,7 +715,7 @@
 	"../constantes.h"
 	"../globale.h"
 
-1271078461 source:e:\c++\holyspirit\source\entites\objet.cpp
+1271084814 source:e:\c++\holyspirit\source\entites\objet.cpp
 	"objet.h"
 	"../globale.h"
 	<fstream>
@@ -758,7 +758,7 @@
 	"evenement.h"
 	<iostream>
 
-1271082756 source:e:\c++\holyspirit\source\map\map.cpp
+1271160610 source:e:\c++\holyspirit\source\map\map.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -5746,11 +5746,12 @@
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1270894384 source:e:\c++\holyspirit\source\contextes\c_mainmenu.cpp
+1271148584 source:e:\c++\holyspirit\source\contextes\c_mainmenu.cpp
 	"../jeu.h"
 	"../globale.h"
 	<iostream>
 	<fstream>
+	<sstream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>

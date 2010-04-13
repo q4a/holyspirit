@@ -507,151 +507,103 @@ int GestionBoutons(Jeu *jeu)
             return 3;
         }
 
-    if (eventManager->getEvenement(Key::M,EventKey)
-        || eventManager->getPositionSouris().x > AutoScreenAdjust(459,0).x
-        && eventManager->getPositionSouris().x < AutoScreenAdjust(487,0).x
-        && eventManager->getPositionSouris().y > AutoScreenAdjust(0,522).y
-        && eventManager->getPositionSouris().y < AutoScreenAdjust(0,537).y)
+    int choix = -1;
+
+    for(unsigned i = 0 ; i < jeu->hero.m_classe.boutons_menus_hud.size() ; ++i)
     {
-        if(!eventManager->getEvenement(Key::M,EventKey))
-         moteurGraphique->AjouterTexte(configuration->getText(0,13),coordonnee(eventManager->getPositionSouris().x,
-                                      eventManager->getPositionSouris().y - 20),
-                                      19,0,12,sf::Color(224,224,224),1);
+        sf::Sprite sprite;
 
-        if (eventManager->getEvenement(Key::M,EventKey)
-         || eventManager->getEvenement(Mouse::Left,EventClic))
+        sprite.SetImage(*moteurGraphique->getImage(jeu->hero.m_classe.boutons_menus_hud[i].image.image));
+        sprite.SetSubRect(sf::IntRect(jeu->hero.m_classe.boutons_menus_hud[i].image.position.x,
+                                      jeu->hero.m_classe.boutons_menus_hud[i].image.position.y,
+                                      jeu->hero.m_classe.boutons_menus_hud[i].image.position.x + jeu->hero.m_classe.boutons_menus_hud[i].image.position.w,
+                                      jeu->hero.m_classe.boutons_menus_hud[i].image.position.y + jeu->hero.m_classe.boutons_menus_hud[i].image.position.h));
+
+        sprite.SetPosition(AutoScreenAdjust(jeu->hero.m_classe.boutons_menus_hud[i].position.x,
+                                            jeu->hero.m_classe.boutons_menus_hud[i].position.y));
+
+        sprite.Resize(jeu->hero.m_classe.boutons_menus_hud[i].position.w, jeu->hero.m_classe.boutons_menus_hud[i].position.h);
+
+        if(jeu->hero.m_classe.boutons_menus_hud[i].lien == B_MAP
+        && configuration->Minimap)
+            sprite.Move(0,9);
+        if(jeu->hero.m_classe.boutons_menus_hud[i].lien == B_MIRACLES
+        && jeu->next_screen == 5)
+            sprite.Move(0,9);
+        if(jeu->hero.m_classe.boutons_menus_hud[i].lien == B_INVENTAIRE
+        && jeu->next_screen == 2)
+            sprite.Move(0,9);
+        if(jeu->hero.m_classe.boutons_menus_hud[i].lien == B_QUETES
+        && jeu->next_screen == 6)
+            sprite.Move(0,9);
+        if(jeu->hero.m_classe.boutons_menus_hud[i].lien == B_MENU
+        && jeu->next_screen == 4)
+            sprite.Move(0,9);
+        if(jeu->hero.m_classe.boutons_menus_hud[i].lien == B_CHAT
+        && configuration->console != 0)
+            sprite.Move(0,9);
+
+
+        moteurGraphique->AjouterCommande(&sprite, 15,0);
+
+        if(jeu->hero.m_classe.boutons_menus_hud[i].Survol())
         {
-            if(eventManager->getEvenement(Key::M,EventKey))
-                eventManager->StopEvenement(Key::M,EventKey);
-            else
+            moteurGraphique->AjouterTexte(jeu->hero.m_classe.boutons_menus_hud[i].nom,coordonnee(eventManager->getPositionSouris().x,
+                                            eventManager->getPositionSouris().y - 20),
+                                            19,0,12,sf::Color(224,224,224),1);
+            if(eventManager->getEvenement(Mouse::Left,EventClic))
+            {
                 eventManager->StopEvenement(Mouse::Left,EventClic);
-
-            if (!configuration->Minimap)
-                configuration->Minimap=true;
-            else
-                configuration->Minimap=false;
+                choix = jeu->hero.m_classe.boutons_menus_hud[i].lien;
+            }
         }
     }
 
+    if(eventManager->getEvenement(Key::M,EventKey))
+        eventManager->StopEvenement(Key::M,EventKey), choix = B_MAP;
+    if(eventManager->getEvenement(Key::T,EventKey))
+        eventManager->StopEvenement(Key::T,EventKey), choix = B_MIRACLES;
+    if(eventManager->getEvenement(Key::I,EventKey))
+        eventManager->StopEvenement(Key::I,EventKey), choix = B_INVENTAIRE;
+    if(eventManager->getEvenement(Key::Q,EventKey))
+        eventManager->StopEvenement(Key::Q,EventKey), choix = B_QUETES;
+    if(eventManager->getEvenement(Key::Escape,EventKey))
+        eventManager->StopEvenement(Key::Escape,EventKey), choix = B_MENU;
+    if(eventManager->getEvenement(Key::Tab,EventKey))
+        eventManager->StopEvenement(Key::Tab,EventKey), choix = B_CHAT;
 
-    if (eventManager->getEvenement(Key::Tab,EventKey)
-        || eventManager->getPositionSouris().x > AutoScreenAdjust(314,0).x
-        && eventManager->getPositionSouris().x < AutoScreenAdjust(342,0).x
-        && eventManager->getPositionSouris().y > AutoScreenAdjust(0,522).y
-        && eventManager->getPositionSouris().y < AutoScreenAdjust(0,537).y)
+    if(choix == B_MAP)
     {
-        if(!eventManager->getEvenement(Key::Tab,EventKey))
-         moteurGraphique->AjouterTexte(configuration->getText(0,51),coordonnee(eventManager->getPositionSouris().x,
-                                      eventManager->getPositionSouris().y - 20),
-                                      19,0,12,sf::Color(224,224,224),1);
-
-        if (eventManager->getEvenement(Key::Tab,EventKey)
-         || eventManager->getEvenement(Mouse::Left,EventClic))
-        {
-            if(eventManager->getEvenement(Key::Tab,EventKey))
-                eventManager->StopEvenement(Key::Tab,EventKey);
-            else
-                eventManager->StopEvenement(Mouse::Left,EventClic);
-
-            if (configuration->console==0)
-                configuration->console=1;
-            else if (configuration->console==1)
-                configuration->console=2;
-            else
-                configuration->console=0;
-        }
+        if (!configuration->Minimap)
+            configuration->Minimap=true;
+        else
+            configuration->Minimap=false;
     }
-
-    if (eventManager->getEvenement(Key::I,EventKey)
-        || eventManager->getPositionSouris().x > AutoScreenAdjust(372,0).x
-        && eventManager->getPositionSouris().x < AutoScreenAdjust(400,0).x
-        && eventManager->getPositionSouris().y > AutoScreenAdjust(0,522).y
-        && eventManager->getPositionSouris().y < AutoScreenAdjust(0,537).y)
+    else if(choix == B_CHAT)
     {
-        if(!eventManager->getEvenement(Key::I,EventKey))
-        moteurGraphique->AjouterTexte(configuration->getText(0,14),coordonnee(eventManager->getPositionSouris().x,
-                                      eventManager->getPositionSouris().y - 20),
-                                      19,0,12,sf::Color(224,224,224),1);
+        if (configuration->console==0)
+            configuration->console=1;
+        else if (configuration->console==1)
+            configuration->console=2;
+        else
+            configuration->console=0;
+    }
+    else if(choix >= 0)
+    {
+        eventManager->StopEvenement(Key::I,EventKey);
+        eventManager->StopEvenement(Mouse::Left,EventClicA);
+        eventManager->StopEvenement(Mouse::Left,EventClic);
+        jeu->map->m_defilerObjets=0;
 
-        if (eventManager->getEvenement(Key::I,EventKey)
-         || eventManager->getEvenement(Mouse::Left,EventClicA))
-        {
-            eventManager->StopEvenement(Key::I,EventKey);
-            eventManager->StopEvenement(Mouse::Left,EventClicA);
-            eventManager->StopEvenement(Mouse::Left,EventClic);
-            jeu->map->m_defilerObjets=0;
-
+        if(choix == B_INVENTAIRE)
             return 2;
-        }
-    }
-
-
-    if (eventManager->getEvenement(Key::Q,EventKey)
-        || eventManager->getPositionSouris().x > AutoScreenAdjust(401,0).x
-        && eventManager->getPositionSouris().x < AutoScreenAdjust(429,0).x
-        && eventManager->getPositionSouris().y > AutoScreenAdjust(0,522).y
-        && eventManager->getPositionSouris().y < AutoScreenAdjust(0,537).y)
-    {
-        if(!eventManager->getEvenement(Key::Q,EventKey))
-        moteurGraphique->AjouterTexte(configuration->getText(0,15),coordonnee(eventManager->getPositionSouris().x,
-                                      eventManager->getPositionSouris().y - 20),
-                                      19,0,12,sf::Color(224,224,224),1);
-
-        if (eventManager->getEvenement(Key::Q,EventKey)
-         || eventManager->getEvenement(Mouse::Left,EventClicA))
-        {
-            eventManager->StopEvenement(Key::Q,EventKey);
-            eventManager->StopEvenement(Mouse::Left,EventClicA);
-            eventManager->StopEvenement(Mouse::Left,EventClic);
-
+        if(choix == B_QUETES)
             return 6;
-        }
-    }
-
-    if (eventManager->getEvenement(Key::T,EventKey)
-        || eventManager->getPositionSouris().x > AutoScreenAdjust(343,0).x
-        && eventManager->getPositionSouris().x < AutoScreenAdjust(371,0).x
-        && eventManager->getPositionSouris().y > AutoScreenAdjust(0,522).y
-        && eventManager->getPositionSouris().y < AutoScreenAdjust(0,537).y)
-    {
-        if(!eventManager->getEvenement(Key::T,EventKey))
-        moteurGraphique->AjouterTexte(configuration->getText(0,16),coordonnee(eventManager->getPositionSouris().x,
-                                      eventManager->getPositionSouris().y - 20),
-                                      19,0,12,sf::Color(224,224,224),1);
-
-        if (eventManager->getEvenement(Key::T,EventKey)
-         || eventManager->getEvenement(Mouse::Left,EventClicA))
-        {
-            eventManager->StopEvenement(Key::T,EventKey);
-            eventManager->StopEvenement(Mouse::Left,EventClicA);
-            eventManager->StopEvenement(Mouse::Left,EventClic);
-
+        if(choix == B_MIRACLES)
             return 5;
-        }
-    }
-    if (eventManager->getEvenement(Key::Escape,EventKey)
-     || eventManager->getPositionSouris().x > AutoScreenAdjust(430,0).x
-     && eventManager->getPositionSouris().x < AutoScreenAdjust(458,0).x
-     && eventManager->getPositionSouris().y > AutoScreenAdjust(0,522).y
-     && eventManager->getPositionSouris().y < AutoScreenAdjust(0,537).y)
-    {
-        if(!eventManager->getEvenement(Key::Escape,EventKey))
-        moteurGraphique->AjouterTexte(configuration->getText(0,17),coordonnee(eventManager->getPositionSouris().x,
-                                      eventManager->getPositionSouris().y - 20),
-                                      19,0,12,sf::Color(224,224,224),1);
-
-        if (eventManager->getEvenement(Key::Escape,EventKey)
-         || eventManager->getEvenement(Mouse::Left,EventClicA))
-        {
-
-            eventManager->StopEvenement(Key::Escape,EventKey);
-            eventManager->StopEvenement(Mouse::Left,EventClicA);
-            eventManager->StopEvenement(Mouse::Left,EventClic);
+        if(choix == B_MENU)
             return 4;
-        }
     }
-
-
 
     if (eventManager->getEvenement(Key::Return,EventKey)
      || eventManager->getPositionSouris().x > AutoScreenAdjust(jeu->hero.m_classe.position_bouton_dialogue.x,0).x

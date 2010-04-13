@@ -625,6 +625,14 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
                             m_effets.back().m_informations[4] = (int)lireValeur(fichier, valeurs);
                         if (caractere=='f')
                             m_effets.back().m_informations[5] = (int)lireValeur(fichier, valeurs);
+                        if (caractere=='g')
+                            m_effets.back().m_informations[6] = (int)lireValeur(fichier, valeurs);
+                        if (caractere=='h')
+                            m_effets.back().m_informations[7] = (int)lireValeur(fichier, valeurs);
+                        if (caractere=='i')
+                            m_effets.back().m_informations[8] = (int)lireValeur(fichier, valeurs);
+                        if (caractere=='j')
+                            m_effets.back().m_informations[9] = (int)lireValeur(fichier, valeurs);
                         break;
                     }
                     if (fichier.eof())
@@ -693,6 +701,12 @@ void Miracle::Concatenencer(const std::string &chemin, const Caracteristique &ca
             m_effets.back().m_informations[0] += tailleEffets;
         if(m_effets.back().m_type == DECLENCHEUR)
             m_effets.back().m_informations[3] += tailleEffets;
+        if(m_effets.back().m_type == PROJECTILE)
+        {
+            if(m_effets.back().m_informations[5] > 0)
+                m_effets.back().m_informations[5] += tailleEffets;
+        }
+
         m_effets.back().m_sequence+=tailleTileset;
     }
 

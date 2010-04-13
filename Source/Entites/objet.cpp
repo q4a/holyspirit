@@ -32,13 +32,13 @@ sf::Color GetItemColor(int rarete)
     if (rarete==NORMAL)
         return (sf::Color(224,224,224,255));
     if (rarete==BONNEFACTURE)
-        return (sf::Color(96,0,96,255));
+        return (sf::Color(160,0,160,255));
     if (rarete==BENI)
-        return (sf::Color(0,48,128,255));
+        return (sf::Color(0,128,255,255));
     if (rarete==SACRE)
         return (sf::Color(255,255,128,255));
     if (rarete==SANCTIFIE)
-        return (sf::Color(160,255,255,255));
+        return (sf::Color(0,255,192,255));
     if (rarete==DIVIN)
         return (sf::Color(255,164,32,255));
     if (rarete==INFERNAL)
@@ -333,7 +333,7 @@ void Objet::ChargerTexte(std::ifstream *fichier, const Caracteristique &caract, 
 
         else if (caractere=='a')
             *fichier>>m_armure;
-        else if (caractere=='n')
+        else if (caractere=='s')
             *fichier>>m_nbr_bless;
         else if (caractere=='l')
         {
@@ -1802,7 +1802,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
 
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
             if (multiplieurEfficacite!=100)
-                temp.back().SetColor(sf::Color(0,64,128));
+                temp.back().SetColor(sf::Color(0,128,255));
         }
         break;
         case ARMURE:
@@ -1813,7 +1813,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
 
             if (multiplieurEfficacite!=100)
-                temp.back().SetColor(sf::Color(0,64,128));
+                temp.back().SetColor(sf::Color(0,128,255));
 
         }
         break;
@@ -1871,7 +1871,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
 
     for (int i=0;i<(int)m_benedictions.size();i++)
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,getTextBenediction(m_benedictions[i]).c_str(),sf::Color(0,64,128)));
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,getTextBenediction(m_benedictions[i]).c_str(),sf::Color(0,128,255)));
 
     if(!m_set.m_chemin.empty())
     {
@@ -1886,8 +1886,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
 
     for(int i = 0 ; i < m_nbr_bless ; ++i)
     {
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,configuration->getText(0,60).c_str()));
-        temp.back().SetColor(sf::Color(128,128,128));
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,configuration->getText(0,60).c_str(),sf::Color(128,128,128)));
         temp.back().SetStyle(2);
     }
 

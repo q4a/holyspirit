@@ -30,6 +30,17 @@ inline sf::Vector2f AutoScreenAdjust(float x, float y, float decalage = 0)
     return temp;
 }
 
+bool Bouton::Survol()
+{
+    if(eventManager->getPositionSouris().x > AutoScreenAdjust(position.x,0).x
+    && eventManager->getPositionSouris().x < AutoScreenAdjust(position.x,0).x + position.w
+    && eventManager->getPositionSouris().y > AutoScreenAdjust(0,position.y).y
+    && eventManager->getPositionSouris().y < AutoScreenAdjust(0,position.y).y + position.h)
+        return (true);
+
+    return (false);
+}
+
 void                ChargerImageInterface(ifstream &fichier, Image_interface &image_interface)
 {
     char            caractere;
@@ -542,6 +553,8 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
             ChargerCoordonneeInterface(fichier, position_raccourcis[i]);
 
         ChargerCoordonneeInterface(fichier, position_miracleALancer);
+
+        ChargerBouton(fichier, boutons_menus_hud);
 
         do
         {

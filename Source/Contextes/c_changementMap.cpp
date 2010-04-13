@@ -32,6 +32,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 using namespace sf;
 using namespace std;
 
+int GestionBoutons(Jeu *jeu);
+
 c_Chargement::c_Chargement()
 {
 }
@@ -370,6 +372,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
             jeu->menu.AfficherHUD(&jeu->hero.m_classe);
             jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,0,jeu->hero.m_personnage.getCaracteristique(),&jeu->hero.m_classe);
+            GestionBoutons(jeu);
         }
         if(mort)
             configuration->effetMort = z*3;

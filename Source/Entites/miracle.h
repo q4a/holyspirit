@@ -72,6 +72,7 @@ public:
     bool m_monstre;
     bool m_actif;
     bool m_supprime;
+    int  m_transperce;
     //int m_degats;
     coordonneeDecimal m_position,m_vecteur;
     coordonnee m_positionCase;
@@ -102,6 +103,10 @@ struct Effet
         m_informations[3]=0;
         m_informations[4]=0;
         m_informations[5]=0;
+        m_informations[6]=0;
+        m_informations[7]=0;
+        m_informations[8]=0;
+        m_informations[9]=0;
     }
 
     ~Effet()
@@ -113,7 +118,7 @@ struct Effet
     int m_type;
     int m_sequence;
 
-    int m_informations[6];
+    int m_informations[10];
     std::string m_chaine;
 };
 

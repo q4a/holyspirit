@@ -23,6 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
@@ -298,9 +299,10 @@ void c_MainMenu::Utiliser(Jeu *jeu)
             texte.SetPosition(configuration->Resolution.w/2 - 384 + 160 * ((i-2 - defilement_saves)%4 == 1) + 320 * ((i-2 - defilement_saves)%4 == 2)  + 480 * ((i-2 - defilement_saves)%4 == 3) + 130 - texte.GetRect().GetSize().x/2,
                               configuration->Resolution.h/2 - 256 + ((int)((i-2 - defilement_saves)/4)) * 192 + 160);
 
-            m_images_saves[i].SetPosition(configuration->Resolution.w/2 - 384 + 160 * ((i-2 - defilement_saves)%4 == 1) + 320 * ((i-2 - defilement_saves)%4 == 2)  + 480 * ((i-2 - defilement_saves)%4 == 3),
+            m_images_saves[i].SetPosition(configuration->Resolution.w/2 - 336 + 160 * ((i-2 - defilement_saves)%4 == 1) + 320 * ((i-2 - defilement_saves)%4 == 2)  + 480 * ((i-2 - defilement_saves)%4 == 3),
                                           configuration->Resolution.h/2 - 256 + ((int)((i-2 - defilement_saves)/4)) * 192);
-            m_images_saves[i].Resize(256,256);
+            m_images_saves[i].Resize(160,256);
+            m_images_saves[i].SetSubRect(sf::IntRect(48,0,208,256));
             moteurGraphique->AjouterCommande(&m_images_saves[i],19,0);
 
             if ((eventManager->getPositionSouris().y > texte.GetRect().Top
@@ -353,9 +355,6 @@ void c_MainMenu::Utiliser(Jeu *jeu)
             else
                 texte.SetColor(Color(150,100,50));
             moteurGraphique->AjouterTexte(&texte,19,1);
-
-
-
         }
 
         if(i < m_chemin_saves.size())

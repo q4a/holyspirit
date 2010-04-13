@@ -20,6 +20,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "miracle.h"
 
+enum {B_CHAT,B_MIRACLES,B_INVENTAIRE,B_QUETES,B_MENU,B_MAP,B_DEPLIER};
+
 struct Image_interface
 {
     coordonnee position;
@@ -33,6 +35,8 @@ struct Bouton
     std::string nom;
     int lien;
     Image_interface image;
+
+    bool Survol();
 };
 
 struct Emplacement_inventaire
@@ -100,6 +104,8 @@ struct Classe
     coordonnee position_contenu_description_quete;
 
     coordonnee position_points_miracles;
+
+    std::vector<Bouton>  boutons_menus_hud;
 
     std::vector <Emplacement_inventaire> emplacements;
 
