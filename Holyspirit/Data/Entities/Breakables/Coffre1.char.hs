@@ -120,7 +120,9 @@ $
 	$
 	*
 		*Litanie_0.item.hs
-		r3000
+		r4000
+		*Litanie_toxic_0.item.hs
+		r2000
 	$
 
 

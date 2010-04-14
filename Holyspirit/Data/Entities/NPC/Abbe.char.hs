@@ -10,6 +10,30 @@ $
 $
 	*Data/Scripts/NPC/Abbe.script.hs
 $
+	*
+		*Litanie_0.item.hs
+		r40000
+	$
+	*
+		*Litanie_0.item.hs
+		r40000
+	$
+	*
+		*Litanie_0.item.hs
+		r40000
+	$
+	*
+		*Litanie_0.item.hs
+		r40000
+	$
+	*
+		*Litanie_0.item.hs
+		r40000
+	$
+	*
+		*Litanie_toxic_0.item.hs
+		r20000
+	$
 $
 $
 $

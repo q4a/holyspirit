@@ -9,6 +9,7 @@ main
 				speak * 53
 				variable * 3 * 1
 				speak_choice * 54 * 1
+				speak_choice * 33 * 3
 				speak_choice * 55 * 2
 			end
 			variable * 2 * 1
@@ -29,6 +30,12 @@ main
 		then
 			stop_speak
 			bless
+		end
+		
+		if speak_choice * 3
+		then
+			stop_speak
+			trade
 		end
 
 	else

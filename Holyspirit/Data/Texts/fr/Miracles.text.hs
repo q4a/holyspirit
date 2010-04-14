@@ -34,3 +34,5 @@ Dégats : +%1 à %2
 Tornade divine : Projection
 Quand le croisé tourne sur lui-même, cela crée une\véritable tornade qui détruit tout sur son passage.
 Dégats de souffle : %1 à %2
+Litanie de nuage toxic mineure
+20 points de dégats sur 6 secondes.
