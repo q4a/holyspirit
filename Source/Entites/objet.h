@@ -29,6 +29,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 sf::Color GetItemColor(int rarete);
 
+enum {L_TYPE,L_EMPLACEMENT,L_NOM};
+
 struct benediction
 {
     int type;
@@ -59,6 +61,13 @@ struct Ingredient
     int nombre;
 };
 
+struct ConditionLitanie
+{
+    int type;
+    int valeur;
+    std::string valeur_string;
+};
+
 class Set
 {
     public:
@@ -75,7 +84,6 @@ class Set
     std::vector< std::vector<std::string> > m_chemin_miracles;
 
     int m_nombre;
-
 };
 
 class Objet
@@ -138,6 +146,9 @@ public:
 
     Miracle m_miracle;
     std::vector<std::string> m_chemin_miracles;
+
+    std::vector<Miracle> m_miracles_benedictions;
+    std::vector<ConditionLitanie> m_conditions;
 
     float m_alpha;
 

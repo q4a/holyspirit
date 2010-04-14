@@ -2789,6 +2789,10 @@ bool Map::Miracle_Conditions(Hero *hero, Personnage *personnage, Miracle &modele
             && info.m_cible->m_friendly != personnage->m_friendly)
                 oui = true;
 
+    if(effet.m_informations[1] == C_RANDOM)
+        if(rand()%100 < effet.m_informations[2])
+            oui = true;
+
     if(oui)
     {
         miracleEnCours.m_infos.push_back(new InfosEntiteMiracle ());

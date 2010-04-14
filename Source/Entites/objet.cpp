@@ -276,6 +276,9 @@ void Objet::SauvegarderTexte(std::ofstream *fichier)
         *fichier<<" $ ";
     }
 
+    for (int i=0;i<(int)m_miracles_benedictions.size();i++)
+        *fichier<<" c"<<m_miracles_benedictions[i].m_chemin;
+
     *fichier<<" $ ";
 
     if (configuration->debug)
@@ -353,6 +356,22 @@ void Objet::ChargerTexte(std::ifstream *fichier, const Caracteristique &caract, 
             *fichier>>m_chemin;
         else if (caractere=='g')
             *fichier>>m_prix;
+        else if (caractere=='c')
+        {
+            std::string temp;
+            *fichier>>temp;
+            if(!NePasAjouterBenedictions)
+            {
+                m_miracles_benedictions.push_back(Miracle (temp, caract, 0));
+                if(m_useMiracle)
+                    m_miracle.Concatenencer(temp,caract,0);
+                else
+                    m_miracle.Charger(temp,caract,0);
+
+                m_chemin_miracles.push_back(temp);
+                m_useMiracle = true;
+            }
+        }
         else if (caractere=='b')
         {
 
@@ -604,47 +623,6 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
             }
         }
         while (caractere!='$');
-
-        /*do
-        {
-            fichier->get(caractere);
-            if (caractere=='*')
-            {
-                *fichier>>m_nom;
-                for (int i=0;i<(int)m_nom.size();i++)
-                    if (m_nom[i]=='_')
-                        m_nom[i]=' ';
-                //getline(fichier, m_nom);
-            }
-            if (fichier->eof())
-            {
-                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
-                caractere='$';
-            }
-
-        }
-        while (caractere!='$');
-
-        std::string description;
-        do
-        {
-            fichier->get(caractere);
-            if (caractere=='*')
-            {
-                *fichier>>description;
-                for (int i=0;i<(int)description.size();i++)
-                    if (description[i]=='_')
-                        description[i]=' ';
-                //getline(fichier, description);
-            }
-            if (fichier->eof())
-            {
-                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
-                caractere='$';
-            }
-
-        }
-        while (caractere!='$');*/
 
         for (int i=0;i<(int)m_nom.size();i++)
             if (m_nom[i]=='_')
@@ -1201,7 +1179,7 @@ void Objet::Generer(int bonus)
     if(ba > bi)
         m_nbr_bless = (rand() % (ba - bi + 1)) + bi;
 
-    if (m_type != CONSOMMABLE)
+    if (m_type != CONSOMMABLE && m_capaciteBenediction > 0)
         if (m_rarete<DIVIN || m_type == LITANIE)
         {
             int nbrBene=0;
@@ -1624,6 +1602,57 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
         }
         while (caractere!='$');
     }
+
+    if (m_type==LITANIE)
+    {
+        char caractere;
+        do
+        {
+            fichier->get(caractere);
+            if (caractere=='*')
+            {
+                do
+                {
+                    fichier->get(caractere);
+                    switch (caractere)
+                    {
+                        case 't' :
+                            m_conditions.push_back(ConditionLitanie ());
+                            m_conditions.back().type = L_TYPE;
+                            (*fichier)>>m_conditions.back().valeur;
+                        break;
+                        case 'e' :
+                            m_conditions.push_back(ConditionLitanie ());
+                            m_conditions.back().type = L_EMPLACEMENT;
+                            (*fichier)>>m_conditions.back().valeur;
+                        break;
+                        case 'm' :
+                            m_conditions.push_back(ConditionLitanie ());
+                            m_conditions.back().type = L_NOM;
+                            (*fichier)>>m_conditions.back().valeur_string;
+                        break;
+                    }
+
+                    if (fichier->eof())
+                    {
+                        console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                        caractere='$';
+                    }
+
+                }
+                while (caractere!='$');
+
+                fichier->get(caractere);
+            }
+            if (fichier->eof())
+            {
+                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                caractere='$';
+            }
+
+        }
+        while (caractere!='$');
+    }
 }
 
 
@@ -1807,14 +1836,16 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
         break;
         case ARMURE:
         {
-            std::ostringstream buf;
-            buf<<configuration->getText(0,22)<<(int)(m_armure*multiplieurEfficacite/100);
+            if(m_armure > 0)
+            {
+                std::ostringstream buf;
+                buf<<configuration->getText(0,22)<<(int)(m_armure*multiplieurEfficacite/100);
 
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
 
-            if (multiplieurEfficacite!=100)
-                temp.back().SetColor(sf::Color(0,128,255));
-
+                if (multiplieurEfficacite!=100)
+                    temp.back().SetColor(sf::Color(0,128,255));
+            }
         }
         break;
     }
@@ -1872,6 +1903,19 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
 
     for (int i=0;i<(int)m_benedictions.size();i++)
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,getTextBenediction(m_benedictions[i]).c_str(),sf::Color(0,128,255)));
+
+    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+
+    for(unsigned i = 0 ; i < m_miracles_benedictions.size() ; ++i)
+    {
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_miracles_benedictions[i].m_nom.c_str(),sf::Color(128,64,0)));
+        for(unsigned j =  0 ; j < m_miracles_benedictions[i].m_description.size() ; ++j)
+        {
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_miracles_benedictions[i].m_description[j].c_str(),sf::Color(128,64,0)));
+            temp.back().SetStyle(2);
+        }
+
+    }
 
     if(!m_set.m_chemin.empty())
     {

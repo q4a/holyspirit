@@ -2155,7 +2155,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
             position.h=trader[i].getTaille().y*32;
             position.w=trader[i].getTaille().x*32;
 
-            if (trader[i].getPosition().y+trader[i].getTaille().y-m_defilement_trader>=m_classe.position_contenu_marchand.h)
+            if (trader[i].getPosition().y+trader[i].getTaille().y-m_defilement_trader>m_classe.position_contenu_marchand.h)
             {
                 sprite.SetSubRect(sf::IntRect(0,0,160,(m_defilement_trader+m_classe.position_contenu_marchand.h-trader[i].getPosition().y)*32));
                 sprite.Resize(trader[i].getTaille().x*32,(m_defilement_trader+m_classe.position_contenu_marchand.h-trader[i].getPosition().y)*32);
@@ -3512,7 +3512,24 @@ void Hero::GererBless(std::vector<Objet> *trader)
 
     if( m_no_schema >= 0 && m_no_result >= 0)
     {
-        bool ok = true;
+        bool ok = false;
+
+        for(unsigned i = 0 ; i < m_inventaire[m_no_schema].m_conditions.size() ; ++i)
+        {
+            if(m_inventaire[m_no_schema].m_conditions[i].type == L_TYPE)
+                if(m_inventaire[m_no_result].m_type == m_inventaire[m_no_schema].m_conditions[i].valeur)
+                    ok = true;
+            if(m_inventaire[m_no_schema].m_conditions[i].type == L_EMPLACEMENT)
+                for(int j = 0 ; j < m_inventaire[m_no_result].m_emplacement.size() ; ++j)
+                    if(m_inventaire[m_no_result].m_emplacement[j] == m_inventaire[m_no_schema].m_conditions[i].valeur)
+                        ok = true;
+            if(m_inventaire[m_no_schema].m_conditions[i].type == L_NOM)
+                if(m_inventaire[m_no_result].getChemin() == m_inventaire[m_no_schema].m_conditions[i].valeur_string)
+                    ok = true;
+        }
+
+        if(m_inventaire[m_no_schema].m_conditions.empty())
+            ok =true;
 
         for(unsigned i = 0 ; i < m_inventaire[m_no_schema].m_benedictions.size() ; ++i)
         {
@@ -3540,13 +3557,29 @@ void Hero::GererBless(std::vector<Objet> *trader)
                 for(unsigned i = 0 ; i < m_inventaire[m_no_schema].m_benedictions.size() ; ++i)
                     m_inventaire[m_no_result].AddBenediction(m_inventaire[m_no_schema].m_benedictions[i]);
 
-                if(m_inventaire[m_no_result].m_benedictions.size() >= 10 && m_inventaire[m_no_result].getRarete() < SANCTIFIE)
+                for(unsigned i = 0 ; i < m_inventaire[m_no_schema].m_chemin_miracles.size() ; ++i)
+                {
+                    m_inventaire[m_no_result].m_miracles_benedictions.push_back(Miracle (m_inventaire[m_no_schema].m_chemin_miracles[i], m_caracteristiques,0));
+                    if(m_inventaire[m_no_result].m_useMiracle)
+                        m_inventaire[m_no_result].m_miracle.Concatenencer(m_inventaire[m_no_schema].m_chemin_miracles[i],m_caracteristiques,0);
+                    else
+                        m_inventaire[m_no_result].m_miracle.Charger(m_inventaire[m_no_schema].m_chemin_miracles[i],m_caracteristiques,0);
+                    m_inventaire[m_no_result].m_useMiracle = true;
+                    m_inventaire[m_no_result].m_chemin_miracles.push_back(m_inventaire[m_no_schema].m_chemin_miracles[i]);
+                }
+
+
+                if(m_inventaire[m_no_result].m_benedictions.size() + m_inventaire[m_no_result].m_miracles_benedictions.size() * 3 >= 8
+                && m_inventaire[m_no_result].getRarete() < SANCTIFIE)
                     m_inventaire[m_no_result].setRarete(SANCTIFIE);
-                if(m_inventaire[m_no_result].m_benedictions.size() >= 5 && m_inventaire[m_no_result].getRarete() < SACRE)
+                if(m_inventaire[m_no_result].m_benedictions.size() + m_inventaire[m_no_result].m_miracles_benedictions.size() * 3 >= 4
+                && m_inventaire[m_no_result].getRarete() < SACRE)
                     m_inventaire[m_no_result].setRarete(SACRE);
-                if(m_inventaire[m_no_result].m_benedictions.size() >= 2 && m_inventaire[m_no_result].getRarete() < BENI)
+                if(m_inventaire[m_no_result].m_benedictions.size() + m_inventaire[m_no_result].m_miracles_benedictions.size() * 3 >= 2
+                && m_inventaire[m_no_result].getRarete() < BENI)
                     m_inventaire[m_no_result].setRarete(BENI);
-                if(m_inventaire[m_no_result].m_benedictions.size() >= 1 && m_inventaire[m_no_result].getRarete() < BONNEFACTURE)
+                if(m_inventaire[m_no_result].m_benedictions.size() + m_inventaire[m_no_result].m_miracles_benedictions.size() * 3 >= 1
+                && m_inventaire[m_no_result].getRarete() < BONNEFACTURE)
                     m_inventaire[m_no_result].setRarete(BONNEFACTURE);
 
                 delObjet(m_no_schema);
