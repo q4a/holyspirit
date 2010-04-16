@@ -1519,6 +1519,49 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
         while (caractere!='$');
     }
 
+    if (m_type==JEWELERY)
+    {
+        char caractere;
+        do
+        {
+            fichier->get(caractere);
+            if (caractere=='*')
+            {
+                do
+                {
+                    fichier->get(caractere);
+                    switch (caractere)
+                    {
+                        case 'b' :
+                            fichier->get(caractere);
+                            if (caractere=='i')
+                                *fichier>>bi;
+                            if (caractere=='a')
+                                *fichier>>ba;
+                            break;
+                    }
+
+                    if (fichier->eof())
+                    {
+                        console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                        caractere='$';
+                    }
+
+                }
+                while (caractere!='$');
+
+                fichier->get(caractere);
+            }
+            if (fichier->eof())
+            {
+                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                caractere='$';
+            }
+
+        }
+        while (caractere!='$');
+    }
+
     if (m_type==SCHEMA)
     {
         char caractere;

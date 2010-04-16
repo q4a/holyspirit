@@ -124,38 +124,37 @@ void c_MainMenu::Utiliser(Jeu *jeu)
                 repertoire = opendir(configuration->chemin_saves.c_str());
                 while ((lecture = readdir(repertoire)))
                 {
-                    bool ok = true;
-                    if(lecture->d_name[0] == '0')
-                    if(lecture->d_name[1] == '.')
-                    if(lecture->d_name[2] == 't')
-                    if(lecture->d_name[3] == 'x')
-                    if(lecture->d_name[4] == 't')
-                        ok = false;
+                    bool ok = false;
+
+                    for(int i = 0 ; i < 256 ; ++i)
+                    {
+                        int j = 0;
+
+                        if(lecture->d_name[i + j++] == 's' && j < 256)
+                        if(lecture->d_name[i + j++] == 'a' && j < 256)
+                        if(lecture->d_name[i + j++] == 'v' && j < 256)
+                        if(lecture->d_name[i + j++] == '.' && j < 256)
+                        if(lecture->d_name[i + j++] == 'h' && j < 256)
+                        if(lecture->d_name[i + j] == 's' && j < 256)
+                            ok = true;
+                    }
 
 
                     if(ok)
                     {
                         m_chemin_saves.push_back(lecture->d_name);
 
-                        if(m_chemin_saves.size() > 2)
-                        {
-                            std::string chemin_image = configuration->chemin_temps;
-                            for(int i = 0  ; i < m_chemin_saves.back().size() - 7 ; ++i)
-                                chemin_image.push_back(m_chemin_saves.back()[i]);
-                            chemin_image += ".png";
+                        std::string chemin_image = configuration->chemin_temps;
+                        for(int i = 0  ; i < m_chemin_saves.back().size() - 7 ; ++i)
+                            chemin_image.push_back(m_chemin_saves.back()[i]);
+                        chemin_image += ".png";
 
-                            sf::Sprite sprite;
-                            cDAT reader;
-                            reader.Read(configuration->chemin_saves+m_chemin_saves.back());
-                            int img  = moteurGraphique->AjouterImage(reader.GetFile(chemin_image), reader.GetFileSize(chemin_image), chemin_image, 1);
-                            sprite.SetImage(*moteurGraphique->getImage(img));
-                            m_images_saves.push_back(sprite);
-                        }
-                        else
-                        {
-                            sf::Sprite sprite;
-                            m_images_saves.push_back(sprite);
-                        }
+                        sf::Sprite sprite;
+                        cDAT reader;
+                        reader.Read(configuration->chemin_saves+m_chemin_saves.back());
+                        int img  = moteurGraphique->AjouterImage(reader.GetFile(chemin_image), reader.GetFileSize(chemin_image), chemin_image, 1);
+                        sprite.SetImage(*moteurGraphique->getImage(img));
+                        m_images_saves.push_back(sprite);
                     }
                 }
 
@@ -242,10 +241,11 @@ void c_MainMenu::Utiliser(Jeu *jeu)
     if(no_ecran == E_CONTINUER)
     {
         defilement_saves -= eventManager->getMolette();
+
+        if(defilement_saves > (int)m_chemin_saves.size() - 8)
+            defilement_saves = (int)m_chemin_saves.size() - 8;
         if(defilement_saves < 0)
             defilement_saves = 0;
-        if(defilement_saves > m_chemin_saves.size() - 10)
-            defilement_saves = m_chemin_saves.size() - 10;
 
 
         texte.SetString(configuration->getText(0,57));
@@ -288,19 +288,19 @@ void c_MainMenu::Utiliser(Jeu *jeu)
         }
 
         unsigned i;
-        for(i = 2 + defilement_saves ; i < m_chemin_saves.size()
-                                    && i < 10 + defilement_saves; ++i)
+        for(i = defilement_saves ; i < m_chemin_saves.size()
+                                && i < 8 + defilement_saves; ++i)
         {
             std::string str;
             for(int s = 0 ; s < m_chemin_saves[i].size() - 7 ; ++s)
                 str.push_back(m_chemin_saves[i][s]);
             texte.SetString(str.c_str());
 
-            texte.SetPosition(configuration->Resolution.w/2 - 384 + 160 * ((i-2 - defilement_saves)%4 == 1) + 320 * ((i-2 - defilement_saves)%4 == 2)  + 480 * ((i-2 - defilement_saves)%4 == 3) + 130 - texte.GetRect().GetSize().x/2,
-                              configuration->Resolution.h/2 - 256 + ((int)((i-2 - defilement_saves)/4)) * 192 + 160);
+            texte.SetPosition(configuration->Resolution.w/2 - 384 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3) + 130 - texte.GetRect().GetSize().x/2,
+                              configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 192 + 160);
 
-            m_images_saves[i].SetPosition(configuration->Resolution.w/2 - 336 + 160 * ((i-2 - defilement_saves)%4 == 1) + 320 * ((i-2 - defilement_saves)%4 == 2)  + 480 * ((i-2 - defilement_saves)%4 == 3),
-                                          configuration->Resolution.h/2 - 256 + ((int)((i-2 - defilement_saves)/4)) * 192);
+            m_images_saves[i].SetPosition(configuration->Resolution.w/2 - 336 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3),
+                                          configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 192);
             m_images_saves[i].Resize(160,256);
             m_images_saves[i].SetSubRect(sf::IntRect(48,0,208,256));
             moteurGraphique->AjouterCommande(&m_images_saves[i],19,0);

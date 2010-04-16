@@ -2960,6 +2960,10 @@ void Hero::addPotale(int x, int y, int nom, const std::string &chemin)
             if(m_potales[i].position.y == y)
                 if(m_potales[i].chemin == chemin)
                     add = false;
+
+    if(chemin.empty())
+        add = false;
+
     if(add)
     {
         m_potales.push_back(Potale ());

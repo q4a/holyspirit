@@ -51,7 +51,6 @@ Jeu::Jeu()
 
 void Jeu::Demarrer()
 {
-
     m_jeu           = new c_Jeu;
     m_demarrage     = new c_Demarrage;
     m_chargement    = new c_Chargement;
@@ -68,12 +67,11 @@ void Jeu::Demarrer()
 
     Clock.Reset();
 
-
     m_run = true;
     m_display = true;
     while (m_run)
     {
-        while(configuration->syncronisation_verticale && Clock.GetElapsedTime() < 0.012){}
+        //while(configuration->syncronisation_verticale && Clock.GetElapsedTime() < 0.012){}
 
         if(map != NULL)
             eventManager->GererLesEvenements(&m_run,Clock.GetElapsedTime(),map->getDimensions());
@@ -97,15 +95,6 @@ void Jeu::Demarrer()
 
     if(m_jeu->m_thread_sauvegarde)
         m_jeu->m_thread_sauvegarde->Wait(),delete m_jeu->m_thread_sauvegarde;
-
-    /*if (m_reset)
-        Reset(), hero.m_quetes.clear();
-    else if(map)
-        map->Sauvegarder(&hero);
-
-    hero.Sauvegarder();
-
-    Reset();*/
 
     m_contexte=NULL;
 

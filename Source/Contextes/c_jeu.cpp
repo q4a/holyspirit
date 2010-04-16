@@ -88,16 +88,6 @@ c_Jeu::c_Jeu()
     m_thread_sauvegarde = NULL;
 }
 
-/*c_Jeu::~c_Jeu()
-{
-    if(m_thread_sauvegarde)
-    {
-        m_thread_sauvegarde->Wait();
-        delete m_thread_sauvegarde;
-        m_thread_sauvegarde = NULL;
-    }
-}*/
-
 void c_Jeu::Utiliser(Jeu *jeu)
 {
     //Gestion du temps
@@ -229,7 +219,7 @@ void c_Jeu::GererTemps(Jeu *jeu)
 }
 void c_Jeu::IA(Jeu *jeu)
 {
-    if (tempsEcouleDepuisDernierIA>=0.027f)
+   // if (tempsEcouleDepuisDernierIA>=0.027f)
     {
         jeu->map->GererMonstres(jeu,&jeu->hero,tempsEcouleDepuisDernierIA,&jeu->menu);
         jeu->map->GererProjectilesEtEffets(&jeu->hero,tempsEcouleDepuisDernierIA);
@@ -672,8 +662,14 @@ void c_Jeu::Evenements(Jeu *jeu)
     if(!configuration->error_message.empty())
         jeu->menu.m_dialogue = configuration->error_message,configuration->error_message.clear();
 
+    GestionRaccourcis(jeu);
+    jeu->next_screen = GestionBoutons(jeu);
+
+    if (jeu->next_screen >=0 )
+        jeu->Next();
+
     if (eventManager->getPositionSouris().y < 492 * configuration->Resolution.h/600)
-    if(jeu->menu.m_dialogue.empty())
+    //if(jeu->menu.m_dialogue.empty())
     {
         if (!eventManager->getEvenement(Mouse::Left,EventClic))
             jeu->map->getMonstre(&jeu->hero,eventManager->getPositionSouris(),eventManager->getCasePointee());
@@ -791,11 +787,13 @@ void c_Jeu::Evenements(Jeu *jeu)
 
     }
 
-    GestionRaccourcis(jeu);
-    jeu->next_screen = GestionBoutons(jeu);
+    if(fabs(jeu->menu.m_dialogue_position.x - jeu->hero.m_personnage.getCoordonnee().x) > 2
+    || fabs(jeu->menu.m_dialogue_position.y - jeu->hero.m_personnage.getCoordonnee().y) > 2)
+    {
+        jeu->menu.ClearSpeakChoice();
+        jeu->menu.m_dialogue.clear();
+    }
 
-    if (jeu->next_screen >=0 )
-        jeu->Next();
 }
 
 
@@ -899,7 +897,7 @@ void c_Jeu::Affichage(Jeu *jeu)
         lowFPS=moteurGraphique->GetFPS();
 
     if (configuration->console)
-        if (tempsEcouleDepuisFPS>1.0f)
+        if (tempsEcouleDepuisFPS>0.1f)
         {
             {
                 std::ostringstream  buf;

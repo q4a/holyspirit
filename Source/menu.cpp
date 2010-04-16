@@ -30,6 +30,16 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 using namespace std;
 using namespace sf;
 
+inline sf::Vector2f AutoScreenAdjust(float x, float y, float decalage = 0)
+{
+    sf::Vector2f temp;
+    temp.x = x + (configuration->Resolution.x - 800) * 0.5;
+    temp.y = y + (configuration->Resolution.y - 600) - decalage * configuration->Resolution.h/600;
+    return temp;
+}
+
+
+
 sf::Color GetItemColor(int rarete);
 
 Menu::~Menu()
@@ -73,8 +83,8 @@ void Menu::AfficherDialogue(int alpha,Classe *classe)
     texte.SetCharacterSize(14);
     texte.SetFont(moteurGraphique->m_font);
     texte.SetString(m_dialogue);
-    texte.SetPosition(classe->position_contenu_dialogue.x  + (configuration->Resolution.x - 800) * 0.5 + classe->position_contenu_dialogue.w * 0.5 - (texte.GetRect().Right-texte.GetRect().Left) * 0.5,
-                      classe->position_contenu_dialogue.y  + (configuration->Resolution.y - 600)       + classe->talk.position.h*configuration->Resolution.h/600 - classe->talk.position.h*configuration->Resolution.h/600*alpha/255);
+    texte.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.GetRect().Right-texte.GetRect().Left) * 0.5,
+                      AutoScreenAdjust(0,classe->position_contenu_dialogue.y).y + classe->talk.position.h*configuration->Resolution.h/600 - classe->talk.position.h * alpha/255);
 
     moteurGraphique->AjouterTexte(&texte,16,0);
 
@@ -83,7 +93,8 @@ void Menu::AfficherDialogue(int alpha,Classe *classe)
     for(int i = 0 ; i < m_choices.size() ; ++i)
     {
         texte.SetString(m_choices[i].text);
-        texte.SetPosition(texte.GetPosition().x, pos);
+        texte.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.GetRect().Right-texte.GetRect().Left) * 0.5,
+                            pos);
 
         pos = texte.GetRect().Bottom + 4;
 
@@ -104,7 +115,6 @@ void Menu::AfficherDialogue(int alpha,Classe *classe)
                 m_speak_choice = m_choices[i].no;
                 eventManager->StopEvenement(sf::Mouse::Left, EventClic);
             }
-
          }
 
          moteurGraphique->AjouterTexte(&texte,16,0);

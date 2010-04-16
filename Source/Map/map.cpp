@@ -2298,7 +2298,11 @@ bool Map::Miracle_Projectile(Hero *hero, Personnage *personnage, Miracle &modele
 
         if (m_projectile[info.m_IDObjet].m_actif)
             m_projectile[info.m_IDObjet].m_effet.Animer(temps);
-        else
+
+        if (!m_projectile[info.m_IDObjet].m_effet.m_actif)
+            m_projectile[info.m_IDObjet].m_actif = false;
+
+        if (!m_projectile[info.m_IDObjet].m_actif)
         {
             m_projectile[info.m_IDObjet].m_supprime = true;
             info.m_cible = m_projectile[info.m_IDObjet].m_entite_cible;
@@ -2395,6 +2399,7 @@ bool Map::Miracle_EffetGraphique(Hero *hero, Personnage *personnage, Miracle &mo
         m_effets.back().m_couche     = 10;
         m_effets.back().Initialiser(coordonnee((int)(((float)info.m_position.x - (float)info.m_position.y) * 64 / COTE_TILE),
                                                (int)(((float)info.m_position.x + (float)info.m_position.y) * 64 / COTE_TILE)));
+        m_effets.back().Animer(0);
 
         info.m_IDObjet               = m_effets.size()-1;
 
@@ -3440,9 +3445,12 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             {
                 jeu->menu.m_dialogue = DecouperTexte(configuration->getText(4, script->getValeur(noInstruction, 0)), hero->m_classe.position_contenu_dialogue.w, 14);
                 eventManager->StopEvenement(Mouse::Left,EventClic);
-                hero->m_personnage.setArrivee(hero->m_personnage.getProchaineCase());
 
-                m_monstre[monstre].setArrivee(m_monstre[monstre].getProchaineCase());
+                hero->m_personnage.setArrivee(hero->m_personnage.getProchaineCase());
+                if(monstre >= 0 && monstre < (int)m_monstre.size())
+                    m_monstre[monstre].setArrivee(m_monstre[monstre].getProchaineCase());
+
+                jeu->menu.m_dialogue_position = hero->m_personnage.getCoordonnee();
             }
         }
         else if (script->m_instructions[noInstruction].nom=="stop_speak")

@@ -351,8 +351,6 @@ void MoteurGraphique::Afficher()
         m_light_screen2.Draw(sprite3);
 
         m_light_screen2.Display();
-
-        //configuration->RafraichirOmbre = 0;
     }
 
     if (configuration->Lumiere && configuration->RafraichirLumiere)
@@ -370,14 +368,11 @@ void MoteurGraphique::Afficher()
         LightManager->Draw(&m_light_screen,&temp);
 
         m_light_screen.Display();
-
-        //configuration->RafraichirLumiere=false;
     }
 
     bufferImage.Clear(sf::Color(0,0,0,255));
     m_water_screen.Clear(sf::Color(0,0,0,255));
     m_distortion_screen.Clear(sf::Color(128,128,128,255));
-
 
     if(configuration->postFX && configuration->Distortion)
     for (IterCommande=m_distortion_commandes.begin();IterCommande!=m_distortion_commandes.end();++IterCommande)
@@ -390,7 +385,6 @@ void MoteurGraphique::Afficher()
         m_distortion_screen.Draw(IterCommande->m_sprite);
     }
     m_distortion_commandes.clear();
-
 
 
     for (int k=0;k<=20;k++)
@@ -528,9 +522,6 @@ void MoteurGraphique::Afficher()
         m_textes[k].clear();
     }
 
-
-
-    //m_ecran.Clear();
     bufferImage.Display();
     m_ecran.Draw(sf::Sprite(bufferImage.GetImage()));
     m_ecran.Display();

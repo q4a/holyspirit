@@ -90,6 +90,7 @@ class Menu
 	int getSpeakChoice();
 
 	std::string m_dialogue;
+	coordonnee  m_dialogue_position;
 
 	private:
 	sf::Text texte;
