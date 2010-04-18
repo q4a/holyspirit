@@ -1451,8 +1451,8 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
     sky.Resize(configuration->Resolution.x,configuration->Resolution.y);
     moteurGraphique->AjouterCommande(&sky,0,0);
 
-    int maxY = hero->m_personnage.getCoordonnee().y + (int)(17 * configuration->zoom * configuration->Resolution.x/800);
-    int maxX = hero->m_personnage.getCoordonnee().x + (int)(17 * configuration->zoom * configuration->Resolution.x/800);
+    int maxY = hero->m_personnage.getCoordonnee().y + (int)(14 * configuration->zoom * configuration->Resolution.x/800);
+    int maxX = hero->m_personnage.getCoordonnee().x + (int)(14 * configuration->zoom * configuration->Resolution.x/800);
 
     for (int couche=0;couche<NOMBRE_COUCHE_MAP;couche++)
     {
@@ -1732,7 +1732,7 @@ bool Map::TestEvenement(Jeu *jeu,float temps)
                 if (m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getType()==INFLIGER_DEGATS)
                 {
                     jeu->hero.m_personnage.InfligerDegats(m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(0)*temps*50,
-                                                          m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(1), NULL);
+                                                          m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(1), NULL,0);
                 }
             }
     return 1;
@@ -1860,7 +1860,7 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                         m_monstre[monstre].m_vientDeFrapper = NULL;
                         m_monstre[monstre].m_degatsInflige  = 0;
 
-                        int degats = m_monstre[monstre].Animer(&m_ModeleMonstre[m_monstre[monstre].getModele()],temps);
+                        int degats = m_monstre[monstre].Gerer(&m_ModeleMonstre[m_monstre[monstre].getModele()],temps);
                         if (degats>0)
                         {
                             if (m_monstre[monstre].m_miracleALancer == -1)
@@ -1875,7 +1875,7 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                                             m_monstre[monstre].m_degatsInflige  = degats;
 
                                             m_monstre[monstre].m_cible->m_vientDetreTouche = &m_monstre[monstre];
-                                            InfligerDegats(m_monstre[monstre].m_cible, degats, 0, hero, 0);
+                                            InfligerDegats(m_monstre[monstre].m_cible, degats, 0, hero, 0, 0);
 
                                             m_monstre[monstre].InfligerDegats(-degats * m_monstre[monstre].getCaracteristique().volVie, 4, NULL);
                                         }
@@ -2662,6 +2662,7 @@ bool Map::Miracle_EffetEcran(Hero *hero, Personnage *personnage, Miracle &modele
 bool Map::Miracle_Degats(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o)
 {
     int deg = rand() % (int)(effet.m_informations[1] - effet.m_informations[0] + 1) + effet.m_informations[0];
+
     if (info.m_cible != NULL)
     {
         if (info.m_cible->getCoordonnee().y >=0 && info.m_cible->getCoordonnee().y < (int)m_decor[0].size())
@@ -2669,7 +2670,7 @@ bool Map::Miracle_Degats(Hero *hero, Personnage *personnage, Miracle &modele, Ef
             {
                 info.m_position = info.m_cible->getCoordonneePixel();
                 if(deg != 0)
-                    InfligerDegats(info.m_cible, deg, effet.m_informations[2], hero, 0);
+                    InfligerDegats(info.m_cible, deg, effet.m_informations[2], hero, 0, effet.m_informations[3]);
             }
     }
 
@@ -3518,6 +3519,10 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         {
             hero->m_argent += script->getValeur(noInstruction, 0);
         }
+        else if (script->m_instructions[noInstruction].nom=="heal")
+        {
+            hero->m_personnage.InfligerDegats(-script->getValeur(noInstruction, 0),0,&hero->m_modelePersonnage[0],0);
+        }
         else if (script->m_instructions[noInstruction].nom=="entity_variable" && monstre == -1)
         {
             if(script->getValeur(noInstruction, 0) < m_listID.size())
@@ -4016,11 +4021,11 @@ bool Map::TileVisible(int x,int y, coordonnee pos)
     return true;
 }
 
-bool Map::InfligerDegats(int numero, float degats, int type, Hero *hero,bool pousser)
+bool Map::InfligerDegats(int numero, float degats, int type, Hero *hero,bool pousser, float temps)
 {
     if (numero >= 0 && numero < (int)m_monstre.size())
     {
-        return InfligerDegats(&m_monstre[numero], degats, type, hero, pousser);
+        return InfligerDegats(&m_monstre[numero], degats, type, hero, pousser, temps);
 
         if (!m_monstre[numero].EnVie())
             if (m_monstreIllumine == numero || hero->getMonstreVise() == numero)
@@ -4029,14 +4034,14 @@ bool Map::InfligerDegats(int numero, float degats, int type, Hero *hero,bool pou
     return (false);
 }
 
-bool Map::InfligerDegats(Personnage *monstre, float degats, int type, Hero *hero,bool pousser)
+bool Map::InfligerDegats(Personnage *monstre, float degats, int type, Hero *hero,bool pousser, float temps)
 {
     float viePrecedente = monstre->getCaracteristique().vie;
 
     if(monstre != &hero->m_personnage)
-        monstre->InfligerDegats(degats, type, &m_ModeleMonstre[monstre->getModele()]);
+        monstre->InfligerDegats(degats, type, &m_ModeleMonstre[monstre->getModele()], temps);
     else
-        monstre->InfligerDegats(degats, type, &hero->m_modelePersonnage[0]);
+        monstre->InfligerDegats(degats, type, &hero->m_modelePersonnage[0], temps);
 
     for (int x=monstre->getCoordonnee().x;x<10+monstre->getCoordonnee().x;x++)
         for (int y=monstre->getCoordonnee().y;y<10+monstre->getCoordonnee().y;y++)
@@ -4053,7 +4058,7 @@ bool Map::InfligerDegats(Personnage *monstre, float degats, int type, Hero *hero
                 if (monstre->m_miracleEnCours[i].m_infos[o]->m_effetEnCours>=0)
                     if (m_ModeleMonstre[monstre->getModele()].m_miracles[monstre->m_miracleEnCours[i].m_modele].m_effets[monstre->m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type==INVOCATION)
                         if (monstre->m_miracleEnCours[i].m_infos[o]->m_IDObjet>=0&&monstre->m_miracleEnCours[i].m_infos[o]->m_IDObjet<(int)m_monstre.size())
-                            InfligerDegats(monstre->m_miracleEnCours[i].m_infos[o]->m_IDObjet, m_monstre[monstre->m_miracleEnCours[i].m_infos[o]->m_IDObjet].getCaracteristique().vie, 4,hero,false);
+                            InfligerDegats(monstre->m_miracleEnCours[i].m_infos[o]->m_IDObjet, m_monstre[monstre->m_miracleEnCours[i].m_infos[o]->m_IDObjet].getCaracteristique().vie, 4,hero,false, temps);
         }
 
         if (monstre->getCaracteristique().pointAme>0)
@@ -4516,12 +4521,12 @@ int Map::getMonstre(Hero *hero,coordonnee positionSouris,coordonnee casePointee)
                             temp.x=(((m_monstre[m_decor[1][j][k].getMonstre()[o]].getCoordonneePixel().x-m_monstre[m_decor[1][j][k].getMonstre()[o]].getCoordonneePixel().y)*64/COTE_TILE));
                             temp.y=(((m_monstre[m_decor[1][j][k].getMonstre()[o]].getCoordonneePixel().x+m_monstre[m_decor[1][j][k].getMonstre()[o]].getCoordonneePixel().y)*64/COTE_TILE)/2+32);
 
-                            coordonnee positionSourisTotale=moteurGraphique->getPositionSouris();
+                            sf::Vector2f positionSourisTotale=moteurGraphique->getPositionSouris();
 
                             if (positionSourisTotale.x>temp.x-96
-                                    && positionSourisTotale.x<temp.x+96
-                                    && positionSourisTotale.y>temp.y-128
-                                    && positionSourisTotale.y<temp.y+32)
+                            && positionSourisTotale.x<temp.x+96
+                            && positionSourisTotale.y>temp.y-128
+                            && positionSourisTotale.y<temp.y+32)
                             {
                                 float temp2=0;
                                 temp2=((temp.x-(positionSourisTotale.x))

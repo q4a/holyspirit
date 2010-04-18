@@ -109,8 +109,8 @@ public:
 
     //void InfligerDegatsMasse(coordonnee position,int rayon,int degats,bool sourceConcernee, Hero *hero, bool pousser = true, bool heroCompris = true, bool monstre = true);
 
-    bool InfligerDegats(int numeroMontre, float degats, int type, Hero *hero,bool pousser);
-    bool InfligerDegats(Personnage *monstre, float degats, int type, Hero *hero,bool pousser);
+    bool InfligerDegats(int numeroMontre, float degats, int type, Hero *hero,bool pousser, float temps = 0);
+    bool InfligerDegats(Personnage *monstre, float degats, int type, Hero *hero,bool pousser, float temps = 0);
 
     void MusiquePlay(coordonnee position);
 

@@ -109,7 +109,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	void Vider();
 	void ViderParticules();
 
-	coordonnee getPositionSouris();
+	sf::Vector2f getPositionSouris();
 	bool getEvent(sf::Event &EventReceived);
 
 	void Printscreen();

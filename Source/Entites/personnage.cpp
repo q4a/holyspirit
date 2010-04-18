@@ -723,22 +723,30 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap)
     return 0;
 }
 
-void Personnage::InfligerDegats(float degats, int type, Modele_Personnage *modele)
+void Personnage::InfligerDegats(float degats, int type, Modele_Personnage *modele, float temps)
 {
     float temp = degats;
     if(type < 4 && type >= 0)
-        degats -= (float)m_caracteristique.armure[type]/25;
+    {
+        if(m_caracteristique.armure[type] >= 0)
+            degats -= (float)m_caracteristique.armure[type]/25;
+        else
+            degats *= 1 - m_caracteristique.armure[type] / 100;
+    }
 
     if (degats < 0)
         degats = 0;
     if (degats > temp)
         degats = temp;
 
-    m_caracteristique.vie-=degats;
+    if(temps == 0)
+        m_caracteristique.vie-=degats;
+    else if(degats > 0)
+        m_degats.push_back(Degats (temps, degats, type));
 
     m_cible = NULL;
 
-    if(degats > 0)
+    if(degats > 0 && temps == 0)
     if(m_entite_graphique.m_tileset != NULL)
         if(m_entite_graphique.m_tileset->getNombreSonsSpecial(0) > 0)
         {
@@ -757,13 +765,15 @@ void Personnage::InfligerDegats(float degats, int type, Modele_Personnage *model
     m_touche = true;
 }
 
-int Personnage::Animer(Modele_Personnage *modele,float temps)
+int Personnage::Gerer(Modele_Personnage *modele,float temps)
 {
-    int retour=-2;
+    GererEffets(temps);
+    GererDegats(temps);
+    return Animer(modele, temps);
+}
 
-    if(m_monstre)
-        retour = 0;
-
+void Personnage::GererEffets(float temps)
+{
     int nombreInactif = 0;
     m_stunned = false;
     for(int i = 0; i < (int)m_effets.size(); ++i)
@@ -810,15 +820,41 @@ int Personnage::Animer(Modele_Personnage *modele,float temps)
                 if(m_caracteristique.vie > m_caracteristique.maxVie)
                     m_caracteristique.vie = m_caracteristique.maxVie;
 
-
             if(m_caracteristique.vie <= 0 && viePrecedente >= 0)
                 m_caracteristique.vie = viePrecedente, m_doitMourir = true;
         }
     }
 
-
     if(nombreInactif == (int)m_effets.size() || !EnVie())
         m_effets.clear();
+}
+
+void Personnage::GererDegats(float temps)
+{
+    for(int i = 0; i < (int)m_degats.size() ; ++i)
+    {
+        if(!m_doitMourir)
+        {
+            float viePrecedente = m_caracteristique.vie;
+
+            m_caracteristique.vie -= m_degats[i].degats * temps / m_degats[i].temps;
+            m_degats[i].temps_ecoule += temps;
+
+            if(m_degats[i].temps_ecoule > m_degats[i].temps)
+                m_degats.erase(m_degats.begin() + i--);
+
+            if(m_caracteristique.vie <= 0 && viePrecedente >= 0)
+                m_caracteristique.vie = viePrecedente, m_doitMourir = true;
+        }
+    }
+}
+
+int Personnage::Animer(Modele_Personnage *modele,float temps)
+{
+    int retour=-2;
+
+    if(m_monstre)
+        retour = 0;
 
     int pose = m_entite_graphique.m_noAnimation;
 

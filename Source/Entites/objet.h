@@ -103,6 +103,7 @@ public:
     void ChargerChemin(std::ifstream *fichier);
 
     void ChargerMiracle(const Caracteristique &caract);
+    void ChargerMiracleBenediction(benediction &);
     int AddBenediction(benediction );
 
     void Generer(int bonus);

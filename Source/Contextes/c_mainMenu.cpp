@@ -312,8 +312,8 @@ void c_MainMenu::Utiliser(Jeu *jeu)
 
                (eventManager->getPositionSouris().y > m_images_saves[i].GetPosition().y
               &&eventManager->getPositionSouris().y < m_images_saves[i].GetPosition().y + 192
-              &&eventManager->getPositionSouris().x > m_images_saves[i].GetPosition().x + 48
-              &&eventManager->getPositionSouris().x < m_images_saves[i].GetPosition().x + 208))
+              &&eventManager->getPositionSouris().x > m_images_saves[i].GetPosition().x
+              &&eventManager->getPositionSouris().x < m_images_saves[i].GetPosition().x + 160))
             {
                 texte.SetColor(Color(100,50,0));
                 if(eventManager->getEvenement(Mouse::Left,EventClic))
@@ -440,7 +440,6 @@ void c_MainMenu::Utiliser(Jeu *jeu)
             {
                 jeu->hero.m_cheminClasse = configuration->player_class[classe_choisie];
                 jeu->hero.m_chemin_save = nom_hero + ".sav.hs";
-                jeu->hero.m_caracteristiques.nom = nom_hero;
 
                 coordonnee temp(0,0,-1,-1);
                 jeu->m_chargement->setC_Chargement("Begin.map.hs",temp,1);
@@ -448,7 +447,12 @@ void c_MainMenu::Utiliser(Jeu *jeu)
                 jeu->hero.Charger(nom_hero + ".sav.hs");
                 jeu->hero.m_contenuSave.push_back(configuration->chemin_temps + nom_hero + ".sav.hs");
                 jeu->hero.m_contenuSave.push_back(configuration->chemin_temps + nom_hero + ".png");
+                jeu->hero.m_caracteristiques.nom = nom_hero;
+                Caracteristique caract = jeu->hero.m_personnage.getCaracteristique();
+                caract.nom = nom_hero;
+                jeu->hero.m_personnage.setCaracteristique(caract);
                 jeu->hero.Sauvegarder();
+                jeu->hero.m_caracteristiques.nom = nom_hero;
 
                 no_ecran = E_PRINCIPAL;
 

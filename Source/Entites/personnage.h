@@ -35,6 +35,15 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "script.h"
 #include "../Map/tileset.h"
 
+struct Degats
+{
+    Degats (float tps, float dgt, int t) : temps(tps), degats(dgt), type(t), temps_ecoule(0) {}
+    float   temps;
+    float   temps_ecoule;
+    float   degats;
+    int     type;
+};
+
 class Modele_Personnage
 {
 public:
@@ -44,20 +53,12 @@ public:
 
     void Reinitialiser();
 
-    //void JouerSon(int numeroSon,coordonnee position,coordonnee positionHero, bool uniqueSound=false);
-
     const Lumiere &getPorteeLumineuse();
-    //int getNombreSons();
-    //int getNombreSonsTouche();
-    //int getSonTouche(int);
     const Caracteristique &getCaracteristique();
 
     void setPorteeLumineuse(Lumiere  lumiere);
 
     std::vector<std::vector<Tileset> > m_tileset;
-
-    //std::vector <std::vector<std::vector<Pose> > > m_pose;
-    //std::vector <int> m_image;
 
     std::vector<Miracle> m_miracles;
 
@@ -69,8 +70,6 @@ public:
 protected:
     Caracteristique m_caracteristique;
     Lumiere m_porteeLumineuse;
-    //std::vector <int> m_sons;
-    //std::vector <int> m_sons_touche;
 };
 
 class Personnage
@@ -81,7 +80,11 @@ public:
     void Sauvegarder(std::ofstream &fichier);
 
     bool EnVie();
-    int Animer(Modele_Personnage *modele,float temps);
+
+    int     Animer(Modele_Personnage *modele,float temps);
+    int     Gerer(Modele_Personnage *modele,float temps);
+    void    GererEffets(float temps);
+    void    GererDegats(float temps);
 
     void Pousser(coordonneeDecimal vecteur);
 
@@ -93,7 +96,7 @@ public:
 
     void Frappe(coordonnee direction,coordonnee position);
 
-    void InfligerDegats(float degats, int type, Modele_Personnage *modele);
+    void InfligerDegats(float degats, int type, Modele_Personnage *modele, float temps = 0);
 
     int AjouterEffet(Tileset *tileset, int type, int compteur, int info1, int info2, int info3);
     void DetruireEffets();
@@ -182,6 +185,8 @@ public:
 
     Entite_graphique m_entite_graphique;
     Entite_graphique m_entite_graphique_shadow;
+
+    std::vector<Degats> m_degats;
 
 protected:
     int m_etat,m_angle;

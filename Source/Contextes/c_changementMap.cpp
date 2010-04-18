@@ -148,13 +148,13 @@ void c_Chargement::Utiliser(Jeu *jeu)
         {
             buffer.push_back(*jeu->hero.m_amis[i]);
             bufferModele.push_back(jeu->map->getModeleMonstre(jeu->hero.m_amis[i]->getModele()));
-            jeu->hero.m_amis[i]->InfligerDegats(jeu->hero.m_amis[i]->getCaracteristique().vie * 2,4, &bufferModele.back());
+            jeu->hero.m_amis[i]->InfligerDegats(jeu->hero.m_amis[i]->getCaracteristique().vie * 2,4, &bufferModele.back(),0);
         }
 
         if (!jeu->hero.m_personnage.EnVie())
         {
             mort = true;
-            jeu->hero.m_personnage.InfligerDegats(-jeu->hero.m_caracteristiques.maxVie*0.5,4,&jeu->hero.m_modelePersonnage[0]);
+            jeu->hero.m_personnage.InfligerDegats(-jeu->hero.m_caracteristiques.maxVie*0.5,4,&jeu->hero.m_modelePersonnage[0],0);
         }
         else
             mort = false;

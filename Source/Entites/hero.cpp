@@ -398,6 +398,8 @@ void Hero::Charger(std::string chemin_save)
 
             *fichier>>m_caracteristiques.nom;
 
+            charTemp.nom = m_caracteristiques.nom;
+
             *fichier>>m_cheminClasse;
 
             *fichier>>charTemp.vitesse;
@@ -594,6 +596,7 @@ void Hero::Charger(std::string chemin_save)
         charTemp.dexterite=m_classe.caracteristique.dexterite;
         charTemp.piete=m_classe.caracteristique.piete;
         charTemp.charisme=m_classe.caracteristique.charisme;
+        charTemp.nom = m_caracteristiques.nom;
 
         m_personnage.setCaracteristique(charTemp);
 
@@ -1575,7 +1578,7 @@ void Hero::AfficherAmis()
                         }
 
                     if(!charme)
-                        m_amis[i]->InfligerDegats(m_amis[i]->getCaracteristique().vie * 2, 4, NULL);
+                        m_amis[i]->InfligerDegats(m_amis[i]->getCaracteristique().vie * 2, 4, NULL,0);
 
                     m_amis.erase(m_amis.begin() + i);
                     i--;
@@ -1595,7 +1598,7 @@ void Hero::AfficherQuetes(float decalage)
         sf::Text texte;
         texte.SetFont(moteurGraphique->m_font);
         texte.SetCharacterSize(14);
-        texte.SetPosition(AutoScreenAdjust(position.x,position.y,decalage));
+        texte.SetPosition(AutoScreenAdjust(position.x + 2,position.y,decalage));
 
         texte.SetString(m_quetes[i].m_nom);
 
@@ -1604,11 +1607,11 @@ void Hero::AfficherQuetes(float decalage)
         if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.position_contenu_quetes.x,0).x
          &&eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.position_contenu_quetes.x + m_classe.position_contenu_quetes.w,0).x
          &&eventManager->getPositionSouris().y > texte.GetRect().Top
-         &&eventManager->getPositionSouris().y < texte.GetRect().Bottom)
+         &&eventManager->getPositionSouris().y < texte.GetRect().Top + 19)
         {
             sf::Sprite sprite;
             sprite.SetImage(*moteurGraphique->getImage(0));
-            sprite.Resize(m_classe.position_contenu_quetes.w, texte.GetRect().Bottom - texte.GetRect().Top+2);
+            sprite.Resize(m_classe.position_contenu_quetes.w, 19);
             sprite.SetPosition(AutoScreenAdjust(position.x,position.y,decalage));
             sprite.SetColor(sf::Color(255, 255, 255, 128));
 
@@ -1617,7 +1620,7 @@ void Hero::AfficherQuetes(float decalage)
             moteurGraphique->AjouterCommande(&sprite,15,0);
         }
 
-        position.y += (int)texte.GetRect().Bottom - (int)texte.GetRect().Top;
+        position.y += 19;
     }
 
     int queteAffichee = m_queteSelectionnee;
@@ -1628,16 +1631,16 @@ void Hero::AfficherQuetes(float decalage)
     {
         sf::Text texte;
         texte.SetFont(moteurGraphique->m_font);
-        texte.SetCharacterSize(16);
-        texte.SetPosition(AutoScreenAdjust(m_classe.position_contenu_description_quete.x,
+        texte.SetCharacterSize(18);
+        texte.SetPosition(AutoScreenAdjust(m_classe.position_contenu_description_quete.x + 2,
                                            m_classe.position_contenu_description_quete.y,decalage));
         texte.SetString(m_quetes[queteAffichee].m_nom);
 
         moteurGraphique->AjouterTexte(&texte,15,0);
 
         texte.SetCharacterSize(14);
-        texte.SetPosition(AutoScreenAdjust(m_classe.position_contenu_description_quete.x,
-                                           m_classe.position_contenu_description_quete.y + 64,decalage));
+        texte.SetPosition(AutoScreenAdjust(m_classe.position_contenu_description_quete.x + 2,
+                                           m_classe.position_contenu_description_quete.y + 32,decalage));
         texte.SetString(m_quetes[queteAffichee].m_description);
 
         moteurGraphique->AjouterTexte(&texte,15,0);
@@ -1654,7 +1657,7 @@ void Hero::AfficherPotales(float decalage)
         sf::Text texte;
         texte.SetFont(moteurGraphique->m_font);
         texte.SetCharacterSize(14);
-        texte.SetPosition(AutoScreenAdjust(position.x,
+        texte.SetPosition(AutoScreenAdjust(position.x + 2,
                                            position.y,decalage));
         texte.SetString(configuration->getText(4,m_potales[i].nom));
 
@@ -1681,7 +1684,7 @@ void Hero::AfficherPotales(float decalage)
             moteurGraphique->AjouterCommande(&sprite,15,0);
         }
 
-        position.y += (int)texte.GetRect().Bottom - (int)texte.GetRect().Top;
+        position.y += 19;
     }
 }
 

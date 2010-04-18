@@ -69,7 +69,7 @@ void Menu::AfficherHUD(Classe *classe)
     moteurGraphique->AjouterCommande(&sprite2,17,0);
 }
 
-void Menu::AfficherDialogue(int alpha,Classe *classe)
+bool Menu::AfficherDialogue(int alpha,Classe *classe)
 {
     Sprite sprite2;
 
@@ -84,7 +84,7 @@ void Menu::AfficherDialogue(int alpha,Classe *classe)
     texte.SetFont(moteurGraphique->m_font);
     texte.SetString(m_dialogue);
     texte.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.GetRect().Right-texte.GetRect().Left) * 0.5,
-                      AutoScreenAdjust(0,classe->position_contenu_dialogue.y).y + classe->talk.position.h*configuration->Resolution.h/600 - classe->talk.position.h * alpha/255);
+                      AutoScreenAdjust(0,classe->position_contenu_dialogue.y).y + classe->talk.position.h - classe->talk.position.h * alpha/255);
 
     moteurGraphique->AjouterTexte(&texte,16,0);
 
@@ -98,15 +98,15 @@ void Menu::AfficherDialogue(int alpha,Classe *classe)
 
         pos = texte.GetRect().Bottom + 4;
 
-        if(eventManager->getPositionSouris().x > texte.GetRect().Left
-         &&eventManager->getPositionSouris().x < texte.GetRect().Right
+        if(eventManager->getPositionSouris().x > AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x
+         &&eventManager->getPositionSouris().x < AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w
          &&eventManager->getPositionSouris().y > texte.GetRect().Top
-         &&eventManager->getPositionSouris().y < texte.GetRect().Bottom)
+         &&eventManager->getPositionSouris().y < texte.GetRect().Top + 19)
          {
              sf::Sprite background;
              background.SetImage(*moteurGraphique->getImage(0));
              background.Resize(texte.GetRect().Right - texte.GetRect().Left + 4, texte.GetRect().Bottom - texte.GetRect().Top + 4);
-             background.SetPosition(texte.GetRect().Left - 2, texte.GetRect().Top - 2);
+             background.SetPosition(texte.GetRect().Left, texte.GetRect().Top );
              background.SetColor(sf::Color(64,64,64));
              moteurGraphique->AjouterCommande(&background, 16, 0);
 
@@ -119,6 +119,19 @@ void Menu::AfficherDialogue(int alpha,Classe *classe)
 
          moteurGraphique->AjouterTexte(&texte,16,0);
     }
+
+    if(alpha > 224)
+    if(eventManager->getEvenement(sf::Mouse::Left, EventClic))
+    if(eventManager->getPositionSouris().x < AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x
+    || eventManager->getPositionSouris().x > AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w
+    || eventManager->getPositionSouris().y < AutoScreenAdjust(0,classe->talk.position.y).y)
+    {
+        m_dialogue.clear();
+        ClearSpeakChoice();
+        return (true);
+    }
+
+    return (false);
 }
 
 

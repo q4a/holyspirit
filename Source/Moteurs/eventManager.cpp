@@ -162,9 +162,9 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
     if (m_EventTableau[Key::Space])
         configuration->minute+=200*temps;
 
-    coordonnee positionSourisTotale=moteurGraphique->getPositionSouris();
-    //Conversion des coord cartésienne en coord iso
+    sf::Vector2f positionSourisTotale = moteurGraphique->getPositionSouris();
 
+    //Conversion des coord cartésienne en coord iso
     m_casePointee.x = (positionSourisTotale.y * 2 + positionSourisTotale.x) / 128;
     m_casePointee.y = (positionSourisTotale.y * 2 - positionSourisTotale.x) / 128;
 

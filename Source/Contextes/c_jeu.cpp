@@ -276,8 +276,6 @@ void c_Jeu::Deplacements(Jeu *jeu)
         moteurGraphique->decalageReflection.x += heroPos.x - old.x;
         moteurGraphique->decalageReflection.y += heroPos.y - old.y;
 
-
-        ///Placer l'écouteur, à la position du héro
         coordonnee position;
         position.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
         position.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
@@ -306,7 +304,7 @@ void c_Jeu::Animation(Jeu *jeu)
 
 
         int retour=-2;
-        retour = jeu->hero.m_personnage.Animer(&jeu->hero.m_modelePersonnage[0],tempsDepuisDerniereAnimation);
+        retour = jeu->hero.m_personnage.Gerer(&jeu->hero.m_modelePersonnage[0],tempsDepuisDerniereAnimation);
 
         jeu->hero.CalculerOrdreAffichage();
         jeu->hero.m_personnage.m_vientDeFrapper = NULL;
@@ -327,14 +325,14 @@ void c_Jeu::Animation(Jeu *jeu)
                                 if (!jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->m_friendly && jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->EnVie())
                                 {
                                     int degats = (rand()%(jeu->hero.m_caracteristiques.degatsMax[PHYSIQUE] - jeu->hero.m_caracteristiques.degatsMin[PHYSIQUE]+1))+jeu->hero.m_caracteristiques.degatsMin[PHYSIQUE];
-                                    toucher=true,jeu->map->InfligerDegats(jeu->hero.getMonstreVise(),degats,PHYSIQUE,&jeu->hero,1);
+                                    toucher=true,jeu->map->InfligerDegats(jeu->hero.getMonstreVise(),degats,PHYSIQUE,&jeu->hero,1,0);
 
                                     jeu->hero.m_personnage.m_vientDeFrapper = jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise());
                                     jeu->hero.m_personnage.m_degatsInflige  = degats;
 
                                     jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->m_vientDetreTouche = &jeu->hero.m_personnage;
 
-                                    jeu->hero.m_personnage.InfligerDegats(-degats * jeu->hero.m_caracteristiques.volVie, 4, NULL);
+                                    jeu->hero.m_personnage.InfligerDegats(-degats * jeu->hero.m_caracteristiques.volVie, 4, NULL,0);
                                     jeu->hero.m_caracteristiques.foi += degats *jeu->hero.m_caracteristiques.volFoi;
 
                                     jeu->hero.m_personnage.m_miracleFrappeEnCours = false;
@@ -669,7 +667,7 @@ void c_Jeu::Evenements(Jeu *jeu)
         jeu->Next();
 
     if (eventManager->getPositionSouris().y < 492 * configuration->Resolution.h/600)
-    //if(jeu->menu.m_dialogue.empty())
+    if(jeu->menu.m_dialogue.empty())
     {
         if (!eventManager->getEvenement(Mouse::Left,EventClic))
             jeu->map->getMonstre(&jeu->hero,eventManager->getPositionSouris(),eventManager->getCasePointee());
@@ -819,10 +817,10 @@ void c_Jeu::Affichage(Jeu *jeu)
         if (alpha_map<0)
             alpha_map=0;
     }
-   // if (alpha_map>0)
-       // jeu->menu.Afficher(2,alpha_map,&jeu->hero.m_classe);//On affiche la mini-map
+
     if (alpha_dialog>0)
-        jeu->menu.AfficherDialogue((int)alpha_dialog,&jeu->hero.m_classe);//On affiche la mini-map
+        if(jeu->menu.AfficherDialogue((int)alpha_dialog,&jeu->hero.m_classe))
+            jeu->hero.setMonstreVise(-1);
 
 
     if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())>4)

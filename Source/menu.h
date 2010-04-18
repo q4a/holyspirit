@@ -77,7 +77,7 @@ class Menu
 	Menu();
 	~Menu();
 	void AfficherHUD(Classe *classe);
-	void AfficherDialogue(int, Classe *classe);
+	bool AfficherDialogue(int, Classe *classe);
 	void AfficherDynamique(Caracteristique caracteristique,int type,Caracteristique caracteristiqueMonstre,Classe *classe);
 	void AfficherChargement(std::string nom,int fond,int z);
 	void AfficherInventaire(float,Classe *classe,bool);

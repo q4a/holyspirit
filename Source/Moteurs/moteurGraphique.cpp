@@ -941,14 +941,9 @@ bool MoteurGraphique::getEvent(sf::Event &EventReceived)
     return m_ecran.GetEvent(EventReceived);
 }
 
-coordonnee MoteurGraphique::getPositionSouris()
+sf::Vector2f MoteurGraphique::getPositionSouris()
 {
-    coordonnee pos;
-
-    pos.x=(int)m_ecran.ConvertCoords(m_ecran.GetInput().GetMouseX(), m_ecran.GetInput().GetMouseY(), m_camera).x;
-    pos.y=(int)m_ecran.ConvertCoords(m_ecran.GetInput().GetMouseX(), m_ecran.GetInput().GetMouseY(), m_camera).y;
-
-    return pos;
+    return m_ecran.ConvertCoords(m_ecran.GetInput().GetMouseX(), m_ecran.GetInput().GetMouseY(), m_camera);
 }
 
 void MoteurGraphique::Printscreen()
