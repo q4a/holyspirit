@@ -32,7 +32,7 @@ $
 	$
 	*
 		*Litanie_toxic_0.item.hs
-		r20000
+		r40000
 	$
 $
 $

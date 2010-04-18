@@ -31,19 +31,19 @@ Qui a volé la cervelle du marchand ?
 In nomine Patris et Filii et Spiritus Sancti.
 Pater noster, qui es in caelis Sanctificetur nomen tuum;\Adveniat regnum tuum;\Fiat voluntas tua sicut in caelo et in terra.\Panem nostrum quotidianum da nobis hodie,\et dimitte nobis debita nostra\sicut et nos dimittimus debitoribus nostris\et ne nos inducas in tentationem\sed libera nos a malo.\Amen
 Bien le bonjour mon ami.\Que voulez-vous ?\
--Commercer-
--Discuter-
+Commercer
+Discuter
 J'ai entendu des drôles de bruits venant des catacombes cette nuit. J'ai bien peur qu'il s'y passe quelque chose.
 L'Abbaye
 Les terres agraires
 Que souhaitez-vous faire ?\\
--Se téléporter-
--Aller dans mon coffre-
--Fabriquer un objet-
+Se téléporter
+Aller dans mon coffre
+Fabriquer un objet
 L'orée de la foret
 Psssst !\Hey, vous !\Venez m'aider !\Je me suis enfermé dans mon auberge quand ces démons m'ont attaqués.
--Bien entendu.-
--Restez ici, c'est plus prudent.-
+Bien entendu.
+Restez ici, c'est plus prudent.
 Merci de m'avoir aidé.
 Défense d'entrer !
 Je dois défendre l'auberge de ces attaques de mort-vivants !
@@ -52,6 +52,6 @@ J'ai échoué, les démons ont réussis à détruire la porte et à tuer le tavernier.
 J'ai résisté à l'attaque !\Et j'ai recu mon argent.
 Merci.\Voici votre dû.\+1000 d'argent reçu.
 Que la paix soit sur vous mon fils.\ Que souhaitez-vous de moi ?\
--Prier-
--Bénir un objet-
+Prier
+Bénir un objet
 Suite

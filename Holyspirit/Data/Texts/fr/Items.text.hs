@@ -106,4 +106,4 @@ Set de la Veuve Eplorée
 Litanie mineure
 Ce parchemin contient l'incantation\nécessaire à la bénédiction d'un objet.
 Litanie de nuage toxique mineure
-Ce parchemin contient l'incantation\nécessaire à la bénédiction pour que celui-ci\lache un nuage toxique.\Ce nuage fait 20 points de dégats sur 6 secondes.
+Ce parchemin contient l'incantation\nécessaire à la bénédiction d'un objet\pour que celui-ci lache un nuage toxique.\Ce nuage fait 20 points de dégats sur 6 secondes.

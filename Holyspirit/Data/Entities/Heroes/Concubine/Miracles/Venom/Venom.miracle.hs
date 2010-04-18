@@ -5,8 +5,7 @@ $
 	* 50 + 50 * l $	
 	* 15 + 15 * l $	
 	* 1500 + 1500 * l $
-	* 0 - ( l * 3 ) $
-	* l * 6 $
+	* l * 6  $
 $
 	*28
 	*29
@@ -17,10 +16,10 @@ $
 	* t-1 l1 l4 l5 $
 
 	* t14 	ia1 ib%2 ic0 id2 $
-	* t6 l3 s1 ia0 ib0 ic2 id0 ie%3 if1 $
+	* t2 l3 ia%3 ib%3 ic3 id2 $
 	* t3 s0 ia8 $
 
-	* t6 s2 ia1 ib-1 ic%1 $
+	* t6 s1 ia1 ib-1 ic%1 $
 
 	* t-1 $
 $
@@ -40,13 +39,6 @@ $
 		* x640 y0 w128 h128 i0 a6 lr0 lv255 lb0 li64 n0.04 $
 		* x768 y0 w128 h128 i0 a7 lr0 lv255 lb0 li32 n0.04 $
 		* x896 y0 w128 h128 i0 a7 lr0 lv255 lb0 li0 n0.04 $
-	$
-	*
-		//Images
-		$
-		//Sons
-		$
-		* n1 a0 $ 
 	$
 	*
 		//Images

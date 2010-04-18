@@ -20,7 +20,6 @@ main
 			stop_speak
 			trade * 1
 		end
-		
 	else
 		variable * 1 * 0
 	end

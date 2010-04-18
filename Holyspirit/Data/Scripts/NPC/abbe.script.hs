@@ -1,5 +1,4 @@
 main 
-	
 	if talk
 	then
 		if variable * 2 * 0
@@ -18,6 +17,7 @@ main
 		if speak_choice * 1
 		then
 			stop_speak
+			heal
 			if rand * 50
 			then
 					speak * 30
@@ -37,7 +37,6 @@ main
 			stop_speak
 			trade
 		end
-
 	else
 		variable * 2 * 0
 		if variable * 0 * 75
@@ -47,6 +46,9 @@ main
 		end
 		incrementVariable * 0 * 1
 		
-		variable * 3 * 0
+		if no_speak
+		then
+			variable * 3 * 0
+		end
 	end
 end 
