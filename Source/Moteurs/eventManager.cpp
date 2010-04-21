@@ -61,7 +61,7 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
                 m_EventTableau[Event.Key.Code] = 1;
 
             if(Event.Key.Code >= 0 && Event.Key.Code < 128)
-                    m_char = Event.Key.Code;
+                m_char = Event.Key.Code;
 
             break;
         case Event::KeyReleased:
@@ -165,8 +165,8 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
     sf::Vector2f positionSourisTotale = moteurGraphique->getPositionSouris();
 
     //Conversion des coord cartésienne en coord iso
-    m_casePointee.x = (positionSourisTotale.y * 2 + positionSourisTotale.x) / 128;
-    m_casePointee.y = (positionSourisTotale.y * 2 - positionSourisTotale.x) / 128;
+    m_casePointee.x = (int)(positionSourisTotale.y * 2 + positionSourisTotale.x) / 128;
+    m_casePointee.y = (int)(positionSourisTotale.y * 2 - positionSourisTotale.x) / 128;
 
     if (m_casePointee.x<0)
         m_casePointee.x=0;

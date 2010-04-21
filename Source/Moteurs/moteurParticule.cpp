@@ -40,7 +40,7 @@ ParticuleSysteme::~ParticuleSysteme()
 {
     m_particules.clear();
 }
-bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps,int tailleMapY)
+bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps)
 {
     int efface=0;
     int i=0;
@@ -114,7 +114,9 @@ bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps,int 
         }
 
         if (Iter->vitesse<=0)
-            Iter->vitesse=0,Iter->vie-=temps*5;
+            Iter->vitesse=0;
+        if (Iter->vitesse ==0 && Iter->position.z < 4)
+            Iter->vie-=temps*5;
         if (Iter->vie<=0)
             Iter->alpha-=temps*100;
         if (Iter->alpha<=0)
@@ -126,6 +128,86 @@ bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps,int 
 
     return 1;
 }
+void ParticuleSysteme::Envoler(sf::Vector2f pos,int force, int type, float temps)
+{
+    for (Iter=m_particules.begin();Iter!=m_particules.end();++Iter)
+    if(!Iter->sang)
+    {
+        sf::Vector2f position;
+
+        position.x = ((pos.x - pos.y) * 64 / COTE_TILE);
+        position.y = ((pos.x + pos.y) * 32 / COTE_TILE);
+
+        float distance =  sqrt(   fabs(position.x - Iter->position.x) * fabs(position.x - Iter->position.x)
+                                + fabs(position.y - Iter->position.y) * fabs(position.y - Iter->position.y));
+
+        if(distance < 16 * force)
+        if(Iter->position.z  < 64)
+        {
+            if(type == E_SOUFFLE)
+            {
+                if(Iter->vecteur.z < force * 0.5)
+                {
+                    Iter->vecteur.z = force * 0.5;
+                    if(Iter->position.z < 4)
+                        Iter->position.z = 4;
+                }
+
+                if(Iter->vitesse < force)
+                {
+                    float m = atan2((Iter->position.y - position.y) * 2, (Iter->position.x - position.x));
+
+                    Iter->vecteur.x = cos(m);
+                    Iter->vecteur.y = sin(m) / 2;
+
+                    Iter->vitesse = force;
+                }
+
+                Iter->vie               = 100;
+            }
+            else if(type == E_TORNADE)
+            {
+                Iter->vecteur.z = (force * 32 / distance);
+
+                if(Iter->position.z > Iter->seed * 0.4)
+                    Iter->vecteur.z = 0;
+
+                Iter->vitesse = force * 4 * 64 / distance;
+
+                if(Iter->position.z < 4)
+                    Iter->position.z = 4;
+
+                Iter->vecteur.x = 0;
+                Iter->vecteur.y = 0;
+
+                float m = atan2((Iter->position.y - position.y)
+                           * 2, (Iter->position.x - position.x));
+
+                Iter->vecteur.x = cos(M_PI/2 + m);
+                Iter->vecteur.y = sin(M_PI/2 + m) * 0.5;
+
+                Iter->vecteur.x -= 6 * cos(m)     / Iter->position.z;
+                Iter->vecteur.y -= 6 * sin(m) / 2 / Iter->position.z;
+
+                Iter->vie               = 100;
+            }
+            else if(type == E_VERTICAL)
+            {
+                if(Iter->vecteur.z < force * 32 / distance)
+                    Iter->vecteur.z = (force * 32 / distance);
+                if(Iter->position.z > 32)
+                    Iter->vecteur.z = 0;
+
+                if(Iter->position.z < 4)
+                    Iter->position.z = 4;
+
+                Iter->vie               = 100;
+            }
+        }
+    }
+}
+
+
 void ParticuleSysteme::Generer(float force, ModeleParticuleSysteme *modele,coordonnee position,float angle)
 {
     for (int i=0;i<(int)modele->m_particules.size();i++)
@@ -155,6 +237,9 @@ void ParticuleSysteme::Generer(float force, ModeleParticuleSysteme *modele,coord
             else
                 m_particules.back().taille = 1;
 
+            m_particules.back().sang = modele->m_particules[i].sang;
+            m_particules.back().poids = modele->m_particules[i].poids;
+            m_particules.back().seed = rand()%100;
         }
     }
 }

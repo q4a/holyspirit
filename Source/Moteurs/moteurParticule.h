@@ -37,7 +37,11 @@ struct Particule
     sf::Color color;
     float taille;
 
+    bool sang;
+    float poids;
+
     int numero;
+    int seed;
 };
 
 class ParticuleSysteme
@@ -46,7 +50,8 @@ class ParticuleSysteme
     ParticuleSysteme();
     ParticuleSysteme(int , ModeleParticuleSysteme *, coordonnee , sf::Color,float ,float);
     ~ParticuleSysteme();
-    bool Afficher( ModeleParticuleSysteme *modele,float temps,int tailleMapY);
+    bool Afficher( ModeleParticuleSysteme *modele,float temps);
+    void Envoler(sf::Vector2f pos,int force, int type, float);
     void Generer(float force, ModeleParticuleSysteme *modele,coordonnee position,float);
     //bool Gerer(float temps,int tailleMapY);
 

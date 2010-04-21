@@ -57,7 +57,8 @@ struct Tileset_moteur
     int importance;
 };
 
-enum  {TREMBLEMENT};
+enum  {TREMBLEMENT,ENVOLEMENT};
+enum  {E_SOUFFLE, E_TORNADE, E_VERTICAL};
 
 struct Effet_ecran
 {
@@ -65,12 +66,15 @@ struct Effet_ecran
     {
         type    = -1;
         info1   = 0;
+        info2   = 0;
         temps   = 0;
     }
 
     int type;
     float info1;
+    float info2;
     float temps;
+    sf::Vector2f pos;
 };
 
 class MoteurGraphique : public CSingleton<MoteurGraphique>

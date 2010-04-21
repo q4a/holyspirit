@@ -232,7 +232,7 @@ void MoteurGraphique::Gerer(float temps,int tailleMapY)
     {
         if (m_systemeParticules_iter->m_modele>=0&&m_systemeParticules_iter->m_modele<(int)m_modeleSystemeParticules.size())
         {
-            if (!m_systemeParticules_iter->Afficher(&m_modeleSystemeParticules[m_systemeParticules_iter->m_modele],temps,tailleMapY))
+            if (!m_systemeParticules_iter->Afficher(&m_modeleSystemeParticules[m_systemeParticules_iter->m_modele],temps))
             {
                 m_systemeParticules.erase (m_systemeParticules_iter);
                 if((int)m_systemeParticules.size()>k)
@@ -254,9 +254,9 @@ void MoteurGraphique::Gerer(float temps,int tailleMapY)
     {
         m_effetsEcran_iter->temps += temps;
 
-        if(m_effetsEcran_iter->type == TREMBLEMENT && cameraDecale)
+        if(m_effetsEcran_iter->type == TREMBLEMENT)
         {
-            if(m_effetsEcran_iter->temps > 0.05)
+            if(m_effetsEcran_iter->temps > 0.05 && cameraDecale)
             {
                 decalage = true;
 
@@ -272,16 +272,27 @@ void MoteurGraphique::Gerer(float temps,int tailleMapY)
 
                 m_effetsEcran_iter->info1  -= 1;
             }
-        }
 
-        if (m_effetsEcran_iter->info1 < 0)
+            if (m_effetsEcran_iter->info1 < 0)
+            {
+                m_effetsEcran.erase (m_effetsEcran_iter);
+                if((int)m_effetsEcran.size()>k)
+                    m_effetsEcran_iter=m_effetsEcran.begin()+k;
+            }
+            else
+                ++m_effetsEcran_iter,++k;
+        }
+        else if(m_effetsEcran_iter->type == ENVOLEMENT)
         {
+            for(m_systemeParticules_iter=m_systemeParticules.begin();
+                m_systemeParticules_iter!=m_systemeParticules.end();
+                ++m_systemeParticules_iter)
+                    m_systemeParticules_iter->Envoler(m_effetsEcran_iter->pos,m_effetsEcran_iter->info1,m_effetsEcran_iter->info2, temps);
+
             m_effetsEcran.erase (m_effetsEcran_iter);
             if((int)m_effetsEcran.size()>k)
                 m_effetsEcran_iter=m_effetsEcran.begin()+k;
         }
-        else
-            ++m_effetsEcran_iter,++k;
     }
     if(decalage)
         cameraDecale = false;

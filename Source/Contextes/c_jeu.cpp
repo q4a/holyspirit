@@ -324,7 +324,7 @@ void c_Jeu::Animation(Jeu *jeu)
                             if (rand() % 100 < (float)((float)(jeu->hero.m_caracteristiques.dexterite + 100) / ((float)(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCaracteristique().dexterite + 100)))*75 )
                                 if (!jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->m_friendly && jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->EnVie())
                                 {
-                                    int degats = (rand()%(jeu->hero.m_caracteristiques.degatsMax[PHYSIQUE] - jeu->hero.m_caracteristiques.degatsMin[PHYSIQUE]+1))+jeu->hero.m_caracteristiques.degatsMin[PHYSIQUE];
+                                    int degats = (rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax[PHYSIQUE] - jeu->hero.m_personnage.getCaracteristique().degatsMin[PHYSIQUE]+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin[PHYSIQUE];
                                     toucher=true,jeu->map->InfligerDegats(jeu->hero.getMonstreVise(),degats,PHYSIQUE,&jeu->hero,1,0);
 
                                     jeu->hero.m_personnage.m_vientDeFrapper = jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise());

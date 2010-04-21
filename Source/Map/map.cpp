@@ -2644,6 +2644,9 @@ bool Map::Miracle_EffetEcran(Hero *hero, Personnage *personnage, Miracle &modele
     moteurGraphique->m_effetsEcran.push_back(Effet_ecran ());
     moteurGraphique->m_effetsEcran.back().type      = effet.m_informations[0];
     moteurGraphique->m_effetsEcran.back().info1     = effet.m_informations[1];
+    moteurGraphique->m_effetsEcran.back().info2     = effet.m_informations[2];
+    moteurGraphique->m_effetsEcran.back().pos.x     = info.m_position.x;
+    moteurGraphique->m_effetsEcran.back().pos.y     = info.m_position.y;
 
 
     for (unsigned p=0;p<effet.m_lien.size();p++)

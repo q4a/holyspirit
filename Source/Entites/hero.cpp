@@ -883,7 +883,7 @@ void Hero::ChargerModele(bool tout)
     {
         if (m_inventaire[i].m_equipe>=0&&m_inventaire[i].m_equipe<(int)m_classe.emplacements.size())
         {
-            m_inventaire[i].ChargerMiracle(m_caracteristiques);
+            m_inventaire[i].ChargerMiracle(m_personnage.getCaracteristique());
 
             if ((m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==ARME_PRINCIPAL&&m_inventaire[i].m_type==ARME)||(m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==BOUCLIER&&m_inventaire[i].m_type==ARME))
                 nombreArme++;
@@ -1044,7 +1044,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         std::ostringstream  buf;
         buf<<m_caracteristiques.niveau;
         string.SetString(buf.str());
-        string.SetPosition(AutoScreenAdjust(171,323,decalage));
+        string.SetPosition(AutoScreenAdjust(171,322,decalage));
         string.Move(14 - (string.GetRect().Right-string.GetRect().Left) * 0.5, 0);
         string.SetColor(sf::Color(255,255,255));
         moteurGraphique->AjouterTexte(&string,15);
@@ -1060,10 +1060,9 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
     }
 
     {
-
         string.SetCharacterSize(14);
         string.SetString(m_caracteristiques.nom.c_str());
-        string.SetPosition(AutoScreenAdjust(44,322,decalage));
+        string.SetPosition(AutoScreenAdjust(44,320,decalage));
         string.SetColor(sf::Color(255,255,255));
         moteurGraphique->AjouterTexte(&string,15);
 
@@ -1081,7 +1080,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
 
         string.SetCharacterSize(14);
         string.SetString(configuration->getText(3,m_classe.nom).c_str());
-        string.SetPosition(AutoScreenAdjust(44,350,decalage));
+        string.SetPosition(AutoScreenAdjust(44,348,decalage));
         string.SetColor(sf::Color(255,255,255));
         moteurGraphique->AjouterTexte(&string,15);
 
@@ -1097,7 +1096,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
 
     string.SetString(configuration->getText(0,3));
     string.SetCharacterSize(14);
-    string.SetPosition(AutoScreenAdjust(224,321,decalage));
+    string.SetPosition(AutoScreenAdjust(224,319,decalage));
     moteurGraphique->AjouterTexte(&string,15);
 
     {
@@ -1120,7 +1119,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         }
     }
 
-    string.SetPosition(AutoScreenAdjust(267,321,decalage));
+    string.SetPosition(AutoScreenAdjust(267,319,decalage));
     string.Move(47 - (string.GetRect().Right-string.GetRect().Left) * 0.5, 0);
 
     /*if (m_caracteristiques.maxVie!=m_personnage.getCaracteristique().maxVie)
@@ -1140,7 +1139,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
 
     string.SetString(configuration->getText(0,4));
     string.SetCharacterSize(14);
-    string.SetPosition(AutoScreenAdjust(224,349,decalage));
+    string.SetPosition(AutoScreenAdjust(224,347,decalage));
     moteurGraphique->AjouterTexte(&string,15);
 
     string.SetCharacterSize(14);
@@ -1165,7 +1164,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         }
     }
 
-    string.SetPosition(AutoScreenAdjust(267,349,decalage));
+    string.SetPosition(AutoScreenAdjust(267,347,decalage));
     string.Move(47 - (string.GetRect().Right-string.GetRect().Left) * 0.5, 0);
     /*if (m_caracteristiques.maxFoi!=m_personnage.getCaracteristique().maxFoi)
         string.SetColor(sf::Color(0,128,255));
@@ -1188,7 +1187,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         std::ostringstream  buf;
         buf<<m_caracteristiques.force;
         string.SetString(buf.str());
-        string.SetPosition(AutoScreenAdjust(132,378,decalage));
+        string.SetPosition(AutoScreenAdjust(132,376,decalage));
         string.Move(17 - (string.GetRect().Right-string.GetRect().Left) * 0.5, 0);
         /*if (m_caracteristiques.force!=m_personnage.getCaracteristique().force)
             string.SetColor(sf::Color(0,128,255));
@@ -1218,7 +1217,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
 
     string.SetX(46 + (configuration->Resolution.x - 800) * 0.5);
     string.SetY(378 + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
-    string.SetPosition(AutoScreenAdjust(46,378,decalage));
+    string.SetPosition(AutoScreenAdjust(46,376,decalage));
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
@@ -1226,7 +1225,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         std::ostringstream  buf;
         buf<<m_caracteristiques.dexterite;
         string.SetString(buf.str());
-        string.SetPosition(AutoScreenAdjust(132,406,decalage));
+        string.SetPosition(AutoScreenAdjust(132,404,decalage));
         string.Move(17 - (string.GetRect().Right-string.GetRect().Left) * 0.5, 0);
         /*if (m_caracteristiques.dexterite!=m_personnage.getCaracteristique().dexterite)
             string.SetColor(sf::Color(0,128,255));
@@ -1253,7 +1252,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
     string.SetString(configuration->getText(0,6).c_str());
     string.SetX(46 + (configuration->Resolution.x - 800) * 0.5);
     string.SetY(406 + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
-    string.SetPosition(AutoScreenAdjust(46,406,decalage));
+    string.SetPosition(AutoScreenAdjust(46,404,decalage));
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
@@ -1263,7 +1262,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         buf<<m_caracteristiques.vitalite;
         string.SetString(buf.str());
         string.SetX((132 + (configuration->Resolution.x - 800) * 0.5)+17-(string.GetRect().Right-string.GetRect().Left)/2);
-        string.SetY(434 + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
+        string.SetY(432 + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
         string.SetPosition(AutoScreenAdjust(132,434,decalage));
         string.Move(17 - (string.GetRect().Right-string.GetRect().Left) * 0.5, 0);
         /*if (m_caracteristiques.vitalite!=m_personnage.getCaracteristique().vitalite)
@@ -1291,7 +1290,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
     string.SetString(configuration->getText(0,7).c_str());
     string.SetX(46 + (configuration->Resolution.x - 800) * 0.5);
     string.SetY(434 + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
-    string.SetPosition(AutoScreenAdjust(46,434,decalage));
+    string.SetPosition(AutoScreenAdjust(46,432,decalage));
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
@@ -1300,7 +1299,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         std::ostringstream  buf;
         buf<<m_caracteristiques.piete;
         string.SetString(buf.str());
-        string.SetPosition(AutoScreenAdjust(132,462,decalage));
+        string.SetPosition(AutoScreenAdjust(132,460,decalage));
         string.Move(17 - (string.GetRect().Right-string.GetRect().Left) * 0.5, 0);
         /*if (m_caracteristiques.piete!=m_personnage.getCaracteristique().piete)
             string.SetColor(sf::Color(0,128,255));
@@ -1325,7 +1324,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
     }
 
     string.SetString(configuration->getText(0,8).c_str());
-    string.SetPosition(AutoScreenAdjust(46,462,decalage));
+    string.SetPosition(AutoScreenAdjust(46,460,decalage));
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
@@ -1334,7 +1333,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         std::ostringstream  buf;
         buf<<m_caracteristiques.charisme;
         string.SetString(buf.str());
-        string.SetPosition(AutoScreenAdjust(132,490,decalage));
+        string.SetPosition(AutoScreenAdjust(132,488,decalage));
         string.Move(17 - (string.GetRect().Right-string.GetRect().Left) * 0.5, 0);
         /*if (m_caracteristiques.charisme!=m_personnage.getCaracteristique().charisme)
             string.SetColor(sf::Color(0,128,255));
@@ -1361,12 +1360,12 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
     string.SetString(configuration->getText(0,9).c_str());
     string.SetX(46 + (configuration->Resolution.x - 800) * 0.5);
     string.SetY(490 + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
-    string.SetPosition(AutoScreenAdjust(46,490,decalage));
+    string.SetPosition(AutoScreenAdjust(46,488,decalage));
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
     string.SetString(configuration->getText(0,12).c_str());
-    string.SetPosition(AutoScreenAdjust(46,518,decalage));
+    string.SetPosition(AutoScreenAdjust(46,516,decalage));
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
@@ -1374,7 +1373,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         std::ostringstream  buf;
         buf<<m_caracteristiques.pts_restant;
         string.SetString(buf.str());
-        string.SetPosition(AutoScreenAdjust(132,518,decalage));
+        string.SetPosition(AutoScreenAdjust(132,516,decalage));
         string.Move(17 - (string.GetRect().Right-string.GetRect().Left) * 0.5, 0);
        // string.SetColor(sf::Color(255,255,255));
         moteurGraphique->AjouterTexte(&string,15);
@@ -1386,7 +1385,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         std::ostringstream  buf;
         buf<<m_caracteristiques.degatsMin[PHYSIQUE]<<" - "<<m_caracteristiques.degatsMax[PHYSIQUE];
         string.SetString(buf.str());
-        string.SetPosition(AutoScreenAdjust(208,407,decalage));
+        string.SetPosition(AutoScreenAdjust(208,405,decalage));
         string.Move(32 - (string.GetRect().Right-string.GetRect().Left) * 0.5, 0);
         //string.SetColor(sf::Color(255,255,255));
         moteurGraphique->AjouterTexte(&string,15);
@@ -1395,7 +1394,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         std::ostringstream  buf;
         buf<<m_caracteristiques.degatsMin[FEU]<<" - "<<m_caracteristiques.degatsMax[FEU];
         string.SetString(buf.str());
-        string.SetPosition(AutoScreenAdjust(208,435,decalage));
+        string.SetPosition(AutoScreenAdjust(208,433,decalage));
         string.Move(32 - (string.GetRect().Right-string.GetRect().Left) * 0.5, 0);
        // string.SetColor(sf::Color(255,128,128));
         moteurGraphique->AjouterTexte(&string,15);
@@ -1404,7 +1403,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         std::ostringstream  buf;
         buf<<m_caracteristiques.degatsMin[FOI]<<" - "<<m_caracteristiques.degatsMax[FOI];
         string.SetString(buf.str());
-        string.SetPosition(AutoScreenAdjust(208,463,decalage));
+        string.SetPosition(AutoScreenAdjust(208,461,decalage));
         string.Move(32 - (string.GetRect().Right-string.GetRect().Left) * 0.5, 0);
        // string.SetColor(sf::Color(128,128,255));
         moteurGraphique->AjouterTexte(&string,15);
@@ -1413,14 +1412,14 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         std::ostringstream  buf;
         buf<<m_caracteristiques.degatsMin[CORROSION]<<" - "<<m_caracteristiques.degatsMax[CORROSION];
         string.SetString(buf.str());
-        string.SetPosition(AutoScreenAdjust(208,491,decalage));
+        string.SetPosition(AutoScreenAdjust(208,489,decalage));
         string.Move(32 - (string.GetRect().Right-string.GetRect().Left) * 0.5, 0);
         //string.SetColor(sf::Color(128,255,128));
         moteurGraphique->AjouterTexte(&string,15);
     }
 
     string.SetString(configuration->getText(0,10).c_str());
-    string.SetPosition(AutoScreenAdjust(208,378,decalage));
+    string.SetPosition(AutoScreenAdjust(208,376,decalage));
     string.Move(32 - (string.GetRect().Right-string.GetRect().Left) * 0.5, 0);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
@@ -1429,7 +1428,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         std::ostringstream  buf;
         buf<<m_caracteristiques.armure[PHYSIQUE];
         string.SetString(buf.str());
-        string.SetPosition(AutoScreenAdjust(307,407,decalage));
+        string.SetPosition(AutoScreenAdjust(307,405,decalage));
         string.Move(28 - (string.GetRect().Right-string.GetRect().Left) * 0.5, 0);
       //  string.SetColor(sf::Color(255,255,255));
         moteurGraphique->AjouterTexte(&string,15);
@@ -1438,7 +1437,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         std::ostringstream  buf;
         buf<<m_caracteristiques.armure[FEU];
         string.SetString(buf.str());
-        string.SetPosition(AutoScreenAdjust(307,435,decalage));
+        string.SetPosition(AutoScreenAdjust(307,433,decalage));
         string.Move(28 - (string.GetRect().Right-string.GetRect().Left) * 0.5, 0);
         //string.SetColor(sf::Color(255,128,128));
         moteurGraphique->AjouterTexte(&string,15);
@@ -1447,7 +1446,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         std::ostringstream  buf;
         buf<<m_caracteristiques.armure[FOI];
         string.SetString(buf.str());
-        string.SetPosition(AutoScreenAdjust(307,463,decalage));
+        string.SetPosition(AutoScreenAdjust(307,461,decalage));
         string.Move(28 - (string.GetRect().Right-string.GetRect().Left) * 0.5, 0);
        // string.SetColor(sf::Color(128,128,255));
         moteurGraphique->AjouterTexte(&string,15);
@@ -1456,14 +1455,14 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         std::ostringstream  buf;
         buf<<m_caracteristiques.armure[CORROSION];
         string.SetString(buf.str());
-        string.SetPosition(AutoScreenAdjust(307,491,decalage));
+        string.SetPosition(AutoScreenAdjust(307,489,decalage));
         string.Move(28 - (string.GetRect().Right-string.GetRect().Left) * 0.5, 0);
         //string.SetColor(sf::Color(128,255,128));
         moteurGraphique->AjouterTexte(&string,15);
     }
 
     string.SetString(configuration->getText(0,11).c_str());
-    string.SetPosition(AutoScreenAdjust(307,378,decalage));
+    string.SetPosition(AutoScreenAdjust(307,376,decalage));
     string.Move(28 - (string.GetRect().Right-string.GetRect().Left) * 0.5, 0);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
@@ -1763,7 +1762,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
             buf<<m_lvl_miracles[i]<<endl;
             texte.SetString(buf.str());
             texte.SetPosition(AutoScreenAdjust(m_classe.position_miracles[i].x,
-                                               m_classe.position_miracles[i].y + 40,decalage));
+                                               m_classe.position_miracles[i].y + 39,decalage));
             texte.Move((m_classe.position_miracles[i].w - texte.GetRect().Right + texte.GetRect().Left) * 0.5,0);
 
             moteurGraphique->AjouterTexte(&texte,15,0);
@@ -2720,9 +2719,9 @@ void Hero::RecalculerCaracteristiques(bool bis)
                     if (m_inventaire[i].m_benedictions[j].type==EFFICACITE_ACCRUE)
                         accru+=m_inventaire[i].m_benedictions[j].info1;
 
-                m_caracteristiques.degatsMin[PHYSIQUE]  +=m_inventaire[i].m_degatsMin*(m_caracteristiques.force + 100)/100*accru/100;
-                m_caracteristiques.degatsMax[PHYSIQUE]  +=m_inventaire[i].m_degatsMax*(m_caracteristiques.force + 100)/100*accru/100;
-                m_caracteristiques.armure[PHYSIQUE]     +=m_inventaire[i].m_armure*accru/100;
+                m_caracteristiques.degatsMin[PHYSIQUE]  += m_inventaire[i].m_degatsMin*(m_caracteristiques.force + 100)/100*accru/100;
+                m_caracteristiques.degatsMax[PHYSIQUE]  += m_inventaire[i].m_degatsMax*(m_caracteristiques.force + 100)/100*accru/100;
+                m_caracteristiques.armure[PHYSIQUE]     += m_inventaire[i].m_armure*accru/100;
 
                 for (int j=0;j<(int)m_inventaire[i].m_benedictions.size();++j)
                 {
@@ -2730,6 +2729,11 @@ void Hero::RecalculerCaracteristiques(bool bis)
                      {
                         m_caracteristiques.degatsMin[m_inventaire[i].m_benedictions[j].info1]+=m_inventaire[i].m_benedictions[j].info2;
                         m_caracteristiques.degatsMax[m_inventaire[i].m_benedictions[j].info1]+=m_inventaire[i].m_benedictions[j].info3;
+                     }
+                     if (m_inventaire[i].m_benedictions[j].type==DEGATS_TEMPS_SUPP)
+                     {
+                        m_caracteristiques.degatsMin[m_inventaire[i].m_benedictions[j].info1]+=m_inventaire[i].m_benedictions[j].info2;
+                        m_caracteristiques.degatsMax[m_inventaire[i].m_benedictions[j].info1]+=m_inventaire[i].m_benedictions[j].info2;
                      }
 
                      if (m_inventaire[i].m_benedictions[j].type==ARMURE_SUPP)
@@ -2739,9 +2743,9 @@ void Hero::RecalculerCaracteristiques(bool bis)
                 }
 
 
-                temp.degatsMin[PHYSIQUE]  += m_inventaire[i].m_degatsMin*(m_caracteristiques.force + 100)/100;
-                temp.degatsMax[PHYSIQUE]  += m_inventaire[i].m_degatsMax*(m_caracteristiques.force + 100)/100;
-                temp.armure[PHYSIQUE]     += m_inventaire[i].m_armure;
+                temp.degatsMin[PHYSIQUE]  += m_inventaire[i].m_degatsMin*accru/100*(m_caracteristiques.force + 100)/100;
+                temp.degatsMax[PHYSIQUE]  += m_inventaire[i].m_degatsMax*accru/100*(m_caracteristiques.force + 100)/100;
+                temp.armure[PHYSIQUE]     += m_inventaire[i].m_armure*accru/100;
             }
 
     for (unsigned i=0;i<liste_set.size();++i)
@@ -3541,6 +3545,9 @@ void Hero::GererBless(std::vector<Objet> *trader)
         for(unsigned i = 0 ; i < m_inventaire[m_no_schema].m_benedictions.size() ; ++i)
         {
             if(m_inventaire[m_no_schema].m_benedictions[i].type == DEGATS_SUPP
+            && m_inventaire[m_no_result].m_type != ARME)
+                ok = false;
+            if(m_inventaire[m_no_schema].m_benedictions[i].type == DEGATS_TEMPS_SUPP
             && m_inventaire[m_no_result].m_type != ARME)
                 ok = false;
             if(m_inventaire[m_no_schema].m_benedictions[i].type == ARMURE_SUPP
