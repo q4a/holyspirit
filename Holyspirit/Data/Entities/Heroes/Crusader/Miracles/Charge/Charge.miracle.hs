@@ -23,8 +23,7 @@ $
 	
 	* t12 l5 ia4 ib2 ic10 $
 	
-	
-	* t10 l3 l4 l14  ia1 ib-1 $
+	* t10 l3 l4 l32 l14  ia1 ib-1 $
 	* t7 ia8 ic1 id1 $
 	* t3 s0 ia8 $ 
 
@@ -60,6 +59,8 @@ $
 
 	* t16 ia1 $
 	* t16 ia0 $
+	
+	* t11 ia1 ib8 ic0 $
 
 $
 //Séquences

@@ -11,12 +11,16 @@ $
 	* f%0 e2 c2 $
 $
 //Effets
-	* t0 l4 s0 ia2 id1 ie100 if1 ig10 ih75 $
-	* t7 ia2 id1 $
-	* t-1 l3 l5 $
+	* t0 l5 l8 s0 ia2 id1 ie100 if1 ig2 ih75 $
+	* t-1 l7 l2 $
+	* t7 ia3 id1 $
+	* t-1 l4 l6 $
 	* t2 ia%1 ib%2 ic0 $
 	* t3 s1 ia8 $
 	* t13 ia1 $
+	
+	* t11 ia1 ib10 ic1 $
+	* t11 ia1 ib2 ic1 $
 $
 //Séquences
 	*
