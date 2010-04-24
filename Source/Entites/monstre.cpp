@@ -89,9 +89,11 @@ Monstre::Monstre(Personnage &personnage)
     m_porteeLumineuse           = personnage.getPorteeLumineuse();
     m_porteeLumineuseBasique    = personnage.getPorteeLumineuse();
     m_depart                    = personnage.getDepart();
+    m_miracleEnCours            = personnage.m_miracleEnCours;
 
     m_angle                     = 0;
     m_etat                      = 0;
+
 }
 
 void Monstre::Charger(int numero,Modele_Monstre *modele)

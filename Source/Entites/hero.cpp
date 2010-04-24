@@ -870,7 +870,13 @@ void Hero::ChargerModele(bool tout)
     m_cas=0;
 
     int nombreArme=0;
-    m_weaponMiracle=-1;
+
+    for(unsigned i =  0 ; i < m_weaponMiracle.size() ; ++i)
+        for (unsigned j = 0 ; j < m_personnage.m_miracleEnCours.size() ; ++j)
+            if(m_weaponMiracle[i] == m_personnage.m_miracleEnCours[j].m_modele)
+                m_personnage.m_miracleEnCours.erase(m_personnage.m_miracleEnCours.begin() + j --);
+
+    m_weaponMiracle.clear();
 
     std::vector <Miracle> miraclesLances;
     for (unsigned i = 0 ; i < m_personnage.m_miracleEnCours.size() ; ++i)
@@ -894,11 +900,12 @@ void Hero::ChargerModele(bool tout)
                         m_cas=2;
 
             if (m_inventaire[i].m_useMiracle)
-                if (m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==ARME_PRINCIPAL||m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==BOUCLIER)
+              /*  if (m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==ARME_PRINCIPAL
+                 || m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==BOUCLIER)*/
                 {
                     m_classe.miracles.push_back(m_inventaire[i].m_miracle);
 
-                    m_weaponMiracle=m_classe.miracles.size()-1;
+                    m_weaponMiracle.push_back(m_classe.miracles.size()-1);
                 }
         }
     }
@@ -979,6 +986,19 @@ void Hero::ChargerModele(bool tout)
         m_personnage.m_miracleEnCours[i].m_modele = m_classe.miracles.size();
         m_classe.miracles.push_back(miraclesLances[i]);
     }
+
+    for (unsigned i = 0 ; i < m_weaponMiracle.size() ; ++i)
+    {
+        m_personnage.m_miracleEnCours.push_back(EntiteMiracle ());
+        m_personnage.m_miracleEnCours.back().m_infos.push_back(new InfosEntiteMiracle ());
+
+        m_personnage.m_miracleEnCours.back().m_modele = m_weaponMiracle[i];
+
+        m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.x=m_personnage.getCoordonneePixel().x;
+        m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.y=m_personnage.getCoordonneePixel().y;
+    }
+
+
 
     CalculerOrdreAffichage();
 
@@ -1540,7 +1560,7 @@ void Hero::AfficherAmis()
 {
     for(unsigned i = 0 ; i < m_amis.size() ; ++i)
     {
-        moteurGraphique->AjouterTexte(m_amis[i]->getCaracteristique().nom, coordonnee(32, 64 + i * 26), 14, 0, 14);
+        moteurGraphique->AjouterTexte(m_amis[i]->getCaracteristique().nom, coordonnee(16, 64 + i * 26), 14, 0, 14);
 
         sf::Sprite temp;
         temp.SetImage(*moteurGraphique->getImage(m_classe.barre_vie_monstre_vide.image));
@@ -1574,10 +1594,13 @@ void Hero::AfficherAmis()
                             if(m_classe.miracles[m_personnage.m_miracleEnCours[j].m_modele].m_effets[m_personnage.m_miracleEnCours[j].m_infos[k]->m_effetEnCours].m_type == CHARME)
                                 if(m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible == m_amis[i])
                                    m_amis[i]->m_friendly = false, charme = true;
+                            if(m_classe.miracles[m_personnage.m_miracleEnCours[j].m_modele].m_effets[m_personnage.m_miracleEnCours[j].m_infos[k]->m_effetEnCours].m_type == INVOCATION)
+                                if(m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible == m_amis[i])
+                                   m_amis[i]->m_friendly = false, charme = false;
                         }
 
                     if(!charme)
-                        m_amis[i]->InfligerDegats(m_amis[i]->getCaracteristique().vie * 2, 4, NULL,0);
+                        m_amis[i]->Kill();
 
                     m_amis.erase(m_amis.begin() + i);
                     i--;
@@ -2595,12 +2618,23 @@ void Hero::RecalculerCaracteristiques(bool bis)
     reserveVie                  = temp.reserveVie;
     reserveFoi                  = temp.reserveFoi;
 
-    temp.maxVie                 = temp.vitalite*10;
-    temp.maxFoi                 = temp.piete*10;
-
     m_caracteristiques          = m_personnage.getCaracteristique();
     m_caracteristiques.maxVie   = 0;
     m_caracteristiques.maxFoi   = 0;
+
+    for(int i = 0 ; i < 4 ; ++i)
+    {
+        m_caracteristiques.degatsMin[i]=0;
+        m_caracteristiques.degatsMax[i]=0;
+        m_caracteristiques.armure[i]=0;
+
+        temp.degatsMin[i]=0;
+        temp.degatsMax[i]=0;
+        temp.armure[i]=0;
+    }
+
+    m_caracteristiques.armure[PHYSIQUE] = m_caracteristiques.dexterite*2;
+    temp.armure[PHYSIQUE]               = m_caracteristiques.dexterite*2;
 
     std::vector<Set> liste_set;
 
@@ -2670,28 +2704,8 @@ void Hero::RecalculerCaracteristiques(bool bis)
                 }
         }
 
-
-    for(int i = 0 ; i < 4 ; ++i)
-    {
-        m_caracteristiques.degatsMin[i]=0;
-        m_caracteristiques.degatsMax[i]=0;
-
-        temp.degatsMin[i]=0;
-        temp.degatsMax[i]=0;
-    }
-
-    m_caracteristiques.armure[PHYSIQUE] = m_caracteristiques.dexterite*2;
-    temp.armure[PHYSIQUE]               = m_caracteristiques.dexterite*2;
-
-    m_caracteristiques.armure[FEU] = 0;
-    temp.armure[FEU]               = 0;
-    m_caracteristiques.armure[FOI] = 0;
-    temp.armure[FOI]               = 0;
-    m_caracteristiques.armure[CORROSION] = 0;
-    temp.armure[CORROSION]               = 0;
-
-    m_caracteristiques.maxVie+=m_caracteristiques.vitalite*10;
-    m_caracteristiques.maxFoi+=m_caracteristiques.piete*10;
+    m_caracteristiques.maxVie += m_caracteristiques.vitalite*10;
+    m_caracteristiques.maxFoi += m_caracteristiques.piete*10;
 
     for(std::vector<EntiteMiracle>::iterator i = m_personnage.m_miracleEnCours.begin() ;
         i != m_personnage.m_miracleEnCours.end() ; ++i)
@@ -2704,8 +2718,16 @@ void Hero::RecalculerCaracteristiques(bool bis)
                         if(m_classe.miracles[i->m_modele].m_effets[m_classe.miracles[i->m_modele].m_effets[(*j)->m_effetEnCours].m_informations[3]].m_informations[2] >= 0
                         && m_classe.miracles[i->m_modele].m_effets[m_classe.miracles[i->m_modele].m_effets[(*j)->m_effetEnCours].m_informations[3]].m_informations[2] < 4)
                         {
-                            m_caracteristiques.degatsMin[m_classe.miracles[i->m_modele].m_effets[m_classe.miracles[i->m_modele].m_effets[(*j)->m_effetEnCours].m_informations[3]].m_informations[2]] += m_classe.miracles[i->m_modele].m_effets[m_classe.miracles[i->m_modele].m_effets[(*j)->m_effetEnCours].m_informations[3]].m_informations[0];
-                            m_caracteristiques.degatsMax[m_classe.miracles[i->m_modele].m_effets[m_classe.miracles[i->m_modele].m_effets[(*j)->m_effetEnCours].m_informations[3]].m_informations[2]] += m_classe.miracles[i->m_modele].m_effets[m_classe.miracles[i->m_modele].m_effets[(*j)->m_effetEnCours].m_informations[3]].m_informations[1];
+                            bool add = true;
+                            for(unsigned o = 0 ; o < m_weaponMiracle.size() ; ++o)
+                                if(m_weaponMiracle[o] == i->m_modele)
+                                    add =false;
+
+                            if(add)
+                            {
+                                m_caracteristiques.degatsMin[m_classe.miracles[i->m_modele].m_effets[m_classe.miracles[i->m_modele].m_effets[(*j)->m_effetEnCours].m_informations[3]].m_informations[2]] += m_classe.miracles[i->m_modele].m_effets[m_classe.miracles[i->m_modele].m_effets[(*j)->m_effetEnCours].m_informations[3]].m_informations[0];
+                                m_caracteristiques.degatsMax[m_classe.miracles[i->m_modele].m_effets[m_classe.miracles[i->m_modele].m_effets[(*j)->m_effetEnCours].m_informations[3]].m_informations[2]] += m_classe.miracles[i->m_modele].m_effets[m_classe.miracles[i->m_modele].m_effets[(*j)->m_effetEnCours].m_informations[3]].m_informations[1];
+                            }
                         }
                     }
     }
@@ -2719,9 +2741,13 @@ void Hero::RecalculerCaracteristiques(bool bis)
                     if (m_inventaire[i].m_benedictions[j].type==EFFICACITE_ACCRUE)
                         accru+=m_inventaire[i].m_benedictions[j].info1;
 
-                m_caracteristiques.degatsMin[PHYSIQUE]  += m_inventaire[i].m_degatsMin*(m_caracteristiques.force + 100)/100*accru/100;
-                m_caracteristiques.degatsMax[PHYSIQUE]  += m_inventaire[i].m_degatsMax*(m_caracteristiques.force + 100)/100*accru/100;
+                m_caracteristiques.degatsMin[PHYSIQUE]  += m_inventaire[i].m_degatsMin*accru*(m_caracteristiques.force + 100)/10000;
+                m_caracteristiques.degatsMax[PHYSIQUE]  += m_inventaire[i].m_degatsMax*accru*(m_caracteristiques.force + 100)/10000;
                 m_caracteristiques.armure[PHYSIQUE]     += m_inventaire[i].m_armure*accru/100;
+
+                temp.degatsMin[PHYSIQUE]  += m_inventaire[i].m_degatsMin*accru*(m_caracteristiques.force + 100)/10000;
+                temp.degatsMax[PHYSIQUE]  += m_inventaire[i].m_degatsMax*accru*(m_caracteristiques.force + 100)/10000;
+                temp.armure[PHYSIQUE]     += m_inventaire[i].m_armure*accru/100;
 
                 for (int j=0;j<(int)m_inventaire[i].m_benedictions.size();++j)
                 {
@@ -2739,13 +2765,9 @@ void Hero::RecalculerCaracteristiques(bool bis)
                      if (m_inventaire[i].m_benedictions[j].type==ARMURE_SUPP)
                      {
                         m_caracteristiques.armure[m_inventaire[i].m_benedictions[j].info1]+=m_inventaire[i].m_benedictions[j].info2;
+                        temp.armure[m_inventaire[i].m_benedictions[j].info1]+=m_inventaire[i].m_benedictions[j].info2;
                      }
                 }
-
-
-                temp.degatsMin[PHYSIQUE]  += m_inventaire[i].m_degatsMin*accru/100*(m_caracteristiques.force + 100)/100;
-                temp.degatsMax[PHYSIQUE]  += m_inventaire[i].m_degatsMax*accru/100*(m_caracteristiques.force + 100)/100;
-                temp.armure[PHYSIQUE]     += m_inventaire[i].m_armure*accru/100;
             }
 
     for (unsigned i=0;i<liste_set.size();++i)
@@ -2757,21 +2779,19 @@ void Hero::RecalculerCaracteristiques(bool bis)
                         m_caracteristiques.degatsMin[liste_set[i].m_benedictions[k][j].info1]+=liste_set[i].m_benedictions[k][j].info2;
                         m_caracteristiques.degatsMax[liste_set[i].m_benedictions[k][j].info1]+=liste_set[i].m_benedictions[k][j].info3;
                         break;
+                    case DEGATS_TEMPS_SUPP:
+                        m_caracteristiques.degatsMin[liste_set[i].m_benedictions[k][j].info1]+=liste_set[i].m_benedictions[k][j].info2;
+                        m_caracteristiques.degatsMax[liste_set[i].m_benedictions[k][j].info1]+=liste_set[i].m_benedictions[k][j].info2;
+                        break;
                     case ARMURE_SUPP:
                         m_caracteristiques.armure[liste_set[i].m_benedictions[k][j].info1]+=liste_set[i].m_benedictions[k][j].info2;
+                        temp.armure[liste_set[i].m_benedictions[k][j].info1]+=liste_set[i].m_benedictions[k][j].info2;
                         break;
                 }
 
     for (int i = 0; i < (int)m_personnage.m_effets.size(); ++i)
         if (m_personnage.m_effets[i].m_effet.m_actif)
         {
-           /* if (m_personnage.m_effets[i].m_type == AURA_DEGATS)
-            {
-                console->Ajouter("JE SUIS DANS HEROS LIGNE 2065, AURA DEGATS !!!!!!!!!");
-               // m_caracteristiques.degatsMin += (int)m_personnage.m_effets[i].m_info2;
-                //m_caracteristiques.degatsMax += (int)m_personnage.m_effets[i].m_info3;
-            }*/
-
             if (m_personnage.m_effets[i].m_type == AURA_REGENERATION)
             {
                 if (!m_personnage.m_effets[i].m_info3)
@@ -2792,25 +2812,18 @@ void Hero::RecalculerCaracteristiques(bool bis)
             }
         }
 
-    m_caracteristiques.niveau=temp.niveau;
+    m_caracteristiques.niveau = temp.niveau;
 
-    temp.reserveVie  = reserveVie;
-    temp.reserveFoi  = reserveFoi;
-
-    for(int i = 0 ; i < 4 ; ++i)
-    {
-       temp.degatsMin[i] = m_caracteristiques.degatsMin[i];
-       temp.degatsMax[i] = m_caracteristiques.degatsMax[i];
-       temp.armure[i] = m_caracteristiques.armure[i];
-    }
-
+    temp.reserveVie = reserveVie;
+    temp.reserveFoi = reserveFoi;
 
     m_personnage.setCaracteristique(temp);
 
     m_caracteristiques.reserveVie  = reserveVie;
     m_caracteristiques.reserveFoi  = reserveFoi;
 
-    m_caracteristiques.vie=vie,m_caracteristiques.foi=foi;
+    m_caracteristiques.vie = vie;
+    m_caracteristiques.foi = foi;
 
     if (m_caracteristiques.vie>(m_caracteristiques.maxVie - m_caracteristiques.reserveVie)*2)
         m_caracteristiques.vie=(m_caracteristiques.maxVie - m_caracteristiques.reserveVie)*2;
@@ -2825,24 +2838,31 @@ void Hero::RecalculerCaracteristiques(bool bis)
     temp.maxFoi                    = m_caracteristiques.maxFoi;
     m_personnage.setCaracteristique(temp);
 
+    RecalculerGolems();
+}
 
+void Hero::RecalculerGolems()
+{
+    for(unsigned i = 0 ; i < m_inventaire.size() ; ++i)
+        if(m_inventaire[i].m_type == GOLEM)
+            m_inventaire[i].CalculerGolem();
 }
 
 bool Hero::AjouterMiracleArme()
 {
-    if (m_weaponMiracle>=0&&m_weaponMiracle<(int)m_classe.miracles.size())
+/*    if (m_weaponMiracle>=0&&m_weaponMiracle<(int)m_classe.miracles.size())
     {
         m_personnage.m_miracleEnCours.push_back(EntiteMiracle ());
         m_personnage.m_miracleEnCours.back().m_infos.push_back(new InfosEntiteMiracle ());
 
         m_personnage.m_miracleEnCours.back().m_modele=m_weaponMiracle;
 
-        m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.x=m_personnage.getCoordonneePixel().x/*+cos(-(m_personnage.getAngle()+22.5)*M_PI/180)*96*/;
-        m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.y=m_personnage.getCoordonneePixel().y/*+sin(-(m_personnage.getAngle()+22.5)*M_PI/180)*96*/;
+        m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.x=m_personnage.getCoordonneePixel().x;
+        m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.y=m_personnage.getCoordonneePixel().y;
 
         return 1;
     }
-    return 0;
+    return 0;*/
 }
 
 void Hero::StopMiraclesFrappe()
@@ -3509,7 +3529,9 @@ void Hero::GererBless(std::vector<Objet> *trader)
         if(m_objetEnMain >= 0)
         {
             if(m_inventaire[m_objetEnMain].m_type == ARME
-            || m_inventaire[m_objetEnMain].m_type == ARMURE)
+            || m_inventaire[m_objetEnMain].m_type == ARMURE
+            || m_inventaire[m_objetEnMain].m_type == GOLEM
+            || m_inventaire[m_objetEnMain].m_type == JEWELERY)
             {
                 int buf = m_no_result;
                 m_no_result = m_objetEnMain;
@@ -3545,13 +3567,16 @@ void Hero::GererBless(std::vector<Objet> *trader)
         for(unsigned i = 0 ; i < m_inventaire[m_no_schema].m_benedictions.size() ; ++i)
         {
             if(m_inventaire[m_no_schema].m_benedictions[i].type == DEGATS_SUPP
-            && m_inventaire[m_no_result].m_type != ARME)
+            && m_inventaire[m_no_result].m_type != ARME
+            && m_inventaire[m_no_result].m_type != GOLEM)
                 ok = false;
             if(m_inventaire[m_no_schema].m_benedictions[i].type == DEGATS_TEMPS_SUPP
-            && m_inventaire[m_no_result].m_type != ARME)
+            && m_inventaire[m_no_result].m_type != ARME
+            && m_inventaire[m_no_result].m_type != GOLEM)
                 ok = false;
             if(m_inventaire[m_no_schema].m_benedictions[i].type == ARMURE_SUPP
-            && m_inventaire[m_no_result].m_type != ARMURE)
+            && m_inventaire[m_no_result].m_type != ARMURE
+            && m_inventaire[m_no_result].m_type != GOLEM)
                 ok = false;
         }
 
@@ -3688,19 +3713,22 @@ bool Hero::UtiliserObjet(int numero)
 
             ChargerModele();
         }
-        else if (m_inventaire[numero].m_type == CONSOMMABLE)
+        else if (m_inventaire[numero].m_type == CONSOMMABLE || m_inventaire[numero].m_type == GOLEM)
         {
             m_classe.miracles.push_back(Miracle (m_inventaire[numero].m_miracle.m_chemin,m_caracteristiques,0));
 
             m_personnage.m_miracleEnCours.push_back(EntiteMiracle ());
             m_personnage.m_miracleEnCours.back().m_infos.push_back(new InfosEntiteMiracle ());
 
+            m_personnage.m_miracleEnCours.back().m_source = &m_inventaire[numero];
+
             m_personnage.m_miracleEnCours.back().m_modele = (int)m_classe.miracles.size()-1;
 
             m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.x=m_personnage.getCoordonneePixel().x+cos(-(m_personnage.getAngle()+22.5)*M_PI/180)*96;
             m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.y=m_personnage.getCoordonneePixel().y+sin(-(m_personnage.getAngle()+22.5)*M_PI/180)*96;
 
-            delObjet(numero);
+            if(m_inventaire[numero].m_type == CONSOMMABLE)
+                delObjet(numero);
 
             return 1;
         }

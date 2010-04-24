@@ -67,6 +67,16 @@ void c_MainMenu::Utiliser(Jeu *jeu)
 
         moteurSons->PlayNewMusic(configuration->music_menu);
 
+        for(unsigned j = 0 ; j < jeu->hero.m_personnage.m_miracleEnCours.size() ; ++j)
+            for(unsigned k = 0 ; k < jeu->hero.m_personnage.m_miracleEnCours[j].m_infos.size() ; ++k)
+            {
+                if(jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours[j].m_modele].m_effets[jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_effetEnCours].m_type == INVOCATION)
+                {
+                    jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible->Kill();
+                    jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible->m_inexistant = true;
+                }
+            }
+
         eventManager->StopEvenement(Mouse::Left,EventClic);
         m_save = false;
         if (m_reset)

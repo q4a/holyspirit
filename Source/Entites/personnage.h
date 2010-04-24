@@ -101,6 +101,8 @@ public:
     int AjouterEffet(Tileset *tileset, int type, int compteur, int info1, int info2, int info3);
     void DetruireEffets();
 
+    void Kill();
+
 
     void setDepart();
     void setErreurPathfinding(bool);
@@ -172,9 +174,12 @@ public:
     bool m_impoussable;
     bool m_doitMourir;
 
+    bool m_inexistant;
+
     Personnage* m_vientDeFrapper;
     Personnage* m_vientDeToucher;
     Personnage* m_vientDetreTouche;
+    coordonnee  m_vientDAttaquer;
     int         m_degatsInflige;
 
     Personnage *m_cible;
@@ -187,6 +192,7 @@ public:
     Entite_graphique m_entite_graphique_shadow;
 
     std::vector<Degats> m_degats;
+    std::vector<int>    m_variables_miracles;
 
 protected:
     int m_etat,m_angle;

@@ -111,6 +111,7 @@ Personnage::Personnage()
     m_vientDeFrapper                    = NULL;
     m_vientDetreTouche                  = NULL;
     m_vientDeToucher                    = false;
+    m_vientDAttaquer.x                  = -1;
 
     m_stunned                           = false;
     m_ID                                = 0;
@@ -123,6 +124,8 @@ Personnage::Personnage()
     m_entite_graphique.option_forcedLight   = true;
 
     m_pousseEnCours = false;
+
+    m_inexistant = false;
 }
 Modele_Personnage::Modele_Personnage()
 {
@@ -763,6 +766,13 @@ void Personnage::InfligerDegats(float degats, int type, Modele_Personnage *model
         m_entite_graphique.m_noAnimation=0,m_etat=3;
 
     m_touche = true;
+}
+
+void Personnage::Kill()
+{
+    m_caracteristique.vie = 0;
+    m_entite_graphique.m_noAnimation=0;
+    m_etat=3;
 }
 
 int Personnage::Gerer(Modele_Personnage *modele,float temps)

@@ -158,7 +158,7 @@ void ParticuleSysteme::Envoler(sf::Vector2f pos,int force, int type, float temps
                     float m = atan2((Iter->position.y - position.y) * 2, (Iter->position.x - position.x));
 
                     Iter->vecteur.x = cos(m);
-                    Iter->vecteur.y = sin(m) / 2;
+                    Iter->vecteur.y = sin(m) * 0.5;
 
                     Iter->vitesse = force;
                 }
@@ -169,25 +169,22 @@ void ParticuleSysteme::Envoler(sf::Vector2f pos,int force, int type, float temps
             {
                 Iter->vecteur.z = (force * 32 / distance);
 
-                if(Iter->position.z > Iter->seed * 0.4)
+                if(Iter->position.z > 32)
                     Iter->vecteur.z = 0;
 
-                Iter->vitesse = force * 4 * 64 / distance;
+                Iter->vitesse = force * 256 / distance;
 
                 if(Iter->position.z < 4)
                     Iter->position.z = 4;
 
-                Iter->vecteur.x = 0;
-                Iter->vecteur.y = 0;
-
                 float m = atan2((Iter->position.y - position.y)
                            * 2, (Iter->position.x - position.x));
 
-                Iter->vecteur.x = cos(M_PI/2 + m);
-                Iter->vecteur.y = sin(M_PI/2 + m) * 0.5;
+                Iter->vecteur.x = cos(M_PI_2 + m);
+                Iter->vecteur.y = sin(M_PI_2 + m) * 0.5;
 
-                Iter->vecteur.x -= 6 * cos(m)     / Iter->position.z;
-                Iter->vecteur.y -= 6 * sin(m) / 2 / Iter->position.z;
+                Iter->vecteur.x -= 6 * cos(m) / Iter->position.z;
+                Iter->vecteur.y -= 3 * sin(m) / Iter->position.z;
 
                 Iter->vie               = 100;
             }

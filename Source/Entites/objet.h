@@ -68,6 +68,9 @@ struct ConditionLitanie
     std::string valeur_string;
 };
 
+void ChargerMiracleBenediction(benediction &bene, Miracle &miracle, bool &m_useMiracle);
+
+
 class Set
 {
     public:
@@ -103,10 +106,11 @@ public:
     void ChargerChemin(std::ifstream *fichier);
 
     void ChargerMiracle(const Caracteristique &caract);
-    void ChargerMiracleBenediction(benediction &);
     int AddBenediction(benediction );
 
     void Generer(int bonus);
+
+    void CalculerGolem();
 
     bool Utilisable(const Caracteristique &caract,std::string IDClasse);
 
@@ -132,7 +136,7 @@ public:
     std::vector <std::string> m_IDClasse;
     std::vector <int> m_nom_IDClasse;
 
-    int m_degatsMin, m_degatsMax,m_armure;
+    int m_degatsMin, m_degatsMax,m_armure, m_vie;
     int m_capaciteBenediction;
     int m_prix;
     bool m_shoot_weapon,m_useMiracle;
@@ -161,6 +165,8 @@ public:
 
     int                     m_nbr_bless;
 
+    Caracteristique         m_gol_caract;
+
 private:
     sf::Text AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color=sf::Color(255,255,255));
 
@@ -169,7 +175,7 @@ private:
     int m_rarete,m_image,m_son;
     float m_chanceTrouver;
     coordonnee m_positionImage,m_taille,m_position;
-    int ai,aa,dii,dia,dai,daa,bi,ba;
+    int ai,aa,dii,dia,dai,daa,bi,ba,vi,va;
 };
 
 #endif

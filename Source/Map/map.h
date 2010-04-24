@@ -87,6 +87,8 @@ public:
     bool Miracle_Zone           (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int );
     bool Miracle_Conditions     (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int );
     bool Miracle_Bloquer        (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int );
+    bool Miracle_Variable       (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int );
+    bool Miracle_Interchangement(Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int );
 
 
     void Script_Trade           (Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer);
@@ -142,7 +144,7 @@ public:
     void    TesterPoussable(Personnage &, float temps, int id = -1);
 
     Monstre *getEntiteMonstre (int numeroMonstre);
-    const Modele_Monstre &getModeleMonstre(int numeroMonstre);
+    Modele_Monstre &getModeleMonstre(int numeroMonstre);
     const coordonnee &getPositionMonstre(int numeroMonstre);
     casePathfinding ** getAlentourDuPersonnage(coordonnee positionPersonnage); // Retourne un tableau de bool contenant toutes les collitions dans les alentour du héro, pour le pathfinding
 

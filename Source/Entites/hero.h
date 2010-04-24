@@ -78,6 +78,7 @@ public:
 
     void AugmenterAme(float temps);
     void RecalculerCaracteristiques(bool bis = true);
+    void RecalculerGolems();
 
     //void InfligerDegats(float degats);
     void RegenererVie(float vie);
@@ -168,7 +169,7 @@ private:
 
     std::vector<Objet> m_inventaire;
 
-    int m_weaponMiracle;
+    std::vector<int> m_weaponMiracle;
 
     bool m_achat;
 };

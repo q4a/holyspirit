@@ -26,14 +26,15 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef MIRACLEH
 #define MIRACLEH
 
+class Objet;
 class Personnage;
 
 enum  {PROJECTILE = 0,CORPS_A_CORPS = 1,DEGATS = 2,EFFET_GRAPHIQUE = 3,INVOCATION = 4,AURA = 5,EFFET = 6,ZONE = 7,
        REPETITION = 8,CHARME = 9,CHANGEMENT_POSE = 10,EFFET_ECRAN = 11,CHARGE = 12, SOUFFLE = 13, DECLENCHEUR = 14,
-       CONDITION = 15, BLOQUER = 16};
+       CONDITION = 15, BLOQUER = 16, VARIABLE_MIRACLE = 17};
 enum  {AURA_REGENERATION, AURA_DEGATS, AURA_VOL, AURA_CARACTERISTIQUES, AURA_STUNNED};
-enum  {D_PERMANENT, D_FRAPPE, D_TOUCHE};
-enum  {C_ANGLE,C_CIBLELIFE,C_RANDOM};
+enum  {D_PERMANENT, D_FRAPPE, D_TOUCHE, D_ATTAQUE};
+enum  {C_ANGLE,C_CIBLELIFE,C_RANDOM,C_VARIABLE, C_NO_VARIABLE};
 
 class EffetGraphique : public Entite_graphique
 {
@@ -131,6 +132,7 @@ public:
 
     void Charger(const std::string &chemin, const Caracteristique &caract, int level);
     void Concatenencer(const std::string &chemin, const Caracteristique &caract, int level);
+    void RechargerTileset();
 
     void AfficherDescription(coordonnee position, bool suivant = true);
     sf::Text AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color=sf::Color(255,255,255));
@@ -140,6 +142,7 @@ public:
     std::vector <Effet>         m_effets;
 
     std::string                 m_chemin;
+    std::vector<std::string>    m_chemin_concatene;
 
     int                         m_coutFoi;
     int                         m_reserveFoi;
@@ -158,6 +161,7 @@ public:
 
     bool                        m_unique;
     bool                        m_direct;
+    bool                        m_golem;
     int                         m_cas;
     float                       m_cooldown;
     float                       m_cur_time;
@@ -201,7 +205,7 @@ struct InfosEntiteMiracle
 class EntiteMiracle
 {
 public:
-    EntiteMiracle(){ m_dejaConsommeFoi = false; m_miracleArme = false; }
+    EntiteMiracle();
 
     std::vector<InfosEntiteMiracle*>    m_infos;
     int                                 m_modele;
@@ -209,6 +213,7 @@ public:
     coordonnee                          m_coordonneeDepart;
     bool                                m_dejaConsommeFoi;
     bool                                m_miracleArme;
+    Objet                               *m_source;
 };
 
 #endif

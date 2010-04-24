@@ -308,6 +308,7 @@ void c_Jeu::Animation(Jeu *jeu)
 
         jeu->hero.CalculerOrdreAffichage();
         jeu->hero.m_personnage.m_vientDeFrapper = NULL;
+        jeu->hero.m_personnage.m_vientDAttaquer.x = -1;
         jeu->hero.m_personnage.m_degatsInflige  = 0;
 
         if (retour==0) //Animation du héro
@@ -315,7 +316,6 @@ void c_Jeu::Animation(Jeu *jeu)
             if (jeu->hero.m_personnage.frappeEnCours
             && (!jeu->hero.m_personnage.m_lancementMiracleEnCours || jeu->hero.m_personnage.m_miracleFrappeEnCours) )
             {
-                bool toucher=false;
                 if (!jeu->hero.m_personnage.m_shooter)
                 {
                     if (jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())!=NULL)
@@ -325,9 +325,10 @@ void c_Jeu::Animation(Jeu *jeu)
                                 if (!jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->m_friendly && jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->EnVie())
                                 {
                                     int degats = (rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax[PHYSIQUE] - jeu->hero.m_personnage.getCaracteristique().degatsMin[PHYSIQUE]+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin[PHYSIQUE];
-                                    toucher=true,jeu->map->InfligerDegats(jeu->hero.getMonstreVise(),degats,PHYSIQUE,&jeu->hero,1,0);
+                                    jeu->map->InfligerDegats(jeu->hero.getMonstreVise(),degats,PHYSIQUE,&jeu->hero,1,0);
 
                                     jeu->hero.m_personnage.m_vientDeFrapper = jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise());
+                                    jeu->hero.m_personnage.m_vientDAttaquer = jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee();
                                     jeu->hero.m_personnage.m_degatsInflige  = degats;
 
                                     jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->m_vientDetreTouche = &jeu->hero.m_personnage;
@@ -340,23 +341,13 @@ void c_Jeu::Animation(Jeu *jeu)
 
                 }
                 else
-                    toucher=true;
+                {
+                    if (jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())!=NULL)
+                        jeu->hero.m_personnage.m_vientDAttaquer = jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getProchaineCase();
+                    else
+                        jeu->hero.m_personnage.m_vientDAttaquer = eventManager->getCasePointee();
+                }
 
-                if (toucher)
-                    if (jeu->hero.AjouterMiracleArme())
-                    {
-                        coordonnee cible;
-
-                        if (jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())!=NULL)
-                            cible=jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee();
-                        else
-                            cible=eventManager->getCasePointee();
-
-                        jeu->hero.m_personnage.m_miracleEnCours.back().m_infos.back()->m_cible   = jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise());
-                        jeu->hero.m_personnage.m_miracleEnCours.back().m_coordonneeCible        = cible;
-                        jeu->hero.m_personnage.m_miracleEnCours.back().m_miracleArme            = true;
-                        //jeu->map->GererMiracle(&jeu->hero.m_personnage.m_miracleEnCours.back(),&jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours.back().m_modele],&jeu->hero,0,jeu->hero.m_personnage.getCoordonnee(),cible,1);
-                    }
             }
             jeu->hero.miracleEnCours = 0;
         }

@@ -148,7 +148,8 @@ void c_Chargement::Utiliser(Jeu *jeu)
         {
             buffer.push_back(*jeu->hero.m_amis[i]);
             bufferModele.push_back(jeu->map->getModeleMonstre(jeu->hero.m_amis[i]->getModele()));
-            jeu->hero.m_amis[i]->InfligerDegats(jeu->hero.m_amis[i]->getCaracteristique().vie * 2,4, &bufferModele.back(),0);
+            jeu->hero.m_amis[i]->Kill();
+            jeu->hero.m_amis[i]->m_inexistant = true;
         }
 
         if (!jeu->hero.m_personnage.EnVie())
@@ -200,10 +201,8 @@ void c_Chargement::Utiliser(Jeu *jeu)
         {
             coordonnee temp;
 
-            temp.x = jeu->hero.m_personnage.getCoordonnee().x;
-            temp.y = jeu->hero.m_personnage.getCoordonnee().y;
-            //if(!jeu->map->getCollision(temp.x, temp.y))
-                buffer[i].setCoordonnee(temp);
+            buffer[i].setCoordonnee(jeu->hero.m_personnage.getCoordonnee());
+
             temp.x = jeu->hero.m_personnage.getCoordonnee().x - 1;
             temp.y = jeu->hero.m_personnage.getCoordonnee().y - 1;
             if(!jeu->map->getCollision(temp.x, temp.y))
@@ -237,7 +236,11 @@ void c_Chargement::Utiliser(Jeu *jeu)
             for(int j = 0 ; j < jeu->map->getNombreModeleMonstres() && ajouter ; ++j)
             {
                 if(bufferModele[i].m_chemin == jeu->map->getModeleMonstre(j).m_chemin)
+                {
+                    for(unsigned o = jeu->map->getModeleMonstre(j).m_miracles.size() - 1 ; o < bufferModele[i].m_miracles.size() ; ++o)
+                        jeu->map->getModeleMonstre(j).m_miracles.push_back(bufferModele[i].m_miracles[o]);
                     ajouter = false, buffer[i].setModele(j);
+                }
             }
 
             if(ajouter)
@@ -253,7 +256,8 @@ void c_Chargement::Utiliser(Jeu *jeu)
             for(unsigned j = 0 ; j < jeu->hero.m_personnage.m_miracleEnCours.size() ; ++j)
                 for(unsigned k = 0 ; k < jeu->hero.m_personnage.m_miracleEnCours[j].m_infos.size() ; ++k)
                 {
-                    if(jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours[j].m_modele].m_effets[jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_effetEnCours].m_type == CHARME)
+                    if(jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours[j].m_modele].m_effets[jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_effetEnCours].m_type == CHARME
+                     ||jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours[j].m_modele].m_effets[jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_effetEnCours].m_type == INVOCATION)
                         if(jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible == jeu->hero.m_amis[i])
                         {
                             jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible = jeu->map->getEntiteMonstre(jeu->map->getNombreMonstres() - 1);
@@ -281,10 +285,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
                     delete jeu->hero.m_personnage.m_miracleEnCours[i].m_infos[o];
                     jeu->hero.m_personnage.m_miracleEnCours[i].m_infos.erase(jeu->hero.m_personnage.m_miracleEnCours[i].m_infos.begin() + o) ,o = -1;
                 }
-
             }
-
-
 
         jeu->hero.m_personnage.setPousse(coordonneeDecimal(0,0));
         jeu->hero.m_personnage.frappeEnCours = false;

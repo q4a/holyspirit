@@ -20,6 +20,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "miracle.h"
 #include "../globale.h"
+#include "Objet.h"
 
 #include <iostream>
 #include <fstream>
@@ -125,6 +126,8 @@ Miracle::~Miracle()
 {
     m_tileset.clear();
 }
+
+EntiteMiracle::EntiteMiracle(){ m_dejaConsommeFoi = false; m_miracleArme = false; }
 
 float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int level, char priorite, bool *cont);
 
@@ -329,12 +332,15 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
 
     m_unique     =  false;
     m_direct     =  false;
+    m_golem      =  false;
     m_chemin     =  chemin;
     m_cas        =  -1;
     m_reserveFoi =  0;
     m_coutFoi    =  0;
     m_reserveVie =  0;
     m_coutVie    =  0;
+    m_chemin_concatene.clear();
+    m_chemin_concatene.push_back(m_chemin);
 
     m_level      = level;
 
@@ -552,6 +558,10 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
                         fichier>>m_direct;
                         break;
 
+                    case 'g':
+                        fichier>>m_golem;
+                        break;
+
                     case 'c':
                         m_cooldown = (int)lireValeur(fichier, valeurs);
                         m_cur_time = m_cooldown;
@@ -681,9 +691,184 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
         console->Ajouter("Impossible d'ouvrir le fichier : "+chemin,1);
 }
 
+void Miracle::RechargerTileset()
+{
+    m_tileset.clear();
+    for(unsigned j = 0 ; j < m_chemin_concatene.size() ; ++j)
+    {
+        ifstream fichier;
+        fichier.open(m_chemin_concatene[j].c_str(), ios::in);
+        if (fichier)
+        {
+            char caractere;
+
+            do
+            {
+                fichier.get(caractere);
+                if (caractere=='*')
+                {
+                    int no;
+                    fichier>>no;
+                }
+
+                if (fichier.eof())
+                {
+                    console->Ajouter("Erreur : Miracle \" "+m_chemin_concatene[j]+" \" Invalide",1);
+                    caractere='$';
+                }
+            }
+            while (caractere!='$');
+
+            std::string description;
+
+            do
+            {
+                fichier.get(caractere);
+                if (caractere=='*')
+                {
+                    int no;
+                    fichier>>no;
+                }
+
+                if (fichier.eof())
+                {
+                    console->Ajouter("Erreur : Miracle \" "+m_chemin_concatene[j]+" \" Invalide",1);
+                    caractere='$';
+                }
+            }
+            while (caractere!='$');
+
+            do
+            {
+                fichier.get(caractere);
+                if (caractere=='*')
+                {
+                    do
+                    {
+                        fichier.get(caractere);
+                        if (fichier.eof())
+                        {
+                            console->Ajouter("Erreur : Miracle \" "+m_chemin_concatene[j]+" \" Invalide",1);
+                            caractere='$';
+                        }
+                    }
+                    while (caractere!='$');
+                    fichier.get(caractere);
+                }
+
+                if (fichier.eof())
+                {
+                    console->Ajouter("Erreur : Miracle \" "+m_chemin_concatene[j]+" \" Invalide",1);
+                    caractere='$';
+                }
+            }
+            while (caractere!='$');
+
+            description = "";
+
+            do
+            {
+                fichier.get(caractere);
+                if (caractere=='*')
+                {
+                    int no;
+                    fichier>>no;
+                }
+
+                if (fichier.eof())
+                {
+                    console->Ajouter("Erreur : Miracle \" "+m_chemin_concatene[j]+" \" Invalide",1);
+                    caractere='$';
+                }
+            }
+            while (caractere!='$');
+
+            do
+            {
+                fichier.get(caractere);
+                if (caractere=='*')
+                {
+                    do
+                    {
+                        fichier.get(caractere);
+                        if (fichier.eof())
+                        {
+                            console->Ajouter("Erreur : Miracle \" "+m_chemin_concatene[j]+" \" Invalide",1);
+                            caractere='$';
+                        }
+                    }
+                    while (caractere!='$');
+
+                    fichier.get(caractere);
+                }
+
+                if (fichier.eof())
+                {
+                    console->Ajouter("Erreur : Miracle \" "+m_chemin_concatene[j]+" \" Invalide",1);
+                    caractere='$';
+                }
+            }
+            while (caractere!='$');
+
+
+            do
+            {
+                fichier.get(caractere);
+                if (caractere=='*')
+                {
+
+                    do
+                    {
+                        fichier.get(caractere);
+                        if (fichier.eof())
+                        {
+                            console->Ajouter("Erreur : Miracle \" "+m_chemin_concatene[j]+" \" Invalide",1);
+                            caractere='$';
+                        }
+
+                    }
+                    while (caractere!='$');
+
+                    fichier.get(caractere);
+                }
+
+                if (fichier.eof())
+                {
+                    console->Ajouter("Erreur : Miracle \" "+m_chemin_concatene[j]+" \" Invalide",1);
+                    caractere='$';
+                }
+            }
+            while (caractere!='$');
+
+            do
+            {
+                fichier.get(caractere);
+                if (caractere=='*')
+                {
+                    std::ostringstream  buf;
+                    m_tileset.push_back(moteurGraphique->AjouterTileset(fichier));
+
+                    fichier.get(caractere);
+                }
+                if (fichier.eof())
+                {
+                    console->Ajouter("Erreur : Miracle \" "+m_chemin_concatene[j]+" \" Invalide",1);
+                    caractere='$';
+                }
+            }
+            while (caractere!='$');
+
+            fichier.close();
+        }
+        else
+            console->Ajouter("Impossible d'ouvrir le fichier : "+m_chemin_concatene[j],1);
+    }
+}
+
 void Miracle::Concatenencer(const std::string &chemin, const Caracteristique &caract, int level)
 {
     Miracle miracle(chemin, caract, level) ;
+    m_chemin_concatene.push_back(chemin);
     m_effets.back().m_lien.push_back((int)m_effets.size());
 
     int tailleEffets    = m_effets.size();
@@ -705,6 +890,11 @@ void Miracle::Concatenencer(const std::string &chemin, const Caracteristique &ca
         {
             if(m_effets.back().m_informations[5] > 0)
                 m_effets.back().m_informations[5] += tailleEffets;
+        }
+        if(m_effets.back().m_type == INVOCATION)
+        {
+            if(m_effets.back().m_informations[1] > 0)
+                m_effets.back().m_informations[1] += tailleEffets;
         }
 
         m_effets.back().m_sequence+=tailleTileset;
