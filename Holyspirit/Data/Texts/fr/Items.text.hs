@@ -107,3 +107,7 @@ Litanie mineure
 Ce parchemin contient l'incantation\nécessaire à la bénédiction d'un objet.
 Litanie de nuage toxique mineure
 Ce parchemin contient l'incantation\nécessaire à la bénédiction d'un objet\pour que celui-ci lache un nuage toxique.\Ce nuage fait 20 points de dégats sur 6 secondes.
+Schéma : Golem de charbon ardent
+Schéma expliquant la confection d'un compagnon golem en charbon.
+Golem de charbon ardent
+Un puissant allié.\Le golem de charbon ardent est un humanoide\en charbon incendescant.

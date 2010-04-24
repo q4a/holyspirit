@@ -33,3 +33,4 @@ Croisé
 Courtisane
 Pistolero
 Seigneur squelette
+Golem de charbon ardent

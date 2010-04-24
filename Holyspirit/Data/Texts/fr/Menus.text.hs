@@ -1,8 +1,8 @@
 Retour
 Sauvegarder et quitter
 Réinitialiser la partie et quitter
-Vie
-Foi
+Vie : 
+Foi : 
 Force
 Dextérité
 Vitalité

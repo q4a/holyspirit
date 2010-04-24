@@ -7,7 +7,8 @@ $
 $
 
 //Effets
-	* t0 l1 s0 ia15 $ 
+	* t14 ia3 ib-100 ic0 id1 $
+	* t0 l2 s0 ia15 $ 
 	* t2 ia%0 ib%1 ic0 $
 $
 //Séquences

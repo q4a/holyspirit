@@ -103,6 +103,9 @@ $
 		r50
 	$
 	*
+		*Drawing_golem_coal.item.hs
+		r1000
+		
 		*Drawing_barbute.item.hs
 		r2000
 

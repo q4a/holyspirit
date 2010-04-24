@@ -6,8 +6,9 @@ $
 $
 $
 //Effets
-	* t-1 l1 l3 $
-	* t2 l2 ia%0 ib%1 ic1 $
+	* t-1 l1 l4 $
+	* t14 ia1 ib-100 ic0 id2 $
+	* t2 l3 ia%0 ib%1 ic1 $
 	* t3 s0 ia8 $
 	* t-1 $
 $

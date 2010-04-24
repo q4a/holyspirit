@@ -99,7 +99,7 @@ $
 	$
 	*
 		//Images
-			*Data/Items/FireEffect/FireEffect.png
+			*Data/Items/Miracles/FireEffect.png
 		$
 		//Sons
 		$

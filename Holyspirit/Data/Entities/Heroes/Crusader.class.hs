@@ -100,14 +100,19 @@ $
 $
 	* e1 x48 y56 w64 h160 m Data/Menus/Slot2x5.png n Data/Menus/Slot_hand1crusader.png $
 	* e2 x118 y120 w96 h96 m Data/Menus/Slot3x3.png n Data/Menus/Slot_hand2crusader.png $
+	
 	* e3 x224 y120 w64 h96 m Data/Menus/Slot2x3.png n Data/Menus/Slot_lightarmor.png $
 	* e4 x296 y120 w64 h96 m Data/Menus/Slot2x3.png n Data/Menus/Slot_heavyarmor.png $
+	
 	* e5 x296 y48 w64 h64 m Data/Menus/Slot2x2.png n Data/Menus/Slot_helmet.png $
 	* e6 x296 y224 w64 h64 m Data/Menus/Slot2x2.png n Data/Menus/Slot_boots.png $
 	* e7 x48 y224 w64 h64 m Data/Menus/Slot2x2.png n Data/Menus/Slot_armband.png $
+	
 	* e8 x118 y224 w32 h32 m Data/Menus/Slot1x1.png n Data/Menus/Slot_ring.png $
 	* e8 x184 y224 w32 h32 m Data/Menus/Slot1x1.png n Data/Menus/Slot_ring.png $
 	* e9 x256 y80 w32 h32 m Data/Menus/Slot1x1.png n Data/Menus/Slot_necklage.png $
+	
+	
 $
 	* x738 y60 w24 h32 $
 $

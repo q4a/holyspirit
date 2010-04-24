@@ -6,20 +6,25 @@ $
 $
 $
 //Effets
-	* t15 ia1 ib2 ic15 $
-	* t2 l2 l5 ia0 ib1 $
+	* t-1 l1 l11 $
+	* t14 l4 ia1 ib-100 ic0 id1 $
 
-	* t3 l3 s1 ia15 $
-	* t3 l4 s2 ia15 $
-	* t3 s3 ia15 $	
+	* t15 ia2 ib2 ic15 $
+	* t2 l4 l7 ia0 ib1 $
 
-	* t8 ia6 ib4 ic50 $
+	* t3 l5 s1 ia15 $
+	* t3 l6 s2 ia15 $
+	* t3 s4 ia15 $	
 
-	* t7 ia8 ic0 id1 $
+	* t8 ia8 ib4 ic50 $
+
+	* t7 ia10 ic0 id1 $
 
 	* t2  ia1 ib-1 ic3 ic3 $
 
 	* t6 s4 ia0 ib0 ic5 id0 ie-1 if1 $
+	
+	* t-1 $
 $
 //Séquences
 	*
