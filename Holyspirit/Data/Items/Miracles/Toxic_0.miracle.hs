@@ -7,9 +7,9 @@ $
 $
 //Effets
 	* t-1 l1 l11 $
-	* t14 l4 ia1 ib-100 ic0 id1 $
+	* t14 ia1 ib-100 ic0 id2 $
 
-	* t15 ia2 ib2 ic15 $
+	* t15 ia3 ib2 ic15 $
 	* t2 l4 l7 ia0 ib1 $
 
 	* t3 l5 s1 ia15 $
