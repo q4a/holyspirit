@@ -135,7 +135,7 @@ void Entite_graphique::NextTile()
             position.x = (int)(m_sprite.GetPosition().x);
             position.y = (int)(m_sprite.GetPosition().y*2);
 
-            m_light = moteurGraphique->LightManager->Add_Dynamic_Light(position,m_tileset->getLumiereDuTile(m_noAnimation).intensite,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,6,
+            m_light = moteurGraphique->LightManager->Add_Dynamic_Light(position,m_tileset->getLumiereDuTile(m_noAnimation).intensite,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,12,
                                                                        sf::Color(m_tileset->getLumiereDuTile(m_noAnimation).rouge,m_tileset->getLumiereDuTile(m_noAnimation).vert,m_tileset->getLumiereDuTile(m_noAnimation).bleu));
         }
     }
@@ -192,7 +192,7 @@ void Entite_graphique::Initialiser(coordonnee pos)
                     position.y = pos.y;
 
                     //if (m_tileset->getAnimationTile(m_noAnimation) != -1)
-                        m_light = moteurGraphique->LightManager->Add_Dynamic_Light(position,m_tileset->getLumiereDuTile(m_noAnimation).intensite,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,6,
+                        m_light = moteurGraphique->LightManager->Add_Dynamic_Light(position,m_tileset->getLumiereDuTile(m_noAnimation).intensite,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,12,
                                                                                    sf::Color(m_tileset->getLumiereDuTile(m_noAnimation).rouge,m_tileset->getLumiereDuTile(m_noAnimation).vert,m_tileset->getLumiereDuTile(m_noAnimation).bleu));
                     //else
                       //  m_light = moteurGraphique->LightManager->Add_Static_Light (position,m_tileset->getLumiereDuTile(m_noAnimation).intensite,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,6,
@@ -212,7 +212,8 @@ void Entite_graphique::Generer()
             coordonnee positionPartieDecor = m_tileset->getPositionDuTile(m_noAnimation);
 
             m_sprite.SetImage(*moteurGraphique->getImage(m_tileset->getImage(m_noAnimation)));
-            m_sprite.SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h-1));
+            m_sprite.SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y,
+                                            positionPartieDecor.w, positionPartieDecor.h));
 
             m_sprite.SetOrigin(m_tileset->getCentreDuTile(m_noAnimation).x,m_tileset->getCentreDuTile(m_noAnimation).y);
 
@@ -241,7 +242,8 @@ void Entite_graphique::Generer()
                 coordonnee positionPartieDecor = m_tileset->getPositionDuTile(m_tileset->getDistortionDuTile(m_noAnimation), 1);
 
                 m_sprite_distortion.SetImage(*moteurGraphique->getImage(m_tileset->getImage(m_tileset->getDistortionDuTile(m_noAnimation), 1)));
-                m_sprite_distortion.SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
+                m_sprite_distortion.SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y,
+                                                           positionPartieDecor.w, positionPartieDecor.h));
 
                 m_sprite_distortion.SetOrigin(m_tileset->getCentreDuTile(m_tileset->getDistortionDuTile(m_noAnimation), 1).x,m_tileset->getCentreDuTile(m_tileset->getDistortionDuTile(m_noAnimation), 1).y);
 
@@ -269,8 +271,8 @@ void Entite_graphique::Generer()
                 m_sprite_shadowmap.back().SetImage(*moteurGraphique->getImage(m_tileset->getImageShadowmap(m_noAnimation,i)));
                 m_sprite_shadowmap.back().SetSubRect(sf::IntRect(positionPartieDecor.x,
                                                                  positionPartieDecor.y,
-                                                                 positionPartieDecor.x+positionPartieDecor.w,
-                                                                 positionPartieDecor.y+positionPartieDecor.h));
+                                                                 positionPartieDecor.w,
+                                                                 positionPartieDecor.h));
 
                 m_sprite_shadowmap.back().SetOrigin(m_tileset->m_tile_shadowmap[m_tileset->getShadowmapDuTile(m_noAnimation)[i]].getCentre().x,
                                                     m_tileset->m_tile_shadowmap[m_tileset->getShadowmapDuTile(m_noAnimation)[i]].getCentre().y);

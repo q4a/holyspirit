@@ -927,10 +927,10 @@ sf::Text Miracle::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee 
     string.SetCharacterSize(14*(int)(configuration->Resolution.h/600));
     string.SetString(chaine);
 
-    if (tailleCadran->x<((int)string.GetRect().Right-(int)string.GetRect().Left))
-        tailleCadran->x=((int)string.GetRect().Right-(int)string.GetRect().Left);
+    if (tailleCadran->x < string.GetRect().Width)
+        tailleCadran->x = (int)string.GetRect().Width;
 
-    decalage->y+=(int)string.GetRect().Bottom-(int)string.GetRect().Top+2;
+    decalage->y += (int)string.GetRect().Height + 2;
 
     return string;
 }
@@ -1041,9 +1041,9 @@ void Miracle::AfficherDescription(coordonnee position, bool suivant)
     for (int i=0;i<(int)temp.size();i++)
     {
         temp[i].SetY((position.y+decalY+10));
-        temp[i].SetX(position.x+20+(tailleCadran.x/2-((int)temp[i].GetRect().Right-(int)temp[i].GetRect().Left)/2)/*-tailleCadran.x*/);
+        temp[i].SetX(position.x+20+(tailleCadran.x-temp[i].GetRect().Width) * 0.5);
 
-        decalY+=(int)temp[i].GetRect().Bottom-(int)temp[i].GetRect().Top+2;
+        decalY += (int)temp[i].GetRect().Height + 2;
 
         moteurGraphique->AjouterTexte(&temp[i],19);
     }

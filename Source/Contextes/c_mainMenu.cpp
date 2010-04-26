@@ -116,9 +116,9 @@ void c_MainMenu::Utiliser(Jeu *jeu)
     {
         texte.SetString(configuration->getText(0,53));
         texte.SetY(configuration->Resolution.h/2-128);
-        texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetSize().x/2);
+        texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
         if (eventManager->getPositionSouris().y > texte.GetRect().Top
-          &&eventManager->getPositionSouris().y < texte.GetRect().Bottom)
+          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
         {
             texte.SetColor(Color(100,50,0));
             if (eventManager->getEvenement(Mouse::Left,EventClic))
@@ -179,9 +179,9 @@ void c_MainMenu::Utiliser(Jeu *jeu)
 
         texte.SetString(configuration->getText(0,54));
         texte.SetY(configuration->Resolution.h/2-64 );
-        texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetSize().x/2);
+        texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
         if (eventManager->getPositionSouris().y > texte.GetRect().Top
-          &&eventManager->getPositionSouris().y < texte.GetRect().Bottom)
+          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
         {
             texte.SetColor(Color(100,50,0));
             if (eventManager->getEvenement(Mouse::Left,EventClic))
@@ -221,9 +221,9 @@ void c_MainMenu::Utiliser(Jeu *jeu)
 
         texte.SetString(configuration->getText(0,55));
         texte.SetY(configuration->Resolution.h/2);
-        texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetSize().x/2);
+        texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
         if (eventManager->getPositionSouris().y > texte.GetRect().Top
-          &&eventManager->getPositionSouris().y < texte.GetRect().Bottom)
+          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
         {
             texte.SetColor(Color(100,50,0));
             eventManager->StopEvenement(Mouse::Left,EventClic);
@@ -234,9 +234,9 @@ void c_MainMenu::Utiliser(Jeu *jeu)
 
         texte.SetString(configuration->getText(0,56));
         texte.SetY(configuration->Resolution.h/2+64);
-        texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetSize().x/2);
+        texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
         if (eventManager->getPositionSouris().y > texte.GetRect().Top
-          &&eventManager->getPositionSouris().y < texte.GetRect().Bottom)
+          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
         {
             texte.SetColor(Color(100,50,0));
             if (eventManager->getEvenement(Mouse::Left,EventClic))
@@ -260,9 +260,9 @@ void c_MainMenu::Utiliser(Jeu *jeu)
 
         texte.SetString(configuration->getText(0,57));
         texte.SetY(configuration->Resolution.h/2 + 192 );
-        texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetSize().x/2);
+        texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
         if (eventManager->getPositionSouris().y > texte.GetRect().Top
-          &&eventManager->getPositionSouris().y < texte.GetRect().Bottom)
+          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
         {
             texte.SetColor(Color(100,50,0));
             if(eventManager->getEvenement(Mouse::Left,EventClic))
@@ -281,9 +281,9 @@ void c_MainMenu::Utiliser(Jeu *jeu)
         {
             texte.SetString("-+-");
             texte.SetY(configuration->Resolution.h/2 - 256 );
-            texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetSize().x/2);
+            texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
             if (eventManager->getPositionSouris().y > texte.GetRect().Top
-              &&eventManager->getPositionSouris().y < texte.GetRect().Bottom)
+              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
             {
                 texte.SetColor(Color(100,50,0));
                 if(eventManager->getEvenement(Mouse::Left,EventClic))
@@ -306,19 +306,19 @@ void c_MainMenu::Utiliser(Jeu *jeu)
                 str.push_back(m_chemin_saves[i][s]);
             texte.SetString(str.c_str());
 
-            texte.SetPosition(configuration->Resolution.w/2 - 384 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3) + 130 - texte.GetRect().GetSize().x/2,
+            texte.SetPosition(configuration->Resolution.w/2 - 384 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3) + 130 - texte.GetRect().Width/2,
                               configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 192 + 160);
 
             m_images_saves[i].SetPosition(configuration->Resolution.w/2 - 336 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3),
                                           configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 192);
             m_images_saves[i].Resize(160,256);
-            m_images_saves[i].SetSubRect(sf::IntRect(48,0,208,256));
+            m_images_saves[i].SetSubRect(sf::IntRect(48,0,160,256));
             moteurGraphique->AjouterCommande(&m_images_saves[i],19,0);
 
             if ((eventManager->getPositionSouris().y > texte.GetRect().Top
-              &&eventManager->getPositionSouris().y < texte.GetRect().Bottom
+              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height)
               &&eventManager->getPositionSouris().x > texte.GetRect().Left
-              &&eventManager->getPositionSouris().x < texte.GetRect().Right) ||
+              &&eventManager->getPositionSouris().x < (texte.GetRect().Left + texte.GetRect().Width)) ||
 
                (eventManager->getPositionSouris().y > m_images_saves[i].GetPosition().y
               &&eventManager->getPositionSouris().y < m_images_saves[i].GetPosition().y + 192
@@ -371,9 +371,9 @@ void c_MainMenu::Utiliser(Jeu *jeu)
         {
             texte.SetString("-+-");
             texte.SetY(configuration->Resolution.h/2 + 160);
-            texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetSize().x/2);
+            texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
             if (eventManager->getPositionSouris().y > texte.GetRect().Top
-              &&eventManager->getPositionSouris().y < texte.GetRect().Bottom)
+              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
             {
                 texte.SetColor(Color(100,50,0));
                 if(eventManager->getEvenement(Mouse::Left,EventClic))
@@ -402,10 +402,10 @@ void c_MainMenu::Utiliser(Jeu *jeu)
         {
             texte.SetString(configuration->getText(3,m_nom_classes[i]));
             texte.SetY(configuration->Resolution.h/2 - 128 - m_nom_classes.size() * 32 + i* 64 );
-            texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetSize().x/2);
+            texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
 
             if (eventManager->getPositionSouris().y > texte.GetRect().Top
-              &&eventManager->getPositionSouris().y < texte.GetRect().Bottom)
+              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
             {
                 texte.SetColor(Color(100,50,0));
                 if(eventManager->getEvenement(Mouse::Left,EventClic))
@@ -426,13 +426,13 @@ void c_MainMenu::Utiliser(Jeu *jeu)
         texte.SetCharacterSize(32);
         texte.SetString(configuration->getText(0,58));
         texte.SetY(configuration->Resolution.h/2 );
-        texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetSize().x/2);
+        texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
         texte.SetColor(Color(150,100,50));
         moteurGraphique->AjouterTexte(&texte,19,1);
 
         texte.SetString(nom_hero);
         texte.SetY(configuration->Resolution.h/2 + 48 );
-        texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetSize().x/2);
+        texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
         texte.SetColor(Color(150,100,50));
         moteurGraphique->AjouterTexte(&texte,19,1);
 
@@ -440,9 +440,9 @@ void c_MainMenu::Utiliser(Jeu *jeu)
 
         texte.SetString(configuration->getText(0,59));
         texte.SetY(configuration->Resolution.h/2 + 96 );
-        texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetSize().x/2);
+        texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
         if (eventManager->getPositionSouris().y > texte.GetRect().Top
-          &&eventManager->getPositionSouris().y < texte.GetRect().Bottom)
+          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
         {
             texte.SetColor(Color(100,50,0));
             if(eventManager->getEvenement(Mouse::Left,EventClic))
@@ -477,9 +477,9 @@ void c_MainMenu::Utiliser(Jeu *jeu)
 
         texte.SetString(configuration->getText(0,57));
         texte.SetY(configuration->Resolution.h/2 + 192 );
-        texte.SetX(configuration->Resolution.w/2-texte.GetRect().GetSize().x/2);
+        texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
         if (eventManager->getPositionSouris().y > texte.GetRect().Top
-          &&eventManager->getPositionSouris().y < texte.GetRect().Bottom)
+          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
         {
             texte.SetColor(Color(100,50,0));
             if(eventManager->getEvenement(Mouse::Left,EventClic))

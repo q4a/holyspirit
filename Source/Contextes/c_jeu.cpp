@@ -495,8 +495,8 @@ int GestionBoutons(Jeu *jeu)
         sprite.SetImage(*moteurGraphique->getImage(jeu->hero.m_classe.boutons_menus_hud[i].image.image));
         sprite.SetSubRect(sf::IntRect(jeu->hero.m_classe.boutons_menus_hud[i].image.position.x,
                                       jeu->hero.m_classe.boutons_menus_hud[i].image.position.y,
-                                      jeu->hero.m_classe.boutons_menus_hud[i].image.position.x + jeu->hero.m_classe.boutons_menus_hud[i].image.position.w,
-                                      jeu->hero.m_classe.boutons_menus_hud[i].image.position.y + jeu->hero.m_classe.boutons_menus_hud[i].image.position.h));
+                                      jeu->hero.m_classe.boutons_menus_hud[i].image.position.w,
+                                      jeu->hero.m_classe.boutons_menus_hud[i].image.position.h));
 
         sprite.SetPosition(AutoScreenAdjust(jeu->hero.m_classe.boutons_menus_hud[i].position.x,
                                             jeu->hero.m_classe.boutons_menus_hud[i].position.y));

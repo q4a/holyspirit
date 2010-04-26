@@ -1787,10 +1787,10 @@ sf::Text Objet::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *d
     string.SetCharacterSize(14);
     string.SetString(chaine);
 
-    if (tailleCadran->x<((int)string.GetRect().Right-(int)string.GetRect().Left))
-        tailleCadran->x=((int)string.GetRect().Right-(int)string.GetRect().Left);
+    if (tailleCadran->x<(int)string.GetRect().Width)
+        tailleCadran->x=(int)string.GetRect().Width;
 
-    decalage->y+=(int)string.GetRect().Bottom-(int)string.GetRect().Top+2;
+    decalage->y+=(int)string.GetRect().Height+2;
 
     return string;
 }
@@ -2106,16 +2106,16 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
         int decalY=0;
         int decalY2=20;
         for (int i=0;i<(int)temp.size();i++)
-            decalY2+=(int)temp[i].GetRect().Bottom-(int)temp[i].GetRect().Top+2;
+            decalY2+=(int)temp[i].GetRect().Height+2;
 
         position.y -= decalY2;
 
         for (int i=0;i<(int)temp.size();i++)
         {
             temp[i].SetY((position.y+decalY+10));
-            temp[i].SetX(position.x+(tailleCadran.x/2-((int)temp[i].GetRect().Right-(int)temp[i].GetRect().Left)/2)-tailleCadran.x);
+            temp[i].SetX(position.x+(tailleCadran.x-(int)temp[i].GetRect().Width)*0.5-tailleCadran.x);
 
-            decalY+=(int)temp[i].GetRect().Bottom-(int)temp[i].GetRect().Top+2;
+            decalY+=(int)temp[i].GetRect().Height+2;
 
             moteurGraphique->AjouterTexte(&temp[i],19);
         }
@@ -2126,9 +2126,9 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
         for (int i=0;i<(int)temp.size();i++)
         {
             temp[i].SetY((position.y+decalY+10));
-            temp[i].SetX(position.x+(tailleCadran.x/2-((int)temp[i].GetRect().Right-(int)temp[i].GetRect().Left)/2)-tailleCadran.x);
+            temp[i].SetX(position.x+(tailleCadran.x-(int)temp[i].GetRect().Width)*0.5-tailleCadran.x);
 
-            decalY+=(int)temp[i].GetRect().Bottom-(int)temp[i].GetRect().Top+2;
+            decalY+=(int)temp[i].GetRect().Height+2;
 
             moteurGraphique->AjouterTexte(&temp[i],19);
         }

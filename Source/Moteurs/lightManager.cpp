@@ -254,28 +254,43 @@ void Light_Manager::Draw(sf::RenderTarget *App,sf::View *camera)
 {
     for (Iter=m_DynamicLight.begin();Iter!=m_DynamicLight.end();++Iter)
         if (Iter->m_actif)
-            if (Iter->GetPosition().x + Iter->GetRadius()>GetViewRect(*camera).Left && Iter->GetPosition().x - Iter->GetRadius()<GetViewRect(*camera).Right
-                    && Iter->GetPosition().y*0.5 + Iter->GetRadius()*0.5>GetViewRect(*camera).Top  && Iter->GetPosition().y*0.5 - Iter->GetRadius()*0.5<GetViewRect(*camera).Bottom)
+            if (Iter->GetPosition().x + Iter->GetRadius() > GetViewRect(*camera).Left
+             && Iter->GetPosition().x - Iter->GetRadius() < GetViewRect(*camera).Left + GetViewRect(*camera).Width
+             && Iter->GetPosition().y + Iter->GetRadius() > 2 *  GetViewRect(*camera).Top
+             && Iter->GetPosition().y - Iter->GetRadius() < 2 * (GetViewRect(*camera).Top + GetViewRect(*camera).Height))
                 Iter->Draw(App);
 
     for (Iter=m_StaticLight.begin();Iter!=m_StaticLight.end();++Iter)
         if (Iter->m_actif)
-            if (Iter->GetPosition().x + Iter->GetRadius()>GetViewRect(*camera).Left && Iter->GetPosition().x - Iter->GetRadius()<GetViewRect(*camera).Right
-                    && Iter->GetPosition().y*0.5 + Iter->GetRadius()*0.5>GetViewRect(*camera).Top  && Iter->GetPosition().y*0.5 - Iter->GetRadius()*0.5<GetViewRect(*camera).Bottom)
+            if (Iter->GetPosition().x + Iter->GetRadius() > GetViewRect(*camera).Left
+             && Iter->GetPosition().x - Iter->GetRadius() < GetViewRect(*camera).Left + GetViewRect(*camera).Width
+             && Iter->GetPosition().y + Iter->GetRadius() > 2 *  GetViewRect(*camera).Top
+             && Iter->GetPosition().y - Iter->GetRadius() < 2 * (GetViewRect(*camera).Top + GetViewRect(*camera).Height))
                 Iter->Draw(App);
 }
 
 void Light_Manager::DrawWallShadow(sf::RenderTarget *App,sf::View *camera)
 {
     for (std::vector<Wall>::iterator IterWall=m_wall.begin();IterWall!=m_wall.end();++IterWall)
-        if ((IterWall->m_shadow.GetPointPosition(0).x +128 > GetViewRect(*camera).Left && IterWall->m_shadow.GetPointPosition(0).x -128 < GetViewRect(*camera).Right
-           &&IterWall->m_shadow.GetPointPosition(0).y +128 > GetViewRect(*camera).Top  && IterWall->m_shadow.GetPointPosition(0).y -128 < GetViewRect(*camera).Bottom)
-          ||(IterWall->m_shadow.GetPointPosition(1).x +128 > GetViewRect(*camera).Left && IterWall->m_shadow.GetPointPosition(1).x -128 < GetViewRect(*camera).Right
-           &&IterWall->m_shadow.GetPointPosition(1).y +128 > GetViewRect(*camera).Top  && IterWall->m_shadow.GetPointPosition(1).y -128 < GetViewRect(*camera).Bottom)
-          ||(IterWall->m_shadow.GetPointPosition(2).x +128 > GetViewRect(*camera).Left && IterWall->m_shadow.GetPointPosition(2).x -128 < GetViewRect(*camera).Right
-           &&IterWall->m_shadow.GetPointPosition(2).y +128 > GetViewRect(*camera).Top  && IterWall->m_shadow.GetPointPosition(2).y -128 < GetViewRect(*camera).Bottom)
-          ||(IterWall->m_shadow.GetPointPosition(3).x +128 > GetViewRect(*camera).Left && IterWall->m_shadow.GetPointPosition(3).x -128 < GetViewRect(*camera).Right
-           &&IterWall->m_shadow.GetPointPosition(3).y +128 > GetViewRect(*camera).Top  && IterWall->m_shadow.GetPointPosition(3).y -128 < GetViewRect(*camera).Bottom))
+        if(( IterWall->m_shadow.GetPointPosition(0).x + 128 > GetViewRect(*camera).Left
+          && IterWall->m_shadow.GetPointPosition(0).x - 128 < GetViewRect(*camera).Left + GetViewRect(*camera).Width
+          && IterWall->m_shadow.GetPointPosition(0).y + 128 > GetViewRect(*camera).Top
+          && IterWall->m_shadow.GetPointPosition(0).y - 128 < GetViewRect(*camera).Top + GetViewRect(*camera).Height)
+
+          ||(IterWall->m_shadow.GetPointPosition(1).x + 128 > GetViewRect(*camera).Left
+          && IterWall->m_shadow.GetPointPosition(1).x - 128 < GetViewRect(*camera).Left + GetViewRect(*camera).Width
+          && IterWall->m_shadow.GetPointPosition(1).y + 128 > GetViewRect(*camera).Top
+          && IterWall->m_shadow.GetPointPosition(1).y - 128 < GetViewRect(*camera).Top + GetViewRect(*camera).Height)
+
+          ||(IterWall->m_shadow.GetPointPosition(2).x + 128 > GetViewRect(*camera).Left
+          && IterWall->m_shadow.GetPointPosition(2).x - 128 < GetViewRect(*camera).Left + GetViewRect(*camera).Width
+          && IterWall->m_shadow.GetPointPosition(2).y + 128 > GetViewRect(*camera).Top
+          && IterWall->m_shadow.GetPointPosition(2).y - 128 < GetViewRect(*camera).Top + GetViewRect(*camera).Height)
+
+          ||(IterWall->m_shadow.GetPointPosition(3).x + 128 > GetViewRect(*camera).Left
+          && IterWall->m_shadow.GetPointPosition(3).x - 128 < GetViewRect(*camera).Left + GetViewRect(*camera).Width
+          && IterWall->m_shadow.GetPointPosition(3).y + 128 > GetViewRect(*camera).Top
+          && IterWall->m_shadow.GetPointPosition(3).y - 128 < GetViewRect(*camera).Top + GetViewRect(*camera).Height))
                 App->Draw(IterWall->m_shadow);
 }
 

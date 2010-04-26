@@ -1148,7 +1148,8 @@ void Map::CreerSprite(sf::Vector3f position_case)
     {
         positionPartieDecor=moteurGraphique->getTileset(m_tileset[m_decor[z][y][x].getTileset()])->getPositionMinimap(m_decor[z][y][x].getTile());
         m_decor[z][y][x].m_spriteMinimap.SetImage(*moteurGraphique->getImage(moteurGraphique->getTileset(m_tileset[m_decor[z][y][x].getTileset()])->getMinimap(m_decor[z][y][x].getTile())));
-        m_decor[z][y][x].m_spriteMinimap.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
+        m_decor[z][y][x].m_spriteMinimap.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y,
+                                                            positionPartieDecor.w, positionPartieDecor.h));
         m_decor[z][y][x].m_spriteMinimap.SetX(position.x);
         m_decor[z][y][x].m_spriteMinimap.SetY(position.y);
         m_decor[z][y][x].m_spriteMinimap.SetColor(sf::Color(255,255,255,128));
@@ -1384,7 +1385,7 @@ void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_
 
                 texte.SetPosition(AutoScreenAdjust(position_sac_inventaire.x,
                                                    position_sac_inventaire.y+(z-m_defilerObjets)*20, decalage));
-                texte.Move(((position_sac_inventaire.w/2))-(texte.GetRect().Right-texte.GetRect().Left)/2,0);
+                texte.Move((position_sac_inventaire.w/2-texte.GetRect().Width)*0.5,0);
 
                 moteurGraphique->AjouterTexte(&texte,16);
             }
@@ -1425,8 +1426,8 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
         sf::Sprite minimap;
         minimap.SetImage(*moteurGraphique->getImage(hero->m_classe.icone_mm.image));
         minimap.SetSubRect(sf::IntRect(hero->m_classe.icone_mm.position.x, hero->m_classe.icone_mm.position.y,
-                                       hero->m_classe.icone_mm.position.x + hero->m_classe.icone_mm.position.w,
-                                       hero->m_classe.icone_mm.position.y + hero->m_classe.icone_mm.position.h));
+                                       hero->m_classe.icone_mm.position.w, hero->m_classe.icone_mm.position.h));
+
         minimap.SetColor(sf::Color(255,255,255,(int)(alpha * 0.5f)));
         minimap.SetPosition(configuration->Resolution.x*0.5f ,
                             configuration->Resolution.y*0.5f);
@@ -1526,7 +1527,10 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                                 for (int o=0;o<m_decor[1][j][k].getNombreObjets();o++)
                                 {
                                     sprite.SetImage(*moteurGraphique->getImage(m_decor[1][j][k].getObjet(o)->getImage()));
-                                    sprite.SetSubRect(IntRect(m_decor[1][j][k].getObjet(o)->getPositionImage().x, m_decor[1][j][k].getObjet(o)->getPositionImage().y, m_decor[1][j][k].getObjet(o)->getPositionImage().x+m_decor[1][j][k].getObjet(o)->getPositionImage().w, m_decor[1][j][k].getObjet(o)->getPositionImage().y+m_decor[1][j][k].getObjet(o)->getPositionImage().h));
+                                    sprite.SetSubRect(IntRect(m_decor[1][j][k].getObjet(o)->getPositionImage().x,
+                                                              m_decor[1][j][k].getObjet(o)->getPositionImage().y,
+                                                              m_decor[1][j][k].getObjet(o)->getPositionImage().w,
+                                                              m_decor[1][j][k].getObjet(o)->getPositionImage().h));
                                     sprite.SetScale(0.8f,0.4f);
 
                                     sprite.SetX(position.x-32+m_decor[1][j][k].getObjet(o)->getPosition().x*32+16-(m_decor[1][j][k].getObjet(o)->getPositionImage().w*0.8f)/2);
@@ -1602,10 +1606,10 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                     buffer.SetY((k+j+1)*32);
 
                     if (buffer.GetSize().x>0)
-                        if (buffer.GetPosition().x+buffer.GetSize().x-buffer.GetOrigin().x>=GetViewRect(moteurGraphique->m_camera).Left
-                                &&buffer.GetPosition().x-buffer.GetOrigin().x<GetViewRect(moteurGraphique->m_camera).Right
-                                &&buffer.GetPosition().y+buffer.GetSize().y-buffer.GetOrigin().y>=GetViewRect(moteurGraphique->m_camera).Top
-                                &&buffer.GetPosition().y-buffer.GetOrigin().y<GetViewRect(moteurGraphique->m_camera).Bottom)
+                        if(buffer.GetPosition().x+buffer.GetSize().x - buffer.GetOrigin().x>=GetViewRect(moteurGraphique->m_camera).Left
+                        && buffer.GetPosition().x-buffer.GetOrigin().x < GetViewRect(moteurGraphique->m_camera).Left + GetViewRect(moteurGraphique->m_camera).Width
+                        && buffer.GetPosition().y+buffer.GetSize().y - buffer.GetOrigin().y>=GetViewRect(moteurGraphique->m_camera).Top
+                        && buffer.GetPosition().y-buffer.GetOrigin().y < GetViewRect(moteurGraphique->m_camera).Top  + GetViewRect(moteurGraphique->m_camera).Height)
                             moteurGraphique->AjouterCommande(&buffer,m_decor[couche][w][z].getCouche(),1);
                 }
             }
@@ -2552,25 +2556,6 @@ bool Map::Miracle_Invocation(Hero *hero, Personnage *personnage, Miracle &modele
 
                 bool mir = false;
 
-                for(unsigned i = 0 ; i < miracleEnCours.m_source->m_benedictions.size() ; ++i)
-                {
-                    if(!mir)
-                    {
-                        m_ModeleMonstre[m_monstre.back().getModele()].m_miracles.push_back(Miracle ());
-
-                        m_monstre.back().m_miracleEnCours.push_back(EntiteMiracle ());
-                        m_monstre.back().m_miracleEnCours.back().m_infos.push_back(new InfosEntiteMiracle ());
-
-                        m_monstre.back().m_miracleEnCours.back().m_modele = m_ModeleMonstre[m_monstre.back().getModele()].m_miracles.size() - 1;
-
-                        m_monstre.back().m_miracleEnCours.back().m_infos.back()->m_position.x = m_monstre.back().getCoordonneePixel().x;
-                        m_monstre.back().m_miracleEnCours.back().m_infos.back()->m_position.y = m_monstre.back().getCoordonneePixel().y;
-
-                    }
-
-                    ChargerMiracleBenediction(miracleEnCours.m_source->m_benedictions[i],m_ModeleMonstre[m_monstre.back().getModele()].m_miracles.back(),mir);
-                }
-
                 for(unsigned j = 0 ; j < miracleEnCours.m_source->m_miracles_benedictions.size() ; ++j)
                 {
                     if(!mir)
@@ -2596,6 +2581,27 @@ bool Map::Miracle_Invocation(Hero *hero, Personnage *personnage, Miracle &modele
                                     temp,0);
                     }
                 }
+
+                for(unsigned i = 0 ; i < miracleEnCours.m_source->m_benedictions.size() ; ++i)
+                {
+                    if(!mir)
+                    {
+                        m_ModeleMonstre[m_monstre.back().getModele()].m_miracles.push_back(Miracle ());
+
+                        m_monstre.back().m_miracleEnCours.push_back(EntiteMiracle ());
+                        m_monstre.back().m_miracleEnCours.back().m_infos.push_back(new InfosEntiteMiracle ());
+
+                        m_monstre.back().m_miracleEnCours.back().m_modele = m_ModeleMonstre[m_monstre.back().getModele()].m_miracles.size() - 1;
+
+                        m_monstre.back().m_miracleEnCours.back().m_infos.back()->m_position.x = m_monstre.back().getCoordonneePixel().x;
+                        m_monstre.back().m_miracleEnCours.back().m_infos.back()->m_position.y = m_monstre.back().getCoordonneePixel().y;
+
+                    }
+
+                    ChargerMiracleBenediction(miracleEnCours.m_source->m_benedictions[i],m_ModeleMonstre[m_monstre.back().getModele()].m_miracles.back(),mir);
+                }
+
+
             }
         }
     }
@@ -3545,7 +3551,7 @@ std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)
                 bufMot += " ";
 
             temp.SetString(buf + bufMot);
-            if (temp.GetRect().Right - temp.GetRect().Left > tailleCadran)
+            if (temp.GetRect().Width > tailleCadran)
                 bufMot = '\n' + bufMot;
         }
         else

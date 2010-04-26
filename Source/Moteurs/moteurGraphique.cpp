@@ -29,9 +29,9 @@ sf::FloatRect GetViewRect(const sf::View& view)
     sf::FloatRect temp;
 
     temp.Left   = view.GetCenter().x - view.GetSize().x * 0.5;
-    temp.Right  = view.GetCenter().x + view.GetSize().x * 0.5;
     temp.Top    = view.GetCenter().y - view.GetSize().y * 0.5;
-    temp.Bottom = view.GetCenter().y + view.GetSize().y * 0.5;
+    temp.Width  = view.GetSize().x;
+    temp.Height = view.GetSize().y;
 
     return temp;
 };
@@ -139,8 +139,8 @@ void MoteurGraphique::Charger()
         else
             console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetBlur,0);
 
-        EffectBlur.SetParameter("offset",0.02);
-        EffectBlur2.SetParameter("offset",0.0025);
+        EffectBlur.SetParameter("offset",0.01);
+        EffectBlur2.SetParameter("offset",0.005);
 
         if (!EffectMort.LoadFromFile(configuration->chemin_fx+configuration->nom_effetMort))
             console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetMort,1);
@@ -745,9 +745,9 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
     if(entite->m_tileset != NULL)
     {
         if(entite->m_sprite.GetPosition().x + entite->m_sprite.GetSize().x - entite->m_sprite.GetOrigin().x     >= GetViewRect(m_camera).Left
-        && entite->m_sprite.GetPosition().x - entite->m_sprite.GetOrigin().x                                    <  GetViewRect(m_camera).Right
+        && entite->m_sprite.GetPosition().x - entite->m_sprite.GetOrigin().x                                    <  GetViewRect(m_camera).Left + GetViewRect(m_camera).Width
         && entite->m_sprite.GetPosition().y + entite->m_sprite.GetSize().y - entite->m_sprite.GetOrigin().y     >= GetViewRect(m_camera).Top
-        && entite->m_sprite.GetPosition().y - entite->m_sprite.GetOrigin().y                                    <  GetViewRect(m_camera).Bottom
+        && entite->m_sprite.GetPosition().y - entite->m_sprite.GetOrigin().y                                    <  GetViewRect(m_camera).Top + GetViewRect(m_camera).Height
         || entite->m_sprite.GetRotation() != 0)
             AjouterCommande(&entite->m_sprite, entite->m_couche + entite->m_decalCouche, true);
 
@@ -771,18 +771,18 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
             sprite.SetOrigin(sprite.GetOrigin().x, sprite.GetSize().y - sprite.GetOrigin().y);
 
             if(sprite.GetPosition().x + sprite.GetSize().x - sprite.GetOrigin().x     >= GetViewRect(m_camera).Left
-            && sprite.GetPosition().x - sprite.GetOrigin().x                          <  GetViewRect(m_camera).Right
+            && sprite.GetPosition().x - sprite.GetOrigin().x                          <  GetViewRect(m_camera).Left + GetViewRect(m_camera).Width
             && sprite.GetPosition().y + sprite.GetSize().y - sprite.GetOrigin().y     >= GetViewRect(m_camera).Top
-            && sprite.GetPosition().y - sprite.GetOrigin().y                          <  GetViewRect(m_camera).Bottom)
+            && sprite.GetPosition().y - sprite.GetOrigin().y                          <  GetViewRect(m_camera).Top + GetViewRect(m_camera).Height)
                 AjouterCommande(&sprite, 0, true);
         }
 
         if(entite->m_distort)
         {
            if (entite->m_sprite_distortion.GetPosition().x + entite->m_sprite_distortion.GetSize().x - entite->m_sprite_distortion.GetOrigin().x    >= GetViewRect(m_camera).Left
-            && entite->m_sprite_distortion.GetPosition().x - entite->m_sprite_distortion.GetOrigin().x                                              <  GetViewRect(m_camera).Right
+            && entite->m_sprite_distortion.GetPosition().x - entite->m_sprite_distortion.GetOrigin().x                                              <  GetViewRect(m_camera).Left + GetViewRect(m_camera).Width
             && entite->m_sprite_distortion.GetPosition().y + entite->m_sprite_distortion.GetSize().y - entite->m_sprite_distortion.GetOrigin().y    >= GetViewRect(m_camera).Top
-            && entite->m_sprite_distortion.GetPosition().y - entite->m_sprite_distortion.GetOrigin().y                                              <  GetViewRect(m_camera).Bottom
+            && entite->m_sprite_distortion.GetPosition().y - entite->m_sprite_distortion.GetOrigin().y                                              <  GetViewRect(m_camera).Top + GetViewRect(m_camera).Height
             || entite->m_sprite_distortion.GetRotation() != 0)
                 m_distortion_commandes.push_back(Commande (&entite->m_sprite_distortion, true));
         }
@@ -831,8 +831,8 @@ void MoteurGraphique::AjouterTexte(const std::string &txt, coordonnee pos, int c
         sf::Sprite temp2;
         temp2.SetImage(*getImage(0));
         temp2.SetPosition(pos.x-2, pos.y-2);
-        temp2.Resize(temp.GetRect().Right - temp.GetRect().Left + 4,
-                     temp.GetRect().Bottom - temp.GetRect().Top + 4);
+        temp2.Resize(temp.GetRect().Width + 4,
+                     temp.GetRect().Height + 4);
         temp2.SetColor(sf::Color(0,0,0,224));
         AjouterCommande(&temp2, couche, 0);
     }
@@ -844,11 +844,11 @@ void MoteurGraphique::AjouterTexteNonChevauchable(sf::Text* string, int couche, 
     {
         for (IterTextes=m_textes[couche].begin();IterTextes!=m_textes[couche].end();++IterTextes)
         {
-            if(string->GetRect().Right  > IterTextes->GetRect().Left
-            && string->GetRect().Left   < IterTextes->GetRect().Right
-            && string->GetRect().Bottom > IterTextes->GetRect().Top - 3
-            && string->GetRect().Top    < IterTextes->GetRect().Bottom)
-                string->SetPosition(string->GetPosition().x, IterTextes->GetRect().Top - string->GetRect().Bottom + string->GetRect().Top - 5), IterTextes=m_textes[couche].begin();
+            if(string->GetRect().Left + string->GetRect().Width > IterTextes->GetRect().Left
+            && string->GetRect().Left                           < IterTextes->GetRect().Left + IterTextes->GetRect().Width
+            && string->GetRect().Top  + string->GetRect().Height> IterTextes->GetRect().Top - 3
+            && string->GetRect().Top                            < IterTextes->GetRect().Top + IterTextes->GetRect().Height)
+                string->SetPosition(string->GetPosition().x, IterTextes->GetRect().Top - string->GetRect().Height - 5), IterTextes=m_textes[couche].begin();
         }
 
         AjouterTexte(string, couche, titre);

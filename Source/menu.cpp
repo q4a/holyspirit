@@ -83,20 +83,20 @@ bool Menu::AfficherDialogue(int alpha,Classe *classe)
     texte.SetCharacterSize(14);
     texte.SetFont(moteurGraphique->m_font);
     texte.SetString(m_dialogue);
-    texte.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.GetRect().Right-texte.GetRect().Left) * 0.5,
+    texte.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.GetRect().Width) * 0.5,
                       AutoScreenAdjust(0,classe->position_contenu_dialogue.y).y + classe->talk.position.h - classe->talk.position.h * alpha/255);
 
     moteurGraphique->AjouterTexte(&texte,16,0);
 
-    float pos = texte.GetRect().Bottom + 16;
+    float pos = texte.GetRect().Top + texte.GetRect().Height + 16;
 
     for(int i = 0 ; i < m_choices.size() ; ++i)
     {
         texte.SetString(m_choices[i].text);
-        texte.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.GetRect().Right-texte.GetRect().Left) * 0.5,
+        texte.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.GetRect().Width) * 0.5,
                             pos);
 
-        pos = texte.GetRect().Bottom + 4;
+        pos = texte.GetRect().Top + texte.GetRect().Height + 4;
 
         if(eventManager->getPositionSouris().x > AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x
          &&eventManager->getPositionSouris().x < AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w
@@ -105,7 +105,7 @@ bool Menu::AfficherDialogue(int alpha,Classe *classe)
          {
              sf::Sprite background;
              background.SetImage(*moteurGraphique->getImage(0));
-             background.Resize(texte.GetRect().Right - texte.GetRect().Left + 4, texte.GetRect().Bottom - texte.GetRect().Top + 4);
+             background.Resize(texte.GetRect().Width + 4, texte.GetRect().Height + 4);
              background.SetPosition(texte.GetRect().Left, texte.GetRect().Top );
              background.SetColor(sf::Color(64,64,64));
              moteurGraphique->AjouterCommande(&background, 16, 0);
@@ -169,7 +169,15 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         sprite.Resize(classe->orbe_vie.position.w, classe->orbe_vie.position.h);
 
         if(caracteristique.vie<=(caracteristique.maxVie - caracteristique.reserveVie))
-            sprite.SetSubRect(sf::IntRect((int)((caracteristique.maxVie-caracteristique.vie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w), 0, classe->orbe_vie.position.w, classe->orbe_vie.position.h));
+        {
+            float x = (caracteristique.maxVie-caracteristique.vie-caracteristique.reserveVie)
+                        /caracteristique.maxVie*classe->orbe_vie.position.w;
+
+            sprite.SetSubRect(sf::IntRect((int)x,
+                                          0,
+                                          classe->orbe_vie.position.w - (int) x,
+                                          classe->orbe_vie.position.h));
+        }
         else
             sprite.SetSubRect(sf::IntRect(0, 0, classe->orbe_vie.position.w, classe->orbe_vie.position.h));
 
@@ -178,7 +186,9 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         if(caracteristique.reserveVie > 0)
         {
             sprite.SetX((classe->orbe_vie.position.x+(int)((caracteristique.maxVie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w)) + (configuration->Resolution.x - 800) * 0.5);
-            sprite.SetSubRect(sf::IntRect((int)((caracteristique.maxVie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w), 0, classe->orbe_vie.position.w, classe->orbe_vie.position.h));
+
+            float x = (caracteristique.maxVie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w;
+            sprite.SetSubRect(sf::IntRect((int)x, 0, classe->orbe_vie.position.w - x, classe->orbe_vie.position.h));
 
             sprite.SetColor(sf::Color(32,32,32,255));
 
@@ -188,7 +198,9 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         if(caracteristique.vie > caracteristique.maxVie - caracteristique.reserveVie)
         {
             sprite.SetX((classe->orbe_vie.position.x+(int)((caracteristique.maxVie*2-caracteristique.vie-caracteristique.reserveVie*2)/caracteristique.maxVie*classe->orbe_vie.position.w)) + (configuration->Resolution.x - 800) * 0.5);
-            sprite.SetSubRect(sf::IntRect((int)((caracteristique.maxVie*2-caracteristique.vie-caracteristique.reserveVie*2)/caracteristique.maxVie*classe->orbe_vie.position.w), 0, classe->orbe_vie.position.w, classe->orbe_vie.position.h));
+
+            float x = (caracteristique.maxVie*2-caracteristique.vie-caracteristique.reserveVie*2)/caracteristique.maxVie*classe->orbe_vie.position.w;
+            sprite.SetSubRect(sf::IntRect((int)x, 0, classe->orbe_vie.position.w - x, classe->orbe_vie.position.h));
 
             sprite.SetBlendMode(Blend::Add);
             sprite.SetColor(sf::Color(255,255,255));
@@ -225,6 +237,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
             sprite.SetSubRect(sf::IntRect(0, 0, (int)((caracteristique.foi+caracteristique.reserveFoi)/caracteristique.maxFoi*classe->orbe_foi.position.w), classe->orbe_foi.position.h));
         else
             sprite.SetSubRect(sf::IntRect(0, 0, classe->orbe_foi.position.w, classe->orbe_foi.position.h));
+
 
         moteurGraphique->AjouterCommande(&sprite,17,0);
 
@@ -360,7 +373,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
 
         texte.SetColor(GetItemColor(caracteristiqueMonstre.rang));
 
-        texte.SetX(configuration->Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
+        texte.SetX(configuration->Resolution.w/2-(texte.GetRect().Width)/2);
         texte.SetY(32);
         moteurGraphique->AjouterTexte(&texte,18);
 
@@ -384,8 +397,8 @@ void Menu::AfficherChargement(string nom,int fond,int z=50)
     texte.SetCharacterSize(50*configuration->Resolution.h/600);
     texte.SetString(nom);
 
-    texte.SetX(configuration->Resolution.w/2-(texte.GetRect().Right-texte.GetRect().Left)/2);
-    texte.SetY(configuration->Resolution.h-(texte.GetRect().Bottom-texte.GetRect().Top)/2-60*configuration->Resolution.h/600);
+    texte.SetX(configuration->Resolution.w/2-(texte.GetRect().Width)/2);
+    texte.SetY(configuration->Resolution.h-(texte.GetRect().Height)/2-60*configuration->Resolution.h/600);
     texte.SetColor(Color(150,100,50,z*255/50));
     moteurGraphique->AjouterTexte(&texte,16,1);
 }
