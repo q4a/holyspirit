@@ -60,3 +60,4 @@ Votre nom :
 Commencer
 Emplacement libre
 Afficher/Cacher les boutons
+
