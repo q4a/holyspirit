@@ -287,7 +287,7 @@ void MoteurGraphique::Gerer(float temps,int tailleMapY)
             for(m_systemeParticules_iter=m_systemeParticules.begin();
                 m_systemeParticules_iter!=m_systemeParticules.end();
                 ++m_systemeParticules_iter)
-                    m_systemeParticules_iter->Envoler(m_effetsEcran_iter->pos,m_effetsEcran_iter->info1,m_effetsEcran_iter->info2, temps);
+                    m_systemeParticules_iter->Envoler(m_effetsEcran_iter->pos,(int)m_effetsEcran_iter->info1,(int)m_effetsEcran_iter->info2, temps);
 
             m_effetsEcran.erase (m_effetsEcran_iter);
             if((int)m_effetsEcran.size()>k)
@@ -861,6 +861,7 @@ void MoteurGraphique::AjouterTexte(sf::Text* string, int couche,bool titre)
     if (couche>=0&&couche<=20)
     {
         sf::Text temp(*string);
+        temp.SetPosition((int)temp.GetPosition().x,(int)temp.GetPosition().y);
         temp.SetFont(m_font);
 
         if (titre)

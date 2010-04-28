@@ -633,7 +633,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1272119791 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
+1272299292 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -684,7 +684,7 @@
 	"../globale.h"
 	<sstream>
 
-1272297268 source:e:\c++\holyspirit\source\entites\hero.cpp
+1272299292 source:e:\c++\holyspirit\source\entites\hero.cpp
 	"../constantes.h"
 	"hero.h"
 	"../globale.h"
@@ -759,13 +759,10 @@
 	"evenement.h"
 	<iostream>
 
-1272297657 source:e:\c++\holyspirit\source\map\map.cpp
+1272387733 source:e:\c++\holyspirit\source\map\map.cpp
 	"map.h"
 	<iostream>
 	<fstream>
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	<SFML/Audio.hpp>
 	<dirent.h>
 	"../globale.h"
 	"../jeu.h"
@@ -800,7 +797,7 @@
 	"../globale.h"
 	<iostream>
 
-1269356896 source:e:\c++\holyspirit\source\moteurs\light.cpp
+1272456723 source:e:\c++\holyspirit\source\moteurs\light.cpp
 	<iostream>
 	<math.h>
 	"light.h"
@@ -815,13 +812,13 @@
 	"../globale.h"
 	<fstream>
 
-1272298316 source:e:\c++\holyspirit\source\moteurs\moteurgraphique.cpp
+1272456592 source:e:\c++\holyspirit\source\moteurs\moteurgraphique.cpp
 	"moteurGraphique.h"
 	"../globale.h"
 	<iostream>
 	<sstream>
 
-1271953304 source:e:\c++\holyspirit\source\moteurs\moteurparticule.cpp
+1272299292 source:e:\c++\holyspirit\source\moteurs\moteurparticule.cpp
 	"moteurParticule.h"
 	"../globale.h"
 	<fstream>
@@ -855,7 +852,7 @@
 	"jeu.h"
 	"constantes.h"
 
-1271593729 source:e:\c++\holyspirit\source\menu.cpp
+1272299292 source:e:\c++\holyspirit\source\menu.cpp
 	"menu.h"
 	"globale.h"
 	<iostream>
@@ -4705,7 +4702,7 @@
 	"../Map/tileset.h"
 	"light.h"
 
-1272209135 source:e:\c++\holyspirit\source\moteurs\entite_graphique.cpp
+1272299292 source:e:\c++\holyspirit\source\moteurs\entite_graphique.cpp
 	"Entite_graphique.h"
 	"../globale.h"
 
@@ -5747,7 +5744,7 @@
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1272296825 source:e:\c++\holyspirit\source\contextes\c_mainmenu.cpp
+1272299292 source:e:\c++\holyspirit\source\contextes\c_mainmenu.cpp
 	"../jeu.h"
 	"../globale.h"
 	<iostream>
@@ -6340,4 +6337,20 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
+
+1272457334 source:e:\c++\holyspirit\source\map\map_miracles.cpp
+	"map.h"
+	<iostream>
+	<fstream>
+	<dirent.h>
+	"../globale.h"
+	"../jeu.h"
+
+1272384220 source:e:\c++\holyspirit\source\map\map_scripts.cpp
+	"map.h"
+	<iostream>
+	<fstream>
+	<dirent.h>
+	"../globale.h"
+	"../jeu.h"
 
