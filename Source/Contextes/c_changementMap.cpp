@@ -42,6 +42,10 @@ void c_Chargement::setC_Chargement(std::string prochaineMap,coordonnee coordonne
 {
     tempsActuel=0,tempsPrecedent=0,temps_ecoule=0,tempsEcouleDepuisDernierAffichage=0;
 
+    mort = false;
+    z = 0;
+    configuration->effetNoir=0;
+
     m_coordonneePerso.x=coordonneePerso.x;
     m_coordonneePerso.y=coordonneePerso.y;
     m_nomProchaineMap=prochaineMap;
@@ -109,6 +113,9 @@ void c_Chargement::setC_Chargement(std::string prochaineMap,coordonnee coordonne
 
     allerVersImageChargement=true;
     m_tempsChargement=0;
+
+    if(m_debut)
+        augmenterNoir = false;
 }
 
 void c_Chargement::Utiliser(Jeu *jeu)
@@ -119,14 +126,12 @@ void c_Chargement::Utiliser(Jeu *jeu)
         configuration->RafraichirLumiere=0;
     }
 
-    jeu->m_display=true;
-
     temps_ecoule=0;
     temps_ecoule=jeu->Clock.GetElapsedTime();
     tempsEcouleDepuisDernierAffichage+=temps_ecoule;
     jeu->Clock.Reset();
 
-    if ((z>=49 && !augmenterNoir && allerVersImageChargement) || m_debut)
+    if ((z>=49 && !augmenterNoir && allerVersImageChargement) || m_debut && jeu->m_display)
     {
         if(jeu->m_jeu->m_thread_sauvegarde && ! m_debut)
         {
@@ -391,4 +396,6 @@ void c_Chargement::Utiliser(Jeu *jeu)
         jeu->Clock.Reset();
         jeu->m_contexte = jeu->m_jeu;
     }
+
+    jeu->m_display=true;
 }

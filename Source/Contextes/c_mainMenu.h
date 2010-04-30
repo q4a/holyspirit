@@ -50,6 +50,8 @@ private:
     std::string nom_hero;
 
     sf::Text texte;
+
+    float time;
 };
 
 #endif

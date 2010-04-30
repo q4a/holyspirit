@@ -360,6 +360,7 @@ void c_MainMenu::Utiliser(Jeu *jeu)
 
                     eventManager->StopEvenement(Mouse::Left,EventClic);
                     no_ecran = E_PRINCIPAL;
+                    jeu->m_display = false;
                 }
             }
             else
@@ -434,6 +435,15 @@ void c_MainMenu::Utiliser(Jeu *jeu)
         texte.SetY(configuration->Resolution.h/2 + 48 );
         texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
         texte.SetColor(Color(150,100,50));
+
+        if(time > 0.5)
+            texte.SetString(nom_hero + "|");
+        else
+            texte.SetString(nom_hero);
+        time += temps_ecoule;
+        if(time > 1)
+            time = 0;
+
         moteurGraphique->AjouterTexte(&texte,19,1);
 
         texte.SetCharacterSize(48);
