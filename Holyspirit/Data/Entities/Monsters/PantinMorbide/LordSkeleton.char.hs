@@ -34,10 +34,7 @@ $
 	$
 
 	*
-		*Unique_long_sword.item.hs
-		r50
-		
-		*Long_sword.item.hs
+		*Bone_spadone.item.hs
 		r2000
 	$
 
@@ -71,13 +68,7 @@ $
 	$
 
 	*
-		*Unique_shield.item.hs
-		r50
-		
-		*Shield_bronze.item.hs
-		r500
-
-		*Great_shield.item.hs
+		*Bone_shield.item.hs
 		r2000
 	$
 

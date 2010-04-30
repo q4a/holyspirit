@@ -111,3 +111,7 @@ Schéma : Golem de charbon ardent
 Schéma expliquant la confection d'un compagnon golem en charbon.
 Golem de charbon ardent
 Un puissant allié.\Le golem de charbon ardent est un humanoide\en charbon incendescant.
+Espadon en os
+Une épée à deux mains taillée dans l'os.
+Bouclier en os
+Bouclier fabriqué à l'aide d'os humains.\Certains prétendent qu'ils sont maudits...
