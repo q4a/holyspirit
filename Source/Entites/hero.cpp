@@ -2250,7 +2250,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> &trader, bool h
 
             if (trader[i].getPosition().y-m_defilement_trader<0)
             {
-                sprite.SetSubRect(sf::IntRect(trader[i].getPositionImage().x,trader[i].getPositionImage().y+(-trader[i].getPosition().y+m_defilement_trader)*32,trader[i].getTaille().x*32,trader[i].getTaille().y*32));
+                sprite.SetSubRect(sf::IntRect(trader[i].getPositionImage().x,trader[i].getPositionImage().y+(-trader[i].getPosition().y+m_defilement_trader)*32,trader[i].getTaille().x*32,trader[i].getTaille().y*32-(-trader[i].getPosition().y+m_defilement_trader)*32));
                 sprite.Resize(trader[i].getTaille().x*32,trader[i].getTaille().y*32-(-trader[i].getPosition().y+m_defilement_trader)*32);
                 sprite.Move(0,(-trader[i].getPosition().y+m_defilement_trader)*32);
             }

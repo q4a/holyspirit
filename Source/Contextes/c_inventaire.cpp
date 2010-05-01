@@ -134,12 +134,6 @@ void c_Inventaire::Utiliser(Jeu *jeu)
     if(jeu->hero.m_objetEnMain == -1)
         eventManager->AfficherCurseur();
 
-
-    jeu->map->AfficherSac(jeu->hero.m_personnage.getCoordonnee(),m_decalage,jeu->hero.m_classe.position_sac_inventaire,jeu->hero.m_caracteristiques,jeu->hero.m_cheminClasse);
-
-    jeu->menu.AfficherHUD(&jeu->hero.m_classe);
-    jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,-1,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
-
     if (eventManager->getEvenement(Mouse::Left,EventClic))
     {
         if (jeu->hero.m_objetEnMain==-1
@@ -218,8 +212,10 @@ void c_Inventaire::Utiliser(Jeu *jeu)
     if (jeu->hero.m_defilement_trader>jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h)
         jeu->hero.m_defilement_trader=jeu->hero.m_max_defilement_trader-jeu->hero.m_classe.position_contenu_marchand.h;
 
-  //  GestionRaccourcis(jeu);
+    jeu->map->AfficherSac(jeu->hero.m_personnage.getCoordonnee(),m_decalage,jeu->hero.m_classe.position_sac_inventaire,jeu->hero.m_caracteristiques,jeu->hero.m_cheminClasse);
 
+    jeu->menu.AfficherHUD(&jeu->hero.m_classe);
+    jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,-1,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
 
     coordonnee position;
     position.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;

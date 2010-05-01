@@ -78,16 +78,6 @@ void c_Miracles::Utiliser(Jeu *jeu)
         jeu->Next();
     }
 
-    jeu->menu.AfficherMiracles(m_decalage, &jeu->hero.m_classe, m_fenetre);
-
-    if(jeu->hero.m_miracleEnMain < 0)
-        eventManager->AfficherCurseur();
-
-    jeu->hero.AfficherMiracles(m_decalage, m_fenetre);
-
-    jeu->menu.AfficherHUD(&jeu->hero.m_classe);
-    jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,-1,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
-
     int temp = GestionBoutons(jeu);
     if(temp >= 0)
     {
@@ -98,6 +88,16 @@ void c_Miracles::Utiliser(Jeu *jeu)
         if(jeu->next_screen == 5 || jeu->next_screen == 4)
             jeu->next_screen = 3;
     }
+
+    jeu->menu.AfficherMiracles(m_decalage, &jeu->hero.m_classe, m_fenetre);
+
+    if(jeu->hero.m_miracleEnMain < 0)
+        eventManager->AfficherCurseur();
+
+    jeu->hero.AfficherMiracles(m_decalage, m_fenetre);
+
+    jeu->menu.AfficherHUD(&jeu->hero.m_classe);
+    jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,-1,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
 
     for(int i = 0;i < (int)jeu->hero.m_classe.boutons_miracles.size(); ++i)
         if(eventManager->getPositionSouris().x >  AutoScreenAdjust(jeu->hero.m_classe.boutons_miracles[i].position.x,0).x

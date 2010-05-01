@@ -81,19 +81,6 @@ void c_Bless::Utiliser(Jeu *jeu)
         jeu->Next();
     }
 
-    jeu->menu.AfficherInventaire(m_decalage,&jeu->hero.m_classe,false);
-    jeu->menu.AfficherCraft(m_decalage,&jeu->hero.m_classe);
-
-    jeu->hero.AfficherInventaire(m_decalage,m_trader,true);
-
-    if(jeu->hero.m_objetEnMain == -1)
-        eventManager->AfficherCurseur();
-
-    jeu->map->AfficherSac(jeu->hero.m_personnage.getCoordonnee(),m_decalage,jeu->hero.m_classe.position_sac_inventaire,jeu->hero.m_caracteristiques, jeu->hero.m_cheminClasse);
-
-    jeu->menu.AfficherHUD(&jeu->hero.m_classe);
-    jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,-1,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
-
     int temp = GestionBoutons(jeu);
     if(temp >= 0)
     {
@@ -113,6 +100,20 @@ void c_Bless::Utiliser(Jeu *jeu)
         if(jeu->next_screen == 2 || jeu->next_screen == 4)
             jeu->next_screen = 3;
     }
+
+
+    jeu->menu.AfficherInventaire(m_decalage,&jeu->hero.m_classe,false);
+    jeu->menu.AfficherCraft(m_decalage,&jeu->hero.m_classe);
+
+    jeu->hero.AfficherInventaire(m_decalage,m_trader,true);
+
+    if(jeu->hero.m_objetEnMain == -1)
+        eventManager->AfficherCurseur();
+
+    jeu->map->AfficherSac(jeu->hero.m_personnage.getCoordonnee(),m_decalage,jeu->hero.m_classe.position_sac_inventaire,jeu->hero.m_caracteristiques, jeu->hero.m_cheminClasse);
+
+    jeu->menu.AfficherHUD(&jeu->hero.m_classe);
+    jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,-1,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
 
     jeu->hero.GererBless(&m_trader);
 

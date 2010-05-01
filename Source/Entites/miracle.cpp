@@ -127,7 +127,7 @@ Miracle::~Miracle()
     m_tileset.clear();
 }
 
-EntiteMiracle::EntiteMiracle(){ m_dejaConsommeFoi = false; m_miracleArme = false; }
+EntiteMiracle::EntiteMiracle(){ m_dejaConsommeFoi = false; }
 
 float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int level, char priorite, bool *cont);
 
@@ -343,6 +343,7 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
     m_chemin_concatene.push_back(m_chemin);
 
     m_level      = level;
+    m_miracleArme   = 0;
 
     std::vector<float> valeurs;
 
@@ -560,6 +561,10 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
 
                     case 'g':
                         fichier>>m_golem;
+                        break;
+
+                    case 'a':
+                        fichier>>m_miracleArme;
                         break;
 
                     case 'c':

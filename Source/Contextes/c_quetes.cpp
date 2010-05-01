@@ -66,6 +66,8 @@ void c_Quetes::Utiliser(Jeu *jeu)
         jeu->Next();
     }
 
+    int temp = GestionBoutons(jeu);
+
     jeu->menu.AfficherQuetes(m_decalage,&jeu->hero.m_classe);
 
     jeu->hero.AfficherQuetes(m_decalage);
@@ -75,7 +77,6 @@ void c_Quetes::Utiliser(Jeu *jeu)
 
     eventManager->AfficherCurseur();
 
-    int temp = GestionBoutons(jeu);
     if(temp >= 0)
     {
         jeu->next_screen = temp;

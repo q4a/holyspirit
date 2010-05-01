@@ -137,8 +137,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
     {
         jeu->hero.PlacerCamera();
 
-        Affichage(jeu);
         Evenements(jeu);
+        Affichage(jeu);
         tempsEcouleDepuisDernierAffichage=0;
     }
     FPS(jeu);
@@ -523,7 +523,7 @@ int GestionBoutons(Jeu *jeu)
             sprite.Move(0,9);
 
 
-        moteurGraphique->AjouterCommande(&sprite, 15,0);
+        moteurGraphique->AjouterCommande(&sprite, 17,0);
 
         if(jeu->hero.m_classe.boutons_menus_hud[i].Survol())
         {

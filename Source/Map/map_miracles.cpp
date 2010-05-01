@@ -421,12 +421,8 @@ bool Map::Miracle_Projectile(Hero *hero, Personnage *personnage, Miracle &modele
             m_projectile[info.m_IDObjet].m_supprime = true;
             info.m_cible = m_projectile[info.m_IDObjet].m_entite_cible;
 
-            if(miracleEnCours.m_miracleArme)
-            {
+            if(modele.m_miracleArme)
                 personnage->m_vientDeToucher = info.m_cible;
-                miracleEnCours.m_miracleArme = false;
-            }
-
 
             for (int p=0;p<(int)effet.m_lien.size();p++)
             {

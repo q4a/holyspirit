@@ -494,7 +494,7 @@
 
 1263653913 "
 
-1272117152 e:\c++\holyspirit\source\entites\miracle.h
+1272736778 e:\c++\holyspirit\source\entites\miracle.h
 	"../constantes.h"
 	"../Map/tile.h"
 	"../Moteurs/Entite_graphique.h"
@@ -633,7 +633,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1272299292 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
+1272738413 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -684,7 +684,7 @@
 	"../globale.h"
 	<sstream>
 
-1272299292 source:e:\c++\holyspirit\source\entites\hero.cpp
+1272704858 source:e:\c++\holyspirit\source\entites\hero.cpp
 	"../constantes.h"
 	"hero.h"
 	"../globale.h"
@@ -701,7 +701,7 @@
 	"../globale.h"
 	<iostream>
 
-1272297437 source:e:\c++\holyspirit\source\entites\miracle.cpp
+1272736882 source:e:\c++\holyspirit\source\entites\miracle.cpp
 	"miracle.h"
 	"../globale.h"
 	"Objet.h"
@@ -852,7 +852,7 @@
 	"jeu.h"
 	"constantes.h"
 
-1272299292 source:e:\c++\holyspirit\source\menu.cpp
+1272736463 source:e:\c++\holyspirit\source\menu.cpp
 	"menu.h"
 	"globale.h"
 	<iostream>
@@ -6338,7 +6338,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1272457334 source:e:\c++\holyspirit\source\map\map_miracles.cpp
+1272736959 source:e:\c++\holyspirit\source\map\map_miracles.cpp
 	"map.h"
 	<iostream>
 	<fstream>

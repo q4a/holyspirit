@@ -162,6 +162,7 @@ public:
     bool                        m_unique;
     bool                        m_direct;
     bool                        m_golem;
+    bool                        m_miracleArme;
     int                         m_cas;
     float                       m_cooldown;
     float                       m_cur_time;
@@ -212,7 +213,6 @@ public:
     coordonnee                          m_coordonneeCible;
     coordonnee                          m_coordonneeDepart;
     bool                                m_dejaConsommeFoi;
-    bool                                m_miracleArme;
     Objet                               *m_source;
 };
 
