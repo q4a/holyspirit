@@ -235,6 +235,10 @@ $
 		*Drawing_shield_bronze.item.hs
 		r2000
 	$
+	*
+  		*Drawing_golem_coal.item.hs
+		r1000
+	$
 	
 	
 	

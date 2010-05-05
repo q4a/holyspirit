@@ -1,8 +1,8 @@
 Retour
 Sauvegarder et quitter
 Réinitialiser la partie et quitter
-Vie : 
-Foi : 
+Vie
+Foi
 Force
 Dextérité
 Vitalité
@@ -60,4 +60,5 @@ Votre nom :
 Commencer
 Emplacement libre
 Afficher/Cacher les boutons
+Classe
 

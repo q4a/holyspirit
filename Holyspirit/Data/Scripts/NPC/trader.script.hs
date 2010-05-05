@@ -4,7 +4,12 @@ main
 		if variable * 0 * 0 
 		then
 			playSound * 0
-			speak * 32
+			if player_class " Data/Entities/Heroes/Concubine.class.hs"
+			then
+				speak * 57
+			else
+				speak * 32
+			end
 			variable * 0 * 1
 			speak_choice * 33 * 1
 			speak_choice * 34 * 2

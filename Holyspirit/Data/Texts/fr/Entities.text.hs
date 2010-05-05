@@ -34,4 +34,4 @@ Courtisane
 Pistolero
 Seigneur squelette
 Golem de charbon ardent
-
+Tas d'os

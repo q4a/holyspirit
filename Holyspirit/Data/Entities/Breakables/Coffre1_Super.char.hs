@@ -95,7 +95,11 @@ $
 		*Unique_necklage.item.hs
 		r50
 	$
-		*
+	*
+		*Drawing_golem_coal.item.hs
+		r1000
+	$
+	*
 		*Drawing_barbute.item.hs
 		r2000
 
@@ -109,6 +113,24 @@ $
 		r2000
 
 		*Drawing_shield_bronze.item.hs
+		r2000
+	$
+	*
+		*Litanie_0.item.hs
+		r4000
+		*Litanie_toxic_0.item.hs
+		r2000
+	$
+	*
+		*Litanie_0.item.hs
+		r4000
+		*Litanie_toxic_0.item.hs
+		r2000
+	$
+	*
+		*Litanie_0.item.hs
+		r4000
+		*Litanie_toxic_0.item.hs
 		r2000
 	$
 
