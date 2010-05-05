@@ -1109,7 +1109,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
          &&eventManager->getPositionSouris().x < string.GetRect().Left + string.GetRect().Width
          &&eventManager->getPositionSouris().y > string.GetRect().Top
          &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height)
-            moteurGraphique->AjouterTexte(configuration->getText(0,50),coordonnee(  eventManager->getPositionSouris().x,
+            moteurGraphique->AjouterTexte(configuration->getText(0,62),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
                                           19,0,12,sf::Color(224,224,224),1);
     }
@@ -1625,9 +1625,9 @@ void Hero::AfficherQuetes(float decalage)
         position.y += 19;
     }
 
-    int queteAffichee = m_queteSelectionnee;
-    if (m_quetePointee >= 0)
-        queteAffichee = m_quetePointee;
+    int queteAffichee = 0;
+    if(m_queteSelectionnee >= 0)
+        queteAffichee = m_queteSelectionnee;
 
     if (queteAffichee >= 0 && queteAffichee < (int)m_quetes.size())
     {

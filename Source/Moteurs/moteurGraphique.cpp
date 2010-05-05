@@ -381,9 +381,13 @@ void MoteurGraphique::Afficher()
         m_light_screen.Display();
     }
 
-    bufferImage.Clear(sf::Color(0,0,0,255));
-    m_water_screen.Clear(sf::Color(0,0,0,255));
-    m_distortion_screen.Clear(sf::Color(128,128,128,255));
+    if(configuration->Reflection)
+        m_water_screen.Clear(sf::Color(0,0,0,255));
+    else
+        bufferImage.Clear(sf::Color(0,0,0,255));
+
+    if(configuration->Distortion)
+        m_distortion_screen.Clear(sf::Color(128,128,128,255));
 
     if(configuration->postFX && configuration->Distortion)
     for (IterCommande=m_distortion_commandes.begin();IterCommande!=m_distortion_commandes.end();++IterCommande)
@@ -448,13 +452,14 @@ void MoteurGraphique::Afficher()
             bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectDistortion);
         }
 
-
         if (k!=9)
         {
             for (IterCommande=m_commandes[k].begin();IterCommande!=m_commandes[k].end();++IterCommande)
             {
-                if(k==0)
-                    IterCommande->m_sprite.SetColor(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255,255));
+                if(k == 0)
+                    IterCommande->m_sprite.SetColor(sf::Color(m_soleil.rouge*m_soleil.intensite/255,
+                                                              m_soleil.vert*m_soleil.intensite/255,
+                                                              m_soleil.bleu*m_soleil.intensite/255,255));
 
                 if(k == 0 && configuration->postFX && configuration->Reflection)
                 {

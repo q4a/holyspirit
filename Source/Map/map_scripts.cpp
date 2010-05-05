@@ -562,6 +562,11 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                     if (!jeu->menu.m_dialogue.empty())
                         ok=false;
                 }
+                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="player_class")
+                {
+                    if (jeu->hero.m_cheminClasse != script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].valeurString)
+                        ok=false;
+                }
                 else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="quest")
                 {
                     if (script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 1) == -1)

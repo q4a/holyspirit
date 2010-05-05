@@ -85,6 +85,8 @@ void Configuration::ChargerConf()
                 fichier>>syncronisation_verticale;
             if (chaine== "volume:")
                 fichier>>volume;
+            if (chaine== "music_volume:")
+                fichier>>music_volume;
             if (chaine== "minimap:")
                 fichier>>Minimap;
             if (chaine== "light_refresh_rate:")
@@ -378,6 +380,7 @@ void Configuration::Sauvegarder()
         fichier<<std::endl;
         fichier<<"SOUNDS"<<std::endl;
         fichier<< "volume: " <<volume<<std::endl;
+        fichier<< "music_volume: " <<music_volume<<std::endl;
         fichier<<std::endl;
         fichier<<std::endl;
         fichier<<"INTERFACE"<<std::endl;

@@ -122,8 +122,8 @@ void MoteurSons::JouerSon(int ID,coordonnee position,bool unique,int volume)
             m_IDSons[sonEnCours]=ID;
             m_sons[sonEnCours].SetBuffer(m_buffers[ID]);
 
-            sf::Sound::Status Status = m_sons[sonEnCours].GetStatus();
-            if (Status==0)
+            //sf::Sound::Status Status = m_sons[sonEnCours].GetStatus();
+            //if (Status==0)
                 m_sons[sonEnCours].Play();
 
             m_sons[sonEnCours].SetPosition(position.x,0,position.y);
@@ -141,7 +141,7 @@ void MoteurSons::PlayNewMusic(std::string chemin)
     m_music.Stop();
 
     m_music.SetLoop(false);
-    m_music.SetVolume(100);
+    m_music.SetVolume(configuration->music_volume);
 
     if (!m_music.OpenFromFile(chemin.c_str()))
         console->Ajouter("Impossible de charger : "+chemin,1);

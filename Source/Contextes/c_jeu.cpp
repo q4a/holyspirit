@@ -790,11 +790,9 @@ void c_Jeu::Affichage(Jeu *jeu)
 {
     moteurGraphique->Gerer(tempsEcouleDepuisDernierAffichage,jeu->map->getDimensions().y);
 
-    jeu->map->Afficher(&jeu->hero,eventManager->getEvenement(Key::LAlt,EventKey),alpha_map);//Affichage de la jeu->map
+    jeu->map->Afficher(&jeu->hero,eventManager->getEvenement(Key::LAlt,EventKey),alpha_map);
 
     jeu->hero.AfficherAmis();
-
-   // jeu->hero.AfficherFlecheQuetes(jeu->map->getNom(), tempsEcoule);
 
     if (configuration->Minimap)
     {

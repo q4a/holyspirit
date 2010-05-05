@@ -213,14 +213,14 @@ void Entite_graphique::Generer()
 
             m_sprite.SetImage(*moteurGraphique->getImage(m_tileset->getImage(m_noAnimation)));
             m_sprite.SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y,
-                                            positionPartieDecor.w, positionPartieDecor.h));
+                                            positionPartieDecor.w, positionPartieDecor.h - 1));
 
             m_sprite.SetOrigin(m_tileset->getCentreDuTile(m_noAnimation).x,m_tileset->getCentreDuTile(m_noAnimation).y);
 
-            m_sprite.SetColor(sf::Color(m_sprite.GetColor().r,
-                                        m_sprite.GetColor().g,
-                                        m_sprite.GetColor().b,
-                                        m_tileset->getOpacityDuTile(m_noAnimation)));
+            m_sprite.SetColor(sf::Color(m_color.r,
+                                        m_color.g,
+                                        m_color.b,
+                                        m_tileset->getOpacityDuTile(m_noAnimation) * m_color.a / 255));
 
             m_sprite.SetScale((float)m_scale.x*0.01, (float)m_scale.y*0.01);
             m_sprite.SetRotation(m_rotation);

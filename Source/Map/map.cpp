@@ -1046,7 +1046,7 @@ void Map::Initialiser(Hero *hero)
                         m_decor[couche][i][j].m_entite_herbe = moteurGraphique->getEntiteGraphique(m_herbe[m_decor[couche][i][j].getHerbe()], numeroHerbe, 10);
                         m_decor[couche][i][j].m_entite_herbe.m_sprite.SetPosition(position.x, position.y - m_decor[0][i][j].getHauteur());
                         m_decor[couche][i][j].m_entite_herbe.m_sprite.SetScale((float)m_decor[couche][i][j].getTailleHerbe()/100,(float)m_decor[couche][i][j].getTailleHerbe()/100);
-                        m_decor[couche][i][j].m_entite_herbe.m_sprite.SetColor(m_decor[couche][i][j].getCouleurHerbe());
+                        m_decor[couche][i][j].m_entite_herbe.m_color = m_decor[couche][i][j].getCouleurHerbe();
 
                         m_decor[couche][i][j].m_entite_herbe.Initialiser(coordonnee ());
                     }
@@ -1382,7 +1382,7 @@ void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_
 
                 texte.SetPosition(AutoScreenAdjust(position_sac_inventaire.x,
                                                    position_sac_inventaire.y+(z-m_defilerObjets)*20, decalage));
-                texte.Move((position_sac_inventaire.w/2-texte.GetRect().Width)*0.5,0);
+                texte.Move((position_sac_inventaire.w-texte.GetRect().Width)*0.5,0);
 
                 moteurGraphique->AjouterTexte(&texte,16);
             }

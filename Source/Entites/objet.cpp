@@ -1221,7 +1221,7 @@ void Objet::Generer(int bonus)
             if(bonus != 0)
             {
                 int random=rand()%10000 / bonus;
-                if (random<=900)
+                if (random<=1200)
                     rarete=BONNEFACTURE;
 
                 if (random<=300)
@@ -1975,7 +1975,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
     if(m_type == GOLEM)
     {
         std::ostringstream buf;
-        buf<<configuration->getText(0,3)<<m_gol_caract.maxVie;
+        buf<<configuration->getText(0,3)<<" : "<<m_gol_caract.maxVie;
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
 
         buf.str("");
