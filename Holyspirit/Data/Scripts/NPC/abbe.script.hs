@@ -1,6 +1,7 @@
 main 
 	if talk
 	then
+		
 		if variable * 2 * 0
 		then
 			if variable * 3 * 0 
