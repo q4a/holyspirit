@@ -323,6 +323,15 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         {
             m_monstre[monstre].m_actif = script->getValeur(noInstruction, 0);
         }
+        else if (script->m_instructions[noInstruction].nom=="look_hero" && monstre != -1)
+        {
+            float m=atan2(-(double)(hero->m_personnage.getCoordonneePixel().x-m_monstre[monstre].getCoordonneePixel().x),
+                          -(double)(hero->m_personnage.getCoordonneePixel().y-m_monstre[monstre].getCoordonneePixel().y));
+            m+=M_PI/3;
+
+            m_monstre[monstre].setAngle(m*180/M_PI);
+           // m_monstre[monstre].m_actif = script->getValeur(noInstruction, 0);
+        }
         else if (script->m_instructions[noInstruction].nom=="gift_all_items" && monstre != -1)
         {
             if (m_monstre[monstre].getCoordonnee().x>=0

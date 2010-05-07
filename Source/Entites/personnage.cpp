@@ -1086,6 +1086,10 @@ void Personnage::setPose(int pose)
 void Personnage::setAngle(int angle)
 {
     m_angle=angle;
+    if (m_angle>=360)
+        m_angle=0;
+    if (m_angle<0)
+        m_angle=360+m_angle;
 }
 void Personnage::setErreurPathfinding(bool erreur)
 {

@@ -110,7 +110,10 @@ void Entite_graphique::NextTile()
                 if(m_tileset->getLumiereDuTile(m_noAnimation).intensite != moteurGraphique->LightManager->GetIntensity(m_light))
                     modif = true;
 
-                moteurGraphique->LightManager->SetIntensity(m_light,m_tileset->getLumiereDuTile(m_noAnimation).intensite);
+                if(m_tileset->getLumiereDuTile(m_noAnimation).intensite > 0)
+                    moteurGraphique->LightManager->SetIntensity(m_light,255);
+                else
+                    moteurGraphique->LightManager->SetIntensity(m_light,0);
                 moteurGraphique->LightManager->SetRadius(m_light,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3);
             }
             if(m_tileset->getLumiereDuTile(m_noAnimation).rouge >= 0)
