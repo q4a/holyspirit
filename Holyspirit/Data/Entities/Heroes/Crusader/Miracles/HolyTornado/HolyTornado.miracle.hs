@@ -13,35 +13,35 @@ $
 	* f%0 e2 c2 $
 $
 //Effets
-	* t1 l1 l5 l26 l28 ia2 $
+	* t1 l1 l5 l26 ia2 $
 	* t3 l22 l2 l22 s0 ia8 c $
 	* t7 l3 ia23 ic1 l29 id2 $
 	* t3 l4 s1 ia8 $
 	* t3 l27 s2 ia8 $
 	
 	* t10 l6 ia2 ib16 ic0 $
-	* t8  l7 ia-1 ib6 ic4 $
+	* t8  l7 l28 ia-1 ib6 ic4 $
 
 	* t10 l8 ia2 ib22 ic1 $
-	* t8  l9 ia-1 ib2 ic2 $
+	* t8  l9 l28 ia-1 ib2 ic2 $
 
 	* t10 l10 ia2 ib22 ic1 $
-	* t8  l11 ia-1 ib2 ic2 $
+	* t8  l11 l28 ia-1 ib2 ic2 $
 
 	* t10 l12 ia2 ib22 ic1 $
-	* t8  l13 ia-1 ib2 ic2 $
+	* t8  l13 l28 ia-1 ib2 ic2 $
 
 	* t10 l14 ia2 ib22 ic1 $
-	* t8  l15 ia-1 ib2 ic2 $
+	* t8  l15 l28 ia-1 ib2 ic2 $
 
 	* t10 l16 ia2 ib22 ic1 $
-	* t8  l17 ia-1 ib2 ic2 $
+	* t8  l17  ia-1 ib2 ic2 $
 
 	* t10 l18 ia2 ib22 ic1 $
-	* t8  l19 ia-1 ib2 ic2 $
+	* t8  l19  ia-1 ib2 ic2 $
 
 	* t10 l20 ia2 ib22 ic1 $
-	* t8  l21 ia-1 ib2 ic2 $
+	* t8  l21  ia-1 ib2 ic2 $
 
 	* t10 ia2 ib22 ic1 $
 
@@ -54,7 +54,7 @@ $
 	* t16 ia1 $
 	* t16 ia0 $
 	
-	* t11 ia1 ib10 ic0 $
+	* t11 ia1 ib10 ic1 $
 
 	* t-1 $
 $

@@ -1,7 +1,13 @@
 main 
+
+	if  stop
+		distance * 3
+	then
+			look_hero
+	end
+
 	if talk
 	then
-		
 		if variable * 2 * 0
 		then
 			if variable * 3 * 0 
@@ -39,17 +45,23 @@ main
 			trade
 		end
 	else
-		variable * 2 * 0
-		if variable * 0 * 75
+		if stop
+			distance * 3
 		then
-			randomDisplace
-			variable * 0 * 0
-		end
-		incrementVariable * 0 * 1
-		
-		if no_speak
-		then
-			variable * 3 * 0
+			
+		else
+			if no_speak
+			then
+				variable * 2 * 0
+				if variable * 0 * 75
+				then
+					randomDisplace
+					variable * 0 * 0
+				end
+				incrementVariable * 0 * 1
+				
+				variable * 3 * 0
+			end
 		end
 	end
 end 
