@@ -327,10 +327,11 @@ void Hero::SauvegarderApercu()
     int etat = m_personnage.getEtat();
     int pose = m_personnage.getPose();
     int angle = m_personnage.getAngle();
+    int next_angle = m_personnage.getNextAngle();
 
     m_personnage.setJustEtat(0);
     m_personnage.setPose(0);
-    m_personnage.setAngle(315);
+    m_personnage.setForcedAngle(315);
 
     CalculerOrdreAffichage();
 
@@ -349,7 +350,8 @@ void Hero::SauvegarderApercu()
 
     m_personnage.setJustEtat(etat);
     m_personnage.setPose(pose);
-    m_personnage.setAngle(angle);
+    m_personnage.setAngle(next_angle);
+    m_personnage.setForcedAngle(angle);
 
     if (configuration->debug)
             console->Ajouter("/Image affichée.");

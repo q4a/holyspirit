@@ -89,6 +89,8 @@ Personnage::Personnage()
     m_cible                             = NULL;
 
     m_angle                             = 0;
+    m_next_angle                        = 0;
+    m_time_next_angle                   = 0;
 
     m_pousse.x                          = 0;
     m_pousse.y                          = 0;
@@ -568,14 +570,33 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception, bool noD
 
 bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap)
 {
-    //int buf=(int)(tempsEcoule*1000);
-    //tempsEcoule=(float)buf/1000;
-
     sf::Vector2f pos;
     pos.x=((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE);
     pos.y=((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)+64+1;
 
     moteurGraphique->LightManager->SetPosition(m_entite_graphique.m_light,pos);
+
+    m_time_next_angle += tempsEcoule;
+    if(m_time_next_angle > 4)
+    {
+        int newAngle = m_next_angle;
+
+        if(m_next_angle - m_angle > 180)
+            newAngle -= 360;
+        if(m_angle - m_next_angle > 180)
+            newAngle += 360;
+
+        m_time_next_angle -= 4;
+        if(m_angle - newAngle >= 45 )
+            m_angle -= 45;
+        if(newAngle - m_angle >= 45 )
+            m_angle += 45;
+
+        if (m_angle>=360)
+            m_angle-=360;
+        if (m_angle<0)
+            m_angle+=360;
+    }
 
     if(m_pousseEnCours)
     {
@@ -682,7 +703,7 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap)
                         m_positionPixel.y-=(float)4*tempsEcoule*m_caracteristique.vitesse;
                 }
 
-                m_angle = calculerAngle(m_cheminFinal.x-m_positionCase.x,m_cheminFinal.y-m_positionCase.y);
+                m_next_angle = calculerAngle(m_cheminFinal.x-m_positionCase.x,m_cheminFinal.y-m_positionCase.y);
 
                 if ((m_positionCase.x<m_cheminFinal.x&&m_positionPixel.x>=m_cheminFinal.x*COTE_TILE)
                   ||(m_positionCase.x>m_cheminFinal.x&&m_positionPixel.x<=m_cheminFinal.x*COTE_TILE)
@@ -963,7 +984,7 @@ int Personnage::Animer(Modele_Personnage *modele,float temps)
     return retour;
 }
 
-void Personnage::Frappe(coordonnee direction,coordonnee position)
+void Personnage::Frappe(coordonnee position,coordonnee direction)
 {
     if (m_etat<2)
     {
@@ -977,14 +998,11 @@ void Personnage::Frappe(coordonnee direction,coordonnee position)
 
     frappeEnCours=1;
 
-    float m=atan2((double)(direction.x-position.x),(double)(direction.y-position.y));
-    m+=M_PI/3;
+    float m=atan2(-(double)(direction.y-position.y),(double)(direction.x-position.x));
+    m-=M_PI/4;
 
-    m_angle=(int)(m*180/M_PI);
-    if (m_angle>=360)
-        m_angle=0;
-    if (m_angle<0)
-        m_angle=360+m_angle;
+
+    setAngle((int)(m*180/M_PI));
 
     m_cheminFinal=m_positionCase;
     m_arrivee=m_cheminFinal;
@@ -1071,11 +1089,12 @@ void Personnage::setJustEtat(int etat)
 }
 void Personnage::addAngle(int angle)
 {
-    m_angle += angle;
-    if(m_angle < 0)
-        m_angle += 360;
-    if(m_angle > 360)
-        m_angle -= 360;
+    m_next_angle += angle;
+    if(m_next_angle < 0)
+        m_next_angle += 360;
+    if(m_next_angle >= 360)
+        m_next_angle -= 360;
+ //   m_next_angle = m_angle;
 }
 
 
@@ -1085,11 +1104,20 @@ void Personnage::setPose(int pose)
 }
 void Personnage::setAngle(int angle)
 {
+    m_next_angle=angle;
+    if (m_next_angle>=360)
+        m_next_angle-=360;
+    if (m_next_angle<0)
+        m_next_angle+=360;
+}
+void Personnage::setForcedAngle(int angle)
+{
     m_angle=angle;
     if (m_angle>=360)
-        m_angle=0;
+        m_angle-=360;
     if (m_angle<0)
-        m_angle=360+m_angle;
+        m_angle+=360;
+    m_next_angle = m_angle;
 }
 void Personnage::setErreurPathfinding(bool erreur)
 {
@@ -1237,6 +1265,10 @@ int Personnage::getEtat()
 int Personnage::getAngle()
 {
     return m_angle;
+}
+int Personnage::getNextAngle()
+{
+    return m_next_angle;
 }
 int Personnage::getPose()
 {

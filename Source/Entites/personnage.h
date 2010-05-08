@@ -113,6 +113,7 @@ public:
     void setJustEtat(int etat);
     void setPose(int  pose);
     void setAngle(int  angle);
+    void setForcedAngle(int  angle);
     void addAngle(int angle);
     void setVitesse(float vitesse);
     void setCoordonneePixel(coordonnee position);
@@ -128,6 +129,7 @@ public:
 
     int getEtat();
     int getAngle();
+    int getNextAngle();
     int getPose();
     const Lumiere &getPorteeLumineuse();
     const Caracteristique &getCaracteristique();
@@ -195,7 +197,8 @@ public:
     std::vector<int>    m_variables_miracles;
 
 protected:
-    int m_etat,m_angle;
+    int m_etat,m_angle,m_next_angle;
+    float m_time_next_angle;
     bool m_erreurPathfinding;
     Caracteristique m_caracteristique;
     coordonnee m_cheminFinal,m_arrivee,m_ancienneArrivee,m_mauvaiseArrivee, m_positionCase,m_positionAffichage,m_positionPixelPrecedente;

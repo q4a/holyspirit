@@ -330,6 +330,7 @@ bool Map::Miracle_CorpsACorps (Hero *hero, Personnage *personnage, Miracle &mode
              && personnage->getArrivee().y == personnage->getCoordonnee().y)
             {
                 personnage->Frappe(personnage->getCoordonneePixel(),info.m_cible->getCoordonneePixel());
+
                 if(effet.m_informations[1])
                     personnage->m_miracleFrappeEnCours = true;
                 for (int p=0;p<(int)effet.m_lien.size();p++)
@@ -871,7 +872,7 @@ bool Map::Miracle_Charge(Hero *hero, Personnage *personnage, Miracle &modele, Ef
             m=0;
         if (m<0)
             m=360+m;
-        personnage->setAngle((int)m);
+        personnage->setForcedAngle((int)m);
     }
 
     if ( !(personnage->getCoordonnee().x == miracleEnCours.m_coordonneeCible.x && personnage->getCoordonnee().y == miracleEnCours.m_coordonneeCible.y) )

@@ -183,8 +183,8 @@ void ParticuleSysteme::Envoler(sf::Vector2f pos,int force, int type, float temps
                 float m = atan2((Iter->position.y - position.y)
                            * 2, (Iter->position.x - position.x));
 
-                Iter->vecteur.x = cos(M_PI_2 + m);
-                Iter->vecteur.y = sin(M_PI_2 + m) * 0.5;
+                Iter->vecteur.x = -cos(M_PI_2 + m);
+                Iter->vecteur.y = -sin(M_PI_2 + m) * 0.5;
 
                 Iter->vecteur.x -= 6 * cos(m) / Iter->position.z;
                 Iter->vecteur.y -= 3 * sin(m) / Iter->position.z;

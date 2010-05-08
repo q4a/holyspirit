@@ -112,7 +112,7 @@ void Map::Script_UseMiracle(Jeu *jeu,Script *script,int noInstruction,int monstr
             if (m_monstre[monstre].m_miracleALancer == -1)
                 m_monstre[monstre].setEtat(2);
 
-            m_monstre[monstre].Frappe(m_monstre[monstre].getCoordonnee(),m_monstre[monstre].m_cible->getCoordonnee());
+            m_monstre[monstre].Frappe(m_monstre[monstre].getCoordonneePixel(),m_monstre[monstre].m_cible->getCoordonneePixel());
         }
         else
             m_monstre[monstre].setArrivee(m_monstre[monstre].getProchaineCase());
@@ -152,7 +152,7 @@ void Map::Script_Shoot(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
         m_monstre[monstre].setArrivee(m_monstre[monstre].getCoordonnee());
 
         m_monstre[monstre].m_miracleALancer=-1;
-        m_monstre[monstre].Frappe(m_monstre[monstre].getCoordonnee(),m_monstre[monstre].m_cible->getCoordonnee());
+        m_monstre[monstre].Frappe(m_monstre[monstre].getCoordonneePixel(),m_monstre[monstre].m_cible->getCoordonneePixel());
         m_monstre[monstre].m_shooter=true;
     }
 }
@@ -183,7 +183,7 @@ void Map::Script_Fight(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
                         m_monstre[monstre].setVu(0);
                     if (!m_monstre[monstre].frappeEnCours && !m_monstre[monstre].m_etatForce)
                         m_monstre[monstre].setEtat(2);
-                    m_monstre[monstre].Frappe(m_monstre[monstre].getCoordonnee(),m_monstre[monstre].m_cible->getCoordonnee());
+                    m_monstre[monstre].Frappe(m_monstre[monstre].getCoordonneePixel(),m_monstre[monstre].m_cible->getCoordonneePixel());
                     m_monstre[monstre].setArrivee(m_monstre[monstre].getCoordonnee());
                     m_monstre[monstre].m_shooter=false;
                 }
@@ -325,12 +325,11 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         }
         else if (script->m_instructions[noInstruction].nom=="look_hero" && monstre != -1)
         {
-            float m=atan2(-(double)(hero->m_personnage.getCoordonneePixel().x-m_monstre[monstre].getCoordonneePixel().x),
-                          -(double)(hero->m_personnage.getCoordonneePixel().y-m_monstre[monstre].getCoordonneePixel().y));
-            m+=M_PI/3;
+            float m=atan2(-(float)(hero->m_personnage.getCoordonneePixel().x-m_monstre[monstre].getCoordonneePixel().x),
+                          -(float)(hero->m_personnage.getCoordonneePixel().y-m_monstre[monstre].getCoordonneePixel().y));
+            m+=M_PI/12;
 
-            m_monstre[monstre].setAngle(m*180/M_PI);
-           // m_monstre[monstre].m_actif = script->getValeur(noInstruction, 0);
+            m_monstre[monstre].setAngle((int)(m*180/M_PI));
         }
         else if (script->m_instructions[noInstruction].nom=="gift_all_items" && monstre != -1)
         {
@@ -508,6 +507,11 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                 else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="touch" && monstre != -1)
                 {
                     if (!m_monstre[monstre].m_touche)
+                        ok=false;
+                }
+                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="stop" && monstre != -1)
+                {
+                    if (!seDeplacer)
                         ok=false;
                 }
                 else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="getState" && monstre != -1)
