@@ -10,7 +10,7 @@ Rang du monstre
 $
 Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse
-*v5000 di50 da100 m0.35 o1 a250 n2 t1.5 x40 $
+*v3000 di50 da100 m0.5 o1 a1000 n2 t1.5 x40 $
 $
 *Data/Scripts/AI/LordMerangar.script.hs
 $
@@ -108,4 +108,5 @@ $
 *Data/Particule_system/human_bones.ps.hs
 $
 *Data/Entities/Monsters/PantinMorbide/Charge.miracle.hs
+*Data/Entities/Monsters/DemonicPriest/DemonicCircle.miracle.hs
 $

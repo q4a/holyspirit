@@ -7,14 +7,20 @@ main
 
 				if see
 				then
-					if rand * 99
+					incrementVariable * 2 * 1
+					
+					if variable * 2 * 100
 					then
-						if rand * 25 
-						then 
-							playSound * 3
-						else
-							playSound * 4
+						if rand * 90
+						then
+							if rand * 50 
+							then 
+								playSound * 3
+							else
+								playSound * 4
+							end
 						end
+						variable * 2 * 0
 					end
 	
 

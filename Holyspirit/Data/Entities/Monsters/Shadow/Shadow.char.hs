@@ -10,7 +10,7 @@ Rang du monstre
 $
 Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse/ i = visible sur minimap
-*v25 di5 da20 m0.5 h0 a10 n2 i0 x50 u1 $
+*v25 di20 da30 m0.5 h0 a10 n2 i0 x50 u1 $
 $
 *Data/Scripts/AI/shadow.script.hs
 $

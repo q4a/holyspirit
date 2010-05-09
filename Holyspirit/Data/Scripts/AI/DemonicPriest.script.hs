@@ -19,11 +19,11 @@ main
 				variable * 0 * -1
 				if distance * 2 
 				then
-					if rand * 75 
+					if rand * 25 
 					then
 						evasion
 					else
-						if rand * 25 
+						if rand * 75 
 						then
 							if numberInvocation * 0
 							then
@@ -63,7 +63,7 @@ main
 		
 			if variable * 0 * 0
 			then
-				if rand * 35
+				if rand * 75
 				then
 					if rand * 50
 					then
