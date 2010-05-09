@@ -87,7 +87,7 @@ void MoteurSons::JouerSon(int ID,coordonnee position,bool unique,int volume)
         if (unique)
         {
             for (int i=0;i<NOMBRE_SONS;i++)
-                if (m_IDSons[i]==ID)
+                if (m_IDSons[i]==ID && m_sons[i].GetStatus() != 0)
                 {
                     coordonnee positionHero;
                     positionHero.x = (int)(sf::Listener::GetPosition().x);
@@ -107,10 +107,6 @@ void MoteurSons::JouerSon(int ID,coordonnee position,bool unique,int volume)
 
                     if(position.x==-1&&position.y==-1)
                         m_sons[i].SetPosition(sf::Listener::GetPosition());
-
-                    sf::Sound::Status Status = m_sons[i].GetStatus();
-                    if (Status==0)
-                        m_sons[i].Play();
 
                     creerNouveauSon=false;
                 }

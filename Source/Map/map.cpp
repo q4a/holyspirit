@@ -742,6 +742,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                 break;
                             case 'i':
                                 *fichier>>hauteur;
+                                position.h = hauteur;
                                 break;
                             case 'c':
                                 *fichier>>added_minimap;
@@ -812,6 +813,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                                     break;
                                                 case 'i':
                                                     *fichier>>hauteur;
+                                                    position.h = hauteur;
                                                     break;
                                                 case 'p':
                                                     if(dernierEtaitMonstre)
@@ -1100,8 +1102,8 @@ void Map::Initialiser(Hero *hero)
                     Entite_graphique temp = m_decor[i][j][k].m_entite_graphique;
                     m_decor[i][j][k].m_entite_graphique = moteurGraphique->getEntiteGraphique(m_tileset[m_decor[i][j][k].getTileset()], m_decor[i][j][k].getTile(), m_decor[i][j][k].getCouche());
                     m_decor[i][j][k].m_entite_graphique.m_sprite.SetPosition(position.x, position.y);
-                    m_decor[i][j][k].m_entite_graphique.m_sprite.Move(m_decor[i][j][k].m_entite_graphique.m_decalage.x,
-                                                                      m_decor[i][j][k].m_entite_graphique.m_decalage.y);
+                    //m_decor[i][j][k].m_entite_graphique.m_sprite.Move(m_decor[i][j][k].m_entite_graphique.m_decalage.x,
+                     //                                                 m_decor[i][j][k].m_entite_graphique.m_decalage.y);
                     m_decor[i][j][k].m_entite_graphique.m_sprite.SetColor(
                             sf::Color(m_decor[i][j][k].m_entite_graphique.m_sprite.GetColor().r * m_decor[i][j][k].m_entite_graphique.m_color.r / 255,
                                       m_decor[i][j][k].m_entite_graphique.m_sprite.GetColor().g * m_decor[i][j][k].m_entite_graphique.m_color.g / 255,
@@ -1769,11 +1771,11 @@ int Map::AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coord
     position2.x=(cible.x-cible.y);
     position2.y=(cible.x+cible.y)/2;
 
-    m=atan2(position2.y-position.y,position2.x-position.x);
+    /*m=atan2(position2.y-position.y,position2.x-position.x);
 
-    m+=decalageAngle;
+    m+=decalageAngle;*/
 
-    m_projectile.back().m_rotation=m;
+    m_projectile.back().m_rotation=m + M_PI/4;
 
     m_projectile.back().m_positionCase=lanceur;
 

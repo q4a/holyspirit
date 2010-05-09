@@ -325,9 +325,9 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         }
         else if (script->m_instructions[noInstruction].nom=="look_hero" && monstre != -1)
         {
-            float m=atan2(-(float)(hero->m_personnage.getCoordonneePixel().x-m_monstre[monstre].getCoordonneePixel().x),
-                          -(float)(hero->m_personnage.getCoordonneePixel().y-m_monstre[monstre].getCoordonneePixel().y));
-            m+=M_PI/12;
+            float m=atan2(-(double)(hero->m_personnage.getCoordonneePixel().y-m_monstre[monstre].getCoordonneePixel().y),
+                           (double)(hero->m_personnage.getCoordonneePixel().x-m_monstre[monstre].getCoordonneePixel().x));
+            m-=M_PI/4;
 
             m_monstre[monstre].setAngle((int)(m*180/M_PI));
         }

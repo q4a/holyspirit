@@ -344,7 +344,7 @@ void Personnage::Afficher(Modele_Personnage *modele,bool surbrillance, bool sans
                 m_entite_graphique.m_sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
                 m_entite_graphique.m_sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
 
-                m_entite_graphique.m_sprite.Move(m_entite_graphique.m_decalage);
+                //m_entite_graphique.m_sprite.Move(m_entite_graphique.m_decalage);
                 m_entite_graphique.m_sprite.Scale((float)m_entite_graphique.m_scale.x*0.01, (float)m_entite_graphique.m_scale.y*0.01);
                 m_entite_graphique.m_sprite.SetColor(sf::Color( m_entite_graphique.m_sprite.GetColor().r * m_entite_graphique.m_color.r / 255,
                                                                 m_entite_graphique.m_sprite.GetColor().g * m_entite_graphique.m_color.g / 255,
@@ -1001,7 +1001,6 @@ void Personnage::Frappe(coordonnee position,coordonnee direction)
     float m=atan2(-(double)(direction.y-position.y),(double)(direction.x-position.x));
     m-=M_PI/4;
 
-
     setAngle((int)(m*180/M_PI));
 
     m_cheminFinal=m_positionCase;
@@ -1131,6 +1130,7 @@ void Personnage::setCoordonnee(coordonnee nouvellesCoordonnees)
 
     m_positionPixel.x=(float)nouvellesCoordonnees.x*COTE_TILE;
     m_positionPixel.y=(float)nouvellesCoordonnees.y*COTE_TILE;
+    m_positionPixel.h=nouvellesCoordonnees.h;
 
     m_arrivee.x=m_positionCase.x;
     m_arrivee.y=m_positionCase.y;

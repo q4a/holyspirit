@@ -191,8 +191,8 @@ void Entite_graphique::Initialiser(coordonnee pos)
                 {
 
                     sf::Vector2f position;
-                    position.x = pos.x;
-                    position.y = pos.y;
+                    position.x = pos.x + m_decalage.x;
+                    position.y = pos.y + m_decalage.y;
 
                     //if (m_tileset->getAnimationTile(m_noAnimation) != -1)
                         m_light = moteurGraphique->LightManager->Add_Dynamic_Light(position,m_tileset->getLumiereDuTile(m_noAnimation).intensite,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,12,
@@ -225,7 +225,10 @@ void Entite_graphique::Generer()
                                         m_color.b,
                                         m_tileset->getOpacityDuTile(m_noAnimation) * m_color.a / 255));
 
-            m_sprite.SetScale((float)m_scale.x*0.01, (float)m_scale.y*0.01);
+            m_sprite.SetScale(fabs((float)m_scale.x*0.01), fabs((float)m_scale.y*0.01));
+            (m_scale.x < 0) ? m_sprite.FlipX(true) : m_sprite.FlipX(false);
+            (m_scale.x < 0) ? m_sprite.FlipX(true) : m_sprite.FlipX(false);
+
             m_sprite.SetRotation(m_rotation);
 
             m_decalCouche = m_tileset->getLayerDuTile(m_noAnimation);

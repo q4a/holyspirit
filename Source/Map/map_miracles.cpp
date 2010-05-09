@@ -872,6 +872,8 @@ bool Map::Miracle_Charge(Hero *hero, Personnage *personnage, Miracle &modele, Ef
             m=0;
         if (m<0)
             m=360+m;
+
+        m = (int)(m/45)*45;
         personnage->setForcedAngle((int)m);
     }
 

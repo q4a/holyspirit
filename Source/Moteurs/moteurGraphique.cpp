@@ -348,7 +348,7 @@ void MoteurGraphique::Afficher()
 
         for (IterCommande=m_commandes[9].begin();IterCommande!=m_commandes[9].end();++IterCommande)
         {
-            IterCommande->m_sprite.SetColor(sf::Color(0,0,0,sprite.GetColor().a));
+            IterCommande->m_sprite.SetColor(sf::Color(0,0,0,IterCommande->m_sprite.GetColor().a));
             m_light_screen2.Draw(IterCommande->m_sprite);
         }
 
@@ -754,12 +754,18 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
         && entite->m_sprite.GetPosition().y + entite->m_sprite.GetSize().y - entite->m_sprite.GetOrigin().y     >= GetViewRect(m_camera).Top
         && entite->m_sprite.GetPosition().y - entite->m_sprite.GetOrigin().y                                    <  GetViewRect(m_camera).Top + GetViewRect(m_camera).Height
         || entite->m_sprite.GetRotation() != 0)
-            AjouterCommande(&entite->m_sprite, entite->m_couche + entite->m_decalCouche, true);
+        {
+            sf::Sprite sprite = entite->m_sprite;
+            sprite.Move(entite->m_decalage.x,entite->m_decalage.y);
+            AjouterCommande(&sprite, entite->m_couche + entite->m_decalCouche, true);
+        }
+
 
         if(entite->m_shadow)
         {
             sf::Sprite sprite;
             sprite = entite->m_sprite;
+            sprite.Move(entite->m_decalage.x,entite->m_decalage.y);
 
             sprite.SetScale(1, (100-(float)m_soleil.hauteur)/50);
             sprite.SetRotation(m_angleOmbreSoleil);
@@ -771,6 +777,7 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
         {
             sf::Sprite sprite;
             sprite = entite->m_sprite;
+            sprite.Move(entite->m_decalage.x,entite->m_decalage.y);
 
             sprite.FlipY(true);
             sprite.SetOrigin(sprite.GetOrigin().x, sprite.GetSize().y - sprite.GetOrigin().y);
@@ -799,6 +806,7 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
             if(fabs((float)entite->m_angle_shadowmap[i] - m_angleOmbreSoleil + 135) > 90)
             {
                 sf::Sprite sprite = entite->m_sprite_shadowmap[i];
+                sprite.Move(entite->m_decalage.x,entite->m_decalage.y);
                 float intensity = (fabs((float)entite->m_angle_shadowmap[i] - m_angleOmbreSoleil + 135) - 90)/45 * 96;
 
                 if(fabs((float)entite->m_angle_shadowmap[i] - m_angleOmbreSoleil + 135) > 135)
