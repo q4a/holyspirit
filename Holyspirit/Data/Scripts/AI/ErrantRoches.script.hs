@@ -17,20 +17,23 @@ main
 
 				if variable * 2 * 1
 				then
-					setActif * 1
-					if getState * 4 
+					if getState  * 4 
 					then
 					else
 						fight
 					end
 				end
-				
 			end
 		end
 
-		if variable * 2 * 0
+		if variable * 2 * 1
 		then
-			setState * 0
+			setActif * 1
 		end
+	end
+	
+	if variable * 2 * 0
+	then
+		setState * 5
 	end
 end

@@ -24,7 +24,7 @@ Marchand zombifié
 Chef de meute
 Martelleur de crânes
 Molosse infernal
-Abbé Chamel
+Abbé Hademar
 Potale de l'Abbaye
 Potale des terres agraires
 Potale de l'orée de la forêt
