@@ -44,6 +44,10 @@ c_MainMenu::c_MainMenu()
     classe_choisie = 0;
     nom_hero = "";
     moteurSons->PlayNewMusic(configuration->music_menu);
+
+    m_mainscreen.SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->mainscreen_menu, -1)));
+
+    m_light = moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,256,32,sf::Color(255,255,255));
 }
 
 void c_MainMenu::Utiliser(Jeu *jeu)
@@ -53,8 +57,6 @@ void c_MainMenu::Utiliser(Jeu *jeu)
     temps_ecoule=0;
     temps_ecoule=jeu->Clock.GetElapsedTime();
     jeu->Clock.Reset();
-
-
 
     if(m_save)
     {
@@ -104,11 +106,26 @@ void c_MainMenu::Utiliser(Jeu *jeu)
         moteurGraphique->LightManager->Delete_All_Light();
         moteurGraphique->LightManager->Delete_All_Wall();
 
+        m_light = moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,256,32,sf::Color(255,255,255));
+
         jeu->hero = Hero ();
 
         m_reset = false;
         moteurGraphique->m_blur = 0;
     }
+
+    if(no_ecran != E_CONTINUER)
+        moteurGraphique->AjouterCommande(&m_mainscreen, 10, 0);
+
+    moteurGraphique->LightManager->SetPosition(m_light,sf::Vector2f(eventManager->getPositionSouris().x,
+                                                                    eventManager->getPositionSouris().y * 2));
+    configuration->RafraichirLumiere = true;
+    moteurGraphique->m_soleil.intensite = 1;
+
+    moteurGraphique->m_camera.SetCenter(configuration->Resolution.x * 0.5,
+                                        configuration->Resolution.y * 0.5);
+
+    moteurGraphique->LightManager->Generate(m_light);
 
     texte.SetCharacterSize(48);
 

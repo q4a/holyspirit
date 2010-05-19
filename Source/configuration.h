@@ -60,6 +60,7 @@ class Configuration : public CSingleton<Configuration>
     std::string nom_effetNoir,nom_effetMort,nom_effetContrastes,nom_effetBlur,nom_effetFiltre, nom_effetWater, nom_effetDistortion;
     std::string water_map;
     std::string music_menu;
+    std::string mainscreen_menu;
 
     std::string font_titre,font,chemin_video_developpeur,nom_video_developpeur,nom_sac,nom_corner,chemin_aa;
 

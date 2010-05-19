@@ -51,6 +51,9 @@ private:
 
     sf::Text texte;
 
+    sf::Sprite m_mainscreen;
+    Light_Entity m_light;
+
     float time;
 };
 

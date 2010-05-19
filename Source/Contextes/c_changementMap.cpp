@@ -42,6 +42,11 @@ void c_Chargement::setC_Chargement(std::string prochaineMap,coordonnee coordonne
 {
     tempsActuel=0,tempsPrecedent=0,temps_ecoule=0,tempsEcouleDepuisDernierAffichage=0;
 
+    console->Ajouter("",0);
+    console->Ajouter("---------------------------------------------------------------------------------",0);
+    console->Ajouter("EVENEMENT : Changement de map",0);
+    console->Ajouter("---------------------------------------------------------------------------------",0);
+
     mort = false;
     z = 0;
     configuration->effetNoir=0;

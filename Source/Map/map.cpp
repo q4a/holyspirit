@@ -1710,11 +1710,6 @@ bool Map::TestEvenement(Jeu *jeu,float temps)
                 {
                     string nomMap=m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getString();
 
-                    console->Ajouter("",0);
-                    console->Ajouter("---------------------------------------------------------------------------------",0);
-                    console->Ajouter("EVENEMENT : Changement de map",0);
-                    console->Ajouter("---------------------------------------------------------------------------------",0);
-
                     coordonnee coordonneePerso;
                     coordonneePerso.x=m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(0);
                     coordonneePerso.y=m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(1);

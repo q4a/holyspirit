@@ -537,8 +537,8 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception, bool noD
             {
                 m_arrivee=m_positionCase;
                 m_cheminFinal=m_positionCase;
-                if (m_etat!=0 && m_caracteristique.vie > 0)
-                    m_etat=0,m_entite_graphique.m_noAnimation=0,frappeEnCours=0;
+               /* if (m_etat!=0 && m_caracteristique.vie > 0)
+                    m_etat=0,m_entite_graphique.m_noAnimation=0,*/frappeEnCours=0;
             }
         }
 

@@ -128,8 +128,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
         m_thread_sauvegarde->Launch();
         tempsSauvergarde=0;
     }
-    IA(jeu);
     Animation(jeu);
+    IA(jeu);
     Deplacements(jeu);
     Lumieres(jeu);
 
@@ -199,11 +199,6 @@ void c_Jeu::GererTemps(Jeu *jeu)
         configuration->effetMort=150;
 
         std::string nomMap=jeu->hero.m_potales[jeu->hero.m_last_potale].chemin;
-
-        console->Ajouter("",0);
-        console->Ajouter("---------------------------------------------------------------------------------",0);
-        console->Ajouter("EVENEMENT : Changement de map",0);
-        console->Ajouter("---------------------------------------------------------------------------------",0);
 
         coordonnee coordonneePerso;
         coordonneePerso.x=jeu->hero.m_potales[jeu->hero.m_last_potale].position.x;

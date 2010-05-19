@@ -144,6 +144,8 @@ void Configuration::ChargerInit()
                 fichier>>chemin_aa;
             if (chaine== "music_menu:")
                 fichier>>music_menu;
+            if (chaine== "mainscreen_menu:")
+                fichier>>mainscreen_menu;
 
             if (chaine== "basic_cursor:")
                 fichier>>nom_curseur_base;

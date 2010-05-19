@@ -188,7 +188,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
             sprite.SetX((classe->orbe_vie.position.x+(int)((caracteristique.maxVie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w)) + (configuration->Resolution.x - 800) * 0.5);
 
             float x = (caracteristique.maxVie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w;
-            sprite.SetSubRect(sf::IntRect((int)x, 0, classe->orbe_vie.position.w - x, classe->orbe_vie.position.h));
+            sprite.SetSubRect(sf::IntRect((int)x, 0, classe->orbe_vie.position.w - (int)x, classe->orbe_vie.position.h));
 
             sprite.SetColor(sf::Color(32,32,32,255));
 
@@ -200,7 +200,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
             sprite.SetX((classe->orbe_vie.position.x+(int)((caracteristique.maxVie*2-caracteristique.vie-caracteristique.reserveVie*2)/caracteristique.maxVie*classe->orbe_vie.position.w)) + (configuration->Resolution.x - 800) * 0.5);
 
             float x = (caracteristique.maxVie*2-caracteristique.vie-caracteristique.reserveVie*2)/caracteristique.maxVie*classe->orbe_vie.position.w;
-            sprite.SetSubRect(sf::IntRect((int)x, 0, classe->orbe_vie.position.w - x, classe->orbe_vie.position.h));
+            sprite.SetSubRect(sf::IntRect((int)x, 0, classe->orbe_vie.position.w - (int)x, classe->orbe_vie.position.h));
 
             sprite.SetBlendMode(Blend::Add);
             sprite.SetColor(sf::Color(255,255,255));
