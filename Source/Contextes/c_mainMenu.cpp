@@ -46,6 +46,7 @@ c_MainMenu::c_MainMenu()
     moteurSons->PlayNewMusic(configuration->music_menu);
 
     m_mainscreen.SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->mainscreen_menu, -1)));
+    m_mainscreen.Resize(configuration->Resolution.x, configuration->Resolution.y);
 
     m_light = moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,256,32,sf::Color(255,255,255));
 }
