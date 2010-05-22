@@ -6,7 +6,7 @@ main
 		then
 			variable * 3 * 1
 			variable * 4 * 0
-			noTalk
+			stop_talk
 		end
 		
 		if variable * 3 * 1

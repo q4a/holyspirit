@@ -66,3 +66,6 @@ Voulez-vous que j'aille voir ?
 Oh ! Je n'osais pas demander... J'ai quelques scrupules à t'envoyer là-bas en solitaire, mais nous ne sommes pas des combattants vois-tu... Mais si tu as besoin d'aide je ferai ce que je peux pour t'aider ! Tiens, prends la clef des catacombes et bonne chance, Dieu t'assistera !
 Cesse de m'importuner, vieux fou, et dis-moi ce que tu me propose comme services.
 Introduction
+Haaa, enfin quelqu'un qui devrait pouvoir nous aider. Ou du moins, votre aide ne nous serait pas de refus. En ce qui me concerne, je suis ^^^^ ancien maitre forgeron de l'Empereur. Je dis ancien, car pour moi, l'Empereur, il n'est plus tout net. Ca doit avoir un rapport avec toutes ces horreurs qui nous tombent dessus depuis quelques temps.
+Normalement, j'habites en ville, mais dès que la milice s'est formée, je me suis dit qu'il valait mieux que je ne m'éternises pas. J'ai pris mes affaires et je me suis fait un passage à coup de masse jusqu'à cette abbaye.\S'il vous faut quoi que ce soit comme matos, c'est chez moi que vous trouverez les meilleurs armes et armures. Et si vous ne trouvez pas chaussure à votre pied, hé bien, je verrai pour vous le fabriquer, à condition que vous me disiez précisemment ce que je dois faire et que vous me filiez les matières brutes nécessaires.
+Aurevoir

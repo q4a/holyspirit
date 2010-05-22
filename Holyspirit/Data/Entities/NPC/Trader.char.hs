@@ -64,170 +64,14 @@ $
 		r20000
 	$
 	*
-		*Armor.item.hs
-		r50000
-	$
-	*
-		*Armor.item.hs
-		r50000
-	$
-	*
-		*Armor.item.hs
-		r50000
-	$
-	*
-		*Chainmail.item.hs
-		r20000
-	$
-	*
-		*Chainmail.item.hs
-		r20000
-	$
-	*
-		*Chainmail.item.hs
-		r20000
-	$
-	*
-		*Boot.item.hs
-		r50000
-	$
-	*
-		*Boot.item.hs
-		r50000
-	$
-	*
-		*Boot.item.hs
-		r50000
-	$
-	*
-		*Armband.item.hs
-		r50000
-	$
-	*
-		*Armband.item.hs
-		r50000
-	$
-	*
-		*Armband.item.hs
-		r50000
-	$
-	*
-		*Helmet.item.hs
-		r50000
-	$
-	*
-		*Helmet.item.hs
-		r50000
-	$
-	*
-		*Helmet.item.hs
-		r50000
-	$
-	*
-		*Small_shield.item.hs
-		r50000
-	$
-	*
-		*Small_shield.item.hs
-		r50000
-	$
-	*
-		*Small_shield.item.hs
-		r50000
-	$
-	*
-		*Great_shield.item.hs
-		r20000
-	$
-	*
-		*Great_shield.item.hs
-		r20000
-	$
-	*
-		*Great_shield.item.hs
-		r20000
-	$
-	*
-		*Small_sword.item.hs
-		r50000
-	$
-	*
-		*Small_sword.item.hs
-		r50000
-	$
-	*
-		*Small_sword.item.hs
-		r50000
-	$
-	*
-		*Long_sword.item.hs
-		r20000
-	$
-	*
-		*Long_sword.item.hs
-		r20000
-	$
-	*
-		*Long_sword.item.hs
-		r20000
-	$
-	*
-		*Dagger.item.hs
-		r50000
-	$
-	*
-		*Dagger.item.hs
-		r50000
-	$
-	*
-		*Dagger.item.hs
-		r50000
-	$
-	*
-		*Ceremonial_dagger.item.hs
-		r50000
-	$
-	*
-		*Ceremonial_dagger.item.hs
-		r50000
-	$
-	*
-		*Ceremonial_dagger.item.hs
-		r50000
-	$
-	*
-		*Crossbow.item.hs
-		r50000
-	$
-	*
-		*Crossbow.item.hs
-		r50000
-	$
-	*
-		*Crossbow.item.hs
-		r50000
-	$
-	*
-		*Two_hand_sword.item.hs
-		r20000
-	$
-	*
-		*Two_hand_sword.item.hs
-		r20000
-	$
-	*
-		*Two_hand_sword.item.hs
-		r20000
-	$
-	*
 		*Drawing_barbute.item.hs
-		r1000
+		r2000
 
 		*Drawing_chainmail.item.hs
-		r1000
+		r2000
 
 		*Drawing_necklage.item.hs
-		r1000
+		r2000
 
 		*Drawing_tiare.item.hs
 		r2000
@@ -237,6 +81,78 @@ $
 	$
 	*
   		*Drawing_golem_coal.item.hs
+		r2000
+	$
+	*
+		*Ore_iron.item.hs
+		r2000
+	$
+
+	*
+		*Ore_copper.item.hs
+		r2000
+	$
+
+	*
+		*Ruby.item.hs
+		r1000
+	$
+
+	*
+		*Emerald.item.hs
+		r1000
+	$
+
+	*
+		*Ore_gold.item.hs
+		r1000
+	$
+	*
+		*Ore_iron.item.hs
+		r2000
+	$
+
+	*
+		*Ore_copper.item.hs
+		r2000
+	$
+
+	*
+		*Ruby.item.hs
+		r1000
+	$
+
+	*
+		*Emerald.item.hs
+		r1000
+	$
+
+	*
+		*Ore_gold.item.hs
+		r1000
+	$
+	*
+		*Ore_iron.item.hs
+		r2000
+	$
+
+	*
+		*Ore_copper.item.hs
+		r2000
+	$
+
+	*
+		*Ruby.item.hs
+		r1000
+	$
+
+	*
+		*Emerald.item.hs
+		r1000
+	$
+
+	*
+		*Ore_gold.item.hs
 		r1000
 	$
 	

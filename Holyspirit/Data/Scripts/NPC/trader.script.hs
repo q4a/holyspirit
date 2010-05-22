@@ -13,7 +13,7 @@ main
 			variable * 0 * 1
 			speak_choice * 33 * 1
 			speak_choice * 34 * 2
-			speak_choice * 41 * 3
+			speak_choice * 70 * 3
 		end
 		
 		if speak_choice * 1
@@ -27,12 +27,13 @@ main
 			stop_speak
 			speak * 35
 		end
-
+		
 		if speak_choice * 3
 		then
 			stop_speak
-			craft
+			stop_talk
 		end
+
 	else
 		variable * 0 * 0
 	end

@@ -32,6 +32,7 @@ Hill
 *x330 y0 w180 h96 i0 ey48 vTerreChemin z0 m i4 x80 y16 	w16 h16 $ $
 *x330 y288 w180 h96 i0 ey48 vGravier z0 m i4 x80 y16 	w16 h16 $ $
 *x330 y384 w180 h96 i0 ey48 vTerreCraquelee z0 m i4 x80 y16 	w16 h16 $ $
+*x330 y480 w180 h96 i0 ey48 vTerreCraquele2 z0 m i4 x80 y16 	w16 h16 $ $
 
 
 $

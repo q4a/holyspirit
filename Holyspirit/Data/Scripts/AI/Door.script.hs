@@ -5,10 +5,10 @@ main
 		if variable * 0 * 1
 		then
 			variable * 0 * 0
-			noTalk
+			stop_talk
 		else
 			variable * 0 * 1
-			noTalk
+			stop_talk
 		end
 	end
 
