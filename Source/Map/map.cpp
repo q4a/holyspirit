@@ -533,7 +533,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                             m_monstre.back().setPorteeLumineuse(lumiere);
                             m_monstre.back().setEtat(etat);
                             m_monstre.back().setPose(pose);
-                            m_monstre.back().setAngle(angle);
+                            m_monstre.back().setForcedAngle(angle);
                             m_monstre.back().setObjets(objets);
                             for(int z=0;z<variables.size();++z)
                                 m_monstre.back().m_scriptAI.setVariable(z,variables[z]);
@@ -648,6 +648,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                         vector <int>monstre, monstreFinal;
                         vector <Objet> objets;
                         bool added_minimap = false;
+                        int entite_angle = 0;
 
                         Entite_graphique entite_decor;
                         vector <Entite_graphique> entite_monstre;
@@ -685,6 +686,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                                 m_monstre.back().setCoordonnee(position),m_monstre.back().setDepart();
                                                 m_monstre.back().m_ID = id;
                                                 m_monstre.back().m_entite_graphique = entite_monstre_final;
+                                                m_monstre.back().setForcedAngle(entite_angle);
+                                                entite_angle = 0;
 
                                                 if(id >= 0)
                                                 {
@@ -746,6 +749,9 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                 break;
                             case 'c':
                                 *fichier>>added_minimap;
+                                break;
+                            case 'a':
+                                *fichier>>entite_angle;
                                 break;
                             case 'p':
                                 if(dernierEtaitMonstre)
@@ -888,6 +894,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                         m_monstre.back().setCoordonnee(position),m_monstre.back().setDepart();
                                         m_monstre.back().m_ID = id;
                                         m_monstre.back().m_entite_graphique = entite_monstre_final;
+                                        m_monstre.back().setForcedAngle(entite_angle);
 
                                         if(id >= 0)
                                         {

@@ -444,7 +444,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                 if (!hero->AjouterObjet((*m_monstre[monstre].getPointeurObjets())[script->getValeur(noInstruction, 0)], false))
                     m_decor[1][hero->m_personnage.getCoordonnee().y][hero->m_personnage.getCoordonnee().x].AjouterObjet((*m_monstre[monstre].getPointeurObjets())[script->getValeur(noInstruction, 0)]);
         }
-        else if (script->m_instructions[noInstruction].nom=="noTalk")
+        else if (script->m_instructions[noInstruction].nom=="stop_talk")
         {
             hero->setMonstreVise(-1);
         }

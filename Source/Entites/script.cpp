@@ -77,26 +77,22 @@ int Script::Lire(ifstream *fichier)
         retour=-2;
     else if (temp=="else")
         retour=-3;
-    else if (temp=="*")
+    else if (temp=="*" || temp=="$")
     {
         int valeur;
 
         *fichier>>valeur;
 
-
-        m_instructions.back().m_valeurs.push_back(valeur);
-        m_instructions.back().m_var_valeurs.push_back(-1);
-
-        retour = -4;
-    }
-    else if (temp=="$")
-    {
-        int valeur;
-
-        *fichier>>valeur;
-
-        m_instructions.back().m_valeurs.push_back(-1);
-        m_instructions.back().m_var_valeurs.push_back(valeur);
+        if(temp=="*")
+        {
+            m_instructions.back().m_valeurs.push_back(valeur);
+            m_instructions.back().m_var_valeurs.push_back(-1);
+        }
+        else
+        {
+            m_instructions.back().m_valeurs.push_back(-1);
+            m_instructions.back().m_var_valeurs.push_back(valeur);
+        }
 
         retour = -4;
     }
