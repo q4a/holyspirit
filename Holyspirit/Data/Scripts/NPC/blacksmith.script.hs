@@ -81,6 +81,7 @@ main
 		end
 	else
 		variable * 0 * 0
+		variable * 3 * 0
 		variable * 4 * 0
 	end
 	
