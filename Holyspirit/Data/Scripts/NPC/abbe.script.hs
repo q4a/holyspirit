@@ -30,6 +30,7 @@ main
 					end
 					speak_choice * 60 * 1
 					speak_choice * 66 * 2
+					
 				end
 				
 				variable * 2 * 1
@@ -143,5 +144,12 @@ main
 				incrementVariable * 0 * 1
 			end
 		end
+	end
+	
+	if variable * 7 * day
+	then
+	else
+		variable * 7 * day
+		regenerate_inventory
 	end
 end 

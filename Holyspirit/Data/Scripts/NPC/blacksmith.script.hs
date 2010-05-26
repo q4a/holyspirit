@@ -85,11 +85,18 @@ main
 		variable * 4 * 0
 	end
 	
-	incrementVariable * 8 * 1
-	if variable * 8 * 400
+	incrementVariable * 8 * time
+	if variable_bigger * 8 * 5
 	then
 		setState * 4
 		variable * 8 * 0
+	end
+	
+	if variable * 7 * day
+	then
+	else
+		variable * 7 * day
+		regenerate_inventory
 	end
 	
 end 

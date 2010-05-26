@@ -37,4 +37,12 @@ main
 	else
 		variable * 0 * 0
 	end
+	
+	if variable * 7 * day
+	then
+	else
+		variable * 7 * day
+		regenerate_inventory
+	end
+
 end 

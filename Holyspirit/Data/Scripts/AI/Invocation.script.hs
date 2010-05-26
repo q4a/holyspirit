@@ -8,8 +8,8 @@ main
 	if variable * 0 * 1
 	then
 		variable * 0 * 2
-		useMiracle $ 2
+		useMiracle * variable 2
 	end
 
-	setInvocationID $ 1 
+	setInvocationID * variable 1 
 end 
