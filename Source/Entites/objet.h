@@ -96,7 +96,7 @@ public:
     Objet(std::string nom,int rarete);
     ~Objet();
 
-    int AfficherCaracteristiques(coordonnee position,Caracteristique caract, std::vector<Objet> *items, std::string nom_classe,float modPrix = 1, bool compare = false, bool = false, bool = false, bool = false);
+    int AfficherCaracteristiques(coordonnee position,Caracteristique caract, std::vector<Objet> *items, std::string nom_classe,float modPrix = 1, bool compare = false, bool = false, bool = false, bool = false, bool = false);
     void Charger(const std::string &chemin, const Caracteristique &caract,bool NePasAjouterBenedictions=false);
     void ChargerCaracteristiques(std::ifstream *fichier);
 

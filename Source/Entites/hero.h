@@ -63,7 +63,7 @@ public:
     void Afficher();
     void CalculerOrdreAffichage();
 
-    bool AfficherInventaire(float, std::vector<Objet> &, bool hideLeft);
+    bool AfficherInventaire(float, std::vector<Objet> *, bool hideLeft);
     void AfficherQuetes(float);
     void AfficherPotales(float);
     void AfficherFlecheQuetes(const std::string &nomMap, float temps);

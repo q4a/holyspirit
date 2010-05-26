@@ -1844,7 +1844,7 @@ std::string getTextBenediction(const benediction &bene)
 }
 
 
-int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, std::vector<Objet> *items, std::string nom_classe,float modPrix,bool compare,bool decalageDroite, bool surbrillance, bool orientationHaut)
+int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, std::vector<Objet> *items, std::string nom_classe,float modPrix,bool compare,bool decalageDroite, bool surbrillance, bool orientationHaut, bool coffre)
 {
     std::vector <sf::Text> temp;
 
@@ -1861,7 +1861,9 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
     }
     else if (compare)
     {
-        if (decalageDroite)
+        if(coffre)
+            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,configuration->getText(0,63).c_str()));
+        else if (decalageDroite)
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,configuration->getText(0,19).c_str()));
         else
             temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,configuration->getText(0,20).c_str()));
@@ -1871,6 +1873,8 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
 
     temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_nom.c_str()));
     temp.back().SetColor(GetItemColor(m_rarete));
+    temp.back().SetStyle(4);
+    temp.back().SetCharacterSize(14);
     if(!m_chemin_set.empty())
     {
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_set.m_nom.c_str()));

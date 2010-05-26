@@ -105,7 +105,7 @@ void c_Bless::Utiliser(Jeu *jeu)
     jeu->menu.AfficherInventaire(m_decalage,&jeu->hero.m_classe,false);
     jeu->menu.AfficherCraft(m_decalage,&jeu->hero.m_classe);
 
-    jeu->hero.AfficherInventaire(m_decalage,m_trader,true);
+    jeu->hero.AfficherInventaire(m_decalage,&m_trader,true);
 
     if(jeu->hero.m_objetEnMain == -1)
         eventManager->AfficherCurseur();

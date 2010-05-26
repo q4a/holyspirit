@@ -123,12 +123,12 @@ void c_Inventaire::Utiliser(Jeu *jeu)
 
     if(m_trader!=NULL)
     {
-        jeu->hero.AfficherInventaire(m_decalage,*m_trader, false);
+        jeu->hero.AfficherInventaire(m_decalage,m_trader, false);
     }
     else
     {
         std::vector<Objet> temp;
-        jeu->hero.AfficherInventaire(m_decalage,temp,false);
+        jeu->hero.AfficherInventaire(m_decalage,&temp,false);
     }
 
     if(jeu->hero.m_objetEnMain == -1)
