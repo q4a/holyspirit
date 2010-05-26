@@ -24,15 +24,11 @@ $
 		r1000000
 	$
 	*
-		*Heal_potion.item.hs
+		*Heal_potion2.item.hs
 		r1000000
 	$
 	*
-		*Heal_potion.item.hs
-		r1000000
-	$
-	*
-		*Faith_potion.item.hs
+		*Heal_potion2.item.hs
 		r1000000
 	$
 	*
@@ -48,7 +44,11 @@ $
 		r1000000
 	$
 	*
-		*Faith_potion.item.hs
+		*Faith_potion2.item.hs
+		r1000000
+	$
+	*
+		*Faith_potion2.item.hs
 		r1000000
 	$
 	*

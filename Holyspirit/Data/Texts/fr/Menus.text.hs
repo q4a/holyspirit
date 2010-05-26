@@ -61,4 +61,4 @@ Commencer
 Emplacement libre
 Afficher/Cacher les boutons
 Classe
-
+Coffre :

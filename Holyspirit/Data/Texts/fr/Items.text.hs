@@ -16,13 +16,13 @@ Arbalète de poing
 Une arbalète légère.\\Arme à une main.
 Poignard
 Un petit poignard.\\Arme à une main.
-Potion de foi
+Potion de foi mineure
 Une potion permettant\de vous régénérer de\150 PF.
 Bure
 Une bure de moine.
 Grand bouclier
 Un grand bouclier.
-Potion de soins
+Potion de soins mineure
 Une potion permettant\de vous soigner de\150 PV.
 Cervelière
 Une cervelière basique.
@@ -115,3 +115,7 @@ Espadon en os
 Une épée à deux mains taillée dans l'os.
 Bouclier en os
 Bouclier fabriqué à l'aide d'os humains.\Certains prétendent qu'ils sont maudits...
+Potion de foi limitée
+Une potion permettant\de vous régénérer de\300 PF.
+Potion de soins limitée
+Une potion permettant\de vous soigner de\300 PV.
