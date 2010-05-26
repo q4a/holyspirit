@@ -18,6 +18,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 
 #include <fstream>
+#include <sstream>
 #include "script.h"
 
 #include "../globale.h"
@@ -57,7 +58,7 @@ void Script::AjouterCondition(ifstream *fichier)
         else
         {
             m_instructions[noCondition].m_valeurs.push_back(temp);
-            m_instructions[noCondition].m_var_valeurs.push_back(-1);
+            m_instructions[noCondition].m_string_valeurs.push_back("");
         }
     }
 }
@@ -77,22 +78,35 @@ int Script::Lire(ifstream *fichier)
         retour=-2;
     else if (temp=="else")
         retour=-3;
-    else if (temp=="*" || temp=="$")
+    else if (temp=="*")
     {
-        int valeur;
+        std::string string;
+        *fichier>>string;
 
-        *fichier>>valeur;
+        bool NaN = false;
+        for(unsigned i = 0 ; i < string.size() - 1 ; ++i)
+            if((string[i] < '0' || string[i] > '9') && string[i] != '-')
+                NaN = true;
 
-        if(temp=="*")
+        if(NaN)
         {
-            m_instructions.back().m_valeurs.push_back(valeur);
-            m_instructions.back().m_var_valeurs.push_back(-1);
+            m_instructions.back().m_valeurs.push_back(-1);
+            m_instructions.back().m_string_valeurs.push_back(string);
+
+            if(string == "variable")
+                *fichier>>m_instructions.back().m_valeurs.back();
         }
         else
         {
-            m_instructions.back().m_valeurs.push_back(-1);
-            m_instructions.back().m_var_valeurs.push_back(valeur);
+            int valeur;
+
+            istringstream buf(string);
+            buf>>valeur;
+
+            m_instructions.back().m_valeurs.push_back(valeur);
+            m_instructions.back().m_string_valeurs.push_back("");
         }
+
 
         retour = -4;
     }
@@ -150,8 +164,12 @@ void Script::Sauvegarder_instruction(ofstream &fichier , int no)
         else
         {
             for(unsigned i = 0 ; i < m_instructions[no].m_valeurs.size() ; ++i)
-                if(m_instructions[no].m_var_valeurs[i] >= 0)
-                    fichier<<"$ "<<m_instructions[no].m_var_valeurs[i]<<" ";
+                if(m_instructions[no].m_string_valeurs[i] != "")
+                {
+                    fichier<<"* "<<m_instructions[no].m_string_valeurs[i]<<" ";
+                    if(m_instructions[no].m_string_valeurs[i] == "variable")
+                        fichier<<m_instructions[no].m_valeurs[i]<<" ";
+                }
                 else
                     fichier<<"* "<<m_instructions[no].m_valeurs[i]<<" ";
         }
@@ -201,7 +219,7 @@ void Script::Charger(ifstream &fichier)
             else
             {
                 m_instructions[0].m_valeurs.push_back(temp);
-                m_instructions[0].m_var_valeurs.push_back(-1);
+                m_instructions[0].m_string_valeurs.push_back("");
             }
 
         }
@@ -220,7 +238,7 @@ void Script::Charger(const std::string &chemin)
     console->Ajouter("Chargement du script : \" "+chemin+" \"");
 }
 
-void Script::setVariable(int i, int val)
+void Script::setVariable(int i, float val)
 {
     if(i >= m_variables.size())
         m_variables.resize(i + 1);
@@ -228,7 +246,7 @@ void Script::setVariable(int i, int val)
     m_variables[i] = val;
 }
 
-int Script::getVariable(int i)
+float Script::getVariable(int i)
 {
     if(i >= m_variables.size())
         m_variables.resize(i + 1, 0);
@@ -241,30 +259,41 @@ int Script::getNbrVariable()
     return m_variables.size();
 }
 
-void Script::setValeur(int no, int i, int val)
+void Script::setValeur(int no, int i, float val)
 {
     if( no >= 0 && no < m_instructions.size())
     {
         if(i >= m_instructions[no].m_valeurs.size())
-            m_instructions[no].m_valeurs.resize(i + 1, 0), m_instructions[no].m_var_valeurs.resize(i + 1, -1);
+            m_instructions[no].m_valeurs.resize(i + 1, 0), m_instructions[no].m_string_valeurs.resize(i + 1, "");
 
         m_instructions[no].m_valeurs[i] = val;
     }
 }
 
-int Script::getValeur(int no, int i)
+float Script::getValeur(int no, int i)
 {
     if( no >= 0 && no < m_instructions.size())
     {
         if(i >= m_instructions[no].m_valeurs.size())
-            m_instructions[no].m_valeurs.resize(i + 1, 0), m_instructions[no].m_var_valeurs.resize(i + 1, -1);
-
-        if(m_instructions[no].m_var_valeurs[i] >= 0)
         {
-            if(m_instructions[no].m_var_valeurs[i] < m_variables.size())
-                return m_variables[m_instructions[no].m_var_valeurs[i]];
-            else
-                return (0);
+            m_instructions[no].m_valeurs.resize(i + 1, 0);
+            m_instructions[no].m_string_valeurs.resize(i + 1, "");
+        }
+
+        if(m_instructions[no].m_string_valeurs[i] != "")
+        {
+            if(m_instructions[no].m_string_valeurs[i] == "day")
+                return configuration->jour;
+            else if(m_instructions[no].m_string_valeurs[i] == "time")
+                return configuration->elapsed_time;
+            else if(m_instructions[no].m_string_valeurs[i] == "variable")
+            {
+                if(m_instructions[no].m_valeurs[i] < m_variables.size())
+                    return m_variables[m_instructions[no].m_valeurs[i]];
+                else
+                    return (0);
+            }
+
         }
         else
             return m_instructions[no].m_valeurs[i];

@@ -373,6 +373,13 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             m_monstre[monstre].m_collision = script->getValeur(noInstruction, 0);
             m_monstre[monstre].m_impenetrable = script->getValeur(noInstruction, 0);
         }
+        else if (script->m_instructions[noInstruction].nom=="regenerate_inventory" && monstre != -1)
+        {
+            if(m_monstre[monstre].getModele() >= 0 && m_monstre[monstre].getModele() < m_ModeleMonstre.size())
+                m_monstre[monstre].GenererInventaire(&m_ModeleMonstre[m_monstre[monstre].getModele()]);
+
+            TrierInventaire(m_monstre[monstre].getPointeurObjets(),hero->m_classe.position_contenu_marchand.w);
+        }
         else if (script->m_instructions[noInstruction].nom=="speak")
         {
             if (jeu->menu.m_dialogue.empty())
@@ -553,6 +560,16 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                 else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="variable")
                 {
                     if (script->getVariable(script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 0))!=script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 1))
+                        ok=false;
+                }
+                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="variable_bigger")
+                {
+                    if (script->getVariable(script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 0))<script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 1))
+                        ok=false;
+                }
+                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="variable_smaller")
+                {
+                    if (script->getVariable(script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 0))>script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 1))
                         ok=false;
                 }
                 else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="talk" && monstre != -1)

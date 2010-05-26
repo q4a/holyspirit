@@ -51,6 +51,7 @@ public:
     Monstre(Personnage &);
     ~Monstre();
     void Charger(int numero,Modele_Monstre *modele);
+    void GenererInventaire(Modele_Monstre *modele);
     void TesterVision(coordonnee positionHero);
 
 

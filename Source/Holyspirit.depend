@@ -438,7 +438,7 @@
 	<iostream>
 	"../constantes.h"
 
-1274288590 e:\c++\holyspirit\source\configuration.h
+1274895013 e:\c++\holyspirit\source\configuration.h
 	"singleton.h"
 	"constantes.h"
 
@@ -541,11 +541,11 @@
 	<SFML/Graphics.hpp>
 	"../constantes.h"
 
-1269172969 e:\c++\holyspirit\source\entites\monstre.h
+1274890975 e:\c++\holyspirit\source\entites\monstre.h
 	"personnage.h"
 	"../constantes.h"
 
-1266586872 e:\c++\holyspirit\source\entites\script.h
+1274895441 e:\c++\holyspirit\source\entites\script.h
 	<iostream>
 	"../constantes.h"
 
@@ -633,7 +633,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1274871756 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
+1274895064 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -684,7 +684,7 @@
 	"../globale.h"
 	<sstream>
 
-1274872026 source:e:\c++\holyspirit\source\entites\hero.cpp
+1274890045 source:e:\c++\holyspirit\source\entites\hero.cpp
 	"../constantes.h"
 	"hero.h"
 	"../globale.h"
@@ -709,14 +709,14 @@
 	<fstream>
 	<sstream>
 
-1272118850 source:e:\c++\holyspirit\source\entites\monstre.cpp
+1274890975 source:e:\c++\holyspirit\source\entites\monstre.cpp
 	<iostream>
 	<fstream>
 	"monstre.h"
 	"../constantes.h"
 	"../globale.h"
 
-1274800502 source:e:\c++\holyspirit\source\entites\objet.cpp
+1274888166 source:e:\c++\holyspirit\source\entites\objet.cpp
 	"objet.h"
 	"../globale.h"
 	<fstream>
@@ -746,8 +746,9 @@
 	"../constantes.h"
 	"../globale.h"
 
-1274541801 source:e:\c++\holyspirit\source\entites\script.cpp
+1274895383 source:e:\c++\holyspirit\source\entites\script.cpp
 	<fstream>
+	<sstream>
 	"script.h"
 	"../globale.h"
 
@@ -828,7 +829,7 @@
 	"../globale.h"
 	<iostream>
 
-1274288720 source:e:\c++\holyspirit\source\configuration.cpp
+1274889813 source:e:\c++\holyspirit\source\configuration.cpp
 	"configuration.h"
 
 1269179731 source:e:\c++\holyspirit\source\datfile.cpp
@@ -6346,7 +6347,7 @@
 	"../globale.h"
 	"../jeu.h"
 
-1274543002 source:e:\c++\holyspirit\source\map\map_scripts.cpp
+1274895228 source:e:\c++\holyspirit\source\map\map_scripts.cpp
 	"map.h"
 	<iostream>
 	<fstream>

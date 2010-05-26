@@ -32,6 +32,8 @@ void Configuration::Charger()
     RafraichirOmbre=0;
     RafraichirLumiere=0;
 
+    jour = 0;
+
     if (!Lumiere)
         Ombre=0;
 

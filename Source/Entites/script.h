@@ -33,8 +33,8 @@ class Instruction
     std::string nom;
     std::string valeurString;
 
-    std::vector < int > m_valeurs;
-    std::vector < int > m_var_valeurs;
+    std::vector < float > m_valeurs;
+    std::vector < std::string > m_string_valeurs;
 };
 
 class Script
@@ -48,12 +48,12 @@ public:
     void Sauvegarder(std::ofstream &fichier);
     void Sauvegarder_instruction(std::ofstream &fichier , int no);
 
-    void setVariable(int i, int val);
-    int  getVariable(int i);
+    void setVariable(int i, float val);
+    float  getVariable(int i);
     int  getNbrVariable();
 
-    void setValeur(int no, int i, int val);
-    int  getValeur(int no, int i);
+    void   setValeur(int no, int i, float val);
+    float  getValeur(int no, int i);
 
     void AjouterCondition(std::ifstream *fichier);
     int Lire(std::ifstream *fichier);
@@ -63,7 +63,7 @@ public:
     std::vector<std::string> m_text;
 
 protected:
-    std::vector <int> m_variables;
+    std::vector <float> m_variables;
 };
 
 #endif

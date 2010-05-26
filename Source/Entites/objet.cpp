@@ -1855,9 +1855,9 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
 
     if (m_equipe>=0&&compare)
     {
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,configuration->getText(0,18).c_str()));
+        /*temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,configuration->getText(0,18).c_str()));
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"---------------"));
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));*/
     }
     else if (compare)
     {
@@ -2143,10 +2143,11 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
     tailleCadran.x+=20;
 
     sprite.SetImage(*moteurGraphique->getImage(0));
-    if (surbrillance)
-        sprite.SetColor(sf::Color(16,16,16,248));
-    else
-        sprite.SetColor(sf::Color(0,0,0,248));
+    /*if (surbrillance)
+        sprite.SetColor(sf::Color(16,16,16,224));
+    else*/
+        sprite.SetColor(sf::Color(0,0,0,224));
+
     sprite.SetY(position.y);
     sprite.SetX(position.x-tailleCadran.x+10);
     sprite.Resize(tailleCadran.x,tailleCadran.y);

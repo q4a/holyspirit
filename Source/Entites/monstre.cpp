@@ -155,6 +155,14 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
         }
     }
 
+    GenererInventaire(modele);
+
+    m_caracteristique.maxVie = m_caracteristique.vie;
+}
+
+void Monstre::GenererInventaire(Modele_Monstre *modele)
+{
+    m_objets.clear();
 
     for (unsigned k=0; k<modele->getObjets().size(); k++)
         for (unsigned i=0; i<modele->getObjets()[k].size(); i++)
@@ -165,10 +173,7 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
                 m_objets.back().Generer((m_caracteristique.rang*10+1));
                 i = modele->getObjets()[k].size();
             }
-
-    m_caracteristique.maxVie = m_caracteristique.vie;
 }
-
 
 bool Modele_Monstre::Charger(const std::string &chemin)
 {

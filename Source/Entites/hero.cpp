@@ -242,6 +242,10 @@ void Hero::Sauvegarder()
         fichier<<m_argent<<endl;
         fichier<<m_holywater<<endl;
 
+        fichier<<configuration->minute<<endl;
+        fichier<<configuration->heure<<endl;
+        fichier<<configuration->jour<<endl;
+
         for(int i = 0 ; i < 8 ; ++i)
             fichier<<m_raccourcis[i].miracle<<" "<<m_raccourcis[i].no<<endl;
 
@@ -418,6 +422,10 @@ void Hero::Charger(std::string chemin_save)
 
             *fichier>>m_argent;
             *fichier>>m_holywater;
+
+            *fichier>>configuration->minute;
+            *fichier>>configuration->heure;
+            *fichier>>configuration->jour;
 
             for(int i = 0 ; i < 8 ; ++i)
                 *fichier>>m_raccourcis[i].miracle>>m_raccourcis[i].no;

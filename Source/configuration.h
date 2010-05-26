@@ -52,8 +52,8 @@ class Configuration : public CSingleton<Configuration>
     coordonneeDecimal Redimensionnement;
     bool Ombre,Minimap,amelioration_lampes,Herbes,syncronisation_verticale,mode_fenetre,postFX,video,particules,debug,desactivate_console,lissage,Reflection,Distortion;
     int Lumiere,console;
-    float effetMort,effetNoir,volume,music_volume,minute,zoom,frequence_sauvegarde,frequence_lumiere,luminosite,contrastes;
-    int heure,cache,alpha;
+    float effetMort,effetNoir,volume,music_volume,minute,zoom,frequence_sauvegarde,frequence_lumiere,luminosite,contrastes,elapsed_time;
+    int heure,jour,cache,alpha;
     bool item_background;
     std::string version,chemin_maps,chemin_items,chemin_temps,chemin_saves,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,chemin_son_mort;
     std::string nom_item_background, nom_item_unusable;

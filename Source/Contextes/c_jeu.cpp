@@ -97,6 +97,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
     temps[1] = temps[0];
     temps[0] = jeu->Clock.GetElapsedTime();
 
+    configuration->elapsed_time = temps[0];
+
     tempsEcoule = (temps[0] + temps[1] + temps[2] + temps[3] + temps[4]) / 5;
     if(temps[0] - tempsEcoule > 0.01)
     {
@@ -153,13 +155,13 @@ void c_Jeu::GererTemps(Jeu *jeu)
     tempsEcouleDepuisDernierIA+=tempsEcoule;
     tempsEcouleDepuisDernierCalculLumiere+=tempsEcoule;
     tempsSauvergarde+=tempsEcoule;
-    configuration->minute+=tempsEcoule*0.1;
+    configuration->minute+=tempsEcoule;
     tempsNbrTourBoucle+=tempsEcoule;
 
     if (configuration->minute>=60)
         configuration->minute=0,configuration->heure++;
     if (configuration->heure>23)
-        configuration->heure=0;
+        configuration->heure=0, configuration->jour++;
     if (augmenter)
         tempsEffetMort+=tempsEcoule*10;
     else
@@ -314,8 +316,8 @@ void c_Jeu::Animation(Jeu *jeu)
                 if (!jeu->hero.m_personnage.m_shooter)
                 {
                     if (jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())!=NULL)
-                        if (fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().x)<=2
-                          &&fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().y-jeu->hero.m_personnage.getCoordonnee().y)<=2)
+                        if (fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().x)<2
+                          &&fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().y-jeu->hero.m_personnage.getCoordonnee().y)<2)
                             if (rand() % 100 < (float)((float)(jeu->hero.m_caracteristiques.dexterite + 100) / ((float)(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCaracteristique().dexterite + 100)))*75 )
                                 if (!jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->m_friendly && jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->EnVie())
                                 {
