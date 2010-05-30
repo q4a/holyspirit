@@ -999,9 +999,22 @@ void Personnage::Frappe(coordonnee position,coordonnee direction)
     frappeEnCours=1;
 
     float m=atan2(-(double)(direction.y-position.y),(double)(direction.x-position.x));
-    m-=M_PI_4;
 
-    setAngle((int)(m*180/M_PI));
+    m = (int)(m*180/M_PI);
+
+    if(m < 0)
+        m += 360;
+    if(m > 360)
+        m -= 360;
+
+    if(m - (int)(m/45) * 45 > 23)
+        m = (int)(m/45) * 45 + 45;
+    else
+        m = (int)(m/45) * 45;
+
+    m-=45;
+
+    setAngle(m);
 
     m_cheminFinal=m_positionCase;
     m_arrivee=m_cheminFinal;
