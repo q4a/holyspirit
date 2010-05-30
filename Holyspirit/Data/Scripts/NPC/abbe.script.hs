@@ -118,7 +118,13 @@ main
 		then
 			if variable * 3 * 0 
 			then
-				speak * 53
+				if player_class " Data/Entities/Heroes/Concubine.class.hs"
+				then
+					speak * 71
+				else
+					speak * 53
+				end
+				
 				variable * 3 * 1
 				speak_choice * 67 * 4
 				speak_choice * 54 * 1

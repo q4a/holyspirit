@@ -1,11 +1,16 @@
 main 
+
+	if distance * 5
+		variable * 0 * 0
+	then
+		variable * 0 * 1
+		add_checkpoint * 8 * 91 * 42 " BurialGround.map.hs"
+	end
+
+
 	if talk
 	then
-		if variable * 0 * 0
-		then
-			variable * 0 * 1
-			add_checkpoint * 8 * 91 * 42 " BurialGround.map.hs"
-		end
+		add_checkpoint * 8 * 91 * 42 " BurialGround.map.hs"
 	
 		if variable * 1 * 0 
 		then

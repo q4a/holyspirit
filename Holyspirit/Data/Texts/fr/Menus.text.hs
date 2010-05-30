@@ -62,3 +62,4 @@ Emplacement libre
 Afficher/Cacher les boutons
 Classe
 Coffre :
+<Incompatible>
