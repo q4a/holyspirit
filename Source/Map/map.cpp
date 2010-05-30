@@ -1435,8 +1435,8 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                                        hero->m_classe.icone_mm.position.w, hero->m_classe.icone_mm.position.h));
 
         minimap.SetColor(sf::Color(255,255,255,(int)(alpha * 0.5f)));
-        minimap.SetPosition(configuration->Resolution.x*0.5f ,
-                            configuration->Resolution.y*0.5f);
+        minimap.SetPosition((int)(configuration->Resolution.x*0.5f) ,
+                            (int)(configuration->Resolution.y*0.5f));
         moteurGraphique->AjouterCommande(&minimap,12,0);
 
         for(int i = 0 ; i < hero->m_amis.size() ; ++i)
@@ -1447,8 +1447,8 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
             pos.x=(int)(((hero->m_amis[i]->getCoordonneePixel().x-hero->m_amis[i]->getCoordonneePixel().y)*DIVISEUR_COTE_TILE-1)*64);
 
             minimap.SetColor(sf::Color(255,0,192));
-            minimap.SetPosition(configuration->Resolution.x*0.5f + (pos.x - positionHero.x) * 0.125f,
-                                configuration->Resolution.y*0.5f + (pos.y - positionHero.y) * 0.125f);
+            minimap.SetPosition((int)(configuration->Resolution.x*0.5f + (pos.x - positionHero.x) * 0.125f),
+                                (int)(configuration->Resolution.y*0.5f + (pos.y - positionHero.y) * 0.125f));
             moteurGraphique->AjouterCommande(&minimap,12,0);
         }
 
@@ -1553,11 +1553,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
 
                                 sprite.SetX(position.x);
                                 sprite.SetY(position.y);
-
-                                if (eventManager->getCasePointee().x==k&&eventManager->getCasePointee().y==j&&m_monstreIllumine<0&&m_decor[1][j][k].getNombreObjets()>4&&!alt&&m_monstreIllumine<0)
-                                    sprite.SetColor(sf::Color(255,128,128));
-                                else
-                                    sprite.SetColor(sf::Color(255,255,255));
+                                sprite.SetColor(sf::Color(255,255,255));
 
                                 moteurGraphique->AjouterCommande(&sprite,8,1);
                             }

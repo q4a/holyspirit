@@ -183,6 +183,10 @@ void c_MainMenu::Utiliser(Jeu *jeu)
                         int img  = moteurGraphique->AjouterImage(reader.GetFile(chemin_image), reader.GetFileSize(chemin_image), chemin_image, 1);
                         sprite.SetImage(*moteurGraphique->getImage(img));
                         m_images_saves.push_back(sprite);
+
+                        Hero temp;
+                        m_incompatible_saves.push_back(temp.ChargerPresentation(m_chemin_saves.back()));
+                        m_niveau_saves.push_back(temp.m_caracteristiques.niveau);
                     }
                 }
 
@@ -320,8 +324,10 @@ void c_MainMenu::Utiliser(Jeu *jeu)
                                 && i < 8 + defilement_saves; ++i)
         {
             std::string str;
+
             for(int s = 0 ; s < m_chemin_saves[i].size() - 7 ; ++s)
                 str.push_back(m_chemin_saves[i][s]);
+
             texte.SetString(str.c_str());
 
             texte.SetPosition(configuration->Resolution.w/2 - 384 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3) + 130 - texte.GetRect().Width/2,
@@ -332,6 +338,21 @@ void c_MainMenu::Utiliser(Jeu *jeu)
             m_images_saves[i].Resize(160,256);
             m_images_saves[i].SetSubRect(sf::IntRect(48,0,160,256));
             moteurGraphique->AjouterCommande(&m_images_saves[i],19,0);
+
+
+            sf::Text texte_niv;
+
+            std::ostringstream buf;
+
+            if(m_incompatible_saves[i])
+                buf<<configuration->getText(0,64);
+            else
+                buf<<configuration->getText(0,49)<<" : "<<m_niveau_saves[i];
+
+            texte_niv.SetPosition(texte.GetPosition().x, texte.GetPosition().y + 20);
+            texte_niv.SetString(buf.str());
+            texte_niv.SetCharacterSize(16);
+
 
             if ((eventManager->getPositionSouris().y > texte.GetRect().Top
               &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height)
@@ -344,6 +365,7 @@ void c_MainMenu::Utiliser(Jeu *jeu)
               &&eventManager->getPositionSouris().x < m_images_saves[i].GetPosition().x + 160))
             {
                 texte.SetColor(Color(100,50,0));
+                texte_niv.SetColor(Color(100,50,0));
                 if(eventManager->getEvenement(Mouse::Left,EventClic))
                 {
                     coordonnee temp(0,0,-1,-1);
@@ -382,8 +404,9 @@ void c_MainMenu::Utiliser(Jeu *jeu)
                 }
             }
             else
-                texte.SetColor(Color(150,100,50));
+                texte.SetColor(Color(150,100,50)),texte_niv.SetColor(Color(150,100,50));
             moteurGraphique->AjouterTexte(&texte,19,1);
+            moteurGraphique->AjouterTexte(&texte_niv,19,1);
         }
 
         if(i < m_chemin_saves.size())
@@ -511,7 +534,7 @@ void c_MainMenu::Utiliser(Jeu *jeu)
         {
             texte.SetColor(Color(100,50,0));
             if(eventManager->getEvenement(Mouse::Left,EventClic))
-                no_ecran = E_PRINCIPAL;
+                no_ecran = E_PRINCIPAL,nom_hero = "";
             eventManager->StopEvenement(Mouse::Left,EventClic);
         }
         else

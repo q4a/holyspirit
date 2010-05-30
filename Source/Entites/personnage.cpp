@@ -999,7 +999,7 @@ void Personnage::Frappe(coordonnee position,coordonnee direction)
     frappeEnCours=1;
 
     float m=atan2(-(double)(direction.y-position.y),(double)(direction.x-position.x));
-    m-=M_PI/4;
+    m-=M_PI_4;
 
     setAngle((int)(m*180/M_PI));
 

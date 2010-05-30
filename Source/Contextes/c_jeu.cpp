@@ -377,22 +377,6 @@ void c_Jeu::Animation(Jeu *jeu)
 }
 void c_Jeu::Lumieres(Jeu *jeu)
 {
-    /*if (configuration->Lumiere&&tempsEcouleDepuisDernierCalculLumiere>configuration->frequence_lumiere/2&&configuration->RafraichirOmbre==0)
-        configuration->RafraichirOmbre=1;
-
-    if (configuration->Lumiere&&tempsEcouleDepuisDernierCalculLumiere>configuration->frequence_lumiere)
-    {
-        if (configuration->RafraichirOmbre==2)
-            configuration->RafraichirOmbre=0;
-
-        jeu->map->CalculerOmbresEtLumieres();
-
-        configuration->RafraichirLumiere=true;
-        tempsEcouleDepuisDernierCalculLumiere=0;
-
-        moteurGraphique->LightManager->Generate(jeu->hero.m_personnage.m_entite_graphique.m_light);
-    }*/
-
     if(configuration->RafraichirOmbre > 0)
     {
         jeu->map->CalculerOmbresEtLumieres();
@@ -477,9 +461,9 @@ int GestionBoutons(Jeu *jeu)
         && eventManager->getPositionSouris().x < AutoScreenAdjust(800,0).x
         && eventManager->getPositionSouris().y > AutoScreenAdjust(0,0).y
         && eventManager->getPositionSouris().y < AutoScreenAdjust(0,25).y
-        && eventManager->getEvenement(Mouse::Left,EventClic))
+        && eventManager->getEvenement(Mouse::Left,EventClicA))
         {
-            eventManager->StopEvenement(Mouse::Left,EventClic);
+            eventManager->StopEvenement(Mouse::Left,EventClicA);
             return 3;
         }
 
@@ -527,9 +511,9 @@ int GestionBoutons(Jeu *jeu)
             moteurGraphique->AjouterTexte(jeu->hero.m_classe.boutons_menus_hud[i].nom,coordonnee(eventManager->getPositionSouris().x,
                                             eventManager->getPositionSouris().y - 20),
                                             19,0,12,sf::Color(224,224,224),1);
-            if(eventManager->getEvenement(Mouse::Left,EventClic))
+            if(eventManager->getEvenement(Mouse::Left,EventClicA))
             {
-                eventManager->StopEvenement(Mouse::Left,EventClic);
+                eventManager->StopEvenement(Mouse::Left,EventClicA);
                 choix = jeu->hero.m_classe.boutons_menus_hud[i].lien;
             }
         }
@@ -707,7 +691,7 @@ void c_Jeu::Evenements(Jeu *jeu)
                 eventManager->StopEvenement(Mouse::Left,EventClic);
             }
 
-            eventManager->StopEvenement(Mouse::Left,EventClicA);
+          //  eventManager->StopEvenement(Mouse::Left,EventClicA);
         }
 
         if (eventManager->getEvenement(Mouse::Left,EventClic)/*&&eventManager->getEvenement(Mouse::Left,EventClicA)*/)

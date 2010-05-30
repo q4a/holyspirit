@@ -246,6 +246,8 @@ void Hero::Sauvegarder()
         fichier<<configuration->heure<<endl;
         fichier<<configuration->jour<<endl;
 
+        fichier<<m_last_potale<<endl;
+
         for(int i = 0 ; i < 8 ; ++i)
             fichier<<m_raccourcis[i].miracle<<" "<<m_raccourcis[i].no<<endl;
 
@@ -426,6 +428,8 @@ void Hero::Charger(std::string chemin_save)
             *fichier>>configuration->minute;
             *fichier>>configuration->heure;
             *fichier>>configuration->jour;
+
+            *fichier>>m_last_potale;
 
             for(int i = 0 ; i < 8 ; ++i)
                 *fichier>>m_raccourcis[i].miracle>>m_raccourcis[i].no;
@@ -640,237 +644,34 @@ void Hero::Charger(std::string chemin_save)
         console->Ajouter("/Chargement du héro terminé");
 }
 
-sf::Sprite Hero::ChargerPresentation(std::string chemin_save)
+bool Hero::ChargerPresentation(std::string chemin_save)
 {
-    console->Ajouter("Chargement du hero.");
-    for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
-        m_cheminModele[i]="";
-
-    m_chemin_save = chemin_save;
-
+    bool erreur = false;
     cDAT reader;
-    if (reader.Read(configuration->chemin_saves+m_chemin_save))
+    if (reader.Read(configuration->chemin_saves+chemin_save))
     {
-        ifstream* fichier=reader.GetInfos(configuration->chemin_temps+m_chemin_save);
+        ifstream* fichier=reader.GetInfos(configuration->chemin_temps+chemin_save);
         //fichier.open((configuration->chemin_saves+"hero.sav.hs").c_str(), ios::in | ios::binary);
         if (fichier)
         {
             char caractere;
-            Caracteristique charTemp;
-            charTemp=m_personnage.getCaracteristique();
-
             int temp = 0;
             *fichier>>temp;
             if(temp != VERSION_SAVE)
-                configuration->error_message = "Warning ! Incompatible Save, please delete your save into \"Data/Saves\" ";
+                erreur = true,configuration->error_message = "Warning ! Incompatible Save, please delete your save into \"Data/Saves\" ";
 
             *fichier>>m_caracteristiques.nom;
 
             *fichier>>m_cheminClasse;
 
-            *fichier>>charTemp.vitesse;
-            *fichier>>charTemp.pointAme;
-            *fichier>>charTemp.niveau;
-
-            *fichier>>charTemp.force;
-            *fichier>>charTemp.dexterite;
-            *fichier>>charTemp.vitalite;
-            *fichier>>charTemp.piete;
-            *fichier>>charTemp.charisme;
-            *fichier>>charTemp.pts_restant;
-            *fichier>>charTemp.miracles_restant;
-
-            *fichier>>m_argent;
-            *fichier>>m_holywater;
-
-            for(int i = 0 ; i < 8 ; ++i)
-                *fichier>>m_raccourcis[i].miracle>>m_raccourcis[i].no;
-
-            *fichier>>m_personnage.m_miracleALancer;
-
-            charTemp.ancienPointAme=charTemp.pointAme,charTemp.positionAncienAme=charTemp.pointAme;
-
-            if (configuration->debug)
-                console->Ajouter("/Lectures des caracteristiques.");
-
-            do
-            {
-                fichier->get(caractere);
-                if (caractere=='o')
-                {
-                    int pos=fichier->tellg();
-                    m_inventaire.push_back(Objet ());
-                    m_inventaire.back().ChargerTexte(fichier,m_caracteristiques,true);
-                    m_inventaire.back().Charger(m_inventaire.back().getChemin(),m_caracteristiques,true);
-                    fichier->seekg(pos, ios::beg);
-                    m_inventaire.back().m_benedictions.clear();
-                    m_inventaire.back().ChargerTexte(fichier,m_caracteristiques);
-
-                    if (m_inventaire.back().m_equipe>=0&&m_inventaire.back().m_type==ARME)
-                    {
-                        if (m_inventaire.back().m_shoot_weapon)
-                            m_personnage.m_shooter=true;
-                        else
-                            m_personnage.m_shooter=false;
-                    }
-
-                    fichier->get(caractere);
-                }
-                if (fichier->eof())
-                    throw "Impossible de charger la sauvegarde";
-            }
-            while (caractere!='$');
-
-            if (configuration->debug)
-                console->Ajouter("/Lectures des objets.");
-
-            do
-            {
-                fichier->get(caractere);
-                if (caractere=='o')
-                {
-                    int pos=fichier->tellg();
-                    m_coffre.push_back(Objet ());
-                    m_coffre.back().ChargerTexte(fichier,m_caracteristiques,true);
-                    m_coffre.back().Charger(m_coffre.back().getChemin(),m_caracteristiques,true);
-                    fichier->seekg(pos, ios::beg);
-                    m_coffre.back().m_benedictions.clear();
-                    m_coffre.back().ChargerTexte(fichier,m_caracteristiques);
-
-                    fichier->get(caractere);
-                }
-                if (fichier->eof())
-                    throw "Impossible de charger la sauvegarde";
-            }
-            while (caractere!='$');
-
-            if (configuration->debug)
-                console->Ajouter("/Lectures des objets du coffre.");
-
-            do
-            {
-                fichier->get(caractere);
-                if (caractere=='*')
-                {
-                    m_lvl_miracles.push_back(0);
-                    do
-                    {
-                        fichier->get(caractere);
-                        if (caractere=='l')
-                            *fichier>>m_lvl_miracles.back();
-                        if (fichier->eof())
-                            throw "Impossible de charger la sauvegarde";
-                    }
-                    while (caractere!='$');
-                    fichier->get(caractere);
-                }
-                if (fichier->eof())
-                    throw "Impossible de charger la sauvegarde";
-            }
-            while (caractere!='$');
-
-            if (configuration->debug)
-                console->Ajouter("/Lectures des miracles.");
-
-            do
-            {
-                fichier->get(caractere);
-                if (caractere=='q')
-                {
-                    m_quetes.push_back(Quete ());
-                    m_quetes.back().ChargerTexte(fichier);
-                    fichier->get(caractere);
-                }
-                if (fichier->eof())
-                    throw "Impossible de charger la sauvegarde";
-            }
-            while (caractere!='$');
-
-            if (configuration->debug)
-                console->Ajouter("/Lectures des quêtes.");
-
-            do
-            {
-                fichier->get(caractere);
-                if (caractere=='p')
-                {
-                    m_potales.push_back(Potale ());
-                    do
-                    {
-                        fichier->get(caractere);
-                        if (caractere=='m')
-                            *fichier>>m_potales.back().chemin;
-
-                        else if (caractere=='t')
-                            *fichier>>m_potales.back().nom;
-
-                        else if (caractere=='x')
-                            *fichier>>m_potales.back().position.x;
-                        else if (caractere=='y')
-                            *fichier>>m_potales.back().position.y;
-
-
-                        if (fichier->eof())
-                        {
-                            throw "Impossible de charger la potale";
-                        }
-                    }
-                    while (caractere!='$');
-                    fichier->get(caractere);
-                }
-                if (fichier->eof())
-                    throw "Impossible de charger la sauvegarde";
-            }
-            while (caractere!='$');
-
-
-            if (configuration->debug)
-                console->Ajouter("/Lectures des potales.");
-
-            UpdateRaccourcis();
-
-            m_personnage.setCaracteristique(charTemp);
+            *fichier>>m_caracteristiques.vitesse;
+            *fichier>>m_caracteristiques.pointAme;
+            *fichier>>m_caracteristiques.niveau;
         }
         fichier->close();
     }
 
-    m_classe.Charger(m_cheminClasse, m_lvl_miracles, m_caracteristiques);
-    m_lvl_miracles.resize(m_classe.miracles.size(),0);
-
-    ChargerModele();
-
-    sf::RenderImage render;
-    render.Create(256,256);
-
-    m_personnage.setEtat(0);
-    m_personnage.setAngle(315);
-
-    int plusHaut = 0;
-    for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
-        if(m_ordreAffichage[i] >= plusHaut)
-            plusHaut = m_ordreAffichage[i];
-
-    for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
-        if (m_ordreAffichage[i]!=-1)
-        {
-            m_personnage.m_entite_graphique.m_tileset = &m_modelePersonnage[m_ordreAffichage[i]].m_tileset[0][5];
-            m_personnage.Animer(&m_modelePersonnage[m_ordreAffichage[i]], 0);
-            m_personnage.m_entite_graphique.Generer();
-
-            m_personnage.m_entite_graphique.m_sprite.SetX(128);
-            m_personnage.m_entite_graphique.m_sprite.SetY(128);
-
-            render.Draw(m_personnage.m_entite_graphique.m_sprite);
-        }
-
-    render.Display();
-    int image = moteurGraphique->AjouterImage(render.GetImage(), 1);
-
-    sf::Sprite sprite;
-    sprite.SetImage(*moteurGraphique->getImage(image));
-    sprite.Resize(255,255);
-
-    return sprite;
+    return erreur;
 }
 
 
@@ -1560,7 +1361,7 @@ void Hero::AfficherAmis()
         moteurGraphique->AjouterCommande(&temp, 14, 0);
 
         temp.SetImage(*moteurGraphique->getImage(m_classe.barre_vie_monstre.image));
-        temp.Resize(m_amis[i]->getCaracteristique().vie/m_amis[i]->getCaracteristique().maxVie * 140,16);
+        temp.Resize(m_amis[i]->getCaracteristique().vie/m_amis[i]->getCaracteristique().maxVie * 144,16);
         moteurGraphique->AjouterCommande(&temp, 14, 0);
 
       //  temp.SetColor(sf::Color(164,32,32));
@@ -1994,12 +1795,18 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
                     int decalage = m_inventaire[i].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,0);
                     retour = true;
 
-                    for (int j=0;j<(int)m_inventaire.size();j++)
-                        if (m_inventaire[j].m_equipe>=0)
-                            for (int k=0;k<(int)m_inventaire[i].m_emplacement.size();k++)
-                                for (int l=0;l<(int)m_inventaire[j].m_emplacement.size();l++)
-                                    if (m_inventaire[i].m_emplacement[k]==m_inventaire[j].m_emplacement[l])
-                                        temp.x=decalage-4,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,0,1),l=(int)m_inventaire[j].m_emplacement.size(),k=(int)m_inventaire[i].m_emplacement.size();
+                    for(int k = m_classe.emplacements.size() - 1 ; k >= 0 ; k--)
+                    {
+                        bool ok = false;
+                        for (int l=0;l<(int)m_inventaire[i].m_emplacement.size();l++)
+                            if(m_inventaire[i].m_emplacement[l] == m_classe.emplacements[k].emplacement)
+                                ok = true;
+
+                        if(ok)
+                            for (int j=0;j<(int)m_inventaire.size();j++)
+                                if(m_inventaire[j].m_equipe == k)
+                                    temp.x=decalage-4,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,0,1);
+                    }
                 }
             }
             else if(i != m_no_schema && i != m_no_result)
@@ -2200,16 +2007,18 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
                 int decalage=(*trader)[i].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,m_cheminClasse,(10-(float)m_caracteristiques.charisme/100),1,1,0,1,trader==&m_coffre);
                 retour = true;
 
-                for (int j=0;j<(int)m_inventaire.size();j++)
-                    if (m_inventaire[j].m_equipe>=0)
-                        for (int k=0;k<(int)(*trader)[i].m_emplacement.size();k++)
-                            for (int l=0;l<(int)m_inventaire[j].m_emplacement.size();l++)
-                                if ((*trader)[i].m_emplacement[k]==m_inventaire[j].m_emplacement[l])
-                                {
-                                    temp.x=decalage+12;
-                                    decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,1,1,1);
-                                    l=(int)m_inventaire[j].m_emplacement.size(),k=(int)(*trader)[i].m_emplacement.size();
-                                }
+                for(int k = 0 ; k < (int)m_classe.emplacements.size() ; k++)
+                {
+                    bool ok = false;
+                    for (int l=0;l<(int)(*trader)[i].m_emplacement.size();l++)
+                        if((*trader)[i].m_emplacement[l] == m_classe.emplacements[k].emplacement)
+                            ok = true;
+
+                    if(ok)
+                        for (int j=0;j<(int)m_inventaire.size();j++)
+                            if(m_inventaire[j].m_equipe == k)
+                                temp.x=decalage+12,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,1,1,1);
+                }
             }
 
 
@@ -2982,13 +2791,18 @@ void Hero::addPotale(int x, int y, int nom, const std::string &chemin)
         if(m_potales[i].position.x == x)
             if(m_potales[i].position.y == y)
                 if(m_potales[i].chemin == chemin)
+                {
                     add = false;
+                    m_last_potale = i;
+                }
+
 
     if(chemin.empty())
         add = false;
 
     if(add)
     {
+        m_last_potale = m_potales.size();
         m_potales.push_back(Potale ());
         m_potales.back().chemin = chemin;
         m_potales.back().position.x = x;
@@ -3007,7 +2821,9 @@ bool Hero::AjouterObjet(Objet objet,bool enMain)
         if (ramasser)
             m_inventaire.back().JouerSon();
 
-        if (m_inventaire.back().m_type == ARME || m_inventaire.back().m_type == ARMURE)
+        if (m_inventaire.back().m_type == ARME
+         || m_inventaire.back().m_type == ARMURE
+         || m_inventaire.back().m_type == JEWELERY)
         {
             bool continuer = true;
             for (int j=0;j<(int)m_classe.emplacements.size() && continuer;j++)

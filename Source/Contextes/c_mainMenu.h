@@ -45,6 +45,8 @@ private:
     int classe_choisie;
 
     std::vector <int> m_nom_classes;
+    std::vector <int> m_niveau_saves;
+    std::vector <bool> m_incompatible_saves;
     std::vector <std::string> m_chemin_saves;
     std::vector <sf::Sprite> m_images_saves;
     std::string nom_hero;

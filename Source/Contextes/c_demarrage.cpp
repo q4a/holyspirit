@@ -44,6 +44,10 @@ void c_Demarrage::Utiliser(Jeu *jeu)
     temps_ecoule=jeu->Clock.GetElapsedTime();
     jeu->Clock.Reset();
 
+    configuration->RafraichirOmbre = 0;
+    configuration->RafraichirLumiere = 0;
+    moteurGraphique->m_blur = 0;
+
     Sprite sprite;
 
     sprite.SetImage(*moteurGraphique->getImage(m_image));

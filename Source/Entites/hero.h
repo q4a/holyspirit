@@ -58,7 +58,7 @@ public:
     void SauvegarderApercu();
     void Charger(std::string chemin);
     void ChargerModele(bool tout=false);
-    sf::Sprite ChargerPresentation(std::string chemin);
+    bool ChargerPresentation(std::string chemin);
 
     void Afficher();
     void CalculerOrdreAffichage();
