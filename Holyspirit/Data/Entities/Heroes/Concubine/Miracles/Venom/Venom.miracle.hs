@@ -26,7 +26,7 @@ $
 //Séquences
 	*
 		//Images
-			*Data/Items/PoisonEffect/PoisonEffect.png
+			*Data/Items/Miracles/PoisonEffect.png
 		$
 		//Sons
 		$
