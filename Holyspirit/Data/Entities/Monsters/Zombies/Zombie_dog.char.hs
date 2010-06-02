@@ -10,7 +10,7 @@ Rang du monstre
 $
 Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse
-*v50 di5 da60 m0.75 o1 a10 n3 t1 x40 $
+*v50 di30 da60 m0.75 o1 a10 n3 t1 x40 $
 $
 *Data/Scripts/AI/zombie_dog.script.hs
 $

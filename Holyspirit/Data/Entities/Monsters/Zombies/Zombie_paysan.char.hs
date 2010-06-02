@@ -10,7 +10,7 @@ Rang du monstre
 $
 Caracteristiques
 Vie/DegatsMin/DegatsMax/Vitesse
-*v75 di5 da30 m0.15 o1 a10 n3 t1 x40 $
+*v75 di20 da30 m0.15 o1 a10 n3 t1 x40 $
 $
 *Data/Scripts/AI/zombie.script.hs
 $

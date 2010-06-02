@@ -40,6 +40,25 @@ main
 			end
 		else
 			variable * 0 * 1
+			
+			if quest * 2 * 3
+			then
+				if variable * 2 * 0
+				then
+					setQuestName * 2  * 20
+					speak * 21
+					speak_choice * 72 * 1
+					variable * 2 * 1
+				end
+				
+				if speak_choice * 1
+				then
+					variable * 2 * 0
+					setQuestState * 2 * 1 * 25 
+					stop_speak
+				end
+			end
+			
 			if quest * 2 * 1
 			then
 				speak * 24

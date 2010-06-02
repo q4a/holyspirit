@@ -70,3 +70,4 @@ Haaa, enfin quelqu'un qui devrait pouvoir nous aider. Ou du moins, votre aide ne
 Normalement, j'habites en ville, mais dès que la milice s'est formée, je me suis dit qu'il valait mieux que je ne m'éternises pas. J'ai pris mes affaires et je me suis fait un passage à coup de masse jusqu'à cette abbaye.\S'il vous faut quoi que ce soit comme matos, c'est chez moi que vous trouverez les meilleurs armes et armures. Et si vous ne trouvez pas chaussure à votre pied, hé bien, je verrai pour vous le fabriquer, à condition que vous me disiez précisemment ce que je dois faire et que vous me filiez les matières brutes nécessaires.
 Aurevoir
 Que veux-tu de moi, femme !?\
+Je m'en suis déjà occupé.
