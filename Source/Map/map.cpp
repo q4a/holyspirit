@@ -2410,8 +2410,8 @@ bool Map::InfligerDegats(int numero, float degats, int type, Hero *hero,bool pou
         return InfligerDegats(&m_monstre[numero], degats, type, hero, pousser, temps);
 
         if (!m_monstre[numero].EnVie())
-            if (m_monstreIllumine == numero || hero->getMonstreVise() == numero)
-                m_monstreIllumine=-1,hero->setMonstreVise(-1);
+            if (m_monstreIllumine == numero)
+                m_monstreIllumine=-1;
     }
     return (false);
 }
@@ -2434,6 +2434,8 @@ bool Map::InfligerDegats(Personnage *monstre, float degats, int type, Hero *hero
 
     if (!monstre->EnVie() && viePrecedente > 0 && monstre != &hero->m_personnage)
     {
+        if(hero->m_personnage.m_cible == monstre)
+            hero->m_personnage.m_cible = NULL;
         for (int i=0;i<(int)monstre->m_miracleEnCours.size();++i)
         {
             for (int o=0;o<(int)monstre->m_miracleEnCours[i].m_infos.size();o++)
@@ -2590,14 +2592,6 @@ Modele_Monstre &Map::getModeleMonstre(int numeroMonstre)
         return m_ModeleMonstre[numeroMonstre];
     else
         return m_ModeleMonstre[0];
-}
-
-bool Map::getMonstreEnVie(int numeroMonstre)
-{
-    if (numeroMonstre>=0&&numeroMonstre<(int)m_monstre.size())
-        return m_monstre[numeroMonstre].EnVie();
-    else
-        return 0;
 }
 
 casePathfinding** Map::getAlentourDuPersonnage(coordonnee positionPersonnage)

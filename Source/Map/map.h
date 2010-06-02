@@ -136,7 +136,6 @@ public:
     int     getNombreObjets(coordonnee position);
     int     getNombreMonstres();
     int     getNombreModeleMonstres();
-    bool    getMonstreEnVie(int numeroMonstre);
     const   coordonnee &getDimensions();
     const   std::string &getNom();
 

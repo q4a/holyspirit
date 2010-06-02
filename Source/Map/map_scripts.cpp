@@ -203,7 +203,7 @@ void Map::Script_Fight(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
 
 void Map::Script_Trade(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer)
 {
-    hero->setMonstreVise(-1);
+    jeu->hero.m_personnage.m_cible = NULL;
 
     jeu->m_inventaire->setTrader(m_monstre[monstre].getPointeurObjets(),&hero->m_classe);
     if(!script->m_instructions[noInstruction].m_valeurs.empty())
@@ -219,8 +219,8 @@ void Map::Script_Trade(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
 
 void Map::Script_Potale(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer)
 {
-    hero->setMonstreVise(-1);
-   // jeu->m_inventaire->setTrader(m_monstre[monstre].getPointeurObjets(),&hero->m_classe);
+    jeu->hero.m_personnage.m_cible = NULL;
+
     eventManager->StopEvenement(sf::Mouse::Left, EventClic);
     eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
     jeu->Clock.Reset();
@@ -230,8 +230,8 @@ void Map::Script_Potale(Jeu *jeu,Script *script,int noInstruction,int monstre,He
 
 void Map::Script_Craft(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer)
 {
-    hero->setMonstreVise(-1);
-   // jeu->m_inventaire->setTrader(m_monstre[monstre].getPointeurObjets(),&hero->m_classe);
+    jeu->hero.m_personnage.m_cible = NULL;
+
     eventManager->StopEvenement(sf::Mouse::Left, EventClic);
     eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
     jeu->Clock.Reset();
@@ -241,8 +241,8 @@ void Map::Script_Craft(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
 
 void Map::Script_Bless(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer)
 {
-    hero->setMonstreVise(-1);
-   // jeu->m_inventaire->setTrader(m_monstre[monstre].getPointeurObjets(),&hero->m_classe);
+    jeu->hero.m_personnage.m_cible = NULL;
+
     eventManager->StopEvenement(sf::Mouse::Left, EventClic);
     eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
     jeu->Clock.Reset();
@@ -453,7 +453,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         }
         else if (script->m_instructions[noInstruction].nom=="stop_talk")
         {
-            hero->setMonstreVise(-1);
+            jeu->hero.m_personnage.m_cible = NULL;
         }
         else if (script->m_instructions[noInstruction].nom=="addCash")
         {
@@ -574,12 +574,14 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                 }
                 else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="talk" && monstre != -1)
                 {
-                    if (!(hero->getMonstreVise()==monstre&&fabs(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)<=1&&fabs(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)<=1))
+                    if (!(hero->m_personnage.m_cible == &m_monstre[monstre]
+                    &&fabs(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)<=1
+                    &&fabs(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)<=1))
                         ok=false;
                 }
                 else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="clicOver" && monstre != -1)
                 {
-                    if (!(hero->getMonstreVise()==monstre))
+                    if (!(hero->m_personnage.m_cible == &m_monstre[monstre]))
                         ok=false;
                 }
                 else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="speak_choice" && monstre != -1)

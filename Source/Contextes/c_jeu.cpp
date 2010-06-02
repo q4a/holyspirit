@@ -231,7 +231,7 @@ void c_Jeu::Deplacements(Jeu *jeu)
     {
 
         coordonnee temp(-1 ,-1 ,-1 ,-1);
-        if (jeu->hero.getMonstreVise()==-1)
+        if (jeu->hero.m_personnage.m_cible == NULL)
             temp.x=jeu->hero.m_personnage.getCoordonnee().x,temp.y=jeu->hero.m_personnage.getCoordonnee().y;
 
         oldHeroPos = jeu->hero.m_personnage.getCoordonneePixel();
@@ -243,8 +243,8 @@ void c_Jeu::Deplacements(Jeu *jeu)
                                                                             (int)((jeu->hero.m_personnage.getCoordonneePixel().y + jeu->hero.m_personnage.getPousse().y * tempsEcouleDepuisDernierDeplacement * COTE_TILE * 5 + COTE_TILE * 0.5 * (jeu->hero.m_personnage.getPousse().y >= 0) )/COTE_TILE)) != 1)))*/
         {
             bool ok=true;
-            if (jeu->hero.getMonstreVise()>-1)
-                if (jeu->hero.TestMonstreVise(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())))
+            if (jeu->hero.m_personnage.m_cible != NULL)
+                if (jeu->hero.TestMonstreVise(jeu->hero.m_personnage.m_cible))
                     ok=false;
 
             if (jeu->hero.m_personnage.getCoordonnee().x==jeu->hero.m_personnage.getArrivee().x && jeu->hero.m_personnage.getCoordonnee().y==jeu->hero.m_personnage.getArrivee().y)
@@ -261,7 +261,7 @@ void c_Jeu::Deplacements(Jeu *jeu)
         }
 
         if(fabs(jeu->hero.m_personnage.getPousse().x) > 0 || fabs(jeu->hero.m_personnage.getPousse().y) > 0)
-            jeu->hero.setMonstreVise(-1),jeu->hero.m_personnage.frappeEnCours=false;
+            jeu->hero.m_personnage.m_cible = NULL,jeu->hero.m_personnage.frappeEnCours=false;
 
         coordonneeDecimal old, heroPos;
         old.x = (oldHeroPos.x-oldHeroPos.y-1)*64;
@@ -315,32 +315,35 @@ void c_Jeu::Animation(Jeu *jeu)
             {
                 if (!jeu->hero.m_personnage.m_shooter)
                 {
-                    if (jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())!=NULL)
-                        if (fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().x)<2
-                          &&fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().y-jeu->hero.m_personnage.getCoordonnee().y)<2)
-                            if (rand() % 100 < (float)((float)(jeu->hero.m_caracteristiques.dexterite + 100) / ((float)(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCaracteristique().dexterite + 100)))*75 )
-                                if (!jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->m_friendly && jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->EnVie())
+                    if (jeu->hero.m_personnage.m_cible!=NULL)
+                    {
+
+                        if (fabs(jeu->hero.m_personnage.m_cible->getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().x)<2
+                          &&fabs(jeu->hero.m_personnage.m_cible->getCoordonnee().y-jeu->hero.m_personnage.getCoordonnee().y)<2)
+                            if (rand() % 100 < (float)((float)(jeu->hero.m_caracteristiques.dexterite + 100) / ((float)(jeu->hero.m_personnage.m_cible->getCaracteristique().dexterite + 100)))*75 )
+                                if (!jeu->hero.m_personnage.m_cible->m_friendly && jeu->hero.m_personnage.m_cible->EnVie())
                                 {
                                     int degats = (rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax[PHYSIQUE] - jeu->hero.m_personnage.getCaracteristique().degatsMin[PHYSIQUE]+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin[PHYSIQUE];
-                                    jeu->map->InfligerDegats(jeu->hero.getMonstreVise(),degats,PHYSIQUE,&jeu->hero,1,0);
 
-                                    jeu->hero.m_personnage.m_vientDeFrapper = jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise());
-                                    jeu->hero.m_personnage.m_vientDAttaquer = jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee();
+                                    jeu->hero.m_personnage.m_vientDeFrapper = jeu->hero.m_personnage.m_cible;
+                                    jeu->hero.m_personnage.m_vientDAttaquer = jeu->hero.m_personnage.m_cible->getCoordonnee();
                                     jeu->hero.m_personnage.m_degatsInflige  = degats;
 
-                                    jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->m_vientDetreTouche = &jeu->hero.m_personnage;
+                                    jeu->hero.m_personnage.m_cible->m_vientDetreTouche = &jeu->hero.m_personnage;
+
+                                    jeu->map->InfligerDegats(jeu->hero.m_personnage.m_cible,degats,PHYSIQUE,&jeu->hero,1,0);
 
                                     jeu->hero.m_personnage.InfligerDegats(-degats * jeu->hero.m_caracteristiques.volVie, 4, NULL,0);
                                     jeu->hero.m_caracteristiques.foi += degats *jeu->hero.m_caracteristiques.volFoi;
 
                                     jeu->hero.m_personnage.m_miracleFrappeEnCours = false;
                                 }
-
+                    }
                 }
                 else
                 {
-                    if (jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())!=NULL)
-                        jeu->hero.m_personnage.m_vientDAttaquer = jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getProchaineCase();
+                    if (jeu->hero.m_personnage.m_cible!=NULL)
+                        jeu->hero.m_personnage.m_vientDAttaquer = jeu->hero.m_personnage.m_cible->getProchaineCase();
                     else
                         jeu->hero.m_personnage.m_vientDAttaquer = eventManager->getCasePointee();
                 }
@@ -349,22 +352,31 @@ void c_Jeu::Animation(Jeu *jeu)
             jeu->hero.miracleEnCours = 0;
         }
 
-        if (retour==2)
-            if (!eventManager->getEvenement(Mouse::Left,EventClic) || !jeu->map->getMonstreEnVie(jeu->hero.getMonstreVise()) )
-                jeu->hero.setMonstreVise(-1),jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
+        if (retour == 2 || retour == 1)
+        {
+            if (jeu->hero.m_personnage.m_cible == NULL)
+                jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
+
+            if (!eventManager->getEvenement(Mouse::Left,EventClic))
+                jeu->hero.m_personnage.m_cible = NULL,jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
+           // if (!jeu->map->getMonstreEnVie(jeu->hero.m_personnage.m_cible))
+            if (jeu->hero.m_personnage.m_cible != NULL)
+                if(!jeu->hero.m_personnage.m_cible->EnVie())
+                    jeu->hero.m_personnage.m_cible = NULL,jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
+        }
+
 
         if (retour==1)
         {
-            if (!eventManager->getEvenement(Mouse::Left,EventClic) || !jeu->map->getMonstreEnVie(jeu->hero.getMonstreVise()))
-                jeu->hero.setMonstreVise(-1),jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
-            if (jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise()) != NULL)
-                if (fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().x - jeu->hero.m_personnage.getCoordonnee().x) > 1
-                        || fabs(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise())->getCoordonnee().y - jeu->hero.m_personnage.getCoordonnee().y) > 1)
+            if (jeu->hero.m_personnage.m_cible != NULL)
+                if (fabs(jeu->hero.m_personnage.m_cible->getCoordonnee().x - jeu->hero.m_personnage.getCoordonnee().x) > 1
+                 || fabs(jeu->hero.m_personnage.m_cible->getCoordonnee().y - jeu->hero.m_personnage.getCoordonnee().y) > 1)
                     jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
         }
 
         if(!jeu->hero.m_personnage.frappeEnCours)
             jeu->hero.m_personnage.m_lancementMiracleEnCours = false;
+
 
 
         jeu->map->Animer(&jeu->hero,tempsDepuisDerniereAnimation,&jeu->menu); // Animation des tiles de la jeu->map
@@ -578,7 +590,7 @@ int GestionBoutons(Jeu *jeu)
             eventManager->StopEvenement(Mouse::Left,EventClicA);
             eventManager->StopEvenement(Mouse::Left,EventClic);
             jeu->menu.m_dialogue.clear();
-            jeu->hero.setMonstreVise(-1);
+            jeu->hero.m_personnage.m_cible = NULL;
         }
         jeu->menu.ClearSpeakChoice();
     }
@@ -651,25 +663,28 @@ void c_Jeu::Evenements(Jeu *jeu)
             if(!jeu->map->getEntiteMonstre(jeu->map->m_monstreIllumine)->EnVie())
                 jeu->map->m_monstreIllumine = -1, eventManager->StopEvenement(Mouse::Left,EventClic);
 
-        if (eventManager->getEvenement(Mouse::Left,EventClic)&&eventManager->getEvenement(Mouse::Left,EventClicA))
+        if (eventManager->getEvenement(Mouse::Left,EventClic)&&
+            eventManager->getEvenement(Mouse::Left,EventClicA))
         {
             jeu->hero.m_personnage.m_miracleBloquant = false;
             jeu->hero.StopMiraclesFrappe();
-            if (jeu->map->getMonstreIllumine()!=-1)
+            if (jeu->map->getMonstreIllumine() != -1)
             {
                 bool test=false;
-                if (jeu->hero.getMonstreVise()>-1&&jeu->hero.m_personnage.getArrivee().x==jeu->hero.m_personnage.getCoordonnee().x&&jeu->hero.m_personnage.getArrivee().y==jeu->hero.m_personnage.getCoordonnee().y)
+                if(jeu->hero.m_personnage.m_cible != NULL
+                && jeu->hero.m_personnage.getArrivee().x==jeu->hero.m_personnage.getCoordonnee().x
+                && jeu->hero.m_personnage.getArrivee().y==jeu->hero.m_personnage.getCoordonnee().y)
                     test=true;
 
-                eventManager->StopEvenement(Mouse::Left,EventClicA);
-                jeu->hero.setMonstreVise(jeu->map->getMonstreIllumine());
+                //eventManager->StopEvenement(Mouse::Left,EventClicA);
+                jeu->hero.m_personnage.m_cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine());
+
                 if (test)
-                    jeu->hero.TestMonstreVise(jeu->map->getEntiteMonstre(jeu->hero.getMonstreVise()));
+                    jeu->hero.TestMonstreVise(jeu->hero.m_personnage.m_cible);
             }
             else
-                jeu->hero.setMonstreVise(-1);
+                jeu->hero.m_personnage.m_cible = NULL;
         }
-
 
         if (eventManager->getEvenement(Mouse::Left,EventClic)&&!eventManager->getEvenement(Key::LShift,EventKey))
         {
@@ -678,7 +693,7 @@ void c_Jeu::Evenements(Jeu *jeu)
                     &&eventManager->getPositionSouris().y>configuration->Resolution.w*0.25&&eventManager->getPositionSouris().y<configuration->Resolution.w*0.25+configuration->Resolution.w*0.34
                     &&alpha_sac>=128)||alpha_sac<=128)
             {
-                if (jeu->hero.getMonstreVise()==-1)
+                if (jeu->hero.m_personnage.m_cible == NULL)
                 {
                     jeu->hero.m_personnage.setArrivee(eventManager->getCasePointee());
                     jeu->hero.setSacVise(coordonnee (-1,-1,-1,-1));
@@ -738,19 +753,19 @@ void c_Jeu::Evenements(Jeu *jeu)
                     if (jeu->hero.UtiliserMiracle(jeu->hero.m_personnage.m_miracleALancer, jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible))
                     {
                         jeu->hero.m_personnage.m_miracleEnCours.back().m_infos.back()->m_cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine());
-                        jeu->hero.setMonstreVise(jeu->map->getMonstreIllumine());
 
                         coordonnee positionHero;
                         positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
                         positionHero.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
 
                         jeu->hero.m_personnage.setArrivee(jeu->hero.m_personnage.getProchaineCase());
+
+                        jeu->hero.m_personnage.m_cible = NULL;
                     }
                     else if(!eventManager->getEvenement(Key::LShift,EventKey))
                         jeu->hero.m_personnage.setArrivee(eventManager->getCasePointee());
                     else
                         jeu->hero.m_personnage.setArrivee(jeu->hero.m_personnage.getProchaineCase());
-                    jeu->hero.setMonstreVise(-1);
                 }
             }
         }
@@ -790,7 +805,7 @@ void c_Jeu::Affichage(Jeu *jeu)
 
     if (alpha_dialog>0)
         if(jeu->menu.AfficherDialogue((int)alpha_dialog,&jeu->hero.m_classe))
-            jeu->hero.setMonstreVise(-1);
+            jeu->hero.m_personnage.m_cible = NULL;
 
 
     if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())>4)

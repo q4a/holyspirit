@@ -159,8 +159,6 @@ Hero::Hero()
     m_personnage.setCaracteristique(temp);
     m_personnage.m_friendly = true;
 
-    m_monstreVise=-1;
-
     m_objetEnMain=-1;
     m_achat=false;
 
@@ -1407,6 +1405,7 @@ void Hero::AfficherQuetes(float decalage)
     m_quetePointee = -1;
     coordonnee position = m_classe.position_contenu_quetes;
     for (int i = 0;i < (int)m_quetes.size();++i)
+    if(m_quetes[i].m_nom != " ")
     {
         sf::Text texte;
         texte.SetFont(moteurGraphique->m_font);
@@ -2343,13 +2342,15 @@ void Hero::PlacerCamera()
     moteurGraphique->m_camera.Move(moteurGraphique->decalageCamera.x, moteurGraphique->decalageCamera.y);
 }
 
-bool Hero::TestMonstreVise(Monstre *monstre)
+bool Hero::TestMonstreVise(Personnage *monstre)
 {
     if (monstre!=NULL)
-        if (m_monstreVise>-1&&m_caracteristiques.vie>0)
+        if (m_caracteristiques.vie>0)
         {
-            if (((!m_personnage.m_shooter||monstre->m_friendly)&&(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)<=1)) || ((!m_personnage.m_shooter||monstre->m_friendly)&&(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=1))
-                    ||(!monstre->m_friendly&&m_personnage.m_shooter&&(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)<=13&&fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)<=13)) || (!monstre->m_friendly&&m_personnage.m_shooter&&(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=13&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=13)))
+            if (((!m_personnage.m_shooter||monstre->m_friendly)&&(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)<=1))
+                || ((!m_personnage.m_shooter||monstre->m_friendly)&&(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=1))
+                ||(!monstre->m_friendly&&m_personnage.m_shooter&&(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)<=13&&fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)<=13))
+                || (!monstre->m_friendly&&m_personnage.m_shooter&&(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=13&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=13)))
             {
                 m_personnage.setArrivee(m_personnage.getCoordonnee());
 
@@ -3762,10 +3763,6 @@ void Hero::RegenererMiracles(float time)
     }
 }
 
-void Hero::setMonstreVise(int monstre)
-{
-    m_monstreVise=monstre;
-}
 void Hero::setChercherSac(coordonnee a)
 {
     m_chercherSac=a;
@@ -3809,9 +3806,5 @@ coordonnee Hero::getSacVise()
 {
     return m_sacVise;
 };
-int Hero::getMonstreVise()
-{
-    return m_monstreVise;
-}
 #endif
 

@@ -332,7 +332,11 @@ bool Map::Miracle_CorpsACorps (Hero *hero, Personnage *personnage, Miracle &mode
                 personnage->Frappe(personnage->getCoordonneePixel(),info.m_cible->getCoordonneePixel());
 
                 if(effet.m_informations[1])
+                {
                     personnage->m_miracleFrappeEnCours = true;
+                    personnage->m_cible = info.m_cible;
+                }
+
                 for (int p=0;p<(int)effet.m_lien.size();p++)
                 {
                     miracleEnCours.m_infos.push_back(new InfosEntiteMiracle ());

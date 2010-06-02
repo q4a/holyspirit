@@ -74,7 +74,7 @@ public:
 
     void PlacerCamera();
 
-    bool TestMonstreVise(Monstre *monstre);
+    bool TestMonstreVise(Personnage *monstre);
 
     void AugmenterAme(float temps);
     void RecalculerCaracteristiques(bool bis = true);
@@ -110,11 +110,9 @@ public:
     void StopMiraclesFrappe();
     void StopMiraclesCharme();
 
-    void setMonstreVise(int monstre);
     void setChercherSac(coordonnee);
     void setSacVise(coordonnee);
 
-    int getMonstreVise();
     coordonnee getChercherSac();
     coordonnee getSacVise();
 
@@ -160,7 +158,6 @@ public:
     int m_no_result;
 
 private:
-    int m_monstreVise;
     coordonnee m_chercherSac,m_sacVise;
 
     int m_cas;
