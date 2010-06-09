@@ -374,7 +374,9 @@ void MoteurGraphique::Afficher()
 
         m_light_screen.SetView(temp);
 
-        m_light_screen.Clear(sf::Color(m_soleil.rouge*m_soleil.intensite/255,m_soleil.vert*m_soleil.intensite/255,m_soleil.bleu*m_soleil.intensite/255,255));
+        m_light_screen.Clear(sf::Color(m_soleil.rouge * m_soleil.intensite/255,
+                                       m_soleil.vert  * m_soleil.intensite/255,
+                                       m_soleil.bleu  * m_soleil.intensite/255,255));
 
         LightManager->Draw(&m_light_screen,&temp);
 

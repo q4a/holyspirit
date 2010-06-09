@@ -62,7 +62,8 @@ bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps)
                 sprite.SetScale(scale,scale);
                 sprite.SetX(Iter->position.x);
                 sprite.SetY(Iter->position.y-Iter->position.z);
-                sprite.SetColor(sf::Color(m_color.r,m_color.g,m_color.b,(int)Iter->alpha));
+                if(!Iter->sang)
+                    sprite.SetColor(sf::Color(m_color.r,m_color.g,m_color.b,(int)Iter->alpha));
                 sprite.Scale(Iter->taille, Iter->taille);
 
                 if (Iter->position.z>32)

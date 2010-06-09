@@ -1528,22 +1528,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                             if (m_decor[1][j][k].getNombreObjets()<=4)
                             {
                                 for (int o=0;o<m_decor[1][j][k].getNombreObjets();o++)
-                                {
-                                    sprite.SetImage(*moteurGraphique->getImage(m_decor[1][j][k].getObjet(o)->getImage()));
-                                    sprite.SetSubRect(IntRect(m_decor[1][j][k].getObjet(o)->getPositionImage().x,
-                                                              m_decor[1][j][k].getObjet(o)->getPositionImage().y,
-                                                              m_decor[1][j][k].getObjet(o)->getPositionImage().w,
-                                                              m_decor[1][j][k].getObjet(o)->getPositionImage().h));
-                                    sprite.SetScale(0.8f,0.4f);
-
-                                    sprite.SetX(position.x-32+m_decor[1][j][k].getObjet(o)->getPosition().x*32+16-(m_decor[1][j][k].getObjet(o)->getPositionImage().w*0.8f)/2);
-                                    sprite.SetY(position.y+m_decor[1][j][k].getObjet(o)->getPosition().y*32);
-
-                                    moteurGraphique->AjouterCommande(&sprite,8,1);
-
-                                    sprite.SetBlendMode(Blend::Alpha);
-                                    sprite.SetColor(sf::Color(255,255,255));
-                                }
+                                    m_decor[1][j][k].getObjet(o)->Afficher(position);
                             }
                             else
                             {
@@ -1836,15 +1821,31 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
 
                 m_decor[i][j][k].m_entite_graphique.Animer(temps);
 
-                //if(i == 1)
-                   // m_decor[i][j][k].m_entite_graphique.m_sprite.Move(0,-m_decor[0][j][k].getHauteur());
-                //m_decor[i][j][k].m_entite_herbe.Animer(temps);
-
                 for(int z = 0; z < m_decor[i][j][k].getNombreObjets() ; ++z)
                 {
                     m_decor[i][j][k].getObjet(z)->m_alpha -= temps*200;
                     if(m_decor[i][j][k].getObjet(z)->m_alpha < 0)
                         m_decor[i][j][k].getObjet(z)->m_alpha = 0;
+
+                    if(m_decor[i][j][k].getObjet(z)->m_hauteur > 0)
+                    {
+                        if(m_decor[i][j][k].getObjet(z)->m_monter)
+                            m_decor[i][j][k].getObjet(z)->m_hauteur += temps * 100 + temps * (96 - m_decor[i][j][k].getObjet(z)->m_hauteur) * 2;
+                        else
+                            m_decor[i][j][k].getObjet(z)->m_hauteur -= temps * 100 + temps * (96 - m_decor[i][j][k].getObjet(z)->m_hauteur) * 2;
+
+                        m_decor[i][j][k].getObjet(z)->m_rotation += temps * 1000;
+
+                        if(m_decor[i][j][k].getObjet(z)->m_hauteur > 96)
+                            m_decor[i][j][k].getObjet(z)->m_monter = false;
+                        if(m_decor[i][j][k].getObjet(z)->m_hauteur <= 0)
+                        {
+                            m_decor[i][j][k].getObjet(z)->m_rotation = 20 - rand() % 40;
+                            m_decor[i][j][k].getObjet(z)->m_hauteur = 0;
+                            m_decor[i][j][k].getObjet(z)->m_alpha = 512;
+                            m_decor[i][j][k].getObjet(z)->JouerSon();
+                        }
+                    }
                 }
 
                 for (int z=0;z<(int)m_decor[i][j][k].getMonstre().size();z++)
@@ -2521,10 +2522,11 @@ bool Map::RamasserObjet(Hero *hero,bool enMain)
 
 void Map::AjouterObjet(Objet objet)
 {
-    if (objet.getPosition().x>=0&&objet.getPosition().x<m_dimensions.x&&objet.getPosition().y>=0&&objet.getPosition().y<m_dimensions.y)
-    {
+    if (objet.getPosition().x>=0
+      &&objet.getPosition().x<m_dimensions.x
+      &&objet.getPosition().y>=0
+      &&objet.getPosition().y<m_dimensions.y)
         m_decor[1][objet.getPosition().y][objet.getPosition().x].AjouterObjet(objet);
-    }
 }
 
 void Map::AjouterMonstre(Monstre monstre)

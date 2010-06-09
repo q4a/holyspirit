@@ -290,9 +290,10 @@ void Decor::AjouterObjet(Objet objet)
                 continuer = false, m_objets.back().setPosition(position.x, position.y);
         }
 
-
-    m_objets.back().JouerSon();
-    m_objets.back().m_alpha = 512;
+    m_objets.back().m_alpha = 0;
+    m_objets.back().m_hauteur = rand()%64;
+    m_objets.back().m_monter = 1;
+    m_objets.back().m_rotation = rand() % 360;
 }
 
 

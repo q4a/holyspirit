@@ -61,6 +61,14 @@ void ChargerMiracleBenediction(benediction &bene, Miracle &miracle, bool &m_useM
         caract.degatsMin[0] = bene.info2;
         caract.degatsMax[0] = bene.info3;
 
+        if(bene.info1 == PHYSIQUE)
+        {
+            if (!m_useMiracle)
+                miracle.Charger("Data/Items/Miracles/PhysicEffect.miracle.hs",caract,0),m_useMiracle=true;
+            else
+                miracle.Concatenencer("Data/Items/Miracles/PhysicEffect.miracle.hs",caract,0);
+        }
+
         if(bene.info1 == FEU)
         {
             if (!m_useMiracle)
@@ -1204,13 +1212,30 @@ void Objet::ChargerMiracle(const Caracteristique &caract)
 
 void Objet::Generer(int bonus)
 {
-    m_vie=(rand() % (va - vi + 1)) + vi;
-    m_armure=(rand() % (aa - ai + 1)) + ai;
-    m_degatsMin=(rand() % (dia - dii + 1)) + dii;
-    m_degatsMax=(rand() % (daa - dai + 1)) + dai;
+    if(va - vi + 1 != 0)
+        m_vie=(rand() % (va - vi + 1)) + vi;
+    else
+        m_vie = 0;
+
+    if(aa - ai + 1 != 0)
+        m_armure=(rand() % (aa - ai + 1)) + ai;
+    else
+        m_armure = 0;
+
+    if(dia - dii + 1 != 0)
+        m_degatsMin=(rand() % (dia - dii + 1)) + dii;
+    else
+        m_degatsMin = 0;
+
+    if(daa - dai + 1 != 0)
+        m_degatsMax=(rand() % (daa - dai + 1)) + dai;
+    else
+        m_degatsMax = 0;
 
     if(ba > bi)
         m_nbr_bless = (rand() % (ba - bi + 1)) + bi;
+    else
+        m_nbr_bless = 0;
 
     if (m_type != CONSOMMABLE && m_capaciteBenediction > 0)
         if (m_rarete<DIVIN || m_type == LITANIE)
@@ -1843,6 +1868,32 @@ std::string getTextBenediction(const benediction &bene)
     return buf.str();
 }
 
+void Objet::Afficher(coordonnee position)
+{
+    sf::Sprite sprite;
+    sprite.SetImage(*moteurGraphique->getImage(m_image));
+    sprite.SetSubRect(IntRect(m_positionImage.x,
+                              m_positionImage.y,
+                              m_positionImage.w,
+                              m_positionImage.h));
+    if(m_hauteur < 1)
+        sprite.SetScale(0.8f,0.4f);
+    else
+        sprite.SetScale(0.6f,0.6f);
+
+    sprite.SetOrigin(   m_positionImage.w * 0.5,
+                        m_positionImage.h * 0.5);
+
+    sprite.SetX(position.x-32+m_position.x*32+16-(m_positionImage.w*0.8f)/2);
+    sprite.SetY(position.y+m_position.y*32 - m_hauteur);
+
+    sprite.SetRotation(m_rotation);
+
+    if(m_hauteur > 16)
+        moteurGraphique->AjouterCommande(&sprite,10,1);
+    else
+        moteurGraphique->AjouterCommande(&sprite,8,1);
+}
 
 int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, std::vector<Objet> *items, std::string nom_classe,float modPrix,bool compare,bool decalageDroite, bool surbrillance, bool orientationHaut, bool coffre)
 {

@@ -105,12 +105,40 @@ bool Map::Miracle_Declencheur    (Hero *hero, Personnage *personnage, Miracle &m
         }
     }
 
+    if(effet.m_informations[0] == D_CIBLE_MORT)
+    {
+        if(miracleEnCours.m_infos.back()->m_cible != NULL)
+        if(!miracleEnCours.m_infos.back()->m_cible->EnVie())
+        {
+            if (effet.m_informations[3] >= 0)
+            {
+                miracleEnCours.m_infos.push_back(new InfosEntiteMiracle ());
+                miracleEnCours.m_infos.back()->m_effetEnCours    = effet.m_informations[3];
+                miracleEnCours.m_infos.back()->m_position        = info.m_position;
+
+                if(effet.m_informations[2] != 0)
+                    miracleEnCours.m_infos.back()->m_cible = personnage;
+
+                for (int p=0;p<(int)effet.m_lien.size();p++)
+                {
+                    miracleEnCours.m_infos.push_back(new InfosEntiteMiracle ());
+                    miracleEnCours.m_infos.back()->m_effetEnCours    = effet.m_lien[p];
+                    miracleEnCours.m_infos.back()->m_position        = info.m_position;
+                    miracleEnCours.m_infos.back()->m_cible           = info.m_cible;
+                }
+
+                miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin() + o);
+
+                return 0;
+            }
+        }
+    }
+
     if(effet.m_informations[1] != -100)
     {
         info.m_informations[3] += temps * 100;
         if (info.m_informations[3] > effet.m_informations[1])
         {
-
             for (int p=0;p<(int)effet.m_lien.size();p++)
             {
                 miracleEnCours.m_infos.push_back(new InfosEntiteMiracle ());
@@ -1073,6 +1101,12 @@ bool Map::Miracle_Conditions(Hero *hero, Personnage *personnage, Miracle &modele
 
     if(effet.m_informations[1] == C_RANDOM)
         if(rand()%100 < effet.m_informations[2])
+            oui = true;
+
+    if(effet.m_informations[1] == C_CIBLE)
+        if(info.m_cible)
+        if(info.m_cible->getCaracteristique().niveau > 0 && info.m_cible->getCaracteristique().vitesse > 0
+        && info.m_cible->m_friendly != personnage->m_friendly)
             oui = true;
 
     if(oui)

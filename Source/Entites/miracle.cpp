@@ -209,9 +209,13 @@ float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int leve
 
         if (caractere == '+')
         {
-             if(priorite == '+')
+             if(priorite == '+' || priorite == '-')
              {
-                valeur += ChargerEquation(fichier, caract, level, '+', continuer);
+                if(priorite == '-')
+                    valeur -= ChargerEquation(fichier, caract, level, '+', continuer);
+                else
+                    valeur += ChargerEquation(fichier, caract, level, '+', continuer);
+
                 if(!*continuer)
                     return valeur;
                 else
@@ -226,9 +230,13 @@ float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int leve
         }
         else if (caractere == '-')
         {
-             if(priorite == '+')
+             if(priorite == '+' || priorite == '-')
              {
-                valeur -= ChargerEquation(fichier, caract, level, '+', continuer);
+                if(priorite == '-')
+                    valeur += ChargerEquation(fichier, caract, level, '-', continuer);
+                else
+                    valeur -= ChargerEquation(fichier, caract, level, '-', continuer);
+
                 if(!*continuer)
                     return valeur;
                 else
@@ -243,7 +251,7 @@ float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int leve
         }
         else if (caractere == '*')
         {
-             if(priorite == '*' || priorite == '+')
+             if(priorite == '*' || priorite == '+' || priorite == '-')
              {
                 valeur *= ChargerEquation(fichier, caract, level, '*', continuer);
                 if(!*continuer)
@@ -259,7 +267,7 @@ float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int leve
         }
         else if (caractere == '/')
         {
-             if(priorite == '*' || priorite == '+')
+             if(priorite == '*' || priorite == '+' || priorite == '-')
              {
                 valeur /= ChargerEquation(fichier, caract, level, '*', continuer);
                 if(!*continuer)
@@ -275,7 +283,7 @@ float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int leve
         }
         else if (caractere == '^')
         {
-             if( priorite == '^' || priorite == '*' || priorite == '+')
+             if( priorite == '^' || priorite == '*' || priorite == '+' || priorite == '-')
              {
                 float temp = ChargerEquation(fichier, caract, level, '^', continuer);
                 float buf = valeur;
@@ -887,7 +895,9 @@ void Miracle::Concatenencer(const std::string &chemin, const Caracteristique &ca
         m_effets.push_back(miracle.m_effets[i]);
         for (int j=0;j<(int)m_effets.back().m_lien.size();j++)
             m_effets.back().m_lien[j]+=tailleEffets;
-        if(m_effets.back().m_type == AURA || m_effets.back().m_type == ZONE)
+        if(m_effets.back().m_type == AURA
+        || m_effets.back().m_type == ZONE
+        || m_effets.back().m_type == CONDITION)
             m_effets.back().m_informations[0] += tailleEffets;
         if(m_effets.back().m_type == DECLENCHEUR)
             m_effets.back().m_informations[3] += tailleEffets;

@@ -96,6 +96,7 @@ public:
     Objet(std::string nom,int rarete);
     ~Objet();
 
+    void Afficher(coordonnee position);
     int AfficherCaracteristiques(coordonnee position,Caracteristique caract, std::vector<Objet> *items, std::string nom_classe,float modPrix = 1, bool compare = false, bool = false, bool = false, bool = false, bool = false);
     void Charger(const std::string &chemin, const Caracteristique &caract,bool NePasAjouterBenedictions=false);
     void ChargerCaracteristiques(std::ifstream *fichier);
@@ -141,6 +142,9 @@ public:
     int m_prix;
     bool m_shoot_weapon,m_useMiracle;
     bool m_dejaTrie;
+    float m_hauteur;
+    bool m_monter;
+    float m_rotation;
 
     Requirement m_requirement;
 
