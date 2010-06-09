@@ -40,6 +40,20 @@ main
 				variable * 3 * 0
 			end
 
+			if speak_choice * 5
+			then
+				stop_speak
+				speak * 73
+				speak_choice * 75 * 6
+			end
+			
+			if speak_choice * 6
+			then
+				stop_speak
+				variable * 0 * 0
+				variable * 2 * 1
+			end
+
 			if speak_choice * 2
 			then
 				stop_talk
@@ -74,6 +88,7 @@ main
 				end
 				variable * 0 * 1
 				speak_choice * 67 * 4
+				speak_choice * 74 * 5
 				speak_choice * 33 * 1
 				speak_choice * 41 * 3
 				speak_choice * 70 * 2

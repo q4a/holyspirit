@@ -30,7 +30,7 @@ Quête terminée. J'ai tué les Suceurs de cervelle et j'ai reçu une masse en échan
 Qui a volé la cervelle du marchand ?
 In nomine Patris et Filii et Spiritus Sancti.
 Pater noster, qui es in caelis Sanctificetur nomen tuum;\Adveniat regnum tuum;\Fiat voluntas tua sicut in caelo et in terra.\Panem nostrum quotidianum da nobis hodie,\et dimitte nobis debita nostra\sicut et nos dimittimus debitoribus nostris\et ne nos inducas in tentationem\sed libera nos a malo.\Amen
-Bien le bonjour mon ami.\Que voulez-vous ?\
+Ouais ? Qu'est-ce que tu veux étranger ? Une arme, une armure, des outils ?
 Commercer
 Discuter
 J'ai entendu des drôles de bruits venant des catacombes cette nuit. J'ai bien peur qu'il s'y passe quelque chose.
@@ -55,7 +55,7 @@ Que la paix soit sur vous mon fils.\ Que souhaitez-vous de moi ?\
 Prier
 Bénir un objet
 Suite
-Salut ma jolie, qu'est-ce que je peux faire pour toi ?
+Et bien poulette ! T'es drôlement mise ! Si  tu as besoin d’un service demandes donc à Rognorak ! Il sait toujours faire plaisir aux demoiselles Rognorak…\
 Salut à toi mon fils ! C'est toi ? Oui ça ne peut être que toi ! Grand, fort... Le Sauveur ! Venu de nulle part ! Dieu m'a parlé, et je savais qu'il ne nous abandonnerait pas ! Vas, extermine cette vermine démoniaque qui rode partout alentours !
 Qui es tu femme ? De quelle contrée viens-tu donc avec ce maquillage suggestif, ces habits étranges ? Es-tu un démon qui a réussi à s'immiscer dans la maison de Dieu ? Fais bien attention à tes actes, même en cette période troublée on peut trouver le temps de brûler les sorcières...
 Où suis-je ?
@@ -66,8 +66,11 @@ Voulez-vous que j'aille voir ?
 Oh ! Je n'osais pas demander... J'ai quelques scrupules à t'envoyer là-bas en solitaire, mais nous ne sommes pas des combattants vois-tu... Mais si tu as besoin d'aide je ferai ce que je peux pour t'aider ! Tiens, prends la clef des catacombes et bonne chance, Dieu t'assistera !
 Cesse de m'importuner, vieux fou, et dis-moi ce que tu me propose comme services.
 Introduction
-Haaa, enfin quelqu'un qui devrait pouvoir nous aider. Ou du moins, votre aide ne nous serait pas de refus. En ce qui me concerne, je suis ^^^^ ancien maitre forgeron de l'Empereur. Je dis ancien, car pour moi, l'Empereur, il n'est plus tout net. Ca doit avoir un rapport avec toutes ces horreurs qui nous tombent dessus depuis quelques temps.
+Haaa, enfin quelqu'un qui devrait pouvoir nous aider. Ou du moins, votre aide ne nous serait pas de refus. En ce qui me concerne, je suis Rognorak ancien maitre forgeron de l'Empereur. Je dis ancien, car pour moi, l'Empereur, il n'est plus tout net. Ca doit avoir un rapport avec toutes ces horreurs qui nous tombent dessus depuis quelques temps.
 Normalement, j'habites en ville, mais dès que la milice s'est formée, je me suis dit qu'il valait mieux que je ne m'éternises pas. J'ai pris mes affaires et je me suis fait un passage à coup de masse jusqu'à cette abbaye.\S'il vous faut quoi que ce soit comme matos, c'est chez moi que vous trouverez les meilleurs armes et armures. Et si vous ne trouvez pas chaussure à votre pied, hé bien, je verrai pour vous le fabriquer, à condition que vous me disiez précisemment ce que je dois faire et que vous me filiez les matières brutes nécessaires.
 Aurevoir
-Que veux-tu de moi, femme !?\
+Que me veux-tu femme !? \
 Je m'en suis déjà occupé.
+Je suis Rognorak, ex forgeron de l'Empire. Moi j’aime bien forger les armes tranquillement dans mon coin mais la bagarre ça n'est pas trop ma tasse de thé. Je suis un artiste ! Alors quand ils ont décidé de m'envoyer au front pour forger des épées à la chaîne je me suis taillé et je suis parti au hasard... Je sais pas si c'était une bonne idée à la réflexion... Je ne supportais pas d'être à quelques kilomètres seulement de cette horde de monstres et maintenant je dois survivre à quelques mètres d'eux, réfugié dans cette satanée abbaye !
+Qui es-tu ?
+Retour

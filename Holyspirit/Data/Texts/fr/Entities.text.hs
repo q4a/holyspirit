@@ -35,4 +35,4 @@ Pistolero
 Seigneur squelette
 Golem de charbon ardent
 Tas d'os
-Handruck le forgeron
+Rognorak le forgeron

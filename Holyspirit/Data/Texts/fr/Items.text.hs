@@ -15,7 +15,7 @@ Le charbon est un matériau\de base pour la fabrication\de munitions.
 Arbalète de poing
 Une arbalète légère.\\Arme à une main.
 Poignard
-Un petit poignard.\\Arme à une main.
+Ce poignard fin et acéré\est une arme parfaite pour\un traitre... ou pour une femme.
 Potion de foi mineure
 Une potion permettant\de vous régénérer de\150 PF.
 Bure
@@ -119,3 +119,5 @@ Potion de foi limitée
 Une potion permettant\de vous régénérer de\300 PF.
 Potion de soins limitée
 Une potion permettant\de vous soigner de\300 PV.
+Camail
+Un capuchon en maille\protégeant la tête et la nuque.

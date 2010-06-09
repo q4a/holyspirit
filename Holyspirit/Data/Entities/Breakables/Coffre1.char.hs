@@ -39,6 +39,10 @@ $
 		r10000
 	$
 	*
+		*CapMail.item.hs
+		r3000
+	$
+	*
 		*Katzbalger.item.hs
 		r200
 	$

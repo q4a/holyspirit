@@ -36,4 +36,7 @@ Quand le croisé tourne sur lui-même, cela crée une\véritable tornade qui détruit
 Dégats de souffle : %1 à %2
 Litanie de nuage toxique mineure
 20 points de dégats sur 6 secondes.
+Jugement dernier
+Le croisé maudit un ennemi qui explosera quand il mourra.
+Dégâts lors de l'explosion : %1 à %2
 
