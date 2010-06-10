@@ -422,7 +422,7 @@
 
 1256988087 ton.h"
 
-1272901914 e:\c++\holyspirit\source\moteurs\light.h
+1276192519 e:\c++\holyspirit\source\moteurs\light.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Window.hpp>
@@ -798,7 +798,7 @@
 	"../globale.h"
 	<iostream>
 
-1272901914 source:e:\c++\holyspirit\source\moteurs\light.cpp
+1276193595 source:e:\c++\holyspirit\source\moteurs\light.cpp
 	<iostream>
 	<math.h>
 	"light.h"

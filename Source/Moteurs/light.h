@@ -125,12 +125,6 @@ public :
     // Ajouter un triangle à la lumière, en effet, les lumières sont composée de triangles
     void AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std::vector<Wall>& m_wall);
 
-    // Tester voir si un point "pt" se trouve dans le triangle [(0;0),"pt1","pt2"]
-    bool CollisionWithPoint(sf::Vector2f &pt,sf::Vector2f &pt1,sf::Vector2f &pt2);
-
-    // Tester voir si une ligne ["l1","l1"] traverse le triangle [(0;0),"pt1","pt2"]
-    bool CollisionWithLine(sf::Vector2f &l1, sf::Vector2f &l2,sf::Vector2f &pt1,sf::Vector2f &ypt2);
-
     // Changer différents attributs de la lumière
     void SetIntensity(float);
     void SetRadius(float);
@@ -164,10 +158,6 @@ private :
 
     //Tableau dynamique de Shape, ce sont ces shapes de type triangle qui compose la lumière
     std::vector <sf::Shape> m_shape;
-
-    std::vector <sf::Vector2f> m_dejaPasse;
-
-    std::vector<sf::Vector2f>::iterator IterDejaPasse;
 };
 
 #endif

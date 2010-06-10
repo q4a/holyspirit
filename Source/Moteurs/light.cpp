@@ -64,306 +64,116 @@ void Light::Draw(sf::RenderTarget *App)
 }
 
 
-
-bool Light::CollisionWithPoint(sf::Vector2f &p,sf::Vector2f &pt1,sf::Vector2f &pt2)
+sf::Vector2f Intersect(sf::Vector2f p1, sf::Vector2f p2, sf::Vector2f q1, sf::Vector2f q2)
 {
-    // D'abord, on calcul les extrémités du rectangle dans lequel est inscrit le triangle
-    sf::Vector2f min(0,0),max(0,0);
-    if (pt1.x<min.x)
-        min.x=pt1.x;
-    if (pt1.x>max.x)
-        max.x=pt1.x;
-    if (pt1.y<min.y)
-        min.y=pt1.y;
-    if (pt1.y>max.y)
-        max.y=pt1.y;
+    sf::Vector2f i;
 
-    if (pt2.x<min.x)
-        min.x=pt2.x;
-    if (pt2.x>max.x)
-        max.x=pt2.x;
-    if (pt2.y<min.y)
-        min.y=pt2.y;
-    if (pt2.y>max.y)
-        max.y=pt2.y;
-
-    // Si le point se trouve en dehors de ce rectangle, ça ne sert à rien d'aller plus loin, on quitte
-    if (p.x<min.x || p.x>max.x || p.y<min.y || p.y>max.y)
-        return false;
-
-    // Variable qui contiendra le coéficient angulaire
-    float rapport;
-
-    // Petit test pour éviter une division par 0
-    if (pt1.x!=0)
+    if((p2.x - p1.x) == 0 && (q2.x - q1.x) == 0)
+        i.x = 0, i.y = 0;
+    else if((p2.x - p1.x) == 0)
     {
-        // Le coéficient est égal au rapport entre pt1.y et p1.x, la formule étant DY/DX, mais on prend le point 0 et le point pt.
-        // Donc ça donne (pt1.y-0)/(pt1.x-0), on peut retirer le 0 il ne sert à rien.
-        rapport=(pt1.y/pt1.x);
+        i.x = p1.x;
 
-        // Suivant si on se trouve à gauche ou à droite, on doit être plus grand ou plus petit.
-        if ( (pt1.x<0 && (p.x)*rapport<(p.y)) || (pt1.x>0 && (p.x)*rapport>(p.y)) )
-            return false;
+        float c = (q2.y - q1.y) / (q2.x - q1.x);
+        float d = q1.y - q1.x * c;
+
+        i.y = c * i.x + d;
     }
 
-    //Idem
-    if (pt2.x!=0)
+    else if((q2.x - q1.x) == 0)
     {
-        rapport=(pt2.y/pt2.x);
+        i.x = q1.x;
 
-        if ( (pt2.x<0 && p.x*rapport>p.y) || (pt2.x>0 && p.x*rapport<p.y) )
-            return false;
-    }
+        float a = (p2.y - p1.y) / (p2.x - p1.x);
+        float b = p1.y - p1.x * a;
 
-    //Idem, mais avec le segment ["pt1","pt2"]
-    if (pt1.x-pt2.x!=0)
-    {
-        rapport=(pt1.y-pt2.y)/(pt1.x-pt2.x);
-        if ( ( pt1.x>pt2.x && (p.x-pt2.x)*rapport<(p.y-pt2.y)) || ( pt1.x<pt2.x && (p.x-pt1.x)*rapport>(p.y-pt1.y)) )
-            return false;
+        i.y = a * i.x + b;
     }
     else
     {
-        if (pt1.x<0)
-            if (p.x<pt1.x)
-                return false;
+        float a = (p2.y - p1.y) / (p2.x - p1.x);
+        float b = p1.y - p1.x * a;
 
-        if (pt1.x>0)
-            if (p.x>pt1.x)
-                return false;
+        float c = (q2.y - q1.y) / (q2.x - q1.x);
+        float d = q1.y - q1.x * c;
+
+        i.x = (d-b)/(a-c);
+        i.y = a * i.x + b;
     }
 
-    // On retourne 1 pour dire que le point se trouve dans le triangle
-    return true;
+    return i;
 }
 
-bool Light::CollisionWithLine(sf::Vector2f &l1, sf::Vector2f &l2,sf::Vector2f &pt1,sf::Vector2f &pt2)
+sf::Vector2f Collision(sf::Vector2f p1, sf::Vector2f p2, sf::Vector2f q1, sf::Vector2f q2)
 {
-    // On regarde si le mur traverse le triangle, j'ai laissé les 0 pour pouvoir mieux cerner la formule.
-    float r = ((l1.y-pt1.y)*(-pt1.x)-(l1.x-pt1.x)*(-pt1.y))/((l2.x-l1.x)*(-pt1.y)-(l2.y-l1.y)*(-pt1.x));
-    float s = ((l1.y-pt1.y)*(l2.x-l1.x)-(l1.x-pt1.x)*(l2.y-l1.y))/((l2.x-l1.x)*(-pt1.y)-(l2.y-l1.y)*(-pt1.x));
+    sf::Vector2f i;
+    i = Intersect(p1, p2, q1, q2);
 
-    // r et s représente ou l'on se trouve dans les deux segment à l'intersection. 0 est une extrémité du segment, 1 l'autre, r et s doivent donc être tout deux entre
-    // 0 et 1 pour que le point d'intersection des deux droites soit un point des deux segments.
-    if (0.0001<=r && r<=1.0001 && 0<s && s<1)
-        return 1;
+    if(((i.x >= p1.x - 0.1 && i.x <= p2.x + 0.1)
+        || (i.x >= p2.x - 0.1 && i.x <= p1.x + 0.1))
+    && ((i.x >= q1.x - 0.1 && i.x <= q2.x + 0.1)
+        || (i.x >= q2.x - 0.1 && i.x <= q1.x + 0.1))
+    && ((i.y >= p1.y - 0.1 && i.y <= p2.y + 0.1)
+        || (i.y >= p2.y - 0.1 && i.y <= p1.y + 0.1))
+    && ((i.y >= q1.y - 0.1 && i.y <= q2.y + 0.1)
+        || (i.y >= q2.y - 0.1 && i.y <= q1.y + 0.1)))
+        return i;
+    else
+        return sf::Vector2f (0,0);
 
-    r = ((l1.y)*(pt2.x)-(l1.x)*(pt2.y))/((l2.x-l1.x)*(pt2.y)-(l2.y-l1.y)*(pt2.x));
-    s = ((l1.y)*(l2.x-l1.x)-(l1.x)*(l2.y-l1.y))/((l2.x-l1.x)*(pt2.y)-(l2.y-l1.y)*(pt2.x));
-
-    if (0.0001<=r && r<=1.0001 && 0<s && s<1)
-        return 1;
-
-
-    r = ((l1.y-pt1.y)*(pt2.x-pt1.x)-(l1.x-pt1.x)*(pt2.y-pt1.y))/((l2.x-l1.x)*(pt2.y-pt1.y)-(l2.y-l1.y)*(pt2.x-pt1.x));
-    s = ((l1.y-pt1.y)*(l2.x-l1.x)-(l1.x-pt1.x)*(l2.y-l1.y))/((l2.x-l1.x)*(pt2.y-pt1.y)-(l2.y-l1.y)*(pt2.x-pt1.x));
-
-    if (0.0001<=r && r<=1.0001 && 0<s && s<1)
-        return 1;
-
-    return 0;
 }
+
 
 void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std::vector <Wall>& m_wall)
 {
-    int m=minimum_wall;
+    int w=minimum_wall;
     bool wall=false;
     int hauteur=0;
     // On boucle sur tous les murs
     if (configuration->Lumiere==2)
-        for (std::vector<Wall>::iterator IterWall=m_wall.begin()+minimum_wall;IterWall!=m_wall.end();++IterWall,++m)
+        for (std::vector<Wall>::iterator IterWall=m_wall.begin()+minimum_wall;IterWall!=m_wall.end();++IterWall,++w)
             if(IterWall->actif)
             if ( IterWall->pt1.x-m_position.x>-m_radius && IterWall->pt1.y-m_position.y>-m_radius && IterWall->pt2.x-m_position.x<m_radius && IterWall->pt2.y-m_position.y<m_radius )
+           {
+                // l1 et l2 sont les positions relatives au centre de la lumière des deux extrémités du mur
+                sf::Vector2f l1(IterWall->pt1.x-m_position.x, IterWall->pt1.y-m_position.y);
+                sf::Vector2f l2(IterWall->pt2.x-m_position.x, IterWall->pt2.y-m_position.y);
 
-            {
-                // l1 et l2 sont les positions relative au centre de la lumière des deux extrémités du mur
-                sf::Vector2f l1(IterWall->pt1.x-m_position.x,IterWall->pt1.y-m_position.y);
-                sf::Vector2f l2(IterWall->pt2.x-m_position.x,IterWall->pt2.y-m_position.y);
-
-                // Deux bool, elles contiendront "true" si l1 ou l2 se trouve dans le triangle
-                bool Collision1 = false;
-                bool Collision2 = false;
-
-
-                bool NoUseCollision1=false;
-                bool NoUseCollision2=false;
-
-                // Si il n'y a pas encore eut d'intersection entre ce triangle et une des extrémité du mur.
-                for (IterDejaPasse=m_dejaPasse.begin();IterDejaPasse!=m_dejaPasse.end();++IterDejaPasse)
+                if(l1.x * l1.x + l1.y * l1.y < m_radius * m_radius)
                 {
-                    if (*IterDejaPasse==l1)
-                        NoUseCollision1=true;
-                    if (*IterDejaPasse==l2)
-                        NoUseCollision2=true;
+                    sf::Vector2f i = Intersect(pt1,pt2,sf::Vector2f (0,0),l1);
+
+                    if((pt1.x > i.x && pt2.x < i.x) || (pt1.x < i.x && pt2.x > i.x))
+                    if((pt1.y > i.y && pt2.y < i.y) || (pt1.y < i.y && pt2.y > i.y))
+                        if(l1.y > 0 && i.y > 0 || l1.y < 0 && i.y < 0)
+                        if(l1.x > 0 && i.x > 0 || l1.x < 0 && i.x < 0)
+                        AddTriangle(i, pt2, w, m_wall), pt2 = i;
+                }
+                if(l2.x * l2.x + l2.y * l2.y < m_radius * m_radius)
+                {
+                    sf::Vector2f i = Intersect(pt1,pt2,sf::Vector2f (0,0),l2);
+
+                    if((pt1.x > i.x && pt2.x < i.x) || (pt1.x < i.x && pt2.x > i.x))
+                    if((pt1.y > i.y && pt2.y < i.y) || (pt1.y < i.y && pt2.y > i.y))
+                        if(l2.y > 0 && i.y > 0 || l2.y < 0 && i.y < 0)
+                        if(l2.x > 0 && i.x > 0 || l2.x < 0 && i.x < 0)
+                        AddTriangle(pt1, i, w, m_wall), pt1 = i;
                 }
 
-                // Collision 1 et 2 prennent la veleur true si l1 ou l2 se trouve dans le triangle
-                if (!NoUseCollision1)
-                    Collision1 = CollisionWithPoint(l1,pt1,pt2);
+                sf::Vector2f m = Collision(l1, l2, sf::Vector2f(0,0), pt1);
+                sf::Vector2f n = Collision(l1, l2, sf::Vector2f(0,0), pt2);
+                sf::Vector2f o = Collision(l1, l2, pt1, pt2);
 
-                if (!NoUseCollision2)
-                    Collision2 = CollisionWithPoint(l2,pt1,pt2);
-
-
-                // Si l1 est dans le triangle
-                if (Collision1)
+                if((m.x != 0 || m.y != 0) && (n.x != 0 || n.y != 0))
+                    pt1 = m, pt2 = n;
+                else
                 {
-                    hauteur=IterWall->hauteur;
-                    m_dejaPasse.push_back(l1);
-                    // On donne true comme valeur pour qu'on ne s'occupe plus du fait qu'il y ait une extrémité du mur.
+                    if((m.x != 0 || m.y != 0) && (o.x != 0 || o.y != 0))
+                        AddTriangle(m ,o , w, m_wall), pt1 = o;
 
-                    // On calcule l'angle pour couper en deux le triangle, au niveau de l1.
-                    float angle=atan2(l1.y,l1.x);
-
-                    // ptP est l'extrémité du segment qui coupe le triangle en deux au niveau de l1.
-                    sf::Vector2f ptP(cos(angle)*m_radius,sin(angle)*m_radius);
-
-                    // On calcul le point d'intersection entre le segment [(0,0),'ptP'].
-                    float s = ((pt1.y-0)*(ptP.x-0)-(pt1.x-0)*(ptP.y-0))/((pt2.x-pt1.x)*(ptP.y-0)-(pt2.y-pt1.y)*(ptP.x-0));
-
-                    sf::Vector2f pt=pt1;
-                    if (0<=s && s<=1)
-                    {
-                        pt.x=pt1.x+s*(pt2.x-pt1.x);
-                        pt.y=pt1.y+s*(pt2.y-pt1.y);
-                    }
-
-                    // On regarde si l'on est au dessus ou en dessous du mur, et si l1/l2 est à gauche/droite
-
-                    if ((l1.x) < (l2.x) && 0>(l1.y) - (l1.x)*(((l1.y)-(l2.y))/((l1.x)-(l2.x)))
-                            ||(l1.x) >= (l2.x) && 0<(l1.y) - (l1.x)*(((l1.y)-(l2.y))/((l1.x)-(l2.x))))
-                    {
-                        // Si il n'y a pas les deux extrémités du murs dans ce même et unique triangle
-                        if (!Collision2)
-                        {
-                            // On ajoute un triangle vers le mur
-                            AddTriangle(pt,pt2,m,m_wall);
-
-                            // On donne comme valeur à pt2 pt pour que le triangle soit maintenant plus que celui qui va vers l'extérieur du mur
-                            pt2=pt;
-                        }
-                        else // Sinon, on ajoute un triangle vers l'extérieur du mur
-                            AddTriangle(pt1,pt,m+1,m_wall);
-                    }
-                    else if ((l1.x) < (l2.x) && 0<(l1.y) - (l1.x)*(((l1.y)-(l2.y))/((l1.x)-(l2.x)))
-                             ||(l1.x) >= (l2.x) && 0>(l1.y) - (l1.x)*(((l1.y)-(l2.y))/((l1.x)-(l2.x))))
-                    {
-                        // Idem qu'en haut
-                        if (!Collision2)
-                        {
-                            AddTriangle(pt1,pt,m,m_wall);
-                            pt1=pt;
-                        }
-                        else
-                            AddTriangle(pt,pt2,m+1,m_wall);
-                    }
+                    if((n.x != 0 || n.y != 0) && (o.x != 0 || o.y != 0))
+                        AddTriangle(o ,n , w, m_wall), pt2 = o;
                 }
-
-                // Quasi idem que pour Collision 1
-                if (Collision2)
-                {
-                    hauteur=IterWall->hauteur;
-                    m_dejaPasse.push_back(l2);
-
-                    float angle = atan2(l2.y,l2.x);
-
-                    sf::Vector2f ptP(cos(angle)*m_radius,sin(angle)*m_radius);
-
-                    float s = ((pt1.y-0)*(ptP.x-0)-(pt1.x-0)*(ptP.y-0))/((pt2.x-pt1.x)*(ptP.y-0)-(pt2.y-pt1.y)*(ptP.x-0));
-
-                    sf::Vector2f pt=pt1;
-                    if (0<=s && s<=1)
-                    {
-                        pt.x=pt1.x+s*(pt2.x-pt1.x);
-                        pt.y=pt1.y+s*(pt2.y-pt1.y);
-                    }
-
-
-                    if ((l1.x) < (l2.x) && 0<(l1.y) - (l1.x)*(((l1.y)-(l2.y))/((l1.x)-(l2.x)))
-                            ||(l1.x) >= (l2.x) && 0>(l1.y) - (l1.x)*(((l1.y)-(l2.y))/((l1.x)-(l2.x))))
-                    {
-                        if (!Collision1)
-                        {
-                            AddTriangle(pt,pt2,m,m_wall);
-                            pt2=pt;
-                        }
-                        else
-                        {
-                            // Juste ici, qu'en plus de dire que l'on rajoute un triangle vers l'extérieur, on dit que le triangle actuel à pour extrémités celles du mur
-                            AddTriangle(pt1,pt,m+1,m_wall);
-                            pt1=l2,pt2=l1;
-                        }
-                    }
-                    else if ((l1.x) < (l2.x) && 0>(l1.y) - (l1.x)*(((l1.y)-(l2.y))/((l1.x)-(l2.x)))
-                             ||(l1.x) >= (l2.x) && 0<(l1.y) - (l1.x)*(((l1.y)-(l2.y))/((l1.x)-(l2.x))))
-                    {
-                        if (!Collision1)
-                        {
-                            AddTriangle(pt1,pt,m,m_wall);
-                            pt1=pt;
-                        }
-                        else
-                        {
-                            // Idem
-                            AddTriangle(pt,pt2,m+1,m_wall);
-                            pt1=l1,pt2=l2;
-                        }
-                    }
-                }
-
-                // Si il n'y a pas d'extrémité du mur dans ce triangle et si il y a une collision avec le mur
-                if (!Collision1 && !Collision2)
-                    if (CollisionWithLine(l1,l2,pt1,pt2))
-                    {
-                        hauteur=IterWall->hauteur;
-                        // p1 et p2 vont représenter pt1 et pt2 une fois coupé au niveau du mur
-                        sf::Vector2f p1=pt1;
-                        sf::Vector2f p2=pt2;
-
-
-                        // On calcul l'intersection entre [(0,0) , 'pt1' ] et le mur
-                        float s = ((0-l1.y)*(l2.x-l1.x)-(0-l1.x)*(l2.y-l1.y))/((pt1.x-0)*(l2.y-l1.y)-(pt1.y-0)*(l2.x-l1.x));
-
-                        // Si elle se trouve sur le segment [(0,0) , 'pt1' ], p1 prend comme valeur ce point d'intersection, sinon, p1 garde comme valeur pt1
-                        if (0<=s && s<=1)
-                        {
-                            p1.x=s*pt1.x;
-                            p1.y=s*pt1.y;
-                        }
-
-                        // Idem, mais avec p2 et pt2
-                        s = ((0-l1.y)*(l2.x-l1.x)-(0-l1.x)*(l2.y-l1.y))/((pt2.x-0)*(l2.y-l1.y)-(pt2.y-0)*(l2.x-l1.x));
-
-                        if (0<=s && s<=1)
-                        {
-                            p2.x=s*pt2.x;
-                            p2.y=s*pt2.y;
-                        }
-
-                        // On calcul l'intersection entre ['pt1' , 'pt2' ] et le mur
-                        s = ((pt1.y-l1.y)*(l2.x-l1.x)-(pt1.x-l1.x)*(l2.y-l1.y))/((pt2.x-pt1.x)*(l2.y-l1.y)-(pt2.y-pt1.y)*(l2.x-l1.x));
-
-                        // Si il y a intersection
-                        if (0<=s && s<=1)
-                        {
-                            sf::Vector2f p3;
-                            p3.x=pt1.x+s*(pt2.x-pt1.x);
-                            p3.y=pt1.y+s*(pt2.y-pt1.y);
-
-                            // On coupe le triangle en deux au niveau de p3
-                            AddTriangle(p1,p3,m+1,m_wall);
-                            pt1=p3;
-                            pt2=p2;
-                            wall=true;
-                        }
-                        else
-                        {
-                            wall=true;
-                            // Sinon, le triangle actuel prend pour coordonner les intersection calculées plus haut
-                            pt1=p1;
-                            pt2=p2;
-                        }
-                    }
             }
 
     // Variable qui contiendra l'intensité calculée, pour le dégradé
@@ -427,10 +237,10 @@ void Light::Generate( std::vector <Wall> &m_wall)
 
     // On ajoute tous les triangles qui composent la lumière
     for (int i=0;i<m_quality;i++)
-    {
-        m_dejaPasse.clear();
-        AddTriangle(sf::Vector2f((int)((float)m_radius*cos((float)i*buf)),(int)((float)m_radius*sin((float)i*buf))) , sf::Vector2f((int)((float)m_radius*cos((float)(i+1)*buf)),(int)((float)m_radius*sin((float)(i+1)*buf))),0,m_wall);
-    }
+        AddTriangle(sf::Vector2f((int)((float)m_radius*cos((float)i*buf)),
+                                 (int)((float)m_radius*sin((float)i*buf))) ,
+                    sf::Vector2f((int)((float)m_radius*cos((float)(i+1)*buf)),
+                                 (int)((float)m_radius*sin((float)(i+1)*buf))),0,m_wall);
 }
 
 
