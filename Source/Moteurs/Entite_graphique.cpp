@@ -49,6 +49,8 @@ Entite_graphique::Entite_graphique()
     m_color.g = 255;
     m_color.b = 255;
     m_color.a = 255;
+
+    m_ambientShadow     = -1;
 }
 
 Entite_graphique::~Entite_graphique()
@@ -165,18 +167,18 @@ void Entite_graphique::Initialiser(coordonnee pos)
                     m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x, pos.y), sf::Vector2f(pos.x+32 , pos.y-32),(int)m_tileset->getLumiereDuTile(m_noAnimation).hauteur);
 
                 if (m_tileset->getOrientationDuTile(m_noAnimation)=='b'||m_tileset->getOrientationDuTile(m_noAnimation)=='p')
-                    m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y-32), sf::Vector2f(pos.x-0.1 , pos.y-0.1),(int)m_tileset->getLumiereDuTile(m_noAnimation).hauteur);
+                    m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y-32), sf::Vector2f(pos.x , pos.y),(int)m_tileset->getLumiereDuTile(m_noAnimation).hauteur);
 
                 if (m_tileset->getOrientationDuTile(m_noAnimation)=='d')
-                    m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y-32), sf::Vector2f(pos.x-0.1 , pos.y+0.1),(int)m_tileset->getLumiereDuTile(m_noAnimation).hauteur);
+                    m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y-32), sf::Vector2f(pos.x , pos.y),(int)m_tileset->getLumiereDuTile(m_noAnimation).hauteur);
 
                 if (m_tileset->getOrientationDuTile(m_noAnimation)=='h'||m_tileset->getOrientationDuTile(m_noAnimation)=='g'||m_tileset->getOrientationDuTile(m_noAnimation)=='r')
-                    m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x+0.1, pos.y+0.1), sf::Vector2f(pos.x+32 , pos.y+32),(int)m_tileset->getLumiereDuTile(m_noAnimation).hauteur);
+                    m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x, pos.y), sf::Vector2f(pos.x+32 , pos.y+32),(int)m_tileset->getLumiereDuTile(m_noAnimation).hauteur);
 
                 if (m_tileset->getOrientationDuTile(m_noAnimation)=='h'||m_tileset->getOrientationDuTile(m_noAnimation)=='d')
                     m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y+32), sf::Vector2f(pos.x , pos.y),(int)m_tileset->getLumiereDuTile(m_noAnimation).hauteur);
                 if (m_tileset->getOrientationDuTile(m_noAnimation)=='o')
-                    m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y+32), sf::Vector2f(pos.x-0.1 , pos.y+0.1),(int)m_tileset->getLumiereDuTile(m_noAnimation).hauteur);
+                    m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y+32), sf::Vector2f(pos.x , pos.y),(int)m_tileset->getLumiereDuTile(m_noAnimation).hauteur);
             }
             else/* if (m_tileset->getLumiereDuTile(m_noAnimation).intensite > 0)*/
             {
@@ -232,6 +234,8 @@ void Entite_graphique::Generer()
             m_sprite.SetRotation(m_rotation);
 
             m_decalCouche = m_tileset->getLayerDuTile(m_noAnimation);
+
+            m_ambientShadow = m_tileset->getAmbientShadow(m_noAnimation);
 
             m_shadow = false;
             if (configuration->Ombre)

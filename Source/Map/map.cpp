@@ -2895,7 +2895,8 @@ int Map::getMonstre(Hero *hero,coordonnee positionSouris,coordonnee casePointee)
                     if (m_decor[1][j][k].getMonstre()[o]>=0&&m_decor[1][j][k].getMonstre()[o]<(int)m_monstre.size())
                         if (m_monstre[m_decor[1][j][k].getMonstre()[o]].EnVie()
                             &&m_monstre[m_decor[1][j][k].getMonstre()[o]].getCaracteristique().rang>=0
-                            &&m_monstre[m_decor[1][j][k].getMonstre()[o]].m_actif)
+                            &&m_monstre[m_decor[1][j][k].getMonstre()[o]].m_actif
+                            &&m_monstre[m_decor[1][j][k].getMonstre()[o]].m_selectable)
                         {
                             coordonneeDecimal temp;
                             temp.x=(((m_monstre[m_decor[1][j][k].getMonstre()[o]].getCoordonneePixel().x-m_monstre[m_decor[1][j][k].getMonstre()[o]].getCoordonneePixel().y)*64/COTE_TILE));

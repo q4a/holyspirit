@@ -52,6 +52,7 @@ class Entite_graphique
     int m_couche;
     int m_decalCouche;
     int m_noAnimation;
+    int m_ambientShadow;
 
     float m_animation;
 

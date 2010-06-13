@@ -128,6 +128,7 @@ Personnage::Personnage()
     m_pousseEnCours = false;
 
     m_inexistant = false;
+    m_selectable = true;
 }
 Modele_Personnage::Modele_Personnage()
 {
@@ -178,6 +179,7 @@ Modele_Personnage::Modele_Personnage()
 
     m_impenetrable                       = 0;
     m_impoussable                        = 0;
+    m_selectable                         = 1;
 }
 
 
@@ -337,14 +339,13 @@ int Personnage::getOrdre(Modele_Personnage *modele)
 void Personnage::Afficher(Modele_Personnage *modele,bool surbrillance, bool sansEffet)
 {
     if (modele!=NULL)
-        if (modele->m_tileset.size()>0 && m_etat>=0 && m_etat < modele->m_tileset.size())
+        if (m_etat>=0 && m_etat < modele->m_tileset.size())
             if ((int)(m_angle/45)>=0&&(int)(m_angle/45)<modele->m_tileset[m_etat].size())
             {
                 m_entite_graphique.m_tileset = &modele->m_tileset[m_etat][(int)(m_angle/45)];
                 m_entite_graphique.m_sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
                 m_entite_graphique.m_sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
 
-                //m_entite_graphique.m_sprite.Move(m_entite_graphique.m_decalage);
                 m_entite_graphique.m_sprite.Scale((float)m_entite_graphique.m_scale.x*0.01, (float)m_entite_graphique.m_scale.y*0.01);
                 m_entite_graphique.m_sprite.SetColor(sf::Color( m_entite_graphique.m_sprite.GetColor().r * m_entite_graphique.m_color.r / 255,
                                                                 m_entite_graphique.m_sprite.GetColor().g * m_entite_graphique.m_color.g / 255,

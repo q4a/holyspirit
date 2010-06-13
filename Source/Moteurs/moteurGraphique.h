@@ -144,6 +144,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
     float m_angleOmbreSoleil;
 
     int m_img_corner, m_img_water, m_img_item_background, m_img_item_unusable;
+	Tileset m_ambientShadowTileset;
 
   //  sf::RenderImage m_light_screen3;
 

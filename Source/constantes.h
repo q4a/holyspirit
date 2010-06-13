@@ -232,7 +232,7 @@ struct Caracteristique
 
     int degatsMin[4];
     int degatsMax[4];
-    int armure[4];
+    float armure[4];
 
     int niveau;
     int rang;

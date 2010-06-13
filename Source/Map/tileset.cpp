@@ -109,6 +109,7 @@ void Tileset::ChargerInfosTile(ifstream &fichier, int lumiere_base,int type)
     std::string nom;
     int distortionTile = -1;
     std::vector <int> shadowmapTile;
+    int ambientShadow = -1;
 
 
     char caractere;
@@ -161,6 +162,9 @@ void Tileset::ChargerInfosTile(ifstream &fichier, int lumiere_base,int type)
             break;
         case 'g':
             fichier>>ordre;
+            break;
+        case 'q':
+            fichier>>ambientShadow;
             break;
 
         case 'v':
@@ -254,17 +258,17 @@ void Tileset::ChargerInfosTile(ifstream &fichier, int lumiere_base,int type)
     if(type == 1)
     {
         m_tile_distortion.push_back(Tile ());
-        m_tile_distortion.back().setTile(position,image,collision,animation,son,lumiere,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer, attaque, ordre, angle);
+        m_tile_distortion.back().setTile(position,image,collision,animation,son,lumiere,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer, attaque, ordre, angle,ambientShadow);
     }
     else if(type == 2)
     {
         m_tile_shadowmap.push_back(Tile ());
-        m_tile_shadowmap.back().setTile(position,image,collision,animation,son,lumiere,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer, attaque, ordre, angle);
+        m_tile_shadowmap.back().setTile(position,image,collision,animation,son,lumiere,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer, attaque, ordre, angle,ambientShadow);
     }
     else
     {
         m_tile.push_back(Tile ());
-        m_tile.back().setTile(position,image,collision,animation,son,lumiere,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer, attaque, ordre, angle);
+        m_tile.back().setTile(position,image,collision,animation,son,lumiere,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer, attaque, ordre, angle,ambientShadow);
         m_tile.back().m_tileMinimap = imageMM;
         m_tile.back().m_coordMinimap = coordMinimap;
         m_tile.back().m_distortion = distortionTile;
@@ -322,6 +326,13 @@ void Tileset::Charger(ifstream &fichier, int lumiere_base, cDAT *reader)
                             m_sonsSpecial.resize(temp + 1);
 
                         m_sonsSpecial[temp].push_back(m_sons.size()-1);
+                    }
+                    else if (caractere=='u')
+                    {
+                        bool temp;
+                        fichier>>temp;
+                        if(!m_sons.empty())
+                            m_sons.back().unique = temp;
                     }
                     if (fichier.eof())
                     {
@@ -571,8 +582,24 @@ const coordonnee &Tileset::getCentreDuTile(int tile,int type)
         else
             return m_tile[0].getCentre();
     }
+}
 
-
+int Tileset::getAmbientShadow(int tile,int type)
+{
+    if(type == 1)
+    {
+        if (tile>=0&&tile<(int)m_tile_distortion.size())
+            return m_tile_distortion[tile].getAmbientShadow();
+        else
+            return m_tile_distortion[0].getAmbientShadow();
+    }
+    else
+    {
+        if (tile>=0&&tile<(int)m_tile.size())
+            return m_tile[tile].getAmbientShadow();
+        else
+            return m_tile[0].getAmbientShadow();
+    }
 }
 
 int Tileset::getMinimap(int tile)
@@ -600,7 +627,10 @@ void Tileset::JouerSon(int numeroSon,coordonnee position, bool unique)
         pos.x=-position.x;
         pos.y=position.y;
 
-        moteurSons->JouerSon(m_sons[numeroSon],pos,unique);
+        if(m_sons[numeroSon].unique == true)
+            unique = true;
+
+        moteurSons->JouerSon(m_sons[numeroSon].no,pos,unique);
     }
 }
 

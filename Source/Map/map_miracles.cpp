@@ -1016,8 +1016,8 @@ bool Map::Miracle_Souffle(Hero *hero, Personnage *personnage, Miracle &modele, E
 
 bool Map::Miracle_Zone(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o)
 {
-    coordonnee buf( (int)((int)(info.m_position.x+COTE_TILE*0.5f)/COTE_TILE),
-                    (int)((int)(info.m_position.y+COTE_TILE*0.5f)/COTE_TILE));
+    coordonnee buf( (int)((int)(info.m_position.x+COTE_TILE*0.25f)/COTE_TILE),
+                    (int)((int)(info.m_position.y+COTE_TILE*0.25f)/COTE_TILE));
 
     for(int x = buf.x - effet.m_informations[3];
             x <= buf.x + effet.m_informations[3]; ++x)
@@ -1051,8 +1051,8 @@ bool Map::Miracle_Zone(Hero *hero, Personnage *personnage, Miracle &modele, Effe
             }
 
 
-    if (effet.m_informations[4])
-        VerifierDeclencheursDegats(buf.y,buf.x);
+    //if (effet.m_informations[4])
+      //  VerifierDeclencheursDegats(buf.y,buf.x);
 
 
     for (unsigned p=0;p<effet.m_lien.size();p++)

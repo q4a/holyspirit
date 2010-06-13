@@ -205,6 +205,8 @@ void MoteurGraphique::Charger()
     m_img_corner = AjouterImage(configuration->chemin_menus + configuration->nom_corner,-1);
     m_img_item_background = AjouterImage(configuration->chemin_menus + configuration->nom_item_background,-1);
     m_img_item_unusable = AjouterImage(configuration->chemin_menus + configuration->nom_item_unusable,-1);
+
+    m_ambientShadowTileset.Charger(configuration->ambientShadow_tileset);
 }
 
 void MoteurGraphique::Gerer(float temps,int tailleMapY)
@@ -751,6 +753,23 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
 {
     if(entite->m_tileset != NULL)
     {
+        if(entite->m_ambientShadow >= 0)
+        {
+            sf::Sprite sprite2;
+            coordonnee positionPartieDecor = m_ambientShadowTileset.getPositionDuTile(entite->m_ambientShadow);
+
+            sprite2.SetImage(*moteurGraphique->getImage(m_ambientShadowTileset.getImage(entite->m_ambientShadow)));
+            sprite2.SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y,
+                                          positionPartieDecor.w, positionPartieDecor.h - 1));
+
+            sprite2.SetOrigin(m_ambientShadowTileset.getCentreDuTile(entite->m_ambientShadow).x,
+                             m_ambientShadowTileset.getCentreDuTile(entite->m_ambientShadow).y);
+
+            sprite2.SetPosition(entite->m_sprite.GetPosition());
+
+            AjouterCommande(&sprite2, 10, true);
+        }
+
         if(entite->m_sprite.GetPosition().x + entite->m_sprite.GetSize().x - entite->m_sprite.GetOrigin().x     >= GetViewRect(m_camera).Left
         && entite->m_sprite.GetPosition().x - entite->m_sprite.GetOrigin().x                                    <  GetViewRect(m_camera).Left + GetViewRect(m_camera).Width
         && entite->m_sprite.GetPosition().y + entite->m_sprite.GetSize().y - entite->m_sprite.GetOrigin().y     >= GetViewRect(m_camera).Top
@@ -761,7 +780,6 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
             sprite.Move(entite->m_decalage.x,entite->m_decalage.y);
             AjouterCommande(&sprite, entite->m_couche + entite->m_decalCouche, true);
         }
-
 
         if(entite->m_shadow)
         {

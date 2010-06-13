@@ -107,6 +107,7 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
 
     m_impenetrable = modele->m_impenetrable;
     m_impoussable = modele->m_impoussable;
+    m_selectable = modele->m_selectable;
     m_collision = modele->m_collision;
 
     m_scriptAI = modele->m_scriptAI;
@@ -373,8 +374,28 @@ bool Modele_Monstre::Charger(const std::string &chemin)
                         fichier>>m_impoussable;
                         break;
 
+                    case 'e':
+                        fichier>>m_selectable;
+                        break;
+
                     case 'c':
                         fichier>>m_collision;
+                        break;
+
+                    case 'r':
+                        fichier.get(caractere);
+                        float temp;
+                        fichier>>temp;
+
+                        if(caractere == '0')
+                            m_caracteristique.armure[0] = temp;
+                        if(caractere == '1')
+                            m_caracteristique.armure[1] = temp;
+                        if(caractere == '2')
+                            m_caracteristique.armure[2] = temp;
+                        if(caractere == '3')
+                            m_caracteristique.armure[3] = temp;
+
                         break;
 
                     }

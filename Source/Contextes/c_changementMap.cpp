@@ -192,6 +192,8 @@ void c_Chargement::Utiliser(Jeu *jeu)
         moteurGraphique->LightManager->Delete_All_Wall();
         moteurGraphique->DecrementerImportance();
 
+        moteurGraphique->m_ambientShadowTileset.ChargerImages();
+
         jeu->map=new Map();
 
         jeu->hero.ChargerModele(true);
@@ -376,10 +378,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         if ((!m_debut&&augmenterNoir)||(!augmenterNoir))
         {
             if(jeu->map!=NULL)
-            {
                 jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
-                //jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);
-            }
 
             GestionBoutons(jeu);
             jeu->menu.AfficherHUD(&jeu->hero.m_classe);

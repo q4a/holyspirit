@@ -32,6 +32,15 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "tile.h"
 
+struct Infos_son
+{
+    Infos_son(int n, bool u = false) : no(n), unique(u)
+    {
+    }
+    int no;
+    bool unique;
+};
+
 
 class Tileset
 {
@@ -68,6 +77,7 @@ class Tileset
 	int     getLayerDuTile(int tile);
 	int     getOrdreDuTile(int tile);
 	int     getAttaqueDuTile(int tile);
+	int     getAmbientShadow(int tile, int type = 0);
 	int     getTaille(int type = 0);
 	int     getAngle(int type = 0);
 	int     getDistortionDuTile(int tile);
@@ -92,7 +102,7 @@ class Tileset
 	std::vector <std::string>           m_image_chemin;
 	std::vector <Tile>                  m_tile;
 	std::vector <Tile>                  m_tile_distortion;
-	std::vector <int>                   m_sons;
+	std::vector <Infos_son>                   m_sons;
 	std::vector <std::vector <int> >    m_sonsSpecial;
 
 };

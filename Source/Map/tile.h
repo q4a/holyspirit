@@ -35,7 +35,7 @@ class Tile
 	~Tile();
 	void setTile(   coordonnee positionDansLImage,int image,bool collision,int animation,int son,Lumiere lumiere,bool ombre,
                     bool reflection,char orientation,bool transparent,coordonnee centre,float temps, int opacity, int layer,
-                    int attaque, int ordre, int angle);
+                    int attaque, int ordre, int angle, int ambientShadow);
 
 	const coordonnee &getCoordonnee();
 	bool getCollision();
@@ -54,6 +54,7 @@ class Tile
 	int getAttaque();
     int getOrdre();
     int getAngle();
+    int getAmbientShadow();
 
 	void setImage(int);
 	void setSon(int);
@@ -77,6 +78,7 @@ class Tile
     int m_ordre;
     int m_attaque;
     int m_angle;
+    int m_ambientShadow;
 
 };
 

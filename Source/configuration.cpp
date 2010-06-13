@@ -178,6 +178,9 @@ void Configuration::ChargerInit()
             if (chaine== "menu_item_unusable:")
                 fichier>>nom_item_unusable;
 
+            if (chaine== "ambient_shadow_tileset:")
+                fichier>>ambientShadow_tileset;
+
             if (chaine== "localisation:")
                 fichier>>chemin_localisation;
             if (chaine== "text_benedictions:")

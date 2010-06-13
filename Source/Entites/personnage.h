@@ -66,6 +66,7 @@ public:
     bool m_impenetrable;
     bool m_impoussable;
     bool m_collision;
+    bool m_selectable;
 
 protected:
     Caracteristique m_caracteristique;
@@ -177,6 +178,7 @@ public:
     bool m_doitMourir;
 
     bool m_inexistant;
+    bool m_selectable;
 
     Personnage* m_vientDeFrapper;
     Personnage* m_vientDeToucher;

@@ -36,7 +36,7 @@ Tile::~Tile()
 
 void Tile::setTile( coordonnee positionDansLImage,int image,bool collision,int animation,int son,Lumiere lumiere,bool ombre,
                     bool reflection,char orientation,bool transparent,coordonnee centre,float temps, int opacity, int layer,
-                    int attaque, int ordre, int angle)
+                    int attaque, int ordre, int angle, int ambientShadow)
 {
     m_positionDansLImage    = positionDansLImage;
     m_image                 = image;
@@ -61,6 +61,7 @@ void Tile::setTile( coordonnee positionDansLImage,int image,bool collision,int a
     m_tileMinimap           = -1;
 
     m_angle                 = angle;
+    m_ambientShadow         = ambientShadow;
 }
 
 const coordonnee &Tile::getCoordonnee()
@@ -130,6 +131,10 @@ int Tile::getAttaque()
 int Tile::getAngle()
 {
     return m_angle;
+}
+int Tile::getAmbientShadow()
+{
+    return m_ambientShadow;
 }
 
 void Tile::setImage(int image)
