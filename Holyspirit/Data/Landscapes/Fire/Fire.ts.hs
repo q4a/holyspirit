@@ -3,8 +3,6 @@
 $
 * mData/Sounds/Feu.wav $
 $
-Feu de camp
-
 *x0 y128 w128 h128 i0 a1 s0 lr236 lv136 lb36 li16 lh0	j x0   y0 w128 h128 i1 $  $
 *x128 y128 w128 h128 i0 a2 s0 lr236 lv136 lb36 li32 lh0	j x128   y0 w128 h128 i1 $  $
 *x256 y128 w128 h128 i0 a3 s0 lr236 lv136 lb36 li48 lh0	j x256   y0 w128 h128 i1 $  $

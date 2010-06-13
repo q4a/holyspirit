@@ -72,6 +72,14 @@ $
 		r50000
 	$
 	*
+		*CapMail.item.hs
+		r50000
+	$
+	*
+		*CapMail.item.hs
+		r50000
+	$
+	*
 		*Small_shield.item.hs
 		r50000
 	$
