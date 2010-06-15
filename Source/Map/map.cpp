@@ -42,7 +42,6 @@ Map::Map()
 {
     console->Ajouter("");
     console->Ajouter("Chargements d'images diverses :");
-    IDImageSac=moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->nom_sac,-1);
 }
 
 Map::~Map()
@@ -1582,26 +1581,8 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                             position.x=(k-j-1)*64+48;
                             position.y=(k+j)*32+16;
 
-                            if (m_decor[1][j][k].getNombreObjets()<=4)
-                            {
-                                for (int o=0;o<m_decor[1][j][k].getNombreObjets();o++)
-                                    m_decor[1][j][k].getObjet(o)->Afficher(position);
-                            }
-                            else
-                            {
-                                sprite.SetImage(*moteurGraphique->getImage(IDImageSac));
-                                sprite.SetSubRect(IntRect(0,0,32,32));
-                                sprite.Resize(32 , 32);
-
-                                sprite.SetX(position.x);
-                                sprite.SetY(position.y);
-                                sprite.SetColor(sf::Color(255,255,255));
-
-                                moteurGraphique->AjouterCommande(&sprite,8,1);
-                            }
-
-                            sprite.SetScale(1,1);
-                            sprite.SetColor(sf::Color(255,255,255));
+                            for (int o=0;o<m_decor[1][j][k].getNombreObjets();o++)
+                                m_decor[1][j][k].getObjet(o)->Afficher(position);
 
                             int objetPointe=-1;
 

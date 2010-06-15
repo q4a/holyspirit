@@ -2818,40 +2818,50 @@ bool Hero::AjouterObjet(Objet objet,bool enMain)
 
     if (!enMain)
     {
-        ramasser = AjouterObjetInventaire(objet,&m_inventaire,m_classe.position_contenu_inventaire, false);
-        if (ramasser)
-            m_inventaire.back().JouerSon();
-
-        if (m_inventaire.back().m_type == ARME
-         || m_inventaire.back().m_type == ARMURE
-         || m_inventaire.back().m_type == JEWELERY)
+        if (objet.m_type == ARME
+         || objet.m_type == ARMURE
+         || objet.m_type == JEWELERY)
         {
             bool continuer = true;
             for (int j=0;j<(int)m_classe.emplacements.size() && continuer;j++)
-                for (int i=0;i<(int)m_inventaire.back().m_emplacement.size() && continuer;++i)
-                    if (m_inventaire.back().m_emplacement[i] == m_classe.emplacements[j].emplacement && continuer)
+                for (int i=0;i<(int)objet.m_emplacement.size() && continuer;++i)
+                    if (objet.m_emplacement[i] == m_classe.emplacements[j].emplacement && continuer)
                     {
                         continuer=false;
-                        for(unsigned k = 0 ; k < m_inventaire.size() - 1 ; ++k)
+                        for(unsigned k = 0 ; k < m_inventaire.size() ; ++k)
                             if(m_inventaire[k].m_equipe == j)
                                 continuer = true;
                         if(!continuer)
+                        {
+                            ramasser = true;
+                            AjouterObjetInventaire(objet,&m_inventaire,m_classe.position_contenu_inventaire, false);
                             Equiper(m_inventaire.size() - 1, j);
+                        }
                     }
             if(!continuer)
                 ChargerModele();
         }
-        if (m_inventaire.back().m_type == CONSOMMABLE)
+
+        if(!ramasser)
+            ramasser = AjouterObjetInventaire(objet,&m_inventaire,m_classe.position_contenu_inventaire, false);
+
+        if (ramasser)
         {
-            for(int i = 0 ; i < 8 ; ++i)
+            m_inventaire.back().JouerSon();
+
+            if (m_inventaire.back().m_type == CONSOMMABLE)
             {
-                if(m_raccourcis[i].no == -1)
-                    m_raccourcis[i].no = m_inventaire.size() - 1, i = 8;
-                else if(m_raccourcis[i].no >= 0 && m_raccourcis[i].no < (int)m_inventaire.size() && !m_raccourcis[i].miracle)
-                    if(m_inventaire[m_raccourcis[i].no].getChemin() == m_inventaire.back().getChemin())
-                        i = 8;
+                for(int i = 0 ; i < 8 ; ++i)
+                {
+                    if(m_raccourcis[i].no == -1)
+                        m_raccourcis[i].no = m_inventaire.size() - 1, i = 8;
+                    else if(m_raccourcis[i].no >= 0 && m_raccourcis[i].no < (int)m_inventaire.size() && !m_raccourcis[i].miracle)
+                        if(m_inventaire[m_raccourcis[i].no].getChemin() == m_inventaire.back().getChemin())
+                            i = 8;
+                }
             }
         }
+
     }
     else if (m_objetEnMain==-1)
     {

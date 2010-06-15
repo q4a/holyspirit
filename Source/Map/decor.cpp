@@ -277,7 +277,7 @@ void Decor::AjouterObjet(Objet objet)
     coordonnee position;
 
     m_objets.push_back(objet);
-    bool continuer = true;
+    /*bool continuer = true;
     for(position.y = 0;continuer;++position.y)
         for(position.x = 0;position.x < 2 && continuer;++position.x)
         {
@@ -288,7 +288,16 @@ void Decor::AjouterObjet(Objet objet)
 
             if(ok)
                 continuer = false, m_objets.back().setPosition(position.x, position.y);
-        }
+        }*/
+    if(m_objets.size() % 4 == 1)
+        m_objets.back().setPosition(0, 0);
+    else if(m_objets.size() % 4 == 2)
+        m_objets.back().setPosition(1, 0);
+    else if(m_objets.size() % 4 == 3)
+        m_objets.back().setPosition(0, 1);
+    else if(m_objets.size() % 4 == 0)
+        m_objets.back().setPosition(1, 1);
+
 
     m_objets.back().m_alpha = 0;
     m_objets.back().m_hauteur = rand()%64;

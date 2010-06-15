@@ -157,7 +157,7 @@ public:
     std::vector<Climate> m_climates;
 
 private:
-    int IDImageSac,m_calculLumiere;
+    int m_calculLumiere;
     std::string m_nom_fichier;
 
     coordonnee m_dimensions;

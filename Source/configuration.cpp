@@ -169,8 +169,6 @@ void Configuration::ChargerInit()
             if (chaine== "fxWater_image:")
                 fichier>>water_map;
 
-            if (chaine== "menu_bag:")
-                fichier>>nom_sac;
             if (chaine== "menu_corner:")
                 fichier>>nom_corner;
             if (chaine== "menu_item_background:")
