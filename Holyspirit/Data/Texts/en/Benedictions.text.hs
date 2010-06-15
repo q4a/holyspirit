@@ -14,3 +14,12 @@ Armor increased :
 Fire resistance :
 Faith resistance :
 Corrosion resistance :
+Armure accrue :
+Fire resistance :
+Faith resistance :
+Corrosion resistance :
+Damage by bleeding :
+Damage by burning:
+Damage by purification :
+Damage by poisoning :
+over

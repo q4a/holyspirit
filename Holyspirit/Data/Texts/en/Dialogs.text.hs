@@ -51,3 +51,26 @@ I standed against the attack !\I must get my reward.
 I failed, demons overwhelmed my defense, crushed the door and killed the barkeeper.
 I standed against the attack !\And I got my money.
 Thanks.\Here is your gold.\+1000 money received.
+May the Creator bless you.\ What are you expecting from me ?\
+Pray
+Bless an item
+Next
+What a chick ! You're strangely outfitted ! If you are in need of anything, let's ask to Rognorak ! He can always please youg ladies Rognorak…\
+Greetings my son ! Is it you ? Yes, it can be only you ! Big, strong... The Savior ! Come from nowhere ! God spoke to me, and I knew He won't let us down ! Go on, destroy this evil scum which is lurking around !
+Who are you woman ? Where are you from, with all this provocative make up, those strange clothes ? Are you a demon who suceeded to enter the house of God ? Watch your acts and deeds, even in these periods of upheaval we can find the time to burn down witches...
+Where am I ?
+You're in the Saint-Clodomir abbey. Nowadays, it's one of the rare places of the country where you can find a calm place to rest. Even tough... Even here wicked things are hatching !
+Wicked things ?
+Yes, exactly, devilries. My monk brothers are behavioring suspiciously, sometimes like having an unsound mind and some of them have mysteriously vanished... I'm hearing sounds in the old catacombs under the abbay at night. My first toughts were that it was just wind, but I've had to change my mind : these are incantations, nasty groanings sometimes... I'm afraid, I must confess, and the only solution I found was to lock the door. But someone will have to go there to see what's going on there... I'm bothered for my brothers !
+Do you want me to get a look ?
+Oh ! I dared not to ask you... I've some misgiving to send you there alone, but we are no fighters... If you need help, I will do whatever I could to help you ! Take this, this is the key of the catacombs and good luck, God will watch over you !
+Just stop bothering me, crazy old man, and tell me what you can do for me.
+Introduction
+Haaa, at last someone who could help us. Or at least, your help would not be refused. About me, I'm Rognorak, the former master blacksmith of the Emperor. I'm saying former because, in my opinion, the Emperor, he don't have all his mind. It must have a link with all these horrors whose are falling on us since awhile.
+Normally, I live in the city, but when the milicia formed, I thougt it was better for me not linger on. I take my stuff and broke trough those demons with my mace to this abbay.\If you need some gear, you'll find the best weapons and armor in my shop. And, if you can't find what you want, I will see to make it, provided that you explain me exactly what I must do and that you give me the required raw materials.
+Goodbye
+What do you want woman !? \
+Already done.
+I'm Rognorak, former master blacksmith of the Emperor. I like to forge weapons calmly in my forge. I don't enjoy brawling, I prefer to stay out of it. I prefer to consider myself as an artist ! So, when they decided to send me to the front to make mass production of weapons, I flew and traveled until I found this Abbey... I don't know if it was the good decision to stop there... I didn't like one bit to be this close of these hordes of creatures, refugied in this damned abbay !
+Who are you ?
+Back

@@ -27,5 +27,16 @@ The concubine throw a globe that\ unleash a toxic cloud on impact.
 Venom
 The concubine poison her weapons during a certain period of time.
 Duration : %1 seconds
-Corrosion damages : %4 on 2 seconds.
+Corrosion damages : %3 on 2 seconds.
+Mighty Blow
+The crusader send a powerful blow\ pushing back adversaries.
+Damage : +%1 to %2
+Divine Tornado : Projection
+When the crusader rotate, this create a\real tornado which destroys everything on its path.
+Air blow damage : %1 to %2
+Minor toxic cloud litany
+20 damage over 6 seconds.
+Judgment
+The crusader curse an ennemy who will explode at his death.
+Blast damages : %1 to %2
 

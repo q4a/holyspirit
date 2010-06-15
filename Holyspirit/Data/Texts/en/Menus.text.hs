@@ -49,3 +49,18 @@ Corrosion
 Money
 Level
 Name
+Console (Tab)
+Only for : 
+Continue a game
+New game
+Options
+Exit
+Back
+Your name :
+Launch
+Free socket
+Toggle buttons
+Class
+Chest :
+<Incompatible>
+

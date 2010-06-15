@@ -101,5 +101,24 @@ A buckler forged entirely in bronze. \Very tough.
 Blueprint : Bronze shield
 Blueprint explaining the construction of a bronze shield.
 Diadem of the tearful widow.
-A diadem which suit perfectly to a woman in mourning.
+A diadem which suits perfectly to a woman in mourning.
 Set of the Tearful Widow
+Minor litany
+This parchment holds the incantation\required to bless an item.
+Minor Toxic Cloud Litany
+This parchment holds the incantation\required to bless an item so that this one\ could drop a toxic cloud on the battlefield.\This cloud deals 20 damage over 6 seconds.
+Blueprint : Burning coal golem
+Blueprint that explains how to make a coal golem familiar.
+Burning coal golem
+A powerful companion.\The burning coal golem is an humanoid\made of coal.
+Bone Espadon
+A two-handed sword made of bone.
+Bone shield
+Shield made of human bones.\Some say that they are cursed...
+Limited faith potion
+A potion which can\restore 300 PF.
+Limited heal potion
+A potion which can\restore 300 PV.
+Aventail
+A cap made of mail\protecting the head and the neck.
+

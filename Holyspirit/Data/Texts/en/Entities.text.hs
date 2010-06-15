@@ -29,3 +29,10 @@ Abbey Shrine
 Agrarian Lands Shrine
 Edge of the forest Shrine
 Barkeeper behind the door
+Crusader
+Concubine
+Gunslinger
+Skeletton Lord
+Burning charcoal golem
+Bones stack
+Rognorak the blacksmith
