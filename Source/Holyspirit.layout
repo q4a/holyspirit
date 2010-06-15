@@ -7,8 +7,8 @@
 	<File name="Contextes\c_bless.h" open="0" top="0" tabpos="5">
 		<Cursor position="1561" topLine="41" />
 	</File>
-	<File name="Contextes\c_changementMap.cpp" open="1" top="1" tabpos="17">
-		<Cursor position="14955" topLine="373" />
+	<File name="Contextes\c_changementMap.cpp" open="1" top="0" tabpos="17">
+		<Cursor position="14989" topLine="373" />
 	</File>
 	<File name="Contextes\c_changementMap.h" open="0" top="0" tabpos="9">
 		<Cursor position="2271" topLine="17" />
@@ -85,8 +85,8 @@
 	<File name="Entites\classe.h" open="0" top="0" tabpos="2">
 		<Cursor position="1188" topLine="28" />
 	</File>
-	<File name="Entites\hero.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="127083" topLine="2719" />
+	<File name="Entites\hero.cpp" open="1" top="0" tabpos="20">
+		<Cursor position="130805" topLine="2837" />
 	</File>
 	<File name="Entites\hero.h" open="0" top="0" tabpos="6">
 		<Cursor position="3047" topLine="99" />
@@ -101,7 +101,7 @@
 		<Cursor position="21429" topLine="672" />
 	</File>
 	<File name="Entites\miracle.h" open="1" top="0" tabpos="3">
-		<Cursor position="3809" topLine="122" />
+		<Cursor position="1258" topLine="71" />
 	</File>
 	<File name="Entites\monstre.cpp" open="1" top="0" tabpos="11">
 		<Cursor position="12070" topLine="374" />
@@ -133,8 +133,8 @@
 	<File name="Entites\script.h" open="1" top="0" tabpos="13">
 		<Cursor position="1193" topLine="26" />
 	</File>
-	<File name="Map\decor.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="8079" topLine="267" />
+	<File name="Map\decor.cpp" open="1" top="1" tabpos="21">
+		<Cursor position="8834" topLine="265" />
 	</File>
 	<File name="Map\decor.h" open="1" top="0" tabpos="15">
 		<Cursor position="3585" topLine="66" />
@@ -146,13 +146,13 @@
 		<Cursor position="1286" topLine="2" />
 	</File>
 	<File name="Map\map.cpp" open="1" top="0" tabpos="8">
-		<Cursor position="64701" topLine="1485" />
+		<Cursor position="117383" topLine="2494" />
 	</File>
 	<File name="Map\map.h" open="0" top="0" tabpos="14">
 		<Cursor position="8416" topLine="111" />
 	</File>
 	<File name="Map\map_miracles.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="43194" topLine="961" />
+		<Cursor position="49921" topLine="1143" />
 	</File>
 	<File name="Map\map_scripts.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="33548" topLine="607" />

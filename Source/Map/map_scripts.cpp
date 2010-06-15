@@ -482,7 +482,11 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                         m_decor[z][y][x].m_entite_graphique.m_noAnimation = script->getValeur(noInstruction, 3);
                     }
         }
-
+        else if (script->m_instructions[noInstruction].nom=="setClimate")
+        {
+            if(script->getValeur(noInstruction, 0) >= 0 && script->getValeur(noInstruction, 0) < m_climates.size())
+                m_climates[script->getValeur(noInstruction, 0)].m_actif = script->getValeur(noInstruction, 1);
+        }
     }
 }
 

@@ -31,6 +31,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "../menu.h"
 #include "../Entites/monstre.h"
 #include "evenement.h"
+#include "climate.h"
 
 class Jeu;
 
@@ -152,6 +153,8 @@ public:
     int m_musiqueEnCours,m_nombreMusique;*/
     std::vector<std::string> m_musiques;
     int m_musiqueEnCours;
+
+    std::vector<Climate> m_climates;
 
 private:
     int IDImageSac,m_calculLumiere;

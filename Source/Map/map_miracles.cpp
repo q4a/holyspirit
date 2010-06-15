@@ -115,9 +115,11 @@ bool Map::Miracle_Declencheur    (Hero *hero, Personnage *personnage, Miracle &m
                 miracleEnCours.m_infos.push_back(new InfosEntiteMiracle ());
                 miracleEnCours.m_infos.back()->m_effetEnCours    = effet.m_informations[3];
                 miracleEnCours.m_infos.back()->m_position        = info.m_position;
+                miracleEnCours.m_infos.back()->m_cible           = info.m_cible;
 
                 if(effet.m_informations[2] != 0)
                     miracleEnCours.m_infos.back()->m_cible = personnage;
+
 
                 for (int p=0;p<(int)effet.m_lien.size();p++)
                 {
@@ -952,10 +954,10 @@ bool Map::Miracle_Degats(Hero *hero, Personnage *personnage, Miracle &modele, Ef
 
     if (info.m_cible != NULL)
     {
+        info.m_position = info.m_cible->getCoordonneePixel();
         if (info.m_cible->getCoordonnee().y >=0 && info.m_cible->getCoordonnee().y < (int)m_decor[0].size())
             if (info.m_cible->getCoordonnee().x >=0 && info.m_cible->getCoordonnee().x < (int)m_decor[0][info.m_cible->getCoordonnee().y].size())
             {
-                info.m_position = info.m_cible->getCoordonneePixel();
                 if(deg != 0)
                     InfligerDegats(info.m_cible, deg, effet.m_informations[2], hero, 0, effet.m_informations[3]);
             }

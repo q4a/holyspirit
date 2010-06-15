@@ -102,7 +102,7 @@ void MoteurSons::JouerSon(int ID,coordonnee position,bool unique,int volume)
                     if ((double)(((positionHero.x+x)*(positionHero.x+x)+(positionHero.y-y)*(positionHero.y-y)))>(double)(((positionHero.x-position.x)*(positionHero.x-position.x)+(positionHero.y-position.y)*(positionHero.y-position.y))))
                         m_sons[i].SetPosition(position.x,0,position.y);
 
-                    if(volume > m_sons[i].GetVolume())
+                   // if(volume > m_sons[i].GetVolume())
                         m_sons[i].SetVolume(volume);
 
                     if(position.x==-1&&position.y==-1)
@@ -114,6 +114,18 @@ void MoteurSons::JouerSon(int ID,coordonnee position,bool unique,int volume)
 
         if (creerNouveauSon)
         {
+            int temp = sonEnCours++;
+            if (sonEnCours>=NOMBRE_SONS)
+                sonEnCours=0;
+
+            while(m_sons[sonEnCours].GetStatus() != 0 && sonEnCours != temp)
+            {
+                sonEnCours ++;
+                if (sonEnCours>=NOMBRE_SONS)
+                    sonEnCours=0;
+            }
+
+
             m_sons[sonEnCours].SetVolume(volume);
             m_IDSons[sonEnCours]=ID;
             m_sons[sonEnCours].SetBuffer(m_buffers[ID]);
@@ -125,9 +137,6 @@ void MoteurSons::JouerSon(int ID,coordonnee position,bool unique,int volume)
             m_sons[sonEnCours].SetPosition(position.x,0,position.y);
             m_sons[sonEnCours].SetLoop(false);
 
-            sonEnCours++;
-            if (sonEnCours>=NOMBRE_SONS)
-                sonEnCours=0;
         }
     }
 }

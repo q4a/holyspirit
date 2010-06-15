@@ -46,6 +46,7 @@ class Entite_graphique
     bool m_reflect;
     bool m_shadow;
     bool m_distort;
+    bool m_fixed;
 
     Tileset *m_tileset;
 
@@ -67,6 +68,8 @@ class Entite_graphique
     bool option_forcedLight;
     bool option_forcedShadow;
     bool option_forcedReflect;
+
+    float m_sound_volume;
 
     sf::Vector2f m_decalage;
     sf::Vector2f m_scale;

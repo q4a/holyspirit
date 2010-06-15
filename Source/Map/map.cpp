@@ -302,6 +302,26 @@ bool Map::Charger(std::string nomMap,Hero *hero)
         }
         while (caractere!='$');
 
+
+        do
+        {
+
+            //Chargement de la lumière ambiante
+            fichier->get(caractere);
+            if (caractere=='*')
+            {
+                std::string temp;
+                *fichier>>temp;
+                m_climates.push_back(temp);
+            }
+            if (fichier->eof())
+            {
+                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
+                throw ("Erreur : Map \" "+chemin+" \" Invalide");
+            }
+        }
+        while (caractere!='$');
+
         if (configuration->debug)
             console->Ajouter("/Lectures des ciels.");
 
@@ -1198,6 +1218,10 @@ void Map::Sauvegarder(Hero *hero)
             fichier<<" *"<<m_nom_img_sky<<endl;
         fichier<<"$\n";
 
+        for(int i = 0 ; i < m_climates.size() ; ++i)
+            fichier<<" *"<<m_climates[i].m_chemin<<endl;
+        fichier<<"$\n";
+
         for (int i=0;i<(int)m_tileset.size();++i)
             fichier<<"*"<<moteurGraphique->getTileset(m_tileset[i])->getChemin()<<"\n";
 
@@ -1334,6 +1358,36 @@ void Map::CalculerOmbresEtLumieres()
         moteurGraphique->m_soleil.hauteur=((float)m_lumiere[configuration->heure].hauteur*(60-configuration->minute)+((float)m_lumiere[0].hauteur*configuration->minute))*0.016666666666666666666666666666667f;
     }
 
+    int r = moteurGraphique->m_soleil.rouge;
+    int g = moteurGraphique->m_soleil.vert;
+    int b = moteurGraphique->m_soleil.bleu;
+    int i = moteurGraphique->m_soleil.intensite;
+    int h = moteurGraphique->m_soleil.hauteur;
+
+
+    for(int j = 0 ; j < m_climates.size() ; ++j)
+        if(m_climates[j].m_actif)
+        {
+            r -= m_climates[j].m_lumiereModificater.rouge * m_climates[j].GetState();
+            g -= m_climates[j].m_lumiereModificater.vert * m_climates[j].GetState();
+            b -= m_climates[j].m_lumiereModificater.bleu * m_climates[j].GetState();
+            i -= m_climates[j].m_lumiereModificater.intensite * m_climates[j].GetState();
+            h -= m_climates[j].m_lumiereModificater.hauteur * m_climates[j].GetState();
+        }
+
+
+    if(r > 255) r = 255; if(r < 0) r = 0;
+    if(g > 255) g = 255; if(g < 0) g = 0;
+    if(b > 255) b = 255; if(b < 0) b = 0;
+    if(i > 255) i = 255; if(i < 0) i = 0;
+    if(h > 255) h = 255; if(h < 0) h = 0;
+
+    moteurGraphique->m_soleil.rouge = r;
+    moteurGraphique->m_soleil.vert = g;
+    moteurGraphique->m_soleil.bleu = b;
+    moteurGraphique->m_soleil.intensite = i;
+    moteurGraphique->m_soleil.hauteur = h;
+
     moteurGraphique->m_angleOmbreSoleil=((float)configuration->heure*60+configuration->minute)*180/720+135;
 
 }
@@ -1453,6 +1507,9 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
         }
 
     }
+
+    for(int i = 0 ; i < m_climates.size() ; ++i)
+        m_climates[i].Draw();
 
     sf::Sprite sky;
     sky.SetImage(*moteurGraphique->getImage(m_img_sky));
@@ -1782,6 +1839,9 @@ int Map::AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coord
 
 void Map::Animer(Hero *hero,float temps,Menu *menu)
 {
+    for(int i = 0 ; i < m_climates.size() ; ++i)
+        m_climates[i].Update(temps);
+
     coordonnee positionHero;
     positionHero.x=(hero->m_personnage.getCoordonnee().x-hero->m_personnage.getCoordonnee().y-1)/5;
     positionHero.y=(hero->m_personnage.getCoordonnee().x+hero->m_personnage.getCoordonnee().y)/5;
@@ -2510,11 +2570,13 @@ bool Map::RamasserObjet(Hero *hero,bool enMain)
             &&position.y>=0&&position.y<m_dimensions.y)
         if (m_objetPointe>=0&&m_objetPointe<m_decor[1][position.y][position.x].getNombreObjets())
         {
-            if (hero->AjouterObjet(*m_decor[1][position.y][position.x].getObjet(m_objetPointe),enMain))
-            {
-                m_decor[1][position.y][position.x].supprimerObjet(m_objetPointe);
+            Objet temp = *m_decor[1][position.y][position.x].getObjet(m_objetPointe);
+            m_decor[1][position.y][position.x].supprimerObjet(m_objetPointe);
+
+            if (hero->AjouterObjet(temp,enMain))
                 return true;
-            }
+            else
+                m_decor[1][position.y][position.x].AjouterObjet(temp);
         }
     return false;
 }

@@ -24,6 +24,7 @@ Entite_graphique::Entite_graphique()
     m_reflect       = false;
     m_shadow        = false;
     m_distort       = false;
+    m_fixed         = false;
 
     m_tileset       = NULL;
 
@@ -51,6 +52,8 @@ Entite_graphique::Entite_graphique()
     m_color.a = 255;
 
     m_ambientShadow     = -1;
+
+    m_sound_volume = 100;
 }
 
 Entite_graphique::~Entite_graphique()
@@ -101,8 +104,15 @@ void Entite_graphique::NextTile()
         position.x = (int)(m_sprite.GetPosition().x/64/5);
         position.y = (int)(m_sprite.GetPosition().y/32/5);
 
+        if(m_fixed)
+        {
+            position.x = moteurGraphique->m_camera.GetCenter().x;
+            position.y = moteurGraphique->m_camera.GetCenter().y;
+        }
+
+
         if(m_tileset->getSonTile(m_noAnimation) >= 0)
-            m_tileset->JouerSon(m_tileset->getSonTile(m_noAnimation),position,option_sonUnique);
+            m_tileset->JouerSon(m_tileset->getSonTile(m_noAnimation),position,option_sonUnique,m_sound_volume);
 
         if (configuration->Lumiere && m_light.ID() != -1)
         {

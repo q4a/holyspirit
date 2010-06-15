@@ -767,18 +767,18 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
 
             sprite2.SetPosition(entite->m_sprite.GetPosition());
 
-            AjouterCommande(&sprite2, 10, true);
+            AjouterCommande(&sprite2, 10, !entite->m_fixed);
         }
 
         if(entite->m_sprite.GetPosition().x + entite->m_sprite.GetSize().x - entite->m_sprite.GetOrigin().x     >= GetViewRect(m_camera).Left
         && entite->m_sprite.GetPosition().x - entite->m_sprite.GetOrigin().x                                    <  GetViewRect(m_camera).Left + GetViewRect(m_camera).Width
         && entite->m_sprite.GetPosition().y + entite->m_sprite.GetSize().y - entite->m_sprite.GetOrigin().y     >= GetViewRect(m_camera).Top
         && entite->m_sprite.GetPosition().y - entite->m_sprite.GetOrigin().y                                    <  GetViewRect(m_camera).Top + GetViewRect(m_camera).Height
-        || entite->m_sprite.GetRotation() != 0)
+        || entite->m_sprite.GetRotation() != 0 || entite->m_fixed)
         {
             sf::Sprite sprite = entite->m_sprite;
             sprite.Move(entite->m_decalage.x,entite->m_decalage.y);
-            AjouterCommande(&sprite, entite->m_couche + entite->m_decalCouche, true);
+            AjouterCommande(&sprite, entite->m_couche + entite->m_decalCouche, !entite->m_fixed);
         }
 
         if(entite->m_shadow)
@@ -790,7 +790,7 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
             sprite.SetScale(1, (100-(float)m_soleil.hauteur)/50);
             sprite.SetRotation(m_angleOmbreSoleil);
 
-            AjouterCommande(&sprite, 9, true);
+            AjouterCommande(&sprite, 9, !entite->m_fixed);
         }
 
         if(entite->m_reflect)
@@ -806,7 +806,7 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
             && sprite.GetPosition().x - sprite.GetOrigin().x                          <  GetViewRect(m_camera).Left + GetViewRect(m_camera).Width
             && sprite.GetPosition().y + sprite.GetSize().y - sprite.GetOrigin().y     >= GetViewRect(m_camera).Top
             && sprite.GetPosition().y - sprite.GetOrigin().y                          <  GetViewRect(m_camera).Top + GetViewRect(m_camera).Height)
-                AjouterCommande(&sprite, 0, true);
+                AjouterCommande(&sprite, 0, !entite->m_fixed);
         }
 
         if(entite->m_distort)
@@ -816,7 +816,7 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
             && entite->m_sprite_distortion.GetPosition().y + entite->m_sprite_distortion.GetSize().y - entite->m_sprite_distortion.GetOrigin().y    >= GetViewRect(m_camera).Top
             && entite->m_sprite_distortion.GetPosition().y - entite->m_sprite_distortion.GetOrigin().y                                              <  GetViewRect(m_camera).Top + GetViewRect(m_camera).Height
             || entite->m_sprite_distortion.GetRotation() != 0)
-                m_distortion_commandes.push_back(Commande (&entite->m_sprite_distortion, true));
+                m_distortion_commandes.push_back(Commande (&entite->m_sprite_distortion, !entite->m_fixed));
         }
 
 
@@ -836,7 +836,7 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
                      intensity *= (float)m_soleil.intensite / 128;
 
                 sprite.SetColor(sf::Color(255,255,255,(int)intensity));
-                AjouterCommande(&sprite, entite->m_couche + entite->m_decalCouche, true);
+                AjouterCommande(&sprite, entite->m_couche + entite->m_decalCouche, !entite->m_fixed);
             }
 
         }

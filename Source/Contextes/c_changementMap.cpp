@@ -182,6 +182,17 @@ void c_Chargement::Utiliser(Jeu *jeu)
         if(m_nomProchaineMap!="Tutorial.map.hs" && m_nomProchaineMap!="Begin.map.hs")
             jeu->hero.Sauvegarder();
 
+        std::vector<std::string> climatsEnCours;
+        std::vector<float> climatsTimeEnCours;
+        if(jeu->map!=NULL)
+            for(int i = 0 ; i < jeu->map->m_climates.size() ; ++i)
+                if(jeu->map->m_climates[i].m_actif)
+                {
+                    climatsEnCours.push_back(jeu->map->m_climates[i].m_chemin);
+                    climatsTimeEnCours.push_back(jeu->map->m_climates[i].m_cur_time);
+                }
+
+
         if (jeu->map!=NULL)
         {
             delete jeu->map;
@@ -208,6 +219,15 @@ void c_Chargement::Utiliser(Jeu *jeu)
                 jeu->map->m_musiqueEnCours = i, newMusic = false;
         if(newMusic && !jeu->map->m_musiques.empty())
             moteurSons->PlayNewMusic(jeu->map->m_musiques[jeu->map->m_musiqueEnCours]);
+
+        for(int j = 0 ; j < climatsEnCours.size() ; ++j)
+            for(int i = 0 ; i < jeu->map->m_climates.size() ; ++i)
+                if(jeu->map->m_climates[i].m_chemin == climatsEnCours[j])
+                {
+                    jeu->map->m_climates[i].m_actif = true;
+                    jeu->map->m_climates[i].m_cur_time = climatsTimeEnCours[j];
+                }
+
 
         for(unsigned i = 0 ; i < jeu->hero.m_amis.size() ; ++i)
         {

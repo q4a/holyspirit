@@ -56,7 +56,7 @@ class Tileset
 	void ChargerInfosTile(std::ifstream &fichier, int lumiere_base = 0, int type = 0);
 	void ChargerImages();
 
-	void JouerSon(int numeroSon,coordonnee position, bool unique = true);
+	void JouerSon(int numeroSon,coordonnee position, bool unique = true, float volume = 100);
 	void DeleteTiles();
 
 	int     getImage(int tile, int type = 0);

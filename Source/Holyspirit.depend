@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1276450058 source:e:\c++\holyspirit\source\contextes\c_changementmap.cpp
+1276616702 source:e:\c++\holyspirit\source\contextes\c_changementmap.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -467,7 +467,7 @@
 
 1263574780 /c_demarrage.h"
 
-1275488438 e:\c++\holyspirit\source\map\map.h
+1276610072 e:\c++\holyspirit\source\map\map.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -477,6 +477,7 @@
 	"../menu.h"
 	"../Entites/monstre.h"
 	"evenement.h"
+	"climate.h"
 
 1264447812 .h"
 
@@ -552,7 +553,7 @@
 1257609296 e:\c++\holyspirit\source\entites\quete.h
 	"../constantes.h"
 
-1276444868 e:\c++\holyspirit\source\map\tileset.h
+1276614509 e:\c++\holyspirit\source\map\tileset.h
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
@@ -760,7 +761,7 @@
 	"evenement.h"
 	<iostream>
 
-1276449684 source:e:\c++\holyspirit\source\map\map.cpp
+1276619300 source:e:\c++\holyspirit\source\map\map.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -775,7 +776,7 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1276445034 source:e:\c++\holyspirit\source\map\tileset.cpp
+1276614509 source:e:\c++\holyspirit\source\map\tileset.cpp
 	"tileset.h"
 	"../globale.h"
 	<iostream>
@@ -813,7 +814,7 @@
 	"../globale.h"
 	<fstream>
 
-1276449918 source:e:\c++\holyspirit\source\moteurs\moteurgraphique.cpp
+1276609285 source:e:\c++\holyspirit\source\moteurs\moteurgraphique.cpp
 	"moteurGraphique.h"
 	"../globale.h"
 	<iostream>
@@ -824,7 +825,7 @@
 	"../globale.h"
 	<fstream>
 
-1273404621 source:e:\c++\holyspirit\source\moteurs\moteursons.cpp
+1276618804 source:e:\c++\holyspirit\source\moteurs\moteursons.cpp
 	"moteurSons.h"
 	"../globale.h"
 	<iostream>
@@ -4699,11 +4700,11 @@
 	<SFML/Graphics/Rect.hpp>
 	<string>
 
-1276258141 e:\c++\holyspirit\source\moteurs\entite_graphique.h
+1276614509 e:\c++\holyspirit\source\moteurs\entite_graphique.h
 	"../Map/tileset.h"
 	"light.h"
 
-1276258844 source:e:\c++\holyspirit\source\moteurs\entite_graphique.cpp
+1276615507 source:e:\c++\holyspirit\source\moteurs\entite_graphique.cpp
 	"Entite_graphique.h"
 	"../globale.h"
 
@@ -6339,7 +6340,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1276448131 source:e:\c++\holyspirit\source\map\map_miracles.cpp
+1276606475 source:e:\c++\holyspirit\source\map\map_miracles.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -6347,11 +6348,23 @@
 	"../globale.h"
 	"../jeu.h"
 
-1275488885 source:e:\c++\holyspirit\source\map\map_scripts.cpp
+1276618494 source:e:\c++\holyspirit\source\map\map_scripts.cpp
 	"map.h"
 	<iostream>
 	<fstream>
 	<dirent.h>
 	"../globale.h"
 	"../jeu.h"
+
+1276618636 e:\c++\holyspirit\source\map\climate.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"tileset.h"
+	"../globale.h"
+
+1276618636 source:e:\c++\holyspirit\source\map\climate.cpp
+	"Climate.h"
+	<iostream>
+	<fstream>
 
