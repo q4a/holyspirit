@@ -168,25 +168,27 @@ void Climate::Charger(std::string chemin)
 
 void Climate::Update(float time)
 {
+    for(int i = 0 ; i < m_entities.size() ; ++i)
+    {
+        m_entities[i].Animer(time);
+
+        m_entities[i].m_sprite.SetScale((float)configuration->Resolution.x/800,
+                                        (float)configuration->Resolution.y/600);
+
+        sf::Color color = m_entities[i].m_sprite.GetColor();
+        color.a *= GetState();
+        m_entities[i].m_sprite.SetColor(color);
+        m_entities[i].m_sound_volume = GetState() * 100;
+    }
+
     if(m_actif)
     {
-        for(int i = 0 ; i < m_entities.size() ; ++i)
-        {
-            m_entities[i].Animer(time);
-
-            m_entities[i].m_sprite.SetScale((float)configuration->Resolution.x/800,
-                                            (float)configuration->Resolution.y/600);
-
-            sf::Color color = m_entities[i].m_sprite.GetColor();
-            color.a *= GetState();
-            m_entities[i].m_sprite.SetColor(color);
-            m_entities[i].m_sound_volume = GetState() * 100;
-        }
-
         m_cur_time += time;
         if(m_cur_time > m_max_time)
-            m_cur_time = 0, m_actif = 0;
+            m_actif = 0;
     }
+    else
+        m_cur_time = 0;
 }
 
 void Climate::Draw()

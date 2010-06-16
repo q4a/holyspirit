@@ -206,6 +206,8 @@
 		<Unit filename="Entites\quete.h" />
 		<Unit filename="Entites\script.cpp" />
 		<Unit filename="Entites\script.h" />
+		<Unit filename="Map\Climate.cpp" />
+		<Unit filename="Map\Climate.h" />
 		<Unit filename="Map\decor.cpp" />
 		<Unit filename="Map\decor.h" />
 		<Unit filename="Map\evenement.cpp" />
