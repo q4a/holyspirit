@@ -770,15 +770,16 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
             AjouterCommande(&sprite2, 10, !entite->m_fixed);
         }
 
-        if(entite->m_sprite.GetPosition().x + entite->m_sprite.GetSize().x - entite->m_sprite.GetOrigin().x     >= GetViewRect(m_camera).Left
-        && entite->m_sprite.GetPosition().x - entite->m_sprite.GetOrigin().x                                    <  GetViewRect(m_camera).Left + GetViewRect(m_camera).Width
-        && entite->m_sprite.GetPosition().y + entite->m_sprite.GetSize().y - entite->m_sprite.GetOrigin().y     >= GetViewRect(m_camera).Top
-        && entite->m_sprite.GetPosition().y - entite->m_sprite.GetOrigin().y                                    <  GetViewRect(m_camera).Top + GetViewRect(m_camera).Height
-        || entite->m_sprite.GetRotation() != 0 || entite->m_fixed)
         {
             sf::Sprite sprite = entite->m_sprite;
             sprite.Move(entite->m_decalage.x,entite->m_decalage.y);
-            AjouterCommande(&sprite, entite->m_couche + entite->m_decalCouche, !entite->m_fixed);
+
+            if(sprite.GetPosition().x + sprite.GetSize().x - sprite.GetOrigin().x     >= GetViewRect(m_camera).Left
+            && sprite.GetPosition().x - sprite.GetOrigin().x                          <  GetViewRect(m_camera).Left + GetViewRect(m_camera).Width
+            && sprite.GetPosition().y + sprite.GetSize().y - sprite.GetOrigin().y     >= GetViewRect(m_camera).Top
+            && sprite.GetPosition().y - sprite.GetOrigin().y                          <  GetViewRect(m_camera).Top + GetViewRect(m_camera).Height
+            || sprite.GetRotation() != 0 || entite->m_fixed)
+                AjouterCommande(&sprite, entite->m_couche + entite->m_decalCouche, !entite->m_fixed);
         }
 
         if(entite->m_shadow)
