@@ -71,6 +71,7 @@ struct Classe
     Image_interface orbe_foi;
     Image_interface plus_button;
     Image_interface scroll_button;
+    Image_interface sort_inventory;
     Image_interface talk;
     Image_interface quest;
     Image_interface craft;

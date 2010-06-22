@@ -2944,6 +2944,8 @@ int Map::getMonstre(Hero *hero,coordonnee positionSouris,coordonnee casePointee)
                             coordonneeDecimal temp;
                             temp.x=(((m_monstre[m_decor[1][j][k].getMonstre()[o]].getCoordonneePixel().x-m_monstre[m_decor[1][j][k].getMonstre()[o]].getCoordonneePixel().y)*64/COTE_TILE));
                             temp.y=(((m_monstre[m_decor[1][j][k].getMonstre()[o]].getCoordonneePixel().x+m_monstre[m_decor[1][j][k].getMonstre()[o]].getCoordonneePixel().y)*64/COTE_TILE)/2+32);
+                            temp.x += m_monstre[m_decor[1][j][k].getMonstre()[o]].m_entite_graphique.m_decalage.x;
+                            temp.y += m_monstre[m_decor[1][j][k].getMonstre()[o]].m_entite_graphique.m_decalage.y;
 
                             sf::Vector2f positionSourisTotale=moteurGraphique->getPositionSouris();
 

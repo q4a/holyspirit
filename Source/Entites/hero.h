@@ -96,6 +96,8 @@ public:
     void GererBless(std::vector<Objet>*);
     void GererCraft(std::vector<Objet>*);
 
+    void GererBoutonsInventaire();
+
     bool PossibleEquiper(int numero, int emplacement);
     bool Equiper(int numero, int emplacement);
     bool UtiliserObjet(int numero);
@@ -104,6 +106,8 @@ public:
     int getNombreObjet();
 
     void UpdateRaccourcis();
+
+    void AutoTrierInventaire();
 
     bool UtiliserMiracle(int, Personnage*, coordonnee );
     bool AjouterMiracleArme();

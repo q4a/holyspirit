@@ -481,7 +481,7 @@
 
 1264447812 .h"
 
-1275484244 e:\c++\holyspirit\source\entites\hero.h
+1277196968 e:\c++\holyspirit\source\entites\hero.h
 	<iostream>
 	<string>
 	<list>
@@ -490,7 +490,7 @@
 	"monstre.h"
 	"quete.h"
 
-1271155235 e:\c++\holyspirit\source\entites\classe.h
+1277196251 e:\c++\holyspirit\source\entites\classe.h
 	"miracle.h"
 
 1263653913 "
@@ -680,12 +680,12 @@
 	"case.h"
 	<iostream>
 
-1271155321 source:e:\c++\holyspirit\source\entites\classe.cpp
+1277196251 source:e:\c++\holyspirit\source\entites\classe.cpp
 	"classe.h"
 	"../globale.h"
 	<sstream>
 
-1276691387 source:e:\c++\holyspirit\source\entites\hero.cpp
+1277199984 source:e:\c++\holyspirit\source\entites\hero.cpp
 	"../constantes.h"
 	"hero.h"
 	"../globale.h"
@@ -814,7 +814,7 @@
 	"../globale.h"
 	<fstream>
 
-1276609285 source:e:\c++\holyspirit\source\moteurs\moteurgraphique.cpp
+1276935349 source:e:\c++\holyspirit\source\moteurs\moteurgraphique.cpp
 	"moteurGraphique.h"
 	"../globale.h"
 	<iostream>

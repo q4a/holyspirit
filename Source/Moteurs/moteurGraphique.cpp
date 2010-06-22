@@ -767,6 +767,8 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
 
             sprite2.SetPosition(entite->m_sprite.GetPosition());
 
+            sprite2.Move(entite->m_decalage.x,entite->m_decalage.y);
+
             AjouterCommande(&sprite2, 10, !entite->m_fixed);
         }
 

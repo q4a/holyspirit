@@ -40,6 +40,8 @@ using namespace sf;
 int crypter(int);
 int decrypter(int);
 
+void TrierInventaire(std::vector<Objet>*, int);
+
 inline sf::Vector2f AutoScreenAdjust(float x, float y, float decalage = 0)
 {
     sf::Vector2f temp;
@@ -1745,6 +1747,16 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
         m_classe.emplacements[i].empty = true;
     }
 
+    {
+        Sprite sprite;
+        sprite.SetImage(*moteurGraphique->getImage(m_classe.sort_inventory.image));
+        sprite.Resize(m_classe.sort_inventory.position.w,
+                      m_classe.sort_inventory.position.h);
+        sprite.SetPosition(AutoScreenAdjust(m_classe.sort_inventory.position.x,0,decalage).x,
+                           AutoScreenAdjust(0,m_classe.sort_inventory.position.y,decalage).y);
+        moteurGraphique->AjouterCommande(&sprite,18,0);
+    }
+
     for (int i=0;i<(int)m_inventaire.size();++i)
         if (i!=m_objetEnMain && (m_inventaire[i].m_equipe==-1 || m_inventaire[i].m_equipe>=0 && !hideLeft))
         {
@@ -2899,24 +2911,9 @@ Objet Hero::DeposerObjet()
     return temp;
 }
 
-bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
+void Hero::GererBoutonsInventaire()
 {
-    if (trader)
-    {
-        if(eventManager->getPositionSouris().x > AutoScreenAdjust(14,0).x
-        && eventManager->getPositionSouris().x < AutoScreenAdjust(34,0).x
-        && eventManager->getPositionSouris().y > AutoScreenAdjust(0,260).y
-        && eventManager->getPositionSouris().y < AutoScreenAdjust(0,290).y)
-            m_defilement_trader--;
-
-        if(eventManager->getPositionSouris().x > AutoScreenAdjust(14,0).x
-        && eventManager->getPositionSouris().x < AutoScreenAdjust(34,0).x
-        && eventManager->getPositionSouris().y > AutoScreenAdjust(0,442).y
-        && eventManager->getPositionSouris().y < AutoScreenAdjust(0,472).y)
-            m_defilement_trader++;
-    }
-
-    if (m_buttonPointe>0 && !craft && !bless )
+    if (m_buttonPointe>0)
     {
         if (m_buttonPointe==1&&m_caracteristiques.pts_restant>0)
         {
@@ -3014,7 +3011,95 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
             RecalculerCaracteristiques();
         }
     }
+}
 
+void Hero::AutoTrierInventaire()
+{
+    int ordre_tri[8] = {ARME,ARMURE,GOLEM,SCHEMA,LITANIE,AUCUN,JEWELERY,CONSOMMABLE};
+    int new_raccourci[8] = {-1,-1,-1,-1,-1,-1,-1,-1};
+
+    std::vector<Objet> inventaire_bis;
+
+    std::vector<std::string> nom_objets;
+
+    for(int t = 0 ; t < 8 ; ++t)
+    for(unsigned i = 0 ; i < m_inventaire.size() ; ++i)
+    if(m_inventaire[i].m_type == ordre_tri[t]
+    && m_inventaire[i].m_equipe < 0)
+    {
+        bool ajouter = true;
+        for(int k = 0 ; k < nom_objets.size() ; ++k)
+            if(nom_objets[k] == m_inventaire[i].getChemin())
+                ajouter = false;
+        if(ajouter)
+            nom_objets.push_back(m_inventaire[i].getChemin());
+    }
+
+    for(int t = 0 ; t < 8 ; ++t)
+    for(int n = 0 ; n < nom_objets.size() ; ++n)
+    for(unsigned i = 0 ; i < m_inventaire.size() ; ++i)
+    if(m_inventaire[i].m_type == ordre_tri[t]
+    && m_inventaire[i].m_equipe < 0
+    && m_inventaire[i].getChemin() == nom_objets[n])
+    {
+        for(int k = 0 ; k < 8 ; ++k)
+            if(m_raccourcis[k].miracle == false
+            && m_raccourcis[k].no == i)
+                new_raccourci[k] = inventaire_bis.size();
+
+        inventaire_bis.push_back(m_inventaire[i]);
+    }
+
+    for(unsigned i = 0 ; i < m_inventaire.size() ; ++i)
+        if(m_inventaire[i].m_equipe >= 0)
+            inventaire_bis.push_back(m_inventaire[i]);
+
+    m_inventaire.clear();
+    for(unsigned i = 0 ; i < inventaire_bis.size() ; ++i)
+        m_inventaire.push_back(inventaire_bis[i]), m_inventaire.back().m_dejaTrie = false;
+
+    for(int k = 0 ; k < 8 ; ++k)
+        if(m_raccourcis[k].miracle == false)
+            m_raccourcis[k].no = new_raccourci[k];
+
+    TrierInventaire(&m_inventaire,m_classe.position_contenu_inventaire.w);
+}
+
+bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
+{
+    if (trader)
+    {
+        if(eventManager->getPositionSouris().x > AutoScreenAdjust(14,0).x
+        && eventManager->getPositionSouris().x < AutoScreenAdjust(34,0).x
+        && eventManager->getPositionSouris().y > AutoScreenAdjust(0,260).y
+        && eventManager->getPositionSouris().y < AutoScreenAdjust(0,290).y)
+            m_defilement_trader--;
+
+        if(eventManager->getPositionSouris().x > AutoScreenAdjust(14,0).x
+        && eventManager->getPositionSouris().x < AutoScreenAdjust(34,0).x
+        && eventManager->getPositionSouris().y > AutoScreenAdjust(0,442).y
+        && eventManager->getPositionSouris().y < AutoScreenAdjust(0,472).y)
+            m_defilement_trader++;
+    }
+
+    {
+        Sprite sprite;
+        sprite.SetImage(*moteurGraphique->getImage(m_classe.sort_inventory.image));
+        sprite.Resize(m_classe.sort_inventory.position.w,
+                      m_classe.sort_inventory.position.h);
+        sprite.SetPosition(AutoScreenAdjust(m_classe.sort_inventory.position.x,0).x,
+                           AutoScreenAdjust(0,m_classe.sort_inventory.position.y).y);
+        if(eventManager->getPositionSouris().x > sprite.GetPosition().x
+        && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
+        && eventManager->getPositionSouris().y > sprite.GetPosition().y
+        && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
+            if(sprite.GetPixel(eventManager->getPositionSouris().x - sprite.GetPosition().x,
+                               eventManager->getPositionSouris().y - sprite.GetPosition().y).a > 0)
+            {
+                AutoTrierInventaire();
+                return false;
+            }
+    }
 
     {
         for(int i = 0 ; i < 8 ; ++i)
@@ -3038,6 +3123,9 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
             }
         UpdateRaccourcis();
     }
+
+    if(!craft && !bless)
+        GererBoutonsInventaire();
 
     m_objetADeposer=-1;
     if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.position_contenu_inventaire.x,0).x
