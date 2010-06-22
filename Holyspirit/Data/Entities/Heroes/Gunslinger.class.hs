@@ -29,6 +29,8 @@ $
 $
 	* x14 y336 w32 h32 m Data/Menus/Scroll_button.png $
 $
+	* x432 y33 w27 h24 m Data/Menus/SortInventory.png $
+$
 	* x0 y334 w800 h288 m Data/Menus/Talks.png $
 $
 	* x0 y0 w800 h600 m Data/Menus/Quest.png $

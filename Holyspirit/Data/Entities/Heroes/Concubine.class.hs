@@ -32,6 +32,8 @@ $
 $
 	* x14 y336 w32 h32 m Data/Menus/Scroll_button.png $
 $
+	* x432 y33 w27 h24 m Data/Menus/SortInventory.png $
+$
 	* x0 y334 w800 h288 m Data/Menus/Talks.png $
 $
 	* x0 y0 w800 h600 m Data/Menus/Quest.png $
@@ -48,7 +50,7 @@ $
 $
 	* x627 y548 w27 h24 m Data/Menus/PointsMRest.png $
 $
-	* x-12 y-6 w27 h24 m Data/Menus/PlusMiracle.png $
+	* x-14	y-6 w27 h24 m Data/Menus/PlusMiracle.png $
 $
 	* x-16 y-8 w68 h70 m Data/Menus/Slot_miracle.png $
 $
