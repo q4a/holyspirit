@@ -36,3 +36,4 @@ Seigneur squelette
 Golem de charbon ardent
 Tas d'os
 Rognorak le forgeron
+Sarcophage
