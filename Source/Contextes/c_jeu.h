@@ -125,6 +125,8 @@ private:
 
     float lowFPS;
 
+    bool m_diplace_mode;
+
 };
 
 #endif

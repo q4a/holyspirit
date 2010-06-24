@@ -141,7 +141,7 @@ Hero::Hero()
     temp.volVie             = 0;
     temp.volFoi             = 0;
 
-    temp.vitesse            = 1;
+    temp.vitesse            = 0.7;
     temp.pointAme           = 0;
     temp.ancienPointAme     = 0;
     temp.positionAncienAme  = 0;
@@ -413,6 +413,8 @@ void Hero::Charger(std::string chemin_save)
             *fichier>>charTemp.vitesse;
             *fichier>>charTemp.pointAme;
             *fichier>>charTemp.niveau;
+
+            charTemp.vitesse = 0.8;
 
             *fichier>>charTemp.force;
             *fichier>>charTemp.dexterite;

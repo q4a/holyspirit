@@ -788,6 +788,10 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                 fichier->seekg(pos, ios::beg);
                                 objets.back().m_benedictions.clear();
                                 objets.back().ChargerTexte(fichier,tempCaract);
+                                objets.back().m_alpha = 0;
+                                objets.back().m_hauteur = 0;
+                                objets.back().m_monter = 0;
+                                objets.back().m_rotation = 0;
 
                                 break;
 
@@ -855,6 +859,10 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                                     fichier->seekg(pos, ios::beg);
                                                     objets.back().m_benedictions.clear();
                                                     objets.back().ChargerTexte(fichier,tempCaract);
+                                                    objets.back().m_alpha = 0;
+                                                    objets.back().m_hauteur = 0;
+                                                    objets.back().m_monter = 0;
+                                                    objets.back().m_rotation = 0;
                                                     break;
                                                 }
 

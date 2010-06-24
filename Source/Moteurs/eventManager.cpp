@@ -90,7 +90,7 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
             *continuer = false;
             break;
 
-        case Event::GainedFocus:
+        case Event::LostFocus:
             for (int i=0;i<500;i++)
                 m_EventTableau[i]=0;
             for (int i=0;i<5;i++)

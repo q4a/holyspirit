@@ -349,10 +349,9 @@ bool Map::Miracle_CorpsACorps (Hero *hero, Personnage *personnage, Miracle &mode
     {
         if (fabs(info.m_cible->getCoordonnee().x - personnage->getCoordonnee().x) > effet.m_informations[0]
          || fabs(info.m_cible->getCoordonnee().y - personnage->getCoordonnee().y) > effet.m_informations[0] )
-            personnage->setArrivee(info.m_cible->getCoordonnee());
+            personnage->setArrivee(info.m_cible->getProchaineCase());
         else
         {
-            personnage->setArrivee(personnage->getProchaineCase());
             info.m_position.x = (float)personnage->getProchaineCase().x * COTE_TILE + 1;
             info.m_position.y = (float)personnage->getProchaineCase().y * COTE_TILE + 1;
 
@@ -379,6 +378,7 @@ bool Map::Miracle_CorpsACorps (Hero *hero, Personnage *personnage, Miracle &mode
 
                 return 0;
             }
+            personnage->setArrivee(personnage->getProchaineCase());
         }
     }
     else

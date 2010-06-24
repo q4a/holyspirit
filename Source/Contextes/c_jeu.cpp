@@ -467,7 +467,7 @@ void GestionRaccourcis(Jeu *jeu)
     }
 }
 
-int GestionBoutons(Jeu *jeu)
+int GestionBoutons(Jeu *jeu, bool diplace_mode = false)
 {
     if (   eventManager->getPositionSouris().x > AutoScreenAdjust(775,0).x
         && eventManager->getPositionSouris().x < AutoScreenAdjust(800,0).x
@@ -526,7 +526,9 @@ int GestionBoutons(Jeu *jeu)
             if(eventManager->getEvenement(Mouse::Left,EventClicA))
             {
                 eventManager->StopEvenement(Mouse::Left,EventClicA);
-                choix = jeu->hero.m_classe.boutons_menus_hud[i].lien;
+
+                if(!diplace_mode)
+                    choix = jeu->hero.m_classe.boutons_menus_hud[i].lien;
             }
         }
     }
@@ -645,10 +647,13 @@ void c_Jeu::Evenements(Jeu *jeu)
         jeu->menu.m_dialogue = configuration->error_message,configuration->error_message.clear();
 
     GestionRaccourcis(jeu);
-    jeu->next_screen = GestionBoutons(jeu);
+    jeu->next_screen = GestionBoutons(jeu, m_diplace_mode);
 
     if (jeu->next_screen >=0 )
         jeu->Next();
+
+    if(!eventManager->getEvenement(Mouse::Left,EventClic))
+        m_diplace_mode = false;
 
     if (eventManager->getPositionSouris().y < 492 * configuration->Resolution.h/600)
     if(jeu->menu.m_dialogue.empty())
@@ -688,6 +693,8 @@ void c_Jeu::Evenements(Jeu *jeu)
 
         if (eventManager->getEvenement(Mouse::Left,EventClic)&&!eventManager->getEvenement(Key::LShift,EventKey))
         {
+            m_diplace_mode = true;
+
             jeu->hero.StopMiraclesFrappe();
             if (!(eventManager->getPositionSouris().x>configuration->Resolution.w-configuration->Resolution.w*0.25
                     &&eventManager->getPositionSouris().y>configuration->Resolution.w*0.25&&eventManager->getPositionSouris().y<configuration->Resolution.w*0.25+configuration->Resolution.w*0.34
@@ -741,8 +748,6 @@ void c_Jeu::Evenements(Jeu *jeu)
             {
                 if (!jeu->hero.m_personnage.frappeEnCours)
                 {
-                    eventManager->StopEvenement(Mouse::Right,EventClic);
-
                     coordonnee cible;
 
                     if (jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())!=NULL)
@@ -752,6 +757,8 @@ void c_Jeu::Evenements(Jeu *jeu)
 
                     if (jeu->hero.UtiliserMiracle(jeu->hero.m_personnage.m_miracleALancer, jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible))
                     {
+                        eventManager->StopEvenement(Mouse::Right,EventClic);
+
                         jeu->hero.m_personnage.m_miracleEnCours.back().m_infos.back()->m_cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine());
 
                         coordonnee positionHero;

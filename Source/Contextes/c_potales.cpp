@@ -33,7 +33,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 using namespace sf;
 using namespace std;
 
-int GestionBoutons(Jeu *jeu);
+int GestionBoutons(Jeu *jeu, bool = false);
 
 c_Potales::c_Potales()
 {
