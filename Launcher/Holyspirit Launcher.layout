@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="Debug" />
+	<ActiveTarget name="Release" />
 	<File name="Launcher.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="5476" topLine="171" />
+		<Cursor position="3980" topLine="0" />
 	</File>
-	<File name="Launcher.h" open="0" top="0" tabpos="2">
-		<Cursor position="1749" topLine="51" />
+	<File name="Launcher.h" open="0" top="0" tabpos="4">
+		<Cursor position="1076" topLine="81" />
 	</File>
-	<File name="configuration.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="1283" topLine="6" />
+	<File name="configuration.cpp" open="1" top="1" tabpos="2">
+		<Cursor position="4736" topLine="104" />
 	</File>
-	<File name="configuration.h" open="0" top="0" tabpos="4">
-		<Cursor position="225" topLine="3" />
+	<File name="configuration.h" open="1" top="0" tabpos="1">
+		<Cursor position="846" topLine="21" />
 	</File>
-	<File name="main.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="295" topLine="0" />
+	<File name="main.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="247" topLine="8" />
+	</File>
+	<File name="ressource.rc" open="0" top="0" tabpos="5">
+		<Cursor position="24" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

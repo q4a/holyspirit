@@ -8,6 +8,10 @@
 #include <dirent.h>
 #include <QDir>
 
+
+#include <QtWebKit>
+
+
 #define WINDOWS
 
 #ifdef WINDOWS
@@ -22,7 +26,7 @@ class Launcher : public QWidget // On hérite de QWidget (IMPORTANT)
 
     public:
     Launcher();
-    Launcher::~Launcher()
+    ~Launcher()
     {
         delete m_boutonDemarrer;
         delete m_boutonQuitter;
@@ -36,6 +40,10 @@ class Launcher : public QWidget // On hérite de QWidget (IMPORTANT)
 
         delete dir;
 
+        delete pageWeb;
+
+        delete listeLangages;
+
         liste_a_telecharger_nom.clear();
         liste_a_telecharger_rep.clear();
         listeRepertoire.clear();
@@ -44,17 +52,19 @@ class Launcher : public QWidget // On hérite de QWidget (IMPORTANT)
         rep_fichier_nv.clear();
         ver_fichier.clear();
         ver_fichier_nv.clear();
-
-        //delete http;
     }
 
-
+    std::string no_language;
 
     public slots:
     void downloadFile();
     void downloadAll(bool);
     void LancerJeu();
     void Options();
+
+    void languageChange(int index);
+
+    void MettreAJourBDD();
 
     void miseAJourBarre2(int progressions, int temp);
     void miseAJourBarreTotale(float progressions, int temp);
@@ -68,18 +78,29 @@ class Launcher : public QWidget // On hérite de QWidget (IMPORTANT)
     QPixmap *m_pixmap;
     QProgressBar *m_miseAJour,*m_miseAJourTotale;
 
+    QWebView *pageWeb;
+
     QFile *fichier;
     QHttp *http;
     QDir *dir;
 
-    std::vector <std::string> liste_a_telecharger_nom,;
-    std::vector <std::string>  liste_a_telecharger_rep;
+    QComboBox *listeLangages;
+    std::vector <std::string> languages;
+    std::vector <std::string> languages_txt;
+
+    std::vector <std::string> liste_a_telecharger_nom;
+    std::vector <std::string> liste_a_telecharger_rep;
     std::vector <std::string> listeRepertoire;
     std::vector <std::string> nom_fichier,nom_fichier_nv,rep_fichier_nv;
-    std::vector <int> ver_fichier,ver_fichier_nv;
-    int enCoursDeTelechargement;
 
-    //QNetworkAccessManager manager;
+
+    std::vector <std::string> final_nom;
+    std::vector <std::string> final_rep;
+    std::vector <int> final_ver;
+
+
+    std::vector <int> ver_fichier,ver_fichier_nv,liste_a_telecharger_ver;
+    int enCoursDeTelechargement;
 
     int httpGetId,fait,aFaire;
     float fait2;
