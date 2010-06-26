@@ -759,7 +759,10 @@ void c_Jeu::Evenements(Jeu *jeu)
                     {
                         eventManager->StopEvenement(Mouse::Right,EventClic);
 
-                        jeu->hero.m_personnage.m_miracleEnCours.back().m_infos.back()->m_cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine());
+                        if(!eventManager->getEvenement(sf::Key::LShift, EventKey))
+                            jeu->hero.m_personnage.m_miracleEnCours.back().m_infos.back()->m_cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine());
+                        else//if(eventManager->getEvenement(sf::Key::LShift, EventKey))
+                            jeu->hero.m_personnage.m_miracleEnCours.back().m_forced_maj = true;
 
                         coordonnee positionHero;
                         positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;

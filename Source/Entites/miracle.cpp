@@ -127,7 +127,10 @@ Miracle::~Miracle()
     m_tileset.clear();
 }
 
-EntiteMiracle::EntiteMiracle(){ m_dejaConsommeFoi = false; }
+EntiteMiracle::EntiteMiracle(){
+    m_dejaConsommeFoi = false;
+    m_forced_maj = false;
+}
 
 float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int level, char priorite, bool *cont);
 

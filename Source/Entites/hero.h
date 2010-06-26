@@ -99,6 +99,7 @@ public:
     void GererBoutonsInventaire();
 
     bool PossibleEquiper(int numero, int emplacement);
+    bool PossibleEquiper(Objet  &, int emplacement);
     bool Equiper(int numero, int emplacement);
     bool UtiliserObjet(int numero);
     void RangerObjet(int numero);

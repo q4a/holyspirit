@@ -345,20 +345,38 @@ bool Map::Miracle_Charme (Hero *hero, Personnage *personnage, Miracle &modele, E
 
 bool Map::Miracle_CorpsACorps (Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o)
 {
-    if (info.m_cible != NULL)
+    if (info.m_cible || miracleEnCours.m_forced_maj)
     {
-        if (fabs(info.m_cible->getCoordonnee().x - personnage->getCoordonnee().x) > effet.m_informations[0]
-         || fabs(info.m_cible->getCoordonnee().y - personnage->getCoordonnee().y) > effet.m_informations[0] )
-            personnage->setArrivee(info.m_cible->getProchaineCase());
-        else
+        bool ok = false;
+
+        if(info.m_cible)
+        {
+            if( fabs(info.m_cible->getCoordonnee().x - personnage->getCoordonnee().x) > effet.m_informations[0]
+             || fabs(info.m_cible->getCoordonnee().y - personnage->getCoordonnee().y) > effet.m_informations[0])
+                personnage->setArrivee(info.m_cible->getProchaineCase());
+            else ok = true;
+        }
+        if(miracleEnCours.m_forced_maj)
+            ok = true;
+
+        if(ok)
         {
             info.m_position.x = (float)personnage->getProchaineCase().x * COTE_TILE + 1;
             info.m_position.y = (float)personnage->getProchaineCase().y * COTE_TILE + 1;
 
-            if( personnage->getArrivee().x == personnage->getCoordonnee().x
-             && personnage->getArrivee().y == personnage->getCoordonnee().y)
+           /* if( personnage->getArrivee().x == personnage->getCoordonnee().x
+             && personnage->getArrivee().y == personnage->getCoordonnee().y)*/
             {
-                personnage->Frappe(personnage->getCoordonneePixel(),info.m_cible->getCoordonneePixel());
+                coordonnee pos;
+                if(info.m_cible)
+                    pos = info.m_cible->getCoordonneePixel();
+                else
+                {
+                    pos.x = miracleEnCours.m_coordonneeCible.x * COTE_TILE;
+                    pos.y = miracleEnCours.m_coordonneeCible.y * COTE_TILE;
+                }
+
+                personnage->Frappe(personnage->getCoordonneePixel(),pos);
 
                 if(effet.m_informations[1])
                 {

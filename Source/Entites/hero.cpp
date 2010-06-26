@@ -2778,7 +2778,9 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                     && m_classe.miracles[miracle].m_coutVie + m_classe.miracles[miracle].m_reserveVie
                     <= m_caracteristiques.vie && m_classe.miracles[miracle].m_reserveVie <= m_caracteristiques.maxVie - m_caracteristiques.reserveVie)
                 if (m_cas == m_classe.miracles[miracle].m_cas || m_classe.miracles[miracle].m_cas == -1)
-                    if (cible != NULL && m_classe.miracles[miracle].m_effets[0].m_type == CORPS_A_CORPS || m_classe.miracles[miracle].m_effets[0].m_type != CORPS_A_CORPS )
+                    if (cible != NULL && m_classe.miracles[miracle].m_effets[0].m_type == CORPS_A_CORPS
+                     || m_classe.miracles[miracle].m_effets[0].m_type != CORPS_A_CORPS
+                     || eventManager->getEvenement(sf::Key::LShift, EventKey))
                     {
                         m_personnage.m_lancementMiracleEnCours = true;
                         m_personnage.m_miracleEnCours.push_back(EntiteMiracle ());
@@ -2838,20 +2840,39 @@ bool Hero::AjouterObjet(Objet objet,bool enMain)
         {
             bool continuer = true;
             for (int j=0;j<(int)m_classe.emplacements.size() && continuer;j++)
-                for (int i=0;i<(int)objet.m_emplacement.size() && continuer;++i)
-                    if (objet.m_emplacement[i] == m_classe.emplacements[j].emplacement && continuer)
-                    {
-                        continuer=false;
-                        for(unsigned k = 0 ; k < m_inventaire.size() ; ++k)
-                            if(m_inventaire[k].m_equipe == j)
-                                continuer = true;
-                        if(!continuer)
+            {
+                if(PossibleEquiper(objet,j))
+                    for (int i=0;i<(int)objet.m_emplacement.size() && continuer;++i)
+                        if (objet.m_emplacement[i] == m_classe.emplacements[j].emplacement && continuer)
                         {
-                            ramasser = true;
-                            AjouterObjetInventaire(objet,&m_inventaire,m_classe.position_contenu_inventaire, false);
-                            Equiper(m_inventaire.size() - 1, j);
+                            continuer=false;
+
+                            for (int k=0;k<(int)objet.m_emplacementImpossible.size();k++)
+                                for(int o = 0 ; o < (int)m_inventaire.size() ; ++o)
+                                    if(m_inventaire[o].m_equipe >= 0 && m_inventaire[o].m_equipe < m_classe.emplacements.size())
+                                        if (objet.m_emplacementImpossible[k]==m_classe.emplacements[m_inventaire[o].m_equipe].emplacement)
+                                            continuer = true;
+
+                            for(int k = 0 ; k < (int)m_inventaire.size() ; ++k)
+                                if(m_inventaire[k].m_equipe >= 0 && m_inventaire[k].m_equipe < (int)m_classe.emplacements.size())
+                                    for (int o=0;o<(int)m_inventaire[k].m_emplacementImpossible.size();o++)
+                                        if(m_classe.emplacements[j].emplacement == m_inventaire[k].m_emplacementImpossible[o])
+                                            continuer = true;
+
+
+                            for(unsigned k = 0 ; k < m_inventaire.size() ; ++k)
+                                if(m_inventaire[k].m_equipe == j)
+                                    continuer = true;
+
+                            if(!continuer)
+                            {
+                                ramasser = true;
+                                AjouterObjetInventaire(objet,&m_inventaire,m_classe.position_contenu_inventaire, true);
+                                Equiper(m_inventaire.size() - 1, j);
+                            }
                         }
-                    }
+            }
+
             if(!continuer)
                 ChargerModele();
         }
@@ -3571,13 +3592,20 @@ void Hero::GererBless(std::vector<Objet> *trader)
         m_classe.button_craft.empty = false;
 }
 
+bool Hero::PossibleEquiper(Objet &objet, int emplacement)
+{
+    if (objet.Utilisable(m_caracteristiques,m_cheminClasse))
+        for (int i=0;i<(int)objet.m_emplacement.size();++i)
+            if (objet.m_emplacement[i]==m_classe.emplacements[emplacement].emplacement)
+                return true;
+    return false;
+}
+
 bool Hero::PossibleEquiper(int numero, int emplacement)
 {
     if (numero >= 0 && numero < (int)m_inventaire.size())
-        if (m_inventaire[ numero].Utilisable(m_caracteristiques,m_cheminClasse))
-            for (int i=0;i<(int)m_inventaire[ numero].m_emplacement.size();++i)
-                if (m_inventaire[ numero].m_emplacement[i]==m_classe.emplacements[emplacement].emplacement)
-                    return true;
+        return PossibleEquiper(m_inventaire[numero], emplacement);
+
     return false;
 }
 

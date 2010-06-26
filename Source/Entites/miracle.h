@@ -215,6 +215,8 @@ public:
     coordonnee                          m_coordonneeDepart;
     bool                                m_dejaConsommeFoi;
     Objet                               *m_source;
+
+    bool                                m_forced_maj;
 };
 
 #endif
