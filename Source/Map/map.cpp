@@ -1369,17 +1369,17 @@ void Map::CalculerOmbresEtLumieres()
     int g = moteurGraphique->m_soleil.vert;
     int b = moteurGraphique->m_soleil.bleu;
     int i = moteurGraphique->m_soleil.intensite;
-    int h = moteurGraphique->m_soleil.hauteur;
+    int h = (int)moteurGraphique->m_soleil.hauteur;
 
 
     for(int j = 0 ; j < m_climates.size() ; ++j)
         if(m_climates[j].m_actif)
         {
-            r -= m_climates[j].m_lumiereModificater.rouge * m_climates[j].GetState();
-            g -= m_climates[j].m_lumiereModificater.vert * m_climates[j].GetState();
-            b -= m_climates[j].m_lumiereModificater.bleu * m_climates[j].GetState();
-            i -= m_climates[j].m_lumiereModificater.intensite * m_climates[j].GetState();
-            h -= m_climates[j].m_lumiereModificater.hauteur * m_climates[j].GetState();
+            r -= (int)((float)m_climates[j].m_lumiereModificater.rouge * m_climates[j].GetState());
+            g -= (int)((float)m_climates[j].m_lumiereModificater.vert * m_climates[j].GetState());
+            b -= (int)((float)m_climates[j].m_lumiereModificater.bleu * m_climates[j].GetState());
+            i -= (int)((float)m_climates[j].m_lumiereModificater.intensite * m_climates[j].GetState());
+            h -= (int)((float)m_climates[j].m_lumiereModificater.hauteur * m_climates[j].GetState());
         }
 
 
@@ -1512,7 +1512,6 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                                 (int)(configuration->Resolution.y*0.5f + (pos.y - positionHero.y) * 0.125f));
             moteurGraphique->AjouterCommande(&minimap,12,0);
         }
-
     }
 
     for(int i = 0 ; i < m_climates.size() ; ++i)
@@ -1837,10 +1836,10 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
 
     coordonnee vueMin,vueMax;
 
-    vueMin.x=hero->m_personnage.getCoordonnee().x-15;
-    vueMin.y=hero->m_personnage.getCoordonnee().y-15;
-    vueMax.x=hero->m_personnage.getCoordonnee().x+15;
-    vueMax.y=hero->m_personnage.getCoordonnee().y+15;
+    vueMin.x=hero->m_personnage.getCoordonnee().x-12;
+    vueMin.y=hero->m_personnage.getCoordonnee().y-12;
+    vueMax.x=hero->m_personnage.getCoordonnee().x+14;
+    vueMax.y=hero->m_personnage.getCoordonnee().y+14;
 
     if (vueMin.x<0)
         vueMin.x=0;
@@ -2211,7 +2210,7 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                     if ((int)script->m_instructions.size()>0)
                         for (int a=0;a<(int)script->m_instructions[0].m_valeurs.size();a++)
                             if (script->m_instructions[0].m_valeurs[a]>=0&&script->m_instructions[0].m_valeurs[a]<(int)script->m_instructions.size())
-                                GererInstructions(jeu,script,script->m_instructions[0].m_valeurs[a],monstre,hero,temps,menu,seDeplacer);
+                                GererInstructions(jeu,script,(int)script->m_instructions[0].m_valeurs[a],monstre,hero,temps,menu,seDeplacer);
 
                     if (Iter->getErreurPathfinding())
                         Script_RandomDisplace(jeu,script,0,monstre,hero,temps,menu,seDeplacer);
@@ -2366,7 +2365,7 @@ void Map::GererScript(Jeu *jeu,Hero *hero,float temps,Menu *menu)
     if ((int)m_script.m_instructions.size()>0)
         for (int a=0;a<(int)m_script.m_instructions[0].m_valeurs.size();a++)
             if (m_script.m_instructions[0].m_valeurs[a]>=0&&m_script.m_instructions[0].m_valeurs[a]<(int)m_script.m_instructions.size())
-                GererInstructions(jeu,&m_script,m_script.m_instructions[0].m_valeurs[a],-1,hero,temps,menu,0);
+                GererInstructions(jeu,&m_script,(int)m_script.m_instructions[0].m_valeurs[a],-1,hero,temps,menu,0);
 }
 
 void Map::TestVisionMonstre(int numero, Hero *hero)

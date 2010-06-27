@@ -1015,7 +1015,7 @@ void Personnage::Frappe(coordonnee position,coordonnee direction)
 
     m-=45;
 
-    setAngle(m);
+    setAngle((int)m);
 
     m_cheminFinal=m_positionCase;
     m_arrivee=m_cheminFinal;

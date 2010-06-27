@@ -157,7 +157,7 @@ void Script::Sauvegarder_instruction(ofstream &fichier , int no)
                     fichier<<endl<<"variable * "<<i<<" * "<<m_variables[i]<<endl;
             }*/
             for(unsigned i = 0 ; i < m_instructions[no].m_valeurs.size() ; ++i)
-                Sauvegarder_instruction(fichier ,m_instructions[no].m_valeurs[i]);
+                Sauvegarder_instruction(fichier ,(int)m_instructions[no].m_valeurs[i]);
 
             fichier<<"end"<<endl;
         }
@@ -289,7 +289,7 @@ float Script::getValeur(int no, int i)
             else if(m_instructions[no].m_string_valeurs[i] == "variable")
             {
                 if(m_instructions[no].m_valeurs[i] < m_variables.size())
-                    return m_variables[m_instructions[no].m_valeurs[i]];
+                    return m_variables[(int)m_instructions[no].m_valeurs[i]];
                 else
                     return (0);
             }

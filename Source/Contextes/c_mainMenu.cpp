@@ -351,7 +351,7 @@ void c_MainMenu::Utiliser(Jeu *jeu)
                 texte.SetColor(Color(100,50,0));
                 texte_niv.SetColor(Color(100,50,0));
                 if(eventManager->getEvenement(Mouse::Left,EventClic))
-                if(!m_incompatible_saves[i])
+                //if(!m_incompatible_saves[i])
                 {
                     coordonnee temp(0,0,-1,-1);
 

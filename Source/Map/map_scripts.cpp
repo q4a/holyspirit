@@ -119,15 +119,15 @@ void Map::Script_UseMiracle(Jeu *jeu,Script *script,int noInstruction,int monstr
     }
 
     if (m_monstre[monstre].m_miracleALancer == -1)
-        m_monstre[monstre].m_miracleALancer = script->getValeur(noInstruction, 0);
+        m_monstre[monstre].m_miracleALancer = (int)script->getValeur(noInstruction, 0);
 }
 
 void Map::Script_SetState(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer)
 {
     if (m_monstre[monstre].getEtat()!=script->getValeur(noInstruction, 0))
-        m_monstre[monstre].setJustEtat(script->getValeur(noInstruction, 0)), m_monstre[monstre].m_etatForce = true;
+        m_monstre[monstre].setJustEtat((int)script->getValeur(noInstruction, 0)), m_monstre[monstre].m_etatForce = true;
     if(script->m_instructions[noInstruction].m_valeurs.size() >= 2)
-        m_monstre[monstre].setPose(script->getValeur(noInstruction, 1));
+        m_monstre[monstre].setPose((int)script->getValeur(noInstruction, 1));
 }
 
 
@@ -140,7 +140,7 @@ void Map::Script_PlaySound(Jeu *jeu,Script *script,int noInstruction,int monstre
         coordonnee position;
         position.x=(m_monstre[monstre].getCoordonnee().x-m_monstre[monstre].getCoordonnee().y-1)/5;
         position.y=(m_monstre[monstre].getCoordonnee().x+m_monstre[monstre].getCoordonnee().y)/5;
-        m_monstre[monstre].m_entite_graphique.m_tileset->JouerSon(script->getValeur(noInstruction, 0),position,true);
+        m_monstre[monstre].m_entite_graphique.m_tileset->JouerSon((int)script->getValeur(noInstruction, 0),position,true);
     }
 }
 
@@ -313,9 +313,9 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                         if (m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type==INVOCATION)
                             if (m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_IDObjet>=0&&m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_IDObjet<(int)m_monstre.size())
                             {
-                                if(m_listID.size() <= script->getValeur(noInstruction, 0))
-                                    m_listID.resize(script->getValeur(noInstruction, 0) + 1);
-                                m_listID[script->getValeur(noInstruction, 0)].push_back(m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_IDObjet);
+                                if(m_listID.size() <= (int)script->getValeur(noInstruction, 0))
+                                    m_listID.resize((int)script->getValeur(noInstruction, 0) + 1);
+                                m_listID[(int)script->getValeur(noInstruction, 0)].push_back(m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_IDObjet);
                             }
             }
         }
@@ -343,7 +343,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         else if (script->m_instructions[noInstruction].nom=="set_entityActif" && monstre == -1)
         {
             if(script->getValeur(noInstruction, 0) >= 0 && script->getValeur(noInstruction, 0) < m_monstre.size())
-                m_monstre[script->getValeur(noInstruction, 0)].m_actif = script->getValeur(noInstruction, 1);
+                m_monstre[(int)script->getValeur(noInstruction, 0)].m_actif = (bool)script->getValeur(noInstruction, 1);
         }
         else if (script->m_instructions[noInstruction].nom=="playSound" && monstre != -1)
             Script_PlaySound(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer); //PLAYSOUND(script->getValeur(noInstruction, 0))
@@ -357,17 +357,18 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             Script_Potale(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="add_checkpoint")
         {
-            hero->addPotale(script->getValeur(noInstruction, 0),
-                            script->getValeur(noInstruction, 1),
-                            script->getValeur(noInstruction, 2),
+            hero->addPotale((int)script->getValeur(noInstruction, 0),
+                            (int)script->getValeur(noInstruction, 1),
+                            (int)script->getValeur(noInstruction, 2),
                             script->m_instructions[noInstruction].valeurString);
         }
         else if (script->m_instructions[noInstruction].nom=="if")
             GererConditions(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="variable")
-            script->setVariable(script->getValeur(noInstruction, 0), script->getValeur(noInstruction, 1));
+            script->setVariable((int)script->getValeur(noInstruction, 0), script->getValeur(noInstruction, 1));
         else if (script->m_instructions[noInstruction].nom=="incrementVariable")
-            script->setVariable(script->getValeur(noInstruction, 0), script->getVariable(script->getValeur(noInstruction, 0)) + script->getValeur(noInstruction, 1));
+            script->setVariable((int)script->getValeur(noInstruction, 0),
+                                (int)script->getVariable(script->getValeur(noInstruction, 0)) + (int)script->getValeur(noInstruction, 1));
         else if (script->m_instructions[noInstruction].nom=="setCollision" && monstre != -1)
         {
             m_monstre[monstre].m_collision = script->getValeur(noInstruction, 0);
@@ -384,7 +385,8 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         {
             if (jeu->menu.m_dialogue.empty())
             {
-                jeu->menu.m_dialogue = DecouperTexte(configuration->getText(4, script->getValeur(noInstruction, 0)), hero->m_classe.position_contenu_dialogue.w, 14);
+                jeu->menu.m_dialogue = DecouperTexte(configuration->getText(4, (int)script->getValeur(noInstruction, 0)),
+                                                                            hero->m_classe.position_contenu_dialogue.w, 14);
                 eventManager->StopEvenement(Mouse::Left,EventClic);
 
                 hero->m_personnage.setArrivee(hero->m_personnage.getProchaineCase());
@@ -401,7 +403,8 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         }
         else if (script->m_instructions[noInstruction].nom=="speak_choice")
         {
-            jeu->menu.AddSpeakChoice(   DecouperTexte(configuration->getText(4, script->getValeur(noInstruction, 0)), hero->m_classe.position_contenu_dialogue.w, 14),
+            jeu->menu.AddSpeakChoice(   DecouperTexte(configuration->getText(4, (int)script->getValeur(noInstruction, 0)),
+                                                      hero->m_classe.position_contenu_dialogue.w, 14),
                                         script->getValeur(noInstruction, 1));
             eventManager->StopEvenement(Mouse::Left,EventClic);
             hero->m_personnage.setArrivee(hero->m_personnage.getProchaineCase());
@@ -416,32 +419,34 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                     ok = false;
             if (ok)
             {
-                hero->m_quetes.push_back(Quete (script->getValeur(noInstruction, 0)));
+                hero->m_quetes.push_back(Quete ((int)script->getValeur(noInstruction, 0)));
                 hero->m_queteSelectionnee = hero->m_quetes.size() - 1;
             }
         }
         else if (script->m_instructions[noInstruction].nom=="setQuestName")
         {
             for (int i = 0;i < (int)hero->m_quetes.size(); ++i)
-                if (hero->m_quetes[i].m_id == script->getValeur(noInstruction, 0))
-                    hero->m_quetes[i].m_nom = DecouperTexte(configuration->getText(4, script->getValeur(noInstruction, 1)), hero->m_classe.position_contenu_quetes.w, 16);
+                if (hero->m_quetes[i].m_id == (int)script->getValeur(noInstruction, 0))
+                    hero->m_quetes[i].m_nom = DecouperTexte(configuration->getText(4, (int)script->getValeur(noInstruction, 1)),
+                                                                                   hero->m_classe.position_contenu_quetes.w, 16);
         }
         else if (script->m_instructions[noInstruction].nom=="setQuestState")
         {
             for (int i = 0;i < (int)hero->m_quetes.size(); ++i)
-                if (hero->m_quetes[i].m_id == script->getValeur(noInstruction, 0))
+                if (hero->m_quetes[i].m_id == (int)script->getValeur(noInstruction, 0))
                 {
-                    hero->m_quetes[i].m_description = DecouperTexte(configuration->getText(4, script->getValeur(noInstruction, 2)), hero->m_classe.position_contenu_description_quete.w, 14);
-                    hero->m_quetes[i].m_statut = script->getValeur(noInstruction, 1);
+                    hero->m_quetes[i].m_description = DecouperTexte(configuration->getText(4, (int)script->getValeur(noInstruction, 2)),
+                                                                                            hero->m_classe.position_contenu_description_quete.w, 14);
+                    hero->m_quetes[i].m_statut = (int)script->getValeur(noInstruction, 1);
                 }
         }
         else if (script->m_instructions[noInstruction].nom=="setQuestPosition")
         {
             for (int i = 0;i < (int)hero->m_quetes.size(); ++i)
-                if (hero->m_quetes[i].m_id == script->getValeur(noInstruction, 0))
+                if (hero->m_quetes[i].m_id == (int)script->getValeur(noInstruction, 0))
                 {
-                    hero->m_quetes[i].m_position.x = script->getValeur(noInstruction, 1);
-                    hero->m_quetes[i].m_position.y = script->getValeur(noInstruction, 2);
+                    hero->m_quetes[i].m_position.x = (int)script->getValeur(noInstruction, 1);
+                    hero->m_quetes[i].m_position.y = (int)script->getValeur(noInstruction, 2);
                     hero->m_quetes[i].m_map = script->m_instructions[noInstruction].valeurString;
                 }
         }

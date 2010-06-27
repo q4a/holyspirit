@@ -137,6 +137,8 @@ public:
     int m_argent;
     int m_holywater;
 
+    int m_miracle_gauche;
+
     //cDAT m_fichierSave;
     std::vector<std::string> m_contenuSave;
 

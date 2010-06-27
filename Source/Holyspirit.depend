@@ -381,7 +381,7 @@
 
 1245839952 ntes.h"
 
-1276445793 e:\c++\holyspirit\source\constantes.h
+1277648975 e:\c++\holyspirit\source\constantes.h
 	<cmath>
 	<utility>
 	<iostream>
@@ -481,7 +481,7 @@
 
 1264447812 .h"
 
-1277481639 e:\c++\holyspirit\source\entites\hero.h
+1277648808 e:\c++\holyspirit\source\entites\hero.h
 	<iostream>
 	<string>
 	<list>
@@ -490,7 +490,7 @@
 	"monstre.h"
 	"quete.h"
 
-1277196251 e:\c++\holyspirit\source\entites\classe.h
+1277648552 e:\c++\holyspirit\source\entites\classe.h
 	"miracle.h"
 
 1263653913 "
@@ -634,7 +634,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1277480835 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
+1277649602 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -680,12 +680,12 @@
 	"case.h"
 	<iostream>
 
-1277196251 source:e:\c++\holyspirit\source\entites\classe.cpp
+1277648659 source:e:\c++\holyspirit\source\entites\classe.cpp
 	"classe.h"
 	"../globale.h"
 	<sstream>
 
-1277480112 source:e:\c++\holyspirit\source\entites\hero.cpp
+1277649382 source:e:\c++\holyspirit\source\entites\hero.cpp
 	"../constantes.h"
 	"hero.h"
 	"../globale.h"
@@ -702,7 +702,7 @@
 	"../globale.h"
 	<iostream>
 
-1277480422 source:e:\c++\holyspirit\source\entites\miracle.cpp
+1277646396 source:e:\c++\holyspirit\source\entites\miracle.cpp
 	"miracle.h"
 	"../globale.h"
 	"Objet.h"
@@ -723,7 +723,7 @@
 	<fstream>
 	<sstream>
 
-1276449873 source:e:\c++\holyspirit\source\entites\personnage.cpp
+1277556602 source:e:\c++\holyspirit\source\entites\personnage.cpp
 	"personnage.h"
 	"../globale.h"
 	<iostream>
@@ -747,7 +747,7 @@
 	"../constantes.h"
 	"../globale.h"
 
-1274895383 source:e:\c++\holyspirit\source\entites\script.cpp
+1277556602 source:e:\c++\holyspirit\source\entites\script.cpp
 	<fstream>
 	<sstream>
 	"script.h"
@@ -761,7 +761,7 @@
 	"evenement.h"
 	<iostream>
 
-1277374921 source:e:\c++\holyspirit\source\map\map.cpp
+1277635845 source:e:\c++\holyspirit\source\map\map.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -830,7 +830,7 @@
 	"../globale.h"
 	<iostream>
 
-1276623144 source:e:\c++\holyspirit\source\configuration.cpp
+1277648331 source:e:\c++\holyspirit\source\configuration.cpp
 	"configuration.h"
 
 1269179731 source:e:\c++\holyspirit\source\datfile.cpp
@@ -5746,7 +5746,7 @@
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1275222233 source:e:\c++\holyspirit\source\contextes\c_mainmenu.cpp
+1277648975 source:e:\c++\holyspirit\source\contextes\c_mainmenu.cpp
 	"../jeu.h"
 	"../globale.h"
 	<iostream>
@@ -6340,7 +6340,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1277481332 source:e:\c++\holyspirit\source\map\map_miracles.cpp
+1277648331 source:e:\c++\holyspirit\source\map\map_miracles.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -6348,7 +6348,7 @@
 	"../globale.h"
 	"../jeu.h"
 
-1276693052 source:e:\c++\holyspirit\source\map\map_scripts.cpp
+1277634881 source:e:\c++\holyspirit\source\map\map_scripts.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -6363,7 +6363,7 @@
 	"tileset.h"
 	"../globale.h"
 
-1276693216 source:e:\c++\holyspirit\source\map\climate.cpp
+1277556602 source:e:\c++\holyspirit\source\map\climate.cpp
 	"Climate.h"
 	<iostream>
 	<fstream>

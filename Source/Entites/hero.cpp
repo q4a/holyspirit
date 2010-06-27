@@ -168,6 +168,8 @@ Hero::Hero()
 
     miracleEnCours=0;
 
+    m_miracle_gauche  = -1;
+
     m_miracleEnMain = -1;
 
     m_cas=0;
@@ -252,6 +254,7 @@ void Hero::Sauvegarder()
             fichier<<m_raccourcis[i].miracle<<" "<<m_raccourcis[i].no<<endl;
 
         fichier<<m_personnage.m_miracleALancer<<endl;
+        fichier<<m_miracle_gauche<<endl;
 
         if (configuration->debug)
             console->Ajouter("/Ecriture des caracterstiques.");
@@ -437,6 +440,9 @@ void Hero::Charger(std::string chemin_save)
                 *fichier>>m_raccourcis[i].miracle>>m_raccourcis[i].no;
 
             *fichier>>m_personnage.m_miracleALancer;
+
+            if(temp >= 3)
+                *fichier>>m_miracle_gauche;
 
             charTemp.ancienPointAme=charTemp.pointAme,charTemp.positionAncienAme=charTemp.pointAme;
 
@@ -1713,6 +1719,38 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
 
                 eventManager->StopEvenement(Mouse::Left,EventClic);
             }
+
+        if (  eventManager->getPositionSouris().x > m_classe.position_miracleALancerGauche.x + (configuration->Resolution.x - 800) * 0.5
+            &&eventManager->getPositionSouris().x < m_classe.position_miracleALancerGauche.x + (configuration->Resolution.x - 800) * 0.5 + m_classe.position_miracleALancerGauche.w
+            &&eventManager->getPositionSouris().y > m_classe.position_miracleALancerGauche.y + (configuration->Resolution.y - 600)
+            &&eventManager->getPositionSouris().y < m_classe.position_miracleALancerGauche.y + (configuration->Resolution.y - 600) + m_classe.position_miracleALancerGauche.h)
+        {
+            if (m_miracleEnMain >= 0)
+            {
+                m_miracle_gauche = m_miracleEnMain;
+                m_miracleEnMain = -1;
+            }
+            else
+                m_miracleEnMain = m_miracle_gauche, m_miracle_gauche = -1;
+
+            eventManager->StopEvenement(Mouse::Left,EventClic);
+        }
+
+        if (  eventManager->getPositionSouris().x > m_classe.position_miracleALancerDroite.x + (configuration->Resolution.x - 800) * 0.5
+            &&eventManager->getPositionSouris().x < m_classe.position_miracleALancerDroite.x + (configuration->Resolution.x - 800) * 0.5 + m_classe.position_miracleALancerDroite.w
+            &&eventManager->getPositionSouris().y > m_classe.position_miracleALancerDroite.y + (configuration->Resolution.y - 600)
+            &&eventManager->getPositionSouris().y < m_classe.position_miracleALancerDroite.y + (configuration->Resolution.y - 600) + m_classe.position_miracleALancerDroite.h)
+        {
+            if (m_miracleEnMain >= 0)
+            {
+                m_personnage.m_miracleALancer = m_miracleEnMain;
+                m_miracleEnMain = -1;
+            }
+            else
+                m_miracleEnMain = m_personnage.m_miracleALancer, m_personnage.m_miracleALancer = -1;
+
+            eventManager->StopEvenement(Mouse::Left,EventClic);
+        }
     }
 
     if (m_miracleEnMain >= 0 && m_miracleEnMain < (int)m_classe.position_miracles.size())
@@ -2306,12 +2344,12 @@ void Hero::AfficherRaccourcis()
                                     m_classe.icone_miracles[m_personnage.m_miracleALancer].position.w,
                                     m_classe.icone_miracles[m_personnage.m_miracleALancer].position.h));
 
-        sprite.SetPosition(AutoScreenAdjust(m_classe.position_miracleALancer.x,
-                                            m_classe.position_miracleALancer.y - 2));
+        sprite.SetPosition(AutoScreenAdjust(m_classe.position_miracleALancerDroite.x,
+                                            m_classe.position_miracleALancerDroite.y - 2));
 
         sprite.SetBlendMode(sf::Blend::Alpha);
 
-        sprite.Resize(m_classe.position_miracleALancer.w,m_classe.position_miracleALancer.h);
+        sprite.Resize(m_classe.position_miracleALancerDroite.w,m_classe.position_miracleALancerDroite.h);
 
         if (m_classe.miracles[m_personnage.m_miracleALancer].m_coutFoi + m_classe.miracles[m_personnage.m_miracleALancer].m_reserveFoi > m_caracteristiques.foi
          || m_classe.miracles[m_personnage.m_miracleALancer].m_reserveFoi > m_caracteristiques.maxFoi - m_caracteristiques.reserveFoi
@@ -2332,13 +2370,63 @@ void Hero::AfficherRaccourcis()
         if(m_classe.miracles[m_personnage.m_miracleALancer].m_cooldown > 0
         && m_classe.miracles[m_personnage.m_miracleALancer].m_cooldown != m_classe.miracles[m_personnage.m_miracleALancer].m_cur_time)
         {
-            float temp = (float)m_classe.position_miracleALancer.h
+            float temp = (float)m_classe.position_miracleALancerDroite.h
                          *(m_classe.miracles[m_personnage.m_miracleALancer].m_cooldown
                            - m_classe.miracles[m_personnage.m_miracleALancer].m_cur_time)
                          / m_classe.miracles[m_personnage.m_miracleALancer].m_cooldown;
 
             sprite.SetImage(*moteurGraphique->getImage(0));
-            sprite.Resize(m_classe.position_miracleALancer.w,temp);
+            sprite.Resize(m_classe.position_miracleALancerDroite.w,temp);
+
+            sprite.SetColor(sf::Color(0,0,0,240));
+            moteurGraphique->AjouterCommande(&sprite,18,0);
+        }
+    }
+
+    if (m_miracle_gauche >= 0 && m_miracle_gauche < (int)m_classe.position_miracles.size())
+    {
+        sf::Sprite sprite;
+
+        sprite.SetImage(*moteurGraphique->getImage(m_classe.icone_miracles[m_miracle_gauche].image));
+
+        sprite.SetSubRect(IntRect(  m_classe.icone_miracles[m_miracle_gauche].position.x,
+                                    m_classe.icone_miracles[m_miracle_gauche].position.y,
+                                    m_classe.icone_miracles[m_miracle_gauche].position.w,
+                                    m_classe.icone_miracles[m_miracle_gauche].position.h));
+
+        sprite.SetPosition(AutoScreenAdjust(m_classe.position_miracleALancerGauche.x,
+                                            m_classe.position_miracleALancerGauche.y - 2));
+
+        sprite.SetBlendMode(sf::Blend::Alpha);
+
+        sprite.Resize(m_classe.position_miracleALancerGauche.w,m_classe.position_miracleALancerGauche.h);
+
+        if (m_classe.miracles[m_miracle_gauche].m_coutFoi + m_classe.miracles[m_miracle_gauche].m_reserveFoi > m_caracteristiques.foi
+         || m_classe.miracles[m_miracle_gauche].m_reserveFoi > m_caracteristiques.maxFoi - m_caracteristiques.reserveFoi
+         || m_classe.miracles[m_miracle_gauche].m_coutVie + m_classe.miracles[m_miracle_gauche].m_reserveVie > m_caracteristiques.vie
+         || m_classe.miracles[m_miracle_gauche].m_reserveVie > m_caracteristiques.maxVie - m_caracteristiques.reserveVie)
+            sprite.SetColor(sf::Color(64,64,64));
+
+        moteurGraphique->AjouterCommande(&sprite,18,0);
+
+
+        if(eventManager->getPositionSouris().x > sprite.GetPosition().x
+        && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
+        && eventManager->getPositionSouris().y > sprite.GetPosition().y
+        && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
+            m_classe.miracles[m_miracle_gauche].AfficherDescription(eventManager->getPositionSouris(), false);
+
+
+        if(m_classe.miracles[m_miracle_gauche].m_cooldown > 0
+        && m_classe.miracles[m_miracle_gauche].m_cooldown != m_classe.miracles[m_miracle_gauche].m_cur_time)
+        {
+            float temp = (float)m_classe.position_miracleALancerGauche.h
+                         *(m_classe.miracles[m_miracle_gauche].m_cooldown
+                           - m_classe.miracles[m_miracle_gauche].m_cur_time)
+                         / m_classe.miracles[m_miracle_gauche].m_cooldown;
+
+            sprite.SetImage(*moteurGraphique->getImage(0));
+            sprite.Resize(m_classe.position_miracleALancerGauche.w,temp);
 
             sprite.SetColor(sf::Color(0,0,0,240));
             moteurGraphique->AjouterCommande(&sprite,18,0);
@@ -3116,8 +3204,8 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
         && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
         && eventManager->getPositionSouris().y > sprite.GetPosition().y
         && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
-            if(sprite.GetPixel(eventManager->getPositionSouris().x - sprite.GetPosition().x,
-                               eventManager->getPositionSouris().y - sprite.GetPosition().y).a > 0)
+            if(sprite.GetPixel(eventManager->getPositionSouris().x - (int)sprite.GetPosition().x,
+                               eventManager->getPositionSouris().y - (int)sprite.GetPosition().y).a > 0)
             {
                 AutoTrierInventaire();
                 return false;

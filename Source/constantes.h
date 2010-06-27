@@ -44,7 +44,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #define NOMBRE_BENEDICTION 6
 
-#define VERSION_SAVE 2
+#define VERSION_SAVE 3
 
 #include <cmath>
 #include <utility>

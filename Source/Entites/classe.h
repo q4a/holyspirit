@@ -89,7 +89,8 @@ struct Classe
     std::vector<Bouton> boutons_miracles;
 
     coordonnee position_raccourcis[8];
-    coordonnee position_miracleALancer;
+    coordonnee position_miracleALancerDroite;
+    coordonnee position_miracleALancerGauche;
 
     coordonnee position_sac_inventaire;
     coordonnee position_contenu_inventaire;

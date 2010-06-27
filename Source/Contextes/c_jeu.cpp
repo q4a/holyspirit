@@ -668,55 +668,102 @@ void c_Jeu::Evenements(Jeu *jeu)
             if(!jeu->map->getEntiteMonstre(jeu->map->m_monstreIllumine)->EnVie())
                 jeu->map->m_monstreIllumine = -1, eventManager->StopEvenement(Mouse::Left,EventClic);
 
-        if (eventManager->getEvenement(Mouse::Left,EventClic)&&
-            eventManager->getEvenement(Mouse::Left,EventClicA))
+        bool attaque_normale = true;
+        if (eventManager->getEvenement(Mouse::Left,EventClic) && jeu->hero.m_miracle_gauche >= 0)
         {
-            jeu->hero.m_personnage.m_miracleBloquant = false;
-            jeu->hero.StopMiraclesFrappe();
-            if (jeu->map->getMonstreIllumine() != -1)
+            if(eventManager->getEvenement(sf::Key::LShift, EventKey) || jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())!=NULL)
             {
-                bool test=false;
-                if(jeu->hero.m_personnage.m_cible != NULL
-                && jeu->hero.m_personnage.getArrivee().x==jeu->hero.m_personnage.getCoordonnee().x
-                && jeu->hero.m_personnage.getArrivee().y==jeu->hero.m_personnage.getCoordonnee().y)
-                    test=true;
-
-                //eventManager->StopEvenement(Mouse::Left,EventClicA);
-                jeu->hero.m_personnage.m_cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine());
-
-                if (test)
-                    jeu->hero.TestMonstreVise(jeu->hero.m_personnage.m_cible);
-            }
-            else
-                jeu->hero.m_personnage.m_cible = NULL;
-        }
-
-        if (eventManager->getEvenement(Mouse::Left,EventClic)&&!eventManager->getEvenement(Key::LShift,EventKey))
-        {
-            m_diplace_mode = true;
-
-            jeu->hero.StopMiraclesFrappe();
-            if (!(eventManager->getPositionSouris().x>configuration->Resolution.w-configuration->Resolution.w*0.25
-                    &&eventManager->getPositionSouris().y>configuration->Resolution.w*0.25&&eventManager->getPositionSouris().y<configuration->Resolution.w*0.25+configuration->Resolution.w*0.34
-                    &&alpha_sac>=128)||alpha_sac<=128)
-            {
-                if (jeu->hero.m_personnage.m_cible == NULL)
+                if (!jeu->hero.m_personnage.frappeEnCours)
                 {
-                    jeu->hero.m_personnage.setArrivee(eventManager->getCasePointee());
-                    jeu->hero.setSacVise(coordonnee (-1,-1,-1,-1));
+                    coordonnee cible;
+
+                    if (jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())!=NULL)
+                        cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())->getProchaineCase();
+                    else
+                        cible = eventManager->getCasePointee();
+
+                    bool ok = true;
+
+                    if (jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())!=NULL)
+                        if(jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())->m_friendly)
+                            ok = false;
+
+                    jeu->hero.StopMiraclesFrappe();
+                    if(ok)
+                    if (jeu->hero.UtiliserMiracle(jeu->hero.m_miracle_gauche, jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible))
+                    {
+                        attaque_normale = false;
+                        eventManager->StopEvenement(Mouse::Left,EventClicA);
+
+                        if(!eventManager->getEvenement(sf::Key::LShift, EventKey))
+                            jeu->hero.m_personnage.m_miracleEnCours.back().m_infos.back()->m_cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine());
+                        else//if(eventManager->getEvenement(sf::Key::LShift, EventKey))
+                            jeu->hero.m_personnage.m_miracleEnCours.back().m_forced_maj = true;
+
+                        coordonnee positionHero;
+                        positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
+                        positionHero.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
+
+                        jeu->hero.m_personnage.setArrivee(jeu->hero.m_personnage.getProchaineCase());
+
+                        jeu->hero.m_personnage.m_cible = NULL;
+                    }
                 }
             }
-            else if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getObjetPointe()!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())>4)
-            {
-                jeu->map->RamasserObjet(&jeu->hero);
-                eventManager->StopEvenement(Mouse::Left,EventClicA);
-                eventManager->StopEvenement(Mouse::Left,EventClic);
-            }
-
-          //  eventManager->StopEvenement(Mouse::Left,EventClicA);
         }
 
-        if (eventManager->getEvenement(Mouse::Left,EventClic)/*&&eventManager->getEvenement(Mouse::Left,EventClicA)*/)
+        if(attaque_normale)
+        {
+            if (eventManager->getEvenement(Mouse::Left,EventClic)&&
+                eventManager->getEvenement(Mouse::Left,EventClicA))
+            {
+                jeu->hero.m_personnage.m_miracleBloquant = false;
+                jeu->hero.StopMiraclesFrappe();
+                if (jeu->map->getMonstreIllumine() != -1)
+                {
+                    bool test=false;
+                    if(jeu->hero.m_personnage.m_cible != NULL
+                    && jeu->hero.m_personnage.getArrivee().x==jeu->hero.m_personnage.getCoordonnee().x
+                    && jeu->hero.m_personnage.getArrivee().y==jeu->hero.m_personnage.getCoordonnee().y)
+                        test=true;
+
+                    //eventManager->StopEvenement(Mouse::Left,EventClicA);
+                    jeu->hero.m_personnage.m_cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine());
+
+                    if (test)
+                        jeu->hero.TestMonstreVise(jeu->hero.m_personnage.m_cible);
+                }
+                else
+                    jeu->hero.m_personnage.m_cible = NULL;
+            }
+
+            if (eventManager->getEvenement(Mouse::Left,EventClic)&&!eventManager->getEvenement(Key::LShift,EventKey))
+            {
+                m_diplace_mode = true;
+
+                jeu->hero.StopMiraclesFrappe();
+                if (!(eventManager->getPositionSouris().x>configuration->Resolution.w-configuration->Resolution.w*0.25
+                        &&eventManager->getPositionSouris().y>configuration->Resolution.w*0.25&&eventManager->getPositionSouris().y<configuration->Resolution.w*0.25+configuration->Resolution.w*0.34
+                        &&alpha_sac>=128)||alpha_sac<=128)
+                {
+                    if (jeu->hero.m_personnage.m_cible == NULL)
+                    {
+                        jeu->hero.m_personnage.setArrivee(eventManager->getCasePointee());
+                        jeu->hero.setSacVise(coordonnee (-1,-1,-1,-1));
+                    }
+                }
+                else if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getObjetPointe()!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())>4)
+                {
+                    jeu->map->RamasserObjet(&jeu->hero);
+                    eventManager->StopEvenement(Mouse::Left,EventClicA);
+                    eventManager->StopEvenement(Mouse::Left,EventClic);
+                }
+
+              //  eventManager->StopEvenement(Mouse::Left,EventClicA);
+            }
+        }
+
+        if (eventManager->getEvenement(Mouse::Left,EventClic))
         {
             jeu->hero.setSacVise(jeu->map->getSacPointe());
 
@@ -779,7 +826,6 @@ void c_Jeu::Evenements(Jeu *jeu)
                 }
             }
         }
-
     }
 
     if(fabs(jeu->menu.m_dialogue_position.x - jeu->hero.m_personnage.getCoordonnee().x) > 2

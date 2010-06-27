@@ -579,7 +579,7 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
                         break;
 
                     case 'c':
-                        m_cooldown = (int)lireValeur(fichier, valeurs);
+                        m_cooldown = lireValeur(fichier, valeurs);
                         m_cur_time = m_cooldown;
                         break;
 

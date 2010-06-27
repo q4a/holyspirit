@@ -553,7 +553,8 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
         for(int i = 0 ; i < 8 ; ++i)
             ChargerCoordonneeInterface(fichier, position_raccourcis[i]);
 
-        ChargerCoordonneeInterface(fichier, position_miracleALancer);
+        ChargerCoordonneeInterface(fichier, position_miracleALancerGauche);
+        ChargerCoordonneeInterface(fichier, position_miracleALancerDroite);
 
         ChargerBouton(fichier, boutons_menus_hud);
 
