@@ -85,6 +85,8 @@ $
 $
 	* x520 y554 w33 h33 $
 $
+	* x182 y550 w41 h41 $
+$
 	* x577 y550 w41 h41 $
 $
 	* e0 x314 y522 w29 h15 m51 	i * mData/Menus/hud_button.png x0 y0 w29 h15 $ $ $

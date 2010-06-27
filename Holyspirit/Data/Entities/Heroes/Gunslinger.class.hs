@@ -91,6 +91,8 @@ $
 $
 	* x520 y554 w33 h33 $
 $
+	* x182 y550 w41 h41 $
+$
 	* x577 y550 w41 h41 $
 $
 	* e1 x48 y56 w64 h160 m Data/Menus/Slot2x5.png $
