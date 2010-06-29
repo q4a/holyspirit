@@ -389,3 +389,12 @@ void Entite_graphique::SetParameters (Entite_graphique &entite)
     m_rotation  = entite.m_rotation;
     m_color     = entite.m_color;
 }
+
+
+int Entite_graphique::getOrdre()
+{
+    if(m_tileset != NULL)
+        return m_tileset->getOrdreDuTile(m_noAnimation);
+    else
+        return 0;
+}

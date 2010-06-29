@@ -365,8 +365,10 @@ bool Map::Miracle_CorpsACorps (Hero *hero, Personnage *personnage, Miracle &mode
         {
             personnage->setArrivee(personnage->getCoordonnee());
 
-            info.m_position.x = (float)personnage->getProchaineCase().x * COTE_TILE + 1;
-            info.m_position.y = (float)personnage->getProchaineCase().y * COTE_TILE + 1;
+            //info.m_position.x = (float)personnage->getProchaineCase().x * COTE_TILE + 1;
+            //info.m_position.y = (float)personnage->getProchaineCase().y * COTE_TILE + 1;
+
+            info.m_position =  personnage->getCoordonneePixel();
 
             if( personnage->getArrivee().x == personnage->getCoordonnee().x
              && personnage->getArrivee().y == personnage->getCoordonnee().y)

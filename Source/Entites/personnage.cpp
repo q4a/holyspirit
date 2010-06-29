@@ -336,8 +336,17 @@ int Personnage::getOrdre(Modele_Personnage *modele)
     return -10;
 }
 
-void Personnage::Afficher(Modele_Personnage *modele,bool surbrillance, bool sansEffet)
+void Personnage::Afficher(Modele_Personnage *modele,bool surbrillance, bool sansEffetHaut, bool sansEffetBas)
 {
+    if(!sansEffetBas)
+        for(int i = 0; i < (int)m_effets.size(); ++i)
+            if(m_effets[i].m_effet.m_actif)
+                if(m_effets[i].m_effet.getOrdre() == -1)
+                {
+                    m_effets[i].m_effet.m_position = m_positionPixel;
+                    m_effets[i].m_effet.Afficher();
+                }
+
     if (modele!=NULL)
         if (m_etat>=0 && m_etat < modele->m_tileset.size())
             if ((int)(m_angle/45)>=0&&(int)(m_angle/45)<modele->m_tileset[m_etat].size())
@@ -366,12 +375,14 @@ void Personnage::Afficher(Modele_Personnage *modele,bool surbrillance, bool sans
                 moteurGraphique->AjouterEntiteGraphique(&m_entite_graphique_shadow);
             }
 
-    if(!sansEffet)
+    if(!sansEffetHaut)
         for(int i = 0; i < (int)m_effets.size(); ++i)
-        {
-            m_effets[i].m_effet.m_position = m_positionPixel;
-            m_effets[i].m_effet.Afficher();
-        }
+            if(m_effets[i].m_effet.m_actif)
+                if(m_effets[i].m_effet.getOrdre() >= 0)
+                {
+                    m_effets[i].m_effet.m_position = m_positionPixel;
+                    m_effets[i].m_effet.Afficher();
+                }
 }
 void Personnage::regenererVie(float vie)
 {
@@ -813,10 +824,9 @@ void Personnage::GererEffets(float temps)
         if(m_caracteristique.vie <= 0)
             m_effets[i].m_effet.m_actif = false;
 
-        bool actif = m_effets[i].m_effet.m_actif;
         m_effets[i].m_effet.Animer(temps);
 
-        if(actif && !m_effets[i].m_effet.m_actif)
+        if(m_effets[i].m_effet.m_old_actif && !m_effets[i].m_effet.m_actif)
         {
             if(m_effets[i].m_type == AURA_CARACTERISTIQUES)
             {
@@ -826,6 +836,9 @@ void Personnage::GererEffets(float temps)
                     m_caracteristique.vie -= m_effets[i].m_info2;
                 }
             }
+            if(m_effets[i].m_type == AURA_ARMURE)
+                if(m_effets[i].m_info1 >= 0 && m_effets[i].m_info1 < 4)
+                    m_caracteristique.armure[(int)m_effets[i].m_info1] -= m_effets[i].m_info2;
         }
 
         if(!m_effets[i].m_effet.m_actif)
@@ -855,6 +868,8 @@ void Personnage::GererEffets(float temps)
             if(m_caracteristique.vie <= 0 && viePrecedente >= 0)
                 m_caracteristique.vie = viePrecedente, m_doitMourir = true;
         }
+
+        m_effets[i].m_effet.m_old_actif = m_effets[i].m_effet.m_actif;
     }
 
     if(nombreInactif == (int)m_effets.size() || !EnVie())
@@ -1035,6 +1050,9 @@ void Personnage::DetruireEffets()
                     m_caracteristique.vie -= m_effets[i].m_info2;
                 }
             }
+            if(m_effets[i].m_type == AURA_ARMURE)
+                if(m_effets[i].m_info1 >= 0 && m_effets[i].m_info1 < 4)
+                    m_caracteristique.armure[(int)m_effets[i].m_info1] -= m_effets[i].m_info2;
         }
         m_effets[i].m_effet.m_actif = false;
     }
@@ -1065,7 +1083,30 @@ int Personnage::AjouterEffet(Tileset *tileset, int type, int compteur, int info1
         }
     }
 
+    if(m_effets.back().m_type == AURA_ARMURE)
+        if(m_effets.back().m_info1 >= 0 && m_effets.back().m_info1 < 4)
+            m_caracteristique.armure[(int)m_effets.back().m_info1] += m_effets.back().m_info2;
+
     return m_effets.size() - 1;
+}
+
+void Personnage::RecalculerEffets()
+{
+    for(int i = 0 ; i < m_effets.size() ; ++i)
+    {
+        if(m_effets[i].m_type == AURA_CARACTERISTIQUES)
+        {
+            if(m_effets[i].m_info1 == 0)
+            {
+                m_caracteristique.maxVie += m_effets[i].m_info2;
+                m_caracteristique.vie += m_effets[i].m_info2;
+            }
+        }
+
+        if(m_effets[i].m_type == AURA_ARMURE)
+            if(m_effets[i].m_info1 >= 0 && m_effets[i].m_info1 < 4)
+                m_caracteristique.armure[(int)m_effets[i].m_info1] += m_effets[i].m_info2;
+    }
 }
 
 void Modele_Personnage::setPorteeLumineuse(Lumiere  lumiere)

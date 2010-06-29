@@ -35,6 +35,8 @@ class Entite_graphique
         void SaveParameters(std::ofstream &fichier);
         void LoadParameters(std::ifstream &fichier);
         void SetParameters (Entite_graphique &entite);
+
+        int  getOrdre();
    // protected:
     //private:
 

@@ -91,7 +91,7 @@ public:
 
     bool SeDeplacer(float,coordonnee dimensionsMap);
 
-    void Afficher(Modele_Personnage *modele,bool surbrillance=false, bool sansEffet=false);
+    void Afficher(Modele_Personnage *modele,bool surbrillance=false, bool plusHaut=false, bool plusBas=false);
 
     int Pathfinding(casePathfinding** map,coordonnee exception, bool noDelete = false);
 
@@ -101,6 +101,7 @@ public:
 
     int AjouterEffet(Tileset *tileset, int type, int compteur, int info1, int info2, int info3);
     void DetruireEffets();
+    void RecalculerEffets();
 
     void Kill();
 

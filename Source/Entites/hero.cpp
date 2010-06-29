@@ -229,8 +229,6 @@ void Hero::Sauvegarder()
         fichier<<m_caracteristiques.nom.c_str()<<" "<<endl;
         fichier<<m_cheminClasse<<" "<<endl;
 
-
-        fichier<<m_personnage.getCaracteristique().vitesse<<endl;
         fichier<<m_personnage.getCaracteristique().pointAme<<endl;
         fichier<<m_personnage.getCaracteristique().niveau<<endl;
         fichier<<m_personnage.getCaracteristique().force<<endl;
@@ -413,7 +411,9 @@ void Hero::Charger(std::string chemin_save)
 
             *fichier>>m_cheminClasse;
 
-            *fichier>>charTemp.vitesse;
+            if(temp < 4)
+                *fichier>>charTemp.vitesse;
+
             *fichier>>charTemp.pointAme;
             *fichier>>charTemp.niveau;
 
@@ -849,17 +849,23 @@ void Hero::Afficher()
     if(m_personnage.getEtat() == 3)
         m_personnage.setEtat(0);
 
-    int plusHaut = 0;
+    int plusHaut = -1;
+    int plusBas = -1;
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
-        if(m_ordreAffichage[i] >= plusHaut)
-            plusHaut = m_ordreAffichage[i];
+    {
+        if(m_ordreAffichage[i] >= 0)
+            plusHaut = i;
+        if(m_ordreAffichage[i] >= 0 && plusBas == -1)
+            plusBas = i;
+    }
 
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
         if (m_ordreAffichage[i]!=-1)
         {
             m_personnage.Animer(&m_modelePersonnage[m_ordreAffichage[i]], 0);
             m_personnage.m_entite_graphique.Generer();
-            m_personnage.Afficher(&m_modelePersonnage[m_ordreAffichage[i]], false, m_ordreAffichage[i]!=plusHaut);
+            m_personnage.Afficher(&m_modelePersonnage[m_ordreAffichage[i]], false, i!=plusHaut,
+                                                                                   i!=plusBas);
         }
     AfficherRaccourcis();
 }
@@ -2727,6 +2733,11 @@ void Hero::RecalculerCaracteristiques(bool bis)
 
     m_personnage.setCaracteristique(temp);
 
+    m_personnage.RecalculerEffets();
+
+    for(int i = 0 ; i < 4 ; ++i)
+        m_caracteristiques.armure[i] = m_personnage.getCaracteristique().armure[i];
+
     m_caracteristiques.reserveVie  = reserveVie;
     m_caracteristiques.reserveFoi  = reserveFoi;
 
@@ -2754,23 +2765,6 @@ void Hero::RecalculerGolems()
     for(unsigned i = 0 ; i < m_inventaire.size() ; ++i)
         if(m_inventaire[i].m_type == GOLEM)
             m_inventaire[i].CalculerGolem();
-}
-
-bool Hero::AjouterMiracleArme()
-{
-/*    if (m_weaponMiracle>=0&&m_weaponMiracle<(int)m_classe.miracles.size())
-    {
-        m_personnage.m_miracleEnCours.push_back(EntiteMiracle ());
-        m_personnage.m_miracleEnCours.back().m_infos.push_back(new InfosEntiteMiracle ());
-
-        m_personnage.m_miracleEnCours.back().m_modele=m_weaponMiracle;
-
-        m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.x=m_personnage.getCoordonneePixel().x;
-        m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.y=m_personnage.getCoordonneePixel().y;
-
-        return 1;
-    }
-    return 0;*/
 }
 
 void Hero::StopMiraclesFrappe()
@@ -2849,17 +2843,6 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                     if (retour)
                         return 1;
                 }
-            if(m_classe.miracles[miracle].m_unique)
-                for (int i = 0; i < (int)m_personnage.m_miracleEnCours.size(); ++i)
-                    if(m_personnage.m_miracleEnCours[i].m_modele == miracle)
-                    {
-                        for (int o = 0; o < (int) m_personnage.m_miracleEnCours[i].m_infos.size() ; ++o)
-                            if(m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type == EFFET)
-                                m_personnage.m_miracleEnCours[i].m_infos[o]->m_cible->m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_IDObjet].m_effet.m_actif = false;
-
-                        m_personnage.m_miracleEnCours.erase(m_personnage.m_miracleEnCours.begin()+i);
-                        i = -1;
-                    }
 
             if(m_classe.miracles[miracle].m_cur_time == m_classe.miracles[miracle].m_cooldown)
             if (m_classe.miracles[miracle].m_coutFoi + m_classe.miracles[miracle].m_reserveFoi <= m_caracteristiques.foi && m_classe.miracles[miracle].m_reserveFoi <= m_caracteristiques.maxFoi - m_caracteristiques.reserveFoi
@@ -2870,6 +2853,18 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                      || m_classe.miracles[miracle].m_effets[0].m_type != CORPS_A_CORPS
                      || eventManager->getEvenement(sf::Key::LShift, EventKey))
                     {
+
+                        if(m_classe.miracles[miracle].m_unique)
+                            for (int i = 0; i < (int)m_personnage.m_miracleEnCours.size(); ++i)
+                                if(m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_chemin == m_classe.miracles[miracle].m_chemin)
+                                {
+                                    for (int o = 0; o < (int) m_personnage.m_miracleEnCours[i].m_infos.size() ; ++o)
+                                        if(m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type == EFFET)
+                                            m_personnage.m_miracleEnCours[i].m_infos[o]->m_cible->m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_IDObjet].m_effet.m_actif = false;
+
+                                    m_personnage.m_miracleEnCours.erase(m_personnage.m_miracleEnCours.begin()+i--);
+                                }
+
                         m_personnage.m_lancementMiracleEnCours = true;
                         m_personnage.m_miracleEnCours.push_back(EntiteMiracle ());
 

@@ -80,7 +80,6 @@ public:
     void RecalculerCaracteristiques(bool bis = true);
     void RecalculerGolems();
 
-    //void InfligerDegats(float degats);
     void RegenererVie(float vie);
     void RegenererFoi(float foi);
     void RegenererMiracles(float time);
@@ -111,7 +110,6 @@ public:
     void AutoTrierInventaire();
 
     bool UtiliserMiracle(int, Personnage*, coordonnee );
-    bool AjouterMiracleArme();
     void StopMiraclesFrappe();
     void StopMiraclesCharme();
 
