@@ -61,7 +61,7 @@ Qui es tu femme ? De quelle contrée viens-tu donc avec ce maquillage suggestif, 
 Où suis-je ?
 Tu es dans l'abbaye de Saint Clodomir. Par les temps qui courent c'est l'un des rares lieux de la Contrée où on trouve un peu de calme. Et encore... Même ici il se trame des diableries !
 Des diableries ?
-Oui, parfaitement, des diableries. Mes frères moines on un comportement étrange, parfois malsain et certains ont mystérieusement disparu... J'entends des bruits dans les catacombes sous l'abbaye la nuit. J'ai d'abord cru au bruit du vent, puis j'ai dû m'y résoudre : ce sont des incantations, des gémissements obscènes parfois... J'ai peur, je dois l'avouer, et la seule solution que j'ai trouvée est de fermer la porte qui y mène. Mais il faudra bien que quelqu'un aille voir ce qui se trame là-bas... Je suis inquiet pour mes moines !
+Oui, parfaitement, des diableries. Mes frères moines ont un comportement étrange, parfois malsain et certains ont mystérieusement disparu... J'entends des bruits dans les catacombes sous l'abbaye la nuit. J'ai d'abord cru au bruit du vent, puis j'ai dû m'y résoudre : ce sont des incantations, des gémissements obscènes parfois... J'ai peur, je dois l'avouer, et la seule solution que j'ai trouvée est de fermer la porte qui y mène. Mais il faudra bien que quelqu'un aille voir ce qui se trame là-bas... Je suis inquiet pour mes moines !
 Voulez-vous que j'aille voir ?
 Oh ! Je n'osais pas demander... J'ai quelques scrupules à t'envoyer là-bas en solitaire, mais nous ne sommes pas des combattants vois-tu... Mais si tu as besoin d'aide je ferai ce que je peux pour t'aider ! Tiens, prends la clef des catacombes et bonne chance, Dieu t'assistera !
 Cesse de m'importuner, vieux fou, et dis-moi ce que tu me propose comme services.

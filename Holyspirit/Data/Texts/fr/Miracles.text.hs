@@ -39,4 +39,7 @@ Litanie de nuage toxique mineure
 Jugement dernier
 Le croisé maudit un ennemi qui explosera quand il mourra.
 Dégâts lors de l'explosion : %1 à %2
-
+Armure de foi
+La foi du croisé le protège contre les éléments
++%1 de résistance à tous les éléments
+Durée : %2 secondes

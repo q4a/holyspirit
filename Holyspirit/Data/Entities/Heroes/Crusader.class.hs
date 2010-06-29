@@ -137,5 +137,7 @@ $
 	
 	* e0 b0 x197 y199 w38 h38 mData/Entities/Heroes/Crusader/Miracles/HolyTornado/Projection.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x32 y0 w32 h32 $ $ $
 	
-	* e1 b-1 x115 y199 w38 h38 mData/Entities/Heroes/Crusader/Miracles/LastJudgement/LastJudgement.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x128 y0 w32 h32 $ $ $
+	* e0 b-1 x115 y319 w38 h38 mData/Entities/Heroes/Crusader/Miracles/LastJudgement/LastJudgement.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x128 y0 w32 h32 $ $ $
+	
+	* e1 b-1 x115 y319 w38 h38 mData/Entities/Heroes/Crusader/Miracles/FaithArmor/FaithArmor.miracle.hs i * mData/Menus/Crusader/CrusaderPath2.png x32 y0 w32 h32 $ $ $
 $
