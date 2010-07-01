@@ -672,7 +672,9 @@ bool Hero::ChargerPresentation(std::string chemin_save)
 
             *fichier>>m_cheminClasse;
 
-            *fichier>>m_caracteristiques.vitesse;
+            if(temp < 4)
+                *fichier>>m_caracteristiques.vitesse;
+
             *fichier>>m_caracteristiques.pointAme;
             *fichier>>m_caracteristiques.niveau;
         }

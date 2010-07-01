@@ -1,5 +1,3 @@
-
-
 /*Copyright (C) 2009 Naisse Grégoire
 
 This program is free software; you can redistribute it and/or modify
@@ -53,6 +51,7 @@ c_MainMenu::c_MainMenu()
 
 void c_MainMenu::Utiliser(Jeu *jeu)
 {
+
     jeu->m_display=true;
 
     temps_ecoule=0;
@@ -61,6 +60,7 @@ void c_MainMenu::Utiliser(Jeu *jeu)
 
     if(m_save)
     {
+
         if(jeu->m_jeu->m_thread_sauvegarde)
         {
             jeu->m_jeu->m_thread_sauvegarde->Wait();
@@ -91,6 +91,8 @@ void c_MainMenu::Utiliser(Jeu *jeu)
         jeu->hero.Sauvegarder();
 
         Reset(jeu);
+
+
 
 
         jeu->Clock.Reset();
@@ -132,12 +134,14 @@ void c_MainMenu::Utiliser(Jeu *jeu)
 
     if(no_ecran == E_PRINCIPAL)
     {
+
         texte.SetString(configuration->getText(0,53));
         texte.SetY(configuration->Resolution.h/2-128);
         texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
         if (eventManager->getPositionSouris().y > texte.GetRect().Top
           &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
         {
+
             texte.SetColor(Color(100,50,0));
             if (eventManager->getEvenement(Mouse::Left,EventClic))
             {
@@ -147,37 +151,28 @@ void c_MainMenu::Utiliser(Jeu *jeu)
                 m_incompatible_saves.clear();
                 m_niveau_saves.clear();
                 defilement_saves = 0;
-
                 struct dirent *lecture;
 
                 DIR *repertoire;
                 repertoire = opendir(configuration->chemin_saves.c_str());
+                if(!repertoire)
+                    console->Ajouter("Le repertoire n'existe pas");
+
+
+
                 while ((lecture = readdir(repertoire)))
                 {
                     bool ok = false;
 
-                    for(int i = 0 ; i < 256 ; ++i)
+                    std::string name = lecture->d_name;
+                    if(name.find("sav.hs") != string::npos && name != "." && name != "..")
                     {
-                        int j = 0;
-
-                        if(lecture->d_name[i + j++] == 's' && j < 256)
-                        if(lecture->d_name[i + j++] == 'a' && j < 256)
-                        if(lecture->d_name[i + j++] == 'v' && j < 256)
-                        if(lecture->d_name[i + j++] == '.' && j < 256)
-                        if(lecture->d_name[i + j++] == 'h' && j < 256)
-                        if(lecture->d_name[i + j] == 's' && j < 256)
-                            ok = true;
-                    }
-
-
-                    if(ok)
-                    {
-                        m_chemin_saves.push_back(lecture->d_name);
+                        m_chemin_saves.push_back(name);
 
                         std::string chemin_image = configuration->chemin_temps;
-                        for(int i = 0  ; i < m_chemin_saves.back().size() - 7 ; ++i)
-                            chemin_image.push_back(m_chemin_saves.back()[i]);
+                        chemin_image += m_chemin_saves.back().substr(0, m_chemin_saves.back().size() - 7);
                         chemin_image += ".png";
+
 
                         sf::Sprite sprite;
                         cDAT reader;
@@ -274,6 +269,7 @@ void c_MainMenu::Utiliser(Jeu *jeu)
 
     if(no_ecran == E_CONTINUER)
     {
+
         defilement_saves -= eventManager->getMolette();
 
         if(defilement_saves > (int)m_chemin_saves.size() - 8)
@@ -308,9 +304,7 @@ void c_MainMenu::Utiliser(Jeu *jeu)
                                 && i < 8 + defilement_saves; ++i)
         {
             std::string str;
-
-            for(int s = 0 ; s < m_chemin_saves[i].size() - 7 ; ++s)
-                str.push_back(m_chemin_saves[i][s]);
+            str += m_chemin_saves[i].substr(0, m_chemin_saves[i].size() -7);
 
             texte.SetString(str.c_str());
 
@@ -439,6 +433,7 @@ void c_MainMenu::Utiliser(Jeu *jeu)
 
     if(no_ecran == E_NOUVEAU)
     {
+
         if(eventManager->getEvenement(sf::Key::Escape, EventKey))
             no_ecran = E_PRINCIPAL;
 

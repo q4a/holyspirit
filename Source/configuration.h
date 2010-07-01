@@ -44,6 +44,8 @@ class Configuration : public CSingleton<Configuration>
     void ChargerInit();
     void ChargerTxt();
 
+    std::vector<std::string> ChargerFichierTxt(std::string chemin);
+
     void Sauvegarder();
 
     const std::string &getText(int, int);

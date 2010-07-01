@@ -17,7 +17,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 
 #include "configuration.h"
-
+#include <stdio.h>
 
 void Configuration::Charger()
 {
@@ -220,141 +220,74 @@ void Configuration::ChargerInit()
         throw std::string("Impossible de charger la configuration : holyspirit.ini");
 }
 
-void Configuration::ChargerTxt()
+std::vector<std::string> Configuration::ChargerFichierTxt(std::string chemin)
 {
+    std::vector<std::string> text;
+
     std::ifstream fichier;
-    fichier.open((chemin_localisation+language+"/"+chemin_text_benedictions).c_str(), std::ios::in);
+    fichier.open((chemin_localisation+language+"/"+chemin).c_str(), std::ios::in);
     if (fichier)
     {
         std::string chaine;
         while(!fichier.eof())
         {
-            text_benedictions.push_back("");
-            getline(fichier,text_benedictions.back());
+            getline(fichier,chaine,'\n');
+            #ifndef LINUX
+                text.push_back( chaine.substr(0, chaine.size()) );
+            #else
+                text.push_back( chaine.substr(0, chaine.size() - 1) );
+            #endif
         }
         fichier.close();
     }
 
-    std::ifstream fichier2;
-    fichier2.open((chemin_localisation+language+"/"+chemin_text_menus).c_str(), std::ios::in);
-    if (fichier2)
-    {
-        std::string chaine;
-        while(!fichier2.eof())
-        {
-            text_menus.push_back("");
-            getline(fichier2,text_menus.back());
-        }
-        fichier2.close();
-    }
+    return text;
+}
 
-
-    std::ifstream fichier3;
-    fichier3.open((chemin_localisation+language+"/"+chemin_text_items).c_str(), std::ios::in);
-    if (fichier3)
-    {
-        std::string chaine;
-        while(!fichier3.eof())
-        {
-            text_items.push_back("");
-            getline(fichier3,text_items.back());
-        }
-        fichier3.close();
-    }
-
-    std::ifstream fichier4;
-    fichier4.open((chemin_localisation+language+"/"+chemin_text_entities).c_str(), std::ios::in);
-    if (fichier4)
-    {
-        std::string chaine;
-        while(!fichier4.eof())
-        {
-            text_entities.push_back("");
-            getline(fichier4,text_entities.back());
-        }
-        fichier4.close();
-    }
-
-    std::ifstream fichier5;
-    fichier5.open((chemin_localisation+language+"/"+chemin_text_dialogs).c_str(), std::ios::in);
-    if (fichier5)
-    {
-        std::string chaine;
-        while(!fichier5.eof())
-        {
-            text_dialogs.push_back("");
-            getline(fichier5,text_dialogs.back());
-        }
-        fichier5.close();
-    }
-
-    std::ifstream fichier6;
-    fichier6.open((chemin_localisation+language+"/"+chemin_text_maps).c_str(), std::ios::in);
-    if (fichier6)
-    {
-        std::string chaine;
-        while(!fichier6.eof())
-        {
-            text_maps.push_back("");
-            getline(fichier6,text_maps.back());
-        }
-        fichier6.close();
-    }
-
-    std::ifstream fichier7;
-    fichier7.open((chemin_localisation+language+"/"+chemin_text_miracles).c_str(), std::ios::in);
-    if (fichier7)
-    {
-        std::string chaine;
-        while(!fichier7.eof())
-        {
-            text_miracles.push_back("");
-            getline(fichier7,text_miracles.back());
-        }
-        fichier7.close();
-    }
-
+void Configuration::ChargerTxt()
+{
+    text_benedictions = ChargerFichierTxt(chemin_text_benedictions);
+    text_menus        = ChargerFichierTxt(chemin_text_menus);
+    text_items        = ChargerFichierTxt(chemin_text_items);
+    text_entities     = ChargerFichierTxt(chemin_text_entities);
+    text_dialogs      = ChargerFichierTxt(chemin_text_dialogs);
+    text_maps         = ChargerFichierTxt(chemin_text_maps);
+    text_miracles     = ChargerFichierTxt(chemin_text_miracles);
 }
 
 const std::string &Configuration::getText(int type, int no)
 {
-         if(type == 0)
-    {
-        if((int)text_menus.size() > no)
-            return text_menus[no];
-    }
-    else if(type == 1)
-    {
-        if((int)text_benedictions.size() > no)
-            return text_benedictions[no];
-    }
-    else if(type == 2)
-    {
-        if((int)text_items.size() > no)
-            return text_items[no];
-    }
-    else if(type == 3)
-    {
-        if((int)text_entities.size() > no)
-            return text_entities[no];
-    }
-    else if(type == 4)
-    {
-        if((int)text_dialogs.size() > no)
-            return text_dialogs[no];
-    }
-    else if(type == 5)
-    {
-        if((int)text_maps.size() > no)
-            return text_maps[no];
-    }
-    else if(type == 6)
-    {
-        if((int)text_miracles.size() > no)
-            return text_miracles[no];
-    }
+#define RETURN_TEXT(text) \
+    if((int)text.size() > no) \
+        return text[no];
 
-    return error;
+    switch(type) {
+        case 0:
+            RETURN_TEXT(text_menus);
+        break;
+        case 1:
+            RETURN_TEXT(text_benedictions);
+        break;
+        case 2:
+            RETURN_TEXT(text_items);
+        break;
+        case 3:
+            RETURN_TEXT(text_entities);
+        break;
+        case 4:
+            RETURN_TEXT(text_dialogs);
+        break;
+        case 5:
+            RETURN_TEXT(text_maps);
+        break;
+        case 6:
+            RETURN_TEXT(text_miracles);
+        break;
+        default:
+            return error;
+        break;
+    }
+#undef RETURN_TEXT
 }
 
 void Configuration::Sauvegarder()

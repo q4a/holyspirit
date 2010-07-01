@@ -22,6 +22,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef CONSTANTEH
 #define CONSTANTEH
 
+#define WINDOWS
+//#define LINUX
+
 #define COTE_TILE 71.5542f
 #define DIVISEUR_COTE_TILE 0.013975420031249039189872851628556f
 

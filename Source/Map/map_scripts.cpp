@@ -368,7 +368,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             script->setVariable((int)script->getValeur(noInstruction, 0), script->getValeur(noInstruction, 1));
         else if (script->m_instructions[noInstruction].nom=="incrementVariable")
             script->setVariable((int)script->getValeur(noInstruction, 0),
-                                (int)script->getVariable(script->getValeur(noInstruction, 0)) + (int)script->getValeur(noInstruction, 1));
+                                script->getVariable(script->getValeur(noInstruction, 0)) + script->getValeur(noInstruction, 1));
         else if (script->m_instructions[noInstruction].nom=="setCollision" && monstre != -1)
         {
             m_monstre[monstre].m_collision = script->getValeur(noInstruction, 0);
