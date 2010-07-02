@@ -31,6 +31,8 @@ class MainWindow : public QWidget // On hérite de QWidget (IMPORTANT)
     MainWindow();
     ~MainWindow();
 
+    void setEntiteGraphiqueParametres(Entite_graphique &);
+
     void MettreListesAJour();
 
     public slots:
@@ -136,6 +138,21 @@ class MainWindow : public QWidget // On hérite de QWidget (IMPORTANT)
     QAction         *actionOptionsMap;
     QAction         *actionScriptMap;
 
+
+
+    QSpinBox        *decalX, *rand_decalX,
+                    *decalY, *rand_decalY,
+                    *scaleX, *rand_scaleX,
+                    *scaleY, *rand_scaleY,
+                    *rotate, *rand_rotate,
+                    *colorR, *rand_colorR,
+                    *colorG, *rand_colorG,
+                    *colorB, *rand_colorB,
+                    *colorA, *rand_colorA;
+
+    QCheckBox       *lie_scale,
+                    *lie_colorR, *lie_colorG, *lie_colorB;
+
     QString          chemin;
 
     QTimer           myTimer;
@@ -146,6 +163,12 @@ class MainWindow : public QWidget // On hérite de QWidget (IMPORTANT)
     int              m_redoMax;
     int              m_undoMax;
     bool             m_tourUndo;
+    bool             old_focus;
+
+    coordonnee       m_old_param_mouse;
+    bool             m_rescale;
+    bool             m_translate;
+    bool             m_rotate;
 };
 
 #endif

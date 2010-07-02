@@ -111,12 +111,15 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
 
     m_friendly=modele->m_friendly;
 
-    for (unsigned i=0; i<modele->getObjets().size(); i++)
-        if ((float)(rand()%1000000000)<=(float)(modele->getObjets()[i].getChanceTrouver()*0.5*(m_caracteristique.rang*3+1)))
-        {
-            m_objets.push_back(modele->getObjets()[i]);
-            m_objets.back().Generer((m_caracteristique.rang*5+1));
-        }
+    for (unsigned k=0; k<modele->getObjets().size(); k++)
+        for (unsigned i=0; i<modele->getObjets()[k].size(); i++)
+            if ((float)(rand()%1000000000)<=(float)(modele->getObjets()[k][i].getChanceTrouver()*0.5*(m_caracteristique.rang*3+1)))
+            {
+                m_objets.push_back(modele->getObjets()[k][i]);
+                m_objets.back().Generer((m_caracteristique.rang*10+1));
+                i = modele->getObjets()[k].size();
+            }
+
 
     m_caracteristique.maxVie = m_caracteristique.vie;
 }
@@ -214,7 +217,6 @@ bool Modele_Monstre::Charger(string chemin)
 
         }
         while (caractere!='$');
-
 
         do
         {
@@ -353,6 +355,7 @@ bool Modele_Monstre::Charger(string chemin)
         }
         while (caractere!='$');
 
+
         do
         {
             fichier.get(caractere);
@@ -375,28 +378,30 @@ bool Modele_Monstre::Charger(string chemin)
         while (caractere!='$');
 
 
+
         do
         {
             fichier.get(caractere);
             if (caractere=='*')
             {
-                Objet tempModeleObjet;
+                m_objets.push_back(std::vector<Objet> ());
+
                 do
                 {
                     fichier.get(caractere);
                     if (caractere=='r')
                     {
-                        float temp2;
+                        int temp2;
                         fichier>>temp2;
-                        tempModeleObjet.setChanceTrouver(temp2);
+                        m_objets.back().back().setChanceTrouver(temp2);
                     }
 
                     if (caractere=='*')
                     {
+                        m_objets.back().push_back(Objet ());
                         string temp2;
-                        //getline(fichier, temp2);
                         fichier>>temp2;
-                        tempModeleObjet.Charger(temp2,m_caracteristique);
+                        m_objets.back().back().Charger(temp2,m_caracteristique);
                     }
 
                     if (fichier.eof())
@@ -406,7 +411,6 @@ bool Modele_Monstre::Charger(string chemin)
                     }
                 }
                 while (caractere!='$');
-                m_objets.push_back(tempModeleObjet);
                 fichier.get(caractere);
             }
             if (fichier.eof())
@@ -470,7 +474,7 @@ bool Modele_Monstre::Charger(string chemin)
     return 1;
 }
 
-std::vector<Objet> Modele_Monstre::getObjets()
+std::vector <std::vector<Objet> > Modele_Monstre::getObjets()
 {
     return m_objets;
 }

@@ -204,7 +204,7 @@ void MoteurGraphique::Afficher()
 
     m_ecran->SetView(m_camera);
 
-    m_ecran->Clear();
+    m_ecran->Clear(sf::Color(0,0,128));
 
     for (int k=0;k<=20;k++)
     {
@@ -222,8 +222,10 @@ void MoteurGraphique::Afficher()
             }
         }
 
-
-        m_ecran->SetView(m_ecran->GetDefaultView());
+        sf::View temp;
+        temp.SetSize(m_ecran->GetWidth(),m_ecran->GetHeight());
+        temp.SetCenter(m_ecran->GetWidth() * 0.5,m_ecran->GetHeight() * 0.5);
+        m_ecran->SetView(temp);
         for (unsigned i=0;i<m_textes[k].size();i++)
             m_ecran->Draw(m_textes[k][i]);
 
@@ -390,18 +392,31 @@ void MoteurGraphique::DecrementerImportance()
 
 void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
 {
-    if(entite->m_tileset != NULL)
+    //if(entite->m_tileset != NULL)
     {
-        if(entite->m_sprite.GetPosition().x + entite->m_sprite.GetSize().x - entite->m_sprite.GetOrigin().x     >= GetViewRect(m_camera).Left
-        && entite->m_sprite.GetPosition().x - entite->m_sprite.GetOrigin().x                                    <  GetViewRect(m_camera).Right
-        && entite->m_sprite.GetPosition().y + entite->m_sprite.GetSize().y - entite->m_sprite.GetOrigin().y     >= GetViewRect(m_camera).Top
-        && entite->m_sprite.GetPosition().y - entite->m_sprite.GetOrigin().y                                    <  GetViewRect(m_camera).Bottom)
-            AjouterCommande(&entite->m_sprite, entite->m_couche + entite->m_decalCouche, true);
+        sf::Sprite sprite_final;
+        sprite_final = entite->m_sprite;
+        sprite_final.Move(entite->m_decalage.x, entite->m_decalage.y);
+        sprite_final.Scale(entite->m_scale.x*0.01,entite->m_scale.y*0.01);
+        (entite->m_scale.x < 0) ? sprite_final.FlipX(true) : sprite_final.FlipX(false);
+        (entite->m_scale.x < 0) ? sprite_final.FlipX(true) : sprite_final.FlipX(false);
+
+        sprite_final.Rotate(entite->m_rotation);
+        sprite_final.SetColor(sf::Color(sprite_final.GetColor().r * entite->m_color.r / 255,
+                                        sprite_final.GetColor().g * entite->m_color.g / 255,
+                                        sprite_final.GetColor().b * entite->m_color.b / 255,
+                                        sprite_final.GetColor().a * entite->m_color.a / 255));
+
+        if(sprite_final.GetPosition().x + sprite_final.GetSize().x - sprite_final.GetOrigin().x     >= GetViewRect(m_camera).Left
+        && sprite_final.GetPosition().x - sprite_final.GetOrigin().x                                    <  GetViewRect(m_camera).Right
+        && sprite_final.GetPosition().y + sprite_final.GetSize().y - sprite_final.GetOrigin().y     >= GetViewRect(m_camera).Top
+        && sprite_final.GetPosition().y - sprite_final.GetOrigin().y                                    <  GetViewRect(m_camera).Bottom)
+            AjouterCommande(&sprite_final, entite->m_couche + entite->m_decalCouche, true);
 
         if(entite->m_shadow)
         {
             sf::Sprite sprite;
-            sprite = entite->m_sprite;
+            sprite = sprite_final;
 
             sprite.SetScale(1, (100-(float)m_soleil.hauteur)/50);
             sprite.SetRotation(m_angleOmbreSoleil);
@@ -412,7 +427,7 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
         if(entite->m_reflect)
         {
             sf::Sprite sprite;
-            sprite = entite->m_sprite;
+            sprite = sprite_final;
 
             sprite.FlipY(true);
             sprite.SetOrigin(sprite.GetOrigin().x, sprite.GetSize().y - sprite.GetOrigin().y);

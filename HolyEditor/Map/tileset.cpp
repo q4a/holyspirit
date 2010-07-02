@@ -142,6 +142,10 @@ void Tileset::ChargerTiles(ifstream &fichier, int lumiere_base)
                     case 'g':
                         fichier>>ordre;
                         break;
+                    case 'b':
+                        int var;
+                        fichier>>var;
+                        break;
 
                     case 'e':
                         fichier.get(caractere);
@@ -203,6 +207,24 @@ void Tileset::ChargerTiles(ifstream &fichier, int lumiere_base)
                         while (caractere!='$');
                         fichier.get(caractere);
 
+                        break;
+
+                     case 'j':
+                        do
+                        {
+                            fichier.get(caractere);
+                        }
+                        while (caractere!='$');
+                        fichier.get(caractere);
+                        break;
+
+                     case 'k':
+                        do
+                        {
+                            fichier.get(caractere);
+                        }
+                        while (caractere!='$');
+                        fichier.get(caractere);
                         break;
                     }
                     if (fichier.eof())

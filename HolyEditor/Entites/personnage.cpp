@@ -63,7 +63,6 @@ int calculerAngle(int x, int y)
 
 Personnage::Personnage()
 {
-    m_angle                             = 45;
     m_monstre                           = false;
     frappeEnCours                       = false;
 
@@ -278,8 +277,8 @@ void Personnage::Sauvegarder(ofstream &fichier)
             <<" lb" <<m_porteeLumineuse.bleu
             <<" li" <<m_porteeLumineuse.intensite;
 
-    for(int z = 0 ; z < 10 ; ++z)
-        fichier<<"s"<<z<<m_scriptAI.variables[z]<<" ";
+    //for(int z = 0 ; z < 10 ; ++z)
+    //    fichier<<"s"<<z<<m_scriptAI.variables[z]<<" ";
 
     for (unsigned o=0;o < m_objets.size();o++)
             m_objets[o].SauvegarderTexte(&fichier);
@@ -321,32 +320,35 @@ void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,boo
             {
                 Sprite sprite;
 
-                m_angle = 0;
+                //m_angle = 0;
                 m_etat = 0;
 
              //   if ((int)(m_angle/45)>=0&&(int)(m_angle/45)<(int)modele->m_tileset[m_etat].size())
                 //    if (0>=0&&0<(int)modele->m_tileset[m_etat][(int)(m_angle/45)].getTaille())
                        // if (modele->m_tileset[m_etat][(int)(m_angle/45)].getImage(0)>=0&&modele->m_tileset[m_etat][(int)(m_angle/45)].getImage(0)<(int)modele->m_tileset[m_etat][(int)(m_angle/45)].m_image.size())
                         {
-                            sprite.SetImage(*moteurGraphique->getImage(modele->m_tileset[m_etat][(int)(m_angle/45)].getImage(0)));
+                            m_entite_graphique.m_sprite.SetImage(*moteurGraphique->getImage(modele->m_tileset[m_etat][(int)(m_angle/45)].getImage(0)));
 
-                            sprite.SetOrigin(modele->m_tileset[m_etat][(int)(m_angle/45)].getCentreDuTile(0).x,modele->m_tileset[m_etat][(int)(m_angle/45)].getCentreDuTile(0).y);
+                            m_entite_graphique.m_sprite.SetOrigin(modele->m_tileset[m_etat][(int)(m_angle/45)].getCentreDuTile(0).x,modele->m_tileset[m_etat][(int)(m_angle/45)].getCentreDuTile(0).y);
 
-                            sprite.SetSubRect(IntRect(modele->m_tileset[m_etat][(int)(m_angle/45)].getPositionDuTile(0).x,
+                            m_entite_graphique.m_sprite.SetSubRect(IntRect(modele->m_tileset[m_etat][(int)(m_angle/45)].getPositionDuTile(0).x,
                                                        modele->m_tileset[m_etat][(int)(m_angle/45)].getPositionDuTile(0).y,
                                                        modele->m_tileset[m_etat][(int)(m_angle/45)].getPositionDuTile(0).x+modele->m_tileset[m_etat][(int)(m_angle/45)].getPositionDuTile(0).w,
                                                        modele->m_tileset[m_etat][(int)(m_angle/45)].getPositionDuTile(0).y+modele->m_tileset[m_etat][(int)(m_angle/45)].getPositionDuTile(0).h));
 
-                            sprite.FlipX(false);
+                            m_entite_graphique.m_sprite.FlipX(false);
 
-                            sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE/*+dimensionsMap.y*64*/));
-                            sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
+                            m_entite_graphique.m_sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE/*+dimensionsMap.y*64*/));
+                            m_entite_graphique.m_sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
 
-                            sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
+                            m_entite_graphique.m_sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
 
-                                sprite.SetColor(sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu, 255));
+                            m_entite_graphique.m_sprite.SetColor(sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu, 255));
+                            m_entite_graphique.m_couche = 10;
 
-                                moteurGraphique->AjouterCommande(&sprite,10 ,1);
+                            moteurGraphique->AjouterEntiteGraphique(&m_entite_graphique);
+
+                               // moteurGraphique->AjouterCommande(&sprite,10 ,1);
                         }
             }
 

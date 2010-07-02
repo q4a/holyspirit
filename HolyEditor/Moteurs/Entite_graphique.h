@@ -21,6 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "../Map/tileset.h"
 #include "light.h"
+#include <fstream>
 
 class Entite_graphique
 {
@@ -31,6 +32,9 @@ class Entite_graphique
         void NextTile();
         void Initialiser(coordonnee position);
         void Generer();
+
+        void SaveParameters(std::ofstream &fichier);
+        void LoadParameters(std::ifstream &fichier);
    // protected:
     //private:
 
@@ -59,6 +63,12 @@ class Entite_graphique
     bool option_forcedLight;
     bool option_forcedShadow;
     bool option_forcedReflect;
+
+    coordonnee m_decalage;
+    coordonnee m_scale;
+    float m_rotation;
+    sf::Color  m_color;
+
 };
 
 #endif // ENTITE_GRAPHIQUE_H

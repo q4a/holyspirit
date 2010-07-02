@@ -461,6 +461,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
     //fichier.open(chemin.c_str(), ios::in);
     if (fichier)
     {
+        std::string buf;
         char caractere;
 
         do
@@ -486,8 +487,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
                         m_emplacementImpossible.push_back(temp);
                         break;
                     case 'c' :
-                        *fichier>>temp;
-                        m_IDClasse.push_back(temp);
+                        *fichier>>buf;
                         break;
                     case 's' :
                         *fichier>>m_shoot_weapon;
@@ -844,6 +844,10 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
                         break;
                     case 'b' :
                         *fichier>>m_capaciteBenediction;
+                        break;
+                    case 's' :
+                        std::string temp;
+                        *fichier>>temp;
                         break;
                     }
 

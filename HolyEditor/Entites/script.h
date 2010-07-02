@@ -22,38 +22,51 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define SCRIPTH
 
 #include <iostream>
-#include <sstream>
 #include "../constantes.h"
 
-struct Instruction
+
+
+class Instruction
 {
+    public:
+
     std::string nom;
-    std::vector < int > valeurs;
     std::string valeurString;
+
+    std::vector < float > m_valeurs;
+    std::vector < std::string > m_string_valeurs;
 };
 
 class Script
 {
 public:
     Script();
-    Script(std::string chemin);
-    void Charger(std::string chemin);
+    Script(const std::string &chemin);
+    void Charger(const std::string &chemin);
     void Charger(std::ifstream &fichier);
 
-    void Sauvegarder(std::ofstream &fichier);
-    void Sauvegarder_instruction(std::ofstream &fichier , int no, int indentation);
-
     void Sauvegarder(std::ostringstream &fichier);
-    void Sauvegarder_instruction(std::ostringstream &fichier , int no, int indentation, bool noIdentation = false, bool final = false);
+    void Sauvegarder_instruction(std::ostringstream &fichier , int no, int ident = 0);
+
+    void Sauvegarder(std::ofstream &fichier);
+    void Sauvegarder_instruction(std::ofstream &fichier , int no, int ident = 0);
+
+    void setVariable(int i, float val);
+    float  getVariable(int i);
+    int  getNbrVariable();
+
+    void   setValeur(int no, int i, float val);
+    float  getValeur(int no, int i);
 
     void AjouterCondition(std::ifstream *fichier);
     int Lire(std::ifstream *fichier);
 
     std::vector<Instruction> m_instructions;
 
-    int variables[10];
-
     std::string m_text;
+
+protected:
+    std::vector <float> m_variables;
 };
 
 #endif

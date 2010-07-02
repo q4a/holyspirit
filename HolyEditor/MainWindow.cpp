@@ -22,6 +22,10 @@ MainWindow::MainWindow() : QWidget()
     m_undoMax   = 0;
     m_tourUndo  = 0;
 
+    old_focus   = true;
+
+    map = NULL;
+
 
     QFont font;
      font.setFamily("Courier");
@@ -53,6 +57,7 @@ MainWindow::MainWindow() : QWidget()
     tailleY->setPrefix("Y : ");
     tailleY->setMaximum ( 500 );
     tailleY->setMinimum ( 3 );
+
 
     okNouveau           = new QPushButton   ("Créer", fenetreNouveau);
     okNouveau->move(4,94);
@@ -191,9 +196,120 @@ MainWindow::MainWindow() : QWidget()
     taillePinceau->setValue ( 1 );
     taillePinceau->setPrefix ( tr("Taille pinceau : ") );
 
+    {
+        decalX             = new QSpinBox      (menuInfos);
+        decalX->setGeometry(414,0,64,20);
+        decalX->setPrefix("T.X : ");
+        decalX->setMinimum(-64);
+        decalX->setMaximum(64);
+
+        rand_decalX             = new QSpinBox      (menuInfos);
+        rand_decalX->setGeometry(494,0,64,20);
+        rand_decalX->setPrefix("+/- : ");
+
+        decalY             = new QSpinBox      (menuInfos);
+        decalY->setGeometry(414,20,64,20);
+        decalY->setPrefix("T.Y : ");
+        decalY->setMinimum(-64);
+        decalY->setMaximum(64);
+
+        rand_decalY             = new QSpinBox      (menuInfos);
+        rand_decalY->setGeometry(494,20,64,20);
+        rand_decalY->setPrefix("+/- : ");
+
+        scaleX             = new QSpinBox      (menuInfos);
+        scaleX->setGeometry(414,40,64,20);
+        scaleX->setPrefix("S.X : ");
+        scaleX->setMaximum(500);
+        scaleX->setMinimum(-500);
+        scaleX->setValue(100);
+
+        rand_scaleX             = new QSpinBox      (menuInfos);
+        rand_scaleX->setGeometry(494,40,64,20);
+        rand_scaleX->setPrefix("+/- : ");
+        rand_scaleX->setMaximum(500);
+
+        scaleY             = new QSpinBox      (menuInfos);
+        scaleY->setGeometry(414,60,64,20);
+        scaleY->setPrefix("S.Y : ");
+        scaleY->setMinimum(-500);
+        scaleY->setMaximum(500);
+        scaleY->setValue(100);
+
+        rand_scaleY             = new QSpinBox      (menuInfos);
+        rand_scaleY->setGeometry(494,60,64,20);
+        rand_scaleY->setPrefix("+/- : ");
+        rand_scaleY->setMaximum(500);
+
+        rotate             = new QSpinBox      (menuInfos);
+        rotate->setGeometry(414,80,64,20);
+        rotate->setPrefix("R : ");
+        rotate->setMinimum(-360);
+        rotate->setMaximum(360);
+
+        rand_rotate             = new QSpinBox      (menuInfos);
+        rand_rotate->setGeometry(494,80,64,20);
+        rand_rotate->setPrefix("+/- : ");
+        rand_rotate->setMaximum(360);
+
+        colorR             = new QSpinBox      (menuInfos);
+        colorR->setGeometry(578,0,64,20);
+        colorR->setPrefix("C.R : ");
+        colorR->setMaximum ( 255 );
+        colorR->setMinimum ( 0 );
+        colorR->setValue ( 255 );
+        rand_colorR             = new QSpinBox      (menuInfos);
+        rand_colorR->setGeometry(642,0,64,20);
+        rand_colorR->setPrefix("+/- : ");
+        rand_colorR->setMaximum ( 255 );
+        rand_colorR->setMinimum ( 0 );
+        colorG             = new QSpinBox      (menuInfos);
+        colorG->setGeometry(578,20,64,20);
+        colorG->setPrefix("C.G : ");
+        colorG->setMaximum ( 255 );
+        colorG->setMinimum ( 0);
+        colorG->setValue ( 255 );
+        rand_colorG             = new QSpinBox      (menuInfos);
+        rand_colorG->setGeometry(642,20,64,20);
+        rand_colorG->setPrefix("+/- : ");
+        rand_colorG->setMaximum ( 255 );
+        rand_colorG->setMinimum ( 0 );
+        colorB             = new QSpinBox      (menuInfos);
+        colorB->setGeometry(578,40,64,20);
+        colorB->setPrefix("C.B : ");
+        colorB->setMaximum ( 255 );
+        colorB->setMinimum ( 0 );
+        colorB->setValue ( 255 );
+        rand_colorB             = new QSpinBox      (menuInfos);
+        rand_colorB->setGeometry(642,40,64,20);
+        rand_colorB->setPrefix("+/- : ");
+        rand_colorB->setMaximum ( 255 );
+        rand_colorB->setMinimum ( 0 );
+        colorA             = new QSpinBox      (menuInfos);
+        colorA->setGeometry(578,60,64,20);
+        colorA->setPrefix("C.A : ");
+        colorA->setMaximum ( 255 );
+        colorA->setMinimum ( 0 );
+        colorA->setValue ( 255 );
+        rand_colorA             = new QSpinBox      (menuInfos);
+        rand_colorA->setGeometry(642,60,64,20);
+        rand_colorA->setPrefix("+/- : ");
+        rand_colorA->setMaximum ( 255 );
+        rand_colorA->setMinimum ( 0 );
+
+        lie_scale = new QCheckBox(menuInfos);
+        lie_scale->setGeometry(478,50,20,20);
+        lie_colorR = new QCheckBox(menuInfos);
+        lie_colorR->setGeometry(706,0,20,20);
+        lie_colorG = new QCheckBox(menuInfos);
+        lie_colorG->setGeometry(706,20,20,20);
+        lie_colorB = new QCheckBox(menuInfos);
+        lie_colorB->setGeometry(706,40,20,20);
+    }
+
 
     position = new QLabel(menuInfos);
-    position->setGeometry(414,0,190,18);
+    position->setGeometry(204,100,190,18);
 
 
     layout3          = new QVBoxLayout;
@@ -244,6 +360,30 @@ MainWindow::MainWindow() : QWidget()
 
 MainWindow::~MainWindow()
 {
+
+    delete decalX;
+    delete rand_decalX;
+    delete decalY;
+    delete rand_decalY;
+    delete scaleX;
+    delete rand_scaleX;
+    delete scaleY;
+    delete rand_scaleY;
+    delete rotate;
+    delete rand_rotate;
+    delete colorR;
+    delete rand_colorR;
+    delete colorG;
+    delete rand_colorG;
+    delete colorB;
+    delete rand_colorB;
+    delete colorA;
+    delete rand_colorA;
+    delete lie_scale;
+    delete lie_colorR;
+    delete lie_colorG;
+    delete lie_colorB;
+
     delete modifLayer;
     delete moduleAleatoireMin;
     delete moduleAleatoireMax;
@@ -343,6 +483,51 @@ void MainWindow::paintEvent(QPaintEvent*)
         {
             map->Afficher(0,255);
             map->Animer(eventManager->m_clock.GetElapsedTime());
+
+
+            map->m_selectSprite.Move(decalX->value(), decalY->value());
+            map->m_selectSprite.Scale(fabs(scaleX->value()*0.01),fabs(scaleY->value()*0.01));
+            if(scaleX->value()<0)
+                map->m_selectSprite.FlipX(true);
+            else
+                map->m_selectSprite.FlipX(false);
+            if(scaleY->value()<0)
+                map->m_selectSprite.FlipY(true);
+            else
+                map->m_selectSprite.FlipY(false);
+
+            map->m_selectSprite.Rotate(rotate->value());
+            map->m_selectSprite.SetColor(sf::Color( map->m_selectSprite.GetColor().r * colorR->value() / 255,
+                                                    map->m_selectSprite.GetColor().g * colorG->value() / 255,
+                                                    map->m_selectSprite.GetColor().b * colorB->value() / 255,
+                                                    map->m_selectSprite.GetColor().a * colorA->value() / 255));
+
+            if(map->m_mode_brush)
+            {
+                map->m_select_brush.m_entite_graphique.m_sprite.Move(decalX->value(), decalY->value());
+                map->m_select_brush.m_entite_graphique.m_sprite.SetScale(fabs(scaleX->value()*0.01),fabs(scaleY->value()*0.01));
+
+                if(scaleX->value()<0)
+                    map->m_select_brush.m_entite_graphique.m_sprite.FlipX(true);
+                else
+                    map->m_select_brush.m_entite_graphique.m_sprite.FlipX(false);
+                if(scaleY->value()<0)
+                    map->m_select_brush.m_entite_graphique.m_sprite.FlipY(true);
+                else
+                    map->m_select_brush.m_entite_graphique.m_sprite.FlipY(false);
+
+
+                map->m_select_brush.m_entite_graphique.m_sprite.SetRotation(rotate->value());
+                map->m_select_brush.m_entite_graphique.m_sprite.SetColor(sf::Color( colorR->value(),
+                                                                                    colorG->value(),
+                                                                                    colorB->value(),
+                                                                                    colorA->value()));
+                for (unsigned o = 0 ; o < map->m_select_brush.getMonstre().size() ; ++o)
+                    if (map->m_select_brush.getMonstre()[o]>=0
+                      &&map->m_select_brush.getMonstre()[o]<(int)map->m_monstre.size())
+                          setEntiteGraphiqueParametres(map->m_monstre[map->m_select_brush.getMonstre()[o]].m_entite_graphique);
+
+            }
         }
 
     eventManager->AfficherCurseur(taillePinceau->value());
@@ -402,6 +587,29 @@ void MainWindow::paintEvent(QPaintEvent*)
             eventManager->m_coordonnee.x-=eventManager->m_clock.GetElapsedTime()*10*((configuration->zoom - 1)/2+1);
             eventManager->m_coordonnee.y-=eventManager->m_clock.GetElapsedTime()*10*((configuration->zoom - 1)/2+1);
         }
+    }
+
+    if(eventManager->getEvenement(sf::Key::Back,"ET"))
+    {
+        decalX->setValue(0);
+        rand_decalX->setValue(0);
+        decalY->setValue(0);
+        rand_decalY->setValue(0);
+        scaleX->setValue(100);
+        rand_scaleX->setValue(0);
+        scaleY->setValue(100);
+        rand_scaleY->setValue(0);
+        rotate->setValue(0);
+        rand_rotate->setValue(0);
+
+        colorR->setValue(255);
+        rand_colorR->setValue(0);
+        colorG->setValue(255);
+        rand_colorG->setValue(0);
+        colorB->setValue(255);
+        rand_colorB->setValue(0);
+        colorA->setValue(255);
+        rand_colorA->setValue(0);
     }
 
     /*if (eventManager->getEvenement(sf::Mouse::Middle, "C"))
@@ -499,6 +707,71 @@ void MainWindow::paintEvent(QPaintEvent*)
         else
             map->m_afficher_couche1 = false;
 
+        if(eventManager->getEvenement(sf::Key::LShift,"ET"))
+        {
+            if(!m_translate)
+                m_old_param_mouse = eventManager->getPositionSouris();
+
+            decalX->setValue(eventManager->getPositionSouris().x - m_old_param_mouse.x);
+            decalY->setValue(eventManager->getPositionSouris().y - m_old_param_mouse.y);
+            m_translate = true;
+        }
+        else
+            m_translate = false;
+
+        if(eventManager->getEvenement(sf::Key::S,"ET") && !eventManager->getEvenement(sf::Key::LControl,"ET"))
+        {
+            if(!m_rescale)
+                m_old_param_mouse = eventManager->getPositionSouris();
+
+            scaleX->setValue((eventManager->getPositionSouris().x - m_old_param_mouse.x));
+            scaleY->setValue(-(eventManager->getPositionSouris().y - m_old_param_mouse.y));
+            m_rescale = true;
+        }
+        else
+            m_rescale = false;
+
+
+        if(eventManager->getEvenement(sf::Key::R,"ET"))
+        {
+            if(!m_rotate)
+                m_old_param_mouse = eventManager->getPositionSouris();
+
+            rotate->setValue(eventManager->getPositionSouris().x - m_old_param_mouse.x);
+            m_rotate = true;
+        }
+        else
+            m_rotate = false;
+
+        if(lie_scale->isChecked())
+            scaleY->setValue(scaleX->value());
+        if(lie_colorR->isChecked())
+        {
+            if(lie_colorG->isChecked())
+                colorG->setValue(colorR->value());
+            if(lie_colorB->isChecked())
+                colorB->setValue(colorR->value());
+        }
+        else if(lie_colorG->isChecked())
+        {
+            if(lie_colorB->isChecked())
+                colorB->setValue(colorG->value());
+        }
+
+        if(SFMLView->hasFocus() && !old_focus)
+            eventManager->StopEvenement(sf::Mouse::Left, "C"), old_focus = true;
+        else if(!SFMLView->hasFocus())
+            old_focus = false;
+
+        if(eventManager->getEvenement(sf::Key::O,"ET"))
+        {
+            map->m_entite_angle++;
+            if(map->m_entite_angle >= 8)
+                map->m_entite_angle = 0;
+
+            eventManager->StopEvenement(sf::Key::O,"ET");
+        }
+
         if (eventManager->getPositionSouris().y > 0 && eventManager->getPositionSouris().y < (int)moteurGraphique->m_ecran->GetHeight()
                 && eventManager->getPositionSouris().x > 0 && eventManager->getPositionSouris().x < (int)moteurGraphique->m_ecran->GetWidth ()
                 && eventManager->getEvenement(sf::Mouse::Left, "C"))
@@ -512,13 +785,19 @@ void MainWindow::paintEvent(QPaintEvent*)
                 {
                     map->m_monstre.push_back(Monstre ());
                     map->m_monstre.back().Charger(map->m_selectEntite - 1,&map->m_ModeleMonstre[map->m_selectEntite - 1]);
-                    map->m_monstre.back().setCoordonnee(eventManager->getCasePointee()),map->m_monstre.back().setDepart();
-                    map->m_add_monstre.push_back(false);
+                    map->m_monstre.back().setCoordonnee(coordonnee(j,i)),map->m_monstre.back().setDepart();
+                    map->m_monstre.back().setAngle(map->m_entite_angle * 45);
+                    setEntiteGraphiqueParametres(map->m_monstre.back().m_entite_graphique);
+                    if(eventManager->getEvenement(sf::Key::Add, "ET"))
+                        map->m_add_monstre.push_back(true), eventManager->StopEvenement(sf::Mouse::Left, "C");
+                    else
+                        map->m_add_monstre.push_back(false), eventManager->StopEvenement(sf::Mouse::Left, "C");
                 }
 
                 if (map->m_moduleAleatoireMin == 0 && map->m_moduleAleatoireMax == 9)
                 {
-                    map->m_decor[1][i][j].back().m_monstre.clear();
+                    if(!eventManager->getEvenement(sf::Key::Add, "ET"))
+                        map->m_decor[1][i][j].back().m_monstre.clear();
                     if (map->m_selectEntite >= 1)
                         map->m_decor[1][i][j].back().m_monstre.push_back(map->m_monstre.size()-1);
                 }
@@ -530,7 +809,8 @@ void MainWindow::paintEvent(QPaintEvent*)
                                 &&map->m_decor[1][i][j][k].m_moduleAleatoireMax == map->m_moduleAleatoireMax)
                         {
                             ajouter = false;
-                            map->m_decor[1][i][j][k].m_monstre.clear();
+                            if(!eventManager->getEvenement(sf::Key::Add, "ET"))
+                                map->m_decor[1][i][j].back().m_monstre.clear();
                             if (map->m_selectEntite >= 1)
                                 map->m_decor[1][i][j][k].m_monstre.push_back(map->m_monstre.size()-1);
                         }
@@ -608,7 +888,10 @@ void MainWindow::paintEvent(QPaintEvent*)
                     map->m_decor[map->m_selectCouche][i][j].back().m_tileset = map->m_selectTileset-1;
                     map->m_decor[map->m_selectCouche][i][j].back().m_couche = layer;
                     if (map->m_selectTileset >= 1)
+                    {
                         map->m_decor[map->m_selectCouche][i][j].back().m_tile.push_back(map->m_selectTile);
+                        setEntiteGraphiqueParametres(map->m_decor[map->m_selectCouche][i][j].back().m_entite_graphique);
+                    }
                 }
                 else
                 {
@@ -622,7 +905,10 @@ void MainWindow::paintEvent(QPaintEvent*)
                             map->m_decor[map->m_selectCouche][i][j][k].m_tileset = map->m_selectTileset-1;
                             map->m_decor[map->m_selectCouche][i][j][k].m_couche = layer;
                             if (map->m_selectTileset >= 1)
+                            {
                                 map->m_decor[map->m_selectCouche][i][j][k].m_tile.push_back(map->m_selectTile);
+                                setEntiteGraphiqueParametres(map->m_decor[map->m_selectCouche][i][j][k].m_entite_graphique);
+                            }
                         }
                     if (ajouter)
                     {
@@ -633,7 +919,11 @@ void MainWindow::paintEvent(QPaintEvent*)
                         map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_tileset = map->m_selectTileset-1;
                         map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_couche = layer;
                         if (map->m_selectTileset >= 1)
+                        {
                             map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_tile.push_back(map->m_selectTile);
+                            setEntiteGraphiqueParametres(map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_entite_graphique);
+                        }
+
 
                         map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_moduleAleatoireMin = map->m_moduleAleatoireMin;
                         map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_moduleAleatoireMax = map->m_moduleAleatoireMax;
@@ -751,7 +1041,10 @@ void MainWindow::paintEvent(QPaintEvent*)
                         map->m_decor[map->m_selectCouche][i][j].back().m_tileset = map->m_select_brush.m_tileset;
 
                     if(!map->m_select_brush.m_tile.empty())
+                    {
                         map->m_decor[map->m_selectCouche][i][j].back().m_tile = map->m_select_brush.m_tile;
+                        setEntiteGraphiqueParametres(map->m_decor[map->m_selectCouche][i][j].back().m_entite_graphique);
+                    }
 
                     if(!map->m_select_brush.m_objets.empty())
                         map->m_decor[map->m_selectCouche][i][j].back().m_objets = map->m_select_brush.m_objets;
@@ -761,9 +1054,25 @@ void MainWindow::paintEvent(QPaintEvent*)
 
                     if(!map->m_select_brush.m_monstre.empty())
                     {
-                        map->m_decor[map->m_selectCouche][i][j].back().m_monstre = map->m_select_brush.m_monstre;
-                        for(int z = 0 ; z < map->m_decor[map->m_selectCouche][i][j].back().m_monstre.size() ; ++z)
-                            map->m_monstre[map->m_decor[map->m_selectCouche][i][j].back().m_monstre[z]].setCoordonnee(coordonnee (j, i));
+                        map->m_decor[1][i][j].back().m_monstre = map->m_select_brush.m_monstre;
+                        for(int z = 0 ; z < map->m_decor[1][i][j].back().m_monstre.size() ; ++z)
+                        {
+                            map->m_monstre[map->m_decor[1][i][j].back().m_monstre[z]].setCoordonnee(coordonnee (j, i));
+                            setEntiteGraphiqueParametres(map->m_monstre[map->m_decor[1][i][j].back().m_monstre[z]].m_entite_graphique);
+                            map->m_monstre[map->m_decor[1][i][j].back().m_monstre[z]].Animer(&map->m_ModeleMonstre[map->m_monstre[map->m_decor[1][i][j].back().m_monstre[z]].getModele()],1);
+
+                            map->m_monstre.push_back(Monstre ());
+                            if(eventManager->getEvenement(sf::Key::Add, "ET") && z == 0)
+                                map->m_add_monstre.push_back(true), eventManager->StopEvenement(sf::Mouse::Left, "C");
+                            else
+                                map->m_add_monstre.push_back(false);
+
+                            map->m_monstre.back().Charger(map->m_monstre[map->m_decor[1][i][j].back().m_monstre[z]].m_modele,
+                                                         &map->m_ModeleMonstre[map->m_monstre[map->m_decor[1][i][j].back().m_monstre[z]].m_modele]);
+                            map->m_monstre.back().setCoordonnee(coordonnee(j,i)),map->m_monstre.back().setDepart();
+                            map->m_select_brush.m_monstre[z] = map->m_monstre.size()-1;
+                        }
+
                     }
 
                     if(!map->m_select_brush.m_evenement.empty())
@@ -906,6 +1215,57 @@ void MainWindow::paintEvent(QPaintEvent*)
     eventManager->m_clock.Reset();
 }
 
+void MainWindow::setEntiteGraphiqueParametres(Entite_graphique &entite)
+{
+    entite.m_decalage.x = decalX->value();
+    if(rand_decalX->value() != 0)
+        entite.m_decalage.x += rand_decalX->value() - rand() % rand_decalX->value() * 2;
+
+    entite.m_decalage.y = decalY->value();
+    if(rand_decalY->value() != 0)
+        entite.m_decalage.y += rand_decalY->value() - rand() % rand_decalY->value() * 2;
+
+    entite.m_scale.x = scaleX->value();
+    if(rand_scaleX->value() != 0)
+        entite.m_scale.x += rand_scaleX->value() - rand() % rand_scaleX->value() * 2;
+
+    entite.m_scale.y = scaleY->value();
+    if(rand_scaleY->value() != 0)
+        entite.m_scale.y += rand_scaleY->value() - rand() % rand_scaleY->value() * 2;
+
+    entite.m_rotation = rotate->value();
+    if(rand_rotate->value() != 0)
+        entite.m_rotation += rand_rotate->value() - rand() % rand_rotate->value() * 2;
+
+    entite.m_color.r = colorR->value();
+    if(rand_colorR->value() != 0)
+        entite.m_color.r += rand_colorR->value() - rand() % rand_colorR->value() * 2;
+    entite.m_color.g = colorG->value();
+    if(rand_colorG->value() != 0)
+        entite.m_color.g += rand_colorG->value() - rand() % rand_colorG->value() * 2;
+    entite.m_color.b = colorB->value();
+    if(rand_colorB->value() != 0)
+        entite.m_color.b += rand_colorB->value() - rand() % rand_colorB->value() * 2;
+    entite.m_color.a = colorA->value();
+    if(rand_colorA->value() != 0)
+        entite.m_color.a += rand_colorA->value() - rand() % rand_colorA->value() * 2;
+
+    if(lie_scale->isChecked())
+        entite.m_scale.y = entite.m_scale.x;
+    if(lie_colorR->isChecked())
+    {
+        if(lie_colorG->isChecked())
+            entite.m_color.g = entite.m_color.r;
+        if(lie_colorB->isChecked())
+            entite.m_color.b = entite.m_color.r;
+    }
+    else if(lie_colorG->isChecked())
+    {
+        if(lie_colorB->isChecked())
+            entite.m_color.b = entite.m_color.g;
+    }
+}
+
 void MainWindow::backup()
 {
     if(map != NULL)
@@ -954,101 +1314,107 @@ void MainWindow::backup()
 
 void MainWindow::MettreListesAJour()
 {
-    listTileset->clear();
-    for (unsigned k = 0 ; k <= map->m_tileset.size() ; ++k)
+    if(map != NULL)
     {
-        QStringList temp;
+        listTileset->clear();
+        for (unsigned k = 0 ; k <= map->m_tileset.size() ; ++k)
+        {
+            QStringList temp;
 
-        if (k == 0)
-            temp<<"Suppression tile";
-        else
-            temp<<moteurGraphique->getTileset(map->m_tileset[k-1])->getChemin().c_str();
+            if (k == 0)
+                temp<<"Suppression tile";
+            else
+                temp<<moteurGraphique->getTileset(map->m_tileset[k-1])->getChemin().c_str();
 
-        QTreeWidgetItem *widget = new QTreeWidgetItem(temp, 0);
-        widget ->setData (1, 0, QVariant(k));
+            QTreeWidgetItem *widget = new QTreeWidgetItem(temp, 0);
+            widget ->setData (1, 0, QVariant(k));
 
-        if (k > 0)
-            for (unsigned l = 0 ; l < moteurGraphique->getTileset(map->m_tileset[k-1])->m_tile.size() ; ++l)
+            if (k > 0)
+                for (unsigned l = 0 ; l < moteurGraphique->getTileset(map->m_tileset[k-1])->m_tile.size() ; ++l)
+                {
+                    std::ostringstream buf;
+                    if(!moteurGraphique->getTileset(map->m_tileset[k-1])->m_tile[l].m_nom.empty())
+                        buf<<moteurGraphique->getTileset(map->m_tileset[k-1])->m_tile[l].m_nom;
+                    else
+                        buf<<l;
+                    QStringList temp;
+                    temp<<buf.str().c_str();
+                    QTreeWidgetItem *widget2 = new QTreeWidgetItem(temp, 0);
+                    widget2->setText(0,temp.at(0));
+                    widget2 ->setData (1, 0, QVariant(l));
+
+                    widget->addChild(widget2);
+                }
+
+            listTileset->addTopLevelItem(widget);
+        }
+
+        listHerbe->clear();
+        for (unsigned k = 0 ; k <= map->m_herbe.size() ; ++k)
+        {
+            QStringList temp;
+
+            if (k == 0)
+                temp<<"Suppression herbe";
+            else
+                temp<<moteurGraphique->getTileset(map->m_herbe[k-1])->getChemin().c_str();
+
+            QTreeWidgetItem *widget = new QTreeWidgetItem(temp, 0);
+            widget ->setData (1, 0, QVariant(k));
+
+            listHerbe->addTopLevelItem(widget);
+        }
+
+        listEntites->clear();
+        for (unsigned k = 0 ; k <= map->m_ModeleMonstre.size() ; ++k)
+        {
+            QStringList temp;
+            if (k == 0)
+                temp<<"Suppression entité";
+            else
+                temp<<map->m_ModeleMonstre[k-1].m_chemin.c_str();
+            QTreeWidgetItem *widget = new QTreeWidgetItem(temp, 0);
+            widget ->setData (1, 0, QVariant(k));
+
+            listEntites->addTopLevelItem(widget);
+        }
+
+        listEvenements->clear();
+        for (unsigned k = 0 ; k <= map->m_evenement.size() ; ++k)
+        {
+            QStringList temp;
+            if (k == 0)
+                temp<<"Suppression événement";
+            else
             {
                 std::ostringstream buf;
-                if(!moteurGraphique->getTileset(map->m_tileset[k-1])->m_tile[l].m_nom.empty())
-                    buf<<moteurGraphique->getTileset(map->m_tileset[k-1])->m_tile[l].m_nom;
-                else
-                    buf<<l;
-                QStringList temp;
+
+                if (map->m_evenement[k-1].getType() == CHANGEMENT_DE_MAP)
+                    buf<<"Changement de map : "<<map->m_evenement[k-1].getString()<<" ( x"<< map->m_evenement[k-1].getInformation(0)<<", y"<< map->m_evenement[k-1].getInformation(1)<<" ) ";
+                if (map->m_evenement[k-1].getType() == LUMIERE)
+                    buf<<"Lumière : "<<" ( r"<< map->m_evenement[k-1].getInformation(0)<<", g"<< map->m_evenement[k-1].getInformation(1)<<", b"<< map->m_evenement[k-1].getInformation(2)<<", i"<< map->m_evenement[k-1].getInformation(3) <<" ) ";
+                if (map->m_evenement[k-1].getType() == INFLIGER_DEGATS)
+                    buf<<"Infliger dégats : "<<" ( dégats "<< map->m_evenement[k-1].getInformation(0) <<" ) ";
+                if (map->m_evenement[k-1].getType() == DECLENCHEUR_DEGAT_TO_EVENEMENT)
+                    buf<<"Déclencheur (dégats) : "<<" ( event "<< map->m_evenement[k-1].getInformation(0)<<" ) ";
+                if (map->m_evenement[k-1].getType() == CHANGER_DECOR)
+                    buf<<"Changer de décor : "<<" ( s"<< map->m_evenement[k-1].getInformation(0)<<", t"<< map->m_evenement[k-1].getInformation(1)<<" ) ";
+                if (map->m_evenement[k-1].getType() == TIMER)
+                    buf<<"Timer : "<<" ( temps "<< map->m_evenement[k-1].getInformation(0)<<", event "<< map->m_evenement[k-1].getInformation(2)<<" ) ";
+                if (map->m_evenement[k-1].getType() == EXPLOSION)
+                    buf<<"Explosion : "<<" ( rayon : "<< map->m_evenement[k-1].getInformation(0)<<" ) ";
+
+                buf<<" ("<<k-1<<" )";
+
                 temp<<buf.str().c_str();
-                QTreeWidgetItem *widget2 = new QTreeWidgetItem(temp, 0);
-                widget2->setText(0,temp.at(0));
-                widget2 ->setData (1, 0, QVariant(l));
-
-                widget->addChild(widget2);
             }
+            QTreeWidgetItem *widget = new QTreeWidgetItem(temp, 0);
+            widget ->setData (1, 0, QVariant(k));
 
-        listTileset->addTopLevelItem(widget);
-    }
-
-    listHerbe->clear();
-    for (unsigned k = 0 ; k <= map->m_herbe.size() ; ++k)
-    {
-        QStringList temp;
-
-        if (k == 0)
-            temp<<"Suppression herbe";
-        else
-            temp<<moteurGraphique->getTileset(map->m_herbe[k-1])->getChemin().c_str();
-
-        QTreeWidgetItem *widget = new QTreeWidgetItem(temp, 0);
-        widget ->setData (1, 0, QVariant(k));
-
-        listHerbe->addTopLevelItem(widget);
-    }
-
-    listEntites->clear();
-    for (unsigned k = 0 ; k <= map->m_ModeleMonstre.size() ; ++k)
-    {
-        QStringList temp;
-        if (k == 0)
-            temp<<"Suppression entité";
-        else
-            temp<<map->m_ModeleMonstre[k-1].m_chemin.c_str();
-        QTreeWidgetItem *widget = new QTreeWidgetItem(temp, 0);
-        widget ->setData (1, 0, QVariant(k));
-
-        listEntites->addTopLevelItem(widget);
-    }
-
-    listEvenements->clear();
-    for (unsigned k = 0 ; k <= map->m_evenement.size() ; ++k)
-    {
-        QStringList temp;
-        if (k == 0)
-            temp<<"Suppression événement";
-        else
-        {
-            std::ostringstream buf;
-
-            if (map->m_evenement[k-1].getType() == CHANGEMENT_DE_MAP)
-                buf<<"Changement de map : "<<map->m_evenement[k-1].getString()<<" ( x"<< map->m_evenement[k-1].getInformation(0)<<", y"<< map->m_evenement[k-1].getInformation(1)<<" ) ";
-            if (map->m_evenement[k-1].getType() == LUMIERE)
-                buf<<"Lumière : "<<" ( r"<< map->m_evenement[k-1].getInformation(0)<<", g"<< map->m_evenement[k-1].getInformation(1)<<", b"<< map->m_evenement[k-1].getInformation(2)<<", i"<< map->m_evenement[k-1].getInformation(3) <<" ) ";
-            if (map->m_evenement[k-1].getType() == INFLIGER_DEGATS)
-                buf<<"Infliger dégats : "<<" ( dégats "<< map->m_evenement[k-1].getInformation(0) <<" ) ";
-            if (map->m_evenement[k-1].getType() == DECLENCHEUR_DEGAT_TO_EVENEMENT)
-                buf<<"Déclencheur (dégats) : "<<" ( event "<< map->m_evenement[k-1].getInformation(0)<<" ) ";
-            if (map->m_evenement[k-1].getType() == CHANGER_DECOR)
-                buf<<"Changer de décor : "<<" ( s"<< map->m_evenement[k-1].getInformation(0)<<", t"<< map->m_evenement[k-1].getInformation(1)<<" ) ";
-            if (map->m_evenement[k-1].getType() == TIMER)
-                buf<<"Timer : "<<" ( temps "<< map->m_evenement[k-1].getInformation(0)<<", event "<< map->m_evenement[k-1].getInformation(2)<<" ) ";
-            if (map->m_evenement[k-1].getType() == EXPLOSION)
-                buf<<"Explosion : "<<" ( rayon : "<< map->m_evenement[k-1].getInformation(0)<<" ) ";
-
-            temp<<buf.str().c_str();
+            listEvenements->addTopLevelItem(widget);
         }
-        QTreeWidgetItem *widget = new QTreeWidgetItem(temp, 0);
-        widget ->setData (1, 0, QVariant(k));
-
-        listEvenements->addTopLevelItem(widget);
     }
+
 }
 
 void MainWindow::nouveau()
@@ -1058,6 +1424,7 @@ void MainWindow::nouveau()
 
 void MainWindow::s_creerNouveau()
 {
+
     if(map != NULL)
         delete map;
     map = new Map();
@@ -1069,6 +1436,8 @@ void MainWindow::s_creerNouveau()
 
     eventManager->m_coordonnee.x = 1;
     eventManager->m_coordonnee.y = 1;
+
+    MettreListesAJour();
 
     fenetreNouveau->hide();
 }
@@ -1658,7 +2027,7 @@ void MainWindow::addEntite(QTreeWidgetItem *item, int column)
 
 
         map->m_monstre.push_back(Monstre ());
-        map->m_monstre.back().Charger(item->data(1,0).toInt() - 1,&map->m_ModeleMonstre[item->data(1,0).toInt()]);
+        map->m_monstre.back().Charger(item->data(1,0).toInt() - 1,&map->m_ModeleMonstre[item->data(1,0).toInt() - 1]);
         map->m_monstre.back().setCoordonnee(eventManager->getCasePointee()),map->m_monstre.back().setDepart();
         map->m_add_monstre.push_back(false);
 

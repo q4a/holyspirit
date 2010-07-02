@@ -53,6 +53,8 @@ Map::Map()
     m_taillePinceau  = 0;
 
     m_aleatoireTileset = 0;
+
+    m_entite_angle   = 0 ;
 }
 
 Map::~Map()
@@ -464,6 +466,25 @@ bool Map::Charger(std::string nomMap)
         }
         while (caractere!='$');
 
+
+        do
+        {
+
+            //Chargement de la lumière ambiante
+            fichier->get(caractere);
+            if (caractere=='*')
+            {
+                m_climates.push_back("");
+                *fichier>>m_climates.back();
+            }
+            if (fichier->eof())
+            {
+                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
+                throw ("Erreur : Map \" "+chemin+" \" Invalide");
+            }
+        }
+        while (caractere!='$');
+
         if (configuration->debug)
             console->Ajouter("/Lectures des ciels.");
 
@@ -642,9 +663,13 @@ bool Map::Charger(std::string nomMap)
                             std::vector<int> evenement;
                             int tileset=-1,tileFinal=-1,herbe=-1,layer=0,hauteur=0;
                             int temp;
+                            int entite_angle = 0;
                             vector <int>tile;
                             vector <int>monstre, monstreFinal;
                             vector <Objet> objets;
+
+                            Entite_graphique entite_decor;
+                            bool dernierEtaitMonstre = false;
 
                             m_decor[couche][position.y].push_back(std::vector<Decor > ());
                             do
@@ -660,9 +685,12 @@ bool Map::Charger(std::string nomMap)
                                         *fichier>>temp3;
                                         if (temp3>=0&&temp3<(int)m_ModeleMonstre.size())
                                         {
+                                            dernierEtaitMonstre = true;
                                             m_monstre.push_back(Monstre ());
                                             m_monstre.back().Charger(temp3,&m_ModeleMonstre[temp3]);
                                             m_monstre.back().setCoordonnee(position),m_monstre.back().setDepart();
+
+
 
                                             //TrierInventaire(m_monstre.back().getPointeurObjets(),hero->m_classe.position_contenu_marchand.w);
                                             monstreFinal.push_back(m_monstre.size()-1);
@@ -678,6 +706,7 @@ bool Map::Charger(std::string nomMap)
                                 case 't':
                                     *fichier>>temp;
                                     tile.push_back(temp);
+                                    dernierEtaitMonstre = false;
                                     break;
                                 case 'e':
                                     int temp2;
@@ -689,9 +718,12 @@ bool Map::Charger(std::string nomMap)
                                     *fichier>>temp3;
                                     if (temp3>=0&&temp3<(int)m_ModeleMonstre.size())
                                     {
+                                        dernierEtaitMonstre = true;
                                         m_monstre.push_back(Monstre ());
                                         m_monstre.back().Charger(temp3,&m_ModeleMonstre[temp3]);
                                         m_monstre.back().setCoordonnee(position),m_monstre.back().setDepart();
+
+
 
                                         //TrierInventaire(m_monstre.back().getPointeurObjets(),hero->m_classe.position_contenu_marchand.w);
                                         monstreFinal.push_back(m_monstre.size()-1);
@@ -711,6 +743,11 @@ bool Map::Charger(std::string nomMap)
                                 case 'i':
                                     *fichier>>hauteur;
                                     break;
+                                case 'a':
+                                    *fichier>>entite_angle;
+                                    if(!m_monstre.empty())
+                                        m_monstre.back().setAngle(entite_angle);
+                                    break;
 
                                 case 'o':
                                     pos=fichier->tellg();
@@ -720,7 +757,13 @@ bool Map::Charger(std::string nomMap)
                                     fichier->seekg(pos, ios::beg);
                                     objets.back().m_benedictions.clear();
                                     objets.back().ChargerTexte(fichier,tempCaract);
+                                    break;
 
+                                case 'p':
+                                    if(dernierEtaitMonstre)
+                                        m_monstre.back().m_entite_graphique.LoadParameters(*fichier);
+                                    else
+                                        entite_decor.LoadParameters(*fichier);
                                     break;
 
                                 case 'r':
@@ -733,6 +776,8 @@ bool Map::Charger(std::string nomMap)
                                     vector <int>r_tile;
                                     vector <int>r_monstre, r_monstreFinal;
                                     vector <Objet> r_objets;
+                                    Entite_graphique r_entite_decor;
+                                    bool r_dernierEtaitMonstre;
 
                                     fichier->get(caractere);
                                     int noModuleCaseMin=-1,noModuleCaseMax=-1;
@@ -759,9 +804,12 @@ bool Map::Charger(std::string nomMap)
                                                             *fichier>>temp3;
                                                             if (temp3>=0&&temp3<(int)m_ModeleMonstre.size())
                                                             {
+                                                                r_dernierEtaitMonstre = true;
                                                                 m_monstre.push_back(Monstre ());
                                                                 m_monstre.back().Charger(temp3,&m_ModeleMonstre[temp3]);
                                                                 m_monstre.back().setCoordonnee(position),m_monstre.back().setDepart();
+
+
 
                                                                 //TrierInventaire(m_monstre.back().getPointeurObjets(),hero->m_classe.position_contenu_marchand.w);
                                                                 r_monstreFinal.push_back(m_monstre.size()-1);
@@ -776,6 +824,7 @@ bool Map::Charger(std::string nomMap)
                                                     case 't':
                                                         *fichier>>temp;
                                                         r_tile.push_back(temp);
+                                                        r_dernierEtaitMonstre = false;
                                                         break;
                                                     case 'e':
                                                         int temp2;
@@ -787,9 +836,12 @@ bool Map::Charger(std::string nomMap)
                                                         *fichier>>temp3;
                                                         if (temp3>=0&&temp3<(int)m_ModeleMonstre.size())
                                                         {
+                                                            r_dernierEtaitMonstre = true;
                                                             m_monstre.push_back(Monstre ());
                                                             m_monstre.back().Charger(temp3,&m_ModeleMonstre[temp3]);
                                                             m_monstre.back().setCoordonnee(position),m_monstre.back().setDepart();
+
+
 
                                                             r_monstreFinal.push_back(m_monstre.size()-1);
 
@@ -807,6 +859,19 @@ bool Map::Charger(std::string nomMap)
                                                         break;
                                                     case 'i':
                                                         *fichier>>r_hauteur;
+                                                        break;
+                                                    case 'a':
+                                                        *fichier>>entite_angle;
+                                                        if(!m_monstre.empty())
+                                                            m_monstre.back().setAngle(entite_angle);
+                                                        break;
+
+                                                    case 'p':
+                                                        if(r_dernierEtaitMonstre)
+                                                            m_monstre.back().m_entite_graphique.LoadParameters(*fichier);
+                                                        else
+                                                            r_entite_decor.LoadParameters(*fichier);
+
                                                         break;
 
                                                     case 'o':
@@ -840,6 +905,7 @@ bool Map::Charger(std::string nomMap)
                                             m_decor[couche][position.y].back().push_back(Decor (r_tileset,r_tile,r_evenement,r_monstreFinal,r_herbe,r_layer,r_hauteur,r_objets));
                                             m_decor[couche][position.y].back().back().m_moduleAleatoireMin = noModuleCaseMin;
                                             m_decor[couche][position.y].back().back().m_moduleAleatoireMax = noModuleCaseMax;
+                                            m_decor[couche][position.y].back().back().m_entite_graphique = r_entite_decor;
                                         }
 
                                         fichier->get(caractere);
@@ -882,6 +948,7 @@ bool Map::Charger(std::string nomMap)
                                 m_decor[couche][position.y].back().push_back(Decor (tileset,tile,evenement,monstreFinal,herbe,layer,hauteur,objets));
                                 m_decor[couche][position.y].back().back().m_moduleAleatoireMin = 0;
                                 m_decor[couche][position.y].back().back().m_moduleAleatoireMax = 9;
+                                m_decor[couche][position.y].back().back().m_entite_graphique = entite_decor;
 
                                 tileset=-1,tile.clear(),tileFinal=-1,evenement.clear(),monstreFinal.clear(),herbe=-1,layer=0,hauteur=0;
                                 objets.clear();
@@ -1058,6 +1125,17 @@ void Map::CreerSprite(sf::Vector3f position_case)
 
         m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].m_entite_graphique.m_sprite.SetX(position.x+64);
         m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].m_entite_graphique.m_sprite.SetY(position.y+32);
+
+       /* m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].m_entite_graphique.m_sprite.SetScale(
+            m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].m_entite_graphique.m_scale.x*0.01,
+            m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].m_entite_graphique.m_scale.y*0.01);
+
+        m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].m_entite_graphique.m_sprite.SetRotation(
+            m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].m_entite_graphique.m_rotation);
+
+        m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].m_entite_graphique.m_sprite.SetColor(
+            m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x][z].m_entite_graphique.m_color);*/
+
     }
 
     //m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].m_sprite.SetColor(sf::Color(255,255,255,m_tileset[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getTileset()].getOpacityDuTile(m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].getTile()[m_decor[(int)position_case.z][(int)position_case.y][(int)position_case.x].random_animation])));
@@ -1090,6 +1168,10 @@ void Map::Sauvegarder(std::string chemin)
 
         if(!m_nom_img_sky.empty())
             fichier<<" *"<<m_nom_img_sky<<endl;
+        fichier<<"$\n";
+
+        for(int i = 0 ; i < m_climates.size() ; ++i)
+            fichier<<" *"<<m_climates[i]<<endl;
         fichier<<"$\n";
 
 
@@ -1141,7 +1223,11 @@ void Map::Sauvegarder(std::string chemin)
                         if(m_decor[couche][i][j][z].getTileset() >= 0)
                             fichier<<" s"<<m_decor[couche][i][j][z].getTileset()<<" ";
                         for (unsigned k = 0 ; k < m_decor[couche][i][j][z].getTile().size() ; ++k)
+                        {
                             fichier<<"t"<<m_decor[couche][i][j][z].getTile()[k]<<" ";
+                            m_decor[couche][i][j][z].m_entite_graphique.SaveParameters(fichier);
+                        }
+
                         for (unsigned k = 0 ; k < m_decor[couche][i][j][z].getEvenement().size() ; ++k)
                             fichier<<"e"<<m_decor[couche][i][j][z].getEvenement()[k]<<" ";
 
@@ -1151,6 +1237,11 @@ void Map::Sauvegarder(std::string chemin)
                                 if(m_add_monstre[m_decor[couche][i][j][z].getMonstre()[k]])
                                     fichier<<"+";
                                 fichier<<"m"<<m_monstre[m_decor[couche][i][j][z].getMonstre()[k]].getModele()<<" ";
+                                if(m_monstre[m_decor[couche][i][j][z].getMonstre()[k]].getAngle() != 0)
+                                    fichier<<"a"<<m_monstre[m_decor[couche][i][j][z].getMonstre()[k]].getAngle()<<" ";
+
+                                m_monstre[m_decor[couche][i][j][z].getMonstre()[k]].m_entite_graphique.SaveParameters(fichier);
+
 
                                 if(m_monstre[m_decor[couche][i][j][z].getMonstre()[k]].m_ID >= 0)
                                     fichier<<" d"<<m_monstre[m_decor[couche][i][j][z].getMonstre()[k]].m_ID<<" ";
@@ -1183,7 +1274,8 @@ void Map::Sauvegarder(std::string chemin)
             fichier<<"$\n";
         }
 
-        m_script.Sauvegarder(fichier);
+        //m_script.Sauvegarder(fichier);
+        fichier<<endl<<m_script.m_text<<endl;
 
         fichier.close();
     }
@@ -1320,11 +1412,7 @@ void Map::Afficher(bool alt,float alpha)
                                 &&m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y+m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().y-m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y>=GetViewRect(moteurGraphique->m_camera).Top
                                 &&m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y-m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y<GetViewRect(moteurGraphique->m_camera).Bottom)
                         {
-                            sf::IntRect rect = m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSubRect();
-                            sf::IntRect rectBuf = m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSubRect();
-                            sf::Vector2f pos = m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition();
-
-                            if (m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x + m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().x - m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x > GetViewRect(moteurGraphique->m_camera).Right)
+                          /*  if (m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x + m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().x - m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x > GetViewRect(moteurGraphique->m_camera).Right)
                                 rectBuf.Right -= (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x + (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().x - (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x - (int)GetViewRect(moteurGraphique->m_camera).Right;
                             if (m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y + m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().y - m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y > GetViewRect(moteurGraphique->m_camera).Bottom)
                                 rectBuf.Bottom -= (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y + (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().y - (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y - (int)GetViewRect(moteurGraphique->m_camera).Bottom;
@@ -1340,12 +1428,12 @@ void Map::Afficher(bool alt,float alpha)
                                 m_decor[couche][j][k][z].m_entite_graphique.m_sprite.Move(0, rectBuf.Top - rect.Top);
                             }
 
-                            m_decor[couche][j][k][z].m_entite_graphique.m_sprite.SetSubRect(rectBuf);
+                            m_decor[couche][j][k][z].m_entite_graphique.m_sprite.SetSubRect(rectBuf);*/
 
-                            moteurGraphique->AjouterCommande(&m_decor[couche][j][k][z].m_entite_graphique.m_sprite,m_decor[couche][j][k][z].getCouche(),1);
+                            //moteurGraphique->AjouterCommande(&m_decor[couche][j][k][z].m_entite_graphique.m_sprite,m_decor[couche][j][k][z].getCouche(),1);
+                            m_decor[couche][j][k][z].m_entite_graphique.m_couche = m_decor[couche][j][k][z].getCouche();
+                            moteurGraphique->AjouterEntiteGraphique(&m_decor[couche][j][k][z].m_entite_graphique);
 
-                            m_decor[couche][j][k][z].m_entite_graphique.m_sprite.SetSubRect(rect);
-                            m_decor[couche][j][k][z].m_entite_graphique.m_sprite.SetPosition(pos);
                         }
 
                     if(k == 0 || j == 0 || k == (int)m_decor[couche][j].size() - 1 || j == (int)m_decor[couche].size() - 1)
@@ -1415,6 +1503,15 @@ void Map::Afficher(bool alt,float alpha)
 
                         for (unsigned o = 0 ; o < m_decor[1][j][k][z].getMonstre().size() ; ++o)
                         {
+                            if(eventManager->getCasePointee().x == k
+                            && eventManager->getCasePointee().y == j)
+                            {
+                                std::ostringstream buf;
+                                buf<<m_ModeleMonstre[m_monstre[m_decor[1][j][k][z].getMonstre()[o]].getModele()].m_chemin;
+                                moteurGraphique->AjouterTexte(buf.str(), coordonnee(((float)position.x - (float)GetViewRect(moteurGraphique->m_camera).Left)/configuration->zoom ,
+                                                                                    ((float)position.y - (float)GetViewRect(moteurGraphique->m_camera).Top)/configuration->zoom - 32 - 14*o), 15,0,12,sf::Color(0,255,0));
+                            }
+
                             sf::Sprite temp;
                             temp.SetImage(*moteurGraphique->getImage(eventManager->m_img_select));
                             temp.SetPosition(position.x-48, position.y-16);
@@ -1899,6 +1996,10 @@ void Map::Animer(float temps/*,Menu *menu*/)
                CreerSprite(sf::Vector3f(k,j,i));
             }
 
+            m_selectSprite.SetScale(1,1);
+            m_selectSprite.SetRotation(0);
+            m_selectSprite.SetColor(sf::Color(255,255,255,255));
+
             if(m_selectTileset - 1 >= 0 && m_selectTileset - 1 < (int) m_tileset.size())
             {
                 coordonnee position,positionPartieDecor;
@@ -1920,23 +2021,26 @@ void Map::Animer(float temps/*,Menu *menu*/)
 
             if(m_selectEntite - 1 >= 0 && m_selectEntite - 1 < (int) m_ModeleMonstre.size())
             {
-
                 coordonnee position;
 
                 position.x=((int)eventManager->getCasePointee().x-(int)eventManager->getCasePointee().y)*64;
                 position.y=((int)eventManager->getCasePointee().x+(int)eventManager->getCasePointee().y)*32;
 
-                m_selectSprite.SetImage(*moteurGraphique->getImage(m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][0].getImage(0)));
+                m_selectSprite.SetImage(*moteurGraphique->getImage(m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][m_entite_angle].getImage(0)));
 
-                m_selectSprite.SetOrigin(m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][0].getCentreDuTile(0).x,m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][0].getCentreDuTile(0).y);
+                m_selectSprite.SetOrigin(m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][m_entite_angle].getCentreDuTile(0).x,m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][m_entite_angle].getCentreDuTile(0).y);
 
-                m_selectSprite.SetSubRect(IntRect(  m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][0].getPositionDuTile(0).x,
-                                                    m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][0].getPositionDuTile(0).y,
-                                                    m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][0].getPositionDuTile(0).x+m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][0].getPositionDuTile(0).w,
-                                                    m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][0].getPositionDuTile(0).y+m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][0].getPositionDuTile(0).h));
+                m_selectSprite.SetSubRect(IntRect(  m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][m_entite_angle].getPositionDuTile(0).x,
+                                                    m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][m_entite_angle].getPositionDuTile(0).y,
+                                                    m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][m_entite_angle].getPositionDuTile(0).x+m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][m_entite_angle].getPositionDuTile(0).w,
+                                                    m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][m_entite_angle].getPositionDuTile(0).y+m_ModeleMonstre[m_selectEntite - 1].m_tileset[0][m_entite_angle].getPositionDuTile(0).h));
 
                 m_selectSprite.SetX(position.x);
                 m_selectSprite.SetY(position.y+32);
+
+                m_selectSprite.SetColor(sf::Color(m_ModeleMonstre[m_selectEntite - 1].getPorteeLumineuse().rouge,
+                                                  m_ModeleMonstre[m_selectEntite - 1].getPorteeLumineuse().vert,
+                                                  m_ModeleMonstre[m_selectEntite - 1].getPorteeLumineuse().bleu));
 
                 m_selectSprite.SetScale(m_ModeleMonstre[m_selectEntite - 1].getCaracteristique().modificateurTaille,
                                         m_ModeleMonstre[m_selectEntite - 1].getCaracteristique().modificateurTaille);

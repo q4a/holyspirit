@@ -18,6 +18,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 
 #include <fstream>
+#include <sstream>
 #include "script.h"
 
 #include "../globale.h"
@@ -27,12 +28,10 @@ using namespace std;
 
 Script::Script()
 {
-    for (int i=0;i<10;i++)
-        variables[i]=0;
 }
 
 
-Script::Script(std::string chemin)
+Script::Script(const std::string &chemin)
 {
     Charger(chemin);
 }
@@ -57,7 +56,13 @@ void Script::AjouterCondition(ifstream *fichier)
         if (temp==-1)
             OK=false;
         else
-            m_instructions.at(noCondition).valeurs.push_back(temp);
+        {
+            if(temp != -4)
+            {
+                m_instructions[noCondition].m_valeurs.push_back(temp);
+                m_instructions[noCondition].m_string_valeurs.push_back("");
+            }
+        }
     }
 }
 
@@ -78,9 +83,34 @@ int Script::Lire(ifstream *fichier)
         retour=-3;
     else if (temp=="*")
     {
-        int valeur;
-        *fichier>>valeur;
-        m_instructions.back().valeurs.push_back(valeur);
+        std::string string;
+        *fichier>>string;
+
+        bool NaN = false;
+        for(unsigned i = 0 ; i < string.size() - 1 ; ++i)
+            if((string[i] < '0' || string[i] > '9') && string[i] != '-')
+                NaN = true;
+
+        if(NaN)
+        {
+            m_instructions.back().m_valeurs.push_back(-1);
+            m_instructions.back().m_string_valeurs.push_back(string);
+
+            if(string == "variable")
+                *fichier>>m_instructions.back().m_valeurs.back();
+        }
+        else
+        {
+            int valeur;
+
+            istringstream buf(string);
+            buf>>valeur;
+
+            m_instructions.back().m_valeurs.push_back(valeur);
+            m_instructions.back().m_string_valeurs.push_back("");
+        }
+
+
         retour = -4;
     }
     else if (temp=="\"")
@@ -96,6 +126,7 @@ int Script::Lire(ifstream *fichier)
             m_instructions.back().valeurString += caractere;
         }
         while(caractere!= '"');
+        m_instructions.back().valeurString.resize(m_instructions.back().valeurString.size() - 1);
 
         retour = -4;
     }
@@ -112,144 +143,128 @@ int Script::Lire(ifstream *fichier)
     return retour;
 }
 
-void Script::Sauvegarder_instruction(ofstream &fichier , int no, int indentation)
+void Script::Sauvegarder_instruction(ostringstream &fichier , int no, int indent)
 {
+    for(int i = 0 ; i < indent - (no == -3 || no == -2 || no == -1); ++i)
+        fichier<<'\t';
+
     if(no == -2)
-    {
-        for(int o = 1 ; o < indentation ; ++o)
-                fichier<<"    ";
         fichier<<"then"<<endl;
-    }
     else if(no == -3)
-    {
-        for(int o = 1 ; o < indentation ; ++o)
-                fichier<<"    ";
         fichier<<"else"<<endl;
-    }
     else if(no >= 0 && no < (int)m_instructions.size())
     {
-        for(int o = 0 ; o < indentation ; ++o)
-            fichier<<"    ";
         fichier<<m_instructions[no].nom<<" ";
         if(m_instructions[no].nom == "if" || m_instructions[no].nom == "main")
         {
-            fichier<<endl;
+            int id = 0;
 
-            indentation++;
-            for(int i = 0 ; i < m_instructions[no].valeurs.size() ; ++i)
-                Sauvegarder_instruction(fichier ,m_instructions[no].valeurs[i], indentation);
+            if(m_instructions[no].nom == "main")
+                fichier<<endl,id = 1;
 
+            cout<<m_instructions[no].m_valeurs.size()<<endl;
 
-            for(int o = 1 ; o < indentation ; ++o)
-                fichier<<"    ";
+            for(unsigned i = 0 ; i < m_instructions[no].m_valeurs.size() && m_instructions[no].m_valeurs[i] != -1 ; ++i)
+            {
+                if(m_instructions[no].m_valeurs[i] == -2)
+                    id = indent + 1;
+
+                Sauvegarder_instruction(fichier ,m_instructions[no].m_valeurs[i],id);
+            }
+
+            for(int i = 0 ; i < indent; ++i)
+                fichier<<'\t';
+
             fichier<<"end"<<endl;
         }
         else
         {
-            for(int i = 0 ; i < m_instructions[no].valeurs.size() ; ++i)
-                fichier<<"* "<<m_instructions[no].valeurs[i]<<" ";
-            if(!m_instructions[no].valeurString.empty())
-                fichier<<"\" "<<m_instructions[no].valeurString;
-            fichier<<endl;
+            for(unsigned i = 0 ; i < m_instructions[no].m_valeurs.size() ; ++i)
+                if(m_instructions[no].m_string_valeurs[i] != "")
+                {
+                    fichier<<"* "<<m_instructions[no].m_string_valeurs[i]<<" ";
+                    if(m_instructions[no].m_string_valeurs[i] == "variable")
+                        fichier<<m_instructions[no].m_valeurs[i]<<" ";
+                }
+                else
+                    fichier<<"* "<<m_instructions[no].m_valeurs[i]<<" ";
         }
+        fichier<<endl;
+    }
+}
 
+void Script::Sauvegarder(ostringstream &fichier)
+{
+    for(int i = 0 ; i < m_variables.size() ; ++i)
+        fichier<<endl<<"variable "<<i<<" "<<m_variables[i]<<endl;
+    Sauvegarder_instruction(fichier , 0);
+}
+
+void Script::Sauvegarder_instruction(ofstream &fichier , int no, int indent)
+{
+    for(int i = 0 ; i < indent - (no == -2 || no == -1); ++i)
+        fichier<<'\t';
+
+    if(no == -2)
+        fichier<<"then"<<endl;
+    else if(no == -3)
+        fichier<<"else"<<endl;
+    else if(no >= 0 && no < (int)m_instructions.size())
+    {
+        fichier<<m_instructions[no].nom<<" ";
+        if(m_instructions[no].nom == "if" || m_instructions[no].nom == "main")
+        {
+            for(unsigned i = 0 ; i < m_instructions[no].m_valeurs.size() ; ++i)
+                Sauvegarder_instruction(fichier ,m_instructions[no].m_valeurs[i],indent+1);
+
+            fichier<<"end"<<endl;
+        }
+        else
+        {
+            for(unsigned i = 0 ; i < m_instructions[no].m_valeurs.size() ; ++i)
+                if(m_instructions[no].m_string_valeurs[i] != "")
+                {
+                    fichier<<"* "<<m_instructions[no].m_string_valeurs[i]<<" ";
+                    if(m_instructions[no].m_string_valeurs[i] == "variable")
+                        fichier<<m_instructions[no].m_valeurs[i]<<" ";
+                }
+                else
+                    fichier<<"* "<<m_instructions[no].m_valeurs[i]<<" ";
+        }
+        fichier<<endl;
     }
 }
 
 void Script::Sauvegarder(ofstream &fichier)
 {
-    //Sauvegarder_instruction(fichier , 0, 0);
-    fichier<<m_text<<endl;
-}
-
-
-
-void Script::Sauvegarder_instruction(std::ostringstream &fichier , int no, int indentation, bool noIdentation, bool final)
-{
-    if(no == -2)
-    {
-        for(int o = 1 ; o < indentation ; ++o)
-                fichier<<'\t';
-        fichier<<"then"<<endl;
-        noIdentation = false;
-    }
-    else if(no == -3)
-    {
-        for(int o = 1 ; o < indentation ; ++o)
-                fichier<<'\t';
-        fichier<<"else"<<endl;
-        noIdentation = false;
-    }
-    else if(no >= 0 && no < (int)m_instructions.size())
-    {
-        for(int o = 0 ; o < indentation ; ++o)
-            fichier<<'\t';
-        if(noIdentation)
-            fichier<<"   ";
-
-        fichier<<m_instructions[no].nom<<" ";
-        if(m_instructions[no].nom == "if" || m_instructions[no].nom == "main")
-        {
-            if(m_instructions[no].nom == "main")
-                fichier<<endl;
-            else
-                noIdentation = true;
-
-            indentation++;
-            for(int i = 0 ; i < m_instructions[no].valeurs.size() ; ++i)
-            {
-                if(m_instructions[no].valeurs[i] == -2)
-                    noIdentation = false;
-                if(noIdentation)
-                {
-                    if(i == 0)
-                        Sauvegarder_instruction(fichier ,m_instructions[no].valeurs[i], 0, false, (i==m_instructions[no].valeurs.size()-1));
-                    else
-                        Sauvegarder_instruction(fichier ,m_instructions[no].valeurs[i], indentation - 1, true, (i==m_instructions[no].valeurs.size()-1));
-                }
-                else
-                    Sauvegarder_instruction(fichier ,m_instructions[no].valeurs[i], indentation, false, (i==m_instructions[no].valeurs.size()-1));
-            }
-
-
-            for(int o = 1 ; o < indentation ; ++o)
-                fichier<<'\t';
-
-
-            fichier<<"end"<<endl;
-            if(!final)
-                fichier<<endl;
-        }
-        else
-        {
-            for(int i = 0 ; i < m_instructions[no].valeurs.size() ; ++i)
-                fichier<<"* "<<m_instructions[no].valeurs[i]<<" ";
-            if(!m_instructions[no].valeurString.empty())
-                fichier<<"\" "<<m_instructions[no].valeurString;
-            fichier<<endl;
-        }
-
-    }
-}
-
-void Script::Sauvegarder(std::ostringstream &fichier)
-{
-    Sauvegarder_instruction(fichier , 0, 0, 0);
+    for(int i = 0 ; i < m_variables.size() ; ++i)
+        fichier<<endl<<"variable "<<i<<" "<<m_variables[i]<<endl;
+    Sauvegarder_instruction(fichier , 0);
 }
 
 void Script::Charger(ifstream &fichier)
 {
     if (fichier)
     {
-      //  while(!fichier.eof())
-          //  getline(fichier, m_text);
         string temp;
         while (!fichier.eof()&&temp!="main")
         {
             fichier>>temp;
-            Instruction instructionBuffer;
-            instructionBuffer.nom="main";
-            m_instructions.push_back(instructionBuffer);
+            if(temp == "main")
+            {
+                Instruction instructionBuffer;
+                instructionBuffer.nom="main";
+                m_instructions.push_back(instructionBuffer);
+            }
+            else if(temp == "variable")
+            {
+                int no = 0, val = 0;
+                fichier>>no>>val;
+                 if(no >= m_variables.size())
+                    m_variables.resize(no + 1);
+                m_variables[no] = val;
+            }
+
         }
 
         bool OK=true;
@@ -260,16 +275,18 @@ void Script::Charger(ifstream &fichier)
             if (temp==-1)
                 OK=false;
             else
-                m_instructions[0].valeurs.push_back(temp);
+            {
+                m_instructions[0].m_valeurs.push_back(temp);
+                m_instructions[0].m_string_valeurs.push_back("");
+            }
+
         }
         fichier.close();
     }
 
-
-
 }
 
-void Script::Charger(std::string chemin)
+void Script::Charger(const std::string &chemin)
 {
     ifstream fichier;
     fichier.open(chemin.c_str(), ios::in);
@@ -277,4 +294,68 @@ void Script::Charger(std::string chemin)
     Charger(fichier);
 
     console->Ajouter("Chargement du script : \" "+chemin+" \"");
+}
+
+void Script::setVariable(int i, float val)
+{
+    if(i >= m_variables.size())
+        m_variables.resize(i + 1);
+
+    m_variables[i] = val;
+}
+
+float Script::getVariable(int i)
+{
+    if(i >= m_variables.size())
+        m_variables.resize(i + 1, 0);
+
+    return m_variables[i];
+}
+
+int Script::getNbrVariable()
+{
+    return m_variables.size();
+}
+
+void Script::setValeur(int no, int i, float val)
+{
+    if( no >= 0 && no < m_instructions.size())
+    {
+        if(i >= m_instructions[no].m_valeurs.size())
+            m_instructions[no].m_valeurs.resize(i + 1, 0), m_instructions[no].m_string_valeurs.resize(i + 1, "");
+
+        m_instructions[no].m_valeurs[i] = val;
+    }
+}
+
+float Script::getValeur(int no, int i)
+{
+    if( no >= 0 && no < m_instructions.size())
+    {
+        if(i >= m_instructions[no].m_valeurs.size())
+        {
+            m_instructions[no].m_valeurs.resize(i + 1, 0);
+            m_instructions[no].m_string_valeurs.resize(i + 1, "");
+        }
+
+        if(m_instructions[no].m_string_valeurs[i] != "")
+        {
+           /*if(m_instructions[no].m_string_valeurs[i] == "day")
+                return configuration->jour;
+            else if(m_instructions[no].m_string_valeurs[i] == "time")
+                return configuration->elapsed_time;
+            else if(m_instructions[no].m_string_valeurs[i] == "variable")
+            {
+                if(m_instructions[no].m_valeurs[i] < m_variables.size())
+                    return m_variables[m_instructions[no].m_valeurs[i]];
+                else
+                    return (0);
+            }*/
+
+        }
+        else
+            return m_instructions[no].m_valeurs[i];
+    }
+
+    return (0);
 }

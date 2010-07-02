@@ -159,6 +159,10 @@ public:
     int m_img_sky;
     std::string m_nom_img_sky;
 
+    int m_entite_angle;
+
+    std::vector<std::string> m_climates;
+
 };
 
 

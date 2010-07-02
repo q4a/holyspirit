@@ -39,6 +39,16 @@ Entite_graphique::Entite_graphique()
     option_forcedLight      = false;
     option_forcedShadow     = false;
     option_forcedReflect    = false;
+
+    m_decalage.x = 0;
+    m_decalage.y = 0;
+    m_scale.x = 100;
+    m_scale.y = 100;
+    m_rotation = 0;
+    m_color.r = 255;
+    m_color.g = 255;
+    m_color.b = 255;
+    m_color.a = 255;
 }
 
 Entite_graphique::~Entite_graphique()
@@ -221,4 +231,79 @@ void Entite_graphique::Generer()
                     m_reflect = true;*/
         }
     }
+}
+
+void Entite_graphique::SaveParameters(std::ofstream &fichier)
+{
+     if(m_decalage.x != 0 || m_decalage.y != 0
+     ||m_scale.x != 100 || m_scale.y != 100
+     ||m_rotation != 0
+     ||m_color.r != 255 || m_color.g != 255 || m_color.b != 255 || m_color.a != 255)
+     {
+         fichier<<"p";
+         if(m_decalage.x != 0)
+            fichier<<" tx"<<m_decalage.x;
+         if(m_decalage.y != 0)
+            fichier<<" ty"<<m_decalage.y;
+
+         if(m_scale.x != 100)
+            fichier<<" sx"<<m_scale.x;
+         if(m_scale.y != 100)
+            fichier<<" sy"<<m_scale.y;
+
+        if(m_rotation != 0)
+            fichier<<" r"<<m_rotation;
+
+         if(m_color.r != 255)
+            fichier<<" cr"<<m_color.r;
+         if(m_color.g != 255)
+            fichier<<" cg"<<m_color.g;
+         if(m_color.b != 255)
+            fichier<<" cb"<<m_color.b;
+         if(m_color.a != 255)
+            fichier<<" ca"<<m_color.a;
+
+        fichier<<" $ ";
+     }
+
+}
+void Entite_graphique::LoadParameters(std::ifstream &fichier)
+{
+    char caractere;
+    do
+    {
+        fichier.get(caractere);
+        if(caractere == 't')
+        {
+            fichier.get(caractere);
+            if(caractere == 'x')
+                fichier>>m_decalage.x;
+            if(caractere == 'y')
+                fichier>>m_decalage.y;
+        }
+        if(caractere == 's')
+        {
+            fichier.get(caractere);
+            if(caractere == 'x')
+                fichier>>m_scale.x;
+            if(caractere == 'y')
+                fichier>>m_scale.y;
+        }
+        if(caractere == 'r')
+        {
+            fichier>>m_rotation;
+        }
+        if(caractere == 'c')
+        {
+            fichier.get(caractere);
+            if(caractere == 'r')
+                fichier>>m_color.r;
+            if(caractere == 'g')
+                fichier>>m_color.g;
+            if(caractere == 'b')
+                fichier>>m_color.b;
+            if(caractere == 'a')
+                fichier>>m_color.a;
+        }
+    }while(caractere != '$');
 }

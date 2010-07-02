@@ -31,7 +31,7 @@ public:
     ~Modele_Monstre();
 
     bool Charger(std::string chemin);
-    std::vector<Objet> getObjets();
+    std::vector <std::vector<Objet> > getObjets();
 
     std::string m_chemin;
 
@@ -41,7 +41,7 @@ public:
     bool m_friendly;
 
 private:
-    std::vector<Objet> m_objets;
+    std::vector <std::vector<Objet> > m_objets;
 };
 
 
