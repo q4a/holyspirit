@@ -459,6 +459,8 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         else if (script->m_instructions[noInstruction].nom=="stop_talk")
         {
             jeu->hero.m_personnage.m_cible = NULL;
+            eventManager->StopEvenement(Mouse::Left,EventClic);
+            eventManager->StopEvenement(Mouse::Left,EventClicA);
         }
         else if (script->m_instructions[noInstruction].nom=="addCash")
         {

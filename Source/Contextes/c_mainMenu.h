@@ -26,7 +26,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "contexte.h"
 
-enum {E_PRINCIPAL, E_CONTINUER, E_NOUVEAU};
+enum {E_PRINCIPAL, E_CONTINUER, E_NOUVEAU, E_CREDITS};
 
 class c_MainMenu : public Contexte
 {
@@ -34,6 +34,11 @@ public:
     c_MainMenu();
     void Utiliser(Jeu *jeu);
     void Reset(Jeu *jeu);
+
+    void  E_Principal(Jeu *jeu);
+    void  E_Continuer(Jeu *jeu);
+    void  E_Nouveau(Jeu *jeu);
+    void  E_Credits(Jeu *jeu);
 
     bool m_save;
     bool m_reset;
@@ -57,6 +62,9 @@ private:
     Light_Entity m_light;
 
     float time;
+
+    std::vector<std::string> m_credits;
+    float m_credit_defil;
 };
 
 #endif
