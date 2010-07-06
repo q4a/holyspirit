@@ -1,36 +1,28 @@
 
 main 
-	if talk
+	if variable * 1 * 0
 	then
-		variable * 2 * 0
-		
-		if variable * 0 * 1
-		then
-			variable * 0 * 0
-		else
-			variable * 0 * 1
-		end
-		
-		stop_talk
-	end
-	
-	if variable * 2 * 0
-	then
-		if variable * 1 * 0
+		if talk
 		then
 			if variable * 0 * 1
 			then
-				setState * 3 * 0
-				setCollision * 0
+				variable * 0 * 0
+				setState * 0  * 0
 			else
-				setState * 0 * 0
-				setCollision * 1
+				variable * 0 * 1
+				setState * 3  * 0
 			end
-		else
-			setState * 0 * 0
-			setCollision * 1
+			
+			stop_talk
 		end
 	end
 	
-	variable * 2 * 1
+	if variable * 0 * 1
+	then
+		setState * 3 
+		setCollision * 0
+	else
+		setState * 0 
+		setCollision * 1
+	end
 end 

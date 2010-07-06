@@ -1,4 +1,11 @@
 
+
+
+*HOLYSPIRIT
+
+
+*Alpha-arts
+
 *Project Leader & Programmer
 Gregouar (Naisse Grégoire)
 
@@ -10,8 +17,8 @@ Killpatate (Vaillant Aurélien)
 Bravach (Naisse Corentin)
 Gregouar (Naisse Grégoire)
 
-*Scriptwriter
-Roger
+*Texts
+Roger (Izard Jérome)
 
 *Sound Designer
 Akuma (Tribbiani Edouard)
@@ -22,6 +29,9 @@ Clément
 *Webmasters
 Schnafon
 EnTraversDesNéons
+
+
+*Externs
 
 *Translators
 Richard Jim (Spanish)
