@@ -106,8 +106,8 @@ void Entite_graphique::NextTile()
 
         if(m_fixed)
         {
-            position.x = moteurGraphique->m_camera.GetCenter().x;
-            position.y = moteurGraphique->m_camera.GetCenter().y;
+            position.x = (int)moteurGraphique->m_camera.GetCenter().x;
+            position.y = (int)moteurGraphique->m_camera.GetCenter().y;
         }
 
 

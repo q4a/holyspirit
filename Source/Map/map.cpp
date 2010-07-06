@@ -1107,7 +1107,7 @@ void Map::Initialiser(Hero *hero)
             if(m_monstre[i].m_entite_graphique.m_light.ID() == -1)
             {
                 m_monstre[i].m_entite_graphique.m_light=moteurGraphique->LightManager->Add_Dynamic_Light();
-                moteurGraphique->LightManager->SetQuality(m_monstre[i].m_entite_graphique.m_light,6);
+                moteurGraphique->LightManager->SetQuality(m_monstre[i].m_entite_graphique.m_light,8);
             }
 
 

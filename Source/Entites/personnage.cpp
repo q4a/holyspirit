@@ -583,8 +583,8 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception, bool noD
 bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap)
 {
     sf::Vector2f pos;
-    pos.x=((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE);
-    pos.y=((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)+64+1;
+    pos.x=((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE) + 0.1;
+    pos.y=((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)+64+1 + 0.1;
 
     moteurGraphique->LightManager->SetPosition(m_entite_graphique.m_light,pos);
 

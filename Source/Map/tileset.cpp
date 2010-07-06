@@ -630,7 +630,7 @@ void Tileset::JouerSon(int numeroSon,coordonnee position, bool unique, float vol
         if(m_sons[numeroSon].unique == true)
             unique = true;
 
-        moteurSons->JouerSon(m_sons[numeroSon].no,pos,unique,volume);
+        moteurSons->JouerSon(m_sons[numeroSon].no,pos,unique,(int)volume);
     }
 }
 

@@ -212,12 +212,9 @@ float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int leve
 
         if (caractere == '+')
         {
-             if(priorite == '+' || priorite == '-')
+             if(priorite == '+')
              {
-                if(priorite == '-')
-                    valeur -= ChargerEquation(fichier, caract, level, '+', continuer);
-                else
-                    valeur += ChargerEquation(fichier, caract, level, '+', continuer);
+                valeur += ChargerEquation(fichier, caract, level, '+', continuer);
 
                 if(!*continuer)
                     return valeur;
@@ -233,12 +230,9 @@ float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int leve
         }
         else if (caractere == '-')
         {
-             if(priorite == '+' || priorite == '-')
+             if(priorite == '+')
              {
-                if(priorite == '-')
-                    valeur += ChargerEquation(fichier, caract, level, '-', continuer);
-                else
-                    valeur -= ChargerEquation(fichier, caract, level, '-', continuer);
+                valeur -= ChargerEquation(fichier, caract, level, '-', continuer);
 
                 if(!*continuer)
                     return valeur;

@@ -368,7 +368,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             script->setVariable((int)script->getValeur(noInstruction, 0), script->getValeur(noInstruction, 1));
         else if (script->m_instructions[noInstruction].nom=="incrementVariable")
             script->setVariable((int)script->getValeur(noInstruction, 0),
-                                script->getVariable(script->getValeur(noInstruction, 0)) + script->getValeur(noInstruction, 1));
+                                script->getVariable((int)script->getValeur(noInstruction, 0)) + script->getValeur(noInstruction, 1));
         else if (script->m_instructions[noInstruction].nom=="setCollision" && monstre != -1)
         {
             m_monstre[monstre].m_collision = script->getValeur(noInstruction, 0);
@@ -405,7 +405,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         {
             jeu->menu.AddSpeakChoice(   DecouperTexte(configuration->getText(4, (int)script->getValeur(noInstruction, 0)),
                                                       hero->m_classe.position_contenu_dialogue.w, 14),
-                                        script->getValeur(noInstruction, 1));
+                                        (int)script->getValeur(noInstruction, 1));
             eventManager->StopEvenement(Mouse::Left,EventClic);
             hero->m_personnage.setArrivee(hero->m_personnage.getProchaineCase());
 
@@ -453,8 +453,8 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         else if (script->m_instructions[noInstruction].nom=="giftItem" && monstre != -1)
         {
             if (script->getValeur(noInstruction, 0) >= 0 && script->getValeur(noInstruction, 0) < (int)(*m_monstre[monstre].getPointeurObjets()).size())
-                if (!hero->AjouterObjet((*m_monstre[monstre].getPointeurObjets())[script->getValeur(noInstruction, 0)], false))
-                    m_decor[1][hero->m_personnage.getCoordonnee().y][hero->m_personnage.getCoordonnee().x].AjouterObjet((*m_monstre[monstre].getPointeurObjets())[script->getValeur(noInstruction, 0)]);
+                if (!hero->AjouterObjet((*m_monstre[monstre].getPointeurObjets())[(unsigned)script->getValeur(noInstruction, 0)], false))
+                    m_decor[1][hero->m_personnage.getCoordonnee().y][hero->m_personnage.getCoordonnee().x].AjouterObjet((*m_monstre[monstre].getPointeurObjets())[(unsigned)script->getValeur(noInstruction, 0)]);
         }
         else if (script->m_instructions[noInstruction].nom=="stop_talk")
         {
@@ -464,7 +464,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         }
         else if (script->m_instructions[noInstruction].nom=="addCash")
         {
-            hero->m_argent += script->getValeur(noInstruction, 0);
+            hero->m_argent += (int)script->getValeur(noInstruction, 0);
         }
         else if (script->m_instructions[noInstruction].nom=="heal")
         {
@@ -473,8 +473,8 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         else if (script->m_instructions[noInstruction].nom=="entity_variable" && monstre == -1)
         {
             if(script->getValeur(noInstruction, 0) < m_listID.size())
-                for(unsigned i = 0 ; i < m_listID[script->getValeur(noInstruction, 0)].size() ; ++i)
-                    m_monstre[m_listID[script->getValeur(noInstruction, 0)][i]].m_scriptAI.setVariable(script->getValeur(noInstruction, 1), script->getValeur(noInstruction, 2));
+                for(unsigned i = 0 ; i < m_listID[(unsigned)script->getValeur(noInstruction, 0)].size() ; ++i)
+                    m_monstre[m_listID[(unsigned)script->getValeur(noInstruction, 0)][i]].m_scriptAI.setVariable((int)script->getValeur(noInstruction, 1), script->getValeur(noInstruction, 2));
         }
         else if (script->m_instructions[noInstruction].nom=="setTile" && monstre == -1)
         {
@@ -482,17 +482,17 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                 if(script->getValeur(noInstruction, 1) >= 0 && script->getValeur(noInstruction, 1) < (int)m_decor[0][0].size())
                     if(script->getValeur(noInstruction, 2) >= 0 && script->getValeur(noInstruction, 2) < (int)m_decor[0].size())
                     {
-                        int x = script->getValeur(noInstruction, 1);
-                        int y = script->getValeur(noInstruction, 2);
-                        int z = script->getValeur(noInstruction, 0);
-                        m_decor[z][y][x].setTile(script->getValeur(noInstruction, 3));
-                        m_decor[z][y][x].m_entite_graphique.m_noAnimation = script->getValeur(noInstruction, 3);
+                        int x = (unsigned)script->getValeur(noInstruction, 1);
+                        int y = (unsigned)script->getValeur(noInstruction, 2);
+                        int z = (unsigned)script->getValeur(noInstruction, 0);
+                        m_decor[z][y][x].setTile((int)script->getValeur(noInstruction, 3));
+                        m_decor[z][y][x].m_entite_graphique.m_noAnimation = (int)script->getValeur(noInstruction, 3);
                     }
         }
         else if (script->m_instructions[noInstruction].nom=="setClimate")
         {
             if(script->getValeur(noInstruction, 0) >= 0 && script->getValeur(noInstruction, 0) < m_climates.size())
-                m_climates[script->getValeur(noInstruction, 0)].m_actif = script->getValeur(noInstruction, 1);
+                m_climates[(unsigned)script->getValeur(noInstruction, 0)].m_actif = (bool)script->getValeur(noInstruction, 1);
         }
     }
 }
@@ -507,151 +507,156 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
         {
             if (script->m_instructions[noInstruction].m_valeurs[b]>=0&&script->m_instructions[noInstruction].m_valeurs[b]<(int)script->m_instructions.size())
             {
-                if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="alive" && monstre != -1)
+                int no = (int) script->m_instructions[noInstruction].m_valeurs[b];
+
+                if (script->m_instructions[no].nom=="alive" && monstre != -1)
                 {
                     if (!m_monstre[monstre].EnVie())
                         ok=false;
                 }
-                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="see" && monstre != -1)
+                else if (script->m_instructions[no].nom=="see" && monstre != -1)
                 {
                     if (!m_monstre[monstre].getVu())
                         ok=false;
                 }
-                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="shooter" && monstre != -1)
+                else if (script->m_instructions[no].nom=="shooter" && monstre != -1)
                 {
                     if (!m_monstre[monstre].m_shooter)
                         ok=false;
                 }
-                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="touch" && monstre != -1)
+                else if (script->m_instructions[no].nom=="touch" && monstre != -1)
                 {
                     if (!m_monstre[monstre].m_touche)
                         ok=false;
                 }
-                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="stop" && monstre != -1)
+                else if (script->m_instructions[no].nom=="stop" && monstre != -1)
                 {
                     if (!seDeplacer)
                         ok=false;
                 }
-                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="getState" && monstre != -1)
+                else if (script->m_instructions[no].nom=="getState" && monstre != -1)
                 {
-                    if (m_monstre[monstre].getEtat() != script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 0))
+                    if (m_monstre[monstre].getEtat() != (int)script->getValeur(no, 0))
                         ok=false;
                 }
-                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="numberInvocation" && monstre != -1)
+                else if (script->m_instructions[no].nom=="numberInvocation" && monstre != -1)
                 {
-                    if (m_monstre[monstre].m_nombreInvocation!=script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 0))
+                    if (m_monstre[monstre].m_nombreInvocation != (int)script->getValeur(no, 0))
                         ok=false;
                 }
-                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="distance" && monstre != -1)
+                else if (script->m_instructions[no].nom=="distance" && monstre != -1)
                 {
-                    if (((m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)*(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x) + (m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)*(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)) >= script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 0)*script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 0))
+                    if (((m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)
+                        *(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)
+                    +    (m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)
+                        *(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)) >= script->getValeur(no, 0)*script->getValeur(no, 0))
                         ok=false;
                 }
-                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="exist_item")
+                else if (script->m_instructions[no].nom=="exist_item")
                 {
                     int nbr = 0;
                     for(unsigned i = 0 ; i < hero->getNombreObjet() ; ++i)
-                        if(hero->getNomObjet(i) == script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].valeurString)
+                        if(hero->getNomObjet(i) == script->m_instructions[no].valeurString)
                             nbr++;
 
 
-                    if(nbr < script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 0))
+                    if(nbr < script->getValeur(no, 0))
                          ok = false;
-                    else if(script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 1))
+                    else if(script->getValeur(no, 1))
                         for(unsigned i = 0 ; i < hero->getNombreObjet() ; ++i)
-                            if(hero->getNomObjet(i) == script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].valeurString)
+                            if(hero->getNomObjet(i) == script->m_instructions[no].valeurString)
                                 hero->delObjet(i), i--;
 
                 }
-                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="rand")
+                else if (script->m_instructions[no].nom=="rand")
                 {
-                    if (rand() % 100 < script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 0))
+                    if (rand() % 100 < script->getValeur(no, 0))
                         ok=false;
                 }
-                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="variable")
+                else if (script->m_instructions[no].nom=="variable")
                 {
-                    if (script->getVariable(script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 0))!=script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 1))
+                    if (script->getVariable((int)script->getValeur(no, 0))!=script->getValeur(no, 1))
                         ok=false;
                 }
-                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="variable_bigger")
+                else if (script->m_instructions[no].nom=="variable_bigger")
                 {
-                    if (script->getVariable(script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 0))<script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 1))
+                    if (script->getVariable((int)script->getValeur(no, 0))<script->getValeur(no, 1))
                         ok=false;
                 }
-                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="variable_smaller")
+                else if (script->m_instructions[no].nom=="variable_smaller")
                 {
-                    if (script->getVariable(script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 0))>script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 1))
+                    if (script->getVariable((int)script->getValeur(no, 0))>script->getValeur(no, 1))
                         ok=false;
                 }
-                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="talk" && monstre != -1)
+                else if (script->m_instructions[no].nom=="talk" && monstre != -1)
                 {
                     if (!(hero->m_personnage.m_cible == &m_monstre[monstre]
                     &&fabs(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)<=1
                     &&fabs(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)<=1))
                         ok=false;
                 }
-                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="clicOver" && monstre != -1)
+                else if (script->m_instructions[no].nom=="clicOver" && monstre != -1)
                 {
                     if (!(hero->m_personnage.m_cible == &m_monstre[monstre]))
                         ok=false;
                 }
-                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="speak_choice" && monstre != -1)
+                else if (script->m_instructions[no].nom=="speak_choice" && monstre != -1)
                 {
-                    if (menu->getSpeakChoice() != script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 0))
+                    if (menu->getSpeakChoice() != script->getValeur(no, 0))
                         ok=false;
                 }
-                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="no_speak")
+                else if (script->m_instructions[no].nom=="no_speak")
                 {
                     if (!jeu->menu.m_dialogue.empty())
                         ok=false;
                 }
-                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="hour")
+                else if (script->m_instructions[no].nom=="hour")
                 {
-                    if (configuration->heure < script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 0)
-                     || configuration->heure > script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 1) )
+                    if (configuration->heure < script->getValeur(no, 0)
+                     || configuration->heure > script->getValeur(no, 1) )
                         ok=false;
                 }
-                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="player_class")
+                else if (script->m_instructions[no].nom=="player_class")
                 {
-                    if (jeu->hero.m_cheminClasse != script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].valeurString)
+                    if (jeu->hero.m_cheminClasse != script->m_instructions[no].valeurString)
                         ok=false;
                 }
-                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="quest")
+                else if (script->m_instructions[no].nom=="quest")
                 {
-                    if (script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 1) == -1)
+                    if (script->getValeur(no, 1) == -1)
                     {
                         for (int i = 0;i < (int)hero->m_quetes.size(); ++i)
-                            if (hero->m_quetes[i].m_id == script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 0))
+                            if (hero->m_quetes[i].m_id == script->getValeur(no, 0))
                                 ok = false;
                     }
                     else if(ok)
                     {
                         ok = false;
                         for (int i = 0;i < (int)hero->m_quetes.size(); ++i)
-                            if (hero->m_quetes[i].m_id == script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 0))
-                                if (hero->m_quetes[i].m_statut == script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 1))
+                            if (hero->m_quetes[i].m_id == script->getValeur(no, 0))
+                                if (hero->m_quetes[i].m_statut == script->getValeur(no, 1))
                                     ok = true;
                     }
                 }
-                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="entity_variable" && monstre == -1)
+                else if (script->m_instructions[no].nom=="entity_variable" && monstre == -1)
                 {
-                    if(script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 0) < m_listID.size())
+                    if(script->getValeur(no, 0) < m_listID.size())
                     {
-                        for(unsigned i = 0 ; i < m_listID[script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 0)].size() ; ++i)
-                            if (m_monstre[m_listID[script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 0)][i]].m_scriptAI.getVariable(script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 1))!=script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 2))
+                        for(unsigned i = 0 ; i < m_listID[(int)script->getValeur(no, 0)].size() ; ++i)
+                            if (m_monstre[m_listID[(int)script->getValeur(no, 0)][i]].m_scriptAI.getVariable((int)script->getValeur(no, 1))!=script->getValeur(no, 2))
                                 ok = false;
                     }
                     else
                         ok = false;
                 }
-                else if (script->m_instructions[script->m_instructions[noInstruction].m_valeurs[b]].nom=="entity_dead" && monstre == -1)
+                else if (script->m_instructions[no].nom=="entity_dead" && monstre == -1)
                 {
-                    if(script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 0) < m_listID.size())
+                    if(script->getValeur(no, 0) < m_listID.size())
                     {
-                        for(unsigned i = 0 ; i < m_listID[script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 0)].size() ; ++i)
-                            if (m_monstre[m_listID[script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 0)][i]].EnVie())
-                                if(m_monstre[m_listID[script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 0)][i]].m_friendly ==
-                                   m_ModeleMonstre[m_monstre[m_listID[script->getValeur(script->m_instructions[noInstruction].m_valeurs[b], 0)][i]].getModele()].m_friendly)
+                        for(unsigned i = 0 ; i < m_listID[(int)script->getValeur(no, 0)].size() ; ++i)
+                            if (m_monstre[m_listID[(int)script->getValeur(no, 0)][i]].EnVie())
+                                if(m_monstre[m_listID[(int)script->getValeur(no, 0)][i]].m_friendly ==
+                                   m_ModeleMonstre[m_monstre[m_listID[(int)script->getValeur(no, 0)][i]].getModele()].m_friendly)
                                     ok = false;
                     }
                     else
@@ -662,10 +667,10 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
         for (;b<(int)script->m_instructions[noInstruction].m_valeurs.size()&&script->m_instructions[noInstruction].m_valeurs[b]!=-1&&script->m_instructions[noInstruction].m_valeurs[b]!=-3;b++)
             if (ok)
                 if (script->m_instructions[noInstruction].m_valeurs[b]>=0&&script->m_instructions[noInstruction].m_valeurs[b]<(int)script->m_instructions.size())
-                    GererInstructions(jeu,script,script->m_instructions[noInstruction].m_valeurs[b],monstre,hero,temps,menu,seDeplacer);
+                    GererInstructions(jeu,script,(int)script->m_instructions[noInstruction].m_valeurs[b],monstre,hero,temps,menu,seDeplacer);
         if (!ok)
             for (;b<(int)script->m_instructions[noInstruction].m_valeurs.size()&&script->m_instructions[noInstruction].m_valeurs[b]!=-1;b++)
                 if (script->m_instructions[noInstruction].m_valeurs[b]>=0&&script->m_instructions[noInstruction].m_valeurs[b]<(int)script->m_instructions.size())
-                    GererInstructions(jeu,script,script->m_instructions[noInstruction].m_valeurs[b],monstre,hero,temps,menu,seDeplacer);
+                    GererInstructions(jeu,script,(int)script->m_instructions[noInstruction].m_valeurs[b],monstre,hero,temps,menu,seDeplacer);
     }
 }
