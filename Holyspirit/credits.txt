@@ -1,10 +1,10 @@
 
 
 
-*HOLYSPIRIT
+-HOLYSPIRIT
 
 
-*Alpha-arts
++Alpha-arts
 
 *Project Leader & Programmer
 Gregouar (Naisse Grégoire)
@@ -20,18 +20,18 @@ Gregouar (Naisse Grégoire)
 *Texts
 Roger (Izard Jérome)
 
-*Sound Designer
-Akuma (Tribbiani Edouard)
-
 *Compositor
 Clément
 
 *Webmasters
-Schnafon
+Schnafon (Xavier Lambein)
 EnTraversDesNéons
 
+*Sound Designer
+Akuma (Tribbiani Edouard)
 
-*Externs
+
++Externs
 
 *Translators
 Richard Jim (Spanish)
@@ -44,6 +44,27 @@ Darktib
 King Kadelfek
 Gavos
 Emixam62
+
+
++Tools
+
+*IDE
+Code::Block (http://www.codeblocks.org/)
+
+*Libraries
+SFML (http://www.sfml-dev.org)
+QT (http://qt.nokia.com/)
+
+*3D Softwares
+Autodesk 3D Studio Max
+Blender (http://www.blender.org/)
+
+*2D Softwares
+Adobe Photoshop CS4
+The Gimp (http://www.gimp.org/)
+
+*SVN 
+TortoiseSVN (http://tortoisesvn.tigris.org/)
 
 ****
 
