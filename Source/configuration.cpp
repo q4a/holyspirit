@@ -258,8 +258,10 @@ void Configuration::ChargerTxt()
 const std::string &Configuration::getText(int type, int no)
 {
 #define RETURN_TEXT(text) \
-    if((int)text.size() > no) \
-        return text[no];
+    if((int)text.size() > no && no >= 0) \
+        return text[no]; \
+    else \
+        return error;
 
     switch(type) {
         case 0:

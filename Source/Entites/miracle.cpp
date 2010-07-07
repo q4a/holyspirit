@@ -136,45 +136,12 @@ float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int leve
 
 float getValeur(ifstream &fichier, char caractere)
 {
-    int temp = 0;
-    std::vector<char> buf;
-    do
-    {
-        buf.push_back(caractere);
-        fichier.get(caractere);
-    }
-    while (caractere >= '0' && caractere <= '9');
+    float temp = 0;
 
-    for (unsigned i = 0 ; i < buf.size() ; i++ )
-    {
-        int val = 0;
-        if (buf[i] == '0')
-            val = 0;
-        else if (buf[i] == '1')
-            val = 1;
-        else if (buf[i] == '2')
-            val = 2;
-        else if (buf[i] == '3')
-            val = 3;
-        else if (buf[i] == '4')
-            val = 4;
-        else if (buf[i] == '5')
-            val = 5;
-        else if (buf[i] == '6')
-            val = 6;
-        else if (buf[i] == '7')
-            val = 7;
-        else if (buf[i] == '8')
-            val = 8;
-        else if (buf[i] == '9')
-            val = 9;
+    fichier.putback(caractere);
 
-        int exposant = 1;
-        for (unsigned j = 0 ; j < (buf.size() - i - 1) ; ++j)
-            exposant *= 10;
+    fichier>>temp;
 
-        temp += val * exposant;
-    }
     return temp;
 }
 
@@ -248,7 +215,7 @@ float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int leve
         }
         else if (caractere == '*')
         {
-             if(priorite == '*' || priorite == '+' || priorite == '-')
+             if(priorite == '+' || priorite == '-')
              {
                 valeur *= ChargerEquation(fichier, caract, level, '*', continuer);
                 if(!*continuer)
@@ -260,11 +227,12 @@ float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int leve
              {
                  fichier.putback(caractere);
                 *continuer = true;
+                 return valeur;
              }
         }
         else if (caractere == '/')
         {
-             if(priorite == '*' || priorite == '+' || priorite == '-')
+             if(priorite == '+' || priorite == '-')
              {
                 valeur /= ChargerEquation(fichier, caract, level, '*', continuer);
                 if(!*continuer)
@@ -276,11 +244,12 @@ float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int leve
              {
                  fichier.putback(caractere);
                 *continuer = true;
+                 return valeur;
              }
         }
         else if (caractere == '^')
         {
-             if( priorite == '^' || priorite == '*' || priorite == '+' || priorite == '-')
+             if( priorite == '*' || priorite == '+' || priorite == '-')
              {
                 float temp = ChargerEquation(fichier, caract, level, '^', continuer);
                 float buf = valeur;
@@ -297,6 +266,7 @@ float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int leve
              {
                  fichier.putback(caractere);
                 *continuer = true;
+                 return valeur;
              }
         }
 

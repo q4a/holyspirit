@@ -33,6 +33,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 using namespace sf;
 using namespace std;
 
+std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte);
 
 c_MainMenu::c_MainMenu()
 {
@@ -62,6 +63,7 @@ c_MainMenu::c_MainMenu()
     }
 
     m_credit_defil = 0;
+    m_story = DecouperTexte(configuration->getText(0,66), 640,16);
 }
 
 void c_MainMenu::Utiliser(Jeu *jeu)
@@ -151,6 +153,8 @@ void c_MainMenu::Utiliser(Jeu *jeu)
         E_Nouveau(jeu);
     else if(no_ecran == E_CREDITS)
         E_Credits(jeu);
+    else if(no_ecran == E_STORY)
+        E_Story(jeu);
 
     eventManager->AfficherCurseur();
 }
@@ -250,7 +254,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
         texte.SetColor(Color(100,50,0));
         if (eventManager->getEvenement(Mouse::Left,EventClic))
         {
-            no_ecran = E_NOUVEAU;
+            no_ecran = E_STORY;
             m_chemin_saves.clear();
             m_nom_classes.clear();
 
@@ -502,12 +506,19 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
             nom_hero.erase(nom_hero.begin() + nom_hero.size() - 1);
     eventManager->StopEvenement(sf::Key::Back,EventKey);
 
-    texte.SetCharacterSize(48);
+    texte.SetCharacterSize(32);
+
+
+    texte.SetString(configuration->getText(0,68));
+    texte.SetY(configuration->Resolution.h/2 - 256 );
+    texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
+    texte.SetColor(Color(150,100,50));
+    moteurGraphique->AjouterTexte(&texte,19,1);
 
     for(unsigned i = 0 ; i < configuration->player_class.size(); ++i)
     {
         texte.SetString(configuration->getText(3,m_nom_classes[i]));
-        texte.SetY(configuration->Resolution.h/2 - 128 - m_nom_classes.size() * 32 + i* 64 );
+        texte.SetY(configuration->Resolution.h/2 - 128 - m_nom_classes.size() * 32 + i* 48 );
         texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
 
         if (eventManager->getPositionSouris().y > texte.GetRect().Top
@@ -554,7 +565,7 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
     texte.SetCharacterSize(48);
 
     texte.SetString(configuration->getText(0,59));
-    texte.SetY(configuration->Resolution.h/2 + 96 );
+    texte.SetY(configuration->Resolution.h/2 + 128 );
     texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
     if (eventManager->getPositionSouris().y > texte.GetRect().Top
       &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height)
@@ -611,15 +622,16 @@ void  c_MainMenu::E_Credits(Jeu *jeu)
 {
     m_credit_defil += temps_ecoule * 20;
 
-    texte.SetCharacterSize(16);
+
 
     for(int i = (int)(m_credit_defil/24) ; i < (int)(m_credit_defil/24) + 17; ++i)
     {
         int no = i;
-        if(no >= m_credits.size())
+        while(no >= m_credits.size())
             no -= m_credits.size();
 
         texte.SetStyle(0);
+        texte.SetCharacterSize(16);
 
         texte.SetColor(Color(150,100,50));
 
@@ -630,8 +642,15 @@ void  c_MainMenu::E_Credits(Jeu *jeu)
 
         std::string txt = m_credits[no];
         if(m_credits[no].size() > 0)
+        {
             if(m_credits[no][0] == '*')
                 texte.SetStyle(1), txt = txt.substr(1,txt.size());
+            if(m_credits[no][0] == '+')
+                texte.SetStyle(5), txt = txt.substr(1,txt.size());
+            if(m_credits[no][0] == '-')
+                texte.SetStyle(1), texte.SetCharacterSize(24), txt = txt.substr(1,txt.size());
+        }
+
 
         texte.SetString(txt);
         texte.SetY(configuration->Resolution.h/2 - 256 + i * 24 - m_credit_defil);
@@ -651,6 +670,34 @@ void  c_MainMenu::E_Credits(Jeu *jeu)
         if(eventManager->getEvenement(Mouse::Left,EventClic))
         {
             no_ecran = E_PRINCIPAL;
+            eventManager->StopEvenement(Mouse::Left,EventClic);
+        }
+    }
+    else
+        texte.SetColor(Color(150,100,50));
+    moteurGraphique->AjouterTexte(&texte,19,1);
+}
+void  c_MainMenu::E_Story(Jeu *jeu)
+{
+    texte.SetStyle(0);
+    texte.SetCharacterSize(16);
+    texte.SetColor(Color(150,100,50));
+    texte.SetString(m_story);
+    texte.SetY(configuration->Resolution.h/2 - 256 );
+    texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
+    moteurGraphique->AjouterTexte(&texte,19,1);
+
+    texte.SetStyle(0);    texte.SetCharacterSize(48);
+    texte.SetString(configuration->getText(0,67));
+    texte.SetY(configuration->Resolution.h/2 + 192 );
+    texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
+    if (eventManager->getPositionSouris().y > texte.GetRect().Top
+      &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+    {
+        texte.SetColor(Color(100,50,0));
+        if(eventManager->getEvenement(Mouse::Left,EventClic))
+        {
+            no_ecran = E_NOUVEAU;
             eventManager->StopEvenement(Mouse::Left,EventClic);
         }
     }

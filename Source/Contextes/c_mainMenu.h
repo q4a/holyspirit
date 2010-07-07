@@ -26,7 +26,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "contexte.h"
 
-enum {E_PRINCIPAL, E_CONTINUER, E_NOUVEAU, E_CREDITS};
+enum {E_PRINCIPAL, E_CONTINUER, E_NOUVEAU, E_CREDITS, E_STORY};
 
 class c_MainMenu : public Contexte
 {
@@ -39,6 +39,7 @@ public:
     void  E_Continuer(Jeu *jeu);
     void  E_Nouveau(Jeu *jeu);
     void  E_Credits(Jeu *jeu);
+    void  E_Story(Jeu *jeu);
 
     bool m_save;
     bool m_reset;
@@ -65,6 +66,8 @@ private:
 
     std::vector<std::string> m_credits;
     float m_credit_defil;
+
+    std::string m_story;
 };
 
 #endif
