@@ -5,7 +5,8 @@ $
 $
 
 //Effets
-	* t6 s1 l1 ia1 ib0 ic10 id0 ie30 if1 $
+	* t-1 l1 l2 $
+	* t6 s1 ia1 ib0 ic10 id0 ie30 if1 $
 	* t3 ia2 s0 $
 $
 //Séquences
@@ -25,6 +26,6 @@ $
 		//Sons
 			* mData/Sounds/41529__Jamius__PotionDrinkLONG.wav $
 		$
-		* n1 a0 $
+		* n1 a0 z$
 	$
 $

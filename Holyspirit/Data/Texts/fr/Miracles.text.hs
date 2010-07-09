@@ -43,3 +43,6 @@ Armure de foi
 La foi du croisé le protège contre les éléments
 +%1 de résistance à tous les éléments
 Durée : %2 secondes
+Jugement dernier : Enflammer
+L'explosion de feu enflamme les ennemis,\provoquant des dégâts de feu supplémentaires sur la durée.
+Dégâts : %1 sur %2 secondes.

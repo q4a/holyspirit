@@ -13,13 +13,16 @@ $
 $
 //Effets
 	* t15 ia1 ib5 $
-	* t6 l2 s0 ia0 ib-1 ic5 c $
-	* t14 ia8 ib500 ic0 id3 $
-	* t2 ia0 ib0 ic0 l4 l8 l9 l10 $
 	
-	* t8 l5 ia-1 ib1 ic10 $
-	* t7 ia6 id2  $
-	* t-1 l11 l7 $
+	* t-1 l2 l3 $
+	
+	* t6 s0 ia0 ib-1 ic5 c $
+	* t14 ia8 ib500 ic0 id4 $
+	* t2 ia0 ib0 ic0 l5 l9 l10 l11 $
+	
+	* t8 l6 ia-1 ib1 ic10 $
+	* t7 ia7 id2  $
+	* t-1 l12 l8 l13 $
 	* t2 ia%1 ib%2 ic2 $
 	
 	* t11 ia1 ib15 ic0 $
@@ -28,6 +31,8 @@ $
 	* t3 s1 ia19	$
 	
 	* t13 ia1 $
+	
+	* t-1 $
 $
 //Séquences
 	*
