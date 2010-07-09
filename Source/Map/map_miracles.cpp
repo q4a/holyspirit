@@ -192,14 +192,6 @@ bool Map::Miracle_Effet  (Hero *hero, Personnage *personnage, Miracle &modele, E
             return 0;
         }
 
-
-        for (int p=0;p<(int)effet.m_lien.size();p++)
-        {
-            miracleEnCours.m_infos.push_back(new InfosEntiteMiracle ());
-            miracleEnCours.m_infos.back()->m_effetEnCours    = effet.m_lien[p];
-            miracleEnCours.m_infos.back()->m_position        = info.m_position;
-            miracleEnCours.m_infos.back()->m_cible           = info.m_cible;
-        }
     }
     else
     {
@@ -209,8 +201,27 @@ bool Map::Miracle_Effet  (Hero *hero, Personnage *personnage, Miracle &modele, E
         else
             temp = info.m_cible;
 
-        if(!temp->m_effets[info.m_IDObjet].m_effet.m_actif)
+        info.m_position = temp->getCoordonneePixel();
+
+        bool fin = false;
+
+        if(temp->m_effets.size() > info.m_IDObjet)
         {
+            if(!temp->m_effets[info.m_IDObjet].m_effet.m_actif)
+                fin = true;
+        }
+        else
+            fin = true;
+
+        if(fin)
+        {
+            for (int p=0;p<(int)effet.m_lien.size();p++)
+            {
+                miracleEnCours.m_infos.push_back(new InfosEntiteMiracle ());
+                miracleEnCours.m_infos.back()->m_effetEnCours    = effet.m_lien[p];
+                miracleEnCours.m_infos.back()->m_position        = info.m_position;
+                miracleEnCours.m_infos.back()->m_cible           = info.m_cible;
+            }
             miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
             return 0;
         }
