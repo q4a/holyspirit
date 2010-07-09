@@ -121,3 +121,6 @@ Potion de soins limitée
 Une potion permettant\de vous soigner de\300 PV.
 Camail
 Un capuchon en maille\protégeant la tête et la nuque.
+Sceptre de Faltan
+Description et histoire d'un saint.
+

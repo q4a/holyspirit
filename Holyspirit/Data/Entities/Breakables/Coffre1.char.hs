@@ -107,6 +107,10 @@ $
 		r50
 	$
 	*
+		*Sceptre.item.hs
+		r50
+	$
+	*
 		*Drawing_golem_coal.item.hs
 		r1000
 		
