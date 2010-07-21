@@ -12,6 +12,7 @@ Gregouar (Naisse Grégoire)
 *3D & 2D Artists
 Bravach (Naisse Corentin)
 Killpatate (Vaillant Aurélien)
+Akrib
 
 *Game Designers
 Bravach (Naisse Corentin)
@@ -21,7 +22,7 @@ Gregouar (Naisse Grégoire)
 Roger (Izard Jérome)
 
 *Compositor
-Clément
+SpotLine (Clément Duquesne)
 
 *Webmasters
 Schnafon (Xavier Lambein)
@@ -63,8 +64,14 @@ Blender (http://www.blender.org/)
 Adobe Photoshop CS4
 The Gimp (http://www.gimp.org/)
 
-*SVN 
+*SVN
 TortoiseSVN (http://tortoisesvn.tigris.org/)
+
++Specials thanks for
+
+Le site du zéro (http://www.siteduzéro.com/)
+
+Game-Corp (http://www.game-corp.net)
 
 ****
 
