@@ -520,10 +520,14 @@ bool Map::Miracle_Projectile(Hero *hero, Personnage *personnage, Miracle &modele
             cible = miracleEnCours.m_coordonneeCible;
 
 
+        Tileset *tileset = NULL;
+        if(effet.m_sequence >= 0 && effet.m_sequence < modele.m_tileset.size())
+            tileset = moteurGraphique->getTileset(modele.m_tileset[effet.m_sequence]);
+
         info.m_IDObjet = AjouterProjectile( info.m_position,
                                             cible,personnage->getCoordonnee(),10,effet.m_informations[0],
                                             (float)effet.m_informations[1]*M_PI/180,!personnage->m_friendly,
-                                            moteurGraphique->getTileset(modele.m_tileset[effet.m_sequence]));
+                                            tileset);
 
         if (effet.m_informations[2])
             m_projectile.back().m_cible = cible;
@@ -583,9 +587,9 @@ bool Map::Miracle_EffetGraphique(Hero *hero, Personnage *personnage, Miracle &mo
 
         info.m_IDObjet               = m_effets.size()-1;
 
-        if (m_effets.back().m_position.y / COTE_TILE>=0&&m_effets.back().m_position.y / COTE_TILE<m_dimensions.y)
-            if (m_effets.back().m_position.x / COTE_TILE>=0&&m_effets.back().m_position.x / COTE_TILE<m_dimensions.x)
-                m_decor[1][(int)(m_effets.back().m_position.y / COTE_TILE)][(int)(m_effets.back().m_position.x / COTE_TILE)].setEffetGraphique(m_effets.size()-1);
+        if ((m_effets.back().m_position.y + COTE_TILE * 0.25) / COTE_TILE>=0&&(m_effets.back().m_position.y + COTE_TILE * 0.25) / COTE_TILE<m_dimensions.y)
+            if ((m_effets.back().m_position.x + COTE_TILE * 0.25) / COTE_TILE>=0&&(m_effets.back().m_position.x + COTE_TILE * 0.25) / COTE_TILE<m_dimensions.x)
+                m_decor[1][(int)((m_effets.back().m_position.y + COTE_TILE * 0.25) / COTE_TILE)][(int)((m_effets.back().m_position.x + COTE_TILE * 0.25) / COTE_TILE)].setEffetGraphique(m_effets.size()-1);
     }
     return 1;
 }

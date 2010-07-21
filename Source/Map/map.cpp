@@ -2064,7 +2064,10 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
                     int temp=i;
                     m_decor[1][projectile->m_positionCase.y][projectile->m_positionCase.x].delProjectile(i);
 
-                    if (projectile->m_position.y/COTE_TILE>=vueMin.y&&projectile->m_position.y/COTE_TILE<vueMax.y&&projectile->m_position.x/COTE_TILE>=vueMin.x&&projectile->m_position.x/COTE_TILE<vueMax.x)
+                    if (projectile->m_position.y/COTE_TILE >= vueMin.y
+                     && projectile->m_position.y/COTE_TILE <  vueMax.y
+                     && projectile->m_position.x/COTE_TILE >= vueMin.x
+                     && projectile->m_position.x/COTE_TILE <  vueMax.x)
                     {
                         if (projectile->m_cible.x == -1 && projectile->m_cible.y == -1)
                         {
@@ -2116,7 +2119,6 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
                             projectile->m_actif=false;
 
 
-
                         if (projectile->m_actif)
                         {
                             projectile->m_positionCase.y=(int)((projectile->m_position.y+32)/COTE_TILE);
@@ -2126,10 +2128,10 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
                         }
                     }
                     else
-                    {
+                    //{
                         projectile->m_actif=false;
-                        m_decor[1][(int)(projectile->m_position.y/COTE_TILE)][(int)(projectile->m_position.x/COTE_TILE)].delProjectile(temp);
-                    }
+                      //  m_decor[1][(int)(projectile->m_position.y/COTE_TILE)][(int)(projectile->m_position.x/COTE_TILE)].delProjectile(temp);
+                    //}
 
                     projectile->Deplacer(temps);
                 }

@@ -7,8 +7,8 @@
 	<File name="Contextes\c_bless.h" open="0" top="0" tabpos="5">
 		<Cursor position="1561" topLine="41" />
 	</File>
-	<File name="Contextes\c_changementMap.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="1029" topLine="18" />
+	<File name="Contextes\c_changementMap.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="12013" topLine="275" />
 	</File>
 	<File name="Contextes\c_changementMap.h" open="0" top="0" tabpos="9">
 		<Cursor position="2271" topLine="17" />
@@ -31,8 +31,8 @@
 	<File name="Contextes\c_inventaire.h" open="0" top="0" tabpos="12">
 		<Cursor position="2151" topLine="51" />
 	</File>
-	<File name="Contextes\c_jeu.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="16221" topLine="373" />
+	<File name="Contextes\c_jeu.cpp" open="1" top="0" tabpos="15">
+		<Cursor position="6774" topLine="200" />
 	</File>
 	<File name="Contextes\c_jeu.h" open="0" top="0" tabpos="6">
 		<Cursor position="4357" topLine="100" />
@@ -98,25 +98,25 @@
 		<Cursor position="1383" topLine="43" />
 	</File>
 	<File name="Entites\miracle.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="8407" topLine="321" />
+		<Cursor position="25868" topLine="853" />
 	</File>
 	<File name="Entites\miracle.h" open="1" top="0" tabpos="1">
-		<Cursor position="4055" topLine="132" />
+		<Cursor position="674" topLine="104" />
 	</File>
-	<File name="Entites\monstre.cpp" open="0" top="0" tabpos="11">
-		<Cursor position="12070" topLine="374" />
+	<File name="Entites\monstre.cpp" open="1" top="0" tabpos="13">
+		<Cursor position="11896" topLine="359" />
 	</File>
 	<File name="Entites\monstre.h" open="0" top="0" tabpos="15">
 		<Cursor position="1422" topLine="35" />
 	</File>
-	<File name="Entites\objet.cpp" open="0" top="0" tabpos="9">
-		<Cursor position="3520" topLine="93" />
+	<File name="Entites\objet.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="37099" topLine="1281" />
 	</File>
 	<File name="Entites\objet.h" open="0" top="0" tabpos="7">
 		<Cursor position="2935" topLine="87" />
 	</File>
-	<File name="Entites\personnage.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="36787" topLine="943" />
+	<File name="Entites\personnage.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="9905" topLine="353" />
 	</File>
 	<File name="Entites\personnage.h" open="0" top="0" tabpos="8">
 		<Cursor position="5796" topLine="193" />
@@ -151,17 +151,17 @@
 	<File name="Map\evenement.h" open="0" top="0" tabpos="16">
 		<Cursor position="1286" topLine="2" />
 	</File>
-	<File name="Map\map.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="660" topLine="225" />
+	<File name="Map\map.cpp" open="1" top="0" tabpos="10">
+		<Cursor position="95955" topLine="2109" />
 	</File>
 	<File name="Map\map.h" open="0" top="0" tabpos="2">
 		<Cursor position="7986" topLine="113" />
 	</File>
-	<File name="Map\map_miracles.cpp" open="1" top="1" tabpos="3">
-		<Cursor position="40737" topLine="971" />
+	<File name="Map\map_miracles.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="21642" topLine="548" />
 	</File>
-	<File name="Map\map_scripts.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="10421" topLine="228" />
+	<File name="Map\map_scripts.cpp" open="1" top="0" tabpos="12">
+		<Cursor position="29741" topLine="554" />
 	</File>
 	<File name="Map\tile.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="2926" topLine="111" />
@@ -169,14 +169,14 @@
 	<File name="Map\tile.h" open="0" top="0" tabpos="6">
 		<Cursor position="1487" topLine="39" />
 	</File>
-	<File name="Map\tileset.cpp" open="0" top="0" tabpos="13">
-		<Cursor position="16925" topLine="617" />
+	<File name="Map\tileset.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="2954" topLine="90" />
 	</File>
 	<File name="Map\tileset.h" open="0" top="0" tabpos="5">
 		<Cursor position="1577" topLine="41" />
 	</File>
-	<File name="Moteurs\Entite_graphique.cpp" open="0" top="0" tabpos="7">
-		<Cursor position="3107" topLine="93" />
+	<File name="Moteurs\Entite_graphique.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="9146" topLine="183" />
 	</File>
 	<File name="Moteurs\Entite_graphique.h" open="0" top="0" tabpos="4">
 		<Cursor position="1583" topLine="32" />
@@ -196,8 +196,8 @@
 	<File name="Moteurs\eventManager.h" open="0" top="0" tabpos="8">
 		<Cursor position="953" topLine="30" />
 	</File>
-	<File name="Moteurs\light.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="9314" topLine="238" />
+	<File name="Moteurs\light.cpp" open="1" top="1" tabpos="14">
+		<Cursor position="9172" topLine="249" />
 	</File>
 	<File name="Moteurs\light.h" open="0" top="0" tabpos="2">
 		<Cursor position="3748" topLine="132" />
@@ -214,8 +214,8 @@
 	<File name="Moteurs\modeleMoteurParticule.h" open="0" top="0" tabpos="10">
 		<Cursor position="743" topLine="19" />
 	</File>
-	<File name="Moteurs\moteurGraphique.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="26066" topLine="701" />
+	<File name="Moteurs\moteurGraphique.cpp" open="1" top="0" tabpos="11">
+		<Cursor position="22445" topLine="546" />
 	</File>
 	<File name="Moteurs\moteurGraphique.h" open="0" top="0" tabpos="8">
 		<Cursor position="951" topLine="3" />
@@ -238,8 +238,8 @@
 	<File name="configuration.h" open="0" top="0" tabpos="5">
 		<Cursor position="961" topLine="18" />
 	</File>
-	<File name="constantes.h" open="0" top="0" tabpos="4">
-		<Cursor position="1257" topLine="18" />
+	<File name="constantes.h" open="1" top="0" tabpos="8">
+		<Cursor position="2066" topLine="54" />
 	</File>
 	<File name="datFile.cpp" open="0" top="0" tabpos="37">
 		<Cursor position="2114" topLine="43" />

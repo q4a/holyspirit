@@ -66,28 +66,28 @@ void Light::Draw(sf::RenderTarget *App)
 
 sf::Vector2f Intersect(sf::Vector2f p1, sf::Vector2f p2, sf::Vector2f q1, sf::Vector2f q2)
 {
-    sf::Vector2f i;
+    sf::Vector2f j;
 
     if((p2.x - p1.x) == 0 && (q2.x - q1.x) == 0)
-        i.x = 0, i.y = 0;
+        j.x = 0, j.y = 0;
     else if((p2.x - p1.x) == 0)
     {
-        i.x = p1.x;
+        j.x = p1.x;
 
         float c = (q2.y - q1.y) / (q2.x - q1.x);
         float d = q1.y - q1.x * c;
 
-        i.y = c * i.x + d;
+        j.y = c * j.x + d;
     }
 
     else if((q2.x - q1.x) == 0)
     {
-        i.x = q1.x;
+        j.x = q1.x;
 
         float a = (p2.y - p1.y) / (p2.x - p1.x);
         float b = p1.y - p1.x * a;
 
-        i.y = a * i.x + b;
+        j.y = a * j.x + b;
     }
     else
     {
@@ -97,11 +97,11 @@ sf::Vector2f Intersect(sf::Vector2f p1, sf::Vector2f p2, sf::Vector2f q1, sf::Ve
         float c = (q2.y - q1.y) / (q2.x - q1.x);
         float d = q1.y - q1.x * c;
 
-        i.x = (d-b)/(a-c);
-        i.y = a * i.x + b;
+        j.x = (d-b)/(a-c);
+        j.y = a * j.x + b;
     }
 
-    return i;
+    return j;
 }
 
 sf::Vector2f Collision(sf::Vector2f p1, sf::Vector2f p2, sf::Vector2f q1, sf::Vector2f q2)
@@ -267,6 +267,8 @@ void Light::SetColor(sf::Color color)
 void Light::SetPosition(sf::Vector2f position)
 {
     m_position=position;
+    m_position.y += 0.01;
+    m_position.x += 0.01;
 }
 
 
