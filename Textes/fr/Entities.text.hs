@@ -37,3 +37,5 @@ Golem de charbon ardent
 Tas d'os
 Rognorak le forgeron
 Sarcophage
+Errant des cimetières
+Fosse commune (Crée des errants)
