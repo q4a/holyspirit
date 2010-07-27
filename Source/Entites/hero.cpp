@@ -2548,8 +2548,10 @@ void Hero::AfficherRaccourcis()
 
 void Hero::PlacerCamera()
 {
+    configuration->zoom = configuration->zoom_or + m_personnage.getCoordonneePixel().h*0.002;
+
     moteurGraphique->m_camera.SetCenter(((m_personnage.getCoordonneePixel().x - m_personnage.getCoordonneePixel().y) * 64.0f * DIVISEUR_COTE_TILE),
-                                        ((m_personnage.getCoordonneePixel().x + m_personnage.getCoordonneePixel().y) * 32.0f * DIVISEUR_COTE_TILE + 32.0f));
+                                        ((m_personnage.getCoordonneePixel().x + m_personnage.getCoordonneePixel().y) * 32.0f * DIVISEUR_COTE_TILE + 32.0f) - m_personnage.getCoordonneePixel().h);
     moteurGraphique->m_camera.SetSize(configuration->Resolution.x, configuration->Resolution.y);
     moteurGraphique->m_camera.Zoom(configuration->zoom);
 

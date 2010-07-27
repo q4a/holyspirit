@@ -58,6 +58,7 @@ void c_Bless::Utiliser(Jeu *jeu)
 
     jeu->map->Animer(&jeu->hero,0,&jeu->menu);
     jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
+    jeu->hero.AfficherAmisEtCraft();
 
     if (m_afficher)
         m_decalage+=temps_ecoule*2000;

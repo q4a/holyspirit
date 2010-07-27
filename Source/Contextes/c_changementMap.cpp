@@ -397,6 +397,8 @@ void c_Chargement::Utiliser(Jeu *jeu)
             if(jeu->map!=NULL)
                 jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
 
+            jeu->hero.AfficherAmisEtCraft();
+
             GestionBoutons(jeu);
             jeu->menu.AfficherHUD(&jeu->hero.m_classe);
             jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,0,jeu->hero.m_personnage.getCaracteristique(),&jeu->hero.m_classe);

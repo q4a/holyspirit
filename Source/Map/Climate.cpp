@@ -176,7 +176,8 @@ void Climate::Update(float time)
                                         (float)configuration->Resolution.y/600);
 
         sf::Color color = m_entities[i].m_sprite.GetColor();
-        color.a *= (char)GetState();
+        float temp = (float)color.a * GetState();
+        color.a = (unsigned char)temp;
         m_entities[i].m_sprite.SetColor(color);
         m_entities[i].m_sound_volume = GetState() * 100;
     }

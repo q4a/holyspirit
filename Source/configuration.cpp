@@ -23,6 +23,7 @@ void Configuration::Charger()
 {
     error = "Error";
 
+    zoom_or=1;
     zoom=1;
 
     ChargerConf();
@@ -86,7 +87,7 @@ void Configuration::ChargerConf()
             if (chaine== "vsync:")
                 fichier>>syncronisation_verticale;
             if (chaine== "zoom:")
-                fichier>>zoom;
+                fichier>>zoom_or;
             if (chaine== "volume:")
                 fichier>>volume;
             if (chaine== "music_volume:")
@@ -318,7 +319,7 @@ void Configuration::Sauvegarder()
         fichier<< "grass: " <<Herbes<<std::endl;
         fichier<< "particules: " <<particules<<std::endl;
         fichier<< "smooth: " <<lissage<<std::endl;
-        fichier<< "zoom: " <<zoom<<std::endl;
+        fichier<< "zoom: " <<zoom_or<<std::endl;
         fichier<<std::endl;
         fichier<<std::endl;
         fichier<<"SOUNDS"<<std::endl;

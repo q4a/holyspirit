@@ -90,6 +90,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
 
     jeu->map->Animer(&jeu->hero,0,&jeu->menu);
     jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
+    jeu->hero.AfficherAmisEtCraft();
   //  jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);
 
    /* if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())>0)

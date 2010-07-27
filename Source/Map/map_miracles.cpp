@@ -1221,7 +1221,9 @@ void Map::GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,fl
             {
 
                 int effetEnCours = personnage->m_miracleEnCours[i].m_infos[o]->m_effetEnCours;
-                int type = miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type;
+                int type = -2;
+                if(personnage->m_miracleEnCours[i].m_modele >= 0 && personnage->m_miracleEnCours[i].m_modele < (int)miracles.size())
+                    type = miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type;
 
                 if(miracles[personnage->m_miracleEnCours[i].m_modele].m_consommer == effetEnCours
                  &&!personnage->m_miracleEnCours[i].m_dejaConsommeFoi)
