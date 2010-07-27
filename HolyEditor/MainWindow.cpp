@@ -1485,6 +1485,8 @@ void MainWindow::ouvrir()
         map->Charger(temp);
         MettreListesAJour();
 
+        map->m_select_brush.m_herbe = -1;
+
         std::ostringstream str;
         map->m_script.Sauvegarder(str);
         QString tempstr(str.str().c_str());
