@@ -498,7 +498,7 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
     if(eventManager->getEvenement(sf::Key::Escape, EventKey))
         no_ecran = E_PRINCIPAL;
 
-    if(eventManager->getChar() >= 0)
+    if(eventManager->getChar() >= 0 && nom_hero.size() < 16)
         nom_hero += eventManager->getChar(), eventManager->stopChar();
 
     if(eventManager->getEvenement(sf::Key::Back,EventKey))

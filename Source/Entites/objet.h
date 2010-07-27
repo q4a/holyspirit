@@ -167,7 +167,7 @@ public:
     std::string             m_chemin_set;
     Set                     m_set;
 
-    int                     m_nbr_bless;
+    int                     m_nbr_bless, m_time;
 
     Caracteristique         m_gol_caract;
 

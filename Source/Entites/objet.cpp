@@ -161,6 +161,8 @@ Objet::Objet()
 
     m_dejaTrie = false;
     m_nbr_bless = 0;
+
+    m_time = 0;
 }
 
 Objet::Objet(std::string nom, int rarete)
@@ -175,6 +177,7 @@ Objet::Objet(std::string nom, int rarete)
     m_useMiracle = false;
     m_alpha = 0;
     m_nbr_bless = 0;
+    m_time = 0;
 }
 
 Objet::~Objet()
@@ -879,6 +882,9 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
                         break;
                     case 's' :
                         *fichier>>m_chemin_set;
+                        break;
+                    case 't' :
+                        *fichier>>m_time;
                         break;
                     }
 
@@ -1979,6 +1985,21 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
                 temp[temp.size() - i].SetColor(sf::Color(192,0,0));
 
         temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+    }
+
+    if(m_time > 0)
+    {
+        int sec = m_time%60;
+        int min = (int)(m_time/60);
+
+        std::ostringstream buf;
+        buf<<configuration->getText(0,69);
+
+        if(min > 0)
+            buf<<min<<" "<<configuration->getText(0,71)<<" ";
+        if(sec > 0)
+            buf<<sec<<" "<<configuration->getText(0,70);
+        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
     }
 
 

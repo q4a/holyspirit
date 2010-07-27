@@ -193,8 +193,13 @@ Hero::Hero()
 
     m_last_potale = 0;
 
-    m_no_schema = -1;
-    m_no_result = -1;
+    m_no_schema_bless = -1;
+    m_no_schema_craft = -1;
+    m_no_result_bless = -1;
+    m_no_result_craft = -1;
+
+    m_craft_time = 0;
+    m_bless_time = 0;
 }
 
 Hero::~Hero()
@@ -247,6 +252,15 @@ void Hero::Sauvegarder()
         fichier<<configuration->jour<<endl;
 
         fichier<<m_last_potale<<endl;
+
+        fichier<<m_craft_time<<endl;
+        fichier<<m_bless_time<<endl;
+        fichier<<m_craft_time_max<<endl;
+        fichier<<m_bless_time_max<<endl;
+        fichier<<m_no_schema_craft<<endl;
+        fichier<<m_no_schema_bless<<endl;
+        fichier<<m_no_result_craft<<endl;
+        fichier<<m_no_result_bless<<endl;
 
         for(int i = 0 ; i < 8 ; ++i)
             fichier<<m_raccourcis[i].miracle<<" "<<m_raccourcis[i].no<<endl;
@@ -435,6 +449,19 @@ void Hero::Charger(std::string chemin_save)
             *fichier>>configuration->jour;
 
             *fichier>>m_last_potale;
+
+             if(temp >= 5)
+             {
+                *fichier>>m_craft_time;
+                *fichier>>m_bless_time;
+                *fichier>>m_craft_time_max;
+                *fichier>>m_bless_time_max;
+                *fichier>>m_no_schema_craft;
+                *fichier>>m_no_schema_bless;
+                *fichier>>m_no_result_craft;
+                *fichier>>m_no_result_bless;
+             }
+
 
             for(int i = 0 ; i < 8 ; ++i)
                 *fichier>>m_raccourcis[i].miracle>>m_raccourcis[i].no;
@@ -1363,7 +1390,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
 
 }
 
-void Hero::AfficherAmis()
+void Hero::AfficherAmisEtCraft()
 {
     for(unsigned i = 0 ; i < m_amis.size() ; ++i)
     {
@@ -1415,6 +1442,70 @@ void Hero::AfficherAmis()
             }
 
         moteurGraphique->AjouterCommande(&temp, 14, 0);
+    }
+
+
+    if(m_no_result_craft >= 0)
+    {
+        moteurGraphique->AjouterTexte(m_inventaire[m_no_result_craft].getNom(),
+                                      coordonnee(configuration->Resolution.x - 144, 64), 14, 0, 14);
+
+        sf::Sprite temp;
+        temp.SetImage(*moteurGraphique->getImage(m_classe.barre_vie_monstre_vide.image));
+        temp.SetPosition(configuration->Resolution.x - 12 - 144,82);
+        temp.Resize(144,16);
+        moteurGraphique->AjouterCommande(&temp, 14, 0);
+
+        temp.SetImage(*moteurGraphique->getImage(m_classe.barre_vie_monstre.image));
+        temp.SetSubRect(sf::IntRect(0,0,(m_craft_time_max - m_craft_time)* m_classe.barre_vie_monstre.position.w / m_craft_time_max ,
+                                         m_classe.barre_vie_monstre.position.h));
+        temp.Resize((m_craft_time_max - m_craft_time) / m_craft_time_max * 144,16);
+
+        if(m_craft_time > 0)
+            temp.SetColor(sf::Color(255,255,255,128));
+
+        moteurGraphique->AjouterCommande(&temp, 14, 0);
+
+        sf::Text text;
+        std::ostringstream buf;
+
+        buf<<(float)((int)((m_craft_time_max - m_craft_time) * 100 / m_craft_time_max))<<" %";
+        text.SetCharacterSize(10);
+        text.SetString(buf.str());
+        text.SetPosition(configuration->Resolution.x - 150 - text.GetRect().Width,80);
+        moteurGraphique->AjouterTexte(&text,15);
+    }
+
+    if(m_no_result_bless >= 0)
+    {
+        moteurGraphique->AjouterTexte(m_inventaire[m_no_result_bless].getNom(),
+                                      coordonnee(configuration->Resolution.x - 144, 64 + 32), 14, 0, 14);
+
+        sf::Sprite temp;
+        temp.SetImage(*moteurGraphique->getImage(m_classe.barre_vie_monstre_vide.image));
+        //temp.SetColor(sf::Color(32,32,32));
+        temp.SetPosition(configuration->Resolution.x - 12 - 144,82 + 32);
+        temp.Resize(144,16);
+        moteurGraphique->AjouterCommande(&temp, 14, 0);
+
+        temp.SetImage(*moteurGraphique->getImage(m_classe.barre_vie_monstre.image));
+        temp.SetSubRect(sf::IntRect(0,0,(m_bless_time_max - m_bless_time) * m_classe.barre_vie_monstre.position.w / m_bless_time_max ,
+                                         m_classe.barre_vie_monstre.position.h));
+        temp.Resize((m_bless_time_max - m_bless_time) / m_bless_time_max * 144,16);
+
+        if(m_bless_time > 0)
+            temp.SetColor(sf::Color(255,255,255,128));
+
+        moteurGraphique->AjouterCommande(&temp, 14, 0);
+
+        sf::Text text;
+        std::ostringstream buf;
+
+        buf<<(float)((int)((m_bless_time_max - m_bless_time) * 100 / m_bless_time_max))<<" %";
+        text.SetCharacterSize(10);
+        text.SetString(buf.str());
+        text.SetPosition(configuration->Resolution.x - 150 - text.GetRect().Width,80 + 32);
+        moteurGraphique->AjouterTexte(&text,15);
     }
 }
 
@@ -1784,7 +1875,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
     return (retour);
 }
 
-bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool hideLeft)
+bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool hideLeft, bool bless, bool craft)
 {
     bool retour = false;
     m_objetVise = -1;
@@ -1807,6 +1898,12 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
 
     for (int i=0;i<(int)m_inventaire.size();++i)
         if (i!=m_objetEnMain && (m_inventaire[i].m_equipe==-1 || m_inventaire[i].m_equipe>=0 && !hideLeft))
+        if ((i == m_no_result_bless && bless)
+         || (i == m_no_result_craft && craft)
+         || (i == m_no_schema_bless && bless)
+         || (i == m_no_schema_craft && craft)
+         || (i != m_no_schema_craft && i != m_no_result_craft
+          && i != m_no_schema_bless && i != m_no_result_bless))
         {
             coordonneeDecimal position(0,0,0,0);
             sf::Sprite sprite;
@@ -1823,7 +1920,8 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
 
             sprite.Resize(m_inventaire[i].getTaille().x*32-1,m_inventaire[i].getTaille().y*32-1);
 
-            if (m_inventaire[i].m_equipe==-1 && i != m_no_schema && i != m_no_result)
+            if (m_inventaire[i].m_equipe==-1 && i != m_no_schema_craft && i != m_no_result_craft
+                                             && i != m_no_schema_bless && i != m_no_result_bless)
             {
                 position.x = AutoScreenAdjust(m_inventaire[i].getPosition().x*32 + m_classe.position_contenu_inventaire.x, 0).x;
                 position.y = AutoScreenAdjust(0, (m_inventaire[i].getPosition().y-1)*32 + m_classe.position_contenu_inventaire.y, decalage).y;
@@ -1868,7 +1966,8 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
                     }
                 }
             }
-            else if(i != m_no_schema && i != m_no_result)
+            else if(i != m_no_schema_craft && i != m_no_result_craft
+                 && i != m_no_schema_bless && i != m_no_result_bless)
             {
                 if (m_inventaire[i].m_equipe>=0&&m_inventaire[i].m_equipe<(int)m_classe.emplacements.size())
                 {
@@ -1897,7 +1996,8 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
                         m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+ m_classe.emplacements[m_inventaire[i].m_equipe].position.w),(int)(position.y+position.h),0,0),m_caracteristiques,&m_inventaire,m_cheminClasse), retour = true;
                 }
             }
-            else if(i != m_no_result)
+            else if(i != m_no_result_craft && i != m_no_result_bless
+                &&((i == m_no_schema_bless && bless) || (i == m_no_schema_craft && craft)))
             {
                 position.x = AutoScreenAdjust(m_classe.schema_craft.position.x, 0).x;
                 position.y = AutoScreenAdjust(0, m_classe.schema_craft.position.y, decalage).y;
@@ -1916,8 +2016,12 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
             }
             else
             {
-                sprite.Resize(m_classe.result_craft.position.w,
-                              m_classe.result_craft.position.h);
+                if(bless)
+                    sprite.Resize(m_classe.result_craft.position.w,
+                                  (float)m_classe.result_craft.position.h * (m_bless_time_max - m_bless_time)/m_bless_time_max+1);
+                else
+                    sprite.Resize(m_classe.result_craft.position.w,
+                                  (float)m_classe.result_craft.position.h * (m_craft_time_max - m_craft_time)/m_craft_time_max+1);
 
                 position.x = AutoScreenAdjust(m_classe.result_craft.position.x + (m_classe.result_craft.position.w - m_inventaire[i].getPositionImage().w) * 0.5, 0).x;
                 position.y = AutoScreenAdjust(0, m_classe.result_craft.position.y + (m_classe.result_craft.position.h - m_inventaire[i].getPositionImage().h) * 0.5, decalage).y;
@@ -2475,8 +2579,16 @@ bool Hero::TestMonstreVise(Personnage *monstre)
     return 0;
 }
 
-void Hero::AugmenterAme(float temps)
+void Hero::GererTemps(float temps)
 {
+    m_craft_time -= temps;
+    m_bless_time -= temps;
+
+    if(m_craft_time <= 0)
+        m_craft_time = 0;
+    if(m_bless_time <= 0)
+        m_bless_time = 0;
+
     Caracteristique temp = m_personnage.getCaracteristique();
 
     temp.ancienPointAme += (temp.pointAme-temp.positionAncienAme+1)*temps*0.7;
@@ -3442,239 +3554,264 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
 
 void Hero::GererCraft(std::vector<Objet> *trader)
 {
-    if(m_no_schema >= 0)
+    if(m_no_schema_craft >= 0)
         m_classe.schema_craft.empty = false;
     else
         m_classe.schema_craft.empty = true;
 
-     if(m_no_result >= 0)
+     if(m_no_result_craft >= 0)
         m_classe.result_craft.empty = false;
     else
         m_classe.result_craft.empty = true;
 
-    if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.schema_craft.position.x,0).x
-    && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.schema_craft.position.x + m_classe.schema_craft.position.w,0).x
-    && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.schema_craft.position.y).y
-    && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.schema_craft.position.y + m_classe.schema_craft.position.h).y
-    && eventManager->getEvenement(Mouse::Left,EventClic))
+    if(m_craft_time <= 0)
     {
-        if(m_objetEnMain >= 0)
+        if(m_no_result_craft >= 0)
         {
-            if(m_inventaire[m_objetEnMain].m_type == SCHEMA)
-            {
-                int buf = m_no_schema;
-                m_no_schema = m_objetEnMain;
-                m_objetEnMain = buf;
-            }
-        }
-        else
-             m_objetEnMain = m_no_schema, m_no_schema = -1;
-    }
+            delObjet(m_no_schema_craft);
+            m_no_schema_craft = -1;
 
-    if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.result_craft.position.x,0).x
-    && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.result_craft.position.x + m_classe.result_craft.position.w,0).x
-    && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.result_craft.position.y).y
-    && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.result_craft.position.y + m_classe.result_craft.position.h).y
-    && eventManager->getEvenement(Mouse::Left,EventClic))
-    {
-        if(m_objetEnMain < 0 && m_no_result >= 0)
-            m_objetEnMain = m_no_result, m_no_result = -1;
-    }
-
-
-
-    if(m_no_schema >= 0)
-    {
-        bool ok = true;
-
-        for(unsigned i = 0 ; i < m_inventaire[m_no_schema].m_craft_ingredients.size() ; ++i)
-        {
-            int nbr = 0;
-            for(unsigned j = 0 ; j < trader->size() ; ++j)
-                if((*trader)[j].getChemin() == m_inventaire[m_no_schema].m_craft_ingredients[i].nom)
-                    nbr ++;
-
-            if(nbr < m_inventaire[m_no_schema].m_craft_ingredients[i].nombre)
-                ok = false;
-        }
-
-        if(ok)
-        {
-            m_classe.button_craft.empty = true;
-            if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.button_craft.position.x,0).x
-            && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.button_craft.position.x + m_classe.button_craft.position.w,0).x
-            && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.button_craft.position.y).y
-            && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.button_craft.position.y + m_classe.button_craft.position.h).y
+            if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.result_craft.position.x,0).x
+            && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.result_craft.position.x + m_classe.result_craft.position.w,0).x
+            && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.result_craft.position.y).y
+            && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.result_craft.position.y + m_classe.result_craft.position.h).y
             && eventManager->getEvenement(Mouse::Left,EventClic))
             {
-                for(unsigned i = 0 ; i < m_inventaire[m_no_schema].m_craft_ingredients.size() ; ++i)
-                    for(unsigned k = 0 ; k < m_inventaire[m_no_schema].m_craft_ingredients[i].nombre ; ++k)
-                    {
-                        for(unsigned j = 0 ; j < (*trader).size() ; ++j)
-                            if((*trader)[j].getChemin() == m_inventaire[m_no_schema].m_craft_ingredients[i].nom)
-                                trader->erase(trader->begin() + j), j = trader->size();
-                    }
-
-                Objet result;
-                result.Charger(m_inventaire[m_no_schema].m_craft_result, m_caracteristiques);
-                result.Generer(0);
-
-                delObjet(m_no_schema);
-                m_no_schema = -1;
-
-                m_inventaire.push_back(result);
-                m_no_result = m_inventaire.size() - 1;
+                if(m_objetEnMain < 0 && m_no_result_craft >= 0)
+                    m_objetEnMain = m_no_result_craft, m_no_result_craft = -1;
             }
         }
         else
-            m_classe.button_craft.empty = false;
+        {
+            if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.schema_craft.position.x,0).x
+            && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.schema_craft.position.x + m_classe.schema_craft.position.w,0).x
+            && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.schema_craft.position.y).y
+            && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.schema_craft.position.y + m_classe.schema_craft.position.h).y
+            && eventManager->getEvenement(Mouse::Left,EventClic)
+            && m_no_result_craft == -1)
+            {
+                if(m_objetEnMain >= 0)
+                {
+                    if(m_inventaire[m_objetEnMain].m_type == SCHEMA)
+                    {
+                        int buf = m_no_schema_craft;
+                        m_no_schema_craft = m_objetEnMain;
+                        m_objetEnMain = buf;
+
+                        if(m_no_schema_craft >= 0 && m_no_schema_craft < (int)m_inventaire.size())
+                            m_inventaire[m_no_schema_craft].setPosition(-10,-10);
+                    }
+                }
+                else
+                     m_objetEnMain = m_no_schema_craft, m_no_schema_craft = -1;
+            }
+
+
+            if(m_no_schema_craft >= 0)
+            {
+                bool ok = true;
+
+                for(unsigned i = 0 ; i < m_inventaire[m_no_schema_craft].m_craft_ingredients.size() ; ++i)
+                {
+                    int nbr = 0;
+                    for(unsigned j = 0 ; j < trader->size() ; ++j)
+                        if((*trader)[j].getChemin() == m_inventaire[m_no_schema_craft].m_craft_ingredients[i].nom)
+                            nbr ++;
+
+                    if(nbr < m_inventaire[m_no_schema_craft].m_craft_ingredients[i].nombre)
+                        ok = false;
+                }
+
+                if(ok)
+                {
+                    m_classe.button_craft.empty = true;
+                    if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.button_craft.position.x,0).x
+                    && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.button_craft.position.x + m_classe.button_craft.position.w,0).x
+                    && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.button_craft.position.y).y
+                    && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.button_craft.position.y + m_classe.button_craft.position.h).y
+                    && eventManager->getEvenement(Mouse::Left,EventClic))
+                    {
+                        for(unsigned i = 0 ; i < m_inventaire[m_no_schema_craft].m_craft_ingredients.size() ; ++i)
+                            for(unsigned k = 0 ; k < m_inventaire[m_no_schema_craft].m_craft_ingredients[i].nombre ; ++k)
+                            {
+                                for(unsigned j = 0 ; j < (*trader).size() ; ++j)
+                                    if((*trader)[j].getChemin() == m_inventaire[m_no_schema_craft].m_craft_ingredients[i].nom)
+                                        trader->erase(trader->begin() + j), j = trader->size();
+                            }
+
+                        Objet result;
+                        result.Charger(m_inventaire[m_no_schema_craft].m_craft_result, m_caracteristiques);
+                        result.Generer(0);
+
+                        m_inventaire.push_back(result);
+                        m_no_result_craft = m_inventaire.size() - 1;
+
+                        m_craft_time = m_inventaire[m_no_schema_craft].m_time;
+                        m_craft_time_max = m_craft_time;
+                    }
+                }
+                else
+                    m_classe.button_craft.empty = false;
+            }
+            else
+                m_classe.button_craft.empty = false;
+        }
     }
-    else
-        m_classe.button_craft.empty = false;
 }
 
 void Hero::GererBless(std::vector<Objet> *trader)
 {
-    if(m_no_schema >= 0)
+    if(m_no_schema_bless >= 0)
         m_classe.schema_craft.empty = false;
     else
         m_classe.schema_craft.empty = true;
 
-     if(m_no_result >= 0)
+     if(m_no_result_bless >= 0)
         m_classe.result_craft.empty = false;
     else
         m_classe.result_craft.empty = true;
 
-    if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.schema_craft.position.x,0).x
-    && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.schema_craft.position.x + m_classe.schema_craft.position.w,0).x
-    && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.schema_craft.position.y).y
-    && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.schema_craft.position.y + m_classe.schema_craft.position.h).y
-    && eventManager->getEvenement(Mouse::Left,EventClic))
+    if(m_bless_time <= 0)
     {
-        if(m_objetEnMain >= 0)
+        if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.schema_craft.position.x,0).x
+        && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.schema_craft.position.x + m_classe.schema_craft.position.w,0).x
+        && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.schema_craft.position.y).y
+        && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.schema_craft.position.y + m_classe.schema_craft.position.h).y
+        && eventManager->getEvenement(Mouse::Left,EventClic))
         {
-            if(m_inventaire[m_objetEnMain].m_type == LITANIE)
+            if(m_objetEnMain >= 0)
             {
-                int buf = m_no_schema;
-                m_no_schema = m_objetEnMain;
-                m_objetEnMain = buf;
-            }
-        }
-        else
-             m_objetEnMain = m_no_schema, m_no_schema = -1;
-    }
-
-    if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.result_craft.position.x,0).x
-    && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.result_craft.position.x + m_classe.result_craft.position.w,0).x
-    && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.result_craft.position.y).y
-    && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.result_craft.position.y + m_classe.result_craft.position.h).y
-    && eventManager->getEvenement(Mouse::Left,EventClic))
-    {
-        if(m_objetEnMain >= 0)
-        {
-            if(m_inventaire[m_objetEnMain].m_type == ARME
-            || m_inventaire[m_objetEnMain].m_type == ARMURE
-            || m_inventaire[m_objetEnMain].m_type == GOLEM
-            || m_inventaire[m_objetEnMain].m_type == JEWELERY)
-            {
-                int buf = m_no_result;
-                m_no_result = m_objetEnMain;
-                m_objetEnMain = buf;
-            }
-        }
-        else
-             m_objetEnMain = m_no_result, m_no_result = -1;
-    }
-
-
-    if( m_no_schema >= 0 && m_no_result >= 0)
-    {
-        bool ok = false;
-
-        for(unsigned i = 0 ; i < m_inventaire[m_no_schema].m_conditions.size() ; ++i)
-        {
-            if(m_inventaire[m_no_schema].m_conditions[i].type == L_TYPE)
-                if(m_inventaire[m_no_result].m_type == m_inventaire[m_no_schema].m_conditions[i].valeur)
-                    ok = true;
-            if(m_inventaire[m_no_schema].m_conditions[i].type == L_EMPLACEMENT)
-                for(int j = 0 ; j < m_inventaire[m_no_result].m_emplacement.size() ; ++j)
-                    if(m_inventaire[m_no_result].m_emplacement[j] == m_inventaire[m_no_schema].m_conditions[i].valeur)
-                        ok = true;
-            if(m_inventaire[m_no_schema].m_conditions[i].type == L_NOM)
-                if(m_inventaire[m_no_result].getChemin() == m_inventaire[m_no_schema].m_conditions[i].valeur_string)
-                    ok = true;
-        }
-
-        if(m_inventaire[m_no_schema].m_conditions.empty())
-            ok =true;
-
-        for(unsigned i = 0 ; i < m_inventaire[m_no_schema].m_benedictions.size() ; ++i)
-        {
-            if(m_inventaire[m_no_schema].m_benedictions[i].type == DEGATS_SUPP
-            && m_inventaire[m_no_result].m_type != ARME
-            && m_inventaire[m_no_result].m_type != GOLEM)
-                ok = false;
-            if(m_inventaire[m_no_schema].m_benedictions[i].type == DEGATS_TEMPS_SUPP
-            && m_inventaire[m_no_result].m_type != ARME
-            && m_inventaire[m_no_result].m_type != GOLEM)
-                ok = false;
-            if(m_inventaire[m_no_schema].m_benedictions[i].type == ARMURE_SUPP
-            && m_inventaire[m_no_result].m_type != ARMURE
-            && m_inventaire[m_no_result].m_type != GOLEM)
-                ok = false;
-        }
-
-        if(m_inventaire[m_no_result].m_nbr_bless <= 0)
-            ok = false;
-
-
-        if(ok)
-        {
-            m_classe.button_craft.empty = true;
-            if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.button_craft.position.x,0).x
-            && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.button_craft.position.x + m_classe.button_craft.position.w,0).x
-            && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.button_craft.position.y).y
-            && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.button_craft.position.y + m_classe.button_craft.position.h).y
-            && eventManager->getEvenement(Mouse::Left,EventClic))
-            {
-                for(unsigned i = 0 ; i < m_inventaire[m_no_schema].m_benedictions.size() ; ++i)
-                    m_inventaire[m_no_result].AddBenediction(m_inventaire[m_no_schema].m_benedictions[i]);
-
-                for(unsigned i = 0 ; i < m_inventaire[m_no_schema].m_chemin_miracles.size() ; ++i)
+                if(m_inventaire[m_objetEnMain].m_type == LITANIE)
                 {
-                    m_inventaire[m_no_result].m_miracles_benedictions.push_back(Miracle (m_inventaire[m_no_schema].m_chemin_miracles[i], m_caracteristiques,0));
-                    if(m_inventaire[m_no_result].m_useMiracle)
-                        m_inventaire[m_no_result].m_miracle.Concatenencer(m_inventaire[m_no_schema].m_chemin_miracles[i],m_caracteristiques,0);
-                    else
-                        m_inventaire[m_no_result].m_miracle.Charger(m_inventaire[m_no_schema].m_chemin_miracles[i],m_caracteristiques,0);
-                    m_inventaire[m_no_result].m_useMiracle = true;
-                    m_inventaire[m_no_result].m_chemin_miracles.push_back(m_inventaire[m_no_schema].m_chemin_miracles[i]);
+                    int buf = m_no_schema_bless;
+                    m_no_schema_bless = m_objetEnMain;
+                    m_objetEnMain = buf;
+
+                    if(m_no_schema_bless >= 0 && m_no_schema_bless < (int)m_inventaire.size())
+                        m_inventaire[m_no_schema_bless].setPosition(-10,-10);
                 }
-
-
-                if(m_inventaire[m_no_result].m_benedictions.size() + m_inventaire[m_no_result].m_miracles_benedictions.size() * 3 >= 8
-                && m_inventaire[m_no_result].getRarete() < SANCTIFIE)
-                    m_inventaire[m_no_result].setRarete(SANCTIFIE);
-                if(m_inventaire[m_no_result].m_benedictions.size() + m_inventaire[m_no_result].m_miracles_benedictions.size() * 3 >= 4
-                && m_inventaire[m_no_result].getRarete() < SACRE)
-                    m_inventaire[m_no_result].setRarete(SACRE);
-                if(m_inventaire[m_no_result].m_benedictions.size() + m_inventaire[m_no_result].m_miracles_benedictions.size() * 3 >= 2
-                && m_inventaire[m_no_result].getRarete() < BENI)
-                    m_inventaire[m_no_result].setRarete(BENI);
-                if(m_inventaire[m_no_result].m_benedictions.size() + m_inventaire[m_no_result].m_miracles_benedictions.size() * 3 >= 1
-                && m_inventaire[m_no_result].getRarete() < BONNEFACTURE)
-                    m_inventaire[m_no_result].setRarete(BONNEFACTURE);
-
-                delObjet(m_no_schema);
-                m_no_schema = -1;
-                m_inventaire[m_no_result].m_nbr_bless --;
             }
+            else
+                 m_objetEnMain = m_no_schema_bless, m_no_schema_bless = -1;
+        }
+
+        if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.result_craft.position.x,0).x
+        && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.result_craft.position.x + m_classe.result_craft.position.w,0).x
+        && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.result_craft.position.y).y
+        && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.result_craft.position.y + m_classe.result_craft.position.h).y
+        && eventManager->getEvenement(Mouse::Left,EventClic))
+        {
+            if(m_objetEnMain >= 0)
+            {
+                if(m_inventaire[m_objetEnMain].m_type == ARME
+                || m_inventaire[m_objetEnMain].m_type == ARMURE
+                || m_inventaire[m_objetEnMain].m_type == GOLEM
+                || m_inventaire[m_objetEnMain].m_type == JEWELERY)
+                {
+                    int buf = m_no_result_bless;
+                    m_no_result_bless = m_objetEnMain;
+                    m_objetEnMain = buf;
+
+                    if(m_no_result_bless >= 0 && m_no_result_bless < (int)m_inventaire.size())
+                        m_inventaire[m_no_result_bless].setPosition(-10,-10);
+                }
+            }
+            else
+                 m_objetEnMain = m_no_result_bless, m_no_result_bless = -1;
+        }
+
+
+        if( m_no_schema_bless >= 0 && m_no_result_bless >= 0)
+        {
+            bool ok = false;
+
+            for(unsigned i = 0 ; i < m_inventaire[m_no_schema_bless].m_conditions.size() ; ++i)
+            {
+                if(m_inventaire[m_no_schema_bless].m_conditions[i].type == L_TYPE)
+                    if(m_inventaire[m_no_result_bless].m_type == m_inventaire[m_no_schema_bless].m_conditions[i].valeur)
+                        ok = true;
+                if(m_inventaire[m_no_schema_bless].m_conditions[i].type == L_EMPLACEMENT)
+                    for(int j = 0 ; j < m_inventaire[m_no_result_bless].m_emplacement.size() ; ++j)
+                        if(m_inventaire[m_no_result_bless].m_emplacement[j] == m_inventaire[m_no_schema_bless].m_conditions[i].valeur)
+                            ok = true;
+                if(m_inventaire[m_no_schema_bless].m_conditions[i].type == L_NOM)
+                    if(m_inventaire[m_no_result_bless].getChemin() == m_inventaire[m_no_schema_bless].m_conditions[i].valeur_string)
+                        ok = true;
+            }
+
+            if(m_inventaire[m_no_schema_bless].m_conditions.empty())
+                ok =true;
+
+            for(unsigned i = 0 ; i < m_inventaire[m_no_schema_bless].m_benedictions.size() ; ++i)
+            {
+                if(m_inventaire[m_no_schema_bless].m_benedictions[i].type == DEGATS_SUPP
+                && m_inventaire[m_no_result_bless].m_type != ARME
+                && m_inventaire[m_no_result_bless].m_type != GOLEM)
+                    ok = false;
+                if(m_inventaire[m_no_schema_bless].m_benedictions[i].type == DEGATS_TEMPS_SUPP
+                && m_inventaire[m_no_result_bless].m_type != ARME
+                && m_inventaire[m_no_result_bless].m_type != GOLEM)
+                    ok = false;
+                if(m_inventaire[m_no_schema_bless].m_benedictions[i].type == ARMURE_SUPP
+                && m_inventaire[m_no_result_bless].m_type != ARMURE
+                && m_inventaire[m_no_result_bless].m_type != GOLEM)
+                    ok = false;
+            }
+
+            if(m_inventaire[m_no_result_bless].m_nbr_bless <= 0)
+                ok = false;
+
+
+            if(ok)
+            {
+                m_classe.button_craft.empty = true;
+                if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.button_craft.position.x,0).x
+                && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.button_craft.position.x + m_classe.button_craft.position.w,0).x
+                && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.button_craft.position.y).y
+                && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.button_craft.position.y + m_classe.button_craft.position.h).y
+                && eventManager->getEvenement(Mouse::Left,EventClic))
+                {
+                    for(unsigned i = 0 ; i < m_inventaire[m_no_schema_bless].m_benedictions.size() ; ++i)
+                        m_inventaire[m_no_result_bless].AddBenediction(m_inventaire[m_no_schema_bless].m_benedictions[i]);
+
+                    for(unsigned i = 0 ; i < m_inventaire[m_no_schema_bless].m_chemin_miracles.size() ; ++i)
+                    {
+                        m_inventaire[m_no_result_bless].m_miracles_benedictions.push_back(Miracle (m_inventaire[m_no_schema_bless].m_chemin_miracles[i], m_caracteristiques,0));
+                        if(m_inventaire[m_no_result_bless].m_useMiracle)
+                            m_inventaire[m_no_result_bless].m_miracle.Concatenencer(m_inventaire[m_no_schema_bless].m_chemin_miracles[i],m_caracteristiques,0);
+                        else
+                            m_inventaire[m_no_result_bless].m_miracle.Charger(m_inventaire[m_no_schema_bless].m_chemin_miracles[i],m_caracteristiques,0);
+                        m_inventaire[m_no_result_bless].m_useMiracle = true;
+                        m_inventaire[m_no_result_bless].m_chemin_miracles.push_back(m_inventaire[m_no_schema_bless].m_chemin_miracles[i]);
+                    }
+
+
+                    if(m_inventaire[m_no_result_bless].m_benedictions.size() + m_inventaire[m_no_result_bless].m_miracles_benedictions.size() * 3 >= 8
+                    && m_inventaire[m_no_result_bless].getRarete() < SANCTIFIE)
+                        m_inventaire[m_no_result_bless].setRarete(SANCTIFIE);
+                    if(m_inventaire[m_no_result_bless].m_benedictions.size() + m_inventaire[m_no_result_bless].m_miracles_benedictions.size() * 3 >= 4
+                    && m_inventaire[m_no_result_bless].getRarete() < SACRE)
+                        m_inventaire[m_no_result_bless].setRarete(SACRE);
+                    if(m_inventaire[m_no_result_bless].m_benedictions.size() + m_inventaire[m_no_result_bless].m_miracles_benedictions.size() * 3 >= 2
+                    && m_inventaire[m_no_result_bless].getRarete() < BENI)
+                        m_inventaire[m_no_result_bless].setRarete(BENI);
+                    if(m_inventaire[m_no_result_bless].m_benedictions.size() + m_inventaire[m_no_result_bless].m_miracles_benedictions.size() * 3 >= 1
+                    && m_inventaire[m_no_result_bless].getRarete() < BONNEFACTURE)
+                        m_inventaire[m_no_result_bless].setRarete(BONNEFACTURE);
+
+                    m_inventaire[m_no_result_bless].m_nbr_bless --;
+                    m_bless_time = m_inventaire[m_no_schema_bless].m_time;
+                    m_bless_time_max = m_bless_time;
+                    delObjet(m_no_schema_bless);
+                    m_no_schema_bless = -1;
+                }
+            }
+            else
+                m_classe.button_craft.empty = false;
         }
         else
             m_classe.button_craft.empty = false;
     }
-    else
-        m_classe.button_craft.empty = false;
 }
 
 bool Hero::PossibleEquiper(Objet &objet, int emplacement)
@@ -3701,10 +3838,14 @@ void Hero::delObjet(int numero)
         string temp = m_inventaire[numero].getNom();
         m_inventaire.erase(m_inventaire.begin()+numero);
 
-        if(m_no_schema > numero)
-            m_no_schema--;
-        if(m_no_result > numero)
-            m_no_result--;
+        if(m_no_schema_bless > numero)
+            m_no_schema_bless--;
+        if(m_no_result_bless > numero)
+            m_no_result_bless--;
+        if(m_no_schema_craft > numero)
+            m_no_schema_craft--;
+        if(m_no_result_craft > numero)
+            m_no_result_craft--;
 
         for (int i=0;i<8;++i)
         {

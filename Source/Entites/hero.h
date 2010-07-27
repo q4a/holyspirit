@@ -63,20 +63,20 @@ public:
     void Afficher();
     void CalculerOrdreAffichage();
 
-    bool AfficherInventaire(float, std::vector<Objet> *, bool hideLeft);
+    bool AfficherInventaire(float, std::vector<Objet> *, bool hideLeft, bool bless = false, bool craft = false);
     void AfficherQuetes(float);
     void AfficherPotales(float);
     void AfficherFlecheQuetes(const std::string &nomMap, float temps);
     bool AfficherMiracles(float , int );
     void AfficherCaracteristiques(float decalage, bool trader);
     void AfficherRaccourcis();
-    void AfficherAmis();
+    void AfficherAmisEtCraft();
 
     void PlacerCamera();
 
     bool TestMonstreVise(Personnage *monstre);
 
-    void AugmenterAme(float temps);
+    void GererTemps(float temps);
     void RecalculerCaracteristiques(bool bis = true);
     void RecalculerGolems();
 
@@ -159,8 +159,10 @@ public:
 
     std::list<sf::Sprite> m_minimap;
 
-    int m_no_schema;
-    int m_no_result;
+    int m_no_schema_craft;
+    int m_no_schema_bless;
+    int m_no_result_craft;
+    int m_no_result_bless;
 
 private:
     coordonnee m_chercherSac,m_sacVise;
@@ -174,6 +176,11 @@ private:
     std::vector<int> m_weaponMiracle;
 
     bool m_achat;
+
+    float m_craft_time;
+    float m_bless_time;
+    float m_craft_time_max;
+    float m_bless_time_max;
 };
 
 #endif

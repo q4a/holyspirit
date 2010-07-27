@@ -175,8 +175,10 @@ void c_Jeu::GererTemps(Jeu *jeu)
         augmenter=true;
     tempsEcouleDepuisFPS+=tempsEcoule;
 
-    jeu->hero.AugmenterAme(tempsEcoule);
-    jeu->hero.RecalculerCaracteristiques();
+    //jeu->hero.m_bless_time
+
+    jeu->hero.GererTemps(tempsEcoule);
+    //jeu->hero.RecalculerCaracteristiques();
     if (jeu->hero.m_personnage.EnVie())
     {
         jeu->hero.RegenererVie(tempsEcoule);
@@ -211,7 +213,6 @@ void c_Jeu::GererTemps(Jeu *jeu)
         jeu->next_screen = 8;
         jeu->Next();
     }
-
 
 }
 void c_Jeu::IA(Jeu *jeu)
@@ -844,7 +845,7 @@ void c_Jeu::Affichage(Jeu *jeu)
 
     jeu->map->Afficher(&jeu->hero,eventManager->getEvenement(Key::LAlt,EventKey),alpha_map);
 
-    jeu->hero.AfficherAmis();
+    jeu->hero.AfficherAmisEtCraft();
 
     if (configuration->Minimap)
     {

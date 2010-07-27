@@ -77,7 +77,7 @@ void c_Craft::Utiliser(Jeu *jeu)
         }
         m_trader.clear();
         m_decalage=-600;
-        jeu->hero.m_no_schema = -1;
+        //jeu->hero.m_no_schema = -1;
         //jeu->hero.m_no_result = -1;
         jeu->Next();
     }
@@ -105,7 +105,7 @@ void c_Craft::Utiliser(Jeu *jeu)
     jeu->menu.AfficherInventaire(m_decalage,&jeu->hero.m_classe,false);
     jeu->menu.AfficherCraft(m_decalage,&jeu->hero.m_classe);
 
-    jeu->hero.AfficherInventaire(m_decalage,&m_trader,true);
+    jeu->hero.AfficherInventaire(m_decalage,&m_trader,true,false,true);
 
     if(jeu->hero.m_objetEnMain == -1)
         eventManager->AfficherCurseur();
