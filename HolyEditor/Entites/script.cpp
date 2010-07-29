@@ -188,6 +188,9 @@ void Script::Sauvegarder_instruction(ostringstream &fichier , int no, int indent
                 }
                 else
                     fichier<<"* "<<m_instructions[no].m_valeurs[i]<<" ";
+
+            if(!m_instructions[no].valeurString.empty())
+                fichier<<"\" "<<m_instructions[no].valeurString<<"\"";
         }
         fichier<<endl;
     }
@@ -230,6 +233,9 @@ void Script::Sauvegarder_instruction(ofstream &fichier , int no, int indent)
                 }
                 else
                     fichier<<"* "<<m_instructions[no].m_valeurs[i]<<" ";
+
+            if(!m_instructions[no].valeurString.empty())
+                fichier<<"\" "<<m_instructions[no].valeurString<<"\"";
         }
         fichier<<endl;
     }

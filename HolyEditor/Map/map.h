@@ -30,7 +30,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "decor.h"
 //#include "../menu.h"
 #include "../Entites/monstre.h"
-#include "evenement.h"
 
 class Jeu;
 
@@ -52,17 +51,13 @@ public:
     void Afficher(bool alt,float alpha=255);
     void AfficherSac(coordonnee positionSac,float decalage,coordonnee positionEcranSac,Caracteristique caract);
     void AfficherMinimap(coordonnee position,int typeCase,float alpha);
-    void AfficherNomEvenement(coordonnee casePointee,coordonnee positionSouris);
 
     void Animer(float temps/*,Menu *menu*/); // Animation des tiles
 
-    bool TestEvenement(Jeu *jeu,float temps);
     void CalculerOmbresEtLumieres();
     void Detruire();
 
     void MusiquePlay(coordonnee position);
-
-    void VerifierDeclencheursDegats(int i, int j);
 
     bool RamasserObjet(Hero *hero,bool enMain = false);
 
@@ -75,7 +70,6 @@ public:
     bool    getCollision(int positionX,int positionY, int exception = -1); // Retourne 1 s'il y a une collision avec le décors se trouvant à la position X et Y
     int     getTypeCase(int positionX,int positionY);
     bool    getCollisionPousse(int positionX,int positionY);
-    int     getEvenement(coordonnee casePointee);
     int     getMonstre(Hero *hero,coordonnee positionSouris,coordonnee casePointee);
     const   coordonnee &getSacPointe();
     int     getObjetPointe();
@@ -110,7 +104,6 @@ public:
     std::vector <int> m_herbe;
     //Decor ***m_decor;
     std::vector <std::vector <std::vector < Decor > > >  m_decor[NOMBRE_COUCHE_MAP];
-    std::vector <Evenement> m_evenement;
 
     sf::Music m_musique[MAX_MUSIQUE];
     std::string m_nom;
@@ -132,7 +125,6 @@ public:
     int m_selectTile;
     int m_selectHerbe;
     int m_selectEntite;
-    int m_selectEvenement;
     int m_selectCouche;
     sf::Sprite m_selectSprite;
     Decor m_select_brush;

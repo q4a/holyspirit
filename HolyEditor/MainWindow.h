@@ -44,7 +44,6 @@ class MainWindow : public QWidget // On hérite de QWidget (IMPORTANT)
     void importerTileset();
     void importerHerbe();
     void importerEntite();
-    void importerEvenement();
     void sauver();
     void sauverAs();
     void undo();
@@ -55,12 +54,10 @@ class MainWindow : public QWidget // On hérite de QWidget (IMPORTANT)
     void selectTileset  (QTreeWidgetItem *, int);
     void selectHerbe    (QTreeWidgetItem *, int);
     void selectEntite   (QTreeWidgetItem *, int);
-    void selectEvenement(QTreeWidgetItem *, int);
 
     void addTileset     (QTreeWidgetItem *, int);
     void addHerbe       (QTreeWidgetItem *, int);
     void addEntite      (QTreeWidgetItem *, int);
-    void addEvenement   (QTreeWidgetItem *, int);
 
     protected:
 
@@ -102,7 +99,6 @@ class MainWindow : public QWidget // On hérite de QWidget (IMPORTANT)
     QTreeWidget     *listTileset;
     QTreeWidget     *listHerbe;
     QTreeWidget     *listEntites;
-    QTreeWidget     *listEvenements;
 
 
     QRadioButton    *couche0;
@@ -134,7 +130,6 @@ class MainWindow : public QWidget // On hérite de QWidget (IMPORTANT)
     QAction         *actionImporterTileset;
     QAction         *actionImporterHerbe;
     QAction         *actionImporterEntite;
-    QAction         *actionImporterEvenement;
     QAction         *actionOptionsMap;
     QAction         *actionScriptMap;
 

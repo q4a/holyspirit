@@ -37,8 +37,8 @@ class Decor
 {
 public:
     Decor();
-    Decor(int tileset,std::vector<int> tile,const std::vector<int> &evenement,const std::vector<int> &monstre,int herbe, int couche,int hauteur);
-    Decor(int tileset,std::vector<int> tile,const std::vector<int> &evenement,const std::vector<int> &monstre,int herbe, int couche,int hauteur,std::vector <Objet> objets);
+    Decor(int tileset,std::vector<int> tile,const std::vector<int> &monstre,int herbe, int couche,int hauteur);
+    Decor(int tileset,std::vector<int> tile,const std::vector<int> &monstre,int herbe, int couche,int hauteur,std::vector <Objet> objets);
     ~Decor();
 
     void AjouterObjet(Objet);
@@ -53,7 +53,6 @@ public:
     std::vector<int> getTile(); // Prendre le numéro du tile du décor
     int getTileset(); // Prendre le numéro du tileset du décor
     int getPosition(char type); // Prendre la position du décor
-    const std::vector<int> &getEvenement(); // Prendre le numéro de l'événement du décor
     const std::vector<int> &getMonstre(); // Retourne l'ID du monstre sur la case
     int getProjectile();
     int getEffetGraphique();
@@ -72,13 +71,11 @@ public:
     float getAnimation();
 
 
-    void setEvenement(int evenement,int numero);
-    void ajouterEvenement(int evenement);
     void setTileset( int tileset);
     void setTile(std::vector<int> tile);
     void setCouche(int couche);
-    void setDecor(int tileset,std::vector<int> tile,const std::vector<int> &evenement,const std::vector<int> &monstre,int herbe,int couche,int hauteur);
-    void setDecor(int tileset,std::vector<int> tile,const std::vector<int> &evenement,const std::vector<int> &monstre,int herbe,int couche,int hauteur,std::vector <Objet> objets); //Définir une valeur au décor
+    void setDecor(int tileset,std::vector<int> tile,const std::vector<int> &monstre,int herbe,int couche,int hauteur);
+    void setDecor(int tileset,std::vector<int> tile,const std::vector<int> &monstre,int herbe,int couche,int hauteur,std::vector <Objet> objets); //Définir une valeur au décor
     void setNumeroHerbe(int numero);
 
     void setMonstre(int monstre);
@@ -96,7 +93,6 @@ public:
     Entite_graphique m_entite_herbe;
 
     int random_animation;
-    int random_evenement;
 
 //private:
     int m_tileset,m_projectile,m_effet,m_couche;
@@ -104,7 +100,6 @@ public:
 
     std::vector <int> m_monstre;
 
-    std::vector<int> m_evenement;
     float m_animation;
     coordonnee m_position;
 

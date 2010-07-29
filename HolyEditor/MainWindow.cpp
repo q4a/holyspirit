@@ -105,9 +105,6 @@ MainWindow::MainWindow() : QWidget()
     actionImporterEntite    = menuImporterRessources->addAction("&Importer Entité");
     actionImporterEntite->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_E));
 
-    actionImporterEvenement    = menuImporterRessources->addAction("&Créer Evénement");
-
-
 
     menuMap        = menu->addMenu(tr("&Map"));
 
@@ -128,18 +125,15 @@ MainWindow::MainWindow() : QWidget()
     listTileset      = new QTreeWidget();
     listHerbe        = new QTreeWidget();
     listEntites      = new QTreeWidget();
-    listEvenements   = new QTreeWidget();
 
     listTileset     ->setSortingEnabled(true);
     listHerbe       ->setSortingEnabled(true);
     listEntites     ->setSortingEnabled(true);
-    listEvenements  ->setSortingEnabled(true);
 
     ongletRessources    = new QTabWidget();
     ongletRessources->addTab(listTileset, "Tilesets");
     ongletRessources->addTab(listHerbe, "Herbes");
     ongletRessources->addTab(listEntites, "Entités");
-    ongletRessources->addTab(listEvenements, "Evénements");
 
     couche0 = new QRadioButton("Couche no 1 (Tout ce qui est sol)", menuInfos);
     couche0->setChecked(true);
@@ -343,19 +337,16 @@ MainWindow::MainWindow() : QWidget()
     connect(actionImporterTileset, SIGNAL(triggered()), this, SLOT(importerTileset()));
     connect(actionImporterHerbe  , SIGNAL(triggered()), this, SLOT(importerHerbe()));
     connect(actionImporterEntite , SIGNAL(triggered()), this, SLOT(importerEntite()));
-    connect(actionImporterEvenement , SIGNAL(triggered()), this, SLOT(importerEvenement()));
 
     connect(actionScriptMap,  SIGNAL(triggered()), this, SLOT(script()));
 
     connect(listTileset     , SIGNAL(itemPressed(QTreeWidgetItem *, int)), this, SLOT(selectTileset  (QTreeWidgetItem *, int)));
     connect(listHerbe       , SIGNAL(itemPressed(QTreeWidgetItem *, int)), this, SLOT(selectHerbe    (QTreeWidgetItem *, int)));
     connect(listEntites     , SIGNAL(itemPressed(QTreeWidgetItem *, int)), this, SLOT(selectEntite   (QTreeWidgetItem *, int)));
-    connect(listEvenements  , SIGNAL(itemPressed(QTreeWidgetItem *, int)), this, SLOT(selectEvenement(QTreeWidgetItem *, int)));
 
     connect(listTileset     , SIGNAL(itemDoubleClicked (QTreeWidgetItem *, int)), this, SLOT(addTileset  (QTreeWidgetItem *, int)));
     connect(listHerbe       , SIGNAL(itemDoubleClicked (QTreeWidgetItem *, int)), this, SLOT(addHerbe    (QTreeWidgetItem *, int)));
     connect(listEntites     , SIGNAL(itemDoubleClicked (QTreeWidgetItem *, int)), this, SLOT(addEntite   (QTreeWidgetItem *, int)));
-    connect(listEvenements  , SIGNAL(itemDoubleClicked (QTreeWidgetItem *, int)), this, SLOT(addEvenement(QTreeWidgetItem *, int)));
 }
 
 MainWindow::~MainWindow()
@@ -407,7 +398,6 @@ MainWindow::~MainWindow()
     delete listTileset;
     delete listHerbe;
     delete listEntites;
-    delete listEvenements;
 
     delete ongletRessources;
 
@@ -429,7 +419,6 @@ MainWindow::~MainWindow()
     delete actionImporterTileset;
     delete actionImporterHerbe;
     delete actionImporterEntite;
-    delete actionImporterEvenement;
     delete actionOptionsMap;
 
     delete menuEdition;
@@ -827,46 +816,6 @@ void MainWindow::paintEvent(QPaintEvent*)
                 }
             }
 
-            if (map->m_selectEvenement >= 0)
-            for(int i = eventManager->getCasePointee().y - (int)(taillePinceau->value()*0.5) ; i < eventManager->getCasePointee().y + taillePinceau->value()*0.5 ; ++i)
-            for(int j = eventManager->getCasePointee().x - (int)(taillePinceau->value()*0.5) ; j < eventManager->getCasePointee().x + taillePinceau->value()*0.5 ; ++j)
-            if(i >= 0 && j >= 0 && i < map->getDimensions().y && j < map->getDimensions().x)
-            {
-                if (map->m_moduleAleatoireMin == 0 && map->m_moduleAleatoireMax == 9)
-                {
-                    map->m_decor[map->m_selectCouche][i][j].back().m_evenement.clear();
-                    if (map->m_selectEvenement >= 1)
-                        map->m_decor[map->m_selectCouche][i][j].back().m_evenement.push_back(map->m_selectEvenement-1);
-                }
-                else
-                {
-                    bool ajouter = true;
-                    for (unsigned k = 0 ; k < map->m_decor[map->m_selectCouche][i][j].size() ; ++k)
-                    {
-                        if (map->m_decor[map->m_selectCouche][i][j][k].m_moduleAleatoireMin == map->m_moduleAleatoireMin)
-                        if (map->m_decor[map->m_selectCouche][i][j][k].m_moduleAleatoireMax == map->m_moduleAleatoireMax)
-                        {
-                            ajouter = false;
-                            map->m_decor[map->m_selectCouche][i][j][k].m_evenement.clear();
-                            if (map->m_selectEvenement >= 1)
-                                map->m_decor[map->m_selectCouche][i][j][k].m_evenement.push_back(map->m_selectEvenement-1);
-                        }
-                    }
-                    if (ajouter)
-                    {
-                        map->m_decor[map->m_selectCouche][i][j].push_back(map->m_decor[map->m_selectCouche][i][j].back());
-                        map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2] = Decor ();
-
-                        map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_evenement.clear();
-                        if (map->m_selectEvenement >= 1)
-                            map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_evenement.push_back(map->m_selectEvenement-1);
-
-                        map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_moduleAleatoireMin = map->m_moduleAleatoireMin;
-                        map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_moduleAleatoireMax = map->m_moduleAleatoireMax;
-                    }
-                }
-            }
-
             if (map->m_selectTileset >= 0)
             for(int i = eventManager->getCasePointee().y - (int)(taillePinceau->value()*0.5) ; i < eventManager->getCasePointee().y + taillePinceau->value()*0.5 ; ++i)
             for(int j = eventManager->getCasePointee().x - (int)(taillePinceau->value()*0.5) ; j < eventManager->getCasePointee().x + taillePinceau->value()*0.5 ; ++j)
@@ -1075,8 +1024,6 @@ void MainWindow::paintEvent(QPaintEvent*)
 
                     }
 
-                    if(!map->m_select_brush.m_evenement.empty())
-                        map->m_decor[map->m_selectCouche][i][j].back().m_evenement = map->m_select_brush.m_evenement;
 
                     if(map->m_select_brush.m_herbe != -1)
                         map->m_decor[map->m_selectCouche][i][j].back().m_herbe = map->m_select_brush.m_herbe;
@@ -1117,9 +1064,6 @@ void MainWindow::paintEvent(QPaintEvent*)
                                 map->m_monstre[map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_monstre[z]].setCoordonnee(coordonnee (j, i));
                         }
 
-                        if(!map->m_select_brush.m_evenement.empty())
-                            map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_evenement = map->m_select_brush.m_evenement;
-
                         if(map->m_select_brush.m_herbe != -1)
                             map->m_decor[map->m_selectCouche][i][j][map->m_decor[map->m_selectCouche][i][j].size()-2].m_herbe = map->m_select_brush.m_herbe;
 
@@ -1135,18 +1079,15 @@ void MainWindow::paintEvent(QPaintEvent*)
             eventManager->StopEvenement(sf::Mouse::Right, "C");
             if (!map->m_select_brush.m_tile.empty()
              || !map->m_select_brush.m_monstre.empty()
-             || !map->m_select_brush.m_evenement.empty()
              || map->m_select_brush.m_herbe != -1
              || map->m_selectEntite != -1
              || map->m_selectTileset != -1
              || map->m_selectTile != -1
              || map->m_selectHerbe != -1
-             || map->m_selectEvenement != -1
               )
             {
                 map->m_select_brush.m_tile.clear();
                 map->m_select_brush.m_monstre.clear();
-                map->m_select_brush.m_evenement.clear();
                 map->m_select_brush.m_herbe = -1;
                 map->m_mode_brush = false;
 
@@ -1154,7 +1095,6 @@ void MainWindow::paintEvent(QPaintEvent*)
                 map->m_selectTileset    = -1;
                 map->m_selectTile       = -1;
                 map->m_selectHerbe      = -1;
-                map->m_selectEvenement  = -1;
             }
             else
             {
@@ -1378,43 +1318,7 @@ void MainWindow::MettreListesAJour()
 
             listEntites->addTopLevelItem(widget);
         }
-
-        listEvenements->clear();
-        for (unsigned k = 0 ; k <= map->m_evenement.size() ; ++k)
-        {
-            QStringList temp;
-            if (k == 0)
-                temp<<"Suppression événement";
-            else
-            {
-                std::ostringstream buf;
-
-                if (map->m_evenement[k-1].getType() == CHANGEMENT_DE_MAP)
-                    buf<<"Changement de map : "<<map->m_evenement[k-1].getString()<<" ( x"<< map->m_evenement[k-1].getInformation(0)<<", y"<< map->m_evenement[k-1].getInformation(1)<<" ) ";
-                if (map->m_evenement[k-1].getType() == LUMIERE)
-                    buf<<"Lumière : "<<" ( r"<< map->m_evenement[k-1].getInformation(0)<<", g"<< map->m_evenement[k-1].getInformation(1)<<", b"<< map->m_evenement[k-1].getInformation(2)<<", i"<< map->m_evenement[k-1].getInformation(3) <<" ) ";
-                if (map->m_evenement[k-1].getType() == INFLIGER_DEGATS)
-                    buf<<"Infliger dégats : "<<" ( dégats "<< map->m_evenement[k-1].getInformation(0) <<" ) ";
-                if (map->m_evenement[k-1].getType() == DECLENCHEUR_DEGAT_TO_EVENEMENT)
-                    buf<<"Déclencheur (dégats) : "<<" ( event "<< map->m_evenement[k-1].getInformation(0)<<" ) ";
-                if (map->m_evenement[k-1].getType() == CHANGER_DECOR)
-                    buf<<"Changer de décor : "<<" ( s"<< map->m_evenement[k-1].getInformation(0)<<", t"<< map->m_evenement[k-1].getInformation(1)<<" ) ";
-                if (map->m_evenement[k-1].getType() == TIMER)
-                    buf<<"Timer : "<<" ( temps "<< map->m_evenement[k-1].getInformation(0)<<", event "<< map->m_evenement[k-1].getInformation(2)<<" ) ";
-                if (map->m_evenement[k-1].getType() == EXPLOSION)
-                    buf<<"Explosion : "<<" ( rayon : "<< map->m_evenement[k-1].getInformation(0)<<" ) ";
-
-                buf<<" ("<<k-1<<" )";
-
-                temp<<buf.str().c_str();
-            }
-            QTreeWidgetItem *widget = new QTreeWidgetItem(temp, 0);
-            widget ->setData (1, 0, QVariant(k));
-
-            listEvenements->addTopLevelItem(widget);
-        }
     }
-
 }
 
 void MainWindow::nouveau()
@@ -1886,13 +1790,6 @@ void MainWindow::importerEntite()
     backup();
 }
 
-void MainWindow::importerEvenement()
-{
-    if (map != NULL)
-    {
-    }
-}
-
 void MainWindow::script()
 {
     if (map != NULL)
@@ -1905,7 +1802,6 @@ void MainWindow::selectTileset(QTreeWidgetItem *item, int column)
 
     map->m_selectEntite      = -1;
     map->m_selectHerbe       = -1;
-    map->m_selectEvenement   = -1;
 
     //std::cout<<item->parent()->text(column).toStdString()<<std::endl;
     if (item->parent() != NULL)
@@ -1943,7 +1839,6 @@ void MainWindow::selectHerbe(QTreeWidgetItem *item, int column)
     map->m_selectEntite      = -1;
     map->m_selectTileset     = -1;
     map->m_selectTile        = -1;
-    map->m_selectEvenement   = -1;
 
     map->m_selectHerbe = item->data(1,0).toInt();
 
@@ -1956,7 +1851,6 @@ void MainWindow::selectEntite(QTreeWidgetItem *item, int column)
     map->m_selectHerbe       = -1;
     map->m_selectTileset     = -1;
     map->m_selectTile        = -1;
-    map->m_selectEvenement   = -1;
 
     map->m_selectEntite = item->data(1,0).toInt();
 
@@ -1964,20 +1858,6 @@ void MainWindow::selectEntite(QTreeWidgetItem *item, int column)
 
     SFMLView->setFocus(Qt::MouseFocusReason);
 }
-void MainWindow::selectEvenement(QTreeWidgetItem *item, int column)
-{
-    map->m_selectEntite      = -1;
-    map->m_selectTileset     = -1;
-    map->m_selectTile        = -1;
-    map->m_selectHerbe       = -1;
-
-    map->m_selectEvenement = item->data(1,0).toInt();
-
-    map->m_mode_brush       = false;
-
-    SFMLView->setFocus(Qt::MouseFocusReason);
-}
-
 
 void MainWindow::addTileset(QTreeWidgetItem *item, int column)
 {
@@ -1987,7 +1867,6 @@ void MainWindow::addTileset(QTreeWidgetItem *item, int column)
         map->m_selectTileset     = -1;
         map->m_selectTile        = -1;
         map->m_selectHerbe       = -1;
-        map->m_selectEvenement   = -1;
 
         if (item->parent() != NULL)
         {
@@ -2008,7 +1887,6 @@ void MainWindow::addHerbe(QTreeWidgetItem *item, int column)
         map->m_selectTileset     = -1;
         map->m_selectTile        = -1;
         map->m_selectHerbe       = -1;
-        map->m_selectEvenement   = -1;
 
         map->m_select_brush.m_herbe = item->data(1,0).toInt() - 1;
 
@@ -2025,8 +1903,6 @@ void MainWindow::addEntite(QTreeWidgetItem *item, int column)
         map->m_selectTileset     = -1;
         map->m_selectTile        = -1;
         map->m_selectHerbe       = -1;
-        map->m_selectEvenement   = -1;
-
 
         map->m_monstre.push_back(Monstre ());
         map->m_monstre.back().Charger(item->data(1,0).toInt() - 1,&map->m_ModeleMonstre[item->data(1,0).toInt() - 1]);
@@ -2034,23 +1910,6 @@ void MainWindow::addEntite(QTreeWidgetItem *item, int column)
         map->m_add_monstre.push_back(false);
 
         map->m_select_brush.m_monstre.push_back(map->m_monstre.size()-1);
-
-        map->m_mode_brush       = true;
-
-        SFMLView->setFocus(Qt::MouseFocusReason);
-    }
-}
-void MainWindow::addEvenement(QTreeWidgetItem *item, int column)
-{
-    if (map != NULL)
-    {
-        map->m_selectEntite      = -1;
-        map->m_selectTileset     = -1;
-        map->m_selectTile        = -1;
-        map->m_selectHerbe       = -1;
-        map->m_selectEvenement   = -1;
-
-        map->m_select_brush.m_evenement.push_back(item->data(1,0).toInt() - 1);
 
         map->m_mode_brush       = true;
 

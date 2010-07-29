@@ -25,7 +25,6 @@ Decor::Decor()
 {
     m_tileset=-1;
     m_tile.clear();
-    m_evenement.clear();
     m_monstre.clear();
     m_herbe=-1;
     m_numeroHerbe=-1;
@@ -46,15 +45,13 @@ Decor::Decor()
     m_effet=-1;
 
     random_animation = 0;
-    random_evenement = 0;
 }
 
 
-Decor::Decor(int tileset,std::vector<int> tile,const std::vector<int> &evenement,const std::vector<int> &monstre,int herbe, int couche,int hauteur)
+Decor::Decor(int tileset,std::vector<int> tile,const std::vector<int> &monstre,int herbe, int couche,int hauteur)
 {
     m_tileset=tileset;
     m_tile=tile;
-    m_evenement=evenement;
     m_monstre=monstre;
     m_herbe=herbe;
     m_numeroHerbe=0;
@@ -69,14 +66,12 @@ Decor::Decor(int tileset,std::vector<int> tile,const std::vector<int> &evenement
 
 
     random_animation = 0;
-    random_evenement = 0;
 }
 
-Decor::Decor(int tileset,std::vector<int> tile,const std::vector<int> &evenement,const std::vector<int> &monstre,int herbe, int couche,int hauteur,std::vector <Objet> objets)
+Decor::Decor(int tileset,std::vector<int> tile,const std::vector<int> &monstre,int herbe, int couche,int hauteur,std::vector <Objet> objets)
 {
     m_tileset=tileset;
     m_tile=tile;
-    m_evenement=evenement;
     m_monstre=monstre;
     m_herbe=herbe;
     m_numeroHerbe=0;
@@ -91,22 +86,19 @@ Decor::Decor(int tileset,std::vector<int> tile,const std::vector<int> &evenement
 
 
     random_animation = 0;
-    random_evenement = 0;
 }
 
 Decor::~Decor()
 {
-    m_evenement.clear();
     m_objets.clear();
 }
 
 
 
-void Decor::setDecor(int tileset,std::vector<int> tile,const std::vector<int> &evenement,const std::vector<int> &monstre,int herbe, int couche,int hauteur)
+void Decor::setDecor(int tileset,std::vector<int> tile,const std::vector<int> &monstre,int herbe, int couche,int hauteur)
 {
     m_tileset=tileset;
     m_tile=tile;
-    m_evenement=evenement;
     m_monstre=monstre;
     m_herbe=herbe;
     m_numeroHerbe=0;
@@ -119,11 +111,10 @@ void Decor::setDecor(int tileset,std::vector<int> tile,const std::vector<int> &e
         m_couche=0;
 }
 
-void Decor::setDecor(int tileset,std::vector<int> tile,const std::vector<int> &evenement,const std::vector<int> &monstre,int herbe, int couche,int hauteur,std::vector <Objet> objets)
+void Decor::setDecor(int tileset,std::vector<int> tile,const std::vector<int> &monstre,int herbe, int couche,int hauteur,std::vector <Objet> objets)
 {
     m_tileset=tileset;
     m_tile=tile;
-    m_evenement=evenement;
     m_monstre=monstre;
     m_herbe=herbe;
     m_numeroHerbe=0;
@@ -244,15 +235,6 @@ void Decor::setEffetGraphique(int effet)
 {
     m_effet=effet;
 }
-void Decor::setEvenement(int evenement, int numero)
-{
-    if (numero>=0&&numero<(int)m_evenement.size())
-        m_evenement[numero]=evenement;
-}
-void Decor::ajouterEvenement(int evenement)
-{
-    m_evenement.push_back(evenement);
-}
 void Decor::setTileset(int tileset)
 {
     m_tileset=tileset;
@@ -315,10 +297,6 @@ std::vector<int> Decor::getTile()
 int Decor::getTileset()
 {
     return m_tileset;
-}
-const std::vector<int> &Decor::getEvenement()
-{
-    return m_evenement;
 }
 const std::vector<int> &Decor::getMonstre()
 {

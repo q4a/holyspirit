@@ -45,7 +45,6 @@ Map::Map()
     m_selectTile      = -1;
     m_selectHerbe     = -1;
     m_selectEntite    = -1;
-    m_selectEvenement = -1;
     m_mode_brush      = false;
 
     m_selectCouche   = 0;
@@ -96,10 +95,6 @@ void Map::Detruire()
 
     if (configuration->debug)
         console->Ajouter("Monstres détruits !");
-
-    m_evenement.clear();
-    if (configuration->debug)
-        console->Ajouter("Evénements détruits !");
 
     for (int i=0;i<MAX_MUSIQUE;++i)
         m_musique[i].Stop();
@@ -253,7 +248,7 @@ void Map::Creer(int x, int y)
                         else
                             layer = 10;
 
-                        m_decor[couche][position.y].back().push_back(Decor (-1,std::vector <int> (),std::vector <int> (),std::vector <int> (),-1,layer,0,std::vector <Objet> ()));
+                        m_decor[couche][position.y].back().push_back(Decor (-1,std::vector <int> (),std::vector <int> (),-1,layer,0,std::vector <Objet> ()));
                         m_decor[couche][position.y].back().back().m_moduleAleatoireMin = 0;
                         m_decor[couche][position.y].back().back().m_moduleAleatoireMax = 9;
                     }
@@ -572,73 +567,6 @@ bool Map::Charger(std::string nomMap)
 
         console->Ajouter("");
 
-        m_evenement.clear();
-
-        do
-        {
-            fichier->get(caractere);
-            if (caractere=='*')
-            {
-                int numeroEvenement;
-                do
-                {
-                    fichier->get(caractere);
-                    switch (caractere)
-                    {
-                    case 'e':
-                        *fichier>>numeroEvenement;
-                        break;
-                    }
-                    if (fichier->eof())
-                    {
-                        console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                        return 0;
-                    }
-                }
-                while (caractere!='$');
-                m_evenement.push_back(numeroEvenement);
-
-                //AjouterEvenement(numeroEvenement);
-
-                int information;
-                do
-                {
-                    fichier->get(caractere);
-                    if (caractere=='i')
-                    {
-                        *fichier>>information;
-
-                        m_evenement.back().AjouterInformation(information);
-                    }
-
-                    if (caractere=='m')
-                    {
-                        std::string temp;
-                        *fichier>>temp;
-
-                        m_evenement.back().setString(temp);
-                    }
-                    if (fichier->eof())
-                    {
-                        console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                        return 0;
-                    }
-                }
-                while (caractere!='$');
-
-                fichier->get(caractere);
-            }
-            if (fichier->eof())
-            {
-                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                return 0;
-            }
-        }
-        while (caractere!='$');
-
-        if (configuration->debug)
-            console->Ajouter("/Lectures des événements.");
-
 //        Decor decorTemp(-1,-1,std::vector<int> (),std::vector<int> (),-1,0,0);
 
         coordonnee position;
@@ -660,7 +588,6 @@ bool Map::Charger(std::string nomMap)
                             Caracteristique tempCaract;
 
                             int pos;
-                            std::vector<int> evenement;
                             int tileset=-1,tileFinal=-1,herbe=-1,layer=0,hauteur=0;
                             int temp;
                             int entite_angle = 0;
@@ -707,11 +634,6 @@ bool Map::Charger(std::string nomMap)
                                     *fichier>>temp;
                                     tile.push_back(temp);
                                     dernierEtaitMonstre = false;
-                                    break;
-                                case 'e':
-                                    int temp2;
-                                    *fichier>>temp2;
-                                    evenement.push_back(temp2);
                                     break;
                                 case 'm':
                                     int temp3;
@@ -767,8 +689,6 @@ bool Map::Charger(std::string nomMap)
                                     break;
 
                                 case 'r':
-
-                                    std::vector<int> r_evenement = evenement;
                                     int r_tileset = tileset;
                                     int r_herbe=-1;
                                     int r_layer=0;
@@ -825,11 +745,6 @@ bool Map::Charger(std::string nomMap)
                                                         *fichier>>temp;
                                                         r_tile.push_back(temp);
                                                         r_dernierEtaitMonstre = false;
-                                                        break;
-                                                    case 'e':
-                                                        int temp2;
-                                                        *fichier>>temp2;
-                                                        r_evenement.push_back(temp2);
                                                         break;
                                                     case 'm':
                                                         int temp3;
@@ -902,7 +817,7 @@ bool Map::Charger(std::string nomMap)
                                             else
                                                 r_layer+=10;
 
-                                            m_decor[couche][position.y].back().push_back(Decor (r_tileset,r_tile,r_evenement,r_monstreFinal,r_herbe,r_layer,r_hauteur,r_objets));
+                                            m_decor[couche][position.y].back().push_back(Decor (r_tileset,r_tile,r_monstreFinal,r_herbe,r_layer,r_hauteur,r_objets));
                                             m_decor[couche][position.y].back().back().m_moduleAleatoireMin = noModuleCaseMin;
                                             m_decor[couche][position.y].back().back().m_moduleAleatoireMax = noModuleCaseMax;
                                             m_decor[couche][position.y].back().back().m_entite_graphique = r_entite_decor;
@@ -945,12 +860,12 @@ bool Map::Charger(std::string nomMap)
                                 else
                                     layer+=10;
 
-                                m_decor[couche][position.y].back().push_back(Decor (tileset,tile,evenement,monstreFinal,herbe,layer,hauteur,objets));
+                                m_decor[couche][position.y].back().push_back(Decor (tileset,tile,monstreFinal,herbe,layer,hauteur,objets));
                                 m_decor[couche][position.y].back().back().m_moduleAleatoireMin = 0;
                                 m_decor[couche][position.y].back().back().m_moduleAleatoireMax = 9;
                                 m_decor[couche][position.y].back().back().m_entite_graphique = entite_decor;
 
-                                tileset=-1,tile.clear(),tileFinal=-1,evenement.clear(),monstreFinal.clear(),herbe=-1,layer=0,hauteur=0;
+                                tileset=-1,tile.clear(),tileFinal=-1,monstreFinal.clear(),herbe=-1,layer=0,hauteur=0;
                                 objets.clear();
                                 position.x++;
                             }
@@ -1190,18 +1105,6 @@ void Map::Sauvegarder(std::string chemin)
 
         fichier<<"$\n";
 
-        for (int i=0;i<(int)m_evenement.size();++i)
-        {
-            fichier<<"* e"<<m_evenement[i].getType()<<" $ * ";
-            if (m_evenement[i].getString()!="")
-                fichier<<"m"<<m_evenement[i].getString()<<" ";
-            for (int j=0;j<m_evenement[i].getNombreInformation();j++)
-                fichier<<"i"<<m_evenement[i].getInformation(j)<<" ";
-            fichier<<"$\n";
-        }
-
-        fichier<<"$\n";
-
         for (int couche=0;couche<2;couche++)
         {
             for (int i=0;i<m_dimensions.y;++i)
@@ -1212,7 +1115,6 @@ void Map::Sauvegarder(std::string chemin)
                     for(unsigned z = 0 ; z < m_decor[couche][i][j].size() ; ++z)
                     if(m_decor[couche][i][j][z].m_tile.size() > 0
                     || m_decor[couche][i][j][z].m_monstre.size() > 0
-                    || m_decor[couche][i][j][z].m_evenement.size() > 0
                     || m_decor[couche][i][j][z].m_herbe >= 0
                     || m_decor[couche][i][j][z].getNombreObjets() > 0
                     || m_decor[couche][i][j][z].getHauteur() > 0 )
@@ -1227,9 +1129,6 @@ void Map::Sauvegarder(std::string chemin)
                             fichier<<"t"<<m_decor[couche][i][j][z].getTile()[k]<<" ";
                             m_decor[couche][i][j][z].m_entite_graphique.SaveParameters(fichier);
                         }
-
-                        for (unsigned k = 0 ; k < m_decor[couche][i][j][z].getEvenement().size() ; ++k)
-                            fichier<<"e"<<m_decor[couche][i][j][z].getEvenement()[k]<<" ";
 
                         for (unsigned k = 0 ; k < m_decor[couche][i][j][z].getMonstre().size() ; ++k)
                             if (m_decor[couche][i][j][z].getMonstre()[k] >= 0 && m_decor[couche][i][j][z].getMonstre()[k] < (int)m_monstre.size())
@@ -1473,19 +1372,6 @@ void Map::Afficher(bool alt,float alpha)
                         if(m_decor[couche][j][k][z].getHauteur() > 0)
                         moteurGraphique->AjouterCommande(&temp,15,1);
 
-                    }
-
-                    if(m_decor[couche][j][k][z].m_evenement.size() > 0)
-                    {
-                        sf::Sprite temp;
-                        temp.SetImage(*moteurGraphique->getImage(eventManager->m_img_select));
-                        temp.SetPosition(position.x-48, position.y-16);
-                        temp.SetColor(sf::Color(0,0,255,64));
-                        moteurGraphique->AjouterCommande(&temp,15,1);
-
-                        std::ostringstream buf;
-                        buf<<m_decor[couche][j][k][z].m_evenement[m_decor[couche][j][k][z].random_evenement];
-                        moteurGraphique->AjouterTexte(buf.str(), coordonnee(((int)position.x - (int)GetViewRect(moteurGraphique->m_camera).Left)/configuration->zoom , ((int)position.y - (float)GetViewRect(moteurGraphique->m_camera).Top - 16 + ( 24 * (couche == 1)))/configuration->zoom  ), 15,0,24/configuration->zoom,sf::Color(0,0,255));
                     }
 
                     if (couche==1)
@@ -1766,93 +1652,6 @@ void Map::AfficherMinimap(coordonnee position,int typeCase,float alpha)
         moteurGraphique->AjouterCommande(&spriteMinimap,14,0);
 }
 
-void Map::AfficherNomEvenement(coordonnee casePointee,coordonnee positionSouris)
-{
-    /*int evenement=-1;
-    for (int i=0;i<2;++i)
-        for (int z=0;z<(int)m_decor[i][casePointee.y][casePointee.x].getEvenement().size();z++)
-            if (m_decor[i][casePointee.y][casePointee.x].getEvenement()[z]>-1)
-            {
-                evenement=m_decor[i][casePointee.y][casePointee.x].getEvenement()[z];
-
-                if (evenement>=0)
-                {
-                    if (m_evenement[evenement].getType()==CHANGEMENT_DE_MAP)
-                    {
-                        string nom;
-
-                        cDAT reader;
-                        reader.Read(configuration->chemin_maps);
-
-                        ifstream *fichier=reader.GetInfos(m_evenement[evenement].getString());
-                        if (fichier)
-                        {
-                            char caractere;
-                            do
-                            {
-                                //Chargement du nom
-                                fichier->get(caractere);
-                                if (caractere=='*')
-                                {
-                                    *fichier>>nom;
-                                    for (int i=0;i<(int)nom.size();++i)
-                                        if (nom[i]=='_')
-                                            nom[i]=' ';
-                                }
-                            }
-                            while (caractere!='$');
-                        }
-                        fichier->close();
-
-                        delete fichier;
-
-                        sf::Text texte;
-                        texte.SetString("Vers "+nom);
-                        texte.SetSize(16.f);
-                        if (configuration->Resolution.y>0)
-                            texte.SetY((positionSouris.y-16)*configuration->Resolution.h/configuration->Resolution.y);
-                        if (configuration->Resolution.x>0)
-                            texte.SetX(positionSouris.x*configuration->Resolution.w/configuration->Resolution.x);
-                        moteurGraphique->AjouterTexte(&texte,15);
-                    }
-                }
-            }*/
-}
-
-/*bool Map::TestEvenement(Jeu *jeu,float temps)
-{
-    for (int i=0;i<2;++i)
-        for (int z=0;z<(int)m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement().size();z++)
-            if (m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]>=0)
-            {
-                if (m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getType()==CHANGEMENT_DE_MAP)
-                {
-                    string nomMap=m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getString();
-
-                    console->Ajouter("",0);
-                    console->Ajouter("---------------------------------------------------------------------------------",0);
-                    console->Ajouter("EVENEMENT : Changement de map",0);
-                    console->Ajouter("---------------------------------------------------------------------------------",0);
-
-                    coordonnee coordonneePerso;
-                    coordonneePerso.x=m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(0);
-                    coordonneePerso.y=m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(1);
-
-                    sf::Clock Clock;
-                    Clock.Reset();
-
-                    jeu->m_chargement->setC_Chargement(nomMap,coordonneePerso);
-                    jeu->m_contexte = jeu->m_chargement;
-                }
-
-                if (m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getType()==INFLIGER_DEGATS)
-                {
-                    jeu->hero.m_personnage.InfligerDegats(m_evenement[m_decor[i][jeu->hero.m_personnage.getCoordonnee().y][jeu->hero.m_personnage.getCoordonnee().x].getEvenement()[z]].getInformation(0)*temps*10);
-                }
-            }
-    return 1;
-}*/
-
 int Map::AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coordonnee lanceur,int couche,float  vitesse,float decalageAngle,bool monstre,std::vector<Tile> &tiles)
 {
   /*  m_projectile.push_back(Projectile ());
@@ -1915,29 +1714,6 @@ int Map::AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coord
     return m_projectile.size()-1;*/
 }
 
-/*int Map::GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *hero,bool monstre, const coordonnee lanceur, const coordonnee cible,int couche=0)
-{
-    couche=0;
-    int retour=0;
-    bool continuer=true;
-
-    for (int o=0;o<(int)entiteMiracle->m_infos.size()&&continuer;o++)
-    {
-        if (entiteMiracle->m_infos[o].m_effetEnCours>=0&&entiteMiracle->m_infos[o].m_effetEnCours<(int)modeleMiracle->m_effets.size())
-        {
-
-        }
-        else
-        {
-            entiteMiracle->m_infos.erase(entiteMiracle->m_infos.begin()+o);
-            continuer=false;
-            GererMiracle(entiteMiracle,modeleMiracle,hero,monstre,lanceur,cible,couche);
-        }
-    }
-
-    return retour;
-}*/
-
 void Map::Animer(float temps/*,Menu *menu*/)
 {
     /*coordonnee positionHero;
@@ -1982,11 +1758,6 @@ void Map::Animer(float temps/*,Menu *menu*/)
                         if(m_decor[i][j][k][z].random_animation >= m_decor[i][j][k][z].getTile().size())
                             m_decor[i][j][k][z].random_animation = 0;
 
-
-                        m_decor[i][j][k][z].random_evenement++;
-
-                        if(m_decor[i][j][k][z].random_evenement >= m_decor[i][j][k][z].m_evenement.size())
-                            m_decor[i][j][k][z].random_evenement = 0;
                     }
                 }
                 else
@@ -3771,18 +3542,6 @@ int Map::getMonstreIllumine()
 const coordonnee &Map::getDimensions()
 {
     return m_dimensions;
-}
-
-int Map::getEvenement(coordonnee casePointee)
-{
-   /* int temp=-1;
-    if (casePointee.y>=0&&casePointee.y<m_dimensions.y&&casePointee.x>=0&&casePointee.x<m_dimensions.x)
-        for (int i=0;i<2;++i)
-            if ((int)m_decor[i][casePointee.y][casePointee.x].getEvenement().size()>0)
-                if (m_decor[i][casePointee.y][casePointee.x].getEvenement()[0]>-1)
-                    temp=m_decor[i][casePointee.y][casePointee.x].getEvenement()[0];
-
-    return temp;*/
 }
 
 bool Map::getCollision(int positionX,int positionY, int exception)
