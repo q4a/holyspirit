@@ -476,6 +476,16 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                 for(unsigned i = 0 ; i < m_listID[(unsigned)script->getValeur(noInstruction, 0)].size() ; ++i)
                     m_monstre[m_listID[(unsigned)script->getValeur(noInstruction, 0)][i]].m_scriptAI.setVariable((int)script->getValeur(noInstruction, 1), script->getValeur(noInstruction, 2));
         }
+        else if (script->m_instructions[noInstruction].nom=="entity_name" && monstre == -1)
+        {
+            if(script->getValeur(noInstruction, 0) < m_listID.size())
+                for(unsigned i = 0 ; i < m_listID[(unsigned)script->getValeur(noInstruction, 0)].size() ; ++i)
+                {
+                    Caracteristique temp = m_monstre[m_listID[(unsigned)script->getValeur(noInstruction, 0)][i]].getCaracteristique();
+                    temp.nom = configuration->getText((int)script->getValeur(noInstruction, 1), (int)script->getValeur(noInstruction, 2));
+                    m_monstre[m_listID[(unsigned)script->getValeur(noInstruction, 0)][i]].setCaracteristique(temp);
+                }
+        }
         else if (script->m_instructions[noInstruction].nom=="setTile" && monstre == -1)
         {
             if(script->getValeur(noInstruction, 0) >= 0 && script->getValeur(noInstruction, 0) < 2)
@@ -493,6 +503,20 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         {
             if(script->getValeur(noInstruction, 0) >= 0 && script->getValeur(noInstruction, 0) < m_climates.size())
                 m_climates[(unsigned)script->getValeur(noInstruction, 0)].m_actif = (bool)script->getValeur(noInstruction, 1);
+        }
+        else if (script->m_instructions[noInstruction].nom=="change_map")
+        {
+            string nomMap = script->m_instructions[noInstruction].valeurString;
+
+            coordonnee coordonneePerso;
+            coordonneePerso.x = script->getValeur(noInstruction, 0);
+            coordonneePerso.y = script->getValeur(noInstruction, 1);
+
+            sf::Clock Clock;
+            Clock.Reset();
+
+            jeu->m_chargement->setC_Chargement(nomMap,coordonneePerso);
+            jeu->m_contexte = jeu->m_chargement;
         }
     }
 }

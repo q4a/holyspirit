@@ -295,11 +295,8 @@ void c_Jeu::Animation(Jeu *jeu)
 
     //if (tempsDepuisDerniereAnimation >= 0.02)
     {
-        jeu->map->TestEvenement(jeu,tempsDepuisDerniereAnimation); // On test les événement pour voir s'il on doit changer de jeu->map, faire des dégats au perso, le régénérer, etc
-
         if (tempsDepuisDerniereAnimation>0.12f)
             tempsDepuisDerniereAnimation=0.12f;
-
 
         int retour=-2;
         retour = jeu->hero.m_personnage.Gerer(&jeu->hero.m_modelePersonnage[0],tempsDepuisDerniereAnimation);
@@ -907,9 +904,6 @@ void c_Jeu::Affichage(Jeu *jeu)
     else
         jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,0,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
     eventManager->AfficherCurseur(); // On affiche le curseur de la souris
-
-    if (jeu->map->getEvenement(eventManager->getCasePointee())>=0)
-        jeu->map->AfficherNomEvenement(eventManager->getCasePointee(),eventManager->getPositionSouris());
 
     if (configuration->effetMort&&configuration->postFX&&tempsEffetMort!=0)
     {

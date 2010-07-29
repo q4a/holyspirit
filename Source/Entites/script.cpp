@@ -172,6 +172,9 @@ void Script::Sauvegarder_instruction(ofstream &fichier , int no)
                 }
                 else
                     fichier<<"* "<<m_instructions[no].m_valeurs[i]<<" ";
+
+            if(!m_instructions[no].valeurString.empty())
+                fichier<<"\" "<<m_instructions[no].valeurString<<"\"";
         }
         fichier<<endl;
     }

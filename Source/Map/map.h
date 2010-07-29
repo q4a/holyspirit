@@ -30,7 +30,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "decor.h"
 #include "../menu.h"
 #include "../Entites/monstre.h"
-#include "evenement.h"
 #include "climate.h"
 
 class Jeu;
@@ -51,11 +50,9 @@ public:
     void Afficher(Hero *hero,bool alt,float alpha=255);
     void AfficherSac(coordonnee ,float ,coordonnee ,Caracteristique , std::string);
     void AfficherMinimap(coordonnee position,int typeCase,float alpha);
-    void AfficherNomEvenement(coordonnee casePointee,coordonnee positionSouris);
 
     void Animer(Hero *hero,float temps,Menu *menu); // Animation des tiles
 
-    bool TestEvenement(Jeu *jeu,float temps);
     void CalculerOmbresEtLumieres();
     void Detruire();
 
@@ -64,7 +61,6 @@ public:
     void GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer);
     void GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer);
 
-    void GererEvenements(int evenement,int z,int couche,int x,int y);
     void GererProjectilesEtEffets(Hero *hero,float temps);
     void GererScript(Jeu *jeu,Hero *hero,float temps,Menu *menu);
     void GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu);
@@ -117,8 +113,6 @@ public:
 
     void MusiquePlay(coordonnee position);
 
-    void VerifierDeclencheursDegats(int i, int j);
-
     bool RamasserObjet(Hero *hero,bool enMain = false);
 
     void AjouterObjet(Objet objet);
@@ -130,7 +124,6 @@ public:
     bool    getCollision(int positionX,int positionY, int exception = -1); // Retourne 1 s'il y a une collision avec le décors se trouvant à la position X et Y
     int     getTypeCase(int positionX,int positionY);
 
-    int     getEvenement(coordonnee casePointee);
     int     getMonstre(Hero *hero,coordonnee positionSouris,coordonnee casePointee);
     const   coordonnee &getSacPointe();
     int     getObjetPointe();
@@ -167,7 +160,6 @@ private:
     std::vector <int> m_tileset;
     std::vector <int> m_herbe;
     std::vector <std::vector < Decor > >  m_decor[NOMBRE_COUCHE_MAP];
-    std::vector <Evenement> m_evenement;
 
 
     std::string m_nom;
