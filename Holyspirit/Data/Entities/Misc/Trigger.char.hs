@@ -10,7 +10,7 @@ Rang du monstre
 $
 *v1 i0 c0 n-1 $
 $
-*Data/Scripts/AI/Trigger.script.hs
+*Data/Scripts/Misc/Trigger.script.hs
 $
 
 $

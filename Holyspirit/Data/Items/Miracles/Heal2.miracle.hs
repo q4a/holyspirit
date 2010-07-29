@@ -26,6 +26,6 @@ $
 		//Sons
 			* mData/Sounds/41529__Jamius__PotionDrinkLONG.wav $
 		$
-		* n1 a0 z$
+		* n1 a0 $
 	$
 $

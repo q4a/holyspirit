@@ -1,6 +1,6 @@
 Brassards
 Des brassards basiques en cuir.
-Armure matelassée
+Gambison
 Une armure légère n'offrant pas\beaucoup de protection.
 Arquebuse
 Une arquebuse comme on\en faisait à l'ancienne.\Vous ne pouvez pas l'utiliser.

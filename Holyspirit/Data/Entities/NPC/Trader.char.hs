@@ -13,43 +13,43 @@ $
 $
 	*
 		*Heal_potion.item.hs
-		r1000000
+		r-1
 	$
 	*
 		*Heal_potion.item.hs
-		r1000000
+		r-1
 	$
 	*
 		*Heal_potion.item.hs
-		r1000000
+		r-1
 	$
 	*
 		*Heal_potion2.item.hs
-		r1000000
+		r-1
 	$
 	*
 		*Heal_potion2.item.hs
-		r1000000
+		r-1
 	$
 	*
 		*Faith_potion.item.hs
-		r1000000
+		r-1
 	$
 	*
 		*Faith_potion.item.hs
-		r1000000
+		r-1
 	$
 	*
 		*Faith_potion.item.hs
-		r1000000
+		r-1
 	$
 	*
 		*Faith_potion2.item.hs
-		r1000000
+		r-1
 	$
 	*
 		*Faith_potion2.item.hs
-		r1000000
+		r-1
 	$
 	*
 		*Necklage.item.hs

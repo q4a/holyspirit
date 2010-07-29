@@ -10,7 +10,7 @@ Rang du monstre
 $
 *v1 i0 c0 n-1 $
 $
-*Data/Scripts/AI/AmbientSound.script.hs
+*Data/Scripts/Misc/AmbientSound.script.hs
 $
 
 $
