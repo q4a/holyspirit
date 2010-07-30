@@ -35,6 +35,11 @@ $
 	$
 
 	*
+		*Coal.item.hs
+		r2000
+	$
+
+	*
 		*Ruby.item.hs
 		r500
 	$

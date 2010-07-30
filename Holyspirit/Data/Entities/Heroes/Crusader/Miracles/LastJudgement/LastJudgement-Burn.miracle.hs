@@ -26,14 +26,14 @@ $
 		* mData/Sounds/Feu.wav u1 $
 		$
 		//Tiles de la séquence
-			* x0 y0 w128 h192 i0 lr255 lv128 lb0 li128 ey128 n0.05 s0 a1 $
-			* x128 y0 w128 h192 i0 p192 lr255 lv128 lb0 li128 ey128 n0.05 s0 a2 $
-			* x256 y0 w128 h192 i0 p192 lr255 lv128 lb0 li128 ey128 n0.05 s0 a3 $
-			* x384 y0 w128 h192 i0 p192 lr255 lv128 lb0 li128 ey128 n0.05 s0 a4 $
-			* x512 y0 w128 h192 i0 p192 lr255 lv128 lb0 li128 ey128 n0.05 s0 a5 $
-			* x640 y0 w128 h192 i0 p192 lr255 lv128 lb0 li128 ey128 n0.05 s0 a6 $
-			* x768 y0 w128 h192 i0 p192 lr255 lv128 lb0 li128 ey128 n0.05 s0 a7 $
-			* x896 y0 w128 h192 i0 p192 lr255 lv128 lb0 li128 ey128 n0.05 s0 a8 $
+			* x0 y0 w128 h192 i0 lr255 lv128 lb0 li8 ey128 n0.05 s0 a1 $
+			* x128 y0 w128 h192 i0 p192 lr255 lv128 lb0 li16 ey128 n0.05 s0 a2 $
+			* x256 y0 w128 h192 i0 p192 lr255 lv128 lb0 li32 ey128 n0.05 s0 a3 $
+			* x384 y0 w128 h192 i0 p192 lr255 lv128 lb0 li48 ey128 n0.05 s0 a4 $
+			* x512 y0 w128 h192 i0 p192 lr255 lv128 lb0 li64 ey128 n0.05 s0 a5 $
+			* x640 y0 w128 h192 i0 p192 lr255 lv128 lb0 li80 ey128 n0.05 s0 a6 $
+			* x768 y0 w128 h192 i0 p192 lr255 lv128 lb0 li96 ey128 n0.05 s0 a7 $
+			* x896 y0 w128 h192 i0 p192 lr255 lv128 lb0 li112 ey128 n0.05 s0 a8 $
 			* x0 y192 w128 h192 i0 p192 lr255 lv128 lb0 li128 ey128 n0.05 s0 a9 $
 			* x128 y192 w128 h192 i0 p192 lr255 lv128 lb0 li128 ey128 n0.05 s0 a10 $
 			* x256 y192 w128 h192 i0 p192 lr255 lv128 lb0 li128 ey128 n0.05 s0 a11 $
@@ -77,14 +77,14 @@ $
 		//Tiles de la séquence
 			* x896 y192 w128 h192 i0 p192 lr255 lv128 lb0 li128 ey128 n0.05 s0 a15 $
 			
-			* x0 y0 w128 h192 i0 p192 lr255 lv128 lb0 li128 ey128 n0.05 s0 a1 p64 $
-			* x128 y0 w128 h192 i0 p192 lr255 lv128 lb0 li128 ey128 n0.05 s0 a1 p128 $
-			* x256 y0 w128 h192 i0 p192 lr255 lv128 lb0 li128 ey128 n0.05 s0 a2 p192 $
-			* x384 y0 w128 h192 i0 p192 lr255 lv128 lb0 li128 ey128 n0.05 s0 a3 $
-			* x512 y0 w128 h192 i0 p192 lr255 lv128 lb0 li128 ey128 n0.05 s0 a4 $
-			* x640 y0 w128 h192 i0 p192 lr255 lv128 lb0 li128 ey128 n0.05 s0 a5 $
-			* x768 y0 w128 h192 i0 p192 lr255 lv128 lb0 li128 ey128 n0.05 s0 a6 $
-			* x896 y0 w128 h192 i0 p192 lr255 lv128 lb0 li128 ey128 n0.05 s0 a7 $
+			* x0 y0 w128 h192 i0 p192 lr255 lv128 lb0 li8 ey128 n0.05 s0 a1 p64 $
+			* x128 y0 w128 h192 i0 p192 lr255 lv128 lb0 li16 ey128 n0.05 s0 a1 p128 $
+			* x256 y0 w128 h192 i0 p192 lr255 lv128 lb0 li32 ey128 n0.05 s0 a2 p192 $
+			* x384 y0 w128 h192 i0 p192 lr255 lv128 lb0 li48 ey128 n0.05 s0 a3 $
+			* x512 y0 w128 h192 i0 p192 lr255 lv128 lb0 li64 ey128 n0.05 s0 a4 $
+			* x640 y0 w128 h192 i0 p192 lr255 lv128 lb0 li80 ey128 n0.05 s0 a5 $
+			* x768 y0 w128 h192 i0 p192 lr255 lv128 lb0 li96 ey128 n0.05 s0 a6 $
+			* x896 y0 w128 h192 i0 p192 lr255 lv128 lb0 li112 ey128 n0.05 s0 a7 $
 			* x0 y192 w128 h192 i0 p192 lr255 lv128 lb0 li128 ey128 n0.05 s0 a8 $
 			* x128 y192 w128 h192 i0 p192 lr255 lv128 lb0 li128 ey128 n0.05 s0 a9 $
 			* x256 y192 w128 h192 i0 p192 lr255 lv128 lb0 li128 ey128 n0.05 s0 a10 $
