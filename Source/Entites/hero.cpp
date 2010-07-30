@@ -1404,6 +1404,10 @@ void Hero::AfficherAmisEtCraft()
         moteurGraphique->AjouterCommande(&temp, 14, 0);
 
         temp.SetImage(*moteurGraphique->getImage(m_classe.barre_vie_monstre.image));
+
+        temp.SetSubRect(sf::IntRect(0,0,(int)(m_amis[i]->getCaracteristique().vie*m_classe.barre_vie_monstre.position.w/m_amis[i]->getCaracteristique().maxVie),
+                                         m_classe.barre_vie_monstre.position.h));
+
         temp.Resize(m_amis[i]->getCaracteristique().vie/m_amis[i]->getCaracteristique().maxVie * 144,16);
         moteurGraphique->AjouterCommande(&temp, 14, 0);
 
@@ -1457,7 +1461,7 @@ void Hero::AfficherAmisEtCraft()
         moteurGraphique->AjouterCommande(&temp, 14, 0);
 
         temp.SetImage(*moteurGraphique->getImage(m_classe.barre_vie_monstre.image));
-        temp.SetSubRect(sf::IntRect(0,0,(m_craft_time_max - m_craft_time)* m_classe.barre_vie_monstre.position.w / m_craft_time_max ,
+        temp.SetSubRect(sf::IntRect(0,0,(int)((m_craft_time_max - m_craft_time)* m_classe.barre_vie_monstre.position.w / m_craft_time_max) ,
                                          m_classe.barre_vie_monstre.position.h));
         temp.Resize((m_craft_time_max - m_craft_time) / m_craft_time_max * 144,16);
 
@@ -1489,7 +1493,7 @@ void Hero::AfficherAmisEtCraft()
         moteurGraphique->AjouterCommande(&temp, 14, 0);
 
         temp.SetImage(*moteurGraphique->getImage(m_classe.barre_vie_monstre.image));
-        temp.SetSubRect(sf::IntRect(0,0,(m_bless_time_max - m_bless_time) * m_classe.barre_vie_monstre.position.w / m_bless_time_max ,
+        temp.SetSubRect(sf::IntRect(0,0,(int)((m_bless_time_max - m_bless_time) * m_classe.barre_vie_monstre.position.w / m_bless_time_max),
                                          m_classe.barre_vie_monstre.position.h));
         temp.Resize((m_bless_time_max - m_bless_time) / m_bless_time_max * 144,16);
 

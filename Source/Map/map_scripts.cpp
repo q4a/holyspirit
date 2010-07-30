@@ -509,8 +509,8 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             string nomMap = script->m_instructions[noInstruction].valeurString;
 
             coordonnee coordonneePerso;
-            coordonneePerso.x = script->getValeur(noInstruction, 0);
-            coordonneePerso.y = script->getValeur(noInstruction, 1);
+            coordonneePerso.x = (int)script->getValeur(noInstruction, 0);
+            coordonneePerso.y = (int)script->getValeur(noInstruction, 1);
 
             sf::Clock Clock;
             Clock.Reset();

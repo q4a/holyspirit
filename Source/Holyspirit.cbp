@@ -210,8 +210,6 @@
 		<Unit filename="Map\Climate.h" />
 		<Unit filename="Map\decor.cpp" />
 		<Unit filename="Map\decor.h" />
-		<Unit filename="Map\evenement.cpp" />
-		<Unit filename="Map\evenement.h" />
 		<Unit filename="Map\map.cpp" />
 		<Unit filename="Map\map.h" />
 		<Unit filename="Map\map_miracles.cpp" />

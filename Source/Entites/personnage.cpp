@@ -826,6 +826,13 @@ void Personnage::GererEffets(float temps)
 
         m_effets[i].m_effet.Animer(temps);
 
+        sf::Vector2f pos;
+        pos.x=((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE) + 0.1;
+        pos.y=((m_positionPixel.x+m_positionPixel.y)*64/COTE_TILE)+64+1 + 0.1;
+
+        if(m_effets[i].m_effet.m_light.ID() != -1)
+            moteurGraphique->LightManager->SetPosition(m_effets[i].m_effet.m_light,pos);
+
         if(m_effets[i].m_effet.m_old_actif && !m_effets[i].m_effet.m_actif)
         {
             if(m_effets[i].m_type == AURA_CARACTERISTIQUES)
