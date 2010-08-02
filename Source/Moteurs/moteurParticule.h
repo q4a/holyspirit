@@ -53,7 +53,6 @@ class ParticuleSysteme
     bool Afficher( ModeleParticuleSysteme *modele,float temps);
     void Envoler(sf::Vector2f pos,int force, int type, float);
     void Generer(float force, ModeleParticuleSysteme *modele,coordonnee position,float);
-    //bool Gerer(float temps,int tailleMapY);
 
     int m_modele;
     std::vector <Particule> m_particules;
@@ -62,8 +61,6 @@ class ParticuleSysteme
     private:
     sf::Color m_color;
     int m_son;
-
-
 };
 
 #endif

@@ -52,7 +52,7 @@ public:
     */
     void Utiliser(Jeu *jeu);
 
-    float alpha_map, alpha_sac, alpha_dialog;
+    float alpha_map, alpha_dialog;
 
     sf::Thread *m_thread_sauvegarde;
 
@@ -121,7 +121,11 @@ private:
     coordonneeDecimal oldHeroPos;
 
     float temps[5];
-    float tempsActuel,tempsPrecedent,tempsDepuisDerniereAnimation,tempsEcoule,tempsNbrTourBoucle,tempsEcouleDepuisDernierCalculLumiere,tempsEcouleDepuisDernierCalculOmbre,tempsEcouleDepuisDernierDeplacement,tempsEcouleDepuisDernierIA,tempsEcouleDepuisDernierAffichage,tempsEcouleDepuisFPS,tempsEffetMort,tempsSauvergarde;
+    float tempsEcoule, tempsNbrTourBoucle,
+          tempsEcouleDepuisDernierCalculLumiere,
+          tempsEcouleDepuisDernierCalculOmbre,
+          tempsEcouleDepuisFPS,
+          tempsEffetMort,tempsSauvergarde;
 
     float lowFPS;
 

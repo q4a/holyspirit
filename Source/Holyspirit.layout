@@ -26,16 +26,16 @@
 		<Cursor position="1491" topLine="30" />
 	</File>
 	<File name="Contextes\c_inventaire.cpp" open="0" top="0" tabpos="18">
-		<Cursor position="3222" topLine="95" />
+		<Cursor position="5959" topLine="198" />
 	</File>
 	<File name="Contextes\c_inventaire.h" open="0" top="0" tabpos="12">
 		<Cursor position="2151" topLine="51" />
 	</File>
-	<File name="Contextes\c_jeu.cpp" open="0" top="0" tabpos="9">
-		<Cursor position="10754" topLine="281" />
+	<File name="Contextes\c_jeu.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="34559" topLine="819" />
 	</File>
-	<File name="Contextes\c_jeu.h" open="0" top="0" tabpos="6">
-		<Cursor position="4357" topLine="100" />
+	<File name="Contextes\c_jeu.h" open="1" top="0" tabpos="3">
+		<Cursor position="3616" topLine="104" />
 	</File>
 	<File name="Contextes\c_mainMenu.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="18986" topLine="483" />
@@ -85,8 +85,8 @@
 	<File name="Entites\classe.h" open="0" top="0" tabpos="7">
 		<Cursor position="2617" topLine="67" />
 	</File>
-	<File name="Entites\hero.cpp" open="1" top="1" tabpos="9">
-		<Cursor position="57208" topLine="1476" />
+	<File name="Entites\hero.cpp" open="0" top="0" tabpos="8">
+		<Cursor position="55064" topLine="1420" />
 	</File>
 	<File name="Entites\hero.h" open="0" top="0" tabpos="7">
 		<Cursor position="4371" topLine="147" />
@@ -115,8 +115,8 @@
 	<File name="Entites\objet.h" open="0" top="0" tabpos="6">
 		<Cursor position="4405" topLine="108" />
 	</File>
-	<File name="Entites\personnage.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="9905" topLine="353" />
+	<File name="Entites\personnage.cpp" open="0" top="0" tabpos="6">
+		<Cursor position="30807" topLine="804" />
 	</File>
 	<File name="Entites\personnage.h" open="0" top="0" tabpos="8">
 		<Cursor position="5796" topLine="193" />
@@ -145,16 +145,16 @@
 	<File name="Map\decor.h" open="0" top="0" tabpos="15">
 		<Cursor position="2581" topLine="57" />
 	</File>
-	<File name="Map\map.cpp" open="0" top="0" tabpos="23">
-		<Cursor position="123245" topLine="2548" />
+	<File name="Map\map.cpp" open="1" top="1" tabpos="6">
+		<Cursor position="86061" topLine="1896" />
 	</File>
-	<File name="Map\map.h" open="1" top="0" tabpos="7">
+	<File name="Map\map.h" open="0" top="0" tabpos="1">
 		<Cursor position="858" topLine="16" />
 	</File>
-	<File name="Map\map_miracles.cpp" open="0" top="0" tabpos="25">
-		<Cursor position="52058" topLine="1216" />
+	<File name="Map\map_miracles.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="22449" topLine="589" />
 	</File>
-	<File name="Map\map_scripts.cpp" open="1" top="0" tabpos="10">
+	<File name="Map\map_scripts.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="26816" topLine="495" />
 	</File>
 	<File name="Map\tile.cpp" open="0" top="0" tabpos="5">
@@ -169,8 +169,8 @@
 	<File name="Map\tileset.h" open="0" top="0" tabpos="5">
 		<Cursor position="1074" topLine="50" />
 	</File>
-	<File name="Moteurs\Entite_graphique.cpp" open="0" top="0" tabpos="12">
-		<Cursor position="10935" topLine="213" />
+	<File name="Moteurs\Entite_graphique.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="10754" topLine="135" />
 	</File>
 	<File name="Moteurs\Entite_graphique.h" open="0" top="0" tabpos="4">
 		<Cursor position="1583" topLine="32" />
@@ -178,8 +178,8 @@
 	<File name="Moteurs\commande.h" open="0" top="0" tabpos="66">
 		<Cursor position="1098" topLine="16" />
 	</File>
-	<File name="Moteurs\console.cpp" open="0" top="0" tabpos="28">
-		<Cursor position="3333" topLine="106" />
+	<File name="Moteurs\console.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="1996" topLine="54" />
 	</File>
 	<File name="Moteurs\console.h" open="0" top="0" tabpos="67">
 		<Cursor position="1282" topLine="33" />
@@ -202,23 +202,23 @@
 	<File name="Moteurs\lightManager.h" open="0" top="0" tabpos="4">
 		<Cursor position="2618" topLine="68" />
 	</File>
-	<File name="Moteurs\modeleMoteurParticule.cpp" open="0" top="0" tabpos="13">
-		<Cursor position="3908" topLine="0" />
+	<File name="Moteurs\modeleMoteurParticule.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="4444" topLine="139" />
 	</File>
-	<File name="Moteurs\modeleMoteurParticule.h" open="0" top="0" tabpos="10">
-		<Cursor position="743" topLine="19" />
+	<File name="Moteurs\modeleMoteurParticule.h" open="0" top="0" tabpos="1">
+		<Cursor position="841" topLine="21" />
 	</File>
-	<File name="Moteurs\moteurGraphique.cpp" open="0" top="0" tabpos="11">
-		<Cursor position="22445" topLine="546" />
+	<File name="Moteurs\moteurGraphique.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="781" topLine="18" />
 	</File>
 	<File name="Moteurs\moteurGraphique.h" open="0" top="0" tabpos="8">
 		<Cursor position="951" topLine="3" />
 	</File>
-	<File name="Moteurs\moteurParticule.cpp" open="0" top="0" tabpos="12">
-		<Cursor position="2591" topLine="41" />
+	<File name="Moteurs\moteurParticule.cpp" open="0" top="0" tabpos="6">
+		<Cursor position="7841" topLine="217" />
 	</File>
-	<File name="Moteurs\moteurParticule.h" open="0" top="0" tabpos="16">
-		<Cursor position="1155" topLine="24" />
+	<File name="Moteurs\moteurParticule.h" open="0" top="0" tabpos="2">
+		<Cursor position="1729" topLine="34" />
 	</File>
 	<File name="Moteurs\moteurSons.cpp" open="0" top="0" tabpos="18">
 		<Cursor position="3578" topLine="106" />
@@ -244,8 +244,8 @@
 	<File name="globale.h" open="0" top="0" tabpos="14">
 		<Cursor position="1055" topLine="1" />
 	</File>
-	<File name="jeu.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="2506" topLine="68" />
+	<File name="jeu.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="2239" topLine="68" />
 	</File>
 	<File name="jeu.h" open="0" top="0" tabpos="5">
 		<Cursor position="1975" topLine="42" />
@@ -256,7 +256,7 @@
 	<File name="main.h" open="0" top="0" tabpos="77">
 		<Cursor position="445" topLine="0" />
 	</File>
-	<File name="menu.cpp" open="1" top="0" tabpos="8">
+	<File name="menu.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="16486" topLine="331" />
 	</File>
 	<File name="menu.h" open="0" top="0" tabpos="10">

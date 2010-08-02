@@ -15,7 +15,8 @@
 				<Option projectCompilerOptionsRelation="1" />
 				<Option projectResourceIncludeDirsRelation="1" />
 				<Compiler>
-					<Add option="-O1 -fomit-frame-pointer -frerun-loop-opt -fgcse" />
+					<Add option="-O3" />
+					<Add option="-O3 -fomit-frame-pointer -frerun-loop-opt -fgcse" />
 					<Add option="-DWIN32" />
 					<Add option="-DNDEBUG" />
 					<Add option="-D_WINDOWS" />

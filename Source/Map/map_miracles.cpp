@@ -550,10 +550,21 @@ bool Map::Miracle_Projectile(Hero *hero, Personnage *personnage, Miracle &modele
 
 bool Map::Miracle_EffetGraphique(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o)
 {
-    if (info.m_IDObjet >= 0 && info.m_IDObjet < (int)m_effets.size())
+    if (info.m_IDObjet >= 0)
     {
-        m_effets[info.m_IDObjet].Animer(temps);
-        if (!m_effets[info.m_IDObjet].m_actif)
+        bool suppr = false;
+
+        if(info.m_IDObjet < (int)m_effets.size())
+        {
+            m_effets[info.m_IDObjet].Animer(temps);
+
+            if (!m_effets[info.m_IDObjet].m_actif)
+                suppr = true;
+        }
+        else
+            suppr = true;
+
+        if(suppr)
         {
             for (int p=0;p<(int)effet.m_lien.size();p++)
             {
@@ -587,9 +598,11 @@ bool Map::Miracle_EffetGraphique(Hero *hero, Personnage *personnage, Miracle &mo
 
         info.m_IDObjet               = m_effets.size()-1;
 
-        if ((m_effets.back().m_position.y + COTE_TILE * 0.25) / COTE_TILE>=0&&(m_effets.back().m_position.y + COTE_TILE * 0.25) / COTE_TILE<m_dimensions.y)
-            if ((m_effets.back().m_position.x + COTE_TILE * 0.25) / COTE_TILE>=0&&(m_effets.back().m_position.x + COTE_TILE * 0.25) / COTE_TILE<m_dimensions.x)
-                m_decor[1][(int)((m_effets.back().m_position.y + COTE_TILE * 0.25) / COTE_TILE)][(int)((m_effets.back().m_position.x + COTE_TILE * 0.25) / COTE_TILE)].setEffetGraphique(m_effets.size()-1);
+        if ((m_effets.back().m_position.y + COTE_TILE * 0.25) / COTE_TILE >= 0
+         && (m_effets.back().m_position.y + COTE_TILE * 0.25) / COTE_TILE < m_dimensions.y)
+        if ((m_effets.back().m_position.x + COTE_TILE * 0.25) / COTE_TILE >= 0
+         && (m_effets.back().m_position.x + COTE_TILE * 0.25) / COTE_TILE < m_dimensions.x)
+            m_decor[1][(int)((m_effets.back().m_position.y + COTE_TILE * 0.25) / COTE_TILE)][(int)((m_effets.back().m_position.x + COTE_TILE * 0.25) / COTE_TILE)].setEffetGraphique(m_effets.size()-1);
     }
     return 1;
 }
@@ -789,7 +802,8 @@ bool Map::Miracle_Invocation(Hero *hero, Personnage *personnage, Miracle &modele
             return 0;
         }
 
-        if (fabs(info.m_cible->getCoordonnee().x - personnage->getCoordonnee().x) > 10 || fabs(info.m_cible->getCoordonnee().y - personnage->getCoordonnee().y) > 10)
+        if (fabs(info.m_cible->getCoordonnee().x - personnage->getCoordonnee().x) > 10
+         || fabs(info.m_cible->getCoordonnee().y - personnage->getCoordonnee().y) > 10)
         {
             coordonnee temp;
             bool ok = false;
@@ -798,32 +812,38 @@ bool Map::Miracle_Invocation(Hero *hero, Personnage *personnage, Miracle &modele
                 if(&m_monstre[i] == info.m_cible)
                     id = i, m_decor[1][m_monstre[i].getCoordonnee().y][m_monstre[i].getCoordonnee().x].delMonstre(i);
 
-            temp.x = personnage->getCoordonnee().x - 1;
-            temp.y = personnage->getCoordonnee().y - 1;
+            temp.x = personnage->getProchaineCase().x - 1;
+            temp.y = personnage->getProchaineCase().y - 1;
             if(!getCollision(temp.x, temp.y))
                 info.m_cible->setCoordonnee(temp), ok = true;
-            temp.x = personnage->getCoordonnee().x - 1;
-            temp.y = personnage->getCoordonnee().y;
+
+            temp.x = personnage->getProchaineCase().x - 1;
+            temp.y = personnage->getProchaineCase().y;
             if(!getCollision(temp.x, temp.y))
                 info.m_cible->setCoordonnee(temp), ok = true;
-            temp.x = personnage->getCoordonnee().x - 1;
-            temp.y = personnage->getCoordonnee().y + 1;
+
+            temp.x = personnage->getProchaineCase().x - 1;
+            temp.y = personnage->getProchaineCase().y + 1;
             if(!getCollision(temp.x, temp.y))
                 info.m_cible->setCoordonnee(temp), ok = true;
-            temp.x = personnage->getCoordonnee().x;
-            temp.y = personnage->getCoordonnee().y - 1;
+
+            temp.x = personnage->getProchaineCase().x;
+            temp.y = personnage->getProchaineCase().y - 1;
             if(!getCollision(temp.x, temp.y))
                 info.m_cible->setCoordonnee(temp), ok = true;
-            temp.x = personnage->getCoordonnee().x;
-            temp.y = personnage->getCoordonnee().y + 1;
+
+            temp.x = personnage->getProchaineCase().x;
+            temp.y = personnage->getProchaineCase().y + 1;
             if(!getCollision(temp.x, temp.y))
                 info.m_cible->setCoordonnee(temp), ok = true;
-            temp.x = personnage->getCoordonnee().x + 1;
-            temp.y = personnage->getCoordonnee().y - 1;
+
+            temp.x = personnage->getProchaineCase().x + 1;
+            temp.y = personnage->getProchaineCase().y - 1;
             if(!getCollision(temp.x, temp.y))
                 info.m_cible->setCoordonnee(temp), ok = true;
-            temp.x = personnage->getCoordonnee().x + 1;
-            temp.y = personnage->getCoordonnee().y + 1;
+
+            temp.x = personnage->getProchaineCase().x + 1;
+            temp.y = personnage->getProchaineCase().y + 1;
             if(!getCollision(temp.x, temp.y))
                 info.m_cible->setCoordonnee(temp), ok = true;
 

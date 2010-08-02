@@ -74,6 +74,7 @@ bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps)
                 sprite.Move(0,Iter->position.z);
                 moteurGraphique->AjouterCommande(&sprite,9,1);
             }
+
         if (Iter->vie==100)
         {
             Iter->position.x+=Iter->vecteur.x*Iter->vitesse*temps*25;
@@ -82,7 +83,7 @@ bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps)
 
             Iter->vecteur.z-=temps*25;
 
-            if (Iter->position.z<=1&&Iter->vie==100&&((i-1)%5==0))
+            if (Iter->position.z<=1&&((i-1)%5==0))
             {
                 coordonnee position;
 
@@ -134,14 +135,15 @@ bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps)
 }
 void ParticuleSysteme::Envoler(sf::Vector2f pos,int force, int type, float temps)
 {
+    sf::Vector2f position;
+
+    position.x = ((pos.x - pos.y) * 64 / COTE_TILE);
+    position.y = ((pos.x + pos.y) * 32 / COTE_TILE);
+
+
     for (Iter=m_particules.begin();Iter!=m_particules.end();++Iter)
     if(!Iter->sang)
     {
-        sf::Vector2f position;
-
-        position.x = ((pos.x - pos.y) * 64 / COTE_TILE);
-        position.y = ((pos.x + pos.y) * 32 / COTE_TILE);
-
         float distance =  sqrt(   fabs(position.x - Iter->position.x) * fabs(position.x - Iter->position.x)
                                 + fabs(position.y - Iter->position.y) * fabs(position.y - Iter->position.y));
 
@@ -184,8 +186,8 @@ void ParticuleSysteme::Envoler(sf::Vector2f pos,int force, int type, float temps
                 float m = atan2((Iter->position.y - position.y)
                            * 2, (Iter->position.x - position.x));
 
-                Iter->vecteur.x = -cos(M_PI_2 + m);
-                Iter->vecteur.y = -sin(M_PI_2 + m) * 0.5;
+                Iter->vecteur.x = cos(m - M_PI_2);
+                Iter->vecteur.y = sin(m - M_PI_2) * 0.5;
 
                 Iter->vecteur.x -= 6 * cos(m) / Iter->position.z;
                 Iter->vecteur.y -= 3 * sin(m) / Iter->position.z;

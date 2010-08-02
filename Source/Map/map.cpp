@@ -1831,7 +1831,7 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
                                 bool collision = false;
                                 for (unsigned o = 0 ; o < m_decor[1][(int)(projectile->m_positionCase.y)][(int)(projectile->m_positionCase.x)].getMonstre().size() && !collision ; ++o)
                                     if ( m_decor[1][(int)(projectile->m_positionCase.y)][(int)(projectile->m_positionCase.x)].getMonstre()[o] < (int)m_monstre.size())
-                                        if (m_monstre[m_decor[1][(int)(projectile->m_positionCase.y)][(int)(projectile->m_positionCase.x)].getMonstre()[o]].EnVie())
+                                        if(m_monstre[m_decor[1][(int)(projectile->m_positionCase.y)][(int)(projectile->m_positionCase.x)].getMonstre()[o]].EnVie())
                                         if(m_monstre[m_decor[1][(int)(projectile->m_positionCase.y)][(int)(projectile->m_positionCase.x)].getMonstre()[o]].m_friendly == projectile->m_monstre)
                                         if(m_monstre[m_decor[1][(int)(projectile->m_positionCase.y)][(int)(projectile->m_positionCase.x)].getMonstre()[o]].getCaracteristique().niveau >= 0)
                                         {
@@ -1839,7 +1839,6 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
                                             if(rand()%100 > projectile->m_transperce)
                                                 projectile->m_actif=false;
                                             projectile->m_entite_cible = &m_monstre[m_decor[1][(int)(projectile->m_positionCase.y)][(int)(projectile->m_positionCase.x)].getMonstre()[o]];
-                                           // InfligerDegats(m_decor[1][(int)(projectile->m_positionCase.y)][(int)(projectile->m_positionCase.x)].getMonstre()[o],projectile->m_degats,hero,false);
                                         }
                             }
 
@@ -1848,7 +1847,6 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
                                 if(rand()%100 > projectile->m_transperce)
                                     projectile->m_actif=false;
                                 projectile->m_entite_cible = &hero->m_personnage;
-                               // hero->m_personnage.InfligerDegats(projectile->m_degats);
                             }
                         }
                         else
@@ -1883,10 +1881,7 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
                         }
                     }
                     else
-                    //{
                         projectile->m_actif=false;
-                      //  m_decor[1][(int)(projectile->m_position.y/COTE_TILE)][(int)(projectile->m_position.x/COTE_TILE)].delProjectile(temp);
-                    //}
 
                     projectile->Deplacer(temps);
                 }
@@ -1896,7 +1891,6 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
                     m_decor[1][projectile->m_positionCase.y][projectile->m_positionCase.x].delProjectile(i);
                 }
             }
-
         }
         if (nombreInactif==(int)m_projectile.size())
             m_projectile.clear();
