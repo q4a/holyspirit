@@ -14,8 +14,8 @@ $
 $
 //Effets
 	* t1 l1 l5 l26 ia2 $
-	* t3 l22 l2 l22 s0 ia8 c $
-	* t7 l3 ia23 ic1 l29 id2 $
+	* t3 l22 l2 l3 l29 s0 ia8 c $
+	* t7 ia23 ic1 id2 $
 	* t3 l4 s1 ia8 $
 	* t3 l27 s2 ia8 $
 	

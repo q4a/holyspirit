@@ -12,7 +12,6 @@ Gregouar (Naisse Grégoire)
 *3D & 2D Artists
 Bravach (Naisse Corentin)
 Killpatate (Vaillant Aurélien)
-Akrib
 
 *Game Designers
 Bravach (Naisse Corentin)
@@ -35,6 +34,7 @@ Akuma (Tribbiani Edouard)
 +Externs
 
 *Translators
+Derijke Valérie (Nederlands)
 Richard Jim (Spanish)
 
 *2D GUI Artist

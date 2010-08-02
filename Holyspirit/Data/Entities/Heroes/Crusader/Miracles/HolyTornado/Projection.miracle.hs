@@ -16,7 +16,7 @@ $
 	* t7 ia3 id1 $
 	* t-1 l4 l6 $
 	* t2 ia%1 ib%2 ic0 $
-	* t3 s1 ia8 $
+	* t3 s1 ia7 $
 	* t13 ia1 $
 	
 	* t11 ia1 ib10 ic1 $

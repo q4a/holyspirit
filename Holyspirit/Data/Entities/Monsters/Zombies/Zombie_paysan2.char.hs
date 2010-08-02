@@ -1,7 +1,7 @@
 *Data/Entities/Monsters/Zombies/Zombie_paysan.rs.hs
 $
 Portee lumineuse
-* r64 v160 b64 i64 $
+* r192 v255 b160 i64 $
 $
 * n15 $
 $
