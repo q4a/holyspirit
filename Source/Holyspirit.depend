@@ -438,7 +438,7 @@
 	<iostream>
 	"../constantes.h"
 
-1280255115 e:\c++\holyspirit\source\configuration.h
+1280847977 e:\c++\holyspirit\source\configuration.h
 	"singleton.h"
 	"constantes.h"
 
@@ -603,7 +603,7 @@
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1259243335 e:\c++\holyspirit\source\contextes\c_menuingame.h
+1280850147 e:\c++\holyspirit\source\contextes\c_menuingame.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"contexte.h"
@@ -633,7 +633,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1280763810 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
+1280825901 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -642,7 +642,7 @@
 	<SFML/Audio.hpp>
 	<sstream>
 
-1280255468 source:e:\c++\holyspirit\source\contextes\c_menuingame.cpp
+1280850759 source:e:\c++\holyspirit\source\contextes\c_menuingame.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -684,7 +684,7 @@
 	"../globale.h"
 	<sstream>
 
-1280487441 source:e:\c++\holyspirit\source\entites\hero.cpp
+1280840631 source:e:\c++\holyspirit\source\entites\hero.cpp
 	"../constantes.h"
 	"hero.h"
 	"../globale.h"
@@ -829,16 +829,18 @@
 	"../globale.h"
 	<iostream>
 
-1280256367 source:e:\c++\holyspirit\source\configuration.cpp
+1280850713 source:e:\c++\holyspirit\source\configuration.cpp
 	"configuration.h"
+	"globale.h"
 	<stdio.h>
+	<sstream>
 
 1269179731 source:e:\c++\holyspirit\source\datfile.cpp
 	"globale.h"
 	<stdio.h>
 	<string.h>
 
-1271330012 source:e:\c++\holyspirit\source\jeu.cpp
+1280850138 source:e:\c++\holyspirit\source\jeu.cpp
 	"constantes.h"
 	"globale.h"
 	"jeu.h"
@@ -5741,12 +5743,12 @@
 	<SFML/Graphics/Rect.hpp>
 	<vector>
 
-1278508458 e:\c++\holyspirit\source\contextes\c_mainmenu.h
+1280846924 e:\c++\holyspirit\source\contextes\c_mainmenu.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1280224326 source:e:\c++\holyspirit\source\contextes\c_mainmenu.cpp
+1280847977 source:e:\c++\holyspirit\source\contextes\c_mainmenu.cpp
 	"../jeu.h"
 	"../globale.h"
 	<iostream>

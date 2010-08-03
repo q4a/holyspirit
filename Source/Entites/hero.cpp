@@ -416,8 +416,6 @@ void Hero::Charger(std::string chemin_save)
 
             int temp = 0;
             *fichier>>temp;
-            if(temp != VERSION_SAVE)
-                configuration->error_message = "Warning ! Incompatible Save, please delete your save into \"Data/Saves\" ";
 
             *fichier>>m_caracteristiques.nom;
 
@@ -692,8 +690,6 @@ bool Hero::ChargerPresentation(std::string chemin_save)
             char caractere;
             int temp = 0;
             *fichier>>temp;
-            if(temp != VERSION_SAVE)
-                erreur = true,configuration->error_message = "Warning ! Incompatible Save, please delete your save into \"Data/Saves\" ";
 
             *fichier>>m_caracteristiques.nom;
 

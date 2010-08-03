@@ -126,7 +126,7 @@ void Jeu::Next()
     else if(next_screen == 3)
         m_contexte = m_jeu;
     else if(next_screen == 4)
-        m_contexte = m_menuInGame;
+        m_contexte = m_menuInGame, m_menuInGame->options = false;
     else if(next_screen == 5)
         m_contexte = m_miracles;
     else if(next_screen == 6)

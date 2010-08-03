@@ -26,7 +26,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "contexte.h"
 
-enum {E_PRINCIPAL, E_CONTINUER, E_NOUVEAU, E_CREDITS, E_STORY};
+enum {E_PRINCIPAL, E_CONTINUER, E_NOUVEAU, E_CREDITS, E_STORY, E_OPTION};
 
 class c_MainMenu : public Contexte
 {

@@ -21,6 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "singleton.h"
 #include "constantes.h"
 
+enum {O_PRINCIPAL, O_GRAPHICS, O_GRAPHISC_AVANCED, O_SOUNDS};
 
 class Configuration : public CSingleton<Configuration>
 {
@@ -50,6 +51,8 @@ class Configuration : public CSingleton<Configuration>
 
     const std::string &getText(int, int);
 
+    bool Options();
+
     coordonnee Resolution;
     coordonneeDecimal Redimensionnement;
     bool Ombre,Minimap,amelioration_lampes,Herbes,syncronisation_verticale,mode_fenetre,postFX,video,particules,debug,desactivate_console,lissage,Reflection,Distortion;
@@ -71,7 +74,6 @@ class Configuration : public CSingleton<Configuration>
     std::vector<std::string> player_class;
 
     std::string language;
-    std::string error_message;
 
     std::string error;
     std::vector<std::string> text_menus;
@@ -84,5 +86,7 @@ class Configuration : public CSingleton<Configuration>
 
     bool RafraichirLumiere;
     int numero_screen,RafraichirOmbre;
+
+    int no_menu_option;
 };
 #endif

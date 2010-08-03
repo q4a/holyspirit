@@ -33,11 +33,11 @@ public:
     void Utiliser(Jeu *jeu);
 
     //sf::View *camera;
+    bool options;
 
 private:
     float temps_ecoule,m_alpha;
     bool retour;
-
     sf::Text texte;
 
 };

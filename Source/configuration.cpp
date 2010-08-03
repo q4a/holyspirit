@@ -17,7 +17,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 
 #include "configuration.h"
+#include "globale.h"
 #include <stdio.h>
+#include <sstream>
 
 void Configuration::Charger()
 {
@@ -344,4 +346,479 @@ void Configuration::Sauvegarder()
     }
     else
         throw "Impossible de sauvegarder la configuration";
+}
+
+
+bool Configuration::Options()
+{
+    sf::Text texte;
+    texte.SetCharacterSize(48);
+
+    if(no_menu_option == O_PRINCIPAL)
+    {
+        texte.SetString(getText(0,72));
+        texte.SetY(Resolution.h/2 - 128 );
+        texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
+        if (eventManager->getPositionSouris().y > texte.GetRect().Top
+          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+        {
+            texte.SetColor(sf::Color(100,50,0));
+            if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+                no_menu_option = O_GRAPHICS;
+            eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+        }
+        else
+            texte.SetColor(sf::Color(150,100,50));
+        moteurGraphique->AjouterTexte(&texte,19,1);
+
+        texte.SetString(getText(0,73));
+        texte.SetY(Resolution.h/2 - 64 );
+        texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
+        if (eventManager->getPositionSouris().y > texte.GetRect().Top
+          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+        {
+            texte.SetColor(sf::Color(100,50,0));
+            if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+                no_menu_option = O_GRAPHISC_AVANCED;
+            eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+        }
+        else
+            texte.SetColor(sf::Color(150,100,50));
+        moteurGraphique->AjouterTexte(&texte,19,1);
+
+        texte.SetString(getText(0,74));
+        texte.SetY(Resolution.h/2 );
+        texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
+        if (eventManager->getPositionSouris().y > texte.GetRect().Top
+          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+        {
+            texte.SetColor(sf::Color(100,50,0));
+            if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+                no_menu_option = O_SOUNDS;
+            eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+        }
+        else
+            texte.SetColor(sf::Color(150,100,50));
+        moteurGraphique->AjouterTexte(&texte,19,1);
+
+
+        texte.SetString(getText(0,57));
+        texte.SetY(Resolution.h/2 + 192 );
+        texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
+        if (eventManager->getPositionSouris().y > texte.GetRect().Top
+          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+        {
+            texte.SetColor(sf::Color(100,50,0));
+            if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+            {
+                eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+                return 1;
+            }
+        }
+        else
+            texte.SetColor(sf::Color(150,100,50));
+        moteurGraphique->AjouterTexte(&texte,19,1);
+    }
+
+    if(no_menu_option == O_GRAPHICS)
+    {
+        texte.SetCharacterSize(32);
+
+        {
+            std::ostringstream buf;
+            buf<<getText(0,75)<<luminosite;
+            texte.SetString(buf.str());
+            texte.SetY(Resolution.h/2 - 240 );
+            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
+            if (eventManager->getPositionSouris().y > texte.GetRect().Top
+              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+            {
+                texte.SetColor(sf::Color(100,50,0));
+                if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+                {
+                    eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+                    luminosite += 1;
+                    if(luminosite > 50)
+                        luminosite = 50;
+                }
+                if(eventManager->getEvenement(sf::Mouse::Right,EventClic))
+                {
+                    eventManager->StopEvenement(sf::Mouse::Right,EventClic);
+                    luminosite -= 1;
+                    if(luminosite < 0)
+                        luminosite = 0;
+                }
+            }
+            else
+                texte.SetColor(sf::Color(150,100,50));
+            moteurGraphique->AjouterTexte(&texte,19,1);
+        }
+
+        {
+            std::ostringstream buf;
+            buf<<getText(0,76)<<contrastes;
+            texte.SetString(buf.str());
+            texte.SetY(Resolution.h/2 - 192 );
+            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
+            if (eventManager->getPositionSouris().y > texte.GetRect().Top
+              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+            {
+                texte.SetColor(sf::Color(100,50,0));
+                if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+                {
+                    eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+                    contrastes += 0.1;
+                    if(contrastes > 5)
+                        contrastes = 5;
+                }
+                if(eventManager->getEvenement(sf::Mouse::Right,EventClic))
+                {
+                    eventManager->StopEvenement(sf::Mouse::Right,EventClic);
+                    contrastes -= 0.1;
+                    if(contrastes < 0)
+                        contrastes = 0;
+                }
+            }
+            else
+                texte.SetColor(sf::Color(150,100,50));
+            moteurGraphique->AjouterTexte(&texte,19,1);
+        }
+
+        {
+            std::ostringstream buf;
+            buf<<getText(0,77)<<mode_fenetre;
+            texte.SetString(buf.str());
+            texte.SetY(Resolution.h/2 - 144 );
+            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
+            if (eventManager->getPositionSouris().y > texte.GetRect().Top
+              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+            {
+                texte.SetColor(sf::Color(100,50,0));
+                if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+                {
+                    eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+                    mode_fenetre = !mode_fenetre;
+                    moteurGraphique->CreateNewWindow();
+                }
+            }
+            else
+                texte.SetColor(sf::Color(150,100,50));
+            moteurGraphique->AjouterTexte(&texte,19,1);
+        }
+
+        {
+            std::ostringstream buf;
+            buf<<getText(0,85)<<item_background;
+            texte.SetString(buf.str());
+            texte.SetY(Resolution.h/2 - 96 );
+            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
+            if (eventManager->getPositionSouris().y > texte.GetRect().Top
+              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+            {
+                texte.SetColor(sf::Color(100,50,0));
+                if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+                {
+                    eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+                    item_background = !item_background;
+                }
+            }
+            else
+                texte.SetColor(sf::Color(150,100,50));
+            moteurGraphique->AjouterTexte(&texte,19,1);
+        }
+
+
+        texte.SetCharacterSize(48);
+
+        texte.SetString(getText(0,57));
+        texte.SetY(Resolution.h/2 + 192 );
+        texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
+        if (eventManager->getPositionSouris().y > texte.GetRect().Top
+          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+        {
+            texte.SetColor(sf::Color(100,50,0));
+            if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+            {
+                eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+                no_menu_option = O_PRINCIPAL;
+            }
+        }
+        else
+            texte.SetColor(sf::Color(150,100,50));
+        moteurGraphique->AjouterTexte(&texte,19,1);
+    }
+
+    if(no_menu_option == O_GRAPHISC_AVANCED)
+    {
+        texte.SetCharacterSize(32);
+
+        {
+            std::ostringstream buf;
+            buf<<getText(0,78)<<Lumiere;
+            texte.SetString(buf.str());
+            texte.SetY(Resolution.h/2 - 240 );
+            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
+            if (eventManager->getPositionSouris().y > texte.GetRect().Top
+              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+            {
+                texte.SetColor(sf::Color(100,50,0));
+                if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+                {
+                    eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+
+                    if(Lumiere == 0)
+                        Lumiere = 1;
+                    else if(Lumiere == 1)
+                        Lumiere = 2;
+                    else
+                        Lumiere = 0;
+                }
+            }
+            else
+                texte.SetColor(sf::Color(150,100,50));
+            moteurGraphique->AjouterTexte(&texte,19,1);
+        }
+
+        {
+            std::ostringstream buf;
+            buf<<getText(0,79)<<Ombre;
+            texte.SetString(buf.str());
+            texte.SetY(Resolution.h/2 - 192 );
+            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
+            if (eventManager->getPositionSouris().y > texte.GetRect().Top
+              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+            {
+                texte.SetColor(sf::Color(100,50,0));
+                if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+                {
+                    eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+                    Ombre = !Ombre;
+                }
+            }
+            else
+                texte.SetColor(sf::Color(150,100,50));
+            moteurGraphique->AjouterTexte(&texte,19,1);
+        }
+
+        {
+            std::ostringstream buf;
+            buf<<getText(0,80)<<postFX;
+            texte.SetString(buf.str());
+            texte.SetY(Resolution.h/2 - 144 );
+            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
+            if (eventManager->getPositionSouris().y > texte.GetRect().Top
+              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+            {
+                texte.SetColor(sf::Color(100,50,0));
+                if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+                {
+                    eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+                    postFX = !postFX;
+                }
+            }
+            else
+                texte.SetColor(sf::Color(150,100,50));
+            moteurGraphique->AjouterTexte(&texte,19,1);
+        }
+
+        {
+            std::ostringstream buf;
+            buf<<getText(0,81)<<Reflection;
+            texte.SetString(buf.str());
+            texte.SetY(Resolution.h/2 - 96);
+            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
+            if (eventManager->getPositionSouris().y > texte.GetRect().Top
+              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+            {
+                texte.SetColor(sf::Color(100,50,0));
+                if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+                {
+                    eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+                    Reflection = !Reflection;
+                }
+            }
+            else
+                texte.SetColor(sf::Color(150,100,50));
+            moteurGraphique->AjouterTexte(&texte,19,1);
+        }
+
+        {
+            std::ostringstream buf;
+            buf<<getText(0,82)<<Distortion;
+            texte.SetString(buf.str());
+            texte.SetY(Resolution.h/2 - 48);
+            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
+            if (eventManager->getPositionSouris().y > texte.GetRect().Top
+              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+            {
+                texte.SetColor(sf::Color(100,50,0));
+                if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+                {
+                    eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+                    Distortion = !Distortion;
+                }
+            }
+            else
+                texte.SetColor(sf::Color(150,100,50));
+            moteurGraphique->AjouterTexte(&texte,19,1);
+        }
+
+        {
+            std::ostringstream buf;
+            buf<<getText(0,83)<<Herbes;
+            texte.SetString(buf.str());
+            texte.SetY(Resolution.h/2);
+            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
+            if (eventManager->getPositionSouris().y > texte.GetRect().Top
+              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+            {
+                texte.SetColor(sf::Color(100,50,0));
+                if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+                {
+                    eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+                    Herbes = !Herbes;
+                }
+            }
+            else
+                texte.SetColor(sf::Color(150,100,50));
+            moteurGraphique->AjouterTexte(&texte,19,1);
+        }
+
+        {
+            std::ostringstream buf;
+            buf<<getText(0,84)<<particules;
+            texte.SetString(buf.str());
+            texte.SetY(Resolution.h/2 + 48 );
+            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
+            if (eventManager->getPositionSouris().y > texte.GetRect().Top
+              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+            {
+                texte.SetColor(sf::Color(100,50,0));
+                if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+                {
+                    eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+                    particules = !particules;
+                }
+            }
+            else
+                texte.SetColor(sf::Color(150,100,50));
+            moteurGraphique->AjouterTexte(&texte,19,1);
+        }
+
+        texte.SetCharacterSize(48);
+        texte.SetString(getText(0,57));
+        texte.SetY(Resolution.h/2 + 96 );
+        texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
+        if (eventManager->getPositionSouris().y > texte.GetRect().Top
+          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+        {
+            texte.SetColor(sf::Color(100,50,0));
+            if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+            {
+                eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+                no_menu_option = O_PRINCIPAL;
+            }
+        }
+        else
+            texte.SetColor(sf::Color(150,100,50));
+        moteurGraphique->AjouterTexte(&texte,19,1);
+    }
+
+    if(no_menu_option == O_SOUNDS)
+    {
+        texte.SetCharacterSize(32);
+
+        {
+            std::ostringstream buf;
+            buf<<getText(0,86)<<volume;
+            texte.SetString(buf.str());
+            texte.SetY(Resolution.h/2 - 240 );
+            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
+            if (eventManager->getPositionSouris().y > texte.GetRect().Top
+              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+            {
+                texte.SetColor(sf::Color(100,50,0));
+                if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+                {
+                    //eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+                    volume += 1;
+                    if(volume > 100)
+                        volume = 100;
+
+                    sf::Sleep(0.1);
+                }
+                if(eventManager->getEvenement(sf::Mouse::Right,EventClic))
+                {
+                    //eventManager->StopEvenement(sf::Mouse::Right,EventClic);
+                    volume -= 1;
+                    if(volume < 0)
+                        volume = 0;
+
+                    sf::Sleep(0.1);
+                }
+
+                sf::Listener::SetGlobalVolume(volume);
+            }
+            else
+                texte.SetColor(sf::Color(150,100,50));
+
+            moteurGraphique->AjouterTexte(&texte,19,1);
+        }
+
+        {
+            std::ostringstream buf;
+            buf<<getText(0,87)<<music_volume;
+            texte.SetString(buf.str());
+            texte.SetY(Resolution.h/2 - 192 );
+            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
+            if (eventManager->getPositionSouris().y > texte.GetRect().Top
+              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+            {
+                texte.SetColor(sf::Color(100,50,0));
+                if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+                {
+                    music_volume += 1;
+                    if(music_volume > 100)
+                        music_volume = 100;
+
+                    sf::Sleep(0.1);
+                }
+                if(eventManager->getEvenement(sf::Mouse::Right,EventClic))
+                {
+                    music_volume -= 1;
+                    if(music_volume < 0)
+                        music_volume = 0;
+
+                    sf::Sleep(0.1);
+                }
+
+                moteurSons->setVolumeMusique((int)music_volume);
+            }
+            else
+                texte.SetColor(sf::Color(150,100,50));
+            moteurGraphique->AjouterTexte(&texte,19,1);
+        }
+
+
+        texte.SetCharacterSize(48);
+
+        texte.SetString(getText(0,57));
+        texte.SetY(Resolution.h/2 + 192 );
+        texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
+        if (eventManager->getPositionSouris().y > texte.GetRect().Top
+          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+        {
+            texte.SetColor(sf::Color(100,50,0));
+            if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+            {
+                eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+                no_menu_option = O_PRINCIPAL;
+            }
+        }
+        else
+            texte.SetColor(sf::Color(150,100,50));
+        moteurGraphique->AjouterTexte(&texte,19,1);
+    }
+
+    return 0;
 }

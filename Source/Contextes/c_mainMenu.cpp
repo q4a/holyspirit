@@ -155,6 +155,9 @@ void c_MainMenu::Utiliser(Jeu *jeu)
         E_Credits(jeu);
     else if(no_ecran == E_STORY)
         E_Story(jeu);
+    else if(no_ecran == E_OPTION)
+        if(configuration->Options())
+            no_ecran = E_PRINCIPAL;
 
     eventManager->AfficherCurseur();
 }
@@ -294,6 +297,10 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
       &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
     {
         texte.SetColor(Color(100,50,0));
+
+        if (eventManager->getEvenement(Mouse::Left,EventClic))
+            no_ecran = E_OPTION, configuration->no_menu_option = O_PRINCIPAL;
+
         eventManager->StopEvenement(Mouse::Left,EventClic);
     }
     else

@@ -36,8 +36,9 @@ int GestionBoutons(Jeu *jeu, bool = false);
 
 c_MenuInGame::c_MenuInGame()
 {
-    m_alpha=0;
-    retour=false;
+    m_alpha     = 0;
+    retour      = false;
+    options     = false;
 }
 
 void c_MenuInGame::Utiliser(Jeu *jeu)
@@ -69,12 +70,6 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
             m_alpha=255;
     }
 
-   // if (eventManager->getEvenement(Key::Escape,EventKey)&&m_alpha==255)
-        //eventManager->StopEvenement(Key::I,EventKey),retour=1;
-
- //   if (eventManager->getEvenement(Key::Space,EventKey))
-     //   jeu->m_run=false;
-
     int temp = GestionBoutons(jeu);
     if(temp >= 0)
     {
@@ -91,60 +86,74 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     jeu->map->Animer(&jeu->hero,0,&jeu->menu);
     jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
     jeu->hero.AfficherAmisEtCraft();
-  //  jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);
-
-   /* if (jeu->hero.getChercherSac().x!=-1&&jeu->map->getNombreObjets(jeu->hero.getChercherSac())>0)
-    {
-        jeu->menu.Afficher(3,255,&jeu->hero.m_classe);
-        jeu->map->AfficherSac(jeu->hero.getChercherSac(),0,
-                              coordonnee (600,(int)((float)configuration->Resolution.w*0.265),200,10),
-                              jeu->hero.m_caracteristiques);
-    }*/
     jeu->menu.AfficherHUD(&jeu->hero.m_classe);
     jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,0,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
 
-
-    texte.SetCharacterSize(56);
-
-    texte.SetString(configuration->getText(0,0));
-    texte.SetY(configuration->Resolution.h/2-texte.GetRect().Height);
-    texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
-    if (eventManager->getPositionSouris().y>configuration->Resolution.y/2-texte.GetRect().Height&&eventManager->getPositionSouris().y<configuration->Resolution.y/2)
+    if(!options)
     {
-        texte.SetColor(Color(100,50,0,(int)m_alpha));
-        if (eventManager->getEvenement(Mouse::Left,EventClic))
-            retour=1, jeu->next_screen = 3;
+        texte.SetCharacterSize(56);
 
-    }
-    else
-        texte.SetColor(Color(150,100,50,(int)m_alpha));
-    moteurGraphique->AjouterTexte(&texte,19,1);
+        texte.SetString(configuration->getText(0,0));
+        texte.SetY(configuration->Resolution.h/2-70 * 2);
+        texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
+        if (eventManager->getPositionSouris().y > texte.GetPosition().y
+         && eventManager->getPositionSouris().y < texte.GetPosition().y+texte.GetRect().Height)
+        {
+            texte.SetColor(Color(100,50,0,(int)m_alpha));
+            if (eventManager->getEvenement(Mouse::Left,EventClic))
+                retour=1, jeu->next_screen = 3;
+        }
+        else
+            texte.SetColor(Color(150,100,50,(int)m_alpha));
+        moteurGraphique->AjouterTexte(&texte,19,1);
 
-    texte.SetString(configuration->getText(0,1));
-    texte.SetY(configuration->Resolution.h/2);
-    texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
-    if (eventManager->getPositionSouris().y>configuration->Resolution.y/2&&eventManager->getPositionSouris().y<configuration->Resolution.y/2+texte.GetRect().Height)
-    {
-        texte.SetColor(Color(100,50,0,(int)m_alpha));
-        if (eventManager->getEvenement(Mouse::Left,EventClic))
-            jeu->m_mainMenu->m_save=true, jeu->m_contexte = jeu->m_mainMenu;
-    }
-    else
-        texte.SetColor(Color(150,100,50,(int)m_alpha));
-    moteurGraphique->AjouterTexte(&texte,19,1);
+        texte.SetString(configuration->getText(0,55));
+        texte.SetY(configuration->Resolution.h/2-70);
+        texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
+        if (eventManager->getPositionSouris().y > texte.GetPosition().y
+         && eventManager->getPositionSouris().y < texte.GetPosition().y+texte.GetRect().Height)
+        {
+            texte.SetColor(Color(100,50,0,(int)m_alpha));
+            if (eventManager->getEvenement(Mouse::Left,EventClic))
+                options = true, configuration->no_menu_option = 0;
+            eventManager->StopEvenement(Mouse::Left,EventClic);
+        }
+        else
+            texte.SetColor(Color(150,100,50,(int)m_alpha));
+        moteurGraphique->AjouterTexte(&texte,19,1);
 
-    texte.SetString(configuration->getText(0,2));
-    texte.SetY(configuration->Resolution.h/2+texte.GetRect().Height);
-    texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
-    if (eventManager->getPositionSouris().y>configuration->Resolution.y/2+texte.GetRect().Height&&eventManager->getPositionSouris().y<configuration->Resolution.y/2+texte.GetRect().Height*2)
-    {
-        texte.SetColor(Color(100,50,0,(int)m_alpha));
-        if (eventManager->getEvenement(Mouse::Left,EventClic))
-            jeu->m_mainMenu->m_reset=true,jeu->m_mainMenu->m_save=true, jeu->m_contexte = jeu->m_mainMenu;
+        texte.SetString(configuration->getText(0,1));
+        texte.SetY(configuration->Resolution.h/2);
+        texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
+        if (eventManager->getPositionSouris().y > texte.GetPosition().y
+         && eventManager->getPositionSouris().y < texte.GetPosition().y+texte.GetRect().Height)
+        {
+            texte.SetColor(Color(100,50,0,(int)m_alpha));
+            if (eventManager->getEvenement(Mouse::Left,EventClic))
+                jeu->m_mainMenu->m_save=true, jeu->m_contexte = jeu->m_mainMenu;
+        }
+        else
+            texte.SetColor(Color(150,100,50,(int)m_alpha));
+        moteurGraphique->AjouterTexte(&texte,19,1);
+
+        texte.SetString(configuration->getText(0,2));
+        texte.SetY(configuration->Resolution.h/2+70);
+        texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
+        if (eventManager->getPositionSouris().y > texte.GetPosition().y
+         && eventManager->getPositionSouris().y < texte.GetPosition().y+texte.GetRect().Height)
+        {
+            texte.SetColor(Color(100,50,0,(int)m_alpha));
+            if (eventManager->getEvenement(Mouse::Left,EventClic))
+                jeu->m_mainMenu->m_reset=true,jeu->m_mainMenu->m_save=true, jeu->m_contexte = jeu->m_mainMenu;
+        }
+        else
+            texte.SetColor(Color(150,100,50,(int)m_alpha));
+        moteurGraphique->AjouterTexte(&texte,19,1);
     }
-    else
-        texte.SetColor(Color(150,100,50,(int)m_alpha));
-    moteurGraphique->AjouterTexte(&texte,19,1);
+    else if(configuration->Options())
+        options = false;
+
+
 
     eventManager->AfficherCurseur();
 }
