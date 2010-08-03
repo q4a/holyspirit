@@ -70,3 +70,19 @@ Sélectionnez votre personnage :
 Temps de fabrication : 
 secondes
 minutes
+Options graphiques
+Options graphiques avancées
+Options sonores
+Luminosité : 
+Contrastes : 
+Mode fenêtré : 
+Qualité des lumières : 
+Rendre les ombres : 
+Utiliser les effets de shaders : 
+Rendre la réflexion des objets : 
+Rendre les effets de distortion : 
+Rendre l'herbe : 
+Rendre les débris dynamiques : 
+Afficher le fond coloré des objets : 
+Volume sonore : 
+Volume de la musique : 

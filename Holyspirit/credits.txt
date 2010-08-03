@@ -34,6 +34,8 @@ Akuma (Tribbiani Edouard)
 +Externs
 
 *Translators
+Bravach (English)
+Gonze Philippe (English)
 Derijke Valérie (Nederlands)
 Richard Jim (Spanish)
 
