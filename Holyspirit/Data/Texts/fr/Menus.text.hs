@@ -86,3 +86,4 @@ Rendre les débris dynamiques :
 Afficher le fond coloré des objets : 
 Volume sonore : 
 Volume de la musique : 
+Résolution : 

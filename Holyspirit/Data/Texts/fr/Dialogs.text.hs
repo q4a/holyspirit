@@ -7,7 +7,7 @@ Bien ! Maintenant que vous avez changé de niveau, retournez dans l'inventaire. V
 -Votre force augmente vos dégâts au corps à corps et vous permet de porter de l'équipement plus lourd.\-Votre dextérité augmente vos dégâts à distance, vous permet de mieux toucher/esquiver et de porter plus d'équipements.\-Votre vitalité augmente votre vie. \-Votre piété est votre capacité à invoquer votre Dieu, elle vous permet de lancer plus de miracles (nous allons y revenir). \-Votre charisme influe sur le prix des objets et vous permet de porter certains équipements.
 Maintenant, ouvrez le menu des miracles en cliquant sur l'icône en forme de croix ou en appuyant sur 'T'.\Vous pouvez choisir la voie dans laquelle vous souhaitez dépenser vos points via les 3 boutons en haut à gauche.\Faites un clic droit sur une icône de miracle pour dépenser un point dedans. Un clic gauche le prend en main, vous pouvez ensuite le mettre dans la barre de raccourcis en bas. Vous y accéderez en jeu en appuyant sur les touches 1 à 8 qui permettent de le mettre en mode actif. Il vous suffit de faire ensuite un clic droit pour l'utiliser.
 Pour parler aux personnages non jouables, il vous suffit de cliquer dessus. Il en va de même avec les marchands.\Vous pouvez aussi activer/désactiver la carte en appuyant sur 'M' ou en cliquant sur le bouton en forme de carte.\Vous pouvez accéder de la même façon au menu en cliquant sur le bouton en forme d'engrenage ou en pressant 'Echap'. \Enfin, vous pouvez accéder au panneau des quêtes en appuyant sur 'Q' ou en cliquant sur le bouton en forme de livre.
-******** Le tutoriel est fini. *********\************* Bon jeu ! **************
+******** Le tutoriel est fini. *********\************ Bon jeu ! *************
 Attention, si vous continuez dans cette direction, cela va mettre fin au tutoriel !
 Allez tuer les gros méchants prêtres pour avoir la tiare !
 Allez tuer les gros méchants prêtres pour avoir la tiare ! Il en reste encore 2 !
@@ -55,7 +55,7 @@ Que la paix soit sur vous mon fils.\ Que souhaitez-vous de moi ?\
 Prier
 Bénir un objet
 Suite
-Et bien poulette ! T'es drôlement mise ! Si  tu as besoin d’un service demandes donc à Rognorak ! Il sait toujours faire plaisir aux demoiselles Rognorak…\
+Et bien poulette ! T'es drôlement mise ! Si  tu as besoin d'un service demandes donc à Rognorak ! Il sait toujours faire plaisir aux demoiselles Rognorak…\
 Salut à toi mon fils ! C'est toi ? Oui ça ne peut être que toi ! Grand, fort... Le Sauveur ! Venu de nulle part ! Dieu m'a parlé, et je savais qu'il ne nous abandonnerait pas ! Vas, extermine cette vermine démoniaque qui rode partout alentours !
 Qui es tu femme ? De quelle contrée viens-tu donc avec ce maquillage suggestif, ces habits étranges ? Es-tu un démon qui a réussi à s'immiscer dans la maison de Dieu ? Fais bien attention à tes actes, même en cette période troublée on peut trouver le temps de brûler les sorcières...
 Où suis-je ?
