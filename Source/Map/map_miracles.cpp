@@ -486,7 +486,7 @@ bool Map::Miracle_Projectile(Hero *hero, Personnage *personnage, Miracle &modele
         if (!m_projectile[info.m_IDObjet].m_effet.m_actif)
             m_projectile[info.m_IDObjet].m_actif = false;
 
-        if (!m_projectile[info.m_IDObjet].m_actif)
+        if (!m_projectile[info.m_IDObjet].m_actif && !m_projectile[info.m_IDObjet].m_supprime)
         {
             m_projectile[info.m_IDObjet].m_supprime = true;
             info.m_cible = m_projectile[info.m_IDObjet].m_entite_cible;
@@ -1396,7 +1396,7 @@ void Map::GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,fl
                     o --, continuer = true;
             }
             else
-                personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o);
+                personnage->m_miracleEnCours[i].m_infos.erase(personnage->m_miracleEnCours[i].m_infos.begin()+o),o--;
         }
 
 

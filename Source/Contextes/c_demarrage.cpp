@@ -73,6 +73,8 @@ void c_Demarrage::Utiliser(Jeu *jeu)
     if (eventManager->getEvenement(Mouse::Left,EventClic))
         m_augmenter=false;
 
+    eventManager->StopEvenement(Mouse::Left,EventClic);
+
     if (m_alpha<0)
         jeu->m_contexte=jeu->m_mainMenu;
 

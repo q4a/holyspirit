@@ -241,16 +241,16 @@
 
 1268476938 hics/Matrix3.hpp>
 
-1280155898 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\matrix3.hpp
+1280857848 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\matrix3.hpp
 	<SFML/Config.hpp>
 	<SFML/System/Vector2.hpp>
 	<SFML/Graphics/Rect.hpp>
-	<math.h>
+	<cmath>
 	<SFML/Graphics/Matrix3.inl>
 
 1264595380 hics/Matrix3.inl>
 
-1271329322 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\matrix3.inl
+1280857848 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\matrix3.inl
 
 1280155898 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\renderimage.hpp
 	<SFML/Graphics/Image.hpp>
@@ -438,7 +438,7 @@
 	<iostream>
 	"../constantes.h"
 
-1280847977 e:\c++\holyspirit\source\configuration.h
+1280934549 e:\c++\holyspirit\source\configuration.h
 	"singleton.h"
 	"constantes.h"
 
@@ -613,7 +613,7 @@
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1275125707 source:e:\c++\holyspirit\source\contextes\c_demarrage.cpp
+1280995614 source:e:\c++\holyspirit\source\contextes\c_demarrage.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -642,7 +642,7 @@
 	<SFML/Audio.hpp>
 	<sstream>
 
-1280850759 source:e:\c++\holyspirit\source\contextes\c_menuingame.cpp
+1280910853 source:e:\c++\holyspirit\source\contextes\c_menuingame.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -684,7 +684,7 @@
 	"../globale.h"
 	<sstream>
 
-1280840631 source:e:\c++\holyspirit\source\entites\hero.cpp
+1281107094 source:e:\c++\holyspirit\source\entites\hero.cpp
 	"../constantes.h"
 	"hero.h"
 	"../globale.h"
@@ -716,7 +716,7 @@
 	"../constantes.h"
 	"../globale.h"
 
-1280247355 source:e:\c++\holyspirit\source\entites\objet.cpp
+1281019295 source:e:\c++\holyspirit\source\entites\objet.cpp
 	"objet.h"
 	"../globale.h"
 	<fstream>
@@ -760,7 +760,7 @@
 	"evenement.h"
 	<iostream>
 
-1280766475 source:e:\c++\holyspirit\source\map\map.cpp
+1281020391 source:e:\c++\holyspirit\source\map\map.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -829,7 +829,7 @@
 	"../globale.h"
 	<iostream>
 
-1280850713 source:e:\c++\holyspirit\source\configuration.cpp
+1280936235 source:e:\c++\holyspirit\source\configuration.cpp
 	"configuration.h"
 	"globale.h"
 	<stdio.h>
@@ -4682,12 +4682,12 @@
 	<locale>
 	<string>
 
-1280155899 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\utf.hpp
+1280857848 e:\c++\sfml_svn\branches\sfml2\include\sfml\system\utf.hpp
 	<SFML/Config.hpp>
 	<algorithm>
 	<locale>
 	<string>
-	<stdlib.h>
+	<cstdlib>
 	<SFML/System/Utf.inl>
 
 1268488324 em/Utf.inl>
@@ -5743,12 +5743,12 @@
 	<SFML/Graphics/Rect.hpp>
 	<vector>
 
-1280846924 e:\c++\holyspirit\source\contextes\c_mainmenu.h
+1280919306 e:\c++\holyspirit\source\contextes\c_mainmenu.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1280847977 source:e:\c++\holyspirit\source\contextes\c_mainmenu.cpp
+1280995722 source:e:\c++\holyspirit\source\contextes\c_mainmenu.cpp
 	"../jeu.h"
 	"../globale.h"
 	<iostream>
@@ -6342,7 +6342,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1280766475 source:e:\c++\holyspirit\source\map\map_miracles.cpp
+1281020205 source:e:\c++\holyspirit\source\map\map_miracles.cpp
 	"map.h"
 	<iostream>
 	<fstream>

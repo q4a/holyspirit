@@ -339,7 +339,7 @@ void Hero::SauvegarderApercu()
 {
     sf::RenderImage render;
     render.Create(256,256);
-    render.Clear();
+    render.Clear(sf::Color(0,0,0,0));
 
     if (configuration->debug)
             console->Ajouter("/Génération de l'image...");
@@ -1473,7 +1473,7 @@ void Hero::AfficherAmisEtCraft()
         text.SetCharacterSize(10);
         text.SetString(buf.str());
         text.SetPosition(configuration->Resolution.x - 150 - text.GetRect().Width,80);
-        moteurGraphique->AjouterTexte(&text,15);
+        moteurGraphique->AjouterTexte(&text,14);
     }
 
     if(m_no_result_bless >= 0)
@@ -1505,7 +1505,7 @@ void Hero::AfficherAmisEtCraft()
         text.SetCharacterSize(10);
         text.SetString(buf.str());
         text.SetPosition(configuration->Resolution.x - 150 - text.GetRect().Width,80 + 32);
-        moteurGraphique->AjouterTexte(&text,15);
+        moteurGraphique->AjouterTexte(&text,14);
     }
 }
 

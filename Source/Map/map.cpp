@@ -1834,6 +1834,7 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
                                         if(m_monstre[m_decor[1][(int)(projectile->m_positionCase.y)][(int)(projectile->m_positionCase.x)].getMonstre()[o]].EnVie())
                                         if(m_monstre[m_decor[1][(int)(projectile->m_positionCase.y)][(int)(projectile->m_positionCase.x)].getMonstre()[o]].m_friendly == projectile->m_monstre)
                                         if(m_monstre[m_decor[1][(int)(projectile->m_positionCase.y)][(int)(projectile->m_positionCase.x)].getMonstre()[o]].getCaracteristique().niveau >= 0)
+                                        if(m_monstre[m_decor[1][(int)(projectile->m_positionCase.y)][(int)(projectile->m_positionCase.x)].getMonstre()[o]].m_selectable)
                                         {
                                             collision = true;
                                             if(rand()%100 > projectile->m_transperce)
@@ -1994,110 +1995,6 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
             }
         }
     }
-    /*coordonnee vueMin,vueMax;
-
-    vueMin.x=hero->m_personnage.getCoordonnee().x-15;
-    vueMin.y=hero->m_personnage.getCoordonnee().y-15;
-    vueMax.x=hero->m_personnage.getCoordonnee().x+15;
-    vueMax.y=hero->m_personnage.getCoordonnee().y+15;
-
-    if (vueMin.x<0)
-        vueMin.x=0;
-    if (vueMin.y<0)
-        vueMin.y=0;
-    if (vueMax.x>=m_dimensions.x)
-        vueMax.x=m_dimensions.x;
-    if (vueMax.y>=m_dimensions.y)
-        vueMax.y=m_dimensions.y;
-
-    for (int j=vueMin.y;j<vueMax.y;j++)
-        for (int k=vueMin.x;k<vueMax.x;k++)
-            for (unsigned o = 0 ; o < m_decor[1][j][k].getMonstre().size() ; o++)
-            {
-                int monstre = m_decor[1][j][k].getMonstre()[o];
-
-                if (monstre >= 0 && monstre < (int)m_monstre.size())
-                {
-                    if(m_monstre[monstre].m_inexistant)
-                    {
-                        m_decor[1][j][k].delMonstre(monstre);
-                        o--;
-                    }
-                    else
-                    {
-                        if (m_monstre[monstre].m_cible != NULL)
-                        {
-                            if (m_monstre[monstre].m_cible->EnVie())
-                            {
-                                if (m_monstre[monstre].m_friendly == m_monstre[monstre].m_cible->m_friendly)
-                                    m_monstre[monstre].setVu(0);
-                            }
-                            else
-                                m_monstre[monstre].setVu(0);
-                        }
-                        else
-                            m_monstre[monstre].setVu(0);
-
-                        if (m_monstre[monstre].getVu() == 0)
-                            TestVisionMonstre(monstre, hero);
-
-                        if (m_monstre[monstre].m_cible != NULL)
-                            m_monstre[monstre].TesterVision(m_monstre[monstre].m_cible->getCoordonnee());
-
-                        if (m_monstre[monstre].m_attente<=0)
-                        {
-                            TesterPoussable(m_monstre[monstre], temps, monstre);
-
-                            bool seDeplacer = m_monstre[monstre].SeDeplacer(temps*100,getDimensions());
-
-                            Script *script=&m_monstre[monstre].m_scriptAI;
-                            if ((int)script->m_instructions.size()>0)
-                                for (int a=0;a<(int)script->m_instructions[0].m_valeurs.size();a++)
-                                    if (script->m_instructions[0].m_valeurs[a]>=0&&script->m_instructions[0].m_valeurs[a]<(int)script->m_instructions.size())
-                                        GererInstructions(jeu,script,script->m_instructions[0].m_valeurs[a],monstre,hero,temps,menu,seDeplacer);
-
-                            if (m_monstre[monstre].getErreurPathfinding())
-                                Script_RandomDisplace(jeu,script,0,monstre,hero,temps,menu,seDeplacer);
-
-                            if (seDeplacer)
-                            {
-                                coordonnee tempCoord(hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1);
-                                 m_monstre[monstre].Pathfinding(getAlentourDuPersonnage(m_monstre[monstre].getCoordonnee()),tempCoord);
-                            }
-
-                            m_monstre[monstre].m_touche = false;
-                        }
-                        else
-                            m_monstre[monstre].m_attente-=temps*100;
-
-                        if (m_monstre[monstre].getErreurPathfinding())
-                            m_monstre[monstre].m_compteur++;
-                        else
-                            m_monstre[monstre].m_compteur=0;
-
-                        ///GESTION DES EVENEMENTS SUR LES MONSTRES
-                        for (int l=0;l<2;l++)
-                            if (m_monstre[monstre].getCoordonnee().y>=0&&m_monstre[monstre].getCoordonnee().y<m_dimensions.y
-                                    &&m_monstre[monstre].getCoordonnee().x>=0&&m_monstre[monstre].getCoordonnee().x<m_dimensions.x)
-                                for (int z=0;z<(int)m_decor[l][m_monstre[monstre].getCoordonnee().y][m_monstre[monstre].getCoordonnee().x].getEvenement().size();z++)
-                                    if (m_decor[l][m_monstre[monstre].getCoordonnee().y][m_monstre[monstre].getCoordonnee().x].getEvenement()[z]>=0&&m_decor[l][m_monstre[monstre].getCoordonnee().y][m_monstre[monstre].getCoordonnee().x].getEvenement()[z]<(int)m_evenement.size())
-                                        if (m_evenement[m_decor[l][m_monstre[monstre].getCoordonnee().y][m_monstre[monstre].getCoordonnee().x].getEvenement()[z]].getType()==INFLIGER_DEGATS)
-                                            if (m_monstre[monstre].EnVie())
-                                                InfligerDegats(monstre,m_evenement[m_decor[l][m_monstre[monstre].getCoordonnee().y][m_monstre[monstre].getCoordonnee().x].getEvenement()[z]].getInformation(0)*temps*10,
-                                                                       m_evenement[m_decor[l][m_monstre[monstre].getCoordonnee().y][m_monstre[monstre].getCoordonnee().x].getEvenement()[z]].getInformation(1),hero,0);
-
-                        if (m_monstre[monstre].EnVie())
-                            if (m_monstre[monstre].getCoordonnee().y!=j || m_monstre[monstre].getCoordonnee().x != k)
-                                if ( m_monstre[monstre].getCoordonnee().x >= 0 && m_monstre[monstre].getCoordonnee().x < m_dimensions.x
-                                        && m_monstre[monstre].getCoordonnee().y >= 0 && m_monstre[monstre].getCoordonnee().y < m_dimensions.y)
-                                {
-                                    m_decor[1][j][k].delMonstre(monstre);
-                                    m_decor[1][m_monstre[monstre].getCoordonnee().y][m_monstre[monstre].getCoordonnee().x].setMonstre(monstre);
-                                }
-                    }
-
-                }
-            }*/
 }
 
 void Map::GererScript(Jeu *jeu,Hero *hero,float temps,Menu *menu)

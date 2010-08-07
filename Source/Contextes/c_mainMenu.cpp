@@ -47,6 +47,9 @@ c_MainMenu::c_MainMenu()
     m_mainscreen.SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->mainscreen_menu, -1)));
     m_mainscreen.Resize(configuration->Resolution.x, configuration->Resolution.y);
 
+    m_background_hero.SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage("Data/Menus/Slot3x4.png", -1)));
+    m_background_hero.Resize(150, 192);
+
     m_light = moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,256,32,sf::Color(255,255,255));
 
     ifstream fichier;
@@ -130,8 +133,8 @@ void c_MainMenu::Utiliser(Jeu *jeu)
         moteurGraphique->m_blur = 0;
     }
 
-    if(no_ecran != E_CONTINUER)
-        moteurGraphique->AjouterCommande(&m_mainscreen, 10, 0);
+    m_mainscreen.Resize(configuration->Resolution.x, configuration->Resolution.y);
+    moteurGraphique->AjouterCommande(&m_mainscreen, 10, 0);
 
     moteurGraphique->LightManager->SetPosition(m_light,sf::Vector2f(eventManager->getPositionSouris().x,
                                                                     eventManager->getPositionSouris().y * 2));
@@ -232,6 +235,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
                     int img  = moteurGraphique->AjouterImage(reader.GetFile(chemin_image), reader.GetFileSize(chemin_image), chemin_image, 1);
                     sprite.SetImage(*moteurGraphique->getImage(img));
                     m_images_saves.push_back(sprite);
+                    //m_images_saves.back().CreateMaskFromColor(Color(255,0,0));
 
                     Hero temp;
                     m_incompatible_saves.push_back(temp.ChargerPresentation(m_chemin_saves.back()));
@@ -373,20 +377,28 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
     for(i = defilement_saves ; i < m_chemin_saves.size()
                             && i < 8 + defilement_saves; ++i)
     {
+
+        m_background_hero.SetPosition(configuration->Resolution.w/2 - 331 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3),
+                                      configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 224);
+
+        moteurGraphique->AjouterCommande(&m_background_hero,18,0);
+
         std::string str;
         str += m_chemin_saves[i].substr(0, m_chemin_saves[i].size() -7);
+
+
+        texte.SetCharacterSize(14);
 
         texte.SetString(str.c_str());
 
         texte.SetPosition(configuration->Resolution.w/2 - 384 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3) + 130 - texte.GetRect().Width/2,
-                          configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 192 + 160);
+                          configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 224 + 140);
 
         m_images_saves[i].SetPosition(configuration->Resolution.w/2 - 336 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3),
-                                      configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 192);
+                                      configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 224);
         m_images_saves[i].Resize(160,256);
         m_images_saves[i].SetSubRect(sf::IntRect(48,0,160,256));
         moteurGraphique->AjouterCommande(&m_images_saves[i],19,0);
-
 
         sf::Text texte_niv;
 
@@ -397,12 +409,13 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         else
             buf<<configuration->getText(0,49)<<" : "<<m_niveau_saves[i];
 
-        texte_niv.SetPosition(texte.GetPosition().x, texte.GetPosition().y + 20);
         texte_niv.SetString(buf.str());
-        texte_niv.SetCharacterSize(16);
+        texte_niv.SetCharacterSize(14);
 
+        texte_niv.SetPosition(configuration->Resolution.w/2 - 384 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3) + 130 - texte_niv.GetRect().Width/2,
+                              configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 224 + 156);
 
-        if ((eventManager->getPositionSouris().y > texte.GetRect().Top
+        if((eventManager->getPositionSouris().y > texte.GetRect().Top
           &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height)
           &&eventManager->getPositionSouris().x > texte.GetRect().Left
           &&eventManager->getPositionSouris().x < (texte.GetRect().Left + texte.GetRect().Width)) ||
@@ -412,8 +425,12 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
           &&eventManager->getPositionSouris().x > m_images_saves[i].GetPosition().x
           &&eventManager->getPositionSouris().x < m_images_saves[i].GetPosition().x + 160))
         {
-            texte.SetColor(Color(100,50,0));
-            texte_niv.SetColor(Color(100,50,0));
+            m_images_saves[i].SetBlendMode(sf::Blend::Add);
+            moteurGraphique->AjouterCommande(&m_images_saves[i],19,0);
+            m_images_saves[i].SetBlendMode(sf::Blend::Alpha);
+
+            texte.SetColor(Color(200,150,100));
+            texte_niv.SetColor(Color(200,150,100));
             if(eventManager->getEvenement(Mouse::Left,EventClic))
             //if(!m_incompatible_saves[i])
             {
@@ -458,45 +475,60 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         moteurGraphique->AjouterTexte(&texte_niv,19,1);
     }
 
-    if(i < m_chemin_saves.size())
+    texte.SetColor(Color(150,100,50));
+
+
     {
         texte.SetString("- + -");
         texte.SetY(configuration->Resolution.h/2 + 160);
         texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2 + 32);
-        if (eventManager->getPositionSouris().y > texte.GetRect().Top
-          &&eventManager->getPositionSouris().y < texte.GetRect().Top + 32)
-        if (eventManager->getPositionSouris().x > texte.GetRect().Left
-          &&eventManager->getPositionSouris().x < (texte.GetRect().Left + texte.GetRect().Width))
+
+        if(i < m_chemin_saves.size())
         {
-            texte.SetColor(Color(100,50,0));
-            if(eventManager->getEvenement(Mouse::Left,EventClic))
-                defilement_saves ++;
-            eventManager->StopEvenement(Mouse::Left,EventClic);
+            if (eventManager->getPositionSouris().y > texte.GetRect().Top
+              &&eventManager->getPositionSouris().y < texte.GetRect().Top + 32)
+            if (eventManager->getPositionSouris().x > texte.GetRect().Left
+              &&eventManager->getPositionSouris().x < (texte.GetRect().Left + texte.GetRect().Width))
+            {
+                texte.SetColor(Color(100,50,0));
+                if(eventManager->getEvenement(Mouse::Left,EventClic))
+                    defilement_saves ++;
+                eventManager->StopEvenement(Mouse::Left,EventClic);
+            }
+            else
+                texte.SetColor(Color(150,100,50));
         }
         else
-            texte.SetColor(Color(150,100,50));
+            texte.SetColor(Color(128,128,128));
         moteurGraphique->AjouterTexte(&texte,19,1);
     }
 
-    if(defilement_saves > 0)
+
     {
         texte.SetString("- - -");
         texte.SetY(configuration->Resolution.h/2 + 160 );
         texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2 - 32);
-        if (eventManager->getPositionSouris().y > texte.GetRect().Top
-          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + 32))
-        if (eventManager->getPositionSouris().x > texte.GetRect().Left
-          &&eventManager->getPositionSouris().x < (texte.GetRect().Left + texte.GetRect().Width))
+
+        if(defilement_saves > 0)
         {
-            texte.SetColor(Color(100,50,0));
-            if(eventManager->getEvenement(Mouse::Left,EventClic))
+            if (eventManager->getPositionSouris().y > texte.GetRect().Top
+              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + 32))
+            if (eventManager->getPositionSouris().x > texte.GetRect().Left
+              &&eventManager->getPositionSouris().x < (texte.GetRect().Left + texte.GetRect().Width))
             {
-                 defilement_saves --;
-                eventManager->StopEvenement(Mouse::Left,EventClic);
+                texte.SetColor(Color(100,50,0));
+                if(eventManager->getEvenement(Mouse::Left,EventClic))
+                {
+                     defilement_saves --;
+                    eventManager->StopEvenement(Mouse::Left,EventClic);
+                }
             }
+            else
+                texte.SetColor(Color(150,100,50));
         }
         else
-            texte.SetColor(Color(150,100,50));
+            texte.SetColor(Color(128,128,128));
+
         moteurGraphique->AjouterTexte(&texte,19,1);
     }
 }

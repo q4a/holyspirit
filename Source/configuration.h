@@ -84,6 +84,8 @@ class Configuration : public CSingleton<Configuration>
     std::vector<std::string> text_maps;
     std::vector<std::string> text_miracles;
 
+    std::vector<coordonnee> m_liste_resolutions;
+
     bool RafraichirLumiere;
     int numero_screen,RafraichirOmbre;
 
