@@ -31,19 +31,19 @@ Who stole the trader's brain ?
 In nomine Patris et Filii et Spiritus Sancti.
 Pater noster, qui es in caelis Sanctificetur nomen tuum;\Adveniat regnum tuum;\Fiat voluntas tua sicut in caelo et in terra.\Panem nostrum quotidianum da nobis hodie,\et dimitte nobis debita nostra\sicut et nos dimittimus debitoribus nostris\et ne nos inducas in tentationem\sed libera nos a malo.\Amen
 Greetings my friend.\What do you want ?\
-Trade
-Talk
+-Trade
+-Talk
 I've heard strange sounds coming from the catacombs this night. I'm afraid there is something terrible in it.
 The Abbey
 The agrarians lands
 What do you want to do ?\\
-Teleport
-Reach the chest
-Crafting
+-Teleport
+-Reach the chest
+-Crafting
 The edge of the wood
 Psssst !\Hey, you !\I need some help !\I lock myself in my INN when these demons assaulted me.
-No problem, let's fight them.
-Stay here, be careful.
+-No problem, let's them fight.
+-Stay here, be careful.
 Thank you for helping me.
 No entry !
 I must keep this INN clear of these undeads !

@@ -36,3 +36,7 @@ Skeletton Lord
 Burning charcoal golem
 Bones stack
 Rognorak the blacksmith
+Sarcophagus
+Grave wanderer
+Common grave (Spawn wanderers)
+Passage

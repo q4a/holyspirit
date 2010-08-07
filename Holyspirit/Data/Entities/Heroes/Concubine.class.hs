@@ -50,7 +50,7 @@ $
 $
 	* x627 y548 w27 h24 m Data/Menus/PointsMRest.png $
 $
-	* x-14	y-6 w27 h24 m Data/Menus/PlusMiracle.png $
+	* x-14 y-6 w27 h24 m Data/Menus/PlusMiracle.png $
 $
 	* x-16 y-8 w68 h70 m Data/Menus/Slot_miracle.png $
 $
@@ -70,7 +70,7 @@ $
 $
 	* x38 y37 w326 h10 $
 $
-	* x38 y264 w326 h248 $
+	* x38 y264 w326 h150 $
 $
 	* x247 y554 w33 h33 $
 $
@@ -101,9 +101,9 @@ $
 $
 	* x56 y88 w64 h64 m Data/Menus/Slot2x2.png n Data/Menus/Slot_scroll.png $
 $
-	* x258 y45 w64 h64 m Data/Menus/Slot3x5.png n Data/Menus/Slot_craft.png $
+	* x258 y45 w96 h160 m Data/Menus/Slot3x5.png n Data/Menus/Slot_craft.png $
 $
-	* x159 y88 w96 h160 m Data/Menus/Craft_button.png n Data/Menus/Craft_button_ok.png $
+	* x159 y88 w64 h64 m Data/Menus/Craft_button.png n Data/Menus/Craft_button_ok.png $
 $
 	* e1 x48 y120 w64 h96 m Data/Menus/Slot2x3.png n Data/Menus/Slot_hand1concubine.png $
 	* e2 x130 y120 w64 h96 m Data/Menus/Slot2x3.png n Data/Menus/Slot_hand2concubine.png $

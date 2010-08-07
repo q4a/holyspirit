@@ -8,9 +8,11 @@ $
 $
 
 //Effets
-	* t14 ia3 ib-100 ic0 id1 $
-	* t0 l2 s0 ia15 $ 
+	* t-1 l1 l4 $
+	* t14 ia3 ib-100 ic0 id2 $
+	* t0 l3 s0 ia15 $ 
 	* t2 ia%0 ib%1 ic0 $
+	* t-1 $
 $
 //Séquences
 	*

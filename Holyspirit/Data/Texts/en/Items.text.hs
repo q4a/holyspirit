@@ -121,4 +121,6 @@ Limited heal potion
 A potion which can\restore 300 PV.
 Aventail
 A cap made of mail\protecting the head and the neck.
+Clodomir Scepter
+A brief description of Saint Clodomir and his life.
 

@@ -6,23 +6,21 @@ $
 $
 $
 //Effets
-	* t-1 l1 l11 $
+	* t-1 l1 l10 $
 	* t14 ia1 ib-100 ic0 id2 $
 
-	* t15 ia3 ib2 ic15 $
+	* t15 ia3 ib2 ic150 $
 	* t2 l4 l7 ia0 ib1 $
 
 	* t3 l5 s1 ia15 $
 	* t3 l6 s2 ia15 $
-	* t3 s4 ia15 $	
+	* t3 s3 ia15 $	
 
 	* t8 ia8 ib4 ic50 $
 
-	* t7 ia10 ic0 id1 $
+	* t7 ia9 ic0 id1 $
 
 	* t2  ia1 ib-1 ic3 ic3 $
-
-	* t6 s4 ia0 ib0 ic5 id0 ie-1 if1 $
 	
 	* t-1 $
 $

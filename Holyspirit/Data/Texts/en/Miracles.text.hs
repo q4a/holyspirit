@@ -39,4 +39,10 @@ Minor toxic cloud litany
 Judgment
 The crusader curse an ennemy who will explode at his death.
 Blast damages : %1 to %2
-
+Faith Shield
+The faith of the crusader protect him against the elements
++%1 resistance against all elements
+Duration : %2 secondes
+Judgment : Inflammation
+The fire explosion inflamme the ennemies,\adding fire damage.
+Damage : %1 on %2 seconds.
