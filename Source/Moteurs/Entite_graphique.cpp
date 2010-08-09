@@ -158,6 +158,8 @@ void Entite_graphique::NextTile()
 
 void Entite_graphique::Initialiser(coordonnee pos)
 {
+    m_sprite.SetBlendMode(sf::Blend::Alpha);
+
     if(m_tileset != NULL)
     {
         Generer();

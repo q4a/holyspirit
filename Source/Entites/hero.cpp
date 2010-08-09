@@ -2564,12 +2564,15 @@ bool Hero::TestMonstreVise(Personnage *monstre)
         if (m_caracteristiques.vie>0)
         {
             if (((!m_personnage.m_shooter||monstre->m_friendly)&&(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)<=1))
-                || ((!m_personnage.m_shooter||monstre->m_friendly)&&(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=1))
-                ||(!monstre->m_friendly&&m_personnage.m_shooter&&(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)<=13&&fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)<=13))
-                || (!monstre->m_friendly&&m_personnage.m_shooter&&(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=13&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=13)))
+            || ((!m_personnage.m_shooter||monstre->m_friendly)&&(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=1))
+            || (!monstre->m_friendly&&m_personnage.m_shooter&&(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)<=13&&fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)<=13))
+            || (!monstre->m_friendly&&m_personnage.m_shooter&&(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=13&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=13)))
             {
                 if(monstre->m_collision)
                     m_personnage.setArrivee(m_personnage.getCoordonnee());
+                else
+                    m_personnage.setArrivee(monstre->getCoordonnee());
+
 
                 if (!monstre->m_friendly)
                     m_personnage.Frappe(m_personnage.getCoordonneePixel(),monstre->getCoordonneePixel());
@@ -2955,7 +2958,7 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
 
                                 if (m_personnage.m_miracleEnCours[i].m_modele == miracle)
                                     retour = true;
-                                o = -1;
+                                o--;
                             }
 
                     if (retour)

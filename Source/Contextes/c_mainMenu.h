@@ -60,8 +60,10 @@ private:
     sf::Text texte;
 
     sf::Sprite m_mainscreen;
+    sf::Sprite m_hs_logo;
     sf::Sprite m_background_hero;
     Light_Entity m_light;
+    Light_Entity m_light_logo;
 
     float time;
 

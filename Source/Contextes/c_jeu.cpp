@@ -137,11 +137,11 @@ void c_Jeu::Utiliser(Jeu *jeu)
         m_thread_sauvegarde->Launch();
         tempsSauvergarde=0;
     }
-    Animation(jeu);
     IA(jeu);
     Deplacements(jeu);
     Lumieres(jeu);
     Evenements(jeu);
+    Animation(jeu);
 
     jeu->hero.PlacerCamera();
 
@@ -153,10 +153,10 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
 void c_Jeu::GererTemps(Jeu *jeu)
 {
-    tempsEcouleDepuisDernierCalculLumiere   +=tempsEcoule;
-    tempsSauvergarde                        +=tempsEcoule;
-    configuration->minute                   +=tempsEcoule;
-    tempsNbrTourBoucle                      +=tempsEcoule;
+    tempsEcouleDepuisDernierCalculLumiere   += tempsEcoule;
+    tempsSauvergarde                        += tempsEcoule;
+    configuration->minute                   += tempsEcoule;
+    tempsNbrTourBoucle                      += tempsEcoule;
 
     if (configuration->minute>=60)
         configuration->minute=0,configuration->heure++;

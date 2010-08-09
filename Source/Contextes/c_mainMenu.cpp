@@ -50,7 +50,10 @@ c_MainMenu::c_MainMenu()
     m_background_hero.SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage("Data/Menus/Slot3x4.png", -1)));
     m_background_hero.Resize(150, 192);
 
+    m_hs_logo.SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage("Data/Menus/Logo_hs.png", -1)));
+
     m_light = moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,256,32,sf::Color(255,255,255));
+    m_light_logo = moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,256,32,sf::Color(255,192,0));
 
     ifstream fichier;
     fichier.open("credits.txt");
@@ -126,6 +129,7 @@ void c_MainMenu::Utiliser(Jeu *jeu)
         moteurGraphique->LightManager->Delete_All_Wall();
 
         m_light = moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,256,32,sf::Color(255,255,255));
+        m_light_logo = moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,256,32,sf::Color(255,192,0));
 
         jeu->hero = Hero ();
 
@@ -138,6 +142,9 @@ void c_MainMenu::Utiliser(Jeu *jeu)
 
     moteurGraphique->LightManager->SetPosition(m_light,sf::Vector2f(eventManager->getPositionSouris().x,
                                                                     eventManager->getPositionSouris().y * 2));
+
+    moteurGraphique->LightManager->SetPosition(m_light_logo,sf::Vector2f(configuration->Resolution.x/2,
+                                                                    256));
     configuration->RafraichirLumiere = true;
     moteurGraphique->m_soleil.intensite = 1;
 
@@ -145,6 +152,7 @@ void c_MainMenu::Utiliser(Jeu *jeu)
                                         configuration->Resolution.y * 0.5);
 
     moteurGraphique->LightManager->Generate(m_light);
+    moteurGraphique->LightManager->Generate(m_light_logo);
 
     texte.SetCharacterSize(48);
 
@@ -190,8 +198,12 @@ void c_MainMenu::Reset(Jeu *jeu)
 
 void  c_MainMenu::E_Principal(Jeu *jeu)
 {
+
+    m_hs_logo.SetPosition((configuration->Resolution.x - m_hs_logo.GetSize().x)/2,-16);
+    moteurGraphique->AjouterCommande(&m_hs_logo, 15, 0);
+
     texte.SetString(configuration->getText(0,53));
-    texte.SetY(configuration->Resolution.h/2-128);
+    texte.SetY(configuration->Resolution.h/2-96);
     texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
     if (eventManager->getPositionSouris().y > texte.GetRect().Top
       &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
@@ -253,7 +265,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
     moteurGraphique->AjouterTexte(&texte,19,1);
 
     texte.SetString(configuration->getText(0,54));
-    texte.SetY(configuration->Resolution.h/2-64 );
+    texte.SetY(configuration->Resolution.h/2-32 );
     texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
     if (eventManager->getPositionSouris().y > texte.GetRect().Top
       &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
@@ -295,7 +307,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
     moteurGraphique->AjouterTexte(&texte,19,1);
 
     texte.SetString(configuration->getText(0,55));
-    texte.SetY(configuration->Resolution.h/2);
+    texte.SetY(configuration->Resolution.h/2+32);
     texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
     if (eventManager->getPositionSouris().y > texte.GetRect().Top
       &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
@@ -312,7 +324,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
     moteurGraphique->AjouterTexte(&texte,19,1);
 
     texte.SetString(configuration->getText(0,65));
-    texte.SetY(configuration->Resolution.h/2+64);
+    texte.SetY(configuration->Resolution.h/2+96);
     texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
     if (eventManager->getPositionSouris().y > texte.GetRect().Top
       &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
@@ -328,7 +340,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
 
 
     texte.SetString(configuration->getText(0,56));
-    texte.SetY(configuration->Resolution.h/2+128);
+    texte.SetY(configuration->Resolution.h/2+160);
     texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
     if (eventManager->getPositionSouris().y > texte.GetRect().Top
       &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))

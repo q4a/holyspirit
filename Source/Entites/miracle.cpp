@@ -864,7 +864,8 @@ void Miracle::Concatenencer(const std::string &chemin, const Caracteristique &ca
             m_effets.back().m_lien[j]+=tailleEffets;
         if(m_effets.back().m_type == AURA
         || m_effets.back().m_type == ZONE
-        || m_effets.back().m_type == CONDITION)
+        || m_effets.back().m_type == CONDITION
+        || m_effets.back().m_type == REPETITION)
             m_effets.back().m_informations[0] += tailleEffets;
         if(m_effets.back().m_type == DECLENCHEUR)
             m_effets.back().m_informations[3] += tailleEffets;
