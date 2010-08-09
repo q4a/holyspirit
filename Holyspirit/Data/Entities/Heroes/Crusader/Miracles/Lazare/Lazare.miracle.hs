@@ -11,13 +11,13 @@ $
 	* F%0 d1 $
 $
 //Effets
-	* t8 l1 l4 ia-1 ib0 ic0 $
+	* t-1 l1 l4 $
 	* t5 l2 ia3 $
-	* t3 s1 ia16 $
+	* t6 s1 ia1 ib0 ic16 $
 	
 	* t6 s0 ia1 ib0 ic-100 id0 ie%1 if1 $
 
-	* t8 ia-1 ib0 ic0 $
+	* t-1 $
 $
 //Séquences
 	*

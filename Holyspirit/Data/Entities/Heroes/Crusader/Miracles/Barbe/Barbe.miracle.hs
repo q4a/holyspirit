@@ -23,7 +23,7 @@ $
 
 	* t6 s0 ia1 ib-1 ic-100 $
 
-	* t3 s1 ia16 $
+	* t6 s1 ia1 ib0 ic16 $
 
 	* t8 ia-1 ib0 ic0 $
 $

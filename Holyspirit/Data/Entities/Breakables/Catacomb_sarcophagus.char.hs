@@ -108,28 +108,28 @@ $
 	$
 	*
 		*Drawing_golem_coal.item.hs
-		r1000
+		r250
 		
 		*Drawing_barbute.item.hs
-		r1000
+		r500
 
 		*Drawing_chainmail.item.hs
-		r1000
+		r500
 
 		*Drawing_necklage.item.hs
-		r1000
+		r500
 
 		*Drawing_tiare.item.hs
-		r1000
+		r500
 
 		*Drawing_shield_bronze.item.hs
-		r1000
+		r500
 	$
 	*
 		*Litanie_0.item.hs
-		r2000
-		*Litanie_toxic_0.item.hs
 		r1000
+		*Litanie_toxic_0.item.hs
+		r500
 	$
 
 

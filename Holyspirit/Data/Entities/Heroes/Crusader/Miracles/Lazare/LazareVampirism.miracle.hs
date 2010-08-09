@@ -11,10 +11,10 @@ $
 	* F%0 $
 $
 //Effets
-	* t8 l1 l3 ia-1 ib0 ic0 $
+	* t-1 l1 l3 $
 	* t5 ia2 $
 	* t6 s0 ia1 ib2 ic-100 id0 ie%1 $
-	* t8 ia-1 ib0 ic0 $
+	* t-1 $
 $
 //Séquences
 	*
