@@ -74,6 +74,8 @@ void Configuration::ChargerConf()
                 fichier>>console;
             if (chaine== "item_background:")
                 fichier>>item_background;
+            if (chaine== "zoom:")
+                fichier>>zoom;
 
             if (chaine== "saving_frequency:")
                 fichier>>frequence_sauvegarde;
@@ -99,7 +101,7 @@ void Configuration::Sauvegarder()
 
     if (fichier)
     {
-        fichier<< "DISPLAY"<<std::endl;
+fichier<< "DISPLAY"<<std::endl;
         fichier<< "resolution: " <<Resolution.w<<" "<<Resolution.h<<std::endl;
         fichier<< "brightness: " <<luminosite<<std::endl;
         fichier<< "contrast: " <<contrastes<<std::endl;
@@ -117,6 +119,7 @@ void Configuration::Sauvegarder()
         fichier<< "grass: " <<Herbes<<std::endl;
         fichier<< "particules: " <<particules<<std::endl;
         fichier<< "smooth: " <<lissage<<std::endl;
+        fichier<< "zoom: " <<zoom<<std::endl;
         fichier<<std::endl;
         fichier<<std::endl;
         fichier<<"SOUNDS"<<std::endl;

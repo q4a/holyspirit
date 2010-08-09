@@ -14,6 +14,6 @@ INCLUDEPATH += .
 # Input
 HEADERS += configuration.h Launcher.h
 SOURCES += configuration.cpp Launcher.cpp main.cpp
-TRANSLATIONS = hslauncher_en.ts hslauncher_fr.ts hslauncher_esp.ts
+TRANSLATIONS = hslauncher_en.ts hslauncher_fr.ts hslauncher_es.ts
 
 RC_FILE = ressource.rc
