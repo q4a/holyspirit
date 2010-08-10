@@ -33,6 +33,9 @@ Akuma (Tribbiani Edouard)
 
 +Externs
 
+*Linux programmer
+Merwin (Gabriel Pichot)
+
 *Translators
 Bravach (English)
 Gonze Philippe (English)
