@@ -267,7 +267,10 @@ void c_Jeu::Deplacements(Jeu *jeu)
             ok=false;
 
         if (ok)
-            jeu->hero.m_personnage.Pathfinding(jeu->map->getAlentourDuPersonnage(jeu->hero.m_personnage.getCoordonnee()),temp); // Recherche du chemin
+        {
+            jeu->hero.m_personnage.Pathfinding(jeu->map->getAlentourDuPersonnage(jeu->hero.m_personnage.getCoordonnee()),temp);
+            jeu->hero.m_personnage.SeDeplacer(0,jeu->map->getDimensions());
+        }
 
         if (eventManager->getEvenement(Mouse::Left,EventClicA)&&eventManager->getEvenement(Key::LShift,EventKey))
         {

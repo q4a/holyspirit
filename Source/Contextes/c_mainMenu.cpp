@@ -198,9 +198,8 @@ void c_MainMenu::Reset(Jeu *jeu)
 
 void  c_MainMenu::E_Principal(Jeu *jeu)
 {
-
     m_hs_logo.SetPosition((configuration->Resolution.x - m_hs_logo.GetSize().x)/2,-16);
-    moteurGraphique->AjouterCommande(&m_hs_logo, 15, 0);
+    moteurGraphique->AjouterCommande(&m_hs_logo, 19, 0);
 
     texte.SetString(configuration->getText(0,53));
     texte.SetY(configuration->Resolution.h/2-96);

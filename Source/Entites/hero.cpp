@@ -2956,7 +2956,8 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
 
                                 m_personnage.m_miracleEnCours[i].m_infos.erase(m_personnage.m_miracleEnCours[i].m_infos.begin()+o);
 
-                                if (m_personnage.m_miracleEnCours[i].m_modele == miracle)
+                                if (m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_chemin ==
+                                    m_classe.miracles[miracle].m_chemin)
                                     retour = true;
                                 o--;
                             }
