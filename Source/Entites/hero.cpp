@@ -200,6 +200,9 @@ Hero::Hero()
 
     m_craft_time = 0;
     m_bless_time = 0;
+
+    m_case_visee.x = -1;
+    m_case_visee.y = -1;
 }
 
 Hero::~Hero()

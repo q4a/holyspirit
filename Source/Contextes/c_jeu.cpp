@@ -276,6 +276,8 @@ void c_Jeu::Deplacements(Jeu *jeu)
         {
             coordonnee temp((int)(eventManager->getCasePointee().x*COTE_TILE),(int)(eventManager->getCasePointee().y*COTE_TILE));
             jeu->hero.m_personnage.Frappe(jeu->hero.m_personnage.getCoordonneePixel(),temp);
+
+            jeu->hero.m_case_visee = eventManager->getCasePointee();
         }
     }
 
@@ -318,8 +320,8 @@ void c_Jeu::Animation(Jeu *jeu)
 
     jeu->hero.CalculerOrdreAffichage();
     jeu->hero.m_personnage.m_vientDeFrapper = NULL;
-    jeu->hero.m_personnage.m_vientDAttaquer.x = -1;
     jeu->hero.m_personnage.m_degatsInflige  = 0;
+    jeu->hero.m_personnage.m_vientDAttaquer.x = -1;
 
     if (retour==0) //Animation du héro
     {
@@ -344,7 +346,7 @@ void c_Jeu::Animation(Jeu *jeu)
 
                                 jeu->hero.m_personnage.m_cible->m_vientDetreTouche = &jeu->hero.m_personnage;
 
-                                jeu->map->InfligerDegats(jeu->hero.m_personnage.m_cible,degats,PHYSIQUE,&jeu->hero,1,0);
+                                jeu->map->InfligerDegats(jeu->hero.m_personnage.m_cible,&jeu->hero.m_personnage,degats,PHYSIQUE,&jeu->hero,1,0);
 
                                 jeu->hero.m_personnage.InfligerDegats(-degats * jeu->hero.m_caracteristiques.volVie, 4, NULL,0);
                                 jeu->hero.m_caracteristiques.foi += degats *jeu->hero.m_caracteristiques.volFoi;
@@ -358,7 +360,7 @@ void c_Jeu::Animation(Jeu *jeu)
                 if (jeu->hero.m_personnage.m_cible!=NULL)
                     jeu->hero.m_personnage.m_vientDAttaquer = jeu->hero.m_personnage.m_cible->getProchaineCase();
                 else
-                    jeu->hero.m_personnage.m_vientDAttaquer = eventManager->getCasePointee();
+                    jeu->hero.m_personnage.m_vientDAttaquer = jeu->hero.m_case_visee;
             }
 
         }
@@ -739,7 +741,11 @@ void c_Jeu::Evenements(Jeu *jeu)
                     jeu->hero.m_personnage.m_cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine());
 
                     if (test)
+                    {
                         jeu->hero.TestMonstreVise(jeu->hero.m_personnage.m_cible);
+                        jeu->hero.m_case_visee = jeu->hero.m_personnage.m_cible->getProchaineCase();
+                    }
+
                 }
                 else
                     jeu->hero.m_personnage.m_cible = NULL;

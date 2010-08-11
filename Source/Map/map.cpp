@@ -1723,7 +1723,7 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                                             m_monstre[monstre].m_degatsInflige  = degats;
 
                                             m_monstre[monstre].m_cible->m_vientDetreTouche = &m_monstre[monstre];
-                                            InfligerDegats(m_monstre[monstre].m_cible, degats, 0, hero, 0, 0);
+                                            InfligerDegats(m_monstre[monstre].m_cible, &m_monstre[monstre], degats, 0, hero, 0, 0);
 
                                             m_monstre[monstre].InfligerDegats(-degats * m_monstre[monstre].getCaracteristique().volVie, 4, NULL);
                                         }
@@ -1754,7 +1754,7 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                         GererMiracle(&m_monstre[monstre],m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles,temps,positionHero,hero);
 
                         if(m_monstre[monstre].m_doitMourir && m_monstre[monstre].EnVie() )
-                            InfligerDegats(&m_monstre[monstre], m_monstre[monstre].getCaracteristique().vie, 4, hero, 0);
+                            InfligerDegats(&m_monstre[monstre], NULL, m_monstre[monstre].getCaracteristique().vie, 4, hero, 0);
                     }
                 }
             }
@@ -2089,11 +2089,11 @@ bool Map::TileVisible(int x,int y, coordonnee pos)
     return true;
 }
 
-bool Map::InfligerDegats(int numero, float degats, int type, Hero *hero,bool pousser, float temps)
+bool Map::InfligerDegats(int numero, Personnage *cible, float degats, int type, Hero *hero,bool pousser, float temps)
 {
     if (numero >= 0 && numero < (int)m_monstre.size())
     {
-        return InfligerDegats(&m_monstre[numero], degats, type, hero, pousser, temps);
+        return InfligerDegats(&m_monstre[numero], cible, degats, type, hero, pousser, temps);
 
         if (!m_monstre[numero].EnVie())
             if (m_monstreIllumine == numero)
@@ -2102,7 +2102,7 @@ bool Map::InfligerDegats(int numero, float degats, int type, Hero *hero,bool pou
     return (false);
 }
 
-bool Map::InfligerDegats(Personnage *monstre, float degats, int type, Hero *hero,bool pousser, float temps)
+bool Map::InfligerDegats(Personnage *monstre, Personnage *cible, float degats, int type, Hero *hero,bool pousser, float temps)
 {
     float viePrecedente = monstre->getCaracteristique().vie;
 
@@ -2111,8 +2111,11 @@ bool Map::InfligerDegats(Personnage *monstre, float degats, int type, Hero *hero
     else
         monstre->InfligerDegats(degats, type, &hero->m_modelePersonnage[0], temps);
 
-    for (int x=monstre->getCoordonnee().x;x<10+monstre->getCoordonnee().x;x++)
-        for (int y=monstre->getCoordonnee().y;y<10+monstre->getCoordonnee().y;y++)
+    if(cible != NULL && monstre != &hero->m_personnage)
+        monstre->m_cible = cible;
+
+    for (int x=monstre->getCoordonnee().x-5;x<=5+monstre->getCoordonnee().x;x++)
+        for (int y=monstre->getCoordonnee().y-5;y<=5+monstre->getCoordonnee().y;y++)
             if (x>=0&&y>=0&&x<m_dimensions.x&&y<m_dimensions.y)
                 for (unsigned o = 0 ; o < m_decor[1][y][x].getMonstre().size() ; ++o)
                     if (m_decor[1][y][x].getMonstre()[o]>=0&&m_decor[1][y][x].getMonstre()[o]<(int)m_monstre.size())
@@ -2128,7 +2131,7 @@ bool Map::InfligerDegats(Personnage *monstre, float degats, int type, Hero *hero
                 if (monstre->m_miracleEnCours[i].m_infos[o]->m_effetEnCours>=0)
                     if (m_ModeleMonstre[monstre->getModele()].m_miracles[monstre->m_miracleEnCours[i].m_modele].m_effets[monstre->m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type==INVOCATION)
                         if (monstre->m_miracleEnCours[i].m_infos[o]->m_IDObjet>=0&&monstre->m_miracleEnCours[i].m_infos[o]->m_IDObjet<(int)m_monstre.size())
-                            InfligerDegats(monstre->m_miracleEnCours[i].m_infos[o]->m_IDObjet, m_monstre[monstre->m_miracleEnCours[i].m_infos[o]->m_IDObjet].getCaracteristique().vie, 4,hero,false, temps);
+                            InfligerDegats(monstre->m_miracleEnCours[i].m_infos[o]->m_IDObjet, monstre, m_monstre[monstre->m_miracleEnCours[i].m_infos[o]->m_IDObjet].getCaracteristique().vie, 4,hero,false, temps);
         }
 
         if (monstre->getCaracteristique().pointAme>0)

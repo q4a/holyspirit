@@ -298,7 +298,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         else if (script->m_instructions[noInstruction].nom=="setState" && monstre != -1)
             Script_SetState(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="dammages" && monstre != -1)
-            InfligerDegats(monstre, script->getValeur(noInstruction, 0), 4, hero, false);
+            InfligerDegats(monstre, NULL, script->getValeur(noInstruction, 0), 4, hero, false);
         else if (script->m_instructions[noInstruction].nom=="shoot" && monstre != -1)
             Script_Shoot(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="randomDisplace" && monstre != -1)

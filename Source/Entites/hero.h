@@ -164,6 +164,8 @@ public:
     int m_no_result_craft;
     int m_no_result_bless;
 
+    coordonnee m_case_visee;
+
 private:
     coordonnee m_chercherSac,m_sacVise;
 
