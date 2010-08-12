@@ -7,8 +7,8 @@ $
 *x0 y0 u1 w0 h0 i0 a1 n2  $
 
 *x0 y0 u1 w800 h600 ex0 ey0 i0 a3 s0 n0.08 p64  $
-*x0 y0 u1 w800 h600 ex0 ey0 i0 a4 n0.08 p96 $
-*x0 y0 u1 w800 h600 ex0 ey0 i0 a5 n0.08 p128  $
+*x0 y0 u1 w800 h600 ex0 ey0 i0 a4 n0.08 p96  $
+*x0 y0 u1 w800 h600 ex0 ey0 i0 a5 n0.08 p128   $
 *x0 y0 u1 w800 h600 ex0 ey0 i0 a6 n0.08 p0  $
 *x0 y0 u1 w800 h600 ex0 ey0 i0 a7 n0.08 p96 $
 *x0 y0 u1 w800 h600 ex0 ey0 i0 a8 n0.08 p64  $

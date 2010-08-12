@@ -105,21 +105,21 @@ $
 $
 	* x159 y88 w64 h64 m Data/Menus/Craft_button.png n Data/Menus/Craft_button_ok.png $
 $
-	* e1 x48 y120 w64 h96 m Data/Menus/Slot2x3.png n Data/Menus/Slot_hand1concubine.png $
-	* e2 x130 y120 w64 h96 m Data/Menus/Slot2x3.png n Data/Menus/Slot_hand2concubine.png $
+	* e1 x45 y116 w64 h96 m Data/Menus/Slot2x3.png n Data/Menus/Slot_hand1concubine.png $
+	* e2 x127 y116 w64 h96 m Data/Menus/Slot2x3.png n Data/Menus/Slot_hand2concubine.png $
 	
-	* e3 x224 y120 w64 h96 m Data/Menus/Slot2x3.png n Data/Menus/Slot_lightarmor.png $
-	* e4 x296 y120 w64 h96 m Data/Menus/Slot2x3.png n Data/Menus/Slot_robe.png $
+	* e3 x221 y116 w64 h96 m Data/Menus/Slot2x3.png n Data/Menus/Slot_lightarmor.png $
+	* e4 x293 y116 w64 h96 m Data/Menus/Slot2x3.png n Data/Menus/Slot_robe.png $
 	
-	* e5 x296 y48 w64 h64 m Data/Menus/Slot2x2.png n Data/Menus/Slot_helmet.png $
-	* e6 x296 y224 w64 h64 m Data/Menus/Slot2x2.png n Data/Menus/Slot_boots.png $
-	* e7 x48 y224 w64 h64 m Data/Menus/Slot2x2.png n Data/Menus/Slot_armband.png $
+	* e5 x293 y44 w64 h64 m Data/Menus/Slot2x2.png n Data/Menus/Slot_helmet.png $
+	* e6 x293 y220 w64 h64 m Data/Menus/Slot2x2.png n Data/Menus/Slot_boots.png $
+	* e7 x45 y220 w64 h64 m Data/Menus/Slot2x2.png n Data/Menus/Slot_armband.png $
 	
-	* e8 x48 y80 w32 h32 m Data/Menus/Slot1x1.png n Data/Menus/Slot_ring.png $
-	* e8 x86 y80 w32 h32 m Data/Menus/Slot1x1.png n Data/Menus/Slot_ring.png $
-	* e9 x256 y80 w32 h32 m Data/Menus/Slot1x1.png n Data/Menus/Slot_necklage.png $
-	* e8 x124 y80 w32 h32 m Data/Menus/Slot1x1.png n Data/Menus/Slot_ring.png $
-	* e8 x162 y80 w32 h32 m Data/Menus/Slot1x1.png n Data/Menus/Slot_ring.png $
+	* e8 x45 y76 w32 h32 m Data/Menus/Slot1x1.png n Data/Menus/Slot_ring.png $
+	* e8 x83 y76 w32 h32 m Data/Menus/Slot1x1.png n Data/Menus/Slot_ring.png $
+	* e9 x253 y76 w32 h32 m Data/Menus/Slot1x1.png n Data/Menus/Slot_necklage.png $
+	* e8 x121 y76 w32 h32 m Data/Menus/Slot1x1.png n Data/Menus/Slot_ring.png $
+	* e8 x159 y76 w32 h32 m Data/Menus/Slot1x1.png n Data/Menus/Slot_ring.png $
 $
 	* x738 y60 w24 h32 $
 $
@@ -127,12 +127,12 @@ $
 	* e1 x124 y46 w42 h42 m39	i * mData/Menus/Concubine/ConcubinePath2.png x0 y0 w32 h32 $ $ $
 	* e2 x186 y46 w42 h42 m40	i * mData/Menus/Concubine/ConcubinePath3.png x0 y0 w32 h32 $ $ $
 $
-	* e0 b-1 x115 y199 w38 h38 mData/Entities/Heroes/Concubine/Miracles/Toxic/Toxic.miracle.hs i * mData/Menus/Concubine/ConcubinePath1.png x0 y0 w32 h32 $ $ $
+	* e0 b-1 x115 y183 w38 h38 mData/Entities/Heroes/Concubine/Miracles/Toxic/Toxic.miracle.hs i * mData/Menus/Concubine/ConcubinePath1.png x0 y0 w32 h32 $ $ $
 
-	* e2 b-1 x115 y199 w38 h38 mData/Entities/Heroes/Concubine/Miracles/Charmed/Charmed.miracle.hs i * mData/Menus/Concubine/ConcubinePath3.png x0 y0 w32 h32 $ $ $
-	* e2 b1 x197 y199 w38 h38 mData/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife.miracle.hs i * mData/Menus/Concubine/ConcubinePath3.png x32 y0 w32 h32 $ $ $
+	* e2 b-1 x115 y183 w38 h38 mData/Entities/Heroes/Concubine/Miracles/Charmed/Charmed.miracle.hs i * mData/Menus/Concubine/ConcubinePath3.png x0 y0 w32 h32 $ $ $
+	* e2 b1 x197 y183 w38 h38 mData/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife.miracle.hs i * mData/Menus/Concubine/ConcubinePath3.png x32 y0 w32 h32 $ $ $
 
-	* e0 b-1 x115 y439 w38 h38 mData/Entities/Heroes/Concubine/Miracles/Venom/Venom.miracle.hs i * mData/Menus/Concubine/ConcubinePath1.png x96 y0 w32 h32 $ $ $
+	* e0 b-1 x115 y423 w38 h38 mData/Entities/Heroes/Concubine/Miracles/Venom/Venom.miracle.hs i * mData/Menus/Concubine/ConcubinePath1.png x96 y0 w32 h32 $ $ $
 $
 
 

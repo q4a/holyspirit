@@ -102,19 +102,19 @@ $
 $
 	* x159 y88 w64 h64 m Data/Menus/Craft_button.png n Data/Menus/Craft_button_ok.png $
 $
-	* e1 x48 y56 w64 h160 m Data/Menus/Slot2x5.png n Data/Menus/Slot_hand1crusader.png $
-	* e2 x118 y120 w96 h96 m Data/Menus/Slot3x3.png n Data/Menus/Slot_hand2crusader.png $
+	* e1 x45 y52 w64 h160 m Data/Menus/Slot2x5.png n Data/Menus/Slot_hand1crusader.png $
+	* e2 x115 y116 w96 h96 m Data/Menus/Slot3x3.png n Data/Menus/Slot_hand2crusader.png $
 	
-	* e3 x224 y120 w64 h96 m Data/Menus/Slot2x3.png n Data/Menus/Slot_lightarmor.png $
-	* e4 x296 y120 w64 h96 m Data/Menus/Slot2x3.png n Data/Menus/Slot_heavyarmor.png $
+	* e3 x221 y116 w64 h96 m Data/Menus/Slot2x3.png n Data/Menus/Slot_lightarmor.png $
+	* e4 x293 y116 w64 h96 m Data/Menus/Slot2x3.png n Data/Menus/Slot_heavyarmor.png $
 	
-	* e5 x296 y48 w64 h64 m Data/Menus/Slot2x2.png n Data/Menus/Slot_helmet.png $
-	* e6 x296 y224 w64 h64 m Data/Menus/Slot2x2.png n Data/Menus/Slot_boots.png $
-	* e7 x48 y224 w64 h64 m Data/Menus/Slot2x2.png n Data/Menus/Slot_armband.png $
+	* e5 x293 y44 w64 h64 m Data/Menus/Slot2x2.png n Data/Menus/Slot_helmet.png $
+	* e6 x293 y220 w64 h64 m Data/Menus/Slot2x2.png n Data/Menus/Slot_boots.png $
+	* e7 x45 y220 w64 h64 m Data/Menus/Slot2x2.png n Data/Menus/Slot_armband.png $
 	
-	* e8 x118 y224 w32 h32 m Data/Menus/Slot1x1.png n Data/Menus/Slot_ring.png $
-	* e8 x184 y224 w32 h32 m Data/Menus/Slot1x1.png n Data/Menus/Slot_ring.png $
-	* e9 x256 y80 w32 h32 m Data/Menus/Slot1x1.png n Data/Menus/Slot_necklage.png $
+	* e8 x115 y220 w32 h32 m Data/Menus/Slot1x1.png n Data/Menus/Slot_ring.png $
+	* e8 x180 y220 w32 h32 m Data/Menus/Slot1x1.png n Data/Menus/Slot_ring.png $
+	* e9 x253 y76 w32 h32 m Data/Menus/Slot1x1.png n Data/Menus/Slot_necklage.png $
 	
 	
 $
@@ -124,22 +124,22 @@ $
 	* e1 x124 y46 w42 h42 m36	i * mData/Menus/Crusader/CrusaderPath2.png x0 y0 w32 h32 $ $ $
 	* e2 x190 y46 w42 h42 m37	i * mData/Menus/Crusader/CrusaderPath3.png x0 y0 w32 h32 $ $ $
 $
-	* e0 b-1 x115 y199 w38 h38 mData/Entities/Heroes/Crusader/Miracles/HolyTornado/HolyTornado.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x0 y0 w32 h32 $ $ $
+	* e0 b-1 x115 y183 w38 h38 mData/Entities/Heroes/Crusader/Miracles/HolyTornado/HolyTornado.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x0 y0 w32 h32 $ $ $
 
-	* e2 b-1 x115 y439 w38 h38 mData/Entities/Heroes/Crusader/Miracles/Lazare/Lazare.miracle.hs i * mData/Menus/Crusader/CrusaderPath3.png x32 y0 w32 h32 $ $ $
-	* e2 b1 x197 y439 w38 h38 mData/Entities/Heroes/Crusader/Miracles/Lazare/LazareVampirism.miracle.hs i * mData/Menus/Crusader/CrusaderPath3.png x64 y0 w32 h32 $ $ $
+	* e2 b-1 x115 y423 w38 h38 mData/Entities/Heroes/Crusader/Miracles/Lazare/Lazare.miracle.hs i * mData/Menus/Crusader/CrusaderPath3.png x32 y0 w32 h32 $ $ $
+	* e2 b1 x197 y423 w38 h38 mData/Entities/Heroes/Crusader/Miracles/Lazare/LazareVampirism.miracle.hs i * mData/Menus/Crusader/CrusaderPath3.png x64 y0 w32 h32 $ $ $
 
-	* e2 b-1 x115 y199 w38 h38 mData/Entities/Heroes/Crusader/Miracles/Barbe/Barbe.miracle.hs i * mData/Menus/Crusader/CrusaderPath3.png x0 y0 w32 h32 $ $ $
+	* e2 b-1 x115 y183 w38 h38 mData/Entities/Heroes/Crusader/Miracles/Barbe/Barbe.miracle.hs i * mData/Menus/Crusader/CrusaderPath3.png x0 y0 w32 h32 $ $ $
 
-	* e1 b-1 x115 y439 w38 h38 mData/Entities/Heroes/Crusader/Miracles/Charge/Charge.miracle.hs i * mData/Menus/Crusader/CrusaderPath2.png x0 y0 w32 h32 $ $ $
+	* e1 b-1 x115 y423 w38 h38 mData/Entities/Heroes/Crusader/Miracles/Charge/Charge.miracle.hs i * mData/Menus/Crusader/CrusaderPath2.png x0 y0 w32 h32 $ $ $
 	
-	* e0 b-1 x115 y439 w38 h38 mData/Entities/Heroes/Crusader/Miracles/PowerfulSlash/PowerfulSlash.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x96 y0 w32 h32 $ $ $
+	* e0 b-1 x115 y423 w38 h38 mData/Entities/Heroes/Crusader/Miracles/PowerfulSlash/PowerfulSlash.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x96 y0 w32 h32 $ $ $
 	
-	* e0 b0 x197 y199 w38 h38 mData/Entities/Heroes/Crusader/Miracles/HolyTornado/Projection.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x32 y0 w32 h32 $ $ $
+	* e0 b0 x197 y183 w38 h38 mData/Entities/Heroes/Crusader/Miracles/HolyTornado/Projection.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x32 y0 w32 h32 $ $ $
 	
-	* e0 b-1 x115 y319 w38 h38 mData/Entities/Heroes/Crusader/Miracles/LastJudgement/LastJudgement.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x128 y0 w32 h32 $ $ $
+	* e0 b-1 x115 y303 w38 h38 mData/Entities/Heroes/Crusader/Miracles/LastJudgement/LastJudgement.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x128 y0 w32 h32 $ $ $
 	
-	* e1 b-1 x115 y319 w38 h38 mData/Entities/Heroes/Crusader/Miracles/FaithArmor/FaithArmor.miracle.hs i * mData/Menus/Crusader/CrusaderPath2.png x32 y0 w32 h32 $ $ $
+	* e1 b-1 x115 y303 w38 h38 mData/Entities/Heroes/Crusader/Miracles/FaithArmor/FaithArmor.miracle.hs i * mData/Menus/Crusader/CrusaderPath2.png x32 y0 w32 h32 $ $ $
 	
-	* e0 b7 x197 y319 w38 h38 mData/Entities/Heroes/Crusader/Miracles/LastJudgement/LastJudgement-Burn.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x160 y0 w32 h32 $ $ $
+	* e0 b7 x197 y303 w38 h38 mData/Entities/Heroes/Crusader/Miracles/LastJudgement/LastJudgement-Burn.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x160 y0 w32 h32 $ $ $
 $

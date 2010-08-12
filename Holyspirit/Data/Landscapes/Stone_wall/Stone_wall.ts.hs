@@ -17,4 +17,10 @@ Mur de pierres
 *x128 y256 w128 h128 i0 c1 lr0 lv0 lb0 li-255 lh64 rp 	vMurYHaut z1 	m i1 x64 y16 	w16 h16 $	k x0 y0 w128 h128 b270 i2 $ k x384 y256 w128 h128 b180 i2 $ $ 
 *x256 y256 w128 h128 i0 c1 lr0 lv0 lb0 li-255 lh64 rq 	vMurXHaut z1 	m i1 x48 y16 	w16 h16 $	 $
 *x384 y256 w128 h128 i0 c1 lr0 lv0 lb0 li-255 lh64 rr 	vMurYBas z1 	m i1 x32 y16 	w16 h16 $	 $
+
+
+*x0 y384 w128 h128 i0 c1 lr0 lv0 lb0 li-255 lh64 ry 		vMurY-2 z1 		m i1 x0 y0 	w16 h16 $		k x0 y0 w128 h128 b270 i2 $ $
+*x128 y384 w128 h128 i0 c1 lr0 lv0 lb0 li-255 lh64 ry 		vMurY-3 z1 		m i1 x0 y0 	w16 h16 $		k x0 y0 w128 h128 b270 i2 $ $
+*x256 y384 w128 h128 i0 c1 lr0 lv0 lb0 li-255 lh64 rx 	vMurX-2 z1 		m i1 x16 y0 	w16 h16 $	k x128 y0 w128 h128 b180 i2 $ $
+*x384 y384 w128 h128 i0 c1 lr0 lv0 lb0 li-255 lh64 rx 	vMurX-3 z1 		m i1 x16 y0 	w16 h16 $	k x128 y0 w128 h128 b180 i2 $ $
 $
