@@ -560,7 +560,7 @@ void Monstre::TesterVision(coordonnee positionHero)
             m_vu=1;
             // if(m_etat==0) m_poseEnCours=0;
         }
-        if (fabs(positionHero.x-m_positionCase.x)>=20||fabs(positionHero.y-m_positionCase.y)>=20)
+        if (fabs(positionHero.x-m_positionCase.x)>=12||fabs(positionHero.y-m_positionCase.y)>=12)
         {
             if (m_vu)
                 setDepart();

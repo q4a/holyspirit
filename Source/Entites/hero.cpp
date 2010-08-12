@@ -1053,7 +1053,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
 
     if (m_caracteristiques.pts_restant>0)
     {
-        sprite.SetY(string.GetPosition().y-5);
+        sprite.SetY(string.GetPosition().y-3);
 
         if (eventManager->getEvenement(Mouse::Left,EventClicA))
             if (eventManager->getPositionSouris().x > sprite.GetPosition().x
@@ -1089,7 +1089,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
 
     if (m_caracteristiques.pts_restant>0)
     {
-        sprite.SetY(string.GetPosition().y-5);
+        sprite.SetY(string.GetPosition().y-3);
 
         if (eventManager->getEvenement(Mouse::Left,EventClicA))
             if (eventManager->getPositionSouris().x > sprite.GetPosition().x
@@ -1127,7 +1127,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
 
     if (m_caracteristiques.pts_restant>0)
     {
-        sprite.SetY(string.GetPosition().y-5);
+        sprite.SetY(string.GetPosition().y-3);
 
         if (eventManager->getEvenement(Mouse::Left,EventClicA))
             if (eventManager->getPositionSouris().x > sprite.GetPosition().x
@@ -1163,7 +1163,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
 
     if (m_caracteristiques.pts_restant>0)
     {
-        sprite.SetY(string.GetPosition().y-5);
+        sprite.SetY(string.GetPosition().y-3);
 
         if (eventManager->getEvenement(Mouse::Left,EventClicA))
             if (eventManager->getPositionSouris().x > sprite.GetPosition().x
@@ -1197,7 +1197,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
 
     if (m_caracteristiques.pts_restant>0)
     {
-        sprite.SetY(string.GetPosition().y-5);
+        sprite.SetY(string.GetPosition().y-3);
 
         if (eventManager->getEvenement(Mouse::Left,EventClicA))
             if (eventManager->getPositionSouris().x > sprite.GetPosition().x
@@ -3252,18 +3252,61 @@ void Hero::AutoTrierInventaire()
     std::vector<Objet> inventaire_bis;
 
     std::vector<std::string> nom_objets;
+    std::vector<int> taille_objets;
 
     for(int t = 0 ; t < 8 ; ++t)
     for(unsigned i = 0 ; i < m_inventaire.size() ; ++i)
     if(m_inventaire[i].m_type == ordre_tri[t]
     && m_inventaire[i].m_equipe < 0)
     {
+        std::vector<std::string> nom_objets_bis;
+        std::vector<int> taille_objets_bis;
         bool ajouter = true;
         for(int k = 0 ; k < nom_objets.size() ; ++k)
             if(nom_objets[k] == m_inventaire[i].getChemin())
                 ajouter = false;
+
         if(ajouter)
-            nom_objets.push_back(m_inventaire[i].getChemin());
+        {
+            int t = 0;
+            for(t = 0 ; t < taille_objets.size() ; ++t)
+                if(taille_objets[t] < m_inventaire[i].getTaille().y)
+                {
+                    for(int T = 0 ; T < t ; ++T)
+                    {
+                        nom_objets_bis.push_back(nom_objets[T]);
+                        taille_objets_bis.push_back(taille_objets[T]);
+                    }
+
+                    taille_objets_bis.push_back(m_inventaire[i].getTaille().y);
+                    nom_objets_bis.push_back(m_inventaire[i].getChemin());
+
+
+                    for(int T = t ; T < taille_objets.size() ; ++T)
+                    {
+                        nom_objets_bis.push_back(nom_objets[T]);
+                        taille_objets_bis.push_back(taille_objets[T]);
+                    }
+
+                    t = taille_objets.size() + 1;
+                }
+
+            if(t == taille_objets.size())
+            {
+                taille_objets.push_back(m_inventaire[i].getTaille().y);
+                nom_objets.push_back(m_inventaire[i].getChemin());
+            }
+            else
+            {
+                nom_objets.clear();
+                taille_objets.clear();
+                for(int T = 0 ; T < taille_objets_bis.size() ; ++T)
+                {
+                        nom_objets.push_back(nom_objets_bis[T]);
+                        taille_objets.push_back(taille_objets_bis[T]);
+                }
+            }
+        }
     }
 
     for(int t = 0 ; t < 8 ; ++t)
