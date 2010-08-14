@@ -402,6 +402,9 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
 
         texte.SetString(str.c_str());
 
+        if(texte.GetRect().Width > 128)
+            texte.SetCharacterSize(12);
+
         texte.SetPosition(configuration->Resolution.w/2 - 384 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3) + 130 - texte.GetRect().Width/2,
                           configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 224 + 140);
 
