@@ -467,7 +467,7 @@
 
 1263574780 /c_demarrage.h"
 
-1281543654 e:\c++\holyspirit\source\map\map.h
+1281789961 e:\c++\holyspirit\source\map\map.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -476,7 +476,7 @@
 	"decor.h"
 	"../menu.h"
 	"../Entites/monstre.h"
-	"climate.h"
+	"Climate.h"
 
 1264447812 .h"
 
@@ -684,7 +684,7 @@
 	"../globale.h"
 	<sstream>
 
-1281630559 source:e:\c++\holyspirit\source\entites\hero.cpp
+1282137598 source:e:\c++\holyspirit\source\entites\hero.cpp
 	"../constantes.h"
 	"hero.h"
 	"../globale.h"
@@ -701,10 +701,10 @@
 	"../globale.h"
 	<iostream>
 
-1281186037 source:e:\c++\holyspirit\source\entites\miracle.cpp
+1281789947 source:e:\c++\holyspirit\source\entites\miracle.cpp
 	"miracle.h"
 	"../globale.h"
-	"Objet.h"
+	"objet.h"
 	<iostream>
 	<fstream>
 	<sstream>
@@ -722,7 +722,7 @@
 	<fstream>
 	<sstream>
 
-1281450376 source:e:\c++\holyspirit\source\entites\personnage.cpp
+1282059860 source:e:\c++\holyspirit\source\entites\personnage.cpp
 	"personnage.h"
 	"../globale.h"
 	<iostream>
@@ -6342,7 +6342,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1281543863 source:e:\c++\holyspirit\source\map\map_miracles.cpp
+1282136446 source:e:\c++\holyspirit\source\map\map_miracles.cpp
 	"map.h"
 	<iostream>
 	<fstream>

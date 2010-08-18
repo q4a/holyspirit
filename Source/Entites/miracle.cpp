@@ -20,7 +20,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "miracle.h"
 #include "../globale.h"
-#include "Objet.h"
+#include "objet.h"
 
 #include <iostream>
 #include <fstream>

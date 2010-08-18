@@ -30,7 +30,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "decor.h"
 #include "../menu.h"
 #include "../Entites/monstre.h"
-#include "climate.h"
+#include "Climate.h"
 
 class Jeu;
 

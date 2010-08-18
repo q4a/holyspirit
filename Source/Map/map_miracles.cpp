@@ -877,6 +877,9 @@ bool Map::Miracle_Pose(Hero *hero, Personnage *personnage, Miracle &modele, Effe
 
     personnage->addAngle(effet.m_informations[2]*45);
 
+    if(effet.m_informations[3])
+        personnage->m_lancementMiracleEnCours = true;
+
     for (int p=0;p<(int)effet.m_lien.size();p++)
     {
         miracleEnCours.m_infos.push_back(new InfosEntiteMiracle ());
