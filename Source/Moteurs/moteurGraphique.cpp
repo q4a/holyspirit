@@ -495,7 +495,7 @@ void MoteurGraphique::Afficher()
         {
             m_water_screen.Display();
             EffectWater.SetParameter("translation", m_transWater.x, m_transWater.y);
-            EffectWater.SetParameter("offset", configuration->zoom , configuration->zoom );
+            EffectWater.SetParameter("offset", 1/configuration->zoom , 1/configuration->zoom );
             bufferImage.Draw(sf::Sprite (m_water_screen.GetImage()), EffectWater);
         }
 

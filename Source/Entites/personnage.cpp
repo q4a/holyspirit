@@ -840,7 +840,9 @@ void Personnage::GererEffets(float temps)
                 if(m_effets[i].m_info1 == 0)
                 {
                     m_caracteristique.maxVie -= m_effets[i].m_info2;
-                    m_caracteristique.vie -= m_effets[i].m_info2;
+                   // m_caracteristique.vie -= m_effets[i].m_info2;
+                    if(m_caracteristique.vie > m_caracteristique.maxVie)
+                        m_caracteristique.vie = m_caracteristique.maxVie;
                 }
             }
             if(m_effets[i].m_type == AURA_ARMURE)
@@ -1047,7 +1049,7 @@ void Personnage::DetruireEffets()
 {
     for(unsigned i = 0; i < m_effets.size(); ++i)
     {
-        if(m_effets[i].m_effet.m_actif)
+        /*if(m_effets[i].m_effet.m_actif)
         {
             if(m_effets[i].m_type == AURA_CARACTERISTIQUES)
             {
@@ -1055,12 +1057,14 @@ void Personnage::DetruireEffets()
                 {
                     m_caracteristique.maxVie -= m_effets[i].m_info2;
                     m_caracteristique.vie -= m_effets[i].m_info2;
+                    if(m_caracteristique.vie <= 0 && -m_caracteristique.vie <  m_effets[i].m_info2)
+                        m_caracteristique.vie = 1;
                 }
             }
             if(m_effets[i].m_type == AURA_ARMURE)
                 if(m_effets[i].m_info1 >= 0 && m_effets[i].m_info1 < 4)
                     m_caracteristique.armure[(int)m_effets[i].m_info1] -= m_effets[i].m_info2;
-        }
+        }*/
         m_effets[i].m_effet.m_actif = false;
     }
 }

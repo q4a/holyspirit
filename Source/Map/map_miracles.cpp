@@ -658,6 +658,11 @@ bool Map::Miracle_Invocation(Hero *hero, Personnage *personnage, Miracle &modele
 
         if (invoquer)
         {
+
+
+            info.m_position.x = positionCase.x*COTE_TILE;
+            info.m_position.y = positionCase.y*COTE_TILE;
+
             for (unsigned p=0;p < effet.m_lien.size();p++)
             {
                 miracleEnCours.m_infos.push_back(new InfosEntiteMiracle ());
@@ -665,9 +670,6 @@ bool Map::Miracle_Invocation(Hero *hero, Personnage *personnage, Miracle &modele
                 miracleEnCours.m_infos.back()->m_position        = info.m_position;
                 miracleEnCours.m_infos.back()->m_cible           = info.m_cible;
             }
-
-            info.m_position.x = positionCase.x*COTE_TILE;
-            info.m_position.y = positionCase.y*COTE_TILE;
 
 
 
