@@ -22,13 +22,13 @@ $
 		//Sons
 		$
 		//Tiles de la séquence
-		* x0 y256 w128 h128 i0 a1 lr128 lv255 lb128 li128  n0.25 $
-		* x128 y256 w128 h128 i0 a2 lr128 lv255 lb128 li256 n0.25 $
-		* x256 y256 w128 h128 i0 a3 lr128 lv255 lb128 li384 n0.25 $
-		* x384 y256 w128 h128 i0 a4 lr128 lv255 lb128 li512 n0.25 $
-		* x512 y256 w128 h128 i0 a5 lr128 lv255 lb128 li384 n0.25 $
-		* x640 y256 w128 h128 i0 a6 lr128 lv255 lb128 li256 n0.25 $
-		* x768 y256 w128 h128 i0 a7 lr128 lv255 lb128 li128 n0.25 $
-		* x896 y256 w128 h128 i0 a7 lr128 lv255 lb128 li0 n0 $
+		* x0 y256 w256 h256 i0 ex128 ey128 a1 lr255 lv128 lb128 li144 n0.08 $
+		* x256 y256 w256 h256  i0 ex128 ey128 a2 lr255 lv128 lb128 li160 n0.08 $
+		* x512 y256 w256 h256  i0 ex128 ey128 a3 lr255 lv128 lb128 li176 n0.08 $
+		* x768 y256 w256 h256  i0 ex128 ey128 a4 lr255 lv128 lb128 li192 n0.08 $
+		* x0 y512 w256 h256  i0 ex128 ey128 a5 lr255 lv128 lb128 li144 n0.08 $
+		* x256 y512 w256 h256  i0 ex128 ey128 a6 lr255 lv128 lb128 li96 n0.08 $
+		* x512 y512 w256 h256  i0 ex128 ey128 a7 lr255 lv128 lb128 li48 n0.08 $
+		* x768 y512 w256 h256  i0 ex128 ey128 a7 lr255 lv128 lb128 li0 n0.08 $
 	$
 $
