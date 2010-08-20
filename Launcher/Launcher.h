@@ -1,113 +1,87 @@
-#include <QApplication>
-#include <QPushButton>
-#include <QtGui>
-#include <QHttp>
+#include <QDesktopWidget>
 #include <QProgressBar>
-#include <QSplashScreen>
-#include <QPixmap>
-#include <dirent.h>
-#include <QDir>
-
-
+#include <QApplication>
+#include <QBitmap>
+#include <QPushButton>
+#include <QMessageBox>
 #include <QtWebKit>
 
+#include "defines.h"
+#include "optionsjeu.h"
 
-#define WINDOWS
+
+
 
 #ifdef WINDOWS
-#include <windows.h>
+    #include <windows.h>
 #endif
 
-#include "configuration.h"
+#ifdef LINUX
+    #include <stdlib.h>
+#endif
+
+
+
+
+
+typedef struct {
+    std::string alias;
+    std::string langue;
+} Langage;
+typedef struct {
+    std::string repertoire;
+    std::string nom;
+    unsigned int version;
+} Fichier;
 
 class Launcher : public QWidget // On hérite de QWidget (IMPORTANT)
 {
     Q_OBJECT
 
     public:
-    Launcher();
-    ~Launcher()
-    {
-        delete m_boutonDemarrer;
-        delete m_boutonQuitter;
-        delete m_boutonMettreAJour;
-        delete m_fond;
-        delete m_miseAJour;
-        delete m_miseAJourTotale;
-        delete m_boutonOptions;
+        Launcher();
+        ~Launcher();
+        inline void ajouterFichierDansTelecharges(const Fichier &fichier);
 
-        delete m_pixmap;
-
-        delete dir;
-
-        delete pageWeb;
-
-        delete listeLangages;
-
-        liste_a_telecharger_nom.clear();
-        liste_a_telecharger_rep.clear();
-        listeRepertoire.clear();
-        nom_fichier.clear();
-        nom_fichier_nv.clear();
-        rep_fichier_nv.clear();
-        ver_fichier.clear();
-        ver_fichier_nv.clear();
-    }
-
-    std::string no_language;
+        std::string no_language;
 
     public slots:
-    void downloadFile();
-    void downloadAll(bool);
-    void LancerJeu();
-    void Options();
+        void telechargerFichierMAJDistant();
+        void verificationPresenceMiseAJour(bool);
+        void LancerJeu();
 
-    void languageChange(int index);
+        void languageChange(int index);
 
-    void MettreAJourBDD();
 
-    void miseAJourBarre2(int progressions, int temp);
-    void miseAJourBarreTotale(float progressions, int temp);
-    void miseAJourBarre(int fait, int total);
+        void miseAJourBarre2(int progressions, int temp);
+        void miseAJourBarreTotale(float progressions, int temp);
+        void miseAJourBarre(int fait, int total);
 
-    void telechargerFichier(bool erreur=false);
+        void telechargerFichier(bool erreur=false);
 
     private:
-    QPushButton *m_boutonDemarrer,*m_boutonQuitter,*m_boutonMettreAJour,*m_boutonOptions;
-    QLabel *m_fond;
-    QPixmap *m_pixmap;
-    QProgressBar *m_miseAJour,*m_miseAJourTotale;
+            OptionsJeu      *_optionsJeu;
 
-    QWebView *pageWeb;
-
-    QFile *fichier;
-    QHttp *http;
-    QDir *dir;
-
-    QComboBox *listeLangages;
-    std::vector <std::string> languages;
-    std::vector <std::string> languages_txt;
-
-    std::vector <std::string> liste_a_telecharger_nom;
-    std::vector <std::string> liste_a_telecharger_rep;
-    std::vector <std::string> listeRepertoire;
-    std::vector <std::string> nom_fichier,nom_fichier_nv,rep_fichier_nv;
+            QPushButton     *m_boutonDemarrer,
+                            *m_boutonQuitter,
+                            *m_boutonMettreAJour,
+                            *m_boutonOptions;
+            QProgressBar    *m_miseAJour,
+                            *m_miseAJourTotale;
 
 
-    std::vector <std::string> final_nom;
-    std::vector <std::string> final_rep;
-    std::vector <int> final_ver;
+            QFile           *_fichier;
+            QHttp           *_http;
+            QList<Langage>  *_langages;
+            QList<Fichier>  *_fichiersLocaux;
+            QQueue<Fichier> *_fichiersATelecharger;
+
+            Fichier         *_fichierEnTelechargement;
 
 
-    std::vector <int> ver_fichier,ver_fichier_nv,liste_a_telecharger_ver;
-    int enCoursDeTelechargement;
+            int             _nombreDeFichiersTelecharges;
+            bool            _installer;
 
-    int httpGetId,fait,aFaire;
-    float fait2;
-
-    bool telechargementFini,m_installer;
-
-    OptionsJeu optionsJeu;
 
 };
 
