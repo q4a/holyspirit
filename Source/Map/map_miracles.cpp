@@ -600,11 +600,15 @@ bool Map::Miracle_EffetGraphique(Hero *hero, Personnage *personnage, Miracle &mo
 
         info.m_IDObjet               = m_effets.size()-1;
 
-        if ((m_effets.back().m_position.y + COTE_TILE * 0.25) / COTE_TILE >= 0
-         && (m_effets.back().m_position.y + COTE_TILE * 0.25) / COTE_TILE < m_dimensions.y)
-        if ((m_effets.back().m_position.x + COTE_TILE * 0.25) / COTE_TILE >= 0
-         && (m_effets.back().m_position.x + COTE_TILE * 0.25) / COTE_TILE < m_dimensions.x)
-            m_decor[1][(int)((m_effets.back().m_position.y + COTE_TILE * 0.25) / COTE_TILE)][(int)((m_effets.back().m_position.x + COTE_TILE * 0.25) / COTE_TILE)].setEffetGraphique(m_effets.size()-1);
+        m_effets.back().m_position_case.y = (int)((m_effets.back().m_position.y + COTE_TILE * 0.25) / COTE_TILE);
+        m_effets.back().m_position_case.x = (int)((m_effets.back().m_position.x + COTE_TILE * 0.25) / COTE_TILE);
+
+        if (m_effets.back().m_position_case.y >= 0
+         && m_effets.back().m_position_case.y < m_dimensions.y
+         && m_effets.back().m_position_case.x >= 0
+         && m_effets.back().m_position_case.x < m_dimensions.x)
+            m_decor[1][m_effets.back().m_position_case.y]
+                      [m_effets.back().m_position_case.x].setEffetGraphique(m_effets.size()-1);
     }
     return 1;
 }

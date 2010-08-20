@@ -45,6 +45,7 @@ public:
     void Animer(float temps);
 
     coordonnee m_position;
+    coordonnee m_position_case;
     bool m_actif;
     bool m_old_actif;
 

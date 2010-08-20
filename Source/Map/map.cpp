@@ -1903,8 +1903,14 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
         for (int i=0;i<(int)m_effets.size();++i)
             if (!m_effets[i].m_actif)
             {
-                m_decor[1][(int)(m_effets[i].m_position.y / COTE_TILE)][(int)(m_effets[i].m_position.x / COTE_TILE)].delEffetGraphique(i);
-                nombreInactif++,moteurGraphique->LightManager->Delete_Light(m_effets[i].m_light);
+                if(m_effets[i].m_position_case.x >= 0
+                && m_effets[i].m_position_case.x <  m_dimensions.x
+                && m_effets[i].m_position_case.y >= 0
+                && m_effets[i].m_position_case.y <  m_dimensions.y)
+                    m_decor[1][m_effets[i].m_position_case.y][m_effets[i].m_position_case.x].delEffetGraphique(i);
+
+                nombreInactif++;
+                moteurGraphique->LightManager->Delete_Light(m_effets[i].m_light);
             }
         if (nombreInactif==(int)m_effets.size())
             m_effets.clear();

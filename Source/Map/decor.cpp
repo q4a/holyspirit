@@ -213,7 +213,7 @@ void Decor::delMonstre(int monstre)
 {
     for(int i = 0 ; i < (int)m_monstre.size() ; ++i)
         if(m_monstre[i]==monstre)
-            m_monstre.erase(m_monstre.begin() + i), i --;
+            m_monstre.erase(m_monstre.begin() + i--);
 }
 
 void Decor::setEffetGraphique(int monstre)
@@ -225,7 +225,7 @@ void Decor::delEffetGraphique(int monstre)
 {
     for(int i = 0 ; i < (int)m_effet.size() ; ++i)
         if(m_effet[i]==monstre)
-            m_effet.erase(m_effet.begin() + i), i = -1;
+            m_effet.erase(m_effet.begin() + i--);
 }
 
 
@@ -238,7 +238,7 @@ void Decor::delProjectile(int monstre)
 {
     for(unsigned i = 0 ; i < m_projectile.size() ; ++i)
         if(m_projectile[i] == monstre)
-            m_projectile.erase(m_projectile.begin() + i), i --;
+            m_projectile.erase(m_projectile.begin() + i--);
 }
 
 
