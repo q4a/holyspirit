@@ -1,8 +1,8 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'configuration.h'
 **
-** Created: Wed Aug 19 12:00:28 2009
-**      by: The Qt Meta Object Compiler version 61 (Qt 4.5.0)
+** Created: Mon Aug 16 22:20:47 2010
+**      by: The Qt Meta Object Compiler version 62 (Qt 4.6.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -10,8 +10,8 @@
 #include "configuration.h"
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'configuration.h' doesn't include <QObject>."
-#elif Q_MOC_OUTPUT_REVISION != 61
-#error "This file was generated using the moc from 4.5.0. It"
+#elif Q_MOC_OUTPUT_REVISION != 62
+#error "This file was generated using the moc from 4.6.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,13 +20,15 @@ QT_BEGIN_MOC_NAMESPACE
 static const uint qt_meta_data_OptionsJeu[] = {
 
  // content:
-       2,       // revision
+       4,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   12, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
 
  // slots: signature, parameters, type, tag, flags
       12,   11,   11,   11, 0x0a,
@@ -51,9 +53,13 @@ const QMetaObject OptionsJeu::staticMetaObject = {
       qt_meta_data_OptionsJeu, 0 }
 };
 
+#ifdef Q_NO_DATA_RELOCATION
+const QMetaObject &OptionsJeu::getStaticMetaObject() { return staticMetaObject; }
+#endif //Q_NO_DATA_RELOCATION
+
 const QMetaObject *OptionsJeu::metaObject() const
 {
-    return &staticMetaObject;
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
 }
 
 void *OptionsJeu::qt_metacast(const char *_clname)

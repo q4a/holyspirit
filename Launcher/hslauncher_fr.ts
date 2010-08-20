@@ -1,179 +1,145 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<!DOCTYPE TS><TS>
 <context>
     <name>Launcher</name>
     <message>
-        <location filename="Launcher.cpp" line="18"/>
-        <location filename="Launcher.cpp" line="453"/>
-        <source>Lancer le jeu !</source>
-        <translation>Lancer le jeu !</translation>
+        <source>Data/Menus/Launcher/Fond.png</source>
+        <translation>Data/Menus/Launcher/Fond.png</translation>
     </message>
     <message>
-        <location filename="Launcher.cpp" line="21"/>
-        <source>Mettre le jeu à jour</source>
+        <source>Lancer le jeu</source>
+        <translation>Lancer le jeu</translation>
+    </message>
+    <message>
+        <source>Mettre le jeu &#xe0; jour</source>
         <translation>Mettre le jeu à jour</translation>
     </message>
     <message>
-        <location filename="Launcher.cpp" line="26"/>
         <source>Options</source>
         <translation>Options</translation>
     </message>
     <message>
-        <location filename="Launcher.cpp" line="30"/>
         <source>Quitter</source>
         <translation>Quitter</translation>
     </message>
     <message>
-        <location filename="Launcher.cpp" line="129"/>
-        <source>http://holyspirit.alpha-arts.net/pages/news.php</source>
-        <translation>http://holyspirit.alpha-arts.net/pages/news.php</translation>
+        <source>T&#xe9;l&#xe9;chargement de la base de donn&#xe9;es...</source>
+        <translation>Téléchargement de la base de données...</translation>
     </message>
     <message>
-        <location filename="Launcher.cpp" line="318"/>
-        <source>Mise à jour disponible.</source>
-        <translation>Mise à jour disponible</translation>
-    </message>
-    <message>
-        <location filename="Launcher.cpp" line="323"/>
-        <source>Aucune mise à jour trouvée</source>
-        <translation>Aucune mise à jour trouvée</translation>
-    </message>
-    <message>
-        <location filename="Launcher.cpp" line="330"/>
-        <source>Télécharger et installer</source>
-        <translation>Télécharger et installer</translation>
-    </message>
-    <message>
-        <location filename="Launcher.cpp" line="351"/>
-        <source>Maintenance du système.
- Veuillez rééssayer dans quelques minutes.</source>
-        <translation>Maintenance du système.
-Veuillez rééssayer dans quelques minutes.</translation>
-    </message>
-    <message>
-        <location filename="Launcher.cpp" line="358"/>
-        <source>Mise à jour impossible</source>
+        <source>Mise &#xe0; jour impossible</source>
         <translation>Mise à jour impossible</translation>
     </message>
     <message>
-        <location filename="Launcher.cpp" line="415"/>
-        <location filename="Launcher.cpp" line="417"/>
+        <source>Maintenance du syst&#xe8;me.
+ R&#xe9;essayez dans quelques minutes.</source>
+        <translation>Maintenance du système. Réessayez dans quelques minutes.</translation>
+    </message>
+    <message>
+        <source>T&#xe9;l&#xe9;charger et installer</source>
+        <translation>Télécharger et installer</translation>
+    </message>
+    <message>
+        <source>Mise &#xe0; jour disponible.</source>
+        <translation>Mise à jour disponible.</translation>
+    </message>
+    <message>
+        <source>Aucune mise &#xe0; jour trouv&#xe9;e</source>
+        <translation>Aucune mise à jour trouvée</translation>
+    </message>
+    <message>
         <source>Erreur</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="Launcher.cpp" line="415"/>
-        <source>Mise à jour intérrompue.</source>
-        <translation>Mise à jour intérrompue</translation>
+        <source>Mise &#xe0; jour interrompue.</source>
+        <translation>Mise à jour interrompue.</translation>
     </message>
     <message>
-        <location filename="Launcher.cpp" line="417"/>
-        <source>Mise à jour impossible.</source>
-        <translation>Mise à jour impossible</translation>
+        <source>Mise &#xe0; jour impossible.</source>
+        <translation>Mise à jour impossible.</translation>
     </message>
     <message>
-        <location filename="Launcher.cpp" line="457"/>
-        <source>Mise à jour terminée.</source>
-        <translation>Mise à jour terminée</translation>
+        <source>Mise &#xe0; jour termin&#xe9;e.</source>
+        <translation>Mise à jour terminée.</translation>
     </message>
     <message>
-        <location filename="Launcher.cpp" line="481"/>
-        <source>Aucune mise à jour.</source>
-        <translation>Aucune mise à jour</translation>
-    </message>
-    <message>
-        <location filename="Launcher.cpp" line="514"/>
-        <source>Téléchargement de la base de données...</source>
-        <translation>Téléchargement de la base de données...</translation>
+        <source>Aucune mise &#xe0; jour.</source>
+        <translation>Aucune mise à jour.</translation>
     </message>
 </context>
 <context>
     <name>OptionsJeu</name>
     <message>
-        <location filename="configuration.cpp" line="176"/>
-        <location filename="configuration.cpp" line="426"/>
-        <source>Taux de contrastes</source>
-        <translation>Taux de contrastes</translation>
+        <source>Taux de contrastes : %1</source>
+        <translation>Taux de contrastes : %1</translation>
     </message>
     <message>
-        <location filename="configuration.cpp" line="187"/>
-        <location filename="configuration.cpp" line="441"/>
-        <source>Taux de luminosité</source>
-        <translation>Taux de luminosité</translation>
+        <source>Taux de luminosit&#xe9; : %1</source>
+        <translation>Taux de luminosité : %1</translation>
     </message>
     <message>
-        <location filename="configuration.cpp" line="199"/>
-        <location filename="configuration.cpp" line="478"/>
-        <source>Volume sonore</source>
-        <translation>Volume sonore</translation>
+        <source>Volume sonore : %1</source>
+        <translation>Volume sonore : %1</translation>
     </message>
     <message>
-        <location filename="configuration.cpp" line="211"/>
-        <source>Résolution :</source>
+        <source>R&#xe9;solution :</source>
         <translation>Résolution :</translation>
     </message>
     <message>
-        <location filename="configuration.cpp" line="215"/>
-        <location filename="configuration.cpp" line="455"/>
-        <source>Qualité des lumières</source>
-        <translation>Qualité des lumières</translation>
+        <source>Qualit&#xe9; des lumi&#xe8;res : %1</source>
+        <translation>Qualité des lumières : %1</translation>
     </message>
     <message>
-        <location filename="configuration.cpp" line="221"/>
-        <location filename="configuration.cpp" line="464"/>
-        <source>Opacité alpha</source>
-        <translation>Opacité alpha</translation>
+        <source>Opacit&#xe9; alpha : %1</source>
+        <translation>Opacité alpha : %1</translation>
     </message>
     <message>
-        <location filename="configuration.cpp" line="266"/>
-        <source>Mode fenêtré</source>
+        <source>Mode fen&#xea;tr&#xe9;</source>
         <translation>Mode fenêtré</translation>
     </message>
     <message>
-        <location filename="configuration.cpp" line="270"/>
         <source>Syncronisation verticale</source>
-        <translation>Synchronisation verticale</translation>
+        <translation>Syncronisation verticale</translation>
     </message>
     <message>
-        <location filename="configuration.cpp" line="280"/>
         <source>Afficher les ombres</source>
         <translation>Afficher les ombres</translation>
     </message>
     <message>
-        <location filename="configuration.cpp" line="284"/>
         <source>Utiliser les post-effects</source>
         <translation>Utiliser les post-effects</translation>
     </message>
     <message>
-        <location filename="configuration.cpp" line="288"/>
-        <source>Afficher le sang</source>
-        <translation>Afficher le sang</translation>
+        <source>Fonds des objets color&#xe9;s</source>
+        <translation>Fonds des objets colorés</translation>
     </message>
     <message>
-        <location filename="configuration.cpp" line="292"/>
         <source>Afficher l&apos;herbe</source>
         <translation>Afficher l&apos;herbe</translation>
     </message>
     <message>
-        <location filename="configuration.cpp" line="296"/>
         <source>Afficher les particules</source>
         <translation>Afficher les particules</translation>
     </message>
     <message>
-        <location filename="configuration.cpp" line="300"/>
         <source>Activer le lissage</source>
         <translation>Activer le lissage</translation>
     </message>
     <message>
-        <location filename="configuration.cpp" line="304"/>
-        <source>Réflections dans l&apos;eau</source>
+        <source>R&#xe9;flections dans l&apos;eau</source>
         <translation>Réflections dans l&apos;eau</translation>
     </message>
     <message>
-        <location filename="configuration.cpp" line="347"/>
+        <source>Effets de distortion</source>
+        <translation type="obsolete">Effets de distortion</translation>
+    </message>
+    <message>
         <source>Sauvegarder et quitter</source>
         <translation>Sauvegarder et quitter</translation>
+    </message>
+    <message>
+        <source>Effets de distorsion</source>
+        <translation>Effets de distorsion</translation>
     </message>
 </context>
 </TS>

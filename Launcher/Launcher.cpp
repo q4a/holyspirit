@@ -2,629 +2,493 @@
 #include <wchar.h>
 //using namespace boost::filesystem;
 
-Launcher::Launcher() : QWidget()
-{
-    enCoursDeTelechargement=-2;
+Launcher::Launcher() : QWidget() {
+    _langages                       = new QList<Langage>;
+    _fichiersLocaux                 = new QList<Fichier>;
+    _fichiersATelecharger           = NULL;
+    _fichierEnTelechargement        = NULL;
+    _nombreDeFichiersTelecharges    = 0;
+    _optionsJeu                     = new OptionsJeu;
+    _fichier                        = NULL;
+    _http                           = NULL;
+    _installer                      = QFile::exists(PATH_FICHIER_MAJ_TXT_LOCAL) ? true : false;
 
-    QDesktopWidget bureau;
+    setGeometry ( QApplication::desktop()->width()/2-250,  QApplication::desktop()->height()/2-300, 500, 600 );
 
-    setGeometry ( bureau.screenGeometry().width()/2-250,  bureau.screenGeometry().height()/2-300, 500, 600 );
+    //Chargement du CSS
+    {
+        QFile feuilleCSS("Data/Menus/Launcher/launcher.css");
+        if(feuilleCSS.open(QIODevice::ReadOnly)) {
+            setStyleSheet(QString(feuilleCSS.readAll()));
+        }
+        else {
+            qWarning("Le fichier launcher.css n'existe pas : ");
+            qWarning("      L'interface du Launcher ne sera donc pas affichée.");
+        }
 
-    m_fond = new QLabel(this);
-    m_pixmap = new QPixmap("Data/Menus/Launcher/Fond.png");
-    m_fond->setPixmap(*m_pixmap);
-    this->setMask(m_pixmap->mask());
+        feuilleCSS.close();
+    }
 
-    m_boutonDemarrer = new QPushButton(tr("Lancer le jeu !"), this);
-    m_boutonDemarrer->setGeometry(114,324,271,32);
-
+    QLabel *fond = new QLabel(this);
+    //On ajoute un fond.
+    {
+        QPixmap pixmap(tr("Data/Menus/Launcher/Fond.png"));
+        fond->setPixmap(pixmap);
+        setAttribute(Qt::WA_TranslucentBackground);
+        setWindowFlags(Qt::FramelessWindowHint);
+        setMask(pixmap.mask());
+    }
+        
+    m_boutonDemarrer = new QPushButton(tr("Lancer le jeu"), this);
+        m_boutonDemarrer->setGeometry(114,324,271,32);
     m_boutonMettreAJour = new QPushButton(tr("Mettre le jeu à jour"), this);
-    m_boutonMettreAJour->setGeometry(114,360,271,32);
-
-    m_boutonMettreAJour->setEnabled(false);
-
+        m_boutonMettreAJour->setGeometry(QRect(114,360,271,32));
+        m_boutonMettreAJour->setEnabled(false);
+    m_miseAJour = new QProgressBar(this);
+        m_miseAJour->setValue(0);
+        m_miseAJour->setTextVisible(0);
+        m_miseAJour->setGeometry(121,400,260,20);
+    m_miseAJourTotale = new QProgressBar(this);
+        m_miseAJourTotale->setValue(0);
+        m_miseAJourTotale->setTextVisible(0);
+        m_miseAJourTotale->setGeometry(121,422,260,20);
     m_boutonOptions = new QPushButton(tr("Options"), this);
-    m_boutonOptions->setGeometry(114,448,271,32);
-
-    // Création du bouton, ayant pour parent la "fenetre"
+     m_boutonOptions->setGeometry(114,448,271,32);
     m_boutonQuitter = new QPushButton(tr("Quitter"), this);
-    m_boutonQuitter->setGeometry(186,484,128,32);
+        m_boutonQuitter->setGeometry(186,484,128,32);
+        m_boutonQuitter->setObjectName("boutonQuitter");
+
 
     QFrame *frame = new QFrame(this);
     frame->setFrameShape(QFrame::StyledPanel);
     frame->setGeometry(64, 160, 372, 160);
-    frame->setStyleSheet(
-    " QFrame, QLabel, QToolTip {"
-      "   border: 2px inset black;"
-       "  border-radius: 4px;"
-      "   padding: 2px;"
-    "}"
-    );
+
+    QWebView *pageWeb = new QWebView(frame);
+        pageWeb->setGeometry(2,2,368,156);
+        pageWeb->load(QUrl(tr(PATH_FICHIER_NEWS_DISTANT)));
+        pageWeb->setContentsMargins(0,0,0,0);
 
 
-    m_boutonDemarrer-> setStyleSheet(
-      "QPushButton {"
-        " border-radius: 6px;"
-        "background-image: url(\"Data/Menus/Launcher/Button1.png\"); "
-        "font-size: 18px;"
-        "font-weight: bold;"
-        "color: #700e0e;"
-        "font-family: Garamond;"
-    " }"
+    {
+        std::ifstream f_langues(PATH_FICHIER_LISTE_LANGAGES, std::ios::in);
+        if(f_langues) {
+            char caractere;
 
-    " QPushButton:hover {"
-        "background-image: url(\"Data/Menus/Launcher/Button2.png\"); "
-        "color: #235824;"
-    " }"
+            while(!f_langues.eof()) {
+                    f_langues.get(caractere);
 
-     "QPushButton:disabled {"
-     "background-image: url(\"Data/Menus/Launcher/Button5.png\"); "
-     "color: #700e0e;"
-    " } "
+                    if(caractere == '*') {
+                            Langage langue;
+                            f_langues >> langue.alias >> langue.langue;
+                            _langages->push_back( langue );
+                    }
+                    else if(caractere == '$')
+                        break;
 
-
-     );
-
-     m_boutonMettreAJour-> setStyleSheet(
-      "QPushButton {"
-        " border-radius: 6px;"
-        "background-image: url(\"Data/Menus/Launcher/Button1.png\"); "
-        "font-size: 14px;"
-        "font-weight: bold;"
-        "color: #700e0e;"
-        "font-family: Garamond;"
-    " }"
-
-    " QPushButton:hover {"
-        "background-image: url(\"Data/Menus/Launcher/Button2.png\"); "
-        "color: #235824;"
-    " }"
-
-     "QPushButton:disabled {"
-     "background-image: url(\"Data/Menus/Launcher/Button5.png\"); "
-     "color: #700e0e;"
-    " } "
-     );
-
-     m_boutonOptions-> setStyleSheet(
-      "QPushButton {"
-        " border-radius: 6px;"
-        "background-image: url(\"Data/Menus/Launcher/Button1.png\"); "
-        "font-size: 18px;"
-        "font-weight: bold;"
-        "color: #700e0e;"
-        "font-family: Garamond;"
-    " }"
-
-    " QPushButton:hover {"
-        "background-image: url(\"Data/Menus/Launcher/Button2.png\"); "
-        "color: #235824;"
-    " }"
-
-     "QPushButton:disabled {"
-     "background-image: url(\"Data/Menus/Launcher/Button5.png\"); "
-    " } "
-     );
-
-     m_boutonQuitter->setStyleSheet(
-      "QPushButton {"
-        " border-radius: 6px;"
-        "background-image: url(\"Data/Menus/Launcher/Button3.png\"); "
-        "font-size: 18px;"
-        "font-weight: bold;"
-        "color: #700e0e;"
-        "font-family: Garamond;"
-    " }"
-
-
-    " QPushButton:hover {"
-        "background-image: url(\"Data/Menus/Launcher/Button4.png\"); "
-        "color: #235824;"
-    " }"
-     );
-
-
-    pageWeb = new QWebView(frame);
-    pageWeb->setGeometry(2,2,368,156);
-    pageWeb->load(QUrl(tr("http://holyspirit.alpha-arts.net/pages/news.php")));
-    pageWeb->setContentsMargins(0,0,0,0);
-
-
-
-    std::ifstream test;
-        test.open("maj.txt", std::ios::in);
-
-        if(!test)
-        {
-            m_installer=true;
-
+            }
         }
         else
-            m_installer=false;
-
-        test.close();
-
-    dir=new QDir();
-
-    m_miseAJour = new QProgressBar(this);
-    m_miseAJour->setValue(0);
-    m_miseAJour->hide();
-    m_miseAJour->setTextVisible(0);
-    m_miseAJour->setGeometry(121,400,260,20);
-
-    m_miseAJourTotale = new QProgressBar(this);
-    m_miseAJourTotale->setValue(0);
-    m_miseAJourTotale->hide();
-    m_miseAJourTotale->setTextVisible(0);
-    m_miseAJourTotale->setGeometry(121,422,260,20);
-
-    m_miseAJour->setStyleSheet(
-     " QProgressBar {"
-     " border-radius: 6px;"
-     "border: 2px solid #d5a764;"
-     "background-image: url(\"Data/Menus/Launcher/barre.png\");"
-     "background-color: #eebb65;"
-     "}"
-
-     "QProgressBar::chunk {"
-     "    background-image: url(\"Data/Menus/Launcher/barre2.png\");"
-     "    width: 16px;"
-     "}"
-     );
-
-    m_miseAJourTotale->setStyleSheet(
-     " QProgressBar {"
-     " border-radius: 6px;"
-     "border: 2px solid #d5a764;"
-     "background-image: url(\"Data/Menus/Launcher/barre.png\");"
-     "background-color: #eebb65;"
-     "}"
-
-     "QProgressBar::chunk {"
-     "    background-image: url(\"Data/Menus/Launcher/barre2.png\");"
-     "    width: 16px;"
-     "}"
-     );
-
-    std::ifstream fichier;
-    fichier.open("liste_langages.conf", std::ios::in);
-    if(fichier)
+            qWarning("Le fichier liste_langages.conf n'a pu être ouvert.");
+    }
     {
-        char caractere;
-    	do
-    	{
-    	    //Chargement du nom
-    		fichier.get(caractere);
-    		if(caractere=='*')
-    		{
-    		    languages.push_back(std::string ());
-    		    languages_txt.push_back(std::string ());
-    			fichier>>languages.back()>>languages_txt.back();
-    		}
+        std::ifstream fichierLocal(PATH_FICHIER_MAJ_CONF_LOCAL, std::ios::in);
+        if(fichierLocal.good()) {
+            char caractere;
 
-    		if(fichier.eof()){ caractere='$'; }
-    	}while(caractere!='$');
+            while(!fichierLocal.eof()) {
+                if(fichierLocal.tellg() == -1)
+                    break;
+                fichierLocal.get(caractere);
+                if(caractere == '*') {
+                    Fichier fichier;
+                    fichierLocal >> fichier.nom >> fichier.version;
+                    _fichiersLocaux->push_back(fichier);
+                }
+                else if(caractere == '$')
+                    break;
+            }
+
+            fichierLocal.close();
+        }
     }
 
-    listeLangages = new QComboBox(this);
+    QComboBox *listeLangages = new QComboBox(this);
     listeLangages->move(64, 556);
 
     Configuration config;
     config.Charger();
 
-    for(int i=0;i<(int)languages_txt.size();i++)
-    {
-        listeLangages->addItem(languages_txt[i].c_str());
-        if(config.language == languages[i])
-            listeLangages->setCurrentIndex(i);
+    const int nombreLangages = _langages->size();
+    for(int i = 0; i < nombreLangages; i++) {
+        listeLangages->addItem(QString::fromStdString(_langages->at(i).langue));
+
+        if(config.language == _langages->at(i).alias)
+           listeLangages->setCurrentIndex(i);
+
     }
 
 
-    QObject::connect(m_boutonQuitter, SIGNAL(clicked()), qApp, SLOT(quit()));
+    QObject::connect(m_boutonQuitter,       SIGNAL(clicked()),                  qApp,        SLOT(quit()));
+    QObject::connect(m_boutonMettreAJour,   SIGNAL(clicked()),                  this,        SLOT(telechargerFichier()));
+    QObject::connect(m_boutonOptions,       SIGNAL(clicked()),                  _optionsJeu, SLOT(exec()));
+    QObject::connect(m_boutonDemarrer,      SIGNAL(clicked()),                  qApp,        SLOT(quit()));
+    QObject::connect(m_boutonDemarrer,      SIGNAL(clicked()),                  this,        SLOT(LancerJeu()));
+    QObject::connect(listeLangages,         SIGNAL(currentIndexChanged(int)),   this,        SLOT(languageChange(int)));
 
-    QObject::connect(m_boutonMettreAJour, SIGNAL(clicked()), this, SLOT(telechargerFichier()));
-
-    QObject::connect(m_boutonOptions, SIGNAL(clicked()), this, SLOT(Options()));
-
-    QWidget::connect(m_boutonOptions, SIGNAL(clicked()), &optionsJeu, SLOT(exec()));
-
-
-    QObject::connect(m_boutonDemarrer, SIGNAL(clicked()), qApp, SLOT(quit()));
-    QObject::connect(m_boutonDemarrer, SIGNAL(clicked()), this, SLOT(LancerJeu()));
-
-    QObject::connect(listeLangages, SIGNAL(currentIndexChanged (int)), this, SLOT(languageChange(int)));
-
-    downloadFile();
-
+    telechargerFichierMAJDistant();
 }
+Launcher::~Launcher() {
+        delete m_boutonDemarrer;
+        delete m_boutonQuitter;
+        delete m_boutonMettreAJour;
+        delete m_miseAJour;
+        delete m_miseAJourTotale;
+        delete m_boutonOptions;
+        delete _langages;
+        delete _fichiersATelecharger;
+        delete _fichiersLocaux;
+        delete _fichier;
+        delete _http;
+        delete _optionsJeu;
+}
+void Launcher::telechargerFichierMAJDistant()  {
+    QUrl url(PATH_FICHIER_MAJ_DISTANT);
 
- void Launcher::downloadAll(bool demarrer)
- {
-     if(!demarrer)
-     {
-         fait=-1;
-         aFaire=0;
+   _fichier = new QFile(PATH_FICHIER_MAJ_TXT_LOCAL,this);
+   _http    = new QHttp( url.host(),
+                        (url.scheme().toLower() == "https") ? QHttp::ConnectionModeHttps : QHttp::ConnectionModeHttp,
+                        (url.port() == -1) ? 0 : url.port(),
+                        this);
 
-        std::ifstream bdd_txt;
-        bdd_txt.open("maj.conf", std::ios::in);
 
-        if(bdd_txt)
-        {
+   if(_fichier->open(QIODevice::WriteOnly)) {
+       m_boutonMettreAJour->setText(tr("Téléchargement de la base de données..."));
+
+       _http->get(QUrl::toPercentEncoding(url.path(), "!$&'()*+,;=:@/"), _fichier);
+
+       QObject::connect(_http, SIGNAL(dataReadProgress(int,int)),  this, SLOT(miseAJourBarre2(int,int)));
+       QObject::connect(_http, SIGNAL(done(bool)),                 this, SLOT(verificationPresenceMiseAJour(bool)));
+   }
+   else
+       qWarning("Le fichier maj.txt local n'a pu etre ouvert.");
+}
+void Launcher::verificationPresenceMiseAJour(bool demarrer) {
+    //On a ouvert le fichier maj.txt dans Launcher::telechargerFichierMAJDistant()
+    //Donc on le ferme.
+    _fichier->close();
+
+    //demarrer vaut true si done renvoit une erreur.
+    if(demarrer) {
+       m_boutonDemarrer->setEnabled(true);
+       m_boutonMettreAJour->setText(tr("Mise à jour impossible"));
+       m_boutonMettreAJour->setEnabled(false);
+       return;
+    }
+
+
+    //Récupération de la liste des fichiers distants.
+    QList<Fichier> *fichiersDistants = new QList<Fichier>;
+    {
+        std::ifstream f_listeDistante(PATH_FICHIER_MAJ_TXT_LOCAL, std::ios::in);
+
+        if(f_listeDistante.good()) {
             char caractere;
-            do
-            {
-                //Chargement du nom
-                bdd_txt.get(caractere);
-                if(caractere=='*')
-                {
-                    std::string nom,rep;
-                    int ver;
-                     bdd_txt>>nom>>ver;
 
-                     nom_fichier.push_back(nom);
-                     ver_fichier.push_back(ver);
+            while(!f_listeDistante.eof()) {
+                f_listeDistante.get(caractere);
+                if(f_listeDistante.tellg() == -1)
+                    break;
 
-                     final_nom.push_back(nom);
-                     final_ver.push_back(ver);
+                if(caractere == '*') {
+                    Fichier fichier;
+                    f_listeDistante >> fichier.nom >> fichier.repertoire >> fichier.version;
+                    fichiersDistants->push_back(fichier);
                 }
-
-                if(bdd_txt.eof()){ caractere='$'; }
-            }while(caractere!='$');
+                else if( caractere == '$') break;
+            }
+            f_listeDistante.close();
         }
         else
-            m_installer = true;
-        bdd_txt.close();
+            qWarning("Ouverture de maj.txt impossible.");
+
+    }
+
+    //La liste de fichiers est vide ==> Mise à jour en cours (sur le site).
+    if(fichiersDistants->size() == 0) {
+        m_boutonDemarrer->setEnabled(true);
+        m_boutonMettreAJour->setText(tr("Maintenance du système.\n Réessayez dans quelques minutes."));
+        m_boutonMettreAJour->setEnabled(false);
+        return;
+    }
+
+    _fichiersLocaux = new QList<Fichier>;
+    //Récupération de la liste des fichiers locaux.
+    {
+       std::ifstream f_listeLocale(PATH_FICHIER_MAJ_CONF_LOCAL, std::ios::in);
+       if(f_listeLocale.good()) {
+           char caractere;
+           while(!f_listeLocale.eof()) {
+               f_listeLocale.get(caractere);
+
+               if(f_listeLocale.tellg() == -1)
+                   break;
+
+               if(caractere == '*') {
+                    Fichier fichier;
+                    f_listeLocale >> fichier.nom >> fichier.version;
+                    _fichiersLocaux->push_back(fichier);
+               }
+               else if(caractere == '$') break;
+           }
+           f_listeLocale.close();
+       }
+       else {
+           qWarning("Impossible d'ouvrir le fichier maj.conf : ");
+           std::ofstream f_conf(PATH_FICHIER_MAJ_CONF_LOCAL,std::ios::out);
+           if(f_conf.good()) {
+               f_conf << "$";
+               f_conf.close();
+               qWarning("    Fichier maj.conf recréé");
+               qWarning("    Attention cela retéléchargera le jeu dans son entier.");
+               verificationPresenceMiseAJour(false);
+           }
+           else
+               qWarning("    Impossible de créér ce fichier.");
+       }
+    }
+    
+
+//    //Aucun fichier n'a été installé !!
+    if(_fichiersLocaux->size() < 500) {
+        m_boutonDemarrer->setEnabled(false);
+        m_boutonMettreAJour->setEnabled(true);
+        m_boutonMettreAJour->setText(tr("Télécharger et installer"));
+    }
+
+
+    //Sélection des fichiers à télécharger.
+    _fichiersATelecharger = new QQueue<Fichier>;
+    {
+        QStringList listePath;
+        QDir dir;
+        const int nombreFichiersDistants = fichiersDistants->size(),
+                  nombreFichiersLocaux   = _fichiersLocaux->size();
 
 
 
-        std::ifstream bdd_sql;
-        bdd_sql.open("maj.txt", std::ios::in);
-
-        if(bdd_sql)
-        {
-            char caractere;
-            do
-            {
-                //Chargement du nom
-                bdd_sql.get(caractere);
-                if(caractere=='*')
-                {
-                    std::string nom,rep;
-                    int ver;
-                     bdd_sql>>nom>>rep>>ver;
-
-                     nom_fichier_nv.push_back(nom);
-                     ver_fichier_nv.push_back(ver);
-                     rep_fichier_nv.push_back(rep);
-
-                }
-
-                if(bdd_sql.eof()){ caractere='$'; }
-            }while(caractere!='$');
+        //Si il n'y aucun fichier d'installer !!
+        if(nombreFichiersLocaux == 0) {
+            for(int i = 0; i < nombreFichiersDistants; i++)
+                _fichiersATelecharger->enqueue(fichiersDistants->at(i));
 
         }
-        bdd_sql.close();
+        else {
+            for(int i = 0; i < nombreFichiersDistants; i++) {
+                for(int j = 0; j < nombreFichiersLocaux; j++) {
 
-        if(nom_fichier_nv.size()>0)
-        {
-             for(int i=0;i<(int)nom_fichier_nv.size();i++)
-             {
-                 bool telechargement=true;
-
-                    for(int j=0;j<(int)nom_fichier.size();j++)
-                    {
-                        if(nom_fichier[j]==nom_fichier_nv[i])
-                        {
-                            if(ver_fichier[j]==ver_fichier_nv[i])
-                                telechargement=false;
-                        }
-
+                    if( _fichiersLocaux->at(j).nom == fichiersDistants->at(i).nom && _fichiersLocaux->at(j).version >= fichiersDistants->at(i).version)
+                        break;
+                        //Fichier présent mais de version trop ancienne.
+                    else if( _fichiersLocaux->at(j).nom == fichiersDistants->at(i).nom && _fichiersLocaux->at(j).version < fichiersDistants->at(i).version) {
+                        _fichiersATelecharger->enqueue(fichiersDistants->at(i));
+                        break;
+                    }
+                    //Fichier non présent.
+                    else if(j == (nombreFichiersLocaux-1) && fichiersDistants->at(i).nom != _fichiersLocaux->at(j).nom ) {
+                        _fichiersATelecharger->enqueue(fichiersDistants->at(i));
                     }
 
-                if(telechargement)
-                {
-                    liste_a_telecharger_nom.push_back(nom_fichier_nv[i]);
-                    liste_a_telecharger_rep.push_back(rep_fichier_nv[i]);
-
-                    liste_a_telecharger_ver.push_back(ver_fichier_nv[i]);
                 }
-             }
-
-             for(int i=0;i<(int)liste_a_telecharger_rep.size();i++)
-             {
-                 std::string temp;
-                      std::string::size_type stTemp = liste_a_telecharger_rep[i].find('/');
-
-                     while(stTemp !=  std::string::npos)
-                     {
-                         temp+=liste_a_telecharger_rep[i].substr(0, stTemp)+"/";
-                         dir->mkdir(temp.c_str());
-                         liste_a_telecharger_rep[i] = liste_a_telecharger_rep[i].substr(stTemp + 1);
-                         stTemp = liste_a_telecharger_rep[i].find('/');
-                     }
-             }
-
-
-            aFaire=(int)liste_a_telecharger_nom.size();
-
-            enCoursDeTelechargement=-1;
-            if(liste_a_telecharger_nom.size()>0)
-            {
-                m_boutonMettreAJour->setEnabled(true);
-                m_boutonMettreAJour->setText(tr("Mise à jour disponible."));
-            }
-            else
-            {
-                m_boutonMettreAJour->setEnabled(false);
-                m_boutonMettreAJour->setText(tr("Aucune mise à jour trouvée"));
-            }
-
-            if(m_installer)
-            {
-                m_boutonDemarrer->setEnabled(false);
-                m_boutonMettreAJour->setEnabled(true);
-                m_boutonMettreAJour->setText(tr("Télécharger et installer"));
             }
         }
-        else
-        {
-            m_boutonMettreAJour-> setStyleSheet(
-             "QPushButton {"
-                " border-radius: 6px;"
-                "background-image: url(\"Data/Menus/Launcher/Button1.png\"); "
-                "font-weight: bold;"
-                "color: #700e0e;"
-                "font-family: Arial;"
-                "font-size: 12px;"
-            " }"
 
-             "QPushButton:disabled {"
-             "background-image: url(\"Data/Menus/Launcher/Button5.png\"); "
-            " } "
-             );
 
-            m_boutonDemarrer->setEnabled(true);
-            m_boutonMettreAJour->setText(tr("Maintenance du système.\n Veuillez rééssayer dans quelques minutes."));
-            m_boutonMettreAJour->setEnabled(false);
+        //Certains dossiers ne peuvent exister donc on va pallier à ce petit problème.
+        const int nombreFichiersATelecharger = _fichiersATelecharger->size();
+        for(int i = 0; i < nombreFichiersATelecharger; i++) {
+            if(!dir.exists( fichiersDistants->at(i).repertoire.c_str() ))
+                listePath.append(fichiersDistants->at(i).repertoire.c_str());
         }
-     }
-     else
-     {
+        //Création des paths.
+        listePath.removeDuplicates();
+        const int nombrePaths = listePath.size();
+        for(int i = 0; i < nombrePaths; i++)
+            dir.mkpath(listePath[i]);
+    }
+
+    delete fichiersDistants;
+
+    //On s'occupe de supprimer les fichiers inutiles et de les ajouter dans le fichier maj.conf
+    //Ca permet d'éviter de télécharger des fichiers inutiles.
+#ifdef WINDOWS
+    std::ifstream f_specific("Data/Menus/Launcher/specific.linux",std::ios::in);
+#endif
+#ifdef LINUX
+    std::ifstream f_specific("Data/Menus/Launcher/specific.windows",std::ios::in);
+#endif
+    if(f_specific.good()) {
+        QList<std::string> fichiersAExclure;
+        while(!f_specific.eof()) {
+            char caractere;
+            f_specific.get(caractere);
+            if(caractere == '*') {
+                std::string fichier;
+                f_specific >> fichier;
+                fichiersAExclure.append(fichier);
+            }
+            else if(caractere == '$')
+                break;
+
+        }
+        const int n_fichiersAExclure = fichiersAExclure.size();
+        int n_fichiersATelecharger = _fichiersATelecharger->size();
+        for(int i = 0; i < n_fichiersAExclure; i++) {
+            for(int j = 0; j < n_fichiersATelecharger; j++) {
+                if(_fichiersATelecharger->at(j).nom == fichiersAExclure[i] ) {
+                    qWarning("Le fichier %s ne sera pas téléchargé comme spécifié dans le fichier specific.system.", fichiersAExclure[i].c_str());
+                    ajouterFichierDansTelecharges(_fichiersATelecharger->at(j));
+
+                    _fichiersATelecharger->removeAt(j);
+
+                    //On vient de supprimer un élément donc nécessairement :
+                    n_fichiersATelecharger--;
+                }
+            }
+        }
+    }
+    else
+        qWarning("Impossible d'ouvrir les fichiers de spécifications.");
+
+    if(_fichiersATelecharger->size() > 0) {
+        m_boutonMettreAJour->setEnabled(true);
+        m_boutonMettreAJour->setText(tr("Mise à jour disponible."));
+    }
+    else {
         m_boutonDemarrer->setEnabled(true);
-        m_boutonMettreAJour->setText(tr("Mise à jour impossible"));
         m_boutonMettreAJour->setEnabled(false);
-     }
+        m_boutonMettreAJour->setText(tr("Aucune mise à jour trouvée"));
+    }
+
  }
 
 
- void Launcher::telechargerFichier(bool erreur)
- {
-     m_boutonMettreAJour-> setStyleSheet(
-             "QPushButton {"
-                " border-radius: 6px;"
-                "background-image: url(\"Data/Menus/Launcher/Button1.png\"); "
-                "font-weight: bold;"
-                "color: #700e0e;"
-                "font-family: Arial;"
-                "font-size: 12px;"
-            " }"
+void Launcher::telechargerFichier(bool erreur) {
 
-             "QPushButton:disabled {"
-             "background-image: url(\"Data/Menus/Launcher/Button5.png\"); "
-            " } "
-             );
+    //Sert à ajouter une ligne dans le fichier maj.conf (permet d'éviter le retéléchargement de tous les fichiers déjà téléchargés).
+    if(_fichierEnTelechargement) {
+        qWarning("    Le fichier %s a fini d'être téléchargé.",_fichierEnTelechargement->nom.c_str());
+        _fichier->close();
 
-     if(enCoursDeTelechargement>=0&&enCoursDeTelechargement<(int)liste_a_telecharger_nom.size())
-     {
-         bool nouveau=true;
-        for(int i=0;i<(int)final_nom.size();i++)
-            if(final_nom[i]==liste_a_telecharger_nom[enCoursDeTelechargement])
-            {
-                nouveau=false;
-                final_ver[i]=liste_a_telecharger_ver[enCoursDeTelechargement];
-            }
+        _nombreDeFichiersTelecharges++;
 
-        if(nouveau)
-        {
-            final_nom.push_back(liste_a_telecharger_nom[enCoursDeTelechargement]);
-            final_ver.push_back(liste_a_telecharger_ver[enCoursDeTelechargement]);
+        ajouterFichierDansTelecharges(*_fichierEnTelechargement);
+    }
+
+    delete _http;
+
+    m_boutonMettreAJour->setEnabled(false);
+    m_boutonDemarrer->setEnabled(false);
+
+    miseAJourBarreTotale( _nombreDeFichiersTelecharges, _fichiersATelecharger->size());
+
+    //Il y a encore des fichiers
+    if(_fichiersATelecharger->size() > 0) {
+        if(erreur) {
+            QMessageBox::information(0, tr("Erreur"), _http->error() == 7 ? tr("Mise à jour interrompue.") : tr("Mise à jour impossible."));
+            return;
         }
 
-         MettreAJourBDD();
-     }
+        _fichierEnTelechargement = new Fichier(_fichiersATelecharger->dequeue());
 
+        qWarning("Téléchargement en cours du fichier %s.", _fichierEnTelechargement->nom.c_str());
+        m_boutonMettreAJour->setText(_fichierEnTelechargement->nom.c_str());
 
-     m_boutonMettreAJour->setEnabled(false);
-     m_boutonDemarrer->setEnabled(false);
-     enCoursDeTelechargement++;
+        QUrl url(QString("http://holyspirit.alpha-arts.net/Fichiers_jeu/Holyspirit/%1").arg(_fichierEnTelechargement->nom.c_str()));
 
-     delete http;
-    delete fichier;
-    http=new QHttp;
-    fichier = new QFile;
-
-     if(enCoursDeTelechargement<(int)liste_a_telecharger_nom.size())
-     {
-         if(erreur)
-         {
-            if(http->error()==7)
-                QMessageBox::information(0, tr("Erreur"), tr("Mise à jour intérrompue."));
-            else
-                QMessageBox::information(0, tr("Erreur"), tr("Mise à jour impossible."));
-         }
-         else
-         {
-             fait++;
-             fait2=fait;
-             miseAJourBarreTotale(fait2,aFaire);
-
-             m_boutonMettreAJour->setText(liste_a_telecharger_nom[enCoursDeTelechargement].c_str());
-
-            std::string chemin = "http://holyspirit.alpha-arts.net/Fichiers_jeu/Holyspirit/"+liste_a_telecharger_nom[enCoursDeTelechargement];
-
-            QUrl url(chemin.c_str());
-
-            fichier -> setFileName(liste_a_telecharger_nom[enCoursDeTelechargement].c_str());
-            fichier -> open(QIODevice::WriteOnly);
-
-            QHttp::ConnectionMode mode = url.scheme().toLower() == "https" ? QHttp::ConnectionModeHttps : QHttp::ConnectionModeHttp;
-            http->setHost(url.host(), mode, url.port() == -1 ? 0 : url.port());
-            QByteArray path = QUrl::toPercentEncoding(url.path(), "!$&'()*+,;=:@/");
-            httpGetId = http->get(path, fichier);
-
-            QObject::connect(http, SIGNAL( done (bool)), this, SLOT(telechargerFichier(bool)));
-            QObject::connect(http, SIGNAL( dataReadProgress(int,int)), this, SLOT(miseAJourBarre(int,int)));
+        _fichier->setFileName(_fichierEnTelechargement->nom.c_str());
+        _http = new QHttp( url.host(),
+                   url.scheme().toLower() == "https" ? QHttp::ConnectionModeHttps : QHttp::ConnectionModeHttp,
+                   url.port() == -1 ? 0 : url.port(),
+                   this);
 
 
 
-         }
-     }
-     else
-     {
-         fait ++;
-         fait2=fait;
-         miseAJourBarreTotale(fait2,aFaire);
-         MettreAJourBDD();
+        if(!_fichier->open(QIODevice::WriteOnly))
+            qWarning("Impossible d'ouvrir le fichier %s : mise à jour stoppée.", _fichierEnTelechargement->nom.c_str());
 
-        m_boutonDemarrer->setText(tr("Lancer le jeu !"));
-        if(liste_a_telecharger_nom.size()>0)
-        {
+        _http->get(QUrl::toPercentEncoding(url.path(), "!$&'()*+,;=:@/"), _fichier);
+
+        QObject::connect(_http, SIGNAL( done(bool)),                 this, SLOT(telechargerFichier(bool)));
+        QObject::connect(_http, SIGNAL( dataReadProgress(int,int)),  this, SLOT(miseAJourBarre(int,int)));
+    }
+    else {
+        m_boutonDemarrer->setText(tr("Lancer le jeu"));
+
+        //Le pointeur _fichiersATelecharger n'est initialisé que lorsqu'il y a une mise à jour en cours sinon il est vaut NULL.
+        if(_fichiersATelecharger) {
             m_boutonDemarrer->setEnabled(true);
             m_boutonMettreAJour->setText(tr("Mise à jour terminée."));
-
-            m_boutonMettreAJour-> setStyleSheet(
-              "QPushButton {"
-                " border-radius: 6px;"
-                "background-image: url(\"Data/Menus/Launcher/Button1.png\"); "
-                "font-size: 14px;"
-                "font-weight: bold;"
-                "color: #700e0e;"
-                "font-family: Garamond;"
-            " }"
-
-            " QPushButton:hover {"
-                "background-image: url(\"Data/Menus/Launcher/Button2.png\"); "
-                "color: #235824;"
-            " }"
-
-             "QPushButton:disabled {"
-             "background-image: url(\"Data/Menus/Launcher/Button5.png\"); "
-             "color: #700e0e;"
-            " } "
-             );
         }
         else
             m_boutonMettreAJour->setText(tr("Aucune mise à jour."));
-     }
-
- }
-
- void Launcher::MettreAJourBDD()
- {
-    std::fstream bdd_txt_maj("maj.conf", std::ios::in | std::ios::out | std::ios::trunc);
-    if(bdd_txt_maj)
-    {
-        for(int i=0;i<(int)final_nom.size();i++)
-        {
-            bdd_txt_maj<<"* "<<final_nom[i]<<" "<<final_ver[i]<<std::endl;
-        }
-        bdd_txt_maj<<"$";
-        bdd_txt_maj.close();
     }
- }
 
- void Launcher::downloadFile()
- {
-     fichier = new QFile;
-      http = new QHttp;
+}
 
-      m_miseAJour->show();
-      m_miseAJourTotale->show();
-
-
-     fichier -> setFileName("maj.txt");
-
-        if(fichier -> open(QIODevice::WriteOnly))
-        {
-            telechargementFini=false;
-             m_boutonMettreAJour->setText(tr("Téléchargement de la base de données..."));
-
-            QUrl url("http://holyspirit.alpha-arts.net/Fichiers_jeu/maj.txt");
-            QHttp::ConnectionMode mode = url.scheme().toLower() == "https" ? QHttp::ConnectionModeHttps : QHttp::ConnectionModeHttp;
-            http->setHost(url.host(), mode, url.port() == -1 ? 0 : url.port());
-            QByteArray path = QUrl::toPercentEncoding(url.path(), "!$&'()*+,;=:@/");
-            httpGetId = http->get(path, fichier);
-
-            QObject::connect(http, SIGNAL( dataReadProgress(int,int)), this, SLOT(miseAJourBarre2(int,int)));
-            QObject::connect(http, SIGNAL( done(bool)), this, SLOT(downloadAll(bool)));
+void Launcher::ajouterFichierDansTelecharges(const Fichier &fichier) {
+    bool fichierEnregistre = false;
+    {
+        const int nombreFichiersLocaux = _fichiersLocaux->size();
+        for(int i = 0; i < nombreFichiersLocaux; i++) {
+            if(_fichiersLocaux->at(i).nom == fichier.nom) {
+                _fichiersLocaux->replace(i,(Fichier){fichier.nom,"",fichier.version});
+                fichierEnregistre = true;
+                break;
+            }
         }
+    }
+    if(!fichierEnregistre)
+        _fichiersLocaux->push_back(fichier);
 
+    const int nombreFichiersLocaux = _fichiersLocaux->size();
+    std::ofstream fichierLocal(PATH_FICHIER_MAJ_CONF_LOCAL,std::ios::out);
+    if(fichierLocal.good()) {
+        for(int i = 0; i < nombreFichiersLocaux; i++)
+            fichierLocal << "* " << _fichiersLocaux->at(i).nom << " " << _fichiersLocaux->at(i).version << std::endl;
+        fichierLocal << "$";
+        fichierLocal.close();
+    }
 
-
- }
-
-void Launcher::miseAJourBarre(int progression, int total)
-{
-    m_miseAJour->setValue(progression*100/total);
-    fait2=(float)fait+(float)progression/(float)total;
-    miseAJourBarreTotale(fait2,aFaire);
 }
 
-void Launcher::miseAJourBarreTotale(float progression, int total)
-{
-    float temp=(float)progression*100/(float)total;
-    m_miseAJourTotale->setValue((int)(temp));
+void Launcher::miseAJourBarre(int progression, int total) {
+    m_miseAJour->setValue( progression * 100 / total);
+    miseAJourBarreTotale( (float)_nombreDeFichiersTelecharges + (float)progression / (float)total , _fichiersATelecharger->size());
 }
-
-void Launcher::miseAJourBarre2(int progression, int total)
-{
-
+void Launcher::miseAJourBarreTotale(float progression, int total) {
+    m_miseAJourTotale->setValue( (int)( (float)progression * 100 / (float)total ) );
+}
+void Launcher::miseAJourBarre2(int progression, int total) {
     m_miseAJour->setValue(progression*100/total);
-
-     if(progression*100/total>=100)
-         fichier->close();
  }
+void Launcher::LancerJeu() {
+#ifdef WINDOWS
+    ShellExecute(NULL,NULL,"Holyspirit.exe",NULL,NULL,SW_SHOWNORMAL);
+#else
+    #ifdef LINUX
+       if(system("Holyspirit") == -1)
+           qWarning("Holyspirit n'a pu etre lancé automatiquement.");
+    #else
+        #error "Holyspirit ne pourra etre lancé automatiquement : commmande d'OS non spécifié ou LINUX ou WINDOWS non défini."
+    #endif
+#endif
 
-
- void Launcher::LancerJeu()
- {
-     wchar_t *temp;
-     temp= new wchar_t[15];
-
-     temp[0]='H';
-     temp[1]='o';
-     temp[2]='l';
-     temp[3]='y';
-     temp[4]='s';
-     temp[5]='p';
-     temp[6]='i';
-     temp[7]='r';
-     temp[8]='i';
-     temp[9]='t';
-     temp[10]='.';
-     temp[11]='e';
-     temp[12]='x';
-     temp[13]='e';
-
-     temp[14]='\0';
-
-     this->hide();
-    ShellExecute(NULL,NULL,temp,NULL,NULL,SW_SHOWNORMAL);
-
+       this->hide();
  }
+void Launcher::languageChange(int index) {
+    Configuration config;
 
- void Launcher::Options()
- {
-
- }
-
-  void Launcher::languageChange(int index)
-  {
-        Configuration config;
-        config.Charger();
-
-        config.language = languages[index];
-
-        config.Sauvegarder();
-  }
-
+    config.Charger();
+    config.language = _langages->at(index).alias;
+    config.Sauvegarder();
+}

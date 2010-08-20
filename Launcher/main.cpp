@@ -4,15 +4,16 @@
 
 #include <QProgressBar>
 
-
 #include "Launcher.h"
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
+
+    QApplication app(argc, argv);
+
+
     Configuration config;
     config.Charger();
 
-    QApplication app(argc, argv);
 
     QString locale = QLocale::system().name().section('_', 0, 0);
 
@@ -23,9 +24,7 @@ int main(int argc, char *argv[])
 
     config.Sauvegarder();
 
-    std::string buf  = "hslauncher_"+config.language;
-    QString temp(buf.c_str());
-    translator.load(temp);
+    translator.load( QString("hslauncher_%1").arg(config.language.c_str()));
     app.installTranslator(&translator);
 
     Launcher launcher;
@@ -35,6 +34,6 @@ int main(int argc, char *argv[])
     // Affichage de la fenêtre
     launcher.show();
 
-    return app.exec();
+    return app.exec();;
 }
 
