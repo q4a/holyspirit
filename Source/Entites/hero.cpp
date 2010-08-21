@@ -531,6 +531,10 @@ void Hero::Charger(std::string chemin_save)
             if (configuration->debug)
                 console->Ajouter("/Lectures des objets du coffre.");
 
+
+            if(temp < 6)
+                m_lvl_miracles.push_back(1);
+
             do
             {
                 fichier->get(caractere);
@@ -542,6 +546,7 @@ void Hero::Charger(std::string chemin_save)
                         fichier->get(caractere);
                         if (caractere=='l')
                             *fichier>>m_lvl_miracles.back();
+
                         if (fichier->eof())
                             throw "Impossible de charger la sauvegarde";
                     }
@@ -624,6 +629,8 @@ void Hero::Charger(std::string chemin_save)
 
     m_classe.Charger(m_cheminClasse, m_lvl_miracles, m_caracteristiques);
     m_lvl_miracles.resize(m_classe.miracles.size(),0);
+
+    m_lvl_miracles.front() = 1;
 
     ChargerModele();
 
@@ -2628,6 +2635,8 @@ void Hero::GererTemps(float temps)
         temp.foi=m_caracteristiques.maxFoi;
         m_caracteristiques.vie=m_caracteristiques.maxVie;
         m_caracteristiques.foi=m_caracteristiques.maxFoi;
+
+        UtiliserMiracle(0,NULL,coordonnee ());
     }
 
     m_personnage.setCaracteristique(temp);

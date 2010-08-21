@@ -170,13 +170,8 @@ void Map::Script_Fight(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
             {
                 m_monstre[monstre].setDepart();
                 if (fabs(m_monstre[monstre].getCoordonnee().x-m_monstre[monstre].m_cible->getCoordonnee().x)>1
-                        || fabs(m_monstre[monstre].getCoordonnee().y-m_monstre[monstre].m_cible->getCoordonnee().y)>1)
-                {
+                 || fabs(m_monstre[monstre].getCoordonnee().y-m_monstre[monstre].m_cible->getCoordonnee().y)>1)
                     m_monstre[monstre].setArrivee(m_monstre[monstre].m_cible->getProchaineCase());
-
-                    //coordonnee tempCoord(hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1);
-                    //m_monstre[monstre].Pathfinding(getAlentourDuPersonnage(m_monstre[monstre].getCoordonnee()),tempCoord);
-                }
                 else
                 {
                     if (m_monstre[monstre].m_cible->EnVie()<=0)
@@ -192,8 +187,8 @@ void Map::Script_Fight(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
             if (fabs(m_monstre[monstre].getCoordonnee().x-m_monstre[monstre].m_cible->getCoordonnee().x)>1
                     || fabs(m_monstre[monstre].getCoordonnee().y-m_monstre[monstre].m_cible->getCoordonnee().y)>1)
             {
-                if ( m_monstre[monstre].getArrivee().x==m_monstre[monstre].getCoordonnee().x
-                        && m_monstre[monstre].getArrivee().y==m_monstre[monstre].getCoordonnee().y)
+                if(m_monstre[monstre].getArrivee().x==m_monstre[monstre].getCoordonnee().x
+                && m_monstre[monstre].getArrivee().y==m_monstre[monstre].getCoordonnee().y)
                     m_monstre[monstre].setArrivee(m_monstre[monstre].m_cible->getProchaineCase());
 
             }

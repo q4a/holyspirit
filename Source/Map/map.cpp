@@ -1976,7 +1976,7 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                     if (seDeplacer)
                     {
                         coordonnee tempCoord(hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1);
-                         Iter->Pathfinding(getAlentourDuPersonnage(Iter->getCoordonnee()),tempCoord);
+                        Iter->Pathfinding(getAlentourDuPersonnage(Iter->getCoordonnee()),tempCoord);
                     }
 
                     Iter->m_touche = false;
