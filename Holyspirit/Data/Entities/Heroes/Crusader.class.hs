@@ -124,6 +124,8 @@ $
 	* e1 x124 y46 w42 h42 m36	i * mData/Menus/Crusader/CrusaderPath2.png x0 y0 w32 h32 $ $ $
 	* e2 x190 y46 w42 h42 m37	i * mData/Menus/Crusader/CrusaderPath3.png x0 y0 w32 h32 $ $ $
 $
+	* e-1 b-1 mData/Entities/Heroes/LevelUp/LevelUp.miracle.hs $
+
 	* e0 b-1 x115 y183 w38 h38 mData/Entities/Heroes/Crusader/Miracles/HolyTornado/HolyTornado.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x0 y0 w32 h32 $ $ $
 
 	* e2 b-1 x115 y423 w38 h38 mData/Entities/Heroes/Crusader/Miracles/Lazare/Lazare.miracle.hs i * mData/Menus/Crusader/CrusaderPath3.png x32 y0 w32 h32 $ $ $

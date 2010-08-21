@@ -127,6 +127,8 @@ $
 	* e1 x124 y46 w42 h42 m39	i * mData/Menus/Concubine/ConcubinePath2.png x0 y0 w32 h32 $ $ $
 	* e2 x186 y46 w42 h42 m40	i * mData/Menus/Concubine/ConcubinePath3.png x0 y0 w32 h32 $ $ $
 $
+	* e-1 b-1 mData/Entities/Heroes/LevelUp/LevelUp.miracle.hs $
+
 	* e0 b-1 x115 y183 w38 h38 mData/Entities/Heroes/Concubine/Miracles/Toxic/Toxic.miracle.hs i * mData/Menus/Concubine/ConcubinePath1.png x0 y0 w32 h32 $ $ $
 
 	* e2 b-1 x115 y183 w38 h38 mData/Entities/Heroes/Concubine/Miracles/Charmed/Charmed.miracle.hs i * mData/Menus/Concubine/ConcubinePath3.png x0 y0 w32 h32 $ $ $

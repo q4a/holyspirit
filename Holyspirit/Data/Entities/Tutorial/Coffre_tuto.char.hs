@@ -18,7 +18,6 @@ $
 		*Armband.item.hs
 		r-1
 	$
-	*
 $
 
 $
