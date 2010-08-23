@@ -22,8 +22,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef CONSTANTEH
 #define CONSTANTEH
 
-#define WINDOWS
-//#define LINUX
+#ifdef WIN32
+# define WINDOWS
+#else
+# define LINUX
+#endif
 
 #define COTE_TILE 71.5542f
 #define DIVISEUR_COTE_TILE 0.013975420031249039189872851628556f
@@ -213,6 +216,15 @@ public:
 
 struct Caracteristique
 {
+    Caracteristique() : pointAme(0), ancienPointAme(0), positionAncienAme(0),
+        vitesse(0), vie(0), maxVie(0), reserveVie(0), regenVie(0), foi(0),
+        maxFoi(0), reserveFoi(0), regenFoi(0), volVie(0), volFoi(0), niveau(0),
+        rang(0), force(0), dexterite(0), vitalite(0), piete(0), charisme(0),
+        pts_restant(0), miracles_restant(0), modificateurTaille(0), sang(0)
+    {
+
+    }
+
     std::string nom;
 
     int pointAme;

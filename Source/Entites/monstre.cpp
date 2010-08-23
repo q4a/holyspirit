@@ -49,9 +49,9 @@ Monstre::~Monstre()
     m_miracleEnCours.clear();
 }
 
-Monstre::Monstre()
+Monstre::Monstre():
+    Personnage()
 {
-    Personnage::Personnage();
     m_vu=0;
 
     m_monstre=true;
@@ -60,10 +60,9 @@ Monstre::Monstre()
     m_compteur=0;
 }
 
-Monstre::Monstre(Personnage &personnage)
+Monstre::Monstre(Personnage &personnage):
+    Personnage()
 {
-    Personnage::Personnage();
-
     m_attente   = 0;
     m_compteur  = 0;
     m_vu        = 0;

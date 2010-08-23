@@ -421,6 +421,26 @@ void c_Jeu::Lumieres(Jeu *jeu)
 
 void GestionRaccourcis(Jeu *jeu)
 {
+    if(eventManager->getMolette() != 0)
+    {
+        int i = 0;
+        for(int j = 0; j < 8 ; ++j)
+            if(jeu->hero.m_raccourcis[j].miracle
+            && jeu->hero.m_raccourcis[j].no == jeu->hero.m_personnage.m_miracleALancer)
+                i = j + eventManager->getMolette();
+
+        for(int j = 0; j < 8 ; ++j,i+=eventManager->getMolette())
+        {
+            if(i >= 8)
+                i = 0;
+
+            if(jeu->hero.m_raccourcis[i].miracle
+            && jeu->hero.m_raccourcis[i].no >= 0)
+                if(!jeu->hero.m_classe.miracles[jeu->hero.m_raccourcis[i].no].m_direct)
+                    jeu->hero.m_personnage.m_miracleALancer = jeu->hero.m_raccourcis[i].no, j = 8;
+        }
+    }
+
     int newmiracle = -1;
 
     for(int i = 0 ; i < 8 ; ++i)
@@ -666,7 +686,7 @@ void c_Jeu::Evenements(Jeu *jeu)
         m_diplace_mode = false;
 
     if (eventManager->getPositionSouris().y < 492 * configuration->Resolution.h/600)
-    if(jeu->menu.m_dialogue.empty())
+   // if(jeu->menu.m_dialogue.empty())
     {
         if (!eventManager->getEvenement(Mouse::Left,EventClic))
             jeu->map->getMonstre(&jeu->hero,eventManager->getPositionSouris(),eventManager->getCasePointee());

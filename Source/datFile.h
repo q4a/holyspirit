@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <SFML/System.hpp>
 
 #ifndef DATFILEH
 #define DATFILEH
@@ -19,8 +20,8 @@ struct sDATHeader
 struct sFileEntry
 {
     char name[255]; /// Name of the data file
-    long size; /// Size of the data file
-    long offset; /// Offset, in the DAT file where the file is
+    sf::Int32 size; /// Size of the data file
+    sf::Int32 offset; /// Offset, in the DAT file where the file is
 };
 
 

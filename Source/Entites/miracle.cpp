@@ -40,9 +40,9 @@ void Projectile::Afficher()
     }
 }
 
-EffetGraphique::EffetGraphique()
+EffetGraphique::EffetGraphique():
+    Entite_graphique()
 {
-    Entite_graphique::Entite_graphique();
 
     m_actif         = true;
     m_compteur      = -100;

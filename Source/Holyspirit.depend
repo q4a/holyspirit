@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1280255468 source:e:\c++\holyspirit\source\contextes\c_changementmap.cpp
+1282477324 source:e:\c++\holyspirit\source\contextes\c_changementmap.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -381,7 +381,7 @@
 
 1245839952 ntes.h"
 
-1282378249 e:\c++\holyspirit\source\constantes.h
+1282587459 e:\c++\holyspirit\source\constantes.h
 	<cmath>
 	<utility>
 	<iostream>
@@ -392,10 +392,11 @@
 
 1263646996 onsole.h"
 
-1244286756 e:\c++\holyspirit\source\datfile.h
+1282503219 e:\c++\holyspirit\source\datfile.h
 	<iostream>
 	<fstream>
 	<vector>
+	<SFML/System.hpp>
 
 1251713076 e:\c++\holyspirit\source\moteurs\console.h
 	<SFML/System.hpp>
@@ -633,7 +634,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1282314079 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
+1282586395 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -701,7 +702,7 @@
 	"../globale.h"
 	<iostream>
 
-1281789947 source:e:\c++\holyspirit\source\entites\miracle.cpp
+1282503286 source:e:\c++\holyspirit\source\entites\miracle.cpp
 	"miracle.h"
 	"../globale.h"
 	"objet.h"
@@ -709,7 +710,7 @@
 	<fstream>
 	<sstream>
 
-1281627567 source:e:\c++\holyspirit\source\entites\monstre.cpp
+1282503294 source:e:\c++\holyspirit\source\entites\monstre.cpp
 	<iostream>
 	<fstream>
 	"monstre.h"
@@ -722,7 +723,7 @@
 	<fstream>
 	<sstream>
 
-1282233961 source:e:\c++\holyspirit\source\entites\personnage.cpp
+1282586646 source:e:\c++\holyspirit\source\entites\personnage.cpp
 	"personnage.h"
 	"../globale.h"
 	<iostream>
@@ -798,7 +799,7 @@
 	"../globale.h"
 	<iostream>
 
-1279714949 source:e:\c++\holyspirit\source\moteurs\light.cpp
+1282561988 source:e:\c++\holyspirit\source\moteurs\light.cpp
 	<iostream>
 	<math.h>
 	"light.h"
@@ -835,7 +836,7 @@
 	<stdio.h>
 	<sstream>
 
-1269179731 source:e:\c++\holyspirit\source\datfile.cpp
+1282497848 source:e:\c++\holyspirit\source\datfile.cpp
 	"globale.h"
 	<stdio.h>
 	<string.h>

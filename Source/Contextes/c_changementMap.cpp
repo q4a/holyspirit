@@ -108,7 +108,6 @@ void c_Chargement::setC_Chargement(std::string prochaineMap,coordonnee coordonne
         fichier->close();
     }
 
-
     delete fichier;
 
     if(cheminFond.size() > 0)
