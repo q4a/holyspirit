@@ -1,0 +1,69 @@
+QFrame, QLabel, QToolTip {
+	border: 2px inset black;
+	border-radius: 4px;
+	padding: 2px;
+}
+
+QProgressBar {
+	border-radius: 8px;
+	border: 2px solid #d5a764;
+	background-image: url('Data/Menus/Launcher/barre.png');
+	background-color: #eebb65;
+}
+
+QProgressBar::chunk {
+	background-image: url('Data/Menus/Launcher/barre2.png');
+	width: 16px;
+
+}
+
+QPushButton {
+	background-image: url('Data/Menus/Launcher/button1.png');
+	background-repeat: none;
+	font-size: 12px;
+	font-weight: bold;
+	color: #700e0e;
+	font-family: Garamond;
+	border-radius: 6px;
+}
+
+QPushButton:hover {
+	background-image: url('Data/Menus/Launcher/button2.png');
+	color: #235824;
+}
+
+QPushButton:disabled {
+	background-image: url('Data/Menus/Launcher/button5.png');
+	color: black;
+}
+
+QPushButton#boutonQuitter {
+	background-image: url('Data/Menus/Launcher/button3.png');
+ }
+
+
+QPushButton#boutonQuitter:hover {
+	background-image: url('Data/Menus/Launcher/button4.png');
+}
+
+QDialog * {
+  position: relative;
+}
+#labelContrastes{
+  qproperty-geometry: 0px 0px 120px 20px;
+}
+#labelLuminosite{
+  qproperty-geometry: 20px 0px 120px 20px;
+}
+#labelResolution{
+  qproperty-geometry: 40px 0px 120px 20px;
+}
+#labelQualiteLumieres{
+  qproperty-geometry: 60px 0px 120px 20px;
+}
+#labelVolume{
+  qproperty-geometry: 80px 0px 120px 20px;
+}
+#labelAlpha{
+  qproperty-geometry: 100px 0px 120px 20px;
+}
