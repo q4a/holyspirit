@@ -17,7 +17,6 @@ main
 				newQuest * 4 
 				setQuestName * 4  * 47
 				setQuestState * 4 * 0 * 48
-				setQuestPosition * 4 * 7 * 22 " ArableLand0.map.hs"
 			end
 		
 			if speak_choice * 2
@@ -29,7 +28,6 @@ main
 			then
 				speak * 52
 				setQuestState * 4 * 2 * 51
-				setQuestPosition * 4 * -1 * -1
 				addCash * 1000
 			end
 		end

@@ -2,6 +2,8 @@
 main 
 	if variable * 1 * 0
 	then
+		setActif * 1
+
 		if talk
 		then
 			if variable * 0 * 1
@@ -15,6 +17,8 @@ main
 			
 			stop_talk
 		end
+	else
+		setActif * 0
 	end
 	
 	if variable * 0 * 1

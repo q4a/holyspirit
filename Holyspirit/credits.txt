@@ -12,6 +12,7 @@ Gregouar (Naisse Grégoire)
 *3D & 2D Artists
 Bravach (Naisse Corentin)
 Killpatate (Vaillant Aurélien)
+Gregouar (Naisse Grégoire)
 
 *Game Designers
 Bravach (Naisse Corentin)
@@ -36,6 +37,9 @@ Akuma (Tribbiani Edouard)
 *Linux programmer
 Merwin (Gabriel Pichot)
 
+*Helper programmer
+Bmauet (Baptiste Careil)
+
 *Translators
 Bravach (English)
 Gonze Philippe (English)
@@ -45,7 +49,7 @@ Richard Jim (Spanish)
 *2D GUI Artist
 Cremuss (http://cremuss.free.fr/)
 
-*Beta-testing
+*Beta-testers
 Darktib
 King Kadelfek
 Gavos
@@ -58,7 +62,7 @@ Emixam62
 Code::Block (http://www.codeblocks.org/)
 
 *Libraries
-SFML (http://www.sfml-dev.org)
+SFML (http://www.sfml-dev.org/)
 QT (http://qt.nokia.com/)
 
 *3D Softwares
@@ -76,7 +80,9 @@ TortoiseSVN (http://tortoisesvn.tigris.org/)
 
 Le site du zéro (http://www.siteduzéro.com/)
 
-Game-Corp (http://www.game-corp.net)
+Game-Corp (http://www.game-corp.net/)
+
+Games Creators Network (http://games-creators.org/)
 
 ****
 

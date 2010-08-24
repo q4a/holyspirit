@@ -129,7 +129,7 @@ $
 	* e0 b-1 x115 y183 w38 h38 mData/Entities/Heroes/Crusader/Miracles/HolyTornado/HolyTornado.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x0 y0 w32 h32 $ $ $
 
 	* e2 b-1 x115 y423 w38 h38 mData/Entities/Heroes/Crusader/Miracles/Lazare/Lazare.miracle.hs i * mData/Menus/Crusader/CrusaderPath3.png x32 y0 w32 h32 $ $ $
-	* e2 b1 x197 y423 w38 h38 mData/Entities/Heroes/Crusader/Miracles/Lazare/LazareVampirism.miracle.hs i * mData/Menus/Crusader/CrusaderPath3.png x64 y0 w32 h32 $ $ $
+	* e2 b2 x197 y423 w38 h38 mData/Entities/Heroes/Crusader/Miracles/Lazare/LazareVampirism.miracle.hs i * mData/Menus/Crusader/CrusaderPath3.png x64 y0 w32 h32 $ $ $
 
 	* e2 b-1 x115 y183 w38 h38 mData/Entities/Heroes/Crusader/Miracles/Barbe/Barbe.miracle.hs i * mData/Menus/Crusader/CrusaderPath3.png x0 y0 w32 h32 $ $ $
 
@@ -137,11 +137,11 @@ $
 	
 	* e0 b-1 x115 y423 w38 h38 mData/Entities/Heroes/Crusader/Miracles/PowerfulSlash/PowerfulSlash.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x96 y0 w32 h32 $ $ $
 	
-	* e0 b0 x197 y183 w38 h38 mData/Entities/Heroes/Crusader/Miracles/HolyTornado/Projection.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x32 y0 w32 h32 $ $ $
+	* e0 b1 x197 y183 w38 h38 mData/Entities/Heroes/Crusader/Miracles/HolyTornado/Projection.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x32 y0 w32 h32 $ $ $
 	
 	* e0 b-1 x115 y303 w38 h38 mData/Entities/Heroes/Crusader/Miracles/LastJudgement/LastJudgement.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x128 y0 w32 h32 $ $ $
 	
 	* e1 b-1 x115 y303 w38 h38 mData/Entities/Heroes/Crusader/Miracles/FaithArmor/FaithArmor.miracle.hs i * mData/Menus/Crusader/CrusaderPath2.png x32 y0 w32 h32 $ $ $
 	
-	* e0 b7 x197 y303 w38 h38 mData/Entities/Heroes/Crusader/Miracles/LastJudgement/LastJudgement-Burn.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x160 y0 w32 h32 $ $ $
+	* e0 b8 x197 y303 w38 h38 mData/Entities/Heroes/Crusader/Miracles/LastJudgement/LastJudgement-Burn.miracle.hs i * mData/Menus/Crusader/CrusaderPath1.png x160 y0 w32 h32 $ $ $
 $

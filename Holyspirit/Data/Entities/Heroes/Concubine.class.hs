@@ -132,7 +132,7 @@ $
 	* e0 b-1 x115 y183 w38 h38 mData/Entities/Heroes/Concubine/Miracles/Toxic/Toxic.miracle.hs i * mData/Menus/Concubine/ConcubinePath1.png x0 y0 w32 h32 $ $ $
 
 	* e2 b-1 x115 y183 w38 h38 mData/Entities/Heroes/Concubine/Miracles/Charmed/Charmed.miracle.hs i * mData/Menus/Concubine/ConcubinePath3.png x0 y0 w32 h32 $ $ $
-	* e2 b1 x197 y183 w38 h38 mData/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife.miracle.hs i * mData/Menus/Concubine/ConcubinePath3.png x32 y0 w32 h32 $ $ $
+	* e2 b2 x197 y183 w38 h38 mData/Entities/Heroes/Concubine/Miracles/Charmed/CharmedLife.miracle.hs i * mData/Menus/Concubine/ConcubinePath3.png x32 y0 w32 h32 $ $ $
 
 	* e0 b-1 x115 y423 w38 h38 mData/Entities/Heroes/Concubine/Miracles/Venom/Venom.miracle.hs i * mData/Menus/Concubine/ConcubinePath1.png x96 y0 w32 h32 $ $ $
 $

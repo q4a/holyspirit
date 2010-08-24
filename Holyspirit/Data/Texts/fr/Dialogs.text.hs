@@ -74,4 +74,4 @@ Je m'en suis déjà occupé.
 Je suis Rognorak, ex forgeron de l'Empire. Moi j’aime bien forger les armes tranquillement dans mon coin mais la bagarre ça n'est pas trop ma tasse de thé. Je suis un artiste ! Alors quand ils ont décidé de m'envoyer au front pour forger des épées à la chaîne je me suis taillé et je suis parti au hasard... Je sais pas si c'était une bonne idée à la réflexion... Je ne supportais pas d'être à quelques kilomètres seulement de cette horde de monstres et maintenant je dois survivre à quelques mètres d'eux, réfugié dans cette satanée abbaye !
 Qui es-tu ?
 Retour
-
+Appuyez sur ALT pour voir les objets au sol et cliquez sur leur nom pour les ramasser !

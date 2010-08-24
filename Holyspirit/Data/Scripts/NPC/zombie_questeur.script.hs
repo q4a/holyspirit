@@ -19,7 +19,6 @@ main
 			newQuest * 3 
 			setQuestName * 3  * 29
 			setQuestState * 3 * 0  * 26
-			setQuestPosition * 3 * 47 * 71 " BurialGround.map.hs"
 		end
 	end
 end 
