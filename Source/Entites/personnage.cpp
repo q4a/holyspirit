@@ -348,8 +348,8 @@ void Personnage::Afficher(Modele_Personnage *modele,bool surbrillance, bool sans
                 }
 
     if (modele!=NULL)
-        if (m_etat>=0 && m_etat < modele->m_tileset.size())
-            if ((int)(m_angle/45)>=0&&(int)(m_angle/45)<modele->m_tileset[m_etat].size())
+        if (m_etat>=0 && m_etat < (int)modele->m_tileset.size())
+            if ((int)(m_angle/45) >= 0 && (int)(m_angle/45) < (int)modele->m_tileset[m_etat].size())
             {
                 m_entite_graphique.m_tileset = &modele->m_tileset[m_etat][(int)(m_angle/45)];
                 m_entite_graphique.m_sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
@@ -491,7 +491,7 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception, bool noD
             }
 
         casesVisitee.IncrementerDistanceEnCours();
-        while (!casesVisitee.AjouterCasesAdjacentes(map,&arrivee,depart)&&!m_erreurPathfinding)
+        while (!casesVisitee.AjouterCasesAdjacentes(map,&arrivee)&&!m_erreurPathfinding)
         {
             casesVisitee.IncrementerDistanceEnCours();
             if (casesVisitee.getDistance()>10)
@@ -580,7 +580,7 @@ int Personnage::Pathfinding(casePathfinding** map,coordonnee exception, bool noD
 }
 
 
-bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap)
+bool Personnage::SeDeplacer(float tempsEcoule)
 {
     sf::Vector2f pos;
     pos.x=((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE) + 0.1;
@@ -759,7 +759,7 @@ bool Personnage::SeDeplacer(float tempsEcoule,coordonnee dimensionsMap)
     return 0;
 }
 
-void Personnage::InfligerDegats(float degats, int type, Modele_Personnage *modele, float temps)
+void Personnage::InfligerDegats(float degats, int type, float temps)
 {
     float temp = degats;
     if(type < 4 && type >= 0)
@@ -911,8 +911,6 @@ int Personnage::Animer(Modele_Personnage *modele,float temps)
 
     if(m_monstre)
         retour = 0;
-
-    int pose = m_entite_graphique.m_noAnimation;
 
     if(!m_stunned)
     if(m_etat >= 0 && m_etat < (int)modele->m_tileset.size())
@@ -1103,7 +1101,7 @@ int Personnage::AjouterEffet(Tileset *tileset, int type, int compteur, int info1
 
 void Personnage::RecalculerEffets()
 {
-    for(int i = 0 ; i < m_effets.size() ; ++i)
+    for(unsigned i = 0 ; i < m_effets.size() ; ++i)
     {
         if(m_effets[i].m_type == AURA_CARACTERISTIQUES)
         {

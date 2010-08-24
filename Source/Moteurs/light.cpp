@@ -127,8 +127,7 @@ sf::Vector2f Collision(sf::Vector2f p1, sf::Vector2f p2, sf::Vector2f q1, sf::Ve
 void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std::vector <Wall>& m_wall)
 {
     int w=minimum_wall;
-    bool wall=false;
-    int hauteur=0;
+
     // On boucle sur tous les murs
     if (configuration->Lumiere==2)
         for (std::vector<Wall>::iterator IterWall=m_wall.begin()+minimum_wall;IterWall!=m_wall.end();++IterWall,++w)

@@ -516,7 +516,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                             case 's':
                                 int no;
                                 *fichier2>>no;
-                                if(no >= variables.size())
+                                if(no >= (int)variables.size())
                                     variables.resize(no + 1);
                                 *fichier2>>variables[no];
                                 break;
@@ -550,7 +550,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                             m_monstre.back().setPose(pose);
                             m_monstre.back().setForcedAngle(angle);
                             m_monstre.back().setObjets(objets);
-                            for(int z=0;z<variables.size();++z)
+                            for(unsigned z=0;z<variables.size();++z)
                                 m_monstre.back().m_scriptAI.setVariable(z,variables[z]);
                         }
 
@@ -640,7 +640,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
                                                 if(id >= 0)
                                                 {
-                                                    if(m_listID.size() <= id)
+                                                    if((int)m_listID.size() <= id)
                                                         m_listID.resize(id + 1);
                                                     m_listID[id].push_back(m_monstre.size() - 1);
                                                 }
@@ -845,7 +845,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
                                         if(id >= 0)
                                         {
-                                            if(m_listID.size() <= id)
+                                            if((int)m_listID.size() <= id)
                                                 m_listID.resize(id + 1);
                                             m_listID[id].push_back(m_monstre.size() - 1);
                                         }
@@ -880,7 +880,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
                                         if(id >= 0)
                                         {
-                                            if(m_listID.size() <= id)
+                                            if((int)m_listID.size() <= id)
                                                 m_listID.resize(id + 1);
                                             m_listID[id].push_back(monstre[i]);
                                         }
@@ -1129,10 +1129,10 @@ void Map::Sauvegarder(Hero *hero)
     if (fichier)
     {
         fichier<<"* n"<<m_no_nom<<" $ \n$\n";
-        for (int i=0;i<(int)m_fond.size();++i)
+        for (unsigned i=0;i< m_fond.size();++i)
             fichier<<"*"<<m_fond[i]<<"\n";
         fichier<<"$\n";
-        for (int i=0;i<(int)m_musiques.size();++i)
+        for (unsigned i=0;i< m_musiques.size();++i)
             fichier<<"*"<<m_musiques[i]<<"\n";
         fichier<<"$\n";
 
@@ -1145,21 +1145,21 @@ void Map::Sauvegarder(Hero *hero)
             fichier<<" *"<<m_nom_img_sky<<endl;
         fichier<<"$\n";
 
-        for(int i = 0 ; i < m_climates.size() ; ++i)
+        for(unsigned i = 0 ; i < m_climates.size() ; ++i)
             fichier<<" *"<<m_climates[i].m_chemin<<endl;
         fichier<<"$\n";
 
-        for (int i=0;i<(int)m_tileset.size();++i)
+        for (unsigned i=0;i<m_tileset.size();++i)
             fichier<<"*"<<moteurGraphique->getTileset(m_tileset[i])->getChemin()<<"\n";
 
         fichier<<"$\n";
 
-        for (int i=0;i<(int)m_herbe.size();++i)
+        for (unsigned i=0;i<m_herbe.size();++i)
             fichier<<"*"<<moteurGraphique->getTileset(m_herbe[i])->getChemin()<<"\n";
 
         fichier<<"$\n";
 
-        for (int i=0;i<(int)m_ModeleMonstre.size();++i)
+        for (unsigned i=0;i<m_ModeleMonstre.size();++i)
             fichier<<"*"<<m_ModeleMonstre[i].m_chemin<<"\n";
 
         fichier<<"$\n";
@@ -1277,7 +1277,7 @@ void Map::CalculerOmbresEtLumieres()
     int h = (int)moteurGraphique->m_soleil.hauteur;
 
 
-    for(int j = 0 ; j < m_climates.size() ; ++j)
+    for(unsigned j = 0 ; j < m_climates.size() ; ++j)
         if(m_climates[j].m_actif)
         {
             r -= (int)((float)m_climates[j].m_lumiereModificater.rouge * m_climates[j].GetState());
@@ -1405,7 +1405,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                             (int)(configuration->Resolution.y*0.5f));
         moteurGraphique->AjouterCommande(&minimap,12,0);
 
-        for(int i = 0 ; i < hero->m_amis.size() ; ++i)
+        for(unsigned i = 0 ; i < hero->m_amis.size() ; ++i)
         {
             coordonnee pos;
 
@@ -1419,7 +1419,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
         }
     }
 
-    for(int i = 0 ; i < m_climates.size() ; ++i)
+    for(unsigned i = 0 ; i < m_climates.size() ; ++i)
         m_climates[i].Draw();
 
     sf::Sprite sky;
@@ -1501,7 +1501,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                             if (alt)
                                 m_decor[1][j][k].AlphaObjets(255);
 
-                            objetPointe=m_decor[1][j][k].AfficherTexteObjets(position,m_objetPointe);
+                            objetPointe=m_decor[1][j][k].AfficherTexteObjets(position);
 
                             if (objetPointe>=0&&!eventManager->getEvenement(sf::Mouse::Left,EventClicA) && alt)
                             {
@@ -1640,9 +1640,9 @@ int Map::AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coord
     return m_projectile.size()-1;
 }
 
-void Map::Animer(Hero *hero,float temps,Menu *menu)
+void Map::Animer(Hero *hero,float temps)
 {
-    for(int i = 0 ; i < m_climates.size() ; ++i)
+    for(unsigned i = 0 ; i < m_climates.size() ; ++i)
         m_climates[i].Update(temps);
 
     coordonnee positionHero;
@@ -1723,9 +1723,9 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                                             m_monstre[monstre].m_degatsInflige  = degats;
 
                                             m_monstre[monstre].m_cible->m_vientDetreTouche = &m_monstre[monstre];
-                                            InfligerDegats(m_monstre[monstre].m_cible, &m_monstre[monstre], degats, 0, hero, 0, 0);
+                                            InfligerDegats(m_monstre[monstre].m_cible, &m_monstre[monstre], degats, 0, hero, 0);
 
-                                            m_monstre[monstre].InfligerDegats(-degats * m_monstre[monstre].getCaracteristique().volVie, 4, NULL);
+                                            m_monstre[monstre].InfligerDegats(-degats * m_monstre[monstre].getCaracteristique().volVie, 4);
                                         }
                                 }
                             }
@@ -1751,7 +1751,7 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
                         if(configuration->Lumiere)
                             moteurGraphique->LightManager->Generate(m_monstre[monstre].m_entite_graphique.m_light);
 
-                        GererMiracle(&m_monstre[monstre],m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles,temps,positionHero,hero);
+                        GererMiracle(&m_monstre[monstre],m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles,temps,hero);
 
                         if(m_monstre[monstre].m_doitMourir && m_monstre[monstre].EnVie() )
                             InfligerDegats(&m_monstre[monstre], NULL, m_monstre[monstre].getCaracteristique().vie, 4, hero, 0);
@@ -1761,19 +1761,19 @@ void Map::Animer(Hero *hero,float temps,Menu *menu)
 }
 
 
-void Map::MusiquePlay(coordonnee position)
+void Map::MusiquePlay()
 {
-    if (m_musiqueEnCours>=0&&m_musiqueEnCours<m_musiques.size())
+    if (m_musiqueEnCours>=0 && m_musiqueEnCours<(int)m_musiques.size())
     {
         Sound::Status Status = moteurSons->GetMusicStatus();
 
         if (Status==0)
         {
             m_musiqueEnCours++;
-            if (m_musiqueEnCours>=m_musiques.size())
+            if (m_musiqueEnCours >= (int)m_musiques.size())
                 m_musiqueEnCours=0;
 
-            if (m_musiqueEnCours>=0&&m_musiqueEnCours<m_musiques.size())
+            if (m_musiqueEnCours >=0 && m_musiqueEnCours < (int)m_musiques.size())
                 moteurSons->PlayNewMusic(m_musiques[m_musiqueEnCours]);
         }
     }
@@ -1962,7 +1962,7 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                 {
                     TesterPoussable(*Iter, temps, monstre);
 
-                    bool seDeplacer = Iter->SeDeplacer(temps*100,getDimensions());
+                    bool seDeplacer = Iter->SeDeplacer(temps*100);
 
                     Script *script=&Iter->m_scriptAI;
                     if ((int)script->m_instructions.size()>0)
@@ -2095,11 +2095,11 @@ bool Map::TileVisible(int x,int y, coordonnee pos)
     return true;
 }
 
-bool Map::InfligerDegats(int numero, Personnage *cible, float degats, int type, Hero *hero,bool pousser, float temps)
+bool Map::InfligerDegats(int numero, Personnage *cible, float degats, int type, Hero *hero, float temps)
 {
     if (numero >= 0 && numero < (int)m_monstre.size())
     {
-        return InfligerDegats(&m_monstre[numero], cible, degats, type, hero, pousser, temps);
+        return InfligerDegats(&m_monstre[numero], cible, degats, type, hero, temps);
 
         if (!m_monstre[numero].EnVie())
             if (m_monstreIllumine == numero)
@@ -2108,14 +2108,14 @@ bool Map::InfligerDegats(int numero, Personnage *cible, float degats, int type, 
     return (false);
 }
 
-bool Map::InfligerDegats(Personnage *monstre, Personnage *cible, float degats, int type, Hero *hero,bool pousser, float temps)
+bool Map::InfligerDegats(Personnage *monstre, Personnage *cible, float degats, int type, Hero *hero, float temps)
 {
     float viePrecedente = monstre->getCaracteristique().vie;
 
     if(monstre != &hero->m_personnage)
-        monstre->InfligerDegats(degats, type, &m_ModeleMonstre[monstre->getModele()], temps);
+        monstre->InfligerDegats(degats, type, temps);
     else
-        monstre->InfligerDegats(degats, type, &hero->m_modelePersonnage[0], temps);
+        monstre->InfligerDegats(degats, type, temps);
 
     if(cible != NULL && monstre != &hero->m_personnage)
         monstre->m_cible = cible;
@@ -2137,7 +2137,7 @@ bool Map::InfligerDegats(Personnage *monstre, Personnage *cible, float degats, i
                 if (monstre->m_miracleEnCours[i].m_infos[o]->m_effetEnCours>=0)
                     if (m_ModeleMonstre[monstre->getModele()].m_miracles[monstre->m_miracleEnCours[i].m_modele].m_effets[monstre->m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type==INVOCATION)
                         if (monstre->m_miracleEnCours[i].m_infos[o]->m_IDObjet>=0&&monstre->m_miracleEnCours[i].m_infos[o]->m_IDObjet<(int)m_monstre.size())
-                            InfligerDegats(monstre->m_miracleEnCours[i].m_infos[o]->m_IDObjet, monstre, m_monstre[monstre->m_miracleEnCours[i].m_infos[o]->m_IDObjet].getCaracteristique().vie, 4,hero,false, temps);
+                            InfligerDegats(monstre->m_miracleEnCours[i].m_infos[o]->m_IDObjet, monstre, m_monstre[monstre->m_miracleEnCours[i].m_infos[o]->m_IDObjet].getCaracteristique().vie, 4,hero, temps);
         }
 
         if (monstre->getCaracteristique().pointAme>0)
@@ -2536,7 +2536,7 @@ void Map::TesterPoussable(Personnage &personnage, float temps, int id)
     }
 }
 
-int Map::getMonstre(Hero *hero,coordonnee positionSouris,coordonnee casePointee)
+int Map::getMonstre(coordonnee casePointee)
 {
     float distance=100000;
     int meilleur=-1;

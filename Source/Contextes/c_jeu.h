@@ -42,7 +42,7 @@ public:
     Initialise les écritures pour les FPS
     */
     c_Jeu();
-  //  ~c_Jeu();
+    virtual ~c_Jeu();
 
     //! Utilise le contexte.
     /**
@@ -113,7 +113,7 @@ private:
     \param jeu : class qui contient le jeu, donc le héro, la map en cours, ...
     */
     void Affichage(Jeu *jeu);
-    void FPS(Jeu *jeu);
+    void FPS();
 
     bool continuer,lumiere,augmenter;
     int nbrTourBoucle;

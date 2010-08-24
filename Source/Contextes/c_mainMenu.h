@@ -32,14 +32,15 @@ class c_MainMenu : public Contexte
 {
 public:
     c_MainMenu();
+    virtual ~c_MainMenu();
     void Utiliser(Jeu *jeu);
     void Reset(Jeu *jeu);
 
     void  E_Principal(Jeu *jeu);
     void  E_Continuer(Jeu *jeu);
     void  E_Nouveau(Jeu *jeu);
-    void  E_Credits(Jeu *jeu);
-    void  E_Story(Jeu *jeu);
+    void  E_Credits();
+    void  E_Story();
 
     bool m_save;
     bool m_reset;

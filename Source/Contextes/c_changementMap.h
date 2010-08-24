@@ -42,6 +42,7 @@ public:
     Le constructeur de cette classe est obsolète. ^^'
     */
     c_Chargement();
+    virtual ~c_Chargement();
 
     //! Utilise le contexte.
     /**

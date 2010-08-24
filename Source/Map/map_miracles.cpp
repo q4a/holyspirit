@@ -207,7 +207,7 @@ bool Map::Miracle_Effet  (Hero *hero, Personnage *personnage, Miracle &modele, E
 
         bool fin = false;
 
-        if(temp->m_effets.size() > info.m_IDObjet)
+        if((int)temp->m_effets.size() > info.m_IDObjet)
         {
             if(!temp->m_effets[info.m_IDObjet].m_effet.m_actif)
                 fin = true;
@@ -294,7 +294,7 @@ bool Map::Miracle_Charme (Hero *hero, Personnage *personnage, Miracle &modele, E
             coordonnee temp;
             bool ok = false;
             int id = -1;
-            for(int i = 0 ; i < m_monstre.size() ; ++i)
+            for(unsigned i = 0 ; i < m_monstre.size() ; ++i)
                 if(&m_monstre[i] == info.m_cible)
                     id = i, m_decor[1][m_monstre[i].getCoordonnee().y][m_monstre[i].getCoordonnee().x].delMonstre(i);
 
@@ -523,7 +523,7 @@ bool Map::Miracle_Projectile(Hero *hero, Personnage *personnage, Miracle &modele
 
 
         Tileset *tileset = NULL;
-        if(effet.m_sequence >= 0 && effet.m_sequence < modele.m_tileset.size())
+        if(effet.m_sequence >= 0 && effet.m_sequence < (int)modele.m_tileset.size())
             tileset = moteurGraphique->getTileset(modele.m_tileset[effet.m_sequence]);
 
         info.m_IDObjet = AjouterProjectile( info.m_position,
@@ -816,7 +816,7 @@ bool Map::Miracle_Invocation(Hero *hero, Personnage *personnage, Miracle &modele
             coordonnee temp;
             bool ok = false;
             int id = -1;
-            for(int i = 0 ; i < m_monstre.size() ; ++i)
+            for(unsigned i = 0 ; i < m_monstre.size() ; ++i)
                 if(&m_monstre[i] == info.m_cible)
                     id = i, m_decor[1][m_monstre[i].getCoordonnee().y][m_monstre[i].getCoordonnee().x].delMonstre(i);
 
@@ -1029,7 +1029,7 @@ bool Map::Miracle_Degats(Hero *hero, Personnage *personnage, Miracle &modele, Ef
             if (info.m_cible->getCoordonnee().x >=0 && info.m_cible->getCoordonnee().x < (int)m_decor[0][info.m_cible->getCoordonnee().y].size())
             {
                 if(deg != 0)
-                    InfligerDegats(info.m_cible, personnage, deg, effet.m_informations[2], hero, 0, effet.m_informations[3]);
+                    InfligerDegats(info.m_cible, personnage, deg, effet.m_informations[2], hero, effet.m_informations[3]);
             }
     }
 
@@ -1148,7 +1148,7 @@ bool Map::Miracle_Conditions(Hero *hero, Personnage *personnage, Miracle &modele
             oui = true;
 
     if(effet.m_informations[1] == C_VARIABLE)
-        if(personnage->m_variables_miracles.size() > effet.m_informations[2])
+        if((int)personnage->m_variables_miracles.size() > effet.m_informations[2])
             if(personnage->m_variables_miracles[effet.m_informations[2]] == effet.m_informations[3])
                 oui = true;
 
@@ -1222,7 +1222,7 @@ bool Map::Miracle_Bloquer(Hero *hero, Personnage *personnage, Miracle &modele, E
 
 bool Map::Miracle_Variable(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o)
 {
-    if(personnage->m_variables_miracles.size() <=  effet.m_informations[0])
+    if((int)personnage->m_variables_miracles.size() <=  effet.m_informations[0])
         personnage->m_variables_miracles.resize(effet.m_informations[0] + 1,0);
 
     personnage->m_variables_miracles[effet.m_informations[0]] = effet.m_informations[1];
@@ -1240,7 +1240,7 @@ bool Map::Miracle_Variable(Hero *hero, Personnage *personnage, Miracle &modele, 
     return 0;
 }
 
-void Map::GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,float temps,coordonnee positionHero,Hero *hero)
+void Map::GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,float temps,Hero *hero)
 {
     bool continuerb = true;
     for (int i=0;i<(int)personnage->m_miracleEnCours.size() && continuerb;++i)

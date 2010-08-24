@@ -46,6 +46,9 @@ c_Craft::c_Craft()
 {
     m_decalage=-600;
 }
+c_Craft::~c_Craft()
+{
+}
 
 void c_Craft::Utiliser(Jeu *jeu)
 {
@@ -56,10 +59,9 @@ void c_Craft::Utiliser(Jeu *jeu)
     jeu->m_display=true;
     jeu->Clock.Reset();
 
-    jeu->map->Animer(&jeu->hero,0,&jeu->menu);
+    jeu->map->Animer(&jeu->hero,0);
     jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
     jeu->hero.AfficherAmisEtCraft();
-   // jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);
 
     if (m_afficher)
         m_decalage+=temps_ecoule*2000;

@@ -37,6 +37,9 @@ int GestionBoutons(Jeu *jeu, bool = false);
 c_Chargement::c_Chargement()
 {
 }
+c_Chargement::~c_Chargement()
+{
+}
 
 void c_Chargement::setC_Chargement(std::string prochaineMap,coordonnee coordonneePerso,bool debut)
 {
@@ -164,7 +167,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         if (!jeu->hero.m_personnage.EnVie())
         {
             mort = true;
-            jeu->hero.m_personnage.InfligerDegats(-jeu->hero.m_caracteristiques.maxVie*0.5,4,&jeu->hero.m_modelePersonnage[0],0);
+            jeu->hero.m_personnage.InfligerDegats(-jeu->hero.m_caracteristiques.maxVie*0.5,4,0);
         }
         else
             mort = false;
@@ -175,7 +178,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         std::string musicEnCours;
         if(jeu->map!=NULL)
-            if(jeu->map->m_musiqueEnCours < jeu->map->m_musiques.size())
+            if(jeu->map->m_musiqueEnCours < (int)jeu->map->m_musiques.size())
                 musicEnCours = jeu->map->m_musiques[jeu->map->m_musiqueEnCours];
 
         if(m_nomProchaineMap!="Tutorial.map.hs" && m_nomProchaineMap!="Begin.map.hs")
@@ -184,7 +187,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         std::vector<std::string> climatsEnCours;
         std::vector<float> climatsTimeEnCours;
         if(jeu->map!=NULL)
-            for(int i = 0 ; i < jeu->map->m_climates.size() ; ++i)
+            for(unsigned i = 0 ; i < jeu->map->m_climates.size() ; ++i)
                 if(jeu->map->m_climates[i].m_actif)
                 {
                     climatsEnCours.push_back(jeu->map->m_climates[i].m_chemin);
@@ -213,14 +216,14 @@ void c_Chargement::Utiliser(Jeu *jeu)
             console->Ajouter("CRITICAL ERROR"), throw  "CRITICAL ERROR";
 
         bool newMusic = true;
-        for(int i = 0 ; i < jeu->map->m_musiques.size() ; ++i)
+        for(unsigned i = 0 ; i < jeu->map->m_musiques.size() ; ++i)
             if(musicEnCours == jeu->map->m_musiques[i])
                 jeu->map->m_musiqueEnCours = i, newMusic = false;
         if(newMusic && !jeu->map->m_musiques.empty())
             moteurSons->PlayNewMusic(jeu->map->m_musiques[jeu->map->m_musiqueEnCours]);
 
-        for(int j = 0 ; j < climatsEnCours.size() ; ++j)
-            for(int i = 0 ; i < jeu->map->m_climates.size() ; ++i)
+        for(unsigned j = 0 ; j < climatsEnCours.size() ; ++j)
+            for(unsigned i = 0 ; i < jeu->map->m_climates.size() ; ++i)
                 if(jeu->map->m_climates[i].m_chemin == climatsEnCours[j])
                 {
                     jeu->map->m_climates[i].m_actif = true;
@@ -325,7 +328,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         Listener::SetGlobalVolume((float)configuration->volume);
         Listener::SetPosition(-position.x, 0, position.y);
         Listener::SetDirection(0, 0, 1);
-        jeu->map->MusiquePlay(position);
+        jeu->map->MusiquePlay();
 
         if (configuration->Lumiere)
             jeu->map->CalculerOmbresEtLumieres();
@@ -339,7 +342,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         jeu->hero.m_personnage.Animer(&jeu->hero.m_modelePersonnage[0], 0);
         jeu->hero.m_personnage.m_entite_graphique.Initialiser(pos);
-        jeu->map->Animer(&jeu->hero,0,&jeu->menu);
+        jeu->map->Animer(&jeu->hero,0);
 
         moteurGraphique->LightManager->SetIntensity(jeu->hero.m_personnage.m_entite_graphique.m_light,jeu->hero.getPorteeLumineuse().intensite);
         moteurGraphique->LightManager->SetRadius(jeu->hero.m_personnage.m_entite_graphique.m_light,jeu->hero.getPorteeLumineuse().intensite * 3);
@@ -348,7 +351,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
                 jeu->hero.getPorteeLumineuse().vert,
                 jeu->hero.getPorteeLumineuse().bleu));
 
-        jeu->hero.m_personnage.SeDeplacer(0, coordonnee ());
+        jeu->hero.m_personnage.SeDeplacer(0);
 
         allerVersImageChargement=false;
 
@@ -363,7 +366,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
             moteurGraphique->LightManager->Generate(jeu->hero.m_personnage.m_entite_graphique.m_light);
         }
 
-        jeu->map->Animer(&jeu->hero,1,&jeu->menu);
+        jeu->map->Animer(&jeu->hero,1);
 
         jeu->Clock.Reset();
     }

@@ -382,15 +382,11 @@ void Hero::SauvegarderApercu()
 
     render.Display();
     std::string chemin_image;
-    for(int i = 0  ; i < m_chemin_save.size() - 7 ; ++i)
-        chemin_image.push_back(m_chemin_save[i]);
+
+    chemin_image = m_chemin_save.substr(0, m_chemin_save.size() - 7);
     chemin_image += ".png";
 
     render.GetImage().SaveToFile(configuration->chemin_temps + chemin_image);
-
- //   cDAT fichierSave;
-
-   // fichierSave.Create(m_contenuSave, configuration->chemin_saves+m_chemin_save);
 
     if (configuration->debug)
             console->Ajouter("/Image générée.");
@@ -694,10 +690,8 @@ bool Hero::ChargerPresentation(std::string chemin_save)
     if (reader.Read(configuration->chemin_saves+chemin_save))
     {
         ifstream* fichier=reader.GetInfos(configuration->chemin_temps+chemin_save);
-        //fichier.open((configuration->chemin_saves+"hero.sav.hs").c_str(), ios::in | ios::binary);
         if (fichier)
         {
-            char caractere;
             int temp = 0;
             *fichier>>temp;
 
@@ -1619,49 +1613,6 @@ void Hero::AfficherPotales(float decalage)
     }
 }
 
-void Hero::AfficherFlecheQuetes(const std::string &nomMap, float temps)
-{
-  /*  if(m_queteSelectionnee >= 0)
-    {
-        if(nomMap == m_quetes[m_queteSelectionnee].m_map)
-        {
-            coordonneeDecimal pos,dir;
-
-            pos.x = (m_personnage.getCoordonneePixel().x/COTE_TILE-m_personnage.getCoordonneePixel().y/COTE_TILE-1)*(64);
-            pos.y = (m_personnage.getCoordonneePixel().x/COTE_TILE+m_personnage.getCoordonneePixel().y/COTE_TILE)*(32);
-
-            dir.x = (m_quetes[m_queteSelectionnee].m_position.x-m_quetes[m_queteSelectionnee].m_position.y-1)*(64);
-            dir.y = (m_quetes[m_queteSelectionnee].m_position.x+m_quetes[m_queteSelectionnee].m_position.y)*(32);
-
-
-            float m=atan2((double)(pos.x-dir.x),(double)(pos.y-dir.y));
-            //m+=M_PI/3;
-
-            m_angleFleche=(int)(m*180/M_PI);
-        }
-        else
-            m_angleFleche += temps * 200;
-
-        if (m_angleFleche>=360)
-            m_angleFleche=0;
-        if (m_angleFleche<0)
-            m_angleFleche=360+m_angleFleche;
-
-        Sprite sprite;
-
-        sprite.SetImage(*moteurGraphique->getImage(m_classe.arrow.image));
-        sprite.SetX(m_classe.arrow.position.x*configuration->Resolution.x/800);
-        sprite.SetY(m_classe.arrow.position.y*configuration->Resolution.h/600);
-        sprite.Resize(m_classe.arrow.position.w, m_classe.arrow.position.h);
-        sprite.SetOrigin(m_classe.arrow.centre.x, m_classe.arrow.centre.y);
-        sprite.SetRotation(m_angleFleche);
-
-        moteurGraphique->AjouterCommande(&sprite,18,0);
-    }*/
-}
-
-
-
 bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
 {
     bool retour = false;
@@ -1972,7 +1923,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
                         if(ok)
                             for (int j=0;j<(int)m_inventaire.size();j++)
                                 if(m_inventaire[j].m_equipe == k)
-                                    temp.x=decalage-4,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,0,1);
+                                    temp.x=decalage-4,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,0,0);
                     }
                 }
             }
@@ -2177,7 +2128,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
                 //temp.y-=256;
                 temp.x-=196;
 
-                int decalage=(*trader)[i].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,m_cheminClasse,(10-(float)m_caracteristiques.charisme/100),1,1,0,1,trader==&m_coffre);
+                int decalage=(*trader)[i].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,m_cheminClasse,(10-(float)m_caracteristiques.charisme/100),1,1,1,trader==&m_coffre);
                 retour = true;
 
                 for(int k = 0 ; k < (int)m_classe.emplacements.size() ; k++)
@@ -2725,7 +2676,7 @@ void Hero::RecalculerCaracteristiques(bool bis)
             }
 
     for (unsigned i=0;i<liste_set.size();++i)
-        for (unsigned k=0;k<liste_set[i].m_nombre;++k)
+        for (unsigned k=0;(int)k < liste_set[i].m_nombre;++k)
         {
             for (int j=0;j<(int)liste_set[i].m_benedictions[k].size();++j)
                 switch (liste_set[i].m_benedictions[k][j].type)
@@ -2818,7 +2769,7 @@ void Hero::RecalculerCaracteristiques(bool bis)
             }
 
     for (unsigned i=0;i<liste_set.size();++i)
-        for (unsigned k=0;k<liste_set[i].m_nombre;++k)
+        for (unsigned k=0; (int)k<liste_set[i].m_nombre;++k)
             for (int j=0;j<(int)liste_set[i].m_benedictions[k].size();++j)
                 switch (liste_set[i].m_benedictions[k][j].type)
                 {
@@ -3086,13 +3037,13 @@ bool Hero::AjouterObjet(Objet objet,bool enMain)
 
                             for (int k=0;k<(int)objet.m_emplacementImpossible.size();k++)
                                 for(int o = 0 ; o < (int)m_inventaire.size() ; ++o)
-                                    if(m_inventaire[o].m_equipe >= 0 && m_inventaire[o].m_equipe < m_classe.emplacements.size())
+                                    if(m_inventaire[o].m_equipe >= 0 && m_inventaire[o].m_equipe < (int)m_classe.emplacements.size())
                                         if (objet.m_emplacementImpossible[k]==m_classe.emplacements[m_inventaire[o].m_equipe].emplacement)
                                             continuer = true;
 
-                            for(int k = 0 ; k < (int)m_inventaire.size() ; ++k)
+                            for(unsigned k = 0 ; k < m_inventaire.size() ; ++k)
                                 if(m_inventaire[k].m_equipe >= 0 && m_inventaire[k].m_equipe < (int)m_classe.emplacements.size())
-                                    for (int o=0;o<(int)m_inventaire[k].m_emplacementImpossible.size();o++)
+                                    for (unsigned o=0;o<m_inventaire[k].m_emplacementImpossible.size();o++)
                                         if(m_classe.emplacements[j].emplacement == m_inventaire[k].m_emplacementImpossible[o])
                                             continuer = true;
 
@@ -3291,17 +3242,17 @@ void Hero::AutoTrierInventaire()
         std::vector<std::string> nom_objets_bis;
         std::vector<int> taille_objets_bis;
         bool ajouter = true;
-        for(int k = 0 ; k < nom_objets.size() ; ++k)
+        for(unsigned k = 0 ; k < nom_objets.size() ; ++k)
             if(nom_objets[k] == m_inventaire[i].getChemin())
                 ajouter = false;
 
         if(ajouter)
         {
-            int t = 0;
+            unsigned t = 0;
             for(t = 0 ; t < taille_objets.size() ; ++t)
                 if(taille_objets[t] < m_inventaire[i].getTaille().y)
                 {
-                    for(int T = 0 ; T < t ; ++T)
+                    for(unsigned T = 0 ; T < t ; ++T)
                     {
                         nom_objets_bis.push_back(nom_objets[T]);
                         taille_objets_bis.push_back(taille_objets[T]);
@@ -3311,7 +3262,7 @@ void Hero::AutoTrierInventaire()
                     nom_objets_bis.push_back(m_inventaire[i].getChemin());
 
 
-                    for(int T = t ; T < taille_objets.size() ; ++T)
+                    for(unsigned T = t ; T < taille_objets.size() ; ++T)
                     {
                         nom_objets_bis.push_back(nom_objets[T]);
                         taille_objets_bis.push_back(taille_objets[T]);
@@ -3329,7 +3280,7 @@ void Hero::AutoTrierInventaire()
             {
                 nom_objets.clear();
                 taille_objets.clear();
-                for(int T = 0 ; T < taille_objets_bis.size() ; ++T)
+                for(unsigned T = 0 ; T < taille_objets_bis.size() ; ++T)
                 {
                         nom_objets.push_back(nom_objets_bis[T]);
                         taille_objets.push_back(taille_objets_bis[T]);
@@ -3338,8 +3289,8 @@ void Hero::AutoTrierInventaire()
         }
     }
 
-    for(int t = 0 ; t < 8 ; ++t)
-    for(int n = 0 ; n < nom_objets.size() ; ++n)
+    for(unsigned t = 0 ; t < 8 ; ++t)
+    for(unsigned n = 0 ; n < nom_objets.size() ; ++n)
     for(unsigned i = 0 ; i < m_inventaire.size() ; ++i)
     if(m_inventaire[i].m_type == ordre_tri[t]
     && m_inventaire[i].m_equipe < 0
@@ -3347,7 +3298,7 @@ void Hero::AutoTrierInventaire()
     {
         for(int k = 0 ; k < 8 ; ++k)
             if(m_raccourcis[k].miracle == false
-            && m_raccourcis[k].no == i)
+            && m_raccourcis[k].no == (int)i)
                 new_raccourci[k] = inventaire_bis.size();
 
         inventaire_bis.push_back(m_inventaire[i]);
@@ -3715,7 +3666,7 @@ void Hero::GererCraft(std::vector<Objet> *trader)
                     && eventManager->getEvenement(Mouse::Left,EventClic))
                     {
                         for(unsigned i = 0 ; i < m_inventaire[m_no_schema_craft].m_craft_ingredients.size() ; ++i)
-                            for(unsigned k = 0 ; k < m_inventaire[m_no_schema_craft].m_craft_ingredients[i].nombre ; ++k)
+                            for(unsigned k = 0 ; (int)k < m_inventaire[m_no_schema_craft].m_craft_ingredients[i].nombre ; ++k)
                             {
                                 for(unsigned j = 0 ; j < (*trader).size() ; ++j)
                                     if((*trader)[j].getChemin() == m_inventaire[m_no_schema_craft].m_craft_ingredients[i].nom)
@@ -3742,7 +3693,7 @@ void Hero::GererCraft(std::vector<Objet> *trader)
     }
 }
 
-void Hero::GererBless(std::vector<Objet> *trader)
+void Hero::GererBless()
 {
     if(m_no_schema_bless >= 0)
         m_classe.schema_craft.empty = false;
@@ -3814,7 +3765,7 @@ void Hero::GererBless(std::vector<Objet> *trader)
                     if(m_inventaire[m_no_result_bless].m_type == m_inventaire[m_no_schema_bless].m_conditions[i].valeur)
                         ok = true;
                 if(m_inventaire[m_no_schema_bless].m_conditions[i].type == L_EMPLACEMENT)
-                    for(int j = 0 ; j < m_inventaire[m_no_result_bless].m_emplacement.size() ; ++j)
+                    for(unsigned j = 0 ; j < m_inventaire[m_no_result_bless].m_emplacement.size() ; ++j)
                         if(m_inventaire[m_no_result_bless].m_emplacement[j] == m_inventaire[m_no_schema_bless].m_conditions[i].valeur)
                             ok = true;
                 if(m_inventaire[m_no_schema_bless].m_conditions[i].type == L_NOM)
@@ -3966,8 +3917,10 @@ void Hero::UpdateRaccourcis()
 
 const std::string &Hero::getNomObjet(int numero)
 {
-    if(numero >= 0 && numero < m_inventaire.size())
+    if(numero >= 0 && numero < (int)m_inventaire.size())
         return m_inventaire[numero].getChemin();
+    else
+        return configuration->getText(0,0);
 }
 int Hero::getNombreObjet()
 {

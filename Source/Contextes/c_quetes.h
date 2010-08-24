@@ -33,6 +33,7 @@ class c_Quetes : public Contexte
 public:
 
     c_Quetes();
+    virtual ~c_Quetes();
     void Utiliser(Jeu *jeu);
 
 

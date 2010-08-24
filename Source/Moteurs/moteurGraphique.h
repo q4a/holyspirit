@@ -88,7 +88,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	void CreateNewWindow();
 
-	void Gerer(float,int);
+	void Gerer(float);
 
 	int AjouterImage(std::string,int importance = 5);
 	int AjouterImage(const sf::Image &,int importance = 5);

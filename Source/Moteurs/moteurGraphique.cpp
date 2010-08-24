@@ -209,7 +209,7 @@ void MoteurGraphique::Charger()
     m_ambientShadowTileset.Charger(configuration->ambientShadow_tileset);
 }
 
-void MoteurGraphique::Gerer(float temps,int tailleMapY)
+void MoteurGraphique::Gerer(float temps)
 {
     m_transWater.x += temps*0.005;
     m_transWater.x += decalageReflection.x / configuration->Resolution.x / configuration->zoom * 0.014 * 0.5;
@@ -289,7 +289,7 @@ void MoteurGraphique::Gerer(float temps,int tailleMapY)
             for(m_systemeParticules_iter=m_systemeParticules.begin();
                 m_systemeParticules_iter!=m_systemeParticules.end();
                 ++m_systemeParticules_iter)
-                    m_systemeParticules_iter->Envoler(m_effetsEcran_iter->pos,(int)m_effetsEcran_iter->info1,(int)m_effetsEcran_iter->info2, temps);
+                    m_systemeParticules_iter->Envoler(m_effetsEcran_iter->pos,(int)m_effetsEcran_iter->info1,(int)m_effetsEcran_iter->info2);
 
             m_effetsEcran.erase (m_effetsEcran_iter);
             if((int)m_effetsEcran.size()>k)

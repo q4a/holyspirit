@@ -51,7 +51,7 @@ public:
     void AfficherSac(coordonnee ,float ,coordonnee ,Caracteristique , std::string);
     void AfficherMinimap(coordonnee position,int typeCase,float alpha);
 
-    void Animer(Hero *hero,float temps,Menu *menu); // Animation des tiles
+    void Animer(Hero *hero,float temps); // Animation des tiles
 
     void CalculerOmbresEtLumieres();
     void Detruire();
@@ -65,7 +65,7 @@ public:
     void GererScript(Jeu *jeu,Hero *hero,float temps,Menu *menu);
     void GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu);
 
-    void GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles,float temps,coordonnee positionHero,Hero *hero);
+    void GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles,float temps,Hero *hero);
 
     bool Miracle_Aura           (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int );
     bool Miracle_Declencheur    (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int );
@@ -108,10 +108,10 @@ public:
 
     //void InfligerDegatsMasse(coordonnee position,int rayon,int degats,bool sourceConcernee, Hero *hero, bool pousser = true, bool heroCompris = true, bool monstre = true);
 
-    bool InfligerDegats(int numeroMontre, Personnage *cible, float degats, int type, Hero *hero,bool pousser, float temps = 0);
-    bool InfligerDegats(Personnage *monstre, Personnage *cible, float degats, int type, Hero *hero,bool pousser, float temps = 0);
+    bool InfligerDegats(int numeroMontre, Personnage *cible, float degats, int type, Hero *hero, float temps = 0);
+    bool InfligerDegats(Personnage *monstre, Personnage *cible, float degats, int type, Hero *hero, float temps = 0);
 
-    void MusiquePlay(coordonnee position);
+    void MusiquePlay();
 
     bool RamasserObjet(Hero *hero,bool enMain = false);
 
@@ -124,7 +124,7 @@ public:
     bool    getCollision(int positionX,int positionY, int exception = -1); // Retourne 1 s'il y a une collision avec le décors se trouvant à la position X et Y
     int     getTypeCase(int positionX,int positionY);
 
-    int     getMonstre(Hero *hero,coordonnee positionSouris,coordonnee casePointee);
+    int     getMonstre(coordonnee casePointee);
     const   coordonnee &getSacPointe();
     int     getObjetPointe();
     int     getNombreObjets(coordonnee position);

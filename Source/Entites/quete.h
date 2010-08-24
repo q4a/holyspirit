@@ -38,7 +38,6 @@ public:
     std::string m_description;
     int m_id;
     int m_statut;
-    coordonnee m_position;
     std::string m_map;
 };
 

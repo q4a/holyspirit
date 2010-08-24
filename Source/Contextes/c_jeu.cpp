@@ -95,6 +95,11 @@ c_Jeu::c_Jeu()
     m_thread_sauvegarde = NULL;
 }
 
+c_Jeu::~c_Jeu()
+{
+
+}
+
 void c_Jeu::Utiliser(Jeu *jeu)
 {
     //Gestion du temps
@@ -147,7 +152,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
     Affichage(jeu);
 
-    FPS(jeu);
+    FPS();
 }
 
 
@@ -256,7 +261,7 @@ void c_Jeu::Deplacements(Jeu *jeu)
 
     jeu->map->TesterPoussable(jeu->hero.m_personnage, tempsEcoule);
 
-    if (jeu->hero.m_personnage.SeDeplacer(tempsEcoule*100,jeu->map->getDimensions()))
+    if (jeu->hero.m_personnage.SeDeplacer(tempsEcoule*100))
     {
         bool ok=true;
         if (jeu->hero.m_personnage.m_cible != NULL)
@@ -269,7 +274,7 @@ void c_Jeu::Deplacements(Jeu *jeu)
         if (ok)
         {
             jeu->hero.m_personnage.Pathfinding(jeu->map->getAlentourDuPersonnage(jeu->hero.m_personnage.getCoordonnee()),temp);
-            jeu->hero.m_personnage.SeDeplacer(0,jeu->map->getDimensions());
+            jeu->hero.m_personnage.SeDeplacer(0);
         }
 
         if (eventManager->getEvenement(Mouse::Left,EventClicA)&&eventManager->getEvenement(Key::LShift,EventKey))
@@ -301,7 +306,7 @@ void c_Jeu::Deplacements(Jeu *jeu)
     Listener::SetGlobalVolume((float)configuration->volume);
     Listener::SetPosition(-position.x, 0, position.y);
     Listener::SetDirection(0, 0, 1);
-    jeu->map->MusiquePlay(position);
+    jeu->map->MusiquePlay();
     jeu->sonMort.SetPosition(position.x,0,position.y);
 }
 void c_Jeu::Animation(Jeu *jeu)
@@ -346,9 +351,9 @@ void c_Jeu::Animation(Jeu *jeu)
 
                                 jeu->hero.m_personnage.m_cible->m_vientDetreTouche = &jeu->hero.m_personnage;
 
-                                jeu->map->InfligerDegats(jeu->hero.m_personnage.m_cible,&jeu->hero.m_personnage,degats,PHYSIQUE,&jeu->hero,1,0);
+                                jeu->map->InfligerDegats(jeu->hero.m_personnage.m_cible,&jeu->hero.m_personnage,degats,PHYSIQUE,&jeu->hero,0);
 
-                                jeu->hero.m_personnage.InfligerDegats(-degats * jeu->hero.m_caracteristiques.volVie, 4, NULL,0);
+                                jeu->hero.m_personnage.InfligerDegats(-degats * jeu->hero.m_caracteristiques.volVie, 4,0);
                                 jeu->hero.m_caracteristiques.foi += degats *jeu->hero.m_caracteristiques.volFoi;
 
                                 jeu->hero.m_personnage.m_miracleFrappeEnCours = false;
@@ -392,12 +397,12 @@ void c_Jeu::Animation(Jeu *jeu)
     if(!jeu->hero.m_personnage.frappeEnCours)
         jeu->hero.m_personnage.m_lancementMiracleEnCours = false;
 
-    jeu->map->Animer(&jeu->hero,temps,&jeu->menu); // Animation des tiles de la jeu->map
+    jeu->map->Animer(&jeu->hero,temps); // Animation des tiles de la jeu->map
 
     if(jeu->hero.m_personnage.m_vientDeToucher != NULL)
         jeu->hero.m_personnage.m_vientDeFrapper = jeu->hero.m_personnage.m_vientDeToucher, jeu->hero.m_personnage.m_vientDeToucher = NULL;
 
-    jeu->map->GererMiracle(&jeu->hero.m_personnage,jeu->hero.m_classe.miracles,tempsEcoule,positionHero,&jeu->hero);
+    jeu->map->GererMiracle(&jeu->hero.m_personnage,jeu->hero.m_classe.miracles,tempsEcoule,&jeu->hero);
 }
 void c_Jeu::Lumieres(Jeu *jeu)
 {
@@ -467,7 +472,7 @@ void GestionRaccourcis(Jeu *jeu)
         }
     }
 
-    if(newmiracle >= 0 && newmiracle < jeu->hero.m_classe.miracles.size())
+    if(newmiracle >= 0 && newmiracle < (int)jeu->hero.m_classe.miracles.size())
     {
         if(jeu->hero.m_classe.miracles[newmiracle].m_direct)
         {
@@ -689,7 +694,7 @@ void c_Jeu::Evenements(Jeu *jeu)
    // if(jeu->menu.m_dialogue.empty())
     {
         if (!eventManager->getEvenement(Mouse::Left,EventClic))
-            jeu->map->getMonstre(&jeu->hero,eventManager->getPositionSouris(),eventManager->getCasePointee());
+            jeu->map->getMonstre(eventManager->getCasePointee());
 
         if (eventManager->getEvenement(Key::LAlt,EventKey))
             jeu->map->m_monstreIllumine = -1;
@@ -862,7 +867,7 @@ void c_Jeu::Evenements(Jeu *jeu)
 
 void c_Jeu::Affichage(Jeu *jeu)
 {
-    moteurGraphique->Gerer(tempsEcoule,jeu->map->getDimensions().y);
+    moteurGraphique->Gerer(tempsEcoule);
 
     jeu->map->Afficher(&jeu->hero,eventManager->getEvenement(Key::LAlt,EventKey),alpha_map);
 
@@ -933,7 +938,7 @@ void c_Jeu::Affichage(Jeu *jeu)
 
     jeu->m_display=true;
 }
-void c_Jeu::FPS(Jeu *jeu)
+void c_Jeu::FPS()
 {
     nbrTourBoucle++;
 

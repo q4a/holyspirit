@@ -45,6 +45,7 @@ public:
     Met m_decalage à -600
     */
     c_Inventaire();
+    virtual ~c_Inventaire();
 
     //! Utilise le contexte.
     /**
@@ -62,9 +63,8 @@ public:
     //! Donne une liste d'objet qui est l'inventaire du marchand.
     /**
     \param trader : liste des objets qui vont être ajoutés à m_trader
-    \param classe : classe du héro, nécessaire pour pouvoir connaitre la largeur de l'inventaire du marchand
     */
-    void setTrader(std::vector<Objet> *trader,Classe *classe);
+    void setTrader(std::vector<Objet> *trader);
 
 private:
     float temps_ecoule,m_decalage;

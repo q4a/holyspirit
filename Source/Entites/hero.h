@@ -92,7 +92,7 @@ public:
     bool PrendreEnMain(std::vector<Objet>*, bool craft = false, bool bless = false);
     void delObjet(int numero);
 
-    void GererBless(std::vector<Objet>*);
+    void GererBless();
     void GererCraft(std::vector<Objet>*);
 
     void GererBoutonsInventaire();

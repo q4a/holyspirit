@@ -49,6 +49,9 @@ c_Miracles::c_Miracles()
     m_decalage = -600;
     m_fenetre = 0;
 }
+c_Miracles::~c_Miracles()
+{
+}
 
 
 void c_Miracles::Utiliser(Jeu *jeu)
@@ -60,11 +63,10 @@ void c_Miracles::Utiliser(Jeu *jeu)
     jeu->m_display=true;
     jeu->Clock.Reset();
 
-    moteurGraphique->Gerer(0,jeu->map->getDimensions().y);
-    jeu->map->Animer(&jeu->hero,0,&jeu->menu);
+    moteurGraphique->Gerer(0);
+    jeu->map->Animer(&jeu->hero,0);
     jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
     jeu->hero.AfficherAmisEtCraft();
-    //jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);
 
     if (m_afficher)
         m_decalage+=temps_ecoule*2000;
@@ -90,7 +92,7 @@ void c_Miracles::Utiliser(Jeu *jeu)
             jeu->next_screen = 3;
     }
 
-    jeu->menu.AfficherMiracles(m_decalage, &jeu->hero.m_classe, m_fenetre);
+    jeu->menu.AfficherMiracles(m_decalage, &jeu->hero.m_classe);
 
     if(jeu->hero.m_miracleEnMain < 0)
         eventManager->AfficherCurseur();
@@ -124,7 +126,7 @@ void c_Miracles::Utiliser(Jeu *jeu)
     Listener::SetGlobalVolume((float)configuration->volume);
     Listener::SetPosition(-position.x, 0, position.y);
     Listener::SetDirection(0, 0, 1);
-    jeu->map->MusiquePlay(position);
+    jeu->map->MusiquePlay();
     jeu->sonMort.SetPosition(position.x,0,position.y);
 }
 

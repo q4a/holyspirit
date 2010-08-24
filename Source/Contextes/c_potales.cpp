@@ -39,6 +39,9 @@ c_Potales::c_Potales()
 {
     m_decalage=-600;
 }
+c_Potales::~c_Potales()
+{
+}
 
 void c_Potales::Utiliser(Jeu *jeu)
 {
@@ -51,7 +54,7 @@ void c_Potales::Utiliser(Jeu *jeu)
     jeu->m_display=true;
     jeu->Clock.Reset();
 
-    jeu->map->Animer(&jeu->hero,0,&jeu->menu);
+    jeu->map->Animer(&jeu->hero,0);
     jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
     jeu->hero.AfficherAmisEtCraft();
     //jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);

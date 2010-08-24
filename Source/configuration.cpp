@@ -476,8 +476,8 @@ bool Configuration::Options()
                     sf::VideoMode test = test.GetDesktopMode();
 
                     while(no < m_liste_resolutions.size()
-                      && (m_liste_resolutions[no].x > test.Width
-                       || m_liste_resolutions[no].y > test.Height))
+                      && (m_liste_resolutions[no].x > (int)test.Width
+                       || m_liste_resolutions[no].y > (int)test.Height))
                         no++;
 
                     if(no < m_liste_resolutions.size())

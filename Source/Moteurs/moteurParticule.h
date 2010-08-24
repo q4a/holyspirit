@@ -51,7 +51,7 @@ class ParticuleSysteme
     ParticuleSysteme(int , ModeleParticuleSysteme *, coordonnee , sf::Color,float ,float);
     ~ParticuleSysteme();
     bool Afficher( ModeleParticuleSysteme *modele,float temps);
-    void Envoler(sf::Vector2f pos,int force, int type, float);
+    void Envoler(sf::Vector2f pos,int force, int type);
     void Generer(float force, ModeleParticuleSysteme *modele,coordonnee position,float);
 
     int m_modele;

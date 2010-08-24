@@ -899,7 +899,7 @@ void Miracle::Concatenencer(const std::string &chemin, const Caracteristique &ca
 
 
 
-sf::Text Miracle::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color)
+sf::Text Miracle::AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color)
 {
     sf::Text string;
 
@@ -928,18 +928,18 @@ void Miracle::AfficherDescription(coordonnee position, bool suivant)
 
     coordonnee tailleCadran,decalage(-10,0);
 
-    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_nom.c_str()));
-    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"---------------"));
-    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_nom.c_str()));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"---------------"));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
 
     for (int i=0;i<(int)m_description.size() && suivant;i++)
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_description[i].c_str()));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_description[i].c_str()));
 
-    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
-    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
 
     for (int i=0;i<(int)m_description_effets.size();i++)
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_description_effets[i].c_str()));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_description_effets[i].c_str()));
 
     if(m_level > 0)
     {
@@ -947,68 +947,68 @@ void Miracle::AfficherDescription(coordonnee position, bool suivant)
         {
             std::ostringstream buf;
             buf<<configuration->getText(0,29)<<m_coutFoi;
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
         if (m_reserveFoi > 0)
         {
             std::ostringstream buf;
             buf<<configuration->getText(0,30)<<m_reserveFoi;
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
         if (m_coutVie > 0)
         {
             std::ostringstream buf;
             buf<<configuration->getText(0,31)<<m_coutVie;
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
         if (m_reserveVie > 0)
         {
             std::ostringstream buf;
             buf<<configuration->getText(0,32)<<m_reserveVie;
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
     }
 
-    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
-    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
 
     if (suivant)
     {
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,configuration->getText(0,41).c_str()));
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,41).c_str()));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
 
         for (int i=0;i<(int)m_description_effets_suivant.size();i++)
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_description_effets_suivant[i].c_str()));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_description_effets_suivant[i].c_str()));
 
         if (m_coutFoi_suivant > 0)
         {
             std::ostringstream buf;
             buf<<configuration->getText(0,29)<<m_coutFoi_suivant;
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
         if (m_reserveFoi_suivant > 0)
         {
             std::ostringstream buf;
             buf<<configuration->getText(0,30)<<m_reserveFoi_suivant;
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
         if (m_coutVie_suivant > 0)
         {
             std::ostringstream buf;
             buf<<configuration->getText(0,31)<<m_coutVie_suivant;
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
         if (m_reserveVie_suivant > 0)
         {
             std::ostringstream buf;
             buf<<configuration->getText(0,32)<<m_reserveVie_suivant;
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
     }
     if(suivant)
     {
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,configuration->getText(0,42).c_str()));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,42).c_str()));
     }
 
     if (position.x-10<0)

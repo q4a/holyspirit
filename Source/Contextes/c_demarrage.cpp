@@ -38,6 +38,9 @@ c_Demarrage::c_Demarrage()
     m_augmenter=true;
     m_image=moteurGraphique->AjouterImage(configuration->chemin_aa);
 }
+c_Demarrage::~c_Demarrage()
+{
+}
 
 void c_Demarrage::Utiliser(Jeu *jeu)
 {

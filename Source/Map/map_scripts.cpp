@@ -200,10 +200,10 @@ void Map::Script_Trade(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
 {
     jeu->hero.m_personnage.m_cible = NULL;
 
-    jeu->m_inventaire->setTrader(m_monstre[monstre].getPointeurObjets(),&hero->m_classe);
+    jeu->m_inventaire->setTrader(m_monstre[monstre].getPointeurObjets());
     if(!script->m_instructions[noInstruction].m_valeurs.empty())
         if(script->getValeur(noInstruction, 0) == 1)
-            jeu->m_inventaire->setTrader(&hero->m_coffre,&hero->m_classe);
+            jeu->m_inventaire->setTrader(&hero->m_coffre);
 
     eventManager->StopEvenement(sf::Mouse::Left, EventClic);
     eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
@@ -308,7 +308,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                         if (m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type==INVOCATION)
                             if (m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_IDObjet>=0&&m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_IDObjet<(int)m_monstre.size())
                             {
-                                if(m_listID.size() <= (int)script->getValeur(noInstruction, 0))
+                                if((int)m_listID.size() <= (int)script->getValeur(noInstruction, 0))
                                     m_listID.resize((int)script->getValeur(noInstruction, 0) + 1);
                                 m_listID[(int)script->getValeur(noInstruction, 0)].push_back(m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_IDObjet);
                             }
@@ -371,7 +371,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         }
         else if (script->m_instructions[noInstruction].nom=="regenerate_inventory" && monstre != -1)
         {
-            if(m_monstre[monstre].getModele() >= 0 && m_monstre[monstre].getModele() < m_ModeleMonstre.size())
+            if(m_monstre[monstre].getModele() >= 0 && m_monstre[monstre].getModele() < (int)m_ModeleMonstre.size())
                 m_monstre[monstre].GenererInventaire(&m_ModeleMonstre[m_monstre[monstre].getModele()]);
 
             TrierInventaire(m_monstre[monstre].getPointeurObjets(),hero->m_classe.position_contenu_marchand.w);
@@ -435,16 +435,6 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                     hero->m_quetes[i].m_statut = (int)script->getValeur(noInstruction, 1);
                 }
         }
-        else if (script->m_instructions[noInstruction].nom=="setQuestPosition")
-        {
-            for (int i = 0;i < (int)hero->m_quetes.size(); ++i)
-                if (hero->m_quetes[i].m_id == (int)script->getValeur(noInstruction, 0))
-                {
-                    hero->m_quetes[i].m_position.x = (int)script->getValeur(noInstruction, 1);
-                    hero->m_quetes[i].m_position.y = (int)script->getValeur(noInstruction, 2);
-                    hero->m_quetes[i].m_map = script->m_instructions[noInstruction].valeurString;
-                }
-        }
         else if (script->m_instructions[noInstruction].nom=="giftItem" && monstre != -1)
         {
             if (script->getValeur(noInstruction, 0) >= 0 && script->getValeur(noInstruction, 0) < (int)(*m_monstre[monstre].getPointeurObjets()).size())
@@ -463,7 +453,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         }
         else if (script->m_instructions[noInstruction].nom=="heal")
         {
-            hero->m_personnage.InfligerDegats(-script->getValeur(noInstruction, 0),0,&hero->m_modelePersonnage[0],0);
+            hero->m_personnage.InfligerDegats(-script->getValeur(noInstruction, 0),0,0);
         }
         else if (script->m_instructions[noInstruction].nom=="entity_variable" && monstre == -1)
         {
@@ -574,7 +564,7 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                 else if (script->m_instructions[no].nom=="exist_item")
                 {
                     int nbr = 0;
-                    for(unsigned i = 0 ; i < hero->getNombreObjet() ; ++i)
+                    for(unsigned i = 0 ; (int)i < hero->getNombreObjet() ; ++i)
                         if(hero->getNomObjet(i) == script->m_instructions[no].valeurString)
                             nbr++;
 
@@ -582,7 +572,7 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                     if(nbr < script->getValeur(no, 0))
                          ok = false;
                     else if(script->getValeur(no, 1))
-                        for(unsigned i = 0 ; i < hero->getNombreObjet() ; ++i)
+                        for(unsigned i = 0 ; (int)i < hero->getNombreObjet() ; ++i)
                             if(hero->getNomObjet(i) == script->m_instructions[no].valeurString)
                                 hero->delObjet(i), i--;
 

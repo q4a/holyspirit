@@ -48,6 +48,9 @@ c_Inventaire::c_Inventaire()
     m_decalage=-600;
     m_trader=NULL;
 }
+c_Inventaire::~c_Inventaire()
+{
+}
 
 void TrierInventaire(std::vector<Objet> *trade, int largeur)
 {
@@ -84,7 +87,7 @@ void TrierInventaire(std::vector<Objet> *trade, int largeur)
     }
 }
 
-void c_Inventaire::setTrader(std::vector<Objet> *trade,Classe *classe)
+void c_Inventaire::setTrader(std::vector<Objet> *trade)
 {
     m_trader = trade;
 }
@@ -100,9 +103,9 @@ void c_Inventaire::Utiliser(Jeu *jeu)
     jeu->m_display=true;
     jeu->Clock.Reset();
 
-    moteurGraphique->Gerer(0,jeu->map->getDimensions().y);
+    moteurGraphique->Gerer(0);
 
-    jeu->map->Animer(&jeu->hero,0,&jeu->menu);
+    jeu->map->Animer(&jeu->hero,0);
     jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
     jeu->hero.AfficherAmisEtCraft();
    // jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);
@@ -225,6 +228,6 @@ void c_Inventaire::Utiliser(Jeu *jeu)
     Listener::SetGlobalVolume((float)configuration->volume);
     Listener::SetPosition(-position.x, 0, position.y);
     Listener::SetDirection(0, 0, 1);
-    jeu->map->MusiquePlay(position);
+    jeu->map->MusiquePlay();
     jeu->sonMort.SetPosition(position.x,0,position.y);
 }

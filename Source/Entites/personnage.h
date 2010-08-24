@@ -37,7 +37,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 struct Degats
 {
-    Degats (float tps, float dgt, int t) : temps(tps), degats(dgt), type(t), temps_ecoule(0) {}
+    Degats (float tps, float dgt, int t) : temps(tps), temps_ecoule(0), degats(dgt), type(t) {}
     float   temps;
     float   temps_ecoule;
     float   degats;
@@ -89,7 +89,7 @@ public:
 
     void Pousser(coordonneeDecimal vecteur);
 
-    bool SeDeplacer(float,coordonnee dimensionsMap);
+    bool SeDeplacer(float);
 
     void Afficher(Modele_Personnage *modele,bool surbrillance=false, bool plusHaut=false, bool plusBas=false);
 
@@ -97,7 +97,7 @@ public:
 
     void Frappe(coordonnee direction,coordonnee position);
 
-    void InfligerDegats(float degats, int type, Modele_Personnage *modele, float temps = 0);
+    void InfligerDegats(float degats, int type, float temps = 0);
 
     int AjouterEffet(Tileset *tileset, int type, int compteur, int info1, int info2, int info3);
     void DetruireEffets();

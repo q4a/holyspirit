@@ -83,7 +83,7 @@ class Menu
 	void AfficherInventaire(float,Classe *classe,bool);
 	void AfficherQuetes(float,Classe *classe);
 	void AfficherCraft(float,Classe *classe);
-	void AfficherMiracles(float,Classe *classe, int );
+	void AfficherMiracles(float,Classe *classe );
 
 	void AddSpeakChoice(const std::string &text, int no);
 	void ClearSpeakChoice();

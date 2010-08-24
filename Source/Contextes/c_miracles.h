@@ -33,6 +33,7 @@ class c_Miracles : public Contexte
 public:
 
     c_Miracles();
+    virtual ~c_Miracles();
     void Utiliser(Jeu *jeu);
 
 

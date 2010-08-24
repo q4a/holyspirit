@@ -72,6 +72,11 @@ c_MainMenu::c_MainMenu()
     m_story = DecouperTexte(configuration->getText(0,66), 640,16);
 }
 
+c_MainMenu::~c_MainMenu()
+{
+
+}
+
 void c_MainMenu::Utiliser(Jeu *jeu)
 {
 
@@ -163,9 +168,9 @@ void c_MainMenu::Utiliser(Jeu *jeu)
     else if(no_ecran == E_NOUVEAU)
         E_Nouveau(jeu);
     else if(no_ecran == E_CREDITS)
-        E_Credits(jeu);
+        E_Credits();
     else if(no_ecran == E_STORY)
-        E_Story(jeu);
+        E_Story();
     else if(no_ecran == E_OPTION)
         if(configuration->Options())
             no_ecran = E_PRINCIPAL;
@@ -190,8 +195,9 @@ void c_MainMenu::Reset(Jeu *jeu)
     jeu->hero.m_contenuSave.push_back(configuration->chemin_temps+jeu->hero.m_chemin_save);
 
     std::string chemin_image;
-    for(int i = 0  ; i < jeu->hero.m_chemin_save.size() - 7 ; ++i)
-        chemin_image.push_back(jeu->hero.m_chemin_save[i]);
+    chemin_image = jeu->hero.m_chemin_save.substr(0,jeu->hero.m_chemin_save.size() - 7);
+    /*for(int i = 0  ; i < jeu->hero.m_chemin_save.size() - 7 ; ++i)
+        chemin_image.push_back(jeu->hero.m_chemin_save[i]);*/
     chemin_image += ".png";
     jeu->hero.m_contenuSave.push_back(configuration->chemin_temps+chemin_image);
 }
@@ -228,8 +234,6 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
 
             while ((lecture = readdir(repertoire)))
             {
-                bool ok = false;
-
                 std::string name = lecture->d_name;
                 if(name.find("sav.hs") != string::npos && name != "." && name != "..")
                 {
@@ -386,7 +390,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
 
     unsigned i;
     for(i = defilement_saves ; i < m_chemin_saves.size()
-                            && i < 8 + defilement_saves; ++i)
+                            && i < 8 + (unsigned)defilement_saves; ++i)
     {
 
         m_background_hero.SetPosition(configuration->Resolution.w/2 - 331 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3),
@@ -587,7 +591,7 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
         else
             texte.SetColor(Color(150,100,50));
 
-        if(i == classe_choisie)
+        if((int)i == classe_choisie)
             texte.SetColor(sf::Color(200,150,100));
 
         moteurGraphique->AjouterTexte(&texte,19,1);
@@ -671,16 +675,14 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
         texte.SetColor(Color(150,100,50));
     moteurGraphique->AjouterTexte(&texte,19,1);
 }
-void  c_MainMenu::E_Credits(Jeu *jeu)
+void  c_MainMenu::E_Credits()
 {
     m_credit_defil += temps_ecoule * 20;
-
-
 
     for(int i = (int)(m_credit_defil/24) ; i < (int)(m_credit_defil/24) + 17; ++i)
     {
         int no = i;
-        while(no >= m_credits.size())
+        while(no >= (int)m_credits.size())
             no -= m_credits.size();
 
         texte.SetStyle(0);
@@ -730,7 +732,7 @@ void  c_MainMenu::E_Credits(Jeu *jeu)
         texte.SetColor(Color(150,100,50));
     moteurGraphique->AjouterTexte(&texte,19,1);
 }
-void  c_MainMenu::E_Story(Jeu *jeu)
+void  c_MainMenu::E_Story()
 {
     texte.SetStyle(0);
     texte.SetCharacterSize(16);

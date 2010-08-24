@@ -133,7 +133,7 @@ bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps)
 
     return 1;
 }
-void ParticuleSysteme::Envoler(sf::Vector2f pos,int force, int type, float temps)
+void ParticuleSysteme::Envoler(sf::Vector2f pos,int force, int type)
 {
     sf::Vector2f position;
 

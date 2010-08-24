@@ -44,7 +44,7 @@ public:
 
     void AjouterObjet(Objet);
 
-    int AfficherTexteObjets(coordonnee positionn,int);
+    int AfficherTexteObjets(coordonnee positionn);
     bool AfficherTexteObjet(coordonnee position,int, float *decalage = NULL);
     void AlphaObjets(int alpha);
 

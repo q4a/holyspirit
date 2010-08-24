@@ -40,6 +40,9 @@ c_MenuInGame::c_MenuInGame()
     retour      = false;
     options     = false;
 }
+c_MenuInGame::~c_MenuInGame()
+{
+}
 
 void c_MenuInGame::Utiliser(Jeu *jeu)
 {
@@ -81,9 +84,9 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
             jeu->next_screen = 3;
     }
 
-    moteurGraphique->Gerer(0,jeu->map->getDimensions().y);
+    moteurGraphique->Gerer(0);
 
-    jeu->map->Animer(&jeu->hero,0,&jeu->menu);
+    jeu->map->Animer(&jeu->hero,0);
     jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
     jeu->hero.AfficherAmisEtCraft();
     jeu->menu.AfficherHUD(&jeu->hero.m_classe);

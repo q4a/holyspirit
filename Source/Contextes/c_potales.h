@@ -33,6 +33,7 @@ class c_Potales : public Contexte
 public:
 
     c_Potales();
+    virtual ~c_Potales();
     void Utiliser(Jeu *jeu);
 
 

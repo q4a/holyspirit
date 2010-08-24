@@ -167,7 +167,7 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet, float *decalage)
     return (retour);
 }
 
-int Decor::AfficherTexteObjets(coordonnee position, int objetPointe)
+int Decor::AfficherTexteObjets(coordonnee position)
 {
     int retour = -1;
     float decalage = position.y-18;

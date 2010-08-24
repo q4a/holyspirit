@@ -1291,8 +1291,6 @@ void Objet::Generer(int bonus)
 
             for (int i=0;i<nbrBene;i++)
             {
-                bool ajouter=true;
-
                 benediction temp;
                 temp.type=rand()%NOMBRE_BENEDICTION;
 
@@ -1807,7 +1805,7 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
 }
 
 
-sf::Text Objet::AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color)
+sf::Text Objet::AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color)
 {
     sf::Text string;
 
@@ -1901,7 +1899,7 @@ void Objet::Afficher(coordonnee position)
         moteurGraphique->AjouterCommande(&sprite,8,1);
 }
 
-int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, std::vector<Objet> *items, std::string nom_classe,float modPrix,bool compare,bool decalageDroite, bool surbrillance, bool orientationHaut, bool coffre)
+int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, std::vector<Objet> *items, std::string nom_classe,float modPrix,bool compare,bool decalageDroite, bool orientationHaut, bool coffre)
 {
     std::vector <sf::Text> temp;
 
@@ -1912,29 +1910,29 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
 
     if (m_equipe>=0&&compare)
     {
-        /*temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,configuration->getText(0,18).c_str()));
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"---------------"));
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));*/
+        /*temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,18).c_str()));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"---------------"));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));*/
     }
     else if (compare)
     {
         if(coffre)
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,configuration->getText(0,63).c_str()));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,63).c_str()));
         else if (decalageDroite)
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,configuration->getText(0,19).c_str()));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,19).c_str()));
         else
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,configuration->getText(0,20).c_str()));
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,"---------------"));
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,20).c_str()));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"---------------"));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
     }
 
-    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_nom.c_str()));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_nom.c_str()));
     temp.back().SetColor(GetItemColor(m_rarete));
     temp.back().SetStyle(4);
     temp.back().SetCharacterSize(14);
     if(!m_chemin_set.empty())
     {
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_set.m_nom.c_str()));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_set.m_nom.c_str()));
         temp.back().SetColor(GetItemColor(m_rarete));
 
         m_set.m_nombre = -1;
@@ -1943,7 +1941,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
         {
             Objet tempobj;
             tempobj.Charger(m_set.m_items[i], caract);
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,tempobj.m_nom.c_str()));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,tempobj.m_nom.c_str()));
             temp.back().SetStyle(2);
 
             bool ok = false;
@@ -1956,35 +1954,35 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
             else
                 temp.back().SetColor(sf::Color(128,128,128));
         }
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
     }
 
 
     for (int i=0;i<(int)m_description.size();i++)
     {
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_description[i].c_str()));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_description[i].c_str()));
         temp.back().SetStyle(2);
     }
 
-    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
 
     if(!m_nom_IDClasse.empty())
     {
         bool mauvais = true;
-        for(int i = 0 ; i < m_nom_IDClasse.size() ; ++i)
+        for(unsigned i = 0 ; i < m_nom_IDClasse.size() ; ++i)
         {
             std::string buf;
             buf = configuration->getText(0,52) + configuration->getText(3, m_nom_IDClasse[i]);
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.c_str()));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.c_str()));
             if(m_IDClasse[i] == nom_classe)
                 mauvais = false;
         }
 
         if(mauvais)
-            for(int i = 1 ; i <= m_nom_IDClasse.size() ; ++i)
+            for(unsigned i = 1 ; i <= m_nom_IDClasse.size() ; ++i)
                 temp[temp.size() - i].SetColor(sf::Color(192,0,0));
 
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
     }
 
     if(m_time > 0)
@@ -1999,7 +1997,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
             buf<<min<<" "<<configuration->getText(0,71)<<" ";
         if(sec > 0)
             buf<<sec<<" "<<configuration->getText(0,70);
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
     }
 
 
@@ -2009,11 +2007,11 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
         {
             std::ostringstream buf;
             buf<<"- "<<m_craft_ingredients[i].nombre<<" "<<m_craft_ingredients[i].text_nom;
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
             //temp.back().SetStyle(2);
         }
 
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
     }
 
 
@@ -2029,7 +2027,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
         std::ostringstream buf;
         buf<<configuration->getText(0,21)<<(int)(m_degatsMin*multiplieurEfficacite/100)<<" - "<<(int)(m_degatsMax*multiplieurEfficacite/100);
 
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         if (multiplieurEfficacite!=100)
             temp.back().SetColor(sf::Color(0,128,255));
     }
@@ -2041,7 +2039,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
             std::ostringstream buf;
             buf<<configuration->getText(0,22)<<(int)(m_armure*multiplieurEfficacite/100);
 
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
 
             if (multiplieurEfficacite!=100)
                 temp.back().SetColor(sf::Color(0,128,255));
@@ -2052,19 +2050,19 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
     {
         std::ostringstream buf;
         buf<<configuration->getText(0,3)<<" : "<<m_gol_caract.maxVie;
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
 
         buf.str("");
         buf<<configuration->getText(0,21)<<m_gol_caract.degatsMin[0]<<" - "<<m_gol_caract.degatsMax[0];
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
 
         buf.str("");
         buf<<configuration->getText(0,22)<<m_gol_caract.armure[0];
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
     }
 
 
-    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran," "));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran," "));
 
 
     if (m_requirement.force>0)
@@ -2072,7 +2070,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
         std::ostringstream buf;
         buf<<configuration->getText(0,23)<<m_requirement.force;
 
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         if (caract.force<m_requirement.force)
             temp.back().SetColor(sf::Color(192,0,0));
     }
@@ -2081,7 +2079,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
         std::ostringstream buf;
         buf<<configuration->getText(0,24)<<m_requirement.dexterite;
 
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         if (caract.dexterite<m_requirement.dexterite)
             temp.back().SetColor(sf::Color(192,0,0));
     }
@@ -2090,7 +2088,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
         std::ostringstream buf;
         buf<<configuration->getText(0,25)<<m_requirement.charisme;
 
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         if (caract.charisme<m_requirement.charisme)
             temp.back().SetColor(sf::Color(192,0,0));
     }
@@ -2099,7 +2097,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
         std::ostringstream buf;
         buf<<configuration->getText(0,26)<<m_requirement.vitalite;
 
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         if (caract.vitalite<m_requirement.vitalite)
             temp.back().SetColor(sf::Color(192,0,0));
     }
@@ -2108,24 +2106,24 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
         std::ostringstream buf;
         buf<<configuration->getText(0,27)<<m_requirement.piete;
 
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         if (caract.piete<m_requirement.piete)
             temp.back().SetColor(sf::Color(192,0,0));
     }
 
-    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
 
     for (int i=0;i<(int)m_benedictions.size();i++)
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,getTextBenediction(m_benedictions[i]).c_str(),sf::Color(0,128,255)));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,getTextBenediction(m_benedictions[i]).c_str(),sf::Color(0,128,255)));
 
-    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
 
     for(unsigned i = 0 ; i < m_miracles_benedictions.size() ; ++i)
     {
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_miracles_benedictions[i].m_nom.c_str(),sf::Color(128,64,0)));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_miracles_benedictions[i].m_nom.c_str(),sf::Color(128,64,0)));
         for(unsigned j =  0 ; j < m_miracles_benedictions[i].m_description.size() ; ++j)
         {
-            temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,m_miracles_benedictions[i].m_description[j].c_str(),sf::Color(128,64,0)));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_miracles_benedictions[i].m_description[j].c_str(),sf::Color(128,64,0)));
             temp.back().SetStyle(2);
         }
 
@@ -2135,21 +2133,21 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
     {
         for(int k = 0 ; k < m_set.m_nombre ; ++k)
             for (int i=0;i<(int)m_set.m_benedictions[k].size();i++)
-                temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,getTextBenediction(m_set.m_benedictions[k][i]).c_str(),GetItemColor(5)));
+                temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,getTextBenediction(m_set.m_benedictions[k][i]).c_str(),GetItemColor(5)));
 
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
     }
 
-    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
 
     for(int i = 0 ; i < m_nbr_bless ; ++i)
     {
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,configuration->getText(0,60).c_str(),sf::Color(128,128,128)));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,60).c_str(),sf::Color(128,128,128)));
         temp.back().SetStyle(2);
     }
 
 
-    temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
 
 
     {
@@ -2158,7 +2156,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
 
         if(modPrix != 1)
             buf<<" ("<< m_prix <<")";
-        temp.push_back(AjouterCaracteristiqueAfficher(position,&decalage,&tailleCadran,buf.str().c_str()));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
     }
 
     if (position.x-tailleCadran.x-10<position.x&&decalageDroite)

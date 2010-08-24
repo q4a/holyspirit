@@ -90,7 +90,7 @@ bool Menu::AfficherDialogue(int alpha,Classe *classe)
 
     float pos = texte.GetRect().Top + texte.GetRect().Height + 16;
 
-    for(int i = 0 ; i < m_choices.size() ; ++i)
+    for(unsigned i = 0 ; i < m_choices.size() ; ++i)
     {
         texte.SetString(m_choices[i].text);
         texte.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.GetRect().Width) * 0.5,
@@ -445,7 +445,7 @@ void Menu::AfficherCraft(float decalage,Classe *classe)
     classe->button_craft.Afficher(decalage);
 }
 
-void Menu::AfficherMiracles(float decalage, Classe *classe, int fenetreEnCours)
+void Menu::AfficherMiracles(float decalage, Classe *classe)
 {
     Sprite sprite;
 

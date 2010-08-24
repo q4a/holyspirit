@@ -45,6 +45,7 @@ public:
     Met m_decalage à -600
     */
     c_Craft();
+    virtual ~c_Craft();
 
     //! Utilise le contexte.
     /**

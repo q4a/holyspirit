@@ -75,7 +75,7 @@ void Climate::Charger(std::string chemin)
                         int temp;
                         fichier>>temp;
 
-                        if(temp >= 0 && temp < m_tileset.size())
+                        if(temp >= 0 && temp < (int)m_tileset.size())
                             m_entities.back().m_tileset = moteurGraphique->getTileset(m_tileset[temp]);
                     }
                     else if (caractere=='x')
@@ -168,7 +168,7 @@ void Climate::Charger(std::string chemin)
 
 void Climate::Update(float time)
 {
-    for(int i = 0 ; i < m_entities.size() ; ++i)
+    for(unsigned i = 0 ; i < m_entities.size() ; ++i)
     {
         m_entities[i].Animer(time);
 
@@ -195,7 +195,7 @@ void Climate::Update(float time)
 void Climate::Draw()
 {
     if(m_actif)
-        for(int i = 0 ; i < m_entities.size() ; ++i)
+        for(unsigned i = 0 ; i < m_entities.size() ; ++i)
             moteurGraphique->AjouterEntiteGraphique(&m_entities[i]);
 }
 

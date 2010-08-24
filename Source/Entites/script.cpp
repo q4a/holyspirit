@@ -182,7 +182,7 @@ void Script::Sauvegarder_instruction(ofstream &fichier , int no)
 
 void Script::Sauvegarder(ofstream &fichier)
 {
-    for(int i = 0 ; i < m_variables.size() ; ++i)
+    for(unsigned i = 0 ; i < m_variables.size() ; ++i)
         fichier<<endl<<"variable "<<i<<" "<<m_variables[i]<<endl;
     Sauvegarder_instruction(fichier , 0);
 }
@@ -205,7 +205,7 @@ void Script::Charger(ifstream &fichier)
             {
                 int no = 0, val = 0;
                 fichier>>no>>val;
-                 if(no >= m_variables.size())
+                 if(no >= (int)m_variables.size())
                     m_variables.resize(no + 1);
                 m_variables[no] = val;
             }
@@ -243,7 +243,7 @@ void Script::Charger(const std::string &chemin)
 
 void Script::setVariable(int i, float val)
 {
-    if(i >= m_variables.size())
+    if(i >= (int)m_variables.size())
         m_variables.resize(i + 1);
 
     m_variables[i] = val;
@@ -251,7 +251,7 @@ void Script::setVariable(int i, float val)
 
 float Script::getVariable(int i)
 {
-    if(i >= m_variables.size())
+    if(i >= (int)m_variables.size())
         m_variables.resize(i + 1, 0);
 
     return m_variables[i];
@@ -264,9 +264,9 @@ int Script::getNbrVariable()
 
 void Script::setValeur(int no, int i, float val)
 {
-    if( no >= 0 && no < m_instructions.size())
+    if( no >= 0 && no < (int)m_instructions.size())
     {
-        if(i >= m_instructions[no].m_valeurs.size())
+        if(i >= (int)m_instructions[no].m_valeurs.size())
             m_instructions[no].m_valeurs.resize(i + 1, 0), m_instructions[no].m_string_valeurs.resize(i + 1, "");
 
         m_instructions[no].m_valeurs[i] = val;
@@ -275,9 +275,9 @@ void Script::setValeur(int no, int i, float val)
 
 float Script::getValeur(int no, int i)
 {
-    if( no >= 0 && no < m_instructions.size())
+    if( no >= 0 && no < (int)m_instructions.size())
     {
-        if(i >= m_instructions[no].m_valeurs.size())
+        if(i >= (int)m_instructions[no].m_valeurs.size())
         {
             m_instructions[no].m_valeurs.resize(i + 1, 0);
             m_instructions[no].m_string_valeurs.resize(i + 1, "");

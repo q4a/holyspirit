@@ -138,7 +138,7 @@ public:
     void RechargerTileset();
 
     void AfficherDescription(coordonnee position, bool suivant = true);
-    sf::Text AjouterCaracteristiqueAfficher(coordonnee position,coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color=sf::Color(255,255,255));
+    sf::Text AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color=sf::Color(255,255,255));
 
     std::vector <int>           m_tileset;
 

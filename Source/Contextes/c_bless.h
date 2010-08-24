@@ -45,6 +45,7 @@ public:
     Met m_decalage à -600
     */
     c_Bless();
+    virtual ~c_Bless();
 
     //! Utilise le contexte.
     /**

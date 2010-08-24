@@ -61,7 +61,7 @@ void liste_case::Supprimer()
     return 0;
 }*/
 
-bool liste_case::AjouterCasesAdjacentes(casePathfinding **grille,coordonnee *arrivee,coordonnee depart)
+bool liste_case::AjouterCasesAdjacentes(casePathfinding **grille,coordonnee *arrivee)
 {
     coordonnee enCours;
     bool retour = false;

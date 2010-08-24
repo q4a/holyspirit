@@ -322,7 +322,7 @@ void Tileset::Charger(ifstream &fichier, int lumiere_base, cDAT *reader)
                     {
                         int temp;
                         fichier>>temp;
-                        if(temp >= m_sonsSpecial.size())
+                        if(temp >= (int)m_sonsSpecial.size())
                             m_sonsSpecial.resize(temp + 1);
 
                         m_sonsSpecial[temp].push_back(m_sons.size()-1);
@@ -665,7 +665,7 @@ void Tileset::DeleteTiles()
 
 void Tileset::ChargerImages()
 {
-    for(int i = 0 ; i < m_image_chemin.size() ; ++i)
+    for(unsigned i = 0 ; i < m_image_chemin.size() ; ++i)
         moteurGraphique->AjouterImage(m_image_chemin[i]);
 }
 

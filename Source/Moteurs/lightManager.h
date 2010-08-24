@@ -73,7 +73,7 @@ class Light_Manager : public CSingleton<Light_Manager>
 
     // Afficher toutes les lumières à l'écran
     void Draw(sf::RenderTarget *App,sf::View *camera);
-    void Draw(sf::RenderTarget *App,sf::View *camera,Light_Entity);
+    void Draw(sf::RenderTarget *App,Light_Entity);
 
     void DrawWallShadow(sf::RenderTarget *App,sf::View *camera);
 

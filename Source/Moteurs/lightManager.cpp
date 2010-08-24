@@ -294,7 +294,7 @@ void Light_Manager::DrawWallShadow(sf::RenderTarget *App,sf::View *camera)
                 App->Draw(IterWall->m_shadow);
 }
 
-void Light_Manager::Draw(sf::RenderTarget *App,sf::View *camera,Light_Entity e)
+void Light_Manager::Draw(sf::RenderTarget *App,Light_Entity e)
 {
     if (e.Dynamic())
         if (e.ID()>=0&&e.ID()<(int)m_DynamicLight.size())

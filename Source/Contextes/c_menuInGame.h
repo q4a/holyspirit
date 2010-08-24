@@ -30,6 +30,7 @@ class c_MenuInGame : public Contexte
 {
 public:
     c_MenuInGame();
+    virtual ~c_MenuInGame();
     void Utiliser(Jeu *jeu);
 
     //sf::View *camera;

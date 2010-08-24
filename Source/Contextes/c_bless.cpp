@@ -46,6 +46,9 @@ c_Bless::c_Bless()
 {
     m_decalage=-600;
 }
+c_Bless::~c_Bless()
+{
+}
 
 void c_Bless::Utiliser(Jeu *jeu)
 {
@@ -56,7 +59,7 @@ void c_Bless::Utiliser(Jeu *jeu)
     jeu->m_display=true;
     jeu->Clock.Reset();
 
-    jeu->map->Animer(&jeu->hero,0,&jeu->menu);
+    jeu->map->Animer(&jeu->hero,0);
     jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
     jeu->hero.AfficherAmisEtCraft();
 
@@ -116,7 +119,7 @@ void c_Bless::Utiliser(Jeu *jeu)
     jeu->menu.AfficherHUD(&jeu->hero.m_classe);
     jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,-1,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
 
-    jeu->hero.GererBless(&m_trader);
+    jeu->hero.GererBless();
 
     if (eventManager->getEvenement(Mouse::Left,EventClic))
     {

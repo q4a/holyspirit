@@ -41,6 +41,7 @@ public:
     Met m_alpha à 0, m_augmenter à true et charge l'image du logo
     */
     c_Demarrage();
+    virtual ~c_Demarrage();
 
     //! Utilise le contexte.
     /**
