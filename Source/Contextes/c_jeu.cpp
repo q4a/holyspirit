@@ -438,9 +438,12 @@ void GestionRaccourcis(Jeu *jeu)
         {
             if(i >= 8)
                 i = 0;
+            if(i < 0)
+                i = 7;
 
             if(jeu->hero.m_raccourcis[i].miracle
-            && jeu->hero.m_raccourcis[i].no >= 0)
+            && jeu->hero.m_raccourcis[i].no >= 0
+            && jeu->hero.m_raccourcis[i].no < (int)jeu->hero.m_classe.miracles.size())
                 if(!jeu->hero.m_classe.miracles[jeu->hero.m_raccourcis[i].no].m_direct)
                     jeu->hero.m_personnage.m_miracleALancer = jeu->hero.m_raccourcis[i].no, j = 8;
         }
