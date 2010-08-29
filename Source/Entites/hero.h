@@ -101,13 +101,14 @@ public:
     bool PossibleEquiper(Objet  &, int emplacement);
     bool Equiper(int numero, int emplacement);
     bool UtiliserObjet(int numero);
-    void RangerObjet(int numero);
+    bool RangerObjet(int numero);
     const std::string &getNomObjet(int numero);
     int getNombreObjet();
 
     void UpdateRaccourcis();
 
     void AutoTrierInventaire();
+    void AutoTrierCoffre();
 
     bool UtiliserMiracle(int, Personnage*, coordonnee );
     void StopMiraclesFrappe();

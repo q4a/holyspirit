@@ -67,6 +67,8 @@ void Jeu::Demarrer()
 
     Clock.Reset();
 
+    moteurSons->setVolumeMusique((int)configuration->music_volume);
+
     m_run = true;
     m_display = true;
     while (m_run)

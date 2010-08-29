@@ -393,7 +393,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
     if ((allerVersImageChargement&&z<49&&augmenterNoir)||(!allerVersImageChargement&&z>0&&!augmenterNoir))
     {
         if(jeu->map!=NULL)
-            moteurSons->setVolumeMusique((int)(z*(float)configuration->volume/50));
+            moteurSons->setVolumeMusique((int)(z*(float)configuration->music_volume/50));
         if ((!m_debut&&augmenterNoir)||(!augmenterNoir))
         {
             if(jeu->map!=NULL)

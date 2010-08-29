@@ -56,7 +56,8 @@ bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps)
                                               modele->m_particules[Iter->numero].positionImage.y,
                                               modele->m_particules[Iter->numero].positionImage.w,
                                               modele->m_particules[Iter->numero].positionImage.h));
-                sprite.SetOrigin(modele->m_particules[Iter->numero].positionImage.w/2,modele->m_particules[Iter->numero].positionImage.h/2);
+                sprite.SetOrigin(modele->m_particules[Iter->numero].positionImage.w/2,
+                                 modele->m_particules[Iter->numero].positionImage.h/2);
                 sprite.SetRotation(Iter->rotation);
                 float scale=Iter->position.z/200+1;
                 sprite.SetScale(scale,scale);

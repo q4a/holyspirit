@@ -1843,7 +1843,9 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
                                         }
                             }
 
-                            if (hero->m_personnage.getCoordonnee().x==(int)((projectile->m_position.x+32)/COTE_TILE)&&hero->m_personnage.getCoordonnee().y==(int)((projectile->m_position.y+32)/COTE_TILE)&&projectile->m_monstre)
+                            if (hero->m_personnage.getCoordonnee().x==(int)((projectile->m_position.x+32)/COTE_TILE)
+                             && hero->m_personnage.getCoordonnee().y==(int)((projectile->m_position.y+32)/COTE_TILE)
+                             && projectile->m_monstre)
                             {
                                 if(rand()%100 > projectile->m_transperce)
                                     projectile->m_actif=false;
@@ -2493,45 +2495,42 @@ bool Map::getCollisionPousse(int positionX,int positionY, int id)
 
 void Map::TesterPoussable(Personnage &personnage, float temps, int id)
 {
-    bool pousser = true;
-
     if(personnage.getPousse().x != 0 || personnage.getPousse().y != 0)
     if(getCollisionPousse((int)((personnage.getCoordonneePixel().x + personnage.getPousse().x * temps * COTE_TILE * 5 + COTE_TILE * 0.5f * (personnage.getPousse().x >= 0))/COTE_TILE),
                           (int)((personnage.getCoordonneePixel().y + personnage.getPousse().y * temps * COTE_TILE * 5 + COTE_TILE * 0.5f * (personnage.getPousse().y >= 0))/COTE_TILE),
                            id))
     {
-        pousser = false;
         if(personnage.getPousse().x != 0
         && !getCollisionPousse((int)((personnage.getCoordonneePixel().x + personnage.getPousse().x * temps * COTE_TILE * 5 + COTE_TILE * 0.5f * (personnage.getPousse().x >= 0))/COTE_TILE),
                                (int)((personnage.getCoordonneePixel().y + COTE_TILE * 0.5f * (personnage.getPousse().y >= 0))/COTE_TILE),
                                 id))
-            pousser = true, personnage.setPousse(coordonneeDecimal(personnage.getPousse().x, 0));
+            personnage.setPousse(coordonneeDecimal(personnage.getPousse().x, 0));
         else if(personnage.getPousse().y != 0
              && !getCollisionPousse((int)((personnage.getCoordonneePixel().x + COTE_TILE * 0.5f * (personnage.getPousse().x >= 0))/COTE_TILE),
                                     (int)((personnage.getCoordonneePixel().y + personnage.getPousse().y * temps * COTE_TILE * 5 + COTE_TILE * 0.5f * (personnage.getPousse().y >= 0) )/COTE_TILE),
                                     id))
-            pousser = true, personnage.setPousse(coordonneeDecimal(0, personnage.getPousse().y));
+            personnage.setPousse(coordonneeDecimal(0, personnage.getPousse().y));
         else if(personnage.getPousse().x != 0)
         {
             if(!getCollisionPousse((int)((personnage.getCoordonneePixel().x + COTE_TILE * 0.5f * (personnage.getPousse().x >= 0))/COTE_TILE),
                                     (int)((personnage.getCoordonneePixel().y + personnage.getPousse().x * temps * COTE_TILE * 5 + COTE_TILE * 0.5f * (personnage.getPousse().x >= 0))/COTE_TILE),
                                     id))
-                pousser = true, personnage.setPousse(coordonneeDecimal(0, personnage.getPousse().x));
+                personnage.setPousse(coordonneeDecimal(0, personnage.getPousse().x));
             else if(!getCollisionPousse((int)((personnage.getCoordonneePixel().x + COTE_TILE * 0.5f * (personnage.getPousse().x >= 0))/COTE_TILE),
                                         (int)((personnage.getCoordonneePixel().y - personnage.getPousse().x * temps * COTE_TILE * 5 + COTE_TILE * 0.5f * (personnage.getPousse().x >= 0))/COTE_TILE),
                                         id))
-                pousser = true, personnage.setPousse(coordonneeDecimal(0, -personnage.getPousse().x));
+                personnage.setPousse(coordonneeDecimal(0, -personnage.getPousse().x));
         }
         else if(personnage.getPousse().y != 0)
         {
             if(!getCollisionPousse((int)((personnage.getCoordonneePixel().x + personnage.getPousse().y * temps * COTE_TILE * 5 + COTE_TILE * 0.5f * (personnage.getPousse().y >= 0))/COTE_TILE),
                                    (int)((personnage.getCoordonneePixel().y + COTE_TILE * 0.5f * (personnage.getPousse().y >= 0))/COTE_TILE),
                                     id))
-                pousser = true, personnage.setPousse(coordonneeDecimal(personnage.getPousse().y, 0));
+                personnage.setPousse(coordonneeDecimal(personnage.getPousse().y, 0));
             else if(!getCollisionPousse((int)((personnage.getCoordonneePixel().x - personnage.getPousse().y * temps * COTE_TILE * 5 + COTE_TILE * 0.5f * (personnage.getPousse().y >= 0))/COTE_TILE),
                                         (int)((personnage.getCoordonneePixel().y + COTE_TILE * 0.5f * (personnage.getPousse().y >= 0))/COTE_TILE),
                                         id))
-                pousser = true, personnage.setPousse(coordonneeDecimal(-personnage.getPousse().y, 0));
+                personnage.setPousse(coordonneeDecimal(-personnage.getPousse().y, 0));
         }
     }
 }

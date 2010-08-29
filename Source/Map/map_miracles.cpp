@@ -981,13 +981,21 @@ bool Map::Miracle_Charge(Hero *hero, Personnage *personnage, Miracle &modele, Ef
         personnage->setForcedAngle((int)m);
     }
 
-    if ( !(personnage->getCoordonnee().x == miracleEnCours.m_coordonneeCible.x && personnage->getCoordonnee().y == miracleEnCours.m_coordonneeCible.y) )
+    if ( !(personnage->getCoordonnee().x == miracleEnCours.m_coordonneeCible.x
+        && personnage->getCoordonnee().y == miracleEnCours.m_coordonneeCible.y) )
     {
         float m = atan2((float)miracleEnCours.m_coordonneeCible.x * COTE_TILE - (float)personnage->getCoordonneePixel().x,
                         (float)miracleEnCours.m_coordonneeCible.y * COTE_TILE - (float)personnage->getCoordonneePixel().y);
 
+        coordonneeDecimal temp = personnage->getPousse();
+
         personnage->setPousse(coordonneeDecimal  (sin(m) * effet.m_informations[0],
                                                   cos(m) * effet.m_informations[0]));
+
+        if(personnage->getCoordonnee().x == miracleEnCours.m_coordonneeCible.x && temp.x == 0)
+            personnage->setPousse(coordonneeDecimal(0, personnage->getPousse().y));
+        if(personnage->getCoordonnee().y == miracleEnCours.m_coordonneeCible.y && temp.y == 0)
+            personnage->setPousse(coordonneeDecimal(personnage->getPousse().x, 0));
     }
 
     info.m_IDObjet= 1;

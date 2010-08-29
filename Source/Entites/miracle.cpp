@@ -257,6 +257,9 @@ float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int leve
                 for(int i = 1 ; i < (int)temp ; ++i )
                     valeur *= buf;
 
+                if(temp == 0)
+                    valeur = 1;
+
                 if(!*continuer)
                     return valeur;
                 else

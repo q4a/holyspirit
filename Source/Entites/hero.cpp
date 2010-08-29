@@ -63,22 +63,24 @@ bool AjouterObjetInventaire(Objet newObj, std::vector<Objet>* inventaire, coordo
         for (int y=0;continuer;y++)
             for (int x=0;x<taille.w&&continuer;x++)
             {
-                if ((!infini && y<taille.h) || (infini))
+                if (y < taille.h || infini)
                 {
                     bool ajouter=true;
-                    for (int h=0;h<inventaire->back().getTaille().y;h++)
-                        for (int w=0;w<inventaire->back().getTaille().x;w++)
-                            if (x+w<taille.w && ((infini) || (!infini && y+h<taille.h )))
+                    for (int h=0;h<inventaire->back().getTaille().y && ajouter;h++)
+                        for (int w=0;w<inventaire->back().getTaille().x && ajouter;w++)
+                        {
+                            if (x+w < taille.w && (infini || y+h < taille.h))
                             {
-                                for (int j=0;j<(int)inventaire->size()-1;j++)
+                                for (int j=0;j<(int)inventaire->size()-1 && ajouter;j++)
                                     if ((*inventaire)[j].m_equipe<0)
-                                        for (int Y=0;Y<(*inventaire)[j].getTaille().y;Y++)
-                                            for (int X=0;X<(*inventaire)[j].getTaille().x;X++)
+                                        for (int Y=0;Y<(*inventaire)[j].getTaille().y && ajouter;Y++)
+                                            for (int X=0;X<(*inventaire)[j].getTaille().x && ajouter;X++)
                                                 if ((*inventaire)[j].getPosition().x+X==x+w && (*inventaire)[j].getPosition().y+Y==y+h)
                                                     ajouter = false;
                             }
                             else
                                 ajouter = false;
+                        }
 
                     if (ajouter)
                     {
@@ -91,6 +93,7 @@ bool AjouterObjetInventaire(Objet newObj, std::vector<Objet>* inventaire, coordo
                     continuer = false, inventaire->erase(inventaire->begin() + inventaire->size() - 1);
             }
     }
+
     return (retour);
 }
 
@@ -618,6 +621,7 @@ void Hero::Charger(std::string chemin_save)
             nouveau=false;
         }
         fichier->close();
+        delete fichier;
     }
     //}
     //}
@@ -706,6 +710,7 @@ bool Hero::ChargerPresentation(std::string chemin_save)
             *fichier>>m_caracteristiques.niveau;
         }
         fichier->close();
+        delete fichier;
     }
 
     return erreur;
@@ -2295,7 +2300,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
     }
 
     if(!hideLeft)
-        AfficherCaracteristiques(decalage, !trader->empty());
+        AfficherCaracteristiques(decalage, (!trader->empty() || trader == &m_coffre));
 
     return (retour);
 }
@@ -3224,6 +3229,91 @@ void Hero::GererBoutonsInventaire()
     }
 }
 
+void Hero::AutoTrierCoffre()
+{
+    int ordre_tri[8] = {CONSOMMABLE,AUCUN,JEWELERY,LITANIE,SCHEMA,GOLEM,ARMURE,ARME};
+    std::vector<Objet> inventaire_bis;
+
+    std::vector<std::string> nom_objets;
+    std::vector<int> taille_objets;
+
+    for(int t = 0 ; t < 8 ; ++t)
+    for(unsigned i = 0 ; i < m_coffre.size() ; ++i)
+    if(m_coffre[i].m_type == ordre_tri[t]
+    && m_coffre[i].m_equipe < 0)
+    {
+        std::vector<std::string> nom_objets_bis;
+        std::vector<int> taille_objets_bis;
+        bool ajouter = true;
+        for(unsigned k = 0 ; k < nom_objets.size() ; ++k)
+            if(nom_objets[k] == m_coffre[i].getChemin())
+                ajouter = false;
+
+        if(ajouter)
+        {
+            unsigned t = 0;
+            for(t = 0 ; t < taille_objets.size() ; ++t)
+                if(taille_objets[t] < m_coffre[i].getTaille().y)
+                {
+                    for(unsigned T = 0 ; T < t ; ++T)
+                    {
+                        nom_objets_bis.push_back(nom_objets[T]);
+                        taille_objets_bis.push_back(taille_objets[T]);
+                    }
+
+                    taille_objets_bis.push_back(m_coffre[i].getTaille().y);
+                    nom_objets_bis.push_back(m_coffre[i].getChemin());
+
+
+                    for(unsigned T = t ; T < taille_objets.size() ; ++T)
+                    {
+                        nom_objets_bis.push_back(nom_objets[T]);
+                        taille_objets_bis.push_back(taille_objets[T]);
+                    }
+
+                    t = taille_objets.size() + 1;
+                }
+
+            if(t == taille_objets.size())
+            {
+                taille_objets.push_back(m_coffre[i].getTaille().y);
+                nom_objets.push_back(m_coffre[i].getChemin());
+            }
+            else
+            {
+                nom_objets.clear();
+                taille_objets.clear();
+                for(unsigned T = 0 ; T < taille_objets_bis.size() ; ++T)
+                {
+                        nom_objets.push_back(nom_objets_bis[T]);
+                        taille_objets.push_back(taille_objets_bis[T]);
+                }
+            }
+        }
+    }
+
+    for(unsigned t = 0 ; t < 8 ; ++t)
+    for(unsigned n = 0 ; n < nom_objets.size() ; ++n)
+    for(unsigned i = 0 ; i < m_coffre.size() ; ++i)
+    if(m_coffre[i].m_type == ordre_tri[t]
+    && m_coffre[i].m_equipe < 0
+    && m_coffre[i].getChemin() == nom_objets[n])
+    {
+        inventaire_bis.push_back(m_coffre[i]);
+    }
+
+    for(unsigned i = 0 ; i < m_coffre.size() ; ++i)
+        if(m_coffre[i].m_equipe >= 0)
+            inventaire_bis.push_back(m_coffre[i]);
+
+    m_coffre.clear();
+    for(unsigned i = 0 ; i < inventaire_bis.size() ; ++i)
+        m_coffre.push_back(inventaire_bis[i]), m_coffre.back().m_dejaTrie = false;
+
+
+    TrierInventaire(&m_coffre,m_classe.position_contenu_marchand.w);
+}
+
 void Hero::AutoTrierInventaire()
 {
     int ordre_tri[8] = {ARME,ARMURE,GOLEM,SCHEMA,LITANIE,AUCUN,JEWELERY,CONSOMMABLE};
@@ -3457,23 +3547,33 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
                                 m_inventaire[z].m_equipe=-1;
                                 AjouterObjetInventaire(m_inventaire[z],trader,m_classe.position_contenu_marchand,true);
                                 delObjet(z);
+
+                                if(trader == &m_coffre)
+                                    AutoTrierCoffre();
                             }
                         }
                         else if (eventManager->getEvenement(Key::LShift,EventKey))
                         {
                             if(craft || bless)
-                            if(trader)
                             {
-                                std::string buf = m_inventaire[z].getChemin();
-                                for(unsigned a = 0, b = 0 ; a < m_inventaire.size() && b < 5 ; ++a)
-                                if(m_inventaire[a].getChemin() == buf)
+                                if(trader)
                                 {
-                                    m_inventaire[a].JouerSon();
-                                    m_inventaire[a].m_equipe=-1;
-                                    AjouterObjetInventaire(m_inventaire[a],trader,m_classe.position_contenu_marchand,true);
-                                    delObjet(a);
-                                    b++;
+                                    std::string buf = m_inventaire[z].getChemin();
+                                    for(unsigned a = 0, b = 0 ; a < m_inventaire.size() && b < 5 ; ++a)
+                                    if(m_inventaire[a].getChemin() == buf)
+                                    {
+                                        m_inventaire[a].JouerSon();
+                                        m_inventaire[a].m_equipe=-1;
+                                        AjouterObjetInventaire(m_inventaire[a],trader,m_classe.position_contenu_marchand,true);
+                                        delObjet(a);
+                                        b++;
+                                    }
                                 }
+                            }
+                            else
+                            {
+                                m_objetADeposer = z;
+                                return 1;
                             }
                         }
                         else
@@ -3514,10 +3614,13 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
             }
 
             m_inventaire[m_objetEnMain].m_equipe=-1;
-            AjouterObjetInventaire(m_inventaire[m_objetEnMain],trader,m_classe.position_contenu_marchand,true);
-            delObjet(m_objetEnMain);
+            if(AjouterObjetInventaire(m_inventaire[m_objetEnMain],trader,m_classe.position_contenu_marchand,true))
+                delObjet(m_objetEnMain);
             m_objetEnMain=-1;
             m_achat=false;
+
+            if(trader == &m_coffre)
+                AutoTrierCoffre();
         }
         else
         {
@@ -3526,16 +3629,20 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
                   &&caseVisee.x <  (*trader)[z].getPosition().x+(*trader)[z].getTaille().x
                   &&caseVisee.y >= (*trader)[z].getPosition().y
                   &&caseVisee.y <  (*trader)[z].getPosition().y+(*trader)[z].getTaille().y)
-                    if ((int)((float)(*trader)[z].getPrix()*(10-(float)m_caracteristiques.charisme/100))<=m_argent || trader == &m_coffre || craft || bless)
+                    if ((int)((float)(*trader)[z].getPrix()*(10-(float)m_caracteristiques.charisme/100))<=m_argent
+                     || trader == &m_coffre || craft || bless)
                     {
                         m_achat=true;
 
-                        if (AjouterObjet((*trader)[z],!eventManager->getEvenement(Key::LControl,EventKey)));
+                        if (AjouterObjet((*trader)[z],!eventManager->getEvenement(Key::LControl,EventKey)))
                         {
                             if(trader != &m_coffre && !craft && !bless)
                                 m_argent-=(int)((float)(*trader)[z].getPrix()*(10-(float)m_caracteristiques.charisme/100));
                             if ((*trader)[z].m_type!=CONSOMMABLE || trader == &m_coffre)
                                 trader->erase(trader->begin()+z);
+
+                            if(trader == &m_coffre)
+                                AutoTrierCoffre();
                         }
                     }
         }
@@ -4029,7 +4136,13 @@ bool Hero::Equiper(int numero, int emplacement)
                 if (m_objetEnMain>=0)
                     m_objetEnMain=ancienEquipe;
                 else
-                    RangerObjet(ancienEquipe);
+                {
+                    if(!RangerObjet(ancienEquipe))
+                    {
+                        m_inventaire[ancienEquipe].m_equipe = emplacement;
+                        m_inventaire[numero].m_equipe = -1;
+                    }
+                }
                 m_achat=false;
             }
         }
@@ -4045,9 +4158,10 @@ bool Hero::Equiper(int numero, int emplacement)
     return 0;
 }
 
-void Hero::RangerObjet(int numero)
+bool Hero::RangerObjet(int numero)
 {
     bool continuer = true;
+    bool ranger = false;
     if (numero>=0&&numero<(int)m_inventaire.size())
     {
         if (m_inventaire[numero].m_equipe==-1)
@@ -4075,10 +4189,12 @@ void Hero::RangerObjet(int numero)
                     {
                         continuer = false;
                         m_inventaire[numero].setPosition(x,y);
+                        ranger = true;
                     }
                 }
         }
     }
+    return ranger;
 }
 
 /*void Hero::InfligerDegats(float degats)

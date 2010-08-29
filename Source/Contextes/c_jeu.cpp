@@ -424,7 +424,7 @@ void c_Jeu::Lumieres(Jeu *jeu)
 }
 
 
-void GestionRaccourcis(Jeu *jeu)
+void GestionRaccourcis(Jeu *jeu, bool diplace_mode = false)
 {
     if(eventManager->getMolette() != 0)
     {
@@ -465,13 +465,14 @@ void GestionRaccourcis(Jeu *jeu)
             else
                 eventManager->StopEvenement(Mouse::Left,EventClicA);
 
-            if(jeu->hero.m_raccourcis[i].no >= 0)
-            {
-                if(jeu->hero.m_raccourcis[i].miracle)
-                    newmiracle = jeu->hero.m_raccourcis[i].no;
-                else
-                    jeu->hero.UtiliserObjet(jeu->hero.m_raccourcis[i].no);
-            }
+            if(!diplace_mode)
+                if(jeu->hero.m_raccourcis[i].no >= 0)
+                {
+                    if(jeu->hero.m_raccourcis[i].miracle)
+                        newmiracle = jeu->hero.m_raccourcis[i].no;
+                    else
+                        jeu->hero.UtiliserObjet(jeu->hero.m_raccourcis[i].no);
+                }
         }
     }
 
@@ -684,7 +685,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false)
 void c_Jeu::Evenements(Jeu *jeu)
 {
 
-    GestionRaccourcis(jeu);
+    GestionRaccourcis(jeu, m_diplace_mode);
     jeu->next_screen = GestionBoutons(jeu, m_diplace_mode);
 
     if (jeu->next_screen >=0 )
@@ -905,7 +906,7 @@ void c_Jeu::Affichage(Jeu *jeu)
     {
         moteurGraphique->AjouterTexte(&fps,17);
         Version.SetY(20);
-        moteurGraphique->AjouterTexte(&Version,17);
+        //moteurGraphique->AjouterTexte(&Version,17);
         Temps.SetY(40);
         moteurGraphique->AjouterTexte(&Temps,17);
         moteurGraphique->AjouterTexte(&TourBoucle,17);

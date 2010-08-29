@@ -534,16 +534,20 @@ bool Configuration::Options()
               &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
             {
                 texte.SetColor(sf::Color(100,50,0));
-                if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+                if(eventManager->getEvenement(sf::Mouse::Left,EventClic)
+                || eventManager->getEvenement(sf::Key::Add,EventKey))
                 {
                     eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+                    eventManager->StopEvenement(sf::Key::Add,EventKey);
                     luminosite += 1;
                     if(luminosite > 50)
                         luminosite = 50;
                 }
-                if(eventManager->getEvenement(sf::Mouse::Right,EventClic))
+                if(eventManager->getEvenement(sf::Mouse::Right,EventClic)
+                || eventManager->getEvenement(sf::Key::Subtract,EventKey))
                 {
                     eventManager->StopEvenement(sf::Mouse::Right,EventClic);
+                    eventManager->StopEvenement(sf::Key::Subtract,EventKey);
                     luminosite -= 1;
                     if(luminosite < 0)
                         luminosite = 0;
@@ -564,16 +568,20 @@ bool Configuration::Options()
               &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
             {
                 texte.SetColor(sf::Color(100,50,0));
-                if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+                if(eventManager->getEvenement(sf::Mouse::Left,EventClic)
+                || eventManager->getEvenement(sf::Key::Add,EventKey))
                 {
                     eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+                    eventManager->StopEvenement(sf::Key::Add,EventKey);
                     contrastes += 0.1;
                     if(contrastes > 5)
                         contrastes = 5;
                 }
-                if(eventManager->getEvenement(sf::Mouse::Right,EventClic))
+                if(eventManager->getEvenement(sf::Mouse::Right,EventClic)
+                || eventManager->getEvenement(sf::Key::Subtract,EventKey))
                 {
                     eventManager->StopEvenement(sf::Mouse::Right,EventClic);
+                    eventManager->StopEvenement(sf::Key::Subtract,EventKey);
                     contrastes -= 0.1;
                     if(contrastes < 0)
                         contrastes = 0;
@@ -816,7 +824,8 @@ bool Configuration::Options()
               &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
             {
                 texte.SetColor(sf::Color(100,50,0));
-                if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+                if(eventManager->getEvenement(sf::Mouse::Left,EventClic)
+                || eventManager->getEvenement(sf::Key::Add,EventKey))
                 {
                     //eventManager->StopEvenement(sf::Mouse::Left,EventClic);
                     volume += 1;
@@ -825,7 +834,8 @@ bool Configuration::Options()
 
                     sf::Sleep(0.1);
                 }
-                if(eventManager->getEvenement(sf::Mouse::Right,EventClic))
+                if(eventManager->getEvenement(sf::Mouse::Right,EventClic)
+                || eventManager->getEvenement(sf::Key::Subtract,EventKey))
                 {
                     //eventManager->StopEvenement(sf::Mouse::Right,EventClic);
                     volume -= 1;
@@ -853,7 +863,8 @@ bool Configuration::Options()
               &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
             {
                 texte.SetColor(sf::Color(100,50,0));
-                if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+                if(eventManager->getEvenement(sf::Mouse::Left,EventClic)
+                || eventManager->getEvenement(sf::Key::Add,EventKey))
                 {
                     music_volume += 1;
                     if(music_volume > 100)
@@ -861,7 +872,8 @@ bool Configuration::Options()
 
                     sf::Sleep(0.1);
                 }
-                if(eventManager->getEvenement(sf::Mouse::Right,EventClic))
+                if(eventManager->getEvenement(sf::Mouse::Right,EventClic)
+                || eventManager->getEvenement(sf::Key::Subtract,EventKey))
                 {
                     music_volume -= 1;
                     if(music_volume < 0)
