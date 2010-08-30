@@ -103,6 +103,7 @@ void Console::Ajouter(char caractere,bool erreur)
 }
 
 
+
 int Console::getTaille()
 {
     return m_textes.size();

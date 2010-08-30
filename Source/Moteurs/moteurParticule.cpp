@@ -47,85 +47,94 @@ bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps)
 
     for (Iter=m_particules.begin();Iter!=m_particules.end();++Iter,++i)
     {
-        if (!modele->m_particules.empty())
-            if (Iter->numero>=0&&Iter->numero<(int)modele->m_particules.size())
-            {
-                sf::Sprite sprite;
-                sprite.SetImage(*moteurGraphique->getImage(modele->m_image));
-                sprite.SetSubRect(sf::IntRect(modele->m_particules[Iter->numero].positionImage.x,
-                                              modele->m_particules[Iter->numero].positionImage.y,
-                                              modele->m_particules[Iter->numero].positionImage.w,
-                                              modele->m_particules[Iter->numero].positionImage.h));
-                sprite.SetOrigin(modele->m_particules[Iter->numero].positionImage.w/2,
-                                 modele->m_particules[Iter->numero].positionImage.h/2);
-                sprite.SetRotation(Iter->rotation);
-                float scale=Iter->position.z/200+1;
-                sprite.SetScale(scale,scale);
-                sprite.SetX(Iter->position.x);
-                sprite.SetY(Iter->position.y-Iter->position.z);
-                if(!Iter->sang)
-                    sprite.SetColor(sf::Color(m_color.r,m_color.g,m_color.b,(int)Iter->alpha));
-                sprite.Scale(Iter->taille, Iter->taille);
-
-                if (Iter->position.z>32)
-                    moteurGraphique->AjouterCommande(&sprite,11,1);
-                else
-                    moteurGraphique->AjouterCommande(&sprite,8,1);
-
-                sprite.Move(0,Iter->position.z);
-                moteurGraphique->AjouterCommande(&sprite,9,1);
-            }
-
-        if (Iter->vie==100)
+        if(Iter->alpha > 0)
         {
-            Iter->position.x+=Iter->vecteur.x*Iter->vitesse*temps*25;
-            Iter->position.y+=Iter->vecteur.y*Iter->vitesse*temps*25;
-            Iter->position.z+=Iter->vecteur.z*temps*25;
+            if (!modele->m_particules.empty())
+                if (Iter->numero>=0&&Iter->numero<(int)modele->m_particules.size())
+                {
+                    sf::Sprite sprite;
+                    sprite.SetImage(*moteurGraphique->getImage(modele->m_image));
+                    sprite.SetSubRect(sf::IntRect(modele->m_particules[Iter->numero].positionImage.x,
+                                                  modele->m_particules[Iter->numero].positionImage.y,
+                                                  modele->m_particules[Iter->numero].positionImage.w,
+                                                  modele->m_particules[Iter->numero].positionImage.h));
+                    sprite.SetOrigin(modele->m_particules[Iter->numero].positionImage.w/2,
+                                     modele->m_particules[Iter->numero].positionImage.h/2);
+                    sprite.SetRotation(Iter->rotation);
+                    float scale=Iter->position.z/200+1;
+                    sprite.SetScale(scale,scale);
+                    sprite.SetX(Iter->position.x);
+                    sprite.SetY(Iter->position.y-Iter->position.z);
+                    if(!Iter->sang)
+                        sprite.SetColor(sf::Color(m_color.r,m_color.g,m_color.b,(int)Iter->alpha));
+                    sprite.Scale(Iter->taille, Iter->taille);
 
-            Iter->vecteur.z-=temps*25;
+                    if (Iter->position.z>32)
+                        moteurGraphique->AjouterCommande(&sprite,11,1);
+                    else
+                        moteurGraphique->AjouterCommande(&sprite,8,1);
 
-            if (Iter->position.z<=1&&((i-1)%5==0))
+                    sprite.Move(0,Iter->position.z);
+                    moteurGraphique->AjouterCommande(&sprite,9,1);
+
+                    if(sprite.GetPosition().x + sprite.GetSize().x < GetViewRect(moteurGraphique->m_camera).Left
+                    || sprite.GetPosition().x > GetViewRect(moteurGraphique->m_camera).Left + GetViewRect(moteurGraphique->m_camera).Width
+                    || sprite.GetPosition().y + sprite.GetSize().y < GetViewRect(moteurGraphique->m_camera).Top
+                    || sprite.GetPosition().y > GetViewRect(moteurGraphique->m_camera).Top + GetViewRect(moteurGraphique->m_camera).Height)
+                        Iter->vie = 0, Iter->alpha = 0;
+                }
+
+            if (Iter->vie==100)
             {
-                coordonnee position;
+                Iter->position.x+=Iter->vecteur.x*Iter->vitesse*temps*25;
+                Iter->position.y+=Iter->vecteur.y*Iter->vitesse*temps*25;
+                Iter->position.z+=Iter->vecteur.z*temps*25;
 
-                position.x = -(int)(Iter->position.x/64/5);
-                position.y =  (int)(Iter->position.y/32/5);
+                Iter->vecteur.z-=temps*25;
 
-                if ((int)fabs(Iter->vecteur.z*3)>10)
-                    moteurSons->JouerSon(m_son,position,0,(int)fabs(Iter->vecteur.z*3));
+                if (Iter->position.z<=1&&((i-1)%5==0))
+                {
+                    coordonnee position;
+
+                    position.x = -(int)(Iter->position.x/64/5);
+                    position.y =  (int)(Iter->position.y/32/5);
+
+                    if ((int)fabs(Iter->vecteur.z*3)>10)
+                        moteurSons->JouerSon(m_son,position,0,(int)fabs(Iter->vecteur.z*3));
+                }
+
+                if (Iter->position.z<0)
+                {
+                    Iter->position.z=0;
+                    Iter->vecteur.z=fabs(Iter->vecteur.z)/20 * modele->m_particules[Iter->numero].rebond;
+                }
+
+
+                Iter->vitesse-=temps*10;
+                Iter->vitesse_rotation-=temps*50;
+                if (Iter->vitesse_rotation<0)
+                    Iter->vitesse_rotation=0;
+
+                Iter->rotation+=Iter->vitesse_rotation*temps*10;
             }
 
-            if (Iter->position.z<0)
+            if(Iter->position.z < 4)
             {
-                Iter->position.z=0;
-                Iter->vecteur.z=fabs(Iter->vecteur.z)/20 * modele->m_particules[Iter->numero].rebond;
+                Iter->vitesse -= temps*modele->m_particules[Iter->numero].frottement;
+                Iter->taille += temps*10;
+
+                if(Iter->taille > 1)
+                    Iter->taille = 1;
             }
 
-
-            Iter->vitesse-=temps*10;
-            Iter->vitesse_rotation-=temps*50;
-            if (Iter->vitesse_rotation<0)
-                Iter->vitesse_rotation=0;
-
-            Iter->rotation+=Iter->vitesse_rotation*temps*10;
+            if (Iter->vitesse<=0)
+                Iter->vitesse=0;
+            if (Iter->vitesse ==0 && Iter->position.z < 4)
+                Iter->vie-=temps*5;
+            if (Iter->vie<=0)
+                Iter->alpha-=temps*100;
         }
-
-        if(Iter->position.z < 4)
-        {
-            Iter->vitesse -= temps*modele->m_particules[Iter->numero].frottement;
-            Iter->taille += temps*10;
-
-            if(Iter->taille > 1)
-                Iter->taille = 1;
-        }
-
-        if (Iter->vitesse<=0)
-            Iter->vitesse=0;
-        if (Iter->vitesse ==0 && Iter->position.z < 4)
-            Iter->vie-=temps*5;
-        if (Iter->vie<=0)
-            Iter->alpha-=temps*100;
-        if (Iter->alpha<=0)
+        else
             Iter->alpha=0,efface++;
     }
 

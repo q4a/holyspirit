@@ -184,6 +184,8 @@ private:
     float m_bless_time;
     float m_craft_time_max;
     float m_bless_time_max;
+
+    bool m_trier_en_hauteur;
 };
 
 #endif

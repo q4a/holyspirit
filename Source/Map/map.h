@@ -34,7 +34,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 class Jeu;
 
-void TrierInventaire(std::vector<Objet> *, int );
+int TrierInventaire(std::vector<Objet> *, int , bool = false);
 
 class Map
 {

@@ -166,7 +166,7 @@ void Monstre::GenererInventaire(Modele_Monstre *modele)
 
     for (unsigned k=0; k<modele->getObjets().size(); k++)
         for (unsigned i=0; i<modele->getObjets()[k].size(); i++)
-            if ((float)(rand()%1000000000)<=(float)(modele->getObjets()[k][i].getChanceTrouver()*0.5*(m_caracteristique.rang*3+1))
+            if ((float)(rand()%100000)<=(float)(modele->getObjets()[k][i].getChanceTrouver()*0.5*(m_caracteristique.rang*3+1))
                 || modele->getObjets()[k][i].getChanceTrouver() == -1)
             {
                 m_objets.push_back(modele->getObjets()[k][i]);

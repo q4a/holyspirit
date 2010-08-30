@@ -40,7 +40,7 @@ using namespace sf;
 int crypter(int);
 int decrypter(int);
 
-void TrierInventaire(std::vector<Objet>*, int);
+int TrierInventaire(std::vector<Objet>*, int, bool = 0);
 
 inline sf::Vector2f AutoScreenAdjust(float x, float y, float decalage = 0)
 {
@@ -131,37 +131,12 @@ Hero::Hero()
 
     Caracteristique temp;
 
-    temp.vie                = 100;
-    temp.maxVie             = 100;
-    temp.reserveVie         = 0;
-    temp.regenVie           = 0;
-
-    temp.foi                = 100;
-    temp.maxFoi             = 100;
-    temp.reserveFoi         = 0;
-    temp.regenFoi           = 0;
-
-    temp.volVie             = 0;
-    temp.volFoi             = 0;
-
     temp.vitesse            = 0.7;
-    temp.pointAme           = 0;
-    temp.ancienPointAme     = 0;
-    temp.positionAncienAme  = 0;
     temp.niveau             = 1;
     temp.nom                = "Héros";
 
-    temp.force              = 4;
-    temp.dexterite          = 4;
-    temp.vitalite           = 4;
-    temp.piete              = 4;
-    temp.charisme           = 4;
-    temp.pts_restant        = 0;
-    temp.miracles_restant   = 0;
-
-    temp.modificateurTaille = 1;
-
     m_personnage.setCaracteristique(temp);
+
     m_personnage.m_friendly = true;
 
     m_objetEnMain=-1;
@@ -206,21 +181,14 @@ Hero::Hero()
 
     m_case_visee.x = -1;
     m_case_visee.y = -1;
+
+    m_trier_en_hauteur = false;
 }
 
 Hero::~Hero()
 {
     if (configuration->debug)
         console->Ajouter("Destruction du héro ...");
-
-    m_inventaire.clear();
-    if (configuration->debug)
-        console->Ajouter("Destruction de l'inventaire.");
-    m_contenuSave.clear();
-    if (configuration->debug)
-        console->Ajouter("Destruction de la save.");
-
-    console->Ajouter("Destruction du héro terminée.");
 }
 
 void Hero::Sauvegarder()
@@ -3406,7 +3374,24 @@ void Hero::AutoTrierInventaire()
         if(m_raccourcis[k].miracle == false)
             m_raccourcis[k].no = new_raccourci[k];
 
-    TrierInventaire(&m_inventaire,m_classe.position_contenu_inventaire.w);
+    int taille = 0;
+
+    if(m_trier_en_hauteur)
+        TrierInventaire(&m_inventaire,m_classe.position_contenu_inventaire.h,m_trier_en_hauteur);
+    else
+        TrierInventaire(&m_inventaire,m_classe.position_contenu_inventaire.w,m_trier_en_hauteur);
+
+    m_trier_en_hauteur = !m_trier_en_hauteur;
+
+
+    for(unsigned i = 0 ; i < m_inventaire.size() ; ++i)
+        m_inventaire[i].m_dejaTrie = false;
+
+    if(!m_trier_en_hauteur && taille > m_classe.position_contenu_inventaire.w)
+        TrierInventaire(&m_inventaire,m_classe.position_contenu_inventaire.w,m_trier_en_hauteur);
+
+    else if(m_trier_en_hauteur && taille > m_classe.position_contenu_inventaire.h)
+        TrierInventaire(&m_inventaire,m_classe.position_contenu_inventaire.h,m_trier_en_hauteur);
 }
 
 bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
@@ -4194,6 +4179,9 @@ bool Hero::RangerObjet(int numero)
                 }
         }
     }
+    else
+        return true;
+
     return ranger;
 }
 

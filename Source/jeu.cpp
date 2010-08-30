@@ -73,8 +73,6 @@ void Jeu::Demarrer()
     m_display = true;
     while (m_run)
     {
-        //while(configuration->syncronisation_verticale && Clock.GetElapsedTime() < 0.012){}
-
         if(map != NULL)
             eventManager->GererLesEvenements(&m_run,Clock.GetElapsedTime(),map->getDimensions());
         else

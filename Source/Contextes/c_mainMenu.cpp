@@ -228,7 +228,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
             DIR *repertoire;
             repertoire = opendir(configuration->chemin_saves.c_str());
             if(!repertoire)
-                console->Ajouter("Le repertoire n'existe pas");
+                console->Ajouter("Le repertoire n'existe pas",1);
 
 
 

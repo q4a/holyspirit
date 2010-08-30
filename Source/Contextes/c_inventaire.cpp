@@ -52,39 +52,78 @@ c_Inventaire::~c_Inventaire()
 {
 }
 
-void TrierInventaire(std::vector<Objet> *trade, int largeur)
+int TrierInventaire(std::vector<Objet> *trade, int largeur, bool enHauteur)
 {
+    int taille = 0;
     bool continuer=true;
 
     for(unsigned i=0;i<trade->size();++i)
     if(!(*trade)[i].m_dejaTrie)
     {
         continuer = true;
-        for (int y=0;continuer;y++)
-            for (int x=0;x<largeur&continuer;x++)
-            {
-                bool ajouter=true;
-                for (int h=0;h<(*trade)[i].getTaille().y;h++)
-                    for (int w=0;w<(*trade)[i].getTaille().x;w++)
-                        if (x+w<largeur)
-                        {
-                            for (unsigned j=0;j<i;j++)
-                                for (int Y=0;Y<(*trade)[j].getTaille().y;Y++)
-                                    for (int X=0;X<(*trade)[j].getTaille().x;X++)
-                                        if ((*trade)[j].getPosition().x+X==x+w && (*trade)[j].getPosition().y+Y==y+h)
-                                            ajouter=false;
-                        }
-                        else
-                            ajouter=false;
-
-                if (ajouter)
+        if(enHauteur)
+        {
+            for (int x=0;continuer;x++)
+                for (int y=0;y<largeur&&continuer;y++)
                 {
-                    continuer=false;
-                    (*trade)[i].setPosition(x,y);
-                    (*trade)[i].m_dejaTrie = true;
+                    bool ajouter=true;
+                    for (int h=0;h<(*trade)[i].getTaille().y;h++)
+                        for (int w=0;w<(*trade)[i].getTaille().x;w++)
+                            if (y+h<largeur)
+                            {
+                                for (unsigned j=0;j<i;j++)
+                                    for (int Y=0;Y<(*trade)[j].getTaille().y;Y++)
+                                        for (int X=0;X<(*trade)[j].getTaille().x;X++)
+                                            if ((*trade)[j].getPosition().x+X==x+w && (*trade)[j].getPosition().y+Y==y+h)
+                                                ajouter=false;
+                            }
+                            else
+                                ajouter=false;
+
+                    if (ajouter)
+                    {
+                        continuer=false;
+                        (*trade)[i].setPosition(x,y);
+                        (*trade)[i].m_dejaTrie = true;
+
+                        if(y + (*trade)[i].getTaille().y > taille)
+                            taille = y + (*trade)[i].getTaille().y;
+                    }
                 }
-            }
+        }
+        else
+        {
+            for (int y=0;continuer;y++)
+                for (int x=0;x<largeur&&continuer;x++)
+                {
+                    bool ajouter=true;
+                    for (int h=0;h<(*trade)[i].getTaille().y;h++)
+                        for (int w=0;w<(*trade)[i].getTaille().x;w++)
+                            if (x+w<largeur)
+                            {
+                                for (unsigned j=0;j<i;j++)
+                                    for (int Y=0;Y<(*trade)[j].getTaille().y;Y++)
+                                        for (int X=0;X<(*trade)[j].getTaille().x;X++)
+                                            if ((*trade)[j].getPosition().x+X==x+w && (*trade)[j].getPosition().y+Y==y+h)
+                                                ajouter=false;
+                            }
+                            else
+                                ajouter=false;
+
+                    if (ajouter)
+                    {
+                        continuer=false;
+                        (*trade)[i].setPosition(x,y);
+                        (*trade)[i].m_dejaTrie = true;
+
+                        if(x + (*trade)[i].getTaille().x > taille)
+                            taille = x + (*trade)[i].getTaille().x;
+                    }
+                }
+        }
     }
+
+    return taille;
 }
 
 void c_Inventaire::setTrader(std::vector<Objet> *trade)

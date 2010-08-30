@@ -408,6 +408,19 @@ void MoteurGraphique::Afficher()
 
     for (int k=0;k<=20;k++)
     {
+        if (k==12)
+        {
+            EffectFiltre.SetParameter("color", configuration->contrastes-1, configuration->contrastes-1, configuration->contrastes-1);
+            EffectFiltre.SetParameter("luminosity", configuration->luminosite/128);
+
+            if (configuration->postFX)
+            {
+                bufferImage.SetView(bufferImage.GetDefaultView());
+                bufferImage.Display();
+                bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectFiltre);
+            }
+        }
+
         if (k==12 && configuration->Lumiere)
         {
             sf::Sprite screen(m_light_screen.GetImage());
@@ -472,7 +485,7 @@ void MoteurGraphique::Afficher()
                     else
                         m_water_screen.SetView(m_water_screen.GetDefaultView());
 
-                    m_water_screen.Draw(IterCommande->m_sprite,EffectFiltre);
+                    m_water_screen.Draw(IterCommande->m_sprite/*,EffectFiltre*/);
                 }
                 else
                 {
@@ -481,9 +494,9 @@ void MoteurGraphique::Afficher()
                     else
                         bufferImage.SetView(bufferImage.GetDefaultView());
 
-                    if(k < 12 && configuration->postFX)
+                    /*if(k < 12 && configuration->postFX)
                         bufferImage.Draw(IterCommande->m_sprite,EffectFiltre);
-                    else
+                    else*/
                         bufferImage.Draw(IterCommande->m_sprite);
                 }
             }
@@ -772,47 +785,52 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
             AjouterCommande(&sprite2, 10, !entite->m_fixed);
         }
 
+        if(entite->m_sprite.GetSize().x > 0 && entite->m_sprite.GetSize().y > 0)
         {
-            sf::Sprite sprite = entite->m_sprite;
-            sprite.Move(entite->m_decalage.x,entite->m_decalage.y);
+            {
+                sf::Sprite sprite = entite->m_sprite;
+                sprite.Move(entite->m_decalage.x,entite->m_decalage.y);
 
-            if(sprite.GetPosition().x + sprite.GetSize().x - sprite.GetOrigin().x     >= GetViewRect(m_camera).Left
-            && sprite.GetPosition().x - sprite.GetOrigin().x                          <  GetViewRect(m_camera).Left + GetViewRect(m_camera).Width
-            && sprite.GetPosition().y + sprite.GetSize().y - sprite.GetOrigin().y     >= GetViewRect(m_camera).Top
-            && sprite.GetPosition().y - sprite.GetOrigin().y                          <  GetViewRect(m_camera).Top + GetViewRect(m_camera).Height
-            || sprite.GetRotation() != 0 || entite->m_fixed)
-                AjouterCommande(&sprite, entite->m_couche + entite->m_decalCouche, !entite->m_fixed);
+                if(sprite.GetPosition().x + sprite.GetSize().x - sprite.GetOrigin().x     >= GetViewRect(m_camera).Left
+                && sprite.GetPosition().x - sprite.GetOrigin().x                          <  GetViewRect(m_camera).Left + GetViewRect(m_camera).Width
+                && sprite.GetPosition().y + sprite.GetSize().y - sprite.GetOrigin().y     >= GetViewRect(m_camera).Top
+                && sprite.GetPosition().y - sprite.GetOrigin().y                          <  GetViewRect(m_camera).Top + GetViewRect(m_camera).Height
+                || sprite.GetRotation() != 0 || entite->m_fixed)
+                    AjouterCommande(&sprite, entite->m_couche + entite->m_decalCouche, !entite->m_fixed);
+            }
+
+            if(entite->m_shadow && configuration->Ombre)
+            {
+                sf::Sprite sprite;
+                sprite = entite->m_sprite;
+                sprite.Move(entite->m_decalage.x,entite->m_decalage.y);
+
+                sprite.SetScale(1, (100-(float)m_soleil.hauteur)/50);
+                sprite.SetRotation(m_angleOmbreSoleil);
+
+                AjouterCommande(&sprite, 9, !entite->m_fixed);
+            }
+
+            if(entite->m_reflect && configuration->Reflection)
+            {
+                sf::Sprite sprite;
+                sprite = entite->m_sprite;
+                sprite.Move(entite->m_decalage.x,entite->m_decalage.y);
+
+                sprite.FlipY(true);
+                sprite.SetOrigin(sprite.GetOrigin().x, sprite.GetSize().y - sprite.GetOrigin().y);
+
+                if(sprite.GetPosition().x + sprite.GetSize().x - sprite.GetOrigin().x     >= GetViewRect(m_camera).Left
+                && sprite.GetPosition().x - sprite.GetOrigin().x                          <  GetViewRect(m_camera).Left + GetViewRect(m_camera).Width
+                && sprite.GetPosition().y + sprite.GetSize().y - sprite.GetOrigin().y     >= GetViewRect(m_camera).Top
+                && sprite.GetPosition().y - sprite.GetOrigin().y                          <  GetViewRect(m_camera).Top + GetViewRect(m_camera).Height)
+                    AjouterCommande(&sprite, 0, !entite->m_fixed);
+            }
         }
 
-        if(entite->m_shadow)
-        {
-            sf::Sprite sprite;
-            sprite = entite->m_sprite;
-            sprite.Move(entite->m_decalage.x,entite->m_decalage.y);
 
-            sprite.SetScale(1, (100-(float)m_soleil.hauteur)/50);
-            sprite.SetRotation(m_angleOmbreSoleil);
 
-            AjouterCommande(&sprite, 9, !entite->m_fixed);
-        }
-
-        if(entite->m_reflect)
-        {
-            sf::Sprite sprite;
-            sprite = entite->m_sprite;
-            sprite.Move(entite->m_decalage.x,entite->m_decalage.y);
-
-            sprite.FlipY(true);
-            sprite.SetOrigin(sprite.GetOrigin().x, sprite.GetSize().y - sprite.GetOrigin().y);
-
-            if(sprite.GetPosition().x + sprite.GetSize().x - sprite.GetOrigin().x     >= GetViewRect(m_camera).Left
-            && sprite.GetPosition().x - sprite.GetOrigin().x                          <  GetViewRect(m_camera).Left + GetViewRect(m_camera).Width
-            && sprite.GetPosition().y + sprite.GetSize().y - sprite.GetOrigin().y     >= GetViewRect(m_camera).Top
-            && sprite.GetPosition().y - sprite.GetOrigin().y                          <  GetViewRect(m_camera).Top + GetViewRect(m_camera).Height)
-                AjouterCommande(&sprite, 0, !entite->m_fixed);
-        }
-
-        if(entite->m_distort)
+        if(entite->m_distort && configuration->Distortion)
         {
            if (entite->m_sprite_distortion.GetPosition().x + entite->m_sprite_distortion.GetSize().x - entite->m_sprite_distortion.GetOrigin().x    >= GetViewRect(m_camera).Left
             && entite->m_sprite_distortion.GetPosition().x - entite->m_sprite_distortion.GetOrigin().x                                              <  GetViewRect(m_camera).Left + GetViewRect(m_camera).Width

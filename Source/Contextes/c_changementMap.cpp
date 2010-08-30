@@ -213,7 +213,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         jeu->hero.m_minimap.clear();
 
         if (!jeu->map->Charger(m_nomProchaineMap,&jeu->hero))
-            console->Ajouter("CRITICAL ERROR"), throw  "CRITICAL ERROR";
+            console->Ajouter("CRITICAL ERROR",1), throw  "CRITICAL ERROR";
 
         bool newMusic = true;
         for(unsigned i = 0 ; i < jeu->map->m_musiques.size() ; ++i)
