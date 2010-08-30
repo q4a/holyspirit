@@ -6,7 +6,7 @@ Le cimetière
 Le donjon de la peur
 Tutoriel
 La caverne aux mille et un pièges
-Foret de Malemort
+Forêt de Malemort
 
 L'Abbaye
 

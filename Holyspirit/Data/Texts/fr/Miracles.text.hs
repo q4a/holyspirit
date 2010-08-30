@@ -6,7 +6,7 @@ Le croisé charge un adversaire renversant tout sur son passage.\Utilisable uniqu
 Dégâts durant la charge : %1-%2
 Dégâts à l'impact : %3-%4
 Tornade divine
-Le croisé fait tournoyer son épée\repoussant les ennemis en contact avec lui.\Utilisable uniquement avec des épées à deux mains.
+Le croisé fait tournoyer son épée\repoussant les ennemis en contact avec lui.\Utilisable uniquement avec des armes à deux mains.
 Dégâts : %1 \% de l'arme
 Incarnation de Saint Lazare : Vampirisme
 En plus de soigner le croisé, Saint Lazare\lui permet de voler la vie de ses adversaires.
@@ -29,13 +29,13 @@ La courtisane empoisonne son arme pendant un certain laps de temps.
 Durée : %1 secondes
 Dégâts de poison : %3 sur 2 secondes.
 Coup puissant
-Le croisé donne une violent coup\pouvant repousser un adversaire.
-Dégats : +%1 à %2
+Le croisé donne un violent coup\pouvant repousser un adversaire.
+Dégâts : +%1 à %2
 Tornade divine : Projection
 Quand le croisé tourne sur lui-même, cela crée une\véritable tornade qui détruit tout sur son passage.
-Dégats de souffle : %1 à %2
+Dégâts de souffle : %1 à %2
 Litanie de nuage toxique mineure
-20 points de dégats sur 6 secondes.
+20 points de dégâts sur 6 secondes.
 Jugement dernier
 Le croisé maudit un ennemi qui explosera quand il mourra.
 Dégâts lors de l'explosion : %1 à %2

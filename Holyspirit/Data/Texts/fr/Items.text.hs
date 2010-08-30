@@ -33,7 +33,7 @@ Une épée longue,\parfaite pour la guerre.\\Arme à une main.
 Pendentif azur
 Un joli petit pendentif.
 Minerai de fer
-Le minerai de fer est un matériau\de base pour la fabrication\d'arme et armures.
+Le minerai de fer est un matériau\de base pour la fabrication\d'armes et armures.
 Anneau
 Un petit anneau.
 Tiare sacrée
@@ -65,7 +65,7 @@ Une masse à ailettes fort rouillée.\Elle doit être très ancienne.\\Arme à une ma
 Fracasseuse
 Une arme redoutable capable d'écraser\un crâne humain en un seul coup.\\Arme à une main.
 Flamboyante
-Épée forgée dans les flammes\de l'enfer, elle appartenu au\démon avant d'être dérobée par\l'Archange Michel. Celui-ci la\perdit une fois en s'incarnant\sur Terre et on le cru\disparu à jamais.\\Arme à une main.
+Épée forgée dans les flammes\de l'enfer, elle a appartenu au\démon avant d'être dérobée par\l'Archange Michel. Celui-ci la\perdit une fois en s'incarnant\sur Terre et on le cru\disparu à jamais.\\Arme à une main.
 Hache de bucheron
 Une simple hache pour\couper du bois.\Elle n'en est pas moins\une arme mortelle.\\Arme à deux mains.
 Masse de boucher
@@ -77,7 +77,7 @@ Un bijou qui sied à ravir pour une femme en deuil.
 Barbute à cornes
 Un casque de barbare\extrêmement résistant.\Introuvable dans le commerce.
 Minerai de cuivre
-Le minerai de cuivre est un matériau\de base pour la fabrication\d'arme et armures.
+Le minerai de cuivre est un matériau\de base pour la fabrication\d'armes et armures.
 Rubis
 Un magnifique joyau.
 Schéma : Barbute à cornes
@@ -110,7 +110,7 @@ Ce parchemin contient l'incantation\nécessaire à la bénédiction d'un objet\pour 
 Schéma : Golem de charbon ardent
 Schéma expliquant la confection d'un compagnon golem en charbon.
 Golem de charbon ardent
-Un puissant allié.\Le golem de charbon ardent est un humanoide\en charbon incendescant.
+Un puissant allié.\Le golem de charbon ardent est un humanoïde\en charbon incendescent.
 Espadon en os
 Une épée à deux mains taillée dans l'os.
 Bouclier en os
@@ -120,7 +120,7 @@ Une potion permettant\de vous régénérer de\300 PF.
 Potion de soins limitée
 Une potion permettant\de vous soigner de\300 PV.
 Camail
-Un capuchon en maille\protégeant la tête et la nuque.
+Un capuchon en mailles\protégeant la tête et la nuque.
 Sceptre de Clodomir
 Description et histoire de Clodomir.
 
