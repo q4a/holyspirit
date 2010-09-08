@@ -4,7 +4,7 @@ Urna
 Puerta
 Arcabucero morboso
 Títere morboso
-Guardián esqueleto
+Esqueleto guardián
 Sombra tenebrosa
 Sacerdote demoníaco
 Milicia corrompida : Bruto
@@ -13,14 +13,14 @@ Golem de quartz
 Señor Merengar
 Moloso descarnado
 campesino zombi
-Restos pútridos
-Mercantil común
-Mercantil raro
+Restos podridos
+Mercader común
+Mercader raro
 El Gran Cuestor
 Palanca
 Zombi con maza
 Chupador de cerebro
-Mercantil zombificado
+Mercader zombificado
 Jefe de manada
 Martillador de cráneos
 Moloso infernal
@@ -33,7 +33,10 @@ Cruzado
 Cortesana
 Pistolero
 Señor esqueleto
-Golem de charbon ardent
-Tas d'os
-Rognorak le forgeron
-Sarcophage
+*Golem de charbon arden
+*Tas d'os
+*Rognorack le forgeron
+*Sarcophage
+*Errant d'os
+*Tombe commune (Invoque des errants)
+*Passage

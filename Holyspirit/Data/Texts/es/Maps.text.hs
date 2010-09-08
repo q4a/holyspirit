@@ -10,5 +10,4 @@ Bosque de Malemort
 
 Abadía
 
-Catacombes
-
+*Les catacombes

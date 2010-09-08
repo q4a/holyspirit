@@ -15,11 +15,12 @@ main
 						fight
 					end
 				else
-					if rand * 98
+					if 	distance * 6
 					then
 						useMiracle * 1
+					else
+						fight
 					end
-					fight
 				end
 			else
 				randomDisplace

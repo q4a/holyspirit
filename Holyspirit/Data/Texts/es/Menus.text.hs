@@ -19,8 +19,8 @@ Menú (Esc.)
 Equipaje
 Mercantil
 Inventario
-Daños : 
-Armadura : 
+Daños
+Armadura
 Fuerza física
 Destreza necesaria
 Carisma necesario
@@ -41,7 +41,7 @@ La vía del Asesino
 La vía del Seductora
 Siguiente nivel
 Clic-izquierdo : Seleccionar / clic-derecho : Aprender
-¡ Ha cambiado de nivel ! Haga clic aquí para gastar sus puntos.
+¡Ha cambiado de nivel! Haga clic aquí para gastar sus puntos.
 Físico
 Fuego
 Fe
@@ -59,8 +59,8 @@ Regreso
 Su nombre :
 Empezar
 Sitio libre
-Mostrar:Esconder los botones
+Mostrar :Esconder los botones
 Clase
 Baúl
 <Incompatible>
-Crédits
+*Crédits

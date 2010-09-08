@@ -1,28 +1,28 @@
 Encarnación de la Santa Barba
-El cruzado llama a Santa Barba para acudir en su ayuda.\Esta permita la cruzado de infligir daños  por fuego.
+El cruzado llama a Santa Barba para acudir en su ayuda.\Esta permita al cruzado infligir daños  por fuego.
 Daños por fuego : %1-%2
 Carga 
-El cruzado carga un adversario destrozando todo sobre su camino.\Utilizable únicamente con un escudo.
+El cruzado carga contra un adversario destrozando todo sobre su camino. Utilizable únicamente con un escudo.
 Daños durante carga : %1-%2
-Dégâts à l'impact : %3-%4 //NO TRANSLATE
+*Dégâts à l'impac
 Tornado divino
-El cruzado hace girar su espada\rechazando a los enemigos en contacto con él.\Utilizable únicamente con espadas mandobles.
+El cruzado hace girar su espada rechazando a los enemigos en contacto con él. Utilizable únicamente con espadas mandobles.
 Daños :%1\% del arma
 Encarnación de Santo Lázaro : Vampirismo
-Además de curar al cruzado, Santo lázaro\le permite de robar la vida de sus enemigos.
+Además de curar al cruzado, Santo Lázaro le permite de robar la vida de sus enemigos.
 Robo de vida : %1\%
 Encarnación de Santo Lázaro
-El cruzado llama a Santo Lázaro para acudir en su ayuda.\Este mejorará regeneración de salud del cruzado.
+El cruzado llama a Santo Lázaro para acudir en su ayuda.\ Este mejorará regeneración de salud del cruzado.
 Regeneración de vida : +%1
 Encanto
 LA cortesana encanta un enemigo para que luche para ella.
 Vida máxima : %2
 Encanto : Mastodonte
-Los adversarios encantados tienen más vida\y se regeneran  más rapidammente.
+Los adversarios encantados tienen más vida y se regeneran  más rápidamente.
 Vida suplementaria : %2
 Regeneración de vida : +1%
 Nube toxica
-La cortesana enviá un globo que\libera una nube toxica al impacto.
+La cortesana envía un globo que libera una nube toxica al impacto.
 %1 daños durante 6 segundos.
 Veneno
 La cortesana envenena su arma durante algún tiempo.
@@ -32,8 +32,8 @@ Golpe potente
 El cruzado da un violento golpe \pudiendo rechazar a un enemigo.
 Daños : +%1 a %2
 Tornado divino : Proyección
-Cuando el cruzado gira sobre el mismo, crea un\verdadero tornado que destruye todo sobre su camino.
-Daños por el sople : %1 a %2
+Cuando el cruzado gira sobre el mismo, crea un verdadero tornado que destruye todo sobre su camino.
+Daños por el sople: %1 a %2
 Letanía de nube toxica minora
 20 puntos de daño durante 6 segundos.
 Ultimo juicio
@@ -43,3 +43,6 @@ Armadura de fe
 La fe del cruzado le protege contra los elementos
 +% de resistencia contra cualquier elemento
 Duración : %2 segundos
+*Jugement dernier : Enflammer
+*L'explosion de feu enflamme les ennemis,\provoquant des dégâts de feu supplémentaires sur la durée.
+*Dégâts : %1 sur %2 secondes.

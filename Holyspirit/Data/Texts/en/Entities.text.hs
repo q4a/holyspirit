@@ -39,4 +39,4 @@ Rognorak the blacksmith
 Sarcophagus
 Grave wanderer
 Common grave (Spawn wanderers)
-Passage
+*Passage

@@ -14,5 +14,5 @@ void main()
 	vec4 c3 = texture2D(framebuffer, gl_TexCoord[0].xy - offx);
 	vec4 c4 = texture2D(framebuffer, gl_TexCoord[0].xy + offx);
 
-   gl_FragColor = (vec4(color, 1.0) * c0 * 0.2 + vec4(color, 1.0) *c1 * 0.2 + vec4(color, 1.0) *c2 * 0.2 + vec4(color, 1.0) *c3 * 0.2 + vec4(color, 1.0) *c4 * 0.2) * vec4(black,black,black,1);
+   gl_FragColor = (vec4(color, 1.0) * c0 * 0.2 + vec4(color, 1.0) *c1 * 0.2 + vec4(color, 1.0) *c2 * 0.2 + vec4(color, 1.0) *c3 * 0.2 + vec4(color, 1.0) *c4 * 0.2) * vec4(black,black,black,1.0);
 }
