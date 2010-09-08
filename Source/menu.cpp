@@ -366,7 +366,8 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
             std::ostringstream buf;
             buf<<caracteristiqueMonstre.nom;
 
-            buf << " ("<<(int)caracteristiqueMonstre.vie<<" / "<<caracteristiqueMonstre.maxVie<<")";
+            if(caracteristiqueMonstre.maxVie > 1)
+                buf << " ("<<(int)caracteristiqueMonstre.vie<<" / "<<caracteristiqueMonstre.maxVie<<")";
 
             texte.SetString(buf.str());
         }

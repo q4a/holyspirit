@@ -1921,9 +1921,9 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
 
 void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
 {
-    for(std::vector<Monstre>::iterator Iter = m_monstre.begin();Iter!=m_monstre.end();++Iter)
-    if(fabs(hero->m_personnage.getCoordonnee().x - Iter->getCoordonnee().x) < 20)
-    if(fabs(hero->m_personnage.getCoordonnee().y - Iter->getCoordonnee().y) < 20)
+    for(std::vector<Monstre>::iterator Iter = m_monstre.begin();Iter!=m_monstre.end();++Iter) {
+    if(fabs(hero->m_personnage.getCoordonnee().x - Iter->getCoordonnee().x) < 20
+    && fabs(hero->m_personnage.getCoordonnee().y - Iter->getCoordonnee().y) < 20)
     {
         int monstre = -1;
         int x = Iter->getCoordonnee().x;
@@ -2002,6 +2002,9 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                         }
             }
         }
+    }
+    else
+        Iter->setVu(0);
     }
 }
 
@@ -2145,7 +2148,7 @@ bool Map::InfligerDegats(Personnage *monstre, Personnage *cible, float degats, i
         if (monstre->getCaracteristique().pointAme>0)
             hero->m_personnage.AjouterPointAme(monstre->getCaracteristique().pointAme);
 
-        float force=((degats*2)/monstre->getCaracteristique().maxVie)*10,angle;
+        float force=((degats*3)/monstre->getCaracteristique().maxVie)*10,angle;
 
         double m=atan2(monstre->getCoordonneePixel().y-hero->m_personnage.getCoordonneePixel().y,monstre->getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().x);
 

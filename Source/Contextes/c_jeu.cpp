@@ -139,6 +139,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
         }
 
         m_thread_sauvegarde = new sf::Thread(&Sauvegarder, jeu);
+        jeu->hero.SauvegarderApercu();
         m_thread_sauvegarde->Launch();
         tempsSauvergarde=0;
     }
@@ -694,8 +695,14 @@ void c_Jeu::Evenements(Jeu *jeu)
     if(!eventManager->getEvenement(Mouse::Left,EventClic))
         m_diplace_mode = false;
 
-    if (eventManager->getPositionSouris().y < 492 * configuration->Resolution.h/600)
-   // if(jeu->menu.m_dialogue.empty())
+    if(eventManager->getPositionSouris().y < 492 * configuration->Resolution.h/600)
+    if(jeu->menu.m_dialogue.empty()
+    || eventManager->getPositionSouris().x < AutoScreenAdjust(jeu->hero.m_classe.position_contenu_dialogue.x,0).x
+    || eventManager->getPositionSouris().x > AutoScreenAdjust(jeu->hero.m_classe.position_contenu_dialogue.x,0).x
+        + jeu->hero.m_classe.position_contenu_dialogue.w
+    || eventManager->getPositionSouris().y < AutoScreenAdjust(0,jeu->hero.m_classe.position_contenu_dialogue.y).y
+    || eventManager->getPositionSouris().y > AutoScreenAdjust(0,jeu->hero.m_classe.position_contenu_dialogue.y).y
+        + jeu->hero.m_classe.position_contenu_dialogue.h)
     {
         if (!eventManager->getEvenement(Mouse::Left,EventClic))
             jeu->map->getMonstre(eventManager->getCasePointee());

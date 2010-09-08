@@ -555,7 +555,10 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
     if(eventManager->getEvenement(sf::Key::Escape, EventKey))
         no_ecran = E_PRINCIPAL;
 
-    if(eventManager->getChar() >= 0 && nom_hero.size() < 16)
+    if((eventManager->getChar() >= 'a' && eventManager->getChar() <= 'z')
+    || (eventManager->getChar() >= 'A' && eventManager->getChar() <= 'Z')
+    || (eventManager->getChar() >= '0' && eventManager->getChar() <= '9')
+    && nom_hero.size() < 16)
         nom_hero += eventManager->getChar(), eventManager->stopChar();
 
     if(eventManager->getEvenement(sf::Key::Back,EventKey))
@@ -646,6 +649,7 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
             Caracteristique caract = jeu->hero.m_personnage.getCaracteristique();
             caract.nom = nom_hero;
             jeu->hero.m_personnage.setCaracteristique(caract);
+            jeu->hero.SauvegarderApercu();
             jeu->hero.Sauvegarder();
             jeu->hero.m_caracteristiques.nom = nom_hero;
 

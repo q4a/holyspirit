@@ -408,18 +408,18 @@ void MoteurGraphique::Afficher()
 
     for (int k=0;k<=20;k++)
     {
-        if (k==12)
+        /*if (k==12)
         {
-            EffectFiltre.SetParameter("color", configuration->contrastes-1, configuration->contrastes-1, configuration->contrastes-1);
-            EffectFiltre.SetParameter("luminosity", configuration->luminosite/128);
-
             if (configuration->postFX)
             {
+                EffectFiltre.SetParameter("color", configuration->contrastes-1, configuration->contrastes-1, configuration->contrastes-1);
+                EffectFiltre.SetParameter("luminosity", configuration->luminosite/128);
+
                 bufferImage.SetView(bufferImage.GetDefaultView());
                 bufferImage.Display();
                 bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectFiltre);
             }
-        }
+        }*/
 
         if (k==12 && configuration->Lumiere)
         {
@@ -485,7 +485,7 @@ void MoteurGraphique::Afficher()
                     else
                         m_water_screen.SetView(m_water_screen.GetDefaultView());
 
-                    m_water_screen.Draw(IterCommande->m_sprite/*,EffectFiltre*/);
+                    m_water_screen.Draw(IterCommande->m_sprite,EffectFiltre);
                 }
                 else
                 {
@@ -494,9 +494,9 @@ void MoteurGraphique::Afficher()
                     else
                         bufferImage.SetView(bufferImage.GetDefaultView());
 
-                    /*if(k < 12 && configuration->postFX)
+                    if(k < 12 && configuration->postFX)
                         bufferImage.Draw(IterCommande->m_sprite,EffectFiltre);
-                    else*/
+                    else
                         bufferImage.Draw(IterCommande->m_sprite);
                 }
             }

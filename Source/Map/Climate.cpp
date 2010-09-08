@@ -62,7 +62,7 @@ void Climate::Charger(std::string chemin)
                 m_entities.back().m_couche = 11;
                 m_entities.back().m_fixed = 1;
 
-                coordonnee pos;
+                coordonneeDecimal pos;
 
                 do
                 {
@@ -92,8 +92,8 @@ void Climate::Charger(std::string chemin)
                 }
                 while (caractere!='$');
 
-                pos.x *= configuration->Resolution.x/800;
-                pos.y *= configuration->Resolution.y/600;
+                pos.x = pos.x * configuration->Resolution.x/800;
+                pos.y = pos.y * configuration->Resolution.y/600;
                 m_entities.back().m_sprite.SetPosition(pos.x, pos.y);
                 m_entities.back().Initialiser(pos);
 

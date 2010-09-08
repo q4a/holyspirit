@@ -182,7 +182,10 @@ void c_Chargement::Utiliser(Jeu *jeu)
                 musicEnCours = jeu->map->m_musiques[jeu->map->m_musiqueEnCours];
 
         if(m_nomProchaineMap!="Tutorial.map.hs" && m_nomProchaineMap!="Begin.map.hs")
+        {
+            jeu->hero.SauvegarderApercu();
             jeu->hero.Sauvegarder();
+        }
 
         std::vector<std::string> climatsEnCours;
         std::vector<float> climatsTimeEnCours;

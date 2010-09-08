@@ -2873,7 +2873,6 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                         for (int o = 0; o < (int) m_personnage.m_miracleEnCours[i].m_infos.size() ; ++o)
                             if (m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type == AURA)
                             {
-
                                  for (int r = o; r < (int) m_personnage.m_miracleEnCours[i].m_infos.size() ; ++r)
                                     if (m_personnage.m_miracleEnCours[i].m_infos[r]->m_effetEnCours == m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_informations[0])
                                     {
@@ -3623,7 +3622,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
                         {
                             if(trader != &m_coffre && !craft && !bless)
                                 m_argent-=(int)((float)(*trader)[z].getPrix()*(10-(float)m_caracteristiques.charisme/100));
-                            if ((*trader)[z].m_type!=CONSOMMABLE || trader == &m_coffre)
+                            if ((*trader)[z].m_type!=CONSOMMABLE || trader == &m_coffre || craft || bless)
                                 trader->erase(trader->begin()+z);
 
                             if(trader == &m_coffre)

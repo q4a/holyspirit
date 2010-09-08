@@ -268,7 +268,6 @@ sf::FloatRect GetViewRect(const sf::View& view);
 
 
 
-
 #endif
 
 

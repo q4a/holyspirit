@@ -152,7 +152,8 @@ void Map::Script_Shoot(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
         m_monstre[monstre].setArrivee(m_monstre[monstre].getCoordonnee());
 
         m_monstre[monstre].m_miracleALancer=-1;
-        m_monstre[monstre].Frappe(m_monstre[monstre].getCoordonneePixel(),m_monstre[monstre].m_cible->getCoordonneePixel());
+        if(m_monstre[monstre].m_cible)
+            m_monstre[monstre].Frappe(m_monstre[monstre].getCoordonneePixel(),m_monstre[monstre].m_cible->getCoordonneePixel());
         m_monstre[monstre].m_shooter=true;
     }
 }
@@ -169,29 +170,34 @@ void Map::Script_Fight(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
             if (seDeplacer)
             {
                 m_monstre[monstre].setDepart();
-                if (fabs(m_monstre[monstre].getCoordonnee().x-m_monstre[monstre].m_cible->getCoordonnee().x)>1
-                 || fabs(m_monstre[monstre].getCoordonnee().y-m_monstre[monstre].m_cible->getCoordonnee().y)>1)
+
+                if (m_monstre[monstre].m_cible
+                 &&(fabs(m_monstre[monstre].getCoordonnee().x-m_monstre[monstre].m_cible->getCoordonnee().x)>1
+                 || fabs(m_monstre[monstre].getCoordonnee().y-m_monstre[monstre].m_cible->getCoordonnee().y)>1))
                     m_monstre[monstre].setArrivee(m_monstre[monstre].m_cible->getProchaineCase());
                 else
                 {
-                    if (m_monstre[monstre].m_cible->EnVie()<=0)
+
+                    if (m_monstre[monstre].m_cible && m_monstre[monstre].m_cible->EnVie()<=0)
                         m_monstre[monstre].setVu(0);
                     if (!m_monstre[monstre].frappeEnCours && !m_monstre[monstre].m_etatForce)
                         m_monstre[monstre].setEtat(2);
-                    m_monstre[monstre].Frappe(m_monstre[monstre].getCoordonneePixel(),m_monstre[monstre].m_cible->getCoordonneePixel());
+
+                    if(m_monstre[monstre].m_cible)
+                        m_monstre[monstre].Frappe(m_monstre[monstre].getCoordonneePixel(),m_monstre[monstre].m_cible->getCoordonneePixel());
                     m_monstre[monstre].setArrivee(m_monstre[monstre].getCoordonnee());
                     m_monstre[monstre].m_shooter=false;
                 }
             }
 
-            if (fabs(m_monstre[monstre].getCoordonnee().x-m_monstre[monstre].m_cible->getCoordonnee().x)>1
-                    || fabs(m_monstre[monstre].getCoordonnee().y-m_monstre[monstre].m_cible->getCoordonnee().y)>1)
-            {
-                if(m_monstre[monstre].getArrivee().x==m_monstre[monstre].getCoordonnee().x
-                && m_monstre[monstre].getArrivee().y==m_monstre[monstre].getCoordonnee().y)
-                    m_monstre[monstre].setArrivee(m_monstre[monstre].m_cible->getProchaineCase());
-
-            }
+            if(m_monstre[monstre].m_cible)
+                if (fabs(m_monstre[monstre].getCoordonnee().x-m_monstre[monstre].m_cible->getCoordonnee().x)>1
+                 || fabs(m_monstre[monstre].getCoordonnee().y-m_monstre[monstre].m_cible->getCoordonnee().y)>1)
+                {
+                    if(m_monstre[monstre].getArrivee().x==m_monstre[monstre].getCoordonnee().x
+                    && m_monstre[monstre].getArrivee().y==m_monstre[monstre].getCoordonnee().y)
+                        m_monstre[monstre].setArrivee(m_monstre[monstre].m_cible->getProchaineCase());
+                }
         }
     }
 }
