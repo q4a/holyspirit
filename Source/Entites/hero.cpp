@@ -1386,8 +1386,12 @@ void Hero::AfficherAmisEtCraft()
 
       //  temp.SetColor(sf::Color(164,32,32));
 
-
-        if(    eventManager->getPositionSouris().x > temp.GetPosition().x
+        if(!m_amis[i]->EnVie())
+        {
+            m_amis.erase(m_amis.begin() + i);
+            i--;
+        }
+        else if(eventManager->getPositionSouris().x > temp.GetPosition().x
             && eventManager->getPositionSouris().x < temp.GetPosition().x + 144
             && eventManager->getPositionSouris().y > temp.GetPosition().y
             && eventManager->getPositionSouris().y < temp.GetPosition().y + 16)
@@ -2553,6 +2557,7 @@ void Hero::GererTemps(float temps)
 
         m_personnage.setCaracteristique(temp);
 
+        RecalculerCaracteristiques();
         RecalculerCaracteristiques();
 
         temp.vie=m_caracteristiques.maxVie;

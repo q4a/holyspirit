@@ -456,6 +456,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
 
                 jeu->hero.Charger(m_chemin_saves[i]);
 
+
                 {
                     cDAT reader;
                     if (reader.Read(configuration->chemin_saves+m_chemin_saves[i]))

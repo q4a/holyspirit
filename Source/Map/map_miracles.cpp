@@ -135,7 +135,7 @@ bool Map::Miracle_Declencheur    (Hero *hero, Personnage *personnage, Miracle &m
 
     if(effet.m_informations[0] == D_CIBLE_MORT)
     {
-        if(miracleEnCours.m_infos.back()->m_cible != NULL)
+        if(miracleEnCours.m_infos.back()->m_cible)
         if(!miracleEnCours.m_infos.back()->m_cible->EnVie())
         {
             if (effet.m_informations[3] >= 0)

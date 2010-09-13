@@ -55,7 +55,7 @@ void c_Demarrage::Utiliser(Jeu *jeu)
 
     sprite.SetImage(*moteurGraphique->getImage(m_image));
 
-    configuration->effetNoir=1;
+    //configuration->effetNoir=1;
 
     if (m_alpha<255)
         sprite.SetColor(Color(255,255,255,(int)m_alpha));

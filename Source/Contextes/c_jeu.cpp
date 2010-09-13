@@ -461,12 +461,7 @@ void GestionRaccourcis(Jeu *jeu, bool diplace_mode = false)
             && eventManager->getPositionSouris().y > AutoScreenAdjust(0,jeu->hero.m_classe.position_raccourcis[i].y).y
             && eventManager->getPositionSouris().y < AutoScreenAdjust(0,jeu->hero.m_classe.position_raccourcis[i].y).y + jeu->hero.m_classe.position_raccourcis[i].h)
         {
-            if(eventManager->getEvenement('1'+i,EventKey))
-                eventManager->StopEvenement('1'+i,EventKey);
-            else
-                eventManager->StopEvenement(Mouse::Left,EventClicA);
-
-            if(!diplace_mode)
+            if(!diplace_mode || eventManager->getEvenement('1'+i,EventKey))
                 if(jeu->hero.m_raccourcis[i].no >= 0)
                 {
                     if(jeu->hero.m_raccourcis[i].miracle)
@@ -474,6 +469,11 @@ void GestionRaccourcis(Jeu *jeu, bool diplace_mode = false)
                     else
                         jeu->hero.UtiliserObjet(jeu->hero.m_raccourcis[i].no);
                 }
+
+            if(eventManager->getEvenement('1'+i,EventKey))
+                eventManager->StopEvenement('1'+i,EventKey);
+            else
+                eventManager->StopEvenement(Mouse::Left,EventClicA);
         }
     }
 

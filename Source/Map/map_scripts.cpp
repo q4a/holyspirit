@@ -112,7 +112,8 @@ void Map::Script_UseMiracle(Jeu *jeu,Script *script,int noInstruction,int monstr
             if (m_monstre[monstre].m_miracleALancer == -1)
                 m_monstre[monstre].setEtat(2);
 
-            m_monstre[monstre].Frappe(m_monstre[monstre].getCoordonneePixel(),m_monstre[monstre].m_cible->getCoordonneePixel());
+            if(m_monstre[monstre].m_cible)
+                m_monstre[monstre].Frappe(m_monstre[monstre].getCoordonneePixel(),m_monstre[monstre].m_cible->getCoordonneePixel());
         }
         else
             m_monstre[monstre].setArrivee(m_monstre[monstre].getProchaineCase());
