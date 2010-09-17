@@ -196,7 +196,7 @@ void Hero::Sauvegarder()
     console->Ajouter("");
     console->Ajouter("Sauvegarde du héro...");
 
-    ofstream fichier((configuration->chemin_temps+m_chemin_save).c_str(), ios::out | ios::trunc | ios::binary);
+    ofstream fichier((configuration->chemin_temps+"Save.sav.hs").c_str(), ios::out | ios::trunc | ios::binary);
 
     if (fichier)
     {
@@ -205,7 +205,7 @@ void Hero::Sauvegarder()
 
         fichier<<VERSION_SAVE<<endl;
 
-        fichier<<m_caracteristiques.nom.c_str()<<" "<<endl;
+        //fichier<<m_caracteristiques.nom.c_str()<<" "<<endl;
         fichier<<m_cheminClasse<<" "<<endl;
 
         fichier<<m_personnage.getCaracteristique().pointAme<<endl;
@@ -352,12 +352,8 @@ void Hero::SauvegarderApercu()
             console->Ajouter("/Image affichée.");
 
     render.Display();
-    std::string chemin_image;
 
-    chemin_image = m_chemin_save.substr(0, m_chemin_save.size() - 7);
-    chemin_image += ".png";
-
-    render.GetImage().SaveToFile(configuration->chemin_temps + chemin_image);
+    render.GetImage().SaveToFile(configuration->chemin_temps + "Image.png");
 
     if (configuration->debug)
             console->Ajouter("/Image générée.");
@@ -376,7 +372,7 @@ void Hero::Charger(std::string chemin_save)
     cDAT reader;
     if (reader.Read(configuration->chemin_saves+m_chemin_save))
     {
-        ifstream* fichier=reader.GetInfos(configuration->chemin_temps+m_chemin_save);
+        ifstream* fichier=reader.GetInfos(configuration->chemin_temps+"Save.sav.hs");
         //fichier.open((configuration->chemin_saves+"hero.sav.hs").c_str(), ios::in | ios::binary);
         if (fichier)
         {
@@ -387,7 +383,9 @@ void Hero::Charger(std::string chemin_save)
             int temp = 0;
             *fichier>>temp;
 
-            *fichier>>m_caracteristiques.nom;
+
+            if(temp < 7)
+                *fichier>>m_caracteristiques.nom;
 
             charTemp.nom = m_caracteristiques.nom;
 
@@ -661,13 +659,14 @@ bool Hero::ChargerPresentation(std::string chemin_save)
     cDAT reader;
     if (reader.Read(configuration->chemin_saves+chemin_save))
     {
-        ifstream* fichier=reader.GetInfos(configuration->chemin_temps+chemin_save);
+        ifstream* fichier=reader.GetInfos(configuration->chemin_temps+"Save.sav.hs");
         if (fichier)
         {
             int temp = 0;
             *fichier>>temp;
 
-            *fichier>>m_caracteristiques.nom;
+            if(temp < 7)
+                *fichier>>m_caracteristiques.nom;
 
             *fichier>>m_cheminClasse;
 

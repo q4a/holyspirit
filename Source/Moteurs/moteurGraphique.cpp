@@ -560,40 +560,44 @@ void MoteurGraphique::Afficher()
     m_ecran.Display();
 }
 
-int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std::string nom,int importance)
+int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std::string nom,int importance, bool newimage)
 {
-    for (unsigned i=0; i < m_images.size(); i++)
+    if(!newimage)
     {
-        if (m_images[i].nom==nom && m_images[i].img != NULL)
+        for (unsigned i=0; i < m_images.size(); i++)
         {
-            m_images[i].importance=importance;
-            return i;
-        }
-    }
-    for (unsigned i=0; i < m_images.size(); i++)
-    {
-        if (m_images[i].img == NULL)
-        {
-            m_images[i].nom=nom;
-
-            m_images[i].img = new sf::Image();
-
-            if (!configuration->lissage)
-                m_images[i].img->SetSmooth(false);
-
-            if (!m_images[i].img->LoadFromMemory(Data,SizeInBytes))
+            if (m_images[i].nom==nom && m_images[i].img != NULL)
             {
-                console->Ajouter("Impossible de charger : "+nom,1);
-                return -1;
+                m_images[i].importance=importance;
+                return i;
             }
-            else
-                console->Ajouter("Chargement de : "+nom,0);
+        }
+        for (unsigned i=0; i < m_images.size(); i++)
+        {
+            if (m_images[i].img == NULL)
+            {
+                m_images[i].nom=nom;
 
-            m_images[i].importance=importance;
+                m_images[i].img = new sf::Image();
 
-            return i;
+                if (!configuration->lissage)
+                    m_images[i].img->SetSmooth(false);
+
+                if (!m_images[i].img->LoadFromMemory(Data,SizeInBytes))
+                {
+                    console->Ajouter("Impossible de charger : "+nom,1);
+                    return -1;
+                }
+                else
+                    console->Ajouter("Chargement de : "+nom,0);
+
+                m_images[i].importance=importance;
+
+                return i;
+            }
         }
     }
+
 
     m_images.push_back(Image_moteur ());
     m_images.back().nom=nom;
@@ -616,40 +620,44 @@ int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std
     return m_images.size()-1;
 }
 
-int MoteurGraphique::AjouterImage(std::string chemin,int importance)
+int MoteurGraphique::AjouterImage(std::string chemin,int importance,bool newimage)
 {
-     for (unsigned i=0; i < m_images.size(); i++)
+    if(!newimage)
     {
-        if (m_images[i].nom==chemin && m_images[i].img != NULL)
+        for (unsigned i=0; i < m_images.size(); i++)
         {
-            m_images[i].importance=importance;
-            return i;
-        }
-    }
-    for (unsigned i=0; i < m_images.size(); i++)
-    {
-        if (m_images[i].img == NULL)
-        {
-            m_images[i].nom=chemin;
-
-            m_images[i].img = new sf::Image();
-
-            if (!configuration->lissage)
-                m_images[i].img->SetSmooth(false);
-
-            if (!m_images[i].img->LoadFromFile(chemin.c_str()))
+            if (m_images[i].nom==chemin && m_images[i].img != NULL)
             {
-                console->Ajouter("Impossible de charger : "+chemin,1);
-                return -1;
+                m_images[i].importance=importance;
+                return i;
             }
-            else
-                console->Ajouter("Chargement de : "+chemin,0);
+        }
+        for (unsigned i=0; i < m_images.size(); i++)
+        {
+            if (m_images[i].img == NULL)
+            {
+                m_images[i].nom=chemin;
 
-            m_images[i].importance=importance;
+                m_images[i].img = new sf::Image();
 
-            return i;
+                if (!configuration->lissage)
+                    m_images[i].img->SetSmooth(false);
+
+                if (!m_images[i].img->LoadFromFile(chemin.c_str()))
+                {
+                    console->Ajouter("Impossible de charger : "+chemin,1);
+                    return -1;
+                }
+                else
+                    console->Ajouter("Chargement de : "+chemin,0);
+
+                m_images[i].importance=importance;
+
+                return i;
+            }
         }
     }
+
 
     m_images.push_back(Image_moteur ());
     m_images.back().nom=chemin;

@@ -192,14 +192,9 @@ void c_MainMenu::Reset(Jeu *jeu)
     closedir(repertoire);
 
     jeu->hero.m_contenuSave.clear();
-    jeu->hero.m_contenuSave.push_back(configuration->chemin_temps+jeu->hero.m_chemin_save);
+    jeu->hero.m_contenuSave.push_back(configuration->chemin_temps+"Save.sav.hs");
 
-    std::string chemin_image;
-    chemin_image = jeu->hero.m_chemin_save.substr(0,jeu->hero.m_chemin_save.size() - 7);
-    /*for(int i = 0  ; i < jeu->hero.m_chemin_save.size() - 7 ; ++i)
-        chemin_image.push_back(jeu->hero.m_chemin_save[i]);*/
-    chemin_image += ".png";
-    jeu->hero.m_contenuSave.push_back(configuration->chemin_temps+chemin_image);
+    jeu->hero.m_contenuSave.push_back(configuration->chemin_temps+"Image.png");
 }
 
 void  c_MainMenu::E_Principal(Jeu *jeu)
@@ -240,17 +235,15 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
                     m_chemin_saves.push_back(name);
 
                     std::string chemin_image = configuration->chemin_temps;
-                    chemin_image += m_chemin_saves.back().substr(0, m_chemin_saves.back().size() - 7);
-                    chemin_image += ".png";
+                    chemin_image += "Image.png";
 
 
                     sf::Sprite sprite;
                     cDAT reader;
                     reader.Read(configuration->chemin_saves+m_chemin_saves.back());
-                    int img  = moteurGraphique->AjouterImage(reader.GetFile(chemin_image), reader.GetFileSize(chemin_image), chemin_image, 1);
+                    int img  = moteurGraphique->AjouterImage(reader.GetFile(chemin_image), reader.GetFileSize(chemin_image), chemin_image, 1, 1);
                     sprite.SetImage(*moteurGraphique->getImage(img));
                     m_images_saves.push_back(sprite);
-                    //m_images_saves.back().CreateMaskFromColor(Color(255,0,0));
 
                     Hero temp;
                     m_incompatible_saves.push_back(temp.ChargerPresentation(m_chemin_saves.back()));
@@ -454,8 +447,8 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
             {
                 coordonnee temp(0,0,-1,-1);
 
+                jeu->hero.m_caracteristiques.nom = m_chemin_saves[i].substr(0, m_chemin_saves[i].size() - 7);
                 jeu->hero.Charger(m_chemin_saves[i]);
-
 
                 {
                     cDAT reader;
@@ -644,8 +637,8 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
             jeu->m_chargement->setC_Chargement("Begin.map.hs",temp,1);
 
             jeu->hero.Charger(nom_hero + ".sav.hs");
-            jeu->hero.m_contenuSave.push_back(configuration->chemin_temps + nom_hero + ".sav.hs");
-            jeu->hero.m_contenuSave.push_back(configuration->chemin_temps + nom_hero + ".png");
+            jeu->hero.m_contenuSave.push_back(configuration->chemin_temps + "Save.sav.hs");
+            jeu->hero.m_contenuSave.push_back(configuration->chemin_temps + "Image.png");
             jeu->hero.m_caracteristiques.nom = nom_hero;
             Caracteristique caract = jeu->hero.m_personnage.getCaracteristique();
             caract.nom = nom_hero;
