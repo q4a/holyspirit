@@ -35,6 +35,8 @@ $
 $
 	* x0 y0 w800 h600 m Data/Menus/Quest.png $
 $
+	* x0 y0 w800 h600 m Data/Menus/Documents.png $
+$
 	* x0 y0 w400 h300 m Data/Menus/Craft.png $
 $
 	* x400 y557 w35 h64 cx17 cy50 m Data/Menus/Arrow.png $
@@ -69,6 +71,16 @@ $
 $
 	* x38 y264 w326 h150 $
 $
+	* x14 y36 w32 h32 m Data/Menus/Scroll_button.png $
+$
+	* x38 y37 w326 h22 $
+$
+	* x436 y37 w326 h22 $
+$
+	* x14 y36 w32 h32 m Data/Menus/Scroll_button.png $
+$
+	* x751 y28 w32 h32 m Data/Menus/Scroll_button.png $
+$
 	* x247 y554 w33 h33 $
 $
 	* x286 y554 w33 h33 $
@@ -89,7 +101,7 @@ $
 $
 	* x577 y550 w41 h41 $
 $
-	* e0 x314 y522 w29 h15 m51 	i * mData/Menus/hud_button.png x0 y0 w29 h15 $ $ $
+	* e7 x314 y522 w29 h15 m89 	i * mData/Menus/hud_button.png x0 y0 w29 h15 $ $ $
 	* e1 x343 y522 w29 h15 m16 	i * mData/Menus/hud_button.png x29 y0 w29 h15 $ $ $
 	* e2 x372 y522 w29 h15 m14 	i * mData/Menus/hud_button.png x58 y0 w29 h15 $ $ $
 	* e3 x401 y522 w29 h15 m15 	i * mData/Menus/hud_button.png x87 y0 w29 h15 $ $ $
