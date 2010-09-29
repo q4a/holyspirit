@@ -42,6 +42,8 @@ int decrypter(int);
 
 int TrierInventaire(std::vector<Objet>*, int, bool = 0);
 
+std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte);
+
 inline sf::Vector2f AutoScreenAdjust(float x, float y, float decalage = 0)
 {
     sf::Vector2f temp;
@@ -167,6 +169,14 @@ Hero::Hero()
         m_raccourcis[i].no = -1, m_raccourcis[i].miracle = false;
 
     m_queteSelectionnee = -1;
+    m_docSelectionne = -1;
+
+    m_defil_quetes = 0;
+    m_defil_cdoc = 0;
+    m_defil_ldoc = 0;
+    m_max_defil_cdoc = 0;
+    m_max_defil_ldoc = 0;
+
     m_personnage.m_miracleALancer = -1;
 
     m_last_potale = 0;
@@ -267,6 +277,14 @@ void Hero::Sauvegarder()
 
         if (configuration->debug)
             console->Ajouter("/Ecriture des miracles.");
+
+        fichier<<'$'<<endl;
+
+        for (int i=0;i<(int)m_docs.size();++i)
+            m_docs[i].SauvegarderTexte(&fichier);
+
+        if (configuration->debug)
+            console->Ajouter("/Ecriture des docs.");
 
         fichier<<'$'<<endl;
 
@@ -526,6 +544,23 @@ void Hero::Charger(std::string chemin_save)
             if (configuration->debug)
                 console->Ajouter("/Lectures des miracles.");
 
+            if(temp >= 8)
+            do
+            {
+                fichier->get(caractere);
+                if (caractere=='d')
+                {
+                    m_docs.push_back(Document ());
+                    m_docs.back().ChargerTexte(fichier);
+                    fichier->get(caractere);
+                }
+                if (fichier->eof())
+                    throw "Impossible de charger la sauvegarde";
+            }
+            while (caractere!='$');
+
+            if (configuration->debug)
+                console->Ajouter("/Lectures des docs.");
             do
             {
                 fichier->get(caractere);
@@ -1493,7 +1528,7 @@ void Hero::AfficherQuetes(float decalage)
 {
     m_quetePointee = -1;
     coordonnee position = m_classe.position_contenu_quetes;
-    for (int i = 0;i < (int)m_quetes.size();++i)
+    for (int i = (int)m_quetes.size()-1;i >= 0;--i)
     if(m_quetes[i].m_nom != " ")
     {
         sf::Text texte;
@@ -1532,7 +1567,7 @@ void Hero::AfficherQuetes(float decalage)
     {
         sf::Text texte;
         texte.SetFont(moteurGraphique->m_font);
-        texte.SetCharacterSize(18);
+        texte.SetCharacterSize(16);
         texte.SetPosition(AutoScreenAdjust(m_classe.position_contenu_description_quete.x + 2,
                                            m_classe.position_contenu_description_quete.y,decalage));
         texte.SetString(m_quetes[queteAffichee].m_nom);
@@ -1545,6 +1580,90 @@ void Hero::AfficherQuetes(float decalage)
         texte.SetString(m_quetes[queteAffichee].m_description);
 
         moteurGraphique->AjouterTexte(&texte,15,0);
+    }
+}
+
+
+void Hero::AfficherDocs(float decalage)
+{
+    m_docPointe = -1;
+    coordonnee position = m_classe.position_list_docs;
+    for (int i = (int)m_docs.size()-1;i >= 0;--i)
+    if(m_docs[i].m_nom != " ")
+    {
+        sf::Text texte;
+        texte.SetFont(moteurGraphique->m_font);
+        texte.SetCharacterSize(14);
+        texte.SetPosition(AutoScreenAdjust(position.x + 2,position.y,decalage));
+
+        texte.SetString(m_docs[i].m_nom);
+
+        moteurGraphique->AjouterTexte(&texte,15);
+
+        if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.position_list_docs.x,0).x
+         &&eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.position_list_docs.x + m_classe.position_list_docs.w,0).x
+         &&eventManager->getPositionSouris().y > texte.GetRect().Top
+         &&eventManager->getPositionSouris().y < texte.GetRect().Top + 19)
+        {
+            sf::Sprite sprite;
+            sprite.SetImage(*moteurGraphique->getImage(0));
+            sprite.Resize(m_classe.position_list_docs.w, 19);
+            sprite.SetPosition(AutoScreenAdjust(position.x,position.y,decalage));
+            sprite.SetColor(sf::Color(255, 255, 255, 128));
+
+            m_docPointe = i;
+
+            moteurGraphique->AjouterCommande(&sprite,15,0);
+        }
+
+        position.y += 19;
+    }
+
+    int docAffiche = 0;
+    if(m_docSelectionne >= 0)
+        docAffiche = m_docSelectionne;
+
+    if (docAffiche >= 0 && docAffiche < (int)m_docs.size())
+    {
+        sf::Text texte;
+        texte.SetFont(moteurGraphique->m_font);
+        texte.SetCharacterSize(16);
+        texte.SetPosition(AutoScreenAdjust(m_classe.position_contenu_docs.x + 2,
+                                           m_classe.position_contenu_docs.y,decalage));
+
+        texte.SetString(m_docs[docAffiche].m_nom);
+
+        moteurGraphique->AjouterTexte(&texte,15,0);
+
+        texte.SetCharacterSize(14);
+        texte.SetPosition(AutoScreenAdjust(m_classe.position_contenu_docs.x + 2,
+                                           m_classe.position_contenu_docs.y + 24,decalage));
+
+        m_max_defil_cdoc = m_docs[docAffiche].m_ldescription.size();
+
+        for(int i = m_defil_cdoc ;
+            i < m_docs[docAffiche].m_ldescription.size(),
+            i < m_defil_cdoc + m_classe.position_contenu_docs.h;
+            ++i)
+        {
+            texte.SetString(m_docs[docAffiche].m_ldescription[i]);
+            texte.Move(0,19);
+
+            moteurGraphique->AjouterTexte(&texte,15,0);
+        }
+    }
+
+    if(m_max_defil_cdoc-m_classe.position_contenu_docs.h > 0)
+    {
+        sf::Sprite sprite;
+        sprite.SetImage(*moteurGraphique->getImage(m_classe.scroll_button_cdocs.image));
+        sprite.SetPosition(AutoScreenAdjust(m_classe.scroll_button_cdocs.position.x,
+                                           (m_classe.scroll_button_cdocs.position.y+
+                                            ((19*m_classe.position_contenu_docs.h + m_classe.scroll_button_cdocs.position.h)
+                                            *m_defil_cdoc/(m_max_defil_cdoc-m_classe.position_contenu_docs.h))),decalage));
+        sprite.Resize(m_classe.scroll_button_cdocs.position.w, m_classe.scroll_button_cdocs.position.h);
+
+        moteurGraphique->AjouterCommande(&sprite,18,0);
     }
 }
 
@@ -4054,6 +4173,24 @@ bool Hero::UtiliserObjet(int numero)
                 delObjet(numero);
 
             return 1;
+        }
+        else if (m_inventaire[numero].m_type == DOCUMENT)
+        {
+            bool add = true;
+            for(int i =0 ; i< m_docs.size() ; ++i)
+                if(m_docs.back().m_nom == m_inventaire[numero].getNom())
+                    add = false;
+
+            if(add)
+            {
+                m_docs.push_back(Document ());
+                m_docs.back().m_nom = m_inventaire[numero].getNom();
+                std::string temp = configuration->getText(4,m_inventaire[numero].m_doc);
+                temp = DecouperTexte(temp,m_classe.position_contenu_docs.w,16);
+                m_docs.back().m_description = temp;
+                m_docs.back().GenerateDescription();
+                delObjet(numero);
+            }
         }
     }
     RecalculerCaracteristiques();

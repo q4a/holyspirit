@@ -18,42 +18,31 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 
 
-#include "../constantes.h"
 
-#ifndef QUETEH
-#define QUETEH
+#ifndef C_DOCUMENTS
+#define C_DOCUMENTS
+
+#include <SFML/System.hpp>
+#include <SFML/Graphics.hpp>
+
+#include "contexte.h"
 
 
-class Document
+class c_Documents : public Contexte
 {
 public:
-    Document();
-    ~Document();
 
-    virtual void SauvegarderTexte(std::ofstream *fichier);
-    virtual void ChargerTexte(std::ifstream *fichier);
+    c_Documents();
+    virtual ~c_Documents();
+    void Utiliser(Jeu *jeu);
 
-    void GenerateDescription();
 
-    std::string m_nom;
-    std::string m_description;
-    std::vector<std::string> m_ldescription;
-};
-
-class Quete : public Document
-{
-public:
-    Quete();
-    Quete(int);
-    ~Quete();
-
-    void SauvegarderTexte(std::ofstream *fichier);
-    void ChargerTexte(std::ifstream *fichier);
-
-    int m_id;
-    int m_statut;
-    std::string m_map;
+private:
+    float temps_ecoule,m_decalage;
+    bool m_afficher;
 };
 
 #endif
+
+
 

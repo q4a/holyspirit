@@ -423,6 +423,24 @@ void Menu::AfficherQuetes(float decalage,Classe *classe)
     moteurGraphique->AjouterCommande(&sprite,14,0);
 }
 
+void Menu::AfficherDocs(float decalage,Classe *classe)
+{
+    Sprite sprite;
+
+    sprite.SetImage(*moteurGraphique->getImage(classe->documents.image));
+    sprite.SetX(classe->documents.position.x + (configuration->Resolution.x - 800) * 0.5);
+    sprite.SetY(classe->documents.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
+    sprite.Resize(classe->documents.position.w, classe->documents.position.h);
+
+    moteurGraphique->AjouterCommande(&sprite,15,0);
+
+    sprite.SetColor(sf::Color(0,0,0,(int)((600+decalage)*254/600)));
+    sprite.SetX(0);
+    sprite.SetY(0);
+    sprite.Resize(configuration->Resolution.w, configuration->Resolution.h);
+    moteurGraphique->AjouterCommande(&sprite,14,0);
+}
+
 
 void Menu::AfficherCraft(float decalage,Classe *classe)
 {

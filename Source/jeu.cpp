@@ -41,6 +41,7 @@ Jeu::Jeu()
     m_chargement    = NULL;
     m_inventaire    = NULL;
     m_quetes        = NULL;
+    m_docs          = NULL;
     m_potales       = NULL;
     m_craft         = NULL;
     m_bless         = NULL;
@@ -56,6 +57,7 @@ void Jeu::Demarrer()
     m_chargement    = new c_Chargement;
     m_inventaire    = new c_Inventaire;
     m_quetes        = new c_Quetes;
+    m_docs          = new c_Documents;
     m_potales       = new c_Potales;
     m_craft         = new c_Craft;
     m_bless         = new c_Bless;
@@ -106,6 +108,7 @@ void Jeu::Demarrer()
     delete m_chargement;
     delete m_inventaire;
     delete m_quetes;
+    delete m_docs;
     delete m_potales;
     delete m_craft;
     delete m_bless;
@@ -135,6 +138,8 @@ void Jeu::Next()
         m_contexte = m_potales;
     else if(next_screen == 8)
         m_contexte = m_chargement;
+    else if(next_screen == 9)
+        m_contexte = m_docs;
 }
 
 

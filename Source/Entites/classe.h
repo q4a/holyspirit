@@ -20,8 +20,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "miracle.h"
 
-enum {B_CHAT,B_MIRACLES,B_INVENTAIRE,B_QUETES,B_MENU,B_MAP,B_DEPLIER};
-
 struct Image_interface
 {
     coordonnee position;
@@ -74,6 +72,7 @@ struct Classe
     Image_interface sort_inventory;
     Image_interface talk;
     Image_interface quest;
+    Image_interface documents;
     Image_interface craft;
     Image_interface arrow;
     Image_interface icone_mm;
@@ -102,9 +101,13 @@ struct Classe
 
     coordonnee position_contenu_dialogue;
     coordonnee position_contenu_quetes;
+    Image_interface scroll_button_quest;
     coordonnee position_bouton_dialogue;
     coordonnee position_contenu_description_quete;
-
+    coordonnee position_list_docs;
+    coordonnee position_contenu_docs;
+    Image_interface scroll_button_ldocs;
+    Image_interface scroll_button_cdocs;
     coordonnee position_points_miracles;
 
     std::vector<Bouton>  boutons_menus_hud;

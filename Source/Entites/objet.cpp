@@ -1140,34 +1140,6 @@ void Set::Charger(std::string chemin, Caracteristique caract)
                         ChargerMiracleBenediction(m_benedictions.back().back(),m_miracle.back(),useMir);
                         m_useMiracle.back() = useMir;
 
-                      /*  if (m_benedictions.back().back().type==DEGATS_SUPP)
-                        {
-                            if(ia == FEU)
-                            {
-                                m_chemin_miracles.back().push_back("Data/Items/Miracles/FireEffect.miracle.hs");
-                                if (!m_useMiracle.back())
-                                    m_miracle.back().Charger("Data/Items/Miracles/FireEffect.miracle.hs",caract,0),m_useMiracle.back()=true;
-                                else
-                                    m_miracle.back().Concatenencer("Data/Items/Miracles/FireEffect.miracle.hs",caract,0);
-                            }
-                            if(ia == FOI)
-                            {
-                                m_chemin_miracles.back().push_back("Data/Items/Miracles/HolyEffect.miracle.hs");
-                                if (!m_useMiracle.back())
-                                    m_miracle.back().Charger("Data/Items/Miracles/HolyEffect.miracle.hs",caract,0),m_useMiracle.back()=true;
-                                else
-                                    m_miracle.back().Concatenencer("Data/Items/Miracles/HolyEffect.miracle.hs",caract,0);
-                            }
-                            if(ia == CORROSION)
-                            {
-                                m_chemin_miracles.back().push_back("Data/Items/Miracles/PoisonEffect.miracle.hs");
-                                if (!m_useMiracle.back())
-                                    m_miracle.back().Charger("Data/Items/Miracles/PoisonEffect.miracle.hs",caract,0),m_useMiracle.back()=true;
-                                else
-                                    m_miracle.back().Concatenencer("Data/Items/Miracles/PoisonEffect.miracle.hs",caract,0);
-                            }
-                        }*/
-
                         fichier->get(caractere);
                     }
 
@@ -1668,6 +1640,45 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
         while (caractere!='$');
     }
 
+    if (m_type==DOCUMENT)
+    {
+        char caractere;
+        do
+        {
+            fichier->get(caractere);
+            if (caractere=='*')
+            {
+                do
+                {
+                    fichier->get(caractere);
+                    switch (caractere)
+                    {
+                        case 'n' :
+                            (*fichier)>>m_doc;
+                        break;
+                    }
+
+                    if (fichier->eof())
+                    {
+                        console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                        caractere='$';
+                    }
+
+                }
+                while (caractere!='$');
+                fichier->get(caractere);
+            }
+            if (fichier->eof())
+            {
+                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                caractere='$';
+            }
+
+        }
+        while (caractere!='$');
+
+    }
+
     if (m_type==SCHEMA)
     {
         char caractere;
@@ -2149,7 +2160,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, 
 
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
 
-
+    if(m_prix > 0)
     {
         std::ostringstream buf;
         buf<<configuration->getText(0,28)<<(int)((float)m_prix*modPrix);

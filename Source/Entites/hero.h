@@ -65,6 +65,7 @@ public:
 
     bool AfficherInventaire(float, std::vector<Objet> *, bool hideLeft, bool bless = false, bool craft = false);
     void AfficherQuetes(float);
+    void AfficherDocs(float);
     void AfficherPotales(float);
     void AfficherFlecheQuetes(const std::string &nomMap, float temps);
     bool AfficherMiracles(float , int );
@@ -145,10 +146,15 @@ public:
     Raccourci m_raccourcis[8];
 
     int m_quetePointee, m_queteSelectionnee;
+    int m_defil_quetes;
+    int m_docPointe, m_docSelectionne;
+    int m_defil_cdoc, m_defil_ldoc;
+    int m_max_defil_cdoc, m_max_defil_ldoc;
     int m_potale_selectionnee;
     int m_last_potale;
 
     std::vector<Quete>  m_quetes;
+    std::vector<Document>  m_docs;
     std::vector<Potale> m_potales;
     std::vector<int> m_lvl_miracles;
 

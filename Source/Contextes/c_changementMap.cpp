@@ -336,9 +336,6 @@ void c_Chargement::Utiliser(Jeu *jeu)
         if (configuration->Lumiere)
             jeu->map->CalculerOmbresEtLumieres();
 
-
-        moteurGraphique->LightManager->GenerateWallShadow(moteurGraphique->m_angleOmbreSoleil,moteurGraphique->m_soleil);
-
         coordonnee pos;
         pos.x=(int)(((jeu->hero.m_personnage.getCoordonneePixel().x-jeu->hero.m_personnage.getCoordonneePixel().y)*64/COTE_TILE));
         pos.y=(int)(((jeu->hero.m_personnage.getCoordonneePixel().x+jeu->hero.m_personnage.getCoordonneePixel().y)*32/COTE_TILE)/2+64);

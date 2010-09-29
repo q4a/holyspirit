@@ -232,7 +232,7 @@ void Light_Manager::Generate(Light_Entity &e)
         }
 }
 
-void Light_Manager::GenerateWallShadow(float angle,Lumiere soleil)
+/*void Light_Manager::GenerateWallShadow(float angle,Lumiere soleil)
 {
     angle-=90;
 
@@ -244,14 +244,14 @@ void Light_Manager::GenerateWallShadow(float angle,Lumiere soleil)
         IterWall->m_shadow = sf::Shape();
 
         IterWall->m_shadow.AddPoint(sf::Vector2f(IterWall->pt2.x,IterWall->pt2.y*0.5),sf::Color(0,0,0,(int)(255)));
-        IterWall->m_shadow.AddPoint(sf::Vector2f(IterWall->pt1.x,IterWall->pt1.y*0.5),sf::Color(0,0,0,(int)(255/*soleil.intensite*0.5*/)));
+        IterWall->m_shadow.AddPoint(sf::Vector2f(IterWall->pt1.x,IterWall->pt1.y*0.5),sf::Color(0,0,0,(int)(255)));
 
         IterWall->m_shadow.AddPoint(sf::Vector2f(IterWall->pt1.x-IterWall->hauteur * vect.x,
                                                  IterWall->pt1.y*0.5+IterWall->hauteur * vect.y),sf::Color(0,0,0,(int)(255)));
         IterWall->m_shadow.AddPoint(sf::Vector2f(IterWall->pt2.x-IterWall->hauteur * vect.x,
                                                  IterWall->pt2.y*0.5+IterWall->hauteur * vect.y),sf::Color(0,0,0,(int)(255)));
     }
-}
+}*/
 
 // On affiche toutes les lumières actives
 void Light_Manager::Draw(sf::RenderTarget *App,sf::View *camera)
@@ -273,10 +273,15 @@ void Light_Manager::Draw(sf::RenderTarget *App,sf::View *camera)
                 Iter->Draw(App);
 }
 
-void Light_Manager::DrawWallShadow(sf::RenderTarget *App,sf::View *camera)
+void Light_Manager::DrawWallShadow(sf::RenderTarget *App,sf::View *camera,float angle,Lumiere soleil)
 {
+    angle-=90;
+
+    sf::Vector2f vect(cos(angle*M_PI/180) * (100-soleil.hauteur) * 0.02,
+                      sin(angle*M_PI/180) * (100-soleil.hauteur) * 0.01);
+
     for (std::vector<Wall>::iterator IterWall=m_wall.begin();IterWall!=m_wall.end();++IterWall)
-        if(( IterWall->m_shadow.GetPointPosition(0).x + 128 > GetViewRect(*camera).Left
+       /* if(( IterWall->m_shadow.GetPointPosition(0).x + 128 > GetViewRect(*camera).Left
           && IterWall->m_shadow.GetPointPosition(0).x - 128 < GetViewRect(*camera).Left + GetViewRect(*camera).Width
           && IterWall->m_shadow.GetPointPosition(0).y + 128 > GetViewRect(*camera).Top
           && IterWall->m_shadow.GetPointPosition(0).y - 128 < GetViewRect(*camera).Top + GetViewRect(*camera).Height)
@@ -294,8 +299,19 @@ void Light_Manager::DrawWallShadow(sf::RenderTarget *App,sf::View *camera)
           ||(IterWall->m_shadow.GetPointPosition(3).x + 128 > GetViewRect(*camera).Left
           && IterWall->m_shadow.GetPointPosition(3).x - 128 < GetViewRect(*camera).Left + GetViewRect(*camera).Width
           && IterWall->m_shadow.GetPointPosition(3).y + 128 > GetViewRect(*camera).Top
-          && IterWall->m_shadow.GetPointPosition(3).y - 128 < GetViewRect(*camera).Top + GetViewRect(*camera).Height))
-                App->Draw(IterWall->m_shadow);
+          && IterWall->m_shadow.GetPointPosition(3).y - 128 < GetViewRect(*camera).Top + GetViewRect(*camera).Height))*/
+         {
+            IterWall->m_shadow = sf::Shape();
+
+            IterWall->m_shadow.AddPoint(sf::Vector2f(IterWall->pt2.x,IterWall->pt2.y*0.5),sf::Color(0,0,0,(int)(255)));
+            IterWall->m_shadow.AddPoint(sf::Vector2f(IterWall->pt1.x,IterWall->pt1.y*0.5),sf::Color(0,0,0,(int)(255)));
+
+            IterWall->m_shadow.AddPoint(sf::Vector2f(IterWall->pt1.x-IterWall->hauteur * vect.x,
+                                                     IterWall->pt1.y*0.5+IterWall->hauteur * vect.y),sf::Color(0,0,0,(int)(255)));
+            IterWall->m_shadow.AddPoint(sf::Vector2f(IterWall->pt2.x-IterWall->hauteur * vect.x,
+                                                     IterWall->pt2.y*0.5+IterWall->hauteur * vect.y),sf::Color(0,0,0,(int)(255)));
+            App->Draw(IterWall->m_shadow);
+         }
 }
 
 void Light_Manager::Draw(sf::RenderTarget *App,Light_Entity e)

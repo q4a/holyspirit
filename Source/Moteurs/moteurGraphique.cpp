@@ -346,7 +346,7 @@ void MoteurGraphique::Afficher()
 
         m_light_screen2.Clear(sf::Color(255,255,255,255));
 
-        LightManager->DrawWallShadow(&m_light_screen2,&temp);
+        LightManager->DrawWallShadow(&m_light_screen2,&temp,m_angleOmbreSoleil,m_soleil);
 
         for (IterCommande=m_commandes[9].begin();IterCommande!=m_commandes[9].end();++IterCommande)
         {

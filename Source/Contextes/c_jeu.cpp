@@ -37,7 +37,7 @@ void Sauvegarder(void* UserData)
 
     jeu->map->Sauvegarder(&jeu->hero);
     jeu->hero.Sauvegarder();
-    moteurGraphique->LightManager->GenerateWallShadow(moteurGraphique->m_angleOmbreSoleil,moteurGraphique->m_soleil);
+  //  moteurGraphique->LightManager->GenerateWallShadow(moteurGraphique->m_angleOmbreSoleil,moteurGraphique->m_soleil);
 }
 
 inline sf::Vector2f AutoScreenAdjust(float x, float y, float decalage = 0)
@@ -556,6 +556,9 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false)
         if(jeu->hero.m_classe.boutons_menus_hud[i].lien == B_CHAT
         && configuration->console != 0)
             sprite.Move(0,9);
+        if(jeu->hero.m_classe.boutons_menus_hud[i].lien == B_DOCS
+        && jeu->next_screen == 9)
+            sprite.Move(0,9);
 
 
         moteurGraphique->AjouterCommande(&sprite, 17,0);
@@ -583,6 +586,8 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false)
         eventManager->StopEvenement(Key::I,EventKey), choix = B_INVENTAIRE;
     if(eventManager->getEvenement(Key::Q,EventKey))
         eventManager->StopEvenement(Key::Q,EventKey), choix = B_QUETES;
+    if(eventManager->getEvenement(Key::D,EventKey))
+        eventManager->StopEvenement(Key::D,EventKey), choix = B_DOCS;
     if(eventManager->getEvenement(Key::Escape,EventKey))
         eventManager->StopEvenement(Key::Escape,EventKey), choix = B_MENU;
     if(eventManager->getEvenement(Key::Tab,EventKey))
@@ -615,6 +620,8 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false)
             return 2;
         if(choix == B_QUETES)
             return 6;
+        if(choix == B_DOCS)
+            return 9;
         if(choix == B_MIRACLES)
             return 5;
         if(choix == B_MENU)
@@ -628,7 +635,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false)
      && eventManager->getPositionSouris().y < AutoScreenAdjust(0,jeu->hero.m_classe.position_bouton_dialogue.y + jeu->hero.m_classe.position_bouton_dialogue.h).y
      && eventManager->getEvenement(Mouse::Left,EventClicA))
     {
-        if(!jeu->menu.m_dialogue.empty())
+        if(!jeu->menu.m_dialogue.empty() && jeu->m_jeu->alpha_dialog > 192)
         {
             eventManager->StopEvenement(Key::Escape,EventKey);
             eventManager->StopEvenement(Mouse::Left,EventClicA);

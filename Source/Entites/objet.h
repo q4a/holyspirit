@@ -171,6 +171,8 @@ public:
 
     Caracteristique         m_gol_caract;
 
+    int                     m_doc;
+
 private:
     sf::Text AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color=sf::Color(255,255,255));
 

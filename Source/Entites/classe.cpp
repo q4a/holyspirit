@@ -531,6 +531,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
         ChargerImageInterface(fichier, sort_inventory);
         ChargerImageInterface(fichier, talk);
         ChargerImageInterface(fichier, quest);
+        ChargerImageInterface(fichier, documents);
         ChargerImageInterface(fichier, craft);
         ChargerImageInterface(fichier, arrow);
         ChargerImageInterface(fichier, icone_mm);
@@ -549,6 +550,11 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
         ChargerCoordonneeInterface(fichier, position_bouton_dialogue);
         ChargerCoordonneeInterface(fichier, position_contenu_quetes);
         ChargerCoordonneeInterface(fichier, position_contenu_description_quete);
+        ChargerImageInterface(fichier, scroll_button_quest);
+        ChargerCoordonneeInterface(fichier, position_list_docs);
+        ChargerCoordonneeInterface(fichier, position_contenu_docs);
+        ChargerImageInterface(fichier, scroll_button_ldocs);
+        ChargerImageInterface(fichier, scroll_button_cdocs);
 
         for(int i = 0 ; i < 8 ; ++i)
             ChargerCoordonneeInterface(fichier, position_raccourcis[i]);
