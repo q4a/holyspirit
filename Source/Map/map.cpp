@@ -1313,7 +1313,7 @@ void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_
     coordonnee position;
 
     if (positionSac.x>=0&&positionSac.x<m_dimensions.x
-            &&positionSac.y>=0&&positionSac.y<m_dimensions.y)
+     && positionSac.y>=0&&positionSac.y<m_dimensions.y)
         if (m_decor[1][positionSac.y][positionSac.x].getNombreObjets()>0)
         {
 
@@ -1322,7 +1322,9 @@ void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_
             if (m_defilerObjets<0)
                 m_defilerObjets=0;
 
-            for (int z=m_defilerObjets;z<m_decor[1][positionSac.y][positionSac.x].getNombreObjets()&&z<position_sac_inventaire.h+m_defilerObjets;z++)
+            for (int z=m_defilerObjets;
+                    z<m_decor[1][positionSac.y][positionSac.x].getNombreObjets()
+                 && z<position_sac_inventaire.h+m_defilerObjets;z++)
             {
                 if(eventManager->getPositionSouris().x > AutoScreenAdjust(position_sac_inventaire.x,0).x
                 && eventManager->getPositionSouris().x < AutoScreenAdjust(position_sac_inventaire.x + position_sac_inventaire.w * 32,0).x
@@ -1337,7 +1339,9 @@ void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_
 
                     moteurGraphique->AjouterCommande(&Sprite,16,0);
 
-                    if (!(z-m_defilerObjets==0&&m_defilerObjets>0)&&!((z-m_defilerObjets==position_sac_inventaire.h-1&&z+m_defilerObjets<=m_decor[1][positionSac.y][positionSac.x].getNombreObjets()+1)))
+                    if(!(z == m_defilerObjets && m_defilerObjets > 0)
+                    && !((z-m_defilerObjets == position_sac_inventaire.h-1
+                        &&z < m_decor[1][positionSac.y][positionSac.x].getNombreObjets() - 1)))
                     {
                         m_objetPointe=z;
                         m_decor[1][positionSac.y][positionSac.x].getObjet(z)->AfficherCaracteristiques(eventManager->getPositionSouris(),caract,NULL,cheminClasse);
@@ -1347,9 +1351,10 @@ void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_
                 texte.SetColor(GetItemColor(m_decor[1][positionSac.y][positionSac.x].getObjet(z)->getRarete()));
                 texte.SetFont(moteurGraphique->m_font);
 
-                if (z-m_defilerObjets==0&&m_defilerObjets>0)
+                if (z == m_defilerObjets && m_defilerObjets > 0)
                     texte.SetString("...");
-                else if ((z-m_defilerObjets==position_sac_inventaire.h-1&&z+m_defilerObjets<=m_decor[1][positionSac.y][positionSac.x].getNombreObjets()+1))
+                else if ((z-m_defilerObjets == position_sac_inventaire.h-1
+                       && z < m_decor[1][positionSac.y][positionSac.x].getNombreObjets() - 1))
                     texte.SetString("...");
                 else
                     texte.SetString(m_decor[1][positionSac.y][positionSac.x].getObjet(z)->getNom());

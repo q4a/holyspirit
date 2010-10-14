@@ -48,7 +48,7 @@ class Modele_Personnage
 {
 public:
     Modele_Personnage();
-    ~Modele_Personnage();
+    virtual ~Modele_Personnage();
     bool Charger(std::string chemin);
 
     void Reinitialiser();
@@ -77,6 +77,7 @@ class Personnage
 {
 public:
     Personnage();
+    virtual ~Personnage();
 
     void Sauvegarder(std::ofstream &fichier);
 
@@ -95,7 +96,7 @@ public:
 
     int Pathfinding(casePathfinding** map,coordonnee exception, bool noDelete = false);
 
-    void Frappe(coordonnee direction,coordonnee position);
+    void Frappe(const coordonnee &direction,const coordonnee &position);
 
     void InfligerDegats(float degats, int type, float temps = 0);
 
@@ -108,9 +109,9 @@ public:
 
     void setDepart();
     void setErreurPathfinding(bool);
-    void setCoordonnee(coordonnee nouvellesCoordonnees);
-    void setArrivee(coordonnee arrivee);
-    void setMauvaiseArrivee(coordonnee arrivee);
+    void setCoordonnee(const coordonnee &nouvellesCoordonnees);
+    void setArrivee(const coordonnee &arrivee);
+    void setMauvaiseArrivee(const coordonnee &arrivee);
     void setEtat(int  etat);
     void setJustEtat(int etat);
     void setPose(int  pose);
@@ -118,14 +119,14 @@ public:
     void setForcedAngle(int  angle);
     void addAngle(int angle);
     void setVitesse(float vitesse);
-    void setCoordonneePixel(coordonnee position);
-    void setProchaineCase(coordonnee position);
-    void setCaracteristique(Caracteristique caracteristique);
-    void setPorteeLumineuse(Lumiere  lumiere);
+    void setCoordonneePixel(const coordonnee &position);
+    void setProchaineCase(const coordonnee &position);
+    void setCaracteristique(const Caracteristique &caracteristique);
+    void setPorteeLumineuse(const Lumiere  &lumiere);
     void regenererVie(float vie);
     void setModele(int);
 
-    void setPousse(coordonneeDecimal pousse);
+    void setPousse(const coordonneeDecimal &pousse);
 
     void AjouterPointAme(int pointAme);
 

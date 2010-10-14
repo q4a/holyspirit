@@ -376,7 +376,7 @@ void Hero::SauvegarderApercu()
     if (configuration->debug)
             console->Ajouter("/Image générée.");
 }
-void Hero::Charger(std::string chemin_save)
+void Hero::Charger(const std::string &chemin_save)
 {
     console->Ajouter("Chargement du hero.");
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
@@ -688,7 +688,7 @@ void Hero::Charger(std::string chemin_save)
         console->Ajouter("/Chargement du héro terminé");
 }
 
-bool Hero::ChargerPresentation(std::string chemin_save)
+bool Hero::ChargerPresentation(const std::string &chemin_save)
 {
     bool erreur = false;
     cDAT reader;
@@ -3111,7 +3111,7 @@ void Hero::addPotale(int x, int y, int nom, const std::string &chemin)
     }
 }
 
-bool Hero::AjouterObjet(Objet objet,bool enMain)
+bool Hero::AjouterObjet(Objet &objet,bool enMain)
 {
     bool ramasser=false;
 
@@ -3200,7 +3200,9 @@ Objet Hero::DeposerObjet()
     Objet temp;
     if (m_objetADeposer>=0&&m_objetADeposer<(int)m_inventaire.size())
     {
-        temp=m_inventaire[m_objetADeposer];
+        temp = m_inventaire[m_objetADeposer];
+
+        temp.JouerSon();
 
         delObjet(m_objetADeposer);
 

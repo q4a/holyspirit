@@ -151,11 +151,6 @@ void Script::Sauvegarder_instruction(ofstream &fichier , int no)
         fichier<<m_instructions[no].nom<<" ";
         if(m_instructions[no].nom == "if" || m_instructions[no].nom == "main")
         {
-            /*if(m_instructions[no].nom == "main")
-            {
-                for(int i = 0 ; i < m_variables.size() ; ++i)
-                    fichier<<endl<<"variable * "<<i<<" * "<<m_variables[i]<<endl;
-            }*/
             for(unsigned i = 0 ; i < m_instructions[no].m_valeurs.size() ; ++i)
                 Sauvegarder_instruction(fichier ,(int)m_instructions[no].m_valeurs[i]);
 

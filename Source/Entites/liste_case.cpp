@@ -38,7 +38,7 @@ int liste_case::getTailleListe()
     return m_liste.size();
 }
 
-void liste_case::AjouterCase(coordonnee coordonneeAjoutable, int parent)
+void liste_case::AjouterCase(const coordonnee &coordonneeAjoutable, int parent)
 {
     Case caseTemp;
     caseTemp.actif = true;

@@ -28,7 +28,7 @@ class Document
 {
 public:
     Document();
-    ~Document();
+    virtual ~Document();
 
     virtual void SauvegarderTexte(std::ofstream *fichier);
     virtual void ChargerTexte(std::ifstream *fichier);
@@ -45,7 +45,7 @@ class Quete : public Document
 public:
     Quete();
     Quete(int);
-    ~Quete();
+    virtual ~Quete();
 
     void SauvegarderTexte(std::ofstream *fichier);
     void ChargerTexte(std::ifstream *fichier);

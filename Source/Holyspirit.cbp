@@ -177,6 +177,8 @@
 		<Unit filename="Contextes\c_craft.h" />
 		<Unit filename="Contextes\c_demarrage.cpp" />
 		<Unit filename="Contextes\c_demarrage.h" />
+		<Unit filename="Contextes\c_documents.cpp" />
+		<Unit filename="Contextes\c_documents.h" />
 		<Unit filename="Contextes\c_inventaire.cpp" />
 		<Unit filename="Contextes\c_inventaire.h" />
 		<Unit filename="Contextes\c_jeu.cpp" />

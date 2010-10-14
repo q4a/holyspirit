@@ -52,7 +52,7 @@ sf::Color GetItemColor(int rarete)
 }
 
 
-void ChargerMiracleBenediction(benediction &bene, Miracle &miracle, bool &m_useMiracle)
+void ChargerMiracleBenediction(const benediction &bene, Miracle &miracle, bool &m_useMiracle)
 {
     Caracteristique caract;
 
@@ -1402,7 +1402,7 @@ void Objet::Generer(int bonus)
         }
 }
 
-int Objet::AddBenediction(benediction temp)
+int Objet::AddBenediction(const benediction &temp)
 {
     bool ajouter = true;
     int accru = 0;
@@ -1883,7 +1883,7 @@ std::string getTextBenediction(const benediction &bene)
     return buf.str();
 }
 
-void Objet::Afficher(coordonnee position)
+void Objet::Afficher(const coordonnee &position)
 {
     sf::Sprite sprite;
     sprite.SetImage(*moteurGraphique->getImage(m_image));
@@ -1910,7 +1910,7 @@ void Objet::Afficher(coordonnee position)
         moteurGraphique->AjouterCommande(&sprite,8,1);
 }
 
-int Objet::AfficherCaracteristiques(coordonnee position,Caracteristique caract, std::vector<Objet> *items, std::string nom_classe,float modPrix,bool compare,bool decalageDroite, bool orientationHaut, bool coffre)
+int Objet::AfficherCaracteristiques(coordonnee position,const Caracteristique &caract, std::vector<Objet> *items, std::string nom_classe,float modPrix,bool compare,bool decalageDroite, bool orientationHaut, bool coffre)
 {
     std::vector <sf::Text> temp;
 

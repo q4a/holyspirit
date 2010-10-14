@@ -41,7 +41,7 @@ c_Chargement::~c_Chargement()
 {
 }
 
-void c_Chargement::setC_Chargement(std::string prochaineMap,coordonnee coordonneePerso,bool debut)
+void c_Chargement::setC_Chargement(const std::string &prochaineMap,const coordonnee &coordonneePerso,bool debut)
 {
     tempsActuel=0,tempsPrecedent=0,temps_ecoule=0,tempsEcouleDepuisDernierAffichage=0;
 

@@ -182,6 +182,9 @@ Modele_Personnage::Modele_Personnage()
     m_selectable                         = 1;
 }
 
+Personnage::~Personnage()
+{
+}
 
 void Modele_Personnage::Reinitialiser()
 {
@@ -391,7 +394,7 @@ void Personnage::regenererVie(float vie)
         m_caracteristique.vie=m_caracteristique.maxVie;
 }
 
-int Personnage::Pathfinding(casePathfinding** map,coordonnee exception, bool noDelete)
+int Personnage::Pathfinding(casePathfinding** map, coordonnee exception, bool noDelete)
 {
     //if(!(m_arrivee.x==m_mauvaiseArrivee.x&&m_arrivee.y==m_mauvaiseArrivee.y))
     if (!(m_arrivee.x==m_positionCase.x&&m_arrivee.y==m_positionCase.y))
@@ -1006,7 +1009,7 @@ int Personnage::Animer(Modele_Personnage *modele,float temps)
     return retour;
 }
 
-void Personnage::Frappe(coordonnee position,coordonnee direction)
+void Personnage::Frappe(const coordonnee &position,const coordonnee &direction)
 {
     if (m_etat<2)
     {
@@ -1121,15 +1124,15 @@ void Modele_Personnage::setPorteeLumineuse(Lumiere  lumiere)
 {
     m_porteeLumineuse=lumiere;
 }
-void Personnage::setPorteeLumineuse(Lumiere  lumiere)
+void Personnage::setPorteeLumineuse(const Lumiere  &lumiere)
 {
     m_porteeLumineuse=lumiere;
 }
-void Personnage::setCaracteristique(Caracteristique caracteristique)
+void Personnage::setCaracteristique(const Caracteristique &caracteristique)
 {
     m_caracteristique=caracteristique;
 }
-void Personnage::setProchaineCase(coordonnee position)
+void Personnage::setProchaineCase(const coordonnee &position)
 {
     m_cheminFinal=position;
 }
@@ -1185,7 +1188,7 @@ void Personnage::setErreurPathfinding(bool erreur)
 {
     m_erreurPathfinding=erreur;
 }
-void Personnage::setCoordonnee(coordonnee nouvellesCoordonnees)
+void Personnage::setCoordonnee(const coordonnee &nouvellesCoordonnees)
 {
     m_positionCase=nouvellesCoordonnees;
     if(m_caracteristique.vie > 0)
@@ -1208,19 +1211,18 @@ void Personnage::setCoordonnee(coordonnee nouvellesCoordonnees)
 
     m_cible = NULL;
 }
-void Personnage::setArrivee(coordonnee arrivee)
+void Personnage::setArrivee(const coordonnee &arrivee)
 {
-    if (!(m_mauvaiseArrivee.x==arrivee.x&&m_mauvaiseArrivee.y==arrivee.y))
-    {
+    if (!(m_mauvaiseArrivee.x==arrivee.x
+        &&m_mauvaiseArrivee.y==arrivee.y))
         m_arrivee=arrivee;
-    }
 }
-void Personnage::setMauvaiseArrivee(coordonnee arrivee)
+void Personnage::setMauvaiseArrivee(const coordonnee &arrivee)
 {
     m_mauvaiseArrivee=arrivee;
 }
 
-void Personnage::setCoordonneePixel(coordonnee position)
+void Personnage::setCoordonneePixel(const coordonnee &position)
 {
     m_positionPixel.x=position.x*COTE_TILE;
     m_positionPixel.y=position.y*COTE_TILE;
@@ -1237,7 +1239,7 @@ void Personnage::setModele(int modele)
 }
 
 
-void Personnage::setPousse(coordonneeDecimal pousse)
+void Personnage::setPousse(const coordonneeDecimal &pousse)
 {
     if(!m_impoussable)
     {

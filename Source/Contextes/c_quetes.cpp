@@ -52,7 +52,7 @@ void c_Quetes::Utiliser(Jeu *jeu)
     jeu->Clock.Reset();
 
     moteurGraphique->Gerer(0);
-    jeu->map->Animer(&jeu->hero,0);
+    //jeu->map->Animer(&jeu->hero,0);
     jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
     jeu->hero.AfficherAmisEtCraft();
     //jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);

@@ -211,6 +211,15 @@ void MoteurGraphique::Charger()
 
 void MoteurGraphique::Gerer(float temps)
 {
+    if(!configuration->mode_fenetre)
+    {
+        if(m_ecran.GetInput().GetMouseX() > configuration->Resolution.x - 1)
+            m_ecran.SetCursorPosition(configuration->Resolution.x - 1,m_ecran.GetInput().GetMouseY());
+        if(m_ecran.GetInput().GetMouseY() > configuration->Resolution.y - 1)
+            m_ecran.SetCursorPosition(m_ecran.GetInput().GetMouseX(),configuration->Resolution.y - 1);
+    }
+
+
     m_transWater.x += temps*0.005;
     m_transWater.x += decalageReflection.x / configuration->Resolution.x / configuration->zoom * 0.014 * 0.5;
     decalageReflection.x = 0;

@@ -68,7 +68,7 @@ struct ConditionLitanie
     std::string valeur_string;
 };
 
-void ChargerMiracleBenediction(benediction &bene, Miracle &miracle, bool &m_useMiracle);
+void ChargerMiracleBenediction(const benediction &bene, Miracle &miracle, bool &m_useMiracle);
 
 
 class Set
@@ -96,8 +96,8 @@ public:
     Objet(std::string nom,int rarete);
     ~Objet();
 
-    void Afficher(coordonnee position);
-    int AfficherCaracteristiques(coordonnee position,Caracteristique caract, std::vector<Objet> *items, std::string nom_classe,float modPrix = 1, bool compare = false, bool = false,  bool = false, bool = false);
+    void Afficher(const coordonnee &position);
+    int AfficherCaracteristiques(coordonnee position,const Caracteristique &caract, std::vector<Objet> *items, std::string nom_classe,float modPrix = 1, bool compare = false, bool = false,  bool = false, bool = false);
     void Charger(const std::string &chemin, const Caracteristique &caract,bool NePasAjouterBenedictions=false);
     void ChargerCaracteristiques(std::ifstream *fichier);
 
@@ -107,7 +107,7 @@ public:
     void ChargerChemin(std::ifstream *fichier);
 
     void ChargerMiracle(const Caracteristique &caract);
-    int AddBenediction(benediction );
+    int AddBenediction(const benediction &);
 
     void Generer(int bonus);
 

@@ -62,7 +62,7 @@ void Console::Afficher()
         }
     }
 }
-void Console::Ajouter(std::string texte,bool erreur)
+void Console::Ajouter(const std::string &texte,bool erreur)
 {
     if (!configuration->desactivate_console)
     {

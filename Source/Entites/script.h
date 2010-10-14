@@ -24,8 +24,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <iostream>
 #include "../constantes.h"
 
-
-
 class Instruction
 {
     public:
@@ -48,15 +46,15 @@ public:
     void Sauvegarder(std::ofstream &fichier);
     void Sauvegarder_instruction(std::ofstream &fichier , int no);
 
-    void setVariable(int i, float val);
+    void   setVariable(int i, float val);
     float  getVariable(int i);
-    int  getNbrVariable();
+    int    getNbrVariable();
 
     void   setValeur(int no, int i, float val);
     float  getValeur(int no, int i);
 
-    void AjouterCondition(std::ifstream *fichier);
-    int Lire(std::ifstream *fichier);
+    void   AjouterCondition(std::ifstream *fichier);
+    int    Lire(std::ifstream *fichier);
 
     std::vector<Instruction> m_instructions;
 

@@ -25,7 +25,7 @@ coordonnee Case::getPosition()
     return m_coordonnee;
 }
 
-void Case::setCoordonnee(coordonnee nouvelleCoordonnee,int distance, int parent)
+void Case::setCoordonnee(const coordonnee &nouvelleCoordonnee,int distance, int parent)
 {
     m_coordonnee    = nouvelleCoordonnee;
     m_distance      = distance;

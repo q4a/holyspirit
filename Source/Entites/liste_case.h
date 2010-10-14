@@ -48,7 +48,7 @@ class liste_case
 {
 public:
     ~liste_case();
-    void AjouterCase(coordonnee coordonneeAjoutable, int parent);
+    void AjouterCase(const coordonnee &coordonneeAjoutable, int parent);
 
     bool AjouterCasesAdjacentes(casePathfinding ** grille,coordonnee *arrivee);
     //bool TesterCasesEnCours(coordonnee caseCherchee);

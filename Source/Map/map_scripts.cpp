@@ -16,7 +16,8 @@ void Map::Script_RandomDisplace(Jeu *jeu,Script *script,int noInstruction,int mo
 {
     if (m_monstre[monstre].EnVie())
     {
-        if (m_monstre[monstre].getArrivee().x==m_monstre[monstre].getCoordonnee().x&&m_monstre[monstre].getArrivee().y==m_monstre[monstre].getCoordonnee().y)
+        if (m_monstre[monstre].getArrivee().x==m_monstre[monstre].getCoordonnee().x
+          &&m_monstre[monstre].getArrivee().y==m_monstre[monstre].getCoordonnee().y)
         {
             coordonnee arrivee;
             arrivee=m_monstre[monstre].getDepart();
@@ -24,14 +25,6 @@ void Map::Script_RandomDisplace(Jeu *jeu,Script *script,int noInstruction,int mo
             arrivee.y+=(3-rand()%(6));
             m_monstre[monstre].setArrivee(arrivee);
         }
-      /*  else
-        {
-            if (seDeplacer)
-            {
-                //coordonnee tempCoord(hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1);
-               // m_monstre[monstre].Pathfinding(getAlentourDuPersonnage(m_monstre[monstre].getCoordonnee()),tempCoord);
-            }
-        }*/
     }
 }
 
@@ -49,14 +42,6 @@ void Map::Script_Evasion(Jeu *jeu,Script *script,int noInstruction,int monstre,H
                 arrivee.y+=m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y;
                 m_monstre[monstre].setArrivee(arrivee);
             }
-            /*else
-            {
-                if (seDeplacer)
-                {
-                    coordonnee tempCoord(hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1);
-                    m_monstre[monstre].Pathfinding(getAlentourDuPersonnage(m_monstre[monstre].getCoordonnee()),tempCoord);
-                }
-            }*/
         }
     }
 }
@@ -70,17 +55,7 @@ void Map::Script_Follow(Jeu *jeu,Script *script,int noInstruction,int monstre,He
             m_monstre[monstre].setArrivee(hero->m_personnage.getCoordonnee());
 
             if (m_monstre[monstre].getArrivee().x==m_monstre[monstre].getCoordonnee().x&&m_monstre[monstre].getArrivee().y==m_monstre[monstre].getCoordonnee().y)
-            {
                 m_monstre[monstre].setDepart();
-            }
-            /*else
-            {
-                if (seDeplacer)
-                {
-                    coordonnee tempCoord(hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1);
-                    m_monstre[monstre].Pathfinding(getAlentourDuPersonnage(m_monstre[monstre].getCoordonnee()),tempCoord);
-                }
-            }*/
         }
     }
 }

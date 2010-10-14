@@ -176,7 +176,6 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
         m_casePointee.x=tailleMap.x;
     if (m_casePointee.y>tailleMap.y)
         m_casePointee.y=tailleMap.y;
-
 }
 
 void EventManager::AfficherCurseur(bool transparent)
@@ -228,11 +227,11 @@ void EventManager::StopEvenement(int numeroEvenement,int type)
 
 
 
-coordonnee EventManager::getCasePointee()
+const coordonnee &EventManager::getCasePointee()
 {
     return m_casePointee;
 }
-coordonnee EventManager::getPositionSouris()
+const coordonnee &EventManager::getPositionSouris()
 {
     return m_positionSouris;
 }

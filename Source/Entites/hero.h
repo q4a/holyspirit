@@ -56,9 +56,9 @@ public:
 
     void Sauvegarder();
     void SauvegarderApercu();
-    void Charger(std::string chemin);
+    void Charger(const std::string &chemin);
     void ChargerModele(bool tout=false);
-    bool ChargerPresentation(std::string chemin);
+    bool ChargerPresentation(const std::string &chemin);
 
     void Afficher();
     void CalculerOrdreAffichage();
@@ -87,7 +87,7 @@ public:
 
     void addPotale(int x, int y, int nom, const std::string &chemin);
 
-    bool AjouterObjet(Objet objet,bool enMain=false);
+    bool AjouterObjet(Objet &objet,bool enMain=false);
 
     Objet DeposerObjet();
     bool PrendreEnMain(std::vector<Objet>*, bool craft = false, bool bless = false);

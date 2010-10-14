@@ -28,7 +28,7 @@ class Case
 {
 public:
     coordonnee getPosition();
-    void setCoordonnee(coordonnee nouvelleCoordonnee,int distance, int parent);
+    void setCoordonnee(const coordonnee &nouvelleCoordonnee,int distance, int parent);
     int getDistance();
     int getParent();
 

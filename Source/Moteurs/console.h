@@ -36,7 +36,7 @@ public:
     friend void CSingleton<Console>::Kill();
 
     void Afficher();
-    void Ajouter(std::string texte,bool erreur = false);
+    void Ajouter(const std::string &texte,bool erreur = false);
     void Ajouter(int texte,bool erreur = false);
     void Ajouter(char texte,bool erreur = false);
 

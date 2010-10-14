@@ -58,7 +58,7 @@ public:
     \param coordonneePerso : nouvelle position du héro.
     \param debut : ce bool permet juste de dire si c'est la première map du jeu, la map d'initialisation car celle-ci ne doit pas être sauvegardée.
     */
-    void setC_Chargement(std::string prochaineMap,coordonnee coordonneePerso,bool debut=false);
+    void setC_Chargement(const std::string &prochaineMap,const coordonnee &coordonneePerso,bool debut=false);
 
 private:
 

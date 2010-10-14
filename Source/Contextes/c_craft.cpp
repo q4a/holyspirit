@@ -59,7 +59,7 @@ void c_Craft::Utiliser(Jeu *jeu)
     jeu->m_display=true;
     jeu->Clock.Reset();
 
-    jeu->map->Animer(&jeu->hero,0);
+    //jeu->map->Animer(&jeu->hero,0);
     jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
     jeu->hero.AfficherAmisEtCraft();
 

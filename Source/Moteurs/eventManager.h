@@ -42,8 +42,8 @@ class EventManager : public CSingleton<EventManager>
 	void StopEvenement(int numeroEvenement, int type);
 
 	bool getEvenement(int numeroEvenement, int type);
-	coordonnee getCasePointee();
-	coordonnee getPositionSouris();
+	const coordonnee &getCasePointee();
+	const coordonnee &getPositionSouris();
 	int getMolette();
 	char getChar();
 	void stopChar();
