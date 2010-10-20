@@ -40,7 +40,6 @@ private:
     float temps_ecoule,m_alpha;
     bool retour;
     sf::Text texte;
-
 };
 
 #endif

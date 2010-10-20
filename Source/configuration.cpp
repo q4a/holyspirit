@@ -180,6 +180,13 @@ void Configuration::ChargerInit()
                 fichier>>music_menu;
             if (chaine== "mainscreen_menu:")
                 fichier>>mainscreen_menu;
+            if (chaine== "sound_menu:")
+            {
+                std::string temp;
+                fichier>>temp;
+                sound_menu = moteurSons->AjouterBuffer(temp);
+            }
+
 
             if (chaine== "basic_cursor:")
                 fichier>>nom_curseur_base;
@@ -391,7 +398,7 @@ bool Configuration::Options()
         {
             texte.SetColor(sf::Color(100,50,0));
             if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
-                no_menu_option = O_GRAPHICS;
+                no_menu_option = O_GRAPHICS,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
             eventManager->StopEvenement(sf::Mouse::Left,EventClic);
         }
         else
@@ -406,7 +413,7 @@ bool Configuration::Options()
         {
             texte.SetColor(sf::Color(100,50,0));
             if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
-                no_menu_option = O_GRAPHISC_AVANCED;
+                no_menu_option = O_GRAPHISC_AVANCED,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
             eventManager->StopEvenement(sf::Mouse::Left,EventClic);
         }
         else
@@ -421,7 +428,7 @@ bool Configuration::Options()
         {
             texte.SetColor(sf::Color(100,50,0));
             if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
-                no_menu_option = O_SOUNDS;
+                no_menu_option = O_SOUNDS,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
             eventManager->StopEvenement(sf::Mouse::Left,EventClic);
         }
         else
@@ -438,6 +445,7 @@ bool Configuration::Options()
             texte.SetColor(sf::Color(100,50,0));
             if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
             {
+                moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                 eventManager->StopEvenement(sf::Mouse::Left,EventClic);
                 return 1;
             }
@@ -465,6 +473,7 @@ bool Configuration::Options()
                 texte.SetColor(sf::Color(100,50,0));
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
                 {
+                    moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                     eventManager->StopEvenement(sf::Mouse::Left,EventClic);
 
                     unsigned no = 0;
@@ -514,6 +523,7 @@ bool Configuration::Options()
                 texte.SetColor(sf::Color(100,50,0));
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
                 {
+                    moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                     eventManager->StopEvenement(sf::Mouse::Left,EventClic);
                     mode_fenetre = !mode_fenetre;
                     moteurGraphique->CreateNewWindow();
@@ -604,6 +614,7 @@ bool Configuration::Options()
                 texte.SetColor(sf::Color(100,50,0));
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
                 {
+                    moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                     eventManager->StopEvenement(sf::Mouse::Left,EventClic);
                     item_background = !item_background;
                 }
@@ -625,6 +636,7 @@ bool Configuration::Options()
             texte.SetColor(sf::Color(100,50,0));
             if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
             {
+                moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                 eventManager->StopEvenement(sf::Mouse::Left,EventClic);
                 no_menu_option = O_PRINCIPAL;
             }
@@ -650,6 +662,7 @@ bool Configuration::Options()
                 texte.SetColor(sf::Color(100,50,0));
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
                 {
+                    moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                     eventManager->StopEvenement(sf::Mouse::Left,EventClic);
 
                     if(Lumiere == 0)
@@ -677,6 +690,7 @@ bool Configuration::Options()
                 texte.SetColor(sf::Color(100,50,0));
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
                 {
+                    moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                     eventManager->StopEvenement(sf::Mouse::Left,EventClic);
                     Ombre = !Ombre;
                 }
@@ -698,6 +712,7 @@ bool Configuration::Options()
                 texte.SetColor(sf::Color(100,50,0));
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
                 {
+                    moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                     eventManager->StopEvenement(sf::Mouse::Left,EventClic);
                     postFX = !postFX;
                 }
@@ -719,6 +734,7 @@ bool Configuration::Options()
                 texte.SetColor(sf::Color(100,50,0));
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
                 {
+                    moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                     eventManager->StopEvenement(sf::Mouse::Left,EventClic);
                     Reflection = !Reflection;
                 }
@@ -740,6 +756,7 @@ bool Configuration::Options()
                 texte.SetColor(sf::Color(100,50,0));
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
                 {
+                    moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                     eventManager->StopEvenement(sf::Mouse::Left,EventClic);
                     Distortion = !Distortion;
                 }
@@ -761,6 +778,7 @@ bool Configuration::Options()
                 texte.SetColor(sf::Color(100,50,0));
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
                 {
+                    moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                     eventManager->StopEvenement(sf::Mouse::Left,EventClic);
                     Herbes = !Herbes;
                 }
@@ -782,6 +800,7 @@ bool Configuration::Options()
                 texte.SetColor(sf::Color(100,50,0));
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
                 {
+                    moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                     eventManager->StopEvenement(sf::Mouse::Left,EventClic);
                     particules = !particules;
                 }
@@ -801,6 +820,7 @@ bool Configuration::Options()
             texte.SetColor(sf::Color(100,50,0));
             if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
             {
+                moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                 eventManager->StopEvenement(sf::Mouse::Left,EventClic);
                 no_menu_option = O_PRINCIPAL;
             }
@@ -901,6 +921,7 @@ bool Configuration::Options()
             texte.SetColor(sf::Color(100,50,0));
             if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
             {
+                moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                 eventManager->StopEvenement(sf::Mouse::Left,EventClic);
                 no_menu_option = O_PRINCIPAL;
             }

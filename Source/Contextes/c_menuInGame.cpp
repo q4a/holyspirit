@@ -104,7 +104,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
         {
             texte.SetColor(Color(100,50,0,(int)m_alpha));
             if (eventManager->getEvenement(Mouse::Left,EventClic))
-                retour=1, jeu->next_screen = 3;
+                retour=1, jeu->next_screen = 3,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
             eventManager->StopEvenement(Mouse::Left,EventClic);
         }
         else
@@ -119,7 +119,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
         {
             texte.SetColor(Color(100,50,0,(int)m_alpha));
             if (eventManager->getEvenement(Mouse::Left,EventClic))
-                options = true, configuration->no_menu_option = 0;
+                options = true, configuration->no_menu_option = 0,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
             eventManager->StopEvenement(Mouse::Left,EventClic);
         }
         else
@@ -134,7 +134,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
         {
             texte.SetColor(Color(100,50,0,(int)m_alpha));
             if (eventManager->getEvenement(Mouse::Left,EventClic))
-                jeu->m_mainMenu->m_save=true, jeu->m_contexte = jeu->m_mainMenu;
+                jeu->m_mainMenu->m_save=true, jeu->m_contexte = jeu->m_mainMenu,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
             eventManager->StopEvenement(Mouse::Left,EventClic);
         }
         else
@@ -149,7 +149,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
         {
             texte.SetColor(Color(100,50,0,(int)m_alpha));
             if (eventManager->getEvenement(Mouse::Left,EventClic))
-                jeu->m_mainMenu->m_reset=true,jeu->m_mainMenu->m_save=true, jeu->m_contexte = jeu->m_mainMenu;
+                jeu->m_mainMenu->m_reset=true,jeu->m_mainMenu->m_save=true, jeu->m_contexte = jeu->m_mainMenu,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
             eventManager->StopEvenement(Mouse::Left,EventClic);
         }
         else

@@ -23,7 +23,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 
 using namespace std;
-//using namespace sf;
 
 Console *console;
 Configuration *configuration;
@@ -35,7 +34,7 @@ EventManager *eventManager;
 
 int main (  )
 {
-    std::set_terminate( __gnu_cxx::__verbose_terminate_handler);
+ //   std::set_terminate( __gnu_cxx::__verbose_terminate_handler);
 
 
     configuration=Configuration::GetInstance();

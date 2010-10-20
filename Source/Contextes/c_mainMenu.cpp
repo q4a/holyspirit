@@ -213,6 +213,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
         if (eventManager->getEvenement(Mouse::Left,EventClic))
         {
             no_ecran = E_CONTINUER;
+            moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
             m_chemin_saves.clear();
             m_images_saves.clear();
             m_incompatible_saves.clear();
@@ -270,6 +271,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
         if (eventManager->getEvenement(Mouse::Left,EventClic))
         {
             no_ecran = E_STORY;
+            moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
             m_chemin_saves.clear();
             m_nom_classes.clear();
 
@@ -311,7 +313,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
         texte.SetColor(Color(100,50,0));
 
         if (eventManager->getEvenement(Mouse::Left,EventClic))
-            no_ecran = E_OPTION, configuration->no_menu_option = O_PRINCIPAL;
+            no_ecran = E_OPTION, configuration->no_menu_option = O_PRINCIPAL,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
 
         eventManager->StopEvenement(Mouse::Left,EventClic);
     }
@@ -327,7 +329,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
     {
         texte.SetColor(Color(100,50,0));
         if (eventManager->getEvenement(Mouse::Left,EventClic))
-            no_ecran = E_CREDITS, m_credit_defil = 0;
+            no_ecran = E_CREDITS, m_credit_defil = 0,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
          eventManager->StopEvenement(Mouse::Left,EventClic);
     }
     else
@@ -343,7 +345,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
     {
         texte.SetColor(Color(100,50,0));
         if (eventManager->getEvenement(Mouse::Left,EventClic))
-            jeu->m_run=false;
+            jeu->m_run=false,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
          eventManager->StopEvenement(Mouse::Left,EventClic);
     }
     else
@@ -372,6 +374,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         if(eventManager->getEvenement(Mouse::Left,EventClic))
         {
             no_ecran = E_PRINCIPAL;
+            moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
             eventManager->StopEvenement(Mouse::Left,EventClic);
         }
     }
@@ -445,6 +448,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
             if(eventManager->getEvenement(Mouse::Left,EventClic))
             //if(!m_incompatible_saves[i])
             {
+                moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                 coordonnee temp(0,0,-1,-1);
 
                 jeu->hero.m_caracteristiques.nom = m_chemin_saves[i].substr(0, m_chemin_saves[i].size() - 7);
@@ -504,7 +508,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
             {
                 texte.SetColor(Color(100,50,0));
                 if(eventManager->getEvenement(Mouse::Left,EventClic))
-                    defilement_saves ++;
+                    defilement_saves ++,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                 eventManager->StopEvenement(Mouse::Left,EventClic);
             }
             else
@@ -531,7 +535,8 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
                 texte.SetColor(Color(100,50,0));
                 if(eventManager->getEvenement(Mouse::Left,EventClic))
                 {
-                     defilement_saves --;
+                    defilement_saves --;
+                    moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                     eventManager->StopEvenement(Mouse::Left,EventClic);
                 }
             }
@@ -581,6 +586,7 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
             texte.SetColor(Color(100,50,0));
             if(eventManager->getEvenement(Mouse::Left,EventClic))
             {
+                moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                 eventManager->StopEvenement(Mouse::Left,EventClic);
                 classe_choisie = i;
             }
@@ -630,6 +636,8 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
         || eventManager->getEvenement(sf::Key::Return, EventKey))
         if(!nom_hero.empty())
         {
+            moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
+
             jeu->hero.m_cheminClasse = configuration->player_class[classe_choisie];
             jeu->hero.m_chemin_save = nom_hero + ".sav.hs";
 
@@ -666,7 +674,7 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
     {
         texte.SetColor(Color(100,50,0));
         if(eventManager->getEvenement(Mouse::Left,EventClic))
-            no_ecran = E_PRINCIPAL,nom_hero = "";
+            no_ecran = E_PRINCIPAL,nom_hero = "",moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
         eventManager->StopEvenement(Mouse::Left,EventClic);
     }
     else
@@ -723,6 +731,7 @@ void  c_MainMenu::E_Credits()
         if(eventManager->getEvenement(Mouse::Left,EventClic))
         {
             no_ecran = E_PRINCIPAL;
+            moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
             eventManager->StopEvenement(Mouse::Left,EventClic);
         }
     }
@@ -751,6 +760,7 @@ void  c_MainMenu::E_Story()
         if(eventManager->getEvenement(Mouse::Left,EventClic))
         {
             no_ecran = E_NOUVEAU;
+            moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
             eventManager->StopEvenement(Mouse::Left,EventClic);
         }
     }

@@ -114,7 +114,7 @@ void c_Documents::Utiliser(Jeu *jeu)
             &&eventManager->getPositionSouris().x < AutoScreenAdjust(jeu->hero.m_classe.scroll_button_cdocs.position.x+jeu->hero.m_classe.scroll_button_cdocs.position.w,0).x
             &&eventManager->getPositionSouris().y - jeu->hero.m_classe.scroll_button_cdocs.position.h/2 > AutoScreenAdjust(0,jeu->hero.m_classe.scroll_button_cdocs.position.y).y
             &&eventManager->getPositionSouris().y - jeu->hero.m_classe.scroll_button_cdocs.position.h/2 < AutoScreenAdjust(0,jeu->hero.m_classe.scroll_button_cdocs.position.y+jeu->hero.m_classe.position_contenu_docs.h*19+jeu->hero.m_classe.scroll_button_cdocs.position.h).y)
-                jeu->hero.m_defil_cdoc = (eventManager->getPositionSouris().y - jeu->hero.m_classe.scroll_button_cdocs.position.h/2 - AutoScreenAdjust(0,jeu->hero.m_classe.scroll_button_cdocs.position.y).y)/(jeu->hero.m_classe.position_contenu_docs.h*19+jeu->hero.m_classe.scroll_button_cdocs.position.h)*(jeu->hero.m_max_defil_cdoc - jeu->hero.m_classe.position_contenu_docs.h + 1);
+                jeu->hero.m_defil_cdoc = (int)(eventManager->getPositionSouris().y - jeu->hero.m_classe.scroll_button_cdocs.position.h/2 - AutoScreenAdjust(0,jeu->hero.m_classe.scroll_button_cdocs.position.y).y)/(jeu->hero.m_classe.position_contenu_docs.h*19+jeu->hero.m_classe.scroll_button_cdocs.position.h)*(jeu->hero.m_max_defil_cdoc - jeu->hero.m_classe.position_contenu_docs.h + 1);
 
 
     if (jeu->hero.m_defil_cdoc>jeu->hero.m_max_defil_cdoc-jeu->hero.m_classe.position_contenu_docs.h)

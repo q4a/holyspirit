@@ -171,7 +171,7 @@
 	<SFML/System/NonCopyable.hpp>
 	<string>
 
-1263499250 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\windowhandle.hpp
+1287157398 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\windowhandle.hpp
 	<SFML/Config.hpp>
 
 1280155900 e:\c++\sfml_svn\branches\sfml2\include\sfml\window\contextsettings.hpp
@@ -439,7 +439,7 @@
 	<iostream>
 	"../constantes.h"
 
-1280934549 e:\c++\holyspirit\source\configuration.h
+1287588830 e:\c++\holyspirit\source\configuration.h
 	"singleton.h"
 	"constantes.h"
 
@@ -605,7 +605,7 @@
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1282636038 e:\c++\holyspirit\source\contextes\c_menuingame.h
+1287588864 e:\c++\holyspirit\source\contextes\c_menuingame.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"contexte.h"
@@ -644,7 +644,7 @@
 	<SFML/Audio.hpp>
 	<sstream>
 
-1285836951 source:e:\c++\holyspirit\source\contextes\c_menuingame.cpp
+1287589161 source:e:\c++\holyspirit\source\contextes\c_menuingame.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -718,7 +718,7 @@
 	"../constantes.h"
 	"../globale.h"
 
-1287083475 source:e:\c++\holyspirit\source\entites\objet.cpp
+1287084161 source:e:\c++\holyspirit\source\entites\objet.cpp
 	"objet.h"
 	"../globale.h"
 	<fstream>
@@ -826,12 +826,12 @@
 	"../globale.h"
 	<fstream>
 
-1276618804 source:e:\c++\holyspirit\source\moteurs\moteursons.cpp
+1287157189 source:e:\c++\holyspirit\source\moteurs\moteursons.cpp
 	"moteurSons.h"
 	"../globale.h"
 	<iostream>
 
-1282810664 source:e:\c++\holyspirit\source\configuration.cpp
+1287588025 source:e:\c++\holyspirit\source\configuration.cpp
 	"configuration.h"
 	"globale.h"
 	<stdio.h>
@@ -849,7 +849,7 @@
 	"datFile.h"
 	<dirent.h>
 
-1264016242 source:e:\c++\holyspirit\source\main.cpp
+1287232792 source:e:\c++\holyspirit\source\main.cpp
 	<iostream>
 	<dirent.h>
 	"main.h"
@@ -5745,12 +5745,12 @@
 	<SFML/Graphics/Rect.hpp>
 	<vector>
 
-1282636763 e:\c++\holyspirit\source\contextes\c_mainmenu.h
+1287588864 e:\c++\holyspirit\source\contextes\c_mainmenu.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1286392577 source:e:\c++\holyspirit\source\contextes\c_mainmenu.cpp
+1287588945 source:e:\c++\holyspirit\source\contextes\c_mainmenu.cpp
 	"../jeu.h"
 	"../globale.h"
 	<iostream>
@@ -6377,7 +6377,7 @@
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1285837125 source:e:\c++\holyspirit\source\contextes\c_documents.cpp
+1287233153 source:e:\c++\holyspirit\source\contextes\c_documents.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"

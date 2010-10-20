@@ -86,7 +86,7 @@ void MoteurSons::JouerSon(int ID,coordonnee position,bool unique,int volume)
         bool creerNouveauSon=true;
         if (unique)
         {
-            for (int i=0;i<NOMBRE_SONS;i++)
+            for (int i=0;i<NOMBRE_SONS && creerNouveauSon;i++)
                 if (m_IDSons[i]==ID && m_sons[i].GetStatus() != 0)
                 {
                     coordonnee positionHero;
