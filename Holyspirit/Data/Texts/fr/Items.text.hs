@@ -123,7 +123,7 @@ Camail
 Un capuchon en mailles\protégeant la tête et la nuque.
 Sceptre de Clodomir
 Description et histoire de Clodomir.
-Notes du moine Redimus
+Journal du moine Redimus
 Quelques notes qui semblent\provenir du journal\du moine Redimus.\Clic droit pour utiliser. 
 Livre des Saints - Le Calvaire de Frénégonde
 Extrait du Livre des Saints, ce document\relate l'histoire de Sainte Frénégonde.\Clic droit pour utiliser.

@@ -41,6 +41,9 @@ Merwin (Gabriel Pichot)
 *Helper programmer
 Bmauet (Baptiste Careil)
 
+*Webdesigner
+Angelis
+
 *Translators
 Bravach (English)
 Gonze Philippe (English)

@@ -4,13 +4,16 @@ main
 	then
 		if variable * 0 * 0
 		then
-			variable * 0 * 1
-			speak * 0
-			speak_choice * 56 * 1
+			if no_speak
+			then
+				speak * 0
+				speak_choice * 56 * 1
+			end
 		end
 		
 		if speak_choice * 1
 		then
+			variable * 0 * 1
 			stop_speak
 		end
 	end

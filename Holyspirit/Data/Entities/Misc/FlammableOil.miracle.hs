@@ -13,7 +13,7 @@ $
 	
 	* t8 ia5 ib100 ic10 $ // DEGATS
 	* t7 ia6 id0 if1 $
-	* t2 ia25 ib25 ic1 $
+	* t2 ia25 ib25 ic1 id1 $
 	
 	* t3 s1 ia16 $ // DISPARITION
 $
