@@ -126,6 +126,10 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
     if (tempsEcoule>0.1f)
         tempsEcoule=0.1f;
+/*
+    while(jeu->Clock.GetElapsedTime() < 1.0/30);
+    tempsEcoule = 1.0/30;//jeu->Clock.GetElapsedTime();*/
+    jeu->Clock.Reset();
 
 
     jeu->m_display=false;
@@ -212,8 +216,6 @@ void c_Jeu::GererTemps(Jeu *jeu)
         if (alpha_dialog<0)
             alpha_dialog=0;
     }
-
-    jeu->Clock.Reset();
 
     if (jeu->hero.m_personnage.EnVie())
     {

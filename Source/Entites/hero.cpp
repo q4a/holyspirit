@@ -4347,17 +4347,17 @@ void Hero::RegenererVie(float vie)
     if (temp.reserveVie < 0)
         temp.reserveVie = 0;
 
-    if (temp.vie > temp.maxVie  - temp.reserveVie )
+    if (temp.vie > m_caracteristiques.maxVie  - temp.reserveVie )
     {
-        temp.vie -= (temp.vie - temp.maxVie + temp.reserveVie)*vie/10;
-        if (temp.vie < temp.maxVie - temp.reserveVie)
-            temp.vie = temp.maxVie - temp.reserveVie;
+        temp.vie -= (temp.vie - m_caracteristiques.maxVie + temp.reserveVie)*vie/10;
+        if (temp.vie < m_caracteristiques.maxVie - temp.reserveVie)
+            temp.vie = m_caracteristiques.maxVie - temp.reserveVie;
     }
     else
-        temp.vie += ((float)temp.maxVie*(vie/100)) + m_caracteristiques.regenVie * ((float)temp.maxVie*(vie/100));
+        temp.vie += ((float)m_caracteristiques.maxVie*(vie/100)) + m_caracteristiques.regenVie * ((float)m_caracteristiques.maxVie*(vie/100));
 
-    if (temp.vie > (temp.maxVie - temp.reserveVie) * 2)
-        temp.vie = (temp.maxVie - temp.reserveVie) * 2;
+    if (temp.vie > (m_caracteristiques.maxVie - temp.reserveVie) * 2)
+        temp.vie = (m_caracteristiques.maxVie - temp.reserveVie) * 2;
 
     m_personnage.setCaracteristique(temp);
 
@@ -4372,17 +4372,17 @@ void Hero::RegenererFoi(float foi)
     if (temp.reserveFoi < 0)
         temp.reserveFoi = 0;
 
-    if (temp.foi > temp.maxFoi - temp.reserveFoi)
+    if (temp.foi > m_caracteristiques.maxFoi - temp.reserveFoi)
     {
-        temp.foi -= (temp.foi - temp.maxFoi + temp.reserveFoi)*foi/50;
-        if (temp.foi < temp.maxFoi - temp.reserveFoi)
-            temp.foi = temp.maxFoi - temp.reserveFoi;
+        temp.foi -= (temp.foi - m_caracteristiques.maxFoi + temp.reserveFoi)*foi/50;
+        if (temp.foi < m_caracteristiques.maxFoi - temp.reserveFoi)
+            temp.foi = m_caracteristiques.maxFoi - temp.reserveFoi;
     }
     else
-        temp.foi += ((float)temp.maxFoi*(foi/50)) + m_caracteristiques.regenFoi * ((float)temp.maxFoi*(foi/50));
+        temp.foi += ((float)m_caracteristiques.maxFoi*(foi/50)) + m_caracteristiques.regenFoi * ((float)m_caracteristiques.maxFoi*(foi/50));
 
-    if (temp.foi > (temp.maxFoi - temp.reserveFoi) * 2)
-        temp.foi = (temp.maxFoi - temp.reserveFoi) * 2;
+    if (temp.foi > (m_caracteristiques.maxFoi - temp.reserveFoi) * 2)
+        temp.foi = (m_caracteristiques.maxFoi - temp.reserveFoi) * 2;
 
     m_personnage.setCaracteristique(temp);
 

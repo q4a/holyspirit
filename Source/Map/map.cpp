@@ -1613,15 +1613,19 @@ int Map::AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coord
 
     m_projectile.back().m_rotationReelle=m;
 
-    position.x=(lanceur.x-lanceur.y);
-    position.y=(lanceur.x+lanceur.y)/2;
 
-    position2.x=(cible.x-cible.y);
-    position2.y=(cible.x+cible.y)/2;
+
+
+    position.x=(positionReel.x-positionReel.y);
+    position.y=(positionReel.x+positionReel.y)/2;
+
+    position2.x=((positionReel.x + m_projectile.back().m_vecteur.x)-(positionReel.y + m_projectile.back().m_vecteur.y));
+    position2.y=((positionReel.x + m_projectile.back().m_vecteur.x)+(positionReel.y + m_projectile.back().m_vecteur.y))/2;
+
 
     m=atan2(position2.y-position.y,position2.x-position.x);
 
-    m+=decalageAngle;
+//    m+=decalageAngle;
 
     m_projectile.back().m_rotation=m;
 

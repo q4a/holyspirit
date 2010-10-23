@@ -194,13 +194,17 @@ struct InfosEntiteMiracle
         m_informations[3]=0;
         m_informations[4]=0;
         m_informations[5]=0;
+        m_informations[6]=0;
+        m_informations[7]=0;
+        m_informations[8]=0;
+        m_informations[9]=0;
 
         m_cible = NULL;
     }
 
     int                 m_effetEnCours;
     int                 m_IDObjet;
-    float               m_informations[6];
+    float               m_informations[10];
 
     coordonneeDecimal   m_position;
     Personnage         *m_cible;

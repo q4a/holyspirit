@@ -492,7 +492,7 @@ bool Map::Miracle_Projectile(Hero *hero, Personnage *personnage, Miracle &modele
 {
     if (info.m_IDObjet >= 0 && info.m_IDObjet < (int)m_projectile.size())
     {
-        if (effet.m_informations[5] > 0)
+        if (effet.m_informations[5] > 0 || effet.m_informations[8])
         {
             info.m_informations[6] += temps * 100;
             if (info.m_informations[6] > effet.m_informations[6])
@@ -505,6 +505,12 @@ bool Map::Miracle_Projectile(Hero *hero, Personnage *personnage, Miracle &modele
                     miracleEnCours.m_infos.back()->m_cible           = info.m_cible;
                 }
                 info.m_informations[6] = 0;
+
+                if(effet.m_informations[8])
+                {
+                    m_projectile[info.m_IDObjet].m_effet.m_actif = false;
+                    m_projectile[info.m_IDObjet].m_actif = false;
+                }
             }
         }
 
