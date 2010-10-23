@@ -64,10 +64,11 @@ $
 		//Images
 			*Data/Entities/Heroes/Concubine/Miracles/SplinterShot/ExplosionEffect.png
 		$
+			* mData/Sounds/55234__SlykMrByches__Splattt.wav $
 		//Sons
 		$
 		* x0 y0 w128 h128 i0 a1 lr255 lv128 lb0 li0 n0.04 $
-		* x128 y0 w128 h128 i0 a1 lr255 lv128 lb0 li32 n0.04 $
+		* x128 y0 w128 h128 i0 a1 lr255 lv128 lb0 li32 s0 n0.04 $
 	$
 	*
 	//Tiles de la séquence
