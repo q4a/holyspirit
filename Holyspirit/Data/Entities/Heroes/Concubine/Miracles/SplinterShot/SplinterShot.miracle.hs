@@ -67,7 +67,7 @@ $
 		//Sons
 		$
 		* x0 y0 w128 h128 i0 a1 lr255 lv128 lb0 li0 n0.04 $
-		* x128 y0 w128 h128 i0 a1 lr255 lv128 lb0 li64 n0.04 $
+		* x128 y0 w128 h128 i0 a1 lr255 lv128 lb0 li32 n0.04 $
 	$
 	*
 	//Tiles de la séquence
@@ -76,8 +76,8 @@ $
 		$
 		//Sons
 		$
-		* x256 y0 w128 h128 i0 a1 lr255 lv128 lb0 li128 n0.04 $
-		* x384 y0 w128 h128 i0 a1 lr255 lv128 lb0 li160 n0.04 $
+		* x256 y0 w128 h128 i0 a1 lr255 lv128 lb0 li64 n0.04 $
+		* x384 y0 w128 h128 i0 a1 lr255 lv128 lb0 li96 n0.04 $
 	$
 	*
 	//Tiles de la séquence
