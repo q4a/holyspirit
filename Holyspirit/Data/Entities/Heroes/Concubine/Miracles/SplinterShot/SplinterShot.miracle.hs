@@ -9,7 +9,7 @@ $
 $
 	*50
 $
-	* f%0 c1 $
+	* f%0 c1 e2 $
 $
 //Effets
 	* t10 l1 ia2 ib0 id1 $
