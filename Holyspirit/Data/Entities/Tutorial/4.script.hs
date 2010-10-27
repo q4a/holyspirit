@@ -14,8 +14,8 @@ main
 		if 	speak_choice * 1
 			variable * 1 * 0
 		then
-			stop_speak
 			variable * 1 * 1
+			stop_speak
 		end
 		
 		if variable * 1 * 1
