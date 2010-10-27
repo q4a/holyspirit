@@ -81,6 +81,7 @@ bool Menu::AfficherDialogue(int alpha,Classe *classe)
 
     sf::Text texte;
     texte.SetCharacterSize(14);
+    texte.SetStyle(2);
     texte.SetFont(moteurGraphique->m_font);
     texte.SetString(m_dialogue);
     texte.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.GetRect().Width) * 0.5,
@@ -88,7 +89,8 @@ bool Menu::AfficherDialogue(int alpha,Classe *classe)
 
     moteurGraphique->AjouterTexte(&texte,16,0);
 
-    float pos = texte.GetRect().Top + texte.GetRect().Height + 16;
+    float pos = texte.GetRect().Top + texte.GetRect().Height + 4;
+    texte.SetStyle(4);
 
     for(unsigned i = 0 ; i < m_choices.size() ; ++i)
     {

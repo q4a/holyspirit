@@ -234,7 +234,7 @@ std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)
     temp.SetFont(moteurGraphique->m_font);
 
     std::string buf;
-    std::string bufMot = " ";
+    std::string bufMot = "";
     for (int p = 0;p < (int)texte.size();p++)
     {
         if (texte[p] != ' ' && texte[p] != '\0' && texte[p] != '\n')
@@ -242,15 +242,20 @@ std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)
             if(texte[p] == '\\')
                 texte[p] = '\n';
             bufMot += texte[p];
-            if(texte[p] == '\n')
-                bufMot += " ";
 
             temp.SetString(buf + bufMot);
             if (temp.GetRect().Width > tailleCadran)
-                bufMot = '\n' + bufMot;
+                bufMot = '\n' + bufMot.substr(1,bufMot.size()-1);
         }
         else
-            buf += bufMot, bufMot = " ";
+        {
+            buf += bufMot;
+            if(texte[p] == '\0' || texte[p] == '\n')
+                bufMot = "";
+            else
+                bufMot = " ";
+        }
+
     }
     buf += bufMot;
 

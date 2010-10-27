@@ -3492,7 +3492,7 @@ void Hero::AutoTrierInventaire()
 
     m_inventaire.clear();
     for(unsigned i = 0 ; i < inventaire_bis.size() ; ++i)
-        m_inventaire.push_back(inventaire_bis[i]), m_inventaire.back().m_dejaTrie = false;
+        m_inventaire.push_back(inventaire_bis[i]), m_inventaire.back().m_dejaTrie = (inventaire_bis[i].m_equipe >= 0);
 
     for(int k = 0 ; k < 8 ; ++k)
         if(m_raccourcis[k].miracle == false)
@@ -3501,9 +3501,9 @@ void Hero::AutoTrierInventaire()
     int taille = 0;
 
     if(m_trier_en_hauteur)
-        TrierInventaire(&m_inventaire,m_classe.position_contenu_inventaire.h,m_trier_en_hauteur);
+        taille = TrierInventaire(&m_inventaire,m_classe.position_contenu_inventaire.h,m_trier_en_hauteur);
     else
-        TrierInventaire(&m_inventaire,m_classe.position_contenu_inventaire.w,m_trier_en_hauteur);
+        taille = TrierInventaire(&m_inventaire,m_classe.position_contenu_inventaire.w,m_trier_en_hauteur);
 
     m_trier_en_hauteur = !m_trier_en_hauteur;
 
@@ -3511,11 +3511,14 @@ void Hero::AutoTrierInventaire()
     for(unsigned i = 0 ; i < m_inventaire.size() ; ++i)
         m_inventaire[i].m_dejaTrie = false;
 
+  //  cout<<taille<<endl;
+
     if(!m_trier_en_hauteur && taille > m_classe.position_contenu_inventaire.w)
-        TrierInventaire(&m_inventaire,m_classe.position_contenu_inventaire.w,m_trier_en_hauteur);
+        TrierInventaire(&m_inventaire,m_classe.position_contenu_inventaire.w,m_trier_en_hauteur);//,cout<<taille<<endl;
 
     else if(m_trier_en_hauteur && taille > m_classe.position_contenu_inventaire.h)
-        TrierInventaire(&m_inventaire,m_classe.position_contenu_inventaire.h,m_trier_en_hauteur);
+        TrierInventaire(&m_inventaire,m_classe.position_contenu_inventaire.h,m_trier_en_hauteur);//,cout<<taille<<endl;
+
 }
 
 bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )

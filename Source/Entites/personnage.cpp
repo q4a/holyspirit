@@ -306,7 +306,7 @@ void Personnage::Sauvegarder(ofstream &fichier)
     m_entite_graphique.SaveParameters(fichier);
 
     for(int z = 0 ; z < m_scriptAI.getNbrVariable() ; ++z)
-        fichier<<"s "<<z<<" "<<m_scriptAI.getVariable(z)<<" ";
+        fichier<<" s "<<z<<" "<<m_scriptAI.getVariable(z)<<" ";
 
     for (unsigned o=0;o < m_objets.size();o++)
             m_objets[o].SauvegarderTexte(&fichier);
@@ -497,7 +497,7 @@ int Personnage::Pathfinding(casePathfinding** map, coordonnee exception, bool no
         while (!casesVisitee.AjouterCasesAdjacentes(map,&arrivee)&&!m_erreurPathfinding)
         {
             casesVisitee.IncrementerDistanceEnCours();
-            if (casesVisitee.getDistance()>10)
+            if (casesVisitee.getDistance() >= 10)
                 m_erreurPathfinding=true, retest = true;
         }
 
@@ -528,16 +528,16 @@ int Personnage::Pathfinding(casePathfinding** map, coordonnee exception, bool no
         {
             if(!noDelete && retest)
             {
-                if(m_arrivee.x - m_positionCase.x > 0)
+                if(m_arrivee.x > m_positionCase.x)
                     m_arrivee.x = m_positionCase.x + 1;
-                else if(m_arrivee.x - m_positionCase.x < 0)
+                else if(m_arrivee.x < m_positionCase.x )
                     m_arrivee.x = m_positionCase.x - 1;
                 else
                     m_arrivee.x = m_positionCase.x;
 
-                if(m_arrivee.y - m_positionCase.y > 0)
+                if(m_arrivee.y > m_positionCase.y)
                     m_arrivee.y = m_positionCase.y + 1;
-                else if(m_arrivee.y - m_positionCase.y < 0)
+                else if(m_arrivee.y < m_positionCase.y)
                     m_arrivee.y = m_positionCase.y - 1;
                 else
                     m_arrivee.y = m_positionCase.y;

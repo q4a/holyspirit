@@ -86,8 +86,8 @@ int TrierInventaire(std::vector<Objet> *trade, int largeur, bool enHauteur)
                         (*trade)[i].setPosition(x,y);
                         (*trade)[i].m_dejaTrie = true;
 
-                        if(y + (*trade)[i].getTaille().y > taille)
-                            taille = y + (*trade)[i].getTaille().y;
+                        if(x + (*trade)[i].getTaille().x > taille)
+                            taille = x + (*trade)[i].getTaille().x;
                     }
                 }
         }
@@ -116,12 +116,16 @@ int TrierInventaire(std::vector<Objet> *trade, int largeur, bool enHauteur)
                         (*trade)[i].setPosition(x,y);
                         (*trade)[i].m_dejaTrie = true;
 
-                        if(x + (*trade)[i].getTaille().x > taille)
-                            taille = x + (*trade)[i].getTaille().x;
+                        if(y + (*trade)[i].getTaille().y > taille)
+                            taille = y + (*trade)[i].getTaille().y;
+
+
                     }
                 }
         }
     }
+
+
 
     return taille;
 }

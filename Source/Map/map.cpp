@@ -1177,7 +1177,7 @@ void Map::Sauvegarder(Hero *hero)
                     m_decor[couche][i][j].m_entite_graphique.SaveParameters(fichier);
 
                     if(m_decor[couche][i][j].added_minimap)
-                        fichier<<"c1";
+                        fichier<<"c1 ";
 
                     for (unsigned k = 0 ; k < m_decor[couche][i][j].getMonstre().size() ; ++k)
                         if (m_decor[couche][i][j].getMonstre()[k] >= 0 && m_decor[couche][i][j].getMonstre()[k] < (int)m_monstre.size())
@@ -2549,15 +2549,15 @@ void Map::TesterPoussable(Personnage &personnage, float temps, int id)
 
 int Map::getMonstre(coordonnee casePointee)
 {
-    float distance=100000;
-    int meilleur=-1;
-    bool meilleurIsFriendly = true;
+    float   distance=100000;
+    int     meilleur=-1;
+    bool    meilleurIsFriendly = true;
     coordonnee vueMin,vueMax;
 
-    vueMin.x=casePointee.x-2;
-    vueMin.y=casePointee.y-2;
-    vueMax.x=casePointee.x+2;
-    vueMax.y=casePointee.y+2;
+    vueMin.x = casePointee.x;
+    vueMin.y = casePointee.y;
+    vueMax.x = casePointee.x+4;
+    vueMax.y = casePointee.y+4;
 
     if (vueMin.x<0)
         vueMin.x=0;
@@ -2568,52 +2568,52 @@ int Map::getMonstre(coordonnee casePointee)
     if (vueMax.y>m_dimensions.y)
         vueMax.y=m_dimensions.y;
 
-    m_sacPointe.x=-1;
-    m_sacPointe.y=-1;
+    m_sacPointe.x = -1;
+    m_sacPointe.y = -1;
 
-    if (casePointee.y>=0&&casePointee.y<m_dimensions.y&&casePointee.x>=0&&casePointee.x<m_dimensions.x)
-    {
-        for (int j=vueMin.y;j<vueMax.y;j++)
-            for (int k=vueMin.x;k<vueMax.x;k++)
-            {
-                for (unsigned o = 0 ; o < m_decor[1][j][k].getMonstre().size() ; ++o)
-                    if (m_decor[1][j][k].getMonstre()[o]>=0&&m_decor[1][j][k].getMonstre()[o]<(int)m_monstre.size())
-                        if (m_monstre[m_decor[1][j][k].getMonstre()[o]].EnVie()
-                            &&m_monstre[m_decor[1][j][k].getMonstre()[o]].getCaracteristique().rang>=0
-                            &&m_monstre[m_decor[1][j][k].getMonstre()[o]].m_actif
-                            &&m_monstre[m_decor[1][j][k].getMonstre()[o]].m_selectable)
+    for (int j=vueMin.y;j<vueMax.y;j++)
+        for (int k=vueMin.x;k<vueMax.x;k++)
+        {
+            for (unsigned o = 0 ; o < m_decor[1][j][k].getMonstre().size() ; ++o)
+                if (m_decor[1][j][k].getMonstre()[o]>=0
+                 && m_decor[1][j][k].getMonstre()[o]<(int)m_monstre.size())
+                {
+                    int no = m_decor[1][j][k].getMonstre()[o];
+
+                    if (m_monstre[no].EnVie()
+                     && m_monstre[no].getCaracteristique().rang>=0
+                     && m_monstre[no].m_actif
+                     && m_monstre[no].m_selectable)
+                    {
+                        coordonneeDecimal temp;
+                        temp.x =((m_monstre[no].getCoordonneePixel().x-m_monstre[no].getCoordonneePixel().y)*64/COTE_TILE);
+                        temp.y =((m_monstre[no].getCoordonneePixel().x+m_monstre[no].getCoordonneePixel().y)*32/COTE_TILE)+32;
+                        temp.x += m_monstre[no].m_entite_graphique.m_decalage.x;
+                        temp.y += m_monstre[no].m_entite_graphique.m_decalage.y;
+
+                        sf::Vector2f positionSourisTotale = moteurGraphique->getPositionSouris();
+
+                        if(positionSourisTotale.x>temp.x-96
+                        && positionSourisTotale.x<temp.x+96
+                        && positionSourisTotale.y>temp.y-160
+                        && positionSourisTotale.y<temp.y+32)
                         {
-                            coordonneeDecimal temp;
-                            temp.x=(((m_monstre[m_decor[1][j][k].getMonstre()[o]].getCoordonneePixel().x-m_monstre[m_decor[1][j][k].getMonstre()[o]].getCoordonneePixel().y)*64/COTE_TILE));
-                            temp.y=(((m_monstre[m_decor[1][j][k].getMonstre()[o]].getCoordonneePixel().x+m_monstre[m_decor[1][j][k].getMonstre()[o]].getCoordonneePixel().y)*64/COTE_TILE)/2+32);
-                            temp.x += m_monstre[m_decor[1][j][k].getMonstre()[o]].m_entite_graphique.m_decalage.x;
-                            temp.y += m_monstre[m_decor[1][j][k].getMonstre()[o]].m_entite_graphique.m_decalage.y;
+                            float temp2=0;
+                            temp2=( (temp.x-(positionSourisTotale.x))
+                                   *(temp.x-(positionSourisTotale.x))
+                                   +(temp.y-(positionSourisTotale.y+24))
+                                   *(temp.y-(positionSourisTotale.y+24)));
 
-                            sf::Vector2f positionSourisTotale=moteurGraphique->getPositionSouris();
-
-                            if (positionSourisTotale.x>temp.x-96
-                            && positionSourisTotale.x<temp.x+96
-                            && positionSourisTotale.y>temp.y-128
-                            && positionSourisTotale.y<temp.y+32)
+                            if ( (distance>temp2 && m_monstre[no].m_friendly == meilleurIsFriendly)
+                               ||(m_monstre[no].m_friendly != meilleurIsFriendly) )
                             {
-                                float temp2=0;
-                                temp2=((temp.x-(positionSourisTotale.x))
-                                       *(temp.x-(positionSourisTotale.x))
-                                       +(temp.y-(positionSourisTotale.y+24))
-                                       *(temp.y-(positionSourisTotale.y+24)));
-
-                                if ( (distance>temp2 && ((!m_monstre[m_decor[1][j][k].getMonstre()[o]].m_friendly && !meilleurIsFriendly) || (m_monstre[m_decor[1][j][k].getMonstre()[o]].m_friendly && meilleurIsFriendly))) ||  (!m_monstre[m_decor[1][j][k].getMonstre()[o]].m_friendly && meilleurIsFriendly) )
-                                {
-                                    if (m_monstre[m_decor[1][j][k].getMonstre()[o]].m_friendly)
-                                        meilleurIsFriendly = true;
-                                    else
-                                        meilleurIsFriendly = false;
-                                    meilleur=m_decor[1][j][k].getMonstre()[o],distance=temp2;
-                                }
+                                meilleurIsFriendly = m_monstre[no].m_friendly;
+                                meilleur=no,distance=temp2;
                             }
                         }
-            }
-    }
+                    }
+                }
+        }
 
     m_monstreIllumine=meilleur;
     return meilleur;
