@@ -37,7 +37,6 @@ void Sauvegarder(void* UserData)
 
     jeu->map->Sauvegarder(&jeu->hero);
     jeu->hero.Sauvegarder();
-  //  moteurGraphique->LightManager->GenerateWallShadow(moteurGraphique->m_angleOmbreSoleil,moteurGraphique->m_soleil);
 }
 
 inline sf::Vector2f AutoScreenAdjust(float x, float y, float decalage = 0)
