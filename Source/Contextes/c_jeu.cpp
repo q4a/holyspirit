@@ -125,13 +125,9 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
     if (tempsEcoule>0.1f)
         tempsEcoule=0.1f;
-/*
-    while(jeu->Clock.GetElapsedTime() < 1.0/30);
-    tempsEcoule = 1.0/30;//jeu->Clock.GetElapsedTime();*/
+
     jeu->Clock.Reset();
 
-
-    jeu->m_display=false;
     GererTemps(jeu);
     if (tempsSauvergarde>=configuration->frequence_sauvegarde)
     {
@@ -142,7 +138,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
         }
 
         m_thread_sauvegarde = new sf::Thread(&Sauvegarder, jeu);
-        jeu->hero.SauvegarderApercu();
+      //  jeu->hero.SauvegarderApercu();
         m_thread_sauvegarde->Launch();
         tempsSauvergarde=0;
     }
@@ -455,14 +451,14 @@ void GestionRaccourcis(Jeu *jeu, bool diplace_mode = false)
 
     for(int i = 0 ; i < 8 ; ++i)
     {
-        if (eventManager->getEvenement('1'+i,EventKey)
+        if (eventManager->getEvenement(configuration->m_key_actions[K_SHORTCUT_1+i],EventKey)
             || eventManager->getEvenement(Mouse::Left,EventClicA)
             && eventManager->getPositionSouris().x > AutoScreenAdjust(jeu->hero.m_classe.position_raccourcis[i].x,0).x
             && eventManager->getPositionSouris().x < AutoScreenAdjust(jeu->hero.m_classe.position_raccourcis[i].x,0).x + jeu->hero.m_classe.position_raccourcis[i].w
             && eventManager->getPositionSouris().y > AutoScreenAdjust(0,jeu->hero.m_classe.position_raccourcis[i].y).y
             && eventManager->getPositionSouris().y < AutoScreenAdjust(0,jeu->hero.m_classe.position_raccourcis[i].y).y + jeu->hero.m_classe.position_raccourcis[i].h)
         {
-            if(!diplace_mode || eventManager->getEvenement('1'+i,EventKey))
+            if(!diplace_mode || eventManager->getEvenement(configuration->m_key_actions[K_SHORTCUT_1+i],EventKey))
                 if(jeu->hero.m_raccourcis[i].no >= 0)
                 {
                     if(jeu->hero.m_raccourcis[i].miracle)
@@ -471,8 +467,8 @@ void GestionRaccourcis(Jeu *jeu, bool diplace_mode = false)
                         jeu->hero.UtiliserObjet(jeu->hero.m_raccourcis[i].no);
                 }
 
-            if(eventManager->getEvenement('1'+i,EventKey))
-                eventManager->StopEvenement('1'+i,EventKey);
+            if(eventManager->getEvenement(configuration->m_key_actions[K_SHORTCUT_1+i],EventKey))
+                eventManager->StopEvenement(configuration->m_key_actions[K_SHORTCUT_1+i],EventKey);
             else
                 eventManager->StopEvenement(Mouse::Left,EventClicA);
         }
@@ -579,18 +575,18 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false)
         }
     }
 
-    if(eventManager->getEvenement(Key::M,EventKey))
-        eventManager->StopEvenement(Key::M,EventKey), choix = B_MAP;
-    if(eventManager->getEvenement(Key::T,EventKey))
-        eventManager->StopEvenement(Key::T,EventKey), choix = B_MIRACLES;
-    if(eventManager->getEvenement(Key::I,EventKey))
-        eventManager->StopEvenement(Key::I,EventKey), choix = B_INVENTAIRE;
-    if(eventManager->getEvenement(Key::Q,EventKey))
-        eventManager->StopEvenement(Key::Q,EventKey), choix = B_QUETES;
-    if(eventManager->getEvenement(Key::D,EventKey))
-        eventManager->StopEvenement(Key::D,EventKey), choix = B_DOCS;
-    if(eventManager->getEvenement(Key::Escape,EventKey))
-        eventManager->StopEvenement(Key::Escape,EventKey), choix = B_MENU;
+    if(eventManager->getEvenement(configuration->m_key_actions[K_MAP],EventKey))
+        eventManager->StopEvenement(configuration->m_key_actions[K_MAP],EventKey), choix = B_MAP;
+    if(eventManager->getEvenement(configuration->m_key_actions[K_MIRACLES],EventKey))
+        eventManager->StopEvenement(configuration->m_key_actions[K_MIRACLES],EventKey), choix = B_MIRACLES;
+    if(eventManager->getEvenement(configuration->m_key_actions[K_INVENTORY],EventKey))
+        eventManager->StopEvenement(configuration->m_key_actions[K_INVENTORY],EventKey), choix = B_INVENTAIRE;
+    if(eventManager->getEvenement(configuration->m_key_actions[K_QUESTS],EventKey))
+        eventManager->StopEvenement(configuration->m_key_actions[K_QUESTS],EventKey), choix = B_QUETES;
+    if(eventManager->getEvenement(configuration->m_key_actions[K_DOCS],EventKey))
+        eventManager->StopEvenement(configuration->m_key_actions[K_DOCS],EventKey), choix = B_DOCS;
+    if(eventManager->getEvenement(configuration->m_key_actions[K_MENU],EventKey))
+        eventManager->StopEvenement(configuration->m_key_actions[K_MENU],EventKey), choix = B_MENU;
     if(eventManager->getEvenement(Key::Tab,EventKey))
         eventManager->StopEvenement(Key::Tab,EventKey), choix = B_CHAT;
 
@@ -715,7 +711,7 @@ void c_Jeu::Evenements(Jeu *jeu)
         if (!eventManager->getEvenement(Mouse::Left,EventClic))
             jeu->map->getMonstre(eventManager->getCasePointee());
 
-        if (eventManager->getEvenement(Key::LAlt,EventKey))
+        if (eventManager->getEvenement(configuration->m_key_actions[K_PICKITEMS],EventKey))
             jeu->map->m_monstreIllumine = -1;
 
         if(jeu->map->getEntiteMonstre(jeu->map->m_monstreIllumine) != NULL)
@@ -725,7 +721,7 @@ void c_Jeu::Evenements(Jeu *jeu)
         bool attaque_normale = true;
         if (eventManager->getEvenement(Mouse::Left,EventClic) && jeu->hero.m_miracle_gauche >= 0)
         {
-            if(eventManager->getEvenement(sf::Key::LShift, EventKey) || jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())!=NULL)
+            if(eventManager->getEvenement(configuration->m_key_actions[K_STAND], EventKey) || jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())!=NULL)
             {
                 if (!jeu->hero.m_personnage.frappeEnCours)
                 {
@@ -749,9 +745,9 @@ void c_Jeu::Evenements(Jeu *jeu)
                         attaque_normale = false;
                         eventManager->StopEvenement(Mouse::Left,EventClicA);
 
-                        if(!eventManager->getEvenement(sf::Key::LShift, EventKey))
+                        if(!eventManager->getEvenement(configuration->m_key_actions[K_STAND], EventKey))
                             jeu->hero.m_personnage.m_miracleEnCours.back().m_infos.back()->m_cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine());
-                        else//if(eventManager->getEvenement(sf::Key::LShift, EventKey))
+                        else//if(eventManager->getEvenement(configuration->m_key_actions[K_STAND], EventKey))
                             jeu->hero.m_personnage.m_miracleEnCours.back().m_forced_maj = true;
 
                         coordonnee positionHero;
@@ -852,9 +848,9 @@ void c_Jeu::Evenements(Jeu *jeu)
                     {
                         eventManager->StopEvenement(Mouse::Right,EventClic);
 
-                        if(!eventManager->getEvenement(sf::Key::LShift, EventKey))
+                        if(!eventManager->getEvenement(configuration->m_key_actions[K_STAND], EventKey))
                             jeu->hero.m_personnage.m_miracleEnCours.back().m_infos.back()->m_cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine());
-                        else//if(eventManager->getEvenement(sf::Key::LShift, EventKey))
+                        else//if(eventManager->getEvenement(configuration->m_key_actions[K_STAND], EventKey))
                             jeu->hero.m_personnage.m_miracleEnCours.back().m_forced_maj = true;
 
                         coordonnee positionHero;
@@ -888,7 +884,7 @@ void c_Jeu::Affichage(Jeu *jeu)
 {
     moteurGraphique->Gerer(tempsEcoule);
 
-    jeu->map->Afficher(&jeu->hero,eventManager->getEvenement(Key::LAlt,EventKey),alpha_map);
+    jeu->map->Afficher(&jeu->hero,eventManager->getEvenement(configuration->m_key_actions[K_PICKITEMS],EventKey),alpha_map);
 
     jeu->hero.AfficherAmisEtCraft();
 

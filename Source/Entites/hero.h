@@ -192,6 +192,8 @@ private:
     float m_bless_time_max;
 
     bool m_trier_en_hauteur;
+
+    int m_select_friend;
 };
 
 #endif

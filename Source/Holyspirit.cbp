@@ -19,9 +19,6 @@
 					<Add option="-fexpensive-optimizations" />
 					<Add option="-Os" />
 					<Add option="-O3" />
-					<Add option="-O2" />
-					<Add option="-O1" />
-					<Add option="-O" />
 					<Add option="-DWIN32" />
 					<Add option="-DNDEBUG" />
 					<Add option="-D_WINDOWS" />
@@ -32,10 +29,10 @@
 				</ResourceCompiler>
 				<Linker>
 					<Add option="-s" />
-					<Add option="-lsfml-audio-s" />
-					<Add option="-lsfml-graphics-s" />
-					<Add option="-lsfml-window-s" />
-					<Add option="-lsfml-system-s" />
+					<Add option="-lsfml2-audio-s" />
+					<Add option="-lsfml2-graphics-s" />
+					<Add option="-lsfml2-window-s" />
+					<Add option="-lsfml2-system-s" />
 					<Add library="opengl32" />
 					<Add library="glu32" />
 					<Add directory="..\..\SFML_SVN\branches\sfml2\lib\mingw" />
@@ -57,10 +54,10 @@
 					<Add directory="..\..\SFML_SVN\branches\sfml2\include" />
 				</Compiler>
 				<Linker>
-					<Add option="-lsfml-audio-s" />
-					<Add option="-lsfml-graphics-s" />
-					<Add option="-lsfml-window-s" />
-					<Add option="-lsfml-system-s" />
+					<Add option="-lsfml2-audio-s" />
+					<Add option="-lsfml2-graphics-s" />
+					<Add option="-lsfml2-window-s" />
+					<Add option="-lsfml2-system-s" />
 					<Add directory="..\..\SFML_SVN\branches\sfml2\lib\mingw" />
 				</Linker>
 			</Target>

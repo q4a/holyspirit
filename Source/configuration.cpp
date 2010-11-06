@@ -21,6 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <stdio.h>
 #include <sstream>
 
+
 void Configuration::Charger()
 {
     error = "Error";
@@ -28,7 +29,10 @@ void Configuration::Charger()
     zoom_or=1;
     zoom=1;
 
+    InitKeys();
+
     ChargerConf();
+    ChargerKeyMapping();
     ChargerInit();
     ChargerTxt();
 
@@ -39,9 +43,6 @@ void Configuration::Charger()
 
     if (!Lumiere)
         Ombre=0;
-
-
-
 }
 
 void Configuration::ChargerConf()
@@ -112,6 +113,7 @@ void Configuration::ChargerConf()
             if (chaine== "language:")
                 fichier>>language;
         }
+
         fichier.close();
     }
     else
@@ -144,6 +146,55 @@ void Configuration::ChargerConf()
     else
         throw std::string("Impossible de charger la configuration : liste_resolution.conf");
 }
+
+void Configuration::ChargerKeyMapping()
+{
+    std::ifstream fichier;
+
+    fichier.open("key_mapping.conf", std::ios::in);
+    if (fichier)
+    {
+        std::string chaine;
+        while (fichier>>chaine)
+        {
+            if (chaine== "K_SHORTCUT_1:") {
+                std::string buf; fichier>>buf; m_key_actions[K_SHORTCUT_1] = convert_string_to_key(buf); }
+            if (chaine== "K_SHORTCUT_2:") {
+                std::string buf; fichier>>buf; m_key_actions[K_SHORTCUT_2] = convert_string_to_key(buf); }
+            if (chaine== "K_SHORTCUT_3:") {
+                std::string buf; fichier>>buf; m_key_actions[K_SHORTCUT_3] = convert_string_to_key(buf); }
+            if (chaine== "K_SHORTCUT_5:") {
+                std::string buf; fichier>>buf; m_key_actions[K_SHORTCUT_5] = convert_string_to_key(buf); }
+            if (chaine== "K_SHORTCUT_6:") {
+                std::string buf; fichier>>buf; m_key_actions[K_SHORTCUT_6] = convert_string_to_key(buf); }
+            if (chaine== "K_SHORTCUT_7:") {
+                std::string buf; fichier>>buf; m_key_actions[K_SHORTCUT_7] = convert_string_to_key(buf); }
+            if (chaine== "K_SHORTCUT_8:") {
+                std::string buf; fichier>>buf; m_key_actions[K_SHORTCUT_8] = convert_string_to_key(buf); }
+            if (chaine== "K_INVENTORY:") {
+                std::string buf; fichier>>buf; m_key_actions[K_INVENTORY] = convert_string_to_key(buf); }
+            if (chaine== "K_MIRACLES:") {
+                std::string buf; fichier>>buf; m_key_actions[K_MIRACLES] = convert_string_to_key(buf); }
+            if (chaine== "K_QUESTS:") {
+                std::string buf; fichier>>buf; m_key_actions[K_QUESTS] = convert_string_to_key(buf); }
+            if (chaine== "K_MENU:") {
+                std::string buf; fichier>>buf; m_key_actions[K_MENU] = convert_string_to_key(buf); }
+            if (chaine== "K_MAP:") {
+                std::string buf; fichier>>buf; m_key_actions[K_MAP] = convert_string_to_key(buf); }
+            if (chaine== "K_DOCS:") {
+                std::string buf; fichier>>buf; m_key_actions[K_DOCS] = convert_string_to_key(buf); }
+            if (chaine== "K_STAND:") {
+                std::string buf; fichier>>buf; m_key_actions[K_STAND] = convert_string_to_key(buf); }
+            if (chaine== "K_PICKITEMS:") {
+                std::string buf; fichier>>buf; m_key_actions[K_PICKITEMS] = convert_string_to_key(buf); }
+        }
+
+        fichier.close();
+    }
+    else
+        throw std::string("Impossible de charger la configuration : key_mapping.conf");
+}
+
 void Configuration::ChargerInit()
 {
     std::ifstream fichier;
@@ -190,12 +241,8 @@ void Configuration::ChargerInit()
 
             if (chaine== "basic_cursor:")
                 fichier>>nom_curseur_base;
-            if (chaine== "fxBlack:")
-                fichier>>nom_effetNoir;
             if (chaine== "fxDeath:")
                 fichier>>nom_effetMort;
-            if (chaine== "fxContrast:")
-                fichier>>nom_effetContrastes;
             if (chaine== "fxBlur:")
                 fichier>>nom_effetBlur;
             if (chaine== "fxFilter:")
@@ -331,6 +378,7 @@ const std::string &Configuration::getText(int type, int no)
 
 void Configuration::Sauvegarder()
 {
+    SauvegarderKeyMapping();
     ///Chargement de la configuration
 
     std::fstream fichier("configuration.conf", std::ios::in | std::ios::out | std::ios::trunc) ;
@@ -375,6 +423,36 @@ void Configuration::Sauvegarder()
         fichier<<"desactivate_console: "<<desactivate_console<<std::endl;
         fichier<<"language: "<<language<<std::endl;
 
+
+        fichier.close();
+    }
+    else
+        throw "Impossible de sauvegarder la configuration";
+}
+
+void Configuration::SauvegarderKeyMapping()
+{
+
+    std::fstream fichier("key_mapping.conf", std::ios::in | std::ios::out | std::ios::trunc) ;
+
+    if (fichier)
+    {
+        fichier<<"K_SHORTCUT_1: "<<convert_key_to_string(m_key_actions[K_SHORTCUT_1])<<std::endl;
+        fichier<<"K_SHORTCUT_2: "<<convert_key_to_string(m_key_actions[K_SHORTCUT_2])<<std::endl;
+        fichier<<"K_SHORTCUT_3: "<<convert_key_to_string(m_key_actions[K_SHORTCUT_3])<<std::endl;
+        fichier<<"K_SHORTCUT_4: "<<convert_key_to_string(m_key_actions[K_SHORTCUT_4])<<std::endl;
+        fichier<<"K_SHORTCUT_5: "<<convert_key_to_string(m_key_actions[K_SHORTCUT_5])<<std::endl;
+        fichier<<"K_SHORTCUT_6: "<<convert_key_to_string(m_key_actions[K_SHORTCUT_6])<<std::endl;
+        fichier<<"K_SHORTCUT_7: "<<convert_key_to_string(m_key_actions[K_SHORTCUT_7])<<std::endl;
+        fichier<<"K_SHORTCUT_8: "<<convert_key_to_string(m_key_actions[K_SHORTCUT_8])<<std::endl;
+        fichier<<"K_INVENTORY: "<<convert_key_to_string(m_key_actions[K_INVENTORY])<<std::endl;
+        fichier<<"K_MIRACLES: "<<convert_key_to_string(m_key_actions[K_MIRACLES])<<std::endl;
+        fichier<<"K_QUESTS: "<<convert_key_to_string(m_key_actions[K_QUESTS])<<std::endl;
+        fichier<<"K_MENU: "<<convert_key_to_string(m_key_actions[K_MENU])<<std::endl;
+        fichier<<"K_MAP: "<<convert_key_to_string(m_key_actions[K_MAP])<<std::endl;
+        fichier<<"K_DOCS: "<<convert_key_to_string(m_key_actions[K_DOCS])<<std::endl;
+        fichier<<"K_STAND: "<<convert_key_to_string(m_key_actions[K_STAND])<<std::endl;
+        fichier<<"K_PICKITEMS: "<<convert_key_to_string(m_key_actions[K_PICKITEMS])<<std::endl;
 
         fichier.close();
     }
@@ -933,3 +1011,144 @@ bool Configuration::Options()
 
     return 0;
 }
+
+void Configuration::InitKeys()
+{
+    key_mapping_converter[sf::Key::A] = "A";
+    key_mapping_converter[sf::Key::B] = "B";
+    key_mapping_converter[sf::Key::C] = "C";
+    key_mapping_converter[sf::Key::D] = "D";
+    key_mapping_converter[sf::Key::E] = "E";
+    key_mapping_converter[sf::Key::F] = "F";
+    key_mapping_converter[sf::Key::G] = "G";
+    key_mapping_converter[sf::Key::H] = "H";
+    key_mapping_converter[sf::Key::I] = "I";
+    key_mapping_converter[sf::Key::J] = "J";
+    key_mapping_converter[sf::Key::K] = "K";
+    key_mapping_converter[sf::Key::L] = "L";
+    key_mapping_converter[sf::Key::M] = "M";
+    key_mapping_converter[sf::Key::N] = "N";
+    key_mapping_converter[sf::Key::O] = "O";
+    key_mapping_converter[sf::Key::P] = "P";
+    key_mapping_converter[sf::Key::Q] = "Q";
+    key_mapping_converter[sf::Key::R] = "R";
+    key_mapping_converter[sf::Key::S] = "S";
+    key_mapping_converter[sf::Key::T] = "T";
+    key_mapping_converter[sf::Key::U] = "U";
+    key_mapping_converter[sf::Key::V] = "V";
+    key_mapping_converter[sf::Key::W] = "W";
+    key_mapping_converter[sf::Key::X] = "X";
+    key_mapping_converter[sf::Key::Y] = "Y";
+    key_mapping_converter[sf::Key::Z] = "Z";
+    key_mapping_converter[sf::Key::Num0] = "Num0";
+    key_mapping_converter[sf::Key::Num1] = "Num1";
+    key_mapping_converter[sf::Key::Num2] = "Num2";
+    key_mapping_converter[sf::Key::Num3] = "Num3";
+    key_mapping_converter[sf::Key::Num4] = "Num4";
+    key_mapping_converter[sf::Key::Num5] = "Num5";
+    key_mapping_converter[sf::Key::Num6] = "Num6";
+    key_mapping_converter[sf::Key::Num7] = "Num7";
+    key_mapping_converter[sf::Key::Num8] = "Num8";
+    key_mapping_converter[sf::Key::Num9] = "Num9";
+    key_mapping_converter[sf::Key::Escape] = "Escape";
+    key_mapping_converter[sf::Key::LControl] = "LControl";
+    key_mapping_converter[sf::Key::LShift] = "LShift";
+    key_mapping_converter[sf::Key::LAlt] = "LAlt";
+    key_mapping_converter[sf::Key::LSystem] = "LSystem";
+    key_mapping_converter[sf::Key::RControl] = "RControl";
+    key_mapping_converter[sf::Key::RShift] = "RShift";
+    key_mapping_converter[sf::Key::RAlt] = "RAlt";
+    key_mapping_converter[sf::Key::RSystem] = "RSystem";
+    key_mapping_converter[sf::Key::Menu] = "Menu";
+    key_mapping_converter[sf::Key::LBracket] = "LBracket";
+    key_mapping_converter[sf::Key::RBracket] = "RBracket";
+    key_mapping_converter[sf::Key::SemiColon] = "SemiColon";
+    key_mapping_converter[sf::Key::Comma] = "Comma";
+    key_mapping_converter[sf::Key::Period] = "Period";
+    key_mapping_converter[sf::Key::Quote] = "Quote";
+    key_mapping_converter[sf::Key::Slash] = "Slash";
+    key_mapping_converter[sf::Key::BackSlash] = "BackSlash";
+    key_mapping_converter[sf::Key::Tilde] = "Tilde";
+    key_mapping_converter[sf::Key::Equal] = "Equal";
+    key_mapping_converter[sf::Key::Dash] = "Dash";
+    key_mapping_converter[sf::Key::Space] = "Space";
+    key_mapping_converter[sf::Key::Return] = "Return";
+    key_mapping_converter[sf::Key::Back] = "Back";
+    key_mapping_converter[sf::Key::Tab] = "Tab";
+    key_mapping_converter[sf::Key::PageUp] = "PageUp";
+    key_mapping_converter[sf::Key::PageDown] = "PageDown";
+    key_mapping_converter[sf::Key::End] = "End";
+    key_mapping_converter[sf::Key::Home] = "Home";
+    key_mapping_converter[sf::Key::Insert] = "Insert";
+    key_mapping_converter[sf::Key::Delete] = "Delete";
+    key_mapping_converter[sf::Key::Add] = "Add";
+    key_mapping_converter[sf::Key::Subtract] = "Subtract";
+    key_mapping_converter[sf::Key::Multiply] = "Multiply";
+    key_mapping_converter[sf::Key::Divide] = "Divide";
+    key_mapping_converter[sf::Key::Left] = "Left";
+    key_mapping_converter[sf::Key::Right] = "Right";
+    key_mapping_converter[sf::Key::Up] = "Up";
+    key_mapping_converter[sf::Key::Down] = "Down";
+    key_mapping_converter[sf::Key::Numpad0] = "Numpad0";
+    key_mapping_converter[sf::Key::Numpad1] = "Numpad1";
+    key_mapping_converter[sf::Key::Numpad2] = "Numpad2";
+    key_mapping_converter[sf::Key::Numpad3] = "Numpad3";
+    key_mapping_converter[sf::Key::Numpad4] = "Numpad4";
+    key_mapping_converter[sf::Key::Numpad5] = "Numpad5";
+    key_mapping_converter[sf::Key::Numpad6] = "Numpad6";
+    key_mapping_converter[sf::Key::Numpad7] = "Numpad7";
+    key_mapping_converter[sf::Key::Numpad8] = "Numpad8";
+    key_mapping_converter[sf::Key::Numpad9] = "Numpad9";
+    key_mapping_converter[sf::Key::F1] = "F1";
+    key_mapping_converter[sf::Key::F2] = "F2";
+    key_mapping_converter[sf::Key::F3] = "F3";
+    key_mapping_converter[sf::Key::F4] = "F4";
+    key_mapping_converter[sf::Key::F5] = "F5";
+    key_mapping_converter[sf::Key::F6] = "F6";
+    key_mapping_converter[sf::Key::F7] = "F7";
+    key_mapping_converter[sf::Key::F8] = "F8";
+    key_mapping_converter[sf::Key::F9] = "F9";
+    key_mapping_converter[sf::Key::F10] = "F10";
+    key_mapping_converter[sf::Key::F11] = "F11";
+    key_mapping_converter[sf::Key::F12] = "F12";
+    key_mapping_converter[sf::Key::F13] = "F13";
+    key_mapping_converter[sf::Key::F14] = "F14";
+    key_mapping_converter[sf::Key::F15] = "F15";
+    key_mapping_converter[sf::Key::Pause] = "Pause";
+
+
+    m_key_actions[K_SHORTCUT_1] = '1';
+    m_key_actions[K_SHORTCUT_2] = '2';
+    m_key_actions[K_SHORTCUT_3] = '3';
+    m_key_actions[K_SHORTCUT_4] = '4';
+    m_key_actions[K_SHORTCUT_5] = '5';
+    m_key_actions[K_SHORTCUT_6] = '6';
+    m_key_actions[K_SHORTCUT_7] = '7';
+    m_key_actions[K_SHORTCUT_8] = '8';
+    m_key_actions[K_INVENTORY]  = 'i';
+    m_key_actions[K_MIRACLES]   = 't';
+    m_key_actions[K_QUESTS]     = 'q';
+    m_key_actions[K_MENU]       = sf::Key::Escape;
+    m_key_actions[K_MAP]        = 'm';
+    m_key_actions[K_DOCS]       = 'd';
+    m_key_actions[K_STAND]      = sf::Key::LShift;
+    m_key_actions[K_PICKITEMS]  = sf::Key::LAlt;
+}
+
+int Configuration::convert_string_to_key(const std::string& string)
+{
+    for(int i = 0 ; i < 321 ; ++i)
+        if(key_mapping_converter[i] == string)
+            return i;
+
+    return 0;
+}
+
+std::string Configuration::convert_key_to_string(int no)
+{
+    if(no >= 0 && no < 321)
+        return key_mapping_converter[no];
+
+    return key_mapping_converter[0];
+}
+

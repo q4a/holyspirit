@@ -171,6 +171,7 @@ void Climate::Update(float time)
     for(unsigned i = 0 ; i < m_entities.size() ; ++i)
     {
         m_entities[i].Animer(time);
+        m_entities[i].Generer();
 
         m_entities[i].m_sprite.SetScale((float)configuration->Resolution.x/800,
                                         (float)configuration->Resolution.y/600);

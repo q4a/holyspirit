@@ -1432,7 +1432,10 @@ void Hero::AfficherAmisEtCraft()
             {
                 temp.SetColor(sf::Color(64,32,32));
 
-                if(eventManager->getEvenement(Mouse::Left,EventClicA))
+                if(!eventManager->getEvenement(Mouse::Left,EventClicA))
+                    m_select_friend = i;
+
+                if(eventManager->getEvenement(Mouse::Left,EventClicA) && m_select_friend == i)
                 {
                     bool charme = false;
                     eventManager->StopEvenement(Mouse::Left,EventClic);
@@ -1458,6 +1461,9 @@ void Hero::AfficherAmisEtCraft()
 
         moteurGraphique->AjouterCommande(&temp, 14, 0);
     }
+
+    if(eventManager->getEvenement(Mouse::Left,EventClicA))
+        m_select_friend = -1;
 
 
     if(m_no_result_craft >= 0)

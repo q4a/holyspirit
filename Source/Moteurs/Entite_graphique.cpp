@@ -240,8 +240,8 @@ void Entite_graphique::Generer()
                                         m_tileset->getOpacityDuTile(m_noAnimation) * m_color.a / 255));
 
             m_sprite.SetScale(fabs((float)m_scale.x*0.01), fabs((float)m_scale.y*0.01));
-            (m_scale.x < 0) ? m_sprite.FlipX(true) : m_sprite.FlipX(false);
-            (m_scale.x < 0) ? m_sprite.FlipX(true) : m_sprite.FlipX(false);
+            m_sprite.FlipX(m_scale.x < 0);
+            m_sprite.FlipY(m_scale.y < 0);
 
             m_sprite.SetRotation(m_rotation);
 
@@ -303,8 +303,6 @@ void Entite_graphique::Generer()
 
                 m_angle_shadowmap.push_back(m_tileset->m_tile_shadowmap[m_tileset->getShadowmapDuTile(m_noAnimation)[i]].getAngle());
             }
-
-
         }
     }
 }

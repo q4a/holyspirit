@@ -42,7 +42,7 @@ MoteurGraphique::MoteurGraphique()
 
     m_images.push_back(Image_moteur ());
     m_images.front().img = new sf::Image();
-    m_images.front().img->Create(1024, 1024, sf::Color(255, 255, 255));
+    m_images.front().img->Create(8, 8, sf::Color(255, 255, 255));
 
     m_images.front().nom         = "O";
     m_images.front().importance  = -1;
@@ -65,9 +65,8 @@ MoteurGraphique::MoteurGraphique()
     decalageCameraSouhaite.y     = 0;
 
     cameraDecale                 = false;
-
-   // m_ecran                 = NULL;
 }
+
 MoteurGraphique::~MoteurGraphique()
 {
     LightManager->Kill();
@@ -99,9 +98,7 @@ void MoteurGraphique::CreateNewWindow()
         EffectBlur.SetTexture("texture", sf::Shader::CurrentTexture);
         EffectBlur2.SetTexture("texture", sf::Shader::CurrentTexture);
         EffectBlurScreen.SetTexture("texture", sf::Shader::CurrentTexture);
-        EffectNoir.SetTexture("framebuffer", sf::Shader::CurrentTexture);
         EffectMort.SetTexture("framebuffer", sf::Shader::CurrentTexture);
-        EffectContrastes.SetTexture("framebuffer", sf::Shader::CurrentTexture);
         EffectFiltre.SetTexture("framebuffer", sf::Shader::CurrentTexture);
         EffectWater.SetTexture("framebuffer", sf::Shader::CurrentTexture);
         EffectDistortion.SetTexture("framebuffer", sf::Shader::CurrentTexture);
@@ -150,21 +147,7 @@ void MoteurGraphique::Charger()
         EffectMort.SetParameter("offset", 0);
         EffectMort.SetParameter("color",1, 1, 1);
 
-        if (!EffectContrastes.LoadFromFile(configuration->chemin_fx+configuration->nom_effetContrastes))
-            console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetContrastes,1);
-        else
-        {
-            console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetContrastes,0);
-            EffectContrastes.SetParameter("color", 0.f, 0.f, 0.f);
-        }
 
-        if (!EffectNoir.LoadFromFile(configuration->chemin_fx+configuration->nom_effetNoir))
-            console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetNoir,1);
-        else
-        {
-            console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetNoir,0);
-            EffectNoir.SetParameter("color", 0.f, 0.f, 0.f);
-        }
         configuration->effetMort=0;
 
 
@@ -415,21 +398,8 @@ void MoteurGraphique::Afficher()
     m_distortion_commandes.clear();
 
 
-    for (int k=0;k<=20;k++)
+    for (int k=0;k<=20;++k)
     {
-        /*if (k==12)
-        {
-            if (configuration->postFX)
-            {
-                EffectFiltre.SetParameter("color", configuration->contrastes-1, configuration->contrastes-1, configuration->contrastes-1);
-                EffectFiltre.SetParameter("luminosity", configuration->luminosite/128);
-
-                bufferImage.SetView(bufferImage.GetDefaultView());
-                bufferImage.Display();
-                bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectFiltre);
-            }
-        }*/
-
         if (k==12 && configuration->Lumiere)
         {
             sf::Sprite screen(m_light_screen.GetImage());
@@ -483,9 +453,9 @@ void MoteurGraphique::Afficher()
             for (IterCommande=m_commandes[k].begin();IterCommande!=m_commandes[k].end();++IterCommande)
             {
                 if(k == 0)
-                    IterCommande->m_sprite.SetColor(sf::Color(m_soleil.rouge*m_soleil.intensite/255,
-                                                              m_soleil.vert*m_soleil.intensite/255,
-                                                              m_soleil.bleu*m_soleil.intensite/255,255));
+                    IterCommande->m_sprite.SetColor(sf::Color(128+m_soleil.rouge*m_soleil.intensite/512,
+                                                              128+m_soleil.vert*m_soleil.intensite/512,
+                                                              128+m_soleil.bleu*m_soleil.intensite/512,IterCommande->m_sprite.GetColor().a));
 
                 if(k == 0 && configuration->postFX && configuration->Reflection)
                 {

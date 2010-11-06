@@ -21,7 +21,28 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "singleton.h"
 #include "constantes.h"
 
+#define NBR_KEYS_ACTIONS 16
+
 enum {O_PRINCIPAL, O_GRAPHICS, O_GRAPHISC_AVANCED, O_SOUNDS};
+
+enum {
+        K_SHORTCUT_1,
+        K_SHORTCUT_2,
+        K_SHORTCUT_3,
+        K_SHORTCUT_4,
+        K_SHORTCUT_5,
+        K_SHORTCUT_6,
+        K_SHORTCUT_7,
+        K_SHORTCUT_8,
+        K_INVENTORY,
+        K_MIRACLES,
+        K_QUESTS,
+        K_MENU,
+        K_MAP,
+        K_DOCS,
+        K_STAND,
+        K_PICKITEMS
+        };
 
 class Configuration : public CSingleton<Configuration>
 {
@@ -36,7 +57,6 @@ class Configuration : public CSingleton<Configuration>
 
     public :
 
-
     friend Configuration* CSingleton<Configuration>::GetInstance();
     friend void CSingleton<Configuration>::Kill();
 
@@ -45,13 +65,22 @@ class Configuration : public CSingleton<Configuration>
     void ChargerInit();
     void ChargerTxt();
 
+    void ChargerKeyMapping();
+
     std::vector<std::string> ChargerFichierTxt(std::string chemin);
 
     void Sauvegarder();
+    void SauvegarderKeyMapping();
 
     const std::string &getText(int, int);
 
     bool Options();
+
+
+    void InitKeys();
+    int         convert_string_to_key(const std::string&);
+    std::string convert_key_to_string(int);
+
 
     coordonnee Resolution;
     coordonneeDecimal Redimensionnement;
@@ -62,7 +91,7 @@ class Configuration : public CSingleton<Configuration>
     bool item_background;
     std::string version,chemin_maps,chemin_items,chemin_temps,chemin_saves,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,chemin_son_mort;
     std::string nom_item_background, nom_item_unusable;
-    std::string nom_effetNoir,nom_effetMort,nom_effetContrastes,nom_effetBlur,nom_effetFiltre, nom_effetWater, nom_effetDistortion;
+    std::string nom_effetMort,nom_effetBlur,nom_effetFiltre, nom_effetWater, nom_effetDistortion;
     std::string water_map;
     std::string music_menu;
     std::string mainscreen_menu;
@@ -91,5 +120,8 @@ class Configuration : public CSingleton<Configuration>
     int numero_screen,RafraichirOmbre;
 
     int no_menu_option;
+
+    std::string key_mapping_converter[321];
+    int m_key_actions[NBR_KEYS_ACTIONS];
 };
 #endif

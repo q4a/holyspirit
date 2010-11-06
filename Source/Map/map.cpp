@@ -1424,13 +1424,13 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
         }
     }
 
-    for(unsigned i = 0 ; i < m_climates.size() ; ++i)
-        m_climates[i].Draw();
-
     sf::Sprite sky;
     sky.SetImage(*moteurGraphique->getImage(m_img_sky));
     sky.Resize(configuration->Resolution.x,configuration->Resolution.y);
     moteurGraphique->AjouterCommande(&sky,0,0);
+
+    for(unsigned i = 0 ; i < m_climates.size() ; ++i)
+        m_climates[i].Draw();
 
     int maxY = hero->m_personnage.getCoordonnee().y + (int)(14 * configuration->zoom * configuration->Resolution.x/800);
     int maxX = hero->m_personnage.getCoordonnee().x + (int)(14 * configuration->zoom * configuration->Resolution.x/800);
@@ -2605,7 +2605,7 @@ int Map::getMonstre(coordonnee casePointee)
                                    *(temp.y-(positionSourisTotale.y+24)));
 
                             if ( (distance>temp2 && m_monstre[no].m_friendly == meilleurIsFriendly)
-                               ||(m_monstre[no].m_friendly != meilleurIsFriendly) )
+                               ||(m_monstre[no].m_friendly != true && meilleurIsFriendly == true) )
                             {
                                 meilleurIsFriendly = m_monstre[no].m_friendly;
                                 meilleur=no,distance=temp2;

@@ -306,7 +306,6 @@ long int cDAT::GetFileSize (std::string filename)
         //If we found it
         if (m_entries[i].name == filename)
         {
-
             //Returning the size of the file found
             return (m_entries[i].size);
         }
