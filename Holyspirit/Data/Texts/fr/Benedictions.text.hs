@@ -19,3 +19,5 @@ Dégats par la brulure :
 Dégats par la purification :
 Dégats par le poison :
 sur
+
+

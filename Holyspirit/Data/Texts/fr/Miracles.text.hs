@@ -49,3 +49,4 @@ Dégâts : %1 sur %2 secondes.
 Tir à fragmentation
 La courtisane envoit un carreau qui\explose au bout d'une seconde, se séparant en centaines de fragments.
 Dégâts : %1\% des dégâts d'origine.
+
