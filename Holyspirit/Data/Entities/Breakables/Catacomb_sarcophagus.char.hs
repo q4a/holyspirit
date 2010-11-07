@@ -67,6 +67,10 @@ $
 		r500
 	$
 	*
+		*Crossbow.item.hs
+		r500
+	$
+	*
 		*Ceremonial_dagger.item.hs
 		r500
 	$

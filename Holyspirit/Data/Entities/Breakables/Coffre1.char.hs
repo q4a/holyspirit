@@ -51,6 +51,10 @@ $
 		r10000
 	$
 	*
+		*Crossbow.item.hs
+		r10000
+	$
+	*
 		*Necklage.item.hs
 		r5000
 	$
