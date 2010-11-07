@@ -10,15 +10,17 @@ $
 
 	* t15 ia2 ib4 ic0 id1 $
 	
-	* t3 s0 ia16 l3 $
+	* t17 l3 ia0 ib1 $
 	
-	* t4 l4 l5 l6 ia1 ib7 mData/Entities/Golems/Coal_golem.char.hs $
+	* t3 s0 ia16 l4 $
+	
+	* t4 l5 l6 ia1 ib7 mData/Entities/Golems/Coal_golem.char.hs $
 
 	* t3 s1 ia16 $
 
 	* t11 ia0 ib8 $
-
-	* t17 ia0 ib1 $
+	
+	
 
 	* t17 ia0 ib0 $
 
