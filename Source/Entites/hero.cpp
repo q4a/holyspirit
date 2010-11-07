@@ -3417,6 +3417,11 @@ void Hero::AutoTrierInventaire()
     int ordre_tri[8] = {ARME,ARMURE,GOLEM,SCHEMA,LITANIE,AUCUN,JEWELERY,CONSOMMABLE};
     int new_raccourci[8] = {-1,-1,-1,-1,-1,-1,-1,-1};
 
+    int new_no_schema_craft = -1;
+    int new_no_schema_bless = -1;
+    int new_no_result_craft = -1;
+    int new_no_result_bless = -1;
+
     std::vector<Objet> inventaire_bis;
 
     std::vector<std::string> nom_objets;
@@ -3489,6 +3494,15 @@ void Hero::AutoTrierInventaire()
             && m_raccourcis[k].no == (int)i)
                 new_raccourci[k] = inventaire_bis.size();
 
+        if(m_no_schema_craft == (int)i)
+            new_no_schema_craft = inventaire_bis.size();
+        if(m_no_schema_bless == (int)i)
+            new_no_schema_bless = inventaire_bis.size();
+        if(m_no_result_craft == (int)i)
+            new_no_result_craft = inventaire_bis.size();
+        if(m_no_result_bless == (int)i)
+            new_no_result_bless = inventaire_bis.size();
+
         inventaire_bis.push_back(m_inventaire[i]);
     }
 
@@ -3504,6 +3518,11 @@ void Hero::AutoTrierInventaire()
         if(m_raccourcis[k].miracle == false)
             m_raccourcis[k].no = new_raccourci[k];
 
+    m_no_schema_craft = new_no_schema_craft;
+    m_no_schema_bless = new_no_schema_bless;
+    m_no_result_craft = new_no_result_craft;
+    m_no_result_bless = new_no_result_bless;
+
     int taille = 0;
 
     if(m_trier_en_hauteur)
@@ -3516,8 +3535,6 @@ void Hero::AutoTrierInventaire()
 
     for(unsigned i = 0 ; i < m_inventaire.size() ; ++i)
         m_inventaire[i].m_dejaTrie = false;
-
-  //  cout<<taille<<endl;
 
     if(!m_trier_en_hauteur && taille > m_classe.position_contenu_inventaire.w)
         TrierInventaire(&m_inventaire,m_classe.position_contenu_inventaire.w,m_trier_en_hauteur);//,cout<<taille<<endl;
