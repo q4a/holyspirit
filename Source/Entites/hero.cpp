@@ -4156,7 +4156,7 @@ bool Hero::UtiliserObjet(int numero)
 {
     if (numero >= 0 && numero < (int)m_inventaire.size())
     {
-        if (m_inventaire[numero].m_type == ARME || m_inventaire[numero].m_type == ARMURE)
+        if (m_inventaire[numero].m_type == ARME || m_inventaire[numero].m_type == ARMURE || m_inventaire[numero].m_type == JEWELERY)
         {
             bool continuer = true;
             for (int j=0;j<(int)m_classe.emplacements.size() && continuer;j++)

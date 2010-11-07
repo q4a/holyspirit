@@ -1183,9 +1183,10 @@ void Map::Sauvegarder(Hero *hero)
                         if (m_decor[couche][i][j].getMonstre()[k] >= 0 && m_decor[couche][i][j].getMonstre()[k] < (int)m_monstre.size())
                             if(!m_monstre[m_decor[couche][i][j].getMonstre()[k]].m_inexistant)
                             {
-                                fichier<<"m"<<m_decor[couche][i][j].getMonstre()[k]<<" ";
                                 if(m_monstre[m_decor[couche][i][j].getMonstre()[k]].m_ID >= 0)
                                     fichier<<"d"<<m_monstre[m_decor[couche][i][j].getMonstre()[k]].m_ID<<" ";
+
+                                fichier<<"m"<<m_decor[couche][i][j].getMonstre()[k]<<" ";
                             }
 
                     fichier<<"h"<<m_decor[couche][i][j].getHerbe()<<" ";
@@ -1880,14 +1881,17 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
                                 projectile->m_actif = false;
                         }
 
-                        if (getTypeCase((int)(projectile->m_positionCase.x),(int)(projectile->m_positionCase.y))==1)
+                        if (getTypeCase((int)(projectile->m_positionCase.x),(int)(projectile->m_positionCase.y))==1
+                        && (projectile->m_position.y - (projectile->m_positionCase.y+0.5)*COTE_TILE) *
+                           (projectile->m_position.y - (projectile->m_positionCase.y+0.5)*COTE_TILE) +
+                           (projectile->m_position.x - (projectile->m_positionCase.x+0.5)*COTE_TILE) *
+                           (projectile->m_position.x - (projectile->m_positionCase.x+0.5)*COTE_TILE) < COTE_TILE * COTE_TILE * 0.5)
                             projectile->m_actif=false;
-
 
                         if (projectile->m_actif)
                         {
-                            projectile->m_positionCase.y=(int)((projectile->m_position.y+32)/COTE_TILE);
-                            projectile->m_positionCase.x=(int)((projectile->m_position.x+32)/COTE_TILE);
+                            projectile->m_positionCase.y=(int)((projectile->m_position.y+48)/COTE_TILE);
+                            projectile->m_positionCase.x=(int)((projectile->m_position.x+48)/COTE_TILE);
 
                             m_decor[1][projectile->m_positionCase.y][projectile->m_positionCase.x].setProjectile(temp);
                         }
