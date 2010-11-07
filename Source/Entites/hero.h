@@ -173,6 +173,10 @@ public:
 
     coordonnee m_case_visee;
 
+    bool m_golem_action;
+
+    int m_select_friend;
+
 private:
     coordonnee m_chercherSac,m_sacVise;
 
@@ -192,8 +196,6 @@ private:
     float m_bless_time_max;
 
     bool m_trier_en_hauteur;
-
-    int m_select_friend;
 };
 
 #endif

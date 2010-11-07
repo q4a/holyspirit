@@ -193,6 +193,10 @@ Hero::Hero()
     m_case_visee.y = -1;
 
     m_trier_en_hauteur = false;
+
+    m_golem_action = false;
+
+    m_select_friend = -1;
 }
 
 Hero::~Hero()
@@ -1399,6 +1403,8 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
 
 void Hero::AfficherAmisEtCraft()
 {
+    bool hover_friend = false;
+
     for(unsigned i = 0 ; i < m_amis.size() ; ++i)
     {
         moteurGraphique->AjouterTexte(m_amis[i]->getCaracteristique().nom, coordonnee(16, 64 + i * 26), 14, 0, 14);
@@ -1430,6 +1436,7 @@ void Hero::AfficherAmisEtCraft()
             && eventManager->getPositionSouris().y > temp.GetPosition().y
             && eventManager->getPositionSouris().y < temp.GetPosition().y + 16)
             {
+                hover_friend = true;
                 temp.SetColor(sf::Color(64,32,32));
 
                 if(!eventManager->getEvenement(Mouse::Left,EventClicA))
@@ -1462,7 +1469,7 @@ void Hero::AfficherAmisEtCraft()
         moteurGraphique->AjouterCommande(&temp, 14, 0);
     }
 
-    if(eventManager->getEvenement(Mouse::Left,EventClicA))
+    if(eventManager->getEvenement(Mouse::Left,EventClicA) && !hover_friend)
         m_select_friend = -1;
 
 
@@ -4183,7 +4190,7 @@ bool Hero::UtiliserObjet(int numero)
 
             ChargerModele();
         }
-        else if (m_inventaire[numero].m_type == CONSOMMABLE || m_inventaire[numero].m_type == GOLEM)
+        else if (m_inventaire[numero].m_type == CONSOMMABLE || m_inventaire[numero].m_type == GOLEM && !m_golem_action)
         {
             m_classe.miracles.push_back(Miracle (m_inventaire[numero].m_miracle.m_chemin,m_caracteristiques,0));
 
@@ -4199,6 +4206,8 @@ bool Hero::UtiliserObjet(int numero)
 
             if(m_inventaire[numero].m_type == CONSOMMABLE)
                 delObjet(numero);
+            else if(m_inventaire[numero].m_type == GOLEM)
+                m_golem_action = true;
 
             return 1;
         }

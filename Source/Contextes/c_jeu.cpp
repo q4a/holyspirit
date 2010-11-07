@@ -464,7 +464,7 @@ void GestionRaccourcis(Jeu *jeu, bool diplace_mode = false)
                     if(jeu->hero.m_raccourcis[i].miracle)
                         newmiracle = jeu->hero.m_raccourcis[i].no;
                     else
-                        jeu->hero.UtiliserObjet(jeu->hero.m_raccourcis[i].no);
+                        jeu->hero.UtiliserObjet(jeu->hero.m_raccourcis[i].no), jeu->hero.m_golem_action = false;
                 }
 
             if(eventManager->getEvenement(configuration->m_key_actions[K_SHORTCUT_1+i],EventKey))
@@ -762,7 +762,7 @@ void c_Jeu::Evenements(Jeu *jeu)
             }
         }
 
-        if(attaque_normale)
+        if(attaque_normale && jeu->hero.m_select_friend < 0)
         {
             if (eventManager->getEvenement(Mouse::Left,EventClic)&&
                 eventManager->getEvenement(Mouse::Left,EventClicA))
