@@ -560,12 +560,36 @@ bool Configuration::Options()
                         && m_liste_resolutions[no-1].y == Resolution.y)
                             break;
 
-                    sf::VideoMode test = test.GetDesktopMode();
+                    if(mode_fenetre)
+                    {
+                        sf::VideoMode test = test.GetDesktopMode();
 
-                    while(no < m_liste_resolutions.size()
-                      && (m_liste_resolutions[no].x > (int)test.Width
-                       || m_liste_resolutions[no].y > (int)test.Height))
-                        no++;
+                        while(no < m_liste_resolutions.size()
+                          && (m_liste_resolutions[no].x > (int)test.Width
+                           || m_liste_resolutions[no].y > (int)test.Height))
+                            no++;
+                    }
+                    else
+                    {
+                        bool ok = false;
+                        while(no < m_liste_resolutions.size() && !ok)
+                        {
+                            sf::VideoMode test;
+
+                            unsigned int VideoModesCount = test.GetFullscreenModes().size();
+                            for (unsigned int i = 0; i < VideoModesCount; ++i)
+                            {
+                                test = test.GetFullscreenModes()[i];
+
+                                if(test.Width  == m_liste_resolutions[no].x
+                                && test.Height == m_liste_resolutions[no].y)
+                                    ok = true;
+                            }
+
+                            if(!ok)
+                                no++;
+                        }
+                    }
 
                     if(no < m_liste_resolutions.size())
                     {

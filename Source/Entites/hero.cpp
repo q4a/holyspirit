@@ -1117,6 +1117,16 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
+    if(!trader
+     &&eventManager->getPositionSouris().x > string.GetRect().Left
+     &&eventManager->getPositionSouris().x < string.GetRect().Left + string.GetRect().Width
+     &&eventManager->getPositionSouris().y > string.GetRect().Top
+     &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height) {
+        moteurGraphique->AjouterTexte(configuration->getText(0,90),coordonnee(  eventManager->getPositionSouris().x,
+                                                                                eventManager->getPositionSouris().y - 20),
+                                      19,0,12,sf::Color(224,224,224),1); }
+
+
     {
         std::ostringstream  buf;
         buf<<m_caracteristiques.dexterite;
@@ -1151,6 +1161,15 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
     string.SetPosition(AutoScreenAdjust(46,404,decalage));
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
+
+    if(!trader
+     &&eventManager->getPositionSouris().x > string.GetRect().Left
+     &&eventManager->getPositionSouris().x < string.GetRect().Left + string.GetRect().Width
+     &&eventManager->getPositionSouris().y > string.GetRect().Top
+     &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height) {
+        moteurGraphique->AjouterTexte(configuration->getText(0,91),coordonnee(  eventManager->getPositionSouris().x,
+                                                                                eventManager->getPositionSouris().y - 20),
+                                      19,0,12,sf::Color(224,224,224),1); }
 
 
     {
@@ -1190,6 +1209,15 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
+    if(!trader
+     &&eventManager->getPositionSouris().x > string.GetRect().Left
+     &&eventManager->getPositionSouris().x < string.GetRect().Left + string.GetRect().Width
+     &&eventManager->getPositionSouris().y > string.GetRect().Top
+     &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height) {
+        moteurGraphique->AjouterTexte(configuration->getText(0,92),coordonnee(  eventManager->getPositionSouris().x,
+                                                                                eventManager->getPositionSouris().y - 20),
+                                      19,0,12,sf::Color(224,224,224),1); }
+
 
     {
         std::ostringstream  buf;
@@ -1223,6 +1251,15 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
     string.SetPosition(AutoScreenAdjust(46,460,decalage));
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
+
+    if(!trader
+     &&eventManager->getPositionSouris().x > string.GetRect().Left
+     &&eventManager->getPositionSouris().x < string.GetRect().Left + string.GetRect().Width
+     &&eventManager->getPositionSouris().y > string.GetRect().Top
+     &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height) {
+        moteurGraphique->AjouterTexte(configuration->getText(0,93),coordonnee(  eventManager->getPositionSouris().x,
+                                                                                eventManager->getPositionSouris().y - 20),
+                                      19,0,12,sf::Color(224,224,224),1); }
 
 
     {
@@ -1259,6 +1296,15 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
     string.SetPosition(AutoScreenAdjust(46,488,decalage));
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
+
+    if(!trader
+     &&eventManager->getPositionSouris().x > string.GetRect().Left
+     &&eventManager->getPositionSouris().x < string.GetRect().Left + string.GetRect().Width
+     &&eventManager->getPositionSouris().y > string.GetRect().Top
+     &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height) {
+        moteurGraphique->AjouterTexte(configuration->getText(0,94),coordonnee(  eventManager->getPositionSouris().x,
+                                                                                eventManager->getPositionSouris().y - 20),
+                                      19,0,12,sf::Color(224,224,224),1); }
 
     string.SetString(configuration->getText(0,12).c_str());
     string.SetPosition(AutoScreenAdjust(46,516,decalage));
