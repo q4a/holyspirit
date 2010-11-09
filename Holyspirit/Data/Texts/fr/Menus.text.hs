@@ -88,5 +88,9 @@ Volume sonore :
 Volume de la musique : 
 Résolution : 
 Documents (D)
-
+Votre force augmente vos dégâts au corps à corps et vous permet de porter de l'équipement plus lourd.
+Votre dextérité vous permet de mieux toucher/esquiver et d'accéder à certains objets.
+Votre vitalité augmente votre vie.
+Votre piété augmente vos points de foi.
+Votre charisme influe sur le prix des objets et vous permet de porter certains objets.
 
