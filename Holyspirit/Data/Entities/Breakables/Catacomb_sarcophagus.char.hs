@@ -111,6 +111,14 @@ $
 		r25
 	$
 	*
+		*Sceptre.item.hs
+		r25
+	$
+	*
+		*Barbarian_armor.item.hs
+		r25
+	$
+	*
 		*Drawing_golem_coal.item.hs
 		r250
 		

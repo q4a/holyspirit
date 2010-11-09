@@ -79,13 +79,20 @@ $
 
 		*Unique_shield.item.hs
 		r50
-
-		*Unique_dagger.item.hs
-		r50
-
+		
 		*Unique_long_sword.item.hs
 		r50
-
+		
+		*Barbarian_armor.item.hs
+		r50
+	$
+	*
+		*Crossbow_unique.item.hs
+		r50
+	
+		*Unique_dagger.item.hs
+		r50
+		
 		*Unique_gown.item.hs
 		r50
 

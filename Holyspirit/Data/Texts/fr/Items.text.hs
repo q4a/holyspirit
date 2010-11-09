@@ -127,6 +127,7 @@ Journal du moine Redimus
 Quelques notes qui semblent\provenir du journal\du moine Redimus.\Clic droit pour utiliser. 
 Livre des Saints - Le Calvaire de Frénégonde
 Extrait du Livre des Saints, ce document\relate l'histoire de Sainte Frénégonde.\Clic droit pour utiliser.
-
-
-
+Armure barbare d'Haksil
+Armure de maille et de cuir\qui appartenut au terrible chef barbare\Haksil Wurgasht.\Certains la disent encore souillée par\le sang de Sainte Frénégonde...
+Arbalète de feu éternel
+Cette arbalète a été trempée\dans le sang du démon,\lui conférent la capacité de\tirer des carreaux explosifs.

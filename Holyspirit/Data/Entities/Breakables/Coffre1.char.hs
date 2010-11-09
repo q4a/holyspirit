@@ -115,6 +115,14 @@ $
 		r50
 	$
 	*
+		*Barbarian_armor.item.hs
+		r50
+	$
+	*
+		*Crossbow_unique.item.hs
+		r100
+	$
+	*
 		*Drawing_golem_coal.item.hs
 		r1000
 		
