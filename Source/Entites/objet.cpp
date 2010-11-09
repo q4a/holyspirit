@@ -2129,6 +2129,16 @@ int Objet::AfficherCaracteristiques(coordonnee position,const Caracteristique &c
 
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
 
+    if(!m_miracle.m_nom.empty())
+    {
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_miracle.m_nom.c_str(),sf::Color(128,64,0)));
+        for(unsigned j =  0 ; j < m_miracle.m_description.size() ; ++j)
+        {
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_miracle.m_description[j].c_str(),sf::Color(128,64,0)));
+            temp.back().SetStyle(2);
+        }
+    }
+
     for(unsigned i = 0 ; i < m_miracles_benedictions.size() ; ++i)
     {
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_miracles_benedictions[i].m_nom.c_str(),sf::Color(128,64,0)));
@@ -2137,7 +2147,6 @@ int Objet::AfficherCaracteristiques(coordonnee position,const Caracteristique &c
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_miracles_benedictions[i].m_description[j].c_str(),sf::Color(128,64,0)));
             temp.back().SetStyle(2);
         }
-
     }
 
     if(!m_set.m_chemin.empty())
