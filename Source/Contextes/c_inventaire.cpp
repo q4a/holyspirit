@@ -164,7 +164,6 @@ void c_Inventaire::Utiliser(Jeu *jeu)
     {
         m_decalage=-600;
         jeu->Next();
-        jeu->hero.m_golem_action = false;
     }
 
     jeu->menu.AfficherInventaire(m_decalage,&jeu->hero.m_classe,m_trader==NULL);

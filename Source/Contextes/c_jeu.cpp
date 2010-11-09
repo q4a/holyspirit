@@ -464,7 +464,7 @@ void GestionRaccourcis(Jeu *jeu, bool diplace_mode = false)
                     if(jeu->hero.m_raccourcis[i].miracle)
                         newmiracle = jeu->hero.m_raccourcis[i].no;
                     else
-                        jeu->hero.UtiliserObjet(jeu->hero.m_raccourcis[i].no), jeu->hero.m_golem_action = false;
+                        jeu->hero.UtiliserObjet(jeu->hero.m_raccourcis[i].no);
                 }
 
             if(eventManager->getEvenement(configuration->m_key_actions[K_SHORTCUT_1+i],EventKey))

@@ -35,6 +35,7 @@ public:
 
     void GenerateDescription();
 
+    std::string m_chemin;
     std::string m_nom;
     std::string m_description;
     std::vector<std::string> m_ldescription;

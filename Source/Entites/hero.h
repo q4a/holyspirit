@@ -48,6 +48,19 @@ struct Raccourci
     int nbr;
 };
 
+struct Item_Used
+{
+    Item_Used()
+    {
+        time = 0;
+        max_time = 0;
+    }
+
+    std::string name;
+    float       time;
+    float       max_time;
+};
+
 class Hero
 {
 public:
@@ -173,9 +186,11 @@ public:
 
     coordonnee m_case_visee;
 
-    bool m_golem_action;
+    //bool m_golem_action;
 
     int m_select_friend;
+
+    std::vector <Item_Used> m_items_cooldown;
 
 private:
     coordonnee m_chercherSac,m_sacVise;

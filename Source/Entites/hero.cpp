@@ -194,8 +194,6 @@ Hero::Hero()
 
     m_trier_en_hauteur = false;
 
-    m_golem_action = false;
-
     m_select_friend = -1;
 }
 
@@ -285,7 +283,7 @@ void Hero::Sauvegarder()
         fichier<<'$'<<endl;
 
         for (int i=0;i<(int)m_docs.size();++i)
-            m_docs[i].SauvegarderTexte(&fichier);
+            fichier<<" d"<<m_docs[i].m_chemin<<" "<<endl;
 
         if (configuration->debug)
             console->Ajouter("/Ecriture des docs.");
@@ -548,20 +546,48 @@ void Hero::Charger(const std::string &chemin_save)
             if (configuration->debug)
                 console->Ajouter("/Lectures des miracles.");
 
-            if(temp >= 8)
+            if(temp == 8)
             do
             {
                 fichier->get(caractere);
                 if (caractere=='d')
                 {
-                    m_docs.push_back(Document ());
-                    m_docs.back().ChargerTexte(fichier);
+                    Document temp;
+                    temp.ChargerTexte(fichier);
                     fichier->get(caractere);
                 }
                 if (fichier->eof())
                     throw "Impossible de charger la sauvegarde";
             }
             while (caractere!='$');
+
+            if(temp >= 9)
+            do
+            {
+                fichier->get(caractere);
+                if (caractere=='d')
+                {
+                    std::string chemin;
+                    *fichier>>chemin;
+                    Objet doc;
+                    doc.Charger(chemin,m_caracteristiques,true);
+
+                    m_docs.push_back(Document ());
+                    m_docs.back().m_chemin = doc.getChemin();
+                    m_docs.back().m_nom = doc.getNom();
+                    m_docs.back().m_description = configuration->getText(4,doc.m_doc);
+
+
+                    /*std::string temp = configuration->getText(4,doc.m_doc);
+                    temp = DecouperTexte(temp,m_classe.position_contenu_docs.w,16);
+                    m_docs.back().m_description = temp;
+                    m_docs.back().GenerateDescription();*/
+
+                    fichier->get(caractere);
+                }
+                if (fichier->eof())
+                    throw "Impossible de charger la sauvegarde";
+            } while(caractere!='$');
 
             if (configuration->debug)
                 console->Ajouter("/Lectures des docs.");
@@ -642,6 +668,11 @@ void Hero::Charger(const std::string &chemin_save)
     RecalculerCaracteristiques();
     RecalculerCaracteristiques();
 
+    for(int i = 0 ; i < m_docs.size() ; ++i)
+    {
+        m_docs[i].m_description = DecouperTexte(m_docs.back().m_description,m_classe.position_contenu_docs.w,16);
+        m_docs[i].GenerateDescription();
+    }
 
     if (nouveau)
     {
@@ -2496,6 +2527,23 @@ void Hero::AfficherRaccourcis()
                     moteurGraphique->AjouterCommande(&sprite,18,0);
                 }
             }
+            else
+            {
+                for(int j = 0 ; j < m_items_cooldown.size() ; ++j)
+                    if(m_items_cooldown[j].name == m_inventaire[m_raccourcis[i].no].getChemin())
+                    {
+                        float temp = (float)m_classe.position_raccourcis[i].h
+                                     *(m_items_cooldown[j].max_time
+                                       - m_items_cooldown[j].time)
+                                     / m_items_cooldown[j].max_time;
+
+                        sprite.SetImage(*moteurGraphique->getImage(0));
+                        sprite.Resize(m_classe.position_raccourcis[i].w,temp);
+
+                        sprite.SetColor(sf::Color(0,0,0,240));
+                        moteurGraphique->AjouterCommande(&sprite,18,0);
+                    }
+            }
 
         }
         else
@@ -4190,24 +4238,36 @@ bool Hero::UtiliserObjet(int numero)
 
             ChargerModele();
         }
-        else if (m_inventaire[numero].m_type == CONSOMMABLE || m_inventaire[numero].m_type == GOLEM && !m_golem_action)
+        else if (m_inventaire[numero].m_type == CONSOMMABLE || m_inventaire[numero].m_type == GOLEM)
         {
-            m_classe.miracles.push_back(Miracle (m_inventaire[numero].m_miracle.m_chemin,m_caracteristiques,0));
+            bool ok = true;
 
-            m_personnage.m_miracleEnCours.push_back(EntiteMiracle ());
-            m_personnage.m_miracleEnCours.back().m_infos.push_back(new InfosEntiteMiracle ());
+            for(int i = 0 ; i < m_items_cooldown.size() ; ++i)
+                if(m_items_cooldown[i].name == m_inventaire[numero].getChemin())
+                    ok = false;
 
-            m_personnage.m_miracleEnCours.back().m_source = &m_inventaire[numero];
+            if(ok)
+            {
+                m_classe.miracles.push_back(Miracle (m_inventaire[numero].m_miracle.m_chemin,m_caracteristiques,0));
 
-            m_personnage.m_miracleEnCours.back().m_modele = (int)m_classe.miracles.size()-1;
+                m_personnage.m_miracleEnCours.push_back(EntiteMiracle ());
+                m_personnage.m_miracleEnCours.back().m_infos.push_back(new InfosEntiteMiracle ());
 
-            m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.x=m_personnage.getCoordonneePixel().x+cos(-(m_personnage.getAngle()+22.5)*M_PI/180)*96;
-            m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.y=m_personnage.getCoordonneePixel().y+sin(-(m_personnage.getAngle()+22.5)*M_PI/180)*96;
+                m_personnage.m_miracleEnCours.back().m_source = &m_inventaire[numero];
 
-            if(m_inventaire[numero].m_type == CONSOMMABLE)
-                delObjet(numero);
-            else if(m_inventaire[numero].m_type == GOLEM)
-                m_golem_action = true;
+                m_personnage.m_miracleEnCours.back().m_modele = (int)m_classe.miracles.size()-1;
+
+                m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.x=m_personnage.getCoordonneePixel().x+cos(-(m_personnage.getAngle()+22.5)*M_PI/180)*96;
+                m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.y=m_personnage.getCoordonneePixel().y+sin(-(m_personnage.getAngle()+22.5)*M_PI/180)*96;
+
+                m_items_cooldown.push_back(Item_Used ());
+                m_items_cooldown.back().name = m_inventaire[numero].getChemin();
+                m_items_cooldown.back().max_time = m_classe.miracles.back().m_cooldown;
+
+                if(m_inventaire[numero].m_type == CONSOMMABLE)
+                    delObjet(numero);
+            }
+
 
             return 1;
         }
@@ -4215,19 +4275,21 @@ bool Hero::UtiliserObjet(int numero)
         {
             bool add = true;
             for(int i =0 ; i< m_docs.size() ; ++i)
-                if(m_docs.back().m_nom == m_inventaire[numero].getNom())
+                if(m_docs.back().m_chemin == m_inventaire[numero].getChemin())
                     add = false;
 
             if(add)
             {
                 m_docs.push_back(Document ());
+                m_docs.back().m_chemin = m_inventaire[numero].getChemin();
                 m_docs.back().m_nom = m_inventaire[numero].getNom();
                 std::string temp = configuration->getText(4,m_inventaire[numero].m_doc);
                 temp = DecouperTexte(temp,m_classe.position_contenu_docs.w,16);
                 m_docs.back().m_description = temp;
                 m_docs.back().GenerateDescription();
-                delObjet(numero);
             }
+
+            delObjet(numero);
         }
     }
     RecalculerCaracteristiques();
@@ -4237,7 +4299,6 @@ bool Hero::UtiliserObjet(int numero)
 
 bool Hero::Equiper(int numero, int emplacement)
 {
-    //GenererGrille();
     int ancienEquipe=-1;
     bool ok=true;
 
@@ -4398,8 +4459,8 @@ void Hero::RegenererVie(float vie)
 
     m_caracteristiques.vie = temp.vie;
     m_caracteristiques.reserveVie = temp.reserveVie;
-
 }
+
 void Hero::RegenererFoi(float foi)
 {
     Caracteristique temp=m_personnage.getCaracteristique();
@@ -4431,6 +4492,13 @@ void Hero::RegenererMiracles(float time)
         m_classe.miracles[i].m_cur_time += time;
         if(m_classe.miracles[i].m_cur_time > m_classe.miracles[i].m_cooldown)
             m_classe.miracles[i].m_cur_time = m_classe.miracles[i].m_cooldown;
+    }
+
+    for(int i = 0 ; i < m_items_cooldown.size() ; ++i)
+    {
+        m_items_cooldown[i].time += time;
+        if(m_items_cooldown[i].time >= m_items_cooldown[i].max_time)
+            m_items_cooldown.erase(m_items_cooldown.begin() + i--);
     }
 }
 

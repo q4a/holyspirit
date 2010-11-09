@@ -2017,7 +2017,12 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
         }
     }
     else
+    {
         Iter->setVu(0);
+        if(Iter->EnVie())
+            Iter->regenererVie(Iter->getCaracteristique().maxVie * temps / 30);
+    }
+
     }
 }
 
