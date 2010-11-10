@@ -22,6 +22,6 @@ $
 		//Sons
 		$
 		//Tiles de la séquence
-		* x0 y0 w128 h128 i0 a0 ex64 ey64 $
+		* x0 y0 w128 h64 i0 a0 ex64 ey14 $
 	$
 $
