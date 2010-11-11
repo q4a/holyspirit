@@ -18,9 +18,9 @@ main
 			end
 			evasion
 		else
-			if distance * 9
+			if distance * 10
 			then
-				if distance * 7 
+				if distance * 8 
 				then
 					if see
 					then
