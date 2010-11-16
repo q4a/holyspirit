@@ -77,13 +77,7 @@ main
 			if speak_choice * 1
 			then
 				stop_speak
-				heal
-				if rand * 50
-				then
-						speak * 30
-				else
-					speak * 31
-				end
+				reset_miracle
 			end
 			
 			if speak_choice * 2
@@ -127,9 +121,9 @@ main
 				
 				variable * 3 * 1
 				speak_choice * 67 * 4
-				speak_choice * 54 * 1
 				speak_choice * 33 * 3
 				speak_choice * 55 * 2
+				speak_choice * 79 * 1
 				speak_choice * 70 * 5
 			end
 			variable * 2 * 1
