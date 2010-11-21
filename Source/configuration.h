@@ -87,9 +87,9 @@ class Configuration : public CSingleton<Configuration>
     bool Ombre,Minimap,amelioration_lampes,Herbes,syncronisation_verticale,mode_fenetre,postFX,video,particules,debug,desactivate_console,lissage,Reflection,Distortion;
     int Lumiere,console;
     float effetMort,effetNoir,volume,music_volume,minute,zoom,zoom_or,frequence_sauvegarde,frequence_lumiere,luminosite,contrastes,elapsed_time;
-    int heure,jour,cache,alpha;
+    int heure,jour,alpha;
     bool item_background;
-    std::string version,chemin_maps,chemin_items,chemin_temps,chemin_saves,chemin_evenements,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,chemin_son_mort;
+    std::string version,chemin_maps,chemin_items,chemin_temps,chemin_saves,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,chemin_son_mort;
     std::string nom_item_background, nom_item_unusable;
     std::string nom_effetMort,nom_effetBlur,nom_effetFiltre, nom_effetWater, nom_effetDistortion;
     std::string water_map;
@@ -97,6 +97,9 @@ class Configuration : public CSingleton<Configuration>
     std::string mainscreen_menu;
     int sound_menu;
     std::string ambientShadow_tileset;
+
+    std::string miracle_item_physic,miracle_item_fire, miracle_item_holy, miracle_item_poison,
+                miracle_item_physic_t,miracle_item_fire_t, miracle_item_holy_t, miracle_item_poison_t;
 
     std::string font_titre,font,chemin_video_developpeur,nom_video_developpeur,nom_corner,chemin_aa;
 

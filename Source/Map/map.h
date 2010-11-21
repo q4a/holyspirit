@@ -116,7 +116,7 @@ public:
     bool RamasserObjet(Hero *hero,bool enMain = false);
 
     void AjouterObjet(Objet objet);
-    int  AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coordonnee lanceur,int couche,float  vitesse,float decalageAngle,bool monstre,Tileset *tileset);
+    int  AjouterProjectile(coordonneeDecimal positionReel,coordonneeDecimal cible,coordonnee lanceur,int couche,float  vitesse,float decalageAngle,bool monstre,Tileset *tileset);
     void AjouterMonstre(Monstre monstre);
     void AjouterModeleMonstre(Modele_Monstre modele);
 

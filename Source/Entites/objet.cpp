@@ -64,31 +64,31 @@ void ChargerMiracleBenediction(const benediction &bene, Miracle &miracle, bool &
         if(bene.info1 == PHYSIQUE)
         {
             if (!m_useMiracle)
-                miracle.Charger("Data/Items/Miracles/PhysicEffect.miracle.hs",caract,0),m_useMiracle=true;
+                miracle.Charger(configuration->miracle_item_physic,caract,0),m_useMiracle=true;
             else
-                miracle.Concatenencer("Data/Items/Miracles/PhysicEffect.miracle.hs",caract,0);
+                miracle.Concatenencer(configuration->miracle_item_physic,caract,0);
         }
 
         if(bene.info1 == FEU)
         {
             if (!m_useMiracle)
-                miracle.Charger("Data/Items/Miracles/FireEffect.miracle.hs",caract,0),m_useMiracle=true;
+                miracle.Charger(configuration->miracle_item_fire,caract,0),m_useMiracle=true;
             else
-                miracle.Concatenencer("Data/Items/Miracles/FireEffect.miracle.hs",caract,0);
+                miracle.Concatenencer(configuration->miracle_item_fire,caract,0);
         }
         if(bene.info1 == FOI)
         {
             if (!m_useMiracle)
-                miracle.Charger("Data/Items/Miracles/HolyEffect.miracle.hs",caract,0),m_useMiracle=true;
+                miracle.Charger(configuration->miracle_item_holy,caract,0),m_useMiracle=true;
             else
-                miracle.Concatenencer("Data/Items/Miracles/HolyEffect.miracle.hs",caract,0);
+                miracle.Concatenencer(configuration->miracle_item_holy,caract,0);
         }
         if(bene.info1 == CORROSION)
         {
             if (!m_useMiracle)
-                miracle.Charger("Data/Items/Miracles/PoisonEffect.miracle.hs",caract,0),m_useMiracle=true;
+                miracle.Charger(configuration->miracle_item_poison,caract,0),m_useMiracle=true;
             else
-                miracle.Concatenencer("Data/Items/Miracles/PoisonEffect.miracle.hs",caract,0);
+                miracle.Concatenencer(configuration->miracle_item_poison,caract,0);
         }
     }
 
@@ -101,30 +101,30 @@ void ChargerMiracleBenediction(const benediction &bene, Miracle &miracle, bool &
         if(bene.info1 == PHYSIQUE)
         {
             if (!m_useMiracle)
-                miracle.Charger("Data/Items/Miracles/PhysicTimeEffect.miracle.hs",caract,0),m_useMiracle=true;
+                miracle.Charger(configuration->miracle_item_physic_t,caract,0),m_useMiracle=true;
             else
-                miracle.Concatenencer("Data/Items/Miracles/PhysicTimeEffect.miracle.hs",caract,0);
+                miracle.Concatenencer(configuration->miracle_item_physic_t,caract,0);
         }
         if(bene.info1 == FEU)
         {
             if (!m_useMiracle)
-                miracle.Charger("Data/Items/Miracles/FireTimeEffect.miracle.hs",caract,0),m_useMiracle=true;
+                miracle.Charger(configuration->miracle_item_fire_t,caract,0),m_useMiracle=true;
             else
-                miracle.Concatenencer("Data/Items/Miracles/FireTimeEffect.miracle.hs",caract,0);
+                miracle.Concatenencer(configuration->miracle_item_fire_t,caract,0);
         }
         if(bene.info1 == FOI)
         {
             if (!m_useMiracle)
-                miracle.Charger("Data/Items/Miracles/HolyTimeEffect.miracle.hs",caract,0),m_useMiracle=true;
+                miracle.Charger(configuration->miracle_item_holy_t,caract,0),m_useMiracle=true;
             else
-                miracle.Concatenencer("Data/Items/Miracles/HolyTimeEffect.miracle.hs",caract,0);
+                miracle.Concatenencer(configuration->miracle_item_holy_t,caract,0);
         }
         if(bene.info1 == CORROSION)
         {
             if (!m_useMiracle)
-                miracle.Charger("Data/Items/Miracles/PoisonTimeEffect.miracle.hs",caract,0),m_useMiracle=true;
+                miracle.Charger(configuration->miracle_item_poison_t,caract,0),m_useMiracle=true;
             else
-                miracle.Concatenencer("Data/Items/Miracles/PoisonTimeEffect.miracle.hs",caract,0);
+                miracle.Concatenencer(configuration->miracle_item_poison_t,caract,0);
         }
     }
 }

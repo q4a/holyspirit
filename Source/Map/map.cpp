@@ -1584,7 +1584,7 @@ void Map::AfficherMinimap(coordonnee position,int typeCase,float alpha)
 
 
 
-int Map::AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coordonnee lanceur,int couche,float  vitesse,float decalageAngle,bool monstre,Tileset *tileset)
+int Map::AjouterProjectile(coordonneeDecimal positionReel,coordonneeDecimal cible,coordonnee lanceur,int couche,float  vitesse,float decalageAngle,bool monstre,Tileset *tileset)
 {
     m_projectile.push_back(Projectile ());
 
@@ -1603,7 +1603,7 @@ int Map::AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coord
 
     coordonneeDecimal position,position2;
 
-    double m=atan2(cible.y-lanceur.y,cible.x-lanceur.x);
+    double m=atan2(cible.y-lanceur.y*COTE_TILE,cible.x-lanceur.x*COTE_TILE);
 
     m+=decalageAngle;
 
@@ -1625,8 +1625,6 @@ int Map::AjouterProjectile(coordonneeDecimal positionReel,coordonnee cible,coord
 
 
     m=atan2(position2.y-position.y,position2.x-position.x);
-
-//    m+=decalageAngle;
 
     m_projectile.back().m_rotation=m;
 
@@ -1836,6 +1834,11 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
                     {
                         if (projectile->m_cible.x == -1 && projectile->m_cible.y == -1)
                         {
+                            coordonnee temp = projectile->m_positionCase;
+
+                            projectile->m_positionCase.y=(int)((projectile->m_position.y+32)/COTE_TILE);
+                            projectile->m_positionCase.x=(int)((projectile->m_position.x+32)/COTE_TILE);
+
                             if (!m_decor[1][(int)(projectile->m_positionCase.y)][(int)(projectile->m_positionCase.x)].getMonstre().empty())
                             {
                                 bool collision = false;
@@ -1853,6 +1856,8 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
                                         }
                             }
 
+                            projectile->m_positionCase = temp;
+
                             if (hero->m_personnage.getCoordonnee().x==(int)((projectile->m_position.x+32)/COTE_TILE)
                              && hero->m_personnage.getCoordonnee().y==(int)((projectile->m_position.y+32)/COTE_TILE)
                              && projectile->m_monstre)
@@ -1867,6 +1872,11 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
                             bool x = false;
                             bool y = false;
 
+                            coordonnee temp = projectile->m_positionCase;
+
+                            projectile->m_positionCase.y=(int)((projectile->m_position.y+16)/COTE_TILE);
+                            projectile->m_positionCase.x=(int)((projectile->m_position.x+16)/COTE_TILE);
+
                             if ( projectile->m_positionCase.x >= projectile->m_cible.x && projectile->m_cible.x >= projectile->m_depart.x)
                                 x = true;
                             else if ( projectile->m_positionCase.x <= projectile->m_cible.x && projectile->m_cible.x <= projectile->m_depart.x)
@@ -1879,6 +1889,8 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
 
                             if (x && y)
                                 projectile->m_actif = false;
+
+                            projectile->m_positionCase = temp;
                         }
 
                         if (getTypeCase((int)(projectile->m_positionCase.x),(int)(projectile->m_positionCase.y))==1
@@ -1939,8 +1951,8 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
     && fabs(hero->m_personnage.getCoordonnee().y - Iter->getCoordonnee().y) < 20)
     {
         int monstre = -1;
-        int x = Iter->getCoordonnee().x;
-        int y = Iter->getCoordonnee().y;
+        int x = (int)(Iter->getCoordonneePixel().x/COTE_TILE + 0.5);
+        int y = (int)(Iter->getCoordonneePixel().y/COTE_TILE + 0.5);
 
         if(x >= 0 && y >= 0)
         if(x <  m_dimensions.x && y < m_dimensions.y)
@@ -2005,13 +2017,13 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                     Iter->m_compteur=0;
 
                 if (Iter->EnVie())
-                    if (Iter->getCoordonnee().y != y
-                     || Iter->getCoordonnee().x != x)
-                        if ( Iter->getCoordonnee().x >= 0 && Iter->getCoordonnee().x < m_dimensions.x
-                                && Iter->getCoordonnee().y >= 0 && Iter->getCoordonnee().y < m_dimensions.y)
+                    if ((int)(Iter->getCoordonneePixel().y/COTE_TILE + 0.5) != y
+                     || (int)(Iter->getCoordonneePixel().x/COTE_TILE + 0.5) != x)
+                        if ( (int)(Iter->getCoordonneePixel().x/COTE_TILE + 0.5) >= 0 && (int)(Iter->getCoordonneePixel().x/COTE_TILE + 0.5) < m_dimensions.x
+                          && (int)(Iter->getCoordonneePixel().y/COTE_TILE + 0.5) >= 0 && (int)(Iter->getCoordonneePixel().y/COTE_TILE + 0.5) < m_dimensions.y)
                         {
                             m_decor[1][y][x].delMonstre(monstre);
-                            m_decor[1][Iter->getCoordonnee().y][Iter->getCoordonnee().x].setMonstre(monstre);
+                            m_decor[1][(int)(Iter->getCoordonneePixel().y/COTE_TILE + 0.5)][(int)(Iter->getCoordonneePixel().x/COTE_TILE + 0.5)].setMonstre(monstre);
                         }
             }
         }

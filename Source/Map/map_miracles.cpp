@@ -266,7 +266,8 @@ bool Map::Miracle_Charme (Hero *hero, Personnage *personnage, Miracle &modele, E
     if(info.m_IDObjet == -1)
     {
         if (info.m_cible->m_friendly != personnage->m_friendly
-            &&info.m_cible->getCaracteristique().niveau > 0 && info.m_cible->getCaracteristique().vitesse > 0)
+            &&info.m_cible->getCaracteristique().niveau > 0 && info.m_cible->getCaracteristique().vitesse > 0
+            &&info.m_cible->getCaracteristique().rang <= 1)
         {
             info.m_cible->m_scriptAI     = Script (effet.m_chaine);
 
@@ -549,17 +550,28 @@ bool Map::Miracle_Projectile(Hero *hero, Personnage *personnage, Miracle &modele
         coordonnee pos( (int)((float)info.m_position.x/COTE_TILE),
                         (int)((float)info.m_position.y/COTE_TILE));
 
-        coordonnee cible;
+        coordonneeDecimal cible;
 
         if (info.m_cible != NULL)
-            cible = info.m_cible->getProchaineCase();
-        else
-            cible = miracleEnCours.m_coordonneeCible;
+        {
+            float ratio = sqrt((info.m_cible->getCoordonneePixel().x - info.m_position.x) *
+                               (info.m_cible->getCoordonneePixel().x - info.m_position.x) +
+                               (info.m_cible->getCoordonneePixel().y - info.m_position.y) *
+                               (info.m_cible->getCoordonneePixel().y - info.m_position.y)) * 0.1 / effet.m_informations[0] * 10 / 500;
 
+            cible.x = info.m_cible->getCoordonneePixel().x + info.m_cible->getEstimationMouvement().x * ratio;
+            cible.y = info.m_cible->getCoordonneePixel().y + info.m_cible->getEstimationMouvement().y * ratio;
+        }
+        else
+        {
+            cible.x = miracleEnCours.m_coordonneeCible.x * COTE_TILE;
+            cible.y = miracleEnCours.m_coordonneeCible.y * COTE_TILE;
+        }
 
         Tileset *tileset = NULL;
         if(effet.m_sequence >= 0 && effet.m_sequence < (int)modele.m_tileset.size())
             tileset = moteurGraphique->getTileset(modele.m_tileset[effet.m_sequence]);
+
 
         info.m_IDObjet = AjouterProjectile( info.m_position,
                                             cible,personnage->getCoordonnee(),10,effet.m_informations[0],
@@ -567,7 +579,10 @@ bool Map::Miracle_Projectile(Hero *hero, Personnage *personnage, Miracle &modele
                                             tileset);
 
         if (effet.m_informations[2])
-            m_projectile.back().m_cible = cible;
+        {
+            m_projectile.back().m_cible.x = (int)(cible.x / COTE_TILE);
+            m_projectile.back().m_cible.y = (int)(cible.y / COTE_TILE);
+        }
         else
             m_projectile.back().m_cible = coordonnee (-1, -1);
 
@@ -1209,6 +1224,7 @@ bool Map::Miracle_Conditions(Hero *hero, Personnage *personnage, Miracle &modele
         if(info.m_cible != NULL)
             if(info.m_cible->getCaracteristique().maxVie <= effet.m_informations[2]
             && info.m_cible->getCaracteristique().niveau > 0 && info.m_cible->getCaracteristique().vitesse > 0
+            && info.m_cible->getCaracteristique().rang <= 1
             && info.m_cible->m_friendly != personnage->m_friendly)
                 oui = true;
 

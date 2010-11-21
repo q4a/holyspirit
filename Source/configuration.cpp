@@ -215,8 +215,6 @@ void Configuration::ChargerInit()
                 fichier>>chemin_temps;
             if (chaine== "saves:")
                 fichier>>chemin_saves;
-            if (chaine== "events:")
-                fichier>>chemin_evenements;
             if (chaine== "cursor:")
                 fichier>>chemin_curseurs;
             if (chaine== "menus:")
@@ -265,6 +263,25 @@ void Configuration::ChargerInit()
             if (chaine== "ambient_shadow_tileset:")
                 fichier>>ambientShadow_tileset;
 
+            if (chaine== "miracle_item_physic:")
+                fichier>>miracle_item_physic;
+            if (chaine== "miracle_item_fire:")
+                fichier>>miracle_item_fire;
+            if (chaine== "miracle_item_holy:")
+                fichier>>miracle_item_holy;
+            if (chaine== "miracle_item_poison:")
+                fichier>>miracle_item_poison;
+
+
+            if (chaine== "miracle_item_physic_t:")
+                fichier>>miracle_item_physic_t;
+            if (chaine== "miracle_item_fire_t:")
+                fichier>>miracle_item_fire_t;
+            if (chaine== "miracle_item_holy_t:")
+                fichier>>miracle_item_holy_t;
+            if (chaine== "miracle_item_poison_t:")
+                fichier>>miracle_item_poison_t;
+
             if (chaine== "localisation:")
                 fichier>>chemin_localisation;
             if (chaine== "text_benedictions:")
@@ -286,8 +303,7 @@ void Configuration::ChargerInit()
                 fichier>>font_titre;
             if (chaine== "font:")
                 fichier>>font;
-            if (chaine== "cache: ")
-                fichier>>cache;
+
             if (chaine== "death_sound:")
                 fichier>>chemin_son_mort;
 

@@ -442,6 +442,13 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         {
             hero->m_personnage.InfligerDegats(-script->getValeur(noInstruction, 0),0,0);
         }
+        else if (script->m_instructions[noInstruction].nom=="reset_miracle")
+        {
+            Caracteristique temp = hero->m_personnage.getCaracteristique();
+            for(int i = 1 ; i < hero->m_lvl_miracles.size() ; ++i)
+                temp.miracles_restant += hero->m_lvl_miracles[i],hero->m_lvl_miracles[i] = 0;
+            hero->m_personnage.setCaracteristique(temp);
+        }
         else if (script->m_instructions[noInstruction].nom=="entity_variable" && monstre == -1)
         {
             if(script->getValeur(noInstruction, 0) < m_listID.size())

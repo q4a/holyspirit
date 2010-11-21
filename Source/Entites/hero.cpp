@@ -2774,12 +2774,6 @@ void Hero::GererTemps(float temps)
         temp.pts_restant+=10;
         temp.miracles_restant++;
 
-        temp.maxVie=temp.vitalite*10;
-        temp.vie=temp.maxVie;
-
-        temp.maxFoi=temp.piete*10;
-        temp.foi=temp.maxFoi;
-
         m_personnage.setCaracteristique(temp);
 
         RecalculerCaracteristiques();
@@ -3850,7 +3844,9 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
             }
 
             m_inventaire[m_objetEnMain].m_equipe=-1;
-            if(AjouterObjetInventaire(m_inventaire[m_objetEnMain],trader,m_classe.position_contenu_marchand,true))
+            if (m_achat && m_inventaire[m_objetEnMain].m_type == CONSOMMABLE)
+                delObjet(m_objetEnMain);
+            else if(AjouterObjetInventaire(m_inventaire[m_objetEnMain],trader,m_classe.position_contenu_marchand,true))
                 delObjet(m_objetEnMain);
             m_objetEnMain=-1;
             m_achat=false;

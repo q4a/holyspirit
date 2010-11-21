@@ -1347,6 +1347,25 @@ const coordonneeDecimal &Personnage::getCoordonneePixel()
 {
     return m_positionPixel;
 }
+coordonneeDecimal Personnage::getEstimationMouvement()
+{
+    coordonneeDecimal buf;
+
+    if(m_cheminFinal.y - m_positionCase.y == 0)
+        buf.x = (m_cheminFinal.x - m_positionCase.x) * m_caracteristique.vitesse * 400;
+    else
+        buf.x = (m_cheminFinal.x - m_positionCase.x) * m_caracteristique.vitesse * 200;
+
+    if(m_cheminFinal.x - m_positionCase.x == 0)
+        buf.y = (m_cheminFinal.y - m_positionCase.y) * m_caracteristique.vitesse * 400;
+    else
+        buf.y = (m_cheminFinal.y - m_positionCase.y) * m_caracteristique.vitesse * 200;
+
+    return buf;
+}
+
+
+
 const coordonneeDecimal &Personnage::getPousse()
 {
     return m_pousse;

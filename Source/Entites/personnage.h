@@ -141,6 +141,7 @@ public:
     const coordonnee &getCoordonnee();
     const coordonnee &getArrivee();
     const coordonneeDecimal &getCoordonneePixel();
+    coordonneeDecimal getEstimationMouvement();
     const coordonneeDecimal &getPousse();
     const coordonnee &getProchaineCase();
     const coordonnee &getDepart();

@@ -35,6 +35,7 @@ void Projectile::Afficher()
 {
     if (m_actif)
     {
+        m_position.h    = 32;
         m_effet.m_sprite.SetRotation((-(m_rotation)*180/M_PI));
         m_effet.Afficher();
     }
@@ -46,6 +47,7 @@ EffetGraphique::EffetGraphique():
 
     m_actif         = true;
     m_compteur      = -100;
+    m_position.h    = 0;
 }
 
 Projectile::Projectile()
@@ -58,7 +60,7 @@ void EffetGraphique::Afficher()
     if (m_actif)
     {
         m_sprite.SetX(((m_position.x - m_position.y) * 64 / COTE_TILE));
-        m_sprite.SetY(((m_position.x + m_position.y) * 64 / COTE_TILE) * 0.5);
+        m_sprite.SetY(((m_position.x + m_position.y) * 64 / COTE_TILE) * 0.5 - m_position.h);
         moteurGraphique->AjouterEntiteGraphique(this);
     }
 }

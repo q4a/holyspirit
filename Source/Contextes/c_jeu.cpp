@@ -689,7 +689,6 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false)
 
 void c_Jeu::Evenements(Jeu *jeu)
 {
-
     GestionRaccourcis(jeu, m_diplace_mode);
     jeu->next_screen = GestionBoutons(jeu, m_diplace_mode);
 
