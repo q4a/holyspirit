@@ -74,7 +74,6 @@ struct Classe
     Image_interface quest;
     Image_interface documents;
     Image_interface craft;
-    Image_interface arrow;
     Image_interface icone_mm;
     Image_interface soul_bar;
     Image_interface hud_pt_caract_rest;

@@ -575,13 +575,7 @@ void Hero::Charger(const std::string &chemin_save)
                     m_docs.push_back(Document ());
                     m_docs.back().m_chemin = doc.getChemin();
                     m_docs.back().m_nom = doc.getNom();
-                    m_docs.back().m_description = configuration->getText(4,doc.m_doc);
-
-
-                    /*std::string temp = configuration->getText(4,doc.m_doc);
-                    temp = DecouperTexte(temp,m_classe.position_contenu_docs.w,16);
-                    m_docs.back().m_description = temp;
-                    m_docs.back().GenerateDescription();*/
+                    m_docs.back().m_description = configuration->getText(7,doc.m_doc);
 
                     fichier->get(caractere);
                 }
@@ -4325,7 +4319,7 @@ bool Hero::UtiliserObjet(int numero)
                 m_docs.push_back(Document ());
                 m_docs.back().m_chemin = m_inventaire[numero].getChemin();
                 m_docs.back().m_nom = m_inventaire[numero].getNom();
-                std::string temp = configuration->getText(4,m_inventaire[numero].m_doc);
+                std::string temp = configuration->getText(7,m_inventaire[numero].m_doc);
                 temp = DecouperTexte(temp,m_classe.position_contenu_docs.w,16);
                 m_docs.back().m_description = temp;
                 m_docs.back().GenerateDescription();

@@ -409,7 +409,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         {
             for (int i = 0;i < (int)hero->m_quetes.size(); ++i)
                 if (hero->m_quetes[i].m_id == (int)script->getValeur(noInstruction, 0))
-                    hero->m_quetes[i].m_nom = DecouperTexte(configuration->getText(4, (int)script->getValeur(noInstruction, 1)),
+                    hero->m_quetes[i].m_nom = DecouperTexte(configuration->getText(8, (int)script->getValeur(noInstruction, 1)),
                                                                                    hero->m_classe.position_contenu_quetes.w, 16);
         }
         else if (script->m_instructions[noInstruction].nom=="setQuestState")
@@ -417,7 +417,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             for (int i = 0;i < (int)hero->m_quetes.size(); ++i)
                 if (hero->m_quetes[i].m_id == (int)script->getValeur(noInstruction, 0))
                 {
-                    hero->m_quetes[i].m_description = DecouperTexte(configuration->getText(4, (int)script->getValeur(noInstruction, 2)),
+                    hero->m_quetes[i].m_description = DecouperTexte(configuration->getText(8, (int)script->getValeur(noInstruction, 2)),
                                                                                             hero->m_classe.position_contenu_description_quete.w, 14);
                     hero->m_quetes[i].m_statut = (int)script->getValeur(noInstruction, 1);
                 }

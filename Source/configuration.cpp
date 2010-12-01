@@ -259,6 +259,10 @@ void Configuration::ChargerInit()
                 fichier>>nom_item_background;
             if (chaine== "menu_item_unusable:")
                 fichier>>nom_item_unusable;
+            if (chaine== "menu_logo:")
+                fichier>>menu_logo;
+            if (chaine== "menu_slot:")
+                fichier>>menu_slot;
 
             if (chaine== "ambient_shadow_tileset:")
                 fichier>>ambientShadow_tileset;
@@ -298,6 +302,10 @@ void Configuration::ChargerInit()
                 fichier>>chemin_text_maps;
             if (chaine== "text_miracles:")
                 fichier>>chemin_text_miracles;
+            if (chaine== "text_docs:")
+                fichier>>chemin_text_docs;
+            if (chaine== "text_quests:")
+                fichier>>chemin_text_quests;
 
             if (chaine== "font_title:")
                 fichier>>font_titre;
@@ -306,6 +314,9 @@ void Configuration::ChargerInit()
 
             if (chaine== "death_sound:")
                 fichier>>chemin_son_mort;
+
+            if (chaine== "map_start:")
+                fichier>>map_start>>map_start_pos.x>>map_start_pos.y;
 
             if (chaine== "player_class:")
             {
@@ -353,6 +364,8 @@ void Configuration::ChargerTxt()
     text_dialogs      = ChargerFichierTxt(chemin_text_dialogs);
     text_maps         = ChargerFichierTxt(chemin_text_maps);
     text_miracles     = ChargerFichierTxt(chemin_text_miracles);
+    text_docs         = ChargerFichierTxt(chemin_text_docs);
+    text_quests       = ChargerFichierTxt(chemin_text_quests);
 }
 
 const std::string &Configuration::getText(int type, int no)
@@ -384,6 +397,12 @@ const std::string &Configuration::getText(int type, int no)
         break;
         case 6:
             RETURN_TEXT(text_miracles);
+        break;
+        case 7:
+            RETURN_TEXT(text_docs);
+        break;
+        case 8:
+            RETURN_TEXT(text_quests);
         break;
         default:
             return error;

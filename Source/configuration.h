@@ -90,7 +90,7 @@ class Configuration : public CSingleton<Configuration>
     int heure,jour,alpha;
     bool item_background;
     std::string version,chemin_maps,chemin_items,chemin_temps,chemin_saves,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,chemin_son_mort;
-    std::string nom_item_background, nom_item_unusable;
+    std::string nom_item_background, nom_item_unusable, menu_logo, menu_slot;
     std::string nom_effetMort,nom_effetBlur,nom_effetFiltre, nom_effetWater, nom_effetDistortion;
     std::string water_map;
     std::string music_menu;
@@ -103,8 +103,12 @@ class Configuration : public CSingleton<Configuration>
 
     std::string font_titre,font,chemin_video_developpeur,nom_video_developpeur,nom_corner,chemin_aa;
 
-    std::string chemin_localisation,chemin_text_benedictions,chemin_text_menus,chemin_text_items,chemin_text_entities,chemin_text_dialogs,chemin_text_maps,chemin_text_miracles;
+    std::string chemin_localisation,chemin_text_benedictions,chemin_text_menus,chemin_text_items,chemin_text_entities,chemin_text_dialogs,chemin_text_maps,chemin_text_miracles
+    ,chemin_text_docs,chemin_text_quests;
     std::vector<std::string> player_class;
+
+    std::string map_start;
+    coordonnee  map_start_pos;
 
     std::string language;
 
@@ -116,6 +120,8 @@ class Configuration : public CSingleton<Configuration>
     std::vector<std::string> text_dialogs;
     std::vector<std::string> text_maps;
     std::vector<std::string> text_miracles;
+    std::vector<std::string> text_docs;
+    std::vector<std::string> text_quests;
 
     std::vector<coordonnee> m_liste_resolutions;
 

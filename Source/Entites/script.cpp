@@ -204,7 +204,6 @@ void Script::Charger(ifstream &fichier)
                     m_variables.resize(no + 1);
                 m_variables[no] = val;
             }
-
         }
 
         bool OK=true;

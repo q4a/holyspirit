@@ -47,15 +47,16 @@ c_MainMenu::c_MainMenu()
     m_mainscreen.SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->mainscreen_menu, -1)));
     m_mainscreen.Resize(configuration->Resolution.x, configuration->Resolution.y);
 
-    m_background_hero.SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage("Data/Menus/Slot3x4.png", -1)));
+    m_background_hero.SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_slot, -1)));
     m_background_hero.Resize(150, 192);
 
-    m_hs_logo.SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage("Data/Menus/Logo_hs.png", -1)));
+    m_hs_logo.SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_logo, -1)));
 
     m_light = moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,256,32,sf::Color(255,255,255));
     m_light_logo = moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,256,32,sf::Color(255,192,0));
 
     ifstream fichier;
+
     fichier.open("credits.txt");
     if(fichier)
     {
@@ -472,7 +473,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
                     jeu->m_chargement->setC_Chargement(nomMap,coordonneePerso);
                 }
                 else
-                    jeu->m_chargement->setC_Chargement("Begin.map.hs",temp,1);
+                    jeu->m_chargement->setC_Chargement(configuration->map_start,configuration->map_start_pos);
 
 
                 jeu->hero.Sauvegarder();
@@ -640,8 +641,8 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
             jeu->hero.m_cheminClasse = configuration->player_class[classe_choisie];
             jeu->hero.m_chemin_save = nom_hero + ".sav.hs";
 
-            coordonnee temp(0,0,-1,-1);
-            jeu->m_chargement->setC_Chargement("Begin.map.hs",temp,1);
+            jeu->m_chargement->setC_Chargement(configuration->map_start,configuration->map_start_pos
+                                               );
 
             jeu->hero.Charger(nom_hero + ".sav.hs");
             jeu->hero.m_contenuSave.push_back(configuration->chemin_temps + "Save.sav.hs");
