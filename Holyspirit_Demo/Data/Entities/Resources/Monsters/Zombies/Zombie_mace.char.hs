@@ -1,0 +1,17 @@
+*Data/Entities/Resources/Monsters/Zombies/Zombie_mace.rs.hs
+$
+* r255 v255 b255 i0 $
+$
+* n20 $
+$
+* 0
+$
+*v100 di15 da50 m0.3 o1 a10 n3 t1 x75 $
+$
+*Data/Entities/Scripts/Monsters/Zombie.script.hs
+$
+	#ITEMS
+$
+*Data/Entities/Particles/Human_blood.ps.hs
+$
+$
