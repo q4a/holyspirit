@@ -6,7 +6,7 @@ main
 		then
 			if no_speak
 			then
-				speak * 2
+				speak * 33
 				speak_choice * 42 * 1
 			end
 		end

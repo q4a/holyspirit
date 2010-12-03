@@ -30,7 +30,7 @@ La crypte
 
 ///TUTORIAL///
 Bienvenue au Paradis mortel !\Ici commence ton iniation afin de maitriser ta nouvelle forme d'existence.\Clique pour te déplacer et ouvrir la porte.\
-Tu va maintenant apprendre à te battre.\Clique sur le tonneau dans la prochaine pièce afin de le détruire.
+Tu vas maintenant apprendre à te battre.\Clique sur la créature dans la prochaine pièce afin de la détruire.
 Vous allez maintenant combattre un petit groupe d'ennemis qui protège un coffre. Il vous suffit de cliquer dessus pour l'ouvrir.\Maintenez 'Alt' enfoncé pour voir les objets au sol. Ensuite, faites un clic gauche sur le nom de l'objet que vous souhaitez ramasser.
 Appuyez sur ALT pour voir les objets au sol et cliquez sur leur nom pour les ramasser !
 Maintenant que vous avez ramassé des objets, ouvrez votre inventaire avec le bouton en forme d'épées en bas, au dessus du HUD, ou bien appuyez sur 'I'.\Pour prendre un objet en main, faites un clic gauche dessus, vous le déposerez en refaisant un clic gauche.\Pour équiper un objet, placez-le dans la case correspondante à gauche.\Vous pouvez aussi mettre des objets en raccourcis en les déposant dans la barre en bas au centre. Vous y accéderez en jeu en appuyant sur les touches 1 à 8.
@@ -38,7 +38,7 @@ Vous pourrez aussi remarquer que quand vous tuez des ennemis, vous gagnez des po
 Bien ! Maintenant que vous avez changé de niveau, retournez dans l'inventaire. Vous pourrez dépenser vos points de caractéristique fraîchement acquis en cliquant sur le petit '+' à côté de la caractéristique voulue.
 -Votre force augmente vos dégâts au corps à corps et vous permet de porter de l'équipement plus lourd.\-Votre dextérité augmente vos dégâts à distance, vous permet de mieux toucher/esquiver et de porter plus d'objets.\-Votre vitalité augmente votre vie. \-Votre piété est votre capacité à invoquer votre Dieu, elle vous permet de lancer plus de miracles (nous allons y revenir). \-Votre charisme influe sur le prix des objets et vous permet de porter certains objets.
 Maintenant, ouvrez le menu des miracles en cliquant sur l'icône en forme de croix ou en appuyant sur 'T'.\Vous pouvez choisir la voie dans laquelle vous souhaitez dépenser vos points via les 3 boutons en haut à gauche.\Faites un clic droit sur une icône de miracle pour dépenser un point dedans. Un clic gauche le prend en main, vous pouvez ensuite le mettre dans la barre de raccourcis en bas. Vous y accéderez en jeu en appuyant sur les touches 1 à 8 qui permettent de le mettre en mode actif. Il vous suffit de faire ensuite un clic droit pour l'utiliser.
-Pour parler aux personnages non jouables, il vous suffit de cliquer dessus. Il en va de même avec les marchands.\Vous pouvez aussi activer/désactiver la carte en appuyant sur 'M' ou en cliquant sur le bouton en forme de carte.\Vous pouvez accéder de la même façon au menu en cliquant sur le bouton en forme d'engrenage ou en pressant 'Echap'. \Enfin, vous pouvez accéder au panneau des quêtes en appuyant sur 'Q' ou en cliquant sur le bouton en forme de livre.
+Vous pouvez activer/désactiver la carte en appuyant sur 'M' ou en cliquant sur le bouton en forme de carte.\Vous pouvez accéder de la même façon au menu en cliquant sur le bouton en forme d'engrenage ou en pressant 'Echap'. \Enfin, vous pouvez accéder au panneau des quêtes en appuyant sur 'Q' ou en cliquant sur le bouton en forme de livre.
 ******** Le tutoriel est fini. ********\************** Bon jeu ! **************
 Continuer
 

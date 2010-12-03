@@ -23,10 +23,24 @@ main
 	
 	if variable * 0 * 1
 	then
-		setState * 3 
+		setState * 3
 		setCollision * 0
+
+		if variable * 2 * 0
+		then
+			setState * 3 * 0
+		end
+
+		variable * 2 * 1
 	else
 		setState * 0 
 		setCollision * 1
+
+		if variable * 2 * 1
+		then
+			setState * 0 * 0
+		end
+
+		variable * 2 * 0
 	end
 end 
