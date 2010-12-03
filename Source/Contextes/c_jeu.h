@@ -52,7 +52,7 @@ public:
     */
     void Utiliser(Jeu *jeu);
 
-    float alpha_map, alpha_dialog;
+    float alpha_map;
 
     sf::Thread *m_thread_sauvegarde;
 

@@ -2026,16 +2026,6 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
         m_classe.emplacements[i].empty = true;
     }
 
-    {
-        Sprite sprite;
-        sprite.SetImage(*moteurGraphique->getImage(m_classe.sort_inventory.image));
-        sprite.Resize(m_classe.sort_inventory.position.w,
-                      m_classe.sort_inventory.position.h);
-        sprite.SetPosition(AutoScreenAdjust(m_classe.sort_inventory.position.x,0,decalage).x,
-                           AutoScreenAdjust(0,m_classe.sort_inventory.position.y,decalage).y);
-        moteurGraphique->AjouterCommande(&sprite,18,0);
-    }
-
     for (int i=0;i<(int)m_inventaire.size();++i)
         if (i!=m_objetEnMain && (m_inventaire[i].m_equipe==-1 || m_inventaire[i].m_equipe>=0 && !hideLeft))
         if ((i == m_no_result_bless && bless)
@@ -2186,9 +2176,10 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
 
             sprite.SetBlendMode(sf::Blend::Alpha);
 
+
+            sf::Sprite sprite2;
             if (!m_inventaire[i].Utilisable(m_caracteristiques,m_cheminClasse))
             {
-                sf::Sprite sprite2;
                 sprite2.SetImage(*moteurGraphique->getImage(moteurGraphique->m_img_item_unusable));
                 sprite2.SetColor(sf::Color(255,255,255,255));
 
@@ -2220,8 +2211,6 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
                     else
                         sprite2.Move(0,m_inventaire[i].getTaille().y*16 - m_inventaire[i].getTaille().x*16);
                 }
-
-                moteurGraphique->AjouterCommande(&sprite2,18,0);
             }
 
             sprite.SetOrigin(m_inventaire[i].getPositionImage().w/2,m_inventaire[i].getPositionImage().h/2);
@@ -2248,6 +2237,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
                 sprite.SetColor(sf::Color((int)(sprite.GetColor().r*0.5),(int)(sprite.GetColor().g*0.5),(int)(sprite.GetColor().b*0.5),255));
 
             moteurGraphique->AjouterCommande(&sprite,17,0);
+            moteurGraphique->AjouterCommande(&sprite2,17,0);
             sprite.SetRotation(0);
         }
 
@@ -2324,10 +2314,9 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
                 }
             }
 
-
+            sf::Sprite sprite2;
             if (!(*trader)[i].Utilisable(m_caracteristiques,m_cheminClasse))
             {
-                sf::Sprite sprite2;
                 sprite2.SetImage(*moteurGraphique->getImage(moteurGraphique->m_img_item_unusable));
                 sprite2.SetColor(sf::Color(255,255,255,255));
 
@@ -2354,8 +2343,6 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
                     sprite2.SetSubRect(sf::IntRect(0,0,128,128 - (int)((sprite2.GetPosition().y + taille -
                                                                         (AutoScreenAdjust(0, m_classe.position_contenu_marchand.y - 32, decalage).y+m_classe.position_contenu_marchand.h*32))*128/taille)));
                 }
-
-                moteurGraphique->AjouterCommande(&sprite2,18,0);
             }
 
             sprite.SetOrigin((*trader)[i].getPositionImage().w/2,(*trader)[i].getPositionImage().h/2);
@@ -2391,6 +2378,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
                 sprite.SetColor(sf::Color((int)(sprite.GetColor().r*0.5),(int)(sprite.GetColor().g*0.5),(int)(sprite.GetColor().b*0.5),255));
 
             moteurGraphique->AjouterCommande(&sprite,17,0);
+            moteurGraphique->AjouterCommande(&sprite2,17,0);
             sprite.SetRotation(0);
         }
     }
@@ -2475,6 +2463,16 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
 
     if(!hideLeft)
         AfficherCaracteristiques(decalage, (!trader->empty() || trader == &m_coffre));
+
+    {
+        Sprite sprite;
+        sprite.SetImage(*moteurGraphique->getImage(m_classe.sort_inventory.image));
+        sprite.Resize(m_classe.sort_inventory.position.w,
+                      m_classe.sort_inventory.position.h);
+        sprite.SetPosition(AutoScreenAdjust(m_classe.sort_inventory.position.x,0,decalage).x,
+                           AutoScreenAdjust(0,m_classe.sort_inventory.position.y,decalage).y);
+        moteurGraphique->AjouterCommande(&sprite,17,0);
+    }
 
     return (retour);
 }

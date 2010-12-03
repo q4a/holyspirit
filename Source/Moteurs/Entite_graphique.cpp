@@ -150,7 +150,7 @@ void Entite_graphique::NextTile()
             position.x = (int)(m_sprite.GetPosition().x);
             position.y = (int)(m_sprite.GetPosition().y*2);
 
-            m_light = moteurGraphique->LightManager->Add_Dynamic_Light(position,m_tileset->getLumiereDuTile(m_noAnimation).intensite,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,12,
+            m_light = moteurGraphique->LightManager->Add_Dynamic_Light(position,255/*m_tileset->getLumiereDuTile(m_noAnimation).intensite*/,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,12,
                                                                        sf::Color(m_tileset->getLumiereDuTile(m_noAnimation).rouge,m_tileset->getLumiereDuTile(m_noAnimation).vert,m_tileset->getLumiereDuTile(m_noAnimation).bleu));
         }
     }
@@ -209,8 +209,10 @@ void Entite_graphique::Initialiser(coordonnee pos)
                     position.y = pos.y + m_decalage.y;
 
                     //if (m_tileset->getAnimationTile(m_noAnimation) != -1)
-                        m_light = moteurGraphique->LightManager->Add_Dynamic_Light(position,m_tileset->getLumiereDuTile(m_noAnimation).intensite,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,12,
+                        m_light = moteurGraphique->LightManager->Add_Dynamic_Light(position,/*m_tileset->getLumiereDuTile(m_noAnimation).intensite*/255,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,12,
                                                                                    sf::Color(m_tileset->getLumiereDuTile(m_noAnimation).rouge,m_tileset->getLumiereDuTile(m_noAnimation).vert,m_tileset->getLumiereDuTile(m_noAnimation).bleu));
+
+                       // moteurGraphique->LightManager->Generate(m_light);
                     //else
                       //  m_light = moteurGraphique->LightManager->Add_Static_Light (position,m_tileset->getLumiereDuTile(m_noAnimation).intensite,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,6,
                         //                                                            sf::Color(m_tileset->getLumiereDuTile(m_noAnimation).rouge,m_tileset->getLumiereDuTile(m_noAnimation).vert,m_tileset->getLumiereDuTile(m_noAnimation).bleu));

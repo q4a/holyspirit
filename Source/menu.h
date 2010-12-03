@@ -77,7 +77,7 @@ class Menu
 	Menu();
 	~Menu();
 	void AfficherHUD(Classe *classe);
-	bool AfficherDialogue(int, Classe *classe);
+	void AfficherDialogue(float, Classe *classe);
 	void AfficherDynamique(Caracteristique caracteristique,int type,Caracteristique caracteristiqueMonstre,Classe *classe);
 	void AfficherChargement(std::string nom,int fond,int z);
 	void AfficherInventaire(float,Classe *classe,bool);
@@ -93,11 +93,18 @@ class Menu
 	std::string m_dialogue;
 	coordonnee  m_dialogue_position;
 
+	float m_hauteur;
+	float m_cur_talk_hauteur;
+
 	private:
 	sf::Text texte;
 
 	int m_speak_choice;
 	std::vector <Speak_choice> m_choices;
+	std::vector <Speak_choice> m_old_choices;
+
+
+	std::string m_old_dialogue;
 };
 
 #endif

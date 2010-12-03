@@ -55,6 +55,8 @@ Menu::Menu()
 
     //m_dialogue.clear();
     m_speak_choice = -1;
+
+    m_cur_talk_hauteur = 1000;
 }
 
 void Menu::AfficherHUD(Classe *classe)
@@ -69,13 +71,13 @@ void Menu::AfficherHUD(Classe *classe)
     moteurGraphique->AjouterCommande(&sprite2,17,0);
 }
 
-bool Menu::AfficherDialogue(int alpha,Classe *classe)
+void Menu::AfficherDialogue(float time,Classe *classe)
 {
     Sprite sprite2;
 
     sprite2.SetImage(*moteurGraphique->getImage(classe->talk.image));
     sprite2.SetX(classe->talk.position.x + (configuration->Resolution.x - 800) * 0.5);
-    sprite2.SetY(classe->talk.position.y + (configuration->Resolution.y - 600) + classe->talk.position.h*configuration->Resolution.h/600 - classe->talk.position.h*configuration->Resolution.h/600*alpha/255);
+    sprite2.SetY(classe->talk.position.y + m_cur_talk_hauteur);
     sprite2.Resize(classe->talk.position.w, classe->talk.position.h);
     moteurGraphique->AjouterCommande(&sprite2,16,0);
 
@@ -83,57 +85,110 @@ bool Menu::AfficherDialogue(int alpha,Classe *classe)
     texte.SetCharacterSize(14);
     texte.SetStyle(2);
     texte.SetFont(moteurGraphique->m_font);
-    texte.SetString(m_dialogue);
-    texte.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.GetRect().Width) * 0.5,
-                      AutoScreenAdjust(0,classe->position_contenu_dialogue.y).y + classe->talk.position.h - classe->talk.position.h * alpha/255);
 
-    moteurGraphique->AjouterTexte(&texte,16,0);
-
-    float pos = texte.GetRect().Top + texte.GetRect().Height + 4;
-    texte.SetStyle(4);
-
-    for(unsigned i = 0 ; i < m_choices.size() ; ++i)
+    if(m_dialogue.empty())
     {
-        texte.SetString(m_choices[i].text);
+        if(m_cur_talk_hauteur < classe->talk.position.h)
+            m_cur_talk_hauteur += time * 1024;
+
+        if(m_cur_talk_hauteur > classe->talk.position.h)
+            m_cur_talk_hauteur = classe->talk.position.h;
+
+
+        texte.SetString(m_old_dialogue);
+
         texte.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.GetRect().Width) * 0.5,
-                            pos);
+                          AutoScreenAdjust(0,classe->position_contenu_dialogue.y).y + m_cur_talk_hauteur);
 
-        pos = texte.GetRect().Top + texte.GetRect().Height + 4;
+        moteurGraphique->AjouterTexte(&texte,16,0);
 
-        if(eventManager->getPositionSouris().x > AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x
-         &&eventManager->getPositionSouris().x < AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w
-         &&eventManager->getPositionSouris().y > texte.GetRect().Top
-         &&eventManager->getPositionSouris().y < texte.GetRect().Top + 19)
-         {
-             sf::Sprite background;
-             background.SetImage(*moteurGraphique->getImage(0));
-             background.Resize(texte.GetRect().Width + 4, texte.GetRect().Height + 4);
-             background.SetPosition(texte.GetRect().Left, texte.GetRect().Top );
-             background.SetColor(sf::Color(64,64,64));
-             moteurGraphique->AjouterCommande(&background, 16, 0);
+        float pos = texte.GetRect().Top + texte.GetRect().Height + 4;
+        texte.SetStyle(4);
 
-            if(eventManager->getEvenement(sf::Mouse::Left, EventClic))
-            {
-                m_speak_choice = m_choices[i].no;
-                eventManager->StopEvenement(sf::Mouse::Left, EventClic);
-            }
-         }
+        for(unsigned i = 0 ; i < m_old_choices.size() ; ++i)
+        {
+            texte.SetString(m_old_choices[i].text);
+            texte.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.GetRect().Width) * 0.5,
+                                pos);
 
-         moteurGraphique->AjouterTexte(&texte,16,0);
+            pos = texte.GetRect().Top + texte.GetRect().Height + 4;
+
+             moteurGraphique->AjouterTexte(&texte,16,0);
+        }
     }
-
-    if(alpha > 224)
-    if(eventManager->getEvenement(sf::Mouse::Left, EventClic))
-    if(eventManager->getPositionSouris().x < AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x
-    || eventManager->getPositionSouris().x > AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w
-    || eventManager->getPositionSouris().y < AutoScreenAdjust(0,classe->talk.position.y).y)
+    else
     {
-        m_dialogue.clear();
-        ClearSpeakChoice();
-        return (true);
+        m_old_dialogue = m_dialogue;
+
+        texte.SetString(m_dialogue);
+
+        m_hauteur = 140;
+        m_hauteur += texte.GetRect().Height + 4;
+
+        for(unsigned i = 0 ; i < m_choices.size() ; ++i)
+        {
+            texte.SetString(m_choices[i].text);
+            m_hauteur += texte.GetRect().Height + 4;
+        }
+
+        if(m_cur_talk_hauteur < classe->talk.position.h - m_hauteur)
+        {
+            m_cur_talk_hauteur += time * 1024;
+            if(m_cur_talk_hauteur > classe->talk.position.h - m_hauteur)
+                m_cur_talk_hauteur = classe->talk.position.h - m_hauteur;
+        }
+        else if(m_cur_talk_hauteur > classe->talk.position.h - m_hauteur)
+        {
+            m_cur_talk_hauteur -= time * 1024;
+            if(m_cur_talk_hauteur < classe->talk.position.h - m_hauteur)
+                m_cur_talk_hauteur = classe->talk.position.h - m_hauteur;
+        }
+
+        texte.SetCharacterSize(14);
+        texte.SetStyle(2);
+        texte.SetFont(moteurGraphique->m_font);
+        texte.SetString(m_dialogue);
+
+        texte.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.GetRect().Width) * 0.5,
+                          AutoScreenAdjust(0,classe->position_contenu_dialogue.y).y + m_cur_talk_hauteur);//(classe->talk.position.h - m_hauteur) +(classe->talk.position.h) - (classe->talk.position.h) * alpha/255);
+
+        moteurGraphique->AjouterTexte(&texte,16,0);
+
+        float pos = texte.GetRect().Top + texte.GetRect().Height + 4;
+        texte.SetStyle(4);
+
+        for(unsigned i = 0 ; i < m_choices.size() ; ++i)
+        {
+            texte.SetString(m_choices[i].text);
+            texte.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.GetRect().Width) * 0.5,
+                                pos);
+
+            pos = texte.GetRect().Top + texte.GetRect().Height + 4;
+
+            if(eventManager->getPositionSouris().x > AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x
+             &&eventManager->getPositionSouris().x < AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w
+             &&eventManager->getPositionSouris().y > texte.GetRect().Top
+             &&eventManager->getPositionSouris().y < texte.GetRect().Top + 19)
+             {
+                 sf::Sprite background;
+                 background.SetImage(*moteurGraphique->getImage(0));
+                 background.Resize(texte.GetRect().Width + 4, texte.GetRect().Height + 4);
+                 background.SetPosition(texte.GetRect().Left, texte.GetRect().Top );
+                 background.SetColor(sf::Color(64,64,64));
+                 moteurGraphique->AjouterCommande(&background, 16, 0);
+
+                if(eventManager->getEvenement(sf::Mouse::Left, EventClic))
+                {
+                    m_speak_choice = m_choices[i].no;
+                    eventManager->StopEvenement(sf::Mouse::Left, EventClic);
+                    eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
+                }
+             }
+
+             moteurGraphique->AjouterTexte(&texte,16,0);
+        }
     }
 
-    return (false);
 }
 
 
@@ -145,6 +200,7 @@ void Menu::AddSpeakChoice(const std::string &text, int no)
 }
 void Menu::ClearSpeakChoice()
 {
+    m_old_choices = m_choices;
     m_speak_choice = -1;
     m_choices.clear();
 }

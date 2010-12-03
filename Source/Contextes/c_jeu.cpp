@@ -87,9 +87,7 @@ c_Jeu::c_Jeu()
     TourBoucle.SetCharacterSize(16);
 
     alpha_map=0;
-    alpha_dialog=0;
     lowFPS=-1;
-
 
     m_thread_sauvegarde = NULL;
 }
@@ -142,10 +140,10 @@ void c_Jeu::Utiliser(Jeu *jeu)
         m_thread_sauvegarde->Launch();
         tempsSauvergarde=0;
     }
-    IA(jeu);
     Deplacements(jeu);
     Lumieres(jeu);
     Evenements(jeu);
+    IA(jeu);
     Animation(jeu);
 
     jeu->hero.PlacerCamera();
@@ -195,22 +193,8 @@ void c_Jeu::GererTemps(Jeu *jeu)
             alpha_map=0;
     }
 
-    if (alpha_dialog>0)
-        if(jeu->menu.AfficherDialogue((int)alpha_dialog,&jeu->hero.m_classe))
-            jeu->hero.m_personnage.m_cible = NULL;
-
-    if (!jeu->menu.m_dialogue.empty())
-    {
-        alpha_dialog+=tempsEcoule*1000;
-        if (alpha_dialog>255)
-            alpha_dialog=255;
-    }
-    else
-    {
-        alpha_dialog-=tempsEcoule*1000;
-        if (alpha_dialog<0)
-            alpha_dialog=0;
-    }
+   // if (alpha_dialog>0)
+    jeu->menu.AfficherDialogue(tempsEcoule,&jeu->hero.m_classe);
 
     if (jeu->hero.m_personnage.EnVie())
     {
@@ -336,8 +320,8 @@ void c_Jeu::Animation(Jeu *jeu)
                 if (jeu->hero.m_personnage.m_cible!=NULL)
                 {
 
-                    if (fabs(jeu->hero.m_personnage.m_cible->getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().x)<2
-                      &&fabs(jeu->hero.m_personnage.m_cible->getCoordonnee().y-jeu->hero.m_personnage.getCoordonnee().y)<2)
+                    if (fabs(jeu->hero.m_personnage.m_cible->getProchaineCase().x-jeu->hero.m_personnage.getCoordonnee().x)<2
+                      &&fabs(jeu->hero.m_personnage.m_cible->getProchaineCase().y-jeu->hero.m_personnage.getCoordonnee().y)<2)
                         if (rand() % 100 < (float)((float)(jeu->hero.m_caracteristiques.dexterite + 100) / ((float)(jeu->hero.m_personnage.m_cible->getCaracteristique().dexterite + 100)))*75 )
                             if (!jeu->hero.m_personnage.m_cible->m_friendly && jeu->hero.m_personnage.m_cible->EnVie())
                             {
@@ -628,11 +612,11 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false)
     if (eventManager->getEvenement(Key::Return,EventKey)
      || eventManager->getPositionSouris().x > AutoScreenAdjust(jeu->hero.m_classe.position_bouton_dialogue.x,0).x
      && eventManager->getPositionSouris().x < AutoScreenAdjust(jeu->hero.m_classe.position_bouton_dialogue.x + jeu->hero.m_classe.position_bouton_dialogue.w,0).x
-     && eventManager->getPositionSouris().y > AutoScreenAdjust(0,jeu->hero.m_classe.position_bouton_dialogue.y).y
-     && eventManager->getPositionSouris().y < AutoScreenAdjust(0,jeu->hero.m_classe.position_bouton_dialogue.y + jeu->hero.m_classe.position_bouton_dialogue.h).y
+     && eventManager->getPositionSouris().y > AutoScreenAdjust(0,jeu->hero.m_classe.position_bouton_dialogue.y + jeu->hero.m_classe.talk.position.h - jeu->menu.m_hauteur).y
+     && eventManager->getPositionSouris().y < AutoScreenAdjust(0,jeu->hero.m_classe.position_bouton_dialogue.y + jeu->hero.m_classe.talk.position.h - jeu->menu.m_hauteur + jeu->hero.m_classe.position_bouton_dialogue.h).y
      && eventManager->getEvenement(Mouse::Left,EventClicA))
     {
-        if(!jeu->menu.m_dialogue.empty() && jeu->m_jeu->alpha_dialog > 192)
+        if(!jeu->menu.m_dialogue.empty()/* && jeu->m_jeu->alpha_dialog > 192*/)
         {
             eventManager->StopEvenement(Key::Escape,EventKey);
             eventManager->StopEvenement(Mouse::Left,EventClicA);
@@ -704,8 +688,8 @@ void c_Jeu::Evenements(Jeu *jeu)
     || eventManager->getPositionSouris().x > AutoScreenAdjust(jeu->hero.m_classe.position_contenu_dialogue.x,0).x
         + jeu->hero.m_classe.position_contenu_dialogue.w
     || eventManager->getPositionSouris().y < AutoScreenAdjust(0,jeu->hero.m_classe.position_contenu_dialogue.y).y
-    || eventManager->getPositionSouris().y > AutoScreenAdjust(0,jeu->hero.m_classe.position_contenu_dialogue.y).y
-        + jeu->hero.m_classe.position_contenu_dialogue.h)
+  /*  || eventManager->getPositionSouris().y > AutoScreenAdjust(0,jeu->hero.m_classe.position_contenu_dialogue.y).y
+        + jeu->hero.m_classe.position_contenu_dialogue.h*/)
     {
         if (!eventManager->getEvenement(Mouse::Left,EventClic))
             jeu->map->getMonstre(eventManager->getCasePointee());
@@ -876,6 +860,16 @@ void c_Jeu::Evenements(Jeu *jeu)
         jeu->menu.m_dialogue.clear();
     }
 
+    if(!jeu->menu.m_dialogue.empty())
+    if(eventManager->getEvenement(sf::Mouse::Left, EventClic))
+    if(eventManager->getPositionSouris().x < AutoScreenAdjust(jeu->hero.m_classe.position_contenu_dialogue.x,0).x
+    || eventManager->getPositionSouris().x > AutoScreenAdjust(jeu->hero.m_classe.position_contenu_dialogue.x,0).x + jeu->hero.m_classe.position_contenu_dialogue.w
+    || eventManager->getPositionSouris().y < AutoScreenAdjust(0,jeu->hero.m_classe.position_contenu_dialogue.y + jeu->hero.m_classe.talk.position.h - jeu->menu.m_hauteur).y)//AutoScreenAdjust(0,jeu->hero.m_classe.talk.position.y).y)
+    {
+        jeu->menu.m_dialogue.clear();
+        jeu->menu.ClearSpeakChoice();
+        jeu->hero.m_personnage.m_cible = NULL;
+    }
 }
 
 

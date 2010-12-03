@@ -180,7 +180,7 @@ void Map::Script_Fight(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
 
 void Map::Script_Trade(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer)
 {
-    jeu->hero.m_personnage.m_cible = NULL;
+   // jeu->hero.m_personnage.m_cible = NULL;
 
     jeu->m_inventaire->setTrader(m_monstre[monstre].getPointeurObjets());
     if(!script->m_instructions[noInstruction].m_valeurs.empty())
@@ -191,40 +191,40 @@ void Map::Script_Trade(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
     eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
     jeu->Clock.Reset();
     jeu->m_contexte=jeu->m_inventaire;
-    jeu->m_jeu->alpha_dialog = 0;
+    jeu->menu.m_cur_talk_hauteur = jeu->hero.m_classe.talk.position.h;
 }
 
 void Map::Script_Potale(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer)
 {
-    jeu->hero.m_personnage.m_cible = NULL;
+    //jeu->hero.m_personnage.m_cible = NULL;
 
     eventManager->StopEvenement(sf::Mouse::Left, EventClic);
     eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
     jeu->Clock.Reset();
     jeu->m_contexte=jeu->m_potales;
-    jeu->m_jeu->alpha_dialog = 0;
+    jeu->menu.m_cur_talk_hauteur = jeu->hero.m_classe.talk.position.h;
 }
 
 void Map::Script_Craft(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer)
 {
-    jeu->hero.m_personnage.m_cible = NULL;
+    //jeu->hero.m_personnage.m_cible = NULL;
 
     eventManager->StopEvenement(sf::Mouse::Left, EventClic);
     eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
     jeu->Clock.Reset();
     jeu->m_contexte=jeu->m_craft;
-    jeu->m_jeu->alpha_dialog = 0;
+    jeu->menu.m_cur_talk_hauteur = jeu->hero.m_classe.talk.position.h;
 }
 
 void Map::Script_Bless(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer)
 {
-    jeu->hero.m_personnage.m_cible = NULL;
+    //jeu->hero.m_personnage.m_cible = NULL;
 
     eventManager->StopEvenement(sf::Mouse::Left, EventClic);
     eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
     jeu->Clock.Reset();
     jeu->m_contexte=jeu->m_bless;
-    jeu->m_jeu->alpha_dialog = 0;
+    jeu->menu.m_cur_talk_hauteur = jeu->hero.m_classe.talk.position.h;
 }
 
 std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)
@@ -376,6 +376,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                     m_monstre[monstre].setArrivee(m_monstre[monstre].getProchaineCase());
 
                 jeu->menu.m_dialogue_position = hero->m_personnage.getCoordonnee();
+                //hero->m_personnage.m_cible = NULL;
             }
         }
         else if (script->m_instructions[noInstruction].nom=="stop_speak")
