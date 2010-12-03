@@ -31,7 +31,7 @@ $
 $
 	* x432 y33 w27 h24 m Data/Graphics/Menus/UI/SortInventory.png $
 $
-	* x0 y334 w800 h288 m Data/Graphics/Menus/UI/Talks.png $
+	* x0 y248 w800 h352 m Data/Graphics/Menus/UI/Talks.png $
 $
 	* x0 y0 w800 h600 m Data/Graphics/Menus/UI/Quest.png $
 $
@@ -61,9 +61,9 @@ $
 $	
 	* x39 y373 w10 h5 $
 $
-	* x150 y370 w500 h128 $
+	* x150 y286 w500 h128 $
 $
-	* x300 y344 w200 h24 $
+	* x300 y260 w200 h24 $
 $
 	* x38 y37 w326 h10 $
 $
