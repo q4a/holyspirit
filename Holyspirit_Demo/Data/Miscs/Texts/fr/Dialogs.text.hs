@@ -29,7 +29,7 @@ La crypte
 
 
 ///TUTORIAL///
-Bienvenue au Paradis mortel !\Ici commence ton iniation afin de maitriser ta nouvelle forme d'existence.\Clique pour te déplacer et ouvrir la porte.\
+Bienvenue au Purgatoire mortel !\Ici commence ton iniation afin de maitriser ta nouvelle forme d'existence.\Clique pour te déplacer et ouvrir la porte.\
 Tu vas maintenant apprendre à te battre.\Clique sur la créature dans la prochaine pièce afin de la détruire.
 Vous allez maintenant combattre un petit groupe d'ennemis qui protège un coffre. Il vous suffit de cliquer dessus pour l'ouvrir.\Maintenez 'Alt' enfoncé pour voir les objets au sol. Ensuite, faites un clic gauche sur le nom de l'objet que vous souhaitez ramasser.
 Appuyez sur ALT pour voir les objets au sol et cliquez sur leur nom pour les ramasser !
