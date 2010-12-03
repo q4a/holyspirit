@@ -95,3 +95,4 @@ Votre piété augmente vos points de foi.
 Votre charisme influe sur le prix des objets et vous permet de porter certains objets.
 
 
+

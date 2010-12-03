@@ -40,6 +40,8 @@
          Destruction du héro ...
          Chargement de : Data/User/Temps/Image.png
          Destruction du héro ...
+         Chargement de : Data/User/Temps/Image.png
+         Destruction du héro ...
          Chargement du hero.
          /Lectures des caracteristiques.
          
@@ -62,8 +64,8 @@
          Chargement de l'objet : Potion_heal0.item.hs
          Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
          
-         Chargement de l'objet : Armband_leather.item.hs
-         Chargement de : Data/Graphics/Items/Armbands.png
+         Chargement de l'objet : Potion_heal0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
          /Lectures des objets.
          /Lectures des objets du coffre.
          /Lectures des miracles.
@@ -211,7 +213,7 @@
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
          /Ecriture des miracles.
@@ -335,6 +337,7 @@
          Chargement du script : " Data/Entities/Scripts/Miscs/Chess.script.hs "
          
          Chargement de l'objet : Armband_leather.item.hs
+         Chargement de : Data/Graphics/Items/Armbands.png
          
          Chargement du personnage : Data/Entities/Resources/Containers/Chess0.rs.hs
          Chargement de : Coffre0.png
@@ -350,6 +353,12 @@
          Chargement de : HeavenZombie_Dead0.png
          Chargement de : HeavenZombie_Dead1.png
          Chargement de : Data/Entities/Resources/Monsters/Zombies/Heaven_zombie.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Trigger_clickable.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Trigger_clickable.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/NULL.rs.hs
+         Chargement de : Data/Entities/Resources/Miscs/Trigger_clickable.char.hs terminé
          /Lectures des monstres.
          
          /Lectures des cases.
@@ -373,7 +382,7 @@
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
          /Ecriture des miracles.

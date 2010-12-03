@@ -1,21 +1,14 @@
 main 
-	if distance * 5
-		variable * 0 * 0
-	then
-		variable * 0 * 1
-		add_checkpoint * 54 * 45 * 37 " ArableLand2.map.hs"
-	end
-
 	if talk
 	then
-		add_checkpoint * 54 * 45 * 37 " ArableLand2.map.hs"
+		add_checkpoint * 38 * 37 * 4 " Abbey.map.hs"
 	
 		if variable * 1 * 0 
 		then
-			speak * 38
+			speak * 1
 			variable * 1 * 1
-			speak_choice * 39 * 1
-			speak_choice * 40 * 2
+			speak_choice * 2 * 1
+			speak_choice * 3 * 2
 		end
 		
 		if speak_choice * 1

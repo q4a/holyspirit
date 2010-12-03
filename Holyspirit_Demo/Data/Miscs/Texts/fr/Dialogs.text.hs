@@ -41,7 +41,7 @@ Maintenant, ouvrez le menu des miracles en cliquant sur l'icône en forme de croi
 Vous pouvez activer/désactiver la carte en appuyant sur 'M' ou en cliquant sur le bouton en forme de carte.\Vous pouvez accéder de la même façon au menu en cliquant sur le bouton en forme d'engrenage ou en pressant 'Echap'. \Enfin, vous pouvez accéder au panneau des quêtes en appuyant sur 'Q' ou en cliquant sur le bouton en forme de livre.
 ******** Le tutoriel est fini. ********\************** Bon jeu ! **************
 Continuer
-
+Vers l'Abbaye de Saint Clodomir
 
 
 ////ABBE///

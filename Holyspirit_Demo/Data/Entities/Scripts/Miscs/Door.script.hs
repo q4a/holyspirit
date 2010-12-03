@@ -9,7 +9,7 @@ main
 			if variable * 0 * 1
 			then
 				variable * 0 * 0
-				setState * 0  * 0
+				setState * 1  * 0
 			else
 				variable * 0 * 1
 				setState * 3  * 0
@@ -33,12 +33,11 @@ main
 
 		variable * 2 * 1
 	else
-		setState * 0 
 		setCollision * 1
 
 		if variable * 2 * 1
 		then
-			setState * 0 * 0
+			setState * 1 * 0
 		end
 
 		variable * 2 * 0
