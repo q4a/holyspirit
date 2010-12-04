@@ -373,9 +373,13 @@ void Personnage::Afficher(Modele_Personnage *modele,bool surbrillance, bool sans
                     moteurGraphique->AjouterEntiteGraphique(&temp);
                 }
 
-                m_entite_graphique_shadow.m_sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
-                m_entite_graphique_shadow.m_sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
-                moteurGraphique->AjouterEntiteGraphique(&m_entite_graphique_shadow);
+                if(modele->m_ombre)
+                {
+                    m_entite_graphique_shadow.m_sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
+                    m_entite_graphique_shadow.m_sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
+                    moteurGraphique->AjouterEntiteGraphique(&m_entite_graphique_shadow);
+                }
+
             }
 
     if(!sansEffetHaut)
@@ -925,7 +929,7 @@ int Personnage::Animer(Modele_Personnage *modele,float temps)
             m_entite_graphique.Animer(temps);
 
         m_entite_graphique.m_sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
-        if (m_porteeLumineuse.intensite>0)
+      /*  if (m_porteeLumineuse.intensite>0)
         {
             m_entite_graphique.m_sprite.SetColor(sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu, 255));
             moteurGraphique->LightManager->SetColor(m_entite_graphique.m_light,sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu));
@@ -935,7 +939,7 @@ int Personnage::Animer(Modele_Personnage *modele,float temps)
             moteurGraphique->LightManager->SetIntensity(m_entite_graphique.m_light,m_porteeLumineuse.intensite);
         }
         else
-            m_entite_graphique.m_sprite.SetColor(sf::Color(255,255,255, 255));
+            m_entite_graphique.m_sprite.SetColor(sf::Color(255,255,255, 255));*/
 
         if(m_entite_graphique.attaque_touche)
         {
@@ -971,8 +975,8 @@ int Personnage::Animer(Modele_Personnage *modele,float temps)
             if (inte>255)
                 inte=255;
 
-            moteurGraphique->LightManager->SetIntensity(m_entite_graphique.m_light,(int)inte);
-            moteurGraphique->LightManager->SetRadius(m_entite_graphique.m_light,(int)m_porteeLumineuse.intensite*2);
+           // moteurGraphique->LightManager->SetIntensity(m_entite_graphique.m_light,(int)inte);
+           // moteurGraphique->LightManager->SetRadius(m_entite_graphique.m_light,(int)m_porteeLumineuse.intensite*2);
         }
     }
 

@@ -102,7 +102,7 @@ void Menu::AfficherDialogue(float time,Classe *classe)
 
         moteurGraphique->AjouterTexte(&texte,16,0);
 
-        float pos = texte.GetRect().Top + texte.GetRect().Height + 4;
+        float pos = texte.GetRect().Top + texte.GetRect().Height + 8;
         texte.SetStyle(4);
 
         for(unsigned i = 0 ; i < m_old_choices.size() ; ++i)
@@ -123,7 +123,7 @@ void Menu::AfficherDialogue(float time,Classe *classe)
         texte.SetString(m_dialogue);
 
         m_hauteur = 140;
-        m_hauteur += texte.GetRect().Height + 4;
+        m_hauteur += texte.GetRect().Height + 8;
 
         for(unsigned i = 0 ; i < m_choices.size() ; ++i)
         {
@@ -154,7 +154,7 @@ void Menu::AfficherDialogue(float time,Classe *classe)
 
         moteurGraphique->AjouterTexte(&texte,16,0);
 
-        float pos = texte.GetRect().Top + texte.GetRect().Height + 4;
+        float pos = texte.GetRect().Top + texte.GetRect().Height + 8;
         texte.SetStyle(4);
 
         for(unsigned i = 0 ; i < m_choices.size() ; ++i)

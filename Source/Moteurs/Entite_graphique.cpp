@@ -287,6 +287,8 @@ void Entite_graphique::Generer()
             m_angle_shadowmap.clear();
 
             for(unsigned i = 0 ; i < m_tileset->getShadowmapDuTile(m_noAnimation).size() ; ++i)
+            if(m_tileset->m_tile_shadowmap.size() > m_tileset->getShadowmapDuTile(m_noAnimation)[i]
+            && m_tileset->getShadowmapDuTile(m_noAnimation)[i] >= 0)
             {
                 m_sprite_shadowmap.push_back(sf::Sprite ());
                 coordonnee positionPartieDecor = m_tileset->m_tile_shadowmap[m_tileset->getShadowmapDuTile(m_noAnimation)[i]].getCoordonnee();

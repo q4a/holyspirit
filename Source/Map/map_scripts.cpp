@@ -276,7 +276,19 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         else if (script->m_instructions[noInstruction].nom=="teleport" && monstre != -1)
             Script_Teleport(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="useMiracle" && monstre != -1)
-            Script_UseMiracle(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer); //USEMIRACLE(script->getValeur(noInstruction, 0))
+            Script_UseMiracle(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
+        else if (script->m_instructions[noInstruction].nom=="stopMiracle" && monstre != -1)
+        {
+            for (int i=0;i<(int)m_monstre[monstre].m_miracleEnCours.size();++i)
+            if(m_monstre[monstre].m_miracleEnCours[i].m_modele == script->getValeur(noInstruction, 0))
+            {
+                for (int o=0;o<(int)m_monstre[monstre].m_miracleEnCours[i].m_infos.size();o++)
+                    if (m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_effetEnCours>=0)
+                        if (m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type==EFFET)
+                            m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_cible->m_effets[m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_IDObjet].m_effet.m_actif = false;
+            }
+
+        }
         else if (script->m_instructions[noInstruction].nom=="setState" && monstre != -1)
             Script_SetState(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="dammages" && monstre != -1)
@@ -466,6 +478,28 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                     m_monstre[m_listID[(unsigned)script->getValeur(noInstruction, 0)][i]].setCaracteristique(temp);
                 }
         }
+        else if (script->m_instructions[noInstruction].nom=="entity_goto" && monstre == -1)
+        {
+            if(script->getValeur(noInstruction, 0) < m_listID.size())
+                for(unsigned i = 0 ; i < m_listID[(unsigned)script->getValeur(noInstruction, 0)].size() ; ++i)
+                {
+                    m_monstre[m_listID[(unsigned)script->getValeur(noInstruction, 0)][i]].setArrivee(
+                        coordonnee(script->getValeur(noInstruction, 1), script->getValeur(noInstruction, 2)));
+                }
+        }
+        else if (script->m_instructions[noInstruction].nom=="entity_setState" && monstre == -1)
+        {
+            if(script->getValeur(noInstruction, 0) < m_listID.size())
+                for(unsigned i = 0 ; i < m_listID[(unsigned)script->getValeur(noInstruction, 0)].size() ; ++i)
+                {
+                    if (m_monstre[m_listID[(unsigned)script->getValeur(noInstruction, 0)][i]].getEtat()!=script->getValeur(noInstruction, 1))
+                        m_monstre[m_listID[(unsigned)script->getValeur(noInstruction, 0)][i]].setJustEtat((int)script->getValeur(noInstruction, 1)), m_monstre[m_listID[(unsigned)script->getValeur(noInstruction, 0)][i]].m_etatForce = true;
+                    if(script->m_instructions[noInstruction].m_valeurs.size() >= 3)
+                        m_monstre[m_listID[(unsigned)script->getValeur(noInstruction, 0)][i]].setPose((int)script->getValeur(noInstruction, 2));
+                    if(script->m_instructions[noInstruction].m_valeurs.size() >= 4)
+                        m_monstre[m_listID[(unsigned)script->getValeur(noInstruction, 0)][i]].setAngle((int)script->getValeur(noInstruction, 3));
+                }
+        }
         else if (script->m_instructions[noInstruction].nom=="setTile" && monstre == -1)
         {
             if(script->getValeur(noInstruction, 0) >= 0 && script->getValeur(noInstruction, 0) < 2)
@@ -547,6 +581,15 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                 {
                     if (m_monstre[monstre].m_nombreInvocation != (int)script->getValeur(no, 0))
                         ok=false;
+                }
+                else if (script->m_instructions[no].nom=="miracle" && monstre != -1)
+                {
+                    bool oldok = ok;
+
+                    ok = false;
+                    for(unsigned i = 0 ; i < m_monstre[monstre].m_miracleEnCours.size() ; ++i)
+                        if (m_monstre[monstre].m_miracleEnCours[i].m_modele == (int)script->getValeur(no, 0))
+                            ok=oldok;
                 }
                 else if (script->m_instructions[no].nom=="distance" && monstre != -1)
                 {
@@ -661,6 +704,32 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                             if (m_monstre[m_listID[(int)script->getValeur(no, 0)][i]].EnVie())
                                 if(m_monstre[m_listID[(int)script->getValeur(no, 0)][i]].m_friendly ==
                                    m_ModeleMonstre[m_monstre[m_listID[(int)script->getValeur(no, 0)][i]].getModele()].m_friendly)
+                                    ok = false;
+                    }
+                    else
+                        ok = false;
+                }
+                else if (script->m_instructions[no].nom=="entity_position" && monstre == -1)
+                {
+                    if(script->getValeur(no, 0) < m_listID.size())
+                    {
+                        for(unsigned i = 0 ; i < m_listID[(int)script->getValeur(no, 0)].size() ; ++i)
+                            if (m_monstre[m_listID[(int)script->getValeur(no, 0)][i]].getCoordonnee().x != script->getValeur(no, 1)
+                            ||  m_monstre[m_listID[(int)script->getValeur(no, 0)][i]].getCoordonnee().y != script->getValeur(no, 2))
+                                    ok = false;
+                    }
+                    else
+                        ok = false;
+                }
+                else if (script->m_instructions[no].nom=="entity_state" && monstre == -1)
+                {
+                    if(script->getValeur(no, 0) < m_listID.size())
+                    {
+                        for(unsigned i = 0 ; i < m_listID[(int)script->getValeur(no, 0)].size() ; ++i)
+                            if (m_monstre[m_listID[(int)script->getValeur(no, 0)][i]].getEtat() != script->getValeur(no, 1)
+                            || (script->m_instructions[no].m_valeurs.size() >= 3
+                                 && m_monstre[m_listID[(int)script->getValeur(no, 0)][i]].m_entite_graphique.m_noAnimation != script->getValeur(no, 2))
+                                )
                                     ok = false;
                     }
                     else
