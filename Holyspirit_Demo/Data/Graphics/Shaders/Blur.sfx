@@ -10,9 +10,9 @@ float rand(vec2 co){
 
 void main()
 {
-	offset *= 0.25;
-	vec2 offx = vec2(offset, 0.0) * 0.75 + vec2(offset, 0.0) * rand(gl_TexCoord[0].xy) * 0.25;
-	vec2 offy = vec2(0.0, offset) * 0.75 + vec2(0.0, offset) * rand(gl_TexCoord[0].xy + vec2(offset, 0.0)) * 0.25;
+	float offsetn = offset * 0.25;
+	vec2 offx = vec2(offsetn, 0.0) * 0.75 + vec2(offsetn, 0.0) * rand(gl_TexCoord[0].xy) * 0.25;
+	vec2 offy = vec2(0.0, offsetn) * 0.75 + vec2(0.0, offsetn) * rand(gl_TexCoord[0].xy + vec2(offsetn, 0.0)) * 0.25;
 	
 	float offset2 = 1.0 - rand(gl_TexCoord[0].xy) * 2.0;
 	float offset3 = 1.0 - rand(gl_TexCoord[0].xy) * 2.0;

@@ -134,18 +134,6 @@ main
 		end
 		
 		if variable * 2 * 0
-		   variable * 3 * 0
-		then
-			speak_choice * 51 * 1		
-			speak_choice * 59 * 2	
-			speak_choice * 61 * 3	
-			speak_choice * 62 * 4	
-			speak_choice * 63 * 5
-			
-			variable * 2 * 1
-		end
-		
-		if variable * 2 * 0
 		   variable * 3 * 1
 		then
 			speak * 52
@@ -170,6 +158,7 @@ main
 			newQuest * 0 
 			setQuestName * 0 * 0
 			setQuestState * 0 * 0 * 1
+			stopMiracle * 0
 		end
 		
 		if variable * 2 * 0
@@ -178,6 +167,19 @@ main
 			speak * 60
 			variable * 3 * 0
 		end
+		
+		if variable * 2 * 0
+		   variable * 3 * 0
+		then
+			speak_choice * 51 * 1		
+			speak_choice * 59 * 2	
+			speak_choice * 61 * 3	
+			speak_choice * 62 * 4	
+			speak_choice * 63 * 5
+			
+			variable * 2 * 1
+		end
+		
 	else
 		if stop
 		   distance * 3
@@ -200,5 +202,18 @@ main
 	else
 		variable * 7 * day
 		regenerate_inventory
+	end
+	
+	if miracle * 0
+	then
+	else
+		variable * 8 * 0
+	end
+	
+	if quest * 0 * -1
+		variable * 8 * 0
+	then
+		variable * 8 * 1
+		useMiracle * 0
 	end
 end 

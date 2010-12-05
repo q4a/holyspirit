@@ -14,5 +14,5 @@ $
 $
 *Data/Entities/Particles/Wood_barrel.ps.hs
 $
-*Data/Mics/Miracles/Explosions/Explosion_barrel.miracle.hs
+*Data/Miscs/Miracles/Explosions/Explosion_barrel.miracle.hs
 $

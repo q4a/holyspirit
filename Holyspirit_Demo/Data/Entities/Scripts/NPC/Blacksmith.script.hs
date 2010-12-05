@@ -1,110 +1,96 @@
 main 
+	
+	if no_speak
+	then
+		variable * 2 * 0 //AJOUTER CHOIX
+		variable * 3 * 0 //MOMENT DE LA DISCUTION
+		variable * 5 * 0
+	end
+	
 	if talk
 	then
-		if variable * 2 * 0
+		if variable * 3 * 0
 		then
 			if speak_choice * 1
 			then
-				if variable * 3 * 2
-				then
-					stop_speak
-					variable * 0 * 0
-					variable * 2 * 1
-				end
-				if variable * 3 * 1
-				then
-					stop_speak
-					speak * 69
-					speak_choice * 56 * 1
-					variable * 3 * 2
-				end
-			end
-		else
-			if speak_choice * 1
-			then
+				variable * 3 * 1
+				variable * 2 * 0
 				stop_speak
-				trade
 			end
-
+			if speak_choice * 2
+			then
+				variable * 3 * 2
+				variable * 2 * 0
+				stop_speak
+			end
 			if speak_choice * 3
 			then
 				stop_speak
-				craft
+				variable * 2 * 0
+				variable * 5 * 0
+				trade
 			end
-
 			if speak_choice * 4
 			then
 				stop_speak
-				variable * 0 * 0
 				variable * 2 * 0
-				variable * 3 * 0
+				variable * 5 * 0
+				craft
 			end
-
 			if speak_choice * 5
 			then
 				stop_speak
-				speak * 73
-				speak_choice * 75 * 6
+				stop_talk
+			end
+		end
+
+		
+		if  variable * 5 * 0
+		then
+			if player_class " Data/Miscs/Heroes/Concubine/Concubine.class.hs"
+			then
+				speak * 103
+			end
+			if player_class " Data/Miscs/Heroes/Crusader/Crusader.class.hs"
+			then
+				speak * 102
 			end
 			
-			if speak_choice * 6
-			then
-				stop_speak
-				variable * 0 * 0
-				variable * 2 * 1
-			end
-
-			if speak_choice * 2
-			then
-				stop_talk
-				stop_speak
-			end
+			variable * 5 * 1
 		end
 		
-		if variable * 0 * 0 
+		if variable * 2 * 0
+		   variable * 3 * 1
 		then
-			if variable * 4 * 0
+			speak * 107
+			variable * 3 * 0
+		end
+		
+		if variable * 2 * 0
+		   variable * 3 * 2
+		then
+		
+			if player_class " Data/Miscs/Heroes/Concubine/Concubine.class.hs"
 			then
-				playSound * 0
-				variable * 4 * 1
+				speak * 110
+			else
+				speak * 109
 			end
 			
-			if variable * 2 * 0
-			then
-				if variable * 3 * 0 
-				then
-					playSound * 0
-					speak * 68
-					variable * 0 * 1
-					speak_choice * 56 * 1
-					variable * 3 * 1
-				end
-			else
-				if player_class " Data/Entities/Heroes/Concubine.class.hs"
-				then
-					speak * 57
-				else
-					speak * 32
-				end
-				variable * 0 * 1
-				speak_choice * 67 * 4
-				speak_choice * 74 * 5
-				speak_choice * 33 * 1
-				speak_choice * 41 * 3
-				speak_choice * 70 * 2
-			end
+			variable * 3 * 0
 		end
-	else
-		variable * 0 * 0
-		variable * 3 * 0
-		variable * 4 * 0
-	end
-	
-	incrementVariable * 8 * time
-	if variable_bigger * 8 * 5
-	then
-		setState * 4
-		variable * 8 * 0
+		
+		if variable * 2 * 0
+		   variable * 3 * 0
+		then
+			speak_choice * 106 * 1		
+			speak_choice * 108 * 2	
+			speak_choice * 111 * 3	
+			speak_choice * 112 * 4	
+			speak_choice * 113 * 5
+			
+			variable * 2 * 1
+		end
 	end
 	
 	if variable * 7 * day

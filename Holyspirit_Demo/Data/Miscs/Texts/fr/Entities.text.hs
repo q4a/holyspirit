@@ -14,7 +14,7 @@ Seigneur Merengar
 Molosse décharné
 Paysan zombie
 Dépouille putride
-Marchand commun
+Romulus le marchand
 Marchand rare
 Le Grand Questeur
 Levier

@@ -47,7 +47,7 @@ Angelis
 *Translators
 Bravach (English)
 Gonze Philippe (English)
-Derijke Valérie (Nederlands)
+Derycke Valérie (Nederlands)
 Richard Jim (Spanish)
 
 *2D GUI Artist
