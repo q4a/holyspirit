@@ -5,6 +5,7 @@ main
 		variable * 2 * 0 //AJOUTER CHOIX
 		variable * 3 * 0 //MOMENT DE LA DISCUTION
 		variable * 5 * 0
+		variable * 6 * 0 //DERNIER CHOIX
 	end
 	
 	if talk
@@ -13,18 +14,21 @@ main
 		then
 			if speak_choice * 1
 			then
+				variable * 6 * 1
 				variable * 3 * 1
 				variable * 2 * 0
 				stop_speak
 			end
 			if speak_choice * 2
 			then
+				variable * 6 * 2
 				variable * 3 * 2
 				variable * 2 * 0
 				stop_speak
 			end
 			if speak_choice * 3
 			then
+				variable * 6 * 3
 				stop_speak
 				variable * 2 * 0
 				variable * 5 * 0
@@ -32,6 +36,7 @@ main
 			end
 			if speak_choice * 4
 			then
+				variable * 6 * 4
 				variable * 3 * 3
 				variable * 2 * 0
 				stop_speak
@@ -58,11 +63,11 @@ main
 		then
 			if player_class " Data/Miscs/Heroes/Concubine/Concubine.class.hs"
 			then
-				speak * 83
+				speak * 93
 			end
 			if player_class " Data/Miscs/Heroes/Crusader/Crusader.class.hs"
 			then
-				speak * 82
+				speak * 92
 			end
 			
 			variable * 5 * 1
@@ -71,8 +76,8 @@ main
 		if variable * 2 * 0
 		   variable * 3 * 1
 		then
-			speak * 87
-			speak_choice * 88 * 1
+			speak * 97
+			speak_choice * 98 * 1
 			variable * 3 * 4
 			
 			variable * 2 * 1
@@ -81,7 +86,7 @@ main
 		if variable * 2 * 0
 		   variable * 3 * 2
 		then
-			speak * 91
+			speak * 101
 			variable * 3 * 0
 		end
 		
@@ -90,7 +95,7 @@ main
 		then
 			if quest * 1 * 1
 			then
-				speak * 94
+				speak * 104
 				variable * 3 * 0
 				stopMiracle * 0
 			end
@@ -99,7 +104,7 @@ main
 		if variable * 2 * 0
 		   variable * 3 * 4
 		then
-			speak * 89
+			speak * 99
 			variable * 3 * 0
 			
 			newQuest * 1 
@@ -115,9 +120,9 @@ main
 		
 			if player_class " Data/Miscs/Heroes/Concubine/Concubine.class.hs"
 			then
-				speak * 110
+				speak * 120
 			else
-				speak * 109
+				speak * 119
 			end
 			
 			variable * 3 * 0
@@ -128,14 +133,22 @@ main
 		then
 			if quest * 1 * 1
 			then
-				speak_choice * 112 * 4	
+				speak_choice * 122 * 4	
 			end
 			
-			speak_choice * 86 * 1		
-			speak_choice * 90 * 2	
-			speak_choice * 92 * 3	
+			if quest * 1 * -1
+			then
+				speak_choice * 96 * 1
+			end
 			
-			speak_choice * 95 * 5
+			if variable * 6 * 2
+			then else
+				speak_choice * 100 * 2	
+			end
+			
+			speak_choice * 102 * 3	
+			
+			speak_choice * 105 * 5
 			
 			variable * 2 * 1
 		end

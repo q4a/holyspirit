@@ -29,20 +29,20 @@ La crypte
 
 
 ///TUTORIAL///
-Bienvenue dans les Limbes mortel !\Ici commence ton iniation afin de maitriser ta nouvelle forme d'existence.\Clique pour te déplacer et ouvrir la porte.\
-Tu vas maintenant apprendre à te battre.\Clique sur la créature dans la prochaine pièce afin de la détruire.
-Vous allez maintenant combattre un petit groupe d'ennemis qui protège un coffre. Il vous suffit de cliquer dessus pour l'ouvrir.\Maintenez 'Alt' enfoncé pour voir les objets au sol. Ensuite, faites un clic gauche sur le nom de l'objet que vous souhaitez ramasser.
-Appuyez sur ALT pour voir les objets au sol et cliquez sur leur nom pour les ramasser !
-Maintenant que vous avez ramassé des objets, ouvrez votre inventaire avec le bouton en forme d'épées en bas, au dessus du HUD, ou bien appuyez sur 'I'.\Pour prendre un objet en main, faites un clic gauche dessus, vous le déposerez en refaisant un clic gauche.\Pour équiper un objet, placez-le dans la case correspondante à gauche.\Vous pouvez aussi mettre des objets en raccourcis en les déposant dans la barre en bas au centre. Vous y accéderez en jeu en appuyant sur les touches 1 à 8.
-Vous pourrez aussi remarquer que quand vous tuez des ennemis, vous gagnez des points d'âmes, représentés par la barre orange au centre qui grandit. Quand votre barre est remplie, vous gagnez un niveau.\Tuez les ennemis dans la salle suivante pour changer de niveau.
-Bien ! Maintenant que vous avez changé de niveau, retournez dans l'inventaire. Vous pourrez dépenser vos points de caractéristique fraîchement acquis en cliquant sur le petit '+' à côté de la caractéristique voulue.
--Votre force augmente vos dégâts au corps à corps et vous permet de porter de l'équipement plus lourd.\-Votre dextérité augmente vos dégâts à distance, vous permet de mieux toucher/esquiver et de porter plus d'objets.\-Votre vitalité augmente votre vie. \-Votre piété est votre capacité à invoquer votre Dieu, elle vous permet de lancer plus de miracles (nous allons y revenir). \-Votre charisme influe sur le prix des objets et vous permet de porter certains objets.
-Maintenant, ouvrez le menu des miracles en cliquant sur l'icône en forme de croix ou en appuyant sur 'T'.\Vous pouvez choisir la voie dans laquelle vous souhaitez dépenser vos points via les 3 boutons en haut à gauche.\Faites un clic droit sur une icône de miracle pour dépenser un point dedans. Un clic gauche le prend en main, vous pouvez ensuite le mettre dans la barre de raccourcis en bas. Vous y accéderez en jeu en appuyant sur les touches 1 à 8 qui permettent de le mettre en mode actif. Il vous suffit de faire ensuite un clic droit pour l'utiliser.
-Vous pouvez activer/désactiver la carte en appuyant sur 'M' ou en cliquant sur le bouton en forme de carte.\Vous pouvez accéder de la même façon au menu en cliquant sur le bouton en forme d'engrenage ou en pressant 'Echap'. \Enfin, vous pouvez accéder au panneau des quêtes en appuyant sur 'Q' ou en cliquant sur le bouton en forme de livre.
-******** Le tutoriel est fini. ********\************** Bon jeu ! **************
-Continuer
+Misérable pêcheur !\Te voici dans les Limbes. Tu as beaucoup à faire avant d'espérer rejoindre le Paradis...\A toi de me prouver avant toute chose que tu es digne de ma confiance. Certains de tes congénères à qui j'ai donné la chance d'une rédemption n'ont même pas été capables de sortir tout seul de cette pièce... Les imbéciles... Montre-moi que tu vaux mieux qu'eux !
+Misérable pécheresse !\Te voici dans les Limbes. Tu as beaucoup à faire avant d'espérer rejoindre le Paradis...\A toi de me prouver avant toute chose que tu es digne de ma confiance. Certains de tes congénères à qui j'ai donné la chance d'une rédemption n'ont même pas été capables de sortir tout seul de cette pièce... Les imbéciles... Montre-moi que tu vaux mieux qu'eux !
+Bien. Je n'allais quand même pas t'expliquer comment franchir une porte !\Voyons maintenant si tu es capable de te battre. Il traine dans les salles suivantes quelques unes des âmes de tes congénères qui ne se sont pas montré de la moindre utilité. Si j'en crois tes antécédents la violence ne t'es pas étrangère, racaille !\\(cliquer sur la créature pour la détruire)
+Pas mal ! J'aimerais à présent te confronter à plusieurs de ces stupides créatures qui gardent un coffre. Regarde-les... Elles ne savent pas pourquoi elles le gardent, ni même ce qu'il y a dedans... Si tu ne veux pas finir comme elles dépêche toi !\\(cliquer pour ouvrir le coffre, ALT pour voir les objets et cliquer sur leur nom pour les ramasser)
+Ben alors, tu le ramasses cet objet ?!?\\(maintenir alt puis cliquer sur le nom de l'objet pour le ramasser)
+Parfait. Tu peux maintenant trouver les objets que tu as ramassés dans ton inventaire.\\(cliquer sur l'icône de l'interface ci-dessous ou sur « I ». Il est aussi possible de les équiper en les plaçant dans la case correspondante, ou de les placer en raccourcis utilisables avec les touches 1 à 8.)
+Tu remarqueras par ailleurs que chaque ennemi détruit renforce ton âme et contribue à te rendre plus fort.\\(quand la barre âmes est remplie on gagne un niveau)
+A présent tu dois éliminer les créatures dans la pièce suivante (je ne dis pas tuer, elles sont déjà mortes depuis des siècles). Tu gagneras ainsi des forces et des talents supplémentaires !
+Bien ! Tu apprends vite et c'est ce que j'attendais de toi...\Tu as franchi un cap, et tu peux maintenant choisir dans quel domaine tu désires t'améliorer.\\(on choisit les caractéristiques que l'on désire améliorer via l'inventaire, « I »)
+-Ta force augmente tes dégâts au corps à corps et te permet de porter de l'équipement plus lourd.\-Ta dextérité te permet de mieux toucher/esquiver et de porter plus d'objets.\-Ta vitalité augmente ta vie. \-Ta piété est ta capacité à invoquer ton Dieu, elle te permet de lancer plus de miracles (nous allons y revenir...). \-Ton charisme influe sur le prix des objets et te permet de porter certains objets.
+Tu dois savoir que ton état actuel te  permet d'avoir à accès à certains pouvoirs.\Tu peux maintenant faire appel à ton Dieu pour détruire tes adversaires.\\(cliquer sur l'icone en forme de croix pour ouvrir le panneau des miracles. Tu peux choisir la voie dans laquelle tu veux te spécialer en cliquant sur un des trois onglets en haut. Il te suffit de faire un clic droit sur un miracle pour l'apprendre ou l'améliore, il va venir se mettre automatiquement dans ta barre de raccourcis en bas. Tu y accès en jeu avec les touches 1-8. Après en avoir sélectionné un, il te suffit de faire un clic droit pour l'utiliser)
+Parfait ! Ce test était bien modeste mais toutes les pauvres âmes que j'ai appelées ne l'ont pas réussi, loin de là... Oui, je sais c'est consternant.\Maintenant rejoins la lumière au fond de la salle suivante et accomplis ta mission.\Si je n'avais connaissance de tes forfaits passés je te plaindrais...
+Continuer,
 Vers l'Abbaye de Saint Clodomir
-
 
 ////ABBE///
 Salut à toi mon fils ! C'est toi ? Oui ça ne peut être que toi ! Grand, fort... Le Sauveur ! Venu de nulle part ! Dieu m'a parlé, et je savais qu'il ne nous abandonnerait pas ! Vas, extermine cette vermine démoniaque qui rode partout alentours !
@@ -62,6 +62,16 @@ Tu peux demander à Rognorak, notre forgeron qui s'est réfugié avec nous dans ce 
 Avez-vous des choses à vendre ?
 Pourriez-vous me bénir un objet ?
 Au revoir !
+Nous comptons tous sur toi mon fils ! Eradique ces horreurs de notre chère terre !
+Que me veux-tu femme ?
+
+
+
+
+
+
+
+
 
 
 
@@ -87,12 +97,12 @@ Salut bonhomme ! Tu sais que j'aime bien ta dégaine ? C'est pas du classique par
 Qui es-tu ?
 Je me nomme Romulus et je suis marchand. Normalement j'allais vers Nekhag, un bled pas loin de Flatagahn. Une ville sympathique, sans prétention. Bref j'y allais, histoire de me reposer un peu, mais j'ai eu la mauvaise idée de passer dans ce pays de malheur. J'ai croisé des choses pour le moins bizarres, comme des cailloux qui bougent ou des squelettes animés... J'ai pris peur et quand j'ai vu l'abbaye au loin j'ai abandonné ma charrette pour accourir dans ce lieu saint. Au moins pour l'instant on y survit sans subir ces visions d'horreur et de chaos !
 Et ta charrette ?
-Et bien elle doit toujours être sur place, quelque part au sud d'ici. Sauf si les pantins osseux ont choisi de s'amuser avec... Je suppose que tu as mieux à faire, mais si tu me ramènes son contenu je te donne la moitié de ce qu'il y a dedans.
+Et bien elle doit toujours être sur place, quelque part au sud d'ici. Sauf si les pantins osseux ont choisi de s'amuser avec... J'aimerais tant y récupérer quelque chose ! Juste un petit sachet de tabac de Mad-Retsam. Ca m'aiderait à faire passer le temps, on s'ennuie tant ici...\Si tu me le ramènes je t'en donnerai un peu, avec une petite bourse aussi !\Ca me ferait tellement plaisir !
 Je cherche des armes.
 Faut demander à Rognorak, le gars pas commode là-bas. Il m'a interdit de vendre des armes sous peine de mort. Comme si les menaces de l'extérieur ne suffisaient pas ! Tu parles d'un commerçant...
 On fait affaire ?
-Voici le contenu de ta charrette !
-Merci bien, je ne pensais pas revoir ma marchandise ! Voici la somme correspondant à la moitié du contenu ! 
+J'ai ton tabac !
+Ahhh ! Dans mes bras mon ami ! Mon bon tabac ! tiens, allez pour la peine je t'en donne un peu comme promis ! Utilises le avec modération, il est assez fort et ses effets sont imprévisibles. Tu en a là pour dix prises environ. Merci encore, avec cette livre je ne verrai pas passer les prochaines semaines !
 Au revoir !
 
 
@@ -100,18 +110,26 @@ Au revoir !
 
 
 ///ROGNORAK BLACKSMITH///
-Ouais ? Qu'est-ce que tu veux étranger ? Une arme, une armure, des outils ?
+Ouais ? Qu'est-ce que tu veux étranger ? Une arme, une armure, des outils ? Les temps sont troublés mais la vie continue, comme on dit !
 Et bien poulette ! T'es drôlement mise ! Si  tu as besoin d'un service demande donc à Rognorak ! Il sait toujours faire plaisir aux demoiselles Rognorak...
 Franchement ça manque pas d'hommes en robe par ici... On va finir par jaser mon bonhomme ! Et moi je ne vends que des choses qui sont mauvaises pour la santé des âmes.
 Salut toi ! Toi aussi tu as décidé de te déguiser pour fêter la fin du monde ? Quand je vois passer tout ce qui passe en ce moment je me dis qu'on a besoin d'un bon coup de balai et de  tout recommencer à zéro. Je n'aime pas tellement tes habits et ton air supérieur mais si c'est pour massacrer les horreurs sans nom qui trainent partout je te vends ce que tu veux !
 Qui es-tu ?
 Je suis Rognorak, ex forgeron de l'Empire. Moi j'aime bien forger les armes tranquillement dans mon coin mais la bagarre ça n'est pas trop ma tasse de thé. Je suis un artiste ! Alors quand ils ont décidé de m'envoyer au front pour forger des épées à la chaîne je me suis taillé et je suis parti au hasard...\Je sais pas si c'était une bonne idée à la réflexion... Je ne supportais pas d'être à quelques kilomètres seulement de cette horde de monstres et maintenant je dois survivre à quelques mètres d'eux, réfugié dans cette satanée abbaye !
 Où sommes-nous ?
-Tu n'es pas très observateur mon garçon ! On est dans un monastère voyons ! Question robes on a ce qui faut mais niveau femelles c'est un peu tristounet !
+Tu n'es pas très observateur mon garçon ! On est dans un monastère voyons ! Ou une abbaye, j'ai jamais compris la différence... Question robes on a ce qui faut mais niveau femelles c'est un peu tristounet !
 Tu n'es pas très observatrice ma puce ! Le plus souvent les hommes en robe comme celui-là  on les trouve dans les monastères. Bon des fois on en dégotte aussi dans les bordels, hein, hé hé !
 On commerce ?
 Tu peux me fabriquer un objet ?
 Au revoir !
+Alors, quoi de neuf mon bonhomme ?
+Alors mademoiselle, on revient voir le forgeron ? On n'a pas froid aux yeux, hein, hé hé...
+RETOUR INQUISITEUR
+RETOUR PISTOLERO
+Que fais-tu ?
+Là ? Tout de suite ? Mais je m'emmerde ! Voilà, parfaitement, je m'ennuie à un tel point que ça pourrait me rendre méchant... Tu sais quoi ? J'en suis à un tel point de désoeuvrement que si tu me donnes de quoi bricoler une arme je te la fais gratuitement, juste pour le plaisir. Tu me trouves un morceau de fer, du bois ou n'importe quel matériau, un schéma de ce que tu veux et je verrai ce que je peux faire. Et tiens, je te propose même de concevoir cet objet là !
+
+
 
 
 
@@ -123,4 +141,24 @@ Attendez, j'ai d'autres détails à régler avant...
 Hé ! J'ai toujours besoin de vous ! Aidez-moi, j'en peux plus de rester enfermé ici !
 Merci, je ne sais pas où aller mais au moins je vais pouvoir fuir loin d'ici !
 Vous entendez un hurlement de souffrance dans le lointain... On dirait la voix de l'aubergiste... 
+
+
+
+
+///SERGENT WALDEMAR////
+Salutations mon gars. Tu es ici en sécurité car moi et mes hommes on garde la place. Si tu sors d'ici et que tu trouves des survivants envoie les nous, nous représentons les derniers vestiges de la civilisation !
+Salutations, femme. Je n'ai rien contre toi mais évite de dissiper mes hommes, ils ont besoin de toute leur concentration pour garder les murailles de l'abbaye...
+Qui es-tu ?
+Je suis Waldemar, Sous-Officier de l'Empire. Normalement je suis Sergent mais étant donné les circonstances je pourrais tout aussi bien être Maréchal ! Tous ces squelettes me font presque regretter les barbares. Au moins ils étaient de chair et de sang comme nous et tuer avait un sens...
+Je peux faire quelque chose pour toi ?
+Et bien non, pas pour l'instant. Ces horribles créatures ont l'air d'ignorer l'abbaye pour l'instant... J'espère que ça va durer car s'ils s'avisent de donner l'assaut on ne résistera pas bien longtemps. Au moins aura-t-on la consolation de mourir tous en ensemble !
+Au revoir !
+
+
+
+
+
+
+
+
 

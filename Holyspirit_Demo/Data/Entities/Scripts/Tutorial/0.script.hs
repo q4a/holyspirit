@@ -6,8 +6,14 @@ main
 		then
 			if no_speak
 			then
-				speak * 31
-				speak_choice * 42 * 1
+				if player_class " Data/Miscs/Heroes/Concubine/Concubine.class.hs"
+				then
+					speak * 32
+				else
+					speak * 31
+				end
+				
+				speak_choice * 43 * 1
 			else
 				if speak_choice * 1
 				then
