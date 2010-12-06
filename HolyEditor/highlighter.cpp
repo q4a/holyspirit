@@ -12,7 +12,7 @@
      keywordFormat.setForeground(Qt::darkBlue);
      keywordFormat.setFontWeight(QFont::Bold);
      QStringList keywordPatterns;
-     keywordPatterns << "\\bif\\b" << "\\bmain\\b" << "\\bend\\b" << "\\belse\\b"  << "\\bthen\\b"  ;
+     keywordPatterns << "\\bif\\b" << "\\bmain\\b" << "\\bend\\b" << "\\belse\\b"  << "\\bthen\\b"  << "\\btime\\b"  << "\\bhour\\b"  << "\\bday\\b"  ;
      foreach (QString pattern, keywordPatterns) {
          rule.pattern = QRegExp(pattern);
          rule.format = keywordFormat;
@@ -41,34 +41,37 @@
      functionFormat.setFontWeight(QFont::Bold);
      QStringList keywordPatterns2;
      keywordPatterns2
-                     << "\\exist_item\\b"
-                     << "\\rand\\b"
-                     << "\\variable\\b"
-                     << "\\variable_bigger\\b"
-                     << "\\variable_smaller\\b"
-                     << "\\no_speak\\b"
-                     << "\\hour\\b"
-                     << "\\player_class\\b"
-                     << "\\quest\\b"
-                     << "\\entity_variable\\b"
-                     << "\\entity_dead\\b"
-                     << "\\add_checkpoint\\b"
-                     << "\\incrementVariable\\b"
-                     << "\\speak\\b"
-                     << "\\stop_speak\\b"
-                     << "\\speak_choice\\b"
-                     << "\\newQuest\\b"
-                     << "\\setQuestName\\b"
-                     << "\\setQuestState\\b"
-                     << "\\setQuestPosition\\b"
-                     << "\\stop_talk\\b"
-                     << "\\addCash\\b"
-                     << "\\heal\\b"
-                     << "\\entity_variable\\b"
-                     << "\\entity_name\\b"
-                     << "\\setTile\\b"
-                     << "\\setClimate\\b"
-                     << "\\change_map\\b";
+                     << "\\bexist_item\\b"
+                     << "\\brand\\b"
+                     << "\\bvariable\\b"
+                     << "\\bvariable_bigger\\b"
+                     << "\\bvariable_smaller\\b"
+                     << "\\bno_speak\\b"
+                     << "\\bplayer_class\\b"
+                     << "\\bquest\\b"
+                     << "\\bentity_variable\\b"
+                     << "\\bentity_dead\\b"
+                     << "\\badd_checkpoint\\b"
+                     << "\\bincrementVariable\\b"
+                     << "\\bspeak\\b"
+                     << "\\bstop_speak\\b"
+                     << "\\bspeak_choice\\b"
+                     << "\\bnewQuest\\b"
+                     << "\\bsetQuestName\\b"
+                     << "\\bsetQuestState\\b"
+                     << "\\bsetQuestPosition\\b"
+                     << "\\bstop_talk\\b"
+                     << "\\baddCash\\b"
+                     << "\\bheal\\b"
+                     << "\\bentity_variable\\b"
+                     << "\\bentity_name\\b"
+                     << "\\bentity_setState\\b"
+                     << "\\bentity_position\\b"
+                     << "\\bentity_goto\\b"
+                     << "\\bentity_state\\b"
+                     << "\\bsetTile\\b"
+                     << "\\bsetClimate\\b"
+                     << "\\bchange_map\\b";
      foreach (QString pattern, keywordPatterns2) {
          rule.pattern = QRegExp(pattern);
          rule.format = functionFormat;

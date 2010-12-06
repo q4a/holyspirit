@@ -46,7 +46,7 @@ public:
     void Charger(std::ifstream &fichier);
 
     void Sauvegarder(std::ostringstream &fichier);
-    void Sauvegarder_instruction(std::ostringstream &fichier , int no, int ident = 0);
+    void Sauvegarder_instruction(std::ostringstream &fichier , int no, int ident = 0, bool plus3 = false);
 
     void Sauvegarder(std::ofstream &fichier);
     void Sauvegarder_instruction(std::ofstream &fichier , int no, int ident = 0);

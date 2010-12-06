@@ -121,8 +121,8 @@ sf::Vector2f QSFMLCanvas::ConvertCoords(unsigned int x, unsigned int y, const Vi
     // First, convert from viewport coordinates to homogeneous coordinates
     Vector2f coords;
     IntRect viewport = GetViewport(view);
-    coords.x = -1.f + 2.f * (static_cast<int>(x) - viewport.Left) / viewport.GetSize().x;
-    coords.y =  1.f - 2.f * (static_cast<int>(y) - viewport.Top)  / viewport.GetSize().y;
+    coords.x = -1.f + 2.f * (static_cast<int>(x) - viewport.Left) / viewport.Width;
+    coords.y =  1.f - 2.f * (static_cast<int>(y) - viewport.Top)  / viewport.Height;
 
     // Then transform by the inverse of the view matrix
     return view.GetInverseMatrix().Transform(coords);

@@ -407,7 +407,7 @@ void Configuration::Sauvegarder()
         fichier7.close();
     }
 
-    std::fstream fichiera("configuration.conf", std::ios::in | std::ios::out | std::ios::trunc) ;
+  /*  std::fstream fichiera("configuration.conf", std::ios::in | std::ios::out | std::ios::trunc) ;
 
     if (fichiera)
     {
@@ -448,5 +448,5 @@ void Configuration::Sauvegarder()
         fichiera.close();
     }
     else
-        throw "Impossible de sauvegarder la configuration";
+        throw "Impossible de sauvegarder la configuration";*/
 }

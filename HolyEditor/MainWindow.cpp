@@ -1098,7 +1098,10 @@ void MainWindow::paintEvent(QPaintEvent*)
             }
             else
             {
-                int no = QInputDialog::getInteger(this, "Nombre", "ID du/des entités(s)");
+                int no = QInputDialog::getInteger(this, "Nombre", "ID du/des entités(s)", map->m_max_ID);
+
+                if(no > map->m_max_ID)
+                    map->m_max_ID = no;
 
                 for(int i = eventManager->getCasePointee().y - (int)(taillePinceau->value()*0.5) ; i < eventManager->getCasePointee().y + taillePinceau->value()*0.5 ; ++i)
                 for(int j = eventManager->getCasePointee().x - (int)(taillePinceau->value()*0.5) ; j < eventManager->getCasePointee().x + taillePinceau->value()*0.5 ; ++j)
@@ -1115,9 +1118,11 @@ void MainWindow::paintEvent(QPaintEvent*)
             }
         }
 
-        if(eventManager->getEvenement(sf::Mouse::Middle, "C"))
+        if(eventManager->getEvenement(sf::Mouse::Middle, "C")
+        || eventManager->getEvenement(sf::Key::A, "ET"))
         {
             eventManager->StopEvenement(sf::Mouse::Middle, "C");
+            eventManager->StopEvenement(sf::Key::A, "ET");
             {
                 int no = QInputDialog::getInteger(this, "Nombre", "Hauteur de la case");
 
@@ -1635,7 +1640,7 @@ void MainWindow::redo()
 void MainWindow::importerTileset()
 {
     QStringList  cheminList;
-    cheminList = QFileDialog::getOpenFileNames(this, "Ouvrir un tileset", "Data/Landscapes", "Tileset (*.ts.hs )");
+    cheminList = QFileDialog::getOpenFileNames(this, "Ouvrir un tileset", "Data/Graphics/Landscapes", "Tileset (*.ts.hs )");
 
     for (int j = 0; j < cheminList.size(); ++j)
         if (!cheminList.at(j).toStdString().empty())
@@ -1687,7 +1692,7 @@ void MainWindow::importerTileset()
 void MainWindow::importerHerbe()
 {
     QStringList  cheminList;
-    cheminList = QFileDialog::getOpenFileNames(this, "Ouvrir un tileset", "Data/Landscapes", "Tileset (*.ts.hs )");
+    cheminList = QFileDialog::getOpenFileNames(this, "Ouvrir un tileset", "Data/Graphics/Grass", "Tileset (*.ts.hs )");
 
     for (int j = 0; j < cheminList.size(); ++j)
         if (!cheminList.at(j).toStdString().empty())
@@ -1740,7 +1745,7 @@ void MainWindow::importerHerbe()
 void MainWindow::importerEntite()
 {
     QStringList  cheminList;
-    cheminList = QFileDialog::getOpenFileNames(this, "Ouvrir une entite", "Data/Entities", "Entite (*.char.hs )");
+    cheminList = QFileDialog::getOpenFileNames(this, "Ouvrir une entite", "Data/Entities/Resources", "Entite (*.char.hs )");
 
     for (int j = 0; j < cheminList.size(); ++j)
         if (!cheminList.at(j).toStdString().empty())

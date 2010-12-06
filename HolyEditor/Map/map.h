@@ -153,6 +153,8 @@ public:
 
     int m_entite_angle;
 
+    int m_max_ID;
+
     std::vector<std::string> m_climates;
 
 };

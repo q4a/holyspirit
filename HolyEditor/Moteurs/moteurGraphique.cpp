@@ -29,9 +29,9 @@ sf::FloatRect GetViewRect(const sf::View& view)
     sf::FloatRect temp;
 
     temp.Left   = view.GetCenter().x - view.GetSize().x * 0.5;
-    temp.Right  = view.GetCenter().x + view.GetSize().x * 0.5;
+    temp.Width  = view.GetSize().x;
     temp.Top    = view.GetCenter().y - view.GetSize().y * 0.5;
-    temp.Bottom = view.GetCenter().y + view.GetSize().y * 0.5;
+    temp.Height = view.GetSize().y;
 
     return temp;
 };
@@ -398,8 +398,10 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
         sprite_final = entite->m_sprite;
         sprite_final.Move(entite->m_decalage.x, entite->m_decalage.y);
         sprite_final.Scale(entite->m_scale.x*0.01,entite->m_scale.y*0.01);
-        (entite->m_scale.x < 0) ? sprite_final.FlipX(true) : sprite_final.FlipX(false);
-        (entite->m_scale.x < 0) ? sprite_final.FlipX(true) : sprite_final.FlipX(false);
+        (entite->m_scale.x < 0) ? sprite_final.FlipX(true), sprite_final.SetOrigin(sprite_final.GetSubRect().Width - sprite_final.GetOrigin().x, sprite_final.GetOrigin().y) : sprite_final.FlipX(false);
+        (entite->m_scale.y < 0) ? sprite_final.FlipY(true) : sprite_final.FlipY(false);
+
+
 
         sprite_final.Rotate(entite->m_rotation);
         sprite_final.SetColor(sf::Color(sprite_final.GetColor().r * entite->m_color.r / 255,
@@ -408,9 +410,9 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
                                         sprite_final.GetColor().a * entite->m_color.a / 255));
 
         if(sprite_final.GetPosition().x + sprite_final.GetSize().x - sprite_final.GetOrigin().x     >= GetViewRect(m_camera).Left
-        && sprite_final.GetPosition().x - sprite_final.GetOrigin().x                                    <  GetViewRect(m_camera).Right
+        && sprite_final.GetPosition().x - sprite_final.GetOrigin().x                                <  GetViewRect(m_camera).Left + GetViewRect(m_camera).Width
         && sprite_final.GetPosition().y + sprite_final.GetSize().y - sprite_final.GetOrigin().y     >= GetViewRect(m_camera).Top
-        && sprite_final.GetPosition().y - sprite_final.GetOrigin().y                                    <  GetViewRect(m_camera).Bottom)
+        && sprite_final.GetPosition().y - sprite_final.GetOrigin().y                                <  GetViewRect(m_camera).Top + GetViewRect(m_camera).Height)
             AjouterCommande(&sprite_final, entite->m_couche + entite->m_decalCouche, true);
 
         if(entite->m_shadow)
@@ -433,9 +435,9 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
             sprite.SetOrigin(sprite.GetOrigin().x, sprite.GetSize().y - sprite.GetOrigin().y);
 
             if(sprite.GetPosition().x + sprite.GetSize().x - sprite.GetOrigin().x     >= GetViewRect(m_camera).Left
-            && sprite.GetPosition().x - sprite.GetOrigin().x                          <  GetViewRect(m_camera).Right
+            && sprite.GetPosition().x - sprite.GetOrigin().x                          <  GetViewRect(m_camera).Left + GetViewRect(m_camera).Width
             && sprite.GetPosition().y + sprite.GetSize().y - sprite.GetOrigin().y     >= GetViewRect(m_camera).Top
-            && sprite.GetPosition().y - sprite.GetOrigin().y                          <  GetViewRect(m_camera).Bottom)
+            && sprite.GetPosition().y - sprite.GetOrigin().y                          <  GetViewRect(m_camera).Top + GetViewRect(m_camera).Height)
                 AjouterCommande(&sprite, 0, true);
         }
     }
@@ -505,8 +507,8 @@ void MoteurGraphique::AjouterTexte(std::string txt, coordonnee pos, int couche, 
         sf::Sprite temp2;
         temp2.SetImage(*getImage(0));
         temp2.SetPosition(pos.x-2, pos.y-2);
-        temp2.Resize(temp.GetRect().Right - temp.GetRect().Left + 4,
-                     temp.GetRect().Bottom - temp.GetRect().Top + 4);
+        temp2.Resize(temp.GetRect().Width + 4,
+                     temp.GetRect().Height + 4);
         temp2.SetColor(sf::Color(0,0,0,224));
         AjouterCommande(&temp2, couche, 0);
     }
@@ -516,14 +518,14 @@ void MoteurGraphique::AjouterTexteNonChevauchable(sf::Text* string, int couche, 
 {
     if (couche>=0&&couche<=20)
     {
-        for (int i=0;i<(int)m_textes[couche].size();i++)
+        /*for (int i=0;i<(int)m_textes[couche].size();i++)
         {
             if(string->GetRect().Right  > m_textes[couche][i].GetRect().Left
             && string->GetRect().Left   < m_textes[couche][i].GetRect().Right
             && string->GetRect().Bottom > m_textes[couche][i].GetRect().Top - 3
             && string->GetRect().Top    < m_textes[couche][i].GetRect().Bottom)
                 string->SetPosition(string->GetPosition().x, m_textes[couche][i].GetRect().Top - string->GetRect().Bottom + string->GetRect().Top - 5), i = -1;
-        }
+        }*/
 
         AjouterTexte(string, couche, titre);
     }

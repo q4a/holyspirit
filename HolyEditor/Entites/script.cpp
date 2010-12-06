@@ -14,7 +14,7 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along
 with this program; if not, write to the Free Software Foundation, Inc.,
-51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.*/
+51 Franklin Street, Fifth Floor, Boston, MA 02110301 USA.*/
 
 
 #include <fstream>
@@ -143,10 +143,13 @@ int Script::Lire(ifstream *fichier)
     return retour;
 }
 
-void Script::Sauvegarder_instruction(ostringstream &fichier , int no, int indent)
+void Script::Sauvegarder_instruction(ostringstream &fichier , int no, int indent, bool plus3)
 {
+    //if(no == -3 || no == -2 || no == -1 || !m_instructions[no].nom.empty())
     for(int i = 0 ; i < indent - (no == -3 || no == -2 || no == -1); ++i)
         fichier<<'\t';
+    if(plus3)
+        fichier<<"   ";
 
     if(no == -2)
         fichier<<"then"<<endl;
@@ -157,19 +160,27 @@ void Script::Sauvegarder_instruction(ostringstream &fichier , int no, int indent
         fichier<<m_instructions[no].nom<<" ";
         if(m_instructions[no].nom == "if" || m_instructions[no].nom == "main")
         {
+           // cout<<indent<<endl;
             int id = 0;
 
             if(m_instructions[no].nom == "main")
                 fichier<<endl,id = 1;
 
-            cout<<m_instructions[no].m_valeurs.size()<<endl;
+          //  cout<<m_instructions[no].m_valeurs.size()<<endl;
 
             for(unsigned i = 0 ; i < m_instructions[no].m_valeurs.size() && m_instructions[no].m_valeurs[i] != -1 ; ++i)
             {
-                if(m_instructions[no].m_valeurs[i] == -2)
-                    id = indent + 1;
+                if(m_instructions[no].nom == "main")
+                    id = 1;
+                else
+                {
+                    if(i != 0 && id == 0)
+                        id = indent;
+                    if(m_instructions[no].m_valeurs[i] == -2)
+                        id = indent + 1;
+                }
 
-                Sauvegarder_instruction(fichier ,m_instructions[no].m_valeurs[i],id);
+                Sauvegarder_instruction(fichier ,m_instructions[no].m_valeurs[i],id,(indent == id && m_instructions[no].nom == "if"));
             }
 
             for(int i = 0 ; i < indent; ++i)

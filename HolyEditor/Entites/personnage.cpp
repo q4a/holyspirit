@@ -333,8 +333,8 @@ void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,boo
 
                             m_entite_graphique.m_sprite.SetSubRect(IntRect(modele->m_tileset[m_etat][(int)(m_angle/45)].getPositionDuTile(0).x,
                                                        modele->m_tileset[m_etat][(int)(m_angle/45)].getPositionDuTile(0).y,
-                                                       modele->m_tileset[m_etat][(int)(m_angle/45)].getPositionDuTile(0).x+modele->m_tileset[m_etat][(int)(m_angle/45)].getPositionDuTile(0).w,
-                                                       modele->m_tileset[m_etat][(int)(m_angle/45)].getPositionDuTile(0).y+modele->m_tileset[m_etat][(int)(m_angle/45)].getPositionDuTile(0).h));
+                                                       modele->m_tileset[m_etat][(int)(m_angle/45)].getPositionDuTile(0).w,
+                                                       modele->m_tileset[m_etat][(int)(m_angle/45)].getPositionDuTile(0).h));
 
                             m_entite_graphique.m_sprite.FlipX(false);
 

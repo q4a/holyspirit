@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1257366924 source:e:\c++\holyspirit\holyeditor\main.cpp
+1257363324 source:e:\c++\holyspirit\holyeditor\main.cpp
 	"MainWindow.h"
 	"MainWindow.moc"
 	<QApplication>
@@ -12,7 +12,7 @@
 	"configuration.h"
 	"Map/map.h"
 
-1257073206 e:\c++\holyspirit\holyeditor\qsfmlcanvas.h
+1257069606 e:\c++\holyspirit\holyeditor\qsfmlcanvas.h
 	<SFML/Graphics.hpp>
 	<QWidget>
 	<QTimer>
@@ -256,13 +256,13 @@
 	<SFML/Graphics/Rect.hpp>
 	<string>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qwidget
+1235597758 c:\qt\4.5.0\include\qtgui\qwidget
 	"qwidget.h"
 
-1235601358 c:\qt\4.5.0\include\qtgui\qwidget.h
+1235597758 c:\qt\4.5.0\include\qtgui\qwidget.h
 	"../../src/gui/kernel/qwidget.h"
 
-1235601158 c:\qt\4.5.0\src\gui\kernel\qwidget.h
+1235597558 c:\qt\4.5.0\src\gui\kernel\qwidget.h
 	<QtGui/qwindowdefs.h>
 	<QtCore/qobject.h>
 	<QtGui/qpaintdevice.h>
@@ -277,66 +277,66 @@
 	<QtGui/qkeysequence.h>
 	<QtGui/qevent.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qwindowdefs.h
+1235597758 c:\qt\4.5.0\include\qtgui\qwindowdefs.h
 	"../../src/gui/kernel/qwindowdefs.h"
 
-1235601158 c:\qt\4.5.0\src\gui\kernel\qwindowdefs.h
+1235597558 c:\qt\4.5.0\src\gui\kernel\qwindowdefs.h
 	<QtCore/qobjectdefs.h>
 	<QtCore/qnamespace.h>
 	<QtGui/qmacdefines_mac.h>
 	<QtGui/qwindowdefs_win.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qobjectdefs.h
+1235597756 c:\qt\4.5.0\include\qtcore\qobjectdefs.h
 	"../../src/corelib/kernel/qobjectdefs.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\kernel\qobjectdefs.h
+1235597558 c:\qt\4.5.0\src\corelib\kernel\qobjectdefs.h
 	<QtCore/qnamespace.h>
 
-1235601354 c:\qt\4.5.0\include\qtcore\qnamespace.h
+1235597754 c:\qt\4.5.0\include\qtcore\qnamespace.h
 	"../../src/corelib/global/qnamespace.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\global\qnamespace.h
+1235597558 c:\qt\4.5.0\src\corelib\global\qnamespace.h
 	<QtCore/qglobal.h>
 
-1235601354 c:\qt\4.5.0\include\qtcore\qglobal.h
+1235597754 c:\qt\4.5.0\include\qtcore\qglobal.h
 	"../../src/corelib/global/qglobal.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\global\qglobal.h
+1235597558 c:\qt\4.5.0\src\corelib\global\qglobal.h
 	<stddef.h>
 	<QtCore/qconfig.h>
 	<AvailabilityMacros.h>
 	<QtCore/qfeatures.h>
 
-1235638424 c:\qt\4.5.0\include\qtcore\qconfig.h
+1235634824 c:\qt\4.5.0\include\qtcore\qconfig.h
 	"../../src/corelib/global/qconfig.h"
 
-1244367431 c:\qt\4.5.0\src\corelib\global\qconfig.h
+1244363831 c:\qt\4.5.0\src\corelib\global\qconfig.h
 
-1235601354 c:\qt\4.5.0\include\qtcore\qfeatures.h
+1235597754 c:\qt\4.5.0\include\qtcore\qfeatures.h
 	"../../src/corelib/global/qfeatures.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\global\qfeatures.h
+1235597558 c:\qt\4.5.0\src\corelib\global\qfeatures.h
 
-1235601358 c:\qt\4.5.0\include\qtgui\qwindowdefs_win.h
+1235597758 c:\qt\4.5.0\include\qtgui\qwindowdefs_win.h
 	"../../src/gui/kernel/qwindowdefs_win.h"
 
-1235601158 c:\qt\4.5.0\src\gui\kernel\qwindowdefs_win.h
+1235597558 c:\qt\4.5.0\src\gui\kernel\qwindowdefs_win.h
 	<QtCore/qglobal.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qobject.h
+1235597756 c:\qt\4.5.0\include\qtcore\qobject.h
 	"../../src/corelib/kernel/qobject.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\kernel\qobject.h
+1235597558 c:\qt\4.5.0\src\corelib\kernel\qobject.h
 	<QtCore/qobjectdefs.h>
 	<QtCore/qstring.h>
 	<QtCore/qbytearray.h>
 	<QtCore/qlist.h>
 	<QtCore/qcoreevent.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qstring.h
+1235597756 c:\qt\4.5.0\include\qtcore\qstring.h
 	"../../src/corelib/tools/qstring.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\tools\qstring.h
+1235597558 c:\qt\4.5.0\src\corelib\tools\qstring.h
 	<QtCore/qchar.h>
 	<QtCore/qbytearray.h>
 	<QtCore/qatomic.h>
@@ -346,45 +346,45 @@
 	<string>
 	<stdarg.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qchar.h
+1235597756 c:\qt\4.5.0\include\qtcore\qchar.h
 	"../../src/corelib/tools/qchar.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\tools\qchar.h
+1235597558 c:\qt\4.5.0\src\corelib\tools\qchar.h
 	<QtCore/qglobal.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qbytearray.h
+1235597756 c:\qt\4.5.0\include\qtcore\qbytearray.h
 	"../../src/corelib/tools/qbytearray.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\tools\qbytearray.h
+1235597558 c:\qt\4.5.0\src\corelib\tools\qbytearray.h
 	<QtCore/qglobal.h>
 	<QtCore/qatomic.h>
 	<string.h>
 	<stdarg.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qatomic.h
+1235597756 c:\qt\4.5.0\include\qtcore\qatomic.h
 	"../../src/corelib/thread/qatomic.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\thread\qatomic.h
+1235597558 c:\qt\4.5.0\src\corelib\thread\qatomic.h
 	<QtCore/qglobal.h>
 	<QtCore/qbasicatomic.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qbasicatomic.h
+1235597756 c:\qt\4.5.0\include\qtcore\qbasicatomic.h
 	"../../src/corelib/thread/qbasicatomic.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\thread\qbasicatomic.h
+1235597558 c:\qt\4.5.0\src\corelib\thread\qbasicatomic.h
 	<QtCore/qglobal.h>
 	<QtCore/qatomic_bootstrap.h>
 	<QtCore/qatomic_arch.h>
 
-1235601354 c:\qt\4.5.0\include\qtcore\qatomic_bootstrap.h
+1235597754 c:\qt\4.5.0\include\qtcore\qatomic_bootstrap.h
 	"../../src/corelib/arch/qatomic_bootstrap.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\arch\qatomic_bootstrap.h
+1235597558 c:\qt\4.5.0\src\corelib\arch\qatomic_bootstrap.h
 
-1235601354 c:\qt\4.5.0\include\qtcore\qatomic_arch.h
+1235597754 c:\qt\4.5.0\include\qtcore\qatomic_arch.h
 	"../../src/corelib/arch/qatomic_arch.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\arch\qatomic_arch.h
+1235597558 c:\qt\4.5.0\src\corelib\arch\qatomic_arch.h
 	"QtCore/qglobal.h"
 	"QtCore/qatomic_alpha.h"
 	"QtCore/qatomic_arm.h"
@@ -406,112 +406,112 @@
 	"QtCore/qatomic_sh.h"
 	"QtCore/qatomic_sh4a.h"
 
-1235601354 c:\qt\4.5.0\include\qtcore\qatomic_alpha.h
+1235597754 c:\qt\4.5.0\include\qtcore\qatomic_alpha.h
 	"../../src/corelib/arch/qatomic_alpha.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\arch\qatomic_alpha.h
+1235597558 c:\qt\4.5.0\src\corelib\arch\qatomic_alpha.h
 
-1235601354 c:\qt\4.5.0\include\qtcore\qatomic_arm.h
+1235597754 c:\qt\4.5.0\include\qtcore\qatomic_arm.h
 	"../../src/corelib/arch/qatomic_arm.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\arch\qatomic_arm.h
+1235597558 c:\qt\4.5.0\src\corelib\arch\qatomic_arm.h
 
-1235601354 c:\qt\4.5.0\include\qtcore\qatomic_armv6.h
+1235597754 c:\qt\4.5.0\include\qtcore\qatomic_armv6.h
 	"../../src/corelib/arch/qatomic_armv6.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\arch\qatomic_armv6.h
+1235597558 c:\qt\4.5.0\src\corelib\arch\qatomic_armv6.h
 
-1235601354 c:\qt\4.5.0\include\qtcore\qatomic_avr32.h
+1235597754 c:\qt\4.5.0\include\qtcore\qatomic_avr32.h
 	"../../src/corelib/arch/qatomic_avr32.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\arch\qatomic_avr32.h
+1235597558 c:\qt\4.5.0\src\corelib\arch\qatomic_avr32.h
 
-1235601354 c:\qt\4.5.0\include\qtcore\qatomic_bfin.h
+1235597754 c:\qt\4.5.0\include\qtcore\qatomic_bfin.h
 	"../../src/corelib/arch/qatomic_bfin.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\arch\qatomic_bfin.h
+1235597558 c:\qt\4.5.0\src\corelib\arch\qatomic_bfin.h
 	<asm/fixed_code.h>
 
-1235601354 c:\qt\4.5.0\include\qtcore\qatomic_generic.h
+1235597754 c:\qt\4.5.0\include\qtcore\qatomic_generic.h
 	"../../src/corelib/arch/qatomic_generic.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\arch\qatomic_generic.h
+1235597558 c:\qt\4.5.0\src\corelib\arch\qatomic_generic.h
 
-1235601354 c:\qt\4.5.0\include\qtcore\qatomic_i386.h
+1235597754 c:\qt\4.5.0\include\qtcore\qatomic_i386.h
 	"../../src/corelib/arch/qatomic_i386.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\arch\qatomic_i386.h
+1235597558 c:\qt\4.5.0\src\corelib\arch\qatomic_i386.h
 
-1235601354 c:\qt\4.5.0\include\qtcore\qatomic_ia64.h
+1235597754 c:\qt\4.5.0\include\qtcore\qatomic_ia64.h
 	"../../src/corelib/arch/qatomic_ia64.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\arch\qatomic_ia64.h
+1235597558 c:\qt\4.5.0\src\corelib\arch\qatomic_ia64.h
 	<ia64intrin.h>
 	<ia64/sys/inline.h>
 
-1235601354 c:\qt\4.5.0\include\qtcore\qatomic_mips.h
+1235597754 c:\qt\4.5.0\include\qtcore\qatomic_mips.h
 	"../../src/corelib/arch/qatomic_mips.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\arch\qatomic_mips.h
+1235597558 c:\qt\4.5.0\src\corelib\arch\qatomic_mips.h
 
-1235601354 c:\qt\4.5.0\include\qtcore\qatomic_parisc.h
+1235597754 c:\qt\4.5.0\include\qtcore\qatomic_parisc.h
 	"../../src/corelib/arch/qatomic_parisc.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\arch\qatomic_parisc.h
+1235597558 c:\qt\4.5.0\src\corelib\arch\qatomic_parisc.h
 
-1235601354 c:\qt\4.5.0\include\qtcore\qatomic_powerpc.h
+1235597754 c:\qt\4.5.0\include\qtcore\qatomic_powerpc.h
 	"../../src/corelib/arch/qatomic_powerpc.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\arch\qatomic_powerpc.h
+1235597558 c:\qt\4.5.0\src\corelib\arch\qatomic_powerpc.h
 
-1235601354 c:\qt\4.5.0\include\qtcore\qatomic_s390.h
+1235597754 c:\qt\4.5.0\include\qtcore\qatomic_s390.h
 	"../../src/corelib/arch/qatomic_s390.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\arch\qatomic_s390.h
+1235597558 c:\qt\4.5.0\src\corelib\arch\qatomic_s390.h
 
-1235601354 c:\qt\4.5.0\include\qtcore\qatomic_sparc.h
+1235597754 c:\qt\4.5.0\include\qtcore\qatomic_sparc.h
 	"../../src/corelib/arch/qatomic_sparc.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\arch\qatomic_sparc.h
+1235597558 c:\qt\4.5.0\src\corelib\arch\qatomic_sparc.h
 
-1235601354 c:\qt\4.5.0\include\qtcore\qatomic_windows.h
+1235597754 c:\qt\4.5.0\include\qtcore\qatomic_windows.h
 	"../../src/corelib/arch/qatomic_windows.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\arch\qatomic_windows.h
+1235597558 c:\qt\4.5.0\src\corelib\arch\qatomic_windows.h
 	<winbase.h>
 
-1235601354 c:\qt\4.5.0\include\qtcore\qatomic_windowsce.h
+1235597754 c:\qt\4.5.0\include\qtcore\qatomic_windowsce.h
 	"../../src/corelib/arch/qatomic_windowsce.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\arch\qatomic_windowsce.h
+1235597558 c:\qt\4.5.0\src\corelib\arch\qatomic_windowsce.h
 	<QtCore/qglobal.h>
 	"QtCore/qatomic_windows.h"
 
-1235601354 c:\qt\4.5.0\include\qtcore\qatomic_x86_64.h
+1235597754 c:\qt\4.5.0\include\qtcore\qatomic_x86_64.h
 	"../../src/corelib/arch/qatomic_x86_64.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\arch\qatomic_x86_64.h
+1235597558 c:\qt\4.5.0\src\corelib\arch\qatomic_x86_64.h
 
-1235601354 c:\qt\4.5.0\include\qtcore\qatomic_sh.h
+1235597754 c:\qt\4.5.0\include\qtcore\qatomic_sh.h
 	"../../src/corelib/arch/qatomic_sh.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\arch\qatomic_sh.h
+1235597558 c:\qt\4.5.0\src\corelib\arch\qatomic_sh.h
 
-1235601354 c:\qt\4.5.0\include\qtcore\qatomic_sh4a.h
+1235597754 c:\qt\4.5.0\include\qtcore\qatomic_sh4a.h
 	"../../src/corelib/arch/qatomic_sh4a.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\arch\qatomic_sh4a.h
+1235597558 c:\qt\4.5.0\src\corelib\arch\qatomic_sh4a.h
 
-1235601360 c:\qt\4.5.0\include\qt3support\q3cstring.h
+1235597760 c:\qt\4.5.0\include\qt3support\q3cstring.h
 	"../../src/qt3support/tools/q3cstring.h"
 
-1235601160 c:\qt\4.5.0\src\qt3support\tools\q3cstring.h
+1235597560 c:\qt\4.5.0\src\qt3support\tools\q3cstring.h
 	<QtCore/qbytearray.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qlist.h
+1235597756 c:\qt\4.5.0\include\qtcore\qlist.h
 	"../../src/corelib/tools/qlist.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\tools\qlist.h
+1235597558 c:\qt\4.5.0\src\corelib\tools\qlist.h
 	<QtCore/qiterator.h>
 	<QtCore/qatomic.h>
 	<QtCore/qalgorithms.h>
@@ -519,77 +519,77 @@
 	<list>
 	<new>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qiterator.h
+1235597756 c:\qt\4.5.0\include\qtcore\qiterator.h
 	"../../src/corelib/tools/qiterator.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\tools\qiterator.h
+1235597558 c:\qt\4.5.0\src\corelib\tools\qiterator.h
 	<QtCore/qglobal.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qalgorithms.h
+1235597756 c:\qt\4.5.0\include\qtcore\qalgorithms.h
 	"../../src/corelib/tools/qalgorithms.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\tools\qalgorithms.h
+1235597558 c:\qt\4.5.0\src\corelib\tools\qalgorithms.h
 	<QtCore/qglobal.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qcoreevent.h
+1235597756 c:\qt\4.5.0\include\qtcore\qcoreevent.h
 	"../../src/corelib/kernel/qcoreevent.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\kernel\qcoreevent.h
+1235597558 c:\qt\4.5.0\src\corelib\kernel\qcoreevent.h
 	<QtCore/qnamespace.h>
 	<QtCore/qbytearray.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qpaintdevice.h
+1235597758 c:\qt\4.5.0\include\qtgui\qpaintdevice.h
 	"../../src/gui/painting/qpaintdevice.h"
 
-1235601158 c:\qt\4.5.0\src\gui\painting\qpaintdevice.h
+1235597558 c:\qt\4.5.0\src\gui\painting\qpaintdevice.h
 	<QtGui/qwindowdefs.h>
 	<QtCore/qrect.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qrect.h
+1235597756 c:\qt\4.5.0\include\qtcore\qrect.h
 	"../../src/corelib/tools/qrect.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\tools\qrect.h
+1235597558 c:\qt\4.5.0\src\corelib\tools\qrect.h
 	<QtCore/qsize.h>
 	<QtCore/qpoint.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qsize.h
+1235597756 c:\qt\4.5.0\include\qtcore\qsize.h
 	"../../src/corelib/tools/qsize.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\tools\qsize.h
+1235597558 c:\qt\4.5.0\src\corelib\tools\qsize.h
 	<QtCore/qnamespace.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qpoint.h
+1235597756 c:\qt\4.5.0\include\qtcore\qpoint.h
 	"../../src/corelib/tools/qpoint.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\tools\qpoint.h
+1235597558 c:\qt\4.5.0\src\corelib\tools\qpoint.h
 	<QtCore/qnamespace.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qpalette.h
+1235597758 c:\qt\4.5.0\include\qtgui\qpalette.h
 	"../../src/gui/kernel/qpalette.h"
 
-1235601158 c:\qt\4.5.0\src\gui\kernel\qpalette.h
+1235597558 c:\qt\4.5.0\src\gui\kernel\qpalette.h
 	<QtGui/qwindowdefs.h>
 	<QtGui/qcolor.h>
 	<QtGui/qbrush.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qcolor.h
+1235597758 c:\qt\4.5.0\include\qtgui\qcolor.h
 	"../../src/gui/painting/qcolor.h"
 
-1235601158 c:\qt\4.5.0\src\gui\painting\qcolor.h
+1235597558 c:\qt\4.5.0\src\gui\painting\qcolor.h
 	<QtGui/qrgb.h>
 	<QtCore/qnamespace.h>
 	<QtCore/qstringlist.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qrgb.h
+1235597758 c:\qt\4.5.0\include\qtgui\qrgb.h
 	"../../src/gui/painting/qrgb.h"
 
-1235601158 c:\qt\4.5.0\src\gui\painting\qrgb.h
+1235597558 c:\qt\4.5.0\src\gui\painting\qrgb.h
 	<QtCore/qglobal.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qstringlist.h
+1235597756 c:\qt\4.5.0\include\qtcore\qstringlist.h
 	"../../src/corelib/tools/qstringlist.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\tools\qstringlist.h
+1235597558 c:\qt\4.5.0\src\corelib\tools\qstringlist.h
 	<QtCore/qalgorithms.h>
 	<QtCore/qdatastream.h>
 	<QtCore/qlist.h>
@@ -598,38 +598,38 @@
 	<QtCore/qstringmatcher.h>
 	<Qt3Support/q3valuelist.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qdatastream.h
+1235597756 c:\qt\4.5.0\include\qtcore\qdatastream.h
 	"../../src/corelib/io/qdatastream.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\io\qdatastream.h
+1235597558 c:\qt\4.5.0\src\corelib\io\qdatastream.h
 	<QtCore/qiodevice.h>
 	<QtCore/qglobal.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qiodevice.h
+1235597756 c:\qt\4.5.0\include\qtcore\qiodevice.h
 	"../../src/corelib/io/qiodevice.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\io\qiodevice.h
+1235597558 c:\qt\4.5.0\src\corelib\io\qiodevice.h
 	<QtCore/qobject.h>
 	<QtCore/qobjectdefs.h>
 	<QtCore/qstring.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qregexp.h
+1235597756 c:\qt\4.5.0\include\qtcore\qregexp.h
 	"../../src/corelib/tools/qregexp.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\tools\qregexp.h
+1235597558 c:\qt\4.5.0\src\corelib\tools\qregexp.h
 	<QtCore/qstring.h>
 	<new>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qstringmatcher.h
+1235597756 c:\qt\4.5.0\include\qtcore\qstringmatcher.h
 	"../../src/corelib/tools/qstringmatcher.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\tools\qstringmatcher.h
+1235597558 c:\qt\4.5.0\src\corelib\tools\qstringmatcher.h
 	<QtCore/qstring.h>
 
-1235601360 c:\qt\4.5.0\include\qt3support\q3valuelist.h
+1235597760 c:\qt\4.5.0\include\qt3support\q3valuelist.h
 	"../../src/qt3support/tools/q3valuelist.h"
 
-1235601160 c:\qt\4.5.0\src\qt3support\tools\q3valuelist.h
+1235597560 c:\qt\4.5.0\src\qt3support\tools\q3valuelist.h
 	<QtCore/qalgorithms.h>
 	<QtCore/qdatastream.h>
 	<QtCore/qlinkedlist.h>
@@ -637,19 +637,19 @@
 	<iterator>
 	<list>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qlinkedlist.h
+1235597756 c:\qt\4.5.0\include\qtcore\qlinkedlist.h
 	"../../src/corelib/tools/qlinkedlist.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\tools\qlinkedlist.h
+1235597558 c:\qt\4.5.0\src\corelib\tools\qlinkedlist.h
 	<QtCore/qiterator.h>
 	<QtCore/qatomic.h>
 	<iterator>
 	<list>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qbrush.h
+1235597758 c:\qt\4.5.0\include\qtgui\qbrush.h
 	"../../src/gui/painting/qbrush.h"
 
-1235601158 c:\qt\4.5.0\src\gui\painting\qbrush.h
+1235597558 c:\qt\4.5.0\src\gui\painting\qbrush.h
 	<QtCore/qpair.h>
 	<QtCore/qpoint.h>
 	<QtCore/qvector.h>
@@ -659,16 +659,16 @@
 	<QtGui/qimage.h>
 	<QtGui/qpixmap.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qpair.h
+1235597756 c:\qt\4.5.0\include\qtcore\qpair.h
 	"../../src/corelib/tools/qpair.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\tools\qpair.h
+1235597558 c:\qt\4.5.0\src\corelib\tools\qpair.h
 	<QtCore/qdatastream.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qvector.h
+1235597756 c:\qt\4.5.0\include\qtcore\qvector.h
 	"../../src/corelib/tools/qvector.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\tools\qvector.h
+1235597558 c:\qt\4.5.0\src\corelib\tools\qvector.h
 	<QtCore/qiterator.h>
 	<QtCore/qatomic.h>
 	<QtCore/qalgorithms.h>
@@ -680,16 +680,16 @@
 	<QtCore/QPointF>
 	<QtCore/QPoint>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qpointf
+1235597756 c:\qt\4.5.0\include\qtcore\qpointf
 	"qpoint.h"
 
-1235601356 c:\qt\4.5.0\include\qtcore\qpoint
+1235597756 c:\qt\4.5.0\include\qtcore\qpoint
 	"qpoint.h"
 
-1235601358 c:\qt\4.5.0\include\qtgui\qmatrix.h
+1235597758 c:\qt\4.5.0\include\qtgui\qmatrix.h
 	"../../src/gui/painting/qmatrix.h"
 
-1235601158 c:\qt\4.5.0\src\gui\painting\qmatrix.h
+1235597558 c:\qt\4.5.0\src\gui\painting\qmatrix.h
 	<QtGui/qpolygon.h>
 	<QtGui/qregion.h>
 	<QtGui/qwindowdefs.h>
@@ -698,39 +698,39 @@
 	<QtCore/qrect.h>
 	<QtGui/qwmatrix.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qpolygon.h
+1235597758 c:\qt\4.5.0\include\qtgui\qpolygon.h
 	"../../src/gui/painting/qpolygon.h"
 
-1235601158 c:\qt\4.5.0\src\gui\painting\qpolygon.h
+1235597558 c:\qt\4.5.0\src\gui\painting\qpolygon.h
 	<QtCore/qvector.h>
 	<QtCore/qpoint.h>
 	<QtCore/qrect.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qregion.h
+1235597758 c:\qt\4.5.0\include\qtgui\qregion.h
 	"../../src/gui/painting/qregion.h"
 
-1235601158 c:\qt\4.5.0\src\gui\painting\qregion.h
+1235597558 c:\qt\4.5.0\src\gui\painting\qregion.h
 	<QtCore/qatomic.h>
 	<QtCore/qrect.h>
 	<QtGui/qwindowdefs.h>
 	<QtCore/qdatastream.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qline.h
+1235597756 c:\qt\4.5.0\include\qtcore\qline.h
 	"../../src/corelib/tools/qline.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\tools\qline.h
+1235597558 c:\qt\4.5.0\src\corelib\tools\qline.h
 	<QtCore/qpoint.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qwmatrix.h
+1235597758 c:\qt\4.5.0\include\qtgui\qwmatrix.h
 	"../../src/gui/painting/qwmatrix.h"
 
-1235601158 c:\qt\4.5.0\src\gui\painting\qwmatrix.h
+1235597558 c:\qt\4.5.0\src\gui\painting\qwmatrix.h
 	<QtGui/qmatrix.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qtransform.h
+1235597758 c:\qt\4.5.0\include\qtgui\qtransform.h
 	"../../src/gui/painting/qtransform.h"
 
-1235601158 c:\qt\4.5.0\src\gui\painting\qtransform.h
+1235597558 c:\qt\4.5.0\src\gui\painting\qtransform.h
 	<QtGui/qmatrix.h>
 	<QtGui/qpainterpath.h>
 	<QtGui/qpolygon.h>
@@ -740,20 +740,20 @@
 	<QtCore/qpoint.h>
 	<QtCore/qrect.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qpainterpath.h
+1235597758 c:\qt\4.5.0\include\qtgui\qpainterpath.h
 	"../../src/gui/painting/qpainterpath.h"
 
-1235601158 c:\qt\4.5.0\src\gui\painting\qpainterpath.h
+1235597558 c:\qt\4.5.0\src\gui\painting\qpainterpath.h
 	<QtGui/qmatrix.h>
 	<QtCore/qglobal.h>
 	<QtCore/qrect.h>
 	<QtCore/qline.h>
 	<QtCore/qvector.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qimage.h
+1235597758 c:\qt\4.5.0\include\qtgui\qimage.h
 	"../../src/gui/image/qimage.h"
 
-1235601158 c:\qt\4.5.0\src\gui\image\qimage.h
+1235597558 c:\qt\4.5.0\src\gui\image\qimage.h
 	<QtGui/qtransform.h>
 	<QtGui/qpaintdevice.h>
 	<QtGui/qrgb.h>
@@ -761,10 +761,10 @@
 	<QtCore/qrect.h>
 	<QtCore/qstring.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qpixmap.h
+1235597758 c:\qt\4.5.0\include\qtgui\qpixmap.h
 	"../../src/gui/image/qpixmap.h"
 
-1235601158 c:\qt\4.5.0\src\gui\image\qpixmap.h
+1235597558 c:\qt\4.5.0\src\gui\image\qpixmap.h
 	<QtGui/qpaintdevice.h>
 	<QtGui/qcolor.h>
 	<QtCore/qnamespace.h>
@@ -772,50 +772,50 @@
 	<QtGui/qimage.h>
 	<QtGui/qtransform.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qfont.h
+1235597758 c:\qt\4.5.0\include\qtgui\qfont.h
 	"../../src/gui/text/qfont.h"
 
-1235601160 c:\qt\4.5.0\src\gui\text\qfont.h
+1235597560 c:\qt\4.5.0\src\gui\text\qfont.h
 	<QtGui/qwindowdefs.h>
 	<QtCore/qstring.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qfontmetrics.h
+1235597758 c:\qt\4.5.0\include\qtgui\qfontmetrics.h
 	"../../src/gui/text/qfontmetrics.h"
 
-1235601160 c:\qt\4.5.0\src\gui\text\qfontmetrics.h
+1235597560 c:\qt\4.5.0\src\gui\text\qfontmetrics.h
 	<QtGui/qfont.h>
 	<QtCore/qrect.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qfontinfo.h
+1235597758 c:\qt\4.5.0\include\qtgui\qfontinfo.h
 	"../../src/gui/text/qfontinfo.h"
 
-1235601160 c:\qt\4.5.0\src\gui\text\qfontinfo.h
+1235597560 c:\qt\4.5.0\src\gui\text\qfontinfo.h
 	<QtGui/qfont.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qsizepolicy.h
+1235597758 c:\qt\4.5.0\include\qtgui\qsizepolicy.h
 	"../../src/gui/kernel/qsizepolicy.h"
 
-1235601158 c:\qt\4.5.0\src\gui\kernel\qsizepolicy.h
+1235597558 c:\qt\4.5.0\src\gui\kernel\qsizepolicy.h
 	<QtCore/qobject.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qcursor.h
+1235597758 c:\qt\4.5.0\include\qtgui\qcursor.h
 	"../../src/gui/kernel/qcursor.h"
 
-1235601158 c:\qt\4.5.0\src\gui\kernel\qcursor.h
+1235597558 c:\qt\4.5.0\src\gui\kernel\qcursor.h
 	<QtCore/qpoint.h>
 	<QtGui/qwindowdefs.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qkeysequence.h
+1235597758 c:\qt\4.5.0\include\qtgui\qkeysequence.h
 	"../../src/gui/kernel/qkeysequence.h"
 
-1235601158 c:\qt\4.5.0\src\gui\kernel\qkeysequence.h
+1235597558 c:\qt\4.5.0\src\gui\kernel\qkeysequence.h
 	<QtCore/qnamespace.h>
 	<QtCore/qstring.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qevent.h
+1235597758 c:\qt\4.5.0\include\qtgui\qevent.h
 	"../../src/gui/kernel/qevent.h"
 
-1235601158 c:\qt\4.5.0\src\gui\kernel\qevent.h
+1235597558 c:\qt\4.5.0\src\gui\kernel\qevent.h
 	<QtGui/qwindowdefs.h>
 	<QtCore/qobject.h>
 	<QtGui/qregion.h>
@@ -827,24 +827,24 @@
 	<QtGui/qdrag.h>
 	<QtCore/qvariant.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qmime.h
+1235597758 c:\qt\4.5.0\include\qtgui\qmime.h
 	"../../src/gui/kernel/qmime.h"
 
-1235601158 c:\qt\4.5.0\src\gui\kernel\qmime.h
+1235597558 c:\qt\4.5.0\src\gui\kernel\qmime.h
 	<QtCore/qmimedata.h>
 	<QtCore/qvariant.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qmimedata.h
+1235597756 c:\qt\4.5.0\include\qtcore\qmimedata.h
 	"../../src/corelib/kernel/qmimedata.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\kernel\qmimedata.h
+1235597558 c:\qt\4.5.0\src\corelib\kernel\qmimedata.h
 	<QtCore/qvariant.h>
 	<QtCore/qobject.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qvariant.h
+1235597756 c:\qt\4.5.0\include\qtcore\qvariant.h
 	"../../src/corelib/kernel/qvariant.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\kernel\qvariant.h
+1235597558 c:\qt\4.5.0\src\corelib\kernel\qvariant.h
 	<QtCore/qatomic.h>
 	<QtCore/qbytearray.h>
 	<QtCore/qlist.h>
@@ -853,63 +853,63 @@
 	<QtCore/qhash.h>
 	<QtCore/qstring.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qmetatype.h
+1235597756 c:\qt\4.5.0\include\qtcore\qmetatype.h
 	"../../src/corelib/kernel/qmetatype.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\kernel\qmetatype.h
+1235597558 c:\qt\4.5.0\src\corelib\kernel\qmetatype.h
 	<QtCore/qglobal.h>
 	<QtCore/qatomic.h>
 	<QtCore/qdatastream.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qmap.h
+1235597756 c:\qt\4.5.0\include\qtcore\qmap.h
 	"../../src/corelib/tools/qmap.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\tools\qmap.h
+1235597558 c:\qt\4.5.0\src\corelib\tools\qmap.h
 	<QtCore/qatomic.h>
 	<QtCore/qiterator.h>
 	<QtCore/qlist.h>
 	<map>
 	<new>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qhash.h
+1235597756 c:\qt\4.5.0\include\qtcore\qhash.h
 	"../../src/corelib/tools/qhash.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\tools\qhash.h
+1235597558 c:\qt\4.5.0\src\corelib\tools\qhash.h
 	<QtCore/qatomic.h>
 	<QtCore/qchar.h>
 	<QtCore/qiterator.h>
 	<QtCore/qlist.h>
 	<QtCore/qpair.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qdrag.h
+1235597758 c:\qt\4.5.0\include\qtgui\qdrag.h
 	"../../src/gui/kernel/qdrag.h"
 
-1235601158 c:\qt\4.5.0\src\gui\kernel\qdrag.h
+1235597558 c:\qt\4.5.0\src\gui\kernel\qdrag.h
 	<QtCore/qobject.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qtimer
+1235597756 c:\qt\4.5.0\include\qtcore\qtimer
 	"qtimer.h"
 
-1235601356 c:\qt\4.5.0\include\qtcore\qtimer.h
+1235597756 c:\qt\4.5.0\include\qtcore\qtimer.h
 	"../../src/corelib/kernel/qtimer.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\kernel\qtimer.h
+1235597558 c:\qt\4.5.0\src\corelib\kernel\qtimer.h
 	<QtCore/qbasictimer.h>
 	<QtCore/qobject.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qbasictimer.h
+1235597756 c:\qt\4.5.0\include\qtcore\qbasictimer.h
 	"../../src/corelib/kernel/qbasictimer.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\kernel\qbasictimer.h
+1235597558 c:\qt\4.5.0\src\corelib\kernel\qbasictimer.h
 	<QtCore/qglobal.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qapplication
+1235597758 c:\qt\4.5.0\include\qtgui\qapplication
 	"qapplication.h"
 
-1235601358 c:\qt\4.5.0\include\qtgui\qapplication.h
+1235597758 c:\qt\4.5.0\include\qtgui\qapplication.h
 	"../../src/gui/kernel/qapplication.h"
 
-1235601158 c:\qt\4.5.0\src\gui\kernel\qapplication.h
+1235597558 c:\qt\4.5.0\src\gui\kernel\qapplication.h
 	<QtCore/qcoreapplication.h>
 	<QtGui/qwindowdefs.h>
 	<QtCore/qpoint.h>
@@ -921,42 +921,42 @@
 	<QtGui/qrgb.h>
 	<QtGui/qtransportauth_qws.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qcoreapplication.h
+1235597756 c:\qt\4.5.0\include\qtcore\qcoreapplication.h
 	"../../src/corelib/kernel/qcoreapplication.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\kernel\qcoreapplication.h
+1235597558 c:\qt\4.5.0\src\corelib\kernel\qcoreapplication.h
 	<QtCore/qobject.h>
 	<QtCore/qcoreevent.h>
 	<QtCore/qeventloop.h>
 	<QtCore/qstringlist.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qeventloop.h
+1235597756 c:\qt\4.5.0\include\qtcore\qeventloop.h
 	"../../src/corelib/kernel/qeventloop.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\kernel\qeventloop.h
+1235597558 c:\qt\4.5.0\src\corelib\kernel\qeventloop.h
 	<QtCore/qobject.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qdesktopwidget.h
+1235597758 c:\qt\4.5.0\include\qtgui\qdesktopwidget.h
 	"../../src/gui/kernel/qdesktopwidget.h"
 
-1235601158 c:\qt\4.5.0\src\gui\kernel\qdesktopwidget.h
+1235597558 c:\qt\4.5.0\src\gui\kernel\qdesktopwidget.h
 	<QtGui/qwidget.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qvboxlayout
+1235597758 c:\qt\4.5.0\include\qtgui\qvboxlayout
 	"qboxlayout.h"
 
-1235601358 c:\qt\4.5.0\include\qtgui\qboxlayout.h
+1235597758 c:\qt\4.5.0\include\qtgui\qboxlayout.h
 	"../../src/gui/kernel/qboxlayout.h"
 
-1235601158 c:\qt\4.5.0\src\gui\kernel\qboxlayout.h
+1235597558 c:\qt\4.5.0\src\gui\kernel\qboxlayout.h
 	<QtGui/qlayout.h>
 	<QtGui/qwidget.h>
 	<limits.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qlayout.h
+1235597758 c:\qt\4.5.0\include\qtgui\qlayout.h
 	"../../src/gui/kernel/qlayout.h"
 
-1235601158 c:\qt\4.5.0\src\gui\kernel\qlayout.h
+1235597558 c:\qt\4.5.0\src\gui\kernel\qlayout.h
 	<QtCore/qobject.h>
 	<QtGui/qlayoutitem.h>
 	<QtGui/qsizepolicy.h>
@@ -965,50 +965,50 @@
 	<QtGui/qboxlayout.h>
 	<QtGui/qgridlayout.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qlayoutitem.h
+1235597758 c:\qt\4.5.0\include\qtgui\qlayoutitem.h
 	"../../src/gui/kernel/qlayoutitem.h"
 
-1235601158 c:\qt\4.5.0\src\gui\kernel\qlayoutitem.h
+1235597558 c:\qt\4.5.0\src\gui\kernel\qlayoutitem.h
 	<QtGui/qsizepolicy.h>
 	<QtCore/qrect.h>
 	<limits.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qgridlayout.h
+1235597758 c:\qt\4.5.0\include\qtgui\qgridlayout.h
 	"../../src/gui/kernel/qgridlayout.h"
 
-1235601158 c:\qt\4.5.0\src\gui\kernel\qgridlayout.h
+1235597558 c:\qt\4.5.0\src\gui\kernel\qgridlayout.h
 	<QtGui/qlayout.h>
 	<QtGui/qwidget.h>
 	<limits.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qframe
+1235597758 c:\qt\4.5.0\include\qtgui\qframe
 	"qframe.h"
 
-1235601358 c:\qt\4.5.0\include\qtgui\qframe.h
+1235597758 c:\qt\4.5.0\include\qtgui\qframe.h
 	"../../src/gui/widgets/qframe.h"
 
-1235601160 c:\qt\4.5.0\src\gui\widgets\qframe.h
+1235597560 c:\qt\4.5.0\src\gui\widgets\qframe.h
 	<QtGui/qwidget.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qlabel
+1235597758 c:\qt\4.5.0\include\qtgui\qlabel
 	"qlabel.h"
 
-1235601358 c:\qt\4.5.0\include\qtgui\qlabel.h
+1235597758 c:\qt\4.5.0\include\qtgui\qlabel.h
 	"../../src/gui/widgets/qlabel.h"
 
-1235601160 c:\qt\4.5.0\src\gui\widgets\qlabel.h
+1235597560 c:\qt\4.5.0\src\gui\widgets\qlabel.h
 	<QtGui/qframe.h>
 
-1257073178 source:e:\c++\holyspirit\holyeditor\qsfmlcanvas.cpp
+1291028763 source:e:\c++\holyspirit\holyeditor\qsfmlcanvas.cpp
 	"QSFMLCanvas.h"
 	<QEvent>
 	<Qt/qx11info_x11.h>
 	<X11/Xlib.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qevent
+1235597756 c:\qt\4.5.0\include\qtcore\qevent
 	"qcoreevent.h"
 
-1280400036 e:\c++\holyspirit\holyeditor\mainwindow.h
+1280396436 e:\c++\holyspirit\holyeditor\mainwindow.h
 	"SFMLCanvas.h"
 	"globale.h"
 	<QApplication>
@@ -1027,14 +1027,14 @@
 	"highlighter.h"
 	<iostream>
 
-1252242898 e:\c++\holyspirit\holyeditor\sfmlcanvas.h
+1252239298 e:\c++\holyspirit\holyeditor\sfmlcanvas.h
 	"QSFMLCanvas.h"
 	<QApplication>
 	<QVBoxLayout>
 	<QFrame>
 	<QLabel>
 
-1280400277 source:e:\c++\holyspirit\holyeditor\mainwindow.cpp
+1291542615 source:e:\c++\holyspirit\holyeditor\mainwindow.cpp
 	"MainWindow.h"
 	"highlighter.moc"
 	<iostream>
@@ -1051,29 +1051,29 @@
 1235601358 c:\qt\4.5.0\include\qtgui\qmenu
 	"qmenu.h"
 
-1235601358 c:\qt\4.5.0\include\qtgui\qmenu.h
+1235597758 c:\qt\4.5.0\include\qtgui\qmenu.h
 	"../../src/gui/widgets/qmenu.h"
 
-1235601160 c:\qt\4.5.0\src\gui\widgets\qmenu.h
+1235597560 c:\qt\4.5.0\src\gui\widgets\qmenu.h
 	<QtGui/qwidget.h>
 	<QtCore/qstring.h>
 	<QtGui/qicon.h>
 	<QtGui/qaction.h>
 	<QtGui/qpixmap.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qicon.h
+1235597758 c:\qt\4.5.0\include\qtgui\qicon.h
 	"../../src/gui/image/qicon.h"
 
-1235601158 c:\qt\4.5.0\src\gui\image\qicon.h
+1235597558 c:\qt\4.5.0\src\gui\image\qicon.h
 	<QtCore/qglobal.h>
 	<QtCore/qsize.h>
 	<QtCore/qlist.h>
 	<QtGui/qpixmap.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qaction.h
+1235597758 c:\qt\4.5.0\include\qtgui\qaction.h
 	"../../src/gui/kernel/qaction.h"
 
-1235601158 c:\qt\4.5.0\src\gui\kernel\qaction.h
+1235597558 c:\qt\4.5.0\src\gui\kernel\qaction.h
 	<QtGui/qkeysequence.h>
 	<QtCore/qstring.h>
 	<QtGui/qwidget.h>
@@ -1081,19 +1081,19 @@
 	<QtGui/qicon.h>
 	<QtGui/qactiongroup.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qactiongroup.h
+1235597758 c:\qt\4.5.0\include\qtgui\qactiongroup.h
 	"../../src/gui/kernel/qactiongroup.h"
 
-1235601158 c:\qt\4.5.0\src\gui\kernel\qactiongroup.h
+1235597558 c:\qt\4.5.0\src\gui\kernel\qactiongroup.h
 	<QtGui/qaction.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qmenubar
+1235597758 c:\qt\4.5.0\include\qtgui\qmenubar
 	"qmenubar.h"
 
-1235601358 c:\qt\4.5.0\include\qtgui\qmenubar.h
+1235597758 c:\qt\4.5.0\include\qtgui\qmenubar.h
 	"../../src/gui/widgets/qmenubar.h"
 
-1235601160 c:\qt\4.5.0\src\gui\widgets\qmenubar.h
+1235597560 c:\qt\4.5.0\src\gui\widgets\qmenubar.h
 	<QtGui/qmenu.h>
 
 1235601358 c:\qt\4.5.0\include\qtgui\qmainwindow
@@ -1106,64 +1106,64 @@
 	<QtGui/qwidget.h>
 	<QtGui/qtabwidget.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qtabwidget.h
+1235597758 c:\qt\4.5.0\include\qtgui\qtabwidget.h
 	"../../src/gui/widgets/qtabwidget.h"
 
-1235601160 c:\qt\4.5.0\src\gui\widgets\qtabwidget.h
+1235597560 c:\qt\4.5.0\src\gui\widgets\qtabwidget.h
 	<QtGui/qwidget.h>
 	<QtGui/qicon.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qfiledialog
+1235597758 c:\qt\4.5.0\include\qtgui\qfiledialog
 	"qfiledialog.h"
 
-1235601358 c:\qt\4.5.0\include\qtgui\qfiledialog.h
+1235597758 c:\qt\4.5.0\include\qtgui\qfiledialog.h
 	"../../src/gui/dialogs/qfiledialog.h"
 
-1235601158 c:\qt\4.5.0\src\gui\dialogs\qfiledialog.h
+1235597558 c:\qt\4.5.0\src\gui\dialogs\qfiledialog.h
 	<QtCore/qdir.h>
 	<QtCore/qstring.h>
 	<QtGui/qdialog.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qdir.h
+1235597756 c:\qt\4.5.0\include\qtcore\qdir.h
 	"../../src/corelib/io/qdir.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\io\qdir.h
+1235597558 c:\qt\4.5.0\src\corelib\io\qdir.h
 	<QtCore/qstring.h>
 	<QtCore/qfileinfo.h>
 	<QtCore/qstringlist.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qfileinfo.h
+1235597756 c:\qt\4.5.0\include\qtcore\qfileinfo.h
 	"../../src/corelib/io/qfileinfo.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\io\qfileinfo.h
+1235597558 c:\qt\4.5.0\src\corelib\io\qfileinfo.h
 	<QtCore/qfile.h>
 	<QtCore/qlist.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qfile.h
+1235597756 c:\qt\4.5.0\include\qtcore\qfile.h
 	"../../src/corelib/io/qfile.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\io\qfile.h
+1235597558 c:\qt\4.5.0\src\corelib\io\qfile.h
 	<QtCore/qiodevice.h>
 	<QtCore/qstring.h>
 	<stdio.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qdialog.h
+1235597758 c:\qt\4.5.0\include\qtgui\qdialog.h
 	"../../src/gui/dialogs/qdialog.h"
 
-1235601158 c:\qt\4.5.0\src\gui\dialogs\qdialog.h
+1235597558 c:\qt\4.5.0\src\gui\dialogs\qdialog.h
 	<QtGui/qwidget.h>
 
-1280400604 e:\c++\holyspirit\holyeditor\mainwindow.moc
+1280397004 e:\c++\holyspirit\holyeditor\mainwindow.moc
 	"MainWindow.h"
 
-1244286755 source:e:\c++\holyspirit\holyeditor\entites\case.cpp
+1244283155 source:e:\c++\holyspirit\holyeditor\entites\case.cpp
 	"case.h"
 	<iostream>
 
-1244286755 e:\c++\holyspirit\holyeditor\entites\case.h
+1244283155 e:\c++\holyspirit\holyeditor\entites\case.h
 	"../constantes.h"
 
-1274523763 e:\c++\holyspirit\holyeditor\constantes.h
+1274520163 e:\c++\holyspirit\holyeditor\constantes.h
 	<cmath>
 	<utility>
 	<iostream>
@@ -1172,12 +1172,12 @@
 	"datFile.h"
 	"Moteurs/console.h"
 
-1244286756 e:\c++\holyspirit\holyeditor\datfile.h
+1244283156 e:\c++\holyspirit\holyeditor\datfile.h
 	<iostream>
 	<fstream>
 	<vector>
 
-1251713076 e:\c++\holyspirit\holyeditor\moteurs\console.h
+1251709476 e:\c++\holyspirit\holyeditor\moteurs\console.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -1230,41 +1230,41 @@
 	<SFML/System/Thread.hpp>
 	<vector>
 
-1244286756 e:\c++\holyspirit\holyeditor\singleton.h
+1244283156 e:\c++\holyspirit\holyeditor\singleton.h
 	<iostream>
 
-1252232655 source:e:\c++\holyspirit\holyeditor\entites\classe.cpp
+1252229055 source:e:\c++\holyspirit\holyeditor\entites\classe.cpp
 	"classe.h"
 	"../globale.h"
 	<sstream>
 
-1251708768 e:\c++\holyspirit\holyeditor\entites\classe.h
+1251705168 e:\c++\holyspirit\holyeditor\entites\classe.h
 	"miracle.h"
 
-1264333627 e:\c++\holyspirit\holyeditor\entites\miracle.h
+1264330027 e:\c++\holyspirit\holyeditor\entites\miracle.h
 	"../constantes.h"
 	"../Map/tile.h"
 	"../Moteurs/Entite_graphique.h"
 
-1264711220 e:\c++\holyspirit\holyeditor\map\tile.h
+1264707620 e:\c++\holyspirit\holyeditor\map\tile.h
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"../constantes.h"
 
-1261756772 e:\c++\holyspirit\holyeditor\moteurs\light.h
+1261753172 e:\c++\holyspirit\holyeditor\moteurs\light.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Window.hpp>
 	"../constantes.h"
 
-1244286756 e:\c++\holyspirit\holyeditor\globale.h
+1244283156 e:\c++\holyspirit\holyeditor\globale.h
 	"Moteurs/moteurGraphique.h"
 	"Moteurs/moteurSons.h"
 	"Moteurs/eventManager.h"
 	"configuration.h"
 
-1261756963 e:\c++\holyspirit\holyeditor\moteurs\moteurgraphique.h
+1261753363 e:\c++\holyspirit\holyeditor\moteurs\moteurgraphique.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -1276,38 +1276,38 @@
 	"../Map/tileset.h"
 	"../SFMLCanvas.h"
 
-1244286734 e:\c++\holyspirit\holyeditor\moteurs\commande.h
+1244283134 e:\c++\holyspirit\holyeditor\moteurs\commande.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"../constantes.h"
 
-1251988539 e:\c++\holyspirit\holyeditor\moteurs\moteurparticule.h
+1251984939 e:\c++\holyspirit\holyeditor\moteurs\moteurparticule.h
 	"../constantes.h"
 	"modeleMoteurParticule.h"
 
-1251989228 e:\c++\holyspirit\holyeditor\moteurs\modelemoteurparticule.h
+1251985628 e:\c++\holyspirit\holyeditor\moteurs\modelemoteurparticule.h
 	"../constantes.h"
 
-1249227583 e:\c++\holyspirit\holyeditor\moteurs\lightmanager.h
+1249223983 e:\c++\holyspirit\holyeditor\moteurs\lightmanager.h
 	"light.h"
 	"../singleton.h"
 
-1261756570 e:\c++\holyspirit\holyeditor\moteurs\moteursons.h
+1261752970 e:\c++\holyspirit\holyeditor\moteurs\moteursons.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"../constantes.h"
 
-1262094734 e:\c++\holyspirit\holyeditor\moteurs\eventmanager.h
+1262091134 e:\c++\holyspirit\holyeditor\moteurs\eventmanager.h
 	<iostream>
 	"../constantes.h"
 
-1264333892 e:\c++\holyspirit\holyeditor\configuration.h
+1264330292 e:\c++\holyspirit\holyeditor\configuration.h
 	"singleton.h"
 	"constantes.h"
 
-1264333769 source:e:\c++\holyspirit\holyeditor\entites\hero.cpp
+1291028258 source:e:\c++\holyspirit\holyeditor\entites\hero.cpp
 	"../constantes.h"
 	"hero.h"
 	"../globale.h"
@@ -1319,7 +1319,7 @@
 	<dirent.h>
 	<sstream>
 
-1264333678 e:\c++\holyspirit\holyeditor\entites\hero.h
+1264330078 e:\c++\holyspirit\holyeditor\entites\hero.h
 	<iostream>
 	<string>
 	<list>
@@ -1328,7 +1328,7 @@
 	"monstre.h"
 	"quete.h"
 
-1262096774 e:\c++\holyspirit\holyeditor\entites\personnage.h
+1262093174 e:\c++\holyspirit\holyeditor\entites\personnage.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -1341,59 +1341,59 @@
 	"script.h"
 	"../Map/tileset.h"
 
-1264333556 e:\c++\holyspirit\holyeditor\entites\objet.h
+1264329956 e:\c++\holyspirit\holyeditor\entites\objet.h
 	<iostream>
 	"../constantes.h"
 	<fstream>
 	"miracle.h"
 
-1244286755 e:\c++\holyspirit\holyeditor\entites\liste_case.h
+1244283155 e:\c++\holyspirit\holyeditor\entites\liste_case.h
 	"../constantes.h"
 	"case.h"
 
-1252086991 e:\c++\holyspirit\holyeditor\entites\pose.h
+1252083391 e:\c++\holyspirit\holyeditor\entites\pose.h
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"../constantes.h"
 
-1278071014 e:\c++\holyspirit\holyeditor\entites\script.h
+1291639261 e:\c++\holyspirit\holyeditor\entites\script.h
 	<iostream>
 	"../constantes.h"
 
-1269185247 e:\c++\holyspirit\holyeditor\entites\monstre.h
+1269181647 e:\c++\holyspirit\holyeditor\entites\monstre.h
 	"personnage.h"
 	"../constantes.h"
 
-1245147829 e:\c++\holyspirit\holyeditor\entites\quete.h
+1245144229 e:\c++\holyspirit\holyeditor\entites\quete.h
 	"../constantes.h"
 
-1251365890 source:e:\c++\holyspirit\holyeditor\entites\liste_case.cpp
+1251362290 source:e:\c++\holyspirit\holyeditor\entites\liste_case.cpp
 	"liste_case.h"
 	"../globale.h"
 	<iostream>
 
-1264333787 source:e:\c++\holyspirit\holyeditor\entites\miracle.cpp
+1291028297 source:e:\c++\holyspirit\holyeditor\entites\miracle.cpp
 	"miracle.h"
 	"../globale.h"
 	<iostream>
 	<fstream>
 	<sstream>
 
-1276447031 source:e:\c++\holyspirit\holyeditor\entites\monstre.cpp
+1291306603 source:e:\c++\holyspirit\holyeditor\entites\monstre.cpp
 	<iostream>
 	<fstream>
 	"monstre.h"
 	"../constantes.h"
 	"../globale.h"
 
-1269185765 source:e:\c++\holyspirit\holyeditor\entites\objet.cpp
+1291028333 source:e:\c++\holyspirit\holyeditor\entites\objet.cpp
 	"objet.h"
 	"../globale.h"
 	<fstream>
 	<sstream>
 
-1276447169 source:e:\c++\holyspirit\holyeditor\entites\personnage.cpp
+1291386468 source:e:\c++\holyspirit\holyeditor\entites\personnage.cpp
 	"personnage.h"
 	"../globale.h"
 	<iostream>
@@ -1401,31 +1401,31 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1252087039 source:e:\c++\holyspirit\holyeditor\entites\pose.cpp
+1252083439 source:e:\c++\holyspirit\holyeditor\entites\pose.cpp
 	"pose.h"
 	<iostream>
 	<fstream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1245168925 source:e:\c++\holyspirit\holyeditor\entites\quete.cpp
+1245165325 source:e:\c++\holyspirit\holyeditor\entites\quete.cpp
 	<iostream>
 	<fstream>
 	"quete.h"
 	"../constantes.h"
 	"../globale.h"
 
-1280315555 source:e:\c++\holyspirit\holyeditor\entites\script.cpp
+1291640391 source:e:\c++\holyspirit\holyeditor\entites\script.cpp
 	<fstream>
 	<sstream>
 	"script.h"
 	"../globale.h"
 
-1280400352 source:e:\c++\holyspirit\holyeditor\map\decor.cpp
+1291028371 source:e:\c++\holyspirit\holyeditor\map\decor.cpp
 	"decor.h"
 	"../globale.h"
 
-1280400036 e:\c++\holyspirit\holyeditor\map\decor.h
+1280396436 e:\c++\holyspirit\holyeditor\map\decor.h
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
@@ -1441,7 +1441,7 @@
 1245839952 e:\c++\holyspirit\holyeditor\map\evenement.h
 	"../constantes.h"
 
-1280400494 source:e:\c++\holyspirit\holyeditor\map\map.cpp
+1291029565 source:e:\c++\holyspirit\holyeditor\map\map.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -1452,7 +1452,7 @@
 	<sstream>
 	"../globale.h"
 
-1280400036 e:\c++\holyspirit\holyeditor\map\map.h
+1280923908 e:\c++\holyspirit\holyeditor\map\map.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -1461,7 +1461,7 @@
 	"decor.h"
 	"../Entites/monstre.h"
 
-1261755159 e:\c++\holyspirit\holyeditor\map\tileset.h
+1261751559 e:\c++\holyspirit\holyeditor\map\tileset.h
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
@@ -1469,14 +1469,14 @@
 	<fstream>
 	"tile.h"
 
-1261754303 source:e:\c++\holyspirit\holyeditor\map\tile.cpp
+1261750703 source:e:\c++\holyspirit\holyeditor\map\tile.cpp
 	"tile.h"
 	<iostream>
 	<fstream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1270120247 source:e:\c++\holyspirit\holyeditor\map\tileset.cpp
+1270116647 source:e:\c++\holyspirit\holyeditor\map\tileset.cpp
 	"tileset.h"
 	"../globale.h"
 	<iostream>
@@ -1484,14 +1484,14 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1261756859 source:e:\c++\holyspirit\holyeditor\moteurs\console.cpp
+1261753259 source:e:\c++\holyspirit\holyeditor\moteurs\console.cpp
 	"console.h"
 	"../constantes.h"
 	"../globale.h"
 	<iostream>
 	<sstream>
 
-1268851376 source:e:\c++\holyspirit\holyeditor\moteurs\eventmanager.cpp
+1268847776 source:e:\c++\holyspirit\holyeditor\moteurs\eventmanager.cpp
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<math.h>
@@ -1499,134 +1499,134 @@
 	"../globale.h"
 	<iostream>
 
-1249462920 source:e:\c++\holyspirit\holyeditor\moteurs\light.cpp
+1249459320 source:e:\c++\holyspirit\holyeditor\moteurs\light.cpp
 	<iostream>
 	<math.h>
 	"light.h"
 	"../globale.h"
 
-1264333323 source:e:\c++\holyspirit\holyeditor\moteurs\lightmanager.cpp
+1291028601 source:e:\c++\holyspirit\holyeditor\moteurs\lightmanager.cpp
 	"lightManager.h"
 	"../globale.h"
 
-1251989228 source:e:\c++\holyspirit\holyeditor\moteurs\modelemoteurparticule.cpp
+1251985628 source:e:\c++\holyspirit\holyeditor\moteurs\modelemoteurparticule.cpp
 	"modeleMoteurParticule.h"
 	"../globale.h"
 	<fstream>
 
-1274522118 source:e:\c++\holyspirit\holyeditor\moteurs\moteurgraphique.cpp
+1291291508 source:e:\c++\holyspirit\holyeditor\moteurs\moteurgraphique.cpp
 	"moteurGraphique.h"
 	"../globale.h"
 	<iostream>
 	<sstream>
 
-1261757042 source:e:\c++\holyspirit\holyeditor\moteurs\moteurparticule.cpp
+1261753442 source:e:\c++\holyspirit\holyeditor\moteurs\moteurparticule.cpp
 	"moteurParticule.h"
 	"../globale.h"
 	<fstream>
 
-1261756570 source:e:\c++\holyspirit\holyeditor\moteurs\moteursons.cpp
+1261752970 source:e:\c++\holyspirit\holyeditor\moteurs\moteursons.cpp
 	"moteurSons.h"
 	"../globale.h"
 	<iostream>
 
-1264332739 source:e:\c++\holyspirit\holyeditor\configuration.cpp
+1281179232 source:e:\c++\holyspirit\holyeditor\configuration.cpp
 	"configuration.h"
 
-1244286756 source:e:\c++\holyspirit\holyeditor\datfile.cpp
+1244283156 source:e:\c++\holyspirit\holyeditor\datfile.cpp
 	"globale.h"
 	<stdio.h>
 	<string.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qpushbutton
+1235597758 c:\qt\4.5.0\include\qtgui\qpushbutton
 	"qpushbutton.h"
 
-1235601358 c:\qt\4.5.0\include\qtgui\qpushbutton.h
+1235597758 c:\qt\4.5.0\include\qtgui\qpushbutton.h
 	"../../src/gui/widgets/qpushbutton.h"
 
-1235601160 c:\qt\4.5.0\src\gui\widgets\qpushbutton.h
+1235597560 c:\qt\4.5.0\src\gui\widgets\qpushbutton.h
 	<QtGui/qabstractbutton.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qabstractbutton.h
+1235597758 c:\qt\4.5.0\include\qtgui\qabstractbutton.h
 	"../../src/gui/widgets/qabstractbutton.h"
 
-1235601160 c:\qt\4.5.0\src\gui\widgets\qabstractbutton.h
+1235597560 c:\qt\4.5.0\src\gui\widgets\qabstractbutton.h
 	<QtGui/qicon.h>
 	<QtGui/qkeysequence.h>
 	<QtGui/qwidget.h>
 
-1244367311 c:\qt\4.5.0\include\qtgui
+1244363711 c:\qt\4.5.0\include\qtgui
 
-1235601358 c:\qt\4.5.0\include\qtgui\qtabwidget
+1235597758 c:\qt\4.5.0\include\qtgui\qtabwidget
 	"qtabwidget.h"
 
-1235601358 c:\qt\4.5.0\include\qtgui\qtreewidget
+1235597758 c:\qt\4.5.0\include\qtgui\qtreewidget
 	"qtreewidget.h"
 
-1235601358 c:\qt\4.5.0\include\qtgui\qtreewidget.h
+1235597758 c:\qt\4.5.0\include\qtgui\qtreewidget.h
 	"../../src/gui/itemviews/qtreewidget.h"
 
-1235601158 c:\qt\4.5.0\src\gui\itemviews\qtreewidget.h
+1235597558 c:\qt\4.5.0\src\gui\itemviews\qtreewidget.h
 	<QtGui/qtreeview.h>
 	<QtGui/qtreewidgetitemiterator.h>
 	<QtCore/qvariant.h>
 	<QtCore/qvector.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qtreeview.h
+1235597758 c:\qt\4.5.0\include\qtgui\qtreeview.h
 	"../../src/gui/itemviews/qtreeview.h"
 
-1235601158 c:\qt\4.5.0\src\gui\itemviews\qtreeview.h
+1235597558 c:\qt\4.5.0\src\gui\itemviews\qtreeview.h
 	<QtGui/qabstractitemview.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qabstractitemview.h
+1235597758 c:\qt\4.5.0\include\qtgui\qabstractitemview.h
 	"../../src/gui/itemviews/qabstractitemview.h"
 
-1235601158 c:\qt\4.5.0\src\gui\itemviews\qabstractitemview.h
+1235597558 c:\qt\4.5.0\src\gui\itemviews\qabstractitemview.h
 	<QtGui/qabstractscrollarea.h>
 	<QtCore/qabstractitemmodel.h>
 	<QtGui/qitemselectionmodel.h>
 	<QtGui/qabstractitemdelegate.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qabstractscrollarea.h
+1235597758 c:\qt\4.5.0\include\qtgui\qabstractscrollarea.h
 	"../../src/gui/widgets/qabstractscrollarea.h"
 
-1235601160 c:\qt\4.5.0\src\gui\widgets\qabstractscrollarea.h
+1235597560 c:\qt\4.5.0\src\gui\widgets\qabstractscrollarea.h
 	<QtGui/qframe.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qabstractitemmodel.h
+1235597756 c:\qt\4.5.0\include\qtcore\qabstractitemmodel.h
 	"../../src/corelib/kernel/qabstractitemmodel.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\kernel\qabstractitemmodel.h
+1235597558 c:\qt\4.5.0\src\corelib\kernel\qabstractitemmodel.h
 	<QtCore/qvariant.h>
 	<QtCore/qobject.h>
 	<QtCore/qhash.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qitemselectionmodel.h
+1235597758 c:\qt\4.5.0\include\qtgui\qitemselectionmodel.h
 	"../../src/gui/itemviews/qitemselectionmodel.h"
 
-1235601158 c:\qt\4.5.0\src\gui\itemviews\qitemselectionmodel.h
+1235597558 c:\qt\4.5.0\src\gui\itemviews\qitemselectionmodel.h
 	<QtCore/qset.h>
 	<QtCore/qvector.h>
 	<QtCore/qlist.h>
 	<QtCore/qabstractitemmodel.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qset.h
+1235597756 c:\qt\4.5.0\include\qtcore\qset.h
 	"../../src/corelib/tools/qset.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\tools\qset.h
+1235597558 c:\qt\4.5.0\src\corelib\tools\qset.h
 	<QtCore/qhash.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qabstractitemdelegate.h
+1235597758 c:\qt\4.5.0\include\qtgui\qabstractitemdelegate.h
 	"../../src/gui/itemviews/qabstractitemdelegate.h"
 
-1235601158 c:\qt\4.5.0\src\gui\itemviews\qabstractitemdelegate.h
+1235597558 c:\qt\4.5.0\src\gui\itemviews\qabstractitemdelegate.h
 	<QtCore/qobject.h>
 	<QtGui/qstyleoption.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qstyleoption.h
+1235597758 c:\qt\4.5.0\include\qtgui\qstyleoption.h
 	"../../src/gui/styles/qstyleoption.h"
 
-1235601160 c:\qt\4.5.0\src\gui\styles\qstyleoption.h
+1235597560 c:\qt\4.5.0\src\gui\styles\qstyleoption.h
 	<QtCore/qvariant.h>
 	<QtGui/qabstractspinbox.h>
 	<QtGui/qicon.h>
@@ -1639,45 +1639,45 @@
 	<QtGui/qframe.h>
 	<QtCore/qabstractitemmodel.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qabstractspinbox.h
+1235597758 c:\qt\4.5.0\include\qtgui\qabstractspinbox.h
 	"../../src/gui/widgets/qabstractspinbox.h"
 
-1235601160 c:\qt\4.5.0\src\gui\widgets\qabstractspinbox.h
+1235597560 c:\qt\4.5.0\src\gui\widgets\qabstractspinbox.h
 	<QtGui/qwidget.h>
 	<QtGui/qvalidator.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qvalidator.h
+1235597758 c:\qt\4.5.0\include\qtgui\qvalidator.h
 	"../../src/gui/widgets/qvalidator.h"
 
-1235601160 c:\qt\4.5.0\src\gui\widgets\qvalidator.h
+1235597560 c:\qt\4.5.0\src\gui\widgets\qvalidator.h
 	<QtCore/qobject.h>
 	<QtCore/qstring.h>
 	<QtCore/qregexp.h>
 	<QtCore/qlocale.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qlocale.h
+1235597756 c:\qt\4.5.0\include\qtcore\qlocale.h
 	"../../src/corelib/tools/qlocale.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\tools\qlocale.h
+1235597558 c:\qt\4.5.0\src\corelib\tools\qlocale.h
 	<QtCore/qstring.h>
 	<QtCore/qobjectdefs.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qslider.h
+1235597758 c:\qt\4.5.0\include\qtgui\qslider.h
 	"../../src/gui/widgets/qslider.h"
 
-1235601160 c:\qt\4.5.0\src\gui\widgets\qslider.h
+1235597560 c:\qt\4.5.0\src\gui\widgets\qslider.h
 	<QtGui/qabstractslider.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qabstractslider.h
+1235597758 c:\qt\4.5.0\include\qtgui\qabstractslider.h
 	"../../src/gui/widgets/qabstractslider.h"
 
-1235601160 c:\qt\4.5.0\src\gui\widgets\qabstractslider.h
+1235597560 c:\qt\4.5.0\src\gui\widgets\qabstractslider.h
 	<QtGui/qwidget.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qstyle.h
+1235597758 c:\qt\4.5.0\include\qtgui\qstyle.h
 	"../../src/gui/styles/qstyle.h"
 
-1235601158 c:\qt\4.5.0\src\gui\styles\qstyle.h
+1235597558 c:\qt\4.5.0\src\gui\styles\qstyle.h
 	<QtCore/qobject.h>
 	<QtCore/qrect.h>
 	<QtCore/qsize.h>
@@ -1686,49 +1686,49 @@
 	<QtGui/qpalette.h>
 	<QtGui/qsizepolicy.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qtabbar.h
+1235597758 c:\qt\4.5.0\include\qtgui\qtabbar.h
 	"../../src/gui/widgets/qtabbar.h"
 
-1235601160 c:\qt\4.5.0\src\gui\widgets\qtabbar.h
+1235597560 c:\qt\4.5.0\src\gui\widgets\qtabbar.h
 	<QtGui/qwidget.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qrubberband.h
+1235597758 c:\qt\4.5.0\include\qtgui\qrubberband.h
 	"../../src/gui/widgets/qrubberband.h"
 
-1235601160 c:\qt\4.5.0\src\gui\widgets\qrubberband.h
+1235597560 c:\qt\4.5.0\src\gui\widgets\qrubberband.h
 	<QtGui/qwidget.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qtreewidgetitemiterator.h
+1235597758 c:\qt\4.5.0\include\qtgui\qtreewidgetitemiterator.h
 	"../../src/gui/itemviews/qtreewidgetitemiterator.h"
 
-1235601158 c:\qt\4.5.0\src\gui\itemviews\qtreewidgetitemiterator.h
+1235597558 c:\qt\4.5.0\src\gui\itemviews\qtreewidgetitemiterator.h
 	<QtCore/qglobal.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qlistwidget
+1235597758 c:\qt\4.5.0\include\qtgui\qlistwidget
 	"qlistwidget.h"
 
-1235601358 c:\qt\4.5.0\include\qtgui\qlistwidget.h
+1235597758 c:\qt\4.5.0\include\qtgui\qlistwidget.h
 	"../../src/gui/itemviews/qlistwidget.h"
 
-1235601158 c:\qt\4.5.0\src\gui\itemviews\qlistwidget.h
+1235597558 c:\qt\4.5.0\src\gui\itemviews\qlistwidget.h
 	<QtGui/qlistview.h>
 	<QtCore/qvariant.h>
 	<QtCore/qvector.h>
 	<QtGui/qitemselectionmodel.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qlistview.h
+1235597758 c:\qt\4.5.0\include\qtgui\qlistview.h
 	"../../src/gui/itemviews/qlistview.h"
 
-1235601158 c:\qt\4.5.0\src\gui\itemviews\qlistview.h
+1235597558 c:\qt\4.5.0\src\gui\itemviews\qlistview.h
 	<QtGui/qabstractitemview.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qradiobutton
+1235597758 c:\qt\4.5.0\include\qtgui\qradiobutton
 	"qradiobutton.h"
 
-1235601358 c:\qt\4.5.0\include\qtgui\qradiobutton.h
+1235597758 c:\qt\4.5.0\include\qtgui\qradiobutton.h
 	"../../src/gui/widgets/qradiobutton.h"
 
-1235601160 c:\qt\4.5.0\src\gui\widgets\qradiobutton.h
+1235597560 c:\qt\4.5.0\src\gui\widgets\qradiobutton.h
 	<QtGui/qabstractbutton.h>
 
 1235601358 c:\qt\4.5.0\include\qtgui\qbuttongroup
@@ -1740,22 +1740,22 @@
 1235601160 c:\qt\4.5.0\src\gui\widgets\qbuttongroup.h
 	<QtCore/qobject.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qspinbox
+1235597758 c:\qt\4.5.0\include\qtgui\qspinbox
 	"qspinbox.h"
 
-1235601358 c:\qt\4.5.0\include\qtgui\qspinbox.h
+1235597758 c:\qt\4.5.0\include\qtgui\qspinbox.h
 	"../../src/gui/widgets/qspinbox.h"
 
-1235601160 c:\qt\4.5.0\src\gui\widgets\qspinbox.h
+1235597560 c:\qt\4.5.0\src\gui\widgets\qspinbox.h
 	<QtGui/qabstractspinbox.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qcheckbox
+1235597758 c:\qt\4.5.0\include\qtgui\qcheckbox
 	"qcheckbox.h"
 
-1235601358 c:\qt\4.5.0\include\qtgui\qcheckbox.h
+1235597758 c:\qt\4.5.0\include\qtgui\qcheckbox.h
 	"../../src/gui/widgets/qcheckbox.h"
 
-1235601160 c:\qt\4.5.0\src\gui\widgets\qcheckbox.h
+1235597560 c:\qt\4.5.0\src\gui\widgets\qcheckbox.h
 	<QtGui/qabstractbutton.h>
 
 1253810018 e:\c++\sfml_svn2\branches\sfml2\include\sfml\graphics\renderqueue.hpp
@@ -2061,13 +2061,13 @@
 	<SFML/System/Thread.hpp>
 	<vector>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qtextedit
+1235597758 c:\qt\4.5.0\include\qtgui\qtextedit
 	"qtextedit.h"
 
-1235601358 c:\qt\4.5.0\include\qtgui\qtextedit.h
+1235597758 c:\qt\4.5.0\include\qtgui\qtextedit.h
 	"../../src/gui/widgets/qtextedit.h"
 
-1235601160 c:\qt\4.5.0\src\gui\widgets\qtextedit.h
+1235597560 c:\qt\4.5.0\src\gui\widgets\qtextedit.h
 	<QtGui/qabstractscrollarea.h>
 	<QtGui/qtextdocument.h>
 	<QtGui/qtextoption.h>
@@ -2076,42 +2076,42 @@
 	<QtGui/qtextobject.h>
 	<QtGui/qtextlayout.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qtextdocument.h
+1235597758 c:\qt\4.5.0\include\qtgui\qtextdocument.h
 	"../../src/gui/text/qtextdocument.h"
 
-1235601160 c:\qt\4.5.0\src\gui\text\qtextdocument.h
+1235597560 c:\qt\4.5.0\src\gui\text\qtextdocument.h
 	<QtCore/qobject.h>
 	<QtCore/qsize.h>
 	<QtCore/qrect.h>
 	<QtGui/qfont.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qtextoption.h
+1235597758 c:\qt\4.5.0\include\qtgui\qtextoption.h
 	"../../src/gui/text/qtextoption.h"
 
-1235601160 c:\qt\4.5.0\src\gui\text\qtextoption.h
+1235597560 c:\qt\4.5.0\src\gui\text\qtextoption.h
 	<QtCore/qnamespace.h>
 	<QtCore/qchar.h>
 	<QtCore/qmetatype.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qtextcursor.h
+1235597758 c:\qt\4.5.0\include\qtgui\qtextcursor.h
 	"../../src/gui/text/qtextcursor.h"
 
-1235601160 c:\qt\4.5.0\src\gui\text\qtextcursor.h
+1235597560 c:\qt\4.5.0\src\gui\text\qtextcursor.h
 	<QtCore/qstring.h>
 	<QtCore/qshareddata.h>
 	<QtGui/qtextformat.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qshareddata.h
+1235597756 c:\qt\4.5.0\include\qtcore\qshareddata.h
 	"../../src/corelib/tools/qshareddata.h"
 
-1235601158 c:\qt\4.5.0\src\corelib\tools\qshareddata.h
+1235597558 c:\qt\4.5.0\src\corelib\tools\qshareddata.h
 	<QtCore/qglobal.h>
 	<QtCore/qatomic.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qtextformat.h
+1235597758 c:\qt\4.5.0\include\qtgui\qtextformat.h
 	"../../src/gui/text/qtextformat.h"
 
-1235601160 c:\qt\4.5.0\src\gui\text\qtextformat.h
+1235597560 c:\qt\4.5.0\src\gui\text\qtextformat.h
 	<QtGui/qcolor.h>
 	<QtGui/qfont.h>
 	<QtCore/qshareddata.h>
@@ -2121,24 +2121,24 @@
 	<QtGui/qbrush.h>
 	<QtGui/qtextoption.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qpen.h
+1235597758 c:\qt\4.5.0\include\qtgui\qpen.h
 	"../../src/gui/painting/qpen.h"
 
-1235601158 c:\qt\4.5.0\src\gui\painting\qpen.h
+1235597558 c:\qt\4.5.0\src\gui\painting\qpen.h
 	<QtGui/qcolor.h>
 	<QtGui/qbrush.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qtextobject.h
+1235597758 c:\qt\4.5.0\include\qtgui\qtextobject.h
 	"../../src/gui/text/qtextobject.h"
 
-1235601160 c:\qt\4.5.0\src\gui\text\qtextobject.h
+1235597560 c:\qt\4.5.0\src\gui\text\qtextobject.h
 	<QtCore/qobject.h>
 	<QtGui/qtextformat.h>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qtextlayout.h
+1235597758 c:\qt\4.5.0\include\qtgui\qtextlayout.h
 	"../../src/gui/text/qtextlayout.h"
 
-1235601160 c:\qt\4.5.0\src\gui\text\qtextlayout.h
+1235597560 c:\qt\4.5.0\src\gui\text\qtextlayout.h
 	<QtCore/qstring.h>
 	<QtCore/qnamespace.h>
 	<QtCore/qrect.h>
@@ -2157,37 +2157,37 @@
 	<QHash>
 	<QTextCharFormat>
 
-1235601358 c:\qt\4.5.0\include\qtgui\qsyntaxhighlighter
+1235597758 c:\qt\4.5.0\include\qtgui\qsyntaxhighlighter
 	"qsyntaxhighlighter.h"
 
-1235601358 c:\qt\4.5.0\include\qtgui\qsyntaxhighlighter.h
+1235597758 c:\qt\4.5.0\include\qtgui\qsyntaxhighlighter.h
 	"../../src/gui/text/qsyntaxhighlighter.h"
 
-1235601160 c:\qt\4.5.0\src\gui\text\qsyntaxhighlighter.h
+1235597560 c:\qt\4.5.0\src\gui\text\qsyntaxhighlighter.h
 	<QtCore/qglobal.h>
 	<QtCore/qobject.h>
 	<QtGui/qtextobject.h>
 
-1235601356 c:\qt\4.5.0\include\qtcore\qhash
+1235597756 c:\qt\4.5.0\include\qtcore\qhash
 	"qhash.h"
 
-1235601358 c:\qt\4.5.0\include\qtgui\qtextcharformat
+1235597758 c:\qt\4.5.0\include\qtgui\qtextcharformat
 	"qtextformat.h"
 
 1257000270 source:e:\c++\holyspirit\holyeditor\highlight.cpp
 	<QtGui>
 	"highlight.h"
 
-1257071349 e:\c++\holyspirit\holyeditor\highlighter.h
+1257067749 e:\c++\holyspirit\holyeditor\highlighter.h
 	<QSyntaxHighlighter>
 	<QHash>
 	<QTextCharFormat>
 
-1280397164 source:e:\c++\holyspirit\holyeditor\highlighter.cpp
+1291639743 source:e:\c++\holyspirit\holyeditor\highlighter.cpp
 	<QtGui>
 	"highlighter.h"
 
-1257072236 e:\c++\holyspirit\holyeditor\highlighter.moc
+1257068636 e:\c++\holyspirit\holyeditor\highlighter.moc
 	"highlighter.h"
 
 1267643926 e:\c++\sfml_svn\branches\sfml2\include\sfml\graphics\shader.hpp
@@ -2221,12 +2221,12 @@
 	<SFML/Graphics/Rect.hpp>
 	<string>
 
-1268838245 e:\c++\holyspirit\holyeditor\moteurs\entite_graphique.h
+1268834645 e:\c++\holyspirit\holyeditor\moteurs\entite_graphique.h
 	"../Map/tileset.h"
 	"light.h"
 	<fstream>
 
-1268842628 source:e:\c++\holyspirit\holyeditor\moteurs\entite_graphique.cpp
+1291029481 source:e:\c++\holyspirit\holyeditor\moteurs\entite_graphique.cpp
 	"Entite_graphique.h"
 	"../globale.h"
 
@@ -2545,4 +2545,311 @@
 1264598980 e:\c++\sfml_svnne\branches\sfml2\include\sfml\audio\soundrecorder.hpp
 	<SFML/System/Thread.hpp>
 	<vector>
+
+1289308477 e:\c++\sfml2\include\sfml\system.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Clock.hpp>
+	<SFML/System/Err.hpp>
+	<SFML/System/Lock.hpp>
+	<SFML/System/Mutex.hpp>
+	<SFML/System/Randomizer.hpp>
+	<SFML/System/Sleep.hpp>
+	<SFML/System/String.hpp>
+	<SFML/System/Thread.hpp>
+	<SFML/System/ThreadLocal.hpp>
+	<SFML/System/ThreadLocalPtr.hpp>
+	<SFML/System/Utf.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Vector3.hpp>
+
+1291027063 e:\c++\sfml2\include\sfml\config.hpp
+	<climits>
+
+1289308476 e:\c++\sfml2\include\sfml\system\clock.hpp
+	<SFML/Config.hpp>
+
+1289308476 e:\c++\sfml2\include\sfml\system\err.hpp
+	<SFML/Config.hpp>
+	<ostream>
+
+1289308476 e:\c++\sfml2\include\sfml\system\lock.hpp
+	<SFML/System/NonCopyable.hpp>
+
+1289308476 e:\c++\sfml2\include\sfml\system\noncopyable.hpp
+	<SFML/Config.hpp>
+
+1289308476 e:\c++\sfml2\include\sfml\system\mutex.hpp
+	<SFML/Config.hpp>
+	<SFML/System/NonCopyable.hpp>
+
+1289308476 e:\c++\sfml2\include\sfml\system\randomizer.hpp
+	<SFML/Config.hpp>
+
+1289308476 e:\c++\sfml2\include\sfml\system\sleep.hpp
+	<SFML/Config.hpp>
+
+1289308476 e:\c++\sfml2\include\sfml\system\string.hpp
+	<SFML/Config.hpp>
+	<locale>
+	<string>
+
+1290338847 e:\c++\sfml2\include\sfml\system\thread.hpp
+	<SFML/Config.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<cstdlib>
+	<SFML/System/Thread.inl>
+
+1289308476 e:\c++\sfml2\include\sfml\system\threadlocal.hpp
+	<SFML/Config.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<cstdlib>
+
+1289308476 e:\c++\sfml2\include\sfml\system\threadlocalptr.hpp
+	<SFML/System/ThreadLocal.hpp>
+	<SFML/System/ThreadLocalPtr.inl>
+
+1289308476 e:\c++\sfml2\include\sfml\system\threadlocalptr.inl
+
+1289308476 e:\c++\sfml2\include\sfml\system\utf.hpp
+	<SFML/Config.hpp>
+	<algorithm>
+	<locale>
+	<string>
+	<cstdlib>
+	<SFML/System/Utf.inl>
+
+1289308476 e:\c++\sfml2\include\sfml\system\utf.inl
+
+1289308476 e:\c++\sfml2\include\sfml\system\vector2.hpp
+	<SFML/System/Vector2.inl>
+
+1289308476 e:\c++\sfml2\include\sfml\system\vector2.inl
+
+1289308476 e:\c++\sfml2\include\sfml\system\vector3.hpp
+	<SFML/System/Vector3.inl>
+
+1289308476 e:\c++\sfml2\include\sfml\system\vector3.inl
+
+1289308477 e:\c++\sfml2\include\sfml\graphics.hpp
+	<SFML/Window.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Font.hpp>
+	<SFML/Graphics/Glyph.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Graphics/Renderer.hpp>
+	<SFML/Graphics/RenderImage.hpp>
+	<SFML/Graphics/RenderWindow.hpp>
+	<SFML/Graphics/Shader.hpp>
+	<SFML/Graphics/Shape.hpp>
+	<SFML/Graphics/Sprite.hpp>
+	<SFML/Graphics/Text.hpp>
+	<SFML/Graphics/View.hpp>
+
+1289308477 e:\c++\sfml2\include\sfml\window.hpp
+	<SFML/System.hpp>
+	<SFML/Window/Context.hpp>
+	<SFML/Window/ContextSettings.hpp>
+	<SFML/Window/Event.hpp>
+	<SFML/Window/Input.hpp>
+	<SFML/Window/VideoMode.hpp>
+	<SFML/Window/Window.hpp>
+	<SFML/Window/WindowStyle.hpp>
+
+1289308476 e:\c++\sfml2\include\sfml\window\context.hpp
+	<SFML/Config.hpp>
+	<SFML/System/NonCopyable.hpp>
+
+1289308476 e:\c++\sfml2\include\sfml\window\contextsettings.hpp
+
+1289308476 e:\c++\sfml2\include\sfml\window\event.hpp
+	<SFML/Config.hpp>
+
+1289308476 e:\c++\sfml2\include\sfml\window\input.hpp
+	<SFML/Config.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/Window/Event.hpp>
+
+1289308476 e:\c++\sfml2\include\sfml\window\videomode.hpp
+	<SFML/Config.hpp>
+	<vector>
+
+1290338847 e:\c++\sfml2\include\sfml\window\window.hpp
+	<SFML/Window/ContextSettings.hpp>
+	<SFML/Window/Input.hpp>
+	<SFML/Window/VideoMode.hpp>
+	<SFML/Window/WindowHandle.hpp>
+	<SFML/Window/WindowStyle.hpp>
+	<SFML/System/Clock.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<string>
+
+1289308476 e:\c++\sfml2\include\sfml\window\windowhandle.hpp
+	<SFML/Config.hpp>
+
+1289308476 e:\c++\sfml2\include\sfml\window\windowstyle.hpp
+
+1289308476 e:\c++\sfml2\include\sfml\graphics\color.hpp
+	<SFML/Config.hpp>
+
+1289308476 e:\c++\sfml2\include\sfml\graphics\font.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/String.hpp>
+	<SFML/Graphics/Glyph.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<map>
+	<string>
+	<vector>
+
+1289308476 e:\c++\sfml2\include\sfml\system\resource.hpp
+	<SFML/System/Lock.hpp>
+	<SFML/System/Mutex.hpp>
+	<set>
+	<SFML/System/Resource.inl>
+	<SFML/System/ResourcePtr.inl>
+
+1289308476 e:\c++\sfml2\include\sfml\system\resource.inl
+
+1289308476 e:\c++\sfml2\include\sfml\system\resourceptr.inl
+
+1289308476 e:\c++\sfml2\include\sfml\graphics\glyph.hpp
+	<SFML/Config.hpp>
+	<SFML/Graphics/Rect.hpp>
+
+1289308476 e:\c++\sfml2\include\sfml\graphics\rect.hpp
+	<SFML/System/Vector2.hpp>
+	<algorithm>
+	<SFML/Graphics/Rect.inl>
+
+1289308476 e:\c++\sfml2\include\sfml\graphics\rect.inl
+
+1289308476 e:\c++\sfml2\include\sfml\graphics\image.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<string>
+	<vector>
+
+1289384166 e:\c++\sfml2\include\sfml\graphics\renderer.hpp
+	<SFML/Config.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Matrix3.hpp>
+
+1289308476 e:\c++\sfml2\include\sfml\graphics\drawable.hpp
+	<SFML/System/Vector2.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Matrix3.hpp>
+
+1289308476 e:\c++\sfml2\include\sfml\graphics\matrix3.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<cmath>
+	<SFML/Graphics/Matrix3.inl>
+
+1289308476 e:\c++\sfml2\include\sfml\graphics\matrix3.inl
+
+1289308476 e:\c++\sfml2\include\sfml\graphics\renderimage.hpp
+	<SFML/Graphics/Image.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+
+1289308476 e:\c++\sfml2\include\sfml\graphics\rendertarget.hpp
+	<SFML/System/NonCopyable.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Renderer.hpp>
+	<SFML/Graphics/View.hpp>
+
+1289308476 e:\c++\sfml2\include\sfml\graphics\view.hpp
+	<SFML/Config.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Matrix3.hpp>
+	<SFML/System/Vector2.hpp>
+
+1289308476 e:\c++\sfml2\include\sfml\graphics\renderwindow.hpp
+	<SFML/Graphics/Image.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/Window/Window.hpp>
+	<string>
+
+1289308476 e:\c++\sfml2\include\sfml\graphics\shader.hpp
+	<SFML/Config.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Vector3.hpp>
+	<map>
+	<string>
+
+1289308476 e:\c++\sfml2\include\sfml\graphics\shape.hpp
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/System/Vector2.hpp>
+	<vector>
+
+1289308476 e:\c++\sfml2\include\sfml\graphics\sprite.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Rect.hpp>
+
+1289308476 e:\c++\sfml2\include\sfml\graphics\text.hpp
+	<SFML/System/Resource.hpp>
+	<SFML/System/String.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Font.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<string>
+
+1289308477 e:\c++\sfml2\include\sfml\audio.hpp
+	<SFML/System.hpp>
+	<SFML/Audio/Listener.hpp>
+	<SFML/Audio/Music.hpp>
+	<SFML/Audio/Sound.hpp>
+	<SFML/Audio/SoundBuffer.hpp>
+	<SFML/Audio/SoundBufferRecorder.hpp>
+	<SFML/Audio/SoundRecorder.hpp>
+	<SFML/Audio/SoundStream.hpp>
+
+1289308476 e:\c++\sfml2\include\sfml\audio\listener.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Vector3.hpp>
+
+1289308476 e:\c++\sfml2\include\sfml\audio\music.hpp
+	<SFML/Audio/SoundStream.hpp>
+	<SFML/System/Mutex.hpp>
+	<string>
+	<vector>
+
+1290338847 e:\c++\sfml2\include\sfml\audio\soundstream.hpp
+	<SFML/Audio/SoundSource.hpp>
+	<SFML/System/Thread.hpp>
+	<cstdlib>
+
+1289308476 e:\c++\sfml2\include\sfml\audio\soundsource.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Vector3.hpp>
+
+1289308476 e:\c++\sfml2\include\sfml\audio\sound.hpp
+	<SFML/Audio/SoundSource.hpp>
+	<SFML/System/Resource.hpp>
+	<cstdlib>
+
+1289308476 e:\c++\sfml2\include\sfml\audio\soundbuffer.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Resource.hpp>
+	<string>
+	<vector>
+	<set>
+
+1289308476 e:\c++\sfml2\include\sfml\audio\soundbufferrecorder.hpp
+	<SFML/Audio/SoundBuffer.hpp>
+	<SFML/Audio/SoundRecorder.hpp>
+	<vector>
+
+1290338847 e:\c++\sfml2\include\sfml\audio\soundrecorder.hpp
+	<SFML/System/Thread.hpp>
+	<vector>
+
+1290338847 e:\c++\sfml2\include\sfml\system\thread.inl
 

@@ -212,7 +212,8 @@ void Entite_graphique::Generer()
             coordonnee positionPartieDecor = m_tileset->getPositionDuTile(m_noAnimation);
 
             m_sprite.SetImage(*moteurGraphique->getImage(m_tileset->getImage(m_noAnimation)));
-            m_sprite.SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y, positionPartieDecor.x+positionPartieDecor.w, positionPartieDecor.y+positionPartieDecor.h));
+            m_sprite.SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y,
+                                            positionPartieDecor.w, positionPartieDecor.h - 1));
 
             m_sprite.SetOrigin(m_tileset->getCentreDuTile(m_noAnimation).x,m_tileset->getCentreDuTile(m_noAnimation).y);
 

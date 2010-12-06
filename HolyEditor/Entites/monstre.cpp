@@ -28,9 +28,9 @@ using namespace std;
 
 Modele_Monstre::Modele_Monstre()
 {
-    m_porteeLumineuse.rouge=0;
-    m_porteeLumineuse.vert=0;
-    m_porteeLumineuse.bleu=0;
+    m_porteeLumineuse.rouge=255;
+    m_porteeLumineuse.vert=255;
+    m_porteeLumineuse.bleu=255;
     m_porteeLumineuse.intensite=0;
 
     Modele_Personnage();

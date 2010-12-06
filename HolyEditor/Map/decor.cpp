@@ -130,7 +130,7 @@ void Decor::setDecor(int tileset,std::vector<int> tile,const std::vector<int> &m
 
 bool Decor::AfficherTexteObjet(coordonnee position,int objet, float *decalage)
 {
-    bool retour=false;
+   /* bool retour=false;
     if(objet>=0&&objet<(int)m_objets.size())
     {
 
@@ -175,7 +175,7 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet, float *decalage)
         if(decalage != NULL)
             *decalage = (sprite.GetPosition().y*configuration->zoom + GetViewRect(moteurGraphique->m_camera).Top) - sprite.GetSize().y;
     }
-    return (retour);
+    return (retour);*/
 }
 
 int Decor::AfficherTexteObjets(coordonnee position, int objetPointe)
