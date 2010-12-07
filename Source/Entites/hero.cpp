@@ -195,6 +195,9 @@ Hero::Hero()
     m_trier_en_hauteur = false;
 
     m_select_friend = -1;
+
+    newQuest = false;
+    newDoc = false;
 }
 
 Hero::~Hero()
@@ -1610,6 +1613,7 @@ void Hero::AfficherAmisEtCraft()
 
 void Hero::AfficherQuetes(float decalage)
 {
+    newQuest = false;
     m_quetePointee = -1;
     coordonnee position = m_classe.position_contenu_quetes;
     for (int i = (int)m_quetes.size()-1;i >= 0;--i)
@@ -1670,6 +1674,7 @@ void Hero::AfficherQuetes(float decalage)
 
 void Hero::AfficherDocs(float decalage)
 {
+    newDoc = false;
     m_docPointe = -1;
     coordonnee position = m_classe.position_list_docs;
     for (int i = (int)m_docs.size()-1;i >= 0;--i)
@@ -4341,6 +4346,7 @@ bool Hero::UtiliserObjet(int numero)
                 temp = DecouperTexte(temp,m_classe.position_contenu_docs.w,16);
                 m_docs.back().m_description = temp;
                 m_docs.back().GenerateDescription();
+                newDoc = true;
             }
 
             delObjet(numero);

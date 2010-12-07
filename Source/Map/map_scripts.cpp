@@ -416,6 +416,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             {
                 hero->m_quetes.push_back(Quete ((int)script->getValeur(noInstruction, 0)));
                 hero->m_queteSelectionnee = hero->m_quetes.size() - 1;
+                hero->newQuest = true;
             }
         }
         else if (script->m_instructions[noInstruction].nom=="setQuestName")

@@ -929,17 +929,17 @@ int Personnage::Animer(Modele_Personnage *modele,float temps)
             m_entite_graphique.Animer(temps);
 
         m_entite_graphique.m_sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
-      /*  if (m_porteeLumineuse.intensite>0)
+        if (m_porteeLumineuse.intensite>0)
         {
             m_entite_graphique.m_sprite.SetColor(sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu, 255));
-            moteurGraphique->LightManager->SetColor(m_entite_graphique.m_light,sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu));
+           /* moteurGraphique->LightManager->SetColor(m_entite_graphique.m_light,sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu));
 
             if (m_caracteristique.rang==0)
                 m_porteeLumineuse.intensite=m_entite_graphique.m_tileset->getLumiereDuTile(m_entite_graphique.m_noAnimation).intensite;
-            moteurGraphique->LightManager->SetIntensity(m_entite_graphique.m_light,m_porteeLumineuse.intensite);
+            moteurGraphique->LightManager->SetIntensity(m_entite_graphique.m_light,m_porteeLumineuse.intensite);*/
         }
         else
-            m_entite_graphique.m_sprite.SetColor(sf::Color(255,255,255, 255));*/
+            m_entite_graphique.m_sprite.SetColor(sf::Color(255,255,255, 255));
 
         if(m_entite_graphique.attaque_touche)
         {

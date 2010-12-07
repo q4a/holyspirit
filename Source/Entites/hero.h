@@ -191,6 +191,8 @@ public:
 
     std::vector <Item_Used> m_items_cooldown;
 
+    bool newQuest, newDoc;
+
 private:
     coordonnee m_chercherSac,m_sacVise;
 

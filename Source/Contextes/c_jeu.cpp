@@ -140,10 +140,10 @@ void c_Jeu::Utiliser(Jeu *jeu)
         m_thread_sauvegarde->Launch();
         tempsSauvergarde=0;
     }
-    Deplacements(jeu);
     Lumieres(jeu);
     Evenements(jeu);
-    IA(jeu);
+    Deplacements(jeu);
+    //IA(jeu);
     Animation(jeu);
 
     jeu->hero.PlacerCamera();
@@ -243,14 +243,20 @@ void c_Jeu::Deplacements(Jeu *jeu)
 
     jeu->map->TesterPoussable(jeu->hero.m_personnage, tempsEcoule);
 
-    if (jeu->hero.m_personnage.SeDeplacer(tempsEcoule*100))
+
+    bool seDeplacer = jeu->hero.m_personnage.SeDeplacer(tempsEcoule*100);
+
+    IA(jeu);
+
+    if (seDeplacer)
     {
         bool ok=true;
         if (jeu->hero.m_personnage.m_cible != NULL)
             if (jeu->hero.TestMonstreVise(jeu->hero.m_personnage.m_cible))
                 ok=false;
 
-        if (jeu->hero.m_personnage.getCoordonnee().x==jeu->hero.m_personnage.getArrivee().x && jeu->hero.m_personnage.getCoordonnee().y==jeu->hero.m_personnage.getArrivee().y)
+        if (jeu->hero.m_personnage.getCoordonnee().x==jeu->hero.m_personnage.getArrivee().x
+         && jeu->hero.m_personnage.getCoordonnee().y==jeu->hero.m_personnage.getArrivee().y)
             ok=false;
 
         if (ok)
@@ -506,47 +512,61 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false)
 
     for(unsigned i = 0 ; i < jeu->hero.m_classe.boutons_menus_hud.size() ; ++i)
     {
+        Bouton *bouton;
+
+        if((jeu->hero.m_classe.boutons_menus_hud[i].lien == B_MIRACLES
+         && jeu->hero.m_caracteristiques.miracles_restant > 0)
+        || (jeu->hero.m_classe.boutons_menus_hud[i].lien == B_INVENTAIRE
+         && jeu->hero.m_caracteristiques.pts_restant > 0)
+        || (jeu->hero.m_classe.boutons_menus_hud[i].lien == B_QUETES
+         && jeu->hero.newQuest)
+        || (jeu->hero.m_classe.boutons_menus_hud[i].lien == B_DOCS
+         && jeu->hero.newDoc))
+            bouton = &jeu->hero.m_classe.boutons_menus_hud_2[i];
+        else
+            bouton = &jeu->hero.m_classe.boutons_menus_hud[i];
+
         sf::Sprite sprite;
 
-        sprite.SetImage(*moteurGraphique->getImage(jeu->hero.m_classe.boutons_menus_hud[i].image.image));
-        sprite.SetSubRect(sf::IntRect(jeu->hero.m_classe.boutons_menus_hud[i].image.position.x,
-                                      jeu->hero.m_classe.boutons_menus_hud[i].image.position.y,
-                                      jeu->hero.m_classe.boutons_menus_hud[i].image.position.w,
-                                      jeu->hero.m_classe.boutons_menus_hud[i].image.position.h));
+        sprite.SetImage(*moteurGraphique->getImage(bouton->image.image));
+        sprite.SetSubRect(sf::IntRect(bouton->image.position.x,
+                                      bouton->image.position.y,
+                                      bouton->image.position.w,
+                                      bouton->image.position.h));
 
-        sprite.SetPosition(AutoScreenAdjust(jeu->hero.m_classe.boutons_menus_hud[i].position.x,
-                                            jeu->hero.m_classe.boutons_menus_hud[i].position.y));
+        sprite.SetPosition(AutoScreenAdjust(bouton->position.x,
+                                            bouton->position.y));
 
-        sprite.Resize(jeu->hero.m_classe.boutons_menus_hud[i].position.w, jeu->hero.m_classe.boutons_menus_hud[i].position.h);
+        sprite.Resize(bouton->position.w, bouton->position.h);
 
-        if(jeu->hero.m_classe.boutons_menus_hud[i].lien == B_MAP
+        if(bouton->lien == B_MAP
         && configuration->Minimap)
             sprite.Move(0,9);
-        if(jeu->hero.m_classe.boutons_menus_hud[i].lien == B_MIRACLES
+        if(bouton->lien == B_MIRACLES
         && jeu->next_screen == 5)
             sprite.Move(0,9);
-        if(jeu->hero.m_classe.boutons_menus_hud[i].lien == B_INVENTAIRE
+        if(bouton->lien == B_INVENTAIRE
         && jeu->next_screen == 2)
             sprite.Move(0,9);
-        if(jeu->hero.m_classe.boutons_menus_hud[i].lien == B_QUETES
+        if(bouton->lien == B_QUETES
         && jeu->next_screen == 6)
             sprite.Move(0,9);
-        if(jeu->hero.m_classe.boutons_menus_hud[i].lien == B_MENU
+        if(bouton->lien == B_MENU
         && jeu->next_screen == 4)
             sprite.Move(0,9);
-        if(jeu->hero.m_classe.boutons_menus_hud[i].lien == B_CHAT
+        if(bouton->lien == B_CHAT
         && configuration->console != 0)
             sprite.Move(0,9);
-        if(jeu->hero.m_classe.boutons_menus_hud[i].lien == B_DOCS
+        if(bouton->lien == B_DOCS
         && jeu->next_screen == 9)
             sprite.Move(0,9);
 
 
         moteurGraphique->AjouterCommande(&sprite, 17,0);
 
-        if(jeu->hero.m_classe.boutons_menus_hud[i].Survol())
+        if(bouton->Survol())
         {
-            moteurGraphique->AjouterTexte(jeu->hero.m_classe.boutons_menus_hud[i].nom,coordonnee(eventManager->getPositionSouris().x,
+            moteurGraphique->AjouterTexte(bouton->nom,coordonnee(eventManager->getPositionSouris().x,
                                             eventManager->getPositionSouris().y - 20),
                                             19,0,12,sf::Color(224,224,224),1);
             if(eventManager->getEvenement(Mouse::Left,EventClicA))
@@ -554,7 +574,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false)
                 eventManager->StopEvenement(Mouse::Left,EventClicA);
 
                 if(!diplace_mode)
-                    choix = jeu->hero.m_classe.boutons_menus_hud[i].lien;
+                    choix = bouton->lien;
             }
         }
     }

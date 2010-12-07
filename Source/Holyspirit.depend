@@ -482,7 +482,7 @@
 
 1264447812 .h"
 
-1291032899 e:\c++\holyspirit\source\entites\hero.h
+1291740120 e:\c++\holyspirit\source\entites\hero.h
 	<iostream>
 	<string>
 	<list>
@@ -491,7 +491,7 @@
 	"monstre.h"
 	"quete.h"
 
-1291032502 e:\c++\holyspirit\source\entites\classe.h
+1291740120 e:\c++\holyspirit\source\entites\classe.h
 	"miracle.h"
 
 1263653913 "
@@ -635,7 +635,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1291735301 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
+1291737224 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -681,7 +681,7 @@
 	"case.h"
 	<iostream>
 
-1291032885 source:e:\c++\holyspirit\source\entites\classe.cpp
+1291740120 source:e:\c++\holyspirit\source\entites\classe.cpp
 	"classe.h"
 	"../globale.h"
 	<sstream>
@@ -724,7 +724,7 @@
 	<fstream>
 	<sstream>
 
-1291476967 source:e:\c++\holyspirit\source\entites\personnage.cpp
+1291736976 source:e:\c++\holyspirit\source\entites\personnage.cpp
 	"personnage.h"
 	"../globale.h"
 	<iostream>

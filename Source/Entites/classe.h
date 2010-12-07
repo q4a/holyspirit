@@ -110,6 +110,7 @@ struct Classe
     coordonnee position_points_miracles;
 
     std::vector<Bouton>  boutons_menus_hud;
+    std::vector<Bouton>  boutons_menus_hud_2;
 
     std::vector <Emplacement_inventaire> emplacements;
 
