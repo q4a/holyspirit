@@ -1136,6 +1136,9 @@ void Map::Sauvegarder(std::string chemin)
                             m_decor[couche][i][j][z].m_entite_graphique.SaveParameters(fichier);
                         }
 
+                        if(m_decor[couche][i][j][z].getHauteur() > 0)
+                            fichier<<"i"<<m_decor[couche][i][j][z].getHauteur()<<" ";
+
                         for (unsigned k = 0 ; k < m_decor[couche][i][j][z].getMonstre().size() ; ++k)
                             if (m_decor[couche][i][j][z].getMonstre()[k] >= 0 && m_decor[couche][i][j][z].getMonstre()[k] < (int)m_monstre.size())
                             {
@@ -1154,9 +1157,6 @@ void Map::Sauvegarder(std::string chemin)
 
                         if(m_decor[couche][i][j][z].getHerbe() >= 0)
                             fichier<<"h"<<m_decor[couche][i][j][z].getHerbe()<<" ";
-
-                        if(m_decor[couche][i][j][z].getHauteur() > 0)
-                            fichier<<"i"<<m_decor[couche][i][j][z].getHauteur()<<" ";
 
                         if (couche==0)
                         {

@@ -398,7 +398,7 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
         sprite_final = entite->m_sprite;
         sprite_final.Move(entite->m_decalage.x, entite->m_decalage.y);
         sprite_final.Scale(entite->m_scale.x*0.01,entite->m_scale.y*0.01);
-        (entite->m_scale.x < 0) ? sprite_final.FlipX(true), sprite_final.SetOrigin(sprite_final.GetSubRect().Width - sprite_final.GetOrigin().x, sprite_final.GetOrigin().y) : sprite_final.FlipX(false);
+        (entite->m_scale.x < 0) ? sprite_final.FlipX(true)/*, sprite_final.SetOrigin(sprite_final.GetSubRect().Width - sprite_final.GetOrigin().x, sprite_final.GetOrigin().y)*/ : sprite_final.FlipX(false);
         (entite->m_scale.y < 0) ? sprite_final.FlipY(true) : sprite_final.FlipY(false);
 
 
