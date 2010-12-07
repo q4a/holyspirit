@@ -635,7 +635,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1291394235 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
+1291735301 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -686,7 +686,7 @@
 	"../globale.h"
 	<sstream>
 
-1291395974 source:e:\c++\holyspirit\source\entites\hero.cpp
+1291735301 source:e:\c++\holyspirit\source\entites\hero.cpp
 	"../constantes.h"
 	"hero.h"
 	"../globale.h"
@@ -762,7 +762,7 @@
 	"evenement.h"
 	<iostream>
 
-1289668431 source:e:\c++\holyspirit\source\map\map.cpp
+1291731857 source:e:\c++\holyspirit\source\map\map.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -6403,7 +6403,7 @@
 	<SFML/System/Vector2.hpp>
 	<SFML/System/Vector3.hpp>
 
-1289308477 e:\c++\sfml2\include\sfml\config.hpp
+1291027063 e:\c++\sfml2\include\sfml\config.hpp
 	<climits>
 
 1289308476 e:\c++\sfml2\include\sfml\system\clock.hpp
@@ -6434,10 +6434,11 @@
 	<locale>
 	<string>
 
-1289308476 e:\c++\sfml2\include\sfml\system\thread.hpp
+1290338847 e:\c++\sfml2\include\sfml\system\thread.hpp
 	<SFML/Config.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<cstdlib>
+	<SFML/System/Thread.inl>
 
 1289308476 e:\c++\sfml2\include\sfml\system\threadlocal.hpp
 	<SFML/Config.hpp>
@@ -6513,7 +6514,7 @@
 	<SFML/Config.hpp>
 	<vector>
 
-1289474188 e:\c++\sfml2\include\sfml\window\window.hpp
+1290338847 e:\c++\sfml2\include\sfml\window\window.hpp
 	<SFML/Window/ContextSettings.hpp>
 	<SFML/Window/Input.hpp>
 	<SFML/Window/VideoMode.hpp>
@@ -6661,7 +6662,7 @@
 	<string>
 	<vector>
 
-1289308476 e:\c++\sfml2\include\sfml\audio\soundstream.hpp
+1290338847 e:\c++\sfml2\include\sfml\audio\soundstream.hpp
 	<SFML/Audio/SoundSource.hpp>
 	<SFML/System/Thread.hpp>
 	<cstdlib>
@@ -6687,7 +6688,9 @@
 	<SFML/Audio/SoundRecorder.hpp>
 	<vector>
 
-1289308476 e:\c++\sfml2\include\sfml\audio\soundrecorder.hpp
+1290338847 e:\c++\sfml2\include\sfml\audio\soundrecorder.hpp
 	<SFML/System/Thread.hpp>
 	<vector>
+
+1290338847 e:\c++\sfml2\include\sfml\system\thread.inl
 

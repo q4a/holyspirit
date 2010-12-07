@@ -2723,6 +2723,26 @@ bool Hero::TestMonstreVise(Personnage *monstre)
             || (!monstre->m_friendly&&m_personnage.m_shooter&&(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)<=13&&fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)<=13))
             || (!monstre->m_friendly&&m_personnage.m_shooter&&(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=13&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=13)))
             {
+
+                float m=atan2(-(double)(monstre->getCoordonneePixel().y-m_personnage.getCoordonneePixel().y),
+                               (double)(monstre->getCoordonneePixel().x-m_personnage.getCoordonneePixel().x));
+
+                m = (int)(m*180/M_PI);
+
+                if(m < 0)
+                    m += 360;
+                if(m > 360)
+                    m -= 360;
+
+                if(m - (int)(m/45) * 45 > 23)
+                    m = (int)(m/45) * 45 + 45;
+                else
+                    m = (int)(m/45) * 45;
+
+                m-=45;
+
+                m_personnage.setAngle((int)m);
+
                 if(monstre->m_collision)
                     m_personnage.setArrivee(m_personnage.getCoordonnee());
                 else

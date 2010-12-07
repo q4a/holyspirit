@@ -604,6 +604,11 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                         Entite_graphique entite_monstre_final;
                         bool dernierEtaitMonstre = false;
 
+                        if(couche > 0)
+                        if(position.y < m_decor[0].size())
+                        if(position.x < m_decor[0][position.y].size())
+                        position.h = m_decor[0][position.y][position.x].getHauteur();
+
                         do
                         {
 
@@ -916,6 +921,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
 
                             tileset=-1,tile.clear(),tileFinal=-1,monstreFinal.clear(),herbe=-1,layer=0,hauteur=0;
+                            position.h = 0;
                             objets.clear();
                             position.x++;
                         }
