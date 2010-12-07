@@ -1,6 +1,8 @@
 
 main 
+	incrementVariable * 4 * time
 	if variable * 1 * 0
+		variable_bigger * 4 * 1
 	then
 		setActif * 1
 
@@ -10,9 +12,11 @@ main
 			then
 				variable * 0 * 0
 				setState * 1  * 0
+				variable * 4 * 0
 			else
 				variable * 0 * 1
 				setState * 3  * 0
+				variable * 4 * 0
 			end
 			
 			stop_talk
