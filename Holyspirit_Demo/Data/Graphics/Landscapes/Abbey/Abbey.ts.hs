@@ -26,4 +26,7 @@ $
 *x0 y0 w0 h0 i0 c0 lr0 lv0 lb0 li-255 lh512 rx  z1 vMurLumiereGrandX $
 
 * x512 y0 w512 h1024 i0 c1 ey640 ex512 lr0 lv0 lb0 li-255 lh512 rx  $
+
+*x0 y0 w0 h0 i0 c0 lr0 lv0 lb0 li-255 lh256 ry  z1 vMurLumierey $
+*x0 y0 w0 h0 i0 c0 lr0 lv0 lb0 li-255 lh256 rb  z1 vMurLumierebas $
 $

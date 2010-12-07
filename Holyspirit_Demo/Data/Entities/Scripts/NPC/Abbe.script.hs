@@ -198,12 +198,12 @@ main
 		else
 			if no_speak
 			then
-				if variable * 0 * 75
+				if variable_bigger * 0 * 5
 				then
 					randomDisplace
 					variable * 0 * 0
 				end
-				incrementVariable * 0 * 1
+				incrementVariable * 0 * time
 			end
 		end
 	end

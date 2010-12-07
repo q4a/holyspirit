@@ -9,8 +9,8 @@ Ombre ténébreuse
 Prêtre démoniaque
 Milice Corrompue : Brute
 Errant des roches
-Golem de quartz
-Seigneur Merengar
+?
+?
 Molosse décharné
 Paysan zombie
 Dépouille putride
@@ -19,10 +19,10 @@ Marchand rare
 Le Grand Questeur
 Levier
 Zombie massier
-Suceur de cervelle
-Marchand zombifié
+?
+?
 Chef de meute
-Martelleur de crânes
+?
 Molosse infernal
 Abbé Hademar
 Potale de l'Abbaye
@@ -41,7 +41,8 @@ Errant des cimetières
 Fosse commune (Crée des errants)
 Passage
 Ame damnée
-
+Garde
+Sergent Waldemar
 
 
 
