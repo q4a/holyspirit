@@ -151,7 +151,7 @@ Salutations, femme. Je n'ai rien contre toi mais évite de dissiper mes hommes, i
 Qui es-tu ?
 Je suis Waldemar, Sous-Officier de l'Empire. Normalement je suis Sergent mais étant donné les circonstances je pourrais tout aussi bien être Maréchal ! Tous ces squelettes me font presque regretter les barbares. Au moins ils étaient de chair et de sang comme nous et tuer avait un sens...
 Je peux faire quelque chose pour toi ?
-Et bien non, pas pour l'instant. Ces horribles créatures ont l'air d'ignorer l'abbaye pour l'instant... J'espère que ça va durer car s'ils s'avisent de donner l'assaut on ne résistera pas bien longtemps. Au moins aura-t-on la consolation de mourir tous en ensemble !
+Et bien non, pas pour l'instant. Ces horribles créatures ont l'air d'ignorer l'abbaye pour le moment... J'espère que ça va durer car s'ils s'avisent de donner l'assaut on ne résistera pas bien longtemps. Au moins aura-t-on la consolation de mourir tous en ensemble !
 Au revoir !
 
 
