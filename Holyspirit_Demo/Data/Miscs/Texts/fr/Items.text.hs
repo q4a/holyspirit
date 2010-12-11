@@ -138,3 +138,4 @@ Armure de maille et de cuir\qui appartenut au terrible chef barbare\Haksil Wurga
 Arbalète de feu éternel
 Cette arbalète a été trempée\dans le sang du démon,\lui conférant la capacité de\tirer des carreaux explosifs.
 
+

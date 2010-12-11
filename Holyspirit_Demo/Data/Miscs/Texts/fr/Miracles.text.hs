@@ -53,3 +53,4 @@ Explosion
 Le carreau tiré par l'arbalète est explosif.\Il inflige 10-20 points de dégâts par le feu.
 
 
+

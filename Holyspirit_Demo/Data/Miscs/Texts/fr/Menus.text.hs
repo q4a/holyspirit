@@ -96,3 +96,4 @@ Votre charisme influe sur le prix des objets et vous permet de porter certains o
 
 
 
+
