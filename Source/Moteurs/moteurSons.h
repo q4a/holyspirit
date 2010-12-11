@@ -40,7 +40,7 @@ class MoteurSons : public CSingleton<MoteurSons>
 	void JouerSon(int ID,coordonnee position,bool unique=0,int volume=100);
 	void StopAllSounds();
 
-	void PlayNewMusic(std::string chemin);
+	void PlayNewMusic(const std::string &chemin);
 
 	void setVolumeMusique(int volume);
 

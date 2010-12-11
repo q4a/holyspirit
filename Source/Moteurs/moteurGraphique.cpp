@@ -534,6 +534,17 @@ void MoteurGraphique::Afficher()
         m_textes[k].clear();
     }
 
+    /*{
+        sf::View temp = m_camera;
+        temp.SetSize(configuration->Resolution.x + 64, configuration->Resolution.y + 64);
+        temp.Zoom(configuration->zoom);
+
+        decalageOmbre=temp.GetCenter();
+        bufferImage.SetView(temp);
+
+        LightManager->DrawWallShadow(&bufferImage,&temp,m_angleOmbreSoleil,m_soleil);
+    }*/
+
     bufferImage.Display();
     m_ecran.Draw(sf::Sprite(bufferImage.GetImage()));
     m_ecran.Display();
@@ -769,7 +780,7 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
 
             sprite2.Move(entite->m_decalage.x,entite->m_decalage.y);
 
-            AjouterCommande(&sprite2, 10, !entite->m_fixed);
+            AjouterCommande(&sprite2, 10 + entite->m_decalCouche, !entite->m_fixed);
         }
 
         if(entite->m_sprite.GetSize().x > 0 && entite->m_sprite.GetSize().y > 0)

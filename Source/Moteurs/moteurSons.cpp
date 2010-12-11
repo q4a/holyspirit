@@ -141,7 +141,7 @@ void MoteurSons::JouerSon(int ID,coordonnee position,bool unique,int volume)
     }
 }
 
-void MoteurSons::PlayNewMusic(std::string chemin)
+void MoteurSons::PlayNewMusic(const std::string &chemin)
 {
     m_music.Stop();
 

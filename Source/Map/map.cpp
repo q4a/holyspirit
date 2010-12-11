@@ -1287,11 +1287,11 @@ void Map::CalculerOmbresEtLumieres()
     for(unsigned j = 0 ; j < m_climates.size() ; ++j)
         if(m_climates[j].m_actif)
         {
-            r -= (int)((float)m_climates[j].m_lumiereModificater.rouge * m_climates[j].GetState());
-            g -= (int)((float)m_climates[j].m_lumiereModificater.vert * m_climates[j].GetState());
-            b -= (int)((float)m_climates[j].m_lumiereModificater.bleu * m_climates[j].GetState());
-            i -= (int)((float)m_climates[j].m_lumiereModificater.intensite * m_climates[j].GetState());
-            h -= (int)((float)m_climates[j].m_lumiereModificater.hauteur * m_climates[j].GetState());
+            r *= (255 - (float)m_climates[j].m_lumiereModificater.rouge * m_climates[j].GetState())/255;
+            g *= (255 - (float)m_climates[j].m_lumiereModificater.vert * m_climates[j].GetState())/255;
+            b *= (255 - (float)m_climates[j].m_lumiereModificater.bleu * m_climates[j].GetState())/255;
+            i *= (255 - (float)m_climates[j].m_lumiereModificater.intensite * m_climates[j].GetState())/255;
+            h *= (255 - (float)m_climates[j].m_lumiereModificater.hauteur * m_climates[j].GetState())/255;
         }
 
 
