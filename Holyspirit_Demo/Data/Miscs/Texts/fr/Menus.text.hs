@@ -93,7 +93,7 @@ Votre dextérité vous permet de mieux toucher/esquiver et d'accéder à certains ob
 Votre vitalité augmente votre vie.
 Votre piété augmente vos points de foi.
 Votre charisme influe sur le prix des objets et vous permet de porter certains objets.
-
-
+Supprimer personnage
+Veuillez taper le nom du héros à supprimer :
 
 

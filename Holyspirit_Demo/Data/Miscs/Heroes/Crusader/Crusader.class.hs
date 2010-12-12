@@ -141,7 +141,7 @@ $
 $
 	* e0 x58 y46 w42 h42 m35 	i * mData/Graphics/Menus/UI/Crusader/CrusaderPath1.png x96 y0 w32 h32 $ $ $
 	* e1 x124 y46 w42 h42 m36	i * mData/Graphics/Menus/UI/Crusader/CrusaderPath2.png x0 y0 w32 h32 $ $ $
-	* e2 x190 y46 w42 h42 m37	i * mData/Graphics/Menus/UI/Crusader/CrusaderPath3.png x0 y0 w32 h32 $ $ $
+	* e2 x186 y46 w42 h42 m37	i * mData/Graphics/Menus/UI/Crusader/CrusaderPath3.png x0 y0 w32 h32 $ $ $
 $
 	* e-1 b-1 mData/Miscs/Miracles/LevelUp/LevelUp.miracle.hs $
 

@@ -23,7 +23,7 @@ Un habit de moine.
 Grand bouclier
 Cet écu métallique protège\généreusement son porteur de\la poitrine jusqu’aux pieds.
 Potion de soins mineure
-Un liquide rouge et épais,\au goût écœurant. Ca n’est\assurément pas bon, mais ça\donne un fameux coup de fouet.\Vous soigne de 150 PV.
+Un liquide rouge et épais,\au goût écoeurant. Ca n’est\assurément pas bon, mais ça\donne un fameux coup de fouet.\Vous soigne de 150 PV.
 Cervelière
 Ce casque constitue une\bonne protection de la tête.
 Katzbalger
@@ -118,7 +118,7 @@ Bouclier fabriqué à l'aide d'os humains.\Certains prétendent qu'ils sont maudits
 Potion de foi limitée
 Cette fiole au contenu étrangement\fluorescent fera couler l’essence\divine dans vos veines !\Vous régénére de 300 PF.
 Potion de soins limitée
-Un liquide rouge et épais,\au goût écœurant. Ca n’est\assurément pas bon, mais ça\donne un fameux coup de fouet.\Vous soigne de 300 PV.
+Un liquide rouge et épais,\au goût écoeurant. Ca n’est\assurément pas bon, mais ça\donne un fameux coup de fouet.\Vous soigne de 300 PV.
 Camail
 Un capuchon de maille qui\protège la tête et la nuque.
 Sceptre de Clodomir

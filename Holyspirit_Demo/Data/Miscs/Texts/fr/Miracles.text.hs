@@ -2,7 +2,7 @@ Incarnation de Sainte Barbe
 Le croisé appelle Sainte Barbe pour venir à son aide.\Celle-ci permet au croisé d'infliger des dégâts de feu.
 Dégâts de feu : %1-%2
 Charge
-Le croisé charge un adversaire renversant tout sur son passage.\Utilisable uniquement avec un bouclier.
+Le croisé charge un adversaire en renversant tout sur son passage.\Utilisable uniquement avec un bouclier.
 Dégâts durant la charge : %1-%2
 Dégâts à l'impact : %3-%4
 Tornade divine
