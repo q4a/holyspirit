@@ -43,6 +43,7 @@ Passage
 Ame damnée
 Garde
 Sergent Waldemar
+Ecritoire
 
 
 
