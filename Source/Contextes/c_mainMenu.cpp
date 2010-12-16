@@ -40,6 +40,7 @@ c_MainMenu::c_MainMenu()
     no_ecran = E_PRINCIPAL;
     m_save   = false;
     m_reset  = false;
+    m_supprimer_heros = false;
     classe_choisie = 0;
     nom_hero = "";
     moteurSons->PlayNewMusic(configuration->music_menu);
@@ -49,6 +50,9 @@ c_MainMenu::c_MainMenu()
 
     m_background_hero.SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_slot, -1)));
     m_background_hero.Resize(150, 192);
+
+    m_delete_heros.SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_del, -1)));
+    m_delete_heros.SetPosition(configuration->Resolution.x/2 - 400, configuration->Resolution.y - 160);
 
     m_hs_logo.SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_logo, -1)));
 
@@ -197,6 +201,49 @@ void c_MainMenu::Reset(Jeu *jeu)
     jeu->hero.m_contenuSave.push_back(configuration->chemin_temps+"Image.png");
 }
 
+void c_MainMenu::ChargerListeSaves()
+{
+    m_chemin_saves.clear();
+    m_images_saves.clear();
+    m_incompatible_saves.clear();
+    m_niveau_saves.clear();
+    defilement_saves = 0;
+    struct dirent *lecture;
+
+    DIR *repertoire;
+    repertoire = opendir(configuration->chemin_saves.c_str());
+    if(!repertoire)
+        console->Ajouter("Le repertoire n'existe pas",1);
+
+
+
+    while ((lecture = readdir(repertoire)))
+    {
+        std::string name = lecture->d_name;
+        if(name.find("sav.hs") != string::npos && name != "." && name != "..")
+        {
+            m_chemin_saves.push_back(name);
+
+            std::string chemin_image = configuration->chemin_temps;
+            chemin_image += "Image.png";
+
+
+            sf::Sprite sprite;
+            cDAT reader;
+            reader.Read(configuration->chemin_saves+m_chemin_saves.back());
+            int img  = moteurGraphique->AjouterImage(reader.GetFile(chemin_image), reader.GetFileSize(chemin_image), chemin_image, 1, 1);
+            sprite.SetImage(*moteurGraphique->getImage(img));
+            m_images_saves.push_back(sprite);
+
+            Hero temp;
+            m_incompatible_saves.push_back(temp.ChargerPresentation(m_chemin_saves.back()));
+            m_niveau_saves.push_back(temp.m_caracteristiques.niveau);
+        }
+    }
+
+    closedir(repertoire);
+}
+
 void  c_MainMenu::E_Principal(Jeu *jeu)
 {
     m_hs_logo.SetPosition((configuration->Resolution.x - m_hs_logo.GetSize().x)/2,-16);
@@ -214,45 +261,8 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
         {
             no_ecran = E_CONTINUER;
             moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
-            m_chemin_saves.clear();
-            m_images_saves.clear();
-            m_incompatible_saves.clear();
-            m_niveau_saves.clear();
-            defilement_saves = 0;
-            struct dirent *lecture;
 
-            DIR *repertoire;
-            repertoire = opendir(configuration->chemin_saves.c_str());
-            if(!repertoire)
-                console->Ajouter("Le repertoire n'existe pas",1);
-
-
-
-            while ((lecture = readdir(repertoire)))
-            {
-                std::string name = lecture->d_name;
-                if(name.find("sav.hs") != string::npos && name != "." && name != "..")
-                {
-                    m_chemin_saves.push_back(name);
-
-                    std::string chemin_image = configuration->chemin_temps;
-                    chemin_image += "Image.png";
-
-
-                    sf::Sprite sprite;
-                    cDAT reader;
-                    reader.Read(configuration->chemin_saves+m_chemin_saves.back());
-                    int img  = moteurGraphique->AjouterImage(reader.GetFile(chemin_image), reader.GetFileSize(chemin_image), chemin_image, 1, 1);
-                    sprite.SetImage(*moteurGraphique->getImage(img));
-                    m_images_saves.push_back(sprite);
-
-                    Hero temp;
-                    m_incompatible_saves.push_back(temp.ChargerPresentation(m_chemin_saves.back()));
-                    m_niveau_saves.push_back(temp.m_caracteristiques.niveau);
-                }
-            }
-
-            closedir(repertoire);
+            ChargerListeSaves();
         }
 
         eventManager->StopEvenement(Mouse::Left,EventClic);
@@ -354,6 +364,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
 }
 void  c_MainMenu::E_Continuer(Jeu *jeu)
 {
+    jeu->m_no_printscreen = true;
     defilement_saves -= eventManager->getMolette();
 
     if(defilement_saves > (int)m_chemin_saves.size() - 8)
@@ -362,18 +373,122 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         defilement_saves = 0;
 
     if(eventManager->getEvenement(sf::Key::Escape, EventKey))
-        no_ecran = E_PRINCIPAL;
+        no_ecran = E_PRINCIPAL, m_supprimer_heros = false,nom_hero.clear(),jeu->m_no_printscreen = false;
+
+
+    if(m_supprimer_heros)
+    {
+        moteurGraphique->AjouterCommande(&m_delete_heros,20);
+        texte.SetCharacterSize(18);
+
+        texte.SetString(configuration->getText(0,96));
+        texte.SetY((int)configuration->Resolution.h - 128 );
+        texte.SetX((int)configuration->Resolution.w/2 - texte.GetRect().Width/2);
+
+        texte.SetColor(Color(150,100,50));
+        moteurGraphique->AjouterTexte(&texte,20,1);
+
+
+
+        if(((eventManager->getChar() >= 'a' && eventManager->getChar() <= 'z')
+         || (eventManager->getChar() >= 'A' && eventManager->getChar() <= 'Z')
+         || (eventManager->getChar() >= '0' && eventManager->getChar() <= '9'))
+        && nom_hero.size() < 16)
+            nom_hero += eventManager->getChar(), eventManager->stopChar();
+
+        if(eventManager->getEvenement(sf::Key::Back,EventKey))
+            if(!nom_hero.empty())
+                nom_hero.erase(nom_hero.begin() + nom_hero.size() - 1);
+        eventManager->StopEvenement(sf::Key::Back,EventKey);
+
+        if(time > 0.5)
+            texte.SetString(nom_hero + "|");
+        else
+            texte.SetString(nom_hero);
+        time += temps_ecoule;
+        if(time > 1)
+            time = 0;
+
+        texte.SetY((int)configuration->Resolution.h - 96 );
+        texte.SetX((int)configuration->Resolution.w/2 - texte.GetRect().Width/2);
+
+        texte.SetColor(Color(150,100,50));
+        moteurGraphique->AjouterTexte(&texte,20,1);
+
+        texte.SetString(configuration->getText(0,95));
+        texte.SetY((int)configuration->Resolution.h - 64 );
+        texte.SetX((int)configuration->Resolution.w/2 - texte.GetRect().Width/2);
+
+        if (eventManager->getPositionSouris().y >  texte.GetRect().Top
+          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + 32)
+          &&eventManager->getPositionSouris().x >  texte.GetRect().Left
+          &&eventManager->getPositionSouris().x < (texte.GetRect().Left + texte.GetRect().Width))
+        {
+            texte.SetColor(Color(100,50,0));
+            if(eventManager->getEvenement(Mouse::Left,EventClic))
+            {
+                m_supprimer_heros = false;
+                moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
+                eventManager->StopEvenement(Mouse::Left,EventClic);
+
+                std::string buf = configuration->chemin_saves+nom_hero+".sav.hs";
+                remove(buf.c_str());
+
+                ChargerListeSaves();
+
+                nom_hero.clear();
+            }
+        }
+        else
+            texte.SetColor(Color(150,100,50));
+
+        moteurGraphique->AjouterTexte(&texte,20,1);
+    }
+
+    if(eventManager->getEvenement(Mouse::Left,EventClic)
+    && m_supprimer_heros)
+    {
+        m_supprimer_heros = false;
+        nom_hero.clear();
+        eventManager->StopEvenement(Mouse::Left,EventClic);
+    }
 
     texte.SetString(configuration->getText(0,57));
     texte.SetY((int)configuration->Resolution.h/2 + 192 );
     texte.SetX((int)configuration->Resolution.w/2-texte.GetRect().Width/2);
-    if (eventManager->getPositionSouris().y > texte.GetRect().Top
-      &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+    if (eventManager->getPositionSouris().y >  texte.GetRect().Top
+      &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height)
+      &&eventManager->getPositionSouris().x >  texte.GetRect().Left
+      &&eventManager->getPositionSouris().x < (texte.GetRect().Left + texte.GetRect().Width))
     {
         texte.SetColor(Color(100,50,0));
         if(eventManager->getEvenement(Mouse::Left,EventClic))
         {
             no_ecran = E_PRINCIPAL;
+            jeu->m_no_printscreen = false;
+            moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
+            m_supprimer_heros = false;
+            eventManager->StopEvenement(Mouse::Left,EventClic);
+        }
+    }
+    else
+        texte.SetColor(Color(150,100,50));
+    moteurGraphique->AjouterTexte(&texte,19,1);
+
+    texte.SetCharacterSize(18);
+
+    texte.SetString(configuration->getText(0,95));
+    texte.SetY((int)configuration->Resolution.h/2 + 192 + 48 );
+    texte.SetX((int)configuration->Resolution.w/2 + 192);
+    if (eventManager->getPositionSouris().y >  texte.GetRect().Top
+      &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height)
+      &&eventManager->getPositionSouris().x >  texte.GetRect().Left
+      &&eventManager->getPositionSouris().x < (texte.GetRect().Left + texte.GetRect().Width))
+    {
+        texte.SetColor(Color(100,50,0));
+        if(eventManager->getEvenement(Mouse::Left,EventClic))
+        {
+            m_supprimer_heros = true;
             moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
             eventManager->StopEvenement(Mouse::Left,EventClic);
         }
@@ -429,7 +544,8 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         texte_niv.SetPosition(configuration->Resolution.w/2 - 384 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3) + 130 - texte_niv.GetRect().Width/2,
                               configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 224 + 156);
 
-        if((eventManager->getPositionSouris().y > texte.GetRect().Top
+        if(!m_supprimer_heros
+        &&((eventManager->getPositionSouris().y > texte.GetRect().Top
           &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height)
           &&eventManager->getPositionSouris().x > texte.GetRect().Left
           &&eventManager->getPositionSouris().x < (texte.GetRect().Left + texte.GetRect().Width)) ||
@@ -437,7 +553,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
            (eventManager->getPositionSouris().y > m_images_saves[i].GetPosition().y
           &&eventManager->getPositionSouris().y < m_images_saves[i].GetPosition().y + 192
           &&eventManager->getPositionSouris().x > m_images_saves[i].GetPosition().x
-          &&eventManager->getPositionSouris().x < m_images_saves[i].GetPosition().x + 160))
+          &&eventManager->getPositionSouris().x < m_images_saves[i].GetPosition().x + 160)))
         {
             m_images_saves[i].SetBlendMode(sf::Blend::Add);
             moteurGraphique->AjouterCommande(&m_images_saves[i],19,0);
@@ -482,11 +598,13 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
 
                 eventManager->StopEvenement(Mouse::Left,EventClic);
                 no_ecran = E_PRINCIPAL;
+                jeu->m_no_printscreen = false;
                 jeu->m_display = false;
             }
         }
         else
             texte.SetColor(Color(150,100,50)),texte_niv.SetColor(Color(150,100,50));
+
         moteurGraphique->AjouterTexte(&texte,19,1);
         moteurGraphique->AjouterTexte(&texte_niv,19,1);
     }
@@ -501,9 +619,10 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
 
         if(i < m_chemin_saves.size())
         {
-            if (eventManager->getPositionSouris().y > texte.GetRect().Top
-              &&eventManager->getPositionSouris().y < texte.GetRect().Top + 32)
-            if (eventManager->getPositionSouris().x > texte.GetRect().Left
+            if(!m_supprimer_heros
+              &&eventManager->getPositionSouris().y > texte.GetRect().Top
+              &&eventManager->getPositionSouris().y < texte.GetRect().Top + 32
+              &&eventManager->getPositionSouris().x > texte.GetRect().Left
               &&eventManager->getPositionSouris().x < (texte.GetRect().Left + texte.GetRect().Width))
             {
                 texte.SetColor(Color(100,50,0));
@@ -527,9 +646,10 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
 
         if(defilement_saves > 0)
         {
-            if (eventManager->getPositionSouris().y > texte.GetRect().Top
-              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + 32))
-            if (eventManager->getPositionSouris().x > texte.GetRect().Left
+            if (!m_supprimer_heros
+              &&eventManager->getPositionSouris().y > texte.GetRect().Top
+              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + 32)
+              && eventManager->getPositionSouris().x > texte.GetRect().Left
               &&eventManager->getPositionSouris().x < (texte.GetRect().Left + texte.GetRect().Width))
             {
                 texte.SetColor(Color(100,50,0));
@@ -551,8 +671,10 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
 }
 void  c_MainMenu::E_Nouveau(Jeu *jeu)
 {
+    jeu->m_no_printscreen = true;
+
     if(eventManager->getEvenement(sf::Key::Escape, EventKey))
-        no_ecran = E_PRINCIPAL;
+        no_ecran = E_PRINCIPAL,nom_hero.clear(),jeu->m_no_printscreen = false;
 
     if(((eventManager->getChar() >= 'a' && eventManager->getChar() <= 'z')
      || (eventManager->getChar() >= 'A' && eventManager->getChar() <= 'Z')
@@ -656,6 +778,7 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
             jeu->hero.m_caracteristiques.nom = nom_hero;
 
             no_ecran = E_PRINCIPAL;
+            jeu->m_no_printscreen = false;
 
             jeu->m_contexte = jeu->m_chargement;
 
@@ -674,7 +797,7 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
     {
         texte.SetColor(Color(100,50,0));
         if(eventManager->getEvenement(Mouse::Left,EventClic))
-            no_ecran = E_PRINCIPAL,nom_hero = "",moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
+            no_ecran = E_PRINCIPAL,nom_hero = "",moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0),jeu->m_no_printscreen = false;
         eventManager->StopEvenement(Mouse::Left,EventClic);
     }
     else

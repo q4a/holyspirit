@@ -24,7 +24,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <iostream>
 #include <sstream>
 
-sf::FloatRect GetViewRect(const sf::View& view)
+inline sf::FloatRect GetViewRect(const sf::View& view)
 {
     sf::FloatRect temp;
 

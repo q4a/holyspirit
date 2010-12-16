@@ -485,7 +485,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                 for(unsigned i = 0 ; i < m_listID[(unsigned)script->getValeur(noInstruction, 0)].size() ; ++i)
                 {
                     m_monstre[m_listID[(unsigned)script->getValeur(noInstruction, 0)][i]].setArrivee(
-                        coordonnee(script->getValeur(noInstruction, 1), script->getValeur(noInstruction, 2)));
+                        coordonnee((int)script->getValeur(noInstruction, 1), (int)script->getValeur(noInstruction, 2)));
                 }
         }
         else if (script->m_instructions[noInstruction].nom=="entity_setState" && monstre == -1)

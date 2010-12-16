@@ -36,6 +36,8 @@ public:
     void Utiliser(Jeu *jeu);
     void Reset(Jeu *jeu);
 
+    void ChargerListeSaves();
+
     void  E_Principal(Jeu *jeu);
     void  E_Continuer(Jeu *jeu);
     void  E_Nouveau(Jeu *jeu);
@@ -63,6 +65,7 @@ private:
     sf::Sprite m_mainscreen;
     sf::Sprite m_hs_logo;
     sf::Sprite m_background_hero;
+    sf::Sprite m_delete_heros;
     Light_Entity m_light;
     Light_Entity m_light_logo;
 
@@ -72,6 +75,8 @@ private:
     float m_credit_defil;
 
     std::string m_story;
+
+    bool m_supprimer_heros;
 };
 
 #endif

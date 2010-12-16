@@ -36,6 +36,8 @@ Jeu::Jeu()
     map         = NULL;
     next_screen = 0;
 
+    m_no_printscreen = false;
+
     m_jeu           = NULL;
     m_demarrage     = NULL;
     m_chargement    = NULL;
@@ -83,7 +85,7 @@ void Jeu::Demarrer()
             eventManager->GererLesEvenements(&m_run,Clock.GetElapsedTime(),buf);
         }
 
-        if (eventManager->getEvenement(Key::P,EventKey))
+        if (!m_no_printscreen && eventManager->getEvenement(Key::P,EventKey))
         {
             moteurGraphique->Printscreen();
             eventManager->StopEvenement(Key::P,EventKey);

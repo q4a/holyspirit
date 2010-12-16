@@ -67,9 +67,6 @@ int main (  )
         moteurGraphique->Charger();
         moteurGraphique->CreateNewWindow();
 
-
-
-
         configuration->numero_screen=0;
         ///On démarre le jeu
         Jeu m_jeu;

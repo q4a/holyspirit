@@ -1028,6 +1028,13 @@ void Map::Initialiser(Hero *hero)
             pos.x=(int)(((m_monstre[i].getCoordonneePixel().x-m_monstre[i].getCoordonneePixel().y)*64/COTE_TILE));
             pos.y=(int)(((m_monstre[i].getCoordonneePixel().x+m_monstre[i].getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
 
+
+            pos.x = (int)(((m_monstre[i].getCoordonnee().x*COTE_TILE-m_monstre[i].getCoordonnee().y*COTE_TILE)*64/COTE_TILE));
+            pos.y = (int)(((m_monstre[i].getCoordonnee().x*COTE_TILE+m_monstre[i].getCoordonnee().y*COTE_TILE)*64/COTE_TILE)+64);
+
+            if(m_monstre[i].getModele() >= 0
+            && m_monstre[i].getModele() < m_ModeleMonstre.size())
+                m_monstre[i].Animer(&m_ModeleMonstre[m_monstre[i].getModele()],0);
             m_monstre[i].m_entite_graphique.Initialiser(pos);
 
             if(m_monstre[i].m_entite_graphique.m_light.ID() == -1)

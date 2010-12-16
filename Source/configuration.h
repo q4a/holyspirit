@@ -90,7 +90,7 @@ class Configuration : public CSingleton<Configuration>
     int heure,jour,alpha;
     bool item_background;
     std::string version,chemin_maps,chemin_items,chemin_temps,chemin_saves,chemin_curseurs,chemin_menus,chemin_fonts,chemin_fx,nom_curseur_base,chemin_son_mort;
-    std::string nom_item_background, nom_item_unusable, menu_logo, menu_slot;
+    std::string nom_item_background, nom_item_unusable, menu_logo, menu_slot, menu_del;
     std::string nom_effetMort,nom_effetBlur,nom_effetFiltre, nom_effetWater, nom_effetDistortion;
     std::string water_map;
     std::string music_menu;

@@ -263,6 +263,8 @@ void Configuration::ChargerInit()
                 fichier>>menu_logo;
             if (chaine== "menu_slot:")
                 fichier>>menu_slot;
+            if (chaine== "menu_del:")
+                fichier>>menu_del;
 
             if (chaine== "ambient_shadow_tileset:")
                 fichier>>ambientShadow_tileset;

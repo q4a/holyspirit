@@ -58,7 +58,7 @@ class Jeu
     sf::SoundBuffer bufferSonMort;
 	sf::Sound  sonMort;
 
-	bool m_run,m_display;
+	bool m_run,m_display,m_no_printscreen;
 
 	c_Demarrage     *m_demarrage;
     c_Jeu           *m_jeu;

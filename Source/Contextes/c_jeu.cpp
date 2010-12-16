@@ -136,7 +136,6 @@ void c_Jeu::Utiliser(Jeu *jeu)
         }
 
         m_thread_sauvegarde = new sf::Thread(&Sauvegarder, jeu);
-      //  jeu->hero.SauvegarderApercu();
         m_thread_sauvegarde->Launch();
         tempsSauvergarde=0;
     }
