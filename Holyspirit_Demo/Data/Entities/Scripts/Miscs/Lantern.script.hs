@@ -1,13 +1,22 @@
 main 
 	if hour * 21 * 23 
 	then
-		setState * 1
+		if getState * 0
+		then
+			setState * 1 * 0 * 0
+		end
 	else
 		if hour * 0 * 6 
 		then
-			setState * 1
+			if getState * 0
+			then
+				setState * 1 * 0
+			end
 		else
-			setState * 0
+			if getState * 1
+			then
+				setState * 0 * 0
+			end
 		end
 	end
 end 
