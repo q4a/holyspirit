@@ -441,24 +441,16 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                             case 'v':
                                 fichier2->get(caractere);
                                 if (caractere=='i')
-                                {
                                     *fichier2>>vieMin;
-                                }
                                 else if (caractere=='a')
-                                {
                                     *fichier2>>vieMax;
-                                }
                                 break;
                             case 'd':
                                 fichier2->get(caractere);
                                 if (caractere=='i')
-                                {
                                     *fichier2>>degatsMin;
-                                }
                                 else if (caractere=='a')
-                                {
                                     *fichier2>>degatsMax;
-                                }
                                 break;
                             case 'r':
                                 *fichier2>>rang;
@@ -605,8 +597,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                         bool dernierEtaitMonstre = false;
 
                         if(couche > 0)
-                        if(position.y < m_decor[0].size())
-                        if(position.x < m_decor[0][position.y].size())
+                        if(position.y < (int)m_decor[0].size())
+                        if(position.x < (int)m_decor[0][position.y].size())
                         position.h = m_decor[0][position.y][position.x].getHauteur();
 
                         do
@@ -875,6 +867,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                         etat=m_monstre[monstre[i]].getEtat();
                                         pose=m_monstre[monstre[i]].getPose();
                                         angle=m_monstre[monstre[i]].getAngle();
+                                        //console->Ajouter(position.h,1);
                                         m_monstre[monstre[i]].setCoordonnee(position);
                                         m_monstre[monstre[i]].setDepart();
                                         m_monstre[monstre[i]].setEtat(etat);
@@ -1033,19 +1026,19 @@ void Map::Initialiser(Hero *hero)
             pos.y = (int)(((m_monstre[i].getCoordonnee().x*COTE_TILE+m_monstre[i].getCoordonnee().y*COTE_TILE)*64/COTE_TILE)+64);
 
             if(m_monstre[i].getModele() >= 0
-            && m_monstre[i].getModele() < m_ModeleMonstre.size())
+            && m_monstre[i].getModele() < (int)m_ModeleMonstre.size())
                 m_monstre[i].Animer(&m_ModeleMonstre[m_monstre[i].getModele()],0);
             m_monstre[i].m_entite_graphique.Initialiser(pos);
 
-            if(m_monstre[i].m_entite_graphique.m_light.ID() == -1)
-            {
-                m_monstre[i].m_entite_graphique.m_light=moteurGraphique->LightManager->Add_Dynamic_Light();
+          //  if(m_monstre[i].m_entite_graphique.m_light.ID() == -1)
+          //  {
+          //      m_monstre[i].m_entite_graphique.m_light=moteurGraphique->LightManager->Add_Dynamic_Light();
                 moteurGraphique->LightManager->SetQuality(m_monstre[i].m_entite_graphique.m_light,8);
-            }
+          //  }
 
-
-            //moteurGraphique->LightManager->SetPosition(m_monstre[i].m_light,pos);
-            moteurGraphique->LightManager->SetColor(m_monstre[i].m_entite_graphique.m_light,sf::Color(m_monstre[i].getPorteeLumineuse().rouge,m_monstre[i].getPorteeLumineuse().vert,m_monstre[i].getPorteeLumineuse().bleu));
+            moteurGraphique->LightManager->SetColor(m_monstre[i].m_entite_graphique.m_light,sf::Color(m_monstre[i].getPorteeLumineuse().rouge,
+                                                                                                      m_monstre[i].getPorteeLumineuse().vert,
+                                                                                                      m_monstre[i].getPorteeLumineuse().bleu));
         }
 
     if (configuration->debug)
@@ -1184,13 +1177,18 @@ void Map::Sauvegarder(Hero *hero)
                 fichier<<"* ";
                 for (int j=0;j<m_dimensions.x;j++)
                 {
-                    fichier<<" s"<<m_decor[couche][i][j].getTileset()<<" ";
-                    fichier<<"t"<<m_decor[couche][i][j].getTile()<<" ";
+                    if(m_decor[couche][i][j].getTileset() >= 0)
+                        fichier<<" s"<<m_decor[couche][i][j].getTileset()<<" ";
+                    if(m_decor[couche][i][j].getTile() >= 0)
+                        fichier<<"t"<<m_decor[couche][i][j].getTile()<<" ";
 
                     m_decor[couche][i][j].m_entite_graphique.SaveParameters(fichier);
 
                     if(m_decor[couche][i][j].added_minimap)
                         fichier<<"c1 ";
+
+                    if(m_decor[couche][i][j].getHauteur() > 0)
+                        fichier<<"i"<<m_decor[couche][i][j].getHauteur()<<" ";
 
                     for (unsigned k = 0 ; k < m_decor[couche][i][j].getMonstre().size() ; ++k)
                         if (m_decor[couche][i][j].getMonstre()[k] >= 0 && m_decor[couche][i][j].getMonstre()[k] < (int)m_monstre.size())
@@ -1202,13 +1200,15 @@ void Map::Sauvegarder(Hero *hero)
                                 fichier<<"m"<<m_decor[couche][i][j].getMonstre()[k]<<" ";
                             }
 
-                    fichier<<"h"<<m_decor[couche][i][j].getHerbe()<<" ";
-
-                    fichier<<"i"<<m_decor[couche][i][j].getHauteur()<<" ";
+                    if(m_decor[couche][i][j].getHerbe() >= 0)
+                        fichier<<"h"<<m_decor[couche][i][j].getHerbe()<<" ";
 
                     if (couche==0)
-                        fichier<<"l"<<m_decor[couche][i][j].getCouche()-1<<" ";
-                    else
+                    {
+                        if(m_decor[couche][i][j].getCouche()-1 > 0)
+                            fichier<<"l"<<m_decor[couche][i][j].getCouche()-1<<" ";
+                    }
+                    else if(m_decor[couche][i][j].getCouche()-10 > 0)
                         fichier<<"l"<<m_decor[couche][i][j].getCouche()-10<<" ";
 
                     for (int o=0;o<(int)m_decor[couche][i][j].getNombreObjets();o++)
@@ -1294,11 +1294,11 @@ void Map::CalculerOmbresEtLumieres()
     for(unsigned j = 0 ; j < m_climates.size() ; ++j)
         if(m_climates[j].m_actif)
         {
-            r *= (255 - (float)m_climates[j].m_lumiereModificater.rouge * m_climates[j].GetState())/255;
-            g *= (255 - (float)m_climates[j].m_lumiereModificater.vert * m_climates[j].GetState())/255;
-            b *= (255 - (float)m_climates[j].m_lumiereModificater.bleu * m_climates[j].GetState())/255;
-            i *= (255 - (float)m_climates[j].m_lumiereModificater.intensite * m_climates[j].GetState())/255;
-            h *= (255 - (float)m_climates[j].m_lumiereModificater.hauteur * m_climates[j].GetState())/255;
+            r = (int)((float)r*(255 - (float)m_climates[j].m_lumiereModificater.rouge * m_climates[j].GetState())/255);
+            g = (int)((float)g*(255 - (float)m_climates[j].m_lumiereModificater.vert * m_climates[j].GetState())/255);
+            b = (int)((float)b*(255 - (float)m_climates[j].m_lumiereModificater.bleu * m_climates[j].GetState())/255);
+            i = (int)((float)i*(255 - (float)m_climates[j].m_lumiereModificater.intensite * m_climates[j].GetState())/255);
+            h = (int)((float)h*(255 - (float)m_climates[j].m_lumiereModificater.hauteur * m_climates[j].GetState())/255);
         }
 
 

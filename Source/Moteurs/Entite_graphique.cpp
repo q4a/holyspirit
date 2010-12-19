@@ -214,14 +214,10 @@ void Entite_graphique::Initialiser(coordonnee pos)
                     position.x = pos.x + m_decalage.x;
                     position.y = pos.y + m_decalage.y;
 
-                    //if (m_tileset->getAnimationTile(m_noAnimation) != -1)
-                        m_light = moteurGraphique->LightManager->Add_Dynamic_Light(position,/*m_tileset->getLumiereDuTile(m_noAnimation).intensite*/255,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,12,
-                                                                                   sf::Color(m_tileset->getLumiereDuTile(m_noAnimation).rouge,m_tileset->getLumiereDuTile(m_noAnimation).vert,m_tileset->getLumiereDuTile(m_noAnimation).bleu));
-
-                       // moteurGraphique->LightManager->Generate(m_light);
-                    //else
-                      //  m_light = moteurGraphique->LightManager->Add_Static_Light (position,m_tileset->getLumiereDuTile(m_noAnimation).intensite,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,6,
-                        //                                                            sf::Color(m_tileset->getLumiereDuTile(m_noAnimation).rouge,m_tileset->getLumiereDuTile(m_noAnimation).vert,m_tileset->getLumiereDuTile(m_noAnimation).bleu));
+                    m_light = moteurGraphique->LightManager->Add_Dynamic_Light(position,m_tileset->getLumiereDuTile(m_noAnimation).intensite > 0 ? 255 : 0,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,12,
+                                                                                sf::Color(m_tileset->getLumiereDuTile(m_noAnimation).rouge,
+                                                                                          m_tileset->getLumiereDuTile(m_noAnimation).vert,
+                                                                                          m_tileset->getLumiereDuTile(m_noAnimation).bleu));
                 }
             }
         }

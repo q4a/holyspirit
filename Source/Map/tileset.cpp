@@ -34,17 +34,20 @@ Tileset::Tileset()
 {
     option_forcedShadow     = false;
     option_forcedReflect    = false;
+    empty_lumiere.intensite = 0;
 }
 Tileset::Tileset(const std::string &chemin)
 {
     option_forcedShadow     = false;
     option_forcedReflect    = false;
+    empty_lumiere.intensite = 0;
     Charger(chemin);
 }
 Tileset::Tileset(ifstream &fichier)
 {
     option_forcedShadow     = false;
     option_forcedReflect    = false;
+    empty_lumiere.intensite = 0;
     Charger(fichier);
 }
 Tileset::~Tileset()
@@ -462,7 +465,7 @@ const Lumiere &Tileset::getLumiereDuTile(int tile)
     if (tile>=0&&tile<(int)m_tile.size())
         return m_tile[tile].getLumiere();
 
-    return m_tile[0].getLumiere();
+    return empty_lumiere;
 }
 
 bool Tileset::getOmbreDuTile(int tile)
@@ -552,7 +555,7 @@ int Tileset::getDistortionDuTile(int tile)
     return 0;
 }
 
-std::vector <int> Tileset::getShadowmapDuTile(int tile)
+const std::vector <int> &Tileset::getShadowmapDuTile(int tile)
 {
     if (tile>=0&&tile<(int)m_tile.size())
         return m_tile[tile].m_shadowMap;

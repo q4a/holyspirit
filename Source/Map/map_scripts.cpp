@@ -459,7 +459,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         else if (script->m_instructions[noInstruction].nom=="reset_miracle")
         {
             Caracteristique temp = hero->m_personnage.getCaracteristique();
-            for(int i = 1 ; i < hero->m_lvl_miracles.size() ; ++i)
+            for(unsigned i = 1 ; i < hero->m_lvl_miracles.size() ; ++i)
                 temp.miracles_restant += hero->m_lvl_miracles[i],hero->m_lvl_miracles[i] = 0;
             hero->m_personnage.setCaracteristique(temp);
         }

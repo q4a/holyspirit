@@ -203,7 +203,7 @@ void    Quete::    ChargerTexte(std::ifstream *fichier)
 void Document::GenerateDescription()
 {
     int prev = 0;
-    for(int i = 0 ; i < m_description.size() ; ++i)
+    for(unsigned i = 0 ; i < m_description.size() ; ++i)
     {
         if(m_description[i] == '\n')
         {

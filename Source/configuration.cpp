@@ -618,8 +618,8 @@ bool Configuration::Options()
                             {
                                 test = test.GetFullscreenModes()[i];
 
-                                if(test.Width  == m_liste_resolutions[no].x
-                                && test.Height == m_liste_resolutions[no].y)
+                                if((int)test.Width  == m_liste_resolutions[no].x
+                                && (int)test.Height == m_liste_resolutions[no].y)
                                     ok = true;
                             }
 

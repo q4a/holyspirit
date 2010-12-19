@@ -32,7 +32,7 @@ struct Wall
     {
         pt1=p1;
         pt2=p2;
-        hauteur=32;
+        hauteur=96;
         actif = true;
     }
     Wall(sf::Vector2f p1,sf::Vector2f p2,int newhauteur)
@@ -123,7 +123,7 @@ public :
     void Generate( std::vector<Wall>& m_wall);
 
     // Ajouter un triangle à la lumière, en effet, les lumières sont composée de triangles
-    void AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std::vector<Wall>& m_wall);
+    void AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std::vector<Wall>& m_wall, int hauteur = 96);
 
     // Changer différents attributs de la lumière
     void SetIntensity(float);

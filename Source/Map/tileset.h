@@ -81,7 +81,7 @@ class Tileset
 	int     getTaille(int type = 0);
 	int     getAngle(int type = 0);
 	int     getDistortionDuTile(int tile);
-	std::vector<int>     getShadowmapDuTile(int tile);
+	const  std::vector<int> &getShadowmapDuTile(int tile);
 
 	int getMinimap(int tile);
 	const coordonnee &getPositionMinimap(int tile);
@@ -104,6 +104,8 @@ class Tileset
 	std::vector <Tile>                  m_tile_distortion;
 	std::vector <Infos_son>                   m_sons;
 	std::vector <std::vector <int> >    m_sonsSpecial;
+
+	Lumiere empty_lumiere;
 
 };
 

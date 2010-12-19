@@ -430,9 +430,9 @@ sf::Vector2f Light_Manager::GetPt(Wall_Entity e, int nbr)
     if (e.ID()>=0&&e.ID()<(int)m_wall.size())
     {
         if(nbr == 2)
-            m_wall[e.ID()].pt2;
+            return m_wall[e.ID()].pt2;
         else
-            m_wall[e.ID()].pt1;
+            return m_wall[e.ID()].pt1;
     }
 }
 

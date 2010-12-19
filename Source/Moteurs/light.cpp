@@ -124,7 +124,7 @@ sf::Vector2f Collision(sf::Vector2f p1, sf::Vector2f p2, sf::Vector2f q1, sf::Ve
 }
 
 
-void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std::vector <Wall>& m_wall)
+void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std::vector <Wall>& m_wall, int hauteur)
 {
     int w=minimum_wall;
 
@@ -146,7 +146,7 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std
                     if((pt1.y > i.y && pt2.y < i.y) || (pt1.y < i.y && pt2.y > i.y))
                         if(l1.y > 0 && i.y > 0 || l1.y < 0 && i.y < 0)
                         if(l1.x > 0 && i.x > 0 || l1.x < 0 && i.x < 0)
-                        AddTriangle(i, pt2, w, m_wall), pt2 = i;
+                        AddTriangle(i, pt2, w, m_wall,IterWall->hauteur), pt2 = i, hauteur = IterWall->hauteur;
                 }
                 if(l2.x * l2.x + l2.y * l2.y < m_radius * m_radius)
                 {
@@ -156,7 +156,7 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std
                     if((pt1.y > i.y && pt2.y < i.y) || (pt1.y < i.y && pt2.y > i.y))
                         if(l2.y > 0 && i.y > 0 || l2.y < 0 && i.y < 0)
                         if(l2.x > 0 && i.x > 0 || l2.x < 0 && i.x < 0)
-                        AddTriangle(pt1, i, w, m_wall), pt1 = i;
+                        AddTriangle(pt1, i, w, m_wall,IterWall->hauteur), pt1 = i, hauteur = IterWall->hauteur;
                 }
 
                 sf::Vector2f m = Collision(l1, l2, sf::Vector2f(0,0), pt1);
@@ -164,14 +164,14 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std
                 sf::Vector2f o = Collision(l1, l2, pt1, pt2);
 
                 if((m.x != 0 || m.y != 0) && (n.x != 0 || n.y != 0))
-                    pt1 = m, pt2 = n;
+                    pt1 = m, pt2 = n, hauteur = IterWall->hauteur;
                 else
                 {
                     if((m.x != 0 || m.y != 0) && (o.x != 0 || o.y != 0))
-                        AddTriangle(m ,o , w, m_wall), pt1 = o;
+                        AddTriangle(m ,o , w, m_wall,IterWall->hauteur), pt1 = o;
 
                     if((n.x != 0 || n.y != 0) && (o.x != 0 || o.y != 0))
-                        AddTriangle(o ,n , w, m_wall), pt2 = o;
+                        AddTriangle(o ,n , w, m_wall,IterWall->hauteur), pt2 = o;
                 }
             }
 
@@ -206,6 +206,9 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std
     // On met que le shape soit en Add et on lui donne sa position
     m_shape.back().SetBlendMode(sf::Blend::Add);
 
+    if(hauteur > 160)
+        hauteur = 160;
+
 
     m_shape.back().SetPosition(m_position.x,m_position.y/2);
     if (devant)
@@ -214,8 +217,8 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std
             m_shape.push_back(sf::Shape ());
 
             m_shape.back().AddPoint(pt1.x,pt1.y/2,  sf::Color((int)(intensity*m_color.r/255),(int)(intensity*m_color.g/255),(int)(intensity*m_color.b/255)));
-            m_shape.back().AddPoint(pt1.x,pt1.y/2-96 * sin(intensity /m_intensity*M_PI_2),  sf::Color(0,0,0));
-            m_shape.back().AddPoint(pt2.x,pt2.y/2-96 * sin(intensity2/m_intensity*M_PI_2),  sf::Color(0,0,0));
+            m_shape.back().AddPoint(pt1.x,pt1.y/2-hauteur * sin(intensity /m_intensity*M_PI_2),  sf::Color(0,0,0));
+            m_shape.back().AddPoint(pt2.x,pt2.y/2-hauteur * sin(intensity2/m_intensity*M_PI_2),  sf::Color(0,0,0));
             m_shape.back().AddPoint(pt2.x,pt2.y/2,  sf::Color((int)(intensity2*m_color.r/255),(int)(intensity2*m_color.g/255),(int)(intensity2*m_color.b/255)));
 
             m_shape.back().SetBlendMode(sf::Blend::Add);

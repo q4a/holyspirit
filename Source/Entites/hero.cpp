@@ -665,7 +665,7 @@ void Hero::Charger(const std::string &chemin_save)
     RecalculerCaracteristiques();
     RecalculerCaracteristiques();
 
-    for(int i = 0 ; i < m_docs.size() ; ++i)
+    for(unsigned i = 0 ; i < m_docs.size() ; ++i)
     {
         m_docs[i].m_description = DecouperTexte(m_docs.back().m_description,m_classe.position_contenu_docs.w,16);
         m_docs[i].GenerateDescription();
@@ -1516,7 +1516,7 @@ void Hero::AfficherAmisEtCraft()
                 if(!eventManager->getEvenement(Mouse::Left,EventClicA))
                     m_select_friend = i;
 
-                if(eventManager->getEvenement(Mouse::Left,EventClicA) && m_select_friend == i)
+                if(eventManager->getEvenement(Mouse::Left,EventClicA) && m_select_friend == (int)i)
                 {
                     bool charme = false;
                     eventManager->StopEvenement(Mouse::Left,EventClic);
@@ -1730,9 +1730,9 @@ void Hero::AfficherDocs(float decalage)
 
         m_max_defil_cdoc = m_docs[docAffiche].m_ldescription.size();
 
-        for(int i = m_defil_cdoc ;
+        for(unsigned i = m_defil_cdoc ;
             i < m_docs[docAffiche].m_ldescription.size(),
-            i < m_defil_cdoc + m_classe.position_contenu_docs.h;
+            i < (unsigned)m_defil_cdoc + (unsigned)m_classe.position_contenu_docs.h;
             ++i)
         {
             texte.SetString(m_docs[docAffiche].m_ldescription[i]);
@@ -2572,7 +2572,7 @@ void Hero::AfficherRaccourcis()
             }
             else
             {
-                for(int j = 0 ; j < m_items_cooldown.size() ; ++j)
+                for(unsigned j = 0 ; j < m_items_cooldown.size() ; ++j)
                     if(m_items_cooldown[j].name == m_inventaire[m_raccourcis[i].no].getChemin())
                     {
                         float temp = (float)m_classe.position_raccourcis[i].h
@@ -4301,7 +4301,7 @@ bool Hero::UtiliserObjet(int numero)
         {
             bool ok = true;
 
-            for(int i = 0 ; i < m_items_cooldown.size() ; ++i)
+            for(unsigned i = 0 ; i < m_items_cooldown.size() ; ++i)
                 if(m_items_cooldown[i].name == m_inventaire[numero].getChemin())
                     ok = false;
 
@@ -4333,7 +4333,7 @@ bool Hero::UtiliserObjet(int numero)
         else if (m_inventaire[numero].m_type == DOCUMENT)
         {
             bool add = true;
-            for(int i =0 ; i< m_docs.size() ; ++i)
+            for(unsigned i =0 ; i< m_docs.size() ; ++i)
                 if(m_docs.back().m_chemin == m_inventaire[numero].getChemin())
                     add = false;
 
@@ -4554,7 +4554,7 @@ void Hero::RegenererMiracles(float time)
             m_classe.miracles[i].m_cur_time = m_classe.miracles[i].m_cooldown;
     }
 
-    for(int i = 0 ; i < m_items_cooldown.size() ; ++i)
+    for(unsigned i = 0 ; i < m_items_cooldown.size() ; ++i)
     {
         m_items_cooldown[i].time += time;
         if(m_items_cooldown[i].time >= m_items_cooldown[i].max_time)
