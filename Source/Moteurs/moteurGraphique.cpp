@@ -816,6 +816,7 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
                 sprite.Move(entite->m_decalage.x,entite->m_decalage.y);
 
                 sprite.FlipY(true);
+                sprite.FlipX(true);
                 sprite.SetOrigin(sprite.GetOrigin().x, sprite.GetSize().y - sprite.GetOrigin().y);
 
                 if(sprite.GetPosition().x + sprite.GetSize().x - sprite.GetOrigin().x     >= GetViewRect(m_camera).Left

@@ -644,9 +644,9 @@ bool Map::Miracle_EffetGraphique(Hero *hero, Personnage *personnage, Miracle &mo
 
         m_effets.back().m_tileset    = moteurGraphique->getTileset(modele.m_tileset[effet.m_sequence]);
         m_effets.back().m_couche     = 10;
+        m_effets.back().Animer(0);
         m_effets.back().Initialiser(coordonnee((int)(((float)info.m_position.x - (float)info.m_position.y) * 64 / COTE_TILE),
                                                (int)(((float)info.m_position.x + (float)info.m_position.y) * 64 / COTE_TILE)));
-        m_effets.back().Animer(0);
 
         info.m_IDObjet               = m_effets.size()-1;
 

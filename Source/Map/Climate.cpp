@@ -210,4 +210,9 @@ float Climate::GetState()
         return 1.0;
 }
 
+void Climate::Stop()
+{
+    if(m_cur_time < m_max_time - m_transition_time && m_actif)
+        m_cur_time = m_max_time - m_transition_time;
+}
 

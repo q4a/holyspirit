@@ -178,10 +178,6 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std
     // Variable qui contiendra l'intensité calculée, pour le dégradé
     float intensity,intensity2;
 
-    bool devant = false;
-    if ( 0>=(pt1.y) - (pt1.x)*(((pt1.y)-(pt2.y))/((pt1.x)-(pt2.x))))
-        devant = true;
-
 
     // On ajoute un shape
     m_shape.push_back(sf::Shape ());
@@ -194,12 +190,8 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std
     // Et on ajoute un  point au shape
     m_shape.back().AddPoint(pt1.x,pt1.y/2,  sf::Color((int)(intensity*m_color.r/255),(int)(intensity*m_color.g/255),(int)(intensity*m_color.b/255)));
 
-    //m_shape.back().AddPoint(pt1.x*1.2,pt1.y/2*1.2,  sf::Color(0,0,0));
-
     // Idem
     intensity2=m_intensity-gpl::sqrt(pt2.x*pt2.x + pt2.y*pt2.y)*m_intensity/m_radius;
-
-    //  m_shape.back().AddPoint(pt2.x*1.2,pt2.y/2*1.2,  sf::Color(0,0,0));
 
     m_shape.back().AddPoint(pt2.x,pt2.y/2,  sf::Color((int)(intensity2*m_color.r/255),(int)(intensity2*m_color.g/255),(int)(intensity2*m_color.b/255)));
 
@@ -211,7 +203,8 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std
 
 
     m_shape.back().SetPosition(m_position.x,m_position.y/2);
-    if (devant)
+
+    if ( 0>=(pt1.y) - (pt1.x)*(((pt1.y)-(pt2.y))/((pt1.x)-(pt2.x))))
         if (intensity>1||intensity2>1)
         {
             m_shape.push_back(sf::Shape ());

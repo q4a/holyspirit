@@ -28,7 +28,7 @@ class Entite_graphique
         Entite_graphique();
         virtual ~Entite_graphique();
         void Animer(float temps);
-        void NextTile();
+        void NextTile(bool cur = false);
         void Initialiser(coordonnee position);
         void Generer();
 
@@ -58,6 +58,8 @@ class Entite_graphique
     int m_ambientShadow;
 
     float m_animation;
+
+    float m_old_lightIntensity;
 
     Light_Entity m_light;
     Wall_Entity  m_light_wall;

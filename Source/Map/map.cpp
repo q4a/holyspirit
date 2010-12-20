@@ -279,6 +279,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
         if (configuration->debug)
             console->Ajouter("/Lectures des lumières.");
 
+        m_img_sky = -1;
+
         do
         {
 
@@ -1011,40 +1013,7 @@ void Map::Initialiser(Hero *hero)
     if (configuration->debug)
         console->Ajouter("Initialisation de l'herbe terminée.");
 
-    for (int i=0;i<(int)m_monstre.size();++i)
-        if (m_monstre[i].getCaracteristique().rang>=0)
-        {
-           // m_monstre[i].m_light=moteurGraphique->LightManager->Add_Dynamic_Light();
-          //  moteurGraphique->LightManager->SetQuality(m_monstre[i].m_light,6);
-
-            coordonnee pos;
-            pos.x=(int)(((m_monstre[i].getCoordonneePixel().x-m_monstre[i].getCoordonneePixel().y)*64/COTE_TILE));
-            pos.y=(int)(((m_monstre[i].getCoordonneePixel().x+m_monstre[i].getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
-
-
-            pos.x = (int)(((m_monstre[i].getCoordonnee().x*COTE_TILE-m_monstre[i].getCoordonnee().y*COTE_TILE)*64/COTE_TILE));
-            pos.y = (int)(((m_monstre[i].getCoordonnee().x*COTE_TILE+m_monstre[i].getCoordonnee().y*COTE_TILE)*64/COTE_TILE)+64);
-
-            if(m_monstre[i].getModele() >= 0
-            && m_monstre[i].getModele() < (int)m_ModeleMonstre.size())
-                m_monstre[i].Animer(&m_ModeleMonstre[m_monstre[i].getModele()],0);
-            m_monstre[i].m_entite_graphique.Initialiser(pos);
-
-          //  if(m_monstre[i].m_entite_graphique.m_light.ID() == -1)
-          //  {
-          //      m_monstre[i].m_entite_graphique.m_light=moteurGraphique->LightManager->Add_Dynamic_Light();
-                moteurGraphique->LightManager->SetQuality(m_monstre[i].m_entite_graphique.m_light,8);
-          //  }
-
-            moteurGraphique->LightManager->SetColor(m_monstre[i].m_entite_graphique.m_light,sf::Color(m_monstre[i].getPorteeLumineuse().rouge,
-                                                                                                      m_monstre[i].getPorteeLumineuse().vert,
-                                                                                                      m_monstre[i].getPorteeLumineuse().bleu));
-        }
-
-    if (configuration->debug)
-        console->Ajouter("Initialisation des entités terminée.");
-
-    sf::Vector2f pos;
+         sf::Vector2f pos;
 
     for (unsigned i=0;i<NOMBRE_COUCHE_MAP;++i)
         for (unsigned j=0;j<m_decor[i].size();j++)
@@ -1077,6 +1046,44 @@ void Map::Initialiser(Hero *hero)
 
     if (configuration->debug)
         console->Ajouter("Initialisation des décors terminée.");
+
+    for (int i=0;i<(int)m_monstre.size();++i)
+        if (m_monstre[i].getCaracteristique().rang>=0)
+        {
+           // m_monstre[i].m_light=moteurGraphique->LightManager->Add_Dynamic_Light();
+          //  moteurGraphique->LightManager->SetQuality(m_monstre[i].m_light,6);
+
+            coordonnee pos;
+            pos.x=(int)(((m_monstre[i].getCoordonneePixel().x-m_monstre[i].getCoordonneePixel().y)*64/COTE_TILE));
+            pos.y=(int)(((m_monstre[i].getCoordonneePixel().x+m_monstre[i].getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
+
+
+            pos.x = (int)(((m_monstre[i].getCoordonnee().x*COTE_TILE-m_monstre[i].getCoordonnee().y*COTE_TILE)*64/COTE_TILE));
+            pos.y = (int)(((m_monstre[i].getCoordonnee().x*COTE_TILE+m_monstre[i].getCoordonnee().y*COTE_TILE)*64/COTE_TILE)+64);
+
+            if(m_monstre[i].getModele() >= 0
+            && m_monstre[i].getModele() < (int)m_ModeleMonstre.size())
+                m_monstre[i].Animer(&m_ModeleMonstre[m_monstre[i].getModele()],0);
+            m_monstre[i].m_entite_graphique.Initialiser(pos);
+
+       /*   //  if(m_monstre[i].m_entite_graphique.m_light.ID() == -1)
+          //  {
+          //      m_monstre[i].m_entite_graphique.m_light=moteurGraphique->LightManager->Add_Dynamic_Light();
+                moteurGraphique->LightManager->SetQuality(m_monstre[i].m_entite_graphique.m_light,8);
+          //  }
+
+            moteurGraphique->LightManager->SetColor(m_monstre[i].m_entite_graphique.m_light,sf::Color(m_monstre[i].getPorteeLumineuse().rouge,
+                                                                                                      m_monstre[i].getPorteeLumineuse().vert,
+                                                                                                      m_monstre[i].getPorteeLumineuse().bleu));
+
+
+            moteurGraphique->LightManager->Generate(m_monstre[i].m_entite_graphique.m_light);*/
+        }
+
+    if (configuration->debug)
+        console->Ajouter("Initialisation des entités terminée.");
+
+
 
     for (int i=0;i<NOMBRE_COUCHE_MAP;++i)
         for (int j=0;j<m_dimensions.y;j++)
@@ -1439,15 +1446,18 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
     }
 
     sf::Sprite sky;
-    sky.SetImage(*moteurGraphique->getImage(m_img_sky));
+    if(m_img_sky >= 0)
+        sky.SetImage(*moteurGraphique->getImage(m_img_sky));
+    else
+        sky.SetColor(sf::Color(0,0,0));
     sky.Resize(configuration->Resolution.x,configuration->Resolution.y);
     moteurGraphique->AjouterCommande(&sky,0,0);
 
     for(unsigned i = 0 ; i < m_climates.size() ; ++i)
         m_climates[i].Draw();
 
-    int maxY = hero->m_personnage.getCoordonnee().y + (int)(14 * configuration->zoom * configuration->Resolution.x/800);
-    int maxX = hero->m_personnage.getCoordonnee().x + (int)(14 * configuration->zoom * configuration->Resolution.x/800);
+    const int maxY = hero->m_personnage.getCoordonnee().y + (int)(14 * configuration->zoom * configuration->Resolution.x/800);
+    const int maxX = hero->m_personnage.getCoordonnee().x + (int)(14 * configuration->zoom * configuration->Resolution.x/800);
 
     for (int couche=0;couche<NOMBRE_COUCHE_MAP;couche++)
     {

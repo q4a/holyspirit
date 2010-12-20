@@ -40,6 +40,8 @@ class Climate
 
         float GetState();
 
+        void Stop();
+
         bool m_actif;
 
         std::string m_chemin;

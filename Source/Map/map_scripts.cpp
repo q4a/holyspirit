@@ -517,7 +517,13 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         else if (script->m_instructions[noInstruction].nom=="setClimate")
         {
             if(script->getValeur(noInstruction, 0) >= 0 && script->getValeur(noInstruction, 0) < m_climates.size())
-                m_climates[(unsigned)script->getValeur(noInstruction, 0)].m_actif = (bool)script->getValeur(noInstruction, 1);
+            {
+                if((bool)script->getValeur(noInstruction, 1))
+                    m_climates[(unsigned)script->getValeur(noInstruction, 0)].m_actif = true;
+                else
+                    m_climates[(unsigned)script->getValeur(noInstruction, 0)].Stop();
+
+            }
         }
         else if (script->m_instructions[noInstruction].nom=="change_map")
         {

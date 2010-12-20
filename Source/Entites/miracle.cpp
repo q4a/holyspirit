@@ -48,6 +48,7 @@ EffetGraphique::EffetGraphique():
     m_actif         = true;
     m_compteur      = -100;
     m_position.h    = 0;
+    option_forcedLight = true;
 }
 
 Projectile::Projectile()
@@ -75,6 +76,12 @@ void EffetGraphique::Animer(float temps)
             m_animation += temps;
 
             option_sonUnique = false;
+
+
+            float intensite = m_old_lightIntensity;
+            intensite += m_animation/tempsAnimation * (m_tileset->getLumiereDuTile(m_noAnimation).intensite - m_old_lightIntensity);
+            moteurGraphique->LightManager->SetRadius(m_light,(int)intensite*3);
+            moteurGraphique->LightManager->Generate(m_light);
 
             if (m_tileset->getAnimationTile(m_noAnimation) >= 0)
                 if (m_animation>=tempsAnimation)
