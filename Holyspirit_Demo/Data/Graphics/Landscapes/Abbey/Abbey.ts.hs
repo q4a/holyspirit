@@ -43,4 +43,7 @@ $
 *x0 y0 w0 h0 i0 c0 lr0 lv0 lb0 li-255 lh256 rb  z1 vMurLumierebas $
 
 *x0 y0 w0 h0 i0 c0 lr0 lv0 lb0 li-255 lh256 ro  z1 vMurLumiereSpecial $
+
+*x0 y0 w0 h0 i0 c1 lr0 lv0 lb0 li-255 lh256 rr  z1 vCollisionT $
+*x0 y0 w0 h0 i0 c1 lr0 lv0 lb0 li-255 lh256 rq  z1 vCollisionTI $
 $

@@ -6,20 +6,24 @@ main
 	then
 		setActif * 1
 
-		if talk
-		then
-			if variable * 0 * 1
+		if distance * 1
+		then else
+
+			if talk
 			then
-				variable * 0 * 0
-				setState * 1  * 0
-				variable * 4 * 0
-			else
-				variable * 0 * 1
-				setState * 3  * 0
-				variable * 4 * 0
-			end
+				if variable * 0 * 1
+				then
+					variable * 0 * 0
+					setState * 1  * 0
+					variable * 4 * 0
+				else
+					variable * 0 * 1
+					setState * 3  * 0
+					variable * 4 * 0
+				end
 			
-			stop_talk
+				stop_talk
+			end
 		end
 	else
 		setActif * 0

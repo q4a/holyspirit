@@ -13,17 +13,17 @@ Cette armure constituée d’un\assemblage de fils métalliques\offre un bon comprom
 Charbon
 Le charbon est un matériau de\base pour la fabrication d'acier.
 Arbalète de poing
-Cette petite arme de jet\maniable et rapide est cependant\moins destructrice qu’une arme à feu.
+Cette petite arme de jet\maniable et rapide est cependant\moins destructrice qu'une arme à feu.
 Poignard
 Ce poignard fin et acéré\est une arme parfaite pour\un traitre… ou pour une femme.
 Potion de foi mineure
-Cette fiole au contenu étrangement\fluorescent fera couler l’essence\divine dans vos veines !\Vous régénére de 150 PF.
+Cette fiole au contenu étrangement\fluorescent fera couler l'essence\divine dans vos veines !\Vous régénére de 150 PF.
 Bure
 Un habit de moine.
 Grand bouclier
-Cet écu métallique protège\généreusement son porteur de\la poitrine jusqu’aux pieds.
+Cet écu métallique protège\généreusement son porteur de\la poitrine jusqu'aux pieds.
 Potion de soins mineure
-Un liquide rouge et épais,\au goût écoeurant. Ca n’est\assurément pas bon, mais ça\donne un fameux coup de fouet.\Vous soigne de 150 PV.
+Un liquide rouge et épais,\au goût écoeurant. Ca n'est\assurément pas bon, mais ça\donne un fameux coup de fouet.\Vous soigne de 150 PV.
 Cervelière
 Ce casque constitue une\bonne protection de la tête.
 Katzbalger
@@ -47,7 +47,7 @@ Une épée en acier,\courte mais tranchante.
 Lame de Courroux
 ???
 Épée à deux mains
-Cette lourde épée écrase\ce qu’elle ne fend pas...
+Cette lourde épée écrase\ce qu'elle ne fend pas...
 Bottes
 Des bottes divines.
 Scarificateur
@@ -116,9 +116,9 @@ Une épée à deux mains taillée dans l'os.
 Bouclier en os
 Bouclier fabriqué à l'aide d'os humains.\Certains prétendent qu'ils sont maudits...
 Potion de foi limitée
-Cette fiole au contenu étrangement\fluorescent fera couler l’essence\divine dans vos veines !\Vous régénére de 300 PF.
+Cette fiole au contenu étrangement\fluorescent fera couler l'essence\divine dans vos veines !\Vous régénére de 300 PF.
 Potion de soins limitée
-Un liquide rouge et épais,\au goût écoeurant. Ca n’est\assurément pas bon, mais ça\donne un fameux coup de fouet.\Vous soigne de 300 PV.
+Un liquide rouge et épais,\au goût écoeurant. Ca n'est\assurément pas bon, mais ça\donne un fameux coup de fouet.\Vous soigne de 300 PV.
 Camail
 Un capuchon de maille qui\protège la tête et la nuque.
 Sceptre de Clodomir
