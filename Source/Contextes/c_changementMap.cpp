@@ -213,7 +213,6 @@ void c_Chargement::Utiliser(Jeu *jeu)
         jeu->map=new Map();
 
         jeu->hero.ChargerModele(true);
-        jeu->hero.m_minimap.clear();
 
         if (!jeu->map->Charger(m_nomProchaineMap,&jeu->hero))
             console->Ajouter("CRITICAL ERROR",1), throw  "CRITICAL ERROR";

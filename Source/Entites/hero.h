@@ -176,8 +176,6 @@ public:
 
     float m_angleFleche;
 
-    std::list<sf::Sprite> m_minimap;
-
     int m_no_schema_craft;
     int m_no_schema_bless;
     int m_no_result_craft;

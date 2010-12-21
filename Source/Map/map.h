@@ -175,6 +175,9 @@ private:
     std::vector <Projectile> m_projectile;
     std::vector <EffetGraphique> m_effets;
 
+    sf::RenderImage m_render_minimap;
+    sf::Image       m_minimap;
+
     std::vector<Decor>::iterator IterY;
     std::vector<Decor>::iterator Iter;
 
