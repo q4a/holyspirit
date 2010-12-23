@@ -1,7 +1,5 @@
 *Data/Entities/Resources/Golems/Coal_golem.rs.hs
 $
-* r255 v255 b255 i0 $
-$
 * n35 $
 $
 * 0

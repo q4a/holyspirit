@@ -1,6 +1,5 @@
 *Data/Entities/Resources/NPC/Abbe.rs.hs
 $
-$
 	* n26 $
 $
 	*0

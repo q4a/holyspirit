@@ -1,6 +1,5 @@
 *Data/Entities/Resources/Miscs/Catacombs_breakablewall.rs.hs
 $
-$
 	* n41 $
 $
 	*0

@@ -1,8 +1,5 @@
 *Data/Entities/Resources/NPC/Forge.rs.hs
 $
-* r236 v136 b36 i0 $
-	
-$
 $
 	*-1
 $

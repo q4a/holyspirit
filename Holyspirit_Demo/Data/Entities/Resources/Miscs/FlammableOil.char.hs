@@ -1,7 +1,5 @@
 *Data/Entities/Miscs/NULL.rs.hs
 $
-* r255 v255 b255 i0 $
-$
 $
 * 0
 $

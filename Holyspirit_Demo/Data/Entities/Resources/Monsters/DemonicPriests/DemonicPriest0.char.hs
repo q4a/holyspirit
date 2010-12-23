@@ -1,7 +1,5 @@
 *Data/Entities/Resources/Monsters/DemonicPriests/DemonicPriest0.rs.hs
 $
-* r255 v128 b128 i0 $
-$
 * n8 $
 $
 * 2

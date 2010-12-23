@@ -1,7 +1,5 @@
 *Data/Entities/Resources/Monsters/Mimic/Mimic.rs.hs
 $
-* r255 v255 b255 i0 $
-$
 * n1 $
 $
 * 0

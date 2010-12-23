@@ -1,7 +1,5 @@
 *Data/Entities/Resources/NPC/Blacksmith.rs.hs
 $
-	
-$
 	* n37 $
 $
 	*0

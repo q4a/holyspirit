@@ -1,6 +1,5 @@
 *Data/Entities/Resources/NPC/Guard.rs.hs
 $
-$
 	* n43 $
 $
 	*-1

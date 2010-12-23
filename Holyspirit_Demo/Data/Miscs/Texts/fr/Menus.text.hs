@@ -80,7 +80,7 @@ Qualité des lumières :
 Rendre les ombres : 
 Utiliser les effets de shaders : 
 Rendre la réflexion des objets : 
-Rendre les effets de distortion : 
+Rendre les effets de distorsion : 
 Rendre l'herbe : 
 Rendre les débris dynamiques : 
 Afficher le fond coloré des objets : 
@@ -95,5 +95,6 @@ Votre piété augmente vos points de foi.
 Votre charisme influe sur le prix des objets et vous permet de porter certains objets.
 Supprimer personnage
 Veuillez taper le nom du héros à supprimer :
+
 
 

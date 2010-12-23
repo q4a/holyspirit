@@ -1,6 +1,5 @@
 *Data/Entities/Resources/Miscs/Lever.rs.hs
 $
-$
 	* n19 $
 $
 	*0

@@ -1,7 +1,5 @@
 *Data/Entities/Resources/NPC/Trader.rs.hs
 $
-	
-$
 	* n16 $
 $
 	*0

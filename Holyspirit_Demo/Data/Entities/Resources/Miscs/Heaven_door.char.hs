@@ -1,6 +1,5 @@
 *Data/Entities/Resources/Miscs/Heaven_door.rs.hs
 $
-$
 	* n3 $
 $
 	*0

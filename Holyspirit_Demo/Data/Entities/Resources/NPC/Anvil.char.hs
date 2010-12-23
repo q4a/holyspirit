@@ -1,7 +1,5 @@
 *Data/Entities/Resources/NPC/Anvil.rs.hs
 $
-	
-$
 $
 	*-1
 $

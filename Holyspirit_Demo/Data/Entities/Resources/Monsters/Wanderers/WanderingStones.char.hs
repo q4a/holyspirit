@@ -1,7 +1,5 @@
 *Data/Entities/Resources/Monsters/Wanderers/WanderingStones.rs.hs
 $
-* r255 v255 b255 i0 $
-$
 * n10 $
 $
 * 0

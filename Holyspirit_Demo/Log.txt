@@ -41,6 +41,8 @@
          Destruction du héro ...
          Chargement de : Data/User/Temps/Image.png
          Destruction du héro ...
+         Chargement de : Data/User/Temps/Image.png
+         Destruction du héro ...
          Chargement du hero.
          /Lectures des caracteristiques.
          
@@ -562,6 +564,243 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          Initialisation terminée.
          
          Chargement de : Data/Musics/Abbey.ogg
+         
+         ---------------------------------------------------------------------------------
+         EVENEMENT : Changement de map
+         ---------------------------------------------------------------------------------
+         
+         Sauvegarde de la map : Data/User/Temps/Abbey.map.hs
+         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey.map.hs.emap.hs
+         /Sauvegarde de Litanie_toxic_0.item.hs
+         /Sauvegarde de Litanie_0.item.hs
+         /Sauvegarde de Litanie_0.item.hs
+         /Sauvegarde de Litanie_0.item.hs
+         /Sauvegarde de Litanie_0.item.hs
+         /Sauvegarde de Litanie_0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Drawing_helmet_horned_barbute.item.hs
+         /Sauvegarde de Craft_ore_copper.item.hs
+         /Sauvegarde de Craft_ore_copper.item.hs
+         /Sauvegarde de Craft_ore_iron.item.hs
+         /Sauvegarde de Craft_ore_iron.item.hs
+         /Sauvegarde de Craft_ore_gold.item.hs
+         /Sauvegarde de Craft_ore_gold.item.hs
+         /Sauvegarde de Craft_ore_gold.item.hs
+         /Sauvegarde de Craft_gem_ruby.item.hs
+         Sauvegarde de la map terminée !
+         /Génération de l'image...
+         /Image affichée.
+         /Image générée.
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Ecriture des objets.
+         /Ecriture des objets du coffre.
+         /Ecriture des miracles.
+         /Ecriture des docs.
+         /Ecriture des quetes.
+         /Ecriture des potales.
+         Sauvegarde du héro terminée !
+         
+         Destruction de la map...
+         Destruction des cases...
+         Cases détruites !
+         Modèles monstres détruits !
+         Monstres détruits !
+         Fonds détruits !
+         Chemins musiques détruits !
+         Projectiles détruits !
+         Effets détruits !
+         Map détruite !
+         
+         Chargements d'images diverses :
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_OneHand/Small_sword_r.rs.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Shields/Small_shield.rs.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Nude/OneHand.rs.hs
+         
+         Chargement de la map : Abbey_indoor.map.hs
+         /Lectures du nom.
+         /Lectures des fonds.
+         /Lectures des musiques.
+         /Lectures des lumières.
+         /Lectures des ciels.
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_floor.png
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_floor.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_walls.png
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_walls.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_miscs.png
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_miscs.ts.hs
+         /Lectures des tilesets.
+         /Lectures des herbes.
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Trigger_clickable.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Trigger_clickable.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/NULL.rs.hs
+         Chargement de : Data/Entities/Resources/Miscs/Trigger_clickable.char.hs terminé
+         /Lectures des monstres.
+         
+         /Lectures des cases.
+         Chargement de la map terminé.
+         Initialisation de l'herbe terminée.
+         Initialisation des décors terminée.
+         Initialisation des entités terminée.
+         Initialisation terminée.
+         
+         
+         Sauvegarde de la map : Data/User/Temps/Abbey_indoor.map.hs
+         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey_indoor.map.hs.emap.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Ecriture des objets.
+         /Ecriture des objets du coffre.
+         /Ecriture des miracles.
+         /Ecriture des docs.
+         /Ecriture des quetes.
+         /Ecriture des potales.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/User/Temps/Abbey_indoor.map.hs
+         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey_indoor.map.hs.emap.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Ecriture des objets.
+         /Ecriture des objets du coffre.
+         /Ecriture des miracles.
+         /Ecriture des docs.
+         /Ecriture des quetes.
+         /Ecriture des potales.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/User/Temps/Abbey_indoor.map.hs
+         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey_indoor.map.hs.emap.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Ecriture des objets.
+         /Ecriture des objets du coffre.
+         /Ecriture des miracles.
+         /Ecriture des docs.
+         /Ecriture des quetes.
+         /Ecriture des potales.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/User/Temps/Abbey_indoor.map.hs
+         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey_indoor.map.hs.emap.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Ecriture des objets.
+         /Ecriture des objets du coffre.
+         /Ecriture des miracles.
+         /Ecriture des docs.
+         /Ecriture des quetes.
+         /Ecriture des potales.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/User/Temps/Abbey_indoor.map.hs
+         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey_indoor.map.hs.emap.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Ecriture des objets.
+         /Ecriture des objets du coffre.
+         /Ecriture des miracles.
+         /Ecriture des docs.
+         /Ecriture des quetes.
+         /Ecriture des potales.
+         Sauvegarde du héro terminée !
          Chargement de : Data/Musics/Menu.ogg
          /Génération de l'image...
          /Image affichée.

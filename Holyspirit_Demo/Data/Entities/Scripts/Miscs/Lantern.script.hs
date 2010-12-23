@@ -3,14 +3,24 @@ main
 	then
 		if getState * 0
 		then
-			setState * 1 * 0 * 0
+			if rand * 50
+			then
+				setState * 1 * 0
+			else
+				setState * 1 * 4
+			end
 		end
 	else
 		if hour * 0 * 6 
 		then
 			if getState * 0
 			then
-				setState * 1 * 0
+				if rand * 50
+				then
+					setState * 1 * 0
+				else
+					setState * 1 * 4
+				end
 			end
 		else
 			if getState * 1

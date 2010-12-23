@@ -1,6 +1,5 @@
 *Data/Entities/Resources/Containers/Writing_case.rs.hs
 $
-$
 	* n45 $
 $
 	*0

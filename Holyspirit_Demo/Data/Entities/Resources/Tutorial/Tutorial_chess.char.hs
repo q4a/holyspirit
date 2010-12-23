@@ -1,7 +1,5 @@
 *Data/Entities/Resources/Containers/Chess0.rs.hs
 $
-	* r255 v255 b255 i0 $
-$
 	* n1 $
 $
 	* 0

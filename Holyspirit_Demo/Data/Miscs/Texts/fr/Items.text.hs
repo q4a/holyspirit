@@ -139,3 +139,4 @@ Arbalète de feu éternel
 Cette arbalète a été trempée\dans le sang du démon,\lui conférant la capacité de\tirer des carreaux explosifs.
 
 
+

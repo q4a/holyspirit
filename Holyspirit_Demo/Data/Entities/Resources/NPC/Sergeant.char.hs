@@ -1,6 +1,5 @@
 *Data/Entities/Resources/NPC/Sergeant.rs.hs
 $
-$
 	* n44 $
 $
 	*0

@@ -1,7 +1,5 @@
 *Data/Entities/Resources/Containers/Barrel.rs.hs
 $
-	* r255 v255 b255 i0 $
-$
 	* n0 $
 $
 	* 0

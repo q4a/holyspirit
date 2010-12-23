@@ -1,6 +1,5 @@
 *Data/Entities/Resources/Miscs/NULL.rs.hs
 $
-$
 	* n30 $
 $
 	*0

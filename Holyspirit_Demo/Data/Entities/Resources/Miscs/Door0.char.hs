@@ -1,6 +1,5 @@
 *Data/Entities/Resources/Miscs/Door0.rs.hs
 $
-$
 	* n3 $
 $
 	*0

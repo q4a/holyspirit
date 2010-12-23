@@ -1,7 +1,5 @@
 *Data/Entities/Resources/Monsters/TaintedMilitia/Bully.rs.hs
 $
-* r255 v255 b255 i0 $
-$
 * n9 $
 $
 * 1

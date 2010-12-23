@@ -1,6 +1,5 @@
 *Data/Entities/Resources/Miscs/Potale.rs.hs
 $
-$
 	* n27 $
 $
 	*0

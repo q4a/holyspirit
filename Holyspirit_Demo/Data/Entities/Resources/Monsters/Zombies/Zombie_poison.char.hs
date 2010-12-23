@@ -1,7 +1,5 @@
 *Data/Entities/Resources/Monsters/Zombies/Zombie.rs.hs
 $
-* r192 v255 b160 i64 $
-$
 * n15 $
 $
 * 1

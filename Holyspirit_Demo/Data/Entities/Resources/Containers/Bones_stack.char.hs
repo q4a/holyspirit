@@ -1,7 +1,5 @@
 *Data/Entities/Resources/Containers/Bones_stack.rs.hs
 $
-	* r255 v255 b255 i0 $
-$
 	* n36 $
 $
 	* 0

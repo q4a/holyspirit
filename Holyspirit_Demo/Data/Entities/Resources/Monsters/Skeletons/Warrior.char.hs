@@ -1,7 +1,5 @@
 *Data/Entities/Resources/Monsters/Skeletons/Warrior.rs.hs
 $
-* r255 v255 b255 i0 $
-$
 * n5 $
 $
 *0

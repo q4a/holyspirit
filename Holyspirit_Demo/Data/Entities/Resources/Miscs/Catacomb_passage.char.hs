@@ -1,6 +1,5 @@
 *Data/Entities/Resources/Miscs/Catacomb_passage.rs.hs
 $
-$
 	* n41 $
 $
 	*0

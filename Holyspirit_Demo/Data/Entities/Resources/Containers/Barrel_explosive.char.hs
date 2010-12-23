@@ -1,7 +1,5 @@
 *Data/Entities/Resources/Containers/Barrel_explosive.rs.hs
 $
-* r236 v136 b36 i0 $
-$
 * n0 $
 $
 * 0

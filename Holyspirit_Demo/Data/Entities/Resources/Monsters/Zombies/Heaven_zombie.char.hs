@@ -1,7 +1,5 @@
 *Data/Entities/Resources/Monsters/Zombies/Heaven_zombie.rs.hs
 $
-* r255 v255 b255 i0 $
-$
 * n42 $
 $
 * 0

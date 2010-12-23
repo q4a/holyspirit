@@ -1,7 +1,5 @@
 *Data/Entities/Resources/Monsters/Skeletons/Shooter.rs.hs
 $
-* r255 v224 b0 i0 $
-$
 * n4 $
 $
 * 0

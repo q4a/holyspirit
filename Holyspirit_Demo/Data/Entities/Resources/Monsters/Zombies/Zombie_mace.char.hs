@@ -1,7 +1,5 @@
 *Data/Entities/Resources/Monsters/Zombies/Zombie_mace.rs.hs
 $
-* r255 v255 b255 i0 $
-$
 * n20 $
 $
 * 0
