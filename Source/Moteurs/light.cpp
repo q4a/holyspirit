@@ -200,6 +200,8 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std
 
     if(hauteur > 160)
         hauteur = 160;
+    if(hauteur == -1)
+        hauteur = 256;
 
 
     m_shape.back().SetPosition(m_position.x,m_position.y/2);

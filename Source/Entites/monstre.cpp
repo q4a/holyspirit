@@ -28,11 +28,6 @@ using namespace std;
 
 Modele_Monstre::Modele_Monstre()
 {
-    m_porteeLumineuse.rouge=0;
-    m_porteeLumineuse.vert=0;
-    m_porteeLumineuse.bleu=0;
-    m_porteeLumineuse.intensite=0;
-
     Modele_Personnage();
 }
 
@@ -85,8 +80,6 @@ Monstre::Monstre(Personnage &personnage):
     m_positionPixel             = personnage.getCoordonneePixel();
     m_modele                    = personnage.getModele();
     m_objets                    = personnage.getObjets();
-    m_porteeLumineuse           = personnage.getPorteeLumineuse();
-    m_porteeLumineuseBasique    = personnage.getPorteeLumineuse();
     m_depart                    = personnage.getDepart();
     m_miracleEnCours            = personnage.m_miracleEnCours;
 
@@ -101,9 +94,6 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
 
     m_modele=numero;
     m_caracteristique=modele->getCaracteristique();
-    m_porteeLumineuse=modele->getPorteeLumineuse();
-    m_porteeLumineuseBasique=m_porteeLumineuse;
-
     m_impenetrable = modele->m_impenetrable;
     m_impoussable = modele->m_impoussable;
     m_selectable = modele->m_selectable;
@@ -115,7 +105,7 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
 
     m_entite_graphique.option_sonUnique = false;
 
-    if (m_caracteristique.rang==0&&m_caracteristique.pointAme>0)
+    /*if (m_caracteristique.rang==0&&m_caracteristique.pointAme>0)
     {
         int temp=rand()%(1000);
         if (temp<20)
@@ -153,7 +143,7 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
 
             m_porteeLumineuseBasique=m_porteeLumineuse;
         }
-    }
+    }*/
 
     GenererInventaire(modele);
 
@@ -220,56 +210,6 @@ bool Modele_Monstre::Charger(const std::string &chemin)
             }
         }
         while (caractere!='$');
-
-        do
-        {
-            //Chargement de la lumière ambiante
-            fichier.get(caractere);
-            if (caractere=='*')
-            {
-                do
-                {
-                    fichier.get(caractere);
-                    switch (caractere)
-                    {
-                    case 'r':
-                        fichier>>m_porteeLumineuse.rouge;
-                        break;
-                    case 'v':
-                        fichier>>m_porteeLumineuse.vert;
-                        break;
-                    case 'b':
-                        fichier>>m_porteeLumineuse.bleu;
-                        break;
-                    case 'i':
-                        fichier>>m_porteeLumineuse.intensite;
-                        break;
-                    }
-                    if (fichier.eof())
-                    {
-                        console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
-                        caractere='$';
-                        m_caracteristique.maxVie=0;
-                    }
-                }
-                while (caractere!='$');
-                fichier.get(caractere);
-                if (fichier.eof())
-                {
-                    console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
-                    caractere='$';
-                    m_caracteristique.maxVie=0;
-                }
-            }
-            if (fichier.eof())
-            {
-                console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
-                caractere='$';
-            }
-
-        }
-        while (caractere!='$');
-
 
         do
         {

@@ -190,6 +190,12 @@ void EventManager::AfficherCurseur(bool transparent)
     if(transparent)
         Sprite.SetColor(sf::Color(255,255,255,64));
 
+    if(m_Clic[Mouse::Left])
+    {
+        Sprite.Scale(0.95,0.95);
+        Sprite.Move(-2,-1);
+    }
+
     moteurGraphique->AjouterCommande(&Sprite,20,0);
 }
 

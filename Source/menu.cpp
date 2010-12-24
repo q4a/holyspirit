@@ -396,7 +396,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         moteurGraphique->AjouterCommande(&sprite,17,0);
     }
 
-    if (type==1 && caracteristiqueMonstre.vie > 0)
+    if (type==1 && caracteristiqueMonstre.maxVie > 1)
     {
         Sprite sprite,sprite2;
 
@@ -424,8 +424,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
             std::ostringstream buf;
             buf<<caracteristiqueMonstre.nom;
 
-            if(caracteristiqueMonstre.maxVie > 1)
-                buf << " ("<<(int)caracteristiqueMonstre.vie<<" / "<<caracteristiqueMonstre.maxVie<<")";
+            buf << " ("<<(int)caracteristiqueMonstre.vie<<" / "<<caracteristiqueMonstre.maxVie<<")";
 
             texte.SetString(buf.str());
         }
@@ -437,6 +436,12 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         moteurGraphique->AjouterTexte(&texte,18);
 
         texte.SetStyle(0);
+    }
+    else if(caracteristiqueMonstre.maxVie == 1 && m_dialogue.empty())
+    {
+        coordonnee pos =  eventManager->getPositionSouris();
+        pos.y -= 18;
+        moteurGraphique->AjouterTexte(caracteristiqueMonstre.nom, pos, 20, 0, 14, sf::Color(224,224,224), true);
     }
 }
 

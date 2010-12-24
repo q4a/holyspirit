@@ -774,7 +774,7 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
                                           positionPartieDecor.w, positionPartieDecor.h - 1));
 
             sprite2.SetOrigin(m_ambientShadowTileset.getCentreDuTile(entite->m_ambientShadow).x,
-                             m_ambientShadowTileset.getCentreDuTile(entite->m_ambientShadow).y);
+                              m_ambientShadowTileset.getCentreDuTile(entite->m_ambientShadow).y);
 
             sprite2.SetPosition(entite->m_sprite.GetPosition());
 

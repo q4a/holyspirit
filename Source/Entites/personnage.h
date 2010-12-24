@@ -53,10 +53,7 @@ public:
 
     void Reinitialiser();
 
-    const Lumiere &getPorteeLumineuse();
     const Caracteristique &getCaracteristique();
-
-    void setPorteeLumineuse(Lumiere  lumiere);
 
     std::vector<std::vector<Tileset> > m_tileset;
 
@@ -70,7 +67,6 @@ public:
 
 protected:
     Caracteristique m_caracteristique;
-    Lumiere m_porteeLumineuse;
 };
 
 class Personnage
@@ -122,7 +118,6 @@ public:
     void setCoordonneePixel(const coordonnee &position);
     void setProchaineCase(const coordonnee &position);
     void setCaracteristique(const Caracteristique &caracteristique);
-    void setPorteeLumineuse(const Lumiere  &lumiere);
     void regenererVie(float vie);
     void setModele(int);
 
@@ -134,7 +129,6 @@ public:
     int getAngle();
     int getNextAngle();
     int getPose();
-    const Lumiere &getPorteeLumineuse();
     const Caracteristique &getCaracteristique();
     const std::string &getNom();
 
@@ -163,8 +157,6 @@ public:
     bool m_shooter,m_monstre;
     bool m_touche;
     int m_nombreInvocation;
-
-    //Light_Entity m_light;
 
     int m_miracleALancer;
     std::vector <EntiteMiracle> m_miracleEnCours;
@@ -211,8 +203,6 @@ protected:
 
     int m_modele;
     std::vector<Objet> m_objets;
-
-    Lumiere m_porteeLumineuse,m_porteeLumineuseBasique;
 
     coordonneeDecimal  m_pousse;
     coordonnee m_depart;

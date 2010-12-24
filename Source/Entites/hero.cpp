@@ -114,7 +114,7 @@ Hero::Hero()
 
     m_personnage.setCoordonnee(position);
 
-    Lumiere lumiere;
+    /*Lumiere lumiere;
     lumiere.intensite=192;
     lumiere.rouge=255;
     lumiere.vert=255;
@@ -128,7 +128,9 @@ Hero::Hero()
     for (int i=1;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
         m_modelePersonnage[i].setPorteeLumineuse(lumiere);
 
-    m_personnage.setPorteeLumineuse(lumiere);
+    m_personnage.setPorteeLumineuse(lumiere);*/
+
+
     m_personnage.m_friendly = 1;
 
     Caracteristique temp;

@@ -425,7 +425,6 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                     {
 
                         Caracteristique tempCaract;
-                        Lumiere lumiere;
                         int numeroModele=-1,vieMin=0,vieMax=1,degatsMin=0,degatsMax=0,rang=0,ame=0,pose=0,etat=0,angle=0;
                         float taille=1;
                         vector <Objet> objets;
@@ -479,24 +478,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                 *fichier2>>angle;
                                 break;
 
-                            case 'l':
-                                fichier2->get(caractere);
-                                switch (caractere)
-                                {
-                                case 'r':
-                                    *fichier2>>lumiere.rouge;
-                                    break;
-                                case 'v':
-                                    *fichier2>>lumiere.vert;
-                                    break;
-                                case 'b':
-                                    *fichier2>>lumiere.bleu;
-                                    break;
-                                case 'i':
-                                    *fichier2>>lumiere.intensite;
-                                    break;
-                                }
-                                break;
+
 
                             case 'p':
                                 m_monstre.back().m_entite_graphique.LoadParameters(*fichier2);
@@ -544,7 +526,6 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                             caracteristique.pointAme=ame;
                             caracteristique.modificateurTaille=taille;
                             m_monstre.back().setCaracteristique(caracteristique);
-                            m_monstre.back().setPorteeLumineuse(lumiere);
                             m_monstre.back().setEtat(etat);
                             m_monstre.back().setPose(pose);
                             m_monstre.back().setForcedAngle(angle);
@@ -1450,13 +1431,14 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
         }
     }
 
-    sf::Sprite sky;
+
     if(m_img_sky >= 0)
+    {
+        sf::Sprite sky;
         sky.SetImage(*moteurGraphique->getImage(m_img_sky));
-    else
-        sky.SetColor(sf::Color(0,0,0));
-    sky.Resize(configuration->Resolution.x,configuration->Resolution.y);
-    moteurGraphique->AjouterCommande(&sky,0,0);
+        sky.Resize(configuration->Resolution.x,configuration->Resolution.y);
+        moteurGraphique->AjouterCommande(&sky,0,0);
+    }
 
     for(unsigned i = 0 ; i < m_climates.size() ; ++i)
         m_climates[i].Draw();
@@ -2240,12 +2222,6 @@ bool Map::InfligerDegats(Personnage *monstre, Personnage *cible, float degats, i
             position2.y=(int)(((monstre->getCoordonneePixel().x+monstre->getCoordonneePixel().y)*64/COTE_TILE)/2);
 
             sf::Color buffer(255,255,255);
-            if (monstre->getPorteeLumineuse().intensite>0)
-            {
-                buffer.r=monstre->getPorteeLumineuse().rouge;
-                buffer.g=monstre->getPorteeLumineuse().vert;
-                buffer.b=monstre->getPorteeLumineuse().bleu;
-            }
             moteurGraphique->AjouterSystemeParticules(m_ModeleMonstre[monstre->getModele()].m_particules,position2,buffer,force,angle);
         }
 

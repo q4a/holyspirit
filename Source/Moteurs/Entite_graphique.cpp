@@ -286,6 +286,10 @@ void Entite_graphique::Generer()
             m_sprite.FlipX(m_scale.x < 0);
             m_sprite.FlipY(m_scale.y < 0);
 
+            if(m_scale.x < 0)
+            m_sprite.SetOrigin(positionPartieDecor.w - m_tileset->getCentreDuTile(m_noAnimation).x,
+                               m_tileset->getCentreDuTile(m_noAnimation).y);
+
             m_sprite.SetRotation(m_rotation);
 
             m_decalCouche = m_tileset->getLayerDuTile(m_noAnimation);

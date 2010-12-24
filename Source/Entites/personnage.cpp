@@ -73,11 +73,6 @@ Personnage::Personnage()
 
     m_caracteristique.pointAme          = 0;
 
-    m_porteeLumineuseBasique.intensite  = -1;
-    m_porteeLumineuseBasique.rouge      = 255;
-    m_porteeLumineuseBasique.vert       = 255;
-    m_porteeLumineuseBasique.bleu       = 255;
-
     m_positionPixel.h                   = 0;
     m_cheminFinal.h                     = 0;
     m_positionCase.h                    = 0;
@@ -297,11 +292,7 @@ void Personnage::Sauvegarder(ofstream &fichier)
             <<" t"  <<m_caracteristique.modificateurTaille
             <<" i"  <<m_entite_graphique.m_noAnimation
             <<" e"  <<m_etat
-            <<" g"  <<m_angle
-            <<" lr" <<m_porteeLumineuse.rouge
-            <<" lv" <<m_porteeLumineuse.vert
-            <<" lb" <<m_porteeLumineuse.bleu
-            <<" li" <<m_porteeLumineuse.intensite;
+            <<" g"  <<m_angle;
 
     m_entite_graphique.SaveParameters(fichier);
 
@@ -359,10 +350,7 @@ void Personnage::Afficher(Modele_Personnage *modele,bool surbrillance, bool sans
                 m_entite_graphique.m_sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
 
                 m_entite_graphique.m_sprite.Scale((float)m_entite_graphique.m_scale.x*0.01, (float)m_entite_graphique.m_scale.y*0.01);
-                m_entite_graphique.m_sprite.SetColor(sf::Color( m_entite_graphique.m_sprite.GetColor().r * m_entite_graphique.m_color.r / 255,
-                                                                m_entite_graphique.m_sprite.GetColor().g * m_entite_graphique.m_color.g / 255,
-                                                                m_entite_graphique.m_sprite.GetColor().b * m_entite_graphique.m_color.b / 255,
-                                                                m_entite_graphique.m_sprite.GetColor().a * m_entite_graphique.m_color.a / 255));
+                m_entite_graphique.m_sprite.SetColor(m_entite_graphique.m_color);
 
                 moteurGraphique->AjouterEntiteGraphique(&m_entite_graphique);
 
@@ -929,17 +917,17 @@ int Personnage::Animer(Modele_Personnage *modele,float temps)
             m_entite_graphique.Animer(temps);
 
         m_entite_graphique.m_sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
-        if (m_porteeLumineuse.intensite>0)
+       /* if (m_porteeLumineuse.intensite>0)
         {
             m_entite_graphique.m_sprite.SetColor(sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu, 255));
-           /* moteurGraphique->LightManager->SetColor(m_entite_graphique.m_light,sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu));
+           *//* moteurGraphique->LightManager->SetColor(m_entite_graphique.m_light,sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu));
 
             if (m_caracteristique.rang==0)
                 m_porteeLumineuse.intensite=m_entite_graphique.m_tileset->getLumiereDuTile(m_entite_graphique.m_noAnimation).intensite;
             moteurGraphique->LightManager->SetIntensity(m_entite_graphique.m_light,m_porteeLumineuse.intensite);*/
-        }
+        /*}
         else
-            m_entite_graphique.m_sprite.SetColor(sf::Color(255,255,255, 255));
+            m_entite_graphique.m_sprite.SetColor(sf::Color(255,255,255, 255));*/
 
         if(m_entite_graphique.attaque_touche)
         {
@@ -966,7 +954,7 @@ int Personnage::Animer(Modele_Personnage *modele,float temps)
         if(m_entite_graphique.attaque_pause)
             retour = 2;
 
-        if (m_monstre && m_entite_graphique.m_tileset != NULL)
+        /*if (m_monstre && m_entite_graphique.m_tileset != NULL)
         {
             if (m_entite_graphique.m_tileset->getLumiereDuTile(m_entite_graphique.m_noAnimation).intensite!=-1&&m_caracteristique.rang==0)
                 m_porteeLumineuse.intensite=m_entite_graphique.m_tileset->getLumiereDuTile(m_entite_graphique.m_noAnimation).intensite;
@@ -977,7 +965,7 @@ int Personnage::Animer(Modele_Personnage *modele,float temps)
 
            // moteurGraphique->LightManager->SetIntensity(m_entite_graphique.m_light,(int)inte);
            // moteurGraphique->LightManager->SetRadius(m_entite_graphique.m_light,(int)m_porteeLumineuse.intensite*2);
-        }
+        }*/
     }
 
     int angleOmbre=(int)((m_angle-moteurGraphique->m_angleOmbreSoleil)+22.5);
@@ -1124,14 +1112,6 @@ void Personnage::RecalculerEffets()
     }
 }
 
-void Modele_Personnage::setPorteeLumineuse(Lumiere  lumiere)
-{
-    m_porteeLumineuse=lumiere;
-}
-void Personnage::setPorteeLumineuse(const Lumiere  &lumiere)
-{
-    m_porteeLumineuse=lumiere;
-}
 void Personnage::setCaracteristique(const Caracteristique &caracteristique)
 {
     m_caracteristique=caracteristique;
@@ -1319,14 +1299,6 @@ const std::string &Personnage::getNom()
     return m_caracteristique.nom;
 }
 
-const Lumiere &Modele_Personnage::getPorteeLumineuse()
-{
-    return m_porteeLumineuse;
-}
-const Lumiere &Personnage::getPorteeLumineuse()
-{
-    return m_porteeLumineuse;
-}
 int Personnage::getEtat()
 {
     return m_etat;

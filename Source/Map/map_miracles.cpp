@@ -300,12 +300,7 @@ bool Map::Miracle_Charme (Hero *hero, Personnage *personnage, Miracle &modele, E
     }
     else
     {
-        Lumiere temp;
-        temp.rouge = 255;
-        temp.vert = 0;
-        temp.bleu = 255;
-        temp.intensite = 255;
-        info.m_cible->setPorteeLumineuse(temp);
+        info.m_cible->m_entite_graphique.m_color = sf::Color(255,32,128);
 
         if (!info.m_cible->EnVie())
         {
@@ -373,9 +368,7 @@ bool Map::Miracle_Charme (Hero *hero, Personnage *personnage, Miracle &modele, E
             info.m_cible->m_scriptAI = m_ModeleMonstre[info.m_cible->getModele()].m_scriptAI;
             info.m_cible->setDepart();
 
-            Lumiere temp;
-            temp = m_ModeleMonstre[info.m_cible->getModele()].getPorteeLumineuse();
-            info.m_cible->setPorteeLumineuse(temp);
+            info.m_cible->m_entite_graphique.m_color = sf::Color(255,255,255);
 
             miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
 
