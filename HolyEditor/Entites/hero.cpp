@@ -671,7 +671,7 @@ void Hero::ChargerModele(bool tout)
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
     {
         if (m_cheminModeleNouveau[i]!="" && m_cheminModeleNouveau[i]!=m_cheminModele[i])
-            m_modelePersonnage[i].Charger(m_classe.chemin_modele+m_cheminModeleNouveau[i]),m_modelePersonnage[i].setPorteeLumineuse(color[i]);
+            m_modelePersonnage[i].Charger(m_classe.chemin_modele+m_cheminModeleNouveau[i]);
         else if (m_cheminModeleNouveau[i]=="")
             m_modelePersonnage[i].Reinitialiser();
 

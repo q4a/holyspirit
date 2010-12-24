@@ -1317,31 +1317,21 @@ void Map::Afficher(bool alt,float alpha)
                                 &&m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y+m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().y-m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y>=GetViewRect(moteurGraphique->m_camera).Top
                                 &&m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y-m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y<GetViewRect(moteurGraphique->m_camera).Top + GetViewRect(moteurGraphique->m_camera).Height)
                         {
-                          /*  if (m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x + m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().x - m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x > GetViewRect(moteurGraphique->m_camera).Right)
-                                rectBuf.Right -= (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x + (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().x - (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x - (int)GetViewRect(moteurGraphique->m_camera).Right;
-                            if (m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y + m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().y - m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y > GetViewRect(moteurGraphique->m_camera).Bottom)
-                                rectBuf.Bottom -= (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y + (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetSize().y - (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y - (int)GetViewRect(moteurGraphique->m_camera).Bottom;
+                            if(m_afficher_murLumiere)
+                                {
+                                    sf::Sprite temp;
+                                    temp.SetImage(*moteurGraphique->getImage(eventManager->m_img_select));
+                                    temp.SetPosition(position.x-48, position.y-16);
+                                    temp.SetColor(sf::Color(255,255,255,192));
+                                    moteurGraphique->AjouterCommande(&temp,15,1);
+                                }
 
-                            if (m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x - m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x < GetViewRect(moteurGraphique->m_camera).Left)
-                            {
-                                rectBuf.Left += (int)GetViewRect(moteurGraphique->m_camera).Left - (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().x + (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().x;
-                                m_decor[couche][j][k][z].m_entite_graphique.m_sprite.Move(rectBuf.Left - rect.Left, 0);
-                            }
-                            if (m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y - m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y < GetViewRect(moteurGraphique->m_camera).Top)
-                            {
-                                rectBuf.Top += (int)GetViewRect(moteurGraphique->m_camera).Top - (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetPosition().y + (int)m_decor[couche][j][k][z].m_entite_graphique.m_sprite.GetOrigin().y;
-                                m_decor[couche][j][k][z].m_entite_graphique.m_sprite.Move(0, rectBuf.Top - rect.Top);
-                            }
-
-                            m_decor[couche][j][k][z].m_entite_graphique.m_sprite.SetSubRect(rectBuf);*/
-
-                            //moteurGraphique->AjouterCommande(&m_decor[couche][j][k][z].m_entite_graphique.m_sprite,m_decor[couche][j][k][z].getCouche(),1);
                             m_decor[couche][j][k][z].m_entite_graphique.m_couche = m_decor[couche][j][k][z].getCouche();
                             moteurGraphique->AjouterEntiteGraphique(&m_decor[couche][j][k][z].m_entite_graphique);
-
                         }
 
-                    if(k == 0 || j == 0 || k == (int)m_decor[couche][j].size() - 1 || j == (int)m_decor[couche].size() - 1)
+                    if((k == 0 || j == 0 || k == (int)m_decor[couche][j].size() - 1 || j == (int)m_decor[couche].size() - 1)
+                    || m_afficher_murLumiere)
                     {
                         sf::Sprite temp;
                         temp.SetImage(*moteurGraphique->getImage(eventManager->m_img_select));
@@ -1356,7 +1346,12 @@ void Map::Afficher(bool alt,float alpha)
                             sf::Sprite temp;
                             temp.SetImage(*moteurGraphique->getImage(eventManager->m_img_select));
                             temp.SetPosition(position.x-48, position.y-16);
+
+                            if(m_afficher_murLumiere)
+                            temp.SetColor(sf::Color(255,0,0,192));
+                            else
                             temp.SetColor(sf::Color(255,0,0,32));
+
                             moteurGraphique->AjouterCommande(&temp,15,1);
                         }
 
@@ -1814,10 +1809,6 @@ void Map::Animer(float temps/*,Menu *menu*/)
 
                 m_selectSprite.SetX(position.x);
                 m_selectSprite.SetY(position.y+32);
-
-                m_selectSprite.SetColor(sf::Color(m_ModeleMonstre[m_selectEntite - 1].getPorteeLumineuse().rouge,
-                                                  m_ModeleMonstre[m_selectEntite - 1].getPorteeLumineuse().vert,
-                                                  m_ModeleMonstre[m_selectEntite - 1].getPorteeLumineuse().bleu));
 
                 m_selectSprite.SetScale(m_ModeleMonstre[m_selectEntite - 1].getCaracteristique().modificateurTaille,
                                         m_ModeleMonstre[m_selectEntite - 1].getCaracteristique().modificateurTaille);

@@ -46,13 +46,11 @@ public:
 
     //void JouerSon(int numeroSon,coordonnee position,coordonnee positionHero, bool uniqueSound=false);
 
-    const Lumiere &getPorteeLumineuse();
     //int getNombreSons();
     //int getNombreSonsTouche();
     //int getSonTouche(int);
     const Caracteristique &getCaracteristique();
 
-    void setPorteeLumineuse(Lumiere  lumiere);
 
     std::vector<std::vector<Tileset> > m_tileset;
 
@@ -68,7 +66,6 @@ public:
 
 protected:
     Caracteristique m_caracteristique;
-    Lumiere m_porteeLumineuse;
     //std::vector <int> m_sons;
     //std::vector <int> m_sons_touche;
 };
@@ -113,7 +110,6 @@ public:
     void setCoordonneePixel(coordonnee position);
     void setProchaineCase(coordonnee position);
     void setCaracteristique(Caracteristique caracteristique);
-    void setPorteeLumineuse(Lumiere  lumiere);
     void regenererVie(float vie);
     void setModele(int);
 
@@ -124,7 +120,6 @@ public:
     int getEtat();
     int getAngle();
     int getPose();
-    const Lumiere &getPorteeLumineuse();
     const Caracteristique &getCaracteristique();
     const std::string &getNom();
 
@@ -189,8 +184,6 @@ public:
 
     int m_modele;
     std::vector<Objet> m_objets;
-
-    Lumiere m_porteeLumineuse,m_porteeLumineuseBasique;
 
     coordonneeDecimal  m_pousse;
     coordonnee m_depart;
