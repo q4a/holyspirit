@@ -9,7 +9,7 @@ Ombre ténébreuse
 Prêtre démoniaque
 Milice Corrompue : Brute
 Errant des roches
-?
+XXXX le fermier
 ?
 Molosse décharné
 Paysan zombie

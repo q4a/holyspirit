@@ -77,14 +77,14 @@ Que me veux-tu femme ?
 
 
 
-///QUESTEUR///
+///FERMIER///
 Bien le bonjour guerrier !\Je suis coincé ici depuis qu'il m'est arrivé une chose bien gênante : on dirait que les cailloux de mon muret ont pris vie ! Au début j'ai crû que c'était ma pauvre cervelle qui me jouait des tours quand je les ai vu bouger mais, foi de fonctionnaire, l'un d'eux s'est jeté sur moi pour m'attaquer ! Un caillou ! Attaquer un fonctionnaire ! N'est-ce pas honteux ?\Débarrasse-moi d'eux et je serai généreux avec toi, tu m'as l'air d'avoir besoin d'argent...\Ma maison se trouve au Nord Ouest d'ici, au croisement de la route. 
 Hum, bonjour mademoiselle,\Je suis bien ennuyé, des créatures étranges ont envahi mon muret, et elles ressemblent à s'y méprendre à de la pierre ! Au début j'ai crû que c'était ma pauvre cervelle qui me jouait des tours quand je les ai vu bouger mais, foi de fonctionnaire, l'une d'elles s'est jetée sur moi pour m'attaquer.\Si vous connaissez quelqu'un qui pourrait m'en débarrasser je vous en serais reconnaissant, j'ai une petite somme sur moi en récompense...\Ma maison se trouve au Nord ouest d'ici, au croisement de la route. 
 J'y vais !
 Je vais y réfléchir, mais j'ai déjà à faire...
 Et bien, qu'est-ce que tu attends pour éliminer ces saletés ?
 Toujours personne d'intéressé ? Il y a une récompense à la clef pourtant ! 
-, vraiment merci... Je vais pouvoir retourner chez moi et me barricader en lieu sûr. En espérant que tous ces monstres disparaissent, comme tout le monde...
+Merci, vraiment merci... Je vais pouvoir retourner chez moi et me barricader en lieu sûr. En espérant que tous ces monstres disparaissent, comme tout le monde...
 
 
 
