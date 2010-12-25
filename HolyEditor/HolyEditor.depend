@@ -1034,7 +1034,7 @@
 	<QFrame>
 	<QLabel>
 
-1291834012 source:e:\c++\holyspirit\holyeditor\mainwindow.cpp
+1293201679 source:e:\c++\holyspirit\holyeditor\mainwindow.cpp
 	"MainWindow.h"
 	"highlighter.moc"
 	<iostream>
@@ -1514,7 +1514,7 @@
 	"../globale.h"
 	<fstream>
 
-1293199164 source:e:\c++\holyspirit\holyeditor\moteurs\moteurgraphique.cpp
+1293201537 source:e:\c++\holyspirit\holyeditor\moteurs\moteurgraphique.cpp
 	"moteurGraphique.h"
 	"../globale.h"
 	<iostream>

@@ -477,7 +477,11 @@ void MainWindow::paintEvent(QPaintEvent*)
             map->m_selectSprite.Move(decalX->value(), decalY->value());
             map->m_selectSprite.Scale(fabs(scaleX->value()*0.01),fabs(scaleY->value()*0.01));
             if(scaleX->value()<0)
+            {
                 map->m_selectSprite.FlipX(true);
+                map->m_selectSprite.SetOrigin(map->m_selectSprite.GetSubRect().Width - map->m_selectSprite.GetOrigin().x,
+                                              map->m_selectSprite.GetOrigin().y);
+            }
             else
                 map->m_selectSprite.FlipX(false);
             if(scaleY->value()<0)

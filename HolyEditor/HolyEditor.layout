@@ -7,7 +7,7 @@
 	<File name="Entites\classe.h" open="0" top="0" tabpos="11">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="Entites\hero.cpp" open="1" top="0" tabpos="2">
+	<File name="Entites\hero.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="22106" topLine="658" />
 	</File>
 	<File name="Entites\hero.h" open="0" top="0" tabpos="12">
@@ -19,7 +19,7 @@
 	<File name="Entites\miracle.h" open="0" top="0" tabpos="13">
 		<Cursor position="2962" topLine="104" />
 	</File>
-	<File name="Entites\monstre.cpp" open="1" top="0" tabpos="3">
+	<File name="Entites\monstre.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="4539" topLine="157" />
 	</File>
 	<File name="Entites\monstre.h" open="0" top="0" tabpos="1">
@@ -31,10 +31,10 @@
 	<File name="Entites\objet.h" open="0" top="0" tabpos="32">
 		<Cursor position="3668" topLine="107" />
 	</File>
-	<File name="Entites\personnage.cpp" open="1" top="0" tabpos="4">
+	<File name="Entites\personnage.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="39882" topLine="1109" />
 	</File>
-	<File name="Entites\personnage.h" open="1" top="1" tabpos="1">
+	<File name="Entites\personnage.h" open="0" top="0" tabpos="1">
 		<Cursor position="4036" topLine="127" />
 	</File>
 	<File name="Entites\script.cpp" open="0" top="0" tabpos="1">
@@ -43,8 +43,8 @@
 	<File name="Entites\script.h" open="0" top="0" tabpos="6">
 		<Cursor position="1351" topLine="31" />
 	</File>
-	<File name="MainWindow.cpp" open="0" top="0" tabpos="11">
-		<Cursor position="61341" topLine="1324" />
+	<File name="MainWindow.cpp" open="1" top="1" tabpos="4">
+		<Cursor position="17538" topLine="468" />
 	</File>
 	<File name="MainWindow.h" open="0" top="0" tabpos="3">
 		<Cursor position="3015" topLine="111" />
@@ -55,8 +55,8 @@
 	<File name="Map\decor.h" open="0" top="0" tabpos="1">
 		<Cursor position="3261" topLine="86" />
 	</File>
-	<File name="Map\map.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="88107" topLine="1797" />
+	<File name="Map\map.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="85387" topLine="1764" />
 	</File>
 	<File name="Map\map.h" open="0" top="0" tabpos="2">
 		<Cursor position="4753" topLine="130" />
@@ -103,8 +103,8 @@
 	<File name="Moteurs\modeleMoteurParticule.cpp" open="0" top="0" tabpos="22">
 		<Cursor position="830" topLine="0" />
 	</File>
-	<File name="Moteurs\moteurGraphique.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="13031" topLine="389" />
+	<File name="Moteurs\moteurGraphique.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="12831" topLine="386" />
 	</File>
 	<File name="Moteurs\moteurGraphique.h" open="0" top="0" tabpos="2">
 		<Cursor position="4070" topLine="148" />
@@ -118,7 +118,7 @@
 	<File name="Moteurs\moteurSons.h" open="0" top="0" tabpos="24">
 		<Cursor position="1573" topLine="29" />
 	</File>
-	<File name="QSFMLCanvas.cpp" open="0" top="0" tabpos="15">
+	<File name="QSFMLCanvas.cpp" open="1" top="0" tabpos="3">
 		<Cursor position="3753" topLine="97" />
 	</File>
 	<File name="QSFMLCanvas.h" open="0" top="0" tabpos="9">
