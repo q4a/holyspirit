@@ -161,6 +161,12 @@ main
 		regenerate_inventory
 	end
 	
+	if miracle * 0
+	then
+	else
+		variable * 8 * 0
+	end
+	
 	
 	if quest * 1 * -1
 		variable * 8 * 0

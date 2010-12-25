@@ -66,6 +66,12 @@
          
          Chargement de l'objet : Doc_redimus.item.hs
          Chargement de : Data/Graphics/Items/Books.png
+         
+         Chargement de l'objet : Doc_redimus.item.hs
+         
+         Chargement de l'objet : Doc_redimus.item.hs
+         
+         Chargement de l'objet : Doc_redimus.item.hs
          /Lectures des objets.
          /Lectures des objets du coffre.
          /Lectures des miracles.
@@ -217,6 +223,9 @@
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
          /Ecriture des miracles.
@@ -237,6 +246,9 @@
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
          /Sauvegarde de Doc_redimus.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
@@ -579,13 +591,14 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          /Sauvegarde de Potion_faith0.item.hs
          /Sauvegarde de Necklage_necklage.item.hs
          /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Drawing_golem_coal.item.hs
          /Sauvegarde de Craft_coal.item.hs
          /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Craft_ore_copper.item.hs
+         /Sauvegarde de Craft_coal.item.hs
          /Sauvegarde de Craft_ore_copper.item.hs
          /Sauvegarde de Craft_ore_iron.item.hs
          /Sauvegarde de Craft_ore_gold.item.hs
+         /Sauvegarde de Craft_gem_ruby.item.hs
          Sauvegarde de la map terminée !
          /Génération de l'image...
          /Image affichée.
@@ -600,6 +613,9 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
          /Sauvegarde de Doc_redimus.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
@@ -722,7 +738,19 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          Initialisation des entités terminée.
          Initialisation terminée.
          
-         Chargement de : Data/Musics/Menu.ogg
+         
+         ---------------------------------------------------------------------------------
+         EVENEMENT : Changement de map
+         ---------------------------------------------------------------------------------
+         Chargement de : Data/Maps/Loading_screens/Crypt0.png
+         
+         Sauvegarde de la map : Data/User/Temps/Abbey_indoor.map.hs
+         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey_indoor.map.hs.emap.hs
+         /Sauvegarde de Litanie_0.item.hs
+         /Sauvegarde de Litanie_0.item.hs
+         /Sauvegarde de Litanie_0.item.hs
+         /Sauvegarde de Litanie_0.item.hs
+         Sauvegarde de la map terminée !
          /Génération de l'image...
          /Image affichée.
          /Image générée.
@@ -737,10 +765,14 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
          /Ecriture des miracles.
          /Ecriture des docs.
+         /Sauvegarde de Les choses qui rodaient dans les catacombes
          /Ecriture des quetes.
          /Ecriture des potales.
          Sauvegarde du héro terminée !
@@ -755,14 +787,714 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          Projectiles détruits !
          Effets détruits !
          Map détruite !
-         Destruction du héro ...
          
-         Fermeture des contextes effectuée avec succès.
-         Destruction du héro ...
-         Destruction du menu ...
+         Chargements d'images diverses :
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
          
-         Sauvegarde de la configuration
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_OneHand/Small_sword_r.rs.hs
          
-         Destruction des moteurs
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Shields/Small_shield.rs.hs
          
-         EXIT_SUCCESS
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Nude/OneHand.rs.hs
+         
+         Chargement de la map : Catacombs0.map.hs
+         /Lectures du nom.
+         /Lectures des fonds.
+         /Lectures des musiques.
+         /Lectures des lumières.
+         /Lectures des ciels.
+         Chargement de : Data/Graphics/Landscapes/Catacombs/Catacombs_floor.png
+         Chargement de : Data/Graphics/Landscapes/Catacombs/Catacombs_floor.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Catacombs/Catacombs_miscs.png
+         Chargement de : Data/Graphics/Landscapes/Catacombs/Catacombs_misc.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Catacombs/Catacombs_walls.png
+         Chargement de : Data/Graphics/Landscapes/Catacombs/Catacombs_walls_back.png
+         Chargement de : Data/Graphics/Landscapes/Catacombs/Catacombs_walls_grave.png
+         Chargement de : Data/Graphics/Landscapes/Catacombs/Catacombs_walls.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Miscs/Light_effect.png
+         Chargement de : Data/Graphics/Landscapes/Miscs/Light_effect.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Miscs/Blood.png
+         Chargement de : Data/Graphics/Landscapes/Miscs/Blood.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Catacombs/Catacombs_monks.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Crypt/Crypt_miscs.png
+         Chargement de : Data/Graphics/Landscapes/Crypt/Crypt_miscs.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_miscs.ts.hs
+         /Lectures des tilesets.
+         /Lectures des herbes.
+         
+         Chargement du monstre : Data/Entities/Resources/Containers/Barrel.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Inert.script.hs "
+         
+         Chargement du systeme de particules : Data/Entities/Particles/Wood_barrel.ps.hs
+         Chargement de : Data/Graphics/Particles/Wood_barrel.png
+         
+         Chargement du personnage : Data/Entities/Resources/Containers/Barrel.rs.hs
+         Chargement de : Barrel.png
+         Chargement de : Data/Sounds/Entities/Wood_smash0.wav
+         Chargement de : Data/Sounds/Entities/Hit0.wav
+         Chargement de : Data/Entities/Resources/Containers/Barrel.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Containers/Barrel_explosive.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Explosive.script.hs "
+         Chargement du miracle : Data/Miscs/Miracles/Explosions/Explosion_barrel.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Containers/Barrel_explosive.rs.hs
+         Chargement de : Barrel_explosion.png
+         Chargement de : Barrel_explosive.png
+         Chargement de : Data/Sounds/Entities/Explosion0.wav
+         Chargement de : Data/Entities/Resources/Containers/Barrel_explosive.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Containers/Bones_stack.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Inert.script.hs "
+         
+         Chargement du systeme de particules : Data/Entities/Particles/Human_bones.ps.hs
+         Chargement de : Data/Graphics/Particles/Human_bones.png
+         Chargement de : Data/Sounds/Particles/Bone0.wav
+         
+         Chargement du personnage : Data/Entities/Resources/Containers/Bones_stack.rs.hs
+         Chargement de : Bones_stack.png
+         Chargement de : Data/Entities/Resources/Containers/Bones_stack.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Containers/Catacomb_sarcophagus.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Chess.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Containers/Catacomb_sarcophagus.rs.hs
+         Chargement de : Catacomb_sarcophagus0.png
+         Chargement de : Data/Entities/Resources/Containers/Catacomb_sarcophagus.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Containers/Chess0.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Chess.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Containers/Chess0.rs.hs
+         Chargement de : Coffre0.png
+         Chargement de : Data/Sounds/Entities/Chess0.wav
+         Chargement de : Data/Entities/Resources/Containers/Chess0.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Containers/Urn0.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Inert.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Containers/Urn0.rs.hs
+         Chargement de : Urn0.png
+         Chargement de : Data/Sounds/Entities/Ceramic_smash0.wav
+         Chargement de : Data/Entities/Resources/Containers/Urn0.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Containers/Urn1.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Inert.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Containers/Urn1.rs.hs
+         Chargement de : Urn1.png
+         Chargement de : Data/Entities/Resources/Containers/Urn1.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Catacomb_passage.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Passage.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/Catacomb_passage.rs.hs
+         Chargement de : Catacomb_passage.png
+         Chargement de : Data/Sounds/Entities/MetalGate_open.wav
+         Chargement de : Data/Entities/Resources/Miscs/Catacomb_passage.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Door1.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Door.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/Door1.rs.hs
+         Chargement de : Door1.png
+         Chargement de : Data/Sounds/Entities/MetalGate_close.wav
+         Chargement de : Data/Entities/Resources/Miscs/Door1.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Containers/Writing_case.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Chess.script.hs "
+         
+         Chargement de l'objet : Doc_redimus.item.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Containers/Writing_case.rs.hs
+         Chargement de : Writing_case.png
+         Chargement de : Data/Entities/Resources/Containers/Writing_case.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Catacombs_breakablewall.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Inert.script.hs "
+         
+         Chargement du systeme de particules : Data/Entities/Particles/Earth.ps.hs
+         Chargement de : Data/Graphics/Particles/Earth.png
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/Catacombs_breakablewall.rs.hs
+         Chargement de : Catacombs_breackablewall.png
+         Chargement de : Catacombs_brockenwall.png
+         Chargement de : Data/Entities/Resources/Miscs/Catacombs_breakablewall.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Monsters/Skeletons/Axe.char.hs
+         Chargement du script : " Data/Entities/Scripts/Monsters/Standard.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Monsters/Skeletons/Axe.rs.hs
+         Chargement de : SkeletonAxe_Walk0.png
+         Chargement de : SkeletonAxe_Attack0.png
+         Chargement de : SkeletonAxe_Attack1.png
+         Chargement de : Data/Entities/Resources/Monsters/Skeletons/Axe.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Monsters/Skeletons/Sword.char.hs
+         Chargement du script : " Data/Entities/Scripts/Monsters/Standard.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Monsters/Skeletons/Sword.rs.hs
+         Chargement de : SkeletonSword_Walk0.png
+         Chargement de : SkeletonSword_Attack0.png
+         Chargement de : SkeletonSword_Attack1.png
+         Chargement de : Data/Entities/Resources/Monsters/Skeletons/Sword.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Monsters/Skeletons/Guardian.char.hs
+         Chargement du script : " Data/Entities/Scripts/Monsters/Standard.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Monsters/Skeletons/Guardian.rs.hs
+         Chargement de : SkeletonGuardian_Walk0.png
+         Chargement de : SkeletonGuardian_Attack0.png
+         Chargement de : SkeletonGuardian_Attack1.png
+         Chargement de : Data/Sounds/Entities/Attack1.wav
+         Chargement de : Data/Entities/Resources/Monsters/Skeletons/Guardian.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Monsters/Skeletons/LordSkeleton.char.hs
+         Chargement du script : " Data/Entities/Scripts/Monsters/Standard.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Monsters/Skeletons/LordSkeleton.rs.hs
+         Chargement de : LordSkeleton_Walk0.png
+         Chargement de : LordSkeleton_Walk1.png
+         Chargement de : LordSkeleton_Attack0.png
+         Chargement de : LordSkeleton_Attack1.png
+         Chargement de : LordSkeleton_Attack2.png
+         Chargement de : Data/Entities/Resources/Monsters/Skeletons/LordSkeleton.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Monsters/Skeletons/Shooter.char.hs
+         Chargement du script : " Data/Entities/Scripts/Monsters/Shooter.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Monsters/Skeletons/Shooter.rs.hs
+         Chargement de : SkeletonShooter_Walk0.png
+         Chargement de : SkeletonShooter_Walk1.png
+         Chargement de : SkeletonShooter_Attack0.png
+         Chargement de : SkeletonShooter_Attack1.png
+         Chargement de : Data/Sounds/Entities/Shoot0.wav
+         Chargement de : Data/Entities/Resources/Monsters/Skeletons/Shooter.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Monsters/Skeletons/Warrior.char.hs
+         Chargement du script : " Data/Entities/Scripts/Monsters/Standard.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Monsters/Skeletons/Warrior.rs.hs
+         Chargement de : SkeletonWarrior_Walk0.png
+         Chargement de : SkeletonWarrior_Attack0.png
+         Chargement de : SkeletonWarrior_Attack1.png
+         Chargement de : Data/Entities/Resources/Monsters/Skeletons/Warrior.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Monsters/Skeletons/Summoner_trigger.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Summoning.script.hs "
+         Chargement du miracle : Data/Entities/Miracles/Summoning_SkeletonAxe.miracle.hs
+         Chargement de : Data/Graphics/Miracles/Skeleton_summoning.png
+         Chargement du miracle : Data/Entities/Miracles/Summoning_SkeletonSword.miracle.hs
+ERREUR : Impossible de charger : Data/Graphics/Miracles/DemoniacBall0.png
+         Chargement du miracle : Data/Entities/Miracles/Summoning_SkeletonWarrior.miracle.hs
+         Chargement du miracle : Data/Entities/Miracles/Summoning_SkeletonShooter.miracle.hs
+ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Miracles/Summoning_SkeletonShooter.miracle.hs
+         Chargement du miracle : Data/Entities/Miracles/Summoning_Guardian.miracle.hs
+         Chargement de : Data/Graphics/Miracles/DemonicBall0.png
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/NULL.rs.hs
+         Chargement de : Data/Entities/Resources/Monsters/Skeletons/Summoner_trigger.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Trigger.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Trigger.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/NULL.rs.hs
+         Chargement de : Data/Entities/Resources/Miscs/Trigger.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Door_wooden0.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Door.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/Door_wooden0.rs.hs
+         Chargement de : Door_wooden0.png
+         Chargement de : Data/Entities/Resources/Miscs/Door_wooden0.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Trigger_selectable.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Trigger.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/NULL.rs.hs
+         Chargement de : Data/Entities/Resources/Miscs/Trigger_selectable.char.hs terminé
+         /Lectures des monstres.
+         
+         /Lectures des cases.
+         Chargement de la map terminé.
+         Initialisation de l'herbe terminée.
+         Initialisation des décors terminée.
+         Initialisation des entités terminée.
+         Initialisation terminée.
+         
+         Chargement de : Data/Musics/Catacombs0.ogg
+         
+         Sauvegarde de la map : Data/User/Temps/Catacombs0.map.hs
+         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Catacombs0.map.hs.emap.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Ecriture des objets.
+         /Ecriture des objets du coffre.
+         /Ecriture des miracles.
+         /Ecriture des docs.
+         /Sauvegarde de Les choses qui rodaient dans les catacombes
+         /Ecriture des quetes.
+         /Ecriture des potales.
+         Sauvegarde du héro terminée !
+         
+         ---------------------------------------------------------------------------------
+         EVENEMENT : Changement de map
+         ---------------------------------------------------------------------------------
+         
+         Sauvegarde de la map : Data/User/Temps/Catacombs0.map.hs
+         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Catacombs0.map.hs.emap.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         Sauvegarde de la map terminée !
+         /Génération de l'image...
+         /Image affichée.
+         /Image générée.
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Ecriture des objets.
+         /Ecriture des objets du coffre.
+         /Ecriture des miracles.
+         /Ecriture des docs.
+         /Sauvegarde de Les choses qui rodaient dans les catacombes
+         /Ecriture des quetes.
+         /Ecriture des potales.
+         Sauvegarde du héro terminée !
+         
+         Destruction de la map...
+         Destruction des cases...
+         Cases détruites !
+         Modèles monstres détruits !
+         Monstres détruits !
+         Fonds détruits !
+         Chemins musiques détruits !
+         Projectiles détruits !
+         Effets détruits !
+         Map détruite !
+         
+         Chargements d'images diverses :
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_OneHand/Small_sword_r.rs.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Shields/Small_shield.rs.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Nude/OneHand.rs.hs
+         
+         Chargement de la map : Abbey_indoor.map.hs
+         Map sauvée existante.
+         /Lectures du nom.
+         /Lectures des fonds.
+         /Lectures des musiques.
+         /Lectures des lumières.
+         /Lectures des ciels.
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_floor.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_walls.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_miscs.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Catacombs/Catacombs_monks.ts.hs
+         /Lectures des tilesets.
+         /Lectures des herbes.
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Trigger_clickable.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Trigger_clickable.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/NULL.rs.hs
+         Chargement de : Data/Entities/Resources/Miscs/Trigger_clickable.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/NPC/Farmer.char.hs
+         Chargement du script : " Data/Entities/Scripts/NPC/Farmer.script.hs "
+         Chargement du miracle : Data/Miscs/Miracles/Quest/Quest.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Resources/NPC/Farmer.rs.hs
+         Chargement de : Data/Entities/Resources/NPC/Farmer.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/NPC/Abbe.char.hs
+         Chargement du script : " Data/Entities/Scripts/NPC/Abbe.script.hs "
+         
+         Chargement de l'objet : Litanie_toxic_0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/Toxic_0.miracle.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Quest/Quest.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Resources/NPC/Abbe.rs.hs
+         Chargement de : Data/Entities/Resources/NPC/Abbe.char.hs terminé
+         /Lectures des monstres.
+         
+         Une map des entités est déjà existante.
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         /Lectures des monstres si existants.
+         /Lectures des cases.
+         Chargement de la map terminé.
+         Initialisation de l'herbe terminée.
+         Initialisation des décors terminée.
+         Initialisation des entités terminée.
+         Initialisation terminée.
+         
+         Chargement de : Data/Musics/Abbey.ogg
+         
+         ---------------------------------------------------------------------------------
+         EVENEMENT : Changement de map
+         ---------------------------------------------------------------------------------
+         
+         Sauvegarde de la map : Data/User/Temps/Abbey_indoor.map.hs
+         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey_indoor.map.hs.emap.hs
+         /Sauvegarde de Litanie_0.item.hs
+         /Sauvegarde de Litanie_0.item.hs
+         /Sauvegarde de Litanie_0.item.hs
+         /Sauvegarde de Litanie_0.item.hs
+         Sauvegarde de la map terminée !
+         /Génération de l'image...
+         /Image affichée.
+         /Image générée.
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Ecriture des objets.
+         /Ecriture des objets du coffre.
+         /Ecriture des miracles.
+         /Ecriture des docs.
+         /Sauvegarde de Les choses qui rodaient dans les catacombes
+         /Ecriture des quetes.
+         /Ecriture des potales.
+         Sauvegarde du héro terminée !
+         
+         Destruction de la map...
+         Destruction des cases...
+         Cases détruites !
+         Modèles monstres détruits !
+         Monstres détruits !
+         Fonds détruits !
+         Chemins musiques détruits !
+         Projectiles détruits !
+         Effets détruits !
+         Map détruite !
+         
+         Chargements d'images diverses :
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_OneHand/Small_sword_r.rs.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Shields/Small_shield.rs.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Nude/OneHand.rs.hs
+         
+         Chargement de la map : Catacombs0.map.hs
+         Map sauvée existante.
+         /Lectures du nom.
+         /Lectures des fonds.
+         /Lectures des musiques.
+         /Lectures des lumières.
+         /Lectures des ciels.
+         Chargement de : Data/Graphics/Landscapes/Catacombs/Catacombs_floor.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Catacombs/Catacombs_misc.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Catacombs/Catacombs_walls.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Miscs/Light_effect.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Miscs/Blood.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Catacombs/Catacombs_monks.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Crypt/Crypt_miscs.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_miscs.ts.hs
+         /Lectures des tilesets.
+         /Lectures des herbes.
+         
+         Chargement du monstre : Data/Entities/Resources/Containers/Barrel.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Inert.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Containers/Barrel.rs.hs
+         Chargement de : Data/Entities/Resources/Containers/Barrel.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Containers/Barrel_explosive.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Explosive.script.hs "
+         Chargement du miracle : Data/Miscs/Miracles/Explosions/Explosion_barrel.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Containers/Barrel_explosive.rs.hs
+         Chargement de : Data/Entities/Resources/Containers/Barrel_explosive.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Containers/Bones_stack.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Inert.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Containers/Bones_stack.rs.hs
+         Chargement de : Data/Entities/Resources/Containers/Bones_stack.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Containers/Catacomb_sarcophagus.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Chess.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Containers/Catacomb_sarcophagus.rs.hs
+         Chargement de : Data/Entities/Resources/Containers/Catacomb_sarcophagus.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Containers/Chess0.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Chess.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Containers/Chess0.rs.hs
+         Chargement de : Data/Entities/Resources/Containers/Chess0.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Containers/Urn0.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Inert.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Containers/Urn0.rs.hs
+         Chargement de : Data/Entities/Resources/Containers/Urn0.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Containers/Urn1.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Inert.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Containers/Urn1.rs.hs
+         Chargement de : Data/Entities/Resources/Containers/Urn1.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Catacomb_passage.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Passage.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/Catacomb_passage.rs.hs
+         Chargement de : Data/Entities/Resources/Miscs/Catacomb_passage.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Door1.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Door.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/Door1.rs.hs
+         Chargement de : Data/Entities/Resources/Miscs/Door1.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Containers/Writing_case.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Chess.script.hs "
+         
+         Chargement de l'objet : Doc_redimus.item.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Containers/Writing_case.rs.hs
+         Chargement de : Data/Entities/Resources/Containers/Writing_case.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Catacombs_breakablewall.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Inert.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/Catacombs_breakablewall.rs.hs
+         Chargement de : Data/Entities/Resources/Miscs/Catacombs_breakablewall.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Monsters/Skeletons/Axe.char.hs
+         Chargement du script : " Data/Entities/Scripts/Monsters/Standard.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Monsters/Skeletons/Axe.rs.hs
+         Chargement de : Data/Entities/Resources/Monsters/Skeletons/Axe.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Monsters/Skeletons/Sword.char.hs
+         Chargement du script : " Data/Entities/Scripts/Monsters/Standard.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Monsters/Skeletons/Sword.rs.hs
+         Chargement de : Data/Entities/Resources/Monsters/Skeletons/Sword.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Monsters/Skeletons/Guardian.char.hs
+         Chargement du script : " Data/Entities/Scripts/Monsters/Standard.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Monsters/Skeletons/Guardian.rs.hs
+         Chargement de : Data/Entities/Resources/Monsters/Skeletons/Guardian.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Monsters/Skeletons/LordSkeleton.char.hs
+         Chargement du script : " Data/Entities/Scripts/Monsters/Standard.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Monsters/Skeletons/LordSkeleton.rs.hs
+         Chargement de : Data/Entities/Resources/Monsters/Skeletons/LordSkeleton.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Monsters/Skeletons/Shooter.char.hs
+         Chargement du script : " Data/Entities/Scripts/Monsters/Shooter.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Monsters/Skeletons/Shooter.rs.hs
+         Chargement de : Data/Entities/Resources/Monsters/Skeletons/Shooter.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Monsters/Skeletons/Warrior.char.hs
+         Chargement du script : " Data/Entities/Scripts/Monsters/Standard.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Monsters/Skeletons/Warrior.rs.hs
+         Chargement de : Data/Entities/Resources/Monsters/Skeletons/Warrior.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Monsters/Skeletons/Summoner_trigger.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Summoning.script.hs "
+         Chargement du miracle : Data/Entities/Miracles/Summoning_SkeletonAxe.miracle.hs
+         Chargement du miracle : Data/Entities/Miracles/Summoning_SkeletonSword.miracle.hs
+         Chargement du miracle : Data/Entities/Miracles/Summoning_SkeletonWarrior.miracle.hs
+         Chargement du miracle : Data/Entities/Miracles/Summoning_SkeletonShooter.miracle.hs
+ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Miracles/Summoning_SkeletonShooter.miracle.hs
+         Chargement du miracle : Data/Entities/Miracles/Summoning_Guardian.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/NULL.rs.hs
+         Chargement de : Data/Entities/Resources/Monsters/Skeletons/Summoner_trigger.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Trigger.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Trigger.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/NULL.rs.hs
+         Chargement de : Data/Entities/Resources/Miscs/Trigger.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Door_wooden0.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Door.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/Door_wooden0.rs.hs
+         Chargement de : Data/Entities/Resources/Miscs/Door_wooden0.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Trigger_selectable.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Trigger.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/NULL.rs.hs
+         Chargement de : Data/Entities/Resources/Miscs/Trigger_selectable.char.hs terminé
+         /Lectures des monstres.
+         
+         Une map des entités est déjà existante.
+         
+         Chargement de l'objet : Doc_redimus.item.hs
+         /Lectures des monstres si existants.
+         /Lectures des cases.
+         Chargement de la map terminé.
+         Initialisation de l'herbe terminée.
+         Initialisation des décors terminée.
+         Initialisation des entités terminée.
+         Initialisation terminée.
+         
+         Chargement de : Data/Musics/Catacombs0.ogg
+         
+         Sauvegarde de la map : Data/User/Temps/Catacombs0.map.hs
+         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Catacombs0.map.hs.emap.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Ecriture des objets.
+         /Ecriture des objets du coffre.
+         /Ecriture des miracles.
+         /Ecriture des docs.
+         /Sauvegarde de Les choses qui rodaient dans les catacombes

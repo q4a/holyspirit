@@ -1,7 +1,7 @@
 Les choses qui rodaient dans les catacombes
 Je dois aller dans les catacombes voir ce qu'il s'y passe.
-
-
+J'ai retrouvé le journal du moine Rédimus. Celui-ci indique qu'il se trame des choses terrifiantes dans les catacombes. Je dois en parler avec l'Abbé.
+L'Abbé m'a demandé de retrouver 
 
 
 

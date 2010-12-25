@@ -22,8 +22,17 @@ main
 		then
 			if speak_choice * 1
 			then
+				if quest * 0 * -1
+				then
+					variable * 3 * 1
+				end
+				
+				if quest * 0 * 1
+				then
+					variable * 3 * 4
+				end
+				
 				variable * 6 * 1
-				variable * 3 * 1
 				variable * 2 * 0
 				stop_speak
 			end
@@ -115,22 +124,14 @@ main
 							speak * 64
 						end
 					else
-						if quest * 0 * 0
+						//TEXTE NORMAL A CHANGER
+						if player_class " Data/Miscs/Heroes/Concubine/Concubine.class.hs"
 						then
-							//TEXTE NORMAL A CHANGER
-							if player_class " Data/Miscs/Heroes/Concubine/Concubine.class.hs"
-							then
-								speak * 65
-							end
-							if player_class " Data/Miscs/Heroes/Crusader/Crusader.class.hs"
-							then
-								speak * 64
-							end
+							speak * 65
 						end
-					
-						if quest * 0 * 1
+						if player_class " Data/Miscs/Heroes/Crusader/Crusader.class.hs"
 						then
-							speak * 57
+							speak * 64
 						end
 					end
 				end
@@ -169,6 +170,16 @@ main
 		if variable * 2 * 0
 		   variable * 3 * 4
 		then
+			speak * 57
+			variable * 3 * 0
+			
+			setQuestState * 0 * 2 * 3
+			stopMiracle * 0
+		end
+		
+		if variable * 2 * 0
+		   variable * 3 * 4
+		then
 			speak * 60
 			variable * 3 * 0
 		end
@@ -179,6 +190,10 @@ main
 			if quest * 0 * -1
 			then
 				speak_choice * 51 * 1
+			end
+			if quest * 0 * 1
+			then
+				speak_choice * 66 * 1
 			end
 			if variable * 6 * 2
 			then else
@@ -222,6 +237,13 @@ main
 	end
 	
 	if quest * 0 * -1
+		variable * 8 * 0
+	then
+		variable * 8 * 1
+		useMiracle * 0
+	end
+	
+	if quest * 0 * 1
 		variable * 8 * 0
 	then
 		variable * 8 * 1

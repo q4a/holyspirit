@@ -55,7 +55,7 @@ Des diableries ?
 Oui, parfaitement, des diableries. Mes frères moines on un comportement étrange, parfois malsain et certains ont mystérieusement disparu... J'entends des bruits dans les catacombes sous l'abbaye la nuit. J'ai d'abord cru au bruit du vent, puis j'ai dû m'y résoudre : ce sont des incantations, des gémissements troublants parfois... J'ai peur, je dois l'avouer, et la seule solution que j'ai trouvée est de fermer la porte qui y mène. Mais il faudra bien que quelqu'un aille voir ce qui se trame là-bas... Je suis inquiet pour mes moines !
 Voulez-vous que j'aille voir ?
 Oh ! Je n'osais pas demander... J'ai quelques scrupules à t'envoyer là-bas en solitaire, mais nous ne sommes pas des combattants vois-tu... Mais si tu as besoin d'aide je ferai ce que je peux ! Tiens, prends la clef des catacombes et bonne chance, Dieu t'assistera !
-C'est bien ce qu'il me semblait ! Il se tramait des choses monstrueuses derrière cette porte... Décidément nous sommes cernés par le mal ! Il est dehors, il est sous nos pieds ! Est-ce que le ciel lui-même est vraiment bienveillant pour nous, pauvres misérables humains ? 
+C'est bien ce qu'il me semblait ! Il se tramait des choses monstrueuses derrière cette porte... Décidément nous sommes cernés par le mal ! Il est dehors, il est sous nos pieds ! Est-ce que le ciel lui-même est vraiment bienveillant pour nous, pauvres misérables humains ? \AJOUTER A AMELIORER\Tu va devoir trouver 4 reliques de Saints afin d'accomplir le rituel. Tu pourras en trouver 3 dans les catacombes, ainsi qu'une autre dans le mausolée, à l'extérieur de l'Abbaye.\Tiens, prends la clé te permettant de t'enfoncer plus profondément dans les catacombes.\Que Dieu te garde.
 Enfin, tu as trouvé la source du mal ! Me voilà rassuré, mais pas tant que ça... Le monde entier semble envahi par cette fange répugnante de morts-vivants et d'objets mystérieusement animés... je crois que la fin de cette période chaotique est encore loin hélas !
 Je cherche des armes.
 Tu peux demander à Rognorak, notre forgeron qui s'est réfugié avec nous dans ce lieu saint. C'est un grand gaillard sympathique, il continue à forger des armes même si ça ne sert plus à rien, il dit que ça l'occupe en attendant la fin du monde.
@@ -63,8 +63,8 @@ Avez-vous des choses à vendre ?
 Pourriez-vous me bénir un objet ?
 Au revoir !
 Nous comptons tous sur toi mon fils ! Eradique ces horreurs de notre chère terre !
-Que me veux-tu femme ?
-
+Que me veux-tu, femme ?
+ATTENTION A CHANGER ROGER//J'ai retrouvé le journal du moinde Redimus. Celui-ci raconte que des créatures rodent dans les catacombes.
 
 
 
