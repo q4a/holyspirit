@@ -1112,6 +1112,7 @@ void Map::CreerSprite(sf::Vector3f position_case)
                                                             positionPartieDecor.w, positionPartieDecor.h));
         m_decor[z][y][x].m_spriteMinimap.SetX(position.x);
         m_decor[z][y][x].m_spriteMinimap.SetY(position.y);
+        m_decor[z][y][x].m_spriteMinimap.SetOrigin(positionPartieDecor.w/2, positionPartieDecor.h/2);
         m_decor[z][y][x].m_spriteMinimap.SetColor(sf::Color(255,255,255,255));
     }
 }
@@ -1415,6 +1416,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
         minimap.SetColor(sf::Color(255,255,255,(int)(alpha * 0.5f)));
         minimap.SetPosition((int)(configuration->Resolution.x*0.5f) ,
                             (int)(configuration->Resolution.y*0.5f));
+        minimap.SetOrigin(hero->m_classe.icone_mm.position.w/2, hero->m_classe.icone_mm.position.h/2);
         moteurGraphique->AjouterCommande(&minimap,12,0);
 
         for(unsigned i = 0 ; i < hero->m_amis.size() ; ++i)

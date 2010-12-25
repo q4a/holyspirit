@@ -37,7 +37,7 @@
 	<File name="Contextes\c_inventaire.h" open="0" top="0" tabpos="8">
 		<Cursor position="2457" topLine="30" />
 	</File>
-	<File name="Contextes\c_jeu.cpp" open="1" top="0" tabpos="7">
+	<File name="Contextes\c_jeu.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="7391" topLine="251" />
 	</File>
 	<File name="Contextes\c_jeu.h" open="0" top="0" tabpos="12">
@@ -151,16 +151,16 @@
 	<File name="Map\decor.h" open="0" top="0" tabpos="14">
 		<Cursor position="2053" topLine="50" />
 	</File>
-	<File name="Map\map.cpp" open="1" top="0" tabpos="5">
+	<File name="Map\map.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="61888" topLine="1426" />
 	</File>
 	<File name="Map\map.h" open="0" top="0" tabpos="1">
 		<Cursor position="9777" topLine="157" />
 	</File>
-	<File name="Map\map_miracles.cpp" open="1" top="0" tabpos="3">
+	<File name="Map\map_miracles.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="26964" topLine="670" />
 	</File>
-	<File name="Map\map_scripts.cpp" open="1" top="0" tabpos="4">
+	<File name="Map\map_scripts.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="33407" topLine="619" />
 	</File>
 	<File name="Map\tile.cpp" open="0" top="0" tabpos="4">
@@ -175,8 +175,8 @@
 	<File name="Map\tileset.h" open="0" top="0" tabpos="15">
 		<Cursor position="3303" topLine="80" />
 	</File>
-	<File name="Moteurs\Entite_graphique.cpp" open="0" top="0" tabpos="10">
-		<Cursor position="14042" topLine="243" />
+	<File name="Moteurs\Entite_graphique.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="13968" topLine="270" />
 	</File>
 	<File name="Moteurs\Entite_graphique.h" open="0" top="0" tabpos="1">
 		<Cursor position="2152" topLine="51" />
@@ -190,13 +190,13 @@
 	<File name="Moteurs\console.h" open="0" top="0" tabpos="31">
 		<Cursor position="1140" topLine="25" />
 	</File>
-	<File name="Moteurs\eventManager.cpp" open="1" top="0" tabpos="6">
+	<File name="Moteurs\eventManager.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="6510" topLine="181" />
 	</File>
 	<File name="Moteurs\eventManager.h" open="0" top="0" tabpos="3">
 		<Cursor position="1340" topLine="32" />
 	</File>
-	<File name="Moteurs\light.cpp" open="1" top="0" tabpos="1">
+	<File name="Moteurs\light.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="7275" topLine="189" />
 	</File>
 	<File name="Moteurs\light.h" open="0" top="0" tabpos="10">
@@ -214,8 +214,8 @@
 	<File name="Moteurs\modeleMoteurParticule.h" open="0" top="0" tabpos="16">
 		<Cursor position="841" topLine="21" />
 	</File>
-	<File name="Moteurs\moteurGraphique.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="33279" topLine="856" />
+	<File name="Moteurs\moteurGraphique.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="27637" topLine="777" />
 	</File>
 	<File name="Moteurs\moteurGraphique.h" open="0" top="0" tabpos="15">
 		<Cursor position="4948" topLine="152" />
@@ -262,7 +262,7 @@
 	<File name="main.h" open="0" top="0" tabpos="77">
 		<Cursor position="445" topLine="0" />
 	</File>
-	<File name="menu.cpp" open="1" top="1" tabpos="9">
+	<File name="menu.cpp" open="0" top="0" tabpos="9">
 		<Cursor position="3850" topLine="106" />
 	</File>
 	<File name="menu.h" open="0" top="0" tabpos="6">
@@ -277,7 +277,7 @@
 	<File name="version.h" open="0" top="0" tabpos="80">
 		<Cursor position="732" topLine="0" />
 	</File>
-	<File name="video.cpp" open="1" top="0" tabpos="8">
+	<File name="video.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="6092" topLine="209" />
 	</File>
 </CodeBlocks_layout_file>

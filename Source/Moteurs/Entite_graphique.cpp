@@ -185,6 +185,8 @@ void Entite_graphique::NextTile(bool cur)
         {
             if(m_tileset->getLumiereDuTile(m_noAnimation).intensite >= 0)
                 moteurGraphique->LightManager->SetIntensity(m_light_wall, m_tileset->getLumiereDuTile(m_noAnimation).intensite);
+            if(m_tileset->getLumiereDuTile(m_noAnimation).intensite < 0)
+                moteurGraphique->LightManager->SetIntensity(m_light_wall, m_tileset->getLumiereDuTile(m_noAnimation).intensite);
         }
     }
 }
