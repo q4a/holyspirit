@@ -314,7 +314,8 @@ bool Map::Miracle_Charme (Hero *hero, Personnage *personnage, Miracle &modele, E
             return 0;
         }
 
-        if (fabs(info.m_cible->getCoordonnee().x - personnage->getCoordonnee().x) > 10 || fabs(info.m_cible->getCoordonnee().y - personnage->getCoordonnee().y) > 10)
+        if (fabs(info.m_cible->getCoordonnee().x - personnage->getCoordonnee().x) > 10
+         || fabs(info.m_cible->getCoordonnee().y - personnage->getCoordonnee().y) > 10)
         {
             coordonnee temp;
             bool ok = false;

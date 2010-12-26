@@ -285,9 +285,15 @@ void c_Chargement::Utiliser(Jeu *jeu)
                 buffer[i].setModele(jeu->map->getNombreModeleMonstres() - 1);
             }
 
+
+
             buffer[i].frappeEnCours = false;
 
             jeu->map->AjouterMonstre((Monstre) buffer[i]);
+
+            jeu->map->getEntiteMonstre(jeu->map->getNombreMonstres() - 1)->setCoordonnee(jeu->map->getEntiteMonstre(jeu->map->getNombreMonstres() - 1)->getCoordonnee());
+
+            jeu->map->getEntiteMonstre(jeu->map->getNombreMonstres() - 1)->setDepart();
 
             for(unsigned j = 0 ; j < jeu->hero.m_personnage.m_miracleEnCours.size() ; ++j)
                 for(unsigned k = 0 ; k < jeu->hero.m_personnage.m_miracleEnCours[j].m_infos.size() ; ++k)

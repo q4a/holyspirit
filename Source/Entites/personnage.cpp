@@ -194,6 +194,8 @@ Modele_Personnage::~Modele_Personnage()
 
 bool Modele_Personnage::Charger(string chemin)
 {
+    m_chemin = chemin;
+
     m_tileset.clear();
 
     console->Ajouter("",0);
@@ -349,7 +351,6 @@ void Personnage::Afficher(Modele_Personnage *modele,bool surbrillance, bool sans
                 m_entite_graphique.m_sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
                 m_entite_graphique.m_sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
 
-                m_entite_graphique.m_sprite.Scale((float)m_entite_graphique.m_scale.x*0.01, (float)m_entite_graphique.m_scale.y*0.01);
                 m_entite_graphique.m_sprite.SetColor(m_entite_graphique.m_color);
 
                 moteurGraphique->AjouterEntiteGraphique(&m_entite_graphique);
@@ -917,6 +918,8 @@ int Personnage::Animer(Modele_Personnage *modele,float temps)
             m_entite_graphique.Animer(temps);
 
         m_entite_graphique.m_sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
+
+        m_entite_graphique.m_sprite.Scale((float)m_entite_graphique.m_scale.x*0.01, (float)m_entite_graphique.m_scale.y*0.01);
        /* if (m_porteeLumineuse.intensite>0)
         {
             m_entite_graphique.m_sprite.SetColor(sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu, 255));

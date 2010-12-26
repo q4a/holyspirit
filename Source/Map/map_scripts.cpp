@@ -307,6 +307,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                         if (m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type==INVOCATION)
                             if (m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_IDObjet>=0&&m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_IDObjet<(int)m_monstre.size())
                             {
+
                                 if((int)m_listID.size() <= (int)script->getValeur(noInstruction, 0))
                                     m_listID.resize((int)script->getValeur(noInstruction, 0) + 1);
                                 m_listID[(int)script->getValeur(noInstruction, 0)].push_back(m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_IDObjet);
@@ -501,6 +502,27 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                         m_monstre[m_listID[(unsigned)script->getValeur(noInstruction, 0)][i]].setAngle((int)script->getValeur(noInstruction, 3));
                 }
         }
+        else if (script->m_instructions[noInstruction].nom=="entity_setFriend" && monstre == -1)
+        {
+            if(script->getValeur(noInstruction, 0) < m_listID.size())
+                for(unsigned i = 0 ; i < m_listID[(unsigned)script->getValeur(noInstruction, 0)].size() ; ++i)
+                {
+                    if(script->getValeur(noInstruction, 1) == 1)
+                    {
+                         bool add = true;
+                        for(unsigned j = 0 ; j < hero->m_amis.size() ; ++j)
+                            if(hero->m_amis[j] == &m_monstre[m_listID[(unsigned)script->getValeur(noInstruction, 0)][i]])
+                                add = false;
+                        if(add)
+                            hero->m_amis.push_back(&m_monstre[m_listID[(unsigned)script->getValeur(noInstruction, 0)][i]]);
+                    }
+                    else
+                    for(unsigned j = 0 ; j < hero->m_amis.size() ; ++j)
+                            if(hero->m_amis[j] == &m_monstre[m_listID[(unsigned)script->getValeur(noInstruction, 0)][i]])
+                                hero->m_amis.erase(hero->m_amis.begin() + j--);
+
+                }
+        }
         else if (script->m_instructions[noInstruction].nom=="setTile" && monstre == -1)
         {
             if(script->getValeur(noInstruction, 0) >= 0 && script->getValeur(noInstruction, 0) < 2)
@@ -622,6 +644,17 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                                 hero->delObjet(i), i--;
 
                 }
+                else if (script->m_instructions[no].nom=="exist_friend")
+                {
+                    int nbr = 0;
+
+                    for(unsigned j = 0 ; j < hero->m_amis.size() ; ++j)
+                        if(m_ModeleMonstre[hero->m_amis[j]->getModele()].m_chemin == script->m_instructions[no].valeurString)
+                            nbr++;
+
+                    if(nbr < script->getValeur(no, 0))
+                         ok = false;
+                }
                 else if (script->m_instructions[no].nom=="rand")
                 {
                     if (rand() % 100 < script->getValeur(no, 0))
@@ -710,11 +743,12 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                         for(unsigned i = 0 ; i < m_listID[(int)script->getValeur(no, 0)].size() ; ++i)
                             if (m_monstre[m_listID[(int)script->getValeur(no, 0)][i]].EnVie())
                                 if(m_monstre[m_listID[(int)script->getValeur(no, 0)][i]].m_friendly ==
-                                   m_ModeleMonstre[m_monstre[m_listID[(int)script->getValeur(no, 0)][i]].getModele()].m_friendly)
+                                   m_ModeleMonstre[m_monstre[m_listID[(int)script->getValeur(no, 0)][i]].getModele()].m_friendly
+                                || (int)script->getValeur(no, 1) == 1)
                                     ok = false;
                     }
-                    else
-                        ok = false;
+                  //  else
+                    //    ok = false;
                 }
                 else if (script->m_instructions[no].nom=="entity_position" && monstre == -1)
                 {

@@ -65,6 +65,8 @@ public:
     bool m_collision;
     bool m_selectable;
 
+    std::string m_chemin;
+
 protected:
     Caracteristique m_caracteristique;
 };

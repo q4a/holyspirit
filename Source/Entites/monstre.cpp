@@ -167,6 +167,8 @@ void Monstre::GenererInventaire(Modele_Monstre *modele)
 
 bool Modele_Monstre::Charger(const std::string &chemin)
 {
+    m_chemin = chemin;
+
     console->Ajouter("",0);
     console->Ajouter("Chargement du monstre : "+chemin,0);
 

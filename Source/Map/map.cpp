@@ -1196,10 +1196,20 @@ void Map::Sauvegarder(Hero *hero)
                         if (m_decor[couche][i][j].getMonstre()[k] >= 0 && m_decor[couche][i][j].getMonstre()[k] < (int)m_monstre.size())
                             if(!m_monstre[m_decor[couche][i][j].getMonstre()[k]].m_inexistant)
                             {
-                                if(m_monstre[m_decor[couche][i][j].getMonstre()[k]].m_ID >= 0)
-                                    fichier<<"d"<<m_monstre[m_decor[couche][i][j].getMonstre()[k]].m_ID<<" ";
+                                bool ok = true;
 
-                                fichier<<"m"<<m_decor[couche][i][j].getMonstre()[k]<<" ";
+                                for(unsigned o = 0 ; o < hero->m_amis.size(); ++o)
+                                    if(hero->m_amis[o] == &m_monstre[m_decor[couche][i][j].getMonstre()[k]])
+                                        ok = false;
+
+                                if(ok)
+                                {
+                                    if(m_monstre[m_decor[couche][i][j].getMonstre()[k]].m_ID >= 0)
+                                        fichier<<"d"<<m_monstre[m_decor[couche][i][j].getMonstre()[k]].m_ID<<" ";
+
+                                    fichier<<"m"<<m_decor[couche][i][j].getMonstre()[k]<<" ";
+                                }
+
                             }
 
                     if(m_decor[couche][i][j].getHerbe() >= 0)

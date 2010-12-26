@@ -3779,7 +3779,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
         else
         {
             for (int z=0;z<(int)m_inventaire.size();z++)
-                if (m_inventaire[z].m_equipe==-1)
+                if (m_inventaire[z].m_equipe==-1 && m_inventaire[z].getPrix() >= 0)
                     if (caseVisee.x >= m_inventaire[z].getPosition().x
                       &&caseVisee.x <  m_inventaire[z].getPosition().x+m_inventaire[z].getTaille().x
                       &&caseVisee.y >= m_inventaire[z].getPosition().y
