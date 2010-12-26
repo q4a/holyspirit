@@ -7,8 +7,11 @@ main
 
 	if variable * 0 * 1
 	then
-		variable * 0 * 2
-		useMiracle * variable 2
+		if miracle * variable 2
+		then else
+			variable * 0 * 2
+			useMiracle * variable 2
+		end
 	end
 
 	setInvocationID * variable 1 

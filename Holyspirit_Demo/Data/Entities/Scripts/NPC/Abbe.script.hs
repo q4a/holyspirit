@@ -32,6 +32,15 @@ main
 					variable * 3 * 4
 				end
 				
+				if quest * 0 * 2
+				exist_item * 1 * 0 " Quest_relic1.item.hs"
+				exist_item * 1 * 0 " Quest_relic2.item.hs"
+				exist_item * 1 * 0 " Quest_relic3.item.hs"
+				exist_item * 1 * 0 " Quest_relic4.item.hs"
+				then
+					variable * 3 * 5
+				end
+				
 				variable * 6 * 1
 				variable * 2 * 0
 				stop_speak
@@ -178,6 +187,16 @@ main
 		end
 		
 		if variable * 2 * 0
+		   variable * 3 * 5
+		then
+			speak * 68
+			variable * 3 * 0
+			
+			setQuestState * 0 * 3 * 4
+			stopMiracle * 0
+		end
+		
+		if variable * 2 * 0
 		   variable * 3 * 4
 		then
 			speak * 60
@@ -195,6 +214,16 @@ main
 			then
 				speak_choice * 66 * 1
 			end
+			
+			if quest * 0 * 2
+				exist_item * 1 * 0 " Quest_relic1.item.hs"
+				exist_item * 1 * 0 " Quest_relic2.item.hs"
+				exist_item * 1 * 0 " Quest_relic3.item.hs"
+				exist_item * 1 * 0 " Quest_relic4.item.hs"
+			then
+				speak_choice * 67 * 1
+			end
+			
 			if variable * 6 * 2
 			then else
 				speak_choice * 59 * 2
@@ -245,6 +274,17 @@ main
 	
 	if quest * 0 * 1
 		variable * 8 * 0
+	then
+		variable * 8 * 1
+		useMiracle * 0
+	end
+	
+	if quest * 0 * 2
+		variable * 8 * 0
+		exist_item * 1 * 0 " Quest_relic1.item.hs"
+		exist_item * 1 * 0 " Quest_relic2.item.hs"
+		exist_item * 1 * 0 " Quest_relic3.item.hs"
+		exist_item * 1 * 0 " Quest_relic4.item.hs"
 	then
 		variable * 8 * 1
 		useMiracle * 0

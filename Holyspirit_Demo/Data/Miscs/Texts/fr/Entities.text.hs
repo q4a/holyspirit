@@ -10,7 +10,7 @@ Prêtre démoniaque
 Milice Corrompue : Brute
 Errant des roches
 XXXX le fermier
-?
+Reliquaire
 Molosse décharné
 Paysan zombie
 Dépouille putride
@@ -19,7 +19,7 @@ Marchand rare
 Le Grand Questeur
 Levier
 Zombie massier
-?
+Frère
 ?
 Chef de meute
 ?

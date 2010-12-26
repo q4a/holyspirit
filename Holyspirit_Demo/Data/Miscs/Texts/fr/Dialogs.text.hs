@@ -65,8 +65,8 @@ Au revoir !
 Nous comptons tous sur toi mon fils ! Eradique ces horreurs de notre chère terre !
 Que me veux-tu, femme ?
 ATTENTION A CHANGER ROGER//J'ai retrouvé le journal du moinde Redimus. Celui-ci raconte que des créatures rodent dans les catacombes.
-
-
+ATTENTION A CHANGER ROGER//J'ai trouvé 4 reliques de Saints. Que dois-je faire maintenant ?
+Bien ! Maintenant tu va devoir escorter un Frère jusqu'au coeur des catacombes : l'Oculus. Là, il pourra effectuer un rituel de purification grâce aux reliques que tu as rapportées.
 
 
 
