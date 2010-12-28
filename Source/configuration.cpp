@@ -97,8 +97,6 @@ void Configuration::ChargerConf()
                 fichier>>music_volume;
             if (chaine== "minimap:")
                 fichier>>Minimap;
-            if (chaine== "light_refresh_rate:")
-                fichier>>frequence_lumiere;
             if (chaine== "console:")
                 fichier>>console;
             if (chaine== "item_background:")
@@ -430,7 +428,6 @@ void Configuration::Sauvegarder()
         fichier<< "vsync: " <<syncronisation_verticale<<std::endl;
         fichier<<std::endl;
         fichier<< "light_quality: " <<Lumiere<<std::endl;
-        fichier<< "light_refresh_rate: " <<frequence_lumiere<<std::endl;
         fichier<< "shadows: " <<Ombre<<std::endl;
         fichier<< "reflection: " <<Reflection<<std::endl;
         fichier<< "distortion: " <<Distortion<<std::endl;

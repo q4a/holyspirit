@@ -122,8 +122,6 @@ private:
 
     float temps[5];
     float tempsEcoule, tempsNbrTourBoucle,
-          tempsEcouleDepuisDernierCalculLumiere,
-          tempsEcouleDepuisDernierCalculOmbre,
           tempsEcouleDepuisFPS,
           tempsEffetMort,tempsSauvergarde;
 

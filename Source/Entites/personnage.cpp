@@ -912,7 +912,11 @@ int Personnage::Animer(Modele_Personnage *modele,float temps)
     if(m_etat >= 0 && m_etat < (int)modele->m_tileset.size())
     if((int)(m_angle/45) >= 0 && (int)(m_angle/45) < (int)modele->m_tileset[m_etat].size())
     {
-        m_entite_graphique.m_tileset    = &modele->m_tileset[m_etat][(int)(m_angle/45)];
+        if( m_entite_graphique.m_tileset != &modele->m_tileset[m_etat][(int)(m_angle/45)])
+        {
+            m_entite_graphique.m_tileset    = &modele->m_tileset[m_etat][(int)(m_angle/45)];
+            m_entite_graphique.Generer();
+        }
         m_entite_graphique.m_couche     = 10;
         m_entite_graphique.option_sonUnique = false;
         if(temps > 0)

@@ -55,8 +55,6 @@ c_Jeu::c_Jeu()
     augmenter=false;
     tempsEcoule=0;
     tempsNbrTourBoucle=0;
-    tempsEcouleDepuisDernierCalculLumiere=0.005;
-    tempsEcouleDepuisDernierCalculOmbre=0;
     tempsEcouleDepuisFPS=0;
     tempsEffetMort=0;
     tempsSauvergarde=0;
@@ -155,7 +153,6 @@ void c_Jeu::Utiliser(Jeu *jeu)
 
 void c_Jeu::GererTemps(Jeu *jeu)
 {
-    tempsEcouleDepuisDernierCalculLumiere   += tempsEcoule;
     tempsSauvergarde                        += tempsEcoule;
     configuration->minute                   += tempsEcoule;
     tempsNbrTourBoucle                      += tempsEcoule;
@@ -399,7 +396,6 @@ void c_Jeu::Lumieres(Jeu *jeu)
 
         configuration->RafraichirLumiere = true;
         configuration->RafraichirOmbre = false;
-        tempsEcouleDepuisDernierCalculLumiere=0;
 
         moteurGraphique->LightManager->Generate(jeu->hero.m_personnage.m_entite_graphique.m_light);
     }
