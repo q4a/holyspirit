@@ -305,7 +305,7 @@ void c_Jeu::Animation(Jeu *jeu)
         temps=0.12f;
 
     int retour = -2;
-    retour = jeu->hero.m_personnage.Gerer(&jeu->hero.m_modelePersonnage[0],temps);
+    retour = jeu->hero.m_personnage.Gerer(&jeu->hero.m_modelePersonnage[0],temps, true);
 
     jeu->hero.CalculerOrdreAffichage();
     jeu->hero.m_personnage.m_vientDeFrapper = NULL;

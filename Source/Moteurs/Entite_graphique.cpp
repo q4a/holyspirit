@@ -91,7 +91,7 @@ void Entite_graphique::Animer(float temps)
         if (m_tileset->getAnimationTile(m_noAnimation) >=0)//!= m_noAnimation)
             while (m_animation >= tempsAnimation && tempsAnimation > 0)
             {
-                if(m_tileset->getAnimationTile(m_noAnimation) != m_noAnimation)
+                //if(m_tileset->getAnimationTile(m_noAnimation) != m_noAnimation)
                     NextTile();
                 Generer();
 
@@ -152,8 +152,8 @@ void Entite_graphique::NextTile(bool cur)
             bool modif = false;
             if(m_tileset->getLumiereDuTile(m_noAnimation).intensite >= 0)
             {
-                if(m_tileset->getLumiereDuTile(m_noAnimation).intensite != moteurGraphique->LightManager->GetIntensity(m_light))
-                    modif = true;
+               // if(m_tileset->getLumiereDuTile(m_noAnimation).intensite != moteurGraphique->LightManager->GetIntensity(m_light))
+                 //   modif = true;
 
                 if(m_tileset->getLumiereDuTile(m_noAnimation).intensite > 0)
                     moteurGraphique->LightManager->SetIntensity(m_light,255);
@@ -166,11 +166,9 @@ void Entite_graphique::NextTile(bool cur)
             || m_tileset->getLumiereDuTile(m_noAnimation).vert >= 0
             || m_tileset->getLumiereDuTile(m_noAnimation).bleu >= 0)
             {
-                if(m_tileset->getLumiereDuTile(m_noAnimation).rouge != moteurGraphique->LightManager->GetColor(m_light).r)
-                    modif = true;
-                if(m_tileset->getLumiereDuTile(m_noAnimation).vert != moteurGraphique->LightManager->GetColor(m_light).g)
-                    modif = true;
-                if(m_tileset->getLumiereDuTile(m_noAnimation).bleu != moteurGraphique->LightManager->GetColor(m_light).b)
+                if(m_tileset->getLumiereDuTile(m_noAnimation).rouge != moteurGraphique->LightManager->GetColor(m_light).r
+                || m_tileset->getLumiereDuTile(m_noAnimation).vert != moteurGraphique->LightManager->GetColor(m_light).g
+                || m_tileset->getLumiereDuTile(m_noAnimation).bleu != moteurGraphique->LightManager->GetColor(m_light).b)
                     modif = true;
                 moteurGraphique->LightManager->SetColor(m_light,sf::Color(m_tileset->getLumiereDuTile(m_noAnimation).rouge,
                                                                           m_tileset->getLumiereDuTile(m_noAnimation).vert,
@@ -180,14 +178,12 @@ void Entite_graphique::NextTile(bool cur)
             if(modif)
                 moteurGraphique->LightManager->Generate(m_light);
 
-            moteurGraphique->LightManager->SetIntensity(m_light_wall,m_tileset->getLumiereDuTile(m_noAnimation).intensite);
+           // moteurGraphique->LightManager->SetIntensity(m_light_wall,m_tileset->getLumiereDuTile(m_noAnimation).intensite);
         }
         if(configuration->Lumiere > 0 && m_light_wall.ID() != -1)
         {
-            if(m_tileset->getLumiereDuTile(m_noAnimation).intensite >= 0)
-                moteurGraphique->LightManager->SetIntensity(m_light_wall, m_tileset->getLumiereDuTile(m_noAnimation).intensite);
-            if(m_tileset->getLumiereDuTile(m_noAnimation).intensite < 0)
-                moteurGraphique->LightManager->SetIntensity(m_light_wall, m_tileset->getLumiereDuTile(m_noAnimation).intensite);
+            moteurGraphique->LightManager->SetIntensity(m_light_wall, m_tileset->getLumiereDuTile(m_noAnimation).intensite);
+            moteurGraphique->LightManager->SetIntensity(m_light_wall, m_tileset->getLumiereDuTile(m_noAnimation).intensite);
         }
     }
 }

@@ -804,11 +804,11 @@ void Personnage::Kill()
     m_etat=3;
 }
 
-int Personnage::Gerer(Modele_Personnage *modele,float temps)
+int Personnage::Gerer(Modele_Personnage *modele,float temps, bool no_generate)
 {
     GererEffets(temps);
     GererDegats(temps);
-    return Animer(modele, temps);
+    return Animer(modele, temps, no_generate);
 }
 
 void Personnage::GererEffets(float temps)
@@ -901,7 +901,7 @@ void Personnage::GererDegats(float temps)
     }
 }
 
-int Personnage::Animer(Modele_Personnage *modele,float temps)
+int Personnage::Animer(Modele_Personnage *modele,float temps, bool no_generate)
 {
     int retour=-2;
 
@@ -915,7 +915,11 @@ int Personnage::Animer(Modele_Personnage *modele,float temps)
         if( m_entite_graphique.m_tileset != &modele->m_tileset[m_etat][(int)(m_angle/45)])
         {
             m_entite_graphique.m_tileset    = &modele->m_tileset[m_etat][(int)(m_angle/45)];
-            m_entite_graphique.Generer();
+            if(!no_generate)
+            {
+                m_entite_graphique.NextTile(true);
+                m_entite_graphique.Generer();
+            }
         }
         m_entite_graphique.m_couche     = 10;
         m_entite_graphique.option_sonUnique = false;

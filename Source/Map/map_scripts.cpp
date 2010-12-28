@@ -652,7 +652,9 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                         if(m_ModeleMonstre[hero->m_amis[j]->getModele()].m_chemin == script->m_instructions[no].valeurString)
                             nbr++;
 
-                    if(nbr < script->getValeur(no, 0))
+                    if(nbr < script->getValeur(no, 0) && script->getValeur(no, 0) >= 0)
+                         ok = false;
+                    else if(script->getValeur(no, 0) == -1 && nbr > 0)
                          ok = false;
                 }
                 else if (script->m_instructions[no].nom=="rand")

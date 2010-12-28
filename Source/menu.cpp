@@ -182,6 +182,7 @@ void Menu::AfficherDialogue(float time,Classe *classe)
                     m_speak_choice = m_choices[i].no;
                     eventManager->StopEvenement(sf::Mouse::Left, EventClic);
                     eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
+                    moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                 }
              }
 

@@ -81,8 +81,8 @@ public:
 
     bool EnVie();
 
-    int     Animer(Modele_Personnage *modele,float temps);
-    int     Gerer(Modele_Personnage *modele,float temps);
+    int     Animer(Modele_Personnage *modele,float temps, bool = false);
+    int     Gerer(Modele_Personnage *modele,float temps, bool = false);
     void    GererEffets(float temps);
     void    GererDegats(float temps);
 

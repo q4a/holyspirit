@@ -746,7 +746,7 @@ bool Map::Miracle_Invocation(Hero *hero, Personnage *personnage, Miracle &modele
 
             m_monstre.back().m_entite_graphique.Initialiser(pos);
 
-            m_monstre.back().m_friendly = personnage->m_friendly;
+           // m_monstre.back().m_friendly = personnage->m_friendly;
 
             if(personnage == &hero->m_personnage)
                 hero->m_amis.push_back(&m_monstre.back());
