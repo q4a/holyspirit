@@ -18,7 +18,6 @@
 				<Compiler>
 					<Add option="-fomit-frame-pointer" />
 					<Add option="-fexpensive-optimizations" />
-					<Add option="-Os" />
 					<Add option="-O3" />
 					<Add option="-DWIN32" />
 					<Add option="-DNDEBUG" />
@@ -27,7 +26,6 @@
 					<Add directory="..\..\SFML2\include" />
 				</Compiler>
 				<Linker>
-					<Add option="-s" />
 					<Add option="-lsfml-audio-s" />
 					<Add option="-lsfml-graphics-s" />
 					<Add option="-lsfml-window-s" />
@@ -100,71 +98,30 @@
 					<Add option="-lsfml-system" />
 				</Linker>
 			</Target>
-			<Target title="Copy of Release">
+			<Target title="Profiling">
 				<Option platforms="Windows;" />
-				<Option output="..\Holyspirit\Holyspirit" prefix_auto="0" extension_auto="1" />
-				<Option working_dir="..\Holyspirit" />
+				<Option output="..\Holyspirit_demo\Holyspirit_profiling" prefix_auto="0" extension_auto="1" />
+				<Option working_dir="..\Holyspirit_demo" />
 				<Option type="0" />
 				<Option compiler="gcc" />
-				<Option projectResourceIncludeDirsRelation="1" />
-				<Compiler>
-					<Add option="-march=core2" />
-					<Add option="-march=i386" />
-					<Add option="-fomit-frame-pointer" />
-					<Add option="-fexpensive-optimizations" />
-					<Add option="-Os" />
-					<Add option="-O3" />
-					<Add option="-O2" />
-					<Add option="-O1" />
-					<Add option="-O" />
-					<Add option="-Wall" />
-					<Add option="-DWIN32" />
-					<Add option="-DNDEBUG" />
-					<Add option="-D_WINDOWS" />
-					<Add directory="..\..\SFML-1.5-sdk-windows-mingw\SFML-1.5\include" />
-				</Compiler>
-				<ResourceCompiler>
-					<Add directory="..\..\SFML_SVN\branches\sfml2\extlibs" />
-				</ResourceCompiler>
-				<Linker>
-					<Add option="-s" />
-					<Add option="-lsfml-main" />
-					<Add option="-lsfml-audio-s" />
-					<Add option="-lsfml-graphics-s" />
-					<Add option="-lsfml-window-s" />
-					<Add option="-lsfml-system-s" />
-					<Add library="opengl32" />
-					<Add library="glu32" />
-					<Add directory="..\..\SFML-1.5-sdk-windows-mingw\SFML-1.5\lib\mingw" />
-				</Linker>
-			</Target>
-			<Target title="Release_console">
-				<Option platforms="Windows;" />
-				<Option output="..\Holyspirit\Holyspirit" prefix_auto="0" extension_auto="1" />
-				<Option working_dir="..\Holyspirit" />
-				<Option type="1" />
-				<Option compiler="gcc" />
-				<Option use_console_runner="0" />
 				<Option projectCompilerOptionsRelation="1" />
 				<Option projectResourceIncludeDirsRelation="1" />
 				<Compiler>
-					<Add option="-O1 -fomit-frame-pointer -frerun-loop-opt -fgcse" />
+					<Add option="-pg" />
+					<Add option="-g" />
 					<Add option="-DWIN32" />
-					<Add option="-DNDEBUG" />
+					<Add option="-DDEBUG" />
 					<Add option="-D_WINDOWS" />
-					<Add directory="..\..\SFML_SVNNE\branches\sfml2\include" />
+					<Add option="-DSFML_STATIC" />
+					<Add directory="..\..\SFML2\include" />
 				</Compiler>
-				<ResourceCompiler>
-					<Add directory="..\..\SFML_SVN\branches\sfml2\extlibs" />
-				</ResourceCompiler>
 				<Linker>
+					<Add option="-pg -lgmon" />
 					<Add option="-lsfml-audio-s" />
 					<Add option="-lsfml-graphics-s" />
 					<Add option="-lsfml-window-s" />
 					<Add option="-lsfml-system-s" />
-					<Add library="opengl32" />
-					<Add library="glu32" />
-					<Add directory="..\..\SFML_SVNNE\branches\sfml2\lib\mingw" />
+					<Add directory="..\..\SFML2\lib" />
 				</Linker>
 			</Target>
 		</Build>

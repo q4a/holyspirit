@@ -358,7 +358,7 @@ void MoteurGraphique::Afficher()
         m_light_screen2.Display();
     }
 
-    if (configuration->Lumiere && configuration->RafraichirLumiere)
+    if (configuration->Lumiere > 0 && configuration->RafraichirLumiere)
     {
         sf::View temp = m_camera;
         temp.SetSize(configuration->Resolution.x + 64, configuration->Resolution.y + 64);
@@ -816,7 +816,7 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
                 sprite.Move(entite->m_decalage.x,entite->m_decalage.y);
 
                 sprite.FlipY(true);
-                sprite.FlipX(true);
+                //sprite.FlipX(true);
                 sprite.SetOrigin(sprite.GetOrigin().x, sprite.GetSize().y - sprite.GetOrigin().y);
 
                 if(sprite.GetPosition().x + sprite.GetSize().x - sprite.GetOrigin().x     >= GetViewRect(m_camera).Left

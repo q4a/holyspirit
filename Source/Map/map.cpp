@@ -1026,6 +1026,7 @@ void Map::Initialiser(Hero *hero)
                                       m_decor[i][j][k].m_entite_graphique.m_sprite.GetColor().a * m_decor[i][j][k].m_entite_graphique.m_color.a / 255));
                     m_decor[i][j][k].m_entite_graphique.Initialiser(pos);
                     m_decor[i][j][k].m_entite_graphique.SetParameters(temp);
+                    m_decor[i][j][k].m_entite_graphique.Generer();
 
                     CreerSprite(sf::Vector3f(k,j,i));
                 }

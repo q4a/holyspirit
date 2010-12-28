@@ -74,6 +74,7 @@ void Entite_graphique::Animer(float temps)
         float tempsAnimation = m_tileset->getTempsDuTile(m_noAnimation);
         m_animation += temps;
 
+        if(configuration->Lumiere > 0)
         if(m_old_lightIntensity != m_tileset->getLumiereDuTile(m_noAnimation).intensite
         && m_tileset->getLumiereDuTile(m_noAnimation).intensite >= 0)// && !option_forcedLight)
         {
@@ -90,7 +91,7 @@ void Entite_graphique::Animer(float temps)
         if (m_tileset->getAnimationTile(m_noAnimation) >=0)//!= m_noAnimation)
             while (m_animation >= tempsAnimation && tempsAnimation > 0)
             {
-                //if(m_tileset->getAnimationTile(m_noAnimation) != m_noAnimation)
+                if(m_tileset->getAnimationTile(m_noAnimation) != m_noAnimation)
                     NextTile();
                 Generer();
 
@@ -146,7 +147,7 @@ void Entite_graphique::NextTile(bool cur)
                                                                                  m_tileset->getLumiereDuTile(m_noAnimation).bleu));
         }
 
-        if (configuration->Lumiere && m_light.ID() != -1)
+        if (configuration->Lumiere > 0 && m_light.ID() != -1)
         {
             bool modif = false;
             if(m_tileset->getLumiereDuTile(m_noAnimation).intensite >= 0)
@@ -181,7 +182,7 @@ void Entite_graphique::NextTile(bool cur)
 
             moteurGraphique->LightManager->SetIntensity(m_light_wall,m_tileset->getLumiereDuTile(m_noAnimation).intensite);
         }
-        if(configuration->Lumiere && m_light_wall.ID() != -1)
+        if(configuration->Lumiere > 0 && m_light_wall.ID() != -1)
         {
             if(m_tileset->getLumiereDuTile(m_noAnimation).intensite >= 0)
                 moteurGraphique->LightManager->SetIntensity(m_light_wall, m_tileset->getLumiereDuTile(m_noAnimation).intensite);

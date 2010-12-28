@@ -103,7 +103,7 @@ void Tileset::ChargerInfosTile(ifstream &fichier, int lumiere_base,int type)
     lumiere.hauteur=0;
     bool collision=0,ombre=option_forcedShadow, reflection = option_forcedReflect,transparent=0;
     char orientation=' ';
-    float tempsAnimation=0.075;
+    float tempsAnimation=-1;
     int opacity = 255;
     int layer = 0;
     int attaque = -1;
@@ -257,6 +257,14 @@ void Tileset::ChargerInfosTile(ifstream &fichier, int lumiere_base,int type)
         centre.x=position.w/2;
     if (centre.y==-100)
         centre.y=position.h-32;
+
+    if(tempsAnimation == -1)
+    {
+        if(animation == (int)m_tile.size())
+            tempsAnimation = 2;
+        else
+            tempsAnimation = 0.075;
+    }
 
     if(type == 1)
     {

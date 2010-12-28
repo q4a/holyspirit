@@ -668,7 +668,7 @@ bool Personnage::SeDeplacer(float tempsEcoule)
             if (m_positionCase.y!=m_cheminFinal.y||m_positionCase.x!=m_cheminFinal.x)
             {
                 if (m_etat!=1 && !m_etatForce)
-                    m_etat=1,m_entite_graphique.m_noAnimation=0;
+                    m_etat=1,m_entite_graphique.m_noAnimation=0,m_entite_graphique.m_animation=0;
 
                 m_positionPixelPrecedente.x=(int)m_positionPixel.x;
                 m_positionPixelPrecedente.y=(int)m_positionPixel.y;
@@ -791,7 +791,7 @@ void Personnage::InfligerDegats(float degats, int type, float temps)
         }
 
     if (m_caracteristique.vie<=0&&m_etat!=3)
-        m_entite_graphique.m_noAnimation=0,m_etat=3;
+        m_entite_graphique.m_noAnimation=0,m_etat=3,m_entite_graphique.m_animation = 0;
 
     m_touche = true;
 }
@@ -800,6 +800,7 @@ void Personnage::Kill()
 {
     m_caracteristique.vie = 0;
     m_entite_graphique.m_noAnimation=0;
+    m_entite_graphique.m_animation = 0;
     m_etat=3;
 }
 
@@ -1130,14 +1131,21 @@ void Personnage::setVitesse(float vitesse)
 
 void Personnage::setEtat(int etat)
 {
+    if(m_etat != etat)
+        m_entite_graphique.m_animation = 0;
+
     m_etat=etat,m_entite_graphique.m_noAnimation=0,frappeEnCours=false;
 }
 void Personnage::setJustEtat(int etat)
 {
+    if(m_etat != etat)
+        m_entite_graphique.m_animation = 0;
+
     m_etat=etat/*,m_poseEnCours=0*/;
 
     if(etat == 2)
         frappeEnCours = 1;
+
 }
 void Personnage::addAngle(int angle)
 {
