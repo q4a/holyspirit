@@ -23,7 +23,7 @@
 					<Add option="-DNDEBUG" />
 					<Add option="-D_WINDOWS" />
 					<Add option="-DSFML_STATIC" />
-					<Add directory="..\..\SFML2\include" />
+					<Add directory="..\..\SFML2_TEST\include" />
 				</Compiler>
 				<Linker>
 					<Add option="-lsfml-audio-s" />
@@ -36,7 +36,7 @@
 					<Add library="..\..\SFML2\lib\libsfml-graphics-s.a" />
 					<Add library="..\..\SFML2\lib\libsfml-window-s.a" />
 					<Add library="..\..\SFML2\lib\libsfml-system-s.a" />
-					<Add directory="..\..\SFML2\lib" />
+					<Add directory="..\..\SFML2_TEST\lib" />
 				</Linker>
 			</Target>
 			<Target title="Debug">
@@ -54,14 +54,14 @@
 					<Add option="-DDEBUG" />
 					<Add option="-D_WINDOWS" />
 					<Add option="-DSFML_STATIC" />
-					<Add directory="..\..\SFML2\include" />
+					<Add directory="..\..\SFML2_TEST\include" />
 				</Compiler>
 				<Linker>
 					<Add option="-lsfml-audio-s" />
 					<Add option="-lsfml-graphics-s" />
 					<Add option="-lsfml-window-s" />
 					<Add option="-lsfml-system-s" />
-					<Add directory="..\..\SFML2\lib" />
+					<Add directory="..\..\SFML2_TEST\lib" />
 				</Linker>
 			</Target>
 			<Target title="FullDebug">

@@ -65,6 +65,7 @@ private:
     sf::Sprite m_mainscreen;
     sf::Sprite m_hs_logo;
     sf::Sprite m_background_hero;
+    sf::Sprite m_backtext_hero;
     sf::Sprite m_delete_heros;
     Light_Entity m_light;
     Light_Entity m_light_logo;

@@ -261,6 +261,8 @@ void Configuration::ChargerInit()
                 fichier>>menu_logo;
             if (chaine== "menu_slot:")
                 fichier>>menu_slot;
+            if (chaine== "menu_slot_text:")
+                fichier>>menu_slot_text;
             if (chaine== "menu_del:")
                 fichier>>menu_del;
 

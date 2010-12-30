@@ -49,7 +49,8 @@ c_MainMenu::c_MainMenu()
     m_mainscreen.Resize(configuration->Resolution.x, configuration->Resolution.y);
 
     m_background_hero.SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_slot, -1)));
-    m_background_hero.Resize(150, 192);
+    m_backtext_hero.SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_slot_text, -1)));
+    //m_background_hero.Resize(150, 192);
 
     m_delete_heros.SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_del, -1)));
     m_delete_heros.SetPosition(configuration->Resolution.x/2 - 400, configuration->Resolution.y - 160);
@@ -74,6 +75,7 @@ c_MainMenu::c_MainMenu()
     }
 
     m_credit_defil = 0;
+    time = 0;
     m_story = DecouperTexte(configuration->getText(0,66), 640,16);
 }
 
@@ -86,7 +88,6 @@ void c_MainMenu::Utiliser(Jeu *jeu)
 {
     jeu->m_display=true;
 
-    temps_ecoule=0;
     temps_ecoule=jeu->Clock.GetElapsedTime();
     jeu->Clock.Reset();
 
@@ -375,76 +376,6 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
     if(eventManager->getEvenement(sf::Key::Escape, EventKey))
         no_ecran = E_PRINCIPAL, m_supprimer_heros = false,nom_hero.clear(),jeu->m_no_printscreen = false;
 
-
-    if(m_supprimer_heros)
-    {
-        moteurGraphique->AjouterCommande(&m_delete_heros,20);
-        texte.SetCharacterSize(18);
-
-        texte.SetString(configuration->getText(0,96));
-        texte.SetY((int)configuration->Resolution.h - 128 );
-        texte.SetX((int)configuration->Resolution.w/2 - texte.GetRect().Width/2);
-
-        texte.SetColor(Color(150,100,50));
-        moteurGraphique->AjouterTexte(&texte,20,1);
-
-
-
-        if(((eventManager->getChar() >= 'a' && eventManager->getChar() <= 'z')
-         || (eventManager->getChar() >= 'A' && eventManager->getChar() <= 'Z')
-         || (eventManager->getChar() >= '0' && eventManager->getChar() <= '9'))
-        && nom_hero.size() < 16)
-            nom_hero += eventManager->getChar(), eventManager->stopChar();
-
-        if(eventManager->getEvenement(sf::Key::Back,EventKey))
-            if(!nom_hero.empty())
-                nom_hero.erase(nom_hero.begin() + nom_hero.size() - 1);
-        eventManager->StopEvenement(sf::Key::Back,EventKey);
-
-        if(time > 0.5)
-            texte.SetString(nom_hero + "|");
-        else
-            texte.SetString(nom_hero);
-        time += temps_ecoule;
-        if(time > 1)
-            time = 0;
-
-        texte.SetY((int)configuration->Resolution.h - 96 );
-        texte.SetX((int)configuration->Resolution.w/2 - texte.GetRect().Width/2);
-
-        texte.SetColor(Color(150,100,50));
-        moteurGraphique->AjouterTexte(&texte,20,1);
-
-        texte.SetString(configuration->getText(0,95));
-        texte.SetY((int)configuration->Resolution.h - 64 );
-        texte.SetX((int)configuration->Resolution.w/2 - texte.GetRect().Width/2);
-
-        if (eventManager->getPositionSouris().y >  texte.GetRect().Top
-          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + 32)
-          &&eventManager->getPositionSouris().x >  texte.GetRect().Left
-          &&eventManager->getPositionSouris().x < (texte.GetRect().Left + texte.GetRect().Width))
-        {
-            texte.SetColor(Color(100,50,0));
-            if(eventManager->getEvenement(Mouse::Left,EventClic))
-            {
-                m_supprimer_heros = false;
-                moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
-                eventManager->StopEvenement(Mouse::Left,EventClic);
-
-                std::string buf = configuration->chemin_saves+nom_hero+".sav.hs";
-                remove(buf.c_str());
-
-                ChargerListeSaves();
-
-                nom_hero.clear();
-            }
-        }
-        else
-            texte.SetColor(Color(150,100,50));
-
-        moteurGraphique->AjouterTexte(&texte,20,1);
-    }
-
     if(eventManager->getEvenement(Mouse::Left,EventClic)
     && m_supprimer_heros)
     {
@@ -509,6 +440,8 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
 
         moteurGraphique->AjouterCommande(&m_background_hero,18,0);
 
+
+
         std::string str;
         str += m_chemin_saves[i].substr(0, m_chemin_saves[i].size() -7);
 
@@ -529,6 +462,11 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         m_images_saves[i].SetSubRect(sf::IntRect(48,0,160,256));
         moteurGraphique->AjouterCommande(&m_images_saves[i],19,0);
 
+        m_backtext_hero.SetPosition(configuration->Resolution.w/2 - 331 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3),
+                                      configuration->Resolution.h/2 - 256 + 136 + ((int)((i - defilement_saves)/4)) * 224);
+
+        moteurGraphique->AjouterCommande(&m_backtext_hero,19,0);
+
         sf::Text texte_niv;
 
         std::ostringstream buf;
@@ -542,7 +480,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         texte_niv.SetCharacterSize(14);
 
         texte_niv.SetPosition(configuration->Resolution.w/2 - 384 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3) + 130 - texte_niv.GetRect().Width/2,
-                              configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 224 + 156);
+                              configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 224 + 158);
 
         if(!m_supprimer_heros
         &&((eventManager->getPositionSouris().y > texte.GetRect().Top
@@ -605,8 +543,8 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         else
             texte.SetColor(Color(150,100,50)),texte_niv.SetColor(Color(150,100,50));
 
-        moteurGraphique->AjouterTexte(&texte,19,1);
-        moteurGraphique->AjouterTexte(&texte_niv,19,1);
+        moteurGraphique->AjouterTexte(&texte,19,0);
+        moteurGraphique->AjouterTexte(&texte_niv,19,0);
     }
 
     texte.SetColor(Color(150,100,50));
@@ -667,6 +605,78 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
             texte.SetColor(Color(128,128,128));
 
         moteurGraphique->AjouterTexte(&texte,19,1);
+    }
+
+
+    if(m_supprimer_heros)
+    {
+        moteurGraphique->AjouterCommande(&m_delete_heros,20);
+        texte.SetCharacterSize(18);
+
+        texte.SetString(configuration->getText(0,96));
+        texte.SetY((int)configuration->Resolution.h - 128 );
+        texte.SetX((int)configuration->Resolution.w/2 - texte.GetRect().Width/2);
+
+        texte.SetColor(Color(150,100,50));
+        moteurGraphique->AjouterTexte(&texte,19,0);
+
+
+
+        if(((eventManager->getChar() >= 'a' && eventManager->getChar() <= 'z')
+         || (eventManager->getChar() >= 'A' && eventManager->getChar() <= 'Z')
+         || (eventManager->getChar() >= '0' && eventManager->getChar() <= '9'))
+        && nom_hero.size() < 16)
+            nom_hero += eventManager->getChar(), eventManager->stopChar();
+
+        if(eventManager->getEvenement(sf::Key::Back,EventKey))
+            if(!nom_hero.empty())
+                nom_hero.erase(nom_hero.begin() + nom_hero.size() - 1);
+        eventManager->StopEvenement(sf::Key::Back,EventKey);
+
+
+        texte.SetString(nom_hero);
+        texte.SetX((int)configuration->Resolution.w/2 - texte.GetRect().Width/2);
+
+        if(time > 0.5)
+            texte.SetString(nom_hero + "|");
+
+        time += temps_ecoule;
+        if(time > 1)
+            time = 0;
+
+        texte.SetY((int)configuration->Resolution.h - 96 );
+
+        texte.SetColor(Color(150,100,50));
+        moteurGraphique->AjouterTexte(&texte,19,0);
+
+        texte.SetString(configuration->getText(0,95));
+        texte.SetY((int)configuration->Resolution.h - 64 );
+        texte.SetX((int)configuration->Resolution.w/2 - texte.GetRect().Width/2);
+
+        if (eventManager->getPositionSouris().y >  texte.GetRect().Top
+          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + 32)
+          &&eventManager->getPositionSouris().x >  texte.GetRect().Left
+          &&eventManager->getPositionSouris().x < (texte.GetRect().Left + texte.GetRect().Width))
+        {
+            texte.SetColor(Color(100,50,0));
+            if(eventManager->getEvenement(Mouse::Left,EventClic))
+            {
+                m_supprimer_heros = false;
+                moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
+                eventManager->StopEvenement(Mouse::Left,EventClic);
+
+                std::string buf = configuration->chemin_saves+nom_hero+".sav.hs";
+                remove(buf.c_str());
+
+                ChargerListeSaves();
+
+                nom_hero.clear();
+            }
+        }
+        else
+            texte.SetColor(Color(150,100,50));
+
+        moteurGraphique->AjouterTexte(&texte,19,0);
     }
 }
 void  c_MainMenu::E_Nouveau(Jeu *jeu)
