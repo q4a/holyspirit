@@ -81,7 +81,7 @@ main
 		if variable * 2 * 0
 		   variable * 3 * 0
 		then
-			if quest * 0 * -1
+			if quest * 4 * -1
 			then
 				speak_choice * 82 * 1
 				speak_choice * 83 * 2

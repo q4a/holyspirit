@@ -26,7 +26,6 @@ main
 					then
 						if distance * 2
 						then
-							randomDisplace
 						else
 							followHero
 						end

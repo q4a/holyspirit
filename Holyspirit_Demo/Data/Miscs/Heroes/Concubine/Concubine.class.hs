@@ -36,6 +36,10 @@ $
 $
 	* x0 y248 w800 h352 m Data/Graphics/Menus/UI/Talks.png $
 $
+	* x0 y0 w32 h32 m Data/Graphics/Menus/UI/Bullet_off.png $
+$
+	* x0 y0 w32 h32 m Data/Graphics/Menus/UI/Bullet_on.png $
+$
 	* x0 y0 w800 h600 m Data/Graphics/Menus/UI/Quest.png $
 $
 	* x0 y0 w800 h600 m Data/Graphics/Menus/UI/Documents.png $
