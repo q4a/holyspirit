@@ -31,7 +31,7 @@ La crypte
 ///TUTORIAL///
 Misérable pêcheur !\Te voici dans les Limbes. Tu as beaucoup à faire avant d'espérer rejoindre le Paradis...\A toi de me prouver avant toute chose que tu es digne de ma confiance. Certains de tes congénères à qui j'ai donné la chance d'une rédemption n'ont même pas été capables de sortir par eux-même de cette pièce... Les imbéciles... Montre-moi que tu vaux mieux qu'eux !
 Misérable pécheresse !\Te voici dans les Limbes. Tu as beaucoup à faire avant d'espérer rejoindre le Paradis...\A toi de me prouver avant toute chose que tu es digne de ma confiance. Certains de tes congénères à qui j'ai donné la chance d'une rédemption n'ont même pas été capables de sortir par eux-mêmeshn ude cette pièce... Les imbéciles... Montre-moi que tu vaux mieux qu'eux !
-Bien. Je n'allais quand même pas t'expliquer comment franchir une porte !\Voyons maintenant si tu es capable de te battre. Il traine dans la salle suivante l’âme d’un de tes congénères qui ne m’est d’aucune utilité. Si j'en crois tes antécédents la violence ne t'es pas étrangère. Elimine cette créature !\\(cliquer sur la créature pour la détruire)
+Bien. Je n'allais quand même pas t'expliquer comment franchir une porte !\Voyons maintenant si tu es capable de te battre. Il traine dans la salle suivante l'âme d'un de tes congénères qui ne m'est d'aucune utilité. Si j'en crois tes antécédents la violence ne t'es pas étrangère. Elimine cette créature !\\(cliquer sur la créature pour la détruire)
 Pas mal ! J'aimerais à présent te confronter à plusieurs de ces stupides créatures qui gardent un coffre. Regarde-les... Elles ne savent pas pourquoi elles le gardent, ni même ce qu'il y a dedans... Si tu ne veux pas finir comme elles dépêche toi !\\(cliquer pour ouvrir le coffre, ALT pour voir les objets et cliquer sur leur nom pour les ramasser)
 \\(maintenir alt puis cliquer sur le nom de l'objet pour le ramasser)
 Parfait. Tu peux maintenant trouver les objets que tu as ramassés dans ton inventaire.\\(cliquer sur l'icône de l'interface ci-dessous ou sur « I ». Il est aussi possible de les équiper en les plaçant dans la case correspondante, ou de les placer en raccourcis utilisables avec les touches 1 à 8.)
@@ -153,6 +153,7 @@ Je suis Waldemar, Sous-Officier de l'Empire. Normalement je suis Sergent mais ét
 Je peux faire quelque chose pour toi ?
 Et bien non, pas pour l'instant. Ces horribles créatures ont l'air d'ignorer l'abbaye pour le moment... J'espère que ça va durer car s'ils s'avisent de donner l'assaut on ne résistera pas bien longtemps. Au moins aura-t-on la consolation de mourir tous en ensemble !
 Au revoir !
+
 
 
 

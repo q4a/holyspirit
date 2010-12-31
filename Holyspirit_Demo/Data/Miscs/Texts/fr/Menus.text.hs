@@ -95,6 +95,7 @@ Votre piété augmente vos points de foi.
 Votre charisme influe sur le prix des objets et vous permet de porter certains objets.
 Supprimer personnage
 Veuillez taper le nom du héros à supprimer :
+Points d'âmes : 
 
 
 
