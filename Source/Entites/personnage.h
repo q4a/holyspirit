@@ -118,6 +118,7 @@ public:
     void addAngle(int angle);
     void setVitesse(float vitesse);
     void setCoordonneePixel(const coordonnee &position);
+    void setCoordonneePixel2(const coordonneeDecimal &position);
     void setProchaineCase(const coordonnee &position);
     void setCaracteristique(const Caracteristique &caracteristique);
     void regenererVie(float vie);

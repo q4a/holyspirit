@@ -361,7 +361,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
     && eventManager->getPositionSouris().y < classe->soul_bar.position.y + (configuration->Resolution.y - 600) + classe->soul_bar.position.h)
     {
         std::ostringstream buf;
-        buf<<(int)caracteristique.ancienPointAme<<" / "<<((caracteristique.niveau)*(caracteristique.niveau)*(caracteristique.niveau)*10);
+        buf<<configuration->getText(0,97)<<(int)caracteristique.ancienPointAme<<" / "<<((caracteristique.niveau)*(caracteristique.niveau)*(caracteristique.niveau)*10);
 
         moteurGraphique->AjouterTexte(buf.str(),coordonnee(eventManager->getPositionSouris().x,
                                                                          eventManager->getPositionSouris().y - 20),

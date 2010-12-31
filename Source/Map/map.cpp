@@ -855,7 +855,6 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                         etat=m_monstre[monstre[i]].getEtat();
                                         pose=m_monstre[monstre[i]].getPose();
                                         angle=m_monstre[monstre[i]].getAngle();
-                                        //console->Ajouter(position.h,1);
                                         m_monstre[monstre[i]].setCoordonnee(position);
                                         m_monstre[monstre[i]].setDepart();
                                         m_monstre[monstre[i]].setEtat(etat);

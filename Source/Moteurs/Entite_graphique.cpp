@@ -131,7 +131,7 @@ void Entite_graphique::NextTile(bool cur)
         }
 
 
-        if(m_tileset->getSonTile(m_noAnimation) >= 0)
+        if(m_tileset->getSonTile(m_noAnimation) >= 0 && !cur)
             m_tileset->JouerSon(m_tileset->getSonTile(m_noAnimation),position,option_sonUnique,m_sound_volume);
 
 

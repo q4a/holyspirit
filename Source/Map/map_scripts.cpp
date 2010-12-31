@@ -159,6 +159,31 @@ void Map::Script_Fight(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
                     if (!m_monstre[monstre].frappeEnCours && !m_monstre[monstre].m_etatForce)
                         m_monstre[monstre].setEtat(2);
 
+
+
+                    coordonneeDecimal new_coord = m_monstre[monstre].getCoordonneePixel();
+
+                    if(m_monstre[monstre].m_cible->getCoordonnee().x == m_monstre[monstre].getCoordonnee().x - 1
+                    && m_monstre[monstre].m_cible->getCoordonnee().y == m_monstre[monstre].getCoordonnee().y + 1)
+                    {
+                        if(new_coord.x > m_monstre[monstre].getCoordonnee().x * COTE_TILE - COTE_TILE/4)
+                            new_coord.x -= temps * 30;
+
+                        if(new_coord.y < m_monstre[monstre].getCoordonnee().y * COTE_TILE + COTE_TILE/4)
+                            new_coord.y += temps * 30;
+                    }
+                    if(m_monstre[monstre].m_cible->getCoordonnee().x == m_monstre[monstre].getCoordonnee().x + 1
+                    && m_monstre[monstre].m_cible->getCoordonnee().y == m_monstre[monstre].getCoordonnee().y - 1)
+                    {
+                        if(new_coord.x < m_monstre[monstre].getCoordonnee().x * COTE_TILE + COTE_TILE/4)
+                            new_coord.x += temps * 30;
+
+                        if(new_coord.y > m_monstre[monstre].getCoordonnee().y * COTE_TILE - COTE_TILE/4)
+                            new_coord.y -= temps * 30;
+                    }
+
+                    m_monstre[monstre].setCoordonneePixel2(new_coord);
+
                     if(m_monstre[monstre].m_cible)
                         m_monstre[monstre].Frappe(m_monstre[monstre].getCoordonneePixel(),m_monstre[monstre].m_cible->getCoordonneePixel());
                     m_monstre[monstre].setArrivee(m_monstre[monstre].getCoordonnee());

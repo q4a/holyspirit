@@ -109,8 +109,8 @@
 	<File name="Entites\miracle.h" open="0" top="0" tabpos="22">
 		<Cursor position="6203" topLine="30" />
 	</File>
-	<File name="Entites\monstre.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="2562" topLine="71" />
+	<File name="Entites\monstre.cpp" open="1" top="1" tabpos="19">
+		<Cursor position="2111" topLine="74" />
 	</File>
 	<File name="Entites\monstre.h" open="0" top="0" tabpos="19">
 		<Cursor position="1230" topLine="40" />
@@ -122,7 +122,7 @@
 		<Cursor position="2137" topLine="15" />
 	</File>
 	<File name="Entites\personnage.cpp" open="1" top="0" tabpos="10">
-		<Cursor position="30075" topLine="791" />
+		<Cursor position="7677" topLine="272" />
 	</File>
 	<File name="Entites\personnage.h" open="1" top="0" tabpos="12">
 		<Cursor position="2102" topLine="65" />
@@ -152,7 +152,7 @@
 		<Cursor position="2053" topLine="50" />
 	</File>
 	<File name="Map\map.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="74288" topLine="1793" />
+		<Cursor position="43783" topLine="1065" />
 	</File>
 	<File name="Map\map.h" open="0" top="0" tabpos="1">
 		<Cursor position="9777" topLine="148" />
@@ -160,7 +160,7 @@
 	<File name="Map\map_miracles.cpp" open="1" top="0" tabpos="8">
 		<Cursor position="29627" topLine="733" />
 	</File>
-	<File name="Map\map_scripts.cpp" open="1" top="1" tabpos="6">
+	<File name="Map\map_scripts.cpp" open="1" top="0" tabpos="6">
 		<Cursor position="34965" topLine="634" />
 	</File>
 	<File name="Map\tile.cpp" open="0" top="0" tabpos="4">

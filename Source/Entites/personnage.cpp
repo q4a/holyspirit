@@ -691,6 +691,15 @@ bool Personnage::SeDeplacer(float tempsEcoule)
                     else
                         m_positionPixel.x-=(float)4*tempsEcoule*m_caracteristique.vitesse;
                 }
+
+                else
+                {
+                    if(m_positionPixel.x > m_positionCase.x * COTE_TILE)
+                        m_positionPixel.x-=(float)4*tempsEcoule*m_caracteristique.vitesse;
+                    if(m_positionPixel.x < m_positionCase.x * COTE_TILE)
+                        m_positionPixel.x+=(float)4*tempsEcoule*m_caracteristique.vitesse;
+                }
+
                 if (m_positionCase.y<m_cheminFinal.y)
                 {
                     if (m_positionCase.h!=m_cheminFinal.h && m_positionPixel.h!=m_cheminFinal.h)
@@ -708,6 +717,13 @@ bool Personnage::SeDeplacer(float tempsEcoule)
                         m_positionPixel.y-=(float)2*tempsEcoule*m_caracteristique.vitesse;
                     else
                         m_positionPixel.y-=(float)4*tempsEcoule*m_caracteristique.vitesse;
+                }
+                else
+                {
+                    if(m_positionPixel.y > m_positionCase.y * COTE_TILE)
+                        m_positionPixel.y-=(float)4*tempsEcoule*m_caracteristique.vitesse;
+                    if(m_positionPixel.y < m_positionCase.y * COTE_TILE)
+                        m_positionPixel.y+=(float)4*tempsEcoule*m_caracteristique.vitesse;
                 }
 
                 m_next_angle = calculerAngle(m_cheminFinal.x-m_positionCase.x,m_cheminFinal.y-m_positionCase.y);
@@ -1229,6 +1245,11 @@ void Personnage::setCoordonneePixel(const coordonnee &position)
 {
     m_positionPixel.x=position.x*COTE_TILE;
     m_positionPixel.y=position.y*COTE_TILE;
+}
+void Personnage::setCoordonneePixel2(const coordonneeDecimal &position)
+{
+    m_positionPixel.x=position.x;
+    m_positionPixel.y=position.y;
 }
 
 void Personnage::setDepart()
