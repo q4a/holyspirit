@@ -329,11 +329,12 @@ void Personnage::Afficher(coordonnee dimensionsMap,Modele_Personnage *modele,boo
 
                             m_entite_graphique.m_sprite.FlipX(false);
 
-                            if(m_entite_graphique.m_scale.x < 0)
-                                m_entite_graphique.m_sprite.SetOrigin(m_entite_graphique.m_sprite.GetSubRect().Width - m_entite_graphique.m_sprite.GetOrigin().x, m_entite_graphique.m_sprite.GetOrigin().y);
-
                             m_entite_graphique.m_sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE/*+dimensionsMap.y*64*/));
                             m_entite_graphique.m_sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
+
+                          /*  if(m_entite_graphique.m_scale.x < 0)
+                                m_entite_graphique.m_sprite.SetOrigin(m_entite_graphique.m_sprite.GetSubRect().Width - m_entite_graphique.m_sprite.GetOrigin().x,
+                                m_entite_graphique.m_sprite.GetOrigin().y);*/
 
                             m_entite_graphique.m_sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
 
