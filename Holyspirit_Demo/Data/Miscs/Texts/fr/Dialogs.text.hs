@@ -41,7 +41,7 @@ Bien ! Tu apprends vite et c'est ce que j'attendais de toi...\Tu as franchi un c
 -Ta force augmente tes dégâts au corps à corps et te permet de porter de l'équipement plus lourd.\-Ta dextérité te permet de mieux toucher/esquiver et de porter plus d'objets.\-Ta vitalité augmente ta vie. \-Ta piété est ta capacité à invoquer ton dieu, elle te permet de lancer plus de miracles (nous allons y revenir...). \-Ton charisme influe sur le prix des objets et te permet de porter certains objets.
 Tu dois savoir que ton état actuel te permet d'avoir accès à certains pouvoirs.\Tu peux maintenant faire appel à ton dieu pour détruire tes adversaires.\\(cliquer sur l'icone en forme de croix pour ouvrir le panneau des miracles. Tu peux choisir la voie dans laquelle tu veux te spécialiser en cliquant sur un des trois onglets en haut. Il te suffit de faire un clic droit sur un miracle pour l'apprendre ou l'améliorer. Il se placera automatiquement dans la barre de raccourcis du bas. Tu peux y accéder durant le jeu avec les touches 1 à 8 puis en cliquant droit avec la souris. )
 Parfait ! Ce test était bien modeste mais toutes les pauvres âmes que j'ai appelées ne l'ont pas réussi, loin de là... Oui, je sais c'est consternant.\Maintenant rejoins la lumière au fond de la salle suivante et accomplis ta mission.\Si je n'avais connaissance de tes forfaits passés je te plaindrais...
-Continuer,
+Continuer
 Vers l'Abbaye de Saint Clodomir
 
 ////ABBE///
