@@ -1124,6 +1124,7 @@ int Personnage::AjouterEffet(Tileset *tileset, int type, int compteur, int info1
 void Personnage::RecalculerEffets()
 {
     for(unsigned i = 0 ; i < m_effets.size() ; ++i)
+    if(m_effets[i].m_effet.m_actif || m_effets[i].m_effet.m_old_actif)
     {
         if(m_effets[i].m_type == AURA_CARACTERISTIQUES)
         {

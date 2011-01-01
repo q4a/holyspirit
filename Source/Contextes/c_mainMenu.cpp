@@ -477,7 +477,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
             buf<<configuration->getText(0,49)<<" : "<<m_niveau_saves[i];
 
         texte_niv.SetString(buf.str());
-        texte_niv.SetCharacterSize(14);
+        texte_niv.SetCharacterSize(12);
 
         texte_niv.SetPosition(configuration->Resolution.w/2 - 384 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3) + 130 - texte_niv.GetRect().Width/2,
                               configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 224 + 158);

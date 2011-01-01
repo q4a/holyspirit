@@ -68,9 +68,13 @@ struct Classe
     Image_interface orbe_vie;
     Image_interface orbe_foi;
     Image_interface plus_button;
+    Image_interface plus_button_on;
     Image_interface scroll_button;
     Image_interface sort_inventory;
+    Image_interface sort_inventory_on;
     Image_interface talk;
+    Image_interface bullet_on;
+    Image_interface bullet_off;
     Image_interface quest;
     Image_interface documents;
     Image_interface craft;
@@ -79,6 +83,7 @@ struct Classe
     Image_interface hud_pt_caract_rest;
     Image_interface hud_pt_miracle_rest;
     Image_interface miracles_plus_button;
+    Image_interface miracles_plus_button_on;
     Image_interface miracles_cadre;
     Image_interface barre_vie_monstre;
     Image_interface barre_vie_monstre_vide;

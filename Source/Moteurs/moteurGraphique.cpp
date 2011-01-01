@@ -883,9 +883,9 @@ void MoteurGraphique::AjouterTexte(const std::string &txt, coordonnee pos, int c
     {
         sf::Sprite temp2;
         temp2.SetImage(*getImage(0));
-        temp2.SetPosition(pos.x-2, pos.y-2);
-        temp2.Resize(temp.GetRect().Width + 4,
-                     temp.GetRect().Height + 4);
+        temp2.SetPosition(pos.x-3, pos.y-2);
+        temp2.Resize(temp.GetRect().Width + 6,
+                     temp.GetRect().Height + 6);
         temp2.SetColor(sf::Color(0,0,0,224));
         AjouterCommande(&temp2, couche, 0);
     }

@@ -145,7 +145,7 @@ void Menu::AfficherDialogue(float time,Classe *classe)
         }
 
         texte.SetCharacterSize(14);
-        texte.SetStyle(2);
+        texte.SetStyle(0);
         texte.SetFont(moteurGraphique->m_font);
         texte.SetString(m_dialogue);
 
@@ -155,7 +155,27 @@ void Menu::AfficherDialogue(float time,Classe *classe)
         moteurGraphique->AjouterTexte(&texte,16,0);
 
         float pos = texte.GetRect().Top + texte.GetRect().Height + 8;
-        texte.SetStyle(4);
+        texte.SetStyle(0);
+
+        sf::Sprite bullet1, bullet2;
+
+        float minX = -1;
+        float maxX = -1;
+        for(unsigned i = 0 ; i < m_choices.size() ; ++i)
+        {
+            texte.SetString(m_choices[i].text);
+            texte.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.GetRect().Width) * 0.5,
+                                pos);
+            if(texte.GetPosition().x < minX || minX == -1)
+                minX = texte.GetPosition().x;
+            if(texte.GetPosition().x + texte.GetRect().Width > maxX || maxX == -1)
+                maxX = texte.GetPosition().x + texte.GetRect().Width;
+        }
+
+        minX -= 48;
+        maxX += 16;
+
+        bullet2.FlipX(true);
 
         for(unsigned i = 0 ; i < m_choices.size() ; ++i)
         {
@@ -163,20 +183,16 @@ void Menu::AfficherDialogue(float time,Classe *classe)
             texte.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.GetRect().Width) * 0.5,
                                 pos);
 
+            bullet1.SetY(texte.GetPosition().y - 4);
+            bullet2.SetY(texte.GetPosition().y - 4);
+
             pos = texte.GetRect().Top + texte.GetRect().Height + 4;
 
             if(eventManager->getPositionSouris().x > AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x
              &&eventManager->getPositionSouris().x < AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w
              &&eventManager->getPositionSouris().y > texte.GetRect().Top
-             &&eventManager->getPositionSouris().y < texte.GetRect().Top + 19)
+             &&eventManager->getPositionSouris().y < texte.GetRect().Top + 20)
              {
-                 sf::Sprite background;
-                 background.SetImage(*moteurGraphique->getImage(0));
-                 background.Resize(texte.GetRect().Width + 4, texte.GetRect().Height + 4);
-                 background.SetPosition(texte.GetRect().Left, texte.GetRect().Top );
-                 background.SetColor(sf::Color(64,64,64));
-                 moteurGraphique->AjouterCommande(&background, 16, 0);
-
                 if(eventManager->getEvenement(sf::Mouse::Left, EventClic))
                 {
                     m_speak_choice = m_choices[i].no;
@@ -184,9 +200,25 @@ void Menu::AfficherDialogue(float time,Classe *classe)
                     eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
                     moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                 }
+                bullet1.SetImage(*moteurGraphique->getImage(classe->bullet_on.image));
+                bullet2.SetImage(*moteurGraphique->getImage(classe->bullet_on.image));
+                bullet1.SetX(minX + 16);
+                bullet2.SetX(maxX - 16);
+
+                texte.SetColor(sf::Color(255,224,128));
+             }
+             else
+             {
+                bullet1.SetImage(*moteurGraphique->getImage(classe->bullet_off.image));
+                bullet2.SetImage(*moteurGraphique->getImage(classe->bullet_off.image));
+                bullet1.SetX(minX);
+                bullet2.SetX(maxX);
+                texte.SetColor(sf::Color(224,224,224));
              }
 
              moteurGraphique->AjouterTexte(&texte,16,0);
+             moteurGraphique->AjouterCommande(&bullet1,16,0);
+             moteurGraphique->AjouterCommande(&bullet2,16,0);
         }
     }
 

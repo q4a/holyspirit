@@ -28,7 +28,7 @@ class Entite_graphique
         Entite_graphique();
         virtual ~Entite_graphique();
         void Animer(float temps);
-        void NextTile(bool cur = false);
+        void NextTile(bool cur = false,bool no_sound = false);
         void Initialiser(coordonnee position);
         void Generer();
 

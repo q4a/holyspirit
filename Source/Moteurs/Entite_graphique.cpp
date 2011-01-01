@@ -101,7 +101,7 @@ void Entite_graphique::Animer(float temps)
     }
 }
 
-void Entite_graphique::NextTile(bool cur)
+void Entite_graphique::NextTile(bool cur,bool no_sound)
 {
     if(m_tileset != NULL)
     {
@@ -131,7 +131,7 @@ void Entite_graphique::NextTile(bool cur)
         }
 
 
-        if(m_tileset->getSonTile(m_noAnimation) >= 0 && !cur)
+        if(m_tileset->getSonTile(m_noAnimation) >= 0 && !no_sound)
             m_tileset->JouerSon(m_tileset->getSonTile(m_noAnimation),position,option_sonUnique,m_sound_volume);
 
 
@@ -194,7 +194,7 @@ void Entite_graphique::Initialiser(coordonnee pos)
 
     if(m_tileset != NULL)
     {
-        NextTile(true);
+        NextTile(true, true);
         Generer();
 
         if(configuration->Lumiere)

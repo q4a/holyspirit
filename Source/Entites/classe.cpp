@@ -527,9 +527,13 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
         ChargerImageInterface(fichier, orbe_vie);
         ChargerImageInterface(fichier, orbe_foi);
         ChargerImageInterface(fichier, plus_button);
+        ChargerImageInterface(fichier, plus_button_on);
         ChargerImageInterface(fichier, scroll_button);
         ChargerImageInterface(fichier, sort_inventory);
+        ChargerImageInterface(fichier, sort_inventory_on);
         ChargerImageInterface(fichier, talk);
+        ChargerImageInterface(fichier, bullet_off);
+        ChargerImageInterface(fichier, bullet_on);
         ChargerImageInterface(fichier, quest);
         ChargerImageInterface(fichier, documents);
         ChargerImageInterface(fichier, craft);
@@ -538,6 +542,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
         ChargerImageInterface(fichier, hud_pt_caract_rest);
         ChargerImageInterface(fichier, hud_pt_miracle_rest);
         ChargerImageInterface(fichier, miracles_plus_button);
+        ChargerImageInterface(fichier, miracles_plus_button_on);
         ChargerImageInterface(fichier, miracles_cadre);
         ChargerImageInterface(fichier, barre_vie_monstre);
         ChargerImageInterface(fichier, barre_vie_monstre_vide);
