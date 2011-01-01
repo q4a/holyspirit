@@ -42,70 +42,70 @@
          Destruction du héro ...
          Chargement de : Data/User/Temps/Image.png
          Destruction du héro ...
+         Chargement de : Data/User/Temps/Image.png
+         Destruction du héro ...
          Chargement du hero.
          /Lectures des caracteristiques.
          
-         Chargement de l'objet : Sword_1h_small_sword.item.hs
-         Chargement de : Data/Graphics/Items/Swords.png
-         Chargement de : Data/Sounds/UI/DropItem1.wav
-         
-         Chargement de l'objet : Shield_small_shield.item.hs
-         Chargement de : Data/Graphics/Items/Shields.png
-         Chargement de : Data/Sounds/UI/DropItem0.wav
-         
          Chargement de l'objet : Potion_heal0.item.hs
          Chargement de : Data/Graphics/Items/Potions.png
+         Chargement de : Data/Sounds/UI/DropItem0.wav
          Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
          Chargement de : Data/Sounds/Miracles/Potion_drink0.wav
          
-         Chargement de l'objet : Potion_heal0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
          
-         Chargement de l'objet : Armband_leather.item.hs
-         Chargement de : Data/Graphics/Items/Armbands.png
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
          
-         Chargement de l'objet : Quest_relic2.item.hs
-         Chargement de : Data/Graphics/Items/Quests.png
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
          
-         Chargement de l'objet : Quest_relic1.item.hs
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
          
-         Chargement de l'objet : Quest_relic3.item.hs
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
          
-         Chargement de l'objet : Quest_relic4.item.hs
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
          
-         Chargement de l'objet : Doc_redimus.item.hs
-         Chargement de : Data/Graphics/Items/Books.png
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
          
-         Chargement de l'objet : Doc_redimus.item.hs
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
          
-         Chargement de l'objet : Doc_redimus.item.hs
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
          
-         Chargement de l'objet : Doc_redimus.item.hs
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
          
-         Chargement de l'objet : Doc_redimus.item.hs
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
          
-         Chargement de l'objet : Doc_redimus.item.hs
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
          
-         Chargement de l'objet : Doc_redimus.item.hs
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
          
-         Chargement de l'objet : Doc_redimus.item.hs
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
          
-         Chargement de l'objet : Doc_redimus.item.hs
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
          
-         Chargement de l'objet : Doc_redimus.item.hs
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
          
-         Chargement de l'objet : Doc_redimus.item.hs
-         
-         Chargement de l'objet : Doc_redimus.item.hs
-         
-         Chargement de l'objet : Doc_redimus.item.hs
-         
-         Chargement de l'objet : Doc_redimus.item.hs
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
          /Lectures des objets.
          /Lectures des objets du coffre.
          /Lectures des miracles.
-         
-         Chargement de l'objet : Doc_redimus.item.hs
          /Lectures des docs.
          /Lectures des quêtes.
          /Lectures des potales.
@@ -116,8 +116,10 @@
          Chargement de : Data/Graphics/Menus/UI/Life_bar.png
          Chargement de : Data/Graphics/Menus/UI/Faith_bar.png
          Chargement de : Data/Graphics/Menus/UI/Plus_button.png
+         Chargement de : Data/Graphics/Menus/UI/Plus_button_on.png
          Chargement de : Data/Graphics/Menus/UI/Scroll_button.png
          Chargement de : Data/Graphics/Menus/UI/SortInventory.png
+         Chargement de : Data/Graphics/Menus/UI/SortInventory_on.png
          Chargement de : Data/Graphics/Menus/UI/Bullet_off.png
          Chargement de : Data/Graphics/Menus/UI/Bullet_on.png
          Chargement de : Data/Graphics/Menus/UI/Quest.png
@@ -128,6 +130,7 @@
          Chargement de : Data/Graphics/Menus/UI/PointsCRest.png
          Chargement de : Data/Graphics/Menus/UI/PointsMRest.png
          Chargement de : Data/Graphics/Menus/UI/PlusMiracle.png
+         Chargement de : Data/Graphics/Menus/UI/PlusMiracle_on.png
          Chargement de : Data/Graphics/Menus/UI/Slot_miracle.png
          Chargement de : Data/Graphics/Menus/UI/Life_monster.png
          Chargement de : Data/Graphics/Menus/UI/Life_monster_blank.png
@@ -217,16 +220,6 @@
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
          
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_OneHand/Small_sword_r.rs.hs
-         Chargement de : Crusader_SmallSword_R_Wait0.png
-         Chargement de : Crusader_SmallSword_R_Walk0.png
-         Chargement de : Crusader_SmallSword_R_Attack0.png
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Shields/Small_shield.rs.hs
-         Chargement de : Crusader_SmallShield_Wait0.png
-         Chargement de : Crusader_SmallShield_Walk0.png
-         Chargement de : Crusader_SmallShield_Attack0.png
-         
          Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Nude/OneHand.rs.hs
          Chargement de : Crusader_Nude_1H_Wait0.png
          Chargement de : Crusader_Nude_1H_Walk0.png
@@ -247,29 +240,24 @@
          Sauvegarde du héro...
          Ouverture du fichier.
          /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
          /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Quest_relic2.item.hs
-         /Sauvegarde de Quest_relic1.item.hs
-         /Sauvegarde de Quest_relic3.item.hs
-         /Sauvegarde de Quest_relic4.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
          /Ecriture des miracles.
@@ -284,29 +272,24 @@
          Sauvegarde du héro...
          Ouverture du fichier.
          /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
          /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Quest_relic2.item.hs
-         /Sauvegarde de Quest_relic1.item.hs
-         /Sauvegarde de Quest_relic3.item.hs
-         /Sauvegarde de Quest_relic4.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
          /Ecriture des miracles.
@@ -338,10 +321,6 @@
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_OneHand/Small_sword_r.rs.hs
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Shields/Small_shield.rs.hs
          
          Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Nude/OneHand.rs.hs
          
@@ -407,6 +386,7 @@
          Chargement du script : " Data/Entities/Scripts/NPC/Abbe.script.hs "
          
          Chargement de l'objet : Litanie_toxic_0.item.hs
+         Chargement de : Data/Graphics/Items/Books.png
          Chargement du miracle : Data/Miscs/Miracles/Items/Toxic_0.miracle.hs
          Chargement de : Data/Graphics/Miracles/Toxic.png
          Chargement de : Data/Sounds/Miracles/Toxic.wav
@@ -494,6 +474,7 @@
          
          Chargement de l'objet : Ring_ring.item.hs
          Chargement de : Data/Graphics/Items/Rings.png
+         Chargement de : Data/Sounds/UI/DropItem1.wav
          
          Chargement de l'objet : Ring_ring.item.hs
          
@@ -629,79 +610,6 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          Initialisation terminée.
          
          Chargement de : Data/Musics/Abbey.ogg
-         
-         ---------------------------------------------------------------------------------
-         EVENEMENT : Changement de map
-         ---------------------------------------------------------------------------------
-         
-         Sauvegarde de la map : Data/User/Temps/Abbey.map.hs
-         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey.map.hs.emap.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Craft_ore_copper.item.hs
-         /Sauvegarde de Craft_ore_gold.item.hs
-         /Sauvegarde de Craft_gem_emerald.item.hs
-         Sauvegarde de la map terminée !
-         /Génération de l'image...
-         /Image affichée.
-         /Image générée.
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Quest_relic2.item.hs
-         /Sauvegarde de Quest_relic1.item.hs
-         /Sauvegarde de Quest_relic3.item.hs
-         /Sauvegarde de Quest_relic4.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Ecriture des objets.
-         /Ecriture des objets du coffre.
-         /Ecriture des miracles.
-         /Ecriture des docs.
-         /Ecriture des quetes.
-         /Ecriture des potales.
-         Sauvegarde du héro terminée !
-         
-         Destruction de la map...
-         Destruction des cases...
-         Cases détruites !
-         Modèles monstres détruits !
-         Monstres détruits !
-         Fonds détruits !
-         Chemins musiques détruits !
-         Projectiles détruits !
-         Effets détruits !
-         Map détruite !
-         
-         Chargements d'images diverses :
          Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
@@ -724,267 +632,33 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_OneHand/Small_sword_r.rs.hs
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Shields/Small_shield.rs.hs
          
          Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Nude/OneHand.rs.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
          
-         Chargement de la map : Abbey_indoor.map.hs
-         /Lectures du nom.
-         /Lectures des fonds.
-         /Lectures des musiques.
-         /Lectures des lumières.
-         /Lectures des ciels.
-         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_floor.png
-         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_floor.ts.hs
-         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_walls.png
-         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_walls.ts.hs
-         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_miscs.png
-         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_miscs.ts.hs
-         Chargement de : Data/Graphics/Landscapes/Catacombs/Catacombs_monks.png
-         Chargement de : Data/Graphics/Landscapes/Catacombs/Catacombs_monks.ts.hs
-         /Lectures des tilesets.
-         /Lectures des herbes.
-         
-         Chargement du monstre : Data/Entities/Resources/Miscs/Trigger_clickable.char.hs
-         Chargement du script : " Data/Entities/Scripts/Miscs/Trigger_clickable.script.hs "
-         
-         Chargement du personnage : Data/Entities/Resources/Miscs/NULL.rs.hs
-         Chargement de : Data/Entities/Resources/Miscs/Trigger_clickable.char.hs terminé
-         
-         Chargement du monstre : Data/Entities/Resources/NPC/Farmer.char.hs
-         Chargement du script : " Data/Entities/Scripts/NPC/Farmer.script.hs "
-         Chargement du miracle : Data/Miscs/Miracles/Quest/Quest.miracle.hs
-         
-         Chargement du personnage : Data/Entities/Resources/NPC/Farmer.rs.hs
-         Chargement de : Farmer_wait0.png
-         Chargement de : Farmer_cry0.png
-         Chargement de : Data/Entities/Resources/NPC/Farmer.char.hs terminé
-         
-         Chargement du monstre : Data/Entities/Resources/NPC/Abbe.char.hs
-         Chargement du script : " Data/Entities/Scripts/NPC/Abbe.script.hs "
-         
-         Chargement de l'objet : Litanie_toxic_0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/Toxic_0.miracle.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Quest/Quest.miracle.hs
-         
-         Chargement du personnage : Data/Entities/Resources/NPC/Abbe.rs.hs
-         Chargement de : Data/Entities/Resources/NPC/Abbe.char.hs terminé
-         
-         Chargement du monstre : Data/Entities/Resources/NPC/Monk.char.hs
-         Chargement du script : " Data/Entities/Scripts/NPC/Follower.script.hs "
-         Chargement du miracle : Data/Miscs/Miracles/Quest/Quest.miracle.hs
-         
-         Chargement du personnage : Data/Entities/Resources/NPC/Abbe.rs.hs
-         Chargement de : Data/Entities/Resources/NPC/Monk.char.hs terminé
-         
-         Chargement du monstre : Data/Entities/Resources/NPC/Monk_summoner.char.hs
-         Chargement du script : " Data/Entities/Scripts/Miscs/Summoning.script.hs "
-         Chargement du miracle : Data/Entities/Miracles/Summoning_Monk.miracle.hs
-         
-         Chargement du personnage : Data/Entities/Resources/Miscs/NULL.rs.hs
-         Chargement de : Data/Entities/Resources/NPC/Monk_summoner.char.hs terminé
-         /Lectures des monstres.
-         
-         /Lectures des cases.
-         Chargement de la map terminé.
-         Initialisation de l'herbe terminée.
-         Initialisation des décors terminée.
-         Initialisation des entités terminée.
-         Initialisation terminée.
-         
-         
-         Sauvegarde de la map : Data/User/Temps/Abbey_indoor.map.hs
-         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey_indoor.map.hs.emap.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Quest_relic2.item.hs
-         /Sauvegarde de Quest_relic1.item.hs
-         /Sauvegarde de Quest_relic3.item.hs
-         /Sauvegarde de Quest_relic4.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Ecriture des objets.
-         /Ecriture des objets du coffre.
-         /Ecriture des miracles.
-         /Ecriture des docs.
-         /Ecriture des quetes.
-         /Ecriture des potales.
-         Sauvegarde du héro terminée !
-         
-         Sauvegarde de la map : Data/User/Temps/Abbey_indoor.map.hs
-         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey_indoor.map.hs.emap.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Quest_relic2.item.hs
-         /Sauvegarde de Quest_relic1.item.hs
-         /Sauvegarde de Quest_relic3.item.hs
-         /Sauvegarde de Quest_relic4.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Ecriture des objets.
-         /Ecriture des objets du coffre.
-         /Ecriture des miracles.
-         /Ecriture des docs.
-         /Ecriture des quetes.
-         /Ecriture des potales.
-         Sauvegarde du héro terminée !
-         
-         Sauvegarde de la map : Data/User/Temps/Abbey_indoor.map.hs
-         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey_indoor.map.hs.emap.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Quest_relic2.item.hs
-         /Sauvegarde de Quest_relic1.item.hs
-         /Sauvegarde de Quest_relic3.item.hs
-         /Sauvegarde de Quest_relic4.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Ecriture des objets.
-         /Ecriture des objets du coffre.
-         /Ecriture des miracles.
-         /Ecriture des docs.
-         /Ecriture des quetes.
-         /Ecriture des potales.
-         Sauvegarde du héro terminée !
-         
-         Sauvegarde de la map : Data/User/Temps/Abbey_indoor.map.hs
-         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey_indoor.map.hs.emap.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Quest_relic2.item.hs
-         /Sauvegarde de Quest_relic1.item.hs
-         /Sauvegarde de Quest_relic3.item.hs
-         /Sauvegarde de Quest_relic4.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Ecriture des objets.
-         /Ecriture des objets du coffre.
-         /Ecriture des miracles.
-         /Ecriture des docs.
-         /Ecriture des quetes.
-         /Ecriture des potales.
-         Sauvegarde du héro terminée !
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Nude/OneHand.rs.hs
          Chargement de : Data/Musics/Menu.ogg
          /Génération de l'image...
          /Image affichée.
@@ -993,29 +667,23 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          Sauvegarde du héro...
          Ouverture du fichier.
          /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
          /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Quest_relic2.item.hs
-         /Sauvegarde de Quest_relic1.item.hs
-         /Sauvegarde de Quest_relic3.item.hs
-         /Sauvegarde de Quest_relic4.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
          /Ecriture des miracles.

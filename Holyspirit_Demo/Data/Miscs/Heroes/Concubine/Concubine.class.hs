@@ -30,9 +30,13 @@ $
 $
 	* x174 y0 w25 h25 m Data/Graphics/Menus/UI/Plus_button.png $
 $
+	* x174 y0 w25 h25 m Data/Graphics/Menus/UI/Plus_button_on.png $
+$
 	* x14 y336 w32 h32 m Data/Graphics/Menus/UI/Scroll_button.png $
 $
 	* x432 y33 w27 h24 m Data/Graphics/Menus/UI/SortInventory.png $
+$
+	* x432 y33 w27 h24 m Data/Graphics/Menus/UI/SortInventory_on.png $
 $
 	* x0 y248 w800 h352 m Data/Graphics/Menus/UI/Talks.png $
 $
@@ -55,6 +59,8 @@ $
 	* x627 y548 w27 h24 m Data/Graphics/Menus/UI/PointsMRest.png $
 $
 	* x-14 y-6 w27 h24 m Data/Graphics/Menus/UI/PlusMiracle.png $
+$
+	* x-14 y-6 w27 h24 m Data/Graphics/Menus/UI/PlusMiracle_on.png $
 $
 	* x-16 y-8 w68 h70 m Data/Graphics/Menus/UI/Slot_miracle.png $
 $
