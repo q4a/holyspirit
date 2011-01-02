@@ -20,6 +20,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "decor.h"
 #include "../globale.h"
 
+
 Decor::Decor(int tileset,int tile,const std::vector<int> &monstre,int herbe, int couche,int hauteur)
 {
     m_tileset=tileset;

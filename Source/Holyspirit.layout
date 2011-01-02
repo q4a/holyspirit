@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Release" />
-	<File name="Contextes\c_bless.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="289" topLine="0" />
+	<File name="Contextes\c_bless.cpp" open="1" top="0" tabpos="13">
+		<Cursor position="5561" topLine="125" />
 	</File>
 	<File name="Contextes\c_bless.h" open="0" top="0" tabpos="3">
 		<Cursor position="1561" topLine="42" />
@@ -13,8 +13,8 @@
 	<File name="Contextes\c_changementMap.h" open="0" top="0" tabpos="4">
 		<Cursor position="2220" topLine="41" />
 	</File>
-	<File name="Contextes\c_craft.cpp" open="0" top="0" tabpos="12">
-		<Cursor position="1627" topLine="49" />
+	<File name="Contextes\c_craft.cpp" open="1" top="0" tabpos="12">
+		<Cursor position="5562" topLine="124" />
 	</File>
 	<File name="Contextes\c_craft.h" open="0" top="0" tabpos="5">
 		<Cursor position="1659" topLine="34" />
@@ -31,14 +31,14 @@
 	<File name="Contextes\c_documents.h" open="0" top="0" tabpos="7">
 		<Cursor position="739" topLine="16" />
 	</File>
-	<File name="Contextes\c_inventaire.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="5194" topLine="152" />
+	<File name="Contextes\c_inventaire.cpp" open="1" top="0" tabpos="11">
+		<Cursor position="7756" topLine="218" />
 	</File>
 	<File name="Contextes\c_inventaire.h" open="0" top="0" tabpos="8">
 		<Cursor position="2457" topLine="30" />
 	</File>
 	<File name="Contextes\c_jeu.cpp" open="1" top="0" tabpos="9">
-		<Cursor position="8818" topLine="284" />
+		<Cursor position="32484" topLine="768" />
 	</File>
 	<File name="Contextes\c_jeu.h" open="0" top="0" tabpos="4">
 		<Cursor position="4003" topLine="106" />
@@ -86,16 +86,16 @@
 		<Cursor position="905" topLine="9" />
 	</File>
 	<File name="Entites\classe.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="15483" topLine="516" />
+		<Cursor position="26702" topLine="832" />
 	</File>
 	<File name="Entites\classe.h" open="1" top="0" tabpos="3">
-		<Cursor position="1962" topLine="57" />
+		<Cursor position="1460" topLine="50" />
 	</File>
-	<File name="Entites\hero.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="150041" topLine="3218" />
+	<File name="Entites\hero.cpp" open="1" top="1" tabpos="2">
+		<Cursor position="128425" topLine="2871" />
 	</File>
-	<File name="Entites\hero.h" open="0" top="0" tabpos="7">
-		<Cursor position="4673" topLine="165" />
+	<File name="Entites\hero.h" open="1" top="0" tabpos="10">
+		<Cursor position="2259" topLine="85" />
 	</File>
 	<File name="Entites\liste_case.cpp" open="0" top="0" tabpos="14">
 		<Cursor position="1109" topLine="25" />
@@ -121,8 +121,8 @@
 	<File name="Entites\objet.h" open="0" top="0" tabpos="9">
 		<Cursor position="2137" topLine="15" />
 	</File>
-	<File name="Entites\personnage.cpp" open="1" top="1" tabpos="8">
-		<Cursor position="41968" topLine="1091" />
+	<File name="Entites\personnage.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="41968" topLine="1112" />
 	</File>
 	<File name="Entites\personnage.h" open="0" top="0" tabpos="6">
 		<Cursor position="3344" topLine="101" />
@@ -160,8 +160,8 @@
 	<File name="Map\map_miracles.cpp" open="1" top="0" tabpos="5">
 		<Cursor position="9047" topLine="186" />
 	</File>
-	<File name="Map\map_scripts.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="7584" topLine="156" />
+	<File name="Map\map_scripts.cpp" open="1" top="0" tabpos="14">
+		<Cursor position="7738" topLine="159" />
 	</File>
 	<File name="Map\tile.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="2339" topLine="71" />

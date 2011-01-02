@@ -79,6 +79,18 @@ enum {PHYSIQUE, FEU, FOI, CORROSION};
 
 enum {B_CHAT,B_MIRACLES,B_INVENTAIRE,B_QUETES,B_MENU,B_MAP,B_DEPLIER, B_DOCS};
 
+inline sf::FloatRect GetViewRect(const sf::View& view)
+{
+    sf::FloatRect temp;
+
+    temp.Left   = view.GetCenter().x - view.GetSize().x * 0.5;
+    temp.Top    = view.GetCenter().y - view.GetSize().y * 0.5;
+    temp.Width  = view.GetSize().x;
+    temp.Height = view.GetSize().y;
+
+    return temp;
+};
+
 /// http://www.sfml-dev.org/wiki/fr/sources/fonctions_maths
 /// Par hiura
 

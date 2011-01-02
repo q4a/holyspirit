@@ -87,7 +87,7 @@ public:
 
     void PlacerCamera();
 
-    bool TestMonstreVise(Personnage *monstre);
+    bool TestMonstreVise(Personnage *monstre, float temps);
 
     void GererTemps(float temps);
     void RecalculerCaracteristiques(bool bis = true);

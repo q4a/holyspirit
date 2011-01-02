@@ -248,7 +248,7 @@ void c_Jeu::Deplacements(Jeu *jeu)
     {
         bool ok=true;
         if (jeu->hero.m_personnage.m_cible != NULL)
-            if (jeu->hero.TestMonstreVise(jeu->hero.m_personnage.m_cible))
+            if (jeu->hero.TestMonstreVise(jeu->hero.m_personnage.m_cible, tempsEcoule))
                 ok=false;
 
         if (jeu->hero.m_personnage.getCoordonnee().x==jeu->hero.m_personnage.getArrivee().x
@@ -322,8 +322,8 @@ void c_Jeu::Animation(Jeu *jeu)
                 if (jeu->hero.m_personnage.m_cible!=NULL)
                 {
 
-                    if (fabs(jeu->hero.m_personnage.m_cible->getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().x)<2
-                      &&fabs(jeu->hero.m_personnage.m_cible->getCoordonnee().y-jeu->hero.m_personnage.getCoordonnee().y)<2)
+                    if (fabs(jeu->hero.m_personnage.m_cible->getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().x)<=2
+                      &&fabs(jeu->hero.m_personnage.m_cible->getCoordonnee().y-jeu->hero.m_personnage.getCoordonnee().y)<=2)
                         if (rand() % 100 < (float)((float)(jeu->hero.m_caracteristiques.dexterite + 100) / ((float)(jeu->hero.m_personnage.m_cible->getCaracteristique().dexterite + 100)))*75 )
                             if (!jeu->hero.m_personnage.m_cible->m_friendly && jeu->hero.m_personnage.m_cible->EnVie())
                             {
@@ -780,7 +780,7 @@ void c_Jeu::Evenements(Jeu *jeu)
 
                     if (test)
                     {
-                        jeu->hero.TestMonstreVise(jeu->hero.m_personnage.m_cible);
+                        jeu->hero.TestMonstreVise(jeu->hero.m_personnage.m_cible, tempsEcoule);
                         jeu->hero.m_case_visee = jeu->hero.m_personnage.m_cible->getProchaineCase();
                     }
 

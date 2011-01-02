@@ -942,12 +942,6 @@ void Hero::Afficher()
 
 void Hero::AfficherCaracteristiques(float decalage, bool trader)
 {
-    /*sf::Sprite sprite;
-    sprite.SetImage(*moteurGraphique->getImage(m_classe.plus_button.image));
-    sprite.Resize(m_classe.plus_button.position.w, m_classe.plus_button.position.h);
-    sprite.SetX(AutoScreenAdjust(m_classe.plus_button.position.x,0).x);*/
-
-
     sf::Text string;
     string.SetFont(moteurGraphique->m_font);
     string.SetCharacterSize(12);
@@ -1094,7 +1088,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
     if (m_caracteristiques.pts_restant>0)
     {
         m_classe.plus_button[0].position.y = (int)(string.GetPosition().y-3);
-        sf::Sprite sprite = m_classe.plus_button[0].Afficher(decalage);
+        sf::Sprite sprite = m_classe.plus_button[0].Afficher(0);
         moteurGraphique->AjouterCommande(&sprite,15,0);
 
         if(m_classe.plus_button[0].m_action)
@@ -1155,7 +1149,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
     if (m_caracteristiques.pts_restant>0)
     {
         m_classe.plus_button[1].position.y = (int)(string.GetPosition().y-3);
-        sf::Sprite sprite = m_classe.plus_button[1].Afficher(decalage);
+        sf::Sprite sprite = m_classe.plus_button[1].Afficher(0);
         moteurGraphique->AjouterCommande(&sprite,15,0);
 
         if(m_classe.plus_button[1].m_action)
@@ -1217,7 +1211,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
     if (m_caracteristiques.pts_restant>0)
     {
         m_classe.plus_button[2].position.y = (int)(string.GetPosition().y-3);
-        sf::Sprite sprite = m_classe.plus_button[2].Afficher(decalage);
+        sf::Sprite sprite = m_classe.plus_button[2].Afficher(0);
         moteurGraphique->AjouterCommande(&sprite,15,0);
 
         if(m_classe.plus_button[2].m_action)
@@ -1277,7 +1271,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
     if (m_caracteristiques.pts_restant>0)
     {
         m_classe.plus_button[3].position.y = (int)(string.GetPosition().y-3);
-        sf::Sprite sprite = m_classe.plus_button[3].Afficher(decalage);
+        sf::Sprite sprite = m_classe.plus_button[3].Afficher(0);
         moteurGraphique->AjouterCommande(&sprite,15,0);
 
         if(m_classe.plus_button[3].m_action)
@@ -1335,7 +1329,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
     if (m_caracteristiques.pts_restant>0)
     {
         m_classe.plus_button[4].position.y = (int)(string.GetPosition().y-3);
-        sf::Sprite sprite = m_classe.plus_button[4].Afficher(decalage);
+        sf::Sprite sprite = m_classe.plus_button[4].Afficher(0);
         moteurGraphique->AjouterCommande(&sprite,15,0);
 
         if(m_classe.plus_button[4].m_action)
@@ -2809,13 +2803,13 @@ void Hero::PlacerCamera()
     moteurGraphique->m_camera.Move(moteurGraphique->decalageCamera.x, moteurGraphique->decalageCamera.y);
 }
 
-bool Hero::TestMonstreVise(Personnage *monstre)
+bool Hero::TestMonstreVise(Personnage *monstre, float temps)
 {
     if (monstre!=NULL)
         if (m_caracteristiques.vie>0)
         {
             if (((!m_personnage.m_shooter||monstre->m_friendly)&&(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)<=1))
-          //  || ((!m_personnage.m_shooter||monstre->m_friendly)&&(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=1))
+            || ((!m_personnage.m_shooter||monstre->m_friendly)&&(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=1))
             || (!monstre->m_friendly&&m_personnage.m_shooter&&(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)<=13&&fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)<=13))
             || (!monstre->m_friendly&&m_personnage.m_shooter&&(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=13&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=13)))
             {
@@ -2851,11 +2845,12 @@ bool Hero::TestMonstreVise(Personnage *monstre)
                 if(monstre->m_collision)
                     return 1;
             }
-            else if((!m_personnage.m_shooter||monstre->m_friendly)&&(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=1))
+          /*  else if((!m_personnage.m_shooter||monstre->m_friendly)&&(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=1))
             {
-                    if(monstre->m_collision)
+                if(monstre->m_collision)
                     m_personnage.setArrivee(m_personnage.getCoordonnee());
-            }
+                }
+            }*/
             else
                 m_personnage.setArrivee(monstre->getProchaineCase());
         }
@@ -3433,110 +3428,6 @@ Objet Hero::DeposerObjet()
     }
     return temp;
 }
-
-/*void Hero::GererBoutonsInventaire()
-{
-    if (m_buttonPointe>0 && m_caracteristiques.pts_restant>0)
-    {
-        moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
-
-        if (m_buttonPointe==1)
-        {
-            Caracteristique temp = m_personnage.getCaracteristique();
-
-            if(eventManager->getEvenement(sf::Key::LControl, EventKey))
-            {
-                temp.pts_restant-=5;
-                temp.force+=5;
-                if(temp.pts_restant < 0)
-                    temp.force+=temp.pts_restant, temp.pts_restant = 0;
-            }
-            else
-            {
-                temp.pts_restant--;
-                temp.force++;
-            }
-
-            m_personnage.setCaracteristique(temp);
-            RecalculerCaracteristiques();
-        }
-        else if (m_buttonPointe==2)
-        {
-            Caracteristique temp = m_personnage.getCaracteristique();
-            if(eventManager->getEvenement(sf::Key::LControl, EventKey))
-            {
-                temp.pts_restant-=5;
-                temp.dexterite+=5;
-                if(temp.pts_restant < 0)
-                    temp.dexterite+=temp.pts_restant, temp.pts_restant = 0;
-            }
-            else
-            {
-                temp.pts_restant--;
-                temp.dexterite++;
-            }
-            m_personnage.setCaracteristique(temp);
-            RecalculerCaracteristiques();
-        }
-        else if (m_buttonPointe==3)
-        {
-            Caracteristique temp = m_personnage.getCaracteristique();
-
-            if(eventManager->getEvenement(sf::Key::LControl, EventKey))
-            {
-                temp.pts_restant-=5;
-                temp.vitalite+=5;
-                if(temp.pts_restant < 0)
-                    temp.vitalite+=temp.pts_restant, temp.pts_restant = 0;
-            }
-            else
-            {
-                temp.pts_restant--;
-                temp.vitalite++;
-            }
-            m_personnage.setCaracteristique(temp);
-            RecalculerCaracteristiques();
-            m_caracteristiques.vie+=10;
-        }
-        else if (m_buttonPointe==4)
-        {
-            Caracteristique temp = m_personnage.getCaracteristique();
-            if(eventManager->getEvenement(sf::Key::LControl, EventKey))
-            {
-                temp.pts_restant-=5;
-                temp.piete+=5;
-                if(temp.pts_restant < 0)
-                    temp.piete+=temp.pts_restant, temp.pts_restant = 0;
-            }
-            else
-            {
-                temp.pts_restant--;
-                temp.piete++;
-            }
-            m_personnage.setCaracteristique(temp);
-            RecalculerCaracteristiques();
-            m_caracteristiques.foi+=10;
-        }
-        else if (m_buttonPointe==5)
-        {
-            Caracteristique temp = m_personnage.getCaracteristique();
-            if(eventManager->getEvenement(sf::Key::LControl, EventKey))
-            {
-                temp.pts_restant-=5;
-                temp.charisme+=5;
-                if(temp.pts_restant < 0)
-                    temp.charisme+=temp.pts_restant, temp.pts_restant = 0;
-            }
-            else
-            {
-                temp.pts_restant--;
-                temp.charisme++;
-            }
-            m_personnage.setCaracteristique(temp);
-            RecalculerCaracteristiques();
-        }
-    }
-}*/
 
 void Hero::AutoTrierCoffre()
 {

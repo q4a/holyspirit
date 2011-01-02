@@ -24,18 +24,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <iostream>
 #include <sstream>
 
-inline sf::FloatRect GetViewRect(const sf::View& view)
-{
-    sf::FloatRect temp;
-
-    temp.Left   = view.GetCenter().x - view.GetSize().x * 0.5;
-    temp.Top    = view.GetCenter().y - view.GetSize().y * 0.5;
-    temp.Width  = view.GetSize().x;
-    temp.Height = view.GetSize().y;
-
-    return temp;
-};
-
 MoteurGraphique::MoteurGraphique()
 {
     LightManager = Light_Manager::GetInstance();
