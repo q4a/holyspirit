@@ -1,5 +1,6 @@
 uniform sampler2D texture;
 uniform float offset;
+uniform float direction_x;
 
 void main()
 {
@@ -7,16 +8,38 @@ void main()
 
 	vec2 offx = vec2(offset2, 0.0);
 	vec2 offy = vec2(0.0, offset2);
+	
+	vec4 pixel;
+	
+	if(direction_x == 1.0)
+	{
+		pixel =   (texture2D(texture, gl_TexCoord[0].xy) + 
+					texture2D(texture, gl_TexCoord[0].xy + offx * 0.25) +
+					texture2D(texture, gl_TexCoord[0].xy + offx * 0.5) +
+					texture2D(texture, gl_TexCoord[0].xy + offx * 0.75) +
+					texture2D(texture, gl_TexCoord[0].xy + offx * 1.0) +
+					texture2D(texture, gl_TexCoord[0].xy + offx * 1.25) +
+					texture2D(texture, gl_TexCoord[0].xy - offx * 0.25) +
+					texture2D(texture, gl_TexCoord[0].xy - offx * 0.5) +
+					texture2D(texture, gl_TexCoord[0].xy - offx * 0.75) +
+					texture2D(texture, gl_TexCoord[0].xy - offx * 1.0) +
+					texture2D(texture, gl_TexCoord[0].xy - offx * 1.25))/11.0;
+	}
+	else
+	{
+		pixel =   (texture2D(texture, gl_TexCoord[0].xy) + 
+					texture2D(texture, gl_TexCoord[0].xy + offy * 0.25) +
+					texture2D(texture, gl_TexCoord[0].xy + offy * 0.5) +
+					texture2D(texture, gl_TexCoord[0].xy + offy * 0.75) +
+					texture2D(texture, gl_TexCoord[0].xy + offy * 1.0) +
+					texture2D(texture, gl_TexCoord[0].xy + offy * 1.25) +
+					texture2D(texture, gl_TexCoord[0].xy - offy * 0.25) +
+					texture2D(texture, gl_TexCoord[0].xy - offy * 0.5) +
+					texture2D(texture, gl_TexCoord[0].xy - offy * 0.75) +
+					texture2D(texture, gl_TexCoord[0].xy - offy * 1.0) +
+					texture2D(texture, gl_TexCoord[0].xy - offy * 1.25))/11.0;
+	}
+					
 
-	vec4 pixel = texture2D(texture, gl_TexCoord[0].xy)               * 1 +
-                 texture2D(texture, gl_TexCoord[0].xy - offx)        * 2 +
-                 texture2D(texture, gl_TexCoord[0].xy + offx)        * 2 +
-                 texture2D(texture, gl_TexCoord[0].xy - offy)        * 2 +
-                 texture2D(texture, gl_TexCoord[0].xy + offy)        * 2 +
-                 texture2D(texture, gl_TexCoord[0].xy - offx - offy) * 1 +
-                 texture2D(texture, gl_TexCoord[0].xy - offx + offy) * 1 +
-                 texture2D(texture, gl_TexCoord[0].xy + offx - offy) * 1 +
-                 texture2D(texture, gl_TexCoord[0].xy + offx + offy) * 1;
-
-	gl_FragColor =  gl_Color * (pixel / 13.0);
+	gl_FragColor =  gl_Color * pixel;
 }
