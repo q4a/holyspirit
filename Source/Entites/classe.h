@@ -37,6 +37,30 @@ struct Bouton
     bool Survol();
 };
 
+struct Bouton_pressoire
+{
+    Bouton_pressoire ()
+    {
+        m_hover     = false;
+        m_press     = false;
+        m_action    = false;
+    }
+
+    coordonnee position;
+    std::string nom;
+
+    bool m_hover;
+    bool m_press;
+    bool m_action;
+
+    Image_interface image;
+    Image_interface image_hover;
+    Image_interface image_press;
+
+    bool Survol();
+    sf::Sprite Afficher(float decalage);
+};
+
 struct Emplacement_inventaire
 {
     coordonnee position;
@@ -67,11 +91,13 @@ struct Classe
     Image_interface hud;
     Image_interface orbe_vie;
     Image_interface orbe_foi;
-    Image_interface plus_button;
-    Image_interface plus_button_on;
+
+    Bouton_pressoire plus_button[5];
+
     Image_interface scroll_button;
-    Image_interface sort_inventory;
-    Image_interface sort_inventory_on;
+
+    Bouton_pressoire sort_inventory;
+
     Image_interface talk;
     Image_interface bullet_on;
     Image_interface bullet_off;
@@ -82,8 +108,9 @@ struct Classe
     Image_interface soul_bar;
     Image_interface hud_pt_caract_rest;
     Image_interface hud_pt_miracle_rest;
-    Image_interface miracles_plus_button;
-    Image_interface miracles_plus_button_on;
+
+    std::vector <Bouton_pressoire> miracles_plus_button;
+
     Image_interface miracles_cadre;
     Image_interface barre_vie_monstre;
     Image_interface barre_vie_monstre_vide;

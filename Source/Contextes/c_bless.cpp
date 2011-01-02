@@ -136,7 +136,8 @@ void c_Bless::Utiliser(Jeu *jeu)
             eventManager->StopEvenement(Mouse::Left,EventClic);
     }
 
-    if (eventManager->getEvenement(Mouse::Left,EventClic))
+    if (eventManager->getEvenement(Mouse::Left,EventClic)
+     && !jeu->hero.m_classe.sort_inventory.m_hover)
     {
         if (jeu->hero.PrendreEnMain(&m_trader, false, true))
             if (jeu->hero.m_objetADeposer>=0)

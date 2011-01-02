@@ -41,6 +41,66 @@ bool Bouton::Survol()
     return (false);
 }
 
+bool Bouton_pressoire::Survol()
+{
+    if(eventManager->getPositionSouris().x > AutoScreenAdjust(position.x,0).x
+    && eventManager->getPositionSouris().x < AutoScreenAdjust(position.x,0).x + position.w
+    && eventManager->getPositionSouris().y > AutoScreenAdjust(0,position.y).y
+    && eventManager->getPositionSouris().y < AutoScreenAdjust(0,position.y).y + position.h)
+        return (true);
+
+    return (false);
+}
+
+sf::Sprite Bouton_pressoire::Afficher(float decalage)
+{
+    sf::Sprite sprite;
+    sprite.SetImage(*moteurGraphique->getImage(image.image));
+
+    sprite.SetSubRect(sf::IntRect(  image.position.x, image.position.y,
+                                    image.position.w, image.position.h));
+
+    sprite.Resize(position.w,position.h);
+
+    sprite.SetPosition(AutoScreenAdjust(position.x,0).x,
+                       AutoScreenAdjust(0,position.y - decalage).y);
+
+    bool hover = false;
+
+    if(Survol())
+        if(sprite.GetPixel(eventManager->getPositionSouris().x - (int)sprite.GetPosition().x,
+                           eventManager->getPositionSouris().y - (int)sprite.GetPosition().y).a > 0)
+            hover = true;
+
+    if(!eventManager->getEvenement(sf::Mouse::Left,EventClicA))
+        m_hover = hover;
+
+    if(hover && m_press && !eventManager->getEvenement(sf::Mouse::Left,EventClicA))
+        m_press = false, m_action = true,
+        moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
+
+    if(hover && m_hover && eventManager->getEvenement(sf::Mouse::Left,EventClicA))
+        m_press = true;
+
+    if(!eventManager->getEvenement(sf::Mouse::Left,EventClicA))
+        m_press = false;
+
+    if(m_hover)
+    {
+        sprite.SetImage(*moteurGraphique->getImage(image_hover.image));
+        sprite.SetSubRect(sf::IntRect(  image_hover.position.x, image_hover.position.y,
+                                        image_hover.position.w, image_hover.position.h));
+    }
+    if(m_press)
+    {
+        sprite.SetImage(*moteurGraphique->getImage(image_press.image));
+        sprite.SetSubRect(sf::IntRect(  image_press.position.x, image_press.position.y,
+                                        image_press.position.w, image_press.position.h));
+    }
+
+    return sprite;
+}
+
 void                ChargerImageInterface(ifstream &fichier, Image_interface &image_interface)
 {
     char            caractere;
@@ -194,6 +254,74 @@ void                ChargerBouton(ifstream &fichier, std::vector <Bouton> &bouto
                     break;
                 case 'i' :
                         ChargerImageInterface(fichier, bouton.back().image);
+                        fichier.get(caractere);
+                    break;
+
+                }
+
+                if (fichier.eof())
+                {
+                    console->Ajouter("Erreur : Classe Invalide",1);
+                    caractere='$';
+                }
+            }
+            while (caractere!='$');
+            fichier.get(caractere);
+        }
+        if (fichier.eof())
+        {
+            console->Ajouter("Erreur : Classe Invalide",1);
+            caractere='$';
+        }
+
+    }
+    while (caractere!='$');
+}
+
+
+void                ChargerBouton(ifstream &fichier, Bouton_pressoire &bouton)
+{
+    char            caractere;
+    std::string     string;
+    do
+    {
+        fichier.get(caractere);
+        if (caractere=='*')
+        {
+            do
+            {
+                fichier.get(caractere);
+                switch (caractere)
+                {
+                case 'm' :
+
+                    int no;
+                    fichier>>no;
+                    bouton.nom = configuration->getText(0, no);
+
+                    break;
+                case 'x' :
+                    fichier>>bouton.position.x;
+                    break;
+                case 'y' :
+                    fichier>>bouton.position.y;
+                    break;
+                case 'w' :
+                    fichier>>bouton.position.w;
+                    break;
+                case 'h' :
+                    fichier>>bouton.position.h;
+                    break;
+                case 'i' :
+
+                        fichier.get(caractere);
+
+                        if(caractere == 'n')
+                            ChargerImageInterface(fichier, bouton.image);
+                        else if(caractere == 'h')
+                            ChargerImageInterface(fichier, bouton.image_hover);
+                        else if(caractere == 'p')
+                            ChargerImageInterface(fichier, bouton.image_press);
                         fichier.get(caractere);
                     break;
 
@@ -526,11 +654,18 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
         ChargerImageInterface(fichier, hud);
         ChargerImageInterface(fichier, orbe_vie);
         ChargerImageInterface(fichier, orbe_foi);
-        ChargerImageInterface(fichier, plus_button);
-        ChargerImageInterface(fichier, plus_button_on);
+
+        ChargerBouton(fichier, plus_button[0]);
+
+        plus_button[1] = plus_button[0];
+        plus_button[2] = plus_button[0];
+        plus_button[3] = plus_button[0];
+        plus_button[4] = plus_button[0];
+
         ChargerImageInterface(fichier, scroll_button);
-        ChargerImageInterface(fichier, sort_inventory);
-        ChargerImageInterface(fichier, sort_inventory_on);
+
+        ChargerBouton(fichier, sort_inventory);
+
         ChargerImageInterface(fichier, talk);
         ChargerImageInterface(fichier, bullet_off);
         ChargerImageInterface(fichier, bullet_on);
@@ -541,8 +676,10 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
         ChargerImageInterface(fichier, soul_bar);
         ChargerImageInterface(fichier, hud_pt_caract_rest);
         ChargerImageInterface(fichier, hud_pt_miracle_rest);
-        ChargerImageInterface(fichier, miracles_plus_button);
-        ChargerImageInterface(fichier, miracles_plus_button_on);
+
+        miracles_plus_button.push_back(Bouton_pressoire ());
+        ChargerBouton(fichier, miracles_plus_button.front());
+
         ChargerImageInterface(fichier, miracles_cadre);
         ChargerImageInterface(fichier, barre_vie_monstre);
         ChargerImageInterface(fichier, barre_vie_monstre_vide);
@@ -704,6 +841,13 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
                     }
                 }
                 while (caractere!='$');
+
+                miracles_plus_button.back().position.x = position_miracles.back().x + miracles_plus_button.front().position.x;
+                miracles_plus_button.back().position.y = position_miracles.back().y + miracles_plus_button.front().position.y;
+
+
+                miracles_plus_button.push_back(Bouton_pressoire ());
+                miracles_plus_button.back() = miracles_plus_button.front();
 
                 miracles.back().m_buf = buf;
 

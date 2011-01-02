@@ -108,8 +108,6 @@ public:
     void GererBless();
     void GererCraft(std::vector<Objet>*);
 
-    void GererBoutonsInventaire();
-
     bool PossibleEquiper(int numero, int emplacement);
     bool PossibleEquiper(Objet  &, int emplacement);
     bool Equiper(int numero, int emplacement);
@@ -154,7 +152,7 @@ public:
     //cDAT m_fichierSave;
     std::vector<std::string> m_contenuSave;
 
-    int m_defilement_trader,m_max_defilement_trader,m_buttonPointe;
+    int m_defilement_trader,m_max_defilement_trader;
     Raccourci m_raccourcis[8];
 
     int m_quetePointee, m_queteSelectionnee;
