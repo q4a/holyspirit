@@ -363,6 +363,14 @@ void MoteurGraphique::Afficher()
         LightManager->Draw(&m_light_screen,&temp);
 
         m_light_screen.Display();
+
+        EffectBlur.SetParameter("direction_x", 1.0);
+        sf::Sprite buf;
+        buf.SetImage(m_light_screen.GetImage());
+        m_light_screen.SetView(m_light_screen.GetDefaultView());
+        m_light_screen.Draw(buf, EffectBlur);
+        m_light_screen.Display();
+       EffectBlur.SetParameter("direction_x", 0);
     }
 
     if(configuration->Reflection)
