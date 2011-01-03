@@ -52,10 +52,10 @@ Salut à toi mon fils. Tu dois venir d'un pays bien lointain pour errer dans un t
 Où suis-je ?
 Tu es dans l'abbaye de Saint Clodomir. Par les temps qui courent c'est l'un des rares lieux de la contrée où on trouve un peu de calme. Et encore... Même ici il se trame des diableries !
 Des diableries ?
-Oui, parfaitement, des diableries. Mes frères moines on un comportement étrange, parfois malsain et certains ont mystérieusement disparu... J'entends des bruits dans les catacombes sous l'abbaye la nuit. J'ai d'abord cru au bruit du vent, puis j'ai dû m'y résoudre : ce sont des incantations, des gémissements troublants parfois... J'ai peur, je dois l'avouer, et la seule solution que j'ai trouvée est de fermer la porte qui y mène. Mais il faudra bien que quelqu'un aille voir ce qui se trame là-bas... Je suis inquiet pour mes moines !
+Oui, parfaitement, des diableries. Mes frères moines on un comportement étrange, parfois malsain, et certains ont mystérieusement disparu... J'entends des bruits dans les catacombes sous l'abbaye la nuit. J'ai d'abord cru à des bêtes sauvages qui se seraient introduites mais je ne sais plus que penser... J'ai peur, je dois l'avouer, et la seule solution que j'ai trouvée est de fermer la porte qui y mène. Mais il faudra bien que quelqu'un aille voir ce qui se passe là-bas... Je suis inquiet pour mes moines !
 Voulez-vous que j'aille voir ?
-Oh ! Je n'osais pas demander... J'ai quelques scrupules à t'envoyer là-bas en solitaire, mais nous ne sommes pas des combattants vois-tu... Mais si tu as besoin d'aide je ferai ce que je peux ! Tiens, prends la clef des catacombes et bonne chance, Dieu t'assistera !
-C'est bien ce qu'il me semblait ! Il se tramait des choses monstrueuses derrière cette porte... Décidément nous sommes cernés par le mal ! Il est dehors, il est sous nos pieds ! Est-ce que le ciel lui-même est vraiment bienveillant pour nous, pauvres misérables humains ? \AJOUTER A AMELIORER\Tu va devoir trouver 4 reliques de Saints afin d'accomplir le rituel. Tu pourras en trouver 3 dans les catacombes, ainsi qu'une autre dans le mausolée, à l'extérieur de l'Abbaye.\Tiens, prends la clé te permettant de t'enfoncer plus profondément dans les catacombes.\Que Dieu te garde.
+Oh ! Je n'osais pas demander... J'ai quelques scrupules à t'envoyer là-bas en solitaire, mais nous ne sommes pas des combattants vois-tu... Mais si tu as besoin d'aide je ferai ce que je peux ! Tiens, prends la clef des catacombes et bonne chance, Dieu t'assistera !\Reviens vite me raconter ce que tu as vu.
+C'est bien ce qu'il me semblait ! Il se déroulait des choses monstrueuses derrière cette porte... Décidément nous sommes cernés par le mal ! Il est dehors, il est sous nos pieds ! Est-ce que le ciel lui-même est vraiment bienveillant pour nous, pauvres misérables humains ?\Reprenons-nous... Si le mal s'est introduit dans les catacombes, c'est qu'il est certainement d'abord entré dans la crypte de l'Eglise de Saint Waldinghe qui communique avec nos catacombes.\Pour ouvrir la crypte il faut trouver les reliques des quatre saints qui sont dispersées dans les catacombes et les placer sur une statue située à l'entrée de la crypte. Ensuite il faudra y escorter Frère Alcuin pour prononcer une litanie.\Pour l'instant va chercher les reliques ! Ca fait très longtemps que personne n'est allé les voir et nous avons perdu les plans des catacombes...\Tu devras trouver l'oreille de Sainte Frénégonde, le cœur de Saint Joachim, les yeux de Sainte Galswinthe et le doigt de Saint Clodomir. Bonne chance !
 Enfin, tu as trouvé la source du mal ! Me voilà rassuré, mais pas tant que ça... Le monde entier semble envahi par cette fange répugnante de morts-vivants et d'objets mystérieusement animés... je crois que la fin de cette période chaotique est encore loin hélas !
 Je cherche des armes.
 Tu peux demander à Rognorak, notre forgeron qui s'est réfugié avec nous dans ce lieu saint. C'est un grand gaillard sympathique, il continue à forger des armes même si ça ne sert plus à rien, il dit que ça l'occupe en attendant la fin du monde.
@@ -64,8 +64,8 @@ Pourriez-vous me bénir un objet ?
 Au revoir !
 Nous comptons tous sur toi mon fils ! Eradique ces horreurs de notre chère terre !
 Que me veux-tu, femme ?
-ATTENTION A CHANGER ROGER//J'ai retrouvé le journal du moinde Redimus. Celui-ci raconte que des créatures rodent dans les catacombes.
-ATTENTION A CHANGER ROGER//J'ai trouvé 4 reliques de Saints. Que dois-je faire maintenant ?
+J'ai vu des squelettes dans les catacombes !
+J'ai les reliques.
 Bien ! Maintenant tu va devoir escorter un Frère jusqu'au coeur des catacombes : l'Oculus. Là, il pourra effectuer un rituel de purification grâce aux reliques que tu as rapportées.
 
 
@@ -78,16 +78,16 @@ Bien ! Maintenant tu va devoir escorter un Frère jusqu'au coeur des catacombes :
 
 
 ///FERMIER///
-Bien le bonjour guerrier !\Je suis coincé ici depuis qu'il m'est arrivé une chose bien gênante : on dirait que les cailloux de mon muret ont pris vie ! Au début j'ai crû que c'était ma pauvre cervelle qui me jouait des tours quand je les ai vu bouger mais, foi de fonctionnaire, l'un d'eux s'est jeté sur moi pour m'attaquer ! Un caillou ! Attaquer un fonctionnaire ! N'est-ce pas honteux ?\Débarrasse-moi d'eux et je serai généreux avec toi, tu m'as l'air d'avoir besoin d'argent...\Ma maison se trouve au Nord Ouest d'ici, au croisement de la route. 
-Hum, bonjour mademoiselle,\Je suis bien ennuyé, des créatures étranges ont envahi mon muret, et elles ressemblent à s'y méprendre à de la pierre ! Au début j'ai crû que c'était ma pauvre cervelle qui me jouait des tours quand je les ai vu bouger mais, foi de fonctionnaire, l'une d'elles s'est jetée sur moi pour m'attaquer.\Si vous connaissez quelqu'un qui pourrait m'en débarrasser je vous en serais reconnaissant, j'ai une petite somme sur moi en récompense...\Ma maison se trouve au Nord ouest d'ici, au croisement de la route. 
-J'y vais !
-Je vais y réfléchir, mais j'ai déjà à faire...
-Et bien, qu'est-ce que tu attends pour éliminer ces saletés ?
-Toujours personne d'intéressé ? Il y a une récompense à la clef pourtant ! 
+Crévindiou ! Qu'est-ce que tu fais là mon gars ? T'as l'air d'un estranger mais t'es bien bâti dis donc ! Tu voudrais donc pas m'rendre un service ?
+Ben l'bonjour mamzelle ! Laissez moi deviner : vous v'nez d'la ville non ? C'qui font pas comme chiffons maintenant... Si vous connaissez un gaillard costaud j'aurais besoin d'un service pour m'en retourner dans ma ferme.
+Qui es-tu ?
+J'suis Borlor., d'la ferme du sud. Y faut bien des paysans pour nourrir ce beau monde qui fait rien qu'à prier. D'ailleurs vu c'qui nous tombe sur la gueule y z'on pas dû prier bien fort...\Enfin j'va pas critiquer vu que chui pour ainsi dire réfugié... D'ailleurs j'aurais besoin d'un service, tu te rappelles ?
+Quel service ?
+En fait il y a plein de drôles de créatures partout en ce moment, comme t'as bien dû remarquer. Bon elles sont pas ben solides, souvent un bon coup de bêche entre les deux yeux et on en parle plus !\Mais y a des choses plus coriaces, des sortes de cailloux vivants ! Je les ai vus de mes yeux ! On dirait des cailloux normaux de loin mais y bougent et y t'attaquent si tu t'approches. J'arrive pas à les chasser et je peux plus rentrer chez moi ! Tu veux bien voir ce que tu peux faire ? Je donnerai une bouteille de ma liqueur de navet personnelle à cuy qui chassera ces saloperies de ma maison !
+Je vais voir ce que je peux faire...
+Franchement j'ai mieux à faire  que de m'occuper du muret d'un paysan !
 Merci, vraiment merci... Je vais pouvoir retourner chez moi et me barricader en lieu sûr. En espérant que tous ces monstres disparaissent, comme tout le monde...
-
-
-
+Au revoir !
 
 ///ROMULUS TRADER///
 Bonjour mon gaillard ! N'aurais-tu pas besoin de quelque chose ? Je vends de tout, excepté des objets sacrés - par respect pour l'Abbé - et des armes - depuis que Rognorak m'a menacé de me faire avaler une hache.
@@ -102,7 +102,7 @@ Je cherche des armes.
 Faut demander à Rognorak, le gars pas commode là-bas. Il m'a interdit de vendre des armes sous peine de mort. Comme si les menaces de l'extérieur ne suffisaient pas ! Tu parles d'un commerçant...
 On fait affaire ?
 J'ai ton tabac !
-Ahhh ! Dans mes bras mon ami ! Mon bon tabac ! tiens, allez pour la peine je t'en donne un peu comme promis ! Utilises le avec modération, il est assez fort et ses effets sont imprévisibles. Tu en a là pour dix prises environ. Merci encore, avec cette livre je ne verrai pas passer les prochaines semaines !
+Ahhh ! Dans mes bras mon ami ! Mon bon tabac ! Tiens, allez pour la peine je t'en donne un peu comme promis ! Utilises le avec modération, il est assez fort et ses effets sont imprévisibles. Tu en a là pour dix prises environ. Merci encore, avec cette livre je ne verrai pas passer les prochaines semaines !
 Au revoir !
 
 
@@ -127,8 +127,8 @@ Alors mademoiselle, on revient voir le forgeron ? On n'a pas froid aux yeux, hei
 RETOUR INQUISITEUR
 RETOUR PISTOLERO
 Que fais-tu ?
-Là ? Tout de suite ? Mais je m'emmerde ! Voilà, parfaitement, je m'ennuie à un tel point que ça pourrait me rendre méchant... Tu sais quoi ? J'en suis à un tel point de désoeuvrement que si tu me donnes de quoi bricoler une arme je te la fais gratuitement, juste pour le plaisir. Tu me trouves un morceau de fer, du bois ou n'importe quel matériau, un schéma de ce que tu veux et je verrai ce que je peux faire. Et tiens, je te propose même de concevoir cet objet là !
-
+Là ? Tout de suite ? Mais je m'emmerde ! Voilà, parfaitement, je m'ennuie à un tel point que ça pourrait me rendre méchant... Tu sais quoi ? J'en suis à un tel point de désoeuvrement que si tu me donnes de quoi bricoler une arme je te la fais gratuitement, juste pour le plaisir. \Si tu veux j'ai un vieux plan d'épée que je traine depuis des lustres. Trouve-moi trois livres de métal et je te la forge en un clin d'oeil. Elle sera toujours mieux que la camelote habituelle que vend Romulus. Enfin qu'il vendait, avant que je lui souffle dans les bronches ! Ah ah ah !
+Là ? Tout de suite ? Mais je m'emmerde ! Voilà, parfaitement, je m'ennuie à un tel point que ça pourrait me rendre méchant... Tu sais quoi ? J'en suis à un tel point de désoeuvrement que si tu me donnes de quoi bricoler une arme je te la fais gratuitement, juste pour le plaisir. \Si tu veux j'ai le plan d'une machine sophistiquée que je traine depuis des lustres. Trouve-moi une livre de métal et un solide morceau de bois et je te la fabrique dans la foulée. C'est un cadeau de ma part, parce que j'aime les jolies demoiselles !
 
 
 

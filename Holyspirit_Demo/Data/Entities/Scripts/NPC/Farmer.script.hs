@@ -18,7 +18,34 @@ main
 				variable * 6 * 1
 				variable * 3 * 1
 				variable * 2 * 0
+				stop_speak
+			end
+			if speak_choice * 2
+			then
+				variable * 6 * 2
+				variable * 3 * 2
+				variable * 2 * 0
 				
+				stop_speak
+			end
+			if speak_choice * 3
+			then
+				variable * 6 * 3
+				variable * 3 * 3
+				variable * 2 * 0
+				
+				stop_speak
+				stop_talk
+			end
+		end
+		
+		if variable * 3 * 2
+		then
+			if speak_choice * 1
+			then
+				variable * 6 * 1
+				variable * 3 * 4
+				variable * 2 * 0
 				
 				newQuest * 4 
 				setQuestName * 4 * 21
@@ -47,6 +74,7 @@ main
 				then
 					setState * 1 * 9
 				end
+				
 				if quest * 4 * -1
 				then
 					if player_class " Data/Miscs/Heroes/Concubine/Concubine.class.hs"
@@ -62,30 +90,57 @@ main
 					then
 						if player_class " Data/Miscs/Heroes/Concubine/Concubine.class.hs"
 						then
-							speak * 85
+							speak * 81
 						end
 						if player_class " Data/Miscs/Heroes/Crusader/Crusader.class.hs"
 						then
-							speak * 84
+							speak * 80
 						end
 					end
 					if quest * 4 * 2
 					then
-						speak * 86
+						speak * 88
 					end
 				end
 			end
 			variable * 5 * 1
 		end
 		
+		if variable * 3 * 1
+		then
+			speak * 83
+			variable * 3 * 0
+		end
+		
+		if variable * 3 * 2
+		then
+			speak * 85
+		end
+		
+		if variable * 2 * 0
+		   variable * 3 * 2
+		then
+			speak_choice * 86 * 1
+			speak_choice * 87 * 2
+			
+			variable * 2 * 1
+		end
+		
 		if variable * 2 * 0
 		   variable * 3 * 0
 		then
+		
+			if variable * 6 * 1
+			then  else
+				speak_choice * 82 * 1
+			end
+			
 			if quest * 4 * -1
 			then
-				speak_choice * 82 * 1
-				speak_choice * 83 * 2
+				speak_choice * 84 * 2
 			end
+			
+			speak_choice * 89 * 3
 			
 			variable * 2 * 1
 		end

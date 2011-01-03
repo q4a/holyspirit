@@ -113,7 +113,15 @@ main
 		if variable * 2 * 0
 		   variable * 3 * 3
 		then
-			speak * 129
+			if player_class " Data/Miscs/Heroes/Concubine/Concubine.class.hs"
+			then
+				speak * 130
+				giftItem * 1
+			else
+				speak * 129
+				giftItem * 0
+			end
+		
 			variable * 3 * 0
 			
 			newQuest * 2 

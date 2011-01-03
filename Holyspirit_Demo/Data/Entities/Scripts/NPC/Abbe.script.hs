@@ -48,7 +48,7 @@ main
 			if speak_choice * 2
 			then
 				variable * 6 * 2
-				variable * 3 * 4
+				variable * 3 * 6
 				variable * 2 * 0
 				stop_speak
 			end
@@ -197,7 +197,7 @@ main
 		end
 		
 		if variable * 2 * 0
-		   variable * 3 * 4
+		   variable * 3 * 6
 		then
 			speak * 60
 			variable * 3 * 0

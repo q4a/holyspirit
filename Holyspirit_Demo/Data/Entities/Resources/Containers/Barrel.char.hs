@@ -8,7 +8,10 @@ $
 $
 	*Data/Entities/Scripts/Miscs/Inert.script.hs
 $
-	#ITEMS
+	*
+		*Craft_wood_plank.item.hs
+		r20000
+	$
 $
 	*Data/Entities/Particles/Wood_barrel.ps.hs
 $

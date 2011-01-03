@@ -36,8 +36,8 @@ Minerai de fer
 Le minerai de fer est un matériau\de base pour la fabrication\d'armes et armures.
 Anneau
 Un petit anneau sertit d'une pierre.
-
-
+Planche en bois
+Les planches de bois sont un matériau\de base pour la fabrication\d'armes et armures.
 
 
 Petit bouclier
@@ -146,3 +146,7 @@ Le coeur de Saint Joachim
 L'oeil de Sainte Galswinthe
 
 
+Schéma : Epée courte
+Schéma expliquant la conception d'une épée courte.
+Schéma : Arbalète de poing
+Schéma expliquant la conception d'une arbalète de poing.

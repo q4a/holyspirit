@@ -9,7 +9,7 @@ Ombre ténébreuse
 Prêtre démoniaque
 Milice Corrompue : Brute
 Errant des roches
-XXXX le fermier
+Borlor le fermier
 Reliquaire
 Molosse décharné
 Paysan zombie

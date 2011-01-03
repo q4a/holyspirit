@@ -20,7 +20,7 @@ L'abbé peut bénir un de mes objets si je lui fournis de l'eau bénite et une lita
 L'abbé a béni un de mes objets.
 
 Le muret diabolique
-Je dois éliminer les créatures qui ont infesté le muret du paysan Lothaire.
+Je dois éliminer les créatures qui ont infesté le muret de la ferme de Borlor
 Toutes les créatures ont été éliminées.
 
 L'aubergiste assiégé

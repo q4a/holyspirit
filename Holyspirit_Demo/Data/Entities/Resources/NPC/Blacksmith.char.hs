@@ -8,7 +8,15 @@ $
 $
 	*Data/Entities/Scripts/NPC/Blacksmith.script.hs
 $
-	#ITEMS
+	
+	*
+		*Drawing_sword_1h_small_sword.item.hs
+		r-1
+	$
+	*
+		*Drawing_crossbow_crossbow.item.hs
+		r-1
+	$
 $
 $
 $
