@@ -491,7 +491,7 @@
 	"monstre.h"
 	"quete.h"
 
-1293971351 e:\c++\holyspirit\source\entites\classe.h
+1294054439 e:\c++\holyspirit\source\entites\classe.h
 	"miracle.h"
 
 1263653913 "
@@ -635,7 +635,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1293990801 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
+1294054439 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -681,7 +681,7 @@
 	"case.h"
 	<iostream>
 
-1293971705 source:e:\c++\holyspirit\source\entites\classe.cpp
+1294054439 source:e:\c++\holyspirit\source\entites\classe.cpp
 	"classe.h"
 	"../globale.h"
 	<sstream>

@@ -400,35 +400,6 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
                                                                          19,0,12,sf::Color(224,224,224),1);
     }
 
-
-    if(caracteristique.pts_restant > 0)
-    {
-        Sprite sprite;
-
-        sprite.SetImage(*moteurGraphique->getImage(classe->hud_pt_caract_rest.image));
-        sprite.Resize(classe->hud_pt_caract_rest.position.w,
-                      classe->hud_pt_caract_rest.position.h);
-
-        sprite.SetX(classe->hud_pt_caract_rest.position.x + (configuration->Resolution.x - 800) * 0.5);
-        sprite.SetY(classe->hud_pt_caract_rest.position.y + (configuration->Resolution.y - 600));
-
-        moteurGraphique->AjouterCommande(&sprite,17,0);
-    }
-
-    if(caracteristique.miracles_restant > 0 )
-    {
-        Sprite sprite;
-
-        sprite.SetImage(*moteurGraphique->getImage(classe->hud_pt_miracle_rest.image));
-        sprite.Resize(classe->hud_pt_miracle_rest.position.w,
-                      classe->hud_pt_miracle_rest.position.h);
-
-        sprite.SetX(classe->hud_pt_miracle_rest.position.x + (configuration->Resolution.x - 800) * 0.5);
-        sprite.SetY(classe->hud_pt_miracle_rest.position.y + (configuration->Resolution.y - 600));
-
-        moteurGraphique->AjouterCommande(&sprite,17,0);
-    }
-
     if (type==1 && caracteristiqueMonstre.maxVie > 1)
     {
         Sprite sprite,sprite2;

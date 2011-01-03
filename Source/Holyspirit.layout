@@ -38,7 +38,7 @@
 		<Cursor position="2457" topLine="30" />
 	</File>
 	<File name="Contextes\c_jeu.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="6484" topLine="242" />
+		<Cursor position="20692" topLine="532" />
 	</File>
 	<File name="Contextes\c_jeu.h" open="0" top="0" tabpos="4">
 		<Cursor position="4003" topLine="106" />
@@ -86,10 +86,10 @@
 		<Cursor position="905" topLine="9" />
 	</File>
 	<File name="Entites\classe.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="26702" topLine="832" />
+		<Cursor position="20432" topLine="662" />
 	</File>
-	<File name="Entites\classe.h" open="0" top="0" tabpos="3">
-		<Cursor position="1460" topLine="50" />
+	<File name="Entites\classe.h" open="1" top="0" tabpos="13">
+		<Cursor position="2576" topLine="92" />
 	</File>
 	<File name="Entites\hero.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="30179" topLine="924" />
@@ -161,7 +161,7 @@
 		<Cursor position="9047" topLine="186" />
 	</File>
 	<File name="Map\map_scripts.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="5752" topLine="150" />
+		<Cursor position="24008" topLine="459" />
 	</File>
 	<File name="Map\tile.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="2339" topLine="71" />
@@ -214,7 +214,7 @@
 	<File name="Moteurs\modeleMoteurParticule.h" open="0" top="0" tabpos="16">
 		<Cursor position="841" topLine="21" />
 	</File>
-	<File name="Moteurs\moteurGraphique.cpp" open="1" top="1" tabpos="8">
+	<File name="Moteurs\moteurGraphique.cpp" open="1" top="0" tabpos="8">
 		<Cursor position="14955" topLine="346" />
 	</File>
 	<File name="Moteurs\moteurGraphique.h" open="0" top="0" tabpos="15">
@@ -262,8 +262,8 @@
 	<File name="main.h" open="0" top="0" tabpos="77">
 		<Cursor position="445" topLine="0" />
 	</File>
-	<File name="menu.cpp" open="0" top="0" tabpos="7">
-		<Cursor position="7457" topLine="186" />
+	<File name="menu.cpp" open="1" top="1" tabpos="14">
+		<Cursor position="17875" topLine="381" />
 	</File>
 	<File name="menu.h" open="0" top="0" tabpos="6">
 		<Cursor position="2548" topLine="75" />

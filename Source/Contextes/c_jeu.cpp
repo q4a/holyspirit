@@ -642,46 +642,6 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false)
         jeu->menu.ClearSpeakChoice();
     }
 
-    if(jeu->hero.m_caracteristiques.pts_restant > 0)
-    if (eventManager->getPositionSouris().x > AutoScreenAdjust(jeu->hero.m_classe.hud_pt_caract_rest.position.x,0).x
-     && eventManager->getPositionSouris().x < AutoScreenAdjust(jeu->hero.m_classe.hud_pt_caract_rest.position.x
-                                                             + jeu->hero.m_classe.hud_pt_caract_rest.position.w,0).x
-     && eventManager->getPositionSouris().y > AutoScreenAdjust(0,jeu->hero.m_classe.hud_pt_caract_rest.position.y).y
-     && eventManager->getPositionSouris().y < AutoScreenAdjust(0,jeu->hero.m_classe.hud_pt_caract_rest.position.y
-                                                               + jeu->hero.m_classe.hud_pt_caract_rest.position.h).y)
-    {
-        if(eventManager->getEvenement(Mouse::Left,EventClicA))
-        {
-            eventManager->StopEvenement(Mouse::Left,EventClicA);
-            eventManager->StopEvenement(Mouse::Left,EventClic);
-            return 2;
-        }
-
-        moteurGraphique->AjouterTexte(configuration->getText(0,43),coordonnee(eventManager->getPositionSouris().x,
-                                      eventManager->getPositionSouris().y - 20),
-                                      19,0,12,sf::Color(224,224,224),1);
-    }
-
-    if(jeu->hero.m_caracteristiques.miracles_restant > 0)
-    if (eventManager->getPositionSouris().x > AutoScreenAdjust(jeu->hero.m_classe.hud_pt_miracle_rest.position.x,0).x
-     && eventManager->getPositionSouris().x < AutoScreenAdjust(jeu->hero.m_classe.hud_pt_miracle_rest.position.x
-                                                             + jeu->hero.m_classe.hud_pt_miracle_rest.position.w,0).x
-     && eventManager->getPositionSouris().y > AutoScreenAdjust(0,jeu->hero.m_classe.hud_pt_miracle_rest.position.y).y
-     && eventManager->getPositionSouris().y < AutoScreenAdjust(0,jeu->hero.m_classe.hud_pt_miracle_rest.position.y
-                                                               + jeu->hero.m_classe.hud_pt_miracle_rest.position.h).y)
-    {
-        if(eventManager->getEvenement(Mouse::Left,EventClicA))
-        {
-            eventManager->StopEvenement(Mouse::Left,EventClicA);
-            eventManager->StopEvenement(Mouse::Left,EventClic);
-            return 5;
-        }
-
-        moteurGraphique->AjouterTexte(configuration->getText(0,43),coordonnee(eventManager->getPositionSouris().x,
-                                      eventManager->getPositionSouris().y - 20),
-                                      19,0,12,sf::Color(224,224,224),1);
-    }
-
     return -1;
 }
 

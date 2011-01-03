@@ -674,8 +674,6 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
         ChargerImageInterface(fichier, craft);
         ChargerImageInterface(fichier, icone_mm);
         ChargerImageInterface(fichier, soul_bar);
-        ChargerImageInterface(fichier, hud_pt_caract_rest);
-        ChargerImageInterface(fichier, hud_pt_miracle_rest);
 
         miracles_plus_button.push_back(Bouton_pressoire ());
         ChargerBouton(fichier, miracles_plus_button.front());

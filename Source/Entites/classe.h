@@ -106,8 +106,6 @@ struct Classe
     Image_interface craft;
     Image_interface icone_mm;
     Image_interface soul_bar;
-    Image_interface hud_pt_caract_rest;
-    Image_interface hud_pt_miracle_rest;
 
     std::vector <Bouton_pressoire> miracles_plus_button;
 
