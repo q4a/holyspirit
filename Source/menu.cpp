@@ -311,7 +311,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
 
         moteurGraphique->AjouterTexte(buf.str(),coordonnee(eventManager->getPositionSouris().x,
                                                                          eventManager->getPositionSouris().y - 20),
-                                                                         19,0,12,sf::Color(224,224,224),1);
+                                                                         classe->border,19,0,12,sf::Color(224,224,224));
     }
 
     if (caracteristique.foi>0)
@@ -363,7 +363,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
 
         moteurGraphique->AjouterTexte(buf.str(),coordonnee(eventManager->getPositionSouris().x,
                                                                          eventManager->getPositionSouris().y - 20),
-                                                                         19,0,12,sf::Color(224,224,224),1);
+                                                                         classe->border,19,0,12,sf::Color(224,224,224));
     }
 
 
@@ -397,7 +397,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
 
         moteurGraphique->AjouterTexte(buf.str(),coordonnee(eventManager->getPositionSouris().x,
                                                                          eventManager->getPositionSouris().y - 20),
-                                                                         19,0,12,sf::Color(224,224,224),1);
+                                                                         classe->border,19,0,12,sf::Color(224,224,224));
     }
 
     if (type==1 && caracteristiqueMonstre.maxVie > 1)
@@ -445,7 +445,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
     {
         coordonnee pos =  eventManager->getPositionSouris();
         pos.y -= 18;
-        moteurGraphique->AjouterTexte(caracteristiqueMonstre.nom, pos, 20, 0, 14, sf::Color(224,224,224), true);
+        moteurGraphique->AjouterTexte(caracteristiqueMonstre.nom, pos, classe->border,20, 0, 14, sf::Color(224,224,224));
     }
 }
 

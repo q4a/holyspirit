@@ -76,8 +76,8 @@ void MoteurGraphique::CreateNewWindow()
     else
         m_ecran.Create(sf::VideoMode(configuration->Resolution.x, configuration->Resolution.y),"HolySpirit : Act of Faith",sf::Style::Titlebar);
 
-   if (configuration->syncronisation_verticale)
-        m_ecran.UseVerticalSync(true);
+  // if (configuration->syncronisation_verticale)
+    //    m_ecran.UseVerticalSync(true);
 
     m_ecran.ShowMouseCursor(false);
 
@@ -322,6 +322,8 @@ void MoteurGraphique::Afficher()
 
         decalageOmbre=temp.GetCenter();
 
+
+
         m_light_screen2.SetView(temp);
 
         m_light_screen2.Clear(sf::Color(255,255,255,255));
@@ -344,6 +346,16 @@ void MoteurGraphique::Afficher()
         m_light_screen2.Draw(sprite3);
 
         m_light_screen2.Display();
+
+
+
+        EffectBlur2.SetParameter("direction_x", 1.0);
+        sf::Sprite buf;
+        buf.SetImage(m_light_screen2.GetImage());
+        m_light_screen2.SetView(m_light_screen2.GetDefaultView());
+        m_light_screen2.Draw(buf, EffectBlur2);
+        m_light_screen2.Display();
+        EffectBlur2.SetParameter("direction_x", 0);
     }
 
     if (configuration->Lumiere > 0 && configuration->RafraichirLumiere)
@@ -370,7 +382,7 @@ void MoteurGraphique::Afficher()
         m_light_screen.SetView(m_light_screen.GetDefaultView());
         m_light_screen.Draw(buf, EffectBlur);
         m_light_screen.Display();
-       EffectBlur.SetParameter("direction_x", 0);
+        EffectBlur.SetParameter("direction_x", 0);
     }
 
     if(configuration->Reflection)
@@ -865,7 +877,7 @@ void MoteurGraphique::AjouterCommande(sf::Sprite *sprite, int couche, bool camer
         m_commandes[couche].push_back(Commande (sprite,camera));
 }
 
-void MoteurGraphique::AjouterTexte(const std::string &txt, coordonnee pos, int couche, bool titre, int size, sf::Color color, bool fond)
+void MoteurGraphique::AjouterTexte(const std::string &txt, coordonnee pos, Border &border, int couche, bool titre, int size, sf::Color color)
 {
     sf::Text temp;
     temp.SetFont(m_font);
@@ -875,7 +887,15 @@ void MoteurGraphique::AjouterTexte(const std::string &txt, coordonnee pos, int c
     temp.SetColor(color);
     AjouterTexte(&temp, couche, titre);
 
-    if(fond)
+    pos.x -= 2;
+    pos.y -= 2;
+
+    coordonnee s;
+    s.x = (int)temp.GetRect().Width + 5;
+    s.y = (int)temp.GetRect().Height + 4;
+    border.Afficher(pos, s, couche);
+
+    /*if(fond)
     {
         sf::Sprite temp2;
         temp2.SetImage(*getImage(0));
@@ -884,7 +904,18 @@ void MoteurGraphique::AjouterTexte(const std::string &txt, coordonnee pos, int c
                      temp.GetRect().Height + 6);
         temp2.SetColor(sf::Color(0,0,0,224));
         AjouterCommande(&temp2, couche, 0);
-    }
+    }*/
+}
+
+void MoteurGraphique::AjouterTexte(const std::string &txt, coordonnee pos, int couche, bool titre, int size, sf::Color color)
+{
+    sf::Text temp;
+    temp.SetFont(m_font);
+    temp.SetString(txt);
+    temp.SetPosition(pos.x, pos.y);
+    temp.SetCharacterSize(size);
+    temp.SetColor(color);
+    AjouterTexte(&temp, couche, titre);
 }
 
 void MoteurGraphique::AjouterTexteNonChevauchable(sf::Text* string, int couche, bool titre)

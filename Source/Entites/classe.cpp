@@ -101,6 +101,77 @@ sf::Sprite Bouton_pressoire::Afficher(float decalage)
     return sprite;
 }
 
+void Border::Afficher(coordonnee pos, coordonnee size, int couche)
+{
+    sf::Sprite sprite;
+    sprite.SetImage(*moteurGraphique->getImage(image_lu.image));
+    sprite.SetSubRect(sf::IntRect(  image_lu.position.x, image_lu.position.y,
+                                    image_lu.position.w, image_lu.position.h));
+    sprite.SetPosition(pos.x - image_lu.position.w,
+                       pos.y - image_lu.position.h);
+    moteurGraphique->AjouterCommande(&sprite,couche,false);
+
+    sprite.SetImage(*moteurGraphique->getImage(image_ru.image));
+    sprite.SetSubRect(sf::IntRect(  image_ru.position.x, image_ru.position.y,
+                                    image_ru.position.w, image_ru.position.h));
+    sprite.SetPosition(pos.x + size.x ,
+                       pos.y - image_ru.position.h);
+    moteurGraphique->AjouterCommande(&sprite,couche,false);
+
+    sprite.SetImage(*moteurGraphique->getImage(image_ld.image));
+    sprite.SetSubRect(sf::IntRect(  image_ld.position.x, image_ld.position.y,
+                                    image_ld.position.w, image_ld.position.h));
+    sprite.SetPosition(pos.x - image_ld.position.w,
+                       pos.y + size.y);
+    moteurGraphique->AjouterCommande(&sprite,couche,false);
+
+    sprite.SetImage(*moteurGraphique->getImage(image_rd.image));
+    sprite.SetSubRect(sf::IntRect(  image_rd.position.x, image_rd.position.y,
+                                    image_rd.position.w, image_rd.position.h));
+    sprite.SetPosition(pos.x + size.x,
+                       pos.y + size.y);
+    moteurGraphique->AjouterCommande(&sprite,couche,false);
+
+
+
+    sprite.SetImage(*moteurGraphique->getImage(image_u.image));
+    sprite.SetSubRect(sf::IntRect(  image_u.position.x, image_u.position.y,
+                                    image_u.position.w, image_u.position.h));
+    sprite.SetPosition(pos.x,pos.y - image_u.position.h);
+    sprite.Resize(size.x,image_u.position.h);
+    moteurGraphique->AjouterCommande(&sprite,couche,false);
+
+    sprite.SetImage(*moteurGraphique->getImage(image_d.image));
+    sprite.SetSubRect(sf::IntRect(  image_d.position.x, image_d.position.y,
+                                    image_d.position.w, image_d.position.h));
+    sprite.SetPosition(pos.x,pos.y + size.y);
+    sprite.Resize(size.x,image_u.position.h);
+    moteurGraphique->AjouterCommande(&sprite,couche,false);
+
+    sprite.SetImage(*moteurGraphique->getImage(image_l.image));
+    sprite.SetSubRect(sf::IntRect(  image_l.position.x, image_l.position.y,
+                                    image_l.position.w, image_l.position.h));
+    sprite.SetPosition(pos.x - image_l.position.w,pos.y);
+    sprite.Resize(image_l.position.w,size.y);
+    moteurGraphique->AjouterCommande(&sprite,couche,false);
+
+    sprite.SetImage(*moteurGraphique->getImage(image_r.image));
+    sprite.SetSubRect(sf::IntRect(  image_r.position.x, image_r.position.y,
+                                    image_r.position.w, image_r.position.h));
+    sprite.SetPosition(pos.x + size.x,pos.y);
+    sprite.Resize(image_r.position.w,size.y);
+    moteurGraphique->AjouterCommande(&sprite,couche,false);
+
+
+
+    sprite.SetImage(*moteurGraphique->getImage(image_c.image));
+    sprite.SetSubRect(sf::IntRect(  image_c.position.x, image_c.position.y,
+                                    image_c.position.w, image_c.position.h));
+    sprite.SetPosition(pos.x,pos.y);
+    sprite.Resize(size.x,size.y);
+    moteurGraphique->AjouterCommande(&sprite,couche,false);
+}
+
 void                ChargerImageInterface(ifstream &fichier, Image_interface &image_interface)
 {
     char            caractere;
@@ -322,6 +393,83 @@ void                ChargerBouton(ifstream &fichier, Bouton_pressoire &bouton)
                             ChargerImageInterface(fichier, bouton.image_hover);
                         else if(caractere == 'p')
                             ChargerImageInterface(fichier, bouton.image_press);
+                        fichier.get(caractere);
+                    break;
+
+                }
+
+                if (fichier.eof())
+                {
+                    console->Ajouter("Erreur : Classe Invalide",1);
+                    caractere='$';
+                }
+            }
+            while (caractere!='$');
+            fichier.get(caractere);
+        }
+        if (fichier.eof())
+        {
+            console->Ajouter("Erreur : Classe Invalide",1);
+            caractere='$';
+        }
+
+    }
+    while (caractere!='$');
+}
+void                ChargerBorder(ifstream &fichier, Border &border)
+{
+    char            caractere;
+    std::string     string;
+    do
+    {
+        fichier.get(caractere);
+        if (caractere=='*')
+        {
+            do
+            {
+                fichier.get(caractere);
+                switch (caractere)
+                {
+                    case 't' :
+
+                        fichier.get(caractere);
+
+                        if(caractere == 'e')
+                            ChargerImageInterface(fichier, border.image_c);
+                        else if(caractere == 'b')
+                        {
+                            fichier.get(caractere);
+                            if(caractere == 'u')
+                                ChargerImageInterface(fichier, border.image_u);
+                            else if(caractere == 'd')
+                                ChargerImageInterface(fichier, border.image_d);
+                            else if(caractere == 'r')
+                                ChargerImageInterface(fichier, border.image_r);
+                            else if(caractere == 'l')
+                                ChargerImageInterface(fichier, border.image_l);
+                        }
+                        else if(caractere == 'c')
+                        {
+                            fichier.get(caractere);
+
+                            if(caractere == 'r')
+                            {
+                                fichier.get(caractere);
+                                if(caractere == 'u')
+                                    ChargerImageInterface(fichier, border.image_ru);
+                                else if(caractere == 'd')
+                                    ChargerImageInterface(fichier, border.image_rd);
+                            }
+                            else if(caractere == 'l')
+                            {
+                                fichier.get(caractere);
+                                if(caractere == 'u')
+                                    ChargerImageInterface(fichier, border.image_lu);
+                                else if(caractere == 'd')
+                                    ChargerImageInterface(fichier, border.image_ld);
+                            }
+
+                        }
                         fichier.get(caractere);
                     break;
 
@@ -647,6 +795,8 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
             }
             while (caractere!='$');
         }
+
+        ChargerBorder(fichier, border);
 
         ChargerImageInterface(fichier, inventaire);
         ChargerImageInterface(fichier, interface_miracles);

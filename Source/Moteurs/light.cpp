@@ -206,8 +206,8 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std
 
     m_shape.back().SetPosition(m_position.x,m_position.y/2);
 
-    if ( 0>=(pt1.y) - (pt1.x)*(((pt1.y)-(pt2.y))/((pt1.x)-(pt2.x))))
-        if (intensity>1||intensity2>1)
+    if (intensity>1||intensity2>1)
+        if ( 0>=(pt1.y) - (pt1.x)*(((pt1.y)-(pt2.y))/((pt1.x)-(pt2.x))))
         {
             m_shape.push_back(sf::Shape ());
 

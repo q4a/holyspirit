@@ -358,7 +358,7 @@
 
 1263992437 tion.h"
 
-1292346435 e:\c++\holyspirit\source\moteurs\moteurgraphique.h
+1294073322 e:\c++\holyspirit\source\moteurs\moteurgraphique.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -491,8 +491,9 @@
 	"monstre.h"
 	"quete.h"
 
-1294054439 e:\c++\holyspirit\source\entites\classe.h
+1294073427 e:\c++\holyspirit\source\entites\classe.h
 	"miracle.h"
+	"../Moteurs/moteurGraphique.h"
 
 1263653913 "
 
@@ -635,7 +636,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1294054439 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
+1294073372 source:e:\c++\holyspirit\source\contextes\c_jeu.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -654,7 +655,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1285833526 source:e:\c++\holyspirit\source\contextes\c_miracles.cpp
+1294073459 source:e:\c++\holyspirit\source\contextes\c_miracles.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -681,12 +682,12 @@
 	"case.h"
 	<iostream>
 
-1294054439 source:e:\c++\holyspirit\source\entites\classe.cpp
+1294074311 source:e:\c++\holyspirit\source\entites\classe.cpp
 	"classe.h"
 	"../globale.h"
 	<sstream>
 
-1293993776 source:e:\c++\holyspirit\source\entites\hero.cpp
+1294073682 source:e:\c++\holyspirit\source\entites\hero.cpp
 	"../constantes.h"
 	"hero.h"
 	"../globale.h"
@@ -800,7 +801,7 @@
 	"../globale.h"
 	<iostream>
 
-1293195258 source:e:\c++\holyspirit\source\moteurs\light.cpp
+1294069166 source:e:\c++\holyspirit\source\moteurs\light.cpp
 	<iostream>
 	<math.h>
 	"light.h"
@@ -815,7 +816,7 @@
 	"../globale.h"
 	<fstream>
 
-1294000167 source:e:\c++\holyspirit\source\moteurs\moteurgraphique.cpp
+1294074410 source:e:\c++\holyspirit\source\moteurs\moteurgraphique.cpp
 	"moteurGraphique.h"
 	"../globale.h"
 	<iostream>
@@ -858,7 +859,7 @@
 	"jeu.h"
 	"constantes.h"
 
-1293886262 source:e:\c++\holyspirit\source\menu.cpp
+1294073817 source:e:\c++\holyspirit\source\menu.cpp
 	"menu.h"
 	"globale.h"
 	<iostream>
@@ -6823,7 +6824,7 @@
 	<SFML/Config.hpp>
 	<vector>
 
-1293712522 e:\c++\sfml2_test\include\sfml\window\window.hpp
+1294056175 e:\c++\sfml2_test\include\sfml\window\window.hpp
 	<SFML/Window/ContextSettings.hpp>
 	<SFML/Window/Input.hpp>
 	<SFML/Window/VideoMode.hpp>
@@ -6888,7 +6889,7 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Matrix3.hpp>
 
-1293712521 e:\c++\sfml2_test\include\sfml\graphics\drawable.hpp
+1294056175 e:\c++\sfml2_test\include\sfml\graphics\drawable.hpp
 	<SFML/System/Vector2.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Matrix3.hpp>
@@ -6933,7 +6934,7 @@
 	<map>
 	<string>
 
-1293712521 e:\c++\sfml2_test\include\sfml\graphics\shape.hpp
+1294056175 e:\c++\sfml2_test\include\sfml\graphics\shape.hpp
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/System/Vector2.hpp>
 	<vector>

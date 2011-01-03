@@ -31,6 +31,32 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Entite_graphique.h"
 #include "../Map/tileset.h"
 
+
+struct Image_interface
+{
+    coordonnee position;
+    coordonnee centre;
+    int image;
+};
+
+struct Border
+{
+    Image_interface image_l;
+    Image_interface image_r;
+    Image_interface image_u;
+    Image_interface image_d;
+
+    Image_interface image_lu;
+    Image_interface image_ru;
+    Image_interface image_ld;
+    Image_interface image_rd;
+
+    Image_interface image_c;
+
+    void Afficher(coordonnee pos, coordonnee size, int couche);
+};
+
+
 struct Image_moteur
 {
     Image_moteur()
@@ -102,7 +128,8 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	void AjouterEntiteGraphique(Entite_graphique*);
 	void AjouterTexte(sf::Text*, int couche=0,bool titre=false);
 	void AjouterTexteNonChevauchable(sf::Text*, int couche=0,bool titre=false);
-	void AjouterTexte(const std::string &, coordonnee, int couche=0, bool titre=false, int size = 14, sf::Color color = sf::Color(224,224,224), bool fond = false);
+	void AjouterTexte(const std::string &, coordonnee, int couche=0, bool titre=false, int size = 14, sf::Color color = sf::Color(224,224,224));
+	void AjouterTexte(const std::string &, coordonnee, Border &border, int couche=0, bool titre=false, int size = 14, sf::Color color = sf::Color(224,224,224));
 
 	Entite_graphique getEntiteGraphique(int noTileset, int noTile, int couche);
 

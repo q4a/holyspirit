@@ -562,8 +562,9 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false)
         if(bouton->Survol())
         {
             moteurGraphique->AjouterTexte(bouton->nom,coordonnee(eventManager->getPositionSouris().x,
-                                            eventManager->getPositionSouris().y - 20),
-                                            19,0,12,sf::Color(224,224,224),1);
+                                                       eventManager->getPositionSouris().y - 20),
+                                            jeu->hero.m_classe.border,
+                                            19,0,12,sf::Color(224,224,224));
             if(eventManager->getEvenement(Mouse::Left,EventClicA))
             {
                 eventManager->StopEvenement(Mouse::Left,EventClicA);
@@ -770,7 +771,8 @@ void c_Jeu::Evenements(Jeu *jeu)
             jeu->hero.m_objetVise=jeu->map->m_objetPointe;
 
             if (jeu->map->getSacPointe().x!=-1)
-                eventManager->StopEvenement(Mouse::Left,EventClic),jeu->hero.m_personnage.setArrivee(jeu->map->getSacPointe());
+                eventManager->StopEvenement(Mouse::Left,EventClic),
+                jeu->hero.m_personnage.setArrivee(jeu->map->getSacPointe());
         }
 
         if (jeu->hero.getSacVise().x!=-1)
@@ -808,7 +810,7 @@ void c_Jeu::Evenements(Jeu *jeu)
 
                         if(!eventManager->getEvenement(configuration->m_key_actions[K_STAND], EventKey))
                             jeu->hero.m_personnage.m_miracleEnCours.back().m_infos.back()->m_cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine());
-                        else//if(eventManager->getEvenement(configuration->m_key_actions[K_STAND], EventKey))
+                        else
                             jeu->hero.m_personnage.m_miracleEnCours.back().m_forced_maj = true;
 
                         coordonnee positionHero;

@@ -965,7 +965,8 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
          &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height)
             moteurGraphique->AjouterTexte(configuration->getText(0,49),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
-                                          19,0,12,sf::Color(224,224,224),1);
+                                          m_classe.border,
+                                          19,0,12,sf::Color(224,224,224));
     }
 
     {
@@ -982,7 +983,8 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
          &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height)
             moteurGraphique->AjouterTexte(configuration->getText(0,50),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
-                                          19,0,12,sf::Color(224,224,224),1);
+                                          m_classe.border,
+                                          19,0,12,sf::Color(224,224,224));
     }
 
      {
@@ -1000,7 +1002,8 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
          &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height)
             moteurGraphique->AjouterTexte(configuration->getText(0,62),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
-                                          19,0,12,sf::Color(224,224,224),1);
+                                          m_classe.border,
+                                          19,0,12,sf::Color(224,224,224));
     }
 
     string.SetString(configuration->getText(0,3));
@@ -1036,7 +1039,8 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
          &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height)
         moteurGraphique->AjouterTexte(configuration->getText(0,3),coordonnee(   eventManager->getPositionSouris().x,
                                                                                 eventManager->getPositionSouris().y - 20),
-                                      19,0,12,sf::Color(224,224,224),1);
+                                      m_classe.border,
+                                      19,0,12,sf::Color(224,224,224));
 
     string.SetString(configuration->getText(0,4));
     string.SetCharacterSize(14);
@@ -1071,7 +1075,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
          &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height)
         moteurGraphique->AjouterTexte(configuration->getText(0,4),coordonnee(   eventManager->getPositionSouris().x,
                                                                                 eventManager->getPositionSouris().y - 20),
-                                      19,0,12,sf::Color(224,224,224),1);
+                                      m_classe.border,19,0,12,sf::Color(224,224,224));
 
     string.SetCharacterSize(14);
 
@@ -1130,7 +1134,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
      &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height) {
         moteurGraphique->AjouterTexte(configuration->getText(0,90),coordonnee(  eventManager->getPositionSouris().x,
                                                                                 eventManager->getPositionSouris().y - 20),
-                                      19,0,12,sf::Color(224,224,224),1); }
+                                      m_classe.border,19,0,12,sf::Color(224,224,224)); }
 
 
     {
@@ -1190,7 +1194,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
      &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height) {
         moteurGraphique->AjouterTexte(configuration->getText(0,91),coordonnee(  eventManager->getPositionSouris().x,
                                                                                 eventManager->getPositionSouris().y - 20),
-                                      19,0,12,sf::Color(224,224,224),1); }
+                                      m_classe.border,19,0,12,sf::Color(224,224,224)); }
 
 
     {
@@ -1252,7 +1256,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
      &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height) {
         moteurGraphique->AjouterTexte(configuration->getText(0,92),coordonnee(  eventManager->getPositionSouris().x,
                                                                                 eventManager->getPositionSouris().y - 20),
-                                      19,0,12,sf::Color(224,224,224),1); }
+                                      m_classe.border,19,0,12,sf::Color(224,224,224)); }
 
 
     {
@@ -1310,7 +1314,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
      &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height) {
         moteurGraphique->AjouterTexte(configuration->getText(0,93),coordonnee(  eventManager->getPositionSouris().x,
                                                                                 eventManager->getPositionSouris().y - 20),
-                                      19,0,12,sf::Color(224,224,224),1); }
+                                      m_classe.border,19,0,12,sf::Color(224,224,224)); }
 
 
     {
@@ -1370,7 +1374,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
      &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height) {
         moteurGraphique->AjouterTexte(configuration->getText(0,94),coordonnee(  eventManager->getPositionSouris().x,
                                                                                 eventManager->getPositionSouris().y - 20),
-                                      19,0,12,sf::Color(224,224,224),1); }
+                                      m_classe.border,19,0,12,sf::Color(224,224,224)); }
 
     string.SetString(configuration->getText(0,12).c_str());
     string.SetPosition(AutoScreenAdjust(46,516,decalage));
@@ -1484,22 +1488,22 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
          &&eventManager->getPositionSouris().y < AutoScreenAdjust(0,422,decalage).y)
             moteurGraphique->AjouterTexte(configuration->getText(0,44),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
-                                          19,0,14,sf::Color(224,224,224),1);
+                                          m_classe.border,19,0,14,sf::Color(224,224,224));
         if(eventManager->getPositionSouris().y > AutoScreenAdjust(0,432,decalage).y
          &&eventManager->getPositionSouris().y < AutoScreenAdjust(0,450,decalage).y)
             moteurGraphique->AjouterTexte(configuration->getText(0,45),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
-                                          19,0,14,sf::Color(224,224,224),1);
+                                          m_classe.border,19,0,14,sf::Color(224,224,224));
         if(eventManager->getPositionSouris().y > AutoScreenAdjust(0,460,decalage).y
          &&eventManager->getPositionSouris().y < AutoScreenAdjust(0,478,decalage).y)
             moteurGraphique->AjouterTexte(configuration->getText(0,46),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
-                                          19,0,14,sf::Color(224,224,224),1);
+                                          m_classe.border,19,0,14,sf::Color(224,224,224));
         if(eventManager->getPositionSouris().y > AutoScreenAdjust(0,488,decalage).y
          &&eventManager->getPositionSouris().y < AutoScreenAdjust(0,506,decalage).y)
             moteurGraphique->AjouterTexte(configuration->getText(0,47),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
-                                          19,0,14,sf::Color(224,224,224),1);
+                                          m_classe.border,19,0,14,sf::Color(224,224,224));
     }
 
     {
@@ -1518,7 +1522,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
              &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height)
                 moteurGraphique->AjouterTexte(configuration->getText(0,48),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
-                                          19,0,14,sf::Color(224,224,224),1);
+                                          m_classe.border,19,0,14,sf::Color(224,224,224));
     }
 
     {
@@ -1536,7 +1540,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
              &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height)
                 moteurGraphique->AjouterTexte(configuration->getText(0,34),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
-                                          19,0,12,sf::Color(224,224,224),1);
+                                          m_classe.border,19,0,12,sf::Color(224,224,224));
     }
 
 
@@ -1887,7 +1891,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
      && eventManager->getPositionSouris().y > m_classe.position_points_miracles.y + (configuration->Resolution.y - 600)
      && eventManager->getPositionSouris().y < m_classe.position_points_miracles.y + m_classe.position_points_miracles.h + (configuration->Resolution.y - 600))
         moteurGraphique->AjouterTexte(configuration->getText(0,12), coordonnee(eventManager->getPositionSouris().x,
-                                      eventManager->getPositionSouris().y - 20),20,false,12,sf::Color(224,224,224),true);
+                                      eventManager->getPositionSouris().y - 20),m_classe.border,20,false,12,sf::Color(224,224,224));
 
     texte.SetCharacterSize(12);
 
@@ -2685,7 +2689,7 @@ void Hero::AfficherRaccourcis()
                 buf<<configuration->getText(0, 33)<<" ("<<i+1<<")";
                 moteurGraphique->AjouterTexte(buf.str(),coordonnee(eventManager->getPositionSouris().x,
                                               eventManager->getPositionSouris().y - 20),
-                                              19,0,12,sf::Color(224,224,224),1);
+                                              m_classe.border,19,0,12,sf::Color(224,224,224));
             }
         }
     }

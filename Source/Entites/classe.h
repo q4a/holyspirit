@@ -19,13 +19,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define CLASSEH
 
 #include "miracle.h"
-
-struct Image_interface
-{
-    coordonnee position;
-    coordonnee centre;
-    int image;
-};
+#include "../Moteurs/moteurGraphique.h"
 
 struct Bouton
 {
@@ -84,6 +78,8 @@ struct Classe
 
     std::vector<std::string> equipementParDefaut;
     std::string modeleNu[NOMBRE_MORCEAU_PERSONNAGE][3];
+
+    Border border;
 
     Image_interface inventaire;
     Image_interface interface_miracles;
