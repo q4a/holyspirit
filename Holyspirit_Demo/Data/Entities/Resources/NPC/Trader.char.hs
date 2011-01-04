@@ -144,6 +144,18 @@ $
 		*Craft_gem_ruby.item.hs
 		r25000
 	$
+	*
+		*Craft_wood_plank.item.hs
+		r25000
+	$
+	*
+		*Craft_wood_plank.item.hs
+		r25000
+	$
+	*
+		*Craft_wood_plank.item.hs
+		r25000
+	$
 $
 $
 *Data/Miscs/Miracles/Quest/Quest.miracle.hs
