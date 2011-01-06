@@ -376,14 +376,6 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
     if(eventManager->getEvenement(sf::Key::Escape, EventKey))
         no_ecran = E_PRINCIPAL, m_supprimer_heros = false,nom_hero.clear(),jeu->m_no_printscreen = false;
 
-    if(eventManager->getEvenement(Mouse::Left,EventClic)
-    && m_supprimer_heros)
-    {
-        m_supprimer_heros = false;
-        nom_hero.clear();
-        eventManager->StopEvenement(Mouse::Left,EventClic);
-    }
-
     texte.SetString(configuration->getText(0,57));
     texte.SetY((int)configuration->Resolution.h/2 + 192 );
     texte.SetX((int)configuration->Resolution.w/2-texte.GetRect().Width/2);
@@ -404,7 +396,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
     }
     else
         texte.SetColor(Color(150,100,50));
-    moteurGraphique->AjouterTexte(&texte,19,1);
+    moteurGraphique->AjouterTexte(&texte,18,1);
 
     texte.SetCharacterSize(18);
 
@@ -426,7 +418,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
     }
     else
         texte.SetColor(Color(150,100,50));
-    moteurGraphique->AjouterTexte(&texte,19,1);
+    moteurGraphique->AjouterTexte(&texte,18,1);
 
     texte.SetCharacterSize(18);
 
@@ -438,7 +430,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         m_background_hero.SetPosition(configuration->Resolution.w/2 - 331 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3),
                                       configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 224);
 
-        moteurGraphique->AjouterCommande(&m_background_hero,18,0);
+        moteurGraphique->AjouterCommande(&m_background_hero,17,0);
 
 
 
@@ -460,12 +452,12 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
                                       configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 224);
         m_images_saves[i].Resize(160,256);
         m_images_saves[i].SetSubRect(sf::IntRect(48,0,160,256));
-        moteurGraphique->AjouterCommande(&m_images_saves[i],19,0);
+        moteurGraphique->AjouterCommande(&m_images_saves[i],18,0);
 
         m_backtext_hero.SetPosition(configuration->Resolution.w/2 - 331 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3),
                                       configuration->Resolution.h/2 - 256 + 136 + ((int)((i - defilement_saves)/4)) * 224);
 
-        moteurGraphique->AjouterCommande(&m_backtext_hero,19,0);
+        moteurGraphique->AjouterCommande(&m_backtext_hero,18,0);
 
         sf::Text texte_niv;
 
@@ -543,8 +535,8 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         else
             texte.SetColor(Color(150,100,50)),texte_niv.SetColor(Color(150,100,50));
 
-        moteurGraphique->AjouterTexte(&texte,19,0);
-        moteurGraphique->AjouterTexte(&texte_niv,19,0);
+        moteurGraphique->AjouterTexte(&texte,18,0);
+        moteurGraphique->AjouterTexte(&texte_niv,18,0);
     }
 
     texte.SetColor(Color(150,100,50));
@@ -573,7 +565,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         }
         else
             texte.SetColor(Color(128,128,128));
-        moteurGraphique->AjouterTexte(&texte,19,1);
+        moteurGraphique->AjouterTexte(&texte,18,1);
     }
 
 
@@ -604,13 +596,13 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         else
             texte.SetColor(Color(128,128,128));
 
-        moteurGraphique->AjouterTexte(&texte,19,1);
+        moteurGraphique->AjouterTexte(&texte,18,1);
     }
 
 
     if(m_supprimer_heros)
     {
-        moteurGraphique->AjouterCommande(&m_delete_heros,20);
+        moteurGraphique->AjouterCommande(&m_delete_heros,19);
         texte.SetCharacterSize(18);
 
         texte.SetString(configuration->getText(0,96));
@@ -677,6 +669,14 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
             texte.SetColor(Color(150,100,50));
 
         moteurGraphique->AjouterTexte(&texte,19,0);
+    }
+
+    if(eventManager->getEvenement(Mouse::Left,EventClic)
+    && m_supprimer_heros)
+    {
+        m_supprimer_heros = false;
+        nom_hero.clear();
+        eventManager->StopEvenement(Mouse::Left,EventClic);
     }
 }
 void  c_MainMenu::E_Nouveau(Jeu *jeu)

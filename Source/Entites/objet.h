@@ -26,6 +26,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define OBJETH
 
 #include "miracle.h"
+#include "../Moteurs/moteurGraphique.h"
 
 sf::Color GetItemColor(int rarete);
 
@@ -97,7 +98,7 @@ public:
     ~Objet();
 
     void Afficher(const coordonnee &position);
-    int AfficherCaracteristiques(coordonnee position,const Caracteristique &caract, std::vector<Objet> *items, std::string nom_classe,float modPrix = 1, bool compare = false, bool = false,  bool = false, bool = false);
+    int AfficherCaracteristiques(coordonnee position, Border &border,const Caracteristique &caract, std::vector<Objet> *items, std::string nom_classe,float modPrix = 1, bool compare = false, bool = false,  bool = false, bool = false);
     void Charger(const std::string &chemin, const Caracteristique &caract,bool NePasAjouterBenedictions=false);
     void ChargerCaracteristiques(std::ifstream *fichier);
 

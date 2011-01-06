@@ -48,7 +48,7 @@ public:
     void Sauvegarder(Hero *hero);
 
     void Afficher(Hero *hero,bool alt,float alpha=255);
-    void AfficherSac(coordonnee ,float ,coordonnee ,Caracteristique , std::string);
+    void AfficherSac(coordonnee ,float ,coordonnee ,Caracteristique , std::string, Border &);
     void AfficherMinimap(coordonnee position,int typeCase,float alpha);
 
     void Animer(Hero *hero,float temps); // Animation des tiles

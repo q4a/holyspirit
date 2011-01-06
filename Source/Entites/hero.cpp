@@ -874,6 +874,7 @@ void Hero::ChargerModele(bool tout)
     {
         m_personnage.m_miracleEnCours[i].m_modele = m_classe.miracles.size();
         m_classe.miracles.push_back(miraclesLances[i]);
+        m_classe.miracles.back().RechargerTileset();
     }
 
     for (unsigned i = 0 ; i < m_weaponMiracle.size() ; ++i)
@@ -1977,7 +1978,8 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                 &&eventManager->getPositionSouris().y < m_classe.position_miracles[i].y + m_classe.miracles_cadre.position.h + m_classe.miracles_cadre.position.y + (configuration->Resolution.y - 600))
             {
                 m_classe.miracles[i].AfficherDescription(coordonnee((m_classe.position_miracles[i].x + m_classe.position_miracles[i].w)*configuration->Resolution.w/800,
-                m_classe.position_miracles[i].y*configuration->Resolution.h/600));
+                                                                     m_classe.position_miracles[i].y*configuration->Resolution.h/600),
+                                                         m_classe.border);
 
                 retour = true;
 
@@ -2178,7 +2180,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
                                     if (m_inventaire[i].m_emplacement[k]==m_inventaire[j].m_emplacement[l])
                                         temp.x+=64;
 
-                    int decalage = m_inventaire[i].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,0);
+                    int decalage = m_inventaire[i].AfficherCaracteristiques(temp,m_classe.border,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,0);
                     retour = true;
 
                     for(int k = m_classe.emplacements.size() - 1 ; k >= 0 ; k--)
@@ -2191,7 +2193,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
                         if(ok)
                             for (int j=0;j<(int)m_inventaire.size();j++)
                                 if(m_inventaire[j].m_equipe == k)
-                                    temp.x=decalage-4,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,0,0);
+                                    temp.x=decalage-4,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_classe.border,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,0,0);
                     }
                 }
             }
@@ -2222,7 +2224,8 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
                     && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
                     && eventManager->getPositionSouris().y > sprite.GetPosition().y
                     && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
-                        m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+ m_classe.emplacements[m_inventaire[i].m_equipe].position.w),(int)(position.y+position.h),0,0),m_caracteristiques,&m_inventaire,m_cheminClasse), retour = true;
+                        m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+ m_classe.emplacements[m_inventaire[i].m_equipe].position.w),
+                                                                             (int)(position.y+position.h),0,0),m_classe.border,m_caracteristiques,&m_inventaire,m_cheminClasse), retour = true;
                 }
             }
             else if(i != m_no_result_craft && i != m_no_result_bless
@@ -2241,7 +2244,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
                 && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
                 && eventManager->getPositionSouris().y > sprite.GetPosition().y
                 && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
-                    m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+64),(int)(position.y+position.h),0,0),m_caracteristiques,&m_inventaire,m_cheminClasse), retour = true;
+                    m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+64),(int)(position.y+position.h),0,0),m_classe.border,m_caracteristiques,&m_inventaire,m_cheminClasse), retour = true;
             }
             else
             {
@@ -2268,10 +2271,12 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
                 && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
                 && eventManager->getPositionSouris().y > sprite.GetPosition().y
                 && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
-                    m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+160),(int)(position.y+position.h),0,0),m_caracteristiques,&m_inventaire,m_cheminClasse), retour = true;
+                    m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+160),(int)(position.y+position.h),0,0),m_classe.border,m_caracteristiques,&m_inventaire,m_cheminClasse), retour = true;
             }
 
             moteurGraphique->AjouterCommande(&sprite,16,0);
+           // m_classe.border.Afficher(coordonnee (sprite.GetPosition().x+4,sprite.GetPosition().y+4),
+            //                         coordonnee (sprite.GetSize().x-8,sprite.GetSize().y-8), 16, GetItemColor(m_inventaire[i].getRarete()));
 
             sprite.SetBlendMode(sf::Blend::Alpha);
 
@@ -2396,7 +2401,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
                 //temp.y-=256;
                 temp.x-=196;
 
-                int decalage=(*trader)[i].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,m_cheminClasse,(10-(float)m_caracteristiques.charisme/100),1,1,1,trader==&m_coffre);
+                int decalage=(*trader)[i].AfficherCaracteristiques(temp,m_classe.border,m_caracteristiques,&m_inventaire,m_cheminClasse,(10-(float)m_caracteristiques.charisme/100),1,1,1,trader==&m_coffre);
                 retour = true;
 
                 for(int k = 0 ; k < (int)m_classe.emplacements.size() ; k++)
@@ -2409,7 +2414,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
                     if(ok)
                         for (int j=0;j<(int)m_inventaire.size();j++)
                             if(m_inventaire[j].m_equipe == k)
-                                temp.x=decalage+12,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,1,1,1);
+                                temp.x=decalage+12,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_classe.border,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,1,1,1);
                 }
             }
 
@@ -2630,15 +2635,16 @@ void Hero::AfficherRaccourcis()
                 moteurGraphique->AjouterTexte(&text,18);
             }
 
+
             if( eventManager->getPositionSouris().x > sprite.GetPosition().x
              && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
              && eventManager->getPositionSouris().y > sprite.GetPosition().y
              && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y && m_objetEnMain < 0)
             {
                 if(m_raccourcis[i].miracle)
-                    m_classe.miracles[m_raccourcis[i].no].AfficherDescription(eventManager->getPositionSouris(), false);
+                    m_classe.miracles[m_raccourcis[i].no].AfficherDescription(eventManager->getPositionSouris(), m_classe.border, false);
                 else
-                     m_inventaire[m_raccourcis[i].no].AfficherCaracteristiques(eventManager->getPositionSouris(), m_caracteristiques,&m_inventaire,m_cheminClasse,1,0,0,0,1);
+                     m_inventaire[m_raccourcis[i].no].AfficherCaracteristiques(eventManager->getPositionSouris(),m_classe.border, m_caracteristiques,&m_inventaire,m_cheminClasse,1,0,0,0,1);
             }
 
 
@@ -2720,12 +2726,11 @@ void Hero::AfficherRaccourcis()
 
         moteurGraphique->AjouterCommande(&sprite,18,0);
 
-
         if(eventManager->getPositionSouris().x > sprite.GetPosition().x
         && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
         && eventManager->getPositionSouris().y > sprite.GetPosition().y
         && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
-            m_classe.miracles[m_personnage.m_miracleALancer].AfficherDescription(eventManager->getPositionSouris(), false);
+            m_classe.miracles[m_personnage.m_miracleALancer].AfficherDescription(eventManager->getPositionSouris(), m_classe.border, false);
 
 
         if(m_classe.miracles[m_personnage.m_miracleALancer].m_cooldown > 0
@@ -2775,7 +2780,7 @@ void Hero::AfficherRaccourcis()
         && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
         && eventManager->getPositionSouris().y > sprite.GetPosition().y
         && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
-            m_classe.miracles[m_miracle_gauche].AfficherDescription(eventManager->getPositionSouris(), false);
+            m_classe.miracles[m_miracle_gauche].AfficherDescription(eventManager->getPositionSouris(), m_classe.border, false);
 
 
         if(m_classe.miracles[m_miracle_gauche].m_cooldown > 0

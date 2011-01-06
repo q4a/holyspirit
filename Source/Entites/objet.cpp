@@ -1910,7 +1910,7 @@ void Objet::Afficher(const coordonnee &position)
         moteurGraphique->AjouterCommande(&sprite,8,1);
 }
 
-int Objet::AfficherCaracteristiques(coordonnee position,const Caracteristique &caract, std::vector<Objet> *items, std::string nom_classe,float modPrix,bool compare,bool decalageDroite, bool orientationHaut, bool coffre)
+int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Caracteristique &caract, std::vector<Objet> *items, std::string nom_classe,float modPrix,bool compare,bool decalageDroite, bool orientationHaut, bool coffre)
 {
     std::vector <sf::Text> temp;
 
@@ -1919,28 +1919,38 @@ int Objet::AfficherCaracteristiques(coordonnee position,const Caracteristique &c
 
     coordonnee tailleCadran,decalage(-10,0);
 
-    if (m_equipe>=0&&compare)
+    if (compare)
     {
-        /*temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,18).c_str()));
-        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"---------------"));
-        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));*/
-    }
-    else if (compare)
-    {
-        if(coffre)
-            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,63).c_str()));
-        else if (decalageDroite)
-            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,19).c_str()));
+        if(m_equipe >= 0)
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,18).c_str()));
         else
-            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,20).c_str()));
-        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"---------------"));
+        {
+            if(coffre)
+                temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,63).c_str()));
+            else if (decalageDroite)
+                temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,19).c_str()));
+            else
+                temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,20).c_str()));
+        }
+        temp.back().SetCharacterSize(12);
+
+        //temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"---------------"));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
     }
 
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_nom.c_str()));
     temp.back().SetColor(GetItemColor(m_rarete));
-    temp.back().SetStyle(4);
-    temp.back().SetCharacterSize(14);
+  //  temp.back().SetStyle(4);
+    temp.back().SetCharacterSize(16);
+
+
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+
     if(!m_chemin_set.empty())
     {
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_set.m_nom.c_str()));
@@ -2188,11 +2198,11 @@ int Objet::AfficherCaracteristiques(coordonnee position,const Caracteristique &c
     if (position.y-decalage.y-10<0 && orientationHaut)
         position.y=decalage.y+10;
 
-    if (position.y+decalage.y+20>configuration->Resolution.h && !orientationHaut)
-        position.y=configuration->Resolution.h-decalage.y-20;
+    if (position.y+decalage.y+20+border.image_d.position.h>configuration->Resolution.h && !orientationHaut)
+        position.y=configuration->Resolution.h-decalage.y-20-border.image_d.position.h;
 
-    if (position.x+decalage.x+20>configuration->Resolution.w)
-        position.x=configuration->Resolution.w-decalage.x-20;
+    if (position.x+decalage.x+20+border.image_d.position.w>configuration->Resolution.w)
+        position.x=configuration->Resolution.w-decalage.x-20-border.image_d.position.w;
 
 
     if(orientationHaut)
@@ -2219,7 +2229,7 @@ int Objet::AfficherCaracteristiques(coordonnee position,const Caracteristique &c
         int decalY=0;
         for (int i=0;i<(int)temp.size();i++)
         {
-            temp[i].SetY((position.y+decalY+10));
+            temp[i].SetY((position.y+decalY+4));
             temp[i].SetX(position.x+(tailleCadran.x-(int)temp[i].GetRect().Width)*0.5-tailleCadran.x);
 
             decalY+=(int)temp[i].GetRect().Height+2;
@@ -2229,52 +2239,20 @@ int Objet::AfficherCaracteristiques(coordonnee position,const Caracteristique &c
     }
     tailleCadran.y=decalage.y;
 
-    tailleCadran.y+=20;
+    tailleCadran.y+=14;
     tailleCadran.x+=20;
 
-    sprite.SetImage(*moteurGraphique->getImage(0));
-    /*if (surbrillance)
-        sprite.SetColor(sf::Color(16,16,16,224));
-    else*/
-        sprite.SetColor(sf::Color(0,0,0,224));
 
-    sprite.SetY(position.y);
-    sprite.SetX(position.x-tailleCadran.x+10);
-    sprite.Resize(tailleCadran.x,tailleCadran.y);
-    moteurGraphique->AjouterCommande(&sprite,19,0);
-
-    sf::Sprite sprite2;
-
-    sprite2.SetImage(*moteurGraphique->getImage(moteurGraphique->m_img_corner));
-    sprite2.Resize(16,16);
-    sprite2.SetColor(sf::Color(255,255,255,255));
-    sprite2.SetY(position.y-2);
-    sprite2.SetX(position.x-tailleCadran.x+10-2);
-    moteurGraphique->AjouterCommande(&sprite2,19,0);
-
-
-    sprite2.SetY(position.y-2);
-    sprite2.SetX(position.x+10+2);
-    sprite2.SetRotation(270);
-    moteurGraphique->AjouterCommande(&sprite2,19,0);
-
-    sprite2.SetY(position.y+tailleCadran.y+2);
-    sprite2.SetX(position.x+10+2);
-    sprite2.SetRotation(180);
-    moteurGraphique->AjouterCommande(&sprite2,19,0);
-
-    sprite2.SetY(position.y+tailleCadran.y+2);
-    sprite2.SetX(position.x+-tailleCadran.x+10-2);
-    sprite2.SetRotation(90);
-    moteurGraphique->AjouterCommande(&sprite2,19,0);
+    border.Afficher(coordonnee(position.x-tailleCadran.x+10, position.y),
+                    coordonnee(tailleCadran.x, tailleCadran.y), 19, GetItemColor(m_rarete));
 
 
     temp.clear();
 
     if (decalageDroite)
-        return (position.x+20);
+        return (position.x+20+border.image_r.position.w+border.image_l.position.w);
 
-    return (position.x-tailleCadran.x);
+    return (position.x-tailleCadran.x-border.image_l.position.w-border.image_r.position.w);
 }
 
 void Objet::CalculerGolem()

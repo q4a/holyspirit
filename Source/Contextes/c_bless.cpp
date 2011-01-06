@@ -114,7 +114,7 @@ void c_Bless::Utiliser(Jeu *jeu)
     if(jeu->hero.m_objetEnMain == -1)
         eventManager->AfficherCurseur();
 
-    jeu->map->AfficherSac(jeu->hero.m_personnage.getCoordonnee(),m_decalage,jeu->hero.m_classe.position_sac_inventaire,jeu->hero.m_caracteristiques, jeu->hero.m_cheminClasse);
+    jeu->map->AfficherSac(jeu->hero.m_personnage.getCoordonnee(),m_decalage,jeu->hero.m_classe.position_sac_inventaire,jeu->hero.m_caracteristiques, jeu->hero.m_cheminClasse, jeu->hero.m_classe.border);
 
     jeu->menu.AfficherHUD(&jeu->hero.m_classe);
     jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,-1,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);

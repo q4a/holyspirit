@@ -53,7 +53,7 @@ struct Border
 
     Image_interface image_c;
 
-    void Afficher(coordonnee pos, coordonnee size, int couche);
+    void Afficher(coordonnee pos, coordonnee size, int couche, sf::Color color = sf::Color (255,255,255));
 };
 
 
@@ -170,7 +170,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
     Lumiere m_soleil;
     float m_angleOmbreSoleil;
 
-    int m_img_corner, m_img_water, m_img_item_background, m_img_item_unusable;
+    int m_img_water, m_img_item_background, m_img_item_unusable;
 	Tileset m_ambientShadowTileset;
 
     std::vector <Effet_ecran> m_effetsEcran;

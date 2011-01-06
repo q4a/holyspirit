@@ -1330,7 +1330,7 @@ void Map::CalculerOmbresEtLumieres()
 
 }
 
-void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_sac_inventaire,Caracteristique caract, std::string cheminClasse)
+void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_sac_inventaire,Caracteristique caract, std::string cheminClasse, Border &border)
 {
     Sprite Sprite;
     Text texte;
@@ -1370,7 +1370,7 @@ void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_
                         &&z < m_decor[1][positionSac.y][positionSac.x].getNombreObjets() - 1)))
                     {
                         m_objetPointe=z;
-                        m_decor[1][positionSac.y][positionSac.x].getObjet(z)->AfficherCaracteristiques(eventManager->getPositionSouris(),caract,NULL,cheminClasse);
+                        m_decor[1][positionSac.y][positionSac.x].getObjet(z)->AfficherCaracteristiques(eventManager->getPositionSouris(),border,caract,NULL,cheminClasse);
                     }
                 }
 
@@ -1470,7 +1470,12 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                     {
                         if (m_decor[couche][j][k].m_entite_graphique.m_tileset->getTransparentDuTile(m_decor[couche][j][k].m_entite_graphique.m_noAnimation))
                         {
-                            int alpha=(int)(positionHero.y-(k+j)*32 - 16)+160;
+                            int alpha=(int)(positionHero.y-(k+j)*32 - 16)+224;
+
+                            if(m_decor[couche][j][k].m_entite_graphique.m_tileset->getOrientationDuTile(m_decor[couche][j][k].m_entite_graphique.m_noAnimation) == 'x')
+                                alpha = (int)(hero->m_personnage.getCoordonneePixel().y-j*COTE_TILE + COTE_TILE * 3);
+                            else if(m_decor[couche][j][k].m_entite_graphique.m_tileset->getOrientationDuTile(m_decor[couche][j][k].m_entite_graphique.m_noAnimation) == 'y')
+                                alpha = (int)(hero->m_personnage.getCoordonneePixel().x-k*COTE_TILE + COTE_TILE * 3);
 
                             if (alpha<configuration->alpha)
                                 alpha=configuration->alpha;
@@ -1544,7 +1549,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                                 m_sacPointe.y=j;
 
                                 if (eventManager->getEvenement(sf::Key::LControl,EventKey))
-                                    m_decor[1][j][k].getObjet(objetPointe)->AfficherCaracteristiques(eventManager->getPositionSouris(),hero->m_caracteristiques,&hero->m_coffre,hero->m_cheminClasse);
+                                    m_decor[1][j][k].getObjet(objetPointe)->AfficherCaracteristiques(eventManager->getPositionSouris(),hero->m_classe.border,hero->m_caracteristiques,&hero->m_coffre,hero->m_cheminClasse);
 
                                 m_objetPointe=objetPointe;
                             }

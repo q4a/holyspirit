@@ -101,9 +101,10 @@ sf::Sprite Bouton_pressoire::Afficher(float decalage)
     return sprite;
 }
 
-void Border::Afficher(coordonnee pos, coordonnee size, int couche)
+void Border::Afficher(coordonnee pos, coordonnee size, int couche, sf::Color color)
 {
     sf::Sprite sprite;
+    sprite.SetColor(color);
     sprite.SetImage(*moteurGraphique->getImage(image_lu.image));
     sprite.SetSubRect(sf::IntRect(  image_lu.position.x, image_lu.position.y,
                                     image_lu.position.w, image_lu.position.h));

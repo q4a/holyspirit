@@ -20,7 +20,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "../constantes.h"
 #include "../Map/tile.h"
-#include "../Moteurs/Entite_graphique.h"
+#include "../Moteurs/moteurGraphique.h"
 
 
 #ifndef MIRACLEH
@@ -137,7 +137,7 @@ public:
     void Concatenencer(const std::string &chemin, const Caracteristique &caract, int level);
     void RechargerTileset();
 
-    void AfficherDescription(coordonnee position, bool suivant = true);
+    void AfficherDescription(coordonnee position, Border &border, bool suivant = true);
     sf::Text AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color=sf::Color(255,255,255));
 
     std::vector <int>           m_tileset;

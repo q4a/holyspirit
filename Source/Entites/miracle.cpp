@@ -931,7 +931,7 @@ sf::Text Miracle::AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee
 }
 
 
-void Miracle::AfficherDescription(coordonnee position, bool suivant)
+void Miracle::AfficherDescription(coordonnee position, Border &border, bool suivant)
 {
     std::vector <sf::Text> temp;
 
@@ -941,7 +941,9 @@ void Miracle::AfficherDescription(coordonnee position, bool suivant)
     coordonnee tailleCadran,decalage(-10,0);
 
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_nom.c_str()));
-    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"---------------"));
+ //   temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"---------------"));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
 
     for (int i=0;i<(int)m_description.size() && suivant;i++)
@@ -1026,11 +1028,11 @@ void Miracle::AfficherDescription(coordonnee position, bool suivant)
     if (position.x-10<0)
         position.x=10;
 
-    if (position.y+decalage.y+20>configuration->Resolution.h)
-        position.y=configuration->Resolution.h-decalage.y-20;
+    if (position.y+decalage.y+20+border.image_d.position.h>configuration->Resolution.h)
+        position.y=configuration->Resolution.h-decalage.y-20-border.image_d.position.h;
 
-    if (position.x+tailleCadran.x+20>configuration->Resolution.w)
-        position.x=configuration->Resolution.w-tailleCadran.x-20;
+    if (position.x+tailleCadran.x+30+border.image_d.position.w>configuration->Resolution.w)
+        position.x=configuration->Resolution.w-tailleCadran.x-30-border.image_d.position.w;
 
     int decalY=0;
     for (int i=0;i<(int)temp.size();i++)
@@ -1048,37 +1050,9 @@ void Miracle::AfficherDescription(coordonnee position, bool suivant)
     tailleCadran.y+=20;
     tailleCadran.x+=20;
 
-    sprite.SetImage(*moteurGraphique->getImage(0));
-    sprite.SetColor(sf::Color(0,0,0,248));
-    sprite.SetY(position.y);
-    sprite.SetX(position.x/*-tailleCadran.x*/+10);
-    sprite.Resize(tailleCadran.x,tailleCadran.y);
-    moteurGraphique->AjouterCommande(&sprite,19,0);
+    position.x += 10;
 
-    sf::Sprite sprite2;
-
-    sprite2.SetImage(*moteurGraphique->getImage(moteurGraphique->m_img_corner));
-    sprite2.Resize(16,16);
-    sprite2.SetColor(sf::Color(255,255,255,255));
-    sprite2.SetY(position.y-2);
-    sprite2.SetX(position.x/*-tailleCadran.x*/+10-2);
-    moteurGraphique->AjouterCommande(&sprite2,19,0);
-
-
-    sprite2.SetY(position.y-2);
-    sprite2.SetX(position.x+tailleCadran.x+10+2);
-    sprite2.SetRotation(270);
-    moteurGraphique->AjouterCommande(&sprite2,19,0);
-
-    sprite2.SetY(position.y+tailleCadran.y+2);
-    sprite2.SetX(position.x+tailleCadran.x+10+2);
-    sprite2.SetRotation(180);
-    moteurGraphique->AjouterCommande(&sprite2,19,0);
-
-    sprite2.SetY(position.y+tailleCadran.y+2);
-    sprite2.SetX(position.x/*-tailleCadran.x*/+10-2);
-    sprite2.SetRotation(90);
-    moteurGraphique->AjouterCommande(&sprite2,19,0);
+    border.Afficher(position, tailleCadran, 19);
 
 
     temp.clear();

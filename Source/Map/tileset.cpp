@@ -260,7 +260,7 @@ void Tileset::ChargerInfosTile(ifstream &fichier, int lumiere_base,int type)
 
     if(tempsAnimation == -1)
     {
-        if(animation == (int)m_tile.size())
+        if(animation == (int)m_tile.size() && position.w > 0)
             tempsAnimation = 1;
         else
             tempsAnimation = 0.075;

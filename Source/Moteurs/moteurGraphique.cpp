@@ -171,9 +171,6 @@ void MoteurGraphique::Charger()
     else
         console->Ajouter("Chargement de : "+configuration->chemin_fonts+configuration->font_titre,0);
 
-
-
-    m_img_corner = AjouterImage(configuration->chemin_menus + configuration->nom_corner,-1);
     m_img_item_background = AjouterImage(configuration->chemin_menus + configuration->nom_item_background,-1);
     m_img_item_unusable = AjouterImage(configuration->chemin_menus + configuration->nom_item_unusable,-1);
 
@@ -887,24 +884,13 @@ void MoteurGraphique::AjouterTexte(const std::string &txt, coordonnee pos, Borde
     temp.SetColor(color);
     AjouterTexte(&temp, couche, titre);
 
-    pos.x -= 2;
+    pos.x -= 6;
     pos.y -= 2;
 
     coordonnee s;
-    s.x = (int)temp.GetRect().Width + 5;
-    s.y = (int)temp.GetRect().Height + 4;
+    s.x = (int)temp.GetRect().Width + 13;
+    s.y = (int)temp.GetRect().Height + 6;
     border.Afficher(pos, s, couche);
-
-    /*if(fond)
-    {
-        sf::Sprite temp2;
-        temp2.SetImage(*getImage(0));
-        temp2.SetPosition(pos.x-3, pos.y-2);
-        temp2.Resize(temp.GetRect().Width + 6,
-                     temp.GetRect().Height + 6);
-        temp2.SetColor(sf::Color(0,0,0,224));
-        AjouterCommande(&temp2, couche, 0);
-    }*/
 }
 
 void MoteurGraphique::AjouterTexte(const std::string &txt, coordonnee pos, int couche, bool titre, int size, sf::Color color)
