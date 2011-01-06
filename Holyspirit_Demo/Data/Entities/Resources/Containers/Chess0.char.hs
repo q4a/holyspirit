@@ -8,7 +8,80 @@ $
 $
 	*Data/Entities/Scripts/Miscs/Chess.script.hs
 $
-	#ITEMS
+	*
+		*Craft_gem_ruby.item.hs
+		r1000
+	$
+	*
+		*Craft_gem_emerald.item.hs
+		r1000
+	$
+	
+	*
+		*Armband_leather.item.hs
+		r2500
+	$
+	*
+		*Boots_leather.item.hs
+		r2500
+	$
+	*
+		*Armor_gambeson.item.hs
+		r2500
+	$
+	*
+		*Dagger_dagger.item.hs
+		r2500
+	$
+	*
+		*Helmet_leather_cap.item.hs
+		r2500
+	$
+	*
+		*Shield_small_shield.item.hs
+		r2500
+	$
+	*
+		*Sword_1h_small_sword.item.hs
+		r2500
+	$
+	*
+		*Mace_2h_timber_axe.item.hs
+		r2500
+	$
+	*
+		*Necklage_necklage.item.hs
+		r500
+	$
+	*
+		*Ring_ring.item.hs
+		r500
+	$
+	*
+		*Litanie_0.item.hs
+		r1000
+	$
+	
+	*
+		*Drawing_golem_coal.item.hs
+		r500
+	$
+	*
+		*Drawing_helmet_circlet.item.hs
+		r1000
+	$
+	*
+		*Drawing_helmet_horned_barbute.item.hs
+		r1000
+	$
+	*
+		*Drawing_shield_bronze.item.hs
+		r1000
+	$
+	*
+		*Drawing_crossbow_crossbow.item.hs
+		r1000
+	$
 $
 
 $

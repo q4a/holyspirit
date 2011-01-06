@@ -89,6 +89,10 @@ $
 		r10000
 	$
 	*
+		*Drawing_crossbow_crossbow.item.hs
+		r10000
+	$
+	*
 		*Craft_coal.item.hs
 		r25000
 	$

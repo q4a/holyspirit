@@ -1,15 +1,15 @@
 Brassards de cuir
 Ces brassards en cuir\protègent les avant-bras.
 Gambison
-Cette modeste armure est constituée\d’une croute de cuir garnie à\l’intérieur d’une étoffe destinée\à amortir les coups.
+Cette modeste armure est constituée\d'une croute de cuir garnie à\l'intérieur d'une étoffe destinée\à amortir les coups.
 Arquebuse
-Cet objet étrange a le pouvoir\de propulser un projectile\métallique à vive vitesse.\Beaucoup mieux qu’un arc mais\plus douloureux pour les oreilles !
+Cet objet étrange a le pouvoir\de propulser un projectile\métallique à vive vitesse.\Beaucoup mieux qu'un arc mais\plus douloureux pour les oreilles !
 Bottes en cuir
 Des bottes faites pour marcher…\et qui protègent légèrement\les pieds des coups.
 Dague de cérémonie
 Une dague acéré conçue pour des\sacrifices lors de cérémonie.
 Cotte de mailles
-Cette armure constituée d’un\assemblage de fils métalliques\offre un bon compromis entre\liberté de mouvement et protection.
+Cette armure constituée d'un\assemblage de fils métalliques\offre un bon compromis entre\liberté de mouvement et protection.
 Charbon
 Le charbon est un matériau de\base pour la fabrication d'acier.
 Arbalète de poing

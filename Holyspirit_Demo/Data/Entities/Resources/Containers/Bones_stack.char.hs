@@ -8,7 +8,14 @@ $
 $
 	*Data/Entities/Scripts/Miscs/Inert.script.hs
 $
-	#ITEMS
+	*
+		*Potion_heal0.item.hs
+		r10000
+	$
+	*
+		*Potion_faith0.item.hs
+		r10000
+	$
 $
 	*Data/Entities/Particles/Human_bones.ps.hs
 $

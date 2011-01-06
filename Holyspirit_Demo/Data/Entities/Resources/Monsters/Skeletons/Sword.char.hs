@@ -8,7 +8,31 @@ $
 $
 *Data/Entities/Scripts/Monsters/Standard.script.hs
 $
-	#ITEMS
+	
+	*
+		*Armband_leather.item.hs
+		r2500
+	$
+	*
+		*Boots_leather.item.hs
+		r2500
+	$
+	*
+		*Armor_gambeson.item.hs
+		r2500
+	$
+	*
+		*Dagger_dagger.item.hs
+		r2500
+	$
+	*
+		*Helmet_leather_cap.item.hs
+		r2500
+	$
+	*
+		*Sword_1h_small_sword.item.hs
+		r2500
+	$
 $
 *Data/Entities/Particles/Human_bones.ps.hs
 $
