@@ -180,6 +180,11 @@ Objet::Objet(std::string nom, int rarete)
     m_time = 0;
 }
 
+Objet::Objet(const Objet &objet)
+{
+    (*this) = objet;
+}
+
 Objet::~Objet()
 {
     m_description.clear();
@@ -2049,7 +2054,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
         buf<<configuration->getText(0,21)<<(int)(m_degatsMin*multiplieurEfficacite/100)<<" - "<<(int)(m_degatsMax*multiplieurEfficacite/100);
 
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
-        if (multiplieurEfficacite!=100)
+        if (multiplieurEfficacite!=100.0f)
             temp.back().SetColor(sf::Color(0,128,255));
     }
 
@@ -2062,7 +2067,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
 
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
 
-            if (multiplieurEfficacite!=100)
+            if (multiplieurEfficacite!=100.0f)
                 temp.back().SetColor(sf::Color(0,128,255));
         }
     }
@@ -2184,7 +2189,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
         std::ostringstream buf;
         buf<<configuration->getText(0,28)<<(int)((float)m_prix*modPrix);
 
-        if(modPrix != 1)
+        if(modPrix != 1.0f)
             buf<<" ("<< m_prix <<")";
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
     }

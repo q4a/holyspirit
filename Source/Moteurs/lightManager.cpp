@@ -434,6 +434,8 @@ sf::Vector2f Light_Manager::GetPt(Wall_Entity e, int nbr)
         else
             return m_wall[e.ID()].pt1;
     }
+
+    return sf::Vector2f (0,0);
 }
 
 

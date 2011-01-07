@@ -125,7 +125,7 @@ private:
           tempsEcouleDepuisFPS,
           tempsEffetMort,tempsSauvergarde;
 
-    float lowFPS;
+    int lowFPS;
 
     bool m_diplace_mode;
 

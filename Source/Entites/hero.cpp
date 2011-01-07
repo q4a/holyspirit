@@ -101,9 +101,18 @@ bool AjouterObjetInventaire(Objet newObj, std::vector<Objet>* inventaire, coordo
 
 Hero::Hero()
 {
-    m_personnage.setEtat(ARRET);
+    Reset();
+}
 
-    //m_cheminClasse = configuration->player_class;
+Hero::~Hero()
+{
+    if (configuration->debug)
+        console->Ajouter("Destruction du héro ...");
+}
+
+void Hero::Reset()
+{
+    m_personnage.setEtat(ARRET);
 
     m_chercherSac.x=-1;
     m_chercherSac.y=-1;
@@ -113,22 +122,6 @@ Hero::Hero()
     position.y=-10000;
 
     m_personnage.setCoordonnee(position);
-
-    /*Lumiere lumiere;
-    lumiere.intensite=192;
-    lumiere.rouge=255;
-    lumiere.vert=255;
-    lumiere.bleu=255;
-    lumiere.hauteur=20;
-
-    m_modelePersonnage[0].setPorteeLumineuse(lumiere);
-
-    lumiere.intensite=0;
-
-    for (int i=1;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
-        m_modelePersonnage[i].setPorteeLumineuse(lumiere);
-
-    m_personnage.setPorteeLumineuse(lumiere);*/
 
 
     m_personnage.m_friendly = 1;
@@ -200,12 +193,6 @@ Hero::Hero()
 
     newQuest = false;
     newDoc = false;
-}
-
-Hero::~Hero()
-{
-    if (configuration->debug)
-        console->Ajouter("Destruction du héro ...");
 }
 
 void Hero::Sauvegarder()
@@ -557,8 +544,8 @@ void Hero::Charger(const std::string &chemin_save)
                 fichier->get(caractere);
                 if (caractere=='d')
                 {
-                    Document temp;
-                    temp.ChargerTexte(fichier);
+                    Document doc;
+                    doc.ChargerTexte(fichier);
                     fichier->get(caractere);
                 }
                 if (fichier->eof())
@@ -572,10 +559,10 @@ void Hero::Charger(const std::string &chemin_save)
                 fichier->get(caractere);
                 if (caractere=='d')
                 {
-                    std::string chemin;
-                    *fichier>>chemin;
+                    std::string chemin2;
+                    *fichier>>chemin2;
                     Objet doc;
-                    doc.Charger(chemin,m_caracteristiques,true);
+                    doc.Charger(chemin2,m_caracteristiques,true);
 
                     m_docs.push_back(Document ());
                     m_docs.back().m_chemin = doc.getChemin();
@@ -1899,9 +1886,9 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
     for (int i = 0;i < (int)m_classe.position_miracles.size(); ++i)
         if (m_classe.page_miracles[i] == fenetreEnCours)
         {
-            std::ostringstream buf;
-            buf<<m_lvl_miracles[i]<<endl;
-            texte.SetString(buf.str());
+            std::ostringstream buf2;
+            buf2<<m_lvl_miracles[i]<<endl;
+            texte.SetString(buf2.str());
             texte.SetPosition(AutoScreenAdjust(m_classe.position_miracles[i].x,
                                                m_classe.position_miracles[i].y + 39,decalage));
             texte.Move((m_classe.position_miracles[i].w - texte.GetRect().Width) * 0.5,0);
@@ -2180,7 +2167,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
                                     if (m_inventaire[i].m_emplacement[k]==m_inventaire[j].m_emplacement[l])
                                         temp.x+=64;
 
-                    int decalage = m_inventaire[i].AfficherCaracteristiques(temp,m_classe.border,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,0);
+                    int decalage2 = m_inventaire[i].AfficherCaracteristiques(temp,m_classe.border,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,0);
                     retour = true;
 
                     for(int k = m_classe.emplacements.size() - 1 ; k >= 0 ; k--)
@@ -2193,7 +2180,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
                         if(ok)
                             for (int j=0;j<(int)m_inventaire.size();j++)
                                 if(m_inventaire[j].m_equipe == k)
-                                    temp.x=decalage-4,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_classe.border,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,0,0);
+                                    temp.x=decalage2-4,decalage2=m_inventaire[j].AfficherCaracteristiques(temp,m_classe.border,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,0,0);
                     }
                 }
             }
@@ -2401,7 +2388,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
                 //temp.y-=256;
                 temp.x-=196;
 
-                int decalage=(*trader)[i].AfficherCaracteristiques(temp,m_classe.border,m_caracteristiques,&m_inventaire,m_cheminClasse,(10-(float)m_caracteristiques.charisme/100),1,1,1,trader==&m_coffre);
+                int decalage2=(*trader)[i].AfficherCaracteristiques(temp,m_classe.border,m_caracteristiques,&m_inventaire,m_cheminClasse,(10-(float)m_caracteristiques.charisme/100),1,1,1,trader==&m_coffre);
                 retour = true;
 
                 for(int k = 0 ; k < (int)m_classe.emplacements.size() ; k++)
@@ -2414,7 +2401,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
                     if(ok)
                         for (int j=0;j<(int)m_inventaire.size();j++)
                             if(m_inventaire[j].m_equipe == k)
-                                temp.x=decalage+12,decalage=m_inventaire[j].AfficherCaracteristiques(temp,m_classe.border,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,1,1,1);
+                                temp.x=decalage2+12,decalage2=m_inventaire[j].AfficherCaracteristiques(temp,m_classe.border,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,1,1,1);
                 }
             }
 
@@ -2812,7 +2799,7 @@ void Hero::PlacerCamera()
     moteurGraphique->m_camera.Move(moteurGraphique->decalageCamera.x, moteurGraphique->decalageCamera.y);
 }
 
-bool Hero::TestMonstreVise(Personnage *monstre, float temps)
+bool Hero::TestMonstreVise(Personnage *monstre)
 {
     if (monstre!=NULL)
         if (m_caracteristiques.vie>0)
@@ -2854,12 +2841,6 @@ bool Hero::TestMonstreVise(Personnage *monstre, float temps)
                 if(monstre->m_collision)
                     return 1;
             }
-          /*  else if((!m_personnage.m_shooter||monstre->m_friendly)&&(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=1))
-            {
-                if(monstre->m_collision)
-                    m_personnage.setArrivee(m_personnage.getCoordonnee());
-                }
-            }*/
             else
                 m_personnage.setArrivee(monstre->getProchaineCase());
         }
@@ -3440,15 +3421,15 @@ Objet Hero::DeposerObjet()
 
 void Hero::AutoTrierCoffre()
 {
-    int ordre_tri[8] = {CONSOMMABLE,AUCUN,JEWELERY,LITANIE,SCHEMA,GOLEM,ARMURE,ARME};
+    int ordre_tri[9] = {CONSOMMABLE,AUCUN,JEWELERY,LITANIE,SCHEMA,DOCUMENT,GOLEM,ARMURE,ARME};
     std::vector<Objet> inventaire_bis;
 
     std::vector<std::string> nom_objets;
     std::vector<int> taille_objets;
 
-    for(int t = 0 ; t < 8 ; ++t)
+    for(int o = 0 ; o < 9 ; ++o)
     for(unsigned i = 0 ; i < m_coffre.size() ; ++i)
-    if(m_coffre[i].m_type == ordre_tri[t]
+    if(m_coffre[i].m_type == ordre_tri[o]
     && m_coffre[i].m_equipe < 0)
     {
         std::vector<std::string> nom_objets_bis;
@@ -3501,7 +3482,7 @@ void Hero::AutoTrierCoffre()
         }
     }
 
-    for(unsigned t = 0 ; t < 8 ; ++t)
+    for(unsigned t = 0 ; t < 9 ; ++t)
     for(unsigned n = 0 ; n < nom_objets.size() ; ++n)
     for(unsigned i = 0 ; i < m_coffre.size() ; ++i)
     if(m_coffre[i].m_type == ordre_tri[t]
@@ -3538,9 +3519,9 @@ void Hero::AutoTrierInventaire()
     std::vector<std::string> nom_objets;
     std::vector<int> taille_objets;
 
-    for(int t = 0 ; t < 9 ; ++t)
+    for(int o = 0 ; o < 9 ; ++o)
     for(unsigned i = 0 ; i < m_inventaire.size() ; ++i)
-    if(m_inventaire[i].m_type == ordre_tri[t]
+    if(m_inventaire[i].m_type == ordre_tri[o]
     && m_inventaire[i].m_equipe < 0)
     {
         std::vector<std::string> nom_objets_bis;

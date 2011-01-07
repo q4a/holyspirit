@@ -141,7 +141,7 @@ void c_MainMenu::Utiliser(Jeu *jeu)
         m_light = moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,256,32,sf::Color(255,255,255));
         m_light_logo = moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,256,32,sf::Color(255,192,0));
 
-        jeu->hero = Hero ();
+        jeu->hero.Reset();
 
         m_reset = false;
         moteurGraphique->m_blur = 0;

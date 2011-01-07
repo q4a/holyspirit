@@ -240,6 +240,8 @@ struct Caracteristique
 
     }
 
+    Caracteristique(const Caracteristique &caract);
+
     std::string nom;
 
     int pointAme;
@@ -277,6 +279,8 @@ struct Caracteristique
     float modificateurTaille;
 
     bool sang;
+
+
 };
 
 sf::FloatRect GetViewRect(const sf::View& view);

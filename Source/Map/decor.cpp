@@ -54,33 +54,33 @@ Decor::~Decor()
     m_objets.clear();
 }
 
-Decor Decor::operator=(const Decor &Decor)
+Decor Decor::operator=(const Decor &decor)
 {
-    m_tileset=Decor.m_tileset;
-    m_tile=Decor.m_tile;
-    m_monstre=Decor.m_monstre;
-    m_projectile=Decor.m_projectile;
-    m_effet=Decor.m_effet;
-    m_couche=Decor.m_couche;
-    m_position=Decor.m_position;
-    m_herbe=Decor.m_herbe;
-    m_numeroHerbe=Decor.m_numeroHerbe;
-    m_herbe_taille=Decor.m_herbe_taille;
-    m_herbe_decalage=Decor.m_herbe_decalage;
-    m_herbe_couleur=Decor.m_herbe_couleur;
-    m_hauteur=Decor.m_hauteur;
+    m_tileset=decor.m_tileset;
+    m_tile=decor.m_tile;
+    m_monstre=decor.m_monstre;
+    m_projectile=decor.m_projectile;
+    m_effet=decor.m_effet;
+    m_couche=decor.m_couche;
+    m_position=decor.m_position;
+    m_herbe=decor.m_herbe;
+    m_numeroHerbe=decor.m_numeroHerbe;
+    m_herbe_taille=decor.m_herbe_taille;
+    m_herbe_decalage=decor.m_herbe_decalage;
+    m_herbe_couleur=decor.m_herbe_couleur;
+    m_hauteur=decor.m_hauteur;
 
-    m_objets.resize(Decor.m_objets.size(),Objet ());
-    for (int i=0;i<(int)Decor.m_objets.size();++i)
-        m_objets[i]=Decor.m_objets[i];
+    m_objets.resize(decor.m_objets.size(),Objet ());
+    for (int i=0;i<(int)decor.m_objets.size();++i)
+        m_objets[i]=decor.m_objets[i];
 
 
-    m_entite_graphique  = Decor.m_entite_graphique;
-    m_entite_herbe      = Decor.m_entite_herbe;
+    m_entite_graphique  = decor.m_entite_graphique;
+    m_entite_herbe      = decor.m_entite_herbe;
 
-    color=Decor.color;
-    m_herbe_couleur=Decor.m_herbe_couleur;
-    m_herbe_decalage=Decor.m_herbe_decalage;
+    color=decor.color;
+    m_herbe_couleur=decor.m_herbe_couleur;
+    m_herbe_decalage=decor.m_herbe_decalage;
 
     return *this;
 }

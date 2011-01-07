@@ -198,7 +198,7 @@ void c_Jeu::GererTemps(Jeu *jeu)
         jeu->hero.RegenererFoi(tempsEcoule);
         jeu->hero.RegenererMiracles(tempsEcoule);
 
-        if (jeu->hero.m_caracteristiques.maxVie!=0)
+        if (jeu->hero.m_caracteristiques.maxVie != 0.0f)
         {
             if (jeu->hero.m_caracteristiques.vie/(float)jeu->hero.m_caracteristiques.maxVie<0.25)
                 configuration->effetMort=150-(jeu->hero.m_caracteristiques.vie*600/jeu->hero.m_caracteristiques.maxVie),jeu->sonMort.SetVolume(configuration->effetMort);
@@ -248,7 +248,7 @@ void c_Jeu::Deplacements(Jeu *jeu)
     {
         bool ok=true;
         if (jeu->hero.m_personnage.m_cible != NULL)
-            if (jeu->hero.TestMonstreVise(jeu->hero.m_personnage.m_cible, tempsEcoule))
+            if (jeu->hero.TestMonstreVise(jeu->hero.m_personnage.m_cible))
                 ok=false;
 
         if (jeu->hero.m_personnage.getCoordonnee().x==jeu->hero.m_personnage.getArrivee().x
@@ -263,8 +263,8 @@ void c_Jeu::Deplacements(Jeu *jeu)
 
         if (eventManager->getEvenement(Mouse::Left,EventClicA)&&eventManager->getEvenement(Key::LShift,EventKey))
         {
-            coordonnee temp((int)(eventManager->getCasePointee().x*COTE_TILE),(int)(eventManager->getCasePointee().y*COTE_TILE));
-            jeu->hero.m_personnage.Frappe(jeu->hero.m_personnage.getCoordonneePixel(),temp);
+            coordonnee temp2((int)(eventManager->getCasePointee().x*COTE_TILE),(int)(eventManager->getCasePointee().y*COTE_TILE));
+            jeu->hero.m_personnage.Frappe(jeu->hero.m_personnage.getCoordonneePixel(),temp2);
 
             jeu->hero.m_case_visee = eventManager->getCasePointee();
         }
@@ -295,17 +295,17 @@ void c_Jeu::Deplacements(Jeu *jeu)
 }
 void c_Jeu::Animation(Jeu *jeu)
 {
-    float temps = tempsEcoule;
+    float temps2 = tempsEcoule;
 
     coordonnee positionHero;
     positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
     positionHero.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
 
-    if (temps>0.12f)
-        temps=0.12f;
+    if (temps2>0.12f)
+        temps2=0.12f;
 
     int retour = -2;
-    retour = jeu->hero.m_personnage.Gerer(&jeu->hero.m_modelePersonnage[0],temps, true);
+    retour = jeu->hero.m_personnage.Gerer(&jeu->hero.m_modelePersonnage[0],temps2, true);
 
     jeu->hero.CalculerOrdreAffichage();
     jeu->hero.m_personnage.m_vientDeFrapper = NULL;
@@ -381,7 +381,7 @@ void c_Jeu::Animation(Jeu *jeu)
     if(!jeu->hero.m_personnage.frappeEnCours)
         jeu->hero.m_personnage.m_lancementMiracleEnCours = false;
 
-    jeu->map->Animer(&jeu->hero,temps); // Animation des tiles de la jeu->map
+    jeu->map->Animer(&jeu->hero,temps2); // Animation des tiles de la jeu->map
 
     if(jeu->hero.m_personnage.m_vientDeToucher != NULL)
         jeu->hero.m_personnage.m_vientDeFrapper = jeu->hero.m_personnage.m_vientDeToucher, jeu->hero.m_personnage.m_vientDeToucher = NULL;
@@ -741,7 +741,7 @@ void c_Jeu::Evenements(Jeu *jeu)
 
                     if (test)
                     {
-                        jeu->hero.TestMonstreVise(jeu->hero.m_personnage.m_cible, tempsEcoule);
+                        jeu->hero.TestMonstreVise(jeu->hero.m_personnage.m_cible);
                         jeu->hero.m_case_visee = jeu->hero.m_personnage.m_cible->getProchaineCase();
                     }
 
@@ -876,7 +876,7 @@ void c_Jeu::Affichage(Jeu *jeu)
 
     eventManager->AfficherCurseur();
 
-    if (configuration->effetMort&&configuration->postFX&&tempsEffetMort!=0)
+    if (configuration->effetMort&&configuration->postFX&&tempsEffetMort!=0.0f)
     {
         moteurGraphique->EffectMort.SetParameter("offset", 0.003*configuration->effetMort/100*(0.6+tempsEffetMort/10));
         moteurGraphique->EffectMort.SetParameter("color",1+0.5*configuration->effetMort/100*tempsEffetMort, 1-1*configuration->effetMort/100*tempsEffetMort, 1-1*configuration->effetMort/100*tempsEffetMort);

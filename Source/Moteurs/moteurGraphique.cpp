@@ -309,7 +309,6 @@ void MoteurGraphique::Gerer(float temps)
 void MoteurGraphique::Afficher()
 {
     sf::Sprite sprite;
-    sf::Sprite sprite2;
 
     if (configuration->RafraichirOmbre==1&&configuration->Ombre&&m_soleil.intensite>32)
     {

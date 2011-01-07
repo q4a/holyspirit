@@ -81,10 +81,10 @@ void Menu::AfficherDialogue(float time,Classe *classe)
     sprite2.Resize(classe->talk.position.w, classe->talk.position.h);
     moteurGraphique->AjouterCommande(&sprite2,16,0);
 
-    sf::Text texte;
-    texte.SetCharacterSize(14);
-    texte.SetStyle(2);
-    texte.SetFont(moteurGraphique->m_font);
+    sf::Text texte2;
+    texte2.SetCharacterSize(14);
+    texte2.SetStyle(2);
+    texte2.SetFont(moteurGraphique->m_font);
 
     if(m_dialogue.empty())
     {
@@ -95,25 +95,25 @@ void Menu::AfficherDialogue(float time,Classe *classe)
             m_cur_talk_hauteur = classe->talk.position.h;
 
 
-        texte.SetString(m_old_dialogue);
+        texte2.SetString(m_old_dialogue);
 
-        texte.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.GetRect().Width) * 0.5,
+        texte2.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte2.GetRect().Width) * 0.5,
                           AutoScreenAdjust(0,classe->position_contenu_dialogue.y).y + m_cur_talk_hauteur);
 
-        moteurGraphique->AjouterTexte(&texte,16,0);
+        moteurGraphique->AjouterTexte(&texte2,16,0);
 
-        float pos = texte.GetRect().Top + texte.GetRect().Height + 8;
-        texte.SetStyle(4);
+        float pos = texte2.GetRect().Top + texte2.GetRect().Height + 8;
+        texte2.SetStyle(4);
 
         for(unsigned i = 0 ; i < m_old_choices.size() ; ++i)
         {
-            texte.SetString(m_old_choices[i].text);
-            texte.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.GetRect().Width) * 0.5,
+            texte2.SetString(m_old_choices[i].text);
+            texte2.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte2.GetRect().Width) * 0.5,
                                 pos);
 
-            pos = texte.GetRect().Top + texte.GetRect().Height + 4;
+            pos = texte2.GetRect().Top + texte2.GetRect().Height + 4;
 
-             moteurGraphique->AjouterTexte(&texte,16,0);
+             moteurGraphique->AjouterTexte(&texte2,16,0);
         }
     }
     else

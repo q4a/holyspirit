@@ -55,6 +55,18 @@ public:
 class EffetPersonnage
 {
 public:
+    EffetPersonnage()
+    {
+        m_type = -1;
+        m_info1 = -1;
+        m_info2 = -1;
+        m_info3 = -1;
+    }
+    EffetPersonnage(const EffetPersonnage &effet)
+    {
+        (*this) = effet;
+    }
+
     void Afficher();
 
     EffetGraphique  m_effet;
@@ -131,6 +143,7 @@ class Miracle
 public:
     Miracle();
     Miracle(const std::string &chemin, const Caracteristique &caract, int level);
+    Miracle(const Miracle &miracle);
     ~Miracle();
 
     void Charger(const std::string &chemin, const Caracteristique &caract, int level);

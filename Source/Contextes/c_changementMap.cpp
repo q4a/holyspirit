@@ -153,7 +153,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         moteurGraphique->ViderParticules();
         moteurSons->StopAllSounds();
 
-        std::vector<Personnage> buffer;
+        std::vector<Monstre> buffer;
         std::vector<Modele_Monstre> bufferModele;
 
         for(unsigned i = 0 ; i < jeu->hero.m_amis.size() ; ++i)
@@ -289,7 +289,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
             buffer[i].frappeEnCours = false;
 
-            jeu->map->AjouterMonstre((Monstre) buffer[i]);
+            jeu->map->AjouterMonstre(buffer[i]);
 
             jeu->map->getEntiteMonstre(jeu->map->getNombreMonstres() - 1)->setCoordonnee(jeu->map->getEntiteMonstre(jeu->map->getNombreMonstres() - 1)->getCoordonnee());
 

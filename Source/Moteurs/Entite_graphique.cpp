@@ -58,6 +58,12 @@ Entite_graphique::Entite_graphique()
     m_sound_volume = 100;
 }
 
+
+Entite_graphique::Entite_graphique(const Entite_graphique &entite)
+{
+    (*this) = entite;
+}
+
 Entite_graphique::~Entite_graphique()
 {
     //dtor
@@ -137,11 +143,11 @@ void Entite_graphique::NextTile(bool cur,bool no_sound)
 
         if(configuration->Lumiere && m_light.ID() == -1 && m_tileset->getLumiereDuTile(m_noAnimation).intensite > 0)
         {
-            sf::Vector2f position;
-            position.x = (int)(m_sprite.GetPosition().x);
-            position.y = (int)(m_sprite.GetPosition().y*2);
+            sf::Vector2f position2;
+            position2.x = (int)(m_sprite.GetPosition().x);
+            position2.y = (int)(m_sprite.GetPosition().y*2);
 
-            m_light = moteurGraphique->LightManager->Add_Dynamic_Light(position,255,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,12,
+            m_light = moteurGraphique->LightManager->Add_Dynamic_Light(position2,255,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,12,
                                                                        sf::Color(m_tileset->getLumiereDuTile(m_noAnimation).rouge,
                                                                                  m_tileset->getLumiereDuTile(m_noAnimation).vert,
                                                                                  m_tileset->getLumiereDuTile(m_noAnimation).bleu));
@@ -307,11 +313,11 @@ void Entite_graphique::Generer()
 
             if(m_tileset->getDistortionDuTile(m_noAnimation) >= 0 && configuration->Distortion)
             {
-                coordonnee positionPartieDecor = m_tileset->getPositionDuTile(m_tileset->getDistortionDuTile(m_noAnimation), 1);
+                coordonnee positionPartieDecor2 = m_tileset->getPositionDuTile(m_tileset->getDistortionDuTile(m_noAnimation), 1);
 
                 m_sprite_distortion.SetImage(*moteurGraphique->getImage(m_tileset->getImage(m_tileset->getDistortionDuTile(m_noAnimation), 1)));
-                m_sprite_distortion.SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y,
-                                                           positionPartieDecor.w, positionPartieDecor.h));
+                m_sprite_distortion.SetSubRect(sf::IntRect(positionPartieDecor2.x, positionPartieDecor2.y,
+                                                           positionPartieDecor2.w, positionPartieDecor2.h));
 
                 m_sprite_distortion.SetOrigin(m_tileset->getCentreDuTile(m_tileset->getDistortionDuTile(m_noAnimation), 1).x,m_tileset->getCentreDuTile(m_tileset->getDistortionDuTile(m_noAnimation), 1).y);
 
@@ -335,14 +341,14 @@ void Entite_graphique::Generer()
             && m_tileset->getShadowmapDuTile(m_noAnimation)[i] >= 0)
             {
                 m_sprite_shadowmap.push_back(sf::Sprite ());
-                coordonnee positionPartieDecor = m_tileset->m_tile_shadowmap[m_tileset->getShadowmapDuTile(m_noAnimation)[i]].getCoordonnee();
+                coordonnee positionPartieDecor2 = m_tileset->m_tile_shadowmap[m_tileset->getShadowmapDuTile(m_noAnimation)[i]].getCoordonnee();
 
 
                 m_sprite_shadowmap.back().SetImage(*moteurGraphique->getImage(m_tileset->getImageShadowmap(m_noAnimation,i)));
-                m_sprite_shadowmap.back().SetSubRect(sf::IntRect(positionPartieDecor.x,
-                                                                 positionPartieDecor.y,
-                                                                 positionPartieDecor.w,
-                                                                 positionPartieDecor.h));
+                m_sprite_shadowmap.back().SetSubRect(sf::IntRect(positionPartieDecor2.x,
+                                                                 positionPartieDecor2.y,
+                                                                 positionPartieDecor2.w,
+                                                                 positionPartieDecor2.h));
 
                 m_sprite_shadowmap.back().SetOrigin(m_tileset->m_tile_shadowmap[m_tileset->getShadowmapDuTile(m_noAnimation)[i]].getCentre().x,
                                                     m_tileset->m_tile_shadowmap[m_tileset->getShadowmapDuTile(m_noAnimation)[i]].getCentre().y);

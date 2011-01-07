@@ -88,6 +88,9 @@ class Set
     std::vector< std::vector<std::string> > m_chemin_miracles;
 
     int m_nombre;
+
+    Set(){};
+    Set(const Set &set) {(*this) = set;}
 };
 
 class Objet
@@ -95,6 +98,7 @@ class Objet
 public:
     Objet();
     Objet(std::string nom,int rarete);
+    Objet(const Objet &);
     ~Objet();
 
     void Afficher(const coordonnee &position);

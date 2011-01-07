@@ -67,6 +67,8 @@ public:
     Hero();
     ~Hero();
 
+    void Reset();
+
     void Sauvegarder();
     void SauvegarderApercu();
     void Charger(const std::string &chemin);
@@ -87,7 +89,7 @@ public:
 
     void PlacerCamera();
 
-    bool TestMonstreVise(Personnage *monstre, float temps);
+    bool TestMonstreVise(Personnage *monstre);
 
     void GererTemps(float temps);
     void RecalculerCaracteristiques(bool bis = true);

@@ -305,9 +305,9 @@ bool Map::Miracle_Charme (Hero *hero, Personnage *personnage, Miracle &modele, E
         if (!info.m_cible->EnVie())
         {
             if(personnage == &hero->m_personnage)
-                for(unsigned o = 0 ; o < hero->m_amis.size() ;  ++o)
-                    if(hero->m_amis[o] == info.m_cible)
-                        hero->m_amis.erase(hero->m_amis.begin() + o);
+                for(unsigned p = 0 ; p < hero->m_amis.size() ;  ++p)
+                    if(hero->m_amis[p] == info.m_cible)
+                        hero->m_amis.erase(hero->m_amis.begin() + p);
 
             miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
 
@@ -844,9 +844,9 @@ bool Map::Miracle_Invocation(Hero *hero, Personnage *personnage, Miracle &modele
             }
 
             if(personnage == &hero->m_personnage)
-                for(unsigned o = 0 ; o < hero->m_amis.size() ;  ++o)
-                    if(hero->m_amis[o] == info.m_cible)
-                        hero->m_amis.erase(hero->m_amis.begin() + o);
+                for(unsigned p = 0 ; p < hero->m_amis.size() ;  ++p)
+                    if(hero->m_amis[p] == info.m_cible)
+                        hero->m_amis.erase(hero->m_amis.begin() + p);
 
             miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
             return 0;

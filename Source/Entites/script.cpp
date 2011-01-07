@@ -209,13 +209,13 @@ void Script::Charger(ifstream &fichier)
         bool OK=true;
         while (!fichier.eof()&&OK==true)
         {
-            int temp=Lire(&fichier);
+            int temp2=Lire(&fichier);
 
-            if (temp==-1)
+            if (temp2==-1)
                 OK=false;
             else
             {
-                m_instructions[0].m_valeurs.push_back(temp);
+                m_instructions[0].m_valeurs.push_back(temp2);
                 m_instructions[0].m_string_valeurs.push_back("");
             }
 

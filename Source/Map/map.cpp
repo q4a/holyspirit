@@ -416,7 +416,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
             console->Ajouter("Une map des entités est déjà existante.");
             if (fichier2)
             {
-                char caractere;
+               // char caractere;
                 do
                 {
                     //Chargement du nom
@@ -434,7 +434,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                         int pos;
 
 
-                        char caractere;
+                       //char caractere;
                         do
                         {
                             //Chargement du nom
@@ -998,7 +998,7 @@ void Map::Initialiser(Hero *hero)
     if (configuration->debug)
         console->Ajouter("Initialisation de l'herbe terminée.");
 
-         sf::Vector2f pos;
+        // sf::Vector2f pos;
 
     for (unsigned i=0;i<NOMBRE_COUCHE_MAP;++i)
         for (unsigned j=0;j<m_decor[i].size();j++)
@@ -1470,19 +1470,19 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                     {
                         if (m_decor[couche][j][k].m_entite_graphique.m_tileset->getTransparentDuTile(m_decor[couche][j][k].m_entite_graphique.m_noAnimation))
                         {
-                            int alpha=(int)(positionHero.y-(k+j)*32 - 16)+224;
+                            int alpha2=(int)(positionHero.y-(k+j)*32 - 16)+224;
 
                             if(m_decor[couche][j][k].m_entite_graphique.m_tileset->getOrientationDuTile(m_decor[couche][j][k].m_entite_graphique.m_noAnimation) == 'x')
-                                alpha = (int)(hero->m_personnage.getCoordonneePixel().y-j*COTE_TILE + COTE_TILE * 3);
+                                alpha2 = (int)(hero->m_personnage.getCoordonneePixel().y-j*COTE_TILE + COTE_TILE * 3);
                             else if(m_decor[couche][j][k].m_entite_graphique.m_tileset->getOrientationDuTile(m_decor[couche][j][k].m_entite_graphique.m_noAnimation) == 'y')
-                                alpha = (int)(hero->m_personnage.getCoordonneePixel().x-k*COTE_TILE + COTE_TILE * 3);
+                                alpha2 = (int)(hero->m_personnage.getCoordonneePixel().x-k*COTE_TILE + COTE_TILE * 3);
 
-                            if (alpha<configuration->alpha)
-                                alpha=configuration->alpha;
-                            if (alpha>255)
-                                alpha=255;
+                            if (alpha2<configuration->alpha)
+                                alpha2=configuration->alpha;
+                            if (alpha2>255)
+                                alpha2=255;
 
-                            m_decor[couche][j][k].m_entite_graphique.m_sprite.SetColor(sf::Color(255,255,255,alpha));
+                            m_decor[couche][j][k].m_entite_graphique.m_sprite.SetColor(sf::Color(255,255,255,alpha2));
                         }
                         moteurGraphique->AjouterEntiteGraphique(&m_decor[couche][j][k].m_entite_graphique);
                     }
@@ -1934,7 +1934,7 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
                         && (projectile->m_position.y - (projectile->m_positionCase.y+0.5)*COTE_TILE) *
                            (projectile->m_position.y - (projectile->m_positionCase.y+0.5)*COTE_TILE) +
                            (projectile->m_position.x - (projectile->m_positionCase.x+0.5)*COTE_TILE) *
-                           (projectile->m_position.x - (projectile->m_positionCase.x+0.5)*COTE_TILE) < COTE_TILE * COTE_TILE * 0.5)
+                           (projectile->m_position.x - (projectile->m_positionCase.x+0.5)*COTE_TILE) < COTE_TILE * COTE_TILE * 0.75)
                             projectile->m_actif=false;
 
                         if (projectile->m_actif)
@@ -1983,93 +1983,93 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
 
 void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
 {
-    for(std::vector<Monstre>::iterator Iter = m_monstre.begin();Iter!=m_monstre.end();++Iter) {
-    if(fabs(hero->m_personnage.getCoordonnee().x - Iter->getCoordonnee().x) < 20
-    && fabs(hero->m_personnage.getCoordonnee().y - Iter->getCoordonnee().y) < 20)
+    for(std::vector<Monstre>::iterator Iter_monstre = m_monstre.begin();Iter_monstre!=m_monstre.end();++Iter_monstre) {
+    if(fabs(hero->m_personnage.getCoordonnee().x - Iter_monstre->getCoordonnee().x) < 20
+    && fabs(hero->m_personnage.getCoordonnee().y - Iter_monstre->getCoordonnee().y) < 20)
     {
         int monstre = -1;
-        int x = (int)(Iter->getCoordonneePixel().x/COTE_TILE + 0.5);
-        int y = (int)(Iter->getCoordonneePixel().y/COTE_TILE + 0.5);
+        int x = (int)(Iter_monstre->getCoordonneePixel().x/COTE_TILE + 0.5);
+        int y = (int)(Iter_monstre->getCoordonneePixel().y/COTE_TILE + 0.5);
 
         if(x >= 0 && y >= 0)
         if(x <  m_dimensions.x && y < m_dimensions.y)
             for (unsigned o = 0 ; o < m_decor[1][y][x].getMonstre().size() ; o++)
-                if(&m_monstre[m_decor[1][y][x].getMonstre()[o]] == &*Iter)
+                if(&m_monstre[m_decor[1][y][x].getMonstre()[o]] == &*Iter_monstre)
                     monstre = m_decor[1][y][x].getMonstre()[o];
 
         if(monstre >= 0)
         {
-            if(Iter->m_inexistant)
+            if(Iter_monstre->m_inexistant)
                 m_decor[1][y][x].delMonstre(monstre);
             else
             {
-                if (Iter->m_cible != NULL)
+                if (Iter_monstre->m_cible != NULL)
                 {
-                    if (Iter->m_cible->EnVie())
+                    if (Iter_monstre->m_cible->EnVie())
                     {
-                        if (Iter->m_friendly == Iter->m_cible->m_friendly)
-                            Iter->setVu(0);
+                        if (Iter_monstre->m_friendly == Iter_monstre->m_cible->m_friendly)
+                            Iter_monstre->setVu(0);
                     }
                     else
-                        Iter->setVu(0);
+                        Iter_monstre->setVu(0);
                 }
                 else
-                    Iter->setVu(0);
+                    Iter_monstre->setVu(0);
 
-                if (Iter->getVu() == 0)
+                if (Iter_monstre->getVu() == 0)
                     TestVisionMonstre(monstre, hero);
 
-                if (Iter->m_cible != NULL)
-                    Iter->TesterVision(Iter->m_cible->getCoordonnee());
+                if (Iter_monstre->m_cible != NULL)
+                    Iter_monstre->TesterVision(Iter_monstre->m_cible->getCoordonnee());
 
-                if (Iter->m_attente<=0)
+                if (Iter_monstre->m_attente<=0)
                 {
-                    TesterPoussable(*Iter, temps, monstre);
+                    TesterPoussable(*Iter_monstre, temps, monstre);
 
-                    bool seDeplacer = Iter->SeDeplacer(temps*100);
+                    bool seDeplacer = Iter_monstre->SeDeplacer(temps*100);
 
-                    Script *script=&Iter->m_scriptAI;
+                    Script *script=&Iter_monstre->m_scriptAI;
                     if ((int)script->m_instructions.size()>0)
                         for (int a=0;a<(int)script->m_instructions[0].m_valeurs.size();a++)
                             if (script->m_instructions[0].m_valeurs[a]>=0&&script->m_instructions[0].m_valeurs[a]<(int)script->m_instructions.size())
                                 GererInstructions(jeu,script,(int)script->m_instructions[0].m_valeurs[a],monstre,hero,temps,menu,seDeplacer);
 
-                    if (Iter->getErreurPathfinding())
+                    if (Iter_monstre->getErreurPathfinding())
                         Script_RandomDisplace(jeu,script,0,monstre,hero,temps,menu,seDeplacer);
 
                     if (seDeplacer)
                     {
                         coordonnee tempCoord(hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1);
-                        Iter->Pathfinding(getAlentourDuPersonnage(Iter->getCoordonnee()),tempCoord);
+                        Iter_monstre->Pathfinding(getAlentourDuPersonnage(Iter_monstre->getCoordonnee()),tempCoord);
                     }
 
-                    Iter->m_touche = false;
+                    Iter_monstre->m_touche = false;
                 }
                 else
-                    Iter->m_attente-=temps*100;
+                    Iter_monstre->m_attente-=temps*100;
 
-                if (Iter->getErreurPathfinding())
-                    Iter->m_compteur++;
+                if (Iter_monstre->getErreurPathfinding())
+                    Iter_monstre->m_compteur++;
                 else
-                    Iter->m_compteur=0;
+                    Iter_monstre->m_compteur=0;
 
-                if (Iter->EnVie())
-                    if ((int)(Iter->getCoordonneePixel().y/COTE_TILE + 0.5) != y
-                     || (int)(Iter->getCoordonneePixel().x/COTE_TILE + 0.5) != x)
-                        if ( (int)(Iter->getCoordonneePixel().x/COTE_TILE + 0.5) >= 0 && (int)(Iter->getCoordonneePixel().x/COTE_TILE + 0.5) < m_dimensions.x
-                          && (int)(Iter->getCoordonneePixel().y/COTE_TILE + 0.5) >= 0 && (int)(Iter->getCoordonneePixel().y/COTE_TILE + 0.5) < m_dimensions.y)
+                if (Iter_monstre->EnVie())
+                    if ((int)(Iter_monstre->getCoordonneePixel().y/COTE_TILE + 0.5) != y
+                     || (int)(Iter_monstre->getCoordonneePixel().x/COTE_TILE + 0.5) != x)
+                        if ( (int)(Iter_monstre->getCoordonneePixel().x/COTE_TILE + 0.5) >= 0 && (int)(Iter_monstre->getCoordonneePixel().x/COTE_TILE + 0.5) < m_dimensions.x
+                          && (int)(Iter_monstre->getCoordonneePixel().y/COTE_TILE + 0.5) >= 0 && (int)(Iter_monstre->getCoordonneePixel().y/COTE_TILE + 0.5) < m_dimensions.y)
                         {
                             m_decor[1][y][x].delMonstre(monstre);
-                            m_decor[1][(int)(Iter->getCoordonneePixel().y/COTE_TILE + 0.5)][(int)(Iter->getCoordonneePixel().x/COTE_TILE + 0.5)].setMonstre(monstre);
+                            m_decor[1][(int)(Iter_monstre->getCoordonneePixel().y/COTE_TILE + 0.5)][(int)(Iter_monstre->getCoordonneePixel().x/COTE_TILE + 0.5)].setMonstre(monstre);
                         }
             }
         }
     }
     else
     {
-        Iter->setVu(0);
-        if(Iter->EnVie())
-            Iter->regenererVie(Iter->getCaracteristique().maxVie * temps / 30);
+        Iter_monstre->setVu(0);
+        if(Iter_monstre->EnVie())
+            Iter_monstre->regenererVie(Iter_monstre->getCaracteristique().maxVie * temps / 30);
     }
 
     }

@@ -30,7 +30,6 @@ void lireVideo(sf::RenderWindow *ecran,std::string Chemin);
 using namespace sf;
 
 
-
 Jeu::Jeu()
 {
     map         = NULL;
