@@ -144,6 +144,8 @@ void Menu::AfficherDialogue(float time,Classe *classe)
                 m_cur_talk_hauteur = classe->talk.position.h - m_hauteur;
         }
 
+        texte.SetColor(sf::Color(224,224,224));
+
         texte.SetCharacterSize(14);
         texte.SetStyle(0);
         texte.SetFont(moteurGraphique->m_font);

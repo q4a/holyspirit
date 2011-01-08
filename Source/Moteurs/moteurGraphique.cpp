@@ -889,7 +889,7 @@ void MoteurGraphique::AjouterTexte(const std::string &txt, coordonnee pos, Borde
     coordonnee s;
     s.x = (int)temp.GetRect().Width + 13;
     s.y = (int)temp.GetRect().Height + 6;
-    border.Afficher(pos, s, couche);
+    border.Afficher(pos, s, couche, sf::Color(224,224,224,224));
 }
 
 void MoteurGraphique::AjouterTexte(const std::string &txt, coordonnee pos, int couche, bool titre, int size, sf::Color color)

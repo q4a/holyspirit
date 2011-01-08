@@ -874,13 +874,15 @@ void  c_MainMenu::E_Credits()
 }
 void  c_MainMenu::E_Story()
 {
+    texte.SetFont(moteurGraphique->m_font);
     texte.SetStyle(0);
     texte.SetCharacterSize(16);
     texte.SetColor(Color(150,100,50));
     texte.SetString(m_story);
     texte.SetY((int)(configuration->Resolution.h/2 - 256));
     texte.SetX((int)(configuration->Resolution.w/2-texte.GetRect().Width/2));
-    moteurGraphique->AjouterTexte(&texte,19,1);
+    moteurGraphique->AjouterTexte(&texte,19);
+    texte.SetFont(moteurGraphique->m_font_titre);
 
     texte.SetStyle(0);    texte.SetCharacterSize(48);
     texte.SetString(configuration->getText(0,67));

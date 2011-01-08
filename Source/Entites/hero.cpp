@@ -112,6 +112,18 @@ Hero::~Hero()
 
 void Hero::Reset()
 {
+    m_contenuSave.clear();
+    m_docs.clear();
+    m_potales.clear();
+    m_lvl_miracles.clear();
+    m_amis.clear();
+    m_coffre.clear();
+    m_items_cooldown.clear();
+    m_inventaire.clear();
+    m_weaponMiracle.clear();
+    m_quetes.clear();
+
+
     m_personnage.setEtat(ARRET);
 
     m_chercherSac.x=-1;
