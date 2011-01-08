@@ -5,7 +5,7 @@ Cette modeste armure est constituée\d'une croute de cuir garnie à\l'intérieur d'
 Arquebuse
 Cet objet étrange a le pouvoir\de propulser un projectile\métallique à vive vitesse.\Beaucoup mieux qu'un arc mais\plus douloureux pour les oreilles !
 Bottes en cuir
-Des bottes faites pour marcher…\et qui protègent légèrement\les pieds des coups.
+Des bottes faites pour marcher...\et qui protègent légèrement\les pieds des coups.
 Dague de cérémonie
 Une dague acéré conçue pour des\sacrifices lors de cérémonie.
 Cotte de mailles
@@ -15,7 +15,7 @@ Le charbon est un matériau de\base pour la fabrication d'acier.
 Arbalète de poing
 Cette petite arme de jet\maniable et rapide est cependant\moins destructrice qu'une arme à feu.
 Poignard
-Ce poignard fin et acéré\est une arme parfaite pour\un traitre… ou pour une femme.
+Ce poignard fin et acéré\est une arme parfaite pour\un traitre... ou pour une femme.
 Potion de foi mineure
 Cette fiole au contenu étrangement\fluorescent fera couler l'essence\divine dans vos veines !\Vous régénére de 150 PF.
 Bure
@@ -37,7 +37,7 @@ Le minerai de fer est un matériau\de base pour la fabrication\d'armes et armures
 Anneau
 Un petit anneau sertit d'une pierre.
 Planche en bois
-Les planches de bois sont un matériau\de base pour la fabrication\d'armes et armures.
+Une planche qui peut servir à\confectionner bien des objets...\Peut-être la première étape d'un cercueil ?
 
 
 Petit bouclier
@@ -55,7 +55,7 @@ Scarificateur est une dague\ de cérémonie qui fut utilisée par\la terrible tueus
 La Damnation d'Harold
 Ce bouclier a appartenu\ au grand roi Harold.
 Gants renforcés
-Des solides gants en cuir\renforcé par des plaques en métal.
+De solides gants en cuir\renforcés de plaques métalliques.
 Capuche de cuir
 Une simple capuche en cuir\offrant peu de protection.
 Robe en satin de la Veuve Éplorée
@@ -67,7 +67,7 @@ Une arme redoutable capable d'écraser\un crâne humain en un seul coup.\\Arme à u
 Flamboyante
 Épée forgée dans les flammes\de l'enfer, elle a appartenu au\démon avant d'être dérobée par\l'Archange Michel. Celui-ci la\perdit une fois en s'incarnant\sur Terre et on le cru\disparu à jamais.
 Hache de bucheron
-Cette puissante hache sert\habituellement à découper des arbres,\mais tranche aussi très\bien la viande et les os…
+Cette puissante hache sert\habituellement à découper des arbres,\mais tranche aussi très\bien la viande et les os...
 Masse de boucher
 Cette masse a pour but\premier de tuer les cochons.\Mais elle se révèle aussi\très efficace contre les démons.\\Arme à deux mains.
 

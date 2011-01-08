@@ -12,7 +12,7 @@ Je dois rapporter le tabac à Romulus le marchand.
 Romulus a récupéré son tabac.
 
 Un passe temps pour Rognorak		
-Rognorak le forgeron s'ennuie tant qu'il m'a proposé de me fabriquer une arme gratuitement. Je dois lui apporter un schéma et les ingrédients nécessaires.
+Rognorak le forgeron s'ennuie tant qu'il m'a proposé de me fabriquer une arme gratuitement. Je dois lui apporter les ingrédients nécessaires.
 Rognorak a ce qu'il lui faut pour réaliser une arme.
 
 La bénédiction du bon abbé

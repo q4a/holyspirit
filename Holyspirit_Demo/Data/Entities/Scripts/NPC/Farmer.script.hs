@@ -53,12 +53,24 @@ main
 				stopMiracle * 0
 				
 				stop_speak
-				stop_talk
 			end
 			if speak_choice * 2
 			then
 				variable * 6 * 2
 				variable * 3 * 4
+				variable * 2 * 0
+				
+				stop_speak
+				stop_talk
+			end
+		end
+		
+		if variable * 3 * 4
+		then
+			if speak_choice * 1
+			then
+				variable * 6 * 3
+				variable * 3 * 3
 				variable * 2 * 0
 				
 				stop_speak
@@ -117,11 +129,24 @@ main
 			speak * 85
 		end
 		
+		if variable * 3 * 4
+		then
+			speak * 90
+		end
+		
 		if variable * 2 * 0
 		   variable * 3 * 2
 		then
 			speak_choice * 86 * 1
 			speak_choice * 87 * 2
+			
+			variable * 2 * 1
+		end
+		
+		if variable * 2 * 0
+		   variable * 3 * 4
+		then
+			speak_choice * 89 * 1
 			
 			variable * 2 * 1
 		end
