@@ -1,6 +1,6 @@
 	*31
 $
-	* f20 v20 p10 d15 c5 $
+	* f25 v25 p10 d15 c10 $
 $
 	* mSword_1h_small_sword.item.hs $
 	* mShield_small_shield.item.hs $

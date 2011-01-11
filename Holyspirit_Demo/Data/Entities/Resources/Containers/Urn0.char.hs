@@ -29,7 +29,7 @@ $
 		r1000
 	$
 	*
-		*Craft_ore_gold.item.item.hs
+		*Craft_ore_gold.item.hs
 		r500
 	$
 	*

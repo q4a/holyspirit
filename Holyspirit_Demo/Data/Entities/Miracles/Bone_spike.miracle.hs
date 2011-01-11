@@ -4,7 +4,7 @@ $
 $
 $
 	* t0 l1 s0 ia10 $
-	* t2 ia20 ib35 ic0 $
+	* t2 ia10 ib15 ic0 $
 $
 	*
 		*Data/Graphics/Miracles/Bone_spike.png

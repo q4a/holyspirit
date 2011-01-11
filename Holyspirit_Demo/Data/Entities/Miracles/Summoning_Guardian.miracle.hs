@@ -3,7 +3,7 @@ $
 $
 $
 $
-	* t-1 l1 l1 $ 
+	* t-1 l1 $ 
 	
 	* t4 l2 l3 mData/Entities/Resources/Monsters/Skeletons/Guardian.char.hs $
 
