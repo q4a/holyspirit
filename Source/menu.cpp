@@ -468,7 +468,7 @@ void Menu::AfficherChargement(string nom,int fond,int z=50)
     texte.SetString(nom);
 
     texte.SetX(configuration->Resolution.w/2-(texte.GetRect().Width)/2);
-    texte.SetY(configuration->Resolution.h-(texte.GetRect().Height)/2-60*configuration->Resolution.h/600);
+    texte.SetY(configuration->Resolution.h-(texte.GetRect().Height)/2-80*configuration->Resolution.h/600);
     texte.SetColor(Color(150,100,50,z*255/50));
     moteurGraphique->AjouterTexte(&texte,16,1);
 }

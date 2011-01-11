@@ -60,9 +60,16 @@ public:
     */
     void setC_Chargement(const std::string &prochaineMap,const coordonnee &coordonneePerso,bool debut=false);
 
+    void PreLoad(Jeu *jeu);
+    void PostLoad(Jeu *jeu);
+
+    sf::Thread *m_thread_charger;
+
+    std::string m_nomProchaineMap;
+
 private:
 
-    std::string nomMap,m_nomProchaineMap;
+    std::string nomMap;
 
 
     float tempsActuel,tempsPrecedent,temps_ecoule,tempsEcouleDepuisDernierAffichage;
@@ -72,6 +79,15 @@ private:
     int m_fond;
     float m_tempsChargement;
     bool mort;
+
+    bool m_chargement;
+
+
+    std::string musicEnCours;
+    std::vector<std::string> climatsEnCours;
+    std::vector<float> climatsTimeEnCours;
+    std::vector<Monstre> buffer;
+    std::vector<Modele_Monstre> bufferModele;
 
 };
 

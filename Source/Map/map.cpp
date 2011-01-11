@@ -43,6 +43,9 @@ Map::Map()
     m_render_minimap.Create(4096,4096);
     m_render_minimap.Clear(sf::Color(0,0,0,0));
 
+    m_etat_chargement   = 0;
+    m_loaded            = false;
+
     console->Ajouter("");
     console->Ajouter("Chargements d'images diverses :");
 }
@@ -147,6 +150,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
     m_lumiere[0].bleu=0;
 
     m_musiqueEnCours=0;
+
+    m_etat_chargement = 0;
 
     console->Ajouter("",0);
     console->Ajouter("Chargement de la map : "+nomMap);
@@ -339,6 +344,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
             heureEnCours++;
         }
 
+        m_etat_chargement = 1;
+
         do
         {
             //Chargement des tileset
@@ -383,6 +390,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
         if (configuration->debug)
             console->Ajouter("/Lectures des herbes.");
 
+        m_etat_chargement = 2;
+
         do
         {
             //Chargement des tileset
@@ -407,6 +416,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
         if (configuration->debug)
             console->Ajouter("/Lectures des monstres.");
+
+        m_etat_chargement = 3;
 
         console->Ajouter("");
 
@@ -553,6 +564,8 @@ bool Map::Charger(std::string nomMap,Hero *hero)
             if (configuration->debug)
                 console->Ajouter("/Lectures des monstres si existants.");
         }
+
+        m_etat_chargement = 4;
 
 
         Decor decorTemp(-1,-1,std::vector<int> (),-1,0,0);
@@ -939,6 +952,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
         throw "";
     }
 
+    m_etat_chargement = 5;
 
 
     for (int i=0;i<24;++i)
@@ -955,9 +969,13 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
     Initialiser(hero);
 
+    m_etat_chargement = 6;
+
     if (configuration->debug)
         console->Ajouter("Initialisation terminée.");
     console->Ajouter("");
+
+    m_loaded = true;
 
     return 1;
 }

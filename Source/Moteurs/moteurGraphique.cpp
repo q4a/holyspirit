@@ -401,7 +401,6 @@ void MoteurGraphique::Afficher()
     }
     m_distortion_commandes.clear();
 
-
     for (int k=0;k<=20;++k)
     {
         if (k==12 && configuration->Lumiere)
@@ -537,17 +536,6 @@ void MoteurGraphique::Afficher()
         m_commandes[k].clear();
         m_textes[k].clear();
     }
-
-    /*{
-        sf::View temp = m_camera;
-        temp.SetSize(configuration->Resolution.x + 64, configuration->Resolution.y + 64);
-        temp.Zoom(configuration->zoom);
-
-        decalageOmbre=temp.GetCenter();
-        bufferImage.SetView(temp);
-
-        LightManager->DrawWallShadow(&bufferImage,&temp,m_angleOmbreSoleil,m_soleil);
-    }*/
 
     bufferImage.Display();
     m_ecran.Draw(sf::Sprite(bufferImage.GetImage()));

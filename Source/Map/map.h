@@ -149,6 +149,9 @@ public:
 
     std::vector<Climate> m_climates;
 
+    int m_etat_chargement;
+    bool m_loaded;
+
 private:
     int m_calculLumiere;
     std::string m_nom_fichier;

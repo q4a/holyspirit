@@ -66,7 +66,7 @@ c_Jeu::c_Jeu()
     temps[3] = 0;
     temps[4] = 0;
 
-    configuration->heure=(rand() % (24));
+    configuration->heure=12;//(rand() % (24));
     configuration->minute=0;
 
     sf::Listener::SetGlobalVolume((float)configuration->volume);
@@ -129,7 +129,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
     {
         if (m_thread_sauvegarde)
         {
-            m_thread_sauvegarde->Terminate();
+            m_thread_sauvegarde->Wait();
             delete m_thread_sauvegarde;
         }
 
