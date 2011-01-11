@@ -426,6 +426,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                         Caracteristique tempCaract;
                         int numeroModele=-1,vieMin=0,vieMax=1,degatsMin=0,degatsMax=0,rang=0,ame=0,pose=0,etat=0,angle=0;
                         float taille=1;
+                        bool etat_force = false;
                         vector <Objet> objets;
                         std::vector <int> variables;
                         m_monstre.push_back(Monstre ());
@@ -472,6 +473,9 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                                 break;
                             case 'e':
                                 *fichier2>>etat;
+                                break;
+                            case 'f':
+                                *fichier2>>etat_force;
                                 break;
                             case 'g':
                                 *fichier2>>angle;
@@ -529,6 +533,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                             m_monstre.back().setPose(pose);
                             m_monstre.back().setForcedAngle(angle);
                             m_monstre.back().setObjets(objets);
+                            m_monstre.back().m_etatForce = etat_force;
                             for(unsigned z=0;z<variables.size();++z)
                                 m_monstre.back().m_scriptAI.setVariable(z,variables[z]);
                         }
@@ -985,8 +990,8 @@ void Map::Initialiser(Hero *hero)
                         position.x+=m_decor[0][i][j].getDecalageHerbe().x;
 
                         m_decor[couche][i][j].m_entite_herbe = moteurGraphique->getEntiteGraphique(m_herbe[m_decor[couche][i][j].getHerbe()], numeroHerbe, 10);
-                        m_decor[couche][i][j].m_entite_herbe.m_sprite.SetPosition(position.x, position.y - m_decor[0][i][j].getHauteur());
-                        m_decor[couche][i][j].m_entite_herbe.m_sprite.SetScale((float)m_decor[couche][i][j].getTailleHerbe()/100,(float)m_decor[couche][i][j].getTailleHerbe()/100);
+                        m_decor[couche][i][j].m_entite_herbe.SetPosition(position.x, position.y - m_decor[0][i][j].getHauteur());
+                        m_decor[couche][i][j].m_entite_herbe.SetScale((float)m_decor[couche][i][j].getTailleHerbe()/100,(float)m_decor[couche][i][j].getTailleHerbe()/100);
                         m_decor[couche][i][j].m_entite_herbe.m_color = m_decor[couche][i][j].getCouleurHerbe();
 
                         m_decor[couche][i][j].m_entite_herbe.Initialiser(coordonnee ());
@@ -1014,14 +1019,14 @@ void Map::Initialiser(Hero *hero)
 
                     Entite_graphique temp = m_decor[i][j][k].m_entite_graphique;
                     m_decor[i][j][k].m_entite_graphique = moteurGraphique->getEntiteGraphique(m_tileset[m_decor[i][j][k].getTileset()], m_decor[i][j][k].getTile(), m_decor[i][j][k].getCouche());
-                    m_decor[i][j][k].m_entite_graphique.m_sprite.SetPosition(position.x, position.y);
+                    m_decor[i][j][k].m_entite_graphique.SetPosition(position.x, position.y);
                     //m_decor[i][j][k].m_entite_graphique.m_sprite.Move(m_decor[i][j][k].m_entite_graphique.m_decalage.x,
                      //                                                 m_decor[i][j][k].m_entite_graphique.m_decalage.y);
-                    m_decor[i][j][k].m_entite_graphique.m_sprite.SetColor(
-                            sf::Color(m_decor[i][j][k].m_entite_graphique.m_sprite.GetColor().r * m_decor[i][j][k].m_entite_graphique.m_color.r / 255,
-                                      m_decor[i][j][k].m_entite_graphique.m_sprite.GetColor().g * m_decor[i][j][k].m_entite_graphique.m_color.g / 255,
-                                      m_decor[i][j][k].m_entite_graphique.m_sprite.GetColor().b * m_decor[i][j][k].m_entite_graphique.m_color.b / 255,
-                                      m_decor[i][j][k].m_entite_graphique.m_sprite.GetColor().a * m_decor[i][j][k].m_entite_graphique.m_color.a / 255));
+                    m_decor[i][j][k].m_entite_graphique.SetColor(
+                            sf::Color(m_decor[i][j][k].m_entite_graphique.GetColor().r * m_decor[i][j][k].m_entite_graphique.m_color.r / 255,
+                                      m_decor[i][j][k].m_entite_graphique.GetColor().g * m_decor[i][j][k].m_entite_graphique.m_color.g / 255,
+                                      m_decor[i][j][k].m_entite_graphique.GetColor().b * m_decor[i][j][k].m_entite_graphique.m_color.b / 255,
+                                      m_decor[i][j][k].m_entite_graphique.GetColor().a * m_decor[i][j][k].m_entite_graphique.m_color.a / 255));
                     m_decor[i][j][k].m_entite_graphique.Initialiser(pos);
                     m_decor[i][j][k].m_entite_graphique.SetParameters(temp);
                     m_decor[i][j][k].m_entite_graphique.Generer();
@@ -1481,7 +1486,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                             if (alpha2>255)
                                 alpha2=255;
 
-                            m_decor[couche][j][k].m_entite_graphique.m_sprite.SetColor(sf::Color(255,255,255,alpha2));
+                            m_decor[couche][j][k].m_entite_graphique.SetColor(sf::Color(255,255,255,alpha2));
                         }
                         moteurGraphique->AjouterEntiteGraphique(&m_decor[couche][j][k].m_entite_graphique);
                     }
@@ -1569,7 +1574,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                     if (k<0)
                         z=0;
 
-                    sf::Sprite buffer(m_decor[couche][w][z].m_entite_graphique.m_sprite);
+                    sf::Sprite buffer(m_decor[couche][w][z].m_entite_graphique);
 
                     buffer.SetX((k-j)*64);
                     buffer.SetY((k+j+1)*32);

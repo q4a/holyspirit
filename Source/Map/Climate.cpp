@@ -94,7 +94,7 @@ void Climate::Charger(std::string chemin)
 
                 pos.x = pos.x * configuration->Resolution.x/800;
                 pos.y = pos.y * configuration->Resolution.y/600;
-                m_entities.back().m_sprite.SetPosition(pos.x, pos.y);
+                m_entities.back().SetPosition(pos.x, pos.y);
                 m_entities.back().Initialiser(pos);
 
                 fichier.get(caractere);
@@ -173,13 +173,13 @@ void Climate::Update(float time)
         m_entities[i].Animer(time);
         m_entities[i].Generer();
 
-        m_entities[i].m_sprite.SetScale((float)configuration->Resolution.x/800,
-                                        (float)configuration->Resolution.y/600);
+        m_entities[i].SetScale((float)configuration->Resolution.x/800,
+                                (float)configuration->Resolution.y/600);
 
-        sf::Color color = m_entities[i].m_sprite.GetColor();
+        sf::Color color = m_entities[i].GetColor();
         float temp = (float)color.a * GetState();
         color.a = (unsigned char)temp;
-        m_entities[i].m_sprite.SetColor(color);
+        m_entities[i].SetColor(color);
         m_entities[i].m_sound_volume = GetState() * 100;
     }
 

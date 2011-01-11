@@ -361,10 +361,10 @@ void Hero::SauvegarderApercu()
             m_personnage.Animer(&m_modelePersonnage[m_ordreAffichage[i]], 0, true);
             m_personnage.m_entite_graphique.Generer();
 
-            m_personnage.m_entite_graphique.m_sprite.SetX(128);
-            m_personnage.m_entite_graphique.m_sprite.SetY(128);
+            m_personnage.m_entite_graphique.SetX(128);
+            m_personnage.m_entite_graphique.SetY(128);
 
-            render.Draw(m_personnage.m_entite_graphique.m_sprite);
+            render.Draw(m_personnage.m_entite_graphique);
         }
 
     m_personnage.setJustEtat(etat);

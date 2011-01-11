@@ -19,12 +19,16 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Entite_graphique.h"
 #include "../globale.h"
 
-Entite_graphique::Entite_graphique()
+Entite_graphique::Entite_graphique() : sf::Sprite()
 {
     m_reflect       = false;
     m_shadow        = false;
     m_distort       = false;
     m_fixed         = false;
+
+    attaque_touche  = false;
+    attaque_stop    = false;
+    attaque_pause   = false;
 
     m_tileset       = NULL;
 
@@ -32,7 +36,7 @@ Entite_graphique::Entite_graphique()
     m_decalCouche   = 0;
     m_noAnimation   = 0;
 
-    m_sprite.SetSubRect(sf::IntRect(0,0,0,0));
+    SetSubRect(sf::IntRect(0,0,0,0));
 
     m_animation = 0;
 
@@ -59,7 +63,7 @@ Entite_graphique::Entite_graphique()
 }
 
 
-Entite_graphique::Entite_graphique(const Entite_graphique &entite)
+Entite_graphique::Entite_graphique(const Entite_graphique &entite) : sf::Sprite()
 {
     (*this) = entite;
 }
@@ -127,8 +131,8 @@ void Entite_graphique::NextTile(bool cur,bool no_sound)
             m_noAnimation = m_tileset->getAnimationTile(m_noAnimation);
 
         coordonnee position;
-        position.x = (int)(m_sprite.GetPosition().x/64/5);
-        position.y = (int)(m_sprite.GetPosition().y/32/5);
+        position.x = (int)(GetPosition().x/64/5);
+        position.y = (int)(GetPosition().y/32/5);
 
         if(m_fixed)
         {
@@ -144,8 +148,8 @@ void Entite_graphique::NextTile(bool cur,bool no_sound)
         if(configuration->Lumiere && m_light.ID() == -1 && m_tileset->getLumiereDuTile(m_noAnimation).intensite > 0)
         {
             sf::Vector2f position2;
-            position2.x = (int)(m_sprite.GetPosition().x);
-            position2.y = (int)(m_sprite.GetPosition().y*2);
+            position2.x = (int)(GetPosition().x);
+            position2.y = (int)(GetPosition().y*2);
 
             m_light = moteurGraphique->LightManager->Add_Dynamic_Light(position2,255,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,12,
                                                                        sf::Color(m_tileset->getLumiereDuTile(m_noAnimation).rouge,
@@ -196,7 +200,7 @@ void Entite_graphique::NextTile(bool cur,bool no_sound)
 
 void Entite_graphique::Initialiser(coordonnee pos)
 {
-    m_sprite.SetBlendMode(sf::Blend::Alpha);
+    SetBlendMode(sf::Blend::Alpha);
 
     if(m_tileset != NULL)
     {
@@ -276,26 +280,26 @@ void Entite_graphique::Generer()
         {
             coordonnee positionPartieDecor = m_tileset->getPositionDuTile(m_noAnimation);
 
-            m_sprite.SetImage(*moteurGraphique->getImage(m_tileset->getImage(m_noAnimation)));
-            m_sprite.SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y,
+            SetImage(*moteurGraphique->getImage(m_tileset->getImage(m_noAnimation)));
+            SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y,
                                             positionPartieDecor.w, positionPartieDecor.h - 1));
 
-            m_sprite.SetOrigin(m_tileset->getCentreDuTile(m_noAnimation).x,m_tileset->getCentreDuTile(m_noAnimation).y);
+            SetOrigin(m_tileset->getCentreDuTile(m_noAnimation).x,m_tileset->getCentreDuTile(m_noAnimation).y);
 
-            m_sprite.SetColor(sf::Color(m_color.r,
+            SetColor(sf::Color(m_color.r,
                                         m_color.g,
                                         m_color.b,
                                         m_tileset->getOpacityDuTile(m_noAnimation) * m_color.a / 255));
 
-            m_sprite.SetScale(fabs((float)m_scale.x*0.01), fabs((float)m_scale.y*0.01));
-            m_sprite.FlipX(m_scale.x < 0);
-            m_sprite.FlipY(m_scale.y < 0);
+            SetScale(fabs((float)m_scale.x*0.01), fabs((float)m_scale.y*0.01));
+            FlipX(m_scale.x < 0);
+            FlipY(m_scale.y < 0);
 
             if(m_scale.x < 0)
-            m_sprite.SetOrigin(positionPartieDecor.w - m_tileset->getCentreDuTile(m_noAnimation).x,
+            SetOrigin(positionPartieDecor.w - m_tileset->getCentreDuTile(m_noAnimation).x,
                                m_tileset->getCentreDuTile(m_noAnimation).y);
 
-            m_sprite.SetRotation(m_rotation);
+            SetRotation(m_rotation);
 
             m_decalCouche = m_tileset->getLayerDuTile(m_noAnimation);
 
@@ -326,7 +330,7 @@ void Entite_graphique::Generer()
                                                        m_sprite_distortion.GetColor().b,
                                                        m_tileset->getOpacityDuTile(m_tileset->getDistortionDuTile(m_noAnimation), 1)));
 
-                m_sprite_distortion.SetPosition(m_sprite.GetPosition());
+                m_sprite_distortion.SetPosition(GetPosition());
 
                 m_distort = true;
             }
@@ -353,7 +357,7 @@ void Entite_graphique::Generer()
                 m_sprite_shadowmap.back().SetOrigin(m_tileset->m_tile_shadowmap[m_tileset->getShadowmapDuTile(m_noAnimation)[i]].getCentre().x,
                                                     m_tileset->m_tile_shadowmap[m_tileset->getShadowmapDuTile(m_noAnimation)[i]].getCentre().y);
 
-                m_sprite_shadowmap.back().SetPosition(m_sprite.GetPosition());
+                m_sprite_shadowmap.back().SetPosition(GetPosition());
 
                 m_angle_shadowmap.push_back(m_tileset->m_tile_shadowmap[m_tileset->getShadowmapDuTile(m_noAnimation)[i]].getAngle());
             }

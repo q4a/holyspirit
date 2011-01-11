@@ -294,6 +294,7 @@ void Personnage::Sauvegarder(ofstream &fichier)
             <<" t"  <<m_caracteristique.modificateurTaille
             <<" i"  <<m_entite_graphique.m_noAnimation
             <<" e"  <<m_etat
+            <<" f"  <<m_etatForce
             <<" g"  <<m_angle;
 
     m_entite_graphique.SaveParameters(fichier);
@@ -348,24 +349,24 @@ void Personnage::Afficher(Modele_Personnage *modele,bool surbrillance, bool sans
             if ((int)(m_angle/45) >= 0 && (int)(m_angle/45) < (int)modele->m_tileset[m_etat].size())
             {
                 m_entite_graphique.m_tileset = &modele->m_tileset[m_etat][(int)(m_angle/45)];
-                m_entite_graphique.m_sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
-                m_entite_graphique.m_sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
+                m_entite_graphique.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
+                m_entite_graphique.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
 
-                m_entite_graphique.m_sprite.SetColor(m_entite_graphique.m_color);
+                m_entite_graphique.SetColor(m_entite_graphique.m_color);
 
                 moteurGraphique->AjouterEntiteGraphique(&m_entite_graphique);
 
                 if(surbrillance)
                 {
                     Entite_graphique temp = m_entite_graphique;
-                    temp.m_sprite.SetBlendMode(sf::Blend::Add);
+                    temp.SetBlendMode(sf::Blend::Add);
                     moteurGraphique->AjouterEntiteGraphique(&temp);
                 }
 
                 if(modele->m_ombre)
                 {
-                    m_entite_graphique_shadow.m_sprite.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
-                    m_entite_graphique_shadow.m_sprite.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
+                    m_entite_graphique_shadow.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
+                    m_entite_graphique_shadow.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
                     moteurGraphique->AjouterEntiteGraphique(&m_entite_graphique_shadow);
                 }
 
@@ -942,12 +943,12 @@ int Personnage::Animer(Modele_Personnage *modele,float temps, bool no_generate)
         if(temps > 0)
             m_entite_graphique.Animer(temps);
 
-        m_entite_graphique.m_sprite.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
+        m_entite_graphique.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
 
-        m_entite_graphique.m_sprite.Scale((float)m_entite_graphique.m_scale.x*0.01, (float)m_entite_graphique.m_scale.y*0.01);
+        m_entite_graphique.Scale((float)m_entite_graphique.m_scale.x*0.01, (float)m_entite_graphique.m_scale.y*0.01);
        /* if (m_porteeLumineuse.intensite>0)
         {
-            m_entite_graphique.m_sprite.SetColor(sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu, 255));
+            m_entite_graphique.SetColor(sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu, 255));
            *//* moteurGraphique->LightManager->SetColor(m_entite_graphique.m_light,sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu));
 
             if (m_caracteristique.rang==0)
@@ -955,7 +956,7 @@ int Personnage::Animer(Modele_Personnage *modele,float temps, bool no_generate)
             moteurGraphique->LightManager->SetIntensity(m_entite_graphique.m_light,m_porteeLumineuse.intensite);*/
         /*}
         else
-            m_entite_graphique.m_sprite.SetColor(sf::Color(255,255,255, 255));*/
+            m_entite_graphique.SetColor(sf::Color(255,255,255, 255));*/
 
         if(m_entite_graphique.attaque_touche)
         {
@@ -1021,9 +1022,9 @@ int Personnage::Animer(Modele_Personnage *modele,float temps, bool no_generate)
         m_entite_graphique_shadow.m_reflect             = false;
         m_entite_graphique_shadow.m_light               = Light_Entity();
 
-        m_entite_graphique_shadow.m_sprite.SetScale(m_caracteristique.modificateurTaille,
+        m_entite_graphique_shadow.SetScale(m_caracteristique.modificateurTaille,
                                                     m_caracteristique.modificateurTaille*(100-(float)moteurGraphique->m_soleil.hauteur)/50);
-        m_entite_graphique_shadow.m_sprite.SetRotation(moteurGraphique->m_angleOmbreSoleil);
+        m_entite_graphique_shadow.SetRotation(moteurGraphique->m_angleOmbreSoleil);
     }
 
     return retour;

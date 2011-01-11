@@ -22,7 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "../Map/tileset.h"
 #include "light.h"
 
-class Entite_graphique
+class Entite_graphique : public sf::Sprite
 {
     public:
         Entite_graphique();
@@ -41,7 +41,6 @@ class Entite_graphique
    // protected:
     //private:
 
-    sf::Sprite m_sprite;
     sf::Sprite m_sprite_distortion;
     std::vector <sf::Sprite> m_sprite_shadowmap;
     std::vector <int> m_angle_shadowmap;

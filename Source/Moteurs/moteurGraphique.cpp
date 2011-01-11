@@ -780,17 +780,17 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
             sprite2.SetOrigin(m_ambientShadowTileset.getCentreDuTile(entite->m_ambientShadow).x,
                               m_ambientShadowTileset.getCentreDuTile(entite->m_ambientShadow).y);
 
-            sprite2.SetPosition(entite->m_sprite.GetPosition());
+            sprite2.SetPosition(entite->GetPosition());
 
             sprite2.Move(entite->m_decalage.x,entite->m_decalage.y);
 
             AjouterCommande(&sprite2, 10 + entite->m_decalCouche, !entite->m_fixed);
         }
 
-        if(entite->m_sprite.GetSize().x > 0 && entite->m_sprite.GetSize().y > 0)
+        if(entite->GetSize().x > 0 && entite->GetSize().y > 0)
         {
             {
-                sf::Sprite sprite = entite->m_sprite;
+                sf::Sprite sprite = *entite;
                 sprite.Move(entite->m_decalage.x,entite->m_decalage.y);
 
                 if(sprite.GetPosition().x + sprite.GetSize().x - sprite.GetOrigin().x     >= GetViewRect(m_camera).Left
@@ -804,7 +804,7 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
             if(entite->m_shadow && configuration->Ombre)
             {
                 sf::Sprite sprite;
-                sprite = entite->m_sprite;
+                sprite = *entite;
                 sprite.Move(entite->m_decalage.x,entite->m_decalage.y);
 
                 sprite.SetScale(1, (100-(float)m_soleil.hauteur)/50);
@@ -816,7 +816,7 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
             if(entite->m_reflect && configuration->Reflection)
             {
                 sf::Sprite sprite;
-                sprite = entite->m_sprite;
+                sprite = *entite;
                 sprite.Move(entite->m_decalage.x,entite->m_decalage.y);
 
                 sprite.FlipY(true);
