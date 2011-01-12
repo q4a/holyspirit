@@ -371,7 +371,6 @@ void Personnage::Afficher(Modele_Personnage *modele, Border &border,bool surbril
                     m_entite_graphique_shadow.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
                     moteurGraphique->AjouterEntiteGraphique(&m_entite_graphique_shadow);
                 }
-
             }
 
     if(!sansEffetHaut)

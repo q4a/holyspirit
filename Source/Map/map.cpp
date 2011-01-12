@@ -40,7 +40,7 @@ inline sf::Vector2f AutoScreenAdjust(float x, float y, float decalage = 0)
 
 Map::Map()
 {
-    m_render_minimap.Create(4096,4096);
+    m_render_minimap.Create(1024,1024);
     m_render_minimap.Clear(sf::Color(0,0,0,0));
 
     m_etat_chargement   = 0;
@@ -1014,6 +1014,8 @@ void Map::Initialiser(Hero *hero)
 
                         m_decor[couche][i][j].m_entite_herbe.Initialiser(coordonnee ());
                     }
+                    else
+                        m_decor[couche][i][j].m_entite_herbe.m_tileset = NULL;
                 }
             }
 
@@ -1051,6 +1053,8 @@ void Map::Initialiser(Hero *hero)
 
                     CreerSprite(sf::Vector3f(k,j,i));
                 }
+                else
+                    m_decor[i][j][k].m_entite_graphique.m_tileset = NULL;
 
     if (configuration->debug)
         console->Ajouter("Initialisation des décors terminée.");
@@ -1465,7 +1469,6 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
         }
     }
 
-
     if(m_img_sky >= 0)
     {
         sf::Sprite sky;
@@ -1486,7 +1489,8 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
         {
             for (int k=hero->m_personnage.getCoordonnee().x - (int)(12 * configuration->zoom * configuration->Resolution.x/800) ;k<maxX ;++k)
             {
-                if (j>=0&&j<m_dimensions.y&&k>=0&&k<m_dimensions.x)
+                if (j>=0&&j<m_decor[couche].size()
+                 && k>=0&&k<m_decor[couche][j].size())
                 {
                     if(m_decor[couche][j][k].m_entite_graphique.m_tileset != NULL)
                     {
@@ -1509,9 +1513,10 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                         moteurGraphique->AjouterEntiteGraphique(&m_decor[couche][j][k].m_entite_graphique);
                     }
 
+                    ///SOURCE DE CRASH
                     if(!m_decor[couche][j][k].added_minimap)
-                        if((j-hero->m_personnage.getCoordonnee().y) < 8 && (k-hero->m_personnage.getCoordonnee().x) < 8)
-                            if(TileVisible(k,j,hero->m_personnage.getCoordonnee()))
+                        if(fabs(j-hero->m_personnage.getCoordonnee().y) < 8 && fabs(k-hero->m_personnage.getCoordonnee().x) < 8)
+                            //if(TileVisible(k,j,hero->m_personnage.getCoordonnee()))
                             {
                                 if(m_decor[couche][j][k].m_spriteMinimap.GetSize().x> 1)
                                 {
@@ -1524,6 +1529,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                                 }
                                 m_decor[couche][j][k].added_minimap = true;
                             }
+                    ///
 
                     if (couche==1)
                     {
@@ -1532,6 +1538,8 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
 
                         for (unsigned o = 0 ; o < m_decor[1][j][k].getMonstre().size() ; ++o)
                             if (m_decor[1][j][k].getMonstre()[o]>=0&&m_decor[1][j][k].getMonstre()[o]<(int)m_monstre.size())
+                            if (m_monstre[m_decor[1][j][k].getMonstre()[o]].getModele()>=0
+                             && m_monstre[m_decor[1][j][k].getMonstre()[o]].getModele()<(int)m_ModeleMonstre.size())
                                 m_monstre[m_decor[1][j][k].getMonstre()[o]].Afficher(&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()[o]].getModele()],
                                                                                      hero->m_classe.border,
                                                                                      m_decor[1][j][k].getMonstre()[o]==m_monstreIllumine);
@@ -1609,6 +1617,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
             }
         }
     }
+
 
     if(modif_minimap)
         m_render_minimap.Display();

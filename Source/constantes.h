@@ -240,8 +240,6 @@ struct Caracteristique
 
     }
 
-    Caracteristique(const Caracteristique &caract);
-
     std::string nom;
 
     int pointAme;

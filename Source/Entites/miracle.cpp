@@ -130,10 +130,6 @@ Miracle::Miracle(const std::string &chemin, const Caracteristique &caract, int l
 {
     Charger(chemin, caract, level);
 }
-Miracle::Miracle(const Miracle &miracle)
-{
-    (*this)=miracle;
-}
 Miracle::~Miracle()
 {
     m_tileset.clear();

@@ -180,11 +180,6 @@ Objet::Objet(std::string nom, int rarete)
     m_time = 0;
 }
 
-Objet::Objet(const Objet &objet)
-{
-    (*this) = objet;
-}
-
 Objet::~Objet()
 {
     m_description.clear();

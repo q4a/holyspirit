@@ -31,10 +31,6 @@ Modele_Monstre::Modele_Monstre() : Modele_Personnage()
 
 }
 
-Modele_Monstre::Modele_Monstre(const Modele_Monstre &modele) : Modele_Personnage()
-{
-    *this = modele;
-}
 
 Modele_Monstre::~Modele_Monstre()
 {
@@ -92,11 +88,6 @@ Monstre::Monstre(Personnage &personnage):
     m_etat                      = 0;
 }
 
-Monstre::Monstre(const Monstre &personnage):
-    Personnage()
-{
-    (*this) = personnage;
-}
 
 void Monstre::Charger(int numero,Modele_Monstre *modele)
 {

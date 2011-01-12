@@ -26,7 +26,6 @@ class Entite_graphique : public sf::Sprite
 {
     public:
         Entite_graphique();
-        Entite_graphique(const Entite_graphique &);
         virtual ~Entite_graphique();
         void Animer(float temps);
         void NextTile(bool cur = false,bool no_sound = false);

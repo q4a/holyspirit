@@ -27,7 +27,6 @@ class Modele_Monstre : public Modele_Personnage
 {
 public:
     Modele_Monstre();
-    Modele_Monstre(const Modele_Monstre &);
     ~Modele_Monstre();
 
     bool Charger(const std::string &chemin);
@@ -50,7 +49,6 @@ class Monstre : public Personnage
 public:
     Monstre();
     Monstre(Personnage &);
-    Monstre(const Monstre &);
     ~Monstre();
     void Charger(int numero,Modele_Monstre *modele);
     void GenererInventaire(Modele_Monstre *modele);

@@ -33,6 +33,8 @@ using namespace sf;
 
 void Sauvegarder(void* UserData)
 {
+    sf::Context context;
+
     Jeu *jeu = static_cast<Jeu*>(UserData);
 
     jeu->map->Sauvegarder(&jeu->hero);
@@ -137,6 +139,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
         m_thread_sauvegarde->Launch();
         tempsSauvergarde=0;
     }
+
     Lumieres(jeu);
     Evenements(jeu);
     Deplacements(jeu);

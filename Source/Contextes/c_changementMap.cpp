@@ -215,6 +215,7 @@ void c_Chargement::PreLoad(Jeu *jeu)
 
 void c_Chargement::PostLoad(Jeu *jeu)
 {
+    m_thread_charger->Wait();
     bool newMusic = true;
     for(unsigned i = 0 ; i < jeu->map->m_musiques.size() ; ++i)
         if(musicEnCours == jeu->map->m_musiques[i])
@@ -406,10 +407,6 @@ void c_Chargement::Utiliser(Jeu *jeu)
         m_chargement = true;
     }
 
-    if(jeu->map)
-        if(m_chargement && jeu->map->m_loaded)
-            PostLoad(jeu);
-
     if(!m_chargement)
     {
         if (z<=1&&augmenterNoir)
@@ -429,6 +426,9 @@ void c_Chargement::Utiliser(Jeu *jeu)
             z=0.5f;
     }
 
+    if(jeu->map)
+        if(m_chargement && jeu->map->m_loaded)
+            PostLoad(jeu);
 
     if (!m_chargement&&
         ((allerVersImageChargement&&z<49&&augmenterNoir)||(!allerVersImageChargement&&z>0&&!augmenterNoir)))

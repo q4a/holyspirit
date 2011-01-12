@@ -21,12 +21,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <stdio.h>
 #include <sstream>
 
-
-Caracteristique::Caracteristique(const Caracteristique &caract)
-{
-    (*this) = caract;
-}
-
 void Configuration::Charger()
 {
     error = "Error";

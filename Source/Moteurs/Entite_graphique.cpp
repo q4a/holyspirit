@@ -62,12 +62,6 @@ Entite_graphique::Entite_graphique() : sf::Sprite()
     m_sound_volume = 100;
 }
 
-
-Entite_graphique::Entite_graphique(const Entite_graphique &entite) : sf::Sprite()
-{
-    (*this) = entite;
-}
-
 Entite_graphique::~Entite_graphique()
 {
     //dtor
