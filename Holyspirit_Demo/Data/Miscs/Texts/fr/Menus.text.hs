@@ -40,8 +40,8 @@ La voie de l'Empoisonneuse
 La voie de l'Assassin
 La voie de la Séductrice
 Niveau suivant :
-Clic gauche : Sélectionner / Clic droit : Apprendre
-Vous avez changé de niveau ! Cliquez ici pour dépenser vos points.
+Je n'ai pas l'équipement requis !
+Mon sac est plein !
 Physique
 Feu
 Foi
