@@ -181,5 +181,10 @@ main
 		variable * 8 * 1
 		useMiracle * 0
 	end
+
+	if climate * 0 * 4 * 5
+	then
+		tell * 106 * 5000
+	end
 	
 end 

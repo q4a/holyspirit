@@ -104,7 +104,7 @@ On fait affaire ?
 J'ai ton tabac !
 Ahhh ! Dans mes bras mon ami ! Mon bon tabac ! Tiens, allez pour la peine je t'en donne un peu comme promis ! Utilises le avec modération, il est assez fort et ses effets sont imprévisibles. Tu en a là pour dix prises environ. Merci encore, avec cette livre je ne verrai pas passer les prochaines semaines !
 Au revoir !
-
+Pfffff... Quel temps de chien !
 
 
 
