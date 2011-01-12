@@ -132,7 +132,6 @@ void Charger(void* UserData)
     sf::Context context;
 
     Jeu *jeu = static_cast<Jeu*>(UserData);
-   // c_Chargement *chargement = static_cast<c_Chargement*>(UserData);
 
     if (!jeu->map->Charger(jeu->m_chargement->m_nomProchaineMap,&jeu->hero))
         console->Ajouter("CRITICAL ERROR",1), throw  "CRITICAL ERROR";
@@ -397,7 +396,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         if (m_thread_charger)
         {
-            m_thread_charger->Wait();
+           // m_thread_charger->Wait();
             delete m_thread_charger;
         }
 
@@ -410,8 +409,6 @@ void c_Chargement::Utiliser(Jeu *jeu)
     if(jeu->map)
         if(m_chargement && jeu->map->m_loaded)
             PostLoad(jeu);
-
-    configuration->RafraichirOmbre=1;
 
     if(!m_chargement)
     {
@@ -436,6 +433,8 @@ void c_Chargement::Utiliser(Jeu *jeu)
     if (!m_chargement&&
         ((allerVersImageChargement&&z<49&&augmenterNoir)||(!allerVersImageChargement&&z>0&&!augmenterNoir)))
     {
+        configuration->RafraichirOmbre=1;
+
         if(jeu->map!=NULL)
             moteurSons->setVolumeMusique((int)(z*(float)configuration->music_volume/50));
         if ((!m_debut&&augmenterNoir)||(!augmenterNoir))

@@ -123,6 +123,8 @@ void Hero::Reset()
     m_weaponMiracle.clear();
     m_quetes.clear();
 
+    m_personnage = Personnage ();
+
 
     m_personnage.setEtat(ARRET);
 
@@ -3242,7 +3244,7 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
              && m_classe.miracles[miracle].m_reserveFoi <= m_caracteristiques.maxFoi - m_caracteristiques.reserveFoi
                     && m_classe.miracles[miracle].m_coutVie + m_classe.miracles[miracle].m_reserveVie
                     <= m_caracteristiques.vie && m_classe.miracles[miracle].m_reserveVie <= m_caracteristiques.maxVie - m_caracteristiques.reserveVie)
-                if (m_cas == m_classe.miracles[miracle].m_cas || m_classe.miracles[miracle].m_cas == -1)
+                if (m_cas == m_classe.miracles[miracle].m_cas || m_classe.miracles[miracle].m_cas == -1) {
                     if (cible != NULL && m_classe.miracles[miracle].m_effets[0].m_type == CORPS_A_CORPS
                      || m_classe.miracles[miracle].m_effets[0].m_type != CORPS_A_CORPS
                      || eventManager->getEvenement(sf::Key::LShift, EventKey))
@@ -3292,6 +3294,12 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
 
                         return 1;
                     }
+                }
+                else
+                {
+                    m_personnage.m_speak = configuration->getText(0, 42);
+                    m_personnage.m_speak_time = 2000;
+                }
         }
     return 0;
 }
@@ -3403,6 +3411,12 @@ bool Hero::AjouterObjet(Objet &objet,bool enMain)
     }
 
     UpdateRaccourcis();
+
+    if(!ramasser)
+    {
+        m_personnage.m_speak_time = 2000;
+        m_personnage.m_speak = configuration->getText(0, 43);
+    }
 
     return ramasser;
 }

@@ -928,7 +928,8 @@ sf::Text Miracle::AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee
     if (tailleCadran->x < string.GetRect().Width)
         tailleCadran->x = (int)string.GetRect().Width;
 
-    decalage->y += (int)string.GetRect().Height + 2;
+    if(chaine != "_")
+        decalage->y += (int)string.GetRect().Height + 2;
 
     return string;
 }
@@ -944,19 +945,33 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
     coordonnee tailleCadran,decalage(-10,0);
 
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_nom.c_str()));
+    temp.back().SetCharacterSize(16);
  //   temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"---------------"));
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"_"));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"_"));
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
 
-    for (int i=0;i<(int)m_description.size() && suivant;i++)
-        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_description[i].c_str()));
+    if(suivant)
+    {
+        for (int i=0;i<(int)m_description.size();i++)
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_description[i].c_str()));
 
-    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
-    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"_"));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+    }
 
     for (int i=0;i<(int)m_description_effets.size();i++)
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_description_effets[i].c_str()));
+
+
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
 
     if(m_level > 0)
     {
@@ -984,14 +999,18 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
             buf<<configuration->getText(0,32)<<m_reserveVie;
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
-    }
 
-    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
-    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"_"));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+    }
 
     if (suivant)
     {
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,41).c_str()));
+        temp.back().SetCharacterSize(12);
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
 
         for (int i=0;i<(int)m_description_effets_suivant.size();i++)
@@ -1022,11 +1041,6 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
     }
-    if(suivant)
-    {
-        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
-        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,42).c_str()));
-    }
 
     if (position.x-10<0)
         position.x=10;
@@ -1040,17 +1054,32 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
     int decalY=0;
     for (int i=0;i<(int)temp.size();i++)
     {
-        temp[i].SetY((position.y+decalY+10));
-        temp[i].SetX(position.x+20+(tailleCadran.x-temp[i].GetRect().Width) * 0.5);
+        if(temp[i].GetString() == "_")
+        {
+            sf::Sprite bar;
+            bar.Resize(tailleCadran.x + 22, 1);
 
-        decalY += (int)temp[i].GetRect().Height + 2;
+            bar.SetColor(sf::Color(72,67,42));
 
-        moteurGraphique->AjouterTexte(&temp[i],19);
+            bar.SetY((position.y+decalY));
+            bar.SetX(position.x+9);
+
+            moteurGraphique->AjouterCommande(&bar,20,0);
+        }
+        else
+        {
+            temp[i].SetY((position.y+decalY));
+            temp[i].SetX(position.x+20+(tailleCadran.x-temp[i].GetRect().Width) * 0.5);
+
+            decalY += (int)temp[i].GetRect().Height + 2;
+
+            moteurGraphique->AjouterTexte(&temp[i],19);
+        }
     }
 
     tailleCadran.y=decalage.y;
 
-    tailleCadran.y+=20;
+    tailleCadran.y+=4;
     tailleCadran.x+=20;
 
     position.x += 10;

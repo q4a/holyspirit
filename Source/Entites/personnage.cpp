@@ -395,6 +395,7 @@ void Personnage::Afficher(Modele_Personnage *modele, Border &border,bool surbril
         pos.y = (int)(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE - m_positionPixel.h - 128 - GetViewRect(moteurGraphique->m_camera).Top)/configuration->zoom);
 
         sf::Text text;
+        text.SetFont(moteurGraphique->m_font);
         text.SetCharacterSize(12);
         text.SetString(m_speak);
         pos.x -= (int)text.GetRect().Width/2;

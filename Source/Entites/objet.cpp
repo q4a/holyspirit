@@ -32,11 +32,11 @@ sf::Color GetItemColor(int rarete)
     if (rarete==NORMAL)
         return (sf::Color(224,224,224,255));
     if (rarete==BONNEFACTURE)
-        return (sf::Color(160,0,160,255));
+        return (sf::Color(192,0,192,255));
     if (rarete==BENI)
         return (sf::Color(0,128,255,255));
     if (rarete==SACRE)
-        return (sf::Color(255,255,128,255));
+        return (sf::Color(255,255,64,255));
     if (rarete==SANCTIFIE)
         return (sf::Color(0,255,192,255));
     if (rarete==DIVIN)
@@ -48,7 +48,7 @@ sf::Color GetItemColor(int rarete)
     if (rarete==QUETE)
         return (sf::Color(96,255,96,255));
 
-    return (sf::Color(224,224,224,255));
+    return (sf::Color(192,192,192,255));
 }
 
 
@@ -645,7 +645,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
         while (caractere!='$');
 
         m_chemin=chemin;
-        std::string description;
+        std::string description = "";
 
         do
         {
@@ -1968,9 +1968,6 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"_"));
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"_"));
-    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
-    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
-    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
     if(!m_chemin_set.empty())
     {
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_set.m_nom.c_str()));
@@ -1999,26 +1996,33 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
     }
 
 
-    for (int i=0;i<(int)m_description.size();i++)
-    {
-        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_description[i].c_str()));
-        temp.back().SetStyle(2);
-    }
-
-
-
-    if(m_type != CONSOMMABLE && m_type != AUCUN && m_type != DOCUMENT)
+    if(!m_description.empty())
+    if(m_description.front().size() > 1)
     {
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
-        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
 
-        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"_"));
+        for (int i=0;i<(int)m_description.size();i++)
+        {
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_description[i].c_str()));
+            temp.back().SetStyle(2);
+        }
 
-        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
-        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+        if(m_type != CONSOMMABLE && m_type != AUCUN && m_type != DOCUMENT)
+        {
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"_"));
+
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+        }
     }
+
 
     if(m_time > 0)
     {
@@ -2033,6 +2037,8 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
         if(sec > 0)
             buf<<sec<<" "<<configuration->getText(0,70);
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
     }
 
 
@@ -2191,6 +2197,8 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,getTextBenediction(m_benedictions[i]).c_str(),sf::Color(0,128,255)));
 
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
 
     add_space = false;
 
@@ -2344,8 +2352,6 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
 
                 moteurGraphique->AjouterTexte(&temp[i],19);
             }
-
-
         }
     }
     tailleCadran.y=decalage.y;

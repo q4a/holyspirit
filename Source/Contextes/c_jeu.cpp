@@ -461,7 +461,7 @@ void GestionRaccourcis(Jeu *jeu, bool diplace_mode = false)
 
     if(newmiracle >= 0 && newmiracle < (int)jeu->hero.m_classe.miracles.size())
     {
-        if(jeu->hero.m_classe.miracles[newmiracle].m_direct)
+        //if(jeu->hero.m_classe.miracles[newmiracle].m_direct)
         {
             if (!jeu->hero.m_personnage.frappeEnCours)
             {
@@ -486,8 +486,8 @@ void GestionRaccourcis(Jeu *jeu, bool diplace_mode = false)
                     jeu->hero.m_personnage.setArrivee(eventManager->getCasePointee());
             }
         }
-        else
-            jeu->hero.m_personnage.m_miracleALancer = newmiracle;
+        //else
+          //  jeu->hero.m_personnage.m_miracleALancer = newmiracle;
     }
 }
 
