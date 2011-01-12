@@ -356,3 +356,56 @@
          
          Chargement du personnage : Data/Entities/Resources/Miscs/NULL.rs.hs
          Chargement de : Data/Entities/Resources/Miscs/Trigger_clickable.char.hs terminé
+         /Lectures des monstres.
+         
+         /Lectures des cases.
+         Chargement de la map terminé.
+         Initialisation de l'herbe terminée.
+         Initialisation des décors terminée.
+         Initialisation des entités terminée.
+         Initialisation terminée.
+         
+         Chargement de : Data/Musics/Catacombs0.ogg
+         Chargement de : Data/Musics/Menu.ogg
+         /Génération de l'image...
+         /Image affichée.
+         /Image générée.
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Ecriture des objets.
+         /Ecriture des objets du coffre.
+         /Ecriture des miracles.
+         /Ecriture des docs.
+         /Ecriture des quetes.
+         /Ecriture des potales.
+         Sauvegarde du héro terminée !
+         
+         Destruction de la map...
+         Destruction des cases...
+         Cases détruites !
+         Modèles monstres détruits !
+         Monstres détruits !
+         Fonds détruits !
+         Chemins musiques détruits !
+         Projectiles détruits !
+         Effets détruits !
+         Map détruite !
+         
+         Fermeture des contextes effectuée avec succès.
+         Destruction du héro ...
+         Destruction du menu ...
+         
+         Sauvegarde de la configuration
+         
+         Destruction des moteurs
+         
+         EXIT_SUCCESS
