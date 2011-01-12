@@ -129,6 +129,8 @@ void c_Chargement::setC_Chargement(const std::string &prochaineMap,const coordon
 
 void Charger(void* UserData)
 {
+    sf::Context context;
+
     Jeu *jeu = static_cast<Jeu*>(UserData);
    // c_Chargement *chargement = static_cast<c_Chargement*>(UserData);
 
@@ -393,18 +395,14 @@ void c_Chargement::Utiliser(Jeu *jeu)
     {
         PreLoad(jeu);
 
-        /*if (m_thread_charger)
+        if (m_thread_charger)
         {
             m_thread_charger->Wait();
             delete m_thread_charger;
         }
 
         m_thread_charger = new sf::Thread(&Charger, jeu);
-        m_thread_charger->Launch();*/
-
-
-        if (!jeu->map->Charger(jeu->m_chargement->m_nomProchaineMap,&jeu->hero))
-            console->Ajouter("CRITICAL ERROR",1), throw  "CRITICAL ERROR";
+        m_thread_charger->Launch();
 
         m_chargement = true;
     }

@@ -401,6 +401,11 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
 
             TrierInventaire(m_monstre[monstre].getPointeurObjets(),hero->m_classe.position_contenu_marchand.w);
         }
+        else if (script->m_instructions[noInstruction].nom=="tell" && monstre != -1)
+        {
+            m_monstre[monstre].m_speak      = configuration->getText(4, (int)script->getValeur(noInstruction, 0));
+            m_monstre[monstre].m_speak_time = script->getValeur(noInstruction, 1);
+        }
         else if (script->m_instructions[noInstruction].nom=="speak")
         {
             if (jeu->menu.m_dialogue.empty())
@@ -729,6 +734,25 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                     if (configuration->heure < script->getValeur(no, 0)
                      || configuration->heure > script->getValeur(no, 1) )
                         ok=false;
+                }
+                else if (script->m_instructions[no].nom=="climate")
+                {
+                    if(m_climates.size() > (unsigned)script->getValeur(no, 0))
+                    {
+                        if(!m_climates[(unsigned)script->getValeur(no, 0)].m_actif)
+                            ok = false;
+
+                        if(script->getValeur(no, 1) != -1)
+                        if(m_climates[(unsigned)script->getValeur(no, 0)].m_cur_time < script->getValeur(no, 1))
+                            ok = false;
+
+                        if(script->getValeur(no, 1) != -2)
+                        if(m_climates[(unsigned)script->getValeur(no, 0)].m_cur_time > script->getValeur(no, 2))
+                            ok = false;
+
+                    }
+                    else
+                        ok = false;
                 }
                 else if (script->m_instructions[no].nom=="player_class")
                 {

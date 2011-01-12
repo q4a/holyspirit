@@ -934,8 +934,8 @@ void Hero::Afficher()
         {
             m_personnage.Animer(&m_modelePersonnage[m_ordreAffichage[i]], 0, true);
             m_personnage.m_entite_graphique.Generer();
-            m_personnage.Afficher(&m_modelePersonnage[m_ordreAffichage[i]], false, i!=plusHaut,
-                                                                                   i!=plusBas);
+            m_personnage.Afficher(&m_modelePersonnage[m_ordreAffichage[i]], m_classe.border,
+                                  false, i!=plusHaut,i!=plusBas);
         }
     AfficherRaccourcis();
 }

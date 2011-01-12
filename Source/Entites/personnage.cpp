@@ -124,6 +124,8 @@ Personnage::Personnage()
 
     m_inexistant = false;
     m_selectable = true;
+
+    m_speak_time = 0;
 }
 Modele_Personnage::Modele_Personnage()
 {
@@ -333,7 +335,7 @@ int Personnage::getOrdre(Modele_Personnage *modele)
     return -10;
 }
 
-void Personnage::Afficher(Modele_Personnage *modele,bool surbrillance, bool sansEffetHaut, bool sansEffetBas)
+void Personnage::Afficher(Modele_Personnage *modele, Border &border,bool surbrillance, bool sansEffetHaut, bool sansEffetBas)
 {
     if(!sansEffetBas)
         for(int i = 0; i < (int)m_effets.size(); ++i)
@@ -380,6 +382,25 @@ void Personnage::Afficher(Modele_Personnage *modele,bool surbrillance, bool sans
                     m_effets[i].m_effet.m_position = m_positionPixel;
                     m_effets[i].m_effet.Afficher();
                 }
+
+
+    if(m_speak_time > 0 && !m_speak.empty())
+    {
+        int alpha = 255;
+        if(m_speak_time < 2550)
+            alpha = (int)m_speak_time/10;
+
+        coordonnee pos;
+        pos.x = (int)(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE - GetViewRect(moteurGraphique->m_camera).Left)/configuration->zoom);
+        pos.y = (int)(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE - m_positionPixel.h - 128 - GetViewRect(moteurGraphique->m_camera).Top)/configuration->zoom);
+
+        sf::Text text;
+        text.SetCharacterSize(12);
+        text.SetString(m_speak);
+        pos.x -= (int)text.GetRect().Width/2;
+
+        moteurGraphique->AjouterTexte(m_speak, pos, border, 14, 0, 12, sf::Color(224,224,224,alpha));
+    }
 }
 void Personnage::regenererVie(float vie)
 {
@@ -924,6 +945,11 @@ int Personnage::Animer(Modele_Personnage *modele,float temps, bool no_generate)
 
     if(m_monstre)
         retour = 0;
+
+    m_speak_time -= temps * 1000;
+
+    if(m_speak_time <= 0)
+        m_speak_time = 0;
 
     if(!m_stunned)
     if(m_etat >= 0 && m_etat < (int)modele->m_tileset.size())

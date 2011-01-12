@@ -1532,7 +1532,9 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
 
                         for (unsigned o = 0 ; o < m_decor[1][j][k].getMonstre().size() ; ++o)
                             if (m_decor[1][j][k].getMonstre()[o]>=0&&m_decor[1][j][k].getMonstre()[o]<(int)m_monstre.size())
-                                m_monstre[m_decor[1][j][k].getMonstre()[o]].Afficher(&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()[o]].getModele()],m_decor[1][j][k].getMonstre()[o]==m_monstreIllumine);
+                                m_monstre[m_decor[1][j][k].getMonstre()[o]].Afficher(&m_ModeleMonstre[m_monstre[m_decor[1][j][k].getMonstre()[o]].getModele()],
+                                                                                     hero->m_classe.border,
+                                                                                     m_decor[1][j][k].getMonstre()[o]==m_monstreIllumine);
 
                         if ((int)((hero->m_personnage.getCoordonneePixel().x + COTE_TILE * 0.5f) / COTE_TILE) == k
                         &&  (int)((hero->m_personnage.getCoordonneePixel().y + COTE_TILE * 0.5f) / COTE_TILE) == j)

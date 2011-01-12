@@ -90,7 +90,7 @@ public:
 
     bool SeDeplacer(float);
 
-    void Afficher(Modele_Personnage *modele,bool surbrillance=false, bool plusHaut=false, bool plusBas=false);
+    void Afficher(Modele_Personnage *modele, Border &border,bool surbrillance=false, bool plusHaut=false, bool plusBas=false);
 
     int Pathfinding(casePathfinding** map,coordonnee exception, bool noDelete = false);
 
@@ -195,6 +195,10 @@ public:
 
     std::vector<Degats> m_degats;
     std::vector<int>    m_variables_miracles;
+
+
+    std::string     m_speak;
+    float           m_speak_time;
 
 protected:
     int m_etat,m_angle,m_next_angle;
