@@ -216,6 +216,9 @@ void c_Chargement::PreLoad(Jeu *jeu)
 void c_Chargement::PostLoad(Jeu *jeu)
 {
     m_thread_charger->Wait();
+
+    jeu->map->InitialiserMinimap();
+
     bool newMusic = true;
     for(unsigned i = 0 ; i < jeu->map->m_musiques.size() ; ++i)
         if(musicEnCours == jeu->map->m_musiques[i])
@@ -467,7 +470,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         {
            sprite2.SetImage(*moteurGraphique->getImage(jeu->hero.m_classe.barre_vie_monstre.image));
 
-            sprite2.SetSubRect(sf::IntRect(0, 0,(int)((float)jeu->map->m_etat_chargement/6*moteurGraphique->getImage(jeu->hero.m_classe.barre_vie_monstre.image)->GetWidth()), 32));
+            sprite2.SetSubRect(sf::IntRect(0, 0,(int)((float)jeu->map->m_etat_chargement/5*moteurGraphique->getImage(jeu->hero.m_classe.barre_vie_monstre.image)->GetWidth()), 32));
             sprite2.SetX(configuration->Resolution.w/2 + jeu->hero.m_classe.barre_vie_monstre.position.x);
             sprite2.SetY(jeu->hero.m_classe.barre_vie_monstre.position.y + 550);
 

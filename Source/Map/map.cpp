@@ -40,8 +40,12 @@ inline sf::Vector2f AutoScreenAdjust(float x, float y, float decalage = 0)
 
 Map::Map()
 {
-    m_render_minimap.Create(1024,1024);
-    m_render_minimap.Clear(sf::Color(0,0,0,0));
+    for(int y = 0 ; y < MINIMAP_SIZE ; ++y)
+    for(int x = 0 ; x < MINIMAP_SIZE ; ++x)
+    {
+        m_render_minimap[y][x].Create(1024,1024);
+        m_render_minimap[y][x].Clear(sf::Color(0,0,0,0));
+    }
 
     m_etat_chargement   = 0;
     m_loaded            = false;
@@ -132,7 +136,9 @@ void Map::Detruire()
 
 bool Map::Charger(std::string nomMap,Hero *hero)
 {
-    m_render_minimap.Clear(sf::Color(0,0,0,0));
+    for(int y = 0 ; y < MINIMAP_SIZE ; ++y)
+    for(int x = 0 ; x < MINIMAP_SIZE ; ++x)
+        m_render_minimap[y][x].Clear(sf::Color(0,0,0,0));
 
     m_dimensions.x=0;
     m_dimensions.y=0;
@@ -417,8 +423,6 @@ bool Map::Charger(std::string nomMap,Hero *hero)
         if (configuration->debug)
             console->Ajouter("/Lectures des monstres.");
 
-        m_etat_chargement = 3;
-
         console->Ajouter("");
 
         if (entite_map_existante==true)
@@ -565,7 +569,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
                 console->Ajouter("/Lectures des monstres si existants.");
         }
 
-        m_etat_chargement = 4;
+        m_etat_chargement = 3;
 
 
         Decor decorTemp(-1,-1,std::vector<int> (),-1,0,0);
@@ -952,7 +956,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
         throw "";
     }
 
-    m_etat_chargement = 5;
+    m_etat_chargement = 4;
 
 
     for (int i=0;i<24;++i)
@@ -969,7 +973,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
     Initialiser(hero);
 
-    m_etat_chargement = 6;
+    m_etat_chargement = 5;
 
     if (configuration->debug)
         console->Ajouter("Initialisation terminée.");
@@ -1096,7 +1100,11 @@ void Map::Initialiser(Hero *hero)
         console->Ajouter("Initialisation des entités terminée.");
 
 
+    moteurGraphique->LightManager->Generate();
+}
 
+void Map::InitialiserMinimap()
+{
     for (int i=0;i<NOMBRE_COUCHE_MAP;++i)
         for (int j=0;j<m_dimensions.y;j++)
             for (int k=0;k<m_dimensions.x;k++)
@@ -1104,18 +1112,38 @@ void Map::Initialiser(Hero *hero)
                 {
                     if (m_decor[i][j][k].added_minimap)
                     {
+                        int cur_y = 0;
+                        int cur_x = MINIMAP_SIZE / 2 ;
+
                         sf::Sprite minimap = m_decor[i][j][k].m_spriteMinimap;
 
-                        minimap.SetPosition(m_render_minimap.GetWidth()/2+(minimap.GetPosition().x) * 0.125f,
+                        minimap.SetPosition((minimap.GetPosition().x) * 0.125f + MINIMAP_SIZE * 512,
                                             (minimap.GetPosition().y) * 0.125f);
-                        m_render_minimap.Draw(minimap);
+
+                        while(minimap.GetPosition().y > 1024)
+                            minimap.Move(0, -1024), cur_y ++;
+                        while(minimap.GetPosition().x > 1024)
+                            minimap.Move(-1024, 0), cur_x ++;
+                        while(minimap.GetPosition().x < 0)
+                            minimap.Move(1024, 0), cur_x --;
+
+                        m_render_minimap[cur_y][cur_x].Draw(minimap);
+
+                        bool redraw = false;
+
+                        if(minimap.GetPosition().y + minimap.GetSize().y > 1024)
+                            cur_y++, minimap.Move(0,-1024), redraw = true;
+                        if(minimap.GetPosition().x + minimap.GetSize().x > 1024)
+                            cur_x++, minimap.Move(-1024,0), redraw = true;
+
+                        if(redraw)
+                            m_render_minimap[cur_y][cur_x].Draw(minimap);
                     }
                 }
 
-
-    m_render_minimap.Display();
-
-    moteurGraphique->LightManager->Generate();
+    for(int y = 0 ; y < MINIMAP_SIZE ; ++y)
+    for(int x = 0 ; x < MINIMAP_SIZE ; ++x)
+        m_render_minimap[y][x].Display();
 }
 
 void Map::CreerSprite(sf::Vector3f position_case)
@@ -1437,12 +1465,17 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
 
     if (alpha>0)
     {
-        sf::Sprite map;
-        map.SetImage(m_render_minimap.GetImage());
-        map.SetPosition(configuration->Resolution.x*0.5f + (- positionHero.x) * 0.125f - m_render_minimap.GetWidth()/2,
-                            configuration->Resolution.y*0.5f + ( -positionHero.y) * 0.125f);
-        map.SetColor(sf::Color(255,255,255,(int)(alpha * 0.5f)));
-        moteurGraphique->AjouterCommande(&map,12,0);
+        for(int y = 0 ; y < MINIMAP_SIZE ; ++y)
+        for(int x = 0 ; x < MINIMAP_SIZE ; ++x)
+        {
+            sf::Sprite map;
+            map.SetImage(m_render_minimap[y][x].GetImage());
+            map.SetPosition(configuration->Resolution.x*0.5f + (-positionHero.x) * 0.125f + x * 1024 - MINIMAP_SIZE * 1024 + 512,
+                            configuration->Resolution.y*0.5f + (-positionHero.y) * 0.125f + y * 1024);
+            map.SetColor(sf::Color(255,255,255,(int)(alpha * 0.5f)));
+            moteurGraphique->AjouterCommande(&map,12,0);
+        }
+
 
         sf::Sprite minimap;
         minimap.SetImage(*moteurGraphique->getImage(hero->m_classe.icone_mm.image));
@@ -1520,13 +1553,37 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                             {
                                 if(m_decor[couche][j][k].m_spriteMinimap.GetSize().x> 1)
                                 {
+                                    int cur_y = 0;
+                                    int cur_x = MINIMAP_SIZE / 2;
+
                                     sf::Sprite minimap = m_decor[couche][j][k].m_spriteMinimap;
 
-                                    minimap.SetPosition(m_render_minimap.GetWidth()/2+(minimap.GetPosition().x) * 0.125f,
+                                    minimap.SetPosition((minimap.GetPosition().x) * 0.125f + MINIMAP_SIZE * 512,
                                                         (minimap.GetPosition().y) * 0.125f);
-                                    m_render_minimap.Draw(minimap);
+
+                                    while(minimap.GetPosition().y > 1024)
+                                        minimap.Move(0, -1024), cur_y ++;
+                                    while(minimap.GetPosition().x > 1024)
+                                        minimap.Move(-1024, 0), cur_x ++;
+                                    while(minimap.GetPosition().x < 0)
+                                        minimap.Move(1024, 0), cur_x --;
+
+                                    m_render_minimap[cur_y][cur_x].Draw(minimap);
+
+                                    bool redraw = false;
+
+                                    if(minimap.GetPosition().y + minimap.GetSize().y > 1024)
+                                        cur_y++, minimap.Move(0,-1024), redraw = true;
+                                    if(minimap.GetPosition().x + minimap.GetSize().x > 1024)
+                                        cur_x++, minimap.Move(-1024,0), redraw = true;
+
+                                    if(redraw)
+                                        m_render_minimap[cur_y][cur_x].Draw(minimap);
+
+
                                     modif_minimap = true;
                                 }
+
                                 m_decor[couche][j][k].added_minimap = true;
                             }
                     ///
@@ -1620,7 +1677,12 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
 
 
     if(modif_minimap)
-        m_render_minimap.Display();
+    {
+        for(int y = 0 ; y < MINIMAP_SIZE ; ++y)
+        for(int x = 0 ; x < MINIMAP_SIZE ; ++x)
+            m_render_minimap[y][x].Display();
+    }
+
 }
 
 void Map::AfficherMinimap(coordonnee position,int typeCase,float alpha)

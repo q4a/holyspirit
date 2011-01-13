@@ -36,6 +36,8 @@ class Jeu;
 
 int TrierInventaire(std::vector<Objet> *, int , bool = false);
 
+const int MINIMAP_SIZE = 5;
+
 class Map
 {
 public:
@@ -44,6 +46,7 @@ public:
 
     bool Charger(std::string,Hero *hero);
     void Initialiser(Hero *hero);
+    void InitialiserMinimap();
     void CreerSprite(sf::Vector3f position_case);
     void Sauvegarder(Hero *hero);
 
@@ -178,8 +181,8 @@ private:
     std::vector <Projectile> m_projectile;
     std::vector <EffetGraphique> m_effets;
 
-    sf::RenderImage m_render_minimap;
-    sf::Image       m_minimap;
+    sf::RenderImage m_render_minimap[MINIMAP_SIZE][MINIMAP_SIZE];
+    //sf::Image       m_minimap;
 
     std::vector<Decor>::iterator IterY;
     std::vector<Decor>::iterator Iter;
