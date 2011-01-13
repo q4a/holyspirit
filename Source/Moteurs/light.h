@@ -22,6 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <SFML/Window.hpp>
 
 #include "../constantes.h"
+#include <list>
 
 #ifndef LIGHTH
 #define LIGHTH
@@ -120,10 +121,11 @@ public :
     void Draw(sf::RenderTarget *App);
 
     // Calculer la lumière
-    void Generate( std::vector<Wall>& m_wall);
+    void Generate(std::vector<Wall>& m_wall,std::vector <std::vector <std::vector <int> > > &m_sectors, sf::Vector2i &m_origin_sector);
 
     // Ajouter un triangle à la lumière, en effet, les lumières sont composée de triangles
-    void AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std::vector<Wall>& m_wall, int hauteur = 96);
+    void AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, std::list<int> deja_wall, std::vector<Wall>& m_wall, std::vector <std::vector <std::vector <int> > > &m_sectors, sf::Vector2i &m_origin_sector, int hauteur = 96);
+
 
     // Changer différents attributs de la lumière
     void SetIntensity(float);

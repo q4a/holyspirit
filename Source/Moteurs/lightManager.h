@@ -25,6 +25,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "../singleton.h"
 
+const int SECTOR_SIZE = 256;
+
 class Light_Manager : public CSingleton<Light_Manager>
 {
     private :
@@ -36,6 +38,9 @@ class Light_Manager : public CSingleton<Light_Manager>
     std::vector <Wall> m_wall;
     std::vector <Light> m_StaticLight;
     std::vector <Light> m_DynamicLight;
+
+    std::vector <std::vector <std::vector <int> > > m_sectors;
+    sf::Vector2i m_origin_sector;
 
     public :
     // Constructeur et destructeur

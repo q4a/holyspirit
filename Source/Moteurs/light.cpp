@@ -124,19 +124,39 @@ sf::Vector2f Collision(sf::Vector2f p1, sf::Vector2f p2, sf::Vector2f q1, sf::Ve
 }
 
 
-void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std::vector <Wall>& m_wall, int hauteur)
+void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, std::list<int> deja_wall,std::vector<Wall>& m_wall, std::vector <std::vector <std::vector <int> > > &m_sectors, sf::Vector2i &m_origin_sector, int hauteur)
 {
-    int w=minimum_wall;
-
-    // On boucle sur tous les murs
+    // On bo€ucle sur tous les murs
     if (configuration->Lumiere==2)
-        for (std::vector<Wall>::iterator IterWall=m_wall.begin()+minimum_wall;IterWall!=m_wall.end();++IterWall,++w)
-            if(IterWall->actif)
-            if ( IterWall->pt1.x-m_position.x>-m_radius && IterWall->pt1.y-m_position.y>-m_radius && IterWall->pt2.x-m_position.x<m_radius && IterWall->pt2.y-m_position.y<m_radius )
-           {
+
+    for(int y =  (m_position.y - m_radius) / SECTOR_SIZE + m_origin_sector.y - 1;
+            y <  (m_position.y + m_radius) / SECTOR_SIZE + 1 + m_origin_sector.y;
+          ++y)
+    if(y >= 0 && y < m_sectors.size())
+    for(int x =  (m_position.x - m_radius) / SECTOR_SIZE + m_origin_sector.x - 1;
+            x <  (m_position.x + m_radius) / SECTOR_SIZE + 1 + m_origin_sector.x;
+          ++x)
+    if(x >= 0 && x < m_sectors[y].size())
+    for (std::vector<int>::iterator IterWall=m_sectors[y][x].begin();
+                                    IterWall!=m_sectors[y][x].end();++IterWall)
+        if(m_wall[*IterWall].actif)
+        {
+            bool ok = true;
+
+            for(std::list<int>::iterator i = deja_wall.begin() ; i != deja_wall.end() ; ++i)
+                if((*i) == (*IterWall))
+                {
+                    ok = false;
+                    break;
+                }
+
+
+            if(ok)
+            //if ( m_wall[*IterWall].pt1.x-m_position.x>-m_radius && m_wall[*IterWall].pt1.y-m_position.y>-m_radius && m_wall[*IterWall].pt2.x-m_position.x<m_radius && m_wall[*IterWall].pt2.y-m_position.y<m_radius )
+            {
                 // l1 et l2 sont les positions relatives au centre de la lumière des deux extrémités du mur
-                sf::Vector2f l1(IterWall->pt1.x-m_position.x, IterWall->pt1.y-m_position.y);
-                sf::Vector2f l2(IterWall->pt2.x-m_position.x, IterWall->pt2.y-m_position.y);
+                sf::Vector2f l1(m_wall[*IterWall].pt1.x-m_position.x, m_wall[*IterWall].pt1.y-m_position.y);
+                sf::Vector2f l2(m_wall[*IterWall].pt2.x-m_position.x, m_wall[*IterWall].pt2.y-m_position.y);
 
                 if(l1.x * l1.x + l1.y * l1.y < m_radius * m_radius)
                 {
@@ -146,7 +166,7 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std
                     if((pt1.y > i.y && pt2.y < i.y) || (pt1.y < i.y && pt2.y > i.y))
                         if(l1.y > 0 && i.y > 0 || l1.y < 0 && i.y < 0)
                         if(l1.x > 0 && i.x > 0 || l1.x < 0 && i.x < 0)
-                        AddTriangle(i, pt2, w, m_wall,IterWall->hauteur), pt2 = i, hauteur = IterWall->hauteur;
+                        AddTriangle(i, pt2, deja_wall, m_wall, m_sectors, m_origin_sector,m_wall[*IterWall].hauteur), pt2 = i, hauteur = m_wall[*IterWall].hauteur;
                 }
                 if(l2.x * l2.x + l2.y * l2.y < m_radius * m_radius)
                 {
@@ -156,7 +176,7 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std
                     if((pt1.y > i.y && pt2.y < i.y) || (pt1.y < i.y && pt2.y > i.y))
                         if(l2.y > 0 && i.y > 0 || l2.y < 0 && i.y < 0)
                         if(l2.x > 0 && i.x > 0 || l2.x < 0 && i.x < 0)
-                        AddTriangle(pt1, i, w, m_wall,IterWall->hauteur), pt1 = i, hauteur = IterWall->hauteur;
+                        AddTriangle(pt1, i, deja_wall, m_wall, m_sectors, m_origin_sector,m_wall[*IterWall].hauteur), pt1 = i, hauteur = m_wall[*IterWall].hauteur;
                 }
 
                 sf::Vector2f m = Collision(l1, l2, sf::Vector2f(0,0), pt1);
@@ -164,16 +184,18 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std
                 sf::Vector2f o = Collision(l1, l2, pt1, pt2);
 
                 if((m.x != 0 || m.y != 0) && (n.x != 0 || n.y != 0))
-                    pt1 = m, pt2 = n, hauteur = IterWall->hauteur;
+                    pt1 = m, pt2 = n, hauteur = m_wall[*IterWall].hauteur;
                 else
                 {
                     if((m.x != 0 || m.y != 0) && (o.x != 0 || o.y != 0))
-                        AddTriangle(m ,o , w, m_wall,IterWall->hauteur), pt1 = o;
+                        AddTriangle(m ,o , deja_wall, m_wall, m_sectors, m_origin_sector,m_wall[*IterWall].hauteur), pt1 = o;
 
                     if((n.x != 0 || n.y != 0) && (o.x != 0 || o.y != 0))
-                        AddTriangle(o ,n , w, m_wall,IterWall->hauteur), pt2 = o;
+                        AddTriangle(o ,n , deja_wall, m_wall, m_sectors, m_origin_sector,m_wall[*IterWall].hauteur), pt2 = o;
                 }
+                deja_wall.push_back(*IterWall);
             }
+        }
 
     // Variable qui contiendra l'intensité calculée, pour le dégradé
     float intensity,intensity2;
@@ -222,7 +244,7 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall, std
         }
 }
 
-void Light::Generate( std::vector <Wall> &m_wall)
+void Light::Generate(std::vector<Wall>& m_wall, std::vector <std::vector <std::vector <int> > > &m_sectors, sf::Vector2i &m_origin_sector)
 {
     // On vide la mémoire
     m_shape.clear();
@@ -230,12 +252,19 @@ void Light::Generate( std::vector <Wall> &m_wall)
     // buf est l'angle de chaque triangle, c'est donc 2pi divisé par le nombre de triangles
     float buf=(M_PI*2)/(float)m_quality;
 
+
+
     // On ajoute tous les triangles qui composent la lumière
+    std::list <int> list;
     for (int i=0;i<m_quality;i++)
+    {
+        list.clear();
         AddTriangle(sf::Vector2f((int)((float)m_radius*cos((float)i*buf)),
                                  (int)((float)m_radius*sin((float)i*buf))) ,
                     sf::Vector2f((int)((float)m_radius*cos((float)(i+1)*buf)),
-                                 (int)((float)m_radius*sin((float)(i+1)*buf))),0,m_wall);
+                                 (int)((float)m_radius*sin((float)(i+1)*buf))),list,m_wall, m_sectors, m_origin_sector);
+    }
+
 }
 
 

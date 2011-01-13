@@ -22,7 +22,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 Light_Manager::Light_Manager()
 {
-
+    m_origin_sector.x = 0;
+    m_origin_sector.y = 0;
 }
 Light_Manager::~Light_Manager()
 {
@@ -56,13 +57,13 @@ Light_Entity Light_Manager::Add_Dynamic_Light(sf::Vector2f position, float inten
 Light_Entity Light_Manager::Add_Static_Light(Light light)
 {
     m_StaticLight.push_back(light);
-    m_StaticLight.back().Generate(m_wall);
+    m_StaticLight.back().Generate(m_wall, m_sectors, m_origin_sector);
     return Light_Entity((int)m_StaticLight.size()-1,false);
 }
 Light_Entity Light_Manager::Add_Static_Light(sf::Vector2f position, float intensity, float radius, int quality, sf::Color color)
 {
     m_StaticLight.push_back(Light (position,intensity,radius,quality,color));
-    m_StaticLight.back().Generate(m_wall);
+    m_StaticLight.back().Generate(m_wall, m_sectors, m_origin_sector);
     return Light_Entity((int)m_StaticLight.size()-1,false);
 }
 
@@ -131,49 +132,56 @@ Wall_Entity Light_Manager::Add_Wall(sf::Vector2f pt1,sf::Vector2f pt2)
 
     m_wall.push_back(Wall (pt1,pt2));
 
+    if(pt1.y + m_origin_sector.y * SECTOR_SIZE >= m_sectors.size() * SECTOR_SIZE)
+        m_sectors.resize(pt1.y/SECTOR_SIZE + m_origin_sector.y + 1, std::vector< std::vector<int> > ());
+
+    while(pt1.y + m_origin_sector.y * SECTOR_SIZE < 0)
+    {
+        m_sectors.insert(m_sectors.begin(), std::vector< std::vector<int> > ());
+        m_origin_sector.y++;
+    }
+
+    if(pt1.x + m_origin_sector.x * SECTOR_SIZE >= m_sectors[pt1.y/SECTOR_SIZE + m_origin_sector.y].size() * SECTOR_SIZE)
+        m_sectors[pt1.y/SECTOR_SIZE + m_origin_sector.y].resize(pt1.x/SECTOR_SIZE + m_origin_sector.x + 1, std::vector<int> ());
+
+
+    while(pt1.x + m_origin_sector.x * SECTOR_SIZE < 0)
+    {
+        for(unsigned i = 0 ; i  < m_sectors.size() ; ++i)
+            m_sectors[i].insert(m_sectors[i].begin(), std::vector<int> ());
+        m_origin_sector.x++;
+    }
+
+    m_sectors[pt1.y/SECTOR_SIZE + m_origin_sector.y][pt1.x/SECTOR_SIZE + m_origin_sector.x].push_back(m_wall.size()-1);
+
     return Wall_Entity(m_wall.size()-1);
 }
 
 Wall_Entity Light_Manager::Add_Wall(sf::Vector2f pt1,sf::Vector2f pt2,int hauteur)
 {
-    /* if(pt2.x<pt1.x)
-     {
-         sf::Vector2f buffer=pt1;
-         pt1=pt2,pt2=buffer;
-     }
-
-     for(int i=0;i<(int)m_wall.size();i++)
-       //  if(hauteur==m_wall[i].hauteur)
-             if((pt1.x+2>=(int)m_wall[i].pt1.x && pt1.x-2<=(int)m_wall[i].pt1.x && pt1.y+2>=(int)m_wall[i].pt1.y && pt1.y-2<=(int)m_wall[i].pt1.y)
-              ||(pt1.x+2>=(int)m_wall[i].pt2.x && pt1.x-2<=(int)m_wall[i].pt2.x && pt1.y+2>=(int)m_wall[i].pt2.y && pt1.y-2<=(int)m_wall[i].pt2.y)
-              ||(pt2.x+2>=(int)m_wall[i].pt1.x && pt2.x-2<=(int)m_wall[i].pt1.x && pt2.y+2>=(int)m_wall[i].pt1.y && pt2.y-2<=(int)m_wall[i].pt1.y)
-              ||(pt2.x+2>=(int)m_wall[i].pt2.x && pt2.x-2<=(int)m_wall[i].pt2.x && pt2.y+2>=(int)m_wall[i].pt2.y && pt2.y-2<=(int)m_wall[i].pt2.y))
-              {
-                 if(((pt1.y-pt2.y)/(pt1.x-pt2.y))==((m_wall[i].pt1.y-m_wall[i].pt2.y)/(m_wall[i].pt1.x-m_wall[i].pt2.y)))
-                 {
-                     sf::Vector2f min=pt1,max=pt2;
-
-                     if(pt2.x<min.x)
-                         min=pt2;
-                     if(m_wall[i].pt1.x<min.x)
-                         min=m_wall[i].pt1;
-                     if(m_wall[i].pt2.x<min.x)
-                         min=m_wall[i].pt2;
-
-                     if(pt1.x>max.x)
-                         max=pt1;
-                     if(m_wall[i].pt1.x>max.x)
-                         max=m_wall[i].pt1;
-                     if(m_wall[i].pt2.x>max.x)
-                         max=m_wall[i].pt2;
-
-                     m_wall[i].pt1=min;
-                     m_wall[i].pt2=max;
-
-                     return Wall_Entity(i);
-                 }
-              }*/
     m_wall.push_back(Wall (pt1,pt2,hauteur));
+
+    if(pt1.y + m_origin_sector.y * SECTOR_SIZE >= m_sectors.size() * SECTOR_SIZE)
+        m_sectors.resize(pt1.y/SECTOR_SIZE + m_origin_sector.y + 1, std::vector< std::vector<int> > ());
+
+    while(pt1.y + m_origin_sector.y * SECTOR_SIZE < 0)
+    {
+        m_sectors.insert(m_sectors.begin(), std::vector< std::vector<int> > ());
+        m_origin_sector.y++;
+    }
+
+    if(pt1.x + m_origin_sector.x * SECTOR_SIZE >= m_sectors[pt1.y/SECTOR_SIZE + m_origin_sector.y].size() * SECTOR_SIZE)
+        m_sectors[pt1.y/SECTOR_SIZE + m_origin_sector.y].resize(pt1.x/SECTOR_SIZE + m_origin_sector.x + 1, std::vector<int> ());
+
+
+    while(pt1.x + m_origin_sector.x * SECTOR_SIZE < 0)
+    {
+        for(unsigned i = 0 ; i  < m_sectors.size() ; ++i)
+            m_sectors[i].insert(m_sectors[i].begin(), std::vector<int> ());
+        m_origin_sector.x++;
+    }
+
+    m_sectors[pt1.y/SECTOR_SIZE + m_origin_sector.y][pt1.x/SECTOR_SIZE + m_origin_sector.x].push_back(m_wall.size()-1);
 
     return Wall_Entity(m_wall.size()-1);
 }
@@ -199,6 +207,10 @@ void Light_Manager::Delete_Wall(Wall_Entity e)
 void Light_Manager::Delete_All_Wall()
 {
     m_wall.clear();
+    m_sectors.clear();
+
+    m_origin_sector.x = 0;
+    m_origin_sector.y = 0;
 }
 void Light_Manager::Delete_All_Light(bool justDynamic)
 {
@@ -214,22 +226,16 @@ void Light_Manager::Generate()
     if (configuration->Lumiere>0)
         for (Iter=m_DynamicLight.begin();Iter!=m_DynamicLight.end();++Iter)
             if (Iter->m_actif)
-                Iter->Generate(m_wall);
+                Iter->Generate(m_wall, m_sectors, m_origin_sector);
 }
 
 void Light_Manager::Generate(Light_Entity &e)
 {
     if (configuration->Lumiere>0)
         if (e.Dynamic())
-        {
             if (e.ID()>=0&&e.ID()<(int)m_DynamicLight.size())
-            {
                 if (m_DynamicLight[e.ID()].m_actif)
-                {
-                    m_DynamicLight[e.ID()].Generate(m_wall);
-                }
-            }
-        }
+                    m_DynamicLight[e.ID()].Generate(m_wall, m_sectors, m_origin_sector);
 }
 
 /*void Light_Manager::GenerateWallShadow(float angle,Lumiere soleil)
@@ -280,38 +286,28 @@ void Light_Manager::DrawWallShadow(sf::RenderTarget *App,sf::View *camera,float 
     sf::Vector2f vect(cos(angle*M_PI/180) * (100-soleil.hauteur) * 0.02,
                       sin(angle*M_PI/180) * (100-soleil.hauteur) * 0.01);
 
-    for (std::vector<Wall>::iterator IterWall=m_wall.begin();IterWall!=m_wall.end();++IterWall)
-       /* if(( IterWall->m_shadow.GetPointPosition(0).x + 128 > GetViewRect(*camera).Left
-          && IterWall->m_shadow.GetPointPosition(0).x - 128 < GetViewRect(*camera).Left + GetViewRect(*camera).Width
-          && IterWall->m_shadow.GetPointPosition(0).y + 128 > GetViewRect(*camera).Top
-          && IterWall->m_shadow.GetPointPosition(0).y - 128 < GetViewRect(*camera).Top + GetViewRect(*camera).Height)
+    for(int y =  GetViewRect(*camera).Top * 2 / SECTOR_SIZE + m_origin_sector.y - 1;
+            y < (GetViewRect(*camera).Top * 2 + GetViewRect(*camera).Height * 2) / SECTOR_SIZE + 1 + m_origin_sector.y;
+          ++y)
+    if(y >= 0 && y < m_sectors.size())
+    for(int x =  GetViewRect(*camera).Left / SECTOR_SIZE + m_origin_sector.x - 1;
+            x < (GetViewRect(*camera).Left + GetViewRect(*camera).Width) / SECTOR_SIZE + 1 + m_origin_sector.x;
+          ++x)
+    if(x >= 0 && x < m_sectors[y].size())
+    for (std::vector<int>::iterator IterWall=m_sectors[y][x].begin();
+                                    IterWall!=m_sectors[y][x].end();++IterWall)
+     {
+        m_wall[*IterWall].m_shadow = sf::Shape();
 
-          ||(IterWall->m_shadow.GetPointPosition(1).x + 128 > GetViewRect(*camera).Left
-          && IterWall->m_shadow.GetPointPosition(1).x - 128 < GetViewRect(*camera).Left + GetViewRect(*camera).Width
-          && IterWall->m_shadow.GetPointPosition(1).y + 128 > GetViewRect(*camera).Top
-          && IterWall->m_shadow.GetPointPosition(1).y - 128 < GetViewRect(*camera).Top + GetViewRect(*camera).Height)
+        m_wall[*IterWall].m_shadow.AddPoint(sf::Vector2f(m_wall[*IterWall].pt2.x,m_wall[*IterWall].pt2.y*0.5),sf::Color(0,0,0,(int)(255)));
+        m_wall[*IterWall].m_shadow.AddPoint(sf::Vector2f(m_wall[*IterWall].pt1.x,m_wall[*IterWall].pt1.y*0.5),sf::Color(0,0,0,(int)(255)));
 
-          ||(IterWall->m_shadow.GetPointPosition(2).x + 128 > GetViewRect(*camera).Left
-          && IterWall->m_shadow.GetPointPosition(2).x - 128 < GetViewRect(*camera).Left + GetViewRect(*camera).Width
-          && IterWall->m_shadow.GetPointPosition(2).y + 128 > GetViewRect(*camera).Top
-          && IterWall->m_shadow.GetPointPosition(2).y - 128 < GetViewRect(*camera).Top + GetViewRect(*camera).Height)
-
-          ||(IterWall->m_shadow.GetPointPosition(3).x + 128 > GetViewRect(*camera).Left
-          && IterWall->m_shadow.GetPointPosition(3).x - 128 < GetViewRect(*camera).Left + GetViewRect(*camera).Width
-          && IterWall->m_shadow.GetPointPosition(3).y + 128 > GetViewRect(*camera).Top
-          && IterWall->m_shadow.GetPointPosition(3).y - 128 < GetViewRect(*camera).Top + GetViewRect(*camera).Height))*/
-         {
-            IterWall->m_shadow = sf::Shape();
-
-            IterWall->m_shadow.AddPoint(sf::Vector2f(IterWall->pt2.x,IterWall->pt2.y*0.5),sf::Color(0,0,0,(int)(255)));
-            IterWall->m_shadow.AddPoint(sf::Vector2f(IterWall->pt1.x,IterWall->pt1.y*0.5),sf::Color(0,0,0,(int)(255)));
-
-            IterWall->m_shadow.AddPoint(sf::Vector2f(IterWall->pt1.x-IterWall->hauteur * vect.x,
-                                                     IterWall->pt1.y*0.5+IterWall->hauteur * vect.y),sf::Color(0,0,0,(int)(255)));
-            IterWall->m_shadow.AddPoint(sf::Vector2f(IterWall->pt2.x-IterWall->hauteur * vect.x,
-                                                     IterWall->pt2.y*0.5+IterWall->hauteur * vect.y),sf::Color(0,0,0,(int)(255)));
-            App->Draw(IterWall->m_shadow);
-         }
+        m_wall[*IterWall].m_shadow.AddPoint(sf::Vector2f(m_wall[*IterWall].pt1.x-m_wall[*IterWall].hauteur * vect.x,
+                                                 m_wall[*IterWall].pt1.y*0.5+m_wall[*IterWall].hauteur * vect.y),sf::Color(0,0,0,(int)(255)));
+        m_wall[*IterWall].m_shadow.AddPoint(sf::Vector2f(m_wall[*IterWall].pt2.x-m_wall[*IterWall].hauteur * vect.x,
+                                                 m_wall[*IterWall].pt2.y*0.5+m_wall[*IterWall].hauteur * vect.y),sf::Color(0,0,0,(int)(255)));
+        App->Draw(m_wall[*IterWall].m_shadow);
+     }
 }
 
 void Light_Manager::Draw(sf::RenderTarget *App,Light_Entity e)
