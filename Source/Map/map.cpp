@@ -1038,8 +1038,8 @@ void Map::Initialiser(Hero *hero)
                     position.x=(k-j)*64;
                     position.y=(k+j+1)*32;
 
-                    pos.x = (int)(((k*COTE_TILE-j*COTE_TILE)*64/COTE_TILE));
-                    pos.y = (int)(((k*COTE_TILE+j*COTE_TILE)*64/COTE_TILE)+64);
+                    pos.x = position.x;
+                    pos.y = position.y * 2;
 
                     Entite_graphique temp = m_decor[i][j][k].m_entite_graphique;
                     m_decor[i][j][k].m_entite_graphique = moteurGraphique->getEntiteGraphique(m_tileset[m_decor[i][j][k].getTileset()], m_decor[i][j][k].getTile(), m_decor[i][j][k].getCouche());
@@ -1070,12 +1070,14 @@ void Map::Initialiser(Hero *hero)
           //  moteurGraphique->LightManager->SetQuality(m_monstre[i].m_light,6);
 
             coordonnee pos;
-            pos.x=(int)(((m_monstre[i].getCoordonneePixel().x-m_monstre[i].getCoordonneePixel().y)*64/COTE_TILE));
-            pos.y=(int)(((m_monstre[i].getCoordonneePixel().x+m_monstre[i].getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
+            //pos.x=(int)(((m_monstre[i].getCoordonneePixel().x-m_monstre[i].getCoordonneePixel().y)*64/COTE_TILE));
+            //pos.y=(int)(((m_monstre[i].getCoordonneePixel().x+m_monstre[i].getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
 
 
-            pos.x = (int)(((m_monstre[i].getCoordonnee().x*COTE_TILE-m_monstre[i].getCoordonnee().y*COTE_TILE)*64/COTE_TILE));
-            pos.y = (int)(((m_monstre[i].getCoordonnee().x*COTE_TILE+m_monstre[i].getCoordonnee().y*COTE_TILE)*64/COTE_TILE)+64);
+            pos.x = (int)(((m_monstre[i].getCoordonnee().x-m_monstre[i].getCoordonnee().y)*64));
+            pos.y = (int)(((m_monstre[i].getCoordonnee().x+m_monstre[i].getCoordonnee().y+1)*32));
+
+            m_monstre[i].m_entite_graphique.SetPosition(pos.x, pos.y);
 
             if(m_monstre[i].getModele() >= 0
             && m_monstre[i].getModele() < (int)m_ModeleMonstre.size())

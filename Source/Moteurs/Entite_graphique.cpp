@@ -185,14 +185,53 @@ void Entite_graphique::NextTile(bool cur,bool no_sound)
            // moteurGraphique->LightManager->SetIntensity(m_light_wall,m_tileset->getLumiereDuTile(m_noAnimation).intensite);
         }
         if(configuration->Lumiere > 0 && m_light_wall.ID() != -1)
+            moteurGraphique->LightManager->SetIntensity(m_light_wall, m_tileset->getLumiereDuTile(m_noAnimation).intensite);
+
+        if(configuration->Lumiere > 0 && m_light_wall.ID() == -1
+        && m_tileset->getLumiereDuTile(m_noAnimation).intensite < 0
+        && m_tileset->getOrientationDuTile(m_noAnimation) != ' ')
         {
-            moteurGraphique->LightManager->SetIntensity(m_light_wall, m_tileset->getLumiereDuTile(m_noAnimation).intensite);
-            moteurGraphique->LightManager->SetIntensity(m_light_wall, m_tileset->getLumiereDuTile(m_noAnimation).intensite);
+            coordonnee pos;
+            pos.x = GetPosition().x;
+            pos.y = GetPosition().y * 2;
+
+            AddWallLight(pos);
         }
     }
 }
 
-void Entite_graphique::Initialiser(coordonnee pos)
+void Entite_graphique::AddWallLight(const coordonnee &pos)
+{
+    if(m_light_wall.ID() == -1
+    && m_tileset->getLumiereDuTile(m_noAnimation).intensite < 0
+    && m_tileset->getOrientationDuTile(m_noAnimation) != ' ')// && !option_forcedLight)
+    {
+        if (m_tileset->getOrientationDuTile(m_noAnimation)=='x'||m_tileset->getOrientationDuTile(m_noAnimation)=='c'||m_tileset->getOrientationDuTile(m_noAnimation)=='o'||m_tileset->getOrientationDuTile(m_noAnimation)=='q')
+            m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y-32), sf::Vector2f(pos.x+32 , pos.y+32),(int)m_tileset->getLumiereDuTile(m_noAnimation).hauteur);
+
+        if (m_tileset->getOrientationDuTile(m_noAnimation)=='y'||m_tileset->getOrientationDuTile(m_noAnimation)=='c'||m_tileset->getOrientationDuTile(m_noAnimation)=='p'||m_tileset->getOrientationDuTile(m_noAnimation)=='r')
+            m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y+32), sf::Vector2f(pos.x+32 , pos.y-32),(int)m_tileset->getLumiereDuTile(m_noAnimation).hauteur);
+
+        if (m_tileset->getOrientationDuTile(m_noAnimation)=='b'||m_tileset->getOrientationDuTile(m_noAnimation)=='g'||m_tileset->getOrientationDuTile(m_noAnimation)=='q')
+            m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x, pos.y), sf::Vector2f(pos.x+32 , pos.y-32),(int)m_tileset->getLumiereDuTile(m_noAnimation).hauteur);
+
+        if (m_tileset->getOrientationDuTile(m_noAnimation)=='b'||m_tileset->getOrientationDuTile(m_noAnimation)=='p')
+            m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y-32), sf::Vector2f(pos.x , pos.y),(int)m_tileset->getLumiereDuTile(m_noAnimation).hauteur);
+
+        if (m_tileset->getOrientationDuTile(m_noAnimation)=='d')
+            m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y-32), sf::Vector2f(pos.x , pos.y),(int)m_tileset->getLumiereDuTile(m_noAnimation).hauteur);
+
+        if (m_tileset->getOrientationDuTile(m_noAnimation)=='h'||m_tileset->getOrientationDuTile(m_noAnimation)=='g'||m_tileset->getOrientationDuTile(m_noAnimation)=='r')
+            m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x, pos.y), sf::Vector2f(pos.x+32 , pos.y+32),(int)m_tileset->getLumiereDuTile(m_noAnimation).hauteur);
+
+        if (m_tileset->getOrientationDuTile(m_noAnimation)=='h'||m_tileset->getOrientationDuTile(m_noAnimation)=='d')
+            m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y+32), sf::Vector2f(pos.x , pos.y),(int)m_tileset->getLumiereDuTile(m_noAnimation).hauteur);
+        if (m_tileset->getOrientationDuTile(m_noAnimation)=='o')
+            m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y+32), sf::Vector2f(pos.x , pos.y),(int)m_tileset->getLumiereDuTile(m_noAnimation).hauteur);
+    }
+}
+
+void Entite_graphique::Initialiser(const coordonnee &pos)
 {
     SetBlendMode(sf::Blend::Alpha);
 
@@ -204,7 +243,8 @@ void Entite_graphique::Initialiser(coordonnee pos)
         if(configuration->Lumiere)
         if(m_tileset->getTaille() > 0)
         {
-            if (m_tileset->getLumiereDuTile(m_noAnimation).intensite < 0)// && !option_forcedLight)
+            AddWallLight(pos);
+            /*if (m_tileset->getLumiereDuTile(m_noAnimation).intensite < 0)// && !option_forcedLight)
             {
                 if (m_tileset->getOrientationDuTile(m_noAnimation)=='x'||m_tileset->getOrientationDuTile(m_noAnimation)=='c'||m_tileset->getOrientationDuTile(m_noAnimation)=='o'||m_tileset->getOrientationDuTile(m_noAnimation)=='q')
                     m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y-32), sf::Vector2f(pos.x+32 , pos.y+32),(int)m_tileset->getLumiereDuTile(m_noAnimation).hauteur);
@@ -228,28 +268,6 @@ void Entite_graphique::Initialiser(coordonnee pos)
                     m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y+32), sf::Vector2f(pos.x , pos.y),(int)m_tileset->getLumiereDuTile(m_noAnimation).hauteur);
                 if (m_tileset->getOrientationDuTile(m_noAnimation)=='o')
                     m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y+32), sf::Vector2f(pos.x , pos.y),(int)m_tileset->getLumiereDuTile(m_noAnimation).hauteur);
-            }
-          //  else/* if (m_tileset->getLumiereDuTile(m_noAnimation).intensite > 0)*/
-            //if (m_tileset->getLumiereDuTile(m_noAnimation).intensite > 0 || option_forcedLight)
-            /*{
-                bool light = option_forcedLight;
-
-                for(int i = 0 ; i < m_tileset->getTaille(); ++i)
-                    if(m_tileset->getLumiereDuTile(i).intensite > 0)
-                        light = true;
-
-                if(light)
-                {
-
-                    sf::Vector2f position;
-                    position.x = pos.x + m_decalage.x;
-                    position.y = pos.y + m_decalage.y;
-
-                    m_light = moteurGraphique->LightManager->Add_Dynamic_Light(position,m_tileset->getLumiereDuTile(m_noAnimation).intensite > 0 ? 255 : 0,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,12,
-                                                                                sf::Color(m_tileset->getLumiereDuTile(m_noAnimation).rouge,
-                                                                                          m_tileset->getLumiereDuTile(m_noAnimation).vert,
-                                                                                          m_tileset->getLumiereDuTile(m_noAnimation).bleu));
-                }
             }*/
             if(option_forcedLight)
             {

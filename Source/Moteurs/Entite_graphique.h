@@ -29,7 +29,8 @@ class Entite_graphique : public sf::Sprite
         virtual ~Entite_graphique();
         void Animer(float temps);
         void NextTile(bool cur = false,bool no_sound = false);
-        void Initialiser(coordonnee position);
+        void Initialiser(const coordonnee &pos);
+        void AddWallLight(const coordonnee &pos);
         void Generer();
 
         void SaveParameters(std::ofstream &fichier);

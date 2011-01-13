@@ -361,6 +361,7 @@ void c_Chargement::PostLoad(Jeu *jeu)
     jeu->hero.m_personnage.SeDeplacer(0);
 
     allerVersImageChargement=false;
+    augmenterNoir=true;
 
     jeu->hero.PlacerCamera();
 
@@ -440,6 +441,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         if(jeu->map!=NULL)
             moteurSons->setVolumeMusique((int)(z*(float)configuration->music_volume/50));
+
         if ((!m_debut&&augmenterNoir)||(!augmenterNoir))
         {
             if(jeu->map!=NULL)

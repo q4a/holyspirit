@@ -138,6 +138,10 @@ void c_MainMenu::Utiliser(Jeu *jeu)
         moteurGraphique->LightManager->Delete_All_Light();
         moteurGraphique->LightManager->Delete_All_Wall();
 
+        moteurGraphique->m_soleil.rouge = 255;
+        moteurGraphique->m_soleil.vert = 255;
+        moteurGraphique->m_soleil.bleu = 255;
+
         m_light = moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,256,32,sf::Color(255,255,255));
         m_light_logo = moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,256,32,sf::Color(255,192,0));
 
@@ -145,6 +149,9 @@ void c_MainMenu::Utiliser(Jeu *jeu)
 
         m_reset = false;
         moteurGraphique->m_blur = 0;
+
+        configuration->zoom = 1.0;
+        configuration->effetNoir = 0;
     }
 
     m_mainscreen.Resize(configuration->Resolution.x, configuration->Resolution.y);
