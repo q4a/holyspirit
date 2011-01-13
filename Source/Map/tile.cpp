@@ -34,7 +34,7 @@ Tile::~Tile()
 {
 }
 
-void Tile::setTile( coordonnee positionDansLImage,int image,bool collision,int animation,int son,Lumiere lumiere,bool ombre,
+void Tile::setTile( coordonnee positionDansLImage,int image,bool collision,int animation,int son,Lumiere lumiere, coordonnee lumiere_decal,bool ombre,
                     bool reflection,char orientation,bool transparent,coordonnee centre,float temps, int opacity, int layer,
                     int attaque, int ordre, int angle, int ambientShadow)
 {
@@ -49,6 +49,8 @@ void Tile::setTile( coordonnee positionDansLImage,int image,bool collision,int a
     m_orientation           = orientation;
     m_transparent           = transparent;
     m_opacity               = opacity;
+
+    m_lumiere_decal         = lumiere_decal;
 
     m_temps                 = temps;
 
@@ -107,6 +109,10 @@ char Tile::getOrientation()
 const coordonnee &Tile::getCentre()
 {
     return m_centre;
+}
+const coordonnee &Tile::getLumiereDecal()
+{
+    return m_lumiere_decal;
 }
 float Tile::getTemps()
 {

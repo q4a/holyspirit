@@ -71,6 +71,7 @@ class Tileset
 	bool    getTransparentDuTile(int tile);
 	char    getOrientationDuTile(int tile);
 	const   coordonnee &getCentreDuTile(int tile, int type = 0);
+            coordonnee getLumiereDecalDuTile(int tile);
 	const   std::string &getChemin(){return m_chemin;}
 	float   getTempsDuTile(int tile, int type = 0);
 	int     getOpacityDuTile(int tile, int type = 0);

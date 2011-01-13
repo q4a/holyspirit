@@ -101,6 +101,7 @@ void Tileset::ChargerInfosTile(ifstream &fichier, int lumiere_base,int type)
     lumiere.vert = -1;
     lumiere.bleu = -1;
     lumiere.hauteur=0;
+    coordonnee lumiere_decal(0,0);
     bool collision=0,ombre=option_forcedShadow, reflection = option_forcedReflect,transparent=0;
     char orientation=' ';
     float tempsAnimation=-1;
@@ -195,6 +196,10 @@ void Tileset::ChargerInfosTile(ifstream &fichier, int lumiere_base,int type)
                 fichier>>lumiere.intensite;
             if (caractere=='h')
                 fichier>>lumiere.hauteur;
+            if (caractere=='x')
+                fichier>>lumiere_decal.x;
+            if (caractere=='y')
+                fichier>>lumiere_decal.y;
             break;
         case 'r':
             fichier>>orientation;
@@ -269,17 +274,17 @@ void Tileset::ChargerInfosTile(ifstream &fichier, int lumiere_base,int type)
     if(type == 1)
     {
         m_tile_distortion.push_back(Tile ());
-        m_tile_distortion.back().setTile(position,image,collision,animation,son,lumiere,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer, attaque, ordre, angle,ambientShadow);
+        m_tile_distortion.back().setTile(position,image,collision,animation,son,lumiere,lumiere_decal,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer, attaque, ordre, angle,ambientShadow);
     }
     else if(type == 2)
     {
         m_tile_shadowmap.push_back(Tile ());
-        m_tile_shadowmap.back().setTile(position,image,collision,animation,son,lumiere,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer, attaque, ordre, angle,ambientShadow);
+        m_tile_shadowmap.back().setTile(position,image,collision,animation,son,lumiere,lumiere_decal,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer, attaque, ordre, angle,ambientShadow);
     }
     else
     {
         m_tile.push_back(Tile ());
-        m_tile.back().setTile(position,image,collision,animation,son,lumiere,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer, attaque, ordre, angle,ambientShadow);
+        m_tile.back().setTile(position,image,collision,animation,son,lumiere,lumiere_decal,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer, attaque, ordre, angle,ambientShadow);
         m_tile.back().m_tileMinimap = imageMM;
         m_tile.back().m_coordMinimap = coordMinimap;
         m_tile.back().m_distortion = distortionTile;
@@ -593,6 +598,15 @@ const coordonnee &Tileset::getCentreDuTile(int tile,int type)
         else
             return m_tile[0].getCentre();
     }
+}
+
+
+coordonnee Tileset::getLumiereDecalDuTile(int tile)
+{
+    if (tile>=0&&tile<(int)m_tile.size())
+        return m_tile[tile].getLumiereDecal();
+    else
+        return m_tile[0].getLumiereDecal();
 }
 
 int Tileset::getAmbientShadow(int tile,int type)

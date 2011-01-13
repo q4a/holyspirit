@@ -33,8 +33,8 @@ class Tile
 	public:
 	Tile();
 	~Tile();
-	void setTile(   coordonnee positionDansLImage,int image,bool collision,int animation,int son,Lumiere lumiere,bool ombre,
-                    bool reflection,char orientation,bool transparent,coordonnee centre,float temps, int opacity, int layer,
+	void setTile(   coordonnee positionDansLImage,int image,bool collision,int animation,int son,Lumiere lumiere, coordonnee lumiere_decal,
+                    bool ombre,bool reflection,char orientation,bool transparent,coordonnee centre,float temps, int opacity, int layer,
                     int attaque, int ordre, int angle, int ambientShadow);
 
 	const coordonnee &getCoordonnee();
@@ -48,6 +48,7 @@ class Tile
 	bool getTransparent();
 	char getOrientation();
 	const coordonnee &getCentre();
+	const coordonnee &getLumiereDecal();
 	float getTemps();
 	int getOpacity();
 	int getLayer();
@@ -65,7 +66,7 @@ class Tile
 	std::vector<int> m_shadowMap;
 
 	private:
-	coordonnee m_positionDansLImage,m_centre;
+	coordonnee m_positionDansLImage,m_centre,m_lumiere_decal;
 	bool m_collision,m_ombre,m_reflection,m_transparent;
 	int m_animation,m_son,m_image;
 	char m_orientation; // Orientation du tile, utilisé pour le calcul des lumières

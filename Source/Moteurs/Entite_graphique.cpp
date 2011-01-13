@@ -196,8 +196,12 @@ void Entite_graphique::NextTile(bool cur,bool no_sound)
     }
 }
 
-void Entite_graphique::AddWallLight(const coordonnee &pos)
+void Entite_graphique::AddWallLight(const coordonnee &pos2)
 {
+    coordonnee pos = pos2;
+    pos.x += m_tileset->getLumiereDecalDuTile(m_noAnimation).x;
+    pos.y += m_tileset->getLumiereDecalDuTile(m_noAnimation).y;
+
     if(m_light_wall.ID() == -1
     && m_tileset->getLumiereDuTile(m_noAnimation).intensite < 0
     && m_tileset->getOrientationDuTile(m_noAnimation) != ' ')// && !option_forcedLight)
