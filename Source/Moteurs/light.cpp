@@ -129,11 +129,11 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, std::list<int> deja_w
     // On bo€ucle sur tous les murs
     if (configuration->Lumiere==2)
 
-    for(int y =  (m_position.y - m_radius) / SECTOR_SIZE + m_origin_sector.y - 1;
+    for(int y =  (m_position.y - m_radius) / SECTOR_SIZE + m_origin_sector.y;
             y <  (m_position.y + m_radius) / SECTOR_SIZE + 1 + m_origin_sector.y;
           ++y)
     if(y >= 0 && y < m_sectors.size())
-    for(int x =  (m_position.x - m_radius) / SECTOR_SIZE + m_origin_sector.x - 1;
+    for(int x =  (m_position.x - m_radius) / SECTOR_SIZE + m_origin_sector.x;
             x <  (m_position.x + m_radius) / SECTOR_SIZE + 1 + m_origin_sector.x;
           ++x)
     if(x >= 0 && x < m_sectors[y].size())
