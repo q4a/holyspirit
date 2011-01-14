@@ -191,10 +191,11 @@ public:
 
     bool newQuest, newDoc;
 
+    int m_cas;
+
 private:
     coordonnee m_chercherSac,m_sacVise;
 
-    int m_cas;
 
     int m_ordreAffichage[NOMBRE_MORCEAU_PERSONNAGE];
 

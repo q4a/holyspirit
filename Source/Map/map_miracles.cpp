@@ -71,6 +71,9 @@ bool Map::Miracle_Declencheur    (Hero *hero, Personnage *personnage, Miracle &m
                     miracleEnCours.m_infos.back()->m_cible = info.m_cible;
                 else
                     miracleEnCours.m_infos.back()->m_cible = personnage;
+
+                if(effet.m_informations[5])
+                    detruire = true;
             }
             info.m_informations[4] = 0;
         }
@@ -91,6 +94,9 @@ bool Map::Miracle_Declencheur    (Hero *hero, Personnage *personnage, Miracle &m
                     miracleEnCours.m_infos.back()->m_cible = personnage->m_vientDeFrapper;
                 else
                     miracleEnCours.m_infos.back()->m_cible = personnage;
+
+                if(effet.m_informations[5])
+                    detruire = true;
             }
         }
     }
@@ -112,6 +118,9 @@ bool Map::Miracle_Declencheur    (Hero *hero, Personnage *personnage, Miracle &m
                     miracleEnCours.m_coordonneeCible = personnage->m_vientDAttaquer;
                 else
                     miracleEnCours.m_infos.back()->m_cible = personnage;
+
+                if(effet.m_informations[5])
+                    detruire = true;
             }
         }
     }
@@ -129,6 +138,9 @@ bool Map::Miracle_Declencheur    (Hero *hero, Personnage *personnage, Miracle &m
                     miracleEnCours.m_infos.back()->m_cible = personnage->m_vientDetreTouche;
                 else
                     miracleEnCours.m_infos.back()->m_cible = personnage;
+
+                if(effet.m_informations[5])
+                    detruire = true;
             }
         }
     }
@@ -158,6 +170,9 @@ bool Map::Miracle_Declencheur    (Hero *hero, Personnage *personnage, Miracle &m
                 }
 
                 miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin() + o);
+
+                if(effet.m_informations[5])
+                    detruire = true;
 
                 return 0;
             }
@@ -1195,6 +1210,10 @@ bool Map::Miracle_Conditions(Hero *hero, Personnage *personnage, Miracle &modele
     bool oui = false;
     if(effet.m_informations[1] == C_ANGLE)
         if((int)(personnage->getAngle()/45) == effet.m_informations[2])
+            oui = true;
+
+    if(effet.m_informations[1] == C_EQUIPEMENT)
+        if((int)(hero->m_cas) == effet.m_informations[2])
             oui = true;
 
     if(effet.m_informations[1] == C_VARIABLE)

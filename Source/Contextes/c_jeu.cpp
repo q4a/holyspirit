@@ -325,6 +325,8 @@ void c_Jeu::Animation(Jeu *jeu)
                 if (jeu->hero.m_personnage.m_cible!=NULL)
                 {
 
+                    jeu->hero.m_personnage.m_vientDAttaquer = jeu->hero.m_personnage.m_cible->getCoordonnee();
+
                     if (fabs(jeu->hero.m_personnage.m_cible->getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().x)<=2
                       &&fabs(jeu->hero.m_personnage.m_cible->getCoordonnee().y-jeu->hero.m_personnage.getCoordonnee().y)<=2)
                         if (rand() % 100 < (float)((float)(jeu->hero.m_caracteristiques.dexterite + 100) / ((float)(jeu->hero.m_personnage.m_cible->getCaracteristique().dexterite + 100)))*75 )
@@ -345,6 +347,7 @@ void c_Jeu::Animation(Jeu *jeu)
 
                                 jeu->hero.m_personnage.m_miracleFrappeEnCours = false;
                             }
+
                 }
             }
             else

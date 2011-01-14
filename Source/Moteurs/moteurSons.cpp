@@ -101,6 +101,7 @@ void MoteurSons::JouerSon(int ID,coordonnee position,bool unique,int volume)
                     // Je test voir si le nouveau son du même type est plus près du perso que l'ancien, si oui, je mets la position du nouveau à la place de l'ancien
                     if ((double)(((positionHero.x+x)*(positionHero.x+x)+(positionHero.y-y)*(positionHero.y-y)))>(double)(((positionHero.x-position.x)*(positionHero.x-position.x)+(positionHero.y-position.y)*(positionHero.y-position.y))))
                         m_sons[i].SetPosition(position.x,0,position.y);
+                        //m_sons[i].SetPosition(sf::Listener::GetPosition());
 
                    // if(volume > m_sons[i].GetVolume())
                         m_sons[i].SetVolume(volume);
@@ -136,6 +137,7 @@ void MoteurSons::JouerSon(int ID,coordonnee position,bool unique,int volume)
 
             m_sons[sonEnCours].SetPosition(position.x,0,position.y);
             m_sons[sonEnCours].SetLoop(false);
+                      //  m_sons[sonEnCours].SetPosition(sf::Listener::GetPosition());
 
         }
     }
