@@ -77,7 +77,7 @@ void MoteurGraphique::CreateNewWindow()
         m_ecran.Create(sf::VideoMode(configuration->Resolution.x, configuration->Resolution.y),"HolySpirit : Act of Faith",sf::Style::Titlebar);
 
   // if (configuration->syncronisation_verticale)
-    //    m_ecran.UseVerticalSync(true);
+     //   m_ecran.EnableVerticalSync(true);
 
     m_ecran.ShowMouseCursor(false);
 
