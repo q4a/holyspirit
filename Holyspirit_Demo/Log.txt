@@ -52,13 +52,18 @@
          Chargement du hero.
          /Lectures des caracteristiques.
          
-         Chargement de l'objet : Sword_1h_small_sword.item.hs
-         Chargement de : Data/Graphics/Items/Swords.png
+         Chargement de l'objet : Mace_2h_timber_axe.item.hs
+         Chargement de : Data/Graphics/Items/TwoHands_maces.png
+         Chargement de : Data/Sounds/UI/DropItem0.wav
+         
+         Chargement de l'objet : Dagger_dagger.item.hs
+         Chargement de : Data/Graphics/Items/Daggers.png
          Chargement de : Data/Sounds/UI/DropItem1.wav
          
-         Chargement de l'objet : Shield_small_shield.item.hs
-         Chargement de : Data/Graphics/Items/Shields.png
-         Chargement de : Data/Sounds/UI/DropItem0.wav
+         Chargement de l'objet : Armor_gambeson.item.hs
+         Chargement de : Data/Graphics/Items/Armors.png
+         
+         Chargement de l'objet : Armor_chainmail.item.hs
          
          Chargement de l'objet : Armband_leather.item.hs
          Chargement de : Data/Graphics/Items/Armbands.png
@@ -67,52 +72,53 @@
          
          Chargement de l'objet : Armband_leather.item.hs
          
-         Chargement de l'objet : Doc_redimus.item.hs
-         Chargement de : Data/Graphics/Items/Books.png
-         
-         Chargement de l'objet : Craft_wood_plank.item.hs
-         Chargement de : Data/Graphics/Items/Crafts.png
-         
-         Chargement de l'objet : Craft_gem_emerald.item.hs
-         
-         Chargement de l'objet : Craft_coal.item.hs
-         
-         Chargement de l'objet : Armor_gambeson.item.hs
-         Chargement de : Data/Graphics/Items/Armors.png
-         
-         Chargement de l'objet : Craft_ore_iron.item.hs
-         
-         Chargement de l'objet : Craft_wood_plank.item.hs
-         
-         Chargement de l'objet : Doc_redimus.item.hs
-         
-         Chargement de l'objet : Armor_gambeson.item.hs
-         
          Chargement de l'objet : Helmet_leather_cap.item.hs
          Chargement de : Data/Graphics/Items/Helmets.png
          
          Chargement de l'objet : Helmet_leather_cap.item.hs
          
-         Chargement de l'objet : Dagger_dagger.item.hs
-         Chargement de : Data/Graphics/Items/Daggers.png
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
          Chargement de l'objet : Helmet_leather_cap.item.hs
-         
-         Chargement de l'objet : Mace_2h_timber_axe.item.hs
-         Chargement de : Data/Graphics/Items/TwoHands_maces.png
          
          Chargement de l'objet : Boots_leather.item.hs
          Chargement de : Data/Graphics/Items/Boots.png
+         
+         Chargement de l'objet : Drawing_sword_1h_small_sword.item.hs
+         Chargement de : Data/Graphics/Items/Books.png
+         
+         Chargement de l'objet : Craft_ore_iron.item.hs
+         Chargement de : Data/Graphics/Items/Crafts.png
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Doc_redimus.item.hs
+         
+         Chargement de l'objet : Doc_redimus.item.hs
+         
+         Chargement de l'objet : Craft_wood_plank.item.hs
+         
+         Chargement de l'objet : Craft_wood_plank.item.hs
+         
+         Chargement de l'objet : Craft_gem_emerald.item.hs
+         
+         Chargement de l'objet : Craft_coal.item.hs
+         
+         Chargement de l'objet : Craft_ore_iron.item.hs
+         
+         Chargement de l'objet : Ring_ring.item.hs
+         Chargement de : Data/Graphics/Items/Rings.png
          
          Chargement de l'objet : Potion_faith0.item.hs
          Chargement de : Data/Graphics/Items/Potions.png
          Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
          Chargement de : Data/Sounds/Miracles/Potion_drink0.wav
          
-         Chargement de l'objet : Ring_ring.item.hs
-         Chargement de : Data/Graphics/Items/Rings.png
+         Chargement de l'objet : Sword_1h_small_sword.item.hs
+         Chargement de : Data/Graphics/Items/Swords.png
+         
+         Chargement de l'objet : Shield_small_shield.item.hs
+         Chargement de : Data/Graphics/Items/Shields.png
+         
+         Chargement de l'objet : Armor_gambeson.item.hs
          
          Chargement de l'objet : Helmet_leather_cap.item.hs
          
@@ -120,7 +126,16 @@
          
          Chargement de l'objet : Armband_gauntlet.item.hs
          
-         Chargement de l'objet : Armor_chainmail.item.hs
+         Chargement de l'objet : Doc_redimus.item.hs
+         
+         Chargement de l'objet : Ring_ring.item.hs
+         
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
+         
+         Chargement de l'objet : Boots_leather.item.hs
+         
+         Chargement de l'objet : Boots_leather.item.hs
          /Lectures des objets.
          /Lectures des objets du coffre.
          /Lectures des miracles.
@@ -236,26 +251,31 @@
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
          
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Gambeson/TwoHands.rs.hs
-         Chargement de : Crusader_Gambeson_2H_Wait0.png
-         Chargement de : Crusader_Gambeson_2H_Walk0.png
-         Chargement de : Crusader_Gambeson_2H_Attack0.png
-         Chargement de : Crusader_Gambeson_2H_Attack1.png
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Gambeson/OneHand.rs.hs
+         Chargement de : Crusader_Gambeson_1H_Wait0.png
+         Chargement de : Crusader_Gambeson_1H_Walk0.png
+         Chargement de : Crusader_Gambeson_1H_Attack0.png
+         Chargement de : Crusader_Gambeson_1H_Attack1.png
          Chargement de : Data/Sounds/Entities/Footstep0.wav
-         Chargement de : Data/Sounds/Entities/Attack1.wav
+         Chargement de : Data/Sounds/Entities/Attack0.wav
          Chargement de : Data/Sounds/Entities/Male_hurt0.wav
          Chargement de : Data/Sounds/Entities/Male_hurt1.wav
          Chargement de : Data/Sounds/Entities/Male_hurt2.wav
          
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Helmets/Leather_cap_2h.rs.hs
-         Chargement de : Crusader_LeatherCap_2h_Wait0.png
-         Chargement de : Crusader_LeatherCap_2h_Walk0.png
-         Chargement de : Crusader_LeatherCap_2h_Attack0.png
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Helmets/Leather_cap_1h.rs.hs
+         Chargement de : Crusader_LeatherCap_1h_Wait0.png
+         Chargement de : Crusader_LeatherCap_1h_Walk0.png
+         Chargement de : Crusader_LeatherCap_1h_Attack0.png
          
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_TwoHands/Timber_axe.rs.hs
-         Chargement de : Crusader_TimberAxe_Wait0.png
-         Chargement de : Crusader_TimberAxe_Walk0.png
-         Chargement de : Crusader_TimberAxe_Attack0.png
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_OneHand/Small_sword_r.rs.hs
+         Chargement de : Crusader_SmallSword_R_Wait0.png
+         Chargement de : Crusader_SmallSword_R_Walk0.png
+         Chargement de : Crusader_SmallSword_R_Attack0.png
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Shields/Small_shield.rs.hs
+         Chargement de : Crusader_SmallShield_Wait0.png
+         Chargement de : Crusader_SmallShield_Walk0.png
+         Chargement de : Crusader_SmallShield_Attack0.png
          /Chargement du héro terminé
          
          ---------------------------------------------------------------------------------
@@ -266,33 +286,39 @@
          Sauvegarde du héro...
          Ouverture du fichier.
          /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
+         /Sauvegarde de Armor_chainmail.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
+         /Sauvegarde de Litanie_0.item.hs
          /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Craft_gem_emerald.item.hs
          /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
          /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
          /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
          /Sauvegarde de Helmet_leather_cap.item.hs
          /Sauvegarde de Boots_leather.item.hs
          /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Boots_leather.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
          /Ecriture des miracles.
@@ -308,33 +334,39 @@
          Sauvegarde du héro...
          Ouverture du fichier.
          /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
+         /Sauvegarde de Armor_chainmail.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
+         /Sauvegarde de Litanie_0.item.hs
          /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Craft_gem_emerald.item.hs
          /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
          /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
          /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
          /Sauvegarde de Helmet_leather_cap.item.hs
          /Sauvegarde de Boots_leather.item.hs
          /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Boots_leather.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
          /Ecriture des miracles.
@@ -368,11 +400,13 @@
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
          
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Gambeson/TwoHands.rs.hs
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Gambeson/OneHand.rs.hs
          
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Helmets/Leather_cap_2h.rs.hs
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Helmets/Leather_cap_1h.rs.hs
          
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_TwoHands/Timber_axe.rs.hs
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_OneHand/Small_sword_r.rs.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Shields/Small_shield.rs.hs
          
          Chargement de la map : Abbey.map.hs
          Map sauvée existante.
@@ -791,22 +825,15 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          
          Chargement de l'objet : Armband_gauntlet.item.hs
          
-         Chargement de l'objet : Boots_leather.item.hs
-         
          Chargement de l'objet : Armor_gambeson.item.hs
-         
-         Chargement de l'objet : Armor_gambeson.item.hs
-         
-         Chargement de l'objet : Armor_chainmail.item.hs
-         
-         Chargement de l'objet : Crossbow_crossbow.item.hs
-         Chargement du miracle : Data\Miscs\Miracles\Bolt\Bolt.miracle.hs
-         
-         Chargement de l'objet : Dagger_ceremonial_dagger.item.hs
          
          Chargement de l'objet : Dagger_dagger.item.hs
          
          Chargement de l'objet : Helmet_leather_cap.item.hs
+         
+         Chargement de l'objet : Helmet_leather_cap.item.hs
+         
+         Chargement de l'objet : Helmet_iron_cap.item.hs
          
          Chargement de l'objet : Shield_great_shield.item.hs
          
@@ -814,13 +841,6 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          
          Chargement de l'objet : Sword_1h_small_sword.item.hs
          
-         Chargement de l'objet : Sword_1h_small_sword.item.hs
-         
-         Chargement de l'objet : Sword_2h_two_hands_sword.item.hs
-         
-         Chargement de l'objet : Mace_2h_timber_axe.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
-         
          Chargement de l'objet : Mace_2h_timber_axe.item.hs
          
          Chargement de l'objet : Potion_heal0.item.hs
@@ -855,37 +875,19 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          
          Chargement de l'objet : Ring_ring.item.hs
          
-         Chargement de l'objet : Ring_ring.item.hs
-         
-         Chargement de l'objet : Drawing_helmet_horned_barbute.item.hs
-         
-         Chargement de l'objet : Craft_ore_iron.item.hs
-         
-         Chargement de l'objet : Craft_ore_copper.item.hs
-         
-         Chargement de l'objet : Craft_gem_ruby.item.hs
-         
          Chargement de l'objet : Craft_coal.item.hs
          
          Chargement de l'objet : Craft_coal.item.hs
          
          Chargement de l'objet : Craft_ore_copper.item.hs
          
-         Chargement de l'objet : Craft_ore_copper.item.hs
-         
-         Chargement de l'objet : Craft_ore_copper.item.hs
-         
          Chargement de l'objet : Craft_ore_iron.item.hs
          
-         Chargement de l'objet : Craft_ore_iron.item.hs
+         Chargement de l'objet : Craft_ore_gold.item.hs
          
-         Chargement de l'objet : Craft_gem_ruby.item.hs
+         Chargement de l'objet : Craft_ore_gold.item.hs
          
-         Chargement de l'objet : Craft_wood_plank.item.hs
-         
-         Chargement de l'objet : Craft_wood_plank.item.hs
-         
-         Chargement de l'objet : Craft_wood_plank.item.hs
+         Chargement de l'objet : Craft_gem_emerald.item.hs
          /Lectures des monstres si existants.
          /Lectures des cases.
          Chargement de la map terminé.
@@ -907,20 +909,14 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Boots_leather.item.hs
          /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
-         /Sauvegarde de Crossbow_crossbow.item.hs
-         /Sauvegarde de Dagger_ceremonial_dagger.item.hs
          /Sauvegarde de Dagger_dagger.item.hs
          /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Helmet_iron_cap.item.hs
          /Sauvegarde de Shield_great_shield.item.hs
          /Sauvegarde de Shield_small_shield.item.hs
          /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Sword_2h_two_hands_sword.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
          /Sauvegarde de Mace_2h_timber_axe.item.hs
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
@@ -933,19 +929,13 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          /Sauvegarde de Potion_faith0.item.hs
          /Sauvegarde de Potion_faith0.item.hs
          /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Drawing_helmet_horned_barbute.item.hs
          /Sauvegarde de Craft_coal.item.hs
          /Sauvegarde de Craft_coal.item.hs
          /Sauvegarde de Craft_ore_copper.item.hs
-         /Sauvegarde de Craft_ore_copper.item.hs
-         /Sauvegarde de Craft_ore_copper.item.hs
          /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_gem_ruby.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
+         /Sauvegarde de Craft_ore_gold.item.hs
+         /Sauvegarde de Craft_ore_gold.item.hs
+         /Sauvegarde de Craft_gem_emerald.item.hs
          Sauvegarde de la map terminée !
          /Génération de l'image...
          /Image affichée.
@@ -954,33 +944,39 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          Sauvegarde du héro...
          Ouverture du fichier.
          /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
+         /Sauvegarde de Armor_chainmail.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
+         /Sauvegarde de Litanie_0.item.hs
          /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Craft_gem_emerald.item.hs
          /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
          /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
          /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
          /Sauvegarde de Helmet_leather_cap.item.hs
          /Sauvegarde de Boots_leather.item.hs
          /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Boots_leather.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
          /Ecriture des miracles.
@@ -1025,11 +1021,13 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
          
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Gambeson/TwoHands.rs.hs
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Gambeson/OneHand.rs.hs
          
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Helmets/Leather_cap_2h.rs.hs
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Helmets/Leather_cap_1h.rs.hs
          
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_TwoHands/Timber_axe.rs.hs
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_OneHand/Small_sword_r.rs.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Shields/Small_shield.rs.hs
          
          Chargement de la map : Abbey_indoor.map.hs
          Map sauvée existante.
@@ -1120,10 +1118,6 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          Chargement de l'objet : Litanie_0.item.hs
          
          Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
          /Lectures des monstres si existants.
          /Lectures des cases.
          Chargement de la map terminé.
@@ -1144,8 +1138,6 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          /Sauvegarde de Litanie_0.item.hs
          /Sauvegarde de Litanie_0.item.hs
          /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
          Sauvegarde de la map terminée !
          /Génération de l'image...
          /Image affichée.
@@ -1154,33 +1146,39 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          Sauvegarde du héro...
          Ouverture du fichier.
          /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
+         /Sauvegarde de Armor_chainmail.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
+         /Sauvegarde de Litanie_0.item.hs
          /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Craft_gem_emerald.item.hs
          /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
          /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
          /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
          /Sauvegarde de Helmet_leather_cap.item.hs
          /Sauvegarde de Boots_leather.item.hs
          /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Boots_leather.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
          /Ecriture des miracles.
@@ -1225,11 +1223,13 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
          
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Gambeson/TwoHands.rs.hs
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Gambeson/OneHand.rs.hs
          
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Helmets/Leather_cap_2h.rs.hs
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Helmets/Leather_cap_1h.rs.hs
          
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_TwoHands/Timber_axe.rs.hs
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_OneHand/Small_sword_r.rs.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Shields/Small_shield.rs.hs
          
          Chargement de la map : Catacombs0.map.hs
          /Lectures du nom.
@@ -1510,7 +1510,6 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          Chargement de : SkeletonAxe_Walk0.png
          Chargement de : SkeletonAxe_Attack0.png
          Chargement de : SkeletonAxe_Attack1.png
-         Chargement de : Data/Sounds/Entities/Attack0.wav
          Chargement de : Data/Entities/Resources/Monsters/Skeletons/Axe.char.hs terminé
          
          Chargement du monstre : Data/Entities/Resources/Monsters/Skeletons/Sword.char.hs
@@ -1557,6 +1556,7 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          Chargement de : SkeletonGuardian_Walk0.png
          Chargement de : SkeletonGuardian_Attack0.png
          Chargement de : SkeletonGuardian_Attack1.png
+         Chargement de : Data/Sounds/Entities/Attack1.wav
          Chargement de : Data/Entities/Resources/Monsters/Skeletons/Guardian.char.hs terminé
          
          Chargement du monstre : Data/Entities/Resources/Monsters/Skeletons/LordSkeleton.char.hs
@@ -1764,200 +1764,6 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Miracles/Summoning_Skele
          Initialisation terminée.
          
          Chargement de : Data/Musics/Catacombs0.ogg
-         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Gambeson/OneHand.rs.hs
-         Chargement de : Crusader_Gambeson_1H_Wait0.png
-         Chargement de : Crusader_Gambeson_1H_Walk0.png
-         Chargement de : Crusader_Gambeson_1H_Attack0.png
-         Chargement de : Crusader_Gambeson_1H_Attack1.png
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Helmets/Leather_cap_1h.rs.hs
-         Chargement de : Crusader_LeatherCap_1h_Wait0.png
-         Chargement de : Crusader_LeatherCap_1h_Walk0.png
-         Chargement de : Crusader_LeatherCap_1h_Attack0.png
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_OneHand/Small_sword_r.rs.hs
-         Chargement de : Crusader_SmallSword_R_Wait0.png
-         Chargement de : Crusader_SmallSword_R_Walk0.png
-         Chargement de : Crusader_SmallSword_R_Attack0.png
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Shields/Small_shield.rs.hs
-         Chargement de : Crusader_SmallShield_Wait0.png
-         Chargement de : Crusader_SmallShield_Walk0.png
-         Chargement de : Crusader_SmallShield_Attack0.png
-         
-         Sauvegarde de la map : Data/User/Temps/Catacombs0.map.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Catacombs0.map.hs.emap.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_gem_emerald.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Craft_gem_ruby.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Shield_great_shield.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Craft_gem_emerald.item.hs
-         /Sauvegarde de Gun_arquebuse.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Shield_great_shield.item.hs
-         /Sauvegarde de Sword_1h_long_sword.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Craft_gem_ruby.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Quest_relic2.item.hs
-         /Sauvegarde de Sword_2h_two_hands_sword.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Crossbow_crossbow.item.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_gem_emerald.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
-         /Ecriture des objets.
-         /Ecriture des objets du coffre.
-         /Ecriture des miracles.
-         /Ecriture des docs.
-         /Sauvegarde de Les choses qui rodaient dans les catacombes
-         /Ecriture des quetes.
-         /Ecriture des potales.
-         Sauvegarde du héro terminée !
-         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
          
          ---------------------------------------------------------------------------------
          EVENEMENT : Changement de map
@@ -1965,6 +1771,7 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Miracles/Summoning_Skele
          
          Sauvegarde de la map : Data/User/Temps/Catacombs0.map.hs
          /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
          Sauvegarde de la map_entite : Data/User/Temps/entites_map_Catacombs0.map.hs.emap.hs
          /Sauvegarde de Dagger_dagger.item.hs
          /Sauvegarde de Mace_2h_timber_axe.item.hs
@@ -2051,6 +1858,7 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Miracles/Summoning_Skele
          /Sauvegarde de Sword_2h_two_hands_sword.item.hs
          /Sauvegarde de Dagger_dagger.item.hs
          /Sauvegarde de Crossbow_crossbow.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
          Sauvegarde de la map terminée !
          /Génération de l'image...
          /Image affichée.
@@ -2059,33 +1867,39 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Miracles/Summoning_Skele
          Sauvegarde du héro...
          Ouverture du fichier.
          /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
+         /Sauvegarde de Armor_chainmail.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
+         /Sauvegarde de Litanie_0.item.hs
          /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Craft_gem_emerald.item.hs
          /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
          /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
          /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
          /Sauvegarde de Helmet_leather_cap.item.hs
          /Sauvegarde de Boots_leather.item.hs
          /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Boots_leather.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
          /Ecriture des miracles.
@@ -2221,10 +2035,6 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Miracles/Summoning_Skele
          Chargement de l'objet : Litanie_0.item.hs
          
          Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
          /Lectures des monstres si existants.
          /Lectures des cases.
          Chargement de la map terminé.
@@ -2235,382 +2045,12 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Miracles/Summoning_Skele
          
          Chargement de : Data/Musics/Abbey.ogg
          
-         Sauvegarde de la map : Data/User/Temps/Abbey_indoor.map.hs
-         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey_indoor.map.hs.emap.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_gem_emerald.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
-         /Ecriture des objets.
-         /Ecriture des objets du coffre.
-         /Ecriture des miracles.
-         /Ecriture des docs.
-         /Sauvegarde de Les choses qui rodaient dans les catacombes
-         /Ecriture des quetes.
-         /Ecriture des potales.
-         Sauvegarde du héro terminée !
-         
-         Sauvegarde de la map : Data/User/Temps/Abbey_indoor.map.hs
-         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey_indoor.map.hs.emap.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_gem_emerald.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
-         /Ecriture des objets.
-         /Ecriture des objets du coffre.
-         /Ecriture des miracles.
-         /Ecriture des docs.
-         /Sauvegarde de Les choses qui rodaient dans les catacombes
-         /Ecriture des quetes.
-         /Ecriture des potales.
-         Sauvegarde du héro terminée !
-         
-         Sauvegarde de la map : Data/User/Temps/Abbey_indoor.map.hs
-         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey_indoor.map.hs.emap.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_gem_emerald.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
-         /Ecriture des objets.
-         /Ecriture des objets du coffre.
-         /Ecriture des miracles.
-         /Ecriture des docs.
-         /Sauvegarde de Les choses qui rodaient dans les catacombes
-         /Ecriture des quetes.
-         /Ecriture des potales.
-         Sauvegarde du héro terminée !
-         
-         Sauvegarde de la map : Data/User/Temps/Abbey_indoor.map.hs
-         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey_indoor.map.hs.emap.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_gem_emerald.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
-         /Ecriture des objets.
-         /Ecriture des objets du coffre.
-         /Ecriture des miracles.
-         /Ecriture des docs.
-         /Sauvegarde de Les choses qui rodaient dans les catacombes
-         /Ecriture des quetes.
-         /Ecriture des potales.
-         Sauvegarde du héro terminée !
-         
-         Sauvegarde de la map : Data/User/Temps/Abbey_indoor.map.hs
-         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey_indoor.map.hs.emap.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_gem_emerald.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
-         /Ecriture des objets.
-         /Ecriture des objets du coffre.
-         /Ecriture des miracles.
-         /Ecriture des docs.
-         /Sauvegarde de Les choses qui rodaient dans les catacombes
-         /Sauvegarde de Le muret diabolique
-         /Ecriture des quetes.
-         /Ecriture des potales.
-         Sauvegarde du héro terminée !
-         
-         Sauvegarde de la map : Data/User/Temps/Abbey_indoor.map.hs
-         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey_indoor.map.hs.emap.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_gem_emerald.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
-         /Ecriture des objets.
-         /Ecriture des objets du coffre.
-         /Ecriture des miracles.
-         /Ecriture des docs.
-         /Sauvegarde de Les choses qui rodaient dans les catacombes
-         /Sauvegarde de Le muret diabolique
-         /Ecriture des quetes.
-         /Ecriture des potales.
-         Sauvegarde du héro terminée !
-         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
-         
-         Sauvegarde de la map : Data/User/Temps/Abbey_indoor.map.hs
-         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey_indoor.map.hs.emap.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_gem_emerald.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
-         /Ecriture des objets.
-         /Ecriture des objets du coffre.
-         /Ecriture des miracles.
-         /Ecriture des docs.
-         /Sauvegarde de Les choses qui rodaient dans les catacombes
-         /Sauvegarde de Le muret diabolique
-         /Ecriture des quetes.
-         /Ecriture des potales.
-         Sauvegarde du héro terminée !
-         
          ---------------------------------------------------------------------------------
          EVENEMENT : Changement de map
          ---------------------------------------------------------------------------------
          
          Sauvegarde de la map : Data/User/Temps/Abbey_indoor.map.hs
          Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey_indoor.map.hs.emap.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
          /Sauvegarde de Litanie_0.item.hs
          /Sauvegarde de Litanie_0.item.hs
          /Sauvegarde de Litanie_0.item.hs
@@ -2623,1112 +2063,44 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Miracles/Summoning_Skele
          Sauvegarde du héro...
          Ouverture du fichier.
          /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
+         /Sauvegarde de Armor_chainmail.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
+         /Sauvegarde de Litanie_0.item.hs
          /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Craft_gem_emerald.item.hs
          /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
          /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
          /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
          /Sauvegarde de Helmet_leather_cap.item.hs
          /Sauvegarde de Boots_leather.item.hs
          /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Boots_leather.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
          /Ecriture des miracles.
          /Ecriture des docs.
          /Sauvegarde de Les choses qui rodaient dans les catacombes
-         /Sauvegarde de Le muret diabolique
-         /Ecriture des quetes.
-         /Ecriture des potales.
-         Sauvegarde du héro terminée !
-         
-         Destruction de la map...
-         Destruction des cases...
-         Cases détruites !
-         Modèles monstres détruits !
-         Monstres détruits !
-         Fonds détruits !
-         Chemins musiques détruits !
-         Projectiles détruits !
-         Effets détruits !
-         Map détruite !
-         
-         Chargements d'images diverses :
-         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Gambeson/OneHand.rs.hs
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Helmets/Leather_cap_1h.rs.hs
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_OneHand/Small_sword_r.rs.hs
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Shields/Small_shield.rs.hs
-         
-         Chargement de la map : Abbey.map.hs
-         Map sauvée existante.
-         /Lectures du nom.
-         /Lectures des fonds.
-         /Lectures des musiques.
-         /Lectures des lumières.
-         Chargement de : Data/Maps/Skies/Day_sky0.png
-         Chargement de : Data/Graphics/Climates/FullRain.ts.hs
-         Chargement de : Data/Graphics/Climates/Thunder.ts.hs
-         Chargement de : Data/Graphics/Climates/NightSounds.ts.hs
-         /Lectures des ciels.
-         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey.ts.hs
-         Chargement de : Data/Graphics/Landscapes/Abbey/Well.ts.hs
-         Chargement de : Data/Graphics/Landscapes/AgrarianLands/AgrarianLands_ground.ts.hs
-         Chargement de : Data/Graphics/Landscapes/AgrarianLands/Rocks.ts.hs
-         Chargement de : Data/Graphics/Landscapes/AgrarianLands/Trees_noEffect.ts.hs
-         Chargement de : Data/Graphics/Landscapes/Miscs/Carts.ts.hs
-         Chargement de : Data/Graphics/Landscapes/Miscs/Lantern.ts.hs
-         Chargement de : Data/Graphics/Landscapes/Miscs/Wood_stack.ts.hs
-         /Lectures des tilesets.
-         Chargement de : Data/Graphics/Grass/Grass0.ts.hs
-         /Lectures des herbes.
-         
-         Chargement du monstre : Data/Entities/Resources/Miscs/Potale0.char.hs
-         Chargement du script : " Data/Entities/Scripts/Potales/Potale0.script.hs "
-         
-         Chargement du personnage : Data/Entities/Resources/Miscs/Potale.rs.hs
-         Chargement de : Data/Entities/Resources/Miscs/Potale0.char.hs terminé
-         
-         Chargement du monstre : Data/Entities/Resources/NPC/Abbe.char.hs
-         Chargement du script : " Data/Entities/Scripts/NPC/Abbe.script.hs "
-         
-         Chargement de l'objet : Litanie_toxic_0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/Toxic_0.miracle.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Quest/Quest.miracle.hs
-         
-         Chargement du personnage : Data/Entities/Resources/NPC/Abbe.rs.hs
-         Chargement de : Data/Entities/Resources/NPC/Abbe.char.hs terminé
-         
-         Chargement du monstre : Data/Entities/Resources/NPC/Blacksmith.char.hs
-         Chargement du script : " Data/Entities/Scripts/NPC/Blacksmith.script.hs "
-         
-         Chargement de l'objet : Drawing_sword_1h_small_sword.item.hs
-         
-         Chargement de l'objet : Craft_ore_iron.item.hs
-         
-         Chargement de l'objet : Drawing_crossbow_crossbow.item.hs
-         
-         Chargement de l'objet : Craft_ore_iron.item.hs
-         
-         Chargement de l'objet : Craft_wood_plank.item.hs
-         
-         Chargement de l'objet : Armband_leather.item.hs
-         
-         Chargement de l'objet : Armband_leather.item.hs
-         
-         Chargement de l'objet : Armband_leather.item.hs
-         
-         Chargement de l'objet : Armband_gauntlet.item.hs
-         
-         Chargement de l'objet : Armband_gauntlet.item.hs
-         
-         Chargement de l'objet : Armband_gauntlet.item.hs
-         
-         Chargement de l'objet : Boots_leather.item.hs
-         
-         Chargement de l'objet : Boots_leather.item.hs
-         
-         Chargement de l'objet : Boots_leather.item.hs
-         
-         Chargement de l'objet : Armor_gambeson.item.hs
-         
-         Chargement de l'objet : Armor_gambeson.item.hs
-         
-         Chargement de l'objet : Armor_gambeson.item.hs
-         
-         Chargement de l'objet : Armor_chainmail.item.hs
-         
-         Chargement de l'objet : Armor_chainmail.item.hs
-         
-         Chargement de l'objet : Armor_chainmail.item.hs
-         
-         Chargement de l'objet : Crossbow_crossbow.item.hs
-         Chargement du miracle : Data\Miscs\Miracles\Bolt\Bolt.miracle.hs
-         
-         Chargement de l'objet : Crossbow_crossbow.item.hs
-         Chargement du miracle : Data\Miscs\Miracles\Bolt\Bolt.miracle.hs
-         
-         Chargement de l'objet : Crossbow_crossbow.item.hs
-         Chargement du miracle : Data\Miscs\Miracles\Bolt\Bolt.miracle.hs
-         
-         Chargement de l'objet : Dagger_ceremonial_dagger.item.hs
-         
-         Chargement de l'objet : Dagger_ceremonial_dagger.item.hs
-         
-         Chargement de l'objet : Dagger_ceremonial_dagger.item.hs
-         
-         Chargement de l'objet : Dagger_dagger.item.hs
-         
-         Chargement de l'objet : Dagger_dagger.item.hs
-         
-         Chargement de l'objet : Dagger_dagger.item.hs
-         
-         Chargement de l'objet : Helmet_leather_cap.item.hs
-         
-         Chargement de l'objet : Helmet_leather_cap.item.hs
-         
-         Chargement de l'objet : Helmet_leather_cap.item.hs
-         
-         Chargement de l'objet : Helmet_iron_cap.item.hs
-         
-         Chargement de l'objet : Helmet_iron_cap.item.hs
-         
-         Chargement de l'objet : Helmet_iron_cap.item.hs
-         
-         Chargement de l'objet : Shield_great_shield.item.hs
-         
-         Chargement de l'objet : Shield_great_shield.item.hs
-         
-         Chargement de l'objet : Shield_great_shield.item.hs
-         
-         Chargement de l'objet : Shield_small_shield.item.hs
-         
-         Chargement de l'objet : Shield_small_shield.item.hs
-         
-         Chargement de l'objet : Shield_small_shield.item.hs
-         
-         Chargement de l'objet : Sword_1h_small_sword.item.hs
-         
-         Chargement de l'objet : Sword_1h_small_sword.item.hs
-         
-         Chargement de l'objet : Sword_1h_small_sword.item.hs
-         
-         Chargement de l'objet : Sword_1h_long_sword.item.hs
-         
-         Chargement de l'objet : Sword_1h_long_sword.item.hs
-         
-         Chargement de l'objet : Sword_1h_long_sword.item.hs
-         
-         Chargement de l'objet : Sword_2h_two_hands_sword.item.hs
-         
-         Chargement de l'objet : Sword_2h_two_hands_sword.item.hs
-         
-         Chargement de l'objet : Sword_2h_two_hands_sword.item.hs
-         
-         Chargement de l'objet : Mace_2h_timber_axe.item.hs
-         
-         Chargement de l'objet : Mace_2h_timber_axe.item.hs
-         
-         Chargement de l'objet : Mace_2h_timber_axe.item.hs
-         
-         Chargement du personnage : Data/Entities/Resources/NPC/Blacksmith.rs.hs
-         Chargement de : Data/Entities/Resources/NPC/Blacksmith.char.hs terminé
-         
-         Chargement du monstre : Data/Entities/Resources/NPC/Trader.char.hs
-         Chargement du script : " Data/Entities/Scripts/NPC/Trader.script.hs "
-         
-         Chargement de l'objet : Potion_heal0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
-         
-         Chargement de l'objet : Potion_heal0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
-         
-         Chargement de l'objet : Potion_heal0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
-         
-         Chargement de l'objet : Potion_heal0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
-         
-         Chargement de l'objet : Potion_heal0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
-         
-         Chargement de l'objet : Potion_faith0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
-         
-         Chargement de l'objet : Potion_faith0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
-         
-         Chargement de l'objet : Potion_faith0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
-         
-         Chargement de l'objet : Potion_faith0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
-         
-         Chargement de l'objet : Potion_faith0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
-         
-         Chargement de l'objet : Necklage_necklage.item.hs
-         
-         Chargement de l'objet : Necklage_necklage.item.hs
-         
-         Chargement de l'objet : Ring_ring.item.hs
-         
-         Chargement de l'objet : Ring_ring.item.hs
-         
-         Chargement de l'objet : Ring_ring.item.hs
-         
-         Chargement de l'objet : Ring_ring.item.hs
-         
-         Chargement de l'objet : Drawing_golem_coal.item.hs
-         
-         Chargement de l'objet : Craft_coal.item.hs
-         
-         Chargement de l'objet : Craft_gem_ruby.item.hs
-         
-         Chargement de l'objet : Drawing_helmet_circlet.item.hs
-         
-         Chargement de l'objet : Craft_ore_gold.item.hs
-         
-         Chargement de l'objet : Craft_gem_emerald.item.hs
-         
-         Chargement de l'objet : Drawing_helmet_horned_barbute.item.hs
-         
-         Chargement de l'objet : Craft_ore_iron.item.hs
-         
-         Chargement de l'objet : Craft_ore_copper.item.hs
-         
-         Chargement de l'objet : Craft_gem_ruby.item.hs
-         
-         Chargement de l'objet : Drawing_shield_bronze.item.hs
-         
-         Chargement de l'objet : Craft_ore_iron.item.hs
-         
-         Chargement de l'objet : Craft_ore_copper.item.hs
-         
-         Chargement de l'objet : Drawing_crossbow_crossbow.item.hs
-         
-         Chargement de l'objet : Craft_ore_iron.item.hs
-         
-         Chargement de l'objet : Craft_wood_plank.item.hs
-         
-         Chargement de l'objet : Craft_coal.item.hs
-         
-         Chargement de l'objet : Craft_coal.item.hs
-         
-         Chargement de l'objet : Craft_coal.item.hs
-         
-         Chargement de l'objet : Craft_ore_copper.item.hs
-         
-         Chargement de l'objet : Craft_ore_copper.item.hs
-         
-         Chargement de l'objet : Craft_ore_copper.item.hs
-         
-         Chargement de l'objet : Craft_ore_iron.item.hs
-         
-         Chargement de l'objet : Craft_ore_iron.item.hs
-         
-         Chargement de l'objet : Craft_ore_iron.item.hs
-         
-         Chargement de l'objet : Craft_ore_gold.item.hs
-         
-         Chargement de l'objet : Craft_ore_gold.item.hs
-         
-         Chargement de l'objet : Craft_ore_gold.item.hs
-         
-         Chargement de l'objet : Craft_gem_emerald.item.hs
-         
-         Chargement de l'objet : Craft_gem_ruby.item.hs
-         
-         Chargement de l'objet : Craft_wood_plank.item.hs
-         
-         Chargement de l'objet : Craft_wood_plank.item.hs
-         
-         Chargement de l'objet : Craft_wood_plank.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Quest/Quest.miracle.hs
-         
-         Chargement du personnage : Data/Entities/Resources/NPC/Trader.rs.hs
-         Chargement de : Data/Entities/Resources/NPC/Trader.char.hs terminé
-         
-         Chargement du monstre : Data/Entities/Resources/NPC/Forge.char.hs
-         
-         Chargement du personnage : Data/Entities/Resources/NPC/Forge.rs.hs
-         Chargement de : Data/Entities/Resources/NPC/Forge.char.hs terminé
-         
-         Chargement du monstre : Data/Entities/Resources/NPC/Anvil.char.hs
-         
-         Chargement du personnage : Data/Entities/Resources/NPC/Anvil.rs.hs
-         Chargement de : Data/Entities/Resources/NPC/Anvil.char.hs terminé
-         
-         Chargement du monstre : Data/Entities/Resources/NPC/Guard.char.hs
-         Chargement du script : " Data/Entities/Scripts/NPC/Standing.script.hs "
-         Chargement du miracle : Data/Miscs/Miracles/Quest/Quest.miracle.hs
-         
-         Chargement du personnage : Data/Entities/Resources/NPC/Guard.rs.hs
-         Chargement de : Data/Entities/Resources/NPC/Guard.char.hs terminé
-         
-         Chargement du monstre : Data/Entities/Resources/NPC/Sergeant.char.hs
-         Chargement du script : " Data/Entities/Scripts/NPC/Sergeant.script.hs "
-         Chargement du miracle : Data/Miscs/Miracles/Quest/Quest.miracle.hs
-         
-         Chargement du personnage : Data/Entities/Resources/NPC/Sergeant.rs.hs
-         Chargement de : Data/Entities/Resources/NPC/Sergeant.char.hs terminé
-         
-         Chargement du monstre : Data/Entities/Resources/Miscs/Lantern.char.hs
-         Chargement du script : " Data/Entities/Scripts/Miscs/Lantern.script.hs "
-         
-         Chargement du personnage : Data/Entities/Resources/Miscs/Lantern.rs.hs
-         Chargement de : Data/Entities/Resources/Miscs/Lantern.char.hs terminé
-         
-         Chargement du monstre : Data/Entities/Resources/Miscs/Trigger_clickable.char.hs
-         Chargement du script : " Data/Entities/Scripts/Miscs/Trigger_clickable.script.hs "
-         
-         Chargement du personnage : Data/Entities/Resources/Miscs/NULL.rs.hs
-         Chargement de : Data/Entities/Resources/Miscs/Trigger_clickable.char.hs terminé
-         
-         Chargement du monstre : Data/Entities/Resources/Miscs/Torch.char.hs
-         Chargement du script : " Data/Entities/Scripts/Miscs/Lantern.script.hs "
-         
-         Chargement du personnage : Data/Entities/Resources/Miscs/Torch.rs.hs
-         Chargement de : Data/Entities/Resources/Miscs/Torch.char.hs terminé
-         
-         Chargement du monstre : Data/Entities/Resources/Miscs/Torch_up.char.hs
-         Chargement du script : " Data/Entities/Scripts/Miscs/Lantern.script.hs "
-         
-         Chargement du personnage : Data/Entities/Resources/Miscs/Torch_up.rs.hs
-         Chargement de : Data/Entities/Resources/Miscs/Torch_up.char.hs terminé
-         /Lectures des monstres.
-         
-         Une map des entités est déjà existante.
-         
-         Chargement de l'objet : Drawing_sword_1h_small_sword.item.hs
-         
-         Chargement de l'objet : Craft_ore_iron.item.hs
-         
-         Chargement de l'objet : Drawing_crossbow_crossbow.item.hs
-         
-         Chargement de l'objet : Craft_ore_iron.item.hs
-         
-         Chargement de l'objet : Craft_wood_plank.item.hs
-         
-         Chargement de l'objet : Armband_leather.item.hs
-         
-         Chargement de l'objet : Armband_leather.item.hs
-         
-         Chargement de l'objet : Armband_gauntlet.item.hs
-         
-         Chargement de l'objet : Boots_leather.item.hs
-         
-         Chargement de l'objet : Armor_gambeson.item.hs
-         
-         Chargement de l'objet : Armor_gambeson.item.hs
-         
-         Chargement de l'objet : Armor_chainmail.item.hs
-         
-         Chargement de l'objet : Crossbow_crossbow.item.hs
-         Chargement du miracle : Data\Miscs\Miracles\Bolt\Bolt.miracle.hs
-         
-         Chargement de l'objet : Dagger_ceremonial_dagger.item.hs
-         
-         Chargement de l'objet : Dagger_dagger.item.hs
-         
-         Chargement de l'objet : Helmet_leather_cap.item.hs
-         
-         Chargement de l'objet : Shield_great_shield.item.hs
-         
-         Chargement de l'objet : Shield_small_shield.item.hs
-         
-         Chargement de l'objet : Sword_1h_small_sword.item.hs
-         
-         Chargement de l'objet : Sword_1h_small_sword.item.hs
-         
-         Chargement de l'objet : Sword_2h_two_hands_sword.item.hs
-         
-         Chargement de l'objet : Mace_2h_timber_axe.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
-         
-         Chargement de l'objet : Mace_2h_timber_axe.item.hs
-         
-         Chargement de l'objet : Potion_heal0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
-         
-         Chargement de l'objet : Potion_heal0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
-         
-         Chargement de l'objet : Potion_heal0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
-         
-         Chargement de l'objet : Potion_heal0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
-         
-         Chargement de l'objet : Potion_heal0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
-         
-         Chargement de l'objet : Potion_faith0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
-         
-         Chargement de l'objet : Potion_faith0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
-         
-         Chargement de l'objet : Potion_faith0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
-         
-         Chargement de l'objet : Potion_faith0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
-         
-         Chargement de l'objet : Potion_faith0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
-         
-         Chargement de l'objet : Ring_ring.item.hs
-         
-         Chargement de l'objet : Ring_ring.item.hs
-         
-         Chargement de l'objet : Drawing_helmet_horned_barbute.item.hs
-         
-         Chargement de l'objet : Craft_ore_iron.item.hs
-         
-         Chargement de l'objet : Craft_ore_copper.item.hs
-         
-         Chargement de l'objet : Craft_gem_ruby.item.hs
-         
-         Chargement de l'objet : Craft_coal.item.hs
-         
-         Chargement de l'objet : Craft_coal.item.hs
-         
-         Chargement de l'objet : Craft_ore_copper.item.hs
-         
-         Chargement de l'objet : Craft_ore_copper.item.hs
-         
-         Chargement de l'objet : Craft_ore_copper.item.hs
-         
-         Chargement de l'objet : Craft_ore_iron.item.hs
-         
-         Chargement de l'objet : Craft_ore_iron.item.hs
-         
-         Chargement de l'objet : Craft_gem_ruby.item.hs
-         
-         Chargement de l'objet : Craft_wood_plank.item.hs
-         
-         Chargement de l'objet : Craft_wood_plank.item.hs
-         
-         Chargement de l'objet : Craft_wood_plank.item.hs
-         /Lectures des monstres si existants.
-         /Lectures des cases.
-         Chargement de la map terminé.
-         Initialisation de l'herbe terminée.
-         Initialisation des décors terminée.
-         Initialisation des entités terminée.
-         Initialisation terminée.
-         
-         
-         Sauvegarde de la map : Data/User/Temps/Abbey.map.hs
-         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey.map.hs.emap.hs
-         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
-         /Sauvegarde de Drawing_crossbow_crossbow.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
-         /Sauvegarde de Crossbow_crossbow.item.hs
-         /Sauvegarde de Dagger_ceremonial_dagger.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Shield_great_shield.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Sword_2h_two_hands_sword.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Drawing_helmet_horned_barbute.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Craft_ore_copper.item.hs
-         /Sauvegarde de Craft_ore_copper.item.hs
-         /Sauvegarde de Craft_ore_copper.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_gem_ruby.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_gem_emerald.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
-         /Ecriture des objets.
-         /Ecriture des objets du coffre.
-         /Ecriture des miracles.
-         /Ecriture des docs.
-         /Sauvegarde de Les choses qui rodaient dans les catacombes
-         /Sauvegarde de Le muret diabolique
-         /Ecriture des quetes.
-         /Ecriture des potales.
-         Sauvegarde du héro terminée !
-         Chargement de : Data/Musics/Abbey.ogg
-         
-         Sauvegarde de la map : Data/User/Temps/Abbey.map.hs
-         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey.map.hs.emap.hs
-         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
-         /Sauvegarde de Drawing_crossbow_crossbow.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
-         /Sauvegarde de Crossbow_crossbow.item.hs
-         /Sauvegarde de Dagger_ceremonial_dagger.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Shield_great_shield.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Sword_2h_two_hands_sword.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Drawing_helmet_horned_barbute.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Craft_ore_copper.item.hs
-         /Sauvegarde de Craft_ore_copper.item.hs
-         /Sauvegarde de Craft_ore_copper.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_gem_ruby.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_gem_emerald.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
-         /Ecriture des objets.
-         /Ecriture des objets du coffre.
-         /Ecriture des miracles.
-         /Ecriture des docs.
-         /Sauvegarde de Les choses qui rodaient dans les catacombes
-         /Sauvegarde de Le muret diabolique
-         /Ecriture des quetes.
-         /Ecriture des potales.
-         Sauvegarde du héro terminée !
-         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
-         
-         ---------------------------------------------------------------------------------
-         EVENEMENT : Changement de map
-         ---------------------------------------------------------------------------------
-         
-         Sauvegarde de la map : Data/User/Temps/Abbey.map.hs
-         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey.map.hs.emap.hs
-         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
-         /Sauvegarde de Drawing_crossbow_crossbow.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
-         /Sauvegarde de Crossbow_crossbow.item.hs
-         /Sauvegarde de Dagger_ceremonial_dagger.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Shield_great_shield.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Sword_2h_two_hands_sword.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Drawing_helmet_horned_barbute.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Craft_ore_copper.item.hs
-         /Sauvegarde de Craft_ore_copper.item.hs
-         /Sauvegarde de Craft_ore_copper.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_gem_ruby.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         Sauvegarde de la map terminée !
-         /Génération de l'image...
-         /Image affichée.
-         /Image générée.
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_gem_emerald.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
-         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
-         /Ecriture des objets.
-         /Ecriture des objets du coffre.
-         /Ecriture des miracles.
-         /Ecriture des docs.
-         /Sauvegarde de Les choses qui rodaient dans les catacombes
-         /Sauvegarde de Le muret diabolique
-         /Sauvegarde de Un passe temps pour Rognorak		
-         /Ecriture des quetes.
-         /Ecriture des potales.
-         Sauvegarde du héro terminée !
-         
-         Destruction de la map...
-         Destruction des cases...
-         Cases détruites !
-         Modèles monstres détruits !
-         Monstres détruits !
-         Fonds détruits !
-         Chemins musiques détruits !
-         Projectiles détruits !
-         Effets détruits !
-         Map détruite !
-         
-         Chargements d'images diverses :
-         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Gambeson/OneHand.rs.hs
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Helmets/Leather_cap_1h.rs.hs
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_OneHand/Small_sword_r.rs.hs
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Shields/Small_shield.rs.hs
-         
-         Chargement de la map : Abbey_indoor.map.hs
-         Map sauvée existante.
-         /Lectures du nom.
-         /Lectures des fonds.
-         /Lectures des musiques.
-         /Lectures des lumières.
-         /Lectures des ciels.
-         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_floor.ts.hs
-         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_walls.ts.hs
-         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_miscs.ts.hs
-         Chargement de : Data/Graphics/Landscapes/Catacombs/Catacombs_monks.ts.hs
-         /Lectures des tilesets.
-         /Lectures des herbes.
-         
-         Chargement du monstre : Data/Entities/Resources/Miscs/Trigger_clickable.char.hs
-         Chargement du script : " Data/Entities/Scripts/Miscs/Trigger_clickable.script.hs "
-         
-         Chargement du personnage : Data/Entities/Resources/Miscs/NULL.rs.hs
-         Chargement de : Data/Entities/Resources/Miscs/Trigger_clickable.char.hs terminé
-         
-         Chargement du monstre : Data/Entities/Resources/NPC/Farmer.char.hs
-         Chargement du script : " Data/Entities/Scripts/NPC/Farmer.script.hs "
-         Chargement du miracle : Data/Miscs/Miracles/Quest/Quest.miracle.hs
-         
-         Chargement du personnage : Data/Entities/Resources/NPC/Farmer.rs.hs
-         Chargement de : Data/Entities/Resources/NPC/Farmer.char.hs terminé
-         
-         Chargement du monstre : Data/Entities/Resources/NPC/Abbe.char.hs
-         Chargement du script : " Data/Entities/Scripts/NPC/Abbe.script.hs "
-         
-         Chargement de l'objet : Litanie_toxic_0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/Toxic_0.miracle.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Quest/Quest.miracle.hs
-         
-         Chargement du personnage : Data/Entities/Resources/NPC/Abbe.rs.hs
-         Chargement de : Data/Entities/Resources/NPC/Abbe.char.hs terminé
-         
-         Chargement du monstre : Data/Entities/Resources/NPC/Monk.char.hs
-         Chargement du script : " Data/Entities/Scripts/NPC/Follower.script.hs "
-         Chargement du miracle : Data/Miscs/Miracles/Quest/Quest.miracle.hs
-         
-         Chargement du personnage : Data/Entities/Resources/NPC/Abbe.rs.hs
-         Chargement de : Data/Entities/Resources/NPC/Monk.char.hs terminé
-         
-         Chargement du monstre : Data/Entities/Resources/NPC/Monk_summoner.char.hs
-         Chargement du script : " Data/Entities/Scripts/Miscs/Summoning.script.hs "
-         Chargement du miracle : Data/Entities/Miracles/Summoning_Monk.miracle.hs
-         
-         Chargement du personnage : Data/Entities/Resources/Miscs/NULL.rs.hs
-         Chargement de : Data/Entities/Resources/NPC/Monk_summoner.char.hs terminé
-         /Lectures des monstres.
-         
-         Une map des entités est déjà existante.
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         /Lectures des monstres si existants.
-         /Lectures des cases.
-         Chargement de la map terminé.
-         Initialisation de l'herbe terminée.
-         Initialisation des décors terminée.
-         Initialisation des entités terminée.
-         Initialisation terminée.
-         
-         
-         Sauvegarde de la map : Data/User/Temps/Abbey_indoor.map.hs
-         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey_indoor.map.hs.emap.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_gem_emerald.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
-         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
-         /Ecriture des objets.
-         /Ecriture des objets du coffre.
-         /Ecriture des miracles.
-         /Ecriture des docs.
-         /Sauvegarde de Les choses qui rodaient dans les catacombes
-         /Sauvegarde de Le muret diabolique
-         /Sauvegarde de Un passe temps pour Rognorak		
-         /Ecriture des quetes.
-         /Ecriture des potales.
-         Sauvegarde du héro terminée !
-         
-         ---------------------------------------------------------------------------------
-         EVENEMENT : Changement de map
-         ---------------------------------------------------------------------------------
-         
-         Sauvegarde de la map : Data/User/Temps/Abbey_indoor.map.hs
-         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey_indoor.map.hs.emap.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         Sauvegarde de la map terminée !
-         /Génération de l'image...
-         /Image affichée.
-         /Image générée.
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_gem_emerald.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
-         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
-         /Ecriture des objets.
-         /Ecriture des objets du coffre.
-         /Ecriture des miracles.
-         /Ecriture des docs.
-         /Sauvegarde de Les choses qui rodaient dans les catacombes
-         /Sauvegarde de Le muret diabolique
-         /Sauvegarde de Un passe temps pour Rognorak		
          /Ecriture des quetes.
          /Ecriture des potales.
          Sauvegarde du héro terminée !
@@ -4406,9 +2778,13 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Miracles/Summoning_Skele
          Chargement de l'objet : Crossbow_crossbow.item.hs
          Chargement du miracle : Data\Miscs\Miracles\Bolt\Bolt.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
+         
+         Chargement de l'objet : Mace_2h_timber_axe.item.hs
          /Lectures des monstres si existants.
          
          Chargement de l'objet : Doc_redimus.item.hs
+         
+         Chargement de l'objet : Mace_2h_timber_axe.item.hs
          /Lectures des cases.
          Chargement de la map terminé.
          Initialisation de l'herbe terminée.
@@ -4419,13 +2795,8 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Miracles/Summoning_Skele
          Chargement de : Data/Musics/Catacombs0.ogg
          
          Sauvegarde de la map : Data/User/Temps/Catacombs0.map.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_gem_emerald.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
          Sauvegarde de la map_entite : Data/User/Temps/entites_map_Catacombs0.map.hs.emap.hs
          /Sauvegarde de Dagger_dagger.item.hs
          /Sauvegarde de Mace_2h_timber_axe.item.hs
@@ -4512,59 +2883,59 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Miracles/Summoning_Skele
          /Sauvegarde de Sword_2h_two_hands_sword.item.hs
          /Sauvegarde de Dagger_dagger.item.hs
          /Sauvegarde de Crossbow_crossbow.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
          Sauvegarde de la map terminée !
          
          Sauvegarde du héro...
          Ouverture du fichier.
          /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
+         /Sauvegarde de Armor_chainmail.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
+         /Sauvegarde de Litanie_0.item.hs
          /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Craft_gem_emerald.item.hs
          /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
          /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
          /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
          /Sauvegarde de Helmet_leather_cap.item.hs
          /Sauvegarde de Boots_leather.item.hs
          /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
-         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Boots_leather.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
          /Ecriture des miracles.
          /Ecriture des docs.
          /Sauvegarde de Les choses qui rodaient dans les catacombes
-         /Sauvegarde de Le muret diabolique
-         /Sauvegarde de Un passe temps pour Rognorak		
          /Ecriture des quetes.
          /Ecriture des potales.
          Sauvegarde du héro terminée !
          
          Sauvegarde de la map : Data/User/Temps/Catacombs0.map.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_gem_emerald.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
          /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
          Sauvegarde de la map_entite : Data/User/Temps/entites_map_Catacombs0.map.hs.emap.hs
          /Sauvegarde de Dagger_dagger.item.hs
          /Sauvegarde de Mace_2h_timber_axe.item.hs
@@ -4651,46 +3022,50 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Miracles/Summoning_Skele
          /Sauvegarde de Sword_2h_two_hands_sword.item.hs
          /Sauvegarde de Dagger_dagger.item.hs
          /Sauvegarde de Crossbow_crossbow.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
          Sauvegarde de la map terminée !
          
          Sauvegarde du héro...
          Ouverture du fichier.
          /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
+         /Sauvegarde de Armor_chainmail.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
+         /Sauvegarde de Litanie_0.item.hs
          /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Craft_gem_emerald.item.hs
          /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
          /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
          /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
          /Sauvegarde de Helmet_leather_cap.item.hs
          /Sauvegarde de Boots_leather.item.hs
          /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
-         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Boots_leather.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
          /Ecriture des miracles.
          /Ecriture des docs.
          /Sauvegarde de Les choses qui rodaient dans les catacombes
-         /Sauvegarde de Le muret diabolique
-         /Sauvegarde de Un passe temps pour Rognorak		
          /Ecriture des quetes.
          /Ecriture des potales.
          Sauvegarde du héro terminée !
@@ -4702,34 +3077,39 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Entities/Miracles/Summoning_Skele
          Sauvegarde du héro...
          Ouverture du fichier.
          /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
+         /Sauvegarde de Armor_chainmail.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
+         /Sauvegarde de Litanie_0.item.hs
          /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Craft_gem_emerald.item.hs
          /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
          /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
          /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
          /Sauvegarde de Helmet_leather_cap.item.hs
          /Sauvegarde de Boots_leather.item.hs
          /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
-         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
+         /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Boots_leather.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
          /Ecriture des miracles.

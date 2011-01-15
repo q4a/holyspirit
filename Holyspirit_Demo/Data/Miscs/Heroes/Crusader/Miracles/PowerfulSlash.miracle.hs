@@ -10,7 +10,7 @@ $
 $
 	* f%0 c0.5 $
 $
-	* t-1 l25 l26 l27     l23 l1 $
+	* t-1  l24 l1 $
 	* t14  ia3 ib100 ic0 id2 if1 $
 	* t-1 l3 l4 l6 l7 l8 l9 l10 l11 l12 l13 $
 	* t2 ia%1 ib%2 $
@@ -34,9 +34,9 @@ $
 	* t3 s7 ia13 $
 	* t3 s8 ia1  $
 	* t10 ia2 ib4 $
-	* t1 l5 l22 ia1 ib1 $
-	* t15 ib6 ic0 ia24 $
-	* t15 ib6 ic1 ia24 $
+	* t1 l5 l22 l25 l26 l27 ia1 ib1 $
+	* t15 ib6 ic0 ia23 $
+	* t15 ib6 ic1 ia23 $
 	* t15 ib6 ic2 ia28 $
 	* t10 ia2 ib16 $
 	
