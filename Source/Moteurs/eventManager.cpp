@@ -52,7 +52,7 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
 {
     m_molette = 0;
     Event Event;
-    if (moteurGraphique->getEvent(Event))
+    while (moteurGraphique->getEvent(Event))
     {
         switch (Event.Type)
         {

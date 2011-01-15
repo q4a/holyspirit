@@ -152,7 +152,7 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, std::list<int> deja_w
 
 
             if(ok)
-            //if ( m_wall[*IterWall].pt1.x-m_position.x>-m_radius && m_wall[*IterWall].pt1.y-m_position.y>-m_radius && m_wall[*IterWall].pt2.x-m_position.x<m_radius && m_wall[*IterWall].pt2.y-m_position.y<m_radius )
+            if ( m_wall[*IterWall].pt1.x-m_position.x>-m_radius && m_wall[*IterWall].pt1.y-m_position.y>-m_radius && m_wall[*IterWall].pt2.x-m_position.x<m_radius && m_wall[*IterWall].pt2.y-m_position.y<m_radius )
             {
                 // l1 et l2 sont les positions relatives au centre de la lumière des deux extrémités du mur
                 sf::Vector2f l1(m_wall[*IterWall].pt1.x-m_position.x, m_wall[*IterWall].pt1.y-m_position.y);
@@ -179,6 +179,8 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, std::list<int> deja_w
                         AddTriangle(pt1, i, deja_wall, m_wall, m_sectors, m_origin_sector,m_wall[*IterWall].hauteur), pt1 = i, hauteur = m_wall[*IterWall].hauteur;
                 }
 
+                deja_wall.push_back(*IterWall);
+
                 sf::Vector2f m = Collision(l1, l2, sf::Vector2f(0,0), pt1);
                 sf::Vector2f n = Collision(l1, l2, sf::Vector2f(0,0), pt2);
                 sf::Vector2f o = Collision(l1, l2, pt1, pt2);
@@ -193,7 +195,6 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, std::list<int> deja_w
                     if((n.x != 0 || n.y != 0) && (o.x != 0 || o.y != 0))
                         AddTriangle(o ,n , deja_wall, m_wall, m_sectors, m_origin_sector,m_wall[*IterWall].hauteur), pt2 = o;
                 }
-                deja_wall.push_back(*IterWall);
             }
         }
 
