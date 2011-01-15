@@ -20,7 +20,7 @@ Le Grand Questeur
 Levier
 Zombie massier
 Frère
-?
+Le Faucheur
 Chef de meute
 ?
 Molosse infernal
