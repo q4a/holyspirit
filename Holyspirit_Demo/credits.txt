@@ -55,6 +55,27 @@ Darktib
 King Kadelfek
 Gavos
 Emixam62
+Bananios
+
+
++Specials thanks for
+
+Le site du zéro (http://www.siteduzero.com/)
+
+Game-Corp (http://www.game-corp.net/)
+
+Games Creators Network (http://games-creators.org/)
+
+*Donors
+
+Alexandre Fabre
+
+*And all VIP 
+
+Chaoxys
+Mickael002
+Leonsulivan
+Bananios
 
 
 +Tools
@@ -77,13 +98,7 @@ The Gimp (http://www.gimp.org/)
 *SVN
 TortoiseSVN (http://tortoisesvn.tigris.org/)
 
-+Specials thanks for
 
-Le site du zéro (http://www.siteduzero.com/)
-
-Game-Corp (http://www.game-corp.net/)
-
-Games Creators Network (http://games-creators.org/)
 
 ****
 

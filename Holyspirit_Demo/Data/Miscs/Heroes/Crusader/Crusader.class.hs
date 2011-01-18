@@ -1,5 +1,7 @@
 	*31
 $
+	*Data/Graphics/Menus/Crusader.png
+$
 	* f25 v25 p10 d15 c10 $
 $
 	* mSword_1h_small_sword.item.hs $

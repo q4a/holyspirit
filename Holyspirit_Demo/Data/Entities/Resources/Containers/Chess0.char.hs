@@ -10,52 +10,52 @@ $
 $
 	*
 		*Craft_gem_ruby.item.hs
-		r1000
+		r2000
 	$
 	*
 		*Craft_gem_emerald.item.hs
-		r1000
+		r2000
 	$
 	
 	*
 		*Armband_leather.item.hs
-		r2500
+		r5000
 	$
 	*
 		*Boots_leather.item.hs
-		r2500
+		r5000
 	$
 	*
 		*Armor_gambeson.item.hs
-		r2500
+		r5000
 	$
 	*
 		*Dagger_dagger.item.hs
-		r2500
+		r5000
 	$
 	*
 		*Helmet_leather_cap.item.hs
-		r2500
+		r5000
 	$
 	*
 		*Shield_small_shield.item.hs
-		r2500
+		r5000
 	$
 	*
 		*Sword_1h_small_sword.item.hs
-		r2500
+		r5000
 	$
 	*
 		*Mace_2h_timber_axe.item.hs
-		r2500
+		r5000
 	$
 	*
 		*Necklage_necklage.item.hs
-		r500
+		r1000
 	$
 	*
 		*Ring_ring.item.hs
-		r500
+		r1000
 	$
 	*
 		*Litanie_0.item.hs

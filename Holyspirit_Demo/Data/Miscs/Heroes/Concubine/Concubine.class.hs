@@ -1,5 +1,7 @@
 	*32
 $
+	*Data/Graphics/Menus/Concubine.png
+$
 	* f10 v15 p15 d25 c20 $
 $
 	* mDagger_dagger.item.hs $
