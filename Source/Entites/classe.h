@@ -38,6 +38,8 @@ struct Bouton_pressoire
         m_hover     = false;
         m_press     = false;
         m_action    = false;
+
+        no_opacity  = false;
     }
 
     coordonnee position;
@@ -46,6 +48,8 @@ struct Bouton_pressoire
     bool m_hover;
     bool m_press;
     bool m_action;
+
+    bool no_opacity;
 
     Image_interface image;
     Image_interface image_hover;

@@ -96,50 +96,44 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     {
         texte.SetCharacterSize(56);
 
-        texte.SetString(configuration->getText(0,0));
-        texte.SetY(configuration->Resolution.h/2-70 * 2);
-        texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
-        if (eventManager->getPositionSouris().y > texte.GetPosition().y
-         && eventManager->getPositionSouris().y < texte.GetPosition().y+texte.GetRect().Height)
-        {
-            texte.SetColor(Color(100,50,0,(int)m_alpha));
-            if (eventManager->getEvenement(Mouse::Left,EventClic))
-                retour=1, jeu->next_screen = 3,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
-            eventManager->StopEvenement(Mouse::Left,EventClic);
-        }
-        else
-            texte.SetColor(Color(150,100,50,(int)m_alpha));
-        moteurGraphique->AjouterTexte(&texte,19,1);
+        jeu->menu.buttons[5].position.y = configuration->Resolution.h/2 - 140;
+        jeu->menu.buttons[5].position.x = configuration->Resolution.w/2-jeu->menu.buttons[5].image.position.w/2;
+        sf::Sprite temp = jeu->menu.buttons[5].Afficher(0);
+        temp.SetColor(Color(255,255,255,(int)m_alpha));
+        moteurGraphique->AjouterCommande(&temp,19,0);
 
-        texte.SetString(configuration->getText(0,55));
-        texte.SetY(configuration->Resolution.h/2-70);
-        texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
-        if (eventManager->getPositionSouris().y > texte.GetPosition().y
-         && eventManager->getPositionSouris().y < texte.GetPosition().y+texte.GetRect().Height)
+        if(jeu->menu.buttons[5].m_action)
         {
-            texte.SetColor(Color(100,50,0,(int)m_alpha));
-            if (eventManager->getEvenement(Mouse::Left,EventClic))
-                options = true, configuration->no_menu_option = 0,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
-            eventManager->StopEvenement(Mouse::Left,EventClic);
+            jeu->menu.buttons[5].m_action = false;
+            retour=1;
+            jeu->next_screen = 3;
         }
-        else
-            texte.SetColor(Color(150,100,50,(int)m_alpha));
-        moteurGraphique->AjouterTexte(&texte,19,1);
 
-        texte.SetString(configuration->getText(0,1));
-        texte.SetY(configuration->Resolution.h/2);
-        texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
-        if (eventManager->getPositionSouris().y > texte.GetPosition().y
-         && eventManager->getPositionSouris().y < texte.GetPosition().y+texte.GetRect().Height)
+        jeu->menu.buttons[2].position.y = configuration->Resolution.h/2 - 70;
+        jeu->menu.buttons[2].position.x = configuration->Resolution.w/2-jeu->menu.buttons[2].image.position.w/2;
+        temp = jeu->menu.buttons[2].Afficher(0);
+        temp.SetColor(Color(255,255,255,(int)m_alpha));
+        moteurGraphique->AjouterCommande(&temp,19,0);
+
+        if(jeu->menu.buttons[2].m_action)
         {
-            texte.SetColor(Color(100,50,0,(int)m_alpha));
-            if (eventManager->getEvenement(Mouse::Left,EventClic))
-                jeu->m_mainMenu->m_save=true, jeu->m_contexte = jeu->m_mainMenu,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
-            eventManager->StopEvenement(Mouse::Left,EventClic);
+            jeu->menu.buttons[2].m_action = false;
+            options = true;
+            configuration->no_menu_option = 0;
         }
-        else
-            texte.SetColor(Color(150,100,50,(int)m_alpha));
-        moteurGraphique->AjouterTexte(&texte,19,1);
+
+        jeu->menu.buttons[7].position.y = configuration->Resolution.h/2;
+        jeu->menu.buttons[7].position.x = configuration->Resolution.w/2-jeu->menu.buttons[7].image.position.w/2;
+        temp = jeu->menu.buttons[7].Afficher(0);
+        temp.SetColor(Color(255,255,255,(int)m_alpha));
+        moteurGraphique->AjouterCommande(&temp,19,0);
+
+        if(jeu->menu.buttons[7].m_action)
+        {
+            jeu->menu.buttons[7].m_action = false;
+            jeu->m_mainMenu->m_save=true;
+            jeu->m_contexte = jeu->m_mainMenu;
+        }
 
         texte.SetString(configuration->getText(0,2));
         texte.SetY(configuration->Resolution.h/2+70);
@@ -147,7 +141,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
         if (eventManager->getPositionSouris().y > texte.GetPosition().y
          && eventManager->getPositionSouris().y < texte.GetPosition().y+texte.GetRect().Height)
         {
-            texte.SetColor(Color(100,50,0,(int)m_alpha));
+            texte.SetColor(Color(192,160,128,(int)m_alpha));
             if (eventManager->getEvenement(Mouse::Left,EventClic))
                 jeu->m_mainMenu->m_reset=true,jeu->m_mainMenu->m_save=true, jeu->m_contexte = jeu->m_mainMenu,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
             eventManager->StopEvenement(Mouse::Left,EventClic);

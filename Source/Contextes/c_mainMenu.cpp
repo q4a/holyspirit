@@ -180,9 +180,9 @@ void c_MainMenu::Utiliser(Jeu *jeu)
     else if(no_ecran == E_NOUVEAU)
         E_Nouveau(jeu);
     else if(no_ecran == E_CREDITS)
-        E_Credits();
+        E_Credits(jeu);
     else if(no_ecran == E_STORY)
-        E_Story();
+        E_Story(jeu);
     else if(no_ecran == E_OPTION)
         if(configuration->Options())
             no_ecran = E_PRINCIPAL;
@@ -257,118 +257,102 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
     m_hs_logo.SetPosition((configuration->Resolution.x - m_hs_logo.GetSize().x)/2,-16);
     moteurGraphique->AjouterCommande(&m_hs_logo, 19, 0);
 
-    texte.SetString(configuration->getText(0,53));
-    texte.SetY((int)configuration->Resolution.h/2-96);
-    texte.SetX((int)configuration->Resolution.w/2-texte.GetRect().Width/2);
-    if (eventManager->getPositionSouris().y > texte.GetRect().Top
-      &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+    jeu->menu.buttons[0].position.y = configuration->Resolution.h/2-96;
+    jeu->menu.buttons[0].position.x = configuration->Resolution.w/2-jeu->menu.buttons[0].image.position.w/2;
+    sf::Sprite temp = jeu->menu.buttons[0].Afficher(0);
+    moteurGraphique->AjouterCommande(&temp,19,0);
+
+    if(jeu->menu.buttons[0].m_action)
     {
-
-        texte.SetColor(Color(100,50,0));
-        if (eventManager->getEvenement(Mouse::Left,EventClic))
-        {
-            no_ecran = E_CONTINUER;
-            moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
-
-            ChargerListeSaves();
-        }
-
-        eventManager->StopEvenement(Mouse::Left,EventClic);
+        jeu->menu.buttons[0].m_action = false;
+        no_ecran = E_CONTINUER;
+        ChargerListeSaves();
     }
-    else
-        texte.SetColor(Color(150,100,50));
-    moteurGraphique->AjouterTexte(&texte,19,1);
 
-    texte.SetString(configuration->getText(0,54));
-    texte.SetY((int)configuration->Resolution.h/2-32 );
-    texte.SetX((int)configuration->Resolution.w/2-texte.GetRect().Width/2);
-    if (eventManager->getPositionSouris().y > texte.GetRect().Top
-      &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+    jeu->menu.buttons[1].position.y = configuration->Resolution.h/2-32;
+    jeu->menu.buttons[1].position.x = configuration->Resolution.w/2-jeu->menu.buttons[1].image.position.w/2;
+    temp = jeu->menu.buttons[1].Afficher(0);
+    moteurGraphique->AjouterCommande(&temp,19,0);
+
+    if(jeu->menu.buttons[1].m_action)
     {
-        texte.SetColor(Color(100,50,0));
-        if (eventManager->getEvenement(Mouse::Left,EventClic))
-        {
-            no_ecran = E_STORY;
-            moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
-            m_chemin_saves.clear();
-            m_nom_classes.clear();
+        jeu->menu.buttons[1].m_action = false;
+        no_ecran = E_STORY;
+        m_chemin_saves.clear();
+        m_nom_classes.clear();
 
-            for(unsigned i = 0 ; i < configuration->player_class.size(); ++i)
+        for(unsigned i = 0 ; i < configuration->player_class.size(); ++i)
+        {
+            m_nom_classes.push_back(0);
+            m_apercu_classe.push_back(sf::Sprite ());
+
+            ifstream fichier2;
+            fichier2.open(configuration->player_class[i].c_str(),ios::in);
+            if(fichier2)
             {
-                m_nom_classes.push_back(0);
-
-                ifstream fichier2;
-                fichier2.open(configuration->player_class[i].c_str(),ios::in);
-                if(fichier2)
+                char caractere2;
+                do
                 {
-                    char caractere2;
-                    do
-                    {
-                        fichier2.get(caractere2);
-                        if (caractere2=='*')
-                            fichier2>>m_nom_classes.back();
-                        if (fichier2.eof())
-                            caractere2='$';
-                    }
-                    while (caractere2!='$');
+                    fichier2.get(caractere2);
+                    if (caractere2=='*')
+                        fichier2>>m_nom_classes.back();
+                    if (fichier2.eof())
+                        caractere2='$';
                 }
-                fichier2.close();
+                while (caractere2!='$');
+
+                do
+                {
+                    fichier2.get(caractere2);
+                    if (caractere2=='*')
+                    {
+                        std::string temp;
+                        fichier2>>temp;
+                        m_apercu_classe.back().SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage(temp,-1)));
+                    }
+                    if (fichier2.eof())
+                        caractere2='$';
+                }
+                while (caractere2!='$');
             }
-
+            fichier2.close();
         }
-        eventManager->StopEvenement(Mouse::Left,EventClic);
     }
-    else
-        texte.SetColor(Color(150,100,50));
-    moteurGraphique->AjouterTexte(&texte,19,1);
 
-    texte.SetString(configuration->getText(0,55));
-    texte.SetY((int)configuration->Resolution.h/2+32);
-    texte.SetX((int)configuration->Resolution.w/2-texte.GetRect().Width/2);
-    if (eventManager->getPositionSouris().y > texte.GetRect().Top
-      &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+    jeu->menu.buttons[2].position.y = configuration->Resolution.h/2+32;
+    jeu->menu.buttons[2].position.x = configuration->Resolution.w/2-jeu->menu.buttons[2].image.position.w/2;
+    temp = jeu->menu.buttons[2].Afficher(0);
+    moteurGraphique->AjouterCommande(&temp,19,0);
+
+    if(jeu->menu.buttons[2].m_action)
     {
-        texte.SetColor(Color(100,50,0));
-
-        if (eventManager->getEvenement(Mouse::Left,EventClic))
-            no_ecran = E_OPTION, configuration->no_menu_option = O_PRINCIPAL,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
-
-        eventManager->StopEvenement(Mouse::Left,EventClic);
+        jeu->menu.buttons[2].m_action = false;
+        no_ecran = E_OPTION;
+        configuration->no_menu_option = O_PRINCIPAL;
     }
-    else
-        texte.SetColor(Color(150,100,50));
-    moteurGraphique->AjouterTexte(&texte,19,1);
 
-    texte.SetString(configuration->getText(0,65));
-    texte.SetY((int)configuration->Resolution.h/2+96);
-    texte.SetX((int)configuration->Resolution.w/2-texte.GetRect().Width/2);
-    if (eventManager->getPositionSouris().y > texte.GetRect().Top
-      &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+    jeu->menu.buttons[3].position.y = configuration->Resolution.h/2+96;
+    jeu->menu.buttons[3].position.x = configuration->Resolution.w/2-jeu->menu.buttons[3].image.position.w/2;
+    temp = jeu->menu.buttons[3].Afficher(0);
+    moteurGraphique->AjouterCommande(&temp,19,0);
+
+    if(jeu->menu.buttons[3].m_action)
     {
-        texte.SetColor(Color(100,50,0));
-        if (eventManager->getEvenement(Mouse::Left,EventClic))
-            no_ecran = E_CREDITS, m_credit_defil = 0,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
-         eventManager->StopEvenement(Mouse::Left,EventClic);
+        jeu->menu.buttons[3].m_action = false;
+        no_ecran = E_CREDITS;
+        m_credit_defil = 0;
     }
-    else
-        texte.SetColor(Color(150,100,50));
-    moteurGraphique->AjouterTexte(&texte,19,1);
 
+    jeu->menu.buttons[4].position.y = configuration->Resolution.h/2+160;
+    jeu->menu.buttons[4].position.x = configuration->Resolution.w/2-jeu->menu.buttons[4].image.position.w/2;
+    temp = jeu->menu.buttons[4].Afficher(0);
+    moteurGraphique->AjouterCommande(&temp,19,0);
 
-    texte.SetString(configuration->getText(0,56));
-    texte.SetY((int)configuration->Resolution.h/2+160);
-    texte.SetX((int)configuration->Resolution.w/2-texte.GetRect().Width/2);
-    if (eventManager->getPositionSouris().y > texte.GetRect().Top
-      &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+    if(jeu->menu.buttons[4].m_action)
     {
-        texte.SetColor(Color(100,50,0));
-        if (eventManager->getEvenement(Mouse::Left,EventClic))
-            jeu->m_run=false,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
-         eventManager->StopEvenement(Mouse::Left,EventClic);
+        jeu->menu.buttons[4].m_action = false;
+        jeu->m_run=false;
     }
-    else
-        texte.SetColor(Color(150,100,50));
-    moteurGraphique->AjouterTexte(&texte,19,1);
 }
 void  c_MainMenu::E_Continuer(Jeu *jeu)
 {
@@ -383,27 +367,20 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
     if(eventManager->getEvenement(sf::Key::Escape, EventKey))
         no_ecran = E_PRINCIPAL, m_supprimer_heros = false,nom_hero.clear(),jeu->m_no_printscreen = false;
 
-    texte.SetString(configuration->getText(0,57));
-    texte.SetY((int)configuration->Resolution.h/2 + 192 );
-    texte.SetX((int)configuration->Resolution.w/2-texte.GetRect().Width/2);
-    if (eventManager->getPositionSouris().y >  texte.GetRect().Top
-      &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height)
-      &&eventManager->getPositionSouris().x >  texte.GetRect().Left
-      &&eventManager->getPositionSouris().x < (texte.GetRect().Left + texte.GetRect().Width))
+
+    jeu->menu.buttons[5].position.y = configuration->Resolution.h/2+192;
+    jeu->menu.buttons[5].position.x = configuration->Resolution.w/2-jeu->menu.buttons[5].image.position.w/2;
+    sf::Sprite temp = jeu->menu.buttons[5].Afficher(0);
+    moteurGraphique->AjouterCommande(&temp,18,0);
+
+    if(jeu->menu.buttons[5].m_action)
     {
-        texte.SetColor(Color(100,50,0));
-        if(eventManager->getEvenement(Mouse::Left,EventClic))
-        {
-            no_ecran = E_PRINCIPAL;
-            jeu->m_no_printscreen = false;
-            moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
-            m_supprimer_heros = false;
-            eventManager->StopEvenement(Mouse::Left,EventClic);
-        }
+        jeu->menu.buttons[5].m_action = false;
+        no_ecran = E_PRINCIPAL;
+        jeu->m_no_printscreen = false;
+        m_supprimer_heros = false;
+        eventManager->StopEvenement(Mouse::Left,EventClic);
     }
-    else
-        texte.SetColor(Color(150,100,50));
-    moteurGraphique->AjouterTexte(&texte,18,1);
 
     texte.SetCharacterSize(18);
 
@@ -704,18 +681,67 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
             nom_hero.erase(nom_hero.begin() + nom_hero.size() - 1);
     eventManager->StopEvenement(sf::Key::Back,EventKey);
 
-    texte.SetCharacterSize(32);
+    texte.SetCharacterSize(20);
 
 
     texte.SetString(configuration->getText(0,68));
     texte.SetY((int)configuration->Resolution.h/2 - 256 );
     texte.SetX((int)configuration->Resolution.w/2-texte.GetRect().Width/2);
-    texte.SetColor(Color(150,100,50));
+    texte.SetColor(Color(192,160,128));
     moteurGraphique->AjouterTexte(&texte,19,1);
 
     for(unsigned i = 0 ; i < configuration->player_class.size(); ++i)
     {
+
+        m_background_hero.SetPosition(configuration->Resolution.w/2 - configuration->player_class.size() * (m_background_hero.GetSize().x + 4) * 0.5
+                                        + i * (m_background_hero.GetSize().x + 4),
+                                      configuration->Resolution.h/2 - 208);
+
+        if((int)i != classe_choisie)
+            m_background_hero.SetColor(sf::Color(96,96,96));
+
+        moteurGraphique->AjouterCommande(&m_background_hero,17,0);
+
+        m_background_hero.SetColor(sf::Color(255,255,255));
+
+        m_backtext_hero.SetPosition(configuration->Resolution.w/2 - configuration->player_class.size() * (m_background_hero.GetSize().x + 4) * 0.5
+                                        + i * (m_background_hero.GetSize().x + 4),
+                                    configuration->Resolution.h/2 - 208 + 136);
+
+        moteurGraphique->AjouterCommande(&m_backtext_hero,19,0);
+
         texte.SetString(configuration->getText(3,m_nom_classes[i]));
+        texte.SetFont(moteurGraphique->m_font_titre);
+
+        texte.SetPosition((int)(configuration->Resolution.w/2 - configuration->player_class.size() * (m_background_hero.GetSize().x + 4) * 0.5
+                                        + i * (m_background_hero.GetSize().x + 4) + 75 - texte.GetRect().Width/2),
+                          (int)(configuration->Resolution.h/2 - 208 + 145));
+
+        moteurGraphique->AjouterTexte(&texte,19,1);
+
+        m_apercu_classe[i].SetPosition(configuration->Resolution.w/2 - configuration->player_class.size() * (m_background_hero.GetSize().x + 4) * 0.5
+                                        + i * (m_background_hero.GetSize().x + 4),
+                                      configuration->Resolution.h/2 - 208);
+        m_apercu_classe[i].Resize(160,256);
+        m_apercu_classe[i].SetSubRect(sf::IntRect(48,0,160,256));
+        moteurGraphique->AjouterCommande(&m_apercu_classe[i],18,0);
+
+
+        if (eventManager->getPositionSouris().y > m_background_hero.GetPosition().y
+          &&eventManager->getPositionSouris().y < m_background_hero.GetPosition().y + m_background_hero.GetSize().y
+          &&eventManager->getPositionSouris().x > m_background_hero.GetPosition().x
+          &&eventManager->getPositionSouris().x < m_background_hero.GetPosition().x + m_background_hero.GetSize().x)
+        {
+            if(eventManager->getEvenement(Mouse::Left,EventClic))
+            {
+                moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
+                eventManager->StopEvenement(Mouse::Left,EventClic);
+                classe_choisie = i;
+            }
+        }
+
+
+        /*texte.SetString(configuration->getText(3,m_nom_classes[i]));
         texte.SetY((int)configuration->Resolution.h/2 - 128 - m_nom_classes.size() * 32 + i* 48 );
         texte.SetX((int)configuration->Resolution.w/2-texte.GetRect().Width/2);
 
@@ -731,25 +757,25 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
             }
         }
         else
-            texte.SetColor(Color(150,100,50));
+            texte.SetColor(Color(192,160,128));
 
         if((int)i == classe_choisie)
             texte.SetColor(sf::Color(200,150,100));
 
-        moteurGraphique->AjouterTexte(&texte,19,1);
+        moteurGraphique->AjouterTexte(&texte,19,1);*/
     }
 
     texte.SetCharacterSize(32);
     texte.SetString(configuration->getText(0,58));
     texte.SetY((int)configuration->Resolution.h/2 );
     texte.SetX((int)configuration->Resolution.w/2-texte.GetRect().Width/2);
-    texte.SetColor(Color(150,100,50));
+    texte.SetColor(Color(192,160,128));
     moteurGraphique->AjouterTexte(&texte,19,1);
 
     texte.SetString(nom_hero);
-    texte.SetY((int)configuration->Resolution.h/2 + 48 );
+    texte.SetY((int)configuration->Resolution.h/2 + 52 );
     texte.SetX((int)configuration->Resolution.w/2-texte.GetRect().Width/2);
-    texte.SetColor(Color(150,100,50));
+    texte.SetColor(Color(192,160,128));
 
     if(time > 0.5)
         texte.SetString(nom_hero + "|");
@@ -761,7 +787,11 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
 
     moteurGraphique->AjouterTexte(&texte,19,1);
 
-    texte.SetCharacterSize(48);
+    jeu->menu.border.Afficher(coordonnee(configuration->Resolution.w/2 - 192,
+                                         configuration->Resolution.h/2 + 52),
+                              coordonnee(384,40), 18);
+
+    /*texte.SetCharacterSize(48);
 
     texte.SetString(configuration->getText(0,59));
     texte.SetY((int)configuration->Resolution.h/2 + 128 );
@@ -804,24 +834,70 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
     }
     else
         texte.SetColor(Color(150,100,50));
-    moteurGraphique->AjouterTexte(&texte,19,1);
+    moteurGraphique->AjouterTexte(&texte,19,1);*/
 
-    texte.SetString(configuration->getText(0,57));
-    texte.SetY((int)configuration->Resolution.h/2 + 192 );
-    texte.SetX((int)configuration->Resolution.w/2-texte.GetRect().Width/2);
-    if (eventManager->getPositionSouris().y > texte.GetRect().Top
-      &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
+    jeu->menu.buttons[6].position.y = configuration->Resolution.h/2+128;
+    jeu->menu.buttons[6].position.x = configuration->Resolution.w/2-jeu->menu.buttons[6].image.position.w/2;
+    sf::Sprite temp = jeu->menu.buttons[6].Afficher(0);
+    moteurGraphique->AjouterCommande(&temp,19,0);
+
+    if(jeu->menu.buttons[6].m_action)
     {
-        texte.SetColor(Color(100,50,0));
-        if(eventManager->getEvenement(Mouse::Left,EventClic))
-            no_ecran = E_PRINCIPAL,nom_hero = "",moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0),jeu->m_no_printscreen = false;
-        eventManager->StopEvenement(Mouse::Left,EventClic);
+        jeu->menu.buttons[6].m_action = false;
+
+        bool ok = true;
+
+        if(classe_choisie < 0)
+            ok = false;
+
+        if(nom_hero.empty())
+            ok = false;
+
+        ChargerListeSaves();
+
+        for(int i = 0 ; i < m_chemin_saves.size() ; ++i)
+            if(m_chemin_saves[i] == nom_hero+".sav.hs")
+                ok = false;
+
+        if(ok)
+        {
+            jeu->hero.m_cheminClasse = configuration->player_class[classe_choisie];
+            jeu->hero.m_chemin_save = nom_hero + ".sav.hs";
+
+            jeu->m_chargement->setC_Chargement(configuration->map_start,configuration->map_start_pos
+                                               );
+
+            jeu->hero.Charger(nom_hero + ".sav.hs");
+            jeu->hero.m_contenuSave.push_back(configuration->chemin_temps + "Save.sav.hs");
+            jeu->hero.m_contenuSave.push_back(configuration->chemin_temps + "Image.png");
+            jeu->hero.m_caracteristiques.nom = nom_hero;
+            Caracteristique caract = jeu->hero.m_personnage.getCaracteristique();
+            caract.nom = nom_hero;
+            jeu->hero.m_personnage.setCaracteristique(caract);
+            jeu->hero.SauvegarderApercu();
+            jeu->hero.Sauvegarder();
+            jeu->hero.m_caracteristiques.nom = nom_hero;
+
+            no_ecran = E_PRINCIPAL;
+            jeu->m_no_printscreen = false;
+
+            jeu->m_contexte = jeu->m_chargement;
+        }
+
     }
-    else
-        texte.SetColor(Color(150,100,50));
-    moteurGraphique->AjouterTexte(&texte,19,1);
+
+    jeu->menu.buttons[5].position.y = configuration->Resolution.h/2+192;
+    jeu->menu.buttons[5].position.x = configuration->Resolution.w/2-jeu->menu.buttons[5].image.position.w/2;
+    temp = jeu->menu.buttons[5].Afficher(0);
+    moteurGraphique->AjouterCommande(&temp,19,0);
+
+    if(jeu->menu.buttons[5].m_action)
+    {
+        jeu->menu.buttons[5].m_action = false;
+        no_ecran = E_PRINCIPAL;
+    }
 }
-void  c_MainMenu::E_Credits()
+void  c_MainMenu::E_Credits(Jeu *jeu)
 {
     m_credit_defil += temps_ecoule * 20;
 
@@ -859,7 +935,7 @@ void  c_MainMenu::E_Credits()
         moteurGraphique->AjouterTexte(&texte,19,1);
     }
 
-    texte.SetStyle(0);
+   /* texte.SetStyle(0);
     texte.SetCharacterSize(48);
     texte.SetString(configuration->getText(0,57));
     texte.SetY((int)configuration->Resolution.h/2 + 192 );
@@ -877,21 +953,35 @@ void  c_MainMenu::E_Credits()
     }
     else
         texte.SetColor(Color(150,100,50));
-    moteurGraphique->AjouterTexte(&texte,19,1);
+    moteurGraphique->AjouterTexte(&texte,19,1);*/
+
+    jeu->menu.buttons[5].position.y = configuration->Resolution.h/2+192;
+    jeu->menu.buttons[5].position.x = configuration->Resolution.w/2-jeu->menu.buttons[5].image.position.w/2;
+    sf::Sprite temp = jeu->menu.buttons[5].Afficher(0);
+    moteurGraphique->AjouterCommande(&temp,19,0);
+
+    if(jeu->menu.buttons[5].m_action)
+    {
+        jeu->menu.buttons[5].m_action = false;
+        no_ecran = E_PRINCIPAL;
+    }
 }
-void  c_MainMenu::E_Story()
+void  c_MainMenu::E_Story(Jeu *jeu)
 {
     texte.SetFont(moteurGraphique->m_font);
     texte.SetStyle(0);
     texte.SetCharacterSize(16);
-    texte.SetColor(Color(150,100,50));
+    texte.SetColor(Color(192,160,128));
     texte.SetString(m_story);
     texte.SetY((int)(configuration->Resolution.h/2 - 256));
     texte.SetX((int)(configuration->Resolution.w/2-texte.GetRect().Width/2));
     moteurGraphique->AjouterTexte(&texte,19);
-    texte.SetFont(moteurGraphique->m_font_titre);
 
-    texte.SetStyle(0);    texte.SetCharacterSize(48);
+    jeu->menu.border.Afficher(coordonnee(texte.GetPosition().x - 8,texte.GetPosition().y),
+                              coordonnee(texte.GetRect().Width + 16,texte.GetRect().Height + 12), 18,
+                              sf::Color(224,224,224,192));
+
+    /*texte.SetStyle(0);    texte.SetCharacterSize(48);
     texte.SetString(configuration->getText(0,67));
     texte.SetY((int)configuration->Resolution.h/2 + 192 );
     texte.SetX((int)configuration->Resolution.w/2-texte.GetRect().Width/2);
@@ -908,5 +998,17 @@ void  c_MainMenu::E_Story()
     }
     else
         texte.SetColor(Color(150,100,50));
-    moteurGraphique->AjouterTexte(&texte,19,1);
+    moteurGraphique->AjouterTexte(&texte,19,1);*/
+
+    jeu->menu.buttons[0].position.y = configuration->Resolution.h/2+192;
+    jeu->menu.buttons[0].position.x = configuration->Resolution.w/2-jeu->menu.buttons[0].image.position.w/2;
+    sf::Sprite temp = jeu->menu.buttons[0].Afficher(0);
+    moteurGraphique->AjouterCommande(&temp,19,0);
+
+    if(jeu->menu.buttons[0].m_action)
+    {
+        jeu->menu.buttons[0].m_action = false;
+        no_ecran = E_NOUVEAU;
+        classe_choisie = -1;
+    }
 }

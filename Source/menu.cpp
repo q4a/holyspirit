@@ -27,8 +27,13 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 
+
 using namespace std;
 using namespace sf;
+
+void ChargerBorder(ifstream &fichier, Border &border);
+void ChargerBouton(ifstream &fichier, Bouton_pressoire &bouton);
+void ChargerImageInterface(ifstream &fichier, Image_interface &image_interface);
 
 inline sf::Vector2f AutoScreenAdjust(float x, float y, float decalage = 0)
 {
@@ -57,6 +62,20 @@ Menu::Menu()
     m_speak_choice = -1;
 
     m_cur_talk_hauteur = 1000;
+
+    std::string chemin = configuration->chemin_menus+configuration->language+"/menus.hs";
+
+    ifstream fichier;
+    fichier.open(chemin.c_str(), ios::in);
+    if (fichier)
+    {
+        ChargerBorder(fichier, border);
+        ChargerImageInterface(fichier, mainscreen);
+        ChargerImageInterface(fichier, logo);
+
+        for(unsigned i = 0 ; i < 8 ; ++i)
+            ChargerBouton(fichier, buttons[i]), buttons[i].no_opacity = true;
+    }
 }
 
 void Menu::AfficherHUD(Classe *classe)

@@ -96,6 +96,12 @@ class Menu
 	float m_hauteur;
 	float m_cur_talk_hauteur;
 
+	Border border;
+	Image_interface mainscreen;
+	Image_interface logo;
+	Bouton_pressoire buttons[8];
+
+
 	private:
 	sf::Text texte;
 

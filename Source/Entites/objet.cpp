@@ -1223,7 +1223,8 @@ void Objet::Generer(int bonus)
 
             if(bonus != 0)
             {
-                int random=rand()%10000 / bonus;
+                int random=rand()%10000;
+                random *= 0.1;
                 if (random<=1500)
                     rarete=BONNEFACTURE;
 

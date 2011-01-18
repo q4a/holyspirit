@@ -68,8 +68,8 @@ sf::Sprite Bouton_pressoire::Afficher(float decalage)
     bool hover = false;
 
     if(Survol())
-        if(sprite.GetPixel(eventManager->getPositionSouris().x - (int)sprite.GetPosition().x,
-                           eventManager->getPositionSouris().y - (int)sprite.GetPosition().y).a > 0)
+        if(no_opacity || sprite.GetPixel(eventManager->getPositionSouris().x - (int)sprite.GetPosition().x,
+                                         eventManager->getPositionSouris().y - (int)sprite.GetPosition().y).a > 0)
             hover = true;
 
     if(!eventManager->getEvenement(sf::Mouse::Left,EventClicA))
@@ -627,6 +627,23 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
             if (caractere=='*')
             {
                 fichier>>nom;
+            }
+            if (fichier.eof())
+            {
+                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                caractere='$';
+            }
+        }
+        while (caractere!='$');
+
+
+        do
+        {
+            fichier.get(caractere);
+            if (caractere=='*')
+            {
+                std::string buf;
+                fichier>>buf;
             }
             if (fichier.eof())
             {

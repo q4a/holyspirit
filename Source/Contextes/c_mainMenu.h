@@ -41,8 +41,8 @@ public:
     void  E_Principal(Jeu *jeu);
     void  E_Continuer(Jeu *jeu);
     void  E_Nouveau(Jeu *jeu);
-    void  E_Credits();
-    void  E_Story();
+    void  E_Credits(Jeu *jeu);
+    void  E_Story(Jeu *jeu);
 
     bool m_save;
     bool m_reset;
@@ -57,6 +57,7 @@ private:
     std::vector <int> m_niveau_saves;
     std::vector <bool> m_incompatible_saves;
     std::vector <std::string> m_chemin_saves;
+    std::vector <sf::Sprite> m_apercu_classe;
     std::vector <sf::Sprite> m_images_saves;
     std::string nom_hero;
 
