@@ -25,17 +25,17 @@
 					<Add option="-DNDEBUG" />
 					<Add option="-D_WINDOWS" />
 					<Add option="-DSFML_STATIC" />
-					<Add directory="..\..\SFML2_TEST\include" />
+					<Add directory="..\..\SFML2\include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
 					<Add library="opengl32" />
 					<Add library="glu32" />
-					<Add library="..\..\SFML2_TEST\lib\libsfml-audio-s.a" />
-					<Add library="..\..\SFML2_TEST\lib\libsfml-graphics-s.a" />
-					<Add library="..\..\SFML2_TEST\lib\libsfml-window-s.a" />
-					<Add library="..\..\SFML2_TEST\lib\libsfml-system-s.a" />
-					<Add directory="..\..\SFML2_TEST\lib" />
+					<Add library="..\..\SFML2\lib\libsfml-audio-s.a" />
+					<Add library="..\..\SFML2\lib\libsfml-graphics-s.a" />
+					<Add library="..\..\SFML2\lib\libsfml-window-s.a" />
+					<Add library="..\..\SFML2\lib\libsfml-system-s.a" />
+					<Add directory="..\..\SFML2\lib" />
 				</Linker>
 			</Target>
 			<Target title="Debug">

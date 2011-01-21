@@ -40,6 +40,8 @@ inline sf::Vector2f AutoScreenAdjust(float x, float y, float decalage = 0)
 
 Map::Map()
 {
+    console->Ajouter("Creation minimap :");
+
     for(int y = 0 ; y < MINIMAP_SIZE ; ++y)
     for(int x = 0 ; x < MINIMAP_SIZE ; ++x)
     {
@@ -2129,7 +2131,7 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                     if ((int)script->m_instructions.size()>0)
                         for (int a=0;a<(int)script->m_instructions[0].m_valeurs.size();a++)
                             if (script->m_instructions[0].m_valeurs[a]>=0&&script->m_instructions[0].m_valeurs[a]<(int)script->m_instructions.size())
-                                GererInstructions(jeu,script,(int)script->m_instructions[0].m_valeurs[a],monstre,hero,temps,menu,seDeplacer);
+                               GererInstructions(jeu,script,(int)script->m_instructions[0].m_valeurs[a],monstre,hero,temps,menu,seDeplacer);
 
                     if (Iter_monstre->getErreurPathfinding())
                         Script_RandomDisplace(jeu,script,0,monstre,hero,temps,menu,seDeplacer);

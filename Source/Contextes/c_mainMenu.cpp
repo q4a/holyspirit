@@ -506,7 +506,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
                     jeu->m_chargement->setC_Chargement(configuration->map_start,configuration->map_start_pos);
 
 
-                jeu->hero.Sauvegarder();
+                //jeu->hero.Sauvegarder();
 
                 jeu->m_contexte = jeu->m_chargement;
 
