@@ -6,6 +6,7 @@ main
 		variable * 3 * 0 //MOMENT DE LA DISCUTION
 		variable * 5 * 0
 		variable * 6 * 0 //DERNIER CHOIX
+		variable * 1 * 0
 	end
 	
 	if talk
@@ -25,6 +26,15 @@ main
 				variable * 6 * 2
 				variable * 3 * 2
 				variable * 2 * 0
+				
+				stop_speak
+			end
+			if speak_choice * 4
+			then
+				variable * 6 * 4
+				variable * 3 * 5
+				variable * 2 * 0
+				variable * 1 * 1
 				
 				stop_speak
 			end
@@ -57,7 +67,7 @@ main
 			if speak_choice * 2
 			then
 				variable * 6 * 2
-				variable * 3 * 4
+				variable * 3 * 6
 				variable * 2 * 0
 				
 				stop_speak
@@ -97,21 +107,14 @@ main
 					then
 						speak * 80
 					end
+					variable * 1 * 1
 				else
-					if quest * 4 * 1
-					then
-						if player_class " Data/Miscs/Heroes/Concubine/Concubine.class.hs"
-						then
-							speak * 81
-						end
-						if player_class " Data/Miscs/Heroes/Crusader/Crusader.class.hs"
-						then
-							speak * 80
-						end
-					end
 					if quest * 4 * 2
 					then
 						speak * 88
+						variable * 1 * 1
+					else
+						speak * 168
 					end
 				end
 			end
@@ -132,6 +135,12 @@ main
 		if variable * 3 * 4
 		then
 			speak * 90
+		end
+		
+		if variable * 3 * 5
+		then
+			speak * 170
+			variable * 3 * 0
 		end
 		
 		if variable * 2 * 0
@@ -163,6 +172,11 @@ main
 			if quest * 4 * -1
 			then
 				speak_choice * 84 * 2
+			end
+			
+			if variable * 1 * 0
+			then
+				speak_choice * 169 * 4
 			end
 			
 			speak_choice * 89 * 3

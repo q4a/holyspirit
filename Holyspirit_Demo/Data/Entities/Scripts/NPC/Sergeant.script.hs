@@ -28,6 +28,13 @@ main
 				variable * 2 * 0
 				stop_speak
 			end
+			if speak_choice * 4
+			then
+				variable * 6 * 4
+				variable * 3 * 3
+				variable * 2 * 0
+				stop_speak
+			end
 			if speak_choice * 3
 			then
 				stop_speak
@@ -64,6 +71,13 @@ main
 		end
 		
 		if variable * 2 * 0
+		   variable * 3 * 3
+		then
+			speak * 156
+			variable * 3 * 0
+		end
+		
+		if variable * 2 * 0
 		   variable * 3 * 0
 		then
 			if variable * 6 * 1
@@ -73,6 +87,10 @@ main
 			if variable * 6 * 2
 			then else
 				speak_choice * 152 * 2	
+			end
+			if variable * 6 * 4
+			then else
+				speak_choice * 155 * 4	
 			end
 			speak_choice * 154 * 3
 			
