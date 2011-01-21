@@ -55,7 +55,7 @@ Des diableries ?
 Oui, parfaitement, des diableries. Mes frères moines ont un comportement étrange, parfois malsain, et certains ont mystérieusement disparu... J'entends des bruits dans les catacombes sous l'abbaye la nuit. J'ai d'abord cru à des bêtes sauvages qui se seraient introduites mais je ne sais plus que penser... J'ai peur, je dois l'avouer, et la seule solution que j'ai trouvée est de fermer la porte qui y mène. Mais il faudra bien que quelqu'un aille voir ce qui se passe là-bas... Je suis inquiet pour mes moines !
 Voulez-vous que j'aille voir ?
 Oh ! Je n'osais pas demander... J'ai quelques scrupules à t'envoyer là-bas en solitaire, mais nous ne sommes pas des combattants vois-tu... Si tu as besoin d'aide je ferai ce que je peux ! Tiens, prends la clef des catacombes et bonne chance, Dieu t'assistera !\Reviens vite me raconter ce que tu as vu.
-C’est bien ce qu’il me semblait ! Il se déroulait des choses monstrueuses derrière cette porte… Décidément nous sommes cernés par le mal ! Il est dehors, il est sous nos pieds ! Est-ce que le ciel lui-même est vraiment bienveillant pour nous, pauvres misérables humains ?\Reprenons-nous… Il est urgent de purifier notre sous-sol ! Nous sommes encerclés par le mal mais nous ne pouvons le tolérer dans l’antre du Seigneur !\Pour effectuer la purification tu dois à tout prix trouver les reliques des quatre saints qui sont dispersées dans les catacombes. Ensuite il faudra y escorter un frère mineur pour prononcer une litanie dans l’Oculus, l’ancienne salle de cérémonie des premiers fidèles.\Pour l’instant va chercher les reliques ! Ca fait très longtemps que personne n’est allé les voir et nous avons perdu les plans des catacombes…\Tu devras trouver l’oreille de Sainte Frénégonde, le cœur de Saint Joachim, les yeux de Sainte Galswinthe et le doigt de Saint Clodomir. Bonne chance !
+C'est bien ce qu'il me semblait ! Il se déroulait des choses monstrueuses derrière cette porte... Décidément nous sommes cernés par le mal ! Il est dehors, il est sous nos pieds ! Est-ce que le ciel lui-même est vraiment bienveillant pour nous, pauvres misérables humains ?\Reprenons-nous... Il est urgent de purifier notre sous-sol ! Nous sommes encerclés par le mal mais nous ne pouvons le tolérer dans l'antre du Seigneur !\Pour effectuer la purification tu dois à tout prix trouver les reliques des quatre saints qui sont dispersées dans les catacombes. Ensuite il faudra y escorter un frère mineur pour prononcer une litanie dans l'Oculus, l'ancienne salle de cérémonie des premiers fidèles.\Pour l'instant va chercher les reliques ! Ca fait très longtemps que personne n'est allé les voir et nous avons perdu les plans des catacombes...\Tu devras trouver l'oreille de Sainte Frénégonde, le cœur de Saint Joachim, les yeux de Sainte Galswinthe et le doigt de Saint Clodomir. Bonne chance !
 Enfin, tu as trouvé la source du mal ! Me voilà rassuré, mais pas tant que ça... Le monde entier semble envahi par cette fange répugnante de morts-vivants et d'objets mystérieusement animés... je crois que la fin de cette période chaotique est encore loin hélas !
 Je cherche des armes.
 Tu peux demander à Rognorak, notre forgeron qui s'est réfugié avec nous dans ce lieu saint. C'est un grand gaillard sympathique, il continue à forger des armes même si ça ne sert plus à rien, il dit que ça l'occupe en attendant la fin du monde.
@@ -66,10 +66,10 @@ Ah ! Notre héros !
 Te revoilà, femme ?
 J'ai vu des squelettes dans les catacombes !
 J'ai les reliques.
-Parfait ! Tu as vite fait, je ne pensais même pas que tu y parviendrais pour être franc…\Maintenant va voir le frère mineur à côté de moi, il t’accompagnera pour prononcer la litanie dans l’Oculus. Suis-le et fais en sorte qu’il parvienne à l’Oculus sain et sauf !
+Parfait ! Tu as vite fait, je ne pensais même pas que tu y parviendrais pour être franc...\Maintenant va voir le frère mineur à côté de moi, il t'accompagnera pour prononcer la litanie dans l'Oculus. Suis-le et fais en sorte qu'il parvienne à l'Oculus sain et sauf !
 Le frère a été assassiné par Hergahrt, un prêtre démoniaque !
-Hergahrt, l’ancien prêtre de l’Eglise de Saint Waldinghe ! Mon Dieu… Je ne pensais plus jamais entendre parler de lui… Nous l’avons banni il y a des années pour sa conduite insupportable. Avec un prêtre d’une paroisse voisine nommé Johannes ils passaient leur temps à boire et à rire publiquement du fruit des confessions qu’ils recevaient. Sans parler de tout ce qu’on a pu entendre sur leurs écarts avec les femmes…\Je crois qu’Hergahrt est allé bien plus loin à présent.  Il est le suppôt de l’ignominie qui déferle sur Ruhigland. \Je suis sûr qu’il se terre dans la crypte de son ancienne Eglise, qui communique avec nos catacombes… Tiens, voici la clef de la grille qui sépare nos catacombes de la crypte.\Il faut éliminer Hergahrt, c’est à présent un ennemi de l’Eglise et de la race humaine !
-Bien sûr ! La bénédiction augmente les vertus des armes et armures. Pour que je puisse donner ma bénédiction il me faut de l’eau bénite, une litanie à chanter et bien entendu un objet à bénir !
+Hergahrt, l'ancien prêtre de l'Eglise de Saint Waldinghe ! Mon Dieu... Je ne pensais plus jamais entendre parler de lui... Nous l'avons banni il y a des années pour sa conduite insupportable. Avec un prêtre d'une paroisse voisine nommé Johannes ils passaient leur temps à boire et à rire publiquement du fruit des confessions qu'ils recevaient. Sans parler de tout ce qu'on a pu entendre sur leurs écarts avec les femmes...\Je crois qu'Hergahrt est allé bien plus loin à présent.  Il est le suppôt de l'ignominie qui déferle sur Ruhigland. \Je suis sûr qu'il se terre dans la crypte de son ancienne Eglise, qui communique avec nos catacombes... Tiens, voici la clef de la grille qui sépare nos catacombes de la crypte.\Il faut éliminer Hergahrt, c'est à présent un ennemi de l'Eglise et de la race humaine !
+Bien sûr ! La bénédiction augmente les vertus des armes et armures. Pour que je puisse donner ma bénédiction il me faut de l'eau bénite, une litanie à chanter et bien entendu un objet à bénir !
 Allons-y !
 
 
@@ -87,7 +87,7 @@ Quel service ?
 En fait il y a plein de drôles de créatures partout en ce moment, comme t'as bien dû remarquer. Bon elles sont pas ben solides, souvent un bon coup de bêche entre les deux yeux et on en parle plus !\Mais y a des choses plus coriaces, des sortes de cailloux vivants ! Je les ai vus de mes yeux ! On dirait des cailloux normaux de loin mais y bougent et y t'attaquent si tu t'approches. J'arrive pas à les chasser et je peux plus rentrer chez moi ! Tu veux bien voir ce que tu peux faire ? Je donnerai une bouteille de ma liqueur de navet personnelle à cuy qui chassera ces saloperies de ma maison !
 Je vais voir ce que je peux faire...
 Franchement j'ai mieux à faire  que de m'occuper du muret d'un paysan !
-Merci mille fois ! J’espère que j’peux te faire confiance ! Ten, voilà un peu de ma liqueur de navet. C’est fort mais ça donne de l’énergie, avec ça tu peux labourer sans cheval !
+Merci mille fois ! J'espère que j'peux te faire confiance ! Ten, voilà un peu de ma liqueur de navet. C'est fort mais ça donne de l'énergie, avec ça tu peux labourer sans cheval !
 Au revoir !
 Formidable ! Suis le chemin qui va vers le sud et tu trouveras ma ferme au bord de la route. Tu la reconnaîtras aux monstres qui te sauteront dessus !
 ///ROMULUS TRADER///
@@ -154,8 +154,8 @@ Je suis Waldemar, Sous-Officier de l'Empire. Normalement je suis Sergent mais ét
 Je peux faire quelque chose pour toi ?
 Et bien non, pas pour l'instant. Ces horribles créatures ont l'air d'ignorer l'abbaye pour le moment... J'espère que ça va durer car s'ils s'avisent de donner l'assaut on ne résistera pas bien longtemps. Au moins aura-t-on la consolation de mourir tous en ensemble !
 Au revoir !
-Qu’est-ce qui se passe ?
-Ah ! En voilà une question ! Et bien je ne saurais te répondre précisément. Tout Ruhigland semble être brusquement envahi de créatures hostiles, de cadavres et de squelettes étrangement réanimés… Certains évoquent une créature sanguinaire qui se promène la nuit, surnomée le « faucheur », d’autres parlent d’une monstruosité aux yeux qui brillent comme la braise, dans la forêt… Va faire le tri entre les fantasmes de ces bouseux et la réalité !\En tout cas nous sommes nombreux à penser que tout ça a quelque chose à voir avec une vengeance des barbares…
+Qu'est-ce qui se passe ?
+Ah ! En voilà une question ! Et bien je ne saurais te répondre précisément. Tout Ruhigland semble être brusquement envahi de créatures hostiles, de cadavres et de squelettes étrangement réanimés... Certains évoquent une créature sanguinaire qui se promène la nuit, surnomée le « faucheur », d'autres parlent d'une monstruosité aux yeux qui brillent comme la braise, dans la forêt... Va faire le tri entre les fantasmes de ces bouseux et la réalité !\En tout cas nous sommes nombreux à penser que tout ça a quelque chose à voir avec une vengeance des barbares...
 
 
 
@@ -169,7 +169,7 @@ Ah ! En voilà une question ! Et bien je ne saurais te répondre précisément. Tout
 ///FERMIER SUITE///
 Prend garde au faucheur !
 Le faucheur ?
-Oué, le faucheur ! Tu connais pas ? C’est une sorte de grand échalas avec une tête de bestiau ! L’est horrible le faucheur ! Et terrible, personne peut le tuer, dix paysans sont morts avec leur fourche en essayant de le zigouiller. Y sort que la nuit, alors faut s’enfermer le soir. Le jour on le voit jamais !
+Oué, le faucheur ! Tu connais pas ? C'est une sorte de grand échalas avec une tête de bestiau ! L'est horrible le faucheur ! Et terrible, personne peut le tuer, dix paysans sont morts avec leur fourche en essayant de le zigouiller. Y sort que la nuit, alors faut s'enfermer le soir. Le jour on le voit jamais !
 
 
 
