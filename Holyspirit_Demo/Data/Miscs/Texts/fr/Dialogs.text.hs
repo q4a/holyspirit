@@ -77,7 +77,6 @@ Allons-y !
 
 
 
-
 ///FERMIER///
 Crévindiou ! Qu'est-ce que tu fais là mon gars ? T'as l'air d'un estranger mais t'es bien bâti dis donc ! Tu voudrais donc pas m'rendre un service ?
 Ben l'bonjour mamzelle ! Laissez moi deviner : vous v'nez d'la ville non ? C'qui font pas comme chiffons maintenant... Si vous connaissez un gaillard costaud j'aurais besoin d'un service pour m'en retourner dans ma ferme.
