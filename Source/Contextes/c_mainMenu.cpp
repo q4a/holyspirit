@@ -373,6 +373,9 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
     sf::Sprite temp = jeu->menu.buttons[5].Afficher(0);
     moteurGraphique->AjouterCommande(&temp,18,0);
 
+    if(m_supprimer_heros)
+        jeu->menu.buttons[5].m_hover = false;
+
     if(jeu->menu.buttons[5].m_action)
     {
         jeu->menu.buttons[5].m_action = false;

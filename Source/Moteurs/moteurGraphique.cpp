@@ -344,18 +344,35 @@ void MoteurGraphique::Afficher()
         m_light_screen2.Display();
 
 
-
-        EffectBlur2.SetParameter("direction_x", 1.0);
-        sf::Sprite buf;
-        buf.SetImage(m_light_screen2.GetImage());
-        m_light_screen2.SetView(m_light_screen2.GetDefaultView());
-        m_light_screen2.Draw(buf, EffectBlur2);
-        m_light_screen2.Display();
-        EffectBlur2.SetParameter("direction_x", 0);
+        if(configuration->postFX)
+        {
+            EffectBlur2.SetParameter("direction_x", 1.0);
+            sf::Sprite buf;
+            buf.SetImage(m_light_screen2.GetImage());
+            m_light_screen2.SetView(m_light_screen2.GetDefaultView());
+            m_light_screen2.Draw(buf, EffectBlur2);
+            m_light_screen2.Display();
+            EffectBlur2.SetParameter("direction_x", 0);
+        }
     }
 
     if (configuration->Lumiere > 0 && configuration->RafraichirLumiere)
     {
+
+        /*m_light_screen.Clear(sf::Color(m_soleil.rouge * m_soleil.intensite/255,
+                                       m_soleil.vert  * m_soleil.intensite/255,
+                                       m_soleil.bleu  * m_soleil.intensite/255,255));*/
+
+
+        m_light_screen.SetView(m_light_screen.GetDefaultView());
+        sf::Sprite sprite_b;
+        sprite_b.SetColor(sf::Color(m_soleil.rouge * m_soleil.intensite/255,
+                                       m_soleil.vert  * m_soleil.intensite/255,
+                                       m_soleil.bleu  * m_soleil.intensite/255,255));
+        sprite_b.Resize(m_light_screen.GetWidth(),m_light_screen.GetHeight());
+        m_light_screen.Draw(sprite_b);
+
+
         sf::View temp = m_camera;
         temp.SetSize(configuration->Resolution.x + 64, configuration->Resolution.y + 64);
         temp.Zoom(configuration->zoom);
@@ -364,21 +381,20 @@ void MoteurGraphique::Afficher()
 
         m_light_screen.SetView(temp);
 
-        m_light_screen.Clear(sf::Color(m_soleil.rouge * m_soleil.intensite/255,
-                                       m_soleil.vert  * m_soleil.intensite/255,
-                                       m_soleil.bleu  * m_soleil.intensite/255,255));
-
         LightManager->Draw(&m_light_screen,&temp);
 
         m_light_screen.Display();
 
-        EffectBlur.SetParameter("direction_x", 1.0);
-        sf::Sprite buf;
-        buf.SetImage(m_light_screen.GetImage());
-        m_light_screen.SetView(m_light_screen.GetDefaultView());
-        m_light_screen.Draw(buf, EffectBlur);
-        m_light_screen.Display();
-        EffectBlur.SetParameter("direction_x", 0);
+        if(configuration->postFX)
+        {
+            EffectBlur.SetParameter("direction_x", 1.0);
+            sf::Sprite buf;
+            buf.SetImage(m_light_screen.GetImage());
+            m_light_screen.SetView(m_light_screen.GetDefaultView());
+            m_light_screen.Draw(buf, EffectBlur);
+            m_light_screen.Display();
+            EffectBlur.SetParameter("direction_x", 0);
+        }
     }
 
     if(configuration->Reflection)

@@ -1965,12 +1965,19 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
             bool add_point = false;
 
             if (m_personnage.getCaracteristique().miracles_restant > 0)
-                if (m_classe.miracles[i].m_buf == -1 || m_classe.miracles[i].m_buf != -1 && m_lvl_miracles[m_classe.miracles[i].m_buf] > 0)
+            {
+                if (m_classe.miracles[i].m_buf == -1 || m_lvl_miracles[m_classe.miracles[i].m_buf] > 0)
                 {
                     sf::Sprite sprite2 = m_classe.miracles_plus_button[i].Afficher(decalage);
 
                     moteurGraphique->AjouterCommande(&sprite2, 17,0);
                 }
+                else
+                    m_classe.miracles_plus_button[i].m_hover = false;
+            }
+            else
+                m_classe.miracles_plus_button[i].m_hover = false;
+
 
             if (!m_classe.miracles_plus_button[i].m_hover
                 &&eventManager->getPositionSouris().x > m_classe.position_miracles[i].x + m_classe.miracles_cadre.position.x + (configuration->Resolution.x - 800) * 0.5
@@ -2028,6 +2035,8 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                             if(m_personnage.m_miracleALancer == -1 && !m_classe.miracles[i].m_direct)
                                 m_personnage.m_miracleALancer = i;
                         }
+
+                        ChargerModele();
                     }
             }
         }
