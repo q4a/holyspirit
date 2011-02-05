@@ -1223,8 +1223,8 @@ void Objet::Generer(int bonus)
 
             if(bonus != 0)
             {
-                int random=rand()%10000;
-                random *= 0.1;
+                int random=rand()%10000 / bonus;
+
                 if (random<=1500)
                     rarete=BONNEFACTURE;
 
@@ -1928,6 +1928,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
 
     if (compare)
     {
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
         if(m_equipe >= 0)
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,18).c_str()));
         else
@@ -2098,7 +2099,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
     }
 
-    if(m_type != CONSOMMABLE && m_type != AUCUN && m_type != DOCUMENT && m_type != SCHEMA && m_type != LITANIE)
+    if(m_type != CONSOMMABLE && m_type != AUCUN && m_type != DOCUMENT && m_type != SCHEMA && m_type != LITANIE && m_type != JEWELERY)
     {
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
