@@ -395,7 +395,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
     jeu->Clock.Reset();
 
     if(!m_chargement)
-    if ((z>=49 && !augmenterNoir && allerVersImageChargement) || m_debut && jeu->m_display)
+    if ((z>=49 && !augmenterNoir && allerVersImageChargement) || (m_debut && jeu->m_display))
     {
         PreLoad(jeu);
 

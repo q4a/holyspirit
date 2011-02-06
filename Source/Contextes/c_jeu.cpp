@@ -443,11 +443,11 @@ void GestionRaccourcis(Jeu *jeu, bool diplace_mode = false)
     for(int i = 0 ; i < 8 ; ++i)
     {
         if (eventManager->getEvenement(configuration->m_key_actions[K_SHORTCUT_1+i],EventKey)
-            || eventManager->getEvenement(Mouse::Left,EventClicA)
+            ||(eventManager->getEvenement(Mouse::Left,EventClicA)
             && eventManager->getPositionSouris().x > AutoScreenAdjust(jeu->hero.m_classe.position_raccourcis[i].x,0).x
             && eventManager->getPositionSouris().x < AutoScreenAdjust(jeu->hero.m_classe.position_raccourcis[i].x,0).x + jeu->hero.m_classe.position_raccourcis[i].w
             && eventManager->getPositionSouris().y > AutoScreenAdjust(0,jeu->hero.m_classe.position_raccourcis[i].y).y
-            && eventManager->getPositionSouris().y < AutoScreenAdjust(0,jeu->hero.m_classe.position_raccourcis[i].y).y + jeu->hero.m_classe.position_raccourcis[i].h)
+            && eventManager->getPositionSouris().y < AutoScreenAdjust(0,jeu->hero.m_classe.position_raccourcis[i].y).y + jeu->hero.m_classe.position_raccourcis[i].h))
         {
             if(!diplace_mode || eventManager->getEvenement(configuration->m_key_actions[K_SHORTCUT_1+i],EventKey))
                 if(jeu->hero.m_raccourcis[i].no >= 0)
@@ -632,11 +632,11 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false)
     }
 
     if (eventManager->getEvenement(Key::Return,EventKey)
-     || eventManager->getPositionSouris().x > AutoScreenAdjust(jeu->hero.m_classe.position_bouton_dialogue.x,0).x
+     ||(eventManager->getPositionSouris().x > AutoScreenAdjust(jeu->hero.m_classe.position_bouton_dialogue.x,0).x
      && eventManager->getPositionSouris().x < AutoScreenAdjust(jeu->hero.m_classe.position_bouton_dialogue.x + jeu->hero.m_classe.position_bouton_dialogue.w,0).x
      && eventManager->getPositionSouris().y > AutoScreenAdjust(0,jeu->hero.m_classe.position_bouton_dialogue.y + jeu->hero.m_classe.talk.position.h - jeu->menu.m_hauteur).y
      && eventManager->getPositionSouris().y < AutoScreenAdjust(0,jeu->hero.m_classe.position_bouton_dialogue.y + jeu->hero.m_classe.talk.position.h - jeu->menu.m_hauteur + jeu->hero.m_classe.position_bouton_dialogue.h).y
-     && eventManager->getEvenement(Mouse::Left,EventClicA))
+     && eventManager->getEvenement(Mouse::Left,EventClicA)))
     {
         if(!jeu->menu.m_dialogue.empty()/* && jeu->m_jeu->alpha_dialog > 192*/)
         {

@@ -40,6 +40,8 @@ private:
     float temps_ecoule,m_alpha;
     bool retour;
     sf::Text texte;
+
+    Bouton_pressoire buttons_principal[4];
 };
 
 #endif

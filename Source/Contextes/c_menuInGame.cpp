@@ -96,59 +96,109 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     {
         texte.SetCharacterSize(56);
 
-        jeu->menu.buttons[5].position.y = configuration->Resolution.h/2 - 140;
-        jeu->menu.buttons[5].position.x = configuration->Resolution.w/2-jeu->menu.buttons[5].image.position.w/2;
-        sf::Sprite temp = jeu->menu.buttons[5].Afficher(0);
-        temp.SetColor(Color(255,255,255,(int)m_alpha));
-        moteurGraphique->AjouterCommande(&temp,19,0);
 
-        if(jeu->menu.buttons[5].m_action)
+        buttons_principal[0].no_opacity = true;
+        buttons_principal[0].position.w = moteurGraphique->special_typo.getSize(configuration->getText(0,0), 72);
+        buttons_principal[0].position.h = 64;
+        buttons_principal[0].position.y = configuration->Resolution.h/2 - 140;
+        buttons_principal[0].position.x = configuration->Resolution.w/2-buttons_principal[0].position.w/2;
+        buttons_principal[0].Afficher(0);
+
+        if(buttons_principal[0].m_press)
+            moteurGraphique->special_typo_p.Draw(configuration->getText(0,0), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                            buttons_principal[0].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
+        else if(buttons_principal[0].m_hover)
+            moteurGraphique->special_typo_h.Draw(configuration->getText(0,0), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                            buttons_principal[0].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
+        else
+            moteurGraphique->special_typo.Draw(configuration->getText(0,0), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                          buttons_principal[0].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
+
+        if(buttons_principal[0].m_action)
         {
-            jeu->menu.buttons[5].m_action = false;
+            buttons_principal[0].m_action = false;
             retour=1;
             jeu->next_screen = 3;
         }
 
-        jeu->menu.buttons[2].position.y = configuration->Resolution.h/2 - 70;
-        jeu->menu.buttons[2].position.x = configuration->Resolution.w/2-jeu->menu.buttons[2].image.position.w/2;
-        temp = jeu->menu.buttons[2].Afficher(0);
-        temp.SetColor(Color(255,255,255,(int)m_alpha));
-        moteurGraphique->AjouterCommande(&temp,19,0);
 
-        if(jeu->menu.buttons[2].m_action)
+
+        buttons_principal[1].no_opacity = true;
+        buttons_principal[1].position.w = moteurGraphique->special_typo.getSize(configuration->getText(0,55), 72);
+        buttons_principal[1].position.h = 64;
+        buttons_principal[1].position.y = configuration->Resolution.h/2 - 70;
+        buttons_principal[1].position.x = configuration->Resolution.w/2-buttons_principal[1].position.w/2;
+        buttons_principal[1].Afficher(0);
+
+        if(buttons_principal[1].m_press)
+            moteurGraphique->special_typo_p.Draw(configuration->getText(0,55), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                            buttons_principal[1].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
+        else if(buttons_principal[1].m_hover)
+            moteurGraphique->special_typo_h.Draw(configuration->getText(0,55), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                            buttons_principal[1].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
+        else
+            moteurGraphique->special_typo.Draw(configuration->getText(0,55), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                          buttons_principal[1].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
+
+        if(buttons_principal[1].m_action)
         {
-            jeu->menu.buttons[2].m_action = false;
+            buttons_principal[1].m_action = false;
             options = true;
             configuration->no_menu_option = 0;
         }
 
-        jeu->menu.buttons[7].position.y = configuration->Resolution.h/2;
-        jeu->menu.buttons[7].position.x = configuration->Resolution.w/2-jeu->menu.buttons[7].image.position.w/2;
-        temp = jeu->menu.buttons[7].Afficher(0);
-        temp.SetColor(Color(255,255,255,(int)m_alpha));
-        moteurGraphique->AjouterCommande(&temp,19,0);
 
-        if(jeu->menu.buttons[7].m_action)
+        buttons_principal[2].no_opacity = true;
+        buttons_principal[2].position.w = moteurGraphique->special_typo.getSize(configuration->getText(0,1), 72);
+        buttons_principal[2].position.h = 64;
+        buttons_principal[2].position.y = configuration->Resolution.h/2;
+        buttons_principal[2].position.x = configuration->Resolution.w/2-buttons_principal[2].position.w/2;
+        buttons_principal[2].Afficher(0);
+
+        if(buttons_principal[2].m_press)
+            moteurGraphique->special_typo_p.Draw(configuration->getText(0,1), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                            buttons_principal[2].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
+        else if(buttons_principal[2].m_hover)
+            moteurGraphique->special_typo_h.Draw(configuration->getText(0,1), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                            buttons_principal[2].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
+        else
+            moteurGraphique->special_typo.Draw(configuration->getText(0,1), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                          buttons_principal[2].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
+
+        if(buttons_principal[2].m_action)
         {
-            jeu->menu.buttons[7].m_action = false;
+            buttons_principal[2].m_action = false;
             jeu->m_mainMenu->m_save=true;
             jeu->m_contexte = jeu->m_mainMenu;
         }
 
-        texte.SetString(configuration->getText(0,2));
-        texte.SetY(configuration->Resolution.h/2+70);
-        texte.SetX(configuration->Resolution.w/2-texte.GetRect().Width/2);
-        if (eventManager->getPositionSouris().y > texte.GetPosition().y
-         && eventManager->getPositionSouris().y < texte.GetPosition().y+texte.GetRect().Height)
-        {
-            texte.SetColor(Color(192,160,128,(int)m_alpha));
-            if (eventManager->getEvenement(Mouse::Left,EventClic))
-                jeu->m_mainMenu->m_reset=true,jeu->m_mainMenu->m_save=true, jeu->m_contexte = jeu->m_mainMenu,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
-            eventManager->StopEvenement(Mouse::Left,EventClic);
-        }
+
+        buttons_principal[3].no_opacity = true;
+        buttons_principal[3].position.w = moteurGraphique->special_typo.getSize(configuration->getText(0,2), 72);
+        buttons_principal[3].position.h = 64;
+        buttons_principal[3].position.y = configuration->Resolution.h/2+70;
+        buttons_principal[3].position.x = configuration->Resolution.w/2-buttons_principal[3].position.w/2;
+        buttons_principal[3].Afficher(0);
+
+        if(buttons_principal[3].m_press)
+            moteurGraphique->special_typo_p.Draw(configuration->getText(0,2), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                            buttons_principal[3].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
+        else if(buttons_principal[3].m_hover)
+            moteurGraphique->special_typo_h.Draw(configuration->getText(0,2), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                            buttons_principal[3].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
         else
-            texte.SetColor(Color(150,100,50,(int)m_alpha));
-        moteurGraphique->AjouterTexte(&texte,19,1);
+            moteurGraphique->special_typo.Draw(configuration->getText(0,2), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                          buttons_principal[3].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
+
+        if(buttons_principal[3].m_action)
+        {
+            buttons_principal[3].m_action = false;
+            jeu->m_mainMenu->m_save=true;
+            jeu->m_mainMenu->m_reset=true;
+            jeu->m_contexte = jeu->m_mainMenu;
+        }
+
+
     }
     else if(configuration->Options())
         options = false;

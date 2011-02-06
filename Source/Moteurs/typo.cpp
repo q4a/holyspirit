@@ -25,7 +25,7 @@ void Typo::Load(const std::string &path)
             {
                 string img_path;
                 fichier>>img_path;
-                m_img = moteurGraphique->AjouterImage(img_path);
+                m_img = moteurGraphique->AjouterImage(img_path, -1);
             }
             if (fichier.eof())
             {
@@ -73,7 +73,7 @@ void Typo::Load(const std::string &path)
 }
 
 
-void Typo::Draw(const std::string &text, sf::Vector2f pos, int size, int layer, bool center)
+void Typo::Draw(const std::string &text, sf::Vector2f pos, int size, int layer, bool center, sf::Color color)
 {
     std::vector<sf::Sprite> sprites;
 
@@ -86,6 +86,7 @@ void Typo::Draw(const std::string &text, sf::Vector2f pos, int size, int layer, 
         Character buf = getCharacter(text[i], maj);
 
         sprites.push_back(sf::Sprite ());
+        sprites.back().SetColor(color);
         sprites.back().SetImage(*moteurGraphique->getImage(m_img));
         sprites.back().SetPosition(cur_pos);
         sprites.back().SetSubRect(sf::IntRect(buf.pos, buf.size));
@@ -210,6 +211,12 @@ Character &Typo::getCharacter(char car, bool &maj)
         return m_chars[38];
     if(car == '0')
         return m_chars[39];
+    if(car == '|')
+        return m_chars[40];
+    if(car == '\'')
+        return m_chars[41];
+    if(car == '-')
+        return m_chars[42];
 
     return m_chars.front();
 }
