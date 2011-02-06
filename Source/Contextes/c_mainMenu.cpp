@@ -257,26 +257,50 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
     m_hs_logo.SetPosition((configuration->Resolution.x - m_hs_logo.GetSize().x)/2,-16);
     moteurGraphique->AjouterCommande(&m_hs_logo, 19, 0);
 
-    jeu->menu.buttons[0].position.y = configuration->Resolution.h/2-96;
-    jeu->menu.buttons[0].position.x = configuration->Resolution.w/2-jeu->menu.buttons[0].image.position.w/2;
-    sf::Sprite temp = jeu->menu.buttons[0].Afficher(0);
-    moteurGraphique->AjouterCommande(&temp,19,0);
+    buttons_principal[0].no_opacity = true;
+    buttons_principal[0].position.w = moteurGraphique->special_typo.getSize(configuration->getText(0,53), 72);
+    buttons_principal[0].position.h = 64;
+    buttons_principal[0].position.y = configuration->Resolution.h/2-96;
+    buttons_principal[0].position.x = configuration->Resolution.w/2-buttons_principal[0].position.w/2;
+    buttons_principal[0].Afficher(0);
 
-    if(jeu->menu.buttons[0].m_action)
+    if(buttons_principal[0].m_press)
+        moteurGraphique->special_typo_p.Draw(configuration->getText(0,53), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                        buttons_principal[0].position.y), 72, 19, true);
+    else if(buttons_principal[0].m_hover)
+        moteurGraphique->special_typo_h.Draw(configuration->getText(0,53), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                        buttons_principal[0].position.y), 72, 19, true);
+    else
+        moteurGraphique->special_typo.Draw(configuration->getText(0,53), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                      buttons_principal[0].position.y), 72, 19, true);
+
+    if(buttons_principal[0].m_action)
     {
-        jeu->menu.buttons[0].m_action = false;
+        buttons_principal[0].m_action = false;
         no_ecran = E_CONTINUER;
         ChargerListeSaves();
     }
 
-    jeu->menu.buttons[1].position.y = configuration->Resolution.h/2-32;
-    jeu->menu.buttons[1].position.x = configuration->Resolution.w/2-jeu->menu.buttons[1].image.position.w/2;
-    temp = jeu->menu.buttons[1].Afficher(0);
-    moteurGraphique->AjouterCommande(&temp,19,0);
+    buttons_principal[1].no_opacity = true;
+    buttons_principal[1].position.w = moteurGraphique->special_typo.getSize(configuration->getText(0,54), 72);
+    buttons_principal[1].position.h = 64;
+    buttons_principal[1].position.y = configuration->Resolution.h/2-32;
+    buttons_principal[1].position.x = configuration->Resolution.w/2-buttons_principal[1].position.w/2;
+    buttons_principal[1].Afficher(0);
 
-    if(jeu->menu.buttons[1].m_action)
+    if(buttons_principal[1].m_press)
+        moteurGraphique->special_typo_p.Draw(configuration->getText(0,54), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                        buttons_principal[1].position.y), 72, 19, true);
+    else if(buttons_principal[1].m_hover)
+        moteurGraphique->special_typo_h.Draw(configuration->getText(0,54), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                        buttons_principal[1].position.y), 72, 19, true);
+    else
+        moteurGraphique->special_typo.Draw(configuration->getText(0,54), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                      buttons_principal[1].position.y), 72, 19, true);
+
+    if(buttons_principal[1].m_action)
     {
-        jeu->menu.buttons[1].m_action = false;
+        buttons_principal[1].m_action = false;
         no_ecran = E_STORY;
         m_chemin_saves.clear();
         m_nom_classes.clear();
@@ -319,41 +343,79 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
         }
     }
 
-    jeu->menu.buttons[2].position.y = configuration->Resolution.h/2+32;
-    jeu->menu.buttons[2].position.x = configuration->Resolution.w/2-jeu->menu.buttons[2].image.position.w/2;
-    temp = jeu->menu.buttons[2].Afficher(0);
-    moteurGraphique->AjouterCommande(&temp,19,0);
+    buttons_principal[2].no_opacity = true;
+    buttons_principal[2].position.w = moteurGraphique->special_typo.getSize(configuration->getText(0,55), 72);
+    buttons_principal[2].position.h = 64;
+    buttons_principal[2].position.y = configuration->Resolution.h/2+32;
+    buttons_principal[2].position.x = configuration->Resolution.w/2-buttons_principal[2].position.w/2;
+    buttons_principal[2].Afficher(0);
 
-    if(jeu->menu.buttons[2].m_action)
+    if(buttons_principal[2].m_press)
+        moteurGraphique->special_typo_p.Draw(configuration->getText(0,55), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                        buttons_principal[2].position.y), 72, 19, true);
+    else if(buttons_principal[2].m_hover)
+        moteurGraphique->special_typo_h.Draw(configuration->getText(0,55), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                        buttons_principal[2].position.y), 72, 19, true);
+    else
+        moteurGraphique->special_typo.Draw(configuration->getText(0,55), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                      buttons_principal[2].position.y), 72, 19, true);
+
+    if(buttons_principal[2].m_action)
     {
-        jeu->menu.buttons[2].m_action = false;
+        buttons_principal[2].m_action = false;
         no_ecran = E_OPTION;
         configuration->no_menu_option = O_PRINCIPAL;
     }
 
-    jeu->menu.buttons[3].position.y = configuration->Resolution.h/2+96;
-    jeu->menu.buttons[3].position.x = configuration->Resolution.w/2-jeu->menu.buttons[3].image.position.w/2;
-    temp = jeu->menu.buttons[3].Afficher(0);
-    moteurGraphique->AjouterCommande(&temp,19,0);
+    buttons_principal[3].no_opacity = true;
+    buttons_principal[3].position.w = moteurGraphique->special_typo.getSize(configuration->getText(0,65), 72);
+    buttons_principal[3].position.h = 64;
+    buttons_principal[3].position.y = configuration->Resolution.h/2+96;
+    buttons_principal[3].position.x = configuration->Resolution.w/2-buttons_principal[3].position.w/2;
+    buttons_principal[3].Afficher(0);
 
-    if(jeu->menu.buttons[3].m_action)
+    if(buttons_principal[3].m_press)
+        moteurGraphique->special_typo_p.Draw(configuration->getText(0,65), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                        buttons_principal[3].position.y), 72, 19, true);
+    else if(buttons_principal[3].m_hover)
+        moteurGraphique->special_typo_h.Draw(configuration->getText(0,65), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                        buttons_principal[3].position.y), 72, 19, true);
+    else
+        moteurGraphique->special_typo.Draw(configuration->getText(0,65), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                      buttons_principal[3].position.y), 72, 19, true);
+
+    if(buttons_principal[3].m_action)
     {
-        jeu->menu.buttons[3].m_action = false;
+        buttons_principal[3].m_action = false;
         no_ecran = E_CREDITS;
         m_credit_defil = 0;
     }
 
-    jeu->menu.buttons[4].position.y = configuration->Resolution.h/2+160;
-    jeu->menu.buttons[4].position.x = configuration->Resolution.w/2-jeu->menu.buttons[4].image.position.w/2;
-    temp = jeu->menu.buttons[4].Afficher(0);
-    moteurGraphique->AjouterCommande(&temp,19,0);
+    buttons_principal[4].no_opacity = true;
+    buttons_principal[4].position.w = moteurGraphique->special_typo.getSize(configuration->getText(0,56), 72);
+    buttons_principal[4].position.h = 64;
+    buttons_principal[4].position.y = configuration->Resolution.h/2+160;
+    buttons_principal[4].position.x = configuration->Resolution.w/2-buttons_principal[4].position.w/2;
+    buttons_principal[4].Afficher(0);
 
-    if(jeu->menu.buttons[4].m_action)
+    if(buttons_principal[4].m_press)
+        moteurGraphique->special_typo_p.Draw(configuration->getText(0,56), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                        buttons_principal[4].position.y), 72, 19, true);
+    else if(buttons_principal[4].m_hover)
+        moteurGraphique->special_typo_h.Draw(configuration->getText(0,56), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                        buttons_principal[4].position.y), 72, 19, true);
+    else
+        moteurGraphique->special_typo.Draw(configuration->getText(0,56), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                      buttons_principal[4].position.y), 72, 19, true);
+
+    if(buttons_principal[4].m_action)
     {
-        jeu->menu.buttons[4].m_action = false;
+        buttons_principal[4].m_action = false;
         jeu->m_run=false;
     }
 }
+
+
 void  c_MainMenu::E_Continuer(Jeu *jeu)
 {
     jeu->m_no_printscreen = true;
@@ -368,17 +430,29 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         no_ecran = E_PRINCIPAL, m_supprimer_heros = false,nom_hero.clear(),jeu->m_no_printscreen = false;
 
 
-    jeu->menu.buttons[5].position.y = configuration->Resolution.h/2+192;
-    jeu->menu.buttons[5].position.x = configuration->Resolution.w/2-jeu->menu.buttons[5].image.position.w/2;
-    sf::Sprite temp = jeu->menu.buttons[5].Afficher(0);
-    moteurGraphique->AjouterCommande(&temp,18,0);
+    buttons_continuer[0].no_opacity = true;
+    buttons_continuer[0].position.w = moteurGraphique->special_typo.getSize(configuration->getText(0,0), 72);
+    buttons_continuer[0].position.h = 64;
+    buttons_continuer[0].position.y = configuration->Resolution.h/2+192;
+    buttons_continuer[0].position.x = configuration->Resolution.w/2-buttons_continuer[0].position.w/2;
+    buttons_continuer[0].Afficher(0);
+
+    if(buttons_continuer[0].m_press)
+        moteurGraphique->special_typo_p.Draw(configuration->getText(0,0), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                        buttons_continuer[0].position.y), 72, 19, true);
+    else if(buttons_continuer[0].m_hover)
+        moteurGraphique->special_typo_h.Draw(configuration->getText(0,0), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                        buttons_continuer[0].position.y), 72, 19, true);
+    else
+        moteurGraphique->special_typo.Draw(configuration->getText(0,0), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                      buttons_continuer[0].position.y), 72, 19, true);
 
     if(m_supprimer_heros)
-        jeu->menu.buttons[5].m_hover = false;
+        buttons_continuer[0].m_hover = false;
 
-    if(jeu->menu.buttons[5].m_action)
+    if(buttons_continuer[0].m_action)
     {
-        jeu->menu.buttons[5].m_action = false;
+        buttons_continuer[0].m_action = false;
         no_ecran = E_PRINCIPAL;
         jeu->m_no_printscreen = false;
         m_supprimer_heros = false;
@@ -387,27 +461,32 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
 
     texte.SetCharacterSize(18);
 
-    texte.SetString(configuration->getText(0,95));
-    texte.SetY((int)configuration->Resolution.h/2 + 192 + 48 );
-    texte.SetX((int)configuration->Resolution.w/2 + 192);
-    if (eventManager->getPositionSouris().y >  texte.GetRect().Top
-      &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height)
-      &&eventManager->getPositionSouris().x >  texte.GetRect().Left
-      &&eventManager->getPositionSouris().x < (texte.GetRect().Left + texte.GetRect().Width))
-    {
-        texte.SetColor(Color(100,50,0));
-        if(eventManager->getEvenement(Mouse::Left,EventClic))
-        {
-            m_supprimer_heros = true;
-            moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
-            eventManager->StopEvenement(Mouse::Left,EventClic);
-        }
-    }
-    else
-        texte.SetColor(Color(150,100,50));
-    moteurGraphique->AjouterTexte(&texte,18,1);
 
-    texte.SetCharacterSize(18);
+    buttons_continuer[1].no_opacity = true;
+    buttons_continuer[1].position.w = moteurGraphique->special_typo.getSize(configuration->getText(0,95), 32);
+    buttons_continuer[1].position.h = 32;
+    buttons_continuer[1].position.y = configuration->Resolution.h/2+ 192 + 64;
+    buttons_continuer[1].position.x = configuration->Resolution.w/2-buttons_continuer[1].position.w/2 + 224;
+    buttons_continuer[1].Afficher(0);
+
+    if(buttons_continuer[1].m_press)
+        moteurGraphique->special_typo_p.Draw(configuration->getText(0,95), sf::Vector2f(buttons_continuer[1].position.x,
+                                                                                        buttons_continuer[1].position.y), 32, 19, false);
+    else if(buttons_continuer[1].m_hover)
+        moteurGraphique->special_typo_h.Draw(configuration->getText(0,95), sf::Vector2f(buttons_continuer[1].position.x,
+                                                                                        buttons_continuer[1].position.y), 32, 19, false);
+    else
+        moteurGraphique->special_typo.Draw(configuration->getText(0,95), sf::Vector2f(buttons_continuer[1].position.x,
+                                                                                      buttons_continuer[1].position.y), 32, 19, false);
+
+
+    if(buttons_continuer[1].m_action)
+    {
+        buttons_continuer[1].m_action = false;
+        m_supprimer_heros = true;
+    }
+
+
 
     unsigned i;
     for(i = defilement_saves ; i < m_chemin_saves.size()
@@ -476,8 +555,8 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
             moteurGraphique->AjouterCommande(&m_images_saves[i],19,0);
             m_images_saves[i].SetBlendMode(sf::Blend::Alpha);
 
-            texte.SetColor(Color(200,150,100));
-            texte_niv.SetColor(Color(200,150,100));
+            texte.SetColor(Color(224,224,224));
+            texte_niv.SetColor(Color(224,224,224));
             if(eventManager->getEvenement(Mouse::Left,EventClic))
             //if(!m_incompatible_saves[i])
             {
@@ -520,13 +599,11 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
             }
         }
         else
-            texte.SetColor(Color(150,100,50)),texte_niv.SetColor(Color(150,100,50));
+            texte.SetColor(Color(192,160,128)),texte_niv.SetColor(Color(192,160,128));
 
         moteurGraphique->AjouterTexte(&texte,18,0);
         moteurGraphique->AjouterTexte(&texte_niv,18,0);
     }
-
-    texte.SetColor(Color(150,100,50));
 
     texte.SetCharacterSize(16);
     {
@@ -596,7 +673,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         texte.SetY((int)configuration->Resolution.h - 128 );
         texte.SetX((int)configuration->Resolution.w/2 - texte.GetRect().Width/2);
 
-        texte.SetColor(Color(150,100,50));
+        texte.SetColor(Color(224,224,224));
         moteurGraphique->AjouterTexte(&texte,19,0);
 
 
@@ -625,7 +702,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
 
         texte.SetY((int)configuration->Resolution.h - 96 );
 
-        texte.SetColor(Color(150,100,50));
+        texte.SetColor(Color(224,224,224));
         moteurGraphique->AjouterTexte(&texte,19,0);
 
         texte.SetString(configuration->getText(0,95));
@@ -637,7 +714,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
           &&eventManager->getPositionSouris().x >  texte.GetRect().Left
           &&eventManager->getPositionSouris().x < (texte.GetRect().Left + texte.GetRect().Width))
         {
-            texte.SetColor(Color(100,50,0));
+            texte.SetColor(Color(160,128,128));
             if(eventManager->getEvenement(Mouse::Left,EventClic))
             {
                 m_supprimer_heros = false;
@@ -653,7 +730,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
             }
         }
         else
-            texte.SetColor(Color(150,100,50));
+            texte.SetColor(Color(224,224,224));
 
         moteurGraphique->AjouterTexte(&texte,19,0);
     }
@@ -997,20 +1074,33 @@ void  c_MainMenu::E_Story(Jeu *jeu)
             no_ecran = E_NOUVEAU;
             moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
             eventManager->StopEvenement(Mouse::Left,EventClic);
+            classe_choisie = -1;
         }
     }
     else
         texte.SetColor(Color(150,100,50));
     moteurGraphique->AjouterTexte(&texte,19,1);*/
 
-    jeu->menu.buttons[0].position.y = configuration->Resolution.h/2+192;
-    jeu->menu.buttons[0].position.x = configuration->Resolution.w/2-jeu->menu.buttons[0].image.position.w/2;
-    sf::Sprite temp = jeu->menu.buttons[0].Afficher(0);
-    moteurGraphique->AjouterCommande(&temp,19,0);
+    buttons_story[0].no_opacity = true;
+    buttons_story[0].position.w = moteurGraphique->special_typo.getSize(configuration->getText(0,67), 72);
+    buttons_story[0].position.h = 72;
+    buttons_story[0].position.y = configuration->Resolution.h/2+192;
+    buttons_story[0].position.x = configuration->Resolution.w/2-buttons_story[0].position.w/2;
+    buttons_story[0].Afficher(0);
 
-    if(jeu->menu.buttons[0].m_action)
+    if(buttons_story[0].m_press)
+        moteurGraphique->special_typo_p.Draw(configuration->getText(0,67), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                      configuration->Resolution.h/2 + 192), 72, 19, true);
+    else if(buttons_story[0].m_hover)
+        moteurGraphique->special_typo_h.Draw(configuration->getText(0,67), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                      configuration->Resolution.h/2 + 192), 72, 19, true);
+    else
+        moteurGraphique->special_typo.Draw(configuration->getText(0,67), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                      configuration->Resolution.h/2 + 192), 72, 19, true);
+
+    if(buttons_story[0].m_action)
     {
-        jeu->menu.buttons[0].m_action = false;
+        buttons_story[0].m_action = false;
         no_ecran = E_NOUVEAU;
         classe_choisie = -1;
     }

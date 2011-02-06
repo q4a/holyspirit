@@ -79,6 +79,18 @@ private:
     std::string m_story;
 
     bool m_supprimer_heros;
+
+
+    ///E_Principal(Jeu *jeu);
+    Bouton_pressoire buttons_principal[5];
+    ///E_Continuer(Jeu *jeu);
+    Bouton_pressoire buttons_continuer[2];
+    ///E_Nouveau(Jeu *jeu);
+    Bouton_pressoire buttons_nouveau[2];
+    ///E_Credits(Jeu *jeu);
+    Bouton_pressoire buttons_credits[1];
+    ///E_Story(Jeu *jeu);
+    Bouton_pressoire buttons_story[1];
 };
 
 #endif

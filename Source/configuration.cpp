@@ -310,6 +310,12 @@ void Configuration::ChargerInit()
                 fichier>>font_titre;
             if (chaine== "font:")
                 fichier>>font;
+            if (chaine== "special_font:")
+                fichier>>spec_font;
+            if (chaine== "special_font_h:")
+                fichier>>spec_font_h;
+            if (chaine== "special_font_p:")
+                fichier>>spec_font_p;
 
             if (chaine== "death_sound:")
                 fichier>>chemin_son_mort;

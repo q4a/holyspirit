@@ -101,7 +101,7 @@ class Configuration : public CSingleton<Configuration>
     std::string miracle_item_physic,miracle_item_fire, miracle_item_holy, miracle_item_poison,
                 miracle_item_physic_t,miracle_item_fire_t, miracle_item_holy_t, miracle_item_poison_t;
 
-    std::string font_titre,font,chemin_video_developpeur,nom_video_developpeur,chemin_aa;
+    std::string font_titre,font,spec_font,spec_font_h,spec_font_p,chemin_video_developpeur,nom_video_developpeur,chemin_aa;
 
     std::string chemin_localisation,chemin_text_benedictions,chemin_text_menus,chemin_text_items,chemin_text_entities,chemin_text_dialogs,chemin_text_maps,chemin_text_miracles
     ,chemin_text_docs,chemin_text_quests;

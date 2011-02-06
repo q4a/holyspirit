@@ -26,6 +26,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define MOTEURGRAPHIQUEH
 
 #include "commande.h"
+#include "typo.h"
 #include "moteurParticule.h"
 #include "lightManager.h"
 #include "Entite_graphique.h"
@@ -161,6 +162,10 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
     sf::RenderImage m_light_screen2;
 
 	sf::Font m_font,m_font_titre;
+
+	Typo special_typo;
+	Typo special_typo_h;
+	Typo special_typo_p;
 
 	float m_blur;
 

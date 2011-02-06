@@ -171,6 +171,10 @@ void MoteurGraphique::Charger()
     else
         console->Ajouter("Chargement de : "+configuration->chemin_fonts+configuration->font_titre,0);
 
+    special_typo.Load(configuration->chemin_fonts+configuration->spec_font);
+    special_typo_h.Load(configuration->chemin_fonts+configuration->spec_font_h);
+    special_typo_p.Load(configuration->chemin_fonts+configuration->spec_font_p);
+
     m_img_item_background = AjouterImage(configuration->chemin_menus + configuration->nom_item_background,-1);
     m_img_item_unusable = AjouterImage(configuration->chemin_menus + configuration->nom_item_unusable,-1);
 

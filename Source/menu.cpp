@@ -63,7 +63,7 @@ Menu::Menu()
 
     m_cur_talk_hauteur = 1000;
 
-    std::string chemin = configuration->chemin_menus+configuration->language+"/menus.hs";
+    std::string chemin = configuration->chemin_menus+"menus.hs";
 
     ifstream fichier;
     fichier.open(chemin.c_str(), ios::in);
