@@ -171,8 +171,8 @@ Le faucheur ?
 Oué, le faucheur ! Tu connais pas ? C'est une sorte de grand échalas avec une tête de bestiau ! L'est horrible le faucheur ! Et terrible, personne peut le tuer, dix paysans sont morts avec leur fourche en essayant de le zigouiller. Y sort que la nuit, alors faut s'enfermer le soir. Le jour on le voit jamais !
 
 
-
-
+///DOORS///
+C'est fermé à clé.
 
 
 

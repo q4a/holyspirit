@@ -51,8 +51,8 @@ Niveau
 Nom
 Console (Tab)
 Uniquement pour : 
-Continuer une partie
-Nouvelle partie
+Continuer
+Nouveau jeu
 Options
 Quitter
 Retour

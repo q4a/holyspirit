@@ -25,8 +25,17 @@ main
 				stop_talk
 			end
 		end
-	else
-		setActif * 0
+	else 
+		if variable * 1 * 1
+		then
+			setActif * 0
+		else
+			setActif * 1
+			if talk
+			then
+				tell * 175 * 5000
+			end
+		end
 	end
 	
 	if variable * 0 * 1
