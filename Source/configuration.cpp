@@ -507,69 +507,69 @@ bool Configuration::Options()
 
     if(no_menu_option == O_PRINCIPAL)
     {
-        texte.SetString(getText(0,72));
-        texte.SetY(Resolution.h/2 - 128 );
-        texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
-        if (eventManager->getPositionSouris().y > texte.GetRect().Top
-          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
-        {
-            texte.SetColor(sf::Color(100,50,0));
+
+        if (eventManager->getPositionSouris().y > Resolution.h/2 - 128
+          &&eventManager->getPositionSouris().y < Resolution.h/2 - 64)
+          {
             if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+            {
                 no_menu_option = O_GRAPHICS,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
-            eventManager->StopEvenement(sf::Mouse::Left,EventClic);
-        }
-        else
-            texte.SetColor(sf::Color(150,100,50));
-        moteurGraphique->AjouterTexte(&texte,19,1);
+                moteurGraphique->special_typo_p.Draw(configuration->getText(0,72), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 128), 72, 19, true);
+            }
+            else
+                moteurGraphique->special_typo_h.Draw(configuration->getText(0,72), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 128), 72, 19, true);
+          }
+          else
+            moteurGraphique->special_typo.Draw(configuration->getText(0,72), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 128), 72, 19, true);
 
-        texte.SetString(getText(0,73));
-        texte.SetY(Resolution.h/2 - 64 );
-        texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
-        if (eventManager->getPositionSouris().y > texte.GetRect().Top
-          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
-        {
-            texte.SetColor(sf::Color(100,50,0));
+
+        if (eventManager->getPositionSouris().y > Resolution.h/2 - 64
+          &&eventManager->getPositionSouris().y < Resolution.h/2)
+          {
             if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+            {
                 no_menu_option = O_GRAPHISC_AVANCED,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
-            eventManager->StopEvenement(sf::Mouse::Left,EventClic);
-        }
-        else
-            texte.SetColor(sf::Color(150,100,50));
-        moteurGraphique->AjouterTexte(&texte,19,1);
+                moteurGraphique->special_typo_p.Draw(configuration->getText(0,73), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 64), 72, 19, true);
+            }
+            else
+                moteurGraphique->special_typo_h.Draw(configuration->getText(0,73), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 64), 72, 19, true);
+          }
+          else
+            moteurGraphique->special_typo.Draw(configuration->getText(0,73), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 64), 72, 19, true);
 
-        texte.SetString(getText(0,74));
-        texte.SetY(Resolution.h/2 );
-        texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
-        if (eventManager->getPositionSouris().y > texte.GetRect().Top
-          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
-        {
-            texte.SetColor(sf::Color(100,50,0));
+
+
+        if (eventManager->getPositionSouris().y > Resolution.h/2
+          &&eventManager->getPositionSouris().y < Resolution.h/2+64)
+          {
             if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+            {
                 no_menu_option = O_SOUNDS,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
-            eventManager->StopEvenement(sf::Mouse::Left,EventClic);
-        }
-        else
-            texte.SetColor(sf::Color(150,100,50));
-        moteurGraphique->AjouterTexte(&texte,19,1);
+                moteurGraphique->special_typo_p.Draw(configuration->getText(0,74), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2), 72, 19, true);
+            }
+            else
+                moteurGraphique->special_typo_h.Draw(configuration->getText(0,74), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2), 72, 19, true);
+          }
+          else
+            moteurGraphique->special_typo.Draw(configuration->getText(0,74), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2), 72, 19, true);
 
 
-        texte.SetString(getText(0,57));
-        texte.SetY(Resolution.h/2 + 160 );
-        texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
-        if (eventManager->getPositionSouris().y > texte.GetRect().Top
-          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
-        {
-            texte.SetColor(sf::Color(100,50,0));
+
+        if (eventManager->getPositionSouris().y > Resolution.h/2+160
+          &&eventManager->getPositionSouris().y < Resolution.h/2+224)
+          {
             if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
             {
                 moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                 eventManager->StopEvenement(sf::Mouse::Left,EventClic);
                 return 1;
             }
-        }
-        else
-            texte.SetColor(sf::Color(150,100,50));
-        moteurGraphique->AjouterTexte(&texte,19,1);
+            else
+                moteurGraphique->special_typo_h.Draw(configuration->getText(0,57), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
+          }
+          else
+            moteurGraphique->special_typo.Draw(configuration->getText(0,57), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
+
     }
 
     if(no_menu_option == O_GRAPHICS)
@@ -580,14 +580,11 @@ bool Configuration::Options()
 
         {
             std::ostringstream buf;
-            buf<<getText(0,88)<<Resolution.x<<" / "<<Resolution.y;
-            texte.SetString(buf.str());
-            texte.SetY(Resolution.h/2 - 240 );
-            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
-            if (eventManager->getPositionSouris().y > texte.GetRect().Top
-              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
-            {
-                texte.SetColor(sf::Color(100,50,0));
+            buf<<getText(0,88)<<Resolution.x<<" x "<<Resolution.y;
+
+            if (eventManager->getPositionSouris().y > Resolution.h/2 - 240
+              &&eventManager->getPositionSouris().y < Resolution.h/2 - 240 + 48)
+              {
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
                 {
                     moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
@@ -646,22 +643,40 @@ bool Configuration::Options()
 
                     moteurGraphique->CreateNewWindow();
                 }
-            }
-            else
-                texte.SetColor(sf::Color(150,100,50));
-            moteurGraphique->AjouterTexte(&texte,19,1);
+
+                moteurGraphique->special_typo_h.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2-240), 48, 19, true);
+              }
+              else
+                moteurGraphique->special_typo.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2-240), 48, 19, true);
         }
+
+
+        ///
+        /*
+            if (eventManager->getPositionSouris().y > Resolution.h/2+128
+              &&eventManager->getPositionSouris().y < Resolution.h/2+128+48)
+              {
+                if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
+                {
+                    moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
+                }
+
+                moteurGraphique->special_typo_h.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+128), 48, 19, true);
+              }
+              else
+                moteurGraphique->special_typo.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+128), 48, 19, true);
+        */
+        ///
+
+
+
 
         {
             std::ostringstream buf;
             buf<<getText(0,77)<<mode_fenetre;
-            texte.SetString(buf.str());
-            texte.SetY(Resolution.h/2 - 192 );
-            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
-            if (eventManager->getPositionSouris().y > texte.GetRect().Top
-              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
-            {
-                texte.SetColor(sf::Color(100,50,0));
+            if (eventManager->getPositionSouris().y > Resolution.h/2 - 192
+              &&eventManager->getPositionSouris().y < Resolution.h/2 - 192+48)
+              {
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
                 {
                     moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
@@ -669,22 +684,19 @@ bool Configuration::Options()
                     mode_fenetre = !mode_fenetre;
                     moteurGraphique->CreateNewWindow();
                 }
-            }
-            else
-                texte.SetColor(sf::Color(150,100,50));
-            moteurGraphique->AjouterTexte(&texte,19,1);
+
+                moteurGraphique->special_typo_h.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 192), 48, 19, true);
+              }
+              else
+                moteurGraphique->special_typo.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 192), 48, 19, true);
         }
 
         {
             std::ostringstream buf;
             buf<<getText(0,75)<<luminosite;
-            texte.SetString(buf.str());
-            texte.SetY(Resolution.h/2 - 144 );
-            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
-            if (eventManager->getPositionSouris().y > texte.GetRect().Top
-              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
-            {
-                texte.SetColor(sf::Color(100,50,0));
+            if (eventManager->getPositionSouris().y > Resolution.h/2 - 144
+              &&eventManager->getPositionSouris().y < Resolution.h/2 - 144+48)
+              {
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic)
                 || eventManager->getEvenement(sf::Key::Add,EventKey))
                 {
@@ -703,22 +715,19 @@ bool Configuration::Options()
                     if(luminosite < 0)
                         luminosite = 0;
                 }
-            }
-            else
-                texte.SetColor(sf::Color(150,100,50));
-            moteurGraphique->AjouterTexte(&texte,19,1);
+                moteurGraphique->special_typo_h.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 144), 48, 19, true);
+              }
+              else
+                moteurGraphique->special_typo.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 144), 48, 19, true);
         }
 
         {
             std::ostringstream buf;
-            buf<<getText(0,76)<<contrastes;
-            texte.SetString(buf.str());
-            texte.SetY(Resolution.h/2 - 96 );
-            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
-            if (eventManager->getPositionSouris().y > texte.GetRect().Top
-              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
-            {
-                texte.SetColor(sf::Color(100,50,0));
+            buf<<getText(0,76)<<contrastes*10;
+            if (eventManager->getPositionSouris().y > Resolution.h/2 - 96
+              &&eventManager->getPositionSouris().y < Resolution.h/2 - 96+48)
+              {
+
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic)
                 || eventManager->getEvenement(sf::Key::Add,EventKey))
                 {
@@ -737,54 +746,50 @@ bool Configuration::Options()
                     if(contrastes < 0)
                         contrastes = 0;
                 }
-            }
-            else
-                texte.SetColor(sf::Color(150,100,50));
-            moteurGraphique->AjouterTexte(&texte,19,1);
+
+                moteurGraphique->special_typo_h.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 96), 48, 19, true);
+              }
+              else
+                moteurGraphique->special_typo.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 96), 48, 19, true);
         }
 
-        {
+       /* {
             std::ostringstream buf;
             buf<<getText(0,85)<<item_background;
-            texte.SetString(buf.str());
-            texte.SetY(Resolution.h/2 - 48 );
-            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
-            if (eventManager->getPositionSouris().y > texte.GetRect().Top
-              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
-            {
-                texte.SetColor(sf::Color(100,50,0));
+            if (eventManager->getPositionSouris().y > Resolution.h/2 - 48
+              &&eventManager->getPositionSouris().y < Resolution.h/2 - 48+48)
+              {
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
                 {
                     moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                     eventManager->StopEvenement(sf::Mouse::Left,EventClic);
                     item_background = !item_background;
                 }
-            }
-            else
-                texte.SetColor(sf::Color(150,100,50));
-            moteurGraphique->AjouterTexte(&texte,19,1);
-        }
+
+                moteurGraphique->special_typo_h.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 48), 48, 19, true);
+              }
+              else
+                moteurGraphique->special_typo.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 -48), 48, 19, true);
+        }*/
 
 
-        texte.SetCharacterSize(48);
 
-        texte.SetString(getText(0,57));
-        texte.SetY(Resolution.h/2 + 160 );
-        texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
-        if (eventManager->getPositionSouris().y > texte.GetRect().Top
-          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
-        {
-            texte.SetColor(sf::Color(100,50,0));
+
+        if (eventManager->getPositionSouris().y > Resolution.h/2+160
+          &&eventManager->getPositionSouris().y < Resolution.h/2+224)
+          {
             if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
             {
                 moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                 eventManager->StopEvenement(sf::Mouse::Left,EventClic);
                 no_menu_option = O_PRINCIPAL;
             }
-        }
-        else
-            texte.SetColor(sf::Color(150,100,50));
-        moteurGraphique->AjouterTexte(&texte,19,1);
+            else
+                moteurGraphique->special_typo_h.Draw(configuration->getText(0,57), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
+          }
+          else
+            moteurGraphique->special_typo.Draw(configuration->getText(0,57), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
+
     }
 
     if(no_menu_option == O_GRAPHISC_AVANCED)
@@ -794,13 +799,9 @@ bool Configuration::Options()
         {
             std::ostringstream buf;
             buf<<getText(0,78)<<Lumiere;
-            texte.SetString(buf.str());
-            texte.SetY(Resolution.h/2 - 240 );
-            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
-            if (eventManager->getPositionSouris().y > texte.GetRect().Top
-              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
-            {
-                texte.SetColor(sf::Color(100,50,0));
+            if (eventManager->getPositionSouris().y > Resolution.h/2 - 240
+              &&eventManager->getPositionSouris().y < Resolution.h/2 - 240+48)
+              {
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
                 {
                     moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
@@ -813,162 +814,149 @@ bool Configuration::Options()
                     else
                         Lumiere = 0;
                 }
-            }
-            else
-                texte.SetColor(sf::Color(150,100,50));
-            moteurGraphique->AjouterTexte(&texte,19,1);
+
+                moteurGraphique->special_typo_h.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 240), 48, 19, true);
+              }
+              else
+                moteurGraphique->special_typo.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 -240), 48, 19, true);
         }
 
         {
             std::ostringstream buf;
             buf<<getText(0,79)<<Ombre;
-            texte.SetString(buf.str());
-            texte.SetY(Resolution.h/2 - 192 );
-            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
-            if (eventManager->getPositionSouris().y > texte.GetRect().Top
-              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
-            {
-                texte.SetColor(sf::Color(100,50,0));
+            if (eventManager->getPositionSouris().y > Resolution.h/2 - 192
+              &&eventManager->getPositionSouris().y < Resolution.h/2 - 192+48)
+              {
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
                 {
                     moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                     eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+
                     Ombre = !Ombre;
                 }
-            }
-            else
-                texte.SetColor(sf::Color(150,100,50));
-            moteurGraphique->AjouterTexte(&texte,19,1);
+
+                moteurGraphique->special_typo_h.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 192), 48, 19, true);
+              }
+              else
+                moteurGraphique->special_typo.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 -192), 48, 19, true);
         }
 
         {
             std::ostringstream buf;
             buf<<getText(0,80)<<postFX;
-            texte.SetString(buf.str());
-            texte.SetY(Resolution.h/2 - 144 );
-            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
-            if (eventManager->getPositionSouris().y > texte.GetRect().Top
-              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
-            {
-                texte.SetColor(sf::Color(100,50,0));
+            if (eventManager->getPositionSouris().y > Resolution.h/2 - 144
+              &&eventManager->getPositionSouris().y < Resolution.h/2 - 144+48)
+              {
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
                 {
                     moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                     eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+
                     postFX = !postFX;
                 }
-            }
-            else
-                texte.SetColor(sf::Color(150,100,50));
-            moteurGraphique->AjouterTexte(&texte,19,1);
+
+                moteurGraphique->special_typo_h.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 144), 48, 19, true);
+              }
+              else
+                moteurGraphique->special_typo.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 -144), 48, 19, true);
         }
 
         {
             std::ostringstream buf;
             buf<<getText(0,81)<<Reflection;
-            texte.SetString(buf.str());
-            texte.SetY(Resolution.h/2 - 96);
-            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
-            if (eventManager->getPositionSouris().y > texte.GetRect().Top
-              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
-            {
-                texte.SetColor(sf::Color(100,50,0));
+            if (eventManager->getPositionSouris().y > Resolution.h/2 - 96
+              &&eventManager->getPositionSouris().y < Resolution.h/2 - 96+48)
+              {
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
                 {
                     moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                     eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+
                     Reflection = !Reflection;
                 }
-            }
-            else
-                texte.SetColor(sf::Color(150,100,50));
-            moteurGraphique->AjouterTexte(&texte,19,1);
+
+                moteurGraphique->special_typo_h.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 96), 48, 19, true);
+              }
+              else
+                moteurGraphique->special_typo.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 -96), 48, 19, true);
         }
 
         {
             std::ostringstream buf;
             buf<<getText(0,82)<<Distortion;
-            texte.SetString(buf.str());
-            texte.SetY(Resolution.h/2 - 48);
-            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
-            if (eventManager->getPositionSouris().y > texte.GetRect().Top
-              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
-            {
-                texte.SetColor(sf::Color(100,50,0));
+            if (eventManager->getPositionSouris().y > Resolution.h/2 - 48
+              &&eventManager->getPositionSouris().y < Resolution.h/2 - 48+48)
+              {
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
                 {
                     moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                     eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+
                     Distortion = !Distortion;
                 }
-            }
-            else
-                texte.SetColor(sf::Color(150,100,50));
-            moteurGraphique->AjouterTexte(&texte,19,1);
+
+                moteurGraphique->special_typo_h.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 48), 48, 19, true);
+              }
+              else
+                moteurGraphique->special_typo.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 -48), 48, 19, true);
         }
 
         {
             std::ostringstream buf;
             buf<<getText(0,83)<<Herbes;
-            texte.SetString(buf.str());
-            texte.SetY(Resolution.h/2);
-            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
-            if (eventManager->getPositionSouris().y > texte.GetRect().Top
-              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
-            {
-                texte.SetColor(sf::Color(100,50,0));
+            if (eventManager->getPositionSouris().y > Resolution.h/2
+              &&eventManager->getPositionSouris().y < Resolution.h/2+48)
+              {
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
                 {
                     moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                     eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+
                     Herbes = !Herbes;
                 }
-            }
-            else
-                texte.SetColor(sf::Color(150,100,50));
-            moteurGraphique->AjouterTexte(&texte,19,1);
+
+                moteurGraphique->special_typo_h.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2), 48, 19, true);
+              }
+              else
+                moteurGraphique->special_typo.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2), 48, 19, true);
         }
 
         {
             std::ostringstream buf;
             buf<<getText(0,84)<<particules;
-            texte.SetString(buf.str());
-            texte.SetY(Resolution.h/2 + 48 );
-            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
-            if (eventManager->getPositionSouris().y > texte.GetRect().Top
-              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
-            {
-                texte.SetColor(sf::Color(100,50,0));
+            if (eventManager->getPositionSouris().y > Resolution.h/2+48
+              &&eventManager->getPositionSouris().y < Resolution.h/2+48+48)
+              {
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
                 {
                     moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                     eventManager->StopEvenement(sf::Mouse::Left,EventClic);
+
                     particules = !particules;
                 }
-            }
-            else
-                texte.SetColor(sf::Color(150,100,50));
-            moteurGraphique->AjouterTexte(&texte,19,1);
+
+                moteurGraphique->special_typo_h.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+48), 48, 19, true);
+              }
+              else
+                moteurGraphique->special_typo.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+48), 48, 19, true);
         }
 
-        texte.SetCharacterSize(48);
-        texte.SetString(getText(0,57));
-        texte.SetY(Resolution.h/2 + 160 );
-        texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
-        if (eventManager->getPositionSouris().y > texte.GetRect().Top
-          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
-        {
-            texte.SetColor(sf::Color(100,50,0));
+
+
+        if (eventManager->getPositionSouris().y > Resolution.h/2+160
+          &&eventManager->getPositionSouris().y < Resolution.h/2+224)
+          {
             if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
             {
                 moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                 eventManager->StopEvenement(sf::Mouse::Left,EventClic);
                 no_menu_option = O_PRINCIPAL;
             }
-        }
-        else
-            texte.SetColor(sf::Color(150,100,50));
-        moteurGraphique->AjouterTexte(&texte,19,1);
+            else
+                moteurGraphique->special_typo_h.Draw(configuration->getText(0,57), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
+          }
+          else
+            moteurGraphique->special_typo.Draw(configuration->getText(0,57), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
     }
 
     if(no_menu_option == O_SOUNDS)
@@ -978,13 +966,9 @@ bool Configuration::Options()
         {
             std::ostringstream buf;
             buf<<getText(0,86)<<volume;
-            texte.SetString(buf.str());
-            texte.SetY(Resolution.h/2 - 240 );
-            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
-            if (eventManager->getPositionSouris().y > texte.GetRect().Top
-              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
-            {
-                texte.SetColor(sf::Color(100,50,0));
+            if (eventManager->getPositionSouris().y > Resolution.h/2-240
+              &&eventManager->getPositionSouris().y < Resolution.h/2-240+48)
+              {
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic)
                 || eventManager->getEvenement(sf::Key::Add,EventKey))
                 {
@@ -1007,23 +991,20 @@ bool Configuration::Options()
                 }
 
                 sf::Listener::SetGlobalVolume(volume);
-            }
-            else
-                texte.SetColor(sf::Color(150,100,50));
 
-            moteurGraphique->AjouterTexte(&texte,19,1);
+                moteurGraphique->special_typo_h.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2-240), 48, 19, true);
+              }
+              else
+                moteurGraphique->special_typo.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2-240), 48, 19, true);
+
         }
 
         {
             std::ostringstream buf;
             buf<<getText(0,87)<<music_volume;
-            texte.SetString(buf.str());
-            texte.SetY(Resolution.h/2 - 192 );
-            texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
-            if (eventManager->getPositionSouris().y > texte.GetRect().Top
-              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
-            {
-                texte.SetColor(sf::Color(100,50,0));
+            if (eventManager->getPositionSouris().y > Resolution.h/2-192
+              &&eventManager->getPositionSouris().y < Resolution.h/2-192+48)
+              {
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic)
                 || eventManager->getEvenement(sf::Key::Add,EventKey))
                 {
@@ -1044,32 +1025,29 @@ bool Configuration::Options()
                 }
 
                 moteurSons->setVolumeMusique((int)music_volume);
-            }
-            else
-                texte.SetColor(sf::Color(150,100,50));
-            moteurGraphique->AjouterTexte(&texte,19,1);
+
+                moteurGraphique->special_typo_h.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2-192), 48, 19, true);
+              }
+              else
+                moteurGraphique->special_typo.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2-192), 48, 19, true);
         }
 
 
-        texte.SetCharacterSize(48);
 
-        texte.SetString(getText(0,57));
-        texte.SetY(Resolution.h/2 + 160 );
-        texte.SetX(Resolution.w/2-texte.GetRect().Width/2);
-        if (eventManager->getPositionSouris().y > texte.GetRect().Top
-          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height))
-        {
-            texte.SetColor(sf::Color(100,50,0));
+        if (eventManager->getPositionSouris().y > Resolution.h/2+160
+          &&eventManager->getPositionSouris().y < Resolution.h/2+224)
+          {
             if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
             {
                 moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                 eventManager->StopEvenement(sf::Mouse::Left,EventClic);
                 no_menu_option = O_PRINCIPAL;
             }
-        }
-        else
-            texte.SetColor(sf::Color(150,100,50));
-        moteurGraphique->AjouterTexte(&texte,19,1);
+            else
+                moteurGraphique->special_typo_h.Draw(configuration->getText(0,57), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
+          }
+          else
+            moteurGraphique->special_typo.Draw(configuration->getText(0,57), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
     }
 
     return 0;

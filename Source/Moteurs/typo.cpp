@@ -217,6 +217,10 @@ Character &Typo::getCharacter(char car, bool &maj)
         return m_chars[41];
     if(car == '-')
         return m_chars[42];
+    if(car == ':')
+        return m_chars[43];
+    if(car == 'ê')
+        return m_chars[44];
 
     return m_chars.front();
 }

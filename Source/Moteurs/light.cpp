@@ -293,7 +293,7 @@ void Light::SetColor(sf::Color color)
 void Light::SetPosition(sf::Vector2f position)
 {
     m_position=position;
-    m_position.y += 0.01;
+    m_position.y += 2.11;
     //m_position.x += 0.01;
 }
 
