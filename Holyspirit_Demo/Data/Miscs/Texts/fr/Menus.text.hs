@@ -71,7 +71,7 @@ Temps de fabrication :
 secondes
 minutes
 Options graphiques
-Options graphiques avancées
+Options avancées
 Options sonores
 Luminosité : 
 Contrastes : 
