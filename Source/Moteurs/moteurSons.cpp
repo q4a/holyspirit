@@ -153,9 +153,7 @@ void MoteurSons::PlayNewMusic(const std::string &chemin)
     if (!m_music.OpenFromFile(chemin.c_str()))
         console->Ajouter("Impossible de charger : "+chemin,1);
     else
-        console->Ajouter("Chargement de : "+chemin,0);
-
-    m_music.Play();
+        console->Ajouter("Chargement de : "+chemin,0),m_music.Play();
 }
 
 sf::Sound::Status MoteurSons::GetMusicStatus()
