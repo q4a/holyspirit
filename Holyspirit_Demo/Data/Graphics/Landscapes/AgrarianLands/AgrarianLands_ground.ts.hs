@@ -1,5 +1,7 @@
 *Data/Graphics/Landscapes/AgrarianLands/AgrarianLands_ground.png
 *Data/Graphics/Menus/UI/MinimapIcones.png
+*Data/Graphics/Landscapes/AgrarianLands/AgrarianLands_ground2.png
+*Data/Graphics/Landscapes/AgrarianLands/AgrarianLands_ground3.png
 $
 $
 *x0 y0 w160 h96 i0 ey48 vHerbe1 z0 $
@@ -21,5 +23,8 @@ $
 *x330 y288 w180 h96 i0 ey48 vGravier z0 $
 *x330 y384 w180 h96 i0 ey48 vTerreCraquelee z0 $
 *x330 y480 w180 h96 i0 ey48 vTerreCraquele2 z0 $
+
+*x0 y0 w256 h129 i2 vTerreHD z0 $
+*x0 y0 w384 h193 i3 vHerbeHD z0 $
 
 $

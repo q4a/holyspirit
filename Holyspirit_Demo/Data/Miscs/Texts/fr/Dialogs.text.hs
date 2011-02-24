@@ -55,7 +55,7 @@ Des diableries ?
 Oui, parfaitement, des diableries. Mes frères moines ont un comportement étrange, parfois malsain, et certains ont mystérieusement disparu... J'entends des bruits dans les catacombes sous l'abbaye la nuit. J'ai d'abord cru à des bêtes sauvages qui se seraient introduites mais je ne sais plus que penser... J'ai peur, je dois l'avouer, et la seule solution que j'ai trouvée est de fermer la porte qui y mène. Mais il faudra bien que quelqu'un aille voir ce qui se passe là-bas... Je suis inquiet pour mes moines !
 Voulez-vous que j'aille voir ?
 Oh ! Je n'osais pas demander... J'ai quelques scrupules à t'envoyer là-bas en solitaire, mais nous ne sommes pas des combattants vois-tu... Si tu as besoin d'aide je ferai ce que je peux ! Tiens, prends la clef des catacombes et bonne chance, Dieu t'assistera !\Reviens vite me raconter ce que tu as vu.
-C'est bien ce qu'il me semblait ! Il se déroulait des choses monstrueuses derrière cette porte... Décidément nous sommes cernés par le mal ! Il est dehors, il est sous nos pieds ! Est-ce que le ciel lui-même est vraiment bienveillant pour nous, pauvres misérables humains ?\Reprenons-nous... Il est urgent de purifier notre sous-sol ! Nous sommes encerclés par le mal mais nous ne pouvons le tolérer dans l'antre du Seigneur !\Pour effectuer la purification tu dois à tout prix trouver les reliques des quatre saints qui sont dispersées dans les catacombes. Ensuite il faudra y escorter un frère mineur pour prononcer une litanie dans l'Oculus, l'ancienne salle de cérémonie des premiers fidèles.\Pour l'instant va chercher les reliques ! Ca fait très longtemps que personne n'est allé les voir et nous avons perdu les plans des catacombes...\Tu devras trouver l'oreille de Sainte Frénégonde, le cœur de Saint Joachim, les yeux de Sainte Galswinthe et le doigt de Saint Clodomir. Bonne chance !
+C'est bien ce qu'il me semblait ! Il se déroulait des choses monstrueuses derrière cette porte... Décidément nous sommes cernés par le mal ! Il est dehors, il est sous nos pieds ! Est-ce que le ciel lui-même est vraiment bienveillant pour nous, pauvres misérables humains ?\Reprenons-nous... Il est urgent de purifier notre sous-sol ! Nous sommes encerclés par le mal mais nous ne pouvons le tolérer dans l'antre du Seigneur !\Pour effectuer la purification tu dois à tout prix trouver les reliques des quatre saints qui sont dispersées dans les catacombes. 
 Enfin, tu as trouvé la source du mal ! Me voilà rassuré, mais pas tant que ça... Le monde entier semble envahi par cette fange répugnante de morts-vivants et d'objets mystérieusement animés... je crois que la fin de cette période chaotique est encore loin hélas !
 Je cherche des armes.
 Tu peux demander à Rognorak, notre forgeron qui s'est réfugié avec nous dans ce lieu saint. C'est un grand gaillard sympathique, il continue à forger des armes même si ça ne sert plus à rien, il dit que ça l'occupe en attendant la fin du monde.
@@ -71,8 +71,8 @@ Le frère a été assassiné par Hergahrt, un prêtre démoniaque !
 Hergahrt, l'ancien prêtre de l'Eglise de Saint Waldinghe ! Mon Dieu... Je ne pensais plus jamais entendre parler de lui... Nous l'avons banni il y a des années pour sa conduite insupportable. Avec un prêtre d'une paroisse voisine nommé Johannes ils passaient leur temps à boire et à rire publiquement du fruit des confessions qu'ils recevaient. Sans parler de tout ce qu'on a pu entendre sur leurs écarts avec les femmes...\Je crois qu'Hergahrt est allé bien plus loin à présent.  Il est le suppôt de l'ignominie qui déferle sur Ruhigland. \Je suis sûr qu'il se terre dans la crypte de son ancienne Eglise, qui communique avec nos catacombes... Tiens, voici la clef de la grille qui sépare nos catacombes de la crypte.\Il faut éliminer Hergahrt, c'est à présent un ennemi de l'Eglise et de la race humaine !
 Bien sûr ! La bénédiction augmente les vertus des armes et armures. Pour que je puisse donner ma bénédiction il me faut de l'eau bénite, une litanie à chanter et bien entendu un objet à bénir !
 Allons-y !
-
-
+Et ensuite ?
+Ensuite il faudra y escorter un frère mineur pour prononcer une litanie dans l'Oculus, l'ancienne salle de cérémonie des premiers fidèles. Tu la reconnaitras, c'est la plus grande salle des catacombes et la lumière extérieur donne dedans.\Pour l'instant va chercher les reliques ! Ca fait très longtemps que personne n'est allé les voir et nous avons perdu les plans des catacombes...\Tu devras trouver l'oreille de Sainte Frénégonde, le coeur de Saint Joachim, les yeux de Sainte Galswinthe et le doigt de Saint Clodomir. Bonne chance !
 
 
 
@@ -173,6 +173,7 @@ Oué, le faucheur ! Tu connais pas ? C'est une sorte de grand échalas avec une tê
 
 ///DOORS///
 C'est fermé à clé.
+
 
 
 

@@ -33,7 +33,7 @@ $
 *x0 	y0 w0 h0 i0 c1 lr0 lv0 lb0 li-255 ry lh96 	z1 vMurInvisibleY 		m i3 x0 y0 	w16 h16 $ $
 
 *x0 	y0 w0 h0 ey160 i0 c1 lr0 lv0 lb0 li-255 rd lh96 	z1 vMurInvisibleDroite 		m i3 x48 y0 	w16 h16 $ $
-*x0 	y0 w0 h0 ey160 i0 c1 lr0 lv0 lb0 li-255 rg lh96 	z1 vMurInvisibleGauche 		m i3 x64 y0 	w16 h16 $ $
+*x0 	y0 w256 h256 ex104 ey148 i0 c1 lr0 lv0 lb0 li-255 rg lh96 	z1 vMurInvisibleGauche 		m i3 x64 y0 	w16 h16 $ $
 *x0 	y512 w256 h256 ey160 i1 c1 lr0 lv0 lb0 li-255 rb lh96 	z1 vMurInvisibleBas	 		m i3 x80 y0 	w16 h16 $ $
 *x0 	y768 w256 h256 ey160 i1 c1 lr0 lv0 lb0 li-255 rh lh96 	z1 vMurInvisibleHaut	 		m i3 x32 y0 	w16 h16 $ $
 

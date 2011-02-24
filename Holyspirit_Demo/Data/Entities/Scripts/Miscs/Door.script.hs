@@ -32,8 +32,11 @@ main
 		else
 			setActif * 1
 			if talk
+				variable * 1 * 2
 			then
-				tell * 175 * 5000
+				tell * 174 * 5000
+
+				stop_talk
 			end
 		end
 	end

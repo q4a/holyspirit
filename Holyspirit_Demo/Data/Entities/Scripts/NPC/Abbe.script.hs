@@ -105,6 +105,16 @@ main
 			end
 		end
 		
+		if variable * 3 * 4
+		then
+			if speak_choice * 1
+			then
+				variable * 3 * 7
+				variable * 2 * 0
+				stop_speak
+			end
+		end
+		
 		if  variable * 5 * 0
 		then
 			if variable * 4 * 0 //PREMIERE FOIS
@@ -180,6 +190,14 @@ main
 		   variable * 3 * 4
 		then
 			speak * 57
+			speak_choice * 73 * 1
+			variable * 2 * 1
+		end
+		
+		if variable * 2 * 0
+		   variable * 3 * 7
+		then
+			speak * 74
 			variable * 3 * 0
 			
 			setQuestState * 0 * 2 * 3
