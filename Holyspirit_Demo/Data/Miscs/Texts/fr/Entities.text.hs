@@ -22,7 +22,7 @@ Zombie massier
 Frère
 Le Faucheur
 Chef de meute
-?
+Alcuin l'archiviste
 Molosse infernal
 Abbé Hademar
 Potale de l'Abbaye

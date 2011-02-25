@@ -166,7 +166,7 @@ Ah ! En voilà une question ! Et bien je ne saurais te répondre précisément. Tout
 
 
 ///FERMIER SUITE///
-Prend garde au faucheur !
+Prends garde au faucheur !
 Le faucheur ?
 Oué, le faucheur ! Tu connais pas ? C'est une sorte de grand échalas avec une tête de bestiau ! L'est horrible le faucheur ! Et terrible, personne peut le tuer, dix paysans sont morts avec leur fourche en essayant de le zigouiller. Y sort que la nuit, alors faut s'enfermer le soir. Le jour on le voit jamais !
 
@@ -174,6 +174,22 @@ Oué, le faucheur ! Tu connais pas ? C'est une sorte de grand échalas avec une tê
 ///DOORS///
 C'est fermé à clé.
 
+
+
+
+
+
+///MONK ALCUIN///
+Bonjour ! Je suis frère Alcuin. Je suis le Frère second de l'abbaye, même si Hademar me considère comme son esclave...
+Que peux-tu me dire sur l'abbaye ?
+L'abbaye de Saint Clodomir est un vénérable établissement célèbre dans tout Ruhigland. Comme tu peux le constater il sert aujourd'hui de refuge aux voisins réchappés de l'horreur qui nous est tombée dessus...
+Au revoir !
+Que sais-tu sur les reliques ?
+Les reliques sont des trésors qui assurent la renommée de l'abbaye. Concrètement elles ne servent à rien, hormis à réaliser des incantations miraculeuses une fois pas siècle... Et encore ces incantations ne fonctionnent pas toujours !\Depuis que des moines se sont perdus dans les catacombes on en a interdit leur accès, et Hademar ne s'y intéresse pas beaucoup. Je suis sûr qu'il ne sait même pas qu'une des reliques a disparu...
+Il manque une relique ?
+Oui, avant qu'Hademar arrive, les moines se laissaient aller à des pratiques douteuses. Certains faisaient payer les paysans pour leur montrer les reliques... Et un jour l'une d'elles, la paire d'yeux de Sainte Galswinthe, a disparu du fait de la négligence d'un frère...
+Où puis-je la trouver ?
+Ca... Je ne n'en sais rien. Certains ont incriminé un voleur, d'autres un animal qui aurait emporté la chose... Je ne sais quelle est la réalité exacte au sujet de cet évènement regrettable ! Pourtant il y a une chose qui devrait simplifier la recherche : les yeux ont la propriété de briller dans l'obscurité. Si ça peut t'aider...
 
 
 
