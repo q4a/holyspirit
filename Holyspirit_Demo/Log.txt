@@ -163,6 +163,8 @@
          Chargement de l'objet : Necklage_necklage.item.hs
          
          Chargement de l'objet : Doc_redimus.item.hs
+         
+         Chargement de l'objet : Necklage_necklage.item.hs
          /Lectures des objets.
          /Lectures des objets du coffre.
          /Lectures des miracles.
@@ -360,11 +362,11 @@
          /Sauvegarde de Craft_gem_emerald.item.hs
          /Sauvegarde de Necklage_necklage.item.hs
          /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Necklage_necklage.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
          /Ecriture des miracles.
          /Ecriture des docs.
-         /Sauvegarde de Les choses qui rodaient dans les catacombes
          /Ecriture des quetes.
          /Ecriture des potales.
          Sauvegarde du héro terminée !
@@ -404,7 +406,6 @@
          Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Shields/Great_shield.rs.hs
          
          Chargement de la map : Abbey.map.hs
-         Map sauvée existante.
          /Lectures du nom.
          /Lectures des fonds.
          /Lectures des musiques.
@@ -805,99 +806,6 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          Chargement de : Data/Entities/Resources/Miscs/Torch_up.char.hs terminé
          /Lectures des monstres.
          
-         Une map des entités est déjà existante.
-         
-         Chargement de l'objet : Drawing_sword_1h_small_sword.item.hs
-         
-         Chargement de l'objet : Craft_ore_iron.item.hs
-         
-         Chargement de l'objet : Drawing_crossbow_crossbow.item.hs
-         
-         Chargement de l'objet : Craft_ore_iron.item.hs
-         
-         Chargement de l'objet : Craft_wood_plank.item.hs
-         
-         Chargement de l'objet : Armband_leather.item.hs
-         
-         Chargement de l'objet : Armband_leather.item.hs
-         
-         Chargement de l'objet : Armband_gauntlet.item.hs
-         
-         Chargement de l'objet : Boots_leather.item.hs
-         
-         Chargement de l'objet : Boots_leather.item.hs
-         
-         Chargement de l'objet : Boots_leather.item.hs
-         
-         Chargement de l'objet : Armor_chainmail.item.hs
-         
-         Chargement de l'objet : Armor_chainmail.item.hs
-         
-         Chargement de l'objet : Crossbow_crossbow.item.hs
-         Chargement du miracle : Data\Miscs\Miracles\Bolt\Bolt.miracle.hs
-         
-         Chargement de l'objet : Helmet_iron_cap.item.hs
-         
-         Chargement de l'objet : Shield_great_shield.item.hs
-         
-         Chargement de l'objet : Shield_small_shield.item.hs
-         
-         Chargement de l'objet : Sword_1h_small_sword.item.hs
-         
-         Chargement de l'objet : Sword_1h_small_sword.item.hs
-         
-         Chargement de l'objet : Mace_2h_timber_axe.item.hs
-         
-         Chargement de l'objet : Potion_heal0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
-         
-         Chargement de l'objet : Potion_heal0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
-         
-         Chargement de l'objet : Potion_heal0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
-         
-         Chargement de l'objet : Potion_heal0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
-         
-         Chargement de l'objet : Potion_heal0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
-         
-         Chargement de l'objet : Potion_faith0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
-         
-         Chargement de l'objet : Potion_faith0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
-         
-         Chargement de l'objet : Potion_faith0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
-         
-         Chargement de l'objet : Potion_faith0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
-         
-         Chargement de l'objet : Potion_faith0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
-         
-         Chargement de l'objet : Necklage_necklage.item.hs
-         
-         Chargement de l'objet : Ring_ring.item.hs
-         
-         Chargement de l'objet : Ring_ring.item.hs
-         
-         Chargement de l'objet : Drawing_golem_coal.item.hs
-         
-         Chargement de l'objet : Craft_coal.item.hs
-         
-         Chargement de l'objet : Craft_gem_ruby.item.hs
-         
-         Chargement de l'objet : Craft_ore_iron.item.hs
-         
-         Chargement de l'objet : Craft_ore_gold.item.hs
-         
-         Chargement de l'objet : Craft_gem_emerald.item.hs
-         
-         Chargement de l'objet : Craft_wood_plank.item.hs
-         /Lectures des monstres si existants.
          /Lectures des cases.
          Chargement de la map terminé.
          Initialisation de l'herbe terminée.
@@ -916,19 +824,25 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
          /Sauvegarde de Drawing_crossbow_crossbow.item.hs
          /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Armband_gauntlet.item.hs
          /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Armor_chainmail.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
          /Sauvegarde de Armor_chainmail.item.hs
          /Sauvegarde de Crossbow_crossbow.item.hs
+         /Sauvegarde de Crossbow_crossbow.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Helmet_iron_cap.item.hs
          /Sauvegarde de Helmet_iron_cap.item.hs
          /Sauvegarde de Shield_great_shield.item.hs
          /Sauvegarde de Shield_small_shield.item.hs
          /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Sword_1h_long_sword.item.hs
+         /Sauvegarde de Sword_1h_long_sword.item.hs
+         /Sauvegarde de Sword_2h_two_hands_sword.item.hs
+         /Sauvegarde de Sword_2h_two_hands_sword.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
          /Sauvegarde de Mace_2h_timber_axe.item.hs
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
@@ -942,11 +856,13 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          /Sauvegarde de Potion_faith0.item.hs
          /Sauvegarde de Necklage_necklage.item.hs
          /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Drawing_golem_coal.item.hs
+         /Sauvegarde de Drawing_helmet_horned_barbute.item.hs
+         /Sauvegarde de Craft_coal.item.hs
+         /Sauvegarde de Craft_ore_copper.item.hs
          /Sauvegarde de Craft_ore_iron.item.hs
          /Sauvegarde de Craft_ore_gold.item.hs
-         /Sauvegarde de Craft_gem_emerald.item.hs
+         /Sauvegarde de Craft_ore_gold.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Craft_wood_plank.item.hs
          Sauvegarde de la map terminée !
          /Génération de l'image...
@@ -998,11 +914,11 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          /Sauvegarde de Craft_gem_emerald.item.hs
          /Sauvegarde de Necklage_necklage.item.hs
          /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Necklage_necklage.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
          /Ecriture des miracles.
          /Ecriture des docs.
-         /Sauvegarde de Les choses qui rodaient dans les catacombes
          /Ecriture des quetes.
          /Ecriture des potales.
          Sauvegarde du héro terminée !
@@ -1052,103 +968,66 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          
          Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Shields/Great_shield.rs.hs
          
-         Chargement de la map : Abbey_indoor.map.hs
-         Map sauvée existante.
+         Chargement de la map : Agrarian_lands0.map.hs
          /Lectures du nom.
          /Lectures des fonds.
          /Lectures des musiques.
          /Lectures des lumières.
          /Lectures des ciels.
-         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_floor.png
-         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_floor.ts.hs
-         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_walls.png
-         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_walls.ts.hs
-         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_miscs.png
-         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_miscs.ts.hs
-         Chargement de : Data/Graphics/Landscapes/Catacombs/Catacombs_monks.png
-         Chargement de : Data/Graphics/Landscapes/Catacombs/Catacombs_monks.ts.hs
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/AgrarianLands_ground.ts.hs
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/Trees.ts.hs
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/AgrarianLands_hills.png
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/AgrarianLands_hills.ts.hs
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/Cave.png
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/Cave.ts.hs
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/House0.png
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/House0.ts.hs
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/Inn.png
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/Inn.ts.hs
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/Rocks.ts.hs
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/Stone_wall.png
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/Stone_wall_shadow.png
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/Stone_wall.ts.hs
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/Trees_noEffect.ts.hs
          /Lectures des tilesets.
+         Chargement de : Data/Graphics/Grass/Grass0.ts.hs
          /Lectures des herbes.
          
-         Chargement du monstre : Data/Entities/Resources/Miscs/Trigger_clickable.char.hs
-         Chargement du script : " Data/Entities/Scripts/Miscs/Trigger_clickable.script.hs "
+         Chargement du monstre : Data/Entities/Resources/Monsters/Reaper/Reaper.char.hs
+         Chargement du script : " Data/Entities/Scripts/Monsters/Standard.script.hs "
          
-         Chargement du personnage : Data/Entities/Resources/Miscs/NULL.rs.hs
-         Chargement de : Data/Entities/Resources/Miscs/Trigger_clickable.char.hs terminé
+         Chargement du personnage : Data/Entities/Resources/Monsters/Reaper/Reaper.rs.hs
+         Chargement de : Reaper_Walk0.png
+         Chargement de : Reaper_Walk1.png
+         Chargement de : Reaper_Walk2.png
+         Chargement de : Reaper_Attack0.png
+         Chargement de : Reaper_Attack1.png
+         Chargement de : Reaper_Attack2.png
+         Chargement de : Reaper_Dead0.png
+         Chargement de : Reaper_Dead1.png
+         Chargement de : Reaper_Dead2.png
+         Chargement de : Data/Sounds/Entities/Hit0.wav
+         Chargement de : Data/Entities/Resources/Monsters/Reaper/Reaper.char.hs terminé
          
-         Chargement du monstre : Data/Entities/Resources/NPC/Farmer.char.hs
-         Chargement du script : " Data/Entities/Scripts/NPC/Farmer.script.hs "
-         Chargement du miracle : Data/Miscs/Miracles/Quest/Quest.miracle.hs
+         Chargement du monstre : Data/Entities/Resources/Monsters/TaintedMilitia/Peasant_fork.char.hs
+         Chargement du script : " Data/Entities/Scripts/Monsters/Standard.script.hs "
          
-         Chargement du personnage : Data/Entities/Resources/NPC/Farmer.rs.hs
-         Chargement de : Farmer_wait0.png
-         Chargement de : Farmer_cry0.png
-         Chargement de : Data/Entities/Resources/NPC/Farmer.char.hs terminé
+         Chargement du systeme de particules : Data/Entities/Particles/Human_blood.ps.hs
+         Chargement de : Data/Graphics/Particles/Human_guts.png
+         Chargement de : Data/Sounds/Particles/Blood0.wav
          
-         Chargement du monstre : Data/Entities/Resources/NPC/Abbe.char.hs
-         Chargement du script : " Data/Entities/Scripts/NPC/Abbe.script.hs "
-         
-         Chargement de l'objet : Litanie_toxic_0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/Toxic_0.miracle.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Quest/Quest.miracle.hs
-         
-         Chargement du personnage : Data/Entities/Resources/NPC/Abbe.rs.hs
-         Chargement de : Data/Entities/Resources/NPC/Abbe.char.hs terminé
-         
-         Chargement du monstre : Data/Entities/Resources/NPC/Monk.char.hs
-         Chargement du script : " Data/Entities/Scripts/NPC/Follower.script.hs "
-         Chargement du miracle : Data/Miscs/Miracles/Quest/Quest.miracle.hs
-         
-         Chargement du personnage : Data/Entities/Resources/NPC/Abbe.rs.hs
-         Chargement de : Data/Entities/Resources/NPC/Monk.char.hs terminé
-         
-         Chargement du monstre : Data/Entities/Resources/NPC/Monk_summoner.char.hs
-         Chargement du script : " Data/Entities/Scripts/Miscs/Summoning.script.hs "
-         Chargement du miracle : Data/Entities/Miracles/Summoning_Monk.miracle.hs
-         
-         Chargement du personnage : Data/Entities/Resources/Miscs/NULL.rs.hs
-         Chargement de : Data/Entities/Resources/NPC/Monk_summoner.char.hs terminé
-         
-         Chargement du monstre : Data/Entities/Resources/NPC/Monk2.char.hs
-         Chargement du script : " Data/Entities/Scripts/NPC/Monk2.script.hs "
-         Chargement du miracle : Data/Miscs/Miracles/Quest/Quest.miracle.hs
-         
-         Chargement du personnage : Data/Entities/Resources/NPC/Monk2.rs.hs
-         Chargement de : Monk2_Wait0.png
-         Chargement de : Data/Entities/Resources/NPC/Monk2.char.hs terminé
+         Chargement du personnage : Data/Entities/Resources/Monsters/TaintedMilitia/Peasant_fork.rs.hs
+         Chargement de : PeasantFork_Walk0.png
+         Chargement de : PeasantFork_Walk1.png
+         Chargement de : PeasantFork_Walk2.png
+         Chargement de : PeasantFork_Attack0.png
+         Chargement de : PeasantFork_Attack1.png
+         Chargement de : PeasantFork_Dead0.png
+         Chargement de : PeasantFork_Dead1.png
+         Chargement de : PeasantFork_Dead2.png
+         Chargement de : Data/Entities/Resources/Monsters/TaintedMilitia/Peasant_fork.char.hs terminé
          /Lectures des monstres.
          
-         Une map des entités est déjà existante.
-         
-         Chargement de l'objet : Litanie_toxic_0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/Toxic_0.miracle.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         
-         Chargement de l'objet : Litanie_0.item.hs
-         /Lectures des monstres si existants.
          /Lectures des cases.
          Chargement de la map terminé.
          Initialisation de l'herbe terminée.
@@ -1157,11 +1036,8 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          Initialisation terminée.
          
          
-         Sauvegarde de la map : Data/User/Temps/Abbey_indoor.map.hs
-         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey_indoor.map.hs.emap.hs
-         /Sauvegarde de Litanie_toxic_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
+         Sauvegarde de la map : Data/User/Temps/Agrarian_lands0.map.hs
+         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Agrarian_lands0.map.hs.emap.hs
          Sauvegarde de la map terminée !
          
          Sauvegarde du héro...
@@ -1209,73 +1085,11 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          /Sauvegarde de Craft_gem_emerald.item.hs
          /Sauvegarde de Necklage_necklage.item.hs
          /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Necklage_necklage.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
          /Ecriture des miracles.
          /Ecriture des docs.
-         /Sauvegarde de Les choses qui rodaient dans les catacombes
-         /Ecriture des quetes.
-         /Ecriture des potales.
-         Sauvegarde du héro terminée !
-         
-         Sauvegarde de la map : Data/User/Temps/Abbey_indoor.map.hs
-         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey_indoor.map.hs.emap.hs
-         /Sauvegarde de Litanie_toxic_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Sauvegarde de Sword_2h_two_hands_sword.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Shield_great_shield.item.hs
-         /Sauvegarde de Helmet_iron_cap.item.hs
-         /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Helmet_horned_barbute.item.hs
-         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Litanie_0.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Craft_coal.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_gem_emerald.item.hs
-         /Sauvegarde de Craft_gem_emerald.item.hs
-         /Sauvegarde de Craft_gem_emerald.item.hs
-         /Sauvegarde de Craft_gem_emerald.item.hs
-         /Sauvegarde de Quest_relic2.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Armband_leather.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Necklage_necklage.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Potion_faith0.item.hs
-         /Sauvegarde de Craft_gem_emerald.item.hs
-         /Sauvegarde de Necklage_necklage.item.hs
-         /Sauvegarde de Doc_redimus.item.hs
-         /Ecriture des objets.
-         /Ecriture des objets du coffre.
-         /Ecriture des miracles.
-         /Ecriture des docs.
-         /Sauvegarde de Les choses qui rodaient dans les catacombes
-         /Sauvegarde de Le muret diabolique
          /Ecriture des quetes.
          /Ecriture des potales.
          Sauvegarde du héro terminée !
@@ -1329,6 +1143,7 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          /Sauvegarde de Craft_gem_emerald.item.hs
          /Sauvegarde de Necklage_necklage.item.hs
          /Sauvegarde de Doc_redimus.item.hs
+         /Sauvegarde de Necklage_necklage.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
          /Ecriture des miracles.
