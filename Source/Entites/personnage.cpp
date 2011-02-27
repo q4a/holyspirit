@@ -365,7 +365,7 @@ void Personnage::Afficher(Modele_Personnage *modele, Border &border,bool surbril
                     moteurGraphique->AjouterEntiteGraphique(&temp);
                 }
 
-                if(modele->m_ombre)
+                if(modele->m_ombre && m_entite_graphique.m_couche + m_entite_graphique.m_decalCouche >= 10)
                 {
                     m_entite_graphique_shadow.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
                     m_entite_graphique_shadow.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
@@ -780,7 +780,7 @@ bool Personnage::SeDeplacer(float tempsEcoule)
                     m_etat=0,frappeEnCours=0;
             }
         }
-        if (m_etat==2||m_arrivee.x==m_positionCase.x&&m_arrivee.y==m_positionCase.y)
+        if (m_etat==2||(m_arrivee.x==m_positionCase.x&&m_arrivee.y==m_positionCase.y))
             return 1;
 
         if(m_caracteristique.vitesse == 0)

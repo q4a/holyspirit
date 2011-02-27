@@ -58,6 +58,7 @@ void c_Chargement::setC_Chargement(const std::string &prochaineMap,const coordon
 
     m_coordonneePerso.x=coordonneePerso.x;
     m_coordonneePerso.y=coordonneePerso.y;
+    m_coordonneePerso.h=0;
     m_nomProchaineMap=prochaineMap;
     z=49;
     augmenterNoir = true;
@@ -216,6 +217,10 @@ void c_Chargement::PreLoad(Jeu *jeu)
 void c_Chargement::PostLoad(Jeu *jeu)
 {
     m_thread_charger->Wait();
+
+    jeu->map->Initialiser(&jeu->hero);
+
+    jeu->map->m_etat_chargement = 5;
 
     jeu->map->InitialiserMinimap();
 

@@ -112,6 +112,8 @@ Hero::~Hero()
 
 void Hero::Reset()
 {
+    m_classe = Classe ();
+
     m_contenuSave.clear();
     m_docs.clear();
     m_potales.clear();
@@ -1806,8 +1808,8 @@ void Hero::AfficherDocs(float decalage)
         m_max_defil_cdoc = m_docs[docAffiche].m_ldescription.size();
 
         for(unsigned i = m_defil_cdoc ;
-            i < m_docs[docAffiche].m_ldescription.size(),
-            i < (unsigned)m_defil_cdoc + (unsigned)m_classe.position_contenu_docs.h;
+            i < m_docs[docAffiche].m_ldescription.size() &&
+            i < (unsigned)(m_defil_cdoc + m_classe.position_contenu_docs.h);
             ++i)
         {
             texte.SetString(m_docs[docAffiche].m_ldescription[i]);
@@ -2019,7 +2021,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                 moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
 
                 if (m_personnage.getCaracteristique().miracles_restant > 0)
-                    if (m_classe.miracles[i].m_buf == -1 || m_classe.miracles[i].m_buf != -1 && m_lvl_miracles[m_classe.miracles[i].m_buf] > 0)
+                    if (m_classe.miracles[i].m_buf == -1 || (m_classe.miracles[i].m_buf != -1 && m_lvl_miracles[m_classe.miracles[i].m_buf] > 0))
                     {
                         Caracteristique temp = m_personnage.getCaracteristique();
                         temp.miracles_restant--;
@@ -2137,7 +2139,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
     }
 
     for (int i=0;i<(int)m_inventaire.size();++i)
-        if (i!=m_objetEnMain && (m_inventaire[i].m_equipe==-1 || m_inventaire[i].m_equipe>=0 && !hideLeft))
+        if (i!=m_objetEnMain && (m_inventaire[i].m_equipe==-1 || (m_inventaire[i].m_equipe>=0 && !hideLeft)))
         if ((i == m_no_result_bless && bless)
          || (i == m_no_result_craft && craft)
          || (i == m_no_schema_bless && bless)
@@ -2591,8 +2593,8 @@ void Hero::AfficherRaccourcis()
         sf::Sprite sprite;
 
         if (m_raccourcis[i].no >= 0
-            && (m_raccourcis[i].no < (int)m_classe.position_miracles.size() && m_raccourcis[i].miracle
-             || m_raccourcis[i].no < (int)m_inventaire.size() && !m_raccourcis[i].miracle))
+            && ((m_raccourcis[i].no < (int)m_classe.position_miracles.size() && m_raccourcis[i].miracle)
+             || (m_raccourcis[i].no < (int)m_inventaire.size() && !m_raccourcis[i].miracle)))
         {
             sprite.SetPosition(AutoScreenAdjust(m_classe.position_raccourcis[i].x,
                                                 m_classe.position_raccourcis[i].y));
@@ -3253,8 +3255,9 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
              && m_classe.miracles[miracle].m_reserveFoi <= m_caracteristiques.maxFoi - m_caracteristiques.reserveFoi
                     && m_classe.miracles[miracle].m_coutVie + m_classe.miracles[miracle].m_reserveVie
                     <= m_caracteristiques.vie && m_classe.miracles[miracle].m_reserveVie <= m_caracteristiques.maxVie - m_caracteristiques.reserveVie)
-                if (m_cas == m_classe.miracles[miracle].m_cas || m_classe.miracles[miracle].m_cas == -1) {
-                    if (cible != NULL && m_classe.miracles[miracle].m_effets[0].m_type == CORPS_A_CORPS
+                if (m_cas == m_classe.miracles[miracle].m_cas || m_classe.miracles[miracle].m_cas == -1)
+                {
+                    if ((cible != NULL && m_classe.miracles[miracle].m_effets[0].m_type == CORPS_A_CORPS)
                      || m_classe.miracles[miracle].m_effets[0].m_type != CORPS_A_CORPS
                      || eventManager->getEvenement(sf::Key::LShift, EventKey))
                     {
@@ -3779,7 +3782,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
                         if (eventManager->getEvenement(Key::LControl,EventKey))
                         {
                             if(trader)
-                            if(trader->empty() && (trader == &m_coffre || craft || bless) || !trader->empty())
+                            if((trader->empty() && (trader == &m_coffre || craft || bless)) || !trader->empty())
                             {
                                 m_inventaire[z].JouerSon();
                                 if(trader != &m_coffre && !craft && !bless)

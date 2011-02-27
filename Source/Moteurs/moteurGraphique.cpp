@@ -809,7 +809,7 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
                     AjouterCommande(&sprite, entite->m_couche + entite->m_decalCouche, !entite->m_fixed);
             }
 
-            if(entite->m_shadow && configuration->Ombre)
+            if(entite->m_shadow && configuration->Ombre && entite->m_couche + entite->m_decalCouche >= 10)
             {
                 sf::Sprite sprite;
                 sprite = *entite;

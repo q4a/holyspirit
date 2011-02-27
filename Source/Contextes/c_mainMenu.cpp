@@ -337,7 +337,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
                         fichier2>>temp;
                         m_description_classes.back() = configuration->getText(0,temp);
 
-                        for(int i = 0 ; i < m_description_classes.back().size() ; ++i)
+                        for(unsigned i = 0 ; i < m_description_classes.back().size() ; ++i)
                             if(m_description_classes.back()[i] == '\\')
                                 m_description_classes.back()[i] = '\n';
                     }

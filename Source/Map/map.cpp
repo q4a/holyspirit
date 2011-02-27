@@ -973,13 +973,13 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
     console->Ajouter("Chargement de la map terminé.");
 
-    Initialiser(hero);
+   /* Initialiser(hero);
 
     m_etat_chargement = 5;
 
     if (configuration->debug)
         console->Ajouter("Initialisation terminée.");
-    console->Ajouter("");
+    console->Ajouter("");*/
 
     m_loaded = true;
 
@@ -1538,8 +1538,8 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
         {
             for (int k=hero->m_personnage.getCoordonnee().x - (int)(12 * configuration->zoom * configuration->Resolution.x/800) ;k<maxX ;++k)
             {
-                if (j>=0&&j<m_decor[couche].size()
-                 && k>=0&&k<m_decor[couche][j].size())
+                if (j>=0&&j<(int)m_decor[couche].size()
+                 && k>=0&&k<(int)m_decor[couche][j].size())
                 {
                     if(m_decor[couche][j][k].m_entite_graphique.m_tileset != NULL)
                     {
@@ -1882,7 +1882,8 @@ void Map::Animer(Hero *hero,float temps)
                             {
                                 if (m_monstre[monstre].m_cible != NULL)
                                 {
-                                    if (m_monstre[monstre].m_shooter||!m_monstre[monstre].m_shooter&&fabs(m_monstre[monstre].getCoordonnee().x-m_monstre[monstre].m_cible->getCoordonnee().x)<=1&&fabs(m_monstre[monstre].getCoordonnee().y-m_monstre[monstre].m_cible->getCoordonnee().y)<=1)
+                                    if (m_monstre[monstre].m_shooter||(!m_monstre[monstre].m_shooter&&fabs(m_monstre[monstre].getCoordonnee().x-m_monstre[monstre].m_cible->getCoordonnee().x)<=1
+                                                                       &&fabs(m_monstre[monstre].getCoordonnee().y-m_monstre[monstre].m_cible->getCoordonnee().y)<=1))
                                         if ((!m_monstre[monstre].m_friendly && rand() % 100 < (float)((float)(m_monstre[monstre].getCaracteristique().dexterite + 100)/(float)(m_monstre[monstre].m_cible->getCaracteristique().dexterite + 100))*25 )
                                         ||  ( m_monstre[monstre].m_friendly && rand() % 100 < (float)((float)(m_monstre[monstre].getCaracteristique().dexterite + 100)/(float)(m_monstre[monstre].m_cible->getCaracteristique().dexterite + 100))*50 ))
                                         {
