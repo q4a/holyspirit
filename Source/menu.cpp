@@ -96,7 +96,7 @@ void Menu::AfficherDialogue(float time,Classe *classe)
 
     sprite2.SetImage(*moteurGraphique->getImage(classe->talk.image));
     sprite2.SetX(classe->talk.position.x + (configuration->Resolution.x - 800) * 0.5);
-    sprite2.SetY(classe->talk.position.y + m_cur_talk_hauteur);
+    sprite2.SetY(AutoScreenAdjust(0,classe->talk.position.y).y + m_cur_talk_hauteur);
     sprite2.Resize(classe->talk.position.w, classe->talk.position.h);
     moteurGraphique->AjouterCommande(&sprite2,16,0);
 
@@ -491,7 +491,7 @@ void Menu::AfficherChargement(string nom,int fond,int z=50)
     texte.SetColor(Color(150,100,50,z*255/50));
     moteurGraphique->AjouterTexte(&texte,16,1);*/
 
-    moteurGraphique->special_typo.Draw(nom, sf::Vector2f(configuration->Resolution.w/2, configuration->Resolution.h - 96),
+    moteurGraphique->special_typo.Draw(nom, sf::Vector2f(configuration->Resolution.w/2, configuration->Resolution.h - 104),
                                        72, 18, true);
 }
 

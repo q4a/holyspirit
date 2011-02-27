@@ -36,7 +36,7 @@ class Jeu;
 
 int TrierInventaire(std::vector<Objet> *, int , bool = false);
 
-const int MINIMAP_SIZE = 5;
+const int MINIMAP_SIZE = 10;
 
 class Map
 {

@@ -43,7 +43,14 @@ bool Bouton::Survol()
 
 bool Bouton_pressoire::Survol()
 {
-    if(eventManager->getPositionSouris().x > AutoScreenAdjust(position.x,0).x
+    if(no_opacity
+    && eventManager->getPositionSouris().x > position.x
+    && eventManager->getPositionSouris().x < position.x + position.w
+    && eventManager->getPositionSouris().y > position.y
+    && eventManager->getPositionSouris().y < position.y + position.h)
+        return (true);
+
+    else if(eventManager->getPositionSouris().x > AutoScreenAdjust(position.x,0).x
     && eventManager->getPositionSouris().x < AutoScreenAdjust(position.x,0).x + position.w
     && eventManager->getPositionSouris().y > AutoScreenAdjust(0,position.y).y
     && eventManager->getPositionSouris().y < AutoScreenAdjust(0,position.y).y + position.h)
@@ -627,6 +634,22 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
             if (caractere=='*')
             {
                 fichier>>nom;
+            }
+            if (fichier.eof())
+            {
+                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                caractere='$';
+            }
+        }
+        while (caractere!='$');
+
+
+        do
+        {
+            fichier.get(caractere);
+            if (caractere=='*')
+            {
+                fichier>>description;
             }
             if (fichier.eof())
             {

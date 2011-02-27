@@ -464,7 +464,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         sprite.SetImage(*moteurGraphique->getImage(jeu->hero.m_classe.barre_vie_monstre_vide.image));
         sprite.SetX(configuration->Resolution.w/2+jeu->hero.m_classe.barre_vie_monstre_vide.position.x);
-        sprite.SetY(jeu->hero.m_classe.barre_vie_monstre_vide.position.y + 550);
+        sprite.SetY(configuration->Resolution.h - 48);
 
         moteurGraphique->AjouterCommande(&sprite,16,0);
 
@@ -474,7 +474,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
             sprite2.SetSubRect(sf::IntRect(0, 0,(int)((float)jeu->map->m_etat_chargement/5*moteurGraphique->getImage(jeu->hero.m_classe.barre_vie_monstre.image)->GetWidth()), 32));
             sprite2.SetX(configuration->Resolution.w/2 + jeu->hero.m_classe.barre_vie_monstre.position.x);
-            sprite2.SetY(jeu->hero.m_classe.barre_vie_monstre.position.y + 550);
+            sprite2.SetY(configuration->Resolution.h - 48);
 
             moteurGraphique->AjouterCommande(&sprite2,17,0);
         }

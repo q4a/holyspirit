@@ -75,7 +75,7 @@ struct Classe
 {
     void Charger(const std::string &chemin, const std::vector<int> &lvl_miracles, const Caracteristique &caract);
 
-    int nom;
+    int nom, description;
     Caracteristique caracteristique;
 
     std::string chemin_modele;

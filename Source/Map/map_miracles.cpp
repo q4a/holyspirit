@@ -261,6 +261,7 @@ bool Map::Miracle_Effet  (Hero *hero, Personnage *personnage, Miracle &modele, E
 
         if(fin)
         {
+            moteurGraphique->LightManager->Delete_Light(temp->m_effets[info.m_IDObjet].m_effet.m_light);
             for (int p=0;p<(int)effet.m_lien.size();p++)
             {
                 miracleEnCours.m_infos.push_back(new InfosEntiteMiracle ());

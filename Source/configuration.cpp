@@ -514,6 +514,7 @@ bool Configuration::Options()
             if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
             {
                 no_menu_option = O_GRAPHICS,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
+                eventManager->StopEvenement(sf::Mouse::Left,EventClic);
                 moteurGraphique->special_typo_p.Draw(configuration->getText(0,72), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 128), 72, 19, true);
             }
             else
@@ -529,6 +530,7 @@ bool Configuration::Options()
             if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
             {
                 no_menu_option = O_GRAPHISC_AVANCED,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
+                eventManager->StopEvenement(sf::Mouse::Left,EventClic);
                 moteurGraphique->special_typo_p.Draw(configuration->getText(0,73), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 64), 72, 19, true);
             }
             else
@@ -545,6 +547,7 @@ bool Configuration::Options()
             if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
             {
                 no_menu_option = O_SOUNDS,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
+                   eventManager->StopEvenement(sf::Mouse::Left,EventClic);
                 moteurGraphique->special_typo_p.Draw(configuration->getText(0,74), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2), 72, 19, true);
             }
             else
@@ -561,6 +564,7 @@ bool Configuration::Options()
             if(eventManager->getEvenement(sf::Mouse::Left,EventClic))
             {
                 moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
+                    eventManager->StopEvenement(sf::Mouse::Left,EventClic);
                 eventManager->StopEvenement(sf::Mouse::Left,EventClic);
                 return 1;
             }
