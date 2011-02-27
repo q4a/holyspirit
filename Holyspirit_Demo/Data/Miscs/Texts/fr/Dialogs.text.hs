@@ -3,9 +3,9 @@ Que souhaitez-vous faire ?\\
 Se téléporter
 Aller dans mon coffre
 L'Abbaye
-Les terres agraires
-Les catacombes
-La crypte
+Les Terres agraires
+Les Catacombes
+La Crypte
 
 
 

@@ -26,7 +26,7 @@ Alcuin l'archiviste
 Molosse infernal
 Abbé Hademar
 Potale de l'Abbaye
-Potale des terres agraires
+Potale des Catacombes
 Potale de l'orée de la forêt
 Tenancier derrière la porte
 Croisé
