@@ -175,8 +175,8 @@ Oué, le faucheur ! Tu connais pas ? C'est une sorte de grand échalas avec une tê
 C'est fermé à clé.
 
 
-
-
+//MISSED RELIC///
+La relique a disparue ! Quelqu'un a du emporter les yeux de Sainte Galswinthe.
 
 
 ///MONK ALCUIN///
