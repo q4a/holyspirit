@@ -65,7 +65,7 @@ $
 $
 	* x228 y536 w344 h16 m Data/Graphics/Menus/UI/Soul_bar.png $
 $
-	* x-14 y-6 w27 h24 in * mData/Graphics/Menus/UI/PlusMiracle.png x0 y0 w27 h24 $ $ 
+	* x23 y-6 w27 h24 in * mData/Graphics/Menus/UI/PlusMiracle.png x0 y0 w27 h24 $ $ 
 						ih * mData/Graphics/Menus/UI/PlusMiracle.png x27 y0 w27 h24 $ $
 						ip * mData/Graphics/Menus/UI/PlusMiracle.png x54 y0 w27 h24 $ $ $ 
 $
