@@ -31,15 +31,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <fstream>
 
 #include "tile.h"
-
-struct Infos_son
-{
-    Infos_son(int n, bool u = false) : no(n), unique(u)
-    {
-    }
-    int no;
-    bool unique;
-};
+#include "../Moteurs/moteurSons.h"
 
 
 class Tileset
@@ -56,7 +48,7 @@ class Tileset
 	void ChargerInfosTile(std::ifstream &fichier, int lumiere_base = 0, int type = 0);
 	void ChargerImages();
 
-	void JouerSon(int numeroSon,coordonnee position, bool unique = true, float volume = 100);
+	bool JouerSon(int numeroSon,coordonnee position, bool unique = true, float volume = 100);
 	void DeleteTiles();
 
 	int     getImage(int tile, int type = 0);

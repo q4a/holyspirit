@@ -73,7 +73,7 @@ void MoteurSons::StopAllSounds()
         m_sons[i].Stop();
 }
 
-void MoteurSons::JouerSon(int ID,coordonnee position,bool unique,int volume)
+bool MoteurSons::JouerSon(int ID,coordonnee position,bool unique,int volume)
 {
     m_music.SetPosition(sf::Listener::GetPosition());
 
@@ -138,9 +138,12 @@ void MoteurSons::JouerSon(int ID,coordonnee position,bool unique,int volume)
             m_sons[sonEnCours].SetPosition(position.x,0,position.y);
             m_sons[sonEnCours].SetLoop(false);
                       //  m_sons[sonEnCours].SetPosition(sf::Listener::GetPosition());
-
         }
+
+        return creerNouveauSon;
     }
+
+    return false;
 }
 
 void MoteurSons::PlayNewMusic(const std::string &chemin)

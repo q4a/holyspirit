@@ -23,6 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define MODELMOTEURPARTICULES
 
 #include "../constantes.h"
+#include "moteurSons.h"
 
 struct ModeleParticule
 {
@@ -46,7 +47,8 @@ class ModeleParticuleSysteme
     void Charger(std::string chemin);
 
     //private:
-    int m_image,m_son;
+    int m_image;
+    Infos_son m_son;
     std::string m_chemin;
     std::vector <ModeleParticule> m_particules;
 };

@@ -60,7 +60,7 @@ class ParticuleSysteme
 
     private:
     sf::Color m_color;
-    int m_son;
+    Infos_son m_son;
 };
 
 #endif

@@ -24,11 +24,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 
 
-ModeleParticuleSysteme::ModeleParticuleSysteme()
+ModeleParticuleSysteme::ModeleParticuleSysteme() : m_son(-1)
 {
 
 }
-ModeleParticuleSysteme::ModeleParticuleSysteme(std::string chemin)
+ModeleParticuleSysteme::ModeleParticuleSysteme(std::string chemin) : m_son(-1)
 {
     Charger(chemin);
 }
@@ -64,21 +64,42 @@ void ModeleParticuleSysteme::Charger(std::string chemin)
         }
         while (caractere!='$');
 
+
         do
         {
             fichier.get(caractere);
             if (caractere=='*')
             {
-                std::string m_cheminSon;
-                fichier>>m_cheminSon;
-                m_son=moteurSons->AjouterBuffer(m_cheminSon);
+                do
+                {
+                    fichier.get(caractere);
+                    if (caractere=='m')
+                    {
+                        std::string cheminSon;
+                        fichier>>cheminSon;
+                        m_son = moteurSons->AjouterBuffer(cheminSon);
+                    }
+                    else if (caractere=='u')
+                    {
+                        bool temp;
+                        fichier>>temp;
+                        m_son.unique = temp;
+                    }
+                    if (fichier.eof())
+                    {
+                        console->Ajouter("Erreur : Monstre \" "+m_chemin+" \" Invalide",1);
+                        caractere='$';
+                    }
+                }
+                while (caractere!='$');
+
+                fichier.get(caractere);
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Système de particules \" "+chemin+" \" Invalide",1);
+                console->Ajouter("Erreur : Tileset \" "+m_chemin+" \" Invalide",1);
                 caractere='$';
             }
-
         }
         while (caractere!='$');
 

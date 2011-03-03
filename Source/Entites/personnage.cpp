@@ -820,12 +820,17 @@ void Personnage::InfligerDegats(float degats, int type, float temps)
         if(m_entite_graphique.m_tileset->getNombreSonsSpecial(0) > 0)
         {
             int random = rand()%m_entite_graphique.m_tileset->getNombreSonsSpecial(0);
+            int nbr = 0;
 
             coordonnee position;
             position.x=(m_positionCase.x-m_positionCase.y-1)/5;
             position.y=(m_positionCase.x+m_positionCase.y)/5;
 
-            m_entite_graphique.m_tileset->JouerSon(m_entite_graphique.m_tileset->getSonSpecial(0, random),position, true);
+            while(!m_entite_graphique.m_tileset->JouerSon(m_entite_graphique.m_tileset->getSonSpecial(0, random++),position, true) && nbr++ < m_entite_graphique.m_tileset->getNombreSonsSpecial(0))
+            {
+                if(random > m_entite_graphique.m_tileset->getNombreSonsSpecial(0))
+                    random = 0;
+            }
         }
 
     if (m_caracteristique.vie<=0&&m_etat!=3)

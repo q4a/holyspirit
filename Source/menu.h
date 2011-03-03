@@ -105,6 +105,8 @@ class Menu
 	private:
 	sf::Text texte;
 
+	bool clear_diag;
+
 	int m_speak_choice;
 	std::vector <Speak_choice> m_choices;
 	std::vector <Speak_choice> m_old_choices;

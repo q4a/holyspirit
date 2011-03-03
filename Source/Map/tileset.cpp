@@ -644,7 +644,7 @@ const coordonnee &Tileset::getPositionMinimap(int tile)
         return m_tile[0].m_coordMinimap;
 }
 
-void Tileset::JouerSon(int numeroSon,coordonnee position, bool unique, float volume)
+bool Tileset::JouerSon(int numeroSon,coordonnee position, bool unique, float volume)
 {
     if (numeroSon>=0&&numeroSon<(int)m_sons.size())
     {
@@ -655,8 +655,10 @@ void Tileset::JouerSon(int numeroSon,coordonnee position, bool unique, float vol
         if(m_sons[numeroSon].unique == true)
             unique = true;
 
-        moteurSons->JouerSon(m_sons[numeroSon].no,pos,unique,(int)volume);
+        return moteurSons->JouerSon(m_sons[numeroSon].no,pos,unique,(int)volume);
     }
+
+    return false;
 }
 
 int getNombreSons();

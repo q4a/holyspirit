@@ -26,6 +26,14 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef MOTEURSONSH
 #define MOTEURSONSH
 
+struct Infos_son
+{
+    Infos_son(int n, bool u = false) : no(n), unique(u)
+    {
+    }
+    int no;
+    bool unique;
+};
 
 class MoteurSons : public CSingleton<MoteurSons>
 {
@@ -37,7 +45,7 @@ class MoteurSons : public CSingleton<MoteurSons>
 	void Gerer();
 	void Vider();
 	int AjouterBuffer(std::string);
-	void JouerSon(int ID,coordonnee position,bool unique=0,int volume=100);
+	bool JouerSon(int ID,coordonnee position,bool unique=0,int volume=100);
 	void StopAllSounds();
 
 	void PlayNewMusic(const std::string &chemin);

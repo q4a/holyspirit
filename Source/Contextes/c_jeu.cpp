@@ -121,8 +121,8 @@ void c_Jeu::Utiliser(Jeu *jeu)
             tempsEcoule = temps[4];
     }
 
-    if (tempsEcoule>0.1f)
-        tempsEcoule=0.1f;
+    if (tempsEcoule>0.025f)
+        tempsEcoule=0.025f;
 
     jeu->Clock.Reset();
 
@@ -628,7 +628,12 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false)
         if(choix == B_MIRACLES)
             return 5;
         if(choix == B_MENU)
-            return 4;
+        {
+            if(jeu->menu.m_dialogue.empty() || jeu->m_contexte != jeu->m_jeu)
+                return 4;
+            else
+                jeu->menu.ClearSpeakChoice(),jeu->menu.m_dialogue.clear(),jeu->hero.m_personnage.m_cible = NULL;
+        }
     }
 
     if (eventManager->getEvenement(Key::Return,EventKey)

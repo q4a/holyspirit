@@ -24,11 +24,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 
 
-ParticuleSysteme::ParticuleSysteme()
+ParticuleSysteme::ParticuleSysteme() : m_son(-1)
 {
 
 }
-ParticuleSysteme::ParticuleSysteme(int modeleInt, ModeleParticuleSysteme *modele, coordonnee position, sf::Color color,float force,float angle)
+ParticuleSysteme::ParticuleSysteme(int modeleInt, ModeleParticuleSysteme *modele, coordonnee position, sf::Color color,float force,float angle) : m_son(-1)
 {
     m_modele=modeleInt;
     Generer(force,modele,position,angle);
@@ -99,8 +99,8 @@ bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps)
                     position.x = -(int)(Iter->position.x/64/5);
                     position.y =  (int)(Iter->position.y/32/5);
 
-                    if ((int)fabs(Iter->vecteur.z*3)>10)
-                        moteurSons->JouerSon(m_son,position,0,(int)fabs(Iter->vecteur.z*3));
+                    if (((int)fabs(Iter->vecteur.z*3)>10 && !m_son.unique) || m_son.unique && (int)fabs(Iter->vecteur.z*3)>30)
+                        moteurSons->JouerSon(m_son.no,position,m_son.unique);
                 }
 
                 if (Iter->position.z<0)
