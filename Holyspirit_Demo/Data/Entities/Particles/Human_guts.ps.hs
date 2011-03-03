@@ -1,6 +1,6 @@
 	*Data/Graphics/Particles/Human_guts.png
 $
-	*Data/Sounds/Particles/Blood0.wav
+	* mData/Sounds/Particles/Blood0.wav $
 $
 	* x0 y0 w32 h32 i2 a4 r5 f0 p1 $
 	* x32 y0 w32 h32 i1 a3 r5 f0 p1 $
