@@ -15,5 +15,5 @@ $
 * x0 y0 w0 h0 i0 c1 lh128 vCollision $
 
 * x0 y0 w384 h1024 ey832 i1 c1 z1 vFalaiseCoin1 u-2 $
-* x384 y0 w512 h1024 ey820 ex264 i1 c1 z1 vFalaiseCoin2 u-2 $
+* x384 y0 w512 h1024 ey808 ex247 i1 c1 z1 vFalaiseCoin2 u-2 $
 $

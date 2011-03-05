@@ -176,7 +176,7 @@ C'est fermé à clé.
 
 
 //MISSED RELIC///
-La relique a disparue ! Quelqu'un a du emporter les yeux de Sainte Galswinthe.
+Le reliquaire de Sainte Galswinthe est vide !
 
 
 ///MONK ALCUIN///

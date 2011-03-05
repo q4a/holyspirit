@@ -831,8 +831,6 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          Initialisation des décors terminée.
          Initialisation des entités terminée.
          Chargement de : Data/Musics/Abbey.ogg
-         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
-         Chargement de : Data/Graphics/Miracles/HolyEffect.png
          
          ---------------------------------------------------------------------------------
          EVENEMENT : Changement de map
@@ -844,22 +842,21 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          /Sauvegarde de Drawing_crossbow_crossbow.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Armband_gauntlet.item.hs
-         /Sauvegarde de Armband_gauntlet.item.hs
          /Sauvegarde de Boots_leather.item.hs
          /Sauvegarde de Boots_leather.item.hs
          /Sauvegarde de Armor_gambeson.item.hs
          /Sauvegarde de Armor_chainmail.item.hs
          /Sauvegarde de Crossbow_crossbow.item.hs
-         /Sauvegarde de Dagger_ceremonial_dagger.item.hs
          /Sauvegarde de Dagger_dagger.item.hs
          /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Helmet_iron_cap.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Shield_great_shield.item.hs
+         /Sauvegarde de Shield_great_shield.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
          /Sauvegarde de Sword_1h_small_sword.item.hs
          /Sauvegarde de Sword_1h_small_sword.item.hs
          /Sauvegarde de Sword_1h_long_sword.item.hs
          /Sauvegarde de Sword_2h_two_hands_sword.item.hs
-         /Sauvegarde de Sword_2h_two_hands_sword.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
@@ -872,11 +869,11 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          /Sauvegarde de Potion_faith0.item.hs
          /Sauvegarde de Ring_ring.item.hs
          /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Drawing_shield_bronze.item.hs
+         /Sauvegarde de Craft_coal.item.hs
          /Sauvegarde de Craft_coal.item.hs
          /Sauvegarde de Craft_ore_copper.item.hs
-         /Sauvegarde de Craft_ore_copper.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
+         /Sauvegarde de Craft_ore_iron.item.hs
+         /Sauvegarde de Craft_gem_ruby.item.hs
          /Sauvegarde de Craft_wood_plank.item.hs
          Sauvegarde de la map terminée !
          /Génération de l'image...
@@ -1093,6 +1090,136 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          Initialisation de l'herbe terminée.
          Initialisation des décors terminée.
          Initialisation des entités terminée.
+         
+         Sauvegarde de la map : Data/User/Temps/Agrarian_lands0.map.hs
+         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Agrarian_lands0.map.hs.emap.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Armband_gauntlet.item.hs
+         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
+         /Sauvegarde de Litanie_0.item.hs
+         /Sauvegarde de Litanie_0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Necklage_necklage.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Necklage_necklage.item.hs
+         /Sauvegarde de Necklage_necklage.item.hs
+         /Sauvegarde de Armband_gauntlet.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
+         /Sauvegarde de Helmet_horned_barbute.item.hs
+         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Armband_gauntlet.item.hs
+         /Sauvegarde de Armor_chainmail.item.hs
+         /Sauvegarde de Necklage_necklage.item.hs
+         /Sauvegarde de Sword_2h_two_hands_sword.item.hs
+         /Sauvegarde de Shield_great_shield.item.hs
+         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
+         /Ecriture des objets.
+         /Sauvegarde de Craft_wood_plank.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
+         /Sauvegarde de Craft_gem_emerald.item.hs
+         /Sauvegarde de Craft_gem_emerald.item.hs
+         /Sauvegarde de Craft_gem_emerald.item.hs
+         /Sauvegarde de Craft_gem_emerald.item.hs
+         /Sauvegarde de Craft_gem_emerald.item.hs
+         /Sauvegarde de Craft_coal.item.hs
+         /Sauvegarde de Craft_coal.item.hs
+         /Sauvegarde de Craft_coal.item.hs
+         /Sauvegarde de Craft_coal.item.hs
+         /Sauvegarde de Craft_ore_iron.item.hs
+         /Sauvegarde de Craft_ore_iron.item.hs
+         /Sauvegarde de Craft_ore_iron.item.hs
+         /Sauvegarde de Craft_ore_iron.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
+         /Ecriture des objets du coffre.
+         /Ecriture des miracles.
+         /Ecriture des docs.
+         /Ecriture des quetes.
+         /Ecriture des potales.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/User/Temps/Agrarian_lands0.map.hs
+         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Agrarian_lands0.map.hs.emap.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Armband_gauntlet.item.hs
+         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
+         /Sauvegarde de Litanie_0.item.hs
+         /Sauvegarde de Litanie_0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Necklage_necklage.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Necklage_necklage.item.hs
+         /Sauvegarde de Necklage_necklage.item.hs
+         /Sauvegarde de Armband_gauntlet.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
+         /Sauvegarde de Helmet_horned_barbute.item.hs
+         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Armband_gauntlet.item.hs
+         /Sauvegarde de Armor_chainmail.item.hs
+         /Sauvegarde de Necklage_necklage.item.hs
+         /Sauvegarde de Sword_2h_two_hands_sword.item.hs
+         /Sauvegarde de Shield_great_shield.item.hs
+         /Sauvegarde de Drawing_sword_1h_small_sword.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
+         /Ecriture des objets.
+         /Sauvegarde de Craft_wood_plank.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
+         /Sauvegarde de Craft_gem_emerald.item.hs
+         /Sauvegarde de Craft_gem_emerald.item.hs
+         /Sauvegarde de Craft_gem_emerald.item.hs
+         /Sauvegarde de Craft_gem_emerald.item.hs
+         /Sauvegarde de Craft_gem_emerald.item.hs
+         /Sauvegarde de Craft_coal.item.hs
+         /Sauvegarde de Craft_coal.item.hs
+         /Sauvegarde de Craft_coal.item.hs
+         /Sauvegarde de Craft_coal.item.hs
+         /Sauvegarde de Craft_ore_iron.item.hs
+         /Sauvegarde de Craft_ore_iron.item.hs
+         /Sauvegarde de Craft_ore_iron.item.hs
+         /Sauvegarde de Craft_ore_iron.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
+         /Ecriture des objets du coffre.
+         /Ecriture des miracles.
+         /Ecriture des docs.
+         /Ecriture des quetes.
+         /Ecriture des potales.
+         Sauvegarde du héro terminée !
          Chargement de : Data/Musics/Menu.ogg
          /Génération de l'image...
          /Image affichée.
