@@ -1,13 +1,13 @@
-Les choses qui rodaient dans les catacombes
 Je dois aller dans les catacombes voir ce qu'il s'y passe.
+Les choses qui rodaient dans les catacombes
 J'ai retrouvé le journal du moine Rédimus. Celui-ci indique qu'il se trame des choses terrifiantes dans les catacombes. Je dois en parler avec l'Abbé.
-L'Abbé m'a demandé de retrouver 4 reliques de Saints. Je pourrai en trouver 3 dans les catacombes et une dans un mausolée à l'extérieur de l'Abbaye.
+L'abbé m'a dit de retrouver les quatre reliques de l'abbaye pour pouvoir prononcer l'incantation purificatrice. 
 Je dois escorter un Frère jusqu'à l'Oculus, au centre des catacombes, afin qu'il accomplisse le Rituel de Purification.
-
+L'abbé m'a dit de retrouver les quatre reliques de l'abbaye pour pouvoir prononcer l'incantation purificatrice. D'après Alcuin, une relique aurait disparue depuis quelques années.
 
 
 La charette abandonnée
-Je dois trouver et rapporter à Romulus le marchand le sachet de tabac abandonné dans sa charrette .
+Je dois trouver et rapporter à Romulus le marchand le sachet de tabac abandonné dans sa charrette.
 Je dois rapporter le tabac à Romulus le marchand.
 Romulus a récupéré son tabac.
 
@@ -20,7 +20,7 @@ L'abbé peut bénir un de mes objets si je lui fournis de l'eau bénite et une lita
 L'abbé a béni un de mes objets.
 
 Le muret diabolique
-Je dois éliminer les créatures qui ont infesté le muret de la ferme de Borlor
+Je dois éliminer les créatures qui ont infesté le muret de la ferme de Borlor.
 Toutes les créatures ont été éliminées.
 
 L'aubergiste assiégé

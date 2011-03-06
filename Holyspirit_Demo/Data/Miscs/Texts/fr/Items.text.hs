@@ -22,7 +22,7 @@ Bure
 Un habit de moine.
 Grand bouclier
 Cet écu métallique protège\généreusement son porteur de\la poitrine jusqu'aux pieds.
-Potion de soins mineure
+Potion de soins mineurs
 Un liquide rouge et épais,\au goût écoeurant. Ca n'est\assurément pas bon, mais ça\donne un fameux coup de fouet.\Vous soigne de 150 PV.
 Cervelière
 Ce casque constitue une\bonne protection de la tête.
@@ -117,7 +117,7 @@ Bouclier en os
 Bouclier fabriqué à l'aide d'os humains.\Certains prétendent qu'ils sont maudits...
 Potion de foi limitée
 Cette fiole au contenu étrangement\fluorescent fera couler l'essence\divine dans vos veines !\Vous régénére de 300 PF.
-Potion de soins limitée
+Potion de soins limités
 Un liquide rouge et épais,\au goût écoeurant. Ca n'est\assurément pas bon, mais ça\donne un fameux coup de fouet.\Vous soigne de 300 PV.
 Camail
 Un capuchon de maille qui\protège la tête et la nuque.
