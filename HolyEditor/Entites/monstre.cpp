@@ -373,7 +373,7 @@ bool Modele_Monstre::Charger(string chemin)
                 string temp;
                 //getline(fichier, temp);
                 fichier>>temp;
-                m_particules=moteurGraphique->AjouterModeleSystemeParticules(temp);
+             //   m_particules=moteurGraphique->AjouterModeleSystemeParticules(temp);
             }
 
             if (fichier.eof())

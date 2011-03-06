@@ -1812,6 +1812,8 @@ void MainWindow::selectTileset(QTreeWidgetItem *item, int column)
     map->m_selectEntite      = -1;
     map->m_selectHerbe       = -1;
 
+    modifLayer->setValue(0);
+
     //std::cout<<item->parent()->text(column).toStdString()<<std::endl;
     if (item->parent() != NULL)
     {
@@ -1848,6 +1850,7 @@ void MainWindow::selectHerbe(QTreeWidgetItem *item, int column)
     map->m_selectEntite      = -1;
     map->m_selectTileset     = -1;
     map->m_selectTile        = -1;
+    modifLayer->setValue(0);
 
     map->m_selectHerbe = item->data(1,0).toInt();
 
@@ -1860,6 +1863,7 @@ void MainWindow::selectEntite(QTreeWidgetItem *item, int column)
     map->m_selectHerbe       = -1;
     map->m_selectTileset     = -1;
     map->m_selectTile        = -1;
+    modifLayer->setValue(0);
 
     map->m_selectEntite = item->data(1,0).toInt();
 
