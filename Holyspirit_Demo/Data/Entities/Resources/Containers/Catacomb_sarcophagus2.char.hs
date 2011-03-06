@@ -1,0 +1,89 @@
+*Data/Entities/Resources/Containers/Catacomb_sarcophagus.rs.hs
+$
+	* n38 $
+$
+	* 0
+$
+	*v1 m0 o0 a0 n-1 f1 p1 u1 $
+$
+	*Data/Entities/Scripts/Miscs/Chess.script.hs
+$
+	
+	*
+		*Craft_gem_ruby.item.hs
+		r2000
+	$
+	*
+		*Craft_gem_emerald.item.hs
+		r2000
+	$
+	
+	*
+		*Potion_heal0.item.hs
+		r4000
+	$
+	*
+		*Potion_faith0.item.hs
+		r4000
+	$
+	
+	*
+		*Armband_gauntlet.item.hs
+		r5000
+	$
+	*
+		*Boots_leather.item.hs
+		r5000
+	$
+	*
+		*Armor_gambeson.item.hs
+		r5000
+	$
+	*
+		*Dagger_dagger.item.hs
+		r5000
+	$
+	*
+		*Helmet_iron_cap.item.hs
+		r5000
+	$
+	*
+		*Set_TearfulWidow_circlet.item.hs
+		r200
+	$
+	*
+		*Shield_great_shield.item.hs
+		r5000
+	$
+	*
+		*Sword_1h_long_sword.item.hs
+		r5000
+	$
+	*
+		*Sword_2h_katzbalger.item.hs
+		r200
+		*Sword_2h_two_hands_sword.item.hs
+		r5000
+	$
+	*
+		*Crossbow_crossbow_fire.item.hs
+		r200
+		*Crossbow_crossbow.item.hs
+		r5000
+	$
+	*
+		*Necklage_necklage.item.hs
+		r1000
+	$
+	*
+		*Ring_ring.item.hs
+		r1000
+	$
+	*
+		*Litanie_0.item.hs
+		r2000
+	$
+$
+
+$
+$

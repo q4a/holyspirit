@@ -4,36 +4,36 @@ $
 $
 * 0
 $
-*v15 di20 da40 m0.35 o1 a3 n1 x25 $
+*v50 di40 da60 m0.35 o1 a15 n1 x25 $
 $
 *Data/Entities/Scripts/Monsters/Standard.script.hs
 $
 	
 	*
 		*Armband_leather.item.hs
-		r2500
+		r5000
 	$
 	*
 		*Boots_leather.item.hs
-		r2500
+		r5000
 	$
 	*
 		*Armor_gambeson.item.hs
-		r2500
+		r5000
 	$
 	*
 		*Dagger_dagger.item.hs
-		r2500
+		r5000
 	$
 	*
 		*Helmet_leather_cap.item.hs
-		r2500
+		r5000
 	$
 	*
 		*Sword_1h_holy_sword.item.hs
-		r100
+		r200
 		*Sword_1h_small_sword.item.hs
-		r2500
+		r5000
 	$
 $
 *Data/Entities/Particles/Human_bones.ps.hs

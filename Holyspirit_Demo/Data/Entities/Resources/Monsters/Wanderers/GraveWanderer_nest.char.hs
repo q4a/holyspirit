@@ -4,7 +4,7 @@ $
 $
 * 1
 $
-*v50 i0 n1 c1 u1 $
+*v100 i0 n1 c1 u1 $
 $
 *Data/Entities/Scripts/Monsters/Nest.script.hs
 $
