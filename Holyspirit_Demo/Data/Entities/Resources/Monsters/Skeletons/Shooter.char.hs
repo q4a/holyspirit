@@ -40,6 +40,12 @@ $
 		r2500
 	$
 	*
+		*Crossbow_crossbow_fire.item.hs
+		r100
+		*Crossbow_crossbow.item.hs
+		r2500
+	$
+	*
 		*Necklage_necklage.item.hs
 		r500
 	$

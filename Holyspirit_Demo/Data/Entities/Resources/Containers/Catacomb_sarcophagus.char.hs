@@ -48,6 +48,10 @@ $
 		r2500
 	$
 	*
+		*Set_TearfulWidow_circlet.item.hs
+		r100
+	$
+	*
 		*Shield_small_shield.item.hs
 		r2500
 	$
@@ -57,6 +61,12 @@ $
 	$
 	*
 		*Mace_2h_timber_axe.item.hs
+		r2500
+	$
+	*
+		*Crossbow_crossbow_fire.item.hs
+		r100
+		*Crossbow_crossbow.item.hs
 		r2500
 	$
 	*

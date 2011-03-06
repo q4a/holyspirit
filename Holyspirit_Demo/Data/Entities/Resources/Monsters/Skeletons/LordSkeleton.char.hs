@@ -47,6 +47,10 @@ $
 		*Ring_ring.item.hs
 		r500
 	$
+	*
+		*Armor_barbarian.item.hs
+		r100
+	$
 	
 $
 *Data/Entities/Particles/Human_bones.ps.hs

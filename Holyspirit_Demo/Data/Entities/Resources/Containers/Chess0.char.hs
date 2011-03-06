@@ -50,6 +50,24 @@ $
 		r10000
 	$
 	*
+		*Crossbow_crossbow_fire.item.hs
+		r100
+		*Crossbow_crossbow.item.hs
+		r2500
+	$
+	*
+		*Set_TearfulWidow_circlet.item.hs
+		r100
+	$
+	*
+		*Set_TearfulWidow_necklage.item.hs
+		r100
+	$
+	*
+		*Set_TearfulWidow_robe.item.hs
+		r100
+	$
+	*
 		*Necklage_necklage.item.hs
 		r2000
 	$
