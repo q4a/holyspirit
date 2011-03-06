@@ -13,7 +13,7 @@ Romulus a récupéré son tabac.
 
 Un passe temps pour Rognorak		
 Rognorak le forgeron s'ennuie tant qu'il m'a proposé de me fabriquer une arme gratuitement. Je dois lui apporter les ingrédients nécessaires.
-Rognorak a ce qu'il lui faut pour réaliser une arme.
+Rognorak m'a fabriqué une arme.
 
 La bénédiction du bon abbé
 L'abbé peut bénir un de mes objets si je lui fournis de l'eau bénite et une litanie.

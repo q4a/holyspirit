@@ -155,6 +155,20 @@ main
 		end
 	end
 	
+	if player_class " Data/Miscs/Heroes/Concubine/Concubine.class.hs"
+	crafted " Crossbow_crossbow.item.hs"
+	then
+			setQuestState * 2 * 1 * 15
+			setQuestActif * 2 * 0
+	end
+	
+	if player_class " Data/Miscs/Heroes/Crusader/Crusader.class.hs"
+	crafted " Sword_1h_small_sword.item.hs"
+	then
+			setQuestState * 2 * 1 * 15
+			setQuestActif * 2 * 0
+	end
+	
 	if variable * 7 * day
 	then
 	else
