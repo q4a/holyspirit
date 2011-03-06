@@ -27,6 +27,9 @@ SpotLine (Clément Duquesne)
 Color Harmony (Moquay Quentin)
 http://colorharmonymusic.fr.mu/
 
+*Sound Designers
+Martin Bussy-Pâris
+
 *Webmasters
 Schnafon (Xavier Lambein)
 EnTraversDesNéons (Adam Santoro)
@@ -81,6 +84,8 @@ Chaoxys
 Mickael002
 Leonsulivan
 Bananios
+Archeadon
+Wissam
 
 
 +Tools

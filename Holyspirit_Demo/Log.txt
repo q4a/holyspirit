@@ -636,12 +636,12 @@ ERREUR : Impossible d'ouvrir le fichier : bi0
          Chargement de : Data/Entities/Resources/Miscs/Potale1.char.hs terminé
          /Lectures des monstres.
          
-         Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
-ERREUR : Impossible d'ouvrir le fichier : Data/Items/FireEffect/FireEffect.miracle.hs
-         Chargement du miracle : Data/Items/FireEffect/FireEffect.miracle.hs
-ERREUR : Impossible d'ouvrir le fichier : Data/Items/FireEffect/FireEffect.miracle.hs
+         Chargement du miracle : Data/Items/PoisonEffect/PoisonEffect.miracle.hs
+ERREUR : Impossible d'ouvrir le fichier : Data/Items/PoisonEffect/PoisonEffect.miracle.hs
          Chargement du miracle : Data/Items/HolyEffect/HolyEffect.miracle.hs
 ERREUR : Impossible d'ouvrir le fichier : Data/Items/HolyEffect/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Items/PoisonEffect/PoisonEffect.miracle.hs
+ERREUR : Impossible d'ouvrir le fichier : Data/Items/PoisonEffect/PoisonEffect.miracle.hs
          /Lectures des cases.
          Chargement de la map terminé.
          
@@ -649,6 +649,36 @@ ERREUR : Impossible d'ouvrir le fichier : Data/Items/HolyEffect/HolyEffect.mirac
          
          
          Sauvegarde de la map : Data/Editeur/Temp/Catacombs1_back_1.map.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde de la map : Data/Editeur/Temp/Catacombs1_back_2.map.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde de la map : Data/Editeur/Temp/Catacombs1_back_3.map.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde de la map : Data/Editeur/Temp/Catacombs1_back_4.map.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde de la map : Data/Editeur/Temp/Catacombs1_back_5.map.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde de la map : Data/Editeur/Temp/Catacombs1_back_6.map.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde de la map : Data/Editeur/Temp/Catacombs1_back_7.map.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde de la map : Data/Editeur/Temp/Catacombs1_back_8.map.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde de la map : Data/Editeur/Maps/Catacombs1.map.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde de la map : Data/Editeur/Maps/Catacombs1.map.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde de la map : Data/Editeur/Maps/Catacombs1.map.hs
          Sauvegarde de la map terminée !
          
          Destruction de la map...
